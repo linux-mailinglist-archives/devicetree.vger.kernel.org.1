@@ -1,122 +1,161 @@
-Return-Path: <devicetree+bounces-253020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929C9D061B1
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 21:32:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0DBD06320
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 22:04:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CF3CE300E63E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 20:31:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 03EDA3012A55
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 21:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B08D431577B;
-	Thu,  8 Jan 2026 20:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BC172FD7BC;
+	Thu,  8 Jan 2026 21:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yt1e08Bc"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="dyPX3adZ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="RjIJoAcL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5E41E3DE5;
-	Thu,  8 Jan 2026 20:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F162EC0B3;
+	Thu,  8 Jan 2026 21:04:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767904314; cv=none; b=MXTtZN1MC1TjrxqG+lWf6BDTyTC1oZbmspcgPdqssUOTW2xIRxxY3TrY7TfU+g1eVisZZgRFU47s2ITA2BtKHHtRTjS2f4OByQo3iShzww4jMIhdGiGafDqVYmOf81y54SBBi+PeK7KWMU2M1Yd/Yyg7IGZMa7b4VFWLigh7nkk=
+	t=1767906277; cv=none; b=l/fqmLDyOBYjQOU5u0REO2usYvIrLb1i02StAtuhcs9yWtsyJZd0eBVFXkc13qp2NyPw89OGevR6lrSsHW9nJaI0EhMGam2Uh4MedAT0vSGE7vnLw6mY4rzaji9U8PwYlnIM875qwDlH04UATO0fAUSiLCRFERtiz4jcXCVO3Zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767904314; c=relaxed/simple;
-	bh=z+EQsZrn4A1nnnPrAQX0XmDNbKhhPkr9Nce5Y9SLSg4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=hiTrt0KuNpxcHIo1dG1QZ7Qpb0GCbmV2kGKLcO9/Ziya6ADDDtcNgePt9UuqDX83MCAlIsK48X8UK8QyBrvSYvJxhd2jsAUlTwGvfM6FcEFPZRxAtub8SCS7c4SD6wfjd24sb4ETe2eaA6iuUq8INfLy+FM5Oqki/C3RFVUF7FA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yt1e08Bc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE6C4C116C6;
-	Thu,  8 Jan 2026 20:31:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767904314;
-	bh=z+EQsZrn4A1nnnPrAQX0XmDNbKhhPkr9Nce5Y9SLSg4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Yt1e08BcUG7ZcL3S1yhmWiJ97V4V63mFnD90C1c2wFbGuJ07sZgqEJtFgl4YDomzY
-	 n7vfkwdgYLKHv+4wG5fBRDtkLAC9d/dFPzjAia2VXM/PxjZCatPCiFEQjEbYfY+uei
-	 7LX51i6YFnuFcVO2DFE2PB5zbWzziDCHrzd6bmfelGvZIHCD/JITw/QcCis/tIgrd3
-	 fZ4u1F8pr6vJr1/JSCiQeMrrulSfP7wwpoxq9qOzwR9qrPFz0iT/UKlMCL1J/P0kbJ
-	 1H+jMkTGwku4FHA4eDlYSxa4LZ4uR8gKC1s/6tRAqdkQeFOdPxF6oQi7nAPGiUh7H9
-	 gTzvvl3kXUFCQ==
-Message-ID: <536f2d70-730f-49ce-b212-7dc679afb95b@kernel.org>
-Date: Thu, 8 Jan 2026 21:31:49 +0100
+	s=arc-20240116; t=1767906277; c=relaxed/simple;
+	bh=UEe2GBpmdFannk+xLx6SfquIM4myIvY07R/tNzyF4Pk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qmncw3HajAZMhclWdimg6fPb5cNnnDPY43H8nHxNk79WMFdULdYRfiBVh+HBaWPHTfRFAi6O8qZNgf+7Lnv+KafZbhhpftDXLKMhFqpBhcLOL0Z7KjVJ/Viiu/SMIzgfY4QDRQJ46jJuBp/CtkNw5EdblMODPRZAOwKbNX0kPCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=dyPX3adZ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=RjIJoAcL; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id E6B7714000BE;
+	Thu,  8 Jan 2026 16:04:33 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-06.internal (MEProxy); Thu, 08 Jan 2026 16:04:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1767906273; x=1767992673; bh=W9
+	6A5mcg05fjBbNAtxHc0fLKwlj7SwmDpRTKq/eAKgE=; b=dyPX3adZgfLbchr98P
+	Ul7MIm3M8JssszyuYFO3k8Y5r+UMTZcArDepG3rPixHowrhJoh+ZycBNPmK1j7tX
+	Yf4gjuj/H1aeNP+XSgLqblFpYQMUlXZeTtNgD50CP8W076D5F3Wi1tsg6R41TYwC
+	kSvmrYadVUT4k3COLmHIWNDa2nwKNMIGjIZy0+YItzBYNoMISHpkmesUEg3GZrEA
+	8McOi128SA7OKGnYW+eFE2QqQjWLPCi8LBe1+dmkhjCDItkgI2tELm0USXsHtdW5
+	GcmEY/kxjBqQ17GZdFCLJEs6j69Pf+1tDx3vjk6jy8tEICfeF5rs/x8Uq01absEI
+	l7qg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1767906273; x=1767992673; bh=W96A5mcg05fjBbNAtxHc0fLKwlj7
+	SwmDpRTKq/eAKgE=; b=RjIJoAcLcl5RPNQ2M+ORnhwi2bNYcjR15ZaoJZkZH6mx
+	PmdWsWfnnxtXm0SLHOPt5YwDUBmkMO0ARnp18x7DBR0VNOtn8fqn2YFLOHxGTT4s
+	lDUSxW8a/qpjzU8KV8Xwn0smlGV4h+olI77NBK6p+xL185u0yHjQZL56bEHQRnjU
+	IIMZYkYaIYeyacLTBmwmxk+ENj14bJxE8HdesNsHnXlG8yRfYFCgdbb5OMbeBtgD
+	WK0A5UY82F2pX1fxA/sHxIHwnBtZU4sQTgOrfZYkuAyD/sd7MNkDo26Ojjjcd/p2
+	zbLDRhO+lJ1+qqf9xC8IL5ubFX2TnX5OZ2RqnZG01A==
+X-ME-Sender: <xms:4BtgaYRyPVgcJGnsjgG-duJinFTdfM41y-nbUQez6AFN8fMnKBEQdA>
+    <xme:4BtgacT5KTbRI2R1O5YRUWP6MvtgTdTIxtA9Odz51q-LtJor-t8jCYqWqh3yLxBlt
+    x9NzpKWiUJ32y74wMWRMRu3qeQdpGUPAKeTp670l_vI5AQEYxAKHw>
+X-ME-Received: <xmr:4BtgaT1735cg4KmX5GiyOTj5YDKzwH8dGssqoDE6RadOs7BK1jzMpJW5ujxrZBSNzyc2bJvakOqDHt5cRtowqrxNBenw1yeS4l5BMg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddutdeileekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephffufffkgggtgffvvefosehtjeertdertdejnecuhfhrohhmpeflrghnnhgvucfi
+    rhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhephfdtue
+    duleejffduvdehkeeutdefhfdtvdeiieegheffleefvedvhfeggeegffefnecuvehluhhs
+    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurd
+    hnvghtpdhnsggprhgtphhtthhopeduvddpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
+    ohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghsrghhiheslh
+    hishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehmrghrtggrnhesmhgrrhgtrghn
+    rdhsthdprhgtphhtthhopehsvhgvnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnh
+    gvrghlsehgohhmphgrrdguvghvpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhn
+    vghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheptghonhhorh
+    doughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhes
+    vhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrd
+    horhhg
+X-ME-Proxy: <xmx:4BtgaeySxgJD3WNuhBlsMmkfJKF1KmNx5I59yNgdAb9n1xgFFzmY8Q>
+    <xmx:4BtgaXx5CioNL8x3TWO6STlkWfw0PcMZuKeJPMXJqLJqrPN0A0Z9Qg>
+    <xmx:4BtgaS8VsXPVJc6tjiL8282t3kK6Bz6Mxs0E74Ctij3iBsXe5IWnyQ>
+    <xmx:4BtgaZ-MOWxuvK4qiifNe6m1YIQp5xqwQkhn_zy-v1AQymxFgRpTMA>
+    <xmx:4RtgaQvob1Vbt0UsOpRleF2HpumRcbO3Aw1hMzG1yaO0RKsjqv4NnJqA>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 8 Jan 2026 16:04:31 -0500 (EST)
+From: Janne Grunau <j@jannau.net>
+Subject: [PATCH 0/3] arm64: dts: apple: Small pmgr fixes
+Date: Thu, 08 Jan 2026 22:04:00 +0100
+Message-Id: <20260108-apple-dt-pmgr-fixes-v1-0-cfdce629c0a8@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: clock: add IDs for EN7581
-To: Benjamin Larsson <benjamin.larsson@genexis.eu>, b.larsson@gmx.com,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260108183154.681958-1-benjamin.larsson@genexis.eu>
- <20260108183154.681958-2-benjamin.larsson@genexis.eu>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260108183154.681958-2-benjamin.larsson@genexis.eu>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMAbYGkC/x3LQQqAIBBA0avErBtQIZGuEi1EJxsoE40IxLsnL
+ R+fX6FQZiowDxUyPVz4ih1yHMDtNgZC9t2ghNJCCoM2pYPQ35jOkHHjlwp6p7U1ejKWPPQzZfp
+ DH5e1tQ+e96CIZQAAAA==
+X-Change-ID: 20260108-apple-dt-pmgr-fixes-dc66a8658aed
+To: Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Janne Grunau <j@jannau.net>, stable@vger.kernel.org, 
+ Hector Martin <marcan@marcan.st>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1540; i=j@jannau.net;
+ s=yk2025; h=from:subject:message-id;
+ bh=UEe2GBpmdFannk+xLx6SfquIM4myIvY07R/tNzyF4Pk=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhswE6TucWyZYyJ88H191ouFzrYu2wWTm6RWPevWS1808b
+ CqjYxHUUcrCIMbFICumyJKk/bKDYXWNYkztgzCYOaxMIEMYuDgFYCJqCQz/M5U3yn7J9H45hZMn
+ 5ZSwzxmupkffLVaEXBNQTN214HCNEyPDubnfGBzttwcHy+559rrmdHp+wqJ5PI+2bCtJbT3364o
+ zLwA=
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
 
-On 08/01/2026 19:31, Benjamin Larsson wrote:
-> Add ID for tod_soe, tod_gen, efuse, aes_xpon and fe.
-> 
-> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> ---
->  include/dt-bindings/clock/en7523-clk.h | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+This series contains 3 small pmgr related fixes for Apple silicon
+devices with M1 and M2.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+1. Prevent the display controller and DPTX phy from powered down after
+   initial boot on the M2 Mac mini. This is the only fix worthwhile for
+   stable kernels. Given how long it has been broken and that it's not a
+   regression I think it can wait to the next merge window and get
+   backported from there into stable kernels.
+
+2. Mark ps_atc?_usb_aon as always-on. This is required to keep the soon
+   to be suported USB type-c working across suspend an resume. The later
+   submitted devicetrees for M1 Pro/Max/Ultra, M2 and M2 Pro/Max/Ultra
+   already have this property since the initial change. Only the
+   separate for M1 was forgotten.
+
+3. Model the hidden dependency between GPU and pmp as power-domain
+   dependency. This is required to avoid crashing the GPU firmware
+   immediately after booting.
+
+Signed-off-by: Janne Grunau <j@jannau.net>
+---
+Hector Martin (1):
+      arm64: dts: apple: t8103: Mark ATC USB AON domains as always-on
+
+Janne Grunau (2):
+      arm64: dts: apple: t8112-j473: Keep the HDMI port powered on
+      arm64: dts: apple: t8103: Add ps_pmp dependency to ps_gfx
+
+ arch/arm64/boot/dts/apple/t8103-pmgr.dtsi |  3 +++
+ arch/arm64/boot/dts/apple/t8112-j473.dts  | 19 +++++++++++++++++++
+ 2 files changed, 22 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20260108-apple-dt-pmgr-fixes-dc66a8658aed
 
 Best regards,
-Krzysztof
+-- 
+Janne Grunau <j@jannau.net>
+
 
