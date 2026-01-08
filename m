@@ -1,147 +1,155 @@
-Return-Path: <devicetree+bounces-252730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9808D0245D
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:02:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF899D02408
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:59:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 889A230478E8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 10:52:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C792C301701A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 10:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1563D1CB2;
-	Thu,  8 Jan 2026 10:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE0934886F;
+	Thu,  8 Jan 2026 10:26:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979893ECBF5;
-	Thu,  8 Jan 2026 10:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99ADA48BD4E
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 10:26:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767867519; cv=none; b=sr9NDDwpx32rYiJN+qg2Lrzw8HZ3Mh4Us1zvPbBFmXKcsjZU7zufp3OI8+shq1PqkUht+Q9bGYXLsGmeeHKu0ug5NSkx+eg3EA/CBj/qpdaBw7IgFtmejY3Ht0qJ2gjcX5Z4u7WTZICCZjm+uBw/ctRZcmNCpk4WVqkeRUFotbs=
+	t=1767867997; cv=none; b=UXqsoojHD0nN0QgfGnlGjiKPWIvW7ktRHygXYSZHuT3fJXMN+5hogiqsxmgwnbfVfpBF2hAlZb2kZUWRjUwyiCNfB6ETpt2iHCW53FH3Oz+jRSOnnRwSDHdlBCWfMYptGQE5krCqvL9rufSj/U4I1g1jnHo3XKfk5z0bxoPXZ0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767867519; c=relaxed/simple;
-	bh=ZUZ0+hxfgtRIecRf0/5Ugc245wF3q8B7OXoxLAIHmU8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NH3vMSPcHMp9Wl6H+IAsoxGAhPAkC6AeaSNu2yetVSQz2/YlQ6qjIY7oSTUclJolnyv319cI9/Vowkbz/+NdG0Ffokt6wdx7xaueop4dMvj/fkkv0i4M52yjVp55U4l51L8y+pvqrQ0jqEBTs285pqhp0BTLNvB1UfAmNl6iNj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: esmtpgz11t1767867447t17b301d6
-X-QQ-Originating-IP: iimORQ95rju0zXekm8eBvwFRScDDDgqOrWF9LwG6wVM=
-Received: from [192.168.254.128] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 08 Jan 2026 18:17:24 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14971943080650209670
-Message-ID: <6547200DD4E67155+b1fb1848-2f11-4b3e-b556-9386373d23f1@radxa.com>
-Date: Thu, 8 Jan 2026 19:17:23 +0900
+	s=arc-20240116; t=1767867997; c=relaxed/simple;
+	bh=pGg9zkdVQOf89+usv8Daa9DstO50p1qO1Ru3e94qQX8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iKX5FGEIOtwqji/GaFka5xtHf7+OK4QtP7qs9SMH3VY5pPXJJRId8EY9BqEfjjG8znLo9yLbDB5r5KQtQU8Si52sJpXNOMEOi0tyu595oJoToR+GezyrOsvuqKnj9DstJc5hs+R4zPr+FkMS/mrFFeoUsJtN+Zltq4MCH3preZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-8ba0d6c68a8so333671985a.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 02:26:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767867986; x=1768472786;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6KYTwUPo18TQzTPppR+0uTL0qRsTCN2Iw6Xw2gz/T9k=;
+        b=DBtP0WNRzgwjAdPGlVtAOKlpyJxVuW5Xrl4jKb8bHr3VVhvzmcaExKNKmLP3RBPdZs
+         xkbvSekysWYBEFrAZ/rU+7ja+pEKqV6e7TpwygQbreXLYySgSlRkZOznx8NfKvZ/kAtI
+         kE+nvexZp7hoOoYEtcq+U3+H7wOVvzq3121gMHJy5TVyEnVwqkdQrc4eBQnR5QpI2dUl
+         pMlrCuxfSYzjObd4AytDHfmf1PvWuXFF0BZOMpEcsVerGgslx0nAALiPGQNbkxSh6a3c
+         doRAq4eIYwScf+SxkabllARY9ixTYgLgAcN66IOwHkA+ULcYVHppa6KrG4fTJh4Rap/D
+         QVDA==
+X-Forwarded-Encrypted: i=1; AJvYcCXiGh3OlOIJXq0sbsatlCPn+jCIVSmI1LrsYj/zLQSpEzGIVjT+ltbhv/WavSA6ZzqcCKhiKIpyMUez@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxsq8W0u2U/c8gG6A0p+OrFjykxuX3tuYkj8R13S4rZlIB0cdrP
+	mrhSERarVTH4A3CvQg7yNyKL+xNbVFUGfw399xyiXOHuTOlkTElGcUA2CAlbQH05
+X-Gm-Gg: AY/fxX4cjrcNGxK2fbsqMJPkf0GkX7gC5GdRqr72rO5+/SQde2yT2ERdITg01eL69bN
+	4VwBJta5G29nB0bZrOmPewhXKXwSTcf+j9vwuaX6+L/LJ58egZ+j5c+EzTJr2Z7ocrM02h56WOs
+	vPob/4WWX+ABW9r4QECYilMprCzLb3p7MVP3I++Io/HVqzPch3eD2AqqQ7jV9oWumcwBOwj569E
+	lAlZqUUsPb06uEkl2/KiMBPgGh/HxAxIpTESShkNmIwMRtGu3NFE6wrDwLMrYUk/0VSRKhaTmVO
+	OYfn4eDGbnlnFrcYsLP2OKrxdxA+N2dqCwBfjZKbAfZ/vHx6R6Erzg9id7OJ9WxzTrxFs/RogG/
+	6r3MXFAnpNj/AwqA2jt4lGUPi7srJ1GWsw/OBunozGqL4+KJ9CvU/BMHyW1MrKhbw/rTlKGeJ68
+	1SUr5/dtnbj+X2m61EkuCeTzt3DHGgT2JVhwaEbcDsxwB5l0sA
+X-Google-Smtp-Source: AGHT+IH1RqdkRJ0wZMw4j5kxbgGbdzKItmWiKQKZKw3oqD3gUVoS261r+q8K5stcjFHn26StcUWgdw==
+X-Received: by 2002:a05:620a:2545:b0:8b2:6538:6b4a with SMTP id af79cd13be357-8c3893a22f4mr696956985a.20.1767867985849;
+        Thu, 08 Jan 2026 02:26:25 -0800 (PST)
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com. [209.85.219.42])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c37f51ba4bsm567382185a.34.2026.01.08.02.26.25
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jan 2026 02:26:25 -0800 (PST)
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-88a2fe9e200so26461946d6.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 02:26:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWfVQDQdWke0h6049etzyVg4+bOgMDkvnAjNvq5oHwWqXhwaPaMxJVQHQGmQVsdeYdnwEVUk9V4orRS@vger.kernel.org
+X-Received: by 2002:a67:e716:0:b0:5d7:de28:5618 with SMTP id
+ ada2fe7eead31-5ecb1e6f437mr2335328137.5.1767867662424; Thu, 08 Jan 2026
+ 02:21:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: remove RTC for Radxa E52C
-To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260108100000.110354-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20260108100000.110354-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
-X-QQ-XMAILINFO: OBDSLDo3By90tSlGmy9itwqN9NO9G4orDi6CCHIg+yJu1ZI4NLnO+pE6
-	NihuOgs14xcpbS1S5UCs1HA/ODBaPOzxPS6t2YPv8tQDyqo3FmsLq0d+iEX0+pqORjABZzk
-	B/1emMPqePZOBq8uz7ewvv4sBMaP7S/p3pwI83dV7wVzznaZj/JF8DuhC+emESvtUjlvw/5
-	dI05lask40L/IjXWuA5sdf0sgWaQtfUh0JXsojyqWm31/polJvQMmWxzv9XjvI47pjv5gSS
-	DBRWnYhsEqOac5hwq10xVDBmVCAqZ265iotQGPffMrPKICoX9OCwLoDig83x44d8giBTEyg
-	HsnXzmQM5SEFqTXAlYCmyK4hVLtDohU3OeBYEaYjZygj/rS2jLmBs4+JE4szLFGixhKXLxl
-	64yAO6tRJXQUnnjQsTIGHlhda2qV2tRmSVIB2/ZAnRL8mW/wDmAoS3q5iSJ/n00MHsqvKN7
-	M2Jd/MX8ICxsdjPiIo/+PmhktKCTCp64N8sZfRm/dPFTSx/6arEeIcjvkauCJ0rcAwWGP/q
-	g5QzNXxPVLiCepEyeKKwu2418tarr3AG22bVdDrjmgrdpckAleU5IhNvsrze9FdLQ/dsb3I
-	/3xEOTgsOutj0sUTVCD+/sOqtjK0kPGb+yZCCziwqpVOJDJcHHVJ7r7byRIICehJKq+ZU9M
-	rZN+vCt7E5tSrKbC3QPUXw6Ftent63p+kIwDaamIoWcvZHzoJ2UG4WzrHhMfib7joU2Zodh
-	zGGcwL1OdWrTkyvvY0W776uxvdr4H+Wpht/Iqfj57IZcjAe28TgVYwBo8KS7zRc1sxaMv8U
-	/M9MM4tOyHqVv4fxtuvC03qJfkNOezc+LQUSSkrtHCdcAhyOoHraG31Mls/QaI6PurBWZLK
-	sGlX5ork/5hPmV7AYQb1nrY0YLdOU8XvYTVwEJcdkriGe67+2kqZQn20sjL7/xIHIvTrNNY
-	OcFa9tTyxn2Uxg4S8tB8D/JoQO2vDPVKlXPVzp1tt/OFgrw==
-X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
-X-QQ-RECHKSPAM: 0
+References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251230115814.53536-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdX5_TkFmgqv29Nddo4bZzEWQrL87kwqTdiLwfq+qMtsXg@mail.gmail.com> <CA+V-a8to1W2xbA7LpzLa5RSy02hyUFG0AeDR4iSsj7jt36VKVQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8to1W2xbA7LpzLa5RSy02hyUFG0AeDR4iSsj7jt36VKVQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 8 Jan 2026 11:20:51 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUe6gkbgQj7cjeZ5w2Mn_HPDwiuh5yEp8nQEE-vQPLqQg@mail.gmail.com>
+X-Gm-Features: AQt7F2q329GKSf7dgOJYdzgZ3DUM2vDua1zqaJTIpmI1KP2q0zp9hslKg4nKf7k
+Message-ID: <CAMuHMdUe6gkbgQj7cjeZ5w2Mn_HPDwiuh5yEp8nQEE-vQPLqQg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] can: rcar_canfd: Add RZ/T2H support
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Chukun,
+Hi Prabhakar,
 
-On 1/8/26 19:00, Chukun Pan wrote:
-> According to the Radxa E52C Schematic [1], both the i2c5 bus and the
-> hym8563 chip are marked as NC. Remove them to avoid the following log:
-> 
-> rtc-hym8563 5-0051: could not init device, -110
-> rtc-hym8563 5-0051: probe with driver rtc-hym8563 failed with error -110
-> 
-> [1] https://dl.radxa.com/e/e52c/hw/radxa_e52c_v1.2_schematic.pdf
+On Thu, 8 Jan 2026 at 11:13, Lad, Prabhakar <prabhakar.csengg@gmail.com> wr=
+ote:
+> On Wed, Jan 7, 2026 at 4:37=E2=80=AFPM Geert Uytterhoeven <geert@linux-m6=
+8k.org> wrote:
+> > On Tue, 30 Dec 2025 at 12:58, Prabhakar <prabhakar.csengg@gmail.com> wr=
+ote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > The CAN-FD IP on the RZ/T2H SoC is similar to R-Car Gen4, but differs=
+ in
+> > > the AFLPN and CFTML bits and supports two channels with eight interru=
+pts.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> >
+> > Thanks for your patch!
+> >
+> > LGTM, so
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >
+> > However, compared to other SoCs, CFDCnNCFG.NSJW[6:0] has:
+> >
+> >     0x00: Setting prohibited
+> >
+> Sharp eye!
 
-V1.209 and later should have RTC. What version do you have?
+I knew what I had to look for ;-)
 
-Best regards,
+This one was indeed hard to compare with other SoCs, as the structure
+is completely different. For e.g. RZ/V2H and RZ/G3E, I could just use
+diffpdf, restricted to the pages I am interested in.
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+Still need to enhance diffpdf with shift up/down buttons, so I don't
+have to adjust the page numbers manually when a few lines are suddenly
+moved to a new page...
 
-> Fixes: 9be4171219b6 ("arm64: dts: rockchip: Add Radxa E52C")
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->   .../boot/dts/rockchip/rk3582-radxa-e52c.dts   | 24 -------------------
->   1 file changed, 24 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> index 854c118418eb..c24ff264cae2 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-> @@ -266,24 +266,6 @@ regulator-state-mem {
->   	};
->   };
->   
-> -&i2c5 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&i2c5m2_xfer>;
-> -	status = "okay";
-> -
-> -	rtc@51 {
-> -		compatible = "haoyu,hym8563";
-> -		reg = <0x51>;
-> -		#clock-cells = <0>;
-> -		clock-output-names = "rtcic_32kout";
-> -		interrupt-parent = <&gpio0>;
-> -		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&rtc_int_l>;
-> -		wakeup-source;
-> -	};
-> -};
-> -
->   &pcie2x1l1 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pcie20x1_1_perstn_m1>;
-> @@ -329,12 +311,6 @@ vcc_5v0_pwren_h: vcc-5v0-pwren-h {
->   		};
->   	};
->   
-> -	rtc {
-> -		rtc_int_l: rtc-int-l {
-> -			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-> -		};
-> -	};
-> -
->   	usb {
->   		usb_otg_pwren_h: usb-otg-pwren-h {
->   			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
+> > Perhaps this is a documentation issue, as the same limitation was
+> > dropped in RZ/V2H Hardware User Manual Rev.1.30?
+> > Linux also has no can_bittiming_const.sjw_min field.
+> >
+> I've notified the HW team to get it clarified.
 
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
