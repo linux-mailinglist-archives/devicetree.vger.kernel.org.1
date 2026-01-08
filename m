@@ -1,197 +1,228 @@
-Return-Path: <devicetree+bounces-252904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46412D050C4
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23260D05145
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:39:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 329A830E9054
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:40:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 38A2B3232253
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C492D9EF9;
-	Thu,  8 Jan 2026 16:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D990B2D8393;
+	Thu,  8 Jan 2026 16:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sW1RxAzS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nk2f8YRy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazhn15012043.outbound.protection.outlook.com [52.102.128.43])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99ABA50094E;
-	Thu,  8 Jan 2026 16:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.128.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767890442; cv=fail; b=e2i3llx5kVWPUpZlVx1tudlWXMDKFAM5/B/zvVvJ+ERcbh6z4IDzwEw/91hn8tHw74rSq7gr86rDai9ppOXJtLVVXkOtIEh2V4+C7X3GKNHl2iFk32QXY0pHnsDRzxq/mFO1uAi1+gqQzS3KdDf33SRL87nEY0rXrfD1VZFLzO0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767890442; c=relaxed/simple;
-	bh=tEzCYFp65/un96jJOi4W4SCmung7z6fXNIZkcQcuWLU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hZi/LA/MveKZYwUoph4SrDKwObX4DE7luH967gxCTd6IzM1zVydqx4HsF9LfI4SrUu/aB+JdI1VbHnal+sQPSXlP779d+DhaniDq1sdeWqF5KoRGrnDWkvN2RGggCTzvXadrn62u32v8Rw5G1htP/q+TkkNvKFRYsZF+YbLgk78=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sW1RxAzS; arc=fail smtp.client-ip=52.102.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FZFZ+QITetErSYrKnZ04ohU7jDBUijLx9hEDrCqQtPC+meXjiIT+1nxOubB8kiJUlCSjAp9wR1I05+4nmT+cMyoQTFPRxJyCmQeQvFePb9b7n1hLB+LQPvwb+q+5xGbQJT9su/eUqzqXibrB9xfpqjqH+kkI/2eYGp6FTmIsABTkI6wVxy+vofGx5mhFSJPKbKDR5/hyEs+ffsQjeeG9Hl/E/RPBTQiLEN6H9Oz7UsrEWtNpT3YYJZlV3KNlMBtif6Dyef/VQUfMhgehZKe8BO/qpEfulOb1963oLDkYNyyZfaxtr3OyH0cjW20GQLV4FKjknZZJ66+GcAo57RwZlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QzKPXcys/yDv3xR50V/DQ4UbV8OFp6lVFesvejZ/KE4=;
- b=gcp9oU7r1h4Iu4iTEzWauFiOjnSbFGCimnSsRrXi9J0lWDB3hDY5VCMDg2Kkjn4cOI5YApYwAIzEOKM1jtQ98fyNeixMZHbkQjs2rrJZ4H+R57zhOcOmwVvr2nh/HS2/NzCLuknsgrbguPTf9FfTCa6vDd6p3AMQQJu4R7ize4kZHeYy7jOtw5OEBkluaUhBAwuXHJtR6iSgjC1b1EAs5tlwne+L3zmJ8hpNVjEoPlAsZ7avnX44m9cDjDAdp35oxZ3YwUky4Eqdv0mZweI1XjYSo7e0ReIkpDJ+lR8M6slOzxAD9ZBSJNoxMovSBO2QOzlUuuY92qguJS05SlLVLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QzKPXcys/yDv3xR50V/DQ4UbV8OFp6lVFesvejZ/KE4=;
- b=sW1RxAzShqEybrpSmOtSoNZEDGvqxjEI+bUFFy4ItnwQHQ5u6c75UI5+mZlP4gkbcTDOWbUh7iMkSA/KfbJbu5VUV9PvD2f8fOEYdCKCRbW3ape29WZw115yH+o/oNDT6nIYIrx2RgMfV/z2AmEsrZ+XKM0EVduVDtThZHaYikY=
-Received: from IA4P221CA0002.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:559::8)
- by PH8PR10MB6337.namprd10.prod.outlook.com (2603:10b6:510:1cc::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Thu, 8 Jan
- 2026 16:40:34 +0000
-Received: from BN3PEPF0000B078.namprd04.prod.outlook.com
- (2603:10b6:208:559:cafe::ba) by IA4P221CA0002.outlook.office365.com
- (2603:10b6:208:559::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.4 via Frontend Transport; Thu, 8
- Jan 2026 16:40:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BN3PEPF0000B078.mail.protection.outlook.com (10.167.243.123) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Thu, 8 Jan 2026 16:40:32 +0000
-Received: from DFLE206.ent.ti.com (10.64.6.64) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 8 Jan
- 2026 10:40:25 -0600
-Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 8 Jan
- 2026 10:40:24 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 8 Jan 2026 10:40:24 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 608GeOqp2674922;
-	Thu, 8 Jan 2026 10:40:24 -0600
-Date: Thu, 8 Jan 2026 10:40:24 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-CC: Markus Schneider-Pargmann <msp@baylibre.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman
-	<khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, Sebin Francis
-	<sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, Akashdeep Kaur
-	<a-kaur@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt Trigger
-Message-ID: <20260108164024.fodfklk7xayh4dqj@authentic>
-References: <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
- <979eb1054dbe116c2c8bb9920e94e3a93db5346c.camel@gmail.com>
- <DFHSDXTVL4AU.2OQ9VB9TEJ75G@baylibre.com>
- <6c90102537c3e3f1712538ca0b165cd54d71d8c2.camel@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00F927603C;
+	Thu,  8 Jan 2026 16:43:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767890623; cv=none; b=pvOp+u3F5yNAZZYlHyPQxndzOurKWYiSoGqYfT5s9+7LBChoqse0JlWMrl4tmqamI2qiey9681CSf+APZDnquN3j7jY/g0YuSSfyDBzBdloNFtR3cC+WTqe7KbW9fkN/ohA3pGpa9YJo6iGplhjygTKxYEjErdsPElICef1Z73M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767890623; c=relaxed/simple;
+	bh=BV2Gu6VvqDnjUG9CdfeoHNPKb8cbX0GclRstD7UwMGY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BWH1FhcCbyBZ6uQvndfBz6pgQI4daRcAfGvpJIcpuyJpbgObVbmcgtMRraHfbNQO8gMBOSXFqgpf5IHCcuzO4EViWBtj8ssAYQuUFv9nnfPEVrE7dk3ZrMfTMSV/3rqz355ROH49PK4DV3ZvE1kn2ncGpE/zrNQCbT2vSAK/gC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nk2f8YRy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19B71C116C6;
+	Thu,  8 Jan 2026 16:43:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767890623;
+	bh=BV2Gu6VvqDnjUG9CdfeoHNPKb8cbX0GclRstD7UwMGY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Nk2f8YRygJ+5gB3s5fKTjtytG/ystrFTw0/9KQJD85FxII3hTLdI4Mj1I4GaPUU5z
+	 b/Z9A1Ez9BY6BbP2yn2eLg5hDIiTk2KLKH1e5DIIQipCOrTyq+UprVH6bl4OT5WfcN
+	 AcExX1cCFp8kbdm4JPTvtGYaevEx8lFsPsQiEzZD1nj7avkdlxzZzeljgNtuvTFbap
+	 X7i9ESH71JTVu7Bf9IF8F5MmUYqlcBG26sRjvft2sQD7gifq3Hl1IVsTItyHePm2sA
+	 mCLeT7saStjxtYhqU1Q6Aw7YjIJMEdVyPrOqG+cgwTrGHKoCpkjZQ2WTOrlQ5qqfIE
+	 U8jgBIyJQeUyA==
+Message-ID: <260f91bf-c285-4a2f-b4dc-457e7b601761@kernel.org>
+Date: Thu, 8 Jan 2026 17:43:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <6c90102537c3e3f1712538ca0b165cd54d71d8c2.camel@gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B078:EE_|PH8PR10MB6337:EE_
-X-MS-Office365-Filtering-Correlation-Id: 019846df-1a8e-4833-7bb7-08de4ed4a45e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|34070700014|376014|1800799024|7416014|82310400026|36860700013|34020700016|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?k6h74jTKTRfH/n2xceMwm5qyxWHcj0GErZouanMUOz9uAI5sq0rEYAa8ft3o?=
- =?us-ascii?Q?c3mnhe3gail07p2CUKyNs/C56kRw+nXsu+kTlToJXpFZOnb315b5wrJQUY0Z?=
- =?us-ascii?Q?E2pJHpyFuHZ80/xjJ2bjZ9+hxlsLhCWSNpOqyfrNl7hD10aeAzPRKmpxRsa/?=
- =?us-ascii?Q?LxVuwyGuxXU69F/ONr1azinLOikNt5cWV+8DbrkdQqgY3qEsYAng8T6MQ9F6?=
- =?us-ascii?Q?6i8B2aklb9mLfB6bGHaRmcRrBBBBRJ/4mJFIFIPLvvtYTnhDLEiGwUOJ/txY?=
- =?us-ascii?Q?9FY6reNGQP18OLoLnn7DKAAn4m9zstU+mLoeqxtxaRCgjA8Lz9Tq336pfgRV?=
- =?us-ascii?Q?67BaKtUNOL+27zvz+DSVtoY41KL4673tqMYTv9jRCADjNknlC0qOmULSM34A?=
- =?us-ascii?Q?xslLvTrTCQ4o+8XhaDZKGHyoNlJUk4VBcU7i7xnkZdTltk/cWWt5ij7BhegR?=
- =?us-ascii?Q?wuAFBhAsMVJm1LaSuMo++L6LDBfu5sRXqQkdlRqMHBfakaAcC2o7Jk+Sm0Tl?=
- =?us-ascii?Q?A+MrQ8XotSPPC3YSgGRThkQB/wY2sbtxaLHsqrDylphcbXEZJsJ4ASqAGrG9?=
- =?us-ascii?Q?laBhmYuDuHZa4hmTKme+Aic4CFUflZXAIKgBr5ooFcnuUBT8CkGCiss5CagP?=
- =?us-ascii?Q?ev8VdWJQK1qsJ+89V1gus12IGwPUU7mXb+OExJen+b203aSXH10fZ6/aqOLB?=
- =?us-ascii?Q?5rvPttFXSaXSU4Got6xv1XUCkBcawm9+MnPm19fwTSulsIxB/V1Y6RNGEMhL?=
- =?us-ascii?Q?Z9xp9gKWeoSBWC4dIEnMr1HABTcRt5jOnOQZKV4ba4bIfQFQ5CRwnTiGPHfM?=
- =?us-ascii?Q?4Q0lQ74awrddLe+UNxZQLjR4WBkxoLh/0oxxc49P1rQ4Mr08+DJgGBtBuNwf?=
- =?us-ascii?Q?EaMnBpCy+hLPef1Y2CaDQI75cvaPoORlaOEAyvBYaIZMidQf8xyprlQmilm9?=
- =?us-ascii?Q?v/Hqv7mIxzivvs+Mo6IASm5uXxJGu14hO4CO+FteOfxHUx/+7ElzatphloQt?=
- =?us-ascii?Q?ATTTHuNVKFI0B7jKc/w8nv+2/eKbo3XgDRyak7AEKNzjvKFze6x5t+OqrYlA?=
- =?us-ascii?Q?w/IrFK980VIA3pBn1UON14NrmnszxhbkaGSiwvin7x0ID3nx4w8J+VZmjDrn?=
- =?us-ascii?Q?2wOjheMiD4WiPfYHCzIiPyw1nbyua/VHBXECpty+HszeQR/WzGFcW9cSIMi5?=
- =?us-ascii?Q?oX9LlHfC0SoUBBh6ID/3LwdxbVsl40ybVksZxBbJnQAOn49+TFfULrRC750B?=
- =?us-ascii?Q?mRxaqJSlHsYCqvifv6Jv6/oTnsHd6hiTgHdA4YxSvFRQVohkhUJz3ZNdMqkZ?=
- =?us-ascii?Q?Oi+FFdD8VRvc5gPTEyuVDKhcc3qy4EfZ9sPPsBY9fA5q5iDuaxkTF+ryIIcC?=
- =?us-ascii?Q?XqDVl8PTrS1zMZMuL9i7EcPJshNg6eBSkkmSXZpWwGA/hqEnTPTzWwdqhYGX?=
- =?us-ascii?Q?raPNSRfewd1tonfLBPK4enXes3plhfEWTUGRzPDPL1MN0WjErBGAIx6N7fhb?=
- =?us-ascii?Q?Jr4ANY2N+n6xIVj31XGIc2tLdal3mUgzlNwqroCPY87OmwimZBJAHrFuf/qa?=
- =?us-ascii?Q?RFfCUx+V2l9BzbXAiRE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(34070700014)(376014)(1800799024)(7416014)(82310400026)(36860700013)(34020700016)(12100799066);DIR:OUT;SFP:1501;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 16:40:32.9656
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 019846df-1a8e-4833-7bb7-08de4ed4a45e
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN3PEPF0000B078.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR10MB6337
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: lg: Initial support for LG1215 SoC and
+ reference board
+To: Chanho Min <chanho.min@lge.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kever Yang <kever.yang@rock-chips.com>, Kael D'Alcamo <dev@kael-k.io>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: Gunho Lee <gunho.lee@lge.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20260108082213.6545-1-chanho.min@lge.com>
+ <20260108082213.6545-4-chanho.min@lge.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260108082213.6545-4-chanho.min@lge.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 23:57-20260107, Alexander Sverdlin wrote:
-> Hi Markus,
-> 
-> On Tue, 2026-01-06 at 21:25 +0100, Markus Schneider-Pargmann wrote:
-> > > I think we would need to discuss this with TI via our FAE, because the change
-> > > in question has both been discussed with former FAE and the technical team
-> > > behind, and adopted in TI SDK.
-> > > 
-> > > Or have you already discused this with corresponding TI HW team?
-> > > 
-> > > Which hardware is affected, is it the official SK-AM62A-LP?
-> > > Is MMC2 the SD-card?
-> > 
-> > I only tested my am62a board on u-boot v2026.01. It is a SK-AM62A-LP.
-> > MMC2 is the SD-card and mmc1 in the devicetree.
-> 
-> just wanted to let you know, I was able to reproduce the problems with SD
-> card access via MMC2 under Linux on AM623 with ST enabled.
-> 
-> We will seek clarification from TI on why this happens, which peripherals
-> are affected and what should be the course of actions.
+On 08/01/2026 09:22, Chanho Min wrote:
+> +		compatible = "arm,psci";
+> +		method = "smc";
+> +		cpu_suspend = <0xc4000001>;
+> +		cpu_off = <0xc4000002>;
+> +		cpu_on = <0xc4000003>;
+> +	};
+> +
+> +	cpu0_opp_table: opp_table@0 {
+
+More warnings...
+1. Please follow coding style
+2. Please use generic or approved names for this.
+
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
+> +
+> +		opp-default {
+> +			opp-hz = /bits/ 64 <1600000000>;
+> +		};
+> +	};
+> +
+> +	gic: interrupt-controller@c0000000 {
+
+Wrongly placed. All MMIO nodes are part of soc.
+
+> +		compatible = "arm,gic-400";
+> +		reg = <0x0 0xc0001000 0x0 0x1000>, /* GICD */
+> +		      <0x0 0xc0002000 0x0 0x2000>, /* GICC */
+> +		      <0x0 0xc0004000 0x0 0x2000>, /* GICH */
+> +		      <0x0 0xc0006000 0x0 0x2000>; /* GICV */
+> +		#interrupt-cells = <3>;
+> +		#address-cells = <0>;
+> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0x0f) |
+> +					IRQ_TYPE_LEVEL_LOW)>;
+> +
+> +		interrupt-controller;
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>,
+> +				     <&cpu1>,
+> +				     <&cpu2>,
+> +				     <&cpu3>;
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_RAW(0x0f) |
+> +			      IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_RAW(0x0f) |
+> +			      IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_RAW(0x0f) |
+> +			      IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_RAW(0x0f) |
+> +			      IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +
+> +	clks {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+
+No, this makes no sense, that's not a bus or any sort of device. Drop
+entire node.
+
+> +
+> +		clk_xtal: clk-xtal {
+> +			compatible = "fixed-clock";
+> +			clock-output-names = "xtal";
+> +			clock-frequency = <50000000>;
+> +
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		clk_bus: clk-bus {
+> +			compatible = "fixed-factor-clock";
+> +			clocks = <&clk_xtal>;
+> +			clock-names = "xtal";
+> +			clock-output-names = "busclk";
+> +			clock-div = <1>;
+> +			clock-mult = <4>;
+> +
+> +			#clock-cells = <0>;
+> +		};
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		interrupt-parent = <&gic>;
+> +
+> +		dwmac_axi_config: dwmac-axi-config {
+
+I don't think this validates.
+
+Also, you really should follow DTS coding style.
+
+> +			snps,rd_osr_lmt = <0x07>;
+> +			snps,wr_osr_lmt = <0x07>;
+> +			snps,blen = <0 0 16 0 0 0 0>;
+> +		};
 
 
-I have passed this up the chain here at TI. What confuses the heck out
-of me is this: from an internal email chain I am privy to, i am being
-told that "the ST_EN bit in every PADCONFIG register should never be
-changed from its power-on default state of 0b1" and the fact that Linux
-kernel has been stable with the setting for a long period, So I am
-confused why U-Boot would show this instability.. I don't have answers
-at the moment. until we clarify the reasoning, I am going to have to
-hold off this given that kernel behavior has not regressed that I am
-aware of.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-https://ti.com/opensource
+Best regards,
+Krzysztof
 
