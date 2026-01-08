@@ -1,111 +1,113 @@
-Return-Path: <devicetree+bounces-252774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2474D036D0
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 15:41:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E1E3D03239
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 14:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3D5F93008C9D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 14:41:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4370F305F82A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 13:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D08F487071;
-	Thu,  8 Jan 2026 11:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A503A1CE7;
+	Thu,  8 Jan 2026 11:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ThLzjdMe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9F8487588
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 11:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7893A1A5A;
+	Thu,  8 Jan 2026 11:28:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767870258; cv=none; b=ArRI+9hxvXBnqZkV+aDJW4bzouHPrSktb5WRsxiNZw7+KU0wkXjsE942mkxz+28od4ysPYTNFxGcW051OamRWxxNlELDzOnttmBLNgP5lQxqqu6lkfGu5YjzlfcNWd4NPQIoxAmDqXyRvQ/a6fBdNwim00AGipLuFt7x5IrEz3Y=
+	t=1767871698; cv=none; b=Qhm5XRJxs8ttatgo6FdjaJZ92uFrAcNffDCShVXOf4YTVyF7pUg2e2Il77y+sKMgId30fY4i7TETVGAaPpNw++Rde9W9UnQf/RN0PCXLpR9lWZddoxnook0GgQwZhdgmrYDtMsj1VR6UGCdp1GFWMa0CIj/wT9QL7pOTcZKW11U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767870258; c=relaxed/simple;
-	bh=WEbcSDKRoD7gEYd8A4zr9VrjAC7zseRyDUt9oh0Ypyc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L7OQQCp8utxTk+Orv2GC5K5AuUeCnsVKbr2h46hXbg/J7yFSkQGsvq5Djpe9dFxHXd6OELuHYtGeL8XRC1JwhPMdqktC5YCoM6yD/AkNqmZD5jCTlFKvptbOEdCGSb9Ca8puRfEnSqV+f+DlGJtqDtoZUmx0uVYuuN0naRyAjik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-560227999d2so1082886e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 03:04:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767870248; x=1768475048;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LW4lJEvDKNBIOHHbQXCpFFteJtHtm1h9+jTivayDcjE=;
-        b=gtgTDYWv5it2++ifkJO6VebiWMZGGONulOGkl2IzVH+xEF4KW7qgXX5J3pizIO1+GJ
-         WfXjAkLTjFQzTPN55z63n/xbrxKKzBlO3G+s7M0hJRbnfK4qfDJARMFA2AYj5+pOi8PZ
-         KtxlOjl/tR6KnBNNYWoXMl+b33CChosDF9OEMaY80qSw8kOMEmFKeGEsnQ/BkwKBsRu2
-         BiSyWHYbwKWL288oVlh+9VGkgxIYafr4iYKjJKngBuQwLSpNcBQpIUTdFt8zk57i5xiZ
-         Bjs1DNEokTmww6K7OKbAKGUAxa/gqwFxImtSZqR7KAiqS7Z3g973J9ELOUbgC8stFutt
-         AWeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXmFlUzb0whtUG6TvbJxFbkfjvImyIxk0AS1gON3pjZliodYGB7Nq0GfigtSb69zvAGwPbBzmeVI9b9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1YMfc4tfl/+RlonGpKsBuy2ZWQ1efKPGYbCyMsqqcXkdunOgS
-	Nyk+d0dRAHDYIwXhu4Tv9BGDLmdDDvghqEojOoS/1RbXt63hysLF9M5k3bYVV7ja
-X-Gm-Gg: AY/fxX5lQwvhD4xjI1ijnl24z+W9hKwxGPpQEQ7J3YJMVMYU/d2EQhpTxb0GEJP8SxN
-	hs9sP9hJibtfMWougHhx02PX3L96yEd98BNXCHNS9uZoi6ED2ll7RJsrzpm6/HwcsRbA2uHhSxi
-	zSSzenRo01N7Qik1ccLyqZOqSVvWnA0MMzvtmGqnZWK1tdMyMlVkCdonUf2YzrF3okGaX3p25rw
-	3Fc0x643+LZiChHu8UxdCmyOzNVdnJSQocuigZpLq76Mz2RH/JIZq+QNBqlP0iPO7G/gyDxRmD3
-	MJqL/NAJOG57JrIcx8M7ucvOc1MWxPWS4291Qw3M5YNRkNCCLPEcD7VO1fXKlIUhz2MlQcaCZZZ
-	OiUCRPu6Vl9PPvahTR5FX8NVLTkMStkfcBwk5V3KSSNZctzSD7vMKa++FaqA/CTvMDFuM5pFBkj
-	he8ojxNcPf0CULy4DJU0tGVC5sleg4Wi5iNI2/TY9vXXwaWI37
-X-Google-Smtp-Source: AGHT+IHGqNJfoc6iVTngbsbzZt7f+B5yfnKaUIkN5paqAjDVrIDwcQNriYDI5n3XeAlLkfReunNOgQ==
-X-Received: by 2002:a05:6122:421b:b0:559:b2cb:5dad with SMTP id 71dfb90a1353d-56347d54f4bmr2024982e0c.3.1767870247737;
-        Thu, 08 Jan 2026 03:04:07 -0800 (PST)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5633a20a183sm5662253e0c.9.2026.01.08.03.04.06
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 03:04:07 -0800 (PST)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-93f542917eeso972587241.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 03:04:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWgg0Deb9p8+nAtuhq7kRKAMi1MS1na+d9dS5YC3srEb0obSDXI/YecpXDxkIOCxVStFBtJ86uQhReU@vger.kernel.org
-X-Received: by 2002:a05:6102:cc8:b0:5d3:fecb:e4e8 with SMTP id
- ada2fe7eead31-5ecb5ccec15mr1808296137.5.1767870246533; Thu, 08 Jan 2026
- 03:04:06 -0800 (PST)
+	s=arc-20240116; t=1767871698; c=relaxed/simple;
+	bh=3Kjhp0b3kwImrDL2L6LwF5n2i36fqNua3dzRnbIjReU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WhlqB5604pFFggRHglCdPuKhj4TUrK5Q6u+IngZiblKyKjq7mgLkae7cdWZ3lxsne/uODK54Oy8a6CKgM8P7we11e8rIo0X5U7Tp4Flyb0bkg9j/6oYGRy/TskdIm0N4Attv6rqzqCQ4i4nqBJNP57fbKowwhG1Rbh/Dk9kAr2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ThLzjdMe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEAC0C16AAE;
+	Thu,  8 Jan 2026 11:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767871697;
+	bh=3Kjhp0b3kwImrDL2L6LwF5n2i36fqNua3dzRnbIjReU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ThLzjdMelW930c+ei43cTLAinWpByX4H/unWusBtDJx67SVViBKH2HJp4NN6pfDNJ
+	 S0o7hNKCFpHN/OgGfD6igSGlJ+DPmag7+/e0kTpckOhnpH4/JEH0gfkDq+GHZ7SxYn
+	 sTyyqEFxobiUx11gdTDahJHp0S7VvuoNQkGG/Ur1aZa0Y+nB3xQm4Fkmv34B6GL8QO
+	 Nq7K/rJN9iNmi7PHXBbpiP7k8HzQKFH8gMdUHColDMn4ALEVUyYXDEC8klO5AsygFp
+	 YxojfWXoN1bQ6FS99fp0EAppdIAS45JOYnyHidAfSv8R/GxlvUu1OujF92bEY8vZHy
+	 1hh01tlZp1NfA==
+Date: Thu, 8 Jan 2026 11:28:10 +0000
+From: Daniel Thompson <danielt@kernel.org>
+To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
+Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Kiran Gunda <quic_kgunda@quicinc.com>, Helge Deller <deller@gmx.de>,
+	Luca Weiss <luca@lucaweiss.eu>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Eugene Lepshy <fekz115@gmail.com>,
+	Gianluca Boiano <morf3089@gmail.com>,
+	Alejandro Tafalla <atafalla@dnyon.com>,
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 2/7] backlight: qcom-wled: Support ovp values for
+ PMI8994
+Message-ID: <aV-UyhP7wllSBpYj@aspen.lan>
+References: <20260108-pmi8950-wled-v2-0-8687f23147d7@mainlining.org>
+ <20260108-pmi8950-wled-v2-2-8687f23147d7@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251224175204.3400062-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251224175204.3400062-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20251224175204.3400062-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 8 Jan 2026 12:03:55 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUXmVJduzBCRSMLuA90TtAce+jMnYieLXVwkzpTp9vbvA@mail.gmail.com>
-X-Gm-Features: AQt7F2rdcNlBmaOOLqeBvIEmgJRLxP2EPdkJ2jL-Gk3cLQUHkNjiaxvGH7nIx84
-Message-ID: <CAMuHMdUXmVJduzBCRSMLuA90TtAce+jMnYieLXVwkzpTp9vbvA@mail.gmail.com>
-Subject: Re: [PATCH 4/6] arm64: dts: renesas: r9a09g087m44-rzn2h-evk: Enable CANFD
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260108-pmi8950-wled-v2-2-8687f23147d7@mainlining.org>
 
-On Wed, 24 Dec 2025 at 18:52, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, Jan 08, 2026 at 04:43:20AM +0100, Barnabás Czémán wrote:
+> WLED4 found in PMI8994 supports different ovp values.
 >
-> Enable CANFD channel 1, which is available on the CN35 connector.
+> Fixes: 6fc632d3e3e0 ("video: backlight: qcom-wled: Add PMI8994 compatible")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> ---
+>  drivers/video/backlight/qcom-wled.c | 41 +++++++++++++++++++++++++++++++++++--
+>  1 file changed, 39 insertions(+), 2 deletions(-)
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
+> index a63bb42c8f8b..5decbd39b789 100644
+> --- a/drivers/video/backlight/qcom-wled.c
+> +++ b/drivers/video/backlight/qcom-wled.c
+> @@ -1244,6 +1244,15 @@ static const struct wled_var_cfg wled4_ovp_cfg = {
+>  	.size = ARRAY_SIZE(wled4_ovp_values),
+>  };
+>
+> +static const u32 pmi8994_wled_ovp_values[] = {
+> +	31000, 29500, 19400, 17800,
+> +};
+> +
+> +static const struct wled_var_cfg pmi8994_wled_ovp_cfg = {
+> +	.values = pmi8994_wled_ovp_values,
+> +	.size = ARRAY_SIZE(pmi8994_wled_ovp_values),
+> +};
+> +
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.20.
+Do these *have* to be named after one of the two PMICs that implement
+this OVP range.
 
-Gr{oetje,eeting}s,
+Would something like wled4_alternative_ovp_values[] (and the same
+throughout the patch) be more descriptive?
 
-                        Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Daniel.
 
