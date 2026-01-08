@@ -1,144 +1,92 @@
-Return-Path: <devicetree+bounces-252775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2767D027C6
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:46:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA9E1D029BC
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:26:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6B09F312FDE9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:34:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 18F98382A31E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD4247CE97;
-	Thu,  8 Jan 2026 11:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iWLs0bma"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7B1448A722;
+	Thu,  8 Jan 2026 11:35:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F4C45BD42
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 11:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85BE048A2DD
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 11:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767870920; cv=none; b=bV82J8enJ/5D2kMewsa6zIpkUGXBNvuANfn2vipTeJzBqVR3eO28IUrBbQjXO17Oc0GzTmuq/dehM70D8EKPjEKgqR3C+4W3c2AiaGVjnBCEHRj3IfXSVhQoVswR+Xhpva7Q8pse3UJAxs6bR2juk0AkF9XtM8DYV97zxditzTM=
+	t=1767872107; cv=none; b=H7dsO76FjKKoCBdUPzsUQtnCPjpFB4r9zcblq7VE4qiw2SejkxpRz7yqjJ92zPtAxXyXyoBQQ19LpkJyUI4/JjN5aneSFrULvPw32mhsomSf731saSRebAAyVzgmIOv+AikKiEdjGK6eTR3Groc65I8xQd6fF/MQFpWmsNGxAOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767870920; c=relaxed/simple;
-	bh=YXGLziHF6YkCoDlgtESsqmLKcAyUTntv6ubByS7hXLs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rpIG4Krvc+sPEU2vxXJS5spv1oCeOqPFwteMUuoenza6ZlhA9m80NJCiEOZfUDxZNJTzEZtwNgf3FxwPEbP/rrFpq/yxtyYpuD5WjxOCQGw8Z27mAQ380uzV7DuWmRdVvgYj6xmAltMDclNRoBmg2SHSSixzDTyt6LbPbmF2/9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iWLs0bma; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-64b560e425eso4174234a12.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 03:15:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767870915; x=1768475715; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LVxapQmd61w0lGQX8mp2HL79WDJS07jG7jMdrPDktlc=;
-        b=iWLs0bma2yM5T8FHtH75OLVNlAQrMc5evfqFCg38iZfPg/ppbupqFwHAKEks8bP5oD
-         A+nhUO1gT42WKbo82vZGKPOpDlIxb8ENnD6icWH27ScqSJNsTg6A9Ig9RVMCHlslP7rV
-         H1mKcuj+Wl+zK5m3P1Rh1mrPDDYTdSy9bR3mOetY1WV4vnWSCRVwU2W0yJ+cOS7390rb
-         ZYBDuMEN6UtSttTgGamcCc842Ok/REzbgK2/lPGYgwfo4FBZRaLMIP9LiyGHuORHVxHK
-         MBSQa4/Mpl5nPQPifGbn4VwYTwxOc55/FJweaJ6tH7FwaQnpc1+H3fvXaY91RRrVjN3h
-         X4IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767870915; x=1768475715;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=LVxapQmd61w0lGQX8mp2HL79WDJS07jG7jMdrPDktlc=;
-        b=BgzX8yzlEC67Kt/lPq7rwradgl6wRyw8d0jWXZykg7lyDsVlKVdyK64MuczMQY+vJw
-         oQEo5mFvfGyfmiYMjFMHKPJLZVUwwvxGAqSQ86Je0ha8D55VseaaFuX1IV0OiHqEjgbj
-         Nl550tLM2/V0BNLTnmeCvqKZuJANhk0G4ybVuyZwA7yoqN88KxX49X92iKpwyRCI9d+Z
-         JVPvZybmrzlQvlrO56zL7QJQp4d3rSE79x+LgFLXCscM9nM8WBzRmlpAf8VsUrgZAIpQ
-         dXzwXbc7p+ecq1rfKOh9IA0cKWT7v41MfjlhhP97Ih1El6GWEqfhEmSry7H3F+trTu67
-         29hA==
-X-Forwarded-Encrypted: i=1; AJvYcCUzhvQsmlQJmZcz8/2MBpvnjkt16QlZdhAzOBKHNaiiqFnAGrEmxUK08nXGmPIuGuuCZzEGao/6hhO9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzN2WoVnwYvVrko7n4Fdo/TinYrWM0VBHuOb6+qqz9+3ah4SDTN
-	lw8vn4Bapnx+AABKqZd/NPElVTgWWMWhW0/9BBcnb6URhccwFTISemI3/d9I68gtNSWPW2wg9pZ
-	SiAxhqOr8L+nO9Yg0UfPqi3gPVOboS7ahVQ2Q4mEmaw==
-X-Gm-Gg: AY/fxX6smk2tP/AOrjCu8z+MtS6wGNWTYOdVj7kBtocrwJu1svQS1u0s3DaZFxfQRSB
-	3oW381+2z5qOXU1cbxpEkPoZHQ8xJoNuBYuxmjFjUGdm1f80vjz5CykgdEVbWUF6WXNVlmJ+Bcv
-	hM+coyb2enSlXH2ums7iR6IT59yDnAwwaJE4jTj1W37JFzFXh4wiI9yt1wTx/Ep3fPaJkWJWxFC
-	a92jAORh1SP11gAOokwYATrDIPojSkGKjT1N+7XXyYsQMl4NvRpSLaPyeGn1fiPyuAG4ncuqrUU
-	d4fCc03kveL1pGBeM8/xHs56W27GJiJsn+zh1J5+
-X-Google-Smtp-Source: AGHT+IFHAB9Bnp3BB8dMREjQr967gPMG/GGiiGg+amrvJbHn1bFL3BwFrjMhvQJAqE/QddIsZ2qSyWC9FuhApQ/ThSM=
-X-Received: by 2002:a05:6402:5201:b0:641:966d:82ba with SMTP id
- 4fb4d7f45d1cf-65097dcc536mr4334588a12.1.1767870914919; Thu, 08 Jan 2026
- 03:15:14 -0800 (PST)
+	s=arc-20240116; t=1767872107; c=relaxed/simple;
+	bh=rkk+tMR+Y3s3gcREJ1yiYLsDh8dV7UbKUhnejyfW2i8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ii6o/hS7Eyw0bMnqbAFiBFVvBo31w7+GjaCUTHth0gqTBDW8vnPPJeNbh7K8I4yM0ua0fKn1PxJHvCxP+/FfjqBOTrau96AXaJVfqoHuHpXLNXTsGCEx3zM5X1IKs7iQ7v4HHhWTOyErBn/gi957iW99ucBPgrLQgQK1XyyuJN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 608BXjVW009034;
+	Thu, 8 Jan 2026 20:33:45 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, jonas@kwiboo.se,
+        honyuenkwun@gmail.com, inindev@gmail.com,
+        michael.opdenacker@rootcommit.com, chaoyi.chen@rock-chips.com,
+        quentin.schulz@cherry.de, dsimic@manjaro.org, andrew@lunn.ch,
+        alchark@gmail.com, pbrobinson@gmail.com, ziyao@disroot.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH v2 1/3] dt-bindings: arm: rockchip: Add Radxa CM3J on RPi CM4 IO Board
+Date: Thu,  8 Jan 2026 11:33:39 +0000
+Message-ID: <20260108113341.14037-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251222-automatic-clocks-v7-0-fec86fa89874@linaro.org>
- <CGME20251222103019eucas1p2c60f033dc02adfef360b4fc69bd4021b@eucas1p2.samsung.com>
- <20251222-automatic-clocks-v7-3-fec86fa89874@linaro.org> <8b2c412d-3e1e-4be0-a9d5-ef67f6f0d409@samsung.com>
- <0c09a8c461db5a09e75de4587eef38bffbccf2d2.camel@linaro.org>
-In-Reply-To: <0c09a8c461db5a09e75de4587eef38bffbccf2d2.camel@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 8 Jan 2026 11:15:02 +0000
-X-Gm-Features: AQt7F2p5pHWMrlun-9cdijxvvGGa-DUdgXn5dVr-tLvbHmhtbwNPLLjbUDUSQBE
-Message-ID: <CADrjBPr6QBbmF9tQP0czRm30d688VtT1g1=tw=bwfYYzKPrPPg@mail.gmail.com>
-Subject: Re: [PATCH v7 3/4] clk: samsung: Implement automatic clock gating
- mode for CMUs
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Sam Protsenko <semen.protsenko@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Will McVicker <willmcvicker@google.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Andr=C3=A9 & Marek,
+The Radxa CM3J is a feature rich industrial compute module developed
+by Radxa, based on the Rockchip RK3568 SoC. [1]
 
-On Thu, 8 Jan 2026 at 10:55, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
-wrote:
->
-> Hi Marek,
->
-> On Thu, 2026-01-08 at 00:59 +0100, Marek Szyprowski wrote:
-> > > @@ -334,10 +456,20 @@ void samsung_clk_extended_sleep_init(void __iom=
-em *reg_base,
-> > >     * samsung_cmu_register_clocks() - Register all clocks provided in=
- CMU object
-> > >     * @ctx: Clock provider object
-> > >     * @cmu: CMU object with clocks to register
-> > > + * @np:  CMU device tree node
-> > >     */
-> > >    void __init samsung_cmu_register_clocks(struct samsung_clk_provide=
-r *ctx,
-> > > -                                   const struct samsung_cmu_info *cm=
-u)
-> > > +                                   const struct samsung_cmu_info *cm=
-u,
-> > > +                                   struct device_node *np)
-> > >    {
-> > > +   if (samsung_is_auto_capable(np) && cmu->auto_clock_gate)
-> > > +           ctx->auto_clock_gate =3D cmu->auto_clock_gate;
-> >
-> > Do we need to issue "incorrect res size for automatic clocks" warning
-> > for every legacy Exynos based board? The check above should be in
-> > reverse order:
-> >
-> > if (cmu->auto_clock_gates && amsung_is_auto_capable(np))
-> >       ctx->auto_clock_gate =3D cmu->auto_clock_gate;
->
-> Good suggestion. I have one or two cleanups anyway, I'll add that as well=
-.
->
-> Thanks for spotting this!
+Add devicetree binding documentation for the Radxa CM3J on RPi CM4 IO
+Board.
 
-Ok great thanks Andr=C3=A9 and Marek!
+[1] https://dl.radxa.com/cm3j/docs/hw/radxa_cm3j_product_brief_Revision_1.0.pdf
 
-Peter
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes in v2:
+- Collect A-b tag
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 59a7aed538b4..d344a284e538 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -914,6 +914,13 @@ properties:
+           - const: radxa,cm3i
+           - const: rockchip,rk3568
+ 
++      - description: Radxa CM3J
++        items:
++          - enum:
++              - radxa,cm3j-rpi-cm4
++          - const: radxa,cm3j
++          - const: rockchip,rk3568
++
+       - description: Radxa CM5
+         items:
+           - enum:
+-- 
+2.43.0
+
 
