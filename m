@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-252959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A861CD05232
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:44:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F0AD05640
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 19:11:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CDBF53009F1D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:42:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 977C93048796
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 17:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9562DB79B;
-	Thu,  8 Jan 2026 17:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5469E2D7DEA;
+	Thu,  8 Jan 2026 17:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="wALwFzeR"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="MKJtDEtG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D4829AAF3;
-	Thu,  8 Jan 2026 17:42:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14BE2BF00B;
+	Thu,  8 Jan 2026 17:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767894159; cv=none; b=XbvNmV+pPGFC5O2+XAeQbVJghLlt3dEJs974QvpUXBNzzkjD7fUYps+Ljrhf50bqM9AxeOIfm7o21pBr7O/p5Hqo3lrNjOqdnYHiEswB3gZDZDYi+4QFVHWEZF7n//g4d6gInpgt1F6j9dEdS9rGIB3ILhAI6rpI4l08/1h7pCs=
+	t=1767893677; cv=none; b=VIvR31kyry4ETdW/dCZtSK7Y5RjzigSbwj1KM73r7fF5SoFhT68NGdXQIz9AslK6pRmPzZxCruTGg/nAW1rj+UtexNeJQa7bezAKm4lk1idFaWbnhkbRRDmo7tNdz92206NrpaWuAUYYIn+lzktHgqROebBvX+coK8awQb17Kw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767894159; c=relaxed/simple;
-	bh=pmpe+Vnk7lZP6tySCs75M24BiBDXu9KNx5mv+Ex7l+U=;
+	s=arc-20240116; t=1767893677; c=relaxed/simple;
+	bh=/KyvcfvHWyosG730uOsQN/0sPYQCXSe8bJOfXfsFNcI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=glRWjdNpuY0K6KwgVFO6n8pCNGqh+RAQ2peIJKfctNDB8Ynvy6hBBWOpRfXN2pHXMoHUh0I1aU6Bs+mEWxy3q+RFZkJpyCMdUKtlTGtrQEFuN9A8UGKr5deh//Q2563NUQIRHTCZ+iqG0SHWwNEmxNGbS3iGYfiKMO6WJOlhYLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=wALwFzeR; arc=none smtp.client-ip=192.19.144.205
+	 MIME-Version; b=aJA3hAcwRqTleb4RCdvLdJyyKoJd+Zbp3ATfPJET1+UETzjy0HBg9LkwJ2IgQVPCsXaFZPxjeqHV5FlPJFTSo36cDdFuBjXXA3BzhcYckw3XNq9Qx8DSSKbZjQyBf+e17aYnhRRYX0ZK1x7xNzVve68jL8HjKPlzgujIyl9nv10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=MKJtDEtG; arc=none smtp.client-ip=192.19.144.205
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
 Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 557C9C000C60;
-	Thu,  8 Jan 2026 09:34:08 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 557C9C000C60
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 17AA6C0005C6;
+	Thu,  8 Jan 2026 09:34:35 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 17AA6C0005C6
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1767893648;
-	bh=pmpe+Vnk7lZP6tySCs75M24BiBDXu9KNx5mv+Ex7l+U=;
+	s=dkimrelay; t=1767893675;
+	bh=/KyvcfvHWyosG730uOsQN/0sPYQCXSe8bJOfXfsFNcI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=wALwFzeRFSyoASGLSaBprdor4D8IejVdz/qycEplmXSaBy6fNW0+C2S9WBRsdy3Az
-	 VHDhb3gVonGlhz2dSUe6uV3gYOAy+4deezskxiR17ZpxF28wdl0i1bs1sHx+a/N/zN
-	 lZQfhz61IOnJR7w/RHxoUYVP/unO8g3tw1RDNWQE=
+	b=MKJtDEtG2zbj+qr7PpkvkceZPszrBeLmi0FW4lfBTTfKD8fQs11kxgOgmwbgcvU9I
+	 SF3i1+UkrEaGUu+52IhHHkXY9hrQYHSMrXTxVn38q+QNxhgJ8R92xNDV4lUBy2B5Wh
+	 lKXBIa+URPHDNPAnsmbcpSAfw8Trtj7sXfNsI6Zo=
 Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id ECEDC1CAF2;
-	Thu,  8 Jan 2026 09:34:07 -0800 (PST)
+	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id AEC4E1CAF2;
+	Thu,  8 Jan 2026 09:34:34 -0800 (PST)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	"Rob Herring (Arm)" <robh@kernel.org>,
@@ -59,12 +59,12 @@ Cc: Florian Fainelli <f.fainelli@gmail.com>,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 05/13] arm64: dts: broadcom: stingray: Rework clock nodes
-Date: Thu,  8 Jan 2026 09:34:07 -0800
-Message-ID: <20260108173407.3784382-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH 06/13] arm64: dts: broadcom: stingray: Fix 'simple-bus' node names
+Date: Thu,  8 Jan 2026 09:34:34 -0800
+Message-ID: <20260108173434.3784528-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260106-dt-dtbs-broadcom-fixes-v1-5-ba45874e4553@kernel.org>
-References: <20260106-dt-dtbs-broadcom-fixes-v1-0-ba45874e4553@kernel.org> <20260106-dt-dtbs-broadcom-fixes-v1-5-ba45874e4553@kernel.org>
+In-Reply-To: <20260106-dt-dtbs-broadcom-fixes-v1-6-ba45874e4553@kernel.org>
+References: <20260106-dt-dtbs-broadcom-fixes-v1-0-ba45874e4553@kernel.org> <20260106-dt-dtbs-broadcom-fixes-v1-6-ba45874e4553@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,14 +75,9 @@ Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Tue, 06 Jan 2026 20:09:44 -0600, "Rob Herring (Arm)" <robh@kernel.org> wrote:
-> The stringray-clocks.dtsi is oddly included in the middle of a bus
-> node and is only included in one place, so collapse it into
-> stingray.dtsi. Move the fixed and fixed-factor clock nodes to the root
-> as they are not part of the bus. Rename the node names to use preferred
-> names.
-> 
-> Drop the unnecessary 1:1 fixed-factor clock providers.
+On Tue, 06 Jan 2026 20:09:45 -0600, "Rob Herring (Arm)" <robh@kernel.org> wrote:
+> Fix 'simple-bus' node names to follow the defined pattern. Nodes with 'reg'
+> or 'ranges' addresses should also have a unit-address.
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
