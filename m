@@ -1,245 +1,239 @@
-Return-Path: <devicetree+bounces-253006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B36D05D0E
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 20:23:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB055D05DB9
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 20:32:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8C00B30383BC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 19:23:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4F2193008F40
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 19:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF95E2DE713;
-	Thu,  8 Jan 2026 19:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3123F3203B5;
+	Thu,  8 Jan 2026 19:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="mbTe6U7i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JipJt2W+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f68.google.com (mail-oa1-f68.google.com [209.85.160.68])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAAF6279DC0
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 19:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD832D7DC4
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 19:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767900221; cv=none; b=ov2o6+BQJid3tt7MPegkIJ8QPOaU0SZX5V6mtQK53u768TO/2S1d8mb7GfCzITL2hLKsc/ReeG4aF8eIJDFpNa9haAACuej7oIvc+wnj7GmB0v2J63Ut+0ulGJGZw1dU6dBk0FT0S0K2FiFfkMFr1C/328/DWLbh8jkORBp2dQk=
+	t=1767900348; cv=none; b=tH8C/+P/CDRYooEXi37hG2TyNNSWM9RxOvatGCl1AJr9wrVxgoIF7FIUof/pX5uiq1lbfXPl9euPIh5cUUaCy20dutQsaRYVmqv22CclSABGL9/2xeI002fDrN+4ZPKLkIqGcLrwbvZp2m/PJM7rjO5TPQPM7/zdU0BsYu/pTBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767900221; c=relaxed/simple;
-	bh=rQuCPnYPLg4Ui2a0ObeA7TCLE/RLxICLMmiEBGi0cLE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M/V08qJq9vHLC6AGaPUTOm1j5O2BJel0B4U1K4mCot1FhEmemfew1U5cNkQT2babhHB+D0492nqdp58BAjK3rPDdjHrZvOdLjH0TakeGCTrdFEd6Qfr5I+BHIyOD/JW87JuwCoRY+Sas7nbzp5Qlk5/CEq9vNtnyB14Zj4aseuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=mbTe6U7i; arc=none smtp.client-ip=209.85.160.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-oa1-f68.google.com with SMTP id 586e51a60fabf-3e3dac349easo3145504fac.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 11:23:37 -0800 (PST)
+	s=arc-20240116; t=1767900348; c=relaxed/simple;
+	bh=c5gOBQYPVn4tooM6tnnZA9Ows98FMtB9AhqimVB02AU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LahHq18+wpKkv1sidG2MpK3e+XgMRfjXax8ctJ7BuUGDsr8x6lOnQHyehOzDb6ZJlyM4XTqzdYOwaml5nkkt6FA8YtV529mW++VoH5uRJF4Kr3ZS+h//F4c3UhTCnUmtmyNvSg+2gkmAKBzUEEifpWiwCtT3qwjrIZ8aC9XtUCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JipJt2W+; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477632d9326so21985045e9.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 11:25:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1767900215; x=1768505015; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Hjqd0wbUL/0gATLT7Jr3bq/fYYzs5CcoqUGsadwzmFw=;
-        b=mbTe6U7i2ohQaLiGP4AJMR2slaLEUYJYOOFgiI2EgQIi2pbFpQrGe4XUGLYmFqgHsk
-         brk4vS927Z1lDWdEYlahWkHycmYrbsq9K5n+2wr4zt88WYQK4yNSSQxoWeYR6Ig9hRZJ
-         k4zwlI2cJ96wWmoZ2I9qBw9zDXMVZM6gRFBOLfOIFgE4a2Uh7CUOQSOTvo2+wOVQl43c
-         MLrfvFGhRBJRj6rRO7B11zsEkxW1eU05hICE6RTVH+UyXMOqqqncGVhdQLdEGl/LWYr/
-         MGIJuVWkraLtLahbvfdTiGzOA1TcTdidS1XFU3rxUAinEPAw08R4OXObSQ8o2R1i10EP
-         qBdA==
+        d=gmail.com; s=20230601; t=1767900345; x=1768505145; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+weAIB5F3GzTAUKoqFrSQrQBjxwtKLdBlEZZpcTkEWM=;
+        b=JipJt2W+bwoYgr1vjKGWpsACKo7nrVZ0Q7wqB/etwwc7QIGZiOLlHk3ZEAMoJpubSD
+         c99FR/0Ma6v57nvAXNRCTVL4IhEE2EfC/N3vVzKTNggFKdltP52GSW/k9QKb6SJ4geXg
+         takOUmQipt5K1ntgoELuafzO6D+RFGrt0J5iX7U4rJj0HLMCe4e6Jry7frYW1K9p5b3Q
+         b4moM4cksN2tzQwZ7kYFH+WQ26Vrrt54bb/hKXXUF1+yuKoEglfCZx2CaDhqT4r0zRU3
+         ZShSF5RMhpT3HhzvJwIHwxN+uAagZTcdAwI1L/d+0D5iQAPLbYmlhY5GkupMY5941p8U
+         ge0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767900215; x=1768505015;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Hjqd0wbUL/0gATLT7Jr3bq/fYYzs5CcoqUGsadwzmFw=;
-        b=DoIHzv+CKp1jfTYrjByWiN5N8Ntv4q2yUmY1EbHJEALwhBhKi0zo5mlMlVq0xJnx8A
-         GRgSzEVLq0J96y8cRdFQdqkKUQliAi1oiPlFtnhVYBE5PtkHM75E03wYpDgGJySE3bEy
-         6Dg+UFUBnuC35ro+jS6zFC8QjTeJ3D61VtODXWF6wPpvFC4yPhXI41Rp3LBvQcOxt35S
-         jEpewk15O+N6Bvvcv0BD074yhHhUgdCz2n/4yaH0Ue7QEFb+86FeL7G/NzgO5xljoHnA
-         UX45DXS/zkp1zx+m7A5K+KnAD6RcEZpVv32bB1x1LZtK+czjIqDqUL5jkk6P71FYc+K/
-         N92Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUtFALN8sQycD9SQg78CiwQtQYxU0I9ve6R+dKttlR9T73ULTUVhMZFglQCmoeEu2XN7p1MjE1kXTNv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEvOI2QkMC9q7tu277LuPRKmx5c6SAXE1wGVGicZBs+aO4384z
-	F9lH2ZRBWdjacYYUk0aqpjSem8Y8Bh2vb/fF1KOq9L4DFusjb8pv8EBTRwGAPnXNwBjC63a/hNW
-	y+MK4
-X-Gm-Gg: AY/fxX6Pjn3wU6AmvN9NJkIvOtpWnrvL9F2Fel7Zn9EG9RM70deA0b1qOGf84mwsUmM
-	WIGLQEnZJXko/A1gq3mnw0w10EkCqJQpsJSySZvueUjgieMS1Ph3lGLBOvre004lqDda55oz5Qp
-	bVfXAetkslXI7um4EST6fep89GHdvQImZa08PnYEx1FAEiwX/5cWMmZT5m8tI1sKFeLt/jPo7wr
-	F3JltJ0b5+rt1yiIwugAxAEOv190T+1ggll77DNfoC3kPJ+4Ww6qNWEl9EyM1R3bEtMBARaEtKN
-	BYYCtVhky+yqUbegjUlk6R6wIph/lagsYAFmiW+4hQQLq3FpJLUy8MPk8bvddM7GNY5iBiPKKsh
-	Ft42UFQFvgmXGcKYiFckDq91NRouzD5z1QwMTZc9t8F7QCbTi0FMHOAshn/18ZI3Aa6ijc5xVzh
-	mqarXN8CMYZylY+/zSM/aWclXfN/4=
-X-Google-Smtp-Source: AGHT+IHKLUgghrPd29RErvBws0kQ87awrcNfi7vgU0Zf7ngrlTJY/amh5n0uvlMoYU4vmYrjhXLVGQ==
-X-Received: by 2002:a05:6870:c243:b0:3e8:95d2:389d with SMTP id 586e51a60fabf-3ffc0c02c95mr3135629fac.43.1767900214837;
-        Thu, 08 Jan 2026 11:23:34 -0800 (PST)
-Received: from [100.64.0.1] ([170.85.11.86])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa4de40bfsm5357385fac.5.2026.01.08.11.23.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 11:23:34 -0800 (PST)
-Message-ID: <9504b2f6-12f5-46c2-ac74-826dba3fb530@sifive.com>
-Date: Thu, 8 Jan 2026 13:23:32 -0600
+        d=1e100.net; s=20230601; t=1767900345; x=1768505145;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=+weAIB5F3GzTAUKoqFrSQrQBjxwtKLdBlEZZpcTkEWM=;
+        b=evTLPwCK6pC8nD/vww7i3ROz8lFIurt5V4roB5jJnc0dt6D4lcTU0ywDwoekZcr1oY
+         g8ofd3n66ZuqJXOjA2OzBqfB0AUlMoiRn/R2lQqgg2OO6rYT1A/H4fXRUCSA5CmOPFiH
+         31ee47oq8kFoluc+gXvC2yTdlCdbvg0734j9GKNujX3E55hqVDOp66LDgmTmojXMh1t7
+         8QQFipf2ZPCEE4RrgCGtVFOk82epRRiezI/i4lBWyAEN7QMQJvMOyLRMtgeUyhmdf8wm
+         02JfAdD5B+r96R9QbvPLNG//UG7u0R1SXwfKGR8p14i/rG3xURmBxT9/BjrEPXLTm58X
+         dPAA==
+X-Forwarded-Encrypted: i=1; AJvYcCW9dgws658hpO7UQ6mzJq44KfMfLTlA1CsfSqFnh6YtGPhqsps50akJfKW8e2aGvwO/zPlqcfBX13/K@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEi4vNMCsu+ehp9p8AzMhITCsoZsrafJ8qNlXzCDdIWzUiGkzK
+	MMwX7/dxsJlV4hXxoz0ou6+cILnJaKlE5opPm+RX7dn16rxOMHaYGTaBzd4dYrPJdfi6N0U2IsD
+	Wi/gEAo/1ujGynr6kNSYdX/QKMWU19iQ=
+X-Gm-Gg: AY/fxX7yJCnn3bTTLl1K1rkRIUE8UyUIeUALgYZWL7zlkf22/ibaMzXSu5F9rXlIMrz
+	UQibmfFDRr8RJVN8t4NlwdEpJVbZL8QgcUHh0gY2blN2RYGLA6aeQ1QPI1Ijbd7gI82t/wc7aVO
+	WTSuNJHcjq0S7DP/RAX4Z4+aZNjXLW6z8+M8szmZea/CKICZY5iRU5hjgEmJrubLspg/SyAh0eB
+	x2yTHB3bG3hpwv2m9pmbCwXJ/OBjqKjB3WJqlfVwukUsnM8lckYzLTLYlcULT2JbalQgyN14enZ
+	tcFZnNYR45X7GkGBf+azKodLSEexHEpceswj90fzq2MY9qdOjpFIPg50qlQiFEEBw6tUmumFN+H
+	TEslepHkmR9wq+/sXqBFazcYb
+X-Google-Smtp-Source: AGHT+IG9aCL3VMA1gQDfOUOzIBchboILAW5445ty0XjqfyxP2z1FY0Z6LuXzED9a3fq/fLU4RmJQ5Pzcxb6uHWUplVA=
+X-Received: by 2002:a05:600c:1d14:b0:477:7b16:5fb1 with SMTP id
+ 5b1f17b1804b1-47d84b0a96emr83452675e9.7.1767900344555; Thu, 08 Jan 2026
+ 11:25:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
- SpacemiT K3 SoC
-To: Conor Dooley <conor@kernel.org>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Cc: Guodong Xu <guodong@riscstar.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@sifive.com>, Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
- linux-serial@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Yangyu Chen <cyy@cyyself.name>
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com>
- <60948ca2-ed3d-485b-9b11-15df7ef8791d@canonical.com>
- <CAH1PCMb=+TvB1w+G6a2ANDp05HUwC4r6CFBDHXFwSmoP3Mm8xw@mail.gmail.com>
- <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com>
- <20251218-basil-quantum-225ce16e4699@spud>
- <CAH1PCMZ3KM9-D3NJ1N2LUHTHFSDVKmGKT5fU8knAL7NnV9E-gw@mail.gmail.com>
- <20251220-repacking-football-c79e660e788a@spud>
- <4e4c9e7b-d95c-4157-94c3-b06002f94a48@canonical.com>
- <20251222-dimmer-wooing-db29fe925498@spud>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <20251222-dimmer-wooing-db29fe925498@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251230115814.53536-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251230115814.53536-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260102-petite-gentle-wasp-81bbb8@quoll> <CA+V-a8sryz1f_woi_r8jx_4x7TczrWPyjZoo+P9p=tG8KyK8YA@mail.gmail.com>
+ <124bc6a4-05ee-4682-a0f8-148896eb3c95@kernel.org>
+In-Reply-To: <124bc6a4-05ee-4682-a0f8-148896eb3c95@kernel.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 8 Jan 2026 19:25:18 +0000
+X-Gm-Features: AQt7F2p5rmW7j0FdoOvEXJ_qBw4U8molRHd1kilHxVpDPpzkzw1Jj1KdICQmQbg
+Message-ID: <CA+V-a8tbvJvqnrMaY9UA3tf2CcfcyiRFZLgdy7S411=ZUCcQww@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: can: renesas,rcar-canfd: Document
+ RZ/T2H and RZ/N2H SoCs
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-can@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+Hi Krzysztof,
 
-Sorry, I wasn't following this thread.
+On Wed, Jan 7, 2026 at 8:28=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 06/01/2026 18:26, Lad, Prabhakar wrote:
+> > Hi Krzysztof,
+> >
+> > Thank you for the review.
+> >
+> > On Fri, Jan 2, 2026 at 11:20=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> >>
+> >> On Tue, Dec 30, 2025 at 11:58:13AM +0000, Prabhakar wrote:
+> >>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>>
+> >>> Document the CAN-FD controller used on the RZ/T2H and RZ/N2H SoCs. Th=
+e
+> >>> CAN-FD IP is largely compatible with the R-Car Gen4 block, but differ=
+s
+> >>> in that AFLPN and CFTML are different, there is no reset line for the=
+ IP,
+> >>> and it only supports two channels.
+> >>>
+> >>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> >>> ---
+> >>> v1->v2:
+> >>> - No changes made.
+> >>> ---
+> >>>  .../bindings/net/can/renesas,rcar-canfd.yaml  | 26 +++++++++++++++++=
++-
+> >>>  1 file changed, 25 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-c=
+anfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.ya=
+ml
+> >>> index fb709cfd26d7..4a83e9e34d67 100644
+> >>> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.ya=
+ml
+> >>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.ya=
+ml
+> >>> @@ -50,6 +50,12 @@ properties:
+> >>>                - renesas,r9a09g057-canfd     # RZ/V2H(P)
+> >>>            - const: renesas,r9a09g047-canfd
+> >>>
+> >>> +      - const: renesas,r9a09g077-canfd      # RZ/T2H
+> >>
+> >>
+> >> That's part of other enum with single compatibles.
+> >>
+> > There is no enum with single compatibles as of in next [0], there is
+> > only one compatible `renesas,r9a09g047-canfd`. I can club this with
+> > RZ/T2H one.
+>
+> This is the one which is supposed to be enum.
+>
+Ok.
 
-On 2025-12-22 2:36 PM, Conor Dooley wrote:
-> On Sun, Dec 21, 2025 at 01:10:15AM +0100, Heinrich Schuchardt wrote:
->> On 12/21/25 00:23, Conor Dooley wrote:
->>> On Fri, Dec 19, 2025 at 10:03:24AM +0800, Guodong Xu wrote:
->>>> Hi, Conor and Heinrich
->>>>
->>>> On Thu, Dec 18, 2025 at 8:56 AM Conor Dooley <conor@kernel.org> wrote:
->>>>>
->>>>> On Wed, Dec 17, 2025 at 09:07:14AM +0100, Heinrich Schuchardt wrote:
->>>>>> On 12/17/25 08:11, Guodong Xu wrote:
->>>>>
->>>>>>> Specifically, I must adhere to
->>>>>>> Documentation/devicetree/bindings/riscv/extensions.yaml (and cpus.yaml for
->>>>>>> properties like 'riscv,sv39' which stands for the extension Sv39). If I
->>>>>>> add extension strings that are not yet defined in these schemas, such as
->>>>>>> supm, running 'make dtbs_check W=3' fails with: 'supm' is not one of
->>>>>>> ['i', 'm', 'a', ...], followed by "Unevaluated properties are not allowed."
->>>>>>
->>>>>> If Documentation/devicetree/bindings/riscv/extensions.yaml is incomplete
->>>>>> with respect to ratified extensions, I guess the right approach is to amend
->>>>>> it and not to curtail the CPU description.
->>>>>
->>>>> Absolutely. If the cpu supports something that is not documented, then
->>>>> please document it rather than omit from the devicetree.
->>>>
->>>> Thanks for the review. May I clarify one thing? Both of you mentioned
->>>> document them, given the amount of missing extensions, is it acceptable if
->>>> I submit a prerequisite patch that only documents these strings in
->>>> riscv/extensions.yaml plus the necessary hwprobe export? Leaving the actual
->>>> usage of these extensions (named features) to the future patches.
->>>>
->>>> To provide some context on why I ask: I've investigated the commits & lkml
->>>> history of RISC-V extensions since v6.5, and I summarized the current status
->>>> regarding the RVA23 profile here:
->>>> [1] status in v6.18 (inc. v6.19-rc1):
->>>> https://docularxu.github.io/rva23/linux-kernel-coverage.html
->>>> [2] support evolution since v6.5:
->>>> https://docularxu.github.io/rva23/rva23-kernel-support-evolution.html
->>>>
->>>> Strictly describing the SpacemiT X100/K3 (or any core) as RVA23-compliant
->>>> requires adding these extensions that are currently missing from
->>>> the kernel bindings:
->>>> RVA23U64: Ziccif, Ziccamoa, Zicclsm, Za64rs
->>>> RVA23S64: Ss1p13, Ssccptr, Sstvecd, Sstvala, Sscounterenw, Ssu64xl,
->>>>            Sha, Shcounterenw, Shvstvala, Shtvala, Shvstvecd, Shvsatpa, Shgatpa
->>>
->>>
->>>> Plus 'Supm', 'Zic64b', 'Ssstateen', 'B' where the kernel supports them but
->>>> they are not literally documented in yaml.
->>>
->>> I don't think Supm is suitable for devicetree, doesn't it describe
->>> what the kernel/userspace are capable of rather than hardware?
->>> Zic64b doesn't sound like hardware description (so not really suitable
->>> for devicetree either) but block size information is already represented
->>> by some existing properties (see riscv,cbo*-block-size in riscv/cpus.yaml)
->>> and duplicating that information is not really a great idea.
->>>
->>> I'll admit that I do not really understand Sxstateen and how they work,
->>> but my understanding was that knowing about Smstateen is sufficient and
->>> implied Sstateen, but having Ssstateen defined seems harmless and
->>> possible. I think kvm is the only user of this at the moment, so
->>> probably worth CCing Anup and maybe Drew Jones on the patch adding
->>> Ssstateen to make sure it makes sense.
->>
->> Supm is described in
->>
->> RISC-V Pointer Masking
->> Version 1.0, 10/2024: Ratified
->> https://raw.githubusercontent.com/riscv/riscv-j-extension/master/zjpm-spec.pdf
->>
->> The interpretation taken by QEMU has been:
->>
->> * Supm implies Ssnpm and Smnpm
+> >
+> > [0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git=
+/tree/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml?h=
+=3Dnext-20260106
+> >
+> >>> +
+> >>> +      - items:
+> >>> +          - const: renesas,r9a09g087-canfd  # RZ/N2H
+> >>> +          - const: renesas,r9a09g077-canfd
+> >>> +
+> >>>    reg:
+> >>>      maxItems: 1
+> >>>
+> >>> @@ -179,7 +185,6 @@ required:
+> >>>    - clocks
+> >>>    - clock-names
+> >>>    - power-domains
+> >>> -  - resets
+> >>>    - assigned-clocks
+> >>>    - assigned-clock-rates
+> >>>    - channel0
+> >>> @@ -243,11 +248,30 @@ allOf:
+> >>>            minItems: 2
+> >>>            maxItems: 2
+> >>>
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            const: renesas,r9a09g077-canfd
+> >>> +    then:
+> >>> +      properties:
+> >>> +        interrupts:
+> >>> +          maxItems: 8
+> >>> +
+> >>> +        interrupt-names:
+> >>> +          maxItems: 8
+> >>> +
+> >>> +        resets: false
+> >>> +    else:
+> >>> +      required:
+> >>> +        - resets
+> >>
+> >> Why is this de-synced with reset-names? Properties are supposed to
+> >> behave the same way, not once requiring resets other time requiring
+> >> reset-names.
+> >>
+> > There are SoCs that have a single reset and others that require two
+> > resets. For SoCs that require two resets, the reset-names property is
+> > marked as required, while for SoCs with a single reset it is not.
+>
+> Sure, but I asked why? We expect (and it is documented already in the
+> docs) that xxx-names always follows xxx, so I really do not understand
+> why reset-names are valid but resets are not.
+>
+Sorry for being clear earlier, it's already taken care in patch 1/4
+[1] with the below hunk which will restrict RZ/T2H to not allow
+reset-names.
 
-This is not correct for system emulation. Supm (pointer masking visible in the
-U-mode execution environment) requires exactly (S ? Ssnpm : Smnpm), not both of
-them.
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,r9a09g047-canfd
++              - renesas,rzg2l-canfd
++    then:
++      required:
++        - reset-names
++    else:
++      properties:
++        reset-names: false
 
->> * RVA23 capable machine models display it in the device-tree
 
-This is also not correct for system emulation. It is impossible for QEMU to know
-if pointer masking is visible to the U-mode execution environment, because QEMU
-does not provide the U-mode execution environment. Software inside the VM does.
+[1] https://lore.kernel.org/all/20251230115814.53536-2-prabhakar.mahadev-la=
+d.rj@bp.renesas.com/
 
->> If Supm is not shown in the device-tree, software might assume that the
->> system does not support pointer masking in user mode and is not RVA23
->> compliant.
-
-Software shouldn't be looking for Supm in the devicetree, because the devicetree
-does not describe the properties of the U-mode execution environment.
-
->> Hence I would suggest:
->>
->> If the X100 cores have Ssnpm and Smnpm, add Supm to the device-tree.
->>
->> If the kernel does not support user space pointer masking, the kernel should
->> filter out Supm and not announce it, neither in /proc/cpuinfo nor via
->> hwprobe.
-> 
-> Samuel seems to have some specific thoughts on how this works, given he
-> didn't blindly implement ssnpm and smnpm, but has made supm be mode
-> dependent and not permitted in dt, hopefully he sees this.
-> 
-> Personally I'm not convinced that putting supm in dt makes sense, but
-> instead the kernel should imply it if the sxnpm extension matching the
-> mode the kernel is operating in is present and RISCV_ISA_SUPM is set in
-> Kconfig. That's effectively how it works at present, except it'd involve
-> promoting RISCV_ISA_SUPM to a "real" extension instead of being a macro.
-> A validate callback should easily be able to handle checking the
-> mode and whether the Kconfig option is set.
-> That way it would get exposed to userspace using the actual mechanisms,
-> reading the devicetree itself from userspace is not a valid way of
-> checking what extensions are usable after all.
-
-We already do this for hwprobe(), so the only difference is that Supm would be
-added to /proc/cpuinfo. I don't think I have a problem with this.
-
-Regards,
-Samuel
-
+Cheers,
+Prabhakar
 
