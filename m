@@ -1,107 +1,144 @@
-Return-Path: <devicetree+bounces-252772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274ECD0274B
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:41:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2767D027C6
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:46:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB098307CEF1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:23:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6B09F312FDE9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F2C3ACA47;
-	Thu,  8 Jan 2026 11:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD4247CE97;
+	Thu,  8 Jan 2026 11:15:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qMSvc9ks"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iWLs0bma"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB813A4AC1;
-	Thu,  8 Jan 2026 11:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F4C45BD42
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 11:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767870165; cv=none; b=Vb2T0Bch/jdF9ZnO9Bz1O2j5uBGBa6/kGSERQ78OOjzWemLYil/CPKLoDZRIIac9CowHkYz0IWvAwYA1juE26x5ga+j4pgVqYsMxe7ArXI9gP4QEtIwX5hdJImFidrVqNUIWHip6XSy0IcZt7zH/xoMRPgy795ediPj/fNwdpTs=
+	t=1767870920; cv=none; b=bV82J8enJ/5D2kMewsa6zIpkUGXBNvuANfn2vipTeJzBqVR3eO28IUrBbQjXO17Oc0GzTmuq/dehM70D8EKPjEKgqR3C+4W3c2AiaGVjnBCEHRj3IfXSVhQoVswR+Xhpva7Q8pse3UJAxs6bR2juk0AkF9XtM8DYV97zxditzTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767870165; c=relaxed/simple;
-	bh=2+DvUYmYV9U/Yj8ZST1r0/xHoFeYFSLopr9bIm8GCoo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=THBqfGPr0BFZh2qU0us4RAseT+uaHocj4QBfWviKV8w5STQonNnR7/iNhClUPwqvo9M5SWI2bQpoLctHa4MxlJ3RqcE0KUgZAbripw0GfU6B4vhSagm4UUVz1zr7uAjcolyZN54PSAd0WSr7BNZ7AOSsPp65olzpe+5p6WoHy5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qMSvc9ks; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1767870151;
-	bh=2+DvUYmYV9U/Yj8ZST1r0/xHoFeYFSLopr9bIm8GCoo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qMSvc9ks6g7641gm1YJtSjKbwTP7DWfNV+86VME4OIhW7DFPi7RblvD7CiXkbY8pT
-	 Pb+O9clCJuV8nhiCQXDpuKaWJzhi6rGfgBOjA1jAqsa7TgIDz+k0WVvmRq/K3F2+3O
-	 z6tpwjseHX/RNSZcOzp3BYm/aw7nA62xftTP0TXueV/xfcEiXhtxGNT50njuNXavD1
-	 sFjcDWjVUbS1ZL7Sf4xwBWu1E7safjVralqz2YgV7lNOM34Yp086SfbYChYFhGO52j
-	 OS6gaEfxOR+JotyD2akXoOVe9k3SsS4JjY92272to6orZvBJe/diUoeF7jWVlQd/oO
-	 oV2ojqGhJqTZA==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0DABD17E152C;
-	Thu,  8 Jan 2026 12:02:31 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: krzk+dt@kernel.org
-Cc: herbert@gondor.apana.org.au,
-	davem@davemloft.net,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	andrew@lunn.ch,
-	gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	atenart@kernel.org,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH 4/4] arm64: dts: mediatek: mt7986a: Change compatible for SafeXcel crypto
-Date: Thu,  8 Jan 2026 12:02:23 +0100
-Message-ID: <20260108110223.20008-5-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260108110223.20008-1-angelogioacchino.delregno@collabora.com>
-References: <20260108110223.20008-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1767870920; c=relaxed/simple;
+	bh=YXGLziHF6YkCoDlgtESsqmLKcAyUTntv6ubByS7hXLs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rpIG4Krvc+sPEU2vxXJS5spv1oCeOqPFwteMUuoenza6ZlhA9m80NJCiEOZfUDxZNJTzEZtwNgf3FxwPEbP/rrFpq/yxtyYpuD5WjxOCQGw8Z27mAQ380uzV7DuWmRdVvgYj6xmAltMDclNRoBmg2SHSSixzDTyt6LbPbmF2/9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iWLs0bma; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-64b560e425eso4174234a12.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 03:15:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1767870915; x=1768475715; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LVxapQmd61w0lGQX8mp2HL79WDJS07jG7jMdrPDktlc=;
+        b=iWLs0bma2yM5T8FHtH75OLVNlAQrMc5evfqFCg38iZfPg/ppbupqFwHAKEks8bP5oD
+         A+nhUO1gT42WKbo82vZGKPOpDlIxb8ENnD6icWH27ScqSJNsTg6A9Ig9RVMCHlslP7rV
+         H1mKcuj+Wl+zK5m3P1Rh1mrPDDYTdSy9bR3mOetY1WV4vnWSCRVwU2W0yJ+cOS7390rb
+         ZYBDuMEN6UtSttTgGamcCc842Ok/REzbgK2/lPGYgwfo4FBZRaLMIP9LiyGHuORHVxHK
+         MBSQa4/Mpl5nPQPifGbn4VwYTwxOc55/FJweaJ6tH7FwaQnpc1+H3fvXaY91RRrVjN3h
+         X4IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767870915; x=1768475715;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=LVxapQmd61w0lGQX8mp2HL79WDJS07jG7jMdrPDktlc=;
+        b=BgzX8yzlEC67Kt/lPq7rwradgl6wRyw8d0jWXZykg7lyDsVlKVdyK64MuczMQY+vJw
+         oQEo5mFvfGyfmiYMjFMHKPJLZVUwwvxGAqSQ86Je0ha8D55VseaaFuX1IV0OiHqEjgbj
+         Nl550tLM2/V0BNLTnmeCvqKZuJANhk0G4ybVuyZwA7yoqN88KxX49X92iKpwyRCI9d+Z
+         JVPvZybmrzlQvlrO56zL7QJQp4d3rSE79x+LgFLXCscM9nM8WBzRmlpAf8VsUrgZAIpQ
+         dXzwXbc7p+ecq1rfKOh9IA0cKWT7v41MfjlhhP97Ih1El6GWEqfhEmSry7H3F+trTu67
+         29hA==
+X-Forwarded-Encrypted: i=1; AJvYcCUzhvQsmlQJmZcz8/2MBpvnjkt16QlZdhAzOBKHNaiiqFnAGrEmxUK08nXGmPIuGuuCZzEGao/6hhO9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzN2WoVnwYvVrko7n4Fdo/TinYrWM0VBHuOb6+qqz9+3ah4SDTN
+	lw8vn4Bapnx+AABKqZd/NPElVTgWWMWhW0/9BBcnb6URhccwFTISemI3/d9I68gtNSWPW2wg9pZ
+	SiAxhqOr8L+nO9Yg0UfPqi3gPVOboS7ahVQ2Q4mEmaw==
+X-Gm-Gg: AY/fxX6smk2tP/AOrjCu8z+MtS6wGNWTYOdVj7kBtocrwJu1svQS1u0s3DaZFxfQRSB
+	3oW381+2z5qOXU1cbxpEkPoZHQ8xJoNuBYuxmjFjUGdm1f80vjz5CykgdEVbWUF6WXNVlmJ+Bcv
+	hM+coyb2enSlXH2ums7iR6IT59yDnAwwaJE4jTj1W37JFzFXh4wiI9yt1wTx/Ep3fPaJkWJWxFC
+	a92jAORh1SP11gAOokwYATrDIPojSkGKjT1N+7XXyYsQMl4NvRpSLaPyeGn1fiPyuAG4ncuqrUU
+	d4fCc03kveL1pGBeM8/xHs56W27GJiJsn+zh1J5+
+X-Google-Smtp-Source: AGHT+IFHAB9Bnp3BB8dMREjQr967gPMG/GGiiGg+amrvJbHn1bFL3BwFrjMhvQJAqE/QddIsZ2qSyWC9FuhApQ/ThSM=
+X-Received: by 2002:a05:6402:5201:b0:641:966d:82ba with SMTP id
+ 4fb4d7f45d1cf-65097dcc536mr4334588a12.1.1767870914919; Thu, 08 Jan 2026
+ 03:15:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251222-automatic-clocks-v7-0-fec86fa89874@linaro.org>
+ <CGME20251222103019eucas1p2c60f033dc02adfef360b4fc69bd4021b@eucas1p2.samsung.com>
+ <20251222-automatic-clocks-v7-3-fec86fa89874@linaro.org> <8b2c412d-3e1e-4be0-a9d5-ef67f6f0d409@samsung.com>
+ <0c09a8c461db5a09e75de4587eef38bffbccf2d2.camel@linaro.org>
+In-Reply-To: <0c09a8c461db5a09e75de4587eef38bffbccf2d2.camel@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 8 Jan 2026 11:15:02 +0000
+X-Gm-Features: AQt7F2p5pHWMrlun-9cdijxvvGGa-DUdgXn5dVr-tLvbHmhtbwNPLLjbUDUSQBE
+Message-ID: <CADrjBPr6QBbmF9tQP0czRm30d688VtT1g1=tw=bwfYYzKPrPPg@mail.gmail.com>
+Subject: Re: [PATCH v7 3/4] clk: samsung: Implement automatic clock gating
+ mode for CMUs
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Sam Protsenko <semen.protsenko@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Will McVicker <willmcvicker@google.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Following the changes in the binding for the SafeXcel crypto
-engine, add a SoC specific compatible to the existing crypto
-node and, while at it, also change the fallback compatible to
-inside-secure,safexcel-eip97ies as the eip97 one is deprecated.
+Hi Andr=C3=A9 & Marek,
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Thu, 8 Jan 2026 at 10:55, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
+wrote:
+>
+> Hi Marek,
+>
+> On Thu, 2026-01-08 at 00:59 +0100, Marek Szyprowski wrote:
+> > > @@ -334,10 +456,20 @@ void samsung_clk_extended_sleep_init(void __iom=
+em *reg_base,
+> > >     * samsung_cmu_register_clocks() - Register all clocks provided in=
+ CMU object
+> > >     * @ctx: Clock provider object
+> > >     * @cmu: CMU object with clocks to register
+> > > + * @np:  CMU device tree node
+> > >     */
+> > >    void __init samsung_cmu_register_clocks(struct samsung_clk_provide=
+r *ctx,
+> > > -                                   const struct samsung_cmu_info *cm=
+u)
+> > > +                                   const struct samsung_cmu_info *cm=
+u,
+> > > +                                   struct device_node *np)
+> > >    {
+> > > +   if (samsung_is_auto_capable(np) && cmu->auto_clock_gate)
+> > > +           ctx->auto_clock_gate =3D cmu->auto_clock_gate;
+> >
+> > Do we need to issue "incorrect res size for automatic clocks" warning
+> > for every legacy Exynos based board? The check above should be in
+> > reverse order:
+> >
+> > if (cmu->auto_clock_gates && amsung_is_auto_capable(np))
+> >       ctx->auto_clock_gate =3D cmu->auto_clock_gate;
+>
+> Good suggestion. I have one or two cleanups anyway, I'll add that as well=
+.
+>
+> Thanks for spotting this!
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-index 7790601586cc..9693f62fd013 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-@@ -231,7 +231,7 @@ trng: rng@1020f000 {
- 		};
- 
- 		crypto: crypto@10320000 {
--			compatible = "inside-secure,safexcel-eip97";
-+			compatible = "mediatek,mt7986-crypto", "inside-secure,safexcel-eip97ies";
- 			reg = <0 0x10320000 0 0x40000>;
- 			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.52.0
+Ok great thanks Andr=C3=A9 and Marek!
 
+Peter
 
