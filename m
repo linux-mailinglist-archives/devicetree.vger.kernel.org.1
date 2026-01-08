@@ -1,388 +1,174 @@
-Return-Path: <devicetree+bounces-252890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B498D04B21
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:06:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D63BD04DAC
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 18:17:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3E90733B1668
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:58:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BAB3B30E2CB3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 16:10:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 371E8243956;
-	Thu,  8 Jan 2026 15:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6311F20B810;
+	Thu,  8 Jan 2026 16:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FIWxddv4"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="MUkuf7d4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71F15242D83
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F4081DFDB8;
+	Thu,  8 Jan 2026 16:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767887627; cv=none; b=B1Jt/PzQ8+LrUaUNBXnx3KwqA3P5jVTO93l4ZM6UCeU3t4c4SVGxXXcFzQr44Sw88L2kQIsTtR3OtFlkzgche4qJVs7QE4111uXP4sd0eLrmJoKK+EopZ9U1O/3EBfUX6Cbsb65ArQA/9v3UZR4PstoeLo7OaUd17XxE53XR7ss=
+	t=1767888627; cv=none; b=lwBXx958Ya/lLcYOaeju4DCX8ifDdsD+dQbRJ3EOHxmOhitqKuErnSaCNF0/3wIypusn2PlOaQsIKIFBjDu6jdBgrZa7657EXNaMYfakZSqFPb/MXrNbooZBghwIj4ntjCs/pVH6ExgWwe1SmsFJQ7OjAHOxTwuIz0qcNAI2fGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767887627; c=relaxed/simple;
-	bh=3ZQ/nKOSWptZxT2hnkOVr8QbwM+Io0AiatFnUs1HhME=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GjRdo2V1/SEFS3tJ9qmwzwyTdAvyGFs+a/xhVvjt6GiVBcRpg/ygsMoHipEEhcO6FYuyU4eHzhK12tuOvFZV4jbEzlfP/jDTZ5wliPu6iDmojEiD2FynmSEgaE2BZElIzttfY1vpOAbBNDOpTqPHl5/gdz1Nf34VZUOlOHqTUTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FIWxddv4; arc=none smtp.client-ip=209.85.210.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7cdd651c884so1550189a34.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:53:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767887622; x=1768492422; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WS4v+L5fbORHSb1TsTci/XfehGA5nJR4kwq94AjXke4=;
-        b=FIWxddv4licvx91HymuPj22Pk2WGH3pPZ5kcM2UQurh27r/ypHFCsRCNM737u2PkNj
-         1BywNFOyLkfTI9lWVmAzQYWyo4GzGyyTf7n5MU412jKqiNkvDYeWTlZkqmHLRtypDTBr
-         bBjDkjm3g4YlUn9jYnkHlsrdlnSAMUT01CHkSz8HfyOzNg+HEFASo7TDR2KbOMu5+9Pd
-         5nCH5cBH7SQpFxOGcl6ze3BJvE0ulAsOHKRcgY5MOxcuj37bTgmSpP1yeZs369ehXOv8
-         2R48zzv1ACYLfXoGCyjG3DL0QJ9gtZrXHsPin1FL2F5/epj6d7z7ufNjjiA0QoGLizat
-         Vntw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767887622; x=1768492422;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WS4v+L5fbORHSb1TsTci/XfehGA5nJR4kwq94AjXke4=;
-        b=pSiWzFEjAcFkt6mMz2mdM7o5Q2inepegN1LFcvaCp7V9E9EYvTpGqyrAHHJXp/Vz6J
-         UOCDMEcXISmHjUvErWf++lH98wcgvc1r20Y6MyHjrN25oUsVXY/SfsCZ8+SKOlRN9bNa
-         qwV28eWUi+E9Phd1ik8CCSWRlD19SyzlJF4qKM3AEabA2ox5n6gCKR1sakaVRQLIQ4k1
-         04Fde+DSkNiJlKMrHinC+55+k4M4tgRZkZnQ9BTzAKqOSRXICCEVqimF0ydXQ/IGsA0J
-         Rij8k6KNK29F4AdEpYYsQgRV1GWaOctQZuRaIRe+pgIod1kHXmFI6ZmM+1hYCGY1knVB
-         XGJA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJpWQ22b2yVmlvr1eDrxViYDkrAp8jSTj0g37d5r2FS+JxLeRfrZOpGobnqmCEkghRXkCg+Kvsj9yt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXOXGYC+rnMOuOEopcR2GUfM/DCP05XJCzCs9Ooq3n3+kgn/78
-	tUofNQc4yHBwtkPJUpgEyqDVFO1mnwhwFg6r7YQyE9LzwTcG/W7wJe8DkUp+I4O2v+1F68W+fpK
-	oYt+yH5JKD1SZagHxjobXvVusqW19ou7E8udb
-X-Gm-Gg: AY/fxX5vxOsHxejYMXOtoR7pI/KhO7NlVEsY7OoSnokdZPZg84h+0YWia8J1DeYsN1Q
-	x+ZR7MBnuyEChf4qgTRpsEGI6iALB/A9jgCIVZU4NC9MNjJy4OQ8CeK7IqHyjorzO931S4Q+FvU
-	4ewsj8ox2cndE7XfZstugsyJQY3Hd7dvF/LLJa7Hri4w1g9LmQbXBnElLuLam0JNBi/7t01SOep
-	j5Yu1YnXc0CMwsKpEtgVBZ03zQvYEk1jvWXds3UDdLxbCG67orVaob+P8hsUC+XGyjI
-X-Google-Smtp-Source: AGHT+IGLMMDCosA8bDOF7Nx/VITlJVXJX+5aiGOxyv4K2+Z0zmu4wqjonFMQjgC8RoRCfLJmIxKD4JitqOjokrT1iWM=
-X-Received: by 2002:a05:6830:65c6:20b0:7c7:5ef4:a52b with SMTP id
- 46e09a7af769-7ce46cc9fbemr3983422a34.9.1767887622159; Thu, 08 Jan 2026
- 07:53:42 -0800 (PST)
+	s=arc-20240116; t=1767888627; c=relaxed/simple;
+	bh=D1x7HLI267QUqo56DOxlQbkNFR+5LcpuiEHW6oCtj+0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VWW9MWu7QJbWtwCGNekpGsmhoyWF9zoINzOGKF968vj1FNJlLbF8F3kFJ0/H8daDHLX2pvYC13i45LJ6A61SdQSCeCp+8yPgoxN4iGUXAY7oR2FW/fE9rlG7bGjg12PtyP5dUYU9hdBxhs+H3TPzZUo8UGc/xtIEBqXCdoHMbqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=MUkuf7d4; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=9t7RCksMujyX8swqWhQFyBcp3/5sZoVMAXP5liIPnO4=; b=MUkuf7d4NGuYAxwkVk9mclIZTv
+	rQkxwMcTmvPhz/Kw12SRCpYrQqIrghTkAih2KJBlTQo1HL0t49AXbFxUMnWSEnYh8/au6xX3OgSm+
+	Gdz/GE2hMy9Q/PNkbAGPAdwXozpQpeqMwvm56lget2bUVOTy6JWwu2Rg0QB8whV/FgcnHdMDVCj9q
+	838POOGOoyKQPyiuetEPrUTs3m5GKgZJkcQS5I6SQVWtfkTm6pXayDHWOv7Ki+NPx9yTJ4emGhWji
+	KCOjGpln/bNT4P2649CWeMQkBW2X5bT4wfktefrIul/Yf3WGxZNHpDXBMe6KtKWyOoU7adosVGaHH
+	EmItGm0w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54696)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vdsaN-000000002ps-3OJZ;
+	Thu, 08 Jan 2026 16:10:07 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vdsaJ-000000002TW-45kC;
+	Thu, 08 Jan 2026 16:10:03 +0000
+Date: Thu, 8 Jan 2026 16:10:03 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Dinh Nguyen <dinguyen@kernel.org>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mamta Shukla <mamta.shukla@leica-geosystems.com>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	bsp-development.geo@leica-geosystems.com,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] net: stmmac: socfpga: add call to assert/deassert
+ ahb reset line
+Message-ID: <aV_W2yLmnHrTvbTP@shell.armlinux.org.uk>
+References: <20260108-remove_ocp-v3-0-ea0190244b4c@kernel.org>
+ <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251217104744.184153-1-jonathanh@nvidia.com> <CALHNRZ8syS6F9W1ovw2Y-jkspQafCnLy0ynocn0sMLurShHnbA@mail.gmail.com>
- <CALHNRZ_vkw6Ns=PMa+x0SY64+Ov0FeA5tMKJr+-tY9_OasKUog@mail.gmail.com>
- <aUPsDeFmxAJ09Tk7@orome> <CALHNRZ_vjSy+A8ZW7E1A4B5yQJ=GgvbNmafU7gjtGv-xjdfhPg@mail.gmail.com>
- <0ed3d270-b0be-4431-8a46-a7eea29598f4@nvidia.com> <CABr+WTnyKz7y-KKv6yQOfPWDf4iB2MarcQPetZ+OT1=3WqdH5A@mail.gmail.com>
- <CALHNRZ9JTMEWy8qgfPiZOPbOC3BdK8UbB01ghG+jC7+DsQS8Xg@mail.gmail.com>
-In-Reply-To: <CALHNRZ9JTMEWy8qgfPiZOPbOC3BdK8UbB01ghG+jC7+DsQS8Xg@mail.gmail.com>
-From: Nicolas Chauvet <kwizart@gmail.com>
-Date: Thu, 8 Jan 2026 16:53:31 +0100
-X-Gm-Features: AZwV_QhI0yrxQbwxrBRHJ_YAR1z1X-9R5ewF7lHxSG4eqy1N-2WYaJz7ZZZvknw
-Message-ID: <CABr+WT=2u0W-gLarOo7nQj5=CURw+7r2rFfiBTJGUOHz51p3+w@mail.gmail.com>
-Subject: Re: [PATCH] Revert "arm64: tegra: Add interconnect properties for Tegra210"
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Jon Hunter <jonathanh@nvidia.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Le mer. 7 janv. 2026 =C3=A0 20:50, Aaron Kling <webgeek1234@gmail.com> a =
-=C3=A9crit :
->
-> On Mon, Jan 5, 2026 at 2:27=E2=80=AFPM Nicolas Chauvet <kwizart@gmail.com=
-> wrote:
-> >
-> > Le ven. 19 d=C3=A9c. 2025 =C3=A0 11:59, Jon Hunter <jonathanh@nvidia.co=
-m> a =C3=A9crit :
-> > >
-> > >
-> > >
-> > > On 18/12/2025 19:07, Aaron Kling wrote:
-> > > > On Thu, Dec 18, 2025 at 6:00=E2=80=AFAM Thierry Reding <thierry.red=
-ing@gmail.com> wrote:
-> > > >>
-> > > >> On Wed, Dec 17, 2025 at 02:42:58PM -0600, Aaron Kling wrote:
-> > > >>> On Wed, Dec 17, 2025 at 12:20=E2=80=AFPM Aaron Kling <webgeek1234=
-@gmail.com> wrote:
-> > > >>>>
-> > > >>>> On Wed, Dec 17, 2025 at 4:48=E2=80=AFAM Jon Hunter <jonathanh@nv=
-idia.com> wrote:
-> > > >>>>>
-> > > >>>>> Commit 59a42707a094 ("arm64: tegra: Add interconnect properties=
- for
-> > > >>>>> Tegra210") populated interconnect properties for Tegra210 and t=
-his is
-> > > >>>>> preventing the Tegra DRM driver from probing successfully. The =
-following
-> > > >>>>> error is observed on boot ...
-> > > >>>>>
-> > > >>>>>   drm drm: failed to initialize 54240000.dc: -517
-> > > >>>>>
-> > > >>>>> For now revert this change, until a fix is available.
-> > > >>>>>
-> > > >>>>> Fixes: 59a42707a094 ("arm64: tegra: Add interconnect properties=
- for Tegra210")
-> > > >>>>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> > > >>>>> ---
-> > > >>>>>   arch/arm64/boot/dts/nvidia/tegra210.dtsi | 24 ---------------=
----------
-> > > >>>>>   1 file changed, 24 deletions(-)
-> > > >>>>>
-> > > >>>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/ar=
-m64/boot/dts/nvidia/tegra210.dtsi
-> > > >>>>> index 709da31d5785..137aa8375257 100644
-> > > >>>>> --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-> > > >>>>> +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-> > > >>>>> @@ -202,19 +202,6 @@ dc@54200000 {
-> > > >>>>>
-> > > >>>>>                          nvidia,outputs =3D <&dsia &dsib &sor0 =
-&sor1>;
-> > > >>>>>                          nvidia,head =3D <0>;
-> > > >>>>> -
-> > > >>>>> -                       interconnects =3D <&mc TEGRA210_MC_DISP=
-LAY0A &emc>,
-> > > >>>>> -                                       <&mc TEGRA210_MC_DISPLA=
-Y0B &emc>,
-> > > >>>>> -                                       <&mc TEGRA210_MC_DISPLA=
-Y0C &emc>,
-> > > >>>>> -                                       <&mc TEGRA210_MC_DISPLA=
-YHC &emc>,
-> > > >>>>> -                                       <&mc TEGRA210_MC_DISPLA=
-YD &emc>,
-> > > >>>>> -                                       <&mc TEGRA210_MC_DISPLA=
-YT &emc>;
-> > > >>>>> -                       interconnect-names =3D "wina",
-> > > >>>>> -                                            "winb",
-> > > >>>>> -                                            "winc",
-> > > >>>>> -                                            "cursor",
-> > > >>>>> -                                            "wind",
-> > > >>>>> -                                            "wint";
-> > > >>>>>                  };
-> > > >>>>>
-> > > >>>>>                  dc@54240000 {
-> > > >>>>> @@ -230,15 +217,6 @@ dc@54240000 {
-> > > >>>>>
-> > > >>>>>                          nvidia,outputs =3D <&dsia &dsib &sor0 =
-&sor1>;
-> > > >>>>>                          nvidia,head =3D <1>;
-> > > >>>>> -
-> > > >>>>> -                       interconnects =3D <&mc TEGRA210_MC_DISP=
-LAY0AB &emc>,
-> > > >>>>> -                                       <&mc TEGRA210_MC_DISPLA=
-Y0BB &emc>,
-> > > >>>>> -                                       <&mc TEGRA210_MC_DISPLA=
-Y0CB &emc>,
-> > > >>>>> -                                       <&mc TEGRA210_MC_DISPLA=
-YHCB &emc>;
-> > > >>>>> -                       interconnect-names =3D "wina",
-> > > >>>>> -                                            "winb",
-> > > >>>>> -                                            "winc",
-> > > >>>>> -                                            "cursor";
-> > > >>>>>                  };
-> > > >>>>>
-> > > >>>>>                  dsia: dsi@54300000 {
-> > > >>>>> @@ -1052,7 +1030,6 @@ mc: memory-controller@70019000 {
-> > > >>>>>
-> > > >>>>>                  #iommu-cells =3D <1>;
-> > > >>>>>                  #reset-cells =3D <1>;
-> > > >>>>> -               #interconnect-cells =3D <1>;
-> > > >>>>>          };
-> > > >>>>>
-> > > >>>>>          emc: external-memory-controller@7001b000 {
-> > > >>>>> @@ -1066,7 +1043,6 @@ emc: external-memory-controller@7001b000 =
-{
-> > > >>>>>                  nvidia,memory-controller =3D <&mc>;
-> > > >>>>>                  operating-points-v2 =3D <&emc_icc_dvfs_opp_tab=
-le>;
-> > > >>>>>
-> > > >>>>> -               #interconnect-cells =3D <0>;
-> > > >>>>>                  #cooling-cells =3D <2>;
-> > > >>>>>          };
-> > > >>>>>
-> > > >>>>> --
-> > > >>>>> 2.43.0
-> > > >>>>>
-> > > >>>>
-> > > >>>> A little bit of documentation on this, should someone read the l=
-ist to
-> > > >>>> see what happened. The original report of the failure is here [0=
-] and
-> > > >>>> only occurred when the tegra210-emc driver fails to probe. After=
- this
-> > > >>>> report, the related code change [1] to tegra210-emc which regist=
-ers
-> > > >>>> the driver to icc was silently dropped from -next, but these dt
-> > > >>>> changes remained. So now these interconnect routes do cause tegr=
-a-drm
-> > > >>>> to universally fail on tegra210.
-> > > >>>>
-> > > >>>> Aaron
-> > > >>>>
-> > > >>>> [0] https://lore.kernel.org/all/56aed0ec-b104-4612-8901-3f6f95e0=
-afab@nvidia.com/
-> > > >>>> [1] https://lore.kernel.org/all/20251027-t210-actmon-p2-v6-1-1c4=
-bd227d676@gmail.com/
-> > > >>>
-> > > >>> There may be another option here. I'm beginning to think there wi=
-ll
-> > > >>> not be any way to set the icc routes for the dc's while the emc d=
-river
-> > > >>> can fail to probe. The next best thing looks to be just dropping =
-the
-> > > >>> interconnect nodes from the dc nodes and leaving the rest of the
-> > > >>> original commit in place. Then reland the tegra210-emc driver cha=
-nge.
-> > > >>> This should put the no-emc case back to where it was, while allow=
-ing
-> > > >>> actmon to do its scaling when emc is available. And I will move t=
-o the
-> > > >>> dc icc routes to downstream dt's, where I tightly control that em=
-c is
-> > > >>> available.
-> > > >>>
-> > > >>> Does this sound reasonable? If so, I will go stage the changes an=
-d
-> > > >>> verify that it works as intended.
-> > > >>
-> > > >> Let's go with the revert for now, since that clearly documents whe=
-re
-> > > >> things go wrong and it can be easily reapplied once the root cause=
- has
-> > > >> been resolved.
-> > > >>
-> > > >> It's a bit unfortunate that we don't have a way of making these
-> > > >> interconnect properties optional. If EMC fails to probe for whatev=
-er
-> > > >> reason, I think the assumption should be that it doesn't do any dy=
-namic
-> > > >> scaling of the EMC frequency and hence the entire ICC stuff isn't =
-needed
-> > > >> and should just be no-ops.
-> > > >>
-> > > >> On the other hand, other than the patches getting reverted, there'=
-s
-> > > >> really no good reason for the EMC driver to fail to provide them, =
-hence
-> > > >> I think once that's been restored we can apply this again and then=
- that
-> > > >> should be the end of it.
-> > > >
-> > > > Except that the tegra210-emc driver fails to probe at all if the
-> > > > bootloader does not copy reserved-memory table node? Which per Jon,
-> > > > the Nvidia regression bench does not do. And neither will a normal =
-L4T
-> > > > install using a mainline kernel and dt via extlinux or u-boot. I ha=
-ve
-> > > > to put the mainline kernel on DTB and use a kernel in an android bo=
-ot
-> > > > image, which causes nvtboot-cpu to set the dt table reserved memory
-> > > > node directly. Which is perfectly fine for my android use case, but
-> > > > not so much for anyone just trying to boot a Linux distro.
-> > >
-> > > I am lost. I was not able to follow the above. Our current testing
-> > > simply boots the upstream kernel + upstream DTB.
-> >
-> > With this revert, I have tegra drm back on 6.19-rc4 kernel.
-> >
-> > But I also have this error that did not appear on 6.18:
-> > "tegra210-emc 7001b000.external-memory-controller: failed to get
-> > nominal EMC table: -19"
->
-> I'm not sure what between 6.18 and -next would change this. I would
-> expect your setup to see this on older kernel versions too. Does the
-> emc driver fully probe and does scaling work for you on 6.18?
->
-> > My boot flow is the latest L4T 32.7.6, upstream U-Boot 2025.01 and EFI =
-boot.
-> > U-Boot mentions:
-> > Found DTB: nvidia/tegra210-p2371-2180.dtb
-> > copying carveout for /host1x@50000000/dc@54200000...
-> > copying carveout for /host1x@50000000/dc@54240000...
-> > copying carveout for /external-memory-controller@7001b000..
-> >
-> > That said, comparing in-tree dtb and runtime only shows few diffs.
-> > (are more changes expected ?)
-> >
-> > dtdiff /boot/dtbs/nvidia/tegra210-p2371-2180.dtb /proc/device-tree
-> > --- /dev/fd/63    2026-01-05 21:20:39.956415634 +0100
-> > +++ /dev/fd/62    2026-01-05 21:20:39.956415634 +0100
-> > @@ -2207,6 +2207,12 @@
-> >      };
-> >
-> >      chosen {
-> > +        bootargs =3D "BOOT_IMAGE=3D(hd0,msdos2)/vmlinuz-arm64
-> > root=3DUUID=3D9bdc914f-f5c9-42cb-a4e9-9f3387f8d480 ro
-> > rootflags=3Dsubvol=3Droot console=3DttyS0,115200 selinux=3D0 fbcon=3Dro=
-tate:3";
-> > +        linux,uefi-mmap-desc-size =3D <0x28>;
-> > +        linux,uefi-mmap-desc-ver =3D <0x01>;
-> > +        linux,uefi-mmap-size =3D <0x528>;
-> > +        linux,uefi-mmap-start =3D <0x00 0xfb568068>;
-> > +        linux,uefi-system-table =3D <0x00 0xfed2bf80>;
-> >          stdout-path =3D "serial0:115200n8";
-> >
-> >          framebuffer {
->
-> For emc scaling to work with the current tegra210-emc driver, a
-> memory-region property needs added by the bootloader to
-> external-memory-controller@7001b000, pointing to emc-table regions
-> that it added to the reserved-memory node.
+On Thu, Jan 08, 2026 at 07:08:09AM -0600, Dinh Nguyen wrote:
+> The "stmmaceth-ocp" reset line of stmmac controller on the SoCFPGA
+> platform is essentially the "ahb" reset on the standard stmmac
+> controller. But since stmmaceth-ocp has already been introduced into
+> the wild, we cannot just remove support for it. But what we can do is
+> to support both "stmmaceth-ocp" and "ahb" reset names. Going forward we
+> will be using "ahb", but in order to not break ABI, we will be call reset
+> assert/de-assert both ahb and stmmaceth-ocp.
+> 
+> The ethernet hardware on SoCFPGA requires either the stmmaceth-ocp or
+> ahb reset to be asserted every time before changing the phy mode, then
+> de-asserted when the phy mode has been set.
 
-Okay, I got what was the issue on my side, my grub loader entry had a
-"devicetree /dtbs/nvidia/tegra210-p2371-2180.dtb" line that prevented
-for my self compiled kernel to have the trained emc-tables and other
-options from bootloader.
+This is not SoCFPGA specific. The dwmac core only samples its
+phy_intf_sel_i signals when coming out of reset, and then latches
+that as the operating mode.
 
-Also I had to point the /boot/dtb symlink to /boot/dtbs where my
-kernel installed dtbs are located. Now the fedora grub loads the more
-recent dtb everywhere (which is a separate issue).
+Currently, the dwmac core driver does not support dynamically changing
+plat_dat->phy_interface at runtime. That may change in the future, but
+as it requires a hardware reset which will clear out the PTP state, it
+would need consideration of that effect.
 
-Now I had the training table rights:
-See also:
-dtdiff /boot/dtbs/nvidia/tegra210-p2371-2180.dtb /proc/device-tree
-....
-@@ -2355,6 +2364,8 @@
-                clocks =3D <0x03 0x39>;
-                compatible =3D "nvidia,tegra210-emc";
-                interrupts =3D <0x00 0x4e 0x04>;
-+               memory-region =3D <0x17b 0x17c>;
-+               memory-region-names =3D "nominal", "derated";
-                nvidia,memory-controller =3D <0x0d>;
-                operating-points-v2 =3D <0x35>;
-                phandle =3D <0x16>;
-@@ -3270,7 +3281,7 @@
+The SoCFPGA driver only calls the set_phy_mode() methods from
+socfpga_dwmac_init(), which in turn is called from the plat_dat->init
+hook. This will be called from:
 
-        memory@80000000 {
-                device_type =3D "memory";
--               reg =3D <0x00 0x80000000 0x01 0x00>;
-+               reg =3D <0x00 0x80000000 0x00 0x7ee00000 0x01 0x00 0x00
-0x7f200000>;
-        };
+1. When stmmac_dvr_probe() is called, prior to allocating any
+   resources, and prior to the core driver's first call to:
+   reset_control_deassert(priv->plat->stmmac_ahb_rst);
 
-        mipi@700e3000 {
-@@ -5664,6 +5675,18 @@
-                #size-cells =3D <0x02>;
-                ranges;
+2. As plat_dat->resume is not populated by the glue driver, the init
+   hook will also be called when resuming from stmmac_resume().
 
-+               emc-table@83400000 {
-+                       compatible =3D "nvidia,tegra210-emc-table";
-+                       phandle =3D <0x17b>;
-+                       reg =3D <0x00 0x83400000 0x00 0x10000>;
-+               };
-+
-+               emc-table@83410000 {
-+                       compatible =3D "nvidia,tegra210-emc-table";
-+                       phandle =3D <0x17c>;
-+                       reg =3D <0x00 0x83410000 0x00 0x10000>;
-+               };
-+
-                framebuffer@92cb5000 {
-                        iommu-addresses =3D <0xec 0x00 0x92cb5000 0x00 0x80=
-0000>;
-                        phandle =3D <0x17>;
+Lastly, nothing in the main driver corrently writes to ->phy_interface.
+
+I would like to see the platform glue drivers using more of what is
+in the core driver, rather than re-inventing it, so I support the
+idea of getting rid of dwmac->stmmac_ocp_rst.
+
+What I suggest is to get rid of dwmac->stmmac_ocp_rst now.
+devm_stmmac_probe_config_dt() will parse the device tree, looking for
+the "ahb" reset, and assigning that to plat->stmmac_ahb_rst. If it
+doesn't exist, then plat->stmmac-ahb_rst will be NULL.
+
+So, in socfpga_dwmac_probe(), do something like this:
+
+	struct reset_control *ocp_rst;
+...
+	if (!plat_dat->stmmac_ahb_rst) {
+		ocp_rst = devm_reset_control_get_optional(dev, "stmmaceth-ocp");
+		if (IS_ERR(ocp_rst))
+			return dev_err_probe(dev, PTR_ERR(ocp_rst),
+					     "failed to get ocp reset");
+
+		if (ocp_rst)
+			dev_warn(dev, "ocp reset is deprecated, please update device tree.\n");
+
+		plat_dat->stmmac_ahb_rst = ocp_rst;
+	}
+
+Then, change all remaining instances of dwmac->stmmac_ocp_rst to
+dwmac->plat_dat->stmmac_ahb_rst... and job done. You have compatibility
+with device trees that use "ahb", and with device trees that use
+"stmmaceth-ocp".
+
+Given that struct socfpga_dwmac contains the plat_dat pointer, rather
+than copying plat_dat->stmmac_rst to your private structure, please
+use the one in the plat_dat structure.
+
+The next question I have is - do you need to assert both the AHB reset
+and stmmac_rst to set the PHY interface mode? I don't see a dependency
+between these two resets in the socfpga code - the driver doesn't treat
+them as nested. It asserts the AHB reset _then_ the stmmac reset, and
+then releases them in the same order rather than reverse order. This
+suggests there's no interdependence between them, and probably it's
+only necessary to assert the stmmac core's reset (stmmac_rst).
+
+So, maybe the driver can leave the handling of plat_dat->stmmac_ahb_rst
+to the stmmac core code?
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
