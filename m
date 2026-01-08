@@ -1,289 +1,199 @@
-Return-Path: <devicetree+bounces-252879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AB70D03B23
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:13:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E00C7D03B63
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:15:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 019DF3014D16
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:13:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 290CA3020B66
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A17B241CB7;
-	Thu,  8 Jan 2026 15:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004B12741B5;
+	Thu,  8 Jan 2026 15:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pxg4R7jy"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="IV37lyqx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F14B23EAA4
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD39273803
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:10:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767885016; cv=none; b=AaBkxJ+caj/H1gYBLIzDUrX9L0TWJ7tQrSaZ5x8zsmjbvRPseeSKJkEjVvaOOUfsjSpHQUFnjTlAki1IUAkk0MzLZMcRHwSWhY5JdZaLuMchUqqwpnc5Bxg+azZw2fWRquqoLmKBOTlvaoj4tSzh2vA+vOebJqlgwvQ0BKi0C/g=
+	t=1767885046; cv=none; b=qo1u1EPAzf9aK6G8D3ECxklqASgrqroj4SmA8R4bngS0G6kiiiqQ0JlB+XCqYzRpTrTNStk10trZ5SS2aJA6J8/H9tsjUlWh7xmSTqCD6L+lwKfrOvDdtHqLwTFuJQDc9HtyNcQEtuWobzdSLTZwr7hIWCtYdzeFLugdy+d5f9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767885016; c=relaxed/simple;
-	bh=qKoNns7ZimbfPEEy1t4QVDO1CmWWwQqfbpDDZVsHnmY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dNS8ILE9q8bO9Osp/2qb1452C6E6BYX1NwOBtH1IoD7iYySD9aNuNCWxmOdQrIztFDeJwgNn5zz38fC4J1qJ6iybVZhRqQ25uXtxYwvXdAXljkhuKYvNw9VOVeAOqigs1RfToVTz1LlbrsboeISn46JlTU5UC5J49dy+NK3EYHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pxg4R7jy; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c0bccb8037eso1615072a12.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:10:14 -0800 (PST)
+	s=arc-20240116; t=1767885046; c=relaxed/simple;
+	bh=C64R9vkxaI9K5ONeC3tgaLirXTXcWSDMfLRS3TxDK8s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eQwCX/O0/9rW/c2erISQiOqApb9eTf3q4RKEPhZerujbirQWEMbePkjTdSb6RXoKby9c9TZHW9GbC2NzU4zSMEQSDAW7rSnWvgdCb7McQSpkzDwtNjNlsgn1UWiZkfpQTNhPDSF4a31C/CAh9rxpDRu5jYefUSE67SvsoOBM0P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=IV37lyqx; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-79018a412edso34637507b3.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:10:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1767885013; x=1768489813; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dhcuq9el8jXisrdDDPJhueutUdvIyETPBmEWgvOuRc0=;
-        b=Pxg4R7jyv688W0U2QDM4Ci2Gbk0j+SJXbtdB3wGyUtOrDT5U8fMbpaSwKYSvrhQqKk
-         m6bJMNkOOYCWUViWsrDWk8ozDnIJYVAl+Tt0wCLRMZ6txaHJw8JFFr/KF9XeJI0jIh24
-         5tcb/1UetapGMWfPNm+O4uJcLxA2ZeSTiaCXP5QpXudGu59X3gbAZFsjiuP5JgyU9X8e
-         icBU5sOZ2HVv4MtHn9CRorYca7al3++fZ3S+Nc7htk8Mfpzc/eZ7Sty8jRirYNNxhdde
-         12Inzi3UB743xon+WJ6tcgA8y8MeZNN7Bv8My/bo9P3y1bDVl+9YiLG+eXED3SX7/D7W
-         32LA==
+        d=rivosinc.com; s=google; t=1767885044; x=1768489844; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QTkbey9LWC4b27P/G+EnN+lFuImbI+lYFoSxJEGXtiI=;
+        b=IV37lyqxJep/5ajHTExa7SHZy3vjwyq5ntmGicmKUKgrvygjZPpOn2bfiTpIWobWhk
+         IWs5pUbC+vQCl/WCppd2iPEavLxoStqCg1xP3I1GgBoXqPKor7JCgshPYAdU9lXAGTgA
+         vePeN6LzMXucEhQSHr1yFtRPsGsOyh+v/LFWE36UZhiLzNicZ1kEoWIS6OJqBWdUuLJi
+         b5n5wKdDmy6KfFs0me7P6uevmyaIc8qi1eGUTrl299YgHA7fjZdTwIueqmsYQ/1puMWR
+         YMHg1IY6SlhUiHKl1Ie570K96HL/H3BWRDBs4R0tFjoVmdwoasS+Q0koJ/pwpZfQ+FBe
+         tR/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767885013; x=1768489813;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dhcuq9el8jXisrdDDPJhueutUdvIyETPBmEWgvOuRc0=;
-        b=Nwzy1PlqZb9pyr4iGv+wXf88hzYDoy3B06KM9JEnsTSro3APkKpFX88Aa3rQHk436i
-         f3fKngNrR9FgtAZhDBJvTvjA0Zpfh8Y/XQkv4iQYDX4rknosmt6PKOZL5WLOYOYvEJF3
-         XOUIlg8wsU3imKezl+VCLSQFYI+ieKd+f3pmXVOF1U0kxiI2/42pIt4eBM7Og4lW6IF2
-         4IgsAOVCINjygJwCzPciQu5ijVhREP+XUHq5nZt5kKlQwf12W/YFuVk2ljJ5VYGs7hx6
-         dSP+ednJ2L1UFcEUiFVWLFm1rXlfLb8fbKgDDy1mp0BwOpyk2AE4azVa+plwIt0ap3n8
-         RNzw==
-X-Forwarded-Encrypted: i=1; AJvYcCVNcPx9NSHTyUZPM+VrcjdmzhFtNNfEzQ8ECndzXzESAltizmcwq4sAgERDIMF9hu4GEXxxRAmazjaS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFZ1YCJIoNToAF2Vy0jMIXcAjbd1HZPAr0o/ZYzpTG/U4iOuR/
-	l4SVcw9pzk2EkJYGN0LY+Pqf7sGCZ2DMeDzBdpzmHdQyvE2x2hUsCDUtgw8JGJJokwg=
-X-Gm-Gg: AY/fxX7YrVEdKPsGCX7iX9YuhBl8LP3TsPK7QfmpWU3JSs+DDbHj4R8Y+FcNX0YXeex
-	zJy0iHZmYcZ+9kK1/8yzihqVAnkYLU1v/Ep82mFu6oraji5ThIVgUvCBUSsLaHeDaUz1x6j5aFk
-	fykchbjzFa5Cal2gTSuBDV8SllscaAQJdGV5cMPKu0sFag4WmOSs93MTf2OlGYuB4W6f4hCtUN2
-	9/yxXdfc97sJPGdyaM6ocpi+9P5OaoZKshAGqMBLG5To1UDO0pfC8sDeulvDHB6Qoc7PnmA7E6t
-	WTmbxycfSG/FbYvus+3nFIPJvAt0hymHldos1sl3jBFFCDwMnNqn6I3kpx9IWuBnE+Bal9x/Ezx
-	hSk5dfsU7ONLu3omj7Wtx8ayqdEr0zcSlHS4tPHN+I5KRLJEir5orwfHdxxPOeNx/pXiq5oBjiA
-	Ibk5Fv8wtUIiuDeA==
-X-Google-Smtp-Source: AGHT+IHdVQFm0LoRLpz5ffOipFREjXXoGNgUc0A0LwHWdii2Nr5bh8+R06mGKRoJf0I2Vwoi809Uig==
-X-Received: by 2002:a17:902:e846:b0:2a1:39cd:7462 with SMTP id d9443c01a7336-2a3ee43892bmr52476395ad.8.1767885013214;
-        Thu, 08 Jan 2026 07:10:13 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:9a09:dd70:79df:b876])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3c48c75sm83669855ad.35.2026.01.08.07.10.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 07:10:12 -0800 (PST)
-Date: Thu, 8 Jan 2026 08:10:10 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v5 4/5] remoteproc: imx_rproc: Add support for System
- Manager API
-Message-ID: <aV_I0iGYt1lxEIUw@p14s>
-References: <20251218-imx95-rproc-2025-12-18-v5-0-b56a27d4158f@nxp.com>
- <20251218-imx95-rproc-2025-12-18-v5-4-b56a27d4158f@nxp.com>
- <aV6ow9dGUNaPDqZg@p14s>
- <aV+HEAzwNSOCUx88@shlinux89>
+        d=1e100.net; s=20230601; t=1767885044; x=1768489844;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=QTkbey9LWC4b27P/G+EnN+lFuImbI+lYFoSxJEGXtiI=;
+        b=a7DvZfbw4jJIPtwDwv3x6GF/x0GYkWLB3UzPyOW6VM59KKgOU1YmkgxiILO3gva3To
+         xcl3yWYtG67M/w3Da15uUQnVobyagYELWu/qYAXOaiuNp17XaIcQX8ZqPvzmazrKBOYJ
+         5gmYeIr8SEA2p2gu29krlU0DBLvEOyw55Met3OsCvf9DD+WgYPrG8XK0ETtDVhrch1vw
+         tc4rIbtP/eKhCJM0kBFNdeWSTQKjPeQ7zqp1PR1FMVePO7h2dRd2f4mck3SCy7u5YwAo
+         5rKGlFJBkH+uCNBFb7FuH2mqTl3qDFsc03LG6yIetiTM45WwfZrMgMyY3COUuX07YESW
+         NoIg==
+X-Forwarded-Encrypted: i=1; AJvYcCWslK3Tt+6lcnJ4M1rvj0GGCdOTlaVDSW1Kd9PNJbFKuYPjdfI81nHt3QyGS2my8M9O3ZniQPhGU4N4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzwv/R715erXhgHPz1eqzvbArHnrEph7Z4nZobkIaFCTEdkXCmP
+	/3XQv6LdB5uOyuOZVjrfEIVvqXpHbxjBvOnH6UmCrlyGSHPMBOUlaDxI+v7rd+wg6XoNq6UMWIe
+	Y/AHbyHC6R+YEn5qEkIYl7BdwIGzLTrKgmz7qrjtpDQ==
+X-Gm-Gg: AY/fxX5vvVVDEbc2PGccICrpakVVsWoXl/NogRhzNn1f7S7C2VuvTH7zTMhAqBhRC+H
+	LQybTE72/oTFkJRUOaSUrZF7aktKwLUNyPjMtAljDpZ6oMzvPN5phhrxiQdSGTswPxgWrYAAk33
+	AaXp+6NxsGTMoe7e/JBSLa9TJUgp4roQW1Fz/7aLAl7Gs53ULFqKHd+6UzT5g6ShPjFEinK8Ryt
+	gsJIgGKxIqvNwRiLE0JeAXGrT22Vd9mQmQ+nttDEcLcoElcSkc4oDyeWM9NFNQN6nOe9A==
+X-Google-Smtp-Source: AGHT+IHwlV11mJiZRvrc0ba9gyUKkJLs3Ivv5ZO/Sp66Caj6iICdWSs+vjcbtX7JeT7w+lz4Sr6DicIt8PKx9jaUzQk=
+X-Received: by 2002:a05:690e:b88:b0:644:6ad4:fdfd with SMTP id
+ 956f58d0204a3-64716c14086mr5723963d50.71.1767885043558; Thu, 08 Jan 2026
+ 07:10:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aV+HEAzwNSOCUx88@shlinux89>
+References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
+ <e052745b-6bf0-c2a3-21b2-5ecd8b04ec70@kernel.org> <aTxf7IGlkGLgHgI2@debug.ba.rivosinc.com>
+In-Reply-To: <aTxf7IGlkGLgHgI2@debug.ba.rivosinc.com>
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Thu, 8 Jan 2026 07:10:32 -0800
+X-Gm-Features: AQt7F2r-MFLse9aM2Y-9SmWOvFLm93MsLbBkGvYnQc0D6QLcC_Q6_utP6Kihh0s
+Message-ID: <CAKC1njQ-hS+kUJ0C_v0oqZW1EZw2zAXMp-SnnA-ZXh_H-SoVdQ@mail.gmail.com>
+Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
+To: Paul Walmsley <pjw@kernel.org>
+Cc: x86@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+	richard.henderson@linaro.org, jim.shu@sifive.com, 
+	Andy Chiu <andybnac@gmail.com>, kito.cheng@sifive.com, charlie@rivosinc.com, 
+	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
+	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org, 
+	Zong Li <zong.li@sifive.com>, Andreas Korb <andreas.korb@aisec.fraunhofer.de>, 
+	Valentin Haudiquet <valentin.haudiquet@canonical.com>, Charles Mirabile <cmirabil@redhat.com>, 
+	Jesse Huang <jesse.huang@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 08, 2026 at 06:29:36PM +0800, Peng Fan wrote:
-> Hi Mathieu,
-> 
-> On Wed, Jan 07, 2026 at 11:41:07AM -0700, Mathieu Poirier wrote:
-> >On Thu, Dec 18, 2025 at 01:17:38PM +0800, Peng Fan (OSS) wrote:
-> >> From: Peng Fan <peng.fan@nxp.com>
-> >> 
-> ...
-> >> +/* Linux has permission to handle the Logical Machine of remote cores */
-> >> +#define IMX_RPROC_FLAGS_SM_LMM_AVAIL	BIT(0)
-> >> +
-> >
-> >This should be named IMX_RPROC_FLAGS_SM_LMM_CTRL.
-> 
-> Fix in V6.
-> 
-> >
-> >>  static int imx_rproc_xtr_mbox_init(struct rproc *rproc, bool tx_block);
-> >>  static void imx_rproc_free_mbox(void *data);
-> >>  
-> ...
-> >> +static int imx_rproc_sm_lmm_start(struct rproc *rproc)
-> >> +{
-> >> +	struct imx_rproc *priv = rproc->priv;
-> >> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> >> +	struct device *dev = priv->dev;
-> >> +	int ret;
-> >> +
-> >
-> >A comment is needed here to say that if the remoteproc core can't start the M7,
-> >it will already be handled in imx_rproc_sm_lmm_prepare()
-> 
-> Add in V6:
->         /*
->          * If the remoteproc core can't start the LM, it will already be
+Hi Paul,
 
-The remoteproc core starts a remote processor, which in this case is the M7.
-I'm not sure why you are referring to the logical machine (LM).
+I have a bugfix for a bug reported by Jesse Huang (thanks Jesse) in riscv
+implementation of `map_shadow_stack`.
+
+Should I send a new series or only the bugfix-patch for implementation
+of `map_shadow_stack`
+
+Let me know. Thanks.
+
+-Deepak
+
+-Deepak
 
 
->          * handled in imx_rproc_sm_lmm_prepare().
->          */
-> 
-> >
-> >> +	ret = scmi_imx_lmm_reset_vector_set(dcfg->lmid, dcfg->cpuid, 0, 0);
-> >> +	if (ret) {
-> >> +		dev_err(dev, "Failed to set reset vector lmid(%u), cpuid(%u): %d\n",
-> >> +			dcfg->lmid, dcfg->cpuid, ret);
-> >> +		return ret;
-> >> +	}
-> >> +
-> >>  
-> ...
-> >> +static int imx_rproc_sm_lmm_prepare(struct rproc *rproc)
-> >> +{
-> >> +	struct imx_rproc *priv = rproc->priv;
-> >> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> >> +	int ret;
-> >> +
-> >
-> >>>>>>>>>>>>
-> >
-> >> +	/*
-> >> +	 * IMX_RPROC_FLAGS_SM_LMM_AVAIL not set indicates Linux is not able
-> >> +	 * to start/stop rproc LM, then if rproc is not in detached state,
-> >> +	 * prepare should fail. If in detached state, this is in rproc_attach()
-> >> +	 * path.
-> >> +	 */
-> >> +	if (!(priv->flags & IMX_RPROC_FLAGS_SM_LMM_AVAIL))
-> >> +		return rproc->state == RPROC_DETACHED ? 0 : -EACCES;
-> >
-> ><<<<<<<<<<<
-> >
-> >        if (rproc->state == RPROC_DETACHED)
-> >                return 0;
-> >
-> >        if (!(priv->flags & IMX_RPROC_FLAGS_SM_LMM_AVAIL))
-> >                return -EACCES;
-> >
-> ><<<<<<<<<<<
-> 
-> Update in v6 with your code snippets.
-> 
-> >> +
-> >> +	/* Power on the Logical Machine to make sure TCM is available. */
-> >> +	ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_POWER_ON, 0);
-> >> +	if (ret) {
-> >> +		dev_err(priv->dev, "Failed to power on lmm(%d): %d\n", dcfg->lmid, ret);
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	dev_info(priv->dev, "lmm(%d) powered on by Linux\n", dcfg->lmid);
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >>  static int imx_rproc_prepare(struct rproc *rproc)
-> >>  {
-> >>  	struct imx_rproc *priv = rproc->priv;
-> >> @@ -980,6 +1078,93 @@ static int imx_rproc_scu_api_detect_mode(struct rproc *rproc)
-> >>  	return 0;
-> >>  }
-> >>  
-> >> +static int imx_rproc_sm_lmm_check(struct rproc *rproc, bool started)
-> >> +{
-> >> +	struct imx_rproc *priv = rproc->priv;
-> >> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> >> +	struct device *dev = priv->dev;
-> >> +	int ret;
-> >> +
-> >> +	/*
-> >> +	 * Use power on to do permission check. If rproc is in different LM,
-> >> +	 * and linux has permission to handle the LM, set IMX_RPROC_FLAGS_SM_LMM_AVAIL.
-> >> +	 */
-> >
-> >Two things here:
-> >(1) This whole comment describes what this function does rather than what the
-> >code is doing in the next few lines.  As such it needs to be moved above the
-> >function declaration.
-> >(2) We know the M7 is in a different LM, otherwise "dcfg->lmid == info.lmid" in
-> >imx_rproc_sm_detect_mode() and we would not be here.  As such the comment is
-> >wrong.  The only thing this code is doing is check if the remoteproc core is
-> >responsible for the M7 lifecycle.
-> 
-> Update in v6:
-> /* Check whether remoteproc core is responsible for LM lifecycle */
 
-Same comment as above.
-
-> static int imx_rproc_sm_lmm_check(struct rproc *rproc, bool started)
-> 
+On Fri, Dec 12, 2025 at 10:33=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> =
+wrote:
+>
+> On Fri, Dec 12, 2025 at 01:30:29AM -0700, Paul Walmsley wrote:
+> >On Thu, 11 Dec 2025, Deepak Gupta via B4 Relay wrote:
 > >
-> >> +	ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_POWER_ON, 0);
-> >> +	if (ret) {
-> ...
-> >> +
-> >> +
+> >> v26: CONFIG_RISCV_USER_CFI depends on CONFIG_MMU (dependency of shadow=
+ stack
+> >> on MMU). Used b4 to pick tags, apparantly it messed up some tag picks.=
+ Fixing it
 > >
-> >>>>>>>>>>>>
+> >Deepak: I'm now (at least) the third person to tell you to stop resendin=
+g
+> >this entire series over and over again.
+>
+> To be very honest I also feel very bad doing and DOSing the lists. Sorry =
+to you
+> and everyone else.
+>
+> But I have been sitting on this patch series for last 3-4 merge windows w=
+ith
+> patches being exactly same/similar. So I have been a little more than des=
+perate
+> to get it in.
+>
+> I really haven't had any meaningful feedback on patch series except stall=
+ing
+> just before each merge window for reasons which really shouldn't stall it=
+s
+> merge. Sure that's the nature of open source development and it's maintai=
+ner's
+> call at the end of the day. And I am new to this. I'll improve.
+>
 > >
-> >> +	/* rproc was started before boot Linux and under control of Linux, directly return */
-> >> +	if (started) {
-> >> +		priv->flags |= IMX_RPROC_FLAGS_SM_LMM_AVAIL;
-> >> +		return 0;
-> >> +	}
-> >> +
-> >> +	/* else shutdown the LM to save power */
-> >> +	ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_SHUTDOWN, 0);
-> >> +	if (ret) {
-> >> +		dev_err(dev, "shutdown lmm(%d) failed: %d\n", dcfg->lmid, ret);
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	priv->flags |= IMX_RPROC_FLAGS_SM_LMM_AVAIL;
+> >First, a modified version of the CFI v23 series was ALREADY SITTING IN
+> >LINUX-NEXT.  So there's no reason you should be resending the entire
+> >series, UNLESS your intention for me is to drop the entire existing seri=
+es
+> >and wait for another merge window.
 > >
-> ><<<<<<<<<<<
+> >Second: when someone asks you questions about an individual patch, and y=
+ou
+> >want to answer those questions, it's NOT GOOD for you to resend the enti=
+re
+> >28 series as the response!  You are DDOSing a bunch of lists and E-mail
+> >inboxes.  Just answer the question in a single E-mail.  If you want to
+> >update a single patch, just send that one patch.
+>
+> Noted. I wasn't sure about it. I'll explicitly ask next time if you want =
+me to
+> send another one.
+>
 > >
-> >        /* Shutdown remote processor if not started */
-> >        if (!started) {
-> >	        ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_SHUTDOWN, 0);
-> >	        if (ret) {
-> >		        dev_err(dev, "shutdown lmm(%d) failed: %d\n", dcfg->lmid, ret);
-> >		        return ret;
-> >	        }
-> >        }
+> >If you don't start paying attention to these rules then people are going
+> >to start ignoring you -- at best! -- and it's going to give the entire
+> >community a bad reputation.
+>
+> Even before this, this patch series has been ignored largely. I don't kno=
+w
+> how to get attention. All I wanted was either feedback or get it in. And =
+as I
+> said I've been desparate to get it in. Also as I said, I'll improve.
+>
 > >
-> >	priv->flags |= IMX_RPROC_FLAGS_SM_LMM_AVAIL;
+> >Please acknowledge that you understand this,
+>
+> ACKed.
+>
 > >
-> ><<<<<<<<<<<
-> 
-> Thanks for your code snippets. Update in v6.
-> 
 > >
-> >This patchset would be a lot easier to digest if you had split the support for
-> >CPU and LMM protocols in diffent patches.
-> 
-> I appreciate your detailed review and the code snippets you provided. Please
-> let me know if you'd prefer that I split the support for LMM
-> and CPU into separate patches in v6, or keep them combined as they are.
-
-Please split.
-
-> 
-> Thanks,
-> Peng.
+> >- Paul
 
