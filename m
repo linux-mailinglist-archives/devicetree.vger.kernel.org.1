@@ -1,169 +1,113 @@
-Return-Path: <devicetree+bounces-253009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A1AD05E52
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 20:48:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3948D05EAA
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 20:53:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3912B30693CB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 19:45:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 394D030084F8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 19:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F65332AABE;
-	Thu,  8 Jan 2026 19:45:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="Ct+HIpIR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95350328623;
+	Thu,  8 Jan 2026 19:53:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f66.google.com (mail-oa1-f66.google.com [209.85.160.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B381327C09
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 19:45:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.66
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15DB0308F33;
+	Thu,  8 Jan 2026 19:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767901558; cv=none; b=eq38t/YFg8gmwAzO2NQcKqpfQmZonZ6/uixgeJkwTY2GEDzbgYK/opiPHxlIcTu4DhaXxV6ZuALPRtdRYqW3Ybie4PebvkGO7LrzkD9lZVYgXLghKVJ03b9+dxVjvxOZbzVhvBy912I9ogUrwbo9SdaNh6EbWIlf4dkefwfuUWk=
+	t=1767902005; cv=none; b=TDOAunAGB1UKxgwrX+QB3GCcD2vRs3yI679PqdiIfnXjl9Uz2Tls3wV142p3Kflv9BEkrbN5bwqgyJefTaIkl1pI+CMqlyxV2Xgcsefc3Lya9MNuyZQ0wgvkt9/O5VCcxjg74XyRoaxryiaJEcfZ9OjsOE7q4ad9grhCUnwTjr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767901558; c=relaxed/simple;
-	bh=RFSoiJgF2IhE1d/U2C8Dz/1A18MDcqAJmwzPHJkEPn0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i7ch5QWVQwNKP2ZrGTgptNC4BTr+IuGMXqtODz7RRsqGvUGCeE4uaASepRnyDpOVEUTNJiFNDIP/sW7JE73aHz+D0QO8nY5Ls4OaVKIak95SYd/I8WJD2Px+GV4Ry6n277J7u8IpHZnaQ7DKJIC9RGmtJSCwioYBkcuYZDWCW9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=Ct+HIpIR; arc=none smtp.client-ip=209.85.160.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-oa1-f66.google.com with SMTP id 586e51a60fabf-3f13043e2fdso1405759fac.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 11:45:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1767901556; x=1768506356; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n0eSk+8SweBNRYF6OiM3wD68xD/JtKcShoUz7XdjZrA=;
-        b=Ct+HIpIRy0AwEX7ZUxfaaVuJarIl/e3esaYx0kCp6sPDc74QMjmC/8FyYU5wsRv16c
-         r7SUur9BJzR0B6CJRJC1Iru3x4S616yASEesOklUJTYqfwWeWNoXDfsh75y6up4feP4r
-         SxezrFStgkJyYPsTEbdqR5tvSLDBTSI/2zj7m9dDpV26G3YsW0z7tUaXsSkpjwznl/PY
-         knKlxLBoqiPJd5bfp1kovhDo5W2cqkijy2ob4oxMbHz0YtwR8iCCdM74zxNz7G9qGdl0
-         5Hv6owq1jPWQEL5JFqQ6D/oNpnvUh9PgrK0BkKstggQBuwmOnQFwSs98/qBuq9d5G6Z3
-         iXNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767901556; x=1768506356;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=n0eSk+8SweBNRYF6OiM3wD68xD/JtKcShoUz7XdjZrA=;
-        b=EwQ5DkG0UPk6kbPaq2E/dXWE7XDtQC1itIMQhtLSnxenj9W+D1jIBH1nnLmmzPpg59
-         v9wi8aNJ2tjCTQbKY+PNwqUYJ7hmkpV6deui30Ii+ZWJfEmuZeCEVVS2AAcUe3SDIMvR
-         pCYiaEZ+fBNemnmUJElY2/eSspDuNyVuh0iO3LUMXqgWNHa8tvCPEDTUwS37PL4L0fhL
-         VPJbkFcJHI7M5OYr/ZHsq6oGa4PeYZGCH+oM3zQawREtrmVAb8MPDgv5XMxky1nA/LUB
-         o5TWNDLsnGS/hwOgzkJU911FsmkFTe8RCb51RSRVUQ1O0YhmnwuZ91ohoGgEcEgh9mXg
-         KVOg==
-X-Forwarded-Encrypted: i=1; AJvYcCWZ+3r8c4uFrV0G4TrOe6t5SsysbCZ5AU933lsfz7KdPK+gSQPhSuPtwrM2vFZZuDbSUV7w6mn+GCdv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEpaaMsrGQ3uVe5n686kRScPBmF9ZBziWHxIeA5E3zY6eqvgEX
-	OcIwhlVDNMBeGb0VEKkvUtH9I680lj6T39nQGPNcgNjvzUvTjtAnnAnMtDLtpfqFY1M=
-X-Gm-Gg: AY/fxX4BKrv2o8s0uCdpUrmq17SHKZAWdieRCjVsxNG0NZAK79SBsmV8/rHNrv/yQKs
-	hD0tKcLeCNEP+EKOrnIHEwRI/N1UBBGkuKfvnsTmbtClm7KLWLvgPg46FxxiYmXnnd2yBfCBuT5
-	c50bFWb8+V77+9IWO3jb1RUVss1wGywhop4hbtOR0xIU3C1wIfeW0cQPVCdx33i8gz4aVc+ccRt
-	CiMppz1DLiztfKgFYgePWB1CqD+vSmPZXwiSl2N/3O6IV9i4jsiB4taN46633yLnItIpjM9dfHX
-	yWVoy7CCE7uOaIi3u4SUDTAakrEii8YDgw8qOoGbta6znAcsbSym3ps4mtXF4ZdFjXulQJHBDyq
-	bFpWEgKvyjr+4DcxPCBjMuOGgsa8QZa+O89inLZhsfosAlSnRaJLlver4Ag+kygQz+T+qVGRWTZ
-	LMJgyoomNwrDv8Sm5dC+ZIt+jtGSw=
-X-Google-Smtp-Source: AGHT+IEnGj7j78QZ6mRN19R9+RwSyzrulyek7pG3baJMhDCtKMbdCTrHEffeVpATRadsKRk6i4mUUw==
-X-Received: by 2002:a05:6870:b3e9:b0:3d4:5a8:38ff with SMTP id 586e51a60fabf-3ffc09e5050mr3655803fac.18.1767901555789;
-        Thu, 08 Jan 2026 11:45:55 -0800 (PST)
-Received: from [100.64.0.1] ([170.85.11.86])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa507235fsm5688464fac.13.2026.01.08.11.45.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 11:45:55 -0800 (PST)
-Message-ID: <4ebbe14b-2579-4ba6-808d-d50c24641d04@sifive.com>
-Date: Thu, 8 Jan 2026 13:45:52 -0600
+	s=arc-20240116; t=1767902005; c=relaxed/simple;
+	bh=CvLQVQpLrXBXuUU4FAyO2rVZyPZ7HkfpAN8oXOLXwEA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p54dO78mYlPnTesIe6LCgbc6nA3G/K1RWK4996GCbantFZdjNXdaikCMtX0WFTlTW7diHq6ct+gD7pjV7Pzn4fZdj3alrwoYpvIbLQJ20cZjd/LqhdYjCkbo932BsL41j7PorsRTo1FaZyo9X9iNTLx6T7ViRfFFbRvY4lUIE5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: VnnBuhv7RmC3/zwjV2nDIg==
+X-CSE-MsgGUID: rhFsdpAERwOc4BRVJf1lsg==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 09 Jan 2026 04:53:21 +0900
+Received: from demon-pc.localdomain (unknown [10.226.92.68])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id D1BFC475F1F5;
+	Fri,  9 Jan 2026 04:53:16 +0900 (JST)
+From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: John Madieu <john.madieu.xa@bp.renesas.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: [PATCH v5 0/5] Add TSU support for RZ/T2H and RZ/N2H
+Date: Thu,  8 Jan 2026 21:52:18 +0200
+Message-ID: <20260108195223.193531-1-cosmin-gabriel.tanislav.xa@renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/13] dt-bindings: riscv: Add Supm extension
- description
-To: Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>
-Cc: Rob Herring <robh@kernel.org>, Alex Elder <elder@riscstar.com>,
- Guodong Xu <guodong@riscstar.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Yangyu Chen <cyy@cyyself.name>, Paul Walmsley <paul.walmsley@sifive.com>,
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- spacemit@lists.linux.dev, linux-serial@vger.kernel.org
-References: <20251222-k3-basic-dt-v2-0-3af3f3cd0f8a@riscstar.com>
- <20251222-k3-basic-dt-v2-11-3af3f3cd0f8a@riscstar.com>
- <fc719e92-10bc-455f-b402-c93bdbf878cf@riscstar.com>
- <20251230021306.GA3094273-robh@kernel.org>
- <80e18a32-543a-48f5-81f2-4fa64cb8bf8c@riscstar.com>
- <CAL_JsqK8hRsVWV6WfbZ6hF1PwFfOJhyOrpWwoOhviAgv5ZxKUw@mail.gmail.com>
- <20251230-budding-dimple-c34636b0ca4d@spud>
- <05B0AE03-E7B1-4DCD-88D0-DCB9053F30BA@gmx.de>
- <20251231-grew-abrasion-dc1a9d34e632@spud>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <20251231-grew-abrasion-dc1a9d34e632@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi all,
+Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs expose the
+temperature calibration via SMC SIP and do not have a reset for the
+TSU peripheral, and use different minimum and maximum temperature values
+compared to RZ/G3E.
 
-(Also replied to the v1 thread:
-https://lore.kernel.org/linux-riscv/9504b2f6-12f5-46c2-ac74-826dba3fb530@sifive.com/)
+Although the calibration data is stored in an OTP memory, the OTP itself
+is not memory-mapped, and instead, access to it is done through an OTP
+controller. The OTP controller is only accessible from the secure world,
+but the temperature calibration data stored in the OTP is exposed via
+SMC.
 
-On 2025-12-31 6:08 PM, Conor Dooley wrote:
->> Should supm be handled in the same way? Add it to the device-tree of
->> RVA23U64 devices. If a kernel does not support pointer masking in user
->> space, hide the extension in cpufeature.c.
-> 
-> Perhaps.
-> Samuel opted not to add supm to dt when he introduced the other relevant
-> extensions, so the rationale from him would be helpful but I'd like to
-> get more opinions on how to deal with supm specifically. supm doesn't
-> really describe hardware capability, since the privilege specific
-> instructions are what does that, which makes me question if it should be
-> in dt at all. On the other hand, it could be argued that supm describes
-> a combination of hardware capability at the dt consumer's privilege level
-> and is valid on that basis. Some wording like Zkr will probably be needed,
-> specifically mentioning that having supm in the dt means that corresponding
-> version sxnpm for the privilege level that the devicetree is provided to
-> is supported.
+V5:
+ * replace hardcoded 0xFFF values with TSU_CODE_MAX
+ * add arm-smccc.h include
 
-Supm describes a combination of the hardware capability (Smnpm or Ssnpm), the
-consumer's privilege level (U), and the software at the next higher privilege
-level (M or S).
+V4:
+ * pick up Geert's Reviewed-by
+ * pick up John's Reviewed-by and Tested-by
+ * pick up Conor's Acked-by
+ * replace new macro TSU_TEMP_MASK usage with existing macro
+   TSU_CODE_MAX
+ * remove "Validate calibration data" comments
+ * inline rzg3e_validate_calibration() into rzg3e_thermal_probe()
+ * drop dts patches queued up by Geert
 
-If the DT is targeting U-mode, then I can see a case for adding Supm to the DT
-either at runtime or based on the known capabilities of the
-next-higher-privilege-mode software. So it could make sense to add a binding for
-Supm. But we still shouldn't add Supm to this particular DT, because 1) this DT
-is not targeting U-mode, and 2) this DT is not bound to a particular version of
-S-mode software.
+V3:
+ * dt-bindings: rebase on top of [1]
+ * dt-bindings: conditionally add `resets: false` and
+   `renesas,tsu-trim: false` for renesas,r9a09g077-tsu compatibles
 
-> Either way, we are going to need something in cpufeature.c to imply
-> supm so that it appears to userspace if the privilege specific extension
-> is detected and supm is enabled in the kernel. The kernel already does
-> the implication internally it just isn't reported as an extension to
-> userspace IIRC.
-> If we permit supm in dt, we're also going to have to turn supm off if
-> the Kconfig option is disabled, but that's relatively little effort
-> since it mostly (or maybe entirely) reuses code from implying supm.
+V2:
+ * drop clk patch already present in linux-next
+ * dt-bindings: merge two items into a single enum
 
-It's currently exposed to hwprobe() but not in /proc/cpuinfo. This was based on
-my understanding that hwprobe() was the right way to check for availability of
-extensions. I'm okay with adding it to /proc/cpuinfo if there's value in doing
-so, but I would recommend that the extension in cpufeature.c is _not_ parsed
-from the DT and only enabled synthetically.
+[1]: https://patchwork.kernel.org/project/linux-pm/cover/20251020143107.13974-1-ovidiu.panait.rb@renesas.com/
 
-Regards,
-Samuel
+Cosmin Tanislav (5):
+  thermal: renesas: rzg3e: make reset optional
+  thermal: renesas: rzg3e: make min and max temperature per-chip
+  thermal: renesas: rzg3e: make calibration value retrieval per-chip
+  dt-bindings: thermal: r9a09g047-tsu: document RZ/T2H and RZ/N2H
+  thermal: renesas: rzg3e: add support for RZ/T2H and RZ/N2H
+
+ .../thermal/renesas,r9a09g047-tsu.yaml        |  30 ++++-
+ drivers/thermal/renesas/rzg3e_thermal.c       | 123 +++++++++++-------
+ 2 files changed, 101 insertions(+), 52 deletions(-)
+
+-- 
+2.52.0
 
 
