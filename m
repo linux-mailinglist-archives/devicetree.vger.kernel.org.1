@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-252628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3C0ED01CF7
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:24:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC11D01D53
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:30:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5813C314E94B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:17:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6738A3354E52
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:22:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18843904E8;
-	Thu,  8 Jan 2026 08:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB2636997B;
+	Thu,  8 Jan 2026 08:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WpThb7Wn"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2ixSlMYf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1183904E6
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF8F38F933;
+	Thu,  8 Jan 2026 08:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767859286; cv=none; b=YlPkCpkE61GJiv4viH+f7fDUna/0ZQhhTPdrGij4b7F2iN9IlHUyxDItWxruBtuJdcYh+ZzxOYZUHVjR2p8Wj0GP1b1yD6T82WnGJsIEEf+SuisrzkzhDv6RQpdQ6BNpWSbxtYIJMWbe7AopqtXovJAO9qfoypvBYHOW3RjeiwI=
+	t=1767859298; cv=none; b=pJrqHUYAJ4hwCECo90p2D/97srPs0qCyg1jTWs4eDiws2LZmthqiD8OEOAyyQOhtq4T1hMH0RVnrTz4iyvxj0JJuUVFb+J9iIjBM7+y/kzI7ZjXWffhiuY2xOpdBmL2Hw526X1AiWxDDGVCin1dTDhkT53vBnI2cm7t/q7KUOGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767859286; c=relaxed/simple;
-	bh=pi/yUiE0GLIh3NoCUC5adF6wKjp71KSefaDgIXV/uPc=;
+	s=arc-20240116; t=1767859298; c=relaxed/simple;
+	bh=pwUBSGQIpveH1nhSTDnvLrm9OvdoCcbTaQeMjwcxGgA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=u9tkeejto75FmNIELm44MkdmLOriLpc8QEFNACkQ5VhZ40nRDPagsvDJDCBiSyGJ4LhV2Pqsc7rm+zyAdy+JNTA5QdM0bGdIV0hYwktBsZw8hEOXRL1P9zSYYgdOh0SIDKFsM1jFqSwwqtSOXh9Aa3Ue3LrZL2xEJaDlsmZRfHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WpThb7Wn; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version; b=A1AmiRlUoDK3cG4//9bpXT08dSl7wuJnXo8vhaxlkw6g7Muy8u5JAbdJvsZTuWzzg+ZJGmra6H/hXurnDI6QWrT4A9d3LXDw8s0RuM+yPdNYekwg3ns6eACNftbxn9vqEVmyn6te/mYDmowjfub79WxWZULiZh4nCWswBn1pD40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2ixSlMYf; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id E44E01A26F7;
-	Thu,  8 Jan 2026 08:01:09 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 9F3F44E41FEF;
+	Thu,  8 Jan 2026 08:01:17 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B2E87606B6;
-	Thu,  8 Jan 2026 08:01:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C89B9103C8674;
-	Thu,  8 Jan 2026 09:01:04 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 745A6606B6;
+	Thu,  8 Jan 2026 08:01:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 54D5A103C87CD;
+	Thu,  8 Jan 2026 09:01:12 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767859268; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1767859275; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=KSlMJCkHN3qoiesq+GZbeTPd6cykEBxG8JM7oiO9bAg=;
-	b=WpThb7WnTLTjv6c3UMgD6PN7ieEy+h4Z0Co7PGHP+cV/EFDGteAmJkRw0KTj1RIDc8vwD9
-	UtHTcN0uguWgtoElr4gvb9ygr4NlU7mAhQ/WSNhsK7v9joBryZk/szAgY69JyA4Nwk1vk7
-	ZNJA8z0w82gvktlSNTlKNaipw36EL4bwnjT5HVQhJyrNNdu3u9DBvXFc3j7RwE+2ReoAKm
-	uyS25bO6w8lTD+0OHulFdThdQCUkRmVriJEZls4gNRqSo8tG5OsGaMzdmwqlnK6x5VYu6k
-	3T9mQ5xXrFVKqWeQGrCCkuCFuZlKn0lwq+RlJF37LJ4J8T5p8bgYDbnszlCUyg==
+	bh=fqpvZ3gIw60FSm2tn2zmZaYb3WkC7IjwX7NYx16RT5E=;
+	b=2ixSlMYfzk5LN7W3ITgSN0PFZSsQcH2ulEVdu8kdrANewAaLQvmZGEWxaoWBvw4/1lC2SX
+	bkOJTJCMALLJ8UzxqU81/KKr+sat8oSIYJ2TV4yyUYqR7SeRNxXg+ETLCxVTzH8MRfD/La
+	sLmubIa1JjwoSr14MXCDBUqvWsJnu5GhPSuWY36tnQgGROhKOKGVC81Gql9+cWzz8MmzN2
+	3omfTc3BTINrWskq0lbsG7bND9UaQaJ82IEDug7mdWNBxLFn/1C/9OAlkwALqPDPmoD+Uz
+	/ES6JafVQr70UooTnRbDugAm60pftbt1PmRU2R74sd6Vq7JKwmvMJk35y4u4tg==
 From: Maxime Chevallier <maxime.chevallier@bootlin.com>
 To: davem@davemloft.net
 Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
@@ -79,9 +79,9 @@ Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
 	Daniel Golle <daniel@makrotopia.org>,
 	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
 	Tariq Toukan <tariqt@nvidia.com>
-Subject: [PATCH net-next v22 04/14] net: phy: dp83822: Add support for phy_port representation
-Date: Thu,  8 Jan 2026 09:00:29 +0100
-Message-ID: <20260108080041.553250-5-maxime.chevallier@bootlin.com>
+Subject: [PATCH net-next v22 06/14] net: phy: Create a phy_port for PHY-driven SFPs
+Date: Thu,  8 Jan 2026 09:00:31 +0100
+Message-ID: <20260108080041.553250-7-maxime.chevallier@bootlin.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
 References: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
@@ -93,136 +93,105 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Fuzzy: f0a28691f7ec4acdd6a2650b9611bd90b8db1865e04a7f31d08e08ed4978660bd74e6f9d7b79f45cf671da8c3c71ec37e6f3c48ea0acdb78a09d500b02d2c7fd
 
-With the phy_port representation introduced, we can use .attach_port to
-populate the port information based on either the straps or the
-ti,fiber-mode property. This allows simplifying the probe function and
-allow users to override the strapping configuration.
+Some PHY devices may be used as media-converters to drive SFP ports (for
+example, to allow using SFP when the SoC can only output RGMII). This is
+already supported to some extend by allowing PHY drivers to registers
+themselves as being SFP upstream.
 
-Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+However, the logic to drive the SFP can actually be split to a per-port
+control logic, allowing support for multi-port PHYs, or PHYs that can
+either drive SFPs or Copper.
+
+To that extent, create a phy_port when registering an SFP bus onto a
+PHY. This port is considered a "serdes" port, in that it can feed data
+to another entity on the link. The PHY driver needs to specify the
+various PHY_INTERFACE_MODE_XXX that this port supports.
+
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 Tested-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 ---
- drivers/net/phy/dp83822.c | 71 +++++++++++++++++++++++++--------------
- 1 file changed, 45 insertions(+), 26 deletions(-)
+ drivers/net/phy/phy_device.c | 30 ++++++++++++++++++++++++++++++
+ drivers/net/phy/phy_port.c   | 15 +++++++++++++++
+ 2 files changed, 45 insertions(+)
 
-diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-index 33db21251f2e..c012dfab3171 100644
---- a/drivers/net/phy/dp83822.c
-+++ b/drivers/net/phy/dp83822.c
-@@ -11,6 +11,7 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/phy.h>
-+#include <linux/phy_port.h>
- #include <linux/netdevice.h>
- #include <linux/bitfield.h>
- 
-@@ -811,17 +812,6 @@ static int dp83822_of_init(struct phy_device *phydev)
- 	int i, ret;
- 	u32 val;
- 
--	/* Signal detection for the PHY is only enabled if the FX_EN and the
--	 * SD_EN pins are strapped. Signal detection can only enabled if FX_EN
--	 * is strapped otherwise signal detection is disabled for the PHY.
--	 */
--	if (dp83822->fx_enabled && dp83822->fx_sd_enable)
--		dp83822->fx_signal_det_low = device_property_present(dev,
--								     "ti,link-loss-low");
--	if (!dp83822->fx_enabled)
--		dp83822->fx_enabled = device_property_present(dev,
--							      "ti,fiber-mode");
--
- 	if (!device_property_read_string(dev, "ti,gpio2-clk-out", &of_val)) {
- 		if (strcmp(of_val, "mac-if") == 0) {
- 			dp83822->gpio2_clk_out = DP83822_CLK_SRC_MAC_IF;
-@@ -950,6 +940,48 @@ static int dp83822_read_straps(struct phy_device *phydev)
- 	return 0;
+diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
+index f9cacdfb516e..3fc3a30fe7ed 100644
+--- a/drivers/net/phy/phy_device.c
++++ b/drivers/net/phy/phy_device.c
+@@ -1643,6 +1643,32 @@ static void phy_del_port(struct phy_device *phydev, struct phy_port *port)
+ 	phydev->n_ports--;
  }
  
-+static int dp83822_attach_mdi_port(struct phy_device *phydev,
-+				   struct phy_port *port)
++static int phy_setup_sfp_port(struct phy_device *phydev)
 +{
-+	struct dp83822_private *dp83822 = phydev->priv;
++	struct phy_port *port = phy_port_alloc();
 +	int ret;
 +
-+	if (port->mediums) {
-+		if (phy_port_is_fiber(port))
-+			dp83822->fx_enabled = true;
-+	} else {
-+		ret = dp83822_read_straps(phydev);
-+		if (ret)
-+			return ret;
++	if (!port)
++		return -ENOMEM;
 +
-+#if IS_ENABLED(CONFIG_OF_MDIO)
-+		if (dp83822->fx_enabled && dp83822->fx_sd_enable)
-+			dp83822->fx_signal_det_low =
-+				device_property_present(&phydev->mdio.dev,
-+							"ti,link-loss-low");
++	port->parent_type = PHY_PORT_PHY;
++	port->phy = phydev;
 +
-+		/* ti,fiber-mode is still used for backwards compatibility, but
-+		 * has been replaced with the mdi node definition, see
-+		 * ethernet-port.yaml
-+		 */
-+		if (!dp83822->fx_enabled)
-+			dp83822->fx_enabled =
-+				device_property_present(&phydev->mdio.dev,
-+							"ti,fiber-mode");
-+#endif /* CONFIG_OF_MDIO */
++	/* The PHY is a media converter, the port connected to the SFP cage
++	 * is a MII port.
++	 */
++	port->is_mii = true;
 +
-+		if (dp83822->fx_enabled) {
-+			port->mediums = BIT(ETHTOOL_LINK_MEDIUM_BASEF);
-+		} else {
-+			/* This PHY can only to 100BaseTX max, so on 2 pairs */
-+			port->pairs = 2;
-+			port->mediums = BIT(ETHTOOL_LINK_MEDIUM_BASET);
-+		}
-+	}
++	/* The port->supported and port->interfaces list will be populated
++	 * when attaching the port to the phydev.
++	 */
++	ret = phy_add_port(phydev, port);
++	if (ret)
++		phy_port_destroy(port);
 +
-+	return 0;
++	return ret;
 +}
 +
- static int dp8382x_probe(struct phy_device *phydev)
- {
- 	struct dp83822_private *dp83822;
-@@ -968,27 +1000,13 @@ static int dp8382x_probe(struct phy_device *phydev)
- 
- static int dp83822_probe(struct phy_device *phydev)
- {
--	struct dp83822_private *dp83822;
- 	int ret;
- 
- 	ret = dp8382x_probe(phydev);
- 	if (ret)
- 		return ret;
- 
--	dp83822 = phydev->priv;
--
--	ret = dp83822_read_straps(phydev);
--	if (ret)
--		return ret;
--
--	ret = dp83822_of_init(phydev);
--	if (ret)
--		return ret;
--
--	if (dp83822->fx_enabled)
--		phydev->port = PORT_FIBRE;
--
--	return 0;
-+	return dp83822_of_init(phydev);
- }
- 
- static int dp83826_probe(struct phy_device *phydev)
-@@ -1172,6 +1190,7 @@ static int dp83822_led_hw_control_get(struct phy_device *phydev, u8 index,
- 		.led_hw_is_supported = dp83822_led_hw_is_supported,	\
- 		.led_hw_control_set = dp83822_led_hw_control_set,	\
- 		.led_hw_control_get = dp83822_led_hw_control_get,	\
-+		.attach_mdi_port = dp83822_attach_mdi_port		\
+ /**
+  * phy_sfp_probe - probe for a SFP cage attached to this PHY device
+  * @phydev: Pointer to phy_device
+@@ -1664,6 +1690,10 @@ int phy_sfp_probe(struct phy_device *phydev,
+ 		ret = sfp_bus_add_upstream(bus, phydev, ops);
+ 		sfp_bus_put(bus);
  	}
++
++	if (!ret && phydev->sfp_bus)
++		ret = phy_setup_sfp_port(phydev);
++
+ 	return ret;
+ }
+ EXPORT_SYMBOL(phy_sfp_probe);
+diff --git a/drivers/net/phy/phy_port.c b/drivers/net/phy/phy_port.c
+index 70b3ecb8fb09..81e557aae0d6 100644
+--- a/drivers/net/phy/phy_port.c
++++ b/drivers/net/phy/phy_port.c
+@@ -131,6 +131,21 @@ void phy_port_update_supported(struct phy_port *port)
+ 				 __ETHTOOL_LINK_MODE_MASK_NBITS)
+ 			port->pairs = max_t(int, port->pairs,
+ 					    ethtool_linkmode_n_pairs(mode));
++
++	/* Serdes ports supported through SFP may not have any medium set,
++	 * as they will output PHY_INTERFACE_MODE_XXX modes. In that case, derive
++	 * the supported list based on these interfaces
++	 */
++	if (port->is_mii && !port->mediums) {
++		unsigned long interface, link_caps = 0;
++
++		/* Get each interface's caps */
++		for_each_set_bit(interface, port->interfaces,
++				 PHY_INTERFACE_MODE_MAX)
++			link_caps |= phy_caps_from_interface(interface);
++
++		phy_caps_linkmodes(link_caps, port->supported);
++	}
+ }
+ EXPORT_SYMBOL_GPL(phy_port_update_supported);
  
- #define DP83825_PHY_DRIVER(_id, _name)				\
 -- 
 2.49.0
 
