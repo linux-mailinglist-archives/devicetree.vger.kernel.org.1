@@ -1,153 +1,293 @@
-Return-Path: <devicetree+bounces-252765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DD3D026B8
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:34:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A14D0268E
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 12:33:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9D1F7327FDE6
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:13:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 88AE6326C2F4
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 11:12:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A15A4A0609;
-	Thu,  8 Jan 2026 10:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21B335FF54;
+	Thu,  8 Jan 2026 10:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="dKmfYAcV"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="iVGRHIDw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013059.outbound.protection.outlook.com [40.107.159.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2FB49F0C5;
-	Thu,  8 Jan 2026 10:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32DEE49C21A;
+	Thu,  8 Jan 2026 10:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.59
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767869595; cv=pass; b=SukB5y4zFZD0tTrzF6NoQzJaCE9wtcVKb59E1JNRf0wdX8hj+D3YYYij7WmFEXRpTx969AYNQPFzihvpqDoc833Tzm+Fyh71M/LVP3PW6CubpL2SIdJGGzNHC2ZLmsMYDclAAWfU2u7uXiFyjro+5KIgqnTtC1uJoL9bL5eTX9c=
+	t=1767869499; cv=fail; b=qj6r0PFKYCEOfUQXtkoMcItOy2Z+OS6LBBT44ztHeNuPS2C9SSBNbUeIZHr24MMuOVipe+M2VnbNgI/akExW22VbHKPaChsuvoGrCvDLNbx9Uc+UXjF/nndcJrVqwr53CrBq/YAp6jz2bzBVEhZwBXamacz2+4+ngx3FekAlFik=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767869595; c=relaxed/simple;
-	bh=QR58KU2cKj36N33d39Lwv6L3Uy/yzD7aQPT8HZM68fs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NU6ybmRYHFnOEbPym7YwbpZc7h1MKxxM2IaMCV5+Xqj5jdvTxNBObFvW0FXMOIo2tJH1JSE627nMP6BOwGUJgnbAzdijSTedKvVwDmLb+vj4CaBrRtPIOa/n0ipg/UN6lQnO6AguNc5hsSvx7oATLiLTp+3/lFfV1/0zqYw3e+k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=dKmfYAcV; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1767869543; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=HDf91o4WTyeT2QKBGQV03+50pxRvA665m27VQVxguAA39DxuxAhriJD6xuYM93DrXxOOTGZHswyhhEZoQZYIkE1bBvdJrtrbqgCSJB//u7HtrSP2Mx3GTuw95i2sK5JVjSREe3F4nK432/xTDuwB8XvGReQcgyxlsjOSYSf87QM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1767869543; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=7XbznlTTcOfX8yLZgUHr2ZFUApk0sfdFJbqpCJdpj3o=; 
-	b=U6sTEm3/JAXOrCVE7Y0lMwJH08GiW+aP2ut+nIV+6/9XeGSknbV6pupK6yAH17ppLoSWuTxoUUHTYh33WunY7GVeGWuw0puE9x1lweyIbvM3IPjgxNWDvnyZ/ejnPUzMVeubFjca1Y4xyE/6oip8ZDBneX0rZVAW6rwNjSWA1BI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1767869543;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=7XbznlTTcOfX8yLZgUHr2ZFUApk0sfdFJbqpCJdpj3o=;
-	b=dKmfYAcVYDXFCGz/0fMZ9sOEv6W0GVy4DR48qWTbVLtPTti9coRLAlHt6lJNeLV9
-	rpuib+jwx2ZKko9cVJDXngyEnI8iUTEj3h8jSsa/4rNSHrSPoKRiqe4C+dQ2epon7P/
-	z2BhacC5CkUwlrRGZ2pdtDOxBCdvIBt/HoseAobA=
-Received: by mx.zohomail.com with SMTPS id 1767869542597899.442829546703;
-	Thu, 8 Jan 2026 02:52:22 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 08 Jan 2026 11:49:43 +0100
-Subject: [PATCH v5 24/24] scsi: ufs: mediatek: Add MT8196 compatible,
- update copyright
+	s=arc-20240116; t=1767869499; c=relaxed/simple;
+	bh=Z77E6c/F/T4dQcfnQBaLtvqLbCvI5P3YIOOK04URMCI=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=TeK9ha74L7t9GRMVChHll3mkwNiQQy8iCj5aViJ6Ws4Y07eMnhO8LrzodO0ujiLcmZG3eBGOUgdlx3P+fAjKMlFaRbVHYiwfW5m0T+IYs0nm0MjK2BnVQRatlXvwou6LnJ+kB2Qeg4CIwvcfus/NPHJ17Lb3lSVVEsRF6Da8KFY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=iVGRHIDw; arc=fail smtp.client-ip=40.107.159.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w95PFr5t4DRedtkE2hqgm28fC6YXEAGDhdrnxf/i4G/Yh+pWYJilDyWLJTI4AUch9D+Oib6rz3IuNzKS4yqe9ANB0IKF823tyMKbXtWd8GkGVL/xRqrqoQhvc6mENE26Tnsz0UFY3LA2hinxhS9gRbUIccEa/FOcVDEq6HTEcuc77mpd0iGo+kPqH2qxkqdjQv+BqgGohiBHArliggsBkhSMV0nCTZGfSYkAdxBNqy1KboJsiJLwQQrNkhwRMTWpn47McNlTvkdgqZhp7LiTPN/2pYhTpVs94wDMj6v9JnLPx5bTWyJwCeO2I5qRiw5mIZZsA7gWTRCyNL5JOjmDig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l6beM1ppS6kgOZ8T15gZbBKFNwZ78nPveHcvJKaPL0I=;
+ b=rEnaGgDv8QDgvEbA6j7kYClpx5G45JWDacIeDY6w/YYR/W1Ppshf/HYdmygk5peWpzY3H7ym+y6T1A7539hA1BJRdl4UzvCTplBVnYjabh22ceP8hQG4Ju3/YiqWbV3m4KVsrAnQVS7NG5pkwGPqajPfKBRysRpQ30Wtj4mdFQOSdsl384n6GPWzUoHISVAGXkEqTfbHb8YFd911+fX386hxzU+jcDjnhVSd+LL1exVbNpVa7zGTGkQLcfAgw+y8keDlGJI612vDptOBrfQnn6JKvxWrJKxfuUQ/Mvf/as1MOJLzIGhS39+vV21BBfXtxWEAII25Ss9Lawz+3wpqQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l6beM1ppS6kgOZ8T15gZbBKFNwZ78nPveHcvJKaPL0I=;
+ b=iVGRHIDw+U9yJjWSVK3EXwF7sgFRZ3LGBleWHbATte4SaCh7FvukTEnaVrxaNvOPSJspT2pcMUeCkXLw25LboTut5QW+g0OtvMNw2ujIClUlwr8lU7Q3RiOlz/1iPPunrqxpl0CsN20RQQG3iIiOg1kGO4wgWmvezdxD6ZnO9Ws=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
+ by AS8PR04MB8182.eurprd04.prod.outlook.com (2603:10a6:20b:3b2::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Thu, 8 Jan
+ 2026 10:51:24 +0000
+Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
+ ([fe80::1033:5a9a:dc18:dad]) by GVXPR04MB12038.eurprd04.prod.outlook.com
+ ([fe80::1033:5a9a:dc18:dad%4]) with mapi id 15.20.9499.003; Thu, 8 Jan 2026
+ 10:51:24 +0000
+Message-ID: <2520283a-3131-422c-aa7b-45ec1ad4a875@cherry.de>
+Date: Thu, 8 Jan 2026 11:51:04 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add rk3576 evb2 board
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>, Jonas Karlman <jonas@kwiboo.se>,
+ John Clark <inindev@gmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>, Chaoyi Chen <kernel@airkyi.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260107070322.323-1-kernel@airkyi.com>
+ <20260107070322.323-3-kernel@airkyi.com>
+ <afe968a0-f14b-423d-81a7-c1046d2b32bb@cherry.de>
+ <1b08bc47-70be-48fb-a05e-1101e633a776@rock-chips.com>
+ <0d99140e-8f57-4a7a-a492-92efa30292d8@cherry.de>
+ <c6fac95c-dd7a-4fdc-a93f-8ebac731d499@rock-chips.com>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <c6fac95c-dd7a-4fdc-a93f-8ebac731d499@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR5P281CA0012.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f2::9) To GVXPR04MB12038.eurprd04.prod.outlook.com
+ (2603:10a6:150:2be::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260108-mt8196-ufs-v5-24-49215157ec41@collabora.com>
-References: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
-In-Reply-To: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
-To: Alim Akhtar <alim.akhtar@samsung.com>, 
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
- kernel@collabora.com, linux-scsi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-phy@lists.infradead.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|AS8PR04MB8182:EE_
+X-MS-Office365-Filtering-Correlation-Id: 004e3c8b-1454-4ce8-4d23-08de4ea3de07
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|366016|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UlRXUEIzd2dTWm80TVk3dzZnOFJmSlFnWFhpWFpxcHhGMGJSRDE5WHo5b081?=
+ =?utf-8?B?dkdIdHJMS2ZuV2xzR0xMK1psUzJVNWc2eEtYKzdIeWhqeXhNdFgzT1ZXT04y?=
+ =?utf-8?B?TlpSbGNIL29tVEViZTFONlg2UkN1UXE1c3R6STJqenNVdEwrbzVqZGhHR3BZ?=
+ =?utf-8?B?K0RDUC9jZGlKYVV4eUhiQndIcTREUm9HT3BiUE1taE5ET3VOMlFzdVM1aVR2?=
+ =?utf-8?B?RG0velVsd1BVdnBreHBFVjhQN1dyYUpFcDg3K3oyc21NeFRzWFRTMit1RWZE?=
+ =?utf-8?B?TUdLbnVhaGhvNGFiWGZUVHFLa29DWVA3MUY0YlZ0VjFEU1BVMU91RkRpMHB5?=
+ =?utf-8?B?QjQvUHNMMnI0ckt4UmsycXBwak9uZXVWWmZJSk84WkhpYzBKRFlzajI3REJL?=
+ =?utf-8?B?alRVN1NnMWRlREVMa2Qrb2hSRktEdDh0REt1aUxneXdYQzdiRDZ1UEtuemp1?=
+ =?utf-8?B?UkJYQThMaFJURUZlemNacXZTYzJBaXhKL2h0ekNlRExTdWJ4NnlCTERIVWdv?=
+ =?utf-8?B?ZUN1WVR4Tk4xN2xFZ2tlMjE2TzdMZmFCVkZ3VmhySGI2TmhoT3RnWkJKbHNx?=
+ =?utf-8?B?dTRuWGRDd2N2ckR5YlltT0JwZFFOejM2TThCRHRTS2paWjk1Z09BbWxGTDVh?=
+ =?utf-8?B?YlB2aHVjWDhLWnU0ekwwOEw1TDRQU1paTkVvT3JKd2JZajE4V0x0bENQbEw0?=
+ =?utf-8?B?Slp3S05ycmZ4VHovamIzZGdBV1VtVmxvVWthaVpiTjlZZjBkOFdOaENrdkhn?=
+ =?utf-8?B?YXN4TFZXZEhKWWlLK2p6cTVrVmJSVWw5V0lYdWQ1U3VDS2FRVkhJcEloeVpn?=
+ =?utf-8?B?dWpEV0RFby9RaWR6Ri9YaThHVFRyTFlGQ2xGVXpudm9mbmRnR1ZWZjlLM2N2?=
+ =?utf-8?B?VG4zS2VweEthQVpLekg4R01WZUZOejhDUE4yS3hVNlJnNVBoZkZxdFFCOWZL?=
+ =?utf-8?B?SE92ZzVDWE5OZ3A0dGdTa2dWNUlwc2VtU09MaElYYU5OUWNYcXAwbTUzcGIv?=
+ =?utf-8?B?c2I1MHhTY2Q5UnJ3akdRZE9LazZsWXIyaENEbDRURWRtUkhJL0U4ZkI2cGJ4?=
+ =?utf-8?B?ajJrZ3l3YmdzWm9nSTZEam9iellieFlGcU9kNlpXNWljRUlmTTVIZlc3NVYw?=
+ =?utf-8?B?UnRLVVB5ZFNXUmlCVlVUOHNIdGVmSEI3WlNwR0ErYnUwSkU3SWQvaitpZTcv?=
+ =?utf-8?B?UUx6ZUpGZHRWSWZkQ2ZNRENlbEZJSklFRjRuN1d1L0JVVnkvMk1KMmt3enpI?=
+ =?utf-8?B?U3FoUDY1TnNURDl4YjFURjNyN0ZxWE1zTUl1eGgwYURUWlgzTWtOUzMyRnpw?=
+ =?utf-8?B?WjlrSXZZRm5wQUQ3b0cwOUhCRTRLb1hhZklYd0ZjVlhPMklYdUNUa2dwb2hN?=
+ =?utf-8?B?U0R4SkFjUDRDR1MvVHBqbWIxVWJNSmhET2c3bkF3NEdOaTVQL1EvYW43T1dF?=
+ =?utf-8?B?ZG9nUW02VDRBMVgxMk1yWW9KUHIzSjErTXZTTy9rL3E2dU8rNlZXMDFTQVRY?=
+ =?utf-8?B?cXZpcWFxRWxCeEpyOWlSR25sK2cwRE9Kbzk0S1I2ZGl4WlE1UkRFVUZ6eStU?=
+ =?utf-8?B?V0JSalV4eTQ1NnN4SXFXTTduS3RSdUFQZUpvdnVGV1V0YmVjREZpNWNHTStU?=
+ =?utf-8?B?WGY3bXVyRXNZdXVRWGg5ZkdCMFcydEpSSlBtTXJmZGdBeHFmOTVEZXVTRm45?=
+ =?utf-8?B?TWhZODVKaFpET0c4T3VhbkF2bXhoMzlXMjJEaEh6MVVzdndzVkNhWUw1VFla?=
+ =?utf-8?B?Y2xGa1Z6UlhoeGpnSjdKZk1ZVktQMW1laUxNT1N4Wkh0SWFldTFQWGVMalJj?=
+ =?utf-8?B?WWNDazErUkd1SjVmUkhXeUpRdGVIN2xieFcwZ3VWWW04L2NzTUZwc05rY3ZC?=
+ =?utf-8?B?UmFkM3htcGhhRGNKS3c5amJPT3NucDg3QXdIL3dudy9DQjU4VGZEbk1GME5q?=
+ =?utf-8?B?NnBTQmNNYjBtNEo3OEMrdlRQNEJWdzN2dTFmWVpqV01VRzVvNDJoV0hjc0hU?=
+ =?utf-8?Q?all9Hj2vmAihhTslqeXd8oR6mMDrc0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?a0JIVGk3dGxDRGIvZ0M3MHljTjI3TkV3QzZBNWE0eFFONHpmSU92N2ttRjd5?=
+ =?utf-8?B?UXhlRFBSWEFtZE82eE4vZS8zcmo4Sk9XelVyOElXbEdLQlJzQjR6WmhiSmJw?=
+ =?utf-8?B?L2Z3RUM3RlFJQVVScUlVa3R4R05HYnkzOFFqdzMzNGxEamtCTW00WXBCUEZL?=
+ =?utf-8?B?c3krUjhlZ09iQnNMNUlSU055UXRDbkFrZ3hORUVkV1FsK25LSm4xQk1ZR1px?=
+ =?utf-8?B?Y1V5MU5HRkY3dEtSc0NxVjZQV2s0NG5jTnA0aDFzRm9EOHY4b2plT2l1K2Ns?=
+ =?utf-8?B?ZmViNWFMWlFYZFR5eWt4bmMzaGl4aTFQbHo2VmpnWW9rNEVVTjN5djFMcGx4?=
+ =?utf-8?B?OVRXbmFwNGp0SE5MTnJuZDZRSkVBeWEwZUNUcnY2V2lab1FnSEVPY0M5OUZZ?=
+ =?utf-8?B?VkhScFBTdTdVdFdla2c4VEU2NWgzeGkyMWRqbHBWTzJWaDN6YW5HRkVlRHI1?=
+ =?utf-8?B?S1AzS3RnWTJlcUMrRkF4a1pFSWFBdXVtdmphKzVJb3ZHVkpua2hmM3Jtd2U3?=
+ =?utf-8?B?d3dOOVRwZXgzb01wb1p4d1orcTlTeStxOGtVbndKVGs3amFIN2h2dDYrem5X?=
+ =?utf-8?B?M21ZTU5Pd3Nrd0JTMFlsQ2l1WjdVTUVjbUN1N1RKdmE0cHp5U1NZbFkzSFls?=
+ =?utf-8?B?Z2FtUzJZbE51MWMrN1Y3NW05dENQWjBrMktpSXQwVkJ6QUdsQXNMMDF4VWRy?=
+ =?utf-8?B?MWJ3Q0NTZEtQbU90NXZYWEhPdVZUVzZ2bi9lNFE1SGZ3Wi8yeTB1NG0rd3ho?=
+ =?utf-8?B?NGhQaDAyMExPMmZ2aHZ0eG5vYmh3VHhnMTQ0aHpJUExSUEsxNG82d2dvWFJB?=
+ =?utf-8?B?aWtDV2Vmdkx1c0F1OW0rZTRxanZheGhpMmJzWUY0aVdXTzQ3TGNjb2ZmME9L?=
+ =?utf-8?B?L0xuQnhwZHlIK05yRFpOQktQK05yWTlZcDFtWTgxT0hrckpkSklvTVpJRXYy?=
+ =?utf-8?B?Vkxwa3llZE1Kd1EvUTIyOThqemlqS1NueGliRVRuWS9HNmVKY1ozUWNVK2hp?=
+ =?utf-8?B?dUppcWJYVmI0Yk1UdjhGekRncmsyZGhtVE9qU0tydGtsSEtSaTRsVlJBS0tR?=
+ =?utf-8?B?ZDdYU0dUcHYzbHFRNmV2SUp4MmthYVZDajJ2VGxEbFJBdVN4Si9WaEZqUjd5?=
+ =?utf-8?B?SW5qL3RwWUhmcHRKUk5FMUF6STI4MFhNNXJ1dmZFalUwcTkrc0xOWGNId090?=
+ =?utf-8?B?QXR6ZVFmUGZqVmFkdFNKOXk1R2pZOFkwUWY2dzYrMitoaGxXZmlDMEdLM1NI?=
+ =?utf-8?B?VmxBRm9VQmZJOFl5eUcvSHhEaG9LVnFLNXUyNGlSeTFKekQvRjNDL0psQUty?=
+ =?utf-8?B?elJmVnRUVTAzQzRPWnBUNmdXd0pGNXVrOEVteTE1ZVhtL0h3SmpoMmRacUlJ?=
+ =?utf-8?B?R29Qa0xLWEdvOU5oTVlTZHlReko3QVdkVkR2VzBRdGJLTS9oNFUrK2V6VGR4?=
+ =?utf-8?B?djR1N2xFSUoxeGlTUzBIS2xzckZyWmM4K0VVbEkxRXNQTkhvdU41QmwrSWRn?=
+ =?utf-8?B?YlptTjduWVFYbG9FbWxkMnQxWExWVEhyVi9WVUlWRml4SW1nZDlDV1I1c0NI?=
+ =?utf-8?B?N3hoMllZMEpyaTZVamQ1a2p3eDJheVFLamxVWUY3K29FaExTL0hNbkVjQ1Zy?=
+ =?utf-8?B?WHlXUEMvcGd6WFpUTDQzTGNCaitDR2tjVzVqTTQwT2RKcVNITWtWakk4bm12?=
+ =?utf-8?B?MVh0TkttV1ZVaktyNklsV2E5ZmUvWGI5YXRXM3UrcDdLeWJ6Mmxrc3h4K1U2?=
+ =?utf-8?B?dnFZQnlaeEwxbzhPYWI2VzlVVkk2VkJjTFJNbU8yRk05RjNZL3B6MU9LaHRG?=
+ =?utf-8?B?RS8wc2hVdnIxdlNGYTVaeDFEcC9Bb0tmOUVrODlHZW02a2VKVjNYQlRreFRV?=
+ =?utf-8?B?aDIwOGhDaGwvQmZkRllLaFo4RDBKMGM5eEp1RERXaGVFRWk2SEVTekxVZFBs?=
+ =?utf-8?B?ck9BVGREclJURjNLUDd4ZjVoV2N2ZmpCUWwrVFUzYkRrUVVnYUNvS2lyaEU1?=
+ =?utf-8?B?SEVDVVdaVGpRTDNkb1VSRThoKzhYM1RxLzhpZ1lNYlh2blZtMXI2UDRKbG96?=
+ =?utf-8?B?RVZWNnNwZ202Nk5CMkk2Z0RETEhzQkQwOFppNnBEQm5CSmc3dUpIRUpZR1FY?=
+ =?utf-8?B?M2dnRkV6YnhXTTV5UnRpdC9BckQ1MjdTMmtqYWwvYXNmQW1ka3huTHpTazJX?=
+ =?utf-8?B?RXZ4bVM4SGF4V1YvQUpXVXlJTFVaQmlyRHpVd3EvM1U3UjZkdXpraWZzSDRq?=
+ =?utf-8?B?SjNBYWJsWUdWUlZ3VFZUc01Hd2xzZ2JXNnF2SUlWbUpxVjVLWFRoT201MXVZ?=
+ =?utf-8?B?Q2h1QjdCaDNNZ2Ezb1VQM0I5WVdzV0ZtUFNGYk9xRUxjSDhoVy92dz09?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 004e3c8b-1454-4ce8-4d23-08de4ea3de07
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2026 10:51:24.6117
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: S0cK+U1j59mDR7fQ7OSg37a0BqGHDrEkyh2lnao7Aj76zqcwCNB5ONmaoFDzmKANybrqYZlo3KsEdiC4AEqQ7rRIh/M9ncMkcuO0lH8CX9o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8182
 
-THe MT8196's UFS controller has a new compatible. Add the necessary
-struct definitions to support it.
+Hi Chaoyi,
 
-Also update the copyrights and authors, without tabs following spaces to
-avoid checkpatch errors, to list myself as having contributed to this
-driver after the preceding rework patches.
+On 1/8/26 11:41 AM, Chaoyi Chen wrote:
+> Hi Quentin,
+> 
+> On 1/8/2026 6:07 PM, Quentin Schulz wrote:
+>> Hi Chaoyi,
+>>
+>> On 1/8/26 7:27 AM, Chaoyi Chen wrote:
+>>> Hi Quentin,
+>>>
+>>> Thank you for your patient review.
+>>>
+>>> On 1/7/2026 11:46 PM, Quentin Schulz wrote:
+>>>> Hi Chaoyi,
+>>>>
+>>>> On 1/7/26 8:03 AM, Chaoyi Chen wrote:
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/ufs/host/ufs-mediatek.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+[...]
 
-diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index 0842522cda51..df712d432765 100644
---- a/drivers/ufs/host/ufs-mediatek.c
-+++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -1,9 +1,11 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (C) 2019 MediaTek Inc.
-+ * Copyright (C) 2025 Collabora Ltd.
-  * Authors:
-- *	Stanley Chu <stanley.chu@mediatek.com>
-- *	Peter Wang <peter.wang@mediatek.com>
-+ *      Stanley Chu <stanley.chu@mediatek.com>
-+ *      Peter Wang <peter.wang@mediatek.com>
-+ *      Nicolas Frattaroli <nicolas.frattaroli@collabora.com> (Major cleanups)
-  */
- 
- #include <linux/arm-smccc.h>
-@@ -2219,6 +2221,10 @@ static const char *const ufs_mtk_regs_avdd12_ckbuf_avdd18[] = {
- 	"avdd12", "avdd12-ckbuf", "avdd18"
- };
- 
-+static const char *const ufs_mtk_regs_avdd12_ckbuf[] = {
-+	"avdd12", "avdd12-ckbuf"
-+};
-+
- static const struct ufs_mtk_soc_data mt8183_data = {
- 	.has_avdd09 = true,
- 	.reg_names = ufs_mtk_regs_avdd12_avdd18,
-@@ -2231,10 +2237,17 @@ static const struct ufs_mtk_soc_data mt8192_8195_data = {
- 	.num_reg_names = ARRAY_SIZE(ufs_mtk_regs_avdd12_ckbuf_avdd18),
- };
- 
-+static const struct ufs_mtk_soc_data mt8196_data = {
-+	.has_avdd09 = true,
-+	.reg_names = ufs_mtk_regs_avdd12_ckbuf,
-+	.num_reg_names = ARRAY_SIZE(ufs_mtk_regs_avdd12_ckbuf),
-+};
-+
- static const struct of_device_id ufs_mtk_of_match[] = {
- 	{ .compatible = "mediatek,mt8183-ufshci", .data = &mt8183_data },
- 	{ .compatible = "mediatek,mt8192-ufshci", .data = &mt8192_8195_data },
- 	{ .compatible = "mediatek,mt8195-ufshci", .data = &mt8192_8195_data },
-+	{ .compatible = "mediatek,mt8196-ufshci", .data = &mt8196_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, ufs_mtk_of_match);
+>>>>> +    vcc3v3_rtc_s5: regulator-vcc3v3-rtc-s5 {
+>>>>> +        compatible = "regulator-fixed";
+>>>>> +        regulator-name = "vcc3v3_rtc_s5";
+>>>>> +        regulator-boot-on;
+>>>>> +        regulator-always-on;
+>>>>> +        regulator-min-microvolt = <3300000>;
+>>>>> +        regulator-max-microvolt = <3300000>;
+>>>>> +        vin-supply = <&vcc_sys>;
+>>>>
+>>>> If this is for the rtc, shouldn't we declare this dependency in the RTC device node and not have it always-on?
+>>>>
+>>>
+>>> I checked other boards that use the hym8563 device and couldn't find
+>>> a similar approach. Could you give an example?
+>>>
+>>
+>> If this is truly always on by hardware design, then I guess it's "fine". That other boards aren't doing isn't much of an argument, as they may not need it. Typically, you could need to update the driver (and its binding) to accept and control power supplies so that you can link the two together in the device tree. I'm assuming for an RTC it doesn't make much sense to have its power supply controllable as it likely needs to be powered even when the device is turned off (otherwise the RTC stops counting :) ).
+>>
+> 
+> Yes, this seems unnecessary, which is why I'm asking if you've
+> encountered similar designs before.
+> 
 
--- 
-2.52.0
+I think it's fine for me. It's not a controllable regulator and its 
+parent supply (and the parent supply of that supply) all are always-on 
+as well and non-configurable so there cannot be a way for this to not be 
+on. Please ignore this comment.
 
+[...]
+
+>>>>> +        gpio = <&gpio4 RK_PC7 GPIO_ACTIVE_HIGH>;
+>>>>> +        pinctrl-names = "default";
+>>>>> +        pinctrl-0 = <&satapm_pwren>;
+>>>>> +    };
+>>>>> +
+>>>>> +    vcc5v0_device: regulator-vcc5v0-device {
+>>>>> +        compatible = "regulator-fixed";
+>>>>> +        regulator-name = "vcc5v0_device";
+>>>>> +        regulator-always-on;
+>>>>> +        regulator-boot-on;
+>>>>> +        regulator-min-microvolt = <5000000>;
+>>>>> +        regulator-max-microvolt = <5000000>;
+>>>>> +        vin-supply = <&vcc12v_dcin>;
+>>>>> +    };
+>>>>> +
+>>>>> +    vcc5v0_host: regulator-vcc5v0-host {
+>>>>> +        compatible = "regulator-fixed";
+>>>>> +        regulator-name = "vcc5v0_host";
+>>>>> +        regulator-boot-on;
+>>>>> +        regulator-always-on;
+>>>>> +        regulator-min-microvolt = <5000000>;
+>>>>> +        regulator-max-microvolt = <5000000>;
+>>>>> +        enable-active-high;
+>>>>> +        gpio = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+>>>>> +        vin-supply = <&vcc5v0_device>;
+>>>>> +        pinctrl-names = "default";
+>>>>> +        pinctrl-0 = <&usb_host_pwren>;
+>>>>> +    };
+>>>>> +
+>>>>
+>>>> I assume both of the above are related to USB operating in host or device mode? Maybe there's a way to have something more useful to the user in regulator-name (and possibly the regulator node name) so that they have an idea what this pertains to?
+>>>
+>>> It's a good idea. Actually, we have two regulators here, one for USB0
+>>> and another for USB1. I'll try to rename them in v2.
+>>>
+>>
+>> Are you sure? vcc5v0_device is a supply for vcc5v0_host, so it'd be odd that in order for USB1 to work, you need USB0 powered?
+> 
+> No, the "vcc5v0_device" serves as the vin-supply for both
+> "VCC5V0_USB3_HOST0" and "VCC5V0_USB3_HOST1".
+> And "VCC5V0_USB3_HOSTx" is supply for USB VBUS.
+> 
+> All the names marked here are those shown in the schematic. As you
+> suggested, it would be better to set regulator-name to the schematic
+> name "VCC5V0_USB3_HOSTx" and use "usbx_vbus" for the label.
+> 
+
+Yes, that does make sense to me.
+
+Cheers,
+Quentin
 
