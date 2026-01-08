@@ -1,199 +1,113 @@
-Return-Path: <devicetree+bounces-252880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00C7D03B63
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:15:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 146F4D040AE
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:52:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 290CA3020B66
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:13:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E35153104AD1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 004B12741B5;
-	Thu,  8 Jan 2026 15:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="IV37lyqx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7AF33D6CF;
+	Thu,  8 Jan 2026 15:18:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD39273803
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:10:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB4C33BBBD
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767885046; cv=none; b=qo1u1EPAzf9aK6G8D3ECxklqASgrqroj4SmA8R4bngS0G6kiiiqQ0JlB+XCqYzRpTrTNStk10trZ5SS2aJA6J8/H9tsjUlWh7xmSTqCD6L+lwKfrOvDdtHqLwTFuJQDc9HtyNcQEtuWobzdSLTZwr7hIWCtYdzeFLugdy+d5f9g=
+	t=1767885490; cv=none; b=X8lkVQKquO8wrf2qbTSe7xH152UQMh0o3mJE4kNCc10nfB2I+17R8p0RMd9MlAbU14Dx9odFNdHFLk/wToKVSSqTBpp2xwpazuRW4Y58Fzle2Zzkwjq50Ku42vUzgZXtaufQ6QcSlldR6fNn+vj1KGMsgK51BVQTOL6R8NNqRJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767885046; c=relaxed/simple;
-	bh=C64R9vkxaI9K5ONeC3tgaLirXTXcWSDMfLRS3TxDK8s=;
+	s=arc-20240116; t=1767885490; c=relaxed/simple;
+	bh=VOCoSE33VyqEDpE4ACcKTOqSkK66W3Ph4z6ZWtitcKc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eQwCX/O0/9rW/c2erISQiOqApb9eTf3q4RKEPhZerujbirQWEMbePkjTdSb6RXoKby9c9TZHW9GbC2NzU4zSMEQSDAW7rSnWvgdCb7McQSpkzDwtNjNlsgn1UWiZkfpQTNhPDSF4a31C/CAh9rxpDRu5jYefUSE67SvsoOBM0P4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=IV37lyqx; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-79018a412edso34637507b3.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:10:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc.com; s=google; t=1767885044; x=1768489844; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QTkbey9LWC4b27P/G+EnN+lFuImbI+lYFoSxJEGXtiI=;
-        b=IV37lyqxJep/5ajHTExa7SHZy3vjwyq5ntmGicmKUKgrvygjZPpOn2bfiTpIWobWhk
-         IWs5pUbC+vQCl/WCppd2iPEavLxoStqCg1xP3I1GgBoXqPKor7JCgshPYAdU9lXAGTgA
-         vePeN6LzMXucEhQSHr1yFtRPsGsOyh+v/LFWE36UZhiLzNicZ1kEoWIS6OJqBWdUuLJi
-         b5n5wKdDmy6KfFs0me7P6uevmyaIc8qi1eGUTrl299YgHA7fjZdTwIueqmsYQ/1puMWR
-         YMHg1IY6SlhUiHKl1Ie570K96HL/H3BWRDBs4R0tFjoVmdwoasS+Q0koJ/pwpZfQ+FBe
-         tR/Q==
+	 To:Cc:Content-Type; b=pp8pS3ZoatZXbUVcGTbkrZqbhZgu3WEHOTMSu+4A7YY7pnTq8KHlXxmONVFhMXVS2O/3uQcD3HBLZCmorqR+BcmushmfGTL5bn64DYDeOPCJoypItTWvypdvQiSu1QfWFCRVB+KPK6ms9Abm+YAkFxBo4d7lWYMhOtVHZsc81OU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5634feea416so1159202e0c.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:18:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767885044; x=1768489844;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=QTkbey9LWC4b27P/G+EnN+lFuImbI+lYFoSxJEGXtiI=;
-        b=a7DvZfbw4jJIPtwDwv3x6GF/x0GYkWLB3UzPyOW6VM59KKgOU1YmkgxiILO3gva3To
-         xcl3yWYtG67M/w3Da15uUQnVobyagYELWu/qYAXOaiuNp17XaIcQX8ZqPvzmazrKBOYJ
-         5gmYeIr8SEA2p2gu29krlU0DBLvEOyw55Met3OsCvf9DD+WgYPrG8XK0ETtDVhrch1vw
-         tc4rIbtP/eKhCJM0kBFNdeWSTQKjPeQ7zqp1PR1FMVePO7h2dRd2f4mck3SCy7u5YwAo
-         5rKGlFJBkH+uCNBFb7FuH2mqTl3qDFsc03LG6yIetiTM45WwfZrMgMyY3COUuX07YESW
-         NoIg==
-X-Forwarded-Encrypted: i=1; AJvYcCWslK3Tt+6lcnJ4M1rvj0GGCdOTlaVDSW1Kd9PNJbFKuYPjdfI81nHt3QyGS2my8M9O3ZniQPhGU4N4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzwv/R715erXhgHPz1eqzvbArHnrEph7Z4nZobkIaFCTEdkXCmP
-	/3XQv6LdB5uOyuOZVjrfEIVvqXpHbxjBvOnH6UmCrlyGSHPMBOUlaDxI+v7rd+wg6XoNq6UMWIe
-	Y/AHbyHC6R+YEn5qEkIYl7BdwIGzLTrKgmz7qrjtpDQ==
-X-Gm-Gg: AY/fxX5vvVVDEbc2PGccICrpakVVsWoXl/NogRhzNn1f7S7C2VuvTH7zTMhAqBhRC+H
-	LQybTE72/oTFkJRUOaSUrZF7aktKwLUNyPjMtAljDpZ6oMzvPN5phhrxiQdSGTswPxgWrYAAk33
-	AaXp+6NxsGTMoe7e/JBSLa9TJUgp4roQW1Fz/7aLAl7Gs53ULFqKHd+6UzT5g6ShPjFEinK8Ryt
-	gsJIgGKxIqvNwRiLE0JeAXGrT22Vd9mQmQ+nttDEcLcoElcSkc4oDyeWM9NFNQN6nOe9A==
-X-Google-Smtp-Source: AGHT+IHwlV11mJiZRvrc0ba9gyUKkJLs3Ivv5ZO/Sp66Caj6iICdWSs+vjcbtX7JeT7w+lz4Sr6DicIt8PKx9jaUzQk=
-X-Received: by 2002:a05:690e:b88:b0:644:6ad4:fdfd with SMTP id
- 956f58d0204a3-64716c14086mr5723963d50.71.1767885043558; Thu, 08 Jan 2026
- 07:10:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1767885485; x=1768490285;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K19XWsL2sU1kQtxYfF0RYQ4zBuQAgGCyhs+nui2BEig=;
+        b=ZyGdADbHQJMAEF+RRAYjmb8lDdzsPUuN1Knxrjg7MGybFRzv+k2a2klv49Zv9gpllE
+         2GN6fBJnaA/doCUsP8Fz8Nqm2ADgjQrgbZA4OgLc0lezMpo9VCJkEiHMtJJxwM4V7cE8
+         W0a1B2Jq6CG9fQOk30JulXac6wsf0Rfoo1wrEQbTNcBkFetu9GmvT2W8IBuKfzcWhJwV
+         +vS/ls5pCnjYUL7/ydHxl4lw3k7nd1J3tKYD+0SZRXqj0v8BRxihkPa1k53inzCWBw1D
+         NY8sNH2WYhteghoskACS53ls0dclfC8YBuleXsXP3nP4gDz+H2uOtzGZ64lrugK/3x41
+         PQ2g==
+X-Forwarded-Encrypted: i=1; AJvYcCV+U6vZ00M+1eYrrtsPB+hN1SX+DwUJhXjG0ccgS6W3pjqtSWu4oOxQmAkyhHs+sNPy/4tsfN+P5fez@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/ti9PG3R24w2qD06IEcLsfJVvdIqVYFVwbLlmIL3jV1s3fFOi
+	K0irqCxKH/m7kNOX592N8hFB9VI6r+7MczxP0uzuKf66jxrJ3AEqayHysIM9VLIf
+X-Gm-Gg: AY/fxX4dZq+ZJxZcyXobHoPZJATPTuHrm40/8iNtADS7wygHwqXMFS7W33nC+YZ76se
+	VJugEdH7C8kHwr1NUpSzBkTxAnPcIWk09YLMYe94tNXhMkK+0KegI8IIooTPHyHVrOEftLk0psH
+	+UEo4YmcLvKFmysXkPRx7KSSsg8WVgdXaBFb8IIfE9Op/dk6gy6Mim56+b/P32SiuquCtSjIUdq
+	asR1X84O9eXXfNyOheaJL+RxPwXIZilhnemr7K+UyNBYo7rMzLgL1Oj+WxkKxtwy6Cre7PhPL9+
+	y6btyrQx6LwbNdHdfqi6l0zrOdHV7GLT7kmD8OBAjMP+mIOazjlQCYs1GamApXCx/VxQtP7Z1jK
+	qcIxWoq+mxIkUDhLD4GHqj4gmWK5rKitVOq2ndkEENTOYJ4LqFIxgSyawxyZkNj21GC+zYwbrrV
+	YvJCxQL71DEUE7KA8bS26NKLQAi9lbPhT+HttCR2E+D+2aLcQc
+X-Google-Smtp-Source: AGHT+IGcPAW9tz56WsiQ0O242tk7Hes+1vkfVC2zjMc/YPDOU8T28QeI1VP/B2nPj0gtG/hc7qUyQw==
+X-Received: by 2002:a05:6122:8b8d:b0:55a:ab0d:bf74 with SMTP id 71dfb90a1353d-56347fc993emr1942301e0c.13.1767885485336;
+        Thu, 08 Jan 2026 07:18:05 -0800 (PST)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5633a1ea810sm6241700e0c.5.2026.01.08.07.18.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jan 2026 07:18:05 -0800 (PST)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-94120e0acbeso1922053241.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:18:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUZMnnLC1se7F8RjTVLqXi+V/hh074AsMtJQnLR7vcK6T++DGk4f+TN51H1nortos2zIYP1Ey8AuTQU@vger.kernel.org
+X-Received: by 2002:a05:6102:441c:b0:5df:af0f:308c with SMTP id
+ ada2fe7eead31-5ecb692dc87mr2494543137.38.1767885484850; Thu, 08 Jan 2026
+ 07:18:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
- <e052745b-6bf0-c2a3-21b2-5ecd8b04ec70@kernel.org> <aTxf7IGlkGLgHgI2@debug.ba.rivosinc.com>
-In-Reply-To: <aTxf7IGlkGLgHgI2@debug.ba.rivosinc.com>
-From: Deepak Gupta <debug@rivosinc.com>
-Date: Thu, 8 Jan 2026 07:10:32 -0800
-X-Gm-Features: AQt7F2r-MFLse9aM2Y-9SmWOvFLm93MsLbBkGvYnQc0D6QLcC_Q6_utP6Kihh0s
-Message-ID: <CAKC1njQ-hS+kUJ0C_v0oqZW1EZw2zAXMp-SnnA-ZXh_H-SoVdQ@mail.gmail.com>
-Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
-To: Paul Walmsley <pjw@kernel.org>
-Cc: x86@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
-	richard.henderson@linaro.org, jim.shu@sifive.com, 
-	Andy Chiu <andybnac@gmail.com>, kito.cheng@sifive.com, charlie@rivosinc.com, 
-	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
-	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
-	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org, 
-	Zong Li <zong.li@sifive.com>, Andreas Korb <andreas.korb@aisec.fraunhofer.de>, 
-	Valentin Haudiquet <valentin.haudiquet@canonical.com>, Charles Mirabile <cmirabil@redhat.com>, 
-	Jesse Huang <jesse.huang@sifive.com>
+References: <20251126130356.2768625-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251126130356.2768625-2-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251126130356.2768625-2-cosmin-gabriel.tanislav.xa@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 8 Jan 2026 16:17:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV9jwRL4=hAKgakymVY1fyUHG5ALg3Dd19aKeCNTC+ZtQ@mail.gmail.com>
+X-Gm-Features: AQt7F2rGh841rSfsaYiGZnB2YxsDi_NtDLARw02BQ55fscjhbxfqeMGfvtv6Y0A
+Message-ID: <CAMuHMdV9jwRL4=hAKgakymVY1fyUHG5ALg3Dd19aKeCNTC+ZtQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/9] thermal: renesas: rzg3e: make reset optional
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
+On Wed, 26 Nov 2025 at 14:04, Cosmin Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs do not have a
+> reset line.
+>
+> Prepare for them by making it optional.
+>
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-I have a bugfix for a bug reported by Jesse Huang (thanks Jesse) in riscv
-implementation of `map_shadow_stack`.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Should I send a new series or only the bugfix-patch for implementation
-of `map_shadow_stack`
+Gr{oetje,eeting}s,
 
-Let me know. Thanks.
+                        Geert
 
--Deepak
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
--Deepak
-
-
-
-On Fri, Dec 12, 2025 at 10:33=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> =
-wrote:
->
-> On Fri, Dec 12, 2025 at 01:30:29AM -0700, Paul Walmsley wrote:
-> >On Thu, 11 Dec 2025, Deepak Gupta via B4 Relay wrote:
-> >
-> >> v26: CONFIG_RISCV_USER_CFI depends on CONFIG_MMU (dependency of shadow=
- stack
-> >> on MMU). Used b4 to pick tags, apparantly it messed up some tag picks.=
- Fixing it
-> >
-> >Deepak: I'm now (at least) the third person to tell you to stop resendin=
-g
-> >this entire series over and over again.
->
-> To be very honest I also feel very bad doing and DOSing the lists. Sorry =
-to you
-> and everyone else.
->
-> But I have been sitting on this patch series for last 3-4 merge windows w=
-ith
-> patches being exactly same/similar. So I have been a little more than des=
-perate
-> to get it in.
->
-> I really haven't had any meaningful feedback on patch series except stall=
-ing
-> just before each merge window for reasons which really shouldn't stall it=
-s
-> merge. Sure that's the nature of open source development and it's maintai=
-ner's
-> call at the end of the day. And I am new to this. I'll improve.
->
-> >
-> >First, a modified version of the CFI v23 series was ALREADY SITTING IN
-> >LINUX-NEXT.  So there's no reason you should be resending the entire
-> >series, UNLESS your intention for me is to drop the entire existing seri=
-es
-> >and wait for another merge window.
-> >
-> >Second: when someone asks you questions about an individual patch, and y=
-ou
-> >want to answer those questions, it's NOT GOOD for you to resend the enti=
-re
-> >28 series as the response!  You are DDOSing a bunch of lists and E-mail
-> >inboxes.  Just answer the question in a single E-mail.  If you want to
-> >update a single patch, just send that one patch.
->
-> Noted. I wasn't sure about it. I'll explicitly ask next time if you want =
-me to
-> send another one.
->
-> >
-> >If you don't start paying attention to these rules then people are going
-> >to start ignoring you -- at best! -- and it's going to give the entire
-> >community a bad reputation.
->
-> Even before this, this patch series has been ignored largely. I don't kno=
-w
-> how to get attention. All I wanted was either feedback or get it in. And =
-as I
-> said I've been desparate to get it in. Also as I said, I'll improve.
->
-> >
-> >Please acknowledge that you understand this,
->
-> ACKed.
->
-> >
-> >
-> >- Paul
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
