@@ -1,680 +1,145 @@
-Return-Path: <devicetree+bounces-252808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD0FD02BDC
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:50:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B090DD02A6B
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 13:34:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 700A030B717A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:45:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CFB1E308F1AB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 12:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98726484A0E;
-	Thu,  8 Jan 2026 12:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD954CBAA6;
+	Thu,  8 Jan 2026 12:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="CvMLCife"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="koJLXys3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B1B472792
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3F904CBA9E
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 12:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767875287; cv=none; b=sRxD9YhZC9toMNVXjH5rEsCGy7fQpmqbx9az7H5eIlRK8DSsTm2gtWAj2SKfpW4+TM0TT280lMSWXQkcgV0uInhuq54MTvNqhiTYrz5MZ0ZofN/2196RS0MS8YrF2Bhd3l5jTL8ifWQc5CTqwiCvtHD86bni+1HTl7XM+hj0qSs=
+	t=1767875109; cv=none; b=i+VLD/w5xCx6U7sZPtV22mn8L9BYyhOmQC7o3fTKTfq3HNTbShR0h6gvVQt9nl0zcSbO9IrmsQrX4rylz215Wb6XX4ivUDfpnKnfX4PxHPqMPtFes+iRtaWmXy8Rv5vKrSa6+hJlhcJkw1CG+tRkiW1SkPFx6n7YfvRLAuDsymU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767875287; c=relaxed/simple;
-	bh=WvHkuFps5MTowhcdYFHMWXHNfbPZxAybBkUvVGVSICM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ED9dr7+j/TRQb3O3c3zm6nWobeKjOiTs7IU5vUJ6xSkVER6SmdsZzMJR+A0pYemqMemLtnF+XS+28YpiLeZtWFiJjmTGReA1fsRdtIvolSRNmhvUaPnC9P4cK8mjdYGUG/aq5LMuwkzWf4HaiEaxgpDH2bZzcNN0U/an7aBytLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=CvMLCife; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-81c5ff546f6so457200b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:28:04 -0800 (PST)
+	s=arc-20240116; t=1767875109; c=relaxed/simple;
+	bh=aaHyXdS0nmiOSH+39v4TllnNhWztOoW+ppCJ7RxVa5E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NCh3ajMvIjlKguvDYMSpLUcQTiMkdiwTz4nulxX8+LwcKJjju2sizbbL02sv5dmRCA9bNY0YnCKkcrukz9d9VZyz915HW/nHPrQF9fVdrQvzMm7LRjo8e7eTAm/YfdFstDEMpqNpJmc0hQScYAz8P00iOpjlrcpaWLBPAtixo8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=koJLXys3; arc=none smtp.client-ip=209.85.222.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-93f5905e60eso1863779241.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 04:25:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767875284; x=1768480084; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2RjZIFe2UzhV6iw2gmCrORVc77t6PnohnqkV4qGM4WY=;
-        b=CvMLCifeqHuylminQt50UM4xqmEuFt9Sv/mihNl+7Z6LNel/5oXlR8nPGHcY0KTGy5
-         GrpjhF/KGhuq+SzwE2egzK3fNKdHWCwmpAmE40kHJzZaXpfMg5NRYt+rf+Cq6EqxZkJT
-         96CBPOGM1fsEGTm5SrVP/ocgSfRRfcmHFDGZSI3QrSsqgQo2H/CrFOIYJIc0kUUrdJGb
-         OUwsiArXdkRHyHTjSY+6vlMQ5Jkf2FrznR7GVTK3E8He9B25fPkaCE6wSgBUfk7z2Yms
-         3nqTeZQOLiM9sl5dqmik7PELPSkys7OLIP45SuJSVw/S6RB0zyFqZe+Ob62qt9T6YHwp
-         eTeQ==
+        d=gmail.com; s=20230601; t=1767875107; x=1768479907; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZuHLAkpi+QoqrsNtnMo40SsdhSUfyacTFMUwhFx6NDQ=;
+        b=koJLXys3IA+qyZ7CAZCe5pUZXZxq6kHVsMIHd4+B85mTLJqkMPydN+cmi3xx5f1Rt+
+         cz+04Kza8mCuxWrxfc2kI6dWJTtI+MurnIS9KzApEIoWrh0V3p0ir5pq2cuzCvuZHrHt
+         j6sXyTFEL5gAlMeiUV1up52QIUd+olw2bX7YV9MPpZoMdThDX/gW+EpOkNHsf5p842Al
+         3vRgihucJdm6shRB07V+LqyTmlW398F207x7S2O5vqty/4s84k1R4JUUOMcpB7tgcFFt
+         LKNPE4XR1bQb+lE4Og82o0Bt6rjPJ9xoF5cjF7GAUl9bXn/EKS32ocm/D9QZB2/lrUS9
+         5YYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767875284; x=1768480084;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=2RjZIFe2UzhV6iw2gmCrORVc77t6PnohnqkV4qGM4WY=;
-        b=LqILUhWYUu8QYo0rR1Sv/9/exDPBpmD7vM861P1XfBm/R1jP5bj4NJc90y6fudoQM2
-         JZyf8kzgn9X7sVpjelCQWpJlQqcPSB+Fxf3LU4Dn2MK7RUcd5alRdG6P//TPInnEEh5p
-         TtCrG1g0O4pAcoYedRHHy+GpFLxk29mze/zuIqlGUlW1rsoKXi4yUUxBl6dTYMFeBZYy
-         zXi7EfalkrYijkCXJ8IdJUorK4vneGtGMpUjuDwJVH8Z2NVh3shITZ++RDdKIzTD0rWX
-         8WtumflVb7vfjwbOvdHsmHypuexSMms5ADd4/6x6BaVEGDVcyTCzI6U7Eu4FzCuiLn0/
-         f5Ew==
-X-Forwarded-Encrypted: i=1; AJvYcCUxeXR5Wtg7xAcIpDX0ehkcp9+k4C3k1thCbphmaMNMwCTNHJ6TYzOLsT65eFSKMwVuKJvwU/UdYd2b@vger.kernel.org
-X-Gm-Message-State: AOJu0YzP/bWtXHXqshqiI72OYZW5YNTQQOvWC7mWxu2FKHIcekYSB4Lf
-	BiPtiVE/sbXNMD3PytK06k1fREsGrvdjJax235FE+cJ4jeVyuBE9WSIWiTqbQQOcB7k=
-X-Gm-Gg: AY/fxX7bCIKMCm86LJBX9zVHq8syVRJiuTt/OVyzBhyp5FGoQ2Ou0zjXy1KERzLFUbL
-	WyGSDV3Bd/igYjPDJ3PQ0E6zTRVT3VhyHxvsjT9IF2pNBKuFfmh214Ulhw1tP13z0cX/SknaAPa
-	2sPI52OPILXAXcpQc91wAAuP0vKZHsObRPEkP3kIUtOzTQwtxfQUiQOUR3iYggtbR7m1YtcAtq5
-	66uTVcRF2stY1zDliQO7N5K8FuK7PYyGLIkq4P4FqUREcy4XfMGSf/p1s3E0fh0Kswn9wE8NSsA
-	9U2sw/DivXrHZKHwA7Ql7qxs4opUrS+448WckBBRpXEjNbdyCp1ywnR4WQfZviSFYJmfnVzU5sK
-	oVDh/seuF0z9mpAFmPLpk73KMgazPthRs5W1v7mwzCt/+JeiV7+cR5xYWRH48FfIisnM3aUzBFD
-	leI4vSTz9gAzvi2W8yl4k5wH1FrnJWz8g=
-X-Google-Smtp-Source: AGHT+IEDH148h03h+JKPMlGuiMdLg304yEyTB6ERt/P3nHzYE+eMX9KSboI6vzTfXJMbo1QzBwTWPg==
-X-Received: by 2002:a05:6a00:6101:b0:7e8:3fcb:9b07 with SMTP id d2e1a72fcca58-8194eaf7e8fmr5977772b3a.29.1767875283599;
-        Thu, 08 Jan 2026 04:28:03 -0800 (PST)
-Received: from [127.0.1.1] ([2a12:a305:4::40df])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819bafe991dsm7656401b3a.16.2026.01.08.04.27.51
+        d=1e100.net; s=20230601; t=1767875107; x=1768479907;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZuHLAkpi+QoqrsNtnMo40SsdhSUfyacTFMUwhFx6NDQ=;
+        b=plCycgLNUdPMnq4mTlwYHnl06z1jY0dcdXHZ3HcpfjURByTkO+6HuhdENnMw2QbfqP
+         KuXgqQjszd8mywPtBHOd+zwwwa68VlagtC1Gj3/pnQyCG9mGUH5HoFUokybNjCARutWM
+         jw170b5ZOvwHEUDV91cDITEt5MrAqxZZMIpwOm2Oy2VR3Ulu8cHIf9tb3T2z29fQgsQK
+         kn1fz3S7VoSMFfkeSXmTPONE2PZirYkEVMrkBCEMPWmPHQP59M1QxJy/RYEkvCbpEp0D
+         uMLfAmsNrmBDS5FxuK4pVAp53MkoTv1z0ADPx74AwpolsQvFZAzs+LLRgS5whfB28brm
+         dI0A==
+X-Forwarded-Encrypted: i=1; AJvYcCU5ZeKj5hACKphCJYl77c5iFoNxn0//2aMDgT52wxOnCRK+Ww/JbV3Kffy014svzlxSDfTQBsTfwR23@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9wFwtHH0pwyEbLdZGNjaFEc79Zi9ZuVTTzMYycPNatoRE9uCk
+	pUDsmC5KmRYREqCa6tiZ1d9F3kZi31HF2aFX/+Mx/qG4vBD4ACy1mg7G
+X-Gm-Gg: AY/fxX7/c0Z//kXf9d/vSSPkajKZKhgzbQxnc3HLDmbRDCjpOW25+v6nEv913gI6uoo
+	e7CJqPJbPstViiTCQUGohnlTvS1XHAmvHlXYsexo5mn7HNiWGJd5s1RtoZb5EXfudH5tUSmKOrx
+	yG4k9s9zMKsGnVpVeuocNTEcBHPCSVOu45hirca9t+6btaSBnEU/pZtnjrf/nAd+zukLtAbMtuj
+	VwLqqMEzvlcWmQSUEhNJPMaxX6sL7z1VGCzuYRKADN2zQxIRrcdcRwpQSxmrRrAdxMnP6lgi6WT
+	pzzDk26Je800lDRZXqUiJPflPeya3QSNrWwGF9c0EQfCQkONFJSWjLoB2qQteHB4dNFZ1d0a5fW
+	qGDz3M/briYPcmjIQu1EYqkKc5wQHwBNDne2T2y7L7aL8Im5EikOlmYzsfSd2rYGByaJyw7ghkm
+	QfVUkQS5sy2m1VBALeLCE=
+X-Google-Smtp-Source: AGHT+IEBwSk5QOmvxP7JWfiLaJmCUu07iMcs1hqKhN6MvYBXFCVIPi1VMHNI/PsFUx/a1aq7urblAw==
+X-Received: by 2002:a05:6102:5714:b0:5db:d60a:6b1f with SMTP id ada2fe7eead31-5ecb6938423mr2317214137.23.1767875106642;
+        Thu, 08 Jan 2026 04:25:06 -0800 (PST)
+Received: from localhost ([2804:30c:2766:a500:b70:8c42:f792:bef6])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944122ae554sm5583799241.2.2026.01.08.04.25.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 04:28:03 -0800 (PST)
-From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 08 Jan 2026 20:26:01 +0800
-Subject: [PATCH v3 10/11] riscv: dts: spacemit: add initial device tree of
- SpacemiT K3 SoC
+        Thu, 08 Jan 2026 04:25:05 -0800 (PST)
+Date: Thu, 8 Jan 2026 09:26:51 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH v4 1/9] spi: dt-bindings: change spi-{rx,tx}-bus-width to
+ arrays
+Message-ID: <aV-ii6pdDYA02euV@debian-BULLSEYE-live-builder-AMD64>
+References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
+ <20251219-spi-add-multi-bus-support-v4-1-145dc5204cd8@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260108-k3-basic-dt-v3-10-ed99eb4c3ad3@riscstar.com>
-References: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
-In-Reply-To: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Anup Patel <anup@brainfault.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
- Yangyu Chen <cyy@cyyself.name>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
- Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
- Anup Patel <anup@brainfault.org>, Andrew Jones <ajones@ventanamicro.com>, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
- linux-serial@vger.kernel.org, Guodong Xu <guodong@riscstar.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251219-spi-add-multi-bus-support-v4-1-145dc5204cd8@baylibre.com>
 
-SpacemiT K3 is equipped with 8 X100 cores, which are RVA23 compliant.
-Add nodes of uarts, timer and interrupt-controllers.
+On 12/19, David Lechner wrote:
+> Change spi-rx-bus-width and spi-tx-bus-width properties from single
+> uint32 values to arrays of uint32 values. This allows describing SPI
+> peripherals connected to controllers that have multiple data lanes for
+> receiving or transmitting two or more words in parallel.
+> 
+> Each index in the array corresponds to a physical data lane (one or more
+> wires depending on the bus width). Additional mapping properties will be
+> needed in cases where a lane on the controller or peripheral is skipped.
+> 
+> Bindings that make use of this property are updated in the same commit
+> to avoid validation errors.
+> 
+> The adi,ad4030 binding can now better describe the chips multi-lane
+> capabilities, so that binding is refined and gets a new example.
+> 
+> Converting from single uint32 to array of uint32 does not break .dts/
+> .dtb files since there is no difference between specifying a single
+> uint32 value and an array with a single uint32 value in devicetree.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> 
+> v4 changes:
+> - New patch to replace data-lanes property patch.
+> 
+> In v3, Rob suggested possibly splitting the spi-controller.yaml file
+> to have a way to make most SPI controllers have maxItems: 1 for these
+> properties. I would like to avoid that because it doesn't seem scalable,
+> e.g. if we need another similar split in the future, the number of
+> combinations would grow exponentially (factorially?). I have an idea to
+> instead do this using $dynamicAnchor and $dynamicRef, but dt-schema
+> doesn't currently support that. So I propose we do the best we can for
+> now with the current dt-schema and make further improvements later.
+> 
+> Also, in v3, I suggested that we could have leading 0s in the arrays
+> to indicate unused lanes. But after further consideration, I think it's
+> better to have separate lane-mapping properties for that purpose. It
+> will be easier to explain and parse and be a bit more flexible that way.
 
-Signed-off-by: Guodong Xu <guodong@riscstar.com>
----
-v3: Remove "supm" from the riscv,isa-extensions list.
-v2: Remove aliases from k3.dtsi, they should be in board DTS.
-    Updated riscv,isa-extensions with new extensions from the extensions.yaml
----
- arch/riscv/boot/dts/spacemit/k3.dtsi | 548 +++++++++++++++++++++++++++++++++++
- 1 file changed, 548 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..be9335fba32cb9e81915b2b91cf08c55a5e96809
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -0,0 +1,548 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-+ * Copyright (c) 2025 Guodong Xu <guodong@riscstar.com>
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/dts-v1/;
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+	model = "SpacemiT K3";
-+	compatible = "spacemit,k3";
-+
-+	cpus: cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		timebase-frequency = <24000000>;
-+
-+		cpu_0: cpu@0 {
-+			compatible = "spacemit,x100", "riscv";
-+			device_type = "cpu";
-+			reg = <0>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "sha", "shcounterenw", "shgatpa", "shtvala",
-+					       "shvsatpa", "shvstvala", "shvstvecd", "smaia",
-+					       "smstateen", "ssaia", "ssccptr", "sscofpmf",
-+					       "sscounterenw", "ssnpm", "ssstateen", "sstc",
-+					       "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt", "za64rs",
-+					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
-+					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
-+					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
-+					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "zicond", "zicsr", "zifencei", "zihintntl",
-+					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
-+					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-+					       "zvfhmin", "zvkb", "zvkg", "zvkn", "zvknc",
-+					       "zvkned", "zvkng", "zvknha", "zvknhb", "zvks",
-+					       "zvksc", "zvksed", "zvksg", "zvksh", "zvkt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <65536>;
-+			i-cache-sets = <256>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache0>;
-+			mmu-type = "riscv,sv39";
-+
-+			cpu0_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu_1: cpu@1 {
-+			compatible = "spacemit,x100", "riscv";
-+			device_type = "cpu";
-+			reg = <1>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "sha", "shcounterenw", "shgatpa", "shtvala",
-+					       "shvsatpa", "shvstvala", "shvstvecd", "smaia",
-+					       "smstateen", "ssaia", "ssccptr", "sscofpmf",
-+					       "sscounterenw", "ssnpm", "ssstateen", "sstc",
-+					       "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt", "za64rs",
-+					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
-+					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
-+					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
-+					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "zicond", "zicsr", "zifencei", "zihintntl",
-+					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
-+					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-+					       "zvfhmin", "zvkb", "zvkg", "zvkn", "zvknc",
-+					       "zvkned", "zvkng", "zvknha", "zvknhb", "zvks",
-+					       "zvksc", "zvksed", "zvksg", "zvksh", "zvkt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <65536>;
-+			i-cache-sets = <256>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache0>;
-+			mmu-type = "riscv,sv39";
-+
-+			cpu1_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu_2: cpu@2 {
-+			compatible = "spacemit,x100", "riscv";
-+			device_type = "cpu";
-+			reg = <2>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "sha", "shcounterenw", "shgatpa", "shtvala",
-+					       "shvsatpa", "shvstvala", "shvstvecd", "smaia",
-+					       "smstateen", "ssaia", "ssccptr", "sscofpmf",
-+					       "sscounterenw", "ssnpm", "ssstateen", "sstc",
-+					       "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt", "za64rs",
-+					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
-+					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
-+					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
-+					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "zicond", "zicsr", "zifencei", "zihintntl",
-+					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
-+					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-+					       "zvfhmin", "zvkb", "zvkg", "zvkn", "zvknc",
-+					       "zvkned", "zvkng", "zvknha", "zvknhb", "zvks",
-+					       "zvksc", "zvksed", "zvksg", "zvksh", "zvkt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <65536>;
-+			i-cache-sets = <256>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache0>;
-+			mmu-type = "riscv,sv39";
-+
-+			cpu2_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu_3: cpu@3 {
-+			compatible = "spacemit,x100", "riscv";
-+			device_type = "cpu";
-+			reg = <3>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "sha", "shcounterenw", "shgatpa", "shtvala",
-+					       "shvsatpa", "shvstvala", "shvstvecd", "smaia",
-+					       "smstateen", "ssaia", "ssccptr", "sscofpmf",
-+					       "sscounterenw", "ssnpm", "ssstateen", "sstc",
-+					       "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt", "za64rs",
-+					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
-+					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
-+					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
-+					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "zicond", "zicsr", "zifencei", "zihintntl",
-+					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
-+					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-+					       "zvfhmin", "zvkb", "zvkg", "zvkn", "zvknc",
-+					       "zvkned", "zvkng", "zvknha", "zvknhb", "zvks",
-+					       "zvksc", "zvksed", "zvksg", "zvksh", "zvkt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <65536>;
-+			i-cache-sets = <256>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache0>;
-+			mmu-type = "riscv,sv39";
-+
-+			cpu3_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu_4: cpu@4 {
-+			compatible = "spacemit,x100", "riscv";
-+			device_type = "cpu";
-+			reg = <4>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "sha", "shcounterenw", "shgatpa", "shtvala",
-+					       "shvsatpa", "shvstvala", "shvstvecd", "smaia",
-+					       "smstateen", "ssaia", "ssccptr", "sscofpmf",
-+					       "sscounterenw", "ssnpm", "ssstateen", "sstc",
-+					       "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt", "za64rs",
-+					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
-+					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
-+					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
-+					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "zicond", "zicsr", "zifencei", "zihintntl",
-+					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
-+					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-+					       "zvfhmin", "zvkb", "zvkg", "zvkn", "zvknc",
-+					       "zvkned", "zvkng", "zvknha", "zvknhb", "zvks",
-+					       "zvksc", "zvksed", "zvksg", "zvksh", "zvkt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <65536>;
-+			i-cache-sets = <256>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache1>;
-+			mmu-type = "riscv,sv39";
-+
-+			cpu4_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu_5: cpu@5 {
-+			compatible = "spacemit,x100", "riscv";
-+			device_type = "cpu";
-+			reg = <5>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "sha", "shcounterenw", "shgatpa", "shtvala",
-+					       "shvsatpa", "shvstvala", "shvstvecd", "smaia",
-+					       "smstateen", "ssaia", "ssccptr", "sscofpmf",
-+					       "sscounterenw", "ssnpm", "ssstateen", "sstc",
-+					       "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt", "za64rs",
-+					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
-+					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
-+					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
-+					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "zicond", "zicsr", "zifencei", "zihintntl",
-+					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
-+					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-+					       "zvfhmin", "zvkb", "zvkg", "zvkn", "zvknc",
-+					       "zvkned", "zvkng", "zvknha", "zvknhb", "zvks",
-+					       "zvksc", "zvksed", "zvksg", "zvksh", "zvkt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <65536>;
-+			i-cache-sets = <256>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache1>;
-+			mmu-type = "riscv,sv39";
-+
-+			cpu5_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu_6: cpu@6 {
-+			compatible = "spacemit,x100", "riscv";
-+			device_type = "cpu";
-+			reg = <6>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "sha", "shcounterenw", "shgatpa", "shtvala",
-+					       "shvsatpa", "shvstvala", "shvstvecd", "smaia",
-+					       "smstateen", "ssaia", "ssccptr", "sscofpmf",
-+					       "sscounterenw", "ssnpm", "ssstateen", "sstc",
-+					       "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt", "za64rs",
-+					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
-+					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
-+					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
-+					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "zicond", "zicsr", "zifencei", "zihintntl",
-+					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
-+					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-+					       "zvfhmin", "zvkb", "zvkg", "zvkn", "zvknc",
-+					       "zvkned", "zvkng", "zvknha", "zvknhb", "zvks",
-+					       "zvksc", "zvksed", "zvksg", "zvksh", "zvkt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <65536>;
-+			i-cache-sets = <256>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache1>;
-+			mmu-type = "riscv,sv39";
-+
-+			cpu6_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu_7: cpu@7 {
-+			compatible = "spacemit,x100", "riscv";
-+			device_type = "cpu";
-+			reg = <7>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "sha", "shcounterenw", "shgatpa", "shtvala",
-+					       "shvsatpa", "shvstvala", "shvstvecd", "smaia",
-+					       "smstateen", "ssaia", "ssccptr", "sscofpmf",
-+					       "sscounterenw", "ssnpm", "ssstateen", "sstc",
-+					       "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt", "za64rs",
-+					       "zawrs", "zba", "zbb", "zbc", "zbs", "zca",
-+					       "zcb", "zcd", "zcmop", "zfa", "zfbfmin",
-+					       "zfh", "zfhmin", "zicbom", "zicbop", "zicboz",
-+					       "ziccamoa", "ziccif", "zicclsm", "zicntr",
-+					       "zicond", "zicsr", "zifencei", "zihintntl",
-+					       "zihintpause", "zihpm", "zimop", "zkt", "zvbb",
-+					       "zvbc", "zvfbfmin", "zvfbfwma", "zvfh",
-+					       "zvfhmin", "zvkb", "zvkg", "zvkn", "zvknc",
-+					       "zvkned", "zvkng", "zvknha", "zvknhb", "zvks",
-+					       "zvksc", "zvksed", "zvksg", "zvksh", "zvkt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <65536>;
-+			i-cache-sets = <256>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <65536>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache1>;
-+			mmu-type = "riscv,sv39";
-+
-+			cpu7_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		l2_cache0: cache-controller-0 {
-+			compatible = "cache";
-+			cache-block-size = <64>;
-+			cache-level = <2>;
-+			cache-size = <4194304>;
-+			cache-sets = <4096>;
-+			cache-unified;
-+		};
-+
-+		l2_cache1: cache-controller-1 {
-+			compatible = "cache";
-+			cache-block-size = <64>;
-+			cache-level = <2>;
-+			cache-size = <4194304>;
-+			cache-sets = <4096>;
-+			cache-unified;
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu_0>;
-+				};
-+				core1 {
-+					cpu = <&cpu_1>;
-+				};
-+				core2 {
-+					cpu = <&cpu_2>;
-+				};
-+				core3 {
-+					cpu = <&cpu_3>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu_4>;
-+				};
-+				core1 {
-+					cpu = <&cpu_5>;
-+				};
-+				core2 {
-+					cpu = <&cpu_6>;
-+				};
-+				core3 {
-+					cpu = <&cpu_7>;
-+				};
-+			};
-+		};
-+	};
-+
-+	soc: soc {
-+		compatible = "simple-bus";
-+		interrupt-parent = <&saplic>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		dma-noncoherent;
-+		ranges;
-+
-+		uart0: serial@d4017000 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017000 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <42 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart2: serial@d4017100 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017100 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart3: serial@d4017200 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017200 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <45 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart4: serial@d4017300 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017300 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <46 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart5: serial@d4017400 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017400 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <47 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart6: serial@d4017500 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017500 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart7: serial@d4017600 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017600 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <49 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart8: serial@d4017700 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017700 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <50 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart9: serial@d4017800 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd4017800 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <51 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart10: serial@d401f000 {
-+			compatible = "spacemit,k3-uart", "intel,xscale-uart";
-+			reg = <0x0 0xd401f000 0x0 0x100>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			clock-frequency = <14700000>;
-+			interrupts = <281 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		simsic: interrupt-controller@e0400000 {
-+			compatible = "spacemit,k3-imsics","riscv,imsics";
-+			reg = <0x0 0xe0400000 0x0 0x00200000>;
-+			interrupt-controller;
-+			#interrupt-cells = <0>;
-+			msi-controller;
-+			#msi-cells = <0>;
-+			interrupts-extended = <&cpu0_intc 9>, <&cpu1_intc 9>,
-+					      <&cpu2_intc 9>, <&cpu3_intc 9>,
-+					      <&cpu4_intc 9>, <&cpu5_intc 9>,
-+					      <&cpu6_intc 9>, <&cpu7_intc 9>;
-+			riscv,num-ids = <511>;
-+			riscv,num-guest-ids = <511>;
-+			riscv,hart-index-bits = <4>;
-+			riscv,guest-index-bits = <6>;
-+		};
-+
-+		saplic: interrupt-controller@e0804000 {
-+			compatible = "spacemit,k3-aplic", "riscv,aplic";
-+			reg = <0x0 0xe0804000 0x0 0x4000>;
-+			msi-parent = <&simsic>;
-+			#interrupt-cells = <2>;
-+			interrupt-controller;
-+			riscv,num-sources = <512>;
-+		};
-+
-+		clint: timer@e081c000 {
-+			compatible = "spacemit,k3-clint", "sifive,clint0";
-+			reg = <0x0 0xe081c000 0x0 0x0004000>;
-+			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>,
-+					      <&cpu1_intc 3>, <&cpu1_intc 7>,
-+					      <&cpu2_intc 3>, <&cpu2_intc 7>,
-+					      <&cpu3_intc 3>, <&cpu3_intc 7>,
-+					      <&cpu4_intc 3>, <&cpu4_intc 7>,
-+					      <&cpu5_intc 3>, <&cpu5_intc 7>,
-+					      <&cpu6_intc 3>, <&cpu6_intc 7>,
-+					      <&cpu7_intc 3>, <&cpu7_intc 7>;
-+		};
-+	};
-+};
-
--- 
-2.43.0
-
+LGTM
+Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 
