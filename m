@@ -1,80 +1,92 @@
-Return-Path: <devicetree+bounces-252560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44627D010F2
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 06:22:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22248D01126
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 06:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DCF1E301E1A5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 05:22:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A7CDC3006719
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 05:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6B62D322F;
-	Thu,  8 Jan 2026 05:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="R/HdhE2Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503CB2D97B7;
+	Thu,  8 Jan 2026 05:25:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E6128D830;
-	Thu,  8 Jan 2026 05:22:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F862D7DF3;
+	Thu,  8 Jan 2026 05:25:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767849765; cv=none; b=V3JCZjc9uhsexi0p4V7BLi0E+2DUiobthBr1JSeIx1E7/s1jJmsRHFKiDSTkQbIu4QFFdVi8OMDG4XTYAVDTAavlSqWctQH3LmOtS4nJrQgRjwi5yfhlu+qgDXbHrxHkuP8/vThip0rWbeNkNz27xEz0epMq9/f0QczKilmd+QU=
+	t=1767849917; cv=none; b=WinSMcsq6sQ6hsnRgORbAUe/nqjRUrkrXM+TYnP4n+mFAUBhXKQ5FK6gT3xsyoYfGSXtwE7z896T/+y1QppijD913bvTzlclqshEJwOHgZ/9k6/QspyMcS7XMjLdBdNfxNUxHRqzeMjABHK1L8agXbkrluWutyetKbr+aoi1I88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767849765; c=relaxed/simple;
-	bh=hPSe2rlEHvzyi69dJB3VX99Hot44xCw/39GofG4V748=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Tj4T21U8FPF1jhMSij0cOqtCqCKVRRqNUxGPQwmkHLBZajb9GVBAZoSbzkP2X4Z8NqFMRksigjwNeFiyeTdfd9uoNkOC9nO611GePGag1hcFMRhYaxEmg5t1mLqD8CJkV5ccZ2mTayHOac9JtRtovtCNoh7QB32m+Bgup3PTumU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=R/HdhE2Q; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1767849762;
-	bh=hPSe2rlEHvzyi69dJB3VX99Hot44xCw/39GofG4V748=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=R/HdhE2Q8L7sSX56r7227YzjCDQjxo4Dhg/bw3c0g4GesSdeGUC22BahmZFuMYpUY
-	 +Y8MsANXUSCOj6mQAqangpaW7M1VonBWINZlo9DM0LfpObeA7jI5YSmXMhz1XD+JJX
-	 XGL+hobqTpSuS7Y1zuWmaPZEy12TwR/Cj6KqE5spQqnQiM7jQu0XibvW+i4CCloVi/
-	 OWxFR13Y8w9g8AZYLsMZMlVLFMKNGLDyCujZxmVi+xC9H5tnobUyKxWYlYc9iX0Dqa
-	 ZScipnCTHJz/Uda+MUvBsxnlJyYwDMUUcaAfiHqAjG3eCTq6MILuGNUNPuJDOHn/Re
-	 m1mUqlz/0V8Iw==
-Received: from [192.168.68.115] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5BF7C79F8C;
-	Thu,  8 Jan 2026 13:22:41 +0800 (AWST)
-Message-ID: <4441e66d607fe442e392b8a82c134adced03a5dc.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v3 5/5] ARM: dts: aspeed: yosemite5: Correct power
- monitor shunt resistor
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Kevin Tung <kevin.tung.openbmc@gmail.com>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley	 <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, Amithash
- Prasasd	 <amithash@meta.com>, Kevin Tung <Kevin.Tung@quantatw.com>, Ken
- Chen	 <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>
-Date: Thu, 08 Jan 2026 15:52:40 +1030
-In-Reply-To: <20251219-yv5_revise_dts-v3-5-ca1d5a382013@gmail.com>
-References: <20251219-yv5_revise_dts-v3-0-ca1d5a382013@gmail.com>
-	 <20251219-yv5_revise_dts-v3-5-ca1d5a382013@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1767849917; c=relaxed/simple;
+	bh=cUDJ/Jq0808hTirUXhDv4kOOAPo94VpL0FqcReG1YSg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tMYZtBQgOUSkhRtfACz61I5cU+OKJK6y+8RynDmZ09UVbOBX2qpjnW5ngS9zpqKpDu0SmljiIlqz4TfHEEgsjeg+K+gnudfu19x3icAswJanZOaZi8frJ6pckILdkKeyEr0UJjp+ODJJUewxOGruaSx9gVlDjS9DL3lVF6DQGzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from ofsar (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id E62FE340F55;
+	Thu, 08 Jan 2026 05:25:06 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Encrow Thorne <jyc0019@gmail.com>
+Cc: Yixun Lan <dlan@gentoo.org>,
+	Troy Mitchell <troymitchell988@gmail.com>,
+	Guodong Xu <guodong@riscstar.com>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 0/3] i2c: spacemit: add reset support
+Date: Thu,  8 Jan 2026 13:24:37 +0800
+Message-ID: <176784920500.341655.1244714161729055220.b4-ty@gentoo.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251230-i2c-reset-v3-0-7500eb93b06e@gmail.com>
+References: <20251230-i2c-reset-v3-0-7500eb93b06e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Kevin,
 
-On Fri, 2025-12-19 at 16:09 +0800, Kevin Tung wrote:
-> Correct the shunt resistor value in the DTS with the hardware setting
-> to ensure accurate power and current measurements.
+On Tue, 30 Dec 2025 22:29:01 +0800, Encrow Thorne wrote:
+> Add reset support for the K1 I2C driver. A reset ensures that the
+> controller starts in a clean and known state.
+> 
+> Reset ensures that the I2C hardware is in a clean state. We cannot assume
+> that no program used I2C before the kernel booted.
+> 
+> 
+> [...]
 
-Why were the existing values wrong? Why are the new values correct? Can
-you please add more information here explaining both concerns?
+Applied, thanks!
 
-Andrew
+[3/3] riscv: dts: spacemit: add reset property
+      https://github.com/spacemit-com/linux/commit/91c444d4285c07dbf2e6e4bf954d9a0282157f1f
+
+Best regards,
+-- 
+Yixun Lan
+
 
