@@ -1,198 +1,79 @@
-Return-Path: <devicetree+bounces-252646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86641D01F32
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 10:52:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B7F0D01FEC
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 11:01:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0B62634BD6D2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:45:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C0B2133E3B56
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 08:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17CD639A7FB;
-	Thu,  8 Jan 2026 08:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PNPU37oQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 855C835504E;
+	Thu,  8 Jan 2026 08:23:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lgeamrelo13.lge.com (lgeamrelo13.lge.com [156.147.23.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7993E38A2AB
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3E203ACF04
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 08:22:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767860449; cv=none; b=OZy9YdLehBMEX+Tw6gKVmozxusnR4ACWpPlE3njVgYbA+p/N6Bjr41TZnVnfISnsA7LBX9C7IphpgIfwM2rektOzt2r65HkA4h6GrmOb+/Ie4in45X/iDzUFne4N5G/h6C4M6frK5FFUXb+9SuqqxmKF+CzwMzY5VjZR1lemabA=
+	t=1767860578; cv=none; b=sPc66skjH0lpzMG0aFbdAkrb4BaQXU78+xVsuK+kP8rtjbcgkLT9kPZ116d6W30YpiYESJgl8xDp4SeykOF/BcQ6f+Y12kzQZjG0I2ns52Fvx+7HC+0Bk2C/EtS31YJauxeP2a6TqXAFjHP/ez/o4sqiRNygwPn19vNTFPbQXws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767860449; c=relaxed/simple;
-	bh=0EXX04ybii9G7qyj95CN4kbgQyyGv8bobMIMiT6u3Mk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q9eRN1E7dsa5Jlz16AqT7fNPawP/GmPEBC3VXvd8SA2zZLD780KNA3jckjSKzIk8fRcgiQfXOXOJumg783jw8V60iLI5fXeBgK8L3wMCbTNw3MN8gLUfUO5FKlslv30xD0XL2gidFuCPZpzfWFCxnKrGGmFU6UtgWJmQ0HWk+B4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PNPU37oQ; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47bdbc90dcaso21042905e9.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 00:20:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767860438; x=1768465238; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DR0GCYK6h8L6OB0x8sKyoqDgYiBaxX9t2TeYHE9k9UA=;
-        b=PNPU37oQMRdHjJXggOZvfC7MkzZmrUXX7juN3oO3A6ofxPPEYCrMzTub2ANUl2k2zG
-         C/8NcRv9lomHS/PuCbg0wYt7Em6zQ05gywI9ULxAYg0fVxiETXTLh2RvhwCjCb8z56gx
-         5uCxKpOy0tqwnh5MKe9l1CRA6izisfkkwIiVEtTEXNkUGPFeUMHnn1HZMN+sKLYha0a7
-         qYWd3o1OWTL2RQJWE6KpbNfanHP8cITKG42LS58C3MBtHoHLIDgm0AFHwjErIq+LbVzQ
-         DPAhU2O/QO/EviageXfus1kk27hbgJIPOIIguNp7P5vnBgTtWpnysPNRy+iDcqp2JmAd
-         c9eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767860438; x=1768465238;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DR0GCYK6h8L6OB0x8sKyoqDgYiBaxX9t2TeYHE9k9UA=;
-        b=Oj6Iy/ugeM07a9GM9DSCEEMfGCAgPQE0i1XT+r0Z2kceudoe5GiDXCCn6uTlWGJw5p
-         arr2x9+Pd3TYmwAL40BxZotSYo/bWXoRUP8APL6idZvvaeX8ubmHWridLKlBoct9bI5F
-         eUOQPnHHdqRXU03/bDJgpra+I0y2Yirm1yrN/42Wf+REFSWReERjLx3Fj6hepx8i2LBF
-         bgss3LrWoN/qPqnwW+JQqtJ/YChaeOr6xpL7ymHwKx2Q65/yQBzRk6XcIsSQl86zYp+O
-         fs+n/gVn0lwDafNEIpyBFjrN8tG3iVDw4pOfZQ83NHGFC4ODrVhP+kR4m7W5ym2xUZLT
-         +9gQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUduCm6k77Yf50Mr6uZiX52GkBx2ExEE9yC4oUw8fG3qlCOLjnIEd+xDSwcmNCY9sfkyiRP56oK/d66@vger.kernel.org
-X-Gm-Message-State: AOJu0YyE5n4SIwaVbcK6wTxFmdLo1+ZdsVAgOc+WCfkIGBb3azfgqISa
-	VgUpmhIpxegiRarqJm1KgXkd8WGoYjaVjfolT0hX4p7c81jX6gCAY8ga
-X-Gm-Gg: AY/fxX5W+0dPkT7lc48/rY6yhupUHYYUaXstVh3GNwcA18y2aOKQJO+j3pU4rRpTFeL
-	UMQW1Yi4VEzaLW1o1wQ/JGjoLfjwM3o3I/0yhQ7uEhqJl1fB9KgI48JO6WYESIqqtGdTvN9J0Pk
-	dYn/BwNKNFsOEeVRdAsNoymK1HBcZa8rE/r+pBu/3hxmWAjZWLaAP+3l2h0RzLmiw+WjIQ/zhTw
-	XZ905Bu559KJ40K13hqGXiGTcuZhkBmEzxVDeYI5KDj81uq2oKO3Lg4aVTBVYFe8vY+n0v+/trZ
-	BV+4b3k3uQexa9MB49JsTVtCNw/Kh3rszy24pKvP8yxfJh+KBQOfMHbv0WMgcVzl6+MycJ2mZLz
-	GM7/2kyaTPsX2H2OZ0rZwGTwpri75ktIN1FCrhYyc3PXewo0hog0/4wJRvoBq+//s78kgMZkNNa
-	9wkhNcghZfgR/h5J2gd36/W2dyGjAqHUhwCqFnCRC+qD6DZ6WEGpKQ/hk2t0Ws7DH0WDzAdYRtT
-	6k=
-X-Google-Smtp-Source: AGHT+IEqwz9H4zlTphgUa6QtrDmeQFo+8B1RuC4sojvRfFwNaYzGFa6Q1/WA2iBglkGfpN30+6EASQ==
-X-Received: by 2002:a05:600c:46ca:b0:477:75eb:a643 with SMTP id 5b1f17b1804b1-47d84b0a8f7mr57916615e9.4.1767860438031;
-        Thu, 08 Jan 2026 00:20:38 -0800 (PST)
-Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5df8besm14257574f8f.26.2026.01.08.00.20.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jan 2026 00:20:37 -0800 (PST)
-Date: Thu, 8 Jan 2026 08:20:36 +0000
-From: Stafford Horne <shorne@gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
-	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1767860578; c=relaxed/simple;
+	bh=0pXxzRKiDQjai+ajBhKT84pD8dthkgw/pT19nUhMkE8=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=eWp6bg0t07JkeWc0Ib5QbdXb1U9GXr3uAV4j0eGeo4G2UvL8DU6Jx6GaOQ7s4fRZ74F8dvSnHRuHCVdMJVGgcZoUczJpGK8H4T6M8k/PYQu71P5RBHd4fxlzfK+gubqH21FesXvm/azZ1Q0MQ4UEG55RN1bQyQgkxmnGhTLaQzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
+Received: from unknown (HELO lgeamrelo04.lge.com) (156.147.1.127)
+	by 156.147.23.53 with ESMTP; 8 Jan 2026 17:22:40 +0900
+X-Original-SENDERIP: 156.147.1.127
+X-Original-MAILFROM: chanho.min@lge.com
+Received: from unknown (HELO localhost.localdomain) (10.178.31.96)
+	by 156.147.1.127 with ESMTP; 8 Jan 2026 17:22:40 +0900
+X-Original-SENDERIP: 10.178.31.96
+X-Original-MAILFROM: chanho.min@lge.com
+From: Chanho Min <chanho.min@lge.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: Add compatible string opencores,gpio
- to gpio-mmio
-Message-ID: <aV9o1LL0Ahip0O3-@antec>
-References: <20251217080843.70621-1-shorne@gmail.com>
- <20251217080843.70621-2-shorne@gmail.com>
- <CAMuHMdUaO_PwWygW8qss47W_ErB4pm1Z2HQ+edvw1-x7ce7oKw@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Kael D'Alcamo <dev@kael-k.io>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: Chanho Min <chanho.min@lge.com>,
+	Gunho Lee <gunho.lee@lge.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] arm64: dts: Initial support for LG1215 TV SoC
+Date: Thu,  8 Jan 2026 17:22:10 +0900
+Message-Id: <20260108082213.6545-1-chanho.min@lge.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdUaO_PwWygW8qss47W_ErB4pm1Z2HQ+edvw1-x7ce7oKw@mail.gmail.com>
 
-On Wed, Jan 07, 2026 at 03:35:45PM +0100, Geert Uytterhoeven wrote:
-> Hi Stafford,
-> 
-> On Wed, 17 Dec 2025 at 09:15, Stafford Horne <shorne@gmail.com> wrote:
-> > In FPGA Development boards with GPIOs we use the opencores gpio verilog
-> > rtl.  This is compatible with the gpio-mmio.  Add the compatible string
-> > to allow as below.
-> >
-> > Example:
-> >
-> >         gpio0: gpio@91000000 {
-> >                 compatible = "opencores,gpio", "brcm,bcm6345-gpio";
-> >                 reg = <0x91000000 0x1>, <0x91000001 0x1>;
-> >                 reg-names = "dat", "dirout";
-> >                 gpio-controller;
-> >                 #gpio-cells = <2>;
-> >                 status = "okay";
-> >         };
-> >
-> > Link: https://opencores.org/projects/gpio
-> > Signed-off-by: Stafford Horne <shorne@gmail.com>
-> 
-> Thanks for your patch, which is now commit f48b5e8bc2e1344f
-> ("dt-bindings: gpio-mmio: Add compatible string for opencores,gpio")
-> in gpio/gpio/for-next.
-> 
-> > --- a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
-> > +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
-> > @@ -18,11 +18,16 @@ description:
-> >
-> >  properties:
-> >    compatible:
-> > -    enum:
-> > -      - brcm,bcm6345-gpio
-> > -      - ni,169445-nand-gpio
-> > -      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
-> > -      - intel,ixp4xx-expansion-bus-mmio-gpio
-> > +    oneOf:
-> > +      - enum:
-> > +          - brcm,bcm6345-gpio
-> > +          - ni,169445-nand-gpio
-> > +          - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
-> > +          - intel,ixp4xx-expansion-bus-mmio-gpio
-> > +      - items:
-> > +          - enum:
-> > +              - opencores,gpio
-> > +          - const: brcm,bcm6345-gpio
-> 
-> What is the rationale behind using brcm,bcm6345-gpio?
-> Given brcm,bcm6345-gpio has 32-bit registers, while opencores,gpio
-> has 8-bit registers, I doubt the latter is compatible with the former...
+This patch series adds initial device tree support for the LG1215
+TV SoC and its reference board.
 
-Hello,
+Series overview:
+  1/3 - dt-bindings: vendor-prefixes: Add 'lge' prefix for LG Electronics
+  2/3 - dt-bindings: arm: lge: Add compatible for LG1215 SoC and ref board
+  3/3 - arm64: dts: lg: Initial support for LG1215 SoC and reference board
 
-I was following what we did for uart, where we have
-"opencores,uart16550-rtlsvn105", "ns16550a".
+ .../devicetree/bindings/arm/lge.yaml          |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/lg/Makefile               |   1 +
+ arch/arm64/boot/dts/lg/lg1215-ref.dts         |  51 +++
+ arch/arm64/boot/dts/lg/lg1215.dtsi            | 304 ++++++++++++++++++
+ 5 files changed, 363 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/lg/lg1215-ref.dts
+ create mode 100644 arch/arm64/boot/dts/lg/lg1215.dtsi
 
-I am using brcm,bcm6345-gpio to match the drivers/gpio/gpio-mmio.c driver.
-The opencores,gpio is compatible with the same driver as brcm,bcm6345-gpio but
-not 100% the same as the brcm,bcm6345-gpio.  Since the device tree allows
-configuring the gpio-mmio driver to make it compatible with opencore,gpio I
-thought this would be OK.
-
-I switch the size from 32-bit to 8-bit using the reg = <* 0x1>, <* 0x1> setting.
-Also the reg addresses of "dat" and "dirout" are different for the real
-brcm,bcm6345-gpio.
-
-brcm,bcm6345-gpio. Example:
-
-       /* GPIOs 192 .. 223 */
-       gpio6: gpio@518 {
-	       compatible = "brcm,bcm6345-gpio";
-	       reg = <0x518 0x04>, <0x538 0x04>;
-	       reg-names = "dirout", "dat";
-	       gpio-controller;
-	       #gpio-cells = <2>;
-       };
-
-vs opencores,gpio Example:
-
-       gpio0: gpio@91000000 {
-               compatible = "opencores,gpio", "brcm,bcm6345-gpio";
-               reg = <0x91000000 0x1>, <0x91000001 0x1>;
-               reg-names = "dat", "dirout";
-               gpio-controller;
-               #gpio-cells = <2>;
-       };
-
-The opencores,gpio setup does work.
-
-Now that I think about it, would it have been better to just add opencores,gpio
-to gpio-mmio.c compatible list?
-
-If so I will can revise this patch and add patch to gpio-mmio.c.
-
--Stafford
 
