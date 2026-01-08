@@ -1,98 +1,122 @@
-Return-Path: <devicetree+bounces-253019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9FAD060F1
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 21:29:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 929C9D061B1
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 21:32:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EACF63032AB8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 20:29:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CF3CE300E63E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 20:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EEE32C323;
-	Thu,  8 Jan 2026 20:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B08D431577B;
+	Thu,  8 Jan 2026 20:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ALXoTppO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yt1e08Bc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0423E32252D;
-	Thu,  8 Jan 2026 20:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5E41E3DE5;
+	Thu,  8 Jan 2026 20:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767904149; cv=none; b=uwdP5AU2niBbN6DjOuFOHtfsOato33rzcxQIdJYvZFIqoagLBU6CXmf0oCf/rYCfJn/gH+FtV3wOsqa2xpxi6BPUUWjjm0m7KFuYMpdgKSXmQgZiLz0dDZuMJ65uQEFIruIBUu6Z6xJjK7GbmUV8Y72etuYOlPd1RmTEmaQYqV0=
+	t=1767904314; cv=none; b=MXTtZN1MC1TjrxqG+lWf6BDTyTC1oZbmspcgPdqssUOTW2xIRxxY3TrY7TfU+g1eVisZZgRFU47s2ITA2BtKHHtRTjS2f4OByQo3iShzww4jMIhdGiGafDqVYmOf81y54SBBi+PeK7KWMU2M1Yd/Yyg7IGZMa7b4VFWLigh7nkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767904149; c=relaxed/simple;
-	bh=J5zgVl3LofNAIZuTJWaMznkSwxB14toCZtKNTVHOZsw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s1GhSLfHjeMZYNH9cMWJnhWhsZtnG3qHtWCBzdDH7hTva+xYHs8aNSVPLu0ZNJRlYglNQ9jBoiUXb3UjKbzqImKkFo86jqs8tO+eWW0fqefLlq05cWPE2L9y8CVgpwDBXY/NJK8iKx1dBmIQd9nyi93F2TwrsuXqeCOChkAizM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ALXoTppO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76E57C116C6;
-	Thu,  8 Jan 2026 20:29:08 +0000 (UTC)
+	s=arc-20240116; t=1767904314; c=relaxed/simple;
+	bh=z+EQsZrn4A1nnnPrAQX0XmDNbKhhPkr9Nce5Y9SLSg4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=hiTrt0KuNpxcHIo1dG1QZ7Qpb0GCbmV2kGKLcO9/Ziya6ADDDtcNgePt9UuqDX83MCAlIsK48X8UK8QyBrvSYvJxhd2jsAUlTwGvfM6FcEFPZRxAtub8SCS7c4SD6wfjd24sb4ETe2eaA6iuUq8INfLy+FM5Oqki/C3RFVUF7FA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yt1e08Bc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE6C4C116C6;
+	Thu,  8 Jan 2026 20:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767904148;
-	bh=J5zgVl3LofNAIZuTJWaMznkSwxB14toCZtKNTVHOZsw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ALXoTppOivts3pFHK9soFhROljIcDOP2H3TLu65MzlQVXcBqjj4DuhcCWw4gyzMxk
-	 n1g5ZtGVqvvphzyBvzMJ1OUuPdgB/ZpYIX2wxrlO82+nXoltyU2FS8ZJKw6Tu691n9
-	 OvMkaP6qUIhcH3uNKHXPm97+jKagMpLC+8hjOlXsyG+snjxr+RWcJcyf6Ch+uM3bTM
-	 ctx3Q35oB0ffEuzYyiSuK1D3K2+ZDVPoQYGxALu4x/TRK0jRyyOn7mt2ZMfOffL6Os
-	 RBZdGJZdATwahMxFsekknJEKQ+Cy1H8S2nIHzFQB8cC4ZN5Bk6wBKS685BU/IALrXJ
-	 u6Vag8ErB5Qvw==
-Date: Thu, 8 Jan 2026 14:29:07 -0600
-From: Rob Herring <robh@kernel.org>
-To: Luka Kovacic <luka.kovacic@sartura.hr>
-Cc: linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org, geert+renesas@glider.be,
-	Max.Merchel@tq-group.com, linux@rempel-privat.de, daniel@0x0f.com,
-	shawnguo@kernel.org, sam@ravnborg.org, arnd@arndb.de,
-	krzysztof.kozlowski@canonical.com, pavo.banicevic@sartura.hr,
-	corbet@lwn.net, lee.jones@linaro.org, pavel@ucw.cz,
-	linux@roeck-us.net, jdelvare@suse.com, goran.medic@sartura.hr,
-	luka.perkov@sartura.hr, robert.marko@sartura.hr
-Subject: Re: [PATCH v9 1/7] dt-bindings: Add IEI vendor prefix and IEI
- WT61P803 PUZZLE driver bindings
-Message-ID: <20260108202907.GA998297-robh@kernel.org>
-References: <20210824124438.14519-1-luka.kovacic@sartura.hr>
- <20210824124438.14519-2-luka.kovacic@sartura.hr>
+	s=k20201202; t=1767904314;
+	bh=z+EQsZrn4A1nnnPrAQX0XmDNbKhhPkr9Nce5Y9SLSg4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Yt1e08BcUG7ZcL3S1yhmWiJ97V4V63mFnD90C1c2wFbGuJ07sZgqEJtFgl4YDomzY
+	 n7vfkwdgYLKHv+4wG5fBRDtkLAC9d/dFPzjAia2VXM/PxjZCatPCiFEQjEbYfY+uei
+	 7LX51i6YFnuFcVO2DFE2PB5zbWzziDCHrzd6bmfelGvZIHCD/JITw/QcCis/tIgrd3
+	 fZ4u1F8pr6vJr1/JSCiQeMrrulSfP7wwpoxq9qOzwR9qrPFz0iT/UKlMCL1J/P0kbJ
+	 1H+jMkTGwku4FHA4eDlYSxa4LZ4uR8gKC1s/6tRAqdkQeFOdPxF6oQi7nAPGiUh7H9
+	 gTzvvl3kXUFCQ==
+Message-ID: <536f2d70-730f-49ce-b212-7dc679afb95b@kernel.org>
+Date: Thu, 8 Jan 2026 21:31:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210824124438.14519-2-luka.kovacic@sartura.hr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: clock: add IDs for EN7581
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>, b.larsson@gmx.com,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260108183154.681958-1-benjamin.larsson@genexis.eu>
+ <20260108183154.681958-2-benjamin.larsson@genexis.eu>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260108183154.681958-2-benjamin.larsson@genexis.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 24, 2021 at 02:44:32PM +0200, Luka Kovacic wrote:
-> Add the IEI WT61P803 PUZZLE Device Tree bindings for MFD, HWMON and LED
-> drivers. A new vendor prefix is also added accordingly for
-> IEI Integration Corp.
+On 08/01/2026 19:31, Benjamin Larsson wrote:
+> Add ID for tod_soe, tod_gen, efuse, aes_xpon and fe.
 > 
-> Signed-off-by: Luka Kovacic <luka.kovacic@sartura.hr>
-> Signed-off-by: Pavo Banicevic <pavo.banicevic@sartura.hr>
-> Cc: Luka Perkov <luka.perkov@sartura.hr>
-> Cc: Robert Marko <robert.marko@sartura.hr>
+> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
 > ---
->  .../hwmon/iei,wt61p803-puzzle-hwmon.yaml      | 53 ++++++++++++
->  .../leds/iei,wt61p803-puzzle-leds.yaml        | 39 +++++++++
->  .../bindings/mfd/iei,wt61p803-puzzle.yaml     | 82 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  4 files changed, 176 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
->  create mode 100644 Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
+>  include/dt-bindings/clock/en7523-clk.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-I found this and applied it (with a couple of fixes for current checks). 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-I guess working on the driver is abandoned, but we already have this 
-binding in use in armada-8040-puzzle-m801.dts. So it's either add the 
-schema or remove the nodes to fix the warnings.
-
-Or maybe the whole platform is not used and the entire .dts file can be 
-removed?
-
-Rob
+Best regards,
+Krzysztof
 
