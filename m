@@ -1,84 +1,85 @@
-Return-Path: <devicetree+bounces-252881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 146F4D040AE
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:52:12 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C981ED0419B
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 16:59:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E35153104AD1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:39:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 99D2E3093E77
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 15:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7AF33D6CF;
-	Thu,  8 Jan 2026 15:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE2B344057;
+	Thu,  8 Jan 2026 15:20:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB4C33BBBD
-	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:18:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9A62DB78F
+	for <devicetree@vger.kernel.org>; Thu,  8 Jan 2026 15:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767885490; cv=none; b=X8lkVQKquO8wrf2qbTSe7xH152UQMh0o3mJE4kNCc10nfB2I+17R8p0RMd9MlAbU14Dx9odFNdHFLk/wToKVSSqTBpp2xwpazuRW4Y58Fzle2Zzkwjq50Ku42vUzgZXtaufQ6QcSlldR6fNn+vj1KGMsgK51BVQTOL6R8NNqRJg=
+	t=1767885658; cv=none; b=rAzg5moU1mSt+Ro9SiFDEXx6pRKhTrMcSiFDDLvQ4Z7NS7i7nxDnS/wVOkHZu0oLjAlH/4LdF0dF7QcdX9/U/rGrODHTDwQXzkpbXjcI7ud+fI0cOMwmGtlalpritFETRKQXuW2TRz/dkOfwI3U2YL+PvA+0tcEG0P8OFhQvfxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767885490; c=relaxed/simple;
-	bh=VOCoSE33VyqEDpE4ACcKTOqSkK66W3Ph4z6ZWtitcKc=;
+	s=arc-20240116; t=1767885658; c=relaxed/simple;
+	bh=yNc+RZIcdJZsg7frmkaxTdR4O9ZibSMhT8YbzmZaH+4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pp8pS3ZoatZXbUVcGTbkrZqbhZgu3WEHOTMSu+4A7YY7pnTq8KHlXxmONVFhMXVS2O/3uQcD3HBLZCmorqR+BcmushmfGTL5bn64DYDeOPCJoypItTWvypdvQiSu1QfWFCRVB+KPK6ms9Abm+YAkFxBo4d7lWYMhOtVHZsc81OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+	 To:Cc:Content-Type; b=WEDRviYIHYeITPUlZQg0ZMMkNcu6qx0QgcIhfojAE2g1+6n3NCVt6qutLbGVKelDpG1qaGWBY2B4dEHPQLZf42zI7giWW5OS99Y8G3UdWDNkEZQVSMu367k0DZDvh+gqUJR6fNWpE89qR7uNZ6IALwXB4w/rYc5DgwfUPEhpp8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5634feea416so1159202e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:18:06 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-94124140e02so2042007241.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:20:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767885485; x=1768490285;
+        d=1e100.net; s=20230601; t=1767885651; x=1768490451;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=K19XWsL2sU1kQtxYfF0RYQ4zBuQAgGCyhs+nui2BEig=;
-        b=ZyGdADbHQJMAEF+RRAYjmb8lDdzsPUuN1Knxrjg7MGybFRzv+k2a2klv49Zv9gpllE
-         2GN6fBJnaA/doCUsP8Fz8Nqm2ADgjQrgbZA4OgLc0lezMpo9VCJkEiHMtJJxwM4V7cE8
-         W0a1B2Jq6CG9fQOk30JulXac6wsf0Rfoo1wrEQbTNcBkFetu9GmvT2W8IBuKfzcWhJwV
-         +vS/ls5pCnjYUL7/ydHxl4lw3k7nd1J3tKYD+0SZRXqj0v8BRxihkPa1k53inzCWBw1D
-         NY8sNH2WYhteghoskACS53ls0dclfC8YBuleXsXP3nP4gDz+H2uOtzGZ64lrugK/3x41
-         PQ2g==
-X-Forwarded-Encrypted: i=1; AJvYcCV+U6vZ00M+1eYrrtsPB+hN1SX+DwUJhXjG0ccgS6W3pjqtSWu4oOxQmAkyhHs+sNPy/4tsfN+P5fez@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/ti9PG3R24w2qD06IEcLsfJVvdIqVYFVwbLlmIL3jV1s3fFOi
-	K0irqCxKH/m7kNOX592N8hFB9VI6r+7MczxP0uzuKf66jxrJ3AEqayHysIM9VLIf
-X-Gm-Gg: AY/fxX4dZq+ZJxZcyXobHoPZJATPTuHrm40/8iNtADS7wygHwqXMFS7W33nC+YZ76se
-	VJugEdH7C8kHwr1NUpSzBkTxAnPcIWk09YLMYe94tNXhMkK+0KegI8IIooTPHyHVrOEftLk0psH
-	+UEo4YmcLvKFmysXkPRx7KSSsg8WVgdXaBFb8IIfE9Op/dk6gy6Mim56+b/P32SiuquCtSjIUdq
-	asR1X84O9eXXfNyOheaJL+RxPwXIZilhnemr7K+UyNBYo7rMzLgL1Oj+WxkKxtwy6Cre7PhPL9+
-	y6btyrQx6LwbNdHdfqi6l0zrOdHV7GLT7kmD8OBAjMP+mIOazjlQCYs1GamApXCx/VxQtP7Z1jK
-	qcIxWoq+mxIkUDhLD4GHqj4gmWK5rKitVOq2ndkEENTOYJ4LqFIxgSyawxyZkNj21GC+zYwbrrV
-	YvJCxQL71DEUE7KA8bS26NKLQAi9lbPhT+HttCR2E+D+2aLcQc
-X-Google-Smtp-Source: AGHT+IGcPAW9tz56WsiQ0O242tk7Hes+1vkfVC2zjMc/YPDOU8T28QeI1VP/B2nPj0gtG/hc7qUyQw==
-X-Received: by 2002:a05:6122:8b8d:b0:55a:ab0d:bf74 with SMTP id 71dfb90a1353d-56347fc993emr1942301e0c.13.1767885485336;
-        Thu, 08 Jan 2026 07:18:05 -0800 (PST)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5633a1ea810sm6241700e0c.5.2026.01.08.07.18.05
+        bh=R4XQkxFWUsqFw5LCWwjeRiyAv5WyIL/g3rRuvVx2lSo=;
+        b=JzAULq8nYf5s/1rgkT+xXU4rpgx4lFFm0uT/5cn5OdOUeSbE5QaiWvRuFkEqINrOUK
+         HVvu8lqOATMSGGF+qvAHsm0/ei9KuD5JzAUKFjdup4kWcayGxa7tSZ3khwQt15zTI7d3
+         jo5s/2CeMmrF+9B9DCLFq0GXNy/kDYvSXIRmQOhBz/rDmCXUfN1w1lZLI26bTPRUAVfe
+         JWfxm9UOxxwUqFohZuQoABCERF8SrfchZfZ5CZw8dksT45aNcSHGcc4ZQQ3CxGQ36rBb
+         OJdUAUhmy44jAR5+wfhS9nwPr5hK3rUKAuJoDekqT+bhUfylEA8hheiEE8ApcBNTLbLV
+         dzMw==
+X-Forwarded-Encrypted: i=1; AJvYcCXLQ31X5bt0r1jRrBdHCW+p4JAENTPGuWkEw6MoLbNB/DapwuNz68PcHvejwfy3E9duGAslG8Ggog67@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzfc3QjEKpQM7bKINgvYlhfDFRQw2xdxaA/q0BdLsNlx2FxpE4q
+	DB6sm8YaEHup3GI2CthIp/lduLdRA3XyiqYQQrquapPSTxIJ8JnzYs4k3SkDGomL
+X-Gm-Gg: AY/fxX5lO602IKL8hegFsaTSluPw2+sxcU2DCUBXN+few1yE+AjHhXjdaJ4cGsGlb9W
+	Hs94R4sQHF7EwUurldGrsX5KViGg5Ctt9poEv3Qw5/njihoUKAJle/3nw6aX6xh7PkeNOcp9fk9
+	kwORHuK7npVYFDlilq29HPFtHt/HdkT1Xuc0op0ChiunOzSPs/aSuK1JXKbnpasSYzcQ1wL3njF
+	0L/S+1bYagEQihwmW75KoHOgm/kPCSSPz5DaxFxcUJWYIBpLJTURESfaJ5F3jTXgGMGTuFV3xzT
+	c/z/i5C3BJ1vvvK5QZ5iQv7Xk6bfS98bU4VwCHBhVD49eUyuO5YzRjb247mMngbc4uJMhe91P2s
+	Ja0bW6vNeX2f+h0K7zl2lv0CDpj8TGu0ER40SDdYpLcPnE9aJ1A+oY65eM/vEkLDsZn4ntPhydW
+	uCyZhWQ+UlATbjbXDeXm1kYyZ3FGJIXMR/pF3rAXRgdd8Y7UkZ
+X-Google-Smtp-Source: AGHT+IF921kikcTkHlIvDzgVsy40cgNzPakf6t6regGsBt/OdL026TR0IgJnZoKbjjX5WAhS35O9sQ==
+X-Received: by 2002:a05:6102:f10:b0:5df:b4a8:fbac with SMTP id ada2fe7eead31-5ecb68d4fb5mr2634433137.20.1767885651104;
+        Thu, 08 Jan 2026 07:20:51 -0800 (PST)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec772e322asm6721157137.13.2026.01.08.07.20.50
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 07:18:05 -0800 (PST)
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-94120e0acbeso1922053241.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:18:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUZMnnLC1se7F8RjTVLqXi+V/hh074AsMtJQnLR7vcK6T++DGk4f+TN51H1nortos2zIYP1Ey8AuTQU@vger.kernel.org
-X-Received: by 2002:a05:6102:441c:b0:5df:af0f:308c with SMTP id
- ada2fe7eead31-5ecb692dc87mr2494543137.38.1767885484850; Thu, 08 Jan 2026
- 07:18:04 -0800 (PST)
+        Thu, 08 Jan 2026 07:20:50 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-9413e5ee53eso1937988241.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 07:20:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUbhdXklSfhRlSwdgNqBHgTC8XrmWaaUnwPQb2cIdW5DEieT81wvQzYxvU172687+vXWkq5knFPRaGH@vger.kernel.org
+X-Received: by 2002:a05:6102:dd3:b0:5ec:848f:7673 with SMTP id
+ ada2fe7eead31-5ecb1e8e9ebmr2504240137.6.1767885649941; Thu, 08 Jan 2026
+ 07:20:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251126130356.2768625-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251126130356.2768625-2-cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20251126130356.2768625-2-cosmin-gabriel.tanislav.xa@renesas.com>
+References: <20251126130356.2768625-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251126130356.2768625-3-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251126130356.2768625-3-cosmin-gabriel.tanislav.xa@renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 8 Jan 2026 16:17:53 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV9jwRL4=hAKgakymVY1fyUHG5ALg3Dd19aKeCNTC+ZtQ@mail.gmail.com>
-X-Gm-Features: AQt7F2rGh841rSfsaYiGZnB2YxsDi_NtDLARw02BQ55fscjhbxfqeMGfvtv6Y0A
-Message-ID: <CAMuHMdV9jwRL4=hAKgakymVY1fyUHG5ALg3Dd19aKeCNTC+ZtQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/9] thermal: renesas: rzg3e: make reset optional
+Date: Thu, 8 Jan 2026 16:20:38 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWSJbbRxoY1=U5KeYHm-Ahr8fU_Qzt7B9csfHnSe4UnLA@mail.gmail.com>
+X-Gm-Features: AQt7F2q16aDcyNINlNDKVAWHLex5gQZCaSJCRmvbCOMq8H5xzOXqPJrqo2w-sOM
+Message-ID: <CAMuHMdWSJbbRxoY1=U5KeYHm-Ahr8fU_Qzt7B9csfHnSe4UnLA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] thermal: renesas: rzg3e: make min and max
+ temperature per-chip
 To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 Cc: John Madieu <john.madieu.xa@bp.renesas.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
 	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
@@ -91,10 +92,11 @@ Content-Type: text/plain; charset="UTF-8"
 
 On Wed, 26 Nov 2025 at 14:04, Cosmin Tanislav
 <cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs do not have a
-> reset line.
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have
+> different minimum and maximum temperatures compared to the already
+> supported RZ/G3E.
 >
-> Prepare for them by making it optional.
+> Prepare for them by moving these into a chip-specific struct.
 >
 > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
