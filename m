@@ -1,144 +1,158 @@
-Return-Path: <devicetree+bounces-252578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-252581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32AFAD01316
-	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 07:07:05 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 304B9D01328
+	for <lists+devicetree@lfdr.de>; Thu, 08 Jan 2026 07:08:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3364D300FA3C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 06:07:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 316FA3004E1A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 06:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E65318B9C;
-	Thu,  8 Jan 2026 06:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7DA33A71C;
+	Thu,  8 Jan 2026 06:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="vKxWQBP0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EgcrzXvR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.67.179])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFA72641D8;
-	Thu,  8 Jan 2026 06:06:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.67.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33532302779;
+	Thu,  8 Jan 2026 06:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767852422; cv=none; b=BfqzfQxCR3gzIouNJmAzJAr9RyrrgeJVjzUutAJz9Y8ml114BazrwIWUJDpY3y9MinaaO1/o+991KZCwCKxMwBRgFFgrADQfvS33eKbG4mJ4GjAE/k6IwFmp8qp4NVt+Xy86S/AMuWK1vEC4+9gPkG2SR3MlcBtpttLUTufHvUQ=
+	t=1767852506; cv=none; b=m6IFhIwOBD/MGNluU4OHbEc++ER4Cd46AOQ7Kj/SYtFUNpqMzRsrrzcJmDYccG5BJURSJVtm4NqGvrTNOFRkbMEOXemvDQjZ0Fr4XmP6S5Ql4SIldIhv7mApzGAwGpoq6uIf24yy1LbOli79K0HX4DkWkiF/eF9QWhvGNkmDX+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767852422; c=relaxed/simple;
-	bh=fsrnb+Y4r81Veda1qwY1ytq+j3LmXnLMJwOLdwU1sWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sgJsQIZo/E/8hCb0mcl/DgtP5k/Yoh2eOa784EzmKgC51JK++RbyliO5YzhjO0lueFp3Uoh7ydCrzE+DyFwgcsKz4z7IT4ku+x6sNVIvObFDTXqDIouV8H0vXRGbaOTq78e0jhv+xk+VA6VHrRUGiYgpGkf3D7el15iBG8N8vZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=vKxWQBP0; arc=none smtp.client-ip=114.132.67.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1767852370;
-	bh=j0RQPNNJah66+rfz5mRIL/zR77AlQ7tUXDwKwV5J7t8=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=vKxWQBP0nZhb82Z1SoTqY3j0ocfBnhZndtL2O+hfjv75fAwIaqcdBQ9Y5GC8pxw3w
-	 LHkWTP/vh09WDOLbYVq+VuaeVumFbi9Sln5GRf03IHnfJrNfa953oVg3WvK3eB0vjq
-	 mW9n6/oSjsIztl3nnQSNFlpuFYb4sGHV+jYdEOas=
-X-QQ-mid: zesmtpgz4t1767852369tcd8001f2
-X-QQ-Originating-IP: beWczbJwO/mTqfpOHrU+Qy/PUKSpkmuOz7CV2yJE0rM=
-Received: from = ( [120.239.196.107])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 08 Jan 2026 14:06:07 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 9103380488815538489
-EX-QQ-RecipientCnt: 16
-Date: Thu, 8 Jan 2026 14:06:07 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Yixun Lan <dlan@gentoo.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 2/2] pinctrl: spacemit: support I/O power domain
- configuration
-Message-ID: <2D1901252926D8F1+aV9JT8p0rON5RNc_@kernel.org>
-References: <20251223-kx-pinctrl-aib-io-pwr-domain-v1-0-5f1090a487c7@linux.spacemit.com>
- <20251223-kx-pinctrl-aib-io-pwr-domain-v1-2-5f1090a487c7@linux.spacemit.com>
- <20251227-pastel-certain-orca-4b53cf@quoll>
- <20260108042753-GYA2796@gentoo.org>
+	s=arc-20240116; t=1767852506; c=relaxed/simple;
+	bh=RYHvBenPbSd/Yi3PszJcY9ayngdFIumRsmnQpcNICxs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QJ0gCuzJ2zGgrZFmJR8xwTz5DG8tgk0hdA6eBa2cuErK33LL7iZESdRh8DfCQakg8pNQAZND+DEjTFTvs2NHR4Bucyp029hJFIwZSYTJSjJZQdKfJA121vF83Ma2suYZV7cUCqH4+ZvuJeEeWf81wPI+p2kEVWclJ9eGFMIY/aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EgcrzXvR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BD732C116C6;
+	Thu,  8 Jan 2026 06:08:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767852505;
+	bh=RYHvBenPbSd/Yi3PszJcY9ayngdFIumRsmnQpcNICxs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=EgcrzXvR+e6GdnT9wqdYucJ55Yn8fILi9I1o//ol91/F9HPZ+3GGneZBNE15oFUvI
+	 vyMLAeQ8z1rRnChp2BxJM0Kv5azww5PW8W+naQ37vD7xu4hFAzZhErkmv9JGfQa7L9
+	 pzLj255i7aPaLsBSutm/wAHaIzuwEeGqMKqmfnRNJixA3AQ7IipgcXWASLXkhsqLnX
+	 LGH4luQ3mGr15NCUStnxkt/5h8jEE6W3ZA7yv2ZcXZmaW7aH65+Euf3mQnWF3ZnThx
+	 /gntxcmzBXf4b7JKtoQdGXWL0lWeWZFQ+Wc++a0YILgfqtQESDNzbT+3BzeuLcN4mo
+	 4x520nP8p4czQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB7C2D1489F;
+	Thu,  8 Jan 2026 06:08:25 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH v5 0/8] clk: amlogic: Add A5 SoC PLLs and Peripheral clock
+Date: Thu, 08 Jan 2026 14:08:14 +0800
+Message-Id: <20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260108042753-GYA2796@gentoo.org>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: NgbPj60qx8q1bjuxTEeAERR7k3tRz1wd46JBJAsBulCSVPZedRL7WOHm
-	5eoPazxdnZNaDn9d6aoeWb3LfE/K2ZuhPzMYAFRVRl3BdABLvx5wO50Dz20jg7YBXz68ENn
-	iRGVl5Ob7xU5nDWLzia9TupN8PNnQeC7wc5Dvx97qmyOe3YtlIIcGza/te//ehmswJHGx4x
-	J+rrlO6bB1QOnzC94iEnbLBzqs3UuC1nMDpyIS+5+m8y9xCqS/bxme3HoQu4IU4nsDy697f
-	Lbsa4aZkotxjZNcdBpUFr2eqKs6BQOztGEGyyBtiRWHBs5xQY5Nj8J4Rc0BFZnk81GGYnwJ
-	PdSITqEuv4cqqdfwgZK4a39KsvHSlIh72+psTdAsGBYQl/ovch/l1wwyMMYMgkTIcsyFyDg
-	GS+AO+A8/nxzSdR1q0aBuJ9hBYUVzejkBgtXSE4Mw4luDbzgZjdEROb0JQlihBCnBPESspR
-	kN7e2Yk3h/5DhRx9PN7dbJx862ntTUnByq7RcQsJ0B8m2K02uOdGlnUekYfchy7UwyW55d/
-	ukVmJ6PkuVStVfuUBjktRVUJ5xh7LBjl/VX/ECrdE/smLRc/DUDqr4JeWn29/8bc9O0JLVN
-	mlV42jnr8cPMA0pJdQ3oUEZtvzXRV1gHh59+LLhuo3QFGImnL84/YWxfv3O97SEATDaHuRC
-	w0P7X77zwzj8BZaT6dVjuFHrMZlKMcEBXp61Y0+b4iWYUpt0Fl88v96jzsbILVfURAAzKuB
-	7lgnxfTTciKtg3CEcXzoE1jprAscV4m6mlSM55HQnM/eqO0oWrwdFsbPT3pNiMi/xrx9XY0
-	Xuz1dOD0/FgymaAevIDfin2esZVQh+72LWNJgIkpKDK/eQ3IbLwpWeKer2fmgL9B5MwzPjC
-	C56lGIRndAco5ugdvS5j76pZCANmpDGPRCK7iUGqIIagxLLnVb4DEVm2qzDDU5AhhaPvQMq
-	G8ODgKBrgQHqY4EsPdj3aFaHQWiGG6PCdeedmVXLH84hFGWjGQK2ceELfrLfE2eZ7HBB6ec
-	kSzh/DgBJRMrb0Gfx2/U5wE85CTlNMcLXKLd2Kg50yaTFt1IJujNzsw3G2xTSJcyddgOP3F
-	tXH1drmq5i/jcOpSoCnk4+m9zDwALF7V6DQsn50fA4cMXvbPdDp8+3JFWoV5npRL4wAuOpz
-	hqeHO955dnG8hePPW/4jrS20OA==
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAM5JX2kC/2XMTQqDMBCG4atI1k3JjIloV71H6SKOo4b6U0wJL
+ eLdGwWF0uU3zPPOwvPk2ItLMouJg/NuHOIwp0RQa4eGpaviFqhQqwJAWiOpe8jUkC4slalmEPH
+ 5OXHt3lvodo+7df41Tp+tG2C97gm9JwJIJQ0zkq6hVDldbd+NjaMzjb1YIwEPCIDqgBhh3HmGw
+ EUG1T/UOzSgMD+gjpAzJKusZdTpL1yW5QsTZL2sEAEAAA==
+To: Chuan Liu <chuan.liu@amlogic.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767852503; l=3239;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=RYHvBenPbSd/Yi3PszJcY9ayngdFIumRsmnQpcNICxs=;
+ b=bNmkHioG5afqUsiyHyWBmdJF5FymiZB8FvlwfnAAkHB9zBkDq58F6ck1JB+W3dKVC1+97bR+2
+ Zk8BKItr/F+AHr7k7GgC+5esELm5Wny+ymECuG/t+DPCW3Rp3PBtvmD
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+Reply-To: chuan.liu@amlogic.com
 
-On Thu, Jan 08, 2026 at 12:27:53PM +0800, Yixun Lan wrote:
-> Hi Troy, Krzysztof, 
-> 
-> On 14:00 Sat 27 Dec     , Krzysztof Kozlowski wrote:
-> > On Tue, Dec 23, 2025 at 05:11:12PM +0800, Troy Mitchell wrote:
-> > > IO domain power control registers are used to configure the operating
-> > > voltage of dual-voltage GPIO banks. By default, these registers are
-> > > configured for 3.3V operation. As a result, even when a GPIO bank is
-> > > externally supplied with 1.8V, the internal logic continues to
-> > > operate in the 3.3V domain, which may lead to functional failures.
-> > > 
-> ..
-> > > +	pctrl->io_pd_reg = devm_platform_ioremap_resource(pdev, 1);
-> > > +	if (IS_ERR(pctrl->io_pd_reg))
-> > > +		return PTR_ERR(pctrl->io_pd_reg);
-> > > +
-> > > +	pctrl->regmap_apbc =
-> > > +		syscon_regmap_lookup_by_phandle_args(np, "spacemit,apbc", 1,
-> > > +						     &pctrl->regmap_apbc_offset);
-> > > +
-> > > +	if (IS_ERR(pctrl->regmap_apbc))
-> > > +		return dev_err_probe(dev, PTR_ERR(pctrl->regmap_apbc),
-> > > +				     "failed to get syscon\n");
-> > 
-> > Actual ABI break.
-> > 
-> Indeed, there will be a ABI break.
-> 
-> so, how about not abort in probe() if no "spacemit,apbc" phandle found?
-> and then do it in a compatible way as old behevior
-will in the next version.
-> 
-> We may still need to drop this property from "required" section in DT
-Yes. Thanks!
+The patchset adds support for the peripheral and PLL clock controller
+on the Amlogic A5 SoC family, such as A113X2.
 
-                          - Troy
-> 
-> > Best regards,
-> > Krzysztof
-> > 
-> > 
-> 
-> -- 
-> Yixun Lan (dlan)
-> 
+Co-developed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+
+---
+Changes in v5:
+- Add “Co-developed-by” tag for Xianwei.
+- Change rtc_clk flags to CLK_SET_RATE_NO_REPARENT.
+- Optimize the macro definitions for clock configuration.
+- Unified naming of clock parent related variables.
+- Link to v4: https://lore.kernel.org/r/20251028-a5-clk-v4-0-e62ca0aae243@amlogic.com
+
+Changes in v4:
+- dt-binding for peripheral clocks (kept Rob’s 'Reviewed-by' here):
+  - Added optional clock source rtc pll.
+  - Renamed rtc_clk’s clkid to better reflect its function.
+- PLL/Clock driver:
+  - Adapted to Jerome’s refactored driver interface, naming
+conventions, and macros.
+  - Updated related CONFIG entries in Kconfig.
+- Added dts patch of PLL/Clock.
+- Link to v3: https://lore.kernel.org/r/20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.com
+
+Changes in v3:
+- Rename xtal_24m to xtal, and modify some description of Kconfig.
+- Drop some comment of PLL source code.
+- Move definition of A5_CLK_GATE_FW frome common code into A5 peripheral source code.
+- Use hw instead of name to describe parent_data.
+- Making SCMI binding the first to submit.
+- Link to v2: https://lore.kernel.org/r/20241120-a5-clk-v2-0-1208621e961d@amlogic.com
+
+Changes in v2:
+- Move some sys clock and axi clock from peripheral to scmi impletement.
+- Remove  ARM_SCMI_PROTOCOL in Kconfig and correct name A5 but not A4.
+- Add two optional clock inputs for the peripheral(ddr pll and clk-measure)
+- Make some changes and adjustments according to suggestions.
+- Link to v1: https://lore.kernel.org/r/20240914-a5-clk-v1-0-5ee2c4f1b08c@amlogic.com
+
+---
+Chuan Liu (8):
+      dt-bindings: clock: Add Amlogic A5 SCMI clock controller support
+      dt-bindings: clock: Add Amlogic A5 PLL clock controller
+      dt-bindings: clock: Add Amlogic A5 peripherals clock controller
+      clk: amlogic: Add A5 PLL clock controller driver
+      clk: amlogic: Add A5 clock peripherals controller driver
+      arm64: dts: amlogic: A5: Add scmi-clk node
+      arm64: dts: amlogic: A5: Add PLL controller node
+      arm64: dts: amlogic: A5: Add peripheral clock controller node
+
+ .../clock/amlogic,a5-peripherals-clkc.yaml         | 134 ++++
+ .../bindings/clock/amlogic,a5-pll-clkc.yaml        |  63 ++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |  86 +++
+ drivers/clk/meson/Kconfig                          |  27 +
+ drivers/clk/meson/Makefile                         |   2 +
+ drivers/clk/meson/a5-peripherals.c                 | 796 +++++++++++++++++++++
+ drivers/clk/meson/a5-pll.c                         | 478 +++++++++++++
+ .../clock/amlogic,a5-peripherals-clkc.h            | 132 ++++
+ include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |  24 +
+ include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |  44 ++
+ 10 files changed, 1786 insertions(+)
+---
+base-commit: f0b9d8eb98dfee8d00419aa07543bdc2c1a44fb1
+change-id: 20240911-a5-clk-35c49acb34e1
+
+Best regards,
+-- 
+Chuan Liu <chuan.liu@amlogic.com>
+
+
 
