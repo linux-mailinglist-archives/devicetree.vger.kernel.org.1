@@ -1,251 +1,150 @@
-Return-Path: <devicetree+bounces-253282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C665D09ADB
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 13:32:09 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D9DD0996A
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 13:26:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CAA7D30580A6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 12:19:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A23F130A3AD9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 12:20:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5522359FA0;
-	Fri,  9 Jan 2026 12:19:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9705735A95C;
+	Fri,  9 Jan 2026 12:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="yOQ5FDo3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f47.google.com (mail-yx1-f47.google.com [74.125.224.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F355833C1B6
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 12:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6B035A952
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 12:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767961145; cv=none; b=PLEofkePSLe+LhDXViMgWTZ1EvpV4YRnDjaT22RI2Vt77B+vy2vZ4y/yg+kvux7HsutZgpEXS16GLZuPrYptwZgzuyVa6ToJrAzVEytvGbHbKXvlv9s+e7Sz+yiAvGk6pTEfz+clzn4eN9n0YPSu5/84LOMtDFPNAAbbnGUC9w4=
+	t=1767961234; cv=none; b=bMr90sZ41aBAn48S/km3ZHNOxzqXycuarRcjH1tkBPt87m3GRsIsGSn/FOODVDP87htCTZWD+cJwOprvkCvDWq3f6RgoKG2Y8cTRM4EaSNrzD3tkgjr5VRumxdJ3MAlkgnKEWNRcJ09ifN90Alx+nD2zdVsdGlZdAPABulfoxcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767961145; c=relaxed/simple;
-	bh=/tiERx8rE15fRtVW1yTKJ5qhoiHNDMU5y0D9UOigCSI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TErFPcdNj4tnmmWAmE4wRs8DtfuvD5X/Av+1pZPA4eS4IONDIu77HPUvtRt/zx/gM1ucIsLcsgtyBtvi2FC8pW3EMogudJ6s7Is4MLFRdsviJDXkvPNO7f6vqiIclGu09Buy1YEgYDpxCvhqcgOZZOONo8+Cqt2IV25pTTXdfBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1veBRz-0000SF-A4; Fri, 09 Jan 2026 13:18:43 +0100
-Message-ID: <03fd04f7-629c-48cd-b498-0a1ebb67690d@pengutronix.de>
-Date: Fri, 9 Jan 2026 13:18:40 +0100
+	s=arc-20240116; t=1767961234; c=relaxed/simple;
+	bh=iZMXxod4+roZ3ZATUDhYNOynA14pD/OOmrS9JayfZjE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jeu0WXvsHhZzIVcFzA7mGLD/+pvoDu7YVrGOk4dTIE9GaRZp8ruJISAXS/MxbskvBmeoolXeuaiJdgzEjjCtgkxmLVbeRabkSzLJfcI0bGts+zoPpc/zxjI+V2rVjZKRpT6bqfCrXQwqAUGRTum1jc54Bi2iKQCeWybPFhuYtus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=yOQ5FDo3; arc=none smtp.client-ip=74.125.224.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yx1-f47.google.com with SMTP id 956f58d0204a3-64669a2ecb5so3598449d50.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 04:20:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767961231; x=1768566031; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ukh2GBiqrpSOrFovoNwBAt/J/QmgBGkcNbLsTOHoYIQ=;
+        b=yOQ5FDo3jAsZd8Y0UdH4QmSVbKfqRlefFNag/4CAiRnZ/LYRDMVqJNUwHuwn0F1s8t
+         XpRk37PsOKwM07W9tgoOdAuX+B0RqW6SVyUQsqi6kEY57RecGxj8kD6aVVO6A6Rd1DQn
+         f278MIcqVOMz0Dw27exsaVhcuGxTF4Xe9H9IFTSpHvEuGxY6zHgIECgasis9NA2Movec
+         kfKUpKfHX8YrJ5RKMr6PXGwWU17X269TG4ltn7vbmXrQ8Ybs2xiIEd7X9NHrFVx7hc1n
+         ynGZ+a2wRMkJ2BX7sRr0oQNMEZWD3CmfyHs7oLPHM6DSLe8V9nVpBWPbVwqM+oqN28zC
+         SB6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767961231; x=1768566031;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ukh2GBiqrpSOrFovoNwBAt/J/QmgBGkcNbLsTOHoYIQ=;
+        b=oTmk1c94aLDwgvU5w6Zz0JB12hmkZJ6aCZ0zTrLlRaUHLh4ZDFdLjC0UkRAgm0EOme
+         n9L3m4tfW2lvCA+Lh0p2rJd9jT2x3H7ufBec8q3eLNc0jvQUpYsbaWax5QRqPuQV1SDA
+         SKXp0hIWG2YlP5mmDHmOMNfAE2lqsxRqlgLXicF6Zjhm2w5hZdNRyizO091r+l/UoPQ8
+         IJ9dVdNHd07wvVuMLNAqWNRkx7Dd85C7M0Z/VfoEU/zQ/3p/hOIyOLTwuC8lroDgytTM
+         8f2uPySJm1Sv3+uTvaKFJiWvBm1pUSJ/B0C+OdB+uwgeqtVV+LIqCVK0bZQuEodaHoaC
+         NwgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWVCdHIhjhJdGlr2WtVhfUYXeqYxInYs+CwqirZf0Kw1I0dw1WZxB8U+jojncURTYzCXu33kQkSsxOC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGrrl74MOCANEXv3ZIAGqA38IcPDeVolTYNEqEs3scxnB07yZm
+	KumgQ+sVU4U2rFoh+YQsWFcF8RMpquQaMRoZaEXtZcl4ccak/mx7jETrGwvmCC6rAq20jOYoyqo
+	C8ifsj1oXUxfMysZ+LOU2izREmSAwCQ8W3Ep7oat4bw==
+X-Gm-Gg: AY/fxX4YEB63GZD4WvMtAfSiMXYBBODHT2mPwIwin3tH3ibCTgN189mCUlNms1WOu5/
+	uVqYaZHjBMKdo26B7xpLfm5H+5+jekhc8AgTJVNp0G8QWjxMHvr1CTrbEtJo74VTNQ+ImU2ctNY
+	LrUV31DH9y/lxjcRcBJlp3fjbmAeOAVePFVbXDRWebwZ6FBThJFEMrUPfZABzivoWT5Wi0VDzRk
+	4Fcjb2BOz0YMvof79D9vlh7zi2QkgzF9QhF1zAn/rC/VUFqwWT7163mh0zjk85lXFxN121ITQEo
+	QFJQcVmn9FTxm0vumWUPr/ddFO5eCgTG+nH8zbJmy1k=
+X-Google-Smtp-Source: AGHT+IEhMWcvDM1SrRQXH+l+w0IiP0cunz8wXS9r5P4Z+auaz2lvzOyrhy9URS2jkNUL58e6LoB0ZIxYLGgtVQF/jg4=
+X-Received: by 2002:a05:690e:4008:b0:645:527b:bc25 with SMTP id
+ 956f58d0204a3-6470d316484mr11391255d50.43.1767961231358; Fri, 09 Jan 2026
+ 04:20:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/22] media: rockchip: rga: check scaling factor
-To: Nicolas Dufresne <nicolas@ndufresne.ca>,
- Jacob Chen <jacob-chen@iotwrt.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kernel@pengutronix.de
-References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
- <20251203-spu-rga3-v2-11-989a67947f71@pengutronix.de>
- <02ac025c0ecf17354377c7f2c2fc83b40a3a41e1.camel@ndufresne.ca>
-Content-Language: en-US
-From: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-In-Reply-To: <02ac025c0ecf17354377c7f2c2fc83b40a3a41e1.camel@ndufresne.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20260102-02-k3-pinctrl-v3-0-30aa104e2847@gentoo.org> <20260102-02-k3-pinctrl-v3-2-30aa104e2847@gentoo.org>
+In-Reply-To: <20260102-02-k3-pinctrl-v3-2-30aa104e2847@gentoo.org>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Fri, 9 Jan 2026 20:20:19 +0800
+X-Gm-Features: AQt7F2pX-qHrvIy9ewuvaqm_6fzKWfdXRjphTDvJYELxE1h4Qxa4FZfMO-nJbgI
+Message-ID: <CAH1PCMaXW4469pFRGC+HcixO7PGLQpKKJ_Z5VEhHUMdd3DNWTg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: pinctrl: spacemit: add K3 SoC support
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/24/25 4:39 PM, Nicolas Dufresne wrote:
+Hi, Yixun
 
-> Le mercredi 03 décembre 2025 à 16:52 +0100, Sven Püschel a écrit :
->> Check the scaling factor to avoid potential problems. This is relevant
->> for the upcoming RGA3 support, as it can hang when the scaling factor
->> is exceeded.
->>
->> There are two relevant scenarios that have to be considered to protect
->> against invalid scaling values:
->>
->> When the output or capture is already streaming, setting the format on
->> the other side should consider the max scaling factor and clamp it
->> accordingly. This is only done in the streaming case, as it otherwise
->> may unintentionally clamp the value when the application sets the first
->> format (due to a default format on the other side).
->>
->> When the format is set on both sides first, then the format won't be
->> corrected by above means. Therefore the second streamon call has to
->> check the scaling factor and fail otherwise.
-> In codec specifications, we resolve this issue by resetting the capture format
-> every-time the output format is set. But without specification for color
-> transforms, its impossible to say if this is right or wrong, and I don't expect
-> perfect interroperability between drivers until someone make the effort to
-> specify this type of hardware.
+On Fri, Jan 2, 2026 at 3:04=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
 >
-> What you describe is fine of course, but its a bit off nature of the way format
-> is normally being fixed by the driver to stay valid.
-
-thanks for the info. Given the missing spec, I'd keep it at the current 
-unusual implementation unless I'd need to adjust it for the try_fmt 
-state issue.
-
->> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
->> ---
->>   drivers/media/platform/rockchip/rga/rga-hw.c |  1 +
->>   drivers/media/platform/rockchip/rga/rga-hw.h |  1 +
->>   drivers/media/platform/rockchip/rga/rga.c    | 60 +++++++++++++++++++++++++---
->>   drivers/media/platform/rockchip/rga/rga.h    |  1 +
->>   4 files changed, 58 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media/platform/rockchip/rga/rga-hw.c
->> index 8cdfe089fd636..2ed4f22a999d5 100644
->> --- a/drivers/media/platform/rockchip/rga/rga-hw.c
->> +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
->> @@ -624,6 +624,7 @@ const struct rga_hw rga2_hw = {
->>   	.max_width = MAX_WIDTH,
->>   	.min_height = MIN_HEIGHT,
->>   	.max_height = MAX_HEIGHT,
->> +	.max_scaling_factor = MAX_SCALING_FACTOR,
->>   	.stride_alignment = 4,
->>   
->>   	.setup_cmdbuf = rga_hw_setup_cmdbuf,
->> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.h b/drivers/media/platform/rockchip/rga/rga-hw.h
->> index f4752aa823051..fffcab0131225 100644
->> --- a/drivers/media/platform/rockchip/rga/rga-hw.h
->> +++ b/drivers/media/platform/rockchip/rga/rga-hw.h
->> @@ -14,6 +14,7 @@
->>   
->>   #define MIN_WIDTH 34
->>   #define MIN_HEIGHT 34
->> +#define MAX_SCALING_FACTOR 16
->>   
->>   #define RGA_TIMEOUT 500
->>   
->> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
->> index f02ae02de26ca..46dc94db6f85e 100644
->> --- a/drivers/media/platform/rockchip/rga/rga.c
->> +++ b/drivers/media/platform/rockchip/rga/rga.c
->> @@ -346,18 +346,47 @@ static int vidioc_g_fmt(struct file *file, void *priv, struct v4l2_format *f)
->>   static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
->>   {
->>   	struct v4l2_pix_format_mplane *pix_fmt = &f->fmt.pix_mp;
->> -	struct rockchip_rga *rga = video_drvdata(file);
->> +	struct rga_ctx *ctx = file_to_rga_ctx(file);
->> +	struct rockchip_rga *rga = ctx->rga;
->>   	const struct rga_hw *hw = rga->hw;
->>   	struct rga_fmt *fmt;
->> +	u32 min_width = hw->min_width;
->> +	u32 max_width = hw->max_width;
->> +	u32 min_height = hw->min_height;
->> +	u32 max_height = hw->max_height;
->>   
->>   	fmt = rga_fmt_find(rga, pix_fmt->pixelformat);
->>   	if (!fmt)
->>   		fmt = &hw->formats[0];
->>   
->> -	pix_fmt->width = clamp(pix_fmt->width,
->> -			       hw->min_width, hw->max_width);
->> -	pix_fmt->height = clamp(pix_fmt->height,
->> -				hw->min_height, hw->max_height);
->> +	if (V4L2_TYPE_IS_OUTPUT(f->type) &&
->> +	    v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx)->streaming) {
-> What if userspace wanted to get the buffer size computed, so it can allocate
-> externally before it calls streamoff ? Hans did mention recently that try
-> function should only be state aware if specified.
-
-My plan is to move the try logic into a separate helper function with an 
-additional boolean parameter depending on which I do the state aware 
-adjustments. And then call this helper with false for try_fmt and true 
-for set_fmt.
-
-Or is this also problematic as it violates the contract that try_fmt is 
-equivalent to set_fmt?
-
+> Add new compatible string for SpacemiT K3 SoC, the pinctrl IP shares
+> almost same logic with previous K1 generation, but has different register
+> offset and pin configuration, for example the drive strength and
+> schmitter trigger settings has been changed.
 >
-> I'd like other reviewers feedback on what should be done here, of course writing
-> a spec would be ideal.
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> ---
+>  .../devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml       | 10 ++++=
++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
 >
-> Nicolas
+> diff --git a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctr=
+l.yaml b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> index 609d7db97822..9a76cffcbaee 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> @@ -11,7 +11,9 @@ maintainers:
 >
->> +		min_width =
->> +			MAX(min_width, DIV_ROUND_UP(ctx->out.pix.width,
->> +						    hw->max_scaling_factor));
->> +		max_width = MIN(max_width,
->> +				ctx->out.pix.width * hw->max_scaling_factor);
->> +		min_height =
->> +			MAX(min_height, DIV_ROUND_UP(ctx->out.pix.height,
->> +						     hw->max_scaling_factor));
->> +		max_height = MIN(max_height,
->> +				 ctx->out.pix.height * hw->max_scaling_factor);
->> +	} else if (V4L2_TYPE_IS_CAPTURE(f->type) &&
->> +		   v4l2_m2m_get_src_vq(ctx->fh.m2m_ctx)->streaming) {
->> +		min_width =
->> +			MAX(min_width, DIV_ROUND_UP(ctx->in.pix.width,
->> +						    hw->max_scaling_factor));
->> +		max_width = MIN(max_width,
->> +				ctx->in.pix.width * hw->max_scaling_factor);
->> +		min_height =
->> +			MAX(min_height, DIV_ROUND_UP(ctx->in.pix.height,
->> +						     hw->max_scaling_factor));
->> +		max_height = MIN(max_height,
->> +				 ctx->in.pix.height * hw->max_scaling_factor);
->> +	}
->> +
->> +	pix_fmt->width = clamp(pix_fmt->width, min_width, max_width);
->> +	pix_fmt->height = clamp(pix_fmt->height, min_height, max_height);
->>   
->>   	v4l2_fill_pixfmt_mp_aligned(pix_fmt, pix_fmt->pixelformat,
->>   				    pix_fmt->width, pix_fmt->height, hw->stride_alignment);
->> @@ -523,12 +552,33 @@ static int vidioc_s_selection(struct file *file, void *priv,
->>   	return ret;
->>   }
->>   
->> +static bool check_scaling(const struct rga_hw *hw, u32 src_size, u32 dst_size)
->> +{
->> +	if (src_size < dst_size)
->> +		return src_size * hw->max_scaling_factor >= dst_size;
->> +	else
->> +		return dst_size * hw->max_scaling_factor >= src_size;
->> +}
->> +
->>   static int vidioc_streamon(struct file *file, void *priv,
->>   			   enum v4l2_buf_type type)
->>   {
->>   	struct rga_ctx *ctx = file_to_rga_ctx(file);
->>   	const struct rga_hw *hw = ctx->rga->hw;
->>   
->> +	if ((V4L2_TYPE_IS_OUTPUT(type) &&
->> +	     v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx)->streaming) ||
->> +	    (V4L2_TYPE_IS_CAPTURE(type) &&
->> +	     v4l2_m2m_get_src_vq(ctx->fh.m2m_ctx)->streaming)) {
->> +		/*
->> +		 * As the other side is already streaming,
->> +		 * check that the max scaling factor isn't exceeded.
->> +		 */
->> +		if (!check_scaling(hw, ctx->in.pix.width, ctx->out.pix.width) ||
->> +		    !check_scaling(hw, ctx->in.pix.height, ctx->out.pix.height))
->> +			return -EINVAL;
->> +	}
->> +
->>   	hw->setup_cmdbuf(ctx);
->>   
->>   	return v4l2_m2m_streamon(file, ctx->fh.m2m_ctx, type);
->> diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
->> index 93162b118d069..d02d5730b4e3b 100644
->> --- a/drivers/media/platform/rockchip/rga/rga.h
->> +++ b/drivers/media/platform/rockchip/rga/rga.h
->> @@ -152,6 +152,7 @@ struct rga_hw {
->>   	size_t cmdbuf_size;
->>   	u32 min_width, min_height;
->>   	u32 max_width, max_height;
->> +	u8 max_scaling_factor;
->>   	u8 stride_alignment;
->>   
->>   	void (*setup_cmdbuf)(struct rga_ctx *ctx);
+>  properties:
+>    compatible:
+> -    const: spacemit,k1-pinctrl
+> +    enum:
+> +      - spacemit,k1-pinctrl
+> +      - spacemit,k3-pinctrl
+>
+>    reg:
+>      items:
+> @@ -81,6 +83,12 @@ patternProperties:
+>                - enum: [ 7, 10, 13, 16, 19, 23, 26, 29 ]
+>                  description: For K1 SoC, 3.3V voltage output
+>
+> +              - enum: [ 2, 4, 6, 7, 9, 11, 13, 14, 21, 23, 25, 26, 28, 3=
+0, 31, 33 ]
+> +                description: For K3 SoC, 1.8V voltage output
+> +
+> +              - enum: [ 3, 5, 7, 9, 11, 13, 15, 17, 25, 27, 29, 31, 33, =
+35, 37, 38 ]
+> +                description: For K3 SoC, 1.8V voltage output
+
+Should one of these be 3.3V? Both descriptions currently specify 1.8V.
+
+Best regards,
+Guodong Xu
+
+> +
+>            input-schmitt:
+>              description: |
+>                typical threshold for schmitt trigger.
+>
+> --
+> 2.52.0
+>
+>
 
