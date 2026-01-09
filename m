@@ -1,117 +1,112 @@
-Return-Path: <devicetree+bounces-253395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8D2DD0BE08
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 19:39:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF22D0BE7C
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 19:43:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C50A93027597
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 18:39:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D975330D2837
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 18:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E9C299949;
-	Fri,  9 Jan 2026 18:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB95E2BEC3F;
+	Fri,  9 Jan 2026 18:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JrptUlM5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8870927FB34
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 18:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9730B278E47;
+	Fri,  9 Jan 2026 18:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767983975; cv=none; b=cTU4L5ONZfq2S6UND/6hSIcKeG8CSZYy0yodt8//hgxDHEXC7gX6DaP02WcSrNfhlg7m+szql+b9Q4a6Fjclu9o47YRZkXOW/9IXHdqZwyzOgbRdYSN0C9mSpBCEgt5ClpuoPRaj6K3hXfQXJnMy/ZZNxHcbRWcRUf6i3cjiVsM=
+	t=1767984086; cv=none; b=ZXui1DsKs+l0D14u9Igs1wSXMRlB9zBMWnuTNFe+gdxCVJySwaBbxmPqe0dkiCNND41D84WVrr20eTHe8KJxORJosOCOFX+yx6oABqQB5nXmoVZe9wBdXj7upPtGYEakUchcKuG6jNNQZm6xQKPMKNkotXCR2mzSYMETRv1gOiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767983975; c=relaxed/simple;
-	bh=y1gtTxi2yb3k6kp7O25uyIdCMmBuVjPt0jggABGGS+M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Eu8g/DN/txaErn/F1U1Am9MoYIL7BdNPPXZq9ax89lKXllkApeXhFlPvArmJ+yIRF7JpgQUJpIBDyq3apy/9PdKpXiuCe3CHtD0SDnz2gGJDHq3v+wV0MGBVXIQhV4n3/X8eCRZuyv7wa3weVZ+Pw3jyvP2346LMGjxoZYV8bCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-93f500ee7b8so2214555241.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 10:39:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767983972; x=1768588772;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DI2vaQ4j4Y7F+Kqlo0E9lSJxr88gYTxnhRjrPcAUZdM=;
-        b=j2e8TUqCmicDOkW20a69PpBwjcvS3fGJYIQIGNbjwI1Vj40rvz+9Zq78DZuP8aMKGd
-         KS0Zd1XZi0sWhTctL8zMN5UQwO6jehaWlDq///jPmZNOAgWSr0bgSiDdxL/Q4kdyhYNZ
-         p1XlN+FaPFdlFvrlN+FGZEMsLlyBQSlw5PUJb+AI50g/kTUWChp1SwpcMlkMCUNbl9Dx
-         AOdjSpbThUzbV/9P5B2AeezvYBVMP/xmRNQjnWE//vKg95YDsqDxGFYCuYUWEGfkCFfV
-         VWJpPxJ/dAFbcmQVvwQp6l6ndU0DUIXcjNo5GOYu7bADjIvfw+AXd6cH5qZjoKv7/ETe
-         lTuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW0ME0tW3xkjo9cKkHtKJ9HNQX+6ECekq40NgKgtk9f2PPJlDIlWH3eDfPoq6mL222nPb+/rXdl6kWH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbSdhO+TiGT+eGbvpCZoX34yp9L4EIe6lEvSKNw5nyDSHnHSQT
-	MnbvVTkAub01ZW5Zy2jWYSImJ6Qp1eAG7+WT1isg4EAWYzuHXReRy39gMhejYhMc
-X-Gm-Gg: AY/fxX4C22Pgycx4WfBK7gTiyC7Uzwg+G5DJgIpQ3Zfsj0hqIXa3BLMskwxc29l9Yr/
-	0eqhRqUG16g993ApAQ4cJ4I2ccvDx151RwHYABUCGkdwVTpAKSfCi/xiKW0cIjx8kbOm9p7desx
-	v0Np4pJcmPuXN3Fp5j3H8ymu6I3Sm/YHMXAttgj0M3fRSCgOh+L3ABHTSrgEcRRPNQNfhHRKLh/
-	+lbDylTF6uqF84yfEoOlb1kkoqrJhUNJsLNLkQ2skthy9qqFFNoQzgJClHTSTZgs1LjjeO3YFKz
-	giQz6SIiZIPvWtpG7GsYKKTrbMKD5RXimlyTHt8y+W6dsw5NIj3fz9TFx3Doj8yJpXkL1xUygLp
-	6JbCBORsoH2dpEsIRAWaUG0bj4UQYnwEuyviVBC4+l/Ai8WUDJWmbsRenS61pChn70Nro1t5zUL
-	hm/3mgA77zmYmOv8Zr6UUORxZOA5M7PGUG3N+8SwDu+v8ajW9y
-X-Google-Smtp-Source: AGHT+IG0YmKEB4tqULNcFSZKZ0cGZIaATMjh9GrfPba8qRwSqUucxWRhd0klvpUrIv4moZc+QPZFYA==
-X-Received: by 2002:a05:6102:2d07:b0:5db:e0fe:985c with SMTP id ada2fe7eead31-5ecb6853a90mr4262230137.10.1767983972355;
-        Fri, 09 Jan 2026 10:39:32 -0800 (PST)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec77064e86sm10396587137.7.2026.01.09.10.39.31
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jan 2026 10:39:31 -0800 (PST)
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-94124140e02so2856971241.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 10:39:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUY/+JRE0sVoNwXXvuDM9OL5kAh7EJ9kRRuVZ6w4nwakO+dj+DE7Xs4dYKcPJHFWTEIDjdArvOCbiq4@vger.kernel.org
-X-Received: by 2002:a05:6102:26cb:b0:5e5:5ed7:60ae with SMTP id
- ada2fe7eead31-5ecb6900d02mr4442716137.31.1767983970833; Fri, 09 Jan 2026
- 10:39:30 -0800 (PST)
+	s=arc-20240116; t=1767984086; c=relaxed/simple;
+	bh=AkWfGMy7CoxX8lwk4ACgbZ8DU1m/o9H1ps5R6pef5iM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=boj96agJJsnBOzHkcZ6vXs/ze8GiKL2ttT0lyioUhb56WFg2IKqw+7mlWSqwmvG84rXqh/f5ceyo/S6iqiSoou3sL1nE7o46JGiPQnqjKDnrEs58Ztjbh/i1fpHHGljJnMqEhOpYvaqXbQikJNYxxvZO5JdiaSrGhjMQJitzUMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JrptUlM5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 37776C4CEF1;
+	Fri,  9 Jan 2026 18:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767984086;
+	bh=AkWfGMy7CoxX8lwk4ACgbZ8DU1m/o9H1ps5R6pef5iM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JrptUlM5Ow5x+fZBlxiIzEV7muXtKmIAdplB3eeWfly0kmKmJVnLYnsEzWa+CKCGE
+	 C4pw7/xpAfG/1Qih8phcNtrqGPgMAKLCGKH9dGRQ1DMDdKB+LaoYsvEM9YfyGKOmdT
+	 MY9d1TqAIYTIPQcKGmaRZhww7ls8zoSyAQSeoRee9CTsUjifsID1KW55MdGiPkBXbY
+	 JItGoPM0oJXGaZJYcHE1DA4gahAGnBBND9cht5M3Cb7WoHRVoYd8f4EVQ6uxjtjHTM
+	 WccQ/xY3Gg+O8D+sGUzMENVyvzuQRMQiXv4CA4vbvC8IdGuKmyXTW8O5FeojfqPROz
+	 IOxNJ+4sEXLQg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 25A2CD26D7D;
+	Fri,  9 Jan 2026 18:41:26 +0000 (UTC)
+From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Subject: [PATCH v2 0/2] power: supply: gpio-charger: add support for
+ fast-charge timer
+Date: Fri, 09 Jan 2026 19:41:18 +0100
+Message-Id: <20260109-gpio-charger-timer-v2-0-63fd1ba75830@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com> <679042b205b9596b79463b89c31d9e3f74cd0e63.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <679042b205b9596b79463b89c31d9e3f74cd0e63.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 9 Jan 2026 19:39:19 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUt=yQwGw3sgQ9gBhOEa6TWW59srEE69dyzr+Fq6j+=Yw@mail.gmail.com>
-X-Gm-Features: AZwV_Qj05tdYznd7IbXD-D9LpPaUhjdHWee49H2zOy9lEKLzWfR8oEQJBva10AA
-Message-ID: <CAMuHMdUt=yQwGw3sgQ9gBhOEa6TWW59srEE69dyzr+Fq6j+=Yw@mail.gmail.com>
-Subject: Re: [PATCH 08/22] clk: renesas: r9a09g047: Add support for LCDC{0,1}
- clocks and resets
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	biju.das.jz@bp.renesas.com, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM5LYWkC/32NQQqDMBREryJ/3ZQkmIpd9R7FhSbf5EM18iOhR
+ XL3ph6gm4E3w8wckJAJE9ybAxgzJYprBX1pwIZx9SjIVQYttVFSa+E3iqJG7JHFTktV69yI6qb
+ 6TrVQixvjTO9z9DlUDpT2yJ/zI6uf+3cuKyHFZEzXyr6VctaPF+EUkPlq4wJDKeULhwyYYLcAA
+ AA=
+X-Change-ID: 20251022-gpio-charger-timer-cddae1619714
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+ Dimitri Fedrau <dima.fedrau@gmail.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767984085; l=1100;
+ i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
+ bh=AkWfGMy7CoxX8lwk4ACgbZ8DU1m/o9H1ps5R6pef5iM=;
+ b=0WZEp5rREGLi0PqgpPQAQIExjUN2H3LCmNO4sF++IuDli6gLvq2S5z2jpBBOWzPsjiaqJFJkU
+ IYpeNHC/qWFAj1OBl8irj0LAwC6aSTmn09YQcHzJf5iy68IoZ7vL8LM
+X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
+ pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
+X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
+ with auth_id=290
+X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Reply-To: dimitri.fedrau@liebherr.com
 
-On Wed, 26 Nov 2025 at 15:09, Tommaso Merciai
-<tommaso.merciai.xr@bp.renesas.com> wrote:
-> Add LCDC{0,1} clocks and resets entries to the r9a09g047 CPG driver.
->
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+On some devices like TIs BQ24081 battery charger it is possible to activate
+or deactivate a fast-charge timer that provides a backup safety for charge
+termination. In case of the BQ24081 it is a fixed 7-hour timer. Add support
+for enabling/disabling the fast-charge timer via GPIO.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+---
+Changes in v2:
+- Added Acked-by tag
+- Link to v1: https://lore.kernel.org/r/20251022-gpio-charger-timer-v1-0-b557409400f2@liebherr.com
 
-Gr{oetje,eeting}s,
+---
+Dimitri Fedrau (2):
+      dt-bindings: power: supply: gpio-charger: add support for fast-charge timer
+      power: supply: gpio-charger: add support for fast-charge timer
 
-                        Geert
+ .../ABI/testing/sysfs-class-power-gpio-charger     | 10 ++++++
+ .../bindings/power/supply/gpio-charger.yaml        |  5 +++
+ drivers/power/supply/gpio-charger.c                | 39 ++++++++++++++++++++++
+ 3 files changed, 54 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251022-gpio-charger-timer-cddae1619714
+
+Best regards,
+-- 
+Dimitri Fedrau <dimitri.fedrau@liebherr.com>
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
