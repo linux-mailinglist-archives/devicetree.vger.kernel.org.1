@@ -1,93 +1,254 @@
-Return-Path: <devicetree+bounces-253366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45E5D0B401
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:31:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 990F3D0B6B8
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:58:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CEC23300A984
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:30:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DC9243014EB0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689392D94B0;
-	Fri,  9 Jan 2026 16:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF83E3644CF;
+	Fri,  9 Jan 2026 16:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UyAC+vU+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ONvLCqmR";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="j0I6hWg7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452331EEA31;
-	Fri,  9 Jan 2026 16:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D60ED350D74
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 16:58:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767976257; cv=none; b=KEf+HM1hfFgxfnNhSLc9U8b06tiAu9Sn89Mx27mK7lzUZ8FL4ApNF2Qi5/AYtUy8Ptu9lWGrj6np/oYrjf9Zr9gUFGuTOQBbJTqiLRGMw5Yep1B6FQ9zD43QTUhxIqT31JzXM8S2z+iq1XcAUbZTonD7RdMPxXny88PrXxF+te0=
+	t=1767977890; cv=none; b=nzUV2DaKYpS29juDqZwwE/lPmhVW0ZVjMrJhuPh8vFzElthATP5L32iUqk6gxh5T+HhSo1LGIu1ykeAZnl1Ks0yquz25l6TZrjvWjdf4IxueKut2LzvPHoG3EQ2JPSmpoVxB4MCRV+Ne7lZNNsJHuMcTBMxSyc+i7apEFR884+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767976257; c=relaxed/simple;
-	bh=2nnt/RAhlgbAIoBNQy+A3kflDIjfGtjH4Wnd7s6M8kw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cOs3iJZBaDstvW4ZE3YB5LWAxsyWTcEWc+NZfkfzvqFK3Ww0FAUWvE6T/ry4jD4UtsdO2u3JbCPFTipvCwYIZx83rA4AIQ45tBGP93d1T4kuYdjuEs+gT4cdAtzNOzJXblywCT6VOCzrvvrUYMpP4tySIsF1Pw+y/g2aP4iiJnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UyAC+vU+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41805C4CEF1;
-	Fri,  9 Jan 2026 16:30:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767976256;
-	bh=2nnt/RAhlgbAIoBNQy+A3kflDIjfGtjH4Wnd7s6M8kw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UyAC+vU+9kTM3F3DIAqpZNoxKIwucU61mm4w4acu6wPdZG7r3KXTf8HeOpkdj4eT8
-	 avvUauUPHyg68/2LA3Xl+TzZxH25duQUw1H63Je8lBAUqmDmHqpzt0tqgqDNWCMC1H
-	 ds/RhaB9n3WWX56kWMvXJvqBobLFe6qmJajCyT4+OjsWEavKJa8pzRfPGafbkJEkzY
-	 fm4n26h+V5sPrnpKu5jiPEjYxxBUg6xyzmFkf4W+Vis6i/rUU6u7nU7lL2GOqYAEad
-	 EBuYTTXUcrYHXFNoY4X25KQSF0bFI2xj3nmJryqjMkhB0Ten4BA+rKKakvWQa1+ouk
-	 gPv38Zj3aMlRA==
-Message-ID: <3905bda3-169f-45d8-bdec-c199f226d45f@kernel.org>
-Date: Fri, 9 Jan 2026 18:30:49 +0200
+	s=arc-20240116; t=1767977890; c=relaxed/simple;
+	bh=JN26wjrJYvXdAxtZ0bB816CXz0c9ThpfVWU5rfltyeQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qzEw+zjbt3emA4UjnQOLaHRlojQHxj969dvKLldZmHIwebGDKAaFps9pt+BArKOREIoYo/kwungVQu3skjwm/Yh/XcHVwtQNl99KlFqpiIsHacM2wc0yCDBbXn8iSGTYagtHJGTFW5fu9ePcuymARB39kQVIHjRELUIhUV44VpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ONvLCqmR; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=j0I6hWg7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 609DPJ031701969
+	for <devicetree@vger.kernel.org>; Fri, 9 Jan 2026 16:58:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=wAHqNGApK8nOk2tnjvfw0g
+	WpAzGP571Z7ygNRBnfXzI=; b=ONvLCqmRXGSaeOef5BaOlWEM18ej9r+EBwqVA+
+	GlqLoANpxuvdRdkZl3HbO7lIO2w8NNeaKelD12WKkSK+SRoG8KdrQHO3NB5GcbyB
+	a7X2cDzOUmU/3/asaUoHfvX/wktz9cm6ndf1KkeKDeOknJ5Ra9tdKxWiqvlpkht5
+	LbOeHJ6ejQoeQI67vxJMNqpituJmeaBrkXzRWz1NP/9oz496k4LfhslWaz+0gd53
+	ufJJ5gnKKU6zIaV9betREELfdtqM4yWKVYeTRqCVLnHDedaFdysrO2Fv/bswzavG
+	VBkjL/RuCuc+iPFSsNhmP6r5F3b5G6EuJfPg2nPJxuXK0Uyg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bjfdac1wg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 16:58:07 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b2ea3d12fcso1034517185a.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 08:58:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767977887; x=1768582687; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wAHqNGApK8nOk2tnjvfw0gWpAzGP571Z7ygNRBnfXzI=;
+        b=j0I6hWg7lqh0FdEPDPoJf3Zwcwt3fKQc1Clm7FuhJN5V6PVpPngmxJhlE/iFj2gyoj
+         7XOhVLqsuABFrKV3cyOd1q9zSTdbvLMxgHdfDtK1Sw3vdRlciW/2dh6mo37tgMxVAPNh
+         5I5461Hh0FN4T++mEWoxoL/dcTFn+SmrnISmpxX5eNPd6YlTckN9MpLZ+qb7PQQBim7W
+         QQ/eCTKVNSNsqbMBsjezkfFk+rOiuUO5YpIxoJlcxytiGE1x/Bry4JwqmbaKBFaad4KL
+         g4+RoxoHX93KTEnuQv5ZW+7jcRsJEkOfaf16E2NNCBmun+Mwsl0rgLDHw3I8FlZTPDVc
+         Yffg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767977887; x=1768582687;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wAHqNGApK8nOk2tnjvfw0gWpAzGP571Z7ygNRBnfXzI=;
+        b=bSX7AayWd1oWYkj4eIVFDVALt3CWkRDwmHR9IFmjGRjTvhQeB0CzcV3ZoZst0IxTQ7
+         nccZgyx/zuFsQhNfK0ym596t4xMRk0QNDMfWSSd+RqTyyVda4XjtNGC1cwnwoqSTQR6i
+         fNeXHpdXa+EvIGGtAXQK41utElMWECQexCG4Gi6ydm0sz3BkMy7lmVMIXODp9boZErp9
+         GmecDSgm6dyX2uyC5f4st4lL68SvFpfyk3UOB/DxzoUKBN0HFoyasDLnp/I2PENI9B4A
+         q9SM436JpPMPwNfpSFu181gTCwiX0+8rQm6XOwm2mwHjVqsfeH0a4SF7QBRhBEOtL3SJ
+         PDdg==
+X-Forwarded-Encrypted: i=1; AJvYcCWSMJvm7lpgZwVGYjVUdYNY5NpFtTAIlM0papV2YUZzh3nlUJpfupPSJvnqVFfpD9KRLf4vcUH5YE5u@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSQV7OdkfoMaJIP7lLk7Va2cuclDOjKUWdcJdp1ITSh/IDkwEY
+	aAw3LxM1lEF6/KlAb4hqzd/ThT7u/hqz2IvJUbYE5LSddCmWK4c3ELjYa8STACU5VXZwx/r0kY4
+	kdOQCYhKHaROqWISsrc1KbvQ3zNiRq/43JWJ+vpLv1xGWMzru1OJibB6VAnfL5WZ3
+X-Gm-Gg: AY/fxX7MfYEwdO2ZUnCFWzgdfuHtuQ+nR/P6K58lbO355tze3rUoUE20LJAGPmTQQP4
+	4Mcgc56mM6+8hbLj/ogZFqELwZaHpLv3jbg/YWEybqmNOtECrTQCS8lhBcp0C8FtB19FIT6HzfK
+	xTk87LjS/Ctqmeg3BKE9D3Uea6y5HT6xZElnL+V4tARiY4PERoOuW858lwuN8il/FSFRPT98b9V
+	uAhZU/Tz8M+G7wGTY4RZoxgcMRg2XCJfwAglCo8kNS0aXqi27Uf6C/uS6aQaIkyIKjDIyzpRXrM
+	xB6EiJNYV6Yk1Uo9dwrvB4Nic7LZTEu563xTynKb4ulMm3mtILuzHf9YP6ZmUvIfLC9tJ9Nrwwc
+	NxuW78h9djChTybav9yFOvrvKw61c+kBfvg==
+X-Received: by 2002:a05:620a:298c:b0:89f:764b:a4aa with SMTP id af79cd13be357-8c389368df1mr1398269485a.18.1767977887050;
+        Fri, 09 Jan 2026 08:58:07 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGNPfSLTF57nLz+6LXqzYYSsKZOpJyv6JlKR0v7EDkSl6w34TqTKkwxqafir8nDSQZDMHCUyg==
+X-Received: by 2002:a05:620a:298c:b0:89f:764b:a4aa with SMTP id af79cd13be357-8c389368df1mr1398264485a.18.1767977886512;
+        Fri, 09 Jan 2026 08:58:06 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.218.229])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ee243sm23231784f8f.31.2026.01.09.08.58.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jan 2026 08:58:05 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v3 00/12] of/treewide: Simplify with
+ for_each_compatible_node_scoped()
+Date: Fri, 09 Jan 2026 17:57:44 +0100
+Message-Id: <20260109-of-for-each-compatible-scoped-v3-0-c22fa2c0749a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/13] interconnect: mediatek: Add support for MediaTek
- MT8196 EMI ICC
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Henry Chen <henryc.chen@mediatek.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
-References: <20251124-mt8196-dvfsrc-v2-0-d9c1334db9f3@collabora.com>
- <20251124-mt8196-dvfsrc-v2-11-d9c1334db9f3@collabora.com>
-From: Georgi Djakov <djakov@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20251124-mt8196-dvfsrc-v2-11-d9c1334db9f3@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIgzYWkC/43NywrCMBAF0F8pWTslSZ9x5X+IizwmNtCamtSil
+ P67aVcuBN0M3OFy7kIiBoeRHLOFBJxddP6WQnHIiO7k7YrgTMqEU15TRivwFqwPgFJ3oP0wysm
+ pHiFqP6IB3laqMMpIXhUkGWNA6567f76k3Lk4+fDa52a2ff+VZwYUeIlCaNY0rC5PPsb8/pB96
+ g55OmQbmPknWv9CeUJphUqUrRHM8i/ouq5vUWOo+CYBAAA=
+X-Change-ID: 20260105-of-for-each-compatible-scoped-285b3dbda253
+To: Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+        Bill Wendling <morbo@google.com>,
+        Justin Stitt <justinstitt@google.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Madhavan Srinivasan <maddy@linux.ibm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+        Nipun Gupta <nipun.gupta@amd.com>,
+        Nikhil Agarwal <nikhil.agarwal@amd.com>,
+        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        llvm@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-clk@vger.kernel.org, imx@lists.linux.dev,
+        dmaengine@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Jonathan Cameron <jonathan.cameron@huawei.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2779;
+ i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
+ bh=JN26wjrJYvXdAxtZ0bB816CXz0c9ThpfVWU5rfltyeQ=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpYTONgHItTP0IOHoke9/I0Oflg/ErlVdydJVdc
+ rcybYkuDHiJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaWEzjQAKCRDBN2bmhouD
+ 186LD/923xyt5jSAANUPJr0DkfC0IFkCUjkwy7vW4g/lIjDDdTVlxCH4ZAEUfcejksjLVGtq385
+ vpbtpjl+6EPGxbyWPt3Pwb6lzt0ktHB7BRZgpTWGZlh81OXdhlb7OMZAfVVRDcBWv59nnM55pMv
+ e59QdyPIXetiGqvHAhD3Wl8xdOdiFBwodfcTfZmUSLX1ZyqeLeUYTS56FVWhIV5Yvd3XeRfGMa2
+ U00RCzBkHuC1EL8wMgrm2vp6ysSeUI71Bj4hXm3iFdI534CaJfhvOcofEfo4qu3ldkPKXBmwviN
+ ODLxbGgoAOSKGZpUaGhiUp1AN3CYQJ3D0NS9fLmmtbqtGcre8VGsTidTZNakmNmVYEE6sdFe0h/
+ Jgit8sFCPF3Yfco3ovLxcWYetHgtdbTFK7CtnaELQjxLrn0KYos7BKHajZ1TVB3QWkveUqtZn9r
+ h8ZSoUw4w8NFhxLEjzMdczcQIil9/js/40efGMKkIVAbq4amZR8Veg9PnUMuYsMZFeKNnWEZT94
+ rs31WlzGsuvnMAq+tsstXjMOVCONmaXGa9ESHvGZqkorjoRTU6dZr7mFZFDmlfp/dp123jbvHJX
+ pMBPQitRrKqpkR113badiHPtNCwW5sYYeeyeLZTghwveUxQn9Dt3XZpPExNBYHyktu+7rodtkES
+ 1DmaqvH9C1QgoZA==
+X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+X-Authority-Analysis: v=2.4 cv=Ue1ciaSN c=1 sm=1 tr=0 ts=6961339f cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8
+ a=d9g9ln5aRjr3gUnP3tUA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-ORIG-GUID: uQ4cdkgD9GpovwjDxXA0GFL2DiDf6pSo
+X-Proofpoint-GUID: uQ4cdkgD9GpovwjDxXA0GFL2DiDf6pSo
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA5MDEyOCBTYWx0ZWRfXwoUKx1sstB3Q
+ B3jWrx82eDJC/riPamfiscyX8dzI8blW0V6dQtWyegtJBvn+peg0CUhQ+CJ2zXw9BrVj44WubN/
+ o5uoeppVfHuADPU5621o7Ccv0xBX4Jd55XwrYuSCbX+hK58nRJ0Wre+/LXdn9XaJV+MF2gMFROr
+ jvLYFCM8UKklO6AFX5bkgScQTeLPoj6WCwcOZBOy1H67lvdfjwrflTtPAYTUu3SJhzF7I2kBgZw
+ yilTMmEEO8qfmH9GCEjeaSAPqGPPz5tpRdQ1/6orMlhpfv++shO+2El18QJFkKmjrJ7u/XRBxp1
+ 7K8AdPhX3MuYYWTREHYwYijdRNO2Wv/1IX2n878S0xzeU/ts7HYsQ2/vOC7anTw6K+ghcmhBlBd
+ sv7hZGLpcMY3E3crGQOc3ZDD4FJPk6Hw8quA0Y/fTxXXDyAD5dfTb+Ob8T6OR5lyMSoHpLJaxzM
+ QIUyIA7KR9RD9SLh82g==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-09_05,2026-01-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
+ bulkscore=0 suspectscore=0 phishscore=0 spamscore=0 malwarescore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601090128
 
-On 11/24/25 1:07 PM, Nicolas Frattaroli wrote:
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Add a new driver with data to register the External Memory
-> Interface (EMI) Interconnect on the MediaTek MT8196 Chromebook
-> SoC.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Dependencies/merging
+====================
+1. First patch is a prerequisite for entire set, so either everything
+   goes via same tree, the further patches wait a cycle or stable tag is
+   shared from DT tree.
 
-The interconnect patches look good to me and there is no build dependency,
-so i picked them. On a side note, we recently added support for dynamic
-node ids in the framework, so maybe switch to that in the future.
+2. The last media patch depends on my earlier cleanup.
 
-Thanks!
-Georgi
+Changes in v3:
+- New patch: cdx: Use mutex guard to simplify error handling
+- Collect tags
+- Link to v2: https://patch.msgid.link/20260106-of-for-each-compatible-scoped-v2-0-05eb948d91f2@oss.qualcomm.com
 
-> ---
->   drivers/interconnect/mediatek/Kconfig  |   7 +
->   drivers/interconnect/mediatek/Makefile |   1 +
->   drivers/interconnect/mediatek/mt8196.c | 383 +++++++++++++++++++++++++++++++++
->   3 files changed, 391 insertions(+)
-> 
+Changes in v2:
+- Update also scripts/dtc/dt-extract-compatibles (Rob)
+- Collect tags
+- Link to v1: https://patch.msgid.link/20260105-of-for-each-compatible-scoped-v1-0-24e99c177164@oss.qualcomm.com
+
+Description
+===========
+Simplify for_each_compatible_node() users with a new helper -
+for_each_compatible_node_scoped().
+
+Best regards,
+Krzysztof
+
+---
+Krzysztof Kozlowski (12):
+      of: Add for_each_compatible_node_scoped() helper
+      ARM: at91: Simplify with scoped for each OF child loop
+      ARM: exynos: Simplify with scoped for each OF child loop
+      powerpc/fsp2: Simplify with scoped for each OF child loop
+      powerpc/wii: Simplify with scoped for each OF child loop
+      cdx: Simplify with scoped for each OF child loop
+      cdx: Use mutex guard to simplify error handling
+      clk: imx: imx27: Simplify with scoped for each OF child loop
+      clk: imx: imx31: Simplify with scoped for each OF child loop
+      dmaengine: fsl_raid: Simplify with scoped for each OF child loop
+      cpufreq: s5pv210: Simplify with scoped for each OF child loop
+      media: samsung: exynos4-is: Simplify with scoped for each OF child loop
+
+ .clang-format                                       |  1 +
+ arch/arm/mach-at91/pm.c                             |  7 ++-----
+ arch/arm/mach-exynos/exynos.c                       |  8 ++------
+ arch/powerpc/platforms/44x/fsp2.c                   |  5 +----
+ arch/powerpc/platforms/embedded6xx/hlwd-pic.c       |  4 +---
+ drivers/cdx/cdx.c                                   | 15 ++++-----------
+ drivers/clk/imx/clk-imx27.c                         |  7 ++-----
+ drivers/clk/imx/clk-imx31.c                         |  7 ++-----
+ drivers/cpufreq/s5pv210-cpufreq.c                   | 10 ++++------
+ drivers/dma/fsl_raid.c                              |  4 +---
+ drivers/media/platform/samsung/exynos4-is/fimc-is.c |  8 +++-----
+ include/linux/of.h                                  |  7 +++++++
+ scripts/dtc/dt-extract-compatibles                  |  1 +
+ 13 files changed, 31 insertions(+), 53 deletions(-)
+---
+base-commit: 4d27ce1b1abefb22e277e715901cc52acdc5af2c
+change-id: 20260105-of-for-each-compatible-scoped-285b3dbda253
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
 
