@@ -1,201 +1,210 @@
-Return-Path: <devicetree+bounces-253072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5364CD070ED
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 05:07:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE672D0715C
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 05:12:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 558DE3027598
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 04:07:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4B6F3302074C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 04:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD55529AB1A;
-	Fri,  9 Jan 2026 04:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F6B2DB7AF;
+	Fri,  9 Jan 2026 04:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="bo2aO6/b"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C+KH/p47";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fevexLsz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04732877DA
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 04:07:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FDC92737F2
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 04:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767931650; cv=none; b=AFfNnRJBBw+QvVaCuSlBplA2VsatM7wihjSS5VoVBasLSp63PZWxksv/qf+nYKV2bNp1/Qzj3QUfO9HZScigSIQUTjdUnZdnXoJb9d1RQme9lr7cIO87j4orHX5Nj8p4Yqo+o2ySs/7404N8wNlRTZgj7DAgHNtRD+r66NtjR1U=
+	t=1767931870; cv=none; b=cqL2xqrQ+HURT2SwH+7cHd/LHyrGifJ/2mpq//a6q/3blDpJDCKIBWaCKTZ0lVNDIAtgjrYLX2NV5LiBKFOHb+Ba3MEj+TjpceTrdA0zAhVrUWEUv9qUEqC1cP/2NAMAfEFMbg6GQI86uzS55yjoSpr+eQJbPCe/X/rLnFrRf54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767931650; c=relaxed/simple;
-	bh=iOIOb3aawiqisN7pJ8zyYsiwPt0fTR6dgFprID3BeV8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jR0qh2CXDuqzJ1Q4Q3tE+rOMx5iWn2TW8yErAK10pvXQTl0aRcv9pGBrQcFhbgVytzRxjdmXZb2A0sVv5/2fqqxcd02+1VY/zEc56hBSyu4v759tgrz7CiKHDgS9B8UADQOtGB+tJ/861i1UiLBpqNC5U4/RSu2edLz1j0cZbDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=bo2aO6/b; arc=none smtp.client-ip=95.215.58.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Fri, 9 Jan 2026 12:07:05 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1767931636;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tl36MNJVZU3EwlEGA+H8nYpkZdkwvt5ZI8VgXPXTog4=;
-	b=bo2aO6/bLGszAjG5ed6NXWylByWoW94sU4VkA4+HYwZb7Sheey0AymZS2/q+WhZGwJMx7f
-	5b7Me2tVENjZDXw/zWsGX72P2/BAod5JF678LKzSiJQ8tnjJlwVSqzpRnROvSjhW5mKVYH
-	fAmyt7AEZ/ugeW7f4t8ijdfzJs/7JBI=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Ze Huang <huang.ze@linux.dev>
-To: Yixun Lan <dlan@gentoo.org>, Ze Huang <huang.ze@linux.dev>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Aurelien Jarno <aurelien@aurel32.net>
-Subject: Re: [PATCH v2 3/3] riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
-Message-ID: <aWB-6UkudFit3ZBX@monica.localdomain>
-References: <20260107-k1-usb3dts-v2-v2-0-e659b0f8fe1a@linux.dev>
- <20260107-k1-usb3dts-v2-v2-3-e659b0f8fe1a@linux.dev>
- <20260108012157-GYA2355@gentoo.org>
- <20260108113605-GYA4052@gentoo.org>
+	s=arc-20240116; t=1767931870; c=relaxed/simple;
+	bh=hICcjxGR+Wljz+6LE0ufles6gMhEISPHaCxvzSwsoWw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
+	 In-Reply-To:Content-Type; b=TEBaj5eY+qGhiUPCtaFBwGKfD7RFCv77P6JvJtGAxEZQgf5AleqRma0dYWI5FZOQxunkov0ho7OOTm4ZfJFEbPx74TQASIAmtDtYjFXJVSV8s3R0cyfAK7kbXk0jJ9phWEqiWPyqxO2N1AqVUduP48gOj4/P29Pl3gQlz8f0joI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C+KH/p47; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fevexLsz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 608JG3sv3019775
+	for <devicetree@vger.kernel.org>; Fri, 9 Jan 2026 04:11:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ae8UX2cu9IJeZKZROGT+I9ypykXH8VWW5tgU8zONoZ4=; b=C+KH/p47mI4hp0KN
+	nlvqbrtdCnaopUVyqMT9Xx0B77iS399s2y+FStoe1YzQwOWt28Ji8A76JEchQd9l
+	uX7k+qNlWTwIXjJLgzRwYTgIOYlAZaWT8GvoKbNsoCOjsg3appgQZL160eC5couz
+	IhtO6Zqlsti+Z1SoDqnPu3GKG3xsvUDXAZPJPJU5bNJp6eQkfuI3zLJyKz4uTlCl
+	V3vaVNCja9YD+IpMPQfZl9zNIKauW90BS9mJOpNZ6Ea3+DMJ6I+WaeSOaChg7FBY
+	JsB2gX+xJpGKIf4//l1gHZ88DoSZbrf18ix85cBX9yaZSUkoJLO62FdiVENDsh1n
+	RCQc5w==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bjjk3h81k-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 04:11:06 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-81e81fbbb8cso71079b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 20:11:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1767931866; x=1768536666; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:from:subject:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ae8UX2cu9IJeZKZROGT+I9ypykXH8VWW5tgU8zONoZ4=;
+        b=fevexLszm+Y25+mEQe9u/vIGFhAFCTOdiscbmTPYWcb0Cn/ht8SkWbMTT0Cz7jhSSN
+         0k5Cw2WFxvAeofQBhbeFc2tN+ZLOxw9M12NY3cw5teDS7nhlZxaF2s5Y8ve6uZ5wMCab
+         dvR/62GU1rydHARBxC0yew7Gb0ae6zJNDy7j2TStnNRehcXUxGa5c7Bftg5b8KSiqXV6
+         4Yd5zdNJoHkhOhBurKo53fZ6yf2ANbck89i+cnjrmcr6+N7T44fIymcQdCp+DPtkuuTI
+         UftsqaEbe+3f6xYbGyz5LzBgVz0072nOkUYl1WvsULHPIKkZfujvH2JiGBGkItikseNH
+         63yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767931866; x=1768536666;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ae8UX2cu9IJeZKZROGT+I9ypykXH8VWW5tgU8zONoZ4=;
+        b=uqcEi307MuDpW8QFE70tQLalSUpvWVQA6c77/ISbrjyGsLyqHLPRmL68xf3qczQ6uO
+         EHfdfI6KwTfax4tYISErs1vI8gEr/inV2Lq3ANXPECo7SgSWqbPLKEQSAQAYwmZzglGb
+         rydLGRjfLkcfr3qYwKloXMMUiuenDU+HsxJKT4Ck55R/5iyDo45YWH1jp6WufDBIORvN
+         1yH3L/kkLCKFqZg5Xk/vyhTMRbxz9RQkuB5nvhi2YCwonyS5Kpxsk6oxE9jOq3P5kl1p
+         2WwZzgSM4N54EkTXH/j0z01uEI8i8NfuWm70cNvyHx+n3UKB8qBPsOZtcMsJhWPRNta2
+         nIOw==
+X-Forwarded-Encrypted: i=1; AJvYcCX7oBcdvClGKIDArPLdziDq0Fjwvg/BLGh72sDQ/8xLFyq2WFR5C4/vQOq4AAccs200my/EBYiKjyFm@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywid4joYJObhOq6WdEu8//52qC0a5qwfcYvfizZ8QHi1lobE2PM
+	AkdFKlPCk99vvnk2B/d/9R4TBTAG6ZK9+jEXi02uNnIIZgJOKxRg9AGvLQ3t408UFP015RG9OS9
+	sb8GzIHr5lVvQgoZYISf1IV+4PAXZ+CQeozo18VcNQz8DBLNgv8b9tJBpXsm2qrgW
+X-Gm-Gg: AY/fxX7iWytErgT4f9NWSO9tRhdxgouu3BYahTzOYnuPOy/gPVj0rgSwAZ4Ga8ZOabj
+	0iZ0H3BeqAxIhnOgZwGSmlPuyRsL2Nw4Q7NDM3FsJuYYiNcib2zQX4lVY77gKFMeAvfVNIbN0lJ
+	m92bCntvZjxRrL9db5gGPv/+UbufIWXOZrz8eUq1faQMa7pq0gNeIy2lLi+neuZCvHUYSBMxHjF
+	xuk/HSdMh+Oue2IvC7ForGdv18PICtYpx+hWqZCPLpkA78agcxG4UdlXNq1ZJuoJzZ+RLOagQFo
+	DFnNloXk9aeLIQ0jqNnm58P68u/w2I377sS+Ul7p9+b28Ub9EAthrPfSJN/czpdWIPbaDVRJuLW
+	sgvO9NB4S9YHXgw/bDSfnDcKFGwFKVe7ReZJOaU6+lzEUHsjG4LM5XQ==
+X-Received: by 2002:a05:6a00:1a10:b0:81c:c98c:aea8 with SMTP id d2e1a72fcca58-81cc98cb5a1mr4152445b3a.61.1767931865718;
+        Thu, 08 Jan 2026 20:11:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFNflnxwa+mIRljWGYQSB7vt2PdnS2C3KlfmwRh7bmAkSxaKyzvwwixjykjONp+pqzf/8NvcQ==
+X-Received: by 2002:a05:6a00:1a10:b0:81c:c98c:aea8 with SMTP id d2e1a72fcca58-81cc98cb5a1mr4152418b3a.61.1767931865235;
+        Thu, 08 Jan 2026 20:11:05 -0800 (PST)
+Received: from [10.151.37.217] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819baa19242sm9011293b3a.7.2026.01.08.20.11.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jan 2026 20:11:04 -0800 (PST)
+Message-ID: <6c299100-122a-436d-8b90-28c9a7d48677@oss.qualcomm.com>
+Date: Fri, 9 Jan 2026 09:41:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260108113605-GYA4052@gentoo.org>
-X-Migadu-Flow: FLOW_OUT
-
-On Thu, Jan 08, 2026 at 07:36:05PM +0800, Yixun Lan wrote:
-> Hi Ze,
-> 
-> I've done a quick check of the "regulator-always-on" issue, 
-> it's ok to drop the one from hub, but not the vbus one..
-> 
-
-Thanks for your double check
-
-> On 09:21 Thu 08 Jan     , Yixun Lan wrote:
-> > Hi Ze,
-> > 
-> >   thanks for your patch, I have few comments, see below..
-> > 
-> > On 20:05 Wed 07 Jan     , Ze Huang wrote:
-> > > Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
-> > > Banana Pi F3 board.
-> > > 
-> > > The board utilizes a VLI VL817 hub, which requires two separate power
-> > > supplies: one VBUS and one for hub itself. Add two GPIO-controlled
-> > > fixed-regulators to manage this.
-> > > 
-> > > Tested-by: Aurelien Jarno <aurelien@aurel32.net>
-> > > Signed-off-by: Ze Huang <huang.ze@linux.dev>
-> > > ---
-> > >  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 48 +++++++++++++++++++++++++
-> > >  1 file changed, 48 insertions(+)
-> > > 
-> > > diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > index 3f10efd925dc..013df91c6a4c 100644
-> > > --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> > > @@ -59,6 +59,26 @@ reg_vcc_4v: vcc-4v {
-> > >  		regulator-always-on;
-> > >  		vin-supply = <&reg_dc_in>;
-> > >  	};
-> > > +
-> > > +	usb3_vbus: regulator-vbus-5v {
-> > I've checked the schematics, the name is 5V_VBUS there, so for the consistency
-> > with previous naming convention, let's change to:
-> > 	usb3_vbus_5v: usb3-vbus-5v 
-> > 
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "USB30_VBUS";
-> > > +		regulator-min-microvolt = <5000000>;
-> > > +		regulator-max-microvolt = <5000000>;
-> > ..
-> > > +		regulator-always-on;
-> > do you think the "always-on" property really necessary? it indicate the
-> > power regulator is critical, and should never been disabled even during
-> > suspend/resume state, for the case of USB, I think it should be totally
-> > fine to poweroff once the device is not used(suspended) or even disabled
-> > 
-> > besides, the regulator is designed with a gpio enabling/disabling control
-> > which means it can be powered to on/off state?
-> > 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFT PATCH 2/2] arm64: dts: qcom: ipq9574: Complete USB DWC3
+ wrapper interrupts
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260106185123.19929-3-krzysztof.kozlowski@oss.qualcomm.com>
+ <20260106185123.19929-4-krzysztof.kozlowski@oss.qualcomm.com>
+ <32f4a425-e181-41ab-913f-55e3dd3b4fd5@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <32f4a425-e181-41ab-913f-55e3dd3b4fd5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: IrAaGkhNXKMxF_KxIixUG57v45pO_6ey
+X-Authority-Analysis: v=2.4 cv=EazFgfmC c=1 sm=1 tr=0 ts=69607fda cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=yZjr3wkweJ7bfLCuHRAA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-GUID: IrAaGkhNXKMxF_KxIixUG57v45pO_6ey
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA5MDAyNSBTYWx0ZWRfX2ljVujcdE1Yn
+ YspOGnXWJeEE21JJCbHhB+u+tLS3U9g9MZavWBc31l3i+c2oIZtdb1spE38KRtgxaNSo2AAHc2E
+ pWITo/Oh3XUdUVZtH/+7giEUiXXxf3b5ioJ81fNrf6CJAVV01Foe0vr+dpUe5KpYWimCIPZg/YR
+ kRKX/MDVOPjYeC16wAc5kEiO9hT+BIz/nmOXL1KYj33/sP5PY8k4IKZYYbEpuqapXMi7Qp1k8XZ
+ +NVzFXLxELWc3qkht/ESt1NDT0Ivb9eDz/Rd/FHc3KhIgb10CpWkEMkf2z4cFZ3PqYgq1NyEre1
+ JUcdhTPD4ILAr7iU5WT9C4tFHF2hGfgRjd/lx31YX0/X/qSbElSZUMhG+PyPjWvkvs79ggr6yPB
+ EXHA8O7a9rLEWy/1SXcOvxoowJJzNzyZm5yHfOiuJhgqkW/LXaoeC9TiUtJO7PEZpj+NiC1JYed
+ 7JcrjCjmnFYQXcXFGLw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-09_01,2026-01-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 adultscore=0 impostorscore=0 priorityscore=1501
+ malwarescore=0 bulkscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601090025
 
 
-> not ok to drop, see comment below at &usb_dwc3 
+On 1/8/2026 11:13 AM, Kathiravan Thirumoorthy wrote:
+>
+> On 1/7/2026 12:21 AM, Krzysztof Kozlowski wrote:
+>> Complete interrupts for DWC3 node to match what is required by
+>> Devicetree bindings, as reported by dtbs_check:
+>>
+>>    ipq9574-rdp433.dtb: usb@8af8800 (qcom,ipq9574-dwc3): 
+>> interrupt-names: ['pwr_event'] is too short
+>>
+>> The actual interrupt numbers are taken from reference manual of similar
+>> chip, but not IPQ9574, due to lack of access to it.
+>>
+>> Signed-off-by: Krzysztof Kozlowski 
+>> <krzysztof.kozlowski@oss.qualcomm.com>
+>>
+>> ---
+>>
+>> Not tested on hardware.
+>>
+>> "lack of access" = no IPQ9574 at all.
+>
+> Initially the SoC was named as IPQ9048 and after sometime it is 
+> renamed as IPQ9574. But unfortunately, the reference manual is not 
+> updated with the new naming.
+>
+> I can confirm the below interrupts are correct. So,
+>
+> Reviewed-by: Kathiravan Thirumoorthy 
+> <kathiravan.thirumoorthy@oss.qualcomm.com>
+>
+> Thanks, Kathiravan T.
 
-> 
-> > > +		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
-> > > +		enable-active-high;
-> > > +	};
-> > > +
-> > > +	usb3_vhub: regulator-vhub-5v {
-> > why use vhub, but not hub? where does this name come from?
-> > 
-> > and for same reason, the name in schematics is VCC5V0_HUB, so how about
-> > change it to:
-> > 	usb3_hub_5v: usb3-hub-5v 
-> > 
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "USB30_VHUB";
-> >                                     ~~~need to fix too, if above is valid
-> > > +		regulator-min-microvolt = <5000000>;
-> > > +		regulator-max-microvolt = <5000000>;
-> > ..
-> > > +		regulator-always-on;
-> > ditto
+Also, confirmed that USB is working well, without any issues.
 
-> ok to drop, as it's already handled at drivers/usb/misc/onboard_usb_dev.c
-> which will explicitly request the regulator and enable it
+Tested-by: Kathiravan Thirumoorthy 
+<kathiravan.thirumoorthy@oss.qualcomm.com>
 
-> 
-> > > +		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
-> > > +		enable-active-high;
-> > > +	};
-> > >  };
-> > >  
-> > >  &combo_phy {
-> > > @@ -67,6 +87,34 @@ &combo_phy {
-> > >  	status = "okay";
-> > >  };
-> > >  
-> > ..
-> > > +&usbphy2 {
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&usb_dwc3 {
-> > > +	dr_mode = "host";
-> > > +	vbus-supply = <&usb3_vbus>;
-> due to drivers/usb/dwc3/dwc3-generic-plat.c has no handler to request regulator
-> there will be problem if "regulator-always-on" property is removed..
-
-On the BananaPi-F3 and to Jupiter, the VL817 hub setup uses two distinct controls:
-
-GPIO97  controls the physical VBUS supply.
-GPIO123 controls the VCC5V0_HUB supply for the hub logic.
-
-(Note: This differs from the Orange Pi RV2, where only GPIO123 is used to
-control the VBUS supply).
-
-dwc3-generic-plat can not currently handle the regulator request explicitly,
-keeping "regulator-always-on" forces the VBUS to remain active even when
-suspended, which consumes unnecessary power.
-
-I prefer to drop regulator-always-on in the DTS to accurately describe the
-hardware capability, and let the driver manage the VBUS state. This ensures
-better power management.
-
-If anyone have other ideas, please let me know.
-
-> 
-> > > +	#address-cells = <1>;
-> > > +	#size-cells = <0>;
-> > > +	status = "okay";
-> > > +
-> 
-> -- 
-> Yixun Lan (dlan)
+>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 10 ++++++++--
+>>   1 file changed, 8 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi 
+>> b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> index 86c9cb9fffc9..d7278f2137ac 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> @@ -765,8 +765,14 @@ usb3: usb@8af8800 {
+>>               assigned-clock-rates = <200000000>,
+>>                              <24000000>;
+>>   -            interrupts-extended = <&intc GIC_SPI 134 
+>> IRQ_TYPE_LEVEL_HIGH>;
+>> -            interrupt-names = "pwr_event";
+>> +            interrupts-extended = <&intc GIC_SPI 134 
+>> IRQ_TYPE_LEVEL_HIGH>,
+>> +                          <&intc GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>,
+>> +                          <&intc GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
+>> +                          <&intc GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+>> +            interrupt-names = "pwr_event",
+>> +                      "qusb2_phy",
+>> +                      "dm_hs_phy_irq",
+>> +                      "dp_hs_phy_irq";
+>>                 resets = <&gcc GCC_USB_BCR>;
+>>               status = "disabled";
 
