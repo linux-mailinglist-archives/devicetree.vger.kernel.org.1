@@ -1,132 +1,87 @@
-Return-Path: <devicetree+bounces-253361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BFC2D0B28E
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:16:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D89BD0B36E
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:25:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 85D2C3066DE3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:12:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 665DB3155946
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5E4363C5F;
-	Fri,  9 Jan 2026 16:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E39B9364040;
+	Fri,  9 Jan 2026 16:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="y8sgO60v"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="qIyyRxFS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7687E363C5E
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 16:12:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4702773DA;
+	Fri,  9 Jan 2026 16:17:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767975168; cv=none; b=nDXhZglaeQ6ZDCeSkr5HZ7maLRDUgROP4U5bsk+6abb2J27jgxQlwnVN8RLVCopapcUSwrrqtAlWk96DAF5n7XCiIsBonR99LAL2rRBHw7mFeIZ5nERAqY9tysI4CnYl1MeFAYgYEjHuRvZ1gCcmrnVsl0PM0FSbkmjJJPHojyI=
+	t=1767975447; cv=none; b=IgMm1fRmEcI+6aKdvQRFSOZXLy/5WsVe1njCJmqndTf6hHUKbXv0toS9H6imGxrX/IXRwS69rJ0Ude73dWOqQ7Wk4FVO7vWWcBIFhAEKlTA7w1QwvLkVLAFb/qbUQLVAV6fe8ItY4nY5HXcRWnPsfCdgWdr6XZWtaTkfSz6TbBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767975168; c=relaxed/simple;
-	bh=Z1pwYaB9YWaqpeLpN7YTuR0+lMIpPCAE9oljsDgAwrs=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=rQVAuOd0TRZl+HQKOV2Pd3bFA7Zex8iG+3RUUmSbeQ9NkkHqaRemp4NPjiJHlOpvwEbRFZ8t68g4eJodNiDHTbqwuBxFjh+8kCILmlZ9Wm46b0ZlTT0Mbp7il/PZ9PyWP/B4VeH7ny/Y709szHAVVVZpzjIuazkA1qezodBzCtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=y8sgO60v; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id EAB951A274B;
-	Fri,  9 Jan 2026 16:12:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BF07E606C6;
-	Fri,  9 Jan 2026 16:12:42 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 919E4103C8928;
-	Fri,  9 Jan 2026 17:12:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1767975161; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=IMKc9MHd9MKGMdEe0mbvetFcSECq5KlF8/ItyQ9UOfs=;
-	b=y8sgO60vNrvAN5ao1UXWP6frwmiiF1cnmKVMcW7QO/HxbpUAJ9DUZYz8PYoxa7TnZrgNHn
-	QND0OCqd76x2H0tjmg8+G4y+EtalIPSC+KQYf8rjCNA+B5vKbQ7u4oDcUStLUPz8K94/C9
-	oyRk9NcfDbOqVoQ0naI+QN+HiG8sH2m5klgIFBZj/3DQSQTfjNIQKQn/ggmyMPfbWE34jX
-	CVuL3G4rcCcj1gXHvVrTXR94pzDkpKEQ64TpUMAPIFBtvXhBobJARsAvcWYmEBKq08Aajg
-	6m7OKpbbmdqmn48f1azdA0ffbcXKznXdVek37fyAE5LdhLHaDG1pH4odU3nhqQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: kernel test robot <lkp@intel.com>, Rob Herring <robh@kernel.org>, Linus
- Walleij <linus.walleij@linaro.org>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Vladimir Kondratiev
- <vladimir.kondratiev@mobileye.com>, =?utf-8?Q?Beno=C3=AEt?= Monin
- <benoit.monin@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v3 2/4] of: reserved_mem: Support multiple 'reg' entries
- for memory-region
-In-Reply-To: <202601082105.TThX0916-lkp@intel.com>
-References: <20260107-mtd-memregion-v3-2-f9fc9107b992@bootlin.com>
- <202601082105.TThX0916-lkp@intel.com>
-Date: Fri, 09 Jan 2026 17:12:35 +0100
-Message-ID: <87qzryn4ss.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1767975447; c=relaxed/simple;
+	bh=AOFFKh3bP0AYCpimAyhrNvO9NpEjYpKlV0CEbcUjOT0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JkJSjVDMjMAtezxFV36brC/AguMh9epTkceutLfgn+MK5l/RB3gAp78pjGfjUJvZcUKw/de7UTBmbjC5hOcjhiT605osylLQ5Yh+zQz8fYw38jk6bWzRbJau4OsInK6OyaWFhP3HMc6Wu1BgjrixzT/Cqls9De3VQaJmihZf0Lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=qIyyRxFS; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=VOzCAKrFGKy7NNjvxbeCqy8hAMZUYHoldpLwQznGtOY=; b=qIyyRxFSSZxih2R3LO5QyB9jJd
+	KferFIpvl/8y1vrHx96X1wzGE/jy51zUohHy4zP8eMNSU4aWIxZHOLMnTEBfFt6xbSqMXzLw3jAzu
+	xHfMwnEAXHTEuQRyN2jy2V87co31tdU9WVbBfUSQf9Z0U3rmAn2Op7wH+zFkt94K7fL5YNYZ8PFKk
+	bK89/th2Ig7JKYwB0jGoA3yJ33vwUObgoLzG9RbQXQC+MW+stwMJulYVW6fZzDSV8xZQsrG/9Yy4Z
+	vk6unspchIi4ozR5UGG4hYHxQRLw/1FBVguUkAo8Y8e9z42JYU2/QQL3Gj6qtlyHjQgrarW2r9b4L
+	rL45IcEg==;
+Date: Fri, 9 Jan 2026 17:17:11 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
+ <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, nm@ti.com, ssantosh@kernel.org
+Subject: Re: [PATCH] dt-bindings: omap: ti,prm-inst: Convert to DT schema
+Message-ID: <20260109171711.7080e54c@kemnade.info>
+In-Reply-To: <20260102220231.GA247492-robh@kernel.org>
+References: <20260102-prm-inst-v1-1-e85402b86885@kemnade.info>
+	<20260102220231.GA247492-robh@kernel.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-kernel test robot <lkp@intel.com> writes:
+On Fri, 2 Jan 2026 16:02:31 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-> Hi Gregory,
->
-> kernel test robot noticed the following build warnings:
->
-> [auto build test WARNING on 8f0b4cce4481fb22653697cced8d0d04027cb1e8]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Gregory-CLEMENT/of=
--reserved_mem-Fix-placement-of-__free-annotation/20260107-211455
-> base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
-> patch link:    https://lore.kernel.org/r/20260107-mtd-memregion-v3-2-f9fc=
-9107b992%40bootlin.com
-> patch subject: [PATCH v3 2/4] of: reserved_mem: Support multiple 'reg' en=
-tries for memory-region
-> config: x86_64-rhel-9.4-kunit (https://download.01.org/0day-ci/archive/20=
-260108/202601082105.TThX0916-lkp@intel.com/config)
-> compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
-ve/20260108/202601082105.TThX0916-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202601082105.TThX0916-lkp=
-@intel.com/
->
-> All warnings (new ones prefixed by >>):
->
->>> Warning: drivers/of/of_reserved_mem.c:746 function parameter 'rmem' not=
- described in 'of_reserved_mem_array_lookup'
->>> Warning: drivers/of/of_reserved_mem.c:902 expecting prototype for of_re=
-served_mem_region_count(). Prototype was for of_reserved_mem_region_total_c=
-ount() instead
->>> Warning: drivers/of/of_reserved_mem.c:746 function parameter 'rmem'
->not described in 'of_reserved_mem_array_lookup'
+> On Fri, Jan 02, 2026 at 08:32:15PM +0100, Andreas Kemnade wrote:
+> > Convert prm-inst binding to DT schema. Use the closest matching standard
+> > node name in the example.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >  .../devicetree/bindings/arm/omap/prm-inst.txt      | 31 ------------
+> >  .../devicetree/bindings/arm/omap/ti,prm-inst.yaml  | 55 ++++++++++++++++++++++  
+> 
+> ti,omap-prm-inst.yaml to match the compatible. Otherwise, looks good.
+> 
+or do we want to put it in arm/ti where also the board compatibles reside and
+have bindings/arm/omap as the purgatory of the bindings.
+BTW: the driver (drivers/pmdomain/ti/omap_prm.c) is listed under
+TI KEYSTONE MULTICORE NAVIGATOR DRIVERS in MAINTAINERS although it is not keystone arch.
 
-It was a stupid typo in the description!
+> Rob
+> 
 
-I will fix it.
-
-Gregory
-
->
-> --=20
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
-
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
