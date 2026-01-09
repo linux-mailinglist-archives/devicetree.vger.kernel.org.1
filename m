@@ -1,136 +1,92 @@
-Return-Path: <devicetree+bounces-253184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08DB7D0839E
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 10:34:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FA5BD0846D
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 10:42:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BDF8A300EDB2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 09:34:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 70554307B348
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 09:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5116B33343C;
-	Fri,  9 Jan 2026 09:34:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MFKg7AGW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311CA3590AC;
+	Fri,  9 Jan 2026 09:38:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E85B332ECB;
-	Fri,  9 Jan 2026 09:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B9F3596ED;
+	Fri,  9 Jan 2026 09:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767951243; cv=none; b=HwzcuXB69lQmgAVioIPOSAODsHgOXSV3WOKpi23V8/AoMdnu+UkATnBmxfulYe+Iv8So4CTg5G/Jqx5r05gz+d3wUp3vkQ1huZz9VYj7GyIMa74k5qZknnYeLDyjFsKQRDkRr6GoPEDRowhw0VJh6KL9S6Z5qLj+xuOakohrIJI=
+	t=1767951533; cv=none; b=raPkiQO8a6cpqOkO4t/2u400He+Xh2kBKtLiix9Fwtp/JR2iDW0rK+0yB3xAM7t8oE1uDRCpeYKPH3QHTwIJf5RB7IoMfKuXPFPo5WUf6y7w+f0aYgN5/v/j/N7Z30/uZSdHukRIzdw90qtFnqxRsEiexEU1JLVD+wEoKYxPMXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767951243; c=relaxed/simple;
-	bh=3AeINoDybmIWU2wLjbaEaippAGFl95KiJUHzFKs9IpQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uTtnA3P/MyazLf2NLYZWqvpCcJ3BnkHo6hwYadg65AIL6wVhlpao1W4qRkF7tBavXTvGUNhUiw6S5BkeAs1mtyIL09jKj6+YUWlHCBphOwFoSRdS2+nYqpV4O+1na33LJB07rOLhZbDBNHgN86L3I7QJ4q7XT8V73IaJqILihk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MFKg7AGW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43B11C4CEF1;
-	Fri,  9 Jan 2026 09:34:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767951242;
-	bh=3AeINoDybmIWU2wLjbaEaippAGFl95KiJUHzFKs9IpQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MFKg7AGW2kdubeInzebs0roxQzYOndkeGDjE7FGNdET4rl9eG+E1fkXngyCJoqeEc
-	 lhD0JuN9odhgzLZc8Hmh/CeMZEe/25IXcZNQ37+0eG4KDvWsHa5lOlLbTPn1hkb2/0
-	 mdB60FmAp8wB98yt76W3Gh9r4vU55elG3N7ROgvEFHLSxPtPcLZLmNU29sTrZPbEV0
-	 zW7Z7E/JmsN+B0f/E7O5pHywpa03/kwqPTscCF0NSwopZQTa7WqSnIRrAgo9VFoJpm
-	 eTa8/E2XEun+4Ox8SghYU3bl6T4QzA7P4B95J1v9FL8d/3ahqVaRaBVkFPsVkjEsvg
-	 TqWqHLkvhY7Pw==
-Date: Fri, 9 Jan 2026 10:34:00 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
-	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, David Sterba <dsterba@suse.com>, 
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Simon Glass <sjg@chromium.org>, 
-	Linus Walleij <linusw@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Marcus Folkesson <marcus.folkesson@gmail.com>, Tony Lindgren <tony@atomide.com>, 
-	Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, linux-mtd@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 06/10] dt-bindings: mtd: partitions: Drop partitions.yaml
-Message-ID: <20260109-bright-purring-oyster-8c9f0b@quoll>
-References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
- <20260108-dt-mtd-partitions-v1-6-124a53ce6279@kernel.org>
+	s=arc-20240116; t=1767951533; c=relaxed/simple;
+	bh=qf0Ay49SUWNcpfPLtH9KOhfJ3qPKHVC59ZmhW095Oos=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Np9Do0GRu8vElpFq5Y5bIga01sOWw9S4EgtgA7K/3c+N38TEPNHfYcRB6SrRKB/yPOhDcVzA8RnvKCGJ62fWhxUd4ja2cn6L2qjUYgfCTiVj46WTBNXLZMoG+oO9RLhQay4g3MNKpdxltbIzM5snZghtotwmAgQvPllnDRjkH+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 6099a3IQ031860
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Fri, 9 Jan 2026 17:36:03 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02 (10.0.15.183) by ATCPCS34.andestech.com (10.0.1.134)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 9 Jan
+ 2026 17:36:03 +0800
+Date: Fri, 9 Jan 2026 17:35:58 +0800
+From: CL Wang <cl634@andestech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <tim609@andestech.com>,
+        <ben717@andestech.com>
+Subject: Re: [PATCH 1/3] dt-bindings: watchdog: Add support for Andes
+ ATCWDT200
+Message-ID: <aWDL_n16CLyP5DR3@swlinux02>
+References: <20260107145058.213334-1-cl634@andestech.com>
+ <20260107145058.213334-2-cl634@andestech.com>
+ <ffb1a4ef-b22c-4d59-a494-0ab703ef24d2@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260108-dt-mtd-partitions-v1-6-124a53ce6279@kernel.org>
+In-Reply-To: <ffb1a4ef-b22c-4d59-a494-0ab703ef24d2@kernel.org>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 6099a3IQ031860
 
-On Thu, Jan 08, 2026 at 11:53:15AM -0600, Rob Herring (Arm) wrote:
->  patternProperties:
->    "^partitions(-boot[12]|-gp[14])?$":
-> -    $ref: /schemas/mtd/partitions/partitions.yaml
-> +    type: object
-> +    additionalProperties: true
->  
-> -    patternProperties:
-> -      "^partition@[0-9a-f]+$":
-> -        $ref: /schemas/mtd/partitions/partition.yaml
-> -
-> -        properties:
-> -          reg:
-> -            description: Must be multiple of 512 as it's converted
-> -              internally from bytes to SECTOR_SIZE (512 bytes)
-> -
-> -        required:
-> -          - reg
-> -
-> -        unevaluatedProperties: false
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          const: fixed-partitions
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml b/Documentation/devicetree/bindings/mtd/mtd.yaml
-> index bbb56216a4e2..e56dba83f00a 100644
-> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
-> @@ -30,7 +30,7 @@ properties:
->      deprecated: true
->  
->    partitions:
-> -    $ref: /schemas/mtd/partitions/partitions.yaml
-> +    type: object
+Hi Krzysztof,
 
-I think you need explicit, since we require it for incomplete nodes:
+Thanks for your review.
 
-additionalProperties: true
+On 07/01/2026 15:50, Krzysztof Kozlowski wrote:
+> Last part is redundant. Can you add a binding without supported properties and without usage examples?
 
->  
->      required:
->        - compatible
+Agreed. I will remove the redundant part "including supported properties
+and usage examples" in the commit message in the next version.
 
-...
+> Subject says WDT200, this code sais 350 and qilai. What is what? You have entire commit msg to explain that
 
-> -unevaluatedProperties: false
-> diff --git a/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-> index ed24b0ea86e5..7619b19e7a04 100644
-> --- a/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-> @@ -24,7 +24,9 @@ properties:
->        - description: AEMIF control registers.
->  
->    partitions:
-> -    $ref: /schemas/mtd/partitions/partitions.yaml
-> +    type: object
-> +    required:
-> +      - compatible
+I will clarify in the commit message that ATCWDT200 is the IP name, which
+is embedded in AndesCore-based platforms or SoCs such as AE350 and Qilai.
 
-Same here
+> No clue what's this, but for sure does not pass tests without description and type.
+
+You are right, I missed the type definition. I will add the description
+and set the type to uint32 (enum [0, 1]) for `andestech,clock-source`.
 
 Best regards,
-Krzysztof
-
+CL Wang
 
