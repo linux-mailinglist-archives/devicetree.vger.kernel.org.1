@@ -1,160 +1,102 @@
-Return-Path: <devicetree+bounces-253353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9D6D0B0E4
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69615D0B0CC
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:52:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4A2FC30249E7
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:48:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CCE4F3083C65
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25B332A3C3;
-	Fri,  9 Jan 2026 15:48:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3566835CB63;
+	Fri,  9 Jan 2026 15:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="QLxjpT8D";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="cTxe+DFS"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="EEALnieZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF07D33C1B3;
-	Fri,  9 Jan 2026 15:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C63C313540;
+	Fri,  9 Jan 2026 15:46:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767973705; cv=none; b=uevjv4Y+FYZLSazUKo/T6UjRZvxTldadxiQ525R50JrlCX4t593+fRebizmSzOu0wXp3wOT6LTywFtaADAO9hPc9xvTw5qpAntnMMM96c/l0hJ2rtadkUukQsI0cAWqZ9bW93E5Tx2DdMwULy1eMds553TV0v2Ei1UsxF2WNL9Q=
+	t=1767973617; cv=none; b=Y5J23c+7bTkPheIVdlBz8R1EOJ8aBexLzxPd2htpS9UKJu0hQGPIrgjjVNarTDuEuq4SEme7374I7cUvZjlRTiZrSnyvYZ91ZzPQPdXFBeIfg2fuVzt1x1e96QdFuzbg/zW2D9KmG5LewvX3gZFzgKPBI653GrT3vyDWmGvjDLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767973705; c=relaxed/simple;
-	bh=/Uw3GGnxPQUcEYWkRHwX0bPOI11uhcg+OxtQTIUpCfw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=SOKKZv8vhh4bGHNjj2cPS4cHEgcJCvw5h1t/Q1UvVk6gKwy8LySZwJpjl/tHaQQSRQWvG1wtC92iAaM6BYQb9B7tE8pcNP0RatG94Ogkv1elfBX/DFOl8/RJoqqLZxOp+9Kc5YNWXemiS3F9znxf9Mp7uCn4m6opJIiWz5tCOwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=QLxjpT8D; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=cTxe+DFS; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767973552; bh=kgvZjKseW7XXTgnrU98FYJ4
-	WNKjj7962wN9LQSN4pQU=; b=QLxjpT8Dbhd4TzBlDG75uESVugiOBVAoKrIZWZl3lJ9Ev8v+WC
-	dK001qV0uMX8X09R2aRjv2rwdeHqjexEyiwRRd0ncngJuhnrsUy52uklW1g5K3PgvpmcJYVmmQ+
-	X55Vzr8fxvAdyJYOYQozC3M1JwhIOxdKcZMx7fLeJr/xYiLZkmv56NqLml4HJUWrwSGcswXqmol
-	8Ny8YHrDyZPa+wpG4KU1Auc+BT7QBgFn+nxM1Ol6g+TgwUXXU+XutF073c0LtqSbEc6EHdHMuXr
-	IFpUi26VOcvux943bUcRj//X7qUdPGI4caDimixKdJOlVrOsJQ+GeZdFRprVn6ZgFkw==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1767973552; bh=kgvZjKseW7XXTgnrU98FYJ4
-	WNKjj7962wN9LQSN4pQU=; b=cTxe+DFSSiJPDx479bcskm4p/mkHkx+Mqh+oGQiFuhdZACZCLW
-	1RBJWE2fhFC791X49V2CyvO4ySJZpew74jBg==;
+	s=arc-20240116; t=1767973617; c=relaxed/simple;
+	bh=lfUPqQ9+MiHYF8jxiM3CAd6qlZGyfNo22wgMcy8ioAI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M+Nyq+OEoAHeFrgtUMFEy2Eo9FkNMv089yDXNy5BEOsKg5PGMKyuSUGuYpDKvOMarHegyYhARhGCo6Gl5LtH1cgBcR7IPylJ2OvRLGTxCaviHsLUzz9Wt9sBxzNFI2d48IiL2ohuMLXPQp9qbwbXK7B+k+UXDO04K+4du8DcJ9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=EEALnieZ; arc=none smtp.client-ip=95.215.58.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <65404ab2-b67d-4138-9aa4-b29fc77ed345@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1767973613;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vc/maUPZAp7DIDSLo/uhhCaMc9Kvj50L6oY3J/L/BcQ=;
+	b=EEALnieZjoGdn0FT7Y3lAyTtqq85oEfoigG7XF/sAByqQBj32pHzi3niAOJD87Vo1R2a+g
+	q9huNKPRLv1ccFn+YYBoqNjg1RNTksB63JyaVhLDXiPh7bFPkotHE2rLtRcz6LdFgt0mjR
+	/zDy9q4V/fekD1h38aUIg9rmLfm/HiY=
+Date: Fri, 9 Jan 2026 15:46:41 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 09 Jan 2026 16:45:52 +0100
-From: barnabas.czeman@mainlining.org
-To: Daniel Thompson <danielt@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Lee Jones
- <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Pavel Machek
- <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson
- <andersson@kernel.org>, Kiran Gunda <quic_kgunda@quicinc.com>, Helge Deller
- <deller@gmx.de>, Luca Weiss <luca@lucaweiss.eu>, Konrad Dybcio
- <konradybcio@kernel.org>, Eugene Lepshy <fekz115@gmail.com>, Gianluca Boiano
- <morf3089@gmail.com>, Alejandro Tafalla <atafalla@dnyon.com>,
- dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+Subject: Re: [PATCH net-next 02/12] dpll: Allow associating dpll pin with a
+ firmware node
+To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
+Cc: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
+ Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Alexander Lobakin <aleksander.lobakin@intel.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v2 2/7] backlight: qcom-wled: Support ovp values for
- PMI8994
-In-Reply-To: <00d0c357d31463272d786bcc9abfe295@mainlining.org>
-References: <20260108-pmi8950-wled-v2-0-8687f23147d7@mainlining.org>
- <20260108-pmi8950-wled-v2-2-8687f23147d7@mainlining.org>
- <aV-UyhP7wllSBpYj@aspen.lan>
- <67acbe8ff2496e18a99165d794a7bae8@mainlining.org>
- <0fe51f7f-9b77-4bff-ab1c-21c44a863a7a@oss.qualcomm.com>
- <aWEDr3O9T7bASnj9@aspen.lan>
- <00d0c357d31463272d786bcc9abfe295@mainlining.org>
-Message-ID: <886d98f40c8f99c7d6d236ddbec487be@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+ intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>,
+ Grzegorz Nitka <grzegorz.nitka@intel.com>
+References: <20260108182318.20935-1-ivecera@redhat.com>
+ <20260108182318.20935-3-ivecera@redhat.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20260108182318.20935-3-ivecera@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On 2026-01-09 16:42, barnabas.czeman@mainlining.org wrote:
-> On 2026-01-09 14:33, Daniel Thompson wrote:
->> On Fri, Jan 09, 2026 at 12:09:11PM +0100, Konrad Dybcio wrote:
->>> On 1/9/26 7:36 AM, barnabas.czeman@mainlining.org wrote:
->>> > On 2026-01-08 12:28, Daniel Thompson wrote:
->>> >> On Thu, Jan 08, 2026 at 04:43:20AM +0100, Barnabás Czémán wrote:
->>> >>> WLED4 found in PMI8994 supports different ovp values.
->>> >>>
->>> >>> Fixes: 6fc632d3e3e0 ("video: backlight: qcom-wled: Add PMI8994 compatible")
->>> >>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>> >>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->>> >>> ---
->>> >>>  drivers/video/backlight/qcom-wled.c | 41 +++++++++++++++++++++++++++++++++++--
->>> >>>  1 file changed, 39 insertions(+), 2 deletions(-)
->>> >>>
->>> >>> diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
->>> >>> index a63bb42c8f8b..5decbd39b789 100644
->>> >>> --- a/drivers/video/backlight/qcom-wled.c
->>> >>> +++ b/drivers/video/backlight/qcom-wled.c
->>> >>> @@ -1244,6 +1244,15 @@ static const struct wled_var_cfg wled4_ovp_cfg = {
->>> >>>      .size = ARRAY_SIZE(wled4_ovp_values),
->>> >>>  };
->>> >>>
->>> >>> +static const u32 pmi8994_wled_ovp_values[] = {
->>> >>> +    31000, 29500, 19400, 17800,
->>> >>> +};
->>> >>> +
->>> >>> +static const struct wled_var_cfg pmi8994_wled_ovp_cfg = {
->>> >>> +    .values = pmi8994_wled_ovp_values,
->>> >>> +    .size = ARRAY_SIZE(pmi8994_wled_ovp_values),
->>> >>> +};
->>> >>> +
->>> >>
->>> >> Do these *have* to be named after one of the two PMICs that implement
->>> >> this OVP range.
->>> >>
->>> >> Would something like wled4_alternative_ovp_values[] (and the same
->>> >> throughout the patch) be more descriptive?
->>> > I don't know. I don't like the PMIC naming either but at least it
->>> > descriptive about wich PMIC is needing these values.
->> 
->> It's the descriptive but wrong element I dislike (pmi8994_wled_ovp_cfg
->> is used by pmi8550).
-> No, pmi8950 is using pmi8994_wled_opts struct what is using 
-> pmi8994_wled_ovp_cfg.
-Maybe would be better move opts to compatible data.
->> 
->> I know these things crop up for "historical reasons" when is appears 
->> in
->> the same patchset I have to question the naming.
->> 
->> 
->>> > I think PMIC naming would be fine if compatibles what representing the
->>> > same configurations would be deprecated and used as a fallback compatbile
->>> > style.
->>> > I mean we could kept the first added compatible for a configuration.
->>> > Maybe they should be named diferently i don't know if WLEDs have subversion.
->>> 
->>> Every PMIC peripheral is versioned.
->>> 
->>> WLED has separate versioning for the digital and analog parts:
->>> 
->>> PMIC		ANA	DIG
->>> ---------------------------
->>> PMI8937		2.0	1.0 (also needs the quirk)
->>> PMI8950		2.0	1.0
->>> PMI8994		2.0	1.0
->>> PMI8996		2.1	1.0
->>> PMI8998		3.1	3.0
->>> PM660L		4.1	4.0
->>> 
->>> I don't know for sure if "PMIC4 with WLED ANA/DIG 3.x" a good
->>> discriminant though..
->> 
->> Peronally I'd prefer that to making them all use pmi8994 structures.
->> It's a much better link back to the docs (at least for those with the
->> power to read them ;-) ).
->> 
->> 
->> Daniel.
+On 08/01/2026 18:23, Ivan Vecera wrote:
+> Extend the DPLL core to support associating a DPLL pin with a firmware
+> node. This association is required to allow other subsystems (such as
+> network drivers) to locate and request specific DPLL pins defined in
+> the Device Tree or ACPI.
+> 
+> * Add a .fwnode field to the struct dpll_pin
+> * Introduce dpll_pin_fwnode_set() helper to allow the provider driver
+>    to associate a pin with a fwnode after the pin has been allocated
+> * Introduce fwnode_dpll_pin_find() helper to allow consumers to search
+>    for a registered DPLL pin using its associated fwnode handle
+> * Ensure the fwnode reference is properly released in dpll_pin_put()
+> 
+> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> ---
+> Changes:
+> RFC v2:
+> - dpll_pin_fwnode_set() helper to set firmware node without touching
+>    dpll_pin_get()
+
+Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
 
