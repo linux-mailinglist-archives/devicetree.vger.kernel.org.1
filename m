@@ -1,446 +1,70 @@
-Return-Path: <devicetree+bounces-253149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C15BD07FD6
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 09:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FD73D07CB8
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 09:25:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 03239306A938
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 08:52:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A4B9B305DD8D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 08:23:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81890352F9A;
-	Fri,  9 Jan 2026 08:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75107322A21;
+	Fri,  9 Jan 2026 08:23:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lgeamrelo11.lge.com (lgeamrelo11.lge.com [156.147.23.51])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC959352F98
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 08:52:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA821322B75;
+	Fri,  9 Jan 2026 08:23:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767948748; cv=none; b=pyIWkSsT0OasLj94FZrwy//yDNGZFiJfsFxG52cz+/VGNfyXy3szKdIOtOhBGcZin2i5/hR1WsRPZXfpYq2Mp9LJgZe5OKU/MR+RNmWDTUUu6Qvrq0v8We4LCl4xT1EzZBxbJE/LZ/N7Rolfmo9H05VwwUBLP7XZiJsUCg+NKN0=
+	t=1767947016; cv=none; b=HTDr6fdUFEiAEMT4Zt9pBpWOnhcf40IQftCE1NRXk2R8tLj7ced8+qHCg8C09WMpGl8e5QbCWEDtZUwN1dz7Q1xKrZ41/O05/5/tvdB4CDZZvCFwT24kXz+hvQyje8PpJci6rm6MsEyZLoempBLu5Pu7lUAnTB3aaeI/R93inf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767948748; c=relaxed/simple;
-	bh=8wt0Ivpout1TPGu058sjG7zusUKW3RbSJfxWTwiYvRY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gHlqnDC01ATS/EK7Mbvgf3Ar10ILI1tzm9z3/QpVsOAcRBE62iPRk3bugtjSdX7zJh1FN0M882/njRxJ28nj8VmrQvawP/xhTD0ziUCAWIWyHj8C5NjVYuRmqdMks0RuRhr18UyZ3P9PJbqkRG866OCmHt1c957hf3TzXiUNKiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
-Received: from unknown (HELO lgemrelse6q.lge.com) (156.147.1.121)
-	by 156.147.23.51 with ESMTP; 9 Jan 2026 17:22:19 +0900
-X-Original-SENDERIP: 156.147.1.121
-X-Original-MAILFROM: chanho.min@lge.com
-Received: from unknown (HELO localhost.localdomain) (10.178.31.97)
-	by 156.147.1.121 with ESMTP; 9 Jan 2026 17:22:19 +0900
-X-Original-SENDERIP: 10.178.31.97
-X-Original-MAILFROM: chanho.min@lge.com
-From: Chanho Min <chanho.min@lge.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Kael D'Alcamo <dev@kael-k.io>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: Chanho Min <chanho.min@lge.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/2] arm64: dts: lg: Initial support for LG1215 SoC and reference board
-Date: Fri,  9 Jan 2026 17:22:14 +0900
-Message-Id: <20260109082214.1583961-3-chanho.min@lge.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260109082214.1583961-1-chanho.min@lge.com>
-References: <20260109082214.1583961-1-chanho.min@lge.com>
+	s=arc-20240116; t=1767947016; c=relaxed/simple;
+	bh=ZiDRq5wUhOmOi5ZkDhAaOUyBKA0KQ1YqovDOZBvrhqw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O2RI3zL+Z9pX3DxroLwi3cS2/utLB2XLuBIaYy7TLeO2T+2o4lFI+FcGWqi4lp4Wxt2SinekWpxkjThm9s8oepFeSRIM6Qhy2VTyYvFZxGRnMVcH2/FIv4EiG1vj1m7P4gcB8tOh2H1s1sLkmgjyKLbCAvwHDep9oobyFfvMHiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A29F0C4CEF1;
+	Fri,  9 Jan 2026 08:23:35 +0000 (UTC)
+Date: Fri, 9 Jan 2026 09:23:33 +0100
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+To: Kuan-Wei Chiu <visitorckw@gmail.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, dmitry.torokhov@gmail.com, sre@kernel.org, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, lgirdwood@gmail.com, broonie@kernel.org, 
+	jserv@ccns.ncku.edu.tw, eleanor15x@gmail.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-serial@vger.kernel.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] dt-bindings: input:
+ google,goldfish-events-keypad: Convert to DT schema
+Message-ID: <20260109-remarkable-crane-of-exercise-6bc17f@quoll>
+References: <20260108080836.3777829-1-visitorckw@gmail.com>
+ <20260108080836.3777829-4-visitorckw@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260108080836.3777829-4-visitorckw@gmail.com>
 
-Add initial device tree support for LG Electronics LG1215 SoC
-and its reference development board.
+On Thu, Jan 08, 2026 at 08:08:33AM +0000, Kuan-Wei Chiu wrote:
+> +
+> +examples:
+> +  - |
+> +    keypad@9040000 {
+> +        compatible = "google,goldfish-events-keypad";
+> +        reg = <0x9040000 0x1000>;
+> +        interrupts = <0x5>;
 
-This patch introduces:
- - lg1215.dtsi : SoC level device tree include file
- - lg1215-ref.dts : Reference board specific file
- - Makefile update to build lg1215-ref.dtb
+Same comment as before. It applies everywhere, btw.
 
-Currently supported minimal hardware description:
- - Quad ARM Cortex-A78 CPU
- - gic-400 interrupt controller
- - ARMv8 architected timer
- - pmu (Performance Monitoring Unit)
- - pl011 UARTs
- - pl080 DMA controller
- - sp804 timers, sp805 watchdog timers
- - Generic DWMAC ethernet controller
-
-v2:
- - Switched to "lg," prefix
- - Fixed DT coding style issues (validated with DTB_CHECK=y make)
-
-This is the minimal initial bring-up version. More peripherals (mmc, gpio,
-pinctrl, etc.) will be added in follow-up patches.
-
-Signed-off-by: Chanho Min <chanho.min@lge.com>
----
- arch/arm64/boot/dts/lg/Makefile       |   1 +
- arch/arm64/boot/dts/lg/lg1215-ref.dts |  34 +++
- arch/arm64/boot/dts/lg/lg1215.dtsi    | 288 ++++++++++++++++++++++++++
- 3 files changed, 323 insertions(+)
- create mode 100644 arch/arm64/boot/dts/lg/lg1215-ref.dts
- create mode 100644 arch/arm64/boot/dts/lg/lg1215.dtsi
-
-diff --git a/arch/arm64/boot/dts/lg/Makefile b/arch/arm64/boot/dts/lg/Makefile
-index 4c3959e24e1b..e60a5bd35327 100644
---- a/arch/arm64/boot/dts/lg/Makefile
-+++ b/arch/arm64/boot/dts/lg/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_LG1K) += lg1312-ref.dtb
- dtb-$(CONFIG_ARCH_LG1K) += lg1313-ref.dtb
-+dtb-$(CONFIG_ARCH_LG1K) += lg1215-ref.dtb
-diff --git a/arch/arm64/boot/dts/lg/lg1215-ref.dts b/arch/arm64/boot/dts/lg/lg1215-ref.dts
-new file mode 100644
-index 000000000000..96b86a7060a8
---- /dev/null
-+++ b/arch/arm64/boot/dts/lg/lg1215-ref.dts
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dts file for lg1215 Reference Board.
-+ *
-+ * Copyright (C) 2026, LG Electronics
-+ */
-+
-+/dts-v1/;
-+
-+#include "lg1215.dtsi"
-+
-+/ {
-+	model = "LG Electronics, TV SoC LG1215 Reference Board";
-+	compatible = "lg,lg1215-ref", "lg,lg1215";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x00000000 0x0 0xbc400000>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/lg/lg1215.dtsi b/arch/arm64/boot/dts/lg/lg1215.dtsi
-new file mode 100644
-index 000000000000..0be5010da147
---- /dev/null
-+++ b/arch/arm64/boot/dts/lg/lg1215.dtsi
-@@ -0,0 +1,288 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dts file for lg1215 SoC
-+ *
-+ * Copyright (C) 2026, LG Electronics
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x00000000>;
-+			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			d-cache-size = <0x00010000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			i-cache-size = <0x00010000>;
-+			next-level-cache = <&L2_0>;
-+			L2_0: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <512>;
-+				cache-size = <0x00040000>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x00000100>;
-+			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			d-cache-size = <0x00010000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			i-cache-size = <0x00010000>;
-+			next-level-cache = <&L2_1>;
-+			L2_1: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <512>;
-+				cache-size = <0x00040000>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x00000200>;
-+			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			d-cache-size = <0x00010000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			i-cache-size = <0x00010000>;
-+			next-level-cache = <&L2_2>;
-+			L2_2: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <512>;
-+				cache-size = <0x00040000>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x00000300>;
-+			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			d-cache-size = <0x00010000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			i-cache-size = <0x00010000>;
-+			next-level-cache = <&L2_3>;
-+			L2_3: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <512>;
-+				cache-size = <0x00040000>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+		L3: l3-cache {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-size = <0x00100000>;
-+			cache-unified;
-+		};
-+
-+		cpu0_opp_table: opp-table {
-+			compatible = "operating-points-v2";
-+
-+			opp-1600000000 {
-+				opp-hz = /bits/ 64 <1600000000>;
-+			};
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci";
-+		method = "smc";
-+		cpu_suspend = <0xc4000001>;
-+		cpu_off = <0xc4000002>;
-+		cpu_on = <0xc4000003>;
-+	};
-+
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>,
-+				     <&cpu1>,
-+				     <&cpu2>,
-+				     <&cpu3>;
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_RAW(0x0f) |
-+			      IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_RAW(0x0f) |
-+			      IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_RAW(0x0f) |
-+			      IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_RAW(0x0f) |
-+			      IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	clk_xtal: clk-xtal {
-+		compatible = "fixed-clock";
-+		clock-output-names = "xtal";
-+		clock-frequency = <50000000>;
-+
-+		#clock-cells = <0>;
-+	};
-+
-+	clk_bus: clk-bus {
-+		compatible = "fixed-factor-clock";
-+		clocks = <&clk_xtal>;
-+		clock-output-names = "busclk";
-+		clock-div = <1>;
-+		clock-mult = <4>;
-+
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		interrupt-parent = <&gic>;
-+
-+		gic: interrupt-controller@c0000000 {
-+			compatible = "arm,gic-400";
-+			reg = <0x0 0xc0001000 0x0 0x1000>, /* GICD */
-+			      <0x0 0xc0002000 0x0 0x2000>, /* GICC */
-+			      <0x0 0xc0004000 0x0 0x2000>, /* GICH */
-+			      <0x0 0xc0006000 0x0 0x2000>; /* GICV */
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0x0f) |
-+					IRQ_TYPE_LEVEL_LOW)>;
-+			interrupt-controller;
-+		};
-+
-+		ethernet@ca370000 {
-+
-+			compatible = "snps,dwmac";
-+			reg = <0x0 0xca370000 0x0 0x2000>;
-+			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "stmmaceth", "pclk";
-+			max-frame-size = <1500>;
-+			phy-mode = "mii";
-+			snps,pbl = <2>;
-+			snps,fixed-burst;
-+			snps,multicast-filter-bins = <64>;
-+			snps,perfect-filter-entries = <32>;
-+			snps,axi-config = <&dwmac_axi_config>;
-+			mac-address = [ 00 00 00 00 00 00 ];
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			ethernet-phy@1c {
-+				compatible = "ethernet-phy-id001c.c800";
-+				reg = <0x1c>;
-+				interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+			dwmac_axi_config: dwmac-axi-config {
-+
-+				snps,rd_osr_lmt = <0x07>;
-+				snps,wr_osr_lmt = <0x07>;
-+				snps,blen = <0 0 16 0 0 0 0>;
-+			};
-+		};
-+
-+		timers0: timer@fd100000 {
-+			compatible = "arm,sp804", "arm,primecell";
-+			reg = <0x0 0xfd100000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>, <&clk_bus>;
-+			clock-names = "timer0clk", "timer1clk", "apb_pclk";
-+		};
-+		timers1: timer@fd110000 {
-+			compatible = "arm,sp804", "arm,primecell";
-+			reg = <0x0 0xfd110000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>, <&clk_bus>;
-+			clock-names = "timer0clk", "timer1clk", "apb_pclk";
-+			status = "disabled";
-+		};
-+		wdog: watchdog@fd200000 {
-+			compatible = "arm,sp805", "arm,primecell";
-+			reg = <0x0 0xfd200000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "wdog_clk", "apb_pclk";
-+		};
-+		uart0: serial@fe000000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x0 0xfe000000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "uartclk", "apb_pclk";
-+		};
-+		uart1: serial@fe100000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x0 0xfe100000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "uartclk", "apb_pclk";
-+		};
-+		uart2: serial@fe200000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x0 0xfe200000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "uartclk", "apb_pclk";
-+		};
-+		dma: dma-controller@ff200000 {
-+			#dma-cells = <1>;
-+			compatible = "arm,pl080", "arm,primecell";
-+			reg = <0x0 0xff200000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>;
-+			clock-names = "apb_pclk";
-+		};
-+	};
-+};
--- 
-2.34.1
-
+> +    };
+> -- 
+> 2.52.0.457.g6b5491de43-goog
+> 
 
