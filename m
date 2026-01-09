@@ -1,96 +1,138 @@
-Return-Path: <devicetree+bounces-253045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4891DD06B67
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 02:17:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25612D06BF7
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 02:32:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E7B8630312CC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 01:17:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 09D6C3020C67
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 01:31:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F961A840A;
-	Fri,  9 Jan 2026 01:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D6F1B4223;
+	Fri,  9 Jan 2026 01:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="FBjtDv7p"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="GY6B1+W4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mail-m1973172.qiye.163.com (mail-m1973172.qiye.163.com [220.197.31.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C0D18A6DB;
-	Fri,  9 Jan 2026 01:17:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4F6C13B;
+	Fri,  9 Jan 2026 01:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767921460; cv=none; b=uXDwWQCaW0RG2RNtNQGnZv2lUWV1bA3ug6U7FZpY6Dv0ZJny51IcmvNVYm0muiS7Twir7QZhOI/jVQMtMglKZ9lMfbJGTVovFU0s+xNsKiLBZroH7CVmXpMWEozF32H9AsBWhC8WgtuS/PPYtyowN/aQcspWBtm+Z4xpzFv2Hjo=
+	t=1767922295; cv=none; b=m3Zgl/WU2nuUKzkZfgBPys8a05hOme2wyisARDKrahbkVcNMt6A1P9W20mgCH2ZnYNA3XrCkzl/llJ1Lq4C2nj8CvG04TF4UeIJ7vFqGYdHT+afrgkMF4uyCkrJF3UZEzxeP9VsTQ9Jz1msO8FPszKp/5evzGQfMoOly4qRbdr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767921460; c=relaxed/simple;
-	bh=LwK/7HWLNZdkoZbc3509z1EnYSgWBHAg3nkDVt2PhWA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JI6lSq8H6SmPq2g86DvOjTaangqmhqUWCJYhGliUTEiSaAoS7BpeJ6vvFpQEzJGN5uZ7TKLA3O9K+73vBnBYZ40KIRnSBkELOP5ucHSpiPxNpBlEezWtHIsqKhwBeAFt9EqskVNrxSkH+SqrG4A15ty/zaALgqobaIuE+/r/G58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=FBjtDv7p; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1767921457;
-	bh=LwK/7HWLNZdkoZbc3509z1EnYSgWBHAg3nkDVt2PhWA=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=FBjtDv7pUlyQuW0vTX7EesZslU0r4uFRyOYi3Pd0Wk1zqc/bokiLlqYR2AXRqdXQk
-	 un0pBO2N1yEdS8OFrG7NJALuJBb/q23oequJ5ojCDahrnrnxx/fmtvfgnfgpeq+2Pz
-	 qEJlRwU+TSyYDQP5W9AiQXE1h71pfWaL/iiHY0PtblZi1OuGyc351stq1fSiAlWHKA
-	 2IiJlURKUoesVvWjY+4dLPSRfNwBOhZBpsYR7kgqWUkClGJFtqpfpiPAJdFrhG2i99
-	 uR4bvL5JVJU9D5mkJh8dRa22b3yH+faWEKPL+wFc9MPp8AndVUW0P+zAGOe/ukAKVp
-	 gg1TEqZF5zEhw==
-Received: from [192.168.68.115] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 081A87E142;
-	Fri,  9 Jan 2026 09:17:36 +0800 (AWST)
-Message-ID: <0b94a728bdee2483d0e963bdae69178539ed7721.camel@codeconstruct.com.au>
-Subject: Re: [PATCH RFC 03/16] pinctrl: aspeed: g5: Allow use of LPC node
- instead of LPC host controller
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- linux-hwmon@vger.kernel.org, 	devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, 	openbmc@lists.ozlabs.org,
- linux-gpio@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-crypto@vger.kernel.org, linux-iio@vger.kernel.org
-Date: Fri, 09 Jan 2026 11:47:36 +1030
-In-Reply-To: <CAD++jL=TXQyGD5nSdg37KK=OrUJDwi=2pXQciLr+udC9hjCVkw@mail.gmail.com>
-References: 
-	<20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
-	 <20251211-dev-dt-warnings-all-v1-3-21b18b9ada77@codeconstruct.com.au>
-	 <CAD++jL=TXQyGD5nSdg37KK=OrUJDwi=2pXQciLr+udC9hjCVkw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1767922295; c=relaxed/simple;
+	bh=XG04LBIBTjzCP2psK3Uo1GUfr6kBVaisav07ZgmiORY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tq+kkuiRoeRnnCf0ByX07ATXY7C1y21y1WlTlUYQMx8b8eLf5QZKvlW3pRzUU+IemFginlwprl8ICg9e7v0aiOCe2fTDV8AJFNgsFCUPrwOklJcQ4u80avoo+ryemEHkPaMGokN7gzsnLpIVlL/ki8F5DkeSTpNmGy55nbeYa7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=GY6B1+W4; arc=none smtp.client-ip=220.197.31.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.51] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3002cb6fd;
+	Fri, 9 Jan 2026 09:26:02 +0800 (GMT+08:00)
+Message-ID: <4e01f121-1912-4897-98e8-cb543a501707@rock-chips.com>
+Date: Fri, 9 Jan 2026 09:26:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 8/9] drm/rockchip: Drop ROCKCHIP_IOMMU depend for
+ DRM_ROCKCHIP
+To: Heiko Stuebner <heiko@sntech.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Chaoyi Chen <kernel@airkyi.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org
+References: <20251106020632.92-1-kernel@airkyi.com>
+ <20251106020632.92-9-kernel@airkyi.com> <4072834.X9hSmTKtgW@phil>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <4072834.X9hSmTKtgW@phil>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9ba05c4d8f03abkunm1426e5ab1f2143
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkhKTlZCS0gaTUhNS0NDTx9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=GY6B1+W46frWd3oLL1NM66g6O0EUywg5e7gk4XfQ3+7+led+dGGAoMeVwkHlhjufEtT6S0JKF8Ui/NstMhkxCh8FkpHFb3JVv/f+FQiHYJd8kjAsXth6LNavSgbTlumydJfio2Zlgs31cMsy3m+jrDNfczdZ39KJiNyjhMpbMuo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=IjEhf4jC5xnT6sGVRluMHT0B2HAAj6xJis8dbhxb8WM=;
+	h=date:mime-version:subject:message-id:from;
 
-On Wed, 2025-12-31 at 22:38 +0100, Linus Walleij wrote:
-> On Thu, Dec 11, 2025 at 9:46=E2=80=AFAM Andrew Jeffery
-> <andrew@codeconstruct.com.au> wrote:
->=20
-> > There's currently a wart where the Aspeed LPC host controller has no
-> > binding specified, but the pinctrl binding depends on referencing its
-> > node.
-> >=20
-> > Allow specification of a phandle to the parent LPC controller instead.
-> > Fall back to testing for a compatible parent node if the provided
-> > phandle doesn't directly resolve to the LPC controller node.
-> >=20
-> > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
->=20
-> Reviewed-by: Linus Walleij <linusw@kernel.org>
->=20
-> I guess when this is non-RFC I will just apply these two patches.
+Hi Heiko,
 
-Yeah, no dramas. I intend to split what remains to be applied into
-separate (non-RFC) follow-up series now that many of the changes have
-been applied.
+On 1/9/2026 3:03 AM, Heiko Stuebner wrote:
+> Am Donnerstag, 6. November 2025, 03:06:31 Mitteleuropäische Normalzeit schrieb Chaoyi Chen:
+>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>
+>> On the RK3506 platform, there is no iommu hardware. And even on
+>> platform that have iommu hardware, it should be possible to use
+>> VOP without enabling iommu. In this case, a contiguous memory
+>> space like CMA should be used.
+>>
+>> So this patch removes the dependency on ROCKCHIP_IOMMU.
+>>
+>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>> ---
+>>  drivers/gpu/drm/rockchip/Kconfig | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+>> index b7b025814e72..a056d419190c 100644
+>> --- a/drivers/gpu/drm/rockchip/Kconfig
+>> +++ b/drivers/gpu/drm/rockchip/Kconfig
+>> @@ -1,7 +1,8 @@
+>>  # SPDX-License-Identifier: GPL-2.0-only
+>>  config DRM_ROCKCHIP
+>>  	tristate "DRM Support for Rockchip"
+>> -	depends on DRM && ROCKCHIP_IOMMU
+>> +	depends on DRM
+>> +	depends on ROCKCHIP_IOMMU || !ROCKCHIP_IOMMU
+> 
+> I don't really understand this yes+no line :-)
+> 
+> Can't you just
+> - drop the dependency altogether
+> or
+> - do a depends on ROCKCHIP_IOMMU if ARM64
+> 
+>
 
-Andrew
+This trick is called optional-dependencies [0]. In addition to the 
+familiar depends on ROCKCHIP_IOMMU part, the newly added !ROCKCHIP_IOMMU
+ensures that DRM_ROCKCHIP can still be built even when ROCKCHIP_IOMMU
+is not build.
+
+[0]: https://docs.kernel.org/kbuild/kconfig-language.html#optional-dependencies
+
+If we just:
+- drop the dependency altogether 
+
+When IOMMU is enabled, the dependency relationship cannot be handled 
+correctly. For example, the following configuration is possible: 
+ROCKCHIP_IOMMU=m, DRM_ROCKCHIP=y, which leads to a build failure.
+
+- do a depends on ROCKCHIP_IOMMU if ARM64
+
+This changes the semantics. On arm64 we should also be able to work
+without IOMMU being enabled.
+
+-- 
+Best, 
+Chaoyi
 
