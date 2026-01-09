@@ -1,110 +1,132 @@
-Return-Path: <devicetree+bounces-253360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DC1D0B2C0
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:18:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BFC2D0B28E
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 26D7931126F2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:12:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 85D2C3066DE3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:12:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA836363C4F;
-	Fri,  9 Jan 2026 16:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5E4363C5F;
+	Fri,  9 Jan 2026 16:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="s/BekWOL"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="y8sgO60v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E7F3612C4
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 16:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7687E363C5E
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 16:12:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767975159; cv=none; b=lpMPBu1BnTjNfjLxFXtbXsCjXBtSLrrY54jRJMvFCPdbW8HjiqJqc9t0iGTC7PZHga8hJdDTxemN7vzHhKN1SzVweCYuedOOs0RTlARRhJdEn0TTB9rJqcj1Z58hH7cvpSiiDBuoiKt4XAZZ7Qdxe/isl8Lsa6bzlDekDITKfUM=
+	t=1767975168; cv=none; b=nDXhZglaeQ6ZDCeSkr5HZ7maLRDUgROP4U5bsk+6abb2J27jgxQlwnVN8RLVCopapcUSwrrqtAlWk96DAF5n7XCiIsBonR99LAL2rRBHw7mFeIZ5nERAqY9tysI4CnYl1MeFAYgYEjHuRvZ1gCcmrnVsl0PM0FSbkmjJJPHojyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767975159; c=relaxed/simple;
-	bh=oBV9OHBf0Dq3/ev8OmQYEkjsWG4QQ65vMOuv6xZEzU4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ALQjuhvbGVE0ygU4zfJU4YMZfZ2Qz859rjbzcPv5DGzJEHFU/ZSZAv3i4ffsGvnSMdTxC0pZNA0cGKVzM+hOYhITyL0Lm2GMemoCDyCLa5Snsz65aRHORogs+rX3zm2bjbTRG+zniz1OANqGRTuSITT1qeAKcEcitQuF+pIUP7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=s/BekWOL; arc=none smtp.client-ip=91.218.175.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <67ec1ef6-4148-42d8-a37d-56d089c6d686@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1767975143;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jKUbx/Z1+Yt4q5NGapHD0PxmcD1lDzWGnEJYNLdw6QA=;
-	b=s/BekWOLdsRBW/H9lUmDHMUGOMrh2PKQQVgUaBpcXEL5ebGzElBvaFnimjXKayq52OS5sv
-	+0dQUR6T0rVlTxwJayh7VGLyCf1VwJ3mrXrfjwv6xe9Go/ZpGuMtNE4eV1NTO9ESXTXrO6
-	cbJApz2ahZld+6YGW+MxdytZ4tGZCw0=
-Date: Fri, 9 Jan 2026 16:12:18 +0000
+	s=arc-20240116; t=1767975168; c=relaxed/simple;
+	bh=Z1pwYaB9YWaqpeLpN7YTuR0+lMIpPCAE9oljsDgAwrs=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=rQVAuOd0TRZl+HQKOV2Pd3bFA7Zex8iG+3RUUmSbeQ9NkkHqaRemp4NPjiJHlOpvwEbRFZ8t68g4eJodNiDHTbqwuBxFjh+8kCILmlZ9Wm46b0ZlTT0Mbp7il/PZ9PyWP/B4VeH7ny/Y709szHAVVVZpzjIuazkA1qezodBzCtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=y8sgO60v; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id EAB951A274B;
+	Fri,  9 Jan 2026 16:12:42 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BF07E606C6;
+	Fri,  9 Jan 2026 16:12:42 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 919E4103C8928;
+	Fri,  9 Jan 2026 17:12:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1767975161; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=IMKc9MHd9MKGMdEe0mbvetFcSECq5KlF8/ItyQ9UOfs=;
+	b=y8sgO60vNrvAN5ao1UXWP6frwmiiF1cnmKVMcW7QO/HxbpUAJ9DUZYz8PYoxa7TnZrgNHn
+	QND0OCqd76x2H0tjmg8+G4y+EtalIPSC+KQYf8rjCNA+B5vKbQ7u4oDcUStLUPz8K94/C9
+	oyRk9NcfDbOqVoQ0naI+QN+HiG8sH2m5klgIFBZj/3DQSQTfjNIQKQn/ggmyMPfbWE34jX
+	CVuL3G4rcCcj1gXHvVrTXR94pzDkpKEQ64TpUMAPIFBtvXhBobJARsAvcWYmEBKq08Aajg
+	6m7OKpbbmdqmn48f1azdA0ffbcXKznXdVek37fyAE5LdhLHaDG1pH4odU3nhqQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: kernel test robot <lkp@intel.com>, Rob Herring <robh@kernel.org>, Linus
+ Walleij <linus.walleij@linaro.org>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Vladimir Kondratiev
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?Q?Beno=C3=AEt?= Monin
+ <benoit.monin@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v3 2/4] of: reserved_mem: Support multiple 'reg' entries
+ for memory-region
+In-Reply-To: <202601082105.TThX0916-lkp@intel.com>
+References: <20260107-mtd-memregion-v3-2-f9fc9107b992@bootlin.com>
+ <202601082105.TThX0916-lkp@intel.com>
+Date: Fri, 09 Jan 2026 17:12:35 +0100
+Message-ID: <87qzryn4ss.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next 05/12] dpll: Add notifier chain for dpll events
-To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
-Cc: Petr Oros <poros@redhat.com>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Alexander Lobakin <aleksander.lobakin@intel.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>,
- Grzegorz Nitka <grzegorz.nitka@intel.com>
-References: <20260108182318.20935-1-ivecera@redhat.com>
- <20260108182318.20935-6-ivecera@redhat.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <20260108182318.20935-6-ivecera@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 08/01/2026 18:23, Ivan Vecera wrote:
-> From: Petr Oros <poros@redhat.com>
-> 
-> Currently, the DPLL subsystem reports events (creation, deletion, changes)
-> to userspace via Netlink. However, there is no mechanism for other kernel
-> components to be notified of these events directly.
-> 
-> Add a raw notifier chain to the DPLL core protected by dpll_lock. This
-> allows other kernel subsystems or drivers to register callbacks and
-> receive notifications when DPLL devices or pins are created, deleted,
-> or modified.
-> 
-> Define the following:
-> - Registration helpers: {,un}register_dpll_notifier()
-> - Event types: DPLL_DEVICE_CREATED, DPLL_PIN_CREATED, etc.
-> - Context structures: dpll_{device,pin}_notifier_info  to pass relevant
->    data to the listeners.
-> 
-> The notification chain is invoked alongside the existing Netlink event
-> generation to ensure in-kernel listeners are kept in sync with the
-> subsystem state.
-> 
-> Co-developed-by: Ivan Vecera <ivecera@redhat.com>
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> Signed-off-by: Petr Oros <poros@redhat.com>
+kernel test robot <lkp@intel.com> writes:
 
-LGTM, Thanks!
+> Hi Gregory,
+>
+> kernel test robot noticed the following build warnings:
+>
+> [auto build test WARNING on 8f0b4cce4481fb22653697cced8d0d04027cb1e8]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Gregory-CLEMENT/of=
+-reserved_mem-Fix-placement-of-__free-annotation/20260107-211455
+> base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
+> patch link:    https://lore.kernel.org/r/20260107-mtd-memregion-v3-2-f9fc=
+9107b992%40bootlin.com
+> patch subject: [PATCH v3 2/4] of: reserved_mem: Support multiple 'reg' en=
+tries for memory-region
+> config: x86_64-rhel-9.4-kunit (https://download.01.org/0day-ci/archive/20=
+260108/202601082105.TThX0916-lkp@intel.com/config)
+> compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
+ve/20260108/202601082105.TThX0916-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202601082105.TThX0916-lkp=
+@intel.com/
+>
+> All warnings (new ones prefixed by >>):
+>
+>>> Warning: drivers/of/of_reserved_mem.c:746 function parameter 'rmem' not=
+ described in 'of_reserved_mem_array_lookup'
+>>> Warning: drivers/of/of_reserved_mem.c:902 expecting prototype for of_re=
+served_mem_region_count(). Prototype was for of_reserved_mem_region_total_c=
+ount() instead
+>>> Warning: drivers/of/of_reserved_mem.c:746 function parameter 'rmem'
+>not described in 'of_reserved_mem_array_lookup'
 
-Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+It was a stupid typo in the description!
+
+I will fix it.
+
+Gregory
+
+>
+> --=20
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
