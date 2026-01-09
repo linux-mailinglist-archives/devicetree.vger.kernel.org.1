@@ -1,89 +1,158 @@
-Return-Path: <devicetree+bounces-253424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027D4D0C869
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 00:20:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB968D0C8CF
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 00:33:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C308C30124F5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 23:20:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B49CD301EC6F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 23:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12115338F40;
-	Fri,  9 Jan 2026 23:20:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 312D2338F40;
+	Fri,  9 Jan 2026 23:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tXluR52K"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="WVGAiXVQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E274226E71E
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 23:20:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768000824; cv=none; b=sJTJJUPmcm6IROkP0Lp/lpwBVBn2rJyeBlvQfLdgz6sWrlLMUO7oR3gmlyCmG1gKdpq8MjV0oS3sxQapmWQL7Ec7xJHLkiOYc3GaC3efHo8UeZpiFhaKVJ7pCqi0vhZ1t7LNTQ19G1nTkL/21wmKgCEURmvDa8RGlYIjInBx2lg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768000824; c=relaxed/simple;
-	bh=UEFmpbJ2edxEryf00hesy2e0i0TCUGkwxcgiHFzpIH4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K0SNnKBPZvggQm2+U2UFym3DFeucNXpq7dYWJ2c5QFcqm5cj8lGH8oenY3bGBFm6UeCH5/b2OxCjUqLzZdlW1DXx/hiJDp3tPXAm49UrTsRdN1C5DczHFXFXEp77i4TsNmTsIUi49RJNB4LYUEH4i1M4Vi6o4aK4bITnKPzUfSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tXluR52K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1DBCC19424
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 23:20:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768000823;
-	bh=UEFmpbJ2edxEryf00hesy2e0i0TCUGkwxcgiHFzpIH4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tXluR52Kv4h4n/90pNtCFAodqBRQ9GgjaWWRRV3Y3zn1HQaSaRMidGSIWLY5+17sS
-	 ciU2fjj7JNIqCqB3uwqLt+aQivsKuXLshta9Whcz8EAgC6jDvx5uSO0wH0h5tARCj7
-	 NKp+FcSurc8JYX+kyno4r63dVcDizMfW8lHl5Rxckkhk+taDSlQ8VEGF1NUXMTLTJZ
-	 fg/rBDZkntcZcb6N2rPJeEcQmw31lfmbRkHX+1Yit/bPzlytPfec5sGKNXk4umn6x5
-	 8rK+3oWeoV1cecEaAc68ZFda0q+IdbXJ/YAgc7AVYeY6W0H7u8/Xeas69aVm1ygqe/
-	 XDcqRVJl2ou5g==
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-78d6a3c3b77so40313697b3.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 15:20:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXpWz5LqjlkGuRgCRRXxj0c33uNO4Go47xxMGP3+RuZcM/U1zyIRMb4zI43Lio/RqNJdAsJDoTFwyO2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxrQGNgEzVVWZr+PJXC0mAn1DgaXxZC4h0vTVs/aU1REUnaCdw
-	U3WEEP/H2OmqYA8qBEYLINInMLhUIIXm8ETHxL/WiQgBGqlyKQBFf3UBC22OYYK7o8Fyk7NVYFV
-	N9TFDP/HqCqlgwEhmNv649vnNGHSp0rc=
-X-Google-Smtp-Source: AGHT+IHDEjwDQ95soDuK9jRUwdWv6z1EXnCUlSAsvigiR58FDpIMEDcwMe+juahC+2NynDkXlqTRsSUeh/snyZLv7/0=
-X-Received: by 2002:a05:690e:11cb:b0:645:591a:cb5c with SMTP id
- 956f58d0204a3-6470d2dfd08mr12466670d50.23.1768000822975; Fri, 09 Jan 2026
- 15:20:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0227257821;
+	Fri,  9 Jan 2026 23:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768001602; cv=pass; b=E9TugkSwsX83ikPMecTxOxyC4hZIrzSnlMJwkb1gn8HhvsOExzLyvoFoFcwMOCpkYnukC4k4e/ksmeLzTMvte6B67rz3wIx2MH6Of8gtT4hqwJqFRi/okLpKv5sLtZPChD5feuKSjlLOwWDuQXX8T9ULM+R9Xdt6X7xpJuMCh3I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768001602; c=relaxed/simple;
+	bh=ip/UXe10fc+MS3MGXE6yum5B4wQ9BUfHd/7YhJmX2/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jksULDHd58iNI1H2G9F2VAJRPVq7KJJFASkcP7YLMvaJhYUrOhqVmH7ida0YvXz4bMmgqS0lV0jngYNZyQoQITU2yjZRPL5STq0lhruUKTexPG+cg2iSIZHJFHzZbDdyfn0dqUQSLSUdNq4DxvxjKbZVtK3V4JEEvKW+CTV2tqo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=WVGAiXVQ; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1768001586; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=UuqtoimCKycqATVCmYvA5wN2QVJTbdNvuYcJvHuiqPTpBBn3T4FFDF+/TuiZTzPaimIMaY1PHqsLEB70MqeJsjfxHEmZO6dbHWQwwKbQCSqtvRd3775dflGyBw8jk3wmOrMitDx6ynKk2RNkmN3nYAJ5LJoaetkLOBLEd4nxIPo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1768001586; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ip/UXe10fc+MS3MGXE6yum5B4wQ9BUfHd/7YhJmX2/s=; 
+	b=IQVJQpkJsMiLgzuPJFpH2RHpcGJqMzF8QiAXJmxnEpgXiz9yz/MXzlu9Oe9D7DRW7eMBSvtHht/s8KffmU76uYG04h18Tg5BBo8szNK2IHuItc+5QbfT0YtcNwFmUk7vtCwZVZmMiZEfr/UeZkwBo5AKPAFRhc5MZ0ELSr9FGN8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768001585;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=ip/UXe10fc+MS3MGXE6yum5B4wQ9BUfHd/7YhJmX2/s=;
+	b=WVGAiXVQxUCcN0mn/14w7IS0TAhfjKnpPJY1wrkGmNeE/Wc84HrT5NESYjVmQbqn
+	BSNbUgN5ZY8Dl+8rOXZCUst+fKf2tIu4U/7DqV2chNkJtrayPHhcynfSkW50Xwe/O0y
+	jeP7msVlUwQl6lwYJn/vXRaJZiBTR3Syaxs3FcLA=
+Received: by mx.zohomail.com with SMTPS id 1768001584458598.651984333586;
+	Fri, 9 Jan 2026 15:33:04 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 7502B180632; Sat, 10 Jan 2026 00:32:59 +0100 (CET)
+Date: Sat, 10 Jan 2026 00:32:59 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+	FUKAUMI Naoki <naoki@radxa.com>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+	Yongbo Zhang <giraffesnn123@gmail.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>, 
+	"open list:USB TYPEC CLASS" <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH v1 2/3] arm64: dts: rockchip: rk3588-rock-5b-5bp-5t: Fix
+ USB host phy-supply on Rock 5b-5bp-5t SbC
+Message-ID: <aWGLE-zcPUvQj3Q0@venus>
+References: <20260103083232.9510-1-linux.amoon@gmail.com>
+ <20260103083232.9510-3-linux.amoon@gmail.com>
+ <aVkfNBUDUumzV0-X@venus>
+ <CANAwSgTmAbswY6scsxj40B7Y6QbnkqWPuCqyevRjdtHNemq0aQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260109134409.2153333-1-shorne@gmail.com> <20260109134409.2153333-3-shorne@gmail.com>
-In-Reply-To: <20260109134409.2153333-3-shorne@gmail.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Sat, 10 Jan 2026 00:20:11 +0100
-X-Gmail-Original-Message-ID: <CAD++jLk22r1uYDmugJGqyTOW2mpOG9jc61xbmfFQ7HoJJB9zPg@mail.gmail.com>
-X-Gm-Features: AZwV_QjMeOrgU1fjNS0IKJRxC9krJTx88MoI5W0UBISf2Q-_vQedrRG7paPaSDE
-Message-ID: <CAD++jLk22r1uYDmugJGqyTOW2mpOG9jc61xbmfFQ7HoJJB9zPg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/6] dt-bindings: gpio-mmio: Add opencores GPIO
-To: Stafford Horne <shorne@gmail.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, 
-	Linux OpenRISC <linux-openrisc@vger.kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ji2p36iqphckh5dg"
+Content-Disposition: inline
+In-Reply-To: <CANAwSgTmAbswY6scsxj40B7Y6QbnkqWPuCqyevRjdtHNemq0aQ@mail.gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.5.1/267.941.65
+X-ZohoMailClient: External
 
-On Fri, Jan 9, 2026 at 2:44=E2=80=AFPM Stafford Horne <shorne@gmail.com> wr=
-ote:
 
-> Add a device tree binding for the opencores GPIO controller.
->
-> On FPGA Development boards with GPIOs the OpenRISC architecture uses the
-> opencores gpio verilog rtl which is compatible with the MMIO GPIO driver.
->
-> Link: https://opencores.org/projects/gpio
-> Signed-off-by: Stafford Horne <shorne@gmail.com>
+--ji2p36iqphckh5dg
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v1 2/3] arm64: dts: rockchip: rk3588-rock-5b-5bp-5t: Fix
+ USB host phy-supply on Rock 5b-5bp-5t SbC
+MIME-Version: 1.0
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+Hi,
 
-Yours,
-Linus Walleij
+On Thu, Jan 08, 2026 at 12:25:12PM +0530, Anand Moon wrote:
+> Thanks for your review comments.
+> On Sat, 3 Jan 2026 at 19:35, Sebastian Reichel wrote:
+> > On Sat, Jan 03, 2026 at 02:01:18PM +0530, Anand Moon wrote:
+> > > The USB host USB2 and USB3 on the Rock 5B, 5BP, and 5T is powered by the
+> > > USB_HOST_PWREN_H gpio pin which is used to enable vcc5v0_host host
+> > > regulator which ensures proper power sequencing and management for onboard
+> > > Double-USB-HOST.
+> > >
+> > > Update the u2phy2_host node to reference the correct phy-supply.
+> > >
+> > > Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > ---
+> >
+> > u2phy2_host is connected to an onboard USB hub chip, which is
+> > powered by &vcc5v0_sys as the comment says.
+> >
+> > You can see this on page 9 of the v1.45 ROCK 5B schematics (page
+> > name USB2HUB). The usb hub chip uses VCC5V0_SYS + VCC_3V3_S0 and is
+> > connected to USB20_HOST0_DP, USB20_HOST0_DM. The related USB
+> > controller for that in the upstream DT is &usb_host0_ehci, which
+> > in turn is using &u2phy2_host. Thus at least for the ROCK 5B the
+> > existing DT is correct. Properly describing the downstream port
+> > VBUS regulator would require something like the following series:
+> >
+> > https://lore.kernel.org/all/20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de/
+> >
+> Actually, the Radxa Rock 5 B doesn't have an onboard USB hub chip.
+
+Seriously? I provided the exact page for the hub chip in the
+schematics and it's easily visisble in lsusb too.
+
+I don't want to waste my time and expect a certain level of quality
+and this is certainly way below it...
+
+-- Sebastian
+
+--ji2p36iqphckh5dg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlhkCcACgkQ2O7X88g7
++prHvA/+M7sp9VJH7UdtTiVJGGZ9l3hhpP5O7HgHICqTrIgVNtvjPmkc57SavFen
+l9ivYV9dv0MwfPe5/nUhiAOeQAXcCTdzHWXSeu8GbSCahVG7OMkmKCLkXmaWXXMJ
+BUpPSZJpshXjjb5ETgq/tOLb68UBwJNrqYf8uf5xHvjJNUqI4EVwViRcYKboB8V+
+tgoeX+7QO5YD3BcrVA42PQ7lc2gAgPNcP4+aBYvZKxq/n+WDLKlqbPkv2rPGr5TQ
+oQB9p6roVUCoVWZa0mC/qv72C4S0m8Q14GGK0rIePuZk4vVaoI/d3P8nsJWKWqiL
+NMp3acca67TnSea2BBPb6cUJsod+IvPRqFhey2LXPQWFuYESAWlDBIvWeDgyQ9JY
+jHXmPAuj6L2lxcJ/NdnRZzpMKWL1G30+Y4XmMG/9Xooey8IM1ev0DAWx+DNfBh/M
+zbAjVeyEGeOhOUC4oLXujgYaUDgtaSZIZwU/ycaH6iQ+QBbozjZT/DNoxPHsIgLA
+W49ARX9JRaKhGf9+fwlgbDWyZrtgTMBKirSGRG3SkVk+z2zPTpmp1jXnqTLQ5+62
+gZTYos9FOMtJDMmTuZ9ZiUU55b0x8S7zSl9TZX+wSkr/bq4inQt19uD/RwgCRdoB
+uKk4Wd0dcwFXgNnuzC3NmYXpFLFXBkYx8ROPVUstgM6SZk2e+g0=
+=iHOy
+-----END PGP SIGNATURE-----
+
+--ji2p36iqphckh5dg--
 
