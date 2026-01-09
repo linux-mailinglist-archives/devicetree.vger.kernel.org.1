@@ -1,137 +1,142 @@
-Return-Path: <devicetree+bounces-253122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87430D07B5E
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 09:08:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C6E1D07B52
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 09:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F1A84300A508
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 08:08:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E3D4F304D487
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 08:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA3A2F7475;
-	Fri,  9 Jan 2026 08:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B725A2FB0B3;
+	Fri,  9 Jan 2026 08:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EY3QXIxY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.168.213])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038552EC55D;
-	Fri,  9 Jan 2026 08:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.168.213
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE6F22A4E8;
+	Fri,  9 Jan 2026 08:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767946108; cv=none; b=riQNmcSeHkZYVJrd3W3P9TGlwjU2kdUltiOoEl+hBUVmlBYgDk0l2lFD1AShteDl2cgH1VZv9M2Wl2D73OhQD2cDKG+Sj5IJa5egIYwGeNXkFiJZgULZ3jeyiYcXa2qMdgem4PMhKBpvyeCqt/NZJVHCFEm19m11zhALl7HF4oc=
+	t=1767946022; cv=none; b=u7wpIUlNVSKanFSHwKL7E8jLlRx7AjnCHBN6w/7dEhcApbQP05vI684o116ru85MSTEgvbzGRXtgRsXECBUHrv5hvuy87UR4FfSsFTRjod+31IN4SzZBLqwTuyhO0fYcgGmxYLc6aEn0Gm2+nQyrRPB8zHVlkZYIb39zrVIbur0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767946108; c=relaxed/simple;
-	bh=e4DiX3enHXW60ZSu6JRZuyUKHV/HpC3TnO3ONWwHlOE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dTIOUVMZd+WTmbSLix/r2JDQP0y0hjBJILBapX0Uk41Kacw1FHNv+sZ+9Don3jFgSs0soEUfQrRYPbBBMWYRu1mi2XAszvd2c++zAVVsvRuaTK7OiuhmLZ9WetOajzpqppIoq3TMHVgwKDWMvoFmEyZr5qlw/iTLdgJuhsYezFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.168.213
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0004057DT.eswin.cn (unknown [10.11.96.26])
-	by app1 (Coremail) with SMTP id TAJkCgB3fmtOt2Bp+ImSAA--.13189S2;
-	Fri, 09 Jan 2026 16:07:43 +0800 (CST)
-From: lizhi2@eswincomputing.com
-To: devicetree@vger.kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	rmk+kernel@armlinux.org.uk,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	weishangjuan@eswincomputing.com,
-	Zhi Li <lizhi2@eswincomputing.com>
-Subject: [PATCH v1 0/2] net: stmmac: eic7700: fix EIC7700 eth1 RX sampling timing
-Date: Fri,  9 Jan 2026 16:06:01 +0800
-Message-ID: <20260109080601.1262-1-lizhi2@eswincomputing.com>
-X-Mailer: git-send-email 2.52.0.windows.1
+	s=arc-20240116; t=1767946022; c=relaxed/simple;
+	bh=9DEsBk1RL9UnA9U+uT7rZN22/tOoSMjeMTsr0vH+6ek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HMSWB1HOGAcx6fMdF+2Y4RStxzQGzgkgdjeXLIh48LoNLDFDB/TtrFtcQALTsI4Gd5xXvZYLNE7LVNGK8aFRnb/HCeegE2Nhi2yoDPnL919j1pEsUxInj0O5F5umovuzCRAxY1wRr1V+qbL/1JhYZDK9/6QoZwYtL/RZ0nwa9nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EY3QXIxY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C924C4CEF7;
+	Fri,  9 Jan 2026 08:06:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767946022;
+	bh=9DEsBk1RL9UnA9U+uT7rZN22/tOoSMjeMTsr0vH+6ek=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EY3QXIxYn0vg+bAx4yFdbYY09mCSoqHyLTxXThjMK1CSuZapaHUFuDQ/Bmc3jkU1p
+	 2ggGMlrXAiVY36QRDnGDFGJPhOTXnLwWPHrCDYEpGVkIsARvaoqjzStaxNO7S2qCE/
+	 +mejhPgmc8kvUzTkurlbVPspgpLANZQc0NTGxxXhcQoj+LWrgD/hXcwE2srQ/3n6p8
+	 S8eM+5n7hlqfo/q235D/wvuieOphd1aHqItV97p5Qm4eKnCdw++2MLoSwW4GxxeKjE
+	 8fLumQILk5DLlZ+mEdmUc2pD6/sQvRMOyJSzft/pNfYXkJEsz9wkWzN2HDChoaYi6h
+	 SOTCo7ekAYh1Q==
+Message-ID: <2e8e6436-96a3-40d2-86ce-a716326f79bf@kernel.org>
+Date: Fri, 9 Jan 2026 09:06:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgB3fmtOt2Bp+ImSAA--.13189S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxAr4fZw15XryfAw1xuF1fXrb_yoW5Gry5pF
-	WrGry3tr4qgw1ftwn2vr40gFyrXan5tF47uF1rJwn0vwn8CF1Fqr43tan5XFyDGrs3u3Wj
-	9r1jqr4DCayq9FJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRkwIhUUUUU=
-X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] Initial patch set for PURWA-IOT-EVK
+To: YijieYang <yijie.yang@oss.qualcomm.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, krzysztof.kozlowski@oss.qualcomm.com
+References: <20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Zhi Li <lizhi2@eswincomputing.com>
+On 09/01/2026 08:59, YijieYang wrote:
+> 
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> ---
+> Changes since V1:
+> - Update the GPU firmware path.
+> - Update the description in the cover letter.
+> - Reorder the patches.
+> - Use separate DTS files for Purwa and Hamoa.
+> - Update base commit.
 
-This series addresses an RX data sampling timing issue observed on the
-second Ethernet controller (eth1) of the Eswin EIC7700 SoC.
+That's a b4 patchset, so where are the links?
 
-On the EIC7700 SoC, the hardware introduces a receive clock to data skew
-on eth1 that is not strictly fixed, but remains within a bounded range
-under normal operating conditions. At Gigabit speed, this skew causes
-the receive clock edge to occur later than the corresponding RX data at
-the MAC input, which can result in incorrect RX data sampling.
+> 
+> ---
+> Yijie Yang (4):
+>       dt-bindings: arm: qcom: Document PURWA-IOT-EVK board
+>       firmware: qcom: scm: Allow QSEECOM on PURWA-IOT-EVK
+>       arm64: dts: qcom: Add PURWA-IOT-SOM platform
+>       arm64: dts: qcom: Add base PURWA-IOT-EVK board
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+>  arch/arm64/boot/dts/qcom/Makefile               |    1 +
+>  arch/arm64/boot/dts/qcom/purwa-iot-evk.dts      | 1313 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi     |  614 +++++++++++
+>  drivers/firmware/qcom/qcom_scm.c                |    1 +
+>  5 files changed, 1935 insertions(+)
+> ---
+> base-commit: beff4beeeb2760405ad49de2a6a1bdab8fb1aec3
+> change-id: 20251113-purwa-907ec75b4959
+> 
 
-The existing internal RX delay mechanisms, including the use of rgmii-id
-mode and rx-internal-delay-ps adjustment, provide only a limited amount
-of additional delay on the receive path, which does not offer sufficient
-adjustment range to compensate for this condition. To address this, the
-EIC7700 MAC provides an EIC7700-specific clock sampling inversion control,
-which effectively shifts the sampling edge earlier and restores a valid
-RX sampling window for Gigabit operation.
 
-In addition, this series updates the enum values of the
-rx-internal-delay-ps and tx-internal-delay-ps properties in the device
-tree binding to reflect the actual delay step resolution implemented by
-the EIC7700 hardware. The hardware applies delay in 20 ps increments,
-while the previous enum values were based on an incorrect 100 ps per
-step mapping.
-
-The binding enum values and the driver conversion logic are updated
-together so that the specified delay in picoseconds maps correctly to
-the underlying hardware delay steps. This change corrects the DT-to-
-hardware mapping and does not change the meaning or intended usage of
-the delay properties.
-
-The first patch updates the device tree binding to describe optional
-clock sampling inversion control and the required HSP CSR registers.
-
-The second patch updates the EIC7700 DWMAC glue driver to apply the
-sampling correction at Gigabit speed, clear residual delay settings
-left by the bootloader, and ensure all register accesses are performed
-only after clocks are enabled.
-
-These changes restore reliable RX operation on eth1 and ensure the
-hardware is initialized into a known and consistent state.
-
-Zhi Li (2):
-  dt-bindings: ethernet: eswin: add clock sampling control
-  net: stmmac: eic7700: enable clocks before syscon access and correct
-    RX sampling timing
-
- .../bindings/net/eswin,eic7700-eth.yaml       |  57 +++++++-
- .../ethernet/stmicro/stmmac/dwmac-eic7700.c   | 132 +++++++++++++-----
- 2 files changed, 148 insertions(+), 41 deletions(-)
-
--- 
-2.25.1
-
+Best regards,
+Krzysztof
 
