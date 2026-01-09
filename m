@@ -1,57 +1,55 @@
-Return-Path: <devicetree+bounces-253145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA1FD07F5B
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 09:50:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C14A3D07F73
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 09:50:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9564430092A6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 08:50:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A0928300D55E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 08:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 148FB352930;
-	Fri,  9 Jan 2026 08:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23D235294C;
+	Fri,  9 Jan 2026 08:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="isE8jCWy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RH3/EgtF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696D8350D57;
-	Fri,  9 Jan 2026 08:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7952352927;
+	Fri,  9 Jan 2026 08:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767948597; cv=none; b=ezfAoLssZbfr35fId2HDYXSkLuOc8PQz18mxnmEV2a0PSL2QA+uCEbPaCTE4w9sPLuaTm8MK7YZl94ZmhHOy7w+YMCxj+V7+/Z98P0a0yCrVX81YJ0zVMgLaQFMySF0TSQ4S33QThH4nNP/rJXRTY2pJZhto55DhDcBvpJZ112s=
+	t=1767948639; cv=none; b=GpBozqzCFLxwcIXLXDuWaUiE9KJQ+QgsFuuK5Lb/T6lXbPMFLpSk1klnVA9F9V4xUAAxVVtX/uLsUgvxuT2lEQIC0Cx/AbhPf0/r+YbnVGOfJgjRHECcqQccGXmAuUb+FlPCMR4Y9Cg4yQIxZj6QlZReNbj25wWYeWXw09am3yA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767948597; c=relaxed/simple;
-	bh=sVC9B4d/+KK3+vbZEw6LoEo1PkrQiiNB25XuDOpH3QI=;
+	s=arc-20240116; t=1767948639; c=relaxed/simple;
+	bh=XV2CLePxIzzyiX5YhW+d3geQeL81y017zN1sTVB11D8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EEaW4qy3t3lrwbDh1DvBwWITzki97Ik+1b+nhy4kBx/bMOQuWzb+lj7oyLKcVvsxMP96g+jifaPzy3g4/QxT0/39Y1sLJTDqzDgbSGqYZdt9ogcqGc3DxjPgWy7nb/jR9p3ZyMoFKXgzn4mj2eRpkUXVp1BPE5IvUptS6Y5rqMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=isE8jCWy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23180C4CEF1;
-	Fri,  9 Jan 2026 08:49:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DAMgRgy+3zFYbUx6a+Vt4awuCSUFaBVeDB+SJLA1jWoMsdaAJh9I3XkiP8vPFocKMHZgj6kK10TNlCDkq4LrbTqTbXJjhRuMmChyz3e1riqOL33Dm5YG2opm0IBdbO3FQmO3PnXkbkV3yQDCyJJmMuKR9ib9w0W0Y+gc4QWQ7MQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RH3/EgtF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11778C4CEF7;
+	Fri,  9 Jan 2026 08:50:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767948596;
-	bh=sVC9B4d/+KK3+vbZEw6LoEo1PkrQiiNB25XuDOpH3QI=;
+	s=k20201202; t=1767948638;
+	bh=XV2CLePxIzzyiX5YhW+d3geQeL81y017zN1sTVB11D8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=isE8jCWyGsG+gn0GX3GOJk6x7mEGHfOFrEac9MPyqQqOVoTiZIukOS6g8ui0nIFPg
-	 MXomb3wWy5qBRUPFn/KXROc1xM6Bvj0pKzYeiscFERH5cbHV0zNOhJC5RDSmdp+9GN
-	 Pvg9KhiK0ZK7W7OqAmzmg4dV1XIZzCJInHrTmG3Uc/HDSxdmyPSts/06Y8RHKsMxm8
-	 D7d2GToeyCBJE6fr8foTHOhn6G6AzPbYNclEkzSberR/LNukNTgG4rEBm0bIz81enV
-	 MSqh9oIiC5LyiBBjsPdrmIooG79S2zIptSsaehk1UNz+K3T3FEYL4dCEh2jbhB9HN7
-	 hSSgOn1AA3NWQ==
-Date: Fri, 9 Jan 2026 09:49:54 +0100
+	b=RH3/EgtFaJ4q0lZ5pDdZ/HErLgL+l9mWtpJ/hD+NT5XLFiKxfKY2cI3UBsPG/MsQq
+	 pUDetyLsw4ggQCR5DlabhHa7RxTy8Wpz7X+hISFUug/LmPIHdu0Q9Qu2AhgIZPlFnp
+	 RBMdPc9O+8OEpH8A3gDK5oZ6sUZItx8A0mx3BGTuq0LTW0ElRnB8DJkoLPLAwQjWLx
+	 6aBvpoKLkwIyVzWvRaL0xlg6VWe90dZfmtg1cWL21d6gqS+idJgimQziIQJv/plrd5
+	 PGf77kL7MPJGJwj0svZ4jEASI7ktk06WfmzoJ1XaVplmWxlNGdjLeprKnY0nMlLp04
+	 jj/rbEZvr/orQ==
+Date: Fri, 9 Jan 2026 09:50:35 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Cc: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com, 
-	mailhol@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	andersson@kernel.org, konradybcio@kernel.org, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: can: microchip,mcp251xfd: allow
- gpio-hog child nodes
-Message-ID: <20260109-successful-vegan-baboon-1b9ea7@quoll>
-References: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
- <20260108125200.2803112-2-viken.dadhaniya@oss.qualcomm.com>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: realtek,rt5640: Document mclk
+Message-ID: <20260109-exotic-quantum-jellyfish-8ec0ec@quoll>
+References: <20260108143158.351223-1-jonathanh@nvidia.com>
+ <20260108143158.351223-2-jonathanh@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,19 +58,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260108125200.2803112-2-viken.dadhaniya@oss.qualcomm.com>
+In-Reply-To: <20260108143158.351223-2-jonathanh@nvidia.com>
 
-On Thu, Jan 08, 2026 at 06:21:59PM +0530, Viken Dadhaniya wrote:
-> The MCP251XFD can expose two pins as GPIOs. The binding already declares
-> gpio-controller and #gpio-cells for the device. Whitelist GPIO hog child
-> nodes using patternProperties so boards can set default GPIO states at
-> boot via DT, consistent with other GPIO controllers
-> (e.g. microchip,mpfs-gpio).
+On Thu, Jan 08, 2026 at 02:31:56PM +0000, Jon Hunter wrote:
+> Commit eba5a0bac211 ("ASoC: dt-bindings: realtek,rt5640: Convert to
+> dtschema") converted the rt5640 dt-binding to yaml format but in the
+> process dropped 'clock' and 'clock-names' properties that are used to
+> specify the codec 'mclk'. This is causing DTB build warnings for boards
+> that use this codec and define an 'mclk' in device-tree. Update the
+> rt5640 binding document to add the optional mclk.
 > 
-> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+> Fixes: eba5a0bac211 ("ASoC: dt-bindings: realtek,rt5640: Convert to dtschema")
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  .../devicetree/bindings/net/can/microchip,mcp251xfd.yaml    | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../devicetree/bindings/sound/realtek,rt5640.yaml         | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
