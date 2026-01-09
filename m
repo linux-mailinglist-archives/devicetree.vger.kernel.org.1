@@ -1,125 +1,92 @@
-Return-Path: <devicetree+bounces-253042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55B9BD069E2
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 01:33:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB1CD06B21
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 02:12:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 51DFF303165B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 00:33:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EC1D63010992
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 01:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C65C18FC97;
-	Fri,  9 Jan 2026 00:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4639E1E32A2;
+	Fri,  9 Jan 2026 01:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="HsGcwS2P"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="f5QsO7Jg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B3A38DD3
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 00:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11C11D798E;
+	Fri,  9 Jan 2026 01:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767918828; cv=none; b=PzSPkCRXJ/9Gf4bZaUyjugoGTJaZvUSPDl+g2eVVxDlT3J8reM142qWMy7Cv7anf5nQnbdMfK25V1LaiGaiKUMB42xGnvHYthPXQ51M5YLHm/BWcrwcP32bEjjCE62hsPZIoOuT53PP3eeUnNWn8rCSkWPGjJc0rdgBQz2BxCC8=
+	t=1767920996; cv=none; b=L48sXWkeCyd5J/jSZmbSNG5kX7a9ZyikFXx5x2RXHThBT0zRFvtEnhe5V6QVn+plSUJnAzbhOd2C7JeEACMG9n907M/kVCMQDjCrcaeRcn10VL9N14EdXXhAqID/+EneDBBswhsilIEjIODDUDk+I7gyngXP4UNgytxGd3bQAR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767918828; c=relaxed/simple;
-	bh=/gl2lZSe7ypjXmyoEqrEc6u2WgAVx0lEoV6nBANnfFk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ln5QEIlOiuntBUFTSuZ8sUT5vgLpWFmLTKTLOHfbHJzvQoKxTN5vqir/sBSWtxVCfq9jxlWbHUfwk2yxZ0KtwtDQgeF0xXKfVEeSdQPQF7eR2ANAqj8NJDdlysRyqMLkOU3nWt08jn0G+MpmBcPRRsyFrFzyW5ANsSU6v9wJzDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=HsGcwS2P; arc=none smtp.client-ip=74.125.82.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-2b1981ca515so660667eec.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 16:33:46 -0800 (PST)
+	s=arc-20240116; t=1767920996; c=relaxed/simple;
+	bh=xEmYz2eEu0GD1+huHFkbyyE3FZcw6xvPbknrzN24JMo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=UuLjz0WJyW884y1vSK8S2cpyLqQsWJ7PgQuNjOpes2txqk9J/ocyw3oU3MfxJLUy0MEjgMLtAYUcbyLKIEKfi2DPOdHAwUqi6+AOl9nUnpCSWXYLlDujq8Fu1141p2wLr8QBWjec9CcAnmeJRllbdP/6oT/U1660xWTkB3E1pbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=f5QsO7Jg; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1767918826; x=1768523626; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z79lWPAhPdzNz3dRg0r1dF0+n1ZwotnKFbAQUgcD10Q=;
-        b=HsGcwS2PTV3SxUZ6eOw57uoFiG/1kObDcQ/7Xz0thegQKkJVwVdXFK366fpc3fg+Yv
-         XCzffbG1ZjDBoHQA734efVbgsQ+u+rgOUiSRK7FsqtYmqGVtLjOs+n/WY6xHxARfK+YO
-         Zxl/pInySLkFNrJmH/TeHNaFr4vE7kACWlEyQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767918826; x=1768523626;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z79lWPAhPdzNz3dRg0r1dF0+n1ZwotnKFbAQUgcD10Q=;
-        b=URbakTyNGkTeHCag/l38tri5egwBCprEEcEex++4hbEZIV4eNkA+ZyHhaiyVRhwOEI
-         PkaUec6TO2MhYlcEVtYs+n98z2cs2v65halet1VtLesjhsRevwtQvBKrkqAvPKRd7u05
-         6M8V/l2YhbAGUyF/wuPTf/yekMvsn2u1L9iWJhwDjw+w0iUHnw4gxj5wnkZP0l4+cE07
-         VVfRRtgO7i6UwhwzVwb9eKgusJQeIxKQ9QGZvNZ1cQIdi4jHR/nqAdRlGksyelxAHiC3
-         cwUTU72LSg64XGprLexvXXoK+9sIXLOeL6Gn1rBvsjn4on4PFfcopUL6QqvG6BqjWu2I
-         +IdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBhPS9C/QhsdlGUoKf1i9b2sHMM9F4YXinuUAxZh9T0/jdzJ+YDG5HrvW+mmWN+luNo9gt+p5PC0mv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVZjT40OAZF4gWvZBIR8qLf9/jgRQUTvPQuYAe03/7D8rvMeRg
-	w8hR/gh5A+iP4ObcrcMPRrEfDlERJd+tLWHHYM4SOV9OMsobiUot2O/y5NestNV+JA==
-X-Gm-Gg: AY/fxX6P8lauhbAMJQEaN6WGu3TxkcfI30nPvDZpojdOdP8aZs+8eqeXahDVkJLEAR+
-	vwois8b1AhtSUnx75QfHniBqeKUFQCuiHbBl3p29BaN6ZqTAXWLnlh+Jnlu2ZcYnsUSpDKIbKU6
-	Yon0tTndq+zAFT68uT9DfMYv7JMm38kKoOFcJEkL9ZuGYaxEBcicESL6OpNuFwlGZIn8OcSTApc
-	xoOXtgB2P877A94xh/X97LWzzcBZuqjZLkbniNoBn5SUmEO2BfTruEWZvIDHi8w7mmh6yqr/Ds4
-	Xkb8TowDBkbclIJTpJajokZ9QUVnMzpfMuaxSTlGq06tfxQ7udmMR23Z55HCZGJtjGfg5zsRc4o
-	twAB2ftPnQQksi5ZaEQ2f+UkisnQxGn2keTgYzQUstHtTTtgEf14wmvT/kOkfk0meeTCn/nZ6UE
-	jrxmBDCwKqgq4FnYtMzCQv3HRrg2CXv1sIsaw3mINuz/vsXXpq0Q==
-X-Google-Smtp-Source: AGHT+IF0GmKcOoUP4ftvhW3kQAeoOckhmMDqJsWDCkME/L9mDzTJ1nOrUp/GX1I2zgQEbCs11ZaBzg==
-X-Received: by 2002:a05:7300:8622:b0:2ae:5b71:d226 with SMTP id 5a478bee46e88-2b17d1fa677mr7301825eec.3.1767918825949;
-        Thu, 08 Jan 2026 16:33:45 -0800 (PST)
-Received: from localhost ([2a00:79e0:2e7c:8:d9f4:70dd:b942:60f7])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-2b1707d57aasm9377588eec.30.2026.01.08.16.33.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 16:33:45 -0800 (PST)
-Date: Thu, 8 Jan 2026 16:33:43 -0800
-From: Brian Norris <briannorris@chromium.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Odelu Kukatla <quic_okukatla@quicinc.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Drop aggre{1,2}_noc QOS
- clocks on Herobrine
-Message-ID: <aWBM5zl1kgvCZdnV@google.com>
-References: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
- <20250825155557.v2.2.Idebf1d8bd8ff507462fef9dc1ff47e84c01e9b60@changeid>
- <90b13660-1844-4701-8e63-7fde2f093db0@oss.qualcomm.com>
- <aMMcNn82AmSavJYf@google.com>
- <b51e1230-d366-4d0f-adc8-fac01b5de655@oss.qualcomm.com>
- <aMR2diG8zwvPRSXR@google.com>
+	d=codeconstruct.com.au; s=2022a; t=1767920991;
+	bh=xEmYz2eEu0GD1+huHFkbyyE3FZcw6xvPbknrzN24JMo=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=f5QsO7JgKiKwtfo0NC2WKxrbNedm2H+BSDZ6UzdhBsZ20fMBJYaEURWpxqZSUBIjs
+	 cZQDyxfGZimUu5Zjcnb8CClzcSc+tgfZ/ptZLOd1dLXBAyWp+E3P5E2zAEc3rvQPih
+	 WRT29nG0/8e7j8CA3iebO1Spop0e+x7Wy5WmPe5Fq4UlwKFNQVGV1n5wZ2dVeh4fNi
+	 Z1ZGwav4r/h7o7CjlrAWEln1kJE3ogo5S927h3yzvHaydlr9/f1cqgfTuL7nfTZSS+
+	 OkwofRS+F7JdYg/r8LAhzQwW+QyTSjV+mpXhz57pt8luUunEYO6PbNH6kXNckNI9rn
+	 N2a9Ii8ydPoWw==
+Received: from [192.168.68.115] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 3BB237E142;
+	Fri,  9 Jan 2026 09:09:51 +0800 (AWST)
+Message-ID: <d6ca5544da6f90a72dde334c4d76270fa9db9469.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] arm64: dts: nuvoton: Add missing "device_type" property
+ on memory node
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>
+Cc: Avi Fishman <avifishman70@gmail.com>, Tomer Maimon
+ <tmaimon77@gmail.com>,  Tali Perry <tali.perry1@gmail.com>, Patrick Venture
+ <venture@google.com>, Nancy Yuen <yuenn@google.com>,  Benjamin Fair
+ <benjaminfair@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley	 <conor+dt@kernel.org>, openbmc@lists.ozlabs.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org
+Date: Fri, 09 Jan 2026 11:39:50 +1030
+In-Reply-To: <CAL_JsqL2ZS_D-ZUGRmJ6=dhuAAfoTUoC3CNsP4_FBat160dCVw@mail.gmail.com>
+References: <20260105193232.3167128-1-robh@kernel.org>
+	 <176786448160.1407469.7623777355686519631.b4-ty@codeconstruct.com.au>
+	 <CAL_JsqL2ZS_D-ZUGRmJ6=dhuAAfoTUoC3CNsP4_FBat160dCVw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aMR2diG8zwvPRSXR@google.com>
 
-Hi Konrad,
+On Thu, 2026-01-08 at 08:56 -0600, Rob Herring wrote:
+> On Thu, Jan 8, 2026 at 3:28=E2=80=AFAM Andrew Jeffery
+> <andrew@codeconstruct.com.au> wrote:
+> >=20
+> > On Mon, 05 Jan 2026 13:32:31 -0600, Rob Herring (Arm) wrote:
+> > > "device_type" is required for memory nodes, but is missing on Nuvoton
+> > > npcm845-evb.
+> > >=20
+> > >=20
+> >=20
+> > Thanks, I've applied this to the BMC tree.
+>=20
+> I didn't realize Nuvoton and Aspeed are 1 tree now. Should MAINTAINERS
+> be updated?
 
-On Fri, Sep 12, 2025 at 12:37:29PM -0700, Brian Norris wrote:
-> On Fri, Sep 12, 2025 at 03:10:16PM +0200, Konrad Dybcio wrote:
-> > As I attempt to find a board that would boot with your sw stack,
-> > could I ask you to check if commenting any of the three writes in
-> > 
-> > drivers/interconnect/qcom/icc-rpmh.c : qcom_icc_set_qos()
-> > 
-> > specifically causes the crash?
-> > 
-> > FWIW they're supposed to be independent so you don't have to test
-> > all possible combinations
-> 
-> It seems as if any one of them will cause the crash. I had to comment
-> out all 3 to avoid crashing.
+Yeah, it should. I've sent this:
 
-I'm curious if you had any follow-up here. Are you still looking for an
-alternative to this patch?
+https://lore.kernel.org/all/20260109-npcm-arch-maintainer-v1-1-a0ec6aee22fb=
+@codeconstruct.com.au/
 
-Brian
+Andrew
 
