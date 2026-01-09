@@ -1,332 +1,157 @@
-Return-Path: <devicetree+bounces-253322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E2C9D0A9D2
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 15:24:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E423D0AA08
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 15:27:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A0CB9301BEBA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 14:23:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ACB6E30533A8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 14:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C777735EDCA;
-	Fri,  9 Jan 2026 14:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F0235E551;
+	Fri,  9 Jan 2026 14:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JHVb+DEb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="THA6yVu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDACD35E54F
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 14:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D172235CBD3
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 14:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767968586; cv=none; b=TuCxEC/cZxTgYKIib1pet9JvnhH/VhqKQUm+vEDM7tPGJ/MgrMYxuZs17posPRRJicAmBKlF8+XMCQXbiZO7EaJ4E25QvdCko822d5jl7yBJhtDvLxD720HWAM6Mraz4+4pY7KQeHlzYOJtQzjYyh+LoqhBIQCV81TndAxvNMTc=
+	t=1767968723; cv=none; b=hb6Zr57PieeUTSycD3kkp+l5C1en0dhZK57xhvl3wswtnvD6iJM4miYWq+39kdJrjnTzbmlmR4wbF/nCe3YPbTo+9uHmdXvWw5ELiRwMypi7t4D0nj65K1J6/XInKmmiX82rE39QXCh99iXDaRkvmjYtqApeaz3gP3HqUQP/kYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767968586; c=relaxed/simple;
-	bh=IZX0GyFDL7t70J/Ljr/Ww9EPikfNIA5b00sjzTAqWpU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=e5Jvhw2h2Qa4cMGMUpeimr3ynZSM5b6/RFPHhL4HGlcYt+aWIxfoxiKvHK2HhZz2UViColuRrcZNQXqjVRLydCyROSgMr5+x+wL8Jvhh1vQgiIsIQzNvu0UTIT0rNlnZM7+oscIEZrt6ghrPBTyu5UllfCBok9D9i4M2MOT3sb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JHVb+DEb; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1767968723; c=relaxed/simple;
+	bh=vWS5wgStTvZMYsyqkJ91nJFk1e35QPzy/HyTmkbyjwQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Wmz7NcL9Cod8xVTmwYU3kRsJdnBhSlrvVdgyFAMkkrjLBFTMkULNTl6Lr5JxbDhESdvVFDt58yNE1Kxu7oMrJI90duGlb5sYQCC4YIr3XLHvLgsOXAAgB976Fmr82zsvG/hm9Zk4ZKLLJmEQQGZSy4hoSMo1mAHtDeg8OJ+HA90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=THA6yVu5; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47774d3536dso28172095e9.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 06:23:04 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-42fb2314f52so2278879f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 06:25:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767968583; x=1768573383; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1767968719; x=1768573519; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GJuTI/pP3gTuIvrfb63LlTSw7eNSK1HBmiLz7uaNHpI=;
-        b=JHVb+DEbPsUUdQ3cNFP1ezBmkMcT6jWEl5c/QP7+37dKQ8hLV1AF7H/rMwKWV/a9ZM
-         UE9atsV6eVXjU32O0N5KgQbBxRrUx/lOxzruizKkgSzrjPbhMGu3kJ6KqKVOsi6o71vY
-         fMytUL9+E5YHW45k1zUrlXIELR0/4bqFs/Z5maZsTsoO2p3naxAE0QSmnzf8RzfTOZSF
-         d0M9uKdkmCH9Ni6dPYT6wUKoEdjsj7w8xaSqgeuWOulBayCuKXdVRa0P2WHVeHkSp1mY
-         Ny0QXLdX/Ze74F9C6rnsY2vL7D+6CXBF5V/K8IGJtq84JZGf48ha6zWXoQI7QYtFL59G
-         YcNA==
+        bh=2D/cMtJw19E2XiBZlICMduPGDZFgAVPWV/no22KZcBg=;
+        b=THA6yVu5mLYJX4Wbmb8unRBsUVB2W87jVAja8vrRdnVB9MNzCAH2mOPnvrLbmKQTtl
+         Afg6gB2+sYb10+vRCsW60YD2k5sNadf+RAMoXFHV7ja94ux8DFJH2E2Nmbw/GNP+kRkH
+         BdGBVwqQc7cIP+U1IWOFksEFGJxktnCn7Q2Eto7SKYvbw3s2mnICRC2uE+eYx13nl6P0
+         7SamgqP5yn5yEREWdng2uYX+S5IlkVu1FyJfr0g6mnM9GgpF5KD1FaPRQkOa9E4dX0dw
+         wRL+5OYzJUAszmDtr5wIQzsuBnYWWeUmv/TLTA+jooPhuHxWcCss0LIYZe9X2fJPs5ru
+         4qiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767968583; x=1768573383;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1767968719; x=1768573519;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=GJuTI/pP3gTuIvrfb63LlTSw7eNSK1HBmiLz7uaNHpI=;
-        b=xCyNI0IQiajwyndZScIza4G/rrZHLKLllg1Ka92pJXKAK3DHLxT6p3JhdZIuzs+DoM
-         0NvpgZeuns8RR4P9oohywum7RRdsxECjAQynDYo7OK8YaQLQ9QJfASIwr+SnhaZoXqAU
-         9ix9GVJj2Ml9w6XqpvLcblCa9oSndodSGa392EfnAVZ6R09moqXsfq4K22sV/KOGZJ62
-         W13U5mAqQvo5xacWBrWZ+qwNkZVx7Ao/E7lBh1rG/CvoApDk0J74ZS4BnVvZ3eUZiydr
-         LxClFWwCmeQAVsr9DYgMj1i0UoAGFIbFMosOK1RwQGkkZ8ZjLvU/smzHyilm+lfaGGZA
-         dcwg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPK5GlUOtlnLxwa+WNQMFVEnvFMQpRBUMNSoPgHMYXDkRYaTb7caCZLlB6BqFZvt+zzd6Vr3Iesw9C@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywp2ozLbTJrcz2IyZw5cfN5LTYhGAWtrdixbV4tfEBqnjCMbRpg
-	OTn6gbd4awGLOIlJdaZj3XFlCPUQ4STFGv97PERiCIkWanMl+9WJUsb+
-X-Gm-Gg: AY/fxX5mE+s418MIPDtWA77DTOssFdbL5Ebq71VZc7CWwjfvL2WkjsZ33NQqI5NiEmG
-	7r/Kl4C/aiqEtPG4K8qJTGJ1DAYNkS9w5pTTvvx6u9KD0iQ/UFRVfF/oH5d+EBMbuuD+ImRjpyO
-	ezY9jcHkzRFlD5EPO0LcjaqKE4zMOUlIt5lxU88GabQGcfm78gv/GvmNQwVggACCVNrbFyyvDIf
-	UBUkjGvM6o7Kmn0wyACuuBbAYLjcv5catUOtalNicIWE/BB8D/gQCf9CuB54+/FEZKgazGd3UHe
-	8C5t9j7hiy3xJ2v3f5vT41xJCQVFuxMFOniQy8FpYiIfLmpKlkpB1h01KHGoSS/i0F1nHz1demZ
-	YRt4/eU6V3emomtto4/rcLTiT1YS035906N3HoSrdRTdujc+PI/uNk1E5nxY5kNxrvdfz8U2kw8
-	YfRRfaPhWHC4bDHaSPBxYo6mymP7yNKG+D2wipsjCcXbBj22r6/xCEZje1yCOuOkwZmsWQijA/K
-	/KGCE973KaXU6/vuAS4CPY=
-X-Google-Smtp-Source: AGHT+IHuqWKzRFHwggueYURnOwU1f6nLlo3Dx/aAg2AtNERz9s/rUtlR+rwtsB4ngafpJcpJ++sTBg==
-X-Received: by 2002:a05:600c:3541:b0:477:9fa0:7495 with SMTP id 5b1f17b1804b1-47d848787e3mr127679765e9.14.1767968583016;
-        Fri, 09 Jan 2026 06:23:03 -0800 (PST)
-Received: from iku.Home ([2a06:5906:61b:2d00:3d06:ce2:401e:8cb8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d871a1e11sm61448855e9.19.2026.01.09.06.23.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jan 2026 06:23:02 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH net-next v2 2/2] net: pcs: rzn1-miic: Add support for PHY link active-level configuration
-Date: Fri,  9 Jan 2026 14:22:50 +0000
-Message-ID: <20260109142250.3313448-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260109142250.3313448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260109142250.3313448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        bh=2D/cMtJw19E2XiBZlICMduPGDZFgAVPWV/no22KZcBg=;
+        b=Nm1K0FF0PJKTqRAv4qK0PyzUXFbfye9/iSjNP+SZy64PhnqjAv1mF026SEShPafo5u
+         /E4unv2nn/qUBBYJYu2QE0a8GBmjsecFhQmiYqmtrD2nJ2C53uXpqAfEk+JNkrBOIfVw
+         LySAhsDJmbLSTxT3z1U6T+eGnVcT7R63oRd3fVfiteyhl3Su/0U4ck7uSbxx0lB8BW1Z
+         WMz/J3bwnkzpY7oJd01q63ch2NJb7KNLrnJPhzRzE2NfYRMjVrN6Pc/x5PobfjI/oVa7
+         ANS9SZ1PJwy9wWIZV8mxKUSxjeHe8goaQmqA1PC6hFIY5xKFGIb7ixyqyZon0722mmTo
+         JBHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXm+/NhKPi6F9TnRx06dU6DL+/Ag4xS+Pi0XVzLRPfARMCU/xDcNtOp9ZARpFz80OWhFGUUUKJzGzoT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8XqtobKSe4L569R8901O4kjnw5+BeX+1fWkkI75Rn1AicvvNK
+	3KV/6KjBCOw3vM/73OvF0lUfEgM6M2pqrY3bf1zStMCdFyasSdMH/ATlbczGYjN6hto2n7KVtlw
+	iybw1LmDxNnR9N5Jq5j932RnsvCgR5aw=
+X-Gm-Gg: AY/fxX4e29Ul6wmZO1WdKQog1pWrGXDGiASUdIveTIcLjZyYcWPpppHSoPKW0Nuf924
+	RJXDFutj0pzisy+SzfTKKUw2ZYD09r8Rchl639OpqYXuWlR6ULrRzhVVgCrHVQzvIIt3i0+NYAt
+	dsd5sP4DcznL3RWMRc6UdH1BRm4DpTohCQBA+UHZE8OtTeAXtn8piexolMW4rFFRkCswxgwZ6B9
+	f5PoQcIAjPLV9wV48eLp/Dca5XS9woEIE9hIEMU1ZAt4khTeytvhz8y5BUtY8a17GgR7IR9vcPv
+	vpYx2o3wJtn2UbwqzwBrzBeKBkdmo5p7kP/EU6pOkQBvbebdjhX9uMaBtf3EdBw4MmvAbevuLqN
+	5IW6rXzGNo4m+
+X-Google-Smtp-Source: AGHT+IFCXpHopv0CnTYKBGZQGAJBBDYem+SbnQhktvQUHhc24r5wwyxuIOji4OejFmeRbAePpFAv7cmMZfKOoTIcV+I=
+X-Received: by 2002:a05:6000:200d:b0:432:8504:8989 with SMTP id
+ ffacd0b85a97d-432c37c32bemr11765044f8f.56.1767968718975; Fri, 09 Jan 2026
+ 06:25:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260109123828.2470826-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWz6_NzvjZNMLk+Bqoa0NR2CKNFwDXynfmrTZgOGsqxTA@mail.gmail.com>
+In-Reply-To: <CAMuHMdWz6_NzvjZNMLk+Bqoa0NR2CKNFwDXynfmrTZgOGsqxTA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 9 Jan 2026 14:24:53 +0000
+X-Gm-Features: AZwV_Qg77nOmp7wZB-kSrS_ejJiZLPin5aTjJnBXvyeQ0XDAs8licXEGydP6Z-Q
+Message-ID: <CA+V-a8uPDpQ+wBW4EnKSJutywRhYDaRQoUUUJXaZQzknn1nyVg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: sh-sci: Fold single-entry
+ compatibles into enum
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Geert,
 
-Add support to configure the PHY link signal active level per converter
-using the DT property "renesas,miic-phylink-active-low".
+Thank you for the review.
 
-Introduce the MIIC_PHYLINK register definition and extend the MIIC driver
-with a new `phylink` structure to store the mask and value for PHY link
-configuration. Implement `miic_configure_phylink()` to determine the bit
-position and polarity for each port based on the SoC type, such as RZ/N1
-or RZ/T2H/N2H.
+On Fri, Jan 9, 2026 at 1:28=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
+.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, 9 Jan 2026 at 13:38, Prabhakar <prabhakar.csengg@gmail.com> wrote=
+:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Group single compatibles into enum.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > @@ -20,6 +20,8 @@ properties:
+> >        - items:
+>
+> I the "- items:" can be dropped, reducing indentation of the block
+> below.
+>
+Agreed.
 
-The accumulated configuration is stored during DT parsing and applied
-later in `miic_probe()` after hardware initialization, since the MIIC
-registers can only be modified safely once the hardware setup is complete.
+> >            - enum:
+> >                - renesas,scif-r7s9210      # RZ/A2
+> > +              - renesas,scif-r9a07g044    # RZ/G2{L,LC}
+> > +              - renesas,scif-r9a09g057    # RZ/V2H(P)
+>
+> This block now indeed contains all single compatible values, but it
+> is still located in the middle of other multi-compatible entries.
+> What about making it the first block in the "oneOf:"?
+>
+Ok, I will move it at the top and send a v2.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2:
-- No changes.
----
- drivers/net/pcs/pcs-rzn1-miic.c | 108 +++++++++++++++++++++++++++++++-
- 1 file changed, 106 insertions(+), 2 deletions(-)
+Cheers,
+Prabhakar
 
-diff --git a/drivers/net/pcs/pcs-rzn1-miic.c b/drivers/net/pcs/pcs-rzn1-miic.c
-index 885f17c32643..cc090f27e559 100644
---- a/drivers/net/pcs/pcs-rzn1-miic.c
-+++ b/drivers/net/pcs/pcs-rzn1-miic.c
-@@ -28,6 +28,8 @@
- 
- #define MIIC_MODCTRL			0x8
- 
-+#define MIIC_PHYLINK			0x14
-+
- #define MIIC_CONVCTRL(port)		(0x100 + (port) * 4)
- 
- #define MIIC_CONVCTRL_CONV_SPEED	GENMASK(1, 0)
-@@ -177,6 +179,16 @@ static const char * const rzt2h_reset_ids[] = {
- 	"crst",
- };
- 
-+/**
-+ * struct phylink - Phylink configuration
-+ * @mask: Mask of phylink bits
-+ * @val: Value of phylink bits
-+ */
-+struct phylink {
-+	u32 mask;
-+	u32 val;
-+};
-+
- /**
-  * struct miic - MII converter structure
-  * @base: base address of the MII converter
-@@ -184,6 +196,7 @@ static const char * const rzt2h_reset_ids[] = {
-  * @lock: Lock used for read-modify-write access
-  * @rsts: Reset controls for the MII converter
-  * @of_data: Pointer to OF data
-+ * @phylink: Phylink configuration
-  */
- struct miic {
- 	void __iomem *base;
-@@ -191,6 +204,12 @@ struct miic {
- 	spinlock_t lock;
- 	struct reset_control_bulk_data rsts[MIIC_MAX_NUM_RSTS];
- 	const struct miic_of_data *of_data;
-+	struct phylink phylink;
-+};
-+
-+enum miic_type {
-+	MIIC_TYPE_RZN1,
-+	MIIC_TYPE_RZT2H,
- };
- 
- /**
-@@ -210,6 +229,7 @@ struct miic {
-  * @init_unlock_lock_regs: Flag to indicate if registers need to be unlocked
-  *  before access.
-  * @miic_write: Function pointer to write a value to a MIIC register
-+ * @type: Type of MIIC
-  */
- struct miic_of_data {
- 	struct modctrl_match *match_table;
-@@ -226,6 +246,7 @@ struct miic_of_data {
- 	u8 reset_count;
- 	bool init_unlock_lock_regs;
- 	void (*miic_write)(struct miic *miic, int offset, u32 value);
-+	enum miic_type type;
- };
- 
- /**
-@@ -581,10 +602,82 @@ static int miic_match_dt_conf(struct miic *miic, s8 *dt_val, u32 *mode_cfg)
- 	return -EINVAL;
- }
- 
-+static void miic_configure_phylink(struct miic *miic, u32 conf,
-+				   u32 port, bool active_low)
-+{
-+	bool polarity_active_high;
-+	u32 mask, val;
-+	int shift;
-+
-+	/* determine shift and polarity for this conf */
-+	if (miic->of_data->type == MIIC_TYPE_RZN1) {
-+		switch (conf) {
-+		/* switch ports => bits [3:0] (shift 0), active when low */
-+		case MIIC_SWITCH_PORTA:
-+		case MIIC_SWITCH_PORTB:
-+		case MIIC_SWITCH_PORTC:
-+		case MIIC_SWITCH_PORTD:
-+			shift = 0;
-+			polarity_active_high = false;
-+			break;
-+
-+		/* EtherCAT ports => bits [7:4] (shift 4), active when high */
-+		case MIIC_ETHERCAT_PORTA:
-+		case MIIC_ETHERCAT_PORTB:
-+		case MIIC_ETHERCAT_PORTC:
-+			shift = 4;
-+			polarity_active_high = true;
-+			break;
-+
-+		/* Sercos ports => bits [11:8] (shift 8), active when high */
-+		case MIIC_SERCOS_PORTA:
-+		case MIIC_SERCOS_PORTB:
-+			shift = 8;
-+			polarity_active_high = true;
-+			break;
-+
-+		default:
-+			return;
-+		}
-+	} else {
-+		switch (conf) {
-+		/* ETHSW ports => bits [3:0] (shift 0), active when low */
-+		case ETHSS_ETHSW_PORT0:
-+		case ETHSS_ETHSW_PORT1:
-+		case ETHSS_ETHSW_PORT2:
-+			shift = 0;
-+			polarity_active_high = false;
-+			break;
-+
-+		/* ESC ports => bits [7:4] (shift 4), active when high */
-+		case ETHSS_ESC_PORT0:
-+		case ETHSS_ESC_PORT1:
-+		case ETHSS_ESC_PORT2:
-+			shift = 4;
-+			polarity_active_high = true;
-+			break;
-+
-+		default:
-+			return;
-+		}
-+	}
-+
-+	mask = BIT(port) << shift;
-+
-+	if (polarity_active_high)
-+		val = (active_low ? 0 : BIT(port)) << shift;
-+	else
-+		val = (active_low ? BIT(port) : 0) << shift;
-+
-+	miic->phylink.mask |= mask;
-+	miic->phylink.val = (miic->phylink.val & ~mask) | (val & mask);
-+}
-+
- static int miic_parse_dt(struct miic *miic, u32 *mode_cfg)
- {
- 	struct device_node *np = miic->dev->of_node;
- 	struct device_node *conv;
-+	bool active_low;
- 	int port, ret;
- 	s8 *dt_val;
- 	u32 conf;
-@@ -605,8 +698,15 @@ static int miic_parse_dt(struct miic *miic, u32 *mode_cfg)
- 
- 		/* Adjust for 0 based index */
- 		port += !miic->of_data->miic_port_start;
--		if (of_property_read_u32(conv, "renesas,miic-input", &conf) == 0)
--			dt_val[port] = conf;
-+		if (of_property_read_u32(conv, "renesas,miic-input", &conf))
-+			continue;
-+
-+		dt_val[port] = conf;
-+
-+		active_low = of_property_read_bool(conv, "renesas,miic-phylink-active-low");
-+
-+		miic_configure_phylink(miic, conf, port - !miic->of_data->miic_port_start,
-+				       active_low);
- 	}
- 
- 	ret = miic_match_dt_conf(miic, dt_val, mode_cfg);
-@@ -696,6 +796,8 @@ static int miic_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto disable_runtime_pm;
- 
-+	miic_reg_rmw(miic, MIIC_PHYLINK, miic->phylink.mask, miic->phylink.val);
-+
- 	/* miic_create() relies on that fact that data are attached to the
- 	 * platform device to determine if the driver is ready so this needs to
- 	 * be the last thing to be done after everything is initialized
-@@ -729,6 +831,7 @@ static struct miic_of_data rzn1_miic_of_data = {
- 	.sw_mode_mask = GENMASK(4, 0),
- 	.init_unlock_lock_regs = true,
- 	.miic_write = miic_reg_writel_unlocked,
-+	.type = MIIC_TYPE_RZN1,
- };
- 
- static struct miic_of_data rzt2h_miic_of_data = {
-@@ -745,6 +848,7 @@ static struct miic_of_data rzt2h_miic_of_data = {
- 	.reset_ids = rzt2h_reset_ids,
- 	.reset_count = ARRAY_SIZE(rzt2h_reset_ids),
- 	.miic_write = miic_reg_writel_locked,
-+	.type = MIIC_TYPE_RZT2H,
- };
- 
- static const struct of_device_id miic_of_mtable[] = {
--- 
-2.52.0
-
+>
+> For the contents:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
