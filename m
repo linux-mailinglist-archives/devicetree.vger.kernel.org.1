@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-253106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65806D078D3
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 08:24:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 401BBD07981
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 08:33:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D3A47301A4FD
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 07:24:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 028B4301E16A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 07:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2002EC0B2;
-	Fri,  9 Jan 2026 07:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1892E8DFD;
+	Fri,  9 Jan 2026 07:33:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OpQdWzek"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZQJQteNv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEA42367CF;
-	Fri,  9 Jan 2026 07:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2AE20311;
+	Fri,  9 Jan 2026 07:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767943473; cv=none; b=RuR7X6qaeJiyXqJ64az/dA9bWSOw6V+UqVo3MZaSxFgZ73Qvp7GM0+KfK8ziiPuzNQrb61/+2sx8yLzqaEDZR+LPRvSqduDX7Ay03hsyO5XKwoWFVew8ipYnrvKPr4biF+8WeZddfs27KFZUrqQ44xpvaPls6VlgD2pOYDRwzf0=
+	t=1767944027; cv=none; b=WgA125YG8D5lp19WAO2teykNcppQhW4ZmVXNfuxWEzNz9yb5iYdG1yPm+f7E9IWuGh0pA2sWD3JQiwYw4uIVXXTI/RRqzOwxO0qkKmeAcFNmbCwZdZ7TLBJ/9ZMsDOLLbxVnhQJYIvKw5s0+164Kgoh5kVRkhImZoC3X60wiGwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767943473; c=relaxed/simple;
-	bh=2V9SVJ9E/dUpcgDGFfqGLCNY/x9z7IlzG5Nkf06LwqI=;
+	s=arc-20240116; t=1767944027; c=relaxed/simple;
+	bh=e2YKt3RwrY/jWy5qMyoFXFI4iyBi3p36WShnvMXGG+E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BrwdeOZtOkYisMHGJ3L7hgCcwGJ0G+6mxgAfJhvnQQPqDfo3GmkZFTqg6QCsuCHMEv/HRdtFaZ2U3G2nL+k8ojPFc3YyNOZhfQx7d2i1ezgjRuwSsqEC+/uit/h9yfzsGhNNbWE8X3ArK28UxqxufTI/JgGWzpJfMV35Wo95CmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OpQdWzek; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC084C4CEF1;
-	Fri,  9 Jan 2026 07:24:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=U51kH8smbH6Ag9wvskOrWN/OJ0caNQOQXM04qqpnyjyJXnDS+9nMP0wLydhSYoJXpfndyEDuPb9yFRXvNMpFjmls1WSIRANjoszviUPiV/MOnuhqutXYXYLNY3QWzGkRN63mEAbpwAcdpMc6iJszNz2X47VeKYQ4tEO++vpULnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZQJQteNv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA92BC4CEF7;
+	Fri,  9 Jan 2026 07:33:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767943473;
-	bh=2V9SVJ9E/dUpcgDGFfqGLCNY/x9z7IlzG5Nkf06LwqI=;
+	s=k20201202; t=1767944027;
+	bh=e2YKt3RwrY/jWy5qMyoFXFI4iyBi3p36WShnvMXGG+E=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OpQdWzek6SKBvNo1KctkpHz159NVuR3j60s+wuO863kv714eqT9NX60JKwbCC6sN4
-	 gPAmLObuQKlffCbXbaUswnCfR/6NDaph3sSkuFO5QLxlx4Y+BO/fxZ7vxxmFwDiJWg
-	 ky0XmHljLtky0KSQngAiP43KkXmJkVGvqlGORR2cWXCfxo0CwM5E0K+DKH9BufUQSd
-	 aT+sFPzWPQSQ2k4jelQ0T1GRfRWx/TZUshqFzxy83fT9o7hhLwlZkc8TBslvOx6jsD
-	 Lki6uHbpYGdRKXRVviR9Q6bnRvAdfagHZef1QQwDT6SNgTLkMMnqPHcIA9LMaYbE4s
-	 W9wqK1slRivwg==
-Message-ID: <87887adf-2c94-48c2-8f83-4e772ab50f60@kernel.org>
-Date: Fri, 9 Jan 2026 08:24:25 +0100
+	b=ZQJQteNvXt7JX/wNlFUtM/MX2mmp1mgSAOxhATmhvo7/Mp8opHT3PMNvuC6QOvDfI
+	 ytN1qi/LAak0BoASRAub4ak+fyaCWETGq7YeT3ostkg4Yjw7dayX01aq78EoVnibdu
+	 BA7NuXAmNJeUZJwxPY57i13YKyLxud+Rcp/Lo+48oDfc5awz3KBtCOO0I4btTgLpqh
+	 k3N0th/HNvNj1C9wI932Fj/cMQaxcEskUtMWLJxvkJaceriQhw6iiJgvn6b6hp5xz9
+	 u5JmiD7s7UmJ4n3j+7Hq90l3jhYUBkcw42mUiG6V+IZxxCGYWw+LxTAEc6ty0g+3s/
+	 TBipzEVT+laHQ==
+Message-ID: <2770a98f-ce6f-48c7-9bb1-45f9286de371@kernel.org>
+Date: Fri, 9 Jan 2026 08:33:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,42 +48,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 11/24] scsi: ufs: mediatek: Rework probe function
-To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
- "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>,
- =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
- "kishon@kernel.org" <kishon@kernel.org>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@HansenPartnership.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- =?UTF-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
- <Chaotian.Jing@mediatek.com>, "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "nicolas.frattaroli@collabora.com" <nicolas.frattaroli@collabora.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- "broonie@kernel.org" <broonie@kernel.org>
-Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- "kernel@collabora.com" <kernel@collabora.com>
-References: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
- <20260108-mt8196-ufs-v5-11-49215157ec41@collabora.com>
- <81ed17eb-2170-4e97-b56d-488b5335ff5c@kernel.org>
- <dd2eba99adaddf7517f06acf7805d32e261fafa4.camel@mediatek.com>
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add 'lge,*' for LG
+ Electronics
+To: Chanho Min <chanho.min@lge.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kever Yang <kever.yang@rock-chips.com>, Kael D'Alcamo <dev@kael-k.io>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Gunho Lee <gunho.lee@lge.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20260108082213.6545-1-chanho.min@lge.com>
+ <20260108082213.6545-2-chanho.min@lge.com>
+ <49d28c7d-a08c-4543-b3bd-a23d36785c28@kernel.org>
+ <0b80d046-6141-4389-b666-592859468b8f@kernel.org> <aWBaYUTp8dOTIEGz@BRUNHILD>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -129,26 +108,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <dd2eba99adaddf7517f06acf7805d32e261fafa4.camel@mediatek.com>
+In-Reply-To: <aWBaYUTp8dOTIEGz@BRUNHILD>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 09/01/2026 07:22, Peter Wang (王信友) wrote:
-> On Thu, 2026-01-08 at 13:25 +0100, Krzysztof Kozlowski wrote:
+On 09/01/2026 02:31, Chanho Min wrote:
+> On Thu, Jan 08, 2026 at 05:46:53PM +0100, Krzysztof Kozlowski wrote:
+>> On 08/01/2026 17:39, Krzysztof Kozlowski wrote:
+>>> On 08/01/2026 09:22, Chanho Min wrote:
+>>>> Currently 'lg,*' is used for LG Corporation, but LG Electronics uses
+>>>> 'lge' as vendor prefix for many of its device tree bindings
+>>>> (lg1k SoCs, etc).
+>>>>
+>>>> Add 'lge' vendor prefix entry to avoid confusion with 'lg'.
+>>>>
+>>>> Signed-off-by: Chanho Min <chanho.min@lge.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>>>  1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>>> index c7591b2aec2a..6c31fa4bee6a 100644
+>>>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>>> @@ -907,6 +907,8 @@ patternProperties:
+>>>>      description: Lenovo Group Ltd.
+>>>>    "^lg,.*":
+>>>>      description: LG Corporation
+>>>> +  "^lge,.*":
+>>>
+>>> NAK, we have been there and I do not change my stance.
 >>
->> Please provide here reason, e.g. undocumented ABI. Normally I would
->> ask
->> about ABI impact, but considering this is was just copied from some
->> downstream code I would just not care.
+>> Unless you meant to add it because of EXISTING device trees (predating
+>> commit fc75109288709 from Rob), then add with deprecated: true and don't
+>> use it any new compatibles.
 >>
+>> Best regards,
+>> Krzysztof
 > 
-> Is it sufficient for us to supplement the ABI document?
-> This ABI might affect the ability to reset and recover after 
-> an UFS error in upstream world.
+> Hi Krzysztof,
+> 
+> v2 will include:
+>  - "lg," prefix only ("lg,lg1215-ref", "lg,lg1215")
+>  - Drop "^lge,.*" from vendor-prefixes.yaml
+>  - dts coding style fixes in patch 3
+> 
+> Existing "lge," → "lg," conversion will be sent separately soon.
 
+If you have existing compatibles released as ABI then they should stay
+and you can document a deprecated lge prefix. But not for new devices.
 
-In normal case yes, but I cannot imagine arguments justifying your usage
-of TI properties. Basically it would not pass review.
+One of many previous threads:
+https://lore.kernel.org/all/9942f964-442e-e782-3926-6d7d1123418a@canonical.com/
 
 Best regards,
 Krzysztof
