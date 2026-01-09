@@ -1,120 +1,102 @@
-Return-Path: <devicetree+bounces-253420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32FF9D0C55F
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 22:37:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10D15D0C7F4
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 23:56:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2038A30210E3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 21:37:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9FF86302105A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 22:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD47E33C519;
-	Fri,  9 Jan 2026 21:37:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAaKdZZF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61E33344030;
+	Fri,  9 Jan 2026 22:56:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8FF331ED68;
-	Fri,  9 Jan 2026 21:37:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195FF31ED71;
+	Fri,  9 Jan 2026 22:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767994647; cv=none; b=jGylnk4qUsUx91pi4FelVebt/YdN374dh5I15yet5ZcmEqK2wE4KSYq0Ame/kzTVuSdpTtyvEyZqWzdMYkv9KdY7/vlXLQHL3k6Xbmb0FF2o4unyGIEAX0b0+76IXKcbJVR6clCdoI98TPyz2NDRJJZ/dpRTHfrA4y81KWCgXYo=
+	t=1767999376; cv=none; b=Sxnic6uiqAGWgYEwWg2kaJ2DVC9MRt8dAvxJjkGjwFTZaGSEfYGQ7CQvIGhHV3TnXx7MsILnW/ZTRnJadIRtv7Ba6fWjx+y1Xx7ufFzx/swcwjvspFKmzZ58Q3J5xC6NQecUwiHWF/00WyZlPLh3Qija043/5J2+sN/dAnqEQcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767994647; c=relaxed/simple;
-	bh=jDXexHmDoezfjqragjJjO9OSzM0KCZAvHcQ7WoQC0ug=;
+	s=arc-20240116; t=1767999376; c=relaxed/simple;
+	bh=SrzAbHBO6S/imREJPrBj15KZzCBcbr/rnkOvNQ+roA8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sznA12VqmH6lCKrVHTgd49CYXbRU+oZCpMjYZSHfxofWQDYmHlf29fJVgtPSQRuugKBh5klftxc8T4KP/5kHneqn7TWyhq8MEBi3LwB+TLQHuYdcFEGoMfPPivFBju7xJXkXbntYpr3KZLrw1xRxgL8Jz0aWsMvoAHd0EwYi4eU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAaKdZZF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08013C4CEF1;
-	Fri,  9 Jan 2026 21:37:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767994647;
-	bh=jDXexHmDoezfjqragjJjO9OSzM0KCZAvHcQ7WoQC0ug=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WAaKdZZF5MM9ulrDAGDvxLLkucPB9EB/r8fRIkb64mBWW+pf3+eLwDaNvRHFy41S+
-	 GKYq8eUSvRSIJP2h5Q7EjRtOKzYRsSmVj9rmc8pjIxdMY7njHBx8zI9hB26drAsTsK
-	 4sq8Oy25Y7lpRGDiksgHRfa8J11xf+FozDblZo3xql7/KFVECZ5yOq+7+SB6bwq2Xr
-	 kQ8DCY3zv3YojfNuAm3LTBaDgMYvrnpRLFlzuTivOhXkAyIwexApjDerpXq3zcF/cb
-	 RYHSecgq5uhtUuInrk4jO284I+3Lah4vPG0LckU7o/Xyd7fREi632S/hxmC+GWSvt6
-	 FVXl+MZNJW7YQ==
-Date: Fri, 9 Jan 2026 21:37:22 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: riscv: extensions: Drop unnecessary select
- schema
-Message-ID: <20260109-anthill-krypton-ad69ad7e6376@spud>
-References: <20260105212910.3454517-1-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SwZgXxRt37m0MI2um65Gpl+nOw8JUmccGDZg3CYiUieYVX0/AVbV/qWzbHM3yU6NAUFAJ9hn0g8OfTbCbPKOfxJt1G6bpav4bSCyOZz3T24a8CEV0/WpofKV20I1MPM2hBatq+iNe6l7HDe7tPIFZn7f8DYWgujKSfAuCG55sMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id C4A453415D1;
+	Fri, 09 Jan 2026 22:56:12 +0000 (UTC)
+Date: Sat, 10 Jan 2026 06:56:08 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: pinctrl: spacemit: add K3 SoC support
+Message-ID: <20260109225608-GYA8877@gentoo.org>
+References: <20260102-02-k3-pinctrl-v3-0-30aa104e2847@gentoo.org>
+ <20260102-02-k3-pinctrl-v3-2-30aa104e2847@gentoo.org>
+ <CAH1PCMaXW4469pFRGC+HcixO7PGLQpKKJ_Z5VEhHUMdd3DNWTg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="b4RaDUMMDJz9doTI"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260105212910.3454517-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH1PCMaXW4469pFRGC+HcixO7PGLQpKKJ_Z5VEhHUMdd3DNWTg@mail.gmail.com>
 
+Hi Guodong, 
 
---b4RaDUMMDJz9doTI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 20:20 Fri 09 Jan     , Guodong Xu wrote:
+> Hi, Yixun
+> 
+> On Fri, Jan 2, 2026 at 3:04 PM Yixun Lan <dlan@gentoo.org> wrote:
+> >
+> > Add new compatible string for SpacemiT K3 SoC, the pinctrl IP shares
+> > almost same logic with previous K1 generation, but has different register
+> > offset and pin configuration, for example the drive strength and
+> > schmitter trigger settings has been changed.
+> >
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > ---
+> >  .../devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml       | 10 +++++++++-
+> >  1 file changed, 9 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> > index 609d7db97822..9a76cffcbaee 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
+> > @@ -81,6 +83,12 @@ patternProperties:
+> >                - enum: [ 7, 10, 13, 16, 19, 23, 26, 29 ]
+> >                  description: For K1 SoC, 3.3V voltage output
+> >
+> > +              - enum: [ 2, 4, 6, 7, 9, 11, 13, 14, 21, 23, 25, 26, 28, 30, 31, 33 ]
+> > +                description: For K3 SoC, 1.8V voltage output
+> > +
+..
+> > +              - enum: [ 3, 5, 7, 9, 11, 13, 15, 17, 25, 27, 29, 31, 33, 35, 37, 38 ]
+> > +                description: For K3 SoC, 1.8V voltage output
+> 
+> Should one of these be 3.3V? Both descriptions currently specify 1.8V.
+> 
+right, the latter one should be changed to 3.3V, I will send a patch
+to fix this.
 
-On Mon, Jan 05, 2026 at 03:29:09PM -0600, Rob Herring (Arm) wrote:
-> The "select" schema is not necessary because this schema is referenced by
-> riscv/cpus.yaml schema.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-
-I'll grab this I guess.
-
-> ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ------
->  1 file changed, 6 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index 565cb2cbb49b..29e8b50851ed 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -24,12 +24,6 @@ description: |
->    ratified states, with the exception of the I, Zicntr & Zihpm extension=
-s.
->    See the "i" property for more information.
-> =20
-> -select:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        const: riscv
-> -
->  properties:
->    riscv,isa:
->      description:
-> --=20
-> 2.51.0
->=20
-
---b4RaDUMMDJz9doTI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaWF1EgAKCRB4tDGHoIJi
-0s4RAP9fdj8nDmDjS+3ykvYNLT//huW5xpcMyxk2FVwB9oRBzAD8D/Rf+To4vqD9
-2jRIJk7fF9kXiyAy0VZJ4HW0DkMr/A8=
-=wext
------END PGP SIGNATURE-----
-
---b4RaDUMMDJz9doTI--
+-- 
+Yixun Lan (dlan)
 
