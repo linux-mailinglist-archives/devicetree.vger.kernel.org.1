@@ -1,109 +1,114 @@
-Return-Path: <devicetree+bounces-253048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48BB0D06BFD
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 02:32:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8EA1D06C0F
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 02:36:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8D3CD3031CD6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 01:31:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9C0713012651
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 01:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA7A20459A;
-	Fri,  9 Jan 2026 01:31:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="YDs42Lu+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA0623C4F4;
+	Fri,  9 Jan 2026 01:36:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
+Received: from lgeamrelo13.lge.com (lgeamrelo13.lge.com [156.147.23.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D221A9FA0;
-	Fri,  9 Jan 2026 01:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81511FBCA7
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 01:36:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767922308; cv=none; b=GYAK+hC3PWRuTspwZxA+D636Z2Vv6GJIR5wV0CViKUuEAyte1NUK+QwicQ/xRfv5gIRPkNw3GuYQ/Woij6eClMI5pV4OjvRjNMuajxcP1muXCBLflhq3qt7+H2O5Bg5hpmty/UznHzRghDWwqPbF4hk2rzDC29/ZpuHWZ21xp/Y=
+	t=1767922598; cv=none; b=eONy0U1Sw2iMybwhiExJX5vEzGGOi6hrAZ43atyRfDIlpsOs1NRDsw1WNlwrFqrHP67RNDq35hwZTnmlN2Dfk6e3N/Vi6Obrix4q/CZwvRxvC/YzOeQzaab5y110Vl/L0TbPuOxS9IwdRrunspeW4DbBkaHQ7XCVTzrVQfuG3cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767922308; c=relaxed/simple;
-	bh=cF3e8hfldJWrkLrq63re0BxjmX8O8Uyne4H9gWO/Z7Q=;
+	s=arc-20240116; t=1767922598; c=relaxed/simple;
+	bh=VJoLg8i2QJP9t6FS+lG6K569H3qlW9/hKP3ePxxR5/A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kyYON3a1Vw/u8sJ4pHOo1/MKzLO/uI2KrROL/DibJwcHrgQl0SAeOIw8iEM+5NwhL5HCCtt7YCkPX+PCX0UaD4+x6ZZuIpI42qBdYcsHyxCsdM8p4oGjijdYTimEnGZwj02CKAEPltss2uC2MCxrzA6URjhqscDviIEFiOvBA/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=YDs42Lu+; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1767922291;
-	bh=Lte9il4oOh/PBkig0SIYcOonMssQ6T0eES7c3nlrvpU=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=YDs42Lu+zCb3DcLYNEmbA8Btm7oKeWpZPxf1MziHJR791I+QImd4bXzUsE35Wxg62
-	 kD5Tuaya8Qyx/qIKZiehxCEYt1gKD4bVwovzYLz8xlmGnWBT5KEuKvBDE6cvazYGEr
-	 mJxz97+MDVh7jUzoMO7DyCm0odw9H+H7psqZztMA=
-X-QQ-mid: zesmtpgz9t1767922286t53ae930d
-X-QQ-Originating-IP: +461X0RnN79QDiEa+Js9FDVz3gMxkKWrRbCGmI76R8Y=
-Received: from = ( [120.239.196.107])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 09 Jan 2026 09:31:24 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 10842519875104114801
-EX-QQ-RecipientCnt: 15
-Date: Fri, 9 Jan 2026 09:31:24 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Yixun Lan <dlan@gentoo.org>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fuDNB4QmzXHqfaWodvbSpOHt53bgBntZlTV7hCGnt6hRP5toIlX8QFN+05+CgZgYN1uNNyTeN5nwj7ilBRE9us/ylckG3xSAVxzLNbWJMZ8iC7o5DsbPr2R0jk0pEPUqGnvqcX0eH/sQ+Z+NvWOzoB+8wyr1ArsntI78yTDozw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
+Received: from unknown (HELO lgemrelse7q.lge.com) (156.147.1.151)
+	by 156.147.23.53 with ESMTP; 9 Jan 2026 10:36:26 +0900
+X-Original-SENDERIP: 156.147.1.151
+X-Original-MAILFROM: chanho.min@lge.com
+Received: from unknown (HELO BRUNHILD) (10.178.31.97)
+	by 156.147.1.151 with ESMTP; 9 Jan 2026 10:36:26 +0900
+X-Original-SENDERIP: 10.178.31.97
+X-Original-MAILFROM: chanho.min@lge.com
+Date: Fri, 9 Jan 2026 10:36:25 +0900
+From: Chanho Min <chanho.min@lge.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] riscv: dts: spacemit: modify pinctrl node in dtsi
-Message-ID: <0AA43966D8DE9163+aWBabCQG8v4XzD2h@kernel.org>
-References: <20260108-kx-pinctrl-aib-io-pwr-domain-v2-0-6bcb46146e53@linux.spacemit.com>
- <20260108-kx-pinctrl-aib-io-pwr-domain-v2-3-6bcb46146e53@linux.spacemit.com>
- <20260108073722-GYA3634@gentoo.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Kael D'Alcamo <dev@kael-k.io>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Gunho Lee <gunho.lee@lge.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add 'lge,*' for LG
+ Electronics
+Message-ID: <aWBbme775HmH6drB@BRUNHILD>
+References: <20260108082213.6545-1-chanho.min@lge.com>
+ <20260108082213.6545-2-chanho.min@lge.com>
+ <49d28c7d-a08c-4543-b3bd-a23d36785c28@kernel.org>
+ <0b80d046-6141-4389-b666-592859468b8f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260108073722-GYA3634@gentoo.org>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: NEbP9pf2ysjd3Q0Ysb+yD5ZoZepexWEDX0sm3Dj/dpNkkyVN+j4npUCL
-	mNS/8avowzfh9wGAblUZmC3m8AfYZiXauKN86/jULVlnHSiWi4qbaGmU4Y14OPv9rS0CZu8
-	6Ts3fLBLtF59NtqhDO8a6zt9NoYVrVVl1/O8ochX3Hf3DKVkXlP8sWB+C2tmq3WBHEXE+N3
-	32C+ZcEejQrb3NKbYGqvv/f2rXW5xzQmAybOi1s6o/g4ERfOS5HGuYAhRkluMW26FrwZ4zy
-	jiv8ei/Jnxdc3nL00TyRQsGSOJA8NNAT4ObeAOwxcKwHW/CYgNZKpJPj6gHcmlZTILfdMY2
-	mErvkzbJ2aNDxkyf4RzALC/4JI8t1E4ZDCcOB6Q4K8j5mSnsUUc+KYlyqRUTmeZbvoLfJ6k
-	8Cxmk08cWn2F3MPq/6AWzGquvZgcqRRsKNAH5P8ejLdyhSPLKR6WB/tijpmA7DezP66ygA8
-	RzdW+RMSYG6IPsFXJFs/VreyMtfwIAQ1bghCztYukMzJpYzQxMi6AkkBqV23f+CGH7uoyEy
-	1ds9io4HUT2r1IxKnmoKu5BQTdMnDpwJnJTlKwdcFTKJsCkGRyBaS6aWQKGdvh6RYzSPZfb
-	6zJwTUEi5p4Tbybp1ywMVAdl0XDFotqstHO4XFv8+D3a6Fi3l/UF2Nium0H5f3WH3tjYLI8
-	uj9u6GyeYBe9Po8Dqt6YkHngLhifg22/oVanEqQ2h0wpqD1lR8JnTFpgn3+vpEfKyVtn9Oi
-	BtAfB0yUv9C8oCQCfYsdDM8g/PbIfagYK77b6FYiDAd0/Msf5StUcjKZJqWH63aaU4QooI5
-	Pzdl1rXzEH+GIKA0kHGvh+umoyGF3Mb8ARiiSAFUe4/fWgwPyJ409YaJheER5rZhl2+9Ju9
-	y9QO72Z8MV1+qgOFyaq5DkRiUmC3ep+Y+avwjgSLYGae36yYcwOt3qYcj5nl/Z9DJTfvvI8
-	36z2ugFZSV+L1o2UKxOHbCFKaaJRrltM5AYehh0mqz9NSj5VqswlvueDEv9WD1YFBnb57Gt
-	vXH78uZ75/elpzGoQY9W9N4GyElVGm5eHJ0uOXZ1kKio5FJ2rOX8EkyV5zaq5XsGUBg17hn
-	orYtn48zLfYVZ0kLi3r6EY=
-X-QQ-XMRINFO: MSVp+SPm3vtSI1QTLgDHQqIV1w2oNKDqfg==
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0b80d046-6141-4389-b666-592859468b8f@kernel.org>
 
-On Thu, Jan 08, 2026 at 03:37:22PM +0800, Yixun Lan wrote:
-> Hi Troy,
+On Thu, Jan 08, 2026 at 05:46:53PM +0100, Krzysztof Kozlowski wrote:
+> On 08/01/2026 17:39, Krzysztof Kozlowski wrote:
+> > On 08/01/2026 09:22, Chanho Min wrote:
+> >> Currently 'lg,*' is used for LG Corporation, but LG Electronics uses
+> >> 'lge' as vendor prefix for many of its device tree bindings
+> >> (lg1k SoCs, etc).
+> >>
+> >> Add 'lge' vendor prefix entry to avoid confusion with 'lg'.
+> >>
+> >> Signed-off-by: Chanho Min <chanho.min@lge.com>
+> >> ---
+> >>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >>  1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> index c7591b2aec2a..6c31fa4bee6a 100644
+> >> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> @@ -907,6 +907,8 @@ patternProperties:
+> >>      description: Lenovo Group Ltd.
+> >>    "^lg,.*":
+> >>      description: LG Corporation
+> >> +  "^lge,.*":
+> > 
+> > NAK, we have been there and I do not change my stance.
 > 
->   if there is one more iteration, I'd suggest to adjust the patch titile, 
-> to make it slightly more specific
+> Unless you meant to add it because of EXISTING device trees (predating
+> commit fc75109288709 from Rob), then add with deprecated: true and don't
+> use it any new compatibles.
 > 
->   riscv: dts: spacemit: pinctrl: update register and IO power
-Thanks for you pointing it out.
-I'll use it if there is one more interation.
+> Best regards,
+> Krzysztof
 
-But I just want to confirm, if there are no further iterations,
-you will be making the title change before applying it to your tree, right?
+Hi Krzysztof
 
-                              - Troy
+v2 will include:
+ - "lg," prefix only ("lg,lg1215-ref", "lg,lg1215")
+ - Drop "^lge,.*" from vendor-prefixes.yaml
+ - dts coding style fixes in patch 3
+
+Existing "lge," → "lg," conversion will be sent separately soon.
+
+Thanks
+Chanho Min
+
 
