@@ -1,250 +1,200 @@
-Return-Path: <devicetree+bounces-253070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F290D070AE
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 04:52:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BBA5D070DE
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 05:01:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2B7B730402A9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 03:52:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0B8A6301076C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 04:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F6452853EE;
-	Fri,  9 Jan 2026 03:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FDF01F30BB;
+	Fri,  9 Jan 2026 04:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b="cfN1UWHV"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="pUaBBrS7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.nabladev.com (mx.nabladev.com [178.251.229.89])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96DBA78F3E;
-	Fri,  9 Jan 2026 03:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.251.229.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E284250096B
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 04:01:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767930727; cv=none; b=pLgnK4NuNO7aUYnt0JPDnQAg+8VcXsqV/IPAsV3AOw/2v4X4Mu4/8iq1IwGsVRjwLJuaaUwUxXAfcX8wkLPZY12k7SK6t9X4P7Gr4CFWfKFEue52eWQigQD6ov9mWL8OXd81MlZ6d2nbDOvgjSxEsCuNqXUZbMQuOYGY3yK9n4g=
+	t=1767931265; cv=none; b=qlVmlxpvYjczX2ZfuE6rii2f42uDpvHxV4miFn8KdpMoNag7uEhpX3wz+WUgmDJXg2bwIm5Am5o4j70WZefdrsEh2REFfYC2NpzsxVAS7EoBicG2w7XEaS4jOIgu1xWh4uFdb6iw/gy2mxUn7TtZluqDHf5RZDyd3HTC+T7sI/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767930727; c=relaxed/simple;
-	bh=uxZ3CkpEy15TnQ1ULYwy+Wmf8O36xPliaR075t0g1DI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XPP2aP/Hbndya9I47h58BYZfpPVunO3FQWTqdHLzcDUYdl3HPXUO4vmfripa5U2uugboLOoOT38UDZds8389BvE0zMuDooVGaEnsakXUXIOq1t2+OzA0YyouwUa4ArWeX6vn7/HazHeaOBPX0atqxXjVhL1gJi2e/2cnCWSogd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com; spf=pass smtp.mailfrom=nabladev.com; dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.b=cfN1UWHV; arc=none smtp.client-ip=178.251.229.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nabladev.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nabladev.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 819AD10DBD7;
-	Fri,  9 Jan 2026 04:51:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1767930717; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ZpmuA+wL4dOmKwenCzLLh4lsrXSWeFNsxnoNBZWAah0=;
-	b=cfN1UWHV+gu5+pJ8ggnB/YhQs/jQta/5YGRwGmjz+cuTE0bhWh+65wPLlLl5vGMnR6w4c1
-	0rPfUO+VlyRsvdTeqhY7wz3laFAFTRhTaTL+muPBf672IP4AGfVh/CCa9zPh3ItsH1ZNaD
-	v3IHC9EqQPB4q6SWM1DiZsu6rOKwCWkIhHEkaDsz+okm2ai50A06thm1uCCgsaeoOohAxg
-	sHxG45nX5V80MVpyUnvMuuXbrAIuxOjiz5t0+CiA19HJvwpNJEA1fLP6ZYfr/pRehqcHTQ
-	Qha4tMMqpas3KJhvT2Pv9VRx61pTybuSXZFTAiLR6cm504nUV/1oJce0b4EWOQ==
-From: Marek Vasut <marex@nabladev.com>
-To: linux-input@vger.kernel.org
-Cc: Marek Vasut <marex@nabladev.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jens Reidel <adrian@mainlining.org>,
-	Joel Selvaraj <foss@joelselvaraj.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	devicetree@vger.kernel.org,
-	kernel@dh-electronics.com,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] Input: edt-ft5x06 - add support for polling mode
-Date: Fri,  9 Jan 2026 04:51:45 +0100
-Message-ID: <20260109035149.1341931-2-marex@nabladev.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260109035149.1341931-1-marex@nabladev.com>
-References: <20260109035149.1341931-1-marex@nabladev.com>
+	s=arc-20240116; t=1767931265; c=relaxed/simple;
+	bh=VQ/l+wMiRcDn/Vk/UNOk/P0fGHJvkRRT4KRRoJWNFXc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IHG8ZYyM3nkc9xAbWWjZ1qkyC+wiUT9o5dWZ3hKMPJjs46OXk67HQD0q9rHT7T6U6BSOtBIXsNk/K4gPX557DxkW8aoeDNUCRn7K9YnY6Yk/sF3JjiwOCtf6LWbskH5Fo1Vi24dPQ319wcF4XbY+4VpFvkE9RwGkuz6eq6OvBgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=pUaBBrS7; arc=none smtp.client-ip=91.218.175.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Fri, 9 Jan 2026 12:00:36 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1767931252;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=lavz1MSmjFqCciY/xo3Qbip068Uin2Q84GMzH2IKmGg=;
+	b=pUaBBrS7sf/Nm3jDcO68XK5WakK795Qs2FNRiaTDXrAnRBCNm7K2HtrFYgw/gIYYB2dA5O
+	uvY7rN7jHX+VXxRSMRekISM4Eyka9nry9AC//dq4l9ZxRg/Tj87LCW6LFqukJuoh5tgWfR
+	9Ygo39IYeUOHf0lIu41pTvK/RhTdg30=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ze Huang <huang.ze@linux.dev>
+To: Yixun Lan <dlan@gentoo.org>, Ze Huang <huang.ze@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Aurelien Jarno <aurelien@aurel32.net>
+Subject: Re: [PATCH v2 3/3] riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
+Message-ID: <aWB9ZN1iDkvoAiDj@monica.localdomain>
+References: <20260107-k1-usb3dts-v2-v2-0-e659b0f8fe1a@linux.dev>
+ <20260107-k1-usb3dts-v2-v2-3-e659b0f8fe1a@linux.dev>
+ <20260108012157-GYA2355@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260108012157-GYA2355@gentoo.org>
+X-Migadu-Flow: FLOW_OUT
 
-There are designs incorporating EDT ETM touch controller that do not
-connect interrupt pin, for example Raspberry Pi. To support such systems
-use polling mode for the input device when I2C client does not have
-interrupt assigned to it.
+On Thu, Jan 08, 2026 at 09:21:57AM +0800, Yixun Lan wrote:
+> Hi Ze,
+> 
+>   thanks for your patch, I have few comments, see below..
+> 
+> On 20:05 Wed 07 Jan     , Ze Huang wrote:
+> > Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
+> > Banana Pi F3 board.
+> > 
+> > The board utilizes a VLI VL817 hub, which requires two separate power
+> > supplies: one VBUS and one for hub itself. Add two GPIO-controlled
+> > fixed-regulators to manage this.
+> > 
+> > Tested-by: Aurelien Jarno <aurelien@aurel32.net>
+> > Signed-off-by: Ze Huang <huang.ze@linux.dev>
+> > ---
+> >  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 48 +++++++++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> > 
+> > diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> > index 3f10efd925dc..013df91c6a4c 100644
+> > --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> > +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+> > @@ -59,6 +59,26 @@ reg_vcc_4v: vcc-4v {
+> >  		regulator-always-on;
+> >  		vin-supply = <&reg_dc_in>;
+> >  	};
+> > +
+> > +	usb3_vbus: regulator-vbus-5v {
+> I've checked the schematics, the name is 5V_VBUS there, so for the consistency
+> with previous naming convention, let's change to:
+> 	usb3_vbus_5v: usb3-vbus-5v 
 
-Signed-off-by: Marek Vasut <marex@nabladev.com>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Jens Reidel <adrian@mainlining.org>
-Cc: Joel Selvaraj <foss@joelselvaraj.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: devicetree@vger.kernel.org
-Cc: kernel@dh-electronics.com
-Cc: linux-input@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
----
- drivers/input/touchscreen/edt-ft5x06.c | 74 ++++++++++++++++++--------
- 1 file changed, 53 insertions(+), 21 deletions(-)
+Agreed. I will rename it to match the schematic.
 
-diff --git a/drivers/input/touchscreen/edt-ft5x06.c b/drivers/input/touchscreen/edt-ft5x06.c
-index 9a0add3d39159..a16bf93243976 100644
---- a/drivers/input/touchscreen/edt-ft5x06.c
-+++ b/drivers/input/touchscreen/edt-ft5x06.c
-@@ -69,6 +69,7 @@
- #define TOUCH_EVENT_RESERVED		0x03
- 
- #define EDT_NAME_LEN			23
-+#define EDT_POLL_INTERVAL_MS		17 /* msec */
- #define EDT_SWITCH_MODE_RETRIES		10
- #define EDT_SWITCH_MODE_DELAY		5 /* msec */
- #define EDT_RAW_DATA_RETRIES		100
-@@ -295,9 +296,9 @@ static const struct regmap_config edt_M06_i2c_regmap_config = {
- 	.write = edt_M06_i2c_write,
- };
- 
--static irqreturn_t edt_ft5x06_ts_isr(int irq, void *dev_id)
-+static void edt_ft5x06_ts_process_events(struct edt_ft5x06_ts_data *tsdata,
-+					 bool poll)
- {
--	struct edt_ft5x06_ts_data *tsdata = dev_id;
- 	struct device *dev = &tsdata->client->dev;
- 	u8 rdbuf[63];
- 	int i, type, x, y, id;
-@@ -307,9 +308,13 @@ static irqreturn_t edt_ft5x06_ts_isr(int irq, void *dev_id)
- 	error = regmap_bulk_read(tsdata->regmap, tsdata->tdata_cmd, rdbuf,
- 				 tsdata->tdata_len);
- 	if (error) {
--		dev_err_ratelimited(dev, "Unable to fetch data, error: %d\n",
--				    error);
--		goto out;
-+		if (!poll) {
-+			/* Polling may result in no data. */
-+			dev_err_ratelimited(dev,
-+					    "Unable to fetch data, error: %d\n",
-+					    error);
-+		}
-+		return;
- 	}
- 
- 	for (i = 0; i < tsdata->max_support_points; i++) {
-@@ -341,11 +346,24 @@ static irqreturn_t edt_ft5x06_ts_isr(int irq, void *dev_id)
- 
- 	input_mt_report_pointer_emulation(tsdata->input, true);
- 	input_sync(tsdata->input);
-+}
-+
-+static irqreturn_t edt_ft5x06_ts_isr(int irq, void *dev_id)
-+{
-+	struct edt_ft5x06_ts_data *tsdata = dev_id;
-+
-+	edt_ft5x06_ts_process_events(tsdata, false);
- 
--out:
- 	return IRQ_HANDLED;
- }
- 
-+static void edt_ft5x06_work_i2c_poll(struct input_dev *input)
-+{
-+	struct edt_ft5x06_ts_data *tsdata = input_get_drvdata(input);
-+
-+	edt_ft5x06_ts_process_events(tsdata, true);
-+}
-+
- struct edt_ft5x06_attribute {
- 	struct device_attribute dattr;
- 	size_t field_offset;
-@@ -613,7 +631,8 @@ static int edt_ft5x06_factory_mode(struct edt_ft5x06_ts_data *tsdata)
- 		return -EINVAL;
- 	}
- 
--	disable_irq(client->irq);
-+	if (client->irq)
-+		disable_irq(client->irq);
- 
- 	if (!tsdata->raw_buffer) {
- 		tsdata->raw_bufsize = tsdata->num_x * tsdata->num_y *
-@@ -656,7 +675,8 @@ static int edt_ft5x06_factory_mode(struct edt_ft5x06_ts_data *tsdata)
- 	kfree(tsdata->raw_buffer);
- 	tsdata->raw_buffer = NULL;
- 	tsdata->factory_mode = false;
--	enable_irq(client->irq);
-+	if (client->irq)
-+		enable_irq(client->irq);
- 
- 	return error;
- }
-@@ -697,7 +717,8 @@ static int edt_ft5x06_work_mode(struct edt_ft5x06_ts_data *tsdata)
- 	tsdata->raw_buffer = NULL;
- 
- 	edt_ft5x06_restore_reg_parameters(tsdata);
--	enable_irq(client->irq);
-+	if (client->irq)
-+		enable_irq(client->irq);
- 
- 	return 0;
- }
-@@ -1331,17 +1352,26 @@ static int edt_ft5x06_ts_probe(struct i2c_client *client)
- 		return error;
- 	}
- 
--	irq_flags = irq_get_trigger_type(client->irq);
--	if (irq_flags == IRQF_TRIGGER_NONE)
--		irq_flags = IRQF_TRIGGER_FALLING;
--	irq_flags |= IRQF_ONESHOT;
-+	input_set_drvdata(input, tsdata);
- 
--	error = devm_request_threaded_irq(&client->dev, client->irq,
--					  NULL, edt_ft5x06_ts_isr, irq_flags,
--					  client->name, tsdata);
--	if (error) {
--		dev_err(&client->dev, "Unable to request touchscreen IRQ.\n");
--		return error;
-+	if (client->irq) {
-+		irq_flags = irq_get_trigger_type(client->irq);
-+		if (irq_flags == IRQF_TRIGGER_NONE)
-+			irq_flags = IRQF_TRIGGER_FALLING;
-+		irq_flags |= IRQF_ONESHOT;
-+
-+		error = devm_request_threaded_irq(&client->dev, client->irq,
-+						  NULL, edt_ft5x06_ts_isr, irq_flags,
-+						  client->name, tsdata);
-+		if (error) {
-+			dev_err(&client->dev, "Unable to request touchscreen IRQ.\n");
-+			return error;
-+		}
-+	} else {
-+		error = input_setup_polling(input, edt_ft5x06_work_i2c_poll);
-+		if (error)
-+			return dev_err_probe(&client->dev, error, "Unable to set up polling.\n");
-+		input_set_poll_interval(input, EDT_POLL_INTERVAL_MS);
- 	}
- 
- 	error = input_register_device(input);
-@@ -1394,7 +1424,8 @@ static int edt_ft5x06_ts_suspend(struct device *dev)
- 	 * settings. Disable the irq to avoid adjusting each host till the
- 	 * device is back in a full functional state.
- 	 */
--	disable_irq(tsdata->client->irq);
-+	if (tsdata->client->irq)
-+		disable_irq(tsdata->client->irq);
- 
- 	gpiod_set_value_cansleep(reset_gpio, 1);
- 	usleep_range(1000, 2000);
-@@ -1456,7 +1487,8 @@ static int edt_ft5x06_ts_resume(struct device *dev)
- 		msleep(300);
- 
- 		edt_ft5x06_restore_reg_parameters(tsdata);
--		enable_irq(tsdata->client->irq);
-+		if (tsdata->client->irq)
-+			enable_irq(tsdata->client->irq);
- 
- 		if (tsdata->factory_mode)
- 			ret = edt_ft5x06_factory_mode(tsdata);
--- 
-2.51.0
+> 
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "USB30_VBUS";
+> > +		regulator-min-microvolt = <5000000>;
+> > +		regulator-max-microvolt = <5000000>;
+> ..
+> > +		regulator-always-on;
+> do you think the "always-on" property really necessary? it indicate the
+> power regulator is critical, and should never been disabled even during
+> suspend/resume state, for the case of USB, I think it should be totally
+> fine to poweroff once the device is not used(suspended) or even disabled
+> 
+> besides, the regulator is designed with a gpio enabling/disabling control
+> which means it can be powered to on/off state?
+> 
 
+As you pointed out in the following email, dwc3-generic-plat did not manage any
+regulator. So, either keep "always-on" here, or manage vbus in dwc3-generic-plat.
+
+> > +		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +	};
+> > +
+> > +	usb3_vhub: regulator-vhub-5v {
+> why use vhub, but not hub? where does this name come from?
+> 
+> and for same reason, the name in schematics is VCC5V0_HUB, so how about
+> change it to:
+> 	usb3_hub_5v: usb3-hub-5v 
+> 
+
+I previously used 'vhub' just to align with the 'vbus'. However, using the
+schematic name is better. I will update it to usb3_hub_5v.
+
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "USB30_VHUB";
+>                                     ~~~need to fix too, if above is valid
+> > +		regulator-min-microvolt = <5000000>;
+> > +		regulator-max-microvolt = <5000000>;
+> ..
+> > +		regulator-always-on;
+> ditto
+> > +		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
+> > +		enable-active-high;
+> > +	};
+> >  };
+> >  
+> >  &combo_phy {
+> > @@ -67,6 +87,34 @@ &combo_phy {
+> >  	status = "okay";
+> >  };
+> >  
+> ..
+> > +&usbphy2 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb_dwc3 {
+> > +	dr_mode = "host";
+> > +	vbus-supply = <&usb3_vbus>;
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +	status = "okay";
+> > +
+> > +	hub_2_0: hub@1 {
+> > +		compatible = "usb2109,2817";
+> > +		reg = <0x1>;
+> > +		vdd-supply = <&usb3_vhub>;
+> > +		peer-hub = <&hub_3_0>;
+> > +		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
+> > +	};
+> > +
+> > +	hub_3_0: hub@2 {
+> > +		compatible = "usb2109,817";
+> > +		reg = <0x2>;
+> > +		vdd-supply = <&usb3_vhub>;
+> > +		peer-hub = <&hub_2_0>;
+> > +		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
+> > +	};
+> > +};
+> > +
+> can you move these two after &uart0? I'd like to keep them sorted by 
+> label alphabet order..
+> 
+
+OK
+
+> >  &emmc {
+> >  	bus-width = <8>;
+> >  	mmc-hs400-1_8v;
+> > 
+> > -- 
+> > 2.52.0
+> > 
+> 
+> -- 
+> Yixun Lan (dlan)
 
