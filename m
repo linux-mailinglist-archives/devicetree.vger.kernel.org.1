@@ -1,240 +1,215 @@
-Return-Path: <devicetree+bounces-253087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43345D07305
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 06:22:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18758D0740A
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 06:53:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E40773015A86
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 05:21:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4680430383CF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 05:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC8F2206AC;
-	Fri,  9 Jan 2026 05:21:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 874AB2737EB;
+	Fri,  9 Jan 2026 05:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="CBIe9/sn"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MNno0Ii+";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SSBbwQZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7668F48
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 05:21:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0311326B76A
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 05:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767936114; cv=none; b=NhLoeghfYgIyxaQRxm9+HLouyoP+YU/MhOqGRYbkmlfyVdKzhnmrQuV1iSfR5BYClg+jhFs0itkNarHH6thXqLQz7bpEr8hbzMjYGpvSVqr5M2njwOqxp6kZ2wsJ9Nvi/XvKcv5WH2g0JNOR7Lp7ac55HmBwNWXfUt+bQPQ3a7k=
+	t=1767937864; cv=none; b=TDeg9ZDoznf3fQR4cn/xh4iFp6kvqE1oaidYVGTVLvaWuq069K1qf13/2d3IlhTjdXQLYpS/u2OIHsZrLtJtFp3VSV/P99d/Cwn+FTMyx+q7Bl/vm/PSwUi7FhU92F+lfxkdh0WmwlKZULHpL0pDmUKa3OAf2k0x1J3XNIa5994=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767936114; c=relaxed/simple;
-	bh=ADwpTdsppeYwljABSoUx9GoAFRvWMw51o2qqxcvypPk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rmWyNVL8r/joKojJHaszV7HkuD8PVpE5Pb1UrgnKx2D21clrJR5BY6BhwhMI9HtG6IqvdrOlE7/3SBZcBXvIk9rRKN6fzQpST06JoZCB+F3/N0gBuqm4zPRYbD58EuSQLMp/IYVckVNww0dM6WJz5DXNf9N0P5Xt7RrROZrBR0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=CBIe9/sn; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-7c750b10e14so1698476a34.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 21:21:51 -0800 (PST)
+	s=arc-20240116; t=1767937864; c=relaxed/simple;
+	bh=/+a/hErSbMRRPwKh8Xf+v9Y4cN7jMaPC9afQDXM7llA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Maerl3DBkvDOndGY3N9fPJ8ePP4m8y8ZajiP9RByMalagVaeup/dTFQ4GNUIBjYHQM/d3mvWlf9J9khARWKzCnopglzE9EHPbDXOF73EfIoiAP/dJA+IrCy83WBD/MhZNKkZyLKj9ISvRayBbNSlMj05lW2+4vDBTxY3t2tX/i8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MNno0Ii+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SSBbwQZS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 608Mp2Vk3219359
+	for <devicetree@vger.kernel.org>; Fri, 9 Jan 2026 05:51:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=SZ+vI17AryCUc2LXtMN69ba7
+	Hushzr3nEAs4KJ9v5tM=; b=MNno0Ii+xcFwzwgsp8WGG9nbwjtcdcUH76J+/08h
+	uutwn97UCMCUBT17Bd+jCeXel4ioVCmvgysCsAKJUTo4a6CCwDGzhFzk3wFmML8b
+	+n20P+FqUdhBkoYUvItzI8JCJwc2r6v6v8TMbBZ+sWtCkygiLDyyGcJ028d0TEpM
+	1SZlIpI7g1SqOKk/2x59MmMGulB7jLTBzehaY8kfUXqf8bRja1z4Y0BfEg43c7zX
+	BNwERg4VkfZ8fz/L259lYxbxcr5OLdUE2YBQRxzhdPaznWs/17qHv/K65//VeYPa
+	N4v7ZhmQRuxJrtvub05RMl+dRKZ7lgBold/K5bEZaKonZg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bjjt0hbdk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 05:51:01 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b17194d321so595361185a.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 21:51:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1767936110; x=1768540910; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2a7yb61gjMTGmEOfZ9bR3veEdxmzKhIWW1FkPKIznT4=;
-        b=CBIe9/snbTXT4dMHgu5fFh/J3KCdycFh+p6SS4B5Bk/2WBT7h3g+nxh9dMkQQXwq+6
-         ar++1gPMDSeoWMo9OZH3M/1U5b3qDchWtZc3PAXrRPPLmefV1SwQz7fHRpWqmw5+qTOi
-         US62CgfaG80uestzMRlqvdfwqYpJCqjJAAHxFvPMVhrK22aTbWFRSjDntKKNM8AZqlqt
-         r8QS7n7BGnhyJid5Fo+78zeFNnX4mUt9JP39UnrwjVS0eAjYadSYkf0SOLlNqG6vaR6L
-         TXCpz5DqeNHMfV6wRcekD5IzSh/Gt5JdXucorJFSeRxR6XTeRV1o1TuJf+rHOiXfFwkO
-         f0Ow==
+        d=oss.qualcomm.com; s=google; t=1767937861; x=1768542661; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=SZ+vI17AryCUc2LXtMN69ba7Hushzr3nEAs4KJ9v5tM=;
+        b=SSBbwQZSKe1PXpj7ceVy2nsIvxD8DMkBxBlPS9Llxh9zDYCt2+pZ1dhQdX7KU828IW
+         IYmMG80CKBud1Y01NPTMFrYfQVRXZnfb9YjCPPXB+ZO6eBsibz35a5YkD4Bk6h5XQ5nt
+         UXuzAdhOECPk/5FT9CSFrx9UIfg/53LL7mbquIl5uS1OylzmZ0j8Er77DyJvEjFldqCN
+         Wfzd+nTRX3zFwiPXLzN0OKBz9mNONiLYsfPPaGJWdQgvqDecYwB2+oeFXElKdwTwt1Gd
+         GBTehY77kuf07ZgqNSnqZgN9p5yF+yVzKwaCHR5vDzZIzWPfn0fh5Ywz+LXt6lC09fBP
+         043Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767936110; x=1768540910;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2a7yb61gjMTGmEOfZ9bR3veEdxmzKhIWW1FkPKIznT4=;
-        b=Dq4R8UiDBYtJe1buNmgsu7wK3V5wumryHwKne4s/01K4SHssvpObFm5usRdOhWxn8Z
-         jenMTOpYfoGep5O0J1xnvSNpKi+EhY3imtW/GvWzTDzzKRr0Bdf8Yze6U9y20+2CJNx9
-         GJwnoLzzE0RxCOBmwQg8KC8hIHRnwO5irKZxHgW1C1cO5kjoe4hGXD4IOdLwIPLKMq+C
-         UzV7FSBT/HnISAtupGQ7lY9tjAR+TSQErTEC04HWO9scd1VcT8kH2ogMo9wB1ljT0LKg
-         reVt1vntr95wM+vcZJQVDr2ypL5mX5hEOaEmqpy6+/VrfrbxcIKbucG+HvvMMom3tKBb
-         qRMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU1hO4OAyk54pjbuSe1haEywcZAkRkWZI3O70ip4oKNn8nysFVtTILL+9jRfrukGH5mt9A09O3ZsSYg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFLuSe1aQSTaXBa/4/O6p23g/VLiKLfRcjjMwlHJrlczGUf+rF
-	ga/CVNSAZhMx5wmj54i57jpwdcPVl4Ro0pRHhSHVF0fKAXNv2Th5rmJMWwFiViLYcbg=
-X-Gm-Gg: AY/fxX429JJ1iJzkPqJIcaMx0DbS5m8R66Y6WMhev4UPj4dNBqvodB0Bhm5z6CdHvUk
-	ShHhEOt6IifyE6p22pGu2BmMGF7cYxNqTh6Wu2XwohJBoIZOmU0HcI9OcXbE7IQHb0kQGEqxnIM
-	5JyffvOBRbBKarVhuTvTG7gWfGRJPV/F0Z2Zfqw7BR2vpJBRBfmLb/Tqo5m0yE0tdt/VwFuFCty
-	+rI6O5HkAGOLK3SBC/7pj7vPlwcP9L+PpE1eNpV8+lKu5FsDcst3Khap6FM6ERPe13kYIzYMup3
-	6meBkH1epYHDCn7nDNFeYp8fYccttRWcFRkWmca/TjsV0Ne+4rzhGbeKuG11MUkt0dOmEmF3ErG
-	Z+Qzt7l80X6zxKtO2Q/Ts3lsjywEy7UcJpYnO0cjUWRB/mJ7DqQquMcMUkmRyX3/vV+jLJCXB7h
-	/7ucUj00yudk2E7fLzRKlrB2ZK710=
-X-Google-Smtp-Source: AGHT+IGR9G9QsQo8PdDgYo3rev7ih0hABMziC59pD3OHlqcWicc9e+z0NWSuSaiPEPFAI2FDHSqogA==
-X-Received: by 2002:a05:6830:230c:b0:7c7:1c77:f107 with SMTP id 46e09a7af769-7ce50c0b0d5mr5519693a34.34.1767936110408;
-        Thu, 08 Jan 2026 21:21:50 -0800 (PST)
-Received: from [100.64.0.1] ([170.85.11.86])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7ce478d9f54sm7079938a34.23.2026.01.08.21.21.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 21:21:49 -0800 (PST)
-Message-ID: <5c54077c-f9fd-40c9-84eb-54139db8aaa6@sifive.com>
-Date: Thu, 8 Jan 2026 23:21:48 -0600
+        d=1e100.net; s=20230601; t=1767937861; x=1768542661;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SZ+vI17AryCUc2LXtMN69ba7Hushzr3nEAs4KJ9v5tM=;
+        b=M66NzrLDjBeXYaxDhQnzpGyzwMIgJK6ZDjhL1aX2w5KEzeUGVjQt4nav977tizCVJ2
+         ciiXsVdXVlmT181oRMro+qtESkDABsZEf6100CF6TOZXsJQjVAHWt2025Ha7TuWDI9fK
+         fYxY2mOR/B+yO74mFi/GGFXZvGCzDCVjK+gJmya7cNTXDLcnxtL/sbgJH2EZ0Nb+ghSL
+         DmzJtWB8lMEmfxBpS7qjAbahE1xOXPeSpH6GDz+ZOZtcLDOC81ctkpGPBCCxpjj/4Cmz
+         9Zggo+CoZGBMtxnS4NiedyqZsURd0U61xLMb++xbgOzIUWMKSukDG01+WDBJ27PS8cJh
+         VPww==
+X-Forwarded-Encrypted: i=1; AJvYcCUeuIlyUCs36PWx3lxD9xWqhzGSyZrY0ds+6Igj4DYgc1hXcPW8XVgp5YzV+Lx79V8E0zyxiJj2IZxq@vger.kernel.org
+X-Gm-Message-State: AOJu0YywOXBCD6W18iWKDlRZzhPPpVDPWTeaHS8Y4ObaDF7aEElf/ms0
+	0Q5W3679DHPO/anm17cqBPzhazL9jAiZZdIp0uRxcJoRspnj+NnqBay7yf1y7OaoVRo5X5Ffyrw
+	1Q05Qado7OAswErKDofBmuHWMYsTOMjy9imMOW9kQiLoplWgoUVsHXwioHP5x3Jgy
+X-Gm-Gg: AY/fxX5Ca6HDFwHgWBUGfJCTmu6DG8GOwGjXsuzTMgSjthiozdOpQRumK0Ewlbj2EaK
+	JZiN6HP3Nme9Fx32ws3ZcbCxRInQYqTzhzQcJKcUUUclI+d6quwoN00zoKshU021hJcqOPqgPlP
+	1OmEnf0MaxAVoOgJVAJcs88VRqghD5xCpP05nPrQpGJqglzd1CmqEA11M1obx4ULpzVgt4UY/Fb
+	z2zUwSjLgimACuE6tMnJav/1TFdYtA/dAhZA2sO+n+WE+0g20iHD8rtvdlnq8m3ErloRJU3ogXj
+	4PSP3XC3GpFt1DT37dHjgiMYqgyuvHSu17pJqz07PcFbuEKmPWMuN7OfZxf5stfVNUZYDs5Ubak
+	xldQTvfWUdJqbY2m37L2Y5of7Ip6cbAe8RxNdLa+dUL8ATVcq5O1bomc273hFi+S46BKtzjM=
+X-Received: by 2002:a05:620a:7001:b0:8b2:2607:83d5 with SMTP id af79cd13be357-8c3893fa385mr1179355585a.75.1767937861141;
+        Thu, 08 Jan 2026 21:51:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGNQP+z38zKgjcFwkfa/1G+ZNK+xmbjvdmPnRkKFboJurHGR+NtsX6o0sZ8QmOor5L8ELP7SA==
+X-Received: by 2002:a05:620a:7001:b0:8b2:2607:83d5 with SMTP id af79cd13be357-8c3893fa385mr1179352285a.75.1767937860609;
+        Thu, 08 Jan 2026 21:51:00 -0800 (PST)
+Received: from yuanjiey.ap.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c37f4b8573sm729474385a.12.2026.01.08.21.50.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jan 2026 21:51:00 -0800 (PST)
+Date: Fri, 9 Jan 2026 13:50:49 +0800
+From: yuanjiey <yuanjie.yang@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, jesszhan0024@gmail.com,
+        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
+        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, neil.armstrong@linaro.org,
+        konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        tingwei.zhang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
+        yongxing.mou@oss.qualcomm.com
+Subject: Re: [PATCH v5 10/12] drm/msm/dpu: Add Kaanapali SSPP sub-block
+ support
+Message-ID: <aWCXOX+OKvWsqzNM@yuanjiey.ap.qualcomm.com>
+References: <20260108085659.790-1-yuanjie.yang@oss.qualcomm.com>
+ <20260108085659.790-11-yuanjie.yang@oss.qualcomm.com>
+ <k2orlbxktyqhuuoievurde5vglpbx2qqhkbmnasfnefax6p4tv@7hhmnyomtxyy>
+ <aWBpEIHLtmCyZ5C8@yuanjiey.ap.qualcomm.com>
+ <wgx4q3f4ktpoyq4u7rrquy7rs66hwidpr7dfxvw74w2xf53toe@kh3qy674des2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
-To: Ze Huang <huang.ze@linux.dev>, Yixun Lan <dlan@gentoo.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org, Aurelien Jarno <aurelien@aurel32.net>
-References: <20260107-k1-usb3dts-v2-v2-0-e659b0f8fe1a@linux.dev>
- <20260107-k1-usb3dts-v2-v2-3-e659b0f8fe1a@linux.dev>
- <20260108012157-GYA2355@gentoo.org> <20260108113605-GYA4052@gentoo.org>
- <aWB-6UkudFit3ZBX@monica.localdomain>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <aWB-6UkudFit3ZBX@monica.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <wgx4q3f4ktpoyq4u7rrquy7rs66hwidpr7dfxvw74w2xf53toe@kh3qy674des2>
+X-Proofpoint-GUID: JnsfeZ-LL6-JgZe4TLtygwgiB9SD01gv
+X-Authority-Analysis: v=2.4 cv=VJzQXtPX c=1 sm=1 tr=0 ts=69609745 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+ a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=5yRySJssvr81LtH4ww8A:9
+ a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: JnsfeZ-LL6-JgZe4TLtygwgiB9SD01gv
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA5MDAzOCBTYWx0ZWRfXyh+pvLiS5cD7
+ O5MvqtsWXXtw2TiZN8XIgUSfT0/4Ca9F7jLTfgTxLIj0UOhFo0dLvayDE7i3oN7xaC0BVRIRxm0
+ aEeYhHFxVKo4RqxI2FWiOxtvuY1+LqtQL/qul8j+9WzZtpB9OzDGT48whFYyzNWAdWi7XtzEJOK
+ Ag8x67bN7L2v5LBFnJu0ObPtVp8UhDRvf1SyxvyKDO1O9vDzAvXfCDZSXFWWpi2jPEHqGjsjAL8
+ S5jeCj/ZCbuieciI21RLHIe1PL8g8OqKz3+peUNrIfblV7TC8nxWlu984wGUJRsnDJ3fLnr2xPS
+ nSWvUdpsq1bDFGqUYU0SLYNOYZ7bdIDQf/94VJ5cDXL5iiueDR/Cakr02Na3mdJgjU7G3922jel
+ X0Pqgw1zpiPS4/+6FbH2RwSP3UofaopD83QyqhMWYeH+w8SeFoZHA68bZVydaFYQdB/3Y1WiujB
+ 9KyvkgC6PrNc6JjbV6A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-09_01,2026-01-08_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 phishscore=0 clxscore=1015
+ priorityscore=1501 adultscore=0 bulkscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601090038
 
-Hi Ze,
+On Fri, Jan 09, 2026 at 05:25:26AM +0200, Dmitry Baryshkov wrote:
+> On Fri, Jan 09, 2026 at 10:33:52AM +0800, yuanjiey wrote:
+> > On Thu, Jan 08, 2026 at 03:46:18PM +0200, Dmitry Baryshkov wrote:
+> > > On Thu, Jan 08, 2026 at 04:56:57PM +0800, yuanjie yang wrote:
+> > > > From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> > > > 
+> > > > Add support for Kaanapali platform SSPP sub-blocks, which
+> > > > introduce structural changes including register additions,
+> > > > removals, and relocations. Add the new common and rectangle
+> > > > blocks, and update register definitions and handling to
+> > > > ensure compatibility with DPU v13.0.
+> > > > 
+> > > > Co-developed-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> > > > Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> > > > Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> > > > ---
+> > > >  drivers/gpu/drm/msm/Makefile                  |   1 +
+> > > >  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  14 +
+> > > >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c   |  14 +-
+> > > >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h   |   4 +
+> > > >  .../gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c   | 321 ++++++++++++++++++
+> > > >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c   |  18 +
+> > > >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h   |   3 +
+> > > >  7 files changed, 371 insertions(+), 4 deletions(-)
+> > > >  create mode 100644 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp_v13.c
+> 
+> >  
+> > > > +		c->ops.setup_sourceaddress = dpu_hw_sspp_setup_sourceaddress_v13;
+> > > > +		c->ops.setup_solidfill = dpu_hw_sspp_setup_solidfill_v13;
+> > > > +		c->ops.setup_pe = dpu_hw_sspp_setup_pe_config_v13;
+> > > > +
+> > > 
+> > > >  /* QOS_QOS_CTRL */
+> > > >  #define QOS_QOS_CTRL_DANGER_SAFE_EN       BIT(0)
+> > > >  #define QOS_QOS_CTRL_DANGER_VBLANK_MASK   GENMASK(5, 4)
+> > > > @@ -475,6 +482,17 @@ void _dpu_hw_setup_qos_lut(struct dpu_hw_blk_reg_map *c, u32 offset,
+> > > >  		      cfg->danger_safe_en ? QOS_QOS_CTRL_DANGER_SAFE_EN : 0);
+> > > >  }
+> > > >  
+> > > > +void _dpu_hw_setup_qos_lut_v13(struct dpu_hw_blk_reg_map *c,
+> > > > +			       const struct dpu_hw_qos_cfg *cfg)
+> > > 
+> > > Will it be shared with other blocks (DS, WB)?
+> > 
+> > yes, _dpu_hw_setup_qos_lut_v13 will be used in WB, in function dpu_hw_wb_setup_qos_lut_v13.
+> > 
+> > So maybe I should drop '_' rename _dpu_hw_setup_qos_lut_v13 --> dpu_hw_setup_qos_lut_v13 ?
+> 
+> Yes, please. As you are going to resend the series, could you please
+> also remove the function from the header?
 
-On 2026-01-08 10:07 PM, Ze Huang wrote:
-> On Thu, Jan 08, 2026 at 07:36:05PM +0800, Yixun Lan wrote:
->> Hi Ze,
->>
->> I've done a quick check of the "regulator-always-on" issue, 
->> it's ok to drop the one from hub, but not the vbus one..
->>
-> 
-> Thanks for your double check
-> 
->> On 09:21 Thu 08 Jan     , Yixun Lan wrote:
->>> Hi Ze,
->>>
->>>   thanks for your patch, I have few comments, see below..
->>>
->>> On 20:05 Wed 07 Jan     , Ze Huang wrote:
->>>> Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
->>>> Banana Pi F3 board.
->>>>
->>>> The board utilizes a VLI VL817 hub, which requires two separate power
->>>> supplies: one VBUS and one for hub itself. Add two GPIO-controlled
->>>> fixed-regulators to manage this.
->>>>
->>>> Tested-by: Aurelien Jarno <aurelien@aurel32.net>
->>>> Signed-off-by: Ze Huang <huang.ze@linux.dev>
->>>> ---
->>>>  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 48 +++++++++++++++++++++++++
->>>>  1 file changed, 48 insertions(+)
->>>>
->>>> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->>>> index 3f10efd925dc..013df91c6a4c 100644
->>>> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->>>> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
->>>> @@ -59,6 +59,26 @@ reg_vcc_4v: vcc-4v {
->>>>  		regulator-always-on;
->>>>  		vin-supply = <&reg_dc_in>;
->>>>  	};
->>>> +
->>>> +	usb3_vbus: regulator-vbus-5v {
->>> I've checked the schematics, the name is 5V_VBUS there, so for the consistency
->>> with previous naming convention, let's change to:
->>> 	usb3_vbus_5v: usb3-vbus-5v 
->>>
->>>> +		compatible = "regulator-fixed";
->>>> +		regulator-name = "USB30_VBUS";
->>>> +		regulator-min-microvolt = <5000000>;
->>>> +		regulator-max-microvolt = <5000000>;
->>> ..
->>>> +		regulator-always-on;
->>> do you think the "always-on" property really necessary? it indicate the
->>> power regulator is critical, and should never been disabled even during
->>> suspend/resume state, for the case of USB, I think it should be totally
->>> fine to poweroff once the device is not used(suspended) or even disabled
->>>
->>> besides, the regulator is designed with a gpio enabling/disabling control
->>> which means it can be powered to on/off state?
->>>
-> 
-> 
->> not ok to drop, see comment below at &usb_dwc3 
-> 
->>
->>>> +		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
->>>> +		enable-active-high;
->>>> +	};
->>>> +
->>>> +	usb3_vhub: regulator-vhub-5v {
->>> why use vhub, but not hub? where does this name come from?
->>>
->>> and for same reason, the name in schematics is VCC5V0_HUB, so how about
->>> change it to:
->>> 	usb3_hub_5v: usb3-hub-5v 
->>>
->>>> +		compatible = "regulator-fixed";
->>>> +		regulator-name = "USB30_VHUB";
->>>                                     ~~~need to fix too, if above is valid
->>>> +		regulator-min-microvolt = <5000000>;
->>>> +		regulator-max-microvolt = <5000000>;
->>> ..
->>>> +		regulator-always-on;
->>> ditto
-> 
->> ok to drop, as it's already handled at drivers/usb/misc/onboard_usb_dev.c
->> which will explicitly request the regulator and enable it
-> 
->>
->>>> +		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
->>>> +		enable-active-high;
->>>> +	};
->>>>  };
->>>>  
->>>>  &combo_phy {
->>>> @@ -67,6 +87,34 @@ &combo_phy {
->>>>  	status = "okay";
->>>>  };
->>>>  
->>> ..
->>>> +&usbphy2 {
->>>> +	status = "okay";
->>>> +};
->>>> +
->>>> +&usb_dwc3 {
->>>> +	dr_mode = "host";
->>>> +	vbus-supply = <&usb3_vbus>;
->> due to drivers/usb/dwc3/dwc3-generic-plat.c has no handler to request regulator
->> there will be problem if "regulator-always-on" property is removed..
-> 
-> On the BananaPi-F3 and to Jupiter, the VL817 hub setup uses two distinct controls:
-> 
-> GPIO97  controls the physical VBUS supply.
-> GPIO123 controls the VCC5V0_HUB supply for the hub logic.
-> 
-> (Note: This differs from the Orange Pi RV2, where only GPIO123 is used to
-> control the VBUS supply).
-> 
-> dwc3-generic-plat can not currently handle the regulator request explicitly,
-> keeping "regulator-always-on" forces the VBUS to remain active even when
-> suspended, which consumes unnecessary power.
-> 
-> I prefer to drop regulator-always-on in the DTS to accurately describe the
-> hardware capability, and let the driver manage the VBUS state. This ensures
-> better power management.
-> 
-> If anyone have other ideas, please let me know.
+Sure. But here a little confused.
 
-If a USB device requires board-level resources to function, then the USB device
-itself (not the controller) needs a DT node that references these resources.
-This is the purpose of the usb-device.yaml binding. For the VL817 hub, there is
-a specific binding that links the highspeed and superspeed hubs together. See
-Documentation/devicetree/bindings/usb/vialab,vl817.yaml. These nodes are matched
-with the Linux usb-onboard-hub driver.
+Do you mean I should delete _dpu_hw_setup_qos_lut_v13 in header,
+Or I should rename _dpu_hw_setup_qos_lut_v13 in header to dpu_hw_setup_qos_lut_v13.
 
-Regards,
-Samuel
+_dpu_hw_setup_qos_lut_v13 is used in dpu_hw_sspp_v13.c and dpu_hw_wb.c, so I don't think
+it can be removed from header.
 
+Could you please help me clarify this comment?
+
+Thanks,
+Yuanjie
+ 
+> -- 
+> With best wishes
+> Dmitry
 
