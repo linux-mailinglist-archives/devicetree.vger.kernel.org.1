@@ -1,251 +1,131 @@
-Return-Path: <devicetree+bounces-253306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB378D0A789
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 14:45:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2052D0A80D
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 14:52:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 082FB3015592
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 13:44:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86FC5303136F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 13:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09C235CB93;
-	Fri,  9 Jan 2026 13:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B52350A37;
+	Fri,  9 Jan 2026 13:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BNbkOVHJ"
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="mfEIepmt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD6E35C1B0
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 13:44:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8BDA33506B;
+	Fri,  9 Jan 2026 13:48:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.180.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767966294; cv=none; b=nwznyQhq+HetzPafQSfIczl5cZEpkd2FFACLHOrGHJXgMvLHay4NVJA2JXgyAxLnRaEYSE38iu9WgoeLUjWMwGCPKOM8PW+IjeDdLe3X4YXeikB6VGReeAta0BlYcRP2p+H9tFSCS166pyJeVc/jxhFcHEFLAxyu7V1Kn1uIvAY=
+	t=1767966537; cv=none; b=mkrn+7fqo6wE2fr6CNtjaA+/oA8HcINiWUy1eLHTrPc6o+PvVP4r6yZ8q5AfHJm/RpCFRkV+JbXheRdiSzz0cQzrynec7B8551ggO7nLZrqENwdiTcE9sZ5sXL3pFV0UXZ5tu7FUzyIyGv//iG3vPJqCFVFpXoBR9TzHhJ0isjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767966294; c=relaxed/simple;
-	bh=un/mmc47M7TzaiskJcRDfyxuLNhftyXJQ1e6SZgvuK4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DZ3Sta8OsTj3D1Of+ZQ/fy4xYhwatizujqYe/DaMUKA9PsEAAvoyRwoA+eUiuiXNRYcyWql1DFfWjoeHfnxUav7Tlaqy6YCu1uVuMJn6JqnsjcQAScj7cg5SLZjZ+Yb8LrN9M2+z/ZkvVaG3SpgfJCzz9fOaD/K7qhlH+t++e/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BNbkOVHJ; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4779adb38d3so30072745e9.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 05:44:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767966287; x=1768571087; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3suL/FJnULndAdzhv6eYWlf/ToXJG1zAeBlGIDXgmts=;
-        b=BNbkOVHJuM61hroXQEUf4tD48fdrMj44dVqg4T6q4U9EvvVQRlOkdE8wzTCpnJaNL8
-         Gu6npJEFb293fzL/xFAxCJ+kzX0X2TznpGaMsdZar5PN+u8/xx1fDi5xZpFbLKNli/i8
-         A1mb20iL/2wfKuQU+2rLEAH5R58pIrqGIyUtM8ZtNUIi7GDkTgP08XTzxU8wh0HxFgmD
-         0efbJUCAsnB2P+DaGvrgwfRr9DOgD4Lcgn+cKlig3+Lqtkqjfyv87dhMwirOQKBdL/vy
-         IyKCi9oqm73Pk3onII2w7JOnKlHIeRuLpmyPq7sHtj6d3NUiz1mduzq3+XPCS4Lhwcbx
-         EuRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767966287; x=1768571087;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=3suL/FJnULndAdzhv6eYWlf/ToXJG1zAeBlGIDXgmts=;
-        b=OlXchQHKdFgu38AwDU3u0tKIAtpGogiw2xFE+uGWAP4/SnaDmND1Df2MSF3oBcJkGq
-         ZDn/c0w9zN5UtkSlWSC1IYArHwZff5BJLAlzUsRfaj8E5I6bksOnEWJsZ8Qh3OAjJocl
-         QbmnMs7c4yQ6Df3dK2UjqalNN5rWa2+SKw9U+ZFkTS65LqqZOeBEkwZBmDPPdAHwoK0F
-         GX+rUf4nrcq+w67WnLUh2RdHbwmo/rMCSSiHG69gu4vPdXJXV2go3Jy9g9vrmz1XXG08
-         vgq+ohCPy4NW5vB8fUjiniC0pzjG+39nn0cCLRyHrwC+64d85EJHAoI4vlFcGLttcrEd
-         Vr9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU+g94m0XRUChSKgoW2Lo3kk2CeR7eVfOqS2eTO7rVQIUsXZona4CPG7nkaCZinNvBrsmMwLhNFM6Hd@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV7GI3KbBlapW5AiWZLCmGNZ5CuS6pmWsXMkapubAlG/e1B4qA
-	DMsLZUc4boNySeDrpdn/uLQaPzB/T1hnUxUA8w4kt7ZVrz/u3MeIlJ1t
-X-Gm-Gg: AY/fxX5vkf6sqDMpewuqVibJakhTrNCvr93M9Lc/pZ8OLUhHoBdeCgCSn8Dp7UTMju9
-	LXM947xpWIfZBYHXIyRn51kHPJeOMtTp0k8zJa2fTKK/EAklylkqabRIXeXZX4Hbia4IfoDN95p
-	T3lKka9Do2NwTzeB+8A/Eaki8kp5dEWkpHSaBMtniOKFrWhfaA1xNgofLIP2Y9tNl5z4Z3kC0So
-	NOR3PCHm5EpyssmatsLFXfBuUcbHZTXeiTlV7MKxlc1YL81ZoN8uTTaZly9F1z5tlMVzQzFIC4c
-	cXxXfqHPzFn+v49UQu9GJHj+Tp6PBEg7xRqAXXZPDwvCL22HtxcCwpkjPrEbGLwolGasaCuvbCL
-	IGz8OgMVy3Aaevi+6HeXWFVsSl56iWIEAwR98oPfJvwd8bYTBYmgjXlOMmuS9dPcd6M9HzqjgUn
-	W3YSsyElnGL8F1+ZVzDKYpC2fEE7RKvzlINUNZ6jtjGu/vj8jzI08lmYhPlUJ3VpTG
-X-Google-Smtp-Source: AGHT+IE99p/CLtv5Zj8y/txZ2Wbbjq0dZuLvZFBHO9UfljnaNFb8iqcEoGGSdqeGjdp54IRzV0pUjw==
-X-Received: by 2002:a05:600c:83c7:b0:479:3a86:dc1c with SMTP id 5b1f17b1804b1-47d84b52e31mr108307525e9.36.1767966286873;
-        Fri, 09 Jan 2026 05:44:46 -0800 (PST)
-Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d8636cb0dsm73838105e9.0.2026.01.09.05.44.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jan 2026 05:44:45 -0800 (PST)
-From: Stafford Horne <shorne@gmail.com>
-To: LKML <linux-kernel@vger.kernel.org>
-Cc: Linux OpenRISC <linux-openrisc@vger.kernel.org>,
-	Stafford Horne <shorne@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Bonn <jonas@southpole.se>,
-	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 6/6] openrisc: dts: Add de0 nano multicore config and devicetree
-Date: Fri,  9 Jan 2026 13:43:57 +0000
-Message-ID: <20260109134409.2153333-7-shorne@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260109134409.2153333-1-shorne@gmail.com>
-References: <20260109134409.2153333-1-shorne@gmail.com>
+	s=arc-20240116; t=1767966537; c=relaxed/simple;
+	bh=8vLc6vKQnALInsin48TNFbUpPWBH9K1AIAYCpkTREvA=;
+	h=From:To:CC:In-Reply-To:References:Subject:Message-ID:Date:
+	 MIME-Version:Content-Type; b=Tjxoy5CbVs46GnaHMOBfKqmvKI2eVE+UzIU2pXMU5lEk2HcW1l9bb8k2dIAsDDW/zRzNU5q1UVH5EAbbAD+4QBIZ4JoIcWU0ZffCgQabnvO6Ej1l5frYRWRHvV+SF/PLhOe3paXiEoWEWmBmg3JRCWun4R2PBktolqgDfMvANUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=mfEIepmt; arc=none smtp.client-ip=185.132.180.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
+	by mx07-00376f01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6099bSkd1758055;
+	Fri, 9 Jan 2026 13:48:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=dk201812; bh=u
+	M5w56eU610yq/0Gh6AAdYtU27tzrKHDYhe3iNa34dI=; b=mfEIepmtEmYRukD8A
+	+mzx2W0VC/iWu8sG5suKuMZECHd/7/xTcgzs4o8xnr9vr3ezOnc4Gal96noQZN8u
+	wy26dbDCEBaLxTl+CafpHHEoWKUpgvYEYOknNn15APm/ek143nA422vXfcyhgiAu
+	QxNgoaiRc3/ryQIYUU+ttxRjjNO8+dm66B9cMCdwslT85ijBsZzuqXHEIcIQF+n+
+	TnBqPhuv7JVCEEA/sGacRgJ85EuUQTe5e5u1ny1Zsh3AP9VoKVPyKVylbtl56CMf
+	NJzbrVLcMwWCzjYRl2vrvXXm3U6v6ZcFNSThlj87kgjf5SfR+u5pvILMNMuEogom
+	w4new==
+Received: from hhmail01.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
+	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 4bjnfh0f88-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Jan 2026 13:48:33 +0000 (GMT)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ (172.25.6.237) by HHMAIL01.hh.imgtec.org (10.100.10.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 9 Jan 2026 13:48:32 +0000
+From: Matt Coster <matt.coster@imgtec.com>
+To: Frank Binns <frank.binns@imgtec.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, "Nishanth Menon" <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Andrew Davis <afd@ti.com>,
+        Santosh Shilimkar
+	<ssantosh@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>, Randolph Sapp
+	<rs@ti.com>,
+        Michael Walle <mwalle@kernel.org>
+CC: <linux-clk@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <20251223124729.2482877-1-mwalle@kernel.org>
+References: <20251223124729.2482877-1-mwalle@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/4] drm/imagination: add AM62P/AM67A/J722S
+ support
+Message-ID: <176796651270.31605.2889983349292667077.b4-ty@imgtec.com>
+Date: Fri, 9 Jan 2026 13:48:32 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
+X-Authority-Analysis: v=2.4 cv=QJBlhwLL c=1 sm=1 tr=0 ts=69610732 cx=c_pps
+ a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17
+ a=1vzZ3so_aoUA:10 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=r_1tXGB3AAAA:8 a=yE9j5YPQHsJ0vJ057DoA:9
+ a=QEXdDO2ut3YA:10 a=t8nPyN_e6usw4ciXM-Pk:22
+X-Proofpoint-GUID: M5e1-5REeQX0H09cJmFoicxomPB0dDSk
+X-Proofpoint-ORIG-GUID: M5e1-5REeQX0H09cJmFoicxomPB0dDSk
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTA5MDEwMiBTYWx0ZWRfX0ApUMRgbxWcK
+ +18HyTQudS+o8J6X3HxzQeny6Rbol/YhtsQ0rXW5T/Lgo2XVrZO0S2KS+z1NDAOwp0roKSPQ6S8
+ 0z740f3rokwCEXWC6L7/Ixw6eWLfEM/zJZUOMRDPWbrOavl0wUkESv7lMAY2ipPVVj/pjZGahgS
+ WaT7UU1f3O+bZzYqi5s98oUlaTjS8zzupxIOdjzphWUukbD/QFCip7nqoD7vttS3lF8RaT1IKZW
+ selLUti/0gUB2HiV/tpDciZtn1qV1qZvjK3Z5nbbLiAKMQ3SsRaEkzVs4piP0VoIflOmw6q1hzk
+ CJVGw0uN6W2aBjH2UnjQ3Er0FJ/PCdBKA8tu9A2YrPGuVBiLJCvNyLbpX90GYK8l8WHyC/iklHQ
+ tGwHbDuepGpEiymfqaGVLG2FoqsEJ7BZbazv+CfH1ICsapxsCBx9+FZADzaUnStZOIQfrrNyq76
+ QMEN7BunOiPwcdZMj1Q==
 
-Add a multicore configuration for the Terasic de0 nano FPGA development
-board.  This SoC runs 2 OpenRISC CPUs at 50Mhz with 32MB ram, UART for
-console and GPIOs for LEDs.
 
-This FPGA SoC is based on the simple-smp reference board and brings in
-devices from the de0 nano common DTSI file.
+On Tue, 23 Dec 2025 13:47:12 +0100, Michael Walle wrote:
+> The AM62P and AM67A/J722S feature the same BXS-4 GPU as the J721S2.
+> In theory, one have to just add the DT node. But it turns out, that
+> the clock handling is not working. If I understood Nishan Menon
+> correct, it is working on the J721S2 because there, the clock is
+> shared, while on the AM62P the GPU has its own PLL.
+> In the latter case, the driver will fail with a WARN() because the
+> queried clock rate is zero due to a wrong cached value.
+> 
+> [...]
 
-A default config is added that brings together the device tree and
-driver setup.
+Applied, thanks!
 
-Link: https://github.com/stffrdhrn/de0_nano-multicore
+[1/4] dt-bindings: gpu: img: Add AM62P SoC specific compatible
+      commit: 5abffd7ff012c1950d52313327fea44eaaefc64a
 
-Signed-off-by: Stafford Horne <shorne@gmail.com>
----
- arch/openrisc/boot/dts/de0-nano-multicore.dts | 25 +++++
- .../configs/de0_nano_multicore_defconfig      | 92 +++++++++++++++++++
- 2 files changed, 117 insertions(+)
- create mode 100644 arch/openrisc/boot/dts/de0-nano-multicore.dts
- create mode 100644 arch/openrisc/configs/de0_nano_multicore_defconfig
-
-diff --git a/arch/openrisc/boot/dts/de0-nano-multicore.dts b/arch/openrisc/boot/dts/de0-nano-multicore.dts
-new file mode 100644
-index 000000000000..b6cf286afaa4
---- /dev/null
-+++ b/arch/openrisc/boot/dts/de0-nano-multicore.dts
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/dts-v1/;
-+
-+#include "simple-smp.dtsi"
-+#include "de0-nano-common.dtsi"
-+
-+/ {
-+	model = "Terasic DE0 Nano - Multicore";
-+};
-+
-+&cpu0 {
-+	clock-frequency = <50000000>;
-+};
-+
-+&cpu1 {
-+	clock-frequency = <50000000>;
-+};
-+
-+&serial0 {
-+	clock-frequency = <50000000>;
-+};
-diff --git a/arch/openrisc/configs/de0_nano_multicore_defconfig b/arch/openrisc/configs/de0_nano_multicore_defconfig
-new file mode 100644
-index 000000000000..d33b1226e09c
---- /dev/null
-+++ b/arch/openrisc/configs/de0_nano_multicore_defconfig
-@@ -0,0 +1,92 @@
-+CONFIG_LOCALVERSION="-de0nano-smp"
-+CONFIG_SYSVIPC=y
-+CONFIG_POSIX_MQUEUE=y
-+CONFIG_NO_HZ=y
-+CONFIG_LOG_BUF_SHIFT=14
-+CONFIG_BLK_DEV_INITRD=y
-+# CONFIG_RD_GZIP is not set
-+# CONFIG_RD_BZIP2 is not set
-+# CONFIG_RD_LZMA is not set
-+# CONFIG_RD_XZ is not set
-+# CONFIG_RD_LZO is not set
-+# CONFIG_RD_LZ4 is not set
-+CONFIG_EXPERT=y
-+# CONFIG_EPOLL is not set
-+# CONFIG_TIMERFD is not set
-+# CONFIG_EVENTFD is not set
-+# CONFIG_AIO is not set
-+CONFIG_KALLSYMS_ALL=y
-+CONFIG_DCACHE_WRITETHROUGH=y
-+CONFIG_BUILTIN_DTB_NAME="de0-nano-multicore"
-+CONFIG_OPENRISC_HAVE_INST_CMOV=y
-+CONFIG_SMP=y
-+CONFIG_HZ_100=y
-+CONFIG_JUMP_LABEL=y
-+# CONFIG_BLOCK is not set
-+CONFIG_SLUB_TINY=y
-+# CONFIG_COMPAT_BRK is not set
-+# CONFIG_VM_EVENT_COUNTERS is not set
-+CONFIG_NET=y
-+CONFIG_PACKET=y
-+CONFIG_UNIX=y
-+CONFIG_UNIX_DIAG=y
-+CONFIG_INET=y
-+CONFIG_IP_MULTICAST=y
-+CONFIG_TCP_CONG_ADVANCED=y
-+# CONFIG_TCP_CONG_BIC is not set
-+# CONFIG_TCP_CONG_CUBIC is not set
-+# CONFIG_TCP_CONG_WESTWOOD is not set
-+# CONFIG_TCP_CONG_HTCP is not set
-+# CONFIG_IPV6 is not set
-+# CONFIG_WIRELESS is not set
-+CONFIG_DEVTMPFS=y
-+CONFIG_DEVTMPFS_MOUNT=y
-+# CONFIG_PREVENT_FIRMWARE_BUILD is not set
-+# CONFIG_FW_LOADER is not set
-+CONFIG_NETDEVICES=y
-+CONFIG_ETHOC=y
-+CONFIG_MICREL_PHY=y
-+# CONFIG_WLAN is not set
-+# CONFIG_INPUT is not set
-+# CONFIG_SERIO is not set
-+# CONFIG_VT is not set
-+# CONFIG_LEGACY_PTYS is not set
-+CONFIG_SERIAL_8250=y
-+CONFIG_SERIAL_8250_CONSOLE=y
-+CONFIG_SERIAL_OF_PLATFORM=y
-+# CONFIG_HW_RANDOM is not set
-+CONFIG_GPIO_SYSFS=y
-+# CONFIG_GPIO_CDEV_V1 is not set
-+CONFIG_GPIO_GENERIC_PLATFORM=y
-+# CONFIG_HWMON is not set
-+# CONFIG_USB_SUPPORT is not set
-+CONFIG_NEW_LEDS=y
-+CONFIG_LEDS_CLASS=y
-+CONFIG_LEDS_GPIO=y
-+CONFIG_LEDS_TRIGGERS=y
-+CONFIG_LEDS_TRIGGER_TIMER=y
-+CONFIG_LEDS_TRIGGER_ONESHOT=y
-+CONFIG_LEDS_TRIGGER_HEARTBEAT=y
-+CONFIG_LEDS_TRIGGER_CPU=y
-+CONFIG_LEDS_TRIGGER_ACTIVITY=y
-+CONFIG_LEDS_TRIGGER_GPIO=y
-+CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
-+CONFIG_LEDS_TRIGGER_TRANSIENT=y
-+CONFIG_LEDS_TRIGGER_PANIC=y
-+CONFIG_LEDS_TRIGGER_NETDEV=y
-+CONFIG_LEDS_TRIGGER_PATTERN=y
-+CONFIG_LEDS_TRIGGER_TTY=y
-+# CONFIG_DNOTIFY is not set
-+CONFIG_TMPFS=y
-+CONFIG_NFS_FS=y
-+CONFIG_XZ_DEC=y
-+CONFIG_PRINTK_TIME=y
-+CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT=y
-+CONFIG_GDB_SCRIPTS=y
-+CONFIG_VMLINUX_MAP=y
-+CONFIG_HARDLOCKUP_DETECTOR=y
-+CONFIG_WQ_WATCHDOG=y
-+CONFIG_WQ_CPU_INTENSIVE_REPORT=y
-+CONFIG_STACKTRACE=y
-+CONFIG_RCU_CPU_STALL_CPUTIME=y
-+# CONFIG_RCU_TRACE is not set
+Best regards,
 -- 
-2.51.0
+Matt Coster <matt.coster@imgtec.com>
 
 
