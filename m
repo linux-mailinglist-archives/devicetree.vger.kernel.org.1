@@ -1,55 +1,96 @@
-Return-Path: <devicetree+bounces-253040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A5E0D068E0
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 00:38:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16ACFD06981
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 01:09:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E0F7D300E4E7
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jan 2026 23:38:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F3077302A94B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 00:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC6E2F39B8;
-	Thu,  8 Jan 2026 23:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C367249EB;
+	Fri,  9 Jan 2026 00:09:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IEQauQcj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jCPxMkmb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C3D221FB6;
-	Thu,  8 Jan 2026 23:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFD92030A
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 00:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767915499; cv=none; b=GtF29kzjRStdkLPJI+KPN7gTHWl9SqyqHwBD69FrVLrc4Fb/D25nm84D+CS37PUMqkIa/6Uicb0kagjZv2Q2iJIePSYBP2y1MVPcWJCVdqBMyzFU1J1xqlf5wema0KfhW2p9KW1RfO4fuN5pX9gBr/MIgY6u/T29yuMEjZvBAXU=
+	t=1767917380; cv=none; b=PO+/yxQnnqFF4g8XRGVVsWwqIodE0XruhTcsv6mctfmS0/RvE0PWWL2riQBRSPromADNtgw/wnN5RCgBiwtLeKMVDyumQFhLJaBzs7Ap82gz8tK0VKsac7lHzjFHE1F3AvPfBrYZyj2YRkxmeeIMHSgyM8IS0fK976HBL2ThLdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767915499; c=relaxed/simple;
-	bh=yRZyKLmO7Lol22sNkcGpZCT9fMwtjVUEdeGzIuxRZHw=;
+	s=arc-20240116; t=1767917380; c=relaxed/simple;
+	bh=tfrXfpFvES9XZjLIOw7ts89hAIvMyB8rFddr9wCACfc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SQ4zqsCF/SfksC0c3mNZ7w2jvI4XT6TIAmgEdsyp4EG4L2E9rEO1DynHx4uM4X48S/8ImO/nzXg6lgl2eiQWlKePmA5Ego8nCqP5ulvTYNiwXWnsru3cgS961iAVBXIvuli/Xb5lRFMA6h/4ue22RdstBhMMg+IZkgq28FVwBc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IEQauQcj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12B17C116C6;
-	Thu,  8 Jan 2026 23:38:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767915499;
-	bh=yRZyKLmO7Lol22sNkcGpZCT9fMwtjVUEdeGzIuxRZHw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IEQauQcjj9DR8eS5xBh1f+QJSPEmbPc5gryyOJTg+wzKnG+MQztHAyb79Fb5vlEA2
-	 k3KjN85YH3EvJ+HQXkL0CG322HSgnGPSBh6lE08QSrqvDsS7I6+Ao26t+xa1LDmbkl
-	 fxQ5Uf2kQC4d4292F1t34I7BMVweVD+MOv5SprWxIzmbiy4ijYlcNwlko62rOoC5+W
-	 EVK5EzDtjCi3CM2uvgX0paets5ArMbqDjUs+TKp8tIjPfaOZulfbrcv1oO26I1hgm5
-	 0Dhzh6R2Avdwy6XI6taTz7U2GGfNOTopBzU6j7muHcrN9tkCIwsANy6JQ2kk+lrZd3
-	 CYddXdT34TRXQ==
-Date: Thu, 8 Jan 2026 17:38:18 -0600
-From: Rob Herring <robh@kernel.org>
-To: Daniel Palmer <daniel@thingy.jp>
-Cc: linusw@kernel.org, brgl@kernel.org, saravanak@kernel.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/2] of: Add a variant of of_device_is_compatible()
- that can be build time culled
-Message-ID: <20260108233818.GA1466897-robh@kernel.org>
-References: <20260107030731.1838823-1-daniel@thingy.jp>
- <20260107030731.1838823-2-daniel@thingy.jp>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Eev9JZSkBURsV74aajZIR6ADjLDduuVeByuWCJdZddy8r0/UCWBQjqEKKFRM6NQdfhWlfxuCmJCqSmHYvM8YNXPq38dIvbjgHwVive0fn7TqP4skMVpTi1lXY2VAMlJbUy9UXcOI0LIXJ4rg0UgyB7VojMKcbH63ENnzeW2MyFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jCPxMkmb; arc=none smtp.client-ip=209.85.219.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-88fcc71dbf4so24085566d6.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 16:09:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767917377; x=1768522177; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y0X9PQa7fUGrEbdnnXe+R6baEV2kodyl2SCibPqNBU0=;
+        b=jCPxMkmbtsYaq/v8UQrFl4h3XYCyVJlkKLXAgZpnkN8wPBfSykXRmK+sGraT+Y1tTX
+         Pwvc41aLcS955ahmtIDo+gi2R3/t6a3BzjtoM8E0m+HnJZIM93/Ckt39adU7x0THTPMS
+         DfB7Kt+J1twta+1DdlUGtJW1W/mlXKi0jDKmOeZum17/lCXZFOEUxnyhOEk9LssYqB+V
+         Tlt5UD/PPCWVvPZ9upgv/gDUOoCLpaEGLLsmycXlimazalx55HIRr+IeDOT2gQLEfD7X
+         erQGW9wyt12Vsl8+woXlrcOHmQOr8cCY+g5ITYLWMFLzFZcedb7EwKpVoi4SV2trwgbs
+         vixg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767917377; x=1768522177;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y0X9PQa7fUGrEbdnnXe+R6baEV2kodyl2SCibPqNBU0=;
+        b=ADw9l1movoq08LT4xRVSwPlyQS/Aw1jV9AKeGWwcZ7LzUyaE2bfk44vTB0HD8cx2MD
+         TU9aDb1Dx8bXxhiHdi+6x/HY+V+/oEQCOO0AFOUEOOpImFUS9fhPBpDzVgKSg6OeHpaX
+         UM1/9Ka+YZRJKoDKhmXCXiEC38Ixdm7T6CBknsc6y+KpWk2XiEu/qTAr4zWuX3l+JjRf
+         cQXIzAl7Q5l407+a+4zmWuc9Rn8KxgrQRQR1qWqfjVnHe6uBcw0oyr3PE0ZqHe2PCfQq
+         cRWmvMdpXjHtl5famLl9xIijpgdUO14IzzeQ5JJZVkjEn1EZmuky5RfBqVhOmxYfwCv+
+         zOIg==
+X-Forwarded-Encrypted: i=1; AJvYcCVw+g1fbX5k/RvAy8YFlu7xTysRq7mQLlB1XlziTxu9PSA962pgiLPgMN4I3NHnYy+3CPNV8vi+nOCY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzaru4S3fKpABI8ubjYb7+yIGWkD06/yEIMuvBNs3Dmdb/IxMeJ
+	L1nvMWaiVN4xPpPkRoGJQlRqmiyC68yaSnMZ+0U3cr2/448Gz/hvTf0k
+X-Gm-Gg: AY/fxX70jvSOG2UdS3TNnQZnt//HP9zq/s6esWV0G12S9fM3EW5M5hfJliKpMm6ddyd
+	fo0kKMYoABgS+hre/nrCLSQL+0Z9vFAnrBf5M7FTdoAIC1XdZx6w/PBXzS3N2AgaHcoZK9qZOLQ
+	uaZXK6Lpri/jVqtGrXddtJmpvn8xsWmZrU0j9fOTUrpjTJD02wCsZszZfzBpUISJ0FNp+I498zZ
+	xfTX4swgtkmH/sys3JQugg9dQefmRxeC2teY4P2KzqHEk+CvmqQfLZW1MD69wcRncYQe/iditPz
+	pGHiCTlTzH5KHckHwkf5hoZcaofngYg5dPVFJBuBnlciV3u/Q5wx65potmZXrSUZqErNahOGfoE
+	beeY95tuyLWmM4ly0WLpVMKIYM48r8PDx7pSnBvi+uOuAE8fiddNQ/MESqcQDH6/UvSbI6C4d6F
+	wzXArCjhQ44jFZmPgH9R0+mN31
+X-Google-Smtp-Source: AGHT+IE53QNgO8H5ekocStQPoh1dkomyApC3B9GarKSN3SFKH4LWIoibjHSscmdkAjc4QCj5ErkGzw==
+X-Received: by 2002:a05:6214:2347:b0:7f5:eda2:a54b with SMTP id 6a1803df08f44-890842e1b55mr117237186d6.62.1767917376936;
+        Thu, 08 Jan 2026 16:09:36 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89077234ca1sm62882266d6.36.2026.01.08.16.09.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jan 2026 16:09:36 -0800 (PST)
+Date: Thu, 8 Jan 2026 19:09:57 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Robert Mader <robert.mader@collabora.com>,
+	Bryan O'Donoghue <bod@kernel.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v6 1/5] dt-bindings: media: i2c: Add Sony IMX355
+Message-ID: <aWBHVUBhPa6iZ0ib@rdacayan>
+References: <20260107043044.92485-1-mailingradian@gmail.com>
+ <20260107043044.92485-2-mailingradian@gmail.com>
+ <20260107-aspiring-unselfish-dogfish-963c1e@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,52 +99,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260107030731.1838823-2-daniel@thingy.jp>
+In-Reply-To: <20260107-aspiring-unselfish-dogfish-963c1e@quoll>
 
-On Wed, Jan 07, 2026 at 12:07:30PM +0900, Daniel Palmer wrote:
-> In a lot of places we are using of_device_is_compatible() to check for quirks
+On Wed, Jan 07, 2026 at 08:35:25AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Jan 06, 2026 at 11:30:40PM -0500, Richard Acayan wrote:
+> > The IMX355 camera sensor is a camera sensor that can be found as the
+> > front camera in some smartphones, such as the Pixel 3, Pixel 3 XL, Pixel
+> > 3a, and Pixel 3a XL. It already has a driver, but needs support for
+> > device tree. Document the IMX355 to support defining it in device tree.
+> > 
+> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> > ---
+(snip)
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
+> 
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions of patchset, under or above your Signed-off-by tag, unless
+> patch changed significantly (e.g. new properties added to the DT
+> bindings). Tag is "received", when provided in a message replied to you
+> on the mailing list. Tools like b4 can help here. However, there's no
+> need to repost patches *only* to add the tags. The upstream maintainer
+> will do that for tags received on the version they apply.
+> 
+> Please read:
+> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+> 
+> Read carefully last sentence above.
 
-I'm assuming 'a lot' is not just 3 places? Got a rough estimate?
+You left some comments after tagging your Reviewed-by, so I was unsure
+if this changed the tag:
 
-This seems fine to me assuming there are more.
+- https://lore.kernel.org/r/bc831622-8cbb-4bc6-b96c-9b87fb414725@kernel.org/
+  "Ah, here, this obviously was not ever [compile] tested."
+- https://lore.kernel.org/r/fedeaca3-5549-4d57-8f13-f0ac58d1e4d0@kernel.org/
+  "why do you need data-lanes if they are fixed?"
 
-> etc that are simply not possible on some targets, i.e. a piece of hardware
-> that needs special handling is only on one specific ARM machine and your
-> target isn't even ARM.
-> 
-> Add of_device_is_possible_and_compatible() that also takes a Kconfig
-> symbol and checks if that is enabled before calling of_device_is_compatible().
-> 
-> The Kconfig symbol is build time constant and the compiler should
-> remove the call to of_device_is_compatible() if it is unneeded and also
-> remove the data for the compatible string.
-> 
-> Another merit of this is that in places were we are checking for quirks
-> outside of drivers themselves, i.e. in the gpio and spi subsystems where
-> some legacy devicetree handling is being handled for specific devices
-> is in the core code, when the drivers that need the quirks are removed
-> their Kconfig symbol should also be removed and it'll be easier to spot
-> that the quirk handling can also go.
-> 
-> Signed-off-by: Daniel Palmer <daniel@thingy.jp>
-> ---
->  include/linux/of.h | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index 9bbdcf25a2b4..70be20b0be22 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -358,6 +358,8 @@ extern int of_property_read_string_helper(const struct device_node *np,
->  					      const char **out_strs, size_t sz, int index);
->  extern int of_device_is_compatible(const struct device_node *device,
->  				   const char *);
-> +#define of_device_is_possible_and_compatible(symbol, device, string) \
-> +	(IS_ENABLED(symbol) && of_device_is_compatible(device, string))
->  extern int of_device_compatible_match(const struct device_node *device,
->  				      const char *const *compat);
->  extern bool of_device_is_available(const struct device_node *device);
-> -- 
-> 2.51.0
-> 
+About the data-lanes, they are unused by the driver and can be dropped
+next revision.
 
