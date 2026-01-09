@@ -1,64 +1,54 @@
-Return-Path: <devicetree+bounces-253206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7C3D085C2
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 10:55:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A204D085D4
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 10:56:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8D25D3000920
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 09:55:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2ADCD3009295
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 09:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DC9A332EA5;
-	Fri,  9 Jan 2026 09:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00B9633508A;
+	Fri,  9 Jan 2026 09:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s2x90MK0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MAbMxV5R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F46223BF9F;
-	Fri,  9 Jan 2026 09:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFCE2D0C92;
+	Fri,  9 Jan 2026 09:56:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767952507; cv=none; b=orHN2KNHya1a/rDYNYub9IbeVAB6HJmm6D0w5WOqOmAv0IfUrf42qZgJZDDPEeDN3qZDEfHXirOphfS+RfPyU69zBJidsVpz+XMJGfkSc2ReAcPO6pz4CSQMgB7WOjb3ZzTpvMJbI3wZ3vnnsZcKX4ajgRVZ62k0Y/x2UNWODm4=
+	t=1767952590; cv=none; b=iZGF4HEfnEhjCZBbhaBlL5xEvNx9Um6cYo0bPrgMAmUdgcougLBYm7Bhe02DXK6V5qChZ7m4iOWCm8UabqPDqYTpaey2V7dN9kfqALt8SmXXFjXmtLQXZadoLQ3Gh4zQKXC/l+G7iUhB5jD11USpKZk6OMHQhXq5Y0IcL4/usug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767952507; c=relaxed/simple;
-	bh=IkP/SuZc1+HGIgfAujt+bjifZCCZ5ZU7yuwDHWYE8Fc=;
+	s=arc-20240116; t=1767952590; c=relaxed/simple;
+	bh=ZQxiB3YcR+StwZfqsONMJvPesOPexzjN0pZfvw2LkLg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mpGtyXaNXlOexS/ooQjfJpjBHa1kqZMo2VyVqMmsmXasQVPQ9KBgFNqwqiYOpT06UEvKSt0Uaxgm9Okg9zPon04AoXexTg1f34RG2gy5iQH6wO4oZrPlh5YxsfU2YQ+BnJjRBThX73+gtuWpj/FaW0PtNxjiLw2PpaRYwHO1wv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s2x90MK0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 733D0C4CEF1;
-	Fri,  9 Jan 2026 09:55:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kMfoOeNTLIHgjyHrIAWCokgnrVSFlqkDrx/h1BWEhyX/C87zXJXd6tgjsSdmcxqgDXS8TZXPUXZd+9eczCsrUmQ4GdpkScOiVYspHj+yr6A8bvg6kiTLP1+f82iDDnV1eNre00wsDaMT78hn1Tcei0fN0Cgf+TtihIdJi5JVx9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MAbMxV5R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D0FAC4CEF1;
+	Fri,  9 Jan 2026 09:56:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767952507;
-	bh=IkP/SuZc1+HGIgfAujt+bjifZCCZ5ZU7yuwDHWYE8Fc=;
+	s=k20201202; t=1767952590;
+	bh=ZQxiB3YcR+StwZfqsONMJvPesOPexzjN0pZfvw2LkLg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s2x90MK0EAhZ4PAprwB0+AyumDxUtdgTloJ+xSh5vPw0sT1j1J693MTOh5xuFExx3
-	 upZKMBqEsOuYGvxG8IHrd2TWURcKuiIZSrxSd8ttBfdZg+DQhyuqdGBwoaTiBM/4nA
-	 6jxM5+fxloGBhxQss83HRXT/+paQ76TAghTAjXeUzEpV7iC6LOm2m6Sf4ebbGFL9e0
-	 Icjozkt6b9n/DCdcRmguLoAJy4vcgm5ZHWefXQiIb8lkU4xA29RofrsCSHUeHd5Exc
-	 fwMKZVwioZzz7h/XOP9hYfEHgVdOA3eRdR0dedOg7hdMzVuebFAS9ZxzT7yKZAgpRD
-	 nsGa3JxdJnusg==
-Date: Fri, 9 Jan 2026 10:55:04 +0100
+	b=MAbMxV5R8JlZUCNUfEWsrR7UoYF8z1iE+y1utqlaf0ZfaRKFb7zUlchy92OPOkSfF
+	 iqBeY2nblRtEWZxoc+7Ec4OJg3jiTcdvQHKdVANg2EV6kdbOPkwKsIGk2x/Ynk1SSl
+	 CqzkmupT/2/poy5OxspYcGhmI9qKGHzJT5+F6Nq9shEikqXTaHZQu4gcmAwBAN2X2+
+	 fafw5+DI7oIgT56lTn5nv+2ne6cSkQC4LpYblq7B7VYr7v4+Pp3wyrfBBsU9gbndJC
+	 EmM6apFGDm3OpBjtEq4+HX8xejLdR7Cfyso8g8eNgNpPTBEu7Dm8LKrrVPfp/vtCnz
+	 bfSmo5kbyWx/g==
+Date: Fri, 9 Jan 2026 10:56:28 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>, 
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, Tony Nguyen <anthony.l.nguyen@intel.com>, 
-	Przemek Kitszel <przemyslaw.kitszel@intel.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>, 
-	Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>, 
-	Jonathan Lemon <jonathan.lemon@gmail.com>, Richard Cochran <richardcochran@gmail.com>, 
-	Alexander Lobakin <aleksander.lobakin@intel.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>, 
-	Petr Oros <poros@redhat.com>, Grzegorz Nitka <grzegorz.nitka@intel.com>
-Subject: Re: [PATCH net-next 03/12] dpll: Add helpers to find DPLL pin fwnode
-Message-ID: <20260109-cooperative-chinchilla-of-swiftness-aebbc8@quoll>
-References: <20260108182318.20935-1-ivecera@redhat.com>
- <20260108182318.20935-4-ivecera@redhat.com>
+	Bard Liao <bardliao@realtek.com>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: Convert realtek,rt5651 to DT schema
+Message-ID: <20260109-impetuous-tan-bullfinch-e6ddb3@quoll>
+References: <20260108214443.1127685-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,31 +57,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260108182318.20935-4-ivecera@redhat.com>
+In-Reply-To: <20260108214443.1127685-1-robh@kernel.org>
 
-On Thu, Jan 08, 2026 at 07:23:09PM +0100, Ivan Vecera wrote:
-> Add helper functions to the DPLL core to retrieve a DPLL pin's firmware
-> node handle based on the "dpll-pins" and "dpll-pin-names" properties.
+On Thu, Jan 08, 2026 at 03:44:40PM -0600, Rob Herring (Arm) wrote:
+> Convert the Realtek RT5661 codec binding to DT schema format. Add
+> missing clocks/clock-names for MCLK which is in use already. Also add
+> the standard "#sound-dai-cells" property.
 > 
-> * `fwnode_dpll_pin_node_get()`: matches the given name against the
->   "dpll-pin-names" property to find the correct index, then retrieves
->   the reference from "dpll-pins".
-> * `device_dpll_pin_node_get()`: a wrapper around the fwnode helper for
->   convenience when using a `struct device`.
-> 
-> These helpers simplify the process for consumer drivers (such as Ethernet
-> controllers or PHYs) to look up their associated DPLL pins defined in
-> the DT or ACPI, which can then be passed to the DPLL subsystem to acquire
-> the pin object.
-> 
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  drivers/dpll/dpll_core.c | 20 ++++++++++++++++++++
->  include/linux/dpll.h     | 15 +++++++++++++++
->  2 files changed, 35 insertions(+)
-> 
+>  .../bindings/sound/realtek,rt5651.yaml        | 100 ++++++++++++++++++
+>  .../devicetree/bindings/sound/rt5651.txt      |  63 -----------
+>  2 files changed, 100 insertions(+), 63 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt5651.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/rt5651.txt
 
-I don't see cells defined in your binding. Neither updated property.c.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
