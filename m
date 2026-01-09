@@ -1,172 +1,391 @@
-Return-Path: <devicetree+bounces-253365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58819D0B46F
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:35:54 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE23D0B352
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:24:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B30C530979FA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:30:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C40B9301DEB3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6973C262FC0;
-	Fri,  9 Jan 2026 16:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D29D364028;
+	Fri,  9 Jan 2026 16:23:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AGb58dzo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E382578F2B
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 16:30:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7720363C5E
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 16:23:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767976224; cv=none; b=bft6OztarqaP/IS7NShBEVga7nEGqL9fMk8+yqSTdPhigtBTvY6BRi8F5WAJrTF668eQBkRBCC/KompTinllGRbvoCulGa1nPPJx60HtVC1d8DIdRZabaYJld9WijDisWvTNQRggf67DmxR8f966AQgznthmh0PL2BsmYJdmG+s=
+	t=1767975832; cv=none; b=EQfDjlV2ZoluwIT6/jUabhJhnPN+ow/66px7YUBm4eBLrIwj9s84g6Jf4odUY2tzHyCzA0tjRCMDf/HquO1PA55pxAWxfOZ4wM+t1Roge4DgZk5XLGTZFtXySYE+kAhW28Nu8GEOqidjYi32XtBDjZupcekbPvbmdB2dEz1Dyv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767976224; c=relaxed/simple;
-	bh=q2Kww8jxXcJ9Zpyd/LZlLagNoFIlkoKqu9nlzf+mRgw=;
+	s=arc-20240116; t=1767975832; c=relaxed/simple;
+	bh=T7Q37yJAdMXYq236jv4V/1sQh9sGG/CntmKjZoGuzrM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TIwMyN27hQArbF4IfuLFbTtAt8ltVA0k0G28JCxh16OXlmB6AEdF/1Az5oER1+/6mOR0YQ627w0LJqaJfLIV5/lyETbLnNrWSR6UTv4wQ8EGgym+YAvsKmd77zsUtVJHGDccpYvFRLlQk/1Thz0lPc+GdhT5mAyeTMhKT5algMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=okydtrXqrLw4K953hZIbysEDRlG3F5ZBh+q1MPkkCDM5MDKpPTbYx5UJptQts612xk0HhvxCLQ8IIZwXDHwkUqoZqxSsXWCseqWXU+iagWyOerjLbUSQfNcxhifD/Pltvh63U0ZCVz63RgBfB6B7f9EjaaKGZhCDIgNhInHX7rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AGb58dzo; arc=none smtp.client-ip=74.125.82.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-6598413b604so2750959eaf.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 08:30:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767976222; x=1768581022;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2b05fe2bf14so5933975eec.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 08:23:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1767975829; x=1768580629; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZubT71CRwOcTCIzcYS6e5AdXUs3dXA6+1fPYpwtqxhQ=;
-        b=c/UleO4stnpjvSIGmNW2Sn/uCX50wzI8pOscUu37bCt4ELaBZbqJUlLz5grzMncA6H
-         ElDQRuWREi+F+9TSjjswVPKPqJR8j5+Ic8p0OfCzBw92BjpsmrNHGgDOI/hspzTF+Xax
-         W6blUnRSUWFZoov7E+1dT+IsqcMBTPt+BorRgrv98T9aDdrGWJiFbJLOH5PgF79HEOuw
-         W4Ok5wlO1qidZ99fEdIVshvZ0Elea09CX16aVWDMVSei76L8kONzK6VP1i2XH+FEqNhY
-         S9Y3ZvL8ooedJ1h4PuqHXuNJR5tp4z82ems6zJNFjfvLnHmkBvJdkzrmSU2FtoqOx9Sd
-         msbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUZsm06MCL7Njuokss5TgsFabOMZBHHhX9YOd61dER+REd6Dl38WcTBaCwn/CMfYiJnBuGlPJg1JuYJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbERi5tOriI+tgopODq6iKpXlKpoxMUUUMEqW2N07R1gDq+XwE
-	qvcoYxJrnJ7fUM+ZcHHBurPJpeTXpxwP8hwg9gU0d66/ZKloCqNaDMnoHNOFx2qw
-X-Gm-Gg: AY/fxX5DS4NT7Wa5O+i4x5Vssr6K0hVQ4Jr9SuOr3u/XTCa1QMCxzEUkIrUUf3AcEux
-	7EnJU288J11fVD2lLLyWEZvI8uq7SNXp6HOnzmO5W7eN1/nhPoNfurv9ZBEdaBiXsWPcjg2z1xL
-	9Mtk8H7kYb6dZAkEvn/3Ae9BnkGwKfAG7YgyPB7ZYu4XSOpcloSSOO60rTSTCnmBEn/xjU0fVQc
-	iDszA+nDGBBt4efKM+uv+y5WF1n6VwUPU4U5OoCwplwWcIaddvdvoEuqgpTvBvCEMCzMj3HB+10
-	KFdJbXMfZk9Hy/nx4M33jPCYgUEDhzhZ4Qu4BsyXOD/RLge8xYTmQMSk9KkqUMBEMAq0T1ZSf6E
-	355h555gHjRW/9XTdhkpFm7ye8Qz9XKuaRYpGxAFwhCwXaaf2vwrM11QYZl6oQWHtsUH4f7+9Ne
-	jPrjUJzgAGnmWD2JnoSswjf6b7SZ8y0/9O2F39mI5kGaxDCBsX
-X-Google-Smtp-Source: AGHT+IHLEHBX5zYVrXpOpeD7+Ibf5H7XGnZ0ACzn5JiZv04fO6MA0KrYquRI3B21vkqhQ+l50TrGMg==
-X-Received: by 2002:a05:6820:4ecf:b0:65f:fee:f7cc with SMTP id 006d021491bc7-65f54f52054mr4314888eaf.49.1767976221729;
-        Fri, 09 Jan 2026 08:30:21 -0800 (PST)
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com. [209.85.160.42])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-65f48ced969sm3997330eaf.17.2026.01.09.08.30.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jan 2026 08:30:21 -0800 (PST)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-3f0d1a39cabso3061254fac.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 08:30:21 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUYKfe7FmMDhXE3BNbV47X1+MVpYsoCPA0DUUTtWgO0DvdhtE0j6X+AYX3Z1PfcOck+UkNRSe286s4J@vger.kernel.org
-X-Received: by 2002:a05:6102:161e:b0:5e5:5ed7:60af with SMTP id
- ada2fe7eead31-5ecb90b08d7mr4011067137.38.1767975733803; Fri, 09 Jan 2026
- 08:22:13 -0800 (PST)
+        bh=hUOytvSVJwvJo730m0I3yzst0Ur7ufRm3hBsNY1BUd4=;
+        b=AGb58dzoPAMpfq+DMk4nlNdxK0BeNtTkhlLWTvlEDg0gYowPveooO3kL0ByXTOkZ28
+         w4XW8Ov+iB4SZkVl2Fo9Hb1hEO5xKuoxF5LGPc8xdlv1EzuAMo8SJFTHVF++VdwIpBw6
+         uuWb3kLCHYdXFGo++Z7b0TMb6KW2NBKcFYOjIPciXHMJjq019hcOChWsX1I1WwTJR5mS
+         OJZbXTv4i8vwxQOwP5qotUkLtzqQeEP7dt9snSJWQCzpwnKOuzqkKc1L2KFHLnX65gWL
+         aOEP4c+/YtpZemPpB4onEVv5nrIJau8xnz2gM4zTV6aXzwVIboOwrflV5gj6AHJakh7L
+         4t8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767975829; x=1768580629;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=hUOytvSVJwvJo730m0I3yzst0Ur7ufRm3hBsNY1BUd4=;
+        b=fN2rU0JKvNiy6Tga60yqklnLPdqd/o78aZrc2hXp1hwjEP5Dy8nbwMJHc16C7s8HjI
+         iKlQtlGqoFy/POJPu+lqhZcyfDoeU/MoYJfUPw37fLR+qkq0qhexW4IcSgxKxLjXTCl2
+         qxqYInXpY5cW/zwaHhXsRptOy6PYCUb5gJmK63omFomP7d0Z8cVXF2//geaihJ8VGLOm
+         kLCbfty/ffb7X5lrKIBuL/WTW67uhFFeyQmKEXf+PK9koUmrc2PO5IUDshFiBzyCis+e
+         8a47N5oi0bLlNW4T5JwFOhJDlTqD4ho+xHiqTYhs9kElsRhW9OppeYZ8/q4LV5SkOL4K
+         ErmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVVQ6nrJ1vorKo3HFUk1FzCNZjgnBesOz1YNhn+hxes2LjlwD2OCebOJYQK6aepC9TJb4m5l7ytMMet@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLpDABtBbRDyD2Jq7B5ZPLmldQ7vJ7sRP+r1/5KrIOQnKIA0Y8
+	LLU5nmMzisx2BbAhU1lDV4Ad0E+x2eM1bcS8OmIkgBqPnn4ORDVW34bgLbDtjv3gK2n8M77Vp0O
+	On2RBsf87uO6g2yqIbiTvuRgiQZ1txAI=
+X-Gm-Gg: AY/fxX4POD0Usugb1lkzbixRnqp5UM2sFcQ1UdzAbjCVLY4g37A3XLo9WG0hqC1iCNZ
+	0NpSVEiCXXt0DkKjtHEEkrsfw6t+9hWaFWDvKMUV+hxDTtnKsMXpTeSXB+5YgB1MSWX0Eyd20FU
+	zwKbgui2T3EcyMykMc8P3j3zHY9Yg5jkOTIgppim5ss8f6tmUFPOZd/KY8PfAH/2BVKufLieH91
+	h2MwaCvVtIasXy5/PdDp7EaDkephSqiNEozZbFx+5E2WGlOpQRHVIAOkOneHZdoTIVuvlY=
+X-Google-Smtp-Source: AGHT+IENp7TgFWZ6pfqsT9iycNcKECCjYN/94+Wg62N+utunG0u7WdmR/qM+FHjHmBk62prKnO6VpYB+d6t1o66RDN4=
+X-Received: by 2002:a05:7301:fa6:b0:2a4:3593:968d with SMTP id
+ 5a478bee46e88-2b17d221b06mr5808193eec.10.1767975828659; Fri, 09 Jan 2026
+ 08:23:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
- <1c7657d6c06d99bc2f90251995ad272b5704717d.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
- <42bbdec7-ce6d-417c-a13d-ce0a6782bc9a@kernel.org> <aWEnfJonv4egKhXo@tom-desktop>
-In-Reply-To: <aWEnfJonv4egKhXo@tom-desktop>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 9 Jan 2026 17:22:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUm-yHkRw0k42pfq9BD8urLO7rqF2yD7s2JbkMFpRTQwQ@mail.gmail.com>
-X-Gm-Features: AZwV_QiF7IGNds3nroCU8C4Y7nT5yUExjbtpCqViVpA_Mph5jGaVHbhMlWChdXg
-Message-ID: <CAMuHMdUm-yHkRw0k42pfq9BD8urLO7rqF2yD7s2JbkMFpRTQwQ@mail.gmail.com>
-Subject: Re: [PATCH 09/22] dt-bindings: display: bridge: renesas,dsi: Add
- support for RZ/G3E SoC
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, tomm.merciai@gmail.com, 
-	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
+In-Reply-To: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
+From: ashish yadav <ashishyadav78@gmail.com>
+Date: Fri, 9 Jan 2026 21:53:37 +0530
+X-Gm-Features: AZwV_QgVoMWbmemkXz7YXJPtvzrZ-gmROHuB1FNb30nfyLeiVgda-HVSFd3bSXE
+Message-ID: <CAJKbuCZ34vDJXMvxmPkDcEfNm5UQyf3HcKjh0xDCmV9WGd1p+Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] hwmon:(pmbus/tda38740a) TDA38740A Voltage
+ Regulator Driver
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, ASHISH YADAV <Ashish.Yadav@infineon.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Tommaso,
+Hi Guenter,
 
-On Fri, 9 Jan 2026 at 17:06, Tommaso Merciai
-<tommaso.merciai.xr@bp.renesas.com> wrote:
-> On Sun, Nov 30, 2025 at 09:24:57AM +0100, Krzysztof Kozlowski wrote:
-> > On 26/11/2025 15:07, Tommaso Merciai wrote:
-> > > The MIPI DSI interface on the RZ/G3E SoC is nearly identical to that of
-> > > the RZ/V2H(P) SoC, except that this have 2 input port and can use vclk1
-> > > or vclk2 as DSI Video clock, depending on the selected port.
-> > >
-> > > To accommodate these differences, a SoC-specific
-> > > `renesas,r9a09g047-mipi-dsi` compatible string has been added for the
-> > > RZ/G3E SoC.
-> > >
-> > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> > > ---
-> > >  .../bindings/display/bridge/renesas,dsi.yaml  | 120 +++++++++++++++---
-> > >  1 file changed, 101 insertions(+), 19 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > > index c20625b8425e..9917b494a9c9 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > > @@ -28,6 +28,7 @@ properties:
-> > >            - const: renesas,r9a09g057-mipi-dsi
-> > >
-> > >        - enum:
-> > > +          - renesas,r9a09g047-mipi-dsi # RZ/G3E
-> > >            - renesas,r9a09g057-mipi-dsi # RZ/V2H(P)
-> > >
-> > >    reg:
-> > > @@ -84,6 +85,13 @@ properties:
-> > >            - const: pclk
-> > >            - const: vclk
-> > >            - const: lpclk
-> > > +      - items:
-> > > +          - const: pllrefclk
-> > > +          - const: aclk
-> > > +          - const: pclk
-> > > +          - const: vclk1
-> > > +          - const: vclk2
-> > > +          - const: lpclk
-> >
-> > Why are you creating completely new lists every time?
-> >
-> > No, come with unified approach.
+Could you please review the current patch.
+Thanks for your time and valuable feedback in the previous patch.
+
+You can find documentation (dt-bindings) of this driver here:
+https://lkml.org/lkml/2026/1/7/1122
+
+With Best Regards
+   Ashish Yadav
+
+  Ashish Yadav
+
+On Wed, Jan 7, 2026 at 8:15=E2=80=AFPM ASHISH YADAV <ashishyadav78@gmail.co=
+m> wrote:
 >
-> The intent is not to create a completely new clock list per IP, but to keep a
-> unified clock definition that can scale with feature differences.
+> Add the pmbus driver for the Infineon TDA38740A/TDA38725A
+> DC-DC voltage regulator.
 >
-> The previous IP supports a single DSI input port, whereas this IP supports two
-> DSI input ports.
+> Signed-off-by: ASHISH YADAV <Ashish.Yadav@infineon.com>
+> ---
+> Changes in v2:
+>  - Review comments address.
+>  - Another Patch for Devicetree binding submitted for Driver
+>    Documentation.
+> ---
+>  drivers/hwmon/pmbus/Kconfig     |  16 +++
+>  drivers/hwmon/pmbus/Makefile    |   1 +
+>  drivers/hwmon/pmbus/tda38740a.c | 203 ++++++++++++++++++++++++++++++++
+>  3 files changed, 220 insertions(+)
+>  create mode 100644 drivers/hwmon/pmbus/tda38740a.c
 >
-> Because of this added capability, the hardware naturally introduced an
-> additional clock.
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index f3fb94cebf1a..e7d7ff1b57df 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -602,6 +602,22 @@ config SENSORS_TDA38640_REGULATOR
+>           If you say yes here you get regulator support for Infineon
+>           TDA38640 as regulator.
 >
-> Can you please suggest how to handle it?
-
-Keep on calling the first vclk "vclk", and add "vclk2" at the end of the list?
-Then RZ/V2H can specify the first 5 clocks, and RZ/G3E can specify all 6.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +config SENSORS_TDA38740A
+> +       tristate "Infineon TDA38740A"
+> +       help
+> +         If you say yes here you get hardware monitoring support for Inf=
+ineon
+> +         TDA38740A/25A.
+> +
+> +         This driver can also be built as a module. If so, the module wi=
+ll
+> +         be called tda38740a.
+> +
+> +config SENSORS_TDA38740A_REGULATOR
+> +       bool "Regulator support for TDA38740A and compatibles"
+> +       depends on SENSORS_TDA38740A && REGULATOR
+> +       help
+> +         If you say yes here you get regulator support for Infineon
+> +         TDA38740A/25A as regulator.
+> +
+>  config SENSORS_TPS25990
+>         tristate "TI TPS25990"
+>         help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 349a89b6d92e..f422c80cf3d8 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -58,6 +58,7 @@ obj-$(CONFIG_SENSORS_PXE1610) +=3D pxe1610.o
+>  obj-$(CONFIG_SENSORS_Q54SJ108A2)       +=3D q54sj108a2.o
+>  obj-$(CONFIG_SENSORS_STPDDC60) +=3D stpddc60.o
+>  obj-$(CONFIG_SENSORS_TDA38640) +=3D tda38640.o
+> +obj-$(CONFIG_SENSORS_TDA38740A)  +=3D tda38740a.o
+>  obj-$(CONFIG_SENSORS_TPS25990) +=3D tps25990.o
+>  obj-$(CONFIG_SENSORS_TPS40422) +=3D tps40422.o
+>  obj-$(CONFIG_SENSORS_TPS53679) +=3D tps53679.o
+> diff --git a/drivers/hwmon/pmbus/tda38740a.c b/drivers/hwmon/pmbus/tda387=
+40a.c
+> new file mode 100644
+> index 000000000000..b31e1b5c6916
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/tda38740a.c
+> @@ -0,0 +1,203 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/**
+> + * Hardware monitoring driver for Infineon Integrated-pol-voltage-regula=
+tors
+> + * Driver for TDA38725A and TDA38740A
+> + *
+> + * Copyright (c) 2025 Infineon Technologies
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/regulator/driver.h>
+> +#include "pmbus.h"
+> +
+> +#define TDA38725A_IC_DEVICE_ID "\xA9"
+> +#define TDA38740A_IC_DEVICE_ID "\xA8"
+> +
+> +static const struct i2c_device_id tda38740a_id[];
+> +
+> +enum chips { tda38725a, tda38740a };
+> +
+> +struct tda38740a_data {
+> +       enum chips id;
+> +       struct pmbus_driver_info info;
+> +       u32 vout_voltage_multiplier[2];
+> +};
+> +
+> +#define to_tda38740a_data(x) container_of(x, struct tda38740a_data, info=
+)
+> +
+> +static const struct regulator_desc __maybe_unused tda38740a_reg_desc[] =
+=3D {
+> +       PMBUS_REGULATOR("vout", 0),
+> +};
+> +
+> +static int tda38740a_read_word_data(struct i2c_client *client, int page,
+> +                                   int phase, int reg)
+> +{
+> +       const struct pmbus_driver_info *info =3D pmbus_get_driver_info(cl=
+ient);
+> +       const struct tda38740a_data *data =3D to_tda38740a_data(info);
+> +       int ret;
+> +
+> +       /* Virtual PMBUS Command not supported */
+> +       if (reg >=3D PMBUS_VIRT_BASE)
+> +               return -ENXIO;
+> +
+> +       switch (reg) {
+> +       case PMBUS_READ_VOUT:
+> +               ret =3D pmbus_read_word_data(client, page, phase, reg);
+> +               if (ret < 0)
+> +                       return ret;
+> +               ret =3D ((ret * data->vout_voltage_multiplier[0]) /
+> +                      data->vout_voltage_multiplier[1]);
+> +               break;
+> +       case PMBUS_VOUT_COMMAND:
+> +       case PMBUS_VOUT_MAX:
+> +       case PMBUS_VOUT_MARGIN_HIGH:
+> +       case PMBUS_VOUT_MARGIN_LOW:
+> +       case PMBUS_VOUT_TRANSITION_RATE:
+> +       case PMBUS_VOUT_DROOP:
+> +       case PMBUS_VOUT_SCALE_LOOP:
+> +       case PMBUS_VOUT_OV_FAULT_LIMIT:
+> +       case PMBUS_VOUT_UV_FAULT_LIMIT:
+> +       case PMBUS_IOUT_OC_FAULT_LIMIT:
+> +       case PMBUS_OT_FAULT_LIMIT:
+> +       case PMBUS_OT_WARN_LIMIT:
+> +       case PMBUS_VIN_OV_FAULT_LIMIT:
+> +       case PMBUS_STATUS_WORD:
+> +       case PMBUS_READ_VIN:
+> +       case PMBUS_READ_IIN:
+> +       case PMBUS_READ_IOUT:
+> +       case PMBUS_READ_TEMPERATURE_1:
+> +       case PMBUS_READ_POUT:
+> +       case PMBUS_READ_PIN:
+> +               ret =3D pmbus_read_word_data(client, page, phase, reg);
+> +               break;
+> +       default:
+> +               ret =3D -ENODATA;
+> +               break;
+> +       }
+> +       return ret;
+> +}
+> +
+> +static struct pmbus_driver_info tda38740a_info[] =3D {
+> +       [tda38740a] =3D {
+> +               .pages =3D 1,
+> +               .read_word_data =3D tda38740a_read_word_data,
+> +               .format[PSC_VOLTAGE_IN] =3D linear,
+> +               .format[PSC_VOLTAGE_OUT] =3D linear,
+> +               .format[PSC_CURRENT_OUT] =3D linear,
+> +               .format[PSC_CURRENT_IN] =3D linear,
+> +               .format[PSC_POWER] =3D linear,
+> +               .format[PSC_TEMPERATURE] =3D linear,
+> +
+> +               .func[0] =3D PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
+> +                       | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP
+> +                       | PMBUS_HAVE_IIN
+> +                       | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
+> +                       | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
+> +                       | PMBUS_HAVE_POUT | PMBUS_HAVE_PIN,
+> +#if IS_ENABLED(CONFIG_SENSORS_TDA38740A_REGULATOR)
+> +               .num_regulators =3D 1,
+> +               .reg_desc =3D tda38740a_reg_desc,
+> +#endif
+> +       },
+> +};
+> +
+> +static int tda38740a_get_device_id(struct i2c_client *client)
+> +{
+> +       u8 device_id[I2C_SMBUS_BLOCK_MAX + 1];
+> +       enum chips id;
+> +       int status;
+> +
+> +       status =3D i2c_smbus_read_block_data(client, PMBUS_IC_DEVICE_ID,
+> +                                          device_id);
+> +       if (status < 0 || status > 1) {
+> +               dev_err(&client->dev,
+> +                       "Failed to read Device ID or unexpected/unsupport=
+ed Device\n");
+> +               return -ENODEV;
+> +       }
+> +
+> +       if (!memcmp(TDA38725A_IC_DEVICE_ID, device_id, 1)) {
+> +               id =3D tda38725a;
+> +       } else if (!memcmp(TDA38740A_IC_DEVICE_ID, device_id, 1)) {
+> +               id =3D tda38740a;
+> +       } else {
+> +               dev_err(&client->dev, "Unsupported device with ID:%s\n",
+> +                       device_id);
+> +               return -ENODEV;
+> +       }
+> +
+> +       return id;
+> +}
+> +
+> +static int tda38740a_probe(struct i2c_client *client)
+> +{
+> +       struct device *dev =3D &client->dev;
+> +       struct tda38740a_data *data;
+> +       int chip_id;
+> +
+> +       if (!i2c_check_functionality(client->adapter,
+> +                                    I2C_FUNC_SMBUS_BYTE |
+> +                                            I2C_FUNC_SMBUS_BYTE_DATA |
+> +                                            I2C_FUNC_SMBUS_WORD_DATA |
+> +                                            I2C_FUNC_SMBUS_BLOCK_DATA))
+> +               return -ENODEV;
+> +
+> +       chip_id =3D tda38740a_get_device_id(client);
+> +       if (chip_id < 0)
+> +               return chip_id;
+> +
+> +       data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +       if (!data)
+> +               return -ENOMEM;
+> +       data->id =3D chip_id;
+> +       memcpy(&data->info, &tda38740a_info[chip_id], sizeof(data->info))=
+;
+> +
+> +       if (!of_property_read_u32_array(client->dev.of_node, "infineon,vo=
+ut-voltage-multiplier",
+> +                                       data->vout_voltage_multiplier,
+> +                   ARRAY_SIZE(data->vout_voltage_multiplier))) {
+> +               dev_info(&client->dev,
+> +                        "vout-voltage-multiplier from Device Tree:%d %d\=
+n",
+> +                        data->vout_voltage_multiplier[0],
+> +                        data->vout_voltage_multiplier[1]);
+> +       } else {
+> +               dev_info(&client->dev,
+> +                        "vout-voltage-multiplier not available from Devi=
+ce Tree,using default values");
+> +               data->vout_voltage_multiplier[0] =3D 0x01;
+> +               data->vout_voltage_multiplier[1] =3D 0x01;
+> +       }
+> +
+> +       return pmbus_do_probe(client, &data->info);
+> +}
+> +
+> +static const struct i2c_device_id tda38740a_id[] =3D { { "tda38725a", td=
+a38725a },
+> +                                                    { "tda38740a", tda38=
+740a },
+> +                                                    {} };
+> +
+> +MODULE_DEVICE_TABLE(i2c, tda38740a_id);
+> +
+> +static const struct of_device_id __maybe_unused tda38740a_of_match[] =3D=
+ {
+> +       { .compatible =3D "infineon,tda38725a", .data =3D (void *)tda3872=
+5a },
+> +       { .compatible =3D "infineon,tda38740a", .data =3D (void *)tda3874=
+0a },
+> +       {}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, tda38740a_of_match);
+> +
+> +static struct i2c_driver tda38740a_driver =3D {
+> +       .driver =3D {
+> +               .name =3D "tda38740a",
+> +               .of_match_table =3D of_match_ptr(tda38740a_of_match),
+> +       },
+> +       .probe =3D tda38740a_probe,
+> +       .id_table =3D tda38740a_id,
+> +};
+> +
+> +module_i2c_driver(tda38740a_driver);
+> +
+> +MODULE_AUTHOR("Ashish Yadav <Ashish.Yadav@infineon.com>");
+> +MODULE_DESCRIPTION("PMBus driver for Infineon TDA38725A/40A IPOL");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("PMBUS");
+> --
+> 2.39.5
+>
 
