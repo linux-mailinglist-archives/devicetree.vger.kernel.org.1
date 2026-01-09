@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-253269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C52D09059
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 12:51:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03764D09056
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 12:51:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C71C3306CCC0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 11:48:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0331C30D2814
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 11:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A304635970B;
-	Fri,  9 Jan 2026 11:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E2CA35A92E;
+	Fri,  9 Jan 2026 11:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="plcizixg"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Z8Ru9qqB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B8C359FBA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B02359F8B;
 	Fri,  9 Jan 2026 11:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767959293; cv=none; b=WOR6/B0SW3cwXAi2aZkXHh+QqMvBWXq68E51URUbWwHvd2/i8H6RgbGbi/qV8GHdcoBDHb5h741wTjBDruw5WlyrAActb4vwZcdpvInMeFEtP9qi7dgIyuPzFHjz2FEFbcieMp7if7/aYzW4ZUNs+FUa9paPA7aiNzVjnmCO6r0=
+	t=1767959288; cv=none; b=UVy/WFOKf+RluuH/LSDyGQ6lUqF+PC489WR6pqfymOx4hk8MeYnZlk+4iXziaYSmlgpcCNdUi12aP224A8tJ5cwwcOzgZ2vIV9xis/9tOsZg5RQ353qxgE0ugjbg61JZ1GLH30/KplNuUEp5D6nZZdZYn2sJy603Bo74CKWUc5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767959293; c=relaxed/simple;
-	bh=vXU6vQZw0NI2vmAmOn1U26+4VzWla83NiWQsK7QNa5g=;
+	s=arc-20240116; t=1767959288; c=relaxed/simple;
+	bh=ubUoeKoK4MOEGAAlYGLs/9BWIBNNB4y4zBKteUG+WSc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XVthF1CyT5UdRdHZaCZZEeeakG6zAn0Y0z+MW3sfMUNF4LrFZmGyCapmyYHfXrrqZcSntQ6pTo2S4lWUQ1ygO1Ym6vE89CC/eVO8AmTGnv87RDrhr4jqe/C5bVYY9H77AF8glpEzg/rd0hry65A2ElGBVAnkDl/d/H5gCBibg2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=plcizixg; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=Er/PEstW7YQzwhYTnPp0779d/pPDQKNHRVXdpjhKL7wR3eOgeUlLx7+TNPLwZ8W6FowCtcbeHN6LPsaHoURIaoMsq41bDVU5Mqp0yq6IfVpRQMZTczGthUQvjhI/TIhkJL/unVPyzpzc3StKL5U/dKY4WeZserhQV7pISaWkJKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Z8Ru9qqB; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1767959279;
-	bh=vXU6vQZw0NI2vmAmOn1U26+4VzWla83NiWQsK7QNa5g=;
+	s=mail; t=1767959280;
+	bh=ubUoeKoK4MOEGAAlYGLs/9BWIBNNB4y4zBKteUG+WSc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=plcizixgQKcatHtQE5FrFr9uvZvmKnXux0/0vVILVRD+xvZRJE6oLKSC2RnzKuVak
-	 Wwekwc7cZMIf8drpLJx0GzXORRkmuxmr3XdzDf3Uq/J/KVQumEBrb3k8dfnKbmBubC
-	 YshiV8Lln8sFiqiKc659SD+PLX7ltMfUE+vnWS2l7wQmnu1kx/AyfCG2ojmj3mjKlg
-	 8Uebq6GYjcvCj3AsE7kBEXs7xrsKfr+3Yo5gYG3XgqEfrfOPXcOZ/OQpptK+iW9VOj
-	 e3S/eMY7zxByzC1Ofhne0xYAX96R/61FArjdWZuyfR73YR/zHH0jjCnl4Aziv4G78X
-	 oXDxmafKf+lfg==
+	b=Z8Ru9qqBDaW9nUs5mvn8SsTT6aLmL1qAYx+xr+3/n/w7kj+WiXXul+eDwSq9SvLSa
+	 y/uDoUeNuusDCdeoh7jUp9hvrgTZxKj/AE/KtD8TegkROXcIJgieGeGql714UDHswo
+	 TPj+XTqrFL6amlLy56x7uTFgz2sCQ3LX6zp6bN2cNGQpQmbWIYgXC03wHHKc324SM/
+	 kHU3ZB/A7zC1rM4MhASkTIzMNl15iZSdNbGo8ukY/RVpBn3LmUTiQKPx82iPEr1rbS
+	 3Mg1vkv0pS3FPyEPo5LIFD2A8V0ZXC+3F9grb8h9NdkP8SLpZxQJrI4Pt2KmmmuaWb
+	 P0cP8u8V1ZLKQ==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3B6D717E151B;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E615817E1523;
 	Fri,  9 Jan 2026 12:47:59 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: linux-mediatek@lists.infradead.org
@@ -59,9 +59,9 @@ Cc: robh@kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	kernel@collabora.com
-Subject: [PATCH 06/11] arm64: dts: mediatek: mt8183-pumpkin: Fix pinmux node names
-Date: Fri,  9 Jan 2026 12:47:42 +0100
-Message-ID: <20260109114747.37189-7-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 07/11] arm64: dts: mediatek: mt8173-elm: Fix bluetooth node name and reorder
+Date: Fri,  9 Jan 2026 12:47:43 +0100
+Message-ID: <20260109114747.37189-8-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260109114747.37189-1-angelogioacchino.delregno@collabora.com>
 References: <20260109114747.37189-1-angelogioacchino.delregno@collabora.com>
@@ -73,90 +73,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Change all of the pinmux main nodes to have a "-pins" suffix to
-satisfy devicetree bindings checks.
+Change the node name for Marvell SD8897 SDIO Bluetooth from
+`btmrvl@2` to `bluetooth@2` to fix a dtbs_check warning.
+
+While at it, also change the WiFi one from `mwifiex@1" to a
+generic "wifi@1" and reorder the nodes so that wifi@1 comes
+before bluetooth@2.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts | 16 ++++++++--------
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 16 ++++++++--------
  1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-index f60ef3e53a09..e47955602c83 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-@@ -241,7 +241,7 @@ &mt6358_vsram_gpu_reg {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+index 9ec930058b92..59813fff7833 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+@@ -432,20 +432,20 @@ &mmc3 {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+ 
+-	btmrvl: btmrvl@2 {
++	mwifiex: wifi@1 {
++		compatible = "marvell,sd8897";
++		reg = <1>;
++		interrupts-extended = <&pio 38 IRQ_TYPE_LEVEL_LOW>;
++		marvell,wakeup-pin = <3>;
++	};
++
++	btmrvl: bluetooth@2 {
+ 		compatible = "marvell,sd8897-bt";
+ 		reg = <2>;
+ 		interrupts-extended = <&pio 119 IRQ_TYPE_LEVEL_LOW>;
+ 		marvell,wakeup-pin = /bits/ 16 <0x0d>;
+ 		marvell,wakeup-gap-ms = /bits/ 16 <0x64>;
+ 	};
+-
+-	mwifiex: mwifiex@1 {
+-		compatible = "marvell,sd8897";
+-		reg = <1>;
+-		interrupts-extended = <&pio 38 IRQ_TYPE_LEVEL_LOW>;
+-		marvell,wakeup-pin = <3>;
+-	};
  };
  
- &pio {
--	i2c_pins_0: i2c0 {
-+	i2c_pins_0: i2c0-pins {
- 		pins_i2c {
- 			pinmux = <PINMUX_GPIO82__FUNC_SDA0>,
- 				 <PINMUX_GPIO83__FUNC_SCL0>;
-@@ -249,7 +249,7 @@ pins_i2c {
- 		};
- 	};
- 
--	i2c_pins_1: i2c1 {
-+	i2c_pins_1: i2c1-pins {
- 		pins_i2c {
- 			pinmux = <PINMUX_GPIO81__FUNC_SDA1>,
- 				 <PINMUX_GPIO84__FUNC_SCL1>;
-@@ -257,7 +257,7 @@ pins_i2c {
- 		};
- 	};
- 
--	i2c_pins_2: i2c2 {
-+	i2c_pins_2: i2c2-pins {
- 		pins_i2c {
- 			pinmux = <PINMUX_GPIO103__FUNC_SCL2>,
- 				 <PINMUX_GPIO104__FUNC_SDA2>;
-@@ -265,7 +265,7 @@ pins_i2c {
- 		};
- 	};
- 
--	i2c_pins_3: i2c3 {
-+	i2c_pins_3: i2c3-pins {
- 		pins_i2c {
- 			pinmux = <PINMUX_GPIO50__FUNC_SCL3>,
- 				 <PINMUX_GPIO51__FUNC_SDA3>;
-@@ -273,7 +273,7 @@ pins_i2c {
- 		};
- 	};
- 
--	i2c_pins_4: i2c4 {
-+	i2c_pins_4: i2c4-pins {
- 		pins_i2c {
- 			pinmux = <PINMUX_GPIO105__FUNC_SCL4>,
- 				 <PINMUX_GPIO106__FUNC_SDA4>;
-@@ -281,7 +281,7 @@ pins_i2c {
- 		};
- 	};
- 
--	i2c_pins_5: i2c5 {
-+	i2c_pins_5: i2c5-pins {
- 		pins_i2c {
- 			pinmux = <PINMUX_GPIO48__FUNC_SCL5>,
- 				 <PINMUX_GPIO49__FUNC_SDA5>;
-@@ -289,7 +289,7 @@ pins_i2c {
- 		};
- 	};
- 
--	i2c6_pins: i2c6 {
-+	i2c6_pins: i2c6-pins {
- 		pins_cmd_dat {
- 			pinmux = <PINMUX_GPIO113__FUNC_SCL6>,
- 				 <PINMUX_GPIO114__FUNC_SDA6>;
-@@ -297,7 +297,7 @@ pins_cmd_dat {
- 		};
- 	};
- 
--	keyboard_pins: keyboard {
-+	keyboard_pins: keyboard-pins {
- 		pins_keyboard {
- 			pinmux = <PINMUX_GPIO91__FUNC_KPROW1>,
- 				 <PINMUX_GPIO92__FUNC_KPROW0>,
+ &nor_flash {
 -- 
 2.52.0
 
