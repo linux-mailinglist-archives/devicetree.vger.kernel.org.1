@@ -1,145 +1,185 @@
-Return-Path: <devicetree+bounces-253308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CAB8D0A81C
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 14:53:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23253D0A8AE
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 15:05:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54680305D9AA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 13:49:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9429A3007972
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 14:04:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C18350A37;
-	Fri,  9 Jan 2026 13:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D1B35CB72;
+	Fri,  9 Jan 2026 14:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="KQmAdKsg";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="6xk9RoXU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1CA33506B
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 13:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E63333445;
+	Fri,  9 Jan 2026 14:04:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767966566; cv=none; b=LusxOmjiot5+ZgYU138PVnwMPnSXO0El8mUr9VSgGz3cIBxlk4H5NHCKpYYEIy90OHHMIaxtTRYMkcRZX0Niovzlk+TANs/GAoRQ5O6HRVsxFkoIZtryTsEgx/0HEYnKRUsFqNUSOxcxpIXsowuPyTIhVNfD/KmhTZVQ8az7A1E=
+	t=1767967448; cv=none; b=taDFSu34BUzzJtXb9P+okaShYHzaxwKpw1ed4UHYD3T5tNOfgSWXArTqFqJ4wKSUNQKs4c+2vMSVRyGtFZqqMJWFzuWS5WM7aZbdTKP8ehZJ9mBYbQcQDOzWRCjTQ3gmYNloQnfPzX7pI65NFMG5FsPTVZaSdYbCJnNXLSE+7T4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767966566; c=relaxed/simple;
-	bh=WLFUrhNxJ/XDPIZxprmACvVsb1Pyo7q0wLa37Xprya8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Jc4USDcguA05TghQp2Vpt/+wwJR3IjYV8D+bxru2EMsgU6/MyQWWXuFZO6uRYZEEHWUFQxMsckk8siBwUWfr6c2c4MUX0FuhZ6oRNboLHmEkOnhOmiJZDfUF9BIdLza3ITgy3jZ+utoHiha8SDiC2HtMiOlwU9mCCK0y8+0/YnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-55b24eedd37so3195175e0c.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 05:49:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767966564; x=1768571364;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1K7NOffoek8SfFkqFSd9+BgcJllduHoywKqDwRr4NrA=;
-        b=SqpPL1jXqR0xD7EtR3qGhsGCZq03oG0QqwFnQom8/W0pCppWm7W218xSloK1kUs9NB
-         +feIRScAJsWQ6IateqCwJnUKTLrvHHKA0YShfSSnsHGFqSpdeKNZiFG6OtyZWZSR29b9
-         HAlDoQ3uX4o0L0D2+XUXxvO2+EdFzYcLJFXoNRWoVjt1tftf5XdpujLglgJnB3L0JDS/
-         e8MaB2iUDv/oJaNWAeD/BUfaP/uTJHPOe49sTZuJfP4co6rY11Bo6YDJ3eEsrN258nZF
-         y1gIdz4KBeqvVGtN/Jdws5kQJT4DeNBljr9v+NDcYsE0D50iGtbCoztR845XqnqnlnyK
-         oNdg==
-X-Forwarded-Encrypted: i=1; AJvYcCX488UxmqD5SU7bDpI2/p2HQ1YWP/ZhclwfjG2esSeba0jsLXBOP5N/kuVfwAJBYlHQkSK1EyTIlsIj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhPezBudQPpYOT448afHtvonz5yEGfNDM2TxKVdApGasxsAqNT
-	aquUjA8Qxh/jf/pB9K/AsiI7jMBgwbedXw8zojD5MrXIbdT6hi9IvL2e4G/NsCmn
-X-Gm-Gg: AY/fxX6f8iTX8WCmPYbM01BYuzqYfoY7iIdFLxZnKFK6Feq6w4FLSVr5y9WbC8uCSSb
-	fq/zc+/FhbZ88UoIE0C5S0/br7WAv8n1vIB4roVfcZimMBmBOk7ye1CIQknpFsEGpVJnTM+LlZ4
-	2LjsTxy4IPjo+1lPtSeQxhmyNTiN2XMDo7jiagmohmTlVDXOA3RKRwdQHETXnxxvsdkHiZVC1uy
-	geoz5I1Ph5sS5m/Wcgay7rUwCQVof/6qBAW/n3Tv0TfFwwojy+cZxRwLpHWqWebJHphzQ0NYtXS
-	5qScJUGKxKck8mEuubAPNS3DY1UpDlF2fKMeqj7ztey4OKJlc6L+53N90Bq5Vn3rCLu70soumds
-	qvF0E6g2BNXrx86m1pGEMmTln4q1LZm9msWWZfVEI6A/LP7iHx1li04/69tDJNR77Rn8tAKzc2R
-	bDKIUoRfsyBckenQBkXujLq2vQHxSrzLtCvLhnx9gryzVRMkuN
-X-Google-Smtp-Source: AGHT+IFWcIkzZf6+OWNBxoKZoCdrRV3Eyg9q/UOAb5qNCiHBnk5BtEjN8ESKC858OcLCRMv/GSNA4g==
-X-Received: by 2002:a05:6102:f85:b0:5df:c33d:6e54 with SMTP id ada2fe7eead31-5ecb1e6f41fmr3764520137.3.1767966564341;
-        Fri, 09 Jan 2026 05:49:24 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ecc521d7b1sm8531095137.0.2026.01.09.05.49.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jan 2026 05:49:23 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-941063da73eso2948389241.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 05:49:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVxpKSn52wAbg1Lso6LUGWpXF3dRJIjNevDC8OMKZI3hw8nkIrvS9xkDb3w299bqvrXWmXokzxgaeN6@vger.kernel.org
-X-Received: by 2002:a05:6102:800e:b0:5ee:d0ff:7254 with SMTP id
- ada2fe7eead31-5eed0ff7574mr1607434137.34.1767966563511; Fri, 09 Jan 2026
- 05:49:23 -0800 (PST)
+	s=arc-20240116; t=1767967448; c=relaxed/simple;
+	bh=wA1+cXFQawSrla4wIzotCBXLCi2C+bW374nfHL83f7E=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ISGNab8RUYjGPSY1rHO5sq9i63l0qxNIfMFHoFGlgTdRzMreWH5GqxkURt+R0HrMeZlZ065zZHNs2ib5yJeYn2z7Z+leB45MhUspp0D5LgvD6rAwdy/E4aTuSeaW+tP6bYzBwAOtlZEtkbjDi7pK3tyW1fMBWsiRgkxiuHtVu1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=KQmAdKsg; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=6xk9RoXU; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Subject:Date:From; t=1767967444; bh=nnnkjD81IMJfCk/lVcXXiqL
+	IjCEACoTN3OksGrAiANk=; b=KQmAdKsgdoHCFIHtFcAt8sIJjrrzVPvbV9IzHlywDcxjOV6p3t
+	J2yExsZCcS31sDlkp7CK9m7PwtfGcYx4x5kN1i75j5ud77w1EfwkPDDGiA13qp3F7wfiqM8KLGq
+	UJsbzaiCMRq7TSlyFobCmk/kGux1/sxu6nK1t6RRgrcAtPkVbzDPVelsHYkZn2q4u7jMrihHGYw
+	qkLvBO7CoNMwljx+QsQdSEnCtrP1jVtTlfjDriQGc5MmbyBPVgMX9TjcCCBPWyvWJlGswjveOAu
+	WgDaSsMj+B3FS11Mosv9lbq0Nv9nYw+YPmtk8Jb6AtaRpHxgyJenwZ/aSjxInNdsQyw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Subject:Date:From; t=1767967444; bh=nnnkjD81IMJfCk/lVcXXiqL
+	IjCEACoTN3OksGrAiANk=; b=6xk9RoXUbhi5hw6hHbOIUAJ2WBTc8C0Dh5hM3Bh6EtoqPOoto+
+	JN7IysvDmgModiIcoqBawvCPz86GM1qk0SAA==;
+From: Nickolay Goppen <setotau@mainlining.org>
+Date: Fri, 09 Jan 2026 17:03:59 +0300
+Subject: [PATCH] arm64: dts: qcom: sdm630: Add LPASS LPI TLMM
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260108195223.193531-1-cosmin-gabriel.tanislav.xa@renesas.com> <20260108195223.193531-4-cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20260108195223.193531-4-cosmin-gabriel.tanislav.xa@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 9 Jan 2026 14:49:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX39Bdg_LBry8QmGTR9Z=CNs6xGksFbzJw-8oDt4CcOqQ@mail.gmail.com>
-X-Gm-Features: AZwV_QgbNm6q3mt1zlj7hyuAc6e9Eu-odKmqzHG0qAir3pZOPVNUb1tURDFNGtE
-Message-ID: <CAMuHMdX39Bdg_LBry8QmGTR9Z=CNs6xGksFbzJw-8oDt4CcOqQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/5] thermal: renesas: rzg3e: make calibration value
- retrieval per-chip
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: John Madieu <john.madieu.xa@bp.renesas.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260109-qcom-sdm660-lpass-lpi-dts-v1-1-d3eb84f10a39@mainlining.org>
+X-B4-Tracking: v=1; b=H4sIAM4KYWkC/x2MQQqDMBAAvyJ7dmGjshC/Ij1IsrYLTbRZKYXg3
+ w29DMxhpoJJUTGYuwpFvmq65yau7yC81vwU1NgcBhqYHHn8hD2hxcRM+D5Ws0bFeBqGzTueiP3
+ oJ2j9UWTT3/+9PK7rBgBo3C9rAAAA
+X-Change-ID: 20260109-qcom-sdm660-lpass-lpi-dts-cf9164069394
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux@mainlining.org, Richard Acayan <mailingradian@gmail.com>, 
+ Nickolay Goppen <setotau@mainlining.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1767967443; l=2737;
+ i=setotau@mainlining.org; s=20250815; h=from:subject:message-id;
+ bh=vLOOoDyNe3II78tHZBs2gs/SYnVus5gac1a2Z3jGrSI=;
+ b=UJ2Io1i+q+wiOhT055avFwN5DTRSNudqROdMmLXPNlPYJAZoHWXfxNBBcaYqot/luXdVicbqS
+ KJOmWP41UrHBUwMWGWyx6IEA8MPcgaYxeIQQUxwvItpXYRsGn9KgFmb
+X-Developer-Key: i=setotau@mainlining.org; a=ed25519;
+ pk=Og7YO6LfW+M2QfcJfjaUaXc8oOr5zoK8+4AtX5ICr4o=
 
-On Thu, 8 Jan 2026 at 20:53, Cosmin Tanislav
-<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs expose the
-> temperature calibration data via SMC SIP calls.
->
-> To prepare for supporting these SoCs, do the following changes.
->
-> Rename rzg3e_thermal_parse_dt() to rzg3e_thermal_get_syscon_trim().
->
-> Move the syscon usage out of rzg3e_thermal_get_calibration() and into
-> rzg3e_thermal_get_syscon_trim() and remove single-use variables from the
-> private state.
->
-> Place a pointer to rzg3e_thermal_get_syscon_trim() into the
-> chip-specific struct, and use it in the probe function to retrieve the
-> calibration values.
->
-> Now that syscon usage has been moved out of
-> rzg3e_thermal_get_calibration(), remove it and inline the calibration
-> validation into the probe function.
->
-> Also, reuse the TSU_CODE_MAX macro to mask the calibration values, as
-> GEMASK(11, 0) and 0xFFF are equivalent, and replace the hardcoded 0xFFF
-> with TSU_CODE_MAX in the calibration validation.
->
-> Reviewed-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> Tested-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-> ---
->
-> V5:
->  * replace hardcoded 0xFFF values with TSU_CODE_MAX
->
-> V4:
->  * pick up John's Reviewed-by and Tested-by
->  * replace new macro TSU_TEMP_MASK usage with existing macro
->    TSU_CODE_MAX
->  * remove "Validate calibration data" comments
->  * inline rzg3e_validate_calibration() into rzg3e_thermal_probe()
+From: Richard Acayan <mailingradian@gmail.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+The LPASS LPI TLMM pin controller controls pins for use by the analog
+and digital codecs, such as the PDM bus, the digital microphone pins,
+and the compander pins. Add it to support the codecs.
 
-Gr{oetje,eeting}s,
+Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+Co-developed-by: Nickolay Goppen <setotau@mainlining.org>
+Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+---
+This is a patch introducing support SDM660 LPASS LPI driver support in
+the dts
+---
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 73 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
 
-                        Geert
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index e38d9648a1ac..4a72e0718fe4 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -2269,6 +2269,79 @@ mmss_smmu: iommu@cd00000 {
+ 			status = "disabled";
+ 		};
+ 
++		lpi_tlmm: pinctrl@15070000 {
++			compatible = "qcom,sdm660-lpass-lpi-pinctrl";
++			reg = <0x15070000 0x20000>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&lpi_tlmm 0 0 32>;
++
++			cdc_pdm_default: cdc-pdm-default-state {
++				clk-pins {
++					pins = "gpio18";
++					function = "pdm_clk";
++					drive-strength = <8>;
++					output-high;
++				};
++
++				sync-pins {
++					pins = "gpio19";
++					function = "pdm_sync";
++					drive-strength = <4>;
++					output-high;
++				};
++
++				tx-pins {
++					pins = "gpio20";
++					function = "pdm_tx";
++					drive-strength = <8>;
++				};
++
++				rx-pins {
++					pins = "gpio21", "gpio23", "gpio25";
++					function = "pdm_rx";
++					drive-strength = <4>;
++					output-high;
++				};
++			};
++
++			cdc_comp_default: cdc-comp-default-state {
++				pins = "gpio22", "gpio24";
++				function = "comp_rx";
++				drive-strength = <8>;
++			};
++
++			cdc_dmic_default: cdc-dmic-default-state {
++				dmic1-clk-pins {
++					pins = "gpio26";
++					function = "dmic1_clk";
++					drive-strength = <8>;
++					output-high;
++				};
++
++				dmic1-data-pins {
++					pins = "gpio27";
++					function = "dmic1_data";
++					drive-strength = <8>;
++					output-high;
++				};
++
++				dmic2-clk-pins {
++					pins = "gpio28";
++					function = "dmic2_clk";
++					drive-strength = <8>;
++					input-enable;
++				};
++
++				dmic2-data-pins {
++					pins = "gpio29";
++					function = "dmic2_data";
++					drive-strength = <8>;
++					input-enable;
++				};
++			};
++		};
++
+ 		adsp_pil: remoteproc@15700000 {
+ 			compatible = "qcom,sdm660-adsp-pas";
+ 			reg = <0x15700000 0x4040>;
 
+---
+base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
+change-id: 20260109-qcom-sdm660-lpass-lpi-dts-cf9164069394
+
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Nickolay Goppen <setotau@mainlining.org>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
