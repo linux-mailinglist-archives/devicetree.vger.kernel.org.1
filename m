@@ -1,236 +1,271 @@
-Return-Path: <devicetree+bounces-253354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACC35D0B132
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:56:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E83E0D0B1E0
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 17:07:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4B3033067917
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:51:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 39A5730B2BAC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 16:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F6F31D371;
-	Fri,  9 Jan 2026 15:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79123347C6;
+	Fri,  9 Jan 2026 16:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="AC3DNPGe"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="Xug3r07o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011048.outbound.protection.outlook.com [40.107.74.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39BE850096E;
-	Fri,  9 Jan 2026 15:51:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767973877; cv=none; b=QjCSlALmB0DicMWH031F1ukWrvSGJIfNQ+hrEoSV2M0RTPdshhi2b0odF/d/0fo04nkyuBUQc7bcXuvndS+F0NM8LAMoqyJJXdA6yZydc6FTUY7BJcoJFmJRrIe+EC9SWqhoVR/f2R5OlWYjYuUH3RmdqDVfnisenVD/Gh8jrjQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767973877; c=relaxed/simple;
-	bh=N3OEbXDN24wq0LthEeSqFAaMCzO9m20JgYsrfFI+PkU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=msXRSvIDKJXn/7cAaOjAQu9n5rVKj8pI7rYRwtrm9URIg8TKwVOV3/FgGRn2FAktlf482em7ggTowUQSMiRvSUPtJ9/qVycNB3PwpvWd2xokJGKELMOy/OBW4hfQ30FstZqVItwFC290w2A6XewfCtILShd4E1McH8Hq3lzmAww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=AC3DNPGe; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=WrKiJGExYEJRLwUXBNV/ZZjm3cu688A6kKxR9wIJ1IM=; b=AC3DNPGeniIWPTJqnquv8lv8Yh
-	Do7HegUNbO/CTTfzlEXijhCXpypmLIosnybmuZMZE0VMnKZlW1euXJ4RRBq86UWCuVPZ6RWCd6ZuI
-	tNclhbVkYrMm85bfzAokc8rVcu32DQLi17BOI6EQxLJHe5DFm+L33zQkZPqDwRqZl5SBl2saJjclr
-	2YMCa9KUn6tAP8I2vwMbkd15eDHKLprX0UVSk7dE6Wjp8Al4IOLdiS0mYkm6/hrK0rkoTW5TNi5WB
-	8+rC7aI/7J9lMXgT4g1z0XnE4qfDzZAFAIumxdDahiozcKXkrboj7ozlVkJaXWQ8yo/23zsjTahbD
-	ynHjW1kg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56696)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1veElS-000000003zl-27RH;
-	Fri, 09 Jan 2026 15:51:02 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1veElO-000000003Qn-3IVr;
-	Fri, 09 Jan 2026 15:50:58 +0000
-Date: Fri, 9 Jan 2026 15:50:58 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566D236403B;
+	Fri,  9 Jan 2026 16:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767974408; cv=fail; b=ZT/Fmn2Zw8fbOrKw/gXQuoIhX0NhESukfs9qbFhjg72mWhxa22nuuFw8nJEztiMQaQ9bBQ8A9vQDIm8GcEnmTbYNcDg3TIPEFsIzkhpkQzYNmwemSlUTcda8DaTcvu47pxEGfYeD5rDvVOtKqLerDV5NhPefdu6jvCYG+uUDFv0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767974408; c=relaxed/simple;
+	bh=thzFa7nqxprHk311JB1027RWDFPvx2JK3Et90SRpLF0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=MpPaLdCeGfgDdHb9UFwExuIZ5D/tmZmVIvU+HJL4qFQOF7XwuDqRwajquQZ3mCb/lFqFyRku2hilAbuj3QDaUlJPqOnZVd2oCNEGXp6ezrG55Hm2lv9B4ctY5ZES+TZ5m8+s8sHwRuvt+Ys6IyJYHp71CKmEbMUC1PmcNgmPudQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=Xug3r07o; arc=fail smtp.client-ip=40.107.74.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=q1vDYv3V3EsuwEFPX14DSdyvs2kDX48bmpte86iO61pV5cRzrCZ4n3M4QXQJKyg0tIJV0+q+TjO9PFUY0laT8xiJO1O34l9k1QLVcjw7SieChHZAyq1nBULLN9yYqYiEyizvafqWIbTEkLz6y1OlCHKmVeWff0yYCIjT1eqCa9eAi2RfKXW/XCTj0n1Tsewxa8SsRBReFUDcb622bmwVe4YCOAt8XB4AkJBNDgyQLX/RLT/afJ3xxlGy8LKk0zZpRNAnjzU1w0kOkLBNaUcVU9NpZ+pfgUsy+1L3HE7gnpNCz8E6cqPXajU2q5/ESH9+NaITpvGqpsyhTAvMlwZXlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tHhFUCgZj77AWutw/CVZbqjHswvXCkKOssI/Qsf5RLs=;
+ b=jylzWgdsSQBlzanTnxn6nvsU8OUPCTW/GSedMzLmrfd1DCjqaWbHjozeIpoAJ/T7GIhYyqRtqdPZ9p9tvgW3cvI0c5Zi6xEab2F/VQZhUAG7LlKq9EmA2KhpHxUAERtCKqYAvq1QzdNrSAxLUD6x+pkMl3tWEs1YLTNlC8B65a5JPI1c+3E0wNczwMjIg+yNdvSDTQTvAkcY+JCfLZNm0yVc6xXFWj50Wrsnbr+aYcFKF0RoxZKseTNIhT+I+8OUF6Wg1mVq6nijbYjtjSYKgc8RDrY9Wb0up64dM908DzBVO54mmTHH9nV2rIBTU/RPOk4RWkAIkRwXFmbLiwSGsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tHhFUCgZj77AWutw/CVZbqjHswvXCkKOssI/Qsf5RLs=;
+ b=Xug3r07oJO9vyHRIZwAf4xwY3+Y5DhPglozuESl7rkSW/1CPBea7Kjc8smS4bGJw46GrkZh0g47t9WF3kIvNorOkEwjcbkDvZnkP0Hysbc9feVqrHi+NfeXPoj3d/4+u0uVEQZIllkyK5p5O4/mOZqMjrXH2vwFTOeXqFinwvts=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
+ by OSCPR01MB16241.jpnprd01.prod.outlook.com (2603:1096:604:3e9::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.2; Fri, 9 Jan
+ 2026 16:00:00 +0000
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9520.001; Fri, 9 Jan 2026
+ 15:59:59 +0000
+Date: Fri, 9 Jan 2026 16:59:40 +0100
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: tomm.merciai@gmail.com
+Cc: linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next v2 2/2] net: pcs: rzn1-miic: Add support for PHY
- link active-level configuration
-Message-ID: <aWEj4py2Cv4tPu-5@shell.armlinux.org.uk>
-References: <20260109142250.3313448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260109142250.3313448-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 10/22] dt-bindings: display: renesas,rzg2l-du: Add
+ support for RZ/G3E SoC
+Message-ID: <aWEl7A43aW9MAGvq@tom-desktop>
+References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+ <fcfc4fc5123c2351d96ac102aa5081bd99c8a40e.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fcfc4fc5123c2351d96ac102aa5081bd99c8a40e.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+X-ClientProxiedBy: FR2P281CA0183.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9f::19) To TYCPR01MB11947.jpnprd01.prod.outlook.com
+ (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260109142250.3313448-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|OSCPR01MB16241:EE_
+X-MS-Office365-Filtering-Correlation-Id: e169db5b-60d1-48a5-8aef-08de4f98241d
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|376014|52116014|7416014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?5IF2kiea7lo6QjM/mhMnRXnpFoUtpQcLCpdgN4DGhDlbHYb4PE6P/j+zET3o?=
+ =?us-ascii?Q?FW7yygKxiWMphj7FDxh4y1CIhQP8LLy8XX+4ub9MyKsVbT1evb6Dp6vdc2E/?=
+ =?us-ascii?Q?ED1r42uY/YPtDUbcTWSd5+yPMqY1rJw6yF5GJyNVUSgaJAawSRhP79HU7tge?=
+ =?us-ascii?Q?gnb9DnuYKz+E0i1PSQbhtU7XztB6h1HXiI3h8+lb0nQpdx3c4ALGHwgIytvj?=
+ =?us-ascii?Q?kJOkdU2rNX9Du+7RsFa/y3sLMBaK2OwS/4bu/wU9AUnBO+/VGAziMg83r+3c?=
+ =?us-ascii?Q?ddLEhecUO24VgPC72WDFV2tNGF0Ns1M4e/l5LYGxEc6DpzJq57yGGLqOP0ww?=
+ =?us-ascii?Q?w7estU36NxeAsEb/HhqgvLaXhqTXGLafFpqxYfLgsg36i9nBSWpLInGlvjxt?=
+ =?us-ascii?Q?YpVh8izZ03foCzaqu9bNusVtipPH0iyjKeiUzg/RIePLHzKJKjeisMzNw/ay?=
+ =?us-ascii?Q?Wnhljv+xoMBhTdaWKgTRLg6CQp68XNYJSCdHTBMVVCw2yEvq0SVbU9EOJOLf?=
+ =?us-ascii?Q?/71BswzSZwHsY+4a+lfBwCvpeUG3Sx7oyKhtQq//zGE2A/lE6gmfU831aVJf?=
+ =?us-ascii?Q?/rchkbycQy76BLwT73W0OxTTS3lnxxFQEdaMpKB/jBShXGl4WeD/xOKovtke?=
+ =?us-ascii?Q?H6cBJ5aMD5W04DZxWIn8aO27JxJSp1Fo7+NYMindyNLf/MMtruESXsELpSXo?=
+ =?us-ascii?Q?0IBaISi1N3mKtvtMCMboJ5QK2T+6MEnDDNFoAkXYvuOdkVS8EUzqeUvhB7jf?=
+ =?us-ascii?Q?rdwoEzf76TEIWp8VwrJpAsz+xNZLMn69Z7LirnlYoOxk3oMqFs404KpUuuIA?=
+ =?us-ascii?Q?T3NmvLMyio0PyOZwJrC5kL/HMpEI12ZZIvSH+x3CeyS1pm3wXum+bU484gai?=
+ =?us-ascii?Q?xLOY/E9d51quUsM0ZLj7ulQK+qrm/+4/PPFjGM8/dYqxn/fgLNl+VMfJR79u?=
+ =?us-ascii?Q?InAOUjVvghuo+W2eKZw4/xLw33j8gxUeFsXbHSBSv6NtDa/DX8XCpad+Ri3R?=
+ =?us-ascii?Q?Brm5cUlvl7ja2XA3Vy5o119bu90JVv+etXRqGAeNfa7caDKGInRD9Dv/NDlN?=
+ =?us-ascii?Q?KshnHHU4IbzG86QrD6P9FbsQ3L1q0LbazAEkRQ39oruCslMiNS4PGOy4zmsb?=
+ =?us-ascii?Q?CJ0AdLQgHjnhTpmEZ+IPhvun8eWGRSWO2XsaNGMvoS2JklX87gIzsvS+2Ppy?=
+ =?us-ascii?Q?a56qtvC0HKtx0IOc+uMH8+yOaqK2D4tx5Q3ekru6EuU7AX+8Cm5CHbCfOAa7?=
+ =?us-ascii?Q?kMoNxOjUmdnurdgVhG/lfSaw2SrNM4fRy4u+Hje4bhjg7RxsJKJBe8Fhe2Co?=
+ =?us-ascii?Q?XF6Mgb9RQx5eddLJNw7vVHKy3RXilYIDpAwK19hvOdIWt4gwBHpVcLQpt31Q?=
+ =?us-ascii?Q?b4xMMzSoFIHVPEks4Cvb6npprzGeLThQ+Tx7zi9k/5Rby0u1QzjsoHnGfUSE?=
+ =?us-ascii?Q?Rb9jYF8CyxCgsfBCCFcQZqwSrLqlfUIzK1iqTgOLbxRTfPInQ2p4IP0xiZ9H?=
+ =?us-ascii?Q?duHEbjuhkPhOeYfRfPvFvOPtaB2LgjcxOCOq?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?OMPXy6lWgmYyWOY4wbWBmwG29ODNTb6Ofwh5pI+DVb3kZMNSHsjaOK3gmiZB?=
+ =?us-ascii?Q?O7lRTgLLPxo1N8+AYzXA50bszC1kL/tZA8xPzVQSgWx2gnxIX6qFTFF21hrQ?=
+ =?us-ascii?Q?LfWUh1AIXKJyj+VzbF0My8T79hPwnlRvnNXKxaF4Ruwwo6a+OTLj/dZTXnIe?=
+ =?us-ascii?Q?EiGzy4eqYXF0f5L3GogCYcrPspTkVTdx58zoE4dPQb55ht7uJMg8yvawDeoz?=
+ =?us-ascii?Q?aSGWz8JeaZabtYACXv1ZObpY4lNd9CKq/CS40fs6CeZQ8Ngy/JrrJfwYHPUn?=
+ =?us-ascii?Q?zMo7zTnDlbY7YMqwbsMJ7wVXZcYINCzaz1hI3o7WrvTotcwWHdb7R2y+mw/u?=
+ =?us-ascii?Q?BeevwFrRSNx3U3ZVQv59U2xrrdr9CqEuBji56V65tOn3WPZ/VAsnWafpHOE8?=
+ =?us-ascii?Q?NgnP/5UYZm7bxnrOp53wNDGGqksbSaKq3MdyuRa26pt+YTAvCopDDyFCl0cr?=
+ =?us-ascii?Q?ZQBitWYKrCGd0UVxM+Nb3i/oHOz+YJegAjyyHpVkL55C+JP4ArONbb84ZFfv?=
+ =?us-ascii?Q?50OmJ/S/+MBRSiVwti0rxKUawpboyV3+3NmSnX513bOtIF5ow972xJAj2Lrl?=
+ =?us-ascii?Q?JbtpVKkJH5IMvIGtrSz2jBXfifmhY6Jj5kx5otuWToRSsdDMugzAU5YbaFc6?=
+ =?us-ascii?Q?YhGCWoOAMrIkYKqvwyLADi3Az/Qzkb7sNZMsnTNvpOIk0pRLuwFdKkf5K8CV?=
+ =?us-ascii?Q?PlGfXadL168PDUh54OzJWZICCqmaMwBQ1+JpPPwFFBWjcL1EH9AN5r2lGDsq?=
+ =?us-ascii?Q?DDg6KTBHwrXQ2tIWXplJDyGMSo/tiHY5DycdB7jZjzcw5nlMpRKXMNYrEu40?=
+ =?us-ascii?Q?Xvqc3ImpkulkfayDdCIOrIbB1xuXmjuTzpuaWQWoaRfw6x9aC3pKr/8rMNEI?=
+ =?us-ascii?Q?t3A2NHRALjeECX8HNPeKIAjgIaVf+YTajltR+EBgzLg7WsZV3RuuGcLNVMQt?=
+ =?us-ascii?Q?RDFoCCU6lHuxiy7cy2sgJqCl/6kPwUR5JlBzAjjM/8xSRH3OG/a+9GbjCtzK?=
+ =?us-ascii?Q?rV8kI6p2hQveS1Hk969QulgSaMnSIPQJoWo13OjTto/vfREsmvlV1zZIwYID?=
+ =?us-ascii?Q?krvp5Q4N/6p4MjjRFy8jiEpLJgxTqC2o0xdTbu/v/AeAGwXJ4CdO47Elf+WO?=
+ =?us-ascii?Q?eLzr0GoneETaDXVLShuW4mNbID3pW1g9EptuAhGNKmO8rxU0AAh4loXzr6Wa?=
+ =?us-ascii?Q?3FVhxyFKesWV2pyRLwdP8wAKgCX4c0lFqimu8L6FXaDrNs9IXqpE/0NeqLmO?=
+ =?us-ascii?Q?sQhCPOprAOItNDo5hvfb4WJvkv46w6gqMqPOIuphrm1umMdnsN0UWDhWLpIZ?=
+ =?us-ascii?Q?usabuCOhg+9VUihX+QJIQXfa7qMeZaLoLGx5qCGdpPuIP07cRXHCAuXyvsWD?=
+ =?us-ascii?Q?KMYMBKc90G1tZWplfEhVD1q15B1PbHVVR8j/6vJ9h1I5DNuVgSDZmBtHHRAT?=
+ =?us-ascii?Q?00vWW9hgLGdyj60Wlv1JNrQ1Md3mbwr3RpTyYp0TkqRUDxVOn9d1GtzHRKRf?=
+ =?us-ascii?Q?SOvcbuWjM3aj8esbA1tiCPU4xqVNud2Il/zCjwiySMftmEC1Ns0m4fT83kRV?=
+ =?us-ascii?Q?WhPOufGFojly3JWvBtD+Pi2kE3S6H5NthBXs2OYwlNjm4HnZw3EJzmFF+egd?=
+ =?us-ascii?Q?g+WTZ9Zhu265lBZCpW+4ccQCDBg++MDWfkGOA0VyDwUxGlMwG+VlEZsRW60o?=
+ =?us-ascii?Q?nXhTiL5zOYmWc+RrCVD6ECN1+wYtnAZAP/mgGbevr4m36fZHPaNf7BRKQoSI?=
+ =?us-ascii?Q?iYWLv5FDM+Q79gQk8ieZzdNDg90IAmmyGunmJwHTYo4e0O7896xy?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e169db5b-60d1-48a5-8aef-08de4f98241d
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 15:59:59.6183
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cO29CUMWOyQ0KdUOPNhuvPpXdH6vCRdXTq00HKQTf2Dulgydt+ctJtq+25wsqbtF20UkDZp//QDYmXgYQGrg9kGifU2A0rGZVLU57zrw7f6WtEJIeUUoVHlWnGAZwiyV
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSCPR01MB16241
 
-On Fri, Jan 09, 2026 at 02:22:50PM +0000, Prabhakar wrote:
-> +static void miic_configure_phylink(struct miic *miic, u32 conf,
-> +				   u32 port, bool active_low)
-> +{
-> +	bool polarity_active_high;
-> +	u32 mask, val;
-> +	int shift;
-> +
-> +	/* determine shift and polarity for this conf */
-> +	if (miic->of_data->type == MIIC_TYPE_RZN1) {
-> +		switch (conf) {
-> +		/* switch ports => bits [3:0] (shift 0), active when low */
-> +		case MIIC_SWITCH_PORTA:
-> +		case MIIC_SWITCH_PORTB:
-> +		case MIIC_SWITCH_PORTC:
-> +		case MIIC_SWITCH_PORTD:
-> +			shift = 0;
-> +			polarity_active_high = false;
-> +			break;
-> +
-> +		/* EtherCAT ports => bits [7:4] (shift 4), active when high */
-> +		case MIIC_ETHERCAT_PORTA:
-> +		case MIIC_ETHERCAT_PORTB:
-> +		case MIIC_ETHERCAT_PORTC:
-> +			shift = 4;
-> +			polarity_active_high = true;
-> +			break;
-> +
-> +		/* Sercos ports => bits [11:8] (shift 8), active when high */
-> +		case MIIC_SERCOS_PORTA:
-> +		case MIIC_SERCOS_PORTB:
-> +			shift = 8;
-> +			polarity_active_high = true;
-> +			break;
-> +
-> +		default:
-> +			return;
-> +		}
-> +	} else {
-> +		switch (conf) {
-> +		/* ETHSW ports => bits [3:0] (shift 0), active when low */
-> +		case ETHSS_ETHSW_PORT0:
-> +		case ETHSS_ETHSW_PORT1:
-> +		case ETHSS_ETHSW_PORT2:
-> +			shift = 0;
-> +			polarity_active_high = false;
-> +			break;
-> +
-> +		/* ESC ports => bits [7:4] (shift 4), active when high */
-> +		case ETHSS_ESC_PORT0:
-> +		case ETHSS_ESC_PORT1:
-> +		case ETHSS_ESC_PORT2:
-> +			shift = 4;
-> +			polarity_active_high = true;
-> +			break;
-> +
-> +		default:
-> +			return;
-> +		}
-> +	}
-> +
-> +	mask = BIT(port) << shift;
-> +
-> +	if (polarity_active_high)
-> +		val = (active_low ? 0 : BIT(port)) << shift;
-> +	else
-> +		val = (active_low ? BIT(port) : 0) << shift;
+Hi Krystoff, Laurent, Geert,
 
-Looking closer at this, I think this is confusing.
-
-The underlying purpose here is to set mask and val to change the state of
-a single bit in the PHY link register for each call to this function,
-accumulating the changes in your misnamed "struct phylink".
-
-Given that "mask" can be used to compute the value to describe the bit,
-and that is made up of "shift" that describes the start of the bitfield
-and "port" that describes the bit within the bitfield, then surely:
-
-	mask = BIT(port + shift);
-
-would be saner?
-
-Next, the creation of "val". This is either zero or the same value of
-mask depending on active_low and polarity_active_high. The truth table
-here is:
-
-polarity_active_high	active_low	result
-0			0		0
-0			1		mask
-1			0		mask
-1			1		0
-
-This is a classical an exclusive-or truth table in the world of logic,
-or could be regarded as an inquality relationship (result is mask
-when polarity_active_high differs from active_low, otherwise zero).
-
-Thus:
-
-	/* Set the bit when polarity_active_high differs from active_low */
-	val = polarity_active_high != active_low ? mask : 0;
-
-Or, even simpler, this could become overall:
-
-	mask = BIT(port + shift);
-
-	miic->phylink.mask |= mask;
-	if (polarity_active_high != active_low)
-		miic->phylink.val |= mask;
-	else
-		miic->phylink.val &= ~mask;
-
-> @@ -605,8 +698,15 @@ static int miic_parse_dt(struct miic *miic, u32 *mode_cfg)
+On Wed, Nov 26, 2025 at 03:07:22PM +0100, Tommaso Merciai wrote:
+> The RZ/G3E Soc has 2 LCD controller (LCDC), contain a Frame Compression
+> Processor (FCPVD), a Video Signal Processor (VSPD), Video Signal
+> Processor (VSPD), and Display Unit (DU).
+> 
+>  - LCDC0 supports DSI and LVDS (single or dual-channel) outputs.
+>  - LCDC1 supports DSI, LVDS (single-channel), and RGB outputs.
+> 
+> Add then two new SoC-specific compatible strings 'renesas,r9a09g047-du0'
+> and 'renesas,r9a09g047-du1'.
+> 
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> ---
+>  .../bindings/display/renesas,rzg2l-du.yaml    | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> index 2cc66dcef870..a68252ae02fb 100644
+> --- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> @@ -20,6 +20,8 @@ properties:
+>        - enum:
+>            - renesas,r9a07g043u-du # RZ/G2UL
+>            - renesas,r9a07g044-du # RZ/G2{L,LC}
+> +          - renesas,r9a09g047-du0 # RZ/G3E DU0
+> +          - renesas,r9a09g047-du1 # RZ/G3E DU1
+>            - renesas,r9a09g057-du # RZ/V2H(P)
+>        - items:
+>            - enum:
+> @@ -137,6 +139,46 @@ allOf:
 >  
->  		/* Adjust for 0 based index */
->  		port += !miic->of_data->miic_port_start;
-> -		if (of_property_read_u32(conv, "renesas,miic-input", &conf) == 0)
-> -			dt_val[port] = conf;
-> +		if (of_property_read_u32(conv, "renesas,miic-input", &conf))
-> +			continue;
+>            required:
+>              - port@0
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g047-du0
+> +    then:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DSI
+> +            port@1:
+> +              description: LVDS
+> +            port@2:
+> +              description: LVDS
 > +
-> +		dt_val[port] = conf;
+> +          required:
+> +            - port@0
+> +            - port@1
+> +            - port@2
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g047-du1
+> +    then:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DSI
+> +            port@1:
+> +              description: LVDS
+> +            port@2:
+> +              description: DPAD
 > +
-> +		active_low = of_property_read_bool(conv, "renesas,miic-phylink-active-low");
-> +
-> +		miic_configure_phylink(miic, conf, port - !miic->of_data->miic_port_start,
-> +				       active_low);
+> +          required:
+> +            - port@0
+> +            - port@1
+> +            - port@2
+>  
+>  examples:
+>    # RZ/G2L DU
+> -- 
+> 2.43.0
+> 
 
-I think this is also over-complicated. Wouldn't it be better to only
-deal with the miic_port_start at the one place that it matters?
+What is your opinion on this patch?
+I posted some more HW details on [0]
 
-                if (of_property_read_u32(conv, "reg", &port))
-                        continue;
+Thanks & Regards,
+Tommaso
 
-                if (of_property_read_u32(conv, "renesas,miic-input", &conf))
-                        continue;
+[0] https://patchwork.kernel.org/comment/26686746/
 
-                dt_val[port + !miic->of_data->miic_port_start] = conf;
 
-                active_low = of_property_read_bool(conv, "renesas,miic-phylink-active-low");
 
-                miic_configure_phylink(miic, conf, port, active_low);
-
-?
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
