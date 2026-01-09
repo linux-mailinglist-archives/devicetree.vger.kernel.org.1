@@ -1,138 +1,113 @@
-Return-Path: <devicetree+bounces-253047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25612D06BF7
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 02:32:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2673D06BF4
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 02:31:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09D6C3020C67
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 01:31:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 685F43021E6A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 01:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D6F1B4223;
-	Fri,  9 Jan 2026 01:31:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="GY6B1+W4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8DF1A76DE;
+	Fri,  9 Jan 2026 01:31:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973172.qiye.163.com (mail-m1973172.qiye.163.com [220.197.31.72])
+Received: from lgeamrelo12.lge.com (lgeamrelo12.lge.com [156.147.23.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4F6C13B;
-	Fri,  9 Jan 2026 01:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3D323185E
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 01:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767922295; cv=none; b=m3Zgl/WU2nuUKzkZfgBPys8a05hOme2wyisARDKrahbkVcNMt6A1P9W20mgCH2ZnYNA3XrCkzl/llJ1Lq4C2nj8CvG04TF4UeIJ7vFqGYdHT+afrgkMF4uyCkrJF3UZEzxeP9VsTQ9Jz1msO8FPszKp/5evzGQfMoOly4qRbdr8=
+	t=1767922281; cv=none; b=fwSD9z2m9tel8XazZcICqFjcx1jQjf8uNetA6iHgrk4rUBbz6y+O3vWG2rcAvUK3Q8WtcWXLR0RlU156kQJM62xpwlu9Nf3MbWLe2eGa3c4hwZHH43i+6EK++GveeqBcKo8TVMRTuwedHsLgF7YjgVw5kFZGjK98Wh1Lyl6BelM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767922295; c=relaxed/simple;
-	bh=XG04LBIBTjzCP2psK3Uo1GUfr6kBVaisav07ZgmiORY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tq+kkuiRoeRnnCf0ByX07ATXY7C1y21y1WlTlUYQMx8b8eLf5QZKvlW3pRzUU+IemFginlwprl8ICg9e7v0aiOCe2fTDV8AJFNgsFCUPrwOklJcQ4u80avoo+ryemEHkPaMGokN7gzsnLpIVlL/ki8F5DkeSTpNmGy55nbeYa7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=GY6B1+W4; arc=none smtp.client-ip=220.197.31.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.51] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3002cb6fd;
-	Fri, 9 Jan 2026 09:26:02 +0800 (GMT+08:00)
-Message-ID: <4e01f121-1912-4897-98e8-cb543a501707@rock-chips.com>
-Date: Fri, 9 Jan 2026 09:26:00 +0800
+	s=arc-20240116; t=1767922281; c=relaxed/simple;
+	bh=oZPOC5XNYJbgYDeGSjVjDqAFEOXm3ADKKVpGxla5JMA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WG1l5dPSpcMdSlC4dZMYTqFZCRR3fJlKdqstifFn51W5k2g22bAt0aKUAg6rqi9YymEeKLvrdxtdiwjaxJv31odD/yhPKgK/wGGOdTEr4rVHJRJ44GKHCRMGCVFap754af6iIMfhL5eEIZDeEyC+73hhQr3vqYlY22Q1gPnEuJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
+Received: from unknown (HELO lgeamrelo02.lge.com) (156.147.1.126)
+	by 156.147.23.52 with ESMTP; 9 Jan 2026 10:31:13 +0900
+X-Original-SENDERIP: 156.147.1.126
+X-Original-MAILFROM: chanho.min@lge.com
+Received: from unknown (HELO BRUNHILD) (10.178.31.97)
+	by 156.147.1.126 with ESMTP; 9 Jan 2026 10:31:13 +0900
+X-Original-SENDERIP: 10.178.31.97
+X-Original-MAILFROM: chanho.min@lge.com
+Date: Fri, 9 Jan 2026 10:31:13 +0900
+From: Chanho Min <chanho.min@lge.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Kael D'Alcamo <dev@kael-k.io>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Gunho Lee <gunho.lee@lge.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add 'lge,*' for LG
+ Electronics
+Message-ID: <aWBaYUTp8dOTIEGz@BRUNHILD>
+References: <20260108082213.6545-1-chanho.min@lge.com>
+ <20260108082213.6545-2-chanho.min@lge.com>
+ <49d28c7d-a08c-4543-b3bd-a23d36785c28@kernel.org>
+ <0b80d046-6141-4389-b666-592859468b8f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] drm/rockchip: Drop ROCKCHIP_IOMMU depend for
- DRM_ROCKCHIP
-To: Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Chaoyi Chen <kernel@airkyi.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org
-References: <20251106020632.92-1-kernel@airkyi.com>
- <20251106020632.92-9-kernel@airkyi.com> <4072834.X9hSmTKtgW@phil>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <4072834.X9hSmTKtgW@phil>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9ba05c4d8f03abkunm1426e5ab1f2143
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkhKTlZCS0gaTUhNS0NDTx9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=GY6B1+W46frWd3oLL1NM66g6O0EUywg5e7gk4XfQ3+7+led+dGGAoMeVwkHlhjufEtT6S0JKF8Ui/NstMhkxCh8FkpHFb3JVv/f+FQiHYJd8kjAsXth6LNavSgbTlumydJfio2Zlgs31cMsy3m+jrDNfczdZ39KJiNyjhMpbMuo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=IjEhf4jC5xnT6sGVRluMHT0B2HAAj6xJis8dbhxb8WM=;
-	h=date:mime-version:subject:message-id:from;
+In-Reply-To: <0b80d046-6141-4389-b666-592859468b8f@kernel.org>
 
-Hi Heiko,
-
-On 1/9/2026 3:03 AM, Heiko Stuebner wrote:
-> Am Donnerstag, 6. November 2025, 03:06:31 Mitteleuropäische Normalzeit schrieb Chaoyi Chen:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> On the RK3506 platform, there is no iommu hardware. And even on
->> platform that have iommu hardware, it should be possible to use
->> VOP without enabling iommu. In this case, a contiguous memory
->> space like CMA should be used.
->>
->> So this patch removes the dependency on ROCKCHIP_IOMMU.
->>
->> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->> ---
->>  drivers/gpu/drm/rockchip/Kconfig | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
->> index b7b025814e72..a056d419190c 100644
->> --- a/drivers/gpu/drm/rockchip/Kconfig
->> +++ b/drivers/gpu/drm/rockchip/Kconfig
->> @@ -1,7 +1,8 @@
->>  # SPDX-License-Identifier: GPL-2.0-only
->>  config DRM_ROCKCHIP
->>  	tristate "DRM Support for Rockchip"
->> -	depends on DRM && ROCKCHIP_IOMMU
->> +	depends on DRM
->> +	depends on ROCKCHIP_IOMMU || !ROCKCHIP_IOMMU
+On Thu, Jan 08, 2026 at 05:46:53PM +0100, Krzysztof Kozlowski wrote:
+> On 08/01/2026 17:39, Krzysztof Kozlowski wrote:
+> > On 08/01/2026 09:22, Chanho Min wrote:
+> >> Currently 'lg,*' is used for LG Corporation, but LG Electronics uses
+> >> 'lge' as vendor prefix for many of its device tree bindings
+> >> (lg1k SoCs, etc).
+> >>
+> >> Add 'lge' vendor prefix entry to avoid confusion with 'lg'.
+> >>
+> >> Signed-off-by: Chanho Min <chanho.min@lge.com>
+> >> ---
+> >>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >>  1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> index c7591b2aec2a..6c31fa4bee6a 100644
+> >> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> @@ -907,6 +907,8 @@ patternProperties:
+> >>      description: Lenovo Group Ltd.
+> >>    "^lg,.*":
+> >>      description: LG Corporation
+> >> +  "^lge,.*":
+> > 
+> > NAK, we have been there and I do not change my stance.
 > 
-> I don't really understand this yes+no line :-)
+> Unless you meant to add it because of EXISTING device trees (predating
+> commit fc75109288709 from Rob), then add with deprecated: true and don't
+> use it any new compatibles.
 > 
-> Can't you just
-> - drop the dependency altogether
-> or
-> - do a depends on ROCKCHIP_IOMMU if ARM64
-> 
->
+> Best regards,
+> Krzysztof
 
-This trick is called optional-dependencies [0]. In addition to the 
-familiar depends on ROCKCHIP_IOMMU part, the newly added !ROCKCHIP_IOMMU
-ensures that DRM_ROCKCHIP can still be built even when ROCKCHIP_IOMMU
-is not build.
+Hi Krzysztof,
 
-[0]: https://docs.kernel.org/kbuild/kconfig-language.html#optional-dependencies
+v2 will include:
+ - "lg," prefix only ("lg,lg1215-ref", "lg,lg1215")
+ - Drop "^lge,.*" from vendor-prefixes.yaml
+ - dts coding style fixes in patch 3
 
-If we just:
-- drop the dependency altogether 
+Existing "lge," → "lg," conversion will be sent separately soon.
 
-When IOMMU is enabled, the dependency relationship cannot be handled 
-correctly. For example, the following configuration is possible: 
-ROCKCHIP_IOMMU=m, DRM_ROCKCHIP=y, which leads to a build failure.
-
-- do a depends on ROCKCHIP_IOMMU if ARM64
-
-This changes the semantics. On arm64 we should also be able to work
-without IOMMU being enabled.
-
--- 
-Best, 
-Chaoyi
+Thanks
+Chanho
 
