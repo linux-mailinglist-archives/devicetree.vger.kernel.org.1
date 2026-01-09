@@ -1,185 +1,154 @@
-Return-Path: <devicetree+bounces-253398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CF4D0BE7B
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 19:43:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D75D0BF94
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 19:57:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EB2D730D2D20
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 18:41:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5538230735F9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 18:55:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9AB2C033C;
-	Fri,  9 Jan 2026 18:41:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B682271456;
+	Fri,  9 Jan 2026 18:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O3536UNx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aOrmegke"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9738E28F935;
-	Fri,  9 Jan 2026 18:41:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBD32DAFBE;
+	Fri,  9 Jan 2026 18:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767984086; cv=none; b=HqoOJs6x21PjO95g7g5lfzMaTEd9hE0hE3QYmbd7D4+k96IeFFVa3O8kX7CidSI3hYqG8sk/daViNgJTjozgIggJBkGUZFUx6p3MXs25PthFXQpALOPbSUcFn8PQJDL8tjHDyQM5qeZ8SmkiV8onTuNzKGMZESI5s2sNKf4sqNk=
+	t=1767984923; cv=none; b=u6+HV7K8qQqipEptjeRSnlVVVkVAJX2RZrgTCduMpsUf6o1GiBJnRmTxgo7cV90ONUc+UXA+0acV0lRI8k9RLavTvszeiD4Z8ZTR2F5dobvkUb3JtrhVRy1TjbJa4LIjKyxTmL38AYLUm+ZEsBJKRP8PZ2pgGLNqwkO/iah08jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767984086; c=relaxed/simple;
-	bh=TMB/vzDd+LTd/lCIfQUrdA02dtsXU52MRguMhkvQVb8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ak9YqAIf15d/JRE6Zu1GtDCTHhqcZNSU6/dNY6o7crmNJOJ8alNKQyVuFccXH9xCl0wP+eY8kx9+FC7Ne+6AI7QkPhmZzXlMZwuPFw9CZ0S+pBc9e9JY2AjY9Kr7zjCOMDWDeLHAD3n/H88ame8NSeEKR++FOysWWsJwXmSJu8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O3536UNx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 56FE6C4CEF7;
-	Fri,  9 Jan 2026 18:41:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767984086;
-	bh=TMB/vzDd+LTd/lCIfQUrdA02dtsXU52MRguMhkvQVb8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=O3536UNxnd1jjpFdd1Htt0zkUCAlkHsuPGkYMCD1qVhlgwFyT6IevgaH77FMF1NlD
-	 DNRVU+u2IFH3jmlSV9jtQLVvOGUYLjFAeJvUc3yMchv08jCdLnJoJU5m/jESIHhDEz
-	 6V3EZ/5t0wIFqgHS89KgR/86iuvT3UYfzJJepVxfngGFTzuDPBZHW9BTaDyJHxThGo
-	 bx2a4ySRxO+5vCHZJ2+qwXnQIsMJxnia9awMruMrArP6xTp4eptnRC1tbWrqdGGlWx
-	 sjQ1zBB/CMOWHSA9li+0VnBdOytYwGHtt/z1JlD6CWBDFQf3YafYjKHkMVVohPNnKq
-	 fPTapFwSAOMcg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 41C97D26D97;
-	Fri,  9 Jan 2026 18:41:26 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Fri, 09 Jan 2026 19:41:20 +0100
-Subject: [PATCH v2 2/2] power: supply: gpio-charger: add support for
- fast-charge timer
+	s=arc-20240116; t=1767984923; c=relaxed/simple;
+	bh=tug3tpSyfr89QQYKaGWxzXYBfZYBge2qpQ8k2uT5V/w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TqpBkZykGvEIZFgX1/d89zDRby0anDepJfAxJcCf5LYLBAV1D/np3ALUKdqOjdeeNiiLeLuWMwG0rukTtkJYa3PHhUIJk74BZhMOPbMDaOUbpw5bnFwrfADYMJOBIZJ0R8hrPO1vHwwT+UeEQcyZ0FnOYgnSnEFKr4F7jA0d1S0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aOrmegke; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1767984920; x=1799520920;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=tug3tpSyfr89QQYKaGWxzXYBfZYBge2qpQ8k2uT5V/w=;
+  b=aOrmegkeiRdZHebzPYjAmxGpuC63EUIZoc18h0fvrJULF+0tjhkEdLdd
+   8aZl2Hd29E/i/wEsAinvELT9dkUBKmShADopoDsIiW9H6n838zQJCeXwF
+   Kc8cMYREFu80W5FV/GlHAGhSP37V1ltRXAt0QCLvmGq3UUO83GD3TAvH6
+   wpU6Q3aDTbgGSVFZkUll4ji9aits6lZGBhemHW2P3pVzyp39eyRLeCbEH
+   2S3Uz3f2zkpD/3/fbft7zfEh2qtaFvRKcDeO2WSqEEUOJa/EQJy5fexI6
+   BEgLOY4DU0YCww04gNfEqSWu4u153+P8aQA1pMw0zsiIzzD/W4rF7A40u
+   A==;
+X-CSE-ConnectionGUID: Y4A/bBFjRkGbhwpLpzLRBg==
+X-CSE-MsgGUID: SUa65eNUTui0E+7GAuNddA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="69353637"
+X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; 
+   d="scan'208";a="69353637"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2026 10:55:18 -0800
+X-CSE-ConnectionGUID: 4r3rK8zgTNW2zA8Jo7XIaA==
+X-CSE-MsgGUID: zzGXgLS1TwaXJZjwuZfG0g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,214,1763452800"; 
+   d="scan'208";a="234733637"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.244.157])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2026 10:55:15 -0800
+Date: Fri, 9 Jan 2026 20:55:13 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: rodrigo.alencar@analog.com
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v3 2/6] iio: frequency: adf41513: driver implementation
+Message-ID: <aWFPEa9HI4wmYLpn@smile.fi.intel.com>
+References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+ <20260108-adf41513-iio-driver-v3-2-23d1371aef48@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260109-gpio-charger-timer-v2-2-63fd1ba75830@liebherr.com>
-References: <20260109-gpio-charger-timer-v2-0-63fd1ba75830@liebherr.com>
-In-Reply-To: <20260109-gpio-charger-timer-v2-0-63fd1ba75830@liebherr.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767984085; l=3484;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=p7cAOt/Kei0dwrov23S0iQygvZlwNI2XjIcLZTRyKRk=;
- b=6dESZ3MWxnkh4h/fOAmaWDg0coGjFZxphczIfrWb1oJXbFV2NLon2cmhGbrnCYdc++rrW/cMm
- 9aXezOzC+hcBE82MF6bAuasro2NdqeqET3K2J9dlGSEuU4tkR93PKLC
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260108-adf41513-iio-driver-v3-2-23d1371aef48@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+On Thu, Jan 08, 2026 at 12:14:51PM +0000, Rodrigo Alencar via B4 Relay wrote:
+> 
+> The driver is based on existing PLL drivers in the IIO subsystem and
+> implements the following key features:
+> 
+> - Integer-N and fractional-N (fixed/variable modulus) synthesis modes
+> - High-resolution frequency calculations using microhertz (µHz) precision
+>   to handle sub-Hz resolution across multi-GHz frequency ranges
+> - IIO debugfs interface for direct register access
+> - FW property parsing from devicetree including charge pump settings,
+>   reference path configuration and muxout options
+> - Power management support with suspend/resume callbacks
+> - Lock detect GPIO monitoring
+> 
+> The driver uses 64-bit microhertz values throughout PLL calculations to
+> maintain precision when working with frequencies that exceed 32-bit Hz
+> representation while requiring fractional Hz resolution.
 
-On some devices like TIs BQ24081 battery charger it is possible to activate
-or deactivate a fast-charge timer that provides a backup safety for charge
-termination. In case of the BQ24081 it is a fixed 7-hour timer. Add support
-for enabling/disabling the fast-charge timer via GPIO.
+...
 
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- .../ABI/testing/sysfs-class-power-gpio-charger     | 10 ++++++
- drivers/power/supply/gpio-charger.c                | 39 ++++++++++++++++++++++
- 2 files changed, 49 insertions(+)
+> +/* Specifications */
+> +#define ADF41510_MAX_RF_FREQ			(10000ULL * HZ_PER_MHZ)
+> +#define ADF41513_MIN_RF_FREQ			(1000ULL * HZ_PER_MHZ)
+> +#define ADF41513_MAX_RF_FREQ			(26500ULL * HZ_PER_MHZ)
 
-diff --git a/Documentation/ABI/testing/sysfs-class-power-gpio-charger b/Documentation/ABI/testing/sysfs-class-power-gpio-charger
-new file mode 100644
-index 0000000000000000000000000000000000000000..95fb31ac4af3d5354bdc642c98baa7df267d150d
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-power-gpio-charger
-@@ -0,0 +1,10 @@
-+What:		/sys/class/power_supply/<supply_name>/fast_charge_timer
-+Date:		October 2025
-+KernelVersion:	6.19.0
-+Contact:	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-+Description:
-+		This entry enables or disables the timer in fast-charge mode.
-+
-+		Access: Write
-+
-+		Valid values: 0 (disabled) or 1 (enabled)
-diff --git a/drivers/power/supply/gpio-charger.c b/drivers/power/supply/gpio-charger.c
-index 2504190eba82e69b79382320e67de6b8f3dedc77..52997205879406fae600171b070a0328657fa79b 100644
---- a/drivers/power/supply/gpio-charger.c
-+++ b/drivers/power/supply/gpio-charger.c
-@@ -32,6 +32,7 @@ struct gpio_charger {
- 	struct power_supply_desc charger_desc;
- 	struct gpio_desc *gpiod;
- 	struct gpio_desc *charge_status;
-+	struct gpio_desc *timer;
- 
- 	struct gpio_descs *current_limit_gpios;
- 	struct gpio_mapping *current_limit_map;
-@@ -259,6 +260,36 @@ static int init_charge_current_limit(struct device *dev,
- 	return 0;
- }
- 
-+static ssize_t fast_charge_timer_store(struct device *dev,
-+				       struct device_attribute *attr,
-+				       const char *buf, size_t count)
-+{
-+	struct power_supply *psy = dev_get_drvdata(dev);
-+	struct gpio_charger *gpio_charger = power_supply_get_drvdata(psy);
-+	int ret;
-+	bool en;
-+
-+	if (kstrtobool(buf, &en))
-+		return -EINVAL;
-+
-+	if (!gpio_charger->timer)
-+		return -ENODEV;
-+
-+	ret = gpiod_set_value_cansleep(gpio_charger->timer, en);
-+	if (ret)
-+		return ret;
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR_WO(fast_charge_timer);
-+
-+static struct attribute *gpio_charger_attrs[] = {
-+	&dev_attr_fast_charge_timer.attr,
-+	NULL
-+};
-+ATTRIBUTE_GROUPS(gpio_charger);
-+
- /*
-  * The entries will be overwritten by driver's probe routine depending
-  * on the available features. This list ensures, that the array is big
-@@ -308,6 +339,13 @@ static int gpio_charger_probe(struct platform_device *pdev)
- 		num_props++;
- 	}
- 
-+	gpio_charger->timer = devm_gpiod_get_optional(dev, "fast-charge-timer",
-+						      GPIOD_OUT_HIGH);
-+	if (IS_ERR(gpio_charger->timer)) {
-+		return dev_err_probe(dev, PTR_ERR(gpio_charger->timer),
-+				     "error getting fast-charge timer GPIO descriptor\n");
-+	}
-+
- 	charge_status = devm_gpiod_get_optional(dev, "charge-status", GPIOD_IN);
- 	if (IS_ERR(charge_status))
- 		return PTR_ERR(charge_status);
-@@ -336,6 +374,7 @@ static int gpio_charger_probe(struct platform_device *pdev)
- 
- 	psy_cfg.fwnode = dev_fwnode(dev);
- 	psy_cfg.drv_data = gpio_charger;
-+	psy_cfg.attr_grp = gpio_charger_groups;
- 
- 	if (pdata) {
- 		charger_desc->name = pdata->name;
+We need HZ_PER_GHZ. I think it's easy to have one be present in units.h.
+
+...
+
+> +#define ADF41513_MIN_REF_FREQ			(10U * HZ_PER_MHZ)
+> +#define ADF41513_MAX_REF_FREQ			(800U * HZ_PER_MHZ)
+> +#define ADF41513_MAX_REF_FREQ_DOUBLER		(225U * HZ_PER_MHZ)
+
+How does "U" help here?
+
+...
+
+> +#define ADF41513_MIN_INT_4_5			20
+> +#define ADF41513_MAX_INT_4_5			511
+> +#define ADF41513_MIN_INT_8_9			64
+> +#define ADF41513_MAX_INT_8_9			1023
+
+Not sure if we want (BIT(x) - 1) for the limits as we have non-0 minimums.
+
+...
+
+> +#define ADF41513_MAX_CLK_DIVIDER		4095
+
+Sounds like a candidate for (BIT(12) - 1).
+
+...
+
+> +#define ADF41513_MAX_PHASE_MICRORAD		6283185UL
+
+Basically I'm replying to this just for this line. 180° is PI radians, which is
+something like 31415926... Can we use here (2 * 314...) where PI is provided in
+one of the used form? This will help to grep and replace in case we will have a
+common PI constant defined in the kernel (units.h).
 
 -- 
-2.39.5
+With Best Regards,
+Andy Shevchenko
 
 
 
