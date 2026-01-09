@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-253394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FFFED0BDFF
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 19:39:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D2DD0BE08
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 19:39:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4094E3031666
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 18:39:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C50A93027597
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 18:39:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386F027E077;
-	Fri,  9 Jan 2026 18:39:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E9C299949;
+	Fri,  9 Jan 2026 18:39:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7AC248F7C
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 18:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8870927FB34
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 18:39:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767983962; cv=none; b=iBSEbgRQ57QJbHoNI1hKlNNpshCiIu2aZNATveKb/Dod9Q5kJ8hdVbMvjFzkSLLMWi/7FSam7j917ezZfGE4JSEx+bSilsY0RFMHvGH54F38XVmMQwofLFWQcIk23nPWlvljaBQ5ohnXBncIVTi38jF94N8f+ubwfDQMrbTDsRg=
+	t=1767983975; cv=none; b=cTU4L5ONZfq2S6UND/6hSIcKeG8CSZYy0yodt8//hgxDHEXC7gX6DaP02WcSrNfhlg7m+szql+b9Q4a6Fjclu9o47YRZkXOW/9IXHdqZwyzOgbRdYSN0C9mSpBCEgt5ClpuoPRaj6K3hXfQXJnMy/ZZNxHcbRWcRUf6i3cjiVsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767983962; c=relaxed/simple;
-	bh=Kd7pnWcr1R/4wNYYYEHmfzxHiMMS+c6SRBDRjLB+8IQ=;
+	s=arc-20240116; t=1767983975; c=relaxed/simple;
+	bh=y1gtTxi2yb3k6kp7O25uyIdCMmBuVjPt0jggABGGS+M=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BOLfjhKdFwo6tTUVSOmmWEocguVrOgi8qc/ckS8ChuPz/Hwz4E7zoaFXN5f8ljUdaVT57q0MeCaw9ON2l3r0DipsksEw+6mToJZd6KkeFsAdUF2QgBUTdP/ALopeaxHHpgKRbJQ6jP7tAf/uXItStbq+jWD8BynjYP3930C+BOk=
+	 To:Cc:Content-Type; b=Eu8g/DN/txaErn/F1U1Am9MoYIL7BdNPPXZq9ax89lKXllkApeXhFlPvArmJ+yIRF7JpgQUJpIBDyq3apy/9PdKpXiuCe3CHtD0SDnz2gGJDHq3v+wV0MGBVXIQhV4n3/X8eCRZuyv7wa3weVZ+Pw3jyvP2346LMGjxoZYV8bCE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-93f5910b06cso2026817241.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 10:39:20 -0800 (PST)
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-93f500ee7b8so2214555241.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 10:39:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767983960; x=1768588760;
+        d=1e100.net; s=20230601; t=1767983972; x=1768588772;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KmILYhqvOyXlRgf5EHBu2pb/ojQMIlgBjR7Z/UbB1kA=;
-        b=IHUESe9++2IODIyB7PqcuQ3IU/+gVAT1EbUxsFKWZ60HM8LTmTK4gN0GOpNuztQ9vk
-         /8yah/Y4FzWm8V53TnmWOsWck5v8gkr9QrZWH4JHA7fMotL/6hGllkMhQ9UkI62nWuHg
-         K+bHTYjFJgGaQRNrEVLULIkj+Q9fJK/BS9OIPUR2ATHpzTA3bMKgwSwAVfFbNtPro5Cg
-         rLsJKZRc41ASXiH98o6s+GHasZG4/SOzDQ2pAut0KrOshi9pKhgsftYGBHX/yDrekEcd
-         VIayv4BOTQECs/rlYZganzVVojEoGFt0r1I3Dgea27Bc/BF4FLt2dF1jKmZLZaQ0pFoJ
-         S6RA==
-X-Forwarded-Encrypted: i=1; AJvYcCUu9B6GDr7zWe/8qLGTN3HqinBBPxnZZcea7SkPgMdeRGEpLPArQiWhiBM6/fq8E99A5wLEH3pGA8hs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLIXcjiriOD0TQjyw8/KdVbGAigeEVCcnnBsc39dRJr12sbxGY
-	zx6d4OApazNwZ10mGUyVR7Wg3eGP/L9CKX9WFjQxbNii7MIME03m8cQLVWJuHUKv
-X-Gm-Gg: AY/fxX5FfoBKlXWpY0ob+ixiCjmALqYyWaO4D+RW/PoNgx7G1yJTkB/q61xqEpTQKHf
-	xkhGTHbxoR+IR5olvuKwGmvQeB9g5iD9bPdszXujrsDuuC/KpTbpzZj5PkfWo6VT3ns9ldZxTzk
-	M+ysRrZhBZdeLAX9oJgMgix28SX6eiSuCzZJs9PR1IJ88YdAmwj0fl9hI4EH5XyvZ55HelREXtl
-	yxFQ4uSxK4Q4EQTmlcAH9XMIiDqNlZFTMRgbORwKxJlypMrNmvvy9C+NYIKgo2YfpjKz9coxLAT
-	AS6LaOabe1IAvMnennnjsbKUROM5FL0dVXhTZuVhcouZX5l3ON0MHXBLPFZf6vF0uPQU54W+6m4
-	WSAGTbf9O+UM8PPIUTxNFgrazH82isx+4Hb9rMGwrAF+bplkqSPWev7MkKMqD+H94FvR3kaH4im
-	d4AIP6+WWF/ZRPojaoS8BuGXwRqllZQO7cMtXCpgK6APQSrwkI
-X-Google-Smtp-Source: AGHT+IHjM6bNYvXdvaOP/AYjJ73tOp3eL/t6byKl+gnv3d5Z9JU9o3TsRNp1cnWeyLhbTtJsrllNjQ==
-X-Received: by 2002:a05:6102:5490:b0:584:7aa3:a329 with SMTP id ada2fe7eead31-5ec7556654emr6520340137.4.1767983959795;
-        Fri, 09 Jan 2026 10:39:19 -0800 (PST)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944124a34acsm9718494241.10.2026.01.09.10.39.19
+        bh=DI2vaQ4j4Y7F+Kqlo0E9lSJxr88gYTxnhRjrPcAUZdM=;
+        b=j2e8TUqCmicDOkW20a69PpBwjcvS3fGJYIQIGNbjwI1Vj40rvz+9Zq78DZuP8aMKGd
+         KS0Zd1XZi0sWhTctL8zMN5UQwO6jehaWlDq///jPmZNOAgWSr0bgSiDdxL/Q4kdyhYNZ
+         p1XlN+FaPFdlFvrlN+FGZEMsLlyBQSlw5PUJb+AI50g/kTUWChp1SwpcMlkMCUNbl9Dx
+         AOdjSpbThUzbV/9P5B2AeezvYBVMP/xmRNQjnWE//vKg95YDsqDxGFYCuYUWEGfkCFfV
+         VWJpPxJ/dAFbcmQVvwQp6l6ndU0DUIXcjNo5GOYu7bADjIvfw+AXd6cH5qZjoKv7/ETe
+         lTuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0ME0tW3xkjo9cKkHtKJ9HNQX+6ECekq40NgKgtk9f2PPJlDIlWH3eDfPoq6mL222nPb+/rXdl6kWH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbSdhO+TiGT+eGbvpCZoX34yp9L4EIe6lEvSKNw5nyDSHnHSQT
+	MnbvVTkAub01ZW5Zy2jWYSImJ6Qp1eAG7+WT1isg4EAWYzuHXReRy39gMhejYhMc
+X-Gm-Gg: AY/fxX4C22Pgycx4WfBK7gTiyC7Uzwg+G5DJgIpQ3Zfsj0hqIXa3BLMskwxc29l9Yr/
+	0eqhRqUG16g993ApAQ4cJ4I2ccvDx151RwHYABUCGkdwVTpAKSfCi/xiKW0cIjx8kbOm9p7desx
+	v0Np4pJcmPuXN3Fp5j3H8ymu6I3Sm/YHMXAttgj0M3fRSCgOh+L3ABHTSrgEcRRPNQNfhHRKLh/
+	+lbDylTF6uqF84yfEoOlb1kkoqrJhUNJsLNLkQ2skthy9qqFFNoQzgJClHTSTZgs1LjjeO3YFKz
+	giQz6SIiZIPvWtpG7GsYKKTrbMKD5RXimlyTHt8y+W6dsw5NIj3fz9TFx3Doj8yJpXkL1xUygLp
+	6JbCBORsoH2dpEsIRAWaUG0bj4UQYnwEuyviVBC4+l/Ai8WUDJWmbsRenS61pChn70Nro1t5zUL
+	hm/3mgA77zmYmOv8Zr6UUORxZOA5M7PGUG3N+8SwDu+v8ajW9y
+X-Google-Smtp-Source: AGHT+IG0YmKEB4tqULNcFSZKZ0cGZIaATMjh9GrfPba8qRwSqUucxWRhd0klvpUrIv4moZc+QPZFYA==
+X-Received: by 2002:a05:6102:2d07:b0:5db:e0fe:985c with SMTP id ada2fe7eead31-5ecb6853a90mr4262230137.10.1767983972355;
+        Fri, 09 Jan 2026 10:39:32 -0800 (PST)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec77064e86sm10396587137.7.2026.01.09.10.39.31
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jan 2026 10:39:19 -0800 (PST)
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5ef31a77afbso666020137.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 10:39:19 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV+/ZD0OrzoQ2DEA5mZFeBmtclYfCDQce26ap0KRczvTqOrARw2OCYzvO5LjKmz3BDjZKvRFF+ahvnp@vger.kernel.org
-X-Received: by 2002:a05:6102:3909:b0:5ef:a1ea:bd33 with SMTP id
- ada2fe7eead31-5efa1eabdebmr1058605137.9.1767983958883; Fri, 09 Jan 2026
- 10:39:18 -0800 (PST)
+        Fri, 09 Jan 2026 10:39:31 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-94124140e02so2856971241.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 10:39:31 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUY/+JRE0sVoNwXXvuDM9OL5kAh7EJ9kRRuVZ6w4nwakO+dj+DE7Xs4dYKcPJHFWTEIDjdArvOCbiq4@vger.kernel.org
+X-Received: by 2002:a05:6102:26cb:b0:5e5:5ed7:60ae with SMTP id
+ ada2fe7eead31-5ecb6900d02mr4442716137.31.1767983970833; Fri, 09 Jan 2026
+ 10:39:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com> <a7ed87270fd084f2b3f1ad6ee9238b2fb5bcc426.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <a7ed87270fd084f2b3f1ad6ee9238b2fb5bcc426.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com> <679042b205b9596b79463b89c31d9e3f74cd0e63.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <679042b205b9596b79463b89c31d9e3f74cd0e63.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 9 Jan 2026 19:39:07 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUvh2mCj_8tuk7CMEWkktPvXAEaz5kKrgy8p-bgGETepA@mail.gmail.com>
-X-Gm-Features: AZwV_Qioy5rAVOHURSXprxm6XZTivhCttyw7ug7KaU5R8GoCdbMVCMnDP5LwuYc
-Message-ID: <CAMuHMdUvh2mCj_8tuk7CMEWkktPvXAEaz5kKrgy8p-bgGETepA@mail.gmail.com>
-Subject: Re: [PATCH 07/22] clk: renesas: r9a09g047: Add support for DSI clocks
- and resets
+Date: Fri, 9 Jan 2026 19:39:19 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUt=yQwGw3sgQ9gBhOEa6TWW59srEE69dyzr+Fq6j+=Yw@mail.gmail.com>
+X-Gm-Features: AZwV_Qj05tdYznd7IbXD-D9LpPaUhjdHWee49H2zOy9lEKLzWfR8oEQJBva10AA
+Message-ID: <CAMuHMdUt=yQwGw3sgQ9gBhOEa6TWW59srEE69dyzr+Fq6j+=Yw@mail.gmail.com>
+Subject: Re: [PATCH 08/22] clk: renesas: r9a09g047: Add support for LCDC{0,1}
+ clocks and resets
 To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
 	biju.das.jz@bp.renesas.com, Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -95,43 +95,12 @@ Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
 	linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Tommaso,
-
 On Wed, 26 Nov 2025 at 15:09, Tommaso Merciai
 <tommaso.merciai.xr@bp.renesas.com> wrote:
-> Add definitions for DSI clocks and resets on the R9A09G047 cpg driver
-> to enable proper initialization and control of the DSI hardware.
+> Add LCDC{0,1} clocks and resets entries to the r9a09g047 CPG driver.
 >
 > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-Thanks for your patch!
-
-> --- a/drivers/clk/renesas/r9a09g047-cpg.c
-> +++ b/drivers/clk/renesas/r9a09g047-cpg.c
-> @@ -486,6 +486,18 @@ static const struct rzv2h_mod_clk r9a09g047_mod_clks[] __initconst = {
->                                                 BUS_MSTOP(9, BIT(4))),
->         DEF_MOD("cru_0_pclk",                   CLK_PLLDTY_DIV16, 13, 4, 6, 20,
->                                                 BUS_MSTOP(9, BIT(4))),
-> +       DEF_MOD("dsi_0_pclk",                   CLK_PLLDTY_DIV16, 14, 8, 7, 8,
-> +                                               BUS_MSTOP(9, BIT(15) | BIT(14))),
-> +       DEF_MOD("dsi_0_aclk",                   CLK_PLLDTY_ACPU_DIV2, 14, 9, 7, 9,
-> +                                               BUS_MSTOP(9, BIT(15) | BIT(14))),
-> +       DEF_MOD("dsi_0_vclk1",                  CLK_SMUX2_DSI0_CLK, 14, 10, 7, 10,
-> +                                               BUS_MSTOP(9, BIT(15) | BIT(14))),
-> +       DEF_MOD("dsi_0_vclk2",                  CLK_SMUX2_DSI1_CLK, 25, 0, 10, 21,
-> +                                               BUS_MSTOP(9, BIT(15) | BIT(14))),
-
-Please move this below, to preserve sort order (by _onindex/_onbit)
-
-> +       DEF_MOD("dsi_0_lpclk",                  CLK_PLLETH_LPCLK, 14, 11, 7, 11,
-> +                                               BUS_MSTOP(9, BIT(15) | BIT(14))),
-> +       DEF_MOD("dsi_0_pllref_clk",             CLK_QEXTAL, 14, 12, 7, 12,
-> +                                               BUS_MSTOP(9, BIT(15) | BIT(14))),
->         DEF_MOD("ge3d_clk",                     CLK_PLLVDO_GPU, 15, 0, 7, 16,
->                                                 BUS_MSTOP(3, BIT(4))),
->         DEF_MOD("ge3d_axi_clk",                 CLK_PLLDTY_ACPU_DIV2, 15, 1, 7, 17,
-
-The rest LGTM, so
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Gr{oetje,eeting}s,
