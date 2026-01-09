@@ -1,156 +1,191 @@
-Return-Path: <devicetree+bounces-253216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC4ED08858
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 11:23:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DAED0886F
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 11:23:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4744A300FA29
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 10:19:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 81DD03078123
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 10:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D053358DF;
-	Fri,  9 Jan 2026 10:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q5HWPIYv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C252F6928;
+	Fri,  9 Jan 2026 10:19:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B46333427
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 10:19:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248E932FA24
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 10:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767953955; cv=none; b=boNUAqbkc7pBziiV71+yfLmGf373SiRwXlh9luXslAxQS2BGDIiwKEjbD3F5Gwb/xWYr7XmUwdqG/za6xmS3RPT0tprIzT8PuJUsQyQdI1vrrK0GKQZQrQR7oRdMwujqJE+fhWI4Q2zyES+0jXYWcywhtFG+QcsOQzxpWuEK1zo=
+	t=1767953973; cv=none; b=fvnyXnuvpNPGV2Y0OaxEQwPe9oV92eQfDX58588NVprTjJIPBU+cY/RD7EHKfJs4df54r36r5+4mVCX5LjEk1fWG70RUXiywjfLAZAWiLesehZRGfMkPlyJbml3Ek/2smaRQqj62GcuGzcrSAOlyiUisMNWhNelFZfFoQ4xU6bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767953955; c=relaxed/simple;
-	bh=9hbsjUn6eYASbfA/oJT6XWtugpXGlLNjh8EPRyD3m04=;
+	s=arc-20240116; t=1767953973; c=relaxed/simple;
+	bh=iBgJn4Oei4MSF7wX/YOhYnpZ1nzYzLulaCt82baVuLA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LbmC2ovQzAxjkG44Yi5/6C1aep36amU2sU070DGR9whU7sXk926JC+lys/rdNqcY1PVmPWsCX3MiyxtpDq1tXs0DpKv6V4OehqBT+R9Ixk635K+LJChvE/2B6cqoUV5F7keVERpl2+BmNAcPBHD5TAAAdJ6vxLXWTgX4O2GgoV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q5HWPIYv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F28EC19422
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 10:19:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767953955;
-	bh=9hbsjUn6eYASbfA/oJT6XWtugpXGlLNjh8EPRyD3m04=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Q5HWPIYvfN0g+8t2ODLZ6RHYqLOPxZyUqAO8jXrlFFXbJfNk5PkQzNacBCGeWlOI4
-	 zVWxIN+v/ND+H67OS1j4Vi913awzUf4IrWnMQVfD2Dpr24wELqnc2MFBMKJ1ZKLRm+
-	 JVsn9pBwtUqBGoql22eIC2pTaZn/uEE9cygO2yg+h9puAJ1bsbFUfn6tnq0irE8nUt
-	 /FagBI3fN0qA257T3lWotje4TpFQ1+rWcTinV80/YofYEx4LczcmTg2VUYLrf15CVW
-	 3uX7arvzOc8Tv0ed/zvkpT7cPQwnGPex+YpZh2r/HPuz3I/px64pkGw3UDhomvDchG
-	 HZz+igJUYk/GQ==
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-78f89501423so32192447b3.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 02:19:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW5eWtzILQ83r3QlyRUF9NhIyI+SdD7p3xwxXfN50BhVn360ZRrLhWBl7i4jRcKcQGzlg4W1bNIpovV@vger.kernel.org
-X-Gm-Message-State: AOJu0YykcNTd61NzbHTVD2qSO3cNHIHbqIolnLJLQzmhKgya14waLcLt
-	rcpBL1pJ0cDmATYJAKZ+2NxlKw1qkUS8PEdxi9JDyUhlhhag3PCpxGCJkxOnrDD0yqJ+sXZNxwi
-	saE0E5hKZ6ApT9H/MGCa/Xul9pK6MSUo=
-X-Google-Smtp-Source: AGHT+IF5GjxrLmuSZaExZjLaPOUjC/EsSoVJYPQqW4W2Vxtf6X+8zRZ62bSAxQ72fQzNPB0kphD/sc5lbPKYGJNdPlA=
-X-Received: by 2002:a05:690e:130e:b0:640:ce59:128b with SMTP id
- 956f58d0204a3-6470d2437b1mr10650880d50.2.1767953954886; Fri, 09 Jan 2026
- 02:19:14 -0800 (PST)
+	 To:Cc:Content-Type; b=puq08SRNun6JLRDg+GBK3AJYeOHeBONXhoqKnANxCcpNCZchsVUA+NPm52ZPijaLr/UHA6iv4qGaihdNrCoTg/h02435sI41bTaU1qMt6sxSVxwwehprOWbfZ98qcgH7ABOzxmUhtBlFuapTHXShEwCXsqJ9OEGdlVYyO7LY95s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-5636274b338so685952e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 02:19:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767953971; x=1768558771;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=68fD+2d6dtiuvezPQdm8X6562nqf1sN2gN86wHzPt+o=;
+        b=FdJFw03THvi2MTypYyBJYKVWqfWjXNAAEeLPJlnRm4NPX6uG5tO10gVLdEqnOm5KOG
+         g1ESQj0LLZsiOJJrNjKmeuDYHC4mrwo3rGB5XbzdoL/kwAttNg1sw6o5lbZ2d8gV+lsn
+         I5uGUiJaZ4tWPUOkjbU07P3LX7HOAybbyKvB1YxBDX73RhvT9WW0p/mBcQnaTS5TU5cO
+         1q2YFNrqzjitoi7jWEMRqDJOr3/g9d1mcmIzEC/6hScMa7ny4YTlfguelJr4j+mD/+1B
+         Sy7OAI9fWQ4JRolr9LpoZ1cd5hA/d7BjwIH6z3QuDBLZXuFsd1sHiKMXxCT68U8G4zo8
+         +2Og==
+X-Forwarded-Encrypted: i=1; AJvYcCX/MEDobuGnYaBHGH7X1TsuzX/rNuq3XjAptj45P+ZY81F6JEonfYYuFV5LVRWdpob1UIbuR/dp//fq@vger.kernel.org
+X-Gm-Message-State: AOJu0YzD3iBbcN4gURNHtj1AGKiNL646dhfnidlsE55JDK1SRFSdCkd+
+	q2bciXDCofxjRxy0wijjyZDfyJV0wLHxiteTVY30dxFVLVqXK2THMe9lPH6SbXnR
+X-Gm-Gg: AY/fxX6LinbBqg82ANziAbP9yKW5dOiyF8U3IWKQa4BF3dZicAftYxqPkNIKU8W3IHT
+	UcPOQlPYBzcAmFzR4pwDAb+G4W1aZa+K+SS+9/J5OQZSghvy0aM3rtZKao+tsD/nkRVgWTiwN0y
+	80+4w8hK9N4b3kauea4wb/whzYnJPG3WB60DHpSS5Y5sF7/eV2H7Vip2LG5LAOkj8l7hJkZVyXe
+	x+c6xLxL3/k0qnTbgdtDTcKjX7odR2XEVOCkFWSzc9NISsS5JYnju4pSqfEeU/nEHyqF9WY7zj+
+	5yKiW8dOrA6HThh8AXt13/VmoSZNQNlcx2TDEAIGMv2jzNDAxbX9W6/VQumVnR/XqYLj7htbeZZ
+	gzzzSZHovKEOT6wHMcQWkJIJwLt/R94EkjRYMjDTQeB3+EUA6K/ZVcEBG6vs3enodfeGkYL208l
+	/s10pdm/e8CeROda2dICKzQNvZC/TaYK1sP+qWOQ1lwOJmNwD6TM1U/A6vQ7Q=
+X-Google-Smtp-Source: AGHT+IE14PKFxj5M3eYOCr6usKFV5MwRfidK4EMorPmdx+zTwxWbBkSbf1fCodmsgeQVvFQeaTqozQ==
+X-Received: by 2002:a05:6122:220c:b0:54a:a3b1:db63 with SMTP id 71dfb90a1353d-5634637dcfbmr3417647e0c.6.1767953971109;
+        Fri, 09 Jan 2026 02:19:31 -0800 (PST)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5635f13471esm3314737e0c.14.2026.01.09.02.19.30
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jan 2026 02:19:30 -0800 (PST)
+Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-5ec838c33e6so1551773137.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 02:19:30 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUKxNmwDEVNez43Sqfwtc66ti/aM+/hJPe0RkvolRA1jLu1TQLi29YJE/ztiOK+fr2hbALNUZvUwFte@vger.kernel.org
+X-Received: by 2002:a05:6102:5490:b0:584:7aa3:a329 with SMTP id
+ ada2fe7eead31-5ec7556654emr5715287137.4.1767953970208; Fri, 09 Jan 2026
+ 02:19:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
- <20251216112053.1927852-7-ye.zhang@rock-chips.com> <CAD++jLntu4LY=VHOMSXeLKXOBD9MTNziv47B0qkDjxUa1xAsng@mail.gmail.com>
- <85032ae4-4d82-4884-aa7c-b69fee76d509@rock-chips.com> <CAD++jLnH2vLNxTLj8Lw8RnOHxfitwi3G_8WCBtu+_=XL3ryH_w@mail.gmail.com>
- <a2f5c2b3-2168-41b4-917f-183ab72a4499@rock-chips.com>
-In-Reply-To: <a2f5c2b3-2168-41b4-917f-183ab72a4499@rock-chips.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 9 Jan 2026 11:19:02 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkmieQpkJnAYyr7ys6m+v-=qNZaMoyKCtPFo+qjGwm8DQ@mail.gmail.com>
-X-Gm-Features: AQt7F2pjRZjybV4xPqr9Y0E2i2C1kVX68rvkdaRtoGr0Zh5amDZGu50_yar2YJk
-Message-ID: <CAD++jLkmieQpkJnAYyr7ys6m+v-=qNZaMoyKCtPFo+qjGwm8DQ@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
- controller binding
-To: Ye Zhang <ye.zhang@rock-chips.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	tao.huang@rock-chips.com
+References: <20251217080843.70621-1-shorne@gmail.com> <20251217080843.70621-2-shorne@gmail.com>
+ <CAMuHMdUaO_PwWygW8qss47W_ErB4pm1Z2HQ+edvw1-x7ce7oKw@mail.gmail.com>
+ <aV9o1LL0Ahip0O3-@antec> <CAMuHMdXYCNR0ANn152ghFExpWY_yZ5+kyFGGRwA+X-EFUvxZXw@mail.gmail.com>
+ <CAD++jLm1u9ChqsftwvbOptiG3Qo2KWxPjqN2snOVuZDYuVST5Q@mail.gmail.com>
+In-Reply-To: <CAD++jLm1u9ChqsftwvbOptiG3Qo2KWxPjqN2snOVuZDYuVST5Q@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 9 Jan 2026 11:19:18 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW_DUyo=uarCpceKcEq9Hx+q+DHgfHW-m2DOjgAQ5R79Q@mail.gmail.com>
+X-Gm-Features: AZwV_QjdcUI-7Z-N_pZ99To6fYeZb0GuLnE25cbH9PblaUhBL8UbvvWFR6RVNjc
+Message-ID: <CAMuHMdW_DUyo=uarCpceKcEq9Hx+q+DHgfHW-m2DOjgAQ5R79Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: Add compatible string opencores,gpio
+ to gpio-mmio
+To: Linus Walleij <linusw@kernel.org>
+Cc: Stafford Horne <shorne@gmail.com>, LKML <linux-kernel@vger.kernel.org>, 
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ye,
+Hi Linus,
 
-thanks for agreeing on using standard bindings for
-RMIO, we are making progress!
-
-On Thu, Jan 8, 2026 at 1:19=E2=80=AFPM Ye Zhang <ye.zhang@rock-chips.com> w=
-rote:
-
-> **Regarding the primary IOMUX:**
-> However, the RK3506 pinctrl support is built upon the existing
-> `pinctrl-rockchip` driver infrastructure, which was originally designed
-> around
-> the `rockchip,pins` property. Refactoring the driver to support the stand=
-ard
-> `pinmux` binding (and the suggested nested node structure) is a significa=
-nt
-> undertaking that involves core logic changes and regression risks for old=
-er
-> SoCs. Mandating this refactoring as a prerequisite for RK3506 support
-> would effectively block this SoC from being supported upstream for a
-> long time.
+On Fri, 9 Jan 2026 at 11:07, Linus Walleij <linusw@kernel.org> wrote:
+> On Thu, Jan 8, 2026 at 9:41=E2=80=AFAM Geert Uytterhoeven <geert@linux-m6=
+8k.org> wrote:
+> > > > What is the rationale behind using brcm,bcm6345-gpio?
+> > > > Given brcm,bcm6345-gpio has 32-bit registers, while opencores,gpio
+> > > > has 8-bit registers, I doubt the latter is compatible with the form=
+er...
 >
-> Could we allow RK3506 to follow the existing driver's style for now to
-> ensure
-> consistency and timely support?
-
-"timely support" is of lesser concern to the kernel and DT
-bindings which are more concerned with maintainability and long-term
-longevity. The ambition is to work predictably and impersonal, such
-as like the planets, or the plants.
-
-> We agree that migrating to standard pinmux
-> bindings is the right direction, but we believe it should be handled as a
-> separate, dedicated project in the future rather than part of this
-> enablement series.
+> Yeah this needs to be fixed/reverted pronto :/
 >
-> Hi Heiko,
-> Do you agree with this?
-> 1.        Use standard `pinmux` for RMIO in this series.
-> 2.        Keep `rockchip,pins` for the primary IOMUX for now.
-> 3.        Plan a future refactoring to migrate the primary IOMUX to
-> standard bindings.
+> > > I switch the size from 32-bit to 8-bit using the reg =3D <* 0x1>, <* =
+0x1> setting.
+> > > Also the reg addresses of "dat" and "dirout" are different for the re=
+al
+> > > brcm,bcm6345-gpio.
+> > >
+> > > brcm,bcm6345-gpio. Example:
+> > >
+> > >        /* GPIOs 192 .. 223 */
+> > >        gpio6: gpio@518 {
+> > >                compatible =3D "brcm,bcm6345-gpio";
+> > >                reg =3D <0x518 0x04>, <0x538 0x04>;
+> > >                reg-names =3D "dirout", "dat";
+> > >                gpio-controller;
+> > >                #gpio-cells =3D <2>;
+> > >        };
+> > >
+> > > vs opencores,gpio Example:
+> > >
+> > >        gpio0: gpio@91000000 {
+> > >                compatible =3D "opencores,gpio", "brcm,bcm6345-gpio";
+> > >                reg =3D <0x91000000 0x1>, <0x91000001 0x1>;
+> > >                reg-names =3D "dat", "dirout";
+> > >                gpio-controller;
+> > >                #gpio-cells =3D <2>;
+> > >        };
+> >
+> > Exactly, the register space and register widths are different
+>
+> ...as proved here.
+>
+> Stafford can you send a fixup or revert patch?
+> (Only need to revert if you can't make a fix quick enough, which I
+> think you can.)
+>
+> > > The opencores,gpio setup does work.
+> > >
+> > > Now that I think about it, would it have been better to just add open=
+cores,gpio
+> > > to gpio-mmio.c compatible list?
+> >
+> > I think that would be better.
+>
+> Yes this is better.
+>
+> I should have seen this, I guess I was sloppy :(
+>
+> > > If so I will can revise this patch and add patch to gpio-mmio.c.
+> >
+> > DT maintainers: Given gpio-mmio is that generic/simple, is there a
+> > specific reason there is no generic "gpio-mmio" compatible value that
+> > can be used as a fallback, avoiding the need to keep on adding new
+> > entries to gpio_mmio_of_match[]?
+>
+> I think "gpio-mmio" combined with compulsory property of
+> bus-width =3D <nn> (as used by multiple bindings) would be
+> generic enough. So a schema that accepts "gpio-mmio" if and
+> only if bus-width =3D 8|16|32|64 would be acceptable.
 
-My main concern is this:
+Each register is described individually, and the width is derived
+from the register's size, so no bus-width is needed"
 
-foo {
-    rockchip,pins =3D <...>; // For IOMUX
-    pinmux =3D <...>; /// for RMIO
-};
+  reg:
+    minItems: 1
+    description:
+      A list of registers in the controller. The width of each register is
+      determined by its size. All registers must have the same width. The n=
+umber
+      of GPIOs is set by the width, with bit 0 corresponding to GPIO 0, unl=
+ess
+      the ngpios property further restricts the number of used lines.
 
-I don't want to see this, because that will be *hopeless* to migrate
-to both controllers using pinmux =3D <...>; how should you decide
-which one to pick for each?
+Gr{oetje,eeting}s,
 
-In that case it is better to do:
+                        Geert
 
-foo {
-    rockchip,pins =3D <...>;
-    rmio {
-        pinmux =3D <....>;
-    };
-};
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Because then you can later migrate to:
-
-foo {
-    iomux {
-        pinmux =3D <....>;
-    };
-    rmio {
-        pinmux =3D <...>;
-    };
-};
-
-Yours,
-Linus Walleij
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
