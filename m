@@ -1,131 +1,126 @@
-Return-Path: <devicetree+bounces-253099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31924D0765B
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 07:35:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E70D0766A
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 07:36:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7A06300F8A4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 06:35:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4BD2930090AA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 06:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154A02D73AE;
-	Fri,  9 Jan 2026 06:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2D02DAFA1;
+	Fri,  9 Jan 2026 06:36:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="beS2t433"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Z3k8rymC";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="WkmcQYPp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93EBE24887E;
-	Fri,  9 Jan 2026 06:35:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A8B28850E;
+	Fri,  9 Jan 2026 06:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767940535; cv=none; b=Zf+PASAp8Xu7TSS0E0LlgG7mo3qOoz/btd2r4y9QVK2opRF3KFqAoAKs7PO2B57Si0taQZRZCxOyfYs52K2Ywar5GFJVVOQ6xWGCZfWIx7gVOr/bphYq97X3JB4XPT/6fbq1TbZvAmhbYI896nHBTB4cBxtcQsnaCg1JHFUAcCA=
+	t=1767940580; cv=none; b=hXuYaAXNP7mwfa43SQg9MiAnk1X3hxmdQZ9sjYEimkty6VTSdftQPi3nmjssf/wc5HAdaRjinb+FOe5f2W0roW8OnktGFNCo7ZRUAIVQ4OCdZHCflFCMFMcccj19IvgoM1gooE5TVwM3z3rCpb7zH3TQsPGDi56u2iNSKWxalrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767940535; c=relaxed/simple;
-	bh=eMYnWSUnwiVeYyI7m3DzK7cnJMsmhC3xsEMdpOFSKf0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=jT+JTm0EIY71l9Idr38xXFHV8ag6WiTyDZe9MTOdq/t2jd052brNH/apzkYdsRnuu9j+6fz3ZqWd2I3Rh/z7/WVt30vPHTIfDPAH+1HrZHHhunegIkSj039DWT9uk39jZSsELm56RtM5I9zfB8PxVhx+OSlaELcDVqSHetq/q+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=beS2t433; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1767940531;
-	bh=eiZT9sXBg4HL79BKEk2OPu5rQrW7DOHG5+KhdLse1nM=;
-	h=From:Date:Subject:To:Cc;
-	b=beS2t433FJ6u6bIljM3aTHPk6T49f9Toc1y6B8godI9KhHF6D/lmHoIogkf36Iqyf
-	 YMG5T18VIity3jOkFohkmYR6an3bP08DqZcAbTsTQwV7T8epMUYpGPvIUCGmHC7pxD
-	 oe2D7QNlcYRP5uCa5Fby4FUbBKjA1CzAxSHw/WX7IPj7ck/QQjIdMnxB3+W/mXwA4B
-	 QDiF2qdinPXMhiUXAsZdfAEtxnw5cWw/4BSJ9EMDKmgGm2XBtor/qn98V4PLrL6tLQ
-	 sEugBUA7pg7ws0cSduUJQNSvLgnYVYGW/fpyjMV5j0Wm/roL21s1BqXzGeHNX3wZ7n
-	 ACMQsT7TfWZbw==
-Received: from [127.0.1.1] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5CBB97C834;
-	Fri,  9 Jan 2026 14:35:30 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-Date: Fri, 09 Jan 2026 17:05:18 +1030
-Subject: [PATCH] dt-bindings: mfd: Document smp-memram subnode for
- aspeed,ast2x00-scu
+	s=arc-20240116; t=1767940580; c=relaxed/simple;
+	bh=k6nAvvx5UVSbHO88lKNTmQGUQoFtGy7kceT8JUpw8Go=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ILf0ejMAdZBXFViN8jr9PYB08weYBeED6OkhUqn99V4yAc1Jy0b9XyKIdnRlTViHXJGahu6vNqxxNuMpAVy4m0mrPCuSdaY2NfgOFmwgqnOAtojhWxeZt4gTxYnmwrzwxytD8kAJfzZTZuKIo5hfNiR/u/ZxFjs3UmIWIqRqqBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Z3k8rymC; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=WkmcQYPp; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1767940563; bh=KFBoG2fcIxheggmVM+AQApJ
+	yuE3iDl57EzYZzdHaxmg=; b=Z3k8rymCyRPCCIoyqZxbsyayVvG6CGqsrcdjyQLcc/LKkxIegQ
+	vPOzZnySkZG2C00gULRdqZb+Lajp/acC0LJkGFAZ4DgeJBloaNsOSvyT5t+ABWqJnJgqHjwckm5
+	P7LIszibYJqye37DKObXGq1Ih+0lv+0AZ8y0OYYB8dw0ZqrI6tVphU5bB1KOazs9c/KcUDiAr1O
+	DEjiR0PDR2hxgpPzYlL9ufH9LmvCXuqJuDREMPOhJ5RhxFLX45QhCwNAsRnEaSOF132tdVmS4VO
+	cE2RxtWUpIWFUZZURRfPCXFMKg9PtUJhpEO692b3YqMiK4ikZ5/6eO3Bm/AZmDKH67Q==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1767940563; bh=KFBoG2fcIxheggmVM+AQApJ
+	yuE3iDl57EzYZzdHaxmg=; b=WkmcQYPppQ+K2wEGm8QDA4IprDuJbg1u8P1XyGaIOvv7OO0LBh
+	TEfwfdosBtVkxS8JSsxAZ/SmM2HhGojcn4BA==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260109-dev-dt-warnings-mfd-v1-1-1aabe37e9a14@codeconstruct.com.au>
-X-B4-Tracking: v=1; b=H4sIAKWhYGkC/x3MPQqAMAxA4atIZgNtwd+riIOatGawSisqFO9uc
- fyG9xJEDsIR+iJB4Eui7D5DlwUs6+Qdo1A2GGVqpVWHxBfSifcUvHgXcbOEc9Ww4s7SYlvI5RH
- YyvNfh/F9P4+sds5lAAAA
-X-Change-ID: 20260109-dev-dt-warnings-mfd-b57e0e9fdcf8
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-Cc: Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, Andrew Jeffery <andrew@codeconstruct.com.au>
-X-Mailer: b4 0.14.3
+Date: Fri, 09 Jan 2026 07:36:03 +0100
+From: barnabas.czeman@mainlining.org
+To: Daniel Thompson <danielt@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Pavel
+ Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn
+ Andersson <andersson@kernel.org>, Kiran Gunda <quic_kgunda@quicinc.com>,
+ Helge Deller <deller@gmx.de>, Luca Weiss <luca@lucaweiss.eu>, Konrad Dybcio
+ <konradybcio@kernel.org>, Eugene Lepshy <fekz115@gmail.com>, Gianluca Boiano
+ <morf3089@gmail.com>, Alejandro Tafalla <atafalla@dnyon.com>,
+ dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Daniel Thompson
+ <daniel.thompson@linaro.org>, linux-arm-msm@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 2/7] backlight: qcom-wled: Support ovp values for
+ PMI8994
+In-Reply-To: <aV-UyhP7wllSBpYj@aspen.lan>
+References: <20260108-pmi8950-wled-v2-0-8687f23147d7@mainlining.org>
+ <20260108-pmi8950-wled-v2-2-8687f23147d7@mainlining.org>
+ <aV-UyhP7wllSBpYj@aspen.lan>
+Message-ID: <67acbe8ff2496e18a99165d794a7bae8@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-The platform initialisation code for the AST2600 implements the custom
-SMP bringup protocol, and searches for the relevant compatible. As a
-consequence, define the requisite node and the compatible string, which
-in-turn tidies up the dtb check results.
-
-Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
----
-Hello,
-
-This change was original part of an RFC series tidying up the AST2600
-EVB devicetree at [1]. Many of those ended up being merged directly, so
-I'm splitting out what remains into separate, smaller series.
-
-Please review.
-
-Changes since RFC:
-- Address the warning from Rob's bot
-- Tidy a description line that was dropped unnecessarily
-- Remove RFC label
-
-Link: https://lore.kernel.org/all/20251211-dev-dt-warnings-all-v1-16-21b18b9ada77@codeconstruct.com.au/ [1]
----
- .../devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml     | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-index da1887d7a8fe..a87f31fce019 100644
---- a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-+++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-@@ -130,6 +130,23 @@ patternProperties:
-           - description: silicon id information registers
-           - description: unique chip id registers
- 
-+  '^smp-memram@[0-9a-f]+$':
-+    description: Memory region used for the AST2600's custom SMP bringup protocol
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        const: aspeed,ast2600-smpmem
-+
-+      reg:
-+        description: The SMP memory region
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - reg
-+
- required:
-   - compatible
-   - reg
-
----
-base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-change-id: 20260109-dev-dt-warnings-mfd-b57e0e9fdcf8
-
-Best regards,
--- 
-Andrew Jeffery <andrew@codeconstruct.com.au>
-
+On 2026-01-08 12:28, Daniel Thompson wrote:
+> On Thu, Jan 08, 2026 at 04:43:20AM +0100, Barnabás Czémán wrote:
+>> WLED4 found in PMI8994 supports different ovp values.
+>> 
+>> Fixes: 6fc632d3e3e0 ("video: backlight: qcom-wled: Add PMI8994 
+>> compatible")
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+>>  drivers/video/backlight/qcom-wled.c | 41 
+>> +++++++++++++++++++++++++++++++++++--
+>>  1 file changed, 39 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/drivers/video/backlight/qcom-wled.c 
+>> b/drivers/video/backlight/qcom-wled.c
+>> index a63bb42c8f8b..5decbd39b789 100644
+>> --- a/drivers/video/backlight/qcom-wled.c
+>> +++ b/drivers/video/backlight/qcom-wled.c
+>> @@ -1244,6 +1244,15 @@ static const struct wled_var_cfg wled4_ovp_cfg 
+>> = {
+>>  	.size = ARRAY_SIZE(wled4_ovp_values),
+>>  };
+>> 
+>> +static const u32 pmi8994_wled_ovp_values[] = {
+>> +	31000, 29500, 19400, 17800,
+>> +};
+>> +
+>> +static const struct wled_var_cfg pmi8994_wled_ovp_cfg = {
+>> +	.values = pmi8994_wled_ovp_values,
+>> +	.size = ARRAY_SIZE(pmi8994_wled_ovp_values),
+>> +};
+>> +
+> 
+> Do these *have* to be named after one of the two PMICs that implement
+> this OVP range.
+> 
+> Would something like wled4_alternative_ovp_values[] (and the same
+> throughout the patch) be more descriptive?
+I don't know. I don't like the PMIC naming either but at least it
+descriptive about wich PMIC is needing these values.
+I think PMIC naming would be fine if compatibles what representing the
+same configurations would be deprecated and used as a fallback 
+compatbile
+style.
+I mean we could kept the first added compatible for a configuration.
+Maybe they should be named diferently i don't know if WLEDs have 
+subversion.
+> 
+> 
+> Daniel.
 
