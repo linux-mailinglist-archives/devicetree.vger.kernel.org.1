@@ -1,80 +1,46 @@
-Return-Path: <devicetree+bounces-253105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E69D078DC
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 08:24:59 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65806D078D3
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 08:24:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7DD5F305370A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 07:22:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D3A47301A4FD
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 07:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E08D52EC559;
-	Fri,  9 Jan 2026 07:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2002EC0B2;
+	Fri,  9 Jan 2026 07:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Dqnce1X0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OpQdWzek"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD71C29B8E0
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 07:22:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEA42367CF;
+	Fri,  9 Jan 2026 07:24:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767943350; cv=none; b=JLCXosfnebgOntJH7a4XyTQV3WSEBHVFZa+jIuADaPt39iWUi56fVDV5xaWpDFi+vx4r3DZuq/yUXpPCEzwGJzZuVTPT7yACrc6QKmZsX3E4yH4Z2a4OPVoanWLoohfxuIjZaJOsFYft4nst2HOyGHqrxH2E2HC1B2VAggGm124=
+	t=1767943473; cv=none; b=RuR7X6qaeJiyXqJ64az/dA9bWSOw6V+UqVo3MZaSxFgZ73Qvp7GM0+KfK8ziiPuzNQrb61/+2sx8yLzqaEDZR+LPRvSqduDX7Ay03hsyO5XKwoWFVew8ipYnrvKPr4biF+8WeZddfs27KFZUrqQ44xpvaPls6VlgD2pOYDRwzf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767943350; c=relaxed/simple;
-	bh=m2wz1lctkuXxONV+LwBiNBgqkMAeAHcaybVa1xu1pi4=;
+	s=arc-20240116; t=1767943473; c=relaxed/simple;
+	bh=2V9SVJ9E/dUpcgDGFfqGLCNY/x9z7IlzG5Nkf06LwqI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OKTLFQi65pw+FuTYrY/UBhogwKLMmgwvRzu20FfqP3WRDRT5FJo4iSetG2OA7WBM5VZ3vs6OFscp9OledIHpHjg9t1CoYDscF1GI7XGR3WSTVkPB/F4u8+f/id/0wL5EPks2qgy791v+bKDyyoA8Zo5sznv2SObtfzEgwtBUJsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Dqnce1X0; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-432d256c2e6so989978f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 08 Jan 2026 23:22:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1767943347; x=1768548147; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sRdipr7aeHoIxEX2vKQujSCZ90MZhOGqhcCSnr+qqyI=;
-        b=Dqnce1X0vtVMjESyefbYMf4OrB3zfay5BuN1xto1ajRjByz3ScVtxH0k7SV/3SBmE9
-         8SDiE8ePX88JBRUxE+Ul1GhJycAS0zo5vhyAC3eOidXukB5X2Yh6b4UBBit7K8kpabTw
-         RJcfLzt9X01wm+UM46j7qDywvTttacGE8n4vab71/UMgCLg/wwdv2ZbnRvc7+vWp0yq6
-         2n75Xt4H8g1jS/DOyEXq9mAMfwUwHmZLVALoqgJ7yoaR9AbKchZCk3+luNRG50QorQ2Y
-         FiKKSC0zJFp9PduZqEFe6G2qPpI/6zgOI8PQEFg6FlECs2B2l+cduxX6HDnSg2E1EZcA
-         PCNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767943347; x=1768548147;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sRdipr7aeHoIxEX2vKQujSCZ90MZhOGqhcCSnr+qqyI=;
-        b=HcOBEDUwh6ogR4wQGmO7YE9jZaRkIK48MkS4I1C+4Dpwe4xWDDJ1CzeLvdv5sRv0xe
-         GRHV0msjpE951tN9ngth9TgUTs0RSAltIBdH3CgDLIi8AEIaFyfk9w6+iyBIsa+MuyHv
-         EzBs8GkczVHJm6Gzgq30iykCYoGpDkiSzu1A4kPLR5bSHHwpRYrriHEeq2mMfmHEy9Zc
-         7xuo8tFKdCYA0A6ctGiQ9VLPalbVFiOlPXlPFasxh4YfWiip++ww4o4t1VKYJT7UreNM
-         Ga5JHdYxokvS8fVULm1yFWGMaPqbHWtsQZH754xnKA0L+pdh/AyA4Udxk2lNZ1Y4Tydk
-         YPEw==
-X-Forwarded-Encrypted: i=1; AJvYcCV3XCMafEPV9+trDW+h9WSLtYkNNDlkUzKsst7CUS3ZdqT02JfgFF0qLcJ/hxANoKdeuurZhOk9dTaF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7uBd4IBkEMMtxAFMFDBuInpfLGEoWO74vu9VIUkYm2P4vHoKs
-	6JMMOvB6jF3A6XzTqCS9xMsNTBedTg3ff/UnNwBXo0v9EC45pBnf9KgxN8RlGR3jjs8=
-X-Gm-Gg: AY/fxX4pAisMXpgQMGBLuHcOOeFrzMmx/Yi1xULCU4Y5k9U5G7Hjkn6fz0p4a4KRirS
-	BZw1llkBUYvPHXw1qgsI8YEmKihQdFDndWidfB1PUlyACKBGlFBd9nfFQpHhnZKdLvSuHhHnYFH
-	iJlDxExjh4OmyNS162Cs4QOFhhKbxMFPXoDJyg7PP1cZuV17WFpPKvTRMK7+ENYj8/OVLgLXEEA
-	2FWg33uAXjccJHZWt6svw9Omv0TyNAnUFnIlVYp8/Di+4v4uujKzCcczWbPtZ3Slwvm6kv1zd1J
-	wwPcZnbLz+Lf2ofEEN332C5HW+GCg0PEqihIlMfsr6Vn3u6fpx97XDm04D2BojTxhLnhyF53AU5
-	4MEoBYoMGarwaQpUhbotGtDm5Z4cSrwlS5nfM7Y4PgWUvru4MtkBIRlu21QiQcL8OxTullDk2Rm
-	jMeDHNBW1qBOcQ6J3hOg==
-X-Google-Smtp-Source: AGHT+IE2w6FBykX8O9VP91rZPx4SMD5MYP+siiUCDk4NBBI8RnGVXjy6MSR8IirXqwWDEZtmmeIing==
-X-Received: by 2002:a05:6000:290e:b0:430:f704:4da with SMTP id ffacd0b85a97d-432c37a74dfmr9227189f8f.58.1767943347109;
-        Thu, 08 Jan 2026 23:22:27 -0800 (PST)
-Received: from [10.31.13.216] ([82.77.28.160])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ee243sm20575451f8f.31.2026.01.08.23.22.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jan 2026 23:22:26 -0800 (PST)
-Message-ID: <af02ffd7-4876-4bce-8a79-2b34114d6ccc@tuxon.dev>
-Date: Fri, 9 Jan 2026 09:22:25 +0200
+	 In-Reply-To:Content-Type; b=BrwdeOZtOkYisMHGJ3L7hgCcwGJ0G+6mxgAfJhvnQQPqDfo3GmkZFTqg6QCsuCHMEv/HRdtFaZ2U3G2nL+k8ojPFc3YyNOZhfQx7d2i1ezgjRuwSsqEC+/uit/h9yfzsGhNNbWE8X3ArK28UxqxufTI/JgGWzpJfMV35Wo95CmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OpQdWzek; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC084C4CEF1;
+	Fri,  9 Jan 2026 07:24:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767943473;
+	bh=2V9SVJ9E/dUpcgDGFfqGLCNY/x9z7IlzG5Nkf06LwqI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OpQdWzek6SKBvNo1KctkpHz159NVuR3j60s+wuO863kv714eqT9NX60JKwbCC6sN4
+	 gPAmLObuQKlffCbXbaUswnCfR/6NDaph3sSkuFO5QLxlx4Y+BO/fxZ7vxxmFwDiJWg
+	 ky0XmHljLtky0KSQngAiP43KkXmJkVGvqlGORR2cWXCfxo0CwM5E0K+DKH9BufUQSd
+	 aT+sFPzWPQSQ2k4jelQ0T1GRfRWx/TZUshqFzxy83fT9o7hhLwlZkc8TBslvOx6jsD
+	 Lki6uHbpYGdRKXRVviR9Q6bnRvAdfagHZef1QQwDT6SNgTLkMMnqPHcIA9LMaYbE4s
+	 W9wqK1slRivwg==
+Message-ID: <87887adf-2c94-48c2-8f83-4e772ab50f60@kernel.org>
+Date: Fri, 9 Jan 2026 08:24:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,68 +48,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] clk: microchip: drop POLARFIRE from
- ARCH_MICROCHIP_POLARFIRE
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251121-tartar-drew-ba31c5ec9192@spud>
- <20251121-prude-dilation-79d275fec296@spud>
- <86bd75e7-1191-458d-b71e-c3cecb960700@tuxon.dev>
- <20251208-flatten-devious-56abcfecd510@spud>
+Subject: Re: [PATCH v5 11/24] scsi: ufs: mediatek: Rework probe function
+To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
+ "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
+ "kishon@kernel.org" <kishon@kernel.org>,
+ "James.Bottomley@HansenPartnership.com"
+ <James.Bottomley@HansenPartnership.com>,
+ "bvanassche@acm.org" <bvanassche@acm.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ =?UTF-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
+ <Chaotian.Jing@mediatek.com>, "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "nicolas.frattaroli@collabora.com" <nicolas.frattaroli@collabora.com>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "avri.altman@wdc.com" <avri.altman@wdc.com>,
+ "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+ "broonie@kernel.org" <broonie@kernel.org>
+Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ "kernel@collabora.com" <kernel@collabora.com>
+References: <20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com>
+ <20260108-mt8196-ufs-v5-11-49215157ec41@collabora.com>
+ <81ed17eb-2170-4e97-b56d-488b5335ff5c@kernel.org>
+ <dd2eba99adaddf7517f06acf7805d32e261fafa4.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20251208-flatten-devious-56abcfecd510@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <dd2eba99adaddf7517f06acf7805d32e261fafa4.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On 12/8/25 20:02, Conor Dooley wrote:
-> On Sat, Dec 06, 2025 at 01:18:30PM +0200, Claudiu Beznea wrote:
+On 09/01/2026 07:22, Peter Wang (王信友) wrote:
+> On Thu, 2026-01-08 at 13:25 +0100, Krzysztof Kozlowski wrote:
 >>
+>> Please provide here reason, e.g. undocumented ABI. Normally I would
+>> ask
+>> about ABI impact, but considering this is was just copied from some
+>> downstream code I would just not care.
 >>
->> On 11/21/25 15:44, Conor Dooley wrote:
->>> From: Conor Dooley <conor.dooley@microchip.com>
->>>
->>> This driver is used by non-polarfire devices now, and the ARCH_MICROCHIP
->>> symbol has been defined for some time on RISCV so drop it without any
->>> functional change.
->>>
->>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>>   drivers/clk/microchip/Kconfig | 4 ++--
->>>   1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
->>> index cab9a909893b..a0ef14310417 100644
->>> --- a/drivers/clk/microchip/Kconfig
->>> +++ b/drivers/clk/microchip/Kconfig
->>> @@ -5,8 +5,8 @@ config COMMON_CLK_PIC32
->>>   
->>>   config MCHP_CLK_MPFS
->>>   	bool "Clk driver for PolarFire SoC"
->>> -	depends on ARCH_MICROCHIP_POLARFIRE || COMPILE_TEST
->>> -	default ARCH_MICROCHIP_POLARFIRE
->>> +	depends on ARCH_MICROCHIP || COMPILE_TEST
->>> +	default y
->>>   	depends on MFD_SYSCON
->>>   	select AUXILIARY_BUS
->>>   	select COMMON_CLK_DIVIDER_REGMAP
->>
->> OK, I found v2 in my inbox. Same symptom here. It doesn't apply on top of
->> the current at91-next either.
 > 
-> I think this should sort itself out after -rc1, but I'll resend if it
-> doesn't.
+> Is it sufficient for us to supplement the ABI document?
+> This ABI might affect the ability to reset and recover after 
+> an UFS error in upstream world.
 
-Still doesn't apply. It conflicts at least with
-commit c6f2dddfa7f9 ("clk: microchip: mpfs: use regmap for clocks")
 
-Thank you,
-Claudiu
+In normal case yes, but I cannot imagine arguments justifying your usage
+of TI properties. Basically it would not pass review.
+
+Best regards,
+Krzysztof
 
