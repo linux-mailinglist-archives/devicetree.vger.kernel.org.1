@@ -1,120 +1,173 @@
-Return-Path: <devicetree+bounces-253214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855D3D0875A
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 11:13:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A69B0D08745
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 11:12:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A413530436AA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 10:08:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB84C3028595
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 10:12:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64538335090;
-	Fri,  9 Jan 2026 10:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD133358DB;
+	Fri,  9 Jan 2026 10:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZCug0o07"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="mXjM7V5r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A9EB329390;
-	Fri,  9 Jan 2026 10:07:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC69336EC5
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 10:12:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767953279; cv=none; b=ft8359oT2yeF5zCM5RaYfuQM20NmxQ9jTfnulXeYSFzl7blM+0Zcn3ITnalWQoJysLvwi/2y8QPUttvPAgLjweLY7KYO8QPQjTteozHPTcdzwW3QrFLNmIwsCQ+iYcyufNiF4zNYgl/WCi6KAisvki8GOWSBC4jfl7OQ2Oz+SWA=
+	t=1767953553; cv=none; b=TE0q4UUI9O5vboZOm7h0HEsrN8N9JGiDPapuqiwV/PLGkMxEIwKqMZvU5ECb7Y7/oNZ/+blDUqm6wzxgPSxUz5byyNyC14ReIfGqwiHpYAiPEL0KJgKRge0jGvCc57OWdvNcNvVUxaK65VC8C5Xw+xfT043tnyCZQMf30dG+BZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767953279; c=relaxed/simple;
-	bh=xZDFT6xCQrfp5temujsjrNIgKlzKzOPx2SZayOPArss=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QPbERse8Eq+u1QvReTkNuA6hK0+lItNbY3r8KD8im9mTl40MfUkebe+CAqqw9rj+kAPiT91QjFuuR3q7HObYJJB6Fp/rxe6mD7pEKWHwlCZSR9sDizioCqvH7ITKAuO3qPHFAoJNxisEqVf+zLhp+tCD8dohhiuvyEtBoSXQc6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZCug0o07; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8A3FC4CEF1;
-	Fri,  9 Jan 2026 10:07:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1767953278;
-	bh=xZDFT6xCQrfp5temujsjrNIgKlzKzOPx2SZayOPArss=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZCug0o07zRJc7azyDc2VOX0WzPDeP1XOCBz5jQV2/prrV58cdklK8RkyDJd651mtz
-	 BQI7U0grLV4s9kxz+T3uOCo28sF3aPuAzWczllwv1DM1GWMKgy9/WubJtPzT+uiygK
-	 m3Qq+cv0xeHX9YhCGMVm18/ywk5EDdJ7mUoaZGZ39jEkapntUJa6m5HPMJiB9wAJsU
-	 ru/Ti1m8NQxSxP1QT43o7MMa0W8F7+j9WnqndO42YCav4NAFEWATYRi7ef5pTZjccb
-	 9u2AFR1oM3bpKj9Db+xptHZoJ164IuyPtf364s8UcXAGJNX1wJXIYgRT+Xqq7z6uAX
-	 OnIyaCw+l00tQ==
-Date: Fri, 9 Jan 2026 15:37:49 +0530
-From: Sumit Garg <sumit.garg@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, akhilpo@oss.qualcomm.com,
-	vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
-	robin.clark@oss.qualcomm.com, lumag@kernel.org,
-	linux-kernel@vger.kernel.org,
-	Sumit Garg <sumit.garg@oss.qualcomm.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: agatti: Address Gunyah memory
- alignment needs
-Message-ID: <aWDTdYYVkFjfw4-C@sumit-xelite>
-References: <20251229071258.456254-1-sumit.garg@kernel.org>
- <20251229071258.456254-2-sumit.garg@kernel.org>
- <ahbbg3pffedrjzvksgz2jv7lwajwlcxc6nsmmtunwc4346eawa@xayff4ozvdbn>
- <aVtQHftDmENIAxrb@sumit-xelite>
- <73bcf4c8-3d49-4b55-a771-0c5c1ef54380@oss.qualcomm.com>
- <aV-L81f5NQg4leu8@sumit-xelite>
- <ba3f479d-1233-4e6a-8593-5c7fe5e79762@oss.qualcomm.com>
+	s=arc-20240116; t=1767953553; c=relaxed/simple;
+	bh=/T9YXxLBZhhcjEgy2U8F8hoAFjHAttxAaJCuCBXxuR0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fzS7Mw9ML6pqRJoMLAQbaWgPq1+rJ1Qk5UmytF9W/EclepK0oJHpWKKxGYnFJ8rSeMi6kwbckgBIuq0aUAjYIjaUOQ3565uCVFAXub3WJHsqpDVMhad9bxM1zF5FMk4ypiARkxL8eerQm9H2DtGApCQXcrDlPde6Wth6i8yO5b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=mXjM7V5r; arc=none smtp.client-ip=74.125.224.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-644798bb299so3736178d50.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 02:12:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1767953549; x=1768558349; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e5UnQ4+RbLH5hA9T1G883ptw/7Yo4vuW1qZZcpMJdJQ=;
+        b=mXjM7V5ry1w65ABMrH6YYPbUU2yTaiC9SgPnBoSpzA9tdbLq/HPJ13F8bPOcx3sdPM
+         YKJWZE8eRCuOxJsmo2RZ6JxkKeo+GCGpdkL12hpTSzFe9bJq3UnAgpd1A+9eFriZOGqU
+         /V7LOPfNz1yT7AQbwuUsdxCAMAs5LigeLNuiRg9jAU1bzCfPRFd11EFoafhBHbyaGYGv
+         v+LSCXyCyukvqEjP1eWpwiSfxCot2KZ2IW+aWLmgr7wqpeBRFVkSdVGssT791bxrNoo7
+         t4BV+sg0PARd4wMq/w8cL8qa7ghf7JBw8ggIbVUOJct5v+EI8zJIC7gwMlJj1LLkF/9F
+         NznA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1767953549; x=1768558349;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=e5UnQ4+RbLH5hA9T1G883ptw/7Yo4vuW1qZZcpMJdJQ=;
+        b=vkS/ZBTyvA9homseiOR7e9OAmi1Blhe87NtgJP3Fjz6btAG/xYaPBcGMJzQuyuawiD
+         xQb8I7Q0TtPDR55oonvdsio8u/17Py9iWoI753DEg5g52FXZzBdT7RN1HtfA66fkvLBz
+         2rEjKvBwgesThdMRXleHKhlfTq1BUPiP2RnGhrBIRJnSdKRJtJ0O4j2cGRXF1urzXclJ
+         aDvMzDk6wgMCbbTh2LLXcZr938y9YttjsftdTANMHnP6UXaO5G9Dtcik3BZjcQDLqjAC
+         VDfFlDExbT7Qm7gFsrSaMDZNLScmNWY47XTgj6wA6sgZcTO1ZEytEO5gnuOZ2FY7Bcfh
+         XoPA==
+X-Forwarded-Encrypted: i=1; AJvYcCU++ES5lenzPzDRwVjZd0KmyzJmeVNZrEgfzPQOTmXFOAeADs95TwKrqBlw8XzIR3NOI5vIzhqDN5NQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiPvbX8T8B1ENyZMj4NxhfredcqwkOfzJ/O5C4X1tNN36GFSIe
+	s/QtpD2TgLrsegOGVy3YD0EjerCrT2yHHP/nl0iDX3i5anydknLxwojR8ZfjfQQ9Bewq5WyPjAL
+	MeuahpjVClx1k54kC1rDedCyOJOyUkbnaBPfESEYzPA==
+X-Gm-Gg: AY/fxX43jXw0PiCeot9XXLKqrOnA5D3LpxVwF/r9C+vPb8ddOJdnOifxack7vMxMO/N
+	CfcfoqZkhASfGiqNWrM8nJBOgRar51m4fB7XDmo2phWBo3XqKxyvGxFo6haQIGEKHNAzuwoh5Ss
+	2ow78F1FxMJv7QuwJVFfE5MCrKr0E1zxfA1hJ5lq2Y0nv2w/gtlHLbGWNkT8AsrQ/RiRPfgbhC7
+	M4qXF575vZn1PDLhcKk2wTApghfHDcSug7c5itj7evaUYbIaxVa7Czvd5EeXefRcTnIKud2O7aS
+	ocWIVT2jlT/LZa8jFWJz0LPFaQf023joq/HoMXbYPDg=
+X-Google-Smtp-Source: AGHT+IHwjyG2gHAKynms5yLd8dsoBN0TrT6WXnJJkvqrEPM5Oh9NnNxT58LAnnyarsoeqkwGZZAXFc3fOBsckE359B8=
+X-Received: by 2002:a05:690e:1488:b0:640:d255:2d75 with SMTP id
+ 956f58d0204a3-64716c5ff62mr7691411d50.48.1767953549269; Fri, 09 Jan 2026
+ 02:12:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ba3f479d-1233-4e6a-8593-5c7fe5e79762@oss.qualcomm.com>
+References: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com>
+ <20260108-k3-basic-dt-v3-5-ed99eb4c3ad3@riscstar.com> <20260109033608-GYA3681@gentoo.org>
+In-Reply-To: <20260109033608-GYA3681@gentoo.org>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Fri, 9 Jan 2026 18:12:17 +0800
+X-Gm-Features: AQt7F2ruyJZja2_iA58MgeCUcAeuWdBMOblJYXEsXdoTwjRnAKOiZA60duu51-A
+Message-ID: <CAH1PCMYCLweVJ8WG2VY0jAk6UBuGA138urgfZV9+0fVeqmbbEw@mail.gmail.com>
+Subject: Re: [PATCH v3 05/11] dt-bindings: riscv: spacemit: add K3 and
+ Pico-ITX board bindings
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Samuel Holland <samuel.holland@sifive.com>, 
+	Anup Patel <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, 
+	Heinrich Schuchardt <xypron.glpk@gmx.de>, Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
+	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 08, 2026 at 01:43:30PM +0100, Konrad Dybcio wrote:
-> On 1/8/26 11:50 AM, Sumit Garg wrote:
-> > On Wed, Jan 07, 2026 at 12:29:02PM +0100, Konrad Dybcio wrote:
-> >> On 1/5/26 6:46 AM, Sumit Garg wrote:
-> >>> On Sat, Jan 03, 2026 at 09:49:04AM -0600, Bjorn Andersson wrote:
-> >>>> On Mon, Dec 29, 2025 at 12:42:58PM +0530, Sumit Garg wrote:
-> >>>>> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> >>>>>
-> >>>>> Gunyah hypervisor requires it's memory start address to be 2MB aligned.
-> >>>>> So the address map for Agatti is updated to incorporate that requirement.
-> >>>>> This should be a backwards compatible DT change which should work with
-> >>>>> legacy QHEE based firmware stack too.
-> >>>>>
-> >>>>
-> >>>> How come this isn't conveyed to the operating system using the UEFI
-> >>>> memory map?
-> >>>>
-> >>>
-> >>> I agree that with EFI boot, the information is getting conveyed via EFI
-> >>> memory map. But there will be non-EFI boot scenarios as well in case of
-> >>> U-Boot. And moreover I suppose we need to keep the reserved memory
-> >>> ranges in DT updated to reflect the actual memory map.
-> >>
-> >> Can U-Boot not do the same by altering /reserved-memory or /memory/reg?
-> > 
-> > I suppose you are referring to DT fixups here, we generally try to keep
-> > them to a minimum required in U-Boot.
-> > 
-> > BTW, don't we want to keep reserved memory ranges updated in DT? Or we plan
-> > to drop them altogether?
-> 
-> Generally I believe they're only a necessary evil..
-> 
-> Since Gunyah-on-Agatti doesn't seem to have been released yet, it would
-> seem like a sane idea to fix the issue in the firmware. If it was, well..
-> 
-> On UEFI-enabled targets, we can largely rely on the reservations coming
-> from there, only adding some carveouts for e.g. PIL regions and SMEM (not
-> because they're not resereved, but because we need a pointer to them)
+Hi, Yixun
+
+On Fri, Jan 9, 2026 at 11:36=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
+>
+> Hi Guodong,
+>
+> On 20:25 Thu 08 Jan     , Guodong Xu wrote:
+> > Add DT binding documentation for the SpacemiT K3 SoC and the board Pico=
+-ITX
+> > which is a 2.5-inch single-board computer.
+> >
+> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> > ---
+> > v3: No change.
+> > v2: Use one-blank-space between name and email address.
+> > ---
+> >  Documentation/devicetree/bindings/riscv/spacemit.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/spacemit.yaml b/Do=
+cumentation/devicetree/bindings/riscv/spacemit.yaml
+> > index 9c49482002f768cd0cc59be6db02659a43fa31ce..fe62971c9d1f4a7470eabc0=
+e84e8a747f84baf0d 100644
+> > --- a/Documentation/devicetree/bindings/riscv/spacemit.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+> > @@ -9,6 +9,7 @@ title: SpacemiT SoC-based boards
+> >  maintainers:
+> >    - Yangyu Chen <cyy@cyyself.name>
+> >    - Yixun Lan <dlan@gentoo.org>
+> > +  - Guodong Xu <guodong@riscstar.com>
+> >
+> sort by alphabet letter of first name?
+
+Thanks for the review comments.
+Sure, I can do that.
+
+>
+> >  description:
+> >    SpacemiT SoC-based boards
+> > @@ -26,6 +27,9 @@ properties:
+> >                - xunlong,orangepi-r2s
+> >                - xunlong,orangepi-rv2
+> >            - const: spacemit,k1
+> > +      - items:
+> ..
+> > +          - const: spacemit,k3-pico-itx
+> if DT mainainer has no objection, I'd suggest to change to enum
+>              - enum:
+>                  - spacemit,k3-pico-itx
+>
+> although single enum is effectively equivalent to const, but easy for
+> adding more boards in future (no change to previous code)..
 >
 
-Fair enough, I don't see an immediate need for this from UEFI boot
-perspective. Let me drop this patch then.
+Ok, I see your point. I can find there are other yaml files doing the same
+style. If no other objection, I will change it to enum in next version.
 
-TBH, I am also not a fan of putting the memory regions configuration in
-DT which can change based on evolving requirments.
+BR,
+Guodong Xu
 
--Sumit
+> > +          - const: spacemit,k3
+> >
+> >  additionalProperties: true
+> >
+> >
+> > --
+> > 2.43.0
+> >
+>
+> --
+> Yixun Lan (dlan)
 
