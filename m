@@ -1,186 +1,225 @@
-Return-Path: <devicetree+bounces-253330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE5CD0AD72
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD478D0ADAA
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:21:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB880305E3F8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:14:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 099B83009A9E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:18:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0F0320A24;
-	Fri,  9 Jan 2026 15:14:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF4235C190;
+	Fri,  9 Jan 2026 15:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="AbwCjr0q"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="H/QwfigQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com [209.85.208.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010035.outbound.protection.outlook.com [52.101.228.35])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37B8318ED2
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 15:14:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.68
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767971686; cv=none; b=PXLyKc7eIHF7FFHDCBzUudWzzVMcbOTycgEqGjLVNB0elsqeSVaf9VDJltim+y+Nx+MARe1i3UMTHBAF6oMO9RJyxUE5bfDq2EJYXGcyl7tsaqh9MkkMqaXSs0XPRFYr+BqQoWLZy+mv68QJ06mfei0YyhH4CHYPveg7EqnrNnQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767971686; c=relaxed/simple;
-	bh=3wJw3C/+hh4NQMeHHX68eyDgMfZwVmWs26kYc8+dwvw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=T/DLfJQfd+/dbzn4QWbCHb0NzORh3eECvv4VG7js/QRbzkVmRQ/txy6NE+PG18jbIaegAubmmjzZUAa1A1leBVDV7gBJqeQnAazWLZ6uWdA0FvDv3nIA5ETirAOPi4pkxIVFyw86KY2Uk1F3COhvYVVnsmnDZ6OMmUCME5zx54U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=AbwCjr0q; arc=none smtp.client-ip=209.85.208.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f68.google.com with SMTP id 4fb4d7f45d1cf-64b921d9e67so7338603a12.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 07:14:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1767971681; x=1768576481; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vzsN76gbuzfMHxHnC7MWTahrr4LZDPF4d6JCQ9x6L60=;
-        b=AbwCjr0qE8snxBIpfYofa4Vf5XzgmPfMfSiqqfplMSsbzVXkubaCKs1Gow1xFhdHn1
-         qZ2kdmySTLVzjssMKSOVEgTS5BcC+Q14DwgHgx6j+6xswuB+vTne5SnAEM8EjaWbh3wi
-         Q8j9TWv7p0wL+IHkHo0GuiVKyYCK/lQIsv7Zcp60zKOaAJajL6kMzlHar90CnZN8lAqy
-         MqlUrfNUFpA41Z01KLStfxvumdRQMND1FfpIOufv8QpdIq8ZAQNcJwLz8s3MaAu24AFR
-         Nwe2IcfqPQUENn0kP6WwXvcj0CZeh2AoOri9lNmIq7aY95Jshfw5jvE17Xb50ljhFGFI
-         aIcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767971681; x=1768576481;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vzsN76gbuzfMHxHnC7MWTahrr4LZDPF4d6JCQ9x6L60=;
-        b=EVxoA+reWjM7OhgK9cqvIDZn4oFCjOKN8hiwiuv+jai+OCYb6Kp5zRAYx4hNgrNtWM
-         Ip00fB8nr26q79I1zzXrJ+eudPOsOxbTUfSEBADkjOEU1NtKgvSwnK4ARZgJq5O2JGFL
-         xtdGLtVcFW1lIH+VgjneId1KlM0h7bI3461sk5yecYH5l69sM/MlvJobQN11Lez852UU
-         DryOacofg6FgN+kefM10ZqHOXaeQGzE28L1gDsVts7atAWXGVIcxInS1X9z9iQrRv1oN
-         XLYseovJk4CdFxTnpTiXZWdp9XCfb58VQ7NA1V/lEJJz7ukOPpk6POrrSEXQl2YGwLuR
-         SxoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW6Mq2gu2fyuvcjTgZjZBYrGbBFszbhKG027vQCjw1vv7StIotTVRkUNWaIbJmnH6m6Fk456uJBYRee@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywm+bRl06Zzj8nrBVc6gR7x96p3MhMAsd+RrFzVvId7Oeg5MbgK
-	ia8up8Nfu2gYc4t1RZUl7dT3vhURMo1swZ85vd/NAa8aPIqhWGqZFDGEB1tQk3Qipb8jqyuJ+0B
-	Rd9rCcRT5zQ==
-X-Gm-Gg: AY/fxX7L0gseGRbHFtWl3KXPz9ZcnG4NN2AADu3ipA3VECNYfiJhx5RfQrY6sQ6LjV8
-	QSZGz7tjM05OdMKabw8xp8T83YHXxFbZ5jmRzxq2dvIxMcWc+npuuTcz+7rwpY/h3n0DZ6ccd29
-	90mEUUfV8uIPpcTisc/7pzVImlBer+1yQI1u7IMU0GljBCzR/qqF448wbsaAF2dgJbGKCSWbCK+
-	Sm0MJN8X00ph9O3zFwaYy6k/jfuO+Hc8N84IqcPLQ1PP5y+wQLTf0QulPqJebq88uu1s+dX+qw7
-	vSUC96jQYZWruUsyU+O0udYMuLVveDJL6P5xPhVXgZ7slm4tOK8BUWRtJ+/PChzqVL0Z6pKwDNS
-	dtUAIsxiirRjJC3waiV9RWhjpUQONCT33pgOQK6mWp4fDhtRoCY1n0GeD5oBvPCBNb2+NjHNhet
-	j++57uHwdcr+nW56PirI0ue+YG3IWq6TchL7rnJ8IMxL1nWzOc2JLXo93QXQ7RPl2OsnBXijMbt
-	d8=
-X-Google-Smtp-Source: AGHT+IEWXRBm5Yt+mRPm4TDFGhALAHUKOfO9MZDpvsMN2Ad6i/iMOL07Iv/Bnx4RypeMPrSqbNgVFQ==
-X-Received: by 2002:a05:6402:35c4:b0:64c:584c:556c with SMTP id 4fb4d7f45d1cf-65097e733c9mr9290437a12.30.1767971681192;
-        Fri, 09 Jan 2026 07:14:41 -0800 (PST)
-Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507b9d4c89sm10100742a12.10.2026.01.09.07.14.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jan 2026 07:14:40 -0800 (PST)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 09 Jan 2026 16:14:34 +0100
-Subject: [PATCH] arm64: dts: qcom: kodiak: Add missing clock votes for
- lpass_tlmm
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE569311C38;
+	Fri,  9 Jan 2026 15:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.35
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1767971888; cv=fail; b=b9GqHAWzm7y9ecxUL08XKrH4nMSjH0OA828XrZ+xG+ioZT9EdcF9lud1DEcU4Lo0X6f7yvujgUn6PZTWjVs1Vc577vXGI6oau/QrgGc9vuht6dV9HFZnSjjky1sG3Hja2tTsx5PjoGW0irAL0BlaKPpgS9Tzd/GYI3jgoYjGJbI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1767971888; c=relaxed/simple;
+	bh=YZRgBHXPvxIRQU2KjCMqJsZGW+53Ll1dw6shAsgI9Po=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=OVQ4/c5DVCTeeA7m3O19q2WecLmSN0rQzUSoMzrxisOU96xQByvftYuEYFkJHjFOIigLHQPbKoh/kYu1ngdE2SWJvOAw7cv3G1YV6Z//CcTxutvYXUCS6rsBunu7nG635f2MO685rbSaFRni1dp1ylpYrkDkYwIJs4Oyp2ii1OY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=H/QwfigQ; arc=fail smtp.client-ip=52.101.228.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=R2NVNgmjanb7ogFPzFiOhOUIUWcnhfIxhv3gYburvhQyz77M8EUyNvzc/RGt6xVCdMBU2rW5cu5FtN3dM6AOGJTojDQ/EQvhiJLX23AOxD4niGCZpf/z0R3OKcSuC8fVKoR2XaVhpe/ejDgzOP/bIirNxp/oHfUvb8GpGFH3Z46PCZOdxl/SXZWPSNPbTl2N1VO2BpglZ1pvlkpCv9ew/ieGNvwCluuujo3gyCQr9tJaVAd7x/37Vc3Q+uui7Fntgizo5mPZKKvJGFYQCrlF+4iV4w08wgy+mkG8hSN1sM6+YZ/nyesafcn8+TYs5UruHC4DGDQSn1oOWxsnSSi6ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2qjmPLSbVBzigMfSI0998fLe7cwskgFRVViN4tcN/io=;
+ b=HOIoLUmnZzLYQ2UX5T3B7KNjdaHzAcNzlISYBi3IRdRvZmiqoRn5hJ+V8EfGqH5d+WQQOsEaCX/sM+CkGau87A77W7nUJdsfvPeB946hktdSejxOAwkPv/EtbFtJmb7Jij6v4Pa1+pLtKJpYJHq02NX5ZXnTAkATgLOw5OC+PSL6epWTibcd0rzFo++O4W6W2EwoSEMTHJuv/mqZPyYyJnQRu425DBR8z5OswArc1RyQI60+yqnKdg8Dt2pTXja0jfB5V5o/jiC7qT5wtwBgASoccWHVok1sz2mume+ZLzYVFGd8vOFX62tDcgCftJals/oZeQ+87kB8aCMTiuUxAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2qjmPLSbVBzigMfSI0998fLe7cwskgFRVViN4tcN/io=;
+ b=H/QwfigQCftP2qvsheKauhXm3XwOlMw4eo/Tmg2SaQdJCBmkfJXG6yROv1lOReqVNNBe+Hjwu+bLnnOa7cZbfGKNxHKq/xdCjIATzYMGdjNisOsfITWh569LMyU/Vqpvwgw18E5iOtcPL6946Y/WIYDSqkbrwr7tSHQBkFwTZm0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
+ by TYCPR01MB6914.jpnprd01.prod.outlook.com (2603:1096:400:b9::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.1; Fri, 9 Jan
+ 2026 15:18:02 +0000
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9520.001; Fri, 9 Jan 2026
+ 15:18:02 +0000
+Date: Fri, 9 Jan 2026 16:17:46 +0100
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: tomm.merciai@gmail.com
+Cc: linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com,
+	wsa+renesas@sang-engineering.com,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
+ support
+Message-ID: <aWEcGqXgQSZwn23S@tom-desktop>
+References: <cover.1763638659.git.tommaso.merciai.xr@bp.renesas.com>
+ <9d1cf2cdb1c11f24378404142e4c8aff680c6961.1763638659.git.tommaso.merciai.xr@bp.renesas.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9d1cf2cdb1c11f24378404142e4c8aff680c6961.1763638659.git.tommaso.merciai.xr@bp.renesas.com>
+X-ClientProxiedBy: FR4P281CA0188.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ca::13) To TYCPR01MB11947.jpnprd01.prod.outlook.com
+ (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260109-kodiak-lpass-tlmm-clocks-v1-1-746112687772@fairphone.com>
-X-B4-Tracking: v=1; b=H4sIAFkbYWkC/y2NQQqDMBBFrxJm3YEoVqlXKS7SZGwHTWIzsQji3
- Rtql+/Df28HocQk0KsdEn1YOIYC1UWBfZnwJGRXGGpdt7rSN5yiYzPhvBgRzLP3aOdoJ8HOmaa
- 9ukaTGaHcl0Qjbz/1fTg50XsthXyO8DBCaKP3nHsVaMv4r3QwHMcX4nQeZpsAAAA=
-X-Change-ID: 20260109-kodiak-lpass-tlmm-clocks-7da465d40eaf
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
- Bhushan Shah <bhushan.shah@machinesoul.in>, 
- Bharadwaj Raju <bharadwaj.raju@machinesoul.in>, 
- Alexandre Ferrieux <alexandre.ferrieux@orange.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1767971680; l=2691;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=3wJw3C/+hh4NQMeHHX68eyDgMfZwVmWs26kYc8+dwvw=;
- b=6gzuUyvGJu+bIp9v+03BDrHW7vD+Umn5JYZov1W5Sz3HUmUSaapFRseeqLaQVkty++r4o7Dtq
- 8VBN5MFKJosB6zBg+vm9c+6TMN+cN08Gp5qVYhmKRuQL80QCz5Ymvix
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TYCPR01MB6914:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb02cf59-93cb-4723-4b5e-08de4f9247c4
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|7416014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?f7XLIUSCv7aNpJqA9igqJn02cT63/NpiWz3v9eYiFJXSJJoCRo1z6z2T0JTF?=
+ =?us-ascii?Q?IL6A1jAXt/U4gLl9olYhEceH5mdG5pHPMYj5byUoUminqYTO0INvMkoKuxbZ?=
+ =?us-ascii?Q?xT055BfEmEo1p/P72xM/GPiLXxse4g2cTnucPblSkiDTeqC2+V0Ga2YyCWpr?=
+ =?us-ascii?Q?rWwIF65kWUG9SlwdPAT6HUfr3bXtTcCUzUALKkdJdlylylZAi7N+O7AqFlCW?=
+ =?us-ascii?Q?6jhIrgUouphbCcSJsUDTuRg2eCZZfTKqG6ZQ34bcMgHT+VvWJZqRIcxg/S9h?=
+ =?us-ascii?Q?axkJENof6Z1CXyPzot29RZq1cL7dJm5cy/uu+xPm0N742oUkPT/KXt9wI3Oi?=
+ =?us-ascii?Q?yliJ38YYiP2151ycwPhLmeKddytYzxZ8kOYrLZgg30P6auSrAwCh0qTQRu/7?=
+ =?us-ascii?Q?Cvb1Jm/qt3vMBWdQ1G7JtV3c/k1IhpdMgUR36U8AzfOk3R6NR+T6WIg4VMFb?=
+ =?us-ascii?Q?P3K1njnMIwSrUxOXhgrt7wk/eL73qEDwtai1PT1x4bNqXx4scAWBmj1RObon?=
+ =?us-ascii?Q?ZbyoQIPxu5ZKQDVUDnzPID4N2IQQkwtqfZ1t6xsmlKNGAfWA8DHtz1Kt0P0c?=
+ =?us-ascii?Q?tgafBvCl97wAKLWl8W/k4Tns5kGNNyQ69+AY0uPD9ObERTODLRGTmn2G2rZs?=
+ =?us-ascii?Q?sB0JQlbvTWgaRmscjbN7T4Pz/UQzGvWKl7eZva58ypXFYcGALSfp1PQLBOJw?=
+ =?us-ascii?Q?G9FvEaqMoX7H6UqqlE36N5122qrXY2aIFaFJtxSEZOMeS+LRVF+jLGkM/J/x?=
+ =?us-ascii?Q?bGDlEl3Ushp1tCSSE843e3X8ftGK08I+mO7mRZ6ij8fHd+O4CywVdV2l/GPE?=
+ =?us-ascii?Q?GSOw/svx/Ba3Mu4YxDuAtSa3E+BestDyPLpQ7vnich7OfkrAtCP4ElWkIPak?=
+ =?us-ascii?Q?jiPmK+r8CUhxMcN6iapITux6SaqzFb2Yk7EFZTV8YEvPEd8ESVR4QXmirQgW?=
+ =?us-ascii?Q?PEY2F92Mrkdw2CE2pfDzLWS1p0JnZKI30Ffwq3zXTj3x7M+RuHsoOcl1Z9Cv?=
+ =?us-ascii?Q?v3VY0t/9tQv4tCJoN5G8/Pu/06H7Jis6WHOuxUm5NtKheIGCBUmzXnKgXZ9l?=
+ =?us-ascii?Q?Tr+y9RfgJOG5DdgvWTKETR2diGtxfNgL6u1KR528IAyfMrJ8PLTOQ6rh8I+n?=
+ =?us-ascii?Q?+SteP8uaxXD/Q/r7TKoOI5aM5n2ho3BOdfM3CTUXBMSeVFjl8FZk4oJi8wAD?=
+ =?us-ascii?Q?ImMHwWjqJBD14i2HlxZSAdkKbTzPUjs3rS10CQCc3X/rGRZJ518ItpJ7fMip?=
+ =?us-ascii?Q?ivZ+YmtsvOSk7IqIYbur1FmqPqlTCWqGifM3IQDL0dPJi2C/tzzp4JccBuIw?=
+ =?us-ascii?Q?rYWkIq5jkeGxUi9Ey5fAU8JoGj6kzWJFaSEQFSA2ve6M/c09FEsXiA7EAbQh?=
+ =?us-ascii?Q?0qV8unHFpCwGOXwGZblI3rwmqW7yRRkrrYj2+3bnjoJANumedpYt2joXx0v8?=
+ =?us-ascii?Q?Le+YPgCVYQsNXyG3NKH2guRKdND8+OAYm1//1gF3luFX22coiSqt1n60sBik?=
+ =?us-ascii?Q?AYQFUNWHIoTZsIl8T33eIWSpMPXN4wvSUY0z?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?8EcqTp85zV743orKbN9/aqDkRnm6fpwNuM7jwWyc+xeabHi+OKDnUMLLakhb?=
+ =?us-ascii?Q?aDBWi7hEnkRo0wk7Bs7+mpRDDk53Rau0H/vFjYdeuQv84CFtqhPex9+7KVQ4?=
+ =?us-ascii?Q?DmJQzI2tVVxxkURg5BzLZRpu59OT8+BvdQPbnFWkAQBRl1aWkqad3ueqP/2W?=
+ =?us-ascii?Q?a094iNJsSsVcs27/60DiwWgxf7S/kBm/aiR18PtHZKqpSQEhS75XiyCHsA1P?=
+ =?us-ascii?Q?zCZWNUQF3yRovQG92KLX7y3wJXFtYuDg0Zt0vwCS0YeiKs+2anZedSRGhvIl?=
+ =?us-ascii?Q?xgjschjBsyRD/Df7BlmSS+dzBTzFaUuMs5LpOmzrnJ3+ZR55rLXxXfo9D0+c?=
+ =?us-ascii?Q?yBUUOaU9SnzI0XkAOrmOLqBbbqRntmrP3fASbwwJzJ1TNWwwV3iNJancfoKD?=
+ =?us-ascii?Q?dJ/tSK+Q77PXv63BbEor9+hjJ701QepulAnzE3966TtCcpPZCSOdJiE667Wf?=
+ =?us-ascii?Q?xDH8AIJtXd9F7BwxDzeJ0wqgbY2gdUISBSsLz9VffDpJNLcxu86kwu6bBPHR?=
+ =?us-ascii?Q?VmlSeFqKJHDdc3CztBhR45YpwsN/s/Wn/tRwIGW/tKMBv4gk3WRfJUt/QPX3?=
+ =?us-ascii?Q?+EB2IqcSENV/A8h1w4loM5CzpjlSo2U7Lm5f88kprgS3Ke+PMswPa2x9V8Op?=
+ =?us-ascii?Q?TExouQFbMSqFdB7xKTzSMRtVYLe80kxFfY45Hbfo8LRnCL3Q4tIP0ML1CSfo?=
+ =?us-ascii?Q?VUqyyV1Tji4g1ssDiHdgquZVMTuvxcK0ZVVMmJIxgnNIucNzNPz/4SozUQM5?=
+ =?us-ascii?Q?tf63xqoOMySkX5Ly9TXnBDVRMogvycoP9UM4d8y33rs9aNKlhJEcCPmq86uU?=
+ =?us-ascii?Q?D2/uYdbyz+cuDEZAlGXOJuFWOlFtW5DPIrxdlwxk/bxEm/MFbIJus2hm2fpV?=
+ =?us-ascii?Q?bZkAGbnLQoTCaGrXktsZezE6HLHC6Rq5LdOnUPd1Lfp+U1YVZeMQc/ywXNeM?=
+ =?us-ascii?Q?2LikS+vo5+rsXGTYMXDCMi8qb3DxE6f+yCs5J8SL9+PlL9amItfHPQ1XuFqT?=
+ =?us-ascii?Q?AzMUG8UPBiMmZ9uq+cgl8uNna88pVKZdBGq9TwBlG4Hc/pM9vXPdsoIsWXTl?=
+ =?us-ascii?Q?0+qlhTR69juMg5DmBmiL/xs8e0l39rhdjMtKP8eCKxy+2NvHLXrMkS8loIMf?=
+ =?us-ascii?Q?TWAU3DnHHZRSVfjw57inSGHwUEsUTiJPnWW17BaMzTqxI/6HxfPEUd15ZZeD?=
+ =?us-ascii?Q?aX3uUZhvTzva4CFjwCo8V5zcdf0djl3uZCXAHtwroLUuoV0VovCSlEIellxm?=
+ =?us-ascii?Q?ArRzszWPIE7LYCjtwLe5RzOONIIt3jgSGCZJQjPpg75EcY0R0o+C+yWN/5A0?=
+ =?us-ascii?Q?z6KGUG+uNZNqu0tjWmQIyqfhW5UXR67Eg1FpL5OcXQifzyk9OgMByFfTIq5d?=
+ =?us-ascii?Q?8FxEJhrM5Ycmuki8ziClyPhk9OpQptZapiGNZxMt9zDh3vykGIcxHvpOddJI?=
+ =?us-ascii?Q?O9YOpOMc1iGAk71OXw4F5HFXXybcbfGuTmJSWJpC0yc6jpDDxa+07aFLgi3/?=
+ =?us-ascii?Q?uov/nEZLZLY2f5O01SF7oXOYagJOnO0Wn/UP4Vy3Ot+b50Aa8nvKDery6dVM?=
+ =?us-ascii?Q?5qo519JFKFsv+pF/SZjjaftnpcQjKuqVKdjJhqt3vOs4xsxWVBVJ79QpUgJu?=
+ =?us-ascii?Q?JCJlrqylC7Dt0HMqeEx0kYaIDAq5SVJVsxhFXnk5e8PB/+FiPOgCls3ndpY2?=
+ =?us-ascii?Q?OFV9rsdIvjzBGV0QKcYKApUHLAC64VOfpoVrTAYNOz7UE4hTHDPK6H8tZdG8?=
+ =?us-ascii?Q?mp04GcgSMs1dG05dnxV+yOut0ajLnUbQjojiels901YGZgbSP75u?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb02cf59-93cb-4723-4b5e-08de4f9247c4
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 15:18:02.4573
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 48gaZB1u3NufZjjXh8s7Xl/DSWYviP5pE7e8ixfkfzKC3XprDdL3mhzOqeO41+c4eroqupTopZMCLcpWXOmFLK2w0taJR6M7SA0lYq6pU93uir1kxaE6TcUB5v6BhiJL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6914
 
-Without the correct clock votes set, we may be hitting a synchronous
-external abort error when touching the lpi registers.
+Hi Geert,
 
-  Internal error: synchronous external abort: 0000000096000010 [#1]  SMP
-  <...>
-  Call trace:
-   lpi_gpio_read.isra.0+0x2c/0x58 (P)
-   pinmux_enable_setting+0x218/0x300
-   pinctrl_commit_state+0xb0/0x280
-   pinctrl_select_state+0x28/0x48
-   pinctrl_bind_pins+0x1f4/0x2a0
-   really_probe+0x64/0x3a8
+Gentle ping on this patch.
 
-Add the clocks to fix that.
+Thanks,
+Tommaso
 
-Platforms with this SoC using AudioReach won't be impacted due to
-qcs6490-audioreach.dtsi already setting clocks & clock-names for
-q6prmcc. The sc7280-chrome-common.dtsi has also been adjusted to keep
-the behavior the same as they also do not use Elite with q6afecc.
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
-This issue is somewhat of a race condition, with some kernel configs it
-cannot (easily) be triggered, with others relatively reliably but it
-seems also to be somewhat related to cold boot.
+On Thu, Nov 20, 2025 at 12:51:39PM +0100, Tommaso Merciai wrote:
+> Enable I3C on RZ/G3E SMARC SoM.
+> 
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> ---
+> v1->v2:
+>  - Dropped overlay and moved I3C support (pure bus mode) directly to the
+>    rzg3e-smarc-som.dtsi as suggested by Wolfram Sang.
+>  - Removed alias as suggested by Wolfram Sang.
+> 
+>  arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> index 7faa44510d98..f05b9fec05f0 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> @@ -122,6 +122,14 @@ raa215300: pmic@12 {
+>  	};
+>  };
+>  
+> +&i3c {
+> +	pinctrl-0 = <&i3c_pins>;
+> +	pinctrl-names = "default";
+> +	i2c-scl-hz = <400000>;
+> +	i3c-scl-hz = <12500000>;
+> +	status = "okay";
+> +};
+> +
+>  &mdio0 {
+>  	phy0: ethernet-phy@7 {
+>  		compatible = "ethernet-phy-id0022.1640",
+> @@ -219,6 +227,12 @@ i2c2_pins: i2c {
+>  			 <RZG3E_PORT_PINMUX(3, 5, 1)>; /* SDA2 */
+>  	};
+>  
+> +	i3c_pins: i3c {
+> +		pinmux = <RZG3E_PORT_PINMUX(2, 0, 2)>, /* I3C0_SCL */
+> +			 <RZG3E_PORT_PINMUX(2, 1, 2)>; /* I3C0_SDA */
+> +		drive-push-pull;
+> +	};
+> +
+>  	rtc_irq_pin: rtc-irq {
+>  		pins = "PS1";
+>  		bias-pull-up;
+> -- 
+> 2.43.0
+>
 
-Also I can't pinpoint a good Fixes tag, lpass_tlmm was introduced before
-q6afecc got added for this SoC, and that worked fine for those boards it
-seems. It's just needed on boards with Elite audio architecture.
----
- arch/arm64/boot/dts/qcom/kodiak.dtsi               | 5 +++++
- arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 5 +++++
- 2 files changed, 10 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-index 076069f14495..f478c5e1d2d5 100644
---- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
-+++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-@@ -2994,6 +2994,11 @@ lpass_tlmm: pinctrl@33c0000 {
- 			compatible = "qcom,sc7280-lpass-lpi-pinctrl";
- 			reg = <0 0x033c0000 0x0 0x20000>,
- 				<0 0x03550000 0x0 0x10000>;
-+
-+			clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-+				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-+			clock-names = "core", "audio";
-+
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&lpass_tlmm 0 0 15>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-index 84c6d662b54f..617a39d32488 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-@@ -67,6 +67,11 @@ &lpass_hm {
- 	status = "okay";
- };
- 
-+&lpass_tlmm {
-+	/delete-property/ clocks;
-+	/delete-property/ clock-names;
-+};
-+
- &lpasscc {
- 	status = "okay";
- };
-
----
-base-commit: ef1c7b875741bef0ff37ae8ab8a9aaf407dc141c
-change-id: 20260109-kodiak-lpass-tlmm-clocks-7da465d40eaf
-
-Best regards,
--- 
-Luca Weiss <luca.weiss@fairphone.com>
 
 
