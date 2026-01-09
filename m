@@ -1,191 +1,170 @@
-Return-Path: <devicetree+bounces-253217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0DAED0886F
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 11:23:45 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D837D088DA
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 11:28:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 81DD03078123
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 10:19:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8C697301CCD4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 10:22:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C252F6928;
-	Fri,  9 Jan 2026 10:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0932338586;
+	Fri,  9 Jan 2026 10:22:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="U3pPfqTq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248E932FA24
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 10:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAE53019BA
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 10:22:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767953973; cv=none; b=fvnyXnuvpNPGV2Y0OaxEQwPe9oV92eQfDX58588NVprTjJIPBU+cY/RD7EHKfJs4df54r36r5+4mVCX5LjEk1fWG70RUXiywjfLAZAWiLesehZRGfMkPlyJbml3Ek/2smaRQqj62GcuGzcrSAOlyiUisMNWhNelFZfFoQ4xU6bo=
+	t=1767954141; cv=none; b=j9CpfvvXOmO5wYGT8ApGw258qMifFAhDznvC8+5a0wM7R8/IFE7q+R/6vy55BovKJi+rev4OjRo9uIkm7GAuY0YLeKn5v7hZKtN7DCYk+Ggz/JfCY8efafO3pRQJ5gvqibdayV/rnO14DeUV3zBW2TEee6fHPDawD+rlEQOcuCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767953973; c=relaxed/simple;
-	bh=iBgJn4Oei4MSF7wX/YOhYnpZ1nzYzLulaCt82baVuLA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=puq08SRNun6JLRDg+GBK3AJYeOHeBONXhoqKnANxCcpNCZchsVUA+NPm52ZPijaLr/UHA6iv4qGaihdNrCoTg/h02435sI41bTaU1qMt6sxSVxwwehprOWbfZ98qcgH7ABOzxmUhtBlFuapTHXShEwCXsqJ9OEGdlVYyO7LY95s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-5636274b338so685952e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 02:19:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767953971; x=1768558771;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=68fD+2d6dtiuvezPQdm8X6562nqf1sN2gN86wHzPt+o=;
-        b=FdJFw03THvi2MTypYyBJYKVWqfWjXNAAEeLPJlnRm4NPX6uG5tO10gVLdEqnOm5KOG
-         g1ESQj0LLZsiOJJrNjKmeuDYHC4mrwo3rGB5XbzdoL/kwAttNg1sw6o5lbZ2d8gV+lsn
-         I5uGUiJaZ4tWPUOkjbU07P3LX7HOAybbyKvB1YxBDX73RhvT9WW0p/mBcQnaTS5TU5cO
-         1q2YFNrqzjitoi7jWEMRqDJOr3/g9d1mcmIzEC/6hScMa7ny4YTlfguelJr4j+mD/+1B
-         Sy7OAI9fWQ4JRolr9LpoZ1cd5hA/d7BjwIH6z3QuDBLZXuFsd1sHiKMXxCT68U8G4zo8
-         +2Og==
-X-Forwarded-Encrypted: i=1; AJvYcCX/MEDobuGnYaBHGH7X1TsuzX/rNuq3XjAptj45P+ZY81F6JEonfYYuFV5LVRWdpob1UIbuR/dp//fq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzD3iBbcN4gURNHtj1AGKiNL646dhfnidlsE55JDK1SRFSdCkd+
-	q2bciXDCofxjRxy0wijjyZDfyJV0wLHxiteTVY30dxFVLVqXK2THMe9lPH6SbXnR
-X-Gm-Gg: AY/fxX6LinbBqg82ANziAbP9yKW5dOiyF8U3IWKQa4BF3dZicAftYxqPkNIKU8W3IHT
-	UcPOQlPYBzcAmFzR4pwDAb+G4W1aZa+K+SS+9/J5OQZSghvy0aM3rtZKao+tsD/nkRVgWTiwN0y
-	80+4w8hK9N4b3kauea4wb/whzYnJPG3WB60DHpSS5Y5sF7/eV2H7Vip2LG5LAOkj8l7hJkZVyXe
-	x+c6xLxL3/k0qnTbgdtDTcKjX7odR2XEVOCkFWSzc9NISsS5JYnju4pSqfEeU/nEHyqF9WY7zj+
-	5yKiW8dOrA6HThh8AXt13/VmoSZNQNlcx2TDEAIGMv2jzNDAxbX9W6/VQumVnR/XqYLj7htbeZZ
-	gzzzSZHovKEOT6wHMcQWkJIJwLt/R94EkjRYMjDTQeB3+EUA6K/ZVcEBG6vs3enodfeGkYL208l
-	/s10pdm/e8CeROda2dICKzQNvZC/TaYK1sP+qWOQ1lwOJmNwD6TM1U/A6vQ7Q=
-X-Google-Smtp-Source: AGHT+IE14PKFxj5M3eYOCr6usKFV5MwRfidK4EMorPmdx+zTwxWbBkSbf1fCodmsgeQVvFQeaTqozQ==
-X-Received: by 2002:a05:6122:220c:b0:54a:a3b1:db63 with SMTP id 71dfb90a1353d-5634637dcfbmr3417647e0c.6.1767953971109;
-        Fri, 09 Jan 2026 02:19:31 -0800 (PST)
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5635f13471esm3314737e0c.14.2026.01.09.02.19.30
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jan 2026 02:19:30 -0800 (PST)
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-5ec838c33e6so1551773137.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 02:19:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUKxNmwDEVNez43Sqfwtc66ti/aM+/hJPe0RkvolRA1jLu1TQLi29YJE/ztiOK+fr2hbALNUZvUwFte@vger.kernel.org
-X-Received: by 2002:a05:6102:5490:b0:584:7aa3:a329 with SMTP id
- ada2fe7eead31-5ec7556654emr5715287137.4.1767953970208; Fri, 09 Jan 2026
- 02:19:30 -0800 (PST)
+	s=arc-20240116; t=1767954141; c=relaxed/simple;
+	bh=P+Qapu7PTQqd6vj/HqMKsi+M3yYPpVMrQovpFpc59xM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S8VE5jRvWJN+1gKNdv2G5PBFnKjEApompSFs5VznwrH/147JOT+4Qrc6jdMqqSFy03r/TaHGWI4Ht6CmW609gKcQBbfzfZjA1QkQqd7l/rHZtsJi5a8FBuGaoaO0oNTcjN/nuxITxnIeSX9ry+jbH7NZOe2rrKGAiVyFq9fpzhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=U3pPfqTq; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1767954139;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1X6VjjSDBSXJE0ymL3SGMh0l4uxNAcGGXw1ekS2+I5g=;
+	b=U3pPfqTql/pe6xSuGjuWN6cW41+Gnvzt4TVUkNsNkJQ+INFM8MrZGPRQD5r8lwMi7wHDO7
+	EvrPPyn7sEYhXYUPVMP8ZFGqokyGDg1Hr6xu06Fmx/zxuz6RlVGDZCdtAUOetlqPjoKC7Q
+	L+OikqoOnynPccC7IkYRtH7U42mc81k=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-204-ChZLRiv_Nwe1xlCYcTvuzw-1; Fri,
+ 09 Jan 2026 05:22:16 -0500
+X-MC-Unique: ChZLRiv_Nwe1xlCYcTvuzw-1
+X-Mimecast-MFC-AGG-ID: ChZLRiv_Nwe1xlCYcTvuzw_1767954133
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 94F33180035D;
+	Fri,  9 Jan 2026 10:22:12 +0000 (UTC)
+Received: from [10.44.32.135] (unknown [10.44.32.135])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 13FC61800994;
+	Fri,  9 Jan 2026 10:22:04 +0000 (UTC)
+Message-ID: <a581a86d-d49c-4761-bd68-989a7a12cb56@redhat.com>
+Date: Fri, 9 Jan 2026 11:22:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251217080843.70621-1-shorne@gmail.com> <20251217080843.70621-2-shorne@gmail.com>
- <CAMuHMdUaO_PwWygW8qss47W_ErB4pm1Z2HQ+edvw1-x7ce7oKw@mail.gmail.com>
- <aV9o1LL0Ahip0O3-@antec> <CAMuHMdXYCNR0ANn152ghFExpWY_yZ5+kyFGGRwA+X-EFUvxZXw@mail.gmail.com>
- <CAD++jLm1u9ChqsftwvbOptiG3Qo2KWxPjqN2snOVuZDYuVST5Q@mail.gmail.com>
-In-Reply-To: <CAD++jLm1u9ChqsftwvbOptiG3Qo2KWxPjqN2snOVuZDYuVST5Q@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 9 Jan 2026 11:19:18 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW_DUyo=uarCpceKcEq9Hx+q+DHgfHW-m2DOjgAQ5R79Q@mail.gmail.com>
-X-Gm-Features: AZwV_QjdcUI-7Z-N_pZ99To6fYeZb0GuLnE25cbH9PblaUhBL8UbvvWFR6RVNjc
-Message-ID: <CAMuHMdW_DUyo=uarCpceKcEq9Hx+q+DHgfHW-m2DOjgAQ5R79Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: Add compatible string opencores,gpio
- to gpio-mmio
-To: Linus Walleij <linusw@kernel.org>
-Cc: Stafford Horne <shorne@gmail.com>, LKML <linux-kernel@vger.kernel.org>, 
-	Linux OpenRISC <linux-openrisc@vger.kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Intel-wired-lan] [PATCH net-next 01/12] dt-bindings: dpll: add
+ common dpll-pin-consumer schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Eric Dumazet <edumazet@google.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>, Rob Herring <robh@kernel.org>,
+ Leon Romanovsky <leon@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ linux-rdma@vger.kernel.org, Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ intel-wired-lan@lists.osuosl.org, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Jiri Pirko <jiri@resnulli.us>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>, netdev@vger.kernel.org,
+ Mark Bloch <mbloch@nvidia.com>, linux-kernel@vger.kernel.org,
+ Tariq Toukan <tariqt@nvidia.com>,
+ Alexander Lobakin <aleksander.lobakin@intel.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Saeed Mahameed
+ <saeedm@nvidia.com>, "David S. Miller" <davem@davemloft.net>
+References: <20260108182318.20935-1-ivecera@redhat.com>
+ <20260108182318.20935-2-ivecera@redhat.com>
+ <20260109-wonderful-acoustic-civet-e030da@quoll>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20260109-wonderful-acoustic-civet-e030da@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-Hi Linus,
 
-On Fri, 9 Jan 2026 at 11:07, Linus Walleij <linusw@kernel.org> wrote:
-> On Thu, Jan 8, 2026 at 9:41=E2=80=AFAM Geert Uytterhoeven <geert@linux-m6=
-8k.org> wrote:
-> > > > What is the rationale behind using brcm,bcm6345-gpio?
-> > > > Given brcm,bcm6345-gpio has 32-bit registers, while opencores,gpio
-> > > > has 8-bit registers, I doubt the latter is compatible with the form=
-er...
->
-> Yeah this needs to be fixed/reverted pronto :/
->
-> > > I switch the size from 32-bit to 8-bit using the reg =3D <* 0x1>, <* =
-0x1> setting.
-> > > Also the reg addresses of "dat" and "dirout" are different for the re=
-al
-> > > brcm,bcm6345-gpio.
-> > >
-> > > brcm,bcm6345-gpio. Example:
-> > >
-> > >        /* GPIOs 192 .. 223 */
-> > >        gpio6: gpio@518 {
-> > >                compatible =3D "brcm,bcm6345-gpio";
-> > >                reg =3D <0x518 0x04>, <0x538 0x04>;
-> > >                reg-names =3D "dirout", "dat";
-> > >                gpio-controller;
-> > >                #gpio-cells =3D <2>;
-> > >        };
-> > >
-> > > vs opencores,gpio Example:
-> > >
-> > >        gpio0: gpio@91000000 {
-> > >                compatible =3D "opencores,gpio", "brcm,bcm6345-gpio";
-> > >                reg =3D <0x91000000 0x1>, <0x91000001 0x1>;
-> > >                reg-names =3D "dat", "dirout";
-> > >                gpio-controller;
-> > >                #gpio-cells =3D <2>;
-> > >        };
-> >
-> > Exactly, the register space and register widths are different
->
-> ...as proved here.
->
-> Stafford can you send a fixup or revert patch?
-> (Only need to revert if you can't make a fix quick enough, which I
-> think you can.)
->
-> > > The opencores,gpio setup does work.
-> > >
-> > > Now that I think about it, would it have been better to just add open=
-cores,gpio
-> > > to gpio-mmio.c compatible list?
-> >
-> > I think that would be better.
->
-> Yes this is better.
->
-> I should have seen this, I guess I was sloppy :(
->
-> > > If so I will can revise this patch and add patch to gpio-mmio.c.
-> >
-> > DT maintainers: Given gpio-mmio is that generic/simple, is there a
-> > specific reason there is no generic "gpio-mmio" compatible value that
-> > can be used as a fallback, avoiding the need to keep on adding new
-> > entries to gpio_mmio_of_match[]?
->
-> I think "gpio-mmio" combined with compulsory property of
-> bus-width =3D <nn> (as used by multiple bindings) would be
-> generic enough. So a schema that accepts "gpio-mmio" if and
-> only if bus-width =3D 8|16|32|64 would be acceptable.
 
-Each register is described individually, and the width is derived
-from the register's size, so no bus-width is needed"
+On 1/9/26 10:48 AM, Krzysztof Kozlowski wrote:
+> On Thu, Jan 08, 2026 at 07:23:07PM +0100, Ivan Vecera wrote:
+>> Introduce a common schema for DPLL pin consumers. Devices such as Ethernet
+>> controllers and PHYs may require connections to DPLL pins for Synchronous
+>> Ethernet (SyncE) or other frequency synchronization tasks.
+>>
+>> Defining these properties in a shared schema ensures consistency across
+>> different device types that consume DPLL resources.
+>>
+>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+>> ---
+>>   .../bindings/dpll/dpll-pin-consumer.yaml      | 30 +++++++++++++++++++
+>>   MAINTAINERS                                   |  1 +
+>>   2 files changed, 31 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+>> new file mode 100644
+>> index 0000000000000..60c184c18318a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+>> @@ -0,0 +1,30 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/dpll/dpll-pin-consumer.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: DPLL Pin Consumer
+>> +
+>> +maintainers:
+>> +  - Ivan Vecera <ivecera@redhat.com>
+>> +
+> 
+> You miss select. Without it this binding is no-op.
 
-  reg:
-    minItems: 1
-    description:
-      A list of registers in the controller. The width of each register is
-      determined by its size. All registers must have the same width. The n=
-umber
-      of GPIOs is set by the width, with bit 0 corresponding to GPIO 0, unl=
-ess
-      the ngpios property further restricts the number of used lines.
+Will fix.
 
-Gr{oetje,eeting}s,
+>> +description: |
+> 
+> Drop |
 
-                        Geert
+Will do.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+>> +  Common properties for devices that require connection to DPLL (Digital Phase
+>> +  Locked Loop) pins for frequency synchronization (e.g. SyncE).
+>> +
+>> +properties:
+>> +  dpll-pins:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description:
+>> +      List of phandles to the DPLL pin nodes connected to this device.
+>> +
+>> +  dpll-pin-names:
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>> +    description:
+>> +      Names for the DPLL pins defined in 'dpll-pins', in the same order.
+>> +
+>> +dependencies:
+>> +  dpll-pin-names: [ dpll-pins ]
+> 
+> Binding should go to dtschema. See also commit
+> 3282a891060aace02e3eed4789739768060cea32 in dtschema or other examples
+> how to add new provider/consumer properties.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Will do.
+
+Thanks for advice...
+
+Ivan
+
 
