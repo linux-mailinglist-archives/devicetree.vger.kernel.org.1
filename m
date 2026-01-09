@@ -1,431 +1,140 @@
-Return-Path: <devicetree+bounces-253346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C37CD0AFD3
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:42:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3589BD0B031
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:46:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6BDCE31268FB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:36:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9F637306C430
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:38:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46A731A051;
-	Fri,  9 Jan 2026 15:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cF2kPg4x"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6AEE35CBDF;
+	Fri,  9 Jan 2026 15:38:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-oi1-f194.google.com (mail-oi1-f194.google.com [209.85.167.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9525F28B407
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 15:36:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAA7835C180
+	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 15:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767972975; cv=none; b=aTmHKszh6qVhCvFZg5vhF9JXQRbnDnqwR5aj/jXroHRf8SNGs+TWbm0T94lbLsrrKrGxbN8wJF2629QQ/J+VWLL348QztHDtIQB13mJl28ws9ZPiQPhnb2YQLTPucVLw6vkfOYWxhxhvryEsPRztKfzEnZ/bygEjtHmu2tXwkjg=
+	t=1767973080; cv=none; b=ThxgYweKyiSG+YeK3bDAihgTQLFAZAv1yx9rg7u16L0KKQ7+gsRDInUxzn73OKwNTnqeGp9BTjNlExAr+Jgez7kM/cXl1YKDbBIDfy2tAwoggcKU9VMt+kJ9cg2GMEOgwocpKtu+faP4qR3fxNxUuv21ZVo/ksUCT65VXmtOuLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767972975; c=relaxed/simple;
-	bh=U1EHzfOo6PsJAs+G6mor2VXThNz5Sny7l+HFPc0DBEQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uHtLeyykG0jI+jsy0Z7JN2OXtslFJyJEGTlUUdJsPghiTj1wdDn2tryFuTxe0g/V3I30vi0SbhjnJ2k2obsdQqIivIft8gyvxMEZMnXV+by/iHRzedfxpZ4gxxHRsBy5CK0I3ylVj0p+S567yh9V8y9zB4YmAOA9NSfTyPm8WXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cF2kPg4x; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1767973080; c=relaxed/simple;
+	bh=4wsaBqi0jtRPnszPM3ogYPTMuByF3Kdlpu042cJzlT0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T4yfW/w9cXWLVDc5Vx4e8rTYJEFlaW9PEyUXFKqyo/IXBQIsBnGf8bhQOG41PeViFF2f8sFZ2H4lyjqvCyc7Ztphm/qg3quXm6BMS9G37VfCdlQW4BXelMA9x6mHXibH7wVSOiB+kl5nYlYWmMBK/NVjANxZf/VQpBjnMHZF6kA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-4327778df7fso2716859f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 07:36:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767972972; x=1768577772; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FaRmVSUZR1PykRlYvu83BjTFxKy1TokRQZFRM7CXPc4=;
-        b=cF2kPg4xOd2eLe75SlZAnzC/q62uJ07fHN6/5DVGPtDu7B6XYtg+KRQzDHst/HVqDH
-         pdvFgqxqkK8Ijrs9qI8WiSELnOXhqoyuuNsJmpmL5Yki76aJ5s3m+TMd2LMVK2iS0dLe
-         v5NOoyNcuNtz6ur0fZ+mq0AdCBsyRmdS0bgz3lnKH4RBN9rO2nT0ssQz8Bn+H9+f5OWp
-         Bu/iyDFIXQ5RFst3Sgn99IpQA4oQblMK81QwZ0JHKiWw3Hbg1nQsn6XDjgxfRqjmHdVq
-         ni4OsCU3y52/Q6eRKwbZJOLbzrGwmlFieItgdl1cUiQvw5RBzElhHjibZ0AJcy7NJuG4
-         CjGw==
+Received: by mail-oi1-f194.google.com with SMTP id 5614622812f47-45a815c1cfdso592788b6e.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 07:37:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767972972; x=1768577772;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FaRmVSUZR1PykRlYvu83BjTFxKy1TokRQZFRM7CXPc4=;
-        b=mC6qu9cKNHi0Mzk+J3I6wG8ZMqI+fRrbazAjl7KFJVg9L2KaV1H5iqWqMZx0mGxS9i
-         958nlAILCHeEn32E97vi5U7Apvlkm4uQTthrjBBMuCA9Ei69ehYszuEMwHPAPkiagQUn
-         PZ4Cqo1yLYBliMHIJ8sIho9GVNPCtOMMF5DV4wzigFALHEsEyFXmQ2+b5CrnEiCbZ3I4
-         0kWIKQvmKocziNGgbJRfAdNN9zrzc8Wn1X9YT0QrxnXhgEF5nU2uRvLfZHL5SLrGRC9v
-         BhOB+C/D9z41R0tzDy99rIA9/92QQo6Upr7d5Wgy28fTacgMAmPjFf5DguK4TsTZZ9dp
-         4w8g==
-X-Forwarded-Encrypted: i=1; AJvYcCWQjn+zD7xPGhtko6Vx3NVTZzCkBQ63OUyEQRuRlAdvcaNn0BeMdXfG4Xtyh6d56es+XBLaKnjD5Jog@vger.kernel.org
-X-Gm-Message-State: AOJu0YziCfZGHXmhrwP6YyKITRX+FMHj+ql4JruVlht/l69fccjS+I/3
-	+i17IYwy7pPkKNEZGmeUPnfB1cYe2sr+RA97mOcMBzJEGTblRmgEJJ9n
-X-Gm-Gg: AY/fxX4LPlcoB4AmOBaPBaoFuEO0B3yvLiczJ7qrAvAvluD4h8D9bjJoJB3X6LvGrvr
-	cH4IhVet16je3b6hpJcWkcCwfKIE3VIRY07BUaYreSuzdyB+p6kt/T+Gh986lZqMWY9tyDbVugo
-	FAVKNvdj7oLGXCQdzSWroPgvrU6fIm12p1+fNbRG3cQQJXOvQ3N+znyzbTsd7FLGi1KaBNHB4Tu
-	HigLhdR+YP0UAo5IaH1h551FNAHZt95Dhnx4uMcrbybWw/bPurHK5HKfwzcm0/e1q9zYs5Hzx+3
-	N2fK5ni3YnX8Ck7QHhQEBW0ahsty8dQmMShTCTk0rTl6Vir78T/c62iYZm+whh2RNN5E68GlVmL
-	Fovz/5veaMVKMKACPdRY04RnHuJmKd6bVtIe71YSYkE+v76ivfT6urT7DQSoiWFlyQOWSC7ceph
-	4A9Pqy+90VUIgKoII=
-X-Google-Smtp-Source: AGHT+IGJC44MxKHtqp+9FLRQZine3KFe8r8N72OmkQFF6HPa8SEa2Jqjiu0Na4juBVZ0oZtNmB2aXQ==
-X-Received: by 2002:a05:6000:1ac7:b0:432:5c43:5f with SMTP id ffacd0b85a97d-432c375b612mr13176663f8f.40.1767972971637;
-        Fri, 09 Jan 2026 07:36:11 -0800 (PST)
-Received: from [172.24.138.145] ([137.71.226.102])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0e16d2sm23969126f8f.13.2026.01.09.07.36.09
+        d=1e100.net; s=20230601; t=1767973075; x=1768577875;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tDVtzzCDjggnrGIABHuMI1ztRsI4OAs0dlS5olQIsSk=;
+        b=fSzlBFE0G4P+CBT0u0Q44bok1bbHuMQyELQ6+llLmNoVZAfu2nTkSZNH4J5sGMrhVn
+         2Jqzuri2FMzLIRF6zmzhQKuyFi/AoR2Fc4q+o0ViEkY2N0J3ysh1ZdYEqhc5dASPr3I0
+         5oIfVJnExq/dPYHbH12gzn44xpNrZV+lMuyo8m3FfKInIy1P6JrhJ0RXqFeqaC61FqwO
+         8bYlp4lj+/7jIPZBa4qawjbVhIPhwmUOEXRU552+K4d1DC0mgzPycTht3gpzWVr2YtBN
+         oPgQiHO0ACIy2nQ2bIiDhy1IHrtkrXtsvRc0bd2uUfEN246TmKDBD+oTa7CmuzI7utgp
+         q+WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWJx7lbKhAF/osdJ3NbHk+qQUzaslRIdW2XuvjwuR2l6clnfn/Of4aSh+j7tELu6yWiZo++0dMmeasZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUCeSnUbhGFTU9JEEy2kqGQLNilcQCGo5GByqXFa/+qIojkbIk
+	vCs72yAXPcrA3KmTniN/NmZSrUSsXgTUah01nsWN20odNyYGxSUGsN4DC6NWw3+z
+X-Gm-Gg: AY/fxX7I6DDQOtbAEWc5SsmmIXIgBRsiOXK4wcUujnnv93W/8naSRthpji9Y1et78KQ
+	lwJQOS31yusLF2YLhYfyG3KEnVsHiJ8itIyla9ldWJSJlk14xOEQSIz+eLVW225xxD8S+eXqx7e
+	EAsDZSA1Fg5FzUsJ56Xu9Qpk3sQ/E3GRRTyZU1hl8ixgueSG+OAcGbc38CUOf620sL3A1+/X0Ry
+	OsjXOwIrY9KEHXu3B/+mbdnxjG0iO0Pu1UM3Emq1UVKkTPAyFlVco9kt5/eyQJLiLGGPqzMNe/2
+	22sZkVYhz1d+2emi7SozhYQo7Dv+MbzrUpgX89GVmlRnzCmWDWxwRJX6Q8wsg4ectVNNITAwBQ1
+	/aXW2JEOjcwCdOgYiygsT9EhZSERX+ttPU34HXfoxH7pPd1J7ss+qcK0jqC6uFhEiceh+8Kreqj
+	Gh/v/W0xxVeX+Gk8hgQT9ct5qt9rwZ/E0ckZXW78/noF1f/uYGn4cCtISl+fEVw0GRyyCsVm3Z4
+	QND1k1hDR8=
+X-Google-Smtp-Source: AGHT+IG+/lY/V7w6JPC5qVxuiWHQYRjrrf1XD5bY2cmD9/M5hVvzJ+MahicaHyaWiq1ugwK1Dp1yew==
+X-Received: by 2002:a05:6808:15a0:b0:450:b7a0:41ca with SMTP id 5614622812f47-45a6bdb7471mr5084580b6e.22.1767973075397;
+        Fri, 09 Jan 2026 07:37:55 -0800 (PST)
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com. [209.85.210.47])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa4a9099csm7185941fac.0.2026.01.09.07.37.55
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jan 2026 07:36:10 -0800 (PST)
-Message-ID: <098d6f0e-95f0-4a25-938b-eee3bb35c77a@gmail.com>
-Date: Fri, 9 Jan 2026 16:36:08 +0100
+        Fri, 09 Jan 2026 07:37:55 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7c95936e43cso1694635a34.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 07:37:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVblHaEjoAxrdI6w/Wa1Ao5X8cyi1MHJNxggVJEOrkOqUgaEUrlnmaXl8HrAdtCflqSKWYpap2ZYEZ+@vger.kernel.org
+X-Received: by 2002:a05:6830:6601:b0:7c7:827f:872d with SMTP id
+ 46e09a7af769-7ce50ad0573mr7614979a34.37.1767973074949; Fri, 09 Jan 2026
+ 07:37:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: dac: Add MAX22007 DAC driver support
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
- Janani Sunil <janani.sunil@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Alexandru Ardelean <alexandru.ardelean@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20260108-max22007-dev-v2-0-2506c738784f@analog.com>
- <20260108-max22007-dev-v2-2-2506c738784f@analog.com>
- <aWEMqQed7OXZBLp3@debian-BULLSEYE-live-builder-AMD64>
-Content-Language: en-US
-From: Janani Sunil <jan.sun97@gmail.com>
-In-Reply-To: <aWEMqQed7OXZBLp3@debian-BULLSEYE-live-builder-AMD64>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20260109-apple-dt-chassis-type-v1-0-c215503734c5@jannau.net>
+In-Reply-To: <20260109-apple-dt-chassis-type-v1-0-c215503734c5@jannau.net>
+From: Neal Gompa <neal@gompa.dev>
+Date: Fri, 9 Jan 2026 10:37:18 -0500
+X-Gmail-Original-Message-ID: <CAEg-Je-4Dycowe8TukV7+suU2pm8yy-G5ukVeBD5=r4PFKo5Lw@mail.gmail.com>
+X-Gm-Features: AQt7F2rWXpsz3frhT-_Ey7mmSLoD8jECIUJKTjNZwMNhWrvNHrGDKMFRD2wFgXs
+Message-ID: <CAEg-Je-4Dycowe8TukV7+suU2pm8yy-G5ukVeBD5=r4PFKo5Lw@mail.gmail.com>
+Subject: Re: [PATCH 0/4] arm64: dts: apple: Add chassis-type properties
+To: Janne Grunau <j@jannau.net>
+Cc: Sven Peter <sven@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Marcelo,
-
-Thank you for reviewing the patch.
-
-On 1/9/26 15:11, Marcelo Schmitt wrote:
-> Overall, this is looking much better than previous versions.
-> Here comes another round of review for this.
+On Fri, Jan 9, 2026 at 10:25=E2=80=AFAM Janne Grunau <j@jannau.net> wrote:
 >
-> On 01/08, Janani Sunil wrote:
->> Add support for the MAX22007, a 4-channel 12-bit DAC that drives
->> voltage or current output on each channel.
->>
->> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
->> ---
->>   MAINTAINERS                |   1 +
->>   drivers/iio/dac/Kconfig    |  13 ++
->>   drivers/iio/dac/Makefile   |   1 +
->>   drivers/iio/dac/max22007.c | 507 +++++++++++++++++++++++++++++++++++++++++++++
->>   4 files changed, 522 insertions(+)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index e1addbd21562..99dd3c947629 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -1599,6 +1599,7 @@ L:	linux-iio@vger.kernel.org
->>   S:	Supported
->>   W:	https://ez.analog.com/linux-software-drivers
->>   F:	Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
->> +F:	drivers/iio/dac/max22007.c
->>   
->>   ANALOG DEVICES INC ADA4250 DRIVER
->>   M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
->> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
->> index 7cd3caec1262..4a31993f5b14 100644
->> --- a/drivers/iio/dac/Kconfig
->> +++ b/drivers/iio/dac/Kconfig
->> @@ -482,6 +482,19 @@ config MAX517
->>   	  This driver can also be built as a module.  If so, the module
->>   	  will be called max517.
->>   
->> +config MAX22007
->> +	tristate "Analog Devices MAX22007 DAC Driver"
->> +	depends on SPI
->> +	select REGMAP_SPI
->> +	select CRC8
->> +	help
->> +	  Say Y here if you want to build a driver for Analog Devices MAX22007.
->> +
->> +	  MAX22007 is a quad-channel, 12-bit, voltage-output digital to
->> +	  analog converter (DAC) with SPI interface.
->> +
->> +	  If compiled as a module, it will be called max22007.
->> +
->>   config MAX5522
->>   	tristate "Maxim MAX5522 DAC driver"
->>   	depends on SPI_MASTER
->> diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
->> index e6ac4c67e337..0bbc6d09d22c 100644
->> --- a/drivers/iio/dac/Makefile
->> +++ b/drivers/iio/dac/Makefile
->> @@ -48,6 +48,7 @@ obj-$(CONFIG_LTC2664) += ltc2664.o
->>   obj-$(CONFIG_LTC2688) += ltc2688.o
->>   obj-$(CONFIG_M62332) += m62332.o
->>   obj-$(CONFIG_MAX517) += max517.o
->> +obj-$(CONFIG_MAX22007) += max22007.o
->>   obj-$(CONFIG_MAX5522) += max5522.o
->>   obj-$(CONFIG_MAX5821) += max5821.o
->>   obj-$(CONFIG_MCP4725) += mcp4725.o
->> diff --git a/drivers/iio/dac/max22007.c b/drivers/iio/dac/max22007.c
->> new file mode 100644
->> index 000000000000..19557c008554
->> --- /dev/null
->> +++ b/drivers/iio/dac/max22007.c
->> @@ -0,0 +1,507 @@
-> ...
->> +static u8 max22007_crc8_table[256];
-> Can use CRC8_TABLE_SIZE to define the table size.
-
-Will take this up.
-
+> Add chassis-type properties for all Apple silicon Macs. "chassis-type"
+> is used by u-boot to fill the SMBIOS "System Enclosure or Chassis Type"
+> field. User space software uses this field to to determine if a device
+> is an laptop. The exact use case eludes me unfortunately.
 >
-> ...
->> +
->> +static int max22007_spi_read(void *context, const void *reg, size_t reg_size,
->> +			     void *val, size_t val_size)
->> +{
->> +	struct max22007_state *st = context;
->> +	u8 reg_byte = *(u8 *)reg;
-> Odd casting. Not sure the const qualifier is needed for the reg parameter.
-> See how other IIO drivers implement regmap_bus. ad7091r8 is one I recall from
-> the top of my mind.
-
-Noted. Will update this.
-
->> +	u8 calculated_crc, received_crc;
->> +	u8 crc_data[3];
->> +	u8 rx_buf[4];
->> +	int ret;
->> +
->> +	if (reg_size != 1)
->> +		return -EINVAL;
->> +
->> +	ret = spi_write_then_read(st->spi, &reg_byte, 1, rx_buf,
->> +				  val_size + MAX22007_CRC_OVERHEAD);
->> +	if (ret) {
->> +		dev_err(&st->spi->dev, "SPI transfer failed: %d\n", ret);
->> +		return ret;
->> +	}
-> ...
+> The Mac Pro uses "server" as chassis-type which is not entirely
+> accurate. The tower and rack mount Mac Pro versions share the same .dts
+> file and are identical except for the enclosure. I haven't found an
+> obvious property in Apple's device tree to distinguish between those so
+> both use "server" instead of the more accurate "tower" and "rack mount
+> chassis". The latter chassis-types are not in dt-schema anyway.
 >
->> +static int max22007_read_channel_data(struct max22007_state *state,
->> +				      unsigned int channel, int *data)
->> +{
->> +	int ret;
->> +	unsigned int reg_val;
-> nitpicking: why not following reverse xmas tree convection here too?
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> ---
+> Janne Grunau (4):
+>       arm64: dts: apple: Add chassis-type property for all Macbooks
+>       arm64: dts: apple: Add chassis-type property for Apple desktop devi=
+ces
+>       arm64: dts: apple: Add chassis-type property for Mac Pro
+>       arm64: dts: apple: Add chassis-type property for Apple iMacs
 >
-> unsigned int reg_val;
-> int ret;
-
-Shall follow this format.
-
+>  arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi | 2 ++
+>  arch/arm64/boot/dts/apple/t600x-j375.dtsi      | 2 ++
+>  arch/arm64/boot/dts/apple/t6022-j180d.dts      | 2 ++
+>  arch/arm64/boot/dts/apple/t8103-j274.dts       | 1 +
+>  arch/arm64/boot/dts/apple/t8103-j293.dts       | 1 +
+>  arch/arm64/boot/dts/apple/t8103-j313.dts       | 1 +
+>  arch/arm64/boot/dts/apple/t8103-j456.dts       | 1 +
+>  arch/arm64/boot/dts/apple/t8103-j457.dts       | 1 +
+>  arch/arm64/boot/dts/apple/t8112-j413.dts       | 1 +
+>  arch/arm64/boot/dts/apple/t8112-j415.dts       | 1 +
+>  arch/arm64/boot/dts/apple/t8112-j473.dts       | 1 +
+>  arch/arm64/boot/dts/apple/t8112-j493.dts       | 1 +
+>  12 files changed, 15 insertions(+)
+> ---
+> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+> change-id: 20260109-apple-dt-chassis-type-f31523a1f681
 >
->> +
->> +	ret = regmap_read(state->regmap, MAX22007_DAC_CHANNEL_REG(channel), &reg_val);
->> +	if (ret)
->> +		return ret;
->> +
->> +	*data = FIELD_GET(MAX22007_DAC_DATA_MASK, reg_val);
->> +
->> +	return 0;
->> +}
->> +
->> +static int max22007_read_raw(struct iio_dev *indio_dev,
->> +			     struct iio_chan_spec const *chan,
->> +			     int *val, int *val2, long mask)
->> +{
->> +	struct max22007_state *st = iio_priv(indio_dev);
->> +	int ret;
->> +
->> +	switch (mask) {
->> +	case IIO_CHAN_INFO_RAW:
->> +		ret = max22007_read_channel_data(st, chan->channel, val);
->> +		if (ret)
->> +			return ret;
->> +		return IIO_VAL_INT;
->> +	case IIO_CHAN_INFO_SCALE:
->> +		if (chan->type == IIO_VOLTAGE)
->> +			*val = 5 * 2500;  /* 5 * Vref(2.5V) in mV */
-> Interesting that the external reference (if provided) is also expected to be 2.5 V.
-> I'd set a define for that, e.g.
-> #define MAX22007_REF_mV		2500
-> Btw, what is that 5 in '5 * 2500'
 
-Will add a macro for the reference voltage.
-5 is the gain coefficient in the output stage (driver).
+LGTM.
 
->
->> +		else
->> +			*val = 25;  /* Vref / (2 * Rsense) = 2500mV / 100 */
->> +		*val2 = 12;  /* 12-bit DAC resolution */
->> +		return IIO_VAL_FRACTIONAL_LOG2;
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +}
->> +
-> ...
->> +
->> +static int max22007_parse_channel_cfg(struct max22007_state *st, u8 *num_channels)
->> +{
->> +	struct device *dev = &st->spi->dev;
->> +	int ret, num_chan;
->> +	int i = 0;
->> +	u32 reg;
->> +
->> +	num_chan = device_get_child_node_count(dev);
->> +	if (!num_chan)
->> +		return dev_err_probe(dev, -ENODEV, "no channels configured\n");
->> +
->> +	st->iio_chans = devm_kcalloc(dev, num_chan, sizeof(*st->iio_chans), GFP_KERNEL);
->> +	if (!st->iio_chans)
->> +		return -ENOMEM;
->> +
->> +	device_for_each_child_node_scoped(dev, child) {
->> +		u32 ch_func;
->> +		enum max22007_channel_mode mode;
->> +		enum iio_chan_type chan_type;
->> +
->> +		ret = fwnode_property_read_u32(child, "reg", &reg);
->> +		if (ret)
->> +			return dev_err_probe(dev, ret,
->> +					     "failed to read reg property of %pfwP\n", child);
->> +
->> +		if (reg >= MAX22007_NUM_CHANNELS)
->> +			return dev_err_probe(dev, -EINVAL,
->> +					     "reg out of range in %pfwP\n", child);
->> +
->> +		ret = fwnode_property_read_u32(child, "adi,ch-func", &ch_func);
->> +		if (ret)
->> +			return dev_err_probe(dev, ret,
->> +					     "missing adi,ch-func property for %pfwP\n", child);
->> +
->> +		if (ch_func == 1) {
->> +			mode = MAX22007_VOLTAGE_MODE;
->> +			chan_type = IIO_VOLTAGE;
->> +		} else if (ch_func == 2) {
->> +			mode = MAX22007_CURRENT_MODE;
->> +			chan_type = IIO_CURRENT;
->> +		} else {
->> +			return dev_err_probe(dev, -EINVAL,
->> +					     "invalid adi,ch-func %u for %pfwP\n",
->> +					     ch_func, child);
->> +		}
->> +
->> +		st->iio_chans[i++] = (struct iio_chan_spec) {
->> +			.output = 1,
->> +			.indexed = 1,
->> +			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
->> +					      BIT(IIO_CHAN_INFO_SCALE),
->> +			.ext_info = max22007_ext_info,
->> +			.channel = reg,
->> +			.type = chan_type,
->> +		};
-> IMHO, this would look cleaner with a channel template. See ad7124, ad4130,
-> ad4170 for examples.
-
-A channel template approach was followed initially and this approach was taken up based on the latest suggestions from the reviewers, since the template is not being reused elsewhere.
-
->
->> +
->> +		ret = regmap_update_bits(st->regmap, MAX22007_CHANNEL_MODE_REG,
->> +					 MAX22007_CH_MODE_CH_MASK(reg),
->> +					 MAX22007_CH_MODE_VAL(reg, mode));
->> +		if (ret)
->> +			return ret;
->> +
->> +		/* Set DAC to transparent mode (immediate update) */
->> +		ret = regmap_update_bits(st->regmap, MAX22007_CONFIG_REG,
->> +					 MAX22007_DAC_LATCH_MODE_MASK(reg),
->> +					 MAX22007_DAC_LATCH_MODE_VAL(reg, 1));
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	*num_channels = num_chan;
->> +
->> +	return 0;
->> +}
->> +
-> ...
->> +static int max22007_probe(struct spi_device *spi)
->> +{
->> +	struct device *dev = &spi->dev;
->> +	struct iio_dev *indio_dev;
->> +	struct max22007_state *state;
->> +	struct gpio_desc *reset_gpio;
->> +	u8 num_channels;
->> +	int ret, i;
->> +
->> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*state));
->> +	if (!indio_dev)
->> +		return -ENOMEM;
->> +
->> +	state = iio_priv(indio_dev);
->> +	state->spi = spi;
->> +
->> +	crc8_populate_lsb(max22007_crc8_table, MAX22007_CRC8_POLYNOMIAL);
->> +
->> +	state->regmap = devm_regmap_init(dev, &max22007_regmap_bus, state,
->> +					 &max22007_regmap_config);
->> +	if (IS_ERR(state->regmap))
->> +		return dev_err_probe(dev, PTR_ERR(state->regmap),
->> +				     "Failed to initialize regmap\n");
->> +
->> +	for (i = 0; i < MAX22007_NUM_SUPPLIES; i++)
->> +		state->supplies[i].supply = max22007_supply_names[i];
->> +
->> +	ret = devm_regulator_bulk_get(dev, MAX22007_NUM_SUPPLIES, state->supplies);
-> devm_regulator_bulk_get_enable(), so max22007_regulator_disable() and
-> state->supplies won't be needed anymore.
-
-Will update the same.
-
->
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
->> +
->> +	ret = regulator_bulk_enable(MAX22007_NUM_SUPPLIES, state->supplies);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "Failed to enable regulators\n");
->> +
->> +	ret = devm_add_action_or_reset(dev, max22007_regulator_disable, state);
->> +	if (ret)
->> +		return ret;
->> +
->> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
->> +	if (IS_ERR(reset_gpio))
->> +		return dev_err_probe(dev, PTR_ERR(reset_gpio),
->> +				     "Failed to get reset GPIO\n");
-> I'm not against the conventional way we've been getting and using reset
-> GPIOs but, if other reviewers request to use the reset framework, you may do so
-> with devm_reset_control_get_optional_exclusive_deasserted(dev, NULL).
-> See [1] for an example (if needed).
->
-> [1]: https://lore.kernel.org/linux-iio/6ae8e203f6fb6e9718271132bd35daef790ab574.1767795849.git.marcelo.schmitt@analog.com/
-
-Sure.
-
->
->> +
->> +	if (reset_gpio) {
->> +		usleep_range(1000, 5000);
->> +		gpiod_set_value_cansleep(reset_gpio, 1);
->> +		usleep_range(1000, 5000);
->> +	} else {
->> +		ret = regmap_write(state->regmap, MAX22007_SOFT_RESET_REG,
->> +				   MAX22007_SOFT_RESET_BITS_MASK);
->> +		if (ret)
->> +			return ret;
->> +	}
+Reviewed-by: Neal Gompa <neal@gompa.dev>
 
 
-Best Regards,
-Janani Sunil
-
+--=20
+=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
+=BC=81/ Always, there's only one truth!
 
