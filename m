@@ -1,189 +1,204 @@
-Return-Path: <devicetree+bounces-253349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9446D0AFEB
-	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:43:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD109D0AFF7
+	for <lists+devicetree@lfdr.de>; Fri, 09 Jan 2026 16:43:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E94083039DC4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:38:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0AB223019E0B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jan 2026 15:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B371B311C35;
-	Fri,  9 Jan 2026 15:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E423E2E5B3D;
+	Fri,  9 Jan 2026 15:38:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b="KrnZ2hI8";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="AmxIbu9A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f67.google.com (mail-oa1-f67.google.com [209.85.160.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-b8-smtp.messagingengine.com (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D062367CE
-	for <devicetree@vger.kernel.org>; Fri,  9 Jan 2026 15:38:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C00500946;
+	Fri,  9 Jan 2026 15:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1767973123; cv=none; b=TtTpVaxWUcX5CecOJAUrpKJpIVEYLC3iydboksk+2yvif73jrYPcw9WZLuhI1mLrEELOG5b/YkhmxiYsPlRhDBgBLAv3SWEGxk0lc/gA+48Aw7770bLH/MLq9qI+xboHrPOgGAxbLtbsSfjChGepohlAhqA5BiqregOjz/aMupw=
+	t=1767973133; cv=none; b=n5+9pXgEiDzEm0PbeHM8B5YEo+mZYfdAQpCtHopEAtde9f7uCyWJEbihCDXHDUPV1LutrcLPVKmL0iSN3ERBnzlAT3iYsGGynJJ+gBoslNpbsJ9BFCX7DhZXaozpzRrc3aBHfsCtkFy9hxTjVAqKvytgCEeaqqBuGBPqbx6Sx0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1767973123; c=relaxed/simple;
-	bh=p/mIE32UAw2Rs/kcvZDW+nus0i7GczFKbTrSrUnMef4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=isHoa/Uudx8KrSWtTltpRdXFfMUGfz7F4MzdG/YKSXZTGTtfYbiOq0WTdUEG3huRfavQQuuXvODb4/HL1w1o2e9EU+r6PYKgWVnLg1MDtGQixXJ5l1yMQmujtVVyYuoC8XusMRxuAd6f0S4Xw1R3hZu1qcrTRx05B3V0Ort8llo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f67.google.com with SMTP id 586e51a60fabf-3fff664b610so493887fac.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 07:38:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767973120; x=1768577920;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=SpPrLFd5v/6zJO4WFk35tcM0BKmalPeYgZG+F55tnbQ=;
-        b=q1bF20iUkSPvFi97w55xQbSmd9TVNHmDGJQBte1Un/W5kRnjzrZpeuTUMybboKRIA1
-         c3oYdf3mKFslP2ygoPXf2N5mDsh69kGNSIt1f3yz/DraInQ3aC5WMwGbPRrvvBDcAnGU
-         tIQ1cpSEGHrxD6gOMHXp4VOkxUfyAdHd46k1mzLUm3j+35WUteolvpn+WT+qkRWqcn3c
-         7is2UCpSXMFOVmzzCQv6RSyHD/SEHznRadYElQQe/S1mUTFkhLW0xa2rwe8LMxb1xmB4
-         6aqFRUekQmPnEoknRoe37bBRYyLbqP3s7aQPmF67b2l/GN//8KFU1dycVvp+SXn/MFh+
-         xMiA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkZZRnb3j2xfQTmFGDdJ7QOtqZ/klWxObjqYIUALDocabc+FNH1Qguzc724M7Wi1Uezjx8fNP/MDMF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIyEvg4rCeFUmxVWcXX5RfgTrQ9nOio8box8h0DjfXx74tp5DV
-	W6MXV1kNcgjNB1qtErkewCN809Gr49ALqeEQzguYbNA6CtVDdmaiLmDW3eTvLWEB
-X-Gm-Gg: AY/fxX7j0Rvcze83Xj8sBwTNOP9oNjdntz4OR7SMxjTdk1Mr88vQbL2uvF6djYqL/Di
-	GUto8FKlVzqOvETr0XMUelvSiZCLOPllDa4WKFsVPTGu927LIWvD3fRmHwp0MJ+zHiiOjTsjPTh
-	0efC0KX3TmVopShny7IxmAbk22LqLSSxt4+OfYr0nhFRsU2hzOBQspHseBQWxP6WzZVyhtJ/s9p
-	x5OiHgb+0DTnjIgPrIzU8QoN30v9IAwTXCGNGjx+nfT33yHWIa+bEnRHj/Zx20RhfTfjbHvVo6p
-	9t/97hjOHfwimmwrnhOMmKVe5mLDmsQx/9jUHIhUQTyCbfwOXqF0p5dFE7j51gBIxnLAStwL5xA
-	r0tumKoCh0bN7/whiCpO9pVik6flf1wF0gjacwbcXcsmCshcN/qxX2RwiRXgcUakS4UF2jNMi8R
-	5TiZzlEak/QfWrXC6pePYEQv8czew66+A7PfvRyLpFAJa1pGOFszeVNZz8xW9EBQCQJesOmNW4
-X-Google-Smtp-Source: AGHT+IH7E9htnIwCjAykMWly3VABzXM4VvzvbPdOPUp0BQKUxIo9IiJPgpA7bFRqDiqT8khGjS8UcA==
-X-Received: by 2002:a05:6870:c228:b0:3ec:3685:34a1 with SMTP id 586e51a60fabf-3ffc0a431d3mr5560147fac.25.1767973120407;
-        Fri, 09 Jan 2026 07:38:40 -0800 (PST)
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com. [209.85.210.47])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa507235fsm7430854fac.13.2026.01.09.07.38.39
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jan 2026 07:38:39 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-7c76d855ddbso1469119a34.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 07:38:39 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXVnIoo/EvRoPi328zkouoz/RhthPDTAzbmwpTnZ4mZNjXQEL38l2u/49785/+0mFhEATGzjyoukCR5@vger.kernel.org
-X-Received: by 2002:a05:6830:1cc2:b0:7c5:3045:6c6f with SMTP id
- 46e09a7af769-7ce50a28c93mr6289620a34.20.1767973119475; Fri, 09 Jan 2026
- 07:38:39 -0800 (PST)
+	s=arc-20240116; t=1767973133; c=relaxed/simple;
+	bh=NDfI+DP8QC3yvGvOA16ouiD6nbbpZsmcTNbrQ/3LFpc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qmrYC2x7LJnQhhaEVOh5OvCPftfTHKNKbwy8uDCkCftlwPx2CJeYbeQEwZWHEVKAalu0DpFaITpUzDsHjn111YSZ4IbPHO7ndldUntO0On2xmLby/K0CE/abIdt8SnQle0RiEaNztfBosrQ7XuJhdeNugfY3AYxakB72jFHF8Bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in; spf=pass smtp.mailfrom=machinesoul.in; dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b=KrnZ2hI8; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=AmxIbu9A; arc=none smtp.client-ip=202.12.124.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=machinesoul.in
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id AFF9F7A00FC;
+	Fri,  9 Jan 2026 10:38:50 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-05.internal (MEProxy); Fri, 09 Jan 2026 10:38:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=machinesoul.in;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1767973130; x=1768059530; bh=a9J6tkdi70hl3QBw/yljmFYOIsH7IUQ/
+	hhd0MRNePak=; b=KrnZ2hI8+FewEWYlLBfRUocdi4/sthYc1dIjmODcPJ/txo67
+	tYnzmE0e8+M6mXnLYT0U0eSb4emQZ9BCWSSy/5HMIYWts4zdfP8oLsfNlyv3p3Un
+	vLZl2YPDgcGoSW5r2IX3g05rWemA9xqIgYkuqoTVWvHw45RkK9SJXBkGKV4lVgBY
+	9YzchzrxWFLTNyZ+5cGPk5TelThzm4LmjUBC1W3zgh/gga8jcmko+2/yU5tjPZBN
+	5kDcQZlnbJIfMt3hAZPCjM4AKBByefkkKvbWzard8NttIl/C2IlkpDWjpilFxvXO
+	p3pC9eP32fGM76YmxEQPde3LU0XNufxqGSMDtg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1767973130; x=
+	1768059530; bh=a9J6tkdi70hl3QBw/yljmFYOIsH7IUQ/hhd0MRNePak=; b=A
+	mxIbu9As5fIrGSVhPK4Rz5DcmHLZ84Xmp8huqdFsijCqsMSDTTACnaVhvjmwwEn1
+	BlCOE9lxRCr9BoLpvPs4V1EFwJ/tyXdMt55BWx/LkcOIEaREh9JJxd8OPpZcnJZ1
+	IybKjRbyEzLA06T4hVWsxIVyLljNnRQxqs+tJIzjOWbRihyYgduGXbqD+Srd4JhQ
+	onLuhvm7mvLVVi3d1ZscNdrsZ5Ugh+omKBszc+zcMM9Ap1ZkvEH0yICO9Z1w0zwH
+	3n/l8AYl3Bj/4oIXs/F0KSRXVgLsJWfxHB4EcNFb03XLSVId0AP/MvyFB8E0iQBc
+	e2RfvNgF0ZOce/bjG2EZQ==
+X-ME-Sender: <xms:CSFhaZqCQ85ZMmx4PJZcpZgRWb1-_UQokg1UrcPyYSTw6uwFkGqjqA>
+    <xme:CSFhaXeX0xiBKJISj5rS2A8Qyy1z1ovuFLqB3ntgUotYO7OcSNQBR3Ws9IHPLo_NK
+    wqFWs7d1NPmppTYZUoJNEuNLbQXekpd8rmhj35UTydC0VsXhDz7Qik>
+X-ME-Received: <xmr:CSFhacqLR5uCzkDzJef5cbCfozL_RYodnXfO8E-dfW_k66pcMRLftweSvXuxLx1rbQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddutdeludelucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephffvvefufffkjghfggfgtgesthfuredttddtjeenucfhrhhomhepuehhuhhshhgr
+    nhcuufhhrghhuceosghhuhhshhgrnhdrshhhrghhsehmrggthhhinhgvshhouhhlrdhinh
+    eqnecuggftrfgrthhtvghrnhepgeeftdeuheetjeevveehkeegledttdeikeejledvgfdu
+    tddvteevkeehudduledvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
+    hilhhfrhhomhepsghhuhhshhgrnhdrshhhrghhsehmrggthhhinhgvshhouhhlrdhinhdp
+    nhgspghrtghpthhtohepudegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnh
+    guvghrshhsohhnsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkohhnrhgrugihsggt
+    ihhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
+    tghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtrhhoshdqqhgtoh
+    hmqdguthhsqdifrghttghhvghrshestghhrhhomhhiuhhmrdhorhhgpdhrtghpthhtohep
+    sghhrghrrggufigrjhdrrhgrjhhusehmrggthhhinhgvshhouhhlrdhinhdprhgtphhtth
+    hopegrlhgvgigrnhgurhgvrdhfvghrrhhivghugiesohhrrghnghgvrdgtohhmpdhrtghp
+    thhtoheplhhutggrrdifvghishhssehfrghirhhphhhonhgvrdgtohhm
+X-ME-Proxy: <xmx:CSFhaRkGcQPNT10Gvv_gapnTF1vHeZzN66RAXjLp4LxI8cOIYU5xCA>
+    <xmx:CSFhadSBUIMiRlwZXQXq5MaMROVTyGhmqwxEQXf-h38shBJiti0rhw>
+    <xmx:CSFhaXYvPya8MdYo12hvb2Iy7jmNFWO_n5BDx2Sn0hBEe3B5vBF9HQ>
+    <xmx:CSFhad8I5XhDTK7FN-P0AGNbd6wcy4E0Sbe4QrQAgMz62ZYNPy5tTg>
+    <xmx:CiFhac8-ef0Vse0a1Gw5g09zWbBKdmTNe5pEebzLWcu4uFry12m1DVj6>
+Feedback-ID: i6b0e4831:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 9 Jan 2026 10:38:46 -0500 (EST)
+From: Bhushan Shah <bhushan.shah@machinesoul.in>
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org,
+ Bharadwaj Raju <bharadwaj.raju@machinesoul.in>,
+ Alexandre Ferrieux <alexandre.ferrieux@orange.com>,
+ Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH] arm64: dts: qcom: kodiak: Add missing clock votes for lpass_tlmm
+Date: Fri, 09 Jan 2026 21:08:32 +0530
+Message-ID: <6749502.DvuYhMxLoT@antlia>
+In-Reply-To:
+ <20260109-kodiak-lpass-tlmm-clocks-v1-1-746112687772@fairphone.com>
+References:
+ <20260109-kodiak-lpass-tlmm-clocks-v1-1-746112687772@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260109-apple-dt-usb-c-atc-dwc3-v1-0-ce0e92c1a016@jannau.net>
-In-Reply-To: <20260109-apple-dt-usb-c-atc-dwc3-v1-0-ce0e92c1a016@jannau.net>
-From: Neal Gompa <neal@gompa.dev>
-Date: Fri, 9 Jan 2026 10:38:02 -0500
-X-Gmail-Original-Message-ID: <CAEg-Je9Df0XkVUBmy1DV98VOaHT1tZR3kgPQGupViR-z_0TsYw@mail.gmail.com>
-X-Gm-Features: AQt7F2rwR9BSvl9s1TsweiM258RIcrVrEtCNI80i8QBJax18vd1G319kNAidJ6o
-Message-ID: <CAEg-Je9Df0XkVUBmy1DV98VOaHT1tZR3kgPQGupViR-z_0TsYw@mail.gmail.com>
-Subject: Re: [PATCH 0/3] arm64: dts: apple: Add integrated USB Type-C ports
-To: Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>, R <rqou@berkeley.edu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Fri, Jan 9, 2026 at 9:07=E2=80=AFAM Janne Grunau <j@jannau.net> wrote:
->
-> Now that all dependencies for USB 2.0 and 3.x support are either merged
-> (tipd changes in v6.18, dwc3-apple in v6.19-rc1) or in linux-next (Apple
-> Type-C PHY) prepare device tree changes to expose the ports.
->
-> Each port on Apple silicon devices is driven by a separate collection of
-> hardware blocks. For USB 2.0 and 3.x the collection consists of:
-> - Apple Type-C PHY, combo PHY for USB 2.0, USB 3.x, USB4/Thunderbolt and
->   DisplayPort
-> - Synopsys Designware dwc3 USB controller
-> - two DART iommu instances for dwc3
-> - CD321x USB PD controller (similar to Ti's TPS6598x series)
->
-> The CD321x nodes are already present so this series add the remaining
-> devices nodes, typec connector nodes and connections between all
-> components.
->
-> The devices expose except for a few exceptions noted below all ports. M1
-> and M2 have two ports, M1 and M2 Pro and Max have four ports and
-> M1 and M2 Ultra have eight ports.
-> The Pro and Max based Macbook Pros use only three ports. The fourth port
-> is used as DisplayPort PHY to drive a HDMI output via an integrated
-> DP to HDMI converter.
-> The Ultra based Mac studio devices only use six ports. The third and
-> fourth port on the second die is completely fused off.
->
-> The changes for t600x and t602x are in a single commit since the devices
-> share .dtsi files across SoC generations due to their similarity.
->
-> Depends on commit c1538b87caef ("dt-bindings: phy: Add Apple Type-C
-> PHY") in linux-phy's [1] next branch for `make dtbs_check` to pass.
-> checkpatch warns about the undocumented DT compatible strings
-> "apple,t8112-atcphy", "apple,t6000-atcphy" and "apple,t6020-atcphy" but
-> not about "apple,t8103-atcphy". I don't under why it doesn't warn about
-> the last. "apple,t8103-atcphy" is only found in the added devicetree
-> files and nowhere else in v6.19-rc1.
->
-> Tested on top of next-20260106 on M1, M2, M1 Max and M2 Pro Mac mini /
-> Mac studio and a few fixes for dwc3-apple and atc [2, 3, 4, 5].
->
-> Link: https://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git/ =
-[1]
-> Link: https://lore.kernel.org/asahi/20260104-atcphy-tunable-fix-v2-1-84e5=
-c2a57aaa@kernel.org/ [2]
-> Link: https://lore.kernel.org/asahi/20260108-atcphy-coldboot-fix-v1-1-01c=
-41c6e84f2@kernel.org/ [3]
-> Link: https://lore.kernel.org/asahi/20260108-dwc3-apple-usb2phy-fix-v1-1-=
-5dd7bc642040@kernel.org/ [4]
-> Link: https://lore.kernel.org/asahi/20260109-apple-dwc3-role-switch-v1-1-=
-11623b0f6222@jannau.net/ [5]
-> Signed-off-by: Janne Grunau <j@jannau.net>
+On Friday, 9 January 2026 20:44:34 IST Luca Weiss wrote:
+> Without the correct clock votes set, we may be hitting a synchronous
+> external abort error when touching the lpi registers.
+> 
+>   Internal error: synchronous external abort: 0000000096000010 [#1]  SMP
+>   <...>
+>   Call trace:
+>    lpi_gpio_read.isra.0+0x2c/0x58 (P)
+>    pinmux_enable_setting+0x218/0x300
+>    pinctrl_commit_state+0xb0/0x280
+>    pinctrl_select_state+0x28/0x48
+>    pinctrl_bind_pins+0x1f4/0x2a0
+>    really_probe+0x64/0x3a8
+> 
+> Add the clocks to fix that.
+> 
+> Platforms with this SoC using AudioReach won't be impacted due to
+> qcs6490-audioreach.dtsi already setting clocks & clock-names for
+> q6prmcc. The sc7280-chrome-common.dtsi has also been adjusted to keep
+> the behavior the same as they also do not use Elite with q6afecc.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+
+Tested-by: Bhushan Shah <bhushan.shah@machinesoul.in> # On fairphone-fp5
+
 > ---
-> Hector Martin (2):
->       arm64: dts: apple: t8103: Add nodes for integrated USB Type-C ports
->       arm64: dts: apple: t8112: Add nodes for integrated USB Type-C ports
->
-> Janne Grunau (1):
->       arm64: dts: apple: t60xx: Add nodes for integrated USB Type-C ports
->
->  arch/arm64/boot/dts/apple/t6001.dtsi           |   1 +
->  arch/arm64/boot/dts/apple/t6002-j375d.dts      | 150 +++++++++
->  arch/arm64/boot/dts/apple/t6002.dtsi           |   1 +
->  arch/arm64/boot/dts/apple/t600x-dieX.dtsi      | 212 +++++++++++++
->  arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi | 234 ++++++++++++++
->  arch/arm64/boot/dts/apple/t600x-j375.dtsi      | 270 ++++++++++++++++
->  arch/arm64/boot/dts/apple/t6022-j180d.dts      | 415 +++++++++++++++++++=
-++++++
->  arch/arm64/boot/dts/apple/t6022-j475d.dts      |  31 ++
->  arch/arm64/boot/dts/apple/t6022-jxxxd.dtsi     | 133 ++++++++
->  arch/arm64/boot/dts/apple/t602x-dieX.dtsi      | 212 +++++++++++++
->  arch/arm64/boot/dts/apple/t8103-j274.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8103-j293.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8103-j313.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8103-j456.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8103-j457.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi      | 134 ++++++++
->  arch/arm64/boot/dts/apple/t8103.dtsi           | 105 +++++++
->  arch/arm64/boot/dts/apple/t8112-j413.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8112-j415.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8112-j473.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8112-j493.dts       |  12 +
->  arch/arm64/boot/dts/apple/t8112-jxxx.dtsi      | 134 ++++++++
->  arch/arm64/boot/dts/apple/t8112.dtsi           | 105 +++++++
->  23 files changed, 2245 insertions(+)
+> This issue is somewhat of a race condition, with some kernel configs it
+> cannot (easily) be triggered, with others relatively reliably but it
+> seems also to be somewhat related to cold boot.
+> 
+> Also I can't pinpoint a good Fixes tag, lpass_tlmm was introduced before
+> q6afecc got added for this SoC, and that worked fine for those boards it
+> seems. It's just needed on boards with Elite audio architecture.
 > ---
-> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-> change-id: 20260109-apple-dt-usb-c-atc-dwc3-c4f7853c85e2
->
+>  arch/arm64/boot/dts/qcom/kodiak.dtsi               | 5 +++++
+>  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 5 +++++
+>  2 files changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi
+> b/arch/arm64/boot/dts/qcom/kodiak.dtsi index 076069f14495..f478c5e1d2d5
+> 100644
+> --- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+> @@ -2994,6 +2994,11 @@ lpass_tlmm: pinctrl@33c0000 {
+>  			compatible = "qcom,sc7280-lpass-lpi-
+pinctrl";
+>  			reg = <0 0x033c0000 0x0 0x20000>,
+>  				<0 0x03550000 0x0 0x10000>;
+> +
+> +			clocks = <&q6afecc LPASS_HW_MACRO_VOTE 
+LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +				 <&q6afecc LPASS_HW_DCODEC_VOTE 
+LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +			clock-names = "core", "audio";
+> +
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+>  			gpio-ranges = <&lpass_tlmm 0 0 15>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi index
+> 84c6d662b54f..617a39d32488 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> @@ -67,6 +67,11 @@ &lpass_hm {
+>  	status = "okay";
+>  };
+> 
+> +&lpass_tlmm {
+> +	/delete-property/ clocks;
+> +	/delete-property/ clock-names;
+> +};
+> +
+>  &lpasscc {
+>  	status = "okay";
+>  };
+> 
+> ---
+> base-commit: ef1c7b875741bef0ff37ae8ab8a9aaf407dc141c
+> change-id: 20260109-kodiak-lpass-tlmm-clocks-7da465d40eaf
+> 
+> Best regards,
 
 
-LGTM, thanks for this!
-
-Reviewed-by: Neal Gompa <neal@gompa.dev>
 
 
---=20
-=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
-=BC=81/ Always, there's only one truth!
 
