@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-253457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D309D0D00D
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 06:38:45 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1339FD0D008
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 06:38:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A871E30208E3
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 05:37:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 75F99301CD11
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 05:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B9A33CEAA;
-	Sat, 10 Jan 2026 05:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE80340D86;
+	Sat, 10 Jan 2026 05:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VCBZqv4C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XQAaKIA7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDE033CE92
-	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 05:37:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E2C33FE34
+	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 05:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768023463; cv=none; b=c4+647DKNtsuweviYcSlrI3Wtb++C46pc1aht+V/HkD8Jp2tiCvozqitOMfvMDU3CSnFD1gajscUQXjeAzEVXVg9s1Q3sD7Phb5UUrU8DHA8o6PV7ZrB0eiHKEer0N4HHO0Nd4PeUUmJY8yWlmUacqwAkMguT3EGuE6dJ92m+ag=
+	t=1768023466; cv=none; b=a2BljVniTtVoTyshuEJRmrMhysxZWpT2nqtT161RyN+9OXcjkognb7zGkDTESnHuVjM8viRVy1zSDOoB8Cdj0RduB7M8ysHMM6Vz3dh5ulNj/p6GSVss2c/x+X1CbilR08tMqXt+q134oJPQquu8cHtjnyJyzGj5m1086PXKMOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768023463; c=relaxed/simple;
-	bh=WljOqNK74DzVd+siLPZsiFtaVwMXuKc/CKeyp/+23k4=;
+	s=arc-20240116; t=1768023466; c=relaxed/simple;
+	bh=aiQH21puKQPZom1FBS2CS8wFKMYZxOyOP1j3Sjj8KqQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qaJHt7Bd6cmiKVsCKLnBDv3RI50m+jpedehS4k8mGjSUndVah4Nz8apoysFkl7W8fkR40r7XQuyaVQFkDJW/AdSZfziQxWqXcFzlcTBmle0km2lbp7GoU8g2SNU/FUuBPyeYuXmPE20M/QJcowFAlZDi77tWG+KF5XiyQlG2OsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VCBZqv4C; arc=none smtp.client-ip=209.85.128.48
+	 MIME-Version; b=AeoGYxbbkTeCouZ1zd+y49rd/YCVPTFxqAUMwQMekjEzHvbAQXN66x2N9+m49yGXH7pTHiqjJcuZRzlcooryUYDVOO1ixoI4GVq7iYENg9ZIDYFYfMU76E3zONsOK9wBqfiQFt/JNw/v22OzWNfAkhK54Sd1MrcdCzryHNfRj8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XQAaKIA7; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-477619f8ae5so37074585e9.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 21:37:41 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4779adb38d3so34075785e9.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 21:37:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768023460; x=1768628260; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768023463; x=1768628263; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SwF/unBnaFW1rvIB2VegLLFRYP2bQTcQU4jqjcGifVk=;
-        b=VCBZqv4CGVz8NveJQ5YLsu/1M6LCbbuLZ8Z4HcEqEBThZr+F6YjkvMgUZ2C41R3n8P
-         IL7+f2qoplWdyLEeQ7k33Z7CNnKY8k6DCvK3FK/XNuzyo7WHVfYD1vNI9+kYVObuJWfW
-         RMxqW0CNC6oYGoodferu7sA7YGZisdVNdu825ccoPk/fU7W2OWgWi42v9fuO3n9mw4fD
-         ofUpRoYh7d7+fV6NEfxqC2PFjjRr+gJ3e4NRlwzq79/xwn9dTsUKbjyhDibz7Zk6Ggv6
-         dbjYJw2eWHhsg12XTrltfBXJXuD9DI1iBnnTUp8LFySNJ2A1/CLlyqMKi4vOCLUWDYaj
-         XSaw==
+        bh=KBV1jttw9vA0jCOoGP99Ua6fivA5lzhlMS+1uYQ4YFE=;
+        b=XQAaKIA75JzKzrthVP89Cqf5lUYtymozYmjUgktIN6oWhMG6LDtPcVKAtJesOzmZzd
+         M1eE1JZF8Jcfzjwcl0DHx5khfKSOgJ8LxsKKTi7U6pJT5mAKBpwOMfWafpeZKnzLlS0o
+         2Y0NeLU4dH/PZlF+NW5qR+P5SqhwCB9K0sxPAdsmquN08VNtA+X80Zd+joY3T9/cAmI9
+         K/6K9Isxb2OhjY/EErvIOboTVZZUvxn6iH0hf2IicjBnCfQaoOyRlV0u3oARqW10AvOx
+         s7AGi9RLbjC/9C+gKhiR383uK0GaJpuEsn+VbI5k5wG2t3DiyB0kNchxsBT7X5iXxOPW
+         wbcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768023460; x=1768628260;
+        d=1e100.net; s=20230601; t=1768023463; x=1768628263;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=SwF/unBnaFW1rvIB2VegLLFRYP2bQTcQU4jqjcGifVk=;
-        b=CSOLT+p788n2OG0tvgO1Uh5oVQHXbbZ5i/jFJjbOUoMLJGeoeOD97sn5bM/EeljQ0W
-         T/v60ntZhbXKA132/gnESllzEf/bXDLL3tcdxjjLNRUHZQmnISJaW4o8qTWwhf2WXy94
-         RUfhZ2taVWL9MufwACH3sqjh+Zya9jmiCq970JVbCMRnwtEG5A/PuEfIxKFlT+PcGYpz
-         KdnsRQA65Xd8tqV39aXtuy30VpbC+X0Fv5bkXXaq2Gr1X0jngA5jlWRUyeBenSEBz5Jz
-         8hCiNO5rN+CDMYDaIQoysjyMTSXVJHvFwxpunS2vkOVaPi7jVAi78U3Jq4s5cpupMDbr
-         kK8w==
-X-Forwarded-Encrypted: i=1; AJvYcCUCzjxWTZittWGxKEnLgVdzQvWwD1t/65dZ27iR+NnGlk4dAVdSNuOzTNNC/smRupSRitp7f4fWvb18@vger.kernel.org
-X-Gm-Message-State: AOJu0YytxfIKInQPb2w5zIRPUgjT68Wntp947Z1rwPgvMLYPmEupxcES
-	mz+sNJ07zqWR+b69DYlAb1fXQFtRl6sJAjKLOQsOIaGv6NXd8+rJzB3L
-X-Gm-Gg: AY/fxX5CZpoQEAPTvCNWZ9Z/dbH+jW5GN8s1Flh+/JZZHWP7aLAwxnAYGsfz5SVUzgz
-	NeVhket8CqtvgJbuhZLS+r6SBKgXvmhJ0o1cWd+0iQQDquBYTaeaY3Xv+spLGkrzjwwWKV4nYZU
-	M4tcGAyw2OW4OkDvXnHka42ANX2/yOB5594auuo4H98T8lkBiB0NfiBA+JsgpuYakAujI4MfuVg
-	lG9OyFI7QD3NkWw+Wi1oAaWpTBcIPoxOQhseUqZqJD7WET3qy7wRM1ruo23R5BbOGLa/MBt0kZi
-	kpeplX2upgHihkBf8WEIRIdjB0FUMuXsKBOMJ5GH/WXwgItKxi2n52m2sME+TYyv1g92tCVEU/1
-	usTqm4bvXdlaZg+amW/CDuBR8Oq0lIqkzDKCQXIn6rik1WbW5vL9Ce+kf2vOxycZWhcwyl2hYOq
-	oBlZVNzwt/sClCv8g=
-X-Google-Smtp-Source: AGHT+IETNRaHMNAZQeH2gwTg4jdbHnvg19YnwNKOZH/s/Wk/33B+6YxgXnlQIAepe6DAJfUBCWI5ig==
-X-Received: by 2002:a05:600c:8b65:b0:477:79f8:daa8 with SMTP id 5b1f17b1804b1-47d8fbda479mr66222065e9.17.1768023459645;
-        Fri, 09 Jan 2026 21:37:39 -0800 (PST)
+        bh=KBV1jttw9vA0jCOoGP99Ua6fivA5lzhlMS+1uYQ4YFE=;
+        b=IA4EF6I/kar5tLO8UdervlMRA+RFar0UJp0jm6AM5Uunaz2/KU9bVhsA9LbjNNsSj6
+         UI01jdL3DyMuGrI+Zxuw0bLQc5Y6dBOJ6Hem6LNNBfNcisWJ0xwikYBrCt7ezu58xCgg
+         S5Lx6+fpQol5UrJC0dHrldvaurNyEHP+em8bem9NmiypCmJgyrJx7EMD3yO/oz1it8yp
+         soqss+MkgBqACm3d1rVbHfgT8Xp2CXmGDNpGth+6ohdM9Ss+03Oji0abjq4YegwgF72t
+         BCGs126ZKmETsDcwiXI8HGFaUk+CL9vtyLMfTZwxYArGVmBnEbgokfvKQlOXkJ0wkfRh
+         t7pg==
+X-Forwarded-Encrypted: i=1; AJvYcCXDwpKwye0gJ0dtwj9KYUqYhCTXkfx63o5MkaOYz7BAh77joKceUINT26+Z+w0kDaDr7X8Wf/U9i7u5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuU2GQXn9gc7XiGfauHQ6+fKTXkDeUmidAVZlEBVjQulj+r1Qt
+	1sNZUPnifgjVTUk16FP33R8cj/9CwMWWh4SBQfFh0mCOqyDLTDphbA64bA8foQ==
+X-Gm-Gg: AY/fxX7Isj/WirQPCxMKxYNlT4u28yUBzBk/CSmw4nuUpKBcIqc6zVocFi+/g4wZZst
+	i+zDMBDeKCkEtcejUH+Q/Y4kiibg0/M7ul5c1J0FTfYojlbwPxlkAZX1S/kV014FD+HP7HHzL3A
+	6jv+rTRh3Rq4iSmm5gMJkinee+nRF0vLqZVB4yslhPGTS6iVz4S0kLYyI+/WyWHCpWGO89W8oZs
+	FZNW9HlKYm2OADP9VcjKFST0iZKABKp39L7KNBhxZZm21hRtjjB4MyRdzUzmLHPK2pwzJ46Fna2
+	0CikM6JOLmM8exfhXlEovp1H6ejKMSoiMIcea/OKau7XrfByqrssfcE5BXEEOC4yRcEY2C7MZGQ
+	HJRms2Fy4wo6tE0jqvnpLsb5bhSYteXhH5daWBpaYtTv6SrxcVxPEbZFoUBwX+DAJ2/tViIew6+
+	INDljFkkm63kpbwFw=
+X-Google-Smtp-Source: AGHT+IFcfMPIrhWiXPkS98R5rwsX/ACoRCaVo+plXZiPZaElaqnswMgbw6+184Fm/K+bJwMBmWeKXg==
+X-Received: by 2002:a05:6000:4287:b0:432:851d:35ef with SMTP id ffacd0b85a97d-432c37a3b62mr16501208f8f.42.1768023462952;
+        Fri, 09 Jan 2026 21:37:42 -0800 (PST)
 Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0dadcfsm25973825f8f.3.2026.01.09.21.37.36
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd0dadcfsm25973825f8f.3.2026.01.09.21.37.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jan 2026 21:37:39 -0800 (PST)
+        Fri, 09 Jan 2026 21:37:42 -0800 (PST)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Detlev Casanova <detlev.casanova@collabora.com>,
 	=?UTF-8?q?Olivier=20Cr=C3=AAte?= <olivier.crete@collabora.com>,
@@ -91,11 +91,10 @@ To: Detlev Casanova <detlev.casanova@collabora.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Dang Huynh <dang.huynh@mainlining.org>
-Subject: [PATCH v3 2/3] media: rkvdec: Add support for the VDPU346 variant
-Date: Sat, 10 Jan 2026 05:37:26 +0000
-Message-ID: <20260110053727.2295260-3-christianshewitt@gmail.com>
+Cc: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Subject: [PATCH v3 3/3] arm64: dts: rockchip: Add the vdpu346 Video Decoders on RK356X
+Date: Sat, 10 Jan 2026 05:37:27 +0000
+Message-ID: <20260110053727.2295260-4-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260110053727.2295260-1-christianshewitt@gmail.com>
 References: <20260110053727.2295260-1-christianshewitt@gmail.com>
@@ -107,152 +106,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-VDPU346 is similar to VDPU381 but with a single core and limited
-to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
-AVS2 capabilities. VDPU346 is used with RK3566 and RK3568.
+Add the vdpu346 Video Decoders to the rk356x-base devicetree to
+enable support on RK3566 and RK3568 boards. Also add the needed
+sram and vdec_mmu nodes.
 
+Suggested-by: Diederik de Haas <diederik@cknow-tech.com>
+Suggested-by: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Tested-by: Dang Huynh <dang.huynh@mainlining.org> # Pinetab2
 ---
- .../media/platform/rockchip/rkvdec/rkvdec.c   | 103 ++++++++++++++++++
- 1 file changed, 103 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-index a5cf6f3240f8..6e49b129d11f 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-@@ -236,6 +236,62 @@ static const struct rkvdec_ctrls rkvdec_hevc_ctrls = {
- 	.num_ctrls = ARRAY_SIZE(rkvdec_hevc_ctrl_descs),
- };
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+index a2c4957a5899..11536684479b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+@@ -383,6 +383,19 @@ usb2phy1_grf: syscon@fdca8000 {
+ 		reg = <0x0 0xfdca8000 0x0 0x8000>;
+ 	};
  
-+static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] = {
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_SPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_PPS,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_MODE,
-+		.cfg.min = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+		.cfg.max = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+		.cfg.def = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_START_CODE,
-+		.cfg.min = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+		.cfg.def = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+		.cfg.max = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
-+		.cfg.min = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-+		.cfg.max = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
-+		.cfg.menu_skip_mask =
-+			BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
-+		.cfg.def = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
-+		.cfg.min = V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-+		.cfg.max = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+		.cfg.dims = { 65 },
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+		.cfg.dims = { 65 },
-+	},
-+};
++	sram@fdcc0000 {
++		compatible = "mmio-sram";
++		reg = <0x0 0xfdcc0000 0x0 0xb000>;
++		ranges = <0x0 0x0 0xfdcc0000 0xb000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
 +
-+static const struct rkvdec_ctrls vdpu346_hevc_ctrls = {
-+	.ctrls = vdpu346_hevc_ctrl_descs,
-+	.num_ctrls = ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
-+};
++		vdec_sram: rkvdec-sram@0 {
++			reg = <0x0 0xb000>;
++			pool;
++		};
++	};
 +
- static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] = {
- 	{
- 		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-@@ -463,6 +519,41 @@ static const struct rkvdec_coded_fmt_desc rk3288_coded_fmts[] = {
- 	}
- };
+ 	pmucru: clock-controller@fdd00000 {
+ 		compatible = "rockchip,rk3568-pmucru";
+ 		reg = <0x0 0xfdd00000 0x0 0x1000>;
+@@ -619,6 +632,42 @@ vepu_mmu: iommu@fdee0800 {
+ 		#iommu-cells = <0>;
+ 	};
  
-+static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] = {
-+	{
-+		.fourcc = V4L2_PIX_FMT_HEVC_SLICE,
-+		.frmsize = {
-+			.min_width = 64,
-+			.max_width = 4096,
-+			.step_width = 64,
-+			.min_height = 64,
-+			.max_height = 2304,
-+			.step_height = 16,
-+		},
-+		.ctrls = &vdpu346_hevc_ctrls,
-+		.ops = &rkvdec_vdpu381_hevc_fmt_ops,
-+		.num_decoded_fmts = ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
-+		.decoded_fmts = rkvdec_hevc_decoded_fmts,
-+		.subsystem_flags = VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-+	},
-+	{
-+		.fourcc = V4L2_PIX_FMT_H264_SLICE,
-+		.frmsize = {
-+			.min_width = 64,
-+			.max_width =  4096,
-+			.step_width = 64,
-+			.min_height = 64,
-+			.max_height =  2304,
-+			.step_height = 16,
-+		},
-+		.ctrls = &rkvdec_h264_ctrls,
-+		.ops = &rkvdec_vdpu381_h264_fmt_ops,
-+		.num_decoded_fmts = ARRAY_SIZE(rkvdec_h264_decoded_fmts),
-+		.decoded_fmts = rkvdec_h264_decoded_fmts,
-+		.subsystem_flags = VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-+	},
-+};
++	vdec: video-codec@fdf80100 {
++		compatible = "rockchip,rk3568-vdec";
++		reg = <0x0 0xfdf80200 0x0 0x500>,
++		      <0x0 0xfdf80100 0x0 0x100>,
++		      <0x0 0xfdf80700 0x0 0x100>;
++		reg-names = "function", "link", "cache";
++		interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>,
++			 <&cru CLK_RKVDEC_CA>, <&cru CLK_RKVDEC_CORE>,
++			 <&cru CLK_RKVDEC_HEVC_CA>;
++		clock-names = "axi", "ahb", "cabac", "core", "hevc_cabac";
++		assigned-clocks = <&cru ACLK_RKVDEC>,
++				  <&cru CLK_RKVDEC_CORE>,
++				  <&cru CLK_RKVDEC_CA>,
++				  <&cru CLK_RKVDEC_HEVC_CA>;
++		assigned-clock-rates = <297000000>, <297000000>,
++				       <297000000>, <600000000>;
++		iommus = <&vdec_mmu>;
++		power-domains = <&power RK3568_PD_RKVDEC>;
++		resets = <&cru SRST_A_RKVDEC>, <&cru SRST_H_RKVDEC>,
++			 <&cru SRST_RKVDEC_CA>, <&cru SRST_RKVDEC_CORE>,
++			 <&cru SRST_RKVDEC_HEVC_CA>;
++		reset-names = "axi", "ahb", "cabac", "core", "hevc_cabac";
++		sram = <&vdec_sram>;
++	};
 +
- static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] = {
- 	{
- 		.fourcc = V4L2_PIX_FMT_HEVC_SLICE,
-@@ -1657,6 +1748,14 @@ static const struct rkvdec_variant_ops vdpu381_variant_ops = {
- 	.flatten_matrices = transpose_and_flatten_matrices,
- };
- 
-+static const struct rkvdec_variant vdpu346_variant = {
-+	.coded_fmts = vdpu346_coded_fmts,
-+	.num_coded_fmts = ARRAY_SIZE(vdpu346_coded_fmts),
-+	.rcb_sizes = vdpu381_rcb_sizes,
-+	.num_rcb_sizes = ARRAY_SIZE(vdpu381_rcb_sizes),
-+	.ops = &vdpu381_variant_ops,
-+};
++	vdec_mmu: iommu@fdf80800 {
++		compatible = "rockchip,rk3568-iommu";
++		reg = <0x0 0xfdf80800 0x0 0x40>, <0x0 0xfdf80840 0x0 0x40>;
++		interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>;
++		clock-names = "aclk", "iface";
++		power-domains = <&power RK3568_PD_RKVDEC>;
++		#iommu-cells = <0>;
++	};
 +
- static const struct rkvdec_variant vdpu381_variant = {
- 	.coded_fmts = vdpu381_coded_fmts,
- 	.num_coded_fmts = ARRAY_SIZE(vdpu381_coded_fmts),
-@@ -1705,6 +1804,10 @@ static const struct of_device_id of_rkvdec_match[] = {
- 		.compatible = "rockchip,rk3399-vdec",
- 		.data = &rk3399_rkvdec_variant,
- 	},
-+	{
-+		.compatible = "rockchip,rk3568-vdec",
-+		.data = &vdpu346_variant,
-+	},
- 	{
- 		.compatible = "rockchip,rk3588-vdec",
- 		.data = &vdpu381_variant,
+ 	vicap: video-capture@fdfe0000 {
+ 		compatible = "rockchip,rk3568-vicap";
+ 		reg = <0x0 0xfdfe0000 0x0 0x200>;
 -- 
 2.43.0
 
