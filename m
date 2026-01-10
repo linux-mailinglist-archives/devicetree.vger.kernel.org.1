@@ -1,124 +1,250 @@
-Return-Path: <devicetree+bounces-253512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C06ACD0DB57
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 20:27:01 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60FE7D0DB65
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 20:36:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BE5F2300AC98
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 19:26:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B218530119D6
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 19:35:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36BC2BDC0B;
-	Sat, 10 Jan 2026 19:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C04E2522BA;
+	Sat, 10 Jan 2026 19:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="Cu403eMb"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="fxLw6WmC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.185])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF23418DB37
-	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 19:26:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.121.94.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C13819F121
+	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 19:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768073207; cv=none; b=Kv867XQMCIBjWORSXFJsxAhePWSOy1TjmUEizU2dt0em0q4RRZbFUi6ge+EJe/mljohU8BUT6SilafRzFoeyB4Sgi0O4kyngD192FyoitFDcnXmBoZwILYSalxzIHYcb05s8h+iHli2fmB1l/xm5WeBrkAiG1wE9BJnGgxl2+tI=
+	t=1768073756; cv=none; b=rRIpant7SunXQfn/Ee1oCubsoVbtbt/c9wpqxEz60KjzMRbPlRcFHrGoG0SBge0fK+6xVZLClei4ZDi/BoQMc0pcAvmmktdvypoubQDqBmNWiQbpscc5tk77WaeQ9KkFD6fZ3Vv505O2BfsgP6XcJ6Do2ZiPM1rvSZQiKPhjgaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768073207; c=relaxed/simple;
-	bh=rnvxtnRu1rSQSP6ypBUEsV37vDvQUoTWQLJx+OnihIk=;
-	h=Date:Message-Id:From:To:Cc:In-Reply-To:Subject:References; b=PZtcmL3kU5E+ttlso8P+cJ9wCMxSOLbWGJbcpwMRPLAVO3eNieBSuE0la3xIIESwSHFEQYmdhscpdOxYbv+cIxAW0vxoL/UK36WIC4ltMCsPZoSr9cBXIy2cxdEc99MFPbgYiChnKXf2ZAp7bra62swEDsuOv8+TzAtBSZlhVro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xs4all.nl; spf=pass smtp.mailfrom=xs4all.nl; dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b=Cu403eMb; arc=none smtp.client-ip=195.121.94.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xs4all.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xs4all.nl
-X-KPN-MessageId: 46e2daaa-ee5a-11f0-8fef-005056999439
-Received: from smtp.kpnmail.nl (unknown [10.31.155.7])
-	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-	id 46e2daaa-ee5a-11f0-8fef-005056999439;
-	Sat, 10 Jan 2026 20:26:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=xs4all.nl; s=xs4all01;
-	h=subject:to:from:message-id:date;
-	bh=1kRHIH05u+KrIwE9Qo8lvdbKCNByfY32s/uMnAuuqv8=;
-	b=Cu403eMbDM3vWI/QGN0TOYO+MfheIIeGCxRBdFyGf+Fw34Lci5iW8sxPCtqMU5vHW3wxPC2f+Hsuj
-	 UrAOs/aaffDiYrXLSgVx01HABCNr5pB5vlSvTHyHFbzQlVHQq4ThBpHjaiTKJFzYSIH6DpAuboSRF0
-	 pwCuDuQvzh+idV20JW/EwBJepnnCItUM7BB+XGwg6iQbCVpR9t/hAhkc8ObhTv+VNJxcZ3MSopQcul
-	 ySXJrY4Y44wjbbZ2VOAFowcPQ4bQorMJ7I7ZBD0F/DYTls6yoOaMAix/Ho5eOEmYIZN+bYh3jevcVv
-	 yOnL2rP3SOSnaMY40nIqpvJ1eZrqlcA==
-X-KPN-MID: 33|+uXw80JppQnUVPXaDGNuWw3DZmbQImWj5rdnLXMFm4KNGQTeJd28uA22CyL9Xw8
- Ab5Qx6TxfYsG6w3/uEbb7XQ==
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|ABcsc6EyIPmuN5VvOx3IXRlOfqA+oGFBLv4xNvXZUHwTSryLb3MlnAThl5Uq2CW
- DYsdFcw6SPCzVAVj6vYeGMQ==
-Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-	by smtp.xs4all.nl (Halon) with ESMTPSA
-	id 47212731-ee5a-11f0-86cc-005056998788;
-	Sat, 10 Jan 2026 20:26:36 +0100 (CET)
-Date: Sat, 10 Jan 2026 20:26:35 +0100
-Message-Id: <87wm1p8e1g.fsf@bloch.sibelius.xs4all.nl>
-From: Mark Kettenis <mark.kettenis@xs4all.nl>
-To: Janne Grunau <j@jannau.net>
-Cc: sven@kernel.org, neal@gompa.dev, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	j@jannau.net
-In-Reply-To: <20260109-apple-dt-chassis-type-v1-0-c215503734c5@jannau.net>
-	(message from Janne Grunau on Fri, 09 Jan 2026 16:25:42 +0100)
-Subject: Re: [PATCH 0/4] arm64: dts: apple: Add chassis-type properties
-References: <20260109-apple-dt-chassis-type-v1-0-c215503734c5@jannau.net>
+	s=arc-20240116; t=1768073756; c=relaxed/simple;
+	bh=BouuCuF49YicOQAMmeVM4mcbxurlxIPZZs4gzyYPhxs=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=KKQaYjrjyBoPOMGfRRDJHZx4GQE4J8cUlnocqHwWARDSCYZDxd7CgaexOijxw5AYCgMm89N1JH9v/gpLfa8tMXKw3RMYO2AG0L74wNrCPsma/GG7YmEWx3r/czLez2bgs1FNi9mus34bGLbw4AVYeuRiqzO2ymw0a3dBhwnI7q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=fxLw6WmC; arc=none smtp.client-ip=91.218.175.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1768073742;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=YYRmxOMkxzng4TMKTpoi3lSayf/NyY8ahAeAqOwq/3Q=;
+	b=fxLw6WmCoewuA/NmZizqtsuK2ZU49/df/OHEUiOiX6DS8PzOCAax5HvdogS/qo82H1nCIm
+	hYFIADCxjtguJY1oe2w941M0KkhzfmFvwlydh3o5fBEyXxy3pDghAK98WPsUG/EaDpQOJ2
+	i2hIrLqvnMYRs5MnVd33JqiZZQKvLH5WNNoSqXdJEWv0EaU0KmNOIbXydf33+1blEzliIg
+	B4q0NmMlVHKC0MxGJw3rsNZO7wtHtZ/ZKt0rsOE7bVBOCxZg/8Mu2VyMs/5HqVaupezTSu
+	zfqA737e8YP5MxZLG3xPycrIi7+JS32jEUUkeanaVsFvTH5METUHKrhutKYDaA==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sat, 10 Jan 2026 20:35:37 +0100
+Message-Id: <DFL5TY0QQNMN.1RS04UM9D1V8S@cknow-tech.com>
+Cc: "Nicolas Dufresne" <nicolas.dufresne@collabora.com>, "Dang Huynh"
+ <dang.huynh@mainlining.org>
+Subject: Re: [PATCH v3 2/3] media: rkvdec: Add support for the VDPU346
+ variant
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "Christian Hewitt" <christianshewitt@gmail.com>, "Detlev Casanova"
+ <detlev.casanova@collabora.com>, =?utf-8?q?Olivier_Cr=C3=AAte?=
+ <olivier.crete@collabora.com>, "Ezequiel Garcia"
+ <ezequiel@vanguardiasur.com.ar>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Heiko Stuebner" <heiko@sntech.de>, "Diederik de Haas"
+ <diederik@cknow-tech.com>, "Dmitry Osipenko"
+ <dmitry.osipenko@collabora.com>, "Thomas Gleixner" <tglx@linutronix.de>,
+ "Dragan Simic" <dsimic@manjaro.org>, "Chukun Pan" <amadeus@jmu.edu.cn>,
+ <linux-media@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>
+References: <20260110053727.2295260-1-christianshewitt@gmail.com>
+ <20260110053727.2295260-3-christianshewitt@gmail.com>
+In-Reply-To: <20260110053727.2295260-3-christianshewitt@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-> From: Janne Grunau <j@jannau.net>
-> Date: Fri, 09 Jan 2026 16:25:42 +0100
-> 
-> Add chassis-type properties for all Apple silicon Macs. "chassis-type"
-> is used by u-boot to fill the SMBIOS "System Enclosure or Chassis Type"
-> field. User space software uses this field to to determine if a device
-> is an laptop. The exact use case eludes me unfortunately.
-> 
-> The Mac Pro uses "server" as chassis-type which is not entirely
-> accurate. The tower and rack mount Mac Pro versions share the same .dts
-> file and are identical except for the enclosure. I haven't found an
-> obvious property in Apple's device tree to distinguish between those so
-> both use "server" instead of the more accurate "tower" and "rack mount
-> chassis". The latter chassis-types are not in dt-schema anyway.
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
+Hi Christian,
 
-For the series:
-
-Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-
+On Sat Jan 10, 2026 at 6:37 AM CET, Christian Hewitt wrote:
+> VDPU346 is similar to VDPU381 but with a single core and limited
+> to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
+> AVS2 capabilities. VDPU346 is used with RK3566 and RK3568.
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> Tested-by: Dang Huynh <dang.huynh@mainlining.org> # Pinetab2
 > ---
-> Janne Grunau (4):
->       arm64: dts: apple: Add chassis-type property for all Macbooks
->       arm64: dts: apple: Add chassis-type property for Apple desktop devices
->       arm64: dts: apple: Add chassis-type property for Mac Pro
->       arm64: dts: apple: Add chassis-type property for Apple iMacs
-> 
->  arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi | 2 ++
->  arch/arm64/boot/dts/apple/t600x-j375.dtsi      | 2 ++
->  arch/arm64/boot/dts/apple/t6022-j180d.dts      | 2 ++
->  arch/arm64/boot/dts/apple/t8103-j274.dts       | 1 +
->  arch/arm64/boot/dts/apple/t8103-j293.dts       | 1 +
->  arch/arm64/boot/dts/apple/t8103-j313.dts       | 1 +
->  arch/arm64/boot/dts/apple/t8103-j456.dts       | 1 +
->  arch/arm64/boot/dts/apple/t8103-j457.dts       | 1 +
->  arch/arm64/boot/dts/apple/t8112-j413.dts       | 1 +
->  arch/arm64/boot/dts/apple/t8112-j415.dts       | 1 +
->  arch/arm64/boot/dts/apple/t8112-j473.dts       | 1 +
->  arch/arm64/boot/dts/apple/t8112-j493.dts       | 1 +
->  12 files changed, 15 insertions(+)
-> ---
-> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-> change-id: 20260109-apple-dt-chassis-type-f31523a1f681
-> 
-> Best regards,
-> -- 
-> Janne Grunau <j@jannau.net>
-> 
-> 
-> 
+>  .../media/platform/rockchip/rkvdec/rkvdec.c   | 103 ++++++++++++++++++
+>  1 file changed, 103 insertions(+)
+>
+> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/me=
+dia/platform/rockchip/rkvdec/rkvdec.c
+> index a5cf6f3240f8..6e49b129d11f 100644
+> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+> @@ -236,6 +236,62 @@ static const struct rkvdec_ctrls rkvdec_hevc_ctrls =
+=3D {
+>  	.num_ctrls =3D ARRAY_SIZE(rkvdec_hevc_ctrl_descs),
+>  };
+> =20
+> +static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] =3D {
+> +	{
+> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_SPS,
+> +		.cfg.ops =3D &rkvdec_ctrl_ops,
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_PPS,
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_MODE,
+> +		.cfg.min =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+> +		.cfg.max =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+> +		.cfg.def =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_START_CODE,
+> +		.cfg.min =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+> +		.cfg.def =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+> +		.cfg.max =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
+> +		.cfg.min =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
+> +		.cfg.max =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+> +		.cfg.menu_skip_mask =3D
+> +			BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
+> +		.cfg.def =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
+> +		.cfg.min =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
+> +		.cfg.max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
+> +		.cfg.ops =3D &rkvdec_ctrl_ops,
+> +		.cfg.dims =3D { 65 },
+> +	},
+> +	{
+> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
+> +		.cfg.ops =3D &rkvdec_ctrl_ops,
+> +		.cfg.dims =3D { 65 },
+> +	},
+> +};
+> +
+> +static const struct rkvdec_ctrls vdpu346_hevc_ctrls =3D {
+> +	.ctrls =3D vdpu346_hevc_ctrl_descs,
+> +	.num_ctrls =3D ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
+> +};
+> +
+>  static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] =3D {
+>  	{
+>  		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
+> @@ -463,6 +519,41 @@ static const struct rkvdec_coded_fmt_desc rk3288_cod=
+ed_fmts[] =3D {
+>  	}
+>  };
+> =20
+> +static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] =3D {
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
+> +		.frmsize =3D {
+> +			.min_width =3D 64,
+> +			.max_width =3D 4096,
+> +			.step_width =3D 64,
+> +			.min_height =3D 64,
+> +			.max_height =3D 2304,
+> +			.step_height =3D 16,
+> +		},
+> +		.ctrls =3D &vdpu346_hevc_ctrls,
+> +		.ops =3D &rkvdec_vdpu381_hevc_fmt_ops,
+> +		.num_decoded_fmts =3D ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
+> +		.decoded_fmts =3D rkvdec_hevc_decoded_fmts,
+> +		.subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_H264_SLICE,
+> +		.frmsize =3D {
+> +			.min_width =3D 64,
+> +			.max_width =3D  4096,
+> +			.step_width =3D 64,
+> +			.min_height =3D 64,
+> +			.max_height =3D  2304,
+> +			.step_height =3D 16,
+> +		},
+> +		.ctrls =3D &rkvdec_h264_ctrls,
+> +		.ops =3D &rkvdec_vdpu381_h264_fmt_ops,
+> +		.num_decoded_fmts =3D ARRAY_SIZE(rkvdec_h264_decoded_fmts),
+> +		.decoded_fmts =3D rkvdec_h264_decoded_fmts,
+> +		.subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
+> +	},
+> +};
+> +
+>  static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] =3D {
+>  	{
+>  		.fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
+> @@ -1657,6 +1748,14 @@ static const struct rkvdec_variant_ops vdpu381_var=
+iant_ops =3D {
+>  	.flatten_matrices =3D transpose_and_flatten_matrices,
+>  };
+> =20
+> +static const struct rkvdec_variant vdpu346_variant =3D {
+> +	.coded_fmts =3D vdpu346_coded_fmts,
+> +	.num_coded_fmts =3D ARRAY_SIZE(vdpu346_coded_fmts),
+> +	.rcb_sizes =3D vdpu381_rcb_sizes,
+
+AFAICT this is not correct, the rcb_sizes are different for vdpu346 vs
+vdpu381. While for vdpu381 the sizes are the same across codecs, they
+vary for vdpu346. And vdpu346 does not have 'STRMD Row', 'Transd Row'
+and 'Transd col'.
+
+For RK3588/vdpu381 it is defined in RK3588 TRM V1.0 Part1 in
+paragraph 5.4.4.3 in 'Table 5-13 Row or Col buffer size required' on
+page 381.
+
+For RK3568/vdpu346 is is defines in RK3568 TRM V1.1 Part2 in
+paragraph 10.4.8 in 'Table 10-9 Row or Col buffer size required' on page
+474 and 475.
+
+Cheers,
+  Diederik
+
+> +	.num_rcb_sizes =3D ARRAY_SIZE(vdpu381_rcb_sizes),
+> +	.ops =3D &vdpu381_variant_ops,
+> +};
+> +
+>  static const struct rkvdec_variant vdpu381_variant =3D {
+>  	.coded_fmts =3D vdpu381_coded_fmts,
+>  	.num_coded_fmts =3D ARRAY_SIZE(vdpu381_coded_fmts),
+> @@ -1705,6 +1804,10 @@ static const struct of_device_id of_rkvdec_match[]=
+ =3D {
+>  		.compatible =3D "rockchip,rk3399-vdec",
+>  		.data =3D &rk3399_rkvdec_variant,
+>  	},
+> +	{
+> +		.compatible =3D "rockchip,rk3568-vdec",
+> +		.data =3D &vdpu346_variant,
+> +	},
+>  	{
+>  		.compatible =3D "rockchip,rk3588-vdec",
+>  		.data =3D &vdpu381_variant,
+
 
