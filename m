@@ -1,98 +1,117 @@
-Return-Path: <devicetree+bounces-253480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC14FD0D4D8
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 11:40:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 132C6D0D520
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 12:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B5CEC30090F3
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 10:40:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 43A78300A372
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 11:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91526313271;
-	Sat, 10 Jan 2026 10:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hDmy/XO6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6980533A718;
+	Sat, 10 Jan 2026 11:05:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E146312805;
-	Sat, 10 Jan 2026 10:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816B03382C9;
+	Sat, 10 Jan 2026 11:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768041602; cv=none; b=HAGM/f64lUFvWDMAlVarJaseVDTKLmnxCV2M+2ZhNNB2QdxSOZjoc9rIMXB8vrSESQCpqJQBvztAznnfqZV5ai+ojz5RVtBQ4LMcZzuEd4hG2VGM2nLldrfD5s1FuLSFbqDEWbsQW/LL2xVPiU6U2vOh5n9T+mh7VLgsgBVYbPI=
+	t=1768043111; cv=none; b=c2JNfoWEZL7nYmM34hIof+qUSqxCoOh0e0tL6oX2BBV3obVlsMOqS7zRHr+SrhOsN7977VvkSqFM3IUjKkOZh7srioK+9Psx4akK9xCUpH1sKOU62nzXbDCmBN4YValN6xtrtcPQC5jGFwtbSmLBwHBDZVPzxrJzZETA+1OJLFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768041602; c=relaxed/simple;
-	bh=zr3h/cXPfisO04N/W+Ln8th0Opzkj243Gue7txsalzQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OWVE1zjLUDeFZbwlPYctD1+qVqFcSZO3zL9hc3jfWrGdsnDMuGcvo03qr3NR7nUngjgAiCKrt7X4QEub8Y/bi8EtEX+tTQpQyMdAg69w9Z8ZBbN9PsGgMjCI0QZeOqmIUsTrUB8QKHA7R5pNOoGSfDYqCxAP1rg1CX3CKZ5Tb4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hDmy/XO6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE128C4CEF1;
-	Sat, 10 Jan 2026 10:39:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768041600;
-	bh=zr3h/cXPfisO04N/W+Ln8th0Opzkj243Gue7txsalzQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hDmy/XO6m642n5wRoU7wZnPIx3AuSsL6Hib8bS4/aRW5zBxTw5hLs/orrbVeLsBO1
-	 6g0WxOHYX84ReBt6NtBhqzAFGMwil1my3ULU5n0RLFAd+ewX1UNgJK6VzT7+Qw9Ylq
-	 vT9GsCF99h/V//4g2NTh9VVZe+X1xuWUF9klVOPP38PugTUK/wga60QXVOifQB6KJg
-	 /G6X6KoewyTQpGRVBItbPQZZ2A1Gg4XtpQOAtyPTF6Z8/CkOx4qpKd6vFXdxFqcv1H
-	 aQAD4fraujy/RTMFkkDFiTPimXcOzy6u512Jc0nKjoYECpX/XndqOrfxPgsqjssrlL
-	 lo4bMqTvlO9cw==
-From: Sven Peter <sven@kernel.org>
-To: Neal Gompa <neal@gompa.dev>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1768043111; c=relaxed/simple;
+	bh=yhblASGMwjZl8k0XnBA+TOJEr69kbObgz3Nz8WWXILs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P/i4po6WTdM62J/vMPREimXRfp2LxmclVr6UGGi9VeGBp6AgneHJvwUyFe8bP8Tyhf7eslXhdaJRNXbdlF1AxJDWX5Gim909giggYQehcSsfCsf9GFQMoM771G1ouM8rRtYuJOb1N8U++1oqJefcN9VlXISCr8vwLerishI/lT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id C6D76340C98;
+	Sat, 10 Jan 2026 11:05:06 +0000 (UTC)
+Date: Sat, 10 Jan 2026 19:05:02 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@kernel.org>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] arm64: dts: apple: Add chassis-type properties
-Date: Sat, 10 Jan 2026 11:39:37 +0100
-Message-ID: <176804152716.3568.1765337883482997730.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260109-apple-dt-chassis-type-v1-0-c215503734c5@jannau.net>
-References: <20260109-apple-dt-chassis-type-v1-0-c215503734c5@jannau.net>
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Conor Dooley <conor@kernel.org>,
+	Heinrich Schuchardt <xypron.glpk@gmx.de>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v4 10/11] riscv: dts: spacemit: add initial device tree
+ of SpacemiT K3 SoC
+Message-ID: <20260110110502-GYB12783@gentoo.org>
+References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
+ <20260110-k3-basic-dt-v4-10-d492f3a30ffa@riscstar.com>
+ <aWIi9LFdqSF3c-FP@inochi.infowork>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aWIi9LFdqSF3c-FP@inochi.infowork>
 
-On Fri, 09 Jan 2026 16:25:42 +0100, Janne Grunau wrote:
-> Add chassis-type properties for all Apple silicon Macs. "chassis-type"
-> is used by u-boot to fill the SMBIOS "System Enclosure or Chassis Type"
-> field. User space software uses this field to to determine if a device
-> is an laptop. The exact use case eludes me unfortunately.
+Hi Guodong,
+
+On 18:00 Sat 10 Jan     , Inochi Amaoto wrote:
+> On Sat, Jan 10, 2026 at 01:18:22PM +0800, Guodong Xu wrote:
+> > SpacemiT K3 is equipped with 8 X100 cores, which are RVA23 compliant.
+> > Add nodes of uarts, timer and interrupt-controllers.
+> > 
+> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> > ---
+> > v4: Fix missing blank space after commas in compatible string.
+> >     Add m-mode imsic and aplic node.
+> >     Reorder properties in simsic, saplic, mimsic, and maplic nodes
+> >      to match DTS coding style.
+> > v3: Remove "supm" from the riscv,isa-extensions list.
+> > v2: Remove aliases from k3.dtsi, they should be in board DTS.
+> >     Updated riscv,isa-extensions with new extensions from the extensions.yaml.
+> > ---
+> >  arch/riscv/boot/dts/spacemit/k3.dtsi | 590 +++++++++++++++++++++++++++++++++++
+> >  1 file changed, 590 insertions(+)
+> > 
+> > diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
+> > new file mode 100644
+> > index 000000000000..a815f85cf5a6
+> > --- /dev/null
+> > +++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
+> > @@ -0,0 +1,590 @@
+...
+> > +			d-cache-sets = <256>;
+> > +			next-level-cache = <&l2_cache0>;
 > 
-> The Mac Pro uses "server" as chassis-type which is not entirely
-> accurate. The tower and rack mount Mac Pro versions share the same .dts
-> file and are identical except for the enclosure. I haven't found an
-> obvious property in Apple's device tree to distinguish between those so
-> both use "server" instead of the more accurate "tower" and "rack mount
-> chassis". The latter chassis-types are not in dt-schema anyway.
+> > +			mmu-type = "riscv,sv39";
 > 
-> [...]
+> I think this should be riscv,sv48? IIRC K3 supports it.
+> 
+I would second the idea here, if the underlying hardware support sv48,
+there is no reason we should limit it in DTS, DT should reflect the actual
+hardware.. if user still prefer to use sv39 for simplicity, a "no4lvl"
+command line argument can be passed.. see 
+ arch/riscv/mm/init.c +860 -> set_satp_mode()
 
-Applied to AsahiLinux/linux (apple-soc/dt-6.20), thanks!
-
-[1/4] arm64: dts: apple: Add chassis-type property for all Macbooks
-      https://github.com/AsahiLinux/linux/commit/b73d48c14ad5
-[2/4] arm64: dts: apple: Add chassis-type property for Apple desktop devices
-      https://github.com/AsahiLinux/linux/commit/96b603324985
-[3/4] arm64: dts: apple: Add chassis-type property for Mac Pro
-      https://github.com/AsahiLinux/linux/commit/81a683f864a9
-[4/4] arm64: dts: apple: Add chassis-type property for Apple iMacs
-      https://github.com/AsahiLinux/linux/commit/8714184b7bcb
-
-Best regards,
 -- 
-Sven Peter <sven@kernel.org>
-
+Yixun Lan (dlan)
 
