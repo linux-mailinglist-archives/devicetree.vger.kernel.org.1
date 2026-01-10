@@ -1,147 +1,114 @@
-Return-Path: <devicetree+bounces-253428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11911D0CA18
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 01:34:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA17AD0CAC7
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 02:02:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E726930361CF
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 00:34:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AE104300B9F5
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 01:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00ED1E32CF;
-	Sat, 10 Jan 2026 00:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D1EC1C7012;
+	Sat, 10 Jan 2026 01:02:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y3j1l10C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f1zGE/ap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB67D1DC9B3
-	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 00:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92682C187
+	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 01:02:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768005270; cv=none; b=cnRJRKAX3t+I/ZvAQgY708tm1ajjxzI2LoQV4/k6Bn7nrzRadOhZFSAZ8G3FP8GyqMKkPlE5BaRAv9umGrv/4iFBdFjH5kjPYQyq3RzHIlc/ZUiWEnKsny4C1GkDhBFAIguoG9ZYMKLz6Pxv2743TFxlbq3v3Gi1zd6LcA+/S84=
+	t=1768006967; cv=none; b=n1EK8sGu/B/ei7dqpYKH1p06K2d60ZlYDz/XcaPTiacdwn92aTaLePtvZZzxmPSPXqCHLMmaQnHxAv//L0lOjfecpiqiwSVp06zj23jgrJK2xACi3pu237iz8PxTh3wU9ULa4xfCN8wGvUCajzlW/rOb0BtLTDNGIpA5ICmsBJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768005270; c=relaxed/simple;
-	bh=n9j4w5nJYKbxcwM73KIWngQepQ+L/d3sKcNUKAyIKtA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=st2Mg6MHNDgn2Y333YdkOwiyTCoVhMFCuNOU7SuX4/im0r1swh6azn8OdhKVgMDVKEmYN5W+zPFYMVorS5ZnnBI2NswgLX91nEey0//v6oa71KHlj2xnuCDKmTP9vbf7P3Mzj91MZbhNL6xQ1TxSAAjBzFGd/3zCQpWHZ3AWt6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y3j1l10C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A7CBC2BCAF
-	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 00:34:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768005270;
-	bh=n9j4w5nJYKbxcwM73KIWngQepQ+L/d3sKcNUKAyIKtA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Y3j1l10C+hAb4+TwRKe4Yib5x0tP27Svztx8ryAtaW5SCgjFum36gzCyn9TvCKILf
-	 3RpShiT0yTvU2h7okf9Fq/EOlpZmTwXg6F5nYoc7x91qI6O/JNEj2PHvq6atrtyZhV
-	 amcBUYADbpTh+C2lJkCjRJxvjo/S1OObtidjLIWnPvLevAlUzygmhQ7eX9b64ZPH9O
-	 lIhxGQZW7izhpKMbgILxwbUqtpCz9wGSzR1ti1fLrEwiyh9lmxVI4O2yZNDA1ogkw/
-	 i+qSWFPBwubHAHuv9OEZmgQZhI47KjI7OSjAJXr0+IcOF/tJbglNF2WbZxq16ZHY6t
-	 BUhA/Pj6Z5uWw==
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b7a02592efaso783263266b.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 16:34:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXI0iVEFQwKE7q07Yc+fZmrlMT9q8EphEoNkXVr8snOogd1KdqjYupbm6PzZKe5JYxUPTluRKlRjIH/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQpYXvwUoyrXmOlk/AnBA/otnk+rbYJYkSIoI4/+1x8+tEHJ+I
-	bzgpoDiDPZQpcBRAgcU59Kqm89e1Y7NAJtJU/QXqOyGcWz1ags3n+zBQiZjJS8QSGtM/69uMCUq
-	RvXtrEqiOE1rxSIa+0pECEZDLR/Dpmw==
-X-Google-Smtp-Source: AGHT+IHN7k0nlGN3BF9fptQCLroS2OEfJY1/5qH3rkE+fPUZiyIh4ww1H45mbZW8XjV64hyoMyOZFamozMjqQOGqBVw=
-X-Received: by 2002:a17:907:c08:b0:b83:3773:e72a with SMTP id
- a640c23a62f3a-b8444c3fc0bmr1024959766b.1.1768005268828; Fri, 09 Jan 2026
- 16:34:28 -0800 (PST)
+	s=arc-20240116; t=1768006967; c=relaxed/simple;
+	bh=ixJdBpkE90qTHpaWpqSYWXgG2UnXLGOifDLwOvD7fYo=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZJNTUtmkpZAr7NsnV1PROyATnek+SE/IaiTRBq/58Gc4L8YflemqoPFEh3ErxJX/UEBXa0+sBg1nn9JHNPNcanMhVMkCy6/t2myopShi7H1gAfeY9xnMBTtcFj5W3+nO7OAgVs9BDi7Uq+OoyORpBMaxJ5QJ+N4qMxBZlJcvzic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f1zGE/ap; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-8be92e393f8so390145585a.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 17:02:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768006965; x=1768611765; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=D46mdQMDj5+zG9XaeLULmbTRXkuU68sa+3jgTbNzvHI=;
+        b=f1zGE/apwKIZ9XuSlDBjitRepgmRXnjNFx5hCiGOdhcTpvuOTZxFe5NLzZCAScDzIB
+         30KGjdOB49YmdDjm6fVMeYgXK30nwVDADY1cuB6ifSihuMwpe9aEASlYcfRIuT4+JVeE
+         NqwyqTl5IBcjr+owxzZ8n19KlPU3sUeI0AGBYC5MtDUOIfiVr1tsboEhLNW6Vi7eSzq8
+         FRKwZ0k5Ve39d6sD0mrG06ZhXSEkfqT6jpjI5daIjEnmfHqpqPeoP/hGWVYFX4jVXr80
+         F47Ncx0/+T7g9MlN0h2JzRxRCaEZDrj0kcFtKaQVW984hkZdvUbcKsDAbGqkFBPMlx4/
+         CwFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768006965; x=1768611765;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=D46mdQMDj5+zG9XaeLULmbTRXkuU68sa+3jgTbNzvHI=;
+        b=nYhxFH8C7VeLiOmNvhptNi16CTh8qNSvzDA0ohmi4ItjVlFLHuAlACPR4FI45MWkla
+         n9ESCszxBfL+o238v7Y1X6ccVuAR54utuzbe4N44EqoFcgji0Sx4QGoMp6wMYirMXoGV
+         CGyfavRTMfdPnUWM493X8ZVRvxRSIw80S48TBmKZpb37V+rVd+2XoWVanPrHtJIiSXKy
+         7tWt6mHBQRtdzZhcWOJlh8JQT9GwUP24EGTEzDYjaQmmPCofB/nX3naHOpCQ8KRTXdOc
+         dQGvurfnw6b4xPKlor+pE2c7SC+d6ojiy4ie/NFKiTOn8saoNxXFa2AdasRZUxDVPB8G
+         u/5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV+gBA0O0ZTGU7nVauFCq5yX/3k6yBolcLBSi7YRpgGVyVH2khFZsZ8D2W8qaKbUrODzXJgOKsO2cEi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwB6zEZz4uOqyTxsx8xGPf2yonYIezrvjnXQuhKLKjeS19yqMrr
+	w38omMOaQC3vqpcupFD4dtvK0VtP/9frb1wxvLQWauEhqElpIeGIWLn2
+X-Gm-Gg: AY/fxX6PLLA/WiGElCAsmQrIISEDkUrZjsw08t4uQe35pZs6nieK71tPlt2DxesZpc+
+	YnUtmXk20OpHbTNrpEnNyYJkk1Zpz+iErR/IDBsXzZq1h3K2od6CKiFd7YHwh6R1Fla7aHIJRSq
+	7nyIE4vd1eN2pPCvIoGcnYDTjkUnwvekklpMDWHiPzKDro4Q8eMNl+6c1WmWl/CCX+4f29n3dB5
+	BMa6BvlpMd60FlSxc6ySTgWGQGgseQ3/IzXYEQsmwGGEsTAJ/Jdo+pmuuPelq4W7X0IF3TOUZIH
+	t8LcUqoFlm3Ubwf76nYdLD0eb2TXPn9Bn4b2ozKZXnle9V/Yo3m5WlbjAKLQW/U5D0hIfLOUZ2c
+	VlVcVeO2tGIRTAYnB2G2Z6khJtL3pPgm3YYJUzCKyS9JGCUQnZ6ts3D63UNJxJzsBRpg3ZSycYU
+	X2HYM/dgrZmdvbLw==
+X-Google-Smtp-Source: AGHT+IHBDzRmIpO26TQmtd7BhHH/NO3lWFMVLoQAqkeDRXpg/uMd9p6q/2JbD1+tj8TUF+imdXBEMQ==
+X-Received: by 2002:a05:620a:4805:b0:8c1:aadb:5313 with SMTP id af79cd13be357-8c388bd8ef1mr1683928485a.25.1768006964911;
+        Fri, 09 Jan 2026 17:02:44 -0800 (PST)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c37f51ceb5sm996870685a.35.2026.01.09.17.02.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jan 2026 17:02:44 -0800 (PST)
+Date: Fri, 9 Jan 2026 20:03:03 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 0/3] media: qcom: camss: support for empty endpoint
+ nodes
+Message-ID: <aWGlR31aNYbogtrg@rdacayan>
+References: <20251230022759.9449-1-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
- <20260108-dt-mtd-partitions-v1-7-124a53ce6279@kernel.org> <87fr8fxipc.fsf@bootlin.com>
-In-Reply-To: <87fr8fxipc.fsf@bootlin.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 9 Jan 2026 18:34:17 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKV+3ZnqpbQ4USmJh-dngik_jZdnpOw0bGcxD0RSSzfxA@mail.gmail.com>
-X-Gm-Features: AZwV_QjC5h7SzUM3Etvm3QTQEL2XLjJtwO-GnUAtRHPbI0yx2ANvpooNSCKrkpM
-Message-ID: <CAL_JsqKV+3ZnqpbQ4USmJh-dngik_jZdnpOw0bGcxD0RSSzfxA@mail.gmail.com>
-Subject: Re: [PATCH 07/10] dt-bindings: mtd: Ensure partition node properties
- are documented
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
-	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
-	David Sterba <dsterba@suse.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Marcus Folkesson <marcus.folkesson@gmail.com>, 
-	Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251230022759.9449-1-mailingradian@gmail.com>
 
-On Fri, Jan 9, 2026 at 3:02=E2=80=AFAM Miquel Raynal <miquel.raynal@bootlin=
-.com> wrote:
->
-> Hello Rob,
->
-> On 08/01/2026 at 11:53:16 -06, "Rob Herring (Arm)" <robh@kernel.org> wrot=
-e:
->
-> > Partition nodes without a compatible have no restrictions on additional
-> > properties. Fix this by ensuring 'unevaluatedProperties' is set when
-> > there's no compatible property. If there is a compatible property, then
-> > there should be a specific schema for it which will enforce
-> > 'unevaluatedProperties'.
-> >
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
->
-> Overall thank you very much for this series, I've been sruggling while
-> defining these and your approach seems very relevant. I am fine with all
-> the patches in this series, but will wait a bit for others to make a bit
-> of feedback.
->
-> [...]
->
-> > +$defs:
-> > +  partition-node:
-> > +    type: object
-> > +    if:
-> > +      not:
-> > +        required: [ compatible ]
-> > +    then:
-> > +      $ref: '#'
-> > +      unevaluatedProperties: false
-> > +    else:
-> > +      $ref: '#'
->
-> This, however, is total blackmagic to me. Would you mind explaining what
->
->       $ref: '#'
->
-> indicates? Is this a placeholder indicating "a reference must be given?
+On Mon, Dec 29, 2025 at 09:27:56PM -0500, Richard Acayan wrote:
+> This series adds support for empty endpoint nodes. It is currently RFC
+> because it continues an ongoing discussion on how to selectively connect
+> some CAMSS ports to cameras and leave others disconnected.
+> 
+> The SDM670 patches are for a full example. If agreed on, this should
+> expand to SoCs that have CAMSS.
 
-It's what's known as JSON pointers. The '#' is a reference to the top
-level of this schema.
+This series is abandoned now that it seems fine to add port labels. No
+need for me to revisit this unless someone has an issue with the
+proposed port labels in SDM670[1].
 
-> Also I do not understand the final else case, what is it covering?
-
-It's really just there so a $ref to
-partition.yaml#/$defs/partition-node applies the schema (all of
-partition.yaml) whether there's a compatible property or not.
-
-This all just works around that a schema like this doesn't work:
-
-$ref: foo.yaml
-if:
-  ...
-then:
-  unevaluatedProperties: false
-
-The evaluation of unevaluatedProperties doesn't "see" the $ref being
-in the parent. So we can't factor out the $ref.
-
-Hope that makes sense.
-
-Rob
+[1] https://lore.kernel.org/all/20260107043044.92485-4-mailingradian@gmail.com/
 
