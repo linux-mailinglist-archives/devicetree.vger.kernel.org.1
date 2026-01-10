@@ -1,250 +1,131 @@
-Return-Path: <devicetree+bounces-253513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60FE7D0DB65
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 20:36:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 767F0D0DD15
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 21:05:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B218530119D6
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 19:35:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB7783010CD8
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 20:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C04E2522BA;
-	Sat, 10 Jan 2026 19:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75DFB29E109;
+	Sat, 10 Jan 2026 20:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="fxLw6WmC"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="OuOvzPmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C13819F121
-	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 19:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B962BDC10
+	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 20:04:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768073756; cv=none; b=rRIpant7SunXQfn/Ee1oCubsoVbtbt/c9wpqxEz60KjzMRbPlRcFHrGoG0SBge0fK+6xVZLClei4ZDi/BoQMc0pcAvmmktdvypoubQDqBmNWiQbpscc5tk77WaeQ9KkFD6fZ3Vv505O2BfsgP6XcJ6Do2ZiPM1rvSZQiKPhjgaA=
+	t=1768075488; cv=none; b=fFsjRXPSSdJy/w0RMpiGDBQ4UK3/ehA107vIOHb7G4SmkTM9CBKcZhuXGSJ+tx1VT5wBltyUcPVuORnlLcPlTBUSLlQ/x8vmiFkskuSGX75HD7tapdvfR71WGGmxe6CgqLbme6kpaTtLzICWhhV312hUbV7Ki53apuFygGNw5Dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768073756; c=relaxed/simple;
-	bh=BouuCuF49YicOQAMmeVM4mcbxurlxIPZZs4gzyYPhxs=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=KKQaYjrjyBoPOMGfRRDJHZx4GQE4J8cUlnocqHwWARDSCYZDxd7CgaexOijxw5AYCgMm89N1JH9v/gpLfa8tMXKw3RMYO2AG0L74wNrCPsma/GG7YmEWx3r/czLez2bgs1FNi9mus34bGLbw4AVYeuRiqzO2ymw0a3dBhwnI7q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=fxLw6WmC; arc=none smtp.client-ip=91.218.175.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+	s=arc-20240116; t=1768075488; c=relaxed/simple;
+	bh=1fOQsbmvRPFp7RB4YOL01+JCT0UDU2vYmzQ56+LzqTY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oteK/6NH3Jm/AZtZfrHUGpa6viUWA7JvE3WvuOgD15Urur8vKFoLZyQ4IzT7Q1dN+vsfUUIYdXec2BW4xo5C9bwSiG4sH7ODykBeT5QY08Lfn4F+y9x4vZsNbjfnqf8af1bw7mE506nFlRi157bGRWVUzApPYVL02Se89oNqfl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=OuOvzPmQ; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b870732cce2so17280766b.3
+        for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 12:04:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1768075484; x=1768680284; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AXLLlxs4qW1+ZesmiLUyjALqG1DyG/LyhBi2azmiHI8=;
+        b=OuOvzPmQUY7iVBM+IjDvh1fPukxDxDpDiEPDSdYL+iqw5wZyVf1UsQUjzYJoG5+8ke
+         vb9ofhsjQzzQotEyef28ttIpPa1+hBhrk2/6rysvaC5KVFvUoYmYar4W+9KP8rKi5eKw
+         c/kYHwpmJzbBWeYNOn9MJfZzH6GmLc7FESznm/Hz7s3IHsY9JLF+wTX2H68OwFmcHmrh
+         N7eePJGm/BUFGk02tx+meAg0DULEKMgC0V/2MtOcJ1z2Gj7n/67dEj8ABhQc3zzBD0jV
+         5kyih1GqBwKmENQ7zr5Qinoymg4Fv+jFSNx+HM+G/C63F+l9Vj/Yb6RMjWgYfhuGXRuX
+         SmhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768075484; x=1768680284;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AXLLlxs4qW1+ZesmiLUyjALqG1DyG/LyhBi2azmiHI8=;
+        b=F2wCvskiBnUOpYLLNUv6SN75ljF+RQ5RFN8iX8NFpMDQld9oGq8XgYjsS2IZl1A2i/
+         lIZ2SVC23PmtlkCY69TX/P2xyD1eVDc22reCC/EBbfVYclhJZv+n5GHBuoSaoxGwTLMU
+         ZNPy9YbPbd5TGeNC09umNbFkXVamFT9MCg1lpqKdqtb/JZRKNFYHoG30YoebA9zs5Kjv
+         xcQvg2Q4jMhCFVLmw8S0FddjzYaw7xsHUZynaCt6Ua2lVViIdqvkMN371AlVZgp7B25k
+         j50UAO5VwenhEsaioTW2JuhFw8PcFvh9R3sd9bhRySGnp/dOi2cVZKyonAW7DkdHoSDM
+         sA0w==
+X-Forwarded-Encrypted: i=1; AJvYcCX5J+LHuaGU20p4Dn0o4KjKU107stZ+lNNqEP4/lFJr4R3dT37gyLFcea72gouuNfQCqtFX6mkP5RSB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRJPYG56iMNGUjMS6qaK84OTMJq+chXF7bDDZ0iuR6nrzseTQi
+	dzJ3aOQmSptgVflnVhY8Nkzf4Z2z/EJJbbq/ARxeSkdox6Pcd+7ezESC
+X-Gm-Gg: AY/fxX7jvB7esFvcNM2It5W9mQS/g9kAu9hXAfTSc/SIUa02zVai0Enu4jvESeL1uk5
+	XfwXVuxskVCzjR8MwjG9Dbl05qnTE/XJrLtHh5nQsnC64Hz65JvtCxUEraQqL44oHPSWGIjx1ue
+	cg+pFVwzLIeC8v9+mJ7aDFMuhXzs2NYS6k18KpGYgH+bSZWXqqJa4qmVgZ+qB80o8VRJy2PZI2B
+	86r3gkzc25UlPmUl9Is1lT95eKnXPzwG4Q/Q3jH4VerzeiF8lT8ba5SWEEDH9HBKouHP+XoecUD
+	jgqWpMbM3fKfT043MQgFR2aMnpnp0K1d5LtS5K0JFlTTcR8cYRj5PdE/dABbT62H0MxGrjTmTP8
+	woVrHTWIFSoHwHOIGQp5etZSz0pefeRXTGx2LJSaB53KG1+kHpusfkOJYB/ViGAR5vlULTAerpG
+	bHgW/bRGmm0pkEp6HsnlTrRSVV8wnNAwR3WATK2/EvnEmQq9dODYTOQsU3Jv4YPyzGXt1YxMOyo
+	kTWcaWdaefnoYhuYdXN0txmegmi8Sf1iTd5q3uTnHU=
+X-Google-Smtp-Source: AGHT+IFIiQoUtSeyn9mIBbOOpJhcZYBlr/ord7EW8wnXlRpW5UAw9sYZWgIe46tbc0kW+YaZ+jiBYA==
+X-Received: by 2002:a17:906:fe0b:b0:b73:6d56:f3ff with SMTP id a640c23a62f3a-b84451d416cmr1398267566b.20.1768075483987;
+        Sat, 10 Jan 2026 12:04:43 -0800 (PST)
+Received: from blackbox (dynamic-2a02-3100-af95-6f00-1e86-0bff-fe2f-57b7.310.pool.telefonica.de. [2a02:3100:af95:6f00:1e86:bff:fe2f:57b7])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b842a56c552sm1483591066b.68.2026.01.10.12.04.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 Jan 2026 12:04:42 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	adrian.larumbe@collabora.com,
+	steven.price@arm.com,
+	boris.brezillon@collabora.com,
+	robh@kernel.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH 0/3] Add Mali-G31 GPU to Amlogic Meson-S4
+Date: Sat, 10 Jan 2026 21:04:23 +0100
+Message-ID: <20260110200426.1461575-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1768073742;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YYRmxOMkxzng4TMKTpoi3lSayf/NyY8ahAeAqOwq/3Q=;
-	b=fxLw6WmCoewuA/NmZizqtsuK2ZU49/df/OHEUiOiX6DS8PzOCAax5HvdogS/qo82H1nCIm
-	hYFIADCxjtguJY1oe2w941M0KkhzfmFvwlydh3o5fBEyXxy3pDghAK98WPsUG/EaDpQOJ2
-	i2hIrLqvnMYRs5MnVd33JqiZZQKvLH5WNNoSqXdJEWv0EaU0KmNOIbXydf33+1blEzliIg
-	B4q0NmMlVHKC0MxGJw3rsNZO7wtHtZ/ZKt0rsOE7bVBOCxZg/8Mu2VyMs/5HqVaupezTSu
-	zfqA737e8YP5MxZLG3xPycrIi7+JS32jEUUkeanaVsFvTH5METUHKrhutKYDaA==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 10 Jan 2026 20:35:37 +0100
-Message-Id: <DFL5TY0QQNMN.1RS04UM9D1V8S@cknow-tech.com>
-Cc: "Nicolas Dufresne" <nicolas.dufresne@collabora.com>, "Dang Huynh"
- <dang.huynh@mainlining.org>
-Subject: Re: [PATCH v3 2/3] media: rkvdec: Add support for the VDPU346
- variant
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "Christian Hewitt" <christianshewitt@gmail.com>, "Detlev Casanova"
- <detlev.casanova@collabora.com>, =?utf-8?q?Olivier_Cr=C3=AAte?=
- <olivier.crete@collabora.com>, "Ezequiel Garcia"
- <ezequiel@vanguardiasur.com.ar>, "Mauro Carvalho Chehab"
- <mchehab@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Heiko Stuebner" <heiko@sntech.de>, "Diederik de Haas"
- <diederik@cknow-tech.com>, "Dmitry Osipenko"
- <dmitry.osipenko@collabora.com>, "Thomas Gleixner" <tglx@linutronix.de>,
- "Dragan Simic" <dsimic@manjaro.org>, "Chukun Pan" <amadeus@jmu.edu.cn>,
- <linux-media@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>
-References: <20260110053727.2295260-1-christianshewitt@gmail.com>
- <20260110053727.2295260-3-christianshewitt@gmail.com>
-In-Reply-To: <20260110053727.2295260-3-christianshewitt@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hi Christian,
+This series add support for the Mali-G31 GPU on Amlogic Meson-S4 SoCs.
+Overall it's similar to Mali-G31 on G12A:
+- both are using two reset lines
+- both share the same OPP table
+- both require the same power override quirk
 
-On Sat Jan 10, 2026 at 6:37 AM CET, Christian Hewitt wrote:
-> VDPU346 is similar to VDPU381 but with a single core and limited
-> to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
-> AVS2 capabilities. VDPU346 is used with RK3566 and RK3568.
->
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> Tested-by: Dang Huynh <dang.huynh@mainlining.org> # Pinetab2
-> ---
->  .../media/platform/rockchip/rkvdec/rkvdec.c   | 103 ++++++++++++++++++
->  1 file changed, 103 insertions(+)
->
-> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/me=
-dia/platform/rockchip/rkvdec/rkvdec.c
-> index a5cf6f3240f8..6e49b129d11f 100644
-> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-> @@ -236,6 +236,62 @@ static const struct rkvdec_ctrls rkvdec_hevc_ctrls =
-=3D {
->  	.num_ctrls =3D ARRAY_SIZE(rkvdec_hevc_ctrl_descs),
->  };
-> =20
-> +static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] =3D {
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_SPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_PPS,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_MODE,
-> +		.cfg.min =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +		.cfg.max =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +		.cfg.def =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_START_CODE,
-> +		.cfg.min =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +		.cfg.def =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +		.cfg.max =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
-> +		.cfg.min =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +		.cfg.max =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
-> +		.cfg.menu_skip_mask =3D
-> +			BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
-> +		.cfg.def =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
-> +		.cfg.min =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-> +		.cfg.max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +		.cfg.dims =3D { 65 },
-> +	},
-> +	{
-> +		.cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
-> +		.cfg.ops =3D &rkvdec_ctrl_ops,
-> +		.cfg.dims =3D { 65 },
-> +	},
-> +};
-> +
-> +static const struct rkvdec_ctrls vdpu346_hevc_ctrls =3D {
-> +	.ctrls =3D vdpu346_hevc_ctrl_descs,
-> +	.num_ctrls =3D ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
-> +};
-> +
->  static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] =3D {
->  	{
->  		.cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-> @@ -463,6 +519,41 @@ static const struct rkvdec_coded_fmt_desc rk3288_cod=
-ed_fmts[] =3D {
->  	}
->  };
-> =20
-> +static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] =3D {
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
-> +		.frmsize =3D {
-> +			.min_width =3D 64,
-> +			.max_width =3D 4096,
-> +			.step_width =3D 64,
-> +			.min_height =3D 64,
-> +			.max_height =3D 2304,
-> +			.step_height =3D 16,
-> +		},
-> +		.ctrls =3D &vdpu346_hevc_ctrls,
-> +		.ops =3D &rkvdec_vdpu381_hevc_fmt_ops,
-> +		.num_decoded_fmts =3D ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
-> +		.decoded_fmts =3D rkvdec_hevc_decoded_fmts,
-> +		.subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-> +	},
-> +	{
-> +		.fourcc =3D V4L2_PIX_FMT_H264_SLICE,
-> +		.frmsize =3D {
-> +			.min_width =3D 64,
-> +			.max_width =3D  4096,
-> +			.step_width =3D 64,
-> +			.min_height =3D 64,
-> +			.max_height =3D  2304,
-> +			.step_height =3D 16,
-> +		},
-> +		.ctrls =3D &rkvdec_h264_ctrls,
-> +		.ops =3D &rkvdec_vdpu381_h264_fmt_ops,
-> +		.num_decoded_fmts =3D ARRAY_SIZE(rkvdec_h264_decoded_fmts),
-> +		.decoded_fmts =3D rkvdec_h264_decoded_fmts,
-> +		.subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-> +	},
-> +};
-> +
->  static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] =3D {
->  	{
->  		.fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
-> @@ -1657,6 +1748,14 @@ static const struct rkvdec_variant_ops vdpu381_var=
-iant_ops =3D {
->  	.flatten_matrices =3D transpose_and_flatten_matrices,
->  };
-> =20
-> +static const struct rkvdec_variant vdpu346_variant =3D {
-> +	.coded_fmts =3D vdpu346_coded_fmts,
-> +	.num_coded_fmts =3D ARRAY_SIZE(vdpu346_coded_fmts),
-> +	.rcb_sizes =3D vdpu381_rcb_sizes,
+The main difference is that Meson-S4 gained a second (bus) clock.
 
-AFAICT this is not correct, the rcb_sizes are different for vdpu346 vs
-vdpu381. While for vdpu381 the sizes are the same across codecs, they
-vary for vdpu346. And vdpu346 does not have 'STRMD Row', 'Transd Row'
-and 'Transd col'.
+This series updates the bifrost dt-bindings for the GPU on the Meson-S4
+SoC, wires up the quirk in the panfrost driver and shows how to wire up
+the GPU in meson-s4.dtsi.
 
-For RK3588/vdpu381 it is defined in RK3588 TRM V1.0 Part1 in
-paragraph 5.4.4.3 in 'Table 5-13 Row or Col buffer size required' on
-page 381.
+The .dtsi patch needs to go through the linux-amlogic tree. Would the
+dt-bindings patch go along with it (to prevent binding validation
+errors)? If so then only the panfrost patch would go through the
+panfrost (drm/misc) tree.
 
-For RK3568/vdpu346 is is defines in RK3568 TRM V1.1 Part2 in
-paragraph 10.4.8 in 'Table 10-9 Row or Col buffer size required' on page
-474 and 475.
 
-Cheers,
-  Diederik
+Best regards,
+Martin
 
-> +	.num_rcb_sizes =3D ARRAY_SIZE(vdpu381_rcb_sizes),
-> +	.ops =3D &vdpu381_variant_ops,
-> +};
-> +
->  static const struct rkvdec_variant vdpu381_variant =3D {
->  	.coded_fmts =3D vdpu381_coded_fmts,
->  	.num_coded_fmts =3D ARRAY_SIZE(vdpu381_coded_fmts),
-> @@ -1705,6 +1804,10 @@ static const struct of_device_id of_rkvdec_match[]=
- =3D {
->  		.compatible =3D "rockchip,rk3399-vdec",
->  		.data =3D &rk3399_rkvdec_variant,
->  	},
-> +	{
-> +		.compatible =3D "rockchip,rk3568-vdec",
-> +		.data =3D &vdpu346_variant,
-> +	},
->  	{
->  		.compatible =3D "rockchip,rk3588-vdec",
->  		.data =3D &vdpu381_variant,
+
+Martin Blumenstingl (3):
+  dt-bindings: gpu: mali-bifrost: Add compatible for Amlogic Meson S4
+  drm/panfrost: Add Amlogic Meson S4 integration quirk
+  arm64: dts: amlogic: S4: Add the Mali-G31 GPU
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        | 20 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 49 +++++++++++++++++++
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  2 +
+ 3 files changed, 71 insertions(+)
+
+-- 
+2.52.0
 
 
