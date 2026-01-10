@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-253432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813ACD0CAE2
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 02:07:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91788D0CAE8
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 02:07:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 644C7300BB96
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 01:07:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0C1243005FD7
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 01:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 852EB2066DE;
-	Sat, 10 Jan 2026 01:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535BA215075;
+	Sat, 10 Jan 2026 01:07:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cMzL0o8Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gi+ecyIQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A69215075
-	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 01:07:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB86221FF4A
+	for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 01:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768007253; cv=none; b=MEfMgvOg0ZEsdNZ9fRybWrkS88/r2MEaei08hLEOtrDf2xTxErZNo6Iw/VFLl72VM9Apk/gORVGWGbvHZsA6QAukRcsplRbxovjT1GFKdytEt20tlzPcU3PDpVPSMpmei8LyVNQ0WG7IOvGeG1TqBNd/BPnHIXaYhcYAi/h9G5E=
+	t=1768007255; cv=none; b=cY5QOuEL4UmPc2SJFx0/42HIMZ4syfgp6DNmX0pNafM4QK0JREGjNghy13eVoaRH+ua0in+62XMkzoSPHs0oygIDLSynHpj541viqcaCCnK5/Pnfdc6+x0RdTjRFmz3hfAiTy/Ro64VsbTr18rp5U7C3D9M/VnjBNdBAAzwKE7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768007253; c=relaxed/simple;
-	bh=0/BepdELP0Zi3ioZhdhtHC86o8Zd3dXLZIGFVfkzQ1c=;
+	s=arc-20240116; t=1768007255; c=relaxed/simple;
+	bh=hbAE7fLVMqhiz0ka0f4DsncIMuz8hdHk+5ZelWshzCA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ND4KBBwqpYN9j73BLTNJzSi3kgRp+85iHBaLVj2HNgDDgMUNgvFJzPz2d6heOHSVkgI4QbJtAtZTd9CbUcPF/Z/xd6jHs0uno5NsFCLg323DEtMBtO211fFSODG7KXN7XFRpxWJizdOORK/JWKl5SIqfXSIojGzBHMAQt1jjMk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cMzL0o8Q; arc=none smtp.client-ip=209.85.128.51
+	 MIME-Version; b=UaLxKUZoJ7iYTqsHc71ieCSmLcVNQnC38p1y+/Gc7AjWjavtxgA1frt7wSRQsUZu+KX6TJsmMpFDEaI17L2imv+kU0LSBSk7m0FcHkSZ9+uN6dvbMCy9/zo+2k8iaMz8Vd6W8XELh0wnmJAMD9iKLL7w0tcepJv0Z9E4DufamWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gi+ecyIQ; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47d1d8a49f5so31871785e9.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 17:07:31 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-47bdbc90dcaso34837105e9.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jan 2026 17:07:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768007250; x=1768612050; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768007252; x=1768612052; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3mRvqRARBlLlFVSu4cS3ROES8gW2l+6tv55cSmtfsrs=;
-        b=cMzL0o8Q+YFgXI/e0vW/qdOkCmkn6ai2G4HHdz+TsNe3HuLT2VnmcLZBWwvmNsBrXR
-         ompffJpiC0K13Kbc6naKsvgtiPjwYv7o4+KfxdN6AHlMJVOgsYCwsuQ5FGWAW5S4N2zt
-         26xlgFa9sLHLdey8M0mKOKpTkEbZ55HD72iHPiDodETFVB89upo5rdFASK4cRyUFwbdU
-         0yfL37GucVNnu6reoTho17NIKbrQzdL/aUXkUrfO5QrBGVMPNdU3axad4Pew2ibYvDv0
-         eaLiprGC0x9D9cS7HfJkl2Fg2yZl9zwvo9ZalC8XPGRWZ6JoEVmArNUZNX8yV5GEB0Fn
-         /PVg==
+        bh=DN6MSURqxWOvIBN2xDV0KAizo7981QvoO4K7apHW68Y=;
+        b=gi+ecyIQXaR1N6LoeHRr9V5r4awfzKwMsT9tF9xNJ1mKbJtchpcMUJmti76x/YIF81
+         TB/H0WkXTKHg0YFdYAR1vM4sDKXYCBd+ckOnbftgVcRtO0svI6dp19E7c6gTPHNZIbAk
+         B8aX7It9I1vbjomFsfWbY3NhOp5NS/WEeMH5d2hw0Pudbmqyi3bAcjTNgyp2I5mzVTnp
+         OhttGZD2NcRjAh+K71QduIr0VFE3boLD4CY9pR6JlQ/mwAxG0tJatHm2AiK5Bz994UHx
+         /f4TSrGR3fRcsrgSV64ZA7pVIuM1xQO33wHL4ojxQ6+3WID9Gur92U5jFpaeAcRD4Otf
+         0gaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768007250; x=1768612050;
+        d=1e100.net; s=20230601; t=1768007252; x=1768612052;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=3mRvqRARBlLlFVSu4cS3ROES8gW2l+6tv55cSmtfsrs=;
-        b=qTmYsSR/rENavFayhZhzIa0xQ/m1km9KjoRpt/wGAOP/RAtt47lTdQ+abEDk4F9oue
-         odWbX3T1NACOY6n9/pmqXzsHkiM+yKi/LUHSHyhYv28prgGXuamkIsclJMYwL59dhjlK
-         QnyyPLWwW4uDl8xy+0a3KGFQJbhCidn6qUPGiiTkE8mcXHSpVOhID+67LvqQNqE7gRXn
-         EKcJszn6db+g4evUspfe5EhQ75AnQVFV0D+7VRTdsuIsBLveELbDQ/6BH0Rn/hrHX4bW
-         j/VpqxqVajKIPPeEe1v9uZWer1sc4ollXhVAjDK7xItRIbK9uHEYfLE0m7R3vyWRuWxT
-         laoA==
-X-Forwarded-Encrypted: i=1; AJvYcCW7pokaev7zNKQ9t6ZzeqvLHmz9xnrXx1SJTKwlx/lTzOx9K3gU4qaRDLJ1XzOiq51f0GzJQ/IE4crC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVBhHq9lt6oBZL7FOJNTjkkry1/lE0ZGrOgf9YmHmLtOXGYdgM
-	zpDK37JjWmdx0XDZsWrljZdT9uoRW/Yy/ThwpolbrAe8h6xwXDmV4ZhY
-X-Gm-Gg: AY/fxX4m/d4MAH5aZCWLcZorSwj0EuwL9vLzyMrRRb2z3acYZN/QNOwoLfjs/HUc8OP
-	N8SZTccI8gXpJU67q0Scculu1SAxbUzBDmMuZD1S1Vg/N4rdANmQnFW73COuD2AQeMNxwB6c7xT
-	GZXTJf6VmG0/HO7k5yoqim2YTy5Hv1GzHCRQ+FOhIkABGvi2cb4i5Zy2GD3cy+Mfed/mQ9Xk0C+
-	4rQN5RQMveF0MKVIic9SUZSFEZ62EWm2cYINmdLFZ0Q+KPADUlb4QjD4bVVN5O7UCxVxhqj2v5r
-	aQww8wxZtueFfPkaHjbJqeFVAkf36GvON8s47lDEru2Cw0uIzK6m8E/HVG9yfUM8nxI1LowjRl8
-	HWqwb3CmSG+INBJHRuH+xmS8WF59Q4QnmVWflKaOXmlmoJzwz3/vu/Lep/N1AYUSgtCRyiCPwFp
-	U8XwY7QBUbMNCM2dFw0LfRNksaNItIEJByCGFkF7mIeDBsCnxLOxJeulOu1b9GUDVFvtdbUkdPz
-	HuhZGg=
-X-Google-Smtp-Source: AGHT+IEruxoVLQw+uvAQdMicgfFRe8XyeFbrLqGms3k4V0pLxVUBHW1PFuUJeUnVq2ysNptvW2pOWA==
-X-Received: by 2002:a05:600c:83c7:b0:479:3a86:dc1c with SMTP id 5b1f17b1804b1-47d84b52e31mr128613185e9.36.1768007250459;
-        Fri, 09 Jan 2026 17:07:30 -0800 (PST)
+        bh=DN6MSURqxWOvIBN2xDV0KAizo7981QvoO4K7apHW68Y=;
+        b=azSXIQm5AYs6zLkTqGrtz5hQVF+fbU/0WWWz5UDpw+3kmi7/KWn71+a/Pc4gJt3H2A
+         ZSWqPcdEtxNg2ggqxW0NqGMMZUp1ygAcsdHHEV6BcXfSWpJAFyT55lWFeuxMQNcEutj6
+         dwJcvGdcl0OxAFjOuFjw2yGeTU3WJzINlc9avYIuASGdLPDCOaxiPpqVy8Dvmj58b7i0
+         M1FN2PTkMGrnO1j8xA81aM58ww6a/OPJQdeWLLLD8zGYgDfuBiPg+9q+uYvSO+GyB6Si
+         LXowBR6WFjx984Y3QtRCwBhxLz5EAotGqXLVcIl6sqt9r8iaWMoontThkPFSIuV1MAz/
+         jXJw==
+X-Forwarded-Encrypted: i=1; AJvYcCURxxvkUy+aMNaLEKs1pWW1N0Sn9dRwnHC5xdkpRl0m0IOd6kbI61CTIMjvT++AW7mKOlhq0nO/8A2L@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQuMrX5YWSl5RNFg9PpxjhP8OEtfyqM2+aTsewTNj5DVbsJtis
+	T4wKhaLIuo22LK+EqJ4CC8MAsLWad53E9BKNsNRz2tLvv01y7zbHr53s
+X-Gm-Gg: AY/fxX4TOpfcKCr0tzxMirua8tAGCnNYhXCcl4xACBwXCygvUrFwXYJBh/xmOS5SUsT
+	g9xlt3+QHy48wtK4TDGvJk9CUQW/hychsl0sQTkfNViA9eJalb+p/TVFOnZwAA2IDxvqNs1S281
+	YLcNq9rNhlrmNj+04PFOTXTVIw8ZgP/JoyrXQ5KmJvTZaTZ4fQRZ04VUS3pZL6VFUHWZmbzLpfA
+	vGDUysxyw4KEeSWSmgRO0SEdgh8n0vmgSnzrdFOd4PKXXkTnmpNv7Ll6hyvOwA92gc6CGdQzfGK
+	sWIiLg/VfmFnOFlP8UvHtlSc1359eUM1MvAllZFbyxC048aURsEyeUsyrqVQcvfST8W4m4nKb3F
+	H1e81Y1EChqTFs8uvKuWJGvEXS8DM4CvohvpCUAg019CBmf0sCQHE5ZKCMvZGBiSGRCR0/l6iqJ
+	ttIqDCeHlPWu7HlaYBbEBtuKHXg+Qed/y2AMF+cNsjvODZAFnZiHwNowNFLthNNpripsRNSQmHw
+	60UI0U=
+X-Google-Smtp-Source: AGHT+IHUUZ/4ZQNhh9IvF2WBWql7HyWhiFdLiU8Xz+XMhgJCU3OwR9PNJC6uNnx3kZs51See/jVZpw==
+X-Received: by 2002:a05:600c:4fc6:b0:477:a21c:2066 with SMTP id 5b1f17b1804b1-47d84b0a902mr114638605e9.5.1768007252116;
+        Fri, 09 Jan 2026 17:07:32 -0800 (PST)
 Received: from stor1.home.marco.cx (ip-178-202-227-016.um47.pools.vodafone-ip.de. [178.202.227.16])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d8717d9e7sm71779475e9.8.2026.01.09.17.07.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d8717d9e7sm71779475e9.8.2026.01.09.17.07.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jan 2026 17:07:30 -0800 (PST)
+        Fri, 09 Jan 2026 17:07:31 -0800 (PST)
 From: Marco Schirrmeister <mschirrmeister@gmail.com>
 To: heiko@sntech.de,
 	ulf.hansson@linaro.org
@@ -84,9 +84,9 @@ Cc: robh@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Marco Schirrmeister <mschirrmeister@gmail.com>
-Subject: [PATCH v1 2/3] mmc: host: dw_mmc-rockchip: add rockchip,disable-runtime-pm quirk
-Date: Sat, 10 Jan 2026 02:07:14 +0100
-Message-ID: <20260110010715.1610159-3-mschirrmeister@gmail.com>
+Subject: [PATCH v1 3/3] arm64: dts: rockchip: add stability quirk to NanoPi R76S
+Date: Sat, 10 Jan 2026 02:07:15 +0100
+Message-ID: <20260110010715.1610159-4-mschirrmeister@gmail.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260110010715.1610159-1-mschirrmeister@gmail.com>
 References: <20260110010715.1610159-1-mschirrmeister@gmail.com>
@@ -98,80 +98,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The FriendlyElec NanoPi R76S (based on the Rockchip RK3576) suffers from 
-a persistent bus-reset loop on the microSD (dw_mmc) interface during 
-idle periods. When the microSD controller enters runtime-suspend, the 
-subsequent transition back to an active state causes the bus timing to 
-become unstable. This forces the driver to drop the bus speed to 400kHz 
-to perform a full retraining of the SDR104 link.
-
-Investigations using the runtime_status interface confirm that 
-preventing the controller from entering a low-power state stabilizes 
-the link and eliminates the reset loop entirely.
-
-This patch introduces a new 'rockchip,disable-runtime-pm' Boolean 
-property to the dw_mmc-rockchip driver. The property is used to:
-
-- Bypass the 50ms autosuspend delay during the probe sequence.
-- Explicitly increment the device usage count via pm_runtime_get_noresume()
-  to keep the controller active and prevent it from being suspended 
-  during idle periods.
+Enable the 'rockchip,disable-runtime-pm' quirk for the SDMMC node on the 
+NanoPi R76S to prevent bus instability and retraining loops during 
+idle periods.
 
 Signed-off-by: Marco Schirrmeister <mschirrmeister@gmail.com>
 ---
- drivers/mmc/host/dw_mmc-rockchip.c | 25 ++++++++++++++++++++++---
- 1 file changed, 22 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/mmc/host/dw_mmc-rockchip.c b/drivers/mmc/host/dw_mmc-rockchip.c
-index 62c68cda1e21..d3e5c06d80ef 100644
---- a/drivers/mmc/host/dw_mmc-rockchip.c
-+++ b/drivers/mmc/host/dw_mmc-rockchip.c
-@@ -538,6 +538,7 @@ static int dw_mci_rockchip_probe(struct platform_device *pdev)
- {
- 	const struct dw_mci_drv_data *drv_data;
- 	const struct of_device_id *match;
-+	bool disable_rpm = of_property_read_bool(pdev->dev.of_node, "rockchip,disable-runtime-pm");
- 	int ret;
- 
- 	if (!pdev->dev.of_node)
-@@ -549,8 +550,13 @@ static int dw_mci_rockchip_probe(struct platform_device *pdev)
- 	pm_runtime_get_noresume(&pdev->dev);
- 	pm_runtime_set_active(&pdev->dev);
- 	pm_runtime_enable(&pdev->dev);
--	pm_runtime_set_autosuspend_delay(&pdev->dev, 50);
--	pm_runtime_use_autosuspend(&pdev->dev);
-+
-+	/* Only setup autosuspend if the DTS hasn't prohibited it */
-+	if (!disable_rpm) {
-+		pm_runtime_set_autosuspend_delay(&pdev->dev, 50);
-+		pm_runtime_use_autosuspend(&pdev->dev);
-+	}
-+
- 
- 	ret = dw_mci_pltfm_register(pdev, drv_data);
- 	if (ret) {
-@@ -560,7 +566,20 @@ static int dw_mci_rockchip_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	pm_runtime_put_autosuspend(&pdev->dev);
-+	/*
-+	 * For boards with sensitive signaling like the RK3576-based NanoPi R76S,
-+	 * we inhibit runtime PM to prevent bus resets during idle transitions.
-+	 */
-+	if (disable_rpm) {
-+		/*
-+		 * Instead of nuclear option (pm_runtime_forbid), we use
-+		 * the "soft" way by incrementing the usage count to
-+		 * prevent the controller from ever hitting runtime_suspend.
-+		 */
-+		pm_runtime_get_noresume(&pdev->dev);
-+	} else {
-+		pm_runtime_put_autosuspend(&pdev->dev);
-+	}
- 
- 	return 0;
- }
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
+index 31fbefaeceab..90a798ee9e68 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
+@@ -754,6 +754,7 @@ &sdmmc {
+ 	disable-wp;
+ 	no-mmc;
+ 	no-sdio;
++	rockchip,disable-runtime-pm;
+ 	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc_3v3_s3>;
+ 	vqmmc-supply = <&vccio_sd_s0>;
 -- 
 2.52.0
 
