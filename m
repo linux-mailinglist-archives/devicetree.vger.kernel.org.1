@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-253434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF6CD0CBF7
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 02:44:21 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3715FD0CC0C
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 02:46:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB47D3047958
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 01:43:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DDEEE300FEC4
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 01:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74355238C2A;
-	Sat, 10 Jan 2026 01:43:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DFEE242D66;
+	Sat, 10 Jan 2026 01:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i5pvintR"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="KG+5i8Dv";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="KG+5i8Dv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514E1234984;
-	Sat, 10 Jan 2026 01:43:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7744B72631;
+	Sat, 10 Jan 2026 01:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768009421; cv=none; b=Zi7xFyesdG1fw6TNf2r7YscoR77aJ/KG9G6a1klcDWUVzrcPb24d2iaRrW4ZsH+loRzkMmCg24y90VhE1D4fxre3wh/mcZolj3e6RW8oKMiiNKl7Yr+aCz/3j6h7Zk9k76rlczEJL2FexuVO6zUoZklaZjZLFhGq/RT0i3nQ0b8=
+	t=1768009547; cv=none; b=n5dGm8RGXjwFvMlEMMUsWZ8TRbL/PwD2ztOVJfUVOaPBuE1MuGeBIKfWv9iQtGl65z0TQri8Zjjb6kGzVR5eogb0Yi1+pqETRq5fUFW8pascUQUMsx9os5zuJqSJXXPOoNjQ/IePcV+5xBGe+zwiS0yMefHnTQjsNkFENcHrWos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768009421; c=relaxed/simple;
-	bh=cl5jRiYV3kNHVdEZfbTnum5lCpQivb1iKFoKtYMyqVU=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=RaxoDRSNJ97MC/OuspAMhNIqXmPd9UVk8cpxxkGW87Cpgp4WJHqaFrbeE5ZQconb4OgRqQjMV7Th/qj2jbrr9sJHCNt6sajzcDa5UI4YS2Ncn/AgEN9kkD24VfeeT/vF2TcbtFV3P8zdZDWFZRfAqlMQN01znQrp6PIxwqkizd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i5pvintR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8045C4CEF1;
-	Sat, 10 Jan 2026 01:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768009420;
-	bh=cl5jRiYV3kNHVdEZfbTnum5lCpQivb1iKFoKtYMyqVU=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=i5pvintRKRVYeAWSh9dsiUf6pjBI2UULnfXgnyhJQaE2lHLFxheKUnVbs/uyF+b+v
-	 Z8D1tnEEpDKf7/ynfT+O9Tt3EWtRFlyhlXFC7mu0ZplSSxlbnfnZFEZZmHffXqgPMU
-	 aRvIo8Eqklv+IXqGCxggs9v+uL1ZxRJgrKoR5T27x67NipIWc4YRwIWX8O27ctZeJu
-	 JwabJMAK/35OqNcRKjHgTZUtFZEdIFW5+Z2JyO8IV1kbWo2R/oGDZtoRICUyRgb9B6
-	 xczg/NuI+T+X2uHa9UEXxjV9cNJLIVzC9fkSPDWSWRC2pneUWcaxRl0ePzoegU1rZ8
-	 PWkwod7d/HTeg==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id B6B423AA9F46;
-	Sat, 10 Jan 2026 01:40:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1768009547; c=relaxed/simple;
+	bh=XZ43TJVHj52vY2ZJ+jW/6bC5/GHKfvJv0Ek6S8x41Hs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZCSnOyph0miYYhVBr03PZjzUCvG8p2fqnC0O7TwQEsApDrzVacuaoUT/d+0WvRgw3ElnzcFbZ8FpYYq8xIH4rm/EEMEzu3X/8WVnUREMGwt3f1zZzKfG2GybyNpTLAkA0PwZdLGiPXx+cQbYMNZORyaf8KF1DKVACQFoc8L+/BQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=KG+5i8Dv; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=KG+5i8Dv; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1768009542; bh=XZ43TJVHj52vY2ZJ+jW/6bC5/GHKfvJv0Ek6S8x41Hs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=KG+5i8DvOQFUBYK2ZSu5mxhzn8EBbRrXFrL8RbxIDvzu6QJP+AM4SJSW8msGw2Fi8
+	 vGJ9kAbdW73Po+QImqrLmtK4HNFDXfGkv98co7ejLollLz+okjDXecEy32UVcWZ6bW
+	 DGwYXG130pkUSa1Y0sQMz1V5x4lkEfoyG66DUNcI2OJKkY34uWpTb2mnfFM339DyRI
+	 tHEX1Ga9gmmAHBPaXg/kwb1Of8ra9bJSyUXWXGXxh/t7xOEmESOap7X8s9b4S7F2rf
+	 4GFB2e7amFmRsRQ1ZHRLWMu8cJD9dvBn/Bmy/afspe14GA71Kol+mluaeEcNoNf/l7
+	 XzC5OhHJX8azA==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id 93BCF3EB7E6;
+	Sat, 10 Jan 2026 01:45:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1768009542; bh=XZ43TJVHj52vY2ZJ+jW/6bC5/GHKfvJv0Ek6S8x41Hs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=KG+5i8DvOQFUBYK2ZSu5mxhzn8EBbRrXFrL8RbxIDvzu6QJP+AM4SJSW8msGw2Fi8
+	 vGJ9kAbdW73Po+QImqrLmtK4HNFDXfGkv98co7ejLollLz+okjDXecEy32UVcWZ6bW
+	 DGwYXG130pkUSa1Y0sQMz1V5x4lkEfoyG66DUNcI2OJKkY34uWpTb2mnfFM339DyRI
+	 tHEX1Ga9gmmAHBPaXg/kwb1Of8ra9bJSyUXWXGXxh/t7xOEmESOap7X8s9b4S7F2rf
+	 4GFB2e7amFmRsRQ1ZHRLWMu8cJD9dvBn/Bmy/afspe14GA71Kol+mluaeEcNoNf/l7
+	 XzC5OhHJX8azA==
+Received: from mail.mleia.com (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mleia.com (Postfix) with ESMTPSA id E53A23EB2D5;
+	Sat, 10 Jan 2026 01:45:41 +0000 (UTC)
+From: Vladimir Zapolskiy <vz@mleia.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>
+Cc: Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/2] arm: dts: lpc32xx: Add Motor Control PWM interrupt
+Date: Sat, 10 Jan 2026 03:45:22 +0200
+Message-ID: <20260110014524.3379187-1-vz@mleia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,42 +77,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] dt-bindings: net: rockchip-dwmac: Allow
- "dma-coherent"
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <176800921652.446502.5954901087399203743.git-patchwork-notify@kernel.org>
-Date: Sat, 10 Jan 2026 01:40:16 +0000
-References: <20260108225318.1325114-2-robh@kernel.org>
-In-Reply-To: <20260108225318.1325114-2-robh@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- heiko@sntech.de, david.wu@rock-chips.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20260110_014542_630072_86AC6243 
+X-CRM114-Status: UNSURE (   6.36  )
+X-CRM114-Notice: Please train this message. 
 
-Hello:
+NXP LPC32xx Motor Control PWM has an interrupt line, which may be used to
+report events from programmable counters e.g. timer counter limit (period),
+match counter (pulse-width), or from counters on input lines of PWM channels.
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+The platform dtsi change is based on top of the next one:
+* https://lore.kernel.org/linux-pwm/20251228224907.1729627-1-vz@mleia.com/
 
-On Thu,  8 Jan 2026 16:53:18 -0600 you wrote:
-> The GMAC is coherent on RK3576, so allow the "dma-coherent" property.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+Vladimir Zapolskiy (2):
+  dt-bindings: pwm: nxp,lpc32xx-pwm: Add optional Motor Control PWM interrupt
+  arm: dts: lpc32xx: add interrupts property to Motor Control PWM
 
-Here is the summary with links:
-  - [net-next] dt-bindings: net: rockchip-dwmac: Allow "dma-coherent"
-    https://git.kernel.org/netdev/net-next/c/72dc44679b14
+ .../devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml       | 10 ++++++++++
+ arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi                 |  1 +
+ 2 files changed, 11 insertions(+)
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+2.43.0
 
