@@ -1,252 +1,166 @@
-Return-Path: <devicetree+bounces-253475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436ADD0D41D
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 10:34:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B8FD0D456
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 10:57:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B8782300A9D8
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 09:34:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BAF0A302174F
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 09:57:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81680208961;
-	Sat, 10 Jan 2026 09:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 296562D6E5A;
+	Sat, 10 Jan 2026 09:57:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022142.outbound.protection.outlook.com [52.101.126.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0BE2367D9;
-	Sat, 10 Jan 2026 09:34:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.142
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768037653; cv=fail; b=FLXZ82f255tktp8JUZnQHbm47b4g5LXGAghGLDyMt8YzCsk8MGOv1IJvdbMCnRschUPadbMd3S3sVvvu1Y8dCHuaET1bEnunKWSggOVrJCd9N0Hj7enu9gEdVfPVpYDevOX6Cl0ncmfLt5WhtRcTAeAh1MvKDM/SOuNQkZDomTM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768037653; c=relaxed/simple;
-	bh=PcMShY/mWC4Zwc6uwyzgAXxQcLmKHzlbF1YAk1vRNGg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r7fCa3i95ypZNSgjcJP0DdlM5QnRAh4XsG5EjRDrpugNIX64nIL+OunTAiFeKgyITtCP2CvUVvTIdHup0qRkJHH6T4/4263SWwRQ/DHGhKHuC1OWf88XBQRVg9CBINnl9hC6W1Q04YQFMpwnBtF1Ypm+uFyKtgDfeojj/LclhQc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a2wDlVKzEUJSx/zqfim9lkZHB3ge9PiKoG9Zks589IQhezp4EZkjIK+3n7JiSiIrLqmy8FtPsobPh5Dj7Ca0/vUgqF6Fty9/OdWfAZW0UByY653+nY173ImuVjLf/9XC7in8hC4CdCs/KkjJXJVdoqWWxWjmRJN6/vPPRxUaUNxqyLohl3AYVuz0SvKNbKJsIQruoAgKh3yCfaIb379VghHrplvLmIagvqxT8outwkM4b7TEjAydxZNcBABJ8dx5NrMiro9dFigbOJNYPq+5kOkl945LfhjJytwA/IOZKlRlDN7++PYqh7pRdWs0QTKkfNIVPXqReOq57Jh2YHrMWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mJlTUhb/5UepKBoao7XHkzdJ0DZEnFzCirMi4DD3x9E=;
- b=JYSYj+31b7yLuHxZgAuB2rcAyMT0uvANValhKVUBa2KrX/unL55e/LBETn3l9DSu/UKR2u5tdQKQWMcGYK7iSFzkjYmsub78h+ltSt8OqYjVgmZknfll94qnnub7kdugHKetjYvgTPk2ConBTZ85/EhvuZjJsbZpvWWu4ykfYH9Gxdlknwe8Z3v98EWZoYVNjY34bsvH46L7t2QCTSUxDqoov/3z6eXp10CUQNVrclze4NE4aRGLIXthXcYQDPiobk0zLeEoVLo8c5+XGemKGm/9GpA0bAd/97lXOxpVwVg09rAa+I1IV6AHimi9eeOvpXk2yesCBCjVK+tP27d+UA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from OSTP286CA0085.JPNP286.PROD.OUTLOOK.COM (2603:1096:604:227::7)
- by SEYPR06MB6929.apcprd06.prod.outlook.com (2603:1096:101:1d9::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.4; Sat, 10 Jan
- 2026 09:34:09 +0000
-Received: from OSA0EPF000000CC.apcprd02.prod.outlook.com
- (2603:1096:604:227:cafe::5e) by OSTP286CA0085.outlook.office365.com
- (2603:1096:604:227::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.6 via Frontend Transport; Sat,
- 10 Jan 2026 09:34:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000CC.mail.protection.outlook.com (10.167.240.58) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Sat, 10 Jan 2026 09:34:08 +0000
-Received: from localhost.localdomain (unknown [172.16.64.196])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id A8D8740F0506;
-	Sat, 10 Jan 2026 17:34:06 +0800 (CST)
-From: Gary Yang <gary.yang@cixtech.com>
-To: peter.chen@cixtech.com,
-	fugang.duan@cixtech.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: cix-kernel-upstream@cixtech.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Gary Yang <gary.yang@cixtech.com>
-Subject: [PATCH v4 2/2] arm64: dts: cix: Add OrangePi 6 Plus board support
-Date: Sat, 10 Jan 2026 17:34:06 +0800
-Message-ID: <20260110093406.2700505-3-gary.yang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260110093406.2700505-1-gary.yang@cixtech.com>
-References: <20260110093406.2700505-1-gary.yang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C29F127CB35;
+	Sat, 10 Jan 2026 09:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768039038; cv=none; b=tgdWTaZ1JhKUDqxqclP1IHqR5oZA5BNXJox6eROnSHFEgjMrJKL/2cyIwP/iqOVuw1sGvoGfO/TAVAVV1Z0wguKAxlKaNdiEYtEY/QED9hwLh7bK7T8avIGwGAXVqKvCtyIEiIsRrslbH8NxmJ4Ih5MyD9/lxCiQmIMJG+7lG7U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768039038; c=relaxed/simple;
+	bh=KfNLqkbA2eQOe94ZwIx+5QtHXfS9ImaFx3q75cIRBJ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r1HfqAsSvHFm46tAqtgEd7YGo+j4qumXyh2sCl7BkJFUgcBrZb68DEzya5MEzHfLWafS+JuW41JAhqGKwoo8Y1fvGhzYoE+CqH0IPvPSK2T0CO2qN0et5I6PtD8khrYGPQy+sJE4MRf4X5/XMANoJPSpVjv84GuX2q3iWbMUD0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 5C4CE34106C;
+	Sat, 10 Jan 2026 09:57:14 +0000 (UTC)
+Date: Sat, 10 Jan 2026 17:57:07 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Conor Dooley <conor@kernel.org>,
+	Heinrich Schuchardt <xypron.glpk@gmx.de>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v4 11/11] riscv: dts: spacemit: add SpacemiT K3 Pico-ITX
+ board device tree
+Message-ID: <20260110095707-GYA12783@gentoo.org>
+References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
+ <20260110-k3-basic-dt-v4-11-d492f3a30ffa@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000CC:EE_|SEYPR06MB6929:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 11ad1789-e666-4783-0ee2-08de502b6797
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Euk+SRUZZT4rWO3DXfPGDYhlfnV6uMhauqmfV6g5JthQt1v15v/B2x79HYny?=
- =?us-ascii?Q?LR++CG8Wdhnn7SiPGWRrLF/LMegT/aHBiBzr8FpL2sDGpEouNqWt3efLxkMu?=
- =?us-ascii?Q?XZoUCVfAJUE9GFtUwfze/LsS6zMNdLCnuI3Cml5EeQXZ9NlfWXDWfPRT8/9y?=
- =?us-ascii?Q?p47FR/o70kJ8TesPhfwAECqSt7UjOS5d048DtPaMPRcsST9S41Gvq7sgpEkg?=
- =?us-ascii?Q?VUlDEHTiXmiABVXPJx3MVKJ+VYq/lkqNG2PQujvuKrhAtUyIKztxYb59+Psr?=
- =?us-ascii?Q?p5XX4iZRAk69CjhYRwHjJAtjoX+jbNMrWYGCe7ENNjUabzQrbsSQw2QUCflz?=
- =?us-ascii?Q?JMrAnXMPWcFUVroD1qMoSh8nRct+6YomLIA8tpRvFb56VzpUoyzhSa5sQilx?=
- =?us-ascii?Q?+IV0baftwapYYH5RaswNzF44sMoGSlAN9mAjowMljHucteOrIv7NRPbM0aXE?=
- =?us-ascii?Q?Xchw3Att9ik5raV4gc7FikugSTBUipG8YCA1HeGOBP02HfBiIcAW37eOqZc3?=
- =?us-ascii?Q?0goGSgi19lxDlsiYIwaVhLBpR6hEQR32L51c+zwLaPXxSMFncV9GwMeN8Znz?=
- =?us-ascii?Q?An3MjizrbscJeivARKArgwf15qXXX++42lUjJFeVRAvIYo9d5ls5e2wLDNIb?=
- =?us-ascii?Q?zs66Ave1yLqhHXRXnSDuAEChfCh45X05yA2h3T4cjxhCPAdXyXiCLdNrTFXZ?=
- =?us-ascii?Q?A5LTjHJm+RqKxv3Z0PIXlDqPtzDo0oSVYeXs2ERnB8U9tlsku6Ct9xe1IFhO?=
- =?us-ascii?Q?oRKyFPIfYs/KL6uxk1nKxngfHY5ifvmuHLpPh1NiX+b5p4QjUxtVK0ifFDnw?=
- =?us-ascii?Q?RThk8tmNftYgxIpsoEXydyhmD7Iv63jLLA5E8r+n9SjBURg1OioV1Xi55ppD?=
- =?us-ascii?Q?BQjgGD4hw4cgx+H03bWR6Sp5d8I1xAm+x1JJG7JjlsQyR0GudtCcTJr7Ekd2?=
- =?us-ascii?Q?BLn2wLKDqwgQmaTNnN2XGBeM3exvcy4wMrB51VZ7SZfi0oFTn0/urt6NFER0?=
- =?us-ascii?Q?YvJUa5N2wvudOb015U+6Jwxu9VtQAC1mbQYpL+MRZ4cBKaAA3vXGL6I41RnQ?=
- =?us-ascii?Q?O5CaBMpi2yeCCuFqd8C8NbEsZKIQ+P7kqAkFdGV6orHiv+UWApBQ39eQczcq?=
- =?us-ascii?Q?mWgoJ9pF67QzEX4fOH7pn/1285zK3ftxcEP2v/uF18CpIx4C4Gep0GB9crxr?=
- =?us-ascii?Q?qQOJRkFTh1G4hxUWZfuZ8Ak5nNILEOsfEa/pJBYK7Fv8gT80ajbY+bOiOtBw?=
- =?us-ascii?Q?UzntVBHdqkayYJY1e8iRsCL/pBKbrEuENfSFarmHL7HDRm5BX85o1bycyar7?=
- =?us-ascii?Q?srMaMQExEiZflHDOUhaRHc6+GXr/0DRPsyQwmWXj7bCJmpvAiUl/NJfE1Arl?=
- =?us-ascii?Q?BIrjjH246RpvXtHAwKArtVgNl/iD/NzHVK4RI+tOZ9pOHlk1UMI9mI0NDOcc?=
- =?us-ascii?Q?KBK/9qAKYwoM1982QEvOABETNmE9329D2efog+F7wzrUC0t82c012GsAxdFd?=
- =?us-ascii?Q?kQXwme7cGxnuks8bF9EJOvLTCngSfHz7cNzuUPh8UTEctcBZwFORuPljylQa?=
- =?us-ascii?Q?xx3r60SViRsL/7Cc880=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2026 09:34:08.2269
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11ad1789-e666-4783-0ee2-08de502b6797
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	OSA0EPF000000CC.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB6929
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260110-k3-basic-dt-v4-11-d492f3a30ffa@riscstar.com>
 
-OrangePi 6 Plus adopts CIX CD8180/CD8160 SoC, built-in 12-core 64-bit
-processor + NPU processor,integrated graphics processor, equipped with
-16GB/32GB/64GB LPDDR5, and provides two M.2 KEY-M interfaces 2280 for NVMe
-SSD,as well as SPI FLASH and TF slots to meet the needs of fast read/write
-and high-capacity storage
+Hi Guodong,
 
-Signed-off-by: Gary Yang <gary.yang@cixtech.com>
----
- arch/arm64/boot/dts/cix/Makefile     |  1 +
- arch/arm64/boot/dts/cix/sky1-xcp.dts | 83 ++++++++++++++++++++++++++++
- 2 files changed, 84 insertions(+)
- create mode 100644 arch/arm64/boot/dts/cix/sky1-xcp.dts
+I have a minor comment for the subject, it's kind of little bit redundant..
+so, how about (also apply to patch 10):
 
-diff --git a/arch/arm64/boot/dts/cix/Makefile b/arch/arm64/boot/dts/cix/Makefile
-index ed3713982012..8a6c6fdc4ec0 100644
---- a/arch/arm64/boot/dts/cix/Makefile
-+++ b/arch/arm64/boot/dts/cix/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_CIX) += sky1-orion-o6.dtb
-+dtb-$(CONFIG_ARCH_CIX) += sky1-xcp.dtb
-diff --git a/arch/arm64/boot/dts/cix/sky1-xcp.dts b/arch/arm64/boot/dts/cix/sky1-xcp.dts
-new file mode 100644
-index 000000000000..1fae52dc9bb0
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/sky1-xcp.dts
-@@ -0,0 +1,83 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright 2025 Cix Technology Group Co., Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "sky1.dtsi"
-+#include "sky1-pinfunc.h"
-+
-+/ {
-+	model = "Xunlong,OrangePi 6 Plus";
-+	compatible = "xunlong,orangepi-6-plus", "cix,sky1";
-+
-+	aliases {
-+		serial2 = &uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x0 0x28000000>;
-+			linux,cma-default;
-+		};
-+	};
-+
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_hog: hog-cfg {
-+		pins {
-+			pinmux = <CIX_PAD_GPIO144_FUNC_GPIO144>,
-+				<CIX_PAD_GPIO145_FUNC_GPIO145>,
-+				<CIX_PAD_GPIO146_FUNC_GPIO146>,
-+				<CIX_PAD_GPIO147_FUNC_GPIO147>;
-+			bias-pull-down;
-+			drive-strength = <8>;
-+		};
-+	};
-+};
-+
-+&iomuxc_s5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog_s5>;
-+
-+	pinctrl_hog_s5: hog-s5-cfg {
-+		pins {
-+			pinmux = <CIX_PAD_GPIO014_FUNC_GPIO014>;
-+			bias-pull-up;
-+			drive-strength = <8>;
-+
-+		};
-+	};
-+};
-+
-+&pcie_x8_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x2_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x1_1_rc {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
+[PATCH v4 10/11] riscv: dts: spacemit: add initial support for K3 SoC
+[PATCH v4 11/11] riscv: dts: spacemit: add K3 Pico-ITX board support
+
+On 13:18 Sat 10 Jan     , Guodong Xu wrote:
+> K3 Pico-ITX is a 2.5-inch single-board computer equipted with a SpacemiT
+> K3 SoC.
+> 
+> This minimal device tree enables booting into a serial console with UART
+> output.
+> 
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> ---
+> v4: No change.
+> v3: No change.
+> v2: Add aliases node in this board DT.
+>     Update the memory node to reflect the hardware truth. Address
+>      starts at 0x100000000 (4G) boundary.
+> ---
+>  arch/riscv/boot/dts/spacemit/Makefile        |  1 +
+>  arch/riscv/boot/dts/spacemit/k3-pico-itx.dts | 38 ++++++++++++++++++++++++++++
+>  2 files changed, 39 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
+> index 95889e7269d1..7e2b87702571 100644
+> --- a/arch/riscv/boot/dts/spacemit/Makefile
+> +++ b/arch/riscv/boot/dts/spacemit/Makefile
+> @@ -4,3 +4,4 @@ dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
+>  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
+>  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-r2s.dtb
+>  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
+> +dtb-$(CONFIG_ARCH_SPACEMIT) += k3-pico-itx.dtb
+> diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
+> new file mode 100644
+> index 000000000000..037ce757e5bc
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
+> @@ -0,0 +1,38 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (c) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
+> + * Copyright (c) 2025 Guodong Xu <guodong@riscstar.com>
+strictly, should update to cover current year - which is 2026 now
+
+> + */
+> +
+> +#include "k3.dtsi"
+> +
+> +/ {
+> +	model = "SpacemiT K3 Pico-ITX";
+> +	compatible = "spacemit,k3-pico-itx", "spacemit,k3";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+..
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +		serial5 = &uart5;
+> +		serial6 = &uart6;
+> +		serial7 = &uart7;
+> +		serial8 = &uart8;
+> +		serial9 = &uart9;
+> +		serial10 = &uart10;
+I think we only add aliases for devices which actually enabled
+
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0";
+> +	};
+> +
+> +	memory@100000000 {
+> +		device_type = "memory";
+> +		reg = <0x1 0x00000000 0x4 0x00000000>;
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> 
+> -- 
+> 2.43.0
+> 
+
 -- 
-2.49.0
 
+Yixun Lan (dlan)
 
