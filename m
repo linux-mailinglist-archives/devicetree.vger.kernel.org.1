@@ -1,162 +1,129 @@
-Return-Path: <devicetree+bounces-253482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 746A7D0D533
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 12:19:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6D47D0D55A
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 12:36:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9EB1730133BC
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 11:19:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE88D301637F
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 11:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 283F533DED6;
-	Sat, 10 Jan 2026 11:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E77633D4F5;
+	Sat, 10 Jan 2026 11:36:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kNm1ZBhX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vDrJfIAi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2886233D6EA;
-	Sat, 10 Jan 2026 11:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C03500950;
+	Sat, 10 Jan 2026 11:36:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768043986; cv=none; b=pTK6vuEss50K/NdMnVCSLlu9sXTtzkplmZMWvp5r9UGcpDIvgy436R53vCXBM+iscmbo1DMT5Yhi8+VVN49/glsDJLP2I5v8e0Zpb0SLryJEk/JjBlbv98R6P7tZ5ncRQ40wwgLge85fmxardToMWx3pxINBcvOk+blF2noI4fY=
+	t=1768044997; cv=none; b=D/4T5vabruOLlstQf3qAYvNmZFfEey8JJWP5JqtdKbUctERycK2SE9dipFwt3oPywW+DQKlRYRmP9TBa9pwRCn5699ZFo4iqwZ8cu/kSsfepbd/3o4IC59z5cPPB6l/mk3QBAvvj97Nkt3XxuKL+P2hwDT/Pg7/+T80GFM42/nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768043986; c=relaxed/simple;
-	bh=Fo+c18Xe2tfWUtdNEYdFNt+2/i05dN2dynXzKW1h+gk=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=VZrJfDZLvUmwCSPluwZivE/5QGsePVVi59hLwbZmek3/8o4dZGrIeR4rk8qpaNmgpFICkQBR/wAZYFRJ7b9wMNtvH9oZb38LvhHp2m2WZP4UqwxmDrLrLHa9b1DeBMT5NpfCz/U3dDqfy4lWXbJzvDgEvz7lxWzUOHNB3HaL+0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kNm1ZBhX; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768043984; x=1799579984;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=Fo+c18Xe2tfWUtdNEYdFNt+2/i05dN2dynXzKW1h+gk=;
-  b=kNm1ZBhX7sn8i9y0jCS313l6sEMCAn7jdz8SYn+EGR0Bu1lGASFjyT2Z
-   lJ95CblNjvso/yC3YpYjrFWrarcESpeVjrcSyueMTNQlj1BettJIR4Tgt
-   KfgPYTPjQNSAUYaIHNVOq1n6uURANFedkdSzJsTeX8UPFvdnmlmlY8VkK
-   bF6sOtnnHHLt16nh6Tt6AkEMdrB6MbwzxxL0LlqVmZtafz/P0frlx2PU4
-   FXqRWx2NsVJ3rOcoyVBCDQoKNkD5Xot6hb/A6YTy2uHeymTcnbsG/HWPJ
-   oy1Rz2K3TKFeBKZubCF0ipQgTM3F+hM8CLP8/vChdsqlrl08SJfLngCPP
-   g==;
-X-CSE-ConnectionGUID: 1LD2SOpnQluw0LTjv23x2g==
-X-CSE-MsgGUID: +TjLMK6nS5GesC7dWBsCzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11666"; a="69558905"
-X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; 
-   d="scan'208";a="69558905"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2026 03:19:42 -0800
-X-CSE-ConnectionGUID: SN3I9PJbST+nPQa1VKqNxw==
-X-CSE-MsgGUID: rbP7RPyoSeSgZrQrabMSJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,215,1763452800"; 
-   d="scan'208";a="234890814"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.227])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2026 03:19:35 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Sat, 10 Jan 2026 13:19:31 +0200 (EET)
-To: =?ISO-8859-15?Q?J=E9r=F4me_de_Bretagne?= <jerome.debretagne@gmail.com>
-cc: Bjorn Andersson <andersson@kernel.org>, 
-    Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Johannes Berg <johannes@sipsolutions.net>, 
-    Lorenzo Bianconi <lorenzo@kernel.org>, 
-    Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
-    Jeff Johnson <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org, 
-    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-    ath12k@lists.infradead.org, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
-    Dale Whinham <daleyo@gmail.com>, 
-    Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v6 3/4] platform/surface: aggregator_registry: Add Surface
- Pro 11 (QCOM)
-In-Reply-To: <20251220-surface-sp11-for-next-v6-3-81f7451edb77@gmail.com>
-Message-ID: <17f18028-730f-9e9f-7df5-8b792fe6c9c5@linux.intel.com>
-References: <20251220-surface-sp11-for-next-v6-0-81f7451edb77@gmail.com> <20251220-surface-sp11-for-next-v6-3-81f7451edb77@gmail.com>
+	s=arc-20240116; t=1768044997; c=relaxed/simple;
+	bh=hFmk1VD0wsbSjaFH/RZ3HHi9KAL8aML96uYpgGNPOnw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PSlWgMTN4XJxQfNA2tQfKR9W7LxKsGqVp2GFG5sscgAjX3JXhHQPOtyLNCquZqYfuztySkCvkfVg1AKhrAYMnMHm7FSqHBeixhQYnNFYi3hwW4VOV4XZ/vOVwDTi5fHpmQCyvbTfM93e6J28Ya42/AIVAQ+l7nCY83S5vgJRkEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vDrJfIAi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95096C4CEF1;
+	Sat, 10 Jan 2026 11:36:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768044996;
+	bh=hFmk1VD0wsbSjaFH/RZ3HHi9KAL8aML96uYpgGNPOnw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=vDrJfIAiURhOO1bdyBXeF4sTII+rlZAxGBqWg5F/VJM4UFVVm2txe8mpUcimK3tcJ
+	 jAz+y6pH4YSyB4gTG4iIq8LT0dcVtsw2e+NNiRTcqDxNAkbATT3aYptYNxX8QqIKMl
+	 euUhvhFwPkfFSYSnU4KulHSLUOgxA9fGXAOc2w2kCcSwOxZxtxW4facDaS5HSpD8Vz
+	 jWeuNUoFRm25qgnqsKuPt4Da+9urNgC1ljlPrCoObBWQxfGYsyMLTIfvTFF7h8U/Oh
+	 yJYt3794581qZCkBu6kNoVL4+KkvYF3gPTIORGrPnb6dRlQE8lrknCHsRDLtcVGT+q
+	 8K6aeHPAXDe4w==
+Message-ID: <9a0590d7-6d3f-422d-8db8-a30845180298@kernel.org>
+Date: Sat, 10 Jan 2026 12:36:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-495146878-1768043971=:1002"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: dts: apple: Add integrated USB Type-C ports
+To: Janne Grunau <j@jannau.net>
+Cc: asahi@lists.linux.dev, Neal Gompa <neal@gompa.dev>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+ R <rqou@berkeley.edu>
+References: <20260109-apple-dt-usb-c-atc-dwc3-v1-0-ce0e92c1a016@jannau.net>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <20260109-apple-dt-usb-c-atc-dwc3-v1-0-ce0e92c1a016@jannau.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323328-495146878-1768043971=:1002
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-
-On Sat, 20 Dec 2025, J=C3=A9r=C3=B4me de Bretagne via B4 Relay wrote:
-
-> From: Dale Whinham <daleyo@gmail.com>
->=20
-> This enables support for the Qualcomm-based Surface Pro 11.
->=20
-> Signed-off-by: Dale Whinham <daleyo@gmail.com>
-> Signed-off-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.com>
-> Reviewed-by: Maximilian Luz <luzmaximilian@gmail.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+On 1/9/26 15:07, Janne Grunau wrote:
+> Now that all dependencies for USB 2.0 and 3.x support are either merged
+> (tipd changes in v6.18, dwc3-apple in v6.19-rc1) or in linux-next (Apple
+> Type-C PHY) prepare device tree changes to expose the ports.
+>
+> Each port on Apple silicon devices is driven by a separate collection of
+> hardware blocks. For USB 2.0 and 3.x the collection consists of:
+> - Apple Type-C PHY, combo PHY for USB 2.0, USB 3.x, USB4/Thunderbolt and
+>    DisplayPort
+> - Synopsys Designware dwc3 USB controller
+> - two DART iommu instances for dwc3
+> - CD321x USB PD controller (similar to Ti's TPS6598x series)
+>
+> The CD321x nodes are already present so this series add the remaining
+> devices nodes, typec connector nodes and connections between all
+> components.
+>
+> The devices expose except for a few exceptions noted below all ports. M1
+> and M2 have two ports, M1 and M2 Pro and Max have four ports and
+> M1 and M2 Ultra have eight ports.
+> The Pro and Max based Macbook Pros use only three ports. The fourth port
+> is used as DisplayPort PHY to drive a HDMI output via an integrated
+> DP to HDMI converter.
+> The Ultra based Mac studio devices only use six ports. The third and
+> fourth port on the second die is completely fused off.
+>
+> The changes for t600x and t602x are in a single commit since the devices
+> share .dtsi files across SoC generations due to their similarity.
+>
+> Depends on commit c1538b87caef ("dt-bindings: phy: Add Apple Type-C
+> PHY") in linux-phy's [1] next branch for `make dtbs_check` to pass.
+> checkpatch warns about the undocumented DT compatible strings
+> "apple,t8112-atcphy", "apple,t6000-atcphy" and "apple,t6020-atcphy" but
+> not about "apple,t8103-atcphy". I don't under why it doesn't warn about
+> the last. "apple,t8103-atcphy" is only found in the added devicetree
+> files and nowhere else in v6.19-rc1.
+>
+> Tested on top of next-20260106 on M1, M2, M1 Max and M2 Pro Mac mini /
+> Mac studio and a few fixes for dwc3-apple and atc [2, 3, 4, 5].
+>
+> Link: https://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git/ [1]
+> Link: https://lore.kernel.org/asahi/20260104-atcphy-tunable-fix-v2-1-84e5c2a57aaa@kernel.org/ [2]
+> Link: https://lore.kernel.org/asahi/20260108-atcphy-coldboot-fix-v1-1-01c41c6e84f2@kernel.org/ [3]
+> Link: https://lore.kernel.org/asahi/20260108-dwc3-apple-usb2phy-fix-v1-1-5dd7bc642040@kernel.org/ [4]
+> Link: https://lore.kernel.org/asahi/20260109-apple-dwc3-role-switch-v1-1-11623b0f6222@jannau.net/ [5]
+> Signed-off-by: Janne Grunau <j@jannau.net>
 > ---
->  drivers/platform/surface/surface_aggregator_registry.c | 18 ++++++++++++=
-++++++
->  1 file changed, 18 insertions(+)
->=20
-> diff --git a/drivers/platform/surface/surface_aggregator_registry.c b/dri=
-vers/platform/surface/surface_aggregator_registry.c
-> index 78ac3a8fbb736384f7e50f1888a71297a892a7c3..0599d5adf02e61583cf3e1fc1=
-1000070f51f7be3 100644
-> --- a/drivers/platform/surface/surface_aggregator_registry.c
-> +++ b/drivers/platform/surface/surface_aggregator_registry.c
-> @@ -406,6 +406,22 @@ static const struct software_node *ssam_node_group_s=
-p9_5g[] =3D {
->  =09NULL,
->  };
-> =20
-> +/* Devices for Surface Pro 11 (ARM/QCOM) */
-> +static const struct software_node *ssam_node_group_sp11[] =3D {
-> +=09&ssam_node_root,
-> +=09&ssam_node_hub_kip,
-> +=09&ssam_node_bat_ac,
-> +=09&ssam_node_bat_main,
-> +=09&ssam_node_tmp_sensors,
-> +=09&ssam_node_hid_kip_keyboard,
-> +=09&ssam_node_hid_kip_penstash,
-> +=09&ssam_node_hid_kip_touchpad,
-> +=09&ssam_node_hid_kip_fwupd,
-> +=09&ssam_node_hid_sam_sensors,
-> +=09&ssam_node_kip_tablet_switch,
-> +=09NULL,
-> +};
-> +
->  /* -- SSAM platform/meta-hub driver. -----------------------------------=
------ */
-> =20
->  static const struct acpi_device_id ssam_platform_hub_acpi_match[] =3D {
-> @@ -482,6 +498,8 @@ MODULE_DEVICE_TABLE(acpi, ssam_platform_hub_acpi_matc=
-h);
->  static const struct of_device_id ssam_platform_hub_of_match[] __maybe_un=
-used =3D {
->  =09/* Surface Pro 9 5G (ARM/QCOM) */
->  =09{ .compatible =3D "microsoft,arcata", (void *)ssam_node_group_sp9_5g =
-},
-> +=09/* Surface Pro 11 (ARM/QCOM) */
-> +=09{ .compatible =3D "microsoft,denali", (void *)ssam_node_group_sp11 },
->  =09/* Surface Laptop 7 */
->  =09{ .compatible =3D "microsoft,romulus13", (void *)ssam_node_group_sl7 =
-},
->  =09{ .compatible =3D "microsoft,romulus15", (void *)ssam_node_group_sl7 =
-},
 
-Applied PATCH 3/4 to the review-ilpo-next branch.
 
---=20
- i.
+thanks for doing this tedious work!
+This all looks good to me and the t8103 changes have been running fine 
+for a while on my machine now. I will give it another week or so on LKML 
+before merging it!
 
---8323328-495146878-1768043971=:1002--
+
+Tested-by: Sven Peter <sven@kernel.org> # M1 mac mini and macbook air
+Reviewed-by: Sven Peter <sven@kernel.org>
+
+
+Best,
+
+Sven
+
 
