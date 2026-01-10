@@ -1,290 +1,184 @@
-Return-Path: <devicetree+bounces-253473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900F4D0D188
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 07:58:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D8F8D0D41C
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 10:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 415FF301D513
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 06:57:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3050F30185D1
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 09:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A91934D4F3;
-	Sat, 10 Jan 2026 06:57:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lvAbBmRf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA33F28D8D9;
+	Sat, 10 Jan 2026 09:34:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022093.outbound.protection.outlook.com [52.101.126.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9660349AE6;
-	Sat, 10 Jan 2026 06:57:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768028226; cv=none; b=j0Vqvts3v1p7X2SY4uYWwGsAOgMb9/7g8vHrmRcDAhR6KFh+5fsSXUWxOTK3nnKbOOAMb8QMYEY0Pmm2vM/Rou/Vjun9RMnck18T8u/TmeBjyqYS/icoTvJXZ/Ykboq7ws0Tm0uovtmVdpzPcOAzojEs06tV5i8n5cUrMO8n5qI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768028226; c=relaxed/simple;
-	bh=M63xYuGhzTnw77y0XcBIHpc3qTNOnrlDzshVGfxXGIc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eo+uSyBwaKQFO/RlG7o0AJ3CmW7nYFjzBRj/ayNdWhXFesGWQ1hb57HvbZwNsQBR2z7MMQZpecd45VZjYMxxpwnBTFUy1hnjcaDw3eJilspVR1IAp2Gt7NYiJ1L66LdCu/bSaQ0J2xfLWf7ujq+CnIdANkVz1R0no1gLH61u/cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lvAbBmRf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 627C1C19423;
-	Sat, 10 Jan 2026 06:57:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768028226;
-	bh=M63xYuGhzTnw77y0XcBIHpc3qTNOnrlDzshVGfxXGIc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lvAbBmRfc3NdDNO3EaF5NsjOgZEjNcZhWEmfNeQb0Px/Iml5xA7wczcQeXcllpCYj
-	 ZjwF3EZ31za3ZRi8exnQ1NsZvvrAKHXG+CNxG/5xWZMLt+gzZEQMbiEuGzJeKBh31k
-	 v4OiIfSs3zLl6clB+HJMnkcqnMUyD/8LlVGW/Y0W6LxPINwqbeyAUVcYXyb+vkvcC1
-	 0faiXwo4tR11s4P8+yGM11LOzyblcnB4RO2DaDShTlan0uGQ7EWfE2R+mESuBfxliF
-	 Bc93pr2DyDqu25bfdI5EJrS00wdU8v49SH+IxUpKNj3BcZ/CuSml+9PG5ofpxcY2xU
-	 k1P7ulPDXN64Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A17DD277CB;
-	Sat, 10 Jan 2026 06:57:06 +0000 (UTC)
-From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
-Date: Sat, 10 Jan 2026 12:26:32 +0530
-Subject: [PATCH v3 14/14] power: sequencing: pcie-m2: Create serdev device
- for WCN7850 bluetooth
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49DF32236FC;
+	Sat, 10 Jan 2026 09:34:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768037653; cv=fail; b=KXl3wx+RKaTVu93HN50Lfw82a6HVrmbVYdzocgAR3r/K/EM7jY5FjWXKk3kmnNuYINeontIp9KtrK0Lra2btMULAdJGtGfbUUpHj6MEZYKHUHmUsjElQdWuwHQUQXZ3mzoAik0o3HBDz5wWH7suNXzcwJ9r3bwYiMDEd8Us8d0A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768037653; c=relaxed/simple;
+	bh=SIjylGgHgvR0FASgj32FEGGls4rAURxyry6E9W2AV9U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bDRkShtuH1SkmB2KkxtGVvzlbbibz0A0TlOOJfmgNx+ciXbhdeAHc9J8izq2wp7dWKJjt7v2ROe/Cy7ryBnmh70tGVLadD2n8NmsnGctb8JO5lCPnA+gMiE9gEvVB4Zpp8rzaIvLxUW+PTGhpbboQTjDp6Izo5hwSnOyx3zLFbQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=L/7jCnqkITYo4wP4EWrGP3nSXXJS1ZH4iq1OI3PfblUpWpZtbbDE8716cJ8Ie4FgMcMjk3DKUGtAWJqrhRQ1ZxSVjJHRA/d2jhXJSYLwffNfo+ad6LcoeUJPyZuO4D+m20amPdwvMjkqw5ec2YKFLQ4LA5Lg86aZULcziUcIeK/wAfGG9ZEj1Ne5a+Nu97APKXlxeerPUjppBRoWVrjSv4uPwpgIWJmGe9X4tYIQ9rXTxhp5tXQBNYZ+sbI5SNR9LkGoOEW3SoWk+nhSXI+8PCF7ThZAg8SiRJdrAljCAj/wbCcLfGq5LzO/QSiA+eWxQFRDXH6ZmUsNzeMaW8kR7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vYUJ+RzY92JvajcOKIl6GbSafvZ8zr1Y3nds6yO/i1U=;
+ b=GDxcswGKmwAmiv5JgUWvc7Tjj8TIXUo+tK7K6xtoNPtzKXt1JndJdA14KqyYKwcdIv5UsiotS0UNatRGAOm4nhnFCvfJmDTRtR4+24xPeu5wDDvcJbvKz013EOH3WoLpH0ELNpbYPn7CTwpW9bf1Jepyz6VjaLe9p46VkYvoUaZqoiLPmc3DPxvdS77x/rrLU+cPB4G/pcC4v76cdTyYjzWhIEST10HQR4ke349U+C0lLopFVXmVppuxrqyLYr7a7DOhmmdN6Rcbc9R2BriEg74S4852QwNYqJslj1llnm2baqMKU+gmXEJa/q0qWHqIiufAXhSeyCIkvCN2w3B0Aw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYCP286CA0366.JPNP286.PROD.OUTLOOK.COM (2603:1096:405:79::6) by
+ TYZPR06MB5323.apcprd06.prod.outlook.com (2603:1096:400:1f1::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9499.2; Sat, 10 Jan 2026 09:34:08 +0000
+Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
+ (2603:1096:405:79:cafe::81) by TYCP286CA0366.outlook.office365.com
+ (2603:1096:405:79::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.6 via Frontend Transport; Sat,
+ 10 Jan 2026 09:34:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB83.mail.protection.outlook.com (10.167.253.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Sat, 10 Jan 2026 09:34:07 +0000
+Received: from localhost.localdomain (unknown [172.16.64.196])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 89BB440A5A1B;
+	Sat, 10 Jan 2026 17:34:06 +0800 (CST)
+From: Gary Yang <gary.yang@cixtech.com>
+To: peter.chen@cixtech.com,
+	fugang.duan@cixtech.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: cix-kernel-upstream@cixtech.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Gary Yang <gary.yang@cixtech.com>
+Subject: [PATCH v4 0/2] Add OrangePi 6 Plus board
+Date: Sat, 10 Jan 2026 17:34:04 +0800
+Message-ID: <20260110093406.2700505-1-gary.yang@cixtech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260110-pci-m2-e-v3-14-4faee7d0d5ae@oss.qualcomm.com>
-References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
-In-Reply-To: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
- Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Mark Pearson <mpearson-lenovo@squebb.ca>, 
- "Derek J. Clark" <derekjohn.clark@gmail.com>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Daniel Scally <djrscally@gmail.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
- Bartosz Golaszewski <brgl@kernel.org>
-Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- linux-acpi@vger.kernel.org, 
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5942;
- i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=Vp7zYCRu5g++KTpycV6G46GxYVukXvcLdhL4fCvf0XY=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpYfg++CojcI/ArwvutjAh/aYmpyIOq9cl2wKAe
- 28Y/hBJCleJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaWH4PgAKCRBVnxHm/pHO
- 9Ql5B/9E1CdAqnK1mNQgswa7wqthDkSc9rCfk/sIks3lGXEgHCzNRoFIxTTAXs8x9BZ7uoUV6Pw
- gsJDjJxoTu1H+qIi7ZWQKMbPIPYZDgD2J+NrccRfcR9T05z8r9T/YESRPMeooyA3LwMoosxgLy0
- EcLU8B+j7nO5KAHKiGGeNt6kP9A2uFZiJlC7G0uZ8NI7n0v+HDXEZ5HY8QSQ5yPCoyI7+rP75ew
- EYlAWhJZzZMfe3fFbCOtEQenFlR+HJARr4s78hWj7XAsKbUTkN0iJNIXXdmAb5EGjsW6d2qArxV
- lterlf/QYVzMwuBnByh/jQ6HHZ8b3ko+MSYmJYmAlNdcDOZh
-X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
-X-Endpoint-Received: by B4 Relay for
- manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
-X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Reply-To: manivannan.sadhasivam@oss.qualcomm.com
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB83:EE_|TYZPR06MB5323:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 092c169a-36d2-4fc4-1698-08de502b671c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?K5TKOE2pNA1Dnmjd9+3orqDQhsGcSICJOYR1lvOGu//2RLHcSg2mwOH3RvNo?=
+ =?us-ascii?Q?i3e+wVTprA+lbXfMjRTCtJDuaYmvJwxmYuHbZ7NqVPOjVuaTr3RPjhP79A6a?=
+ =?us-ascii?Q?73QnL/mLy+iQ0/RA0Qs/yIv/fqZuS8MXt5SChhdzttH4mOcwA2IJRptCiiMe?=
+ =?us-ascii?Q?q3NzcpxAEsuaM03Fq+HDqP9ffr1c3yhMNlxfo8ynqOdvJ5+zPxEq582d7RGc?=
+ =?us-ascii?Q?60XZm2FR3LoBaEXIXZ9ebH0k+TkTFA3izyu1pvAirovxId1bF39js13LJEbd?=
+ =?us-ascii?Q?Avt3OkEfIIibLimXfGSPUiXZ+JNdvuNwdSDvR7I1GQfHHqbdXHhwZ4LNOyz7?=
+ =?us-ascii?Q?jvWFE/BzErftf91ZD5ihFu+Y1ztfYSPkNT3gnDtQlR7yK/rYH8ruVWez445t?=
+ =?us-ascii?Q?EoshTihiWb6KZtuaK3alI5PTPc1fMy5fAycorfEWoglFci/xx6RWuzZ6O2B9?=
+ =?us-ascii?Q?UJHIEvc7z2LcGcM+7i7tNtIhayzPAsLIH61b00kobP/trj4aeN/FikG0C453?=
+ =?us-ascii?Q?1wvVKxpo8+YThqQQOt0J7NzLagHoGnOxVCN5vayuX9w1O1JDApNcow45DduO?=
+ =?us-ascii?Q?WcTa/pCe/zXqQTFw9JNDLAKAP5SaBPF0d/kEkAF+/41tM/18hf+S7nd8CrHp?=
+ =?us-ascii?Q?wDIlq3vBs9FMfL7Qe1qwAABSajX5njnmeDF20QqNXnRZtvZaGvhYgsKs4CRy?=
+ =?us-ascii?Q?p88FGRmF4Al23oAPm9yU08CGim95lkziBVTUsLpTd8h8/czfxaNa3JyYCnIw?=
+ =?us-ascii?Q?QnO+6BE3jnT982kkfEMeaiZIHfIKc+ruSDMT7AuZmdj6frwNHnX96xI2GPoA?=
+ =?us-ascii?Q?eRl0H1+rrV2TWETjS6SZZP+/HZCSfHNMtz4tn+aUBT3PaHz6VWSk7e3DbcUl?=
+ =?us-ascii?Q?4sI/QCnRc1Nt8W6vwNMmTSqY77jpW2U/9y/kfu1S5XDAr1A03TyXpeBgE9Lu?=
+ =?us-ascii?Q?3RV4x8D5SqcR/Nxq3bkywKXQPQkyqn8QQ9BfonhFXYEtvzItD9zHNhfxpp03?=
+ =?us-ascii?Q?I49Cm2mXFuHa4HcCMofxU9D7Ruop9uyYw9TePBia5gOl9QPobc/HhRLf1rHV?=
+ =?us-ascii?Q?c/Bag0MSz4f5VZ55Z6zadbrnrHP6iiUNHbU4x4hdn+3FwtSQrg5iaAh9Z20v?=
+ =?us-ascii?Q?7lxyAwAvwIsXGc+zm4V/AE6uteGLUEwdCqZqxxGA4ufJnlaGETiPSCe0mGer?=
+ =?us-ascii?Q?rCTVzguTaw/mnM8RtHXKDsErnu9tTFqxFNqL8mvxIwpkGAmNEB+85YyaaSVX?=
+ =?us-ascii?Q?I0AQWi4i/kWPqVQTxZ7weRUxajM8Ol/NiBxFNfHp1nbIbKDGf84IdA8hWur8?=
+ =?us-ascii?Q?4BJCsN1o87k1Y9zAEhKCSJ/Wy9UQUaDArRZ+ENWXx2C74Vs0hZBp1G2i/cna?=
+ =?us-ascii?Q?PZI/2USPW6bg1Dql9/qaLTBbwliyTURQAGF2wLy/gMnCbE5OU3/BZ+owlCEK?=
+ =?us-ascii?Q?/3dBwMFOvUGlY1N/FLNU8FxEjwkjaVjkbFBm/ULRqKeTmzh/8APjfUdOl+H7?=
+ =?us-ascii?Q?xndICtHor0DIHDNkNoUdoGVpYciwyfFwvXUXxnYl5pc5K35QNWf0acMDHJoE?=
+ =?us-ascii?Q?NkMRRqiMYv0sD9UF4B93OTUI1LeApLEQdNYKtrOu?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2026 09:34:07.4727
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 092c169a-36d2-4fc4-1698-08de502b671c
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB83.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB5323
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Patch 1: add compatible strings for OrangePi 6 Plus board
+Patch 2: add dts file for OrangePi 6 Plus board
 
-For supporting bluetooth over the non-discoverable UART interface of
-WCN7850, create the serdev device after enumerating the PCIe interface.
-This is mandatory since the device ID is only known after the PCIe
-enumeration and the ID is used for creating the serdev device.
+OrangePi 6 Plus board is powered by Cix Sky1. You could find brief
+introduction for SoC and related boards at:
+http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-6-Plus.html
 
-Since there is no OF or ACPI table for the created serdev, a software node
-is created with the 'compatible' property. This property will be used to
-match the existing OF device id in the bluetooth driver.
+Currently, to run upstream kernel at OrangePi 6 Plus board, you need to
+use BIOS released by OrangePi, and add "clk_ignore_unused=1" at bootargs.
+http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-6-Plus.html
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
----
- drivers/power/sequencing/pwrseq-pcie-m2.c | 125 +++++++++++++++++++++++++++++-
- 1 file changed, 124 insertions(+), 1 deletion(-)
+v4 changes:
+-Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=arm/cix.yaml
+scripts/checkpatch.pl 000*.patch
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-xcp.dtb
+- Fix the description of board
 
-diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/sequencing/pwrseq-pcie-m2.c
-index ad94090bbdb2..7c7bde563341 100644
---- a/drivers/power/sequencing/pwrseq-pcie-m2.c
-+++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
-@@ -17,6 +17,7 @@
- #include <linux/platform_device.h>
- #include <linux/pwrseq/provider.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/serdev.h>
- #include <linux/slab.h>
- 
- struct pwrseq_pcie_m2_pdata {
-@@ -26,11 +27,14 @@ struct pwrseq_pcie_m2_pdata {
- struct pwrseq_pcie_m2_ctx {
- 	struct pwrseq_device *pwrseq;
- 	struct device_node *of_node;
-+	struct fwnode_handle *fwnode;
-+	struct serdev_device *serdev;
- 	const struct pwrseq_pcie_m2_pdata *pdata;
- 	struct regulator_bulk_data *regs;
- 	size_t num_vregs;
- 	struct gpio_desc *w_disable1_gpio;
- 	struct gpio_desc *w_disable2_gpio;
-+	struct notifier_block nb;
- 	struct device *dev;
- 
- };
-@@ -179,9 +183,124 @@ static void pwrseq_pcie_free_resources(void *data)
- {
- 	struct pwrseq_pcie_m2_ctx *ctx = data;
- 
-+	fwnode_handle_put(ctx->fwnode);
-+	serdev_device_put(ctx->serdev);
-+	bus_unregister_notifier(&pci_bus_type, &ctx->nb);
- 	regulator_bulk_free(ctx->num_vregs, ctx->regs);
- }
- 
-+static const struct property_entry wcn7850_bt_props[] = {
-+	PROPERTY_ENTRY_STRING("compatible", "qcom,wcn7850-bt"),
-+};
-+
-+static int pwrseq_m2_pcie_notify(struct notifier_block *nb, unsigned long action,
-+			      void *data)
-+{
-+	struct pwrseq_pcie_m2_ctx *ctx = container_of(nb, struct pwrseq_pcie_m2_ctx, nb);
-+	struct pci_dev *pdev = to_pci_dev(data);
-+	struct serdev_controller *serdev_ctrl;
-+	struct device *dev = ctx->dev;
-+	struct device_node *remote;
-+	int ret;
-+
-+	/*
-+	 * Check whether the PCI device is associated with this M.2 connector or
-+	 * not, by comparing the OF node of the PCI device parent and the Port 0
-+	 * (PCIe) remote node parent OF node.
-+	 */
-+	remote = of_graph_get_remote_node(dev_of_node(ctx->dev), 0, 0);
-+	if (!remote || (remote != pdev->dev.parent->of_node)) {
-+		of_node_put(remote);
-+		return NOTIFY_DONE;
-+	}
-+	of_node_put(remote);
-+
-+	switch (action) {
-+	case BUS_NOTIFY_ADD_DEVICE:
-+		/* Create serdev device for WCN7850 */
-+		if (pdev->vendor == PCI_VENDOR_ID_QCOM && pdev->device == 0x1107) {
-+			remote = of_graph_get_remote_node(dev_of_node(ctx->dev), 1, 1);
-+			if (!remote) {
-+				of_node_put(remote);
-+				return NOTIFY_DONE;
-+			}
-+
-+			serdev_ctrl = of_find_serdev_controller_by_node(remote);
-+			of_node_put(remote);
-+			if (!serdev_ctrl)
-+				return NOTIFY_DONE;
-+
-+			ctx->serdev = serdev_device_alloc(serdev_ctrl);
-+			if (!ctx->serdev)
-+				return NOTIFY_BAD;
-+
-+			ctx->fwnode = fwnode_create_software_node(wcn7850_bt_props, NULL);
-+			if (IS_ERR(ctx->fwnode))
-+				return notifier_from_errno(PTR_ERR(ctx->fwnode));
-+
-+			device_set_node(&ctx->serdev->dev, ctx->fwnode);
-+
-+			ret = serdev_device_add(ctx->serdev);
-+			if (ret) {
-+				dev_err(dev, "Failed to add serdev for WCN7850: %d\n", ret);
-+				fwnode_handle_put(ctx->fwnode);
-+				serdev_device_put(ctx->serdev);
-+				return notifier_from_errno(ret);
-+			}
-+		}
-+		break;
-+	case BUS_NOTIFY_REMOVED_DEVICE:
-+		/* Destroy serdev device for WCN7850 */
-+		if (pdev->vendor == PCI_VENDOR_ID_QCOM && pdev->device == 0x1107) {
-+			fwnode_handle_put(ctx->fwnode);
-+			serdev_device_put(ctx->serdev);
-+		}
-+		break;
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+static bool pwrseq_pcie_m2_check_remote_node(struct device *dev, u8 port, u8 endpoint,
-+					     const char *node)
-+{
-+	struct device_node *remote __free(device_node) =
-+			of_graph_get_remote_node(dev_of_node(dev), port, endpoint);
-+
-+	if (remote && of_node_name_eq(remote, node))
-+		return true;
-+
-+	return false;
-+}
-+
-+/*
-+ * If the connector exposes a non-discoverable bus like UART, the respective
-+ * protocol device needs to be created manually with the help of the notifier
-+ * of the discoverable bus like PCIe.
-+ */
-+static int pwrseq_pcie_m2_register_notifier(struct pwrseq_pcie_m2_ctx *ctx, struct device *dev)
-+{
-+	int ret;
-+
-+	/*
-+	 * Register a PCI notifier for Key E connector that has PCIe as Port
-+	 * 0/Endpoint 0 interface and Serial as Port 1/Endpoint 1 interface.
-+	 */
-+	if (pwrseq_pcie_m2_check_remote_node(dev, 1, 1, "serial")) {
-+		if (pwrseq_pcie_m2_check_remote_node(dev, 0, 0, "pcie")) {
-+			ctx->dev = dev;
-+			ctx->nb.notifier_call = pwrseq_m2_pcie_notify;
-+			ret = bus_register_notifier(&pci_bus_type, &ctx->nb);
-+			if (ret) {
-+				dev_err_probe(dev, ret, "Failed to register notifier for serdev\n");
-+				return ret;
-+			}
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int pwrseq_pcie_m2_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -236,7 +355,11 @@ static int pwrseq_pcie_m2_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(ctx->pwrseq),
- 				     "Failed to register the power sequencer\n");
- 
--	return 0;
-+	/*
-+	 * Register a notifier for creating protocol devices for
-+	 * non-discoverable busses like UART.
-+	 */
-+	return pwrseq_pcie_m2_register_notifier(ctx, dev);
- }
- 
- static const struct of_device_id pwrseq_pcie_m2_of_match[] = {
+v3 changes:
+-Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=arm/cix.yaml
+scripts/checkpatch.pl 000*.patch
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-xcp.dtb
+- Fix the description of board
+- Fix the commit message length within 75 words
+
+v2 changes:
+-Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=arm/cix.yaml
+scripts/checkpatch.pl 000*.patch
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-xcp.dtb
+- Fix the description of board
+
+Gary Yang (2):
+  dt-bindings: arm: cix: add OrangePi 6 Plus board
+  arm64: dts: cix: Add OrangePi 6 Plus board support
+
+ .../devicetree/bindings/arm/cix.yaml          |  6 +-
+ arch/arm64/boot/dts/cix/Makefile              |  1 +
+ arch/arm64/boot/dts/cix/sky1-xcp.dts          | 83 +++++++++++++++++++
+ 3 files changed, 88 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/cix/sky1-xcp.dts
 
 -- 
-2.48.1
-
+2.49.0
 
 
