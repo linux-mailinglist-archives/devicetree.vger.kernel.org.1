@@ -1,129 +1,123 @@
-Return-Path: <devicetree+bounces-253483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D47D0D55A
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 12:36:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 258C4D0D5C0
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 12:57:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AE88D301637F
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 11:36:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D027E302A3A4
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jan 2026 11:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E77633D4F5;
-	Sat, 10 Jan 2026 11:36:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vDrJfIAi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9277533FE2A;
+	Sat, 10 Jan 2026 11:55:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C03500950;
-	Sat, 10 Jan 2026 11:36:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC7E33F371;
+	Sat, 10 Jan 2026 11:55:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768044997; cv=none; b=D/4T5vabruOLlstQf3qAYvNmZFfEey8JJWP5JqtdKbUctERycK2SE9dipFwt3oPywW+DQKlRYRmP9TBa9pwRCn5699ZFo4iqwZ8cu/kSsfepbd/3o4IC59z5cPPB6l/mk3QBAvvj97Nkt3XxuKL+P2hwDT/Pg7/+T80GFM42/nc=
+	t=1768046113; cv=none; b=ppx10hI60sPPY43F0big119sQAmz9soR61fwNurjPOyZwa/WOAk6p0JmoyQOLnuSyV6iQXqdE/6eujXUhv3FuCglIkVaT/BzWG78+Ckh0TWtFRdVWPvWOtmiOrI2QgNgb3lL7MtD/kb03RtlauAPRgGFjtYrp6kDRqZtxzRtsWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768044997; c=relaxed/simple;
-	bh=hFmk1VD0wsbSjaFH/RZ3HHi9KAL8aML96uYpgGNPOnw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PSlWgMTN4XJxQfNA2tQfKR9W7LxKsGqVp2GFG5sscgAjX3JXhHQPOtyLNCquZqYfuztySkCvkfVg1AKhrAYMnMHm7FSqHBeixhQYnNFYi3hwW4VOV4XZ/vOVwDTi5fHpmQCyvbTfM93e6J28Ya42/AIVAQ+l7nCY83S5vgJRkEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vDrJfIAi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95096C4CEF1;
-	Sat, 10 Jan 2026 11:36:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768044996;
-	bh=hFmk1VD0wsbSjaFH/RZ3HHi9KAL8aML96uYpgGNPOnw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vDrJfIAiURhOO1bdyBXeF4sTII+rlZAxGBqWg5F/VJM4UFVVm2txe8mpUcimK3tcJ
-	 jAz+y6pH4YSyB4gTG4iIq8LT0dcVtsw2e+NNiRTcqDxNAkbATT3aYptYNxX8QqIKMl
-	 euUhvhFwPkfFSYSnU4KulHSLUOgxA9fGXAOc2w2kCcSwOxZxtxW4facDaS5HSpD8Vz
-	 jWeuNUoFRm25qgnqsKuPt4Da+9urNgC1ljlPrCoObBWQxfGYsyMLTIfvTFF7h8U/Oh
-	 yJYt3794581qZCkBu6kNoVL4+KkvYF3gPTIORGrPnb6dRlQE8lrknCHsRDLtcVGT+q
-	 8K6aeHPAXDe4w==
-Message-ID: <9a0590d7-6d3f-422d-8db8-a30845180298@kernel.org>
-Date: Sat, 10 Jan 2026 12:36:13 +0100
+	s=arc-20240116; t=1768046113; c=relaxed/simple;
+	bh=iX4MiZGQL2z/88fUjb1EaNDBM4frLV4bsSb1g8BCzKI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BYa4jTM9A1YUUx74Ppn9SwF0RWZFbDbuK7A28FaQ/Lvn7dU09DCeLVfkZP8DRyigQJmKpKOgV/bqTTFtKuNJ6V3u+7A2BMPoCk7yjJONnPRj9Ay50iuG/gWT6B2G3HNAgpqRs3DWw1NDcOaRHQOhipnJABUYt4il6GYu4SGEyTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 23849340EA9;
+	Sat, 10 Jan 2026 11:55:08 +0000 (UTC)
+Date: Sat, 10 Jan 2026 19:55:03 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Conor Dooley <conor@kernel.org>,
+	Heinrich Schuchardt <xypron.glpk@gmx.de>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v4 05/11] dt-bindings: riscv: spacemit: add K3 and
+ Pico-ITX board bindings
+Message-ID: <20260110115503-GYC12783@gentoo.org>
+References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
+ <20260110-k3-basic-dt-v4-5-d492f3a30ffa@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] arm64: dts: apple: Add integrated USB Type-C ports
-To: Janne Grunau <j@jannau.net>
-Cc: asahi@lists.linux.dev, Neal Gompa <neal@gompa.dev>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>,
- R <rqou@berkeley.edu>
-References: <20260109-apple-dt-usb-c-atc-dwc3-v1-0-ce0e92c1a016@jannau.net>
-Content-Language: en-US
-From: Sven Peter <sven@kernel.org>
-In-Reply-To: <20260109-apple-dt-usb-c-atc-dwc3-v1-0-ce0e92c1a016@jannau.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260110-k3-basic-dt-v4-5-d492f3a30ffa@riscstar.com>
 
-On 1/9/26 15:07, Janne Grunau wrote:
-> Now that all dependencies for USB 2.0 and 3.x support are either merged
-> (tipd changes in v6.18, dwc3-apple in v6.19-rc1) or in linux-next (Apple
-> Type-C PHY) prepare device tree changes to expose the ports.
->
-> Each port on Apple silicon devices is driven by a separate collection of
-> hardware blocks. For USB 2.0 and 3.x the collection consists of:
-> - Apple Type-C PHY, combo PHY for USB 2.0, USB 3.x, USB4/Thunderbolt and
->    DisplayPort
-> - Synopsys Designware dwc3 USB controller
-> - two DART iommu instances for dwc3
-> - CD321x USB PD controller (similar to Ti's TPS6598x series)
->
-> The CD321x nodes are already present so this series add the remaining
-> devices nodes, typec connector nodes and connections between all
-> components.
->
-> The devices expose except for a few exceptions noted below all ports. M1
-> and M2 have two ports, M1 and M2 Pro and Max have four ports and
-> M1 and M2 Ultra have eight ports.
-> The Pro and Max based Macbook Pros use only three ports. The fourth port
-> is used as DisplayPort PHY to drive a HDMI output via an integrated
-> DP to HDMI converter.
-> The Ultra based Mac studio devices only use six ports. The third and
-> fourth port on the second die is completely fused off.
->
-> The changes for t600x and t602x are in a single commit since the devices
-> share .dtsi files across SoC generations due to their similarity.
->
-> Depends on commit c1538b87caef ("dt-bindings: phy: Add Apple Type-C
-> PHY") in linux-phy's [1] next branch for `make dtbs_check` to pass.
-> checkpatch warns about the undocumented DT compatible strings
-> "apple,t8112-atcphy", "apple,t6000-atcphy" and "apple,t6020-atcphy" but
-> not about "apple,t8103-atcphy". I don't under why it doesn't warn about
-> the last. "apple,t8103-atcphy" is only found in the added devicetree
-> files and nowhere else in v6.19-rc1.
->
-> Tested on top of next-20260106 on M1, M2, M1 Max and M2 Pro Mac mini /
-> Mac studio and a few fixes for dwc3-apple and atc [2, 3, 4, 5].
->
-> Link: https://git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git/ [1]
-> Link: https://lore.kernel.org/asahi/20260104-atcphy-tunable-fix-v2-1-84e5c2a57aaa@kernel.org/ [2]
-> Link: https://lore.kernel.org/asahi/20260108-atcphy-coldboot-fix-v1-1-01c41c6e84f2@kernel.org/ [3]
-> Link: https://lore.kernel.org/asahi/20260108-dwc3-apple-usb2phy-fix-v1-1-5dd7bc642040@kernel.org/ [4]
-> Link: https://lore.kernel.org/asahi/20260109-apple-dwc3-role-switch-v1-1-11623b0f6222@jannau.net/ [5]
-> Signed-off-by: Janne Grunau <j@jannau.net>
+Hi Guodong,
+
+On 13:18 Sat 10 Jan     , Guodong Xu wrote:
+> Add DT binding documentation for the SpacemiT K3 SoC and the board Pico-ITX
+> which is a 2.5-inch single-board computer.
+> 
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+
+Reviewed-by: Yixun Lan <dlan@gentoo.org>
+
 > ---
+> v4: Adjust maintainers list in alphabetic order.
+>     Declare spacemit,k3-pico-itx as an enum, which can save future
+>      code change when adding new boards.
+> v3: No change.
+> v2: Use one-blank-space between name and email address.
+> ---
+>  Documentation/devicetree/bindings/riscv/spacemit.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/spacemit.yaml b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+> index 9c49482002f7..b958b94a924d 100644
+> --- a/Documentation/devicetree/bindings/riscv/spacemit.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+> @@ -7,6 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: SpacemiT SoC-based boards
+>  
+>  maintainers:
+> +  - Guodong Xu <guodong@riscstar.com>
+>    - Yangyu Chen <cyy@cyyself.name>
+>    - Yixun Lan <dlan@gentoo.org>
+>  
+> @@ -26,6 +27,10 @@ properties:
+>                - xunlong,orangepi-r2s
+>                - xunlong,orangepi-rv2
+>            - const: spacemit,k1
+> +      - items:
+> +          - enum:
+> +              - spacemit,k3-pico-itx
+> +          - const: spacemit,k3
+>  
+>  additionalProperties: true
+>  
+> 
+> -- 
+> 2.43.0
+> 
 
-
-thanks for doing this tedious work!
-This all looks good to me and the t8103 changes have been running fine 
-for a while on my machine now. I will give it another week or so on LKML 
-before merging it!
-
-
-Tested-by: Sven Peter <sven@kernel.org> # M1 mac mini and macbook air
-Reviewed-by: Sven Peter <sven@kernel.org>
-
-
-Best,
-
-Sven
-
+-- 
+Yixun Lan (dlan)
 
