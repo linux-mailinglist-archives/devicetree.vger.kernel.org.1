@@ -1,181 +1,130 @@
-Return-Path: <devicetree+bounces-253648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A042D0FAED
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 20:47:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC90D0FC51
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 21:11:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6A600300C352
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 19:47:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BCA543030232
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 20:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D7A350D64;
-	Sun, 11 Jan 2026 19:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B452023EAB8;
+	Sun, 11 Jan 2026 20:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fX4iv/ah";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OC2hyAAg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z/iIUUwR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5735134B1A0
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 19:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DB323E35F
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 20:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768160827; cv=none; b=Fg+WJaEu3wqowqNHqDWIIBwsxmNPkxicKnJJ9CVVx4X0bdpaLN35iyBqDj9Xv70kfhwfMhdUCKUAwm/dlC/N5YEhvubCPc8XDOz8KDSUCNBA4CkwjZMit0QtxvEAV+F8R8KfPdqzjdmKnHR143h48XQUJe9WyTrDCAAuTNOmFFA=
+	t=1768162267; cv=none; b=QoK9R2MFKwVme86G4T7MIkYakG35onuy7fzcP4ce9o1S1rMZJgS4l4zRorauKRY63vl2Dyo5md9CVnBB1tcQrAUazeYA8q1cSi8wlr07QMBCFYEfCTORDBaQ/I657CNHCfsC0DotKfxcgWZYb8RNs2qZkBS7238PaJEU8JnXa8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768160827; c=relaxed/simple;
-	bh=LgiUmXYeM3SN3SzJ9b8ot7rT1uGH9BtlRADOOPheWOI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QuGsYMWSCtHpnRtLLRT7gGG2jHAjYtPFEh+e4OnNKuc/4a2M6p9uaSvHs0uOkMtwYuFnbbS+F/p8LxwuDnsCWKZeLFUJIXbjHnmKdRmFWiqsJNtMjuDXFQoDGAiNdAHoN6em877dGTC3mUFoJpCz8FISeFHQcj5qlEQXehLvMQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fX4iv/ah; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OC2hyAAg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60BIxDmI2676549
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 19:47:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=VWoq+K0orW96DlxbTKO5f8O+
-	BBk8ncmN5cuLKOlxAh0=; b=fX4iv/ah2irCuA1GzS5zNSReTHyBAFXNNBJ1E2aM
-	foqHoFgkim4tpHKuBSIIC3xRHqaQx+ZRJATO4Pslxg2WdgLtNh5Gm7wd3MJ0+dIQ
-	uaBk0RYQzrEXylL1hFdzs7VYjNVW1WFfE6suCqHatdiMU3dxV3Pm5JdGA0/N6ubM
-	WOphCjQzfEnbB0QP/g859YO6UPm1O1ehk6j1N45KLJu1v78PyHi4wOIwJQDdQ2wk
-	2WAkStk8NZVeQyz2K3DMkJDfeIecrKHNLjJ+MSVxBcDDrOGNhBzzokXSY8XX7to4
-	Tu9omNL4eTyeRX+GLDFN9G3MABOUSf4bkL5UgjOvucMM1Q==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bkf57anv8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 19:47:04 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8b51db8ebd9so1946656985a.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 11:47:04 -0800 (PST)
+	s=arc-20240116; t=1768162267; c=relaxed/simple;
+	bh=ivHKoSsMPpBPSbXdhGEQYV3TOAVtmJza24dx4MP6K6U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EF2N+zN2tHsFUsmAvrmwv4fgeTFquVFcKiThj+X8qkZ57RTnT+z1rJoJWQBzKL00oDBBL9QGyMvu1OnHr65UdDh4YkE2KBJEYzX6xl0zQbdo3c7N79lRG5pEDj97Zh/me+RqMMrCXQfN2ebOJmfJFACPEBd5oh2CqNNK952oNzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z/iIUUwR; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-78fb5764382so61353017b3.0
+        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 12:11:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768160824; x=1768765624; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VWoq+K0orW96DlxbTKO5f8O+BBk8ncmN5cuLKOlxAh0=;
-        b=OC2hyAAg2+SE3CFPJehRCE0CkEi11LC22f2ulymz85WFfOHfw1VVjboSKeAcNEpCKP
-         I0d9hwWik+zfOxaLb2t9wdR0HCwrc8FtmzJxCw2rwE+zYUpdjC0zErHUADmtj0OoFDNM
-         I4gm44UC3s81Wz7FAl1q1Bx1Srhy7fLNKdOKKj6GZ6ahLoe4S2jMqSUNvkEwQJVfq7Oh
-         abqwUPkm023sGG9GzRVvr2zcl4cBSSIlsByBpWSfslFvj1tQ8+QtLae4h2EdcJYOgceW
-         OhF6HKKt4gzYkWloLSJeInyqDuEaobuCBxP2MfmSCtmsAruaa7H8JpMLTwYq3bQ+bQa8
-         c52A==
+        d=gmail.com; s=20230601; t=1768162265; x=1768767065; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3WjMx6HuwU1Wy+8RcNWFYu7YuaIy2oBjUVHx01Ru4Xc=;
+        b=Z/iIUUwRlmZygzJehPDFg+D0t2VpyvlyubLgwtKgCRcojLvkPmuuhigkS2DcinhFlZ
+         6Z23h3tW5uRcHRK7dcN5YGCFt0AJbsrUqmQKQs40iJUfnTNnsMuCfcFGYeoh8Xc0aCK5
+         Ggmv/ABhcAOTzbsWhh9D3AQLmTyA6hXgiDi0hjz+vWP5JQr3/bc4WNoeeFLbeowoGImL
+         lTAHGn8VJOinBrX/6+JEzMI4gSyQAqzUxpBVrcIBt7bVH+wdl1Fpfu1CYSB6Bdyynds3
+         8evGtPo3g9b9sQCGJy+CLh1iXurtR8ZgzRjHtOqCPml9Q1ojLvnkZQ9BHzTbLlYThrpj
+         3MdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768160824; x=1768765624;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VWoq+K0orW96DlxbTKO5f8O+BBk8ncmN5cuLKOlxAh0=;
-        b=DGKFRi4tZ4HnDjedBfGbtpnXDOaSyuvJHnxiIOD7Oa+zKh3W4TnjveUrtnwKkwWP/B
-         R75x/CZDfjiJxza6odhQ2P6Ilplzk8/qx4otBNm4jZ0nQAmOQ6I5vkOfo5g4LynoZhYt
-         kBnstSMiWcQaUx1TuswChr0FhiwvwpQMicfsDObSYwdSkSI3i9Qrl2DbnDkALQ03rYoL
-         Sm4uSP6ik35To57fAKnqa6mwW+oLNobnCl/9pEFqmYzd/CLKCZsC0LD/bj3xS07X9yMO
-         rrM5BgWiq4kUop//3B6Hb3Eh3tTJJz9pCdHxTivd3Rircir6pHs8nc+Y9wZvSaQPEgN5
-         55CQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUtwyN574J3qZ0fXCw5zm82Yp+3BGq9JKDxFF4u5y+ZQxEgTeJRNmGsH4HbSX7m8PAPx9/pOEtc27xb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5gJpITOUwxD224vOJdLlUKm4hjPL69U4z7oncZOTJzYCERRvu
-	3T/bFtJrVJLVNPNUKDCPDoTZ8rfRgiMZmjjKKEG1qf1DDY647KhR4OeAJvPK0RN14GMaVoW85w8
-	Y5U+Y8tGFjztQdtzwUTq+aaOsPca+qyyxvk2ws62pjZ3PDEyaWpjD0d/o+vGto55j
-X-Gm-Gg: AY/fxX68rb+ITt7Mt3bSPdJL9Rt/RsLlI2FeYCaJuRdFQgnuAnL7CUAoiaTZ+lvRDeY
-	wqe673fQ8MSSsPfzn8mwgOx2zuayAcTKZkHbmQtim7BZIUzWQlxg2C4YGXewyQSUFce7mmvQMSh
-	tt5VYzma+E+bCZxYpeeQe6xBrn0I2q2Rwe8BjGnQkMRx+MHvDNbinwoI2p/w4l/qmfMYm3ykNfm
-	JMq5vxpGDBAnGmyF0uD98iZvdCRZe9nlmwI4EXGoaegE5Z1pfxhQDfxHeaivA2/+XjhxdHQkbF3
-	VVcgjnV9o1xMUBQzILW82C9ciBivmVxYvtJX+0P1bw2mU6Swu5R2ff0fy38AMyNGyFgBCE7HwAR
-	8EAaksI1oPfszpKlylBn0+gdjctfMzOIlUwuHqaR4IpnWQlu4Cpafe8ae6Bn6aQdLNXKvJ39ZfK
-	WUWwWARFXM3/lP/Lcs6mWq2DM=
-X-Received: by 2002:a05:620a:29ce:b0:8b2:d791:3d25 with SMTP id af79cd13be357-8c389379d70mr2313317785a.18.1768160824365;
-        Sun, 11 Jan 2026 11:47:04 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHaSQrfT7R0upbUsE8Ls5NpEYGw1E2ZBrGO7Xau6nDy45sHOd/GEvMQLRUH+vOz30b4yVIQ7Q==
-X-Received: by 2002:a05:620a:29ce:b0:8b2:d791:3d25 with SMTP id af79cd13be357-8c389379d70mr2313316185a.18.1768160823873;
-        Sun, 11 Jan 2026 11:47:03 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b71b7eb22sm3234553e87.41.2026.01.11.11.47.02
+        d=1e100.net; s=20230601; t=1768162265; x=1768767065;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3WjMx6HuwU1Wy+8RcNWFYu7YuaIy2oBjUVHx01Ru4Xc=;
+        b=gkDtKQrGQk1deZj6fiEiq+7ZWkmB+YLpHzWSF1/JGFzVZPxclV8hG4z3eNIpGJm4aA
+         8qB+BhXadTmeNW5OW+0FGo/Vdsh4L1CdcXwqoB/VP08AAtYDw7jU2KwummMYsJXYXxGO
+         nq7ui87TmcyY+0ka7tAaoqHCRsIL2Uv6APwzOFjV4TDCGUpNRggCa5pXPHaVs6soVqW5
+         9pYasT9DNtUYf8si2YykQXylq8ffy2pQtdonNH8qE6jpv8Hd9sxT1JWfikShxOhWWMlx
+         jPQc2l46WgkOzf46eVgRjHnEIhsopYDdpksCh2U5Ng5lGj2vSUdP8q5JUuMQRi1X9cX5
+         cGrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWV5TB+70av4qFRPXvG6YQBj1NbwgJbpTpc6bSMgmnC2hcUL51cS2FF3cBQqz5XYMxMDileuqqDPaFr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkR70iRcE4/+wleUkTgK+u1M2p3wlP50omSt9I0DQQo1P6M275
+	fJJ0qi14COpwKOEJVPzKeTgSuEc7rCTnafLYl/Q5b15YNenpvjMdxM2teCMoFg==
+X-Gm-Gg: AY/fxX5UC2pYkDfOOljWgrSDfMyCpiJfq7fU6L/ZbCkNRHiq4AX0pfbg30fBxmWe6ST
+	tId2/qmj5YsdDBCCZVKAWXmGPlPX1rI94wAuzrWjD4NV3QmMQGXRfDj+9cFiotytxVCru0H0Ocj
+	GX26mP1Oe/9LxzTrj1f+R12u9DaFyyDxMjGKov5IC6XzcumyssftnP6BrBsfUnS+4fmDHPHpEUH
+	F5hOaOFqGOe3aiyzSzSDW1nrjet/9vcDL3yBGZs2i+6rxBjiA5X1TVyFU44ScRLxRd78o3e373i
+	0zt7e7Yts6d2m45wLvYn4N9KxD0Y1D1CXKz3+/FLR9cd00DTMFo7aW8/abNpyzWAfszVFqyVSu6
+	2ZmQgN5lFaojVMVvrPxRUhVi1sDP5Rhau5lwrhc0uWFSWdAdCx4lhfq7R576lPX9eFVQt
+X-Google-Smtp-Source: AGHT+IGtpefdIwaz1zrj3LX0ANB3EkQVjPbjQhL8KzEpUBfzS7Z79abIt8/S9RwcfiKfM++zWNHWgQ==
+X-Received: by 2002:a05:690e:12ca:b0:63f:b410:e93 with SMTP id 956f58d0204a3-64716bd1ba8mr12791408d50.42.1768162265218;
+        Sun, 11 Jan 2026 12:11:05 -0800 (PST)
+Received: from toolbx ([2600:1700:220:59e0::914])
+        by smtp.googlemail.com with ESMTPSA id 00721157ae682-790aa5762f6sm62175717b3.15.2026.01.11.12.11.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Jan 2026 11:47:03 -0800 (PST)
-Date: Sun, 11 Jan 2026 21:47:01 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Val Packett <val@packett.cool>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: Add support for ECS LIVA QC710
-Message-ID: <qv2nlupgk3unmyj2uvegfrtdjrbnii2wuqg6xb2wzowpnqpccf@p7n66642cuvm>
-References: <20260111085726.634091-2-val@packett.cool>
- <20260111085726.634091-6-val@packett.cool>
+        Sun, 11 Jan 2026 12:11:04 -0800 (PST)
+From: Anirudh Srinivasan <anirudhsriniv@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: anirudhsriniv@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add device tree for Asus IPMI Card
+Date: Sun, 11 Jan 2026 14:10:30 -0600
+Message-ID: <20260111201040.162880-1-anirudhsriniv@gmail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260111085726.634091-6-val@packett.cool>
-X-Authority-Analysis: v=2.4 cv=K/sv3iWI c=1 sm=1 tr=0 ts=6963fe38 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=7KhyCbUdoPYTC6S1WX4A:9 a=CjuIK1q_8ugA:10 a=dK5gKXOJidcA:10
- a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTExMDE4MiBTYWx0ZWRfX8lEOnGSPplus
- Myh9jPOom/fqO3DJUTCZifNwS2t12CYUZpVR9ZPm/aFgXSW3MapaGq6whAF/y3OVMUbt5VEuPue
- bJY+2ou532pJDqWiRaOf1aXiziqV8Kmew8iXXx/EHZqvB9exIhd3+lAipT5oiaUJ975TotUM1sg
- per3lQX7kEV6vMPDIl1AQTxcHtn2DxccekDaT3YRJddTTBtnQ9Kn495gJqv8NkdLu2jVRzHWzsl
- RceEAzagu/HZQ/DEIu4FzoBmiH7jQCYK7CypZT5BUh6MwEZLbWN2TReSyReLeI5lecP4/1xBVv7
- SDKpTq8GM6wzzu0M6nAUXZRA246fMTkZh8KAnnhjD5iwnpWAt428zjt8XZ4qozgW7bQpuJ9MYTn
- AZTBiesOYmmpIinXnL8+VpMCQk6ohkE7NSzYp6qZ789OhojwmW80Vbr2BDK3zJVICPvElbMsEA6
- 32/UTbpScdhHJLODa3A==
-X-Proofpoint-GUID: czx0IxbcJEMrjKUw0-GvcZgXEHNjRo0p
-X-Proofpoint-ORIG-GUID: czx0IxbcJEMrjKUw0-GvcZgXEHNjRo0p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-11_07,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 suspectscore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 clxscore=1015 malwarescore=0 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601110182
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jan 11, 2026 at 05:35:12AM -0300, Val Packett wrote:
-> Add a device tree for the ECS LIVA QC710 (Snapdragon 7c) mini PC/devkit.
-> 
-> Working:
-> - Wi-Fi (wcn3990 hw1.0)
-> - Bluetooth
-> - USB Type-A (USB3 and USB2)
-> - Ethernet (over USB2)
-> - HDMI Display
-> - eMMC
-> - SDHC (microSD slot)
-> 
-> Not included:
-> - HDMI Audio
-> - EC (IT8987)
-> 
-> Signed-off-by: Val Packett <val@packett.cool>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   2 +
->  .../boot/dts/qcom/sc7180-ecs-liva-qc710.dts   | 625 ++++++++++++++++++
->  2 files changed, 627 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-ecs-liva-qc710.dts
-> 
-> +
-> +&wifi {
-> +	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
-> +	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
-> +	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
-> +	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
-> +	vdd-3.3-ch1-supply = <&vreg_l11c_3p3>;
-> +
-> +	status = "okay";
+Adds support for Asus IPMI Card [1], which is a PCIe card with an
+AST2600 on it that provides BMC functionality to any host without an
+onboard BMC as long as it has a PCIe slot.
 
-Almost missed it: please add the qcom,calibration-variant and, if the
-original bdwlan file works, submit it to ath10k ML ([1]).
+Currently supported functionality includes UART, NIC, booting from SPI,
+KVM functionality(usb gadget for host, reading VGA framebuffer from
+host) and LED/Power Control via GPIOs. This functionality has been
+tested on an OpenBMC build available here [2]. This requires a modified
+u-boot device tree [3], which I can also submit if needed.
 
-https://wireless.docs.kernel.org/en/latest/en/users/drivers/ath10k/boardfiles.html
+The card supports some additional functionality in it's stock firmware
+like fan headers with fan speed control, host bios flashing via SPI, PSU
+monitoring via an SMBUS connector, a custom ASUS SMBUS connector to talk
+to select ASUS motherboards that support it and exposing a IPMI device
+via PCIe to the host. These are unsupported at the moment.
+
+
+[1] https://www.asus.com/supportonly/ipmi%20expansion%20card/helpdesk_manual/
+[2] https://github.com/openbmc/openbmc/compare/master...Genius1237:openbmc:asus-ipmi-card
+[3] https://github.com/Genius1237/u-boot/commit/1b1b7daa85f6c998e5f404296b3da43077a2758e
+
+
+Anirudh Srinivasan (2):
+  dt-bindings: arm: aspeed: Add Asus IPMI card
+  ARM: dts: aspeed: Add Asus IPMI card BMC
+
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../dts/aspeed/aspeed-bmc-asus-ipmi-card.dts  | 137 ++++++++++++++++++
+ 3 files changed, 139 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-card.dts
 
 -- 
-With best wishes
-Dmitry
+2.52.0
+
 
