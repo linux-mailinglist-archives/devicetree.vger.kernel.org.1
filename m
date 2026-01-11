@@ -1,275 +1,181 @@
-Return-Path: <devicetree+bounces-253647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ED90D0FA74
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 20:31:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A042D0FAED
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 20:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 60B5B3046FA9
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 19:31:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6A600300C352
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 19:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0BBA352958;
-	Sun, 11 Jan 2026 19:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D7A350D64;
+	Sun, 11 Jan 2026 19:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jThxqVdL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fX4iv/ah";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OC2hyAAg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4741F8AC5
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 19:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5735134B1A0
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 19:47:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768159915; cv=none; b=T474K7+j45rQGjWq11xe97WkCgu1O7tlnF3JeRGRB/BoYXR/ekAvimgoveEX+CnCklk0zsVXRl4FIKVw+6FeyKFXeeB255R/SXw4xXc0Np+5lqe6dy47wDy9QhhT/r6rD76T5HwfXF9FWmCMUHPms3LZ8UPicTtKpS43CHlUuqc=
+	t=1768160827; cv=none; b=Fg+WJaEu3wqowqNHqDWIIBwsxmNPkxicKnJJ9CVVx4X0bdpaLN35iyBqDj9Xv70kfhwfMhdUCKUAwm/dlC/N5YEhvubCPc8XDOz8KDSUCNBA4CkwjZMit0QtxvEAV+F8R8KfPdqzjdmKnHR143h48XQUJe9WyTrDCAAuTNOmFFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768159915; c=relaxed/simple;
-	bh=9kRTB7j2+dOj7uuByJTedIf0C2TkNSEV20s7ZNXlfZY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RvQz8J72ddIN65PXGQieCuKbxP8XpQwPnma7o5/6xRATUS/leoaB5SfHRl3U9jEWtObq650jLltHnJhfUputRu8S+XK/2k7A6OBBL3zv28gZzk+ns4tqeeTRh2C4WYRrgFQGFAIGbTfjIpA5RqUm/1ER4q09579XapfC6+QVxLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jThxqVdL; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64b9dfc146fso5092792a12.0
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 11:31:53 -0800 (PST)
+	s=arc-20240116; t=1768160827; c=relaxed/simple;
+	bh=LgiUmXYeM3SN3SzJ9b8ot7rT1uGH9BtlRADOOPheWOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QuGsYMWSCtHpnRtLLRT7gGG2jHAjYtPFEh+e4OnNKuc/4a2M6p9uaSvHs0uOkMtwYuFnbbS+F/p8LxwuDnsCWKZeLFUJIXbjHnmKdRmFWiqsJNtMjuDXFQoDGAiNdAHoN6em877dGTC3mUFoJpCz8FISeFHQcj5qlEQXehLvMQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fX4iv/ah; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OC2hyAAg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60BIxDmI2676549
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 19:47:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=VWoq+K0orW96DlxbTKO5f8O+
+	BBk8ncmN5cuLKOlxAh0=; b=fX4iv/ah2irCuA1GzS5zNSReTHyBAFXNNBJ1E2aM
+	foqHoFgkim4tpHKuBSIIC3xRHqaQx+ZRJATO4Pslxg2WdgLtNh5Gm7wd3MJ0+dIQ
+	uaBk0RYQzrEXylL1hFdzs7VYjNVW1WFfE6suCqHatdiMU3dxV3Pm5JdGA0/N6ubM
+	WOphCjQzfEnbB0QP/g859YO6UPm1O1ehk6j1N45KLJu1v78PyHi4wOIwJQDdQ2wk
+	2WAkStk8NZVeQyz2K3DMkJDfeIecrKHNLjJ+MSVxBcDDrOGNhBzzokXSY8XX7to4
+	Tu9omNL4eTyeRX+GLDFN9G3MABOUSf4bkL5UgjOvucMM1Q==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bkf57anv8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 19:47:04 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8b51db8ebd9so1946656985a.2
+        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 11:47:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768159912; x=1768764712; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1llCMASQ3MobTxu6nXqP5vUtdWy7RUn8pLv2JvHCXy0=;
-        b=jThxqVdLpCp4kqxaxjyvWO42xJaX6Iayhf1X6f3ckpIFzzZy803Iu8+0lPGq16K1QF
-         afWiITbBEiW7IaoLDRpCRGoeXQ7lxSMid5m92/H/WVu9kLSNCtNJN1+Ffl9est3BkLe4
-         MOgHf0PFRvDX8o7HN+9p1ErMK9h8F5TaftUTPsVfeimeXpYGjb4cZFGiHlYFPhVoSOTQ
-         oELbtVlOy9m5RjqyFPNFBM+P7eGszFou0X0qUZfJhwiXlXzQSxHvD3B0ZfNnttdvLsn4
-         s3yqLej0U7stWN5TJA60JnfHD04vidh1jxWtlXGWOipvYWS24N5T0DuyGI1Q99OtAI92
-         Nk1A==
+        d=oss.qualcomm.com; s=google; t=1768160824; x=1768765624; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VWoq+K0orW96DlxbTKO5f8O+BBk8ncmN5cuLKOlxAh0=;
+        b=OC2hyAAg2+SE3CFPJehRCE0CkEi11LC22f2ulymz85WFfOHfw1VVjboSKeAcNEpCKP
+         I0d9hwWik+zfOxaLb2t9wdR0HCwrc8FtmzJxCw2rwE+zYUpdjC0zErHUADmtj0OoFDNM
+         I4gm44UC3s81Wz7FAl1q1Bx1Srhy7fLNKdOKKj6GZ6ahLoe4S2jMqSUNvkEwQJVfq7Oh
+         abqwUPkm023sGG9GzRVvr2zcl4cBSSIlsByBpWSfslFvj1tQ8+QtLae4h2EdcJYOgceW
+         OhF6HKKt4gzYkWloLSJeInyqDuEaobuCBxP2MfmSCtmsAruaa7H8JpMLTwYq3bQ+bQa8
+         c52A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768159912; x=1768764712;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=1llCMASQ3MobTxu6nXqP5vUtdWy7RUn8pLv2JvHCXy0=;
-        b=Bjugu4KECRGRx3oyUT0Knv7YzuIiQSCxqat4wX/ZDeEnlXeG7WRf0kBGlpNs2vVayf
-         fj42qbFL6ZuFOhU42e0yqmUO9DrFQa9Jl1vEpc6nPB7jHbF7TzIjzLFtvabif1Xh/fV7
-         pu9xTb6t2tRTLjj6rq+R24QtYfWzTV+e5fGU1IGjSgEJPrbv6k6Op8ByCxcpIPKMHlZx
-         drMPUk0KELjP/aCVVjkg09DUjQfN9JM1DH4AMM8lo/nZSr0STVq2LOx/4i0aQlJbMxdF
-         c9OItmKNAYe1icGOV3FrhfFYC1dIV73XZDVwmdshsQse8S2lLhhspcABHgnLRAMMQHML
-         feTw==
-X-Forwarded-Encrypted: i=1; AJvYcCX7eVvBfjhp8LkxqORLRBR4vJmwhobh+ejTGA0ybBdbtnakQfIEA683g8GYzNAW0rtwmGbARbAIo2LO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzs7WfIIguYjJ2bHBUH5hKZiS4kTBd+poJNep0c5tr3vpWhtLNQ
-	VFQ+5dFUsrUPZOc7aVjUrJldHTuUiWXNMPaLcjMTgOBxjr4udHlF/++I9v3NBhQNe1bUmdXto03
-	20fEN82vwV7ELvAUjzrRPPjFa7Iy3ZoI=
-X-Gm-Gg: AY/fxX6iuAB0BdQ7bfL5Ai3TZJ9CNIjDQ6mnr8V6l7jR10SEc3JoESqBdZeDDO/xRbN
-	cTXkhqQwUNck7T1+tF4sqJOKG/s3A9tocngCh+axDf4ly3mA0FLl7VAf9RcCe5PmiAWc6wSyl4c
-	mS170Csxw7kXdIr/HFLpKycu5fuMh7lQa27YrWsyVAOEwcunk+4bHZX9ZA2T5Yq3NMavb+AEHXi
-	fO9vLU1DSBG7+pcLSCORDFlvPeU8v8fI5zaJ4lEpgGt/Yaess1daKLww28iERbkZDY=
-X-Google-Smtp-Source: AGHT+IFT/knNVJfiA11bK06YsQejbdfC7KAQjOrTau0qt16Y+07yWK0cpRf4pmTxw0HgBdiPh3Jnl9b4btWgBTwkc7s=
-X-Received: by 2002:a05:6402:1488:b0:64c:ff6b:f56 with SMTP id
- 4fb4d7f45d1cf-6507c0704e4mr14268114a12.9.1768159912220; Sun, 11 Jan 2026
- 11:31:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768160824; x=1768765624;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VWoq+K0orW96DlxbTKO5f8O+BBk8ncmN5cuLKOlxAh0=;
+        b=DGKFRi4tZ4HnDjedBfGbtpnXDOaSyuvJHnxiIOD7Oa+zKh3W4TnjveUrtnwKkwWP/B
+         R75x/CZDfjiJxza6odhQ2P6Ilplzk8/qx4otBNm4jZ0nQAmOQ6I5vkOfo5g4LynoZhYt
+         kBnstSMiWcQaUx1TuswChr0FhiwvwpQMicfsDObSYwdSkSI3i9Qrl2DbnDkALQ03rYoL
+         Sm4uSP6ik35To57fAKnqa6mwW+oLNobnCl/9pEFqmYzd/CLKCZsC0LD/bj3xS07X9yMO
+         rrM5BgWiq4kUop//3B6Hb3Eh3tTJJz9pCdHxTivd3Rircir6pHs8nc+Y9wZvSaQPEgN5
+         55CQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtwyN574J3qZ0fXCw5zm82Yp+3BGq9JKDxFF4u5y+ZQxEgTeJRNmGsH4HbSX7m8PAPx9/pOEtc27xb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5gJpITOUwxD224vOJdLlUKm4hjPL69U4z7oncZOTJzYCERRvu
+	3T/bFtJrVJLVNPNUKDCPDoTZ8rfRgiMZmjjKKEG1qf1DDY647KhR4OeAJvPK0RN14GMaVoW85w8
+	Y5U+Y8tGFjztQdtzwUTq+aaOsPca+qyyxvk2ws62pjZ3PDEyaWpjD0d/o+vGto55j
+X-Gm-Gg: AY/fxX68rb+ITt7Mt3bSPdJL9Rt/RsLlI2FeYCaJuRdFQgnuAnL7CUAoiaTZ+lvRDeY
+	wqe673fQ8MSSsPfzn8mwgOx2zuayAcTKZkHbmQtim7BZIUzWQlxg2C4YGXewyQSUFce7mmvQMSh
+	tt5VYzma+E+bCZxYpeeQe6xBrn0I2q2Rwe8BjGnQkMRx+MHvDNbinwoI2p/w4l/qmfMYm3ykNfm
+	JMq5vxpGDBAnGmyF0uD98iZvdCRZe9nlmwI4EXGoaegE5Z1pfxhQDfxHeaivA2/+XjhxdHQkbF3
+	VVcgjnV9o1xMUBQzILW82C9ciBivmVxYvtJX+0P1bw2mU6Swu5R2ff0fy38AMyNGyFgBCE7HwAR
+	8EAaksI1oPfszpKlylBn0+gdjctfMzOIlUwuHqaR4IpnWQlu4Cpafe8ae6Bn6aQdLNXKvJ39ZfK
+	WUWwWARFXM3/lP/Lcs6mWq2DM=
+X-Received: by 2002:a05:620a:29ce:b0:8b2:d791:3d25 with SMTP id af79cd13be357-8c389379d70mr2313317785a.18.1768160824365;
+        Sun, 11 Jan 2026 11:47:04 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHaSQrfT7R0upbUsE8Ls5NpEYGw1E2ZBrGO7Xau6nDy45sHOd/GEvMQLRUH+vOz30b4yVIQ7Q==
+X-Received: by 2002:a05:620a:29ce:b0:8b2:d791:3d25 with SMTP id af79cd13be357-8c389379d70mr2313316185a.18.1768160823873;
+        Sun, 11 Jan 2026 11:47:03 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b71b7eb22sm3234553e87.41.2026.01.11.11.47.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jan 2026 11:47:03 -0800 (PST)
+Date: Sun, 11 Jan 2026 21:47:01 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Val Packett <val@packett.cool>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: Add support for ECS LIVA QC710
+Message-ID: <qv2nlupgk3unmyj2uvegfrtdjrbnii2wuqg6xb2wzowpnqpccf@p7n66642cuvm>
+References: <20260111085726.634091-2-val@packett.cool>
+ <20260111085726.634091-6-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260103083232.9510-1-linux.amoon@gmail.com> <20260103083232.9510-2-linux.amoon@gmail.com>
- <aVke1kQnHJLqWGHi@venus> <CANAwSgSd0TLrkxpnS5qdot8B7vkd4wH76-g8hAixqfbEtH4LyA@mail.gmail.com>
- <aWGJYt3VPWh1kC_v@venus>
-In-Reply-To: <aWGJYt3VPWh1kC_v@venus>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 12 Jan 2026 01:01:34 +0530
-X-Gm-Features: AZwV_Qjk0PC1h4-nzgxSMCHjCoYMB6_DfqK9WUaQvz9oLKiSdDPd37nJhqh4lBo
-Message-ID: <CANAwSgTGJ5mqoieWOse3OCO3pFepwn1eQx-Hu+O1Pj6hkpdNXg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] arm64: dts: rockchip: rk3588-rock-5b-5bp-5t:
- Correct Type-C pin bias settings
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Diederik de Haas <didi.debian@cknow.org>, Yongbo Zhang <giraffesnn123@gmail.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>, 
-	"open list:USB TYPEC CLASS" <linux-usb@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260111085726.634091-6-val@packett.cool>
+X-Authority-Analysis: v=2.4 cv=K/sv3iWI c=1 sm=1 tr=0 ts=6963fe38 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=7KhyCbUdoPYTC6S1WX4A:9 a=CjuIK1q_8ugA:10 a=dK5gKXOJidcA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTExMDE4MiBTYWx0ZWRfX8lEOnGSPplus
+ Myh9jPOom/fqO3DJUTCZifNwS2t12CYUZpVR9ZPm/aFgXSW3MapaGq6whAF/y3OVMUbt5VEuPue
+ bJY+2ou532pJDqWiRaOf1aXiziqV8Kmew8iXXx/EHZqvB9exIhd3+lAipT5oiaUJ975TotUM1sg
+ per3lQX7kEV6vMPDIl1AQTxcHtn2DxccekDaT3YRJddTTBtnQ9Kn495gJqv8NkdLu2jVRzHWzsl
+ RceEAzagu/HZQ/DEIu4FzoBmiH7jQCYK7CypZT5BUh6MwEZLbWN2TReSyReLeI5lecP4/1xBVv7
+ SDKpTq8GM6wzzu0M6nAUXZRA246fMTkZh8KAnnhjD5iwnpWAt428zjt8XZ4qozgW7bQpuJ9MYTn
+ AZTBiesOYmmpIinXnL8+VpMCQk6ohkE7NSzYp6qZ789OhojwmW80Vbr2BDK3zJVICPvElbMsEA6
+ 32/UTbpScdhHJLODa3A==
+X-Proofpoint-GUID: czx0IxbcJEMrjKUw0-GvcZgXEHNjRo0p
+X-Proofpoint-ORIG-GUID: czx0IxbcJEMrjKUw0-GvcZgXEHNjRo0p
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-11_07,2026-01-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 suspectscore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 clxscore=1015 malwarescore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601110182
 
-Hi Sebastian,
+On Sun, Jan 11, 2026 at 05:35:12AM -0300, Val Packett wrote:
+> Add a device tree for the ECS LIVA QC710 (Snapdragon 7c) mini PC/devkit.
+> 
+> Working:
+> - Wi-Fi (wcn3990 hw1.0)
+> - Bluetooth
+> - USB Type-A (USB3 and USB2)
+> - Ethernet (over USB2)
+> - HDMI Display
+> - eMMC
+> - SDHC (microSD slot)
+> 
+> Not included:
+> - HDMI Audio
+> - EC (IT8987)
+> 
+> Signed-off-by: Val Packett <val@packett.cool>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   2 +
+>  .../boot/dts/qcom/sc7180-ecs-liva-qc710.dts   | 625 ++++++++++++++++++
+>  2 files changed, 627 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-ecs-liva-qc710.dts
+> 
+> +
+> +&wifi {
+> +	vdd-0.8-cx-mx-supply = <&vreg_l9a_0p6>;
+> +	vdd-1.8-xo-supply = <&vreg_l1c_1p8>;
+> +	vdd-1.3-rfa-supply = <&vreg_l2c_1p3>;
+> +	vdd-3.3-ch0-supply = <&vreg_l10c_3p3>;
+> +	vdd-3.3-ch1-supply = <&vreg_l11c_3p3>;
+> +
+> +	status = "okay";
 
-I am having difficulty articulating my thoughts clearly right now;
-please bear with me as I try to explain.
+Almost missed it: please add the qcom,calibration-variant and, if the
+original bdwlan file works, submit it to ath10k ML ([1]).
 
-On Sat, 10 Jan 2026 at 04:41, Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Hi,
->
-> On Thu, Jan 08, 2026 at 12:24:50PM +0530, Anand Moon wrote:
-> > Hi Sebastian,
-> >
-> > Thanks for your review comments.
-> >
-> > On Sat, 3 Jan 2026 at 19:23, Sebastian Reichel
-> > <sebastian.reichel@collabora.com> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Sat, Jan 03, 2026 at 02:01:17PM +0530, Anand Moon wrote:
-> > > > As pre FUSB302 datasheet interrupt line (INT_N) is an open-drain,
-> > > > active-low signal. It requires a pull-up resistor to maintain a sta=
-ble
-> > > > high state when deasserted. Similarly, the TYPEC5V_PWREN_H enable s=
-ignal
-> > > > requires a pull-down resistor to ensure it defaults to a low state,
-> > > > preventing unintended power delivery during the boot sequence.
-> > > >
-> > > > Update the pinctrl entries to use pcfg_pull_up for usbc0_int and
-> > > > pcfg_pull_down for vbus5v0_typec_en to align with the hardware's
-> > > > electrical requirements.
-> > > >
-> > > > Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > > Fixes: 67b2c15d8fb3 ("arm64: dts: rockchip: add USB-C support for R=
-OCK 5B/5B+/5T")
-> > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > > > ---
-> > > > v1: As per the shematics CC_INT_L interrupt pin is GPIO3_B4_u
-> > > >     As per the shematics TYPEC5V_PWREN_H pin is GPIO2_B6_d
-> > > > ---
-> > >
-> > > Checking the schematics:
-> > >
-> > > 5B v1.45 - CC_INT_L - R2613 10K pull-up resistor
-> > > 5B v1.45 - TYPEC5V_PWREN_H - GPIO is effectively unused because R9503=
-5 is NC
-> > >
-> > > 5B+ v1.2 - CC_INT_L - R2613 10K pull-up resistor
-> > > 5B+ v1.2 - TYPEC5V_PWREN_H - R163 100K pull-down resistor
-> > >
-> > > 5T v1.2 - CC_INT_L - R2613 10K pull-up resistor
-> > > 5T v1.2 - TYPEC5V_PWREN_H - R163 100K pull-down resistor
-> > >
-> > CC_INT_L is gpio interrupt pin to enable the I2C read operation.
-> >
-> > As per FUSB302 datasheet, here is the updated version of the commit mes=
-sage
-> >
-> > Configure CC_INT_L as an active-low, open-drain output. Per the hardwar=
-e design,
-> > this pin utilizes an external pull-up and is driven LOW by the Type-C
-> > controller to
-> > signal the processor to perform I2C register reads.
-> >
-> > The TYPEC5V_PWREN_H pull-down resistor is turned on as a signal to
-> > the Type-C regulator, which has an active-enable-high property. In this=
- context,
-> > the regulator is used to set the polarity of the GPIO used to enable or=
- disable
-> > the regulator.
->
-> I don't understand what you want to say here.
+https://wireless.docs.kernel.org/en/latest/en/users/drivers/ath10k/boardfiles.html
 
-I'm sorry for not being clear here. Well, while investigating the bug crash=
-,
-I was looking for some more details on this issue.
-
-Here is the datasheet for fuse302. It shares the interrupt pin details
-
-[1} https://www.onsemi.com/download/data-sheet/pdf/fusb302b-d.pdf
-
-SCL     Input                          I2C serial clock signal to be
-connected to the phone-based I2C master.
-SDA    Open-Drain I/O          I2C serial data signal to be connected
-to the phone-based I2C master
-INT_N Open-Drain Output    Active LOW open drain interrupt output used
-to prompt the processor to
-                                             read the I2C register bits.
->
-> > > TLDR: All GPIOs have pull resistors in discrete hardware and do not
-> > > need them muxed in the SoC.
-> > >
-> > It depends on the GPIO, pinctrl PMU configuration.
->
-> as I try to say it does not depend on pinctrl configuration for any
-> of the GPIOs you are touching. The pull resistors for them exist as
-> components on the board.
->
-I understand this correctly, but these registers utilize a high-to-low
-state change specifically
-to prevent subthreshold leakage current.
-
-Please check the RK3588 Datasheet V0.1-20210727.pdf  (3.4 Electrical
-Characteristics for General IO)
-[2] https://gitlab.com/rock-chips/rk3588/rk3588-doc/-/raw/master/RK3588%20D=
-atasheet%20V0.1-20210727.pdf?ref_type=3Dheads&inline=3Dtrue
-
-> > I was thinking of converting the vbus5v0_typec regulator to 'regulator-=
-gpio.'
-> > to better reflect the hardware schematics. The TYPEC5V_PWREN_H signal
-> > (GPIO2_B6_d) acts as a state controller rather than a simple enable pin=
-,
-> > and this change ensures the device tree aligns with that design
-> >
-> > [1] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1450_schematic=
-.pdf
-> > (page 28)
-> >
-> > $ git diff arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-> > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-> > index 5f58e339a052..387ff009ec76 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-> > @@ -57,9 +57,10 @@ rfkill-bt {
-> >         };
-> >
-> >         vbus5v0_typec: vbus5v0-typec {
-> > -               compatible =3D "regulator-fixed";
-> > +               compatible =3D "regulator-gpio";
-> >                 enable-active-high;
-> > -               gpio =3D <&gpio2 RK_PB6 GPIO_ACTIVE_HIGH>;
-> > +               gpios =3D <&gpio2 RK_PB6 GPIO_ACTIVE_HIGH>;
-> > +               states =3D <5000000 0x1>, <0 0x0>;
-> >                 pinctrl-names =3D "default";
-> >                 pinctrl-0 =3D <&vbus5v0_typec_en>;
-> >                 regulator-name =3D "vbus5v0_typec";
-> >
-> > Could you please try this at your end?
->
-> This is missing gpios-states, but I also see no point in testing
-> that. Having one state as 0 effectively means this is a complicated
-> version of regulator-fixed. The switch from "gpio" to "gpios" is
-> valid though, since "gpio" is deprecated.
->
-Typically, a regulator-fixed GPIO input pin is used as EN to enable
-the regulator.
-
-However, in this case, TYPEC5V_PWREN_H is being used to signal on/off
-to the FUSB302.
-As the GPIO-controlled interrupt pin is used to enable or disable i2C
-controller.
-This is the reason I want to switch from regulator-fixed to regulator-gpio.
-ok I will add gpios-states=3D <1>;
-
-That=E2=80=99s why I requested these changes to be reviewed and tested.
-
-[2] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/=
-bindings/regulator/gpio-regulator.yaml
-
-Please let me know if these adjustments are incorrect; if so, we can
-discard them.
-Currently, I'm not making the desired progress.
-
-> Greetings,
->
-> -- Sebastian
-Thanks
--Anand
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+-- 
+With best wishes
+Dmitry
 
