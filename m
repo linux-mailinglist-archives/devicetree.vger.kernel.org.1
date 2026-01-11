@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-253563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC5B4D0EB09
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 12:28:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 535ECD0EB1E
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 12:30:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1710A300C6E7
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:28:07 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AB05B3004609
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:30:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503463382CE;
-	Sun, 11 Jan 2026 11:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114E933344D;
+	Sun, 11 Jan 2026 11:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iK4bN0LQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iKCyEAmg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B548331A73;
-	Sun, 11 Jan 2026 11:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0AB828D8D9;
+	Sun, 11 Jan 2026 11:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768130885; cv=none; b=BENXjtA7WzVRUyLb6nd0aM14hvfdaJZyd2V3x117WKKoJkHS+yTaV/r03C+7jH7EV0PV7kjlAgus+NTIoa1yi4LtFOzraUpo7Pfc3IaTLsf4CR+p8IUzRSW2fgaLbkO9yDMiQ5FUzakRTLCwIDNZrif/bfSprXfpUSwPSJmy+NQ=
+	t=1768131016; cv=none; b=dqNQR32Xdy9N484v4C+jtYxT39M0vZmCE2O2tbfBJBKTEyOFwR3f7L3FQhfhLiwJNHZ5JuWNxOuUaIV1uO9pvf1VhJCxLKFnsv9ZamVWxuObNuftt885uzYkqFFRhDniqwjMkbJyM+mGVXLM+ytWnFHGzH76QoOuvs8scpYAv1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768130885; c=relaxed/simple;
-	bh=M1Bsni6D6RVLGZjus/6Nt63ykNrOSd/EHntlKluKE8Y=;
+	s=arc-20240116; t=1768131016; c=relaxed/simple;
+	bh=5pUVetU4xnZK4IeRglQgkWZ4DJd+x2OCNqc9GOkJSzY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kAtm70sUY5JDGX7Y1N1/nnYvb0knkUtmXA3kwKG4/QfOHLpf8Jj2LnMX5vk37XdoYbNEVXWo5onjYbj7+/4+MLDNZ3sPrSJo1oUb9LBkCzGL61hgfFLcfN5CQD1e/cO1fgM08vXEoUV0Nh1omlMp22ZIqFwxJ2n5pYQazhl+H9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iK4bN0LQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7EA0C4CEF7;
-	Sun, 11 Jan 2026 11:27:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qjUJsc57lsxU/yhB66N+LhEwfS6239535ap16hYr6bL3psCWz22s75z0RBNvxAiy8H80JtBbRq+cvP6A4Z031unaPQsT6jGqo74uOvsFQq6mQew0fRNNwjch+TpDpTsg0hHERz5VifeYfRNY0WvEcr8fESLbn6Q690GGoEoUhTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iKCyEAmg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23383C4CEF7;
+	Sun, 11 Jan 2026 11:30:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768130884;
-	bh=M1Bsni6D6RVLGZjus/6Nt63ykNrOSd/EHntlKluKE8Y=;
+	s=k20201202; t=1768131015;
+	bh=5pUVetU4xnZK4IeRglQgkWZ4DJd+x2OCNqc9GOkJSzY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iK4bN0LQLNYftFBBeVXcOa/+Ly4OcHB3rhGbjef2emVm7ZX6E75BaCuAZCwLNpZB8
-	 FE5bXGADz5KaUxiFRwyxg60juvcEeWMwMLbKwDLE0ERDKCw+rSsBQbb2JLfxBb/2j4
-	 pHrNsWquEirQS3DjDH/ZW0dcZ19lKOE0DOWshTLwXFYyLfQU/y7i2wE9Rhhn1LMyI3
-	 gnWJlzCMnEt/dI0M6bBSUHF7NgZMbhiNenFUJg6B3dAxRlGbquHZ/P0eu41IpNNGM1
-	 kGtNaRG1i8apCXFNrvjzPwT0lLgE1KEC3mq2jCTn+KJj56LfS/PAUOBIwMTsNKPh8r
-	 vDvXejfGwYSXQ==
-Message-ID: <322e13df-5146-4dab-8f2a-6c635c82eb70@kernel.org>
-Date: Sun, 11 Jan 2026 12:27:58 +0100
+	b=iKCyEAmg1+cr0uL0Fp3f/lQMhf4vxicysbNd2tzGWZsd+TuOvupyXUEpVDxrLnUTs
+	 eIlEupzGIa0wCN/ORMXm2azHU22zrQm9th5rn7I5qPiWJsGeUsNx8+vvxQ0JBRbx5G
+	 UbVO8fD4QFWC8nn+h/YeDpg9BVy8L4USgjmuSookVo3TwXKKKUlrrx74IiPUsdu56E
+	 R47AB4wRKsokRmVEZoXPSAzxo4/3DcDfae2uAHDR3CKd8eu49swBgNgjNbu6WfaSyW
+	 yjGz2LZqYTbE3csGOJebLPf6kGX/N+2RZnVbBGmqHPrgZhul9qaP4WOsEN4ZYNqZMi
+	 Z7lHgWpNExchQ==
+Message-ID: <9249c034-de8c-479b-a9c5-f1252e0beba2@kernel.org>
+Date: Sun, 11 Jan 2026 12:30:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,23 +48,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/11] dt-bindings: pinctrl: document access-controllers
- property for stm32 HDP
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>,
- Linus Walleij <linusw@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20260109-debug_bus-v1-0-8f2142b5a738@foss.st.com>
- <20260109-debug_bus-v1-2-8f2142b5a738@foss.st.com>
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: document dvdd-supply property for
+ awinic,aw88261
+To: bharadwaj.raju@machinesoul.in, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Weidong Wang <wangweidong.a@awinic.com>
+Cc: Bhushan Shah <bhushan.shah@machinesoul.in>,
+ Luca Weiss <luca.weiss@fairphone.com>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
+ <20260111-aw88261-dvdd-v1-2-83fa0850d561@machinesoul.in>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,32 +107,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260109-debug_bus-v1-2-8f2142b5a738@foss.st.com>
+In-Reply-To: <20260111-aw88261-dvdd-v1-2-83fa0850d561@machinesoul.in>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/01/2026 11:55, Gatien Chevallier wrote:
-> HDP being functional depends on the debug configuration on the platform
-> that can be checked using the access-controllers property, document it.
+On 11/01/2026 11:10, Bharadwaj Raju via B4 Relay wrote:
+> From: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
 > 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml
-> index 845b6b7b7552..75054c1e4044 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml
-> @@ -27,6 +27,10 @@ properties:
->    clocks:
->      maxItems: 1
->  
-> +  access-controllers:
-> +    minItems: 1
-> +    maxItems: 2
+> Add (and require) the dvdd-supply property for awinic,aw88261 in
 
-You need to list the items. Why is this flexible?
+Why? Was it missing? Why require it, which is an ABI break (or is not?)?
+Why is ABI break allowed or what is its impact?
+
+> the awinic,aw88395.yaml binding.
+
+
 
 Best regards,
 Krzysztof
