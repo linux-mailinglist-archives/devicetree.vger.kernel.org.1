@@ -1,64 +1,55 @@
-Return-Path: <devicetree+bounces-253543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426DFD0E81D
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 10:45:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110F5D0E874
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 10:57:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 22E223009F70
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 09:45:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DCDFC30090B8
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 09:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF70330D22;
-	Sun, 11 Jan 2026 09:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0645E316902;
+	Sun, 11 Jan 2026 09:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uAeZzExz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nryXIcz/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE9923AB88;
-	Sun, 11 Jan 2026 09:45:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D12D723ABBE;
+	Sun, 11 Jan 2026 09:57:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768124711; cv=none; b=XSHQMG2PEzXRDVk6emSI6duflPpKEUP0VfnkR+XG9Szxs6hg6HT7ckhYvNmnGYuBJrvZBJOmvfLh1eS1rtnRI22rI7FbwPLi8RrYOo32oNwTkp6x7Kp4loROLUJPyUvpSmZNtNcwQbsYeqHiZ3mBd+dhFurEiPBI1yYPnJN/VPc=
+	t=1768125451; cv=none; b=Y/iQkFDVL2MJsDeCtNW3I04DQqSNcCatQJa62FaFhAPQvlzbCOesTdXOXL4qrPRB97o21CfrDbG13Ido/mPLC2gmwW4Reb2+W0sV2peCxe0sClGug75C5vsB5NaU5Eo+Ih+iEFwIFro7YNziUTjkTHSSv64xIinVSttD0Qq16do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768124711; c=relaxed/simple;
-	bh=iMeDM31hA+TKBnDpzxob+nvBPL1aNcZnT38bW8owbxk=;
+	s=arc-20240116; t=1768125451; c=relaxed/simple;
+	bh=LcuRu7QBMVQ2NhCxvzk3SrGkmWCbJuuznLmrWMirm6U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lHVtugg7OO1XoMGOM1Saoy+uTchGO78yZUUwSUgsJ9eVFxia+ZTD0nH9oBxxu6uIFyNM+aaVtsjQrLnJZh4ORu8RmaI3oN6iIpF8ZFTeZF/cy94bq3tg6smgS1Z1BTdH6EMfbtVKTKNimmFPytZ5iqTNXUFZ0At9pr04A2Smgpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uAeZzExz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26673C4CEF7;
-	Sun, 11 Jan 2026 09:45:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SDccel8+PKl2Jn83tmzm8uMB1tUlOc/g3YidWlnB8iojc5DSlOphBby38ubUAokjcOAVKF39uBPJ6ZPqnsVXM1bSUnkpt5yPxHgxdVSnZj9QaQ4IkLmh+Dxmw2ia25Uy9ppXIXghTULDXOteR2dRWGDpfds9xoW/4KgbOBe46xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nryXIcz/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAC93C4CEF7;
+	Sun, 11 Jan 2026 09:57:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768124710;
-	bh=iMeDM31hA+TKBnDpzxob+nvBPL1aNcZnT38bW8owbxk=;
+	s=k20201202; t=1768125451;
+	bh=LcuRu7QBMVQ2NhCxvzk3SrGkmWCbJuuznLmrWMirm6U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uAeZzExzyMhF7j4TRwWr8LDVUBUKshw8sYhjbK1j01mWnix3nz596zYWjasHemqO2
-	 pmpuMrUZZJ4kvVR0Qu7h6sfzU7KvzkmAc54AwVT7/vp7iUmI32VwfPgbg/8X9W0Dwf
-	 wEMmtFygLkDEb0S7tzWeHRc38cv2a+6Xgnt5b4Ug9NrYbkkZ2sWdl32+Ibw72yejxE
-	 Li+os7LzEYeR+FC6u4WjntR0YJdiKAbIY776+sOwJPsSqJDntDoz7TfokyXgIGaxNB
-	 xCEpiHCwLtvxUzjEt0aVh4HFKTSSW6Njqo37koMdX1DJYR+us6PMS7E/ewEFN9TdxJ
-	 QiVolSZP8uJvQ==
-Date: Sun, 11 Jan 2026 10:45:08 +0100
+	b=nryXIcz/zs/Ou0XiVWVTj9+U+2Owemv+Bs1AENv376qAXdoh5hMBCvQESHkzASTU2
+	 FNEdvOjZs1Figt8SpVT0Jk38x6fE40lym6uH0Czcw/13+/nOt2z0FVPrAGOSqiCvrn
+	 Y3v7XVNX0XnhcxTpSmBaJOlVV7gP6V5TeaWdz1JfmGcO/EAevCrQPs4JdtqAribTWR
+	 aBVQn0tzVvAzUkH8APmUYZF9zZZSQOrC5koXRdXNoOfsCyBOqDtanyLldhIt2KP3I2
+	 D3FwaVFgpeVnEVj8HjGB2nUEyhQPjSbK47pmWfrnngvfnIMoIcfyFCaEf2QAVZUjLV
+	 Exu9gvjg7h1ZA==
+Date: Sun, 11 Jan 2026 10:57:28 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
-	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, David Sterba <dsterba@suse.com>, 
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Simon Glass <sjg@chromium.org>, 
-	Linus Walleij <linusw@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Marcus Folkesson <marcus.folkesson@gmail.com>, Tony Lindgren <tony@atomide.com>, 
-	Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, linux-mtd@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 07/10] dt-bindings: mtd: Ensure partition node properties
- are documented
-Message-ID: <20260111-cobra-of-hypothetical-popularity-e3dbee@quoll>
-References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
- <20260108-dt-mtd-partitions-v1-7-124a53ce6279@kernel.org>
- <20260109-affable-poetic-albatross-ff7fcf@quoll>
- <CAL_JsqLcVUMJqTKnYpP_r4Z16Sw1pVcQ=HCFJG0bY_O=q3psVQ@mail.gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, matthias.bgg@gmail.com, sjoerd@collabora.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Allow syscon compatible for
+ mediatek,mt7981-topmisc
+Message-ID: <20260111-screeching-bullmastiff-of-resistance-ae7db9@quoll>
+References: <20260109114356.36454-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +58,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqLcVUMJqTKnYpP_r4Z16Sw1pVcQ=HCFJG0bY_O=q3psVQ@mail.gmail.com>
+In-Reply-To: <20260109114356.36454-1-angelogioacchino.delregno@collabora.com>
 
-On Fri, Jan 09, 2026 at 06:25:32PM -0600, Rob Herring wrote:
-> > > -    $ref: partitions/partition.yaml
-> > > -    deprecated: true
-> > > -
-> > > -  "^partition@[0-9a-f]+":
-> > > -    $ref: partitions/partition.yaml
-> > > +  "(^partition)?@[0-9a-f]+$":
-> > > +    $ref: /schemas/mtd/partitions/partition.yaml#/$defs/partition-node
-> > >      deprecated: true
-> >
-> > This makes partition@ deprecated. Looks unintended or needds commit msg
-> > explanation.
+On Fri, Jan 09, 2026 at 12:43:56PM +0100, AngeloGioacchino Del Regno wrote:
+> Commit a95419ff9f21 ("dt-bindings: mfd: syscon: Add mt7981-topmisc")
+> added the mediatek,mt7981-topmisc compatible to the `select` block
+> which is used only for compatibility with older dtschema, but did
+> not add it in the actual block allowing to specify the "syscon"
+> fallback compatible, which is required for such node to do anything
+> meaningful in the end.
 > 
-> No, the only change here is I combined the entries. "partition@" is
-> deprecated when not under "partitions" node.
+> Add the mediatek,mt7981-topmisc compatible in the right list to
+> allow specifing compatible = "mediatek,mt7981-topmisc", "syscon"
+> in the relevant devicetree node.
+> 
+> Fixes: a95419ff9f21 ("dt-bindings: mfd: syscon: Add mt7981-topmisc")
 
-Indeed, I misread the diff.
+I don't think original work was tested anyhow on DTS because it should
+report unmatched device nodes...
+
+Thanks for fixing this.
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
