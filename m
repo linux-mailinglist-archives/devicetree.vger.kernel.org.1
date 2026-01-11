@@ -1,166 +1,138 @@
-Return-Path: <devicetree+bounces-253640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82A7D0F675
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 17:09:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C5AD0F686
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 17:10:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 547043041CEB
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:09:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 065DB302FBC4
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0DE534BA5A;
-	Sun, 11 Jan 2026 16:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A47634BA5A;
+	Sun, 11 Jan 2026 16:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lJPPS1EJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fg8YJTcz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A83C34BA24;
-	Sun, 11 Jan 2026 16:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4526F1CAA68;
+	Sun, 11 Jan 2026 16:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768147764; cv=none; b=bGI9bfMyAbfCBouU3/96XnAvTC6YgWzmUQqEX4Y4qnkE7P7JMsEQcPToxwj8gJBrAKk6usrDPYMmyTExla7kYHWUr+S3qMgk0E8Ry2i2ydIb+zSbZhr89cY5O8cajIztYfM91GTA4Nr+U2ycK2AmmKGLXl8IsMU5WpxRLPIDmcg=
+	t=1768147834; cv=none; b=gtUWEyNkHMX31o4S80p7BYbkvzSOrv1rDZyHshnoJ0LNswcqPtl//b80ek2YRaTemW0up9jOZRxS2xPIp64IYj1iXitcW8s5osiILHyZvgCHm3GBy07AIlUAe5FVbN71bYL2w0ugLdb8ITo4Glpz0SuzKB3ixYWYm5nJt+BpJik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768147764; c=relaxed/simple;
-	bh=dbcZL645pHFqgTcsH096QV8zHH1uB+yrUffujrOPkiA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rxK7J7g+A6xoiT31voP68qvlhfO9b9diao3nlpVAKX2xxAW1vhbSsuEeAheyTm8g7qgzXNLA0OsS0vxok/gq+UfZqhRbUEdJsXoKRmD5BWtg5XsUrt9HAuJe/WTVWQ8GoVSNJBIraWT/GT1esM/sBA3kNHKcTJHY7hU/OxYa2FU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lJPPS1EJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DBC5C4CEF7;
-	Sun, 11 Jan 2026 16:09:18 +0000 (UTC)
+	s=arc-20240116; t=1768147834; c=relaxed/simple;
+	bh=leRp0sBnnlAzhq88lOJpyV1MLEu7YgR8PUVZS46tQys=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N6UmqYTu1sBLBfcCY1bu/xUrcLhNW3D8t0CT/2sqCDqZKULksOJoml4JlTGCRq+Me7glpGlWqq8RNiw4/Dr2PmhKQpB78OQqlbqB7pgL77IONPhjsIQzLhyi+jo5/BiBobnAdHqV0QT07hNbf81dlP3KD3rmIrKQvP9gJocTs/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fg8YJTcz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F0CC4CEF7;
+	Sun, 11 Jan 2026 16:10:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768147764;
-	bh=dbcZL645pHFqgTcsH096QV8zHH1uB+yrUffujrOPkiA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lJPPS1EJmitu8+bpVhq91HQHA6tYdlDOY/WgU2CFfsuFrr0nBLsDo59JRhxX2dAGs
-	 yZMyq/Pv8mKfrC/R1McrFKIgzu8beNDt7YO57E5RlrE7Vni/y8G1jo0iE41dvm1XrN
-	 lTNqIyxli7QdDv/J/i9abf2mJ9ZZsi01qqbVldkh/fK77A/w0et1ujnPK8vozmH+lN
-	 We9R85tFqRIfUpFvKNSdXhjmRN+66hgQqZYNUxge9QUIA0RMEGBSRYeRMsRcbTXfM7
-	 4G3nE+2pQ0AfF15eNjvMA1S8FNgZOET9EFdUuR7b6fWcbmhdDj55yjNje1sMO7kj2D
-	 K+ybgH0G299eA==
-Date: Sun, 11 Jan 2026 16:09:14 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Janani Sunil <janani.sunil@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Alexandru Ardelean
- <alexandru.ardelean@analog.com>, "Rob Herring" <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <jan.sun97@gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: dac: Add MAX22007 DAC driver support
-Message-ID: <20260111160914.72f177e6@jic23-huawei>
-In-Reply-To: <20260108-max22007-dev-v2-2-2506c738784f@analog.com>
-References: <20260108-max22007-dev-v2-0-2506c738784f@analog.com>
-	<20260108-max22007-dev-v2-2-2506c738784f@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1768147834;
+	bh=leRp0sBnnlAzhq88lOJpyV1MLEu7YgR8PUVZS46tQys=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fg8YJTczENNb3aLhM1aHWf4G7BZODgr709FusP01wkxTW9hYj4eUYL1oNGdy12YLW
+	 HhUmsMgCr1UlFMVEOPzScnTNNHlxHB0KbndNqa0Lh85tZsy0Bo9mygfbOI6MLrBqrg
+	 xdtY5sIvygdLZjLH1kwEAuLjMCbFnkKDRNPlQ8Ljx2cVgroxrrFFI4fqvGuAdWFYob
+	 5XrKrMONrjVzoQ67iFTpcS5rGEeS9qLEqC6PISU1Ksr75+lMUiubq+sVakoWtYeJYh
+	 HfX8y3prsIKJLl71yTDYNCRqbo2MiaNuAIYhxb728WadPr8B/J4zKI3MG2oCX5v+0u
+	 FhwUEj0Y2t8Vw==
+Message-ID: <1ab13178-8253-4dc7-9143-6684ededd8f9@kernel.org>
+Date: Sun, 11 Jan 2026 17:10:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: document dvdd-supply property for
+ awinic,aw88261
+To: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Weidong Wang <wangweidong.a@awinic.com>
+Cc: Bhushan Shah <bhushan.shah@machinesoul.in>,
+ Luca Weiss <luca.weiss@fairphone.com>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
+ <20260111-aw88261-dvdd-v1-2-83fa0850d561@machinesoul.in>
+ <9249c034-de8c-479b-a9c5-f1252e0beba2@kernel.org>
+ <5e47fe91-e150-4b5d-a669-3a7beeea4f03@app.fastmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5e47fe91-e150-4b5d-a669-3a7beeea4f03@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Thu, 8 Jan 2026 13:58:24 +0100
-Janani Sunil <janani.sunil@analog.com> wrote:
-
-> Add support for the MAX22007, a 4-channel 12-bit DAC that drives
-> voltage or current output on each channel.
+On 11/01/2026 13:48, Bharadwaj Raju wrote:
+> On Sun, 11 Jan 2026, at 5:00 PM, Krzysztof Kozlowski wrote:
+>> Why? Was it missing? Why require it, which is an ABI break (or is not?)?
+>> Why is ABI break allowed or what is its impact?
 > 
-> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
+> Right now there are no users of aw88261 in the kernel device tree sources.
+> This patch is part of an effort to mainline the FairPhone 5, for which we 
+> will add the first use of this compatible, and there we need to specify 
+> dvdd-supply for this chip's power supply.
 
-A few minor things to add to Marcelo's detailed review.
+You mean the bindings were incomplete?
 
-Thanks,
+> 
+> Since there are no present users, I thought it was OK to add a new required 
+> property. If not, I can make it optional.
 
-Jonathan
+Nothing like that was explained in commit msg. Also your explanation
+above does not consider out of tree users of this ABI. That's fine in
+general, but needs reason why you are doing this.
 
-> diff --git a/drivers/iio/dac/max22007.c b/drivers/iio/dac/max22007.c
-> new file mode 100644
-> index 000000000000..19557c008554
-> --- /dev/null
-> +++ b/drivers/iio/dac/max22007.c
-
-
-> +static int max22007_spi_read(void *context, const void *reg, size_t reg_size,
-> +			     void *val, size_t val_size)
-> +{
-> +	struct max22007_state *st = context;
-> +	u8 reg_byte = *(u8 *)reg;
-> +	u8 calculated_crc, received_crc;
-> +	u8 crc_data[3];
-> +	u8 rx_buf[4];
-> +	int ret;
-> +
-> +	if (reg_size != 1)
-> +		return -EINVAL;
-> +
-> +	ret = spi_write_then_read(st->spi, &reg_byte, 1, rx_buf,
-> +				  val_size + MAX22007_CRC_OVERHEAD);
-> +	if (ret) {
-> +		dev_err(&st->spi->dev, "SPI transfer failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	crc_data[0] = reg_byte;
-> +	crc_data[1] = rx_buf[0];
-> +	crc_data[2] = rx_buf[1];
-> +
-> +	calculated_crc = crc8(max22007_crc8_table, crc_data, 3, 0x00);
-
-I think you can chain CRCs as follows and avoid the need for a local array
-just to marshal the data.
-
-	calculated_crc = crc8(max22007_crc8_table, &reg_byte, 1, 0x00);
-	calculated_crc = crc8(max22007_crc8_table, rx_buf, 2, caculated_crc);
-
-> +	received_crc = rx_buf[val_size];
-> +
-> +	if (calculated_crc != received_crc) {
-> +		dev_err(&st->spi->dev, "CRC mismatch on read register %02x\n", reg_byte);
-> +		return -EIO;
-> +	}
-> +
-> +	memcpy(val, rx_buf, val_size);
-> +
-> +	return 0;
-> +}
-
-> +static ssize_t max22007_write_dac_powerdown(struct iio_dev *indio_dev,
-> +					    uintptr_t private,
-> +					    const struct iio_chan_spec *chan,
-> +					    const char *buf, size_t len)
-> +{
-> +	struct max22007_state *st = iio_priv(indio_dev);
-> +	bool powerdown;
-> +	int ret;
-> +
-> +	ret = kstrtobool(buf, &powerdown);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (powerdown)
-> +		ret = regmap_update_bits(st->regmap, MAX22007_CHANNEL_MODE_REG,
-> +					 MAX22007_CH_PWRON_CH_MASK(chan->channel),
-> +					 MAX22007_CH_PWR_VAL(chan->channel, 0));
-> +	else
-> +		ret = regmap_update_bits(st->regmap, MAX22007_CHANNEL_MODE_REG,
-> +					 MAX22007_CH_PWRON_CH_MASK(chan->channel),
-> +					 MAX22007_CH_PWR_VAL(chan->channel, 1));
-> +	if (ret)
-> +		return ret;
-> +
-Something like the following reduces duplication:
-
-	ret = regmap_update_bits(st->regmap, MAX22007_CHANNEL_MODE_REG,
-				 MAX2207_CH_PWRON_CH_MASK(chan->channel),
-				 MAX2207_CH_PWR_VAL(chan->channel, powerdown ? 1 : 0);
-
-
-> +	return len;
-> +}
-
+Best regards,
+Krzysztof
 
