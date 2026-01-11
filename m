@@ -1,111 +1,121 @@
-Return-Path: <devicetree+bounces-253558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 575E4D0E9EB
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:42:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D34A8D0EA3B
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:59:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 34F153007C40
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 10:40:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 62C653009832
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 10:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5725F335BA8;
-	Sun, 11 Jan 2026 10:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6923314A4;
+	Sun, 11 Jan 2026 10:59:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LEpqqfbT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l3xkqanz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34ADD330661;
-	Sun, 11 Jan 2026 10:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2891632FA2D
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 10:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768128033; cv=none; b=s6WwEk22N0Lr4MtMXXN3LNpL2fQjmrCJlimtl8jtONlGuCg0JisRmsCGGoTkCGveYsUYL99Cq0Ep45sijEXeEYSpvKrXHqcz1KudCfImpWpRT2DGX4hNEQjNU2ELHTZB6UJ0fVH5IB98Gf8pMmz5+YvqXILJPc/qO1a0DnjGiLM=
+	t=1768129167; cv=none; b=j3Jor7/wFF8t2REohG1CgZppHxJ4rkRRoL7gnnJamZ2WmFYaYUEQxsqzRYmlLdQIEfWThqpCg9pfj7odP8WX2gDWpGxkogaRhPx6oedfCZYhxVkRu8ur5Ds5YOX0jx5aBceElK+oSKCMp8QYig2cP8sOe63h5k20tlSqPvkA5TI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768128033; c=relaxed/simple;
-	bh=jNXP3T+QGdDwl9VpGDdEjw5Gc/3zONZuRVJyjdi8Pkk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e5WHzJ79kRDceHuVRs2NiH15pK4kz4JT/xJBy6fQdS7DPNRKLrPKT2P7ZNbA1RxTa4g5HqE+uXIn77y3pXlx78DyGzmNR1uvzoXCpkNQaZSLj7Y33AaEj2r2ZqZ3IgKNNuy9mIjvAuaVh+IkSVSDKG4jX0ZFAvmHmP1MnHcvU0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LEpqqfbT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 849A4C4CEF7;
-	Sun, 11 Jan 2026 10:40:32 +0000 (UTC)
+	s=arc-20240116; t=1768129167; c=relaxed/simple;
+	bh=lr9j1sAsj+iX5/TLickqNJnqlbrgsYiJdXIQL1hST7o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=erQBCRDTmfaGc+PGi8sqrT4uYHH9n+/CE+AFVICTsAqJfis/VYAJlo4SPD4VPrZzbRCdgKN//quVfV9Hf5jiDl8f1HK7EdC5gBQU+GlAOCaeFzw1RV2pNn4CjLna9CM2HwLJ+Pt13UQPhjtLfD1ukYLD1YalTWKhrDpABa4odJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l3xkqanz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1688C19423
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 10:59:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768128033;
-	bh=jNXP3T+QGdDwl9VpGDdEjw5Gc/3zONZuRVJyjdi8Pkk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LEpqqfbTdpthCVE6J0syaQoiZT2GHX1BJ0Vi6SGyDNQPjuBqWFhDD7Fhln71NRRhL
-	 vZAKijff4tkh2P/A7H0F0C2A9iCldzCSkBc+q0I3JGFhbqYDb8EMELwOxJE61Q+Nqh
-	 153M5K85RLeQSY2/3iPPKDWSfZiNPzuW99J5ba/rGBwJhIWK2XpXvgjqkolYfEvRRo
-	 uPML9sqLEL3uzznP9whlcMWiW5b5VMvr3SWc+ZJacbQvMjbObiTC5hDIGTpvdEk9I5
-	 u/rUfkCDl1rys1yiHWfSZ+ZL6ehammbuff6iFUUxFRa0LK5R04Z1BnbEda1jnR1UmF
-	 aQs09toTbrGjg==
-Date: Sun, 11 Jan 2026 11:40:30 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tzu-Hao Wei <twei@axiado.com>
-Cc: SriNavmani A <srinavmani@axiado.com>, 
-	Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: Re: [PATCH 3/4] MAINTAINERS: Add Axiado AX3000 eMMC PHY driver
-Message-ID: <20260111-watchful-pigeon-of-brotherhood-6ada05@quoll>
-References: <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-0-dd43459dbfea@axiado.com>
- <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-3-dd43459dbfea@axiado.com>
+	s=k20201202; t=1768129166;
+	bh=lr9j1sAsj+iX5/TLickqNJnqlbrgsYiJdXIQL1hST7o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=l3xkqanz3iITQJVz8KFX12DvKTtZoQDDXPZeBi0yr1X2pb1GYslVk+U1T2pJsD06U
+	 1PrnK0kV0NV++H2p6jUx5s3wxhLlCgryiqo+FmiJ+eU3JW6K7FatlLemrrJI9nMjgq
+	 A86N+MEU5HB2zKlZQ6EwmInHZDGEqdfNwA/MspBHv+83do5gUTo7Jp1+1JqGmQRmq5
+	 g88x6zcdKGiooKKP4r3Ik5eDe/U9gCodNejh0vjNCW4r05k1oE9zJgqvWWA4bCC9c+
+	 k+CEFOxIIqWkToVVChh8LTtVhDFkfI8cCQbITMJhSY6wKEo/LiAGjHjD5fXm01l/ih
+	 EBGvJgzdwt7Sg==
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-78fc0f33998so55511577b3.0
+        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 02:59:26 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX9kOFEC59rEcChxj8nWqpyKcC4TtwXTT+XFStf5PGhILHtbrO1Xo8LZrCx4VewrlMLivxX20u/CJQv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyyLRdtRqPqKwUf8d1gYskgzvaShAj6iTaWICMUO6fbXtuWkoy
+	p9iX+xH80MkTENuAZKSjNgOgahoERW5YDC3QptAEqbl5hM/572xQA34cxgpQXw2XEFwxOe5D4G8
+	m3IFz/Jnxf7p3VIc5lqsKLGtzsoswROQ=
+X-Google-Smtp-Source: AGHT+IF2Ycdmg3X8kZE1DimMHNHBKM1920rYiZ/5Fr2866a9RMj6dCyNTlrmWOuoaZR68tm9giaJ6v8oblS4SpPSafg=
+X-Received: by 2002:a05:690c:38b:b0:783:6f8d:e7a6 with SMTP id
+ 00721157ae682-790b5828d2amr276540817b3.51.1768129166093; Sun, 11 Jan 2026
+ 02:59:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-3-dd43459dbfea@axiado.com>
+References: <20260107030731.1838823-1-daniel@thingy.jp> <20260107030731.1838823-2-daniel@thingy.jp>
+ <20260108233818.GA1466897-robh@kernel.org> <CAFr9PXn2HzkSRnX4X-X1q2U+zLxwSP=TxvRwmA5eYxad7SbLzw@mail.gmail.com>
+In-Reply-To: <CAFr9PXn2HzkSRnX4X-X1q2U+zLxwSP=TxvRwmA5eYxad7SbLzw@mail.gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Sun, 11 Jan 2026 11:59:15 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=fM8QL-cYwRTWNetUsoWoKUOEcxE2+6VYQ4o50F-H1PQ@mail.gmail.com>
+X-Gm-Features: AZwV_QhUE6u4ppZEoTRLf3C1_nScg51OUu71CLHUYVC9On0jgPVB2fMl2dz3yFM
+Message-ID: <CAD++jL=fM8QL-cYwRTWNetUsoWoKUOEcxE2+6VYQ4o50F-H1PQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/2] of: Add a variant of of_device_is_compatible()
+ that can be build time culled
+To: Daniel Palmer <daniel@thingy.jp>
+Cc: Rob Herring <robh@kernel.org>, brgl@kernel.org, saravanak@kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 09, 2026 at 05:43:31PM +0800, Tzu-Hao Wei wrote:
-> Add SriNavmani, Prasad and me as maintainers for Axiado AX3000 eMMC PHY
-> driver
-> 
-> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
-> ---
->  MAINTAINERS | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a0dd762f5648b7e4e6fc62560662e43720422e01..6d1af11eb289ffb7c0d8634ac7d8f903aed1799c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -4250,6 +4250,16 @@ W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yaml
->  F:	drivers/hwmon/axi-fan-control.c
->  
-> +AXIADO EMMC PHY DRIVER
-> +M:	SriNavmani A <srinavmani@axiado.com>
+Hi Daniel,
 
-No activity:
-https://lore.kernel.org/all/?q=f%3Asrinavmani%40axiado.com
+thanks for your patch!
 
-> +M:	Tzu-Hao Wei <twei@axiado.com>
-> +M:	Prasad Bolisetty <pbolisetty@axiado.com>
+I like the idea in this patch set. Footprint is something we need
+to think more about, if for nothing else so for the increasing tendency
+of RAM prices.
 
-No reviews:
-https://lore.kernel.org/all/?q=f%3Apbolisetty%40axiado.com
+On Fri, Jan 9, 2026 at 3:52=E2=80=AFAM Daniel Palmer <daniel@thingy.jp> wro=
+te:
+> On Fri, 9 Jan 2026 at 08:38, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Jan 07, 2026 at 12:07:30PM +0900, Daniel Palmer wrote:
+> > > In a lot of places we are using of_device_is_compatible() to check fo=
+r quirks
+> >
+> > I'm assuming 'a lot' is not just 3 places? Got a rough estimate?
+> >
+> > This seems fine to me assuming there are more.
+>
+> In core code (like the gpio core, and not in a specific driver) there
+> are only a few places. I think around 10.
 
-Are these maintainers going to actually maintain code? At least Prasad
-should provide proper review now.
+Actually, if you look in gpiolib-of.c in e.g. of_gpio_try_fixup_polarity()
+you find:
 
-> +L:	linux-phy@lists.infradead.org (moderated for non-subscribers)
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/phy/axiado,ax3000-emmc-phy.yaml
+#if IS_ENABLED(CONFIG_LCD_HX8357)
+                /*
+                 * Himax LCD controllers used incorrectly named
+                 * "gpios-reset" property and also specified wrong
+                 * polarity.
+                 */
+                { "himax,hx8357",       "gpios-reset",  false },
+                { "himax,hx8369",       "gpios-reset",  false },
+#endif
 
-> +F:	drivers/phy/axiado/Kconfig
-> +F:	drivers/phy/axiado/phy-axiado-emmc.c
+etc etc etc.
 
-If you are a maintainer of Kconfig you imply you maintain everything, so
-simply entire directory...
+It is actually a similar idea just clunkier, but maybe necessary
+for these quirks since they are in a table.
 
+But as you can see, there is some of the same thinking: if it's
+not configured in, then we need to compile it out.
 
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
 
