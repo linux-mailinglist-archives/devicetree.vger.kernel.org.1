@@ -1,93 +1,102 @@
-Return-Path: <devicetree+bounces-253546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89DF2D0E896
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:08:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D489D0E8B0
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:11:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 39631300DCB4
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 10:08:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 32442300FE03
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 10:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C3C330B0E;
-	Sun, 11 Jan 2026 10:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE840331A41;
+	Sun, 11 Jan 2026 10:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LMlaRMdV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RfbBiXxy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F9386323;
-	Sun, 11 Jan 2026 10:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3067330D34;
+	Sun, 11 Jan 2026 10:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768126089; cv=none; b=j86zahcFYG7PbylkvFuzMvJkqMNNzZQH2yfyHMGHOLzIceddWF2nrfPqG/Py8C6bKkv9NeTUg7vY8akp79fyS4SFM+qUl8rF34B0yf9SWmrlSsW901jfOnNJfR2lxk4JZCAPMWZo7+gdIEu8CvnN564WMhmu7cChVG87WlWYPkg=
+	t=1768126256; cv=none; b=raVVU92mYx9iL33nkNXhSxnM8wFlD/3BcQy2M65Yxe8QOzIn7AP9kvnG5K4j3awBRL2faMaGe+3wgTs4gKlyvHsePDLMvCH4VM9ZcgKdQmB6wxfMZPqyeDzkSRqAzttYL4sAoORAo2ARh56YybcRP9rpFLLkr8JGAhP8NEq3/9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768126089; c=relaxed/simple;
-	bh=/gFPYwD/Y5WPhrpj0O6BSmAZ9FneNpoyvRuMkaKLOlI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ak1YjjNr7GwA+lJ6xC1HmehNL2Y7PJ5l4/aQTtaV52jmHBCz6oyQmxLV63PbrIrRnfDAumJP6oZ0YHGni5qWUIYeIoPj7WJmhGMqUwxwuWJXCXkgf2HGFe4CvQoisZes6iYKd0TRiHVuZQBg26CTlVDpDwb0S/QRqRIHYg9zmUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LMlaRMdV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A6ABC4CEF7;
-	Sun, 11 Jan 2026 10:08:07 +0000 (UTC)
+	s=arc-20240116; t=1768126256; c=relaxed/simple;
+	bh=zV/ctewfiPYQ3WgFlicNsePqY0KYzA9iBBwBOFgllA0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fs4+w6Uugx847zJ/dfdIegZ/cjw44rnqUelDwPGlvzmSvb3U/F7fN1re4QG8Zh8Amehx/CuNZuxehExJ+7RdVzAWrjruC1aeEZfbM9IcManxLbtr3VmPauc4D/05whEQ+H7fywde2o1X0JlK71Dx4s6N4ghJgBL6xv6pPPYlx5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RfbBiXxy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4C2B0C4CEF7;
+	Sun, 11 Jan 2026 10:10:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768126088;
-	bh=/gFPYwD/Y5WPhrpj0O6BSmAZ9FneNpoyvRuMkaKLOlI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LMlaRMdV9lReX/AZXLFxEn/GI7M+UBfRSpTFWjjWbMxmRg1SCZNcvN3D1PNBdkzS/
-	 UVlx5B2GZ0Fpi5oKoAtGXXCLMQu+KPl+eVGoAPcUKKtPGDvO6/bPB5qYoe8co4CEaV
-	 Qbma/pEUtqsjFLBPNF7O069achQWCX75+NY5+obhi6XvjI8ynw14eoFU6d7OU1YfR9
-	 grezPkQq1i6XE7Nad5PrA09ImtFfInGF/KBYEfKR4DIz+RV1hqyyjB3s4UyTohJhx/
-	 RMH+b9U9DqFYQeN2nZKV/IfaoUiFBfgtSPEM912XS4GcN57diiaXU40EWrvtz9brDc
-	 OmW13XBNMFzNw==
-Date: Sun, 11 Jan 2026 11:08:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: can: renesas,rcar-canfd: Specify
- reset-names
-Message-ID: <20260111-hysterical-cuddly-swift-2cae53@quoll>
-References: <20260109125128.2474156-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260109125128.2474156-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=k20201202; t=1768126256;
+	bh=zV/ctewfiPYQ3WgFlicNsePqY0KYzA9iBBwBOFgllA0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RfbBiXxy3Wrb49OTy3QSW0X3iYnPEUoanZ3ZOJut+ao6soJYBqOs3QPRrLSjlKbDW
+	 YEoDLv2P+yZNZuzIgEott6YqgXGRk06JJQOvSwkAdwPKIW7PGmsEYIdSGew6nOqyii
+	 vm9VB9OvNGVchnll1W31WE1QlOzHtpD6Kllqot8yD9i0X/UeKYUEgPHPEgvxkylGKl
+	 t8M/V/3QKRy02sqB/GfueaGfen06gbRewWmqL2Uo7CwrOLyYYj9RNMuOnpgWb5I34y
+	 OQos9p1BzNBZIdZK7u0t7m358DhnuC/Osk6P+lopRrNkJ2B7faQNWHGu+EOPrz+7yT
+	 WE1zwb+g4xu3w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 429C8D25030;
+	Sun, 11 Jan 2026 10:10:56 +0000 (UTC)
+From: Bharadwaj Raju via B4 Relay <devnull+bharadwaj.raju.machinesoul.in@kernel.org>
+Subject: [PATCH 0/2] ASoC: codecs: aw88261: add dvdd-supply property
+Date: Sun, 11 Jan 2026 15:40:29 +0530
+Message-Id: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260109125128.2474156-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABZ3Y2kC/x3MQQqAIBBA0avIrBMcSZGuEi1Mp5qNhYIF0t2Tl
+ m/xf4NCmanAJBpkqlz4TB04CAiHTztJjt2glbYKEaW/ndMWZawxSqPCiAENrl5BT65MGz//bl7
+ e9wOaJ6zHXgAAAA==
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Weidong Wang <wangweidong.a@awinic.com>
+Cc: Bhushan Shah <bhushan.shah@machinesoul.in>, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768126255; l=732;
+ i=bharadwaj.raju@machinesoul.in; s=20260111; h=from:subject:message-id;
+ bh=zV/ctewfiPYQ3WgFlicNsePqY0KYzA9iBBwBOFgllA0=;
+ b=BlsJq7CwBNYETg1lA3PeqFyXeE9jGEu7zr0hww5nZDeDOXZQhXjwfXR3UaJ8wLUbnbouHWxgB
+ HkhYLeKb8M7BoiBRmwiL5iITfLACHtVCtWtG1B2qnRY1q9ozCiJ2bXp
+X-Developer-Key: i=bharadwaj.raju@machinesoul.in; a=ed25519;
+ pk=0M1a+iMXDqasbx7bQL71NdtuutFXu+lVxsiSnEiyAIg=
+X-Endpoint-Received: by B4 Relay for bharadwaj.raju@machinesoul.in/20260111
+ with auth_id=598
+X-Original-From: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
+Reply-To: bharadwaj.raju@machinesoul.in
 
-On Fri, Jan 09, 2026 at 12:51:25PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Specify the expected reset-names for the Renesas CAN-FD controller on
-> RZ/G2L and RZ/G3E SoCs.
-> 
-> The reset names rstp_n and rstc_n are defined in the SoC hardware manual
-> and are already used by the driver since commit 76e9353a80e9 ("can:
-> rcar_canfd: Add support for RZ/G2L family"). The reset-names property
-> existed previously but was dropped by commit 466c8ef7b66b ("dt-bindings:
-> can: renesas,rcar-canfd: Simplify the conditional schema").
-> 
-> Restore and constrain reset-names in the binding so DT schema checks
-> match the actual hardware requirements and driver expectations.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3:
-> - Updated commit message to clarify that reset-names existed previously
->   but was dropped.
+Make the aw88261 driver depend on and enable the dvdd-supply regulator,
+so that the correct regulator can be specified in the device tree.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
+---
+Bharadwaj Raju (2):
+      ASoC: codecs: aw88261: use dvdd-supply regulator
+      ASoC: dt-bindings: document dvdd-supply property for awinic,aw88261
+
+ Documentation/devicetree/bindings/sound/awinic,aw88395.yaml | 13 +++++++++++++
+ sound/soc/codecs/aw88261.c                                  |  5 +++++
+ 2 files changed, 18 insertions(+)
+---
+base-commit: db1c30e19243982e34f027a2e564c93e94f42cb2
+change-id: 20260111-aw88261-dvdd-50c41c151ba0
 
 Best regards,
-Krzysztof
+-- 
+Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
+
 
 
