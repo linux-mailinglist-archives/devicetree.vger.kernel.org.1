@@ -1,132 +1,189 @@
-Return-Path: <devicetree+bounces-253588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F95CD0EEBC
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 13:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6119DD0EEAF
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 13:49:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D2557300BB91
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 12:49:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3F481300ACFD
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 12:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D966830BF75;
-	Sun, 11 Jan 2026 12:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 975AD309EE9;
+	Sun, 11 Jan 2026 12:49:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b="eTL7bh8c";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="SDdcRvWT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UtLRBp5d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b5-smtp.messagingengine.com (fout-b5-smtp.messagingengine.com [202.12.124.148])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CFA53BB44;
-	Sun, 11 Jan 2026 12:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.148
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7314A304BDA;
+	Sun, 11 Jan 2026 12:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768135795; cv=none; b=egmeVKSRGmbMF5UPe0MxRJV7/lCvhanaryU84r8KbHJJYtKy4JZHdlhPL7JzQGwi0nmQYXbtTWhIk4Sg/4Codz2SuOYcWfmYEZQ+CRRdSRytYD3gDDfKpzrtVamMVMOHjaube8bpTBgmh57PvSM9++QDOJtqsaSVUYHb8uR0kIw=
+	t=1768135759; cv=none; b=usWR6XQNswgUuGzWT64np1XhwqaPmlMAaG+4mmjH3cytSaj1G1k3iL4nAJgS03yQjrQsm6BFAsDmIGkPhpmjBPjMvdvO97nHO/WEeTg5pV0xQoI3DR2QzJBNf8KFEbfx5rMIOaAor5PhkKhiHSDhG2/FY7il3xXOyEbWogHRpwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768135795; c=relaxed/simple;
-	bh=80VrWFxklQiC2GuGjPFXtOITn+vfYoXKApuzbVmx/BQ=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=Mn0E9SqQfvGLPJxFtNikVXRL/AN11ZYhoMOohd+LVln+mMInfmPtqaphYn1S91/hH0G1ENuI8SBMlYjydXo7UC4/RB1ec5CTsYcg7QEBS/Qm4cehpM1BDzC78lba6cSJFb2DAMuhEAU3Bs0UtbGHKx9uVBEVvO5Ayzh8m6kF9QA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in; spf=pass smtp.mailfrom=machinesoul.in; dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b=eTL7bh8c; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=SDdcRvWT; arc=none smtp.client-ip=202.12.124.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=machinesoul.in
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfout.stl.internal (Postfix) with ESMTP id 927C11D00117;
-	Sun, 11 Jan 2026 07:49:52 -0500 (EST)
-Received: from phl-imap-14 ([10.202.2.87])
-  by phl-compute-01.internal (MEProxy); Sun, 11 Jan 2026 07:49:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=machinesoul.in;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1768135792; x=1768222192; bh=o054WpN5HcmGcr752nHkWih9TAp94o4B
-	t7F3jynb8eU=; b=eTL7bh8clphpxMQaKEYNKNritrtdYLtEKofJSKC8Ys0swuih
-	6BMgzdOFHiJFq5xacHdNs5h1yvvah0HeKveOz/MA7GuM+Q4l8/NiOchPC7W+CR5y
-	sDFFzi177J/ERwcL/sWP3AxDcLSsW4Bn8ngUsVQsohW1r7n0AR0hqGn3qdmnT1pm
-	2LRpoZcq+E9PrE3lJ88bhZpuQfohjBitd4ktMhTXsaFRoc7afN9S1rCz3J9EJW11
-	5xPT1c9l00V+Xs/Iab2VwtAPuEb18YVDG/eH+wX1WK2Sk2WhIRBGTJIXJJYHdtan
-	mZngEBaqV+eXddCAlV2b9RQLW34zugtFh1QJwA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1768135792; x=
-	1768222192; bh=o054WpN5HcmGcr752nHkWih9TAp94o4Bt7F3jynb8eU=; b=S
-	DdcRvWTUYV4ZPQekbw/WkyzKrg4zl/vH1uVDLfDTKUaQolFKp5JHZ9NAKb/H+oe7
-	C8gJTwesA+gYg+FMNRFCI1z529esPPCFthe/dI58Yai0uWIBv483efwb4f2O0zyL
-	Io0Qi72jpkOSJ2N2fj0xIlvhn3vP7vyKXhI7EJY7oYfOeT3ftj7lp5B2i3/de7W8
-	kHoYtIDr68EhjCl2H6kvN1A3imZiY1ki2Vw76+mhAjyfLCv1MG16U9LeYbPDbQwi
-	iiEFF/oA9xsHjIi2xuJ4jmTm66fUgQfxRG3HAp/FFoWmcmGcKvXFCj995x1wOY6R
-	Y9qb9wWJ04XpaGSaw6Phw==
-X-ME-Sender: <xms:b5xjafSBdu1mjJXC6A8_N228a-thZsXfgPCb4GLoUC2XZ9n5iaoMxw>
-    <xme:b5xjablgtdT5wlDNakH7rP7TdeNrNTl-ND-5Yz-oGGEpd0u29EdVd3CKPyHXjKR3s
-    SAGa2GS6k-Ku1lcxUBmgwO2RB70tXuaEdoqPwBAAWJdhOT0xVtuYg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduudegiedvucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedfuehhrghr
-    rggufigrjhcutfgrjhhufdcuoegshhgrrhgrugifrghjrdhrrghjuhesmhgrtghhihhnvg
-    hsohhulhdrihhnqeenucggtffrrghtthgvrhhnpeefteefieetuddvgeetgfehteeitdek
-    gefhleejjeffgfeiueevleeuheeigfffleenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpegshhgrrhgrugifrghjrdhrrghjuhesmhgrtghhihhn
-    vghsohhulhdrihhnpdhnsggprhgtphhtthhopeduiedpmhhouggvpehsmhhtphhouhhtpd
-    hrtghpthhtohepfigrnhhgfigvihguohhnghdrrgesrgifihhnihgtrdgtohhmpdhrtghp
-    thhtoheplhhutggrrdifvghishhssehfrghirhhphhhonhgvrdgtohhmpdhrtghpthhtoh
-    eplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgv
-    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrd
-    horhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthht
-    ohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvg
-    hlrdhorhhgpdhrtghpthhtohepmihpohhsthhmrghrkhgvthhoshdsuhhpshhtrhgvrghm
-    ihhngheslhhishhtshdrshhrrdhhth
-X-ME-Proxy: <xmx:b5xjaRbSpkEwHgaBPK4p2q_ElXwt1mUe6QuLsqQqeLtHl-ZDfTV5AA>
-    <xmx:b5xjaZW1R9HAs-Q9HXfgZdLn2kLNL7CcmmAOQxmc32W5YdmlFI5s_g>
-    <xmx:b5xjaUQ0tQLYi8xrG7QdhBKUqQXjjqsAWVjo-PtGXeRLcG0zWFDrqA>
-    <xmx:b5xjaeEiTsinPNSiF2dIuMPkl78iJofSMav5zWZO3lT4B5kruOex7Q>
-    <xmx:cJxjafS20QMwlsZDiJ3heS_Al9ll3JZQl5d4t-YSkUJ0IcLqKrBMQTf3>
-Feedback-ID: i19fe481e:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 46C01C4006D; Sun, 11 Jan 2026 07:49:51 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1768135759; c=relaxed/simple;
+	bh=F8n+Sq20oDOM/6ipBIJy14ztNgcOqSj+bfJssPOGVT8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BQHRzPzaSz7O1vwy7i2K8LJb+zqE676NrSyB9DMUODgi5NZI+6rdccDKJeSmcdr7LeyocAWHUkfziUL19mi4m4wdjVe7fEfZIVC9+hPBaZzeg0rVO+jqGQ0TfBx7C777lo4J3ixzN1kM3VfpUun1NuhjhDdVj46GHAlzjYFdZfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UtLRBp5d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B7A0C4CEF7;
+	Sun, 11 Jan 2026 12:49:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768135759;
+	bh=F8n+Sq20oDOM/6ipBIJy14ztNgcOqSj+bfJssPOGVT8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=UtLRBp5dS2EznPIbYS45wiez/gJjXplV6QuqIvYCNBH2cT3a00WzrPMa682vmlhNF
+	 o4NW1hKGkjNRaG/lTNc3CWeZLCa60imRvky9MxV2ccxUzLYgM+AfRmYndWBvRlQKtz
+	 c75XTTl0nnX8DVdWvP3W1vCp2pd6uKhtcURCDsyj1os3FhYXQfqq1WNVXmueuqAKkC
+	 2WZjB5uMmFBy9rLTM71LdQ0JeGgT4Rpxc1bijbL1kE6+KArr2bUzeNo8ZV6iZ0RbYP
+	 8PBCZRLl61N+EeTO8iT3WmB65UhfoPG8Z7+Ljua2sd5DPp+nyq8dtQuy37nURAPpKb
+	 NItwQNvrGYchw==
+Date: Sun, 11 Jan 2026 12:49:08 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Shrikant Raskar via B4 Relay
+ <devnull+raskar.shree97.gmail.com@kernel.org>
+Cc: raskar.shree97@gmail.com, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, skhan@linuxfoundation.org,
+ david.hunter.linux@gmail.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] iio: proximity: rfd77402: Add interrupt handling
+ support
+Message-ID: <20260111124908.1adec88b@jic23-huawei>
+In-Reply-To: <20260101-b4-rfd77402_irq-v4-4-42cd54359e9f@gmail.com>
+References: <20260101-b4-rfd77402_irq-v4-0-42cd54359e9f@gmail.com>
+	<20260101-b4-rfd77402_irq-v4-4-42cd54359e9f@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AHXG7HT5u_Wc
-Date: Sun, 11 Jan 2026 18:18:55 +0530
-From: "Bharadwaj Raju" <bharadwaj.raju@machinesoul.in>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>,
- "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
- "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Weidong Wang" <wangweidong.a@awinic.com>
-Cc: "Bhushan Shah" <bhushan.shah@machinesoul.in>,
- "Luca Weiss" <luca.weiss@fairphone.com>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Message-Id: <5e47fe91-e150-4b5d-a669-3a7beeea4f03@app.fastmail.com>
-In-Reply-To: <9249c034-de8c-479b-a9c5-f1252e0beba2@kernel.org>
-References: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
- <20260111-aw88261-dvdd-v1-2-83fa0850d561@machinesoul.in>
- <9249c034-de8c-479b-a9c5-f1252e0beba2@kernel.org>
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: document dvdd-supply property for
- awinic,aw88261
-Content-Type: text/plain
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sun, 11 Jan 2026, at 5:00 PM, Krzysztof Kozlowski wrote:
-> Why? Was it missing? Why require it, which is an ABI break (or is not?)?
-> Why is ABI break allowed or what is its impact?
+On Thu, 01 Jan 2026 21:47:41 +0530
+Shrikant Raskar via B4 Relay <devnull+raskar.shree97.gmail.com@kernel.org> wrote:
 
-Right now there are no users of aw88261 in the kernel device tree sources.
-This patch is part of an effort to mainline the FairPhone 5, for which we 
-will add the first use of this compatible, and there we need to specify 
-dvdd-supply for this chip's power supply.
+> From: Shrikant Raskar <raskar.shree97@gmail.com>
+> 
+> Add interrupt handling support to enable event-driven data acquisition
+> instead of continuous polling. This improves responsiveness, reduces
+> CPU overhead, and supports low-power operation by allowing the system
+> to remain idle until an interrupt occurs.
+> 
+> Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
+> ---
+Hi Shrikant,
 
-Since there are no present users, I thought it was OK to add a new required 
-property. If not, I can make it optional.
+A few additional (some may overlap with Andy's) comments from me.
+Thanks,
+
+Jonathan
+
+> +
+> +static int rfd77402_wait_for_irq(struct rfd77402_data *data)
+> +{
+> +	int ret;
+
+Blank line here.  Pretty much always the case are declarations
+in kernel code.
+
+> +	/* As per datasheet, single measurement flow takes 100ms */
+> +	ret = wait_for_completion_timeout(&data->completion,
+> +					  msecs_to_jiffies(100));
+> +	if (ret == 0)
+> +		return -ETIMEDOUT;
+> +
+> +	return 0;
+> +}
+
+>  static int rfd77402_init(struct i2c_client *client)
+>  {
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
+> +	struct rfd77402_data *data = iio_priv(indio_dev);
+>  	int ret, i;
+>  
+>  	ret = rfd77402_set_state(client, RFD77402_CMD_STANDBY,
+> @@ -193,10 +263,24 @@ static int rfd77402_init(struct i2c_client *client)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	/* configure INT pad as push-pull, active low */
+> -	ret = i2c_smbus_write_byte_data(client, RFD77402_ICSR,
+> -					RFD77402_ICSR_INT_MODE);
+> -	if (ret < 0)
+> +	if (data->irq_en) {
+> +		/* Enable interrupt mode:
+		/*
+		 * Enable ...
+
+is the comment syntax used in IIO.
+
+> +		 * - Configure ICSR for auto-clear on read and
+> +		 *   push-pull output
+> +		 * - Enable "result ready" interrupt in IER
+> +		 */
+> +		ret = rfd77402_config_irq(client,
+> +					  RFD77402_ICSR_CLR_CFG |
+> +					  RFD77402_ICSR_INT_MODE,
+> +					  RFD77402_IER_RESULT);
+> +	} else {
+> +		/* Disable all interrupts:
+
+As above. Match local style for comments (which is not this!)
+Oddly that was correct in v3 (indent is now fixed though)
+
+
+> +		 * - Clear ICSR configuration
+> +		 * - Disable all interrupts in IER
+> +		 */
+> +		ret = rfd77402_config_irq(client, 0, 0);
+> +	}
+> +	if (ret)
+>  		return ret;
+>  
+>  	/* I2C configuration */
+> @@ -271,7 +355,27 @@ static int rfd77402_probe(struct i2c_client *client)
+>  
+>  	data = iio_priv(indio_dev);
+>  	data->client = client;
+> -	mutex_init(&data->lock);
+> +	ret = devm_mutex_init(&client->dev, &data->lock);
+> +	if (ret)
+> +		return ret;
+
+I'm not that fussy about it given it's so minor but this is an unrelated
+changes so in ideal world would be a separate patch.
+
+> +
+> +	init_completion(&data->completion);
+> +	i2c_set_clientdata(client, indio_dev);
+> +
+> +	data->irq_en = false;
+
+Not strictly necessary as it's kind of the obvious default and we
+kzalloc data anyway so it's already false.
+
+> +	if (client->irq > 0) {
+> +		ret = devm_request_threaded_irq(&client->dev, client->irq,
+> +						NULL, rfd77402_interrupt_handler,
+> +						IRQF_ONESHOT,
+> +						"rfd77402", data);
+> +		if (ret)
+> +			return ret;
+> +
+> +		data->irq_en = true;
+> +		dev_dbg(&client->dev, "Using interrupt mode\n");
+> +	} else {
+> +		dev_dbg(&client->dev, "Using polling mode\n");
+> +	}
+>  
+>  	indio_dev->info = &rfd77402_info;
+>  	indio_dev->channels = rfd77402_channels;
+> 
+
 
