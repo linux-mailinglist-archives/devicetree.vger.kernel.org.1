@@ -1,68 +1,62 @@
-Return-Path: <devicetree+bounces-253571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3EEAD0EC95
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 13:06:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72CFFD0EDCF
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 13:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 984F830042A4
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 12:06:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7F0273017EE7
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 12:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDDA13382D8;
-	Sun, 11 Jan 2026 12:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA2E33C1B0;
+	Sun, 11 Jan 2026 12:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SgSkqR0C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OVFcqDam"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9842D318BAB;
-	Sun, 11 Jan 2026 12:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F4A2CCB9;
+	Sun, 11 Jan 2026 12:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768133209; cv=none; b=pcF+JTejK7BmblrE3mDAioFT0QfNHFp6gqh9BOAlSyfr4amfBFKZMOyk2QwjMesM8eB/aLnIHhfszdArOFW45f4j6AqzWgRZPE5V6QKBMl3Gp48nzqjv7BfIsNOBlGvCdhLCNO2GT9OOXv0qZXBLvJwoQKh/bOJBNcFm86qJBfo=
+	t=1768134614; cv=none; b=FEiH6yXnqZr2eN/2Tacw7rWQvGaUcUcJSzICk/1CgUSmYxLYbt8R2+39eEzzblV3cayuLgMk3fopNbxolmLqitvJywX6ddiMOH5ZN9pSbxwUVBZpnOjkIaD5OQDjVX+tDOV96btk8h7z+NEdGu2w53v79rk1GEJDEU0XyWvPJ5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768133209; c=relaxed/simple;
-	bh=BZw2XBOYbpiqMDnj26jpYjAEvsUvDh+nwlen6umIw2s=;
+	s=arc-20240116; t=1768134614; c=relaxed/simple;
+	bh=NIb+rv4NQye6pipuuktVd+nuDj8ezYg/9eCRhZxNeLo=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CfhD2W41Ruhylj5m8152tmlhvkoPn5Dkm81BVsVa+fPiY1hjnNIIIlPxhTP7QCYMsz28KiD7PX4QKXi2SwqreOkWA36ESKM9WxuDSBsYSJ4eChm9zH3rCoiDkHxQvxC4TE7KXvtNeNnBPCCsEYs2FBmsMHOpK+wmW/9tlOCEklQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SgSkqR0C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EC9EC4CEF7;
-	Sun, 11 Jan 2026 12:06:41 +0000 (UTC)
+	 MIME-Version:Content-Type; b=e0/Pld8hgz9cOjnnFwSrhxT4Wrz8oyQ4xrHfqazFXa20tjXlf3WBVyV0zZaEIXSTOyrhU1Bj9DnuK4ZLY0hYWE84eYUH35hjWFpBkvx2NhwQX/F8tc7VQoa0zMLvzbtKI61zr7iUTcqsA3Jo3/+vI9CdKLbFNRiD3sR9gXPBscU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OVFcqDam; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55AAFC4CEF7;
+	Sun, 11 Jan 2026 12:30:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768133209;
-	bh=BZw2XBOYbpiqMDnj26jpYjAEvsUvDh+nwlen6umIw2s=;
+	s=k20201202; t=1768134614;
+	bh=NIb+rv4NQye6pipuuktVd+nuDj8ezYg/9eCRhZxNeLo=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=SgSkqR0C9GDomSK76wu39P6fgCBYn2yBx81a//rIKcOtCyd24DsfBs6jvwE6w67ZZ
-	 1u6ct9v1ZlP+AM818oHlAE5EAS/H3rnngxSQqnil04ryae1HoVYE+wD/mG7T5oKK5J
-	 B1ruxryHjxvyYy0CnzOyPiyY8ByPjMNgu/JJcSGKCZ47JstHkP+Vq1F+K9KwJfXOVz
-	 AbZnxGkdaFyO7LM8da6LeahN5g4kyTJMgN/L/pQK75K8aX3YWtihdpC5vCfv22pcfV
-	 /Es64fx8hiotAFmgJIsXAMdg5KE3bFs3pqHaLJMbr5JrmKPstgSJ0UiilW0yX2c+D3
-	 tFP5GzID5TWPw==
-Date: Sun, 11 Jan 2026 12:06:35 +0000
+	b=OVFcqDamFWW5J4D5vM59jJcU1DOMcqxjc6QPwPRGXqtjE821z5Edf6CIm7a+2e0SU
+	 3sc0yl3KR5wTsFdMsdh0G7FZp4P+iLIRrJJznjK7vSqsd6KOb2Ync7+N/87Xg0rrV4
+	 bAQuCbPJaUJ13ocwS30Ukn1TTRQdevjbT5Q0nbBwAK6CcozsjtKXudq1VE1n9eAdwe
+	 HTDeHU0PlNnxI1jX2haMr9Wi2epO3oS/S+HyHPXaEkFWvQdGVsUb690+Kh3xqvB4Pk
+	 BZjmFJQxImlC+9zeWHR928ec92MUL2CnvbMAWjinEDYk4EaeLKDniOZRaAO4/tPrux
+	 Sj339xiAzGTiA==
+Date: Sun, 11 Jan 2026 12:30:03 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, David Lechner
- <dlechner@baylibre.com>, nuno.sa@analog.com, Andy Shevchenko
- <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marcelo Schmitt
- <marcelo.schmitt@analog.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Angelo Dureghello <adureghello@baylibre.com>, Tobias Sperling
- <tobias.sperling@softing.com>, Eason Yang <j2anfernee@gmail.com>, Marilene
- Andrade Garcia <marilene.agarcia@gmail.com>, Cosmin Tanislav
- <cosmin-gabriel.tanislav.xa@renesas.com>, duje@dujemihanovic.xyz,
- herve.codina@bootlin.com, Rodolfo Giometti <giometti@enneenne.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com
-Subject: Re: [PATCH 2/2] iio: adc: add driver for Texas Instruments TLA2528
- adc
-Message-ID: <20260111120635.46f7216e@jic23-huawei>
-In-Reply-To: <286a032d-7a14-409d-9bb3-6033c35f8e99@gmail.com>
-References: <20251223155534.220504-1-maxime.chevallier@bootlin.com>
-	<20251223155534.220504-3-maxime.chevallier@bootlin.com>
-	<efbe9720-0974-4d5e-9a03-fefd3c86e275@gmail.com>
-	<20251231171220.1f99e36d@jic23-huawei>
-	<286a032d-7a14-409d-9bb3-6033c35f8e99@gmail.com>
+To: akemnade@kernel.org
+Cc: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas
+ Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, Roger
+ Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] iio: imu: inv-mpu9150: fix irq ack preventing irq
+ storms
+Message-ID: <20260111123003.450bec98@jic23-huawei>
+In-Reply-To: <20251231-mpu9150-v1-1-08ecf085c4ae@kernel.org>
+References: <20251231-mpu9150-v1-0-08ecf085c4ae@kernel.org>
+	<20251231-mpu9150-v1-1-08ecf085c4ae@kernel.org>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -73,83 +67,95 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2 Jan 2026 09:13:51 +0200
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Wed, 31 Dec 2025 22:14:16 +0100
+akemnade@kernel.org wrote:
 
-> On 31/12/2025 19:12, Jonathan Cameron wrote:
-> > On Mon, 29 Dec 2025 10:20:23 +0200
-> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> >   
-> >> On 23/12/2025 17:55, Maxime Chevallier wrote:  
-> >>> This adds a new driver for the TI TLA2528 ADC chip. It ha 8 12-bit
-> >>> channels, that can also be configured as 16-bit averaging channels.
-> >>>
-> >>> Add a very simple driver for it, allowing reading raw values for each
-> >>> channel.
-> >>>
-> >>> Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
-> >>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> >>> ---
-> >>>    MAINTAINERS                  |   7 ++
-> >>>    drivers/iio/adc/Kconfig      |  10 ++
-> >>>    drivers/iio/adc/Makefile     |   1 +
-> >>>    drivers/iio/adc/ti-tla2528.c | 209 +++++++++++++++++++++++++++++++++++
-> >>>    4 files changed, 227 insertions(+)
-> >>>    create mode 100644 drivers/iio/adc/ti-tla2528.c
-> >>>
-> >>> diff --git a/MAINTAINERS b/MAINTAINERS
-> >>> index dc731d37c8fe..5c382ae216c7 100644
-> >>> --- a/MAINTAINERS
-> >>> +++ b/MAINTAINERS
-> >>> @@ -25866,6 +25866,13 @@ F:	include/dt-bindings/soc/ti,sci_pm_domain.h
-> >>>    F:	include/linux/soc/ti/ti_sci_inta_msi.h
-> >>>    F:	include/linux/soc/ti/ti_sci_protocol.h
-> >>>    
-> >>> +TEXAS INSTRUMENTS' TLA2528 ADC DRIVER
-> >>> +M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
-> >>> +L:	linux-iio@vger.kernel.org
-> >>> +S:	Supported
-> >>> +F:	Documentation/devicetree/bindings/iio/adc/ti,tla2528.yaml
-> >>> +F:	drivers/iio/adc/ti-tla2528.c
-> >>> +
-> >>>    TEXAS INSTRUMENTS' TMP117 TEMPERATURE SENSOR DRIVER
-> >>>    M:	Puranjay Mohan <puranjay@kernel.org>
-> >>>    L:	linux-iio@vger.kernel.org
-> >>> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> >>> index 58da8255525e..67376de410bf 100644  
-> >>
-> >> Hmm. Would it ease merging if MAINTAINERS changes were in their own patch?  
-> > 
-> > Not particularly.  Though I personally slightly prefer the logic
-> > of bringing the entry in with the first file, then adding additional files
-> > in later patches.
-> > 
-> > Given it is huge and in alphabetical order, conflicts in MAINTAINERS are
-> > fairly rare and trivial to resolve.
-> >   
+> From: Andreas Kemnade <andreas@kemnade.info>
 > 
-> Thanks for this clarification :)
+> IRQ needs to be acked. for some odd reasons, reading from irq status does
+> not reliable help, enable acking from any register to be on the safe side
+> and read the irq status register. Comments in the code indicate a known
+> unreliability with that register.
+> The blamed commit was tested with mpu6050 in lg,p895 and lg,p880 according
+> to Tested-bys. But with the MPU9150 in the Epson Moverio BT-200 this leads
+> to irq storms without properly acking the irq.
 > 
-> I don't know where I had picked up this idea, but I thought that the 
-> volume of changes in MAINTAINERs was somewhat annoying source of 
-> conflicts. I sit and type corrected :)
+> Fixes: 0a3b517c8089 ("iio: imu: inv_mpu6050: fix interrupt status read for old buggy chips")
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Jean-Baptiste,
 
-Low chance for any given patch, but high chance overall as so many patches
-touch it!  Resolving it isn't really any easier if it is inside a bigger
-patch or not.
+If you have time to look at this that would be great.
+
+Whilst here I'll note the defines in this driver could really do with consistency
+improvements.  I'd like to see GENMASK() and BIT() used everywhere.
+Currently it's mostly the style used in this patch with a few fields in
+the newer style.  
+
+Thanks
 
 Jonathan
 
-> 
-> 
-> Yours,
-> 	-- Matti
-> 
 > ---
-> Matti Vaittinen
-> Linux kernel developer at ROHM Semiconductors
-> Oulu Finland
+>  drivers/iio/imu/inv_mpu6050/inv_mpu_core.c    | 8 ++++++++
+>  drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h     | 2 ++
+>  drivers/iio/imu/inv_mpu6050/inv_mpu_trigger.c | 5 ++++-
+>  3 files changed, 14 insertions(+), 1 deletion(-)
 > 
-> ~~ When things go utterly wrong vim users can always type :help! ~~
+> diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
+> index b2fa1f4957a5b..5796896d54cd8 100644
+> --- a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
+> +++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
+> @@ -1943,6 +1943,14 @@ int inv_mpu_core_probe(struct regmap *regmap, int irq, const char *name,
+>  			irq_type);
+>  		return -EINVAL;
+>  	}
+> +
+> +	/*
+> +	 * Acking interrupts by status register does not work reliably
+> +	 * but seem to work when this bit is set.
+> +	 */
+> +	if (st->chip_type == INV_MPU9150)
+> +		st->irq_mask |= INV_MPU6050_INT_RD_CLEAR;
+> +
+>  	device_set_wakeup_capable(dev, true);
+>  
+>  	st->vdd_supply = devm_regulator_get(dev, "vdd");
+> diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
+> index 211901f8b8eb6..6239b1a803f77 100644
+> --- a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
+> +++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
+> @@ -390,6 +390,8 @@ struct inv_mpu6050_state {
+>  /* enable level triggering */
+>  #define INV_MPU6050_LATCH_INT_EN	0x20
+>  #define INV_MPU6050_BIT_BYPASS_EN	0x2
+> +/* allow acking interrupts by any register read */
+> +#define INV_MPU6050_INT_RD_CLEAR	0x10
+>  
+>  /* Allowed timestamp period jitter in percent */
+>  #define INV_MPU6050_TS_PERIOD_JITTER	4
+> diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_trigger.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_trigger.c
+> index 10a4733420759..22c1ce66f99ee 100644
+> --- a/drivers/iio/imu/inv_mpu6050/inv_mpu_trigger.c
+> +++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_trigger.c
+> @@ -248,7 +248,6 @@ static irqreturn_t inv_mpu6050_interrupt_handle(int irq, void *p)
+>  	switch (st->chip_type) {
+>  	case INV_MPU6000:
+>  	case INV_MPU6050:
+> -	case INV_MPU9150:
+>  		/*
+>  		 * WoM is not supported and interrupt status read seems to be broken for
+>  		 * some chips. Since data ready is the only interrupt, bypass interrupt
+> @@ -257,6 +256,10 @@ static irqreturn_t inv_mpu6050_interrupt_handle(int irq, void *p)
+>  		wom_bits = 0;
+>  		int_status = INV_MPU6050_BIT_RAW_DATA_RDY_INT;
+>  		goto data_ready_interrupt;
+> +	case INV_MPU9150:
+> +		/* IRQ needs to be acked */
+> +		wom_bits = 0;
+> +		break;
+>  	case INV_MPU6500:
+>  	case INV_MPU6515:
+>  	case INV_MPU6880:
+> 
 
 
