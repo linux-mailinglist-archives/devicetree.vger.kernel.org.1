@@ -1,118 +1,142 @@
-Return-Path: <devicetree+bounces-253613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49424D0F32B
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 15:46:52 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5428D0F3F9
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:06:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3340A301CB64
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 14:46:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 709D43022126
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 15:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE75D33C1A2;
-	Sun, 11 Jan 2026 14:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Qam1s0sk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3279B34B1A9;
+	Sun, 11 Jan 2026 15:06:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B6F3491F2
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 14:46:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B057C3491E1
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:06:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768142804; cv=none; b=H5n7Kr8N9j6ejNhqT9oDBKI7REmksV/Iz6PyK9gME8HtuRhWzuLUONX/8zsx5O7TRmWAcM68aIDhvcvjhp/7ODyXZ1pFqXVUCaSeG2rTVEGWiHZryvV9Rj+MnTH/JM6DMRsyocnCXE5Neycoaf/b5WQRwmCXAwVx7EV10s3EC2w=
+	t=1768143982; cv=none; b=AMw+SFudbpeU8HkQDnUMycz4TfddRJwcjSTLE3Jr5SwgwETvB+KTp+XQRhYgI/mdOtKNDGsXHuSV4nmL6sicGY0Utq6DwbDkrbC2kwRds/cbxFmIYAhrjR57xK2egcwaXMfl/qeLo4o+DRcZUW4RUnbuUArmVM8eLIHNRwNufqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768142804; c=relaxed/simple;
-	bh=L2SAqNmu61MHKLD0agICr57xkRB0iGTI91g9rMmmRgU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YPgyJmwsblvn7ILVJXee8+WAbfPUYdtL/ha/D4YCrWoPIhhkZ2xdxuwg4Fv2MRGgn1sHoJOXyj8HnjNFVOssMI/5hZIf+2/Ep3O1vkZ+ydOkAiJVwNq2N7XuHx4G+mxvoYfcOcfGCby/2/MZJtFSoXnWQ1NWj+LMmQ9laHSEmmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Qam1s0sk; arc=none smtp.client-ip=209.85.208.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-64d02c01865so9507811a12.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 06:46:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1768142800; x=1768747600; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=998LIQD26tTlqKe1Nt9hPTV8z5SAR5Xb1tsWRfDj7yM=;
-        b=Qam1s0skrMJn1KfWZxSe96IKP81h22WhBDibkbxgWIUwpBSQNSN536T77TtojW3nxq
-         kLFoyDPha3E1j8A98VyQxWws3pi3XVHEjYrLvuh2AjL/vNPcDkas+WMRnHVItePkIK5p
-         yjOS8EtefDgl07rBXwJ/tP65Y/Vw1sE6EhWNK6+VRchLP7n6emPQxYYi/5H9xtlL6/P/
-         ns7a6XFDQO9GAFW8hheFyqWsQk6Nsce0VyXmYi3J35Jk+Y3cTtzFIsWLZLPcx+gnyCUs
-         9g1Vv5mta+IVdq3zoLjpJHhxhqt9cTIhUzchJVlA7JHMdhTyomaoN/CV+gPsigwenQok
-         wOrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768142800; x=1768747600;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=998LIQD26tTlqKe1Nt9hPTV8z5SAR5Xb1tsWRfDj7yM=;
-        b=Ve+/bEGtA80mtkVMB7k8PqSDq0lBwRoJLvPwDjBOYpYqNOemlY0J4APDnOlmeIV95j
-         k3J7GeqbZiCZqEEBIg1PcQCK2HfhDRfbqk6fbhIBR7Hs2pryw5fy1qM8f/pFwpNZsKp4
-         ZZNWdBbw5zqGStjFMruyN5/t7yiwX+e7FFIlt2OYV8zSU0iQIsFX2RnbWCAX6A2TMKTb
-         lG1BfdJGVYkoru1iC+fABYn24Ju/M1pv3moTpAFbAnSbCgsuKgaFPzqtceZjxJC7xPzZ
-         2Amdd39tGz0yAUPX6OKIaAd05dpJz5zfIiPXcF8ou15/QyU67tM1kQmlqKq6qkGdGIi0
-         lMUg==
-X-Forwarded-Encrypted: i=1; AJvYcCWOttlPQOZFJhvL0MaGzjw6LqKWaxlIXXCsfjxORLYfc1jfFaDVftTIYlTWkvpRMLYSqJDAW7v0jq97@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzb7yubJfaXsx5wCqHIsxDEf8W7Vc7Q9EUojrtOYOfJn9S9kY1L
-	ZEQg5GYDgN7rhyDikBGXk4r14VgZ8O7NYvLbB3NKH3SPu7QT8GSetfhjIAfT10db54I=
-X-Gm-Gg: AY/fxX5rAYPhYL8kapNW3Icjz+iMVK3l1/PZefAxEFZm3RiswI65YP7plFbPrXzMUKd
-	DfBXw89E8zU5CO8FT5u3/Hw16Qzf+fIAoDmdQDZFSEG/yx8b4tOzXJvA1/mokkTYd2wGyimW4Vj
-	PsVNdZ/NgeRbdnxBZSTAKQK08i/nG8UkNzLPsQwE4l0SjTkqdgPqPsJuEhAHXyvT7lBoUrPbX7I
-	lbv/MqRZVGwkC79S47ObvNyB3qK8ZMrUy6GL1+Ld94JARRy6JC7nFg0i+RRvU9pZmsKHs5zlfWf
-	LsJtKg3lAUfvA/z4TZLreqtIx99uAjeCVA5mwpaz7wejihKsCOf0e3+JJmjB4EJZCmLpuTWKl2V
-	tdd/o/mEe/Jqs2iMyaJfuDMMn+0hadjziUDalvd9QbzKrm7UE7ncP+S+eFIX3oilYrAFcR8pTCv
-	kWHUKOXJfhlafJTGdTBi0TWGA=
-X-Google-Smtp-Source: AGHT+IEEnxtsLJjgQBqtCtTKdKKJ7nKe93tErDCONdjzSpalyD4Cf1jf8cogFFk+Jwao/l06OHgHEQ==
-X-Received: by 2002:a05:6402:26cc:b0:64d:498b:aeff with SMTP id 4fb4d7f45d1cf-65097e8e49bmr13880469a12.34.1768142800347;
-        Sun, 11 Jan 2026 06:46:40 -0800 (PST)
-Received: from [10.216.106.246] ([213.233.110.57])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf6d4acsm15318996a12.30.2026.01.11.06.46.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Jan 2026 06:46:39 -0800 (PST)
-Message-ID: <0ca4477e-cfd8-439f-946f-9d0205b62c6a@tuxon.dev>
-Date: Sun, 11 Jan 2026 16:46:33 +0200
+	s=arc-20240116; t=1768143982; c=relaxed/simple;
+	bh=Z+UYuPcxwTAYn5fEGYu7PIC71ZOo+MFkrnH9AKsKs8E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YUjf6s3NJXcRfbNFXyic6R/Aj6kMYolnsoCHW8bhzltUNPrAfB/Rc01ntqM0aOF60Ni24Dh9mLC6ZcIjuX0cTidkpjyDm8jGKkEfex4muHHnMVBqXk7o9DUYSjUWjYaLOj4e29eJQcuqwaBxJYX7II5R9ZKmYpmnJuSt3TQ0oZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <m.felsch@pengutronix.de>)
+	id 1vex0q-0004rl-M7; Sun, 11 Jan 2026 16:05:52 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+Subject: [PATCH v5 0/4] Input: Add support for TouchNetix aXiom touchscreen
+Date: Sun, 11 Jan 2026 16:05:43 +0100
+Message-Id: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 14/15] dt-bindings: arm: AT91: document EV23X71A board
-To: Robert Marko <robert.marko@sartura.hr>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, herbert@gondor.apana.org.au,
- davem@davemloft.net, vkoul@kernel.org, andi.shyti@kernel.org,
- lee@kernel.org, andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, linusw@kernel.org, Steen.Hegelund@microchip.com,
- daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
- olivia@selenic.com, radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.org,
- lars.povlsen@microchip.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-i2c@vger.kernel.org, netdev@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-usb@vger.kernel.org
-Cc: luka.perkov@sartura.hr
-References: <20251229184004.571837-1-robert.marko@sartura.hr>
- <20251229184004.571837-15-robert.marko@sartura.hr>
-Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20251229184004.571837-15-robert.marko@sartura.hr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEe8Y2kC/4XPsWrEMAwG4Fc5PNdFcmwn7tT3KB0cR714qBPsn
+ Ek58u5VAkeHHmQR/BJ8ku6iUI5UxNvlLjLVWOKUOJiXiwijT1eSceAsFCgNLWhZrUSQyzTHwPU
+ WxhIyUZJ+jdM3j0xrkToERMHGnOkrrof/8cl5jGWZ8s+xruLePWREdCdyRQnSotJOmd612L3Pl
+ K63JU8prq8DiZ2v6kEaMOqUVEx6Q0PPZ3sL8JRs/shO4RnZMOk0hEBkh943T0n9IC0g2DNS7yS
+ 53rrQ8ff2H7lt2y8GocLryAEAAA==
+X-Change-ID: 20240704-v6-10-topic-touchscreen-axiom-105761e81011
+To: Luis Chamberlain <mcgrof@kernel.org>, 
+ Russ Weight <russ.weight@linux.dev>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+ Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
+ Danilo Krummrich <dakr@kernel.org>, Danilo Krummrich <dakr@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-input@vger.kernel.org, kernel@pengutronix.de, 
+ Marco Felsch <m.felsch@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi,
 
+this adds the support for the TouchNetix aXiom touchcontroller family.
 
-On 12/29/25 20:37, Robert Marko wrote:
-> Microchip EV23X71A board is an LAN9696 based evaluation board.
-> 
-> Signed-off-by: Robert Marko<robert.marko@sartura.hr>
+The following features are added:
+ - I2C communication
+ - Input event handling
+ - Touchcontroller firmware (AXFW or ALC) updates
+ - Touchcontroller config (TH2CFGBIN) updates
 
-Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Regards,
+  Marco
+
+Changes in v5:
+- Link to v4: https://lore.kernel.org/r/20260106-v6-10-topic-touchscreen-axiom-v4-0-9e9b69c84926@pengutronix.de
+- fix sysfs documentation description indentation and date
+
+Changes in v4:
+- Link to v3: https://lore.kernel.org/r/20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de
+- rebased on top of v6.19-rc1
+- collect r-b tags
+
+Changes in v3:
+- Link to v2: https://lore.kernel.org/r/20250529-v6-10-topic-touchscreen-axiom-v2-0-a5edb105a600@pengutronix.de
+- firmware: fix commit message (Russ)
+- dt-bindings: Add ack from Krzysztof
+- dt-bindings: make use of GPIO_ACTIVE_LOW (Krzysztof)
+- dt-bindings: drop 'panel: true' property (Krzysztof)
+- driver: make use of sysfs_emit (Greg)
+- driver: s/WARN()/dev_warn()/ to not take down the system (Greg)
+- driver: fix build dependency error by adding "depends on DRM || !DRM"
+- driver: harmonize usage printing to u%02X
+
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de
+- Rework the firmware-duplicate handling -> expose the error to the
+  userspace
+- Drop Krzysztof Kozlowski ACK and RB
+- Add panel-follower support
+- Add sysfs-driver-input-touchnetix-axiom documentation
+- Add support for new firmware 4.8.9
+- Add support to handle 2D and 3D firmware
+
+---
+Kamel Bouhara (2):
+      dt-bindings: vendor-prefixes: Add TouchNetix AS
+      dt-bindings: input: Add TouchNetix axiom touchscreen
+
+Marco Felsch (2):
+      firmware_loader: expand firmware error codes with up-to-date error
+      Input: Add TouchNetix aXiom I2C Touchscreen support
+
+ .../testing/sysfs-driver-input-touchnetix-axiom    |   81 +
+ .../input/touchscreen/touchnetix,ax54a.yaml        |   62 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ drivers/base/firmware_loader/sysfs_upload.c        |    1 +
+ drivers/input/touchscreen/Kconfig                  |   17 +
+ drivers/input/touchscreen/Makefile                 |    1 +
+ drivers/input/touchscreen/touchnetix_axiom.c       | 2974 ++++++++++++++++++++
+ include/linux/firmware.h                           |    2 +
+ lib/test_firmware.c                                |    1 +
+ 9 files changed, 3141 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20240704-v6-10-topic-touchscreen-axiom-105761e81011
+
+Best regards,
+-- 
+Marco Felsch <m.felsch@pengutronix.de>
+
 
