@@ -1,110 +1,126 @@
-Return-Path: <devicetree+bounces-253653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839FCD0FF39
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 22:27:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95A0D10089
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 23:11:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 85CCE302C872
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 21:27:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AC5133028464
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 22:11:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FB32877DA;
-	Sun, 11 Jan 2026 21:27:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74CC22D23B1;
+	Sun, 11 Jan 2026 22:11:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OGP34vvU"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="iWtWuLcO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.119.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82434285CA3
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 21:27:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A49417B505;
+	Sun, 11 Jan 2026 22:11:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.119.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768166826; cv=none; b=uoH+kkvccMjOZPiLRrrXEa5DePTbNHkNNRqB/t65cjZTw2mfYpIHCR5Dn3bLdXWNk4hcqVmoa+5d29mnxV8mztrZImMsqobhzYAjYpK6MoYkuAE0OJhtaunA1QBJrLr0c9I/qBDHizIGiGhof4B0clDB6hjEu7Lr0dghLL43uak=
+	t=1768169493; cv=none; b=D4Jwy7fmV4ZmI0ZepCVO1SCYfXHvCAdW+JOuKayVw+uy6mmcB15L0E9ZNNBDiu7ebB3AcT029gWOp4xdaOxCjBQBWzpSfhE1PnDD8B35/lfKHDYCL3IUvBnjAtVS214T/2DvNWWc/GmnKM7mwi/TryzGCekoK1XwNTpQ6wFaCIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768166826; c=relaxed/simple;
-	bh=EnXqUjTJkdNJLSXs4uzNboxvwCMLETZ1on8J/fmA1kk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jYeqyYFUPpISrO97NV/GLvWZ3bAVYvfWcbvYkr0vWSW//tt9m129KJ7mRpc8mlWZnvCPyQHW5PTFKJJrNKEzMy035xjzDSzLvhyqdkkurddiR2Op3WjnaSUrhnLj8BfTnlb+Qh8QcTgpUbi/0YalAoNgQAUNc7HOg10xo8J9oxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OGP34vvU; arc=none smtp.client-ip=74.125.82.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-12056277571so6683805c88.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 13:27:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768166825; x=1768771625; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O+La3CIGRSshVXzJJV6Ws5h0oOhl5eEMo2EIxi5DDGY=;
-        b=OGP34vvUlqpEQumLvdZiRb3eC+bEapfjw0mooBQZqOsHo0EmWx174QKkiM9sysuJ2s
-         vKSqRwDZXlwSyohWcA9C5RSK3cQI6OqwFKDrceYEAR1BOUaOR3HXK3UEVNm2dTXrrK7d
-         yM6cAsT+XKw/LgKJHnhsubZKJt5I/Savhap+Viz5F2V+SynAWywPxG5kbbvGkEEWhRGY
-         Um0ALlwSq/JT/7+c6HtpVhsNjQb3h9H+muyjZPyKaMlIUDdk+/PaKXlvrWgVF3ycuE5+
-         yakLhpzSyhZvtQxq2GUp62zA6ASgCIixOjhxVufCgH8/CqT8yrDPMlSNaQuBd58FyoFg
-         Oerg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768166825; x=1768771625;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=O+La3CIGRSshVXzJJV6Ws5h0oOhl5eEMo2EIxi5DDGY=;
-        b=gDICJlTxePI2dMqMwKpCZREz2mjwvsjiBj7g83m1JXFVh3krCVIj1uUMmHTyn2S+7q
-         zo/Ld2052SsFZVUJiCahTMIJhDuik0ajEQJdO9tLZsnqq1aTE0scUDBsWlFx/fQYivup
-         VJH/2qWef0WL0Yh5bFX6AYkcfUmO+c/3xprUNgdscem7+IznyLOrE3JdbLW53LanYJU6
-         euYdAlGm3zP6iiysEdPuQWtasIh53Mi0SnL1eUPFYhvGWp8QRh5sDfy266VE/zyluljI
-         sR7Ux5uLLfOCNbihd5aYiL5eL7Vff87f1IkNVzx0xVsUqLgO3S6Mesi6ThbRbtV1bE0w
-         rD5A==
-X-Forwarded-Encrypted: i=1; AJvYcCW13iv1kb2UrJVHMkkwlnGgi4NlEZ5e7tB8qtC4bavjWOZHN+uU+sqtLFzRtNYBeQUfO1GaiZO4LoL3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPh0EzU+Sufp0b38jIy3JuhZzvOhDIN2ueEGGZjLY2g7trM5Lr
-	ZdMCyGYcPv3iOLoBqrMEnuYzsD8sBcKrcI5ppW1jnoUAo9ErQ8sNsyEE41OhFVhODLFlIT9/JCB
-	BwKyYuOrE0pnc3USl1ZzxKlG9f70L8mMuPrhB
-X-Gm-Gg: AY/fxX7Sv6eHAUdKr0NaOt6mMJnLLWCrUefDDtRxdMhHmhD3rJIPDaDTobeksSanxFz
-	ZMmrDeWRFgmrclF6P1Q1UFvJL2qv4xsUmERmjIjMr6Cq86VaLjNkfDFT2ieg4Y9h9iQkNAPgkgc
-	yl8Teepxff9Pib3e1QP8zp4IQpx6mlapbO5U+VyLLOL+ikqZe91lKCHoqnNXZ7DRBI2byiw24Ex
-	xNtDKRlwmKVEp1pF4so0vqHC8YAorR57gtZ3jANXWpxXrHhb//FKZsW+6I4+/NzextA9CN8y8tv
-	Gk4cKE408Nf0Vle1ey0=
-X-Google-Smtp-Source: AGHT+IEAIkTtTenYTps//RIeNMSHypd9h5mkG9ym0bXQcjZBxIqbQi188jjy2QtOlW65luwAbZQyPc1Ub9a0FeUef3E=
-X-Received: by 2002:a05:7022:b9d:b0:119:e56b:98c1 with SMTP id
- a92af1059eb24-121f8b8c1dcmr15280403c88.40.1768166824499; Sun, 11 Jan 2026
- 13:27:04 -0800 (PST)
+	s=arc-20240116; t=1768169493; c=relaxed/simple;
+	bh=fyuFy3gDiyxIQK2swhXAdbyrHk8yp6Tcd8rDBBoUIps=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NkPfGbJjm18AEtq9DcONF0Mh99m0/QkbnuFBkeEYFvrc5PDhXHu6nQDcS5tiwgftrbwo8sOPpxNbszdx29GSq32nRXqjE7vCLmlKI3cp3o6noOFmL4LGeGVY9Y1Sq6Vm9iUNhzOLrZKyTj9AgvpLP+l0qEKbaIX51ebITuPTG6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=iWtWuLcO; arc=none smtp.client-ip=195.154.119.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=gPstPsInb9Spla61rJxQEHUOiBzQa2NcgplZETRWFrM=; b=iWtWuLcOj/HdKu593I7VEfL4Kc
+	qXuY3yroBM1deApaPnDH9YLD41koVgSi6aVUG19kRu9zcN6d9ri5fKwOXvbQ+JDby4FOy9tiqbcp2
+	a00oDAsf6GceFmU2BoPOA4ClrYAnRwQXiznIt+drJ1kCyDnSc05cIQSz4DDnKT99Y6XkLR3/ND8u2
+	eWYqeKPqudtWrpK6l0zJTHE4K6HB6fvaHbS3Q+PjkrbRDZty7H3tN5DAFQ52sAFuxuhHayySHpAC6
+	VZ7mA6xRjBpeiFf7HMoM9UY6Ws8KuJd9mylKani0fQPsqpqp6DNk4nWcHXYstAg9o0EXIEYlcGqTh
+	d+uHTAdw==;
+Received: from [2a01:e34:ec5d:a741:1ee1:92ff:feb4:5ec0] (helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1vf3eR-00000000WRQ-3uhj;
+	Sun, 11 Jan 2026 23:11:11 +0100
+Date: Sun, 11 Jan 2026 23:11:10 +0100
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Ze Huang <huang.ze@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] riscv: dts: spacemit: Add USB 3.0 support for K1
+Message-ID: <aWQf_jojl-dzw6LK@aurel32.net>
+Mail-Followup-To: Ze Huang <huang.ze@linux.dev>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+References: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260111201040.162880-1-anirudhsriniv@gmail.com>
- <20260111201040.162880-3-anirudhsriniv@gmail.com> <fdfb7212-5133-4cf4-9448-15cbbaa34eff@lunn.ch>
-In-Reply-To: <fdfb7212-5133-4cf4-9448-15cbbaa34eff@lunn.ch>
-From: Anirudh Srinivasan <anirudhsriniv@gmail.com>
-Date: Sun, 11 Jan 2026 15:26:52 -0600
-X-Gm-Features: AZwV_QhD59iuYK8Lvi1649SQz_mf1A12Z53MMB7xc4wTeA0B9lLvh3wsy_Tx2eA
-Message-ID: <CAJ13v3QVVC44XD1W-4t_m7Mfv8L214s2T62CyDdJTggX6paZpg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add Asus IPMI card
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
+User-Agent: Mutt/2.2.13 (2024-03-09)
 
-On Sun, Jan 11, 2026 at 3:09=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > +&mac2 {
-> > +     status =3D "okay";
-> > +
-> > +     /* Bootloader sets up the MAC to insert delay */
-> > +     phy-mode =3D "rgmii";
->
-> There has been many discussions about this. This is broken, 'rgmii'
-> means the PCB adds the delays, not the MAC/PHY pair.
->
-> Please drop Ethernet support until aspeed fix the broken MAC driver.
->
->        Andrew
+On 2026-01-11 14:41, Ze Huang wrote:
+> This patch series enables the DWC3 USB 3.0 host controller on the
+> Spacemit K1 SoC and enables it for the Banana Pi F3 board.
+> 
+> For testing, the following kernel configurations should be enabled:
+> 
+> CONFIG_PHY_SPACEMIT_K1_USB2=y
+> CONFIG_PHY_SPACEMIT_K1_PCIE=y
+> CONFIG_USB_DWC3=y
+> CONFIG_USB_ONBOARD_DEV=y
+> 
+> This series is based on the spacemit k1/for-next branch.
+> 
+> Link: https://github.com/spacemit-com/linux
+> 
+> Signed-off-by: Ze Huang <huang.ze@linux.dev>
+> ---
+> Changes in v3:
+> - rename vbus and hub regulator to match schematics
+> - reorder node reference to keep alphabet order
+> - drop regulator-always-on in usb hub regulator node
+> - drop unmanaged vbus-supply in usb host node
+> - Link to v2: https://lore.kernel.org/r/20260107-k1-usb3dts-v2-v2-0-e659b0f8fe1a@linux.dev
+> 
+> Changes in v2:
+> - rebased on spacemit k1/for-next
+> - Link to v1: https://lore.kernel.org/all/20251101-k1-usb3dts-v1-0-dd2660e5740b@linux.dev/
+> 
+> ---
+> Ze Huang (3):
+>       riscv: dts: spacemit: Add USB2 PHY node for K1
+>       riscv: dts: spacemit: Add DWC3 USB 3.0 controller node for K1
+>       riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
+> 
+>  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 46 +++++++++++++++++++++++++
+>  arch/riscv/boot/dts/spacemit/k1.dtsi            | 32 +++++++++++++++++
+>  2 files changed, 78 insertions(+)
 
-Understood, I will remove it for now.
+Thanks for this new version. The whole series is:
+
+Tested-by: Aurelien Jarno <aurelien@aurel32.net>
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
