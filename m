@@ -1,128 +1,175 @@
-Return-Path: <devicetree+bounces-253547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21B3D0E8AA
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:11:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1831AD0E8D4
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC9D9300E143
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 10:10:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 103F830037A5
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 10:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C820C3314AB;
-	Sun, 11 Jan 2026 10:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822C7331237;
+	Sun, 11 Jan 2026 10:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a2VlHBvN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iokG0QTF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F7F2222C0;
-	Sun, 11 Jan 2026 10:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D28131A7F2;
+	Sun, 11 Jan 2026 10:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768126256; cv=none; b=QKD6fnTKxoSxaKnZzVrYjtxED1QavzpttfZ03DuCn30WZMkjN6Pt50QuV1RZgswyICs89vojFxT0mcobB4Ik11SfLlwjqXTcl5B3bglfjXxjavn8BCLtcym4xy/yHYAgBLhGwaNRuZPZ2+OIqBVOUNu51akbZW2D5kti1CVSnPA=
+	t=1768126444; cv=none; b=djLG4cMTZBwm4fxyYxiS+oeqJYsa6qsQpXq317IZIiIQWZTrHtN0ZblPo90SflkSfuwlNWZ0jJJNgZH6kcgTsCClOfBMFtrpcVT3wWiJUBt19UADNVj3gYWpsyJMfMqg+80XM6FZ1vI6yWCSTSKxT7vuaGzNvmnEVmrS0CjZVfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768126256; c=relaxed/simple;
-	bh=FWQFie0C5TUWkd6++TyGqpPBE1fsNzNE+KYxlBibVTY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=arbwNNI9gbqobP6hwWQISiYFagoB4TZQmf+MwXtOccktkQMWUqsZJYoVTRXmXXg6C86xMX0c5CoDl/OFiyi2aUOHWecNppyJRuJJmdbZPprBDDeh3Wc2TLWngBQvXo8fxqEEYiznPpBQyGRVttBXEdfHtdNWo+U/oRszOcoGE4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a2VlHBvN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 67533C19422;
-	Sun, 11 Jan 2026 10:10:56 +0000 (UTC)
+	s=arc-20240116; t=1768126444; c=relaxed/simple;
+	bh=+ccDl6GqNO0RiMjeEsYI8eRopFN+kfLgKVq8/MDfBxw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lm2kElwicZ66lRMoFrhyA/7YC802E1H3duk0C18f58HGAncNANMwPTrWBQ0TulJJ6YGtRGmUXK43V61mHV1LWoNDZEeyQlikOqE5whz4c3FwazQRaRJVmU3qvbepCxSDcyLJWwd7AYxZ5WZ1ojCnKeh91k3rgJbiuu5LndvK+wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iokG0QTF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A690DC4CEF7;
+	Sun, 11 Jan 2026 10:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768126256;
-	bh=FWQFie0C5TUWkd6++TyGqpPBE1fsNzNE+KYxlBibVTY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=a2VlHBvNFYioTXqfXmFn17j7Dw4Otz1Akg4cX4QKsFWi9d+WHn+x/seJ+VNbK/PxE
-	 e4ogvesFTT6c5iNLIbuMPkJmrtGfffkvaynwgVPzbSc/K6rPEqiQ/ncdRdFPiRlblu
-	 qkygYW6DXWHWyVTMrStN3Vl9zllc9E4QWwfuvbNNGfauoZOBW9jKrl0mj6DxHKDwvM
-	 RyKgmZyyUkfumgzJsUeYodMf/tT7zAFFcLJ9DycLyeB2+NMmxfbFOXM5ctXlyuYE7l
-	 6igtly/3WieQagKiCmRsUUxF/Z4liurhVYpQbZe9gJpgbnEsw+xj+X//Opok4AJ3Nt
-	 N5vLu/Uq9UfKA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 603CAD2502F;
-	Sun, 11 Jan 2026 10:10:56 +0000 (UTC)
-From: Bharadwaj Raju via B4 Relay <devnull+bharadwaj.raju.machinesoul.in@kernel.org>
-Date: Sun, 11 Jan 2026 15:40:31 +0530
-Subject: [PATCH 2/2] ASoC: dt-bindings: document dvdd-supply property for
- awinic,aw88261
+	s=k20201202; t=1768126444;
+	bh=+ccDl6GqNO0RiMjeEsYI8eRopFN+kfLgKVq8/MDfBxw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iokG0QTF5DIM2uGPbR1fnatLOOBE8OGwLVHFdi60UjVWd84KmjJzjK1lek1X/KWg8
+	 0ylkRVc2dz7bNqp1DDxdtB/IxH8S1kCNnKY/RkfxbUY2MB7AHOB3zU2j9niCHADxmS
+	 HzlzMmBj58i25BcLQkPLD943X2q9NSeJvV3YP15APnKYs4uLXDX2mgqkxPySBkTzOW
+	 bhFB06y/6+POfrQPP9dRl9XuqWk0fyqnhxum1AXbPzTfbHcUGsIcwmWXPYiiDebuG1
+	 40UB+u3hzYqUpzVg9AxGeblJTiffKf+kk2BW1r/0VRdvhGaSEo83kGIF8p9DZjEXVl
+	 toAXXVO8fPHog==
+Date: Sun, 11 Jan 2026 11:14:01 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: can: renesas,rcar-canfd: Document
+ RZ/T2H and RZ/N2H SoCs
+Message-ID: <20260111-poetic-dark-butterfly-97993f@quoll>
+References: <20260109125128.2474156-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260109125128.2474156-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260111-aw88261-dvdd-v1-2-83fa0850d561@machinesoul.in>
-References: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
-In-Reply-To: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Weidong Wang <wangweidong.a@awinic.com>
-Cc: Bhushan Shah <bhushan.shah@machinesoul.in>, 
- Luca Weiss <luca.weiss@fairphone.com>, 
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768126255; l=1176;
- i=bharadwaj.raju@machinesoul.in; s=20260111; h=from:subject:message-id;
- bh=RDAmH+QMhrAVsDQ6mEVR7s+ZXNuEnNjhhycIkqn6Zyc=;
- b=6pKN71ol0pXW85NY7Z+0I7+rJ1buDQnXJXFuJgUKAv2GtFYc8dat5gxFKhN113JH5JQhqeX3W
- 5m6GrzLOeB5B4Dvd4WYLplAGs2kVyivOjvgRz7q5nv7WzCDeZ+L6Jwo
-X-Developer-Key: i=bharadwaj.raju@machinesoul.in; a=ed25519;
- pk=0M1a+iMXDqasbx7bQL71NdtuutFXu+lVxsiSnEiyAIg=
-X-Endpoint-Received: by B4 Relay for bharadwaj.raju@machinesoul.in/20260111
- with auth_id=598
-X-Original-From: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
-Reply-To: bharadwaj.raju@machinesoul.in
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260109125128.2474156-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-From: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
+On Fri, Jan 09, 2026 at 12:51:27PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Document the CAN-FD controller used on the RZ/T2H and RZ/N2H SoCs. The
+> CAN-FD IP is largely compatible with the R-Car Gen4 block, but differs
+> in that AFLPN and CFTML are different, there is no reset line for the IP,
+> and it only supports two channels.
+> 
+> The schema already enforces reset-names only for RZ/G2L and RZ/G3E and
+> disallows it for all other SoCs, so only the resets property is explicitly
+> marked as unsupported for RZ/T2H and RZ/N2H.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2->v3:
+> - Grouped single compatible entries into an enum.
+> - Updated commit message about disallowing reset-names property.
+> - Added Reviewed-by tag.
+> 
+> v1->v2:
+> - No changes made.
+> ---
+>  .../bindings/net/can/renesas,rcar-canfd.yaml  | 29 +++++++++++++++++--
+>  1 file changed, 27 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> index fb709cfd26d7..ceb072e0a304 100644
+> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> @@ -42,7 +42,10 @@ properties:
+>                - renesas,r9a07g054-canfd    # RZ/V2L
+>            - const: renesas,rzg2l-canfd     # RZ/G2L family
+>  
+> -      - const: renesas,r9a09g047-canfd     # RZ/G3E
+> +      - items:
 
-Add (and require) the dvdd-supply property for awinic,aw88261 in
-the awinic,aw88395.yaml binding.
+The convention is enum and that's what I asked. I know it is a nit, but
+if I give review now for this code which I disagreed, my disagreement
+won't be ever recorded and people in future work will base on this less
+preferred syntax.
 
-Signed-off-by: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
----
- Documentation/devicetree/bindings/sound/awinic,aw88395.yaml | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+So again:
 
-diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-index bb92d6ca3144..994d68c074a9 100644
---- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-+++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-@@ -33,6 +33,8 @@ properties:
-   reset-gpios:
-     maxItems: 1
- 
-+  dvdd-supply: true
-+
-   awinic,audio-channel:
-     description:
-       It is used to distinguish multiple PA devices, so that different
-@@ -65,6 +67,17 @@ allOf:
-     then:
-       properties:
-         reset-gpios: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: awinic,aw88261
-+    then:
-+      required:
-+        - dvdd-supply
-+    else:
-+      properties:
-+        dvdd-supply: false
- 
- unevaluatedProperties: false
- 
+- enum:
+    - foo
+    - bar
 
--- 
-2.43.0
+> +          - enum:
+> +              - renesas,r9a09g047-canfd    # RZ/G3E
+> +              - renesas,r9a09g077-canfd    # RZ/T2H
+>  
+>        - items:
+>            - enum:
+> @@ -50,6 +53,10 @@ properties:
+>                - renesas,r9a09g057-canfd     # RZ/V2H(P)
+>            - const: renesas,r9a09g047-canfd
+>  
+> +      - items:
+> +          - const: renesas,r9a09g087-canfd  # RZ/N2H
+> +          - const: renesas,r9a09g077-canfd
+> +
+>    reg:
+>      maxItems: 1
+>  
+> @@ -179,7 +186,6 @@ required:
+>    - clocks
+>    - clock-names
+>    - power-domains
+> -  - resets
+>    - assigned-clocks
+>    - assigned-clock-rates
+>    - channel0
+> @@ -243,11 +249,30 @@ allOf:
+>            minItems: 2
+>            maxItems: 2
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g077-canfd
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 8
+> +
+> +        interrupt-names:
+> +          maxItems: 8
+> +
+> +        resets: false
+> +    else:
+> +      required:
+> +        - resets
 
+I do not think you are making this binding easy to maintain. You have
+now multiple separate ifs AND two ifs with "else:" condition. Try to
+understand which condition/description applies to "rcar-gen3". Does it
+require resets? Let's look for the compatible in the file - you find
+"if:" block requiring reset-names but no "require" for resets. Odd.
+
+As I said last time, these should be alwaysy synced.
+
+The binding was not in a good shape before but you are not improving it.
+
+Best regards,
+Krzysztof
 
 
