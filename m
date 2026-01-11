@@ -1,201 +1,189 @@
-Return-Path: <devicetree+bounces-253597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA62D0F035
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 14:56:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8F9D0F041
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 14:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF079301175F
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 13:56:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5A16F30010EE
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 13:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B36D33F377;
-	Sun, 11 Jan 2026 13:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFF733C53D;
+	Sun, 11 Jan 2026 13:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VsGPOTwt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2M1hH1j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com [209.85.215.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4D533D6CE
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 13:56:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3761A1400C;
+	Sun, 11 Jan 2026 13:58:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768139771; cv=none; b=B9fzRc1TQvLdKcFpRn8A7nFUzjnz4I11sutdqbq9DIIJsv+XFGCx/BSboys49E+TxaF3QXm/u9JX9nN2gs3PDfVf8jE1u40vZyYOZbq0lEj/vp2fx6OgGUWVIMvdSQzu3q6T6IMIzQIEW8RWVxHrf/qoFTnuybmkOarTidkeA9I=
+	t=1768139920; cv=none; b=UX3fjsiye+D2w7C128HulyRfWRq0xm/7y3M68gStmEN6xBWlGAnGL0yZaJ5pTPvom87RyL8i7QoVXIxSmUBe+Qig531HOj1ME60NQLRiHcQwM7k4Gm4U+akvrKNOsXi3aLLOB/MwTO7mEimrlhX6Vg2b0lTkez5R95nSTD6xAig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768139771; c=relaxed/simple;
-	bh=fQGHg/GaALo4L7NakZAnZQKi+khkZF+lQSdpTOINtvU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HYIUfbX7tDl1WVkX6pXOUfs6Pbhud07bJS/AMJorEIQCKhXAzUTnQBq96go4DRN17mXr0UV1TpWBdUb1dXB4I5cwww0a/gAwr6cYrqomjelYFjZblfJVzMoxb//pbglGfybSWCq5StdPITSkR0nb05Q9+cguI3ZtunM0lERap7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VsGPOTwt; arc=none smtp.client-ip=209.85.215.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f196.google.com with SMTP id 41be03b00d2f7-b553412a19bso2601200a12.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 05:56:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768139769; x=1768744569; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fOv6EGsZbFYXRB0m9rGx8n7JodIqftlLa5WhfqqaVtc=;
-        b=VsGPOTwtF8qPGY+3/aWuhFOS6jXIrBPAM1OZzC0N/WGBLYbk0WZEX6puXzDpZ+2o33
-         2VlFRnHBEk9v80pefFk1wNCPOFXc00Z0pgeUrkLnDlwVPi555H6rq+F+6ZIItqN3r1Zq
-         GmWqVBd8U1kxXAfntEb7nWBD19CET1BHnK+y3klMapj4wRPt8H7xey58CdI56FfXu3n+
-         K8ysfV5YVsn9g2PTSQlPY9oYa3ToJAgLSz9e7u/L0VRbExWyUnM+ifiGh+eoZyN578tz
-         c1bXCNztALTi1sKcG2VO/abJPQm0M+rkW6mpEaiRhicnuSLpm47zJvyOKY7Tn9Y3ajk5
-         HE9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768139769; x=1768744569;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fOv6EGsZbFYXRB0m9rGx8n7JodIqftlLa5WhfqqaVtc=;
-        b=s+X20YxidwFNr33DkiFOh3iyDGCLQJPviZFZpllSEcOkvdL9JziUvl3LYHpUJHV1Z2
-         UDCNN7usQwsfXvNiezO54Ya2Owqvq8UnWhLVv0S2WUqN1W0qgyozGB8cbHiMhRC28rj5
-         NM3ImImP8FYgk791lK3GoVBpGyZkuVORqorZtPt1Kaepc8rf2UijeY8KszYR1zrO6QCG
-         YpsCInwtXqvqy8RN2UuxHJYiz35VA8iwmLYdpLTKQBhvqqyL2NCPelbZqLH5vVefdmWd
-         tk+rjbMi71Bo7rUV7T+L7rauWZEekXRbqUaHysitaDh3qX4IEC5oBEFX8RnMjexKGSGR
-         0f/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU4Bwzyu8n4w7u2wnxReUwxyw3+iT6VIHFSqaiTqEciwTwyxUnxJgpPfD6kyq3EvSWA9tZzUkN51Q8K@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBPkpUa5KCbaAbSCe1McPA1u1vfAJeOrqCPeqF915LF1sNBug2
-	yB5T5Wyy+RbikxFqpOg0ZSnDWHSwOxCS8RCzsOSx9GHVGHavbwmHc/FoIVFjrYSLCuk=
-X-Gm-Gg: AY/fxX54D0ghswT2IACAWg0BoNdd/t7xoHMjK/mbeBJYphhAe4HhNu2vONrlj63ihcJ
-	SMnfPe96VMIuPrI8vUpDjHL2eOQo6etWOve2dxHJLcr4ByV5s7FvbRDH7+/oN2XtDWjm1lGbJJD
-	TIBB80we7oQ3SZxGhOEPeymtjEJoWvRGYmPpY+o7VkgAZ5wIDSd59ppa6/2XtPNHH8/moutUmYp
-	EQRgPQicmnbHg49NfjOh7eyYx1q2Ez9EqLUT+cwRw0IwTKWbMFYH45QYNdIFiXNyXAqiQdi9Gvr
-	BtUIT11CgRzPgpFf1wrKh9u6mmjcfTv3zJU7rHsTx0Red8T0ktypbOPMb5SXZXpeMdZXxtjprp0
-	1HpCDtNWeMpq3k68rgzYaP00+o1/gYBmIfyZq08HR7wnrMiTEKKNCLNf11/7dYweumN5Dwlj7ab
-	Gswo159lQ88RffmQXslrXtkxprdWzttRl5A8U=
-X-Google-Smtp-Source: AGHT+IEB1YKs1sBri/CwpT883LDcNuDwf7Q1SbSRf2vdPYouCmwfR4cxzcsipVBYtOx/jDlkTLMMPw==
-X-Received: by 2002:a17:90b:1b03:b0:343:e461:9022 with SMTP id 98e67ed59e1d1-34f68ca444bmr15338692a91.24.1768139768855;
-        Sun, 11 Jan 2026 05:56:08 -0800 (PST)
-Received: from localhost.localdomain ([113.164.155.57])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f6b88d984sm5742345a91.3.2026.01.11.05.56.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Jan 2026 05:56:08 -0800 (PST)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: pavel@kernel.org,
-	gregkh@linuxfoundation.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Nam Tran <trannamatk@gmail.com>
-Subject: [PATCH v21 3/3] docs: leds: Document TI LP5812 LED driver
-Date: Sun, 11 Jan 2026 20:55:19 +0700
-Message-Id: <20260111135519.28112-4-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260111135519.28112-1-trannamatk@gmail.com>
-References: <20260111135519.28112-1-trannamatk@gmail.com>
+	s=arc-20240116; t=1768139920; c=relaxed/simple;
+	bh=zpjSLUV9dl663leV7eYgN3rzZuWBkrmUlqRFtMElxyI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IjRUu3LWz6IJAos5GHHf/3Oi7uo1/SsxcJmDZGzY9kERwsmws6yKnYPzhBGDxQ4GGcgJCnit7cdoE3ilvav3gnNw1f1alUF8mezBvBNXeef7ZFQkwnaN/K+VsRYQcyShRqqaL+AWcsdBxrW0l9QZcpSpMD54ZMw6DjPqrtZRyX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2M1hH1j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89F20C4CEF7;
+	Sun, 11 Jan 2026 13:58:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768139919;
+	bh=zpjSLUV9dl663leV7eYgN3rzZuWBkrmUlqRFtMElxyI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=O2M1hH1jrH+iwVEHWHNlKJZKUCHA4WJeirhBskdE+173S2hRcU9GPstQ0i7FZLW5H
+	 u3UcsTbFhPYJqR9hLaa3TbGPqy+QYBhIDsMCisaKCrncnRwyzrNDHEEgO/cY6WlZyA
+	 5vTNxrP4BaJcXmyOOrb+01ZCLlXaraJMzMUgve/89+vtQQBT/U26t/uES+QXRoqOkS
+	 B+ihrJkMAEpCvXzAzU9V8UK1yCsvyPmwUwTjeft/PdtHJPc/4JmDrUvk6pbTTAygEb
+	 kOx9fLjgM1hSbRne/Mh6rQqzhul1Hkx7zhCyOPgxcCf3+g+Y1hrYq8jDxnhxQmOor/
+	 J6ugJ5Dn1SGtg==
+Date: Sun, 11 Jan 2026 13:58:29 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v3 3/6] iio: frequency: adf41513: handle LE
+ synchronization feature
+Message-ID: <20260111135829.3863cf1c@jic23-huawei>
+In-Reply-To: <20260108-adf41513-iio-driver-v3-3-23d1371aef48@analog.com>
+References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+	<20260108-adf41513-iio-driver-v3-3-23d1371aef48@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-The driver provides sysfs interfaces to control and configure the
-LP5812 device and its LED channels.
+On Thu, 08 Jan 2026 12:14:52 +0000
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
-The documetation describes the chip's capabilities, sysfs interface,
-and usage examples.
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> When LE sync is enabled, it is must be set after powering up and must be
+> disabled when powering down. It is recommended when using the PLL as
+> a frequency synthesizer, where reference signal will always be present
+> while the device is being configured.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Hi Rodrigo,
 
-Signed-off-by: Nam Tran <trannamatk@gmail.com>
----
- Documentation/leds/index.rst       |  1 +
- Documentation/leds/leds-lp5812.rst | 50 ++++++++++++++++++++++++++++++
- MAINTAINERS                        |  1 +
- 3 files changed, 52 insertions(+)
- create mode 100644 Documentation/leds/leds-lp5812.rst
+A few comments inline.
 
-diff --git a/Documentation/leds/index.rst b/Documentation/leds/index.rst
-index 76fae171039c..bebf44004278 100644
---- a/Documentation/leds/index.rst
-+++ b/Documentation/leds/index.rst
-@@ -25,6 +25,7 @@ LEDs
-    leds-lp5523
-    leds-lp5562
-    leds-lp55xx
-+   leds-lp5812
-    leds-mlxcpld
-    leds-mt6370-rgb
-    leds-sc27xx
-diff --git a/Documentation/leds/leds-lp5812.rst b/Documentation/leds/leds-lp5812.rst
-new file mode 100644
-index 000000000000..c2a6368d5149
---- /dev/null
-+++ b/Documentation/leds/leds-lp5812.rst
-@@ -0,0 +1,50 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+========================
-+Kernel driver for lp5812
-+========================
-+
-+* TI/National Semiconductor LP5812 LED Driver
-+* Datasheet: https://www.ti.com/product/LP5812#tech-docs
-+
-+Authors: Jared Zhou <jared-zhou@ti.com>
-+
-+Description
-+===========
-+
-+The LP5812 is a 4x3 matrix LED driver with support for both manual and
-+autonomous animation control. This driver provides sysfs interfaces to
-+control and configure the LP5812 device and its LED channels.
-+
-+Sysfs Interface
-+===============
-+
-+This driver uses the standard multicolor LED class interfaces defined
-+in Documentation/ABI/testing/sysfs-class-led-multicolor.rst.
-+
-+Each LP5812 LED output appears under ``/sys/class/leds/`` with its
-+assigned label (for example ``LED_A``).
-+
-+The following attributes are exposed:
-+  - multi_intensity: Per-channel RGB intensity control
-+  - brightness: Standard brightness control (0-255)
-+
-+Autonomous Control Modes
-+========================
-+
-+The driver also supports autonomous control through pattern configuration
-+(e.g., direct, tcmscan, or mixscan modes) defined in the device tree.
-+When configured, the LP5812 can generate transitions and color effects
-+without CPU intervention.
-+
-+Refer to the device tree binding document for valid mode strings and
-+configuration examples.
-+
-+Example Usage
-+=============
-+
-+To control LED_A::
-+    # Set RGB intensity (R=50, G=50, B=50)
-+    echo 50 50 50 > /sys/class/leds/LED_A/multi_intensity
-+    # Set overall brightness to maximum
-+    echo 255 > /sys/class/leds/LED_A/brightness
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 65fca8dc34fb..584cf63aaacb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25936,6 +25936,7 @@ M:	Nam Tran <trannamatk@gmail.com>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/leds/ti,lp5812.yaml
-+F:	Documentation/leds/leds-lp5812.rst
- F:	drivers/leds/rgb/Kconfig
- F:	drivers/leds/rgb/Makefile
- F:	drivers/leds/rgb/leds-lp5812.c
--- 
-2.25.1
+> ---
+>  drivers/iio/frequency/adf41513.c | 32 +++++++++++++++++++++++++++++---
+>  1 file changed, 29 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/iio/frequency/adf41513.c b/drivers/iio/frequency/adf41513.c
+> index 69dcbbc1f393..0cdf24989c93 100644
+> --- a/drivers/iio/frequency/adf41513.c
+> +++ b/drivers/iio/frequency/adf41513.c
+> @@ -220,6 +220,7 @@ struct adf41513_data {
+>  	bool phase_detector_polarity;
+>  
+>  	bool logic_lvl_1v8_en;
+> +	bool le_sync_en;
+>  };
+>  
+>  struct adf41513_pll_settings {
+> @@ -697,13 +698,25 @@ static int adf41513_set_frequency(struct adf41513_state *st, u64 freq_uhz, u16 s
+>  static int adf41513_suspend(struct adf41513_state *st)
+>  {
+>  	st->regs[ADF41513_REG6] |= FIELD_PREP(ADF41513_REG6_POWER_DOWN_MSK, 1);
+> +	st->regs[ADF41513_REG12] &= ~ADF41513_REG12_LE_SELECT_MSK;
+>  	return adf41513_sync_config(st, ADF41513_SYNC_DIFF);
+>  }
+>  
+>  static int adf41513_resume(struct adf41513_state *st)
+>  {
+> +	int ret;
+> +
+>  	st->regs[ADF41513_REG6] &= ~ADF41513_REG6_POWER_DOWN_MSK;
+> -	return adf41513_sync_config(st, ADF41513_SYNC_DIFF);
+> +	ret = adf41513_sync_config(st, ADF41513_SYNC_DIFF);
+> +	if (ret < 0)
+If you know it is either 0 for good or less than zero, prefer
+	if (ret) (for reason that follows)
+
+> +		return ret;
+> +
+> +	if (st->data.le_sync_en) {
+> +		st->regs[ADF41513_REG12] |= ADF41513_REG12_LE_SELECT_MSK;
+> +		ret = adf41513_sync_config(st, ADF41513_SYNC_DIFF);
+Similar to below - I'd like to see 	
+		if (ret)
+			return ret;
+here to avoid returning stale parameter from above (which might be postive
+based on local code).
+
+> +	}
+> +
+> +	return ret;
+>  }
+>  
+>  static ssize_t adf41513_read_uhz(struct iio_dev *indio_dev,
+> @@ -994,6 +1007,8 @@ static int adf41513_parse_fw(struct adf41513_state *st)
+>  		st->data.lock_detect_count = tmp;
+>  	}
+>  
+> +	/* load enable sync */
+> +	st->data.le_sync_en = device_property_read_bool(dev, "adi,le-sync-enable");
+>  	st->data.freq_resolution_uhz = MICROHZ_PER_HZ;
+>  
+>  	return 0;
+> @@ -1001,6 +1016,7 @@ static int adf41513_parse_fw(struct adf41513_state *st)
+>  
+>  static int adf41513_setup(struct adf41513_state *st)
+>  {
+> +	int ret;
+>  	u32 tmp;
+>  
+>  	memset(st->regs_hw, 0xFF, sizeof(st->regs_hw));
+> @@ -1034,8 +1050,18 @@ static int adf41513_setup(struct adf41513_state *st)
+>  					      st->data.logic_lvl_1v8_en ? 0 : 1);
+>  
+>  	/* perform initialization sequence with power-up frequency */
+> -	return adf41513_set_frequency(st, st->data.power_up_frequency_hz * MICROHZ_PER_HZ,
+> -				      ADF41513_SYNC_ALL);
+> +	ret = adf41513_set_frequency(st,
+> +				     st->data.power_up_frequency_hz * MICROHZ_PER_HZ,
+> +				     ADF41513_SYNC_ALL);
+> +	if (ret < 0)
+	if (ret)
+		assuming set_frequency never returns a positive.
+
+> +		return ret;
+> +
+> +	if (st->data.le_sync_en) {
+> +		st->regs[ADF41513_REG12] |= ADF41513_REG12_LE_SELECT_MSK;
+> +		ret = adf41513_sync_config(st, ADF41513_SYNC_DIFF);
+Slightly preference for
+		if (ret)
+			return ret;
+	}
+
+	return 0;
+
+Because otherwise a 'stale' (though it is zero) return value is used and that sort
+of code pattern tends to be a little fragile and hard to read.
+
+> +	}
+> +
+> +	return ret;
+>  }
+>  
+>  static void adf41513_power_down(void *data)
+> 
 
 
