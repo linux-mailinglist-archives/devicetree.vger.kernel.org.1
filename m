@@ -1,138 +1,136 @@
-Return-Path: <devicetree+bounces-253641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C5AD0F686
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 17:10:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCDBD0F729
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 17:34:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 065DB302FBC4
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:10:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 57F9D3050CCD
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A47634BA5A;
-	Sun, 11 Jan 2026 16:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 011BF34C145;
+	Sun, 11 Jan 2026 16:34:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fg8YJTcz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izhscTgG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4526F1CAA68;
-	Sun, 11 Jan 2026 16:10:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B99E61CAA68
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 16:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768147834; cv=none; b=gtUWEyNkHMX31o4S80p7BYbkvzSOrv1rDZyHshnoJ0LNswcqPtl//b80ek2YRaTemW0up9jOZRxS2xPIp64IYj1iXitcW8s5osiILHyZvgCHm3GBy07AIlUAe5FVbN71bYL2w0ugLdb8ITo4Glpz0SuzKB3ixYWYm5nJt+BpJik=
+	t=1768149281; cv=none; b=eQOSblW94zSSKYXVuXZiV1fFbRDoz66r2f49FYrEJbP8BcDelQRJLVoM8t2LG+90YBKLMiVP7Pe6TvJWo3i2pvx3Br8FXBgQtJpqSN/S7+FrqfW2HLZ0sGhvFZMYTzmQ9oBhsCizEs7U3b15zwqbCVJBg3SkMFRJ+qkCmz1xAa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768147834; c=relaxed/simple;
-	bh=leRp0sBnnlAzhq88lOJpyV1MLEu7YgR8PUVZS46tQys=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N6UmqYTu1sBLBfcCY1bu/xUrcLhNW3D8t0CT/2sqCDqZKULksOJoml4JlTGCRq+Me7glpGlWqq8RNiw4/Dr2PmhKQpB78OQqlbqB7pgL77IONPhjsIQzLhyi+jo5/BiBobnAdHqV0QT07hNbf81dlP3KD3rmIrKQvP9gJocTs/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fg8YJTcz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F0CC4CEF7;
-	Sun, 11 Jan 2026 16:10:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768147834;
-	bh=leRp0sBnnlAzhq88lOJpyV1MLEu7YgR8PUVZS46tQys=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fg8YJTczENNb3aLhM1aHWf4G7BZODgr709FusP01wkxTW9hYj4eUYL1oNGdy12YLW
-	 HhUmsMgCr1UlFMVEOPzScnTNNHlxHB0KbndNqa0Lh85tZsy0Bo9mygfbOI6MLrBqrg
-	 xdtY5sIvygdLZjLH1kwEAuLjMCbFnkKDRNPlQ8Ljx2cVgroxrrFFI4fqvGuAdWFYob
-	 5XrKrMONrjVzoQ67iFTpcS5rGEeS9qLEqC6PISU1Ksr75+lMUiubq+sVakoWtYeJYh
-	 HfX8y3prsIKJLl71yTDYNCRqbo2MiaNuAIYhxb728WadPr8B/J4zKI3MG2oCX5v+0u
-	 FhwUEj0Y2t8Vw==
-Message-ID: <1ab13178-8253-4dc7-9143-6684ededd8f9@kernel.org>
-Date: Sun, 11 Jan 2026 17:10:28 +0100
+	s=arc-20240116; t=1768149281; c=relaxed/simple;
+	bh=F+U56dSbf7Zy+QbKFDejhjPm0vpdjDs41/JBQT0YeyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=etDK83mOb8qsS97bFJNepzTGJl+mYgRqwfKyWcixmtS5eEwosjIEU6M3tw2mVcOcNR4vdn1Q1N1skVGDUGZQtel/qP2ZkwHNho5wr9u9tKgdxIlgVrNiBhs7N564o05fi3rtv06NbJBdC82TSQw2C7IMuSc2u8mKQIkD0bMPqV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=izhscTgG; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47795f6f5c0so34292455e9.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 08:34:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768149278; x=1768754078; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=p8q1LsrMBmg/TGb8G1+4FUjTEnWz4H6p2nQGEZCp0b4=;
+        b=izhscTgGQiCwnhQ+XHOzvZXbbf8yk5vs0bWRVczqQvjg2gd7yO8m60k0m7RlSPn78U
+         DBM2757kxeUTZegXhR9HwkLqMQ1zytxTnWmfspmvf6uiSNtSMo7XXasVSbes7U1CKfuz
+         flC8Ynt5LAgh++SFRMgUYh3yNNRjhZzg11oOIntF9z7o9MWfAmJjq4Q3hE79/sL/av7w
+         Jk4Caot698DtgqnGvbPBA2ISw29/FwsMRmaLzWtvDxyv1Pklu4BcppKtPkTHLTSwjNY6
+         4O3vsCwCk/BxTrumVNeS5UPZz38QB34MvqUDoOpUwWevb3+y5TPtq9WPEToR1lhoDCTW
+         0afg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768149278; x=1768754078;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p8q1LsrMBmg/TGb8G1+4FUjTEnWz4H6p2nQGEZCp0b4=;
+        b=iN51oCzEsqgiWkDuQMK/GC8r/yOiDegHCg1rEoUVeRgdiHq+umibCJjHeMvbXzaHZI
+         wzB+3WuTgoqGmh0ClVIaYKKnj9D7ULn1amOl8f3umpUP62Q8ZyC9iLhRSk2q4YIB++1i
+         sYpSVquSknPTRzK0hCliJmfjKnSi09EbIcm0qECzcbTTse5gtTs1vXThLBZG9udpW09n
+         XP961921868g4Wq+c+FcbegUR9ngYeEz2XKFtA8RU3uu/Z9o15BkmXNPqKUihQnO75eR
+         PW4h0jvoTlKxG45FsrKnhZyoMnQ0z3/5Bi4RIc7mXLllW1+cugurZd8dMnP2YGGvhMP+
+         M0+w==
+X-Forwarded-Encrypted: i=1; AJvYcCUUbyIZRrgxDyoK/QybsOZasuz5CYa52AOyW91usL5KOaRSRzXXXEIx1zuq3l6VPzH4o3fSV+aGmPn7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5RM4rLcVGwODRpp8StyYwdGSUGWwtVVbZHYbzMp9t83+AVCy0
+	OjGEWpQcd3O6UzJciLikLKteLxO2H91FitH1BCOIvLAQBGe7PZZHss2R
+X-Gm-Gg: AY/fxX6gGtIcfZcoCE7nuRgl9JCoa5ZWIlFNZpSMYU/A4ma/SIe660LHL95iOH7oV4Q
+	3aHsBXpZ4mnUjR7rkt8A7UEQPc2tbPZocg7Hq4yd0GZT/ADWyatnKlgjGDgbRtMbHIjc/+kcY/F
+	zrtV1dDBpNK2iTXkNnkqkXM489srExoVSlsvGhBBfKE5GmqCpmhcSx8YejXeF/MxJQDxUpBhMRm
+	VqHFhGJPyyG+Cu1+buS0XZk9XqewMBryNLDzHVl15EXbYMfsSkPNqiAVydZZj7RPNIpZpiVIBJA
+	LByjcqXr6DF9CZE1jS3RXZHU6OTd8UAPsZLHuSlo6/VUkNYydL25BKyA3czc+/C+8xBh+7TvptD
+	7QxSCxdJ7WjHUXfm0Y7Wvn7bxDSJdpSKaoO+HXmT+WTPtJxZh5cYAqfpLbN/hqacGQtNqdDRguq
+	EddDJLjP38uNpRyrD1ztKDKT7OLozIJo5Sqt55Ed3m41nXWemXSshivZnhjfYtRJ+pcg7pemTfG
+	9A=
+X-Google-Smtp-Source: AGHT+IFYvLDVG9dfmgUfUU3OGeAq3xGgS7rQ4R72Ej+LSG+5Vt262FuiLPk/JG1Eub29aEzaeex3eA==
+X-Received: by 2002:a05:600c:4713:b0:477:1bb6:17de with SMTP id 5b1f17b1804b1-47d84b5b43dmr200425195e9.30.1768149277862;
+        Sun, 11 Jan 2026 08:34:37 -0800 (PST)
+Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d865f0cf2sm109933435e9.3.2026.01.11.08.34.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jan 2026 08:34:36 -0800 (PST)
+Date: Sun, 11 Jan 2026 16:34:36 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/6] dt-bindings: gpio-mmio: Add opencores GPIO
+Message-ID: <aWPRHHhdjGE2f8aT@antec>
+References: <20260109134409.2153333-1-shorne@gmail.com>
+ <20260109134409.2153333-3-shorne@gmail.com>
+ <20260111-amorphous-cow-of-stamina-6f2720@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: document dvdd-supply property for
- awinic,aw88261
-To: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Weidong Wang <wangweidong.a@awinic.com>
-Cc: Bhushan Shah <bhushan.shah@machinesoul.in>,
- Luca Weiss <luca.weiss@fairphone.com>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
- <20260111-aw88261-dvdd-v1-2-83fa0850d561@machinesoul.in>
- <9249c034-de8c-479b-a9c5-f1252e0beba2@kernel.org>
- <5e47fe91-e150-4b5d-a669-3a7beeea4f03@app.fastmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <5e47fe91-e150-4b5d-a669-3a7beeea4f03@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260111-amorphous-cow-of-stamina-6f2720@quoll>
 
-On 11/01/2026 13:48, Bharadwaj Raju wrote:
-> On Sun, 11 Jan 2026, at 5:00 PM, Krzysztof Kozlowski wrote:
->> Why? Was it missing? Why require it, which is an ABI break (or is not?)?
->> Why is ABI break allowed or what is its impact?
+On Sun, Jan 11, 2026 at 11:20:38AM +0100, Krzysztof Kozlowski wrote:
+> On Fri, Jan 09, 2026 at 01:43:53PM +0000, Stafford Horne wrote:
+> > Add a device tree binding for the opencores GPIO controller.
+> > 
+> > On FPGA Development boards with GPIOs the OpenRISC architecture uses the
+> > opencores gpio verilog rtl which is compatible with the MMIO GPIO driver.
+> > 
+> > Link: https://opencores.org/projects/gpio
+> > Signed-off-by: Stafford Horne <shorne@gmail.com>
+> > ---
+> > Since v2:
+> >  - Fixup patch to simply add opencores,gpio and add an example.
+> > Since v1:
+> >  - Fix schema to actually match the example.
+> > 
+> >  Documentation/devicetree/bindings/gpio/gpio-mmio.yaml | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
 > 
-> Right now there are no users of aw88261 in the kernel device tree sources.
-> This patch is part of an effort to mainline the FairPhone 5, for which we 
-> will add the first use of this compatible, and there we need to specify 
-> dvdd-supply for this chip's power supply.
-
-You mean the bindings were incomplete?
-
+> This does not even apply now. Your previous version was applied almost
+> one month before and you WERE notified about it.
 > 
-> Since there are no present users, I thought it was OK to add a new required 
-> property. If not, I can make it optional.
+> Why did you ignore Bartosz's reply?
 
-Nothing like that was explained in commit msg. Also your explanation
-above does not consider out of tree users of this ABI. That's fine in
-general, but needs reason why you are doing this.
+Hi Krzysztof,
 
-Best regards,
-Krzysztof
+Sorry for the confusion, we discussed [1] this patch in the last Series with Geert
+and Linus W. We decided to Fixup (replace) the original patch with this and a
+patch to the GPIO MMIO driver instead.  I pointed it out in the cover letter but
+it may have not been clear.
+
+I will reply to Bartosz's original mail too so he can understand the intent.
+
+[1] https://lore.kernel.org/lkml/CAD++jLm1u9ChqsftwvbOptiG3Qo2KWxPjqN2snOVuZDYuVST5Q@mail.gmail.com/
+
+-Stafford
 
