@@ -1,190 +1,268 @@
-Return-Path: <devicetree+bounces-253619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7A9D0F45A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:20:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DBFBD0F479
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:23:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 555AF304929B
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 15:20:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 25309302E314
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 15:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D34345CD8;
-	Sun, 11 Jan 2026 15:20:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2E034B697;
+	Sun, 11 Jan 2026 15:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="MB7OnrxX"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="cw2RU9lv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452F550094C
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7648E18DB37
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768144817; cv=none; b=IIuE/5JJh9GhTbiUvQ1VEFcsoPWaqkXP85Cxaoiv3DYreJZnQe4RU9cQPmRqCiTDd60eiNiiAxJLlDm2deE7ciY2m2xokcuIwXoe6w1ZWYacCMTZ0lN3PNR17dJ3SLsh7dfiNDu9QW+zXeJLYTVHLVSKpHmPKl4GgSwmqG3klDE=
+	t=1768145006; cv=none; b=Kl9aPZ2Zge2uJ/vKwQMTpmhbB7UxUGi6CvjvvjhJg5sRgV6Q+GrXp/fXt8NeYTOsctdTaomQBDMpGTB8egQOrYxkXUsvnlfaAX/ofpXVtcL5DUdvD/SDdREidKuTsQNylkBrarTbglp8iAgQjTLSxdF4XyIu85pBcB2N90KX+3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768144817; c=relaxed/simple;
-	bh=lbLAKnymVLTBI9FnzqSp+RvThNLGD0vXPfiy/p5cGhU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t3CYlXQ7M06+56HhODL6JKMUtrb+WKrpQmCzIOw0rSe5B/BgrmXu+SxAKDyu1bJpNRfkyN2VBst2HkR7+WI+XMp6WNUCzcRl6Nk4PccW3KF0UaUEa9eaP5J2k/pa8Fc2Sy1IhGMDYoKFL7Y5nvUWpcGpIextlV8R339oigL7UzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=MB7OnrxX; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7927416137dso9505627b3.0
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 07:20:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1768144815; x=1768749615; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s2F+wtW2B2tq7BsEJcg+uHjqj3junFFF4szv2VXtjwo=;
-        b=MB7OnrxXREgYwRiaPmZ1P7ZXNXvVmQZgz2l9R9STOhlwQ5mekUvfcNipJRlmExkns3
-         0aJ1qWF04T6NdznVm5PpDR6fFTQ9X74lkDruv1zjqdnChqobwL4wu5jy6zoFovhbbnVO
-         ixnPmsIWm7ri8byefN3oQ+KMl6YrDaHaTx8BQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768144815; x=1768749615;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=s2F+wtW2B2tq7BsEJcg+uHjqj3junFFF4szv2VXtjwo=;
-        b=jDQ8zbRFjQb3pl540EuxddcXUtS5WpW8Poo+iphJzWMxETkAfqlb4Vj1PrOg4AKxxl
-         KBuScmvAgY/LNNnma3LcHamyWNtUavNnuxgMNG2ZeY1DmqagksDUt5neU4n3AIGEMfRW
-         43Pq88JIy8wLEVapnLeCY//dBxaZlH+yva49QuhsYy3Q807YaS7xYwsh9jHrp0ORlGez
-         WUwWoZvRHvfJiaZBC4vD+vlEznsRNar4w0YLJ62oWoyH6zqVOm5BvbDSQ7Q03xm0/Uzi
-         repEU6n2mQG09BspmfX9KOSmXu5fqjeGOx0UN51VB5DYwdnC1MAq1qrdSF5S6ai7pJJY
-         4UQw==
-X-Forwarded-Encrypted: i=1; AJvYcCXOluv6tZI9zUojb6sfwiVj7N+Ttlo5m8cxvTyYBmhVGH3LeKBnhmnxKZX6JXOiz4UkdUfzpZOgmsrA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxn02z7Yb5QOcgC2qbgrni7GWo+ZVY8Rc1dkJVzOadqE4m1YyC4
-	0ziHAFbl6KGDpcV4TQ3Wyb90bOPlnzujDYnOpfA3xkjLUWNCI3bmTo4Mht+Kuk2MAxNKFviFYuF
-	XkRtGP1dUJoYnMDDboht45wmluS1FlrCFvQC9xagesQ==
-X-Gm-Gg: AY/fxX4ayxVhr4BrlL7JvVrAjWdvWG/0Cx8OTpopv4Imyrt1Vv/aSnvExZOYmijGD1L
-	4R8tvDfjKtilFxupnLrfaP0sYB0TyZUeJSSXO8CDwsaDZdz/9tnR3ae5WFPirIu6i/h03gFSDrw
-	U4pS/HUFvS1fvUoKOVk182vtZihWFhxfI4l5lBPq+mtu2wdJVkA6HkkcY0P6i91EOxAxdmgUf15
-	bGZkQud49zCTtWd0ZcKZMjIB8AFMG8orqiykTW8zPHVW82PtfEkYj3IQ4e1FMyMXh/WN1xnz+tA
-	DvSjk36Dc3Ybj0u3M1kQL1CtAA==
-X-Google-Smtp-Source: AGHT+IEJEJ7k3ehyLTPliKyhrb/A8vsiv4gmMtQ/Bm40VuLX6dMeiGkvDwyYywXWPJ3D1t/yNNUsPFQGqqJW0lMTk4M=
-X-Received: by 2002:a05:690e:1501:b0:646:e354:7325 with SMTP id
- 956f58d0204a3-64716b6ff9emr13204975d50.22.1768144815134; Sun, 11 Jan 2026
- 07:20:15 -0800 (PST)
+	s=arc-20240116; t=1768145006; c=relaxed/simple;
+	bh=TcgIg43nFx6UVzKV7dhAL1/nSUoMeEd2wOMVqTIGm8o=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=tz36xUdSi23TDsDkHsYtAe6OKwL0RqgapYg7Bpscd6QyJwmzt7J/h2Tnyv4JZosBxzXqcg9pjcB4CAsVCKOstbSqV6aadfj4I3ToDgOjoQfnlum7kBchCD4OADDLFbauBi64Vd8SjSKUsExsIYaX6Y2rlnt8iRf+T5oRzxSG2kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=cw2RU9lv; arc=none smtp.client-ip=91.218.175.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260107194541.1843999-1-dario.binacchi@amarulasolutions.com>
- <20260107194541.1843999-2-dario.binacchi@amarulasolutions.com> <58006bf6-425a-4016-996b-4a01fdb22cea@foss.st.com>
-In-Reply-To: <58006bf6-425a-4016-996b-4a01fdb22cea@foss.st.com>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Sun, 11 Jan 2026 16:20:04 +0100
-X-Gm-Features: AZwV_QjEh5isWh6rzhvUm7qUpn5m3290bgM2aqJv_0TrtCZXLOfst-o_irVmNjk
-Message-ID: <CABGWkvrgH6tNsaq3P4xctQxV2w2pkAkko-qGy4Oay=yAwitufA@mail.gmail.com>
-Subject: Re: [Linux-stm32] [PATCH 2/2] arm64: dts: st: add TAMP-NVRAM support
- for STM32MP25
-To: Patrice CHOTARD <patrice.chotard@foss.st.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-amarula@amarulasolutions.com, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1768145000;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=11i6VlN7HylQO++3sIFz26IbyBQeR3Nl91h3mggNvlw=;
+	b=cw2RU9lvewv58JmC7j1rMDYI6q33u+PzgXYbxl3JOW1bAteXxHdqMI5Fq9xWqp02JGAwJ0
+	Bsuqpy8gNDQDBRYXFlkMKpxicsbSmVy9kC+v0YSAEYpohFCz+cxcpftoSnmr4qijPT9Tay
+	3sjyBub2EUllbaArfbbXQZvZ31SxZq2EXi2vEJUny8zKwDqgaou5XevmURGMKdbEKa7rLO
+	evDlJQr0Qp4Vr4AhY9j/097rrwu5qn1Mdm7TNV+rJTEzD6+2DS3BC33nWKg7PDhIYMoRAH
+	0cxag3xJe9/GD3KwzKe5HtngpNdEu58rq6x6Isi4S0z6u8JFclkaoGQMHWujvg==
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 11 Jan 2026 16:23:16 +0100
+Message-Id: <DFLV39M9KHTD.PAJZU86PXJGN@cknow-tech.com>
+Cc: "Detlev Casanova" <detlev.casanova@collabora.com>,
+ =?utf-8?q?Olivier_Cr=C3=AAte?= <olivier.crete@collabora.com>, "Ezequiel
+ Garcia" <ezequiel@vanguardiasur.com.ar>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Heiko Stuebner" <heiko@sntech.de>, "Dmitry Osipenko"
+ <dmitry.osipenko@collabora.com>, "Thomas Gleixner" <tglx@linutronix.de>,
+ "Dragan Simic" <dsimic@manjaro.org>, "Chukun Pan" <amadeus@jmu.edu.cn>,
+ <linux-media@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, "Nicolas Dufresne"
+ <nicolas.dufresne@collabora.com>, "Dang Huynh" <dang.huynh@mainlining.org>
+Subject: Re: [PATCH v3 2/3] media: rkvdec: Add support for the VDPU346
+ variant
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "Christian Hewitt" <christianshewitt@gmail.com>
+References: <20260110053727.2295260-1-christianshewitt@gmail.com>
+ <20260110053727.2295260-3-christianshewitt@gmail.com>
+ <DFL5TY0QQNMN.1RS04UM9D1V8S@cknow-tech.com>
+ <E21F5FD9-AEBA-490F-A9DF-8E9BEF161763@gmail.com>
+In-Reply-To: <E21F5FD9-AEBA-490F-A9DF-8E9BEF161763@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-Hello Patrice,
-
-On Fri, Jan 9, 2026 at 11:40=E2=80=AFAM Patrice CHOTARD
-<patrice.chotard@foss.st.com> wrote:
+On Sun Jan 11, 2026 at 2:30 PM CET, Christian Hewitt wrote:
+>> On 10 Jan 2026, at 11:35=E2=80=AFpm, Diederik de Haas <diederik@cknow-te=
+ch.com> wrote:
+>> On Sat Jan 10, 2026 at 6:37 AM CET, Christian Hewitt wrote:
+>>> VDPU346 is similar to VDPU381 but with a single core and limited
+>>> to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
+>>> AVS2 capabilities. VDPU346 is used with RK3566 and RK3568.
+>>>=20
+>>> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+>>> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+>>> Tested-by: Dang Huynh <dang.huynh@mainlining.org> # Pinetab2
+>>> ---
+>>> .../media/platform/rockchip/rkvdec/rkvdec.c   | 103 ++++++++++++++++++
+>>> 1 file changed, 103 insertions(+)
+>>>=20
+>>> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/=
+media/platform/rockchip/rkvdec/rkvdec.c
+>>> index a5cf6f3240f8..6e49b129d11f 100644
+>>> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+>>> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+>>> @@ -236,6 +236,62 @@ static const struct rkvdec_ctrls rkvdec_hevc_ctrls=
+ =3D {
+>>> .num_ctrls =3D ARRAY_SIZE(rkvdec_hevc_ctrl_descs),
+>>> };
+>>>=20
+>>> +static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] =3D {
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_SPS,
+>>> + .cfg.ops =3D &rkvdec_ctrl_ops,
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_PPS,
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_MODE,
+>>> + .cfg.min =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+>>> + .cfg.max =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+>>> + .cfg.def =3D V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_START_CODE,
+>>> + .cfg.min =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+>>> + .cfg.def =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+>>> + .cfg.max =3D V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
+>>> + .cfg.min =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
+>>> + .cfg.max =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
+>>> + .cfg.menu_skip_mask =3D
+>>> + BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
+>>> + .cfg.def =3D V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
+>>> + .cfg.min =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
+>>> + .cfg.max =3D V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
+>>> + .cfg.ops =3D &rkvdec_ctrl_ops,
+>>> + .cfg.dims =3D { 65 },
+>>> + },
+>>> + {
+>>> + .cfg.id =3D V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
+>>> + .cfg.ops =3D &rkvdec_ctrl_ops,
+>>> + .cfg.dims =3D { 65 },
+>>> + },
+>>> +};
+>>> +
+>>> +static const struct rkvdec_ctrls vdpu346_hevc_ctrls =3D {
+>>> + .ctrls =3D vdpu346_hevc_ctrl_descs,
+>>> + .num_ctrls =3D ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
+>>> +};
+>>> +
+>>> static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] =3D {
+>>> {
+>>> .cfg.id =3D V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
+>>> @@ -463,6 +519,41 @@ static const struct rkvdec_coded_fmt_desc rk3288_c=
+oded_fmts[] =3D {
+>>> }
+>>> };
+>>>=20
+>>> +static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] =3D {
+>>> + {
+>>> + .fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
+>>> + .frmsize =3D {
+>>> + .min_width =3D 64,
+>>> + .max_width =3D 4096,
+>>> + .step_width =3D 64,
+>>> + .min_height =3D 64,
+>>> + .max_height =3D 2304,
+>>> + .step_height =3D 16,
+>>> + },
+>>> + .ctrls =3D &vdpu346_hevc_ctrls,
+>>> + .ops =3D &rkvdec_vdpu381_hevc_fmt_ops,
+>>> + .num_decoded_fmts =3D ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
+>>> + .decoded_fmts =3D rkvdec_hevc_decoded_fmts,
+>>> + .subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
+>>> + },
+>>> + {
+>>> + .fourcc =3D V4L2_PIX_FMT_H264_SLICE,
+>>> + .frmsize =3D {
+>>> + .min_width =3D 64,
+>>> + .max_width =3D  4096,
+>>> + .step_width =3D 64,
+>>> + .min_height =3D 64,
+>>> + .max_height =3D  2304,
+>>> + .step_height =3D 16,
+>>> + },
+>>> + .ctrls =3D &rkvdec_h264_ctrls,
+>>> + .ops =3D &rkvdec_vdpu381_h264_fmt_ops,
+>>> + .num_decoded_fmts =3D ARRAY_SIZE(rkvdec_h264_decoded_fmts),
+>>> + .decoded_fmts =3D rkvdec_h264_decoded_fmts,
+>>> + .subsystem_flags =3D VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
+>>> + },
+>>> +};
+>>> +
+>>> static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] =3D {
+>>> {
+>>> .fourcc =3D V4L2_PIX_FMT_HEVC_SLICE,
+>>> @@ -1657,6 +1748,14 @@ static const struct rkvdec_variant_ops vdpu381_v=
+ariant_ops =3D {
+>>> .flatten_matrices =3D transpose_and_flatten_matrices,
+>>> };
+>>>=20
+>>> +static const struct rkvdec_variant vdpu346_variant =3D {
+>>> + .coded_fmts =3D vdpu346_coded_fmts,
+>>> + .num_coded_fmts =3D ARRAY_SIZE(vdpu346_coded_fmts),
+>>> + .rcb_sizes =3D vdpu381_rcb_sizes,
+>>=20
+>> AFAICT this is not correct, the rcb_sizes are different for vdpu346 vs
+>> vdpu381. While for vdpu381 the sizes are the same across codecs, they
+>> vary for vdpu346. And vdpu346 does not have 'STRMD Row', 'Transd Row'
+>> and 'Transd col'.
+>>=20
+>> For RK3588/vdpu381 it is defined in RK3588 TRM V1.0 Part1 in
+>> paragraph 5.4.4.3 in 'Table 5-13 Row or Col buffer size required' on
+>> page 381.
+>>=20
+>> For RK3568/vdpu346 is is defines in RK3568 TRM V1.1 Part2 in
+>> paragraph 10.4.8 in 'Table 10-9 Row or Col buffer size required' on page
+>> 474 and 475.
 >
+> This is what I=E2=80=99m hinting/referring to in the cover-letter. How
+> to correctly handle the differences in code is currently beyond
+> my n00b level comprehension of c and coding skills. I=E2=80=99ll need to
+> ask the audience for some assistance and coaching :)
+
+Sorry, I should've been (more) clear that this remark was meant as a
+'research note', to further improve support for RK3568.
+
+And I forgot to mention that with Detlev's v8 series and your patch set,
+all my test videos, except 4K, now play without any (visual) artifacts.
+\o/
+
+I still want to do more/further tests and wait till Detlev's series get
+accepted, before giving my Tested-by tag.
+
+Cheers,
+  Diederik
+
+> Christian
 >
->
-> On 1/7/26 20:45, Dario Binacchi wrote:
-> > Add the TAMP node along with its NVRAM child node and define the
-> > fixed-layout for fwu_info and boot_mode registers.
-> >
-> > The TAMP (Tamper and backup registers) block is a system controller tha=
-t
-> > provides access to backup registers as NVMEM storage that persists acro=
-ss
-> > reboots.
-> >
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> >
-> > ---
-> >
-> >  arch/arm64/boot/dts/st/stm32mp251.dtsi | 26 ++++++++++++++++++++++++++
-> >  1 file changed, 26 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/d=
-ts/st/stm32mp251.dtsi
-> > index a8e6e0f77b83..c7839e732f31 100644
-> > --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-> > +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-> > @@ -2084,6 +2084,32 @@ rtc: rtc@46000000 {
-> >                       status =3D "disabled";
-> >               };
-> >
-> > +             tamp: tamp@46010000 {
-> > +                     compatible =3D "st,stm32-tamp", "syscon", "simple=
--mfd";
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <1>;
-> > +                     reg =3D <0x46010000 0x400>;
-> > +                     ranges;
-> > +
-> > +                     nvram: nvram@46010100 {
-> > +                             compatible =3D "st,stm32mp25-tamp-nvram";
-> > +                             reg =3D <0x46010100 0x200>;
-> > +                             nvmem-layout {
-> > +                                     compatible =3D "fixed-layout";
-> > +                                     #address-cells =3D <1>;
-> > +                                     #size-cells =3D <1>;
-> > +
-> > +                                     fwu_info: tamp-bkp@c0 {
-> > +                                             reg =3D <0xc0 0x4>;
-> > +                                     };
-> > +
-> > +                                     boot_mode: tamp-bkp@180 {
-> > +                                             reg =3D <0x180 0x4>;
-> > +                                     };
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> >               pinctrl_z: pinctrl@46200000 {
-> >                       #address-cells =3D <1>;
-> >                       #size-cells =3D <1>;
-> Hi Dario
->
-> At STMicroelectronics we intend to upstream tamp-vram driver for STM32MP =
-series.
-> If you don't see any objection, we prefer to manage it in our side.
+>>> + .num_rcb_sizes =3D ARRAY_SIZE(vdpu381_rcb_sizes),
+>>> + .ops =3D &vdpu381_variant_ops,
+>>> +};
+>>> +
+>>> static const struct rkvdec_variant vdpu381_variant =3D {
+>>> .coded_fmts =3D vdpu381_coded_fmts,
+>>> .num_coded_fmts =3D ARRAY_SIZE(vdpu381_coded_fmts),
+>>> @@ -1705,6 +1804,10 @@ static const struct of_device_id of_rkvdec_match=
+[] =3D {
+>>> .compatible =3D "rockchip,rk3399-vdec",
+>>> .data =3D &rk3399_rkvdec_variant,
+>>> },
+>>> + {
+>>> + .compatible =3D "rockchip,rk3568-vdec",
+>>> + .data =3D &vdpu346_variant,
+>>> + },
+>>> {
+>>> .compatible =3D "rockchip,rk3588-vdec",
+>>> .data =3D &vdpu381_variant,
 
-Ok, no problems.
-
-Thanks and regards,
-Dario
->
-> Thanks
-> Patrice
-
-
-
---=20
-
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
 
