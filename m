@@ -1,93 +1,108 @@
-Return-Path: <devicetree+bounces-253567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA191D0EBF3
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 12:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71383D0EC09
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 12:54:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C86FB300D41A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:52:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DBC4E300CBBB
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 11:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC2AB3382C9;
-	Sun, 11 Jan 2026 11:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB713382CE;
+	Sun, 11 Jan 2026 11:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLlP94D9"
+	dkim=pass (1024-bit key) header.d=mork.no header.i=@mork.no header.b="fXbUnhQa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from dilbert.mork.no (dilbert.mork.no [65.108.154.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A854450094C;
-	Sun, 11 Jan 2026 11:52:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0719B640;
+	Sun, 11 Jan 2026 11:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.108.154.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768132350; cv=none; b=KVcRCq/qeq2p4oHcFflsuXfZAoRpYG4d3VO+7bw0owjz5QN2jkZgRcELA1pPyVdfamoWIwtedDliLHZ2wimJY7+mzB4BUXsBnD8FyW8dZ2Rhc2Uy6KqTPm5VeC04ERmTkLiKuEs2h9qG7Gqdvo2tTWg72NE7b4J0jwX3U4fCYgQ=
+	t=1768132454; cv=none; b=FGzfPT0vvufyvvFawJ7oidHViyR6ZBroNS893lpeaT3sdYGmvEeZbG/M2765G/2m06zyUAe/xCOZlf1QGwTMYVrhMccJVw/dV8pmpoOkbBk78y5i2P6gKJ72SNDijphCE2KIt7ZwHeSwGrfHY7/Gb5LGCwZxURFc7RaGH7I8W+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768132350; c=relaxed/simple;
-	bh=0GkxFneeSyIWyVZyFNFfxwxn7XkF3NPIGEPeRDVQdpY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tL5iNrRqlK+N9uW+Zv9yZpBFyi5jm7YwIcnlAaXwIaSS7KidQEXKd8AfWjRknKEQCf9fO/1F/wdLOHlGF0d3jvRhefM0xIjLbohDxEit4VL5dv4SP7J2Ea1fNhe1y3IRLIzhozyllsDjq5xW2Aw2e7NTKeKDiqjC7xyGW2lJcD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lLlP94D9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DCEDC4CEF7;
-	Sun, 11 Jan 2026 11:52:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768132350;
-	bh=0GkxFneeSyIWyVZyFNFfxwxn7XkF3NPIGEPeRDVQdpY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lLlP94D9FgPuuqpCfGCxs4FacmAftfpMu+gA7Zak8eY5OKry7s27v6VE2geRABPxU
-	 iAowf+1NOzi4pp6xqR3+o1G755Shv23q8rf4DjeisMfo6tGbTnfzl/WYcZjUy1nbU5
-	 892yqFaTy8bzm0Na67ATbn1Kq1/lDz72XwHBAwOWq2DgLY0tpz64GGopCj6gz6KuB4
-	 rH+R32+978oZrcq7aroZewgms5GQSpfu1zefPeKAQpagsOz3ocv6sQRMbU09G2BFwD
-	 xjSkhvezAGjZhr3eBNOjKpDQYkn0MGP7sz3PEJEvUkXbrAeHvbD2D33eNV59sewHyD
-	 JWzeDCPA0g1sQ==
-Date: Sun, 11 Jan 2026 11:52:19 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Sean Anderson
- <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH v4 1/9] spi: dt-bindings: change spi-{rx,tx}-bus-width
- to arrays
-Message-ID: <20260111115219.296e8205@jic23-huawei>
-In-Reply-To: <20251219-spi-add-multi-bus-support-v4-1-145dc5204cd8@baylibre.com>
-References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
-	<20251219-spi-add-multi-bus-support-v4-1-145dc5204cd8@baylibre.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1768132454; c=relaxed/simple;
+	bh=GhOetxFDMeDhYbefSfq2TFJ9faSnhBK5OhkfJG4g/0A=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=sscwHrbcaYeEa3GbayfredYZzGupifJHYuftYT6kTWscUD9AkzjkgLIs5GO5JHc75OovKrIDml6WnVCXzL8T86/qb6zbZlJNBHSR3fnf0H06mGiImTDscQeF68cVuOUAnOLV6fB9vNzNpQMB0exx14arwYwKt5Lqu25nnDu1huY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mork.no; spf=pass smtp.mailfrom=miraculix.mork.no; dkim=pass (1024-bit key) header.d=mork.no header.i=@mork.no header.b=fXbUnhQa; arc=none smtp.client-ip=65.108.154.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mork.no
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=miraculix.mork.no
+Authentication-Results: dilbert.mork.no;
+	dkim=pass (1024-bit key; secure) header.d=mork.no header.i=@mork.no header.a=rsa-sha256 header.s=b header.b=fXbUnhQa;
+	dkim-atps=neutral
+Received: from canardo.dyn.mork.no ([IPv6:2a01:799:10e2:d900:0:0:0:1])
+	(authenticated bits=0)
+	by dilbert.mork.no (8.18.1/8.18.1) with ESMTPSA id 60BBrFAW050203
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Sun, 11 Jan 2026 11:53:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mork.no; s=b;
+	t=1768132395; bh=GhOetxFDMeDhYbefSfq2TFJ9faSnhBK5OhkfJG4g/0A=;
+	h=From:To:Cc:Subject:References:Date:Message-ID:From;
+	b=fXbUnhQafZvq1kWpyrH38IcXXKX2qNZtY0JZ5UpNgLOjoKgxTWUUf0xn87J92YIXp
+	 YpIJIJqIq9gfHjWQCluPnXUlkuPsFNo0dAmSBe3Kx6AtoOW+Wy32sKT+IEIk/YBGAt
+	 gwQ+EGIGqnYKOfbKPWowZ3n44xiM7CygfyEqcQ0M=
+Received: from miraculix.mork.no ([IPv6:2a01:799:10e2:d90a:6f50:7559:681d:630c])
+	(authenticated bits=0)
+	by canardo.dyn.mork.no (8.18.1/8.18.1) with ESMTPSA id 60BBrFuL932582
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Sun, 11 Jan 2026 12:53:15 +0100
+Received: (nullmailer pid 71986 invoked by uid 1000);
+	Sun, 11 Jan 2026 11:53:15 -0000
+From: =?utf-8?Q?Bj=C3=B8rn_Mork?= <bjorn@mork.no>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Daniel Golle <daniel@makrotopia.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        Eric Woudstra <ericwouds@gmail.com>,
+        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
+        Lee Jones <lee@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: Re: [PATCH v3 net-next 05/10] phy: add phy_get_rx_polarity() and
+ phy_get_tx_polarity()
+In-Reply-To: <20260111093940.975359-6-vladimir.oltean@nxp.com> (Vladimir
+	Oltean's message of "Sun, 11 Jan 2026 11:39:34 +0200")
+Organization: m
+References: <20260111093940.975359-1-vladimir.oltean@nxp.com>
+	<20260111093940.975359-6-vladimir.oltean@nxp.com>
+Date: Sun, 11 Jan 2026 12:53:15 +0100
+Message-ID: <87o6n04b84.fsf@miraculix.mork.no>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Virus-Scanned: clamav-milter 1.4.3 at canardo.mork.no
+X-Virus-Status: Clean
 
-On Fri, 19 Dec 2025 15:32:09 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+Vladimir Oltean <vladimir.oltean@nxp.com> writes:
 
-> Change spi-rx-bus-width and spi-tx-bus-width properties from single
-> uint32 values to arrays of uint32 values. This allows describing SPI
-> peripherals connected to controllers that have multiple data lanes for
-> receiving or transmitting two or more words in parallel.
-> 
-> Each index in the array corresponds to a physical data lane (one or more
-> wires depending on the bus width). Additional mapping properties will be
-> needed in cases where a lane on the controller or peripheral is skipped.
-> 
-> Bindings that make use of this property are updated in the same commit
-> to avoid validation errors.
-> 
-> The adi,ad4030 binding can now better describe the chips multi-lane
-> capabilities, so that binding is refined and gets a new example.
-> 
-> Converting from single uint32 to array of uint32 does not break .dts/
-> .dtb files since there is no difference between specifying a single
-> uint32 value and an array with a single uint32 value in devicetree.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+> Add helpers in the generic PHY folder which can be used using 'select
+> GENERIC_PHY_COMMON_PROPS' from Kconfig
+
+The code looks good to me now.
+
+But renaming stuff is hard. Leftover old config symbol in the commit
+description here. Could be fixed up on merge, maybe?
+
+
+Bj=C3=B8rn
 
