@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-253633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AA7AD0F5D1
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:52:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B32BD0F5E1
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:52:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CC64D30B2B8C
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 15:49:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78C5230BCA8B
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 15:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0392E34D4DF;
-	Sun, 11 Jan 2026 15:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9373E34D912;
+	Sun, 11 Jan 2026 15:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oEh82c+l";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FDfsGtmY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZSYF/Eer";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NW+8d26U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C7734CFC9
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8EB134CFA8
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768146577; cv=none; b=DufNj0a8MK6DKi1rm1l6WjZHtuQHX0jdBnDOrXCvIEmHNcwFMngbMUzIBzt9UFDZvaQocHlsM7WOWVwvoKXEX2iNEXhk5QbZ8UeYPhTfGIXOxt7+n4D4/Z6nEZ5EDlAtZ3jWOZXt1zKyhOaHPlGLgUP+LI6PQJLnja1aCiwQNLI=
+	t=1768146579; cv=none; b=F+tdLWGPXLMh++kKSmZZMtj5j6V2xJMsIHDjaHLnD8IWKIIlb3RL7zmchxGKUqnkhWk9JxJiPzmRi6W8UM501WpQQcChOxCaCiMueTM0FxDfoatjYAIbYvcsWZvvYk5POvAgAYGGLd3HccJ3VV6l4WVC/c7+io77wLiqlnzxVYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768146577; c=relaxed/simple;
-	bh=6vZrxZuGRWDo/M6oQXbZQQ3gJdpWZlph0xza3vLC58c=;
+	s=arc-20240116; t=1768146579; c=relaxed/simple;
+	bh=IRPUyaWVtt81ELN8RFPfSay6jrmlbrMj1DFklO6mS/A=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OqPtC+PJalx2izyTpQz1VChjEU0rD65scamPZapTnhyhiGbj3G49u3WwbGbJwDTvTZNgAAXxu3KTPknm/uDHWsRh0lz/sC8SqHS2YqK0o4znoBzkhnLynH3do0UidB2uOvTmcLT5JfPCUo1xIxg9BLS7s2mTCBaj6DkOs745tAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oEh82c+l; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FDfsGtmY; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=anYfPvnoSYef/M9sbjgEZOW009XFr2kU0EuWhDy4IDJtfO1wrFg5nWRe04K4l4Soy5soXM+EUwyqeXjUP1FN5n7HsXjq/Ksds8SZ3ec5+S5LaMleGpMaw7/swkDljEWQrYu5sdVOW1LkQD3+0kOUmhk8Krbbb+yn3Jt30vOoSlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZSYF/Eer; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NW+8d26U; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60B6wNid1844143
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:49:31 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60BFlacM2374515
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:49:32 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	awIiB2Ey6NFv8oEXBhn79OJVv3KdaerPnR/oXQd2tPU=; b=oEh82c+lTLZB7Wds
-	j3QKFWozEjUhWZhM47/xGQHtKxEmJwKAfeLkZ9rhQwfxkfQO0I90E5sNYzoaKHas
-	0zvzcaBgRk0KbHRcSHz4aMf0HIm3QtncYg2t2h1rsLrGXkxpPcSymzEkjH6jP0cX
-	MK+3kTT1E79zf2EKwE8qXUWBiiyzQfL/LasvOFyWJSeImpNn5cy3/IuvJyQGrRUA
-	WyXIqd4i3VDyHpInyhyiWFl+ZZCopRi5zEXDhtZQ3J7mD1u7bDpBK7sxsd2KYVsC
-	XNo+NVLc5FUwo9vtk4tPNn6AMD7+qLLRDLkyd12ca+zKi22sTYwg28rxhgSg+Chr
-	a/JVGg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bks259jad-1
+	m4WuYH2vpOkIakvEa/nSVG8WF7NjL89kvyWGM2cYExo=; b=ZSYF/Eerb6ehJMSt
+	IMyQ+yOEAOsidWQVjCtdJ8cqRgoYRscROoC8YKZ+MHJ2LsOZLAe81YdGtF1nbDIu
+	e0Jmua4ED7tkwJnt0yKJPqJTzorT2o93FztlYhNnv31c8DLuU4Ff7/oWbUwc8Fq5
+	VZC9m5uStJO2aYk+QkAcFIfc0pZGEoE0NItr+eoVObXAyDwuac9ntcoDwSRTyiVt
+	LOrywSN1JYn71notaSlV09BSe96Qr4fHXM4XkFwSly/m96r+1PJiR1YhSK/zN3Oh
+	Ymgq6kn0xB1zX/Y9czfNqJaoBzaQ9kpgFRJGB6E9t4dp8BpmFc/0LvvdcMLf1RFr
+	5TFNeA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bkntuhu44-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:49:31 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b259f0da04so1541573485a.0
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 07:49:30 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:49:32 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c2bcf21a58so1562187185a.3
+        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 07:49:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768146570; x=1768751370; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1768146572; x=1768751372; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=awIiB2Ey6NFv8oEXBhn79OJVv3KdaerPnR/oXQd2tPU=;
-        b=FDfsGtmYs+32us9Ygn0VJmHHexjKYNGHd+P6b/nrgl61BvjG/SMItBanUmdraPDSh1
-         3cyh6qCO6geVJfc9AuYXCjbsH4eJlObPON/aovy7Mp5yT7wRhLf6b0+hOXjWjmqrx4q0
-         /T9eJK72rCnH2gtQR709DxSaYLW0AYBiCGe+ZB2Jp50ScJvyDevPBRgJSTBnuJ8DR6/S
-         +oq3KQf8BI6yJi08jstliH+lPPBjbKfY3xt76vRJWmVsfZpFL3gCTl3TSufs3LJPQwai
-         CP1jhre5RlbaoDqZpwpWZST+JsLalokkbt2+XCWCpdS84rScRD3IZv+OqdmVC8FCd9sW
-         RXsw==
+        bh=m4WuYH2vpOkIakvEa/nSVG8WF7NjL89kvyWGM2cYExo=;
+        b=NW+8d26UEU6R9vFRALDPky20cEbmVBl2fmW5q+jRtHP7foetkPf7KqKUOk4hO2FQEi
+         56w91ybadJACAB4lP+a7R5EaucHyR1bPzDKNPyiscTUMmTjH0VmutcJy9ruKzE8Gmww7
+         RaRCqVTyrGh6pSZB+6fzndy11RlsJoFlUdD5rP/pGGeQB3wB/NLG7h+Gg0FfPEq1woRD
+         KwcxqfC3M5O2AZUGdOJp9L63jRFWC+0d/FIieX8qR8VUpgw6Ky/FWJbZ8TSShLQ9HU7B
+         kEq658jw1NrDyGjpkIt0HsJezOOrf7/FP8He5TmmyjEktyKO63OKzkksuVO0vxUTb2x/
+         Px+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768146570; x=1768751370;
+        d=1e100.net; s=20230601; t=1768146572; x=1768751372;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=awIiB2Ey6NFv8oEXBhn79OJVv3KdaerPnR/oXQd2tPU=;
-        b=jhgx8AVVvyRA4OfxiW3YhR3ZGkF8XJeEaTrlwakWNszTWqxzGnva2mehl5Wi3sB3ci
-         sK6Ox7jbEtWlAvGPe3CJVysLTazgLHbfrHZlgzmzC5bzs9E0h254BH0mxnizTixx15xK
-         ZGB3SGNICLNgAUtZuQyOBxJ1QANkJn3eB5kk72hdGsipPLcbvkfdOxJ42OdoVwVtVXN0
-         0Qt4UgtdrxsPrekSycf4+jVsGdLx6dMzfrKq0PAx5Vssid9o8PqIVVfKhd59gYn42sp8
-         e1K0wKP9NsCRsQho4E4oQhvuFYA/YLCslxevUcpbuuxtOXNN78+SXjCUAKUXIaqlFFAE
-         9gug==
-X-Forwarded-Encrypted: i=1; AJvYcCVNhQA+EAuIS8T8x3A9vaw63l2TumY+nQhjcwmq3WPAUupnVjXxLQIZhPIf89KF6nTiHPdGJ06TzbZc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXY9GgwZpP3bvgihZ3POeK6qhVbzfRH2knG8bfRlZUwvjlJ2vc
-	oqHZzBio0VdFtHS+dUIx5eHwXAdDJBjcoh0O2S6Vpc4yeyAyUjjI98gct/W9eQQJJcdB10PmR84
-	ytjSm5JCt3qCemEHPsDjNj9T52zM1MEMlQ1hfDTCfK7YKT6gBziitJay0V+vMyYIA
-X-Gm-Gg: AY/fxX7YgiHfZsgyrKItwthvK6iU2mrmGBpMWlYeYMCNLV5LEQPJmqsxyfdnB873KLc
-	E0f8u3s5ggQ5gtnnoccCTjJq8pK9J+jmwQvK/3cZSSBAlKvyo5euEHDz209hOaH49C/xIpkHDmC
-	ZCUvEJpfAG/uEEIQsqg0n2I094pZTgiIeC6oP0/iEOdCb/QZOl3b8IM/GnCVMgz1zg1IzsUN1wH
-	D4GCq6IfgHPVB47MJ9tkPaqPKNk/SZaE2SkEvDHHQPk6rqwcwxUclPhQHWYpeS9CKW+C8T4GGnw
-	YVdq1uxdmFCdS8DoahTmGomlUvUHONFOdQdkEw3R/t00VWlIxjFeulpBqizBEB0lekoivGAb0N9
-	8k4JXYGLhw0MaCmZrOCydlTjHBPBg2bfcJw==
-X-Received: by 2002:a05:620a:1791:b0:8c3:7ec3:4bab with SMTP id af79cd13be357-8c38940319bmr2022832685a.68.1768146570143;
-        Sun, 11 Jan 2026 07:49:30 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGbCHkw4085vY2zN79ZcXH90qll7YSCUAa88NACZWJBMDohuTOf367IGE8LxHceNtEMSDuOZA==
-X-Received: by 2002:a05:620a:1791:b0:8c3:7ec3:4bab with SMTP id af79cd13be357-8c38940319bmr2022830885a.68.1768146569737;
-        Sun, 11 Jan 2026 07:49:29 -0800 (PST)
+        bh=m4WuYH2vpOkIakvEa/nSVG8WF7NjL89kvyWGM2cYExo=;
+        b=Nrm4ZFKH6GfOgfIJJRKwXrX84l0+eE31OwQ5aOmz8uSHlMpPfdY9DPgt88WXXVP/jW
+         a0QbavaX3GikPsbizfzoBgEokiuDFsEIOFrxm2OLneUw13AcYrGIE/L5+6RvDgUSdi1+
+         NkhXHEJZLiw/WAzx4KQYWnKkD/ufs3sYwZ1g9Nhyx25nrBc/gHoO9SuTSewdmUO8ECi0
+         lD4MgtcBldvMqILkxMxk44PlKTRgMOxLXyMXiRRwNtoVCfO4qIrBhFKiLgwQX2atzlD+
+         9TV+jvMdnzmCYhU5CW06WnJMvTdOR4UW+W8RZfmf5s+VGGWEY9BYA8kl3+fT3pK9k7Ia
+         KTmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFREZEGAxcLO2pHWjpwOzARJQ0qkInGF+2m9H+12bqEk4SUPeV22SovH4XRdjPV6tqM5GMFBH/1i0C@vger.kernel.org
+X-Gm-Message-State: AOJu0YxF6YsVZCaHT4LF5u3MnSWX+R36nDb3l7ecTtN2NoiozZMuVhOz
+	nRXl35W/Dsl6O2KyRg4vH4uJQorwsoxjImurfCt6JXJTNUpu7Sj3bM8lY5+nyv+o1FAWtC0qobi
+	uWt7EJPWydwfT6+tF47FJ5thySbWUt/WT8XvWhhy9rbedprmEAdvH8AUgz+uFL6d7
+X-Gm-Gg: AY/fxX4NAuF33/jRYGqEaTkU8expDhhMyZK0ELiSAMCaVMCp0UW10hv6hzJ2Z358NRP
+	5/dkd975U3UsgGXDAKb6SjIYbD5E/ud/6QZ3QyWB8Fy/Epud1az3xcCTp+eyuY6Ooe68AYrY8G6
+	sX3t8aq47eSP9GfTtwJaO8llivnHb3KZ8PadHprus5rJqKUVSyvQh7ZhHV0RMybEjMfIG4HFOmo
+	UX6wdy0xgE40gAe3aUVgHYNn6lChNHrE+SiNDJys3Zn5ev03/izpQdFB+R0xKps5fHErRoJXbfT
+	afJwRb6pmUctba2EzbNDoakKVQLX1RRBf0F5h3fYT/8Kc5sodyminm8bb5zg/1EJP6stoxji6lN
+	5mkZKjTKcOc2UN+dXoTBTPtM9trwqdUhXkQ==
+X-Received: by 2002:a05:620a:4051:b0:8b2:64b1:692c with SMTP id af79cd13be357-8c3893a27fbmr1984166985a.29.1768146571596;
+        Sun, 11 Jan 2026 07:49:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEIyE0A0qqdyDxwYg1PzKmiqZU64SXfi7RqPcZ8u/sNmWruQ29NWWtBc+mCUvvp0TT4l6Ov8Q==
+X-Received: by 2002:a05:620a:4051:b0:8b2:64b1:692c with SMTP id af79cd13be357-8c3893a27fbmr1984165885a.29.1768146571183;
+        Sun, 11 Jan 2026 07:49:31 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.218.229])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a5180bdsm1637163166b.57.2026.01.11.07.49.28
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a5180bdsm1637163166b.57.2026.01.11.07.49.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Jan 2026 07:49:29 -0800 (PST)
+        Sun, 11 Jan 2026 07:49:30 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Sun, 11 Jan 2026 16:49:04 +0100
-Subject: [PATCH RESEND v3 07/11] dt-bindings: bluetooth: qcom,wcn6750-bt:
- Deprecate old supplies
+Date: Sun, 11 Jan 2026 16:49:05 +0100
+Subject: [PATCH RESEND v3 08/11] dt-bindings: bluetooth: qcom,wcn6855-bt:
+ Split to separate schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,7 +104,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260111-dt-bindings-qcom-bluetooth-v3-7-95e286de1da1@oss.qualcomm.com>
+Message-Id: <20260111-dt-bindings-qcom-bluetooth-v3-8-95e286de1da1@oss.qualcomm.com>
 References: <20260111-dt-bindings-qcom-bluetooth-v3-0-95e286de1da1@oss.qualcomm.com>
 In-Reply-To: <20260111-dt-bindings-qcom-bluetooth-v3-0-95e286de1da1@oss.qualcomm.com>
 To: Marcel Holtmann <marcel@holtmann.org>,
@@ -122,99 +122,241 @@ Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
         Bartosz Golaszewski <brgl@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1852;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6392;
  i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=6vZrxZuGRWDo/M6oQXbZQQ3gJdpWZlph0xza3vLC58c=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpY8Z53X+jburp7UPt8+kYxLGlBCn21Gp/z9NqH
- 1Yg2fUqZcuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaWPGeQAKCRDBN2bmhouD
- 1+/LD/9U53cgRG8uc2MIiIYcNBfnjKDPx3Iu5DQrCRORQTAChPd+V8xmOcTWHA51MtF5ihflrVG
- 2Erekwd8gFyRtY9aKSf11/Rf8zPL6KFXOT2Er/XUsjseWb5/dG2I7VNKf/f4vydo9aAU6tp7Fx8
- yEVXJkyvlmlUNo7Y1hvxzTXi1Af2K3B/UdeXtyuQB0oyQLRl+7ETXG1d9ch0WpqC9wDr+EHkZ5z
- 3LYnIChsYGDqn8k148UZHAP6nwxKMEvLnKzZXsOWN21c5WZFwmADWm9SjCDXRvmzYVa+/KNGM3Y
- zRHx4XaCmTqdUKi2c5xImIhNpkXZg+eSv6zzVdr8MogiZAWpgU4JqGYyGlyB9I9sEfMBT0+xEQS
- e3C7feXJ0g4LS/eSSlTtFyo3+G66HMqhnAUNJh0hRQbeMT/tjcGM1A8i1281in2wuuJXD7O7VnH
- CYJ4xCj3W7B/cM2H+2zDlFS4PDhDPEO7VNiYRZK6rbW3+M5ciVTmWH6ffCMg29zCAGDCNSsphsF
- kevIjlLjUbBBWkaqTkdycn5rzDPH7iBxfM0hdhNLzceC6ohM6E+JM2DG2l9JO1RvuZphcpn8xHN
- Ss1pMrc2Pxw1slcNX0aNQnRggKR2lrhwPdZr37tVJywjPKNwF8Ep1Cs0fpnbw0pAc6HrpBz23JH
- VGTonLuHE0WM8pg==
+ bh=IRPUyaWVtt81ELN8RFPfSay6jrmlbrMj1DFklO6mS/A=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpY8Z5nQmT92altttezDTPT1h7OqZDBHUoRvIC0
+ OucFiy2wAWJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaWPGeQAKCRDBN2bmhouD
+ 11spD/sFnpZdTVeqxy19Fb4j8GG5dOO9k4g0XF0XgfsQt+yVqCd0MDkj6fgVIBnlmB89EydY0Qf
+ q08jYnMC8/EDbEIB3Wh5bbNSDuwU7VZODiIq4yQ7vFyO148eZzAwDLKye0o/pBz8/9/mTM/Hnk2
+ X5rDfe9fP5qXSXVmnIdKJ8bXkP817yh1zEmsHo+HKl4iiQoNwdtzEQFeh35XCnk3aEJ9XwzacWe
+ VqGdO5UhtXqum4Gs7PD8b672y92+NbU9paXYzdmE1N4rh8lmM4X+GmVQ5QJj4iPIZcEfGDn1QT0
+ e4QyDXaAQ5pz+WXt6uTmJV+mNUEjV9ZY1QBSUecOe1f6bNhLy4PY+BbvCXgmv4tNICKZnPu7Ai2
+ G8r8LVfSVLXesN9F5HJ9r1IwfyUod4P/nPkev8Vl1rz2sOosYIpCTslny9PLxd0Kx5KbaTFvWDA
+ Hpn5RoITlS7oA+1X9rAYC9rgfhFUmBc1nlrFrkIsOEAKdMyX2u52k3np8lX8pnlW5pVDBnrKPYM
+ ypFSLrdXFBCvv/pYo10bYuKQkf/MutL75Znp+y87DwEy9rcYXarA7owPymdj+1XD2F8oyiDD40D
+ 80Zb8VhKosrtldvGAuQDipW1/PECe/LESfOh2MB9MQw5bhZ/ocz1txxZK/wiM/UBaChW+uGJDbH
+ MefpMYUGRN3Hm5w==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTExMDE0NiBTYWx0ZWRfX9jTJkqXbLD3j
- nBNYB65CvLQAFF6+oi6FvecN+3Aw4Ijx5nI8p5R4bxJiYfs/Z8BHagib2xsOrl4DiP5uAfsgzzs
- j0phuZq+X6YtuEX+XnOMMrdYglIqF8aqk/spap52Q+EufL7A2kMVPVlAeMsTgDW9xvihmKvQApe
- b1BOSyBkSp1B0TMuVtQWKqikppqAotdfNQSCRbwwp+OJ4S87ZrvXlmmUwxh7ejzolyihDP9RAAf
- QcosCh6K7giTfZ9BDNAXxi6867rLh4BSDULRtMESAY619Fi/VL+NoaOIHco9fgpokNH51CBXqdD
- kVEMPXD/PyV8yn2i2vXyUaCeYB4zDHWSyc88k0CN2zYaEDuu5hhyGoXsplw5st6U/z42efwBOPm
- Hcg8Hr6j7zbqgfTE0UlfQkY+jwrooSNGabEdmBltFhTPZ7povR5uA0XwZE1uXoNiwyNMJ75Jc6w
- LTa9eI2GSZUd9nL7atg==
-X-Proofpoint-GUID: 18Um9VP3q0-DEr59s4vGSSCnAb1WBwPl
-X-Proofpoint-ORIG-GUID: 18Um9VP3q0-DEr59s4vGSSCnAb1WBwPl
-X-Authority-Analysis: v=2.4 cv=EMELElZC c=1 sm=1 tr=0 ts=6963c68b cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTExMDE0NiBTYWx0ZWRfX1Mna0vTyG3CR
+ Hl3m6EitmMnV2k1sbqIeA5Uui6UXsrMengGgAgLDCDL5mIfL88/gDq/fERf9fQnm3TzUZbStvZS
+ yKwJXSZ9/D/P/TTV7b9ik1WQ/9X4yCAdUwOcxghH3D/JYiL3QzKkfxgQALyYXMyye+ERJURcynp
+ UW2HbYc83FljvRHVQE2od3nsL/zNXe9OiqKHA9kQpWZPJZbFptLhQz8mzLSkpklCzAo1QpxmLWk
+ zBehC3ApL2+JGHWNiCFhhoBWnvqpxpW+gDBYgw3XoeoSbbUU6aq/OMiWQJt/ZVEie982XYutUmw
+ WkRq1UY0DxFUxFVanmgqO3gRJ7nWJ/jo1JKSqiOfZ/i+rOymysFv/PtK355jOeg/LvdzZt4r25G
+ rH661co0s3UAw2ESGY+nJGeJMifSmRajYOZJEnAWHw2l4BEZ7nmWKj/9aKzqwl1hZvyFZwXNDTU
+ PCb9sGCVRs6f8zno02Q==
+X-Authority-Analysis: v=2.4 cv=R6AO2NRX c=1 sm=1 tr=0 ts=6963c68c cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=Hly1SnzPtDZhKKQCjPAA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
- a=cvBusfyB2V15izCimMoJ:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=TihS8u2qB4LoSCkHJ9EA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: Kj1Y-kh_Up17CW9SP5s2ZTrkUuCSfihQ
+X-Proofpoint-GUID: Kj1Y-kh_Up17CW9SP5s2ZTrkUuCSfihQ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-11_06,2026-01-09_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 clxscore=1015 priorityscore=1501 bulkscore=0
- malwarescore=0 adultscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 priorityscore=1501
+ adultscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601110146
 
-Commit cca4fe34979a ("dt-bindings: bluetooth: Utilize PMU abstraction
-for WCN6750") changed the binding to new description with a Power
-Management Unit (PMU), thus certain power-controller properties are
-considered deprecated and are part of that PMUs binding.
-
-Deprecate them to mark clearly that new PMU-based approach is preferred.
+One big Qualcomm Bluetooth schema is hardly manageable: it lists all
+possible properties (19 supplies).  Split qcom,wcn6855-bt to separate
+bindings, so device schema will be easier to read/maintain and list only
+relevant properties.
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.yaml
-index f11d12c205fa..8606a45ac9b9 100644
---- a/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.yaml
-+++ b/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6750-bt.yaml
-@@ -17,26 +17,31 @@ properties:
+Changes in v2:
+1. Drop few supplies from qualcomm-bluetooth.yaml which are not used by
+   devices left there.
+2. Add also Bartosz as maintainer because he was working with this
+   device in the past.
+
+Expected existing warnings for:
+qcs9100-ride-r3.dtb, qcs9100-ride.dtb, sa8775p-ride.dtb,
+sa8775p-ride-r3.dtb, sc8280xp-microsoft-arcata*.dtb e.g.:
+
+sc8280xp-microsoft-arcata.dtb: bluetooth (qcom,wcn6855-bt): 'vddaon-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+sc8280xp-microsoft-arcata.dtb: bluetooth (qcom,wcn6855-bt): 'vddwlcx-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+sc8280xp-microsoft-arcata.dtb: bluetooth (qcom,wcn6855-bt): 'vddwlmx-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+sc8280xp-microsoft-arcata.dtb: bluetooth (qcom,wcn6855-bt): 'vddbtcmx-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+sc8280xp-microsoft-arcata.dtb: bluetooth (qcom,wcn6855-bt): 'vddrfa1p8-supply' is a required property
+---
+ .../bindings/net/bluetooth/qcom,wcn6855-bt.yaml    | 94 ++++++++++++++++++++++
+ .../bindings/net/bluetooth/qualcomm-bluetooth.yaml | 26 ------
+ 2 files changed, 94 insertions(+), 26 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6855-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6855-bt.yaml
+new file mode 100644
+index 000000000000..a4a887a4dde1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/bluetooth/qcom,wcn6855-bt.yaml
+@@ -0,0 +1,94 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/bluetooth/qcom,wcn6855-bt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm WCN6855 Bluetooth
++
++maintainers:
++  - Bartosz Golaszewski <brgl@bgdev.pl>
++  - Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
++  - Rocky Liao <quic_rjliao@quicinc.com>
++
++properties:
++  compatible:
++    enum:
++      - qcom,wcn6855-bt
++
++  enable-gpios:
++    maxItems: 1
++
++  swctrl-gpios:
++    maxItems: 1
++    description: gpio specifier is used to find status
++                 of clock supply to SoC
++
++  vddaon-supply:
++    description: VDD_AON supply regulator handle
++
++  vddbtcmx-supply:
++    description: VDD_BT_CMX supply regulator handle
++
++  vddbtcxmx-supply:
++    description: VDD_BT_CXMX supply regulator handle
++
++  vddio-supply:
++    description: VDD_IO supply regulator handle
++
++  vddrfa0p8-supply:
++    description: VDD_RFA_0P8 supply regulator handle
++
++  vddrfa1p2-supply:
++    description: VDD_RFA_1P2 supply regulator handle
++
++  vddrfa1p7-supply:
++    description: VDD_RFA_1P7 supply regulator handle
++
++  vddrfa1p8-supply:
++    description: VDD_RFA_1P8 supply regulator handle
++
++  vddrfacmn-supply:
++    description: VDD_RFA_CMN supply regulator handle
++
++  vddwlcx-supply:
++    description: VDD_WLCX supply regulator handle
++
++  vddwlmx-supply:
++    description: VDD_WLMX supply regulator handle
++
++required:
++  - compatible
++  - vddaon-supply
++  - vddbtcmx-supply
++  - vddrfa0p8-supply
++  - vddrfa1p2-supply
++  - vddrfa1p8-supply
++  - vddrfacmn-supply
++  - vddwlcx-supply
++  - vddwlmx-supply
++
++allOf:
++  - $ref: bluetooth-controller.yaml#
++  - $ref: qcom,bluetooth-common.yaml
++  - $ref: /schemas/serial/serial-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    serial {
++        bluetooth {
++            compatible = "qcom,wcn6855-bt";
++
++            max-speed = <3000000>;
++            vddaon-supply = <&vreg_pmu_aon_0p8>;
++            vddbtcmx-supply = <&vreg_pmu_btcmx_0p8>;
++            vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++            vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++            vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
++            vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
++            vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++            vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+index 1ee97089e1d5..62d7cdb67a3a 100644
+--- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
++++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+@@ -16,7 +16,6 @@ description:
+ properties:
+   compatible:
+     enum:
+-      - qcom,wcn6855-bt
+       - qcom,wcn7850-bt
  
    enable-gpios:
-     maxItems: 1
-+    deprecated: true
+@@ -37,21 +36,12 @@ properties:
+   vdddig-supply:
+     description: VDD_DIG supply regulator handle
  
-   swctrl-gpios:
-     maxItems: 1
-     description: gpio specifier is used to find status
-                  of clock supply to SoC
-+    deprecated: true
- 
-   vddaon-supply:
-     description: VDD_AON supply regulator handle
- 
-   vddasd-supply:
-     description: VDD_ASD supply regulator handle
-+    deprecated: true
- 
-   vddbtcmx-supply:
-     description: VDD_BT_CMX supply regulator handle
- 
-   vddbtcxmx-supply:
-     description: VDD_BT_CXMX supply regulator handle
-+    deprecated: true
- 
-   vddio-supply:
-     description: VDD_IO supply regulator handle
-+    deprecated: true
+-  vddbtcmx-supply:
+-    description: VDD_BT_CMX supply regulator handle
+-
+-  vddbtcxmx-supply:
+-    description: VDD_BT_CXMX supply regulator handle
+-
+   vddrfacmn-supply:
+     description: VDD_RFA_CMN supply regulator handle
  
    vddrfa0p8-supply:
      description: VDD_RFA_0P8 supply regulator handle
+ 
+-  vddrfa1p7-supply:
+-    description: VDD_RFA_1P7 supply regulator handle
+-
+   vddrfa1p8-supply:
+     description: VDD_RFA_1P8 supply regulator handle
+ 
+@@ -91,22 +81,6 @@ allOf:
+   - $ref: bluetooth-controller.yaml#
+   - $ref: /schemas/serial/serial-peripheral-props.yaml#
+ 
+-  - if:
+-      properties:
+-        compatible:
+-          contains:
+-            enum:
+-              - qcom,wcn6855-bt
+-    then:
+-      required:
+-        - vddrfacmn-supply
+-        - vddaon-supply
+-        - vddwlcx-supply
+-        - vddwlmx-supply
+-        - vddbtcmx-supply
+-        - vddrfa0p8-supply
+-        - vddrfa1p2-supply
+-        - vddrfa1p8-supply
+   - if:
+       properties:
+         compatible:
 
 -- 
 2.51.0
