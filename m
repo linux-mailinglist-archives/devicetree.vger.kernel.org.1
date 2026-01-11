@@ -1,179 +1,118 @@
-Return-Path: <devicetree+bounces-253521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0E7D0E0F1
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 05:01:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C22CBD0E19E
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 07:41:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 713DA300C6CF
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 04:01:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5200A3018328
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 06:41:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6D81A23A0;
-	Sun, 11 Jan 2026 04:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E84223336;
+	Sun, 11 Jan 2026 06:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UHkujdTP"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="PZgqvYkX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8531EF9D9
-	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 04:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417B323A99E
+	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 06:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768104093; cv=none; b=C3LIW5ATaYdKgnLnXxZPDZUqeLK08NMHCm3TL4V8I0pnfn0NNtHqE9F2lUPEjxEvOelayRZLIBnoywlJOmrXhvKKzZSGvgvFln7bvg3b9IlMOHFQVLjSY/1qZ4tQVECz42b3AAE6cDHSRIVnBokm4CDnsZzju3ga60HC2fg0Bio=
+	t=1768113692; cv=none; b=NjaYOKiBnQSB3dpzpEdTNrZxrQYSi2M06NZSaOeQhBJMZdVYI9cZ4myTsuN62Ouqeg3sodzRD7QhZ7X9iApEhRw4KmDiX/ZzV+sPkT43vW1W3yK+1wBOglJGZduHyZ0fwR5AUH+P52ktAEKz1sXmjtk6YwlpEpT0/YpIEN4biJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768104093; c=relaxed/simple;
-	bh=NcyWFIXdLsWHECMpFUUH7I65oUK5b9E6foMv8yDUJvc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ibsFmU/cG0RkWWmWDiCZ3nB4iQgzFc0pE6SiGx1aj8rL/y3BzovPErlQrEVe2T5o4k6u/+LHqdW1rjmm3gArCXVf+JKGTIqFAFQVVJb3nzN65zlkKLU9AEOQYO4COdBIODL/toHXbp0W8bblet5UPJ2iVVN1sE+Tj7e6xKP4Bcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UHkujdTP; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-bc17d39ccd2so2321079a12.3
-        for <devicetree@vger.kernel.org>; Sat, 10 Jan 2026 20:01:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768104092; x=1768708892; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6aSQimWPEMhTKsPYUy1vj9/5sPSG4zuP/FMO33v30Ew=;
-        b=UHkujdTP3pfdfkoy5DtjZApnH1qGblmPGxMBYDeZ3lu5s+80KCNb2T7lKkdaaj49l1
-         NXJLfiORPdLsorP7RI1j3fpHB5YZt0orGFT2lYuE1BTHsnY2w/tQLMsiuFFcGsd6++w2
-         yzK2SffhUBWnY3sGHmXByjw3CP+vEcLAor0s/Dqui4ZtjKj/7XdouOUxzxM/zdrXRuRx
-         10+rvjMUGbsKPfdp5ViuIMGGS4XBTWdD7EdeH/ua+Jtg6Z9+4D14rRS7/T6aLyv4sY2q
-         iaqoegt90ri4auriS4wVSFgIWlBwBA5xOYr+Fe74t2jwvGzae1DsEwDkgBvwtGytyxDG
-         xdGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768104092; x=1768708892;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6aSQimWPEMhTKsPYUy1vj9/5sPSG4zuP/FMO33v30Ew=;
-        b=pEP5szSsgAUSKtBwZNsey4nhyZBphNeeyfRpbfZXSNU3MyAUUSzf/5ZKKbZ95mYmdb
-         GC9b7SPCRcvT1scD95tbII609q50yz9eI+44z2Sqr9zPV48J/+PLiCPBRR76fbH4xOWO
-         e3ckLNOmO3ObMw9UNflQx8J3DNC08e1qUpYrPVDcYCHrkzv0iuzrp3MmBccufSj23QbH
-         EYe0vygM4U5BrnxWbmrLC0QrH6kAFeY3x1saUnJjA1j8a3mxkI3HrfkIGwC/yInNfTGI
-         MNX6qIG37AqhE7zXuOULhjdV4a6xAITDIysvA5gr4hHaZLqopaCLhaRQnIN0dsbBLiXd
-         VhGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWdLnpTtsRo3L8S8E/H/syoKkW7vkTmbncGvEkxKf16QhPOfroauuQ2kjQr7yM9mSu9Bz/SawA6OvXg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyu1Riccr9sYItPM2uJzu9+imH0/R1eQsFVBPfn1ZFLKFoIB/L7
-	/zROhjeBbI6OOZpuBh3S5tzc+Z4zbmYfqOHoK8te1WNzILgvAKw8RtCr
-X-Gm-Gg: AY/fxX5yVZzc/3WjTWwbx/63ROc9qpaK4z1hknajf9mM94QaiSdt0IOQoANHVXqLLSs
-	u1Mut2M79pKcfWmiVjglgHRHnjo7y6S2VuCr2e7/SkwwemncTZYtcaqqL08HH+uOc2sxnLqpaXq
-	9mEQ9S+8I3ZPHkTYytKyYvZ7klv6sL1J3e2tp2QNBC2U15s/MrqZqeTxiwKrlQANO3rINN3+rm4
-	x0ngun4UKU3pPhJSCgdw8miOuTlQQVKL7Uz0LPB8Urw0qov5DfOGaui0gwvBkVrEGY+ZrnsXQ9t
-	bTCLZu62gTaeCvSV7tTpULi+0RXcTW8jveb0rbiwB1jIUAq7bE2MROwN8Xq3jN1upjkgnguKn/O
-	jOtSA83bMYL/2AShKezSUC239CiPK7zKt9JHxMLL8SH409mMS2KILl0FRWA/WhTgRx9KVOEd0AY
-	Zqr9D3
-X-Google-Smtp-Source: AGHT+IGPybPvZupy/FYihDwzQNc/n+V1kR/RRvYwaA6/FcFDZUxpWNk2e4gufz92hDuNfXzVOvBWtg==
-X-Received: by 2002:a05:6a20:a128:b0:35f:68d:430e with SMTP id adf61e73a8af0-3898f8f45bemr12792422637.9.1768104091706;
-        Sat, 10 Jan 2026 20:01:31 -0800 (PST)
-Received: from [0.0.0.0] ([8.222.167.232])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c4cc96ca7a9sm13871167a12.25.2026.01.10.20.01.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Jan 2026 20:01:31 -0800 (PST)
-Message-ID: <0d54ddca-9270-40a5-aa82-d8a7b65027ff@gmail.com>
-Date: Sat, 10 Jan 2026 20:05:31 -0800
+	s=arc-20240116; t=1768113692; c=relaxed/simple;
+	bh=+KO+tJTbypwCAXRGtXUM10wZGIF4dsIDTzPaW/QdLso=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AXQKBq43aYPqE4U0Ypt9piWZLCuAKFB19hveVjBh1H5rczQ+OQmKaqfUTvLvi2ScGbNLlscT6oQN5dShiFYA4381luh7JIk4hBPltnXrH0UJWJUFiRBC26+yf1cjrfFp1Ni/U992xhl6EUyYwO7TNn1UOJVPy5WTn2XqtLsLhEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=PZgqvYkX; arc=none smtp.client-ip=91.218.175.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1768113679;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=56OMBFVuoHClJkZZhp3ixlpb+rovPKePY3VizP3ZGbQ=;
+	b=PZgqvYkXinKCwk2kRUnekJ0UqA/TlWSZy6Zmjk6rkt124fjOObvxMyqxAwZFX+0c/GWc+F
+	9TICcZctdlSFh+5ZwGQ2Fr86ruDEwetRPBKOvy7xx1MqK76IzUomFcDxsk4H0gd61iV/F/
+	LGzexdUWei0yzekxfC06+P6tOzlAJZ0=
+From: Ze Huang <huang.ze@linux.dev>
+Subject: [PATCH v3 0/3] riscv: dts: spacemit: Add USB 3.0 support for K1
+Date: Sun, 11 Jan 2026 14:41:01 +0800
+Message-Id: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock sampling
- control
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
- Andrew Lunn <andrew@lunn.ch>
-Cc: lizhi2@eswincomputing.com, devicetree@vger.kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- ningyu@eswincomputing.com, linmin@eswincomputing.com,
- pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
-References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
- <20260109080859.1285-1-lizhi2@eswincomputing.com>
- <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
- <aWKZvEW7rKFFwZLG@shell.armlinux.org.uk>
-Content-Language: en-US
-From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <aWKZvEW7rKFFwZLG@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP1FY2kC/3WOyw6CMBREf4XctTW3Rdviyv8wLvq41UYFbYFgC
+ P9uxbXJbM4kczIzZEqRMhyqGRKNMceuLVBvKnBX016IRV8YBAqJHBW7cTZkW/s+s1EwIdBhMEq
+ hMFA2z0QhTqvvdP5xotdQtP2vBGsyMdc9HrE/VLsgldNKmQZl4yT6YLmSCmsdrNlzjdZx4aWGr
+ +sac9+l93p1FKvsz6sSZCT3jcWgA3FzvMd2mLaeRjgvy/IBi8H6b/YAAAA=
+X-Change-ID: 20260107-k1-usb3dts-v2-220c0fa7702a
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Ze Huang <huang.ze@linux.dev>, Aurelien Jarno <aurelien@aurel32.net>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768113671; l=1479;
+ i=huang.ze@linux.dev; s=20250705; h=from:subject:message-id;
+ bh=+KO+tJTbypwCAXRGtXUM10wZGIF4dsIDTzPaW/QdLso=;
+ b=uasPhocpKwUD8x6PNrkPiB+R8GULdBE/ICIXH1cQFjlK1p0FLNvvl0JKTNrF318otD4enECsa
+ KXlxQlROv9aASdgsmgvWzXG6f2qH9/kZ9q8f3NPftr5vtd5fCTi7mwN
+X-Developer-Key: i=huang.ze@linux.dev; a=ed25519;
+ pk=Kzc4PMu5PTo8eZZQ5xmTNL9jeXcQ9Wml0cs+vlQpBkg=
+X-Migadu-Flow: FLOW_OUT
 
-On 1/10/26 10:26, Russell King (Oracle) wrote:
-> On Fri, Jan 09, 2026 at 07:27:54PM +0100, Andrew Lunn wrote:
->>>     rx-internal-delay-ps:
->>> -    enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
->>> +    enum: [0, 20, 60, 100, 200, 400, 800, 1600, 2400]
->>>   
->>>     tx-internal-delay-ps:
->>> -    enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
->>> +    enum: [0, 20, 60, 100, 200, 400, 800, 1600, 2400]
->>
->> You need to add some text to the Changelog to indicate why this is
->> safe to do, and will not cause any regressions for DT blobs already in
->> use. Backwards compatibility is very important and needs to be
->> addressed.
->>
->>> +  eswin,rx-clk-invert:
->>> +    description:
->>> +      Invert the receive clock sampling polarity at the MAC input.
->>> +      This property may be used to compensate for SoC-specific
->>> +      receive clock to data skew and help ensure correct RX data
->>> +      sampling at high speed.
->>> +    type: boolean
->>
->> This does not make too much sense to me. The RGMII standard indicates
->> sampling happens on both edges of the clock. The rising edge is for
->> the lower 4 bits, the falling edge for the upper 4 bits. Flipping the
->> polarity would only swap the nibbles around.
-> 
-> I'm going to ask a rather pertinent question. Why do we have this
-> eswin stuff in the kernel tree?
-> 
-> I've just been looking to see whether I can understand more about this,
-> and although I've discovered the TRM is available for the EIC7700:
-> 
-> https://github.com/eswincomputing/EIC7700X-SoC-Technical-Reference-Manual/releases
-> 
-> that isn't particularly helpful on its own.
-> 
-> There doesn't appear to be any device tree source files that describe
-> the hardware. The DT bindings that I can find seem to describe only
-> ethernet and USB. describe the ethernet and USB, and maybe sdhci.
-> 
-> I was looking for something that would lead me to what this
-> eswin,hsp-sp-csr thing is, but that doesn't seem to exist in our
-> DT binding documentation, nor does greping for "hsp.sp.csr" in
-> arch/*/boot/dts find anything.
-> 
-> So, we can't know what this "hsp" thing is to even know where to look
-> in the 80MiB of PDF documentation.
-> 
+This patch series enables the DWC3 USB 3.0 host controller on the
+Spacemit K1 SoC and enables it for the Banana Pi F3 board.
 
-HSP -> High-Speed Peripheral. eswin,hsp-sp-csr is mentioned in
+For testing, the following kernel configurations should be enabled:
 
-Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-Documentation/devicetree/bindings/usb/eswin,eic7700-usb.yaml
+CONFIG_PHY_SPACEMIT_K1_USB2=y
+CONFIG_PHY_SPACEMIT_K1_PCIE=y
+CONFIG_USB_DWC3=y
+CONFIG_USB_ONBOARD_DEV=y
 
- From ESWIN's vendor/testing kernel tree:
+This series is based on the spacemit k1/for-next branch.
 
-hsp_sp_csr: hsp-sp-top-csr@0x50440000 {
-   compatible = "syscon";
-   #size-cells = <2>;
-   reg = <0x0 0x50440000 0x0 0x2000>;
-};
+Link: https://github.com/spacemit-com/linux
 
-Apparently it's just a register block that controls varies behaviors of
-high speed peripherals. I'm not sure if DT bindings mandates it, but it's
-undocumented in the TRM. Perhaps ESWIN should properly document it going
-forward? Also, I think ESWIN needs to check-in the sdhci/eth/usb device-
-tree components ASAP, so folks can test it.
+Signed-off-by: Ze Huang <huang.ze@linux.dev>
+---
+Changes in v3:
+- rename vbus and hub regulator to match schematics
+- reorder node reference to keep alphabet order
+- drop regulator-always-on in usb hub regulator node
+- drop unmanaged vbus-supply in usb host node
+- Link to v2: https://lore.kernel.org/r/20260107-k1-usb3dts-v2-v2-0-e659b0f8fe1a@linux.dev
 
-Bo
+Changes in v2:
+- rebased on spacemit k1/for-next
+- Link to v1: https://lore.kernel.org/all/20251101-k1-usb3dts-v1-0-dd2660e5740b@linux.dev/
+
+---
+Ze Huang (3):
+      riscv: dts: spacemit: Add USB2 PHY node for K1
+      riscv: dts: spacemit: Add DWC3 USB 3.0 controller node for K1
+      riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
+
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 46 +++++++++++++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi            | 32 +++++++++++++++++
+ 2 files changed, 78 insertions(+)
+---
+base-commit: 4f67c877a9069c60dfb1767038fba5180bc12d68
+change-id: 20260107-k1-usb3dts-v2-220c0fa7702a
+
+Best regards,
+-- 
+Ze Huang <huang.ze@linux.dev>
+
 
