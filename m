@@ -1,39 +1,40 @@
-Return-Path: <devicetree+bounces-253615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5428D0F3F9
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:06:49 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65CC9D0F408
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 16:07:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 709D43022126
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 15:06:27 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 817F43013BF8
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jan 2026 15:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3279B34B1A9;
-	Sun, 11 Jan 2026 15:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A9D34B1A0;
+	Sun, 11 Jan 2026 15:06:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B057C3491E1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30EEC3491D6
 	for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 15:06:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768143982; cv=none; b=AMw+SFudbpeU8HkQDnUMycz4TfddRJwcjSTLE3Jr5SwgwETvB+KTp+XQRhYgI/mdOtKNDGsXHuSV4nmL6sicGY0Utq6DwbDkrbC2kwRds/cbxFmIYAhrjR57xK2egcwaXMfl/qeLo4o+DRcZUW4RUnbuUArmVM8eLIHNRwNufqA=
+	t=1768143980; cv=none; b=K09NRGBRQD8FmLkO1LcYHRoQRH7oDmqgE0O2v1I3zh4pMgW82c5+8L6ZMASXT652ZvJTpstZ4Cq1eHBbDvRMzAFLCPQHcR0sWGXZTi09HIj1OivitOoBUeXMHJm7Cy8rZq1K5MRp3dVla1elYxQNl28FQqbcVV4d1O1NsNQURrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768143982; c=relaxed/simple;
-	bh=Z+UYuPcxwTAYn5fEGYu7PIC71ZOo+MFkrnH9AKsKs8E=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YUjf6s3NJXcRfbNFXyic6R/Aj6kMYolnsoCHW8bhzltUNPrAfB/Rc01ntqM0aOF60Ni24Dh9mLC6ZcIjuX0cTidkpjyDm8jGKkEfex4muHHnMVBqXk7o9DUYSjUWjYaLOj4e29eJQcuqwaBxJYX7II5R9ZKmYpmnJuSt3TQ0oZY=
+	s=arc-20240116; t=1768143980; c=relaxed/simple;
+	bh=gwjlWhZ4LBGnW8grzCKl1p8vrB/AywLKwLC7W60rBSU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=JqW5mLgwNY9X8u1OdJdSHoiaVmptDsAQTwIhhXPSOkJ5JAHeRhty46BvDiR9hS6B5jmC+zSFThPFdQpHYL0F+4bv3LfYS2MHPBIygKrYaTjoeLr/BZ713D2jmzRbOSvQtcmlSQjNO8Ix6Sa9wlx+HYxZqdDrlvMA1bnGkzQckC0=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1vex0q-0004rl-M7; Sun, 11 Jan 2026 16:05:52 +0100
+	id 1vex0q-0004rl-OF; Sun, 11 Jan 2026 16:05:52 +0100
 From: Marco Felsch <m.felsch@pengutronix.de>
-Subject: [PATCH v5 0/4] Input: Add support for TouchNetix aXiom touchscreen
-Date: Sun, 11 Jan 2026 16:05:43 +0100
-Message-Id: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
+Date: Sun, 11 Jan 2026 16:05:44 +0100
+Subject: [PATCH v5 1/4] firmware_loader: expand firmware error codes with
+ up-to-date error
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,12 +43,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEe8Y2kC/4XPsWrEMAwG4Fc5PNdFcmwn7tT3KB0cR714qBPsn
- Ek58u5VAkeHHmQR/BJ8ku6iUI5UxNvlLjLVWOKUOJiXiwijT1eSceAsFCgNLWhZrUSQyzTHwPU
- WxhIyUZJ+jdM3j0xrkToERMHGnOkrrof/8cl5jGWZ8s+xruLePWREdCdyRQnSotJOmd612L3Pl
- K63JU8prq8DiZ2v6kEaMOqUVEx6Q0PPZ3sL8JRs/shO4RnZMOk0hEBkh943T0n9IC0g2DNS7yS
- 53rrQ8ff2H7lt2y8GocLryAEAAA==
-X-Change-ID: 20240704-v6-10-topic-touchscreen-axiom-105761e81011
+Message-Id: <20260111-v6-10-topic-touchscreen-axiom-v5-1-f94e0ae266cb@pengutronix.de>
+References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
+In-Reply-To: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
 To: Luis Chamberlain <mcgrof@kernel.org>, 
  Russ Weight <russ.weight@linux.dev>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -61,82 +59,74 @@ To: Luis Chamberlain <mcgrof@kernel.org>,
  Danilo Krummrich <dakr@kernel.org>, Danilo Krummrich <dakr@kernel.org>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-input@vger.kernel.org, kernel@pengutronix.de, 
- Marco Felsch <m.felsch@pengutronix.de>, 
- Krzysztof Kozlowski <krzk@kernel.org>
+ Marco Felsch <m.felsch@pengutronix.de>
 X-Mailer: b4 0.14.2
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
 X-SA-Exim-Mail-From: m.felsch@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi,
+Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
+framework that the update is not required. This can be the case if the
+user provided firmware matches the current running firmware.
 
-this adds the support for the TouchNetix aXiom touchcontroller family.
+Sync lib/test_firmware.c accordingly.
 
-The following features are added:
- - I2C communication
- - Input event handling
- - Touchcontroller firmware (AXFW or ALC) updates
- - Touchcontroller config (TH2CFGBIN) updates
-
-Regards,
-  Marco
-
-Changes in v5:
-- Link to v4: https://lore.kernel.org/r/20260106-v6-10-topic-touchscreen-axiom-v4-0-9e9b69c84926@pengutronix.de
-- fix sysfs documentation description indentation and date
-
-Changes in v4:
-- Link to v3: https://lore.kernel.org/r/20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de
-- rebased on top of v6.19-rc1
-- collect r-b tags
-
-Changes in v3:
-- Link to v2: https://lore.kernel.org/r/20250529-v6-10-topic-touchscreen-axiom-v2-0-a5edb105a600@pengutronix.de
-- firmware: fix commit message (Russ)
-- dt-bindings: Add ack from Krzysztof
-- dt-bindings: make use of GPIO_ACTIVE_LOW (Krzysztof)
-- dt-bindings: drop 'panel: true' property (Krzysztof)
-- driver: make use of sysfs_emit (Greg)
-- driver: s/WARN()/dev_warn()/ to not take down the system (Greg)
-- driver: fix build dependency error by adding "depends on DRM || !DRM"
-- driver: harmonize usage printing to u%02X
-
-Changes in v2:
-- Link to v1: https://lore.kernel.org/r/20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de
-- Rework the firmware-duplicate handling -> expose the error to the
-  userspace
-- Drop Krzysztof Kozlowski ACK and RB
-- Add panel-follower support
-- Add sysfs-driver-input-touchnetix-axiom documentation
-- Add support for new firmware 4.8.9
-- Add support to handle 2D and 3D firmware
-
+Reviewed-by: Russ Weight <russ.weight@linux.dev>
+Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
-Kamel Bouhara (2):
-      dt-bindings: vendor-prefixes: Add TouchNetix AS
-      dt-bindings: input: Add TouchNetix axiom touchscreen
+ drivers/base/firmware_loader/sysfs_upload.c | 1 +
+ include/linux/firmware.h                    | 2 ++
+ lib/test_firmware.c                         | 1 +
+ 3 files changed, 4 insertions(+)
 
-Marco Felsch (2):
-      firmware_loader: expand firmware error codes with up-to-date error
-      Input: Add TouchNetix aXiom I2C Touchscreen support
+diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
+index c3797b93c5f5a2ecf2ae34707893c89eb7773154..9e93070b2c24179986b868a24b09cf051776c644 100644
+--- a/drivers/base/firmware_loader/sysfs_upload.c
++++ b/drivers/base/firmware_loader/sysfs_upload.c
+@@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
+ 	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
+ 	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
+ 	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
++	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
+ };
+ 
+ static const char *fw_upload_progress(struct device *dev,
+diff --git a/include/linux/firmware.h b/include/linux/firmware.h
+index aae1b85ffc10e20e9c3c9b6009d26b83efd8cb24..fe7797be4c08cd62cdad9617b8f70095d5e0af2f 100644
+--- a/include/linux/firmware.h
++++ b/include/linux/firmware.h
+@@ -29,6 +29,7 @@ struct firmware {
+  * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
+  * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
+  * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
++ * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
+  * @FW_UPLOAD_ERR_MAX: Maximum error code marker
+  */
+ enum fw_upload_err {
+@@ -41,6 +42,7 @@ enum fw_upload_err {
+ 	FW_UPLOAD_ERR_RW_ERROR,
+ 	FW_UPLOAD_ERR_WEAROUT,
+ 	FW_UPLOAD_ERR_FW_INVALID,
++	FW_UPLOAD_ERR_DUPLICATE,
+ 	FW_UPLOAD_ERR_MAX
+ };
+ 
+diff --git a/lib/test_firmware.c b/lib/test_firmware.c
+index be4f93124901e5faac41f48a66dabe6da56be0ca..952ec1cb03102911dbea9abd648ab9d9e0112a46 100644
+--- a/lib/test_firmware.c
++++ b/lib/test_firmware.c
+@@ -1134,6 +1134,7 @@ static const char * const fw_upload_err_str[] = {
+ 	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
+ 	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
+ 	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
++	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
+ };
+ 
+ static void upload_err_inject_error(struct test_firmware_upload *tst,
 
- .../testing/sysfs-driver-input-touchnetix-axiom    |   81 +
- .../input/touchscreen/touchnetix,ax54a.yaml        |   62 +
- .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
- drivers/base/firmware_loader/sysfs_upload.c        |    1 +
- drivers/input/touchscreen/Kconfig                  |   17 +
- drivers/input/touchscreen/Makefile                 |    1 +
- drivers/input/touchscreen/touchnetix_axiom.c       | 2974 ++++++++++++++++++++
- include/linux/firmware.h                           |    2 +
- lib/test_firmware.c                                |    1 +
- 9 files changed, 3141 insertions(+)
----
-base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-change-id: 20240704-v6-10-topic-touchscreen-axiom-105761e81011
-
-Best regards,
 -- 
-Marco Felsch <m.felsch@pengutronix.de>
+2.47.3
 
 
