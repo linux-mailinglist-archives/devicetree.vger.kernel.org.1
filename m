@@ -1,39 +1,46 @@
-Return-Path: <devicetree+bounces-253909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA759D128D2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:30:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B1A7D128EA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:33:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 916113051AE7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:29:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 85B9F3009D7C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB93356A0D;
-	Mon, 12 Jan 2026 12:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57BA0356A0D;
+	Mon, 12 Jan 2026 12:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="VMJnJOxi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X7DroItj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49248.qiye.163.com (mail-m49248.qiye.163.com [45.254.49.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F9E28D83F;
-	Mon, 12 Jan 2026 12:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26AB530F80B;
+	Mon, 12 Jan 2026 12:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768220963; cv=none; b=sAmhQuabicplQMbRV8e2UtBgPQMvTos3YjtB1aGWxNgcsCwJAeqiNC+JZnJG75eYerCDHBTixW4bxuG34tqOmuJlK9ILNnfVB3lhHB1AjWhSS8VrRXYaSH80mLPQE6CUzXQfERLGQphEZLKyJANh1JMkzjYq9HFRYaij6MBd05o=
+	t=1768221177; cv=none; b=c0R9enOzIsbo11rtmWZJzbnQxYxd2FvYgFUbJ99YvDihVL0DdNl/2S1LEs2s+oCVv3Au0hpo/ymihJkwjQ7rx/zi4ZK7OzABmnHc6OsGLmYjmeyJmO5mMsg7RvgA53DEVKUhdcaDU47qfingEVNB59xXPx5v/wPdwFov6UFobi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768220963; c=relaxed/simple;
-	bh=6Z+PIEIU8Cury5ZwbtZwAZv8RzO3KdDugLP4B9t3VkU=;
+	s=arc-20240116; t=1768221177; c=relaxed/simple;
+	bh=0Ne1gZXDxM4Tk8QmOIHn/+TN/jiRBkYkQeqyKDfPaaE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BIszAGOUayPL/fT/Tvvq8qL6q9DJvo/EMAkPeAn/U39mIiblhiBFr9VVENctU8m4v+AIzcUMvToGEcPxBZGq6YTjseEc2PQY4R+P5lkP5LRgkFZuNK8+Szwpl7XhcFCODM3P5JYnM8LPj9snC1YPQkMf3Vp2Yfnu/kMdn2mmazE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=VMJnJOxi; arc=none smtp.client-ip=45.254.49.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.163] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3056e6249;
-	Mon, 12 Jan 2026 20:29:08 +0800 (GMT+08:00)
-Message-ID: <1242f7d2-e68c-42ca-a6cc-c56c9e6a496f@rock-chips.com>
-Date: Mon, 12 Jan 2026 20:29:04 +0800
+	 In-Reply-To:Content-Type; b=umIExzPi123UREVFQh9PBZDvri/P+m9EXYpvBi9yC6Z2YWvk1N1gOC64PfFwDnTMYTjqbXCym1/INDEe2PAht7OEGKTXT8UdSS/AsyoPN7WqxwRBfcBMRxeHG4Jb5jNfePN4xdGF9E77j2CW4Zo+4bHcTc7tceiQuqHQFTXwl1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X7DroItj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA211C16AAE;
+	Mon, 12 Jan 2026 12:32:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768221176;
+	bh=0Ne1gZXDxM4Tk8QmOIHn/+TN/jiRBkYkQeqyKDfPaaE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X7DroItjFh8UJAPJmJ1Ql/HmzfjrQNwTOeJryl3Wo38Paa21gFdC6+awU+z5zMf3x
+	 mFoBYr1Lr6eLaLdJd7fkbnsZYXopUm0OEStpX5dGXNhnEGQIdOmQd2wDNSMOLYO1YW
+	 DtOt9Xac2JhRLl99P5GxA6kc3qxUvPRBxZdhx+eSmKJTb5YWn8WGkDlQr82RTELeSB
+	 ybOhyhgzL15BoNS+aV1F/YohRmj3r75+YsDQt/Jh491Wbdd0Msj5UMm4ebGDWX8PuL
+	 ZrBLZHVIZ2GNir5X4K5XAd/aj/m2w5Uga/2QnwxJiFw5NhZddztWvSJ1uQ3NFSKWOK
+	 tvDj2Xma5G1HQ==
+Message-ID: <664257ea-9add-4f0e-a587-d59eaa2e3b7f@kernel.org>
+Date: Mon, 12 Jan 2026 13:32:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,108 +48,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] mfd: rk8xx: Add RK801 support
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20260112102849.1479-1-chenjh@rock-chips.com>
- <20260112102849.1479-3-chenjh@rock-chips.com> <1980810.GKX7oQKdZx@diego>
-From: Joseph Chen <chenjh@rock-chips.com>
-In-Reply-To: <1980810.GKX7oQKdZx@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9bb22e76c809d2kunm32fd54ab8197
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh5LTlYeTklNSx0eS00YH0xWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=VMJnJOxi5ZK4YIQf0Wessd6Nw6/dgGbl5DWcy01gmN7UhPbFw3DOb9Jl5ySJQb+cgIicXAIIzNQKyxC3sawz8pXBuqvYmkkgJbxBq4yvimsNj+L16B03Mg+R76CvOxeSQeJvuFnxmEBd2qTz4VAFXX7w8rTO7lAkL9/D5xwGMYY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=g6uH84HDnFSrdVdJ26m+FtXVNrVdhC0apU6MQYr/8k0=;
-	h=date:mime-version:subject:message-id:from;
+Subject: Re: [PATCH v4 1/4] dt-bindings: arm: qcom: Document Glymur SoC and
+ board
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260112-upstream_v3_glymur_introduction-v4-0-8a0366210e02@oss.qualcomm.com>
+ <20260112-upstream_v3_glymur_introduction-v4-1-8a0366210e02@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260112-upstream_v3_glymur_introduction-v4-1-8a0366210e02@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 12/01/2026 13:22, Pankaj Patil wrote:
+> Document Glymur SoC bindings and Compute Reference Device
+> (CRD) board id
+> 
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> ---
 
-在 2026/1/12 19:02, Heiko Stübner 写道:
-> Hi Joseph,
->
-> Am Montag, 12. Januar 2026, 11:28:48 Mitteleuropäische Normalzeit schrieb Joseph Chen:
->> The RK801 is a Power Management IC (PMIC) for multimedia
->> and handheld devices. It contains the following components:
->>
->> - 4 BUCK
->> - 2 LDO
->> - 1 SWITCH
->>
->> Signed-off-by: Joseph Chen <chenjh@rock-chips.com>
->> ---
->>   drivers/mfd/Kconfig                 |    6 +-
->>   drivers/mfd/rk8xx-core.c            |   81 ++
->>   drivers/mfd/rk8xx-i2c.c             |   33 +-
->>   drivers/regulator/rk808-regulator.c | 1963 ---------------------------
->>   include/linux/mfd/rk808.h           |  118 ++
->>   5 files changed, 234 insertions(+), 1967 deletions(-)
->>   delete mode 100644 drivers/regulator/rk808-regulator.c
->>
->> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
->> index 6cec1858947..5405e8633aa 100644
->> --- a/drivers/mfd/Kconfig
->> +++ b/drivers/mfd/Kconfig
->> @@ -1355,15 +1355,15 @@ config MFD_RK8XX
->>   	select MFD_CORE
->>   
->>   config MFD_RK8XX_I2C
->> -	tristate "Rockchip RK805/RK808/RK809/RK816/RK817/RK818 Power Management Chip"
->> +	tristate "Rockchip RK801/RK805/RK808/RK809/RK816/RK817/RK818 Power Management Chip"
-> nit: I think at some point it'd be time to make that
-> 	"Rockchip RX8xx Power Management Chips"
-> The config entry is already named that way, and that list of individual
-> supported chips gets way too long.
->
-> Also the individual supported chips _are_ listed below, so the unwieldy
-> entry headline can be shortened.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Thanks, agreed. Will fix in v3.
-
->>   	depends on I2C && OF
->>   	select MFD_CORE
->>   	select REGMAP_I2C
->>   	select REGMAP_IRQ
->>   	select MFD_RK8XX
->>   	help
->> -	  If you say yes here you get support for the RK805, RK808, RK809,
->> -	  RK816, RK817 and RK818 Power Management chips.
->> +	  If you say yes here you get support for the RK801, RK805, RK808,
->> +	  RK809, RK816, RK817 and RK818 Power Management chips.
->>   	  This driver provides common support for accessing the device
->>   	  through I2C interface. The device supports multiple sub-devices
->>   	  including interrupts, RTC, LDO & DCDC regulators, and onkey.
-> [...]
->
->> diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
->> deleted file mode 100644
->> index 1e814247965..00000000000
->> --- a/drivers/regulator/rk808-regulator.c
->> +++ /dev/null
-> Looks like something did go wrong here, as you're removing the whole
-> drivers/regulator/rk808-regulator.c file from the MFD patch.
->
->
-> Thanks
-> Heiko
->
->
->
-Thanks for catching this. It was a silly mistake on my end during local
-patch preparation.
-I'll send a v3 shortly to fix this issue to avoid wasting reviewers' time.
-
--- 
 Best regards,
-Joseph Chen
-
+Krzysztof
 
