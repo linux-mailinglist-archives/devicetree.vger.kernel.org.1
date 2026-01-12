@@ -1,187 +1,267 @@
-Return-Path: <devicetree+bounces-253952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B044D12F63
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:59:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E49CD12FD3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:05:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 088CD30178D8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:56:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 904BF3016990
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500FA35BDC4;
-	Mon, 12 Jan 2026 13:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7A035C18D;
+	Mon, 12 Jan 2026 14:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FeAocew6"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="C4aFOvta"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012038.outbound.protection.outlook.com [52.101.66.38])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291CC352F95;
-	Mon, 12 Jan 2026 13:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768226189; cv=none; b=Dr7rGzzhUirrwA8nv1T+so4laRjZcZIhDEhwgxTTAvbuyHCmBxCVbF0g++gTBmpXj/AqkCZG1nmVcPYpdeOjr+fr9D8hyo8cULLp4PCUcn0DsTd7efDPXyaYBRTukx6RV7DtTZp17mV880ft6eWRoYNs19hvcsvvkHV7Ol9yItM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768226189; c=relaxed/simple;
-	bh=nTOWUyppmdziosK5hC+4lapcYTGSSnyVm7zOVtqp8M0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A5ROoZ+Zs+H90iHngDKjFV4/K1yRqcO1g4gFISsrPl7nlTts+GqPG8wpolY5GXxTU+8fNtJPP16WZiGgvuOz5RyPR+vQslX/y2Hx1x3kstpJSEroIKQmdAnO0BvYwEVEfzxBUHdw26Qf9p9HnvBlvt4h/pCRPOhgZtR+inLgPxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FeAocew6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB2C6C16AAE;
-	Mon, 12 Jan 2026 13:56:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768226189;
-	bh=nTOWUyppmdziosK5hC+4lapcYTGSSnyVm7zOVtqp8M0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FeAocew6ZwUQ24IpZZlNx4LFCD0z0wEn3RWO6QKKLw39I1ZGaKv5lLQ7VxeoLwh9t
-	 mVULJHsw/busSOvuV0gsKBLsZq57QjLORdfYnxR3UfAk1QKbv2xMXnZ8N0usEmfAiG
-	 2DGzx4L3GD8K929oKD6CdXg4ZkSm9hNbPGvY8VpFeGNE3n9t82ge/XwqBovQ4uIDiO
-	 NZZeDhFhzTQo2t8Nf4XZn8HYtSXienGr5HIWQpxJiOvqbMMRgCPBq7BOCAuzXfEUdt
-	 bqCygXVSprM6U7QfwplXvLd+JVJfUaYYdYIvG03j4mmJ3rV7Ib7UUIODXNbY/s+mY0
-	 oy8A+65dSKgoQ==
-Message-ID: <c9575d58-4320-4c72-938b-16cd0a400ef0@kernel.org>
-Date: Mon, 12 Jan 2026 14:56:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337283563F6;
+	Mon, 12 Jan 2026 14:01:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.38
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768226480; cv=fail; b=u/5jya6cAlYL4I3LH7BF7QK1L89Kbqg2NltZLNVj8XrMVMBghxWPuY5pM1mop+w40jg2j/9l8wY7FZ6fOkU6ttmcjfTOwcre/EY7aPWnghsogKPZNhFMS23zzEQX8cKedA1NYoVsKWcHJAzp3+NfeAxfHDqhmAMo7rnWxKcYKio=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768226480; c=relaxed/simple;
+	bh=EOJ0dL41gxUO6BjeAwzlwY3LUOGLiHnnileQdH5eDRk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=WbMB2AY4GAYfdXtZ5nPkIUfIxur+Tiq6ASy1n433wzhsbeqHW+UG9o/lxJxLMTo7CN2p47YEZH4fXbA6REpdzTybveucuCv0tsaxpw1bIiyJZO9UnLSAaJiPdvVh6lUb+8ZEW7Q82xtr2HLarp4mBxBBNpZQexFUgD57b2isnws=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=C4aFOvta; arc=fail smtp.client-ip=52.101.66.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eje1Hs7jtK18nexg+qTf3beovAkzDqxwhJXRBFNY0eYScm45mLWa3HmfWyynwWV02sTLQ94I+GuZMSNOMiNw8fZ8vw3fa0ay+7u9rwAzptxQ3V8jOfFrSYLQaWFk7YPB3wjGA+3OfskJK2T3I9wp1WniPiQ75HDfSpnkJhUFeEqFM1hzDCrowT/YvRnA2Ee/uSTcYKG0i9K56MyMlQ5cKSNSW7N4lCps6wsiTZYAmMAUvbey3Vp7MC/zzu6jqiHyunTfDxKf+B6yeM5e+oM6nW5x9HR7ydRuy8C5sOWWwD+hkttNGXhEMD9/C/IWQck3ucRt329QHAdAzimhzzatGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1my+Qz+0ZYYIk6yGQZoYxXTd4Rnkazjgd8h4IPnn+fY=;
+ b=fIx54YGhD8zAmKm+7F0Ei6WseeLWeKNvsYAGdrl759U3IY+O+03eBTqBl1becp2wfClfsorFqTe5j24MLyxDkzI7B3Kpw6I3DuYWj0pQDUYcSW3N9pJDaO/Zb7YlHQuguEpDQwaPcJaryUXR4ICe05X/xUwqPATxiZMfQfp1eArncVbi1HtmoZ9cEBtpUId9pITrLU33n0dvHYUrSzMGyEQg4lnLUEndOW0hFDJ0ni+Tga7zr7pMt9WlD+YYlvVc7xBX4OOHZYCKbiBNVO8VVn+gAZ/g5TOQkzZG3+yluNmK8AH+IEAlYyQ/NaoeLTDw+SF2lQXL/ng+7y29tgzZQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1my+Qz+0ZYYIk6yGQZoYxXTd4Rnkazjgd8h4IPnn+fY=;
+ b=C4aFOvtarrGTai+u7hF/LpzCF8rytRo+8H9aThJZhxKSeue/yeNKDAA9EkKTQbEohFxhBceSfHMNh/D9waAA3U6uGdXEF4Zf1hol9Mrheeop+x4y6Y5gqKNt7opMVFc1FyYOGylugm3P8LA5Sz+SOrCzxmbCI0/rmnOSRARMevU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
+ by DU2PR04MB8664.eurprd04.prod.outlook.com (2603:10a6:10:2df::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
+ 2026 14:01:13 +0000
+Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
+ ([fe80::1033:5a9a:dc18:dad]) by GVXPR04MB12038.eurprd04.prod.outlook.com
+ ([fe80::1033:5a9a:dc18:dad%4]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
+ 14:01:13 +0000
+Message-ID: <07ce7c4e-7fc7-40f8-9c46-4977e3ce2458@cherry.de>
+Date: Mon, 12 Jan 2026 15:00:48 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: usb: Add binding for WCH CH334/CH335
+ hub controller
+To: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Hsun Lai <i@chainsx.cn>, John Clark <inindev@gmail.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org
+References: <20260112022823.91-1-kernel@airkyi.com>
+ <20260112022823.91-2-kernel@airkyi.com>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <20260112022823.91-2-kernel@airkyi.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0209.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a5::8) To GVXPR04MB12038.eurprd04.prod.outlook.com
+ (2603:10a6:150:2be::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: watchdog: fsl-imx: document continue in
- low power mode
-To: Nandor Han <nandor.han@gehealthcare.com>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251229145000.421426-1-nandor.han@gehealthcare.com>
- <20251229145000.421426-3-nandor.han@gehealthcare.com>
- <20251230-hidden-okapi-of-reputation-6ef8be@quoll>
- <e24ec822-4d13-4136-8fb6-1bc6cbaf8e20@gehealthcare.com>
- <04d8766f-0f79-409b-9290-3170e99e9750@kernel.org>
- <493b1bac-2eae-4c78-9c07-801eaf954b04@gehealthcare.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <493b1bac-2eae-4c78-9c07-801eaf954b04@gehealthcare.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|DU2PR04MB8664:EE_
+X-MS-Office365-Filtering-Correlation-Id: 236af86e-a9f5-41f1-ca08-08de51e30bdb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|366016|921020|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?MlhySHZsUFpZYS94dGFZVHA0YVhsbkNROVpZQUZYRjRUeE1vSEFRbEpVWjFp?=
+ =?utf-8?B?RExtV3lmY2liRlYrZ25yQVVCWno2WXFZTjZkKytmSTdyekFleVM0dlFTMUxt?=
+ =?utf-8?B?Q1hFZTBJNVYrbmQ0Y2ZCTlZ2bmcxemt2TXA1a0Z3UWd6L0RTb1hyQW5MUHBm?=
+ =?utf-8?B?ZkxhdW8xSEdWM1B0RERrcDQ5bFVQaUNBRWd6NzZGZCt0NytWS1Q4OGQ2U3ho?=
+ =?utf-8?B?UDUvOWVqbWJZU2tWMkl2RVRtYjdMTW5KekFwbWZWMmJSV0NvU090cDRQSWM2?=
+ =?utf-8?B?bFZNNVFCOFQ1djlwamZBWkNaL0Q5dHVxZUxOYlAwSFpyZS9mS1hKUEt0YjBm?=
+ =?utf-8?B?bWZWVWhXcGFYek1INTZCYk1MMHZIYXp6bVluTmVQZFRJTktDTmN3cUtlYjYy?=
+ =?utf-8?B?ZjZrQ0c3cVlDZkZzNU1nNTQwMElMaXp0MFd2TGY0ci9iTk1WZldZaDJPQUxJ?=
+ =?utf-8?B?ZklYWVY4cnFXTkprSzBsMzJOaExKYmswZzlWWnhVS2l4MXNsUlBvbERlQXFr?=
+ =?utf-8?B?bVVYeEVpY3kxb29zaFF4TmY4MXlNb0VacXBoV2lrWlpiL2MvRGZCQUtmUkw1?=
+ =?utf-8?B?TkFBZWtzaldJTGg0eUJiZVZOaVZhK2tkSkx3d3BndThraXUvUkFLRXArUEZY?=
+ =?utf-8?B?WEdmMEhsTURyQVNIUnY2T0NGelJ4TnBwQVRmZmI5Mm9zOUVDVjJXR3RuS2FS?=
+ =?utf-8?B?VWRBUWlQRStNR2xlV05YOElmUmlTTW8zdkkwTnZwbUU2UDF2SXN2ZzRtYVZG?=
+ =?utf-8?B?Nk0xZVFWaUZsVmRyd0dzSzIvb00yMVpDVFhvNlNLSFZIc1ZVUDFwc3Mxd1Bn?=
+ =?utf-8?B?NkU0dnArZkdLQ29uR0dsL1hPRTM4MGpyRmN6TlR5d21hQ2hkVG1vYzhldU4r?=
+ =?utf-8?B?Y1hYMFNKY05HaUgxKzVmQzg0Sk9JNmNuOE8yR25rRmV3QzJJTkw1dS9aMFpY?=
+ =?utf-8?B?Q0t5R0hBWkFHV3J4RXVTbVA2d05mcXo3Q1BSYjJ3V0J0R3B2Z0QydTFiU2Vp?=
+ =?utf-8?B?eDR2SG1zeFB1ZnRMNUhoaXd5ekJhdkNjemUwVDVPaEg2cmtzZE15eGlNbWpJ?=
+ =?utf-8?B?YU9CcXJSRkl2U3Jkc253cXZwSkI4SER2Q09QT2NSdnN3SUx3c0YwMzZoQ0pV?=
+ =?utf-8?B?WEdPZ3liTE5ZbjJrdXpGMWpXeERNSFBtUFRJZnBLSjFzQ0wxMkFYUzhycGsx?=
+ =?utf-8?B?T3FZaTNrcFhodnA5RWlHblhnaU1SL1h1MWQ0VHJpM0FEOTJnQjVtc05XdXBG?=
+ =?utf-8?B?ZGdlNFA1L0wwckFTM2hkbGFIWkxiRmtnUzByQ1VWem55alU4cGx6VVNVUktx?=
+ =?utf-8?B?L0RjWU50c2RiWHRWTGV4SlcxY08yNEs1T3FSTDFoYWh2SE5KSXlFaHJycTJS?=
+ =?utf-8?B?bDFERXZUdWNDdmxFb2tMZ2JCWndkTm5mMys1bUdZcVJXaEFDSjM0OEc2Wi9G?=
+ =?utf-8?B?SllKQmFncnBzWmdhcXhFaVg2R0ZwZXNEcHphVVFUVFBBbkdaL2NHbVM5KzZP?=
+ =?utf-8?B?VVlBaW9qR0t3enNSUERlOUVoWXRUNEZ3WFBKRHo1OER1T1RPcUlhR01ITEVG?=
+ =?utf-8?B?Yzk4N0pzSGV6MEhrVmRmUWZYUGJha3pwZ3dPdzVQN1ZNQnM5bUdRbTJzQ1I2?=
+ =?utf-8?B?RVVEaEtvM1ZPSWo5SEU3bnNmbW4zaklzVjVEL1M5RVZoQ1JCM0RDa2g4L0FR?=
+ =?utf-8?B?R2JvdDlZTk9XWlFGK01ETXA4NkloNHFNaUF0clJ3Y0lrNEJESXk2Tm50RG5l?=
+ =?utf-8?B?YTViNzVNVm5WSmNzdllubm9Ld2lqbkMzSTZsc3FUYWYwQ0lZT1lxNkU1MzBT?=
+ =?utf-8?B?eVBsbXIzSUlSTWo4UjlsTUhrU0hGMUhLUFpnQ0l5cEs0T1lEUTgzcDZjRmR2?=
+ =?utf-8?B?WVQ0YWU3NTdUWTZuMGhkSWFlUmV0SVNYMVhMRzlEbGVLVGFNY0pRWTFMY09o?=
+ =?utf-8?Q?X3u54sReosmP5hcFjw9sl3N06x8jn+nQ?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(921020)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NGpLZXIzc25iV2lLT0FZVit1SElwejFYMFJzeHdSVE1VamcraG12NmVmdGI1?=
+ =?utf-8?B?N1BPOWdQamdMc21xYzJDcFFrNE40UWdtTk5EZ0EwZlNOTzN0a2NJbVplZ092?=
+ =?utf-8?B?bHBueHZ1Y0w1Ylkwamg4UDJtcm9wWlhHV0RvcmpqRzNIMXplVUxFVmx3REUy?=
+ =?utf-8?B?ZTU2RjB6T2w1dXFESnYycjJEYmc4aG1SOGNPL2pzNXQ4aHZIZjdZdEFJY2FC?=
+ =?utf-8?B?KzRQNUQ2WEFTLzF5N3NhTUdBNHUrWWNBTHBNYXg0VWlwS2IwUTc1VUpzWUJl?=
+ =?utf-8?B?T2ZUVmRWQ3ZLUzlhWkxBMjY3S3l6TXhFeWErMk9BS2VYakpGR2R6SzEwTEI5?=
+ =?utf-8?B?anZmT2RTWkQ3QjU4MXY3ZWdleUFJbjFrekJqMGFJb3dILzFjc3U2YlB0ZDVR?=
+ =?utf-8?B?UTd6UW9GNWdjNWhPaXNaZ0l2eWgyV2RxRTkrUUVMWjk5cHdZOFJWV3ZEOHE2?=
+ =?utf-8?B?SnR4Zzd1dFJzVnRwb0IvZEoyblVMWG8xQXJZTGtLemIyYTBuNVhpRDRHelFa?=
+ =?utf-8?B?cWlUYkdGUzIzaEE3eWs5UUpYSEJkSlBBT1BnQWFDWHFUY3lvVHhYU2dkM1ht?=
+ =?utf-8?B?WUs1ZU9xaWRxa1RucTJncC9YY3diMFhtM29zQklCTlMwcGxZTXBEMDlUNmtF?=
+ =?utf-8?B?RGZHTkNuaFptTlk3OHhRa0w3MllDVDJKUzZDclErM1dqMWxEei9nRXQ2b3hm?=
+ =?utf-8?B?S2kzSEgwQWJEVDNiWWsxYWxZdmxtV1lqcFRHZXlIYVozK2ZjT3F6OUlXR0lV?=
+ =?utf-8?B?RW1uU1RNNUxlenA4SVpCUklIc1J2WkI3YzNDMDMwYWxwSm9wczRyMHFQNkNQ?=
+ =?utf-8?B?MUNsaVArZVl4T0pRTDJrOU1ncC9lMk1WNFdycWU1MDUrQXFocW9WOWQvR25q?=
+ =?utf-8?B?YWlqdmpTQnBjRDF0RmhoWWJYM09rUzU4elNQeGh1aTd1cUlXVDlKTEwvQXhW?=
+ =?utf-8?B?VGhNZGpNVkhLZDZNQlVGL2N1UWd5Wkd6WWhhTlNROVJiMDZzWGhKNTVVSitK?=
+ =?utf-8?B?Ym8yQ3dZbkwxUndOS1VhTGF5YXA0YXo4R2RsdkJIa0s5QkVPM29vUnE1TUR2?=
+ =?utf-8?B?UTVzV0s1eWE5WXNkc0t6NUJoNEhHVXJLWkZZbWRZSG9JdDF0Zm5DUG51a3VP?=
+ =?utf-8?B?T1lzN094MlRKNEpqa3FVVTFpMWNqRXpDN1RpaG16alY3YWx2cWhROEIydUpz?=
+ =?utf-8?B?YVVXMjFES3hHMlM0SWoxUXZtVEg1TkdYZWpVK1pPR01WRWNqdVIrditBUXoz?=
+ =?utf-8?B?dTVONitWWDg1RnJpVFRHVUtvVGdPWW1qcXVyTm4xemM0eHZmYnJ4T2ptWVBU?=
+ =?utf-8?B?OWFRNThwVFlmSFBXUGFOanhyVTBQWXJWci9jalR4TUVyZnMzL3ZFL01iazFF?=
+ =?utf-8?B?VXAxUDdyMzZrWng5SUVhOXBVUlpqOTd6aUs3QlppeDRIc2FjNlludWtEMUd3?=
+ =?utf-8?B?Mk5BUVU4TU1HczdTUUJ6YTV5ZjZCaWtyaE9kQzRmLytxMXd3ZkFVSG0yY3VB?=
+ =?utf-8?B?YlEyeTZid0FFMktVeXMyNDJmVUhsdHpFcWwxeEtoNGlvSXZUbGg3MDFxRWhX?=
+ =?utf-8?B?ejlvVUpYZG1UMEc0dFMrZnhkYmRQRXZta21ZNXpCN2lmeHlYV0JhNTNDUVcx?=
+ =?utf-8?B?eFZFWVJFcWY4elZFNlpTZzBVMkFyMGdZQUJxelVXam5SSmFFYk1XZVc2YnM4?=
+ =?utf-8?B?dktONmptVWNWY2Z3dG10VFl6YUYvaXFUZ3pvL3dOMWVaR1VYSnA1VUtKbjRE?=
+ =?utf-8?B?dmM0a0E0aW56dmlDQVFsVXdnWXB2NFdPK2IvVkp3ektiU0pnZHRtcjB5ZDJV?=
+ =?utf-8?B?UnRlU1Z1cWdaY2YvV1lDVEQ1b25GWFBqanNnd3R2Ylc4ZE0vTG1zWWIzUWU5?=
+ =?utf-8?B?SG5aMTZPdlppRHMvaEU4K0tDb0lkNW51SmZUaW10OVZGcjRBcW9RQjNVRW1U?=
+ =?utf-8?B?anoycjZRU0lKZ3ptYU9VNEFRcnpjUlNlQTduck9xdFFWZmJqb0lEbHgrMTZP?=
+ =?utf-8?B?WU9rM0JScDJmL2VDQUk3RW1EZU5lTHY4T1RnTUoyc0J4WFFKSklsanRwTkc0?=
+ =?utf-8?B?K3pJZDFtMW1Qd3g3U1V0bll3NXZ0UWozUTE2Wk1VZDRWSENxQkdkNlRpY2pk?=
+ =?utf-8?B?SUgvNlR3ZmdSSHBCNFQzOFFqSElSaW81ckUweXRId0U2WnU4OU1xVUlwck04?=
+ =?utf-8?B?OGc5ZmlHeHlrbWx3YTZ2YnQzdlhuMW1kTlp3cFFneGYzZ0VaQXB0VHNHMmhE?=
+ =?utf-8?B?bUNwcVZMQzQ4b3c0ajRXSm1DVWMxN0pkT2RzckRyWElIanl3eERBbFRKcCtq?=
+ =?utf-8?B?bDZDYjR5WndwZzYyNUFZQWdPZGxFdGtzVFNlaTZuSkRZbEp5c0NWZz09?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 236af86e-a9f5-41f1-ca08-08de51e30bdb
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 14:01:13.2389
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: O7SQyAHgicw1K/HhjSSYx7Jh0uZ9GrCojFMJvCJaswl9C1PpLSQV0rTigRjYjB9ZFv9fUrUUwm0jGTfAWmGNfu7QitWL2v1zcpZOvv19w8k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8664
 
-On 08/01/2026 08:58, Nandor Han wrote:
+Hi Chaoyi,
+
+On 1/12/26 3:28 AM, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 > 
-> On 1/7/26 12:48, Krzysztof Kozlowski wrote:
->> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
->>
->> On 07/01/2026 10:12, Nandor Han wrote:
->>> On 12/30/25 14:34, Krzysztof Kozlowski wrote:
->>>> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
->>>>
->>>> On Mon, Dec 29, 2025 at 04:50:00PM +0200, Nandor Han wrote:
->>>>> Property "fsl,wdt-continue-in-low-power" allows the watchdog to continue
->>>>> running in low power modes (STOP and DOZE). By default, the watchdog is
->>>>> suspended in these modes. This property provides the option to keep the
->>>>> watchdog active during low power states when needed.
->>>> And why exactly would that be a DT property? If system is sleeping
->>>> (assuming this is what you meant by low power), no one will pet the dog,
->>>> thus watchdog makes no sense.
->>> Thanks for the feedback Krzysztof and Guenter.
->>>
->>> In our case, low-power mode is disabled. However, we have identified that under certain conditions,
->> If your system has low power mode disabled, then you do not need this
->> property - you already know that watchdog must continue (or whatever you
->> want to achieve here).
->>
->>> specifically during simulated high-load scenarios, the device becomes unresponsive because it enters
->>> one of these power states.
->> Device as watchdog? I really do not understand your explanations, but
->> for sure system load is not relevant to DT property.
->>
->>>> Otherwise I fail to see how this is a hardware property and we do not
->>>> accept SW properties (see writing bindings, numerous presentations).
->>> Our system is based on the i.MX7D CPU and the watchdog peripheral supports the configuration:
->>>
->>> (From i.MX 7Dual Applications Processor Reference Manual, Rev. 1, 01/2018, page: 1174)
->>> ---
->>> WDZST
->>> Watchdog Low Power. Determines the operation of the WDOG during low-power modes. This bit is write
->>> once-only.
->>> ---
->>> Given that our system does not support low-power modes, we intend to enable the watchdog across all power
->>> states to ensure the device can recover properly under these conditions.
->> That's not what your property said. Your property said watchdog should
->> continue in low power modes. So when system enters low power mode, how
->> the watchdog petting would work?
->>
->> Now you claim you want to enable it in low power mode but you do not
->> have low power mode? Does not make sense to me at all.
->>
->> Best regards,
->> Krzysztof
->>
-> Sorry if anything is unclear. I would try to explain the change from the driver's point of view.
-
-I want "logical" point of view, not driver's.
-
+> The WCH CH334/CH335[0] are USB2.0 protocol compliant 4-port USB HUB
+> controller chips, supporting USB2.0 high-speed and full-speed for
+> upstream ports, and USB2.0 high-speed 480Mbps, full-speed 12Mbps and
+> low-speed 1.5Mbps for downstream ports, supporting not only low-cost STT
+> mode (single TT schedules 4 downstream ports in time share), but also
+> supports high performance MTT mode (4 TTs each corresponding to 1 port,
+> concurrent processing).
 > 
-> According to i.MX7D Reference Manual, the watchdog controller allows, via the WDOGx_WCR register, control over whether the watchdog continues or suspends in:
+> Add a device tree binding for it.
 > 
-> a)WAIT power state (bit 7: WDW)
-> b)STOP and DOSE power state(bit 0: WDZST).
+> [0]: https://www.wch-ic.com/downloads/CH334DS1_PDF.html
 > 
-> The current driver implementation provides a Device Tree binding `fsl,suspend-in-wait` for configuring case (a) and forces the watchdog to be suspended in case (b).
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> ---
+>   .../devicetree/bindings/usb/wch,ch334.yaml    | 65 +++++++++++++++++++
+>   1 file changed, 65 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/usb/wch,ch334.yaml
 > 
-> My patch adds the ability to configure case (b) as well.
+> diff --git a/Documentation/devicetree/bindings/usb/wch,ch334.yaml b/Documentation/devicetree/bindings/usb/wch,ch334.yaml
+> new file mode 100644
+> index 000000000000..2eeb92f25b4c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/wch,ch334.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/wch,ch334.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: WCH CH334/CH335 USB 2.0 Hub Controller
+> +
+> +maintainers:
+> +  - Chaoyi Chen <kernel@airkyi.com>
+> +
+> +allOf:
+> +  - $ref: usb-hub.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - usb1a86,8091
+> +
 
-Just because you want to do something in the driver is not yet
-justification we want it in DT. Why can't you enable it always? Why this
-is system load (!!!) dependent?
+Which driver does this node bind to? I couldn't quickly find a driver 
+which would match this compatible?
 
+> +  reg: true
+> +
+> +  reset-gpios:
+> +    description: GPIO controlling the RESET# pin.
+> +
+> +  vdd-supply:
+> +    description:
+> +      The regulator that provides 3.3V core power to the hub.
+> +
+> +  vdd2-supply:
+> +    description:
+> +      The regulator that provides 3.3V or 5V power to the hub.
+> +
 
-Best regards,
-Krzysztof
+There's v5 and vdd33 as power input, shouldn't we maybe use those names 
+instead? How did you come up with vdd/vdd2?
+
+There's also a timing that needs to be respected after a power-on event 
+so that the reset has enough time to be performed, c.f. 3.2.1 Power-on 
+Reset in the datasheet you linked to in the commit log. How are you 
+making sure we wait those (apparently, the wording in the datasheet is 
+confusing) 14ms?
+
+Cheers,
+Quentin
 
