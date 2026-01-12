@@ -1,157 +1,199 @@
-Return-Path: <devicetree+bounces-253747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64CCFD11072
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:02:58 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD6FD1111D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:09:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BE5953043A51
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:59:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EC16230383AC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666BA33ADB5;
-	Mon, 12 Jan 2026 07:59:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A97C33F8D8;
+	Mon, 12 Jan 2026 08:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="hN35lIPr"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SQ++uRTZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E90338586
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 07:59:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECCF33CEAA;
+	Mon, 12 Jan 2026 08:04:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768204756; cv=none; b=J1zN2omJLKQWU811tvcQP2Wn5GaPCIuBpkerVBaL0GG5sYQUjF/jYlpUWYGgAFJETPo8UueOt0oQs7ZhsxOMT6+NWL4lSDBQegQQ4nU9T+j14VFf74OthFAVsi5mXL82ERyyHCpFOAoB5aQ/B1rO6qdtsgM8PDVVm6gk6nJwMfI=
+	t=1768205066; cv=none; b=j1e4Ks4n8tYNVT3PIZNRWzeVG+f2mMVPtEBZDH3X6dy4fi7OK6UZFuGVFRaaGoF0eZu2EEOuVplPwU8aDya8W9F93QPX1ogLWcKCUrss5FH6pzdHQYKLDC4Reh2KSjzbbF+KtcAn/KxPt5LcWmlFa+b+8euadC9uWtJwpTremcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768204756; c=relaxed/simple;
-	bh=vAzFJ4vqGfp1N5PM9i7xpuMtH/9hCVwEg7TaqBSdN/k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b3iSrqFNkmJv4NJUkSjXFlBH8Rid1MEiR2eEdMKa+yWAKa/DcGbz2kimOXGO3LvNlYxO9t2CbA8UdU0JD0HGZJq/BBZjDjdQ/6cZNnHihIwdS2NWT0impfazvQqDtRyxPV/VaNrUEou9jfVY952PAD+//zJYqWet1QYmFMYgFu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=hN35lIPr; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7927541abfaso12174097b3.3
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 23:59:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768204754; x=1768809554; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZSAM4RH7cy/5YTgp+Z6CFhylkii8NBgRSJLcb1PkkO8=;
-        b=hN35lIPr3erViCqpXNop7SqdRodfiuXkysGhWsK/L79LUPYTWI5efCBCLoAFGMgytS
-         sKDQP9vsnKMEmrHFcgivzF1OVH9ai6UO1Z49+YqZrQup1b10P4OLYDSCMDERecbeZ/3m
-         hYv5ntavvAX51XWsZ977RaHW8R4VNid7XlxIq6iswrgzzyU7ipXzUFtF8AzTX9szPnAN
-         toEwQs4iGuPrHismNsV+0ns2VVw/MDWUyfu1xiCF6ugsfeoAk48Ay2LAfd4Pth0kF7KU
-         8/UvniAOTGpyQKdaaxAonnPrYHNcOml8+lUhdYNDTTluuCdxJsp1fVy+5IqpStzzvYjF
-         ZQdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768204754; x=1768809554;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZSAM4RH7cy/5YTgp+Z6CFhylkii8NBgRSJLcb1PkkO8=;
-        b=FtWY+zMM0MkMYud+vzwAHPjHUT19wVp7pscWWThDt/qZspo8w1PwSef3hXmqcHZHMu
-         pZQdWtGdkpo2voJ+v0IjPKK3mAf+ykhaR+xoExVgtn/4pRDf4+HPphSv9sV+9MRttZrF
-         xe+lwHpdLhHHU28Pv5JdLGSh+2TrABuNdENBHcy8OlDhuMhKivk0kZ6qURSR28KwxKXW
-         q7bjxqwbJBqgss3GqGiW0UakWBs8Kn7DxWC/cF0Uv1uRJFd29Tr+d3vaSWiufEV92Qg8
-         hwjtdzIliV7FaR864Dq+RHlxfG0LbjV0+BbG7+jiQLQodcY3gn9cQV+ZNuYq1jaG4iS+
-         Nu1A==
-X-Forwarded-Encrypted: i=1; AJvYcCVAeqj2i4MLZyPiApoo1w7S6YLDFEGxvbRhFK6v3AljJH6i5n6OzQ/zS2r9ezH91TBr7eskjDdbXME7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTsHZLDdpDuBLC5aK5vFTC59rKATIkf7atzzEq32N3ZkP/XO6b
-	x8kOc9L7hD/RyxhwyRunQ7BiR2bH/gEeCarKRA+30TLO5zgf0yUXosQPX79Xw5uqwtQnBEiIHDg
-	rqJ3IQ2KLoLEdnYIpSNdUopcDD8hsFchw13gL7+pSlg==
-X-Gm-Gg: AY/fxX7l+agUUVDeh0cMZ44J8336Y2awKBHP0SJHCjXoQVlwHXpQBMDrVoW49KnAzke
-	lflO04Sz5HAyhGz/S7aRJn32X3TPpJeObq05bsCMZ6ZeJH/uk8+1v37BepMh5dhB/wrU799LUUj
-	u3QoaiEnz1T8hq+AVFeq5p+vDWAX/GkYJ6jAbJxTo6ZRcT1KFWHqSiH2KqIorfjdcZt/4bG1qxV
-	tW6A1nAmyiiovPgDdtYddoa12SovJJVFQBq9/xnrTDRps2BJZqJNajmgisygyXJJrRf7ThGi+TL
-	y38oK1rcgwax1Elq6Qoca8nZS/yTIBzNva4XJvYxaWUJ
-X-Google-Smtp-Source: AGHT+IHzovDi2wYX7QS5E17vTw6EfrmwMxXUMWfzaTca+VnZ75agggH0jw0Z9Nk1rpoyt6jY2b2DsuWSrr3IaSzijEA=
-X-Received: by 2002:a05:690e:13cb:b0:644:ca2b:b64f with SMTP id
- 956f58d0204a3-64716c0f720mr14418176d50.41.1768204753933; Sun, 11 Jan 2026
- 23:59:13 -0800 (PST)
+	s=arc-20240116; t=1768205066; c=relaxed/simple;
+	bh=790gywg58VKfinQ7BOOrgq2qQPns1Fr3enaFCAJ1ggA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ERDE+pqfXSH2sae7ha7fanmwnAwY5YiMS/2aMqPh0QTl89ZrajLnhaqHUMCuzqOk/NmPJ753jMoaGJvYkQ+8xsb/jw5DwUAs9RkIKJqQTeJNEQWcmMBHvpX1kMkgzwtjfZVmSeZNWsCv76Z5xl32T5akb/ctDeDud5Xg48h1LZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SQ++uRTZ; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768205065; x=1799741065;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=790gywg58VKfinQ7BOOrgq2qQPns1Fr3enaFCAJ1ggA=;
+  b=SQ++uRTZl64zT1Ea9jQu99GqbAbTHGT/dvTFF1Jr1x96tBsaZdi9DT25
+   Yy7tTo8XIaGWKKrNIi9mRkV9I96iKqIAOSc5DgNEZ78wIpj16cfeBeqxn
+   OisWXKe1y4RuhhS2oglqqwxgEf2YupLrCIrFwXHUiWTfeeB5YBcpn6Gos
+   sjldHNkWiNeK1gOYfN9hm9HMH2RSg+l3N6vXh07Fy2e+kl2yWjKG6Hvgn
+   G/is1fwMKKr2Bz6NZLlLGiHcg4TCwZ37Sxa1D/dycY7xJb4Js+jvjZgt/
+   Gzgl9UMlNSwUHST9sBts0BHET6V4cwtp9AHY0T3krsrj8NRnPRgyEsKdY
+   Q==;
+X-CSE-ConnectionGUID: V44PJAdRRLKwJUj4l1AgdA==
+X-CSE-MsgGUID: ISlFfa0GRlm78rD8KxXxEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11668"; a="69525110"
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; 
+   d="scan'208";a="69525110"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 00:04:24 -0800
+X-CSE-ConnectionGUID: 4fKSH+BmSCeAQ73tY8pC6w==
+X-CSE-MsgGUID: JcmglIdNQXmUo0y/QrgF8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; 
+   d="scan'208";a="208515204"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.37])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 00:04:17 -0800
+Date: Mon, 12 Jan 2026 10:04:15 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Rob Herring <robh@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nicolas.schier@linux.dev>,
+	Hans de Goede <hansg@kernel.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Mark Pearson <mpearson-lenovo@squebb.ca>,
+	"Derek J. Clark" <derekjohn.clark@gmail.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	linux-acpi@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Sui Jingfeng <sui.jingfeng@linux.dev>
+Subject: Re: [PATCH v3 00/14] Add support for handling PCIe M.2 Key E
+ connectors in devicetree
+Message-ID: <aWSq_7_5kkQIv9Hc@smile.fi.intel.com>
+References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260110-k3-basic-dt-v4-10-d492f3a30ffa@riscstar.com> <AM7P189MB10095424D5EECEF98761C227E381A@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
-In-Reply-To: <AM7P189MB10095424D5EECEF98761C227E381A@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Mon, 12 Jan 2026 15:59:02 +0800
-X-Gm-Features: AZwV_QjBH78ep5ci-BN1t8eHhgINXSJDHXMbo8PMNGMoYTwSPL4cPXhT6kWXYBE
-Message-ID: <CAH1PCMatYTfE58-O7ftt4dmr3tvssnD4UrSGEJSbHkFYgT_afQ@mail.gmail.com>
-Subject: Re: [PATCH v4 10/11] riscv: dts: spacemit: add initial device tree of
- SpacemiT K3 SoC
-To: Maud Spierings <maud_spierings@hotmail.com>
-Cc: ajones@ventanamicro.com, alex@ghiti.fr, anup@brainfault.org, 
-	aou@eecs.berkeley.edu, conor+dt@kernel.org, conor@kernel.org, 
-	cyy@cyyself.name, daniel.lezcano@linaro.org, devicetree@vger.kernel.org, 
-	dlan@gentoo.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org, lkundrak@v3.sk, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, pjw@kernel.org, robh@kernel.org, 
-	samuel.holland@sifive.com, spacemit@lists.linux.dev, tglx@linutronix.de, 
-	xypron.glpk@gmx.de, zhangmeng.kevin@linux.spacemit.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Mon, Jan 12, 2026 at 3:43=E2=80=AFPM Maud Spierings
-<maud_spierings@hotmail.com> wrote:
->
-> > +             mimsic: interrupt-controller@f1000000 {
-> > +                     compatible =3D "spacemit,k3-imsics", "riscv,imsic=
-s";
-> > +                     reg =3D <0x0 0xf1000000 0x0 0x10000>;
-> > +                     #interrupt-cells =3D <0>;
-> > +                     #msi-cells =3D <0>;
-> > +                     interrupt-controller;
-> > +                     interrupts-extended =3D <&cpu0_intc 11>, <&cpu1_i=
-ntc 11>,
-> > +                                           <&cpu2_intc 11>, <&cpu3_int=
-c 11>,
-> > +                                           <&cpu4_intc 11>, <&cpu5_int=
-c 11>,
-> > +                                           <&cpu6_intc 11>, <&cpu7_int=
-c 11>;
-> > +                     msi-controller;
-> > +                     riscv,guest-index-bits =3D <6>;
-> > +                     riscv,hart-index-bits =3D <4>;
-> > +                     riscv,num-guest-ids =3D <511>;
-> > +                     riscv,num-ids =3D <511>;
-> > +
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             maplic: interrupt-controller@f1800000 {
-> > +                     compatible =3D "spacemit,k3-aplic", "riscv,aplic"=
-;
-> > +                     reg =3D <0x0 0xf1800000 0x0 0x4000>;
-> > +                     #interrupt-cells =3D <2>;
-> > +                     interrupt-controller;
-> > +                     msi-parent =3D <&mimsic>;
-> > +                     riscv,children =3D <&saplic>;
-> > +                     riscv,delegate =3D <&saplic 1 512>;
-> > +                     riscv,num-sources =3D <512>;
-> > +
-> > +                     status =3D "disabled";
-> > +             };
->
->
-> from reading the chatter on v3 I think the right status here may be
-> "reserved", for elements that are reserved by firmware. But I could be
-> mistaken.
+On Sat, Jan 10, 2026 at 12:26:18PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> Hi,
+> 
+> This series is the continuation of the series [1] that added the initial support
+> for the PCIe M.2 connectors. This series extends it by adding support for Key E
+> connectors. These connectors are used to connect the Wireless Connectivity
+> devices such as WiFi, BT, NFC and GNSS devices to the host machine over
+> interfaces such as PCIe/SDIO, USB/UART and NFC. This series adds support for
+> connectors that expose PCIe interface for WiFi and UART interface for BT. Other
+> interfaces are left for future improvements.
+> 
+> Serdev device support for BT
+> ============================
+> 
+> Adding support for the PCIe interface was mostly straightforward and a lot
+> similar to the previous Key M connector. But adding UART interface has proved to
+> be tricky. This is mostly because of the fact UART is a non-discoverable bus,
+> unlike PCIe which is discoverable. So this series relied on the PCI notifier to
+> create the serdev device for UART/BT. This means the PCIe interface will be
+> brought up first and after the PCIe device enumeration, the serdev device will
+> be created by the pwrseq driver. This logic is necessary since the connector
+> driver and DT node don't describe the device, but just the connector. So to make
+> the connector interface Plug and Play, the connector driver uses the PCIe device
+> ID to identify the card and creates the serdev device. This logic could be
+> extended in the future to support more M.2 cards. Even if the M.2 card uses SDIO
+> interface for connecting WLAN, a SDIO notifier could be added to create the
+> serdev device.
+> 
+> Open questions
+> ==============
+> 
+> Though this series adds the relevant functionality for handling the M.2 Key M
+> connectors, there are still a few open questions exists on the design. 
+> 
+> 1. I've used the DT compatible for the serdev swnode to match the existing OF
+> device_id of the bluetooth driver. This avoids implementing custom serdev id
+> matching as implemented till v2.
 
-Thanks Maud. Good catch. I think you are right, both M-mode maplic and mims=
-ic
-should be listed as "reserved" to signify that they are intended to be used
-in OpenSBI, not the S-mode kernel.
+Yeah, swnodes are not designed to replace the real DT or other firmware
+interface. The idea of swnodes is to have them providing quirks if needed (i.e.
+fixing up the broken or missed FW device properties). This should not have been
+done this way. Please, consider another approach, e.g. DT-overlay.
 
-I will fix that in the next version.
+> 2. PCIe client drivers of some M.2 WLAN cards like the Qcom QCA6390, rely on
+> the PCIe device DT node to extract properties such as
+> 'qcom,calibration-variant', 'firmware-name', etc... For those drivers, should we
+> add the PCIe DT node in the Root Port in conjunction with the Port node as
+> below?
+> 
+> pcie@0 {
+> 	wifi@0 {
+> 		compatible = "pci17cb,1103";
+> 		...
+> 		qcom,calibration-variant = "LE_X13S";
+> 	};
+> 
+> 	port {
+> 		pcie4_port0_ep: endpoint {
+> 			remote-endpoint = <&m2_e_pcie_ep>;
+> 		};
+> 	};
+> };
+> 
+> This will also require marking the PMU supplies optional in the relevant ath
+> bindings for M.2 cards.
+> 
+> 3. Some M.2 cards require specific power up sequence like delays between
+> regulator/GPIO and such. For instance, the WCN7850 card supported in this series
+> requires 50ms delay between powering up an interface and driving it. I've just
+> hardcoded the delay in the driver, but it is a pure hack. Since the pwrseq
+> driver doesn't know anything about the device it is dealing with before powering
+> it ON, how should it handle the device specific power requirements? Should we
+> hardcode the device specific property in the connector node? But then, it will
+> no longer become a generic M.2 connector and sort of defeats the purpose of the
+> connector binding.
+> 
+> I hope to address these questions with the help of the relevant subsystem
+> maintainers and the community. 
+> 
+> Testing
+> =======
+> 
+> This series, together with the devicetree changes [2] was tested on the
+> Qualcomm X1e based Lenovo Thinkpad T14s Laptop which has the WCN7850 WLAN/BT
+> 1620 LGA card connected over PCIe and UART.
 
-BR,
-Guodong Xu
+-- 
+With Best Regards,
+Andy Shevchenko
 
->
-> Kind regards,
-> Maud
+
 
