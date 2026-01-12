@@ -1,96 +1,126 @@
-Return-Path: <devicetree+bounces-254142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34250D14998
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:56:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 594EED14A1A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:00:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A26F4304350C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:54:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AB7FE300EF77
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EDCF37F110;
-	Mon, 12 Jan 2026 17:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE8237F758;
+	Mon, 12 Jan 2026 18:00:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXrw1BLN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="feB0lBBc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B5130CDBC
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 355E22749C7;
+	Mon, 12 Jan 2026 18:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768240466; cv=none; b=Ug1OxMydm9QQAis/Zf/m/D9/49P1Au8D5xb/f+hpqLQFfhSgfdiCH98GTWQ3ws0Q584/+Y6XHwFY9OyfA/3MJFVit5Cfq8gNe8SXit189eM5DXU6SWKP4ZLko3dV2gXCyMZCi2yjAF3x91+XeSuMiDW8pKY19pBj7VZ7qu+drYo=
+	t=1768240812; cv=none; b=MdVsoSNeyl0vxmYPE3UuN9S7qQFMh5SVszACwn1OjrN0YCoKu8UJQW38hpPi2WuuuRgWCRFqUQCEsTehPL4hwhyjZDScYupBQPSCLSCFcPZD4YUNauD9y2K3Uwsm5MKVF+9ccX+bKNjk0tflayntGYdBDgpFrE4975LlpnUnDVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768240466; c=relaxed/simple;
-	bh=7RRinxojQrTMI4b9pZDLLzquZeo32XzsK/RNdDcG0aI=;
+	s=arc-20240116; t=1768240812; c=relaxed/simple;
+	bh=mGbofIjwnm9caXWlIFuD+vvkQiRMHg0CWCn2+iWjokQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aHSg9Zzbg/qHDEMz28Wa0uHnxqsiZFcDDcnkN1kVUK7lLO9woRvFWQgEBFD2/DrcsC4TD8dzTtzc8G4h9WTuPX4pv5FoqX4a7Sup8eWHZGl4VfGPZEFl5R9uO0MF7HmOUk2VRin+p5XWPiZ/2mBcZN3T9PofVQDyGyJvpAMNiV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BXrw1BLN; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47d3ffa6720so63175425e9.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:54:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768240463; x=1768845263; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iQ6/E1tgqYIjow3S6Hfpj3KTp0Kx78pCSAMldDRrYrY=;
-        b=BXrw1BLNWpcc++sVgZJ+/XZ82XB7E/MTBrBKzYT75H7QHnRNM3hadhaEFU6/j8/cRg
-         crdFloOzm5hazXX+xRSsNxPDLcZiNx+PIhHWd/cGnt2xNX1VoAbWvIaUAjzAnbMCgqnF
-         1HwWjIkYO3IgheCUwfyvQDngG7fPo05Du+AAswGyHzibD+rKoWkJF6TmjYB/08hAUjC8
-         GOO8PduX2MpQF/k6Edi6hV+eaLTe+wn1JEh0XGRP6p9S0JOovjSI3g/JIkhv3/vDBmbs
-         vWjaLcQIgOg+Qx90h3XL7Lxy0fNnHTEpRTD2/qqL7+bgD1tkcvekTNMgSqfrhytaXuF9
-         mELw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768240463; x=1768845263;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=iQ6/E1tgqYIjow3S6Hfpj3KTp0Kx78pCSAMldDRrYrY=;
-        b=F74rQlwj6n1AUul9EBImMxlMkIKmU/ZewJy7OKGaJ0Bku7M6ivcJ8+f1MlDh7VUgqg
-         x1EVHeM/+W0VGnvuswEcp5CNmhYI/KGdZlPKftA2qytuS8unyrHNqNNoYWjOR1H6gigs
-         oNW2HxMKys//xrECn2phs1Bo3FSZHmXhS6lw46Eb1w4grZiM9rTzfzd61qrSbnpb1ZxV
-         xO3QMB4VuSv8Aror7pZHct3suxUmo/ohvGfd71GkgzJSaxLh6/6rtDQImCn1OsJSetHG
-         xlhf0Pz0E6cKu28Ll+wA52YP7pQ3nzqEFuvQDCOn3jbIKgNvKXGipGYrfbAer6P+VgNz
-         lMvg==
-X-Forwarded-Encrypted: i=1; AJvYcCWydpwVWPtD/JJmeZ31pzQ0obHZ9GOh558yuV/cCOH/FukXKJ1Mje7Va9/lCIYrTwCaVpZspOewcA6a@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYbNM/zEozvzR8VT4cYgbMcxuGk52girCS1APMf1vGKejwNzAy
-	Oa3Jabg6mn+fSgfnL3qq3JSPjd2ztdZGhJtlSvctzA5RjVoovTr6EJaa
-X-Gm-Gg: AY/fxX5FaR7/3mGiJ8UFMOl0ip+ZKkXqzdYwH1w2iGK0xHXLAFYL7vJrEc5Q7aacbQP
-	31R8JdL0GDFzejBnGQridTyY00EVm7Pup78o4D5nkm75jNO13xH+7JodFKE/8mjnq9AwOldJ4gw
-	sW3wQTQEp+Kk3FkgtVAh8YwLxNe46mcoeyczEhSAxyLVY/2w2XorkX/WyRG1bPIG1Ti8+fXmQQ3
-	640xz0MqonIxPIXnNibbZW/JxheBm9rb/rcMkfZMZpexmOzzcTZzvi7P3gpAhR58DdiNQLF41zi
-	FgPhydzE/VFDQugX6N9lyPtze82H5Pw3OhIhYgu1FekZ90HlEwGVo4EyWyeVTrTEawVU62Xdc91
-	hnVvYFZIaWiWrSVrePnXCqOkvtYwODJpAPp3TRrk/Fii2BmjtdXIpHk7zOARVLa/pAMRpusEGUm
-	MHDKXqk+7bAzI9P9CICelltHUNMA0=
-X-Google-Smtp-Source: AGHT+IHGhWNkDca/+FCzmz49RYaZy2H/+LLzjBgLUetoD+8ejUSWqAtQI6jGW5uDZGAQmISWirqefA==
-X-Received: by 2002:a05:600c:1394:b0:47d:3ffa:5f03 with SMTP id 5b1f17b1804b1-47d84b3467emr225515145e9.21.1768240462813;
-        Mon, 12 Jan 2026 09:54:22 -0800 (PST)
-Received: from vitor-nb (bl19-170-125.dsl.telepac.pt. [2.80.170.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d8719d057sm134047305e9.16.2026.01.12.09.54.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 09:54:22 -0800 (PST)
-From: Vitor Soares <ivitro@gmail.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Vitor Soares <vitor.soares@toradex.com>,
-	linux-arm-kernel@lists.infradead.org,
+	 MIME-Version; b=ZYFiooY0b1a/i6UV9W/Jo7nfz2yNL0fO9jAgK+zkV8vpQXMDDQMITwx/J2Eh6q1rdqmydYkEY6cWFDtleelSANRcPJRydhws7DBw/0NRxpkOZZwAsx3uLaPpmexn2bSd2N3qG273KlN3H4dFkXDwFZkzE/VzOH2fUMrLsZ45Tro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=feB0lBBc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB923C16AAE;
+	Mon, 12 Jan 2026 18:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768240811;
+	bh=mGbofIjwnm9caXWlIFuD+vvkQiRMHg0CWCn2+iWjokQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=feB0lBBcPjMm6TcLwyV7ebbxAv/YTwcCPMIuU2dVmvhL5mGCrIawtev3cma1EX2dA
+	 gimcge4/rXibL+oI/bA4/8WLwnYBQjmUWgdqxGK+z6QcoubI5S8MGhmHsN6RGU3I0m
+	 bOaihftKwYyTpOxlZre+emHgYCTF4qUVx3nrUpVhTKwciuti+mwHDDCK+Uudv2JTSh
+	 R6RBys8rz+B/35nVnKrzi3MKeFCyoNWx7MF7/pgVShpqzu4mBxe+J9/cv0NwkEif1g
+	 VG+WPfM/JevSndphvgNzv7J2+6JAdWpT5GxWT+B4lRohyxUT14oeDlYMchDvMoo1+A
+	 VALVB9TuQpPSg==
+From: Jakub Kicinski <kuba@kernel.org>
+To: bartosz.golaszewski@oss.qualcomm.com
+Cc: Jakub Kicinski <kuba@kernel.org>,
+	jbrunet@baylibre.com,
+	linux-stm32@st-md-mailman.stormreply.com,
 	devicetree@vger.kernel.org,
+	neil.armstrong@linaro.org,
+	unicorn_wang@outlook.com,
+	andrew+netdev@lunn.ch,
+	vkoul@kernel.org,
+	peppe.cavallaro@st.com,
+	jernej.skrabec@gmail.com,
+	samin.guo@starfivetech.com,
+	david.wu@rock-chips.com,
+	christophe.roullier@foss.st.com,
+	linux-amlogic@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	martin.blumenstingl@googlemail.com,
+	robh@kernel.org,
+	linux-imx@nxp.com,
+	andersson@kernel.org,
+	joabreu@synopsys.com,
+	s32@nxp.com,
+	swathi.ks@samsung.com,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	keguang.zhang@gmail.com,
+	kernel@pengutronix.de,
+	romain.gantois@bootlin.com,
+	brgl@kernel.org,
+	sophgo@lists.linux.dev,
+	netdev@vger.kernel.org,
+	xiaoning.wang@nxp.com,
+	imx@lists.linux.dev,
+	dfustini@tenstorrent.com,
+	davem@davemloft.net,
+	jan.petrous@oss.nxp.com,
+	magnus.damm@gmail.com,
+	lizhi2@eswincomputing.com,
+	linux-sunxi@lists.linux.dev,
+	linux-mips@vger.kernel.org,
+	vineetha.g.jaya.kumaran@intel.com,
+	matthew.gerlach@altera.com,
+	wefu@redhat.com,
+	geert+renesas@glider.be,
+	edumazet@google.com,
 	linux-kernel@vger.kernel.org,
-	ivitro@gmail.com,
-	stable@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: ti: k3-am69-aquila-clover: change main_spi2 CS0 to GPIO mode
-Date: Mon, 12 Jan 2026 17:53:47 +0000
-Message-ID: <20260112175350.79270-3-ivitro@gmail.com>
+	Frank.Li@nxp.com,
+	conor+dt@kernel.org,
+	mripard@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@esmil.dk,
+	linux-renesas-soc@vger.kernel.org,
+	alexandre.torgue@foss.st.com,
+	inochiama@gmail.com,
+	minda.chen@starfivetech.com,
+	s.hauer@pengutronix.de,
+	nobuhiro.iwamatsu.x90@mail.toshiba,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	fustini@kernel.org,
+	richardcochran@gmail.com,
+	pabeni@redhat.com,
+	shawnguo@kernel.org,
+	wens@kernel.org,
+	heiko@sntech.de,
+	guoren@kernel.org,
+	weishangjuan@eswincomputing.com,
+	mcoquelin.stm32@gmail.com,
+	khilman@baylibre.com,
+	festevam@gmail.com,
+	liangshuang@eswincomputing.com,
+	krzysztof.kozlowski@oss.qualcomm.com,
+	linux-arm-msm@vger.kernel.org,
+	konrad.dybcio@oss.qualcomm.com,
+	linux-rockchip@lists.infradead.org,
+	samuel@sholland.org
+Subject: Re: [RESEND,net-next,v6,7/7] net: stmmac: qcom-ethqos: add support for sa8255p
+Date: Mon, 12 Jan 2026 10:00:05 -0800
+Message-ID: <20260112180005.4144056-1-kuba@kernel.org>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260112175350.79270-1-ivitro@gmail.com>
-References: <20260112175350.79270-1-ivitro@gmail.com>
+In-Reply-To: <20260112-qcom-sa8255p-emac-v6-7-86a3d4b2ad83@oss.qualcomm.com>
+References: <20260112-qcom-sa8255p-emac-v6-7-86a3d4b2ad83@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,33 +129,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Vitor Soares <vitor.soares@toradex.com>
+This is an AI-generated review of your patch. The human sending this
+email has considered the AI review valid, or at least pausible.
 
-Change CS0 from hardware chip select to GPIO-based chip select to
-align with the base aquila device tree configuration.
-
-Fixes: 9f748a6177e1 ("arm64: dts: ti: am69-aquila: Add Clover")
-Cc: stable@vger.kernel.org
-Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
+For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
 ---
- arch/arm64/boot/dts/ti/k3-am69-aquila-clover.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+net: stmmac: qcom-ethqos: add support for sa8255p
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-clover.dts b/arch/arm64/boot/dts/ti/k3-am69-aquila-clover.dts
-index 55fd214a82e4..927d0877d7f8 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-aquila-clover.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-clover.dts
-@@ -208,7 +208,8 @@ &main_spi2 {
- 	pinctrl-0 = <&pinctrl_main_spi2>,
- 		    <&pinctrl_main_spi2_cs0>,
- 		    <&pinctrl_gpio_05>;
--	cs-gpios = <0>, <&wkup_gpio0 29 GPIO_ACTIVE_LOW>;
-+	cs-gpios = <&main_gpio0 39 GPIO_ACTIVE_LOW>,
-+		   <&wkup_gpio0 29 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
- 	tpm@1 {
--- 
-2.52.0
+This commit adds support for the SA8255P SoC which uses power domains
+managed via SCMI firmware, rather than the traditional clock/phy-based
+power management used by other variants.
 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> index 8ba57bba3f2e..54f8ef3cfd7d 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+
+[ ... ]
+
+> +static void ethqos_disable_serdes(void *data)
+> +{
+> +	struct qcom_ethqos *ethqos = data;
+> +
+> +	qcom_ethqos_domain_on(ethqos, ETHQOS_PD_SERDES);
+                          ^^
+
+Should this be qcom_ethqos_domain_off() instead of qcom_ethqos_domain_on()?
+
+This function is registered as a cleanup action via devm_add_action_or_reset()
+to undo the qcom_ethqos_domain_on(ETHQOS_PD_SERDES) call during probe. Using
+domain_on here would increment the PM runtime usage counter again rather than
+decrementing it. The serdes power domain would never be properly turned off
+on driver removal.
+
+Compare with qcom_ethqos_pd_serdes_powerdown() which correctly uses
+qcom_ethqos_domain_off().
+
+> +}
+
+[ ... ]
+
+> +static int qcom_ethqos_pd_init(struct device *dev, void *priv)
+> +{
+> +	struct qcom_ethqos *ethqos = priv;
+> +	int ret;
+> +
+> +	/*
+> +	 * Enable functional clock to prevent DMA reset after timeout due
+> +	 * to no PHY clock being enabled after the hardware block has been
+> +	 * power cycled. The actual configuration will be adjusted once
+> +	 * ethqos_fix_mac_speed() is called.
+> +	 */
+> +	ethqos_set_func_clk_en(ethqos);
+> +
+> +	ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_CORE);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_ethqos_domain_on(ethqos, ETHQOS_PD_MDIO);
+> +	if (ret) {
+> +		qcom_ethqos_domain_off(ethqos, ETHQOS_PD_CORE);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+
+[ ... ]
+
+>  	if (pm_data && pm_data->use_domains) {
+>  		ethqos->set_serdes_speed = ethqos_set_serdes_speed_pd;
+>
+> +		ret = devm_pm_domain_attach_list(dev, &pm_data->pd,
+> +						 &ethqos->pd.pd_list);
+> +		if (ret < 0)
+> +			return dev_err_probe(dev, ret, "Failed to attach power domains\n");
+> +
+> +		plat_dat->clks_config = ethqos_pd_clks_config;
+> +		plat_dat->serdes_powerup = qcom_ethqos_pd_serdes_powerup;
+> +		plat_dat->serdes_powerdown = qcom_ethqos_pd_serdes_powerdown;
+> +		plat_dat->exit = qcom_ethqos_pd_exit;
+> +		plat_dat->init = qcom_ethqos_pd_init;
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+
+> +		plat_dat->clk_ptp_rate = pm_data->clk_ptp_rate;
+> +
+> +		ret = qcom_ethqos_pd_init(dev, ethqos);
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Is qcom_ethqos_pd_init() being called twice?
+
+It is assigned to plat_dat->init above, and then called directly here. Later,
+devm_stmmac_pltfr_probe() -> stmmac_pltfr_probe() -> stmmac_dvr_probe() will
+call plat_dat->init() again (see stmmac_main.c stmmac_dvr_probe function).
+
+Each call to qcom_ethqos_pd_init() increments the PM runtime usage counter
+for ETHQOS_PD_CORE and ETHQOS_PD_MDIO via pm_runtime_resume_and_get(). With
+two calls, the refcount would be 2 for each domain, but qcom_ethqos_pd_exit()
+only decrements once per domain. This would leave the power domains with a
+dangling reference.
+
+Perhaps the direct call to qcom_ethqos_pd_init() here should be removed, and
+let stmmac_dvr_probe() invoke it through the plat_dat->init callback?
+
+> +		if (ret)
+> +			return ret;
+
+[ ... ]
 
