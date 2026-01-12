@@ -1,115 +1,225 @@
-Return-Path: <devicetree+bounces-253708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D4BD10AF8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:12:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F111D10B1D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:18:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E759A303370E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:12:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7DB4D30090F9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:18:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00D030FC37;
-	Mon, 12 Jan 2026 06:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D80530EF94;
+	Mon, 12 Jan 2026 06:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="uq1dP1BV"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="savm+Qye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from MA0PR01CU009.outbound.protection.outlook.com (mail-southindiaazolkn19010008.outbound.protection.outlook.com [52.103.67.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0225D30F957;
-	Mon, 12 Jan 2026 06:12:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768198350; cv=none; b=pnO5F9pCUazEwUp6/N8QNGGfsPldiL1EL2BFYSFeGvy35vkS70Knle2wKHTJ99r5UsmtZewglJuGcYGVbuhdfv2esf8gEQA0NH4FcOBqS5hgwGha1OlWK+4kX8Xxpl5thAw4T4LuKIOMytXX+t/KHHogvK4n4se43lMCN5vBZhc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768198350; c=relaxed/simple;
-	bh=+SGf4libGVdNXJV9v0/S0onexs0g3pT9eFFgCb00a10=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r+LAjizWarx4BY+WlHlDbhnR7q32p5knhWBxkZHBGz/MYJft+8ETcLsIW8ndzG45GfBIlqRV61vcPKgVERi7cdpbxNIthVc8E2mdosUiG1bfh5n03mTEwWR/Yb8xmdel9YOuAaiox1Vvs1wgGEsasoaX4FjfLVzITElJ+rcPWkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=uq1dP1BV; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ve92YUW7iH3/QlkHPuIVpDeUN4D/2BbrxLi4m8BkSl8=; b=uq1dP1BVCEAF9MM+o2IEkLGwW7
-	6wo0D+4c3S3qLC2iRmTdyQzEZjW/48XRKQrHnvrlLChVejQkou7dFkaGg5r1lqKfBK8EZs+AVEa0t
-	7kc3v4Z1zRC7yATRQvbWSFbkdIbKkNVo5DH3jaNgHWzm5RQwDomMT0VWaNw+v615IbJ9lYnqQfHQj
-	YF1dZkCg22Hf0I2vdsLOwZg4/VOrc6ilpv2JEhXlQ3NSc25/SX5f+kpkTix9EuBVnr0RchgTu6s22
-	B3xu9EQFW1bFebjGWYsuV5zYeY2YeBHdSXHQbMTvx7WzSOkeUpd5vjZl8KjvWmv65CI4RQ1Mblqbd
-	btdw1DFw==;
-Date: Mon, 12 Jan 2026 07:11:57 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, Pavel
- Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Linus
- Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-rtc@vger.kernel.org
-Subject: Re: [PATCH RESEND v6 16/17] power: supply: bd71828-power: Support
- ROHM BD72720
-Message-ID: <20260112071157.1ce876d6@kemnade.info>
-In-Reply-To: <aWRERf70jg-IzqIx@venus>
-References: <cover.1765804226.git.mazziesaccount@gmail.com>
-	<fb74c0cab3dfe534135d26dbbb9c66699678c2de.1765804226.git.mazziesaccount@gmail.com>
-	<aWRERf70jg-IzqIx@venus>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95538158538
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768198711; cv=fail; b=h+0N4lgBlEUlETAk6+shOHQ4kqIelAE053BAmDCleC3AWo6bLoS61sA2X0eICOON4Tl8B9yqUQFsIjIVrvLgYb8cxio6vxmroAOS9VZnWs2mYkA4zkL52k+dE4MgvlTzOk7QHRDRiovIQ2uwH6TkQR5AKWRlvvI32QUltpEqcOA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768198711; c=relaxed/simple;
+	bh=atk3YPtHuAJdRqUVud+J5nsnsXfgz2iC1qioVFNXvZo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=qPCNhqvRS9/b3+ce4gIx9w/ZsouvRhRGE8SUH67rhTVcmlAzraoW7T+EQtA8a84MEbvh3CbErhjIY76YuaaHRkMOz4RqpXS+ACRREIP6ewDSThCV4Y+wXtQiQBC1FEnAOBO6M8Ol0z0ZtidM5oI9tM4nDFXrbmjbjyCHZbdn4R8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=savm+Qye; arc=fail smtp.client-ip=52.103.67.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pvfYV/aClfrSxukq2wjRt55jYoRiO2mpOfvgU38lITUECKUIj+zx8oDF97WQInDHHYQCb6qfP66ZxA8kexa6XyA1WNU6Lj86kZl3YchABTnX455rF3TrS5O2MLBbG7Wkh/U884eyh0zo+GyxIXSwQOtWMpEB7pgLW5BrpsO30a1MjNAPFMDVxgjCSUeZKSQoiq+lyyQ0/wZZcsZvBGtUmvQcPDNVLpB4mUqIY9uJmAjRPueWI+xBpbf8Rf6RVGr8Ocio7FTZoIZ5HuwG79au9mukBqxjZed+cdplZUHwjfB5iuh2RHp6Dq46DWTwP+7Wrw7RAchcqebIma/QFFsBMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eKoJsEXQwB2cxMfeX5l6fLmP6hK29l7aK+AklFCZSss=;
+ b=G5geOJ8Btx0pG8xGLMErWDm4rRlAFlt4PKVvfiZJNv20+FIJ3sNxmVlXm/O4zUfWRx+c7RnsVrwrwY5+b2e/sS8+bjpA1xRghHWfvCSTjRd9OjZGBNIOLv/sWsiN3xS1r6lL04fEOQHfV7BgGCfVMHul5QoeBlSopsoMBTNIMZw/NxiWHJakaxzpTpaJE80C7HDXuqPaacQzJY8hhhgMaaVwKgMeLcObnnq0i/GO2MfvDLcFPmX1FJCmQLOaRhmB9p9NaIyTL+g5Zhqvy2lkHzv/Kae4MQ+Y2pywdSkquhs0fVAP7NBfyj/U2H4pNBj/dkudV83hPWcCB3DXFU5AYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eKoJsEXQwB2cxMfeX5l6fLmP6hK29l7aK+AklFCZSss=;
+ b=savm+QyeGem6rzSRQp03GTrk+zadKTTHltQhBnK6Q6N3p7SPlwzF+/uofN9GKxRTfTf84SapfezH0V0sSF07BxF+eCfaY6O3Q/bgislGltJrvtSPFNMmgnGOq/L5iK6rBE10YPuCYq6TDUs2PDwiH42arczdlxpqMauaE3usKIOboMGnUoxqH0vaDGLeh3uuAY5PAeRyOJC0y/cjVkfpztQT9Ni5FA5CL9VLBhMg1YdCMxjzGDlhZqsEclc6BaIDZZIQlEDGWAYyT+d9uv8U1nCJ9mBryBd7qXiIX0WFwp73GJPuWsG1B5MnMz6r5zLkTUby33ojvocHixMyxEPzCQ==
+Received: from MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1e9::18) by PN6PR01MB12287.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:2fc::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
+ 2026 06:18:22 +0000
+Received: from MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8a6b:3853:1bc:67e4]) by MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8a6b:3853:1bc:67e4%6]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
+ 06:18:22 +0000
+Message-ID:
+ <MA5PR01MB12500A900256013C7ACC21FB0FE81A@MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM>
+Date: Mon, 12 Jan 2026 14:18:15 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] riscv: dts: sophgo: enable hardware clock (RTC) on
+ the Milk-V Pioneer
+To: Michael Orlitzky <michael@orlitzky.com>, inochiama@gmail.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+ linux-riscv@lists.infradead.org
+References: <20260107112922.20013-1-michael@orlitzky.com>
+ <20260107112922.20013-2-michael@orlitzky.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20260107112922.20013-2-michael@orlitzky.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR02CA0015.apcprd02.prod.outlook.com
+ (2603:1096:4:194::16) To MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1e9::18)
+X-Microsoft-Original-Message-ID:
+ <a8c750e3-8f71-4241-9c8d-e4be712d299e@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA5PR01MB12500:EE_|PN6PR01MB12287:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90d67643-d58f-4174-af93-08de51a262ee
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799015|5072599009|23021999003|19110799012|6090799003|15080799012|461199028|440099028|3412199025|53005399003|40105399003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?QVR6NFpCSC9UUHlsaFFKSGtaamhLVVRCWWl6OTc3OTVCNVhMNCtlMHZEV1li?=
+ =?utf-8?B?dWhnNFpjQkF4VU0yQ2s5Vy9jeUUvcmxTVE5YNU4xK0MvMzFhcnhzc1I0cU1l?=
+ =?utf-8?B?NFd2NktzV3lRTE8weTduYTE3ckFjdnpSdnhBdjN5RWhNbTBSbDlGRnp0MU9B?=
+ =?utf-8?B?N0lmK0xPYTNDMUM4RUJVVzUrRE9mTUFsTko3dGtBSWc2SnRpTCtQTzFRTDZw?=
+ =?utf-8?B?Z1drcFo0djBYZ0htbnFBbkU2RXpHNVFpenkzRVcySmpkQTUveXVBSlJwOEJD?=
+ =?utf-8?B?dFRLQlU5TVlMM21PVzRZWDQrdHZ2dDVoVi9jT0h5Y2RXai82VVg0aFhiR3RR?=
+ =?utf-8?B?U0luUFhoY2pSU0tLZnNLcHM0Z2pFZStOaHVpSHN3YTdlMm9QdnRlMEl3NGU5?=
+ =?utf-8?B?UnVsUlMvdHFWMnd5KzYrdUlBQ2k0bWtJd0ZnYTMwSjA1U3hMaStxQ3JndEZT?=
+ =?utf-8?B?TWRTb3ZleHN1U29uWnpFUHJQRjRhOHpicHR2YWMvd3dMcTJPZkdkR3FXNmZi?=
+ =?utf-8?B?SlJ3Ym02MG1VRld0ZlAxbXdRUXdqRDJRZDRrMDhEUEVtMmVOMHV0aUZFc0F5?=
+ =?utf-8?B?S0NVK0kyemNCdEpuZkhrWVdld3ZkRWdKbmJpRmFWZk5FS1lCNENaOTZSQXYz?=
+ =?utf-8?B?VEJ3dFJCOHFhNGR2RGNyd3l1Z09rWDhQZ2RIQ21iemxFVkhXQVRISktVcU4w?=
+ =?utf-8?B?N0tmQWNuZFRycVF4dkxsb3YrOTJZdXdReHNxQ1dnaVZ3OC92UWwyNHpHY1hY?=
+ =?utf-8?B?cDVvOVRPL3RnalNJRkJ3Sjc2SXFVQk1LYmdBUWc5Yk4wRGs5MmNOdmVuRHBs?=
+ =?utf-8?B?U2F1SUVlMXhiUTRWZHdnb21HVjdDemZoUmNSS1NlTU5QbytRekxQd241WmF2?=
+ =?utf-8?B?VXJ3NFJtdmtvR3h3V3krVmM1TUt5TFMyQzBtNElNQ0h1b1ZRd2RPSlgzSzBX?=
+ =?utf-8?B?eGJGaUxHVUFZc1E4WFU0c3ROZDlxdS9IMXQ1Wk9Hc0lMbFYvVGFOa0dvSlZV?=
+ =?utf-8?B?NHI1V2QxOGV6ZHRIY21zTzFvV2l3WVFXSWhrMCs2andHcW10M2FseEVUV1Nm?=
+ =?utf-8?B?cEp2dHF4Z0F3emtSM3Q2eU92N1V2bURsRjRhdjBFZE01YzhtRk1XWlRZSjBl?=
+ =?utf-8?B?YUE3ZVozWVExeEhFMWZWVDRLc0NkcTZ2NjhIalA5NzRuelo1L1hOZ05CNEJh?=
+ =?utf-8?B?S1ZVR0ZHRExITnVDVjdUZEFRejlUaFB5YjNjZWd4RzU2Z01uNEduNGNFMThL?=
+ =?utf-8?B?ckYyMldxSUhzN01obzNUbk5Ibmx0eDBQQ3dUTDNXVmFPa0NKckc3RVhRd3hQ?=
+ =?utf-8?B?RWV1NW9PUWFDbTh2R2hYK0U1WXhGSHlRU1JFZTRIb3ZuVy9ySUlwTCs4TWxh?=
+ =?utf-8?B?aXNDYlpNYm4xS0FoZEVHMk5VRlFyVVduZ21jQzlnUW84ZkxsZ0NKUTNzVDBS?=
+ =?utf-8?B?a2VYcEhtTUZwdXFIM2hOMkQ5b0tKQWdJRVVWRDM5Wnd0dVJYRXBSU3pTT1A2?=
+ =?utf-8?B?MjVUaVdvUTNZc1lUdzFicmpYcEtjK2tHU0JINGtPdnpxYkI3U1RoSEJqMnMx?=
+ =?utf-8?B?S0pPS3dZQWJUUlZqaWR3emhhMHYwTHFKMDdLTE1Db0Z5UVZLWjJPTVZFOXpm?=
+ =?utf-8?B?ZXJJU01jUGhqOG5aSUpGUzBOSkFYK1E9PQ==?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bktzeDFVTHlEUmtNeW9qN3NWMy9YSVFDeVZYU0dhOGxaaFBEeDlQUWNIU0hS?=
+ =?utf-8?B?MHkreDR6M3lmbXU1aW1qMHhKLzd1MGIrbVVEbWcycFBFb2tKeVRYK1k3dFJN?=
+ =?utf-8?B?YXdMSDRQUEhMNDNzN01iSWl6bVpZUkF0SjRWNDRlaW1rTjBjS2RuTzBiUWsw?=
+ =?utf-8?B?TUcwcHpsYzFMTGFQc1J0SWl3KzB3a2lwM1ZTdWR4WVR6b3pqUTFWSGhLcmh2?=
+ =?utf-8?B?TmNYaEtYRW9hOGZpMUM5bitPbS9nUE1iMVl2YWMwN25mTEFTaStOYmxHdmU5?=
+ =?utf-8?B?dUI0aFZUZENIcEJ6Z0dsbEVDWDJlYkFEa0NvalhBSkdzRUR6SUI1UmhGaWli?=
+ =?utf-8?B?WENXV0lGUlhXTmp0MEFFYUdHWjdUR2JYRUlwSCtsOFNIdDMxWURkdWhtOTV3?=
+ =?utf-8?B?NzRmY1BYZXVEMHVHV2VIUWQ1Q2g3bVdQb1lyZTkzbWJhTmFhYmZyWkZPYURE?=
+ =?utf-8?B?WmM3eHRhTWx6QjFaSFlrV09sa3haUm5WdVQzZ01tNGQyUXY1ellCTEs1RzNU?=
+ =?utf-8?B?WlozUkJ1MXNNYS9uOHdkMDlraXFHNDJ5eGVBK1lETHoyUkZ3RWdnbkNTUldO?=
+ =?utf-8?B?RVB1d2Q2N3YvSVdZWjkwTGRGWDdtVTdKL1FzVXJsUkN1Qk0wRmxFVTdGcnU3?=
+ =?utf-8?B?NFZlTnU4R0RqYktydnZETmNRSDdmbHdKbUtYcTdzQW14YTNhYnpMbEcyQzZW?=
+ =?utf-8?B?UWFoOXdydWpiM2kyU1RWSlozUGpyWUZyS1Bqc29lcjFKb1NQb2EvQ2gyVzRQ?=
+ =?utf-8?B?OGlTbXkwaWlDcGlQbWJSY0RZOS9LZUFSajAxNnpzc01sRUZucnJNakdIMWdZ?=
+ =?utf-8?B?SVYvcVJGSVF2Sll4eDlaTjJwY2R5VDJBZkxuSHByc3lweDRzSEJxRGMyZ1Ax?=
+ =?utf-8?B?R052OXlLR2Z1UVJWQVp2Q2xTRCt0S3E5clZFa3Ivem13NitGWGU1ZXpORDFO?=
+ =?utf-8?B?RlU4V3A3SVNUWWxGYkFIODVZOXdZZC9OVGVUL0U1V2MwNS9YbTQ4L3h4elpy?=
+ =?utf-8?B?eDVFNVVMcUEyZmdxd1dwR1FXcVlxOVV0QTQvOWRXL2hqSmo5UzhLNUltVVVk?=
+ =?utf-8?B?UTBXOWRJNldQTUU2SW5JWGE3S2pZQU04U1o0WFNvbW1jSVFmbnVyNFhlUktv?=
+ =?utf-8?B?VzVyU1p5K2VKL1BQV1hHMCtNR0x2WmFnTU9JQUJDWDFiTmorSWVCYzlqZzMy?=
+ =?utf-8?B?eFBBYStiT1NlcEJHS1RrZ1NFQU1RSjNORWFqVTVvemRSZ0xaNElZVlduYjMz?=
+ =?utf-8?B?U3RtblNHcFJ6empFTXd3Y3pzRFhiNzArMXFpZkNPenRtQ2tlQ0hKUGl2aHhD?=
+ =?utf-8?B?WE0xVkQ4Z3NKeE9heCtwenc5OWFrbXlqVy85VTNyckxtZk8rYUtMVWJQa0N1?=
+ =?utf-8?B?T2o0TW9YditrdDRFYTYxb3RZTHZLNXNOdmNyajJ1UXhtWStsVmtWYWR6dmo1?=
+ =?utf-8?B?VkJPMnQxKzVuOFJzK3BQSWNvWkNYRCtEbEZqOTQ0Y05JSWQzZVVERWhFdy93?=
+ =?utf-8?B?TWZoQTU2UjJkckY5Y0F1SkZOMG01Z3lLenFlaUxKOWhramJiSStuTmJEbGVu?=
+ =?utf-8?B?elpwcXIxRHU1Tkk2UzVkdWlEUG1lTjdOT0lHTWkzd3pRc1MzanppbllLMkxp?=
+ =?utf-8?B?OXVGY2FOaWFKbXRrbEVrTGVWNVBiTDhrcHE3L0NoalN4c2tEZHhLdlBIZDV5?=
+ =?utf-8?B?VnNFbWRZWEhxbElNd3E4bzlCeEhLOFE3dElhNUtxRnFoN282K3FmMmtjcVpJ?=
+ =?utf-8?B?c1dESnZWaDBhVjFobkZ4bHk4dEplVjYyd1VqU3hiZW9RdU9abjVpTnBLNTBo?=
+ =?utf-8?B?a1dOaXRRYXpDOHNZOWFMMmFXYldnMWRNNW9ndlFRL0ovOTByODFhUFJ5UVVF?=
+ =?utf-8?B?UWVLc0FmbFBvZ0dwTGs5T3dJNTNzTFdkbWhXM0ZsNXdIdVBDbTVLOGFWT0RJ?=
+ =?utf-8?Q?K7GcNteBOKv6Y1n2U48WhtN7bJbufb+T?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90d67643-d58f-4174-af93-08de51a262ee
+X-MS-Exchange-CrossTenant-AuthSource: MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 06:18:22.4126
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN6PR01MB12287
 
-On Mon, 12 Jan 2026 01:51:58 +0100
-Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
 
-> Hi,
-> 
-> On Mon, Dec 15, 2025 at 03:21:19PM +0200, Matti Vaittinen wrote:
-> > From: Matti Vaittinen <mazziesaccount@gmail.com>
-> > 
-> > The ROHM BD72720 is a power management IC with a charger and coulomb
-> > counter block which is closely related to the charger / coulomb counter
-> > found from the BD71815, BD71828, BD71879 which are all supported by the
-> > bd71828-power driver. Due to the similarities it makes sense to support
-> > also the BD72720 with the same driver.
-> > 
-> > Add basic support for the charger logic on ROHM BD72720.
-> > 
-> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > 
-> > ---
-> > Revision history:
-> >  v2 => :
-> >  - No changes
-> > 
-> >  RFCv1 => v2:
-> >  - Support using 9-bit register addresses (offset of 0x100) with the
-> >    BD72720
-> >  - Simplify probe and IC data as we don't need two regmaps
-> >  - Drop two BD72720 specific functions as we no longer need different
-> >    regmap for it.
-> > 
-> > Note: This patch depends on the series: "power: supply: add charger for
-> > BD71828" by Andreas:
-> > https://lore.kernel.org/all/20250918-bd71828-charger-v5-0-851164839c28@kemnade.info/  
-> 
-> That should be in v6.19?
-> 
-yes, it is.
-Just this note survived...
+On 1/7/2026 7:29 PM, Michael Orlitzky wrote:
+> These boards have a working hardware clock if you put a CR-1220
+> battery in them. We enable it using information from a 6.1.x vendor
+> kernel.
+>
+> Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+> Signed-off-by: Michael Orlitzky <michael@orlitzky.com>
+> ---
+>   .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 21 +++++++++++++++++++
+>   1 file changed, 21 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> index 54d8386bf9c0..ecf8c1e29079 100644
+> --- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> +++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> @@ -52,6 +52,17 @@ &emmc {
+>   	status = "okay";
+>   };
+>   
+> +&i2c0 {
+> +	pinctrl-0 = <&i2c0_cfg>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	rtc: rtc@68 {
+> +		compatible = "dallas,ds1307";
+> +		reg = <0x68>;
+> +	};
+> +};
+> +
+>   &i2c1 {
+>   	pinctrl-0 = <&i2c1_cfg>;
+>   	pinctrl-names = "default";
+> @@ -89,6 +100,16 @@ sdhci-emmc-rst-pwr-pins {
+>   		};
+>   	};
+>   
+> +	i2c0_cfg: i2c0-cfg {
+> +		i2c0-pins {
+> +			pinmux = <PINMUX(PIN_IIC0_SDA, 0)>,
+> +				 <PINMUX(PIN_IIC0_SCL, 0)>;
+> +			bias-pull-up;
+> +			drive-strength-microamp = <26800>;
+> +			input-schmitt-enable;
+> +		};
+> +	};
+> +
+>   	i2c1_cfg: i2c1-cfg {
+>   		i2c1-pins {
+>   			pinmux = <PINMUX(PIN_IIC1_SDA, 0)>,
 
-Regards,
-Andreas 
+Tested based off 6.19-rc1 and passed.
+
+Thanks,
+
+Chen
+
+
+
 
