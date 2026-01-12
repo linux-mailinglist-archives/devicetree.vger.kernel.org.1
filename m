@@ -1,197 +1,115 @@
-Return-Path: <devicetree+bounces-253707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B13D10AE3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D4BD10AF8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:12:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 50FB83025A48
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:11:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E759A303370E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81ED30F925;
-	Mon, 12 Jan 2026 06:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00D030FC37;
+	Mon, 12 Jan 2026 06:12:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="Ot7HBUT5"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="uq1dP1BV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11022143.outbound.protection.outlook.com [52.101.43.143])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3259A1A9F91;
-	Mon, 12 Jan 2026 06:11:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.143
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768198263; cv=fail; b=iufpI/4ZThN+r7N3FZXOsIBpB2Z86R1zhKY0erSmbxoYFMtAZtRkha71FAlUn72nrrWDSqSTP23fw1OoA1tRrgtkvJVB72e7wvVmdG9DgmYcJ4a8lhrhcCL+6I1Fe9cdc++Bj1PIZSwpZC51K+62Lh97KLgVcGJ51mILyE3pPDI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768198263; c=relaxed/simple;
-	bh=9t9U7RkGFDZQ5WLB8hKaMOx0S6aBC0mYpNcOELkFULA=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=f7nMRSRaRIPt9wsSRUZPO/kOUvm+nvnSD43tl8ni7z0FOR3wf086CkaHa0Rbr6viik8FjTfi2u9QX7WU2sGh5QwxJxFurlKtJ03SP9FiiewNkYbKF3a/qQ8BBbMWIvncpIFKEtGRu9Q37wefxIKyDFI7SxaanT5k6CTHG6zo/Qw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=Ot7HBUT5; arc=fail smtp.client-ip=52.101.43.143
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YDlmUt0hwjlc+nvoMtnn+jZB1BKTcDGlSNy5LVnr7o7w+Wx6vAmPWboVPm8UAv4zowLIxHyC24aQRrY050vUV+og0q19UdzxZLskO/6S0xTtxQPfneyOY/JkRL4g0OEodb1u0E3w1N2ux/ANA5N5Y0xLYdPA+vuQosr4XhXwMd689PZGOG4dYpIeoop7wgrSasDtS/lCtS3QGAlIB1R2foRbA50cs+CfbBf4zK1o4uTyeq3LM8J6HFRW8irnC3qZ8j9081xI1UhtMHMSdu/ctiHL8TLgq72vQBkYg6SQHtI3K1fNyTEvVdpsJSOl5lJ1cLmMfFm823cVrs+vupLJgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dQWAbTfHBUuvaWuVGK0fU0/Xk4ZqhziM/7HefOMC/7c=;
- b=dMjjbsQ2u63QvH0GpN2lUCqbbyyoklRqILyPs4qYVjo6jvpHBUbPvO/aVZDpMK0IXaiBnAZEEtWiVc/OgO428zKu+0GMnmblmEu6U1xRyOfh9AE3AGc6f7GZGkBJpFoeEuQ8ZFbE179mFEkO7/9SWQia3dTp6mQfBPv/KUPlRl9KR63uJ3TsJ4AcJPlIkELD1I7bNT9e95zq4bI1LTvxZAvZ2rfi5C35+9mRB6IhO1+LH+FU+dMy/OWJxQlJXXtE8DeGxMxR7UqUd1DnlA9fQZpgLp7fZD9K7fq3SR4lUapvIZaWTc3co9DlwzZm57r9IWg6RntUVKIIxshtPc6uHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axiado.com; dmarc=pass action=none header.from=axiado.com;
- dkim=pass header.d=axiado.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dQWAbTfHBUuvaWuVGK0fU0/Xk4ZqhziM/7HefOMC/7c=;
- b=Ot7HBUT5rd3CBYrQD8dsH7As3zCShvmNi2n/rvFDzVT6F+WJQR4JgExOx+eX4HY4YsQ+TAi83sChV8Bbb06t90Kg3BkzCZFgLDzl9CTo7Mb6a10rsdiS0DserK1zQ2wOT58DZroyX0cQhuPgRxrwwAO4x4ed0La3X41tnkiqxYt2q7FVRcmRriwB9XagqQUa0BcR+TvkfDbfWjAfspqnUy7KXbYf1MEgOyRsvkkoS/19f1sxs2gyfaFLO3q9tSpsRPixrHGR5gkQ+QodzIs7s7TpVBZl3MHiYYlFo0o1wZRmMIQ2aEhvS8BQKx8Uk68cWPk+Y1Jl9cFfCuyvouCbCQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received: from PH0PR18MB4558.namprd18.prod.outlook.com (2603:10b6:510:ac::13)
- by SJ2PR18MB5714.namprd18.prod.outlook.com (2603:10b6:a03:570::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
- 2026 06:10:59 +0000
-Received: from PH0PR18MB4558.namprd18.prod.outlook.com
- ([fe80::7a75:75a5:694b:2311]) by PH0PR18MB4558.namprd18.prod.outlook.com
- ([fe80::7a75:75a5:694b:2311%4]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
- 06:10:59 +0000
-Message-ID: <92a051a3-f9e0-4009-b6af-74ee2a95ff13@axiado.com>
-Date: Mon, 12 Jan 2026 14:10:52 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: arasan,sdhci: Add Axiado AX3000
- SoC
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: SriNavmani A <srinavmani@axiado.com>, Vinod Koul <vkoul@kernel.org>,
- Adrian Hunter <adrian.hunter@intel.com>, openbmc@lists.ozlabs.org,
- Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Prasad Bolisetty <pbolisetty@axiado.com>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
- Michal Simek <michal.simek@amd.com>, linux-mmc@vger.kernel.org
-References: <20260109-axiado-ax3000-add-emmc-host-driver-support-v2-0-934f1a61f7c0@axiado.com>
- <20260109-axiado-ax3000-add-emmc-host-driver-support-v2-1-934f1a61f7c0@axiado.com>
- <176795814783.2967277.2609413382098901076.robh@kernel.org>
-Content-Language: en-US
-From: Tzu-Hao Wei <twei@axiado.com>
-In-Reply-To: <176795814783.2967277.2609413382098901076.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TPYP295CA0016.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:a::8)
- To PH0PR18MB4558.namprd18.prod.outlook.com (2603:10b6:510:ac::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0225D30F957;
+	Mon, 12 Jan 2026 06:12:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768198350; cv=none; b=pnO5F9pCUazEwUp6/N8QNGGfsPldiL1EL2BFYSFeGvy35vkS70Knle2wKHTJ99r5UsmtZewglJuGcYGVbuhdfv2esf8gEQA0NH4FcOBqS5hgwGha1OlWK+4kX8Xxpl5thAw4T4LuKIOMytXX+t/KHHogvK4n4se43lMCN5vBZhc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768198350; c=relaxed/simple;
+	bh=+SGf4libGVdNXJV9v0/S0onexs0g3pT9eFFgCb00a10=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=r+LAjizWarx4BY+WlHlDbhnR7q32p5knhWBxkZHBGz/MYJft+8ETcLsIW8ndzG45GfBIlqRV61vcPKgVERi7cdpbxNIthVc8E2mdosUiG1bfh5n03mTEwWR/Yb8xmdel9YOuAaiox1Vvs1wgGEsasoaX4FjfLVzITElJ+rcPWkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=uq1dP1BV; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=ve92YUW7iH3/QlkHPuIVpDeUN4D/2BbrxLi4m8BkSl8=; b=uq1dP1BVCEAF9MM+o2IEkLGwW7
+	6wo0D+4c3S3qLC2iRmTdyQzEZjW/48XRKQrHnvrlLChVejQkou7dFkaGg5r1lqKfBK8EZs+AVEa0t
+	7kc3v4Z1zRC7yATRQvbWSFbkdIbKkNVo5DH3jaNgHWzm5RQwDomMT0VWaNw+v615IbJ9lYnqQfHQj
+	YF1dZkCg22Hf0I2vdsLOwZg4/VOrc6ilpv2JEhXlQ3NSc25/SX5f+kpkTix9EuBVnr0RchgTu6s22
+	B3xu9EQFW1bFebjGWYsuV5zYeY2YeBHdSXHQbMTvx7WzSOkeUpd5vjZl8KjvWmv65CI4RQ1Mblqbd
+	btdw1DFw==;
+Date: Mon, 12 Jan 2026 07:11:57 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, Pavel
+ Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Linus
+ Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-rtc@vger.kernel.org
+Subject: Re: [PATCH RESEND v6 16/17] power: supply: bd71828-power: Support
+ ROHM BD72720
+Message-ID: <20260112071157.1ce876d6@kemnade.info>
+In-Reply-To: <aWRERf70jg-IzqIx@venus>
+References: <cover.1765804226.git.mazziesaccount@gmail.com>
+	<fb74c0cab3dfe534135d26dbbb9c66699678c2de.1765804226.git.mazziesaccount@gmail.com>
+	<aWRERf70jg-IzqIx@venus>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR18MB4558:EE_|SJ2PR18MB5714:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4f3ea597-a518-4a39-ccb0-08de51a15b19
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|366016|42112799006;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?M2g5RlhXdmE3YWJQQS9KbU96anZKMzM1VXdyK3orMFVtam85emlDazI5U1Ey?=
- =?utf-8?B?MTRyeHpRb3JOYzVSWGdmbnVmZXZQeEF1ZEhuZW5RcytSTS9nV3dVSklJbUNU?=
- =?utf-8?B?NUo4ZFN3RzdBdXdGcGRaN29CazEvNUE1R2JkTnFTTVhNVEJKQ0F1aG1ZQ3ZS?=
- =?utf-8?B?MG8zd1Z5clBZd2dlTDhncjNZTG16V0FVM2pKeWZFK1hSZTlzeWlHZisxVEFk?=
- =?utf-8?B?ZkhlS0tyV282ZXF2UGNsUGpsMXM1SjIrTng2V3VHMEZvR1NvVjlydTRvbTZs?=
- =?utf-8?B?S0M5Z08xemQzRGpXQUpqV2ZuSnJRQ2ZNdzlwSmJwTXNvWHpmVkpmcFNYZ2ND?=
- =?utf-8?B?eGxhL2paVURJVkNsTWloY0xBa1VYL3UwNVpVNUdaSE9BTHczSkQ0MXVUSXBT?=
- =?utf-8?B?NzhoNjVoWXRQZEowd2J0NEpmNFlFU25YOEptVWZxNTBBYVcvZWc1dlh3U3VN?=
- =?utf-8?B?RkVmd3JtS01za0RnZVRMWkhPWUs2RUIrRmR0TFBmd1B2Nkk4N1JiRm1Kcmpw?=
- =?utf-8?B?WGtWT0lYTEpaTDlHcit2YjdCWWdTTVFpTVhacHZabzdSaHp5dEZtRjUrc2o4?=
- =?utf-8?B?SnE4dTFLYUJWZzM2TUNZbVVBSzY1bGs5a1BYY3JDbjRBdnViaXZhQXcyZUZ1?=
- =?utf-8?B?akpBZmw4QWozcXlYWTB3QVpvdXdaZjg0YmVMeGwvQzliNVlvL1pKV0R3K0kx?=
- =?utf-8?B?VGcwV0s2eVZETytaOXJpTGVPSG8vYWlycE1mS1VFbE5tR1RKaXVEMFFEYll0?=
- =?utf-8?B?RUhXSmpRWWVXUnFPdXkycFhDcFArRjVUcWpBS0IzS0prN0gyWVllUzR3UWE1?=
- =?utf-8?B?R0ZlY0NEc1BabmhTVzY4MnNlMy82d2htTEd2NktUeko4WlZlMENlWGtGQlJ5?=
- =?utf-8?B?Y0NwTngzeHdONk1UemRVNTZrZkNNekNuVTNSdjJ0YkJtdEtBMmtuTk1YKzBu?=
- =?utf-8?B?VGpRVzJnWDU5RXJmVVBRbDJHajNOdFErUVhRSFhwZTU2Vk9CdGd3cGtGYndS?=
- =?utf-8?B?TmlvUjVQVW56SnIvY3dpWFhDeEFxTXRWZ2daRXRyQytYckVTS2ZBL3RvaEVL?=
- =?utf-8?B?NWpsNnAyOTg3d0FEQkcybUExUmdlVnlqb25JenI1UWhicldvcWVqekUycW4z?=
- =?utf-8?B?WnNTbFFOanRJUUxTZlM3aWFOOVRIZkxoRjlxS1gzTHBxa2cyQ3RWZUF0NFlR?=
- =?utf-8?B?ZjRDbEpMdTlxbjBiaXgrQzRjOTl5VnJJeHIzTDlUWlE5MDRNQmhHRFFodURa?=
- =?utf-8?B?b0dLeTZIS1loSjd1cTJDWEVCSm5zbHBKdnF6NnVKbjZSNGFXS3VhOUY2OEJk?=
- =?utf-8?B?bWhWZG1lMzQ5MG03dFFzSGpFQktzU1J5c3RVT2dwcGhNK3Y2cG5aQnNxeis5?=
- =?utf-8?B?bE5uUTZtL2xaVXBKZFNRSlRKZTZzWnRDTkFhMi9TN0p1NjVUdzM2UW9TeHdj?=
- =?utf-8?B?VmRyQTlDSTZpN09RZ1lsVzhyZGZNSjhqS25ab3BBYldHZ213STVQbWppUndi?=
- =?utf-8?B?UTVwbGNaUGprcHNKeEhlTVo5TWN3NlZPbXNDd2VNdEROdTlTb3pTOXJYekRZ?=
- =?utf-8?B?dFNLWlRGQUtGSjJ6WnNSbFQxdVNoVzEwQnl6ZXkrM0s0K2hQWEJmanFSOHcy?=
- =?utf-8?B?VnR1ZXNadEIxZmU5ckpDSHlHZkptdThGQ0dmU05ROVZHb0tNTko2VVFIMjNE?=
- =?utf-8?B?R1poeW9tTVhoMnNtVzl0RThJRHJJTThlRk9peU1NWityNlJISHFTeUVXSk9y?=
- =?utf-8?B?Y1E0T0czdXhqWWdSQU1yOXp0dG1Kb2k1YlhId1FKb0pOMGRRMXJzSjNqQ1NI?=
- =?utf-8?B?a1ZhaUxWQ2VxN0ZYdGtpSnl0MmV5S2tDUEE1QVZYZzNwdkVzK09VV3VYMC8y?=
- =?utf-8?B?VUY1WUs0ZGIwL0xOYTFmTEN4eCsvbmlWYkptc2VteWVDWHkyYWVLYnRoazN3?=
- =?utf-8?Q?8t42yQKEQ9HrBD1ZlEHWtyMmLkTCPchF?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR18MB4558.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(42112799006);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OFAzZS9uR1BLSTJrWGQva0daQ25nV1ltaDQySU5xcGVOT2hBK0VmanZjSGpB?=
- =?utf-8?B?ZlY2d0RmN0xXRzk3WXI2ZzhweVBsQm5VbUVIWlZUOU9IeWF5ckZjSDVnUElP?=
- =?utf-8?B?SlIrcUR0NlhlTnlaTEZ4bUcxbXducnNxc1VZWTJ5bFI2UkdoNk1DcXlRbHlm?=
- =?utf-8?B?Qkhpck5FSzV4L0VteDRyVEZTMHNiZmRDbURxT3FCWmRvR0N4RHV1QmwzWTBD?=
- =?utf-8?B?SmNsSDZ3ZGtkNXZZNU55WW1zdGNmYXV5QnphcEtycUU4TGZkSGdZalVBWDJK?=
- =?utf-8?B?UGc3ajRRd0wrUU0xM01jQUQyK2NxSCtaQnZIcjJ2QWwvbTdTOVpqTkJGNEVz?=
- =?utf-8?B?ZXJSL0FzK253K09pR1VpL2wzQTNma1FaV0J5dVlCajJCdlpURzlUWmphRGMw?=
- =?utf-8?B?ekN1eThHc1Bhb0k0N0pzdDU0QWtERmdNcFpQWGFVUm16Sy9VNURtYXBBSXN0?=
- =?utf-8?B?dVdMVDNzQVQvUklKWTFLSktGelNsRmYzVTJMcnlLMUdwckkvUUxGeXZ1TmJk?=
- =?utf-8?B?YWd6NWViakV0UTNaUjJUcjFSZlZaYVZvMzl0OXVnS0FvVU90eUV5OThkVmdh?=
- =?utf-8?B?VjAzVmRJSVdqRXV2MWx2aHB6U3pBUHh2MnptcDUzRm1GaGc0Y1V0azdrT0xI?=
- =?utf-8?B?dkJ3ZUpDcDFRdmZ5dmpmNEJSbnpjY0FtdDhCdUdsOVFvWFJ4UDRJR0NlbFBV?=
- =?utf-8?B?RlAyOEZIMjZncWxxUklBTzh3UjhVeDBINnRlODdlQmI1ZmRtek5rbEsvK3Ey?=
- =?utf-8?B?VnFuY0JKNjJmQ1B6RVA4YktVZjgwYzhHcFBRS0JSWWtqbmdneWk0YUd0QlFC?=
- =?utf-8?B?UENzSEs2MWk3MDlNdS9vY2hSaVpxSGQ3QytyZVNFWnBNbGlRMjYwZmVrVkxx?=
- =?utf-8?B?aXRnb1IvMUMrVzQ0RzVPUGF5dHpmRkhLU3dCMEdteVVnSlErL1RrbXI0SVpj?=
- =?utf-8?B?S0pJcFNnMzJPdzVmdkRXRFpPY2M3SEcycVN2Y1NzbXpuc3BUZjd6NjBKY3Yz?=
- =?utf-8?B?b3RiNU8xNDkwdmUxUmNlRi8vK2FSS1Z3bTlEdXpiS1hoRTM5b3dMbmVYMURT?=
- =?utf-8?B?cE55ai8yby8vdHF3UzNSRDA4WENVUUh5U2xFY1ByKzVLUTJ4bC9mTUhoMUZS?=
- =?utf-8?B?TndXT0c0MitEYnVlenJrd205VHkrZFlvOEdZU3UyeU1zTUlhNWpYMlFIa0pL?=
- =?utf-8?B?QXgvZGRvdUx4enViNDQxOG93bytUSWFNSWJYN1FIWjZtL3RoS3pKODc3Q1Yz?=
- =?utf-8?B?Mjc2dnhQR2twb3dnWFNaejhqdlY3V2piYnNmNjhaSGdOU3NsYXlYSHI3a3BR?=
- =?utf-8?B?bWkyZ0pvUE8zZVlqZHI5L2ZGVFV4KzFMUzIvakFFSWczeUY1TmdqRUFMN3BT?=
- =?utf-8?B?U0hZVlZEcjg5QStQU1lmTXRBNjdCSnpEWFh4d3pTc29FamVpWldDNVFibHV1?=
- =?utf-8?B?Z1gzWWtGZFpvK20xMWxLM2s2ZExsVTNHekpwT01PNHg2VUYyVjl2Ymhjbm5O?=
- =?utf-8?B?dFJNekp3NEpoKzcwYlJsR2dBOFVPWWFlRFpENmVVVitVWUNHMndrZzZHcEty?=
- =?utf-8?B?Vjh5dGt4YjJYRHFMWFloRkJ2d2hOZWUraWwzdzBkSWlCcWtYQjB4ZTFwMXA0?=
- =?utf-8?B?YytGcy9mWkxadUp3VjVrQTZrYzNNY0JGSUYyd2d6cHNVcTdmclc1NmJFTEIy?=
- =?utf-8?B?MjRuaHFweHdUc09NTHFLdUIyN0dSNkNmRWF6WlRSM2tlR1dMdmFKeDhWeWxQ?=
- =?utf-8?B?MXU0TElYRUdIN3AxZXU1eWNzem1Ta1psR3lpR3VSRGxHbFZJa0pWb2FOcllj?=
- =?utf-8?B?TzVmdkk3OXVocm9DTHFlUnFNSEt2WG0zNUtmYW0rblA5SFVOaStzNTZ0TUsy?=
- =?utf-8?B?L3NWdzkzZGYwZytXaitsTUhjb1Q1cE1WcWNSSVYzd2d3YzNiMjQ1azFTU2pD?=
- =?utf-8?B?cTdOUVVDRDZmRlBJaExGV243RXBvZXVpbkxqZldEeUpyV2wzUmFxeWdLMXhK?=
- =?utf-8?B?QVdiNnFCREFvSVRlU01Pc3ltdDFkUUc3T0ozWk0zNzFpSWs3M2YwSW9PK1RM?=
- =?utf-8?B?UG9TdXpWKytkeit3NSsvOE5yK29xNjJjYkROUXVaTXQwT2l5dWVvcEpETUw4?=
- =?utf-8?B?Y2RrbmtLaWM0eTczQld4N3dkN2hTVnY1L3Q3MU9ITW9QNlZYYU1OQmJJcWZF?=
- =?utf-8?B?WmFmTDZMcVVEelNHMGtOcTJvcHdRd1l4TXNZWnYrYVhYV01IODdZcjFHRnRL?=
- =?utf-8?B?ZTdHTkRIUVZHNHFISkdzbS9tOE9rT3g5WlVFVGg0YnRIUUl4Uk9jZ2JWZ3NB?=
- =?utf-8?B?cERmb1dDT1MwemtPU0NORHpFVGp0ZHQrb1d3SzlaWDlQRXRMb3J3UT09?=
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f3ea597-a518-4a39-ccb0-08de51a15b19
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR18MB4558.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 06:10:59.7079
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uOpsKLj3rodkahUymOlJbBieYRfkNDh9y/lmimGOkmTW+xbviUtgFq4zDltcuYLz
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR18MB5714
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 1/9/2026 7:29 PM, Rob Herring (Arm) wrote:
->>
->> Signed-off-by: SriNavmani A <srinavmani@axiado.com>
->> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
->> ---
->>  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 3 +++
->>  1 file changed, 3 insertions(+)
->>
+On Mon, 12 Jan 2026 01:51:58 +0100
+Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
+
+> Hi,
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
+> On Mon, Dec 15, 2025 at 03:21:19PM +0200, Matti Vaittinen wrote:
+> > From: Matti Vaittinen <mazziesaccount@gmail.com>
+> > 
+> > The ROHM BD72720 is a power management IC with a charger and coulomb
+> > counter block which is closely related to the charger / coulomb counter
+> > found from the BD71815, BD71828, BD71879 which are all supported by the
+> > bd71828-power driver. Due to the similarities it makes sense to support
+> > also the BD72720 with the same driver.
+> > 
+> > Add basic support for the charger logic on ROHM BD72720.
+> > 
+> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > 
+> > ---
+> > Revision history:
+> >  v2 => :
+> >  - No changes
+> > 
+> >  RFCv1 => v2:
+> >  - Support using 9-bit register addresses (offset of 0x100) with the
+> >    BD72720
+> >  - Simplify probe and IC data as we don't need two regmaps
+> >  - Drop two BD72720 specific functions as we no longer need different
+> >    regmap for it.
+> > 
+> > Note: This patch depends on the series: "power: supply: add charger for
+> > BD71828" by Andreas:
+> > https://lore.kernel.org/all/20250918-bd71828-charger-v5-0-851164839c28@kemnade.info/  
+> 
+> That should be in v6.19?
+> 
+yes, it is.
+Just this note survived...
 
-Thanks for catching it. I will fix it in the next version.
+Regards,
+Andreas 
 
