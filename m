@@ -1,59 +1,98 @@
-Return-Path: <devicetree+bounces-253873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 681B1D1234E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:15:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD35D123BE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:19:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 569313119C37
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:11:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E692A30464E2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D11A3559DF;
-	Mon, 12 Jan 2026 11:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A5A3563D0;
+	Mon, 12 Jan 2026 11:15:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YOkrzxTX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lgeamrelo11.lge.com (lgeamrelo11.lge.com [156.147.23.51])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A34F35581A
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 11:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EEF43559EC;
+	Mon, 12 Jan 2026 11:15:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768216264; cv=none; b=E5GxQae52xsWFiRSnsTVvu3+nURwnndXuPqoMnRYEVIiYXo5Er/BuPJDXaZQntk/KC0PuFCaeXVfWVc16Yaxmdn0D6Zue/ve+OS+E+nEuf6j6ihJi/ezjDR8zdk4CSy4tUiICPOtD3VIhh7QoJic+fGod0zNXNsWZHNBgz8esFM=
+	t=1768216524; cv=none; b=c8rMDLtPueqGW9wI9mGOKj4ZuksOlW9PfxXp1RubRj/bDeB0pRnYmx5IP8uuBDUv37CZsHmzZ7DJ+VotuH0PFDmR8hEOkwUlC8fL6EUd8OhQMy9VO33Gu2QXuM5eHOSVG5es+kMn0ATM8HHHmgIFlwGPe2cYbxyQST6dZ3v8/7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768216264; c=relaxed/simple;
-	bh=k900Xsa0C0zh/d8VRZur8hoy9R6jJW8XFSGVLLI5pBs=;
+	s=arc-20240116; t=1768216524; c=relaxed/simple;
+	bh=zUSCP1wlBfzuXE8NqisF5E9uyqPXe+GBaVIHFJQsuQc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cz0YEMjcllKXKvB2kMVF0jR6xIZbqD6c/FvyGZY65iD4Ma+5lWwwEoLnb58BQ0FB+DEz5DAW45O7yKt7guYHu0TQ1djHUKipONTqpUlY+4Kp1K0apA/JDnTjCYiGJDFamMzlTmB9mCfZ64wVAsahZnvk1Cn4cDlj/9FwfwO3nkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
-Received: from unknown (HELO lgeamrelo01.lge.com) (156.147.1.125)
-	by 156.147.23.51 with ESMTP; 12 Jan 2026 20:10:56 +0900
-X-Original-SENDERIP: 156.147.1.125
-X-Original-MAILFROM: chanho.min@lge.com
-Received: from unknown (HELO BRUNHILD) (10.178.31.97)
-	by 156.147.1.125 with ESMTP; 12 Jan 2026 20:10:56 +0900
-X-Original-SENDERIP: 10.178.31.97
-X-Original-MAILFROM: chanho.min@lge.com
-Date: Mon, 12 Jan 2026 20:10:56 +0900
-From: Chanho Min <chanho.min@lge.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Kael D'Alcamo <dev@kael-k.io>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jmvvzTjjddG82PALPYM4KCK16MtIuQ55s0P1qFHhQK/Q0L3sMe2uayMSo335YHg98M8Uofj1OyzrVJ6ihrjfpykrfkHdr9mrDA9ptecarGkxiiA+0dDsCKR7XjtdG4EWyVn4ii/LPGCr6sXZMCNOdjBli4Au8tAHuHVq/HQH18U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YOkrzxTX; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768216523; x=1799752523;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zUSCP1wlBfzuXE8NqisF5E9uyqPXe+GBaVIHFJQsuQc=;
+  b=YOkrzxTXzeOUMoQWA6cTprZC+zpGF4q2qS7RvU4ksZ0BaY7xo/OsgtpF
+   jSI74vpQZYGnBYathDznmX344Rg5BIOKRTYb1NA/LfWslfgoWqM51VTYJ
+   sR96ncLH5ygzLWfavGmV/x1RLIXuCMMZiZZSuGlBQZ9fIFgzGyeO/hxsH
+   wObdUl6QsMr6lB8smFJDt9fdRNOFLaqgv847xfXsE4SIDfmjvrEdfqeZa
+   nUTJkpzdPN7OD/fQQ0OnYs3uBf6KmvkDc+Csrvv4vBasNGlvaDx6mHdMc
+   xgsqBN/3bQZbQQWc/l9Iu8qoiHq9yVKvkgvyWCgTd4U9+bA5+18F7pwZJ
+   w==;
+X-CSE-ConnectionGUID: 6WVsrkR+TdCu6VvYTahNDQ==
+X-CSE-MsgGUID: AD7rNmHrQHiNetTiLDouwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11668"; a="80209602"
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; 
+   d="scan'208";a="80209602"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 03:15:22 -0800
+X-CSE-ConnectionGUID: kUR6ig1/RUKJYBcy/p3hfQ==
+X-CSE-MsgGUID: OAg+gLOMQVGuS3+zfM3y2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; 
+   d="scan'208";a="203977233"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.37])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 03:15:16 -0800
+Date: Mon, 12 Jan 2026 13:15:13 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nicolas.schier@linux.dev>,
+	Hans de Goede <hansg@kernel.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Mark Pearson <mpearson-lenovo@squebb.ca>,
+	"Derek J. Clark" <derekjohn.clark@gmail.com>,
 	Manivannan Sadhasivam <mani@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2 v3] dt-bindings: arm: lg: Add compatible for LG1215
- SoC and reference board
-Message-ID: <aWTWwLsm+ZoR0aW/@BRUNHILD>
-References: <20260112053421.3185738-1-chanho.min@lge.com>
- <20260112053421.3185738-2-chanho.min@lge.com>
- <20260112-agile-elite-tuatara-dea08d@quoll>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	linux-acpi@vger.kernel.org, manivannan.sadhasivam@oss.qualcomm.com
+Subject: Re: [PATCH v3 04/14] software node: Add software_node_match_device()
+ API
+Message-ID: <aWTXwSaNEVZsNxip@smile.fi.intel.com>
+References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
+ <20260110-pci-m2-e-v3-4-4faee7d0d5ae@oss.qualcomm.com>
+ <aWSxcJTLzBFbMGad@smile.fi.intel.com>
+ <CAMRc=Md6+hhLMOmmDejKW+_jbWu3_XB4qNobyi27pezfXsVLFw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,30 +101,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260112-agile-elite-tuatara-dea08d@quoll>
+In-Reply-To: <CAMRc=Md6+hhLMOmmDejKW+_jbWu3_XB4qNobyi27pezfXsVLFw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Mon, Jan 12, 2026 at 10:07:05AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Jan 12, 2026 at 02:34:20PM +0900, Chanho Min wrote:
-> > --- a/Documentation/devicetree/bindings/arm/lge.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/lge.yaml
-> > @@ -24,5 +24,10 @@ properties:
-> >            - const: lge,lg1313-ref
-> >            - const: lge,lg1313
-> >  
-> > +      - description: Boards with LG1215 SoC
+On Mon, Jan 12, 2026 at 06:03:34AM -0500, Bartosz Golaszewski wrote:
+> On Mon, 12 Jan 2026 09:31:44 +0100, Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> said:
+> > On Sat, Jan 10, 2026 at 12:26:22PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> >
+> >> Add software_node_match_device() API to match the swnode device with the
+> >> swnode driver. The matching is based on the compatible property in the
+> >> device and the driver's of_match_table.
+> >
+> > NAK. swnodes != real firmware nodes.
 > 
-> 1215 < 1313, so this looks oddly sorted.
+> While I'm not arguing that this is *the* solution, I think it warrants
+> a discussion on proper matching of devices that are only backed by a software
+> node - for instance a serdev device on the auxiliary bus. I understand what
+> software nodes were historically but perhaps it's time to extend their role as
+> a full-blown firmware node allowing matching with drivers.
+> 
+> Reusing existing OF IDs is just one way, we could potentially think about a
+> high-level fwnode-based device to driver matching?
 
-Agreed, the order looks odd numerically.  
-But it's intentional to reflect release order (LG131x earlier).
+There is already proposed and agree way to do that via DT overlays.
+If one needs to describe the (PnP or hotpluggable) hardware, it's
+the way to go as the HW maybe much complex than the just one small UART
+appendix.
 
-Thanks
-Chanho
-> 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
-> Best regards,
-> Krzysztof
-> 
+As per auxdevice, this should not be enumerable by compatible. The auxdevice
+usually are created by other devices (from real ones) that _know_ the topology.
+I don't see why we need to open the can of worms with the software nodes
+to enumerate them as real ones.
+
+P.S. Collect others' opinions (esp. device property reviewers and maintainers)
+and we will see. But I do not see any even looking good justification for that.
+It might be that I didn't get fully the use case and the other means can not
+be used. But taking into account history of the rejection of the matching against
+OF compatible string in swnodes suggests that this will stay the way it's now.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
