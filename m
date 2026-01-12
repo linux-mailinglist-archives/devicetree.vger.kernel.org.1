@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-253990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7670BD132A8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:34:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B79CD13206
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:29:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A280A303272B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:23:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6915D3090F7E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D248135C19B;
-	Mon, 12 Jan 2026 14:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B005735EDC1;
+	Mon, 12 Jan 2026 14:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FvI1FgiV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="I5dUvqxY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03B22DE70C;
-	Mon, 12 Jan 2026 14:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C3B35CBAF;
+	Mon, 12 Jan 2026 14:21:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227667; cv=none; b=Vap+4z6d90y8fgJTzrFCjgN1fFD91CERoHfqSs+USlkvRLYz2puhVF37mPiHenQkmNwI1rk0pF4xL6kjUXZfP7hSQqUEROBPKJTiZ4SYYjFPn9O9FAzwQA1rxSBk6vIE0rPi/NfEbONWSZzpc7ocQQiT56PdR/ZI/vmoAF3A3iM=
+	t=1768227672; cv=none; b=leh+0oezB4naAuvmrhwNTgKBoMN0b+ICE+0vuinacpNT9r3HKdDZgIZANJaAYcoBG0GslgPreVwNn2rUzD1cAcWD4vQsrNsrJ1iAUhSIyj+9zu9v5rAIbZFAFZbFgD6IHO1Fhru6hv/klGmlok8anZRv2ui4cDakwQwo8UyYtGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227667; c=relaxed/simple;
-	bh=nniPvKcWEi4LfAC3oR0MW3FHuw9UeRhJz/7mnfTVxSQ=;
+	s=arc-20240116; t=1768227672; c=relaxed/simple;
+	bh=P/XdXd/bYrHZDkDSuHHmyyBrAIsBa+F365UKC6ogKGc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Zc772qiJPFZ1Ngv4D+xtqxofAzhV4Geh3864IpdgAuZwNjEo9Br6oN9ImhlatoCaQTWIaF/crp2BPfZpBP5nUpH2yLFnKC3DaYZBdD1Rid4ocY7T09ETPpTk4xuG4xfEgkfruvTXl47elSkrgNr5G0KKEvOHeUnZB8R76b+kBg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FvI1FgiV; arc=none smtp.client-ip=185.171.202.116
+	 MIME-Version; b=iY85CNQQ8/xoH69iFdm8gMQeogz7KMFVm5jMIbdW++mD/fDIECEqH64uWyP+s+Ve809Ag0Mc4r+xqVWUGH18WcLtBcLCCJU71JHl0WkqFARC6jZJonnms+XP0KJMdWp2KflDLEo+SoQgBmlqYhnE7ILw3gphyvlbSRyiOPwpyLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=I5dUvqxY; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 3049EC2086B;
-	Mon, 12 Jan 2026 14:20:38 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 6FB051A280A;
+	Mon, 12 Jan 2026 14:21:06 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A8723606FA;
-	Mon, 12 Jan 2026 14:21:04 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 10082103C9280;
-	Mon, 12 Jan 2026 15:21:02 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 40832606FA;
+	Mon, 12 Jan 2026 14:21:06 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BF03F103C9281;
+	Mon, 12 Jan 2026 15:21:03 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227663; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227665; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=iEuhMiG7AJAvgbNC6ER9xCpEGPNZd1hu0Nn4zQ6EPeA=;
-	b=FvI1FgiVlJxeGRt0eclmys0iC3nYIL450BFJer9/TPmSa5a4KmIj8JbXjsIM0kYMvLzy6F
-	mXh0OAXs3R+SlLQwMCWsVePG0n1Bpdbpecs8r8dUdaSBdgbbSE0eP+9d7Bx8sfOoFIkrT3
-	KgiS1OSIIgctN0IEKOh3tgbKwmcSr2ab6EJD+QB6GdtSIPWvxMaXLPuondmO/p5eC014oL
-	uHtDdp+ANMqvcMGA4P6W8lmzwK5awYPEWEubxMRnRYNjU8o/qA225NGdeJI0TTBDTKEE9e
-	Jtt0pLtvLkNnPfaVRVd3dEjkpcVWFFAi5iyhBFn4lclft7zh7p0UJgaxUSdFnA==
+	bh=lIzmhSqDNTNqAbKeLro4jdmwBQewOntD3SjbuDJaI24=;
+	b=I5dUvqxY5xJG2c6pwe+N4sFvEgcHpPGPyMCBud3s8zVfSDuIq8eUlxGaTmlZ73Y0rY+YWV
+	4zbyufJMhvKzlnoWGbva+xs7kaeeNvIlxmQ/b2/kMJbG6l2nCZvPN67M5JeJ6veqDdi3oT
+	K33k/3oYguaQ+q3VPx5OGX5Mk4VHBEAQd1h8ySx3Fv42EnxFiWEHNixwySmlNY1dzXWUk6
+	5ek2OS5KShqVztkDeXHhPqIBk/CRct2jUqX+OaFD2GwkbHRWmcIajgzU4ah9LbacaBEQCI
+	Dh/qLQ/WiijDrv7Qu/PBCUa9MOmJSIT4JtJfB4nBjT0bERpLBsNwHSmwVRogQQ==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 27/77] dtc: Add support for export symbols sorting
-Date: Mon, 12 Jan 2026 15:19:17 +0100
-Message-ID: <20260112142009.1006236-28-herve.codina@bootlin.com>
+Subject: [RFC PATCH 28/77] tests: metadata: Add a test for export symbols sorting
+Date: Mon, 12 Jan 2026 15:19:18 +0100
+Message-ID: <20260112142009.1006236-29-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -77,70 +77,113 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-dtc can sort items when the command line --sort option is set.
+dtc is able to sort the export symbols list when the --sort option is
+used.
 
-Add support for export symbols sorting when this option is used.
+Add a test for this feature.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- livetree.c | 37 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ tests/metadata_sort.dtb.dts.expect | 18 ++++++++++++++++++
+ tests/metadata_sort.dtb.expect     | 15 +++++++++++++++
+ tests/metadata_sort.dts            | 21 +++++++++++++++++++++
+ tests/run_tests.sh                 |  8 ++++++++
+ 4 files changed, 62 insertions(+)
+ create mode 100644 tests/metadata_sort.dtb.dts.expect
+ create mode 100644 tests/metadata_sort.dtb.expect
+ create mode 100644 tests/metadata_sort.dts
 
-diff --git a/livetree.c b/livetree.c
-index 7efa1da..1de5990 100644
---- a/livetree.c
-+++ b/livetree.c
-@@ -916,6 +916,42 @@ static void sort_properties(struct node *node)
- 	free(tbl);
+diff --git a/tests/metadata_sort.dtb.dts.expect b/tests/metadata_sort.dtb.dts.expect
+new file mode 100644
+index 0000000..f07a42b
+--- /dev/null
++++ b/tests/metadata_sort.dtb.dts.expect
+@@ -0,0 +1,18 @@
++/dts-v1/;
++/addon/;
++
++/ {
++
++	node-a {
++		prop_a = <0x1c8>;
++		prop_b = <0x7b>;
++
++		/export/ a: &{/node-b};
++		/export/ ba: &{/node-b};
++		/export/ bb: &{/node-b};
++	};
++
++	node-b {
++		phandle = <0x01>;
++	};
++};
+diff --git a/tests/metadata_sort.dtb.expect b/tests/metadata_sort.dtb.expect
+new file mode 100644
+index 0000000..7856894
+--- /dev/null
++++ b/tests/metadata_sort.dtb.expect
+@@ -0,0 +1,15 @@
++/dts-v1/;
++/addon/;
++
++/ {
++    node-a {
++        prop_a = <0x000001c8>;
++        prop_b = <0x0000007b>;
++        // [FDT_EXPORT_SYM] 'a' -> phandle 0x00000001
++        // [FDT_EXPORT_SYM] 'ba' -> phandle 0x00000001
++        // [FDT_EXPORT_SYM] 'bb' -> phandle 0x00000001
++    };
++    node-b {
++        phandle = <0x00000001>;
++    };
++};
+diff --git a/tests/metadata_sort.dts b/tests/metadata_sort.dts
+new file mode 100644
+index 0000000..7d1cca7
+--- /dev/null
++++ b/tests/metadata_sort.dts
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
++/*
++ * Copyright (C) 2026 Bootlin
++ */
++
++/dts-v1/;
++/addon/;
++
++/ {
++	node_b: node-b {
++	};
++
++	node-a {
++		prop_b = <123>;
++		prop_a = <456>;
++
++		/export/ ba: &node_b;
++		/export/ bb: &node_b;
++		/export/ a: &node_b;
++	};
++};
+diff --git a/tests/run_tests.sh b/tests/run_tests.sh
+index ed3a240..fc270e2 100755
+--- a/tests/run_tests.sh
++++ b/tests/run_tests.sh
+@@ -1154,6 +1154,14 @@ metadata_tests() {
+ 	# Keep only lines containing 'dt_flags'
+ 	sed -i '/dt_flags/!d' metadata_dtflags1.dtb.out
+ 	base_run_test check_diff metadata_dtflags1.dtb.out "$SRCDIR/metadata_dtflags1.dtb.expect"
++
++	run_dtc_test -I dts -O dtb -s -o metadata_sort.dtb "$SRCDIR/metadata_sort.dts"
++	base_run_test wrap_fdtdump metadata_sort.dtb metadata_sort.dtb.out
++	# Remove unneeded comments
++	sed -i '/^\/\/ /d' metadata_sort.dtb.out
++	base_run_test check_diff metadata_sort.dtb.out "$SRCDIR/metadata_sort.dtb.expect"
++	run_dtc_test -I dtb -O dts -o metadata_sort.dtb.dts metadata_sort.dtb
++	base_run_test check_diff metadata_sort.dtb.dts "$SRCDIR/metadata_sort.dtb.dts.expect"
  }
  
-+static int cmp_symbol(const void *ax, const void *bx)
-+{
-+	const struct symbol *a, *b;
-+
-+	a = *((const struct symbol * const *)ax);
-+	b = *((const struct symbol * const *)bx);
-+
-+	return strcmp(a->name, b->name);
-+}
-+
-+static void sort_exportsyms(struct node *node)
-+{
-+	int n = 0, i = 0;
-+	struct symbol *symbol, **tbl;
-+
-+	for_each_symbol(node->exportsymlist, symbol)
-+		n++;
-+
-+	if (n == 0)
-+		return;
-+
-+	tbl = xmalloc(n * sizeof(*tbl));
-+
-+	for_each_symbol(node->exportsymlist, symbol)
-+		tbl[i++] = symbol;
-+
-+	qsort(tbl, n, sizeof(*tbl), cmp_symbol);
-+
-+	node->exportsymlist = tbl[0];
-+	for (i = 0; i < (n-1); i++)
-+		tbl[i]->next = tbl[i+1];
-+	tbl[n-1]->next = NULL;
-+
-+	free(tbl);
-+}
-+
- static int cmp_subnode(const void *ax, const void *bx)
- {
- 	const struct node *a, *b;
-@@ -957,6 +993,7 @@ static void sort_node(struct node *node)
- 	struct node *c;
- 
- 	sort_properties(node);
-+	sort_exportsyms(node);
- 	sort_subnodes(node);
- 	for_each_child_withdel(node, c)
- 		sort_node(c);
+ pylibfdt_tests () {
 -- 
 2.52.0
 
