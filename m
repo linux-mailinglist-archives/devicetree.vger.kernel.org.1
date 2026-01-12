@@ -1,60 +1,94 @@
-Return-Path: <devicetree+bounces-253695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A7FD10A05
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:34:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60D8D10A50
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:45:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 590873019B6F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 05:34:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 20AC73021752
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 05:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3807303CA0;
-	Mon, 12 Jan 2026 05:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C5D30F55E;
+	Mon, 12 Jan 2026 05:45:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wZeM2eP9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lgeamrelo11.lge.com (lgeamrelo11.lge.com [156.147.23.51])
+Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010055.outbound.protection.outlook.com [52.101.85.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 536DF500953
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 05:34:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768196092; cv=none; b=eJnozCUDpXHviI37VX+hovuxrc6Fekw757VJ6I1cqQdU7FDaIaIpRz3ikkT2pmyU0Pc6bTGJ07w0Qqw1sJDWUs0gWZZRjHXSqLBAQKcKXNwy6YA1fiv6BMKjMrOk90aRxhCFpaDHq4FME6poSSgXo7x+mB1ESdYYjkaU4QWFvik=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768196092; c=relaxed/simple;
-	bh=G0KkcXrbgfw4OcQmZi+lW1chU9ZEJG56vfXoaKIbptI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mo3L6UnzxmSoHimzqeD/aNRz/lJdPXDWCzLn7q2XZnPQp0SqoL1gg4lIUH22EamKKhn6HOz8La38S6ATLXrHWx+Axr/hfBpQkKPKGavcbCFA2GPkx3wizKH07xfWxJLTBzFNKYO614BjelLZMRyjzbBnWLmZLFrMS7FTX4OVR4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
-Received: from unknown (HELO lgemrelse6q.lge.com) (156.147.1.121)
-	by 156.147.23.51 with ESMTP; 12 Jan 2026 14:34:47 +0900
-X-Original-SENDERIP: 156.147.1.121
-X-Original-MAILFROM: chanho.min@lge.com
-Received: from unknown (HELO localhost.localdomain) (10.178.31.97)
-	by 156.147.1.121 with ESMTP; 12 Jan 2026 14:34:47 +0900
-X-Original-SENDERIP: 10.178.31.97
-X-Original-MAILFROM: chanho.min@lge.com
-From: Chanho Min <chanho.min@lge.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Kael D'Alcamo <dev@kael-k.io>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc: Chanho Min <chanho.min@lge.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2 v3] arm64: dts: lg: Initial support for LG1215 SoC and reference board
-Date: Mon, 12 Jan 2026 14:34:21 +0900
-Message-Id: <20260112053421.3185738-3-chanho.min@lge.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260112053421.3185738-1-chanho.min@lge.com>
-References: <20260112053421.3185738-1-chanho.min@lge.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0992D23B1;
+	Mon, 12 Jan 2026 05:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768196755; cv=fail; b=jXf7vYQfYop4jKNkvIrORkjyd/mgSEBzJcCtA9RBYVR4jQXxBipsFmDFv8HKtu7c6QgvHlIT3U+RcoegVsIl4dNf81izXoJq+7lskugYXMWWOr9/J0sSWQTHgY/0ZJLdUJku+4SIeSjUajy9UT2udOqL/0VQ6mUC74WyqmaWatk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768196755; c=relaxed/simple;
+	bh=g5GUQot5WsCNl/nhWcKEkzcsMFEd7LAT8W3zpolhVtc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dYqxFyZ8tKHZefYP9FjhcAQxQuOCMdXZKy+jsFr8lGrrTpTjAU/4jrRgBn47rPGLolDF0gsHkWhjRjP5+UEmLWGuyZ4YpzO9cYWjU1UEHNZmiFzSdLMynBTx+zkGlXyDNxH+GdGA75qDtyKjcTA4fKZe9Ml0fr5m83+cXvGJAEY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wZeM2eP9; arc=fail smtp.client-ip=52.101.85.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NQfJHH+4B3W6/R/guyky2AHzS3XLg3AAlKKOYUCC2Kkk3Zg+GmYHQlVYcvMI0OVNoPzAbTBub8D30z4kARSkfViyWxcwE+3HdavXXQ8IqrRmaCnWcjv0zMX2/LkXaXwQNS6wjGfIks3VCefvQ84z/RgFvlE0cvh2ojBKDSt7KVR5tJLeEpRMaGS0C52mE2YuZmhlQG2cbaoed175P1qZoS4X8Ak3Vyckoo87qRz4PPpN+wg7WvywqjCzrigfUnxRR636CbvjMM8uWqm93DFGmMNaDWud9v4Q8oEukpqgyCx82GFtkhY9AWJ0MVH/aaWTm1+OniBwA5gEmKdp1467dw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LqBqeS9mZXuijm9che1spTWbNrSbs6vXjz7X2N6aQ6E=;
+ b=yiSRG9sZybYNU9n99aBK4Mje/tWA76v5M8ZIhU7QppN+0KzbR6omxDie1M3lkfjqkdA/929f4n3GxwVwZtZkHxXelmux+bzlZ3GyADW/6lZhTxNIe63cU+8v3xMqKo3RSdt1sEyT/DUU5RUwsQ9sY41KYP9XlrqJTdLTEWzvaa/x694JqK8qo4iCrop8jRzKOUWzPf5VJuEdWZvTZYVlNxDgATsHMc/nzlcjcSDLNtcxLWzopoMC1N+9x0lub9jLSO4dcCetMlzfRAKxmtWA2ptjQ/o5NxK/IgtRjqjJdbaTcAQXQoJTfvcNbpGSs/E8oFIUqwMEkIKk4l+CJppx7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LqBqeS9mZXuijm9che1spTWbNrSbs6vXjz7X2N6aQ6E=;
+ b=wZeM2eP9xoBx4vSZC4vcZEHWK47i4CvvVIg4ComvcEn2ZB8xiDzU2814vYqKgXhKPHxd+cCcwl4iBCpgvut1XdADd98Z2Aa5qVoStCvIOR+wC50gI9sT9VY7AkTV9bfsKkUsoKEmQdDs7vv/mGEhhBAGPGjHVZEzMyN88DDv7hI=
+Received: from CH3P221CA0002.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:1e7::25)
+ by MN0PR10MB5960.namprd10.prod.outlook.com (2603:10b6:208:3cc::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
+ 2026 05:45:51 +0000
+Received: from CH1PEPF0000AD80.namprd04.prod.outlook.com
+ (2603:10b6:610:1e7:cafe::f) by CH3P221CA0002.outlook.office365.com
+ (2603:10b6:610:1e7::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.7 via Frontend Transport; Mon,
+ 12 Jan 2026 05:45:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CH1PEPF0000AD80.mail.protection.outlook.com (10.167.244.90) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Mon, 12 Jan 2026 05:45:49 +0000
+Received: from DFLE200.ent.ti.com (10.64.6.58) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 11 Jan
+ 2026 23:45:46 -0600
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 11 Jan
+ 2026 23:45:46 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Sun, 11 Jan 2026 23:45:45 -0600
+Received: from toolbox.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.73.74])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60C5jeQ84153405;
+	Sun, 11 Jan 2026 23:45:41 -0600
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <vkoul@kernel.org>, <neil.armstrong@linaro.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <sjakhade@cadence.com>,
+	<rogerq@kernel.org>, <thomas.richard@bootlin.com>
+CC: <andrew@lunn.ch>, <linux-phy@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v3 0/2] Cadence: Torrent: Enable PCIe + XAUI multilink configuration
+Date: Mon, 12 Jan 2026 11:16:29 +0530
+Message-ID: <20260112054636.108027-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.51.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,381 +96,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD80:EE_|MN0PR10MB5960:EE_
+X-MS-Office365-Filtering-Correlation-Id: 720a3cde-9ffe-45f3-dfaa-08de519dd6f5
+X-LD-Processed: e5b49634-450b-4709-8abb-1e2b19b982b7,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|82310400026|34020700016|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?FtbHYYyZGtALF784J5xZdONNw2K4Z/V6VP3KSBUrO8/VvXQ3BB9UggJF/5L6?=
+ =?us-ascii?Q?EcWOwEIE7wtrw8RCZHIMEfkhG28/BiB2Fic/lOWRl6Y1Q1qmxG3blvcwLT7a?=
+ =?us-ascii?Q?jw7BKuabk/N6e9cylbRPGnJCFcdR8pgVBtlw43mqpfmqBCNZi3PyEx5iB9yq?=
+ =?us-ascii?Q?ofXibQukjVodAVL9atkDo/4shhLQqrfcWMzLfWRkkgDUBni9AUOVavyvTi3Z?=
+ =?us-ascii?Q?fAaUMu5ErsusfM/qTrDrPsFSiL+kxSlQXkH9fz1W04S2WlVsKMoNtmOh5CYJ?=
+ =?us-ascii?Q?wVD05wI+LQMIwKCnZape49Zpr+r+UlgHZ50sSU2SpLTAS/DnWxED2bG96tcH?=
+ =?us-ascii?Q?Id/qaL+Nc6KNqQuFsKZRVh2ekTZy0nQhaH9NOmhNUXF6kUgIs0TyvQSy2kS7?=
+ =?us-ascii?Q?/zauqDYKDYwIjNEoW5q5Ve8uuuBOXdUm2ktgyOGxYKSK64HD4i6iRLk/Y+ql?=
+ =?us-ascii?Q?QwzanSXAwJv5pmyZhlteKu5dUTF1dUoFgubk5D4wHnPTm+VOyFYKFwSM2uIQ?=
+ =?us-ascii?Q?qSjhDW1TziD5xCR3K7X4ZYA+KQvViBsSKQORLjOX85VoRVM7VtHU/JFyZU79?=
+ =?us-ascii?Q?Q4q8N6LD2Clgkbo6vtaiBZVraL8lvI1neHW2T9y25QOTxEESO6MnR7t603Xg?=
+ =?us-ascii?Q?owItHJH1vuRrSFu+EVy/w61UIWKMWTGqk4vw38JQQn8/1qSlq5kdigPDZ1FG?=
+ =?us-ascii?Q?uQtWlUtNXPo5yum2AmJaQ8LGprLCSBhHSX+jaWgOqgxdgq3398EWwUD+y3c9?=
+ =?us-ascii?Q?0+T5OjVdqwUqJfqwbRtcFAvrNUCnpadZKEQR5tRXN3WA6TgpjEv1NVa+/SEo?=
+ =?us-ascii?Q?DeddQhUVEipJrlskz1SFW/siJ8Dv4YeiPRO7VHF9oHpz2EbAC+cwlJeNLP0D?=
+ =?us-ascii?Q?3mC4TAornFYpuXxboRnk40GRpemePAJhaU2DVHAN3hKqHEDBMQC2gs7EPSZs?=
+ =?us-ascii?Q?gdQHOqeoGJaUjHsCHN8GPQfBIUbrgEL1b6d7l+kXX5uUKPp1ZBWKemZtItyj?=
+ =?us-ascii?Q?+oSw3xuvC5RjQPNAHll8+gcWhR+/At/HwCIl/9VcXxEf9uvchqol5dDNRFtw?=
+ =?us-ascii?Q?W5zzFAo8XbwBy6aj4vg5GtCjE1qghTzff5YhA55nK1orEbuzaQiSbXEpRtBM?=
+ =?us-ascii?Q?eqVQ/1go0QKcbm9YFWf+M2hmmKVnt4OlXm4iPjZc8dSdbNc9C/n0kKCsRkQW?=
+ =?us-ascii?Q?xTGiyERLXnLssb7P3kPgkpDa6nq29Fav5Ze67Kgnx9G1eIHOpDvx+jHAEyG6?=
+ =?us-ascii?Q?VBAlae5FId/XDyq5oZzpuurCRoMbtPaZWlo1DS6MaaSbjBvP9cjwdpLWwUP8?=
+ =?us-ascii?Q?TUfMO1h7RfvacQLbewVN9HFCct5psdc+TbiT1c1LLFM4D9+rwFa+KUcmPO/N?=
+ =?us-ascii?Q?0ZvG2/nPJwwf1gbbD9Rij7lM+QY9DvvgtYi+4YBXJpE0ma2VSwxmYTpDtu3D?=
+ =?us-ascii?Q?IGyJ2miXmgugsO7n4l0v6M+YNSyw9B9Vn1P3iRnFWQR0S1WA0G5QzXxH07jF?=
+ =?us-ascii?Q?SvvmfldKD/76KpmLIuJejKxmbs+qHdvhtoEg6eSNyYSEcpnws4h8QquU+KUZ?=
+ =?us-ascii?Q?N0zG98IJ8viXo71/DTxEE5uerY9PN0WM5IqL/kXe?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(34020700016)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 05:45:49.0392
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 720a3cde-9ffe-45f3-dfaa-08de519dd6f5
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH1PEPF0000AD80.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR10MB5960
 
-Add initial device tree support for LG Electronics LG1215 SoC
-and its reference development board.
+Hello,
 
-This patch introduces:
- - lg1215.dtsi : SoC level device tree include file
- - lg1215-ref.dts : Reference board specific file
- - Makefile update to build lg1215-ref.dtb
+This patch series adds the dt-binding for PHY_TYPE_XAUI and adds the
+driver support for enabling PCIe + XAUI multilink configuration.
 
-Currently supported minimal hardware description:
- - Quad ARM Cortex-A78 CPU
- - gic-400 interrupt controller
- - ARMv8 architected timer
- - pmu (Performance Monitoring Unit)
- - pl011 UARTs
- - pl080 DMA controller
- - sp804 timers, sp805 watchdog timers
- - Generic DWMAC ethernet controller
+Patch series is based on linux-next tagged next-20260109.
 
-This is the minimal initial bring-up version. More peripherals (mmc, gpio,
-pinctrl, etc.) will be added in follow-up patches.
+v2 of this patch series is at:
+https://lore.kernel.org/r/20260104114422.2868321-1-s-vadapalli@ti.com/
+Changes since v2:
+- Collected Acked-by tag from Rob Herring (Arm) <robh@kernel.org>
+  https://lore.kernel.org/r/176772419699.2512006.6478554353373580831.robh@kernel.org/
+- The commit message in the second patch has been updated to explain the
+  changes made to the LINKx_MASK/SHIFT and REFCLKx_MASK/SHIFT macros to
+  address feedback from Andrew Lunn <andrew@lunn.ch> at:
+  https://lore.kernel.org/r/7fd42221-d602-4ce4-9f7f-6754ed91e7aa@lunn.ch/
 
-Signed-off-by: Chanho Min <chanho.min@lge.com>
----
- arch/arm64/boot/dts/lg/Makefile       |   1 +
- arch/arm64/boot/dts/lg/lg1215-ref.dts |  34 +++
- arch/arm64/boot/dts/lg/lg1215.dtsi    | 288 ++++++++++++++++++++++++++
- 3 files changed, 323 insertions(+)
- create mode 100644 arch/arm64/boot/dts/lg/lg1215-ref.dts
- create mode 100644 arch/arm64/boot/dts/lg/lg1215.dtsi
+Regards,
+Siddharth.
 
-diff --git a/arch/arm64/boot/dts/lg/Makefile b/arch/arm64/boot/dts/lg/Makefile
-index 4c3959e24e1b..e60a5bd35327 100644
---- a/arch/arm64/boot/dts/lg/Makefile
-+++ b/arch/arm64/boot/dts/lg/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_LG1K) += lg1312-ref.dtb
- dtb-$(CONFIG_ARCH_LG1K) += lg1313-ref.dtb
-+dtb-$(CONFIG_ARCH_LG1K) += lg1215-ref.dtb
-diff --git a/arch/arm64/boot/dts/lg/lg1215-ref.dts b/arch/arm64/boot/dts/lg/lg1215-ref.dts
-new file mode 100644
-index 000000000000..96b86a7060a8
---- /dev/null
-+++ b/arch/arm64/boot/dts/lg/lg1215-ref.dts
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dts file for lg1215 Reference Board.
-+ *
-+ * Copyright (C) 2026, LG Electronics
-+ */
-+
-+/dts-v1/;
-+
-+#include "lg1215.dtsi"
-+
-+/ {
-+	model = "LG Electronics, TV SoC LG1215 Reference Board";
-+	compatible = "lg,lg1215-ref", "lg,lg1215";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x00000000 0x0 0xbc400000>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/lg/lg1215.dtsi b/arch/arm64/boot/dts/lg/lg1215.dtsi
-new file mode 100644
-index 000000000000..0be5010da147
---- /dev/null
-+++ b/arch/arm64/boot/dts/lg/lg1215.dtsi
-@@ -0,0 +1,288 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dts file for lg1215 SoC
-+ *
-+ * Copyright (C) 2026, LG Electronics
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x00000000>;
-+			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			d-cache-size = <0x00010000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			i-cache-size = <0x00010000>;
-+			next-level-cache = <&L2_0>;
-+			L2_0: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <512>;
-+				cache-size = <0x00040000>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x00000100>;
-+			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			d-cache-size = <0x00010000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			i-cache-size = <0x00010000>;
-+			next-level-cache = <&L2_1>;
-+			L2_1: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <512>;
-+				cache-size = <0x00040000>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x00000200>;
-+			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			d-cache-size = <0x00010000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			i-cache-size = <0x00010000>;
-+			next-level-cache = <&L2_2>;
-+			L2_2: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <512>;
-+				cache-size = <0x00040000>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x00000300>;
-+			enable-method = "psci";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			d-cache-size = <0x00010000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			i-cache-size = <0x00010000>;
-+			next-level-cache = <&L2_3>;
-+			L2_3: l2-cache {
-+				compatible = "cache";
-+				cache-level = <2>;
-+				cache-line-size = <64>;
-+				cache-sets = <512>;
-+				cache-size = <0x00040000>;
-+				cache-unified;
-+				next-level-cache = <&L3>;
-+			};
-+		};
-+		L3: l3-cache {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-size = <0x00100000>;
-+			cache-unified;
-+		};
-+
-+		cpu0_opp_table: opp-table {
-+			compatible = "operating-points-v2";
-+
-+			opp-1600000000 {
-+				opp-hz = /bits/ 64 <1600000000>;
-+			};
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci";
-+		method = "smc";
-+		cpu_suspend = <0xc4000001>;
-+		cpu_off = <0xc4000002>;
-+		cpu_on = <0xc4000003>;
-+	};
-+
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>,
-+				     <&cpu1>,
-+				     <&cpu2>,
-+				     <&cpu3>;
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_RAW(0x0f) |
-+			      IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_RAW(0x0f) |
-+			      IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_RAW(0x0f) |
-+			      IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_RAW(0x0f) |
-+			      IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	clk_xtal: clk-xtal {
-+		compatible = "fixed-clock";
-+		clock-output-names = "xtal";
-+		clock-frequency = <50000000>;
-+
-+		#clock-cells = <0>;
-+	};
-+
-+	clk_bus: clk-bus {
-+		compatible = "fixed-factor-clock";
-+		clocks = <&clk_xtal>;
-+		clock-output-names = "busclk";
-+		clock-div = <1>;
-+		clock-mult = <4>;
-+
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		interrupt-parent = <&gic>;
-+
-+		gic: interrupt-controller@c0000000 {
-+			compatible = "arm,gic-400";
-+			reg = <0x0 0xc0001000 0x0 0x1000>, /* GICD */
-+			      <0x0 0xc0002000 0x0 0x2000>, /* GICC */
-+			      <0x0 0xc0004000 0x0 0x2000>, /* GICH */
-+			      <0x0 0xc0006000 0x0 0x2000>; /* GICV */
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0x0f) |
-+					IRQ_TYPE_LEVEL_LOW)>;
-+			interrupt-controller;
-+		};
-+
-+		ethernet@ca370000 {
-+
-+			compatible = "snps,dwmac";
-+			reg = <0x0 0xca370000 0x0 0x2000>;
-+			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "stmmaceth", "pclk";
-+			max-frame-size = <1500>;
-+			phy-mode = "mii";
-+			snps,pbl = <2>;
-+			snps,fixed-burst;
-+			snps,multicast-filter-bins = <64>;
-+			snps,perfect-filter-entries = <32>;
-+			snps,axi-config = <&dwmac_axi_config>;
-+			mac-address = [ 00 00 00 00 00 00 ];
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			ethernet-phy@1c {
-+				compatible = "ethernet-phy-id001c.c800";
-+				reg = <0x1c>;
-+				interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+			dwmac_axi_config: dwmac-axi-config {
-+
-+				snps,rd_osr_lmt = <0x07>;
-+				snps,wr_osr_lmt = <0x07>;
-+				snps,blen = <0 0 16 0 0 0 0>;
-+			};
-+		};
-+
-+		timers0: timer@fd100000 {
-+			compatible = "arm,sp804", "arm,primecell";
-+			reg = <0x0 0xfd100000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>, <&clk_bus>;
-+			clock-names = "timer0clk", "timer1clk", "apb_pclk";
-+		};
-+		timers1: timer@fd110000 {
-+			compatible = "arm,sp804", "arm,primecell";
-+			reg = <0x0 0xfd110000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>, <&clk_bus>;
-+			clock-names = "timer0clk", "timer1clk", "apb_pclk";
-+			status = "disabled";
-+		};
-+		wdog: watchdog@fd200000 {
-+			compatible = "arm,sp805", "arm,primecell";
-+			reg = <0x0 0xfd200000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "wdog_clk", "apb_pclk";
-+		};
-+		uart0: serial@fe000000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x0 0xfe000000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "uartclk", "apb_pclk";
-+		};
-+		uart1: serial@fe100000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x0 0xfe100000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "uartclk", "apb_pclk";
-+		};
-+		uart2: serial@fe200000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x0 0xfe200000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>, <&clk_bus>;
-+			clock-names = "uartclk", "apb_pclk";
-+		};
-+		dma: dma-controller@ff200000 {
-+			#dma-cells = <1>;
-+			compatible = "arm,pl080", "arm,primecell";
-+			reg = <0x0 0xff200000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_bus>;
-+			clock-names = "apb_pclk";
-+		};
-+	};
-+};
+Swapnil Jakhade (2):
+  dt-bindings: phy: Add PHY_TYPE_XAUI definition
+  phy: cadence-torrent: Add PCIe + XAUI multilink configuration for
+    100MHz refclk
+
+ drivers/phy/cadence/phy-cadence-torrent.c | 143 ++++++++++++++++++++--
+ include/dt-bindings/phy/phy.h             |   1 +
+ 2 files changed, 137 insertions(+), 7 deletions(-)
+
 -- 
-2.34.1
+2.51.1
 
 
