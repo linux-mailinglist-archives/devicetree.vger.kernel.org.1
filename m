@@ -1,171 +1,354 @@
-Return-Path: <devicetree+bounces-254087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8832FD13E75
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:11:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E267CD13EB7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:14:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2DCDB301FF6C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:10:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 315F430066CD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:14:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97ED4364052;
-	Mon, 12 Jan 2026 16:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F386C3644BF;
+	Mon, 12 Jan 2026 16:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="op9GvPJm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JsyY0CQE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com [74.125.82.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739942C029C;
-	Mon, 12 Jan 2026 16:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3473644A4
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 16:14:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768234249; cv=none; b=o0PjdHOwqn5SJjm5pE6bPv5I3SnEvrwcWW+WvaZFvOrjMBY5ucJJR1I3mqsncXkuBj9ra+l4DNAnBIgwK8qzu+Y9ttQR+j5yTldzLg7KOIn61AjbUbRblmhbNrNDwuhwH4+30bA+4xBCqLLHjsaPYj5czm6vigwSzvmXkQHXCl4=
+	t=1768234480; cv=none; b=abhAoEKr7PB4JAchjKtheRTMdCiK0DBp9pWXJDSRtfePtw/GNQu+d4biF6O4OyEtqT1MqjIkasV1QYzHajCOKwRL+RDf3Y/95es+5S3SQRi4L1P0HUiUgzVlf3Jxvs00bJyBN0IQ1V08/fqWGdLHT5jdbTCcUw1GoYANQOnUAsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768234249; c=relaxed/simple;
-	bh=mgpj2TIPozPmj272al0hyX46YOdsg7JrFzwq3WOQA9w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XRpFCScqek7Zz9fe+2uavdqwxGXTCQB2/gKFzEmTPRVPZeYk0QUIbI4TRocAcjqfCOx1Wq8ozIxQaYjrKL2Rbp8xeholAwruZqSeGZilcTu67jj6/dLHGTUvzrAuwdG7L0VumCCOpDkZh9E6LYihuX/52jeNYYFKNf1YBCe5wOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=op9GvPJm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31948C116D0;
-	Mon, 12 Jan 2026 16:10:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768234249;
-	bh=mgpj2TIPozPmj272al0hyX46YOdsg7JrFzwq3WOQA9w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=op9GvPJmyz8v6RI55sz8xBSs420fWAU+4QlSBKhwdrx6kb3c5Msg/7KczNsA69N9a
-	 xJ6/H0Dpqmzs4ghombWdFhAUJLI9cXd7JbWnhcy0/HCHzMyR+ulAGo2Bv/eIO16N6e
-	 cbNSSga2TZY5Fi/LU7+1aW3dsv3xSXmqYpRoy25Q534nlnfNkXthVUWVHheYK5D+Yf
-	 XmLSyYmfx6Y+6DWWBHwMEtdX8pNhBbGTYhS/NF5fag4Zz4kH4j72f3wVeq2AFUHkuh
-	 mSy4qy11aCBeZxDYrOlaS7E5GjXlg8dQNct6prBCjLlOq+GodJa44unKxId8evDtdX
-	 hDQGRT4+nxe/g==
-Message-ID: <66f6aeea-54da-4eec-930d-57b16e4547fa@kernel.org>
-Date: Mon, 12 Jan 2026 17:10:42 +0100
+	s=arc-20240116; t=1768234480; c=relaxed/simple;
+	bh=YxhHO/6f+kzzobQ5klqwskTnOLBdFzl4YHE8OwAl74w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qoQUPU9ooKI20NI4Li1pjocw9fYhQFkuoZl/orLWYniVmDo3XrWw9jRqqiGdrT+lkIgdtDGh09PDSSBjbxgK92okMrnMLJ9IhJSiUWYH3a2Kfoiw073pBp/xSrh9lGm0EQYlWspN6181y3ooont/YLx5ThKe95l4FUlbBcG4cXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JsyY0CQE; arc=none smtp.client-ip=74.125.82.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-2b1981ca515so3320167eec.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 08:14:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768234478; x=1768839278; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ps+uQW9AdtTCQpetvK8TRg5LNASGTC021orKjvvrvW0=;
+        b=JsyY0CQESWtTUU/vAaW9XCKVmMq+L45aKhYsv1hgcfBaUmvx1o1NichuHYAunXq72B
+         7crEQor3gNj5sqd/2oZnhyvyehQtL5JcO92ur51VLCwjpgTCVUssNGbXww+tOjmSz/Yw
+         gH826z5ykuF/jAxbSpo58rY27lLcXz5MoVFFI6WY9NLOckQuIhVy+cG6yFk7GFx8KCV2
+         RX8Y5sgCdv6Qi/3WMW6jkWqOeMJNpO95bwLCZ4Gy9e3zJBIbsBShRwXVasSgKVKmcrLw
+         3SZc6qlCh4SsVoojLEzL9oFlmC7f8ZMPwI+2l2A35CKNH3alQUzAyMf0e/HzjuxDHj1N
+         x8Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768234478; x=1768839278;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ps+uQW9AdtTCQpetvK8TRg5LNASGTC021orKjvvrvW0=;
+        b=pX3OaqMqFr+gBpXPTd8ZfYxPYObI55pTsN1YQUJhd8CTj6QMbnVYK5OCn4e8DKUhg/
+         VVafWiDawOOxW1hhFL5SoFPjNY0+gDVaQUo+8BPfEFES3aVdqUG3heeKXNF9g+gxueZU
+         tGUszGks2WNaSnUKOzTFMPhZmLc+Gq5NSqKtxtAjeVB5DsbxQcWuSw2LiS8uwmiVZB7O
+         K4wh1crI+yW8WhgZPLp7Qk9dQWBW8GQc0ADHlU0eVwDCdsXZRfvt3lwzTLEKfHYrjpUN
+         ged6j6YVRWX/w1UIZUQN9ciMmmLWCN9zDQos8QMHFW6Cj76ARJXcuR0NlfXE5CCC8vx0
+         o49w==
+X-Forwarded-Encrypted: i=1; AJvYcCWcVSt9x948DXf2gCPKkd0nQnSxdq6lYYTNtYajdXCTPi4VtrxB3zIOJLV08+pkrKxAcgjYGmmBu0p5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzinjUOugDMANv8aCcFFKgzlm4IerBdpMkC4hmg02xtV+ioNiBj
+	+ylG2nd0j5RTEGyoZ5GFdEE6fJ90+FXhXsBvcLLTVeqF9j0BEVcLd9bb
+X-Gm-Gg: AY/fxX67igtzfP4bO1Sc5Of6LTJsIDYP1n+y6jTsr6iLiTEgB66RlGHd87vygO/vw5u
+	Ah1Y2Hnb6WCpl/vvjO+B9d0Nv3TY/Hl4GRKum82j8bAJ9IQ5RZD8ieU65RMLe6GIlKAlvF9qm5L
+	/3MG0sbOGcQyVZiW9rRRR+xKUuc84eGkmHBBV8MYSV30JRA6gyLt8hXXS8Lg58sCGg66UlldVft
+	BKH73TPURPfQJk7LX+d0QV1V4xEWQJMtmnsTrHvf6bnctVkFCORIGZNofsv8tlB8DeGuVQx0Qk7
+	H6RQfT8BWeoN7mS7cqkwIBPIMaaBxc8zXmUfEJM1nphCOGxsRzvnxOaf84fH2NHS2JTgfuRdi/8
+	gSkF5dxeFny/CWkXGxyItj4T1eWoXoLAW9lQ5Z61NdMm3ob8CxOIFbkKb4Pf6ddraFv6kOHAQ/y
+	tfJZwo+OyQsjAIsusnXpZjd3fL4yNnLSkfGyA=
+X-Google-Smtp-Source: AGHT+IFdg5hRfFh4hBUFDQ4U1a6VG0PeU6IM4r660ArEbSmHUn7Y0f1NN6vXtRDoXL3Wed/RCFPauA==
+X-Received: by 2002:a05:7300:d194:b0:2a4:3592:c60e with SMTP id 5a478bee46e88-2b17d2d60f6mr14078038eec.31.1768234478227;
+        Mon, 12 Jan 2026 08:14:38 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b17078ccf4sm16324474eec.16.2026.01.12.08.14.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jan 2026 08:14:37 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 12 Jan 2026 08:14:36 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Charles Hsu <hsu.yungteng@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] hwmon: pmbus: add support for STEF48H28
+Message-ID: <afbcd1d6-a83f-4c0c-859c-f8d452bf3e9d@roeck-us.net>
+References: <20251216083712.260140-1-hsu.yungteng@gmail.com>
+ <20251217013544.363715-1-hsu.yungteng@gmail.com>
+ <20251217013544.363715-3-hsu.yungteng@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/11] dt-bindings: pinctrl: document access-controllers
- property for stm32 HDP
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>,
- Linus Walleij <linusw@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20260109-debug_bus-v1-0-8f2142b5a738@foss.st.com>
- <20260109-debug_bus-v1-2-8f2142b5a738@foss.st.com>
- <322e13df-5146-4dab-8f2a-6c635c82eb70@kernel.org>
- <09845133-5f71-4e1a-af0f-f90ad80ed8bd@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <09845133-5f71-4e1a-af0f-f90ad80ed8bd@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251217013544.363715-3-hsu.yungteng@gmail.com>
 
-On 12/01/2026 09:24, Gatien CHEVALLIER wrote:
+On Wed, Dec 17, 2025 at 09:35:44AM +0800, Charles Hsu wrote:
+> Add support for STEF48H28 hot-swap controller.
 > 
+> Signed-off-by: Charles Hsu <hsu.yungteng@gmail.com>
+> ---
+>  Documentation/hwmon/index.rst     |  1 +
+>  Documentation/hwmon/stef48h28.rst | 73 +++++++++++++++++++++++++++++
+>  MAINTAINERS                       |  7 +++
+>  drivers/hwmon/pmbus/Kconfig       |  9 ++++
+>  drivers/hwmon/pmbus/Makefile      |  1 +
+>  drivers/hwmon/pmbus/stef48h28.c   | 76 +++++++++++++++++++++++++++++++
+>  6 files changed, 167 insertions(+)
+>  create mode 100644 Documentation/hwmon/stef48h28.rst
+>  create mode 100644 drivers/hwmon/pmbus/stef48h28.c
 > 
-> On 1/11/26 12:27, Krzysztof Kozlowski wrote:
->> On 09/01/2026 11:55, Gatien Chevallier wrote:
->>> HDP being functional depends on the debug configuration on the platform
->>> that can be checked using the access-controllers property, document it.
->>>
->>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->>> ---
->>>   Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml | 4 ++++
->>>   1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml
->>> index 845b6b7b7552..75054c1e4044 100644
->>> --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml
->>> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml
->>> @@ -27,6 +27,10 @@ properties:
->>>     clocks:
->>>       maxItems: 1
->>>   
->>> +  access-controllers:
->>> +    minItems: 1
->>> +    maxItems: 2
->>
->> You need to list the items. Why is this flexible?
->>
->> Best regards,
->> Krzysztof
-> 
-> I will need to list 2 items (2 different firewall controllers)
-> for the stm32mp2x series that I planned doing in a second time.
-> 
-> On stm32mp1x series, only debug configuration needs to be checked
-> for this peripheral. On stm32mp2x series, both debug and RIFSC
-> (which is the peripheral firewall) configurations need to be checked.
-> 
-> By listing, you mean adding the description of each of the possible
-> access controller, am I right?
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 85d7a686883e..c682751a1fe3 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -233,6 +233,7 @@ Hardware Monitoring Kernel Drivers
+>     shtc1
+>     sis5595
+>     sl28cpld
+> +   stef48h28
+>     smpro-hwmon
+>     smsc47b397
+>     smsc47m192
+> diff --git a/Documentation/hwmon/stef48h28.rst b/Documentation/hwmon/stef48h28.rst
+> new file mode 100644
+> index 000000000000..058de12e979f
+> --- /dev/null
+> +++ b/Documentation/hwmon/stef48h28.rst
+> @@ -0,0 +1,73 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver stef48h28
+> +======================
 
-items with "- description: foo bar" for each, so each is strictly
-defined. I doubt that you can hook it into any access controller...
+Bad length of "==="
 
-> 
-> Can I keep it like this or do I introduce the flexibility when needed?
+> +
+> +Supported chips:
+> +
+> +  * Analog Devices STEF48H28
+> +
+> +    Prefix: 'stef48h28'
+> +
+> +    Addresses scanned: -
+> +
+> +    Datasheet: https://www.st.com/resource/en/data_brief/stef48h28.pdf
+> +
+> +Author:
+> +
+> +  - Charles Hsu <ythsu0511@gmail.com>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +The STEF48H28 is a 30 A integrated e-fuse for 9-80 V DC power rails.
+> +It provides inrush control, undervoltage/overvoltage lockout and
+> +overcurrent protection using an adaptive (I x t) scheme that permits
+> +short high-current pulses typical of CPU/GPU loads.
+> +
+> +The device offers an analog current-monitor output and an on-chip
+> +temperature-monitor signal for system supervision. Startup behavior is
+> +programmable through insertion-delay and soft-start settings.
+> +
+> +Additional features include power-good indication, self-diagnostics,
+> +thermal shutdown and a PMBus interface for telemetry and status
+> +reporting.
+> +
+> +Platform data support
+> +---------------------
+> +
+> +The driver supports standard PMBus driver platform data.
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +================= ========================================
+> +in1_label		"vin".
+> +in1_input		Measured voltage. From READ_VIN register.
+> +in1_min			Minimum Voltage. From VIN_UV_WARN_LIMIT register.
+> +in1_max			Maximum voltage. From VIN_OV_WARN_LIMIT register.
+> +
+> +in2_label		"vout1".
+> +in2_input		Measured voltage. From READ_VOUT register.
+> +in2_min			Minimum Voltage. From VOUT_UV_WARN_LIMIT register.
+> +in2_max			Maximum voltage. From VOUT_OV_WARN_LIMIT register.
+> +
+> +curr1_label "iin".
+> +curr1_input Measured current. From READ_IIN register.
+> +
+> +curr2_label "iout1".
+> +curr2_input Measured current. From READ_IOUT register.
+> +
+> +power1_label		"pin"
+> +power1_input		Measured input power. From READ_PIN register.
+> +
+> +power2_label		"pout1"
+> +power2_input		Measured output power. From READ_POUT register.
+> +
+> +temp1_input		Measured temperature. From READ_TEMPERATURE_1 register.
+> +temp1_max		Maximum temperature. From OT_WARN_LIMIT register.
+> +temp1_crit		Critical high temperature. From OT_FAULT_LIMIT register.
+> +
+> +temp2_input		Measured temperature. From READ_TEMPERATURE_2 register.
+> +================= ========================================
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d701a4d5b00e..be6b6e9ee79b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -24665,6 +24665,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/power/supply/st,stc3117.yaml
+>  F:	drivers/power/supply/stc3117_fuel_gauge.c
+>  
+> +ST STEF48H28 DRIVER
+> +M:	Charles Hsu	<hsu.yungteng@gmail.com>
+> +L:	linux-hwmon@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/hwmon/stef48h28.rst
+> +F:	drivers/hwmon/pmbus/stef48h28.c
+> +
+>  ST STM32 FIREWALL
+>  M:	Gatien Chevallier <gatien.chevallier@foss.st.com>
+>  S:	Maintained
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index f3fb94cebf1a..29ea8ba98b8b 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -576,6 +576,15 @@ config SENSORS_Q54SJ108A2
+>  	  This driver can also be built as a module. If so, the module will
+>  	  be called q54sj108a2.
+>  
+> +config SENSORS_STEF48H28
+> +    tristate "ST STEF48H28"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for ST
+> +	  STEF48H28.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called stef48h28.
+> +
+>  config SENSORS_STPDDC60
+>  	tristate "ST STPDDC60"
+>  	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 349a89b6d92e..b2497f1d7bd9 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -56,6 +56,7 @@ obj-$(CONFIG_SENSORS_PLI1209BC)	+= pli1209bc.o
+>  obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
+>  obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
+>  obj-$(CONFIG_SENSORS_Q54SJ108A2)	+= q54sj108a2.o
+> +obj-$(CONFIG_SENSORS_STEF48H28)	+= stef48h28.o
+>  obj-$(CONFIG_SENSORS_STPDDC60)	+= stpddc60.o
+>  obj-$(CONFIG_SENSORS_TDA38640)	+= tda38640.o
+>  obj-$(CONFIG_SENSORS_TPS25990)	+= tps25990.o
+> diff --git a/drivers/hwmon/pmbus/stef48h28.c b/drivers/hwmon/pmbus/stef48h28.c
+> new file mode 100644
+> index 000000000000..df7f7429162b
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/stef48h28.c
+> @@ -0,0 +1,76 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Hardware monitoring driver for STMicroelectronics digital controller stef48h28
+> + */
+> +
+> +#include <linux/err.h>
 
-Lists should not be flexible but rather constrained per each device.
-With loose approach here you only force quite restrictive driver
-behavior, although not sure if it matters now for Linux.
+I don't immediately see where this include would be needed.
 
-Best regards,
-Krzysztof
+> +#include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +
+> +#include "pmbus.h"
+> +
+> +static struct pmbus_driver_info stef48h28_info = {
+> +	.pages = 1,
+> +	.format[PSC_VOLTAGE_IN] = direct,
+> +	.format[PSC_VOLTAGE_OUT] = direct,
+> +    .format[PSC_CURRENT_IN] = direct,
+> +	.format[PSC_CURRENT_OUT] = direct,
+> +	.format[PSC_POWER] = direct,
+> +    .format[PSC_TEMPERATURE] = direct,
+> +    .m[PSC_VOLTAGE_IN] = 50,
+
+Replace spaces with tabs. Also, _please_ run checkpatch on your patches
+because it would have told you.
+
+WARNING: please, no spaces at the start of a line
+#285: FILE: drivers/hwmon/pmbus/stef48h28.c:17:
++    .format[PSC_CURRENT_IN] = direct,$
+
+> +	.b[PSC_VOLTAGE_IN] = 0,
+> +	.R[PSC_VOLTAGE_IN] = 0,
+> +	.m[PSC_VOLTAGE_OUT] = 50,
+> +	.b[PSC_VOLTAGE_OUT] = 0,
+> +	.R[PSC_VOLTAGE_OUT] = 0,
+> +	.m[PSC_CURRENT_IN] = 100,
+> +	.b[PSC_CURRENT_IN] = 0,
+> +	.R[PSC_CURRENT_IN] = 0,
+> +	.m[PSC_CURRENT_OUT] = 100,
+> +	.b[PSC_CURRENT_OUT] = 0,
+> +	.R[PSC_CURRENT_OUT] = 0,
+> +	.m[PSC_POWER] = 9765,
+> +	.b[PSC_POWER] = 0,
+> +	.R[PSC_POWER] = -3,
+> +	.m[PSC_TEMPERATURE] = 25,
+> +	.b[PSC_TEMPERATURE] = 500,
+> +	.R[PSC_TEMPERATURE] = 0,
+> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_IIN | PMBUS_HAVE_PIN
+> +	    | PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2
+> +	    | PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
+> +	    | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_POUT
+> +};
+> +
+> +static int stef48h28_probe(struct i2c_client *client)
+> +{
+> +	return pmbus_do_probe(client, &stef48h28_info);
+> +}
+> +
+> +static const struct i2c_device_id stef48h28_id[] = {
+> +	{"stef48h28"},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, stef48h28_id);
+> +
+> +static const struct of_device_id __maybe_unused stef48h28_of_match[] = {
+> +	{.compatible = "st,stef48h28"},
+> +	{}
+> +};
+> +
+> +/* This is the driver that will be inserted */
+
+I don't know why people like this comment. It is pointless. Please remove.
+
+Thanks,
+Guenter
+
+> +static struct i2c_driver stef48h28_driver = {
+> +	.driver = {
+> +		   .name = "stef48h28",
+> +		   .of_match_table = of_match_ptr(stef48h28_of_match),
+> +		   },
+> +	.probe = stef48h28_probe,
+> +	.id_table = stef48h28_id,
+> +};
+> +
+> +module_i2c_driver(stef48h28_driver);
+> +
+> +MODULE_AUTHOR("Charles Hsu <hsu.yungteng@gmail.com>");
+> +MODULE_DESCRIPTION("PMBus driver for ST stef48h28");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("PMBUS");
 
