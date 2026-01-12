@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-254121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9446D143FA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:09:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7FAD14521
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 891AA3043315
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:02:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A73B30E1A9F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:10:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E06F379995;
-	Mon, 12 Jan 2026 17:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E183364E9B;
+	Mon, 12 Jan 2026 17:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="xHRGWeGK"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yLFHmJ63"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1985B379986
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:01:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 564402DE718
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768237278; cv=none; b=KSB0sEneyx1JXRW/Po3ThjpCFX0ouMBuzsc2ijw3OGSfAsezPErsJFEtEmTKlHoyQdvI4B9hqYu0oKJNvWpUJmRaOgiZdBi/0S3vEE5NHGJg6RHFQhaU/VM5X296fAA648R7Wb4nMlfJ12IaBJaCeQLH91a//em60t6gZawnFyc=
+	t=1768237827; cv=none; b=PFqF0YvB8ZyxhgUn2d6PmgvPCS9MBgXZ0AqXXSwvpiiAw3wwlOLShB+R5E655MmQ6XxOGpX8raEyYXt+FbsxkhgOZNu/jnPX5vegM99BA7EiBd19BIfNY2WtJ5mjn6pdSKbzVXpNcJSreKZEClYQaEED7g9muZNYHOC3GgBw67g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768237278; c=relaxed/simple;
-	bh=Mj1Yo/+kMDe7Z3d4CNX1daTeAOa9r7LVOIZJ6VYDsaQ=;
+	s=arc-20240116; t=1768237827; c=relaxed/simple;
+	bh=OAH5naFNjOllYduWvwQD0Wi97hw4lHAw0rHxC1KY20c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f+UgZzCH+iTjoH5ONeT0ZCunNaxHo/uWaUhjMCPEvhOkiSItYgrw59kXJwDoEPDI71Gtw0PfosXdSb3zjG9K3mxQR93mmaQ7USrWv6rBORHIAY2xHdF0/ZmHN5znmbTtZgTdz788PVujB921knwEmTPqSdkAr/KgJ7o7nLfro6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=xHRGWeGK; arc=none smtp.client-ip=209.85.167.177
+	 In-Reply-To:Content-Type; b=id7huNQA9reVoL5vrO8mDgNriKN32HvGttjUqAkMyU69dlcpXT7BvoFFwwAVHlrD/AaNRzhcCOvcY/LwXHZA+8+WoG3J2Tlqak6+AK7qggXCjCLgniRy3B95STz4QO8mJM4VemJnspXuPdzgJVEDQIQgNMQxD12d/7nIwYJ3kHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yLFHmJ63; arc=none smtp.client-ip=209.85.167.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-459993ff4fcso2453513b6e.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:01:15 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-45358572a11so4092821b6e.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:10:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768237275; x=1768842075; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768237824; x=1768842624; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=so8XntnCWLt6fJSRVtTMtZ7eRh+xR/oddnPqW1/m8DM=;
-        b=xHRGWeGKZX3KgiIUrMfHbYMq9+LJ8rYw1YEQ1S79GOn6RAg0TZmC/9WocNULcU0ImX
-         uy0/NnfRckmWECwpf82eJqV95yr+Agju6ATc1hELu0AyoT246dsdweEO+u/OL1jqcZeD
-         8FRcJIVgNBczDhyLrhH2GxLpHzq9fLAHc9nUNZrmRbi36j64qUBR7w1v+qS+/wc9X+W8
-         pw3OCpAUqVXeeXNOw16yQr4NpWbxuQXmz3cTmo3SleyIh3IRiZfAXxLkuWLsXHAgDJ8n
-         etQblsostg5hi7jSdPDL5fKDgyXQly9u7Jybae85YQZ472Q91XwQKAHkwreTAn+IaJF9
-         jpxw==
+        bh=m9/AFf01u7lcoTbEksrXqqgn2N/dpSWjRoYjLFZ9u+U=;
+        b=yLFHmJ63uszX4HY8EJJL5iMkcJKuunD1+Sw63Ku0zRMWJD6Lo7EY32lab6N/jZBOK9
+         dSEcwZrEU3Q5nAxlgdCbmojByYanaHjqFoDyNXywxXYEzZhm2KGz41ztfyIOygcXirwe
+         H0IqrjAFF5RRA6oP5nDIKzewNkZvWvjiySUX1VYibq6DerUgOZmNz+R6x8cvUcZrk33d
+         ACzPHN61jigcXLIzD4X08FR0pw3AwzaJpL/zF8WhIuXcIPlSSPZGYKmiC+nhhg+BXEDG
+         Zc6YAms/yOzmBhkyCCce4/UO8/eCvEsxfv7hHJ0BM0kzCIp79S5qBovShXGSJfvtW2X2
+         akFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768237275; x=1768842075;
+        d=1e100.net; s=20230601; t=1768237824; x=1768842624;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=so8XntnCWLt6fJSRVtTMtZ7eRh+xR/oddnPqW1/m8DM=;
-        b=FOXd87GeoaWoUASghtYRR/wCj9lqC39FcZghQA6azQZBnnUHtZf0/LDlDdLqbATZDs
-         SxK+1AOmbEbTf9pVF5OU8alxHqbS7BTHQSBohB3Za8jcUamSMzE/cG88AgSU6AUQyp1X
-         Ack6TYm0E4EKYwFGxt8WauTXyJhkVqS4viRCa7CfN31bg6mUz8QouBIuKbeYLQITT7iM
-         oKFZIb+wjbu3PakPZJOIl4G/dYKyRGV7u1j/9R9+hB7ViDO+JMkJq2HPhjOPI2IDhEd9
-         sXe7r/LCznB0vs8wVlyRk7G0XRlVO+iFOGqGb88jug2Dz9ir2iOSdzmF1Zi9Ybnm2Qum
-         KKbA==
-X-Forwarded-Encrypted: i=1; AJvYcCWEbpMNHamb6C5kLu1dEBWguXZbwkh4PyuSev9L3N9bXbhH9eFTeEA9pFFxaqgM3Uy+r45UM166bjUT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoGeEj8YE1nh4YXyM2P97nsE7KXGcLy1Aa9HQ8gt+JWTNvCoxl
-	dL1Y3qrtmHgEuFhr522AxuIs8LthJ/j0xAwsnERqxLuQyiLSGA03uPKy+l9ByBCnak0=
-X-Gm-Gg: AY/fxX5pf3wxC7OntQYz0E2ET4x9HXcJY9aqpflnJCWTUK0uc4OAf7O8LljsZ3kDpTH
-	64QOIrzfbHicO31OrfW2VANIf/hiIYC8MkMouaZu/6w23UXkwo4D0ToCP6O1S2nvwm2PPQQnPo8
-	1VMSmOoUXXKM/aLAjj3HYqaWBw5svP9tJgT11AHiiBvZMtJxEOBANisDhXwOjxdxg53RaxcBcyp
-	a+Xu8wRUZlBWTQRxF+S8/yp5uwzbKzLnKbKVvCxyOHTazNaFbPKXtn3FoUzaUFRM4/yOGfSntkn
-	DzP1lNdazz8kBcCIZoGIpquw53mwKNbIOw49rjKgG4dUYNfJal2zbRS1QJqbhoFdbUejehkd71z
-	5JZ6PB4aZfmAsn1tO4D5cR+/AgyDJP3Dk/IRLuYcKc9vHwrvEqivs1C5d4Sq3smh61EJi45Y7zx
-	AQN71riIDuvpTn+x3vySP9KTpEFTrt6j5jqWiWzgQ0Ao7aLFnxqTVey4pmsBVf
-X-Google-Smtp-Source: AGHT+IHF2zSPcETdBanHmPj9qpqYedDpsO+mBiC5UofQ2hlmzyKmZYBQU3SkAtpC5qjlsIgfZvRPcg==
-X-Received: by 2002:a05:6808:1311:b0:450:d693:4d2d with SMTP id 5614622812f47-45a6bebb60emr9095964b6e.33.1768237273286;
-        Mon, 12 Jan 2026 09:01:13 -0800 (PST)
+        bh=m9/AFf01u7lcoTbEksrXqqgn2N/dpSWjRoYjLFZ9u+U=;
+        b=BGKO/V44yqzqLFPjUxvzZDAERB2TOEHO6+c+mDAoxbmEHSfD3YM2gcPqFXAOLEEs07
+         l/GEGDUnrMkRy0JI7bouprYUFIjqY+pX8K/jJZpP2gb32y1+07YliBjMzwN47vuA6Me+
+         awCo8vUfQtDwUBHPO1GmKqvCBje2geh3mNEx1YL0ngbV0q4c9toCnfFbP1NLZOirkwVE
+         DAde/7JaRpanIbTqfwMEGQROK9rbZnku5mdaeVZZ/eOtN46i4B8Ma3aehAlA0nP+tRVg
+         9cPaJqr0X2AEH68BZJoBi5fcIg7huSkB10QZLXDKeOEaPqgJIZ2exFz6Zf95d1Bb6hXR
+         XPfA==
+X-Forwarded-Encrypted: i=1; AJvYcCWPY9M10x9yQf9fSDTm+yMJ11OKy5AEpoF/LDV4Xq8fWE8ont1hJEOKqd9kCu75GoXw73bqMAAGm30a@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2pbo447FeWGBiAgdUksXSHsWLph7ovkTj5XP3I3ScXRxChkzO
+	KSzhRHljgN+4cx5lbGFW/FSH268V4rJi65CdXJv9xHwQ80nfQnOlLoKzEvne0uzDRzU=
+X-Gm-Gg: AY/fxX5LMZ35Zq20wsryHSWMkJlUJsZS6BAaZGu6H0WfSndUUs8ePkwVf58ncjGGtV5
+	R8UKx4Wg+kQyYIGtDkXx+0DRFvmFZvxRbCX5kslQF/tnSOWDsra2xzM+F3P9HTqE9a+yEYqwmMW
+	A+W7ouxxKJoHVNyP2ZgKQBTbABCkHm7v4UXBHzkAAKndJTCal+bZdkTDy7F1+8FtMxCHqvhpeNP
+	tVYihdbvuvCYPWppwFWrq614Y7jbqTgsaz+ekyYMtG+8bfqMympeB/zegWHm/sNuwEUs2zONbH0
+	KgUM+22m9bP4shOign5fiLG2oLFQ4lDs8siEdSu86OpogcHLJ/XGUEFVIhsPj1nqsLXc6lkUSCd
+	pf6x9GKcjGMAZepc2EsS2N/vM+mFcJ0tkaj0GcU1k/9zTBS/vdB5D1gxniHEZSoRjFk7xkXuKPR
+	vaE4inSgBB42eFsy0O28+kgoe4fGxV7nfLAxPohzemclxJghxbCxRAHUHkxg0aVFw5kvvUQ2A=
+X-Google-Smtp-Source: AGHT+IERGDoUKExncVjlW46GPrn6YhEvSLbilPx7CfLMbFAf04otsZ0YAgDPpRk+Jn6HZpG/4t2pKg==
+X-Received: by 2002:a05:6808:3507:b0:450:cc23:98c6 with SMTP id 5614622812f47-45a6bedeee2mr9476465b6e.56.1768237824219;
+        Mon, 12 Jan 2026 09:10:24 -0800 (PST)
 Received: from ?IPV6:2600:8803:e7e4:500:6b4b:49b3:cce5:b58f? ([2600:8803:e7e4:500:6b4b:49b3:cce5:b58f])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-45a5e2b2b20sm8500125b6e.18.2026.01.12.09.01.10
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-45a5e183cd4sm8162627b6e.1.2026.01.12.09.10.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jan 2026 09:01:11 -0800 (PST)
-Message-ID: <2d7b3105-1bb4-40db-9a2b-dfc133b15840@baylibre.com>
-Date: Mon, 12 Jan 2026 11:01:09 -0600
+        Mon, 12 Jan 2026 09:10:23 -0800 (PST)
+Message-ID: <19e3980b-043a-40bc-9944-3ff2ef389ab7@baylibre.com>
+Date: Mon, 12 Jan 2026 11:10:22 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +82,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/9] spi: support controllers with multiple data lanes
+Subject: Re: [PATCH v4 4/9] spi: add multi_lane_mode field to struct
+ spi_transfer
 To: Andy Shevchenko <andriy.shevchenko@intel.com>
 Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -94,50 +95,43 @@ Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-iio@vger.kernel.org
 References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
- <20251219-spi-add-multi-bus-support-v4-3-145dc5204cd8@baylibre.com>
- <aU_4RhfUlJ5R_inQ@smile.fi.intel.com>
+ <20251219-spi-add-multi-bus-support-v4-4-145dc5204cd8@baylibre.com>
+ <aU_3v5smP1AnsHCG@smile.fi.intel.com>
 Content-Language: en-US
 From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aU_4RhfUlJ5R_inQ@smile.fi.intel.com>
+In-Reply-To: <aU_3v5smP1AnsHCG@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/27/25 9:16 AM, Andy Shevchenko wrote:
-> On Fri, Dec 19, 2025 at 03:32:11PM -0600, David Lechner wrote:
->> Add support for SPI controllers with multiple physical SPI data lanes.
->> (A data lane in this context means lines connected to a serializer, so a
->> controller with two data lanes would have two serializers in a single
->> controller).
+On 12/27/25 9:14 AM, Andy Shevchenko wrote:
+> On Fri, Dec 19, 2025 at 03:32:12PM -0600, David Lechner wrote:
+>> Add a new multi_lane_mode field to struct spi_transfer to allow
+>> peripherals that support multiple SPI lanes to be used with a single
+>> SPI controller.
 >>
->> This is common in the type of controller that can be used with parallel
->> flash memories, but can be used for general purpose SPI as well.
->>
->> To indicate support, a controller just needs to set ctlr->num_data_lanes
->> to something greater than 1. Peripherals indicate which lane they are
->> connected to via device tree (ACPI support can be added if needed).
->>
->> The spi-{tx,rx}-bus-width DT properties can now be arrays. The length of
->> the array indicates the number of data lanes, and each element indicates
->> the bus width of that lane. For now, we restrict all lanes to have the
->> same bus width to keep things simple. Support for an optional controller
->> lane mapping property is also implemented.
+>> This requires both the peripheral and the controller to have multiple
+>> serializers connected to separate data lanes. It could also be used with
+>> a single controller and multiple peripherals that are functioning as a
+>> single logical device (similar to parallel memories).
 > 
 > ...
 > 
->> +#define SPI_DEVICE_DATA_LANE_CNT_MAX 8
+>>  	unsigned	cs_change:1;
+>>  	unsigned	tx_nbits:4;
+>>  	unsigned	rx_nbits:4;
+>> +
+>> +#define SPI_MULTI_LANE_MODE_SINGLE	0 /* only use single lane */
+>> +#define SPI_MULTI_LANE_MODE_STRIPE	1 /* one data word per lane */
+>> +#define SPI_MULTI_LANE_MODE_MIRROR	2 /* same word sent on all lanes */
+>> +	unsigned	multi_lane_mode: 2;
+>> +
+>>  	unsigned	timestamped:1;
 > 
->> +	/* Multi-lane SPI controller support. */
->> +	u32			tx_lane_map[SPI_DEVICE_DATA_LANE_CNT_MAX];
->> +	u32			num_tx_lanes;
->> +	u32			rx_lane_map[SPI_DEVICE_DATA_LANE_CNT_MAX];
->> +	u32			num_rx_lanes;
-> 
-> This adds 8*4 + 4 + 8*4 + 4 bytes to the already big enough structure for
-> the rather rare use cases. Can we start doing it separately and use just
-> a pointer here?
+> Btw, have you checked the layout of these bitfields? Are they all in one 32-bit
+> word or split? Dunno if `pahole` handles them, never actually paid attention
+> before.
 > 
 
-There are rarely more than a few SPI devices, so the tradeoff between
-making the code more complex to handle the allocation vs. making the
-struct just a bit smaller does not seem worth it to me.
+There are only 14 bits used so far.
+
 
