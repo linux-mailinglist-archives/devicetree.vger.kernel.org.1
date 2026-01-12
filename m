@@ -1,345 +1,245 @@
-Return-Path: <devicetree+bounces-254128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B961D146C8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:40:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00460D148F9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:53:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2C415300E4F7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:36:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 451903000506
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:46:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75AD0364045;
-	Mon, 12 Jan 2026 17:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FCF83090D4;
+	Mon, 12 Jan 2026 17:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H2/CRee0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VO3pznIE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C997337E30C
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF4F21D599
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768239371; cv=none; b=dDz1K5Q193HCH4q4mImVN1RIUJAuwbi0dyzGmK7DtkeLlATapsHOYHTeXsRsuhEbtNrY8sKSv0COJIgRx2GFS8DgMu8uYKNtCn+CS0Bl0lcgIkplYOahUw0ABQC/v1Nd6xMW8Eoef53Wt8VrmEDPmkr1xgN83IEIh+j8b86ee0c=
+	t=1768239991; cv=none; b=usakUDeSfpVlocpx2xJlMYb67gbh5vviVOMMPkWu/TGBH/VaV0CvhXnChTct912ziUGB6ZLF3n1j6Hsuyu/x4KJ2YtiKa0L8CfEUEu70muMpXkrwBY84ttWxfwNI2NMzY8NuUTD0kFPtUTSvUqU8DUtWdolcpk+V9MkoWiddJOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768239371; c=relaxed/simple;
-	bh=GCdO5a+HMfjS0Onb4iX2dcKWJm/SM5/aDLNSivt+rZg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rLhWopbGSWk/AA8OQ8fVG2kVYAizg7yEXDOGELfn1e6B4841lQ9XxpljnX0iLtKOO70z+hEVb43Lp+c8F9vsnV65YkpADg413IduncnJwP8+IVWVGRJqJH3NqmdrxdPZYLzLk72sLbAVdkDVMD2MAjY0Ki5elZFKwYtlSEXRcdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H2/CRee0; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-42fb03c3cf2so3565036f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:36:07 -0800 (PST)
+	s=arc-20240116; t=1768239991; c=relaxed/simple;
+	bh=cWc4yE87a/Ng/s0O57Wu6Nl1BtIIqHHRL8gFP/ptNJY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CCaE/Uv9BoSmIYfFh/nlKcMF/UBca3BRegVBhxzh/qv46rVqG7AVTYcl5QoQnYwkqLFB9jQ3U8oX8Gu+spTT4gKnReR7LFW6nv9O/Fzc60JltFkLiuXmAfY5ouPMt9AwwBYUUQvuatIBfWe3Fy1uTFQy/cGWiVoOF+yaaY2xmBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VO3pznIE; arc=none smtp.client-ip=209.85.167.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-450b5338459so4209260b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:46:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768239366; x=1768844166; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tuk52pHE2ucr51aG3tpUoDcttX6aTJw3OWzP3ZmFW2E=;
-        b=H2/CRee0//rGPYg0l1zmRr7B+722QUuuMKv92yP2gmELT0GHa8y0AorCZVvDDfMMl5
-         VVod1fNSHqTcetc4SehLAHpe7Yg8Ykj4tIgaZ/01MPtd41ptcqFS9A7cTtMbfjAp5+Wz
-         GBLWx6tHYBvuGc84oL3pqgXWLqiiBcxUqhJYyL51qnjuKfDFjZdPKvzlf+RmmNhTNYRe
-         H+kyiohngHx8+UwJ3ICkHQuX/cwsQ9dUETgTP8LkGnIZPjV52/M5Vyv1S0bGJoOxntCk
-         il1IyCt5gbYw3OsizN0ize6bEE80kfcUruHiMAI/UfNuVKTUM/rTBsS33BIu5ndA9zu/
-         O4uA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768239988; x=1768844788; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=78DS4N4jcu8uNb7b8H3HI1jiwdl1wZNwa4RPrB0L3TA=;
+        b=VO3pznIEl1fEHtCTpxWxy5tw4Uf8ehSIE0E8/z4N3gyr7+imqyVEE9qoi86uvScXOl
+         kVo9PyAjaClDT1FNzZ3EV/TFw/ZEgysHzu/TzAw1aXTG+O/Em2cQBi5J6hji8dViI1D9
+         dbcIuFpWFlqTHZ3o966NA72vIEy0L6pZjixRsfFM76D6rzbDYS6qLiG2ih5V2IxLxxRR
+         duU22HHRdo2Ohk+G58nmbiIJGmQS0dofo56jEzThTtHaPpe/aW45CJcbRi14qolsQOxk
+         1F0aig9d30A7Od7M7eRR8wmpNplVHUb3r74/CE3Sq8JrgSo/rL2LKd8BbXHtY2UxhqX+
+         t47Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768239366; x=1768844166;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=tuk52pHE2ucr51aG3tpUoDcttX6aTJw3OWzP3ZmFW2E=;
-        b=bFqM3fcyg4NwToacuRgANWBg6xoLxYZ8NnSkb7UZkYesoIK8l/HXRncA4GfkmnDbVp
-         LBxUTCsee5AfzgDvXDR5kyVC/9t3SFgcH9LBlmpwFm9Xj6f4EQhELwXk9M7YbQZN+PrC
-         fZLPXafpP9FX7YsTX9rW+rbd7LbkJNJX75S3RxJ0246wIQAB8zZnDViNudmANQ7ATOx0
-         jjWrydqaJW6to3gWYnZI/cMMk43FM1mPfVwEhL6aJZSXYAFIoZXLBrwRvkIiSxjS4i4a
-         ISHXRMyyOSlwWxWCX36vzDZ7kk+UtM2LgD9YdVUi/9lBW3DuBMZIWwRuz6f7H74j4KAM
-         szzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/JWsrJTvgb2LR4DtmzQD89iwflTo5vlhyz+oAL6UIGnyaHsRFnt9wqgPsJyEiOp1001dPrOUjngFF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLr/8N6U5luPiKnJflNoKK7Zg3FHo2q2Zk3E98rlAZUl/y4K4F
-	ZqrUt8+FUdL5t3iKgNyaIknaw8ZZwn2vjJYp8+AoxK6hP3FRxF1ZRvy1
-X-Gm-Gg: AY/fxX7T1fr0KI9/jYcFicOHjvkjZTSVZEbOB/bNwH25KUPTKCloEYXsAiZ2Qh2cVEu
-	zXf+42Q3nB7xdt1K38rrYc0vQbF+K+DAVwHSM33CLH/4ZwgxsvEs/xvbHf3KU1e7UYKXsSH4F91
-	z6m6mznvkVwpU4YSQb5+5W2LsN0VNxUyIQe6jleitVVX3sumxeYHm7Nc11Ss2vtTA+uZL8dlDQ/
-	zU3j+Ba+/XCMV5UMalw5Au8WY3GbguaUpRpgpvsmKodtk2bqdBl3t6gxwzHYPogiG45FN8OmugL
-	hoY5yN5xMcEgiD/njQLxdtup+3oZGLiAYHKRCsw/nzAQYPWO2Cc/bjFBIsJW3k8vQUFNYKRNUrt
-	6KsW+wVXcEMmYEGy7gSWjJfNVLQCa+MreJ2tIsJLa4Ok/osEDoNgUPJniEbLjDTaij9pVzvq+DJ
-	F7ns76UrwKJ9PL1aNeZXsS/ptQABDu5iyrhk4yrrh1Wmlr5mq3hnvUJLtkk5pxRS5YZnMI8xytf
-	c3IjrlwnBtG1+csIGvsimcTdx5nthY6qrg=
-X-Google-Smtp-Source: AGHT+IHvetCOikt5zHJa+kt1XGT/CFTzAu/3wOZte9eNFcIcwZdd0nfXB3SqwzR7iSvrVRxboWe4ZQ==
-X-Received: by 2002:a05:6000:2087:b0:430:f8b3:e834 with SMTP id ffacd0b85a97d-432c3629b4amr24163355f8f.11.1768239366073;
-        Mon, 12 Jan 2026 09:36:06 -0800 (PST)
-Received: from iku.Home ([2a06:5906:61b:2d00:9336:b2a5:a8c1:722e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ff0b2sm39625403f8f.42.2026.01.12.09.36.05
+        d=1e100.net; s=20230601; t=1768239988; x=1768844788;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=78DS4N4jcu8uNb7b8H3HI1jiwdl1wZNwa4RPrB0L3TA=;
+        b=wK2Kh/W9zJdCapKqw+yamGDH4yZttecTPxmqzTTjeETmZrRjjfgKz1ajJ67Snu66qD
+         8bd+c/hMX7a8nXUkIbSock36e96h8WIz8UW9jcRsOsA9OFUW2G6oB6ADdooYdIdPqUTf
+         FOBkSZlxN4RgqVrocd26SYvQxwjz5GwqZ5K048z77UnRXAGw/yFrFEz0LPuWu96gAban
+         RXq/H62irNRWemECSQrQA5oreXy7TvUnszIym4CtAbixAR0J0441qdc2OS5K7NPllH/+
+         l6fqacdIkk9r4EaVa2m/oFdHW8CMI1cmFmFmpYFRDrA2FauxILhNqRbGieSRs6LiV7ks
+         Huew==
+X-Forwarded-Encrypted: i=1; AJvYcCVd2Ldix/jSJGIsoCfl2xeHK65gm+c5kEHTFMq56j3F8GuQDKzwhqQ+FlQ8bGrxKocigRlcRj2j/Irt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwR5URiT/hLUiSyVMzIcHztZ1U3Pm/C++SLc4nZg2ynvVNAvcvi
+	sveVajl/MRQUy9dPNMqgOo/llzaAqLcLa8iTPqJw61PmJUFQ188e8X0q2XY2zQICxME=
+X-Gm-Gg: AY/fxX6wbpYix05WLqjTrNn8JKh2e6EI+f+TRzpnnZL427Wt7I9sdOZizbmJbue8lHW
+	Es17qjGSrfhEkY1i0uFAFmJAkfiOmaahOYqs8hMR8lL86JCKQ0Y4dcVnsL5KXAADew9YipQKuTM
+	dALyMJ62zft/ANKcQbTqt9/aXvDGj2VWs7U5zeNX55heHXKdrQEzVRLBTiWZt2iMvBIbJswKTQ0
+	eczaCOu/XWyDJVcxyqNIQb9j59Vreuy/fqrjwlY7Ge207EZ5f+XbjibAYicEP0hjIg8AkO5QBmC
+	2boLDfN2CjIDOz+orM1xdWfxFkWqQal++D/QduAVx63OXtY3mLTYmxlrsjcyR6jJgrxhzJ04pIC
+	qjKVd0uFXZHE/eais/bUuWAwoZYCiQqBzAcUYF8hTjp2pdphZOCSyfqQEVfC3XZiYprwmEv08zr
+	5P+LYB9GKYjvUK+rnAsQ14BS9K6Q==
+X-Google-Smtp-Source: AGHT+IF/wvSe7WCb9OA69IFFRs4FyLlFTBuqj2r6THiKEs1tZXAgY0ddHd1FBCfDc5vZswZE+yCOPQ==
+X-Received: by 2002:a05:6808:1455:b0:450:c79d:92de with SMTP id 5614622812f47-45a6be38892mr7616179b6e.41.1768239987635;
+        Mon, 12 Jan 2026 09:46:27 -0800 (PST)
+Received: from [127.0.1.1] ([2600:8803:e7e4:500:6b4b:49b3:cce5:b58f])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa4de40bfsm12126941fac.5.2026.01.12.09.46.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 09:36:05 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH net-next v3 2/2] net: pcs: rzn1-miic: Add PHY_LINK active-level configuration support
-Date: Mon, 12 Jan 2026 17:35:55 +0000
-Message-ID: <20260112173555.1166714-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260112173555.1166714-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260112173555.1166714-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Mon, 12 Jan 2026 09:46:27 -0800 (PST)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH v5 0/9] spi: add multi-lane support
+Date: Mon, 12 Jan 2026 11:45:18 -0600
+Message-Id: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33Oy27DIBAF0F+xWJeW4eGYrPofVRYYxg2SXwFsO
+ Yr87yHOIlUVeXlHumfujUQMHiM5FjcScPbRD30O6qMg9mz6X6Te5Uw444pVoGgcPTXO0W5qk6f
+ 1FGmcxnEIiUItlGPKKtmUJPfHgI1fNvvn9MwBL1N+kZ5HUpuI1A5d59OxaH0/LbTHJX11JiYM5
+ FE6+5iGcN32zbC1HlOAgdyZMgNllDNdWeCubFTzXZtr6+uAn/ndBs/8hQE77GE8Y5XRvNRCgHT
+ 6DSZeGGewh4mMCYlMHTQ4rMQbTP7BQO9hMmMglbOKM2ld9Q9b1/UOhqMqxuEBAAA=
+X-Change-ID: 20250815-spi-add-multi-bus-support-1b35d05c54f6
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marcelo Schmitt <marcelo.schmitt@analog.com>, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>
+Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
+ Jonathan Cameron <jonathan.cameron@huawei.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6149; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=cWc4yE87a/Ng/s0O57Wu6Nl1BtIIqHHRL8gFP/ptNJY=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpZTMxKkXjDQv6PeSp+ULD/L8tGKHt3bPw/5k9c
+ 5qZr1kUBIOJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaWUzMQAKCRDCzCAB/wGP
+ wFXTCACFgLAH2w4rIstilX7/DB9JG79Wed7hu5aGpZoO3bl7yuLKTHG+AmW9W1W0lQ85l3B8oF/
+ yBBf91NrrC1gOpyXi0WDcPQrt+5viBt+aybQNZqH444nYDHOc8amTIgjcQQR6lQbI3ADh942Lbg
+ HUScncVrQ8aWVoXQlcoIrR5U8lJOR297E5qDnL3oVh8zMQFoeXc6L1zcoNwCNG96DaGta059uFq
+ 8gNT92C3hqDI2avZwAr+d2ej7dkeGC1bbJmb0C5ngTv/8n7prsjdfku71oRCDPLEBNELYiRl4CG
+ uL7AdHjLLhS6T7EU3y8V8E4OCQHkzKQyqrYubEMBci7Omfzu
+X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
+ fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This series is adding support for SPI controllers and peripherals that
+have multiple SPI data lanes (data lanes being independent sets of
+SDI/SDO lines, each with their own serializer/deserializer).
 
-Add support to configure the active level of MIIC PHY_LINK status signals
-on a per-converter basis using a DT property.
+This series covers this specific use case:
 
-MIIC provides dedicated PHY_LINK signals that indicate EtherPHY link-up and
-link-down status in hardware. These signals are required regardless of
-whether GMAC or ETHSW is used. With GMAC, link state is retrieved via
-MDC/MDIO and handled in software, while ETHSW relies on PHY_LINK pins for
-both CPU-assisted operation and switch-only data paths that do not involve
-the host.
++--------------+    +---------+
+| SPI          |    | SPI     |
+| Controller   |    | ADC     |
+|              |    |         |
+|          CS0 |--->| CS      |
+|         SCLK |--->| SCLK    |
+|          SDO |--->| SDI     |
+|         SDI0 |<---| SDOA    |
+|         SDI1 |<---| SDOB    |
+|         SDI2 |<---| SDOC    |
+|         SDI3 |<---| SDOD    |
++--------------+     +--------+
 
-Hardware PHY_LINK signals are also critical for fast reaction to link-down
-events, for example when running redundancy protocols such as Device Level
-Ring (DLR), where rapid detection of cable faults is required to switch to
-an alternate path without software latency.
+The ADC is a simultaneous sampling ADC that can convert 4 samples at the
+same time. It has 4 data output lines (SDOA-D) that each contain the
+data of one of the 4 channels. So it requires a SPI controller with 4
+separate deserializers in order to receive all of the information at the
+same time.
 
-Parse the requested polarity from DT, accumulate the configuration during
-probing, and apply it to the MIIC_PHY_LINK register once hardware
-initialization is complete, when the registers can be safely modified.
-Handle SoC-specific bit layout differences between RZ/N1 and RZ/T2H/N2H
-within the driver.
+This should also work for the use case in [1] as well. (Some of the
+patches in this series were already submitted there). In that case the
+SPI controller is used kind of like it is two separate SPI controllers,
+each with its own chip select, clock, and data lines.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+[1]: https://lore.kernel.org/linux-spi/20250616220054.3968946-1-sean.anderson@linux.dev/
+
+The DT bindings are a fairly straight-forward mapping of which pins on
+the peripheral are connected to which pins on the controller. The SPI
+core code parses this and makes the information available to drivers.
+When a peripheral driver sees that multiple data lanes are wired up, it
+can chose to use them when sending messages.
+
+The SPI message API is a bit higher-level than just specifying the
+number of data lines for a SPI transfer though. I did some research on
+other SPI controllers that have this feature. They tend to be the kind
+meant for connecting to two flash memory chips at the same time but can
+be used more generically as well. They generally have the option to
+either use one lane at a time (Sean's use case), or can mirror the same
+data on multiple lanes (no users of this yet) or can perform striping
+of a single data FIFO/DMA stream to/from the two lanes (our use case).
+
+For now, the API assumes that if you want to do mirror/striping, then
+you want to use all available data lanes. Otherwise, it just uses the
+first data lane for "normal" SPI transfers.
+
+Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
-v2->v3:
-- Updated commit message
-- Renamed DT property from renesas,miic-phylink-active-low to
-  renesas,miic-phy-link-active-low.
-- Simplified the PHY_LINK configuration parsing logic in the driver
-  as suggested.
+Maintainer coordination:
 
-v1->v2:
-- No changes.
+Jonathan has requested an immutable branch from the SPI tree containing
+the SPI patches from this series (all but the last two patches) so that
+he can pick up the IIO patches.
+
+Changes in v5:
+- Fixed up affected dt-bindings for a new SPI controller that was added
+  recently.
+- Made some clarification and fixes in the documentation in several
+  places.
+- Fixed parsing of mapping properties.
+- Link to v4: https://lore.kernel.org/r/20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com
+
+Changes in v4:
+- New patch to change spi-{rx,tx}-bus-width to array. This will cover
+  most use cases.
+- Split data-lanes property into spi-{rx,tx}-lane-map. These properties
+  are now only needed for special cases instead of being the primary
+  property for multi-lane support.
+- Didn't pick up Rob's acks since all DT bindings are significantly changed.
+- Rework other code to accommodate the above changes.
+- New documentation patch.
+- Link to v3: https://lore.kernel.org/r/20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com
+
+Changes in v3:
+- Use existing data-lanes devicetree property name instead of creating a
+  new one.
+- Renamed "buses" to "lanes" everywhere to match the devicetree property
+  name.
+- Clarified bindings description about how to specify data lanes.
+- Link to v2: https://lore.kernel.org/r/20251107-spi-add-multi-bus-support-v2-0-8a92693314d9@baylibre.com
+
+Changes in v2:
+- Renamed devicetree property spi-buses to spi-data-buses. (Driver code
+  was already using spi->data_buses, so it matches).
+- Fixed a small bug in the AXI ADC driver changes.
+- Moved one line of code in the ADC driver changes.
+- Link to v1: https://lore.kernel.org/r/20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com
+
 ---
- drivers/net/pcs/pcs-rzn1-miic.c | 105 +++++++++++++++++++++++++++++++-
- 1 file changed, 102 insertions(+), 3 deletions(-)
+David Lechner (9):
+      spi: dt-bindings: change spi-{rx,tx}-bus-width to arrays
+      spi: dt-bindings: add spi-{tx,rx}-lane-map properties
+      spi: support controllers with multiple data lanes
+      spi: add multi_lane_mode field to struct spi_transfer
+      spi: Documentation: add page on multi-lane support
+      spi: dt-bindings: adi,axi-spi-engine: add multi-lane support
+      spi: axi-spi-engine: support SPI_MULTI_LANE_MODE_STRIPE
+      dt-bindings: iio: adc: adi,ad7380: add spi-rx-bus-width property
+      iio: adc: ad7380: add support for multiple SPI lanes
 
-diff --git a/drivers/net/pcs/pcs-rzn1-miic.c b/drivers/net/pcs/pcs-rzn1-miic.c
-index 885f17c32643..8d7f82c1df2f 100644
---- a/drivers/net/pcs/pcs-rzn1-miic.c
-+++ b/drivers/net/pcs/pcs-rzn1-miic.c
-@@ -28,6 +28,8 @@
- 
- #define MIIC_MODCTRL			0x8
- 
-+#define MIIC_PHY_LINK			0x14
-+
- #define MIIC_CONVCTRL(port)		(0x100 + (port) * 4)
- 
- #define MIIC_CONVCTRL_CONV_SPEED	GENMASK(1, 0)
-@@ -177,6 +179,16 @@ static const char * const rzt2h_reset_ids[] = {
- 	"crst",
- };
- 
-+/**
-+ * struct miic_phy_link_cfg - MIIC PHY_LINK configuration
-+ * @mask: Mask of phy_link bits
-+ * @val: Value of phy_link bits
-+ */
-+struct miic_phy_link_cfg {
-+	u32 mask;
-+	u32 val;
-+};
-+
- /**
-  * struct miic - MII converter structure
-  * @base: base address of the MII converter
-@@ -184,6 +196,7 @@ static const char * const rzt2h_reset_ids[] = {
-  * @lock: Lock used for read-modify-write access
-  * @rsts: Reset controls for the MII converter
-  * @of_data: Pointer to OF data
-+ * @link_cfg: MIIC PHY_LINK configuration
-  */
- struct miic {
- 	void __iomem *base;
-@@ -191,6 +204,12 @@ struct miic {
- 	spinlock_t lock;
- 	struct reset_control_bulk_data rsts[MIIC_MAX_NUM_RSTS];
- 	const struct miic_of_data *of_data;
-+	struct miic_phy_link_cfg link_cfg;
-+};
-+
-+enum miic_type {
-+	MIIC_TYPE_RZN1,
-+	MIIC_TYPE_RZT2H,
- };
- 
- /**
-@@ -210,6 +229,7 @@ struct miic {
-  * @init_unlock_lock_regs: Flag to indicate if registers need to be unlocked
-  *  before access.
-  * @miic_write: Function pointer to write a value to a MIIC register
-+ * @type: Type of MIIC
-  */
- struct miic_of_data {
- 	struct modctrl_match *match_table;
-@@ -226,6 +246,7 @@ struct miic_of_data {
- 	u8 reset_count;
- 	bool init_unlock_lock_regs;
- 	void (*miic_write)(struct miic *miic, int offset, u32 value);
-+	enum miic_type type;
- };
- 
- /**
-@@ -581,10 +602,79 @@ static int miic_match_dt_conf(struct miic *miic, s8 *dt_val, u32 *mode_cfg)
- 	return -EINVAL;
- }
- 
-+static void miic_configure_phy_link(struct miic *miic, u32 conf,
-+				    u32 port, bool active_low)
-+{
-+	bool polarity_active_high;
-+	u32 mask, shift;
-+
-+	/* determine shift and polarity for this conf */
-+	if (miic->of_data->type == MIIC_TYPE_RZN1) {
-+		switch (conf) {
-+		/* switch ports => bits [3:0] (shift 0), active when low */
-+		case MIIC_SWITCH_PORTA:
-+		case MIIC_SWITCH_PORTB:
-+		case MIIC_SWITCH_PORTC:
-+		case MIIC_SWITCH_PORTD:
-+			shift = 0;
-+			polarity_active_high = false;
-+			break;
-+
-+		/* EtherCAT ports => bits [7:4] (shift 4), active when high */
-+		case MIIC_ETHERCAT_PORTA:
-+		case MIIC_ETHERCAT_PORTB:
-+		case MIIC_ETHERCAT_PORTC:
-+			shift = 4;
-+			polarity_active_high = true;
-+			break;
-+
-+		/* Sercos ports => bits [11:8] (shift 8), active when high */
-+		case MIIC_SERCOS_PORTA:
-+		case MIIC_SERCOS_PORTB:
-+			shift = 8;
-+			polarity_active_high = true;
-+			break;
-+
-+		default:
-+			return;
-+		}
-+	} else {
-+		switch (conf) {
-+		/* ETHSW ports => bits [3:0] (shift 0), active when low */
-+		case ETHSS_ETHSW_PORT0:
-+		case ETHSS_ETHSW_PORT1:
-+		case ETHSS_ETHSW_PORT2:
-+			shift = 0;
-+			polarity_active_high = false;
-+			break;
-+
-+		/* ESC ports => bits [7:4] (shift 4), active when high */
-+		case ETHSS_ESC_PORT0:
-+		case ETHSS_ESC_PORT1:
-+		case ETHSS_ESC_PORT2:
-+			shift = 4;
-+			polarity_active_high = true;
-+			break;
-+
-+		default:
-+			return;
-+		}
-+	}
-+
-+	mask = BIT(port + shift);
-+
-+	miic->link_cfg.mask |= mask;
-+	if (polarity_active_high != active_low)
-+		miic->link_cfg.val |= mask;
-+	else
-+		miic->link_cfg.val &= ~mask;
-+}
-+
- static int miic_parse_dt(struct miic *miic, u32 *mode_cfg)
- {
- 	struct device_node *np = miic->dev->of_node;
- 	struct device_node *conv;
-+	bool active_low;
- 	int port, ret;
- 	s8 *dt_val;
- 	u32 conf;
-@@ -603,10 +693,15 @@ static int miic_parse_dt(struct miic *miic, u32 *mode_cfg)
- 		if (of_property_read_u32(conv, "reg", &port))
- 			continue;
- 
-+		if (of_property_read_u32(conv, "renesas,miic-input", &conf))
-+			continue;
-+
- 		/* Adjust for 0 based index */
--		port += !miic->of_data->miic_port_start;
--		if (of_property_read_u32(conv, "renesas,miic-input", &conf) == 0)
--			dt_val[port] = conf;
-+		dt_val[port + !miic->of_data->miic_port_start] = conf;
-+
-+		active_low = of_property_read_bool(conv, "renesas,miic-phy-link-active-low");
-+
-+		miic_configure_phy_link(miic, conf, port, active_low);
- 	}
- 
- 	ret = miic_match_dt_conf(miic, dt_val, mode_cfg);
-@@ -696,6 +791,8 @@ static int miic_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto disable_runtime_pm;
- 
-+	miic_reg_rmw(miic, MIIC_PHY_LINK, miic->link_cfg.mask, miic->link_cfg.val);
-+
- 	/* miic_create() relies on that fact that data are attached to the
- 	 * platform device to determine if the driver is ready so this needs to
- 	 * be the last thing to be done after everything is initialized
-@@ -729,6 +826,7 @@ static struct miic_of_data rzn1_miic_of_data = {
- 	.sw_mode_mask = GENMASK(4, 0),
- 	.init_unlock_lock_regs = true,
- 	.miic_write = miic_reg_writel_unlocked,
-+	.type = MIIC_TYPE_RZN1,
- };
- 
- static struct miic_of_data rzt2h_miic_of_data = {
-@@ -745,6 +843,7 @@ static struct miic_of_data rzt2h_miic_of_data = {
- 	.reset_ids = rzt2h_reset_ids,
- 	.reset_count = ARRAY_SIZE(rzt2h_reset_ids),
- 	.miic_write = miic_reg_writel_locked,
-+	.type = MIIC_TYPE_RZT2H,
- };
- 
- static const struct of_device_id miic_of_mtable[] = {
+ .../bindings/display/panel/sitronix,st7789v.yaml   |   5 +-
+ .../devicetree/bindings/iio/adc/adi,ad4030.yaml    |  42 +++-
+ .../devicetree/bindings/iio/adc/adi,ad4695.yaml    |   5 +-
+ .../devicetree/bindings/iio/adc/adi,ad7380.yaml    |  23 +++
+ .../bindings/spi/adi,axi-spi-engine.yaml           |  15 ++
+ .../bindings/spi/allwinner,sun4i-a10-spi.yaml      |   6 +-
+ .../bindings/spi/allwinner,sun6i-a31-spi.yaml      |   6 +-
+ .../bindings/spi/andestech,ae350-spi.yaml          |   6 +-
+ .../bindings/spi/nvidia,tegra210-quad.yaml         |   6 +-
+ .../bindings/spi/spi-peripheral-props.yaml         |  40 +++-
+ Documentation/spi/index.rst                        |   1 +
+ Documentation/spi/multiple-data-lanes.rst          | 217 +++++++++++++++++++++
+ drivers/iio/adc/ad7380.c                           |  51 +++--
+ drivers/spi/spi-axi-spi-engine.c                   | 145 +++++++++++++-
+ drivers/spi/spi.c                                  | 116 ++++++++++-
+ include/linux/spi/spi.h                            |  30 +++
+ 16 files changed, 676 insertions(+), 38 deletions(-)
+---
+base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
+change-id: 20250815-spi-add-multi-bus-support-1b35d05c54f6
+
+Best regards,
 -- 
-2.52.0
+David Lechner <dlechner@baylibre.com>
 
 
