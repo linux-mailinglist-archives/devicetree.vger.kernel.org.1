@@ -1,124 +1,99 @@
-Return-Path: <devicetree+bounces-253774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94138D1144C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:37:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C09D11497
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:43:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 894F130C8455
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:35:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 212DC30383B8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E941234166A;
-	Mon, 12 Jan 2026 08:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96D1342C99;
+	Mon, 12 Jan 2026 08:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cCLh5/1m"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="MmN64m3L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F32341642;
-	Mon, 12 Jan 2026 08:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADEC342526;
+	Mon, 12 Jan 2026 08:43:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768206927; cv=none; b=ZgCs1YoK8mOowO5D0SvO9a3CP2dhBt/JTXbyydaOpUMCtWDjpTSAO5y+1gYWvg6GL+3HNHNLvsnf4gj5L8zzENvV5Ernt9N4pFcYfmT/nRSosyHHraYIxkoyXi5+ozezD78OqYDDAqtiGk5q0W7HqZaDz/bKj7RS/gxY6kdpXYg=
+	t=1768207396; cv=none; b=LbTGTMSXrhtC1KrdyMG2FpH6ahSqG9BxmqQZ36m8QDd0M4P03keDW0MNq4qa+cTUR4b5/YOq5saa3HYHoY1fC8FqYkqkQpjQ7GRtsnuBGlVCYUfVjmvGHMojiIJKy/LeuKrCAb6knTNoXhd/uva0h47AQSkHOKYbicvwamwd+W8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768206927; c=relaxed/simple;
-	bh=V5D00KQSSCPAuJwNVFZw4bpS7MfziiEJZ+NDz6IbqPI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=cVWaiH8LNZyz00mfKvSs3N8G2WDvLfq/GSZIirFmeV6sX8wRwkeQH5JWDlbPfdWVtdEpi9CLZrbvm94QEIssMa+nwyaSUpVC3xNfSU5IioCivfr5mfHd7TzU9/ArIZF5fM2YsU1pvtwI12i6Nr2eZlajoBcCOqqJumH7iAOn/Ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cCLh5/1m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E932C116D0;
-	Mon, 12 Jan 2026 08:35:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768206927;
-	bh=V5D00KQSSCPAuJwNVFZw4bpS7MfziiEJZ+NDz6IbqPI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=cCLh5/1mBKOFC24ud3nOCAYSUhYidmyN+RroCh/NLRqB6KSR/8lrBYkkrV+QN7WfQ
-	 W1qadPTMeJX2GHgRikgU6vrIKB8dliwspP8R90q4df/n++0/PYhSTntbB8fgxAto/J
-	 Tr7U04P1d5v+CnSXydEspGSjBh1jc+tEi+D++fThLPPxZDCM6QhpOAfP21g++lhVcA
-	 gEn6gN39y22isbe0ZwWJLe55idVGOgdJcN88Nkj0E2BPESV0PHukraTvc/cGZ4WWPc
-	 oefbH+gN6rWIuLoqENd96noLutNysoUOOsnB03BWON/OuFQ1GuC6sddkg39F4qQ7GQ
-	 s/Azf+E9jjHhQ==
-Message-ID: <5cc6b959-4424-4d34-a8b4-eeff237266e2@kernel.org>
-Date: Mon, 12 Jan 2026 09:35:24 +0100
+	s=arc-20240116; t=1768207396; c=relaxed/simple;
+	bh=ylg53CFQMcFOWZq+OaZP8KskwuBY1zcwOT/DVRs6FBQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CGM+iDB1yLiZlnxsjJ6I6Tnb3VfiTF8bcIn8b9YVHICkblUUH5JXKdjCCnppM/CJtXiVQZVetBCTXv0wYskFoBOT4KRTPnsq9AwlyA1qzT0UXk2lsVCGAuX3g/7Hfb+7ujwFpFwO9D95U1TnRB/+JWvzxO/iiIQzc15sDLN+2KU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=MmN64m3L; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=s0Hq7TpKuiBwJrLhHZ1L9fuGzvKt6/dBTepcFLwguoU=; b=MmN64m3LAgnbW+OBKYPXRA9maE
+	P9f51MhW+XhYcvNPwtL+HC1MsnGaYF+NXj/jmhU7XWCdrQiVHpi5Y16eOAksVkwl0QkZb5NWpujJK
+	H0bUUU66ZzHeJae/yYr8zi3GftNMeCfFPdxccqC3cji7XF5ZAmX8uiEywVgNFH2P6OkzhXBFEZQn1
+	Ubs43hHWW0NVzeIO4H+KCOx/LHV/vX3sOWY0w0XybB1BHvsLvGPHqY1ri37For01XQG9jDMPONrkN
+	0iLcpBOd2BE1boDlbokTLKkk0QFiwhg1v+gVGi1J62pOkjfVFngYmHS3dKL4VF4UaK8pU/oyPgV2V
+	2wIv7z0Q==;
+Date: Mon, 12 Jan 2026 09:42:59 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: akemnade@kernel.org, Jean-Baptiste Maneyrol
+ <jean-baptiste.maneyrol@tdk.com>, David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
+ <andy@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
+ <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: ti/omap: omap4-epson-embt2ws: fix typo in
+ iio device property
+Message-ID: <20260112094259.4648cfaa@kemnade.info>
+In-Reply-To: <20260111123200.6871a41b@jic23-huawei>
+References: <20251231-mpu9150-v1-0-08ecf085c4ae@kernel.org>
+	<20251231-mpu9150-v1-2-08ecf085c4ae@kernel.org>
+	<20260111123200.6871a41b@jic23-huawei>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: axiado: Use lowercase hex
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251223152432.155299-2-krzysztof.kozlowski@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251223152432.155299-2-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 23/12/2025 16:24, Krzysztof Kozlowski wrote:
-> The DTS code coding style expects lowercase hex for values and unit
-> addresses.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
-> ---
-> 
-> Patches done with sed, verified with comparing unflattened DTB and
-> dtx_diff.
-> ---
->  arch/arm64/boot/dts/axiado/ax3000.dtsi | 2 +-
+On Sun, 11 Jan 2026 12:32:00 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-Ping! Anyone in Axiado is handling patches?
+> On Wed, 31 Dec 2025 22:14:17 +0100
+> akemnade@kernel.org wrote:
+> 
+> > From: Andreas Kemnade <andreas@kemnade.info>
+> > 
+> > Define interrupts properly. Unfortunately, this hides a bug in the linux
+> > driver, so it needs to be used with the driver fixed only.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>  
+> 
+> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+> Not related to patch 1 so if TI soc folk can pick this up that would be
+> great.
+> 
+well, it needs things fixed via patch 1 to avoid creating havoc...
+But from a strictly dogmatic point of view the devicetree describes the
+hardware, so it is unrelated.
+... but from a more pragmatic point of view, I do not want to have interrupts
+enabled for drivers which do not handle them correctly.
 
-Best regards,
-Krzysztof
+Of course this should be picked up by omap folks.
+
+Regards,
+Andreas
 
