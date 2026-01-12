@@ -1,53 +1,59 @@
-Return-Path: <devicetree+bounces-253920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F6DD129F5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 928FED12AC2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:05:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 34646302D5F1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:54:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4689F300C287
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:05:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A248B2DA75C;
-	Mon, 12 Jan 2026 12:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C018D3563EA;
+	Mon, 12 Jan 2026 13:05:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FNb9xu+t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9745946C;
-	Mon, 12 Jan 2026 12:54:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B034C34DB7C;
+	Mon, 12 Jan 2026 13:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768222445; cv=none; b=YrLh1Ve4QXGd3epcNUiRgIRtmSZ6KxTAMYiRbOCw2E+nnVg25it9Cef0V2sClpWGuHgQZimSahA7ijww9lI2Jv765sK/7K2FCdz8z3nZ+gGxOM7nKpVEGTUE9kTWoSOfPfNdXMrel/572gHltzbChNk/aGwiF7CKK4N+PkeEzD0=
+	t=1768223123; cv=none; b=NMIEjM+icCiMMSshzCUCK4Uto8LsCudAj4Nug3FTG4Ti0sPsG9u6GdH+tXJ0hw+nJLWgKjzf9tvbAX4Cm4/Yqic1v0kFZTiMXIoMTuDjaYpviUn+UnJNiVg7+KxMSE9So7cyQHE7uFk3zppPHl/WXrEeCQqSWKna79qOEwJx6R0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768222445; c=relaxed/simple;
-	bh=TkA4+lEMbIiaNPMCszVYC7GBLIn/22hG8ynQNjhOSIE=;
+	s=arc-20240116; t=1768223123; c=relaxed/simple;
+	bh=flvvAsmXXQZQ8BR4vFmMtqKqClj4vBglabEbpV7HO+I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lvvZUshsQnMA95vvNRCQ+qvoaEH0JvT/5MqgF8H7dTj8gDKm+jDs9O8369qvr/7abzS/GrcBvy+GJSh0pc6qrVOS0UptvyPLSNTXbkhpGTZGMxP2i59SNx09t44zUNEqidknMthwJlzGj3ZK9l0WaRG6Q5Byu1KK7SfsOOu4Krw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 92369497;
-	Mon, 12 Jan 2026 04:53:56 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EDFE83F694;
-	Mon, 12 Jan 2026 04:54:01 -0800 (PST)
-Date: Mon, 12 Jan 2026 12:53:54 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, arm-scmi@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] firmware: arm_scmi: Implement arm,poll-transport
- property
-Message-ID: <aWTu4o4Z59QQOc2O@pluto>
-References: <20251231213016.185575-1-marek.vasut+renesas@mailbox.org>
- <20251231213016.185575-2-marek.vasut+renesas@mailbox.org>
- <aWTjs1Y9yoz1k4Ry@bogus>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iYh6c+rEEjw/srHo2kpznbpEkVS4hjPEYRJmdIMjWe03yP7E+NFyj0SgPsQvyYFE9LOs5O03l+QzPAYV6hWsRl75dD9rPwX04+iTlDtNg6eVdDgjrJhZIL/cJlZXrJeZXc08Tf886lR6Puy1PA1XTtNxt/cpgfaaXhdCaxjiSAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FNb9xu+t; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=IaMUeZ61KcIsfoWqo/Ut8gaTEoMImMfZQvRUuQXMr0A=; b=FNb9xu+tpIA986WGcfc5GGMrjd
+	n3ULGTmqRy2V3mm8zr2D6gvBUA2NkIUJ5RPDBO5YDNYtVN/nexDz17BCrQr++Rw1YextI9pzoPX5k
+	P8ldWbbwbEiYZhxv1cmOtiIiMuBQki4Ye/NY65H1s5cPa9L0S0FmKm0Q+vvaX+9Tw16Q=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vfHba-002TRY-Cd; Mon, 12 Jan 2026 14:05:10 +0100
+Date: Mon, 12 Jan 2026 14:05:10 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, sjakhade@cadence.com,
+	rogerq@kernel.org, thomas.richard@bootlin.com,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	srk@ti.com
+Subject: Re: [PATCH v3 2/2] phy: cadence-torrent: Add PCIe + XAUI multilink
+ configuration for 100MHz refclk
+Message-ID: <38da25fd-a402-4b34-8131-0655bccc1953@lunn.ch>
+References: <20260112054636.108027-1-s-vadapalli@ti.com>
+ <20260112054636.108027-3-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,86 +62,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aWTjs1Y9yoz1k4Ry@bogus>
+In-Reply-To: <20260112054636.108027-3-s-vadapalli@ti.com>
 
-On Mon, Jan 12, 2026 at 12:06:11PM +0000, Sudeep Holla wrote:
-> On Wed, Dec 31, 2025 at 10:29:19PM +0100, Marek Vasut wrote:
-> > Implement new property arm,poll-transport, which sets all SCMI operation into
-> > poll mode. This is meant to work around uncooperative SCP implementations,
-> > which do not generate completion interrupts. This applies to mbox/shmem based
-> > implementations.
-> > 
-> > With this property set, such implementations which do not generate interrupts
-> > can be interacted with, until they are fixed to generate interrupts properly.
-> > 
-> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> > ---
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Cristian Marussi <cristian.marussi@arm.com>
-> > Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Sudeep Holla <sudeep.holla@arm.com>
-> > Cc: arm-scmi@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: linux-renesas-soc@vger.kernel.org
-> > ---
-> > V2: Drop no IRQ handling from SMC transport and update commit message
-> > ---
-> >  drivers/firmware/arm_scmi/common.h | 4 ++++
-> >  drivers/firmware/arm_scmi/driver.c | 4 ++++
-> >  2 files changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
-> > index 7c35c95fddbaf..7c9617d080a02 100644
-> > --- a/drivers/firmware/arm_scmi/common.h
-> > +++ b/drivers/firmware/arm_scmi/common.h
-> > @@ -235,6 +235,9 @@ struct scmi_transport_ops {
-> >   *		      to have an execution latency lesser-equal to the threshold
-> >   *		      should be considered for atomic mode operation: such
-> >   *		      decision is finally left up to the SCMI drivers.
-> > + * @no_completion_irq: Flag to indicate that this transport has no completion
-> > + *		       interrupt and has to be polled. This is similar to the
-> > + *		       force_polling below, except this is set via DT property.
-> >   * @force_polling: Flag to force this whole transport to use SCMI core polling
-> >   *		   mechanism instead of completion interrupts even if available.
-> >   * @sync_cmds_completed_on_ret: Flag to indicate that the transport assures
-> > @@ -254,6 +257,7 @@ struct scmi_desc {
-> >  	int max_msg;
-> >  	int max_msg_size;
-> >  	unsigned int atomic_threshold;
-> > +	bool no_completion_irq;
-> >  	const bool force_polling;
+On Mon, Jan 12, 2026 at 11:16:31AM +0530, Siddharth Vadapalli wrote:
+> From: Swapnil Jakhade <sjakhade@cadence.com>
 > 
-> My preference would be to reuse `force_polling` for this. We need to drop
-> const but that should be OK. Anyways I would like to know if Cristian thinks
-> otherwise for any reasons I might be missing to see.
+> Add register sequences for PCIe + XAUI multilink configuration for
+> 100MHz reference clock.
+> 
+> The register sequences are fetched from a table by indexing entries based
+> on unique 'keys' generated by the Bitwise OR defined below:
+> 	REFCLK0_RATE | REFCLK1_RATE | LINK0_TYPE | LINK1_TYPE | SSC_TYPE
+> 
+> As of now, LINK_TYPE is a 3-bit value corresponding to the PHY type.
+> With the introduction of TYPE_XAUI, we need a 4-bit value to represent
+> the LINK_TYPE as TYPE_XAUI has the numerical value 8. Hence, extend the
+> LINKx_MASK macros to 4-bit masks. While at it, extend REFCLKx_MASK macros
+> as well to 4-bit masks to support reference clock frequencies that will be
+> added in the future.
+> 
+> Adjust the 'LINKx_SHIFT' and the 'REFCLKx_SHIFT' macros to account for
+> the aforementioned changes made to the masks.
+> 
+> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
+> [s-vadapalli: elaborated on changes made to macros in the commit message]
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-I would rather keep the 2 things separate since force_polling is more of
-a brutal low level debug/test facility and, even though it basically
-produces the same result as the new @no_completion_irq, if we remove it
-and unify it in a single boolean that can be overriden from the DT we end
-up in a situation in which we cannot anymore easily force_polling by
-switching the flag in the code since it could be overridden by a
-conflicting 'arm,poll-transport' DT setup. (and you have to patch DT
-for testing)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-So if we have one single underlying boolean (e.g. 'poll') and by any chance
-we end up with a DT containing:
-
-	arm,poll-transport = false
-
-we cannot anymore override the condition by forcing in the code
-
-	poll = true,
-
-since it would be switfly overridden by the DT prop.
-
-Also semantically force_polling express much more the situation.
-
-Anyway...I may be overthinking or missing something.
-
-Cheers,
-Cristian
+    Andrew
 
