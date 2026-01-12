@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-253992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB789D13207
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:29:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BAED1320F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:30:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 38C13301A80C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:23:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 248D830198E4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADDEC35EDC0;
-	Mon, 12 Jan 2026 14:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84BFA3596EE;
+	Mon, 12 Jan 2026 14:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="rn9eEAn7"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HrELKDXR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67FD935EDA7;
-	Mon, 12 Jan 2026 14:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E329274B30;
+	Mon, 12 Jan 2026 14:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227672; cv=none; b=X42zjWF+3/N176DDi0kUqn3lXEQeqSwG10YAEPCf0GFLwu74NXH2lYm+g0McqGJCPrA9m1La6T9PPz46fTke0D6t10cJEU+AVI/dYl1YlOGgkryDPRIhavW0CoISRLbBWE7y/MStMy5O/S06bfIOuD9MihrXYjldNcB0VuoMi3E=
+	t=1768227677; cv=none; b=N6lKK8klh+bHwf/fGqzye5CHW+ZRsVhTGervkxoqJ/QilXKvzkQAExUun9ZzLdh7yme8cx7asn7oWI6ydN9JzV6D6JKqn9r/ZZfhVbzAXFzrhPfcuRK0rFpJ0CitOlUqEbkFtO4nEOBI2+isUjQ1Ma+PCo+gPi9wru9v5wgyEYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227672; c=relaxed/simple;
-	bh=Fbwc+CPSfjhz85440juvsZ0pX7weWkITVUYz8eTZYfs=;
+	s=arc-20240116; t=1768227677; c=relaxed/simple;
+	bh=Qupti9JYIx5M1WClAqjvNcU4GtJ8Ej/MuffmAQXKn9U=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kBxYJJnYxNsm01/Jj8Os7xaD67ho47wYBdurtIV1fVDEQOiGEzfI9s0plICVloEwv34mrbRlhDQrYwyZWKVMztKKAOT27uWz73jdhkWuDDWfy5IFI8DEOCAAPA6xhWcGwYh30UC5Tz+SuxXZfRFkhFoIYERjlIEvVGZUHSXl0vM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=rn9eEAn7; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version; b=rgzCjy6lyJs3UjPHWQE4xq3xLZlTKZ2PlXMFbCBi6TsuUZ2Ft9iNjGzBoWscuJlcupB4si76nku0YZuF9KlePq3Nu6ecL/oVYaX66ofBNJFxamXiumYVE+fkB0SytnkIOyJ+oAX8rprXrRl1NliWa5RNLtNfQb/6gyRXQE5rM8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HrELKDXR; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 362CD4E42094;
-	Mon, 12 Jan 2026 14:21:09 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id D8CA54E42097;
+	Mon, 12 Jan 2026 14:21:10 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 07055606FA;
-	Mon, 12 Jan 2026 14:21:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EEB0F103C8CD8;
-	Mon, 12 Jan 2026 15:21:06 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id AF1E1606FA;
+	Mon, 12 Jan 2026 14:21:10 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 51B9E103C9260;
+	Mon, 12 Jan 2026 15:21:08 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227668; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227669; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ac92SjZaWRlxbkMuumtO9ux8bEMj0nelgYnFJXuWnmg=;
-	b=rn9eEAn7bhvN55DNBuIKQQjH6ooCxXAzEWYguAG+riKGzMoQwV/ASiVevxkV72czNFaEXA
-	xwF+7kXBdZi39rFSWuZ42t3OOFhkaTjgOf1TTK+hS6YQT5y5C22vScfxnh4EfJCIgCkZA/
-	APs6NB9UowNpVWpoEFcihUFehlZfw79pzrhZ0zVqSk+nSRYNu/MewQPZqa5stIiTsekJrm
-	g/qn2gMLamuAO+y7M4SqhtSz0yFoziIK63afvg9fpiq3IM8fO9agDjklrs0lqokXG6dGW9
-	Yef744q6h2EkDdqtAdK6LZ8zVZbt1pP22mZjCFX4D3SaN6DX2DngJmMelNTONA==
+	bh=FemrtMrSgqeOA8KgOvOh4Sq9DDEMgd+SGRC7M4Bg9u8=;
+	b=HrELKDXR36UQl6h4YdJqaifnopf+5Hprs1KWzhJbc+ZD82OGl9my6cySn0ah/wOOTex+lp
+	Ocu9RypEP74l+HXiyllsQ7DksOEQvNRaXYVCQSt3CVmeVSen6TBD1F4r3MwNZwwqVDbTbo
+	C7WL92fsg7x4TgEMHsAs6bnPGP702EezgbOIcx+N5Emwh3N8GV28QB02HvxwL6pit3PLhK
+	AVQLKwyWnA4shqCTysCtePcrHMK9TdU1UNsh1+L5B8g8CJ53wtj4RFwUkmLC5LiRkGBP7C
+	lTk+Wq0y3Lm/iRW+BB4KGcZAUPIgp79m/Wm+O/cGZNNfFwdPHJ218CPacX6kFw==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 30/77] tests: metadata: Add export symbols with external references tests
-Date: Mon, 12 Jan 2026 15:19:20 +0100
-Message-ID: <20260112142009.1006236-31-herve.codina@bootlin.com>
+Subject: [RFC PATCH 31/77] dtc: Introduce import symbols
+Date: Mon, 12 Jan 2026 15:19:21 +0100
+Message-ID: <20260112142009.1006236-32-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -77,154 +77,113 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-Add tests related to export symbols using external references
-(FDT_EXPORT_SYM_REF dtb tag).
+Import symbols allow to define a list of symbols imported and used by an
+addon.
+
+Those symbols have to be resolved when the addon is applied on a base
+device-tree and will involved exported symbols provided at the node the
+addon is applied to.
+
+Import symbols are similar in term of feature to __fixups__ available
+in device-tree overlays.
+
+The goal is to identify symbols which are used by an addon but not
+defined by the addon itself. Those specific symbols are the imported
+symbols.
+
+Introduce the import symbols list related to an addon. No functional
+change yet but preparation for the future support for import symbol
+parsing.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- tests/metadata_exportsyms_ref.dtb.dts.expect | 25 +++++++++++++++++++
- tests/metadata_exportsyms_ref.dtb.expect     | 18 ++++++++++++++
- tests/metadata_exportsyms_ref.dts            | 26 ++++++++++++++++++++
- tests/metadata_exportsyms_ref.dts.dts.expect | 25 +++++++++++++++++++
- tests/run_tests.sh                           |  3 ++-
- 5 files changed, 96 insertions(+), 1 deletion(-)
- create mode 100644 tests/metadata_exportsyms_ref.dtb.dts.expect
- create mode 100644 tests/metadata_exportsyms_ref.dtb.expect
- create mode 100644 tests/metadata_exportsyms_ref.dts
- create mode 100644 tests/metadata_exportsyms_ref.dts.dts.expect
+ dtc-parser.y | 3 ++-
+ dtc.h        | 4 +++-
+ flattree.c   | 2 +-
+ fstree.c     | 2 +-
+ livetree.c   | 4 +++-
+ 5 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/tests/metadata_exportsyms_ref.dtb.dts.expect b/tests/metadata_exportsyms_ref.dtb.dts.expect
-new file mode 100644
-index 0000000..d2c3320
---- /dev/null
-+++ b/tests/metadata_exportsyms_ref.dtb.dts.expect
-@@ -0,0 +1,25 @@
-+/dts-v1/;
-+/addon/;
-+
-+/ {
-+
-+	node-a {
-+	};
-+
-+	node-b {
-+	};
-+
-+	node-c {
-+
-+		sub-node {
-+
-+			/export/ ref_base_node_a: &base_node_a;
-+			/export/ ref_base_node_b: &base_node_b;
-+		};
-+	};
-+
-+	node-d {
-+
-+		/export/ ref_base_node_c: &base_node_c;
-+	};
-+};
-diff --git a/tests/metadata_exportsyms_ref.dtb.expect b/tests/metadata_exportsyms_ref.dtb.expect
-new file mode 100644
-index 0000000..395861b
---- /dev/null
-+++ b/tests/metadata_exportsyms_ref.dtb.expect
-@@ -0,0 +1,18 @@
-+/dts-v1/;
-+/addon/;
-+
-+/ {
-+    node-a {
-+    };
-+    node-b {
-+    };
-+    node-c {
-+        sub-node {
-+            // [FDT_EXPORT_SYM_REF] 'ref_base_node_a' -> 'base_node_a'
-+            // [FDT_EXPORT_SYM_REF] 'ref_base_node_b' -> 'base_node_b'
-+        };
-+    };
-+    node-d {
-+        // [FDT_EXPORT_SYM_REF] 'ref_base_node_c' -> 'base_node_c'
-+    };
-+};
-diff --git a/tests/metadata_exportsyms_ref.dts b/tests/metadata_exportsyms_ref.dts
-new file mode 100644
-index 0000000..c094be1
---- /dev/null
-+++ b/tests/metadata_exportsyms_ref.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Copyright (C) 2026 Bootlin
-+ */
-+
-+/dts-v1/;
-+/addon/;
-+
-+/ {
-+	node-a {
-+	};
-+
-+	node-b {
-+	};
-+
-+	node-c {
-+		sub_node: sub-node {
-+			/export/ ref_base_node_a: &base_node_a;
-+			/export/ ref_base_node_b: &base_node_b;
-+		};
-+	};
-+
-+	node-d {
-+		/export/ ref_base_node_c: &base_node_c;
-+	};
-+};
-diff --git a/tests/metadata_exportsyms_ref.dts.dts.expect b/tests/metadata_exportsyms_ref.dts.dts.expect
-new file mode 100644
-index 0000000..2654df1
---- /dev/null
-+++ b/tests/metadata_exportsyms_ref.dts.dts.expect
-@@ -0,0 +1,25 @@
-+/dts-v1/;
-+/addon/;
-+
-+/ {
-+
-+	node-a {
-+	};
-+
-+	node-b {
-+	};
-+
-+	node-c {
-+
-+		sub_node: sub-node {
-+
-+			/export/ ref_base_node_a: &base_node_a;
-+			/export/ ref_base_node_b: &base_node_b;
-+		};
-+	};
-+
-+	node-d {
-+
-+		/export/ ref_base_node_c: &base_node_c;
-+	};
-+};
-diff --git a/tests/run_tests.sh b/tests/run_tests.sh
-index fc270e2..1973525 100755
---- a/tests/run_tests.sh
-+++ b/tests/run_tests.sh
-@@ -1126,7 +1126,8 @@ wrap_fdtdump () {
+diff --git a/dtc-parser.y b/dtc-parser.y
+index a0d0aef..4e46e9d 100644
+--- a/dtc-parser.y
++++ b/dtc-parser.y
+@@ -113,7 +113,8 @@ sourcefile:
+ 	  headers memreserves devicetree
+ 		{
+ 			parser_output = build_dt_info($1, $2, $3,
+-			                              guess_boot_cpuid($3));
++			                              guess_boot_cpuid($3),
++						      NULL);
+ 		}
+ 	;
  
- metadata_tests() {
- 	for dt in metadata_reflocal metadata_refphandle \
--		  metadata_addon_base metadata_exportsyms_local; do
-+		  metadata_addon_base metadata_exportsyms_local \
-+		  metadata_exportsyms_ref; do
- 		run_dtc_test -I dts -O dts -o $dt.dts.dts "$SRCDIR/$dt.dts"
- 		base_run_test check_diff $dt.dts.dts "$SRCDIR/$dt.dts.dts.expect"
- 		run_dtc_test -I dts -O dtb -o $dt.dtb "$SRCDIR/$dt.dts"
+diff --git a/dtc.h b/dtc.h
+index 22816ba..796ed51 100644
+--- a/dtc.h
++++ b/dtc.h
+@@ -350,6 +350,7 @@ struct dt_info {
+ 	struct reserve_info *reservelist;
+ 	uint32_t boot_cpuid_phys;
+ 	struct node *dt;		/* the device tree */
++	struct symbol *importsymlist;	/* Import symbol list */
+ 	const char *outname;		/* filename being written to, "-" for stdout */
+ };
+ 
+@@ -360,7 +361,8 @@ struct dt_info {
+ 
+ struct dt_info *build_dt_info(unsigned int dtsflags,
+ 			      struct reserve_info *reservelist,
+-			      struct node *tree, uint32_t boot_cpuid_phys);
++			      struct node *tree, uint32_t boot_cpuid_phys,
++			      struct symbol *importsymlist);
+ void sort_tree(struct dt_info *dti);
+ void generate_label_tree(struct dt_info *dti, const char *name, bool allocph);
+ void generate_fixups_tree(struct dt_info *dti, const char *name);
+diff --git a/flattree.c b/flattree.c
+index d970259..47a289f 100644
+--- a/flattree.c
++++ b/flattree.c
+@@ -1105,5 +1105,5 @@ struct dt_info *dt_from_blob(const char *fname)
+ 
+ 	fclose(f);
+ 
+-	return build_dt_info(DTSF_V1 | dtsflags, reservelist, tree, boot_cpuid_phys);
++	return build_dt_info(DTSF_V1 | dtsflags, reservelist, tree, boot_cpuid_phys, NULL);
+ }
+diff --git a/fstree.c b/fstree.c
+index 445ae53..a6aaf1e 100644
+--- a/fstree.c
++++ b/fstree.c
+@@ -72,5 +72,5 @@ struct dt_info *dt_from_fs(const char *dirname)
+ 	tree = read_fstree(dirname);
+ 	tree = name_node(tree, "");
+ 
+-	return build_dt_info(DTSF_V1, NULL, tree, guess_boot_cpuid(tree));
++	return build_dt_info(DTSF_V1, NULL, tree, guess_boot_cpuid(tree), NULL);
+ }
+diff --git a/livetree.c b/livetree.c
+index 1de5990..4ec9609 100644
+--- a/livetree.c
++++ b/livetree.c
+@@ -531,7 +531,8 @@ struct reserve_info *add_reserve_entry(struct reserve_info *list,
+ 
+ struct dt_info *build_dt_info(unsigned int dtsflags,
+ 			      struct reserve_info *reservelist,
+-			      struct node *tree, uint32_t boot_cpuid_phys)
++			      struct node *tree, uint32_t boot_cpuid_phys,
++			      struct symbol *importsymlist)
+ {
+ 	struct dt_info *dti;
+ 
+@@ -540,6 +541,7 @@ struct dt_info *build_dt_info(unsigned int dtsflags,
+ 	dti->reservelist = reservelist;
+ 	dti->dt = tree;
+ 	dti->boot_cpuid_phys = boot_cpuid_phys;
++	dti->importsymlist = importsymlist;
+ 
+ 	return dti;
+ }
 -- 
 2.52.0
 
