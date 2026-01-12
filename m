@@ -1,270 +1,148 @@
-Return-Path: <devicetree+bounces-253922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31307D12B07
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:09:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0EFD12BB1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DB4C23025A6A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:08:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 773F3300EA3B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25B43587D7;
-	Mon, 12 Jan 2026 13:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED582358D09;
+	Mon, 12 Jan 2026 13:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ONUb602Q"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mT87Ntba"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169943587AA
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 13:08:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B692D9784;
+	Mon, 12 Jan 2026 13:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768223335; cv=none; b=gkSVcUX2Py+9rgJ29JnDDRnjMZkbL7BogwuS7L0kK1cBg6dHShcaVDW3AE5hNmEKorV/Pe/jkEGrX55xa7ewUuN7P8qCOvwWjjr/KZbKKqvAkCt9C/nGHOcjCZV0A12ropMZj43Ka67Z3rcGfcUvV3DxjMXMRqrdHUG+iUKliGw=
+	t=1768224084; cv=none; b=qN9gzv/6j4FxR9Obcf8ooylkUjIcpU+9n2Js3j63IoROJ+5tCLx4aE3at0wMPVF9HjRhNQPtXIH+YlDo/21Gz6XA30jql1hxMh04UtL56rUsz0AESGXmHJIUU4TQ5A1Tz6k1u2c0gwvHb/uJ8x0zlGyEdK41L4BjtF5c0AstSC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768223335; c=relaxed/simple;
-	bh=YTVkCN24/ARJNxBRMbLG2byyse7jCJp1KD9YVEJe7fg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=YGp2m3C76IYYgmIoVZkaBhYrifa36KflvUtgrSsvWnwrAALIRAGCjZnTlA8VdrLgRETYmgA4e+nyoaF2I2WWKNGKwDwv3XEfP+8v2WCY/RY8RDaFB+yi5ksf7z9Io5CauEa7hbP4OVYa+cfs8srH8YEctsknZwSTPHvN568co3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ONUb602Q; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso58439245e9.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 05:08:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768223331; x=1768828131; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BF9HRCZwVM8HohHOVVmaFmMZoI1kBoRSnqS8ZzxwdRQ=;
-        b=ONUb602QVTxB0uTYiPCiU6+kXahVGELlLm3CowLbvvfwCD5mCGdVTasZm5O1ldbT2C
-         VGcxR4itUDFm6VeSBgxaf1gwxRXDJZZOPNgqJVdDeZlW7C2FuPA0mkYYYmhrSrrNLL2e
-         pRKlwPbOSJCgX76N3tQHSjy1+Dcv8453zZp7Y5YxFqeT3T23c3yGhynXocuH3wminpVk
-         PjcmmS2VDK7AFoZCPAUQ76XDNVz+vdz0LL4ME5MRWbHT0q1KZWuAIJkLclzBM/rRVcOX
-         qG8Z6e1sSzpsblBKsVFMJFZM6i7s8AWDfwo0qOLwX3uhplET2h6JPy8BiZxzCMLEmgeq
-         QGzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768223331; x=1768828131;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BF9HRCZwVM8HohHOVVmaFmMZoI1kBoRSnqS8ZzxwdRQ=;
-        b=l/+gzSc9BUQxeAXkmJsXTlTW+DEmisE0b6R1EpEpxMTE8ipHckV2Drg7+SOERk/IA2
-         sxoNvl7E85zEPv+msb5FKDuBuZ0Nz5/hs1GFeilhx8a8A9YBHvazI7tHJZw/k/ZhKLSu
-         r3bdfJ4QeuaNbufYjcIH4GDdyER2zJrWvrWdtbYAygAsuo/vVSpRIjB5Qd3+UmYpymWO
-         Og23c6XZJ7EVIxQBtlPZLX29srH2QqOMFuRMzggAeRvNYsXFvW5TT/F1XPBFNX+LWghm
-         7E1/3D89EhmRk37jmJz5DqykZXh27Up3HsmN3UH+sE+ovJ52KRaA066QveayNWavCyyZ
-         Wlpg==
-X-Forwarded-Encrypted: i=1; AJvYcCXwFtddEebfhtI9qhaC8TBy7m/TC5V/ZxcmCW8j1MwTQltwWpGE3QVa5B+c+Ua9esh2FWKnQ5e0bjis@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLbmQA7zybjUUn0YG7qr8x+DyxpNbXsHdjxmUreGcZzQmh3OP5
-	Qxi6EIW7YdcS4RftNietQddV2rPAJza34QbI/AM4Jjq0yxMfSEjE8fPBnlwNoDw/bfY=
-X-Gm-Gg: AY/fxX5xbFzSFpOXR/KSSM2rV0O1dHhg0nc8KmO3B+FCytifJOqY380NDhpEaQ5AR0o
-	Q4h7JjWSwLzzyyGsRv//LHZSX+FsCCGaTSVOd+Pj2dnoV1UVgQW+fwhe+Zw06UOwYZVJhMRgeks
-	azYpT0WiKziW+rKFOgMkTcduZrrED5+giQdACQ0r2CjHyJPOZNeV4UUD5XpISZQ7BxcO0NJvpGq
-	kxZ9Zx9GwtjwMf9+wn5TRQbCOw1Gygdzg0oWc8vUTDvhwApRO4h7QeodYr0Lbd2pNTJEGoqCNaF
-	tJNQuGRmfYJf3m87AG7OHl/UZV15JpOa1rg7ifNrZ2sBbm1VqJuApw6Mzp8gFsIuSzpSE91YKWQ
-	N6u2HV3MIwEYWbXCQeYsBbrCys+tryTGGnevslBhaC76Cw3nzA1387iCE9O/bjU4D/9UCN7giXB
-	TeTrO/RvZrSfSy3DjrerL7CqdCatmDOlnSP+FZu5Q=
-X-Google-Smtp-Source: AGHT+IEtO2xzsh2F6bjVyeH53ljL8NiwROmn+6MmXlos+dptQWGriTYDZzCaDlYWz//1QpK6zSKEIg==
-X-Received: by 2002:a05:600c:3110:b0:479:3a86:dc1a with SMTP id 5b1f17b1804b1-47d84b41176mr203344865e9.36.1768223331152;
-        Mon, 12 Jan 2026 05:08:51 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080::fa42:7768? ([2a01:e0a:3d9:2080::fa42:7768])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5fe67csm38528840f8f.40.2026.01.12.05.08.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jan 2026 05:08:50 -0800 (PST)
-Message-ID: <99ec09fa-b4e3-4f68-9980-a3dfb81635e8@linaro.org>
-Date: Mon, 12 Jan 2026 14:08:49 +0100
+	s=arc-20240116; t=1768224084; c=relaxed/simple;
+	bh=dYBaoZSy4sn/OXpQRGQxS/cy6FPFm3kwjKBIX2vR0+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o34Qxi+ljJS2JkCuIZJtEPVaNoA5ehSEHmbTr2r+QLhJNqSTzA7FMHD744oAygSKlICm6vJnH/YFlrhLugdZTrmILOMdQGk7QZq47Qq7ssFmjqZ2XojtSQmKCLRCxSG7HZ4hx3E3XF+vsmts8BnKQpMANJQ0XeFpIpMtWSRV6qI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mT87Ntba; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768224083; x=1799760083;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dYBaoZSy4sn/OXpQRGQxS/cy6FPFm3kwjKBIX2vR0+g=;
+  b=mT87Ntba4af/Sg2XviDOa0YCXK0IhSd0f0aH6DWQ0whFleJE1mwy5J06
+   AXamFz58/LhaAQPw1SelUvDcLiNkY8nqAH9nfIuwsIKLXZgCHs/VqABKG
+   UXPn0afe0DxjNSjfXfyztkjk57nxQnv8W9wFrb0RIjNycz/vOAT2LW+DK
+   HDEDT70p46WpS5gY6zDG4X/UZAgcLotSFhq/jZtpWVb+TCRSqAfmqaHfE
+   E+gyGU1hBjwmdRCICBk2tybILR6e1T9lurUcB+WeUN7mf7L3NGYNaHYp2
+   Mxlf9UL9xDDdeyi8g0Ln4DhwSGp9s3GrFkB8fRQE0JRCI3SrVYP0BAIZ/
+   w==;
+X-CSE-ConnectionGUID: dVFKc87wTIeoirPjjmibhA==
+X-CSE-MsgGUID: 1Q4vr0AaS6aViPR64y7+Kg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="68501058"
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="68501058"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 05:21:23 -0800
+X-CSE-ConnectionGUID: 56w8+M7ZTsuqAhpz10IJ5A==
+X-CSE-MsgGUID: O7xf8PsOSzaiQQK5gKXM4w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="209164543"
+Received: from jjgreens-desk21.amr.corp.intel.com (HELO kuha) ([10.124.223.232])
+  by orviesa005.jf.intel.com with SMTP; 12 Jan 2026 05:21:16 -0800
+Received: by kuha (sSMTP sendmail emulation); Mon, 12 Jan 2026 15:20:54 +0200
+Date: Mon, 12 Jan 2026 15:20:54 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Lee Jones <lee@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Badhri Jagan Sridharan <badhri@google.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Subject: Re: [PATCH v3 5/5] usb: typec: tcpm/tcpci_maxim: deprecate WAR for
+ setting charger mode
+Message-ID: <aWT1NgxDSaU7LL2g@kuha>
+References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
+ <20251227-max77759-charger-v3-5-54e664f5ca92@google.com>
+ <aWD_RIPp1ULH9St1@kuha>
+ <9f94993e-dd69-4c9e-b467-aad6031c83d4@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: milos: Add UFS nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Luca Weiss <luca.weiss@fairphone.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
- <20260107-milos-ufs-v1-5-6982ab20d0ac@fairphone.com>
- <2486dc4b-71f3-4cd9-8139-b397407d7e4d@linaro.org>
- <543d9e55-c858-40f9-8785-c9f636850120@linaro.org>
- <DFMH8W40TCJ0.XCTHNRJFJE4T@fairphone.com>
- <ccbaff51-d7fa-4b22-8d4e-02bea5d8a529@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <ccbaff51-d7fa-4b22-8d4e-02bea5d8a529@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9f94993e-dd69-4c9e-b467-aad6031c83d4@google.com>
 
-On 1/12/26 11:29, Konrad Dybcio wrote:
-> On 1/12/26 9:45 AM, Luca Weiss wrote:
->> Hi Neil,
->>
->> On Mon Jan 12, 2026 at 9:26 AM CET, Neil Armstrong wrote:
->>> On 1/7/26 14:53, Neil Armstrong wrote:
->>>> Hi,
->>>>
->>>> On 1/7/26 09:05, Luca Weiss wrote:
->>>>> Add the nodes for the UFS PHY and UFS host controller, along with the
->>>>> ICE used for UFS.
->>>>>
->>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>>> ---
->>>>>    arch/arm64/boot/dts/qcom/milos.dtsi | 127 +++++++++++++++++++++++++++++++++++-
->>>>>    1 file changed, 124 insertions(+), 3 deletions(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
->>>>> index e1a51d43943f..0f69deabb60c 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/milos.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/milos.dtsi
->>>>> @@ -797,9 +797,9 @@ gcc: clock-controller@100000 {
->>>>>                     <&sleep_clk>,
->>>>>                     <0>, /* pcie_0_pipe_clk */
->>>>>                     <0>, /* pcie_1_pipe_clk */
->>>>> -                 <0>, /* ufs_phy_rx_symbol_0_clk */
->>>>> -                 <0>, /* ufs_phy_rx_symbol_1_clk */
->>>>> -                 <0>, /* ufs_phy_tx_symbol_0_clk */
->>>>> +                 <&ufs_mem_phy 0>,
->>>>> +                 <&ufs_mem_phy 1>,
->>>>> +                 <&ufs_mem_phy 2>,
->>>>>                     <0>; /* usb3_phy_wrapper_gcc_usb30_pipe_clk */
->>>>>                #clock-cells = <1>;
->>>>> @@ -1151,6 +1151,127 @@ aggre2_noc: interconnect@1700000 {
->>>>>                qcom,bcm-voters = <&apps_bcm_voter>;
->>>>>            };
->>>>> +        ufs_mem_phy: phy@1d80000 {
->>>>> +            compatible = "qcom,milos-qmp-ufs-phy";
->>>>> +            reg = <0x0 0x01d80000 0x0 0x2000>;
->>>>> +
->>>>> +            clocks = <&rpmhcc RPMH_CXO_CLK>,
->>>>> +                 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
->>>>> +                 <&tcsr TCSR_UFS_CLKREF_EN>;
->>>>> +            clock-names = "ref",
->>>>> +                      "ref_aux",
->>>>> +                      "qref";
->>>>> +
->>>>> +            resets = <&ufs_mem_hc 0>;
->>>>> +            reset-names = "ufsphy";
->>>>> +
->>>>> +            power-domains = <&gcc UFS_MEM_PHY_GDSC>;
->>>>> +
->>>>> +            #clock-cells = <1>;
->>>>> +            #phy-cells = <0>;
->>>>> +
->>>>> +            status = "disabled";
->>>>> +        };
->>>>> +
->>>>> +        ufs_mem_hc: ufshc@1d84000 {
->>>>> +            compatible = "qcom,milos-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
->>>>> +            reg = <0x0 0x01d84000 0x0 0x3000>;
->>>>> +
->>>>> +            interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
->>>>> +
->>>>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
->>>>> +                 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
->>>>> +                 <&gcc GCC_UFS_PHY_AHB_CLK>,
->>>>> +                 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
->>>>> +                 <&tcsr TCSR_UFS_PAD_CLKREF_EN>,
->>>>> +                 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
->>>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
->>>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
->>>>> +            clock-names = "core_clk",
->>>>> +                      "bus_aggr_clk",
->>>>> +                      "iface_clk",
->>>>> +                      "core_clk_unipro",
->>>>> +                      "ref_clk",
->>>>> +                      "tx_lane0_sync_clk",
->>>>> +                      "rx_lane0_sync_clk",
->>>>> +                      "rx_lane1_sync_clk";
->>>>> +
->>>>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
->>>>> +            reset-names = "rst";
->>>>> +
->>>>> +            interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
->>>>> +                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->>>>> +                    <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
->>>>> +                     &cnoc_cfg SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
->>>>> +            interconnect-names = "ufs-ddr",
->>>>> +                         "cpu-ufs";
->>>>> +
->>>>> +            power-domains = <&gcc UFS_PHY_GDSC>;
->>>>> +            required-opps = <&rpmhpd_opp_nom>;
->>>>> +
->>>>> +            operating-points-v2 = <&ufs_opp_table>;
->>>>> +
->>>>> +            iommus = <&apps_smmu 0x60 0>;
->>>>
->>>> dma-coherent ?
->>
->>
->> Given that downstream volcano.dtsi has dma-coherent in the ufshc@1d84000
->> node, looks like this is missing in my patch.
+Fri, Jan 09, 2026 at 06:16:57PM -0800, Amit Sunil Dhamne kirjoitti:
+> Hi Heikki,
 > 
-> Seems that way
+> Thanks for the review!
 > 
->>>>
->>>> and no MCQ support ?
->>
->> Not sure, I could only find one reference to MCQ on createpoint for
->> milos, but given there's no mcq_sqd/mcq_vs reg defined downstream, and I
->> couldn't find anything for the same register values in the .FLAT file, I
->> don't think Milos has MCQ? Feel free to prove me wrong though.
->>
->>>
->>> So, people just ignore my comment ?
->>>
->>> Milos is based on SM8550, so it should have dma-coherent, for the MCQ
->>> I hope they used the fixed added to the SM8650 UFS controller for MCQ.
->>
->> Not sure what this should mean regarding MCQ...
+> On 1/9/26 5:14 AM, Heikki Krogerus wrote:
+> > Hi,
+> >
+> >> +	if (source) {
+> >> +		if (!regulator_is_enabled(chip->vbus_reg))
+> >> +			ret = regulator_enable(chip->vbus_reg);
+> >> +	} else {
+> >> +		if (regulator_is_enabled(chip->vbus_reg))
+> >> +			ret = regulator_disable(chip->vbus_reg);
+> >> +	}
+> > It looks like you have to do one more round, so can drop the
+> > regulator_is_enabled() checks and just always enable/disable it
+> > unconditionally.
+> >
+> >         if (source)
+> > 		ret = regulator_enable(chip->vbus_reg);
+> > 	else
+> > 		ret = regulator_disable(chip->vbus_reg);
 > 
-> This platform doesn't support MCQ
-
-Ack, it must be same situation as Kailua then,
-
-Thanks
-Neil
-
+> The regulator framework uses refcounting on the number of enables. If
+> the number of times regulator is disabled > enabled, a warning will be
+> thrown. Also, I don't want to call regulator_enable more than once for
+> the same refcounting reason (will have to call disable those many number
+> of times to actually disable).
 > 
-> Konrad
+> > I don't think you need the check in any case, but if I've understood
+> > this correctly, you should not use that check when the regulator does
+> > not support that check because then the API claims it's always
+> > enabled. So I guess in that case "if (!regulator_is_enabled())" may
+> > not work as expected, and you may actually be left with a disabled
+> > regulator. This may not be a problem on current platforms, but who
+> > knows what happens in the future.
+> 
+> I don't think this should be an issue in the future as this driver is
+> specifically meant for max77759_tcpci device and should only be used
+> with max77759 charger (they both exist only in the same package). And
+> that the max77759_charger driver does implement the callback. However,
+> if you think that regulator_is_enabled() is unreliable, I could track
+> the state within the tcpci driver instead of calling
+> regulator_is_enabled() and call enable/disable regulator accordingly.
+> 
+> Let me know wdyt and I'll update the next revision accordingly.
 
+Let's go with this then as is.
+
+thanks,
+
+-- 
+heikki
 
