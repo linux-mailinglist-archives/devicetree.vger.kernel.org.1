@@ -1,107 +1,156 @@
-Return-Path: <devicetree+bounces-254057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2690CD1379F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:08:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 670EFD137D4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 464BC310A62B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:56:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB585318E862
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0A92DF142;
-	Mon, 12 Jan 2026 14:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 776E72E093F;
+	Mon, 12 Jan 2026 14:59:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MOzETrib"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="MnoLR01i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4CC2C1586;
-	Mon, 12 Jan 2026 14:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343DA2DCBF8;
+	Mon, 12 Jan 2026 14:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768229767; cv=none; b=CvOSkRlnmjmaOCbYIPDjYyVgTI3rdEarzV77UnZLB49QihtlAH2ILI1P92UbVCfs6k23xxy9+/1aUnVQ7pUa/AvI/gG1942VjsPkK/0UptkMPxnr9+jnkFnbRPyuwZowWKUwVWPZ3k5TTJtrLBja74MtE4aW5zsP8Es3agyCr+4=
+	t=1768229980; cv=none; b=NPDsWig2S0mIE0BTueWwoCOSSBb3ufJjDHvkNDRbTpsBHjBTyaW+kdXKIjDf6pN4558xiEMlJyxiERfMjvRXX0Yt71oU2z24SmZ3b7UHYK0G6HLT6zwYkcAEjXwSTR93RdxKmQ4eHP++Kd0d4q6MqAMFwitOLq08n+BOkWlJUI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768229767; c=relaxed/simple;
-	bh=2+DvUYmYV9U/Yj8ZST1r0/xHoFeYFSLopr9bIm8GCoo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J3wGHgJfvZWqkgAWityNY/ehzz0ejCgz/WTxkvnJSPO0qp0dnZRNOK82xOE3IH9e7x814SDMhz4NYj6Ves3wBudQc0gf9Kq1Zo98xDpGIr2/hXBA6npz2pB31pdgxI4fqxTaGD4V+TVSEbkIpAFGPUSdAKcDzvyyYLAYoVaeDqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MOzETrib; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1768229764;
-	bh=2+DvUYmYV9U/Yj8ZST1r0/xHoFeYFSLopr9bIm8GCoo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MOzETribil6Cl9y0nxG5xkoWU+8V0zB3L08kfQ2O8t5Tl8FkHbdKCPwR0DEjX55Tz
-	 xSsl6e7guJ8jfl4fm6o8F+p8HWe2vq0Whh6fInP33Nz1sXSXXjGuqaEhJVq3PM/lW2
-	 kgCbvGwaeH4lhiXmb8y+FJkBA4PAZDkxwbzb7j6+/Iqw+m44DCMm6kTmE5rWnRAtfI
-	 4YUQqPf8/oKYyW4hWGwz40YWUZyo9rBHiTEiaB0QEHgbCT5p4+cCG8ex6U9LApvVmm
-	 27gx4ZToOO0iNxvt7ZrDBJyupZghIWETlxJmzJF6iOVEzojmMoaHm0qHy4CP0CmE7S
-	 ZO2i4iUPMmuiA==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9919617E13F1;
-	Mon, 12 Jan 2026 15:56:03 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: krzk+dt@kernel.org
-Cc: herbert@gondor.apana.org.au,
-	davem@davemloft.net,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	andrew@lunn.ch,
-	gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	atenart@kernel.org,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH v2 4/4] arm64: dts: mediatek: mt7986a: Change compatible for SafeXcel crypto
-Date: Mon, 12 Jan 2026 15:55:58 +0100
-Message-ID: <20260112145558.54644-5-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260112145558.54644-1-angelogioacchino.delregno@collabora.com>
-References: <20260112145558.54644-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1768229980; c=relaxed/simple;
+	bh=DoySZJb+/dX4tX+SckY2cfiJpr62a6BkVboaZ+y3eVU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Qe6o0cJaP54rq3yMEXCwyxcP1d55E0HgVCo7OBSyFyDuHtEddpBxh1pV4gg9A5YhuN4/k8MQa516nAKpCtRCpM8ulJ9EZeueq6Un5FjQEyQdEUCGYW6wXsVcjhzVBgdV0MREZiWyYuishQIdXxjDPbpcF28NetUGIKQ041SpJi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=MnoLR01i; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=KS6J46kYK+sVTlFskCuxSfFQijC3eqAgPVExn/P68gI=; b=MnoLR01it5M9C9HGwBUEaYaJMq
+	gM5Pq04K8dCUtwU4Go00sCah94kJKOD7OABAtxneRb1A3pRAsJ7NAjA83TXkKUts8mnyTXeSXMTJZ
+	oY/stoK4nBhxF1+fu/FquEBd2Gv/UsY7lNc8QBgf7nMU+V0eZxpo/00RU4QcqEm1nEwo=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:52270 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1vfJOH-009DZw-0c; Mon, 12 Jan 2026 15:59:33 +0100
+From: Matthias Fend <matthias.fend@emfend.at>
+Date: Mon, 12 Jan 2026 15:59:28 +0100
+Subject: [PATCH v2] media: i2c: imx283: add support for non-continuous MIPI
+ clock mode
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260112-imx283-ext-v2-1-9349e3268b4b@emfend.at>
+X-B4-Tracking: v=1; b=H4sIAE8MZWkC/03MQQrCMBCF4auUWRtJRpKmrnoP6SKaqZ1FU0lCq
+ JTe3VgQXP4P3rdBosiU4NpsEKlw4iXUwFMDj8mFJwn2tQElaoXKCJ5XtBdBaxa6M9YZbf2dDNT
+ DK9LI64HdhtoTp7zE92EX9V1/TPvPFCWk6KRxrcFRd+h7mkcK/uwyDPu+fwCRhoVFpAAAAA==
+X-Change-ID: 20251216-imx283-ext-5968a658dbe6
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Umang Jain <uajain@igalia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com, 
+ Matthias Fend <matthias.fend@emfend.at>
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
-Following the changes in the binding for the SafeXcel crypto
-engine, add a SoC specific compatible to the existing crypto
-node and, while at it, also change the fallback compatible to
-inside-secure,safexcel-eip97ies as the eip97 one is deprecated.
+Add support for selecting between continuous and non-continuous MIPI clock
+mode.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Previously, the CSI-2 non-continuous clock endpoint flag was ignored and
+the sensor was always configured for non-continuous clock mode. For
+existing device tree nodes that do not have this property enabled, this
+update will therefore change the actual clock mode.
+
+Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
 ---
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Add support for selecting the MIPI clock mode (continuous, non-continuous).
+---
+Changes in v2:
+- Drop '[PATCH 1/3] media: dt-bindings: imx283: add clock-noncontinuous' (Krzysztof)
+- Drop '[PATCH 3/3] media: i2c: imx283: implement {g,s}_register' (Dave)
+- Link to v1: https://lore.kernel.org/r/20251217-imx283-ext-v1-0-906a762f592d@emfend.at
+---
+ drivers/media/i2c/imx283.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-index 7790601586cc..9693f62fd013 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-@@ -231,7 +231,7 @@ trng: rng@1020f000 {
- 		};
+diff --git a/drivers/media/i2c/imx283.c b/drivers/media/i2c/imx283.c
+index 8ab63ad8f385f6e2a2d7432feff0af09a5356dc4..7a6ab2941ea985401b21d60163b58e980cf31ddc 100644
+--- a/drivers/media/i2c/imx283.c
++++ b/drivers/media/i2c/imx283.c
+@@ -149,6 +149,9 @@
+ #define IMX283_REG_PLSTMG02		CCI_REG8(0x36aa)
+ #define   IMX283_PLSTMG02_VAL		0x00
  
- 		crypto: crypto@10320000 {
--			compatible = "inside-secure,safexcel-eip97";
-+			compatible = "mediatek,mt7986-crypto", "inside-secure,safexcel-eip97ies";
- 			reg = <0 0x10320000 0 0x40000>;
- 			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
++#define IMX283_REG_MIPI_CLK		CCI_REG8(0x3a43)
++#define   IMX283_MIPI_CLK_NONCONTINUOUS	BIT(0)
++
+ #define IMX283_REG_EBD_X_OUT_SIZE	CCI_REG16_LE(0x3a54)
+ 
+ /* Test pattern generator */
+@@ -565,6 +568,7 @@ struct imx283 {
+ 	struct v4l2_ctrl *hblank;
+ 	struct v4l2_ctrl *vflip;
+ 
++	bool mipi_clk_noncontinuous;
+ 	unsigned long link_freq_bitmap;
+ 
+ 	u16 hmax;
+@@ -988,6 +992,7 @@ static int imx283_set_pad_format(struct v4l2_subdev *sd,
+ static int imx283_standby_cancel(struct imx283 *imx283)
+ {
+ 	unsigned int link_freq_idx;
++	u8 mipi_clk;
+ 	int ret = 0;
+ 
+ 	cci_write(imx283->cci, IMX283_REG_STANDBY,
+@@ -1007,6 +1012,10 @@ static int imx283_standby_cancel(struct imx283 *imx283)
+ 	/* Enable PLL */
+ 	cci_write(imx283->cci, IMX283_REG_STBPL, IMX283_STBPL_NORMAL, &ret);
+ 
++	/* Configure MIPI clock mode */
++	mipi_clk = imx283->mipi_clk_noncontinuous ? IMX283_MIPI_CLK_NONCONTINUOUS : 0;
++	cci_write(imx283->cci, IMX283_REG_MIPI_CLK, mipi_clk, &ret);
++
+ 	/* Configure the MIPI link speed */
+ 	link_freq_idx = __ffs(imx283->link_freq_bitmap);
+ 	cci_multi_reg_write(imx283->cci, link_freq_reglist[link_freq_idx].regs,
+@@ -1426,6 +1435,9 @@ static int imx283_parse_endpoint(struct imx283 *imx283)
+ 		goto done_endpoint_free;
+ 	}
+ 
++	imx283->mipi_clk_noncontinuous =
++		bus_cfg.bus.mipi_csi2.flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK;
++
+ 	ret = v4l2_link_freq_to_bitmap(imx283->dev, bus_cfg.link_frequencies,
+ 				       bus_cfg.nr_of_link_frequencies,
+ 				       link_frequencies, ARRAY_SIZE(link_frequencies),
+
+---
+base-commit: 3aa9296a23ec41a8424e9a2346eea59fb6cb7d8c
+change-id: 20251216-imx283-ext-5968a658dbe6
+
+Best regards,
 -- 
-2.52.0
+Matthias Fend <matthias.fend@emfend.at>
 
 
