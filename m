@@ -1,232 +1,124 @@
-Return-Path: <devicetree+bounces-253784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72799D115B5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4D9D115C8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:58:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5981300FF8D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:57:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B7B453010FD8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF15346771;
-	Mon, 12 Jan 2026 08:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB0F3314D7;
+	Mon, 12 Jan 2026 08:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Ihw7f/V+"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="UhWoW7kY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m19731109.qiye.163.com (mail-m19731109.qiye.163.com [220.197.31.109])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7950D3128A0
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 08:57:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288AC346787;
+	Mon, 12 Jan 2026 08:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.109
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768208273; cv=none; b=QXFgD4ZkE4R69nFHw6J6dO9gk9dhRL4YhZFlZaNugs/ODDM6xo+QxfqhKHS73LRoORMF/vW2+YlI5q+Y8iuuxyAqMGoHMYnwYARiY2UVlU13flW/dnCs9gboUAnOPi+vtYhxPERpYij0Zjd8AmnMsi05CXPL41BvrWcOItnVCLo=
+	t=1768208298; cv=none; b=FGChlb7jQUKQ3pHWDSkl4ujRM2EudxE3/TDzi8yt87aAsljbIul/zwPTTbqCjYCLfZ9HPOA7KmoXlR+dSpqhKlQTl38ehbt8oL6W1/FRvXcw+EmLMbzrPcNtCwtRSHMQRAqumLb9s/5y+JPhiAyMF0cHyobf44A53jINbSRHnD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768208273; c=relaxed/simple;
-	bh=VaZMiPzlaOln98uHBtXqBDV1bn/cvr20Z/exAarYh18=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ot0EVbyp917i0PSjqND7Dz2lJugLO/FpWV8yfJK7FwYPHoFIClwHTgVddaTEn8JJTggPyAKT7XMq7xsZghnfYCC0HWFyw1+0ZP4yIibOFo9cBPbmPI/thzZHbvGPqwEJr93YDUYZgXYGVUbKWcE3ZZDm91EFuG24513pgtfnuaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Ihw7f/V+; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-78fba1a1b1eso73999027b3.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 00:57:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768208270; x=1768813070; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BOTnLPv4tv9bJjvux1j20Y+ExCg3MSBOD5unB3qoASs=;
-        b=Ihw7f/V+yLL71zEImJDYZqffSwY1TvOC27N+bQWd/2r4kJIgAe+m4zPdmVVZ9pMPme
-         AQjM5cVw4HpwStJtzS4rOsNsX7A8q8S3ggCBRmsqncySPMZRyr5PPMdMF2w//jZMegy0
-         1zXDKm8Xtyf62pUsUy4hIG4Tjtgy21AzaJy3Rk7MGaIOxPOxghW3hUmRzZDDBMaYaJ7A
-         wy1shBVlbLpV/vLT+cIth+6COaWzylw3y6jGDVi3GCUErRR/GQg9XLK18ElFUHN4/P4q
-         L0BNraYeHxtafUBdPkdz+7Z4LUpiahKAYLB8FPuYv+/NG7pTqKNmvwBmzW/pJaaWs7v3
-         91Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768208270; x=1768813070;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=BOTnLPv4tv9bJjvux1j20Y+ExCg3MSBOD5unB3qoASs=;
-        b=jdsBz36b9IR/sXTT/r8t5ImqkmmNtywYKmBQPO4S64bBPu8YJnU2cuiJDfL1qHSILK
-         3l9aTKK1v13sfyzL/P4/X9wxpQGuNBZ2NrvHKjNGzOG0XV7JnyRsG/IktZDLgaG0Wrw1
-         4YYDlh9zLtkl30kEub70zidOyISsQewlazDJyi6Ppxn9dxpdh+6XvFF6poqxuPS5kz7e
-         5US3JcFPvd0dhe5Nv/s4lq5RAUn7EaF3LbAmmrj3PDgU+cp4OZJtF0xielXMRGnS6749
-         RXih+q1jGG5ruKfQCulNyczgjYSMqVYYHQa4W6kJBWnp+gwkjo2BYx9fZ26dRoM7dS3Z
-         WiDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWoy6/SErAMY2giQCodTDCAxL0OvtsiDkjK5bTkpnFuQH+S10l46wCcl+3HMz6c1xKhzPOq1omb1Qa5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/sUm5nys6JBmKL+HkaasrP2E19vhoX9rX3I3pbddMdTG+AYEb
-	kGocImTPn4PbJ6I4eTyvgeju2rK4xBc0zEO9re8GHknm8MU39GV+zU9KklceUo0BFDDcG26Bzvr
-	4A7rBWUCCzSiNNWjFES2tXaYrumLA9or75cqaFE2cJw==
-X-Gm-Gg: AY/fxX4tvh0VVj00K7CI/ka+MHJjJdNfdDlk0QO0mVrOKM7OudCpl6xSbvs6+Xlp6ne
-	KHIBHRqqPHMUp0eHbS+7NfiuPS1++xobz+0ixPU1bNsRqSOfMmzOfE7OViTmVxVJwHpF5aun6nD
-	2Z0SxIXCXx1vyeSXF6K/09B4MyWl1GZaE238aWEl+nfx74ZCNpSsE9oCL+vNnWIl/MTDy4liSIu
-	DuPNBJ4zebTAHBgwFhotQL5MlFcRU38GApzwF7nG4d4hgiUKHneu5d7CrfD2D13y42k6L5CKAUT
-	MmSeS9a5qvFd6iDUIOxqkytx6AO1U6bcU/G1ky+lZP9+
-X-Google-Smtp-Source: AGHT+IHL6qC6Bkth83Jc0kDsLdGPlb1zjnY+NAdd3aSclQU4CUJsna2Gp1MfFiPTsIdJiiM4QkEp+AQp/YU/RgU4yqo=
-X-Received: by 2002:a05:690e:1917:b0:644:7ad3:6528 with SMTP id
- 956f58d0204a3-6471679490amr11838822d50.41.1768208270556; Mon, 12 Jan 2026
- 00:57:50 -0800 (PST)
+	s=arc-20240116; t=1768208298; c=relaxed/simple;
+	bh=mhRV4RszuvlNMkXJhHZmrq7OlzdMGpEjotoCimX5KaU=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=V2ulHX69r5sOaP5z4RGOIBpvifqTdcqi/ocyig+BAkdLMAxEPdF5+PnLSUmVvAAkpT+ySxkcoWe6SumlMBNFrrdwLNBYa5J47gBERhSZViMJ7TG8VaPbmbKxjn8I0z+Nz6P6tpob64n3jDGAuwZeTfBtL6sBDhJ0YyhjuOPRmCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=UhWoW7kY; arc=none smtp.client-ip=220.197.31.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 30503549a;
+	Mon, 12 Jan 2026 16:58:05 +0800 (GMT+08:00)
+Message-ID: <a346ba30-43f1-4579-91e7-f10d2ccff039@rock-chips.com>
+Date: Mon, 12 Jan 2026 16:58:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
- <20260110-k3-basic-dt-v4-11-d492f3a30ffa@riscstar.com> <20260110095707-GYA12783@gentoo.org>
-In-Reply-To: <20260110095707-GYA12783@gentoo.org>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Mon, 12 Jan 2026 16:57:38 +0800
-X-Gm-Features: AZwV_QjrjPKzZ_O6yKHBkitCXrxqQZum-hZ1CkViiN7l5vhVdnYqXq_Ns-pXHZ0
-Message-ID: <CAH1PCMbXhELJZnUv11izJSqSuzWd0QgvdDKaGXmUefLuUx7-PQ@mail.gmail.com>
-Subject: Re: [PATCH v4 11/11] riscv: dts: spacemit: add SpacemiT K3 Pico-ITX
- board device tree
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Samuel Holland <samuel.holland@sifive.com>, 
-	Anup Patel <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, 
-	Heinrich Schuchardt <xypron.glpk@gmx.de>, Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
-	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	spacemit@lists.linux.dev, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-rockchip@lists.infradead.org,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, heiko@sntech.de,
+ ulf.hansson@linaro.org, Marco Schirrmeister <mschirrmeister@gmail.com>
+Subject: Re: [PATCH v1 0/3] mmc: dw_mmc-rockchip: Add stability quirk for
+ NanoPi R76S
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+References: <20260110010715.1610159-1-mschirrmeister@gmail.com>
+ <67ccb8f6-f9bd-4266-b79a-b688bd6d030b@rock-chips.com>
+ <8536413c-8687-4d75-befb-8f25e54838bf@rock-chips.com>
+ <c3ee063c-ca11-44e4-9e7d-3861a82db3ea@rock-chips.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <c3ee063c-ca11-44e4-9e7d-3861a82db3ea@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9bb16d3dad09cckunmbb41a1112d58c1
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGhodQlZPH0tDTRofTkJJSE9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=UhWoW7kYX66ut3wPXEqeaqrStdUT65OVLJVljFYrFzAtKSuAfDr5Nj5Jx+o9RG2o5GOl4ti7GN4rUCtv9n8sZNMrC6iuDoI1DHO1KJu0zH8PGgYwSODdl6HJjYMT8/xg3nI7FLlQCIaCKzIp69lC+lThQLXLDukwOmOG1kfdABM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=n0N5cpDzl2Io3llDYSRDqgK0DrphJVLWFS2vQbYLFZc=;
+	h=date:mime-version:subject:message-id:from;
 
-Hi, Yixun
+在 2026/01/12 星期一 16:29, Chaoyi Chen 写道:
+> Hi Shawn,
+> 
+> On 1/12/2026 11:56 AM, Shawn Lin wrote:
+>> 在 2026/01/12 星期一 9:32, Shawn Lin 写道:
+>>> 在 2026/01/10 星期六 9:07, Marco Schirrmeister 写道:
+>>>> This series addresses a microSD stability issue on the FriendlyElec
+>>>> NanoPi R76S (RK3576). The board currently suffers from a 400kHz
+>>>> retuning loop when the controller attempts to enter runtime-suspend
+>>>> during idle periods.
+>>>>
+>>>> Evidence of the failure in dmesg:
+>>>> [Fri Jan  2 01:28:02 2026] mmc_host mmc1: Bus speed (slot 0) = 400000Hz
+>>>> [Fri Jan  2 01:28:03 2026] mmc_host mmc1: Bus speed (slot 0) = 198000000Hz
+>>>> [Fri Jan  2 01:28:03 2026] dwmmc_rockchip 2a310000.mmc: Successfully tuned phase to 233
+>>>> [Fri Jan  2 01:28:04 2026] mmc_host mmc1: Bus speed (slot 0) = 400000Hz
+>>>>
+>>>
+>>> Does this problem happen with all microSDs or just *a* microSD per
+>>> your description?
+>>> Have you ever tried to disable SDR104 support?
+>>>
+>>
+>> A quick update.
+>>
+>> I found several problems on RK3576 for supporting sd cards. I wondered
+>> how all upstream RK3576 boards claiming SD support work? Anyway, I sent
+>> a series to the list[1], not sure if it fixes the problem you faced, but
+>> these should be the right patches you should have a try.
+>>
+>>
+>> [1]https://lore.kernel.org/linux-rockchip/1768189768-96333-1-git-send-email-shawn.lin@rock-chips.com/T/#t
+>>
+> 
+> I encountered a similar issue on the RK3576 EVB2.
+> 
+> It seems that the cd-gpios feature are broken, so SD card events
 
-On Sat, Jan 10, 2026 at 5:57=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
->
-> Hi Guodong,
->
-> I have a minor comment for the subject, it's kind of little bit redundant=
-..
-> so, how about (also apply to patch 10):
->
-> [PATCH v4 10/11] riscv: dts: spacemit: add initial support for K3 SoC
-> [PATCH v4 11/11] riscv: dts: spacemit: add K3 Pico-ITX board support
 
-Thanks for the review. Sure, I can do it that way.
+Yes, cd-gpios method for RK3576 is broken now, so you need to apply
+my first 2 fix patches.
 
->
-> On 13:18 Sat 10 Jan     , Guodong Xu wrote:
-> > K3 Pico-ITX is a 2.5-inch single-board computer equipted with a Spacemi=
-T
-> > K3 SoC.
-> >
-> > This minimal device tree enables booting into a serial console with UAR=
-T
-> > output.
-> >
-> > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > ---
-> > v4: No change.
-> > v3: No change.
-> > v2: Add aliases node in this board DT.
-> >     Update the memory node to reflect the hardware truth. Address
-> >      starts at 0x100000000 (4G) boundary.
-> > ---
-> >  arch/riscv/boot/dts/spacemit/Makefile        |  1 +
-> >  arch/riscv/boot/dts/spacemit/k3-pico-itx.dts | 38 ++++++++++++++++++++=
-++++++++
-> >  2 files changed, 39 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dt=
-s/spacemit/Makefile
-> > index 95889e7269d1..7e2b87702571 100644
-> > --- a/arch/riscv/boot/dts/spacemit/Makefile
-> > +++ b/arch/riscv/boot/dts/spacemit/Makefile
-> > @@ -4,3 +4,4 @@ dtb-$(CONFIG_ARCH_SPACEMIT) +=3D k1-milkv-jupiter.dtb
-> >  dtb-$(CONFIG_ARCH_SPACEMIT) +=3D k1-musepi-pro.dtb
-> >  dtb-$(CONFIG_ARCH_SPACEMIT) +=3D k1-orangepi-r2s.dtb
-> >  dtb-$(CONFIG_ARCH_SPACEMIT) +=3D k1-orangepi-rv2.dtb
-> > +dtb-$(CONFIG_ARCH_SPACEMIT) +=3D k3-pico-itx.dtb
-> > diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/=
-boot/dts/spacemit/k3-pico-itx.dts
-> > new file mode 100644
-> > index 000000000000..037ce757e5bc
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-> > @@ -0,0 +1,38 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright (c) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-> > + * Copyright (c) 2025 Guodong Xu <guodong@riscstar.com>
-> strictly, should update to cover current year - which is 2026 now
+> cannot be detected. However, if the SD card is inserted before Linux
+> boots, it can at least start up. I suspect that other boards may behave
+> the same way :)
 
-Yes, that's a mistake. Happy New Year, 2026!
-I will fix that.
+This is true, because .get_cd() returns card present when booting for
+the first time, you the only way for upstream RK3576 boards to use sd 
+cards is to insert the card before booting. But then hot-plug case will
+not able to work.
 
->
-> > + */
-> > +
-> > +#include "k3.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "SpacemiT K3 Pico-ITX";
-> > +     compatible =3D "spacemit,k3-pico-itx", "spacemit,k3";
-> > +
-> > +     aliases {
-> > +             serial0 =3D &uart0;
-> ..
-> > +             serial2 =3D &uart2;
-> > +             serial3 =3D &uart3;
-> > +             serial4 =3D &uart4;
-> > +             serial5 =3D &uart5;
-> > +             serial6 =3D &uart6;
-> > +             serial7 =3D &uart7;
-> > +             serial8 =3D &uart8;
-> > +             serial9 =3D &uart9;
-> > +             serial10 =3D &uart10;
-> I think we only add aliases for devices which actually enabled
+> 
 
-Sure. I see your point.
-
-There are different styles existing in the kernel dts. like sophgo, and the=
-ad.
-I checked th1520-lichee-pi-4a.dts, which has aliases for serial0-5, but
-only enables uart0 actually.
-
-However, for SpacemiT convention, and several others, I see a different sty=
-le.
-In k1 boards, both k1-milkv-jupiter.dts and k1-bananapi-f3.dts only have th=
-e
-serial0 alias, with only uart0 enabled.
-
-For SpacemiT K3 boards, to follow the convention, I will remove the unused
-aliases and fix that in my next version.
-
-Best regards,
-Guodong Xu
-
->
-> > +     };
-> > +
-> > +     chosen {
-> > +             stdout-path =3D "serial0";
-> > +     };
-> > +
-> > +     memory@100000000 {
-> > +             device_type =3D "memory";
-> > +             reg =3D <0x1 0x00000000 0x4 0x00000000>;
-> > +     };
-> > +};
-> > +
-> > +&uart0 {
-> > +     status =3D "okay";
-> > +};
-> >
-> > --
-> > 2.43.0
-> >
->
-> --
->
-> Yixun Lan (dlan)
 
