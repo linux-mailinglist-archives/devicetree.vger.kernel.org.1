@@ -1,135 +1,102 @@
-Return-Path: <devicetree+bounces-254052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 731D8D1377E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:07:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E95D137AA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:08:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 14CA83081F9F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:55:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CEBB6304421C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617E62DB7AE;
-	Mon, 12 Jan 2026 14:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA1A92D5C6C;
+	Mon, 12 Jan 2026 14:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="fQLVxZON"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="mfM7M73s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2529E6F2F2
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:55:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A822D4B68;
+	Mon, 12 Jan 2026 14:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768229721; cv=none; b=pjTeJpLhfgzrMwvfUqJWK8KaJU3N2xjiLp4l7M+f2KhlFad0K5/4BkJf5mVsy5jzYrYv9NO4FUiAQe/pdVncQK8SMfve7ulflTjhVjt1CsifdQUhfQl+RlGRDDlwsirm3eWMgYo756lFANDLHSL1fZfZil+rIZ0rIl6OW3PZU98=
+	t=1768229764; cv=none; b=Eas/WVgt0TrzTW/P3v31rV07JhX1A64VSs06sgZdxflUHKs+ZGy2MIKhp2jRzhrxRmao5jnViWfXTCLxZqOrNpkIFwiVZmomg5tbwjK5qeeEJvtw6JcQx7CEfi4GW6nNbketEZNmqPy6tI826cTyCKlEftLnl5k1BG/G+WB+OXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768229721; c=relaxed/simple;
-	bh=udw57NFssotqrqEj8KCqBZXIM1DX+Oq6n2i7cO+vzXc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c8EfE8d78LnRxutFNwEXavPctGzzIdXsIo1SysVEnjo0KQJlOWV/iW56RAJyGyV/0j2Av2ahrJWlWf/sMDgxlaWQ/TGVtLxGcMkwIT1wQ/rPBnu+XGYxSpm1Zmigd8NXaKoy2XABnajWNFhC+Gtww3vjmCUnpJy/9SESGwS0kmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=fQLVxZON; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-bcfd82f55ebso2222402a12.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:55:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1768229717; x=1768834517; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tCeoeD1NcujYFAQDlchiAtvGNFTdOsvTnQ6PwbSGdbo=;
-        b=fQLVxZONYxMDVdpj/3G6ippit2tlMlUNxItSJKjLNhC2yp8EPMOFaTDuMQ7PvtQYR3
-         r5iL0G0hErDPbnCi1MzZlz3uAtSoO1q0pmyFnQN8NyKCmxEb52kyDss+WkxFQnRHjuWa
-         xhGR/Ik9bAPkNIvHFQR55exKY6om8qSpurcwfSgiJIT2BhQGzP2hSB6ndz0p6Y3+VGco
-         XZSNvXTuHM7P8XSvdXkvtagh8HR/6By2lOygz2pPqanB3SKBDegJMoLLl1QlRBX1KDUO
-         qlvT+14T5zbH/BaXg9/4xpjbmHreusFHhYm2YJ2bBSI8niyjLiYJr+0XeQwsWGJc28+u
-         BZhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768229717; x=1768834517;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tCeoeD1NcujYFAQDlchiAtvGNFTdOsvTnQ6PwbSGdbo=;
-        b=gjOnR9A7YetdAps1ZvXcs/+lChMfmuRKvFqDJLIkbzSB1qwYPre/kXGgikc+mbfTK2
-         cK6o8H58MZ81HO7rb7q1L0Yf4YB0cQesUExaw2XTjAHuaaN4EYrKuKwv3QfaAhxA4Spq
-         5Ppgtwzy2BwrnQFb8MGsiNIJ2luq8P7zilU4NVAsMg1fsV3VhKtl4tWBs52PRKKOjk8X
-         t5SewUCYCHgygQiJkQTK9NmdT/qSZBBKctRE7W0tHNszoGJzsm924/3EThMzFPt5MBp7
-         EAYRJg5mdZOVptN2xGlK6c9rYAowZFfp3bLu/uug8hWa7uPjEvUsUGoVNSJfAuTAZZsR
-         tJRA==
-X-Forwarded-Encrypted: i=1; AJvYcCXWZlDmxqmsVqlOhIt00zGIV1nL5/gG2BFavAurHrKjes08Ve2UUHIXc+tOtfwA5qsqCe+SXWi0hs05@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqFJ6M22+PnH779tsGhv0CA5yxSbBPKvexzM40ED0by1BSmaK8
-	RgfUitJ1HMLmO0zMTOSq+t3Mf1FKMute2Yv9M6/WLHpXXeaoy98SfNq1+kYLNJk5ow==
-X-Gm-Gg: AY/fxX5j3vC1A5w3WAEecfl5hcYbIsTL1yz9mCSEtb/HP6oKCJ5F8i3zknwSVjzX7ni
-	RKdB5UfrlUVH4xELhVRFMD3nvKjfHcZFAFZjJZrg7ojEXicsSDGEFz9yW8SMX28pvRaZqhhnAu4
-	X5C/QmGtQgFK28R2jp0KnrrAu2shvwvL04EDMMTEP8SrniL2nziNuFE5fNQsDtYESBhnl2+7aem
-	/VVmtOP05ZwUFUWq/AC4UqiE9w631yK6M9NPiLn6KAAzkAn8h0hU3vT9c0JKtZGV5n28vvwD0WC
-	F2ykJ8ZBwDPpu6bZboyhAoDhmETc4jOv53baoAYaL9TekGBTrMhcZKhAUjMPpVQRvGpOHKeOTiH
-	qFGrzXiA1CmcdDap5Ld1V06hCFRu0HeF7bGDKchmEuvxi3+tkWsNB/3FdPgv7SvPVpVUN2TqZ58
-	p2LGgJKGluMP3/TSj5NSPf7mrlYMnhy0p+C0ucHJ0kCyv2l8jEtxJRh1AMDtOETA==
-X-Google-Smtp-Source: AGHT+IFtAul1lYvdpQwZc3IOUtzJ/XS1Y7WP0i8vum43wraXPGoTXB6Ts5DFcP4wiioQIdrskbtilw==
-X-Received: by 2002:a17:902:da8f:b0:2a0:c92e:a378 with SMTP id d9443c01a7336-2a3edb24516mr170956045ad.7.1768229716815;
-        Mon, 12 Jan 2026 06:55:16 -0800 (PST)
-Received: from ?IPV6:2401:4900:1f3f:e311:7179:901d:930c:942? ([2401:4900:1f3f:e311:7179:901d:930c:942])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cc8d76sm177066875ad.84.2026.01.12.06.55.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jan 2026 06:55:16 -0800 (PST)
-Message-ID: <c725c753-c3a1-461f-856f-7080eb8a97ba@beagleboard.org>
-Date: Mon, 12 Jan 2026 20:25:10 +0530
+	s=arc-20240116; t=1768229764; c=relaxed/simple;
+	bh=tCoHB+9VbDLSgUJNKgtCaz1rSx1hAZupwzWxkTySq3w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L9RbyS0EL3qxf9fM0cGBQpWH/7g5q0xjlhc94OIQTNxsTOfvi9s76jJBWyEpdn4wVBOcRc+uV4vfv/bPuLPGlV8FOdy3eiZQS2XCzGl6r1A4M537x5h5BqcAfE4siq6BCYUxg+98jb9G4sGLPN5lBa3QL7Df4mj2oee0qlPzRx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mfM7M73s; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768229761;
+	bh=tCoHB+9VbDLSgUJNKgtCaz1rSx1hAZupwzWxkTySq3w=;
+	h=From:To:Cc:Subject:Date:From;
+	b=mfM7M73s6rzWwjFv4SPWhwSA7Cq3+Wfcd+DcGC3yyHIZWvo1mKOmxGucpe9M/K1+8
+	 Qcnu6Q6uALbI6wIB1GP1gHNvmwB2ljpv6BCPlbI54ZvyRKTHns1608Eht4cVCnrTzB
+	 3osoub6Ljl8+HR6nCVNZGZrNwUOEA+LaMiXscdnxMkiirmefM7iy6jp6pFyFnUAqxZ
+	 eVXw5YErKOQ4GUI7uxlg4iidRNSiiG5Vssa6V/LxMG9wM58deyv0MHdOeFA7NcXseX
+	 1SgvgTzgUF+C7IvzcG1weTRzr3yapMGHFkgb+6DwL+KC3/yCB9KhC5ySeYuYRtlbEb
+	 SfJi6L0BoXfog==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9791317E0333;
+	Mon, 12 Jan 2026 15:56:00 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: krzk+dt@kernel.org
+Cc: herbert@gondor.apana.org.au,
+	davem@davemloft.net,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	andrew@lunn.ch,
+	gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	atenart@kernel.org,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH v2 0/4] Fixes for EIP97/EIP197 binding and devicetrees
+Date: Mon, 12 Jan 2026 15:55:54 +0100
+Message-ID: <20260112145558.54644-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 01/77] checks: Use consistent type for strspn()
- returned value
-To: Herve Codina <herve.codina@bootlin.com>,
- David Gibson <david@gibson.dropbear.id.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
- Hui Pu <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-2-herve.codina@bootlin.com>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20260112142009.1006236-2-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/12/26 7:48 PM, Herve Codina wrote:
+Changes in v2:
+ - Reorder commits
+ - Change to restrict interrupts/interrupt-names minItems to MediaTek only
 
-> strspn() returns a size_t value.
->
-> The function is called in several places and in all places this value is
-> stored in a size_t variable except in check_node_name_chars_strict().
->
-> Fix the variable type used in check_node_name_chars_strict().
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->   checks.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/checks.c b/checks.c
-> index 5d09216..041e565 100644
-> --- a/checks.c
-> +++ b/checks.c
-> @@ -324,7 +324,7 @@ ERROR(node_name_chars, check_node_name_chars, NODECHARS);
->   static void check_node_name_chars_strict(struct check *c, struct dt_info *dti,
->   					 struct node *node)
->   {
-> -	int n = strspn(node->name, c->data);
-> +	size_t n = strspn(node->name, c->data);
->   
->   	if (n < node->basenamelen)
->   		FAIL(c, dti, node, "Character '%c' not recommended in node name",
+This series adds SoC compatibles to the EIP97/EIP197 binding, and also
+fixes all of the devicetrees to actually declare those in their nodes.
 
+The only platforms using this binding are Marvell and MediaTek.
 
-Reviewed-by: Ayush Singh <ayush@beagleboard.org>
+AngeloGioacchino Del Regno (4):
+  dt-bindings: crypto: inside-secure,safexcel: Add SoC compatibles
+  dt-bindings: crypto: inside-secure,safexcel: Mandate only ring IRQs
+  arm64: dts: marvell: Add SoC specific compatibles to SafeXcel crypto
+  arm64: dts: mediatek: mt7986a: Change compatible for SafeXcel crypto
+
+ .../crypto/inside-secure,safexcel.yaml        | 22 +++++++++++++++++++
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |  3 ++-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |  3 ++-
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  2 +-
+ 4 files changed, 27 insertions(+), 3 deletions(-)
+
+-- 
+2.52.0
 
 
