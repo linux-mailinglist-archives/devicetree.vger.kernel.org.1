@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-253711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96EBBD10C0E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FA91D10C11
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BD6AB3029C2C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:50:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D3F8C303AADE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD12B31A7F2;
-	Mon, 12 Jan 2026 06:50:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3178031AA96;
+	Mon, 12 Jan 2026 06:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="nVJ6a/Ji"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="QLZxGf8e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E830C3128BD;
-	Mon, 12 Jan 2026 06:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D271C3191D1;
+	Mon, 12 Jan 2026 06:50:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768200602; cv=none; b=cpZUP3j/QQYwgD4pSu5tu9yBWLf1DzXsRLGyEZu3HwJNZjHugTFTuq6Vw/90R1txHfzUcHYh8gp5lO2HAcExI1SPFfTzFiZGIPmy0DdKeVk7w9F8CUH+tabH1jpGHhIusVRtkluKtAuPBAc+AM5ys5j9/hNeXsVMqrCW+FPweJM=
+	t=1768200603; cv=none; b=VKmijs4DGe6cY7fk34D/IU05xuTe6xIzmx3sEsiphb2p/0H5z8SnHjjswXCaCtmE486fkTc+NCMlN73OZ21gPyTBDe2qKIZGMaT2U8ib9N1Z+AwLKgZjnP4ksqO18MAbTto+4iCa0E+UvWCHG1fxClo2bGhqXhk10pPQQCYH+qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768200602; c=relaxed/simple;
-	bh=LoiaYZy2WSc50D4dW5Sqre/VeB7KE/k0vjBXzXIqmwM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hgH9dOh+onxzsTqLzPrDs5wQLbNVT7ZTkpySlENRA3lqmksbtEpXvNKKNXcEZLDn1HJB+0OMGUbGHYOkLtYDsuq97QCAkVvpllCHNp32JZ58BmFDnfouD8KFAivFbXCQEh7SLAVZehTmGq9OpmcBTAQ9nSzLs2T5eEC7SplnsGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=nVJ6a/Ji; arc=none smtp.client-ip=198.137.202.133
+	s=arc-20240116; t=1768200603; c=relaxed/simple;
+	bh=1cXPWKziI0lud7gSk8vrzIa8QAJhfZRXofCYwKv2KbQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aXh9UhC9p0KcwMWgN3cxlIxLoHtKxlPNt6XU49Q/wcBkbzdnVrA42jkW3NPtZibqkKhTpWyEitMThmtXnNR6u3IYIGtMaDG27H/CfQBEUg3uxw1hLiXMeOi8sTD4mql010WeNMz108z+Wcw1t/QH0pSbpOMKpg0RgFo+yex6E4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=QLZxGf8e; arc=none smtp.client-ip=198.137.202.133
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
 	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
 	Content-ID:Content-Description:In-Reply-To:References;
-	bh=vW8AxNR6zxeHimRqVJ6SOPdsMiOPq94LUTRJ9LMhnWk=; b=nVJ6a/JiJZY+1nkH1Nv6QgjWOT
-	8boJ98vkFOa8tLT+P8pBNC4sInSeudX1On6Y8DHYJtiiqLEr2CaIDkdhKg4wjsgmVIzVZIlY9PQbT
-	6UZVKsRAewNqcNRxGx1cISwll/AiVeZCL2twAgZKQn+QqtMOzv/MvbsLG8KsFJNfe6wRg4U24YYPt
-	qXk/O5bwo9y/uA8TBFXJqVJNRzyH/RHit7CMCLZu1LVv6gkD1WcQi4AZN8BOodnIOklSgUyXHQB3c
-	etgdo85vK338z8G9p/Ut85im8aLn44FjgCdiiw5gtNY5MyeNyh9+xoHyILnMYjsUWOJcjlvCVRHTu
-	+BVndfcg==;
+	bh=JCZG+WNpYAv5tyKuOS7jPKegbvlT/kcNsBRZ8hMIAuQ=; b=QLZxGf8e25zgf6+LA1KaI+69EA
+	1tcQQ5UoVwutsKh0pHCYgbEhgOkCgpkXMPvCqtOIC2rDc2ieIfZx9ozJP4clL81ZaThjjpmRcY7wJ
+	+x934LC22YeWQkKhoNNUSq7lc/vFpiye/JjFa8QktY8BbAGVqQvLLmq2WWN/J30vmxzklz92uhFjE
+	qMU+jK+JTNcG2F7kBJZVNL5SgbHQ8wNUcz0Yn4FeS/ljcx44au9CaS6FEO8dJ0LRjxg3SY5CdHwoe
+	8BOLOs13y6ntj/tpdcYbcy1M9qMDVkL89Y9dVYxJyzKKjZZZoHBqrBUgpQaxb5Ohp4qCqqHtNuyEm
+	K4rVqt3Q==;
 Received: from [50.53.43.113] (helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vfBkN-00000004pyD-1eXq;
-	Mon, 12 Jan 2026 06:49:51 +0000
+	id 1vfBkW-00000004pyp-0Wnm;
+	Mon, 12 Jan 2026 06:50:00 +0000
 From: Randy Dunlap <rdunlap@infradead.org>
 To: linux-kernel@vger.kernel.org
 Cc: Randy Dunlap <rdunlap@infradead.org>,
 	Robert Marko <robert.marko@sartura.hr>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	linux-gpio@vger.kernel.org,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH] gpio: remove the gpio-tn48m driver
-Date: Sun, 11 Jan 2026 22:49:50 -0800
-Message-ID: <20260112064950.3837737-1-rdunlap@infradead.org>
+Subject: [PATCH] reset: remove the reset-tn48m driver
+Date: Sun, 11 Jan 2026 22:49:58 -0800
+Message-ID: <20260112064958.3837756-1-rdunlap@infradead.org>
 X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,46 +64,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The gpio-tn48m driver is useless without the simple-mfd parent, which is
-not present in the kernel tree, so delete it and all references to it.
-Also delete references to the (missing) mfd driver.
+The reset-tn48m driver is useless without the simple-mfd parent, which
+is not present in the kernel tree, so remove it and references to it.
 
-Fixes: b3dcb5de6209 ("gpio: Add Delta TN48M CPLD GPIO driver")
+Fixes: 5cd3921d16b6 ("reset: Add Delta TN48M CPLD reset controller")
 Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
 ---
 Based on v6.19-rc4.
 
 Cc: Robert Marko <robert.marko@sartura.hr>
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: Bartosz Golaszewski <brgl@kernel.org>
-Cc: linux-gpio@vger.kernel.org
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Rob Herring <robh@kernel.org>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
 Cc: Conor Dooley <conor+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
 
- .../devicetree/bindings/gpio/delta,tn48m-gpio.yaml |  39 --------
- .../devicetree/bindings/mfd/delta,tn48m-cpld.yaml  |  90 -------------------
- MAINTAINERS                                        |   9 --
- drivers/gpio/Kconfig                               |  12 ---
- drivers/gpio/Makefile                              |   1 -
- drivers/gpio/gpio-tn48m.c                          | 100 ---------------------
- 6 files changed, 251 deletions(-)
+ .../bindings/reset/delta,tn48m-reset.yaml          |  35 ------
+ drivers/reset/Kconfig                              |  13 ---
+ drivers/reset/Makefile                             |   1 -
+ drivers/reset/reset-tn48m.c                        | 128 ---------------------
+ include/dt-bindings/reset/delta,tn48m-reset.h      |  20 ----
+ 5 files changed, 197 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
+diff --git a/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
 deleted file mode 100644
-index e3e668a12091..000000000000
---- a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
+index 0e5ee8decc0d..000000000000
+--- a/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
 +++ /dev/null
-@@ -1,39 +0,0 @@
+@@ -1,35 +0,0 @@
 -# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 -%YAML 1.2
 ----
--$id: http://devicetree.org/schemas/gpio/delta,tn48m-gpio.yaml#
+-$id: http://devicetree.org/schemas/reset/delta,tn48m-reset.yaml#
 -$schema: http://devicetree.org/meta-schemas/core.yaml#
 -
--title: Delta Networks TN48M CPLD GPIO controller
+-title: Delta Networks TN48M CPLD reset controller
 -
 -maintainers:
 -  - Robert Marko <robert.marko@sartura.hr>
@@ -114,188 +108,203 @@ index e3e668a12091..000000000000
 -  This module is part of the Delta TN48M multi-function device. For more
 -  details see ../mfd/delta,tn48m-cpld.yaml.
 -
--  Delta TN48M has an onboard Lattice CPLD that is used as an GPIO expander.
--  It provides 12 pins in total, they are input-only or ouput-only type.
+-  Reset controller modules provides resets for the following:
+-  * 88F7040 SoC
+-  * 88F6820 SoC
+-  * 98DX3265 switch MAC-s
+-  * 88E1680 PHY-s
+-  * 88E1512 PHY
+-  * PoE PSE controller
 -
 -properties:
 -  compatible:
--    enum:
--      - delta,tn48m-gpo
--      - delta,tn48m-gpi
+-    const: delta,tn48m-reset
 -
--  reg:
--    maxItems: 1
--
--  "#gpio-cells":
--    const: 2
--
--  gpio-controller: true
--
--required:
--  - compatible
--  - reg
--  - "#gpio-cells"
--  - gpio-controller
--
--additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-deleted file mode 100644
-index d3b79140cce2..000000000000
---- a/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-+++ /dev/null
-@@ -1,90 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/mfd/delta,tn48m-cpld.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Delta Networks TN48M CPLD controller
--
--maintainers:
--  - Robert Marko <robert.marko@sartura.hr>
--
--description: |
--  Lattice CPLD onboard the TN48M switches is used for system
--  management.
--
--  It provides information about the hardware model, revision,
--  PSU status etc.
--
--  It is also being used as a GPIO expander and reset controller
--  for the switch MAC-s and other peripherals.
--
--properties:
--  compatible:
--    const: delta,tn48m-cpld
--
--  reg:
--    description:
--      I2C device address.
--    maxItems: 1
--
--  "#address-cells":
+-  "#reset-cells":
 -    const: 1
 -
--  "#size-cells":
--    const: 0
--
 -required:
 -  - compatible
--  - reg
--  - "#address-cells"
--  - "#size-cells"
--
--patternProperties:
--  "^gpio(@[0-9a-f]+)?$":
--    $ref: /schemas/gpio/delta,tn48m-gpio.yaml
--
--  "^reset-controller?$":
--    $ref: /schemas/reset/delta,tn48m-reset.yaml
+-  - "#reset-cells"
 -
 -additionalProperties: false
--
--examples:
--  - |
--    i2c {
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        cpld@41 {
--            compatible = "delta,tn48m-cpld";
--            reg = <0x41>;
--            #address-cells = <1>;
--            #size-cells = <0>;
--
--            gpio@31 {
--                compatible = "delta,tn48m-gpo";
--                reg = <0x31>;
--                gpio-controller;
--                #gpio-cells = <2>;
--            };
--
--            gpio@3a {
--                compatible = "delta,tn48m-gpi";
--                reg = <0x3a>;
--                gpio-controller;
--                #gpio-cells = <2>;
--            };
--
--            gpio@40 {
--                compatible = "delta,tn48m-gpi";
--                reg = <0x40>;
--                gpio-controller;
--                #gpio-cells = <2>;
--            };
--
--            reset-controller {
--              compatible = "delta,tn48m-reset";
--              #reset-cells = <1>;
--            };
--        };
--    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 765ad2daa218..7d3c0d2375c8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7107,15 +7107,6 @@ S:	Maintained
- F:	Documentation/hwmon/dps920ab.rst
- F:	drivers/hwmon/pmbus/dps920ab.c
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 6e5d6deffa7d..e7fca3e5d3b0 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -360,19 +360,6 @@ config RESET_TI_TPS380X
+ 	  you wish to use the reset framework for such devices, say Y here.
+ 	  Otherwise, say N.
  
--DELTA NETWORKS TN48M CPLD DRIVERS
--M:	Robert Marko <robert.marko@sartura.hr>
--S:	Maintained
--F:	Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
--F:	Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
--F:	Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
--F:	drivers/gpio/gpio-tn48m.c
--F:	include/dt-bindings/reset/delta,tn48m-reset.h
--
- DELTA ST MEDIA DRIVER
- M:	Hugues Fruchet <hugues.fruchet@foss.st.com>
- L:	linux-media@vger.kernel.org
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index bd185482a7fd..d1d3f98b87f6 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1619,18 +1619,6 @@ config GPIO_TIMBERDALE
- 	help
- 	Add support for the GPIO IP in the timberdale FPGA.
- 
--config GPIO_TN48M_CPLD
--	tristate "Delta Networks TN48M switch CPLD GPIO driver"
+-config RESET_TN48M_CPLD
+-	tristate "Delta Networks TN48M switch CPLD reset controller"
 -	depends on MFD_TN48M_CPLD || COMPILE_TEST
--	select GPIO_REGMAP
+-	default MFD_TN48M_CPLD
 -	help
--	  This enables support for the GPIOs found on the Delta
--	  Networks TN48M switch Lattice CPLD. It provides 12 pins in total,
--	  they are input-only or output-only type.
+-	  This enables the reset controller driver for the Delta TN48M CPLD.
+-	  It provides reset signals for Armada 7040 and 385 SoC-s, Alleycat 3X
+-	  switch MAC-s, Alaska OOB ethernet PHY, Quad Alaska ethernet PHY-s and
+-	  Microchip PD69200 PoE PSE controller.
 -
--	  This driver can also be built as a module. If so, the
--	  module will be called gpio-tn48m.
+-	  This driver can also be built as a module. If so, the module will be
+-	  called reset-tn48m.
 -
- config GPIO_TPS65086
- 	tristate "TI TPS65086 GPO"
- 	depends on MFD_TPS65086
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index 2421a8fd3733..c3ee30133c24 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -181,7 +181,6 @@ obj-$(CONFIG_GPIO_TEGRA186)		+= gpio-tegra186.o
- obj-$(CONFIG_GPIO_TEGRA)		+= gpio-tegra.o
- obj-$(CONFIG_GPIO_THUNDERX)		+= gpio-thunderx.o
- obj-$(CONFIG_GPIO_TIMBERDALE)		+= gpio-timberdale.o
--obj-$(CONFIG_GPIO_TN48M_CPLD)		+= gpio-tn48m.o
- obj-$(CONFIG_GPIO_TPIC2810)		+= gpio-tpic2810.o
- obj-$(CONFIG_GPIO_TPS65086)		+= gpio-tps65086.o
- obj-$(CONFIG_GPIO_TPS65218)		+= gpio-tps65218.o
-diff --git a/drivers/gpio/gpio-tn48m.c b/drivers/gpio/gpio-tn48m.c
+ config RESET_UNIPHIER
+ 	tristate "Reset controller driver for UniPhier SoCs"
+ 	depends on ARCH_UNIPHIER || COMPILE_TEST
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index 9c3e484dfd81..b6212c21b5b7 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -45,7 +45,6 @@ obj-$(CONFIG_RESET_TH1520) += reset-th1520.o
+ obj-$(CONFIG_RESET_TI_SCI) += reset-ti-sci.o
+ obj-$(CONFIG_RESET_TI_SYSCON) += reset-ti-syscon.o
+ obj-$(CONFIG_RESET_TI_TPS380X) += reset-tps380x.o
+-obj-$(CONFIG_RESET_TN48M_CPLD) += reset-tn48m.o
+ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
+ obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
+ obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
+diff --git a/drivers/reset/reset-tn48m.c b/drivers/reset/reset-tn48m.c
 deleted file mode 100644
-index cd4a80b22794..000000000000
---- a/drivers/gpio/gpio-tn48m.c
+index 130027291b6e..000000000000
+--- a/drivers/reset/reset-tn48m.c
 +++ /dev/null
-@@ -1,100 +0,0 @@
+@@ -1,128 +0,0 @@
 -// SPDX-License-Identifier: GPL-2.0-only
+-/*
+- * Delta TN48M CPLD reset driver
+- *
+- * Copyright (C) 2021 Sartura Ltd.
+- *
+- * Author: Robert Marko <robert.marko@sartura.hr>
+- */
+-
+-#include <linux/device.h>
+-#include <linux/kernel.h>
+-#include <linux/mod_devicetable.h>
+-#include <linux/module.h>
+-#include <linux/platform_device.h>
+-#include <linux/regmap.h>
+-#include <linux/reset-controller.h>
+-
+-#include <dt-bindings/reset/delta,tn48m-reset.h>
+-
+-#define TN48M_RESET_REG		0x10
+-
+-#define TN48M_RESET_TIMEOUT_US	125000
+-#define TN48M_RESET_SLEEP_US	10
+-
+-struct tn48_reset_map {
+-	u8 bit;
+-};
+-
+-struct tn48_reset_data {
+-	struct reset_controller_dev rcdev;
+-	struct regmap *regmap;
+-};
+-
+-static const struct tn48_reset_map tn48m_resets[] = {
+-	[CPU_88F7040_RESET] = {0},
+-	[CPU_88F6820_RESET] = {1},
+-	[MAC_98DX3265_RESET] = {2},
+-	[PHY_88E1680_RESET] = {4},
+-	[PHY_88E1512_RESET] = {6},
+-	[POE_RESET] = {7},
+-};
+-
+-static inline struct tn48_reset_data *to_tn48_reset_data(
+-			struct reset_controller_dev *rcdev)
+-{
+-	return container_of(rcdev, struct tn48_reset_data, rcdev);
+-}
+-
+-static int tn48m_control_reset(struct reset_controller_dev *rcdev,
+-			       unsigned long id)
+-{
+-	struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
+-	unsigned int val;
+-
+-	regmap_update_bits(data->regmap, TN48M_RESET_REG,
+-			   BIT(tn48m_resets[id].bit), 0);
+-
+-	return regmap_read_poll_timeout(data->regmap,
+-					TN48M_RESET_REG,
+-					val,
+-					val & BIT(tn48m_resets[id].bit),
+-					TN48M_RESET_SLEEP_US,
+-					TN48M_RESET_TIMEOUT_US);
+-}
+-
+-static int tn48m_control_status(struct reset_controller_dev *rcdev,
+-				unsigned long id)
+-{
+-	struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
+-	unsigned int regval;
+-	int ret;
+-
+-	ret = regmap_read(data->regmap, TN48M_RESET_REG, &regval);
+-	if (ret < 0)
+-		return ret;
+-
+-	if (BIT(tn48m_resets[id].bit) & regval)
+-		return 0;
+-	else
+-		return 1;
+-}
+-
+-static const struct reset_control_ops tn48_reset_ops = {
+-	.reset		= tn48m_control_reset,
+-	.status		= tn48m_control_status,
+-};
+-
+-static int tn48m_reset_probe(struct platform_device *pdev)
+-{
+-	struct tn48_reset_data *data;
+-	struct regmap *regmap;
+-
+-	regmap = dev_get_regmap(pdev->dev.parent, NULL);
+-	if (!regmap)
+-		return -ENODEV;
+-
+-	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+-	if (!data)
+-		return -ENOMEM;
+-
+-	data->regmap = regmap;
+-
+-	data->rcdev.owner = THIS_MODULE;
+-	data->rcdev.ops = &tn48_reset_ops;
+-	data->rcdev.nr_resets = ARRAY_SIZE(tn48m_resets);
+-	data->rcdev.of_node = pdev->dev.of_node;
+-
+-	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
+-}
+-
+-static const struct of_device_id tn48m_reset_of_match[] = {
+-	{ .compatible = "delta,tn48m-reset" },
+-	{ }
+-};
+-MODULE_DEVICE_TABLE(of, tn48m_reset_of_match);
+-
+-static struct platform_driver tn48m_reset_driver = {
+-	.driver = {
+-		.name = "delta-tn48m-reset",
+-		.of_match_table = tn48m_reset_of_match,
+-	},
+-	.probe = tn48m_reset_probe,
+-};
+-module_platform_driver(tn48m_reset_driver);
+-
+-MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
+-MODULE_DESCRIPTION("Delta TN48M CPLD reset driver");
+-MODULE_LICENSE("GPL");
+diff --git a/include/dt-bindings/reset/delta,tn48m-reset.h b/include/dt-bindings/reset/delta,tn48m-reset.h
+deleted file mode 100644
+index d4e9ed12de3e..000000000000
+--- a/include/dt-bindings/reset/delta,tn48m-reset.h
++++ /dev/null
+@@ -1,20 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0-only */
 -/*
 - * Delta TN48M CPLD GPIO driver
 - *
@@ -304,95 +313,15 @@ index cd4a80b22794..000000000000
 - * Author: Robert Marko <robert.marko@sartura.hr>
 - */
 -
--#include <linux/device.h>
--#include <linux/gpio/driver.h>
--#include <linux/gpio/regmap.h>
--#include <linux/mod_devicetable.h>
--#include <linux/module.h>
--#include <linux/platform_device.h>
--#include <linux/regmap.h>
+-#ifndef _DT_BINDINGS_RESET_TN48M_H
+-#define _DT_BINDINGS_RESET_TN48M_H
 -
--enum tn48m_gpio_type {
--	TN48M_GP0 = 1,
--	TN48M_GPI,
--};
+-#define CPU_88F7040_RESET	0
+-#define CPU_88F6820_RESET	1
+-#define MAC_98DX3265_RESET	2
+-#define PHY_88E1680_RESET	3
+-#define PHY_88E1512_RESET	4
+-#define POE_RESET		5
 -
--struct tn48m_gpio_config {
--	int ngpio;
--	int ngpio_per_reg;
--	enum tn48m_gpio_type type;
--};
--
--static const struct tn48m_gpio_config tn48m_gpo_config = {
--	.ngpio = 4,
--	.ngpio_per_reg = 4,
--	.type = TN48M_GP0,
--};
--
--static const struct tn48m_gpio_config tn48m_gpi_config = {
--	.ngpio = 4,
--	.ngpio_per_reg = 4,
--	.type = TN48M_GPI,
--};
--
--static int tn48m_gpio_probe(struct platform_device *pdev)
--{
--	const struct tn48m_gpio_config *gpio_config;
--	struct gpio_regmap_config config = {};
--	struct regmap *regmap;
--	u32 base;
--	int ret;
--
--	if (!pdev->dev.parent)
--		return -ENODEV;
--
--	gpio_config = device_get_match_data(&pdev->dev);
--	if (!gpio_config)
--		return -ENODEV;
--
--	ret = device_property_read_u32(&pdev->dev, "reg", &base);
--	if (ret)
--		return ret;
--
--	regmap = dev_get_regmap(pdev->dev.parent, NULL);
--	if (!regmap)
--		return -ENODEV;
--
--	config.regmap = regmap;
--	config.parent = &pdev->dev;
--	config.ngpio = gpio_config->ngpio;
--	config.ngpio_per_reg = gpio_config->ngpio_per_reg;
--	switch (gpio_config->type) {
--	case TN48M_GP0:
--		config.reg_set_base = base;
--		break;
--	case TN48M_GPI:
--		config.reg_dat_base = base;
--		break;
--	default:
--		return -EINVAL;
--	}
--
--	return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&pdev->dev, &config));
--}
--
--static const struct of_device_id tn48m_gpio_of_match[] = {
--	{ .compatible = "delta,tn48m-gpo", .data = &tn48m_gpo_config },
--	{ .compatible = "delta,tn48m-gpi", .data = &tn48m_gpi_config },
--	{ }
--};
--MODULE_DEVICE_TABLE(of, tn48m_gpio_of_match);
--
--static struct platform_driver tn48m_gpio_driver = {
--	.driver = {
--		.name = "delta-tn48m-gpio",
--		.of_match_table = tn48m_gpio_of_match,
--	},
--	.probe = tn48m_gpio_probe,
--};
--module_platform_driver(tn48m_gpio_driver);
--
--MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
--MODULE_DESCRIPTION("Delta TN48M CPLD GPIO driver");
--MODULE_LICENSE("GPL");
+-#endif /* _DT_BINDINGS_RESET_TN48M_H */
 
