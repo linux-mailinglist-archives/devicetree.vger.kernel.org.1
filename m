@@ -1,116 +1,139 @@
-Return-Path: <devicetree+bounces-254110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB512D140DE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:33:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E4AD141E3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:43:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C0658300A533
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:32:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DCA713059A5C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E49365A1E;
-	Mon, 12 Jan 2026 16:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0DA5366DC4;
+	Mon, 12 Jan 2026 16:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n06VKge/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="crpvPHEn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C47C365A0E;
-	Mon, 12 Jan 2026 16:32:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95582DA771;
+	Mon, 12 Jan 2026 16:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768235574; cv=none; b=QP2Ctvm7/B6BOhIpD3twzJQVcLsVvJXi8OELz1yQVcldRYNOurajxfwXpUJq7z9KO1Ki/oAmu62D8WhfKyAB7G0C49KNMHlV5x0t/kxGBZ2AdrLbPillHaVB2AXUUeJOOOD2EdLWa9uLBz4vBCXokOzRfRPrKJpm4WiqBoalECE=
+	t=1768235921; cv=none; b=Jq9Iqp0sve4Ej33nFG8kVQsi0QTd0tbtNJbP1pjv25OWiSKxD6WMG5v9i1BI5r0dULZ1IjtQmQKw1tz3rw69mSo5iN2d66IUVcnPy7pB7v/VNDG4Zt/OBs+2fol9nqmDdFVjtO5LpsWkQw0aCKkjf+owYlTbgVprJGxv5s3jXME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768235574; c=relaxed/simple;
-	bh=NpW82Ke+nzxEz6aeANGPyr2oNuEfY8j0dI+XrayeXKQ=;
+	s=arc-20240116; t=1768235921; c=relaxed/simple;
+	bh=1BjozNva2gaBLg6k04odG9/IkL7rt3VXY1ysguxcyVI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FnqlylRAmeSsRfy3GXNKU2rap8wdunbFv7qYPzc5eMLll3AOI2crBJ1XiVnVlv2e8l5RsqScoa8v6+8iiyOoWcktZlcx/JzN5HL2nyflKn0WqJbdQVO+ZA/2BTpgd+LnxhOZrzifGGUXk5IjP8zDk8F2rU/zWyUDJssrkqIcIow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n06VKge/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4F8FC116D0;
-	Mon, 12 Jan 2026 16:32:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768235574;
-	bh=NpW82Ke+nzxEz6aeANGPyr2oNuEfY8j0dI+XrayeXKQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n06VKge/OPw86uOO8f9x/O9tjaPOahKzfucvMrkSuCKeGGgAHqFw9OQSgCwYZq6Kt
-	 b1bYuv0eNOhSAajtYUMFIxo+hhePDgxJpLdflH7n9BiHaQjosjLmnnwyOu0acBHveE
-	 hFmKaNOqlLnHy3WdEoL5vUgZD1lOHJQV3jAX4dtZMkIcY4WbZKEn1QyWjPV2WI9qrJ
-	 b4MH5R7dgWPvXai1HVQ1DY6kUHZdjFZlzBVfGC6uRnkYotD//JPiho6C+wn96eepbc
-	 HPd5CItwA0nrPi/2CgRGFYrfnN5cqUMQKmLz6tocThMcL/96017mwy211oEhtJODIS
-	 g4Wm9YakQSOVg==
-Date: Mon, 12 Jan 2026 16:32:47 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=uGXn4oMSNcXkVchHUL4UM2lx7gsjKStPwQR3H0qEZxAAEfdMIGPlMqCZ4WHSVJV4vtuhwqYyc78kDF8aEqWTIuOEQTX7IhBeY+C2QWAEIGT+7lq1G2g0aRNy5N9k4otYEVLSrgvlLDzCLFmRk0gqJVMTl6JOceYYxlsqTOGexMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=crpvPHEn; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768235919; x=1799771919;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1BjozNva2gaBLg6k04odG9/IkL7rt3VXY1ysguxcyVI=;
+  b=crpvPHEnvBSlYueAZfi88snxOKiR6c/CkAWb93qKVekRZJ7oeVr9qjx4
+   8/CkRW3GaQE/Fk3r9nFZPXDjpZq1fwpvTlYnLnhy8k1C5ICvGDHmTqNRK
+   0OpYW4tcAx8fxtUOP/YiZiEDd8X0U+TrVUhy/It+AcuTRe0eHXQtnsKS0
+   Zb82hcqnmTGoGjgHMWodpxxjoSlnYE0rA5x7OC6x6OarC73ccYp1kW7Mf
+   4Q+loaovBAgfvGTMOUu2xIJviW1u7YROe7VtxYHOPzm+8GW+jwxEcUVne
+   GrScjSdFDL1GARMt70ij7vHKz1WzNAGjdUBrbCddKwryFvWR1DJosG83b
+   g==;
+X-CSE-ConnectionGUID: /7E2OMO3SkmJ9KAsIuyWQw==
+X-CSE-MsgGUID: e+tZzl08R5uPNMZ6Inyt+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69439347"
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="69439347"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 08:38:39 -0800
+X-CSE-ConnectionGUID: HjepE92rSi+YewpXaVU9aA==
+X-CSE-MsgGUID: Wz3E33p6RWSK5dS3rQ16Nw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="235372759"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 12 Jan 2026 08:38:36 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vfKw5-00000000DaI-409o;
+	Mon, 12 Jan 2026 16:38:33 +0000
+Date: Tue, 13 Jan 2026 00:38:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Edelweise Escala <edelweise.escala@analog.com>,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Weidong Wang <wangweidong.a@awinic.com>,
-	Bhushan Shah <bhushan.shah@machinesoul.in>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: document dvdd-supply property for
- awinic,aw88261
-Message-ID: <15afa51b-4f58-4f74-b7cc-cdc28e08a689@sirena.org.uk>
-References: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
- <20260111-aw88261-dvdd-v1-2-83fa0850d561@machinesoul.in>
- <9249c034-de8c-479b-a9c5-f1252e0beba2@kernel.org>
- <5e47fe91-e150-4b5d-a669-3a7beeea4f03@app.fastmail.com>
- <1ab13178-8253-4dc7-9143-6684ededd8f9@kernel.org>
- <19035a09-8b6b-4590-a816-82350c1389e3@app.fastmail.com>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Edelweise Escala <edelweise.escala@analog.com>
+Subject: Re: [PATCH v2 2/2] leds: ltc3220: Add Support for LTC3220 18 channel
+ LED Driver
+Message-ID: <202601122335.DZgiMBky-lkp@intel.com>
+References: <20260112-ltc3220-driver-v2-2-d043058fc4df@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mrF9UZFO81zOJzJt"
-Content-Disposition: inline
-In-Reply-To: <19035a09-8b6b-4590-a816-82350c1389e3@app.fastmail.com>
-X-Cookie: Surprise due today.  Also the rent.
-
-
---mrF9UZFO81zOJzJt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260112-ltc3220-driver-v2-2-d043058fc4df@analog.com>
 
-On Mon, Jan 12, 2026 at 09:57:46PM +0530, Bharadwaj Raju wrote:
-> On Sun, 11 Jan 2026, at 9:40 PM, Krzysztof Kozlowski wrote:
+Hi Edelweise,
 
-> > You mean the bindings were incomplete?
+kernel test robot noticed the following build warnings:
 
-> Yes, the chip needs DVDD to power on.
+[auto build test WARNING on 8856d7fe1758937ac528770f552ec58c388c255b]
 
-> After looking at other codec drivers, they generally make it optional=20
-> in the binding but error out from probe if it can't be enabled.
+url:    https://github.com/intel-lab-lkp/linux/commits/Edelweise-Escala/dt-bindings-leds-Add-LTC3220-18-channel-LED-Driver/20260112-170223
+base:   8856d7fe1758937ac528770f552ec58c388c255b
+patch link:    https://lore.kernel.org/r/20260112-ltc3220-driver-v2-2-d043058fc4df%40analog.com
+patch subject: [PATCH v2 2/2] leds: ltc3220: Add Support for LTC3220 18 channel LED Driver
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20260112/202601122335.DZgiMBky-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260112/202601122335.DZgiMBky-lkp@intel.com/reproduce)
 
-> I'll resend the series with it made optional.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601122335.DZgiMBky-lkp@intel.com/
 
-No, if the chip needs the supply it shouldn't be optional in the
-bindings - it is an ABI break, but in practice only for validation since
-the kernel will assume some supply is there even if not described.
+All warnings (new ones prefixed by >>):
 
---mrF9UZFO81zOJzJt
-Content-Type: application/pgp-signature; name="signature.asc"
+>> drivers/leds/leds-ltc3220.c:348:12: warning: 'ltc3220_resume' defined but not used [-Wunused-function]
+     348 | static int ltc3220_resume(struct device *dev)
+         |            ^~~~~~~~~~~~~~
+>> drivers/leds/leds-ltc3220.c:340:12: warning: 'ltc3220_suspend' defined but not used [-Wunused-function]
+     340 | static int ltc3220_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~~~~
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmllIi8ACgkQJNaLcl1U
-h9CG/Qf+JmZRQSxDtOocqqDM+D7XZV+cZrbfn6MjY41taCUTQvjsXaqoAp/yFW8q
-BUqT+AM4c4p8XaitsOpEEdnIaiQc8UyhGfjcui7/wqPOhtIvTJ45rQML6U2diydc
-1TMUcjJn4ezLmqNrHxKAQfyP6uWrz9wcacUli+PFU5trK7VQPy+1yTsv9/jOln1R
-zG6TB8dtgbZI+H8ALeH5+VHbpb+i18chQe5ig/B3YlpZgB/IrnqFfPyKA9wPxD72
-oN54dWM/JAwIO+dLsiudJ6NR/FWnQqRnX/rerg9tVSmuy/oTk1sMsqtnnviJD8yQ
-MdcoiymChbXlDomlTc1BJPY2lCeV6Q==
-=zmdZ
------END PGP SIGNATURE-----
+vim +/ltc3220_resume +348 drivers/leds/leds-ltc3220.c
 
---mrF9UZFO81zOJzJt--
+   339	
+ > 340	static int ltc3220_suspend(struct device *dev)
+   341	{
+   342		struct i2c_client *client = to_i2c_client(dev);
+   343		struct ltc3220_state *ltc3220_state = i2c_get_clientdata(client);
+   344	
+   345		return ltc3220_shutdown(ltc3220_state);
+   346	}
+   347	
+ > 348	static int ltc3220_resume(struct device *dev)
+   349	{
+   350		struct i2c_client *client = to_i2c_client(dev);
+   351		struct ltc3220_state *ltc3220_state = i2c_get_clientdata(client);
+   352	
+   353		return ltc3220_resume_from_shutdown(ltc3220_state);
+   354	}
+   355	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
