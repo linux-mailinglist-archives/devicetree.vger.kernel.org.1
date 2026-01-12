@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-253958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 775D0D130C1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:17:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E21A9D130C7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:17:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 708853008560
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:17:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E28AA30094B6
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:17:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC086246BBA;
-	Mon, 12 Jan 2026 14:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F444246762;
+	Mon, 12 Jan 2026 14:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kgubh25k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M//UmJg0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469DF244675
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:17:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34D1B244675
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:17:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227421; cv=none; b=ry2cZ48eTFeVxoM6LACZ8fEjqscbHG4l0Cg8cDRXIxfyRXYXVdlOnp7hSFq6uo947Hs5VKjf7Xxw/40Iysm2gr/Ebv/mfomNgZhd/KpllyhDBZOh/6xREhIqlIFm9kqrw/UlO9Qd+1HzqwxmgTj3jgHwkn94UueWMmdydHFgdls=
+	t=1768227424; cv=none; b=PIKx25yGNPUYJHKvx6/+07Y+m9BZiX8SLR88KvW/GQMeNGnOerHZEvFCoJGHvLoPHmoBcm/c44WGRGlNuENT0l+pE3cStjpRwAOWaR6jkqakz1wfMLUPn3QK0wu5C5t3ipA9EjWe0e7JzlbYjQtvv5yTvHWfZfldDQ8tATjL4QE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227421; c=relaxed/simple;
-	bh=JgfZ7b5grfSFrY2uNGn7XAOdObSUV8Hdp8wFhFtHqAs=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=glDAmxmKcgjtN2bKkdrfGBWxjcQxQUjG3jDUfywEcccMhEFyb+R1kqgbRpSQJWiucFtzXjNgnLJTPHz2UuZaxu+JwzMlFGWmJv4IYh7Y52dJWV3xANz0SanZ5wj/Tzm1wlcRRNKp2StW40F+jAZxNjOOvP6cEytVrTVGFVNMaRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kgubh25k; arc=none smtp.client-ip=209.85.221.49
+	s=arc-20240116; t=1768227424; c=relaxed/simple;
+	bh=oobBN1+auz610sw10HqvNqOak/BJA1CD/FOHBMfA6T4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=iGxp41cGrMkdYLXXNXsHlooQrPfcW8buXaxQsWZ+M0BC3qeHPDLCSBCwe0b61C7dXw2YNz4px0cWA+2wlH1Git6S7m76inutz0qTpAnTisFqciKGDAmtiQa/wdyMTKNQ4rk64QouAAYJonDBEZQev9YhMBHGKN1AGe8hRRNZNYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M//UmJg0; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42fbc3056afso3681595f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:17:00 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47a8195e515so46309205e9.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:17:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768227419; x=1768832219; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wi9ORL6/u5L+ri+CyR1PVolHDXmhzE6rUlvUG8jfWHo=;
-        b=kgubh25kPyRol3oQ4+C5HJFAgg3a859QUlV95flFiM42ktVN6DWa0SzfHJU+SJQ6NK
-         fN5TeMXN2mWDtXEggIvI8cX2NVmakd9TywV07EAipIhYMsaIKxpOTJiuZHW+W+O48JiI
-         MqUpdihBhH84ZYnjsdhFvuEd1EB4rr8mHnJ/9IbJj4U4b2pg7SU1+8x/zvGh3+uklZ2M
-         cw+zvxh+Db/TGvpPv++JOjP0KbKXPc2u2caFL45uegMmw4AQA8ix1Gzm/jHMyCJjM8gy
-         U6rIunPrlO1LDqXykNw7tDz/Bq5v0sT9j9inwqSJprA0ZnPI5jffx7OCJ3DHMJapwwvG
-         DsDw==
+        d=linaro.org; s=google; t=1768227420; x=1768832220; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bo0nvDkmN3KsM8j/PrnTVe1jyTFQO6nL3NdErnbtENs=;
+        b=M//UmJg0a/Sf1hjDStAeQ4hnszo4P3HM7tQtsgx/fLpD8qYkW2qP5dR9MJIJMnp1lV
+         bO+KBbO8IMZucjtBVP+KLhXS1jwaTZ+w325J3fdqSF0v3Ids01wA+Z/LPayaktqtbDq4
+         cdYIprCSnncEAEdBvNy9+GAdfaZg2wjY7LHD95Sq7Um46yI/7yVHLke+YvX/tvBRNQxR
+         vGQSWtarwrLr+xrZvg/MPsQhwtvR38l4Q6Ic6tagzPr5nN5keIhPjIJl4ljjzBHLqhIe
+         76hehbbMfyGua1XGP3tP2PlJyGF++AFi4et+Cjobnd8zP3LCrj0PNf86p5oH/YweV6BX
+         h4cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768227419; x=1768832219;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wi9ORL6/u5L+ri+CyR1PVolHDXmhzE6rUlvUG8jfWHo=;
-        b=n6deEZQeN/tGJJLCs4WgkyP+AXT5IX5Efy0QcN3kmOlnnq/KLLhOF/iH5DtdfgQePM
-         BIHZJ+CqbzypCnF/UcQHfPd52mhtWVlVy8E5BpAaaQrlSEDFVh9TiwWPAuyTdwHeDMtH
-         H3dRAR63akMdYIS1P5xYTjTMaKDsMkRy/gLZ0ogMR5fKL8oD8b5FxmqxD9qWvPlZLDDi
-         9oiz6UcDrbDms+2cJwoRExvk2ITH3vQ0UeebB9ByNGIh//ZQvzOYzan6Ax1mpxmrLVpe
-         XAEJ/hL/BZIUDe1X5leqxmG4WKRhckq0nfGdkGtDMLoNdXQHoZwpCD7X/0EZhFCcvcSM
-         x5KA==
-X-Forwarded-Encrypted: i=1; AJvYcCWana1/QywctFfT3858tl0z9/niiNn09tA9Rk4O5989e72C8NR429ZjpyjFdXPxk4XNkVA+mbHY3iAU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHcaIFtg8CXB/f7jr+vz/oL+nDc9eB+MN0VPjn7CIn7/Ak7KpY
-	Wkfta+lXVMNrYx6gS/4al2fywdfUFPZa466WKxQM3xP5qdyuCkDi9GFy6E0/ctLSZ0k=
-X-Gm-Gg: AY/fxX6sF/9i68jN73HlNFxiZoBbrVFx5p6SMGq63C9w4ORQL6zusymrXighEyt/AWH
-	mSJiuPKbx5+qQ87+UpfzwXb6+6Qic5OfPaEGwXn5kH5ox3qp4bHeYUtwRY4DkS9Kv2UuAk4kjYp
-	A71TK/MV8x/2CHFP/xo2D5hCIpUwTFt03Iq/aEOHcmSKArPwQ+CWLTplchSrxkBaM8hy32gVWoB
-	01laN8QKnOGp7WZo5WjMOgTxBSxLPYVqk3CS63LFMkU950GUvF0+3qQYa8HwPbcA57jIm6yAYYV
-	iZkhKUsAqBuSsYVoaaVKVnotg0cdUfAkxYHfOpbKDLiloyjkw1rdaXG1ldlL4EkcSDrHEbepahT
-	Jc6Hjr8qfRG0rUPoYN3Ysdo6XaBcg4NknraEdK2pKy3r7pma+1dbdW3ZjCUB05tWEmBWDmTbP/T
-	myzXr5Dqyxu1tpx+sfEidbQVH7A12/k0tfNRXzjnotXPoU9Qs3eYFgpuI=
-X-Google-Smtp-Source: AGHT+IHQ2+tO7amZ1Hd3lau7QeebQejhPMBwIfPvu9lcXcu5kw8U72PL8snBAclb+6f2qXS65G5ttA==
-X-Received: by 2002:a05:6000:2586:b0:431:752:6737 with SMTP id ffacd0b85a97d-432c375b134mr20238261f8f.30.1768227418552;
-        Mon, 12 Jan 2026 06:16:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768227420; x=1768832220;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bo0nvDkmN3KsM8j/PrnTVe1jyTFQO6nL3NdErnbtENs=;
+        b=SvYOajgEEFHoYZIPAZ/Q3fr1CPhqTCyDSEseMhzSIIkM6jHZrvuaGfsK56iuaVuqrx
+         fCyuHHbNpCYLUkuYKWmObLMy7YXLudh2IWm2uAv52Resddl7mXij/EBcz/XuWsjQc75I
+         6UcXCKawBWdyV+jfpsOcBZTpGCSK5rdjw8ZB6gi9zNKBySuC1rjU1W3fdM90wDR5Mg9B
+         xRrcJzwOrU5cFA58otiDAU+Z0sgNVRSf2bCqEk6aRfxQ5PDVpwtO0VT5w0Vb+3GIpRIL
+         X/UowQXIbTI2YYOgTo8Ia+TmOK4Lrv2qPK1lkcLBB4RUsi44jdGgoLomF9G6tGGItZNP
+         ns2g==
+X-Forwarded-Encrypted: i=1; AJvYcCXzTIgr3eISOd6tDKRLaC88lTR91xyIjiDGA/3cZjINkof24+PJoNParf/PaWLvg7sOr87pGOZTopu1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJTzM5807KfNr0BX9XJ8tEEXZwKjsNCP+SWU+hOTcfs0JCuqcn
+	C8vNZPgaqJdk4NXv64VQblPycVCAcuOryDy/mqkip911PawkitvtUwNGNnNPJeM3ZnE=
+X-Gm-Gg: AY/fxX52g6zwSEO6I/Zu4O2+QcgQ1LWKAnXLOzfnva2cHSODd2CShVlTSzHR5QtKplz
+	NorwwmpXxwzpQa9LBF+LBBRihp0407RCGsW5goZvI30c3uvNL18oPJkiWXShZ12AWVAyBgoJLkV
+	MC8HXHYRmdBRqGpTR2GbQZjeBHsuznIxsHOW9lntO7+vvBepMSYIRZW9DMLn2baRFd6HRbqi5pq
+	v0zHnQb1rMAUFvkJBiOsjK85e3amLEPRnfjf+jtVrmLfpNU/TETYoAhfnU9Sjg4j5UMZyEOJcLK
+	Oi3EDWCj5hTa9mbuksYpKbIS/P1Ql4TDu8sgNh7a2O1XOFI0v92g6bPU2+JYaDXDj1ou3nhLmEZ
+	XkxaCCBAH/oI/P24phLckRGplRyUBmGImxnLymdgjwCgU4xFW4v8tpbpKSc51fhkAX4r/HfXRLp
+	tGp4DyqAgpQalXEzusurzzxRdHWcI4bx8msL2IlnJtPQ7A
+X-Google-Smtp-Source: AGHT+IFzvepiXD7vAKBHM7AFBjb08xifNJGQg6KCRPXLe6wDMrhsqgCa+EwfBdw082tzp7w00nRu7A==
+X-Received: by 2002:a05:600c:8b43:b0:477:1bb6:17e5 with SMTP id 5b1f17b1804b1-47d84b3983dmr220300675e9.30.1768227420514;
+        Mon, 12 Jan 2026 06:17:00 -0800 (PST)
 Received: from gpeter-l.roam.corp.google.com ([2a00:23c7:3122:c601:4c43:39e0:348c:a72e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5dfa07sm38705096f8f.25.2026.01.12.06.16.57
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5dfa07sm38705096f8f.25.2026.01.12.06.16.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 06:16:58 -0800 (PST)
+        Mon, 12 Jan 2026 06:16:59 -0800 (PST)
 From: Peter Griffin <peter.griffin@linaro.org>
-Subject: [PATCH v2 0/5] gs101: Add support for Display Process Unit (DPU)
- clocks
-Date: Mon, 12 Jan 2026 14:16:47 +0000
-Message-Id: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
+Date: Mon, 12 Jan 2026 14:16:48 +0000
+Subject: [PATCH v2 1/5] dt-bindings: clock: google,gs101-clock: fix
+ alphanumeric ordering
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,11 +84,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAE8CZWkC/22NQQ6CMBBFr0Jmbc20saFx5T0MiwIjTCQUp9BoC
- He34sKNy/eS//4KkYQpwrlYQShx5DBmMIcCmt6PHSluM4NBY7U2qNppUc0QmntUZe2MbdE6LD3
- kwSR04+ceu1ZfFnosuTn/ZM9xDvLaD5P+2L/tpBUqrS06tCfytbsMPHoJxyAdVNu2vQHcK/OAu
- gAAAA==
-X-Change-ID: 20251120-dpu-clocks-7b825d05807a
+Message-Id: <20260112-dpu-clocks-v2-1-bd00903fdeb9@linaro.org>
+References: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
+In-Reply-To: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
 To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
  Tudor Ambarus <tudor.ambarus@linaro.org>, 
  Michael Turquette <mturquette@baylibre.com>, 
@@ -103,66 +102,64 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
  Juan Yescas <jyescas@google.com>, Doug Anderson <dianders@google.com>, 
  Peter Griffin <peter.griffin@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1578;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1414;
  i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=JgfZ7b5grfSFrY2uNGn7XAOdObSUV8Hdp8wFhFtHqAs=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpZQJUgcJ1b1TNz39ppcyhnd3oPqJ4xJI7Lt6DD
- I5Z+HiKa4eJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaWUCVAAKCRDO6LjWAjRy
- uiRZD/4uni/IFLPMrxZSAE+mLtncreOXd32tYdFVDOlRFulzcXvfJdY1b//zNAbEf5c1WZLk/m5
- TA/sVbReP0+peU9IAlVlSLvkdHhtAWsvkyHlzTENmIv2TUwJY0+/nbefuWNvLUwv98d8ZwJiXRo
- iNrbrqy7mn/zwsRR2WSmji9Tx/dE/tCZB5Q9EbD3w5yACc3DNJT78YFX9QKIgQozwM9JV6yZAiE
- cQyeok8cqr9Zz2S9tKfoxfKIWAxAjCDhiDPX+Nb1sOEDxDxuqV8NXTYCiC+efQC/cMttsnBLh7M
- i+3JqDtOcWPN0WnnBUAD3hB7QO/fWGJRG5zGbH7pPNyLauaAF9D14Thz1yywZ3hUN71oI0XS3kP
- +Zq9jMz7LkQGAwzpFgQwnCau1K9j3KxNPcW5WY6T9/3QQ0iCGfWLg3pB4Dy7+Q56l+IQJegI2bF
- OPpyighroZX36Wh8S1qoFTxfqrElMz3jgdPZu65vnrxzSrjjXDP5gDMRRZ8Zft9gz2Qdkre81FU
- rivsDSPvxBRI//sZ3Py2MXzQRCkADN5ApC7YsBZcFtK4HMPWMgq/c+Xfo3s9vdUOT8Eneg2TkHa
- 8ib8hXHMdavuwNAE0hSBWLp2BER4E9FPn7o1mLDoQz7yig9vBTl8CZYuX7hqolfQHXfFWpQ0Gdp
- vj5nzkmRDIFB2Sw==
+ bh=oobBN1+auz610sw10HqvNqOak/BJA1CD/FOHBMfA6T4=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpZQJX81y3zbCKBEPGlyWFqAKsRBnSRkA5yKgTc
+ WjPDffnQY2JAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaWUCVwAKCRDO6LjWAjRy
+ uhVjEACFFzHOLnxP3+zZgClgyLri1r5h31GFhuFx/FtRXQhHQHyXHi66yWBuQq6sUunBy44ub/N
+ 1rGhvNtm3B5LXaxxeJe0yiau9EItco/lUfghlmhuPXDrYbItTOdQ/RwtYRe5vWxwAcu6tKrZ7l5
+ uO2FUNIDHNAB1HkLhnUtLR/PiIRwNlnmkQWmMUEQKiINZ3nhoHwCSUCczGPUd9T4dF2RrAD9biW
+ GNGf54TrtlgZEcfff56ew5inuxsNspi4/rvUy8SbDU4sE/UXujW/6l7ASC9DtuCJuN9q3ikR2Uz
+ OjTDAIFMdEmjCinsgpMzk9VAkV1NfuezjzgevvutMCboG1DMFSStMt0OIwAkHhYhsSlHHiIFRGG
+ EuqCUYn9/ht5VkPM8ONknIPU6XsofVLrcMZJ4D0wc2KSjMT932z9lAR9gYNCGa4rACE/Nadz7fi
+ /6+rMNW27KGFwEQF+RFZ2dthDNOEB8BTDS3Gc0XQbYEZhEcAEKFgDyxeTzmguQbPihMoYcmzyNZ
+ FQlZxsYoJ78Q78fIqr/Lil92+RIe2EotEIA9AT4yq1fygHcGL/Wvxr3UsFQvmSc40Y3wVGl5ErQ
+ 5ix7ZKuoe5s2WNjatvZgYQekKZVmpRY7Z1LSHZYicxkBmWFa8FIvJVbdkmCt07kK9Ea2N1rvjv8
+ 0lQ7kk6wgJBwE6w==
 X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
  fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-Hi folks,
-
-This series adds support for the Display Process Unit (DPU) Clock
-Management Unit (CMU) aka CMU_DPU found on gs101. These will be used for
-the IOMMU and display enablement.
-
-As all the patches will go via Krzysztof tree it has been sent as one
-series.
-
-regards,
-
-Peter.
+Fix the places that don't have correct alphanumeric ordering. This will
+make reasoning about where to add future entries more straightforward.
 
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
-Changes in v2:
-- Fix alphanumeric ordering (Krzysztof)
-- Update gout_dpu_dpu_pclk to gout_dpu_gpc_dpu_pclk (Peter)
-- Fix dout_dpu_busp parent (Peter)
-- Rebased onto next-20260109
-- Link to v1: https://lore.kernel.org/r/20251120-dpu-clocks-v1-0-11508054eab8@linaro.org
+ Documentation/devicetree/bindings/clock/google,gs101-clock.yaml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
----
-Peter Griffin (5):
-      dt-bindings: clock: google,gs101-clock: fix alphanumeric ordering
-      dt-bindings: clock: google,gs101-clock: Add DPU clock management unit
-      dt-bindings: samsung: exynos-sysreg: add gs101 dpu compatible
-      clk: samsung: gs101: add support for Display Process Unit (DPU) clocks
-      arm64: dts: exynos: gs101: add cmu_dpu and sysreg_dpu dt nodes
+diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+index 09e679c1a9def03d53b8b493929911ea902a1763..a8176687bb773ae90800b9c256bcccebfdef2e49 100644
+--- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+@@ -27,13 +27,13 @@ description: |
+ properties:
+   compatible:
+     enum:
+-      - google,gs101-cmu-top
+       - google,gs101-cmu-apm
+-      - google,gs101-cmu-misc
+       - google,gs101-cmu-hsi0
+       - google,gs101-cmu-hsi2
++      - google,gs101-cmu-misc
+       - google,gs101-cmu-peric0
+       - google,gs101-cmu-peric1
++      - google,gs101-cmu-top
+ 
+   clocks:
+     minItems: 1
+@@ -70,8 +70,8 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - google,gs101-cmu-top
+               - google,gs101-cmu-apm
++              - google,gs101-cmu-top
+     then:
+       properties:
+         clocks:
 
- .../bindings/clock/google,gs101-clock.yaml         |  25 +-
- .../soc/samsung/samsung,exynos-sysreg.yaml         |   2 +
- arch/arm64/boot/dts/exynos/google/gs101.dtsi       |  17 ++
- drivers/clk/samsung/clk-gs101.c                    | 283 +++++++++++++++++++++
- include/dt-bindings/clock/google,gs101.h           |  36 +++
- 5 files changed, 360 insertions(+), 3 deletions(-)
----
-base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
-change-id: 20251120-dpu-clocks-7b825d05807a
-
-Best regards,
 -- 
-Peter Griffin <peter.griffin@linaro.org>
+2.52.0.457.g6b5491de43-goog
 
 
