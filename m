@@ -1,167 +1,156 @@
-Return-Path: <devicetree+bounces-253894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADAB0D1272D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:05:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A686D12745
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:06:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 69B49307AB7A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:04:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 835A23060889
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A624235771A;
-	Mon, 12 Jan 2026 12:04:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA5D357707;
+	Mon, 12 Jan 2026 12:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mjMe152x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Miz1fiQ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3C71DF248
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 12:04:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4EE2BEC34
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 12:04:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768219466; cv=none; b=PhreSYEppYacyw9QutHv+xsE/5CFhb9aIj5dhbCBj04vaQg5KJfzgVSGwcN7rxAmMGeOZVYRoUSS67qMU5S/gfLlAvcOa+b9lS0DnF3LvqHpyvHZkE6DcfoXi9HnQQZTJ4yDqb7jntlo+mwJuf5dAY4dINUXKMXo1Dsaxu+MxlI=
+	t=1768219493; cv=none; b=gogaFvRjahO6/5RKLyjIQVZv2P/cv7SqkauGspB2cqX2YvIo8xhIrvBpdfnOHtbUZb6lr+FuJEHWNFboUR7H9zr+dmAs2hpHDOBTj6Ab6aLv362dp8Iv+AKBVVlfds+tHqnT82UTnzR+njKT3a/hh9+lFZPq9fkSLLWWwPiPolU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768219466; c=relaxed/simple;
-	bh=owV/mzAQMgSgZqT2YNEQVofDEFHHk/+21LmjhX5q+Rk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tdl3OuL/Fcxk91DZd5v424rky4rtXKstPWA15U65PPUnaUGVAdi8aBSQbpsgyRE8J0fFa7yVhEdz5qSXfFcFeKGIPKJIs92zUhOWmOxg5Pf8Ejfj8IGPfUeVgeBefUW9xPAMMICvjARaf6CYsyVRLbbyrJgsequWvvM9xXxIYKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mjMe152x; arc=none smtp.client-ip=209.85.221.48
+	s=arc-20240116; t=1768219493; c=relaxed/simple;
+	bh=7xtefCug/qYG2+PCm4VdtHs8ee1KPuhKc3l5IX/hhTg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e0574zM4BQwRs1HLx6Qtegfn7S53eQlIbpbFF8uotuN5wcguz9KCbrkTtEMG/CCyQCmL3ZkDA47T8oZAUwfWkDI+0ByIXdawVROwdIULg3XRXDtWHvfz7pMkw5i8bd++W/V9OFxjF0VxmQqSjmrXsw8QZwkzoreud8R1ZMjM8uY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Miz1fiQ/; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42fbc305914so4477115f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 04:04:23 -0800 (PST)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-59b786b2a5dso4904467e87.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 04:04:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768219462; x=1768824262; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4qCjJpPI4Nv2Sruqvo8JVCZ2nInrDNeq4vKMW92xMvc=;
-        b=mjMe152xj/lPCBJAHZ9j3TmmJeIqUB9yWgDVSCCq8IErpZkM9IDqFS7uBJQqMzrRJQ
-         K424xE1wXa6ksNhB8HVwYme4Hhiwk2YuI45VKs9bQjVDigh5rgFkb7P0OV9h98mBsKF5
-         GyCeIiwkYj9KeP6UZE5EkGYm600zXjrcug87jT6IKrSr99ky3Ihne17fieVcfqyPMT1h
-         SnFa8eOm2RwMZd401qv/Tx5FV/Xop5o2g196KNkVX/Z/jt+bOmPYtKaafG5QPpIcc58O
-         0G+jNr60tTKlUXxWRQ0tkcrSw23noR3updlySnTaSH4K77kWQZMvqAil+cHT5yKNpK16
-         ArFA==
+        d=gmail.com; s=20230601; t=1768219490; x=1768824290; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L5B9VOs5SZcPSzW1v2/zOZ9gYxEwx3VMLCzV7S6TNwM=;
+        b=Miz1fiQ/s3yr7JPIyhbRUthuw1t/U/xArJLxzMcdLcpt6EHnp6JhZcRuG/WtaX9DLF
+         RDa95ZFP412Xf6s0s1G4QySo4PBu0qsIuSUmAWq3OhtCAJYqQ/bMMYfa2+fs8JCNMwpe
+         Mjg2yVmmVAXC29dus4/jJYLqPjabb7DARB6WlLWxFvbfJPCDHVYl0n49/rzvxozt/gWy
+         JpRo3c5L2UHerrRQlOAVR36936H8oJq7zhc7hdeptsF7ivdP5ItlUCcYrhDpJCMcywen
+         Tu5Y84HkHrhRVaxmfhw0MNPPnp+NfQ7QSM5eTI5brSsbMi4qWPQRN9Ahny0etX7Epju3
+         WBBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768219462; x=1768824262;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=4qCjJpPI4Nv2Sruqvo8JVCZ2nInrDNeq4vKMW92xMvc=;
-        b=ha8XZ6INjcXHLdm4g9Se5e4Y8xESB39Lrd6+8nr3KlGcRIOcs4cx1Mcs4J+/pzzwgF
-         eelWbQUP0bvu00EgpQ22DERNeMKThjUgpnaxckh7RFj2ZKTzkHcDgJOuPzXd5BEGsDjq
-         FHkV/2kW2+MNK2798awOIdFdcisV2tm7tNjNLuCNz9MxNwwYh8tXQjKg821JUnwza6A5
-         hDk9AlkElQ0+PIo30hd8oG8lBQoWCOCtI0jHoZAamX6k2zJZYaGXvgFHWXGy7cLQ7eCz
-         Q19rQSlO9CxbN3g+ynbwA+irvwE9ApNlFPzEipC/6kivxwP3xZS5QLZLPZ0LxVuB5Xo+
-         cG9A==
-X-Forwarded-Encrypted: i=1; AJvYcCXdcbizNt+21S1/Yv76TATDbKpFgXBVIJ2Dcn7bui2P1zl5SBKohXoBPuorzNp98ebsfHrXlvkk+gIL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwL5029nw661PSSl6Z4QA9XJAIK1oAkRgQ8wz+PwMMu6kIMu8s5
-	2hb6wyAmhnich7LG6ohWwxx0fbi7FLhDBjBSml4EUSuK5TOKG+IoFCw0Ryzv8sYy6ex9keYTk61
-	uFOd+yvVfJMClTAuyiRcBoxhNUBc09ws=
-X-Gm-Gg: AY/fxX4RYr3OxKmM1DYIur58x41r3Gf9SkNeVHtR1xRaQtLRIeE8IIAva3uqovHhogR
-	nDvIR9kLhgcGBKl2zLsHx9GSF6VReWeGyVeR5nrZQvUjk9PNlyTMG/moG4wtXS32S6z2ypFl1q3
-	+vuef9OG3/4+iP+mRKEAq0rlvH8S+Ta9e++rnDzBywoizVFmzL7z9HAT+DQMS1nWc6NpZ9k5fzW
-	CBHSoqUeeDZDN7B0zdG3hf3iaCWqC0s6NoCV8ZgQWoOe8et8uV0cC7wdDOJa70yttQeNofczKs5
-	8OGU5Gjdytyz/OemBpM2IW0JLo89t7EA7WuD7K7CVQVIKAw1dK6S5iU=
-X-Google-Smtp-Source: AGHT+IFleqUzD9PdoNRtoRImQZ9LCtOvaSoUd+ku2Uay3M7C+gWLGIYYIGe551DYKQUEtcgJaYVpbuo5ppnL49v+1SM=
-X-Received: by 2002:a05:6000:1844:b0:42f:bab5:953b with SMTP id
- ffacd0b85a97d-432c37758demr20987353f8f.16.1768219461649; Mon, 12 Jan 2026
- 04:04:21 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768219490; x=1768824290;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=L5B9VOs5SZcPSzW1v2/zOZ9gYxEwx3VMLCzV7S6TNwM=;
+        b=jASvTMHJaQ9M6X0eMwsR9O5j3+eKRIIl5PKnT6VqlL0NyJf/qoPEz/MryKDJz1xnxF
+         Ni8sKazBG0LWTqhtLutql0fsyLbt25D2LVZA/6VqztQDIAlij8gjc+zLWze7NCljuFKW
+         Of0aYlsEgCLp/RdmhkMIm3XqcVFb5Mt7z0CsOBd/LQXJw620MaWIIi3tgnEo4+2UWvOT
+         KJenuckkOIjIpUHZ9W7S4DaxeU6qFQpbAXKCkOBrxeoHdRKFrQV095+Bwzyzd8gCyk0M
+         vGvpQnB8vE+r8Pt+YKIk2iitexIUYRgnCMrNS+hs/fJuGaMjzRJXPCePX5dS5t6L/uI9
+         Mg/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWb9Njv7X7BabeBsoQfdOKSIHUFDZ/ktn/85KtQWZt+ByYsBHnqfbOLgTy9f2pzsubJTQ3gVmlVAj1o@vger.kernel.org
+X-Gm-Message-State: AOJu0YzO7AtvpDmFM3izb2f7SdQii2uv//f2YkKExotI+9JP59i2LuDU
+	CeYqJSouUcGFO1GkEL2qfWpbUHZTutKsHlIG5e0Dl481DKvcXprUhFir2ahF4kdxyi0=
+X-Gm-Gg: AY/fxX7UI2ook71iPYyB6/pP1nJO/0BoriQUcLVcd+9n/JaqWwcRfdvGnlkQ5JDIu3E
+	C4RznvTpWlcaHs5uAmS+VD1l/i/WQC8ccg810rT4H1TLZwMjhnI8V4+m4nahK+1dAuvNGiX3BNm
+	VhzIcrAu6t3q2U30U4oQcOWwlBWi24NV6a2sT3X7HrDv6xj0v6IBr+2tWX5KHdwqKbTVW1ruq95
+	QXGEJX+bwo2h1RIoKlqQetdJm7CTXjEYnlGwbFW0QpiQEcu5T+W5fG60pIgLflSqq/ZoUCWZx17
+	z0WsyayNGezZZ9GmSsKKqYhP9sHV0hmek+sFoPgRqo1U0mcJofjGi0FSZOCDMZxLdX6514CA7sL
+	ex2nhfQuDox5XCF7eMENNuAuxYtruyR+PIAelAE77u1NcIfrvioZhR7qadVOsB7oSHIlgQaWbRa
+	luOFZvZopPHBV2Km+yZuXmZhbhqQxwDQdPN148r+I047yIyATVVX/ouUYuLwAnVtIxmhm6
+X-Google-Smtp-Source: AGHT+IHIOma4TS1LvpaF0nAI7hxAzfTZfER7LKZt7Et+nsHWkt6YVR8gJlh4cjrPjzNGz/ehF3S4wQ==
+X-Received: by 2002:a05:6512:3093:b0:599:11a5:54fd with SMTP id 2adb3069b0e04-59b6ef028e5mr6174554e87.4.1768219489595;
+        Mon, 12 Jan 2026 04:04:49 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b6ac0a769sm4379781e87.21.2026.01.12.04.04.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 04:04:48 -0800 (PST)
+Message-ID: <ebb14cef-9927-4211-94ef-2f209abeb406@gmail.com>
+Date: Mon, 12 Jan 2026 14:04:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260109142250.3313448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260109142250.3313448-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <aWEUvef4eDlmuOic@shell.armlinux.org.uk>
-In-Reply-To: <aWEUvef4eDlmuOic@shell.armlinux.org.uk>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 12 Jan 2026 12:03:55 +0000
-X-Gm-Features: AZwV_QioW4DXXcjEyYpawN9Qxe7RxIEI2XGhrh2bEmXD6OAYa4cj6ZYh-0RkOlQ
-Message-ID: <CA+V-a8vKJ6Z3Xp-u69oGzXr7ju+5RVdMXQcqErm8m8rU7pvauQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 2/2] net: pcs: rzn1-miic: Add support for PHY
- link active-level configuration
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v6 00/17] Support ROHM BD72720 PMIC
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Lee Jones <lee@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
+References: <cover.1765804226.git.mazziesaccount@gmail.com>
+ <20260108172735.GK302752@google.com>
+ <63bc889a-b97e-43c3-9f46-9ca444873b70@gmail.com>
+ <20260109093831.GB1118061@google.com> <aWRFs3CJvd37BaoH@venus>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <aWRFs3CJvd37BaoH@venus>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Russell,
+On 12/01/2026 02:53, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Fri, Jan 09, 2026 at 09:38:31AM +0000, Lee Jones wrote:
+>> [...]
+>>>> The MFD parts LGTM.
+>>>
+>>> Thanks Lee!
+>>>
+>>>> What Acks are you waiting on? What's the merge strategy?
+>>>
+>>> I think everything else has been acked by maintainers, except the
+>>> power-supply parts. I think those have only been looked at by Andreas and
+>>> Linus W. Haven't heard anything from Sebastian :(
+> 
+> Yes, I'm lacking behind quite a bit, sorry for that.
+> 
+>>> I would love to see the patches 1 - 14 and 17 to be merged (via MFD?). I
+>>> could then re-spin the 15 and 16 to limited audience as I hope Sebastian had
+>>> time to take a look at them. However, I don't think any of the other patches
+>>> in the series depend on the last .
+> 
+> Sounds good to me.
 
-Thank you for the review.
+Ah. Since the 15/17:
+"[PATCH RESEND v6 15/17] power: supply: bd71828: Support wider register 
+addresses"
+was now acked by Sebastian, then it can also go via MFD?
 
-On Fri, Jan 9, 2026 at 2:46=E2=80=AFPM Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
->
-> On Fri, Jan 09, 2026 at 02:22:50PM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add support to configure the PHY link signal active level per converter
-> > using the DT property "renesas,miic-phylink-active-low".
-> >
-> > Introduce the MIIC_PHYLINK register definition and extend the MIIC driv=
-er
-> > with a new `phylink` structure to store the mask and value for PHY link
-> > configuration. Implement `miic_configure_phylink()` to determine the bi=
-t
-> > position and polarity for each port based on the SoC type, such as RZ/N=
-1
-> > or RZ/T2H/N2H.
-> >
-> > The accumulated configuration is stored during DT parsing and applied
-> > later in `miic_probe()` after hardware initialization, since the MIIC
-> > registers can only be modified safely once the hardware setup is comple=
-te.
->
-> Please do not re-use "phylink", we have a subsystem in the kernel named
-> as such, and, for example, it too defines "struct phylink".
->
-> > +/**
-> > + * struct phylink - Phylink configuration
-> > + * @mask: Mask of phylink bits
-> > + * @val: Value of phylink bits
-> > + */
-> > +struct phylink {
-> > +     u32 mask;
-> > +     u32 val;
-> > +};
-> > +
->
-> You don't get a warning for this, because, although you have:
->
-> #include <linux/phylink.h>
->
-> which delares "struct phylink" as:
->
-> struct phylink;
->
-> The definition of this structure is entirely private to
-> drivers/net/phy/phylink.c and is intentionally not exposed.
->
-> By redefining "struct phylink" here, it means that anyone using gdb
-> is going to run into problems - which version of this struct is the
-> right one for any particular pointer.
->
-Ack, I will rename the struct to `miic_phy_link_cfg`.
+Also, if it is Ok to address all the "dev_err() + return ERRNO" => 
+"return dev_err_probe(,ERRNO,)" conversions in a follow-up, then I guess 
+the whole series, including 16/17 is good to go? If this is the case, 
+please just let me know and I'll send the follow-up. Otherwise, I will 
+re-spin the 16/17 and add a new patch for the remaining "dev_err() + 
+return ERRNO" => "return dev_err_probe(,ERRNO,)" case(s).
 
-> You describe this feature as "PHY-link" and "PHY link" in your commit
-> and cover messages. Please use "phy_link" and "PHY_LINK" as identifies
-> for this so that grep can distinguish between your PHY link feature
-> and the phylink infrastructure.
->
-Ok, I will use "phy_link"/ "PHY_LINK".
+Yours,
+   -- Matti
 
-Cheers,
-Prabhakar
+-- 
+---
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
