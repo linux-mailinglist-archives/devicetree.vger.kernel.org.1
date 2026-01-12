@@ -1,2296 +1,281 @@
-Return-Path: <devicetree+bounces-253839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34327D11EAB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:34:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A78D11E30
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:32:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8748230055AF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:34:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 28511304DB6A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF03B280324;
-	Mon, 12 Jan 2026 10:34:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8CF2C11D7;
+	Mon, 12 Jan 2026 10:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="N+5PYTTp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mKcniPiC";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Bu4u0C4a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731104.qiye.163.com (mail-m19731104.qiye.163.com [220.197.31.104])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B5E27A122;
-	Mon, 12 Jan 2026 10:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.104
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFABB29D29A
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 10:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768214078; cv=none; b=dsxPfpckzI+ieAr+W5xAN9Rli0+es1kElOFelCC8Z+mOFXu8uat9Mpdbefw4Bg89KfceQzy9YG6Xd3m3V+gYu7BP8MgbUi57GF+rFp7Bt7fiDPPpCe1kan7baeYk93qBc87BgmAD70QcJwAQOfnEzWsg9+UOQVgLOXePO5OK7ro=
+	t=1768213801; cv=none; b=Hh0EbthwcZDWFhLkPomjthcHQvjl2b53q2YsvV+LtkCDjBELTD/4kw90PbNqGZlSc4A8QzNZFAQYGIZKhShkVepPMp4+7mWgBNmD9prhnw5r141XV8+Pg9EEHcoBlDbDcIHTzCQwYmp1VL0ozFaBGLOEXPupXnM2U0v2ardorgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768214078; c=relaxed/simple;
-	bh=H9yzBV2XerKKkWi8A4KDS7aSZBtYaSYr1HLi6MUXGMQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=komo6aom7GrOVNmoC9Ut4R9b728eWImJdTYLG0INee3THmEBcwDnVC5AmP9tFJ3TDwchY8cMwoYdQL95RGBkLjpAb3NfndKspbheYB7KprRLCST68y3S/YfoRZoMWdhlvNzkQWW6ZPcqwwN92hQUdM3/UtHLmGMJ6JHj/oDD01w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=N+5PYTTp; arc=none smtp.client-ip=220.197.31.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3053af5b6;
-	Mon, 12 Jan 2026 18:29:21 +0800 (GMT+08:00)
-From: Joseph Chen <chenjh@rock-chips.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Joseph Chen <chenjh@rock-chips.com>
-Subject: [PATCH v2 3/3] regulator: rk808: Add RK801 support
-Date: Mon, 12 Jan 2026 18:28:49 +0800
-Message-Id: <20260112102849.1479-4-chenjh@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260112102849.1479-1-chenjh@rock-chips.com>
-References: <20260112102849.1479-1-chenjh@rock-chips.com>
+	s=arc-20240116; t=1768213801; c=relaxed/simple;
+	bh=zxYqm0zQueh0U0yDRbTPD4QtsJ7Bx27wmqHwL5z/+7A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Oz6wkwIJstBBFIdIQsUL6SyfiiJb/SAixsszWFfjh3oRNUNvtw72bCkGIw6hAcVpSnDZEjm9b4K1Y8fSP0Vu0TfgBGkuqhyofSYLHFRIcSLHcoEy0Vhne/abgNIjS7vDoOULBnNBxdRcp4OGii9wecDgQ1dwXe9KqWGEJ1Uk2sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mKcniPiC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Bu4u0C4a; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60C8aIrm113636
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 10:29:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bxMVnP7klhF7zuicFFjZTjp3gwEJfISaysxyhwsH6zU=; b=mKcniPiCqKedrd1a
+	ZUavt6rBtOP9PeRqG2qVS49oIRhL6AIthCiVoVjr8f2DbNgTRdVTW0+4NdwzwiTz
+	mFnrtTo4ozC736ydacctG+gIxMusfsYN3gmym7B6h/Mv4BJJNTfl7NMK72cPBA/D
+	lIWXR/U47x8G8F/Jy5k9RlNIJdrByd6jRvT15zXcKVSq1TYUcRNzMqjSkjNAFLho
+	1qQYnEuDtZw7atGKh9tu+dUdvwVqYvL1z9/JK8LvjzbMQ8FytlMWyR75dfZWknmj
+	2SULBr9nOtM/PrKw16HaGYI6Gw6oqExCw5lS46DsF9OWAeNPF/wQwaS74TFB5AGP
+	5ZKobQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bmr4uhcjr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 10:29:58 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b25c5dc2c3so138798285a.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 02:29:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768213798; x=1768818598; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bxMVnP7klhF7zuicFFjZTjp3gwEJfISaysxyhwsH6zU=;
+        b=Bu4u0C4amzGQv55u6EpOQEEtFY7GRKj/YEvL1WGKy9IDYmL0ok+uRwq6SUwCwSIF6P
+         zUexIOpD7hmL4rI/W7mSYNXP+G/HsCW4HPiMSzEnYWSxlM6c42UFQ+xkTOV5D/7T49Ro
+         iH5RkVsFF3iF0B2HYOc8+TIxfBNRACHF00fWdPVK/zARO8ovPrrTEkHZK/ud4X3RBcls
+         z4mOQv4FOANPI4wzAY37fNF8KTNM85MbuAhZq455jf5brrViMRvC8VSNDjKGNNx88Mwp
+         HCIV2ZU13kUscx/01ArB0ukr1K6y652JTFNJva8x9715ydtQHyz9xjJV+sCFXZZfwlP8
+         7Smw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768213798; x=1768818598;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bxMVnP7klhF7zuicFFjZTjp3gwEJfISaysxyhwsH6zU=;
+        b=WB5/iHhTIptJOrwAnV0i7EsPYv9ozdALSgQQTPjv+auNN9om7Gfc1vDGEAEzkfv9x5
+         uH9eNYy3fg2zCcKurZpFHgs64FjzqQmb4TfHpwpsooeSeOoc5AkquiRdxtqDBfP2XGcO
+         r7VRISPcjpbV5j5aAvY7iGq3wEgne7x/tlepmChrp25r5HXV4D4WNFJE6tCOFjTwKcUT
+         d5qkrW6S8mDYP58qVLamOL9qUiSVfb8mdjqCSUgM1pX/BbPmgnQY/tD8adVaruzIyoaU
+         fNvvJ9cqYOHrP6LDxzpKNnisu0/KO+qfBiJ5Fz6Hs9p7TVfAw8QITNFMHSPLZreOlu5B
+         HqNw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRYSc1cS7Fw6OI06tMxR1Q52qjiCaGJgbHDw190J7N36n73I/xHRpzD0qJvgRSu++Ao2fkJZliZERk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwraFnrM+wPd3KSjzFmTQTOASxYWuvb0ZVlTvRAYdi2Wy70hY7P
+	I4yFlzWt1QhmXVNS9rPkYZjbeqxvC0HPk90twp0cZdHtbRP9yhf0cqLMdL6roUHUPNp3yU0folg
+	mYyCHEagb1ife8dQnomnkserjucNWyA3mjB4jZt5wBwCINWLvK82EtLyelFCdHvFL
+X-Gm-Gg: AY/fxX5wr5D9Mj+Gi3qTxs1LzcvKjxO3kBOA0aCjdb/U75+p3XILelKHcilVqBhsAxj
+	t+WoWPeTJ0AJEErpNDWxWiGr/UC2+zVnXI5CE+HC0Apx0uZqYNmluZeuKSEv2oiAcA6HTqV/Hta
+	359jiiBJUJGawAF9jBLfd6Nktt/calHHeaiIY2CrQ08mqrKbc+tgiI+rU8N5vL1pw2B9XT+gSbV
+	eBLhtgFS3e2Fk3Q0DZ3p2uQgwSSiW23oSP0J6g/ttzQrAZXgIbF54qHQ92/yVnn7baO/JPxlUoY
+	QOCjgd85GrZgrn5cbNvkfy3Jv7BNHIs9esXEAAymcCM/p7SfOe0KZgVW38RkxMnem90xUBMHQxR
+	6zI3TtSqZtxw9Zkl0LLzcUuwkDPHsZyNh/OSBZ31+W2k3/BTDIFCbADfzZSyWrAqlMZs=
+X-Received: by 2002:a05:620a:4150:b0:8be:7dd7:f041 with SMTP id af79cd13be357-8c3893dc319mr1707032885a.7.1768213797990;
+        Mon, 12 Jan 2026 02:29:57 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFYkinKvuUhGe4V4yaanPySErY45GVSf7HQse7lAC+h88C4FKeCk2VIkqMj67TZjna5NhPTaQ==
+X-Received: by 2002:a05:620a:4150:b0:8be:7dd7:f041 with SMTP id af79cd13be357-8c3893dc319mr1707031185a.7.1768213797514;
+        Mon, 12 Jan 2026 02:29:57 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b86fee09163sm593221066b.26.2026.01.12.02.29.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 02:29:56 -0800 (PST)
+Message-ID: <ccbaff51-d7fa-4b22-8d4e-02bea5d8a529@oss.qualcomm.com>
+Date: Mon, 12 Jan 2026 11:29:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: milos: Add UFS nodes
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
+ <20260107-milos-ufs-v1-5-6982ab20d0ac@fairphone.com>
+ <2486dc4b-71f3-4cd9-8139-b397407d7e4d@linaro.org>
+ <543d9e55-c858-40f9-8785-c9f636850120@linaro.org>
+ <DFMH8W40TCJ0.XCTHNRJFJE4T@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <DFMH8W40TCJ0.XCTHNRJFJE4T@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9bb1c0ce3609d2kunm68a7e29c4d1fc3
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUsdS1ZPQx4fQ0wfTENIGBhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=N+5PYTTpQzy9PnhYlJSgI23eNirOt24Bid6VDXceIR+q+xrS4CYumADVoY/Q0uCRbRu8K6jhNICmgEMDdupBNDhGW+ZU2ZNoDGTO9f6ToJ8Iz0bBCw/zwBbX2/+wBPXWDZXnKp4WLucNb+80OQpeYxk8w3b1rEChfJanb8LjqyE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=HL0ANh1H4DEQZSZT2x9ncBusswRz6bZ4HiyF7dtcVQk=;
-	h=date:mime-version:subject:message-id:from;
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEyMDA4MiBTYWx0ZWRfX4FFeXz2DAzC1
+ k5TiGMjqGdoHWmih4YB6SEfcd48xNcIGETag2eGc/iuNmdlQaxx7aj28hzvGFTbnLR9gWBOENFx
+ XjhBBqDbKoKPa8YmjdJs4zBqrmqLp9z46P1kT5xQIthRS/XqQ0PH6/M66iKmM8q8qVMJC1fJAOh
+ kwzigykx0rRMfBg49I7aTH3OOe0icMcxsIWOSXr86aNBp/4Jx4+pb8zoz1g95MQ0F0J15RVKTLG
+ bsp2rZPc0qc1BEwDKgDZcieMrFcSg1r+t/dR1AdmYK90nSl4OKyoxxKRgqG/xefOXY7TV9jHR3S
+ tdBY/mMspCiyBP7/OAAkZ64S1gM8SzI8w/bEYDwaIU0IMuePUrxvCS35gEqBVmmvBHE39PWmfeN
+ h7BupXpUR/RUkG45ZIbbpciiJfnmJzvPQWK2lSAOP9rd0T8NKrjzW/CT2oCbkSg4U0Sq/Vx5n2P
+ oDdzpwgqsvO4wFEQbPw==
+X-Proofpoint-ORIG-GUID: LAO2481Grfu7gzq489c-DVt4Zntw-bVd
+X-Authority-Analysis: v=2.4 cv=YocChoYX c=1 sm=1 tr=0 ts=6964cd26 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=6H0WHjuAAAAA:8 a=7X8Kw1P6343en4nalX4A:9
+ a=ZPF2tL_FRqzNxS05:21 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: LAO2481Grfu7gzq489c-DVt4Zntw-bVd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-12_03,2026-01-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0
+ clxscore=1015 impostorscore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601120082
 
-Add support for rk801 to the existing rk808 regulator driver.
-It provides 4 BUCK, 2 LDO and 1 SWITCH.
+On 1/12/26 9:45 AM, Luca Weiss wrote:
+> Hi Neil,
+> 
+> On Mon Jan 12, 2026 at 9:26 AM CET, Neil Armstrong wrote:
+>> On 1/7/26 14:53, Neil Armstrong wrote:
+>>> Hi,
+>>>
+>>> On 1/7/26 09:05, Luca Weiss wrote:
+>>>> Add the nodes for the UFS PHY and UFS host controller, along with the
+>>>> ICE used for UFS.
+>>>>
+>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/qcom/milos.dtsi | 127 +++++++++++++++++++++++++++++++++++-
+>>>>   1 file changed, 124 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
+>>>> index e1a51d43943f..0f69deabb60c 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/milos.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/milos.dtsi
+>>>> @@ -797,9 +797,9 @@ gcc: clock-controller@100000 {
+>>>>                    <&sleep_clk>,
+>>>>                    <0>, /* pcie_0_pipe_clk */
+>>>>                    <0>, /* pcie_1_pipe_clk */
+>>>> -                 <0>, /* ufs_phy_rx_symbol_0_clk */
+>>>> -                 <0>, /* ufs_phy_rx_symbol_1_clk */
+>>>> -                 <0>, /* ufs_phy_tx_symbol_0_clk */
+>>>> +                 <&ufs_mem_phy 0>,
+>>>> +                 <&ufs_mem_phy 1>,
+>>>> +                 <&ufs_mem_phy 2>,
+>>>>                    <0>; /* usb3_phy_wrapper_gcc_usb30_pipe_clk */
+>>>>               #clock-cells = <1>;
+>>>> @@ -1151,6 +1151,127 @@ aggre2_noc: interconnect@1700000 {
+>>>>               qcom,bcm-voters = <&apps_bcm_voter>;
+>>>>           };
+>>>> +        ufs_mem_phy: phy@1d80000 {
+>>>> +            compatible = "qcom,milos-qmp-ufs-phy";
+>>>> +            reg = <0x0 0x01d80000 0x0 0x2000>;
+>>>> +
+>>>> +            clocks = <&rpmhcc RPMH_CXO_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+>>>> +                 <&tcsr TCSR_UFS_CLKREF_EN>;
+>>>> +            clock-names = "ref",
+>>>> +                      "ref_aux",
+>>>> +                      "qref";
+>>>> +
+>>>> +            resets = <&ufs_mem_hc 0>;
+>>>> +            reset-names = "ufsphy";
+>>>> +
+>>>> +            power-domains = <&gcc UFS_MEM_PHY_GDSC>;
+>>>> +
+>>>> +            #clock-cells = <1>;
+>>>> +            #phy-cells = <0>;
+>>>> +
+>>>> +            status = "disabled";
+>>>> +        };
+>>>> +
+>>>> +        ufs_mem_hc: ufshc@1d84000 {
+>>>> +            compatible = "qcom,milos-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>>>> +            reg = <0x0 0x01d84000 0x0 0x3000>;
+>>>> +
+>>>> +            interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
+>>>> +
+>>>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>>>> +                 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_AHB_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+>>>> +                 <&tcsr TCSR_UFS_PAD_CLKREF_EN>,
+>>>> +                 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+>>>> +            clock-names = "core_clk",
+>>>> +                      "bus_aggr_clk",
+>>>> +                      "iface_clk",
+>>>> +                      "core_clk_unipro",
+>>>> +                      "ref_clk",
+>>>> +                      "tx_lane0_sync_clk",
+>>>> +                      "rx_lane0_sync_clk",
+>>>> +                      "rx_lane1_sync_clk";
+>>>> +
+>>>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
+>>>> +            reset-names = "rst";
+>>>> +
+>>>> +            interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+>>>> +                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>>>> +                    <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+>>>> +                     &cnoc_cfg SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+>>>> +            interconnect-names = "ufs-ddr",
+>>>> +                         "cpu-ufs";
+>>>> +
+>>>> +            power-domains = <&gcc UFS_PHY_GDSC>;
+>>>> +            required-opps = <&rpmhpd_opp_nom>;
+>>>> +
+>>>> +            operating-points-v2 = <&ufs_opp_table>;
+>>>> +
+>>>> +            iommus = <&apps_smmu 0x60 0>;
+>>>
+>>> dma-coherent ?
+> 
+> 
+> Given that downstream volcano.dtsi has dma-coherent in the ufshc@1d84000
+> node, looks like this is missing in my patch.
 
-Signed-off-by: Joseph Chen <chenjh@rock-chips.com>
----
- drivers/regulator/rk808-regulator.c | 2206 +++++++++++++++++++++++++++
- 1 file changed, 2206 insertions(+)
- create mode 100644 drivers/regulator/rk808-regulator.c
+Seems that way
 
-diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
-new file mode 100644
-index 00000000000..e66408f23bb
---- /dev/null
-+++ b/drivers/regulator/rk808-regulator.c
-@@ -0,0 +1,2206 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Regulator driver for Rockchip RK80x and RK81x PMIC series
-+ *
-+ * Copyright (c) 2014, Fuzhou Rockchip Electronics Co., Ltd
-+ * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-+ *
-+ * Author: Chris Zhong <zyw@rock-chips.com>
-+ * Author: Zhang Qing <zhangqing@rock-chips.com>
-+ * Author: Xu Shengfei <xsf@rock-chips.com>
-+ *
-+ * Copyright (C) 2016 PHYTEC Messtechnik GmbH
-+ *
-+ * Author: Wadim Egorov <w.egorov@phytec.de>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/mfd/rk808.h>
-+#include <linux/platform_device.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
-+#include <linux/gpio/consumer.h>
-+
-+/* Field definitions */
-+#define RK801_BUCK_VSEL_MASK		0x7f
-+#define RK801_LDO_VSEL_MASK		0x3f
-+
-+#define RK808_BUCK_VSEL_MASK	0x3f
-+#define RK808_BUCK4_VSEL_MASK	0xf
-+#define RK808_LDO_VSEL_MASK	0x1f
-+
-+#define RK809_BUCK5_VSEL_MASK		0x7
-+
-+#define RK817_LDO_VSEL_MASK		0x7f
-+#define RK817_BOOST_VSEL_MASK		0x7
-+#define RK817_BUCK_VSEL_MASK		0x7f
-+
-+#define RK818_BUCK_VSEL_MASK		0x3f
-+#define RK818_BUCK4_VSEL_MASK		0x1f
-+#define RK818_LDO_VSEL_MASK		0x1f
-+#define RK818_LDO3_ON_VSEL_MASK		0xf
-+#define RK818_BOOST_ON_VSEL_MASK	0xe0
-+
-+#define RK806_DCDC_SLP_REG_OFFSET	0x0A
-+#define RK806_NLDO_SLP_REG_OFFSET	0x05
-+#define RK806_PLDO_SLP_REG_OFFSET	0x06
-+
-+#define RK806_BUCK_SEL_CNT		0xff
-+#define RK806_LDO_SEL_CNT		0xff
-+
-+/* Ramp rate definitions for buck1 / buck2 only */
-+#define RK808_RAMP_RATE_OFFSET		3
-+#define RK808_RAMP_RATE_MASK		(3 << RK808_RAMP_RATE_OFFSET)
-+#define RK808_RAMP_RATE_2MV_PER_US	(0 << RK808_RAMP_RATE_OFFSET)
-+#define RK808_RAMP_RATE_4MV_PER_US	(1 << RK808_RAMP_RATE_OFFSET)
-+#define RK808_RAMP_RATE_6MV_PER_US	(2 << RK808_RAMP_RATE_OFFSET)
-+#define RK808_RAMP_RATE_10MV_PER_US	(3 << RK808_RAMP_RATE_OFFSET)
-+
-+#define RK808_DVS2_POL		BIT(2)
-+#define RK808_DVS1_POL		BIT(1)
-+
-+/* Offset from XXX_ON_VSEL to XXX_SLP_VSEL */
-+#define RK808_SLP_REG_OFFSET 1
-+
-+/* Offset from XXX_ON_VSEL to XXX_DVS_VSEL */
-+#define RK808_DVS_REG_OFFSET 2
-+
-+/* Offset from XXX_EN_REG to SLEEP_SET_OFF_XXX */
-+#define RK808_SLP_SET_OFF_REG_OFFSET 2
-+
-+/* max steps for increase voltage of Buck1/2, equal 100mv*/
-+#define MAX_STEPS_ONE_TIME 8
-+
-+#define ENABLE_MASK(id)			(BIT(id) | BIT(4 + (id)))
-+#define DISABLE_VAL(id)			(BIT(4 + (id)))
-+
-+#define RK817_BOOST_DESC(_id, _match, _supply, _min, _max, _step, _vreg,\
-+	_vmask, _ereg, _emask, _enval, _disval, _etime, m_drop)		\
-+	{							\
-+		.name		= (_match),				\
-+		.supply_name	= (_supply),				\
-+		.of_match	= of_match_ptr(_match),			\
-+		.regulators_node = of_match_ptr("regulators"),		\
-+		.type		= REGULATOR_VOLTAGE,			\
-+		.id		= (_id),				\
-+		.n_voltages	= (((_max) - (_min)) / (_step) + 1),	\
-+		.owner		= THIS_MODULE,				\
-+		.min_uV		= (_min) * 1000,			\
-+		.uV_step	= (_step) * 1000,			\
-+		.vsel_reg	= (_vreg),				\
-+		.vsel_mask	= (_vmask),				\
-+		.enable_reg	= (_ereg),				\
-+		.enable_mask	= (_emask),				\
-+		.enable_val     = (_enval),				\
-+		.disable_val     = (_disval),				\
-+		.enable_time	= (_etime),				\
-+		.min_dropout_uV = (m_drop) * 1000,			\
-+		.ops		= &rk817_boost_ops,			\
-+	}
-+
-+#define RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _enval, _disval, _etime, _ops)		\
-+	{								\
-+		.name		= (_match),				\
-+		.supply_name	= (_supply),				\
-+		.of_match	= of_match_ptr(_match),			\
-+		.regulators_node = of_match_ptr("regulators"),		\
-+		.type		= REGULATOR_VOLTAGE,			\
-+		.id		= (_id),				\
-+		.n_voltages	= (((_max) - (_min)) / (_step) + 1),	\
-+		.owner		= THIS_MODULE,				\
-+		.min_uV		= (_min) * 1000,			\
-+		.uV_step	= (_step) * 1000,			\
-+		.vsel_reg	= (_vreg),				\
-+		.vsel_mask	= (_vmask),				\
-+		.enable_reg	= (_ereg),				\
-+		.enable_mask	= (_emask),				\
-+		.enable_val     = (_enval),				\
-+		.disable_val     = (_disval),				\
-+		.enable_time	= (_etime),				\
-+		.ops		= _ops,			\
-+	}
-+
-+#define RK805_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _etime)					\
-+	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, 0, 0, _etime, &rk805_reg_ops)
-+
-+#define RK806_REGULATOR(_name, _supply_name, _id, _ops,\
-+			_n_voltages, _vr, _er, _lr, ctrl_bit,\
-+			_rr, _rm, _rt)\
-+[_id] = {\
-+		.name = _name,\
-+		.supply_name = _supply_name,\
-+		.of_match = of_match_ptr(_name),\
-+		.regulators_node = of_match_ptr("regulators"),\
-+		.id = _id,\
-+		.ops = &_ops,\
-+		.type = REGULATOR_VOLTAGE,\
-+		.n_voltages = _n_voltages,\
-+		.linear_ranges = _lr,\
-+		.n_linear_ranges = ARRAY_SIZE(_lr),\
-+		.vsel_reg = _vr,\
-+		.vsel_mask = 0xff,\
-+		.enable_reg = _er,\
-+		.enable_mask = ENABLE_MASK(ctrl_bit),\
-+		.enable_val = ENABLE_MASK(ctrl_bit),\
-+		.disable_val = DISABLE_VAL(ctrl_bit),\
-+		.of_map_mode = rk8xx_regulator_of_map_mode,\
-+		.ramp_reg = _rr,\
-+		.ramp_mask = _rm,\
-+		.ramp_delay_table = _rt, \
-+		.n_ramp_values = ARRAY_SIZE(_rt), \
-+		.owner = THIS_MODULE,\
-+	}
-+
-+#define RK8XX_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _etime)					\
-+	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, 0, 0, _etime, &rk808_reg_ops)
-+
-+#define RK801_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _disval, _etime)				\
-+	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _emask, _disval, _etime, &rk801_reg_ops)
-+
-+#define RK816_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _disval, _etime)				\
-+	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _emask, _disval, _etime, &rk816_reg_ops)
-+
-+#define RK817_DESC(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _disval, _etime)				\
-+	RK8XX_DESC_COM(_id, _match, _supply, _min, _max, _step, _vreg,	\
-+	_vmask, _ereg, _emask, _emask, _disval, _etime, &rk817_reg_ops)
-+
-+#define RKXX_DESC_SWITCH_COM(_id, _match, _supply, _ereg, _emask,	\
-+	_enval, _disval, _ops)						\
-+	{								\
-+		.name		= (_match),				\
-+		.supply_name	= (_supply),				\
-+		.of_match	= of_match_ptr(_match),			\
-+		.regulators_node = of_match_ptr("regulators"),		\
-+		.type		= REGULATOR_VOLTAGE,			\
-+		.id		= (_id),				\
-+		.enable_reg	= (_ereg),				\
-+		.enable_mask	= (_emask),				\
-+		.enable_val     = (_enval),				\
-+		.disable_val     = (_disval),				\
-+		.owner		= THIS_MODULE,				\
-+		.ops		= _ops					\
-+	}
-+
-+#define RK801_DESC_SWITCH(_id, _match, _supply, _ereg, _emask,		\
-+	_disval)							\
-+	RKXX_DESC_SWITCH_COM(_id, _match, _supply, _ereg, _emask,	\
-+	_emask, _disval, &rk801_switch_ops)
-+
-+#define RK817_DESC_SWITCH(_id, _match, _supply, _ereg, _emask,		\
-+	_disval)							\
-+	RKXX_DESC_SWITCH_COM(_id, _match, _supply, _ereg, _emask,	\
-+	_emask, _disval, &rk817_switch_ops)
-+
-+#define RK8XX_DESC_SWITCH(_id, _match, _supply, _ereg, _emask)		\
-+	RKXX_DESC_SWITCH_COM(_id, _match, _supply, _ereg, _emask,	\
-+	0, 0, &rk808_switch_ops)
-+
-+struct rk8xx_register_bit {
-+	u8 reg;
-+	u8 bit;
-+};
-+
-+#define RK8XX_REG_BIT(_reg, _bit)					\
-+	{								\
-+		.reg = _reg,						\
-+		.bit = BIT(_bit),						\
-+	}
-+
-+struct rk808_regulator_data {
-+	struct gpio_desc *dvs_gpio[2];
-+};
-+
-+static const struct linear_range rk808_ldo3_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(800000, 0, 13, 100000),
-+	REGULATOR_LINEAR_RANGE(2500000, 15, 15, 0),
-+};
-+
-+#define RK809_BUCK5_SEL_CNT		(8)
-+
-+static const struct linear_range rk809_buck5_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(1500000, 0, 0, 0),
-+	REGULATOR_LINEAR_RANGE(1800000, 1, 3, 200000),
-+	REGULATOR_LINEAR_RANGE(2800000, 4, 5, 200000),
-+	REGULATOR_LINEAR_RANGE(3300000, 6, 7, 300000),
-+};
-+
-+#define RK817_BUCK1_MIN0 500000
-+#define RK817_BUCK1_MAX0 1500000
-+
-+#define RK817_BUCK1_MIN1 1600000
-+#define RK817_BUCK1_MAX1 2400000
-+
-+#define RK817_BUCK3_MAX1 3400000
-+
-+#define RK817_BUCK1_STP0 12500
-+#define RK817_BUCK1_STP1 100000
-+
-+#define RK817_BUCK1_SEL0 ((RK817_BUCK1_MAX0 - RK817_BUCK1_MIN0) /\
-+						  RK817_BUCK1_STP0)
-+#define RK817_BUCK1_SEL1 ((RK817_BUCK1_MAX1 - RK817_BUCK1_MIN1) /\
-+						  RK817_BUCK1_STP1)
-+
-+#define RK817_BUCK3_SEL1 ((RK817_BUCK3_MAX1 - RK817_BUCK1_MIN1) /\
-+						  RK817_BUCK1_STP1)
-+
-+#define RK817_BUCK1_SEL_CNT (RK817_BUCK1_SEL0 + RK817_BUCK1_SEL1 + 1)
-+#define RK817_BUCK3_SEL_CNT (RK817_BUCK1_SEL0 + RK817_BUCK3_SEL1 + 1)
-+
-+static const struct linear_range rk817_buck1_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(RK817_BUCK1_MIN0, 0,
-+			       RK817_BUCK1_SEL0, RK817_BUCK1_STP0),
-+	REGULATOR_LINEAR_RANGE(RK817_BUCK1_MIN1, RK817_BUCK1_SEL0 + 1,
-+			       RK817_BUCK1_SEL_CNT, RK817_BUCK1_STP1),
-+};
-+
-+static const struct linear_range rk817_buck3_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(RK817_BUCK1_MIN0, 0,
-+			       RK817_BUCK1_SEL0, RK817_BUCK1_STP0),
-+	REGULATOR_LINEAR_RANGE(RK817_BUCK1_MIN1, RK817_BUCK1_SEL0 + 1,
-+			       RK817_BUCK3_SEL_CNT, RK817_BUCK1_STP1),
-+};
-+
-+static const unsigned int rk808_buck1_2_ramp_table[] = {
-+	2000, 4000, 6000, 10000
-+};
-+
-+/* RK817/RK809/RK816 (buck 1/2 only) */
-+static const unsigned int rk817_buck1_4_ramp_table[] = {
-+	3000, 6300, 12500, 25000
-+};
-+
-+static int rk806_set_mode_dcdc(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	unsigned int rid = rdev_get_id(rdev);
-+	unsigned int ctr_bit, reg;
-+
-+	reg = RK806_POWER_FPWM_EN0 + rid / 8;
-+	ctr_bit = rid % 8;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		return regmap_update_bits(rdev->regmap, reg,
-+					  PWM_MODE_MSK << ctr_bit,
-+					  FPWM_MODE << ctr_bit);
-+	case REGULATOR_MODE_NORMAL:
-+		return regmap_update_bits(rdev->regmap, reg,
-+					  PWM_MODE_MSK << ctr_bit,
-+					  AUTO_PWM_MODE << ctr_bit);
-+	default:
-+		dev_err(rdev_get_dev(rdev), "mode unsupported: %u\n", mode);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static unsigned int rk806_get_mode_dcdc(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+	int ctr_bit, reg;
-+	unsigned int val;
-+	int err;
-+
-+	reg = RK806_POWER_FPWM_EN0 + rid / 8;
-+	ctr_bit = rid % 8;
-+
-+	err = regmap_read(rdev->regmap, reg, &val);
-+	if (err)
-+		return err;
-+
-+	if ((val >> ctr_bit) & FPWM_MODE)
-+		return REGULATOR_MODE_FAST;
-+	else
-+		return REGULATOR_MODE_NORMAL;
-+}
-+
-+static const struct rk8xx_register_bit rk806_dcdc_rate2[] = {
-+	RK8XX_REG_BIT(0xEB, 0),
-+	RK8XX_REG_BIT(0xEB, 1),
-+	RK8XX_REG_BIT(0xEB, 2),
-+	RK8XX_REG_BIT(0xEB, 3),
-+	RK8XX_REG_BIT(0xEB, 4),
-+	RK8XX_REG_BIT(0xEB, 5),
-+	RK8XX_REG_BIT(0xEB, 6),
-+	RK8XX_REG_BIT(0xEB, 7),
-+	RK8XX_REG_BIT(0xEA, 0),
-+	RK8XX_REG_BIT(0xEA, 1),
-+};
-+
-+static const unsigned int rk806_ramp_delay_table_dcdc[] = {
-+	50000, 25000, 12500, 6250, 3125, 1560, 961, 390
-+};
-+
-+static int rk806_set_ramp_delay_dcdc(struct regulator_dev *rdev, int ramp_delay)
-+{
-+	int rid = rdev_get_id(rdev);
-+	int regval, ramp_value, ret;
-+
-+	ret = regulator_find_closest_bigger(ramp_delay, rdev->desc->ramp_delay_table,
-+					    rdev->desc->n_ramp_values, &ramp_value);
-+	if (ret) {
-+		dev_warn(rdev_get_dev(rdev),
-+			 "Can't set ramp-delay %u, setting %u\n", ramp_delay,
-+			 rdev->desc->ramp_delay_table[ramp_value]);
-+	}
-+
-+	regval = ramp_value << (ffs(rdev->desc->ramp_mask) - 1);
-+
-+	ret = regmap_update_bits(rdev->regmap, rdev->desc->ramp_reg,
-+				 rdev->desc->ramp_mask, regval);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The above is effectively a copy of regulator_set_ramp_delay_regmap(),
-+	 * but that only stores the lower 2 bits for rk806 DCDC ramp. The MSB must
-+	 * be stored in a separate register, so this open codes the implementation
-+	 * to have access to the ramp_value.
-+	 */
-+
-+	regval = (ramp_value >> 2) & 0x1 ? rk806_dcdc_rate2[rid].bit : 0;
-+	return regmap_update_bits(rdev->regmap, rk806_dcdc_rate2[rid].reg,
-+				  rk806_dcdc_rate2[rid].bit,
-+				  regval);
-+}
-+
-+static const unsigned int rk806_ramp_delay_table_ldo[] = {
-+	100000, 50000, 25000, 12500, 6280, 3120, 1900, 780
-+};
-+
-+static int rk806_set_suspend_voltage_range(struct regulator_dev *rdev, int reg_offset, int uv)
-+{
-+	int sel = regulator_map_voltage_linear_range(rdev, uv, uv);
-+	unsigned int reg;
-+
-+	if (sel < 0)
-+		return -EINVAL;
-+
-+	reg = rdev->desc->vsel_reg + reg_offset;
-+
-+	return regmap_update_bits(rdev->regmap, reg, rdev->desc->vsel_mask, sel);
-+}
-+
-+static int rk806_set_suspend_voltage_range_dcdc(struct regulator_dev *rdev, int uv)
-+{
-+	return rk806_set_suspend_voltage_range(rdev, RK806_DCDC_SLP_REG_OFFSET, uv);
-+}
-+
-+static int rk806_set_suspend_voltage_range_nldo(struct regulator_dev *rdev, int uv)
-+{
-+	return rk806_set_suspend_voltage_range(rdev, RK806_NLDO_SLP_REG_OFFSET, uv);
-+}
-+
-+static int rk806_set_suspend_voltage_range_pldo(struct regulator_dev *rdev, int uv)
-+{
-+	return rk806_set_suspend_voltage_range(rdev, RK806_PLDO_SLP_REG_OFFSET, uv);
-+}
-+
-+static int rk808_buck1_2_get_voltage_sel_regmap(struct regulator_dev *rdev)
-+{
-+	struct rk808_regulator_data *pdata = rdev_get_drvdata(rdev);
-+	int id = rdev_get_id(rdev);
-+	struct gpio_desc *gpio = pdata->dvs_gpio[id];
-+	unsigned int val;
-+	int ret;
-+
-+	if (!gpio || gpiod_get_value(gpio) == 0)
-+		return regulator_get_voltage_sel_regmap(rdev);
-+
-+	ret = regmap_read(rdev->regmap,
-+			  rdev->desc->vsel_reg + RK808_DVS_REG_OFFSET,
-+			  &val);
-+	if (ret != 0)
-+		return ret;
-+
-+	val &= rdev->desc->vsel_mask;
-+	val >>= ffs(rdev->desc->vsel_mask) - 1;
-+
-+	return val;
-+}
-+
-+static int rk808_buck1_2_i2c_set_voltage_sel(struct regulator_dev *rdev,
-+					     unsigned sel)
-+{
-+	int ret, delta_sel;
-+	unsigned int old_sel, tmp, val, mask = rdev->desc->vsel_mask;
-+
-+	ret = regmap_read(rdev->regmap, rdev->desc->vsel_reg, &val);
-+	if (ret != 0)
-+		return ret;
-+
-+	tmp = val & ~mask;
-+	old_sel = val & mask;
-+	old_sel >>= ffs(mask) - 1;
-+	delta_sel = sel - old_sel;
-+
-+	/*
-+	 * If directly modify the register to change the voltage, we will face
-+	 * the risk of overshoot. Put it into a multi-step, can effectively
-+	 * avoid this problem, a step is 100mv here.
-+	 */
-+	while (delta_sel > MAX_STEPS_ONE_TIME) {
-+		old_sel += MAX_STEPS_ONE_TIME;
-+		val = old_sel << (ffs(mask) - 1);
-+		val |= tmp;
-+
-+		/*
-+		 * i2c is 400kHz (2.5us per bit) and we must transmit _at least_
-+		 * 3 bytes (24 bits) plus start and stop so 26 bits.  So we've
-+		 * got more than 65 us between each voltage change and thus
-+		 * won't ramp faster than ~1500 uV / us.
-+		 */
-+		ret = regmap_write(rdev->regmap, rdev->desc->vsel_reg, val);
-+		delta_sel = sel - old_sel;
-+	}
-+
-+	sel <<= ffs(mask) - 1;
-+	val = tmp | sel;
-+	ret = regmap_write(rdev->regmap, rdev->desc->vsel_reg, val);
-+
-+	/*
-+	 * When we change the voltage register directly, the ramp rate is about
-+	 * 100000uv/us, wait 1us to make sure the target voltage to be stable,
-+	 * so we needn't wait extra time after that.
-+	 */
-+	udelay(1);
-+
-+	return ret;
-+}
-+
-+static int rk808_buck1_2_set_voltage_sel(struct regulator_dev *rdev,
-+					 unsigned sel)
-+{
-+	struct rk808_regulator_data *pdata = rdev_get_drvdata(rdev);
-+	int id = rdev_get_id(rdev);
-+	struct gpio_desc *gpio = pdata->dvs_gpio[id];
-+	unsigned int reg = rdev->desc->vsel_reg;
-+	unsigned old_sel;
-+	int ret, gpio_level;
-+
-+	if (!gpio)
-+		return rk808_buck1_2_i2c_set_voltage_sel(rdev, sel);
-+
-+	gpio_level = gpiod_get_value(gpio);
-+	if (gpio_level == 0) {
-+		reg += RK808_DVS_REG_OFFSET;
-+		ret = regmap_read(rdev->regmap, rdev->desc->vsel_reg, &old_sel);
-+	} else {
-+		ret = regmap_read(rdev->regmap,
-+				  reg + RK808_DVS_REG_OFFSET,
-+				  &old_sel);
-+	}
-+
-+	if (ret != 0)
-+		return ret;
-+
-+	sel <<= ffs(rdev->desc->vsel_mask) - 1;
-+	sel |= old_sel & ~rdev->desc->vsel_mask;
-+
-+	ret = regmap_write(rdev->regmap, reg, sel);
-+	if (ret)
-+		return ret;
-+
-+	gpiod_set_value(gpio, !gpio_level);
-+
-+	return ret;
-+}
-+
-+static int rk808_buck1_2_set_voltage_time_sel(struct regulator_dev *rdev,
-+				       unsigned int old_selector,
-+				       unsigned int new_selector)
-+{
-+	struct rk808_regulator_data *pdata = rdev_get_drvdata(rdev);
-+	int id = rdev_get_id(rdev);
-+	struct gpio_desc *gpio = pdata->dvs_gpio[id];
-+
-+	/* if there is no dvs1/2 pin, we don't need wait extra time here. */
-+	if (!gpio)
-+		return 0;
-+
-+	return regulator_set_voltage_time_sel(rdev, old_selector, new_selector);
-+}
-+
-+static int rk808_set_suspend_voltage(struct regulator_dev *rdev, int uv)
-+{
-+	unsigned int reg;
-+	int sel = regulator_map_voltage_linear(rdev, uv, uv);
-+
-+	if (sel < 0)
-+		return -EINVAL;
-+
-+	reg = rdev->desc->vsel_reg + RK808_SLP_REG_OFFSET;
-+
-+	return regmap_update_bits(rdev->regmap, reg,
-+				  rdev->desc->vsel_mask,
-+				  sel);
-+}
-+
-+static int rk808_set_suspend_voltage_range(struct regulator_dev *rdev, int uv)
-+{
-+	unsigned int reg;
-+	int sel = regulator_map_voltage_linear_range(rdev, uv, uv);
-+	int ret;
-+
-+	if (sel < 0)
-+		return -EINVAL;
-+
-+	reg = rdev->desc->vsel_reg + RK808_SLP_REG_OFFSET;
-+
-+	ret = regmap_update_bits(rdev->regmap, reg,
-+				 rdev->desc->vsel_mask,
-+				 sel);
-+	if (ret)
-+		return ret;
-+
-+	if (rdev->desc->apply_bit)
-+		ret = regmap_update_bits(rdev->regmap, rdev->desc->apply_reg,
-+					 rdev->desc->apply_bit,
-+					 rdev->desc->apply_bit);
-+
-+	return ret;
-+}
-+
-+static int rk805_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	unsigned int reg;
-+
-+	reg = rdev->desc->enable_reg + RK808_SLP_SET_OFF_REG_OFFSET;
-+
-+	return regmap_update_bits(rdev->regmap, reg,
-+				  rdev->desc->enable_mask,
-+				  rdev->desc->enable_mask);
-+}
-+
-+static int rk805_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	unsigned int reg;
-+
-+	reg = rdev->desc->enable_reg + RK808_SLP_SET_OFF_REG_OFFSET;
-+
-+	return regmap_update_bits(rdev->regmap, reg,
-+				  rdev->desc->enable_mask,
-+				  0);
-+}
-+
-+static const struct rk8xx_register_bit rk806_suspend_bits[] = {
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 0),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 1),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 2),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 3),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 4),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 5),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 6),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN0, 7),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 6),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 7),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 0),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 1),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 2),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 3),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN1, 4),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 1),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 2),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 3),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 4),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 5),
-+	RK8XX_REG_BIT(RK806_POWER_SLP_EN2, 0),
-+};
-+
-+static int rk806_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+
-+	return regmap_update_bits(rdev->regmap, rk806_suspend_bits[rid].reg,
-+				  rk806_suspend_bits[rid].bit,
-+				  rk806_suspend_bits[rid].bit);
-+}
-+
-+static int rk806_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+
-+	return regmap_update_bits(rdev->regmap, rk806_suspend_bits[rid].reg,
-+				  rk806_suspend_bits[rid].bit, 0);
-+}
-+
-+static int rk808_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	unsigned int reg;
-+
-+	reg = rdev->desc->enable_reg + RK808_SLP_SET_OFF_REG_OFFSET;
-+
-+	return regmap_update_bits(rdev->regmap, reg,
-+				  rdev->desc->enable_mask,
-+				  0);
-+}
-+
-+static int rk808_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	unsigned int reg;
-+
-+	reg = rdev->desc->enable_reg + RK808_SLP_SET_OFF_REG_OFFSET;
-+
-+	return regmap_update_bits(rdev->regmap, reg,
-+				  rdev->desc->enable_mask,
-+				  rdev->desc->enable_mask);
-+}
-+
-+static const struct rk8xx_register_bit rk816_suspend_bits[] = {
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 0),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 1),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 2),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 3),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 0),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 1),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 2),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 3),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 4),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG2, 5),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 5),
-+	RK8XX_REG_BIT(RK818_SLEEP_SET_OFF_REG1, 6),
-+};
-+
-+static int rk816_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+
-+	return regmap_update_bits(rdev->regmap, rk816_suspend_bits[rid].reg,
-+				  rk816_suspend_bits[rid].bit,
-+				  rk816_suspend_bits[rid].bit);
-+}
-+
-+static int rk816_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	int rid = rdev_get_id(rdev);
-+
-+	return regmap_update_bits(rdev->regmap, rk816_suspend_bits[rid].reg,
-+				  rk816_suspend_bits[rid].bit, 0);
-+}
-+
-+static int rk817_set_suspend_enable_ctrl(struct regulator_dev *rdev,
-+					 unsigned int en)
-+{
-+	unsigned int reg;
-+	int id = rdev_get_id(rdev);
-+	unsigned int id_slp, msk, val;
-+
-+	if (id >= RK817_ID_DCDC1 && id <= RK817_ID_DCDC4)
-+		id_slp = id;
-+	else if (id >= RK817_ID_LDO1 && id <= RK817_ID_LDO8)
-+		id_slp = 8 + (id - RK817_ID_LDO1);
-+	else if (id >= RK817_ID_LDO9 && id <= RK809_ID_SW2)
-+		id_slp = 4 + (id - RK817_ID_LDO9);
-+	else
-+		return -EINVAL;
-+
-+	reg = RK817_POWER_SLP_EN_REG(id_slp / 8);
-+
-+	msk = BIT(id_slp % 8);
-+	if (en)
-+		val = msk;
-+	else
-+		val = 0;
-+
-+	return regmap_update_bits(rdev->regmap, reg, msk, val);
-+}
-+
-+static int rk817_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	return rk817_set_suspend_enable_ctrl(rdev, 1);
-+}
-+
-+static int rk817_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	return rk817_set_suspend_enable_ctrl(rdev, 0);
-+}
-+
-+static int rk8xx_set_suspend_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	unsigned int reg;
-+
-+	reg = rdev->desc->vsel_reg + RK808_SLP_REG_OFFSET;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		return regmap_update_bits(rdev->regmap, reg,
-+					  PWM_MODE_MSK, FPWM_MODE);
-+	case REGULATOR_MODE_NORMAL:
-+		return regmap_update_bits(rdev->regmap, reg,
-+					  PWM_MODE_MSK, AUTO_PWM_MODE);
-+	default:
-+		dev_err(&rdev->dev, "do not support this mode\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rk8xx_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		return regmap_update_bits(rdev->regmap, rdev->desc->vsel_reg,
-+					  PWM_MODE_MSK, FPWM_MODE);
-+	case REGULATOR_MODE_NORMAL:
-+		return regmap_update_bits(rdev->regmap, rdev->desc->vsel_reg,
-+					  PWM_MODE_MSK, AUTO_PWM_MODE);
-+	default:
-+		dev_err(&rdev->dev, "do not support this mode\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static unsigned int rk8xx_get_mode(struct regulator_dev *rdev)
-+{
-+	unsigned int val;
-+	int err;
-+
-+	err = regmap_read(rdev->regmap, rdev->desc->vsel_reg, &val);
-+	if (err)
-+		return err;
-+
-+	if (val & FPWM_MODE)
-+		return REGULATOR_MODE_FAST;
-+	else
-+		return REGULATOR_MODE_NORMAL;
-+}
-+
-+static int rk8xx_is_enabled_wmsk_regmap(struct regulator_dev *rdev)
-+{
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(rdev->regmap, rdev->desc->enable_reg, &val);
-+	if (ret != 0)
-+		return ret;
-+
-+	/* add write mask bit */
-+	val |= (rdev->desc->enable_mask & 0xf0);
-+	val &= rdev->desc->enable_mask;
-+
-+	if (rdev->desc->enable_is_inverted) {
-+		if (rdev->desc->enable_val)
-+			return val != rdev->desc->enable_val;
-+		return (val == 0);
-+	}
-+	if (rdev->desc->enable_val)
-+		return val == rdev->desc->enable_val;
-+	return val != 0;
-+}
-+
-+static unsigned int rk8xx_regulator_of_map_mode(unsigned int mode)
-+{
-+	switch (mode) {
-+	case 1:
-+		return REGULATOR_MODE_FAST;
-+	case 2:
-+		return REGULATOR_MODE_NORMAL;
-+	default:
-+		return REGULATOR_MODE_INVALID;
-+	}
-+}
-+
-+static unsigned int rk801_get_mode(struct regulator_dev *rdev)
-+{
-+	unsigned int val;
-+	int err;
-+
-+	err = regmap_read(rdev->regmap, RK801_POWER_FPWM_EN_REG, &val);
-+	if (err)
-+		return err;
-+
-+	if (val & BIT(rdev->desc->id))
-+		return REGULATOR_MODE_FAST;
-+	else
-+		return REGULATOR_MODE_NORMAL;
-+}
-+
-+static int rk801_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	unsigned int offset = rdev->desc->id;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		return regmap_update_bits(rdev->regmap, RK801_POWER_FPWM_EN_REG,
-+					  BIT(offset), RK801_FPWM_MODE << offset);
-+	case REGULATOR_MODE_NORMAL:
-+		return regmap_update_bits(rdev->regmap, RK801_POWER_FPWM_EN_REG,
-+					  BIT(offset), RK801_AUTO_PWM_MODE << offset);
-+	default:
-+		dev_err(&rdev->dev, "do not support this mode\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rk801_set_suspend_voltage(struct regulator_dev *rdev, int uv)
-+{
-+	unsigned int reg;
-+	int sel;
-+
-+	if (rdev->desc->id < RK801_ID_LDO1)
-+		sel = regulator_map_voltage_linear_range(rdev, uv, uv);
-+	else
-+		sel = regulator_map_voltage_linear(rdev, uv, uv);
-+	if (sel < 0)
-+		return -EINVAL;
-+
-+	reg = rdev->desc->vsel_reg + RK801_SLP_REG_OFFSET;
-+
-+	return regmap_update_bits(rdev->regmap, reg,
-+				  rdev->desc->vsel_mask, sel);
-+}
-+
-+static int rk801_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	return regmap_update_bits(rdev->regmap, RK801_POWER_SLP_EN_REG,
-+				  BIT(rdev->desc->id), BIT(rdev->desc->id));
-+}
-+
-+static int rk801_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	return regmap_update_bits(rdev->regmap, RK801_POWER_SLP_EN_REG,
-+				  BIT(rdev->desc->id), 0);
-+}
-+
-+static int rk801_set_voltage_time_sel(struct regulator_dev *rdev,
-+				      unsigned int old_selector,
-+				      unsigned int new_selector)
-+{
-+	return regulator_set_voltage_time_sel(rdev, old_selector,
-+					      new_selector) + RK801_HW_SYNC_US;
-+}
-+
-+static const struct regulator_ops rk801_buck_ops = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= rk801_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_mode		= rk801_set_mode,
-+	.get_mode		= rk801_get_mode,
-+	.set_suspend_voltage	= rk801_set_suspend_voltage,
-+	.set_suspend_enable	= rk801_set_suspend_enable,
-+	.set_suspend_disable	= rk801_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk801_reg_ops = {
-+	.list_voltage		= regulator_list_voltage_linear,
-+	.map_voltage		= regulator_map_voltage_linear,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_suspend_voltage	= rk801_set_suspend_voltage,
-+	.set_suspend_enable	= rk801_set_suspend_enable,
-+	.set_suspend_disable	= rk801_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk801_switch_ops = {
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_suspend_enable	= rk801_set_suspend_enable,
-+	.set_suspend_disable	= rk801_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk805_reg_ops = {
-+	.list_voltage           = regulator_list_voltage_linear,
-+	.map_voltage            = regulator_map_voltage_linear,
-+	.get_voltage_sel        = regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel        = regulator_set_voltage_sel_regmap,
-+	.enable                 = regulator_enable_regmap,
-+	.disable                = regulator_disable_regmap,
-+	.is_enabled             = regulator_is_enabled_regmap,
-+	.set_suspend_voltage    = rk808_set_suspend_voltage,
-+	.set_suspend_enable     = rk805_set_suspend_enable,
-+	.set_suspend_disable    = rk805_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk805_switch_ops = {
-+	.enable                 = regulator_enable_regmap,
-+	.disable                = regulator_disable_regmap,
-+	.is_enabled             = regulator_is_enabled_regmap,
-+	.set_suspend_enable     = rk805_set_suspend_enable,
-+	.set_suspend_disable    = rk805_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk806_ops_dcdc = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel        = regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.set_mode		= rk806_set_mode_dcdc,
-+	.get_mode		= rk806_get_mode_dcdc,
-+
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+
-+	.set_suspend_mode	= rk806_set_mode_dcdc,
-+	.set_ramp_delay		= rk806_set_ramp_delay_dcdc,
-+
-+	.set_suspend_voltage	= rk806_set_suspend_voltage_range_dcdc,
-+	.set_suspend_enable	= rk806_set_suspend_enable,
-+	.set_suspend_disable	= rk806_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk806_ops_nldo = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel        = regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+
-+	.set_suspend_voltage	= rk806_set_suspend_voltage_range_nldo,
-+	.set_suspend_enable	= rk806_set_suspend_enable,
-+	.set_suspend_disable	= rk806_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk806_ops_pldo = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel        = regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+
-+	.set_suspend_voltage	= rk806_set_suspend_voltage_range_pldo,
-+	.set_suspend_enable	= rk806_set_suspend_enable,
-+	.set_suspend_disable	= rk806_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk808_buck1_2_ops = {
-+	.list_voltage		= regulator_list_voltage_linear,
-+	.map_voltage		= regulator_map_voltage_linear,
-+	.get_voltage_sel	= rk808_buck1_2_get_voltage_sel_regmap,
-+	.set_voltage_sel	= rk808_buck1_2_set_voltage_sel,
-+	.set_voltage_time_sel	= rk808_buck1_2_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage,
-+	.set_suspend_enable	= rk808_set_suspend_enable,
-+	.set_suspend_disable	= rk808_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk808_reg_ops = {
-+	.list_voltage		= regulator_list_voltage_linear,
-+	.map_voltage		= regulator_map_voltage_linear,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage,
-+	.set_suspend_enable	= rk808_set_suspend_enable,
-+	.set_suspend_disable	= rk808_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk808_reg_ops_ranges = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk808_set_suspend_enable,
-+	.set_suspend_disable	= rk808_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk808_switch_ops = {
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_suspend_enable	= rk808_set_suspend_enable,
-+	.set_suspend_disable	= rk808_set_suspend_disable,
-+};
-+
-+static const struct linear_range rk805_buck_1_2_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(712500, 0, 59, 12500),
-+	REGULATOR_LINEAR_RANGE(1800000, 60, 62, 200000),
-+	REGULATOR_LINEAR_RANGE(2300000, 63, 63, 0),
-+};
-+
-+static const struct regulator_ops rk809_buck5_ops_range = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk817_set_suspend_enable,
-+	.set_suspend_disable	= rk817_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk816_buck1_2_ops_ranges = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_mode		= rk8xx_set_mode,
-+	.get_mode		= rk8xx_get_mode,
-+	.set_suspend_mode	= rk8xx_set_suspend_mode,
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk816_buck4_ops_ranges = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_mode		= rk8xx_set_mode,
-+	.get_mode		= rk8xx_get_mode,
-+	.set_suspend_mode	= rk8xx_set_suspend_mode,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk816_reg_ops = {
-+	.list_voltage		= regulator_list_voltage_linear,
-+	.map_voltage		= regulator_map_voltage_linear,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage,
-+	.set_suspend_enable	= rk816_set_suspend_enable,
-+	.set_suspend_disable	= rk816_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk817_reg_ops = {
-+	.list_voltage		= regulator_list_voltage_linear,
-+	.map_voltage		= regulator_map_voltage_linear,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage,
-+	.set_suspend_enable	= rk817_set_suspend_enable,
-+	.set_suspend_disable	= rk817_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk817_boost_ops = {
-+	.list_voltage		= regulator_list_voltage_linear,
-+	.map_voltage		= regulator_map_voltage_linear,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+	.set_suspend_enable	= rk817_set_suspend_enable,
-+	.set_suspend_disable	= rk817_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk817_buck_ops_range = {
-+	.list_voltage		= regulator_list_voltage_linear_range,
-+	.map_voltage		= regulator_map_voltage_linear_range,
-+	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
-+	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
-+	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+	.set_mode		= rk8xx_set_mode,
-+	.get_mode		= rk8xx_get_mode,
-+	.set_suspend_mode	= rk8xx_set_suspend_mode,
-+	.set_ramp_delay		= regulator_set_ramp_delay_regmap,
-+	.set_suspend_voltage	= rk808_set_suspend_voltage_range,
-+	.set_suspend_enable	= rk817_set_suspend_enable,
-+	.set_suspend_disable	= rk817_set_suspend_disable,
-+};
-+
-+static const struct regulator_ops rk817_switch_ops = {
-+	.enable			= regulator_enable_regmap,
-+	.disable		= regulator_disable_regmap,
-+	.is_enabled		= rk8xx_is_enabled_wmsk_regmap,
-+	.set_suspend_enable	= rk817_set_suspend_enable,
-+	.set_suspend_disable	= rk817_set_suspend_disable,
-+};
-+
-+static const struct linear_range rk801_buck1_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,   0, 80, 12500),	/* 0.5v - 1.5v */
-+	REGULATOR_LINEAR_RANGE(1800000, 81, 82, 400000),/* 1.8v - 2.2v */
-+	REGULATOR_LINEAR_RANGE(3300000, 83, 83, 0),	/* 3.3v */
-+	REGULATOR_LINEAR_RANGE(5000000, 84, 84, 0),	/* 5.0v */
-+	REGULATOR_LINEAR_RANGE(5250000, 85, 85, 0),	/* 5.25v */
-+};
-+
-+static const struct linear_range rk801_buck2_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(800000,  0, 2, 50000),	/* 0.8v - 0.9v */
-+	REGULATOR_LINEAR_RANGE(1800000, 3, 4, 400000),	/* 1.8v - 2.2v */
-+	REGULATOR_LINEAR_RANGE(3300000, 5, 5, 0),	/* 3.3v */
-+	REGULATOR_LINEAR_RANGE(5000000, 6, 6, 0),	/* 5.0v */
-+	REGULATOR_LINEAR_RANGE(5250000, 7, 7, 0),	/* 5.25v */
-+};
-+
-+static const struct linear_range rk801_buck4_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,   0, 80, 12500),	/* 0.5v - 1.5v */
-+	REGULATOR_LINEAR_RANGE(1800000, 81, 82, 400000),/* 1.8v - 2.2v */
-+	REGULATOR_LINEAR_RANGE(2500000, 83, 83, 0),	/* 2.5v */
-+	REGULATOR_LINEAR_RANGE(2800000, 84, 84, 0),	/* 2.8v */
-+	REGULATOR_LINEAR_RANGE(3000000, 85, 85, 0),	/* 3.0v */
-+	REGULATOR_LINEAR_RANGE(3300000, 86, 86, 0),	/* 3.3v */
-+};
-+
-+static const struct regulator_desc rk801_reg[] = {
-+	{
-+		.name = "dcdc1",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("dcdc1"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK801_ID_DCDC1,
-+		.ops = &rk801_buck_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 86,
-+		.linear_ranges = rk801_buck1_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk801_buck1_voltage_ranges),
-+		.vsel_reg = RK801_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK801_BUCK_VSEL_MASK,
-+		.enable_reg = RK801_POWER_EN0_REG,
-+		.enable_mask = ENABLE_MASK(RK801_ID_DCDC1),
-+		.enable_val = ENABLE_MASK(RK801_ID_DCDC1),
-+		.disable_val = DISABLE_VAL(RK801_ID_DCDC1),
-+		.ramp_delay = 1000,
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.enable_time = 400,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc2",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("dcdc2"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK801_ID_DCDC2,
-+		.ops = &rk801_buck_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 8,
-+		.linear_ranges = rk801_buck2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk801_buck2_voltage_ranges),
-+		.vsel_reg = RK801_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK801_BUCK_VSEL_MASK,
-+		.enable_reg = RK801_POWER_EN0_REG,
-+		.enable_mask = ENABLE_MASK(RK801_ID_DCDC2),
-+		.enable_val = ENABLE_MASK(RK801_ID_DCDC2),
-+		.disable_val = DISABLE_VAL(RK801_ID_DCDC2),
-+		.ramp_delay = 1000,
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.enable_time = 400,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc3",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("dcdc3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK801_ID_DCDC3,
-+		.ops = &rk801_switch_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 1,
-+		.enable_reg = RK801_POWER_EN0_REG,
-+		.enable_mask = ENABLE_MASK(RK801_ID_DCDC3),
-+		.enable_val = ENABLE_MASK(RK801_ID_DCDC3),
-+		.disable_val = DISABLE_VAL(RK801_ID_DCDC3),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.enable_time = 400,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc4",
-+		.supply_name = "vcc4",
-+		.of_match = of_match_ptr("dcdc4"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK801_ID_DCDC4,
-+		.ops = &rk801_buck_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 87,
-+		.linear_ranges = rk801_buck4_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk801_buck4_voltage_ranges),
-+		.vsel_reg = RK801_BUCK4_ON_VSEL_REG,
-+		.vsel_mask = RK801_BUCK_VSEL_MASK,
-+		.enable_reg = RK801_POWER_EN0_REG,
-+		.enable_mask = ENABLE_MASK(RK801_ID_DCDC4),
-+		.enable_val = ENABLE_MASK(RK801_ID_DCDC4),
-+		.disable_val = DISABLE_VAL(RK801_ID_DCDC4),
-+		.ramp_delay = 1000,
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.enable_time = 400,
-+		.owner = THIS_MODULE,
-+	},
-+
-+	RK801_DESC(RK801_ID_LDO1, "ldo1", "vcc5", 500, 3400, 50,
-+		RK801_LDO1_ON_VSEL_REG, RK801_LDO_VSEL_MASK, RK801_POWER_EN1_REG,
-+		ENABLE_MASK(0), DISABLE_VAL(0), 400),
-+	RK801_DESC(RK801_ID_LDO2, "ldo2", "vcc6", 500, 3400, 50,
-+		RK801_LDO2_ON_VSEL_REG, RK801_LDO_VSEL_MASK, RK801_POWER_EN1_REG,
-+		ENABLE_MASK(1), DISABLE_VAL(1), 400),
-+	RK801_DESC_SWITCH(RK801_ID_SWITCH, "switch", "vcc7", RK801_POWER_EN1_REG,
-+		ENABLE_MASK(2), DISABLE_VAL(2)),
-+};
-+
-+static const struct regulator_desc rk805_reg[] = {
-+	{
-+		.name = "DCDC_REG1",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("DCDC_REG1"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK805_ID_DCDC1,
-+		.ops = &rk808_reg_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 64,
-+		.linear_ranges = rk805_buck_1_2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk805_buck_1_2_voltage_ranges),
-+		.vsel_reg = RK805_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.enable_reg = RK805_DCDC_EN_REG,
-+		.enable_mask = BIT(0),
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG2",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("DCDC_REG2"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK805_ID_DCDC2,
-+		.ops = &rk808_reg_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 64,
-+		.linear_ranges = rk805_buck_1_2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk805_buck_1_2_voltage_ranges),
-+		.vsel_reg = RK805_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.enable_reg = RK805_DCDC_EN_REG,
-+		.enable_mask = BIT(1),
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG3",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("DCDC_REG3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK805_ID_DCDC3,
-+		.ops = &rk805_switch_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 1,
-+		.enable_reg = RK805_DCDC_EN_REG,
-+		.enable_mask = BIT(2),
-+		.owner = THIS_MODULE,
-+	},
-+
-+	RK805_DESC(RK805_ID_DCDC4, "DCDC_REG4", "vcc4", 800, 3400, 100,
-+		RK805_BUCK4_ON_VSEL_REG, RK818_BUCK4_VSEL_MASK,
-+		RK805_DCDC_EN_REG, BIT(3), 0),
-+
-+	RK805_DESC(RK805_ID_LDO1, "LDO_REG1", "vcc5", 800, 3400, 100,
-+		RK805_LDO1_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK805_LDO_EN_REG,
-+		BIT(0), 400),
-+	RK805_DESC(RK805_ID_LDO2, "LDO_REG2", "vcc5", 800, 3400, 100,
-+		RK805_LDO2_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK805_LDO_EN_REG,
-+		BIT(1), 400),
-+	RK805_DESC(RK805_ID_LDO3, "LDO_REG3", "vcc6", 800, 3400, 100,
-+		RK805_LDO3_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK805_LDO_EN_REG,
-+		BIT(2), 400),
-+};
-+
-+static const struct linear_range rk806_buck_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0, 159, 6250), /* 500mV ~ 1500mV */
-+	REGULATOR_LINEAR_RANGE(1500000, 160, 235, 25000), /* 1500mV ~ 3400mV */
-+	REGULATOR_LINEAR_RANGE(3400000, 236, 255, 0),
-+};
-+
-+static const struct linear_range rk806_ldo_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0, 231, 12500), /* 500mV ~ 3400mV */
-+	REGULATOR_LINEAR_RANGE(3400000, 232, 255, 0),
-+};
-+
-+static const struct regulator_desc rk806_reg[] = {
-+	RK806_REGULATOR("dcdc-reg1", "vcc1", RK806_ID_DCDC1, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK1_ON_VSEL,
-+			RK806_POWER_EN0, rk806_buck_voltage_ranges, 0,
-+			RK806_BUCK1_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg2", "vcc2", RK806_ID_DCDC2, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK2_ON_VSEL,
-+			RK806_POWER_EN0, rk806_buck_voltage_ranges, 1,
-+			RK806_BUCK2_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg3", "vcc3", RK806_ID_DCDC3, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK3_ON_VSEL,
-+			RK806_POWER_EN0, rk806_buck_voltage_ranges, 2,
-+			RK806_BUCK3_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg4", "vcc4", RK806_ID_DCDC4, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK4_ON_VSEL,
-+			RK806_POWER_EN0, rk806_buck_voltage_ranges, 3,
-+			RK806_BUCK4_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+
-+	RK806_REGULATOR("dcdc-reg5", "vcc5", RK806_ID_DCDC5, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK5_ON_VSEL,
-+			RK806_POWER_EN1, rk806_buck_voltage_ranges, 0,
-+			RK806_BUCK5_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg6", "vcc6", RK806_ID_DCDC6, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK6_ON_VSEL,
-+			RK806_POWER_EN1, rk806_buck_voltage_ranges, 1,
-+			RK806_BUCK6_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg7", "vcc7", RK806_ID_DCDC7, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK7_ON_VSEL,
-+			RK806_POWER_EN1, rk806_buck_voltage_ranges, 2,
-+			RK806_BUCK7_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg8", "vcc8", RK806_ID_DCDC8, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK8_ON_VSEL,
-+			RK806_POWER_EN1, rk806_buck_voltage_ranges, 3,
-+			RK806_BUCK8_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+
-+	RK806_REGULATOR("dcdc-reg9", "vcc9", RK806_ID_DCDC9, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK9_ON_VSEL,
-+			RK806_POWER_EN2, rk806_buck_voltage_ranges, 0,
-+			RK806_BUCK9_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+	RK806_REGULATOR("dcdc-reg10", "vcc10", RK806_ID_DCDC10, rk806_ops_dcdc,
-+			RK806_BUCK_SEL_CNT, RK806_BUCK10_ON_VSEL,
-+			RK806_POWER_EN2, rk806_buck_voltage_ranges, 1,
-+			RK806_BUCK10_CONFIG, 0xc0, rk806_ramp_delay_table_dcdc),
-+
-+	RK806_REGULATOR("nldo-reg1", "vcc13", RK806_ID_NLDO1, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO1_ON_VSEL,
-+			RK806_POWER_EN3, rk806_ldo_voltage_ranges, 0,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("nldo-reg2", "vcc13", RK806_ID_NLDO2, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO2_ON_VSEL,
-+			RK806_POWER_EN3, rk806_ldo_voltage_ranges, 1,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("nldo-reg3", "vcc13", RK806_ID_NLDO3, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO3_ON_VSEL,
-+			RK806_POWER_EN3, rk806_ldo_voltage_ranges, 2,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("nldo-reg4", "vcc14", RK806_ID_NLDO4, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO4_ON_VSEL,
-+			RK806_POWER_EN3, rk806_ldo_voltage_ranges, 3,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+
-+	RK806_REGULATOR("nldo-reg5", "vcc14", RK806_ID_NLDO5, rk806_ops_nldo,
-+			RK806_LDO_SEL_CNT, RK806_NLDO5_ON_VSEL,
-+			RK806_POWER_EN5, rk806_ldo_voltage_ranges, 2,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+
-+	RK806_REGULATOR("pldo-reg1", "vcc11", RK806_ID_PLDO1, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO1_ON_VSEL,
-+			RK806_POWER_EN4, rk806_ldo_voltage_ranges, 1,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("pldo-reg2", "vcc11", RK806_ID_PLDO2, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO2_ON_VSEL,
-+			RK806_POWER_EN4, rk806_ldo_voltage_ranges, 2,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("pldo-reg3", "vcc11", RK806_ID_PLDO3, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO3_ON_VSEL,
-+			RK806_POWER_EN4, rk806_ldo_voltage_ranges, 3,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+
-+	RK806_REGULATOR("pldo-reg4", "vcc12", RK806_ID_PLDO4, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO4_ON_VSEL,
-+			RK806_POWER_EN5, rk806_ldo_voltage_ranges, 0,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+	RK806_REGULATOR("pldo-reg5", "vcc12", RK806_ID_PLDO5, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO5_ON_VSEL,
-+			RK806_POWER_EN5, rk806_ldo_voltage_ranges, 1,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+
-+	RK806_REGULATOR("pldo-reg6", "vcca", RK806_ID_PLDO6, rk806_ops_pldo,
-+			RK806_LDO_SEL_CNT, RK806_PLDO6_ON_VSEL,
-+			RK806_POWER_EN4, rk806_ldo_voltage_ranges, 0,
-+			0xEA, 0x38, rk806_ramp_delay_table_ldo),
-+};
-+
-+
-+static const struct regulator_desc rk808_reg[] = {
-+	{
-+		.name = "DCDC_REG1",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("DCDC_REG1"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK808_ID_DCDC1,
-+		.ops = &rk808_buck1_2_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.min_uV = 712500,
-+		.uV_step = 12500,
-+		.n_voltages = 64,
-+		.vsel_reg = RK808_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK808_BUCK_VSEL_MASK,
-+		.enable_reg = RK808_DCDC_EN_REG,
-+		.enable_mask = BIT(0),
-+		.ramp_reg = RK808_BUCK1_CONFIG_REG,
-+		.ramp_mask = RK808_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk808_buck1_2_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk808_buck1_2_ramp_table),
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG2",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("DCDC_REG2"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK808_ID_DCDC2,
-+		.ops = &rk808_buck1_2_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.min_uV = 712500,
-+		.uV_step = 12500,
-+		.n_voltages = 64,
-+		.vsel_reg = RK808_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK808_BUCK_VSEL_MASK,
-+		.enable_reg = RK808_DCDC_EN_REG,
-+		.enable_mask = BIT(1),
-+		.ramp_reg = RK808_BUCK2_CONFIG_REG,
-+		.ramp_mask = RK808_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk808_buck1_2_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk808_buck1_2_ramp_table),
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG3",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("DCDC_REG3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK808_ID_DCDC3,
-+		.ops = &rk808_switch_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 1,
-+		.enable_reg = RK808_DCDC_EN_REG,
-+		.enable_mask = BIT(2),
-+		.owner = THIS_MODULE,
-+	},
-+	RK8XX_DESC(RK808_ID_DCDC4, "DCDC_REG4", "vcc4", 1800, 3300, 100,
-+		RK808_BUCK4_ON_VSEL_REG, RK808_BUCK4_VSEL_MASK,
-+		RK808_DCDC_EN_REG, BIT(3), 0),
-+	RK8XX_DESC(RK808_ID_LDO1, "LDO_REG1", "vcc6", 1800, 3400, 100,
-+		RK808_LDO1_ON_VSEL_REG, RK808_LDO_VSEL_MASK, RK808_LDO_EN_REG,
-+		BIT(0), 400),
-+	RK8XX_DESC(RK808_ID_LDO2, "LDO_REG2", "vcc6", 1800, 3400, 100,
-+		RK808_LDO2_ON_VSEL_REG, RK808_LDO_VSEL_MASK, RK808_LDO_EN_REG,
-+		BIT(1), 400),
-+	{
-+		.name = "LDO_REG3",
-+		.supply_name = "vcc7",
-+		.of_match = of_match_ptr("LDO_REG3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK808_ID_LDO3,
-+		.ops = &rk808_reg_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 16,
-+		.linear_ranges = rk808_ldo3_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk808_ldo3_voltage_ranges),
-+		.vsel_reg = RK808_LDO3_ON_VSEL_REG,
-+		.vsel_mask = RK808_BUCK4_VSEL_MASK,
-+		.enable_reg = RK808_LDO_EN_REG,
-+		.enable_mask = BIT(2),
-+		.enable_time = 400,
-+		.owner = THIS_MODULE,
-+	},
-+	RK8XX_DESC(RK808_ID_LDO4, "LDO_REG4", "vcc9", 1800, 3400, 100,
-+		RK808_LDO4_ON_VSEL_REG, RK808_LDO_VSEL_MASK, RK808_LDO_EN_REG,
-+		BIT(3), 400),
-+	RK8XX_DESC(RK808_ID_LDO5, "LDO_REG5", "vcc9", 1800, 3400, 100,
-+		RK808_LDO5_ON_VSEL_REG, RK808_LDO_VSEL_MASK, RK808_LDO_EN_REG,
-+		BIT(4), 400),
-+	RK8XX_DESC(RK808_ID_LDO6, "LDO_REG6", "vcc10", 800, 2500, 100,
-+		RK808_LDO6_ON_VSEL_REG, RK808_LDO_VSEL_MASK, RK808_LDO_EN_REG,
-+		BIT(5), 400),
-+	RK8XX_DESC(RK808_ID_LDO7, "LDO_REG7", "vcc7", 800, 2500, 100,
-+		RK808_LDO7_ON_VSEL_REG, RK808_LDO_VSEL_MASK, RK808_LDO_EN_REG,
-+		BIT(6), 400),
-+	RK8XX_DESC(RK808_ID_LDO8, "LDO_REG8", "vcc11", 1800, 3400, 100,
-+		RK808_LDO8_ON_VSEL_REG, RK808_LDO_VSEL_MASK, RK808_LDO_EN_REG,
-+		BIT(7), 400),
-+	RK8XX_DESC_SWITCH(RK808_ID_SWITCH1, "SWITCH_REG1", "vcc8",
-+		RK808_DCDC_EN_REG, BIT(5)),
-+	RK8XX_DESC_SWITCH(RK808_ID_SWITCH2, "SWITCH_REG2", "vcc12",
-+		RK808_DCDC_EN_REG, BIT(6)),
-+};
-+
-+static const struct regulator_desc rk809_reg[] = {
-+	{
-+		.name = "DCDC_REG1",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("DCDC_REG1"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK817_ID_DCDC1,
-+		.ops = &rk817_buck_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK817_BUCK1_SEL_CNT + 1,
-+		.linear_ranges = rk817_buck1_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk817_buck1_voltage_ranges),
-+		.vsel_reg = RK817_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK817_BUCK_VSEL_MASK,
-+		.enable_reg = RK817_POWER_EN_REG(0),
-+		.enable_mask = ENABLE_MASK(RK817_ID_DCDC1),
-+		.enable_val = ENABLE_MASK(RK817_ID_DCDC1),
-+		.disable_val = DISABLE_VAL(RK817_ID_DCDC1),
-+		.ramp_reg = RK817_BUCK_CONFIG_REG(RK817_ID_DCDC1),
-+		.ramp_mask = RK817_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG2",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("DCDC_REG2"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK817_ID_DCDC2,
-+		.ops = &rk817_buck_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK817_BUCK1_SEL_CNT + 1,
-+		.linear_ranges = rk817_buck1_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk817_buck1_voltage_ranges),
-+		.vsel_reg = RK817_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK817_BUCK_VSEL_MASK,
-+		.enable_reg = RK817_POWER_EN_REG(0),
-+		.enable_mask = ENABLE_MASK(RK817_ID_DCDC2),
-+		.enable_val = ENABLE_MASK(RK817_ID_DCDC2),
-+		.disable_val = DISABLE_VAL(RK817_ID_DCDC2),
-+		.ramp_reg = RK817_BUCK_CONFIG_REG(RK817_ID_DCDC2),
-+		.ramp_mask = RK817_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG3",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("DCDC_REG3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK817_ID_DCDC3,
-+		.ops = &rk817_buck_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK817_BUCK1_SEL_CNT + 1,
-+		.linear_ranges = rk817_buck1_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk817_buck1_voltage_ranges),
-+		.vsel_reg = RK817_BUCK3_ON_VSEL_REG,
-+		.vsel_mask = RK817_BUCK_VSEL_MASK,
-+		.apply_reg = RK817_POWER_CONFIG,
-+		.apply_bit = RK817_BUCK3_FB_RES_INTER,
-+		.enable_reg = RK817_POWER_EN_REG(0),
-+		.enable_mask = ENABLE_MASK(RK817_ID_DCDC3),
-+		.enable_val = ENABLE_MASK(RK817_ID_DCDC3),
-+		.disable_val = DISABLE_VAL(RK817_ID_DCDC3),
-+		.ramp_reg = RK817_BUCK_CONFIG_REG(RK817_ID_DCDC3),
-+		.ramp_mask = RK817_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG4",
-+		.supply_name = "vcc4",
-+		.of_match = of_match_ptr("DCDC_REG4"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK817_ID_DCDC4,
-+		.ops = &rk817_buck_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK817_BUCK3_SEL_CNT + 1,
-+		.linear_ranges = rk817_buck3_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk817_buck3_voltage_ranges),
-+		.vsel_reg = RK817_BUCK4_ON_VSEL_REG,
-+		.vsel_mask = RK817_BUCK_VSEL_MASK,
-+		.enable_reg = RK817_POWER_EN_REG(0),
-+		.enable_mask = ENABLE_MASK(RK817_ID_DCDC4),
-+		.enable_val = ENABLE_MASK(RK817_ID_DCDC4),
-+		.disable_val = DISABLE_VAL(RK817_ID_DCDC4),
-+		.ramp_reg = RK817_BUCK_CONFIG_REG(RK817_ID_DCDC4),
-+		.ramp_mask = RK817_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	},
-+	{
-+		.name = "DCDC_REG5",
-+		.supply_name = "vcc9",
-+		.of_match = of_match_ptr("DCDC_REG5"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK809_ID_DCDC5,
-+		.ops = &rk809_buck5_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK809_BUCK5_SEL_CNT,
-+		.linear_ranges = rk809_buck5_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk809_buck5_voltage_ranges),
-+		.vsel_reg = RK809_BUCK5_CONFIG(0),
-+		.vsel_mask = RK809_BUCK5_VSEL_MASK,
-+		.enable_reg = RK817_POWER_EN_REG(3),
-+		.enable_mask = ENABLE_MASK(1),
-+		.enable_val = ENABLE_MASK(1),
-+		.disable_val = DISABLE_VAL(1),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	},
-+	RK817_DESC(RK817_ID_LDO1, "LDO_REG1", "vcc5", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(0), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(1), ENABLE_MASK(0),
-+		   DISABLE_VAL(0), 400),
-+	RK817_DESC(RK817_ID_LDO2, "LDO_REG2", "vcc5", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(1), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(1), ENABLE_MASK(1),
-+		   DISABLE_VAL(1), 400),
-+	RK817_DESC(RK817_ID_LDO3, "LDO_REG3", "vcc5", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(2), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(1), ENABLE_MASK(2),
-+		   DISABLE_VAL(2), 400),
-+	RK817_DESC(RK817_ID_LDO4, "LDO_REG4", "vcc6", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(3), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(1), ENABLE_MASK(3),
-+		   DISABLE_VAL(3), 400),
-+	RK817_DESC(RK817_ID_LDO5, "LDO_REG5", "vcc6", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(4), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(2), ENABLE_MASK(0),
-+		   DISABLE_VAL(0), 400),
-+	RK817_DESC(RK817_ID_LDO6, "LDO_REG6", "vcc6", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(5), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(2), ENABLE_MASK(1),
-+		   DISABLE_VAL(1), 400),
-+	RK817_DESC(RK817_ID_LDO7, "LDO_REG7", "vcc7", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(6), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(2), ENABLE_MASK(2),
-+		   DISABLE_VAL(2), 400),
-+	RK817_DESC(RK817_ID_LDO8, "LDO_REG8", "vcc7", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(7), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(2), ENABLE_MASK(3),
-+		   DISABLE_VAL(3), 400),
-+	RK817_DESC(RK817_ID_LDO9, "LDO_REG9", "vcc7", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(8), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(3), ENABLE_MASK(0),
-+		   DISABLE_VAL(0), 400),
-+	RK817_DESC_SWITCH(RK809_ID_SW1, "SWITCH_REG1", "vcc9",
-+			  RK817_POWER_EN_REG(3), ENABLE_MASK(2),
-+			  DISABLE_VAL(2)),
-+	RK817_DESC_SWITCH(RK809_ID_SW2, "SWITCH_REG2", "vcc8",
-+			  RK817_POWER_EN_REG(3), ENABLE_MASK(3),
-+			  DISABLE_VAL(3)),
-+};
-+
-+static const struct linear_range rk816_buck_4_voltage_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(800000, 0, 26, 100000),
-+	REGULATOR_LINEAR_RANGE(3500000, 27, 31, 0),
-+};
-+
-+static const struct regulator_desc rk816_reg[] = {
-+	{
-+		.name = "dcdc1",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("dcdc1"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC1,
-+		.ops = &rk816_buck1_2_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 64,
-+		.linear_ranges = rk805_buck_1_2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk805_buck_1_2_voltage_ranges),
-+		.vsel_reg = RK818_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.apply_reg = RK816_DCDC_EN_REG2,
-+		.apply_bit = RK816_BUCK_DVS_CONFIRM,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(4) | BIT(0),
-+		.enable_val = BIT(4) | BIT(0),
-+		.disable_val = BIT(4),
-+		.ramp_reg = RK818_BUCK1_CONFIG_REG,
-+		.ramp_mask = RK808_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc2",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("dcdc2"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC2,
-+		.ops = &rk816_buck1_2_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 64,
-+		.linear_ranges = rk805_buck_1_2_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk805_buck_1_2_voltage_ranges),
-+		.vsel_reg = RK818_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.apply_reg = RK816_DCDC_EN_REG2,
-+		.apply_bit = RK816_BUCK_DVS_CONFIRM,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(5) | BIT(1),
-+		.enable_val = BIT(5) | BIT(1),
-+		.disable_val = BIT(5),
-+		.ramp_reg = RK818_BUCK2_CONFIG_REG,
-+		.ramp_mask = RK808_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc3",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("dcdc3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC3,
-+		.ops = &rk808_switch_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 1,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(6) | BIT(2),
-+		.enable_val =  BIT(6) | BIT(2),
-+		.disable_val = BIT(6),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "dcdc4",
-+		.supply_name = "vcc4",
-+		.of_match = of_match_ptr("dcdc4"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK816_ID_DCDC4,
-+		.ops = &rk816_buck4_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 32,
-+		.linear_ranges = rk816_buck_4_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk816_buck_4_voltage_ranges),
-+		.vsel_reg = RK818_BUCK4_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK4_VSEL_MASK,
-+		.enable_reg = RK816_DCDC_EN_REG1,
-+		.enable_mask = BIT(7) | BIT(3),
-+		.enable_val = BIT(7) | BIT(3),
-+		.disable_val = BIT(7),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	},
-+	RK816_DESC(RK816_ID_LDO1, "ldo1", "vcc5", 800, 3400, 100,
-+		   RK818_LDO1_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(0), DISABLE_VAL(0), 400),
-+	RK816_DESC(RK816_ID_LDO2, "ldo2", "vcc5", 800, 3400, 100,
-+		   RK818_LDO2_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(1), DISABLE_VAL(1), 400),
-+	RK816_DESC(RK816_ID_LDO3, "ldo3", "vcc5", 800, 3400, 100,
-+		   RK818_LDO3_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(2), DISABLE_VAL(2), 400),
-+	RK816_DESC(RK816_ID_LDO4, "ldo4", "vcc6", 800, 3400, 100,
-+		   RK818_LDO4_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG1, ENABLE_MASK(3), DISABLE_VAL(3), 400),
-+	RK816_DESC(RK816_ID_LDO5, "ldo5", "vcc6", 800, 3400, 100,
-+		   RK818_LDO5_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG2, ENABLE_MASK(0), DISABLE_VAL(0), 400),
-+	RK816_DESC(RK816_ID_LDO6, "ldo6", "vcc6", 800, 3400, 100,
-+		   RK818_LDO6_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		   RK816_LDO_EN_REG2, ENABLE_MASK(1), DISABLE_VAL(1), 400),
-+};
-+
-+static const struct regulator_desc rk817_reg[] = {
-+	{
-+		.name = "DCDC_REG1",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("DCDC_REG1"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK817_ID_DCDC1,
-+		.ops = &rk817_buck_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK817_BUCK1_SEL_CNT + 1,
-+		.linear_ranges = rk817_buck1_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk817_buck1_voltage_ranges),
-+		.vsel_reg = RK817_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK817_BUCK_VSEL_MASK,
-+		.enable_reg = RK817_POWER_EN_REG(0),
-+		.enable_mask = ENABLE_MASK(RK817_ID_DCDC1),
-+		.enable_val = ENABLE_MASK(RK817_ID_DCDC1),
-+		.disable_val = DISABLE_VAL(RK817_ID_DCDC1),
-+		.ramp_reg = RK817_BUCK_CONFIG_REG(RK817_ID_DCDC1),
-+		.ramp_mask = RK817_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG2",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("DCDC_REG2"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK817_ID_DCDC2,
-+		.ops = &rk817_buck_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK817_BUCK1_SEL_CNT + 1,
-+		.linear_ranges = rk817_buck1_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk817_buck1_voltage_ranges),
-+		.vsel_reg = RK817_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK817_BUCK_VSEL_MASK,
-+		.enable_reg = RK817_POWER_EN_REG(0),
-+		.enable_mask = ENABLE_MASK(RK817_ID_DCDC2),
-+		.enable_val = ENABLE_MASK(RK817_ID_DCDC2),
-+		.disable_val = DISABLE_VAL(RK817_ID_DCDC2),
-+		.ramp_reg = RK817_BUCK_CONFIG_REG(RK817_ID_DCDC2),
-+		.ramp_mask = RK817_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG3",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("DCDC_REG3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK817_ID_DCDC3,
-+		.ops = &rk817_buck_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK817_BUCK1_SEL_CNT + 1,
-+		.linear_ranges = rk817_buck1_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk817_buck1_voltage_ranges),
-+		.vsel_reg = RK817_BUCK3_ON_VSEL_REG,
-+		.vsel_mask = RK817_BUCK_VSEL_MASK,
-+		.enable_reg = RK817_POWER_EN_REG(0),
-+		.enable_mask = ENABLE_MASK(RK817_ID_DCDC3),
-+		.enable_val = ENABLE_MASK(RK817_ID_DCDC3),
-+		.disable_val = DISABLE_VAL(RK817_ID_DCDC3),
-+		.ramp_reg = RK817_BUCK_CONFIG_REG(RK817_ID_DCDC3),
-+		.ramp_mask = RK817_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG4",
-+		.supply_name = "vcc4",
-+		.of_match = of_match_ptr("DCDC_REG4"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK817_ID_DCDC4,
-+		.ops = &rk817_buck_ops_range,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = RK817_BUCK3_SEL_CNT + 1,
-+		.linear_ranges = rk817_buck3_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk817_buck3_voltage_ranges),
-+		.vsel_reg = RK817_BUCK4_ON_VSEL_REG,
-+		.vsel_mask = RK817_BUCK_VSEL_MASK,
-+		.enable_reg = RK817_POWER_EN_REG(0),
-+		.enable_mask = ENABLE_MASK(RK817_ID_DCDC4),
-+		.enable_val = ENABLE_MASK(RK817_ID_DCDC4),
-+		.disable_val = DISABLE_VAL(RK817_ID_DCDC4),
-+		.ramp_reg = RK817_BUCK_CONFIG_REG(RK817_ID_DCDC4),
-+		.ramp_mask = RK817_RAMP_RATE_MASK,
-+		.ramp_delay_table = rk817_buck1_4_ramp_table,
-+		.n_ramp_values = ARRAY_SIZE(rk817_buck1_4_ramp_table),
-+		.of_map_mode = rk8xx_regulator_of_map_mode,
-+		.owner = THIS_MODULE,
-+	},
-+	RK817_DESC(RK817_ID_LDO1, "LDO_REG1", "vcc5", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(0), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(1), ENABLE_MASK(0),
-+		   DISABLE_VAL(0), 400),
-+	RK817_DESC(RK817_ID_LDO2, "LDO_REG2", "vcc5", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(1), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(1), ENABLE_MASK(1),
-+		   DISABLE_VAL(1), 400),
-+	RK817_DESC(RK817_ID_LDO3, "LDO_REG3", "vcc5", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(2), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(1), ENABLE_MASK(2),
-+		   DISABLE_VAL(2), 400),
-+	RK817_DESC(RK817_ID_LDO4, "LDO_REG4", "vcc6", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(3), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(1), ENABLE_MASK(3),
-+		   DISABLE_VAL(3), 400),
-+	RK817_DESC(RK817_ID_LDO5, "LDO_REG5", "vcc6", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(4), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(2), ENABLE_MASK(0),
-+		   DISABLE_VAL(0), 400),
-+	RK817_DESC(RK817_ID_LDO6, "LDO_REG6", "vcc6", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(5), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(2), ENABLE_MASK(1),
-+		   DISABLE_VAL(1), 400),
-+	RK817_DESC(RK817_ID_LDO7, "LDO_REG7", "vcc7", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(6), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(2), ENABLE_MASK(2),
-+		   DISABLE_VAL(2), 400),
-+	RK817_DESC(RK817_ID_LDO8, "LDO_REG8", "vcc7", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(7), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(2), ENABLE_MASK(3),
-+		   DISABLE_VAL(3), 400),
-+	RK817_DESC(RK817_ID_LDO9, "LDO_REG9", "vcc7", 600, 3400, 25,
-+		   RK817_LDO_ON_VSEL_REG(8), RK817_LDO_VSEL_MASK,
-+		   RK817_POWER_EN_REG(3), ENABLE_MASK(0),
-+		   DISABLE_VAL(0), 400),
-+	RK817_BOOST_DESC(RK817_ID_BOOST, "BOOST", "vcc8", 4700, 5400, 100,
-+			 RK817_BOOST_OTG_CFG, RK817_BOOST_VSEL_MASK,
-+			 RK817_POWER_EN_REG(3), ENABLE_MASK(1), ENABLE_MASK(1),
-+		   DISABLE_VAL(1), 400, 3500 - 5400),
-+	RK817_DESC_SWITCH(RK817_ID_BOOST_OTG_SW, "OTG_SWITCH", "vcc9",
-+			  RK817_POWER_EN_REG(3), ENABLE_MASK(2),
-+			  DISABLE_VAL(2)),
-+};
-+
-+static const struct regulator_desc rk818_reg[] = {
-+	{
-+		.name = "DCDC_REG1",
-+		.supply_name = "vcc1",
-+		.of_match = of_match_ptr("DCDC_REG1"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK818_ID_DCDC1,
-+		.ops = &rk808_reg_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.min_uV = 712500,
-+		.uV_step = 12500,
-+		.n_voltages = 64,
-+		.vsel_reg = RK818_BUCK1_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.enable_reg = RK818_DCDC_EN_REG,
-+		.enable_mask = BIT(0),
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG2",
-+		.supply_name = "vcc2",
-+		.of_match = of_match_ptr("DCDC_REG2"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK818_ID_DCDC2,
-+		.ops = &rk808_reg_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.min_uV = 712500,
-+		.uV_step = 12500,
-+		.n_voltages = 64,
-+		.vsel_reg = RK818_BUCK2_ON_VSEL_REG,
-+		.vsel_mask = RK818_BUCK_VSEL_MASK,
-+		.enable_reg = RK818_DCDC_EN_REG,
-+		.enable_mask = BIT(1),
-+		.owner = THIS_MODULE,
-+	}, {
-+		.name = "DCDC_REG3",
-+		.supply_name = "vcc3",
-+		.of_match = of_match_ptr("DCDC_REG3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK818_ID_DCDC3,
-+		.ops = &rk808_switch_ops,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 1,
-+		.enable_reg = RK818_DCDC_EN_REG,
-+		.enable_mask = BIT(2),
-+		.owner = THIS_MODULE,
-+	},
-+	RK8XX_DESC(RK818_ID_DCDC4, "DCDC_REG4", "vcc4", 1800, 3600, 100,
-+		RK818_BUCK4_ON_VSEL_REG, RK818_BUCK4_VSEL_MASK,
-+		RK818_DCDC_EN_REG, BIT(3), 0),
-+	RK8XX_DESC(RK818_ID_BOOST, "DCDC_BOOST", "boost", 4700, 5400, 100,
-+		RK818_BOOST_LDO9_ON_VSEL_REG, RK818_BOOST_ON_VSEL_MASK,
-+		RK818_DCDC_EN_REG, BIT(4), 0),
-+	RK8XX_DESC(RK818_ID_LDO1, "LDO_REG1", "vcc6", 1800, 3400, 100,
-+		RK818_LDO1_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK818_LDO_EN_REG,
-+		BIT(0), 400),
-+	RK8XX_DESC(RK818_ID_LDO2, "LDO_REG2", "vcc6", 1800, 3400, 100,
-+		RK818_LDO2_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK818_LDO_EN_REG,
-+		BIT(1), 400),
-+	{
-+		.name = "LDO_REG3",
-+		.supply_name = "vcc7",
-+		.of_match = of_match_ptr("LDO_REG3"),
-+		.regulators_node = of_match_ptr("regulators"),
-+		.id = RK818_ID_LDO3,
-+		.ops = &rk808_reg_ops_ranges,
-+		.type = REGULATOR_VOLTAGE,
-+		.n_voltages = 16,
-+		.linear_ranges = rk808_ldo3_voltage_ranges,
-+		.n_linear_ranges = ARRAY_SIZE(rk808_ldo3_voltage_ranges),
-+		.vsel_reg = RK818_LDO3_ON_VSEL_REG,
-+		.vsel_mask = RK818_LDO3_ON_VSEL_MASK,
-+		.enable_reg = RK818_LDO_EN_REG,
-+		.enable_mask = BIT(2),
-+		.enable_time = 400,
-+		.owner = THIS_MODULE,
-+	},
-+	RK8XX_DESC(RK818_ID_LDO4, "LDO_REG4", "vcc8", 1800, 3400, 100,
-+		RK818_LDO4_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK818_LDO_EN_REG,
-+		BIT(3), 400),
-+	RK8XX_DESC(RK818_ID_LDO5, "LDO_REG5", "vcc7", 1800, 3400, 100,
-+		RK818_LDO5_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK818_LDO_EN_REG,
-+		BIT(4), 400),
-+	RK8XX_DESC(RK818_ID_LDO6, "LDO_REG6", "vcc8", 800, 2500, 100,
-+		RK818_LDO6_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK818_LDO_EN_REG,
-+		BIT(5), 400),
-+	RK8XX_DESC(RK818_ID_LDO7, "LDO_REG7", "vcc7", 800, 2500, 100,
-+		RK818_LDO7_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK818_LDO_EN_REG,
-+		BIT(6), 400),
-+	RK8XX_DESC(RK818_ID_LDO8, "LDO_REG8", "vcc8", 1800, 3400, 100,
-+		RK818_LDO8_ON_VSEL_REG, RK818_LDO_VSEL_MASK, RK818_LDO_EN_REG,
-+		BIT(7), 400),
-+	RK8XX_DESC(RK818_ID_LDO9, "LDO_REG9", "vcc9", 1800, 3400, 100,
-+		RK818_BOOST_LDO9_ON_VSEL_REG, RK818_LDO_VSEL_MASK,
-+		RK818_DCDC_EN_REG, BIT(5), 400),
-+	RK8XX_DESC_SWITCH(RK818_ID_SWITCH, "SWITCH_REG", "vcc9",
-+		RK818_DCDC_EN_REG, BIT(6)),
-+	RK8XX_DESC_SWITCH(RK818_ID_HDMI_SWITCH, "HDMI_SWITCH", "h_5v",
-+		RK818_H5V_EN_REG, BIT(0)),
-+	RK8XX_DESC_SWITCH(RK818_ID_OTG_SWITCH, "OTG_SWITCH", "usb",
-+		RK818_DCDC_EN_REG, BIT(7)),
-+};
-+
-+static int rk808_regulator_dt_parse_pdata(struct device *dev, struct regmap *map,
-+					  struct rk808_regulator_data *pdata)
-+{
-+	struct device_node *np;
-+	int tmp, ret = 0, i;
-+
-+	np = of_get_child_by_name(dev->of_node, "regulators");
-+	if (!np)
-+		return -ENXIO;
-+
-+	for (i = 0; i < ARRAY_SIZE(pdata->dvs_gpio); i++) {
-+		pdata->dvs_gpio[i] =
-+			devm_gpiod_get_index_optional(dev, "dvs", i, GPIOD_OUT_LOW);
-+		if (IS_ERR(pdata->dvs_gpio[i])) {
-+			ret = dev_err_probe(dev, PTR_ERR(pdata->dvs_gpio[i]),
-+					    "failed to get dvs%d gpio\n", i);
-+			goto dt_parse_end;
-+		}
-+
-+		if (!pdata->dvs_gpio[i]) {
-+			dev_dbg(dev, "there is no dvs%d gpio\n", i);
-+			continue;
-+		}
-+
-+		tmp = i ? RK808_DVS2_POL : RK808_DVS1_POL;
-+		ret = regmap_update_bits(map, RK808_IO_POL_REG, tmp,
-+					 gpiod_is_active_low(pdata->dvs_gpio[i]) ? 0 : tmp);
-+	}
-+
-+dt_parse_end:
-+	of_node_put(np);
-+	return ret;
-+}
-+
-+static int rk808_regulator_probe(struct platform_device *pdev)
-+{
-+	struct rk808 *rk808 = dev_get_drvdata(pdev->dev.parent);
-+	struct regulator_config config = {};
-+	struct regulator_dev *rk808_rdev;
-+	struct rk808_regulator_data *pdata;
-+	const struct regulator_desc *regulators;
-+	struct regmap *regmap;
-+	int ret, i, nregulators;
-+
-+	pdev->dev.of_node = pdev->dev.parent->of_node;
-+	pdev->dev.of_node_reused = true;
-+
-+	regmap = dev_get_regmap(pdev->dev.parent, NULL);
-+	if (!regmap)
-+		return -ENODEV;
-+
-+	pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
-+	if (!pdata)
-+		return -ENOMEM;
-+
-+	switch (rk808->variant) {
-+	case RK801_ID:
-+		regulators = rk801_reg;
-+		nregulators = RK801_NUM_REGULATORS;
-+		break;
-+	case RK805_ID:
-+		regulators = rk805_reg;
-+		nregulators = RK805_NUM_REGULATORS;
-+		break;
-+	case RK806_ID:
-+		regulators = rk806_reg;
-+		nregulators = ARRAY_SIZE(rk806_reg);
-+		break;
-+	case RK808_ID:
-+		/* DVS0/1 GPIOs are supported on the RK808 only */
-+		ret = rk808_regulator_dt_parse_pdata(&pdev->dev, regmap, pdata);
-+		if (ret < 0)
-+			return ret;
-+
-+		regulators = rk808_reg;
-+		nregulators = RK808_NUM_REGULATORS;
-+		break;
-+	case RK809_ID:
-+		regulators = rk809_reg;
-+		nregulators = RK809_NUM_REGULATORS;
-+		break;
-+	case RK816_ID:
-+		regulators = rk816_reg;
-+		nregulators = ARRAY_SIZE(rk816_reg);
-+		break;
-+	case RK817_ID:
-+		regulators = rk817_reg;
-+		nregulators = RK817_NUM_REGULATORS;
-+		break;
-+	case RK818_ID:
-+		regulators = rk818_reg;
-+		nregulators = RK818_NUM_REGULATORS;
-+		break;
-+	default:
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "unsupported RK8xx ID %lu\n", rk808->variant);
-+	}
-+
-+	platform_set_drvdata(pdev, pdata);
-+
-+	config.dev = &pdev->dev;
-+	config.driver_data = pdata;
-+	config.regmap = regmap;
-+
-+	/* Instantiate the regulators */
-+	for (i = 0; i < nregulators; i++) {
-+		rk808_rdev = devm_regulator_register(&pdev->dev,
-+						     &regulators[i], &config);
-+		if (IS_ERR(rk808_rdev))
-+			return dev_err_probe(&pdev->dev, PTR_ERR(rk808_rdev),
-+					     "failed to register %d regulator\n", i);
-+	}
-+
-+	return 0;
-+}
-+
-+static struct platform_driver rk808_regulator_driver = {
-+	.probe = rk808_regulator_probe,
-+	.driver = {
-+		.name = "rk808-regulator",
-+		.probe_type = PROBE_FORCE_SYNCHRONOUS,
-+	},
-+};
-+
-+module_platform_driver(rk808_regulator_driver);
-+
-+MODULE_DESCRIPTION("Rockchip RK80x/RK81x PMIC series regulator driver");
-+MODULE_AUTHOR("Tony xie <tony.xie@rock-chips.com>");
-+MODULE_AUTHOR("Chris Zhong <zyw@rock-chips.com>");
-+MODULE_AUTHOR("Zhang Qing <zhangqing@rock-chips.com>");
-+MODULE_AUTHOR("Wadim Egorov <w.egorov@phytec.de>");
-+MODULE_AUTHOR("Xu Shengfei <xsf@rock-chips.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:rk808-regulator");
--- 
-2.25.1
+>>>
+>>> and no MCQ support ?
+> 
+> Not sure, I could only find one reference to MCQ on createpoint for
+> milos, but given there's no mcq_sqd/mcq_vs reg defined downstream, and I
+> couldn't find anything for the same register values in the .FLAT file, I
+> don't think Milos has MCQ? Feel free to prove me wrong though.
+> 
+>>
+>> So, people just ignore my comment ?
+>>
+>> Milos is based on SM8550, so it should have dma-coherent, for the MCQ
+>> I hope they used the fixed added to the SM8650 UFS controller for MCQ.
+> 
+> Not sure what this should mean regarding MCQ...
 
+This platform doesn't support MCQ
+
+Konrad
 
