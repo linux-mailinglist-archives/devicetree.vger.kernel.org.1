@@ -1,58 +1,55 @@
-Return-Path: <devicetree+bounces-253809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB43CD117AE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:25:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 985C9D117F1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:29:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 95B523001FEC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:25:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9F6873088DC1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:26:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9CDA347FFE;
-	Mon, 12 Jan 2026 09:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE24E347FFE;
+	Mon, 12 Jan 2026 09:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZWd6EsT3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NW1IWrUk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867E0337692;
-	Mon, 12 Jan 2026 09:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB23D329E76;
+	Mon, 12 Jan 2026 09:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768209947; cv=none; b=fOSK/RBO1Z9ExowFRYHTS6U3W+NCmjgvzKp4SS3GfhbHJl6CzIcMLdHeiIpdCZP46wnWqJuICkx4Y+NmlFgP3SE+7S43KFvICdEw91D+n7bdsydqSj3kRu7FmH6O5wYq0DwKHNljKMxtKVU5LoV7TU2T/a4d+mGHI2BNFSALp1g=
+	t=1768210012; cv=none; b=VOq2sRpxTEJ46YXP30ogAiNj2UD19N1oMLcdusCgsJd8zZnAZDcJ0I0ziFiDMc/ITWgOrzcCI7443wwlbr8h1/cQ5KM6h8h8pVTKkSL+r779QF/Brx+X5Fi3FzTBgU8nUIMNJHub3Xo+dKGM7FJpoTOx+24DYA4Tpp+jH1TdZ7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768209947; c=relaxed/simple;
-	bh=pmUNcnmU22/O7mw740x5Q6qEG3VlNWVyknuIw49QbD4=;
+	s=arc-20240116; t=1768210012; c=relaxed/simple;
+	bh=jBazrOCw38rW6h1m2e0Cft5KuiYhVaHYsHaQV1DL5NY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EkiIwaUjXPeDTN8RKt2Axscs3lMs0siITXWKd9cdfgM1fRSzKoa1Q27LPdu70VneB+jxWceewHHmimd7vmNGukRW8FzTXIEKv5CTnzAmUDrRVTghWkIAg7kfY9N4hs47G2uDN0kPYA0dpq900j4FwpFLdSgnQw9JoVPT6PBUWGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZWd6EsT3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A01BFC116D0;
-	Mon, 12 Jan 2026 09:25:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=E699JfeGeaccs7e/X58BX/5XAt09jyv1q/kOHUsisqomYAB0AcQ4wQdqdzQxJM2TugSUQRYuooZMQqj0G7Hev/vGLuM3aRhteMuWjM5opmr/uNJiF/pxaW+SUAOR3V+R3REVDqlRwlhtO8n9gvT8OufWit0S8gLXm1Q/9vmN6gU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NW1IWrUk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7924C116D0;
+	Mon, 12 Jan 2026 09:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768209947;
-	bh=pmUNcnmU22/O7mw740x5Q6qEG3VlNWVyknuIw49QbD4=;
+	s=k20201202; t=1768210012;
+	bh=jBazrOCw38rW6h1m2e0Cft5KuiYhVaHYsHaQV1DL5NY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZWd6EsT3ObLtYkB5k/QvLchJz+soOBsQn7gakjGexqU8DMzM3BMIUzqvgSZS5VpRU
-	 tmeK6vyJQFLAw+zNbbk5hnWE+Ed0BZxRp59inHHJrwYp0ckljn4i7m5QqVZanVV/TU
-	 PelznLQCTX1fUgUfmOJMG2RHTyL7+IMevQwx1P1DXTq79aE7c5mVu2n85Swj5lInKk
-	 9gJR7xWZEJIsRPt3BsIjulvb55+vvO4j/xIUmHlNpFU4NX4mNY1Pn+20sdqFE8IJ0M
-	 MzvNT1K1XU2dBMNkboOrNAquLXh2DcWy99Qbh/Um8lGM3fQNPJF/K5qgedw5dLawAp
-	 UU/q7T3in9QIA==
-Date: Mon, 12 Jan 2026 10:25:44 +0100
+	b=NW1IWrUkmt3jwikhdyS4KdHgsvj+TX8VCgpkBOBQfmXyGcdnaCtoYboAiesaeHkc7
+	 K4HycwM1hbCub5IcVC/TSiNK7FROs9mBiqrfANzJY9SYWFeaAD0r30x/Y53/8UVNH0
+	 4/ek5l2zIcTIOdjjKKAsZgnow2S7V7nxeXIMXRJ02Pdti29MP3+ITuShMXNADJwnqv
+	 POQTH/uO1MT9PIvMyN49sUxq/gCDkA5J3IjDHOfpBpCZ/BHFe/IgNLJMpeA7ilOv0g
+	 kauja+EtmHhnITd1Z8Bvr71W63h/U25o8mhhn3ecztSDfdfmiRKz7Hg2nDMWgsNdJf
+	 yi2MgVySehwBw==
+Date: Mon, 12 Jan 2026 10:26:49 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vladimir Zapolskiy <vz@mleia.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lubomir Rintel <lkundrak@v3.sk>, Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, 
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: serial: 8250: Explicitly make LPC32xx
- UARTs compatible with 16550A
-Message-ID: <20260112-hopeful-spiffy-antelope-334765@quoll>
-References: <20260110024647.3389345-1-vz@mleia.com>
- <20260110024647.3389345-2-vz@mleia.com>
+	Guodong Xu <guodong@riscstar.com>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: spacemit: k3: fix drive-strength
+ doc
+Message-ID: <20260112-sloppy-careful-lobster-ca42cd@quoll>
+References: <20260110-k3-pinctrl-io-doc-fix-v1-1-7872fe6efb80@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,15 +58,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260110024647.3389345-2-vz@mleia.com>
+In-Reply-To: <20260110-k3-pinctrl-io-doc-fix-v1-1-7872fe6efb80@gentoo.org>
 
-On Sat, Jan 10, 2026 at 04:46:46AM +0200, Vladimir Zapolskiy wrote:
-> NXP LPC32xx SoC has 4 16550A compatible UARTs with 64 byte TX and RX FIFO
-> sizes, and the platform UART hardware is well supported as a standard
-> 16550A UART.
+On Sat, Jan 10, 2026 at 08:20:59PM +0800, Yixun Lan wrote:
+> Fix a typo in the documentation, it should be the 3.3V drive strength table.
 
-Driver uses dedicated driver/match data, so some context here about
-compatibility would be useful.
+This needs wrapping.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
