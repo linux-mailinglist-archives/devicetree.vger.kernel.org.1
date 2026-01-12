@@ -1,109 +1,183 @@
-Return-Path: <devicetree+bounces-253669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D98DFD10437
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 02:33:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F91D1047C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 02:48:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4CE99300E436
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:33:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C6F1230208C3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C711CEAC2;
-	Mon, 12 Jan 2026 01:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C1B21FF49;
+	Mon, 12 Jan 2026 01:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PUZD15TF"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="go3Z1fPX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49219.qiye.163.com (mail-m49219.qiye.163.com [45.254.49.219])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B64F500948;
-	Mon, 12 Jan 2026 01:33:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.219
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267E31B394F;
+	Mon, 12 Jan 2026 01:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768181584; cv=none; b=b18jTDswPgkzQvzh8FzPPQBI0VsANmB5goR3elafUNdZgUUuzquv497nZe2CbFUrZdfCOT6LX2eN1VrMmK4rODR+JCvU/ziMscPjhbniHQpNaQGural/A6nK/6MmbHnIlXrJLJ/k+PZZ4p0v+YwZv0h975yCTsp2Sd8YZLnuS3Q=
+	t=1768182479; cv=none; b=kxdISINx0QvHWvSOAv1Fdt5TLIqnZAqEzI6kjIY7mTXvVTiM1MD1M2mRYM34aRIJFVVl40oKuludRLCPW6apunqTbH9EQY2eN0c5Dmvv0S4pS6kEBzB8m8JMhZL5dsdaG9ilo274CnbywN5QYJOV560RlEgFv57hQzzqOq4QyCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768181584; c=relaxed/simple;
-	bh=c4D4qRzclAUj5sU9Caw7MiY/vn0gUcs4DEL5srx7uCM=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=VJq1+EE3EaEHnExff3PgjOxQvbDutoxfpoq6m5FGASbzBICGenU9qZWfDqT3LJ+RqOeQYVkMjxXkEGlYA6OcH5tx5U82fnSShWDLni9KRLKDlexq6AB0CttzilGtUFfvpBGF0wl4TCzrAauwPp8sZIBihWlk9jM154aNDs50tiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=PUZD15TF; arc=none smtp.client-ip=45.254.49.219
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.14] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 303f0cc91;
-	Mon, 12 Jan 2026 09:32:50 +0800 (GMT+08:00)
-Message-ID: <67ccb8f6-f9bd-4266-b79a-b688bd6d030b@rock-chips.com>
-Date: Mon, 12 Jan 2026 09:32:49 +0800
+	s=arc-20240116; t=1768182479; c=relaxed/simple;
+	bh=NslrzmeSjxjr6QBxOKRR8RHHiSio5MmWCVd/B3ay+wA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=NgrXdqsUTR8ShlvrOResZaIzUb2w/M6UEM73gQ/cHhIguHOkdJs0EhPhBNBmK7m2LrTXy4gkOLeuOWq4csYCpUP/zUIk8HC7xYd5dVQhFBRlOcbPnUAcLnkfqGrqLJGwDc0LLkG11dRQ6LIP9DoRe2b0QKDX9/2rSXb1Y4ZU3KA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=go3Z1fPX; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1768182475;
+	bh=V9knavuyCT6oMajtPRYkTyO37PoH9hWBI4tf+SPVJ9A=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=go3Z1fPXa5bUPR03yLVrGGZm9mRU49Jry1I2HmDOI4bZadYTX+Vqrzd7+2DiuDGPp
+	 DzjCEOakYzF+015VYQK2VNaLP3fEjnwSxO5fvAM0OQVsJjpusVi0yHFsIUI5Zrb1YP
+	 yADtbm2VuJxZoiLQALWuXzDbCRN20LQBoE2RNg2zEo+LQnmeqFCbs1gl4eDXADnwDS
+	 LgQTRsxG70Y2jn1hHRjP/Ew3IPdhEG0uhCM4cluMYd/3Hyq2Lk0Ac/21AhtYlRIc9A
+	 Oqnw9ssHTfW2FPT6cC/yRmJG7GZG2fQGfJUsBXY+oa19+8dbKeV0MmqlkO3OuntbHi
+	 hSb0BY1xxkMkg==
+Received: from [192.168.68.115] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7D84F648B5;
+	Mon, 12 Jan 2026 09:47:55 +0800 (AWST)
+Message-ID: <3db927cd7ece9b0672b9e62eab64b951594470dd.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add Asus IPMI card
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Anirudh Srinivasan <anirudhsriniv@gmail.com>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley	 <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Mon, 12 Jan 2026 12:17:55 +1030
+In-Reply-To: <20260111201040.162880-3-anirudhsriniv@gmail.com>
+References: <20260111201040.162880-1-anirudhsriniv@gmail.com>
+	 <20260111201040.162880-3-anirudhsriniv@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-rockchip@lists.infradead.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, heiko@sntech.de, ulf.hansson@linaro.org
-Subject: Re: [PATCH v1 0/3] mmc: dw_mmc-rockchip: Add stability quirk for
- NanoPi R76S
-To: Marco Schirrmeister <mschirrmeister@gmail.com>
-References: <20260110010715.1610159-1-mschirrmeister@gmail.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <20260110010715.1610159-1-mschirrmeister@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9bafd59c4509cckunm6b904c3425d9cd
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0tKT1ZCGRgYH0hLHk0aT0NWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=PUZD15TFeHoo8gN2FFcDZ0avYlYQF5N7lfZAwZgerD57WM3N5NA8XTpdqiJRjcb7D8eXVbJPTrA+FaewvgoG9ZQn0n2ULA0ibPRhxksTlN7ilOpGtu4kLuykrxjWWvQPZNVq5SBZ0bWdp0ftlx2a+0N++WEODvAFbfRU+wKrCQ0=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=/coguvbuQJ6Lc8S2lu4ggKAcKXnFx/f9Jnk8AsJys3k=;
-	h=date:mime-version:subject:message-id:from;
 
-在 2026/01/10 星期六 9:07, Marco Schirrmeister 写道:
-> This series addresses a microSD stability issue on the FriendlyElec
-> NanoPi R76S (RK3576). The board currently suffers from a 400kHz
-> retuning loop when the controller attempts to enter runtime-suspend
-> during idle periods.
-> 
-> Evidence of the failure in dmesg:
-> [Fri Jan  2 01:28:02 2026] mmc_host mmc1: Bus speed (slot 0) = 400000Hz
-> [Fri Jan  2 01:28:03 2026] mmc_host mmc1: Bus speed (slot 0) = 198000000Hz
-> [Fri Jan  2 01:28:03 2026] dwmmc_rockchip 2a310000.mmc: Successfully tuned phase to 233
-> [Fri Jan  2 01:28:04 2026] mmc_host mmc1: Bus speed (slot 0) = 400000Hz
-> 
+Hi Anirudh,
 
-Does this problem happen with all microSDs or just *a* microSD per
-your description?
-Have you ever tried to disable SDR104 support?
+On Sun, 2026-01-11 at 14:10 -0600, Anirudh Srinivasan wrote:
+> Add device tree for Asus IPMI card, an AST2600 BMC PCIe card
+>=20
+> Signed-off-by: Anirudh Srinivasan <anirudhsriniv@gmail.com>
+> ---
+> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0.../dts/aspeed/aspeed-bmc-asus-ipmi-card.dts=C2=A0 | 136 ++++++++++=
+++++++++
+> =C2=A02 files changed, 137 insertions(+)
+> =C2=A0create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-ca=
+rd.dts
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
+/Makefile
+> index 9adf9278dc94..ff40d9ab88b7 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
+> =C2=A0	aspeed-bmc-asrock-spc621d8hm3.dtb \
+> =C2=A0	aspeed-bmc-asrock-x570d4u.dtb \
+> =C2=A0	aspeed-bmc-asus-x4tf.dtb \
+> +	aspeed-bmc-asus-ipmi-card.dtb \
+> =C2=A0	aspeed-bmc-bytedance-g220a.dtb \
+> =C2=A0	aspeed-bmc-delta-ahe50dc.dtb \
+> =C2=A0	aspeed-bmc-facebook-bletchley.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-card.dts b/arc=
+h/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-card.dts
+> new file mode 100644
+> index 000000000000..fea94360245c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-card.dts
+> @@ -0,0 +1,136 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +// Copyright 2025 Anirudh Srinivasan
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include "aspeed-g6-pinctrl.dtsi"
+> +#include <dt-bindings/i2c/i2c.h>
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +
+> +/ {
+> +	model =3D "ASUS IPMI Card BMC";
 
-> Testing confirmed that the issue can be manually addressed by
-> disabling runtime PM via sysfs:
-> echo on > /sys/devices/platform/soc/2a310000.mmc/power/control
-> 
-> I experimented with various changes in the Device Tree, including
-> lowering the bus frequency and attempting to keep the power domains
-> active, but nothing stopped the retuning loop.
-> The issue only went away when I forced the controller to stay active
-> by disabling the runtime power management.
-> 
-> This quirk is the only way I have found to keep the SDR104 link from
-> crashing on the NanoPi R76S, I am open to suggestions if there is
-> a better way to handle this in the driver or the DTS.
-> 
-> Marco Schirrmeister (3):
->    dt-bindings: mmc: rockchip-dw-mshc: add rockchip,disable-runtime-pm
->    mmc: host: dw_mmc-rockchip: add rockchip,disable-runtime-pm quirk
->    arm64: dts: rockchip: add stability quirk to NanoPi R76S
-> 
->   .../bindings/mmc/rockchip-dw-mshc.yaml        |  8 ++++++
->   .../boot/dts/rockchip/rk3576-nanopi-r76s.dts  |  1 +
->   drivers/mmc/host/dw_mmc-rockchip.c            | 25 ++++++++++++++++---
->   3 files changed, 31 insertions(+), 3 deletions(-)
-> 
+I'd drop the "BMC" from the model description as well (wrt the
+discussion on patch 1/2).
 
+> +	compatible =3D "asus,ipmi-card-bmc", "aspeed,ast2600";
+> +
+> +	aliases {
+> +		serial4 =3D &uart5;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D "serial4:115200n8";
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type =3D "memory";
+> +		reg =3D <0x80000000 0x40000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+> +		ranges;
+> +
+> +		video_engine_memory: video {
+> +			size =3D <0x04000000>;
+> +			alignment =3D <0x01000000>;
+> +			compatible =3D "shared-dma-pool";
+> +			reusable;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible =3D "gpio-leds";
+> +
+> +		led-fault {
+> +			gpios =3D <&gpio1 ASPEED_GPIO(C, 5) GPIO_ACTIVE_HIGH>;
+> +			panic-indicator;
+> +			default-state =3D "off";
+> +		};
+> +
+> +		led-heartbeat {
+> +			gpios =3D <&gpio0 ASPEED_GPIO(A, 7) GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger =3D "timer";
+> +		};
+> +
+> +	};
+> +};
+> +
+> +&mdio2 {
+> +	status =3D "okay";
+> +
+> +	ethphy2: ethernet-phy@0 {
+> +		compatible =3D "ethernet-phy-ieee802.3-c22";
+> +		reg =3D <0>;
+> +	};
+> +};
+> +
+> +&mac2 {
+
+This looks good in general.
+
+For the purpose of review I've started requesting that phandle
+references be ordered alphabetically, because it's tedious to confirm
+they're ordered by unit address, and it's nice to have consistency
+across the files. Can you please fix that along with Andrew Lunn's
+concern about the phy-mode?
+
+Andrew
 
