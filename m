@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-254010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6785FD133E0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:43:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D4EFD1331D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EB1EE3023D3C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:26:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 823C230BBA2F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE623624D9;
-	Mon, 12 Jan 2026 14:21:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC202364E92;
+	Mon, 12 Jan 2026 14:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LgAx6Gh+"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mhtDuusA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14FF33624A0
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B34B1364040;
+	Mon, 12 Jan 2026 14:21:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227696; cv=none; b=o+QAbAB02TA/Hf5JhOhBYENfH971W2QvdRTZp4UjfhVhls0AUhFhmpKorgQPTqvyGi/ssAXan7/1f5tIloViQt2lQCCVtI6p0pZ8Ah5RyGYd9mqPyyu5DthgdG8PAL3DFPIMY8pQrBhCD5YOtYJSFmMm1vvoVtcT0tHqGK7zZf4=
+	t=1768227699; cv=none; b=NNDtaeDuT9HM5Gpzci38bTpHs+WcReKu/wF5OjiPLyk4KWNHx3//qATER7BrUBisOCjcpUOvctLN4G1JlH+oKof4lpnOdGDdFHUiXZPMUdmIsHBrOtCQ4yBEGMmY+TJsLplLWxKiQfxYsZSlSdJ4JvO21QmsOde9E3mS6M31I0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227696; c=relaxed/simple;
-	bh=zA9I0cK5eNnHIPe3u7Byxko5th3j/+EPsblx2R/GH+I=;
+	s=arc-20240116; t=1768227699; c=relaxed/simple;
+	bh=QfKhIfkPqMqdIskblp9qTUUzND0cPzgSg1a/L3LMy2Q=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gBjL2PGp7KYlge7GSsNDYEu4hmPFofHvEje/oxubYxLxRF+cHJZoBH/nB4u5OPpAHf0yEzQnMRanm5BYJ8GDa/44r32YHVcNVRqCL2oeD7ygzrFoiu/0aj4WzYZ23/V1W4F8Nx1QRQ4ZhLLSATlEWyeJiFNynlXXuTudL/ab/J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LgAx6Gh+; arc=none smtp.client-ip=185.171.202.116
+	 MIME-Version; b=MuHyU39ZKTe5tcLU9NV2cj9d7kqmzD9TVky087Wc2A/O1HM5qbCZI69snxWbdcRtJmSpRmi+90SmGPoC3J5KrK8eqdYFxlX07xNmzRtHF9QqOpmML03PjBO4fIyf61EGL2jn3trc6MDDwq26Qm7tlQyZMwaKU9Sir8UUoSgYMLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mhtDuusA; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 6C700C20869;
-	Mon, 12 Jan 2026 14:21:06 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 8A4AD4E42097;
+	Mon, 12 Jan 2026 14:21:34 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E4B91606FA;
-	Mon, 12 Jan 2026 14:21:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E861E103C8CD8;
-	Mon, 12 Jan 2026 15:21:30 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 59FD7606FA;
+	Mon, 12 Jan 2026 14:21:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 453CC103C9261;
+	Mon, 12 Jan 2026 15:21:32 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227692; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227693; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=uzCy+w7Ql4bGyUjuL6W7OYetqStlfivDtS8ed9Atdc4=;
-	b=LgAx6Gh+sb8snu+Txj4ablt1MQtpGDgACxQmQ3hHkA1PnYbtPTFYG2cl8NOyNoSnr/SfR5
-	YG2gkWmJFzknntuZzqvbsRAS2oZlglljBX+gp3/cMfyl94gtT1NsxEqny5ddNmiSliZ+Rg
-	1h8Iiga7t/l8braGcO92z5QK9hNGHQ0jj37XkVBpjVjJPZioXpgvZhOC6eftTQpvgEIqBD
-	6fB+DRSP0u/I8fDpSMJqILr+8b99vai0mcfwQDbgQiq5gluCdrjO4QV++rNb0di9Fpa7uc
-	mxMmjQsWqilnGOQG7e6sQF/Xlt4s1vimfTLXYIBRuYv8wuu4gLif4oBvhfPA9Q==
+	bh=a+hqBPUtvnDIK2sOflevWRsdtyg1p/9U7gaK7ZbRQyU=;
+	b=mhtDuusA6uhtrgfpTuU99EYRDEUbACmozZsv88r+Dfz7jMKqhkLm4X+CkqEgHkRwViArGO
+	RHRT0Lvknt+z8Y/JEaxYpMCe3lndK/saI30gAt+sopK+JDZh/AWhggNDSTI2m5BQ57YFMa
+	emNUi2U8RA6V9o0WKc/x9HjxVBm6yMngyZKy6VeW6bRGotEzcHK2REVUo3/25DeJi1B6Nk
+	jBlVYjALlEII5Xqz1OgmoC6Ww91BtIa98edVZHLNgoE+jMX5k+IeAsnyQJNH11RXfFM65c
+	TELnx/0q/X+Pe6Bb3+Q0S9/zINbJeCBle/r6RIFTw9VvUUi0rxQhXbVjbhUzFw==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 47/77] dtc: Introduce dti_fill_fullpaths()
-Date: Mon, 12 Jan 2026 15:19:37 +0100
-Message-ID: <20260112142009.1006236-48-herve.codina@bootlin.com>
+Subject: [RFC PATCH 48/77] dtc: Introduce orphan nodes
+Date: Mon, 12 Jan 2026 15:19:38 +0100
+Message-ID: <20260112142009.1006236-49-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -77,57 +77,180 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-The future introduction of orphan nodes for addons device-tree will lead
-to more than one tree in the addons data. Those trees will be:
-  - the classical root tree starting at the root node
-  - trees related to orphan nodes
+Orphans nodes can be present in plugin and addon device-trees.
 
-Also, an addon device-tree can have only trees based on orphan nodes. In
-other words an addon device-tree is valid without having the classical
-'root' tree.
+Those nodes are nodes without a parent. The root device-tree node is a
+particular orphan node and is not part of those 'orphan' nodes group.
 
-To prepare this change, introduce and use dti_fill_fullpaths().
+The orphan nodes group is related to nodes identified by a reference in
+addons or plugins device-trees. For instance, the following node can be
+described in addons and plugins (overlay) device-trees:
+   --- 8< ---
+   &foo {
+	subnode {
+		prop  = <1>;
+	};
+   };
+   --- 8< ---
 
-dti_fill_fullpaths() builds fullpaths of nodes available in a
-tree like fill_fullpaths() but it works at the struct dt_info level.
+The foo referenced node described here has no parent. Indeed, it is not
+a child of the root node.
 
-It handles the case where a 'root' device-tree is not present and will
-handle orphan nodes trees as soon as they will be introduced.
+This kind of node is legit in plugins and addons device-tree in order to
+perform modification on existing node when the plugin or addon dtb is
+applied. The foo referenced node is an existing node in the base tree an
+the subnode node is added to the foo referenced node chen the dtb is
+applied. Even if foo itself doesn't exists in the plugin or addon
+device-tree, it needs to be referenced and modifications expected need
+to be described (new sub-node for instance).
 
-This introduction doesn't lead to any functional changes.
+In plugin dts, when a orphan node is parsed, the dts structure is
+changed and the orphan node is merged in the /fragment@n/__overlay__
+node. The foo referenced node mentioned in the previous snippet is
+transformed to:
+   --- 8< ---
+   / {
+	fragment@0 {
+		target = <&foo>;
+
+		__overlay__ {
+			subnode {
+				prop = <0x01>;
+			};
+		};
+	};
+
+	__fixups__ {
+		foo = "/fragment@0:target:0";
+	};
+   };
+   --- 8< ---
+
+With this mechanism, the orphan node itself doesn't exist anymore in
+resulting plugin dtb but the resulting device-tree contains meta-data
+mixed with pure 'device-tree' data.
+
+Addons have been introduced to avoid this kind of mixing.
+
+For addons, instead of changing the device-tree structure to add
+something similar to fragments and __overlay__ present in plugins, the
+orphan node will be present as a new dtb block and will be identified as
+orphan thanks to meta-data added in dtb.
+
+Modification done in this commit doesn't add functional changes but just
+introduce orphan nodes entry points in data structures and functions in
+order to prepare future changes related to parsing/generating dts and
+dtb files.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- dtc.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ dtc-parser.y | 4 ++--
+ dtc.h        | 7 ++++++-
+ flattree.c   | 3 ++-
+ fstree.c     | 3 ++-
+ livetree.c   | 4 +++-
+ 5 files changed, 15 insertions(+), 6 deletions(-)
 
-diff --git a/dtc.c b/dtc.c
-index e0a0b54..59f4d77 100644
---- a/dtc.c
-+++ b/dtc.c
-@@ -45,6 +45,13 @@ static void fill_fullpaths(struct node *tree, const char *prefix)
- 		fill_fullpaths(child, tree->fullpath);
- }
+diff --git a/dtc-parser.y b/dtc-parser.y
+index 08b3642..626a232 100644
+--- a/dtc-parser.y
++++ b/dtc-parser.y
+@@ -132,7 +132,7 @@ sourcefile:
+ 		{
+ 			parser_output = build_dt_info($1, $2, $3,
+ 			                              guess_boot_cpuid($3),
+-						      NULL);
++						      NULL, NULL);
+ 		}
+ 	|  headers memreserves importlist devicetree
+ 		{
+@@ -143,7 +143,7 @@ sourcefile:
+ 			 */
+ 			parser_output = build_dt_info($1, $2, $4,
+ 			                              $4 ? guess_boot_cpuid($4) : 0,
+-			                              reverse_symbol($3));
++			                              reverse_symbol($3), NULL);
+ 		}
+ 	;
  
-+static void dti_fill_fullpaths(struct dt_info *dti)
-+{
-+	/* Fill fullpaths for the root node */
-+	if (dti->dt)
-+		fill_fullpaths(dti->dt, "");
-+}
+diff --git a/dtc.h b/dtc.h
+index d45a84c..399beee 100644
+--- a/dtc.h
++++ b/dtc.h
+@@ -277,6 +277,9 @@ struct node {
+ #define for_each_symbol(s0, s) \
+ 	for ((s) = (s0); (s); (s) = (s)->next)
+ 
++#define for_each_orphan(o0, o) \
++	for ((o) = (o0); (o); (o) = (o)->next_sibling)
 +
- /* Usage related data. */
- static const char usage_synopsis[] = "dtc [options] <input file>";
- static const char usage_short_opts[] = "qI:O:o:V:d:R:S:p:a:fb:i:H:sW:E:@LAThv";
-@@ -326,7 +333,7 @@ int main(int argc, char *argv[])
- 	if (cmdline_boot_cpuid != -1)
- 		dti->boot_cpuid_phys = cmdline_boot_cpuid;
+ void add_label(struct label **labels, char *label);
+ void delete_labels(struct label **labels);
  
--	fill_fullpaths(dti->dt, "");
-+	dti_fill_fullpaths(dti);
+@@ -345,6 +348,7 @@ struct dt_info {
+ 	uint32_t boot_cpuid_phys;
+ 	struct node *dt;		/* the device tree */
+ 	struct symbol *importsymlist;	/* Import symbol list */
++	struct node *orphanlist;	/* orphan nodes list */
+ 	const char *outname;		/* filename being written to, "-" for stdout */
+ };
  
- 	/* on a plugin, generate by default */
- 	if (dti->dtsflags & DTSF_PLUGIN) {
+@@ -367,7 +371,8 @@ struct marker *dti_get_marker_label(struct dt_info *dti, const char *label,
+ struct dt_info *build_dt_info(unsigned int dtsflags,
+ 			      struct reserve_info *reservelist,
+ 			      struct node *tree, uint32_t boot_cpuid_phys,
+-			      struct symbol *importsymlist);
++			      struct symbol *importsymlist,
++			      struct node *orphanlist);
+ void sort_tree(struct dt_info *dti);
+ void generate_label_tree(struct dt_info *dti, const char *name, bool allocph);
+ void generate_fixups_tree(struct dt_info *dti, const char *name);
+diff --git a/flattree.c b/flattree.c
+index add02f0..412c7f8 100644
+--- a/flattree.c
++++ b/flattree.c
+@@ -1171,5 +1171,6 @@ struct dt_info *dt_from_blob(const char *fname)
+ 
+ 	fclose(f);
+ 
+-	return build_dt_info(DTSF_V1 | dtsflags, reservelist, tree, boot_cpuid_phys, importsymlist);
++	return build_dt_info(DTSF_V1 | dtsflags, reservelist, tree, boot_cpuid_phys,
++			     importsymlist, NULL);
+ }
+diff --git a/fstree.c b/fstree.c
+index a6aaf1e..2be1ffa 100644
+--- a/fstree.c
++++ b/fstree.c
+@@ -72,5 +72,6 @@ struct dt_info *dt_from_fs(const char *dirname)
+ 	tree = read_fstree(dirname);
+ 	tree = name_node(tree, "");
+ 
+-	return build_dt_info(DTSF_V1, NULL, tree, guess_boot_cpuid(tree), NULL);
++	return build_dt_info(DTSF_V1, NULL, tree, guess_boot_cpuid(tree), NULL,
++			     NULL);
+ }
+diff --git a/livetree.c b/livetree.c
+index 79f7b55..057997a 100644
+--- a/livetree.c
++++ b/livetree.c
+@@ -545,7 +545,8 @@ struct reserve_info *add_reserve_entry(struct reserve_info *list,
+ struct dt_info *build_dt_info(unsigned int dtsflags,
+ 			      struct reserve_info *reservelist,
+ 			      struct node *tree, uint32_t boot_cpuid_phys,
+-			      struct symbol *importsymlist)
++			      struct symbol *importsymlist,
++			      struct node *orphanlist)
+ {
+ 	struct dt_info *dti;
+ 
+@@ -555,6 +556,7 @@ struct dt_info *build_dt_info(unsigned int dtsflags,
+ 	dti->dt = tree;
+ 	dti->boot_cpuid_phys = boot_cpuid_phys;
+ 	dti->importsymlist = importsymlist;
++	dti->orphanlist = orphanlist;
+ 
+ 	return dti;
+ }
 -- 
 2.52.0
 
