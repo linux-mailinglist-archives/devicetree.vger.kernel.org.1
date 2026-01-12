@@ -1,153 +1,155 @@
-Return-Path: <devicetree+bounces-254116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F67AD14216
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:45:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED597D142B5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:50:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A4D3C300B887
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:44:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8DE273099550
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C5036A036;
-	Mon, 12 Jan 2026 16:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E0336AB53;
+	Mon, 12 Jan 2026 16:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bH1T5z96"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZvtoAXTU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A29C36997B
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 16:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD56369207
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 16:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768236278; cv=none; b=lUnJ+4VHsRrniXXVAD+COfYKuYP1eJF3eFzNzRaRBGibTjGqFAd3JnIdqdmN5sXlkKG7Jqgi/bIEUrIcfvY3I6VDve/XxcA2Xp1Q+nFXI9lrwDmqv+9zatZjzcU3RXWlrGJ3yhxZP7K16/hyB+qwXVuYBkFU65r79Ur5TRHfLPs=
+	t=1768236513; cv=none; b=VJu11Kqfymv2CSl0pzwVkcjdwMc4UJPhliPCOEqEfXI3MlacD/YlerjZAXT91Nnk5zh+1BTQzMl1XMcvYQLgTPEcKgcx5ePFfBiKmZ4PW1SVurBCjc2bRx4EocFZGxlH3p1ody8GZ2Y9D71IzSx7xinOpI9zUNdHME9y/zFIvIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768236278; c=relaxed/simple;
-	bh=15bJV717b3BmCRep7g3f3eqDSXeQzdRiVGChJjyTeQY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uURS7K30EZyi7OmY9bnTCDJvTnSPnUZ8zwmTrFLdtNN6V7ZPhre/Bk+cTg75CFRs36B3CMgPYvs4BjMBphYrOvK/rS3Ak+3+/FISOe17IMEvq3UnStXdExapMP2SvcPxQYtvOauJC4FH8kG6PcV2LkkbSCd+5CAFnem11JOf0cI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bH1T5z96; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso71422505e9.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 08:44:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768236273; x=1768841073; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cD2W84EqNYwKoDXJN6AUPaelb23t6+j5pqlOt/nW9so=;
-        b=bH1T5z96+EQKTkzc7oWa96oLtOaQAGPXrLdTh5cSkS996Fo97FtWnR1kvgFmC+2q2c
-         D1i0FIK64uY2AiEZqtLhq3TlBYZoGVA/9VRvfYZeZkXmF15JxrGIcKBM8fA1+6w7Dr9X
-         0c87ROpOjeTCAQpYsoBywYqkdMtulPXhV9o5DTigMu+k24P/jDknmWfEM/tJ+Ev7SPhz
-         LQVqmoQyKOO2QLkFQ/9e65wiSmdsQ7n+2NBiG98fSaU8ktpvJobQodePyd0Dvhm4hYST
-         lk908nc7wt6tRB4f4dPJ3k59nQoeeGK/aKhSFwgyoG1/bWqYKp92v8d6Ex8sk13ooeYm
-         vDSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768236274; x=1768841074;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cD2W84EqNYwKoDXJN6AUPaelb23t6+j5pqlOt/nW9so=;
-        b=U8BHxERoetQNxwY3Ios8EGhP1GuxmMGEObg2wsm8ph2XBLtdMLYzj4jvltzUkSl9Nv
-         mrvsCCjoOK4R3ANqeOf6EGsEUg7v76JEQD3kuvlqHeCnzbUx1G/vASerklMDH635Hz8R
-         u7p81hluwGxL7KHID0Zyypb0DMbcKNSrGw/vPEfhMYYpqzP6OFD7U22iKSbe6SJ4xZM8
-         CZ5NsfGzLzGEZzSrkIqbFgxNc9IqXwTQHLsHW4MxBcEYr4AiYrQTpLKrjy9jNIYRCjYW
-         CEcx12ePI02QhU9HRs8RewXoJc0PBq5+5vEMw9k+nCouYBll6+r3M0EWn13pCvDbgrdT
-         cI8A==
-X-Forwarded-Encrypted: i=1; AJvYcCWtUmBH9ls15GqjKgLFuB9FmpVMXlb8afDxqvSfwvQP54u2YVJrq+km1EetHyji7vpZtyvhTC8n4e2e@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMy4d/H0EzkcjX83FK/ncAi61myY6GSORKbR0kCm4E1sArJQR1
-	0upn5JQFIWdptx0qhodt3iS1G5YybU6t/GhhLxMP7FWloQlKJwjQ+JHdYYb4kXtyIiIrIlvQcyd
-	fZe5mR9pv4osrOwm30pj0q8HjQcWkz6I=
-X-Gm-Gg: AY/fxX6CZnDfGIUQ3rZsVBhxdogDUHhvwkXum3OV8llgrjv6aLsmbDNeSIBz6OHdgzq
-	gMeG1NxzENmTdZkHVyYxme0IJ7r4HLa5OAkR7rbVHVT0+YPVRJLfmxe73N5AsCGHR1VfHAZP4q4
-	4nyuRi9mn0NkMu6Bc3C+6y53wh3pZcFPeJo+GYfNTy4TMT4IYazkQkCUKF03LWkfyOyp6/Fviww
-	4J8sk6vHOK5S9hK3qyhKyrf2FW4H7wgW1hkCHtWkpTAH0nW7cBlUT+TW0+sJtQ1BKn7eJ+Hzxsx
-	J/IpDJP6XpYAIntnKo3tF7/WC/pKWhVuLzb1AdVi5mpK7oEIruszgaU=
-X-Google-Smtp-Source: AGHT+IGau+W3RGt608fIO3PobvK9WHuMcah1IGzOIOuD1jKefcV1nFFm2JOlx2I3P0NzrOE0nXKM9dKGfg70UFuX9rs=
-X-Received: by 2002:a05:600c:8b0a:b0:46f:c55a:5a8d with SMTP id
- 5b1f17b1804b1-47d84b0aa97mr211947485e9.4.1768236273225; Mon, 12 Jan 2026
- 08:44:33 -0800 (PST)
+	s=arc-20240116; t=1768236513; c=relaxed/simple;
+	bh=8WSwIkL6KauRhPvMljERR7kijZjxW8zO8xX/APi5K+E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=krEyYPNZAGQ5sRowV6YsHfpjQP2a3mmGPCYVmgql8oWs4OJB5gO/2xsrh/KVSx2RW7/xVbrwt34g3OzypycDg3PClWSHL9I1B1ffnKBFfN1JnJchCgWXHrn+xjjafyHFkJj+itSF05DJjZulpxZbuK8oWobKM7JwJ4iwILtpdO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZvtoAXTU; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1768236509;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vC7wn/ye/uBT+aaDl9k3CfBScfwjYeWCooqpfDEE+H8=;
+	b=ZvtoAXTUoNlG0PzTHMxgUEcr9XTI9N0NeR4OC8BXHsacJtqF3XSDQusmTXR/UvAfLCTc7H
+	OW/02jVk6nXtIGNSM4fbH7YAx+/T3zVPw8zDVuwZmrpkMDWbMyBPG1XdyBFcX8AQuYS96R
+	ttDBIqm6+bkPh+NOQ5XqKTLSIDDd5hE=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-624-iIPE60pcPUWT1sIRma0cng-1; Mon,
+ 12 Jan 2026 11:48:26 -0500
+X-MC-Unique: iIPE60pcPUWT1sIRma0cng-1
+X-Mimecast-MFC-AGG-ID: iIPE60pcPUWT1sIRma0cng_1768236503
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D479B1800359;
+	Mon, 12 Jan 2026 16:48:22 +0000 (UTC)
+Received: from [10.44.34.128] (unknown [10.44.34.128])
+	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 6DF6A19560B2;
+	Mon, 12 Jan 2026 16:48:15 +0000 (UTC)
+Message-ID: <bee863d4-81a4-421c-b57e-b27843ca308b@redhat.com>
+Date: Mon, 12 Jan 2026 17:48:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251103194554.54313-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251104120141.GC27255@pendragon.ideasonboard.com>
-In-Reply-To: <20251104120141.GC27255@pendragon.ideasonboard.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 12 Jan 2026 16:44:07 +0000
-X-Gm-Features: AZwV_Qig6PsppKVhEERX8F-92Y9pCzvropDxY-lGZwStB3z6BiMeRd5H2J_Pg1I
-Message-ID: <CA+V-a8sP6o2GUju2ub0q1exiV87zHrkTddvkv8GKR_7wBF+vSA@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: media: renesas,fcp: Allow three
- clocks for RZ/V2N SoC
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Hans Verkuil <hverkuil@kernel.org>, linux-media@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Intel-wired-lan] [PATCH net-next 01/12] dt-bindings: dpll: add
+ common dpll-pin-consumer schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Eric Dumazet <edumazet@google.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>, Rob Herring <robh@kernel.org>,
+ Leon Romanovsky <leon@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ linux-rdma@vger.kernel.org, Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ intel-wired-lan@lists.osuosl.org, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Jiri Pirko <jiri@resnulli.us>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>, netdev@vger.kernel.org,
+ Mark Bloch <mbloch@nvidia.com>, linux-kernel@vger.kernel.org,
+ Tariq Toukan <tariqt@nvidia.com>,
+ Alexander Lobakin <aleksander.lobakin@intel.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Saeed Mahameed
+ <saeedm@nvidia.com>, "David S. Miller" <davem@davemloft.net>
+References: <20260108182318.20935-1-ivecera@redhat.com>
+ <20260108182318.20935-2-ivecera@redhat.com>
+ <20260109-wonderful-acoustic-civet-e030da@quoll>
+ <a581a86d-d49c-4761-bd68-989a7a12cb56@redhat.com>
+ <fd07e1f8-455c-464f-9760-9d16d450a7d5@redhat.com>
+ <cbf482be-4aa8-488f-9f78-181f8f145c28@kernel.org>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <cbf482be-4aa8-488f-9f78-181f8f145c28@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 
-Hi Laurent,
 
-Thank you for the review.
 
-On Tue, Nov 4, 2025 at 12:01=E2=80=AFPM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Prabhakar,
->
-> Thank you for the patch.
->
-> On Mon, Nov 03, 2025 at 07:45:54PM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Update the FCP DT schema to permit three clock inputs for the RZ/V2N So=
-C.
-> > The FCP block on this SoC requires three separate clocks, unlike other
-> > variants which use only one.
-> >
-> > Fixes: f42eddf44fbf ("media: dt-bindings: media: renesas,fcp: Document =
-RZ/V2N SoC")
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->
-> > ---
-> > Note, there are no current users of the RZ/V2N FCP compatible string in
-> > the kernel tree.
-> > ---
-> >  Documentation/devicetree/bindings/media/renesas,fcp.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-Can you please pick this patch.
+On 1/12/26 5:14 PM, Krzysztof Kozlowski wrote:
+> On 09/01/2026 15:11, Ivan Vecera wrote:
+>>>>> +  Common properties for devices that require connection to DPLL
+>>>>> (Digital Phase
+>>>>> +  Locked Loop) pins for frequency synchronization (e.g. SyncE).
+>>>>> +
+>>>>> +properties:
+>>>>> +  dpll-pins:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>>> +    description:
+>>>>> +      List of phandles to the DPLL pin nodes connected to this device.
+>>>>> +
+>>>>> +  dpll-pin-names:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>>>>> +    description:
+>>>>> +      Names for the DPLL pins defined in 'dpll-pins', in the same
+>>>>> order.
+>>>>> +
+>>>>> +dependencies:
+>>>>> +  dpll-pin-names: [ dpll-pins ]
+>>>>
+>>>> Binding should go to dtschema. See also commit
+>>>> 3282a891060aace02e3eed4789739768060cea32 in dtschema or other examples
+>>>> how to add new provider/consumer properties.
+>>
+>> Quick questions... if the dpll pin consumer properties schema should go
+>> to dtschema...
+>>
+>> 1) Should I remove this patch from this series? So this schema won't be
+>>      a part of kernel
+> 
+> Yes.
 
-Cheers,
-Prabhakar
+OK, will remove this patch from the series and create PR against
+dtschema and ...
 
-> > diff --git a/Documentation/devicetree/bindings/media/renesas,fcp.yaml b=
-/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> > index cf92dfe69637..b5eff6fec8a9 100644
-> > --- a/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> > +++ b/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> > @@ -77,6 +77,7 @@ allOf:
-> >                - renesas,r9a07g043u-fcpvd
-> >                - renesas,r9a07g044-fcpvd
-> >                - renesas,r9a07g054-fcpvd
-> > +              - renesas,r9a09g056-fcpvd
-> >                - renesas,r9a09g057-fcpvd
-> >      then:
-> >        properties:
->
-> --
-> Regards,
->
-> Laurent Pinchart
+>> 2) dtschema does not contain dpll-device and dpll-pin schemas now, I
+> 
+> The provider, so the #foo-cells should be in dtschema as well.
+
+... include dpll.yaml and dpll-pin.yaml as well.
+
+>>      expect they should be added as well... or? I'm asking because there
+>>      is also e.g. hwlock-consumer.yaml in dtschema but no hwlock
+> 
+> hwlock-cells are missing, probably due to licensing.
+
+and I will also include '#dpll-pin-cells', as we cannot theoretically
+rule out its usage in the future.
+
+Thanks,
+Ivan
+
 
