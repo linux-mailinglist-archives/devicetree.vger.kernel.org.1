@@ -1,218 +1,201 @@
-Return-Path: <devicetree+bounces-253815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB218D119E1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:50:48 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E023DD1199F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:49:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE38A305965E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:44:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9C6FA308DEB7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:46:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4322534A771;
-	Mon, 12 Jan 2026 09:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55072727FA;
+	Mon, 12 Jan 2026 09:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="icF3A+GH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bCugTVaP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011012.outbound.protection.outlook.com [52.101.70.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C005E346FA7;
-	Mon, 12 Jan 2026 09:44:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768211057; cv=fail; b=tosgCPrRHPL5qpWfU6IurL5VDPMCwuswlcmjcQAcPTMxtPW66I2mErmKAiuMTchTR65hR3p/orAuchRo3sR6Ho7YjvcAm9U0DcBNSlkLBAfSKI4kssq8+FMGi1boMYdXLc0TInhTgxGTidu6F/LzOtVfC8+7/iNxa4d3zCwpy7o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768211057; c=relaxed/simple;
-	bh=AUh5gFaUyI5ddTnmtOZBtp8YnbMN6N6tDsogDyyQYbw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=GutUuja7yG9z0KdKzP3iO3Q21gCugiq2Fv1TKPgLQ6kBCfQSzTvmdLhSzvw8IbwRdLDPnM+Os5RJLJ5+zsPX8EnTQqXNf07WiOUBRbBlH/MNoZzRJm/NZdfHwm8v8Jdl3b306qHS6gkCdm0vBVx0T5qRMLdem5DNhpxelAaPBnY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=icF3A+GH; arc=fail smtp.client-ip=52.101.70.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sS07gaqARGgBHGlgLuCZNo3U4zTI77B7WzY3kTsCKsMn+qlMIZE8LDqznQxLrg4xgVuneHZend5yU8z4+RO7qu2INf6rWQbNyxGNlrLJd+K8IIuBZt+YJTUlCJTk/w4DLU8ipB7cf/Ai1vhJzmoY5dnL8LubuYY5As/nKYDDP+kBK1JfL+SCTtvMEZGBd5BooN0AybGq+bu85R1XFTuO27caOemNfC8dE6nEWe0Fudv0/SOkEQy5Dhzy6Fhr+HgfnmvpdKS+suvxk74jDFxIVvj4tska17sHGY2KiChMTXe99XGKdfXQY8Tu8XTymR+2xHC1TMIVEZ9eRVWcA3e9og==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D5jqfRtZe9lPR05qk51r6QAq9HwY1j2fka9/DwjZHBY=;
- b=EAz7HMOqNCZHpt6J8YtykfSbzPinhHae32EthMFOg+X1wCZkWuofQD6DpKeXsOxREH2fI2QK/yd3ZbqpPxQnBCM2jnWIKRGxwLkIG3m923MTQsH24LXk3zBTjkIPMsR1mwI7i0j8F28c/j5oG8bta4oZmh2k5qI+PKoOK3YGK7cHuehCJ4yB1DMRTI33wHZLhser4BmoGEZW9JRqxJZj5mJvicnHvuQ6Fa07mEySHnHBreoGYRYqGMwM+ZSrIViPU1Y8pkiONfWhNYrKP53Tw/rnAn9ptVtsPMo+ZTWWcW0LfQ3vk7temteSu4ULpZ9h8pBC9ZA9kT/r03yLPyK8AQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D5jqfRtZe9lPR05qk51r6QAq9HwY1j2fka9/DwjZHBY=;
- b=icF3A+GHw+BfY0Z8v+sFr1Is1pXTS1u4vSXzOMv35LL8rFiXvxOx7gcjXY23iNEHXtj9AZGngIN+ny91AKTB4qjWWylWgN4og7P7hhWG9dg4XBBs1HXxY4Ckgc0rBWLk4ZCc5EzD2JyhSbXxX2fDClK3e5ZUZjoWJ3QrCcKuQrXObru8eFcrhkI4jflFqir9hW8LZZqIKCFawfF+UgUyotCMNXzftloiwB9SsZF+H26Aq5vXaD2La9cdEEe5nCvC1twgIW35yJuxAkT1q2E9Q1Phl5Q/Ck4Ash8ZCmk+61ptNDQqyjz5wxbABlIPXGtQ5Y4sij7d5zRnBCfamoLRjg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by PA2PR04MB10088.eurprd04.prod.outlook.com (2603:10a6:102:40e::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
- 2026 09:44:12 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
- 09:44:12 +0000
-Message-ID: <fb7b9103-701d-4110-b2aa-b53c0e5c8d0a@nxp.com>
-Date: Mon, 12 Jan 2026 17:44:58 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] drm/bridge: simple-bridge: Add DPI color encoder
- support
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
-References: <20250304101530.969920-1-victor.liu@nxp.com>
- <20260112093127.GA121274@francesco-nb>
-Content-Language: en-US
-From: Liu Ying <victor.liu@nxp.com>
-In-Reply-To: <20260112093127.GA121274@francesco-nb>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2P153CA0007.APCP153.PROD.OUTLOOK.COM (2603:1096:4:140::8)
- To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E7AA26B760
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:46:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768211163; cv=none; b=rbTZ/NSrt/KGFwFpSzx5EPmVxn/kevXQ2Cd66xSXGMYXDZq72IJt3wjas5uuJ3Skluk45xUDl96CTFW4pa/jabLV0QBCyomGZJYm2jIbkgMJ7LrwLC1bQuaCxPQPpHFIsy/5yKYSMoLd0KpAzxBkDJe9MQ/NtcGD74X4sSlN5oI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768211163; c=relaxed/simple;
+	bh=CCRKKHX6fsXE0x6g+VyqVs+0IFdE1KbK+GmMPLuM6vk=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KfVLJQg7aM3BHNH11qqPXih026dh803CNAMRHBS6IXf7s7+wltHCnH8FBChPFs9IlTUKsPHMnwcTz72iJ22ZlqPj0kdHhxKpjj1YH8PvaCfRXxwzaszLo1AZOFc/POM5iruUCjGrto7eAEK9Y4GJ5mOkTHfOY34CirSJMndNblY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bCugTVaP; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4ee257e56aaso56762611cf.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 01:46:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768211159; x=1768815959; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MKqC+AyUc0d9MCEacBJfaGV9CcaZbPZQfgPW8VCBYCc=;
+        b=bCugTVaPZh926P6/mhJ4hac/2fan/s38lKfp+c5+K874Ql2PBJlTSTPOtYmDNWFqNp
+         1nT2bqCnKyZwiIgyiGOcTJ1BQFzeXHfK9htQ3gI3jMgLXqz9gqH9U9UxygH1swcnDUTb
+         8Wy/oL0SNvhbAqRx/+/QZqUrhBIzfBVti+tBPMPhrdluWk8eSGPqcQExyuEVHttZ3pGs
+         a274WWNc44OnzMfSv5S6e7Uty05x/vqx9Nhkz7FUsgEtxbJPsyw12OK4JLPR7yLs6ud2
+         tswG35WZjhtIYUlkUEgMoJoDHTfDNKC+YNLYC2K3DZ2ih05TTibpqla9zo9QC/J5MG6s
+         1+7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768211159; x=1768815959;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MKqC+AyUc0d9MCEacBJfaGV9CcaZbPZQfgPW8VCBYCc=;
+        b=qbTiM0kMpBa3t7ZT+rVrsMHYGmqNcE6zcUr4Vvvu4KsVFRHNri76l6nb+M5MFEhZ3z
+         p5uN3zAKFnrCrK8XMucXfuz7dy3Wy4XhPTw8ani8T9WBQYMp+UVUyq+XSDrp6bbWGJTj
+         JT7kj7lQRpw1ISkF6L3hgssEsE3tbYyL0DiWk5NwmSqIeu5GzmsZhQ/fVGC/x3mqcf5k
+         3zZP3nY6Q5extvbMYgtmPag/zWh0bH48eUzZ4uMTydAcFHrby52wdEGSaxo3Ra7DSImg
+         1p7NvyFXonQhrOfWGA7TyEEFXdXL7pT7yvKVSOMxsCBlsx2rg5YDzPEfRsbFJ0/BGief
+         3MBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVtzsV3NY0rJKtAEwJIf+VuqYw9NRUgPHX0unfuePJM6jrRysdURr/tiKnmD3SMIsEN7wtXnXVbTCKD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfeQ5jCPuYZUsKmpq85WlzwlMhJQZuOj5NHL79dwg+DKvfK6eQ
+	2UGZGjM/+qj5r0pzc+ssIZpfahkKshhJzzgAQTl99DNgSXkTnSoa2QGs
+X-Gm-Gg: AY/fxX4tYprclpTO7qxR6uZ/d5YzDy/lDK6B7G+xhL3zTVEfgUQRjoutLu0bZ30Bm3Z
+	fdhfdktg6YgEwmxUFTjKg++Gy9tHbvLmUHqPC7O0Whz0Mv3S4YPEoZWa/0uKlMt7DKAPagqrBri
+	KO+ZgfqaCup4FqECeoer4wBxGwn065clEOb8zAxx+/3BhBAAYJJX72o9C1jnYE5ELiGEmg2cZZf
+	sNmQRvZ1/ccSkchjZyszH7AyD/APxkEvdej6/QoKEsO7f4GFwl8jqlHOUnsE2w+CiLVzLAoNkf3
+	kktDf0t+5TUDb6k8JuGq/hDJYQtK6UAl4W5b/bluO3TDnsieYVykVbuZ1itR0Hg4Kh4uKeYCSn7
+	vtldUb5r+GVMCG4DfF7Po+fw47XeqnVlUBfPAx92giNIhcs+bKl/Uc5abUBlA1swqM/Ua0qwj4W
+	VT2VFHSViMFevgY+d2s9lEFatthcq7fHSvNxQHyqOXByEyvN0JOO6KA4dyghLD3AOXqjioatUpf
+	zAd
+X-Google-Smtp-Source: AGHT+IFxhD2csvu5pEHMUPkMAAKCFQIujgL+58SJxATcRUeihIBI/j8MLbwNBR37wdZwTyoJBcgSWA==
+X-Received: by 2002:a05:622a:1189:b0:4ed:2574:815c with SMTP id d75a77b69052e-4ffb3f7c9c2mr242431061cf.23.1768211159158;
+        Mon, 12 Jan 2026 01:45:59 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4ffa8c00acesm123609471cf.0.2026.01.12.01.45.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jan 2026 01:45:58 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Mon, 12 Jan 2026 09:45:49 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	rodrigo.alencar@analog.com
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v3 4/6] iio: frequency: adf41513: features on frequency
+ change
+Message-ID: <ptyn5x7qkmbakkompmijo6xeego2xrhjoeyomkgrytwgwcsaid@heiq3ilnx5ky>
+References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+ <20260108-adf41513-iio-driver-v3-4-23d1371aef48@analog.com>
+ <aWFR2wTSWLydGN5O@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|PA2PR04MB10088:EE_
-X-MS-Office365-Filtering-Correlation-Id: 18f36a6d-4b58-4eee-68e6-08de51bf2481
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|19092799006|1800799024;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?anBaS21YSVBhRm9MMjFqNnlrc3dFQUhVZW9MUXE0aFNpSFVYSVVzbDdqUnJx?=
- =?utf-8?B?V0FDK0Q5bEtnV0krci9tb21MV1hIditBd2F4ZXQ3V1YxdFpnbzNvSEhucmFB?=
- =?utf-8?B?USsrbUxJQzY0WTU3QkpQUjlXNzhwTnFzZ2xoM0dkcjlJaDNiTFRpMDNkZVBx?=
- =?utf-8?B?QnE1R3pGTVBpNk8rV1BkZjZuRzZmQ3VGbXErV1NJZ1dwaVp5OWZ2T1FiZldB?=
- =?utf-8?B?YWxsOFM2bkIxbXhkcVdMZEtJN081MllKemNPMHpmUVpiTjJSTVR4Um5BVmVz?=
- =?utf-8?B?c2Q5Ym1qb2ZNUjl1NWZwZFEvNUhacXRqWFVaT3dhakpYeTIybkNzOFZXV1pR?=
- =?utf-8?B?bTQ5SW9BZ1ZheUxRZ1R6ZmRsQm1sVCtJcHN5QWZsREM1RzFCVFArWlkrVVB3?=
- =?utf-8?B?K0ZwRFRkWTBpTFdFSFViSU55a1l4TGFZWnBQWHkralMxYk95MnVwbmV0QzFV?=
- =?utf-8?B?UnBxUWh6Vkl4aW1RQXE4NlZQL2pCZ05ERVJwTjZNOVNlV2lEZ3RTc2RMMW5E?=
- =?utf-8?B?MGd4Vmtya3RTR0V3OUVXd1hQclI1REZmL0RPYUsyTkViME93NTJyckdseHZ2?=
- =?utf-8?B?Nm80TUJtWG03VmltOFFHRTdFZkphcTRZMFVBcnFESW8xOGNxdjNoS2d0NExM?=
- =?utf-8?B?UDRpR0lQMzB4NXpDN012TDh3aUhvd2dnYXU0OUpNa1AzdEhRYkFSdEJXd283?=
- =?utf-8?B?S21DdXJWUUM1cktyM0lKNTFoS3kvazcxMndHVC9LTDBNRFJxVnFYcFdDTEI1?=
- =?utf-8?B?QWY3MWV1MVJFd2I2b1hmR2RocGNZbUF4ZWQwQjZxaWJSVzRockRnRlVQd3l6?=
- =?utf-8?B?YkxwU0RwbUVYWENCTDc0cVM3aEJvMzlmQTcvaVU4Q0pYVHFLT09kSGEzMVcv?=
- =?utf-8?B?bGxxbm91d1FUYWxHSVQrNHc5czF3aTJKc3ZWMkMvRmZEQ3NLczFsaDBKYlp4?=
- =?utf-8?B?T2s5SmszYjRYSVZycmRXUmdlemk3WHRFeXNSWEU5bGtFRHJPUCswWU1MSnlo?=
- =?utf-8?B?aWVrOElGSkRqaXdrS1JnRTJIb2Fkc0JDdE95NzE5L0tMd1JwY2Y5bkE1TThr?=
- =?utf-8?B?aUltQ0NsMm1nQmdOQlFnVmlwaGlZdCtGdXNEMzQzN0lPRWRkRTZqUmxWU0tt?=
- =?utf-8?B?VlhJVnhOT1lKVXF4RHBqOGNjWndLeXI2VHpzUkY3OFY0M0ZxcFhOQ2l5a1Jh?=
- =?utf-8?B?S2hLdFM2eU5CeHhqdUkvZUF6V28vK1ZraFQ5SUJpR0dYLzZCdmNyUDJTbEFU?=
- =?utf-8?B?L1B2dC8rcHQzVzhPcFZrcG1tVitRV0FxaWgxRXMyNXZEaUw2cVFjRlYranFK?=
- =?utf-8?B?NFg2UTA1WmNGMlljWk1lMVdwUmJncUo3TTQrRVRKODkwS1p4QVlsaEtRWGdo?=
- =?utf-8?B?UjF1UlhmSU5QZVc2eGRmZUF4NmZjN3dhVElncEQvMlIzWFM2MWJUc2V1RlhB?=
- =?utf-8?B?d3hyWndpTUNPQVlYc1pzK2dsdUM2TW82TFJlc2RPMkx0S2x1U0dja0RCOHRD?=
- =?utf-8?B?SHIvVk0rVDZlczc1bHJSTmdIV0lDdkNuRGY3Qld6ejA0OXcyT3RTNkxRWXRv?=
- =?utf-8?B?MERiM3V6cEJnOThTT0I4b2JmTHVtSTRpUDVoWjFHSU5yM0dqSFQ1ZlAxT0RV?=
- =?utf-8?B?MVpsM1Rac1BwSkJpT3h1dzRMVXovNHgrMzJqQ3c0WVIvMFlldmNBSDJUOG1C?=
- =?utf-8?B?MVVjNzVWNVRYKzlFalF1NFVqR0puamE0QlVEeEJvRkVRck5Ba2RMRlByOGlY?=
- =?utf-8?B?ZmY0UTk0VjBVcjMxSmdzUVZSdkFzWW1jdG9JeHlHbU9NNHN6V0NQS0lKWnhS?=
- =?utf-8?B?OURDalp0MzlMVk9Ud2dWdXBUMks1dlk2b00wK3N1TmdlTjZZQUtjWTNvUDZo?=
- =?utf-8?B?RU9qanQydTlOZ0xHTk85Q1pMRGt3cDhwYnZNM3lFYnczZ1B6dytBN0YrOU91?=
- =?utf-8?Q?Ccx7hBNlpEjSUBp5rUa9xXGuFlJdsUO0?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(19092799006)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?L2xjYWZtcG9NOW5vdi90TWhPRVAzL0d4d3FwMWxpOW9uVHYwci91R0swQS94?=
- =?utf-8?B?bE1QWkx4Q0NmVHVhd0w3eXAvallLU1dqTE55Q2tCL29sSWZ0WlpNS1FtODBL?=
- =?utf-8?B?ZndleC9OQUV1Y05keW1DNCs4OXcrdFhZRXE0REZxV0l0WkVtZjlXNXZzam8r?=
- =?utf-8?B?bUs4Uk9jaVdsejVWTlV0SVNXakRVREo5ZFZxa3NTUUlWcVBLSDR5MEJrQSt0?=
- =?utf-8?B?cWtka3JmSnM4N2tNVm5UNTN4OUhFeWVlVVB1WWMvM3dPQVNkSk5HSVJKcUYy?=
- =?utf-8?B?Tkl6ZldDbE8wL2JkaVdpR2FuTWRaSzJsKzN0ZEM5aDduc0QvcktpTXd5ekRn?=
- =?utf-8?B?clZrNjVZV3FvR0lvL24xK1h6dWdOTm1GdWJPU2k3bXh1T3BjVW1Lb0FGVWlp?=
- =?utf-8?B?VS92YmFZWWgvSkVlWUtiK1grQStLWC92aWVVOTRqdTBVbVR2UnpRRng2SGpt?=
- =?utf-8?B?QlRZc25sUDFqUUh0dFdTMStEdFlnTzZqUjV6b25SSGdrZlNvbVlwYzE1TWxq?=
- =?utf-8?B?d0lkTzFZS1NvSnV3ejFIdnFQMFVyc0RQTmlxRlpnS0JudXJBT2RBbWpIdDNo?=
- =?utf-8?B?NTEzTnFFdWRYQTQwOEtEYWVBQktkc0p5elRXUHpKN3JSemk2UjZqamlESmFS?=
- =?utf-8?B?V3gyUEJjMnJiQUJtTVl4WlRxTktaTU1lMmtYelhjZS91L2tBSXB0NnkyRXN6?=
- =?utf-8?B?b1B5NlEzNlR3cEtWR3dtT1lmTnRsYlREaDBaS2J0cFltd2NuK21iRGYzcWU2?=
- =?utf-8?B?WWE5cXhyMnd4Zm02MGlQSE1pTlhZWjBacTJCdTVmbzBpdzhBcExrQUo0RHh0?=
- =?utf-8?B?NExsU3lTNld1QkQ5ZTUwbjJHTGx2VW9WN09nR0REN1ZRZk5XZmhTeDVpcStK?=
- =?utf-8?B?NUF6cEsvNnRuZ1BQa2cvaWgzMUZ5MGM3L0NjWmZjZ2hlSklxSmlub2tzdm5o?=
- =?utf-8?B?VUhWaloxNVZhQUNmbm9aN3dKSm1LSEJaOFpwYWVaaVdYZG9odXFka05xUzl4?=
- =?utf-8?B?ZDRRRGRWbUwzRDB6a2owU0pOcDJtbjd3NmdlQ2ZnLzVlYnlWNGtpdzRZL1FJ?=
- =?utf-8?B?R25MUUU5OFFBYlZQODdxQ21MMFdoeVdxNUFDaXQwemlPb1FMZkpFQkNRcU10?=
- =?utf-8?B?cktkaWduREJDMG1rWW83QXNNMXlOMmZrVlV1Z1BNVGFoYlFDOXlPL01nYWt5?=
- =?utf-8?B?WmxqbkJrOWpOSVc1eHRYZ2RUa2d0NzQwNXVyUHNkUW9PanRuQ0owRkdHTUhB?=
- =?utf-8?B?OFp1elg2dkhmM0RkdkJkRVZvODRZdzVrQTh1U1kxQjdLM05iN0Z3cWd6azBP?=
- =?utf-8?B?d0cySmNIeXJtQnNBYnA5V3BITEZRUWFCUlAzVDZYbFZTbWVaeEtiR0YwTGg2?=
- =?utf-8?B?U3FpbjR2cjZXSmRqckUyaDJ5NkZhZ1BMYW9TWHRweE1VekdPTnVUekZHczk1?=
- =?utf-8?B?azRkSnJlTUE5YjljOGE0TWVsM1RxYmRmNFVkV2lhSkRQUDk2UHc3Rm1mUWdz?=
- =?utf-8?B?THlCYnk1aWlFMkxoMy9UOGI4NDhxdWxHeHliQTFWYjVLYjdiSHo5MEhiYUth?=
- =?utf-8?B?aktJTmhxa2ljT0oyZ3k1N1JPQTZCYS9HU2FoNlNDeTROSGtPN2FXRG40MGVC?=
- =?utf-8?B?NzVXeUNFbHFpSDJHU05VRkVlZDRWYno2M2Z2SHlUUWI2NnEvZXpvM0NXWlJZ?=
- =?utf-8?B?b3EvTmg0MGJXT3g4eGpDRll1TzU4SmF6Wmg3MXdOZk5OREV4UFVFUzBYT2VM?=
- =?utf-8?B?Y2RzSnF5Rk9OVTJnUzc2OE92aU9adTdVK2ZOOXlvUFY0anFya0FKcjNZOHBC?=
- =?utf-8?B?a0M2bjlpTVpDREpOeW5EcCtmbVNrbGY1SXh0bDVJZXBJNHBjRUZPV1JLK2lq?=
- =?utf-8?B?aHdSaG1BSnFvNTRJUVRsTldwYUpzNHIxdXo0bmdpZzY2MDZIdkFNUndrQTgw?=
- =?utf-8?B?Y0UyVFJHajVQZnd5KzZvNHpDamplcU9nMlpqZmhVQUdoK3IvTkhDUVRleWFp?=
- =?utf-8?B?YUdqMFhnRWQrNnZuMEJlTTh6MVcvN3BYVHJNSWhDb0pGWTRvU0Q1VFRxRW9I?=
- =?utf-8?B?YnpleURaUUhveUU4c2hJc1dIYXRXNEtFNER3ZE5ROWsvenFWOFNWQnVkYlBL?=
- =?utf-8?B?K3h4OHNRdXdTcURuZUlITktOK0NTeGhDcGQwdVBQVHdCdXRuWWRXZExBd3h2?=
- =?utf-8?B?eWd5UTR0NEx0NjgvYVZwcDA2akpDVnJuZ3FMS0NPRHZPYXd1SUVvWGtqbXdh?=
- =?utf-8?B?MytIb0FQVmRZb0lzQ1oyT2w5dmROOTFFMk9pSk9SSjA0VUdhcVFqdUVxek92?=
- =?utf-8?B?RE5LZVpwZHlBWThuUHNycloyZjE3Y3JmOTlsNHo0WnV6MVFwUlUrZz09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18f36a6d-4b58-4eee-68e6-08de51bf2481
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 09:44:12.7457
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cn4MlLhX73PzNMwaETJaRpKFbqqJJ/lZTsEhHXh9dlqomXUdkWHjelBVGoP03Ns3pKJAiO1hEMAYd+WR4UuHiQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10088
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aWFR2wTSWLydGN5O@smile.fi.intel.com>
 
-
-
-On 1/12/26 17:31, Francesco Dolcini wrote:
-> Hello Liu,
-
-Hello Francesco,
-
+On 26/01/09 09:07PM, Andy Shevchenko wrote:
+> On Thu, Jan 08, 2026 at 12:14:53PM +0000, Rodrigo Alencar via B4 Relay wrote:
 > 
-> On Tue, Mar 04, 2025 at 06:15:25PM +0800, Liu Ying wrote:
->> This patch series aims to add DPI color encoder support as a simple DRM
->> bridge.  A DPI color encoder simply converts input DPI color coding to
->> output DPI color coding, like Adafruit Kippah DPI hat[1] which converts
->> input 18-bit pixel data to 24-bit pixel data(with 2 low padding bits in
->> every color component though).  A real use case is that NXP i.MX93 11x11
->> EVK[2] and i.MX93 9x9 QSB[3] boards may connect a 24-bit DPI panel through
->> the Adafruit Kippah DPI hat.  The display pipeline is
->>
->> i.MX93 LCDIF display controller(RGB888) ->
->> i.MX93 parallel display format configuration(RGB666) ->
->> on-board Raspiberry Pi compatible interface(RPi)(RGB666) ->
->> Adafruit Kippah DPI hat(RGB888 with 2 low padding bits in color components) ->
->> 24-bit "ontat,kd50g21-40nt-a1" DPI panel
+> > Set Bleed current when PFD frequency changes (bleed enabled when in
+> > fractional mode). Set lock detector window size, handling bias and
+> > precision. Add phase resync support, setting clock dividers when
+> > PFD frequency changes.
 > 
+> ...
 > 
-> Any update/progress/plan on this patch series?
+> > +static const u16 adf41513_ld_window_p1ns[] = {
+> > +	9, 12, 16, 17, 21, 28, 29, 35,			/* 0 - 7 */
+> > +	43, 47, 49, 52, 70, 79, 115			/* 8 - 14 */
+> 
+> Leave trailing comma.
+> 
+> > +};
+> > +
+> > +static const u8 adf41513_ldp_bias[] = {
+> > +	0xC, 0xD, 0xE, 0x8, 0x9, 0x4, 0xA, 0x5,		/* 0 - 7 */
+> > +	0x0, 0x6, 0xB, 0x1, 0x2, 0x7, 0x3		/* 8 - 14 */
+> 
+> Ditto.
+> 
+> > +};
+> > +
+> >  static const char * const adf41513_power_supplies[] = {
+> >  	"avdd1", "avdd2", "avdd3", "avdd4", "avdd5", "vp"
+> 
+> Ditto.
+> 
+> >  };
+> 
+> ...
+> 
+> > +	bleed_value = div64_u64(st->settings.pfd_frequency_uhz * bleed_value,
+> > +				1600ULL * HZ_PER_MHZ * MICROHZ_PER_HZ);
+> 
+> > +	u16 ld_window_p1ns = div64_u64(10ULL * NANO * MICROHZ_PER_HZ,
+> > +				       st->settings.pfd_frequency_uhz << 1);
+> 
+> These multiplications (here and elsewhere) are (very) confusing.
+> 
+> I believe you want to have a frequency in Hz in µHz resolution. The second one
+> can be close to this if used GIGA instead of NANO. But I think the better way
+> to have something like the first one but with MICRO instead of MICROHZ_PER_HZ.
+> 
+> Please, put an order in these.
 
-It seems that neither Rob nor Maxime likes the whole idea of this bridge.
-So I don't have any plan to proceed with this patch series.
+The first one: the numerator is in µHz, so the denominator is also in µHz so to
+cancel the units.
 
+The second one: window size is nanoseconds with 0.1 precision in the datasheet.
+The numerator contains  MICROHZ_PER_HZ to convert µHz -> Hz = 1/s, and then
+10ULL * NANO to convert 1/s into 0.1 ns.
+
+How is that confusing? I am not sure GIGA is the right choice, as NANO shows
+that I am targeting nanoseconds, no? 
+
+> ...
 > 
-> Thanks,
-> Francesco
+> > +	/* assuming both clock dividers hold similar values */
+> > +	total_div = mul_u64_u64_div_u64(st->settings.pfd_frequency_uhz,
+> > +					st->data.phase_resync_period_ns,
+> > +					1ULL * MICRO * NANO);
+> 
+> This sounds good as we multiply Hz by ns.
 > 
 
--- 
-Regards,
-Liu Ying
+the numerator has a time in nanoseconds, so NANO 'cancels' that, as MICRO 'cancels'
+the micro under µHz.
+
+> ...
+> 
+> > +	st->data.phase_resync_period_ns = 0;
+> 
+> Do we even need this?
+>
+
+true, will adjust.
+
+> > +	ret = device_property_read_u32(dev, "adi,phase-resync-period-ns", &tmp);
+> > +	if (!ret)
+> > +		st->data.phase_resync_period_ns = tmp;
+> 
+> Is the _period_ns of type u32? Then simply
+> 
+> 	device_property_read_u32(dev, "adi,phase-resync-period-ns", &st->data.phase_resync_period_ns);
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+
+kind regards,
+
+Rodrigo Alencar
 
