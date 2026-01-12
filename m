@@ -1,149 +1,98 @@
-Return-Path: <devicetree+bounces-253715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56ACFD10CC6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:06:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C3A9D10CDB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:08:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5DE0C302687E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:05:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 31E6C301BCF0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22DF329C6B;
-	Mon, 12 Jan 2026 07:05:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7EA430171A;
+	Mon, 12 Jan 2026 07:08:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E95A31A7E3;
-	Mon, 12 Jan 2026 07:05:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89998313525;
+	Mon, 12 Jan 2026 07:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768201553; cv=none; b=Qk+ZgceB5Yekke0IRqCFB2Umip/BoBmPI+f6ND+TeYKauDDZJwSpFSIoG+mkGSFFNdQgpJFlybzCg+dQWaontZN2NGNZYAjVee7+QOaE4nOdjBtNIYh6mT1gNrR7pn0oUwLIwrNAlbLUUoj+5pX/AYsVuU5i+AwoXlXJWbHTuXI=
+	t=1768201680; cv=none; b=ip0J+o1jQLEfDU8/ECb+L3AVrPHiJV470k7YPMBUvfeBBhSwg/7TgDbpdaYt+ufcV74lO7LlbWA3AkkqozjXFWvE7J0FBlopGz+R3Ar3ZlDOmzX9WcA280ohctwHSNLqOBSvfZnQfF/hmCUJJ0LS8Rja1Csl0oCS2DITiQmRJXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768201553; c=relaxed/simple;
-	bh=QGS5XYpTbNxWMxsV8l9qPZZwLIWw6gz9+e3TACJtaow=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=DvOPyP1kT7kmliyjM/N2i9hKwc8VKMe00CmIPzC3uYd/PL0qNAgYC7NI+5ZF+TIDHdZ1WnZPF72fC3MqMKNQlpJGAzUsKIQnhGc9X4WzuiotQD1b0Q/GXQ2RaEvwXRbuMmP9wwHod0HKxrsnV38Wf3P0MS7DD07Ep+AeYNC1Ikk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from lizhi2$eswincomputing.com ( [10.11.96.26] ) by
- ajax-webmail-app1 (Coremail) ; Mon, 12 Jan 2026 15:05:18 +0800 (GMT+08:00)
-Date: Mon, 12 Jan 2026 15:05:18 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: =?UTF-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
-To: "Bo Gan" <ganboing@gmail.com>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	"Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com
-Subject: Re: Re: [PATCH v1 1/2] dt-bindings: ethernet: eswin: add clock
- sampling control
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <0d54ddca-9270-40a5-aa82-d8a7b65027ff@gmail.com>
-References: <20260109080601.1262-1-lizhi2@eswincomputing.com>
- <20260109080859.1285-1-lizhi2@eswincomputing.com>
- <00b7b42f-2f9d-402a-82f0-21641ea894a1@lunn.ch>
- <aWKZvEW7rKFFwZLG@shell.armlinux.org.uk>
- <0d54ddca-9270-40a5-aa82-d8a7b65027ff@gmail.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1768201680; c=relaxed/simple;
+	bh=rLBjb640zyqA+ySpejEq1VoKjaB5jzwCyEhdh3AEdzI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KKGDezOPrcpdURNpYQUi3mH2380PmCrK5LRkZ65JMW0Nd5e5Rge5O3Kij5l89dXSwSwZNJNBDHiU1NttZm28AdFzDcThuohJQ047MrxWmwloB+cSImq4qlSkwO6OwilQx5ZeWG+CjCWyMGidM5OQppHvwPXY20rS+1CUu2+EGoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 60C75QC9070519
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Mon, 12 Jan 2026 15:05:26 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02 (10.0.15.183) by ATCPCS34.andestech.com (10.0.1.134)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 12 Jan
+ 2026 15:05:26 +0800
+Date: Mon, 12 Jan 2026 15:05:26 +0800
+From: CL Wang <cl634@andestech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <tim609@andestech.com>,
+        <cl634@andestech.com>, <ben717@andestech.com>
+Subject: Re: [PATCH 2/3] watchdog: atcwdt200: Add driver for Andes ATCWDT200
+Message-ID: <aWSdNkHc-MAR5CRr@swlinux02>
+References: <20260107145058.213334-1-cl634@andestech.com>
+ <20260107145058.213334-3-cl634@andestech.com>
+ <f6499c9a-4ec8-4c9e-b9b5-e679e0f913a4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <1a622916.2d28.19bb105feab.Coremail.lizhi2@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TAJkCgC3vmsunWRpwhKUAA--.8260W
-X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/1tbiAQEFDGlj0ItINQABsk
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f6499c9a-4ec8-4c9e-b9b5-e679e0f913a4@kernel.org>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 60C75QC9070519
 
-CgoKPiAtLS0tLeWOn+Wni+mCruS7ti0tLS0tCj4g5Y+R5Lu25Lq6OiAiQm8gR2FuIiA8Z2FuYm9p
-bmdAZ21haWwuY29tPgo+IOWPkemAgeaXtumXtDoyMDI2LTAxLTExIDEyOjA1OjMxICjmmJ/mnJ/m
-l6UpCj4g5pS25Lu25Lq6OiAiUnVzc2VsbCBLaW5nIChPcmFjbGUpIiA8bGludXhAYXJtbGludXgu
-b3JnLnVrPiwgIkFuZHJldyBMdW5uIiA8YW5kcmV3QGx1bm4uY2g+Cj4g5oqE6YCBOiBsaXpoaTJA
-ZXN3aW5jb21wdXRpbmcuY29tLCBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZywgYW5kcmV3K25l
-dGRldkBsdW5uLmNoLCBkYXZlbUBkYXZlbWxvZnQubmV0LCBlZHVtYXpldEBnb29nbGUuY29tLCBr
-dWJhQGtlcm5lbC5vcmcsIHJvYmhAa2VybmVsLm9yZywga3J6aytkdEBrZXJuZWwub3JnLCBjb25v
-citkdEBrZXJuZWwub3JnLCBuZXRkZXZAdmdlci5rZXJuZWwub3JnLCBwYWJlbmlAcmVkaGF0LmNv
-bSwgbWNvcXVlbGluLnN0bTMyQGdtYWlsLmNvbSwgYWxleGFuZHJlLnRvcmd1ZUBmb3NzLnN0LmNv
-bSwgbGludXgtc3RtMzJAc3QtbWQtbWFpbG1hbi5zdG9ybXJlcGx5LmNvbSwgbGludXgtYXJtLWtl
-cm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnLCBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnLCBu
-aW5neXVAZXN3aW5jb21wdXRpbmcuY29tLCBsaW5taW5AZXN3aW5jb21wdXRpbmcuY29tLCBwaW5r
-ZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20sIHdlaXNoYW5nanVhbkBlc3dpbmNvbXB1dGluZy5j
-b20KPiDkuLvpopg6IFJlOiBbUEFUQ0ggdjEgMS8yXSBkdC1iaW5kaW5nczogZXRoZXJuZXQ6IGVz
-d2luOiBhZGQgY2xvY2sgc2FtcGxpbmcgY29udHJvbAo+IAo+IE9uIDEvMTAvMjYgMTA6MjYsIFJ1
-c3NlbGwgS2luZyAoT3JhY2xlKSB3cm90ZToKPiA+IE9uIEZyaSwgSmFuIDA5LCAyMDI2IGF0IDA3
-OjI3OjU0UE0gKzAxMDAsIEFuZHJldyBMdW5uIHdyb3RlOgo+ID4+PiAgICAgcngtaW50ZXJuYWwt
-ZGVsYXktcHM6Cj4gPj4+IC0gICAgZW51bTogWzAsIDIwMCwgNjAwLCAxMjAwLCAxNjAwLCAxODAw
-LCAyMDAwLCAyMjAwLCAyNDAwXQo+ID4+PiArICAgIGVudW06IFswLCAyMCwgNjAsIDEwMCwgMjAw
-LCA0MDAsIDgwMCwgMTYwMCwgMjQwMF0KPiA+Pj4gICAKPiA+Pj4gICAgIHR4LWludGVybmFsLWRl
-bGF5LXBzOgo+ID4+PiAtICAgIGVudW06IFswLCAyMDAsIDYwMCwgMTIwMCwgMTYwMCwgMTgwMCwg
-MjAwMCwgMjIwMCwgMjQwMF0KPiA+Pj4gKyAgICBlbnVtOiBbMCwgMjAsIDYwLCAxMDAsIDIwMCwg
-NDAwLCA4MDAsIDE2MDAsIDI0MDBdCj4gPj4KPiA+PiBZb3UgbmVlZCB0byBhZGQgc29tZSB0ZXh0
-IHRvIHRoZSBDaGFuZ2Vsb2cgdG8gaW5kaWNhdGUgd2h5IHRoaXMgaXMKPiA+PiBzYWZlIHRvIGRv
-LCBhbmQgd2lsbCBub3QgY2F1c2UgYW55IHJlZ3Jlc3Npb25zIGZvciBEVCBibG9icyBhbHJlYWR5
-IGluCj4gPj4gdXNlLiBCYWNrd2FyZHMgY29tcGF0aWJpbGl0eSBpcyB2ZXJ5IGltcG9ydGFudCBh
-bmQgbmVlZHMgdG8gYmUKPiA+PiBhZGRyZXNzZWQuCj4gPj4KPiA+Pj4gKyAgZXN3aW4scngtY2xr
-LWludmVydDoKPiA+Pj4gKyAgICBkZXNjcmlwdGlvbjoKPiA+Pj4gKyAgICAgIEludmVydCB0aGUg
-cmVjZWl2ZSBjbG9jayBzYW1wbGluZyBwb2xhcml0eSBhdCB0aGUgTUFDIGlucHV0Lgo+ID4+PiAr
-ICAgICAgVGhpcyBwcm9wZXJ0eSBtYXkgYmUgdXNlZCB0byBjb21wZW5zYXRlIGZvciBTb0Mtc3Bl
-Y2lmaWMKPiA+Pj4gKyAgICAgIHJlY2VpdmUgY2xvY2sgdG8gZGF0YSBza2V3IGFuZCBoZWxwIGVu
-c3VyZSBjb3JyZWN0IFJYIGRhdGEKPiA+Pj4gKyAgICAgIHNhbXBsaW5nIGF0IGhpZ2ggc3BlZWQu
-Cj4gPj4+ICsgICAgdHlwZTogYm9vbGVhbgo+ID4+Cj4gPj4gVGhpcyBkb2VzIG5vdCBtYWtlIHRv
-byBtdWNoIHNlbnNlIHRvIG1lLiBUaGUgUkdNSUkgc3RhbmRhcmQgaW5kaWNhdGVzCj4gPj4gc2Ft
-cGxpbmcgaGFwcGVucyBvbiBib3RoIGVkZ2VzIG9mIHRoZSBjbG9jay4gVGhlIHJpc2luZyBlZGdl
-IGlzIGZvcgo+ID4+IHRoZSBsb3dlciA0IGJpdHMsIHRoZSBmYWxsaW5nIGVkZ2UgZm9yIHRoZSB1
-cHBlciA0IGJpdHMuIEZsaXBwaW5nIHRoZQo+ID4+IHBvbGFyaXR5IHdvdWxkIG9ubHkgc3dhcCB0
-aGUgbmliYmxlcyBhcm91bmQuCj4gPiAKPiA+IEknbSBnb2luZyB0byBhc2sgYSByYXRoZXIgcGVy
-dGluZW50IHF1ZXN0aW9uLiBXaHkgZG8gd2UgaGF2ZSB0aGlzCj4gPiBlc3dpbiBzdHVmZiBpbiB0
-aGUga2VybmVsIHRyZWU/Cj4gPiAKPiA+IEkndmUganVzdCBiZWVuIGxvb2tpbmcgdG8gc2VlIHdo
-ZXRoZXIgSSBjYW4gdW5kZXJzdGFuZCBtb3JlIGFib3V0IHRoaXMsCj4gPiBhbmQgYWx0aG91Z2gg
-SSd2ZSBkaXNjb3ZlcmVkIHRoZSBUUk0gaXMgYXZhaWxhYmxlIGZvciB0aGUgRUlDNzcwMDoKPiA+
-IAo+ID4gaHR0cHM6Ly9naXRodWIuY29tL2Vzd2luY29tcHV0aW5nL0VJQzc3MDBYLVNvQy1UZWNo
-bmljYWwtUmVmZXJlbmNlLU1hbnVhbC9yZWxlYXNlcwo+ID4gCj4gPiB0aGF0IGlzbid0IHBhcnRp
-Y3VsYXJseSBoZWxwZnVsIG9uIGl0cyBvd24uCj4gPiAKPiA+IFRoZXJlIGRvZXNuJ3QgYXBwZWFy
-IHRvIGJlIGFueSBkZXZpY2UgdHJlZSBzb3VyY2UgZmlsZXMgdGhhdCBkZXNjcmliZQo+ID4gdGhl
-IGhhcmR3YXJlLiBUaGUgRFQgYmluZGluZ3MgdGhhdCBJIGNhbiBmaW5kIHNlZW0gdG8gZGVzY3Jp
-YmUgb25seQo+ID4gZXRoZXJuZXQgYW5kIFVTQi4gZGVzY3JpYmUgdGhlIGV0aGVybmV0IGFuZCBV
-U0IsIGFuZCBtYXliZSBzZGhjaS4KPiA+IAo+ID4gSSB3YXMgbG9va2luZyBmb3Igc29tZXRoaW5n
-IHRoYXQgd291bGQgbGVhZCBtZSB0byB3aGF0IHRoaXMKPiA+IGVzd2luLGhzcC1zcC1jc3IgdGhp
-bmcgaXMsIGJ1dCB0aGF0IGRvZXNuJ3Qgc2VlbSB0byBleGlzdCBpbiBvdXIKPiA+IERUIGJpbmRp
-bmcgZG9jdW1lbnRhdGlvbiwgbm9yIGRvZXMgZ3JlcGluZyBmb3IgImhzcC5zcC5jc3IiIGluCj4g
-PiBhcmNoLyovYm9vdC9kdHMgZmluZCBhbnl0aGluZy4KPiA+IAo+ID4gU28sIHdlIGNhbid0IGtu
-b3cgd2hhdCB0aGlzICJoc3AiIHRoaW5nIGlzIHRvIGV2ZW4ga25vdyB3aGVyZSB0byBsb29rCj4g
-PiBpbiB0aGUgODBNaUIgb2YgUERGIGRvY3VtZW50YXRpb24uCj4gPiAKPiAKPiBIU1AgLT4gSGln
-aC1TcGVlZCBQZXJpcGhlcmFsLiBlc3dpbixoc3Atc3AtY3NyIGlzIG1lbnRpb25lZCBpbgo+IAo+
-IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvc25wcyxkd2Ntc2hjLXNkaGNp
-LnlhbWwKPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2Vzd2luLGVpYzc3
-MDAtZXRoLnlhbWwKPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL2Vzd2lu
-LGVpYzc3MDAtdXNiLnlhbWwKPiAKPiAgRnJvbSBFU1dJTidzIHZlbmRvci90ZXN0aW5nIGtlcm5l
-bCB0cmVlOgo+IAo+IGhzcF9zcF9jc3I6IGhzcC1zcC10b3AtY3NyQDB4NTA0NDAwMDAgewo+ICAg
-IGNvbXBhdGlibGUgPSAic3lzY29uIjsKPiAgICAjc2l6ZS1jZWxscyA9IDwyPjsKPiAgICByZWcg
-PSA8MHgwIDB4NTA0NDAwMDAgMHgwIDB4MjAwMD47Cj4gfTsKPiAKPiBBcHBhcmVudGx5IGl0J3Mg
-anVzdCBhIHJlZ2lzdGVyIGJsb2NrIHRoYXQgY29udHJvbHMgdmFyaWVzIGJlaGF2aW9ycyBvZgo+
-IGhpZ2ggc3BlZWQgcGVyaXBoZXJhbHMuIEknbSBub3Qgc3VyZSBpZiBEVCBiaW5kaW5ncyBtYW5k
-YXRlcyBpdCwgYnV0IGl0J3MKPiB1bmRvY3VtZW50ZWQgaW4gdGhlIFRSTS4gUGVyaGFwcyBFU1dJ
-TiBzaG91bGQgcHJvcGVybHkgZG9jdW1lbnQgaXQgZ29pbmcKPiBmb3J3YXJkPyBBbHNvLCBJIHRo
-aW5rIEVTV0lOIG5lZWRzIHRvIGNoZWNrLWluIHRoZSBzZGhjaS9ldGgvdXNiIGRldmljZS0KPiB0
-cmVlIGNvbXBvbmVudHMgQVNBUCwgc28gZm9sa3MgY2FuIHRlc3QgaXQuCj4gCgpZZXMsIHRoYXTi
-gJlzIGNvcnJlY3QuIGhzcC1zcC1jc3IgaXMgYSBzaGFyZWQgcmVnaXN0ZXIgYmxvY2sgdXNlZCB0
-byBjb250cm9sCnZhcmlvdXMgaGlnaC1zcGVlZCBwZXJpcGhlcmFscyAoRXRoZXJuZXQsIFVTQiwg
-U0RIQ0kpIG9uIEVJQzc3MDAuCgpUaGlzIGJsb2NrIGlzIGN1cnJlbnRseSBub3Qgd2VsbCBkb2N1
-bWVudGVkIGluIHRoZSBwdWJsaWMgVFJNLiBXZSBhY2tub3dsZWRnZQp0aGlzIGdhcCBhbmQgcGxh
-biB0byBpbXByb3ZlIGl0IGJ5IGFkZGluZyBwcm9wZXIgZG9jdW1lbnRhdGlvbi4gV2UgYWxzbyBp
-bnRlbmQKdG8gdXBzdHJlYW0gY29tcGxldGUgRFRTIGZpbGVzIGZvciBFSUM3NzAwIHNvIHRoZSBi
-aW5kaW5ncyBjYW4gYmUgdmFsaWRhdGVkCmFnYWluc3QgcmVhbCBoYXJkd2FyZS4KClRoYW5rcyBm
-b3IgcmFpc2luZyB0aGlzIGNvbmNlcm4uCgpMaSBaaGkK
+Hi Krzysztof,
+
+Thanks for your review.
+
+On 07/01/2026 15:50, Krzysztof Kozlowski wrote:
+
+> Just use API for getting enabled clock.
+Agreed. I will switch to using `devm_clk_get_enabled()` to simplify
+the clock handling and error paths.
+
+> No, read your binding. You said it is a list... list of phandles?
+You are right. The property is intended to be a single uint32
+configuration value. I will update the binding schema to clearly
+define it as such and make it consistent with the driver.
+
+> Just return.
+Agreed. I will simplify the resume path and return directly on error.
+
+> Drop, not needed.
+Understood. I will drop the `"andestech,qilai-wdt"` compatible and keep
+only the generic one.
+
+> From where did you get this?
+You're right, this is unnecessary. I will remove `.owner = THIS_MODULE`.
+
+I will address all of the above in the next revision.
+
+Best regards,
+CL Wang
 
