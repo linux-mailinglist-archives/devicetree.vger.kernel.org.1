@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-253986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6ABDD131E5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:28:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0717ED1328D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9F6D93038368
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:22:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2415F30F21B8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36ACE2EE5FD;
-	Mon, 12 Jan 2026 14:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421473502A9;
+	Mon, 12 Jan 2026 14:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OWk+hX0W"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="yPpHocEr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B1B2D2382;
-	Mon, 12 Jan 2026 14:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA3F2273D6F
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227661; cv=none; b=eBmUpSQQ7cjGGytKodNDW2LNGHgZI0o1oONxj3bKtzI59VBABfrgNrUS4jfq8H4c0iVlMN/aM7ihIrFHyTv8RsW4/F9TSLvVuJ7dSvBnrnu6FDC1LxCuRDhYfdNQjLqUn5Mdfm4WYCym6IDkmaBpzA5a7p3RYHC1zECjIfjMU2U=
+	t=1768227662; cv=none; b=BSROm+YpQwZ5LrcBMcO5D8hISdU74QWMafpmakUqkCqqMgQ7QLrbqcyAvnsss/0gFUFhydA/uWseM/5MIsqfE4GtDKSu7CcW2lU4z8Z+6BWuiUVE4E1amwGh8/p9xMwnDhhernm7qfB9ol1CjfDPebzbPhwm297rhDy/2O1BGaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227661; c=relaxed/simple;
-	bh=Nj6kJj98DYHwwdjHPdu2+VgWqk7PRTqBXRT9vZd8eeY=;
+	s=arc-20240116; t=1768227662; c=relaxed/simple;
+	bh=JFhL71ct8SrjrJ//e/l5+RKzOUHWDU5KI0MGy1DmXy0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Qr2krR0CkMrhciKgZhW+ZJXUDuYM82Yww8cO78NnsiuABGH6T7CQl4H3E2tmAobvgl+vr8nA98U4eTeQbx0tMQsvLhL0MwHfa+8TVzZHC+upml3fU60ukqKp4SXuDfTQRnpy2uaLmBFfbvvJCRojmSm4rJL0ism4Qn+0fXsHQEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OWk+hX0W; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version; b=pdRlj2GHoGwhiOzdZtI9XIa4TKKBrG/rQvyDot/5pNSS8EHRlK38+X3GifgUf9Yk3DLAR0rFrnhCy3D08Td7v0fa9jkhXn5HnCFfw7n1NCEGA2EAbT8fhDPAjLEnZq2G+sTLOyqEZbLmmrGiFcFjkDxnWODYXN49Ks5qQFsuEtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=yPpHocEr; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 3FAFB4E42092;
-	Mon, 12 Jan 2026 14:20:56 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 431AD4E42093;
+	Mon, 12 Jan 2026 14:20:58 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 13C27606FA;
-	Mon, 12 Jan 2026 14:20:56 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E7A4A103C9261;
-	Mon, 12 Jan 2026 15:20:53 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 17B8F606FA;
+	Mon, 12 Jan 2026 14:20:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 86C5D103C9262;
+	Mon, 12 Jan 2026 15:20:55 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227655; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227656; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=0MOeeR6TasGz+3AxpUMPX0Cq21Iksg66J6fcPymVDvA=;
-	b=OWk+hX0Ws5ZSun8uSJ95isB9VmnKshFYFRSaf5ByWplxHtexLxWwE/o1l4qNPsd2IuWBLe
-	9RHRsx3J7EnFIDbaOcu+5sfFu4RnvawMLNvWUFcHJesBviN12H5RHBtdf1scy25ZAZD5d9
-	GAZyEsSlyzldVThWYrppjqyCa6ItUqmfyl/8BNaY/JeH0ZzT1SuTfNEmqfeAFMspzbR1Q+
-	ORUkRDRWyFeemH9l3Erc7bkY7sEOP6qeyLJMTvrPZdx7fYqn6i1mc7y5QuGmgo7VVRCbD5
-	KGcZRQw/MIuwA/+/z46rbiiy63+TBwfJuOi8oHQyrL/oh+bMz7ll6oGQxMETgw==
+	bh=mcrxp0ApOG//BK1b6uSdhxWShcoQ7CdeHdkSNR4OcZk=;
+	b=yPpHocErfgxeG2bCDXSAtRXWFwSpOxsQjGA+qDGXv1k68HeZGO4cEDnFMYIlkeACxqyCsN
+	uBG5NX5QdQjxWfg3vQUmIRUZnf7vgMErqvd4hxuwQFLQtmiba7C8TqP8fJk9Lm+3LFxj+G
+	s2QZOfuBTgqAXuXf0rOxJxK1xfkbiRCQsfLQORc3aaCx+P9hctR3qqWurp5DLKdlAy/Ub6
+	MgiVl+f38enIwyz9TG6FJJAo9iyHIQJp1ui7t9IvVZJsjOfJReu+9Q44Cg0Per6ALonWSw
+	Vm8Xy0uRtz4R65YZ98QTjyOvrGHjMRTqBLScsp44p+VuY70sSL549dY/SBqe8g==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 22/77] dtc: Add export symbols (/export/ keyword) in generated dts file
-Date: Mon, 12 Jan 2026 15:19:12 +0100
-Message-ID: <20260112142009.1006236-23-herve.codina@bootlin.com>
+Subject: [RFC PATCH 23/77] dtc: Introduce mark_local_exports()
+Date: Mon, 12 Jan 2026 15:19:13 +0100
+Message-ID: <20260112142009.1006236-24-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -77,47 +77,79 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-The export symbols (/export/ keyword) parsing from a dts file is
-supported.
+In order to have correct tags set in dtb, an export symbol has to
+be identified as a "local" export symbol when it references a local
+node.
 
-Add the support for this keyword in the dts file generation.
+This is done for phandles used by properties in mark_local_phandles().
+
+The same operation is needed for export symbols. This is the purpose of
+mark_local_exports().
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- treesource.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ dtc.c      |  2 ++
+ dtc.h      |  2 ++
+ livetree.c | 23 +++++++++++++++++++++++
+ 3 files changed, 27 insertions(+)
 
-diff --git a/treesource.c b/treesource.c
-index 1db6390..9effe38 100644
---- a/treesource.c
-+++ b/treesource.c
-@@ -320,6 +320,7 @@ static void write_propval(FILE *f, struct property *prop)
+diff --git a/dtc.c b/dtc.c
+index fe8e8e4..030bfa2 100644
+--- a/dtc.c
++++ b/dtc.c
+@@ -336,6 +336,8 @@ int main(int argc, char *argv[])
+ 	update_phandles_ref(dti);
+ 	mark_local_phandles(dti);
  
- static void write_tree_source_node(FILE *f, struct node *tree, int level)
- {
-+	struct symbol *exportsym;
- 	struct property *prop;
- 	struct node *child;
- 	struct label *l;
-@@ -349,6 +350,18 @@ static void write_tree_source_node(FILE *f, struct node *tree, int level)
- 		fprintf(f, "%s", prop->name);
- 		write_propval(f, prop);
- 	}
++	mark_local_exports(dti);
 +
-+	if (tree->exportsymlist)
-+		fprintf(f, "\n");
-+	for_each_symbol(tree->exportsymlist, exportsym) {
-+		write_prefix(f, level+1);
-+		fprintf(f, "/export/ %s: ", exportsym->name);
-+		if (exportsym->ref[0] == '/')
-+			fprintf(f, "&{%s};\n", exportsym->ref);
-+		else
-+			fprintf(f, "&%s;\n", exportsym->ref);
+ 	/*
+ 	 * With FDT_REF_PHANDLE added in dtbs, we need to identified
+ 	 * if some unresolved phandle references are allowed in the dtb
+diff --git a/dtc.h b/dtc.h
+index 0bf5ba5..ea073c2 100644
+--- a/dtc.h
++++ b/dtc.h
+@@ -368,6 +368,8 @@ void generate_local_fixups_tree(struct dt_info *dti, const char *name);
+ void update_phandles_ref(struct dt_info *dti);
+ void mark_local_phandles(struct dt_info *dti);
+ 
++void mark_local_exports(struct dt_info *dti);
++
+ /* Checks */
+ 
+ void parse_checks_option(bool warn, bool error, const char *arg);
+diff --git a/livetree.c b/livetree.c
+index 4458437..0e756b8 100644
+--- a/livetree.c
++++ b/livetree.c
+@@ -1303,3 +1303,26 @@ void mark_local_phandles(struct dt_info *dti)
+ {
+ 	mark_local_phandles_internal(dti, dti->dt);
+ }
++
++static void mark_local_exports_internal(struct dt_info *dti,
++					struct node *node)
++{
++	struct node *c;
++	struct symbol *exportsym;
++	struct node *refnode;
++
++	for_each_symbol(node->exportsymlist, exportsym) {
++		refnode = get_node_by_ref(dti->dt, exportsym->ref);
++		if (refnode)
++			exportsym->is_local = true;
 +	}
 +
- 	for_each_child(tree, child) {
- 		fprintf(f, "\n");
- 		write_tree_source_node(f, child, level+1);
++	for_each_child(node, c)
++		mark_local_exports_internal(dti, c);
++}
++
++void mark_local_exports(struct dt_info *dti)
++{
++	mark_local_exports_internal(dti, dti->dt);
++
++}
 -- 
 2.52.0
 
