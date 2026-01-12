@@ -1,76 +1,89 @@
-Return-Path: <devicetree+bounces-254208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF9FFD15DD0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:47:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A206DD15DF9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:49:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5920F30319D2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:46:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 308D4302048F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631852BE03D;
-	Mon, 12 Jan 2026 23:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C150B2BE031;
+	Mon, 12 Jan 2026 23:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Y9kG7IlF";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ANXM7HMq"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="c3KoTaTw";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hP4vqZBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D54629E117;
-	Mon, 12 Jan 2026 23:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6A1A2D0C97;
+	Mon, 12 Jan 2026 23:48:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768261612; cv=none; b=H52OnU00mE12PaHi6zAq5Cm2FKrGJVZ7G+GWj/R+xwtpuQTAxRX8MJ7cvVO/2WxFGFFCNAOtxQ7p45VY8WeBbmhvydz3q/lq9NnMDtjGp0huQvc1rc3/kDrOqElugIk9I+HusxcXbRFVw79oQxmm4NoJ5Cb2WiSCM2aUK5RQiXw=
+	t=1768261737; cv=none; b=Kh4DiMUwmn8M1B9BvowOCKmZOvCtpc/VvvJ6MtBUGoLHJLYtvh+JlttvcaACJ5XMh3xhUT8ExLCih0+eg9KYPEi4n7OpAKcJ641vq2k3VIVqigQSQE2cyIv9wMOeszSPF2d1A5uAqi32soj6oPEeOImTR9aIGXEkk8CYqjccKfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768261612; c=relaxed/simple;
-	bh=AI6g3IezvC2iOKdDWGxHsISg4dkk3ZqX1D4yIJU83a0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TLAUGrN6afXGNHEo5tLz6zS4s21D6mbGm+fZMW3/h9vRLFopp5TwEVCDRgGqiqDeEKJRttzcUr+E6TYevrt0mWJlZPur6R17TV8spQygB9xXU2KdprScSb/+swtEG4hEpQDWBxH7Qxn9xBBs5EdLeDQSVI8aU5DGQgJ62hueuSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Y9kG7IlF; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ANXM7HMq; arc=none smtp.client-ip=80.241.56.152
+	s=arc-20240116; t=1768261737; c=relaxed/simple;
+	bh=rESXTAbpHDHgkNNb/l07C3IUPmp4LOB4idoRYoCi554=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Gk2JRvmwAqYv0u/2XNrHcPcn7XP0aBo/vyNq3Kcprp7nTiheXWn5Iw+Imu7/W2DFUap4l6od7w01/n8wALjMnRm/xdSD9lcXvE6hl/GFgHbn2LPhap62QgOAnOAZh6j/s7AvWvB2dILcgPhYwlYCBa3C3ti7oPY8F3rqj6GN7Xk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=c3KoTaTw; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=hP4vqZBE; arc=none smtp.client-ip=80.241.56.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dqptw5FTFz9spP;
-	Tue, 13 Jan 2026 00:46:48 +0100 (CET)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dqpx93MyCz9tCT;
+	Tue, 13 Jan 2026 00:48:45 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768261608;
+	t=1768261725;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=vAsObKeLs+Vgon6vSaaSKnPA55myfQZCA6nJALjAJ6U=;
-	b=Y9kG7IlFHMtOQOnJkaIiCufSmZh96+kX5MzMqrZ4rEBZ5Zc6de1Ox9seoNlR216qjjTdIS
-	IWIlqKDFTT6p+TOgUXEJEBa9rJj8yIgvnPXsG9XKes78HsevRlpW8RSzbq3oHlKR9QVn1p
-	b97CmEpu2fCj/L2UUpOiTkdbH/720QQvoVM6igemfk27ADkAa/kBp9kXncgPiPItuqnrTK
-	sSOGII7LQCyaTOWsJeA0rtLaKUkTjUCLg49Vix/BPQX9/W/UQIxbFagXO3N+aJPji1cRFs
-	0vBeF/UDfydxepAHZt9lTT/WLqy9oN+IT9CPn6TJphSUrQfDLJ8TEgM+zmZioQ==
+	bh=eUbMXuVri41hcEdHLFuizo5f7hR7q4K8BFuRxgKtq7A=;
+	b=c3KoTaTwFujL/xgizZKeM6BoupPDwEVqO+bbzak2gcbBG1wRnnLNkd7k20DKUhZtEefJEG
+	tX5E5raM/UVkFE7OcrnQ6kuWc5xEgyfpZdPmlNnEuFjLQDdi2KtjLX+FK+8oZWtRBcBFMt
+	xe0cyjt0ADwVZdQQlLXD0Moh1CdhOxIBgBMaf1slIww0fP8EIVtBqaf/90whGUv1DQYsyU
+	Uu7bgM1AfyjrtkinEo273fc+iJ5LplfWlcidT0j8L/nRa6kvUkJ6FxoS0KwBPpFkHuuQ8y
+	gw/tlaJLV/S3e3j5BOA7mMlYuGDe4wLjDfEnWcvTtjiB78m0ZmrkJqaY66tYEg==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=hP4vqZBE;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
 From: Marek Vasut <marek.vasut+renesas@mailbox.org>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768261606;
+	t=1768261723;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=vAsObKeLs+Vgon6vSaaSKnPA55myfQZCA6nJALjAJ6U=;
-	b=ANXM7HMqOV4HZBdZXTj3VXdIf46NFUysaVhYmSSMSLrrnNFfYiR8y+ohRKCavbg1SFpFW7
-	tcsWWmvi91AfRw/o6s5BWvQmne667GO3EQesaf/N2Ir7I7/tojS9rUaDNBeVpECDZYQ0fl
-	JXOHF3PVjMQ6jH9hEDIh0WaE0Pagl5Z6DBeOhu+tBtO1XUZzT0mwqj0lMfC1fOGzMXbjL9
-	dUUP7BWCDA+gHHQbzTwQviMn9mCycpwBOpwSYTlceKUoD6rwjF/8vkvlaIM2Jl1oEBwyOK
-	Bea1VeyV9PSZfaSDzKvA1C/6y9PmVD9fOFnyER5jC832h6w1u49HmVe+CRnLsA==
-To: linux-arm-kernel@lists.infradead.org
+	bh=eUbMXuVri41hcEdHLFuizo5f7hR7q4K8BFuRxgKtq7A=;
+	b=hP4vqZBEc1SNC5xdJoBlhtifYNCPqa5I2iKsnAPN8ILmaUSP9w2G79BDjlIz2ehbfcUhwV
+	fbbQ7D1VSdTI8ukn6o7IuDxjTtM1TwGAylFsUmN/TLpojADX8KQXAkJoelWcWTEitZKPIf
+	GZ8yegGFMpFxuy0/OZKjz58fJcra1ajj/cZm6AcnsyxunW3hEKzgjlqCj3aSIQ2++sRsU9
+	RW3nUOcUCHID9DrFet5MolTEc5Rv9E1RuP2otJb1/YoZCp1Qs9bM8OxLZQTcbV0r7ZQPoP
+	4iAkFlD4ojFi32RH4Sxx0VtdDWZsvdlq3qfpKf5q4yNEu8k97Om6iej3SAtz9w==
+To: dri-devel@lists.freedesktop.org
 Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
+	David Airlie <airlied@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Joseph Guo <qijian.guo@nxp.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Rob Herring <robh@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] arm64: dts: renesas: sparrow-hawk: Mark OTP and HSCIF0 pins as bootph-all
-Date: Tue, 13 Jan 2026 00:45:56 +0100
-Message-ID: <20260112234642.225993-1-marek.vasut+renesas@mailbox.org>
+Subject: [PATCH 1/2] dt-bindings: display: bridge: waveshare,dsi2dpi: Document 1..4 DSI lane support
+Date: Tue, 13 Jan 2026 00:47:38 +0100
+Message-ID: <20260112234834.226128-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,53 +91,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 2e354213ba05c962de0
-X-MBO-RS-META: ypdydd3izjbcjbnttkndu1kt6mscbknk
+X-MBO-RS-ID: 65d4d573ca4b3c32f46
+X-MBO-RS-META: 4pi3w94uourscirswxd786cx76bany7w
+X-Rspamd-Queue-Id: 4dqpx93MyCz9tCT
 
-The U-Boot SPL is responsible for initializing the hardware and it does
-also initialize HSCIF0 and its pinmux, mark the HSCIF0 pinmux as needed
-in all bootloader stages. The SPL also uses OTP to determine the exact
-V4H SoC variant during DRAM initialization, to determine which is the
-maximum allowed DRAM rate, mark OTP as required in all bootloader stages
-as well.
+Describe 1..4 DSI lanes as supported. Internally, this bridge is
+an ChipOne ICN6211 which loads its register configuration from a
+dedicated storage and its I2C does not seem to be accessible. The
+ICN6211 supports up to 4 DSI lanes, so this is a hard limit for
+this bridge. The lane configuration is preconfigured in the bridge
+for each of the WaveShare panels.
 
 Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 ---
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Jonas Karlman <jonas@kwiboo.se>
+Cc: Joseph Guo <qijian.guo@nxp.com>
 Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Rob Herring <robh@kernel.org>
+Cc: Robert Foss <rfoss@kernel.org>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
 Cc: linux-kernel@vger.kernel.org
 Cc: linux-renesas-soc@vger.kernel.org
 ---
- arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../devicetree/bindings/display/bridge/waveshare,dsi2dpi.yaml  | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-index 9052d9c954738..bcf8270a3ed9a 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-@@ -541,6 +541,10 @@ msiof1_snd_endpoint: endpoint {
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/display/bridge/waveshare,dsi2dpi.yaml b/Documentation/devicetree/bindings/display/bridge/waveshare,dsi2dpi.yaml
+index 5e8498c8303dd..3820dd7e11af1 100644
+--- a/Documentation/devicetree/bindings/display/bridge/waveshare,dsi2dpi.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/waveshare,dsi2dpi.yaml
+@@ -40,9 +40,12 @@ properties:
+             properties:
+               data-lanes:
+                 description: array of physical DSI data lane indexes.
++                minItems: 1
+                 items:
+                   - const: 1
+                   - const: 2
++                  - const: 3
++                  - const: 4
  
-+&otp {
-+	bootph-all;
-+};
-+
- /* Page 26 / 2230 Key M M.2 */
- &pcie0_clkref {
- 	status = "disabled";
-@@ -625,6 +629,7 @@ canfd4_pins: canfd4 {
- 	hscif0_pins: hscif0 {
- 		groups = "hscif0_data", "hscif0_ctrl";
- 		function = "hscif0";
-+		bootph-all;
- 	};
- 
- 	/* Page 23 / DEBUG */
+             required:
+               - data-lanes
 -- 
 2.51.0
 
