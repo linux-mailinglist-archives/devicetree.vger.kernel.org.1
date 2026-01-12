@@ -1,147 +1,201 @@
-Return-Path: <devicetree+bounces-253660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF11D1035C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:54:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CC1D10378
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 62E563009F72
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 00:54:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AE3293002162
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 00:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B601FF5F9;
-	Mon, 12 Jan 2026 00:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621C5202F71;
+	Mon, 12 Jan 2026 00:55:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="QQq04QTE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OnRECGgB";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HC3hYhFk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B9A12BAF4;
-	Mon, 12 Jan 2026 00:54:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768179254; cv=pass; b=OfhuPNNAseiQzpHGqoi+r67uxCSK+5Mfm6IbwR6dwB6I1n6wB9YiH2eM07BR8wg4cgdIGGl/I4YKi+NaSo2esyLIhQA6S3OX8xeojBCpSC7e9WwbJm+M+kNdYRyWO+Bni+uI+aJlVt5bPwdmNM3/1pzh/xQQgRTomN5hnv2t+r4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768179254; c=relaxed/simple;
-	bh=+OlCe0L8FtqTbO+EJZ5Rpg2vR2nskkVXZvBMl1XbcDw=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C981FECBA
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 00:55:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768179312; cv=none; b=IhViNAzPj75nPrGjQ3S8LMGFoLpvWjMqQxdKclpg/Qw3m/Dv8iwX3wBuJCIEcT8KRi7JOYjF4X0nFlC+2tXwqrwAWcehI8fJ+0r3CzDK1UYksl/xLxoY6KJvPLb0ETPt0+O6XqJ8s7l06W0PUWXnIIVwGB3u27R90ZNNIxaaPUs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768179312; c=relaxed/simple;
+	bh=9niGhXSzhsCmzIk/XOTdPbk2vN6SXxNzBdX7kPDCQgw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N/c8nyur/Jq+HMUXqfnJK8UIaRy6bpru2CnMHDbKxo+tryCSFR1FpgTRbDv0/Zo6LH0q3gBPa1bbAO45EhKDd0jSw1QuA9VQRVtztXD2un4LMypViSbzVsULYj1gdOLkTSNIeNVScv4eJAF2Gd6uUt9I2H7YAuWhr9p+aFombDQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=QQq04QTE; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1768179238; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=EUIsk1PVSGfo2Q2uU/ypgCCie1y4R+ZEmMdsE8YfRhOqjQSQ2Rj99aN0GFUGRCapbLJkUVqkKVinI+bdhcqzx+meDw05q2/+Y1rH3AFGwn/T203fqgzlKm+HFkIwYAwfeLuMISDFwypTcASStL/Sbspxe2BLOd9NwzSby5aVsIE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1768179238; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=+OlCe0L8FtqTbO+EJZ5Rpg2vR2nskkVXZvBMl1XbcDw=; 
-	b=WmH352C7BSaTYI8J9mleaV6RErEm0TdL7SPg92UcH3uw3cWhJbh2sHDrAMBYLY15W/hsBbeA9a/1aIw3qb+iZ87uxINpwCwI8Q+pZfH7DP0ijQroserPVRw+5M8HtJVM8tAFAcj7cseIrsajtKB8afDL/n3jhITQeUk6sKIHoVI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768179238;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=+OlCe0L8FtqTbO+EJZ5Rpg2vR2nskkVXZvBMl1XbcDw=;
-	b=QQq04QTEsoMkVyuXJWCEK2frpPnsTif+pQdC1MhwwlsjNwlK+HDHeaSEYXhNZ3vw
-	4aMKGL+1sekcdyYFI6m8klGlDYiptkVXiZ2vl4LkzUHA8qlt8mjMGTB/X2Ko3xxbUfc
-	z2t5ScRMyy55qkXHcj5HL6C0/ypM4lz+KVrBBkz4=
-Received: by mx.zohomail.com with SMTPS id 1768179235482358.67420259126015;
-	Sun, 11 Jan 2026 16:53:55 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 607881803AD; Mon, 12 Jan 2026 01:53:48 +0100 (CET)
-Date: Mon, 12 Jan 2026 01:53:48 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, 
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	Andreas Kemnade <andreas@kemnade.info>
-Subject: Re: [PATCH RESEND v6 00/17] Support ROHM BD72720 PMIC
-Message-ID: <aWRFs3CJvd37BaoH@venus>
-References: <cover.1765804226.git.mazziesaccount@gmail.com>
- <20260108172735.GK302752@google.com>
- <63bc889a-b97e-43c3-9f46-9ca444873b70@gmail.com>
- <20260109093831.GB1118061@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=A3VOlZBrWiwD29ssMMPeA1NCtyYdivQa9HvMVUVAYyllN2deyrT6URi8MuwLFYIkc8/3aMAL/FeZEhZ9xfNtWinuzhUw1i6luPPzTgSWkjrV33p8nWfdQ7VJ6a4KNiqo6iDG3dG7SFpfzcWxAfLH3rgsjXV+j8mf/H1MoZDLfWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OnRECGgB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HC3hYhFk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60C00Stl324913
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 00:55:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ZKG2vTZcVze5PMmMWDkNogfd
+	MUTb2zc08ff07BmY6No=; b=OnRECGgBzIRB/rFNeFWVYKoWGhrl3eW7LKlHCldv
+	Kb3Aci0Np+yqMU6lbxdwa3VuH1jGRo1p0K6RVp5Qpm7MxLZdoaMTDhYjgP+Whs3N
+	tju9VfUm2lbGgXbtGt1JM3CZmEupvBMSmJt5d7fHkFwibuJPu0sPPMOrIOPd3WKy
+	FAQtp6YjTNfeu95kSJuHjyJmS3MxEFv3nhm8UPNqG+YEW7GyMIdwVNGQew9qbO9s
+	nUoFEQ86joc5AzBrcQtpF3V9QpY1wuLKAYxzAllxag2CBeaI/tdK1ULw6LjvjkiQ
+	JUaXStoje6TO6Hb1svxlga3D2IXCKnwi5sss2qRhF6tKtQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bm8kys2qd-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 00:55:09 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8bb9f029f31so1589708885a.2
+        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 16:55:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768179309; x=1768784109; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZKG2vTZcVze5PMmMWDkNogfdMUTb2zc08ff07BmY6No=;
+        b=HC3hYhFkBb0tB6FFvPGHjVJUmsOtZ5r4idqL9T9kX939KpE9T5m/6/ROp3p+tRoXzt
+         q/m3HYneS+QcVG/c0ltEpsS1IB6vIflS6L1gq7Y2mFIeiQb5doI9ItZO33IIDkuB9aHp
+         K4BWvOOHayhLwV9PVZprg2awEwj/pl34JJ5f8lbFy36nuB+0IgWy/WNgeWKT7zaqHXaJ
+         KVJgjU1IzHKOzw/kAHe0Xy2So9GeiuxDrOWL1kE8GmwRqPmDHbRk0WfT0Ty4a2t1fq6E
+         +8PYXB+/uveapNsO6jXiVt/7BAGAg27d8qelajD/pIjCvfF+7hKHqRxjOGeS7KYkur28
+         Zc7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768179309; x=1768784109;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZKG2vTZcVze5PMmMWDkNogfdMUTb2zc08ff07BmY6No=;
+        b=pGGZFa4h+L1RuY4xl4N2YAHhT1D4BkY0X+zlEy68HaAnAs67GSmpiR2bNAxxCKBQPF
+         v1hDEQ7Zk9UY+6rTrlBPSPQJbnve26TUqca/YJDccbHMQrvYQxBFbh3Xn/ZoznA4GWG3
+         MTieiMvOR1i/pVgu3BRbqKXwGAi6jNWPU+ghdogEGtmN2fy0HXgNpZ+9VTtVB+9pZeR/
+         xPtrGTUhRl7QKxPl6I41ltr6U97HXJWWJySNpYQFc9WHCJFBJE0lcebLWUmE/d3wtqs5
+         duBr0PsLC/4+PGhNUizA1cw3juN0yMuUuVgAG/0lvoaGgSVkhdPDMdGVx/abdmX2orng
+         2ckg==
+X-Forwarded-Encrypted: i=1; AJvYcCUF0V2zz4focquoaNC3hsbzZVDCov402b529+YT4fuE0bOxyzephPh7b7TwQbLDNacsDJfbiCoHe3fg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9VI8hp09KFaX93vDP60rSsXwITr6EYODyJ2Rr/6T82Tw7ZO2Q
+	ycGObusj3Cv7jtdYi+Mgjbnktd2bIGwHJiCuxJ6wsL2BZHu8+OkSME/Ms2KSPg11iq8g0Tf5fwK
+	Wo27IkjGc0eY10cCgMrTS6GNmqlf0jM23+0LiDSi0mQnbr36QhCEu+nkud9neNbV+
+X-Gm-Gg: AY/fxX5unYCdEzOLGqeffN+18S1bQxKqtEiUQ541C0HyzHYGzEvCRKLCUvehcnaMEnT
+	FQ5H5Rq5c3Y9Tpk4vmf2hCnxKPTY9h/OypMGEe6OMLwixzI70Lkz/8k3TB5Ipb7pnki6ymin0LK
+	B4RYGCk4E49m76+f6V3Nfu+OfWcaCkqmUIORwQbcZSA10/Jaz8Xbz+xTbTVZOzEE+sN8ASUFwe1
+	062AsnhkuYOpZNp3f7LulYVwdxIYLxWPMyC6ZnIM9H0Wjc4EfqLeNONKUO2SBUAz6u7f5qEQf49
+	yAn7fY3Hppump0vbOc8AjhXZOD7b/GJIEj6pOhnygnDDfWMviE0RkQSkTVjCI0dYvbiMzeTRsEw
+	JHu+eW65Azt0EAQnOCH1XIVaJeIiy0sq5nKV9XAn6KsPsD/nTAftHzLcK/PlIvzRZMDWlBsKvqZ
+	EqzQAbH8b2lvwaLL4wkuVnTdo=
+X-Received: by 2002:a05:620a:7014:b0:88f:ee0a:3d55 with SMTP id af79cd13be357-8c3893f987amr2245132185a.66.1768179309097;
+        Sun, 11 Jan 2026 16:55:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGviYk/tHRgbHMwoju6bimQzSfE7g1q2LlIyy37Rw00yXCPcSjZ7Od6a/4ROk3bJblK4kq69Q==
+X-Received: by 2002:a05:620a:7014:b0:88f:ee0a:3d55 with SMTP id af79cd13be357-8c3893f987amr2245129485a.66.1768179308549;
+        Sun, 11 Jan 2026 16:55:08 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b6da75ef2sm3771973e87.96.2026.01.11.16.55.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jan 2026 16:55:07 -0800 (PST)
+Date: Mon, 12 Jan 2026 02:55:06 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Val Packett <val@packett.cool>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: Add support for ECS LIVA QC710
+Message-ID: <3u6q3lyqjto22ln33432vizgj7jzcvroy5rx3dljnglyovqjei@ozfm5qacljwc>
+References: <20260111085726.634091-2-val@packett.cool>
+ <20260111085726.634091-6-val@packett.cool>
+ <wyqml5ywfzwh3uulp4gzlfzx24kb2545w36pkpnz5g27xtnqoi@yywysi37tdor>
+ <3dd54179-7a22-4596-a6ef-224530c4b2c6@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="njvmbtnaoaenudkq"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260109093831.GB1118061@google.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.5.1/268.172.5
-X-ZohoMailClient: External
+In-Reply-To: <3dd54179-7a22-4596-a6ef-224530c4b2c6@packett.cool>
+X-Proofpoint-GUID: Xda5LH4Pffh4NwPvEftJ2t5I03xOB_6-
+X-Authority-Analysis: v=2.4 cv=ZuDg6t7G c=1 sm=1 tr=0 ts=6964466d cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Og5yudFwtDXh0KMohR8A:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: Xda5LH4Pffh4NwPvEftJ2t5I03xOB_6-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEyMDAwNCBTYWx0ZWRfX3Kmd/S+9K584
+ kd4GpGFQLl7VtVRBVgQ276jbOjtCWocTBzdPYlO1hh4ZHzfOQLztu+iP4+mNbRtMqHLxY/tT8n1
+ ELkJZZCNUMBUHoqu4ym2jU9seSix6F18Vz86efqnAYzs3HKH8DioReCghE4nDIKiKlRKmzvzhAQ
+ d2ZFUdxXJySNLDYl3Ybsc0QPBFg9ZRBQqKFGpIEDzvrhlfc9pTlkAWdEG3O7ts/SkirUtOTEArY
+ 64nECVelW4ebyylVhlWE0yj3KrOtiBfxGy5rFQElkpJT2oN0tfEMJIxVVZ4ckNU6keGcY96D4Kv
+ cdQlygD+3udxuy5fDzlYWaAsrPzZegq8Q50X5djm8Jg/0mBjgdqFmY1rxAAwGSR+eo0p4SQSV0/
+ 9czGcuwmOfkwkihCZgt5kbTBvpmNSM2LPmxNm4SvqCCW8Ny/FoAqK4UmTn1C6hvUrvKF0AucCc+
+ yOsRLKqQ0aNz0zVpEWQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-11_09,2026-01-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ spamscore=0 clxscore=1015 priorityscore=1501 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601120004
 
+On Sun, Jan 11, 2026 at 09:31:40PM -0300, Val Packett wrote:
+> [resent for the lists as plaintext, oops]
+> 
+> On 1/11/26 1:50 PM, Dmitry Baryshkov wrote:
+> 
+> > On Sun, Jan 11, 2026 at 05:35:12AM -0300, Val Packett wrote:
+> > > Add a device tree for the ECS LIVA QC710 (Snapdragon 7c) mini PC/devkit.
+> > > [..]
+> > > +&dpu_intf1_out {
+> > > +	/delete-property/ remote-endpoint;
+> > Why? It should not be necessary.
+> 
+> It seemed to be implicated in annoying EPROBE_DEFER issues.. But you're
+> right, it wasn't this after all.
 
---njvmbtnaoaenudkq
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH RESEND v6 00/17] Support ROHM BD72720 PMIC
-MIME-Version: 1.0
+ok. Which EPROBE_DEFER issues do you observe?
 
-Hi,
+> 
+> > > +
+> > > +&pm6150_pon {
+> > > +	status = "disabled";
+> > Do you know, how is Power-On routed?
+> I think it's handled by the EC. Keeping this enabled doesn't make power-off
+> work, and doesn't make the power button deliver events either.
 
-On Fri, Jan 09, 2026 at 09:38:31AM +0000, Lee Jones wrote:
-> [...]
-> > > The MFD parts LGTM.
-> >=20
-> > Thanks Lee!
-> >=20
-> > > What Acks are you waiting on? What's the merge strategy?
-> >=20
-> > I think everything else has been acked by maintainers, except the
-> > power-supply parts. I think those have only been looked at by Andreas a=
-nd
-> > Linus W. Haven't heard anything from Sebastian :(
+ok
 
-Yes, I'm lacking behind quite a bit, sorry for that.
+> > > +};
+> > > +
+> > > +&pm6150_rtc {
+> > > +	status = "okay";
+> > No need for qcom,uefi-rtc-info ?
+> 
+> Ack, will add it, the efivar is present of course.
+> 
+> Will send it for Aspire1 too..
+> 
+> > > [..]
+> > > +&usb_1_dwc3 {
+> > > +	dr_mode = "host";
+> > > +	#address-cells = <1>;
+> > > +	#size-cells = <0>;
+> > > +
+> > > +	hub@1 {
+> > > +		compatible = "usb5e3,608";
+> > > +		reg = <1>;
+> > > +		#address-cells = <1>;
+> > > +		#size-cells = <0>;
+> > > +
+> > Are other ports routed somehow?
+> 
+> Port 001 is routed to the 3.0 Type-A port on the back, Port 002 to the 2.0
+> Type-A on the side. Should all of that be modeled?
 
-> > I would love to see the patches 1 - 14 and 17 to be merged (via MFD?). I
-> > could then re-spin the 15 and 16 to limited audience as I hope Sebastia=
-n had
-> > time to take a look at them. However, I don't think any of the other pa=
-tches
-> > in the series depend on the last .
+I think, the comment would be sufficient for now.
 
-Sounds good to me.
+> // re: Wi-Fi calibration, submitting that to ath10k now too (though the
+> default one worked perfectly fine)
 
-Greetings,
+Thanks!
 
--- Sebastian
-
---njvmbtnaoaenudkq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlkRhwACgkQ2O7X88g7
-+prO/Q//RUeU3aRLy6/gKRT0eG9pAJSbph2Ikd41UGeuXKFa2nIc0KBZU0fGmveO
-f0UYGXIyOhauQPguvy3qO2YluOgw4NoBbyKms2TKrkLcFeL/Cga674Vjc7XKFaQP
-wphwlW62PUT4MLo67D/apHwCoLmY34Ncm4t0k+6uDRvLklvt7+uWawLidX3exlev
-JrjkLMog5C/ifh1V2UDIyQ9Haa6lWjSSNvfsrRzD5n3qU0eQmL/PNwaChIq9QyLL
-v216cavM55KLOl0NmyiMTnt1O4tg6tTXKeEbN/nqxVXba1Wgl4gQf08i5pWWvaP8
-EtyDHe0kHdzh4kC2VN29Qy+8f8/xHQUUkqAoO442mITI7F6a7riUhVvFySgkQ1DZ
-y/cQ3+it8Hoxw3n8vxGnzeUgJ8wDpQphKihcax3iAQtOw382y5XOau+/N0ErZIPb
-QPlqfrZ0Io7Uu2DaZQyVChungrNQqL3wdnVUzZxjAC4+Ih56nsIe4ZM76T/dpy99
-djRrwzphkiVqWE2izhi/A78FOXyME/+PtpuwvHgK53na+6qESZDKfNSVEAUtn8qt
-2A5LheVMPETkaNFTjaJD4Pme9P8Bt93+V5ePwi/nqXE7EpjXP+/OZa/wPvrhUFEK
-+KAhuSHD6dXmB58zw5ZjlQVc1ocKe4GdiX22g72Wn8/RWByJs6E=
-=a6To
------END PGP SIGNATURE-----
-
---njvmbtnaoaenudkq--
+-- 
+With best wishes
+Dmitry
 
