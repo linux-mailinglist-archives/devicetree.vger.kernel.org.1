@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-254013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1CCBD13260
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:32:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE0C7D132B1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:34:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C90F3120856
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:27:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 89DE4308D2BE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:27:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F010E366569;
-	Mon, 12 Jan 2026 14:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60D8366579;
+	Mon, 12 Jan 2026 14:21:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="r7M72lOp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HZxLyH+2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35B3364041
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:21:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E4F2E6CAB
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227702; cv=none; b=VGN2IlS0KoiooeFpzmL15a75bzPieCPJysKHWXk/hUm9RMM5tasWiTkPhrOD93UVXN1p53gEqITUtkXSvWPdu9Tu7wbT395VweALr7P7076CQJjnCuy1Ve7pOtGcQkHese0voloruJlpOwFESHV7yJiqTP1xVqA7wrGa9W8m3/c=
+	t=1768227703; cv=none; b=luNgBPPYVOVY9QpzNc0Q8xowysa6hSZWdOsNFx3NscNYETFXoKrDjExSr7VKDHJEoigN7hsMNxiQ7/Aj5oTcJ/31uBnBq3VPyqfdkrGJxwtASDK3Tpekk7CaSiAe4l3BXxmhKkdarW7egT7nu4vA+SpHh3Gunl9a6nuesQIYas0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227702; c=relaxed/simple;
-	bh=SpKTLYZw+7+wk09Q6+LPHx3wY4M0iZWECVL3fNbTi2s=;
+	s=arc-20240116; t=1768227703; c=relaxed/simple;
+	bh=xntXbVBtO+nX4Yp2Qnt+pPiYDGBiY9+fP2bcPhSivOM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UQeeKUnZL84UgBWPc9eCsrag5TZj2YZIFDakxDTeEc1jbsZxJlTf/5663/OA2GguQ3biRw41nDIRmmNKE7bMDe2/sTdk2z6Nnk2MPNQDk7h1gZXOH3EtDCOLdLnHkoIpEeTlqUHPK/KBuY82x0nj1C7NX/9rNeGCWvtKoWSrvW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=r7M72lOp; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version; b=KrSAp6Kv6L1Ua7AdwsR21+PtSdgZHAFdPzHGoBZ+UjR9R9lWp3vc/HRRULlp343WMzVxAK8BmFxuDcokeDsl70OQftazm3/82FJReBFWd/f2WzxVdyxJ3z417Boo3+BTnTDEjR9+Jj7Ur5LHj9pyx4f5mzvLNb/PJnWupGaMhLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HZxLyH+2; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 6A45B4E42099;
-	Mon, 12 Jan 2026 14:21:36 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 7D0601A2810;
+	Mon, 12 Jan 2026 14:21:37 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 40B4B606FA;
-	Mon, 12 Jan 2026 14:21:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DB21B103C8C61;
-	Mon, 12 Jan 2026 15:21:33 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 52332606FA;
+	Mon, 12 Jan 2026 14:21:37 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 76E0B103C9260;
+	Mon, 12 Jan 2026 15:21:35 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227695; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227696; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=OIU7yMsMxh2KeC6oAXfD8LVNFfIHsbZQjQQWSDSKeoM=;
-	b=r7M72lOpHlnFvBidwcX3AjvSXgnAS6UMbbTMRzQTialQ4PmQS989zeQnyo+tK2BlYDJekh
-	4e5PZ6AjlnvM8LzDi8roFHvy6gNeZsEqeTvfL7JKkVA1jqDfIhHGo1Lu8I5ncdtaVCj4my
-	8DdVlCOfmhTsBF/LWAxO62MWVtXU5OV7R2Svp5bTytDgniGnhhXtJLAg42eEgaXzW4pnE8
-	7Hkq/HxOFvxtjZfw54kwhhzHqx9IPHTVctCEeyM6m7lvfhC9N/5Ny3nKAbCGE+oTMgdO7v
-	rIqOJv7NiDNKmpJpeELWAqln6wCpD16K5dW/YxbD1Rw/aUrOPkEDwYA3pl2poQ==
+	bh=XGMM8bs5DtdAdz+Pv3kNdr/9N9Lli16DVt2ayg+uReo=;
+	b=HZxLyH+2BWYf5IxKEcDiANcUqFsDEY4nTa5NsjyUjyo1y7R4W5S+bGQKBXKhLf6dkutAtr
+	4psfZ1Q4AktmfIwvgVJ6tmsBIObV5w4NdR0Lp6UGg97b3rqsWobzpXkeOArTePoLsJXN03
+	Y3H8e3HOAXm3y61HpaToAwxSBjpjjt6ofVF1cVhDOkdG7dOMj/sQ+MRfP4Oi146wmJ/Tws
+	OxW2sMHdK9Ye5F/+Ogi08eV0GCInYeWulLBql9vZKWHXSMyFOebJBJH+C7LcZl3koHTxBv
+	hGb0EHrZhwr5UVllvuBD/dGl++IPci8kntSeciOXc+TKcDIaf0+7veVMnWSLuQ==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 49/77] dtc: Handle orphan nodes in dti_get_xxx_by_yyy()
-Date: Mon, 12 Jan 2026 15:19:39 +0100
-Message-ID: <20260112142009.1006236-50-herve.codina@bootlin.com>
+Subject: [RFC PATCH 50/77] dtc: Handle orphan nodes in mark_local_xxx() and update_xxx_ref()
+Date: Mon, 12 Jan 2026 15:19:40 +0100
+Message-ID: <20260112142009.1006236-51-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -79,143 +79,80 @@ X-Last-TLS-Session-Version: TLSv1.3
 
 Orphan nodes have been introduced recently.
 
-Retrieving a node, a property and/or a marker from an orphan node tree
-is perfectly legit.
+mark_local_phandles() and mark_local_exports() mark phandles and export
+symbols as local when they reference a local node (i.e. a node in the
+current device-tree).
 
-Those retrievals are performed by the dti_get_xxx_by_yyy() functions
-family.
+update_phandles_ref() and update_exports_ref() update references
+pointing to local nodes.
 
-Update them to handle orphan nodes.
+Those phandles, export symbols and references can involve orphan trees.
+
+Indeed, even if an orphan node itself is not present in the current
+device-tree, its subnodes are fully described in the current device-tree
+and so, those subnodes have to be considered as local nodes.
+
+Update those functions to handle orphan nodes.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- livetree.c | 42 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ livetree.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/livetree.c b/livetree.c
-index 057997a..fa9daff 100644
+index fa9daff..52c55be 100644
 --- a/livetree.c
 +++ b/livetree.c
-@@ -789,6 +789,7 @@ static struct node *get_node_by_ref(struct node *tree, const char *ref)
+@@ -1481,7 +1481,12 @@ static void update_phandles_ref_internal(struct dt_info *dti, struct node *node)
  
- struct node *dti_get_node_by_path(struct dt_info *dti, const char *path)
+ void update_phandles_ref(struct dt_info *dti)
  {
 +	struct node *orphan;
- 	struct node *node;
- 
- 	if (dti->dt) {
-@@ -797,11 +798,18 @@ struct node *dti_get_node_by_path(struct dt_info *dti, const char *path)
- 			return node;
- 	}
- 
-+	for_each_orphan(dti->orphanlist, orphan) {
-+		node = get_node_by_path(orphan, path);
-+		if (node)
-+			return node;
-+	}
 +
- 	return NULL;
+ 	update_phandles_ref_internal(dti, dti->dt);
++
++	for_each_orphan(dti->orphanlist, orphan)
++		update_phandles_ref_internal(dti, orphan);
  }
  
- struct node *dti_get_node_by_label(struct dt_info *dti, const char *label)
+ static void mark_local_phandles_internal(struct dt_info *dti,
+@@ -1507,7 +1512,12 @@ static void mark_local_phandles_internal(struct dt_info *dti,
+ 
+ void mark_local_phandles(struct dt_info *dti)
  {
 +	struct node *orphan;
- 	struct node *node;
- 
- 	if (dti->dt) {
-@@ -810,11 +818,18 @@ struct node *dti_get_node_by_label(struct dt_info *dti, const char *label)
- 			return node;
- 	}
- 
-+	for_each_orphan(dti->orphanlist, orphan) {
-+		node = get_node_by_label(orphan, label);
-+		if (node)
-+			return node;
-+	}
 +
- 	return NULL;
+ 	mark_local_phandles_internal(dti, dti->dt);
++
++	for_each_orphan(dti->orphanlist, orphan)
++		mark_local_phandles_internal(dti, orphan);
  }
  
- struct node *dti_get_node_by_phandle(struct dt_info *dti, cell_t phandle)
+ static void update_exports_ref_internal(struct dt_info *dti, struct node *node)
+@@ -1537,7 +1547,12 @@ static void update_exports_ref_internal(struct dt_info *dti, struct node *node)
+ 
+ void update_exports_ref(struct dt_info *dti)
  {
 +	struct node *orphan;
- 	struct node *node;
- 
- 	if (dti->dt) {
-@@ -823,11 +838,18 @@ struct node *dti_get_node_by_phandle(struct dt_info *dti, cell_t phandle)
- 			return node;
- 	}
- 
-+	for_each_orphan(dti->orphanlist, orphan) {
-+		node = get_node_by_phandle(orphan, phandle);
-+		if (node)
-+			return node;
-+	}
 +
- 	return NULL;
+ 	update_exports_ref_internal(dti, dti->dt);
++
++	for_each_orphan(dti->orphanlist, orphan)
++		update_exports_ref_internal(dti, orphan);
  }
  
- struct node *dti_get_node_by_ref(struct dt_info *dti, const char *ref)
+ static void mark_local_exports_internal(struct dt_info *dti,
+@@ -1559,6 +1574,10 @@ static void mark_local_exports_internal(struct dt_info *dti,
+ 
+ void mark_local_exports(struct dt_info *dti)
  {
 +	struct node *orphan;
- 	struct node *node;
- 
- 	if (dti->dt) {
-@@ -836,6 +858,12 @@ struct node *dti_get_node_by_ref(struct dt_info *dti, const char *ref)
- 			return node;
- 	}
- 
-+	for_each_orphan(dti->orphanlist, orphan) {
-+		node = get_node_by_ref(orphan, ref);
-+		if (node)
-+			return node;
-+	}
 +
- 	return NULL;
+ 	mark_local_exports_internal(dti, dti->dt);
+ 
++	for_each_orphan(dti->orphanlist, orphan)
++		mark_local_exports_internal(dti, orphan);
  }
- 
-@@ -844,6 +872,7 @@ struct property *dti_get_property_by_label(struct dt_info *dti,
- 					   struct node **node)
- {
- 	struct property *property;
-+	struct node *orphan;
- 
- 	if (dti->dt) {
- 		property = get_property_by_label(dti->dt, label, node);
-@@ -851,6 +880,12 @@ struct property *dti_get_property_by_label(struct dt_info *dti,
- 			return property;
- 	}
- 
-+	for_each_orphan(dti->orphanlist, orphan) {
-+		property = get_property_by_label(orphan, label, node);
-+		if (property)
-+			return property;
-+	}
-+
- 	*node = NULL;
- 	return NULL;
- }
-@@ -859,6 +894,7 @@ struct marker *dti_get_marker_label(struct dt_info *dti, const char *label,
- 				    struct node **node, struct property **prop)
- {
- 	struct marker *marker;
-+	struct node *orphan;
- 
- 	if (dti->dt) {
- 		marker = get_marker_label(dti->dt, label, node, prop);
-@@ -866,6 +902,12 @@ struct marker *dti_get_marker_label(struct dt_info *dti, const char *label,
- 			return marker;
- 	}
- 
-+	for_each_orphan(dti->orphanlist, orphan) {
-+		marker = get_marker_label(orphan, label, node, prop);
-+		if (marker)
-+			return marker;
-+	}
-+
- 	*prop = NULL;
- 	*node = NULL;
- 	return NULL;
 -- 
 2.52.0
 
