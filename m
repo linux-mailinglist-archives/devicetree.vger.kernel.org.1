@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-254107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A58D14144
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:36:30 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E10D7D140CC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:32:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1AE2C3055DD9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:31:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 67F273007523
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AB0E3644C3;
-	Mon, 12 Jan 2026 16:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604BD365A0E;
+	Mon, 12 Jan 2026 16:32:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQaTZcVs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GGe/Zfdp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0C8332EB3;
-	Mon, 12 Jan 2026 16:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2433644C3;
+	Mon, 12 Jan 2026 16:32:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768235491; cv=none; b=RbGcYC35MewaE/zDC/uZvT79kWXKsUixP8VR5v0rhYx3Yon2lVXU81OpKUCq1W4WfUP1XGQCvhPWYHSNkwJpNZuxYM1O+KgQ54/vjwpK1rKJsWZNWrf3CSjtlK8vyD0yG6H9GRMw+FW4dSVREvUuCiCVoj3slw521QuWiplXyWA=
+	t=1768235567; cv=none; b=MXccEdKcemFZn79g/bezyXEbyUlvp3y64HRle8j3MO5u/XoOUniIflBja4cnsNMwh/NK5Kla50ZqIgsK6lnMxgKcT0FbvB6sIKtAAXKEUVCz7ozPILA1SAH0McT5MLZUwequgPZvWkrGRNzYQAqZfmoqwvsY13QjwNTwnXYJyJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768235491; c=relaxed/simple;
-	bh=DmZN9V4HLAsz5olxpMimMyxrYVFmsIQxB/9Yu/tip/A=;
+	s=arc-20240116; t=1768235567; c=relaxed/simple;
+	bh=vUpZrBUvVK6pKmzGvycTY1IBhwsVQMRQeewon3mbxcw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nVDw4VhEogg5+LgHD1q1m66Px3ZKwDfrOa10tvOJXlDJVSAwra/ST24hft67qJJEvfNR/J4HdlXxfGETc0aq92WOgWEPsewI68DuCAfmdi9tn+0Uz8ivzjONgMLhP1LxyUj9b09i6RtCVKFAOVUfwNrlEeQyi+MQZZvk7xWO2KI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQaTZcVs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED7C6C19422;
-	Mon, 12 Jan 2026 16:31:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CfjQ8vFe3S7NfsCY7BFXMupP8OOmsq/FQbezX7abyR9DGkEVckDvbfvDJS+7/Ox+Vo7V1JuvkR8SNe0tSujkfhmBH7/RX7zyZo3zlJKpdY77SvgD2q/ZdXeiXKMvldmsepQOiP+fSv65Ao559a0Yo68JKl0kNymZ2ZP4Q+qyoJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GGe/Zfdp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08670C116D0;
+	Mon, 12 Jan 2026 16:32:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768235490;
-	bh=DmZN9V4HLAsz5olxpMimMyxrYVFmsIQxB/9Yu/tip/A=;
+	s=k20201202; t=1768235567;
+	bh=vUpZrBUvVK6pKmzGvycTY1IBhwsVQMRQeewon3mbxcw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DQaTZcVsWerhTSgQmvsAdjHlcHcJWRVfHEjf9PeIiyLcXrzv4h9fJV9/2JLixqRq+
-	 shurMpMhpVEDlgRYNehT5Krf2Sd6cBpMteigqnv5tUeAQg/baaOECtYmn+Uf5id9Gn
-	 cNU1sAaFpEgE7U/X5jchER65Xf4qELZE9JFyUcvWGoqGbSS4iEhsYI/YAdJYwtpJBq
-	 CKyxysDXYKUeksZksTV52Uu5fUzYE1HU9+uwyTQcJCXs12wSI0+AaAFp2PzPPNbnAs
-	 5MzHNnBwgPSjxBZdXxpOqz4sSIGH/p7qH13lptP49XMbtbbwJl9GldNMpBs0OiFND8
-	 KD67/SsL5xQdw==
-Message-ID: <8d9b4ca4-5db5-49f0-8178-b528f9cf2eb3@kernel.org>
-Date: Mon, 12 Jan 2026 17:31:26 +0100
+	b=GGe/ZfdphsXO5nU7lfvE0ifsKNZLVM2RlwmLejdvcMXtVoE9N/LRcyUfFa+p63//m
+	 b0hzeKHISRfIqeUmKq/jujxhSkJ50TMUAuRh0yB7yayT5iwC/xsTNNIaXWrvmolduF
+	 fNoI5lO0vrWo7iCR8CCbJU53VZc8XYDWe03hpc76uxvv+sPGfjzNMGCAswoNV3PTTE
+	 E9i30ZMpBfgzYhxUKeDnSUyfUsSkIYgh4dCBjss8F0LP9InsGRA84WQ9sUMlkrt6yK
+	 jgNcL11xSwUP+sWLYLXSuIstvKlMV8oiO4UEv9V43q3IJScYAZAAQiKU0ILzRChlXa
+	 rYC7xYNVm1osg==
+Message-ID: <48f00a0b-667b-4aa0-93a2-e1045e20e309@kernel.org>
+Date: Mon, 12 Jan 2026 17:32:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,20 +48,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2 v3] dt-bindings: arm: lg: Add compatible for LG1215
- SoC and reference board
-To: Chanho Min <chanho.min@lge.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kever Yang <kever.yang@rock-chips.com>, Kael D'Alcamo <dev@kael-k.io>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260112053421.3185738-1-chanho.min@lge.com>
- <20260112053421.3185738-2-chanho.min@lge.com>
- <20260112-agile-elite-tuatara-dea08d@quoll> <aWTWwLsm+ZoR0aW/@BRUNHILD>
+Subject: Re: [PATCH v3 1/6] dt-bindings: iio: frequency: add adf41513
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
+ Rodrigo Alencar <rodrigo.alencar@analog.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+ <20260108-adf41513-iio-driver-v3-1-23d1371aef48@analog.com>
+ <20260109-translucent-violet-smilodon-ed1917@quoll>
+ <7ck6vexpeak47kob7niupkdg3nbyvp4nab7rqmz6niq4frf64y@tjnph6hno32z>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,29 +107,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aWTWwLsm+ZoR0aW/@BRUNHILD>
+In-Reply-To: <7ck6vexpeak47kob7niupkdg3nbyvp4nab7rqmz6niq4frf64y@tjnph6hno32z>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/01/2026 12:10, Chanho Min wrote:
-> On Mon, Jan 12, 2026 at 10:07:05AM +0100, Krzysztof Kozlowski wrote:
->> On Mon, Jan 12, 2026 at 02:34:20PM +0900, Chanho Min wrote:
->>> --- a/Documentation/devicetree/bindings/arm/lge.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/lge.yaml
->>> @@ -24,5 +24,10 @@ properties:
->>>            - const: lge,lg1313-ref
->>>            - const: lge,lg1313
->>>  
->>> +      - description: Boards with LG1215 SoC
+On 12/01/2026 11:04, Rodrigo Alencar wrote:
 >>
->> 1215 < 1313, so this looks oddly sorted.
+>> One example - more complete, so the next one - is enough. They do not
+>> differ.
+>>
 > 
-> Agreed, the order looks odd numerically.  
-> But it's intentional to reflect release order (LG131x earlier).
-> 
+> Not sure I undestood this message:
+> - are those examples 'enough' as the second one is 'more complete'?
+> - do I need to change the second example to be 'more complete',
+>   because 'they do not differ'?
+> - do I need to create 'one example' 'more complete', apart from the existing ones?
 
-Then you have to remember and enforce the sorting rule here, because I
-won't be able.
+Just have one example, e.g. the second one.
 
 Best regards,
 Krzysztof
