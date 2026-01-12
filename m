@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-253730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35592D10E2B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:33:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02166D10E43
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2D1853002505
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:33:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EBE853013984
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EADCB331A5D;
-	Mon, 12 Jan 2026 07:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C3233065C;
+	Mon, 12 Jan 2026 07:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TYTEdSE5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N8XjoiY5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C481C330B0E;
-	Mon, 12 Jan 2026 07:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65873330324
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 07:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768203184; cv=none; b=E7aT6cMxjgyISOJ1aZgIbT3vozN2nvBeYs6Y6arS8vqhHUk9u9diYUoC1uwuNzTP/zGCGoAsO4Da4ru3IBF/R8Au72bK/FHE6SK7Vcafhcy3DXpM9JP5iCU85oBz19f5XgKw/S8TKaY2kvPL71BYEw7k7ehEg57rBB75TM/HcYs=
+	t=1768203285; cv=none; b=XiFl3B1+3UNw87bx2Nb/IdaiSg0tVeuy/4EXercADP2n8slxao+K65/006jlydtfw/tyf7cqiVLTMJZM0tWgy0s2JP4JpbMacYS9Mw7xSWcT2F0DRUKEWzqyg6aRxDXXrOIjAYQR6QgEh9srkotODU2wy4DULwiXkpyVrq29F+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768203184; c=relaxed/simple;
-	bh=KdRXhfGl56K1YQnkAzeYiX2UFWqFdyLMMf/xAfsazgs=;
+	s=arc-20240116; t=1768203285; c=relaxed/simple;
+	bh=x8a9QAxQCTw59qVrs/1bD0DjrwFvDdEwbrDAIxPk4kI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gOfbOiOW4S8JH0Q93ClCgw3ujtpUjptiG9G1BWJSKo4UtnzcB/IWFv3jwk9DDtfv/9gMY3ZgQ3ARtgtMqi6MAuuwBazKxjSSFn0gRK+mVMY2q8rgmwO0mHY+vqGV/uZqUwbjKZ5hnJgZKtZpTHhOKh6lHlklDpn3OdCB80X5WME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TYTEdSE5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 488DBC116D0;
-	Mon, 12 Jan 2026 07:33:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ql3bZb8ABwjlEZzvRTeyAKhnOCtVJaaMPb/hCWAK5dS943cUgXtL8ymuSp9xFoxvOk4bGeh0ig7iWmUbddzbPjbJNoYMWNq6r1Uols+bkENt5TmkkdwTCHj23MTp85Yl+fyqTnJNMWg8vxVG4kVTgyMQmVGwoscl31qPYKd8Zyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N8XjoiY5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C06F0C116D0;
+	Mon, 12 Jan 2026 07:34:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768203184;
-	bh=KdRXhfGl56K1YQnkAzeYiX2UFWqFdyLMMf/xAfsazgs=;
+	s=k20201202; t=1768203285;
+	bh=x8a9QAxQCTw59qVrs/1bD0DjrwFvDdEwbrDAIxPk4kI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TYTEdSE5ONs10N1xaPrLoOvFhlajmZC79SjRE83TF7XfFJULFahdt0TuhRjcfaXO+
-	 HpZHPUNqMueI5PPPYmTBezPxDhEKBC+5QpOqWz1GndAFtPwUG61jMWHR568SNtPn3I
-	 TPuMcCVFlklcHwxykFQsAYaBil2g5ivBrZcQGD34OPCS/m8NrBFnXDm3SpSjKZAcWW
-	 dCZxagfOgWdeOoP0mUfbuiyBROVs2ixnjVYecK/7lSZWNBnI/nGrv1M7KDnczx0dF1
-	 20IpcW4Nf/lDZvoVkRh57gHFU3C+i7j4Ti6lpL/57yB1ml9uz6/lyf497/pkYvuTjW
-	 xCfBPr4Tg3N4w==
-Message-ID: <e5d1d9ce-0268-4b1b-9ce9-2b871926acbf@kernel.org>
-Date: Mon, 12 Jan 2026 08:32:58 +0100
+	b=N8XjoiY5eTQVo+cA8dRLQBXJ25CWTtHN4k9xLdLVoep5AYswYp3neIjhgkVkbtp+n
+	 BmUA9ZShOKrbxqfdBi/odYE6whu8HENIX2IZdBkuTZK15Gax/l1cX1GciilvOHT94k
+	 7BoqcakIFuWCZ4UDqSHfcKUvJL2RCxv0ffoGZ7VDx+qbC3tTOrBXaulBQQfQPOR5in
+	 Kox89DpRH1enmZ1QJOaaMIeP0tpk2AEw6kSOO39T9Dkfbkv5ortgBgC7Rs7ZVuqUrF
+	 ZXWbopPcMFBvoR5lXNYiu2mgC9p3S/Y4FsLKLDdCidg+SsWXzfa6/HABRw2VdFBA85
+	 0Fe07vN/4+Gpw==
+Message-ID: <ef4bbb5a-4019-4b2b-91a3-b103c99be335@kernel.org>
+Date: Mon, 12 Jan 2026 08:34:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,20 +48,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: crypto: eip93: add clock gate and
- reset line
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: benjamin.larsson@genexis.eu, chester.a.unal@arinc9.com,
- davem@davemloft.net, angelogioacchino.delregno@collabora.com,
- ansuelsmth@gmail.com, conor+dt@kernel.org, herbert@gondor.apana.org.au,
- krzk+dt@kernel.org, matthias.bgg@gmail.com, robh@kernel.org,
- sergio.paracuellos@gmail.com, tsbogend@alpha.franken.de,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org
-References: <20260102155341.3682013-1-olek2@wp.pl>
- <20260103-sweet-micro-manul-12eaee@quoll>
- <d7ab5be3-8502-407c-baf6-714ac3a89cb7@wp.pl>
+Subject: Re: [PATCHv2] ARM: dts: socfpga: remove underscore node names for
+ base socfpga dtsi
+To: Dinh Nguyen <dinguyen@kernel.org>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org
+References: <20260112044153.1887253-1-dinguyen@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,55 +99,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <d7ab5be3-8502-407c-baf6-714ac3a89cb7@wp.pl>
+In-Reply-To: <20260112044153.1887253-1-dinguyen@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/01/2026 14:36, Aleksander Jan Bajkowski wrote:
-> Hi Krzysztof,
+On 12/01/2026 05:41, Dinh Nguyen wrote:
+> The node names in a DTS file should be using a hyphen, not an underscore
+> as warned by 'dtc W=2'.
 > 
-> On 1/3/26 15:11, Krzysztof Kozlowski wrote:
->> On Fri, Jan 02, 2026 at 04:47:33PM +0100, Aleksander Jan Bajkowski wrote:
->>> Add the clock gate and reset line, both of which are available
->>> on the Airoha AN7581.
->>>
->>> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
->>> ---
->>> v3:
->>> - introduce patch
->>> ---
->>>   .../crypto/inside-secure,safexcel-eip93.yaml       | 14 ++++++++++++++
->>>   1 file changed, 14 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
->>> index 997bf9717f9e..c6c99c08dc68 100644
->>> --- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
->>> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
->>> @@ -48,20 +48,34 @@ properties:
->>>     interrupts:
->>>       maxItems: 1
->>>   
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  resets:
->>> +    maxItems: 1
->>> +
->>>   required:
->>>     - compatible
->>>     - reg
->>>     - interrupts
->>> +  - clocks
->>> +  - resets
->> That's ABI break without explanation in the commit msg.
->>
-> I think that the reset line and clock gate are available on all SoCs
-> with this IP Core. Should the reset line and clock gate only be
+> For clock nodes, use clock-controller@address and clock-<name>. While at
+> it, fix DTS coding style to use lowercase hex for values and unit
+> addresses for these clock nodes.
+> 
+> There are no functional change in this patch.
+> 
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+> v2: used clock-controller@address and clock-name
+>     reworded commit message
+> ---
+>  arch/arm/boot/dts/intel/socfpga/socfpga.dtsi | 128 +++++++++----------
+>  1 file changed, 64 insertions(+), 64 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
+> index 35be14150f41..28494aeb71b2 100644
+> --- a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
+> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
+> @@ -131,17 +131,17 @@ osc2: osc2 {
+>  						compatible = "fixed-clock";
+>  					};
+>  
+> -					f2s_periph_ref_clk: f2s_periph_ref_clk {
+> +					f2s_periph_ref_clk: clock-f2s-periph-ref {
+>  						#clock-cells = <0>;
+>  						compatible = "fixed-clock";
 
-Not related. I did not say that hardware has or has not. I speak about
-ABI, so the interface.
-
-> required for newly added SoCs, and remain optional for existing ones?
+I am pretty sure this is functional change, because you just changed the
+name of the clock. At least that is the impression of above diff.
 
 Best regards,
 Krzysztof
