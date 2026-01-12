@@ -1,114 +1,127 @@
-Return-Path: <devicetree+bounces-254155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DDE3D14DBB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:06:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A99D14DC4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:07:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9F18630221AC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:05:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 018253024D58
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDDE1311951;
-	Mon, 12 Jan 2026 19:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8675311C01;
+	Mon, 12 Jan 2026 19:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FGm846x7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Lrj+AdOE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E80B3112DB
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 19:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642F827B327;
+	Mon, 12 Jan 2026 19:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768244705; cv=none; b=iIPVXqronNrLainXqTfAbXCYgIg0YpfoigXbJ5SltlkUvFuepsEuuBYeeX6/Ml3XEeLunFMbovtpGwvERdCr1n//qXHZoSgPv3CP09hFCMseAmQLsPbaWG2JMvytxIKwQgVoXrkDE+lDG1eevC7YkKce1iTHaXH/0WhxmvhKUu8=
+	t=1768244844; cv=none; b=bmGlGWKn4UKaqRd53MjQ/JXFsnBlzEOTq1jppGGZgQGH+KgyyMFvFTW/yirqAR1TFj/q2dzwqRyqfIUppHYKzFrvhoi9rH0qU03eujjxQiEncAmcamatxOvC8kOdIREeUTBAgdU4vmzLMbByj/yGGrQCXuUQPhC5ZMGIi+tG0bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768244705; c=relaxed/simple;
-	bh=Io5XiPOPk47WNG3LrW7fD/kRpDW4aduCvCe2nfDRbPk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H5Wz/qceoj2l9qGs+Fa4I9W+YRFvNcQsZfkMMBNLi29RIPxsNOTPfTlxoP6p2rui8R5Qf3cxWtTnCrYsTL9/NazXyhUuZnCcL2vlz4AgBoRMpqWbdxdT0VNI1OTB+w44ZkQrO0LVhAz9loks+h2QQtv2x2SKnHLsdHRT+4AqCf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FGm846x7; arc=none smtp.client-ip=209.85.167.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-4558f9682efso4285305b6e.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 11:05:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768244703; x=1768849503; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P6JdDCpr5Va6UKBK3UkPIkJuU5AGn3aLM4FqYUEjdpw=;
-        b=FGm846x7Ie3oyiSByhiG8kZweXTCfLzndayFZpQTaj5Z3Rrgdyx7udFOx297zRnMlv
-         61IVb73K2Mpqk/UsZSH8TJ2ayTjwuop06sqta4g0gSWkuhQatw7ym9SHyzRK/K3VOTXI
-         3VwgpIVGLLbzAcJP7a9sMz6nNT/mC3K5fWzvJLg2PAmh3LH6P0u1OdzX3dwsrT9FgJHT
-         Lza6/SqYuLBoVDTc7x8vvIwddIivqCLOivGxw7SthseqioFi+nNR0kR+AN5+X/iKUIP+
-         cmkogALwGjdWUEK2uJdsWenzZfsKm5iqVF8Itc482wdTM3n4kyQAaFzjAiCsrAyZa/AK
-         1q3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768244703; x=1768849503;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=P6JdDCpr5Va6UKBK3UkPIkJuU5AGn3aLM4FqYUEjdpw=;
-        b=AYIzPhN3KvFeIaf9nAKVo9GakFfHw9JTzDmH3iJ9ldAB6u/nRlJLtBuEJCYmBq/PhC
-         uvpvOYPg5+loWDxXaeygBLsi2y/nwpu8vfmUIXWg3JsE9ENAXgyW2L2S0NX02/7HQF/C
-         6wgJiS5Y4CLFvlnEnJwNB6aNM1RYzX31mSOkYq86FOSoPqoW2of8nOjhbscNkr9FhALy
-         i6P2OstNtrYq/phrGNgpB9NGBxX2AQtJEl02fgnyJ/3g+u3OSvitFbg4rUZ4xaidkVI4
-         yTVAVCuHOkIsPu27az90eVZqLi21yPs1yEBCQZiJz7PSJTUzb0ry+NHSNUO/yZUa5Pqc
-         k+ug==
-X-Forwarded-Encrypted: i=1; AJvYcCVkkHKojzA03RrQyjD/P2l418fRSVL0jMdNGiGdQ2xnciLPdsMQdQomOQSIgl/Y8Y8XYXo/dagMG3/p@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8cHAhjHds6+ygcwOYAjYnksc6+OdpFTQZbOXHSa6wgJhDC+JH
-	X6Fhu/z8VN0OFa89SSVS7155P0DkziiIlaq/TuJ0uldVW82YDMSL7FKmkO74KugSDng4YPJZDgG
-	2ys70glAyhAeIMol4yqv8aWSKUTH1cuo=
-X-Gm-Gg: AY/fxX6/X9Lk8LbddEYMpXdjMH0Cq7nz9YGulpVS83lRR4YSxqTzCGlRSDRod/5CbJJ
-	WUpD4EkxpsGMts6xbLuAjSjGZQmWxMKxh6MGWcwWBYxfMaywPkD87cG5QeZUy3rdB2hBXlgVhdc
-	3U0vssGLTxGt/tVmGmI3gEdYIKMzAOZjpTBxhbkIosiSSRIOKnYwWlP1xYJcPWUlQ1REu2OHsMg
-	t3S6puirlldUsXUDGV+0eIs8McymlG286jb1LlFlc2GSmGXySZ2q9R0dv1/UWXX1lYg9jUB6JAG
-	ue3DQ/hwheWggy9zVPeFw1CKx3s=
-X-Google-Smtp-Source: AGHT+IHHyYehd5mDk6S/HFO61FhRHsv9zqO6J/OOUvbop6YA1ncswgg4NWPhmsAGF3o48IKByactGMvO6pcP1yVqREg=
-X-Received: by 2002:a05:6808:1311:b0:450:b361:f48b with SMTP id
- 5614622812f47-45a6bec253fmr9406966b6e.56.1768244703218; Mon, 12 Jan 2026
- 11:05:03 -0800 (PST)
+	s=arc-20240116; t=1768244844; c=relaxed/simple;
+	bh=cm8ilyUoh3xtgcTiQcIyID35hTWfERtQ+ghgLmFFgsA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GnBlHuI3zxromDV9rZyDxzkV6c9gWClAa4CRPO1Q4hWeNyC5RjcKqjn8tfb33IVAjj9uL9aGn05I+UeDXCqRbQRjC565d5cWdgGyETIc5HRP5zyJ7A96Aa0AUssuHM2/go1iwoILT1AB1PchulrVTXxc+1xHHrCZ9r0OGwTfcSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Lrj+AdOE; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768244844; x=1799780844;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cm8ilyUoh3xtgcTiQcIyID35hTWfERtQ+ghgLmFFgsA=;
+  b=Lrj+AdOEMhAHPlYU+SUx1maJWDnObVwYWyF/kiRo8B7Sdt+kgU4bAULT
+   aInse8yz+pNg3hAgITZLz5dSrKB3pdtz+Yqyu9VvKl73xYM3vJL9mmrLX
+   bsyshdaRFGsS+OCo+xandhEmdPusa5ejjKh6a0HCxGfTKAZFAY3YaCvQ8
+   RQSWd47Fhc1y68ZXPEJPTA0+4lyIscQ47yQ/8JoQCL5qegsak62wy0FR4
+   vYvwnUoad9X1pgcAlqEpk4rh78FU/wXoeG7pjcfTVkzmmsvKN3JIFf0HB
+   0xQ893j3E81LsQ4ALYk8ODf+eGN+6sWUmZdDzKpVw5Ex368h4XgT/zQz0
+   A==;
+X-CSE-ConnectionGUID: iCwzP5tJQp2cW2HwCVBrBA==
+X-CSE-MsgGUID: RLV1EFk+TZq0k1/KFu+7HA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="80977507"
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="80977507"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:07:23 -0800
+X-CSE-ConnectionGUID: YUEhW/TRQ4Cs7p4bnqVTNA==
+X-CSE-MsgGUID: oL1HEsjRR1SgYReRS84LSQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="209246253"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.37])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:07:20 -0800
+Date: Mon, 12 Jan 2026 21:07:17 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH v5 3/9] spi: support controllers with multiple data lanes
+Message-ID: <aWVGZWg7zLpeG3Kz@smile.fi.intel.com>
+References: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
+ <20260112-spi-add-multi-bus-support-v5-3-295f4f09f6ba@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260110010715.1610159-1-mschirrmeister@gmail.com> <67ccb8f6-f9bd-4266-b79a-b688bd6d030b@rock-chips.com>
-In-Reply-To: <67ccb8f6-f9bd-4266-b79a-b688bd6d030b@rock-chips.com>
-From: Marco Schirrmeister <mschirrmeister@gmail.com>
-Date: Mon, 12 Jan 2026 20:04:51 +0100
-X-Gm-Features: AZwV_Qg8Eexu6GQgEzbvpbPVbdo7RYBJ0P9SC7lhZliBG8Czm_wfF3LbmThMdSI
-Message-ID: <CAGJh8eCw_d9WwEh37_7fp-pxkNvTYDetTiDue-adby=pskqxKQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/3] mmc: dw_mmc-rockchip: Add stability quirk for
- NanoPi R76S
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	heiko@sntech.de, ulf.hansson@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260112-spi-add-multi-bus-support-v5-3-295f4f09f6ba@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Mon, Jan 12, 2026 at 2:32=E2=80=AFAM Shawn Lin <shawn.lin@rock-chips.com=
-> wrote:
->
-> > Evidence of the failure in dmesg:
-> > [Fri Jan  2 01:28:02 2026] mmc_host mmc1: Bus speed (slot 0) =3D 400000=
-Hz
-> > [Fri Jan  2 01:28:03 2026] mmc_host mmc1: Bus speed (slot 0) =3D 198000=
-000Hz
-> > [Fri Jan  2 01:28:03 2026] dwmmc_rockchip 2a310000.mmc: Successfully tu=
-ned phase to 233
-> > [Fri Jan  2 01:28:04 2026] mmc_host mmc1: Bus speed (slot 0) =3D 400000=
-Hz
-> >
->
-> Does this problem happen with all microSDs or just *a* microSD per
-> your description?
-> Have you ever tried to disable SDR104 support?
+On Mon, Jan 12, 2026 at 11:45:21AM -0600, David Lechner wrote:
+> Add support for SPI controllers with multiple physical SPI data lanes.
+> (A data lane in this context means lines connected to a serializer, so a
+> controller with two data lanes would have two serializers in a single
+> controller).
+> 
+> This is common in the type of controller that can be used with parallel
+> flash memories, but can be used for general purpose SPI as well.
+> 
+> To indicate support, a controller just needs to set ctlr->num_data_lanes
+> to something greater than 1. Peripherals indicate which lane they are
+> connected to via device tree (ACPI support can be added if needed).
+> 
+> The spi-{tx,rx}-bus-width DT properties can now be arrays. The length of
+> the array indicates the number of data lanes, and each element indicates
+> the bus width of that lane. For now, we restrict all lanes to have the
+> same bus width to keep things simple. Support for an optional controller
+> lane mapping property is also implemented.
 
-I tested with multiple SanDisk Extreme and Ultra.
-Yes, I have tried to disable SDR104. Also others for testing. Nothing
-made a difference.
+...
+
+> struct spi_device {
+
+> +	/* Multi-lane SPI controller support. */
+> +	u32			tx_lane_map[SPI_DEVICE_DATA_LANE_CNT_MAX];
+> +	u32			num_tx_lanes;
+> +	u32			rx_lane_map[SPI_DEVICE_DATA_LANE_CNT_MAX];
+> +	u32			num_rx_lanes;
+
+This adds 72 bytes in _each_ instance of spi_device on the platforms that do
+not use the feature and might not ever use it. Can we move to the pointer
+and allocate the mentioned fields separately, please?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
