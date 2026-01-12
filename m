@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-254031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 139E4D133D1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:42:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0DED13380
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:40:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31F6530321CF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:29:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EBF1330380DA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B58836BCEB;
-	Mon, 12 Jan 2026 14:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C067636C0A1;
+	Mon, 12 Jan 2026 14:22:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="p3D5geHJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="b8PgCqiU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56F336BCCF;
-	Mon, 12 Jan 2026 14:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E982EBB90
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227727; cv=none; b=TrCO0lXaTh0x3/KAO+v6q15mGET5Gs++Umiq4nnWmJuo5KnnKDMf9J9N6yWDP5yrmERUVm9JqOWNk7hPt0dEX4Z279u8O0eLGO2bY0yYq9JEI48ZzlM1O/5jL92/iSOmF7BPHLBfkF3LqBkAWyK61bh1ZeDlXRAkb3mwTMQeugU=
+	t=1768227728; cv=none; b=djfcMyjGz/q60FNupQTa94FXkydzqaWtb5zOqfOWT95Gy6bqVh1sDix9/Lm61n+q0f0DoiCI1bXvJVX8gpqM4/RnYEp3gKx3u60oS+PvHZHonAE0YG8Armz+gY2QrdMt3BKJs4dcvvbEtTpIZgTvCjQ5KAnYt5At2IkRwsXMO/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227727; c=relaxed/simple;
-	bh=cgsbGpr650vhAbxQnzhK3YmbGYPL57A3kTQjBjqeecI=;
+	s=arc-20240116; t=1768227728; c=relaxed/simple;
+	bh=EtANzcsF/O/2N5SLag/+pz1k0e53qUoqWM+zsTEUjow=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SjDTxRzDjmhrRVcPWiC7K/C6ZhI8EHA73RJTKnXcUSey5TJ9KFOlzczJvgVivYxI07vvW2M7cGXiNVebaJQfQnqVXHVeuNLF44KJOFDVljxsFJUuUjNRgjb5SBepjg7xpCFbK/WNHs6vbl/Vlf3X9HUKTfMeilnjKmD6ypjzU88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=p3D5geHJ; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version; b=qYVavabPKAnRPs9E0CkepYwKXUOcGuMOcYU2FLiCgnKe2pqKUubv40Rt63gqHHvngUrvJ+2locJBLYWntPokZh3rWG1EtF8Q5+4edHp46cUfGVjEum9l71IoItbIN/luTYVudTmTiUW1YckIWL/cnB8+MkFXPl5Xu1AF1QREhmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=b8PgCqiU; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 78CD24E42094;
-	Mon, 12 Jan 2026 14:22:04 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id D35604E42097;
+	Mon, 12 Jan 2026 14:22:05 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 439AA606FA;
-	Mon, 12 Jan 2026 14:22:04 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 11454103C8C61;
-	Mon, 12 Jan 2026 15:22:02 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A9322606FA;
+	Mon, 12 Jan 2026 14:22:05 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 84BFF103C8CD8;
+	Mon, 12 Jan 2026 15:22:03 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227723; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227724; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=Alu/YSztR2sY7lzG9eizkb540piqJA1gU9XBD5NQ508=;
-	b=p3D5geHJNej93Rh8JkHGSWUmKkhprm/N02OR5jKHFJHIkpGWqlWRvGK22oXJLPgwg4UOvP
-	BCJ2c0M431/xLJmx7PFf9bhsUZe/TeUe08upwmt9m4SUehF9kYCN8XkA5mP5by4w9Azrze
-	5oOBqyXPK/xsAlnsbfodU17JiYimpFD4k3W/mpgO7F6xZpdKyGixmqOtILF5BLtoxzkEvv
-	ShP9uwMDA0kwDFg8ej8LuH1ERvd1J2adgsuHZyrgUfIhhT45sDW4LYMRaY1IZjEHpc9KeB
-	1WIXgvNmWJWRR5SzyWREpIRpQquJ9jLnVTcv0rJim8AwpdTfcT9+jMPKRXT4eQ==
+	bh=s4b4iORTYC9hNJsnJAA2UlqWslsOWy9woQFtPV4DXtQ=;
+	b=b8PgCqiUSbJRdvrnhV5mLwXdSlnlOmIECE/PC/8W3D9cPuR2Fy3b52oi8VUesswcubVheX
+	RZKleOjfjI0M2jK0yW3sUBAtpSfJNdAqgdKKBjSLwRBiISraqX27xHtSI8GC2honylOFBL
+	jk1ZM2HRIEAh6WNxcSdbCiGzf9rWSyjdmoKsJvEFbWEzeR2cjhE0o30YOTDz4/xc/dgI2B
+	YDoVNcSTO3rDtM7Ouj+uLeh4LXUiO2nfF8uGFIczXjXG7yO3n31av2ClaPatQSnTEw/WoT
+	oCZ4nvrpSpDodPYBEpeJdp1gY/zlmcijnY5nKbWEjhD2FZBP7ZFgRhtPBm5P1g==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 67/77] tests: metadata: Add a test for namespace labels references
-Date: Mon, 12 Jan 2026 15:19:57 +0100
-Message-ID: <20260112142009.1006236-68-herve.codina@bootlin.com>
+Subject: [RFC PATCH 68/77] libfdt: Introduce fdt_getprop_by_offset_w()
+Date: Mon, 12 Jan 2026 15:19:58 +0100
+Message-ID: <20260112142009.1006236-69-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -77,194 +77,38 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-Namespace labels references are references in the form '&foo.bar.baz'.
+The future support for applying a addon on a base device-tree needs to
+modify properties retrieved by their offset.
 
-Support for namespace labels references has been recently added to dtc.
+fdt_getprop_by_offset() already exists to get a preperty by its offset
+but the property returned is read-only. A writable returned property is
+needed.
 
-Add a test related to this kind of references.
+Fill the lack and introduce fdt_getprop_by_offset_w(), the write enabled
+variant of fdt_getprop_by_offset().
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- ...metadata_addon_refnamespace.dtb.dts.expect | 32 ++++++++++++++++
- tests/metadata_addon_refnamespace.dtb.expect  | 29 ++++++++++++++
- tests/metadata_addon_refnamespace.dts         | 38 +++++++++++++++++++
- ...metadata_addon_refnamespace.dts.dts.expect | 32 ++++++++++++++++
- tests/run_tests.sh                            |  3 +-
- 5 files changed, 133 insertions(+), 1 deletion(-)
- create mode 100644 tests/metadata_addon_refnamespace.dtb.dts.expect
- create mode 100644 tests/metadata_addon_refnamespace.dtb.expect
- create mode 100644 tests/metadata_addon_refnamespace.dts
- create mode 100644 tests/metadata_addon_refnamespace.dts.dts.expect
+ libfdt/libfdt.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/tests/metadata_addon_refnamespace.dtb.dts.expect b/tests/metadata_addon_refnamespace.dtb.dts.expect
-new file mode 100644
-index 0000000..111a746
---- /dev/null
-+++ b/tests/metadata_addon_refnamespace.dtb.dts.expect
-@@ -0,0 +1,32 @@
-+/dts-v1/;
-+/addon/;
-+
-+/import/ foo: "abc,foo";
-+/import/ bar: "abc,bar";
-+
-+
-+&foo.x {
-+
-+	addon-node {
-+		ref0 = <&foo.x.y>;
-+		ref1 = <0x0a &bar.other 0x14>;
-+		ref2 = <&{$foo.x.y.z/addon-node}>;
-+		ref3 = <&{$foo.x.y.z/addon-node}>;
-+	};
-+};
-+
-+&foo.x.y.z {
-+
-+	addon-node {
-+		prop = <0x00>;
-+		phandle = <0x01>;
-+	};
-+};
-+
-+&foo.x.y {
-+
-+	node {
-+		prop1 = <0x01>;
-+		prop2 = <0x02>;
-+	};
-+};
-diff --git a/tests/metadata_addon_refnamespace.dtb.expect b/tests/metadata_addon_refnamespace.dtb.expect
-new file mode 100644
-index 0000000..5fceb61
---- /dev/null
-+++ b/tests/metadata_addon_refnamespace.dtb.expect
-@@ -0,0 +1,29 @@
-+/dts-v1/;
-+/addon/;
-+
-+// [FDT_IMPORT_SYM] 'foo' (abc,foo)
-+// [FDT_IMPORT_SYM] 'bar' (abc,bar)
-+&foo.x {
-+    addon-node {
-+        ref0 = <0xffffffff>;
-+        // [FDT_REF_PHANDLE] ref0[0], ref = foo.x.y
-+        ref1 = <0x0000000a 0xffffffff 0x00000014>;
-+        // [FDT_REF_PHANDLE] ref1[4], ref = bar.other
-+        ref2 = <0x00000001>;
-+        // [FDT_REF_LOCAL] ref2[0]
-+        ref3 = <0x00000001>;
-+        // [FDT_REF_LOCAL] ref3[0]
-+    };
-+};
-+&foo.x.y.z {
-+    addon-node {
-+        prop = <0x00000000>;
-+        phandle = <0x00000001>;
-+    };
-+};
-+&foo.x.y {
-+    node {
-+        prop1 = <0x00000001>;
-+        prop2 = <0x00000002>;
-+    };
-+};
-diff --git a/tests/metadata_addon_refnamespace.dts b/tests/metadata_addon_refnamespace.dts
-new file mode 100644
-index 0000000..51a17a9
---- /dev/null
-+++ b/tests/metadata_addon_refnamespace.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Copyright (C) 2026 Bootlin
-+ */
-+
-+/dts-v1/;
-+/addon/;
-+
-+/import/ foo: "abc,foo";
-+/import/ bar: "abc,bar";
-+
-+
-+&foo.x {
-+	addon-node {
-+		ref0 = <&foo.x.y>;
-+		ref1 = <10 &bar.other 20>;
-+		ref2 = <&addon_node>;
-+		ref3 = <&{$foo.x.y.z/addon-node}>;
-+	};
-+};
-+
-+&foo.x.y.z {
-+	addon_node: addon-node {
-+		prop = <0>;
-+	};
-+};
-+
-+&foo.x.y {
-+	node {
-+		prop1 = <1>;
-+	};
-+};
-+
-+&foo.x.y {
-+	node {
-+		prop2 = <2>;
-+	};
-+};
-diff --git a/tests/metadata_addon_refnamespace.dts.dts.expect b/tests/metadata_addon_refnamespace.dts.dts.expect
-new file mode 100644
-index 0000000..94861c3
---- /dev/null
-+++ b/tests/metadata_addon_refnamespace.dts.dts.expect
-@@ -0,0 +1,32 @@
-+/dts-v1/;
-+/addon/;
-+
-+/import/ foo: "abc,foo";
-+/import/ bar: "abc,bar";
-+
-+
-+&foo.x {
-+
-+	addon-node {
-+		ref0 = <&foo.x.y>;
-+		ref1 = <0x0a &bar.other 0x14>;
-+		ref2 = <&addon_node>;
-+		ref3 = <&{$foo.x.y.z/addon-node}>;
-+	};
-+};
-+
-+&foo.x.y.z {
-+
-+	addon_node: addon-node {
-+		prop = <0x00>;
-+		phandle = <0x01>;
-+	};
-+};
-+
-+&foo.x.y {
-+
-+	node {
-+		prop1 = <0x01>;
-+		prop2 = <0x02>;
-+	};
-+};
-diff --git a/tests/run_tests.sh b/tests/run_tests.sh
-index a371377..4392752 100755
---- a/tests/run_tests.sh
-+++ b/tests/run_tests.sh
-@@ -1129,7 +1129,8 @@ metadata_tests() {
- 		  metadata_addon_base metadata_exportsyms_local \
- 		  metadata_exportsyms_ref metadata_importsyms \
- 		  metadata_addon_orphan1 metadata_addon_orphan2 \
--		  metadata_addon_orphan3 metadata_addon_references; do
-+		  metadata_addon_orphan3 metadata_addon_references \
-+		  metadata_addon_refnamespace; do
- 		run_dtc_test -I dts -O dts -o $dt.dts.dts "$SRCDIR/$dt.dts"
- 		base_run_test check_diff $dt.dts.dts "$SRCDIR/$dt.dts.dts.expect"
- 		run_dtc_test -I dts -O dtb -o $dt.dtb "$SRCDIR/$dt.dts"
+diff --git a/libfdt/libfdt.h b/libfdt/libfdt.h
+index 37459a6..0c654b1 100644
+--- a/libfdt/libfdt.h
++++ b/libfdt/libfdt.h
+@@ -858,6 +858,12 @@ static inline struct fdt_property *fdt_get_property_w(void *fdt, int nodeoffset,
+ #ifndef SWIG /* This function is not useful in Python */
+ const void *fdt_getprop_by_offset(const void *fdt, int offset,
+ 				  const char **namep, int *lenp);
++static inline void *fdt_getprop_by_offset_w(const void *fdt, int offset,
++					    const char **namep, int *lenp)
++{
++	return (void *)(uintptr_t)fdt_getprop_by_offset(fdt, offset, namep,
++							lenp);
++}
+ #endif
+ 
+ /**
 -- 
 2.52.0
 
