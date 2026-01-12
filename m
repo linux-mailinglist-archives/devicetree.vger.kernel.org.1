@@ -1,153 +1,131 @@
-Return-Path: <devicetree+bounces-253933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C14D12E31
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A863AD12EF4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:54:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 479023021FB8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:46:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A654F3018959
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA5D35B144;
-	Mon, 12 Jan 2026 13:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB34359F86;
+	Mon, 12 Jan 2026 13:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="H9qsQLhC"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="bZnFjsaK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573AF3596F3;
-	Mon, 12 Jan 2026 13:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA071E1DF0;
+	Mon, 12 Jan 2026 13:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768225560; cv=none; b=ZtGBU0xeJusE+N5guf8xKAG77DBAm15+Nk0h1Iyk/8HQWi161qCyogYI15k0c4TGLX54C8rZMWckTqUprU9Z5XDP9dGinPA8T5jJhKIsEabwEZ7pBOIHYZBZg9mOkqE/wD+lyY+nw1FB9nVTJRud93Uou2wnJR0cCyJ82OfiqZw=
+	t=1768225910; cv=none; b=SUmCS71wOiVzsdXocCilA8biOBXFmAH+fZcipvdzL6fQhLc9FnlRvjga5oVFKHZGtle4O0dZ1gOfYAWsuJf+qrO9Oa0qOq6OtyzrEdkBSxnVwOYFueV2Snk/CEuCvTYLf+2rnEeZ2f2mGiDYfZVV8seLeomuOP32yCgIqCXYpy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768225560; c=relaxed/simple;
-	bh=ah1qKcR1BrTLa1kkSHfCqWTXgGUssRj1TSqjOgbltrs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JwBCRisTMd+uC4pPEvMEUXqAhRmEa0T1lyUi0m6/JfOnNj45CR/plD7diBLSL8khM+V/IKR0znebyIW9fb2jZ2+bI6IwoG0QEB/pKdKx+EVD+l4npVjtW75uXDSTCFN+3+bl13Pd+J3Jn2Arn4BiII9a/dpy4Y6WHm3eSP94Hak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=H9qsQLhC; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=avW/KaDunIxQhrdj8bFjXOe630cKt3gLzoDikVOnoMk=; b=H9qsQLhCSyxngrQPIlGbslrcbE
-	2OOrhEs03G96dXGfTdBYTBgsUVSjvZbmqGOIaBWluGAQ14HdZTeQcYL+qDS+q3aXeRcZPLLohTFOn
-	2GrJmbWew8Uyv2bkFMHdbaO2fstI/zVW/oWoAj3+NtNf4lnG3VwRCbbZdWsNNCaCuRnI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vfIDx-002Trp-OL; Mon, 12 Jan 2026 14:44:49 +0100
-Date: Mon, 12 Jan 2026 14:44:49 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Matthew Gerlach <matthew.gerlach@altera.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Shuang Liang <liangshuang@eswincomputing.com>,
-	Zhi Li <lizhi2@eswincomputing.com>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
-	Clark Wang <xiaoning.wang@nxp.com>, Linux Team <linux-imx@nxp.com>,
-	Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>,
-	Samin Guo <samin.guo@starfivetech.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Swathi K S <swathi.ks@samsung.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Drew Fustini <dfustini@tenstorrent.com>,
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org,
-	linux-mips@vger.kernel.org, imx@lists.linux.dev,
-	linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH RESEND net-next v6 2/7] net: stmmac: qcom-ethqos: use
- generic device properties
-Message-ID: <a2a610a3-aead-4e85-8a4c-7b83ccf276dc@lunn.ch>
-References: <20260112-qcom-sa8255p-emac-v6-0-86a3d4b2ad83@oss.qualcomm.com>
- <20260112-qcom-sa8255p-emac-v6-2-86a3d4b2ad83@oss.qualcomm.com>
+	s=arc-20240116; t=1768225910; c=relaxed/simple;
+	bh=5vRv/pZsfNb7lRuCrIFMf+OcHs4aWH+H1NEGFhzZhtI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SxmWBPHyMbzUJHxdhdkwBFw2xAIt4X7b9CirTG6zuIiUo+yNY99p0wnDdPrABtguq6jWV9WHzwumln0hdhAlgahdf7DZbsf0CwQ2fIb8mKmXuVQTQigEH53Q4s2s74+uEqhTb7N1X6cJZ8ORB+jrOvHwHn2ZD9AI6xhYQSZQ9rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=bZnFjsaK; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id E262B600025A;
+	Mon, 12 Jan 2026 13:45:40 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id T_Lsx4VB-hy2; Mon, 12 Jan 2026 13:45:38 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 86E536000256;
+	Mon, 12 Jan 2026 13:45:37 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1768225537;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=i4mQuv4mU/Y/i+cCr+u9L7cjmQiPuxL604c9Tea/Ng4=;
+	b=bZnFjsaKx+kykBB7D5DFKZ6u726gLCXEeqVigQ8sT0jNAEdBAe4bII2FrXxXdxod2SYFsL
+	mw2YEwjBdJyoKl5nQ8QETnjhbiUgZldmjsRoqXfuFtUfMcRTkhb3zcgC1dla4ckKHjJ3wD
+	+2+X91U07EdIlRzKF+wdWGFrOtuzzb0f21rwo1lmah8kyf5nLvWU+SeVPSJpwPdPl6XJnY
+	666UtsxPmgs31pIFOhOVtAUUofQFgViL9RibK0XzEenXFBmTlcWwqrzS46Tu3r0W4sCD8x
+	SK5D03dNCYLcQa/O8bJu+30Qhy9e81XM0sRpKO8JCYuBD1iQzyB1AC2i7LLoXA==
+Received: from [192.168.2.110] (unknown [148.63.39.39])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 2936D36008B;
+	Mon, 12 Jan 2026 13:45:37 +0000 (WET)
+Message-ID: <7a723cf9-700f-460e-a4a9-3d0e1e81ef07@tecnico.ulisboa.pt>
+Date: Mon, 12 Jan 2026 13:45:33 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260112-qcom-sa8255p-emac-v6-2-86a3d4b2ad83@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: tegra: smaug: Enable DisplayPort via USB-C port
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251226-smaug-typec_dp-v1-1-7eabcd59da4c@tecnico.ulisboa.pt>
+Content-Language: en-US
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <20251226-smaug-typec_dp-v1-1-7eabcd59da4c@tecnico.ulisboa.pt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 12, 2026 at 11:15:41AM +0100, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <brgl@kernel.org>
+Hello,
+
+On 12/26/25 12:17, Diogo Ivo wrote:
+> Enable both SOR and DPAUX modules allowing the USB-C port to transmit
+> video in DP altmode. Tested on several monitors with USB-C to HDMI
+> adapter.
 > 
-> In order to drop the dependency on CONFIG_OF, convert all device property
-> getters from OF-specific to generic device properties and stop pulling
-> in any linux/of.h symbols.
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> ---
+>   arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> index 49bf23d6f593..b88428aa831e 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> @@ -31,6 +31,11 @@ memory@80000000 {
+>   	};
+>   
+>   	host1x@50000000 {
+> +		dpaux1: dpaux@54040000 {
+> +			vdd-supply = <&pp3300>;
+> +			status = "okay";
+> +		};
+> +
+>   		dsia: dsi@54300000 {
+>   			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
+>   			status = "okay";
+> @@ -58,6 +63,13 @@ link1: panel@0 {
+>   			};
+>   		};
+>   
+> +		sor1: sor@54580000 {
+> +			avdd-io-hdmi-dp-supply = <&pp1800>;
+> +			vdd-hdmi-dp-pll-supply = <&avddio_1v05>;
+> +			nvidia,dpaux = <&dpaux1>;
+> +			status = "okay";
+> +		};
+> +
+>   		dpaux: dpaux@545c0000 {
+>   			status = "okay";
+>   		};
+> 
+> ---
+> base-commit: c100317dc8c40c71bfb572353d87ca1735d39fd5
+> change-id: 20251226-smaug-typec_dp-197201aaadae
 
-Is the intention to read these properties from ACPI tables?
+Gentle ping on this patch.
 
-If so, it would be nice to document these properties in
-Documentation/firmware-guide/acpi/dsd.
-
-> -	if (of_property_read_bool(np, "snps,tso"))
-> +	if (device_property_present(dev, "snps,tso"))
->  		plat_dat->flags |= STMMAC_FLAG_TSO_EN;
-
-Do you actually need this in the ACPI binding? Is there a reason not
-to just hard code it enabled? You don't need to worry about backwards
-compatibility here, because this is the first ACPI device.
-
-> -	if (of_device_is_compatible(np, "qcom,qcs404-ethqos"))
-> +	if (device_is_compatible(dev, "qcom,qcs404-ethqos"))
->  		plat_dat->flags |= STMMAC_FLAG_RX_CLK_RUNS_IN_LPI;
-
-What is your target hardware? Will qcom,qcs404-ethqos every use ACPI?
-
-Maybe this should actually stay as of_device_is_compatible, to make it
-clear this is an device tree only device? There is no need to mess up
-the ACPI binding with things which will never actually use ACPI.
-
-   Andrew
+Thank you,
+Diogo
 
