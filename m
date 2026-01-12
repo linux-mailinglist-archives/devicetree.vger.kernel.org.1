@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-254138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D633D14929
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:54:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC257D1491A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:54:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 39509312B18F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:47:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D2A4302D5C8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F7373803DB;
-	Mon, 12 Jan 2026 17:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD8937FF78;
+	Mon, 12 Jan 2026 17:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Jo0Qxd+Q"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mlMmHHRo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D4E37F741
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B71437F73C
 	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:46:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768240008; cv=none; b=c1CbKhVZdQ+zKhoaxyI7jXXcwDQZhtW+e3SeVqZTC43kq4lpX0yEMHR7D4aULNP2rRThRM84mOQj2G99na0Y/kwzihGfBbgzgAeMi66IPsj1a2sqVSiLYyGbqvqPHls2kHuxCvB+k16AN7tCiwfop6beN/s7RwqPTUa7ZzeGe7E=
+	t=1768240007; cv=none; b=HIb5MhjcuP/b2+NpnnlWO+bK0E1eR/RRpQT4AHb0mZVG4Clfo7lns7JcfCOE/vhRt1xUhPMeSShcnsAPfE84hZ0Ulu/DQQaHrV2TzMH8FiaC3AsdlLma7/lLtRxNStQK/c8MisRZBijtaFfePeUJvHslx8M6d3YCEkSLjqdOwpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768240008; c=relaxed/simple;
-	bh=5I7PkElvI/QDjLf0Z/OEy6DcC7qQ3z0STtb9p1MBJUQ=;
+	s=arc-20240116; t=1768240007; c=relaxed/simple;
+	bh=5fXIrwABFbPXXYTw+nAf2EIqr+PtOXYDToVreVLaI64=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=El+vikoVnrISCkBVftlmqVcaoFUvXQEYLNLEyN7LOS1fJuYznSQsnjIwUsQt9F3gyQ9po+XwznUxqRaGpTsF5xcn/R1Lxdux1ofnI06M073vUVlAbzbaaRUKFLAEqDMaaYMNk3AQr2l/5NBir+j8ASpIurlDV2dU2dO3/ghVY+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Jo0Qxd+Q; arc=none smtp.client-ip=209.85.161.49
+	 In-Reply-To:To:Cc; b=J8135P87Z6naJGWnG5CMgv2hiUlipgF7iE696UYc4NHluWdM3noiM2yoINglOgJ55mTXFT0+a5QlfYxAb9xowrv7a384I8geHMpjhrVgI6ATVIWwoqSGuG1a/KlOas3vZy4f86FKCUzhh8zXCqoBJJ8wF0gcgmy3ek9ezJ1LSnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mlMmHHRo; arc=none smtp.client-ip=209.85.160.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-65e943048afso2285535eaf.0
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-3ff4acb6eebso4187081fac.0
         for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:46:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768239999; x=1768844799; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768240001; x=1768844801; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ntRRDJ0mhGxRxJjOCnV3YMsjSIA0lMGQZKt83lwpVw8=;
-        b=Jo0Qxd+QnbCd3qu/JOWm6I387Yztrw6N4IC6jyYKVD62PnkRO2npwbzU5b6RPrfpOS
-         /1a6xbaHTPsERIdqgby+nn+ACXvIxaor6APIxbk3A8qnFUXNIfU/rZETUUNYzmmQCE69
-         yhFlylBLCBDqczUDOwy+YxwMqXpfyFpPhgaWBrRSSWo+pN993QPTUPicmEh8syN+wpYF
-         z+zDtaTKMuygK4yghAzlB+HLokckbR38bFJ+i3sE/qHwyRI5eWItLA1X9f4IsbNJQRre
-         5PbJ3LUhpWUyEyeIU9HD+pTRheUbkq+9gvoYYtUqwgo5YHhq7WXY4ZIQtxVQl5YeXrUG
-         YSmw==
+        bh=MZo/CUT8jYhOYXP0ze3MUTwMeTqZZQuf98ZaLPyjBl8=;
+        b=mlMmHHRozGZgdamCx1yS2Ka2o6mv7UHjcZ5IjlqYW3dQW2sCgYKsG/1SJLXY9oqAt8
+         8hOU6T5ONsScJI9X6NGQCGhRiCk/WwAZaGU37eoqQpiAgQ+o11lGlQfinFiNFGb+fkzj
+         92F/vOJDTQ9DI5Ti8j0jXV0YlhHmi884/1SOjKMw6Z+Qcsgxn5MeiCRDajBQKWOfeyk9
+         bAByU7mvH3H3JnEYat/qwEtUyYc27H2LrN+28wABMB2pR+yMXFpBAeWKDHmlL0wQkx82
+         3qIw21tLc68CazMafGrdYZi4ahlTIoc8ii560wCnrBdr8aMOMiIg/STL1NzrSJrRsjo3
+         bYdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768239999; x=1768844799;
+        d=1e100.net; s=20230601; t=1768240001; x=1768844801;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=ntRRDJ0mhGxRxJjOCnV3YMsjSIA0lMGQZKt83lwpVw8=;
-        b=a7ttNcrfMTMMbNKX55E1ATEu1sLlbiwYWiH1ts97HSROks+0aZF3S3Mu5NwMgqaCXh
-         Dyeq77q0L/A/UG1LgumqXcjd+LX8jLpFr2Yb2KzzIFAgKtsuvOsC3nxSt1A0I99GQd0O
-         NNhDQHebAEc2WBi4ei/n/QRwbnGzzgIlgOJLzOIE17rQMciMKwCMmKfnYsiWu5Hk06Sw
-         uQ0s0oF8EKJUeV37YkJScfPOhcoSb+ywkr6yFDD6rPWD4BK/sHFpPh1V6A0IlM0sZ6uF
-         yWH0YpCL5JYZDggCfi4289b/eeEweA7SOelCoiPzRey6Z6xM6g73dLB4y7V/1sNXrFbJ
-         i4hg==
-X-Forwarded-Encrypted: i=1; AJvYcCW2CEKq//gPfyiqIZ7SIWOxmNOkHDiQqq+cZCyxyOUArP7+5VraIjioucGHrW/+9wRN4gpYJc0JLBo4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCA1sPCX5/HWee1Ee7UaIG5/Pc4duu3vS8lKnubiDQJkiZUymg
-	y0w6l3FhhW4DcHoVQlKjgHpHLoyreSnS5g7HJ0VnUmm0mmo2LnwDvFKQzdCTCGqiTdM=
-X-Gm-Gg: AY/fxX4rwyFDg90hjsKTyWMPQThxMfZyPtOSb1xh4AKWeVPTMjQstnQrYzHLSi5FYRg
-	YamVg5+X8vQEf+CBf/4pSLY8+ksCAj/9WDqmXGJ67WHIEVuv5LKKBP/repEFvNtpweConh2B60+
-	fuosXhfyzXI3Po89i7xeH5McbQxV4p27JEHq/0DPqMTf5w6xzJwr8lYxLI2gjvNHZKXZycUb9WT
-	STEY/pEgjuzLevoq5bGGdFuxD7a6FKEHErO/37jsjdu6bL39630VkfvWWHFAW1wtMxteC2zHnj4
-	Qf5uTQ0PekPMKyXVDhHoW1swjPSptiSofN/w1ovcAhADBD8gd1vVKXlDeT73MbFtOF4o8CZtVZI
-	fQXxAS8zZx+zgxpqdG6HFq8A21pdKpmgRQVb0ffW801dwVImbPXqGOFOyD+EbfUwPZ5MENKrA7H
-	x7NFy9wnlAU8qedGQ=
-X-Google-Smtp-Source: AGHT+IFiaftIJ69sOLPq3ixcNVR0VUuOj8vMlHN3HGEdK6z3xQM1GDjxG/0H1AEb4SaXoGIQ8FUbfQ==
-X-Received: by 2002:a05:6820:4806:b0:65b:c34c:456a with SMTP id 006d021491bc7-65f54ed5f4emr5816630eaf.8.1768239999314;
-        Mon, 12 Jan 2026 09:46:39 -0800 (PST)
+        bh=MZo/CUT8jYhOYXP0ze3MUTwMeTqZZQuf98ZaLPyjBl8=;
+        b=BxulCmyZakhd2Irgc9sgbg2RdJxQ7MVH3AowJa6q7b9nXQd2Xsyp0F6SHvqI90RDjC
+         hs7yI2t8ow5HKO+BD9GXLlww2HGGRORhSg7Fukj5b2NcKTPtHo2jLZquFhH6k2lSDUsb
+         FrBk343CGtKnjFZ2mNpftrQIFQvfnSJUTGVwANFHssL5pO16K0OSBbRAryNskiSFlyU9
+         ZBK/+fMrfu5ZAN34ALBcxH1MYmdXER7sh4vM4aizMoWi6+IlgYVXp9TmCBsUB9mA1zkO
+         oXkjc0dogAbCZu1xALW3HjmYZzCtOyjjfqP4+NHBavJ2ML/KfdBgzu6KRAEmK2ZU661w
+         EfLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV4ql3wOGV7a5wsJJ2r2GwpgF12TYGLdD+MVQPfVLEpEWzL+AbGF4xjwapmUAAtKeIi9YUh+Zq8r6rw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzoe+XMrDTNsddzHLNmb1q+4PmzVv7uEqSyHz2QiFAMIk3uxHJl
+	187sxu8dP4qZnqcpykZEFH9UWwmSJYNdJR6NliZxYQ40vbPF9FgqkEW3Xln2UiTmLTo=
+X-Gm-Gg: AY/fxX60T7pAEnmreNYcB0LtPvQ84jxaSwa8+VX1uUF2upSAGFI7kyWeNGixiGQwPP3
+	4DTwX6xoELvtcvrDyU8kifMe6gbvXugkkPXdsZgrMHQ8lYU9OG+vFvVWNd/tzFfieK4eeoWHiPj
+	2ygXnxMnD17gSk7hPSUkb3OKL6GiyLuVnONUnbifka2phnQbZaNUR90EQB9yohwf+IFmc9RgPFn
+	EyacLmIgijHw6zf1Xa4I5LtXOCH6ZAXQRFKi9wStWDg95CsasnQzi1g2g+GdbXnD5m2vBMSoodv
+	sMpwgETopicAkR3FYuUrkpqHSXI7sJZ9rZ2FjmyJHeNozxlABy/40ciMP/Q3MNEIviNEV4UTkN4
+	WKxh9NKYyK0/oqBFa7VTI93eg6DwRNncgrEjzEWu2sIs1C9HeB0qsavETGaCQ8q8HubvXXETT5q
+	76YsCfypw47/AOZIg=
+X-Google-Smtp-Source: AGHT+IHkwkQwWo5YKuZ4K4G1LWdtF+xNJT1UXteHMvzbW4fw/KEo7wfDHBZ4/5kbyMXxjyLESkIA2Q==
+X-Received: by 2002:a05:6870:f21a:b0:3ec:48ba:8f3e with SMTP id 586e51a60fabf-3ffc0b73185mr8244317fac.49.1768240001279;
+        Mon, 12 Jan 2026 09:46:41 -0800 (PST)
 Received: from [127.0.1.1] ([2600:8803:e7e4:500:6b4b:49b3:cce5:b58f])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa4de40bfsm12126941fac.5.2026.01.12.09.46.37
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa4de40bfsm12126941fac.5.2026.01.12.09.46.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 09:46:37 -0800 (PST)
+        Mon, 12 Jan 2026 09:46:40 -0800 (PST)
 From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 12 Jan 2026 11:45:26 -0600
-Subject: [PATCH v5 8/9] dt-bindings: iio: adc: adi,ad7380: add
- spi-rx-bus-width property
+Date: Mon, 12 Jan 2026 11:45:27 -0600
+Subject: [PATCH v5 9/9] iio: adc: ad7380: add support for multiple SPI
+ lanes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260112-spi-add-multi-bus-support-v5-8-295f4f09f6ba@baylibre.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260112-spi-add-multi-bus-support-v5-9-295f4f09f6ba@baylibre.com>
 References: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
 In-Reply-To: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
 To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -98,82 +98,187 @@ Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2044; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=5I7PkElvI/QDjLf0Z/OEy6DcC7qQ3z0STtb9p1MBJUQ=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpZTNmhb/Q2l8V/klQBRsZZvQgnvEbEu3F7DNir
- ZbPmDGx0ZWJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaWUzZgAKCRDCzCAB/wGP
- wOnlCACQpsbU1N9NI9THXrV1RGljiU/Rj6uCF+ihMjA1olcu6cpnG/ygNiLcTzRZ7jTYF5inudI
- /U9nmpXb3/9Ir2GaNyVjo0DGTwL1K58GdcAPdwMnOTjflSQ8rTzO+dzrYmHQx5FuYFp6HkVqVIG
- LXg00DeQHNcJlgMBDo4RWqDC4oHX3fAvs32nMxGkR3/WAu2GINNyCnaz/V2dxaObp8anjy1Bq3p
- grreHoX3to6eYu4kpWxhd5hcbTuUx6+VtdY6vAwbEXdhsbFK8byzwqg5j7IaecX3eQHU0AGTJpd
- iLSLhGyXE6MJCBTYuRUPsXfH3q6E/6uRbdrNcD9PhRLMEuZj
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6242; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=5fXIrwABFbPXXYTw+nAf2EIqr+PtOXYDToVreVLaI64=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpZTNsfVgEagY6+eDtq4388ESB62NiNTp2+uvVc
+ BFczfUcwIqJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaWUzbAAKCRDCzCAB/wGP
+ wO4sCACDr2t8kSUqYKA2dSU2LAGdEhzIr0n6aXw89n+ck3qhECW2NliAxHPxaldEJSOLC09KsXT
+ HLu/Kfc6hY0WvQttNCerAAxrGhHZ2b92jqPL7pYIfoWQtcbQKgm/7fHBxnSRkEdJ+wTJSgJnqPS
+ QahaCBgnJ+2PPkVUGr4XGwyohaQmP3PysQfqTWeqym4At9wbhTyuvUBxM6hSO1sFCWKlObcURMA
+ j0nvqgK3Geam9GNMASe8LEJwXsj17z6Q2vjAf+LFl/C7jYJvDdho874R5XRtMpj8UvS/qjukyuG
+ CeFKLktCYOYgscUIBtjgoDgirnKgMqE0SWFT/29UMIjZ0uz4
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Add spi-rx-bus-width property to describe how many SDO lines are wired
-up on the ADC. These chips are simultaneous sampling ADCs and have one
-SDO line per channel, either 2 or 4 total depending on the part number.
+Add support for multiple SPI lanes to increase throughput. The AD7380
+family of ADCs have multiple SDO lines on the chip that can be used to
+read each channel on a separate SPI lane. If wired up to a SPI
+controller that supports it, the driver will now take advantage of this
+feature. This allows reaching the maximum sample rate advertised in the
+datasheet when combined with SPI offloading.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Nuno Sá <nuno.sa@analog.com>
+Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
+
+v5 changes:
+* Include the number of SDO lines in the error message.
+
 v4 changes:
-* Change to use spi-rx-bus-width property instead of spi-lanes.
+* Update for core SPI API changes.
 
 v3 changes:
 * Renamed "buses" to "lanes" to reflect devicetree property name change.
----
- .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-index b91bfb16ed6b..396e1a1aa805 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-@@ -62,6 +62,11 @@ properties:
-   spi-cpol: true
-   spi-cpha: true
+v2 changes:
+* Move st->seq_xfer[3].multi_lane_mode = SPI_MULTI_BUS_MODE_STRIPE;
+  to probe().
+---
+ drivers/iio/adc/ad7380.c | 51 ++++++++++++++++++++++++++++++++++++------------
+ 1 file changed, 38 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
+index bfd908deefc0..ca411371816f 100644
+--- a/drivers/iio/adc/ad7380.c
++++ b/drivers/iio/adc/ad7380.c
+@@ -77,8 +77,7 @@
+ #define AD7380_CONFIG1_REFSEL		BIT(1)
+ #define AD7380_CONFIG1_PMODE		BIT(0)
  
-+  spi-rx-bus-width:
-+    maxItems: 4
-+    items:
-+      maximum: 1
+-#define AD7380_CONFIG2_SDO2		GENMASK(9, 8)
+-#define AD7380_CONFIG2_SDO		BIT(8)
++#define AD7380_CONFIG2_SDO		GENMASK(9, 8)
+ #define AD7380_CONFIG2_RESET		GENMASK(7, 0)
+ 
+ #define AD7380_CONFIG2_RESET_SOFT	0x3C
+@@ -92,11 +91,6 @@
+ #define T_CONVERT_X_NS 500		/* xth conversion start time (oversampling) */
+ #define T_POWERUP_US 5000		/* Power up */
+ 
+-/*
+- * AD738x support several SDO lines to increase throughput, but driver currently
+- * supports only 1 SDO line (standard SPI transaction)
+- */
+-#define AD7380_NUM_SDO_LINES		1
+ #define AD7380_DEFAULT_GAIN_MILLI	1000
+ 
+ /*
+@@ -888,6 +882,8 @@ struct ad7380_state {
+ 	bool resolution_boost_enabled;
+ 	unsigned int ch;
+ 	bool seq;
++	/* How many SDO lines are wired up. */
++	u8 num_sdo_lines;
+ 	unsigned int vref_mv;
+ 	unsigned int vcm_mv[MAX_NUM_CHANNELS];
+ 	unsigned int gain_milli[MAX_NUM_CHANNELS];
+@@ -1084,7 +1080,7 @@ static int ad7380_set_ch(struct ad7380_state *st, unsigned int ch)
+ 	if (oversampling_ratio > 1)
+ 		xfer.delay.value = T_CONVERT_0_NS +
+ 			T_CONVERT_X_NS * (oversampling_ratio - 1) *
+-			st->chip_info->num_simult_channels / AD7380_NUM_SDO_LINES;
++			st->chip_info->num_simult_channels / st->num_sdo_lines;
+ 
+ 	return spi_sync_transfer(st->spi, &xfer, 1);
+ }
+@@ -1113,7 +1109,7 @@ static int ad7380_update_xfers(struct ad7380_state *st,
+ 	if (oversampling_ratio > 1)
+ 		t_convert = T_CONVERT_0_NS + T_CONVERT_X_NS *
+ 			(oversampling_ratio - 1) *
+-			st->chip_info->num_simult_channels / AD7380_NUM_SDO_LINES;
++			st->chip_info->num_simult_channels / st->num_sdo_lines;
+ 
+ 	if (st->seq) {
+ 		xfer[0].delay.value = xfer[1].delay.value = t_convert;
+@@ -1198,6 +1194,8 @@ static int ad7380_init_offload_msg(struct ad7380_state *st,
+ 	xfer->bits_per_word = scan_type->realbits;
+ 	xfer->offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
+ 	xfer->len = AD7380_SPI_BYTES(scan_type) * st->chip_info->num_simult_channels;
++	if (st->num_sdo_lines > 1)
++		xfer->multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
+ 
+ 	spi_message_init_with_transfers(&st->offload_msg, xfer, 1);
+ 	st->offload_msg.offload = st->offload;
+@@ -1793,6 +1791,7 @@ static const struct iio_info ad7380_info = {
+ 
+ static int ad7380_init(struct ad7380_state *st, bool external_ref_en)
+ {
++	u32 sdo;
+ 	int ret;
+ 
+ 	/* perform hard reset */
+@@ -1815,11 +1814,24 @@ static int ad7380_init(struct ad7380_state *st, bool external_ref_en)
+ 	st->ch = 0;
+ 	st->seq = false;
+ 
+-	/* SPI 1-wire mode */
++	/* SDO field has an irregular mapping. */
++	switch (st->num_sdo_lines) {
++	case 1:
++		sdo = 1;
++		break;
++	case 2:
++		sdo = 0;
++		break;
++	case 4:
++		sdo = 2;
++		break;
++	default:
++		return -EINVAL;
++	}
 +
-   vcc-supply:
-     description: A 3V to 3.6V supply that powers the chip.
+ 	return regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
+ 				  AD7380_CONFIG2_SDO,
+-				  FIELD_PREP(AD7380_CONFIG2_SDO,
+-					     AD7380_NUM_SDO_LINES));
++				  FIELD_PREP(AD7380_CONFIG2_SDO, sdo));
+ }
  
-@@ -160,6 +165,23 @@ patternProperties:
- unevaluatedProperties: false
+ static int ad7380_probe_spi_offload(struct iio_dev *indio_dev,
+@@ -1842,7 +1854,7 @@ static int ad7380_probe_spi_offload(struct iio_dev *indio_dev,
+ 				     "failed to get offload trigger\n");
  
- allOf:
-+  # 2-channel chips only have two SDO lines
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - adi,ad7380
-+            - adi,ad7381
-+            - adi,ad7383
-+            - adi,ad7384
-+            - adi,ad7386
-+            - adi,ad7387
-+            - adi,ad7388
-+    then:
-+      properties:
-+        spi-rx-bus-width:
-+          maxItems: 2
+ 	sample_rate = st->chip_info->max_conversion_rate_hz *
+-		      AD7380_NUM_SDO_LINES / st->chip_info->num_simult_channels;
++		      st->num_sdo_lines / st->chip_info->num_simult_channels;
+ 
+ 	st->sample_freq_range[0] = 1; /* min */
+ 	st->sample_freq_range[1] = 1; /* step */
+@@ -1887,6 +1899,13 @@ static int ad7380_probe(struct spi_device *spi)
+ 	if (!st->chip_info)
+ 		return dev_err_probe(dev, -EINVAL, "missing match data\n");
+ 
++	st->num_sdo_lines = spi->num_rx_lanes;
 +
-   # pseudo-differential chips require common mode voltage supplies,
-   # true differential chips don't use them
-   - if:
-@@ -284,6 +306,7 @@ examples:
-             spi-cpol;
-             spi-cpha;
-             spi-max-frequency = <80000000>;
-+            spi-rx-bus-width = <1>, <1>, <1>, <1>;
++	if (st->num_sdo_lines < 1 || st->num_sdo_lines > st->chip_info->num_simult_channels)
++		return dev_err_probe(dev, -EINVAL,
++				     "invalid number of SDO lines (%d)\n",
++				     st->num_sdo_lines);
++
+ 	ret = devm_regulator_bulk_get_enable(dev, st->chip_info->num_supplies,
+ 					     st->chip_info->supplies);
  
-             interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-             interrupt-parent = <&gpio0>;
+@@ -2010,6 +2029,8 @@ static int ad7380_probe(struct spi_device *spi)
+ 	st->normal_xfer[0].cs_change_delay.value = st->chip_info->timing_specs->t_csh_ns;
+ 	st->normal_xfer[0].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
+ 	st->normal_xfer[1].rx_buf = st->scan_data;
++	if (st->num_sdo_lines > 1)
++		st->normal_xfer[1].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
+ 
+ 	spi_message_init_with_transfers(&st->normal_msg, st->normal_xfer,
+ 					ARRAY_SIZE(st->normal_xfer));
+@@ -2031,6 +2052,10 @@ static int ad7380_probe(struct spi_device *spi)
+ 	st->seq_xfer[2].cs_change = 1;
+ 	st->seq_xfer[2].cs_change_delay.value = st->chip_info->timing_specs->t_csh_ns;
+ 	st->seq_xfer[2].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
++	if (st->num_sdo_lines > 1) {
++		st->seq_xfer[2].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
++		st->seq_xfer[3].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
++	}
+ 
+ 	spi_message_init_with_transfers(&st->seq_msg, st->seq_xfer,
+ 					ARRAY_SIZE(st->seq_xfer));
 
 -- 
 2.43.0
