@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-253843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CDABD11FDB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:46:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8281BD11FEA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:47:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11AC830780B2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:45:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0BF5630AF573
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25D028000B;
-	Mon, 12 Jan 2026 10:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2BA344030;
+	Mon, 12 Jan 2026 10:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ErtbFvzw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ditiNwJP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010050.outbound.protection.outlook.com [40.93.198.50])
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010048.outbound.protection.outlook.com [52.101.193.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8977B23ABAA;
-	Mon, 12 Jan 2026 10:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C6C23ABAA;
+	Mon, 12 Jan 2026 10:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.48
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768214746; cv=fail; b=QhpMeUltlvfXdTSPszPunzHyPUcTzNvjc7Dr9XbaaQ0jx/Cg96Pl/UpQO6Uk4WoZ+QEdo4arXccjJ38ay1ABC2NRd8busHYr74FALwGr3APXMRg9E+tJO+2Kmn2MWycgX+s81jjNmF+kpfjniMAQ/9mAcOIi2FyAwSQh8XqZHoE=
+	t=1768214753; cv=fail; b=o2c8ptwh6E+UwrOfWvkiCkqd47/Rnk4+quTL+neXu3suzDizYDXVEvLvSMwVxbJe2d/KWfJLB1HOhvnANVDPmjrVtvWPQ7IBBRyqrvEbnPSDWt4qCPGukGGCoNOXdMLinFyY3qnX7+0T4O9/BqncrH54cTzJ+Ze9eYprxyI+sng=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768214746; c=relaxed/simple;
-	bh=VYJiWE9ifAs2rrUIpNRyz/DdWD5XPU0pQK39G+8Z4U0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=i+z0HlqRYeYb8wUtJYNQwNnj+Pwf5yAw6b7/d5aCkaAd7Tr+bDHMNdeX5Yylvp0WCOU5XPc2vShLTJSBj5E+G0JPw4WrmWAtf2sjl4O02Om+82MiUjJgngj1zujzyvgdo1/M9zLTh09/JPDUvm8DyfCCQBvDZePRYE7C69S2/l4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ErtbFvzw; arc=fail smtp.client-ip=40.93.198.50
+	s=arc-20240116; t=1768214753; c=relaxed/simple;
+	bh=jcLk9ShnB8cqI6wzMzoU0Sgdjl8aKWUPIXqte95iyVc=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=orHt5nuMZM69blIocQEqsGdwaanPWwUQhToaA3mnjf8kllaJh7qhp22RJ3+JgDFRNLnlwDgkr99a3ZeAMZvg8B3wF2O6pkSHofWCSeRwojQDOIGyGe+RwaAx7oqK4Zx6ELNUuiO+L615h3t+AAp0xZuJMJrkKdEgeZjrNi3ElC0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ditiNwJP; arc=fail smtp.client-ip=52.101.193.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PAA8+JpdYl/KEsg4HctySoNvRJTqlKDUxnrMPaG94rX7xe4ugTcI/u6ZkYIK+eR7C1Lb1PB0rACts5QR1vBs22Xn2quTvO2zZjs+KufA1515oNkUaPfLIFCjXrTaN5a/a/QmHlmQRAJRdUZ/lzvvdEk0hDdhS3CCXCBULrcxBUJT/C3dWjYkRUbcBK5ndm3n4Ciy16GMooL9OWjo3S0A6U9KNEeDxHHMP2gGcGVNJbekdzdh6Wd63GGR5pf0MzPYDiUwaTxHmoVyGph4mZf07ccDqNPVI3z8Z/xt/nFclPDlJ/ZJHkJrZEarMDknP35TmlQWwfknUsirIzZHOFV2tg==
+ b=T2IvaIPUYh0FCDcQGk0rE2QMxrmY/8T1DdIZEAK+UJLG4jWcuLMPRWs5ZCDOI4vqS+xStH8PoYiBPy0bG4lG/YJubyOL1qmyrNbuUocatD0Z9pY1acJ2zlOPwh+xGWTj0n3h1TfmLk31tI6fvZDRPLVj5uKvzwJzZ9mmdLuF626Ji/NDYksXllZmZWAOvlMmh7Hpm44tJcmwEvBDJbW8Zi1sPcdEXINDPD/jl7ycffzF0OBEDufKugvbgyKoi56V4Uls7+G4dGP7RiWBqp5uFToVyX3rsCw5tBHknXjIde9jC6BAuzQSLeJ0hkUPKWPTbIZlhmVZcYVvsCGLorloBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JjWXjfg1ICVhRNvdCDrEgJbikDNBW0nXzZzA8CNIAB8=;
- b=ve9BLMb0NXQvETJlF+xsffSwQT48cJ9nbonV59kxhnwQB3NYNvZkxspp+FCgLZe3gnDyhd9d5ySTH5gIJ84toKW5AJl5UaZSdqWS6hq2jDvWAB5NjrGjM3qhDsiyg1FMdCg5MK39vpUACoqQQ1OFeq8R5Nww6s4Y/8QfphYn57c8n1rb0YvXiQr59DjJOlNFGHKlsg8PnPd6w1XetPBMJC1WGyB/JG3zQCf+n1L7D7l7rNdJFGa2sO06JSkM3aTCT51SGxGFUstk2KuCuz8Hg4/trrwgqiT6L1an0tw4Z2qmIXIdzX1R85DLRj+A+6eAZTyAhZ2slOUyqisPHCYvOg==
+ bh=Tu5sxxyowtNL3/mhbMSRdJ5Z3bjQfebpk3ZnVZ+JE2Q=;
+ b=C8pRwvu2mh8O+LX3rlimccQPg7Q3nTiefubP7xIo/hKEBhnjzNumP0YIrTdwz7yNVrFjoHj/TChyRofdxrtThp9eplSzL4NUJQGSKoxwskvJFMAC/6zqXKkM450uq+E7hQwSPqBgCw2kjeyu6M3GjbbLmZrTMVdeQLCy/qLGmqCqt1vDOlAE8Q75U81GHK8sHi0R4KoknU+rywml/EMZwTVUOeZUGIgRi5z4igXefbzBtEvD8um82JcW5ru5LcYfaudwNGvSJtccs/fPCY/nwu073PqVybQz1nr8XXPZj41BbiYYP5JYQF7fIkbGQnvGKJ/ylK0M2qnhdo7CAXXTww==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JjWXjfg1ICVhRNvdCDrEgJbikDNBW0nXzZzA8CNIAB8=;
- b=ErtbFvzwarU1T+pY5YfiZdU7ey4Rql5MwCGQ/CcuMONIuJme6ogDc1PB+InLxLBYWFUN5F6fm8/rTPiFGQot8oBOsOVY1av/x7jntwGTbUtYdDoO3/78wx/jyMczAgIVtoKXwzfx3jp0KgFZl8OGU+CVWuajN1O3lqVGz+KvM4k=
-Received: from SJ0PR13CA0239.namprd13.prod.outlook.com (2603:10b6:a03:2c1::34)
- by PH0PR10MB997691.namprd10.prod.outlook.com (2603:10b6:510:382::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
- 2026 10:45:43 +0000
-Received: from SJ1PEPF00001CEB.namprd03.prod.outlook.com
- (2603:10b6:a03:2c1:cafe::1e) by SJ0PR13CA0239.outlook.office365.com
- (2603:10b6:a03:2c1::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.4 via Frontend Transport; Mon,
- 12 Jan 2026 10:45:22 +0000
+ bh=Tu5sxxyowtNL3/mhbMSRdJ5Z3bjQfebpk3ZnVZ+JE2Q=;
+ b=ditiNwJPoEVZoxay0wN73Im63IFJz0shJZ4DfECATwR10GVPgEXBHGp8gtrHsKN5w/LnLugyWj3QylR8lp0mZJbTEBwFmPLZ+fA0fijdJVE/M0rqeLizsG8z4c2cSm8kce8npsL3oY/rGTaaO3fwaT2g3Z2Zoewzt22hxaBRG9s=
+Received: from CH2PR07CA0027.namprd07.prod.outlook.com (2603:10b6:610:20::40)
+ by DS7PR10MB5903.namprd10.prod.outlook.com (2603:10b6:8:85::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9499.7; Mon, 12 Jan 2026 10:45:47 +0000
+Received: from CH2PEPF00000143.namprd02.prod.outlook.com
+ (2603:10b6:610:20:cafe::7) by CH2PR07CA0027.outlook.office365.com
+ (2603:10b6:610:20::40) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.7 via Frontend Transport; Mon,
+ 12 Jan 2026 10:45:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -60,34 +60,36 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.23.195 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
 Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SJ1PEPF00001CEB.mail.protection.outlook.com (10.167.242.27) with Microsoft
+ CH2PEPF00000143.mail.protection.outlook.com (10.167.244.100) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Mon, 12 Jan 2026 10:45:42 +0000
-Received: from DLEE205.ent.ti.com (157.170.170.85) by lewvzet201.ext.ti.com
+ 15.20.9520.1 via Frontend Transport; Mon, 12 Jan 2026 10:45:47 +0000
+Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet201.ext.ti.com
  (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 12 Jan
- 2026 04:45:42 -0600
-Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 04:45:46 -0600
+Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE203.ent.ti.com
+ (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 12 Jan
- 2026 04:45:42 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 04:45:46 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE203.ent.ti.com
+ (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 12 Jan 2026 04:45:41 -0600
+ Transport; Mon, 12 Jan 2026 04:45:46 -0600
 Received: from moteen-ubuntu-desk.dhcp.ti.com (moteen-ubuntu-desk.dhcp.ti.com [172.24.235.46])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60CAjbfD242687;
-	Mon, 12 Jan 2026 04:45:38 -0600
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60CAjbfE242687;
+	Mon, 12 Jan 2026 04:45:42 -0600
 From: Moteen Shah <m-shah@ti.com>
 To: <krzk+dt@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
 	<nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>
 CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <gehariprasath@ti.com>,
 	<y-abhilashchandra@ti.com>, <m-shah@ti.com>
-Subject: [PATCH 0/3] Enable analog audio support on J721S2 EVM
-Date: Mon, 12 Jan 2026 16:15:33 +0530
-Message-ID: <20260112104536.83309-1-m-shah@ti.com>
+Subject: [PATCH 1/3] ti,j721e-system-controller.yaml: Allow audio-refclk as clock-controller child
+Date: Mon, 12 Jan 2026 16:15:34 +0530
+Message-ID: <20260112104536.83309-2-m-shah@ti.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260112104536.83309-1-m-shah@ti.com>
+References: <20260112104536.83309-1-m-shah@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,84 +101,86 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CEB:EE_|PH0PR10MB997691:EE_
-X-MS-Office365-Filtering-Correlation-Id: 93cd4e06-3e00-48dc-a7ac-08de51c7bc23
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000143:EE_|DS7PR10MB5903:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c1da615-9b86-4762-154c-08de51c7beba
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026|34020700016;
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|34020700016|376014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?deJ4q3Aimuvkqhr88m64ydBN3C/1/NemSyMMKRhneked8jZ6JjXMXGvAvgl6?=
- =?us-ascii?Q?jjkCY7QmcDNlUKkJlqkE3NsyujHUuNhzlFNPuhFmn6HBcp3ju+9Z0/4FUPev?=
- =?us-ascii?Q?PoZOppLZgl0DijB5oR+P7Nq6M6ZjOBNxtNhLinDBXnlUnB/+B5NiXqknrn96?=
- =?us-ascii?Q?VVxARrT/fPpGQ4ijqp7vhoOlApQUUW3zdSOzu8thot8nr0+HfLdjLKmwqBRI?=
- =?us-ascii?Q?fg48cpdjPooopQy5amBEurv2WpUA7yYDm58ui8wrblDa5M/Vayvc0kRSjX/0?=
- =?us-ascii?Q?+hyy5QBuOScfv3p83peMhrUqB32QVbbjUYPxvX3EEkR2jrxVAo6YrhVPcPBG?=
- =?us-ascii?Q?Six2u0GvcX1U28OSWbM3zrOXZFZv9hI8QIh/L1kH7P+Tc0A2540h2McY7Q8K?=
- =?us-ascii?Q?5ioEYJK0A3evkspzIoEiKLntaIOhUSLfO9jTyBwrx34GJosFyNWum5gHsgfB?=
- =?us-ascii?Q?I9PedUEIxfi88F5QG6EGbQ7xbPEx2FjLVLom2I8TPeBfKKlin3cI6dj/grR5?=
- =?us-ascii?Q?Ax+VrWWip/Mj08o4d0YJnUEyyyh9H0hM0UsrZoFGtURBlSvg3/r3Yc3hxz7q?=
- =?us-ascii?Q?kxGkyOvniSyE9sX89KuA5cs59vtcJ9+N/DRuv4zhXL2KR6vp+/rN1tNTFY0V?=
- =?us-ascii?Q?TEkHfHKR8r42cS28ckooSy5Dq9iWV449HGucyCYlbhq0ZGuA++P8wm/Tl6p/?=
- =?us-ascii?Q?jFHyyWpuyE/n4Q5A2JpEEGMtvEa88zH/Jh6GQ9KmEFdhJju3VkTINpqYb08d?=
- =?us-ascii?Q?fzuUSF9qftwiwwz3xb7hswqdBsbvG8Zsu1yy7PHO+vGeptzWDQDYV2FjQllm?=
- =?us-ascii?Q?aWuUm0tmV+inDQA2vGnlAgqW5PrCtII8jlqoLD/x6GNI4yaD82DkwDzSIWi1?=
- =?us-ascii?Q?ICrnM37fepfvkAFMIydPU743HrnTt5C9PB5VY+/ukOa7Jipj1ShG3aBoFneJ?=
- =?us-ascii?Q?jx7YIlAElR4X7Qgtd3/mfzYGOHhwpWtzxKfOlJKrvB6NOAMWsyps6nybtBcO?=
- =?us-ascii?Q?TKhMuIZEvKFMem99jojgHFosdg2II77HhpE9APbMSaU2y8VnJqPJ+wLHexEx?=
- =?us-ascii?Q?VUgy5+3lHwwQTKbhP1oXoMwWE+htVfee+4ibhw3lLvxkZSfTR1qOV4VsjBZh?=
- =?us-ascii?Q?wBUFjSVzX+4gfvzsjwloINLoEY1ZlHvURLw35A/Eaiu1S1rwM7NGZnFztZk0?=
- =?us-ascii?Q?iDeaPh7Esa4RQPrvnSwBJkgjfPGD1n1bDwzMCWMKNtLQB7acnk7F01rQrahU?=
- =?us-ascii?Q?f607+TSKWBoopkUXCLMtb3R/M0lBn5upCe+CVvMrhfi68za6KME7rrFt+QTu?=
- =?us-ascii?Q?L+u69t7AhCdvvJpOHp8EFl/iGx3RDFnbQv1bGCfsib8g3I/FAhhkNdI8nWrk?=
- =?us-ascii?Q?u1pXc5jBaWhUYVNb0d2rpdFJLJOtsm8TmfgwMEUj3S4xbGQPcBbxChBwXQxd?=
- =?us-ascii?Q?1DsgjTW7LU+frh0WOvHLf5BOPisj2vlC1iwRtMMdvnSHlJNjhTyK/HGZTHPV?=
- =?us-ascii?Q?1Aat4EdSEpHtD8sdpTtM/r36k0azFssq4MO+GtB64bCpJxGquPaA3nLSAinJ?=
- =?us-ascii?Q?LNiFUn+hFzvTvimi8yY=3D?=
+	=?us-ascii?Q?5/1FoUPiVZMT0JLWGkNHMYucdHDqBoGsnn6dJ2GY7fDwCFhGA2n/RMqPo5mU?=
+ =?us-ascii?Q?QNtHWNyhj1sY2xd7AVlcJg/qa2Bg/3VjVmFqjJuqbm6uY8SV7y+Auqc0terS?=
+ =?us-ascii?Q?JIBvPUVP9rFd2OGBJw/TCg9OLhUFP1jGceH2p4xF5PhNLWneF+GpjG630nNb?=
+ =?us-ascii?Q?pymCR8emhpVRyLLBI5Y7+iAsxQdBjQUgaIcL/aVdJ6OGeuaB/j1Qy+jzQRxH?=
+ =?us-ascii?Q?QaX/3LUKGkiIjmHshzAB+jKDwamQUqAp1QBssHhdpCVjuk6mknEtm+ifnyYx?=
+ =?us-ascii?Q?o/jJvgW7CqOQpzLS1PBHPI9T0WBWF8E1PjkGh4CT7ge6JBd0TmA3fqTMHNxw?=
+ =?us-ascii?Q?6vd5yew9v7LEAK/V4CfFAenUhEqxnkivvXN55/0cMoC7BXEIUpvDh0cgon82?=
+ =?us-ascii?Q?l5cd+43cHQc7L1gtsFIEy2Pth8SnTP91PRJAOtmJkH2lDkeU20O8a70OnytQ?=
+ =?us-ascii?Q?9QvtvDpge7odorvjVDHgm8ajInzHgAPg4GVP1q3/bd13FA/Fgb/a9EvRuzi+?=
+ =?us-ascii?Q?++AXpgJi/oiuSSx72ilxhvyh3HuIe9GubTAwjVGalDBt19ouxg8HTNyHgBIU?=
+ =?us-ascii?Q?zmD8CwUIPzUha6MTq7ogsNMCfXw4G8/xRr6dyQwMOZxWzjilL/oG+O1CiseL?=
+ =?us-ascii?Q?RysgrjJSOeNVKgf5p3IRVdY9mLLjioKhbem24FTw2tZPvtgV3xRgG93AlpUA?=
+ =?us-ascii?Q?eU2ajcnPX5L8CbZekPfq5rcR5VsMgXiIET5rDeiCiJTfgJ+T887B8vx+h5eC?=
+ =?us-ascii?Q?nB6L5U2D3wIC3oKie3STLoDLUrNHLHC7Xn04vlbbPhlhfKqqSU2DZ6mc/cUT?=
+ =?us-ascii?Q?d6YHvj3HZcwepmHrC97OUCcl6rCdtcflsZPZcypJOS9BxrMDXTlfkxLliPyh?=
+ =?us-ascii?Q?jnuPoz3+YHzMQ8FmY7YTpcAoSzYGjtifCKzP6OO3EnOKVi+3zt/pudia8alh?=
+ =?us-ascii?Q?TpeJK3zgnt54hSZTK95FD5gRwG7y6oeSEwECzcYbSG31VCp7DRIDSp+G8cwG?=
+ =?us-ascii?Q?PRcq4jeKHxPr4RCSNDGHcrgAfLksbWWPTK+Los/fSj6HNvgDGH1IU0w/XYXB?=
+ =?us-ascii?Q?YxwYAtVeJTlBoG2QO/Z6uuOtKc70mwoTJSZYK0TVCi+MmJLGYdkd0+JE1FpD?=
+ =?us-ascii?Q?2djt3XD0cpx8/4Qn7PvL3h2KaFKIbhkQHDvjYrYotSfieTTIof5z88sFdfXt?=
+ =?us-ascii?Q?OtmIWYyfn6ilS9Vo+QnglQpF0XsntKZMDBUMYVL6vsUx9mFV9oJvie4GUTIW?=
+ =?us-ascii?Q?9VjMM4KPLTz331HhMLt7jq8taei8yQGUeK84YjbVlY0mLVhfcuDI4EpfZZsG?=
+ =?us-ascii?Q?oOp7rgZ8xc2k9RN+cNeoL12HLQtYA345BiZWFh3JB2B3EsKrbUYJXoSLek7P?=
+ =?us-ascii?Q?xqpJ63f9PK/TSRsDXSTvPmRcwIJ0ZluxZ0Q1JoNZ3FJauhDDtykJB8JMkPxb?=
+ =?us-ascii?Q?g8HwMcdcRAgygkWIll+ohTNP2fclGzy7o5l5Zrfwuj6nYhZ9V/mnhqUXsnuy?=
+ =?us-ascii?Q?7b8uswrdygzSbuhmwuJsox8U3cJpWY+ZLo2bRMfWXJu/NwTU6BfvFP4bpfJY?=
+ =?us-ascii?Q?Gtbv9dqI4lalpIe9DiU=3D?=
 X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026)(34020700016);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(34020700016)(376014);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 10:45:42.8621
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 10:45:47.2495
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93cd4e06-3e00-48dc-a7ac-08de51c7bc23
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c1da615-9b86-4762-154c-08de51c7beba
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF00001CEB.namprd03.prod.outlook.com
+	CH2PEPF00000143.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB997691
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB5903
 
-This patch series, adds support for analog audio on J721S2 EVM
+The ti,j721e-system-controller binding currently only allows
+clock-controller@ child nodes to reference the ti,am654-ehrpwm-tbclk
+schema. However, the system controller on J721S2 also contains audio
+reference clock controllers (ti,am62-audio-refclk) that use the same
+clock-controller@XXXX naming pattern.
 
-Earlier version of the patchset sent upstream[0] was rejected as
-its dependency[1], which resolves the DTBS check errors introduced
-by [0] also got rejected on the grounds of ABI breakage.
+Hence, extend the clock-controller pattern to accept either ehrpwm-tbclk
+or audio-refclk schemas using a oneOf constraint.
 
-Another solution to fix the DTBS check errors introduced by [0] is
-to modify the ti,j721e-system-controller.yaml binding to allow
-audio-refclk as clock-controller child. This is done in the first
-patch of this series.
+Signed-off-by: Moteen Shah <m-shah@ti.com>
+---
+ .../bindings/soc/ti/ti,j721e-system-controller.yaml         | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Test log: https://gist.github.com/Jamm02/64b1af5b8829c47f1a2c5ace93204982
-
-[0]: https://lore.kernel.org/linux-arm-kernel/20250604104656.38752-1-j-choudhary@ti.com/
-[1]: https://lore.kernel.org/all/20250603095609.33569-4-j-choudhary@ti.com/
-
-Jayesh Choudhary (2):
-  arm64: dts: ti: k3-j721s2-main: Add audio_refclk node
-  arm64: dts: ti: k3-j721s2-common-proc-board: Enable analog audio
-    support
-
-Moteen Shah (1):
-  ti,j721e-system-controller.yaml: Allow audio-refclk as
-    clock-controller child
-
- .../soc/ti/ti,j721e-system-controller.yaml    |   6 +-
- .../dts/ti/k3-j721s2-common-proc-board.dts    | 131 ++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |   9 ++
- 3 files changed, 144 insertions(+), 2 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+index f3bd0be3b279..d5d84a8f1257 100644
+--- a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
++++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+@@ -53,9 +53,11 @@ patternProperties:
+ 
+   "^clock-controller@[0-9a-f]+$":
+     type: object
+-    $ref: /schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
++    oneOf:
++      - $ref: /schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
++      - $ref: /schemas/clock/ti,am62-audio-refclk.yaml#
+     description:
+-      Clock provider for TI EHRPWM nodes.
++      Clock provider for TI EHRPWM or Audio Reference Clock nodes.
+ 
+   "phy@[0-9a-f]+$":
+     type: object
 -- 
 2.34.1
 
