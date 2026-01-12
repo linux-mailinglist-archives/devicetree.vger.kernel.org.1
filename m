@@ -1,139 +1,168 @@
-Return-Path: <devicetree+bounces-254089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB3A2D13EC0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:15:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9945DD13ECF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:15:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 444F4302BD34
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:15:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 895E030133BB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC993644C1;
-	Mon, 12 Jan 2026 16:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7FD3659F3;
+	Mon, 12 Jan 2026 16:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WH5GfX31"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o7yTm1+Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490CF36402C;
-	Mon, 12 Jan 2026 16:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46482364EA5;
+	Mon, 12 Jan 2026 16:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768234500; cv=none; b=otel6CDiZQo8Pqnd7QQaZ6dW14VreizQlVqdQ3IyiSh8BKxOb83vw0nojks+DAiEvhlfPPYEqWrBlzO5/k0En1HlSCxgFFMclHEPuaTR+WDQEcsWJ9T3Yi97KoE5O1IU5Fxgrhmsy7J2iDTXo8dpy0ML51uGPjbKa+j0g4suBbQ=
+	t=1768234502; cv=none; b=sMEQubMtXMPd4KKOAhZeDC69jkLWJYhMlEizFl7SOkfjb2/aX4yfjPIpREPcg5rdvSUvuiFSYfckFkW4hcSTexTUbX1Y108pZfAXQv6XgVq8apmXPcy3gN7LYVvtTBduw6L8qfKM4fCkYMRx6EOGL1VgNo5uJxDUT4BL+rgMUJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768234500; c=relaxed/simple;
-	bh=XAsw1Ng2RkdR08+1vG5HA7UnfGA93dXPoZepz7fgmwo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=s9yumfQFe58ooWQqJY4vJ9AFh10QmJODG6mw2KDuRPuqxLiXay7ZtAnNhw9HWg1/2BEAtrkmiJCbkwHjwYmEBqB7QvOFeZFtSXRrV7/9J5+/BfQCy+JcijMO1msm7LyIEoiAjNTaxTRPxdvCBzqcU4Bz8nco1dk7lSgdYkXFCEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WH5GfX31; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CDC2C16AAE;
-	Mon, 12 Jan 2026 16:14:58 +0000 (UTC)
+	s=arc-20240116; t=1768234502; c=relaxed/simple;
+	bh=PmRsUuJqnWmX19O8SSFENbMFEb1Sg7/vMsXCttr9Ry4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UbeyAxXGAeSMRpwa75+uRLHRjKewy4mvjwpGOe38+Nf8cDQTmErGzgmSpDZuczIr14AJ3f9cTuBh/pIw+PnomakEccd7MFhVxa8NYcnrjJsWiIDLNT36CWuhwpcc+m1z3JV2VC+NiFWXiOrlJt3J2EtK+fEJh3Sp8ZdF588d+bQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o7yTm1+Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82247C116D0;
+	Mon, 12 Jan 2026 16:14:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768234500;
-	bh=XAsw1Ng2RkdR08+1vG5HA7UnfGA93dXPoZepz7fgmwo=;
-	h=From:Date:Subject:To:Cc:From;
-	b=WH5GfX31E+XGmUgjVXBkGW5hgwJ1AQaJFjz1h7eMhxvQDvG9kHP4FRPwN3Xz0Z+Vv
-	 4weQI/KdtEKwzOoZKBAiWvBV+E09EQU2z4/zwcKA2h346Ie5WsgGWTr1oAD4oBN8vt
-	 1APqxyAF2m5UroYVeL5ei/ti1mml1P5KHD5ZV0ugVF8vY9S7ZlfGN++nzqbwAQ02Ou
-	 O/x/POUuA7ad0XLTzP9dB1y/mr3d05kEXPCAbMOz2lcnfq9EOaBrq/ZM0NgxTpzzwS
-	 H2x19ArAlcalN9CqLQ05lXg/iuaZn/AKcV2Wct7PPHj1PWslSI0xEhwNHnw2zw60F8
-	 bbmqv6+SsbI/w==
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 12 Jan 2026 17:14:52 +0100
-Subject: [PATCH v11] mfd: simple-mfd-i2c: Add Delta TN48M CPLD support
+	s=k20201202; t=1768234501;
+	bh=PmRsUuJqnWmX19O8SSFENbMFEb1Sg7/vMsXCttr9Ry4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=o7yTm1+ZHktF7rR6oGXdWbXYexfO0KHJz8OjoIVjplzDSXfP6uIpTQUWV7ys1FoA7
+	 txMpzxwGttmicDgVcIvjRDsHw/HdNvBLG98EWDRq9g61HSMf6Ya5M3SoW8EI7gGb3q
+	 5k9/vyVMO2P+zKAGuzw5jdw3pptN2nyl1c1v0m2lsxUt6xLrrdq3q6Df6Y67LfD9pJ
+	 4QZ/grRi/fzDdlEybds/lLr0E3IsP9fWAhS2phe9gZgOmukHqg04C+Mc3Q0UvhxzFq
+	 gXELRX8i7aakeligRCErr153bau5kvbnm2jUa8qmZnAgqnOZargIRYtlOtYmlb56Q2
+	 SBHoxKfbRpJAg==
+Message-ID: <cbf482be-4aa8-488f-9f78-181f8f145c28@kernel.org>
+Date: Mon, 12 Jan 2026 17:14:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260112-mfd-tn48m-v11-1-00c798d8cd2a@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDA11FJSSM
- xLz0lN1M1OAAkpGBkZmBoaGRrq5aSm6JXkmFrm6lhYWSSZJqUaWKcmWSkD1BUWpaZkVYMOiY2t
- rAYzV/Y9cAAAA
-X-Change-ID: 20260112-mfd-tn48m-988b4be29dc9
-To: Lee Jones <lee@kernel.org>, Robert Marko <robimarko@gmail.com>
-Cc: Randy Dunlap <rdunlap@infradead.org>, 
- Bartosz Golaszewski <brgl@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Robert Marko <robert.marko@sartura.hr>, Linus Walleij <linusw@kernel.org>
-X-Mailer: b4 0.14.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Intel-wired-lan] [PATCH net-next 01/12] dt-bindings: dpll: add
+ common dpll-pin-consumer schema
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: Eric Dumazet <edumazet@google.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>, Rob Herring <robh@kernel.org>,
+ Leon Romanovsky <leon@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ linux-rdma@vger.kernel.org, Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ intel-wired-lan@lists.osuosl.org, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Jiri Pirko <jiri@resnulli.us>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>, netdev@vger.kernel.org,
+ Mark Bloch <mbloch@nvidia.com>, linux-kernel@vger.kernel.org,
+ Tariq Toukan <tariqt@nvidia.com>,
+ Alexander Lobakin <aleksander.lobakin@intel.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Saeed Mahameed
+ <saeedm@nvidia.com>, "David S. Miller" <davem@davemloft.net>
+References: <20260108182318.20935-1-ivecera@redhat.com>
+ <20260108182318.20935-2-ivecera@redhat.com>
+ <20260109-wonderful-acoustic-civet-e030da@quoll>
+ <a581a86d-d49c-4761-bd68-989a7a12cb56@redhat.com>
+ <fd07e1f8-455c-464f-9760-9d16d450a7d5@redhat.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <fd07e1f8-455c-464f-9760-9d16d450a7d5@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-From: Robert Marko <robert.marko@sartura.hr>
+On 09/01/2026 15:11, Ivan Vecera wrote:
+>>>> +  Common properties for devices that require connection to DPLL 
+>>>> (Digital Phase
+>>>> +  Locked Loop) pins for frequency synchronization (e.g. SyncE).
+>>>> +
+>>>> +properties:
+>>>> +  dpll-pins:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>> +    description:
+>>>> +      List of phandles to the DPLL pin nodes connected to this device.
+>>>> +
+>>>> +  dpll-pin-names:
+>>>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>>>> +    description:
+>>>> +      Names for the DPLL pins defined in 'dpll-pins', in the same 
+>>>> order.
+>>>> +
+>>>> +dependencies:
+>>>> +  dpll-pin-names: [ dpll-pins ]
+>>>
+>>> Binding should go to dtschema. See also commit
+>>> 3282a891060aace02e3eed4789739768060cea32 in dtschema or other examples
+>>> how to add new provider/consumer properties.
+> 
+> Quick questions... if the dpll pin consumer properties schema should go
+> to dtschema...
+> 
+> 1) Should I remove this patch from this series? So this schema won't be
+>     a part of kernel
 
-Delta TN48M switches have a Lattice CPLD that serves
-multiple purposes including being a GPIO expander.
+Yes.
 
-So, lets use the simple I2C MFD driver to provide the MFD core.
+> 2) dtschema does not contain dpll-device and dpll-pin schemas now, I
 
-Also add a virtual symbol which pulls in the simple-mfd-i2c driver and
-provide a common symbol on which the subdevice drivers can depend on.
+The provider, so the #foo-cells should be in dtschema as well.
 
-Fixes: b3dcb5de6209 ("gpio: Add Delta TN48M CPLD GPIO driver")
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Link: https://lore.kernel.org/20220131133049.77780-2-robert.marko@sartura.hr
-Link: https://lore.kernel.org/linux-gpio/20260112064950.3837737-1-rdunlap@infradead.org/
-Signed-off-by: Linus Walleij <linusw@kernel.org>
----
-This fell off the planet after the v5.18 merge window,
-and now the subdrivers are facing deletion because the
-main symbols for the driver are not there. (See Link:
-tags.)
+>     expect they should be added as well... or? I'm asking because there
+>     is also e.g. hwlock-consumer.yaml in dtschema but no hwlock
 
-The driver has users, so here is the patch, rebased on
-v6.19-rc1.
-
-I dropped Lee's Acked-for-MFD tag because Lee will be
-re-evaluating and eventually merging the patch anyway.
----
- drivers/mfd/Kconfig          | 11 +++++++++++
- drivers/mfd/simple-mfd-i2c.c |  1 +
- 2 files changed, 12 insertions(+)
-
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index aace5766b38a..f7f12a0428aa 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -407,6 +407,17 @@ config MFD_CS47L92
- 	help
- 	  Support for Cirrus Logic CS42L92, CS47L92 and CS47L93 Smart Codecs
- 
-+config MFD_TN48M_CPLD
-+	tristate "Delta Networks TN48M switch CPLD driver"
-+	depends on I2C
-+	depends on ARCH_MVEBU || COMPILE_TEST
-+	select MFD_SIMPLE_MFD_I2C
-+	help
-+	  Select this option to enable support for Delta Networks TN48M switch
-+	  CPLD. It consists of reset and GPIO drivers. CPLD provides GPIOS-s
-+	  for the SFP slots as well as power supply related information.
-+	  SFP support depends on the GPIO driver being selected.
-+
- config PMIC_DA903X
- 	bool "Dialog Semiconductor DA9030/DA9034 PMIC Support"
- 	depends on I2C=y
-diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
-index 8b751d8e3b5a..7315fad618e4 100644
---- a/drivers/mfd/simple-mfd-i2c.c
-+++ b/drivers/mfd/simple-mfd-i2c.c
-@@ -116,6 +116,7 @@ static const struct simple_mfd_data spacemit_p1 = {
- };
- 
- static const struct of_device_id simple_mfd_i2c_of_match[] = {
-+	{ .compatible = "delta,tn48m-cpld" },
- 	{ .compatible = "fsl,ls1028aqds-fpga" },
- 	{ .compatible = "fsl,lx2160aqds-fpga" },
- 	{ .compatible = "fsl,lx2160ardb-fpga" },
-
----
-base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-change-id: 20260112-mfd-tn48m-988b4be29dc9
+hwlock-cells are missing, probably due to licensing.
 
 Best regards,
--- 
-Linus Walleij <linusw@kernel.org>
-
+Krzysztof
 
