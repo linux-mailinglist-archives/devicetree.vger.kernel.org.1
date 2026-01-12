@@ -1,91 +1,92 @@
-Return-Path: <devicetree+bounces-254159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C31D14E47
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:20:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AEE3D14E63
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:23:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 97C6E3022ABE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:20:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B09A33017205
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E94A43191AC;
-	Mon, 12 Jan 2026 19:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3351931B117;
+	Mon, 12 Jan 2026 19:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i4dq3UQu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LZEyCo93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD209318EF7;
-	Mon, 12 Jan 2026 19:19:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359DB31ED80;
+	Mon, 12 Jan 2026 19:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768245599; cv=none; b=Mt8S1H76O/N5AuXbPW1rxFnJnhn0Z59TaxMvNArByAc5J8aypAzxroX+YO7RVHavG9LP69G5Er1CEYa0wSRk3r8jNORvzcE+/SOp2UeKa9ZPyFpEeYDPUEoVTfokzvRKxc6EOqU3wMQ+x48DEtrtLt+gGNK3xBpTOkX2W5ecGxk=
+	t=1768245779; cv=none; b=oVQh5XhschZXCo4kyU+4D3nl1v6Q+m5u9IgMh/wLECYcBeyNp5/2GOfsKQEYW+F+/1Vr021akap5PmvwJXo/DXwbYs0wXtQ+BDjYioJvI7AQDalA8WzKsqJuulMsvJWwJ/Wfm2So+7d/KDkU+c6lJb2egN1SGX5hw1HK/JvN/BU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768245599; c=relaxed/simple;
-	bh=8XdDuYY8o16AHBqptf2+Lenxj/jSJqYCRVV3ayhVeHI=;
+	s=arc-20240116; t=1768245779; c=relaxed/simple;
+	bh=ZhRs7xnPZSV6XzTqCAD9BCDygo93shWOqBF0P1AaaRE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pdAXbHT7FlrxGay2lcXwgRa1Rboppo/j3zimxAabWQvRAOlykPwWWInCFhh/yFLgPUpdqsA2QUXqn8Lk4XZpoGsjiH1op+mGWh6MNVYmyIqtUXjXwY5+5M+nsKhQKxTnL2k8PApAVQb9llWLZkxeHkPWzoScKunyQgZqxLnPX+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i4dq3UQu; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=FzOFyZHnRzDFLzhHMao+5LGyKiTVJKN8/hKH217f4bkEZrHyjxEXXtjegcwzPrje9efqBca8DsG/ia/cQukeT7yvBagdE14eEgrF6ZWEWCC/ZJB+vYLv/+BN9bl57B7++/f86AexhMQ85R4RCh3Iflpq1BO+Qr0BfSaqtoXCpyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LZEyCo93; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768245596; x=1799781596;
+  t=1768245768; x=1799781768;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=8XdDuYY8o16AHBqptf2+Lenxj/jSJqYCRVV3ayhVeHI=;
-  b=i4dq3UQuLJKe0UMkY2PBi/sS5UEiZ3MC7haLiYb2wmgqdc/r9+7O1WEC
-   7Ay8FKRVgZtTkaET2HqF5Ag4qlGp+Tuh68Wo34iF6P9xLgEGo0ktY3QcM
-   oVX3DoUho2NbqSw0qdtcuXRmsuevqrAr+8su1fQldrm7WU6UF9GLk5LzF
-   DqfWhxXPNp/o6im2TYhqg5QA1L71qv+Fj2s0jMZH0P6+tl2ydfd+ADb3g
-   zvuOO3kFYxMm++r/gQ+EWxiAKuvk1prCnw3KoArMCTCX4MwOtDkTt+AFT
-   dfsJ83a0yu7EAB6u1CYpAzGS7hEajbO5DtfZ1oVJjGOPfs/WIZEANlnMu
-   w==;
-X-CSE-ConnectionGUID: rf9aYiOiSRaJWLL0AnWM1A==
-X-CSE-MsgGUID: KYMo2/e6TDSyUUn11/mp+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69450951"
+  bh=ZhRs7xnPZSV6XzTqCAD9BCDygo93shWOqBF0P1AaaRE=;
+  b=LZEyCo93wnXyTfQbLqFQg0VpXsXl8PqF7X2A6MLtmiKMTbw2BO8U+MSt
+   dRXBqLL3n+4ZsfsVnv1QbOo/sk+abxPg9r89OI2gWeho20fSIICb+8Oa5
+   a2pJ3MA2CqyYw5j4y6CjDEszz8t+Y4a8Bxp1iZW2V3dG5Wp/aPsRwdffC
+   lhunireMdavEvJ+suCtRKmeVgA0HrTVteOA80aBDbj0eUrdo29RN6J/od
+   pOi/nyE679ci6KhBOrvruykiDBJMHdh+RMcOeunnU1nxK9ZYebMEC1mBq
+   otT6lyAgjYEWJDDXP2a+8/R8Npq6Gfv8pQEDuL2FwK/We+c17Fd5vzRWh
+   g==;
+X-CSE-ConnectionGUID: M1qEcAmqSamuh7M1v4oe2g==
+X-CSE-MsgGUID: 9l0OgbWyQUO7Mk6WGs7k4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="95004014"
 X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="69450951"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:19:54 -0800
-X-CSE-ConnectionGUID: MXpzZ1xnR9iTu7OhIX4rXg==
-X-CSE-MsgGUID: +gG6zgHgS7iFR/wRaFE7Qg==
+   d="scan'208";a="95004014"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:22:47 -0800
+X-CSE-ConnectionGUID: /POQ5LCQRMmFK2RRBMq4iA==
+X-CSE-MsgGUID: sRBvAVgdRVW3CVbcLKyFvw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="203987512"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 12 Jan 2026 11:19:49 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vfNS6-00000000Dme-1S2R;
-	Mon, 12 Jan 2026 19:19:46 +0000
-Date: Tue, 13 Jan 2026 03:19:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Eric Dumazet <edumazet@google.com>,
-	Tony Nguyen <anthony.l.nguyen@intel.com>,
-	Rob Herring <robh@kernel.org>, Leon Romanovsky <leon@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, linux-rdma@vger.kernel.org,
-	Przemek Kitszel <przemyslaw.kitszel@intel.com>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	intel-wired-lan@lists.osuosl.org, Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Pirko <jiri@resnulli.us>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Mark Bloch <mbloch@nvidia.com>, linux-kernel@vger.kernel.org,
-	Tariq Toukan <tariqt@nvidia.com>,
-	Alexander Lobakin <aleksander.lobakin@intel.com>,
-	Jonathan Lemon <jonathan.lemon@gmail.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Saeed Mahameed <saeedm@nvidia.com>
-Subject: Re: [Intel-wired-lan] [PATCH net-next 06/12] dpll: Support dynamic
- pin index allocation
-Message-ID: <202601130301.7QjXjwFp-lkp@intel.com>
-References: <20260108182318.20935-7-ivecera@redhat.com>
+   d="scan'208";a="208690532"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.37])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:22:40 -0800
+Date: Mon, 12 Jan 2026 21:22:38 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Rob Herring <robh@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nicolas.schier@linux.dev>,
+	Hans de Goede <hansg@kernel.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Mark Pearson <mpearson-lenovo@squebb.ca>,
+	"Derek J. Clark" <derekjohn.clark@gmail.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v4 9/9] power: sequencing: pcie-m2: Create serdev device
+ for WCN7850 bluetooth
+Message-ID: <aWVJ_ncUkAYswE3W@smile.fi.intel.com>
+References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
+ <20260112-pci-m2-e-v4-9-eff84d2c6d26@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,52 +95,99 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260108182318.20935-7-ivecera@redhat.com>
+In-Reply-To: <20260112-pci-m2-e-v4-9-eff84d2c6d26@oss.qualcomm.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Ivan,
+On Mon, Jan 12, 2026 at 09:56:08PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
 
-kernel test robot noticed the following build warnings:
+> For supporting bluetooth over the non-discoverable UART interface of
+> WCN7850, create the serdev device after enumerating the PCIe interface.
+> This is mandatory since the device ID is only known after the PCIe
+> enumeration and the ID is used for creating the serdev device.
+> 
+> Since by default there is no OF or ACPI node for the created serdev,
+> create a dynamic OF 'bluetooth' node with the 'compatible' property and
+> attach it to the serdev device. This will allow the serdev device to bind
+> to the existing bluetooth driver.
 
-[auto build test WARNING on net-next/main]
+...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ivan-Vecera/dt-bindings-dpll-add-common-dpll-pin-consumer-schema/20260109-022618
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20260108182318.20935-7-ivecera%40redhat.com
-patch subject: [Intel-wired-lan] [PATCH net-next 06/12] dpll: Support dynamic pin index allocation
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20260113/202601130301.7QjXjwFp-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260113/202601130301.7QjXjwFp-lkp@intel.com/reproduce)
+> +static int pwrseq_m2_pcie_notify(struct notifier_block *nb, unsigned long action,
+> +			      void *data)
+> +{
+> +	struct pwrseq_pcie_m2_ctx *ctx = container_of(nb, struct pwrseq_pcie_m2_ctx, nb);
+> +	struct pci_dev *pdev = to_pci_dev(data);
+> +	struct serdev_controller *serdev_ctrl;
+> +	struct device *dev = ctx->dev;
+> +	struct device_node *pci_parent;
+> +	int ret;
+> +
+> +	/*
+> +	 * Check whether the PCI device is associated with this M.2 connector or
+> +	 * not, by comparing the OF node of the PCI device parent and the Port 0
+> +	 * (PCIe) remote node parent OF node.
+> +	 */
+> +	pci_parent = of_graph_get_remote_node(dev_of_node(ctx->dev), 0, 0);
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601130301.7QjXjwFp-lkp@intel.com/
+> +	if (!pci_parent || (pci_parent != pdev->dev.parent->of_node)) {
 
-All warnings (new ones prefixed by >>):
+!device_match_of_node()
 
->> drivers/dpll/dpll_core.c:499:21: warning: overflow in expression; result is -2147483648 with type 'int' [-Winteger-overflow]
-     499 |         pin_idx -= INT_MAX + 1;
-         |                            ^
-   1 warning generated.
-
-
-vim +/int +499 drivers/dpll/dpll_core.c
-
-   490	
-   491	static void dpll_pin_idx_free(u32 pin_idx)
-   492	{
-   493		if (pin_idx <= INT_MAX)
-   494			return; /* Not a dynamic pin index */
-   495	
-   496		/* Map the index value from dynamic pin index range to IDA range and
-   497		 * free it.
-   498		 */
- > 499		pin_idx -= INT_MAX + 1;
-   500		ida_free(&dpll_pin_idx_ida, pin_idx);
-   501	}
-   502	
+> +		of_node_put(pci_parent);
+> +		return NOTIFY_DONE;
+> +	}
+> +	of_node_put(pci_parent);
+> +
+> +	switch (action) {
+> +	case BUS_NOTIFY_ADD_DEVICE:
+> +		/* Create serdev device for WCN7850 */
+> +		if (pdev->vendor == PCI_VENDOR_ID_QCOM && pdev->device == 0x1107) {
+> +			struct device_node *serdev_parent __free(device_node) =
+> +				of_graph_get_remote_node(dev_of_node(ctx->dev), 1, 1);
+> +			if (!serdev_parent)
+> +				return NOTIFY_DONE;
+> +
+> +			serdev_ctrl = of_find_serdev_controller_by_node(serdev_parent);
+> +			if (!serdev_ctrl)
+> +				return NOTIFY_DONE;
+> +
+> +			ctx->serdev = serdev_device_alloc(serdev_ctrl);
+> +			if (!ctx->serdev)
+> +				return NOTIFY_BAD;
+> +
+> +			ret = pwrseq_m2_pcie_create_bt_node(ctx, serdev_parent);
+> +			if (ret) {
+> +				serdev_device_put(ctx->serdev);
+> +				return notifier_from_errno(ret);
+> +			}
+> +
+> +			ret = serdev_device_add(ctx->serdev);
+> +			if (ret) {
+> +				dev_err(dev, "Failed to add serdev for WCN7850: %d\n", ret);
+> +				of_changeset_revert(ctx->ocs);
+> +				of_changeset_destroy(ctx->ocs);
+> +				serdev_device_put(ctx->serdev);
+> +				return notifier_from_errno(ret);
+> +			}
+> +		}
+> +		break;
+> +	case BUS_NOTIFY_REMOVED_DEVICE:
+> +		/* Destroy serdev device for WCN7850 */
+> +		if (pdev->vendor == PCI_VENDOR_ID_QCOM && pdev->device == 0x1107) {
+> +			serdev_device_remove(ctx->serdev);
+> +			of_changeset_revert(ctx->ocs);
+> +			of_changeset_destroy(ctx->ocs);
+> +		}
+> +		break;
+> +	}
+> +
+> +	return NOTIFY_OK;
+> +}
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With Best Regards,
+Andy Shevchenko
+
+
 
