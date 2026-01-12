@@ -1,267 +1,260 @@
-Return-Path: <devicetree+bounces-253953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E49CD12FD3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:05:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96EED13021
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:08:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 904BF3016990
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:01:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1A05830054BA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7A035C18D;
-	Mon, 12 Jan 2026 14:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92ACC32E753;
+	Mon, 12 Jan 2026 14:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="C4aFOvta"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eHoJUS7S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012038.outbound.protection.outlook.com [52.101.66.38])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337283563F6;
-	Mon, 12 Jan 2026 14:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.38
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768226480; cv=fail; b=u/5jya6cAlYL4I3LH7BF7QK1L89Kbqg2NltZLNVj8XrMVMBghxWPuY5pM1mop+w40jg2j/9l8wY7FZ6fOkU6ttmcjfTOwcre/EY7aPWnghsogKPZNhFMS23zzEQX8cKedA1NYoVsKWcHJAzp3+NfeAxfHDqhmAMo7rnWxKcYKio=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768226480; c=relaxed/simple;
-	bh=EOJ0dL41gxUO6BjeAwzlwY3LUOGLiHnnileQdH5eDRk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=WbMB2AY4GAYfdXtZ5nPkIUfIxur+Tiq6ASy1n433wzhsbeqHW+UG9o/lxJxLMTo7CN2p47YEZH4fXbA6REpdzTybveucuCv0tsaxpw1bIiyJZO9UnLSAaJiPdvVh6lUb+8ZEW7Q82xtr2HLarp4mBxBBNpZQexFUgD57b2isnws=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=C4aFOvta; arc=fail smtp.client-ip=52.101.66.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eje1Hs7jtK18nexg+qTf3beovAkzDqxwhJXRBFNY0eYScm45mLWa3HmfWyynwWV02sTLQ94I+GuZMSNOMiNw8fZ8vw3fa0ay+7u9rwAzptxQ3V8jOfFrSYLQaWFk7YPB3wjGA+3OfskJK2T3I9wp1WniPiQ75HDfSpnkJhUFeEqFM1hzDCrowT/YvRnA2Ee/uSTcYKG0i9K56MyMlQ5cKSNSW7N4lCps6wsiTZYAmMAUvbey3Vp7MC/zzu6jqiHyunTfDxKf+B6yeM5e+oM6nW5x9HR7ydRuy8C5sOWWwD+hkttNGXhEMD9/C/IWQck3ucRt329QHAdAzimhzzatGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1my+Qz+0ZYYIk6yGQZoYxXTd4Rnkazjgd8h4IPnn+fY=;
- b=fIx54YGhD8zAmKm+7F0Ei6WseeLWeKNvsYAGdrl759U3IY+O+03eBTqBl1becp2wfClfsorFqTe5j24MLyxDkzI7B3Kpw6I3DuYWj0pQDUYcSW3N9pJDaO/Zb7YlHQuguEpDQwaPcJaryUXR4ICe05X/xUwqPATxiZMfQfp1eArncVbi1HtmoZ9cEBtpUId9pITrLU33n0dvHYUrSzMGyEQg4lnLUEndOW0hFDJ0ni+Tga7zr7pMt9WlD+YYlvVc7xBX4OOHZYCKbiBNVO8VVn+gAZ/g5TOQkzZG3+yluNmK8AH+IEAlYyQ/NaoeLTDw+SF2lQXL/ng+7y29tgzZQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1my+Qz+0ZYYIk6yGQZoYxXTd4Rnkazjgd8h4IPnn+fY=;
- b=C4aFOvtarrGTai+u7hF/LpzCF8rytRo+8H9aThJZhxKSeue/yeNKDAA9EkKTQbEohFxhBceSfHMNh/D9waAA3U6uGdXEF4Zf1hol9Mrheeop+x4y6Y5gqKNt7opMVFc1FyYOGylugm3P8LA5Sz+SOrCzxmbCI0/rmnOSRARMevU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
- by DU2PR04MB8664.eurprd04.prod.outlook.com (2603:10a6:10:2df::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
- 2026 14:01:13 +0000
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::1033:5a9a:dc18:dad]) by GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::1033:5a9a:dc18:dad%4]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
- 14:01:13 +0000
-Message-ID: <07ce7c4e-7fc7-40f8-9c46-4977e3ce2458@cherry.de>
-Date: Mon, 12 Jan 2026 15:00:48 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: Add binding for WCH CH334/CH335
- hub controller
-To: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
- Hsun Lai <i@chainsx.cn>, John Clark <inindev@gmail.com>,
- Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Michael Riesch <michael.riesch@collabora.com>,
- Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org
-References: <20260112022823.91-1-kernel@airkyi.com>
- <20260112022823.91-2-kernel@airkyi.com>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <20260112022823.91-2-kernel@airkyi.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0209.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a5::8) To GVXPR04MB12038.eurprd04.prod.outlook.com
- (2603:10a6:150:2be::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0991727F73A
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768226698; cv=none; b=kfwz31Qdj2LmjRJF7pfUdPRouGanzpzywOaae1WetfPQaBBvlkCvCSB1eGdN+dpaYkSHo7w3E2Ijtncm9VOeLxYYCvA6N+UasJzM0fzo/4dAI3szS5PVwLuGhsUy7EPncIsGYvKAOpehhbeKX2rS0pFGX7a76ghXWGCXYJz+e1M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768226698; c=relaxed/simple;
+	bh=LWDLF/0qc2IJAkTfqjMmJwagN0QggUNuy9Vop+kjMsM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q3ONPVbQTgLZ+P8SRvdJq0sWEZFFMC7C20AMkBqAmnKkMI5vDXBLUxE2wWVyYvisND7sQ9Oc7ftIECb5w37Y/h2I7ohlogS9SCIRh4wJaIpGnoFf7lT++AWfhdLNdksUzgEs8G9DGvvENe8xuFDDZ/Yy8bOZEiwlZe/aFEWJBAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eHoJUS7S; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-42fbc305552so4735624f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:04:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768226695; x=1768831495; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0vII5Iyr4tFx72Sau8GzITZuDHj7rLr9Zb3k5UjDt0I=;
+        b=eHoJUS7SzIJ1OaxGw/9gkY8qBB3mDeK392NAoQBUxpHFgAiwVVYvVwSL/1dFNGWsyy
+         08WPrFtstlz30yOQV7XibGmAvx9l36i2zQVOI4L361W3TYarIAHjcrqq0lSrC8vmNh5e
+         hkbGJnpu6LZZ0BY/I8b6hXNqebtDtovDtBWCJPby5w1Zhb5PjkIciaSBWPXBOqplMz5o
+         gFgk4vWMZjWp4Ba7bGlnzTD0xChFArjnpQo45khGH/Hfa68VrWFXAORCbuQ1ZRjuIGct
+         bBP2Qngvexwxq90hZCZQ1vOd4PIICCvUFBotrIW3LZyqhLSOxRRxnEYWnMqqt9+d0OeH
+         h2Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768226695; x=1768831495;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0vII5Iyr4tFx72Sau8GzITZuDHj7rLr9Zb3k5UjDt0I=;
+        b=OVU3JPLD3/6xkRunmPvpEEoWf9GFMDs0AXb4P1MIV/vfpXqY9GXYdcIKLA/2IAitG/
+         Qv65v50SAT3KaqRtxxD9aDZ8lbcDsN6VrXzEdPlNmZC8bp2735lsdLe0OTb21SxbuMHk
+         fBFYC/7paogxM/3awERxs4cmAscjm5EjzalqIJXRHUP3x/188oIOvuEmg9098PGBrwxv
+         OM1fgvir8wfACh+uEV2khhGaqQqg2jZvUgFHRbKdOejpBHN8VRbK+2vg5k4wwLPf1UWn
+         WAnR39kaC3/4g1Ou87LPJs0Ot1UW9/MofusmGU7IkZUWWz+Wl+eBKhuyyPRTbKRJwrch
+         c6tQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUDAtmym1zkqf7vpWPQZexbt+VX+ppyGbJKpJ4hfJP05r245nJpo17tFPv5HGtRqu7pDZ2cIyXTLzA/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKhEvY+YOHMPM4THGB4cNE0bchJEm+j/MgL6EFs/DvKZqHRrv5
+	T0R/4BHtDrq6TPCH7y+SXzZYFvbz+E84KOuSR/PYsaFk0LO9pksCVy+B5rFer23fK9ZUu2VqDM1
+	PGTLflgvatL6hf2Ty8Hl0/wctuaHACzc=
+X-Gm-Gg: AY/fxX71Noa/YNXEX8Ptvrvoab8axykRS24sbEEL1i+TaJ2t+xSbkOqdtFGfqnTCRV6
+	LHGnr2VFJaek0C32jN0ODTLmgr+MnnJKKk65EaV3x88mA+Sb2zAXZatR/k5MwtgRhByNV6bNkp6
+	LcAOfppuaXwKKeZk/XPBBnW9E6lP3WhqkLwx+7io08NrrdCqJFt1iA59AL3eVjNbaHJRBCS3afB
+	+4bMgmEHR/xmacYKOxPMhng/fM9z+N+4VejkiB7Ey+Wl67I/Ff9903X6jCpJJdqph7mdPCn3J/j
+	Z3YC6RU0zJkixI/XjHCvVSapiMUAru2vw8n52+cbPwtf98C2tHUu3/HsBT9SJnjmpg==
+X-Google-Smtp-Source: AGHT+IFasiQVmiSWN3alevjB2wINY+JZWIZGP+T1vx6rQYLMCTq818PLQDkbeEXyvkByXdaBd2DafMJKteYBkMr6a/k=
+X-Received: by 2002:a05:6000:184a:b0:430:8583:d19b with SMTP id
+ ffacd0b85a97d-432c3794fa7mr20770566f8f.33.1768226695062; Mon, 12 Jan 2026
+ 06:04:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|DU2PR04MB8664:EE_
-X-MS-Office365-Filtering-Correlation-Id: 236af86e-a9f5-41f1-ca08-08de51e30bdb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|1800799024|366016|921020|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MlhySHZsUFpZYS94dGFZVHA0YVhsbkNROVpZQUZYRjRUeE1vSEFRbEpVWjFp?=
- =?utf-8?B?RExtV3lmY2liRlYrZ25yQVVCWno2WXFZTjZkKytmSTdyekFleVM0dlFTMUxt?=
- =?utf-8?B?Q1hFZTBJNVYrbmQ0Y2ZCTlZ2bmcxemt2TXA1a0Z3UWd6L0RTb1hyQW5MUHBm?=
- =?utf-8?B?ZkxhdW8xSEdWM1B0RERrcDQ5bFVQaUNBRWd6NzZGZCt0NytWS1Q4OGQ2U3ho?=
- =?utf-8?B?UDUvOWVqbWJZU2tWMkl2RVRtYjdMTW5KekFwbWZWMmJSV0NvU090cDRQSWM2?=
- =?utf-8?B?bFZNNVFCOFQ1djlwamZBWkNaL0Q5dHVxZUxOYlAwSFpyZS9mS1hKUEt0YjBm?=
- =?utf-8?B?bWZWVWhXcGFYek1INTZCYk1MMHZIYXp6bVluTmVQZFRJTktDTmN3cUtlYjYy?=
- =?utf-8?B?ZjZrQ0c3cVlDZkZzNU1nNTQwMElMaXp0MFd2TGY0ci9iTk1WZldZaDJPQUxJ?=
- =?utf-8?B?ZklYWVY4cnFXTkprSzBsMzJOaExKYmswZzlWWnhVS2l4MXNsUlBvbERlQXFr?=
- =?utf-8?B?bVVYeEVpY3kxb29zaFF4TmY4MXlNb0VacXBoV2lrWlpiL2MvRGZCQUtmUkw1?=
- =?utf-8?B?TkFBZWtzaldJTGg0eUJiZVZOaVZhK2tkSkx3d3BndThraXUvUkFLRXArUEZY?=
- =?utf-8?B?WEdmMEhsTURyQVNIUnY2T0NGelJ4TnBwQVRmZmI5Mm9zOUVDVjJXR3RuS2FS?=
- =?utf-8?B?VWRBUWlQRStNR2xlV05YOElmUmlTTW8zdkkwTnZwbUU2UDF2SXN2ZzRtYVZG?=
- =?utf-8?B?Nk0xZVFWaUZsVmRyd0dzSzIvb00yMVpDVFhvNlNLSFZIc1ZVUDFwc3Mxd1Bn?=
- =?utf-8?B?NkU0dnArZkdLQ29uR0dsL1hPRTM4MGpyRmN6TlR5d21hQ2hkVG1vYzhldU4r?=
- =?utf-8?B?Y1hYMFNKY05HaUgxKzVmQzg0Sk9JNmNuOE8yR25rRmV3QzJJTkw1dS9aMFpY?=
- =?utf-8?B?Q0t5R0hBWkFHV3J4RXVTbVA2d05mcXo3Q1BSYjJ3V0J0R3B2Z0QydTFiU2Vp?=
- =?utf-8?B?eDR2SG1zeFB1ZnRMNUhoaXd5ekJhdkNjemUwVDVPaEg2cmtzZE15eGlNbWpJ?=
- =?utf-8?B?YU9CcXJSRkl2U3Jkc253cXZwSkI4SER2Q09QT2NSdnN3SUx3c0YwMzZoQ0pV?=
- =?utf-8?B?WEdPZ3liTE5ZbjJrdXpGMWpXeERNSFBtUFRJZnBLSjFzQ0wxMkFYUzhycGsx?=
- =?utf-8?B?T3FZaTNrcFhodnA5RWlHblhnaU1SL1h1MWQ0VHJpM0FEOTJnQjVtc05XdXBG?=
- =?utf-8?B?ZGdlNFA1L0wwckFTM2hkbGFIWkxiRmtnUzByQ1VWem55alU4cGx6VVNVUktx?=
- =?utf-8?B?L0RjWU50c2RiWHRWTGV4SlcxY08yNEs1T3FSTDFoYWh2SE5KSXlFaHJycTJS?=
- =?utf-8?B?bDFERXZUdWNDdmxFb2tMZ2JCWndkTm5mMys1bUdZcVJXaEFDSjM0OEc2Wi9G?=
- =?utf-8?B?SllKQmFncnBzWmdhcXhFaVg2R0ZwZXNEcHphVVFUVFBBbkdaL2NHbVM5KzZP?=
- =?utf-8?B?VVlBaW9qR0t3enNSUERlOUVoWXRUNEZ3WFBKRHo1OER1T1RPcUlhR01ITEVG?=
- =?utf-8?B?Yzk4N0pzSGV6MEhrVmRmUWZYUGJha3pwZ3dPdzVQN1ZNQnM5bUdRbTJzQ1I2?=
- =?utf-8?B?RVVEaEtvM1ZPSWo5SEU3bnNmbW4zaklzVjVEL1M5RVZoQ1JCM0RDa2g4L0FR?=
- =?utf-8?B?R2JvdDlZTk9XWlFGK01ETXA4NkloNHFNaUF0clJ3Y0lrNEJESXk2Tm50RG5l?=
- =?utf-8?B?YTViNzVNVm5WSmNzdllubm9Ld2lqbkMzSTZsc3FUYWYwQ0lZT1lxNkU1MzBT?=
- =?utf-8?B?eVBsbXIzSUlSTWo4UjlsTUhrU0hGMUhLUFpnQ0l5cEs0T1lEUTgzcDZjRmR2?=
- =?utf-8?B?WVQ0YWU3NTdUWTZuMGhkSWFlUmV0SVNYMVhMRzlEbGVLVGFNY0pRWTFMY09o?=
- =?utf-8?Q?X3u54sReosmP5hcFjw9sl3N06x8jn+nQ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(921020)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NGpLZXIzc25iV2lLT0FZVit1SElwejFYMFJzeHdSVE1VamcraG12NmVmdGI1?=
- =?utf-8?B?N1BPOWdQamdMc21xYzJDcFFrNE40UWdtTk5EZ0EwZlNOTzN0a2NJbVplZ092?=
- =?utf-8?B?bHBueHZ1Y0w1Ylkwamg4UDJtcm9wWlhHV0RvcmpqRzNIMXplVUxFVmx3REUy?=
- =?utf-8?B?ZTU2RjB6T2w1dXFESnYycjJEYmc4aG1SOGNPL2pzNXQ4aHZIZjdZdEFJY2FC?=
- =?utf-8?B?KzRQNUQ2WEFTLzF5N3NhTUdBNHUrWWNBTHBNYXg0VWlwS2IwUTc1VUpzWUJl?=
- =?utf-8?B?T2ZUVmRWQ3ZLUzlhWkxBMjY3S3l6TXhFeWErMk9BS2VYakpGR2R6SzEwTEI5?=
- =?utf-8?B?anZmT2RTWkQ3QjU4MXY3ZWdleUFJbjFrekJqMGFJb3dILzFjc3U2YlB0ZDVR?=
- =?utf-8?B?UTd6UW9GNWdjNWhPaXNaZ0l2eWgyV2RxRTkrUUVMWjk5cHdZOFJWV3ZEOHE2?=
- =?utf-8?B?SnR4Zzd1dFJzVnRwb0IvZEoyblVMWG8xQXJZTGtLemIyYTBuNVhpRDRHelFa?=
- =?utf-8?B?cWlUYkdGUzIzaEE3eWs5UUpYSEJkSlBBT1BnQWFDWHFUY3lvVHhYU2dkM1ht?=
- =?utf-8?B?WUs1ZU9xaWRxa1RucTJncC9YY3diMFhtM29zQklCTlMwcGxZTXBEMDlUNmtF?=
- =?utf-8?B?RGZHTkNuaFptTlk3OHhRa0w3MllDVDJKUzZDclErM1dqMWxEei9nRXQ2b3hm?=
- =?utf-8?B?S2kzSEgwQWJEVDNiWWsxYWxZdmxtV1lqcFRHZXlIYVozK2ZjT3F6OUlXR0lV?=
- =?utf-8?B?RW1uU1RNNUxlenA4SVpCUklIc1J2WkI3YzNDMDMwYWxwSm9wczRyMHFQNkNQ?=
- =?utf-8?B?MUNsaVArZVl4T0pRTDJrOU1ncC9lMk1WNFdycWU1MDUrQXFocW9WOWQvR25q?=
- =?utf-8?B?YWlqdmpTQnBjRDF0RmhoWWJYM09rUzU4elNQeGh1aTd1cUlXVDlKTEwvQXhW?=
- =?utf-8?B?VGhNZGpNVkhLZDZNQlVGL2N1UWd5Wkd6WWhhTlNROVJiMDZzWGhKNTVVSitK?=
- =?utf-8?B?Ym8yQ3dZbkwxUndOS1VhTGF5YXA0YXo4R2RsdkJIa0s5QkVPM29vUnE1TUR2?=
- =?utf-8?B?UTVzV0s1eWE5WXNkc0t6NUJoNEhHVXJLWkZZbWRZSG9JdDF0Zm5DUG51a3VP?=
- =?utf-8?B?T1lzN094MlRKNEpqa3FVVTFpMWNqRXpDN1RpaG16alY3YWx2cWhROEIydUpz?=
- =?utf-8?B?YVVXMjFES3hHMlM0SWoxUXZtVEg1TkdYZWpVK1pPR01WRWNqdVIrditBUXoz?=
- =?utf-8?B?dTVONitWWDg1RnJpVFRHVUtvVGdPWW1qcXVyTm4xemM0eHZmYnJ4T2ptWVBU?=
- =?utf-8?B?OWFRNThwVFlmSFBXUGFOanhyVTBQWXJWci9jalR4TUVyZnMzL3ZFL01iazFF?=
- =?utf-8?B?VXAxUDdyMzZrWng5SUVhOXBVUlpqOTd6aUs3QlppeDRIc2FjNlludWtEMUd3?=
- =?utf-8?B?Mk5BUVU4TU1HczdTUUJ6YTV5ZjZCaWtyaE9kQzRmLytxMXd3ZkFVSG0yY3VB?=
- =?utf-8?B?YlEyeTZid0FFMktVeXMyNDJmVUhsdHpFcWwxeEtoNGlvSXZUbGg3MDFxRWhX?=
- =?utf-8?B?ejlvVUpYZG1UMEc0dFMrZnhkYmRQRXZta21ZNXpCN2lmeHlYV0JhNTNDUVcx?=
- =?utf-8?B?eFZFWVJFcWY4elZFNlpTZzBVMkFyMGdZQUJxelVXam5SSmFFYk1XZVc2YnM4?=
- =?utf-8?B?dktONmptVWNWY2Z3dG10VFl6YUYvaXFUZ3pvL3dOMWVaR1VYSnA1VUtKbjRE?=
- =?utf-8?B?dmM0a0E0aW56dmlDQVFsVXdnWXB2NFdPK2IvVkp3ektiU0pnZHRtcjB5ZDJV?=
- =?utf-8?B?UnRlU1Z1cWdaY2YvV1lDVEQ1b25GWFBqanNnd3R2Ylc4ZE0vTG1zWWIzUWU5?=
- =?utf-8?B?SG5aMTZPdlppRHMvaEU4K0tDb0lkNW51SmZUaW10OVZGcjRBcW9RQjNVRW1U?=
- =?utf-8?B?anoycjZRU0lKZ3ptYU9VNEFRcnpjUlNlQTduck9xdFFWZmJqb0lEbHgrMTZP?=
- =?utf-8?B?WU9rM0JScDJmL2VDQUk3RW1EZU5lTHY4T1RnTUoyc0J4WFFKSklsanRwTkc0?=
- =?utf-8?B?K3pJZDFtMW1Qd3g3U1V0bll3NXZ0UWozUTE2Wk1VZDRWSENxQkdkNlRpY2pk?=
- =?utf-8?B?SUgvNlR3ZmdSSHBCNFQzOFFqSElSaW81ckUweXRId0U2WnU4OU1xVUlwck04?=
- =?utf-8?B?OGc5ZmlHeHlrbWx3YTZ2YnQzdlhuMW1kTlp3cFFneGYzZ0VaQXB0VHNHMmhE?=
- =?utf-8?B?bUNwcVZMQzQ4b3c0ajRXSm1DVWMxN0pkT2RzckRyWElIanl3eERBbFRKcCtq?=
- =?utf-8?B?bDZDYjR5WndwZzYyNUFZQWdPZGxFdGtzVFNlaTZuSkRZbEp5c0NWZz09?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 236af86e-a9f5-41f1-ca08-08de51e30bdb
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 14:01:13.2389
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O7SQyAHgicw1K/HhjSSYx7Jh0uZ9GrCojFMJvCJaswl9C1PpLSQV0rTigRjYjB9ZFv9fUrUUwm0jGTfAWmGNfu7QitWL2v1zcpZOvv19w8k=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8664
+References: <20260109125128.2474156-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260109125128.2474156-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260111-poetic-dark-butterfly-97993f@quoll>
+In-Reply-To: <20260111-poetic-dark-butterfly-97993f@quoll>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 12 Jan 2026 14:04:28 +0000
+X-Gm-Features: AZwV_QgBJ-ITSnXEpBvtqgTNJdonFuwpB0mqy1ZeJZ8vITBprryHClwY27DWAJ8
+Message-ID: <CA+V-a8un48Gfqg-K6YToxUgnZawOcb-nQHsBcOfHdpAR7_Uu4Q@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: can: renesas,rcar-canfd: Document
+ RZ/T2H and RZ/N2H SoCs
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Chaoyi,
+Hi Krzysztof,
 
-On 1/12/26 3:28 AM, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> 
-> The WCH CH334/CH335[0] are USB2.0 protocol compliant 4-port USB HUB
-> controller chips, supporting USB2.0 high-speed and full-speed for
-> upstream ports, and USB2.0 high-speed 480Mbps, full-speed 12Mbps and
-> low-speed 1.5Mbps for downstream ports, supporting not only low-cost STT
-> mode (single TT schedules 4 downstream ports in time share), but also
-> supports high performance MTT mode (4 TTs each corresponding to 1 port,
-> concurrent processing).
-> 
-> Add a device tree binding for it.
-> 
-> [0]: https://www.wch-ic.com/downloads/CH334DS1_PDF.html
-> 
-> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> ---
->   .../devicetree/bindings/usb/wch,ch334.yaml    | 65 +++++++++++++++++++
->   1 file changed, 65 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/usb/wch,ch334.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/wch,ch334.yaml b/Documentation/devicetree/bindings/usb/wch,ch334.yaml
-> new file mode 100644
-> index 000000000000..2eeb92f25b4c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/wch,ch334.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/wch,ch334.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: WCH CH334/CH335 USB 2.0 Hub Controller
-> +
-> +maintainers:
-> +  - Chaoyi Chen <kernel@airkyi.com>
-> +
-> +allOf:
-> +  - $ref: usb-hub.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - usb1a86,8091
-> +
+Thank you for the review.
 
-Which driver does this node bind to? I couldn't quickly find a driver 
-which would match this compatible?
+On Sun, Jan 11, 2026 at 10:14=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On Fri, Jan 09, 2026 at 12:51:27PM +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document the CAN-FD controller used on the RZ/T2H and RZ/N2H SoCs. The
+> > CAN-FD IP is largely compatible with the R-Car Gen4 block, but differs
+> > in that AFLPN and CFTML are different, there is no reset line for the I=
+P,
+> > and it only supports two channels.
+> >
+> > The schema already enforces reset-names only for RZ/G2L and RZ/G3E and
+> > disallows it for all other SoCs, so only the resets property is explici=
+tly
+> > marked as unsupported for RZ/T2H and RZ/N2H.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v2->v3:
+> > - Grouped single compatible entries into an enum.
+> > - Updated commit message about disallowing reset-names property.
+> > - Added Reviewed-by tag.
+> >
+> > v1->v2:
+> > - No changes made.
+> > ---
+> >  .../bindings/net/can/renesas,rcar-canfd.yaml  | 29 +++++++++++++++++--
+> >  1 file changed, 27 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-can=
+fd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > index fb709cfd26d7..ceb072e0a304 100644
+> > --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > @@ -42,7 +42,10 @@ properties:
+> >                - renesas,r9a07g054-canfd    # RZ/V2L
+> >            - const: renesas,rzg2l-canfd     # RZ/G2L family
+> >
+> > -      - const: renesas,r9a09g047-canfd     # RZ/G3E
+> > +      - items:
+>
+> The convention is enum and that's what I asked. I know it is a nit, but
+> if I give review now for this code which I disagreed, my disagreement
+> won't be ever recorded and people in future work will base on this less
+> preferred syntax.
+>
+> So again:
+>
+> - enum:
+>     - foo
+>     - bar
+>
+Agreed, I will drop the "-items" and I will also move the single
+compatible list entry to the top based on the feedback [0].
 
-> +  reg: true
-> +
-> +  reset-gpios:
-> +    description: GPIO controlling the RESET# pin.
-> +
-> +  vdd-supply:
-> +    description:
-> +      The regulator that provides 3.3V core power to the hub.
-> +
-> +  vdd2-supply:
-> +    description:
-> +      The regulator that provides 3.3V or 5V power to the hub.
-> +
+[0] https://lore.kernel.org/all/CAMuHMdWz6_NzvjZNMLk+Bqoa0NR2CKNFwDXynfmrTZ=
+gOGsqxTA@mail.gmail.com/
 
-There's v5 and vdd33 as power input, shouldn't we maybe use those names 
-instead? How did you come up with vdd/vdd2?
+> > +          - enum:
+> > +              - renesas,r9a09g047-canfd    # RZ/G3E
+> > +              - renesas,r9a09g077-canfd    # RZ/T2H
+> >
+> >        - items:
+> >            - enum:
+> > @@ -50,6 +53,10 @@ properties:
+> >                - renesas,r9a09g057-canfd     # RZ/V2H(P)
+> >            - const: renesas,r9a09g047-canfd
+> >
+> > +      - items:
+> > +          - const: renesas,r9a09g087-canfd  # RZ/N2H
+> > +          - const: renesas,r9a09g077-canfd
+> > +
+> >    reg:
+> >      maxItems: 1
+> >
+> > @@ -179,7 +186,6 @@ required:
+> >    - clocks
+> >    - clock-names
+> >    - power-domains
+> > -  - resets
+> >    - assigned-clocks
+> >    - assigned-clock-rates
+> >    - channel0
+> > @@ -243,11 +249,30 @@ allOf:
+> >            minItems: 2
+> >            maxItems: 2
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: renesas,r9a09g077-canfd
+> > +    then:
+> > +      properties:
+> > +        interrupts:
+> > +          maxItems: 8
+> > +
+> > +        interrupt-names:
+> > +          maxItems: 8
+> > +
+> > +        resets: false
+> > +    else:
+> > +      required:
+> > +        - resets
+>
+> I do not think you are making this binding easy to maintain. You have
+> now multiple separate ifs AND two ifs with "else:" condition. Try to
+> understand which condition/description applies to "rcar-gen3". Does it
+> require resets? Let's look for the compatible in the file - you find
+> "if:" block requiring reset-names but no "require" for resets. Odd.
+>
+> As I said last time, these should be alwaysy synced.
+>
+Does the below look OK? Ive grouped them based on no rests/single
+reset/ two reset.
 
-There's also a timing that needs to be respected after a power-on event 
-so that the reset has enough time to be performed, c.f. 3.2.1 Power-on 
-Reset in the datasheet you linked to in the commit log. How are you 
-making sure we wait those (apparently, the wording in the datasheet is 
-confusing) 14ms?
+  - if:
+      properties:
+        compatible:
+          contains:
+            # SoCs WITHOUT resets
+            const: renesas,r9a09g077-canfd
+    then:
+      properties:
+        resets: false
+        reset-names: false
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            # SoCs WITH resets and reset-names
+            enum:
+              - renesas,r9a09g047-canfd
+              - renesas,rzg2l-canfd
+    then:
+      required:
+        - resets
+        - reset-names
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            # SoCs WITH resets but WITHOUT reset-names
+            enum:
+              - renesas,rcar-gen3-canfd
+              - renesas,rcar-gen4-canfd
+    then:
+      required:
+        - resets
+      properties:
+        reset-names: false
 
 Cheers,
-Quentin
+Prabhakar
 
