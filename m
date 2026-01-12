@@ -1,125 +1,168 @@
-Return-Path: <devicetree+bounces-253957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29A25D13087
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:14:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 775D0D130C1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:17:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6640F302AFC5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:13:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 708853008560
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6F2635CBBB;
-	Mon, 12 Jan 2026 14:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC086246BBA;
+	Mon, 12 Jan 2026 14:17:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jIqkQOjc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kgubh25k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF6050097D
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469DF244675
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227206; cv=none; b=jSyAKLdp5vGjaCeSbgVaxxHUG/YnXS/UIL1JUdyzk1GqHpkPdiHPudGxvUxML5uME9IgXcy86CpVXgsgqAx2LYjUgjVWTMLBwVikUC6r+d+au12br/VGr2cuN5Vdbk0EJkHy4csVk3Jwc45SAETP9gL5y65c3AYDEEUH/Lf+IOE=
+	t=1768227421; cv=none; b=ry2cZ48eTFeVxoM6LACZ8fEjqscbHG4l0Cg8cDRXIxfyRXYXVdlOnp7hSFq6uo947Hs5VKjf7Xxw/40Iysm2gr/Ebv/mfomNgZhd/KpllyhDBZOh/6xREhIqlIFm9kqrw/UlO9Qd+1HzqwxmgTj3jgHwkn94UueWMmdydHFgdls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227206; c=relaxed/simple;
-	bh=kZPEybQa79Po7uYKBWe7nDf1LeZokoViaQo5LZ9XLfE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L4JAHs3oFPYkA9QEYueglCyntCFLNqxz70n7g3AgkPd/cmRt2vpWCs+Nl0wo/RBz/pzfZEZ8vy+8uH1paJ1bGEAh+T8MWj/sE1JF7kpAnjAxMuDzq1IbThNLHRPfDMrWmvg7NqNL5e1v4ZhPN8uDtEmiokR5+MymcEOCM/iumWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jIqkQOjc; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-29f1bc40b35so72196255ad.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:13:25 -0800 (PST)
+	s=arc-20240116; t=1768227421; c=relaxed/simple;
+	bh=JgfZ7b5grfSFrY2uNGn7XAOdObSUV8Hdp8wFhFtHqAs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=glDAmxmKcgjtN2bKkdrfGBWxjcQxQUjG3jDUfywEcccMhEFyb+R1kqgbRpSQJWiucFtzXjNgnLJTPHz2UuZaxu+JwzMlFGWmJv4IYh7Y52dJWV3xANz0SanZ5wj/Tzm1wlcRRNKp2StW40F+jAZxNjOOvP6cEytVrTVGFVNMaRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kgubh25k; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42fbc3056afso3681595f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:17:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768227205; x=1768832005; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+jlV+CAPs310WldW/buR8RNLyPHwhl+Y2cQ6sQ4HpnA=;
-        b=jIqkQOjcaOHLfYTzbBu7pHcnV+rg6jdgyTc+VpQq/JXi15ujAfs/cM+hcgJ7vjdh8v
-         lIvX0dT07V1Sc+vCMPdOb/PEHBvHl6vwrPYXUaTpQZsvndXLLTrT0hZylEGbI1suV7oo
-         LI+RauJLtQSstiaMxqEXhmY2V0OmMj5cf9aK/+HFyz1dsvtJxboPCXGbNgHuPPy1Mdd/
-         +r6w21n0do9VpcgEHkIkADD4ZExV9TyXC4TxNs8uIa5Qz/rnHmRj7L5Y5G//veZKDzLw
-         NwMoQlp5pR1PAHVW0mBfHTyRPwlT/x1O6CL8h+ha9Hza8uUjm2Khq7OFgn8aYT4Dw7zp
-         tmuQ==
+        d=linaro.org; s=google; t=1768227419; x=1768832219; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wi9ORL6/u5L+ri+CyR1PVolHDXmhzE6rUlvUG8jfWHo=;
+        b=kgubh25kPyRol3oQ4+C5HJFAgg3a859QUlV95flFiM42ktVN6DWa0SzfHJU+SJQ6NK
+         fN5TeMXN2mWDtXEggIvI8cX2NVmakd9TywV07EAipIhYMsaIKxpOTJiuZHW+W+O48JiI
+         MqUpdihBhH84ZYnjsdhFvuEd1EB4rr8mHnJ/9IbJj4U4b2pg7SU1+8x/zvGh3+uklZ2M
+         cw+zvxh+Db/TGvpPv++JOjP0KbKXPc2u2caFL45uegMmw4AQA8ix1Gzm/jHMyCJjM8gy
+         U6rIunPrlO1LDqXykNw7tDz/Bq5v0sT9j9inwqSJprA0ZnPI5jffx7OCJ3DHMJapwwvG
+         DsDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768227205; x=1768832005;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1768227419; x=1768832219;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+jlV+CAPs310WldW/buR8RNLyPHwhl+Y2cQ6sQ4HpnA=;
-        b=fbwiYdra97wBMl6UVGIeuwI32rGocDxAoJj8KBdNyv9WjjqFcfbOmWa6uEGjwTelSj
-         Ua+/ieMHWgkdqAANh10u7IXdJoZFFc2gi2ypr8ltKGkcs84TGtTEPqmd/2ld3w67/tRw
-         9Tin9NlUWdlT/bgTQ5rIAy1z/hwv6kxHB72emZV0NeuJ5wyMrbmrGVW8Kl12oJqa0Ic2
-         XxJEeAtYKeenJOf3cgp4TbbzkCiePT9s5vwj6PzLFLxpbbAIoX+IOt/kPa5I5JcgRWc0
-         LfZCQeCR1pcM5Xq8twfhHOsq4EYkrvnYmULRJt7cfIJHVBTjPRcjN2EXshX9oxBnQYyr
-         sTMg==
-X-Gm-Message-State: AOJu0YysvKovT5EYOFqG8QTTyUZx/0wX0+kwxfc1w5KbkwRPjuMdkvyP
-	1ckJcH3id2RVBz74E99JWUvGM6E+OA1h348y48v0hQJWBmuHOXtjzMsF
-X-Gm-Gg: AY/fxX5VfljSE1ai7WfiR/BM4ZuQkRTDvjPd2KkxGFf40mI2AcirJPGIJ9yruZnFT9+
-	RKWGBuzKVlSRkWyvh9p/j/zQmnadqXeGmrMh5prUKnIkfc6qSJyYE60UuusuQzgNmArS3mRpdVl
-	tYHV3iiNXw8HFDb86cSEG3b3VZkb1OsdQRwufDdgCbCJub/JZccBwS50SXB4FeNDi2krBqDpfF3
-	HwdkAHLumrxhqHnF8m5TcE9TsYAsJYEpkXM/JeCt40Dp6jUFMvbKDaemHKm9JkloHmJWP0tJH/L
-	6vebfHRnIMC+3lsHRBCojIKLPNKmJHUT0Wjsei3KpyVPt594mD7toAUuAEqSWAT7fKZ9voiBUVd
-	2scf0EBA+TTFY+FB4TirCk+tTCscMMmN/u43aS7p+JX5GSK4N8556/4b3kEeasAITjeCMBWq3IW
-	rd8Gd01xoi
-X-Google-Smtp-Source: AGHT+IEce98yak9gOUEEAV8f478oht3gyp/nFi/fv0TYVmXF4aE5SsLzQdDp3zKy+V3GJSQ3S2BOSQ==
-X-Received: by 2002:a17:902:f54f:b0:299:bda7:ae3c with SMTP id d9443c01a7336-2a3ee428923mr168226395ad.14.1768227204669;
-        Mon, 12 Jan 2026 06:13:24 -0800 (PST)
-Received: from arch.localdomain ([2a09:bac1:6500:8::19a:1f0])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3c3a512sm179660615ad.10.2026.01.12.06.13.20
+        bh=wi9ORL6/u5L+ri+CyR1PVolHDXmhzE6rUlvUG8jfWHo=;
+        b=n6deEZQeN/tGJJLCs4WgkyP+AXT5IX5Efy0QcN3kmOlnnq/KLLhOF/iH5DtdfgQePM
+         BIHZJ+CqbzypCnF/UcQHfPd52mhtWVlVy8E5BpAaaQrlSEDFVh9TiwWPAuyTdwHeDMtH
+         H3dRAR63akMdYIS1P5xYTjTMaKDsMkRy/gLZ0ogMR5fKL8oD8b5FxmqxD9qWvPlZLDDi
+         9oiz6UcDrbDms+2cJwoRExvk2ITH3vQ0UeebB9ByNGIh//ZQvzOYzan6Ax1mpxmrLVpe
+         XAEJ/hL/BZIUDe1X5leqxmG4WKRhckq0nfGdkGtDMLoNdXQHoZwpCD7X/0EZhFCcvcSM
+         x5KA==
+X-Forwarded-Encrypted: i=1; AJvYcCWana1/QywctFfT3858tl0z9/niiNn09tA9Rk4O5989e72C8NR429ZjpyjFdXPxk4XNkVA+mbHY3iAU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHcaIFtg8CXB/f7jr+vz/oL+nDc9eB+MN0VPjn7CIn7/Ak7KpY
+	Wkfta+lXVMNrYx6gS/4al2fywdfUFPZa466WKxQM3xP5qdyuCkDi9GFy6E0/ctLSZ0k=
+X-Gm-Gg: AY/fxX6sF/9i68jN73HlNFxiZoBbrVFx5p6SMGq63C9w4ORQL6zusymrXighEyt/AWH
+	mSJiuPKbx5+qQ87+UpfzwXb6+6Qic5OfPaEGwXn5kH5ox3qp4bHeYUtwRY4DkS9Kv2UuAk4kjYp
+	A71TK/MV8x/2CHFP/xo2D5hCIpUwTFt03Iq/aEOHcmSKArPwQ+CWLTplchSrxkBaM8hy32gVWoB
+	01laN8QKnOGp7WZo5WjMOgTxBSxLPYVqk3CS63LFMkU950GUvF0+3qQYa8HwPbcA57jIm6yAYYV
+	iZkhKUsAqBuSsYVoaaVKVnotg0cdUfAkxYHfOpbKDLiloyjkw1rdaXG1ldlL4EkcSDrHEbepahT
+	Jc6Hjr8qfRG0rUPoYN3Ysdo6XaBcg4NknraEdK2pKy3r7pma+1dbdW3ZjCUB05tWEmBWDmTbP/T
+	myzXr5Dqyxu1tpx+sfEidbQVH7A12/k0tfNRXzjnotXPoU9Qs3eYFgpuI=
+X-Google-Smtp-Source: AGHT+IHQ2+tO7amZ1Hd3lau7QeebQejhPMBwIfPvu9lcXcu5kw8U72PL8snBAclb+6f2qXS65G5ttA==
+X-Received: by 2002:a05:6000:2586:b0:431:752:6737 with SMTP id ffacd0b85a97d-432c375b134mr20238261f8f.30.1768227418552;
+        Mon, 12 Jan 2026 06:16:58 -0800 (PST)
+Received: from gpeter-l.roam.corp.google.com ([2a00:23c7:3122:c601:4c43:39e0:348c:a72e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5dfa07sm38705096f8f.25.2026.01.12.06.16.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 06:13:24 -0800 (PST)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: heiko@sntech.de,
-	pbrobinson@gmail.com,
-	dsimic@manjaro.org,
-	didi.debian@cknow.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Jun Yan <jerrysteve1101@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: Remove hdmi_sound on rk3399-pinebook-pro
-Date: Mon, 12 Jan 2026 22:13:00 +0800
-Message-ID: <20260112141300.332996-1-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.52.0
+        Mon, 12 Jan 2026 06:16:58 -0800 (PST)
+From: Peter Griffin <peter.griffin@linaro.org>
+Subject: [PATCH v2 0/5] gs101: Add support for Display Process Unit (DPU)
+ clocks
+Date: Mon, 12 Jan 2026 14:16:47 +0000
+Message-Id: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE8CZWkC/22NQQ6CMBBFr0Jmbc20saFx5T0MiwIjTCQUp9BoC
+ He34sKNy/eS//4KkYQpwrlYQShx5DBmMIcCmt6PHSluM4NBY7U2qNppUc0QmntUZe2MbdE6LD3
+ kwSR04+ceu1ZfFnosuTn/ZM9xDvLaD5P+2L/tpBUqrS06tCfytbsMPHoJxyAdVNu2vQHcK/OAu
+ gAAAA==
+X-Change-ID: 20251120-dpu-clocks-7b825d05807a
+To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+ kernel-team@android.com, Will McVicker <willmcvicker@google.com>, 
+ Juan Yescas <jyescas@google.com>, Doug Anderson <dianders@google.com>, 
+ Peter Griffin <peter.griffin@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1578;
+ i=peter.griffin@linaro.org; h=from:subject:message-id;
+ bh=JgfZ7b5grfSFrY2uNGn7XAOdObSUV8Hdp8wFhFtHqAs=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBpZQJUgcJ1b1TNz39ppcyhnd3oPqJ4xJI7Lt6DD
+ I5Z+HiKa4eJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaWUCVAAKCRDO6LjWAjRy
+ uiRZD/4uni/IFLPMrxZSAE+mLtncreOXd32tYdFVDOlRFulzcXvfJdY1b//zNAbEf5c1WZLk/m5
+ TA/sVbReP0+peU9IAlVlSLvkdHhtAWsvkyHlzTENmIv2TUwJY0+/nbefuWNvLUwv98d8ZwJiXRo
+ iNrbrqy7mn/zwsRR2WSmji9Tx/dE/tCZB5Q9EbD3w5yACc3DNJT78YFX9QKIgQozwM9JV6yZAiE
+ cQyeok8cqr9Zz2S9tKfoxfKIWAxAjCDhiDPX+Nb1sOEDxDxuqV8NXTYCiC+efQC/cMttsnBLh7M
+ i+3JqDtOcWPN0WnnBUAD3hB7QO/fWGJRG5zGbH7pPNyLauaAF9D14Thz1yywZ3hUN71oI0XS3kP
+ +Zq9jMz7LkQGAwzpFgQwnCau1K9j3KxNPcW5WY6T9/3QQ0iCGfWLg3pB4Dy7+Q56l+IQJegI2bF
+ OPpyighroZX36Wh8S1qoFTxfqrElMz3jgdPZu65vnrxzSrjjXDP5gDMRRZ8Zft9gz2Qdkre81FU
+ rivsDSPvxBRI//sZ3Py2MXzQRCkADN5ApC7YsBZcFtK4HMPWMgq/c+Xfo3s9vdUOT8Eneg2TkHa
+ 8ib8hXHMdavuwNAE0hSBWLp2BER4E9FPn7o1mLDoQz7yig9vBTl8CZYuX7hqolfQHXfFWpQ0Gdp
+ vj5nzkmRDIFB2Sw==
+X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
+ fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-According to the Pinebook Pro specification, it lacks HDMI port,
-but hdmi_sound is wrongly enabled.
+Hi folks,
 
-This fixes the following warning:
+This series adds support for the Display Process Unit (DPU) Clock
+Management Unit (CMU) aka CMU_DPU found on gs101. These will be used for
+the IOMMU and display enablement.
 
-platform hdmi-sound: deferred probe pending: asoc-simple-card: parse error
+As all the patches will go via Krzysztof tree it has been sent as one
+series.
 
-Fixes: 5a65505a69884 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
-Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+regards,
+
+Peter.
+
+Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 4 ----
- 1 file changed, 4 deletions(-)
+Changes in v2:
+- Fix alphanumeric ordering (Krzysztof)
+- Update gout_dpu_dpu_pclk to gout_dpu_gpc_dpu_pclk (Peter)
+- Fix dout_dpu_busp parent (Peter)
+- Rebased onto next-20260109
+- Link to v1: https://lore.kernel.org/r/20251120-dpu-clocks-v1-0-11508054eab8@linaro.org
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index eaaca08a7601..a6ac89567baf 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -421,10 +421,6 @@ &gpu {
- 	status = "okay";
- };
- 
--&hdmi_sound {
--	status = "okay";
--};
--
- &i2c0 {
- 	clock-frequency = <400000>;
- 	i2c-scl-falling-time-ns = <4>;
+---
+Peter Griffin (5):
+      dt-bindings: clock: google,gs101-clock: fix alphanumeric ordering
+      dt-bindings: clock: google,gs101-clock: Add DPU clock management unit
+      dt-bindings: samsung: exynos-sysreg: add gs101 dpu compatible
+      clk: samsung: gs101: add support for Display Process Unit (DPU) clocks
+      arm64: dts: exynos: gs101: add cmu_dpu and sysreg_dpu dt nodes
+
+ .../bindings/clock/google,gs101-clock.yaml         |  25 +-
+ .../soc/samsung/samsung,exynos-sysreg.yaml         |   2 +
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       |  17 ++
+ drivers/clk/samsung/clk-gs101.c                    | 283 +++++++++++++++++++++
+ include/dt-bindings/clock/google,gs101.h           |  36 +++
+ 5 files changed, 360 insertions(+), 3 deletions(-)
+---
+base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
+change-id: 20251120-dpu-clocks-7b825d05807a
+
+Best regards,
 -- 
-2.52.0
+Peter Griffin <peter.griffin@linaro.org>
 
 
