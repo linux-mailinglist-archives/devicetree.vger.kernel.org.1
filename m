@@ -1,132 +1,155 @@
-Return-Path: <devicetree+bounces-254203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57F1DD15B54
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:58:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC79D15C3B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:17:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A5BAC303B7BF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 22:58:07 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 93AF53008F22
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 597172C235B;
-	Mon, 12 Jan 2026 22:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEC123D2A3;
+	Mon, 12 Jan 2026 23:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZF1A2oSw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="abyI8AKp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3631B2C08BC
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 22:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68942199385
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 23:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768258687; cv=none; b=Oq8+wrN9vpUIitqlsofkScq8lX2N6MFu39+FdzGbgNq5sgoo3DbhWCvnqolLdzRQBIqfEoRB4cZOJeg06awZ+G7ieqrwmA9rd9gAqhFvcM4DkJolHlmkfTrfVc2LyJjwUNq87gTBg40giRAr5P9djxHUZm26nxyUvM2G7Igan7Y=
+	t=1768259864; cv=none; b=rdRCi8x2lARHYS/nqy/bBuW/I5drbaxUKS1y5Z7DlcvJNuRe+1hlnFl0HVEBpI0DOJTQmMZG6hfGtWvxHPHkpJ+gpUJasp4vuQ3X3pul0UNlPbvaeVsPvGB3G3hNV1FRISOveT+1jlL0kV4yTe0N6Gv/Wsi5TC6jb2lry4DSRwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768258687; c=relaxed/simple;
-	bh=rGR4ZRN/eUN4de0udno9CMQ1JKZLoES5FgqCMPiLzqs=;
+	s=arc-20240116; t=1768259864; c=relaxed/simple;
+	bh=zV4tWXOHJj/d5B490kgolE4CIyu1A6j0FWHxZFnv8+0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m0u7pxEOtKKCtFAPBUyTVtTl/2AksY/sIoX/gDWde5P0VWOCYCv1mOcSCYXZZHesuJkg8q7nYNpOiInVoWCVO7VrzqZpC0gMPe8k73q3qLqvQLbVP/ZzBrAtzaI2SzYsRKOZBJvxdokMZ9ULjBqHMq/nk6jUWTl9EWztz71gORw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZF1A2oSw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1CAEC2BCB6
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 22:58:06 +0000 (UTC)
+	 To:Cc:Content-Type; b=nhPJZ6+Kau4BKsFtVCHmrCvqSpyhwcnUBJdTRHZCXx42NmrQnpJXbQ04Lqu1CLTSTheZsQ4qyzvcOb/KbXWs+ZnFkA+4AEX5r7gHBmjgVRKHqrowoJdUQjqaNbEB6mXA/AJWIJAd62FG3VGIyQkD5sBnWtoCsCAuw082rdcu084=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=abyI8AKp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34F7EC19424
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 23:17:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768258686;
-	bh=rGR4ZRN/eUN4de0udno9CMQ1JKZLoES5FgqCMPiLzqs=;
+	s=k20201202; t=1768259864;
+	bh=zV4tWXOHJj/d5B490kgolE4CIyu1A6j0FWHxZFnv8+0=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZF1A2oSwK1WsbWs/HUBcLdTtmiUbK6URLC2b/N/uRpduXWfNWd7sFJHylH1WBFPGl
-	 4W0qbD7+vI9ygSTKuxXub3hNW7e1OIABaHbvYwbMe1ze08bnQOEEeoYfB68cbMoZT4
-	 t67BRBrPgRvrAJE9u9zTWFlb/F60evXfpOPf++hM/o6hBw3aSuKfcMvBGTetT6KeKP
-	 QVOleN8aFaTqWZvRKkG6U13zjX8OYXDZDZOi6QHouEIPkJGHxnUt9q/x82RH815ikV
-	 TjLUQA5zdmbV8F+L7qyGbJfx//yFgmhG46XYsjeZN8DO4O5jXhEpEuN5jtVf6u/Nc4
-	 7naZe4GyxLteA==
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-64d4d8b3ad7so11301434a12.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:58:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWQojxMIcBU/KBpAx6vXKkeHSr8ICIpVDf9p6clKjiZIAYGAlBHgio4gXHJMlKoV0RtmH0Y5hd9CAPG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpwzcD8n02dfyi90ncCevyRvqMdUJqycd/TQyLJ+G0x40RHFK5
-	y2MmOwJU/0zJx3yIKQLZgaRRFbQhzoyw55kq6++1+7BQqz0KIzivT608+yz6oczb17nOFQ1sJ9B
-	d4HOzw88GGF0xjdQsun8x9GY82csK6w==
-X-Google-Smtp-Source: AGHT+IFvZMR6ZXQzmmWssKqU5VU1/QG0Dy+4mHOcf7yoi13by1s1GpP8Cl1/EvHF9RRVm6QkOUCvmPjShbd8Q2d+EvI=
-X-Received: by 2002:a17:907:1ca8:b0:b72:b289:6de3 with SMTP id
- a640c23a62f3a-b84453ff014mr1934265266b.58.1768258685308; Mon, 12 Jan 2026
- 14:58:05 -0800 (PST)
+	b=abyI8AKps1YGUzkOlwo9OI0RGZT8AqtdpLpEsE8oCIYomB3NNsIg4BHNnmbWtoCDR
+	 IWwirrZZU7EJ+563RAcq6A1VsieGPNY86gBG43tZbzp+q7Phd5tuAr0W8FVWu/17tT
+	 vjTmmrPwJEidHaSsCt9Bg+kUC8x9w78jzYAAnzDxOtMYSterhaMa+Sq+BCmeMP+IT4
+	 7pQv02Had9qnzRqWZAEZjyHtLME+q2QjrNvY+TwGlfEmpPMBtezPsMvZtb8Sb6YjrY
+	 LMXcX202DBSy0VDxxkdcHZsI+FCb+gEH8j6cnBox3X9npwSMZVwu9zoKqZJOHhjPgI
+	 kGnm/0T9m2g3A==
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b83122f9d78so1103194566b.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 15:17:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWH0T+vYRnydjD7LzB+FGF5IckvS74fk6VYvDLWjduS2WvDBJaR2s1rz9w1+agIPakkts73yUGWch1V@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyv9p35cIQAgVWAqtGGW/v9IvNTgIDXSy1HfTNSzITU1XnX3c7D
+	2AoXBjvIJt8sXZx7BL4yomPGVTlBd7s9BLeVqJrU2YSwHUmM6FmViej7uD7DgDywGZOZDAip2Mc
+	ZZoZZHIITNW9iAgWRi/DDOl4RnRL8Ww==
+X-Google-Smtp-Source: AGHT+IEA3jzWHifhDnoilgPbQzGfG1w2b+BI85hIy+58FrBfRouezhzyvtzUBOrOUTG8TMt5dRspD6+1w89DNi0tn6I=
+X-Received: by 2002:a17:907:c06:b0:b87:2410:594b with SMTP id
+ a640c23a62f3a-b8724105afdmr342416666b.34.1768259862729; Mon, 12 Jan 2026
+ 15:17:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
- <20260108-dt-mtd-partitions-v1-6-124a53ce6279@kernel.org> <20260109-bright-purring-oyster-8c9f0b@quoll>
-In-Reply-To: <20260109-bright-purring-oyster-8c9f0b@quoll>
+References: <20260112090149.69100-3-krzysztof.kozlowski@oss.qualcomm.com> <20260112202040.GA943734-robh@kernel.org>
+In-Reply-To: <20260112202040.GA943734-robh@kernel.org>
 From: Rob Herring <robh@kernel.org>
-Date: Mon, 12 Jan 2026 16:57:54 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+0NRHx5JVvcZZC1PX0UByFq7PmvZbH6QoNn3kBZgrbPg@mail.gmail.com>
-X-Gm-Features: AZwV_Qju7S_APdjvo6ENgv2SSZg3sdeIvTR8mamw1g2_RQbQl5m7gRsuwu8q2uU
-Message-ID: <CAL_Jsq+0NRHx5JVvcZZC1PX0UByFq7PmvZbH6QoNn3kBZgrbPg@mail.gmail.com>
-Subject: Re: [PATCH 06/10] dt-bindings: mtd: partitions: Drop partitions.yaml
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
-	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
-	David Sterba <dsterba@suse.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Marcus Folkesson <marcus.folkesson@gmail.com>, 
-	Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Date: Mon, 12 Jan 2026 17:17:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ31NN7vNxPxRFm6DfVtE=GvrPwPEOcVY4_TZJRG70R6g@mail.gmail.com>
+X-Gm-Features: AZwV_QiC216nPgSHrfhxOc0o_1GO2-8h3UIYG0rNXAU4LNdinaYvd0y4YbGhSb0
+Message-ID: <CAL_JsqJ31NN7vNxPxRFm6DfVtE=GvrPwPEOcVY4_TZJRG70R6g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: parade,ps5511: Disallow unevaluated properties
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Pin-yen Lin <treapking@chromium.org>, 
+	Matthias Kaehlcke <mka@chromium.org>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 9, 2026 at 3:34=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
+On Mon, Jan 12, 2026 at 2:20=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 >
-> On Thu, Jan 08, 2026 at 11:53:15AM -0600, Rob Herring (Arm) wrote:
-> >  patternProperties:
-> >    "^partitions(-boot[12]|-gp[14])?$":
-> > -    $ref: /schemas/mtd/partitions/partitions.yaml
-> > +    type: object
-> > +    additionalProperties: true
+> On Mon, Jan 12, 2026 at 10:01:50AM +0100, Krzysztof Kozlowski wrote:
+> > Review given to v2 [1] of commit fc259b024cb3 ("dt-bindings: usb: Add
+> > binding for PS5511 hub controller") asked to use unevaluatedProperties,
+> > but this was ignored by the author probably because current dtschema
+> > does not allow to use both additionalProperties and
+> > unevaluatedProperties.  As an effect, this binding does not end with
+> > unevaluatedProperties and allows any properties to be added.
 > >
-> > -    patternProperties:
-> > -      "^partition@[0-9a-f]+$":
-> > -        $ref: /schemas/mtd/partitions/partition.yaml
-> > -
-> > -        properties:
-> > -          reg:
-> > -            description: Must be multiple of 512 as it's converted
-> > -              internally from bytes to SECTOR_SIZE (512 bytes)
-> > -
-> > -        required:
-> > -          - reg
-> > -
-> > -        unevaluatedProperties: false
-> > +    properties:
-> > +      compatible:
-> > +        contains:
-> > +          const: fixed-partitions
+> > Fix this by reverting the approach suggested at v2 review and using
+> > simpler definition of "reg" constraints.
 > >
-> >  required:
-> >    - compatible
-> > diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml b/Documenta=
-tion/devicetree/bindings/mtd/mtd.yaml
-> > index bbb56216a4e2..e56dba83f00a 100644
-> > --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
-> > @@ -30,7 +30,7 @@ properties:
-> >      deprecated: true
+> > Link: https://lore.kernel.org/r/20250416180023.GB3327258-robh@kernel.or=
+g/ [1]
+> > Fixes: fc259b024cb3 ("dt-bindings: usb: Add binding for PS5511 hub cont=
+roller")
+> > Cc: <stable@vger.kernel.org>
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.co=
+m>
+> > ---
+> >  .../devicetree/bindings/usb/parade,ps5511.yaml       | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
 > >
-> >    partitions:
-> > -    $ref: /schemas/mtd/partitions/partitions.yaml
-> > +    type: object
+> > diff --git a/Documentation/devicetree/bindings/usb/parade,ps5511.yaml b=
+/Documentation/devicetree/bindings/usb/parade,ps5511.yaml
+> > index 10d002f09db8..154d779e507a 100644
+> > --- a/Documentation/devicetree/bindings/usb/parade,ps5511.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/parade,ps5511.yaml
+> > @@ -15,6 +15,10 @@ properties:
+> >        - usb1da0,5511
+> >        - usb1da0,55a1
+> >
+> > +  reg:
+> > +    minimum: 1
+> > +    maximum: 5
+> > +
 >
-> I think you need explicit, since we require it for incomplete nodes:
+> This 'reg' would be the upstream USB port. We have no idea what its
+> constraints are for the value.
 >
-> additionalProperties: true
+> >    reset-gpios:
+> >      items:
+> >        - description: GPIO specifier for RESETB pin.
+> > @@ -41,12 +45,6 @@ properties:
+> >              minimum: 1
+> >              maximum: 5
+> >
+> > -additionalProperties:
+> > -  properties:
+> > -    reg:
+> > -      minimum: 1
+> > -      maximum: 5
+>
+> Removing this is wrong. This is defining the number of downstream USB
+> ports for this hub.
+>
+> What's wrong here is 'type: object' is missing, so any property that's
+> not a object passes (no, 'properties' doesn't imply it's an object).
+>
+> We should fix dtschema to allow additionalProperties when not a
+> boolean property to coexist with unevaluatedProperties. I'll look into
+> it.
 
-I put what the tools required me to put. :) We only require it when
-properties get defined because that's the case we don't know if the
-schema is *all* properties or not.
+Actually, allowing both wouldn't make sense here.
+
+If you rely on usb-hub.yaml (via usb-device.yaml) to define 'reg', the
+additionalProperties schema is still going to be applied to 'reg' as
+unevaluatedProperties has no impact on it. That would happen to work
+since there's no 'type: object'.
+
+I think the additionalProperties should be a patternProperties instead
+because we need to define the unit-address format:
+
+patternProperties:
+  '@[1-5$':
+    type: object
+    ...
 
 Rob
 
