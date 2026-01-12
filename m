@@ -1,92 +1,112 @@
-Return-Path: <devicetree+bounces-253812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79323D11806
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:31:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA9D7D1180F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:31:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F02303019693
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:31:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 575ED30178EF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2825226738C;
-	Mon, 12 Jan 2026 09:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F54267B92;
+	Mon, 12 Jan 2026 09:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="0Fh48Bkc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ri8XfbKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A53269D18;
-	Mon, 12 Jan 2026 09:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1249E25B1DA;
+	Mon, 12 Jan 2026 09:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768210295; cv=none; b=LwR8nL7jO/2SLbikRydVFfiw/AilY3qQ2Ch6Alr5VOFzLKY2Dab7uaEwmxsk8TAN+XIeMiO9V97gZpR5KtlYS07Z+/xtKtbgrh97z9aYKHbE88UblT9H47+tzzgVmMj0cRzJhh56WYSa0xriuszyY6GoUetBEk1U2Im+ezkT9F8=
+	t=1768210306; cv=none; b=dznxiud/2yvWeMXj60Hjd1h791PetroHxNxKc+L2ZWhebvMugM1zy6F+chHUqp/mI9a1Qe93obIohsHn7k7XSd0D2alvEmrzaGXvFCdgyxlWT/pJlBY4V6+kGPLVjU4/U5kEiLLvLQmbcaiCHMf83owXB5LH2q/9izZSGRptIeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768210295; c=relaxed/simple;
-	bh=EfmYhSCAL08r8vyHCGXsH/rCCkZL8BxEgHrDsSFGrx8=;
+	s=arc-20240116; t=1768210306; c=relaxed/simple;
+	bh=3GNmGGqyfWH8WsMt2SNho52VuOTTGt49kLqkKScSrxw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hjxyi6dRueSQkkNFc3/wAzlOIB4otLwbmtXk6rF/WiFDleIDxOm+Y+7mjwwVi291SRKmPROnejW3k/Bj4b4CuayMzbbhKsSTkmAexOAvqK+58KBqBpFqd6tox30EiVgdT4yfVNK5AMcswTknKZdGU2AAuRmDfev8uMkF6irkMMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=0Fh48Bkc; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
-	by mail11.truemail.it (Postfix) with ESMTPA id 39D001FAEB;
-	Mon, 12 Jan 2026 10:31:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1768210291;
-	bh=s3LRU1JMOrxpverMraSdvoJOfwQ2d8WQFmbgP0Dj6GY=; h=From:To:Subject;
-	b=0Fh48BkctmxJDE4uLjJyY2eSpFTGZXrrj32Td53w2GYyWjPve4k6tyrJgoPN+t0FX
-	 7QJQporLkHabZaE/w6Bvz+MSmM5z//l7+qw9kiDFUx2qC6GETaT/UUJrEB66otMWqh
-	 Kq5oTKt3RckFBEDFV9kw5lmkzC836/VmJcNZk9F1xe95WzN6Wb6pHPCN+Qw1aYzoPN
-	 ZIvEONosaEuiQ0BtijjeZCey8ZQb0gbqgNL0okUB3ASbx8GfuuvxnGp6QjtfvgUYEu
-	 W3GxcbBucgHWXPg7befFqSSyAjVlK0d3rVKTOMj4cqCXjy7ckqeuQV2n9+OhE0o291
-	 EAWgDIKe+mnXg==
-Date: Mon, 12 Jan 2026 10:31:27 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch
-Subject: Re: [PATCH 0/5] drm/bridge: simple-bridge: Add DPI color encoder
- support
-Message-ID: <20260112093127.GA121274@francesco-nb>
-References: <20250304101530.969920-1-victor.liu@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LiH9eJfHNDN7Quc28E2L/31atZqDFKntCR9U+BV1OcBVgTgs4BAcTam/6Gq3Tc0NQFCfDQgP73kQEASgTqRr38JofQpO2Ax6zmXISLbBWylpCisvxYM4pFn+M9+QX8rkkYO3cKVaTmOQVZuUXxwy2+2hbw3Cvv6V8ISpduSS+dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ri8XfbKT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53911C116D0;
+	Mon, 12 Jan 2026 09:31:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768210305;
+	bh=3GNmGGqyfWH8WsMt2SNho52VuOTTGt49kLqkKScSrxw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ri8XfbKTHxf21UiqYPJV032PgIJBURKoC1lIlsevvixvH/MHtRuHHrZs4ZSUyIuM8
+	 G6ZE4yrDBKR1vIT4f7s3dtjr77JjQfbWjQGGYCQWi12jPi7Bo7ZSNnefcib74IYwvL
+	 NjE+OcZ2AWic1G19rwlF95dclvQWEHrv+2vRZBIhf0iA6luojkgZTiLHPMgiCT646U
+	 cTvrbr4+4J9tKe+IClJr1twB0iH+n+vln/ezHe3EGbcePEpFFiJ907FUFSq6WXxO4M
+	 eYiGTzkCvvpB89AMSM2E7+pmIlLN38izaFnPIoV9MvwAgD44bWaG+x3qvVbBVXeDnM
+	 uaGxi0DIftn+A==
+Date: Mon, 12 Jan 2026 10:31:43 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	adrian.larumbe@collabora.com, steven.price@arm.com, boris.brezillon@collabora.com, 
+	robh@kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: gpu: mali-bifrost: Add compatible for
+ Amlogic Meson S4
+Message-ID: <20260112-quixotic-daft-starfish-5fe914@quoll>
+References: <20260110200426.1461575-1-martin.blumenstingl@googlemail.com>
+ <20260110200426.1461575-2-martin.blumenstingl@googlemail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250304101530.969920-1-victor.liu@nxp.com>
+In-Reply-To: <20260110200426.1461575-2-martin.blumenstingl@googlemail.com>
 
-Hello Liu,
-
-On Tue, Mar 04, 2025 at 06:15:25PM +0800, Liu Ying wrote:
-> This patch series aims to add DPI color encoder support as a simple DRM
-> bridge.  A DPI color encoder simply converts input DPI color coding to
-> output DPI color coding, like Adafruit Kippah DPI hat[1] which converts
-> input 18-bit pixel data to 24-bit pixel data(with 2 low padding bits in
-> every color component though).  A real use case is that NXP i.MX93 11x11
-> EVK[2] and i.MX93 9x9 QSB[3] boards may connect a 24-bit DPI panel through
-> the Adafruit Kippah DPI hat.  The display pipeline is
+On Sat, Jan 10, 2026 at 09:04:24PM +0100, Martin Blumenstingl wrote:
+> Add a compatible string for the Mali-G31 GPU in the Amlogic Meson S4
+> SoC. It has two clock inputs (GPU clock and a bus clock) as well as two
+> resets (main GPU reset line and a GPU ABP reset line).
 > 
-> i.MX93 LCDIF display controller(RGB888) ->
-> i.MX93 parallel display format configuration(RGB666) ->
-> on-board Raspiberry Pi compatible interface(RPi)(RGB666) ->
-> Adafruit Kippah DPI hat(RGB888 with 2 low padding bits in color components) ->
-> 24-bit "ontat,kd50g21-40nt-a1" DPI panel
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  .../bindings/gpu/arm,mali-bifrost.yaml        | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> index db49b8ff8c74..85fae7753004 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> @@ -19,6 +19,7 @@ properties:
+>            - enum:
+>                - allwinner,sun50i-h616-mali
+>                - amlogic,meson-g12a-mali
+> +              - amlogic,meson-s4-mali
+>                - mediatek,mt8183-mali
+>                - mediatek,mt8183b-mali
+>                - mediatek,mt8186-mali
+> @@ -143,6 +144,25 @@ allOf:
+>          power-domain-names: false
+>        required:
+>          - resets
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,meson-s4-mali
+> +    then:
+> +      properties:
+> +        power-domains:
+> +          maxItems: 1
+> +        power-domain-names: false
+> +        clocks:
+> +          minItems: 2
+
+missing maxItems
+
+Can't this be combined with existing meson entry, *after* fixing it to
+include missing clocks?
 
 
-Any update/progress/plan on this patch series?
-
-Thanks,
-Francesco
+Best regards,
+Krzysztof
 
 
