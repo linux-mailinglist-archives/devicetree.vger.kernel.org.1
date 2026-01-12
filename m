@@ -1,139 +1,92 @@
-Return-Path: <devicetree+bounces-254111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E4AD141E3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:43:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DD52D14243
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:46:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DCA713059A5C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:38:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 87A3330953A8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0DA5366DC4;
-	Mon, 12 Jan 2026 16:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="crpvPHEn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C4DD366DA3;
+	Mon, 12 Jan 2026 16:42:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95582DA771;
-	Mon, 12 Jan 2026 16:38:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BBA2E265A;
+	Mon, 12 Jan 2026 16:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768235921; cv=none; b=Jq9Iqp0sve4Ej33nFG8kVQsi0QTd0tbtNJbP1pjv25OWiSKxD6WMG5v9i1BI5r0dULZ1IjtQmQKw1tz3rw69mSo5iN2d66IUVcnPy7pB7v/VNDG4Zt/OBs+2fol9nqmDdFVjtO5LpsWkQw0aCKkjf+owYlTbgVprJGxv5s3jXME=
+	t=1768236133; cv=none; b=H9q+y51QMndzKRQRIjuXSVTIaHdryxwVapwrF2mwa/flKIggkfYYRT50zVM15/piBOBmUABSdLKzFfhmlkQRmIENB49TOkZNdc2LpS8+4b5P2OT41LyJLqa1pGy+1zwU8ERUcwc/TpQL8QyfTBt+/rXnjFac5JhkYaDDH5/hVvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768235921; c=relaxed/simple;
-	bh=1BjozNva2gaBLg6k04odG9/IkL7rt3VXY1ysguxcyVI=;
+	s=arc-20240116; t=1768236133; c=relaxed/simple;
+	bh=p+zhbcd+Ejgo7BjYXu0FBHtSgAxS8QssHtymENbdr3g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uGXn4oMSNcXkVchHUL4UM2lx7gsjKStPwQR3H0qEZxAAEfdMIGPlMqCZ4WHSVJV4vtuhwqYyc78kDF8aEqWTIuOEQTX7IhBeY+C2QWAEIGT+7lq1G2g0aRNy5N9k4otYEVLSrgvlLDzCLFmRk0gqJVMTl6JOceYYxlsqTOGexMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=crpvPHEn; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768235919; x=1799771919;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1BjozNva2gaBLg6k04odG9/IkL7rt3VXY1ysguxcyVI=;
-  b=crpvPHEnvBSlYueAZfi88snxOKiR6c/CkAWb93qKVekRZJ7oeVr9qjx4
-   8/CkRW3GaQE/Fk3r9nFZPXDjpZq1fwpvTlYnLnhy8k1C5ICvGDHmTqNRK
-   0OpYW4tcAx8fxtUOP/YiZiEDd8X0U+TrVUhy/It+AcuTRe0eHXQtnsKS0
-   Zb82hcqnmTGoGjgHMWodpxxjoSlnYE0rA5x7OC6x6OarC73ccYp1kW7Mf
-   4Q+loaovBAgfvGTMOUu2xIJviW1u7YROe7VtxYHOPzm+8GW+jwxEcUVne
-   GrScjSdFDL1GARMt70ij7vHKz1WzNAGjdUBrbCddKwryFvWR1DJosG83b
-   g==;
-X-CSE-ConnectionGUID: /7E2OMO3SkmJ9KAsIuyWQw==
-X-CSE-MsgGUID: e+tZzl08R5uPNMZ6Inyt+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="69439347"
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="69439347"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 08:38:39 -0800
-X-CSE-ConnectionGUID: HjepE92rSi+YewpXaVU9aA==
-X-CSE-MsgGUID: Wz3E33p6RWSK5dS3rQ16Nw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="235372759"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 12 Jan 2026 08:38:36 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vfKw5-00000000DaI-409o;
-	Mon, 12 Jan 2026 16:38:33 +0000
-Date: Tue, 13 Jan 2026 00:38:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Edelweise Escala <edelweise.escala@analog.com>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Edelweise Escala <edelweise.escala@analog.com>
-Subject: Re: [PATCH v2 2/2] leds: ltc3220: Add Support for LTC3220 18 channel
- LED Driver
-Message-ID: <202601122335.DZgiMBky-lkp@intel.com>
-References: <20260112-ltc3220-driver-v2-2-d043058fc4df@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ne4AcgnaFmV0yF/V9UOVJLaxtg4+1et3Fl6HUmv2y7/S30n+R07z6iDJLv9CMMG936TtPO6/IHY/8twHkGF3XG/B7WC7XIqWCHH8j6/Y3MX5PENm31Y5EIAaAMjdiF7Lpblt4U0emcg7k2tA/v24QB4YuL7WpWko9np0hzHjLn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63631C116D0;
+	Mon, 12 Jan 2026 16:42:01 +0000 (UTC)
+Date: Mon, 12 Jan 2026 22:11:57 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Mark Pearson <mpearson-lenovo@squebb.ca>, 
+	"Derek J. Clark" <derekjohn.clark@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	linux-acpi@vger.kernel.org, Sui Jingfeng <sui.jingfeng@linux.dev>
+Subject: Re: [PATCH v3 03/14] software node: Implement device_get_match_data
+ fwnode callback
+Message-ID: <6xnoqml2iwipcfm2byrswm7xmhehzbjbdgeets7qpyiez6le6z@vrtcqoaaqwgx>
+References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
+ <20260110-pci-m2-e-v3-3-4faee7d0d5ae@oss.qualcomm.com>
+ <aWSpFk9z0zpyKjr6@smile.fi.intel.com>
+ <6l3rs5pv6xnrbygpvqrdxqoqtybjyefsltk5bl4336q56rfoza@ejo3sxuufghe>
+ <20260112-miniature-quiet-gorilla-263fed@lemur>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260112-ltc3220-driver-v2-2-d043058fc4df@analog.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260112-miniature-quiet-gorilla-263fed@lemur>
 
-Hi Edelweise,
+On Mon, Jan 12, 2026 at 08:37:02AM -0500, Konstantin Ryabitsev wrote:
+> On Mon, Jan 12, 2026 at 01:49:54PM +0530, Manivannan Sadhasivam wrote:
+> > > I really do not want to see this patch without very good justification
+> > > (note, there were at least two attempts in the past to add this stuff
+> > >  and no-one was merged, have you studied those cases?).
+> > > 
+> > 
+> > Yes I did. I didn't put the above justification in the cover letter, as it was
+> > already overwhelmed with too much information regarding the connector node.
+> > Maybe I should've added it in the comments section of this patch. But I didn't
+> > know how to do that with b4.
+> 
+> You can just amend the commit directly and put comments under "---". They
+> will be preserved when email is sent, but won't be applied when the maintainer
+> pulls the series.
+> 
 
-kernel test robot noticed the following build warnings:
+Ah, thanks for the info!
 
-[auto build test WARNING on 8856d7fe1758937ac528770f552ec58c388c255b]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Edelweise-Escala/dt-bindings-leds-Add-LTC3220-18-channel-LED-Driver/20260112-170223
-base:   8856d7fe1758937ac528770f552ec58c388c255b
-patch link:    https://lore.kernel.org/r/20260112-ltc3220-driver-v2-2-d043058fc4df%40analog.com
-patch subject: [PATCH v2 2/2] leds: ltc3220: Add Support for LTC3220 18 channel LED Driver
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20260112/202601122335.DZgiMBky-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260112/202601122335.DZgiMBky-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601122335.DZgiMBky-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/leds/leds-ltc3220.c:348:12: warning: 'ltc3220_resume' defined but not used [-Wunused-function]
-     348 | static int ltc3220_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~
->> drivers/leds/leds-ltc3220.c:340:12: warning: 'ltc3220_suspend' defined but not used [-Wunused-function]
-     340 | static int ltc3220_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~
-
-
-vim +/ltc3220_resume +348 drivers/leds/leds-ltc3220.c
-
-   339	
- > 340	static int ltc3220_suspend(struct device *dev)
-   341	{
-   342		struct i2c_client *client = to_i2c_client(dev);
-   343		struct ltc3220_state *ltc3220_state = i2c_get_clientdata(client);
-   344	
-   345		return ltc3220_shutdown(ltc3220_state);
-   346	}
-   347	
- > 348	static int ltc3220_resume(struct device *dev)
-   349	{
-   350		struct i2c_client *client = to_i2c_client(dev);
-   351		struct ltc3220_state *ltc3220_state = i2c_get_clientdata(client);
-   352	
-   353		return ltc3220_resume_from_shutdown(ltc3220_state);
-   354	}
-   355	
+- Mani
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+மணிவண்ணன் சதாசிவம்
 
