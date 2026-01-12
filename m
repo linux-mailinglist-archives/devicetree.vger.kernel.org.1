@@ -1,553 +1,244 @@
-Return-Path: <devicetree+bounces-253692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BD5DD10969
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 05:42:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 396C9D109A3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 06:00:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 719D030146CA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 04:42:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A8200302E874
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 05:00:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 271CF264FBD;
-	Mon, 12 Jan 2026 04:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFCD530E837;
+	Mon, 12 Jan 2026 05:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tPCSlwqM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L2pEtPTt";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aVqEO2N9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041991E4AB
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 04:42:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B0C2EC561
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 05:00:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768192923; cv=none; b=C5SgpvU5S7OKwg5XgWhR/3Vn2DAnL03lOxA/4V4NmKkZN4DdmgZSMsfpDDlnQHf001B0SDDCC3h1V8oxj1CN/OOMTY51on5ZWyMhdjDQf6aj2RNb7HuKSv83Y5s/Y1FrG/GcOqzgkDLepzlIbS892g2ND8O1ZzVkU1fwhpBva5A=
+	t=1768194035; cv=none; b=eXrruOH8Xghj1Z64O8G3lnMd3vaCayrD59dIi7H/u890u/GNl0O3F6d2cTGleIh9rgI20W8HiHX1omspC/kPSQlSNPO9tR/zeeCVgkCsEimQSSmfFr+5JM2Nj8+WJ2NZeJ6XaKVfG5g9WTfHPz0WFdcNww3J/wtWfvyKTJIHpkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768192923; c=relaxed/simple;
-	bh=GLHYzMYahKcO9E8TbEQFDB64LDBAnwrH3mmB/8VZJZ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BuBiGFzGxYy0xkGqUDJPCOzD2whFJAorH9eAjuiGbCD/so1gp9mRds8h0RgefDIPGoLG9sm9tCerpfK76UacPvsYDebIJxGUfS6K1+M6KeXStuPSNF/ve5Zen2mQEmg+EqK5IY+4y11AAQhUv1KV6K+LmhEp3hF/n7Hysa4P7Og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tPCSlwqM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8318C19422;
-	Mon, 12 Jan 2026 04:42:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768192922;
-	bh=GLHYzMYahKcO9E8TbEQFDB64LDBAnwrH3mmB/8VZJZ0=;
-	h=From:To:Cc:Subject:Date:From;
-	b=tPCSlwqMP9Z7F7Tjon+pirJ3yTwSZmV1EvJyL1fzkw37GtOGNo7OrM2dhxw1FWj5D
-	 H3rjOqe1t7KW2g0iDJOlWPeYHFUdco33UQm4twMrQou7D4Tg+KvkCUyoUFYPzWt+Su
-	 YOWk2f8Y/bkkzPsQRRYIP2V685XYuveutG8Wqr7FuzpU676TDDZRG+wu9vdW7pbaNN
-	 zjHcwee0SKvW/wBN68mL35Zt/GkFgwitXnXJ2XU74HsT16lDYEGKNLPOt/Zjl2U1A1
-	 rFO/2HCisvgYinmzl/NVjuxF93haXlH7AOheTyJNowWxtCR1xa0kBiwWw/lNcLKGM+
-	 DlioZdlf1lmaA==
-From: Dinh Nguyen <dinguyen@kernel.org>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dinguyen@kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCHv2] ARM: dts: socfpga: remove underscore node names for base socfpga dtsi
-Date: Sun, 11 Jan 2026 22:41:53 -0600
-Message-ID: <20260112044153.1887253-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.42.0.411.g813d9a9188
+	s=arc-20240116; t=1768194035; c=relaxed/simple;
+	bh=t3r3AXoBkd0/ngre4hd4qcO9ERUUsuB8LeNH5EljkJI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=szh6DhJpXDt1aA86vbqeKWL9QBZ2F/OBd8PTxDjUcfndRbO3+3xwUk5mgOZfPv8pMr6909Z6FNvB34Ic6lx+hJ7jyaAnnr2I5Z6MRuBe+cd1uQoHd1rs/eXfJoJeSYXU90gzrGL+w5oTou+pc1aWWSzUlzc+BVK3f+GvSgT3wzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L2pEtPTt; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aVqEO2N9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60BMOQZo138153
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 05:00:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Cy19z6gu1PtzGgaR/dtvCLM9
+	DUS663N/jPuBATe9Cv8=; b=L2pEtPTtaz0chwecRAf8wtTioxHuT+j1Xa90dCCq
+	yaMa0k3zwUwFYAhstkya4/XV8lHQHRLJn0JasHsn/YIhg0VAyzdGQ8UMOK+aZm3L
+	gkRcdsRCfCyB//CainXn7s83IazM2vyqisQ5WtjwQZMMHk1CbSy3eLV5uwylhEvn
+	49NOEdT3LXXCGXRTNPFszNo6XKnRnwzePgpPLrrBosJHqrOmDNCspqMGxbKuG55p
+	Vf2CDASXFRdiEeSXiYOx2+ellkElvqWs6vquk374c0rFOlI39StIa2cmxJH3HDr1
+	NmnFFg3Dzfa860kTqo6cotk9GdQKTyBKc+8Q7amracL0IA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bm8kysk9y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 05:00:33 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b259f0da04so1636879785a.0
+        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 21:00:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768194033; x=1768798833; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cy19z6gu1PtzGgaR/dtvCLM9DUS663N/jPuBATe9Cv8=;
+        b=aVqEO2N9+1jxQVK6jwEADWMU3+1ofiQ+jLa/KRWNbJuM5b/dihCG1vNwQZmGIahlLU
+         xfOJB6uNyN5s0tut4JJuBHLcKABzc7+XfWEHakXY7H16Svc0msVP3d4X48vgZ9YAymc6
+         7xUKeq3i32RX8O3vM6kdl3tVE7rvWagKRPCsLXH0314xTzUDrTVxf3lWytg35KdYh8YH
+         Ore0o68NqZxbTyhPqPE4+X/0bASfmOatvQrlwxzesc89cT8UGtGpwleGsfsiOm1wLcWS
+         YRdmXP2u95AYc+D5xqkchJ917BtDXmQLoPXaMiZz9LVjQhqk/AWanN14YR98GGrpWIE2
+         knzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768194033; x=1768798833;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cy19z6gu1PtzGgaR/dtvCLM9DUS663N/jPuBATe9Cv8=;
+        b=PBCTEDIczj7rdZIVcGgJxHCAPk3SWXGZ2GBw0A4RdW+Q6OgnoAi2LjCrvcdydd96sT
+         8QMkoBoav13CeXGJK9RTfVvS5kkddKFpRwbMh5Lgk0N/5zA5LEgZKiZtfTliGYPDGvCk
+         cooN5/bw1IBk2bQUrOhEm2/UObLes1b9s4IAFSRpT3/oYx+AT3+ptX7LJDw46sd0X43Y
+         tgxwXylEYSrmtJRXAxNtUWIE54kMDFii2l6SFk3ctx9fRLl4ThXNBGFtmQVwei7H/Crq
+         5y9lRnGNDd+zCdwdTVJRNf4riFeDsA7mzvfsScFL3hGwULMpTStwWdTzbkQS+NCL1hV8
+         xJYw==
+X-Forwarded-Encrypted: i=1; AJvYcCVi9Uk1f3QNSkUNP0X7GfgNpZciFlThNHBxzExK/1OQJ/uPRhD01fbUqH3PGU88esIGw/B6pubbhURM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7WEWq75IPgUd/QMToy3kbSfmZQWGZa7emzWGzwP8xO9q2Y0Yb
+	2GLZvwdr/POI7kipr5EUYuWjWr+WqWvXgpGX0eSU35OpEDlPpTePPIM6TlMr5XdDYISb96od0R8
+	2GPBY/LY6pDWY9YQwg5Ll7GmSjAqj1iC9bEdlFvfhGriItDk8Fi7taJ5aQFPc8PRD
+X-Gm-Gg: AY/fxX4GXtrIVvHLm998KPbn7GtR44iAcBRbnTTYNGe1Pvd5dD1O34Qu2EgzwSumpUj
+	Hbwe97X3o6jkY2GF5mbyeJR2Ei7UxHjM5IW74y+D7Yw58G+EHnj49My9jYiXsjBhty6xNjf55o1
+	VywdrokA2zJOIHtuhiWoD5Z5fuM/vwWAjcDoy2A+jVyEXeoChxNRF4Zm8f+2p/1QgXxesmfveQf
+	6CGTgYkEwcdiWtq1myqRIjol9SObKOoRORD4yMsdG5O9uutCoymaPvyApia0St/WEgGm4khYErv
+	n+uBuKbe+lo6jlKdmrso1cYzMllD4brO1DbLhOVOB3CrTisvITryYUFGa36ebGXvIKZ4DR/zLtG
+	BTRGaz81mQxzYUpkHgptX79h2StTgJfl1Jc0MYjK2LPhg/9Kje/Q/PikCVp+eIbXMcKYFb+yEX/
+	aIPrcNRabspbCn8f08MnqDuSs=
+X-Received: by 2002:a05:620a:d86:b0:8c3:5a72:b11 with SMTP id af79cd13be357-8c389426b89mr2197974385a.90.1768194032029;
+        Sun, 11 Jan 2026 21:00:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IES4T+bcp+TdOYNVx5YOKEqtPQzqoanBejmY0l/1xyHT3qiehWElvYSMRXqTv5QYszLVZ+xgA==
+X-Received: by 2002:a05:620a:d86:b0:8c3:5a72:b11 with SMTP id af79cd13be357-8c389426b89mr2197971085a.90.1768194031536;
+        Sun, 11 Jan 2026 21:00:31 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59b7868955fsm2831961e87.2.2026.01.11.21.00.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Jan 2026 21:00:29 -0800 (PST)
+Date: Mon, 12 Jan 2026 07:00:27 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski@oss.qualcomm.com
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: Add base PURWA-IOT-EVK board
+Message-ID: <ak6xsow3cobhe64y2koa4v7w5dkdc4v3zlmpokws4nxmu5c6rt@kdgm2oqxxvcl>
+References: <20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com>
+ <20260109080000.606603-4-yijie.yang@oss.qualcomm.com>
+ <6e8e6583-033f-439e-bd92-b24fe432fb96@oss.qualcomm.com>
+ <3959a318-aca3-43e2-a431-4a9ae40f911f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3959a318-aca3-43e2-a431-4a9ae40f911f@oss.qualcomm.com>
+X-Proofpoint-GUID: JhhzU2VqihjGxMkTyQoWqYV3qA5w9Qxu
+X-Authority-Analysis: v=2.4 cv=ZuDg6t7G c=1 sm=1 tr=0 ts=69647ff1 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=WRrWcEVuY01nxyfF4fsA:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: JhhzU2VqihjGxMkTyQoWqYV3qA5w9Qxu
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEyMDAzOSBTYWx0ZWRfX9/r80eEbYwh8
+ CF6+wNaxA7AI995mu3gKTVw/jDXgR6NIVsnmiieGxZ1KM4MJlBYlCRMLUzYYjuF4YshoTXUuqvP
+ 1M1K1hPPwhy3aJY5SCaKRXG3M/TK+SB+DGC0As79NBh6clsg0D+v1PCrG3gKvo9UmSfy+BFgEKO
+ BhYZFPDHEiFravtUdoCik2eqxfLGSGuK04nSonfzivbCOaRJoqKRumOxjoRkxXmxAkyZif8K1tS
+ 6EI1zlhUySJ+ah7yy1/KqqGyvgkAv9IYcNueJQN7psELejlrKlbilH95dyo7cBOTqpNKOaCpoZZ
+ IBEBzvKeuIIgq16Jb5GZsPjIKMlmjg3YVjvDAy3wYG+ytNUh8wRLjJC3Zr9qf6bDO36Z6I5yU7E
+ E/8qOhcyWVHwFSE9ztRwzHa6lYVAFBWg1pIcNm1OkMNwqLqqSR2UFphaJQs0Yiqz17FW2h83fRE
+ BcLsUXnmtd2L87y/URQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-12_01,2026-01-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ spamscore=0 clxscore=1015 priorityscore=1501 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601120039
 
-The node names in a DTS file should be using a hyphen, not an underscore
-as warned by 'dtc W=2'.
+On Mon, Jan 12, 2026 at 11:12:09AM +0800, Yijie Yang wrote:
+> 
+> 
+> On 1/9/2026 7:29 PM, Konrad Dybcio wrote:
+> > On 1/9/26 8:59 AM, YijieYang wrote:
+> > > From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> > > 
+> > > The PURWA-IOT-EVK is an evaluation platform for IoT products, composed of
+> > > the Purwa IoT SoM and a carrier board. Together, they form a complete
+> > > embedded system capable of booting to UART.
+> > 
+> > [...]
+> > 
+> > > -	backlight: backlight {
+> > > -		compatible = "pwm-backlight";
+> > > -		pwms = <&pmk8550_pwm 0 5000000>;
+> > > -		enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
+> > > -		power-supply = <&vreg_edp_bl>;
+> > > -
+> > > -		pinctrl-0 = <&edp_bl_en>, <&edp_bl_pwm>;
+> > > -		pinctrl-names = "default";
+> > > -	};
+> > 
+> > Is the backlight infra different on the Purwa IoT EVK?
+> 
+> As you can see, this Purwa file was copied from the latest
+> hamoa-iot-evk.dts. However, not all nodes have been verified on Purwa.
+> Therefore, I need to retain only the functions that work correctly and keep
+> them aligned with the nodes from my initial version. The deleted nodes will
+> be updated later by the respective authors from different technical areas.
 
-For clock nodes, use clock-controller@address and clock-<name>. While at
-it, fix DTS coding style to use lowercase hex for values and unit
-addresses for these clock nodes.
+Please, only delete nodes which are not present on the Purwa IoT EVK.
 
-There are no functional change in this patch.
+> 
+> > 
+> > > -
+> > >   	wcd938x: audio-codec {
+> > >   		compatible = "qcom,wcd9385-codec";
+> > > @@ -60,32 +50,6 @@ chosen {
+> > >   		stdout-path = "serial0:115200n8";
+> > >   	};
+> > > -	connector3 {
+> > > -		compatible = "usb-a-connector";
+> > > -		label = "USB-3-Type-A";
+> > > -		power-role = "source";
+> > > -
+> > > -		vbus-supply = <&regulator_usb3_vbus>;
+> > > -
+> > > -		port {
+> > > -			connector_3_in: endpoint {
+> > > -			};
+> > > -		};
+> > > -	};
+> > > -
+> > > -	connector6 {
+> > > -		compatible = "usb-a-connector";
+> > > -		label = "USB-6-Type-A";
+> > > -		power-role = "source";
+> > > -
+> > > -		vbus-supply = <&regulator_usb6_vbus>;
+> > > -
+> > > -		port {
+> > > -			connector_4_in: endpoint {
+> > > -			};
+> > > -		};
+> > > -	};
+> > 
+> > Are there no Type-A ports?
+> 
+> ditto
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v2: used clock-controller@address and clock-name
-    reworded commit message
----
- arch/arm/boot/dts/intel/socfpga/socfpga.dtsi | 128 +++++++++----------
- 1 file changed, 64 insertions(+), 64 deletions(-)
+?
 
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-index 35be14150f41..28494aeb71b2 100644
---- a/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga.dtsi
-@@ -131,17 +131,17 @@ osc2: osc2 {
- 						compatible = "fixed-clock";
- 					};
- 
--					f2s_periph_ref_clk: f2s_periph_ref_clk {
-+					f2s_periph_ref_clk: clock-f2s-periph-ref {
- 						#clock-cells = <0>;
- 						compatible = "fixed-clock";
- 					};
- 
--					f2s_sdram_ref_clk: f2s_sdram_ref_clk {
-+					f2s_sdram_ref_clk: clock-f2s-sdram-ref {
- 						#clock-cells = <0>;
- 						compatible = "fixed-clock";
- 					};
- 
--					main_pll: main_pll@40 {
-+					main_pll: clock-controller@40 {
- 						#address-cells = <1>;
- 						#size-cells = <0>;
- 						#clock-cells = <0>;
-@@ -149,7 +149,7 @@ main_pll: main_pll@40 {
- 						clocks = <&osc1>;
- 						reg = <0x40>;
- 
--						mpuclk: mpuclk@48 {
-+						mpuclk: clock-controller@48 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&main_pll>;
-@@ -157,15 +157,15 @@ mpuclk: mpuclk@48 {
- 							reg = <0x48>;
- 						};
- 
--						mainclk: mainclk@4c {
-+						mainclk: clock-controller@4c {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&main_pll>;
- 							div-reg = <0xe4 0 9>;
--							reg = <0x4C>;
-+							reg = <0x4c>;
- 						};
- 
--						dbg_base_clk: dbg_base_clk@50 {
-+						dbg_base_clk: clock-controller@50 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&main_pll>, <&osc1>;
-@@ -173,29 +173,29 @@ dbg_base_clk: dbg_base_clk@50 {
- 							reg = <0x50>;
- 						};
- 
--						main_qspi_clk: main_qspi_clk@54 {
-+						main_qspi_clk: clock-controller@54 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x54>;
- 						};
- 
--						main_nand_sdmmc_clk: main_nand_sdmmc_clk@58 {
-+						main_nand_sdmmc_clk: clock-controller@58 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&main_pll>;
- 							reg = <0x58>;
- 						};
- 
--						cfg_h2f_usr0_clk: cfg_h2f_usr0_clk@5c {
-+						cfg_h2f_usr0_clk: clock-controller@5c {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&main_pll>;
--							reg = <0x5C>;
-+							reg = <0x5c>;
- 						};
- 					};
- 
--					periph_pll: periph_pll@80 {
-+					periph_pll: clock-controller@80 {
- 						#address-cells = <1>;
- 						#size-cells = <0>;
- 						#clock-cells = <0>;
-@@ -203,50 +203,50 @@ periph_pll: periph_pll@80 {
- 						clocks = <&osc1>, <&osc2>, <&f2s_periph_ref_clk>;
- 						reg = <0x80>;
- 
--						emac0_clk: emac0_clk@88 {
-+						emac0_clk: clock-controller@88 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0x88>;
- 						};
- 
--						emac1_clk: emac1_clk@8c {
-+						emac1_clk: clock-controller@8c {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&periph_pll>;
--							reg = <0x8C>;
-+							reg = <0x8c>;
- 						};
- 
--						per_qspi_clk: per_qsi_clk@90 {
-+						per_qspi_clk: clock-controller@90 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0x90>;
- 						};
- 
--						per_nand_mmc_clk: per_nand_mmc_clk@94 {
-+						per_nand_mmc_clk: clock-controller@94 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0x94>;
- 						};
- 
--						per_base_clk: per_base_clk@98 {
-+						per_base_clk: clock-controller@98 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&periph_pll>;
- 							reg = <0x98>;
- 						};
- 
--						h2f_usr1_clk: h2f_usr1_clk@9c {
-+						h2f_usr1_clk: clock-controller@9c {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&periph_pll>;
--							reg = <0x9C>;
-+							reg = <0x9c>;
- 						};
- 					};
- 
--					sdram_pll: sdram_pll@c0 {
-+					sdram_pll: clock-controller@c0 {
- 						#address-cells = <1>;
- 						#size-cells = <0>;
- 						#clock-cells = <0>;
-@@ -254,64 +254,64 @@ sdram_pll: sdram_pll@c0 {
- 						clocks = <&osc1>, <&osc2>, <&f2s_sdram_ref_clk>;
- 						reg = <0xC0>;
- 
--						ddr_dqs_clk: ddr_dqs_clk@c8 {
-+						ddr_dqs_clk: clock-controller@c8 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&sdram_pll>;
--							reg = <0xC8>;
-+							reg = <0xc8>;
- 						};
- 
--						ddr_2x_dqs_clk: ddr_2x_dqs_clk@cc {
-+						ddr_2x_dqs_clk: clock-controller@cc {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&sdram_pll>;
--							reg = <0xCC>;
-+							reg = <0xcc>;
- 						};
- 
--						ddr_dq_clk: ddr_dq_clk@d0 {
-+						ddr_dq_clk: clock-controller@d0 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&sdram_pll>;
--							reg = <0xD0>;
-+							reg = <0xd0>;
- 						};
- 
--						h2f_usr2_clk: h2f_usr2_clk@d4 {
-+						h2f_usr2_clk: clock-controller@d4 {
- 							#clock-cells = <0>;
- 							compatible = "altr,socfpga-perip-clk";
- 							clocks = <&sdram_pll>;
--							reg = <0xD4>;
-+							reg = <0xd4>;
- 						};
- 					};
- 
--					mpu_periph_clk: mpu_periph_clk {
-+					mpu_periph_clk: clock-mpu-periph {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-perip-clk";
- 						clocks = <&mpuclk>;
- 						fixed-divider = <4>;
- 					};
- 
--					mpu_l2_ram_clk: mpu_l2_ram_clk {
-+					mpu_l2_ram_clk: clock-mpu-l2-ram {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-perip-clk";
- 						clocks = <&mpuclk>;
- 						fixed-divider = <2>;
- 					};
- 
--					l4_main_clk: l4_main_clk {
-+					l4_main_clk: clock-l4-main {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&mainclk>;
- 						clk-gate = <0x60 0>;
- 					};
- 
--					l3_main_clk: l3_main_clk {
-+					l3_main_clk: clock-l3-main {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-perip-clk";
- 						clocks = <&mainclk>;
- 						fixed-divider = <1>;
- 					};
- 
--					l3_mp_clk: l3_mp_clk {
-+					l3_mp_clk: clock-l3-mp {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&mainclk>;
-@@ -319,14 +319,14 @@ l3_mp_clk: l3_mp_clk {
- 						clk-gate = <0x60 1>;
- 					};
- 
--					l3_sp_clk: l3_sp_clk {
-+					l3_sp_clk: clock-l3-sp {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&l3_mp_clk>;
- 						div-reg = <0x64 2 2>;
- 					};
- 
--					l4_mp_clk: l4_mp_clk {
-+					l4_mp_clk: clock-l4-mp {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&mainclk>, <&per_base_clk>;
-@@ -334,7 +334,7 @@ l4_mp_clk: l4_mp_clk {
- 						clk-gate = <0x60 2>;
- 					};
- 
--					l4_sp_clk: l4_sp_clk {
-+					l4_sp_clk: clock-l4-sp {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&mainclk>, <&per_base_clk>;
-@@ -342,7 +342,7 @@ l4_sp_clk: l4_sp_clk {
- 						clk-gate = <0x60 3>;
- 					};
- 
--					dbg_at_clk: dbg_at_clk {
-+					dbg_at_clk: clock-dbg-at {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&dbg_base_clk>;
-@@ -350,7 +350,7 @@ dbg_at_clk: dbg_at_clk {
- 						clk-gate = <0x60 4>;
- 					};
- 
--					dbg_clk: dbg_clk {
-+					dbg_clk: clock-dbg {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&dbg_at_clk>;
-@@ -358,50 +358,50 @@ dbg_clk: dbg_clk {
- 						clk-gate = <0x60 5>;
- 					};
- 
--					dbg_trace_clk: dbg_trace_clk {
-+					dbg_trace_clk: clock-dbg-trace {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&dbg_base_clk>;
--						div-reg = <0x6C 0 3>;
-+						div-reg = <0x6c 0 3>;
- 						clk-gate = <0x60 6>;
- 					};
- 
--					dbg_timer_clk: dbg_timer_clk {
-+					dbg_timer_clk: clock-dbg-timer {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&dbg_base_clk>;
- 						clk-gate = <0x60 7>;
- 					};
- 
--					cfg_clk: cfg_clk {
-+					cfg_clk: clock-cfg {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&cfg_h2f_usr0_clk>;
- 						clk-gate = <0x60 8>;
- 					};
- 
--					h2f_user0_clk: h2f_user0_clk {
-+					h2f_user0_clk: clock-h2f-user0 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&cfg_h2f_usr0_clk>;
- 						clk-gate = <0x60 9>;
- 					};
- 
--					emac_0_clk: emac_0_clk {
-+					emac_0_clk: clock-emac-0 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&emac0_clk>;
- 						clk-gate = <0xa0 0>;
- 					};
- 
--					emac_1_clk: emac_1_clk {
-+					emac_1_clk: clock-emac-1 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&emac1_clk>;
- 						clk-gate = <0xa0 1>;
- 					};
- 
--					usb_mp_clk: usb_mp_clk {
-+					usb_mp_clk: clock-usb-mp {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&per_base_clk>;
-@@ -409,7 +409,7 @@ usb_mp_clk: usb_mp_clk {
- 						div-reg = <0xa4 0 3>;
- 					};
- 
--					spi_m_clk: spi_m_clk {
-+					spi_m_clk: clock-spi-m {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&per_base_clk>;
-@@ -417,7 +417,7 @@ spi_m_clk: spi_m_clk {
- 						div-reg = <0xa4 3 3>;
- 					};
- 
--					can0_clk: can0_clk {
-+					can0_clk: clock-can0 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&per_base_clk>;
-@@ -425,7 +425,7 @@ can0_clk: can0_clk {
- 						div-reg = <0xa4 6 3>;
- 					};
- 
--					can1_clk: can1_clk {
-+					can1_clk: clock-can1 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&per_base_clk>;
-@@ -433,7 +433,7 @@ can1_clk: can1_clk {
- 						div-reg = <0xa4 9 3>;
- 					};
- 
--					gpio_db_clk: gpio_db_clk {
-+					gpio_db_clk: clock-gpio-db {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&per_base_clk>;
-@@ -441,21 +441,21 @@ gpio_db_clk: gpio_db_clk {
- 						div-reg = <0xa8 0 24>;
- 					};
- 
--					h2f_user1_clk: h2f_user1_clk {
-+					h2f_user1_clk: clock-h2f-user1 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&h2f_usr1_clk>;
- 						clk-gate = <0xa0 7>;
- 					};
- 
--					sdmmc_clk: sdmmc_clk {
-+					sdmmc_clk: clock-sdmmc {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&f2s_periph_ref_clk>, <&main_nand_sdmmc_clk>, <&per_nand_mmc_clk>;
- 						clk-gate = <0xa0 8>;
- 					};
- 
--					sdmmc_clk_divided: sdmmc_clk_divided {
-+					sdmmc_clk_divided: clock-sdmmc-divided {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&sdmmc_clk>;
-@@ -463,21 +463,21 @@ sdmmc_clk_divided: sdmmc_clk_divided {
- 						fixed-divider = <4>;
- 					};
- 
--					nand_x_clk: nand_x_clk {
-+					nand_x_clk: clock-nand-x {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&f2s_periph_ref_clk>, <&main_nand_sdmmc_clk>, <&per_nand_mmc_clk>;
- 						clk-gate = <0xa0 9>;
- 					};
- 
--					nand_ecc_clk: nand_ecc_clk {
-+					nand_ecc_clk: clock-nand-ecc {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&nand_x_clk>;
- 						clk-gate = <0xa0 9>;
- 					};
- 
--					nand_clk: nand_clk {
-+					nand_clk: clock-nand {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&nand_x_clk>;
-@@ -485,35 +485,35 @@ nand_clk: nand_clk {
- 						fixed-divider = <4>;
- 					};
- 
--					qspi_clk: qspi_clk {
-+					qspi_clk: clock-qspi {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&f2s_periph_ref_clk>, <&main_qspi_clk>, <&per_qspi_clk>;
- 						clk-gate = <0xa0 11>;
- 					};
- 
--					ddr_dqs_clk_gate: ddr_dqs_clk_gate {
-+					ddr_dqs_clk_gate: clock-ddr-dqs-gate {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&ddr_dqs_clk>;
- 						clk-gate = <0xd8 0>;
- 					};
- 
--					ddr_2x_dqs_clk_gate: ddr_2x_dqs_clk_gate {
-+					ddr_2x_dqs_clk_gate: clock-ddr-2x-dqs-gate {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&ddr_2x_dqs_clk>;
- 						clk-gate = <0xd8 1>;
- 					};
- 
--					ddr_dq_clk_gate: ddr_dq_clk_gate {
-+					ddr_dq_clk_gate: clock-ddr-dq-gate {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&ddr_dq_clk>;
- 						clk-gate = <0xd8 2>;
- 					};
- 
--					h2f_user2_clk: h2f_user2_clk {
-+					h2f_user2_clk: clock-h2f-user2 {
- 						#clock-cells = <0>;
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&h2f_usr2_clk>;
-@@ -523,7 +523,7 @@ h2f_user2_clk: h2f_user2_clk {
- 				};
- 		};
- 
--		fpga_bridge0: fpga_bridge@ff400000 {
-+		fpga_bridge0: fpga-bridge@ff400000 {
- 			compatible = "altr,socfpga-lwhps2fpga-bridge";
- 			reg = <0xff400000 0x100000>;
- 			resets = <&rst LWHPS2FPGA_RESET>;
-@@ -531,7 +531,7 @@ fpga_bridge0: fpga_bridge@ff400000 {
- 			status = "disabled";
- 		};
- 
--		fpga_bridge1: fpga_bridge@ff500000 {
-+		fpga_bridge1: fpga-bridge@ff500000 {
- 			compatible = "altr,socfpga-hps2fpga-bridge";
- 			reg = <0xff500000 0x10000>;
- 			resets = <&rst HPS2FPGA_RESET>;
+> 
+> > > @@ -920,23 +886,6 @@ &mdss_dp3_phy {
+> > >   	status = "okay";
+> > >   };
+> > > -&pcie4_port0 {
+> > > -	wifi@0 {
+> > > -		compatible = "pci17cb,1107";
+> > > -		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> > > -
+> > > -		vddaon-supply = <&vreg_pmu_aon_0p59>;
+> > > -		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> > > -		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+> > > -		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> > > -		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> > > -		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> > > -		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
+> > > -		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+> > > -		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+> > > -	};
+> > > -};
+> > 
+> > Is the Wi-Fi solution different?
+> 
+> ditto
+
+NAK
+
 -- 
-2.42.0.411.g813d9a9188
-
+With best wishes
+Dmitry
 
