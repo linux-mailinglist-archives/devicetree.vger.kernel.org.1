@@ -1,211 +1,160 @@
-Return-Path: <devicetree+bounces-253791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F24E9D11600
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:02:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32355D1162B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:02:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C795303C63D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:02:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 309DB30445C1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1747C346E51;
-	Mon, 12 Jan 2026 09:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281B2346795;
+	Mon, 12 Jan 2026 09:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Yf0pnwDr";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gcsRJUBY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a8cHfpOX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6E53128A0
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:02:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F288A30FC1D;
+	Mon, 12 Jan 2026 09:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768208523; cv=none; b=PraXnDH7NYi81km8qMCW/a7vIAuraORtfBVGKcBPBA9qEuUheSLsHP1RGk1C1j2sp1vkRzybgCaZoI+EedlCrskZX50t4suEXzy5v/KnKzt4UEDqNczXdpxiKYEb3bLcMAarxfRBo6WHTqZmPOBIUgBMJ4hnrh4esDXT7eNwCxc=
+	t=1768208542; cv=none; b=KAKKeIjeUb24ZIyE0T33P6KR8C356XThswaPOwwi1x6xLpw1uEfTKXVhVjWEjEjLtfbC4VOT2LUmJzfWJMXAbYKPWMjnXxU5zxQ7DO7fwdhCZwzwzXYC0YoNrbiVwYZSybrbIb0Z9IEaZw24810bfRz7jWa4zhE+4Rnp0ENtVHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768208523; c=relaxed/simple;
-	bh=IfMTHWeSro6nfybMYt/k6VzicXJpbK9tibQn3pvSKLw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OR8lnTItML//GxUOzqxc2ViNTN2qQ+T0VeT4pLCmxAGdrygO2COT4XSTkTCd+SkUx7kS79urwbJXFB7GUJkrFfrpus9e/U9bGVaPgJJhDGGv88DLhpKVIU3qo1NVfWMXR5wcbFtAMR6VL/Na82Yb+VCAM3+6F8SD/6xMLEvtErE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Yf0pnwDr; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gcsRJUBY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60C83xRx3246798
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:02:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=gxYe8bPZc5O
-	mrCJIO3gg3XeKjkXn1uCm2zaZeYGQq9k=; b=Yf0pnwDrIc6lMuyc9sMDxTnQoI9
-	E58e7QmNE3pKtlZlWukPMqhXI0DRDx5RY6qirpArQh4zypI+rLA8V6zj2+PJLtpx
-	mTqG1oSxx49bjW2soq1e1Eo1QvpJHmgl+8ibPOM1d6irg87xde6itf5WbGukauyN
-	njgQuIHwo48u/Wpj/bnzVCpUeKBTaARwthR/qyn0GGsmoQfTl9vt3x4um9te0pwG
-	R8ef72CB0LVYX/KncX97PTmQPc5bsNi6l/FpITI1d3m8VkF2KRzjG+rVw7OjEBgt
-	z+A7GgUaUhGsCa+Y6R9ZIr6Xik81Fpke94i/Rj/Z+FgMYc8dh2XumRyqEcA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bkf57c9cf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:02:00 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b234bae2a7so1769699685a.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 01:02:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768208520; x=1768813320; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gxYe8bPZc5OmrCJIO3gg3XeKjkXn1uCm2zaZeYGQq9k=;
-        b=gcsRJUBYgveD8YKyzkrGGrdq0sxO6QnHYQ9imlaUQNuet93WdwemNb3//J/FaoxSsz
-         8pjhlnz3nUw6cWJYALVJrUI7NF7PFI8LS5SGnoHSG1Wy0DANaIKseGEpi212DxTRLH3u
-         ai7GhwVyPQYp0LaCbem20i4fV1JokosPjpZgDOUh1AIJ91hgj2e2R82ki6xers+ffxMM
-         yAirBuTjkskimgHxaBCAQIEdbfrANjxcO6grfSHTn9FRJAIUG725CmkB0Naf1/fr1BP2
-         yLBqRZTg81ZZinOt+9HnA7nPDk95z41xK0N23G/sO0vrkVRgWKe2uv1Q5OfeWUuWN5XT
-         Aa4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768208520; x=1768813320;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gxYe8bPZc5OmrCJIO3gg3XeKjkXn1uCm2zaZeYGQq9k=;
-        b=IofVRViGfCZ+lP+5lQO4RzMar5mjbsaXG+vk2DRT2RgmqdsOSzCsEcD44i15EesWO8
-         SKOao0XjwLmQSalj1/T0NyiVX2G1aWgoRlK/c2RRQrCZkqjhOfwyC56ReRnWtuULcvEw
-         Gn0No2BxWD0Ry9VNHYNTQODCc96q1GoUSP0Ecjk9qJc/xvhJsEgmB0NiLHegNZVo+dly
-         RUS5zpUaNiE74h+XxaWdZpBFFEzuzNGyuaS1ji71cLnqzai/vuRx+hnh276Bj+JDR9AC
-         Ubijc5hccGMKNF1h8Qu7ULjIC9B5Ug9/8abSMkb5f+UoVq7IvJ9x4v8CgB7pJWE6dwvC
-         dLiw==
-X-Forwarded-Encrypted: i=1; AJvYcCUpw8/E7yJWWVtM7Xmfrjj5z7bgzwWJQv3WuCuLsX0xuQgH9yS1gAdxNcspKeImrTS5qRC4MewUv/LE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyh7O3Ykm2r++fgzwqo0PkRAzKdFIc0i/qZvluXawJa1Q8HeYbR
-	RrXCm2NVhMk5dQafBNnKhP1PiQckt2get5HhMaVcG1asKsVeg6gTb9qBwdrIQrv8+MjR6SHmLY6
-	eqkZFaSyJmTDZMU5KSVsOivmgdzyWpRzpfuXQv81rTnZROKwYzoofnD2r1sdgDOUV
-X-Gm-Gg: AY/fxX530J+T5MD+72BO2t2PuQeYPyLe6hopnd4rkrq+HvpKpJtf8ZCT3O7qjrBRC7Y
-	jS9l/s0e0cND1Zaz5eMPmria3SnOILxoLBx8tUjERy9ox8l+gB+nkL9fa2oMx+xUvYtlgUz8tOR
-	/uHc4ACHaHVUbLzyp+LaPcE9NtE0I7tRjQbT+niOOxtQ/b+O7bKcN/Seo0cwMDbZOsIEi92f3zW
-	2AM93pYIDYxYcVbtj5NHMNDkIF5DNvS90FtKIwLQnni2Se9OqSxwHI8UYMS2YrBa2kUFgrFWmMd
-	74xA5Fk4am5sDTDAkNAQ70ZotZ5CjIFFg2ey8zNEBQSwQNMWG5zBUFdi3dJtficLj87g3IBIARu
-	u4vtnDIsBOASsm6/ZhwqbaxUwXQ==
-X-Received: by 2002:a05:620a:1a11:b0:8be:e02f:92cb with SMTP id af79cd13be357-8c389375858mr2497946785a.6.1768208520084;
-        Mon, 12 Jan 2026 01:02:00 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEXSEeJS775UBms4zYG59E6HPBx9N2t8Z8LqIceulkET1O4SU7Lt3cwHfldrGNZ9p/IE9oWHw==
-X-Received: by 2002:a05:620a:1a11:b0:8be:e02f:92cb with SMTP id af79cd13be357-8c389375858mr2497943585a.6.1768208519653;
-        Mon, 12 Jan 2026 01:01:59 -0800 (PST)
-Received: from quoll ([178.197.218.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f6ef885sm337980525e9.9.2026.01.12.01.01.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 01:01:58 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Pin-yen Lin <treapking@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        stable@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: usb: realtek,rts5411: Disallow unevaluated properties
-Date: Mon, 12 Jan 2026 10:01:51 +0100
-Message-ID: <20260112090149.69100-4-krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260112090149.69100-3-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260112090149.69100-3-krzysztof.kozlowski@oss.qualcomm.com>
+	s=arc-20240116; t=1768208542; c=relaxed/simple;
+	bh=qj7f8OVKymqpaGteRJaSiKYCtCRP7TJCNDokvj7EXck=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uk/mnp15k438goDtCgKskbr+iIpGD83Hk21wld6twmzgzvfNC4oNpQLfX88I/xLBpCUHkqQiEXtF8S0gvMe8UhWJnxgHZXbz5Q8Tg977fpzmDLnjnGzSUnzm/qONhXUp1eCC97KG2Vkf8QoiUimo2OYAywk8OJZKICRusclF/2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a8cHfpOX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD38C116D0;
+	Mon, 12 Jan 2026 09:02:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768208541;
+	bh=qj7f8OVKymqpaGteRJaSiKYCtCRP7TJCNDokvj7EXck=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a8cHfpOXYmjDpTJf0FP9hfGwW608GKXGMUaKLc4npoU5hNjgSuhe0YHISlZspwBPs
+	 apiAizX4PipAxtigEkm9mt+lq7HwnJTSlZAX6vxTS3bCjXA1iqf/FWPzRxyzJD1nIh
+	 lL+M+8Je+EJR9SLQjburw2C10PmrohWL7p/P1VPZJY5mbDUc6+sOeiiRmiV/Ya2ZSj
+	 c4zHxaOlQAeyi4eKS85vOTXZGFf/Ma/CO24IoDLSb0cHkIGdcz+mgsbPSTPpiL1V+I
+	 v6C17+HdnDkpgMwQhViQtYkW1VgGpzhkLFiKacPrJ0AhcIk1GxbQcPcJr5Tk/tflei
+	 OnAmF//T6Cafg==
+Date: Mon, 12 Jan 2026 14:32:04 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	manivannan.sadhasivam@oss.qualcomm.com, Rob Herring <robh@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org, 
+	Sui Jingfeng <sui.jingfeng@linux.dev>
+Subject: Re: [PATCH v3 03/14] software node: Implement device_get_match_data
+ fwnode callback
+Message-ID: <6peb6afhpm4l7opxbdt3b5sx32longevwds5c3dlqji2hr5dlh@kxuvj55jkqgi>
+References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
+ <20260110-pci-m2-e-v3-3-4faee7d0d5ae@oss.qualcomm.com>
+ <aWSpFk9z0zpyKjr6@smile.fi.intel.com>
+ <6l3rs5pv6xnrbygpvqrdxqoqtybjyefsltk5bl4336q56rfoza@ejo3sxuufghe>
+ <aWSwgRiEkT9unYw9@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1758; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=IfMTHWeSro6nfybMYt/k6VzicXJpbK9tibQn3pvSKLw=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpZLiBINN8rNb+D4NxSuBR+mSgW9+VVU1z85uA4
- KMbzIH6cdOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaWS4gQAKCRDBN2bmhouD
- 18bDD/9A2IAOUVX0r3Jfo7d6lDfcRXk8nW/3s/mn62tIxcPcDD03Uvqf+fksuL8JIyFc2gCc1Kk
- WB12KfIBBpnJQ+tEavDZvIKLULfVWKhdo0SyZ/V0EDRpTw7ElzykQOA4j+2qtFH/XEJzdAfNVcQ
- 97kO20wOeqVNM5Z7XcHs7x+xSppf7k7jmfpcvxSw96IsrRBIPRDqzrvi0YKgiTe51Nm/2T7roZz
- DVUbNsYw6ljsjRGJYN1chJ1CY+/El7JNYpbdIvtRkPm0d0ozh9PJHhjcTnSC50/qKY2fhFukj+t
- lLv897TZI3wC0A6I/tudgu2mHCl92lLyqzRoP1T30zAJjBBgRCVLR5Gah/nRXv85fF59+8tIogY
- DiIl8+42UK6PMSI/BjyqUVrzyW9lx06WPz2moue1MYK/pjsYxfhAM8K6mRGf9Xx+kHuo715ofI3
- xqrk/dRS39svgxvMG7kne/8FRvjiiTvxIXEC8OMCbFrGG1iA5KK4lIPgbGFfmJaxLoPTSlAoSUx
- NvMsc6SbesK5v85S1Cfb2wFHBAJrro3mU0mav08KvMOZtfT6kMVIpqdia5efExYD908/mBO4lcr
- nM2fkRrYgm4VBW9CsthUppW0vSIqKKcepCD7ueH+XYGQUt0mVGZdN95islSKjYPqKD5lKb9r0qI f3YC2+Atzn/ViLg==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=K/sv3iWI c=1 sm=1 tr=0 ts=6964b888 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=lvJHC8f6i3d4RnviQSwA:9
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEyMDA3MCBTYWx0ZWRfX7jxA5i3cV6BK
- QNW1Jqf0nts7Qnvq5QiZDDgCE8HbqiewtpVEy+rbbD+TZrMFdPFe6YdaZx5BRXF8aIkUVMxBfhy
- JOuMy/Fnmh7EiIV4QneS5lSJ7+R/3myqP3qK1Ezb0K110kGalGrOHLf+VoqjFWAPe8YBqdITFXG
- SHVj1MggemdJt3x9+4a4JCJ99nNXhcTZi4y2LGLym3lQO6E+yiRmXXIRIVk1Q+Z/j0aEIZqpr6L
- +DOWtBoGMEmcrJ9NxoSxeDstNJWP8giYaN8VyBk6Uh4TXCYMnoH5dMVoyDkq/gqoWFIT9VWVMbD
- +BzSPNL0wzalh2QCFfr2zKACMdvnFtOfel3aU8jpvAtDEXxn8e8Ve8/4pXj8vJwjkX2tmg+5NfT
- idrJiAB411fymtUGJj7lJAVOTQTooNCdEY2kVYTQjJsXXcFTwL3yS19O5KGE3txVwbvBIiLJYIW
- ncbSgLyiaVKel46j0TA==
-X-Proofpoint-GUID: TrvtqXRPfE6VTBXIAKmmYqoHMvpSTfWC
-X-Proofpoint-ORIG-GUID: TrvtqXRPfE6VTBXIAKmmYqoHMvpSTfWC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-12_02,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 suspectscore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 clxscore=1015 malwarescore=0 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601120070
+In-Reply-To: <aWSwgRiEkT9unYw9@smile.fi.intel.com>
 
-Review given to v2 [1] of commit 76cbb3eabf0b ("dt-bindings: usb:
-realtek,rts5411: Adapt usb-hub.yaml") asked to use
-unevaluatedProperties, but this was ignored by the author probably
-because current dtschema does not allow to use both additionalProperties
-and unevaluatedProperties.  As an effect, this binding does not end with
-unevaluatedProperties and allows any properties to be added.
+On Mon, Jan 12, 2026 at 10:27:45AM +0200, Andy Shevchenko wrote:
+> On Mon, Jan 12, 2026 at 01:49:54PM +0530, Manivannan Sadhasivam wrote:
+> > + Dmitry Torokhov (who was against this patch previously)
+> > 
+> > On Mon, Jan 12, 2026 at 09:56:06AM +0200, Andy Shevchenko wrote:
+> > > On Sat, Jan 10, 2026 at 12:26:21PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> > > 
+> > > > Because the software node backend of the fwnode API framework lacks an
+> > > > implementation for the .device_get_match_data function callback.
+> > > 
+> > > Maybe this is done on purpose. Have you thought about this aspect?
+> > 
+> > IMO, software nodes were introduced to add sub-properties to the existing
+> > firmware nodes, but it has usecase/potential to go beyond that. More below.
+> 
+> Potential doesn't mean the necessity.
+> 
+> > > > This makes it difficult to use(and/or test) a few drivers that originates
+> > > > from DT world on the non-DT platform.
+> > > 
+> > > How difficult? DSA implementation went to the way of taking DT overlay
+> > > approach. Why that one can't be applied here?
+> > 
+> > Sometimes you do not have any DT node at all.
+> 
+> Yes, that is exactly the case I have referred to. The PCI core (in Linux)
+> is able to create DT subtree on non-OF based platforms.
+> 
 
-Fix this by reverting the approach suggested at v2 review and using
-simpler definition of "reg" constraints.
+Maybe I should look into creating dynamic DT node for the device and insert it
+to the uart node. Theoretically it should work.
 
-Link: https://lore.kernel.org/r/20250416180023.GB3327258-robh@kernel.org/ [1]
-Fixes: 76cbb3eabf0b ("dt-bindings: usb: realtek,rts5411: Adapt usb-hub.yaml")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- .../devicetree/bindings/usb/realtek,rts5411.yaml     | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+> > For example, in this series, the
+> > M.2 pwrseq driver creates the serdev software device for the M.2 BT card to
+> > match it with the existing OF based BT driver (for non-M2 device). From the
+> > driver's point of view, a BT device attached to the M.2 slot and over custom
+> > connectors are both the same. Only difference is that, in the case of custom
+> > connectors, the bluetooth DT node will have the BT device described and in the
+> > case of M.2, the device won't get described, but just the connector [1].
+> 
+> So, what's the problem to add such a description? (Assuming you want a customisation
+> it can be done at run-time, correct?)
+> 
+> > But for the driver to identify the device (since it cannot enumerate it),
+> > either it has to rely on DT/ACPI or some other means.
+> 
+> Yes.
+> 
+> > In the previous version of this series [2], I used the serdev ID based on the
+> > product name for creating the serdev device and added a new id_table for serdev
+> > driver to match with the device [3]. This almost duplicated the existing OF
+> > match logic.
+> 
+> That's how we do when we want to add a board file, but thing is that we do not
+> want board files (only in the cases when other ways are impossible or make less
+> sense).
+> 
+> > Then Bartosz suggested to use swnode approach [4], to get rid of
+> > the custom serdev ID based matching. When I prototyped, it mostly worked well,
+> 
+> I know that Bart is fan of swnodes, but it should not be used as a silver
+> bullet, really.
+> 
+> > except that swnode needed to have its own .device_get_match_data(), match() and
+> > uevent/modalias functions. And if the swnode reused the existing DT compatible
+> > string, it can work with the existing BT driver without modifications. And this
+> > approach can also be extended to devices instantiated from the board specific
+> > drivers.
+> 
+> DT overlay should work without even modifications done to swnode code, right?
+> 
 
-diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-index a020afaf2d6e..a86afa8fdc91 100644
---- a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-+++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-@@ -19,6 +19,10 @@ properties:
-           - usbbda,5411
-           - usbbda,411
- 
-+  reg:
-+    minimum: 1
-+    maximum: 4
-+
-   vdd-supply:
-     description:
-       phandle to the regulator that provides power to the hub.
-@@ -37,17 +41,13 @@ properties:
-             minimum: 1
-             maximum: 4
- 
--additionalProperties:
--  properties:
--    reg:
--      minimum: 1
--      maximum: 4
--
- required:
-   - peer-hub
-   - compatible
-   - reg
- 
-+unevaluatedProperties: false
-+
- examples:
-   - |
-     usb {
+Not from the overlay binaries (.dtbo), but adding dynamic BT node for the device
+based on the enumerated PCI device should work.
+
+- Mani
+
 -- 
-2.51.0
-
+மணிவண்ணன் சதாசிவம்
 
