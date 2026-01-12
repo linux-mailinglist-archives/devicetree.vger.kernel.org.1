@@ -1,97 +1,95 @@
-Return-Path: <devicetree+bounces-253769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F2CD113FC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:33:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5532D113E3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:32:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7D65B3057110
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:32:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C5E2530010EC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6D234029C;
-	Mon, 12 Jan 2026 08:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B93B340A46;
+	Mon, 12 Jan 2026 08:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ress5Qyu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U3yFqGeO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6871D32E6A3;
-	Mon, 12 Jan 2026 08:32:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEFAC32E6A3
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 08:32:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768206753; cv=none; b=Rz2WBvC8Jt0K4mTL7gj05ci6XOIkvvvyw5mY92YSJJ3CvmuZP+WOJFfNFJTVqfph2btKKe3kKVXUwXVn9z4dOJMEjCTx6r55odu0gBqcNTe7Eopb/NtDfQUdXywVyUxvQ1lVZgXAJ4bTaUL3Hwz7uPyrNuWkqoQG8hBR16Uc57c=
+	t=1768206773; cv=none; b=t1Z4rhL/+9dvoeH00XFopCL0KphzqB3KdzIb8F4ON4M7KkOg4wlTNUR3UdUUP/gDm8yiCE1HnmdzbvwuEOTqPrdMtUCNmMMhYxjnaP1JXiyjqeLMCUm6XBhoEqgaiSmUVZqHEL/U6zOBdfJl4ztSJ9IjfvCMbi3PnwabN5b5Rzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768206753; c=relaxed/simple;
-	bh=vZmtTFdf1WfS3J+DgdEQOXV4WlPnID5PJxe1R+uRVU4=;
+	s=arc-20240116; t=1768206773; c=relaxed/simple;
+	bh=CHhxbYtVRJ8UvARH1WuSWqeG79V38j2YQwQMMpKhPlg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MoGTkejwpvudA5cX/JGCKV0LF8xDg7VYhXhD0PssqMqHT54rN5Ika5zgHw5qiBGxlwHOQxbH+q6BVt+BF6iMKBxvhsMb8hcM0xqhvL8xNs5ZczAI297zPQ+/Zv+kp+NdK33gvd+BL5M1xQf+e5QZB5HSCdfbp7jXwBjkHAGHXzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ress5Qyu; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768206752; x=1799742752;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vZmtTFdf1WfS3J+DgdEQOXV4WlPnID5PJxe1R+uRVU4=;
-  b=Ress5QyuTyIHUUCLXTdpgdnsT+1MvEaIgnbxESdLtkn0J+e/Z9abiLFK
-   IzF6JUK/tKHSfHydnmPeep+iGp/NpCX0npQwADJhjgGDPJWNkHTYxGwNv
-   VMCh2EcNM3ucca5CsrclQJjDyhSJsML2wZA++fn0aSIxi+spG49HVl7bL
-   ebdLW/bwKO3/a3CgKGH/QphfLbxMP8VN/a6hCvfkiN4kSJpWynM2YcN56
-   fyEJfnHO4P77in4qsO6bQJXDHmMdvRYB1WAQzQbao1BRtjtKRfsytf6yG
-   vkxlNnp3rgg5I9cVMVra2Uw4aT/dPPTCFuHYX3NCe9P5oXjz6MHWSKx+8
-   w==;
-X-CSE-ConnectionGUID: 14xqpxwvTbGBgK/lQRPHww==
-X-CSE-MsgGUID: PB5Yoqu3Reqj4ABTJtX0rQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11668"; a="57027492"
-X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; 
-   d="scan'208";a="57027492"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 00:32:31 -0800
-X-CSE-ConnectionGUID: sNlCI97QSyiEy94S2oMxsg==
-X-CSE-MsgGUID: uKHr7F8GSfCtIr3y8QPFCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; 
-   d="scan'208";a="204108597"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.37])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 00:32:24 -0800
-Date: Mon, 12 Jan 2026 10:32:22 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Rob Herring <robh@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas.schier@linux.dev>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Pearson <mpearson-lenovo@squebb.ca>,
-	"Derek J. Clark" <derekjohn.clark@gmail.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=R4XGMMgImRa5tVdmCN/jAT2XOFCoVsSoeWvZiWycPZ3qmLqT4EkVyjByX/w46SKLtxUMjN9uhjmwDfIFzC0CrTFW1ocrAYV67amV7jgZSy7dFRV4t92nrdGYdXiKfGfe/PKJUB4WaeC6bpI5E/XCP/0q3UYtd34VEDZuluEduQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U3yFqGeO; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4779aa4f928so62774855e9.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 00:32:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768206769; x=1768811569; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=p51irmMY54wjEoANrY9x5z2U+DeQ+nE/A1c1QJUgAvU=;
+        b=U3yFqGeOJ/quAntAUd8gY5ATQsK3KjF7LZAeI6ly0pJlc/lUkNSOlkls8i1hUPZl2H
+         x7t5mB9gQrGxk5yNCCC8owrgPj7QMYdInAI5UTndW03LQDe+kT9s5gYpfTcAjt/r8Cc/
+         i+cmxW6Jf12EOSWe8WGCJaoeozL6F8c61PAu6FlW81CYHoyt8/pU3Dd9NfWii+JQh9Eq
+         WuVZTF2H3vRFnyUBxLwCW5JYCS9Y6lVdahnjsb03bN/nlEUyfgSCR7lU9A7OKhZ7kCvU
+         QEiE0DdlvALZ2YjjSFAOsI7y49nmcS3Ury/h62HduIsRBhQW1yVX+titDY26q428CNDS
+         toOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768206769; x=1768811569;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p51irmMY54wjEoANrY9x5z2U+DeQ+nE/A1c1QJUgAvU=;
+        b=kwKiIff8V9UXkLy2Y42/lTYfsv1Csj3qvhhohgg+O2yg9rvvHeF7ad5Ye9HLmNZAp9
+         AbxDkw8wY6cGNv59tcu8WjwB0wARk3dT07KcoyEgpHbnxGjuZCaQaH7eLWQ5R3dl0Gba
+         tNRKowC714JIzvoPICle+K1+Llolko+LPGVM1XI0pfgxKKTQm0JI8gMIYTPUlyVS8K3E
+         doNm3vV2OKSloXMXvi+t0Qh85V5w98hq8eQzvIl5NTw+NdgbyM4K0wx9tQdGRvvQ5ytp
+         Y2xuQfotA4sz2rcqVglLmaklz003C9pr0Jrud2nCLNjlPFZ1CSSDxkPg6Bf0WSJowKx3
+         nIlA==
+X-Forwarded-Encrypted: i=1; AJvYcCUvEcHsr4rZPkzI/rcLy3UTkQhYPYK6zqQYZYyNUiP04xEwZEvzAasNdYCf/jGrb4Zils4tIPZvDAcJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzioMIX9qdQDPNa63eSGcZxKiiVD/+ovPq7c/nk6lhm5a7JJhmm
+	1m8II3v3Z/fAo2tw9sQQ4wJJLjSUDhyaCp1eTKVFjl7HSKroE/KfTIpn
+X-Gm-Gg: AY/fxX5y8yroIwsCf4JW+kzLl0UQZN29oEQ5lCfLSjuJCSgyZmrj6Ya0yASSzP9x4Qy
+	bBPXs9AXpNy7wDQl+DA8YrYPa4iR/O3iAe3xVlJ4Ibyg7CclISw0+sSmEojaM+24AW4auqIM0Ls
+	2KK7/o85q2wHcL3sg5XLVK8XOk9KV8nNdvVIKmshfWXoSKF/5PXfBvQjyeK08v4UB94YLo1yu5/
+	fvejzDVekh2rbm0hBQ9UZqPrW6LFmJa3LUx/IMDS6KMHZrxrMbSi6G6ExfR6Pw+G40OfIImP6Ek
+	emo5DDno2QEKGItVyKkl3pa7bmLLY8mzzXFcgCNlKw2aly7oUxWWu3x5Xc593y0MILFU07KGWGL
+	rC7NTGS5R0pGzyGn+qn7BYf0wWX+wAxSLhLIGyLTXAexKS65kxkHPPyFXUoT/j23hiKFW9Ge+zI
+	pfnpJ5iozRQyE+Hs2pJv8cQHxa+SFhvmSv11G1n4MFDmCdKgyug63EuEOx69YEN3OS8TRqKkbgp
+	uw=
+X-Google-Smtp-Source: AGHT+IH6wXfedcQ2yu1RtG+zbjkyA3yU3V5+gN1yJHGFYOVEaMi7Q5RPlb6IdLZcFS0Zw8lmttQbCA==
+X-Received: by 2002:a05:600c:630f:b0:47d:5d27:2a7f with SMTP id 5b1f17b1804b1-47d84b38534mr177978875e9.26.1768206769102;
+        Mon, 12 Jan 2026 00:32:49 -0800 (PST)
+Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f695225sm344466455e9.4.2026.01.12.00.32.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jan 2026 00:32:48 -0800 (PST)
+Date: Mon, 12 Jan 2026 08:32:47 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v3 06/14] software node: Add
- software_node_device_modalias() API
-Message-ID: <aWSxlilPbsLVgn10@smile.fi.intel.com>
-References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
- <20260110-pci-m2-e-v3-6-4faee7d0d5ae@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/6] dt-bindings: gpio-mmio: Add opencores GPIO
+Message-ID: <aWSxr8TnZMoZ0ezl@antec>
+References: <20260109134409.2153333-1-shorne@gmail.com>
+ <20260109134409.2153333-3-shorne@gmail.com>
+ <20260111-bold-wolf-of-champagne-58fac7@quoll>
+ <aWPT_HsRVC0dQ_j6@antec>
+ <fb977dc3-54ea-4c58-be85-111fd7e1c371@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,20 +98,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260110-pci-m2-e-v3-6-4faee7d0d5ae@oss.qualcomm.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <fb977dc3-54ea-4c58-be85-111fd7e1c371@kernel.org>
 
-On Sat, Jan 10, 2026 at 12:26:24PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+On Mon, Jan 12, 2026 at 08:31:03AM +0100, Krzysztof Kozlowski wrote:
+> On 11/01/2026 17:46, Stafford Horne wrote:
+> > On Sun, Jan 11, 2026 at 11:18:42AM +0100, Krzysztof Kozlowski wrote:
+> >> On Fri, Jan 09, 2026 at 01:43:53PM +0000, Stafford Horne wrote:
+> >>> Add a device tree binding for the opencores GPIO controller.
+> >>>
+> >>> On FPGA Development boards with GPIOs the OpenRISC architecture uses the
+> >>> opencores gpio verilog rtl which is compatible with the MMIO GPIO driver.
+> >>>
+> >>> Link: https://opencores.org/projects/gpio
+> >>> Signed-off-by: Stafford Horne <shorne@gmail.com>
+> >>> ---
+> >>> Since v2:
+> >>>  - Fixup patch to simply add opencores,gpio and add an example.
+> >>
+> >> Simplify? You completely changed the meaning of binding here - now
+> >> device is not compatible.
+> >>
+> >> I don't know which one is correct, but your changelog must explain why
+> >> now devices are not compatible but they were before.
 
-> Add software_node_device_modalias() API to return the MODALIAS string for
-> swnode based on the swnode's compatible property.
+Trying to answer this better this time:
 
-NAK. swnodes != real firmware nodes.
+As per our discussion with Geert and Linus W.  It was pointed out that the
+original patch, which added openrisc,gpio to be allowed along with the broadcom
+chip e.g. ( compatible = "opencores,gpio", "brcm,bcm6345-gpio"; ), was wrong.
 
--- 
-With Best Regards,
-Andy Shevchenko
+The opencores,gpio is compatible with the gpio-mmio driver, but it is not a
+hardware clone with the broadcomm chip.  It has 8-bit registers vs 32-bit
+registers and the register map is different.  Instead of allowing opencores,gpio
+to be specified along with the broadcom chip, opencores,gpio should be specified
+on its own.
 
+So we agreed to resend the patch with to parts:
 
+ 1. A commit to add the opencores,gpio to the driver compatibility list. (new
+    1/6)
+ 2. A commit to add opencores,gpio to the binding (replacement of the
+    original patch 2/6)
+
+(now I understand this order is bad, I can resend)
+
+This is a "simplification" as we are now just adding the opencores,gpio string
+to the list rather than changing the schema with oneOf and items.
+
+I wanted top get it out quickly so it can be fixed up before the merge window
+opens.
+
+> > Hello,
+> > 
+> > Did you miss the 1/6 patch in this series?  We add the compatible string to the
+> 
+> There is no 1/6!
+
+It seems you are not on it, but it is on lore here, if you missed it.
+
+ https://lore.kernel.org/lkml/20260109134409.2153333-2-shorne@gmail.com/
+
+Reading the bindings submitting patches doc's it seems I need to send the whole
+series to the bindings list.  Which may explain.
+
+> > driver there before we add it here.
+> 
+> How does it matter? How can you add something to the driver before you
+> document the ABI? Did you read the submitting patches doc?
+
+Sorry, I didn't read, or realize there was a device tree bindings specific patch
+document.  I see it now, and I see point 5 makes it clear that we should
+document the binding before the code change.  I got the order swapped.
+
+ https://docs.kernel.org/devicetree/bindings/submitting-patches.html
+
+If necessary I can resend the 2 patches in the right order as a series to the
+devicetree list.  devicetree@vger.kernel.org
+
+> > 
+> > Sorry, I thought the series and the over letter would be enough to understand
+> > what I meant by the "Fixup" description here.
+> 
+> You still did not answer to my comments.
+
+OK, I tried again above.
+
+-stafford
 
