@@ -1,116 +1,124 @@
-Return-Path: <devicetree+bounces-253896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA32DD1275A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:06:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A7F4D12763
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A32F1302488A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:06:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0EAE8303BAB0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144283563E7;
-	Mon, 12 Jan 2026 12:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6990A3570D6;
+	Mon, 12 Jan 2026 12:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rbZ4bA3Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A645B1DF248;
-	Mon, 12 Jan 2026 12:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEB163570CA
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 12:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768219577; cv=none; b=R4WOCy2yBIOmEz6oMeOgCOqHm1cs7DAZoaAJmvy1Gh89dURdRr75X6ekmTBzlbQT6qQdLasTnimmzS/pJCDY3ECFxGGADpgFMhymjhpAbVNWP4mcZPvPTIh9VRh3QCrw44fIkRj7f8+Yjj9O7Cx0l1XArHToUp9gYAHPaQLbkYQ=
+	t=1768219645; cv=none; b=s1FSooj2II1zeUBzBH8jwyHTpcSdA6PoOBUn7r1DFPqpJNYSu9yHqRbX4frxbPSpIVigxiFVyY5peQamN3BkOuY3gxtc+D7ZLlIFi+5uMt7VLCCufsnqtqJtEQB+fJ5ku8/7IjZogDypfU8TRZZhOnmrll5A/pKpoHdzAsdCyoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768219577; c=relaxed/simple;
-	bh=scteEPzEnWETQCcKNd153kVvYd1wwBaIZ7VznAaCZRI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pG/+DReb6WuRe9CCVw6jkdXVDlS7sMSi2cgDp23frB8FEWZgCSTrUYqEnWNA3zSmVG7RtXl7WNUoFCFIhnprOgDZol/DERep0twuqjgJyjSZvak2Cg89omGF9C+sEt5ClmaU0JfBVlxXHCASfaSOa7kWB231f4GbqEiHjvk6ShY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B163497;
-	Mon, 12 Jan 2026 04:06:08 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.197.51])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CCB333F59E;
-	Mon, 12 Jan 2026 04:06:13 -0800 (PST)
-Date: Mon, 12 Jan 2026 12:06:11 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] firmware: arm_scmi: Implement arm,poll-transport
- property
-Message-ID: <aWTjs1Y9yoz1k4Ry@bogus>
-References: <20251231213016.185575-1-marek.vasut+renesas@mailbox.org>
- <20251231213016.185575-2-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1768219645; c=relaxed/simple;
+	bh=bmEIvyVsr6DVsM5nUAfh2W2TpABYdDSi08tkrELKVNM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gl+uVO4tx7/CIGR+osJMgTTO6CKCN4PFNjlEBtG+wxxDTG70kcawa0J6cn+mTPHakVUENs8Vb7mXLNe+vcieXXKx8VQ3Sm+fPRssOUVgunbRjgs4ZOYwDIWHZYVqKNLbLvixYt6QiysHEpRlX49SueZdywjEXqnJnjREdVxreOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rbZ4bA3Q; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-477619f8ae5so46680635e9.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 04:07:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768219642; x=1768824442; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cyFmiTOwx9WydPZqcUGcsWNSpaGu3ePZ7mQ4/4dnfXw=;
+        b=rbZ4bA3Quywl2lJ4jnkrGU6zeJ/jZIlvpYC22sC5cvlExxfGTfZnWupLynd3ce0dWs
+         +Zx+DxzJiUt2kGMxm21U08EloLvh7o+RDhdJhDYzqKnO1vuWv/r/2U+FPuNQ+iB+dD+l
+         V8SoDHWPTiTYriIVKd7wn0cAIok1KI1Ge7uNsuxXbxUzKx4lTVzAKnOki615tBX3Q3vB
+         dQW2RWeyQsaJJZ9Fic8HMju3Q6WJh+QKGiAR+diBPh2w+3Pk1CnYKmKFg66JslKvE3NT
+         991IwReeC8pKGDroEzjVzpiK0LcnC6kpSHPA/eMVNK9OLg36aNa43SzjL5dfs6qVo/HK
+         2AKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768219642; x=1768824442;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cyFmiTOwx9WydPZqcUGcsWNSpaGu3ePZ7mQ4/4dnfXw=;
+        b=LPqwz1KvOgXVo9fGYXzcTftmIBj8n26q1CTKSSFcwhCopF4bS1BGzwnnt45HyqkoIm
+         7W6K30E1JwctZia5ysI85jDi0fNlCHjvdEdwIYFfPQLIQ+v3FH55jQydGZ2jYiIVaYU+
+         IZQ0lcUc/IMOiMnKbgFmMpaI7gUgzJRFtcRJmYQ/U/KmMTWu5RA+kCz6FajV0SvP2y0D
+         Dv4kF1dIkZFOmK1VKTrwnDvPhmn8epuuPODVGWdiktgquQI+AQnw6Zb4PDkC4LDr4s+d
+         wkZVmy5f7s0ZW8RTuE1tBGBugQMBmF2FC/wf+qO8EL/Qu+9JjErY50Cw3TupDkU0MAP0
+         1sGg==
+X-Forwarded-Encrypted: i=1; AJvYcCX7TSp0bYmgQGTl3ZTtkB43mJF58sA12ZFkIDLw/n+Re7wumVtuuQYJWogCq434DynxcOOQT/8iUX6Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzu4Gkefu0W8js7+BHL/ujJIEqzsU8G0usfH48q3iNO7pJHDtnh
+	UYkq4ROsgne6ZflLIASmjwJWoOxUA5eAxGdf+f/SbVaEYPSgKp3G1rq0D6iVwQgePfI=
+X-Gm-Gg: AY/fxX4AN1mG8g4cXAFJGue1kN+WOdwo5uMFK18Xv4k29BQh0A1bcYc/q+6PpAWv/UX
+	GpNXTbdEtzRhjNjM7W8tUT6jpxrYsQBoh8kSQxXJ+BOJT1oxDM9KbYBRBTxHofE96iUA4CIfTqj
+	cSp0xO8mBIzqyK8kmKmpfR2ZKqxVsUy1VjH7LAnMYoNZCYz3dqMFYg5dMJQ67iwNICbEB/JaZIa
+	ef2a4xE0LpcqeZ25L7hqsik9JT3YaOiCWgXDsE/22fCHAegNF/+BGgd9bmH5VxjEkt5Gkle9ypM
+	fpCdtG/JtPhZpc+W8yDmfTHPohhR2VrU7760Jel9/F5ytIxUYpYX9IkytxUKHs+lTw+XpLBLl3y
+	2hKY2/7eXHf32tBW9k/JTMxcPWurcOdyNxtrjo+7AwLzXM1yf5aRR42TsiRKwDnKJlEV4rTKw2n
+	LURZVLgsWgxosPAyGyUTnLqFN6TXHZdbJpRLv+I44p9gBPGC8qfld2
+X-Google-Smtp-Source: AGHT+IGRc0EV50kscbKyU9XViNWiLVNiv77Je1cCMktwdnW0YTBJo1cj4/Vq0LD/5Xpo0+DbEm8dbg==
+X-Received: by 2002:a05:600c:3112:b0:477:7f4a:44b4 with SMTP id 5b1f17b1804b1-47d84b26d08mr189479945e9.1.1768219642142;
+        Mon, 12 Jan 2026 04:07:22 -0800 (PST)
+Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f41f5e0sm344704455e9.8.2026.01.12.04.07.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 04:07:21 -0800 (PST)
+Message-ID: <f574665b-48e9-4bb1-8c8c-95ff0f7449f7@linaro.org>
+Date: Mon, 12 Jan 2026 12:07:20 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251231213016.185575-2-marek.vasut+renesas@mailbox.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 3/5] media: qcom: camss: csiphy: Add support for
+ v2.4.0 two-phase CSIPHY
+To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260112-kaanapali-camss-v11-0-81e4f59a5d08@oss.qualcomm.com>
+ <20260112-kaanapali-camss-v11-3-81e4f59a5d08@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20260112-kaanapali-camss-v11-3-81e4f59a5d08@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 31, 2025 at 10:29:19PM +0100, Marek Vasut wrote:
-> Implement new property arm,poll-transport, which sets all SCMI operation into
-> poll mode. This is meant to work around uncooperative SCP implementations,
-> which do not generate completion interrupts. This applies to mbox/shmem based
-> implementations.
+On 12/01/2026 09:02, Hangxiang Ma wrote:
+> Add more detailed resource information for CSIPHY devices in the camss
+> driver along with the support for v2.4.0 in the 2 phase CSIPHY driver
+> that is responsible for the PHY lane register configuration, module
+> reset and interrupt handling.
 > 
-> With this property set, such implementations which do not generate interrupts
-> can be interacted with, until they are fixed to generate interrupts properly.
-> 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
 > ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Cristian Marussi <cristian.marussi@arm.com>
-> Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sudeep Holla <sudeep.holla@arm.com>
-> Cc: arm-scmi@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> V2: Drop no IRQ handling from SMC transport and update commit message
-> ---
->  drivers/firmware/arm_scmi/common.h | 4 ++++
->  drivers/firmware/arm_scmi/driver.c | 4 ++++
->  2 files changed, 8 insertions(+)
-> 
-> diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
-> index 7c35c95fddbaf..7c9617d080a02 100644
-> --- a/drivers/firmware/arm_scmi/common.h
-> +++ b/drivers/firmware/arm_scmi/common.h
-> @@ -235,6 +235,9 @@ struct scmi_transport_ops {
->   *		      to have an execution latency lesser-equal to the threshold
->   *		      should be considered for atomic mode operation: such
->   *		      decision is finally left up to the SCMI drivers.
-> + * @no_completion_irq: Flag to indicate that this transport has no completion
-> + *		       interrupt and has to be polled. This is similar to the
-> + *		       force_polling below, except this is set via DT property.
->   * @force_polling: Flag to force this whole transport to use SCMI core polling
->   *		   mechanism instead of completion interrupts even if available.
->   * @sync_cmds_completed_on_ret: Flag to indicate that the transport assures
-> @@ -254,6 +257,7 @@ struct scmi_desc {
->  	int max_msg;
->  	int max_msg_size;
->  	unsigned int atomic_threshold;
-> +	bool no_completion_irq;
->  	const bool force_polling;
 
-My preference would be to reuse `force_polling` for this. We need to drop
-const but that should be OK. Anyways I would like to know if Cristian thinks
-otherwise for any reasons I might be missing to see.
 
--- 
-Regards,
-Sudeep
+> +static const struct camss_subdev_resources csiphy_res_kaanapali[] = {
+> +	/* CSIPHY0 */
+> +	{
+> +		.regulators = { "vdd-csiphy0-0p8", "vdd-csiphy0-1p2" },
+
+Please sync up with Wenmeng's patch:
+
+https://lore.kernel.org/linux-arm-msm/20251114082649.4240-1-wenmeng.liu@oss.qualcomm.com/
+
+---
+bod
 
