@@ -1,92 +1,153 @@
-Return-Path: <devicetree+bounces-253930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D14D12DA8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:37:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C14D12E31
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:48:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6DAC43019BB4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:37:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 479023021FB8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A2335970C;
-	Mon, 12 Jan 2026 13:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA5D35B144;
+	Mon, 12 Jan 2026 13:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="GYy0IXRw"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="H9qsQLhC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 057F92DBF78;
-	Mon, 12 Jan 2026 13:37:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573AF3596F3;
+	Mon, 12 Jan 2026 13:45:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768225024; cv=none; b=QaDdO4i3s/eM26SCuwlDlK683Qu7HXgF20O8aPtPOPyr4Rx9KqcbVr7cRiEQUc43cahFqjuLTG399lvFFQr+o6zxpKZ6IjN3ev02ytckBeT1QvgjvqgljhI3Vw/zSh/Efx2+LLciNxT2oUVdkd9iWzem5tjB1O+P2Jvurb32bbM=
+	t=1768225560; cv=none; b=ZtGBU0xeJusE+N5guf8xKAG77DBAm15+Nk0h1Iyk/8HQWi161qCyogYI15k0c4TGLX54C8rZMWckTqUprU9Z5XDP9dGinPA8T5jJhKIsEabwEZ7pBOIHYZBZg9mOkqE/wD+lyY+nw1FB9nVTJRud93Uou2wnJR0cCyJ82OfiqZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768225024; c=relaxed/simple;
-	bh=bzYUe9Krw1KHbB/obzxKLRvZYPhkA90KZUSBQi3hf2s=;
+	s=arc-20240116; t=1768225560; c=relaxed/simple;
+	bh=ah1qKcR1BrTLa1kkSHfCqWTXgGUssRj1TSqjOgbltrs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lW1sus33ynA3Ie+o7qBBo9rUVvZufwZIr7tblnVFD81LTDZ89JZQEKsxGS6suTQCuzKn9I9smlM+jRmr2AXfcGXGXfolDQPIb5zwn2EWsqabniyhOsAT1GLfaBnSSVOkItXbn5KAUjUapdgp0QJo49hjB2ERyLEkO/HAdYJiK28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=GYy0IXRw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6079BC16AAE;
-	Mon, 12 Jan 2026 13:37:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1768225023;
-	bh=bzYUe9Krw1KHbB/obzxKLRvZYPhkA90KZUSBQi3hf2s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GYy0IXRwxYRa6+Eb+mt0hD4IbxIA8k971nzVORZJz0zmrD/N8l/oqWJpUakCf6wyk
-	 4cDPflH+DuT8pXO12YmlZzAw/osbsYT5dykv2XNR3OTbA6ujOqz4XfvvS39ltm0Gz8
-	 LXG+ptmkdPUMV/1tppmmnwZXLEAlxkNvWXT1rWf8=
-Date: Mon, 12 Jan 2026 08:37:02 -0500
-From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, manivannan.sadhasivam@oss.qualcomm.com, 
-	Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Mark Pearson <mpearson-lenovo@squebb.ca>, 
-	"Derek J. Clark" <derekjohn.clark@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	linux-acpi@vger.kernel.org, Sui Jingfeng <sui.jingfeng@linux.dev>
-Subject: Re: [PATCH v3 03/14] software node: Implement device_get_match_data
- fwnode callback
-Message-ID: <20260112-miniature-quiet-gorilla-263fed@lemur>
-References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
- <20260110-pci-m2-e-v3-3-4faee7d0d5ae@oss.qualcomm.com>
- <aWSpFk9z0zpyKjr6@smile.fi.intel.com>
- <6l3rs5pv6xnrbygpvqrdxqoqtybjyefsltk5bl4336q56rfoza@ejo3sxuufghe>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JwBCRisTMd+uC4pPEvMEUXqAhRmEa0T1lyUi0m6/JfOnNj45CR/plD7diBLSL8khM+V/IKR0znebyIW9fb2jZ2+bI6IwoG0QEB/pKdKx+EVD+l4npVjtW75uXDSTCFN+3+bl13Pd+J3Jn2Arn4BiII9a/dpy4Y6WHm3eSP94Hak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=H9qsQLhC; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=avW/KaDunIxQhrdj8bFjXOe630cKt3gLzoDikVOnoMk=; b=H9qsQLhCSyxngrQPIlGbslrcbE
+	2OOrhEs03G96dXGfTdBYTBgsUVSjvZbmqGOIaBWluGAQ14HdZTeQcYL+qDS+q3aXeRcZPLLohTFOn
+	2GrJmbWew8Uyv2bkFMHdbaO2fstI/zVW/oWoAj3+NtNf4lnG3VwRCbbZdWsNNCaCuRnI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vfIDx-002Trp-OL; Mon, 12 Jan 2026 14:44:49 +0100
+Date: Mon, 12 Jan 2026 14:44:49 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Matthew Gerlach <matthew.gerlach@altera.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Shuang Liang <liangshuang@eswincomputing.com>,
+	Zhi Li <lizhi2@eswincomputing.com>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+	Clark Wang <xiaoning.wang@nxp.com>, Linux Team <linux-imx@nxp.com>,
+	Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>,
+	Samin Guo <samin.guo@starfivetech.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Swathi K S <swathi.ks@samsung.com>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Drew Fustini <dfustini@tenstorrent.com>,
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	linux-mips@vger.kernel.org, imx@lists.linux.dev,
+	linux-renesas-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH RESEND net-next v6 2/7] net: stmmac: qcom-ethqos: use
+ generic device properties
+Message-ID: <a2a610a3-aead-4e85-8a4c-7b83ccf276dc@lunn.ch>
+References: <20260112-qcom-sa8255p-emac-v6-0-86a3d4b2ad83@oss.qualcomm.com>
+ <20260112-qcom-sa8255p-emac-v6-2-86a3d4b2ad83@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6l3rs5pv6xnrbygpvqrdxqoqtybjyefsltk5bl4336q56rfoza@ejo3sxuufghe>
+In-Reply-To: <20260112-qcom-sa8255p-emac-v6-2-86a3d4b2ad83@oss.qualcomm.com>
 
-On Mon, Jan 12, 2026 at 01:49:54PM +0530, Manivannan Sadhasivam wrote:
-> > I really do not want to see this patch without very good justification
-> > (note, there were at least two attempts in the past to add this stuff
-> >  and no-one was merged, have you studied those cases?).
-> > 
+On Mon, Jan 12, 2026 at 11:15:41AM +0100, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <brgl@kernel.org>
 > 
-> Yes I did. I didn't put the above justification in the cover letter, as it was
-> already overwhelmed with too much information regarding the connector node.
-> Maybe I should've added it in the comments section of this patch. But I didn't
-> know how to do that with b4.
+> In order to drop the dependency on CONFIG_OF, convert all device property
+> getters from OF-specific to generic device properties and stop pulling
+> in any linux/of.h symbols.
 
-You can just amend the commit directly and put comments under "---". They
-will be preserved when email is sent, but won't be applied when the maintainer
-pulls the series.
+Is the intention to read these properties from ACPI tables?
 
--K
+If so, it would be nice to document these properties in
+Documentation/firmware-guide/acpi/dsd.
+
+> -	if (of_property_read_bool(np, "snps,tso"))
+> +	if (device_property_present(dev, "snps,tso"))
+>  		plat_dat->flags |= STMMAC_FLAG_TSO_EN;
+
+Do you actually need this in the ACPI binding? Is there a reason not
+to just hard code it enabled? You don't need to worry about backwards
+compatibility here, because this is the first ACPI device.
+
+> -	if (of_device_is_compatible(np, "qcom,qcs404-ethqos"))
+> +	if (device_is_compatible(dev, "qcom,qcs404-ethqos"))
+>  		plat_dat->flags |= STMMAC_FLAG_RX_CLK_RUNS_IN_LPI;
+
+What is your target hardware? Will qcom,qcs404-ethqos every use ACPI?
+
+Maybe this should actually stay as of_device_is_compatible, to make it
+clear this is an device tree only device? There is no need to mess up
+the ACPI binding with things which will never actually use ACPI.
+
+   Andrew
 
