@@ -1,86 +1,119 @@
-Return-Path: <devicetree+bounces-253927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCFE8D12CAE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:28:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08952D12CDE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:30:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E2B083004E12
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:28:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B91AD3001FE3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:30:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B8F359700;
-	Mon, 12 Jan 2026 13:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2801B19644B;
+	Mon, 12 Jan 2026 13:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="a377KQy7"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pRuPEFht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6853596E6
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 13:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388CC1EEA3C;
+	Mon, 12 Jan 2026 13:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768224511; cv=none; b=AK6HwYJd3FaZjWuI47a6kk7gEclqR7oEZDQw5H1nM16S5EE4FE01evMpyT2fbyGwDFCUBDEAV/98Hf+OtnrYRiw5vH9NQc1l3mIVxaW7TY405lopjM7efKUb1XetGbYntHBPHki5oBMk1MCmjQ/CCTerGaRE72hv5A4GR3zuI1o=
+	t=1768224613; cv=none; b=UydgyLmiecJK9MjjdIct/UuDWi2lq757iWUEDdA1GSQPKReXf3jmjmgbBFGmMg5JJb1E+36fljLDH+IsJStRrsuj+KS0Ir23vmP1Ig+f6Pw/KP0z2rBMoDv6gO7ZAl+fr5mhxT8h1iWw+lQRy9YWNk8qp/S07b3zyHKHIbZV/rA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768224511; c=relaxed/simple;
-	bh=f78gp6boRiGgxdOsuYxB8AuLWAEzu6iYkpim1DtE1V0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=fFswRbueXO+h9fQjBPrbGHnKl+S1v/rLXmIjhXbrxxqRmSKXqAn/Zxkncqn+8Bw9vjjKUDNJTf8S/T0JhSfrlk3lgaN7xfPlPxfBI52sdIx1tOcQljgXo8Jkvo7zFSvzGtxMVEa74GamWPg85gHo1vViQcL05444aJE2RVz2Blk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=a377KQy7; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1768224508;
-	bh=f78gp6boRiGgxdOsuYxB8AuLWAEzu6iYkpim1DtE1V0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=a377KQy7q7rvGs8Nkk9WTyVAVs/kmJNHq8rK8hC2yY2YRzmSNdRL67cG/4QTEhPmR
-	 lkUPc8C3qUVFlIWsH3riOyHqQ5H41AabjGnupkDWTIMngVQaAH3GClDJB/lrN5Dg40
-	 fjUm1w29uQaa6tYOevOWGtHV06/7dMI5NuljeBlZoX4wfHt/JyE7TQXCthfF/tS3qr
-	 Mc89DfdzgrBjgV05y65cxjD86mVXBMsgNHxTwHQ5lCEePEb3Pg8tNkdizcaaQn86Vq
-	 pLuEcHHzspKD1Lc+H3lXla1QatB+AMLpmGnAhWufkxFuNU98HAbJuvEy/U3HZSn72m
-	 xt4FdQTN6B2Ng==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B397417E0333;
-	Mon, 12 Jan 2026 14:28:27 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- =?utf-8?q?Macpaul_Lin_=28=E6=9E=97=E6=99=BA=E6=96=8C=29?= <Macpaul.Lin@mediatek.com>
-In-Reply-To: <20260112085544.2959250-1-wenst@chromium.org>
-References: <20260112085544.2959250-1-wenst@chromium.org>
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8188-geralt: drop
- firmware-name from first SCP core
-Message-Id: <176822450766.38852.14968182973024481538.b4-ty@collabora.com>
-Date: Mon, 12 Jan 2026 14:28:27 +0100
+	s=arc-20240116; t=1768224613; c=relaxed/simple;
+	bh=bQ7Kcy9ixF5o6sO8BCPeFyQgEI8iOT3N0Bp+vysVJxw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z74QMXQmnuRabFqJqe8kOznatmDdrv+jdUM7RCZLjaN7Eonspj4hFilk7H8IqsbuBK1kuWSeDXLlq6tnNptA42Py2ykjMJo5efF1VQIGdx8+PIgFE3vcQEOTtco2A4t4EnZ5ALCvuqHxNH5xir1QIKKOv8dy7RMVTi+0zx6Nkyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pRuPEFht; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=fsJh8E8UiJycX/1KxA58q5x+ZruCt4gSs5ZQlOLdQ4c=; b=pRuPEFht0wctbrxahkRQ8mXek4
+	zjWENWO8/oFBWF4txBJSSIi3//MpC4LQhV6ass8io8xmHGNaW6krvBN0INt2Rc148W1LpmY1ww5L0
+	i8bdR9Wwk0u7p/eeMrrT68z8p2ecaHT1wLxAdECRk3ekvtcP57ggHrT6aghIDw/yrKBU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vfHzf-002Tk1-4i; Mon, 12 Jan 2026 14:30:03 +0100
+Date: Mon, 12 Jan 2026 14:30:03 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next 2/2] net: airoha: npu: Add the capability to
+ read firmware names from dts
+Message-ID: <f57867a0-a57d-4572-b0ed-b2adb41d9689@lunn.ch>
+References: <20260112-airoha-npu-firmware-name-v1-0-d0b148b6710f@kernel.org>
+ <20260112-airoha-npu-firmware-name-v1-2-d0b148b6710f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260112-airoha-npu-firmware-name-v1-2-d0b148b6710f@kernel.org>
 
-On Mon, 12 Jan 2026 16:55:42 +0800, Chen-Yu Tsai wrote:
-> Arnd pointed out that having firmware-name in the device tree is wrong.
-> Drop it.
-> 
-> 
+On Mon, Jan 12, 2026 at 11:00:08AM +0100, Lorenzo Bianconi wrote:
+> Introduce the capability to read the firmware binary names from device-tree
+> using the firmware-name property if available.
+> This is a preliminary patch to enable NPU offloading for MT7996 (Eagle)
+> chipset since it requires a different binary with respect to the one
+> used for MT7992 on the EN7581 SoC.
 
-Applied to v6.19-next/dts64, thanks!
+When i look at
 
-[1/1] arm64: dts: mediatek: mt8188-geralt: drop firmware-name from first SCP core
-      commit: c3f6d533b76e27a6dd4264b0240f7742a4d79323
+airoha_npu.c
 
-Cheers,
-Angelo
+i see:
 
+#define NPU_EN7581_FIRMWARE_DATA                "airoha/en7581_npu_data.bin"
+#define NPU_EN7581_FIRMWARE_RV32                "airoha/en7581_npu_rv32.bin"
+#define NPU_AN7583_FIRMWARE_DATA                "airoha/an7583_npu_data.bin"
+#define NPU_AN7583_FIRMWARE_RV32                "airoha/an7583_npu_rv32.bin"
 
+static const struct airoha_npu_soc_data en7581_npu_soc_data = {
+        .fw_rv32 = {
+                .name = NPU_EN7581_FIRMWARE_RV32,
+                .max_size = NPU_EN7581_FIRMWARE_RV32_MAX_SIZE,
+        },
+        .fw_data = {
+                .name = NPU_EN7581_FIRMWARE_DATA,
+                .max_size = NPU_EN7581_FIRMWARE_DATA_MAX_SIZE,
+        },
+};
+
+static const struct airoha_npu_soc_data an7583_npu_soc_data = {
+        .fw_rv32 = {
+                .name = NPU_AN7583_FIRMWARE_RV32,
+                .max_size = NPU_EN7581_FIRMWARE_RV32_MAX_SIZE,
+        },
+        .fw_data = {
+                .name = NPU_AN7583_FIRMWARE_DATA,
+                .max_size = NPU_EN7581_FIRMWARE_DATA_MAX_SIZE,
+        },
+};
+
+static const struct of_device_id of_airoha_npu_match[] = {
+        { .compatible = "airoha,en7581-npu", .data = &en7581_npu_soc_data },
+        { .compatible = "airoha,an7583-npu", .data = &an7583_npu_soc_data },
+        { /* sentinel */ }
+};
+
+Why cannot this scheme be extended with another compatible?
+
+    Andrew
 
