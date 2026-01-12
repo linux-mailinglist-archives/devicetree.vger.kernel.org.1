@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-254118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E42EFD1434B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:56:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66259D1433C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:56:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0971A30E492A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:52:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 410BB3009D7F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC12836E494;
-	Mon, 12 Jan 2026 16:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02F4374168;
+	Mon, 12 Jan 2026 16:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="EYKiuubl"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fpZYTpDI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDB336E489
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 16:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA0036E49B
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 16:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768236772; cv=none; b=WViy4tvFxxdNXtC5eP8wJ9L7ZGU8KKoFzeXDxno4+7egYKrQ8e7Ix3uaRojfM2dloImAdt78jK4q0U9l9Ek2ceicW/rC5mWIQWVLp4hPBOlLz9mdgl7175cUIUOd7oFykljTeeNj0/EYsRdKn4h0MSXhUvmFzv7IhGvmI3Am8sc=
+	t=1768236964; cv=none; b=kUcu2OA4QoaUoYvz5rcvxLkenva4o6fpltnDnUQ/D2Fl0D5FKu+yT1Ee3aCFf4DgIM81xlIZxLPQjLQYLjBm+j8DO6QFc7ZeZ9qo5LFCQ/HbjKATxl0N7/6GzJIvKtWnq85o+qvZuF/Li6fVLpRzdELw+rUkHAResB6Am+crIFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768236772; c=relaxed/simple;
-	bh=efldYqSwp2SNEEvW3E88bChSvw2Uz7vxSEpeuTyNRik=;
+	s=arc-20240116; t=1768236964; c=relaxed/simple;
+	bh=53PqF1HokUhim5dGFw3XiukMqRe1lpRwS6R3c9/xZMU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sAVLgQNk9T6Z41KMEbK0HYbZ77lvav06g0snAuvzz6+Qc9vz4QYq42g8Bc2MJnL/WvETTBqG6Ura4/ByG2GdutrejQiY+HzLT5Pf5JFKLlQ5yDmlyPsgS1iEcbDLOZqEiwK1NWpqcwrcL7yfAib1ADNswxoeksV2LWHR/yfIJKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=EYKiuubl; arc=none smtp.client-ip=170.10.133.124
+	 In-Reply-To:Content-Type; b=LkjRTuBoqD8pFBRyLBydZ3j2LoWDgtgbwv3cSzOHHL+8oGzH3oPzOFM+zD82cAwuLUeos4iqaQEnbMBLTqsZRY9f/6zHUjyT+7UgQKkdFqGOsudFnapwUW27l+6oqFRTaL0LOaO/+334pkU06/+jIpabPmGUbgx4++5jcyzUjBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fpZYTpDI; arc=none smtp.client-ip=170.10.129.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1768236770;
+	s=mimecast20190719; t=1768236962;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=wNUxirVuC6Amib0RnMLuE2BYHWTtcIWHH53MESKRWvY=;
-	b=EYKiuubllUBixjj1ReXQs+ooA0mbygdVsUbdH5OB88iw1iUJYn61f6NO+Yd1NGtsbrtMCA
-	bQ5yxtQOndUk3/0XkcFbOKFlZ6v1yMlMEBoDnewiRLeXm2tFc2aG1Q+Zu2syiWMvF/vQMe
-	/0xQO7oAENCsx00i6TcKNP0tUx8L2RM=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+	bh=bj92T4kdPMa4hTjyGAxNwL1RPMgnUsDf7pHcc06+7bY=;
+	b=fpZYTpDIOGaFiaH2orD7h/7lDpVGwNBuHT/Sayo0EdrZEzIqQRnj/ULv5C4HE+hWrorcDh
+	8w3wNkCUZLeBLLWLVpt/6I1gMAlnJMPhZxpnSphhBiYVVsgymfxXvTpWyN+5v+VVoyqwso
+	Q1R0rUh5Ge1iWTHaEqSwhTY+7yq7JlE=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-248-hepfzZdONg65ms3TNDv15w-1; Mon,
- 12 Jan 2026 11:52:46 -0500
-X-MC-Unique: hepfzZdONg65ms3TNDv15w-1
-X-Mimecast-MFC-AGG-ID: hepfzZdONg65ms3TNDv15w_1768236763
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-435-PtbRvg4BPEq--o89R600bQ-1; Mon,
+ 12 Jan 2026 11:55:46 -0500
+X-MC-Unique: PtbRvg4BPEq--o89R600bQ-1
+X-Mimecast-MFC-AGG-ID: PtbRvg4BPEq--o89R600bQ_1768236943
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id A42DF19560B2;
-	Mon, 12 Jan 2026 16:52:42 +0000 (UTC)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D90D01800342;
+	Mon, 12 Jan 2026 16:55:42 +0000 (UTC)
 Received: from [10.44.34.128] (unknown [10.44.34.128])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 4323819560B2;
-	Mon, 12 Jan 2026 16:52:35 +0000 (UTC)
-Message-ID: <323241f0-9d70-4b4a-b32b-b14d0efc037b@redhat.com>
-Date: Mon, 12 Jan 2026 17:52:33 +0100
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 9966F30001A7;
+	Mon, 12 Jan 2026 16:55:35 +0000 (UTC)
+Message-ID: <d444e846-5891-4bcb-96b8-9b3aa3f925bd@redhat.com>
+Date: Mon, 12 Jan 2026 17:55:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,17 +88,19 @@ Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
 References: <20260108182318.20935-1-ivecera@redhat.com>
  <20260108182318.20935-4-ivecera@redhat.com>
  <20260109-cooperative-chinchilla-of-swiftness-aebbc8@quoll>
- <25f49485-2228-4aa5-9023-0b00cc10a4da@redhat.com>
- <22bdda82-9ebf-4381-a7d4-edbf97408a5f@kernel.org>
+ <09ffc379-85e5-41ce-b781-66ba6bb9a6c7@redhat.com>
+ <fcc35747-81f3-4a3a-8b5d-cf29e9c52bb2@kernel.org>
 Content-Language: en-US
 From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <22bdda82-9ebf-4381-a7d4-edbf97408a5f@kernel.org>
+In-Reply-To: <fcc35747-81f3-4a3a-8b5d-cf29e9c52bb2@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-On 1/12/26 5:16 PM, Krzysztof Kozlowski wrote:
-> On 09/01/2026 11:22, Ivan Vecera wrote:
+
+
+On 1/12/26 5:20 PM, Krzysztof Kozlowski wrote:
+> On 09/01/2026 15:19, Ivan Vecera wrote:
 >>
 >>
 >> On 1/9/26 10:55 AM, Krzysztof Kozlowski wrote:
@@ -125,13 +127,25 @@ On 1/12/26 5:16 PM, Krzysztof Kozlowski wrote:
 >>>>
 >>>
 >>> I don't see cells defined in your binding. Neither updated property.c.
->>>
->> WDYM by property.c ?
+>>
+>> And if the cells are not required? I mean that dpll-names only specifies
+>> array of phandles without parameters...
+>>
+>> e.g.
+>> dpll-pin-names = "abc", "def";
+>> dpll-pins = <&dpll_pin_abc>, <&dpll_pin_def>;
+>>
+>> Should '#dpll-pin-cells' be defined as constantly equal to 0?
 > 
-> Each standardized phandle reliationship is supposed to be reflected with
-> device links (at least of now... maybe it already changed after this LPC?)
+> I don't understand how can you guarantee for every possible future
+> device to have always cells=0. If that's the case then indeed you do not
+> need cells, but this needs explanation. You are designing now entire
+> ABI, so you must design it fully, not just "works for me now".
 
-Do you mean 'supplier_bindings' in drivers/of/property.c ?
+Get it, you are right... Theoretically is possible that number of cells
+will be > 0.
+
+Will add '#dpll-pin-cells'
 
 Thanks,
 Ivan
