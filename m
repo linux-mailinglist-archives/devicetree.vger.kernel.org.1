@@ -1,143 +1,166 @@
-Return-Path: <devicetree+bounces-253868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F3FD122A8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA7AD122E1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9A0BE30FB4D0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:02:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 259E53002D38
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E52290D81;
-	Mon, 12 Jan 2026 11:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE515321422;
+	Mon, 12 Jan 2026 11:04:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Xv34hKla"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="gQGVaJ5s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail-m49219.qiye.163.com (mail-m49219.qiye.163.com [45.254.49.219])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CB526CE2C;
-	Mon, 12 Jan 2026 11:02:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 184CC2D47E3
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 11:04:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.219
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768215764; cv=none; b=i+P9cmNFmWZWaut9RjdRXwPJeoh8K66g64eYQMUY+We+9mTuM2y94fZRu6qNBqU9QDd2w7ExplXlAkH0pNOVaFi8vBPlV3yAiDUWcNvWYBHqy/LoNn4KcSh7GWBZZYLbn86uqevj2LyBFVge1mTV4A9dKs8Zpcm0UzV9R5m+xfk=
+	t=1768215873; cv=none; b=V51mWzlc76LJs++84pqug3sns1rIccNIFmOzE/f0I91CXzjLvG3Z+R5Fz7cM9ghkbIK+/he2i/YW/Vfu2jNILhaCARZBECHD/zyAvYqz1nFbpve9IqLgru3N3ctfaKNIeljXS+cJwdy5bu3mubkkauYU5tnVfeYRLidpX0FLl5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768215764; c=relaxed/simple;
-	bh=QY7qJIHK3u/vwTBdYuxbQk3b3sWdxAfCGdCuAweP/kA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d4zd8x3znQ30hshdqAnNacxgrKsHH/wdkd4I+MQlZbQHMxshe3XZ8KmrmOWpKxqJ6bdWI3qP0wyAzFS6sg8lSS3k3a8fIxPnvRLR6o1YiHrsYTYT0HDT8K3SJOLnsFBYWitJ5IILyTgfn5Dr71tjgqjsfmDqO2Z9w7KEugkigB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Xv34hKla; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=DWNPGMqaJKT2DTVjAZ8virInZYZelttbbbD/egipkf8=; b=Xv34hKlaaHbXVbZ1UG4gQg6bNI
-	br6j8JxjmqssQQ91yiCYo9mrQWQSUln1AMH9KAB4TsARXI6SPRioylSyGp6v02G/8CD5co8bCCwtK
-	b5DfISjQVKQEjUkLifa4DO65NYNqsJUvGdy5JmEMAoroY4nUNPpI38dDgRRYjoTHsnPHvKWW5rrHP
-	gzWo65TeIr7HBUgkHICRJNd4cNLM7NNqpuYrwNUqpCvsQUZsxZ0H/LI4hQX4JdhtweNbkd1gZnQF4
-	mbO01PhwlUpZK49RlHcMF8XLApeAOfE81/CErNpKWNtfj2ksKDae1S6ORIiXmH1JvLpRSQ0weWVXH
-	bJSjBA9Q==;
-Received: from i53875b6a.versanet.de ([83.135.91.106] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vfFgx-001wKN-TA; Mon, 12 Jan 2026 12:02:36 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Joseph Chen <chenjh@rock-chips.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Joseph Chen <chenjh@rock-chips.com>
-Subject: Re: [PATCH v2 2/3] mfd: rk8xx: Add RK801 support
-Date: Mon, 12 Jan 2026 12:02:35 +0100
-Message-ID: <1980810.GKX7oQKdZx@diego>
-In-Reply-To: <20260112102849.1479-3-chenjh@rock-chips.com>
-References:
- <20260112102849.1479-1-chenjh@rock-chips.com>
- <20260112102849.1479-3-chenjh@rock-chips.com>
+	s=arc-20240116; t=1768215873; c=relaxed/simple;
+	bh=XrYFxiLfoSzZLdP1QtHm1WgDPPwdB2asQac9Dip/J9Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gmixp//QS6qrAHpySPpbU9Y6O91JVFfDXU42ST5PIGuOwnOtBTtCFsBbnNLWyxHitr9OM4g7RLjV16q44+gucnNEbXSuRwpru847ib4n0NHscF+kCiFEWR2k2ev5XL34Ds6jXIjrISGyq044MuJVSk9Xh7x+3s7UTTTnbXJN444=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=gQGVaJ5s; arc=none smtp.client-ip=45.254.49.219
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3054d7495;
+	Mon, 12 Jan 2026 19:04:26 +0800 (GMT+08:00)
+Message-ID: <5ee40807-79b3-4ba0-a9c6-6f0cfd2173c9@rock-chips.com>
+Date: Mon, 12 Jan 2026 19:04:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] soc: rockchip: grf: Support multiple grf to be
+ handled
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>,
+ Marco Schirrmeister <mschirrmeister@gmail.com>,
+ John Clark <inindev@gmail.com>, Tianling Shen <cnsztl@gmail.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>
+References: <1768189768-96333-1-git-send-email-shawn.lin@rock-chips.com>
+ <1768189768-96333-3-git-send-email-shawn.lin@rock-chips.com>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <1768189768-96333-3-git-send-email-shawn.lin@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9bb1e0eb7b03abkunm9ead88385c3b5e
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkodTFZDGUtNQ0IYSEhIT0NWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=gQGVaJ5s1nTjOA7kv8FtOXErHev5yauFMNRTXOLTa5hSjJ9/61H/e+13LZE7j1aiNAlyP2p/lJWR0WY1zX5bZpDpPLiK/7gNjaVlNRm+pEt/LZPoWOBQa6pZ3pnfcgInCV6srXmnBnmv08wfX/U8Z7UWDpTBoSgzF8kXyRyBod4=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=3hi2cD50khIEG/ArQOWPFeNoiV/AAAhVoZnQWKnnERk=;
+	h=date:mime-version:subject:message-id:from;
 
-Hi Joseph,
+Hi Shawn,
 
-Am Montag, 12. Januar 2026, 11:28:48 Mitteleurop=C3=A4ische Normalzeit schr=
-ieb Joseph Chen:
-> The RK801 is a Power Management IC (PMIC) for multimedia
-> and handheld devices. It contains the following components:
->=20
-> - 4 BUCK
-> - 2 LDO
-> - 1 SWITCH
->=20
-> Signed-off-by: Joseph Chen <chenjh@rock-chips.com>
+On 1/12/2026 11:49 AM, Shawn Lin wrote:
+> Currently, only the first matched node will be handled. This leads
+> to jtag switching broken for RK3576, as rk3576-sys-grf is found before
+> rk3576-ioc-grf. Change the code to scan all the possible node to fix
+> the problem.
+> 
+> Fixes: e1aaecacfa13 ("soc: rockchip: grf: Add rk3576 default GRF values")
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
 > ---
->  drivers/mfd/Kconfig                 |    6 +-
->  drivers/mfd/rk8xx-core.c            |   81 ++
->  drivers/mfd/rk8xx-i2c.c             |   33 +-
->  drivers/regulator/rk808-regulator.c | 1963 ---------------------------
->  include/linux/mfd/rk808.h           |  118 ++
->  5 files changed, 234 insertions(+), 1967 deletions(-)
->  delete mode 100644 drivers/regulator/rk808-regulator.c
->=20
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 6cec1858947..5405e8633aa 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -1355,15 +1355,15 @@ config MFD_RK8XX
->  	select MFD_CORE
-> =20
->  config MFD_RK8XX_I2C
-> -	tristate "Rockchip RK805/RK808/RK809/RK816/RK817/RK818 Power Management=
- Chip"
-> +	tristate "Rockchip RK801/RK805/RK808/RK809/RK816/RK817/RK818 Power Mana=
-gement Chip"
+> 
+>  drivers/soc/rockchip/grf.c | 59 +++++++++++++++++++++++-----------------------
+>  1 file changed, 30 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/soc/rockchip/grf.c b/drivers/soc/rockchip/grf.c
+> index 8974d1c..6d1c624e 100644
+> --- a/drivers/soc/rockchip/grf.c
+> +++ b/drivers/soc/rockchip/grf.c
+> @@ -213,40 +213,41 @@ static int __init rockchip_grf_init(void)
+>  {
+>  	const struct rockchip_grf_info *grf_info;
+>  	const struct of_device_id *match;
+> -	struct device_node *np;
+> +	struct device_node *np, *from_np = NULL;
+>  	struct regmap *grf;
+>  	int ret, i;
+>  
+> -	np = of_find_matching_node_and_match(NULL, rockchip_grf_dt_match,
+> -					     &match);
+> -	if (!np)
+> -		return -ENODEV;
+> -	if (!match || !match->data) {
+> -		pr_err("%s: missing grf data\n", __func__);
+> -		of_node_put(np);
+> -		return -EINVAL;
+> -	}
+> +	while (1) {
+> +		np = of_find_matching_node_and_match(from_np,
+> +				rockchip_grf_dt_match, &match);
+> +		if (!np)
+> +			return 0;
+> +		if (!match || !match->data) {
+> +			pr_err("%s: missing grf data\n", __func__);
+> +			of_node_put(np);
+> +			return -EINVAL;
+> +		}
+>  
+> -	grf_info = match->data;
+> -
+> -	grf = syscon_node_to_regmap(np);
+> -	of_node_put(np);
+> -	if (IS_ERR(grf)) {
+> -		pr_err("%s: could not get grf syscon\n", __func__);
+> -		return PTR_ERR(grf);
+> -	}
+> +		grf_info = match->data;
+>  
+> -	for (i = 0; i < grf_info->num_values; i++) {
+> -		const struct rockchip_grf_value *val = &grf_info->values[i];
+> -
+> -		pr_debug("%s: adjusting %s in %#6x to %#10x\n", __func__,
+> -			val->desc, val->reg, val->val);
+> -		ret = regmap_write(grf, val->reg, val->val);
+> -		if (ret < 0)
+> -			pr_err("%s: write to %#6x failed with %d\n",
+> -			       __func__, val->reg, ret);
+> +		grf = syscon_node_to_regmap(np);
+> +		of_node_put(np);
+> +		if (IS_ERR(grf)) {
+> +			pr_err("%s: could not get grf syscon\n", __func__);
+> +			return PTR_ERR(grf);
+> +		}
+> +
+> +		for (i = 0; i < grf_info->num_values; i++) {
+> +			const struct rockchip_grf_value *val = &grf_info->values[i];
+> +
+> +			pr_info("%s: adjusting %s in %#6x to %#10x\n", __func__,
+> +				val->desc, val->reg, val->val);
+> +			ret = regmap_write(grf, val->reg, val->val);
+> +			if (ret < 0)
+> +				pr_err("%s: write to %#6x failed with %d\n",
+> +					__func__, val->reg, ret);
+> +		}
+> +		from_np = np;
+>  	}
 
-nit: I think at some point it'd be time to make that
-	"Rockchip RX8xx Power Management Chips"
-The config entry is already named that way, and that list of individual
-supported chips gets way too long.
+You called of_node_put() on from_np/np here, and the next time
+of_find_matching_node_and_match() is called, this function will
+internally call of_node_put() on from_np. 
 
-Also the individual supported chips _are_ listed below, so the unwieldy
-entry headline can be shortened.
+Would this cause a double put?
 
->  	depends on I2C && OF
->  	select MFD_CORE
->  	select REGMAP_I2C
->  	select REGMAP_IRQ
->  	select MFD_RK8XX
->  	help
-> -	  If you say yes here you get support for the RK805, RK808, RK809,
-> -	  RK816, RK817 and RK818 Power Management chips.
-> +	  If you say yes here you get support for the RK801, RK805, RK808,
-> +	  RK809, RK816, RK817 and RK818 Power Management chips.
->  	  This driver provides common support for accessing the device
->  	  through I2C interface. The device supports multiple sub-devices
->  	  including interrupts, RTC, LDO & DCDC regulators, and onkey.
-
-[...]
-
-> diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk80=
-8-regulator.c
-> deleted file mode 100644
-> index 1e814247965..00000000000
-> --- a/drivers/regulator/rk808-regulator.c
-> +++ /dev/null
-
-Looks like something did go wrong here, as you're removing the whole
-drivers/regulator/rk808-regulator.c file from the MFD patch.
-
-
-Thanks
-Heiko
-
-
+-- 
+Best, 
+Chaoyi
 
