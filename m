@@ -1,286 +1,131 @@
-Return-Path: <devicetree+bounces-254137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC257D1491A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:54:13 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20929D1490E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:54:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D2A4302D5C8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:47:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3ECB930205A8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD8937FF78;
-	Mon, 12 Jan 2026 17:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2671230F80C;
+	Mon, 12 Jan 2026 17:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mlMmHHRo"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="r+fsgxij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B71437F73C
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:46:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591A637E2FE;
+	Mon, 12 Jan 2026 17:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768240007; cv=none; b=HIb5MhjcuP/b2+NpnnlWO+bK0E1eR/RRpQT4AHb0mZVG4Clfo7lns7JcfCOE/vhRt1xUhPMeSShcnsAPfE84hZ0Ulu/DQQaHrV2TzMH8FiaC3AsdlLma7/lLtRxNStQK/c8MisRZBijtaFfePeUJvHslx8M6d3YCEkSLjqdOwpQ=
+	t=1768240209; cv=none; b=b83GSoR7hhC88YKQI0G+DMY+pYUWudfUf8xzdy0CEUORHtDSWxHqsd7iaTPKtds4p6YgxNrSgSujy00Hmk8PHWOxHcW2srB8TOfkx8ZXX13Hd2FXk1SZa4vV7FNjWApzYi4zuA1SsUkAJYFzYgfct2dTYy/BSrnl/oSTordMcnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768240007; c=relaxed/simple;
-	bh=5fXIrwABFbPXXYTw+nAf2EIqr+PtOXYDToVreVLaI64=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J8135P87Z6naJGWnG5CMgv2hiUlipgF7iE696UYc4NHluWdM3noiM2yoINglOgJ55mTXFT0+a5QlfYxAb9xowrv7a384I8geHMpjhrVgI6ATVIWwoqSGuG1a/KlOas3vZy4f86FKCUzhh8zXCqoBJJ8wF0gcgmy3ek9ezJ1LSnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mlMmHHRo; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-3ff4acb6eebso4187081fac.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:46:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768240001; x=1768844801; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MZo/CUT8jYhOYXP0ze3MUTwMeTqZZQuf98ZaLPyjBl8=;
-        b=mlMmHHRozGZgdamCx1yS2Ka2o6mv7UHjcZ5IjlqYW3dQW2sCgYKsG/1SJLXY9oqAt8
-         8hOU6T5ONsScJI9X6NGQCGhRiCk/WwAZaGU37eoqQpiAgQ+o11lGlQfinFiNFGb+fkzj
-         92F/vOJDTQ9DI5Ti8j0jXV0YlhHmi884/1SOjKMw6Z+Qcsgxn5MeiCRDajBQKWOfeyk9
-         bAByU7mvH3H3JnEYat/qwEtUyYc27H2LrN+28wABMB2pR+yMXFpBAeWKDHmlL0wQkx82
-         3qIw21tLc68CazMafGrdYZi4ahlTIoc8ii560wCnrBdr8aMOMiIg/STL1NzrSJrRsjo3
-         bYdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768240001; x=1768844801;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MZo/CUT8jYhOYXP0ze3MUTwMeTqZZQuf98ZaLPyjBl8=;
-        b=BxulCmyZakhd2Irgc9sgbg2RdJxQ7MVH3AowJa6q7b9nXQd2Xsyp0F6SHvqI90RDjC
-         hs7yI2t8ow5HKO+BD9GXLlww2HGGRORhSg7Fukj5b2NcKTPtHo2jLZquFhH6k2lSDUsb
-         FrBk343CGtKnjFZ2mNpftrQIFQvfnSJUTGVwANFHssL5pO16K0OSBbRAryNskiSFlyU9
-         ZBK/+fMrfu5ZAN34ALBcxH1MYmdXER7sh4vM4aizMoWi6+IlgYVXp9TmCBsUB9mA1zkO
-         oXkjc0dogAbCZu1xALW3HjmYZzCtOyjjfqP4+NHBavJ2ML/KfdBgzu6KRAEmK2ZU661w
-         EfLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4ql3wOGV7a5wsJJ2r2GwpgF12TYGLdD+MVQPfVLEpEWzL+AbGF4xjwapmUAAtKeIi9YUh+Zq8r6rw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzoe+XMrDTNsddzHLNmb1q+4PmzVv7uEqSyHz2QiFAMIk3uxHJl
-	187sxu8dP4qZnqcpykZEFH9UWwmSJYNdJR6NliZxYQ40vbPF9FgqkEW3Xln2UiTmLTo=
-X-Gm-Gg: AY/fxX60T7pAEnmreNYcB0LtPvQ84jxaSwa8+VX1uUF2upSAGFI7kyWeNGixiGQwPP3
-	4DTwX6xoELvtcvrDyU8kifMe6gbvXugkkPXdsZgrMHQ8lYU9OG+vFvVWNd/tzFfieK4eeoWHiPj
-	2ygXnxMnD17gSk7hPSUkb3OKL6GiyLuVnONUnbifka2phnQbZaNUR90EQB9yohwf+IFmc9RgPFn
-	EyacLmIgijHw6zf1Xa4I5LtXOCH6ZAXQRFKi9wStWDg95CsasnQzi1g2g+GdbXnD5m2vBMSoodv
-	sMpwgETopicAkR3FYuUrkpqHSXI7sJZ9rZ2FjmyJHeNozxlABy/40ciMP/Q3MNEIviNEV4UTkN4
-	WKxh9NKYyK0/oqBFa7VTI93eg6DwRNncgrEjzEWu2sIs1C9HeB0qsavETGaCQ8q8HubvXXETT5q
-	76YsCfypw47/AOZIg=
-X-Google-Smtp-Source: AGHT+IHkwkQwWo5YKuZ4K4G1LWdtF+xNJT1UXteHMvzbW4fw/KEo7wfDHBZ4/5kbyMXxjyLESkIA2Q==
-X-Received: by 2002:a05:6870:f21a:b0:3ec:48ba:8f3e with SMTP id 586e51a60fabf-3ffc0b73185mr8244317fac.49.1768240001279;
-        Mon, 12 Jan 2026 09:46:41 -0800 (PST)
-Received: from [127.0.1.1] ([2600:8803:e7e4:500:6b4b:49b3:cce5:b58f])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa4de40bfsm12126941fac.5.2026.01.12.09.46.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 09:46:40 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 12 Jan 2026 11:45:27 -0600
-Subject: [PATCH v5 9/9] iio: adc: ad7380: add support for multiple SPI
- lanes
+	s=arc-20240116; t=1768240209; c=relaxed/simple;
+	bh=If0EDU6H4zCtbyzNr1wpDXu4gqKUvy4RcPtwcDab0Jg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VNunT4zFPaRDdBNOc2Tzx74qP+HctKWV7fvyp1q6G9lIRmjR4YsOwr4SVmu9jpm0E0XnMJ67vnoteK6S5oGMjQmJSeKno9JwCOp+U3YByoQD/oHg7SNlVfl2jx1VKAm16v/P4xkYPTkOKHlY144vipAprpUs/xb+Twf/T/befxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=r+fsgxij; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id D49C1316;
+	Mon, 12 Jan 2026 18:49:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768240180;
+	bh=If0EDU6H4zCtbyzNr1wpDXu4gqKUvy4RcPtwcDab0Jg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r+fsgxijiI5VwhvVQ0/zspPgkpcAp+k8uz8tvsulb5M0phoPVD8Nc1C9NL7cBFz0W
+	 lasBayTK2d5c34FlRBIkNR+PeiAyIq/IG6n3YP7rLTFV1VQAYoDos/iYaiqY7pimQw
+	 tzy52CdaIw4CdBV+qoEM45ZOLeExVKNY22nxdrPI=
+Date: Mon, 12 Jan 2026 19:49:45 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: bridge: nxp,tda998x: Add missing
+ clocks
+Message-ID: <20260112174945.GC26365@pendragon.ideasonboard.com>
+References: <2b66577296583a6787f770f0eb13c42a6b50768b.1768233569.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260112-spi-add-multi-bus-support-v5-9-295f4f09f6ba@baylibre.com>
-References: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
-In-Reply-To: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Marcelo Schmitt <marcelo.schmitt@analog.com>, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>
-Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6242; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=5fXIrwABFbPXXYTw+nAf2EIqr+PtOXYDToVreVLaI64=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpZTNsfVgEagY6+eDtq4388ESB62NiNTp2+uvVc
- BFczfUcwIqJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaWUzbAAKCRDCzCAB/wGP
- wO4sCACDr2t8kSUqYKA2dSU2LAGdEhzIr0n6aXw89n+ck3qhECW2NliAxHPxaldEJSOLC09KsXT
- HLu/Kfc6hY0WvQttNCerAAxrGhHZ2b92jqPL7pYIfoWQtcbQKgm/7fHBxnSRkEdJ+wTJSgJnqPS
- QahaCBgnJ+2PPkVUGr4XGwyohaQmP3PysQfqTWeqym4At9wbhTyuvUBxM6hSO1sFCWKlObcURMA
- j0nvqgK3Geam9GNMASe8LEJwXsj17z6Q2vjAf+LFl/C7jYJvDdho874R5XRtMpj8UvS/qjukyuG
- CeFKLktCYOYgscUIBtjgoDgirnKgMqE0SWFT/29UMIjZ0uz4
-X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
- fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <2b66577296583a6787f770f0eb13c42a6b50768b.1768233569.git.geert+renesas@glider.be>
 
-Add support for multiple SPI lanes to increase throughput. The AD7380
-family of ADCs have multiple SDO lines on the chip that can be used to
-read each channel on a separate SPI lane. If wired up to a SPI
-controller that supports it, the driver will now take advantage of this
-feature. This allows reaching the maximum sample rate advertised in the
-datasheet when combined with SPI offloading.
+Hi Geert,
 
-Reviewed-by: Nuno Sá <nuno.sa@analog.com>
-Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
+Thank you for the patch.
 
-v5 changes:
-* Include the number of SDO lines in the error message.
+On Mon, Jan 12, 2026 at 05:02:40PM +0100, Geert Uytterhoeven wrote:
+> Some TDA998x variants (e.g. TDA19988) have an OSC_IN pin, to connect
+> an external oscillator circuit or clock source.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> This fixes "make dtbs_check":
+> 
+>     arch/arm64/boot/dts/renesas/r8a774c0-ek874-mipi-2.1.dtb: tda19988@70 (nxp,tda998x): Unevaluated properties are not allowed ('clocks' was unexpected)
+> 	    from schema $id: http://devicetree.org/schemas/display/bridge/nxp,tda998x.yaml
+>     arch/arm64/boot/dts/renesas/r8a774c0-cat874.dtb: tda19988@70 (nxp,tda998x): Unevaluated properties are not allowed ('clocks' was unexpected)
+> 	    from schema $id: http://devicetree.org/schemas/display/bridge/nxp,tda998x.yaml
+>     arch/arm64/boot/dts/renesas/r8a774c0-ek874.dtb: tda19988@70 (nxp,tda998x): Unevaluated properties are not allowed ('clocks' was unexpected)
+> 	    from schema $id: http://devicetree.org/schemas/display/bridge/nxp,tda998x.yaml
+>     arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dtb: tda19988@70 (nxp,tda998x): Unevaluated properties are not allowed ('clocks' was unexpected)
+> 	    from schema $id: http://devicetree.org/schemas/display/bridge/nxp,tda998x.yaml
+> 
+> This patch can be considered v3 of "[PATCH v2 2/3] [RFC] arm64: dts:
+> renesas: cat874: Drop bogus clocks property"[1], as the pin is actually
+> connected to a clock source on that board.  On BeagleBone Black, it is
+> also connected to a clock source, but not described in DT.
+> 
+> The linux driver does not use this clock directly, but I suspect[2] the
+> use of this pin is controlled through the AP_ENA register value, as
+> specified in the second cell of the the audio-ports property.
+> 
+> [1] https://lore.kernel.org/97b949cddd7e30e9c05873800330dccd3483b12b.1663165552.git.geert+renesas@glider.be
+> [2] I do not have access to the programming manual.
+> ---
+>  .../devicetree/bindings/display/bridge/nxp,tda998x.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
+> index 3fce9e698ea1d2dd..1205c8e9de329bbc 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
+> @@ -19,6 +19,9 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  clocks:
+> +    maxItems: 1
+> +
 
-v4 changes:
-* Update for core SPI API changes.
+I wonder if we should add a compatible string for the variants with a
+clock pin, to let drivers manage the clock.
 
-v3 changes:
-* Renamed "buses" to "lanes" to reflect devicetree property name change.
+If the clock does not need to be controlled, an alternative would be to
+drop the clocks property from
+arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts.
 
-v2 changes:
-* Move st->seq_xfer[3].multi_lane_mode = SPI_MULTI_BUS_MODE_STRIPE;
-  to probe().
----
- drivers/iio/adc/ad7380.c | 51 ++++++++++++++++++++++++++++++++++++------------
- 1 file changed, 38 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-index bfd908deefc0..ca411371816f 100644
---- a/drivers/iio/adc/ad7380.c
-+++ b/drivers/iio/adc/ad7380.c
-@@ -77,8 +77,7 @@
- #define AD7380_CONFIG1_REFSEL		BIT(1)
- #define AD7380_CONFIG1_PMODE		BIT(0)
- 
--#define AD7380_CONFIG2_SDO2		GENMASK(9, 8)
--#define AD7380_CONFIG2_SDO		BIT(8)
-+#define AD7380_CONFIG2_SDO		GENMASK(9, 8)
- #define AD7380_CONFIG2_RESET		GENMASK(7, 0)
- 
- #define AD7380_CONFIG2_RESET_SOFT	0x3C
-@@ -92,11 +91,6 @@
- #define T_CONVERT_X_NS 500		/* xth conversion start time (oversampling) */
- #define T_POWERUP_US 5000		/* Power up */
- 
--/*
-- * AD738x support several SDO lines to increase throughput, but driver currently
-- * supports only 1 SDO line (standard SPI transaction)
-- */
--#define AD7380_NUM_SDO_LINES		1
- #define AD7380_DEFAULT_GAIN_MILLI	1000
- 
- /*
-@@ -888,6 +882,8 @@ struct ad7380_state {
- 	bool resolution_boost_enabled;
- 	unsigned int ch;
- 	bool seq;
-+	/* How many SDO lines are wired up. */
-+	u8 num_sdo_lines;
- 	unsigned int vref_mv;
- 	unsigned int vcm_mv[MAX_NUM_CHANNELS];
- 	unsigned int gain_milli[MAX_NUM_CHANNELS];
-@@ -1084,7 +1080,7 @@ static int ad7380_set_ch(struct ad7380_state *st, unsigned int ch)
- 	if (oversampling_ratio > 1)
- 		xfer.delay.value = T_CONVERT_0_NS +
- 			T_CONVERT_X_NS * (oversampling_ratio - 1) *
--			st->chip_info->num_simult_channels / AD7380_NUM_SDO_LINES;
-+			st->chip_info->num_simult_channels / st->num_sdo_lines;
- 
- 	return spi_sync_transfer(st->spi, &xfer, 1);
- }
-@@ -1113,7 +1109,7 @@ static int ad7380_update_xfers(struct ad7380_state *st,
- 	if (oversampling_ratio > 1)
- 		t_convert = T_CONVERT_0_NS + T_CONVERT_X_NS *
- 			(oversampling_ratio - 1) *
--			st->chip_info->num_simult_channels / AD7380_NUM_SDO_LINES;
-+			st->chip_info->num_simult_channels / st->num_sdo_lines;
- 
- 	if (st->seq) {
- 		xfer[0].delay.value = xfer[1].delay.value = t_convert;
-@@ -1198,6 +1194,8 @@ static int ad7380_init_offload_msg(struct ad7380_state *st,
- 	xfer->bits_per_word = scan_type->realbits;
- 	xfer->offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
- 	xfer->len = AD7380_SPI_BYTES(scan_type) * st->chip_info->num_simult_channels;
-+	if (st->num_sdo_lines > 1)
-+		xfer->multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
- 
- 	spi_message_init_with_transfers(&st->offload_msg, xfer, 1);
- 	st->offload_msg.offload = st->offload;
-@@ -1793,6 +1791,7 @@ static const struct iio_info ad7380_info = {
- 
- static int ad7380_init(struct ad7380_state *st, bool external_ref_en)
- {
-+	u32 sdo;
- 	int ret;
- 
- 	/* perform hard reset */
-@@ -1815,11 +1814,24 @@ static int ad7380_init(struct ad7380_state *st, bool external_ref_en)
- 	st->ch = 0;
- 	st->seq = false;
- 
--	/* SPI 1-wire mode */
-+	/* SDO field has an irregular mapping. */
-+	switch (st->num_sdo_lines) {
-+	case 1:
-+		sdo = 1;
-+		break;
-+	case 2:
-+		sdo = 0;
-+		break;
-+	case 4:
-+		sdo = 2;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
- 	return regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
- 				  AD7380_CONFIG2_SDO,
--				  FIELD_PREP(AD7380_CONFIG2_SDO,
--					     AD7380_NUM_SDO_LINES));
-+				  FIELD_PREP(AD7380_CONFIG2_SDO, sdo));
- }
- 
- static int ad7380_probe_spi_offload(struct iio_dev *indio_dev,
-@@ -1842,7 +1854,7 @@ static int ad7380_probe_spi_offload(struct iio_dev *indio_dev,
- 				     "failed to get offload trigger\n");
- 
- 	sample_rate = st->chip_info->max_conversion_rate_hz *
--		      AD7380_NUM_SDO_LINES / st->chip_info->num_simult_channels;
-+		      st->num_sdo_lines / st->chip_info->num_simult_channels;
- 
- 	st->sample_freq_range[0] = 1; /* min */
- 	st->sample_freq_range[1] = 1; /* step */
-@@ -1887,6 +1899,13 @@ static int ad7380_probe(struct spi_device *spi)
- 	if (!st->chip_info)
- 		return dev_err_probe(dev, -EINVAL, "missing match data\n");
- 
-+	st->num_sdo_lines = spi->num_rx_lanes;
-+
-+	if (st->num_sdo_lines < 1 || st->num_sdo_lines > st->chip_info->num_simult_channels)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "invalid number of SDO lines (%d)\n",
-+				     st->num_sdo_lines);
-+
- 	ret = devm_regulator_bulk_get_enable(dev, st->chip_info->num_supplies,
- 					     st->chip_info->supplies);
- 
-@@ -2010,6 +2029,8 @@ static int ad7380_probe(struct spi_device *spi)
- 	st->normal_xfer[0].cs_change_delay.value = st->chip_info->timing_specs->t_csh_ns;
- 	st->normal_xfer[0].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
- 	st->normal_xfer[1].rx_buf = st->scan_data;
-+	if (st->num_sdo_lines > 1)
-+		st->normal_xfer[1].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
- 
- 	spi_message_init_with_transfers(&st->normal_msg, st->normal_xfer,
- 					ARRAY_SIZE(st->normal_xfer));
-@@ -2031,6 +2052,10 @@ static int ad7380_probe(struct spi_device *spi)
- 	st->seq_xfer[2].cs_change = 1;
- 	st->seq_xfer[2].cs_change_delay.value = st->chip_info->timing_specs->t_csh_ns;
- 	st->seq_xfer[2].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
-+	if (st->num_sdo_lines > 1) {
-+		st->seq_xfer[2].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
-+		st->seq_xfer[3].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
-+	}
- 
- 	spi_message_init_with_transfers(&st->seq_msg, st->seq_xfer,
- 					ARRAY_SIZE(st->seq_xfer));
+>    video-ports:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      default: 0x230145
 
 -- 
-2.43.0
+Regards,
 
+Laurent Pinchart
 
