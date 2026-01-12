@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-253915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA121D12963
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:45:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD8ED12969
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:45:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 26A8E305BCEC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:44:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D6FE6304BCA0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AFDD357A3C;
-	Mon, 12 Jan 2026 12:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA4D357A5E;
+	Mon, 12 Jan 2026 12:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="cDlpH1BM"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="LMCaxcQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15590.qiye.163.com (mail-m15590.qiye.163.com [101.71.155.90])
+Received: from mail-m4920.qiye.163.com (mail-m4920.qiye.163.com [45.254.49.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8B4357A50;
-	Mon, 12 Jan 2026 12:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257F8357A39;
+	Mon, 12 Jan 2026 12:44:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768221868; cv=none; b=JcwWR0oH3ZIqtwzcAeHBwwOIOxHEgu7VmMBqzdCmCnYNJvPJnVNjlaAIxwM4hcwf+O3Sh3FGOY8gcNrIWycIjQ3AgPqo+rQy4vgg17r8DX7Sh1ckUKGdITD4Y2ehY2FiX9t8ZQdhzWUVErneV80FNCdxQzcaMvXVIPMjoeABN0E=
+	t=1768221871; cv=none; b=CODLl8o8LDGV0HGgZpDsHxYRKXhkuW90MdS5djiBuhVxs2r7aGxXRSIUyjNgmxPK+Q5KxCp4YxcODPKO7vdQPEQAHTv2CH9cQ3t03wUXhKqCUVd55Bab6R2iXgbm2kSKSfxpNDtnuoASc9iEiHl3wfo8RPzs/OwshCU0jccxax0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768221868; c=relaxed/simple;
-	bh=b1LAfnyYMBhLKv8Sz2WZ9NO7yPg/4Woob+nCMlI5+I4=;
+	s=arc-20240116; t=1768221871; c=relaxed/simple;
+	bh=jWPOK3DTPod8Hu+SrVyNQE0e8kH3nHdtbKHKWBvEVF8=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=dHFb6io8MahuWUN8K9hAK6uHC2NoGebjW/Nn5x40Pg/NPVo6LkJ59i81JVaWTyZGw8I/vVft4QDAv2sihUwE6oCNVE9aYSO5wUXQcIjrSWXjYa5bVHTbnFWDXVZQSraqF+/yMjF3MdWOq+R1SvNL9JL2u6lsu7MVwvjnI4JnLqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=cDlpH1BM; arc=none smtp.client-ip=101.71.155.90
+	 MIME-Version; b=MJMJ4+8T+rRbCcplKJVjR1jiII8JNThtiREDJ0dE4nLESwfnPX+VG4EH9OAkqBFxtpcxUyXcQF6UF11VdCeqBUDRDUfS3DCVHeockaL+ui1MOXIZXovxrahgFSSeGGywRF4F+0yj8BY8UYEy+9AJQq1nYdHNqcK9wRHwQialVuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=LMCaxcQw; arc=none smtp.client-ip=45.254.49.20
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 30573044a;
-	Mon, 12 Jan 2026 20:44:15 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 305730454;
+	Mon, 12 Jan 2026 20:44:18 +0800 (GMT+08:00)
 From: Joseph Chen <chenjh@rock-chips.com>
 To: Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -45,9 +45,9 @@ Cc: Heiko Stuebner <heiko@sntech.de>,
 	linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	Joseph Chen <chenjh@rock-chips.com>
-Subject: [PATCH v3 1/3] dt-bindings: mfd: Add rk801 binding
-Date: Mon, 12 Jan 2026 20:43:49 +0800
-Message-Id: <20260112124351.17707-2-chenjh@rock-chips.com>
+Subject: [PATCH v3 2/3] mfd: rk8xx: Add RK801 support
+Date: Mon, 12 Jan 2026 20:43:50 +0800
+Message-Id: <20260112124351.17707-3-chenjh@rock-chips.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260112124351.17707-1-chenjh@rock-chips.com>
 References: <20260112124351.17707-1-chenjh@rock-chips.com>
@@ -58,228 +58,403 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9bb23c4efa09d2kunm3fddfe07a7c2
+X-HM-Tid: 0a9bb23c5c9809d2kunm3fddfe07a7f1
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkxNQlZJGBoYQ0pCHU1DTxhWFRQJFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkgdGFZPSB1NTU5NSRhDSktWFRQJFh
 	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
 	hVSktLVUpCS0tZBg++
 DKIM-Signature: a=rsa-sha256;
-	b=cDlpH1BMYYZdN1TWXxCXeyvUCQtGkH47q9CK/F96Da9iPvzqPvJqx3QK3DItT4GPIECGqq6krzhCZreTl3vZsmJm+GDSHXhnT1i8JM2gNuuw4fRdMFXkmuLZ16ppLbASYQxxsl1AiWSIrxzrwVf3jU6t1yv9DUMQSV0Pp1PgoKk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=2S8QoD+nAVfBD+btYxoEeVM+/hE0CQqqhO0ZYPFytuQ=;
+	b=LMCaxcQw263JenxWxtyHR9L2vOi8br+dIvrvju+RErWkrhV78Cg+UyzAry2o5RzTLD550JA9vc8C3WwjKU7UNQ4nZKZrdhHSIr1ZXrkHSmLFUG0kmaT6pVL/9BKmu46cJzXmvRMuMIOyyt2OKlrJQSosiLk4zSV0R/8ijqdpN2M=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=nIH643sYoJOcH1Mru2R+3Oj0JEsbAevRoY9PB/3oBTA=;
 	h=date:mime-version:subject:message-id:from;
 
-Add DT binding document for Rockchip's RK801 PMIC
+The RK801 is a Power Management IC (PMIC) for multimedia
+and handheld devices. It contains the following components:
+
+- 4 BUCK
+- 2 LDO
+- 1 SWITCH
 
 Signed-off-by: Joseph Chen <chenjh@rock-chips.com>
 ---
- .../bindings/mfd/rockchip,rk801.yaml          | 197 ++++++++++++++++++
- 1 file changed, 197 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk801.yaml
+ drivers/mfd/Kconfig       |   6 +-
+ drivers/mfd/rk8xx-core.c  |  81 ++++++++++++++++++++++++++
+ drivers/mfd/rk8xx-i2c.c   |  33 ++++++++++-
+ include/linux/mfd/rk808.h | 118 ++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 234 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk801.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk801.yaml
-new file mode 100644
-index 00000000000..7c71447200b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/rockchip,rk801.yaml
-@@ -0,0 +1,197 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/rockchip,rk801.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 6cec1858947..2f11f95343e 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -1355,15 +1355,15 @@ config MFD_RK8XX
+ 	select MFD_CORE
+ 
+ config MFD_RK8XX_I2C
+-	tristate "Rockchip RK805/RK808/RK809/RK816/RK817/RK818 Power Management Chip"
++	tristate "Rockchip RK8xx Power Management Chips"
+ 	depends on I2C && OF
+ 	select MFD_CORE
+ 	select REGMAP_I2C
+ 	select REGMAP_IRQ
+ 	select MFD_RK8XX
+ 	help
+-	  If you say yes here you get support for the RK805, RK808, RK809,
+-	  RK816, RK817 and RK818 Power Management chips.
++	  If you say yes here you get support for the RK801, RK805, RK808,
++	  RK809, RK816, RK817 and RK818 Power Management chips.
+ 	  This driver provides common support for accessing the device
+ 	  through I2C interface. The device supports multiple sub-devices
+ 	  including interrupts, RTC, LDO & DCDC regulators, and onkey.
+diff --git a/drivers/mfd/rk8xx-core.c b/drivers/mfd/rk8xx-core.c
+index def4587fdfb..3dcf6abfda7 100644
+--- a/drivers/mfd/rk8xx-core.c
++++ b/drivers/mfd/rk8xx-core.c
+@@ -37,6 +37,11 @@ static const struct resource rk817_rtc_resources[] = {
+ 	DEFINE_RES_IRQ(RK817_IRQ_RTC_ALARM),
+ };
+ 
++static const struct resource rk801_key_resources[] = {
++	DEFINE_RES_IRQ(RK801_IRQ_PWRON_FALL),
++	DEFINE_RES_IRQ(RK801_IRQ_PWRON_RISE),
++};
 +
-+title: RK801 Power Management Integrated Circuit
+ static const struct resource rk805_key_resources[] = {
+ 	DEFINE_RES_IRQ(RK805_IRQ_PWRON_RISE),
+ 	DEFINE_RES_IRQ(RK805_IRQ_PWRON_FALL),
+@@ -57,6 +62,14 @@ static const struct resource rk817_charger_resources[] = {
+ 	DEFINE_RES_IRQ(RK817_IRQ_PLUG_OUT),
+ };
+ 
++static const struct mfd_cell rk801s[] = {
++	{ .name = "rk808-regulator", },
++	{	.name = "rk805-pwrkey",
++		.num_resources = ARRAY_SIZE(rk801_key_resources),
++		.resources = &rk801_key_resources[0],
++	},
++};
 +
-+maintainers:
-+  - Joseph Chen <chenjh@rock-chips.com>
+ static const struct mfd_cell rk805s[] = {
+ 	{ .name = "rk808-clkout", },
+ 	{ .name = "rk808-regulator", },
+@@ -139,6 +152,15 @@ static const struct mfd_cell rk818s[] = {
+ 	},
+ };
+ 
++static const struct rk808_reg_data rk801_pre_init_reg[] = {
++	{ RK801_SLEEP_CFG_REG, RK801_SLEEP_FUN_MSK, RK801_NONE_FUN },
++	{ RK801_SYS_CFG2_REG, RK801_RST_MSK, RK801_RST_RESTART_REG_RESETB },
++	{ RK801_INT_CONFIG_REG, RK801_INT_POL_MSK, RK801_INT_ACT_L },
++	{ RK801_POWER_FPWM_EN_REG, RK801_PLDO_HRDEC_EN, RK801_PLDO_HRDEC_EN },
++	{ RK801_BUCK_DEBUG5_REG, MASK_ALL, 0x54 },
++	{ RK801_CON_BACK1_REG, MASK_ALL, 0x18 },
++};
 +
-+description: |
-+  Rockchip RK801 series PMIC. This device consists of an i2c controlled MFD
-+  that includes multiple switchable regulators.
+ static const struct rk808_reg_data rk805_pre_init_reg[] = {
+ 	{RK805_BUCK1_CONFIG_REG, RK805_BUCK1_2_ILMAX_MASK,
+ 				 RK805_BUCK1_2_ILMAX_4000MA},
+@@ -284,6 +306,37 @@ static const struct rk808_reg_data rk818_pre_init_reg[] = {
+ 						    VB_LO_SEL_3500MV },
+ };
+ 
++static const struct regmap_irq rk801_irqs[] = {
++	[RK801_IRQ_PWRON_FALL] = {
++		.mask = RK801_IRQ_PWRON_FALL_MSK,
++		.reg_offset = 0,
++	},
++	[RK801_IRQ_PWRON_RISE] = {
++		.mask = RK801_IRQ_PWRON_RISE_MSK,
++		.reg_offset = 0,
++	},
++	[RK801_IRQ_PWRON] = {
++		.mask = RK801_IRQ_PWRON_MSK,
++		.reg_offset = 0,
++	},
++	[RK801_IRQ_PWRON_LP] = {
++		.mask = RK801_IRQ_PWRON_LP_MSK,
++		.reg_offset = 0,
++	},
++	[RK801_IRQ_HOTDIE] = {
++		.mask = RK801_IRQ_HOTDIE_MSK,
++		.reg_offset = 0,
++	},
++	[RK801_IRQ_VDC_RISE] = {
++		.mask = RK801_IRQ_VDC_RISE_MSK,
++		.reg_offset = 0,
++	},
++	[RK801_IRQ_VDC_FALL] = {
++		.mask = RK801_IRQ_VDC_FALL_MSK,
++		.reg_offset = 0,
++	},
++};
 +
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk801
+ static const struct regmap_irq rk805_irqs[] = {
+ 	[RK805_IRQ_PWRON_RISE] = {
+ 		.mask = RK805_IRQ_PWRON_RISE_MSK,
+@@ -532,6 +585,17 @@ static const struct regmap_irq rk817_irqs[RK817_IRQ_END] = {
+ 	REGMAP_IRQ_REG_LINE(23, 8)
+ };
+ 
++static const struct regmap_irq_chip rk801_irq_chip = {
++	.name = "rk801",
++	.irqs = rk801_irqs,
++	.num_irqs = ARRAY_SIZE(rk801_irqs),
++	.num_regs = 1,
++	.status_base = RK801_INT_STS0_REG,
++	.mask_base = RK801_INT_MASK0_REG,
++	.ack_base = RK801_INT_STS0_REG,
++	.init_ack_masked = true,
++};
 +
-+  reg:
-+    maxItems: 1
+ static const struct regmap_irq_chip rk805_irq_chip = {
+ 	.name = "rk805",
+ 	.irqs = rk805_irqs,
+@@ -610,6 +674,10 @@ static int rk808_power_off(struct sys_off_data *data)
+ 	unsigned int reg, bit;
+ 
+ 	switch (rk808->variant) {
++	case RK801_ID:
++		reg = RK801_SYS_CFG2_REG;
++		bit = DEV_OFF;
++		break;
+ 	case RK805_ID:
+ 		reg = RK805_DEV_CTRL_REG;
+ 		bit = DEV_OFF;
+@@ -714,6 +782,13 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
+ 	dev_set_drvdata(dev, rk808);
+ 
+ 	switch (rk808->variant) {
++	case RK801_ID:
++		rk808->regmap_irq_chip = &rk801_irq_chip;
++		pre_init_reg = rk801_pre_init_reg;
++		nr_pre_init_regs = ARRAY_SIZE(rk801_pre_init_reg);
++		cells = rk801s;
++		nr_cells = ARRAY_SIZE(rk801s);
++		break;
+ 	case RK805_ID:
+ 		rk808->regmap_irq_chip = &rk805_irq_chip;
+ 		pre_init_reg = rk805_pre_init_reg;
+@@ -831,6 +906,12 @@ int rk8xx_suspend(struct device *dev)
+ 	int ret = 0;
+ 
+ 	switch (rk808->variant) {
++	case RK801_ID:
++		ret = regmap_update_bits(rk808->regmap,
++					 RK801_SLEEP_CFG_REG,
++					 RK801_SLEEP_FUN_MSK,
++					 RK801_SLEEP_FUN);
++		break;
+ 	case RK805_ID:
+ 		ret = regmap_update_bits(rk808->regmap,
+ 					 RK805_GPIO_IO_POL_REG,
+diff --git a/drivers/mfd/rk8xx-i2c.c b/drivers/mfd/rk8xx-i2c.c
+index 37287b06dab..2951b2911a3 100644
+--- a/drivers/mfd/rk8xx-i2c.c
++++ b/drivers/mfd/rk8xx-i2c.c
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+ /*
+- * Rockchip RK805/RK808/RK816/RK817/RK818 Core (I2C) driver
++ * Rockchip RK801/RK805/RK808/RK816/RK817/RK818 Core (I2C) driver
+  *
+  * Copyright (c) 2014, Fuzhou Rockchip Electronics Co., Ltd
+  * Copyright (C) 2016 PHYTEC Messtechnik GmbH
+@@ -21,6 +21,23 @@ struct rk8xx_i2c_platform_data {
+ 	int variant;
+ };
+ 
++static bool rk801_is_volatile_reg(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case RK801_SYS_STS_REG:
++	case RK801_INT_STS0_REG:
++	case RK801_SYS_CFG0_REG:
++	case RK801_SYS_CFG1_REG:
++	case RK801_SYS_CFG2_REG:
++	case RK801_SYS_CFG3_REG:
++	case RK801_SYS_CFG4_REG:
++	case RK801_SLEEP_CFG_REG:
++		return true;
++	}
 +
-+  interrupts:
-+    maxItems: 1
++	return false;
++}
 +
-+  system-power-controller:
-+    type: boolean
-+    description:
-+      Telling whether or not this PMIC is controlling the system power.
+ static bool rk806_is_volatile_reg(struct device *dev, unsigned int reg)
+ {
+ 	switch (reg) {
+@@ -124,6 +141,14 @@ static const struct regmap_config rk818_regmap_config = {
+ 	.volatile_reg = rk808_is_volatile_reg,
+ };
+ 
++static const struct regmap_config rk801_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.max_register = RK801_SYS_CFG3_OTP_REG,
++	.cache_type = REGCACHE_RBTREE,
++	.volatile_reg = rk801_is_volatile_reg,
++};
 +
-+  wakeup-source:
-+    type: boolean
-+    description:
-+      Device can be used as a wakeup source.
+ static const struct regmap_config rk805_regmap_config = {
+ 	.reg_bits = 8,
+ 	.val_bits = 8,
+@@ -164,6 +189,11 @@ static const struct regmap_config rk817_regmap_config = {
+ 	.volatile_reg = rk817_is_volatile_reg,
+ };
+ 
++static const struct rk8xx_i2c_platform_data rk801_data = {
++	.regmap_cfg = &rk801_regmap_config,
++	.variant = RK801_ID,
++};
 +
-+  vcc1-supply:
-+    description:
-+      The input supply for dcdc1.
+ static const struct rk8xx_i2c_platform_data rk805_data = {
+ 	.regmap_cfg = &rk805_regmap_config,
+ 	.variant = RK805_ID,
+@@ -224,6 +254,7 @@ static void rk8xx_i2c_shutdown(struct i2c_client *client)
+ static SIMPLE_DEV_PM_OPS(rk8xx_i2c_pm_ops, rk8xx_suspend, rk8xx_resume);
+ 
+ static const struct of_device_id rk8xx_i2c_of_match[] = {
++	{ .compatible = "rockchip,rk801", .data = &rk801_data },
+ 	{ .compatible = "rockchip,rk805", .data = &rk805_data },
+ 	{ .compatible = "rockchip,rk806", .data = &rk806_data },
+ 	{ .compatible = "rockchip,rk808", .data = &rk808_data },
+diff --git a/include/linux/mfd/rk808.h b/include/linux/mfd/rk808.h
+index 28170ee0889..7ffc904c864 100644
+--- a/include/linux/mfd/rk808.h
++++ b/include/linux/mfd/rk808.h
+@@ -340,6 +340,123 @@ enum rk818_reg {
+ #define RK818_USB_ILMIN_2000MA		0x7
+ #define RK818_USB_CHG_SD_VSEL_MASK	0x70
+ 
++/* RK801 */
++enum rk801_reg {
++	RK801_ID_DCDC1,
++	RK801_ID_DCDC2,
++	RK801_ID_DCDC4,
++	RK801_ID_DCDC3,
++	RK801_ID_LDO1,
++	RK801_ID_LDO2,
++	RK801_ID_SWITCH,
++	RK801_ID_MAX,
++};
 +
-+  vcc2-supply:
-+    description:
-+      The input supply for dcdc2.
++#define RK801_SLP_REG_OFFSET		5
++#define RK801_NUM_REGULATORS		7
 +
-+  vcc3-supply:
-+    description:
-+      The input supply for dcdc3.
++#define RK801_HW_SYNC_US		32
 +
-+  vcc4-supply:
-+    description:
-+      The input supply for dcdc4.
++/* RK801 Register Definitions */
++#define RK801_ID_MSB			0x00
++#define RK801_ID_LSB			0x01
++#define RK801_OTP_VER_REG		0x02
++#define RK801_POWER_EN0_REG		0x03
++#define RK801_POWER_EN1_REG		0x04
++#define RK801_POWER_SLP_EN_REG		0x05
++#define RK801_POWER_FPWM_EN_REG		0x06
++#define RK801_SLP_LP_CONFIG_REG		0x07
++#define RK801_BUCK_CONFIG_REG		0x08
++#define RK801_BUCK1_ON_VSEL_REG		0x09
++#define RK801_BUCK2_ON_VSEL_REG		0x0a
++#define RK801_BUCK4_ON_VSEL_REG		0x0b
++#define RK801_LDO1_ON_VSEL_REG		0x0c
++#define RK801_LDO2_ON_VSEL_REG		0x0d
++#define RK801_BUCK1_SLP_VSEL_REG	0x0e
++#define RK801_BUCK2_SLP_VSEL_REG	0x0f
++#define RK801_BUCK4_SLP_VSEL_REG	0x10
++#define RK801_LDO1_SLP_VSEL_REG		0x11
++#define RK801_LDO2_SLP_VSEL_REG		0x12
++#define RK801_LDO_SW_IMAX_REG		0x13
++#define RK801_SYS_STS_REG		0x14
++#define RK801_SYS_CFG0_REG		0x15
++#define RK801_SYS_CFG1_REG		0x16
++#define RK801_SYS_CFG2_REG		0x17
++#define RK801_SYS_CFG3_REG		0x18
++#define RK801_SYS_CFG4_REG		0x19
++#define RK801_SLEEP_CFG_REG		0x1a
++#define RK801_ON_SOURCE_REG		0x1b
++#define RK801_OFF_SOURCE_REG		0x1c
++#define RK801_PWRON_KEY_REG		0x1d
++#define RK801_INT_STS0_REG		0x1e
++#define RK801_INT_MASK0_REG		0x1f
++#define RK801_INT_CONFIG_REG		0x20
++#define RK801_CON_BACK1_REG		0x21
++#define RK801_CON_BACK2_REG		0x22
++#define RK801_DATA_CON0_REG		0x23
++#define RK801_DATA_CON1_REG		0x24
++#define RK801_DATA_CON2_REG		0x25
++#define RK801_DATA_CON3_REG		0x26
++#define RK801_POWER_EXIT_SLP_SEQ0_REG	0x27
++#define RK801_POWER_EXIT_SLP_SEQ1_REG	0x28
++#define RK801_POWER_EXIT_SLP_SEQ2_REG	0x29
++#define RK801_POWER_EXIT_SLP_SEQ3_REG	0x2a
++#define RK801_POWER_ENTER_SLP_OR_SHTD_SEQ0_REG	0x2b
++#define RK801_POWER_ENTER_SLP_OR_SHTD_SEQ1_REG	0x2c
++#define RK801_POWER_ENTER_SLP_OR_SHTD_SEQ2_REG	0x2d
++#define RK801_POWER_ENTER_SLP_OR_SHTD_SEQ3_REG	0x2e
++#define RK801_BUCK_DEBUG1_REG		0x2f
++#define RK801_BUCK_DEBUG2_REG		0x30
++#define RK801_BUCK_DEBUG3_REG		0x31
++#define RK801_BUCK_DEBUG4_REG		0x32
++#define RK801_BUCK_DEBUG5_REG		0x33
++#define RK801_BUCK_DEBUG7_REG		0x34
++#define RK801_OTP_EN_CON_REG		0x35
++#define RK801_TEST_CON_REG		0x36
++#define RK801_EFUSE_CONTROL_REG		0x37
++#define RK801_SYS_CFG3_OTP_REG		0x38
 +
-+  vcc5-supply:
-+    description:
-+      The input supply for ldo1.
++/* RK801 IRQ Definitions */
++#define RK801_IRQ_PWRON_FALL		0
++#define RK801_IRQ_PWRON_RISE		1
++#define RK801_IRQ_PWRON			2
++#define RK801_IRQ_PWRON_LP		3
++#define RK801_IRQ_HOTDIE		4
++#define RK801_IRQ_VDC_RISE		5
++#define RK801_IRQ_VDC_FALL		6
++#define RK801_IRQ_PWRON_FALL_MSK	BIT(0)
++#define RK801_IRQ_PWRON_RISE_MSK	BIT(1)
++#define RK801_IRQ_PWRON_MSK		BIT(2)
++#define RK801_IRQ_PWRON_LP_MSK		BIT(3)
++#define RK801_IRQ_HOTDIE_MSK		BIT(4)
++#define RK801_IRQ_VDC_RISE_MSK		BIT(5)
++#define RK801_IRQ_VDC_FALL_MSK		BIT(6)
++/* RK801_SLP_LP_CONFIG_REG */
++#define RK801_BUCK_SLP_LP_EN		BIT(3)
++#define RK801_PLDO_SLP_LP_EN		BIT(1)
++#define RK801_SLP_LP_MASK		(RK801_PLDO_SLP_LP_EN | RK801_BUCK_SLP_LP_EN)
++/* RK801_SLEEP_CFG_REG */
++#define RK801_SLEEP_FUN_MSK		0x3
++#define RK801_NONE_FUN			0x0
++#define RK801_SLEEP_FUN			0x1
++#define RK801_SHUTDOWN_FUN		0x2
++#define RK801_RESET_FUN			0x3
++/* RK801_SYS_CFG2_REG */
++#define RK801_SLEEP_POL_MSK		BIT(1)
++#define RK801_SLEEP_ACT_H		BIT(1)
++#define RK801_SLEEP_ACT_L		0
++#define RK801_RST_MSK			(0x3 << 4)
++#define RK801_RST_RESTART_PMU		(0x0 << 4)
++#define RK801_RST_RESTART_REG		(0x1 << 4)
++#define RK801_RST_RESTART_REG_RESETB	(0x2 << 4)
++/* RK801_INT_CONFIG_REG */
++#define RK801_INT_POL_MSK		BIT(1)
++#define RK801_INT_ACT_H			BIT(1)
++#define RK801_INT_ACT_L			0
++#define RK801_FPWM_MODE			1
++#define RK801_AUTO_PWM_MODE		0
++#define RK801_PLDO_HRDEC_EN		BIT(6)
 +
-+  vcc6-supply:
-+    description:
-+      The input supply for ldo2.
-+
-+  vcc7-supply:
-+    description:
-+      The input supply for switch.
-+
-+  regulators:
-+    type: object
-+    patternProperties:
-+      "^(dcdc[1-4]|ldo[1-2]|switch)$":
-+        type: object
-+        $ref: /schemas/regulator/regulator.yaml#
-+        unevaluatedProperties: false
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/rockchip.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rk801: pmic@27 {
-+            compatible = "rockchip,rk801";
-+            reg = <0x27>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <RK_PC0 IRQ_TYPE_LEVEL_LOW>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&pmic_int_l>;
-+            system-power-controller;
-+            wakeup-source;
-+
-+            vcc1-supply = <&vcc_sys>;
-+            vcc2-supply = <&vcc_sys>;
-+            vcc3-supply = <&vcc_sys>;
-+            vcc4-supply = <&vcc_sys>;
-+            vcc5-supply = <&vcc3v3_sys>;
-+            vcc6-supply = <&vcc3v3_sys>;
-+            vcc7-supply = <&vcc3v3_sys>;
-+
-+            regulators {
-+                vdd_cpu: dcdc1 {
-+                    regulator-name = "vdd_cpu";
-+                    regulator-min-microvolt = <500000>;
-+                    regulator-max-microvolt = <1500000>;
-+                    regulator-initial-mode = <0x1>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                    regulator-state-mem {
-+                        regulator-mode = <0x2>;
-+                        regulator-off-in-suspend;
-+                        regulator-suspend-microvolt = <950000>;
-+                    };
-+                };
-+
-+                vcc3v3_sys: dcdc2 {
-+                    regulator-name = "vcc3v3_sys";
-+                    regulator-min-microvolt = <3300000>;
-+                    regulator-max-microvolt = <3300000>;
-+                    regulator-initial-mode = <0x1>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                    regulator-state-mem {
-+                        regulator-mode = <0x2>;
-+                        regulator-on-in-suspend;
-+                        regulator-suspend-microvolt = <3300000>;
-+                    };
-+                };
-+
-+                vcc_ddr: dcdc3 {
-+                    regulator-name = "vcc_ddr";
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                    regulator-state-mem {
-+                        regulator-mode = <0x2>;
-+                        regulator-on-in-suspend;
-+                    };
-+                };
-+
-+                vdd_logic: dcdc4 {
-+                    regulator-name = "vdd_logic";
-+                    regulator-min-microvolt = <500000>;
-+                    regulator-max-microvolt = <1500000>;
-+                    regulator-initial-mode = <0x1>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                    regulator-state-mem {
-+                        regulator-mode = <0x2>;
-+                        regulator-off-in-suspend;
-+                        regulator-suspend-microvolt = <900000>;
-+                    };
-+                };
-+
-+                vdd0v9_sys: ldo1 {
-+                    regulator-name = "vdd0v9_sys";
-+                    regulator-min-microvolt = <900000>;
-+                    regulator-max-microvolt = <900000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                        regulator-suspend-microvolt = <900000>;
-+                    };
-+                };
-+
-+                vcc_1v8: ldo2 {
-+                    regulator-name = "vcc_1v8";
-+                    regulator-min-microvolt = <1800000>;
-+                    regulator-max-microvolt = <1800000>;
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                        regulator-suspend-microvolt = <1800000>;
-+                    };
-+                };
-+
-+                vcc_3v3: switch {
-+                    regulator-name = "vcc_3v3";
-+                    regulator-boot-on;
-+                    regulator-always-on;
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                        regulator-suspend-microvolt = <3300000>;
-+                    };
-+                };
-+            };
-+        };
-+    };
+ /* RK805 */
+ enum rk805_reg {
+ 	RK805_ID_DCDC1,
+@@ -1332,6 +1449,7 @@ enum {
+ };
+ 
+ enum {
++	RK801_ID = 0x8010,
+ 	RK805_ID = 0x8050,
+ 	RK806_ID = 0x8060,
+ 	RK808_ID = 0x0000,
 -- 
 2.25.1
 
