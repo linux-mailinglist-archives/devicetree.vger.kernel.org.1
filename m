@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-253664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85D1DD10410
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 02:28:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A296D10425
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 02:28:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 00308300E40E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:28:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE3D530638AC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E41223DCE;
-	Mon, 12 Jan 2026 01:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7239223E350;
+	Mon, 12 Jan 2026 01:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="1pwYGLd1"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="cFZaUlzU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFC847A6B;
-	Mon, 12 Jan 2026 01:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FB421D599;
+	Mon, 12 Jan 2026 01:28:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768181282; cv=none; b=HClHg6+8dDJN1AZ0VZ1e7VUodABu5Nd07D58UQqoUctJ9QFdchcyCJWTA7UiewKT7ZsCOfmOnIdA+R/coJvT5NnRL1U7tqsNJVt2offR/YtxaqKLDK+z70q0AJdT/M5pvpQabqpuoCi0pWGXoyrEdPL/rLC3gtU6FmAKSoz1khY=
+	t=1768181284; cv=none; b=oZr05AHNs+DfdqgqIdtsFk8/3fAa7HwkCi7uysHOIncArOMoX57WyGm9sYsTnSv0v2mxi5IX+mx6eRYdPPkqJyNQ7Z0D+6HrB3WhXXO82bZyFvUGEl4jsmRYbvEPDdmFy1wct5fWRb9a4RNN0wF/Xu3DWyxog1CpZASrsLl2wlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768181282; c=relaxed/simple;
-	bh=9Wk7FrbTcv+dFo1caqWBl1Bt+jFb3v9kyRkmsHEUZuQ=;
+	s=arc-20240116; t=1768181284; c=relaxed/simple;
+	bh=nwGe2W5SWCRSHE29+/Ndbm9rY0Wk+RojngMU9ZeFESk=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FVQd/OS+N2VeRl9Z17iWHdzYkwIBDaETRPnXFFsm3RBPhvZRHRh33aG6QXjdSdI/yuiDCQS3O81g6vK8dMNx9TnOCdULmGA0RvPX8s/xQS46G0QDNXwn0KJHHQeAD0MTY+Am9R+e77ITp2RLwKTjiRbeoVTucYOV+/kqaisbnkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=1pwYGLd1; arc=none smtp.client-ip=220.130.44.152
+	 MIME-Version:Content-Type; b=SJzDAwslQ34YFFPV3lPgfDAByVavvNyDuTri9rF0xKI+LYXjXF6wZQYEB/pvHJmFbRts8Q4DBaqwCZiwFxeHzp995xzN/EgpTMTLD9HLmnz6QWe8ptKK+7S6KjrS6hHTpO4M4xOm7rM/x8QkS/GO6q+dBleyVflkAV8yaj/F7vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=cFZaUlzU; arc=none smtp.client-ip=220.130.44.152
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
 X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1768181272;
-	bh=QPKxOxkLsCyaMcJwN0XhMC5MGMh+uxaYm+lWvEdp1uw=; l=1355;
+	s=richtek; t=1768181273;
+	bh=s234wik/F1vk1XVydjYSkGI0/8UknPrEave69DIzBRQ=; l=1257;
 	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=1pwYGLd1jXtnLgn5D7binzP222RnuggZ/L2PtJV49/owmDBgCWZh7Y6Z68js9R3d7
-	 2OpDOhNPMS4LRdTlSH/WwQ2NNYtdg+44c7StsjotTv0jmvNkLg9eGiSUZGweYMz2Lq
-	 59pkAdn14x1cGbl8eQJ1cIxsKNardcptMzaSqA9+xyKmdaopFGpZetc/FhMy3y+XJJ
-	 SILjuqc8Uw5jbtyeUtYE9o6afRcMKEGD1HEBWzkwwI23Q6Z9YF3dAacD0XqRYEEm0u
-	 EnHZ9vebVey0G9GsdSmYsTdXMRvd9DsOeAsefQq6hcI98Dr8H4QZ3CC8PQASFdwYAB
-	 sVv9Gcf4Vws4Q==
+	b=cFZaUlzUxPHXjIrfmWWinJMCItPXgKZKt8s6nLFvbGBl00m0wyJH/pfWVMpVN/Y7L
+	 qIh6jHh63EHn1rFAyWlGq792AzrES3uLgSCMqZOsddtdhM8u61hSFvQFxxO1nfexq9
+	 1LaDK1khvfT3FWfh7x+1tTtYEnAPt6UnLaiI3gHxx/evnTWOyjdTsyQifx4BefEaWb
+	 lTgjEcjG4FLMCgWDi9kaO5LhvLK7eTm4a++/0hA24YPDHiqiwQTdxv4ir7QDjO7q2H
+	 sU4D27r/rnEcMsGdLFAasEFjC/OVFQilsOrLO0GiZ8PmehEUeZB8QRiKBN120vpb4F
+	 i94+bb00HHcXw==
 Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(2572451:1:AUTH_RELAY)
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(2572456:1:AUTH_RELAY)
 	(envelope-from <cy_huang@richtek.com>)
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 12 Jan 2026 09:27:39 +0800 (CST)
 Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.26; Mon, 12 Jan
- 2026 09:27:38 +0800
+ 2026 09:27:39 +0800
 Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
  (192.168.10.45) with Microsoft SMTP Server id 15.2.1748.26 via Frontend
  Transport; Mon, 12 Jan 2026 09:27:38 +0800
@@ -57,10 +57,11 @@ CC: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Liam
  Girdwood" <lgirdwood@gmail.com>, ChiYuan Huang <cy_huang@richtek.com>,
 	<musk_wang@richtek.com>, <roy_chiu@richtek.com>, <allen_lin@richtek.com>,
 	<devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 1/3] ASoC: codecs: rtq9128: Modify the chip initial setting
-Date: Mon, 12 Jan 2026 09:27:32 +0800
-Message-ID: <340c88ae78edeb76cde812453c9a72d28b73e9f4.1768180827.git.cy_huang@richtek.com>
+	<linux-kernel@vger.kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v2 2/3] dt-bindings: sound: rtq9128: Add rtq9154 backward compatible
+Date: Mon, 12 Jan 2026 09:27:33 +0800
+Message-ID: <ab31e3965e9cb50ecdc14d5ea90d70dc26d1d187.1768180827.git.cy_huang@richtek.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1768180827.git.cy_huang@richtek.com>
 References: <cover.1768180827.git.cy_huang@richtek.com>
@@ -75,46 +76,45 @@ Content-Type: text/plain
 
 From: ChiYuan Huang <cy_huang@richtek.com>
 
-Modify the chip initial setting to default enable DC load detection
-function. This function is the chip specific feature that can detect
-the output open/short.
+Add rtq9154 backward compatible support.
 
 Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- sound/soc/codecs/rtq9128.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+v2
+- Fix commit message typo
+---
+ .../devicetree/bindings/sound/richtek,rtq9128.yaml   | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/codecs/rtq9128.c b/sound/soc/codecs/rtq9128.c
-index 391cc03d687f..289bb3c04a90 100644
---- a/sound/soc/codecs/rtq9128.c
-+++ b/sound/soc/codecs/rtq9128.c
-@@ -352,7 +352,7 @@ static const struct snd_soc_dapm_route rtq9128_dapm_routes[] = {
- static const struct rtq9128_init_reg rtq9128_tka470b_tables[] = {
- 	{ 0xA0, 0xEF },
- 	{ 0x0D, 0x00 },
--	{ 0x03, 0x05 },
-+	{ 0x03, 0x45 },
- 	{ 0x05, 0x31 },
- 	{ 0x06, 0x23 },
- 	{ 0x70, 0x11 },
-@@ -367,7 +367,7 @@ static const struct rtq9128_init_reg rtq9128_tka470b_tables[] = {
+diff --git a/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml b/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
+index d54686a19ab7..a125663988a5 100644
+--- a/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
++++ b/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
+@@ -14,13 +14,21 @@ description:
+   class-D audio power amplifier and delivering 4x75W into 4OHm at 10%
+   THD+N from a 25V supply in automotive applications.
  
- static const struct rtq9128_init_reg rtq9128_dh_tables[] = {
- 	{ 0x0F, 0x00 },
--	{ 0x03, 0x0D },
-+	{ 0x03, 0x4D },
- 	{ 0xB2, 0xFF },
- 	{ 0xB3, 0xFF },
- 	{ 0x30, 0x180 },
-@@ -378,7 +378,7 @@ static const struct rtq9128_init_reg rtq9128_dh_tables[] = {
++  The RTQ9154 is the family series of RTQ9128. The major change is to modify
++  the package size. Beside this, whole functions are almost all the same.
++
+ allOf:
+   - $ref: dai-common.yaml#
  
- static const struct rtq9128_init_reg rtq9128_dl_tables[] = {
- 	{ 0x0F, 0x00 },
--	{ 0x03, 0x0D },
-+	{ 0x03, 0x4D },
- 	{ 0x30, 0x180 },
- 	{ 0x8A, 0x55 },
- 	{ 0x72, 0x00 },
+ properties:
+   compatible:
+-    enum:
+-      - richtek,rtq9128
++    oneOf:
++      - enum:
++          - richtek,rtq9128
++      - items:
++          - enum:
++              - richtek,rtq9154
++          - const: richtek,rtq9128
+ 
+   reg:
+     maxItems: 1
 -- 
 2.34.1
 
