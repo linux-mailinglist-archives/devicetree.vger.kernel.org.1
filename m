@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-253984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1068D131C4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:26:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6ABDD131E5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:28:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E1D9A302ADD3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:22:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9F6D93038368
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF912D3739;
-	Mon, 12 Jan 2026 14:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36ACE2EE5FD;
+	Mon, 12 Jan 2026 14:21:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="qqyDn8B2"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OWk+hX0W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5542EC0A7
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B1B2D2382;
+	Mon, 12 Jan 2026 14:20:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227659; cv=none; b=BGPqq3a7/wgxWbqnGaXMdkrmc4SglykceyvBZQtugSVUQUlz5hR05jxHnhpLYLEYloNsgL3WxiIle9QGzGh7HiSgDOiDbi99EvPvnDSW+BrZ0bzlrF+SEKyCKXMGq9yB7dQThoTC5Asi6JHZl4dJISaFhFq+xIQmB+GpU9us0tA=
+	t=1768227661; cv=none; b=eBmUpSQQ7cjGGytKodNDW2LNGHgZI0o1oONxj3bKtzI59VBABfrgNrUS4jfq8H4c0iVlMN/aM7ihIrFHyTv8RsW4/F9TSLvVuJ7dSvBnrnu6FDC1LxCuRDhYfdNQjLqUn5Mdfm4WYCym6IDkmaBpzA5a7p3RYHC1zECjIfjMU2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227659; c=relaxed/simple;
-	bh=onITgzl/j/aTxCmRAXv0CYwm9QPcprVC79srL7J+ERI=;
+	s=arc-20240116; t=1768227661; c=relaxed/simple;
+	bh=Nj6kJj98DYHwwdjHPdu2+VgWqk7PRTqBXRT9vZd8eeY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KF7BK1vfj7IT7+vZ8A/yv8tAy8680xx1CMDb5WLQqNElTmkJtd5pWRLn4Ir8TdPL9ud7WNi8zM6QYrerN2PpRroRFM/OIysw3liyCVP+22xWwfdgFWastV+wLSeFDm0MQDOaquEEnhxBSCZ6DpfPfCDASgwFRkQwqaYmcVK13g0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=qqyDn8B2; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version; b=Qr2krR0CkMrhciKgZhW+ZJXUDuYM82Yww8cO78NnsiuABGH6T7CQl4H3E2tmAobvgl+vr8nA98U4eTeQbx0tMQsvLhL0MwHfa+8TVzZHC+upml3fU60ukqKp4SXuDfTQRnpy2uaLmBFfbvvJCRojmSm4rJL0ism4Qn+0fXsHQEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OWk+hX0W; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id A83091A27FC
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:20:54 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 3FAFB4E42092;
+	Mon, 12 Jan 2026 14:20:56 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7C57E606FA;
-	Mon, 12 Jan 2026 14:20:54 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 77D14103C8CD8;
-	Mon, 12 Jan 2026 15:20:52 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 13C27606FA;
+	Mon, 12 Jan 2026 14:20:56 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E7A4A103C9261;
+	Mon, 12 Jan 2026 15:20:53 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227653; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227655; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=MbcsH2VKS+PWLxCMGjlcJa8WB63hBbUf1OPFHJBaSgU=;
-	b=qqyDn8B2FgG4r6t2KN0YUo+XOGcvyjD3SmeihyXPJ8hMKAGS5DAFTN+a+pDznob4Sr2TL/
-	r1JyntFgF9bh2a+GdI/teeGcOHkPY0zyIDWtRpQsqpAjqS+phflRzT+KXjZNeMJMd2FWXm
-	SIezYCV6P8JWJPT0nzPmsZy3bGUvwRf5bvVBJCr4TC75QRuxPOscU3M5rh3wr+2FdMz6es
-	o+uP1SvULOg9Kc7Zs8MjL3oL4QNKsX00Uvh2ZuYsag9XFrdTlLXnsw5ZRtTP7Gqtpfx+GH
-	2YCi6HWIV/8dcRLeGx9rDb6MicVNH56uSFo4kYzR4WP9Zn0nuGOvpRsbSL6D2g==
+	bh=0MOeeR6TasGz+3AxpUMPX0Cq21Iksg66J6fcPymVDvA=;
+	b=OWk+hX0Ws5ZSun8uSJ95isB9VmnKshFYFRSaf5ByWplxHtexLxWwE/o1l4qNPsd2IuWBLe
+	9RHRsx3J7EnFIDbaOcu+5sfFu4RnvawMLNvWUFcHJesBviN12H5RHBtdf1scy25ZAZD5d9
+	GAZyEsSlyzldVThWYrppjqyCa6ItUqmfyl/8BNaY/JeH0ZzT1SuTfNEmqfeAFMspzbR1Q+
+	ORUkRDRWyFeemH9l3Erc7bkY7sEOP6qeyLJMTvrPZdx7fYqn6i1mc7y5QuGmgo7VVRCbD5
+	KGcZRQw/MIuwA/+/z46rbiiy63+TBwfJuOi8oHQyrL/oh+bMz7ll6oGQxMETgw==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 21/77] checks: Handle export symbols in fixup_phandle_references()
-Date: Mon, 12 Jan 2026 15:19:11 +0100
-Message-ID: <20260112142009.1006236-22-herve.codina@bootlin.com>
+Subject: [RFC PATCH 22/77] dtc: Add export symbols (/export/ keyword) in generated dts file
+Date: Mon, 12 Jan 2026 15:19:12 +0100
+Message-ID: <20260112142009.1006236-23-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -77,68 +77,47 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-Export symbols use phandle references.
+The export symbols (/export/ keyword) parsing from a dts file is
+supported.
 
-Referenced nodes must have a phandle property set in order to have those
-references working.
-
-fixup_phandle_references() does the needed operation for properties
-that use a phandle.
-
-Extend fixup_phandle_references() to perform exact same operation for
-export symbols.
+Add the support for this keyword in the dts file generation.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- checks.c | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+ treesource.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/checks.c b/checks.c
-index 2be19c0..d1e215e 100644
---- a/checks.c
-+++ b/checks.c
-@@ -604,12 +604,13 @@ static void fixup_phandle_references(struct check *c, struct dt_info *dti,
- 				     struct node *node)
+diff --git a/treesource.c b/treesource.c
+index 1db6390..9effe38 100644
+--- a/treesource.c
++++ b/treesource.c
+@@ -320,6 +320,7 @@ static void write_propval(FILE *f, struct property *prop)
+ 
+ static void write_tree_source_node(FILE *f, struct node *tree, int level)
  {
- 	struct node *dt = dti->dt;
 +	struct symbol *exportsym;
  	struct property *prop;
-+	struct node *refnode;
-+	cell_t phandle;
- 
- 	for_each_property(node, prop) {
- 		struct marker *m = prop->val.markers;
--		struct node *refnode;
--		cell_t phandle;
- 
- 		for_each_marker_of_type(m, REF_PHANDLE) {
- 			assert(m->offset + sizeof(cell_t) <= prop->val.len);
-@@ -631,6 +632,25 @@ static void fixup_phandle_references(struct check *c, struct dt_info *dti,
- 			reference_node(refnode);
- 		}
+ 	struct node *child;
+ 	struct label *l;
+@@ -349,6 +350,18 @@ static void write_tree_source_node(FILE *f, struct node *tree, int level)
+ 		fprintf(f, "%s", prop->name);
+ 		write_propval(f, prop);
  	}
 +
-+	for_each_symbol(node->exportsymlist, exportsym) {
-+		refnode = get_node_by_ref(dt, exportsym->ref);
-+		if (!refnode) {
-+			if (!(dti->dtsflags & (DTSF_PLUGIN | DTSF_ADDON))) {
-+				FAIL(c, dti, node,
-+				     "Export \"%s\" references to non-existent node or label \"%s\"\n",
-+				     exportsym->name, exportsym->ref);
-+			}
-+			exportsym->phandle = cpu_to_fdt32(0xffffffff);
-+			continue;
-+		}
-+
-+		/* Create the phandle property for this referenced node */
-+		phandle = get_node_phandle(dt, refnode);
-+		exportsym->phandle = phandle;
-+
-+		reference_node(refnode);
++	if (tree->exportsymlist)
++		fprintf(f, "\n");
++	for_each_symbol(tree->exportsymlist, exportsym) {
++		write_prefix(f, level+1);
++		fprintf(f, "/export/ %s: ", exportsym->name);
++		if (exportsym->ref[0] == '/')
++			fprintf(f, "&{%s};\n", exportsym->ref);
++		else
++			fprintf(f, "&%s;\n", exportsym->ref);
 +	}
- }
- ERROR(phandle_references, fixup_phandle_references, NULL,
-       &duplicate_node_names, &explicit_phandles);
++
+ 	for_each_child(tree, child) {
+ 		fprintf(f, "\n");
+ 		write_tree_source_node(f, child, level+1);
 -- 
 2.52.0
 
