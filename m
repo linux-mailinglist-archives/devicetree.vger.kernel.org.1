@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-253946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9FB0D12EFA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:54:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9662D12F60
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:59:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 667DE301CB6B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:53:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04CE930D3AD5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AE035E52E;
-	Mon, 12 Jan 2026 13:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ABAB35C182;
+	Mon, 12 Jan 2026 13:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="jmIAR//3"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="xbrejhcD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EAB135CB69
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 13:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60B435C180
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 13:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768226006; cv=none; b=ooY6xAkxLezb6lQTnBb1uqd48UBnUrwCB9rK+zgPO5c1wooqgvY9bJACLkKbgtE8Y7AZparNROgATBbFGfziH/c43UjK1uOuwxfv6yypV+ZRgi8PKFq9UAeVbfcYTfUKGMVmgKoOy/vCLQ36OUwRPYKf06nTWoCQ0oeI6CRdemA=
+	t=1768226007; cv=none; b=L1EMaObhrc5lE3/IKMtHnuUQz2I3UVS/UzIwst4aAAnh/lYXHxa1mrKsHMVuHE6Ob1WnhLPWTiP1U7wrmPAQzo4AOjRuK2/ryPimbq9RHGeA5DyCJ14kCL1Uba+W0O0JGFuVK1QE0aq6kxNZQnxvSOY+zPHdRxRgp5v+u88KVKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768226006; c=relaxed/simple;
-	bh=JQ+Xav1WgiSg4TeVufpYQlYO8+Wa2XeAmvUJ98gRRoI=;
+	s=arc-20240116; t=1768226007; c=relaxed/simple;
+	bh=CUg9RtlgmTKAudwK4F/5CcUGQgOlVJhlba1HTU9ItqQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=sG319PMQQATVqkaJ4a9L+PMnUUc4l76L9W4BBy3tLQeS0xEvnGfX7OkjswVmFoGzjcVp1PIkGqJ2StF0SqeIwe/y6tvMUTSld5H3Hh8aKj0G6Oae1zbGHXZRRBVf7i6gtWN9AyD5/x0764U2buRkSTctjuT7TlKEZKgMbAyuE8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=jmIAR//3; arc=none smtp.client-ip=209.85.208.54
+	 In-Reply-To:To:Cc; b=LqKad7QYddm/UUQnAJL/cqRJ1TrY7xl090/k+gKMw0REEQBcVJSueGc+LzssijwlBzmRO9x25CiSUlQjcNtB2a4KN3mJvMS07Sf3a0/dHrM4xpPYypF5Vh9XtDbf+W603h3RtcGYTbbqxfJA44ANVYkcKYEqvEHIU41fm2SM4LE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=xbrejhcD; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6505d141d02so10302861a12.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 05:53:22 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b7ffbf4284dso927506666b.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 05:53:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1768226000; x=1768830800; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1768226001; x=1768830801; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=oKl8VFa3Ka3PXOsDL6wBQeU/owbrQtnhkMdPY++AJFQ=;
-        b=jmIAR//3qOiykDKGAiZ28qOk6/TWKZDDcH0oQPCp1fslfeE0EVcryPjfKcF5ZFvJRV
-         Ewa56j5SwY8BTChpmhg4FWR0t+nfsAOHDykj93ZP8sOU0lNNQrgfm7mrUiwKi3xlSXT2
-         CMoQBBXOhk37775p29tt3+DpSGHr9PDfLM2PRoTeQgCREEPZYqoEozFFOUN6axhCAshO
-         enhALAie+EY1I2PdJEFD1A8+srKG1Lgfth97gu548gwnveY4twdnZQUqyjs5QEu+guf/
-         xcyOaVlUN0Mpvpbl58oT6J9iro6pQqj3r1g2qjcpy0ms9h3HXb7nhZ6HbFjRneN0kxl+
-         Dtxw==
+        bh=WWPfLmZoRs9e9HhXu15SJ7NQdaAV3N8zf0i6m2MJpE0=;
+        b=xbrejhcD0L9yC++GyaS5RgDRRI2zQPXMPkf6PFm9Cw/Vcs38dchwBUhTMXTGpiXWLF
+         qAz76gIoiErdd1tGWbT4dK9el/ficVB5TzbuahmnOXveK/yvrJ/o6MgYNz5/XklBl4Nw
+         vS2XJj99I2Mad20VHsSX6KTZUwBNBzzBz1heb8RuLuTHu7JrlVbyUeeh9QHinMNKHBSh
+         OqAw7T3wZ4RdGtYe4ETgES3Avf65256BPMF9sKWaoRYxItM6zaWyvHjeJ7sdJ4p3evdy
+         MbWSGQCUqqzMJv2GFC/SKiyWnT2C8CdRsgvIYhqU/owykoxxHUSdiX9yZS6psLqBY2Ej
+         jTbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768226000; x=1768830800;
+        d=1e100.net; s=20230601; t=1768226001; x=1768830801;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=oKl8VFa3Ka3PXOsDL6wBQeU/owbrQtnhkMdPY++AJFQ=;
-        b=XwAgSY+vwv0bMQ9IPlcnZ+wuIehtM4uwULT77iPhYFDJQt3gYUGjwY/3MGu6er05iz
-         yo7KKsD47yUPEfG1sXuBnuVcw6AxPY5fURUuSP+ORBKiePOPR609/6V2HisMSk4CkFvx
-         6eOw0cgTHGxBGvTC9RGjyQl6EVaznPQ1CAOuwSJNK7hiQnuFuKpnIE3Kqkb61QbZpPPy
-         hOH46Zo2dgPYUtwxoua0nCAX3dzK1cvsDEAQfr3RpsgaYRm+gBxRtXExOWfIaEUOp/D+
-         CeCNOZopNB4m97x6abN4KDTLB+LZdRyaHXfRsNDVfOmW/8NGov2xnvrc0Chn+WMUUZDz
-         jOdA==
-X-Forwarded-Encrypted: i=1; AJvYcCXOvniMSdR76rlqTjAH/xVjMaGDlt44TPRUB0FzOBb7VzYIOGI+gPZObldgQn/0sXFTCtDDY1ll9/yU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrTi256uVc9B6C+GcY8Uq4o0nT+XAbBuehhwhkk+bxSAua3HVR
-	TQKFO2NPI9N1EgE0KrLPHPRH0l4UcJ0PvLtqwT2xrszn2JrJybLsKIAL9VQRPLfec6o=
-X-Gm-Gg: AY/fxX5Eye/QCasODMvkIE1WZoqs38OCNHkneCvvVYc1+BoUu/rDSp3HIXSve7qW2Tt
-	nM6NUvpv2Zh2JBLY+iZP4iUDSc6Dth29tLvadx274WTz+XtDmTEBchN3iEetKTQOJxCLeKOvtmu
-	Oq8tFu6DRP87zbCQHhInk6utsAsbFmZkPUDxNDprfUQ6tr5uKvaOH/0R1ZHk7zQvPBL0IQTG00/
-	GIIyLOvZDOfm0HOkRNcBjqLrFZj25pxl+zhdYsOZcWavUDWqnGjHutyCMeks8o1jNMhhsc2QCTH
-	tsJd/daRNwVfKJ7VPqTt0UEXJHQwPEnjGPT/Pu9A40sPXlu5dpAdIcY9lN7ECl8rwgWLq/6a2hi
-	IRtAMh3oIqioEMRoAgqUAxEZxgX68jGYJih0mK0aysHolqOvVcIkimaJJ4Vy6xVwCjpBz3QYeLA
-	thDikaOkTHBLPXl55BF5ae4S8IxcW8fnM9SpgGPAqlKLaTRwbmATvF1Aax95hstzYu
-X-Google-Smtp-Source: AGHT+IHaSjITLy2O7eu+G75J8lc4nWqpMQgQnwyAHzrISAncBykPJu9r1/tP3EKhmacNiqfMcUpAiA==
-X-Received: by 2002:a17:906:4fc9:b0:b73:6d78:9b79 with SMTP id a640c23a62f3a-b8444c6c6e0mr1903327266b.20.1768226000413;
-        Mon, 12 Jan 2026 05:53:20 -0800 (PST)
+        bh=WWPfLmZoRs9e9HhXu15SJ7NQdaAV3N8zf0i6m2MJpE0=;
+        b=RqdbBwJsz5zvEvSquoHJo7hCfFsPdLgI+nTqssnBDnt+wPlY/plwcuQvyi305Q0aZU
+         DCKWJFCktke776sZeo746G+bLm1iPZZDvFbdkiEabpdqnYpw2PsszBxfMBw4IEsYOJlI
+         44EOn7f4iZJN35ZH51ZsrlZ9XxiYo0A/HlE2V0b4tgPhsJM0jMXi1TQp9Fe1uG8KNqLx
+         a6f+PZgxBXOMy/QH5NXhw729cIudBiX8g0fFJ27SAhnbLhUOqQ5Cc08CV7KExi6qPlFq
+         XzMkfCd11YTC2Qkpbz+Hh5T3Pf8A+9WsnNzMm1pNIJ916KGjz3neiASZR9zhCU2wX2OD
+         NWOA==
+X-Forwarded-Encrypted: i=1; AJvYcCUl1qOnAlLlaOFVfMklUEAXCZvNw/dyFAhdruLqOD4PbY+A+gpO3/ZF9hZvFArqgeNmf/wyoK+QMw4A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyyo0RbqtmxQiYoyqZJKimMrvnRT2MDHcmfOFYyQp4nAz8vqdJF
+	M0jbsBoOa+FwvLOztX/zVYDoT5NdxdAJ7872vS/n9CVeEMwOSeiwLXihYA1G4gwSuGU=
+X-Gm-Gg: AY/fxX4JbCT/E8cH+T2woVDeKlMN0OL+j7Tg4Vg2SQppUt60UqtRBsXe+hI7uVALPbK
+	Tw50L2x1TY+Gqi3zCutTgsNe5khHeeEijHRUa3bhm1ovp7iehVUECf2vyPuGqxG0j2os6N+oxyq
+	2woovgGXyR4rUn/B52UhD6bMhtwwz4gsyUUT8xOafzM0JW77Azu0JTUfcAQMz04Dk5XaCDsYGlM
+	z5SH6VyuSvctSz+diSqEAbu9sI8Byy9ZSZ0YSfQJObHaUeV+QR8yT4uZCjnBaBC/48sd7lNvTjL
+	gvkJ9rstSpVA9U7YC5LhNzyJfgFZMriMQrLOXrKv98V3lFjSB/8g83kVjkKBiwk3TLqDYA8aPNy
+	ngxicD0S40mSOAK3dwUsXRGt50nBt+NbNDHqPj8nclQ1ybBVXvwglowuhK8YWrkWVqdIaUF+MpY
+	EXPkqKpx4ueYkrfUJGDDKGkmbLdgd9PfpHhEKn5RGykS9C/EuXTIsNLeSU3A4TPlWx
+X-Google-Smtp-Source: AGHT+IHo/SgZTpXi092MWQdzw3Mh3q7aWX3FCIQ5HQG66gZ3V+BycBgpDyYQd2eNtV28CNmM83lI4g==
+X-Received: by 2002:a17:907:96aa:b0:b87:2f29:2062 with SMTP id a640c23a62f3a-b872f2938fcmr90697166b.19.1768226001088;
+        Mon, 12 Jan 2026 05:53:21 -0800 (PST)
 Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8731f071e4sm25700466b.66.2026.01.12.05.53.19
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8731f071e4sm25700466b.66.2026.01.12.05.53.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 05:53:19 -0800 (PST)
+        Mon, 12 Jan 2026 05:53:20 -0800 (PST)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Mon, 12 Jan 2026 14:53:17 +0100
-Subject: [PATCH v2 4/6] phy: qcom-qmp-ufs: Add Milos support
+Date: Mon, 12 Jan 2026 14:53:18 +0100
+Subject: [PATCH v2 5/6] arm64: dts: qcom: milos: Add UFS nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260112-milos-ufs-v2-4-d3ce4f61f030@fairphone.com>
+Message-Id: <20260112-milos-ufs-v2-5-d3ce4f61f030@fairphone.com>
 References: <20260112-milos-ufs-v2-0-d3ce4f61f030@fairphone.com>
 In-Reply-To: <20260112-milos-ufs-v2-0-d3ce4f61f030@fairphone.com>
 To: Herbert Xu <herbert@gondor.apana.org.au>, 
@@ -99,157 +99,174 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
  Luca Weiss <luca.weiss@fairphone.com>, 
- Abel Vesa <abel.vesa@oss.qualcomm.com>, 
  Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
  Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768225995; l=6087;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768225995; l=4488;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=JQ+Xav1WgiSg4TeVufpYQlYO8+Wa2XeAmvUJ98gRRoI=;
- b=MapvbhI3/OvU9Q1cCN3ulhWmrFrec/l9+WAzBT9Mg3KpPSwgz+fJdYaujXxhks3HHy34ddd2w
- BJBCrxzKU+XChTfKIIDO0wFG6Y2WBip6fv6WUk/LLBYk30ViYPm+aec
+ bh=CUg9RtlgmTKAudwK4F/5CcUGQgOlVJhlba1HTU9ItqQ=;
+ b=RQ6deTnI/3+rRHNUFcgGtLLU70SWfA3Fva/Z/K6kIe2KRwZzfV7I7f+oKi4y6aUHbF+0iGjQt
+ 1ESFhFt+hz7CwwvzsLsu5vweg2wkRqD6PkYnTLcNYGAyK7sMIPomtAx
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-Add the init sequence tables and config for the UFS QMP phy found in the
-Milos SoC.
+Add the nodes for the UFS PHY and UFS host controller, along with the
+ICE used for UFS.
 
-Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 96 +++++++++++++++++++++++++++++++++
- 1 file changed, 96 insertions(+)
+ arch/arm64/boot/dts/qcom/milos.dtsi | 129 +++++++++++++++++++++++++++++++++++-
+ 1 file changed, 126 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-index 8a280433a42b..df138a5442eb 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-@@ -84,6 +84,68 @@ static const unsigned int ufsphy_v6_regs_layout[QPHY_LAYOUT_SIZE] = {
- 	[QPHY_PCS_POWER_DOWN_CONTROL]	= QPHY_V6_PCS_UFS_POWER_DOWN_CONTROL,
- };
+diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
+index e1a51d43943f..7c8a84bfaee1 100644
+--- a/arch/arm64/boot/dts/qcom/milos.dtsi
++++ b/arch/arm64/boot/dts/qcom/milos.dtsi
+@@ -797,9 +797,9 @@ gcc: clock-controller@100000 {
+ 				 <&sleep_clk>,
+ 				 <0>, /* pcie_0_pipe_clk */
+ 				 <0>, /* pcie_1_pipe_clk */
+-				 <0>, /* ufs_phy_rx_symbol_0_clk */
+-				 <0>, /* ufs_phy_rx_symbol_1_clk */
+-				 <0>, /* ufs_phy_tx_symbol_0_clk */
++				 <&ufs_mem_phy 0>,
++				 <&ufs_mem_phy 1>,
++				 <&ufs_mem_phy 2>,
+ 				 <0>; /* usb3_phy_wrapper_gcc_usb30_pipe_clk */
  
-+static const struct qmp_phy_init_tbl milos_ufsphy_serdes[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_EN_SEL, 0xd9),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_CONFIG_1, 0x16),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x11),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_HS_SWITCH_SEL_1, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_EN, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_IVCO, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_IETRIM, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_IPTRIM, 0x17),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_MAP, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BG_TIMER, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_INITVAL2, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x82),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE0, 0x14),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE0, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE0, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE1, 0x98),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE1, 0x14),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE1, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE1, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE1, 0x32),
-+	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE1, 0x0f),
-+};
-+
-+static const struct qmp_phy_init_tbl milos_ufsphy_tx[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_LANE_MODE_1, 0x05),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_RES_CODE_LANE_OFFSET_TX, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_RES_CODE_LANE_OFFSET_RX, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_FR_DCC_CTRL, 0xcc),
-+};
-+
-+static const struct qmp_phy_init_tbl milos_ufsphy_rx[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_UCDR_FO_GAIN_RATE2, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_VGA_CAL_MAN_VAL, 0x3e),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_RX_EQU_ADAPTOR_CNTRL4, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B0, 0xce),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B1, 0xce),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B2, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B3, 0x1a),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B4, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B6, 0x60),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE2_B3, 0x9e),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE2_B6, 0x60),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B3, 0x9e),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B4, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B5, 0x36),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B8, 0x02),
-+	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_UCDR_PI_CTRL1, 0x94),
-+};
-+
-+static const struct qmp_phy_init_tbl milos_ufsphy_pcs[] = {
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_PLL_CNTL, 0x0b),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0f),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_SIGDET_CTRL2, 0x68),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x04),
-+	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x04),
-+};
-+
- static const struct qmp_phy_init_tbl msm8996_ufsphy_serdes[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x0e),
- 	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0xd7),
-@@ -1165,6 +1227,11 @@ static inline void qphy_clrbits(void __iomem *base, u32 offset, u32 val)
- }
+ 			#clock-cells = <1>;
+@@ -1151,6 +1151,129 @@ aggre2_noc: interconnect@1700000 {
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
  
- /* Regulator bulk data with load values for specific configurations */
-+static const struct regulator_bulk_data milos_ufsphy_vreg_l[] = {
-+	{ .supply = "vdda-phy", .init_load_uA = 140120 },
-+	{ .supply = "vdda-pll", .init_load_uA = 18340 },
-+};
++		ufs_mem_phy: phy@1d80000 {
++			compatible = "qcom,milos-qmp-ufs-phy";
++			reg = <0x0 0x01d80000 0x0 0x2000>;
 +
- static const struct regulator_bulk_data msm8996_ufsphy_vreg_l[] = {
- 	{ .supply = "vdda-phy", .init_load_uA = 51400 },
- 	{ .supply = "vdda-pll", .init_load_uA = 14600 },
-@@ -1258,6 +1325,32 @@ static const struct qmp_ufs_offsets qmp_ufs_offsets_v6 = {
- 	.rx2		= 0x1a00,
- };
- 
-+static const struct qmp_phy_cfg milos_ufsphy_cfg = {
-+	.lanes			= 2,
++			clocks = <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
++				 <&tcsr TCSR_UFS_CLKREF_EN>;
++			clock-names = "ref",
++				      "ref_aux",
++				      "qref";
 +
-+	.offsets		= &qmp_ufs_offsets_v6,
-+	.max_supported_gear	= UFS_HS_G4,
++			resets = <&ufs_mem_hc 0>;
++			reset-names = "ufsphy";
 +
-+	.tbls = {
-+		.serdes		= milos_ufsphy_serdes,
-+		.serdes_num	= ARRAY_SIZE(milos_ufsphy_serdes),
-+		.tx		= milos_ufsphy_tx,
-+		.tx_num		= ARRAY_SIZE(milos_ufsphy_tx),
-+		.rx		= milos_ufsphy_rx,
-+		.rx_num		= ARRAY_SIZE(milos_ufsphy_rx),
-+		.pcs		= milos_ufsphy_pcs,
-+		.pcs_num	= ARRAY_SIZE(milos_ufsphy_pcs),
-+	},
-+	.tbls_hs_b = {
-+		.serdes		= sm8550_ufsphy_hs_b_serdes,
-+		.serdes_num	= ARRAY_SIZE(sm8550_ufsphy_hs_b_serdes),
-+	},
++			power-domains = <&gcc UFS_MEM_PHY_GDSC>;
 +
-+	.vreg_list		= milos_ufsphy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(milos_ufsphy_vreg_l),
-+	.regs			= ufsphy_v6_regs_layout,
-+};
++			#clock-cells = <1>;
++			#phy-cells = <0>;
 +
- static const struct qmp_phy_cfg msm8996_ufsphy_cfg = {
- 	.lanes			= 1,
- 
-@@ -2166,6 +2259,9 @@ static int qmp_ufs_probe(struct platform_device *pdev)
- 
- static const struct of_device_id qmp_ufs_of_match_table[] = {
- 	{
-+		.compatible = "qcom,milos-qmp-ufs-phy",
-+		.data = &milos_ufsphy_cfg,
-+	}, {
- 		.compatible = "qcom,msm8996-qmp-ufs-phy",
- 		.data = &msm8996_ufsphy_cfg,
- 	}, {
++			status = "disabled";
++		};
++
++		ufs_mem_hc: ufshc@1d84000 {
++			compatible = "qcom,milos-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
++			reg = <0x0 0x01d84000 0x0 0x3000>;
++
++			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
++
++			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
++				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
++				 <&gcc GCC_UFS_PHY_AHB_CLK>,
++				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
++				 <&tcsr TCSR_UFS_PAD_CLKREF_EN>,
++				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
++				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
++				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
++			clock-names = "core_clk",
++				      "bus_aggr_clk",
++				      "iface_clk",
++				      "core_clk_unipro",
++				      "ref_clk",
++				      "tx_lane0_sync_clk",
++				      "rx_lane0_sync_clk",
++				      "rx_lane1_sync_clk";
++
++			resets = <&gcc GCC_UFS_PHY_BCR>;
++			reset-names = "rst";
++
++			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
++					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &cnoc_cfg SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
++			interconnect-names = "ufs-ddr",
++					     "cpu-ufs";
++
++			power-domains = <&gcc UFS_PHY_GDSC>;
++			required-opps = <&rpmhpd_opp_nom>;
++
++			operating-points-v2 = <&ufs_opp_table>;
++
++			iommus = <&apps_smmu 0x60 0>;
++
++			dma-coherent;
++
++			lanes-per-direction = <2>;
++			qcom,ice = <&ice>;
++
++			phys = <&ufs_mem_phy>;
++			phy-names = "ufsphy";
++
++			#reset-cells = <1>;
++
++			status = "disabled";
++
++			ufs_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-75000000 {
++					opp-hz = /bits/ 64 <75000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <75000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>;
++					required-opps = <&rpmhpd_opp_low_svs>;
++				};
++
++				opp-150000000 {
++					opp-hz = /bits/ 64 <150000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <150000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>;
++					required-opps = <&rpmhpd_opp_svs>;
++				};
++
++				opp-300000000 {
++					opp-hz = /bits/ 64 <300000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <300000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>;
++					required-opps = <&rpmhpd_opp_nom>;
++				};
++			};
++		};
++
++		ice: crypto@1d88000 {
++			compatible = "qcom,milos-inline-crypto-engine",
++				     "qcom,inline-crypto-engine";
++			reg = <0x0 0x01d88000 0x0 0x18000>;
++
++			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
++		};
++
+ 		tcsr_mutex: hwlock@1f40000 {
+ 			compatible = "qcom,tcsr-mutex";
+ 			reg = <0x0 0x01f40000 0x0 0x20000>;
 
 -- 
 2.52.0
