@@ -1,112 +1,162 @@
-Return-Path: <devicetree+bounces-254048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18FD5D1346D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:47:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD922D1350F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:52:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 61978303BE2E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:40:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EAD33306CDAE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E19E25A33F;
-	Mon, 12 Jan 2026 14:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0B32D73BC;
+	Mon, 12 Jan 2026 14:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m/yy/SHn"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iUXN7uSf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B18722DFA4;
-	Mon, 12 Jan 2026 14:40:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAE724A06B;
+	Mon, 12 Jan 2026 14:47:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768228841; cv=none; b=dPBqz+1tsYTbc+rE1mHWBbi2gIm6TFym8n0IPLax04cBT8ev01Q3Spug6atyI8x8qWcX3iPZHgt/MSVD5pJM2BWaP75AvRdhFKhv/w09JS/IR1ze224YOWBZ8OT8X9QEje9y4vRB1Ni9cpPZIt8MXGe0IZy5uav+fy7mqbE50yk=
+	t=1768229278; cv=none; b=c/x5m1aHIuzofa3aYEHs3XNXYa0wIIfchXVeuWY3y0CJHrXsRaPdhC75dwtTAHoDh+4z7/vHUyPSQzBXOaNwCRGU8SYnsKRWxwapN0k/bkF3SUNqUYd2F0dstZVQ6Vi6ShjanWQr+zzdnq9EjV95QBrUvGU92Z4u0SF7WACR8+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768228841; c=relaxed/simple;
-	bh=SDAL0N+qnwLvzZJAzcXSoQROGQiuK08faEFfpMLHSZA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ooAGfX38eUyTZUr5IFMKui7YRGrNmtgvdfhY5AP0eVdXAX/ksaWJ82PsXOnuuUdAR5iWwaQcvl4GbmwCH7efUCas0dZnH9cePOHQIUR70bebeilfGV0d41xZd0oHkH3t5E3RU6uC62KSzHWBGdIsyzMPrBfuWQHoAGnK+tLKkIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m/yy/SHn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FCBFC19421;
-	Mon, 12 Jan 2026 14:40:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768228840;
-	bh=SDAL0N+qnwLvzZJAzcXSoQROGQiuK08faEFfpMLHSZA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m/yy/SHnqAKrjtGGfSswYMzKavZlqQqzOfGZKk7cxHJ9SwyNHu76QGX8eMuT8MKED
-	 CIVV6guZOvV3zdpAHHY3JtpNpRR+VRwmiEOvRTzKPruYxyRQN8o7Z9hiOPTF6V61fx
-	 5RSIwlNr0VpwquOMXhbMllbrMGjpmvd14l8kSOSPLt45xbZYUAjXPTGKNl/V3i+0MC
-	 C29rSyOSZW4aX+B8al2ILOz1UwUmL+ef5ZKVQg0fUXL6raFjU7QgEZ6alXHRdpBqsc
-	 sdsdg1TPTBm5wS5u7uPOqwOM/pSkCPS500YgbhGKRnCf4XBJQr2RvKn49X9ZVslzyc
-	 jKMwtYbmpRP3A==
-Date: Mon, 12 Jan 2026 15:40:38 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next 2/2] net: airoha: npu: Add the capability to
- read firmware names from dts
-Message-ID: <aWUH5nHR3xz-vk-a@lore-desk>
-References: <20260112-airoha-npu-firmware-name-v1-0-d0b148b6710f@kernel.org>
- <20260112-airoha-npu-firmware-name-v1-2-d0b148b6710f@kernel.org>
- <f57867a0-a57d-4572-b0ed-b2adb41d9689@lunn.ch>
- <aWT4vcBzG6UnaqOF@lore-desk>
- <81f98b9a-3905-4bd9-80ee-348facefeab9@lunn.ch>
+	s=arc-20240116; t=1768229278; c=relaxed/simple;
+	bh=nUGXhmxfk4xVstkedOcb8jdC/4d8W+cXsb3tcmVsSFc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ben6dkvqyniUjb21tjEwpevylp4fyRujP0lOpVPxKxLirB9XW/bIAjBmUmDwgVtPUFL5I1PUGiywgx5xmZFvSqwcdUtm+yEN9qz3fJ6TmPctCbJ4z+tS1MNmWEsPAk/S9B1fZ4nefmcs6urXkiXVU5ZA/26AswsA7Ai4QoZN+Rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iUXN7uSf; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id E00A9C20868;
+	Mon, 12 Jan 2026 14:47:27 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4599760732;
+	Mon, 12 Jan 2026 14:47:54 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A0B3F103C8A5B;
+	Mon, 12 Jan 2026 15:47:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768229271; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=q/WLPrz5mCQaWOceOk8Ks2oQ15KuKRHou0wGW5c209g=;
+	b=iUXN7uSfeXgQl4nNnPIxxArDY5Gzbwtk5FBobBJO+ueYTKc1/BEPsvLsksdtAAQpqIsWQO
+	/cnIaP1yp40XU+4otLwInaG3Ccgw4ZjdYuBZpKDSxPUmWLKE7SIJzjlyOttIjV5+FmXYBq
+	R26TBX76EEVjpW2JNaMKjbn9Bg5Hc0m/7+OqUYza1Mg8WIkIk5gJ9KPNwyEZMv8Yjfzikr
+	sTt+xW+RYnH9eZug2OQgC+nbK+tcnBHgnDLk+ZgL/pp++VYX0gvJquvTFjdbT3L5ZBtzCj
+	N8BCh1TaOXz9DcWQNxj+3/dOOdCe3qyYIz/NXGcGMfeq+14pb1zJbp2/pCkjtg==
+Date: Mon, 12 Jan 2026 15:47:31 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Saravana Kannan <saravanak@kernel.org>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, Kalle Niemi
+ <kaleposti@gmail.com>, linux-arm-kernel@lists.infradead.org, Andrew Lunn
+ <andrew@lunn.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
+ Shyti <andi.shyti@kernel.org>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Arnd
+ Bergmann <arnd@arndb.de>, Bjorn Helgaas <bhelgaas@google.com>, Charles
+ Keepax <ckeepax@opensource.cirrus.com>, Richard Fitzgerald
+ <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, Linus
+ Walleij <linus.walleij@linaro.org>, Mark Brown <broonie@kernel.org>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally
+ <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>,
+ Davidlohr Bueso <dave@stgolabs.net>, Jonathan Cameron
+ <jonathan.cameron@huawei.com>, Dave Jiang <dave.jiang@intel.com>, Alison
+ Schofield <alison.schofield@intel.com>, Vishal Verma
+ <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, Dan Williams
+ <dan.j.williams@intel.com>, Wolfram Sang <wsa@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
+ patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
+ overlays"
+Message-ID: <20260112154731.6540453b@bootlin.com>
+In-Reply-To: <20251211161902.11ef4248@bootlin.com>
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+	<f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
+	<CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
+	<5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
+	<CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
+	<072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
+	<CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
+	<55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
+	<20251202102619.5cd971cc@bootlin.com>
+	<088af3ff-bd04-4bc9-b304-85f6ed555f2a@gmail.com>
+	<20251202175836.747593c0@bootlin.com>
+	<dc813fc2-28d2-4f2c-a2a3-08e33eec8ec7@gmail.com>
+	<20251204083839.4fb8a4b1@bootlin.com>
+	<CAMuHMdXdwf7La1EYBWTJadsTAJG3nKQVW6wtBn-bUqshA=XHRw@mail.gmail.com>
+	<20251210132140.32dbc3d7@bootlin.com>
+	<c50c40cc-69f6-436c-a94e-94a3a10f6727@gmail.com>
+	<20251211132044.10f5b1ea@bootlin.com>
+	<1b9fa77b-d74a-4fa7-b2e7-8b389d59a5a0@gmail.com>
+	<20251211161902.11ef4248@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="35dfMFi+mqodQRNK"
-Content-Disposition: inline
-In-Reply-To: <81f98b9a-3905-4bd9-80ee-348facefeab9@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi Saravana,
 
---35dfMFi+mqodQRNK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+(+To Saravana using his new email address)
 
-> > > Why cannot this scheme be extended with another compatible?
-> >=20
-> > yes, that is another possibility I was thinking of but then I found
-> > "firwmare-name" property was quite a common approach.
-> > Something like:
->=20
-> Having two different ways of doing the same thing in one driver just
-> add unneeded complexity. Please just key of the compatible like all
-> other devices this driver supports.
->=20
->     Andrew
+We still have issues related to devlink and overlays.
 
-ack, I will fix it in v2.
+In order to move forward on the topic, I think I need your help.
 
-Regards,
-Lorenzo
+Can you have a look and share any ideas to fix them?
 
->=20
-> ---
-> pw-bot: cr
+On Thu, 11 Dec 2025 16:19:02 +0100
+Herve Codina <herve.codina@bootlin.com> wrote:
+...
+> 
+> IMHO, I think the issue is related to overlays and fw_devlink.
+> The distinction between "a new node is going to lead to a device" vs "a new
+> node is just data and will never been attached to a new device" when an
+> overlay is applied is broken.
+> 
+> This is broken with the upstream "treewide: Fix probing of devices in DT
+> overlays" commit I've tried to revert. Indeed, on the LAN966x PCI device
+> use case devlinks created are not correct with this commit applied.
+> 
+> I am not sure also that devlinks created with a more complex overlay will be
+> correct. For instance, Matti, with your overlay not sure that a phandle from
+> the oscillator node referencing the pmic node will lead to a correct
+> provider/consumer devlink between the pmic device and the oscillator device.
+> 
+> On the other hand, this is broken with "of: dynamic: Fix overlayed devices
+> not probing because of fw_devlink" works for the LAN966x PCI device use case
+> an lead to correct devlinks but breaks your use cases.
+> 
+> Does anyone have an idea about how to fix those issues?
+> 
 
---35dfMFi+mqodQRNK
-Content-Type: application/pgp-signature; name=signature.asc
+The commit "of: dynamic: Fix overlayed devices not probing because of fw_devlink"
+can be found in this series (patch 3)
+  https://lore.kernel.org/all/20251015071420.1173068-4-herve.codina@bootlin.com/
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaWUH5gAKCRA6cBh0uS2t
-rD+QAQD2KKc4Cab4DOiJr5tUgFk9XtQJh21lPwcIXXyOJIv41AEAivnvtVJJ4Nyo
-VQCZ8SeSJRq/fIn4RXDBDubNyNDJhAg=
-=G7LN
------END PGP SIGNATURE-----
-
---35dfMFi+mqodQRNK--
+Best regards,
+Hervé
 
