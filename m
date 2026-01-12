@@ -1,148 +1,86 @@
-Return-Path: <devicetree+bounces-253926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF0EFD12BB1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:21:37 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFE8D12CAE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:28:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 773F3300EA3B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:21:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E2B083004E12
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED582358D09;
-	Mon, 12 Jan 2026 13:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B8F359700;
+	Mon, 12 Jan 2026 13:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mT87Ntba"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="a377KQy7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B692D9784;
-	Mon, 12 Jan 2026 13:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6853596E6
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 13:28:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768224084; cv=none; b=qN9gzv/6j4FxR9Obcf8ooylkUjIcpU+9n2Js3j63IoROJ+5tCLx4aE3at0wMPVF9HjRhNQPtXIH+YlDo/21Gz6XA30jql1hxMh04UtL56rUsz0AESGXmHJIUU4TQ5A1Tz6k1u2c0gwvHb/uJ8x0zlGyEdK41L4BjtF5c0AstSC0=
+	t=1768224511; cv=none; b=AK6HwYJd3FaZjWuI47a6kk7gEclqR7oEZDQw5H1nM16S5EE4FE01evMpyT2fbyGwDFCUBDEAV/98Hf+OtnrYRiw5vH9NQc1l3mIVxaW7TY405lopjM7efKUb1XetGbYntHBPHki5oBMk1MCmjQ/CCTerGaRE72hv5A4GR3zuI1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768224084; c=relaxed/simple;
-	bh=dYBaoZSy4sn/OXpQRGQxS/cy6FPFm3kwjKBIX2vR0+g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o34Qxi+ljJS2JkCuIZJtEPVaNoA5ehSEHmbTr2r+QLhJNqSTzA7FMHD744oAygSKlICm6vJnH/YFlrhLugdZTrmILOMdQGk7QZq47Qq7ssFmjqZ2XojtSQmKCLRCxSG7HZ4hx3E3XF+vsmts8BnKQpMANJQ0XeFpIpMtWSRV6qI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mT87Ntba; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768224083; x=1799760083;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dYBaoZSy4sn/OXpQRGQxS/cy6FPFm3kwjKBIX2vR0+g=;
-  b=mT87Ntba4af/Sg2XviDOa0YCXK0IhSd0f0aH6DWQ0whFleJE1mwy5J06
-   AXamFz58/LhaAQPw1SelUvDcLiNkY8nqAH9nfIuwsIKLXZgCHs/VqABKG
-   UXPn0afe0DxjNSjfXfyztkjk57nxQnv8W9wFrb0RIjNycz/vOAT2LW+DK
-   HDEDT70p46WpS5gY6zDG4X/UZAgcLotSFhq/jZtpWVb+TCRSqAfmqaHfE
-   E+gyGU1hBjwmdRCICBk2tybILR6e1T9lurUcB+WeUN7mf7L3NGYNaHYp2
-   Mxlf9UL9xDDdeyi8g0Ln4DhwSGp9s3GrFkB8fRQE0JRCI3SrVYP0BAIZ/
-   w==;
-X-CSE-ConnectionGUID: dVFKc87wTIeoirPjjmibhA==
-X-CSE-MsgGUID: 1Q4vr0AaS6aViPR64y7+Kg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="68501058"
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="68501058"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 05:21:23 -0800
-X-CSE-ConnectionGUID: 56w8+M7ZTsuqAhpz10IJ5A==
-X-CSE-MsgGUID: O7xf8PsOSzaiQQK5gKXM4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="209164543"
-Received: from jjgreens-desk21.amr.corp.intel.com (HELO kuha) ([10.124.223.232])
-  by orviesa005.jf.intel.com with SMTP; 12 Jan 2026 05:21:16 -0800
-Received: by kuha (sSMTP sendmail emulation); Mon, 12 Jan 2026 15:20:54 +0200
-Date: Mon, 12 Jan 2026 15:20:54 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Amit Sunil Dhamne <amitsd@google.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Lee Jones <lee@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Subject: Re: [PATCH v3 5/5] usb: typec: tcpm/tcpci_maxim: deprecate WAR for
- setting charger mode
-Message-ID: <aWT1NgxDSaU7LL2g@kuha>
-References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
- <20251227-max77759-charger-v3-5-54e664f5ca92@google.com>
- <aWD_RIPp1ULH9St1@kuha>
- <9f94993e-dd69-4c9e-b467-aad6031c83d4@google.com>
+	s=arc-20240116; t=1768224511; c=relaxed/simple;
+	bh=f78gp6boRiGgxdOsuYxB8AuLWAEzu6iYkpim1DtE1V0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=fFswRbueXO+h9fQjBPrbGHnKl+S1v/rLXmIjhXbrxxqRmSKXqAn/Zxkncqn+8Bw9vjjKUDNJTf8S/T0JhSfrlk3lgaN7xfPlPxfBI52sdIx1tOcQljgXo8Jkvo7zFSvzGtxMVEa74GamWPg85gHo1vViQcL05444aJE2RVz2Blk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=a377KQy7; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768224508;
+	bh=f78gp6boRiGgxdOsuYxB8AuLWAEzu6iYkpim1DtE1V0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=a377KQy7q7rvGs8Nkk9WTyVAVs/kmJNHq8rK8hC2yY2YRzmSNdRL67cG/4QTEhPmR
+	 lkUPc8C3qUVFlIWsH3riOyHqQ5H41AabjGnupkDWTIMngVQaAH3GClDJB/lrN5Dg40
+	 fjUm1w29uQaa6tYOevOWGtHV06/7dMI5NuljeBlZoX4wfHt/JyE7TQXCthfF/tS3qr
+	 Mc89DfdzgrBjgV05y65cxjD86mVXBMsgNHxTwHQ5lCEePEb3Pg8tNkdizcaaQn86Vq
+	 pLuEcHHzspKD1Lc+H3lXla1QatB+AMLpmGnAhWufkxFuNU98HAbJuvEy/U3HZSn72m
+	 xt4FdQTN6B2Ng==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B397417E0333;
+	Mon, 12 Jan 2026 14:28:27 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?Macpaul_Lin_=28=E6=9E=97=E6=99=BA=E6=96=8C=29?= <Macpaul.Lin@mediatek.com>
+In-Reply-To: <20260112085544.2959250-1-wenst@chromium.org>
+References: <20260112085544.2959250-1-wenst@chromium.org>
+Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8188-geralt: drop
+ firmware-name from first SCP core
+Message-Id: <176822450766.38852.14968182973024481538.b4-ty@collabora.com>
+Date: Mon, 12 Jan 2026 14:28:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9f94993e-dd69-4c9e-b467-aad6031c83d4@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-Fri, Jan 09, 2026 at 06:16:57PM -0800, Amit Sunil Dhamne kirjoitti:
-> Hi Heikki,
+On Mon, 12 Jan 2026 16:55:42 +0800, Chen-Yu Tsai wrote:
+> Arnd pointed out that having firmware-name in the device tree is wrong.
+> Drop it.
 > 
-> Thanks for the review!
 > 
-> On 1/9/26 5:14 AM, Heikki Krogerus wrote:
-> > Hi,
-> >
-> >> +	if (source) {
-> >> +		if (!regulator_is_enabled(chip->vbus_reg))
-> >> +			ret = regulator_enable(chip->vbus_reg);
-> >> +	} else {
-> >> +		if (regulator_is_enabled(chip->vbus_reg))
-> >> +			ret = regulator_disable(chip->vbus_reg);
-> >> +	}
-> > It looks like you have to do one more round, so can drop the
-> > regulator_is_enabled() checks and just always enable/disable it
-> > unconditionally.
-> >
-> >         if (source)
-> > 		ret = regulator_enable(chip->vbus_reg);
-> > 	else
-> > 		ret = regulator_disable(chip->vbus_reg);
-> 
-> The regulator framework uses refcounting on the number of enables. If
-> the number of times regulator is disabled > enabled, a warning will be
-> thrown. Also, I don't want to call regulator_enable more than once for
-> the same refcounting reason (will have to call disable those many number
-> of times to actually disable).
-> 
-> > I don't think you need the check in any case, but if I've understood
-> > this correctly, you should not use that check when the regulator does
-> > not support that check because then the API claims it's always
-> > enabled. So I guess in that case "if (!regulator_is_enabled())" may
-> > not work as expected, and you may actually be left with a disabled
-> > regulator. This may not be a problem on current platforms, but who
-> > knows what happens in the future.
-> 
-> I don't think this should be an issue in the future as this driver is
-> specifically meant for max77759_tcpci device and should only be used
-> with max77759 charger (they both exist only in the same package). And
-> that the max77759_charger driver does implement the callback. However,
-> if you think that regulator_is_enabled() is unreliable, I could track
-> the state within the tcpci driver instead of calling
-> regulator_is_enabled() and call enable/disable regulator accordingly.
-> 
-> Let me know wdyt and I'll update the next revision accordingly.
 
-Let's go with this then as is.
+Applied to v6.19-next/dts64, thanks!
 
-thanks,
+[1/1] arm64: dts: mediatek: mt8188-geralt: drop firmware-name from first SCP core
+      commit: c3f6d533b76e27a6dd4264b0240f7742a4d79323
 
--- 
-heikki
+Cheers,
+Angelo
+
+
 
