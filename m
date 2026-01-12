@@ -1,728 +1,500 @@
-Return-Path: <devicetree+bounces-253797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54016D11651
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:03:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65909D11772
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 10:22:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8D06E3020532
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:02:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 90855309B64C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED1634845D;
-	Mon, 12 Jan 2026 09:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B85A346E56;
+	Mon, 12 Jan 2026 09:19:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="S5dFBUMC";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="J2e88s2i"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Hc9xytzD";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Dgm2E5/Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66A5346E77
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1776B347BDC
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768208567; cv=none; b=klnaA6Jo4OJ5U/RgBN/V/eHOKa5FxF3C3gRKhYz5d9L9FTcOimZiflKQIsgvK654J4wVmWA9t6ZtsG63yQXhM3rcUAAbVIDPr78aO4wiZXwMFBGQ5zGGuUUGS7gdeFFkvwe9HOJ+A5kksi4ycvxs9DcphraJjbm07TXS5sSa8vk=
+	t=1768209571; cv=none; b=KCBp8irfHkhZGaSS7ORgU5xvaTGql9uZ73CcyQXQm/qhcNEQpCYBkDo85m3d4u8Dpc6P45ek8aw33j6SR6/GRebAbyi0sk51a78LjxExDdP6yI8t2fbPWAeqFUoGeY+8nqnVjd2dDyqhr7uLfnFsiUwEwlzFB639+iqyBalV1RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768208567; c=relaxed/simple;
-	bh=BThlQv+EbyO7vipa/giQmzCQhcw4g/0HfupdK2owLeE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qmITnWe6YaBj5CHnErU7R0mcLY4wywV6u3gizvgUJ669wA3vJRnO3rQWhU1Zicvrpu71F4bmc0V4/Wiw50259aGs/luMFiNQ1azySvJzH9zQRNCwq63z87LhAFHPIY1MYY/IAw6OfDEhLcmejoaBS1d6wm/Pf9MrLe4QkD5u7yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=S5dFBUMC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=J2e88s2i; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1768209571; c=relaxed/simple;
+	bh=r5sYsG522o0JGrWePhV3XbdTMH8uLEyoWKmdNq7IV6o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rU6q+ZqWc8XGw0Z01UzC9UOuO8yidCRwGIgXuM1lxZsIIQaCQc0lCaKgYXtJsShfTp3QdQqWUmRKyjtNBFqeUHuLCu00XimfIF8kBxkE/zL5Wjeb4waE6n8Nn1F72R+6d6oA7r9wmeTgy1bcdPqCWq9+E9VnojVE1Hk9hMxbnSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Hc9xytzD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Dgm2E5/Q; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60C84P4D4024750
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:02:43 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60C8rs9N675693
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:19:28 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aEK5v+b+PfsEXAEYGsNz98aOEqJVbz9OSzZcaS4S2FU=; b=S5dFBUMC6Ua4suUk
-	MjOh1pPxbBqXj1swxB2GWjVu/ZJzk4M8aTPkZ0DBcoiH4TV7aeSJZUOLI759VfNc
-	GC6DpeBg2l+JWDI1Exu1FU6YnIeiWTn+BT1vk7WokcttXRxkeEw1RAYVTDzpKL40
-	Uz4HbelwqR9FN9px6cDtQqnDc7AYYRb04riwYiMZFbKZufqkXy2EoarH+uVHscW9
-	eo2af10SFbsnrxZGeMYoFi7+dok00IfUe1Vy3W5NT38d1IIzGgigW8S6Tg4c8dMn
-	KvM0ZYeKdjzlagCjAyyZF8y1YkoJZDbGL5QrKKBLjta06Ukq8/qV0/tUu0a0W2Y7
-	vmnpAw==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bkfham94u-1
+	iE5I7iaezzE9aXAUoqN6SHeOzvRvmQyoGbsbC7o536Y=; b=Hc9xytzDn0qPbBKq
+	x3CHQ3C9cDwUWjCFo3evaCnuZlqTLwrMSxs9kJJbJ2KeKRZYITbu9A5PWY76J/3T
+	aw294CPMQM5m8Ww1p/dPNQd32F7j35TCJXKSNzlYzeKQtUOu9Ptc9heK8gg2/Hk3
+	u0/JnYL3LMnPnLMh3o5lLeJl/cgXCRLfLxFNs0+pcy38YvNNxPyJ2I25BR7DcbeX
+	99PaBnEGPJ8jXz6M9uPE34bLRZmOx7xXhOUNLYOslReoWqhhpuGfdPRbsVqDkTys
+	48BXpCT6gMOK5Q9XLjB6g3KQhvT3KVPfpnpMdQ6rljYxsa6UaUGwXR5ZeoRUYbvt
+	d5R3OQ==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bmwur82u1-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:02:42 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2ae51ce0642so5349381eec.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 01:02:42 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:19:28 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-c1290abb178so4585410a12.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 01:19:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768208562; x=1768813362; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aEK5v+b+PfsEXAEYGsNz98aOEqJVbz9OSzZcaS4S2FU=;
-        b=J2e88s2ifl26pmDNrwsNkCRxH7hoQ1hPK30pDpv6fee4m0+sTBmI4tyDOe6SnwAYnr
-         UWrSOBWQqFvVigTX4GgkMlm8vjedfjjAA/yNG97kLh81SceknfZSI/KeSBtAijlczzlj
-         iedar5kbDB6DK7rFLSzhaSTqvctaF2n/I8SdSTiRdTsBHeiiOA9LOStp2ZoMVvEYXRGk
-         RZOiNmQAuo5z9W0mLLoZ3744RKdt3Y1C0+F/l/Qf2lUhoM2nNtz1ocLCr/HeiPqBB4bi
-         d0cS9I3BQ7izz6FMADiIg5Nr4EI7HfpzXEy47/DcYkHFfik0HriR817A85mF2jZNLNN/
-         s4vA==
+        d=oss.qualcomm.com; s=google; t=1768209568; x=1768814368; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iE5I7iaezzE9aXAUoqN6SHeOzvRvmQyoGbsbC7o536Y=;
+        b=Dgm2E5/Q0q4T3u9dXQqX9tBhZoxC7C0VNkwWAyBE5Q70t2o01gH5T7JHtvjM1bOI7z
+         0qWXMf3PtzcbdK6e7C+yODjCVqGmauklwOOrZ100Yyo4Z0WoMhFZQDSjQngTrOQxy6fC
+         p9ADdFRvca7j0VlfHjRjTekSAOxy2imcH/Y6YdH1fLVa4EWPBALtH1Ht9N51VTbC11Eq
+         FriuQkSr4VLX2YC9jjbpsv5l3olcp2/cfqD4oiCRgRuBYmXA3esHqhPXQuReh3q0YEmy
+         ee2jKGuGWAriEBjTEfIcZbO9Sp6fE4xIuNz9x7o75IeixTy2zdYw/425eq/YkSAptZVn
+         57Aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768208562; x=1768813362;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aEK5v+b+PfsEXAEYGsNz98aOEqJVbz9OSzZcaS4S2FU=;
-        b=qXe5TkYa2w/W2Pj4f0oUiVQMmiXStGUzxJB/Ey3+HfbLlGfJxoxG9P0WHcavrKywOm
-         PhKpLbj10HUpxRQFxMBEE676rk8XYBpInK0QKuzGwwZoZ31pxKrL3zNG+UWgHrdT634B
-         DuAFh0eK3J4FhhmVvE6vHysQ+Zw8cJwFlaVmqCyNcGVIvEBF55sqJP9+GGF0a7hdOwvQ
-         Y3q1hgstLcgtKQsDVBX4qH0sR4bIoQW2L9sU7Dz0NzADDsB+r/+8M/QaV53IKFgOTCmu
-         Nc2AoZABkUyMlT/dBV2uLx1SyF2TuDeU82iVVAItvawMlXCx3IAJd3TFUZv36wKH+U3l
-         82vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXlFkpQRgEjJrUU6rcdkFKrPKXPV5hvNJ3+JTJ+smt8WYUlg3wQKEqVbqDSyieCn3fsFgrK2n37Prhe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKQHHATZCaHo5s7l99KRrkmURlZekN6pRoRZCS526zuLm0dYjE
-	u+VsJxhpetjyLSMWuAmNKN9OR7IENzzN2tYdTNgysITgnLeHXpMzmpFPs9K7sCX1UFEoYrAMwwj
-	6v5I4udBTU1+N76RWkHSMndyvcBh6nlxR2NJ+/nMV1p2Peu4mqhlL5YM7C546Fjg2
-X-Gm-Gg: AY/fxX62WfP6ugX+WJytUZqEzQXab0i9o3LSQEH1V44cHo26oI+14tg+ofMzQK2jQkp
-	KGU7xR3B4VGqPUEWXF4LdX5aiUVeg3yiKpHr6uIn3GGHLghVtBF4WP+GW8zxuu1BqTuRlrjuK6n
-	bUWVFcvm5nbepEyZoxTogPHWgiPm+HYcp+tmydg0q9kbJndpjRh4n4adwd9JCKBuvLQ172gxqR9
-	Vi4WnzcNCqT7bBBAN5vQwoqkcahICRzFZi9d9zmWH6F9L7EGS2C4+5c9kIc96FFf5hDgcJJhymn
-	ay+7+vBVI5HUNbG4rY3FEB/VYGWeCMp1ujgMUpmIhS1QbNV3arcLjQyiFqi6xBPCJMIAEv8LPI+
-	yLZ4x4Dwqj5ZcTpvSU2RnwTOHUeFmchkpWX7PU/DG2proeFtXvhX6JJkHnzb1uV2L
-X-Received: by 2002:a05:7022:629a:b0:119:e56b:91e6 with SMTP id a92af1059eb24-121f8b461a4mr14226782c88.23.1768208561929;
-        Mon, 12 Jan 2026 01:02:41 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFDGI1/QAsJsGYnq80YKD1+opsm1PuvvIN2unZRf9wOlVAe+ZPgsCyBl0B5chJzPN8P9jhiGQ==
-X-Received: by 2002:a05:7022:629a:b0:119:e56b:91e6 with SMTP id a92af1059eb24-121f8b461a4mr14226776c88.23.1768208561262;
-        Mon, 12 Jan 2026 01:02:41 -0800 (PST)
-Received: from hu-hangxian-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-121f23b798asm18888500c88.0.2026.01.12.01.02.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 01:02:40 -0800 (PST)
-From: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-Date: Mon, 12 Jan 2026 01:02:29 -0800
-Subject: [PATCH v11 4/5] media: qcom: camss: csid: Add support for CSID
- gen4
+        d=1e100.net; s=20230601; t=1768209568; x=1768814368;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iE5I7iaezzE9aXAUoqN6SHeOzvRvmQyoGbsbC7o536Y=;
+        b=H0Np045kob3n4L0H75PgA0NBibZgeeWKgohMwDNDh6fER5CsM/RqENh6wSuj9zqZWH
+         RIFMBLEVXSoPDzFQ990ocVjHCa4cOoy3OCr2cbPLKAUrwYKYZptK8WZUOBbu6oQlyySG
+         BfVxkzIpWyv9T2vVyk/CnYQjbVT3WfATN660ByJgCQjZIv9wNMYNfYcx7o3Syp3u6gUQ
+         wdQVCV2qNyeA8T6MyFQbxM1XQHOq1X/yIgmHfNtn+1p1lGFlj/V4UNHpbtBwNSNievDk
+         C4gwcCdlRo3QnKLIdoMSTV5OFcsOEwhg4dc02KvM2fE39UJCTiR4QgpFHfcdJwsNlPMn
+         y7sQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVNKO2KZNaica90TBkZq/l/Ttu30zPkGyTi4j9ciUWUGWcoBBJK4PMhVbcLD+OiyB7EVeVKCNo5eE3r@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywhur5qF0YuxJg78VxfULw+ikj1cy1ZyZkVCIJZDiFq0Ti/JuB5
+	HXKhMbj9y2IaaX9idSJWgBP2VqkV6EcyUFulrJf4Pwf4PcaEO+YSC+Lof8DZ0CjZHorwkmhWzTN
+	uBem5LVTYCGV7D9WoJxdzLWyrj0HRDiz+Fu5xmkmcfdUMqQbGFOhWn4gyHAX4z4H7
+X-Gm-Gg: AY/fxX56HyGU/C0MV/Ua1IExFGEf7BUtuHHVcZDdpQ3LWZBbsjB6lV3Ae0w75JOMDXL
+	l0f0M/++36EUlchB9DyeldBXkN0PED0aXsBQ8S4BHwuJbnxeGU1BNvcS7n557CTV15jRHdJyV2g
+	pJZ9+myas09uDWMDfFn+L7Nz+1XEYZWeXnbx55iP2ampKK6u6CJmlLFPtxOAab1PqcfFJ2uG3tc
+	GheTgUKzatx4Q0AjzzPLZo572MCsjeglLhuzviV7cMoxrvX1zTSwal+5FFvqoBqAxKg6xXQtb1e
+	U80k1AmEVXTqr2/z5O3kb4uqUfzIHedo5duLAKlX5OUD51OJH+83gAQ3t+MGQRj1MGzHLm+4gTX
+	AienxQYCZV5vowpR3gFP4fZZQU4xya+Ud0jVI7B2PqsAaF7pX3cknQnS0Z16tU6tQtQxcWSOusp
+	CR6OcS
+X-Received: by 2002:a17:903:2309:b0:2a0:d46d:f990 with SMTP id d9443c01a7336-2a3ee4e81c6mr173925945ad.31.1768209567646;
+        Mon, 12 Jan 2026 01:19:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEr63rTSU6mNKwEH2p/9lr8Yw3V9YiW8z4Df6TR0gET2yAmIZpynylnfKMGk+StpeE+EEAUIA==
+X-Received: by 2002:a17:903:2309:b0:2a0:d46d:f990 with SMTP id d9443c01a7336-2a3ee4e81c6mr173925535ad.31.1768209566996;
+        Mon, 12 Jan 2026 01:19:26 -0800 (PST)
+Received: from [10.133.33.22] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3c4795fsm171834885ad.33.2026.01.12.01.19.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 01:19:26 -0800 (PST)
+Message-ID: <114f7305-de33-4360-82d2-4d61e14934ec@oss.qualcomm.com>
+Date: Mon, 12 Jan 2026 09:41:57 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260112-kaanapali-camss-v11-4-81e4f59a5d08@oss.qualcomm.com>
-References: <20260112-kaanapali-camss-v11-0-81e4f59a5d08@oss.qualcomm.com>
-In-Reply-To: <20260112-kaanapali-camss-v11-0-81e4f59a5d08@oss.qualcomm.com>
-To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
-        Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Proofpoint-ORIG-GUID: euF9MEvA57ZunnDwSPzlQ5SXp_qy9lnv
-X-Authority-Analysis: v=2.4 cv=bOEb4f+Z c=1 sm=1 tr=0 ts=6964b8b2 cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 2/7] qcom-tgu: Add TGU driver
+To: Jie Gan <jie.gan@oss.qualcomm.com>, andersson@kernel.org,
+        alexander.shishkin@linux.intel.com, mike.leach@linaro.org,
+        suzuki.poulose@arm.com, james.clark@arm.com, krzk+dt@kernel.org,
+        conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org
+References: <20260109021141.3778421-1-songwei.chai@oss.qualcomm.com>
+ <20260109021141.3778421-3-songwei.chai@oss.qualcomm.com>
+ <069e2fb4-b4cc-474c-867c-2dd410ea80a4@oss.qualcomm.com>
+Content-Language: en-US
+From: Songwei Chai <songwei.chai@oss.qualcomm.com>
+In-Reply-To: <069e2fb4-b4cc-474c-867c-2dd410ea80a4@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEyMDA3MiBTYWx0ZWRfXwBLgFEVsdmw6
+ ifoCQl9KxUL3sMzSTzUA1Jo6o/uATpgGmYbpqA89gznjUqTAEbLASCzFLU5ykWnmOwwdye6yxlg
+ LAyG2xV7T1BSLW5NX6w9DhlXegG5bMCmaHSFPIv0dNKdyr7uyUTTW7h4945/zIz4A1w5YjJglTD
+ rRNwBqOoA2zBpxIozmO3aV2vaYPKBfODXQHabQB4d8R0HiE1V4YiYFUCIsFwMzoGf5vMjknU8Hv
+ lDvIyJGO1B0XqLz0KRXscxOzNQERmd33H8dXtMidPjqne585CUV/+6YVweiKH9OHmJSi+Xt/zRH
+ Pvv9GVhjOIAGwlbKX1ETb9zdaa8yHeMd/gtgEE/CIEvPPOFQHsN+68e/7wV9w6OvbnEwv4WYnxL
+ 910M1krW/qDJEKrHeRajQ6Me3oqL0Ud4nlnRoCd8Rg9uOVr6qnrBRNIcqu8vAQxLogcRCEpIZ9A
+ 5705k3H1CPu4lIyRLXw==
+X-Authority-Analysis: v=2.4 cv=HrJ72kTS c=1 sm=1 tr=0 ts=6964bca0 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=FsTJpaSC_kWcQGXz8SoA:9
- a=4Q4zU7iZy6iiv8wZ:21 a=QEXdDO2ut3YA:10 a=6Ab_bkdmUrQuMsNx7PHu:22
-X-Proofpoint-GUID: euF9MEvA57ZunnDwSPzlQ5SXp_qy9lnv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEyMDA3MCBTYWx0ZWRfX4HypzqL0xZuZ
- 7cpJ4Aun/1oJLcIsvp06rgxGXkAjKp+xiNSVAjse7RXhlkmrQxTO707u8q27YZpv9dIFrNEMru9
- y1qNKaIwCqMYp0/05n8zthROeaKc9W78e/IqyZjP5OhnwwD4T/UelV3zhl/2ic/dMiOIATOykht
- KeDBWmGs5LF8EtmHQ46z/My+95wk6ll5AAhdOEi+HVQZ3GVH0YL/zXNE9p4ASXxUUyReEXcuDsz
- LNhkwqQvMlqbIk5M9/PZ2dzWj5WyJQ2gLh1wqc7IsG3NZwJPckx5Mf1ycwld/yGXUsfkIxfYdFe
- dBknkOPb9ObAWT02l7cQo02E9lSS5WaUYiVWg00KfKcl+P1PV1k54+2j2htxltWAdplynWbEr42
- AiIIWCzzEXFSRCpBunjRcShKS1HG2uCmxDMoYoCRpBW8tjrDY1sjTZnRYI3owkyhrN+IiZyAyXo
- fMWreRbV/YpsaPeS6qA==
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=QtmeBwCpv1JMxDmLrj4A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-GUID: I7k-_yjN--Y7YO8B-8ie7tzTHzZtADbL
+X-Proofpoint-ORIG-GUID: I7k-_yjN--Y7YO8B-8ie7tzTHzZtADbL
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-12_02,2026-01-09_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 impostorscore=0 adultscore=0 suspectscore=0
- clxscore=1015 malwarescore=0 priorityscore=1501 lowpriorityscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601120070
+ phishscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 adultscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601120072
 
-Add more detailed resource information for CSID devices along with the
-driver for CSID gen4 that is responsible for CSID register configuration,
-module reset and IRQ handling for BUF_DONE events. And aggregate a common
-definition 'CSI2_RX_CFG0_PHY_SEL_BASE_IDX' into csid header file.
 
-In this CSID version, RUP and AUP update values are split into two
-registers along with a SET register. Accordingly, enhance the CSID
-interface to accommodate both the legacy combined reg_update and the
-split RUP and AUP updates.
 
-Co-developed-by: Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-Signed-off-by: Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
----
- drivers/media/platform/qcom/camss/Makefile         |   1 +
- drivers/media/platform/qcom/camss/camss-csid-680.c |   1 -
- .../media/platform/qcom/camss/camss-csid-gen3.c    |   1 -
- .../media/platform/qcom/camss/camss-csid-gen4.c    | 376 +++++++++++++++++++++
- drivers/media/platform/qcom/camss/camss-csid.h     |  11 +-
- drivers/media/platform/qcom/camss/camss.c          |  80 +++++
- 6 files changed, 467 insertions(+), 3 deletions(-)
+On 1/9/2026 7:28 PM, Jie Gan wrote:
+> 
+> 
+> On 1/9/2026 10:11 AM, Songwei Chai wrote:
+>> Add driver to support device TGU (Trigger Generation Unit).
+>> TGU is a Data Engine which can be utilized to sense a plurality of
+>> signals and create a trigger into the CTI or generate interrupts to
+>> processors. Add probe/enable/disable functions for tgu.
+>>
+>> Signed-off-by: Songwei Chai <songwei.chai@oss.qualcomm.com>
+>> ---
+>>   .../ABI/testing/sysfs-bus-amba-devices-tgu    |   9 +
+>>   drivers/Makefile                              |   1 +
+>>   drivers/hwtracing/Kconfig                     |   2 +
+>>   drivers/hwtracing/qcom/Kconfig                |  18 ++
+>>   drivers/hwtracing/qcom/Makefile               |   3 +
+>>   drivers/hwtracing/qcom/tgu.c                  | 176 ++++++++++++++++++
+>>   drivers/hwtracing/qcom/tgu.h                  |  51 +++++
+> 
+> drivers/hwtracing/qcom is a new dir, I suppose this patch series will go 
+> through QCOM tree? If Yes, I think it's better to update the MAINTAINER 
+> file to add QCOM maintainers for maintaining this dir. Otherwise the 
+> get_maintainer script can not obtain proper reviewer&maintainer for 
+> reviewing.
+thanks Jie, will update further.>
+> Thanks,
+> Jie
+> 
+>>   7 files changed, 260 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>>   create mode 100644 drivers/hwtracing/qcom/Kconfig
+>>   create mode 100644 drivers/hwtracing/qcom/Makefile
+>>   create mode 100644 drivers/hwtracing/qcom/tgu.c
+>>   create mode 100644 drivers/hwtracing/qcom/tgu.h
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu b/ 
+>> Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>> new file mode 100644
+>> index 000000000000..56ec3f5ab5d6
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-bus-amba-devices-tgu
+>> @@ -0,0 +1,9 @@
+>> +What:        /sys/bus/amba/devices/<tgu-name>/enable_tgu
+>> +Date:        January 2026
+>> +KernelVersion    6.19
+>> +Contact:    Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai 
+>> <songwei.chai@oss.qualcomm.com>
+>> +Description:
+>> +        (RW) Set/Get the enable/disable status of TGU
+>> +        Accepts only one of the 2 values -  0 or 1.
+>> +        0 : disable TGU.
+>> +        1 : enable TGU.
+>> diff --git a/drivers/Makefile b/drivers/Makefile
+>> index ccc05f1eae3e..9608a3debb1f 100644
+>> --- a/drivers/Makefile
+>> +++ b/drivers/Makefile
+>> @@ -177,6 +177,7 @@ obj-$(CONFIG_RAS)        += ras/
+>>   obj-$(CONFIG_USB4)        += thunderbolt/
+>>   obj-$(CONFIG_CORESIGHT)        += hwtracing/coresight/
+>>   obj-y                += hwtracing/intel_th/
+>> +obj-y                += hwtracing/qcom/
+>>   obj-$(CONFIG_STM)        += hwtracing/stm/
+>>   obj-$(CONFIG_HISI_PTT)        += hwtracing/ptt/
+>>   obj-y                += android/
+>> diff --git a/drivers/hwtracing/Kconfig b/drivers/hwtracing/Kconfig
+>> index 911ee977103c..8a640218eed8 100644
+>> --- a/drivers/hwtracing/Kconfig
+>> +++ b/drivers/hwtracing/Kconfig
+>> @@ -7,4 +7,6 @@ source "drivers/hwtracing/intel_th/Kconfig"
+>>   source "drivers/hwtracing/ptt/Kconfig"
+>> +source "drivers/hwtracing/qcom/Kconfig"
+>> +
+>>   endmenu
+>> diff --git a/drivers/hwtracing/qcom/Kconfig b/drivers/hwtracing/qcom/ 
+>> Kconfig
+>> new file mode 100644
+>> index 000000000000..d6f6d4b0f28e
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/qcom/Kconfig
+>> @@ -0,0 +1,18 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +#
+>> +# QCOM specific hwtracing drivers
+>> +#
+>> +menu "Qualcomm specific hwtracing drivers"
+>> +
+>> +config QCOM_TGU
+>> +    tristate "QCOM Trigger Generation Unit driver"
+>> +    help
+>> +      This driver provides support for Trigger Generation Unit that is
+>> +      used to detect patterns or sequences on a given set of signals.
+>> +      TGU is used to monitor a particular bus within a given region to
+>> +      detect illegal transaction sequences or slave responses. It is 
+>> also
+>> +      used to monitor a data stream to detect protocol violations and to
+>> +      provide a trigger point for centering data around a specific event
+>> +      within the trace data buffer.
+>> +
+>> +endmenu
+>> diff --git a/drivers/hwtracing/qcom/Makefile b/drivers/hwtracing/qcom/ 
+>> Makefile
+>> new file mode 100644
+>> index 000000000000..5a0a868c1ea0
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/qcom/Makefile
+>> @@ -0,0 +1,3 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +
+>> +obj-$(CONFIG_QCOM_TGU) += tgu.o
+>> diff --git a/drivers/hwtracing/qcom/tgu.c b/drivers/hwtracing/qcom/tgu.c
+>> new file mode 100644
+>> index 000000000000..c5b2b384e6ae
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/qcom/tgu.c
+>> @@ -0,0 +1,176 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +
+>> +#include <linux/amba/bus.h>
+>> +#include <linux/device.h>
+>> +#include <linux/err.h>
+>> +#include <linux/io.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/pm_runtime.h>
+>> +
+>> +#include "tgu.h"
+>> +
+>> +static void tgu_write_all_hw_regs(struct tgu_drvdata *drvdata)
+>> +{
+>> +    TGU_UNLOCK(drvdata->base);
+>> +    /* Enable TGU to program the triggers */
+>> +    writel(1, drvdata->base + TGU_CONTROL);
+>> +    TGU_LOCK(drvdata->base);
+>> +}
+>> +
+>> +static int tgu_enable(struct device *dev)
+>> +{
+>> +    struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> +
+>> +    guard(spinlock)(&drvdata->lock);
+>> +    if (drvdata->enable)
+>> +        return -EBUSY;
+>> +
+>> +    tgu_write_all_hw_regs(drvdata);
+>> +    drvdata->enable = true;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static void tgu_disable(struct device *dev)
+>> +{
+>> +    struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> +
+>> +    guard(spinlock)(&drvdata->lock);
+>> +    if (drvdata->enable) {
+>> +        TGU_UNLOCK(drvdata->base);
+>> +        writel(0, drvdata->base + TGU_CONTROL);
+>> +        TGU_LOCK(drvdata->base);
+>> +
+>> +        drvdata->enable = false;
+>> +    }
+>> +}
+>> +
+>> +static ssize_t enable_tgu_show(struct device *dev,
+>> +                struct device_attribute *attr, char *buf)
+>> +{
+>> +    struct tgu_drvdata *drvdata = dev_get_drvdata(dev);
+>> +    bool enabled;
+>> +
+>> +    guard(spinlock)(&drvdata->lock);
+>> +    enabled = drvdata->enable;
+>> +
+>> +    return sysfs_emit(buf, "%d\n", enabled ? 1 : 0);
+>> +}
+>> +
+>> +/* enable_tgu_store - Configure Trace and Gating Unit (TGU) triggers. */
+>> +static ssize_t enable_tgu_store(struct device *dev,
+>> +                struct device_attribute *attr,
+>> +                const char *buf,
+>> +                size_t size)
+>> +{
+>> +    unsigned long val;
+>> +    int ret = 0;
+>> +
+>> +    ret = kstrtoul(buf, 0, &val);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    if (val) {
+>> +        ret = pm_runtime_resume_and_get(dev);
+>> +        if (ret)
+>> +            return ret;
+>> +        ret = tgu_enable(dev);
+>> +        if (ret) {
+>> +            pm_runtime_put(dev);
+>> +            return ret;
+>> +        }
+>> +    } else {
+>> +        tgu_disable(dev);
+>> +        pm_runtime_put(dev);
+>> +    }
+>> +
+>> +    return size;
+>> +}
+>> +static DEVICE_ATTR_RW(enable_tgu);
+>> +
+>> +static struct attribute *tgu_common_attrs[] = {
+>> +    &dev_attr_enable_tgu.attr,
+>> +    NULL,
+>> +};
+>> +
+>> +static const struct attribute_group tgu_common_grp = {
+>> +    .attrs = tgu_common_attrs,
+>> +    NULL,
+>> +};
+>> +
+>> +static const struct attribute_group *tgu_attr_groups[] = {
+>> +    &tgu_common_grp,
+>> +    NULL,
+>> +};
+>> +
+>> +static int tgu_probe(struct amba_device *adev, const struct amba_id *id)
+>> +{
+>> +    struct device *dev = &adev->dev;
+>> +    struct tgu_drvdata *drvdata;
+>> +    int ret;
+>> +
+>> +    drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+>> +    if (!drvdata)
+>> +        return -ENOMEM;
+>> +
+>> +    drvdata->dev = &adev->dev;
+>> +    dev_set_drvdata(dev, drvdata);
+>> +
+>> +    drvdata->base = devm_ioremap_resource(dev, &adev->res);
+>> +    if (IS_ERR(drvdata->base))
+>> +        return PTR_ERR(drvdata->base);
+>> +
+>> +    spin_lock_init(&drvdata->lock);
+>> +
+>> +    ret = sysfs_create_groups(&dev->kobj, tgu_attr_groups);
+>> +    if (ret) {
+>> +        dev_err(dev, "failed to create sysfs groups: %d\n", ret);
+>> +        return ret;
+>> +    }
+>> +
+>> +    drvdata->enable = false;
+>> +
+>> +    pm_runtime_put(&adev->dev);
+>> +    return 0;
+>> +}
+>> +
+>> +static void tgu_remove(struct amba_device *adev)
+>> +{
+>> +    struct device *dev = &adev->dev;
+>> +
+>> +    sysfs_remove_groups(&dev->kobj, tgu_attr_groups);
+>> +
+>> +    tgu_disable(dev);
+>> +}
+>> +
+>> +static const struct amba_id tgu_ids[] = {
+>> +    {
+>> +        .id = 0x000f0e00,
+>> +        .mask = 0x000fffff,
+>> +    },
+>> +    { 0, 0, NULL },
+>> +};
+>> +
+>> +MODULE_DEVICE_TABLE(amba, tgu_ids);
+>> +
+>> +static struct amba_driver tgu_driver = {
+>> +    .drv = {
+>> +        .name = "qcom-tgu",
+>> +        .suppress_bind_attrs = true,
+>> +    },
+>> +    .probe = tgu_probe,
+>> +    .remove = tgu_remove,
+>> +    .id_table = tgu_ids,
+>> +};
+>> +
+>> +module_amba_driver(tgu_driver);
+>> +
+>> +MODULE_AUTHOR("Songwei Chai <songwei.chai@oss.qualcomm.com>");
+>> +MODULE_AUTHOR("Jinlong Mao <jinlong.mao@oss.qualcomm.com>");
+>> +MODULE_DESCRIPTION("Qualcomm Trigger Generation Unit driver");
+>> +MODULE_LICENSE("GPL");
+>> diff --git a/drivers/hwtracing/qcom/tgu.h b/drivers/hwtracing/qcom/tgu.h
+>> new file mode 100644
+>> index 000000000000..b11cfb28261d
+>> --- /dev/null
+>> +++ b/drivers/hwtracing/qcom/tgu.h
+>> @@ -0,0 +1,51 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +
+>> +#ifndef _QCOM_TGU_H
+>> +#define _QCOM_TGU_H
+>> +
+>> +/* Register addresses */
+>> +#define TGU_CONTROL 0x0000
+>> +#define TGU_LAR        0xfb0
+>> +#define TGU_UNLOCK_OFFSET    0xc5acce55
+>> +
+>> +static inline void TGU_LOCK(void __iomem *addr)
+>> +{
+>> +    do {
+>> +        /* Wait for things to settle */
+>> +        mb();
+>> +        writel_relaxed(0x0, addr + TGU_LAR);
+>> +    } while (0);
+>> +}
+>> +
+>> +static inline void TGU_UNLOCK(void __iomem *addr)
+>> +{
+>> +    do {
+>> +        writel_relaxed(TGU_UNLOCK_OFFSET, addr + TGU_LAR);
+>> +        /* Make sure everyone has seen this */
+>> +        mb();
+>> +    } while (0);
+>> +}
+>> +
+>> +/**
+>> + * struct tgu_drvdata - Data structure for a TGU (Trigger Generator 
+>> Unit)
+>> + * @base: Memory-mapped base address of the TGU device
+>> + * @dev: Pointer to the associated device structure
+>> + * @lock: Spinlock for handling concurrent access
+>> + * @enable: Flag indicating whether the TGU device is enabled
+>> + *
+>> + * This structure defines the data associated with a TGU device,
+>> + * including its base address, device pointers, clock, spinlock for
+>> + * synchronization, trigger data pointers, maximum limits for various
+>> + * trigger-related parameters, and enable status.
+>> + */
+>> +struct tgu_drvdata {
+>> +    void __iomem *base;
+>> +    struct device *dev;
+>> +    spinlock_t lock;
+>> +    bool enable;
+>> +};
+>> +
+>> +#endif
+> 
 
-diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
-index 5e349b491513..ba9faa635bd7 100644
---- a/drivers/media/platform/qcom/camss/Makefile
-+++ b/drivers/media/platform/qcom/camss/Makefile
-@@ -10,6 +10,7 @@ qcom-camss-objs += \
- 		camss-csid-680.o \
- 		camss-csid-gen2.o \
- 		camss-csid-gen3.o \
-+		camss-csid-gen4.o \
- 		camss-csiphy-2ph-1-0.o \
- 		camss-csiphy-3ph-1-0.o \
- 		camss-csiphy.o \
-diff --git a/drivers/media/platform/qcom/camss/camss-csid-680.c b/drivers/media/platform/qcom/camss/camss-csid-680.c
-index 3ad3a174bcfb..86134a23cd4e 100644
---- a/drivers/media/platform/qcom/camss/camss-csid-680.c
-+++ b/drivers/media/platform/qcom/camss/camss-csid-680.c
-@@ -101,7 +101,6 @@
- #define		CSI2_RX_CFG0_DL2_INPUT_SEL			12
- #define		CSI2_RX_CFG0_DL3_INPUT_SEL			16
- #define		CSI2_RX_CFG0_PHY_NUM_SEL			20
--#define		CSI2_RX_CFG0_PHY_SEL_BASE_IDX			1
- #define		CSI2_RX_CFG0_PHY_TYPE_SEL			24
- 
- #define CSID_CSI2_RX_CFG1					0x204
-diff --git a/drivers/media/platform/qcom/camss/camss-csid-gen3.c b/drivers/media/platform/qcom/camss/camss-csid-gen3.c
-index 664245cf6eb0..f09b5575572a 100644
---- a/drivers/media/platform/qcom/camss/camss-csid-gen3.c
-+++ b/drivers/media/platform/qcom/camss/camss-csid-gen3.c
-@@ -103,7 +103,6 @@
- #define CSID_RDI_IRQ_SUBSAMPLE_PERIOD(rdi)	(csid_is_lite(csid) && IS_CSID_690(csid) ?\
- 							(0x34C + 0x100 * (rdi)) :\
- 							(0x54C + 0x100 * (rdi)))
--#define CSI2_RX_CFG0_PHY_SEL_BASE_IDX	1
- 
- static void __csid_configure_rx(struct csid_device *csid,
- 				struct csid_phy_config *phy, int vc)
-diff --git a/drivers/media/platform/qcom/camss/camss-csid-gen4.c b/drivers/media/platform/qcom/camss/camss-csid-gen4.c
-new file mode 100644
-index 000000000000..b000bd3e9c2e
---- /dev/null
-+++ b/drivers/media/platform/qcom/camss/camss-csid-gen4.c
-@@ -0,0 +1,376 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * camss-csid-gen4.c
-+ *
-+ * Qualcomm MSM Camera Subsystem - CSID (CSI Decoder) Module
-+ *
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+#include <linux/completion.h>
-+#include <linux/delay.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/of.h>
-+
-+#include "camss.h"
-+#include "camss-csid.h"
-+#include "camss-csid-gen3.h"
-+
-+/* Reset and Command Registers */
-+#define CSID_RST_CFG				0x108
-+#define		RST_MODE				BIT(0)
-+#define		RST_LOCATION				BIT(4)
-+
-+/* Reset and Command Registers */
-+#define CSID_RST_CMD				0x10C
-+#define		SELECT_HW_RST				BIT(0)
-+#define		SELECT_IRQ_RST				BIT(2)
-+#define CSID_IRQ_CMD				0x110
-+#define		IRQ_CMD_CLEAR				BIT(0)
-+
-+/* Register Update Commands, RUP/AUP */
-+#define CSID_RUP_CMD				0x114
-+#define CSID_AUP_CMD				0x118
-+#define		CSID_RUP_AUP_RDI(rdi)			(BIT(8) << (rdi))
-+#define CSID_RUP_AUP_CMD			0x11C
-+#define		RUP_SET					BIT(0)
-+#define		MUP					BIT(4)
-+
-+/* Top level interrupt registers */
-+#define CSID_TOP_IRQ_STATUS			0x180
-+#define CSID_TOP_IRQ_MASK			0x184
-+#define CSID_TOP_IRQ_CLEAR			0x188
-+#define		INFO_RST_DONE				BIT(0)
-+#define		CSI2_RX_IRQ_STATUS			BIT(2)
-+#define		BUF_DONE_IRQ_STATUS			BIT(3)
-+
-+/* Buffer done interrupt registers */
-+#define CSID_BUF_DONE_IRQ_STATUS		0x1A0
-+#define		BUF_DONE_IRQ_STATUS_RDI_OFFSET		16
-+#define CSID_BUF_DONE_IRQ_MASK			0x1A4
-+#define CSID_BUF_DONE_IRQ_CLEAR			0x1A8
-+#define CSID_BUF_DONE_IRQ_SET			0x1AC
-+
-+/* CSI2 RX interrupt registers */
-+#define CSID_CSI2_RX_IRQ_STATUS			0x1B0
-+#define CSID_CSI2_RX_IRQ_MASK			0x1B4
-+#define CSID_CSI2_RX_IRQ_CLEAR			0x1B8
-+#define CSID_CSI2_RX_IRQ_SET			0x1BC
-+
-+/* CSI2 RX Configuration */
-+#define CSID_CSI2_RX_CFG0			0x880
-+#define		CSI2_RX_CFG0_NUM_ACTIVE_LANES		0
-+#define		CSI2_RX_CFG0_DL0_INPUT_SEL		4
-+#define		CSI2_RX_CFG0_PHY_NUM_SEL		20
-+#define CSID_CSI2_RX_CFG1			0x884
-+#define		CSI2_RX_CFG1_ECC_CORRECTION_EN		BIT(0)
-+#define		CSI2_RX_CFG1_VC_MODE			BIT(2)
-+
-+#define MSM_CSID_MAX_SRC_STREAMS_GEN4		(csid_is_lite(csid) ? 4 : 5)
-+
-+/* RDI Configuration */
-+#define CSID_RDI_CFG0(rdi) \
-+	((csid_is_lite(csid) ? 0x3080 : 0x5480) + 0x200 * (rdi))
-+#define		RDI_CFG0_RETIME_BS			BIT(5)
-+#define		RDI_CFG0_TIMESTAMP_EN			BIT(6)
-+#define		RDI_CFG0_TIMESTAMP_STB_SEL		BIT(8)
-+#define		RDI_CFG0_DECODE_FORMAT			12
-+#define		RDI_CFG0_DT				16
-+#define		RDI_CFG0_VC				22
-+#define		RDI_CFG0_EN				BIT(31)
-+
-+/* RDI Control and Configuration */
-+#define CSID_RDI_CTRL(rdi) \
-+	((csid_is_lite(csid) ? 0x3088 : 0x5488) + 0x200 * (rdi))
-+#define		RDI_CTRL_START_CMD			BIT(0)
-+
-+#define CSID_RDI_CFG1(rdi) \
-+	((csid_is_lite(csid) ? 0x3094 : 0x5494) + 0x200 * (rdi))
-+#define		RDI_CFG1_DROP_H_EN			BIT(5)
-+#define		RDI_CFG1_DROP_V_EN			BIT(6)
-+#define		RDI_CFG1_CROP_H_EN			BIT(7)
-+#define		RDI_CFG1_CROP_V_EN			BIT(8)
-+#define		RDI_CFG1_PACKING_FORMAT_MIPI		BIT(15)
-+
-+/* RDI Pixel Store Configuration */
-+#define CSID_RDI_PIX_STORE_CFG0(rdi)		(0x5498 + 0x200 * (rdi))
-+#define		RDI_PIX_STORE_CFG0_EN			BIT(0)
-+#define		RDI_PIX_STORE_CFG0_MIN_HBI		1
-+
-+/* RDI IRQ Status in wrapper */
-+#define CSID_CSI2_RDIN_IRQ_STATUS(rdi)		(0x224 + (0x10 * (rdi)))
-+#define CSID_CSI2_RDIN_IRQ_MASK(rdi)			(0x228 + (0x10 * (rdi)))
-+#define CSID_CSI2_RDIN_IRQ_CLEAR(rdi)		(0x22C + (0x10 * (rdi)))
-+#define		INFO_RUP_DONE				BIT(23)
-+
-+static void __csid_aup_rup_trigger(struct csid_device *csid)
-+{
-+	/* trigger SET in combined register */
-+	writel(RUP_SET, csid->base + CSID_RUP_AUP_CMD);
-+}
-+
-+static void __csid_aup_rup_clear(struct csid_device *csid, int port_id)
-+{
-+	/* Hardware clears the registers upon consuming the settings */
-+	csid->aup_update &= ~CSID_RUP_AUP_RDI(port_id);
-+	csid->rup_update &= ~CSID_RUP_AUP_RDI(port_id);
-+}
-+
-+static void __csid_aup_update(struct csid_device *csid, int port_id)
-+{
-+	csid->aup_update |= CSID_RUP_AUP_RDI(port_id);
-+	writel(csid->aup_update, csid->base + CSID_AUP_CMD);
-+
-+	__csid_aup_rup_trigger(csid);
-+}
-+
-+static void __csid_reg_update(struct csid_device *csid, int port_id)
-+{
-+	csid->rup_update |= CSID_RUP_AUP_RDI(port_id);
-+	writel(csid->rup_update, csid->base + CSID_RUP_CMD);
-+
-+	__csid_aup_rup_trigger(csid);
-+}
-+
-+static void __csid_configure_rx(struct csid_device *csid,
-+				struct csid_phy_config *phy)
-+{
-+	int val;
-+
-+	val = (phy->lane_cnt - 1) << CSI2_RX_CFG0_NUM_ACTIVE_LANES;
-+	val |= phy->lane_assign << CSI2_RX_CFG0_DL0_INPUT_SEL;
-+	val |= (phy->csiphy_id + CSI2_RX_CFG0_PHY_SEL_BASE_IDX)
-+	       << CSI2_RX_CFG0_PHY_NUM_SEL;
-+	writel(val, csid->base + CSID_CSI2_RX_CFG0);
-+
-+	val = CSI2_RX_CFG1_ECC_CORRECTION_EN;
-+	writel(val, csid->base + CSID_CSI2_RX_CFG1);
-+}
-+
-+static void __csid_configure_rx_vc(struct csid_device *csid, int vc)
-+{
-+	int val;
-+
-+	if (vc > 3) {
-+		val = readl(csid->base + CSID_CSI2_RX_CFG1);
-+		val |= CSI2_RX_CFG1_VC_MODE;
-+		writel(val, csid->base + CSID_CSI2_RX_CFG1);
-+	}
-+}
-+
-+static void __csid_ctrl_rdi(struct csid_device *csid, int enable, u8 rdi)
-+{
-+	int val = 0;
-+
-+	if (enable)
-+		val = RDI_CTRL_START_CMD;
-+
-+	writel(val, csid->base + CSID_RDI_CTRL(rdi));
-+}
-+
-+static void __csid_configure_rdi_pix_store(struct csid_device *csid, u8 rdi)
-+{
-+	u32 val;
-+
-+	/* Configure pixel store to allow absorption of hblanking or idle time.
-+	 * This helps with horizontal crop and prevents line buffer conflicts.
-+	 * Reset state is 0x8 which has MIN_HBI=4, we keep the default MIN_HBI
-+	 * and just enable the pixel store functionality.
-+	 */
-+	val = (4 << RDI_PIX_STORE_CFG0_MIN_HBI) | RDI_PIX_STORE_CFG0_EN;
-+	writel(val, csid->base + CSID_RDI_PIX_STORE_CFG0(rdi));
-+}
-+
-+static void __csid_configure_rdi_stream(struct csid_device *csid, u8 enable, u8 vc)
-+{
-+	u32 val;
-+	u8 lane_cnt = csid->phy.lane_cnt;
-+
-+	/* Source pads matching RDI channels on hardware.
-+	 * E.g. Pad 1 -> RDI0, Pad 2 -> RDI1, etc.
-+	 */
-+	struct v4l2_mbus_framefmt *input_format = &csid->fmt[MSM_CSID_PAD_FIRST_SRC + vc];
-+	const struct csid_format_info *format = csid_get_fmt_entry(csid->res->formats->formats,
-+								   csid->res->formats->nformats,
-+								   input_format->code);
-+
-+	if (!lane_cnt)
-+		lane_cnt = 4;
-+
-+	val = RDI_CFG0_TIMESTAMP_EN;
-+	val |= RDI_CFG0_TIMESTAMP_STB_SEL;
-+	val |= RDI_CFG0_RETIME_BS;
-+
-+	/* note: for non-RDI path, this should be format->decode_format */
-+	val |= DECODE_FORMAT_PAYLOAD_ONLY << RDI_CFG0_DECODE_FORMAT;
-+	val |= vc << RDI_CFG0_VC;
-+	val |= format->data_type << RDI_CFG0_DT;
-+	writel(val, csid->base + CSID_RDI_CFG0(vc));
-+
-+	val = RDI_CFG1_PACKING_FORMAT_MIPI;
-+	writel(val, csid->base + CSID_RDI_CFG1(vc));
-+
-+	/* Configure pixel store using dedicated register in gen4 */
-+	if (!csid_is_lite(csid))
-+		__csid_configure_rdi_pix_store(csid, vc);
-+
-+	val = 0;
-+	writel(val, csid->base + CSID_RDI_CTRL(vc));
-+
-+	val = readl(csid->base + CSID_RDI_CFG0(vc));
-+
-+	if (enable)
-+		val |= RDI_CFG0_EN;
-+
-+	writel(val, csid->base + CSID_RDI_CFG0(vc));
-+}
-+
-+static void csid_configure_stream(struct csid_device *csid, u8 enable)
-+{
-+	u8 i;
-+	u8 vc;
-+
-+	__csid_configure_rx(csid, &csid->phy);
-+
-+	for (vc = 0; vc < MSM_CSID_MAX_SRC_STREAMS_GEN4; vc++) {
-+		if (csid->phy.en_vc & BIT(vc)) {
-+			__csid_configure_rdi_stream(csid, enable, vc);
-+			__csid_configure_rx_vc(csid, vc);
-+
-+			for (i = 0; i < CAMSS_INIT_BUF_COUNT; i++)
-+				__csid_aup_update(csid, vc);
-+
-+			__csid_reg_update(csid, vc);
-+
-+			__csid_ctrl_rdi(csid, enable, vc);
-+		}
-+	}
-+}
-+
-+static int csid_configure_testgen_pattern(struct csid_device *csid, s32 val)
-+{
-+	return 0;
-+}
-+
-+static void csid_subdev_reg_update(struct csid_device *csid, int port_id,
-+				   bool clear)
-+{
-+	if (clear)
-+		__csid_aup_rup_clear(csid, port_id);
-+	else
-+		__csid_aup_update(csid, port_id);
-+}
-+
-+/**
-+ * csid_isr - CSID module interrupt service routine
-+ * @irq: Interrupt line
-+ * @dev: CSID device
-+ *
-+ * Return IRQ_HANDLED on success
-+ */
-+static irqreturn_t csid_isr(int irq, void *dev)
-+{
-+	struct csid_device *csid = dev;
-+	u32 val, buf_done_val;
-+	u8 reset_done;
-+	int i;
-+
-+	val = readl(csid->base + CSID_TOP_IRQ_STATUS);
-+	writel(val, csid->base + CSID_TOP_IRQ_CLEAR);
-+
-+	reset_done = val & INFO_RST_DONE;
-+
-+	buf_done_val = readl(csid->base + CSID_BUF_DONE_IRQ_STATUS);
-+	writel(buf_done_val, csid->base + CSID_BUF_DONE_IRQ_CLEAR);
-+
-+	for (i = 0; i < MSM_CSID_MAX_SRC_STREAMS_GEN4; i++) {
-+		if (csid->phy.en_vc & BIT(i)) {
-+			val = readl(csid->base + CSID_CSI2_RDIN_IRQ_STATUS(i));
-+			writel(val, csid->base + CSID_CSI2_RDIN_IRQ_CLEAR(i));
-+
-+			if (val & INFO_RUP_DONE)
-+				csid_subdev_reg_update(csid, i, true);
-+
-+			if (buf_done_val & BIT(BUF_DONE_IRQ_STATUS_RDI_OFFSET + i))
-+				camss_buf_done(csid->camss, csid->id, i);
-+		}
-+	}
-+
-+	val = IRQ_CMD_CLEAR;
-+	writel(val, csid->base + CSID_IRQ_CMD);
-+
-+	if (reset_done)
-+		complete(&csid->reset_complete);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+/**
-+ * csid_reset - Trigger reset on CSID module and wait to complete
-+ * @csid: CSID device
-+ *
-+ * Return 0 on success or a negative error code otherwise
-+ */
-+static int csid_reset(struct csid_device *csid)
-+{
-+	unsigned long time;
-+	u32 val;
-+	int i;
-+
-+	reinit_completion(&csid->reset_complete);
-+
-+	val = INFO_RST_DONE | BUF_DONE_IRQ_STATUS;
-+	writel(val, csid->base + CSID_TOP_IRQ_CLEAR);
-+	writel(val, csid->base + CSID_TOP_IRQ_MASK);
-+
-+	val = 0;
-+	for (i = 0; i < MSM_CSID_MAX_SRC_STREAMS_GEN4; i++) {
-+		if (csid->phy.en_vc & BIT(i)) {
-+			/*
-+			 * Only need to clear buf done IRQ status here,
-+			 * RUP done IRQ status will be cleared once isr
-+			 * strobe generated by CSID_RST_CMD
-+			 */
-+			val |= BIT(BUF_DONE_IRQ_STATUS_RDI_OFFSET + i);
-+		}
-+	}
-+	writel(val, csid->base + CSID_BUF_DONE_IRQ_CLEAR);
-+	writel(val, csid->base + CSID_BUF_DONE_IRQ_MASK);
-+
-+	/* Clear all IRQ status with CLEAR bits set */
-+	val = IRQ_CMD_CLEAR;
-+	writel(val, csid->base + CSID_IRQ_CMD);
-+
-+	val = RST_LOCATION | RST_MODE;
-+	writel(val, csid->base + CSID_RST_CFG);
-+
-+	val = SELECT_HW_RST | SELECT_IRQ_RST;
-+	writel(val, csid->base + CSID_RST_CMD);
-+
-+	time = wait_for_completion_timeout(&csid->reset_complete,
-+					   msecs_to_jiffies(CSID_RESET_TIMEOUT_MS));
-+
-+	if (!time) {
-+		dev_err(csid->camss->dev, "CSID reset timeout\n");
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static void csid_subdev_init(struct csid_device *csid)
-+{
-+	csid->testgen.nmodes = CSID_PAYLOAD_MODE_DISABLED;
-+}
-+
-+const struct csid_hw_ops csid_ops_gen4 = {
-+	.configure_stream = csid_configure_stream,
-+	.configure_testgen_pattern = csid_configure_testgen_pattern,
-+	.hw_version = csid_hw_version,
-+	.isr = csid_isr,
-+	.reset = csid_reset,
-+	.src_pad_code = csid_src_pad_code,
-+	.subdev_init = csid_subdev_init,
-+	.reg_update = csid_subdev_reg_update,
-+};
-diff --git a/drivers/media/platform/qcom/camss/camss-csid.h b/drivers/media/platform/qcom/camss/camss-csid.h
-index aedc96ed84b2..75a113050eb1 100644
---- a/drivers/media/platform/qcom/camss/camss-csid.h
-+++ b/drivers/media/platform/qcom/camss/camss-csid.h
-@@ -27,6 +27,8 @@
- /* CSID hardware can demultiplex up to 4 outputs */
- #define MSM_CSID_MAX_SRC_STREAMS	4
- 
-+/* CSIPHY to hardware PHY selector mapping */
-+#define CSI2_RX_CFG0_PHY_SEL_BASE_IDX 1
- #define CSID_RESET_TIMEOUT_MS 500
- 
- enum csid_testgen_mode {
-@@ -154,7 +156,13 @@ struct csid_device {
- 	void __iomem *base;
- 	u32 irq;
- 	char irq_name[30];
--	u32 reg_update;
-+	union {
-+		u32 reg_update;
-+		struct {
-+			u32 rup_update;
-+			u32 aup_update;
-+		};
-+	};
- 	struct camss_clock *clock;
- 	int nclocks;
- 	struct regulator_bulk_data *supplies;
-@@ -217,6 +225,7 @@ extern const struct csid_hw_ops csid_ops_340;
- extern const struct csid_hw_ops csid_ops_680;
- extern const struct csid_hw_ops csid_ops_gen2;
- extern const struct csid_hw_ops csid_ops_gen3;
-+extern const struct csid_hw_ops csid_ops_gen4;
- 
- /*
-  * csid_is_lite - Check if CSID is CSID lite.
-diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-index 462d509a4a61..d292364d1701 100644
---- a/drivers/media/platform/qcom/camss/camss.c
-+++ b/drivers/media/platform/qcom/camss/camss.c
-@@ -139,6 +139,84 @@ static const struct camss_subdev_resources csiphy_res_kaanapali[] = {
- 	},
- };
- 
-+static const struct camss_subdev_resources csid_res_kaanapali[] = {
-+	/* CSID0 */
-+	{
-+		.regulators = {},
-+		.clock = { "csid", "csid_csiphy_rx" },
-+		.clock_rate = { { 400000000, 480000000 },
-+				{ 400000000, 480000000 } },
-+		.reg = { "csid0" },
-+		.interrupt = { "csid0" },
-+		.csid = {
-+			.is_lite = false,
-+			.parent_dev_ops = &vfe_parent_dev_ops,
-+			.hw_ops = &csid_ops_gen4,
-+			.formats = &csid_formats_gen2
-+		}
-+	},
-+	/* CSID1 */
-+	{
-+		.regulators = {},
-+		.clock = { "csid", "csid_csiphy_rx" },
-+		.clock_rate = { { 400000000, 480000000 },
-+				{ 400000000, 480000000 } },
-+		.reg = { "csid1" },
-+		.interrupt = { "csid1" },
-+		.csid = {
-+			.is_lite = false,
-+			.parent_dev_ops = &vfe_parent_dev_ops,
-+			.hw_ops = &csid_ops_gen4,
-+			.formats = &csid_formats_gen2
-+		}
-+	},
-+	/* CSID2 */
-+	{
-+		.regulators = {},
-+		.clock = { "csid", "csid_csiphy_rx" },
-+		.clock_rate = { { 400000000, 480000000 },
-+				{ 400000000, 480000000 } },
-+		.reg = { "csid2" },
-+		.interrupt = { "csid2" },
-+		.csid = {
-+			.is_lite = false,
-+			.parent_dev_ops = &vfe_parent_dev_ops,
-+			.hw_ops = &csid_ops_gen4,
-+			.formats = &csid_formats_gen2
-+		}
-+	},
-+	/* CSID_LITE0 */
-+	{
-+		.regulators = {},
-+		.clock = { "vfe_lite_csid", "vfe_lite_cphy_rx" },
-+		.clock_rate = { { 400000000, 480000000 },
-+				{ 400000000, 480000000 } },
-+		.reg = { "csid_lite0" },
-+		.interrupt = { "csid_lite0" },
-+		.csid = {
-+			.is_lite = true,
-+			.parent_dev_ops = &vfe_parent_dev_ops,
-+			.hw_ops = &csid_ops_gen4,
-+			.formats = &csid_formats_gen2
-+		}
-+	},
-+	/* CSID_LITE1 */
-+	{
-+		.regulators = {},
-+		.clock = { "vfe_lite_csid", "vfe_lite_cphy_rx" },
-+		.clock_rate = { { 400000000, 480000000 },
-+				{ 400000000, 480000000 } },
-+		.reg = { "csid_lite1" },
-+		.interrupt = { "csid_lite1" },
-+		.csid = {
-+			.is_lite = true,
-+			.parent_dev_ops = &vfe_parent_dev_ops,
-+			.hw_ops = &csid_ops_gen4,
-+			.formats = &csid_formats_gen2
-+		}
-+	}
-+};
-+
- static const struct resources_icc icc_res_kaanapali[] = {
- 	{
- 		.name = "cam_ahb",
-@@ -4869,9 +4947,11 @@ static const struct camss_resources kaanapali_resources = {
- 	.version = CAMSS_KAANAPALI,
- 	.pd_name = "top",
- 	.csiphy_res = csiphy_res_kaanapali,
-+	.csid_res = csid_res_kaanapali,
- 	.icc_res = icc_res_kaanapali,
- 	.icc_path_num = ARRAY_SIZE(icc_res_kaanapali),
- 	.csiphy_num = ARRAY_SIZE(csiphy_res_kaanapali),
-+	.csid_num = ARRAY_SIZE(csid_res_kaanapali),
- };
- 
- static const struct camss_resources msm8916_resources = {
-
--- 
-2.34.1
 
 
