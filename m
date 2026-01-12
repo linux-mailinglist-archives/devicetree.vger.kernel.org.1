@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-253667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A296D10425
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 02:28:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4730D10413
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 02:28:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EE3D530638AC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:28:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3077E30334D1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:28:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7239223E350;
-	Mon, 12 Jan 2026 01:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E52C2264C9;
+	Mon, 12 Jan 2026 01:28:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="cFZaUlzU"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="QHQ6xYmo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FB421D599;
-	Mon, 12 Jan 2026 01:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1001D1CEAC2;
+	Mon, 12 Jan 2026 01:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768181284; cv=none; b=oZr05AHNs+DfdqgqIdtsFk8/3fAa7HwkCi7uysHOIncArOMoX57WyGm9sYsTnSv0v2mxi5IX+mx6eRYdPPkqJyNQ7Z0D+6HrB3WhXXO82bZyFvUGEl4jsmRYbvEPDdmFy1wct5fWRb9a4RNN0wF/Xu3DWyxog1CpZASrsLl2wlU=
+	t=1768181283; cv=none; b=FgYoLDA8wr6AXkS2DJ6viqnZlOvbDMn4AnbZEpU7ZOBg2z7F+z8odYkQp4V2GoTin8i2LDGarnPG8aeXT6oSZX1r386czSl4X/r3pyyd7BFutFcxhUj7lXKHTW0AleRbd8BzG2cCKKgTRO+MkqZMtUzUb4DQHlRCyD5TQDbUH5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768181284; c=relaxed/simple;
-	bh=nwGe2W5SWCRSHE29+/Ndbm9rY0Wk+RojngMU9ZeFESk=;
+	s=arc-20240116; t=1768181283; c=relaxed/simple;
+	bh=Cols0olXDmcG2NINw8CZ0PpGHHzk6YIWuCRqBZOUI8o=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SJzDAwslQ34YFFPV3lPgfDAByVavvNyDuTri9rF0xKI+LYXjXF6wZQYEB/pvHJmFbRts8Q4DBaqwCZiwFxeHzp995xzN/EgpTMTLD9HLmnz6QWe8ptKK+7S6KjrS6hHTpO4M4xOm7rM/x8QkS/GO6q+dBleyVflkAV8yaj/F7vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=cFZaUlzU; arc=none smtp.client-ip=220.130.44.152
+	 MIME-Version:Content-Type; b=oD/UEJCNLG4FXqYylvTcCWrY8l1tSWTkAzp2niWmi/pNazxM8tEBSfRKxKRYOUvcoH0h5LPtBA/aUxPiIZJ5MQ6XdojNDEbVPbqe6o0gs1MLyQWB1yM4g+10KVsEGwepZGP64lSFiy57cAm6+Yd80uoxS6poJaRHKF7jUM84WHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=QHQ6xYmo; arc=none smtp.client-ip=220.130.44.152
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
 X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1768181273;
-	bh=s234wik/F1vk1XVydjYSkGI0/8UknPrEave69DIzBRQ=; l=1257;
+	s=richtek; t=1768181272;
+	bh=f05NxiHIb+vaAHm2MOLnZi7z72lHeOpeLKtw9bq/xE0=; l=8411;
 	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=cFZaUlzUxPHXjIrfmWWinJMCItPXgKZKt8s6nLFvbGBl00m0wyJH/pfWVMpVN/Y7L
-	 qIh6jHh63EHn1rFAyWlGq792AzrES3uLgSCMqZOsddtdhM8u61hSFvQFxxO1nfexq9
-	 1LaDK1khvfT3FWfh7x+1tTtYEnAPt6UnLaiI3gHxx/evnTWOyjdTsyQifx4BefEaWb
-	 lTgjEcjG4FLMCgWDi9kaO5LhvLK7eTm4a++/0hA24YPDHiqiwQTdxv4ir7QDjO7q2H
-	 sU4D27r/rnEcMsGdLFAasEFjC/OVFQilsOrLO0GiZ8PmehEUeZB8QRiKBN120vpb4F
-	 i94+bb00HHcXw==
+	b=QHQ6xYmouekJiJbiqVrxjnSxOFHOEG+f6K32MSLJxHa1GBYalWWFUWp6W9inKNU1n
+	 bBsnrteRJQWuqzPGJGxbiQt3hr4OgDA2EJkfL7ARNGu3DxEsYvdhOvyZJO26V026g0
+	 6shxYGEo+/yZfU+PsTs8tYtmx+VRuQ8BqmZlNaaiZ5umCKHiot1o9uofRXHzQG6IMN
+	 A/ghi8oY2CTXQVjH416KXF0I2Lw3iAxtJVyfOyyNsnsu9v145tcifFHl6VAzExyFMn
+	 RBZb2WqFseUNC9iNGZ7ys8GjR3CeYaWYKkWXAfc9ygf0BL9xRFUNyZgevumlBWsDEc
+	 gdno+Xei5PUWg==
 Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(2572456:1:AUTH_RELAY)
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(2572458:0:AUTH_RELAY)
 	(envelope-from <cy_huang@richtek.com>)
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 12 Jan 2026 09:27:39 +0800 (CST)
 Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
@@ -50,18 +50,17 @@ Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
  2026 09:27:39 +0800
 Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
  (192.168.10.45) with Microsoft SMTP Server id 15.2.1748.26 via Frontend
- Transport; Mon, 12 Jan 2026 09:27:38 +0800
+ Transport; Mon, 12 Jan 2026 09:27:39 +0800
 From: <cy_huang@richtek.com>
 To: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
 CC: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Liam
  Girdwood" <lgirdwood@gmail.com>, ChiYuan Huang <cy_huang@richtek.com>,
 	<musk_wang@richtek.com>, <roy_chiu@richtek.com>, <allen_lin@richtek.com>,
 	<devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v2 2/3] dt-bindings: sound: rtq9128: Add rtq9154 backward compatible
-Date: Mon, 12 Jan 2026 09:27:33 +0800
-Message-ID: <ab31e3965e9cb50ecdc14d5ea90d70dc26d1d187.1768180827.git.cy_huang@richtek.com>
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 3/3] ASoC: codecs: rtq9128: Add compatible changes for rtq9154
+Date: Mon, 12 Jan 2026 09:27:34 +0800
+Message-ID: <ca3a07c8987a033c3d505f5d79956d0e935ea03f.1768180827.git.cy_huang@richtek.com>
 X-Mailer: git-send-email 2.43.5
 In-Reply-To: <cover.1768180827.git.cy_huang@richtek.com>
 References: <cover.1768180827.git.cy_huang@richtek.com>
@@ -76,45 +75,227 @@ Content-Type: text/plain
 
 From: ChiYuan Huang <cy_huang@richtek.com>
 
-Add rtq9154 backward compatible support.
+Although rtq9154 only modify the outter package, some register settings
+related to the channel order definition are still different. Use the chip
+model ID code to seperate these changes.
 
 Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
-v2
-- Fix commit message typo
----
- .../devicetree/bindings/sound/richtek,rtq9128.yaml   | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ sound/soc/codecs/rtq9128.c | 108 +++++++++++++++++++++++++++++++++++--
+ 1 file changed, 104 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml b/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
-index d54686a19ab7..a125663988a5 100644
---- a/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
-+++ b/Documentation/devicetree/bindings/sound/richtek,rtq9128.yaml
-@@ -14,13 +14,21 @@ description:
-   class-D audio power amplifier and delivering 4x75W into 4OHm at 10%
-   THD+N from a 25V supply in automotive applications.
+diff --git a/sound/soc/codecs/rtq9128.c b/sound/soc/codecs/rtq9128.c
+index 289bb3c04a90..14a2c0723d33 100644
+--- a/sound/soc/codecs/rtq9128.c
++++ b/sound/soc/codecs/rtq9128.c
+@@ -40,6 +40,12 @@
+ #define RTQ9128_REG_EFUSE_DATA	0xE0
+ #define RTQ9128_REG_VENDOR_ID	0xF9
  
-+  The RTQ9154 is the family series of RTQ9128. The major change is to modify
-+  the package size. Beside this, whole functions are almost all the same.
++#define RTQ9154_REG_CH1_VOL	0x34
++#define RTQ9154_REG_CH2_VOL	0x33
++#define RTQ9154_REG_CH3_VOL	0x32
++#define RTQ9154_REG_CH4_VOL	0x31
++#define RTQ9154_REG_AUTOULQM	0xAD
 +
- allOf:
-   - $ref: dai-common.yaml#
+ #define RTQ9128_CHSTAT_VAL_MASK	GENMASK(1, 0)
+ #define RTQ9128_DOLEN_MASK	GENMASK(7, 6)
+ #define RTQ9128_TDMSRCIN_MASK	GENMASK(5, 4)
+@@ -48,6 +54,7 @@
+ #define RTQ9128_MSMUTE_MASK	BIT(0)
+ #define RTQ9128_DIE_CHECK_MASK	GENMASK(4, 0)
+ #define RTQ9128_VENDOR_ID_MASK	GENMASK(19, 8)
++#define RTQ9128_MODEL_ID_MASK	GENMASK(7, 4)
  
- properties:
-   compatible:
--    enum:
--      - richtek,rtq9128
-+    oneOf:
-+      - enum:
-+          - richtek,rtq9128
-+      - items:
-+          - enum:
-+              - richtek,rtq9154
-+          - const: richtek,rtq9128
+ #define RTQ9128_SOFT_RESET_VAL	0x80
+ #define RTQ9128_VENDOR_ID_VAL	0x470
+@@ -56,6 +63,15 @@
+ #define RTQ9128_TKA470B_VAL	0
+ #define RTQ9128_RTQ9128DH_VAL	0x0F
+ #define RTQ9128_RTQ9128DL_VAL	0x10
++#define RTQ9154_MODEL_ID	0x08
++
++#define RTQ9154_AUTOULQM_VAL	0x82
++
++enum rtq9128_chip_model {
++	CHIP_MODEL_RTQ9128 = 0,
++	CHIP_MODEL_RTQ9154,
++	CHIP_MODEL_MAX
++};
  
-   reg:
-     maxItems: 1
+ struct rtq9128_data {
+ 	struct gpio_desc *enable;
+@@ -63,6 +79,7 @@ struct rtq9128_data {
+ 	int tdm_slots;
+ 	int tdm_slot_width;
+ 	bool tdm_input_data2_select;
++	enum rtq9128_chip_model chip_model;
+ };
+ 
+ struct rtq9128_init_reg {
+@@ -251,6 +268,28 @@ static const struct soc_enum rtq9128_out4_phase_enum =
+ 	SOC_ENUM_SINGLE(RTQ9128_REG_PLLTRI_GEN2, 0, ARRAY_SIZE(phase_select_text),
+ 			phase_select_text);
+ 
++static const struct soc_enum rtq9154_ch1_si_enum =
++	SOC_ENUM_SINGLE(RTQ9128_REG_SDI_SEL, 0, ARRAY_SIZE(source_select_text),
++			source_select_text);
++static const struct soc_enum rtq9154_ch2_si_enum =
++	SOC_ENUM_SINGLE(RTQ9128_REG_SDI_SEL, 2, ARRAY_SIZE(source_select_text),
++			source_select_text);
++static const struct soc_enum rtq9154_ch3_si_enum =
++	SOC_ENUM_SINGLE(RTQ9128_REG_SDI_SEL, 4, ARRAY_SIZE(source_select_text),
++			source_select_text);
++static const struct soc_enum rtq9154_ch4_si_enum =
++	SOC_ENUM_SINGLE(RTQ9128_REG_SDI_SEL, 6, ARRAY_SIZE(source_select_text),
++			source_select_text);
++static const struct soc_enum rtq9154_out1_phase_enum =
++	SOC_ENUM_SINGLE(RTQ9128_REG_PLLTRI_GEN2, 0, ARRAY_SIZE(phase_select_text),
++			phase_select_text);
++static const struct soc_enum rtq9154_out2_phase_enum =
++	SOC_ENUM_SINGLE(RTQ9128_REG_PLLTRI_GEN2, 4, ARRAY_SIZE(phase_select_text),
++			phase_select_text);
++static const struct soc_enum rtq9154_out3_phase_enum =
++	SOC_ENUM_SINGLE(RTQ9128_REG_PLLTRI_GEN1, 0, ARRAY_SIZE(phase_select_text),
++			phase_select_text);
++
+ /*
+  * In general usage, DVDD could be 1P8V, 3P0V or 3P3V.
+  * This DVDD undervoltage protection is to prevent from the abnormal power
+@@ -283,10 +322,33 @@ static const struct snd_kcontrol_new rtq9128_snd_ctrls[] = {
+ 	SOC_ENUM("DVDD UV Threshold Select", rtq9128_dvdduv_select_enum),
+ };
+ 
++static const struct snd_kcontrol_new rtq9154_snd_ctrls[] = {
++	SOC_SINGLE_TLV("MS Volume", RTQ9128_REG_MS_VOL, 2, 511, 1, dig_tlv),
++	SOC_SINGLE_TLV("CH1 Volume", RTQ9154_REG_CH1_VOL, 2, 511, 1, dig_tlv),
++	SOC_SINGLE_TLV("CH2 Volume", RTQ9154_REG_CH2_VOL, 2, 511, 1, dig_tlv),
++	SOC_SINGLE_TLV("CH3 Volume", RTQ9154_REG_CH3_VOL, 2, 511, 1, dig_tlv),
++	SOC_SINGLE_TLV("CH4 Volume", RTQ9154_REG_CH4_VOL, 2, 511, 1, dig_tlv),
++	SOC_SINGLE_TLV("SPK Gain Volume", RTQ9128_REG_MISC, 0, 5, 0, spkgain_tlv),
++	SOC_SINGLE("PBTL12 Switch", RTQ9128_REG_MISC, 4, 1, 0),
++	SOC_SINGLE("PBTL34 Switch", RTQ9128_REG_MISC, 5, 1, 0),
++	SOC_SINGLE("Spread Spectrum Switch", RTQ9128_REG_PWM_SS_OPT, 7, 1, 0),
++	SOC_SINGLE("SDO Select", RTQ9128_REG_SDO_SEL, 0, 15, 0),
++	SOC_ENUM("CH1 SI Select", rtq9154_ch1_si_enum),
++	SOC_ENUM("CH2 SI Select", rtq9154_ch2_si_enum),
++	SOC_ENUM("CH3 SI Select", rtq9154_ch3_si_enum),
++	SOC_ENUM("CH4 SI Select", rtq9154_ch4_si_enum),
++	SOC_ENUM("PWM FREQ Select", rtq9128_pwm_freq_enum),
++	SOC_ENUM("OUT1 Phase Select", rtq9154_out1_phase_enum),
++	SOC_ENUM("OUT2 Phase Select", rtq9154_out2_phase_enum),
++	SOC_ENUM("OUT3 Phase Select", rtq9154_out3_phase_enum),
++	SOC_ENUM("DVDD UV Threshold Select", rtq9128_dvdduv_select_enum),
++};
++
+ static int rtq9128_dac_power_event(struct snd_soc_dapm_widget *w, struct snd_kcontrol *kcontrol,
+ 				   int event)
+ {
+ 	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
++	struct rtq9128_data *data = snd_soc_component_get_drvdata(comp);
+ 	unsigned int shift, mask;
+ 	int ret;
+ 
+@@ -301,6 +363,10 @@ static int rtq9128_dac_power_event(struct snd_soc_dapm_widget *w, struct snd_kco
+ 	else
+ 		shift = 0;
+ 
++	/* Compared to RTQ9128, RTQ9154 use the reverse order for DACx bitfield location */
++	if (data->chip_model == CHIP_MODEL_RTQ9154)
++		shift = 6 - shift;
++
+ 	mask = RTQ9128_CHSTAT_VAL_MASK << shift;
+ 
+ 	/* Turn channel state to Normal or HiZ */
+@@ -387,6 +453,7 @@ static const struct rtq9128_init_reg rtq9128_dl_tables[] = {
+ 
+ static int rtq9128_component_probe(struct snd_soc_component *comp)
+ {
++	struct rtq9128_data *data = snd_soc_component_get_drvdata(comp);
+ 	const struct rtq9128_init_reg *table, *curr;
+ 	size_t table_size;
+ 	unsigned int val;
+@@ -421,6 +488,14 @@ static int rtq9128_component_probe(struct snd_soc_component *comp)
+ 			return ret;
+ 	}
+ 
++
++	if (data->chip_model == CHIP_MODEL_RTQ9154) {
++		/* Enable RTQ9154 Specific AUTO ULQM feature */
++		ret = snd_soc_component_write(comp, RTQ9154_REG_AUTOULQM, RTQ9154_AUTOULQM_VAL);
++		if (ret < 0)
++			return ret;
++	}
++
+ 	pm_runtime_mark_last_busy(comp->dev);
+ 	pm_runtime_put(comp->dev);
+ 
+@@ -439,6 +514,18 @@ static const struct snd_soc_component_driver rtq9128_comp_driver = {
+ 	.endianness = 1,
+ };
+ 
++static const struct snd_soc_component_driver rtq9154_comp_driver = {
++	.probe = rtq9128_component_probe,
++	.controls = rtq9154_snd_ctrls,
++	.num_controls = ARRAY_SIZE(rtq9154_snd_ctrls),
++	.dapm_widgets = rtq9128_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(rtq9128_dapm_widgets),
++	.dapm_routes = rtq9128_dapm_routes,
++	.num_dapm_routes = ARRAY_SIZE(rtq9128_dapm_routes),
++	.use_pmdown_time = 1,
++	.endianness = 1,
++};
++
+ static int rtq9128_dai_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+ {
+ 	struct rtq9128_data *data = snd_soc_dai_get_drvdata(dai);
+@@ -679,7 +766,8 @@ static int rtq9128_probe(struct i2c_client *i2c)
+ 	struct device *dev = &i2c->dev;
+ 	struct rtq9128_data *data;
+ 	struct regmap *regmap;
+-	unsigned int venid;
++	unsigned int veninfo, venid, chip_model;
++	const struct snd_soc_component_driver *comp_drv;
+ 	int ret;
+ 
+ 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+@@ -712,21 +800,33 @@ static int rtq9128_probe(struct i2c_client *i2c)
+ 	if (IS_ERR(regmap))
+ 		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to init regmap\n");
+ 
+-	ret = regmap_read(regmap, RTQ9128_REG_VENDOR_ID, &venid);
++	ret = regmap_read(regmap, RTQ9128_REG_VENDOR_ID, &veninfo);
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "Failed to get vendor id\n");
+ 
+-	venid = FIELD_GET(RTQ9128_VENDOR_ID_MASK, venid);
++	venid = FIELD_GET(RTQ9128_VENDOR_ID_MASK, veninfo);
+ 	if (venid != RTQ9128_VENDOR_ID_VAL)
+ 		return dev_err_probe(dev, -ENODEV, "Vendor ID not match (0x%x)\n", venid);
+ 
++	chip_model = FIELD_GET(RTQ9128_MODEL_ID_MASK, veninfo);
++	switch (chip_model) {
++	case RTQ9154_MODEL_ID:
++		data->chip_model = CHIP_MODEL_RTQ9154;
++		comp_drv = &rtq9154_comp_driver;
++		break;
++	default:
++		data->chip_model = CHIP_MODEL_RTQ9128;
++		comp_drv = &rtq9128_comp_driver;
++		break;
++	}
++
+ 	pm_runtime_set_active(dev);
+ 	pm_runtime_mark_last_busy(dev);
+ 	ret = devm_pm_runtime_enable(dev);
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "Failed to enable pm runtime\n");
+ 
+-	return devm_snd_soc_register_component(dev, &rtq9128_comp_driver, &rtq9128_dai, 1);
++	return devm_snd_soc_register_component(dev, comp_drv, &rtq9128_dai, 1);
+ }
+ 
+ static int rtq9128_pm_runtime_suspend(struct device *dev)
 -- 
 2.34.1
 
