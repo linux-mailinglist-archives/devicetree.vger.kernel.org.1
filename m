@@ -1,131 +1,142 @@
-Return-Path: <devicetree+bounces-254205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD70D15D76
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:41:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465BCD15DA2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:45:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3914030146D8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:41:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BB24E30019E0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F18B729D29D;
-	Mon, 12 Jan 2026 23:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D1826056E;
+	Mon, 12 Jan 2026 23:45:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="fdI2I9tI";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="I+Y4m0iF"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="RzPtwHhV";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hb2jodZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565D6281370;
-	Mon, 12 Jan 2026 23:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C5A35965;
+	Mon, 12 Jan 2026 23:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768261311; cv=none; b=lqORj9WQakY9w/FlmjwY4dR92w8lsLbPzdHKefUWBJmn1VZSJSCNbDJAe+T5m3qf9LJ6k2OA3c6F2R0Qn4uWsKGpW1RatvLwuI4oeJd2F4K7KGEqWP6zjBhCziPb1LXg1DlW4+ZYhnYkScOaxqb9YfA9m5QwJYSmOG7eR7PHHLY=
+	t=1768261554; cv=none; b=hzRnjTavCChKb+Qm8Msai21C4aAft+WSAKWeD7oZCkVxtEZBayE1Wr1YR7ODq8WFarEUQl0n8uGeefvkUQ02PU7hFVROBg6sY0pZvkqK4d8GEWgB9NatB0iAPHTkIlWfZtwUBGSrqadS748v3rRRucTTO4a17BRyNBNdb5nChrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768261311; c=relaxed/simple;
-	bh=C7V36cbdJb6YyuUIQW0plhOS7G7q1PT3/t9UweoHhB4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=cifCjGhKyax3tS8iK2w3Hzva7T1DYb+cBKO6gByIW4ZLG2l6Z/biT8k37UG2Ri6fg/vy0Zqig99vQFpo6bpCyqqtnwq1GUigdRLTTyZHmXEap9Lc/DXsd5zSYOBTd7PTsAbZos0SfYo4Mu7eIkIaJdrUWPgNnr7lm05Bzxz1eg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=fdI2I9tI; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=I+Y4m0iF; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1768261303; bh=0qFiEwVtepNFetO+E3vs4kB
-	U5wg/CWl5/+fGowIxbNA=; b=fdI2I9tIHQeO4DkdHxT4b7+6fMyK94LyJCric2MAYA6bZ5dFnU
-	H4mUhMQ/Ir53FaBuCXpTZYfKUJ/rom4W/4vIuG+xAptE66ag/gjgoErzdhTyulj7VQoBiceWdmH
-	ZYasperKPzw71FyQbG911Z9uLsnTLL+51gTni1tNBkSI7YDzaDt+AheOIgflQNQJoJUJ73nQd5d
-	4ybm1H5KuVUW8BK1bis+i2L9n72DTwVbx5rKXVp4dNNUaaTDrkURLvV/0pK3B+IyyQDO0rbPb71
-	sjTZrQtY+S1bB1UwSyfUa0zWoVFjsRzMVV2Bk2poJiV0hYDfJga75qsCdaWZE522lhQ==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1768261303; bh=0qFiEwVtepNFetO+E3vs4kB
-	U5wg/CWl5/+fGowIxbNA=; b=I+Y4m0iFpti7NDz3nhEMHCkHnbmNUJWJI0DDTtAW7nIEA4AAu/
-	uCwF+YI7tb9AX2T79nswQmGuS4yRmGuGcPBg==;
+	s=arc-20240116; t=1768261554; c=relaxed/simple;
+	bh=3wtmsjF6ytyJKH+q9T6I2KTMYI9ITmXA0dzrO7/vE0w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HCuLz9busJ0S3t7eHefLwgX/XcgNTrllUDnKsRUZ8c+5FC2nlvky9f2za7OSrqtZWlJaeeKxCWBv/+D2f9c1AoEEhvho9eVOpYLSsVCdcsVlTUqYG/P1LePrKMPSOD3X4MxjgidkPPwyJ85mYS/wtdfMEWBvFmsxfHBhY+uPbJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=RzPtwHhV; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=hb2jodZD; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dqpsg3k6yz9spG;
+	Tue, 13 Jan 2026 00:45:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768261543;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=QbAWgaId1HIkJ1t+Tlb6BWHQEoJKtPVXAYbc0qhwfaI=;
+	b=RzPtwHhVTaVmwvudeO14BeOPc9cngK3SPbDUWKsq2W5nrxm9ZfQnWD/mg6O8YBcDohZ9ux
+	UdcUinnEgsno2sTxMzZ3XkfSiykKtgc69mT3ELtS2OM4gI0iGRCQtYE2mi6HmJ1Y95hQ3Z
+	l2lnKVFq+dKKNs0XsSZQUBRS6c3afrPryAPC35iDR1YzrEiJ+RBkvCRzBycONVxSXv3ZRx
+	trcHcngHjHtp79/rOoXmxnDYZ5rjAB4RVEHx7n5iQWPWpPsgZ0BUHY3deBQrnWTPuqr5av
+	GrJkGdbnei9QH01C/ezDyYRy2zIm/nH08EJkCqKQi67ANmLg9+5pQUWiszf6xA==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768261541;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=QbAWgaId1HIkJ1t+Tlb6BWHQEoJKtPVXAYbc0qhwfaI=;
+	b=hb2jodZDukjvhn0MzSmnL8S32+dY99pznJPqyN287KtoE0Dr5+dp5uwLBp/1+IWVrTZLkh
+	P4+81UT/t0AY+52udb02nSifv7o48e2Sbi2mfn9YqPNffrv6LXPSOnyvUHV2PrbBm6bqH8
+	tx0okzOZ4zYsoioBLEOENuDnODSu3XHNuXk8j0oxTFo/NF8wO1dSYMV0pGvhmwoXv7Pa8p
+	lr3F2XReKmsFM0EVx+XXEOwZJXyz9j75YpphOl842oB1SrN+Dp5PUZLKfQmRWV3e1dJikk
+	P0kyD2lTmqozBqvx+NZ7m7JJs4hbg2xevCNeiAApY8x/PsO5YYuhFdV3U2oGiQ==
+To: linux-input@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Job Noorman <job@noorman.info>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: touchscreen: trivial-touch: Drop 'interrupts' requirement for old Ilitek
+Date: Tue, 13 Jan 2026 00:44:56 +0100
+Message-ID: <20260112234534.225954-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 13 Jan 2026 00:41:43 +0100
-From: barnabas.czeman@mainlining.org
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Gabriel Gonzales
- <semfault@disroot.org>, Kees Cook <kees@kernel.org>, Tony Luck
- <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- Biswapriyo Nath <nathbappai@gmail.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: Add Redmi Note 8T
-In-Reply-To: <3d2qboek2kzsnsjmn7rqi6xkfotfchc7vdmyeprivu27l3rw2b@i5lbwsvxfwdb>
-References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
- <20260112-xiaomi-willow-v1-6-8e4476897638@mainlining.org>
- <3d2qboek2kzsnsjmn7rqi6xkfotfchc7vdmyeprivu27l3rw2b@i5lbwsvxfwdb>
-Message-ID: <aa8d5d6f9301d94b56af4580210ffc88@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 005772ecef2e6c245f2
+X-MBO-RS-META: x8mpdwumd64aaqrj3r9zmaoah3fqfgfm
 
-On 2026-01-12 23:15, Dmitry Baryshkov wrote:
-> On Mon, Jan 12, 2026 at 09:13:29PM +0100, Barnabás Czémán wrote:
->> Redmi Note 8T (willow) is very similar to Redmi Note 8 (ginkgo)
->> the only difference is willow have NFC.
->> Make a common base from ginkgo devicetree for both device.
->> 
->> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->>  .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi | 302 
->> +++++++++++++++++++++
->>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts  | 296 
->> +-------------------
->>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts  |  13 +
->>  4 files changed, 318 insertions(+), 294 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts 
->> b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> index 163ecdc7fd6c..70be19357d11 100644
->> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> @@ -1,304 +1,12 @@
->>  // SPDX-License-Identifier: BSD-3-Clause
->>  /*
->> - * Copyright (c) 2025, Gabriel Gonzales <semfault@disroot.org>
->> + * Copyright (c) 2026, Barnabas Czeman
-> 
-> Hmm?
-Original file was renamed to sm6125-xiaomi-ginkgo-common.dtsi this is a 
-new file just the file name is same.
-> 
->> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts 
->> b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts
->> new file mode 100644
->> index 000000000000..9e3aeb5a9e74
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts
->> @@ -0,0 +1,13 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2026, Barnabas Czeman
->> + */
->> +/dts-v1/;
->> +
->> +#include "sm6125-xiaomi-ginkgo-common.dtsi"
->> +
->> +/ {
->> +	model = "Xiaomi Redmi Note 8T";
->> +	compatible = "xiaomi,willow", "qcom,sm6125";
->> +
->> +};
-> 
-> Please consider adding the comment regarding NFC.
-> 
->> 
->> --
->> 2.52.0
->> 
+The old Ilitek touch controllers V3 and V6 can operate without
+interrupt line, in polling mode. Drop the 'interrupts' property
+requirement for those four controllers.
+
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Job Noorman <job@noorman.info>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-input@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ .../input/touchscreen/trivial-touch.yaml      | 20 +++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+index fa27c6754ca4e..a2145a62f9723 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+@@ -57,13 +57,25 @@ properties:
+ 
+   wakeup-source: true
+ 
+-allOf:
+-  - $ref: touchscreen.yaml
+-
+ required:
+   - compatible
+   - reg
+-  - interrupts
++
++allOf:
++  - $ref: touchscreen.yaml
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              enum:
++                - ilitek,ili210x
++                - ilitek,ili2117
++                - ilitek,ili2120
++                - ilitek,ili251x
++    then:
++      required:
++        - interrupts
+ 
+ unevaluatedProperties: false
+ 
+-- 
+2.51.0
+
 
