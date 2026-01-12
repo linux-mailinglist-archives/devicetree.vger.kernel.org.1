@@ -1,106 +1,115 @@
-Return-Path: <devicetree+bounces-253745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3235ED11036
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:58:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50962D11040
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:59:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C70530DDB0C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:56:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D32323020824
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97651339853;
-	Mon, 12 Jan 2026 07:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7379E33AD93;
+	Mon, 12 Jan 2026 07:58:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="ZtMFcjqL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KKFOd+CI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B9233A9F7;
-	Mon, 12 Jan 2026 07:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE8A338586;
+	Mon, 12 Jan 2026 07:58:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768204604; cv=none; b=nM+C3QnykCic4Hgb4hKaCXSl6CWx0R0GpBNFeCXUc4So//8yHyg3dfB1OJoqP1eRrYh3Ok1M4xuZ3B96dcOGdY6Gum8FurIfCQnRMqGlyqSxspgsuyoXHa+SaZmNSB9qe6la0611Gn6v4Y1w5k8oM3r2wiD+dQuhQccRWu9ChP8=
+	t=1768204728; cv=none; b=W2Z0rYAuxT6q198eJh9QhbKM5W60BMlz5rNUEFOSfUMAvvg5mUM/ND8JZIH6zC0PRWPLmC7v5njI2j4z6xqyigQBnfEftIleWaJCK6HeZtl4mr3stwiLTR7fbR+o2uePoe11ZoW9/oB2m7uVGSSVsKyXN/YqymYGB4i2/xYLpDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768204604; c=relaxed/simple;
-	bh=LF9hZFrn3ehJahvdlBjA9wkUUmCdM9ZM5HcTk8Jt2d4=;
+	s=arc-20240116; t=1768204728; c=relaxed/simple;
+	bh=0LZKsjkXfHySOPGTc0+a4TfkOx3ctR7uJHuXAFkeim4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k1MFsqKaTi4JtE6m12cWqoM4WUHV92IgiaOIfyM4wWN2eidDBz1KO4hqp3DMZ1LP5JJQb0KVFgHIW1vVAAEceRHlbQDyN5LmBCurjwNJVgnZx4v5D05ph5sWnkzRm3FAg+ANlmsTBF/gd25xwKTPp0YyZpXjHvVGzgoGy5G4ux0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=ZtMFcjqL; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
-	by mail11.truemail.it (Postfix) with ESMTPA id 0E3C81FAAE;
-	Mon, 12 Jan 2026 08:56:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1768204600;
-	bh=PHCs0iNyflG7x6+oRCtz4NEb6YJJHbVOD9mrmwPAxWA=; h=From:To:Subject;
-	b=ZtMFcjqLE2oKc1b2piFxvFBSFhZ2YShLVNxAavEFQ89Q14nmtZiluhyX42oliU+zC
-	 efs0sezywO5g1AwEcsa1CDAcDRmFKi2fMG5j3wC3xPk0zafy80891LW33xXLTk7uzh
-	 ZHOXXFe7jReWJyvUAITn+3eqoPXKk4T0evYZON6RduaATjTaw4UtnRofeuGb9ZTIPj
-	 ZnR+M9vhZeeFZ6gJq7D6XfYoV9wx+tjWtLEHIEPvMh9+PUInewDWZQRtLFV86x6wB7
-	 3i35p4wwhSw61CsH4mobf3Bte0g4XVeV3sq7W78hNgFpfrICcr0iw4AQPEEUGiiMdm
-	 YShixlWprrFgQ==
-Date: Mon, 12 Jan 2026 08:56:36 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Siddharth Vadapalli <s-vadapalli@ti.com>, trini@konsulko.com,
-	u-boot@lists.denx.de, nm@ti.com, vigneshr@ti.com, kristo@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, srk@ti.com
-Subject: Re: [PATCH] arm64: dts: ti: k3-*: Replace rgmii-rxid with rgmii-id
- for CPSW ports
-Message-ID: <20260112075636.GA105765@francesco-nb>
-References: <20251025073802.1790437-1-s-vadapalli@ti.com>
- <20260112074948.GA101138@francesco-nb>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IhGwyFIXa89kfoWntZS9U+PgAwHjOn9ug7waCxYDI8j6ysRZOmFjmyQ1t3k6WfCC4nvl/u4aaU37MA8b+3x8slLIyjdjM58A63wSDdCj8Ud86+rLg2dU8dI/D1UOz7fY9qbBFzBruhS2+vgg7i2wRKWd2y1b6ks2UYt3gYl/EPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KKFOd+CI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51FE9C116D0;
+	Mon, 12 Jan 2026 07:58:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768204728;
+	bh=0LZKsjkXfHySOPGTc0+a4TfkOx3ctR7uJHuXAFkeim4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KKFOd+CIasEo8xokhexO3iZF3L802utZN2eUuCQr4Jffj+DnW3PyHPo+R5iCKV8AM
+	 XtuPtsWfiz0ler9bUvFzbAquPGAXQ9dDeFoShatXvJ5x9/gQKgmyPRDimQ6CMbUurG
+	 bAmtibAqXswRG0EMfJZZ9damkJ0zhrCTUESMKeneUHLh79lNAwLPFCK8jaGXubbEOo
+	 ObdygZg6/N52gViFE6cZVu/xFg5uC4gGA5wtFhpoYMekcG3sknaflxjr7Gf9AqxlIC
+	 CoNp2UFwH02CujLFS68m+CXlXBNvVG7/5+yuXAP7iw5JnxYFLgJfxSsh1+y9Pa5YOX
+	 IHk35sz6krzyA==
+Date: Mon, 12 Jan 2026 13:28:38 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, 
+	manivannan.sadhasivam@oss.qualcomm.com, Bjorn Helgaas <bhelgaas@google.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	linux-pm@vger.kernel.org, linux-ide@vger.kernel.org
+Subject: Re: [PATCH v5 5/5] power: sequencing: Add the Power Sequencing
+ driver for the PCIe M.2 connectors
+Message-ID: <ix7mu6twdd35clxyglgcwilwn3o3u5jvkmf6wwyz7zwgsscbc5@awwwnouy4pyh>
+References: <20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com>
+ <20260107-pci-m2-v5-5-8173d8a72641@oss.qualcomm.com>
+ <CAMRc=Md9TQiSX-gFa5q--JgaGyQ2ky4mOwjSpdxHhvHAj-X5Qw@mail.gmail.com>
+ <xd5uvfqcx3vcbcqerji556ejstmgvtci4chfzxclkzhizqmqxa@xusf2skt6xhh>
+ <375ea14c-b089-4ae4-9827-5c19139f69c4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260112074948.GA101138@francesco-nb>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <375ea14c-b089-4ae4-9827-5c19139f69c4@kernel.org>
 
-On Mon, Jan 12, 2026 at 08:49:56AM +0100, Francesco Dolcini wrote:
-> +Tom +U-Boot ML
-> 
-> Hello Siddharth,
-> 
-> On Sat, Oct 25, 2025 at 01:07:59PM +0530, Siddharth Vadapalli wrote:
-> > The MAC Ports across all of the CPSW instances (CPSW2G, CPSW3G, CPSW5G and
-> > CPSW9G) present in various K3 SoCs only support the 'RGMII-ID' mode. This
-> > correction has been implemented/enforced by the updates to:
-> > a) Device-Tree binding for CPSW [0]
-> > b) Driver for CPSW [1]
-> > c) Driver for CPSW MAC Port's GMII [2]
+On Fri, Jan 09, 2026 at 10:02:10AM +0100, Damien Le Moal wrote:
+> On 1/9/26 07:02, Manivannan Sadhasivam wrote:
+> > On Thu, Jan 08, 2026 at 01:15:12PM +0100, Bartosz Golaszewski wrote:
+> >> On Wed, Jan 7, 2026 at 3:11 PM Manivannan Sadhasivam via B4 Relay
+> >> <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> wrote:
+> >>>
+> >>> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> >>>
+> >>> This driver is used to control the PCIe M.2 connectors of different
+> >>> Mechanical Keys attached to the host machines and supporting different
+> >>> interfaces like PCIe/SATA, USB/UART etc...
+> >>>
+> >>> Currently, this driver supports only the Mechanical Key M connectors with
+> >>> PCIe interface. The driver also only supports driving the mandatory 3.3v
+> >>> and optional 1.8v power supplies. The optional signals of the Key M
+> >>> connectors are not currently supported.
+> >>>
+> >>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> >>
+> >> This looks good to me, though there are some nits I may fix when applying.
+> >>
+> >> I'll pick it up for v7.0 once the bindings are reviewed.
+> >>
 > > 
-> > To complete the transition from 'RGMII-RXID' to 'RGMII-ID', update the
-> > 'phy-mode' property for all CPSW ports by replacing 'rgmii-rxid' with
-> > 'rgmii-id'.
-> > 
-> > [0]: commit 9b357ea52523 ("dt-bindings: net: ti: k3-am654-cpsw-nuss: update phy-mode in example")
-> > [1]: commit ca13b249f291 ("net: ethernet: ti: am65-cpsw: fixup PHY mode for fixed RGMII TX delay")
-> > [2]: commit a22d3b0d49d4 ("phy: ti: gmii-sel: Always write the RGMII ID setting")
+> > Ok. I'm expecting patch 1 to go through ATA tree, patch 2 through DT, and
+> > patches 3,4 through PCI tree.
 > 
-> What about U-Boot?
-> I just noticed this in today U-Boot master:
+> Patch 1 seems to be completely unrelated to the power changes, so please send it
+> to the ata list separately. It is otherwise very complicated and confusing for
+> everyone to have patches from one series being applied through multiple trees.
 > 
->   RGMII mode without internal TX delay unsupported; please fix your Device Tree
-> 
-> and I think this is coming from the DTS update from Linux to U-Boot.
-> 
-> Can you look into that?
 
-Ok, I think that the issue is that the U-Boot code was updated
-correctly, but now we need the v6.19 DT in U-Boot, and as of now we have
-6.18 DT.
+Many maintainers often prefer patches in a single series for the complete
+picture. That's why I clubbed all of them in a single series. But I can send the
+ATA binding separately also (once it got reviewed by Rob).
 
-Tom: are you planning to sync the U-Boot DT to Linux v6.19 before the next
-U-Boot release?
+Btw, with b4, it is no longer a hassle to apply individual patches from a single
+series.
 
+- Mani
 
-Francesco
+-- 
+மணிவண்ணன் சதாசிவம்
 
