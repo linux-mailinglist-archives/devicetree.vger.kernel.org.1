@@ -1,273 +1,198 @@
-Return-Path: <devicetree+bounces-254165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AF4D151EC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:46:23 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72D76D15207
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:51:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1C07F303AE96
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:46:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 73E9A300485B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09893033D1;
-	Mon, 12 Jan 2026 19:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36C8324B2A;
+	Mon, 12 Jan 2026 19:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Lzo1rJdW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZA9Je4oq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PhfY1G6Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B3E199EAD;
-	Mon, 12 Jan 2026 19:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3656A32255D
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 19:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768247181; cv=none; b=tC8B+7HqEzYHHdJ6NB6oJp60llIz6Ww8POJcZLPU094fUfOy94z93J3lmvVhRonA65aEq0yktYGTa3veacvUEVmRreJZyKh1x28kZsqOvWubUZ1WoDq6bJw7dOWpM5gL4Sw90+eBfrmkjQ1rG0W1Ajv7ut6vFOFcPXa2o5bIpeY=
+	t=1768247482; cv=none; b=FGHU35JfccA7cabk4J/54gIWOZdymo/VQ8SVntfqkdtVlz4++WVRQVdYX5P3wlGeg2jAM6u9a6/aU/3A1fp6kZjAgq3sE69uZLUMhLP8JDzhg8/79sy2YjxqKrm4gFzAdpI2HswlSiy3R42UiLExsWsnMMV7UK27S76jjDxeZwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768247181; c=relaxed/simple;
-	bh=VXJ6h3xFbwt2UIWSnC4R8hbSW7fTxGdJagGd17ozxnM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NYLMHTFHjF1Sr18zo/b86RAnWHZjkXX6kTW9OotYys5VQSGlEjQEa8BIdVrchfuEV7kEIWh2jdo9swRfdG4HZ7aeiIkcnvYt5mxJmk0pGzmf6N8XIPComsvzMaIYn9zOUjxcYg5k1Rxw4L7GPh0DNy+5kGHahKAxQAlUxsh+VGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Lzo1rJdW; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768247180; x=1799783180;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VXJ6h3xFbwt2UIWSnC4R8hbSW7fTxGdJagGd17ozxnM=;
-  b=Lzo1rJdWrzWSn+8B3pT5UxeSImmZ5Az9Wt62FVlG/wz7Hc/KkY0E+CSm
-   Uun2yR1Ib6Wp79c44Z09OglefpVM/kxItSzXPJwcDlkYuh+3wiBXWNy5a
-   6tv1qXgiMC08wfScQRO6MZXYSys5FSqFQc+1vGqzwSzZt/DokZMiQf3Ij
-   LIRdRGgtsVPxdCyW1JF8ERpiiBHR88J5u7xtOWwtA9Mg7P9kqoB6MjMG1
-   iBKguOw+ICa8hUVqzdaKc3bKs/2sTu/di2XZwnvciszlGKPILykW3IeOo
-   ZUft59JZaTxji7PLFLS5NiwKfZ3VCjFH2WFgsP4k9bVtILhsKYSEfIl80
-   A==;
-X-CSE-ConnectionGUID: mZ34YCZaSdaMeATnsZqILQ==
-X-CSE-MsgGUID: 2cznFjS1QSyrfZ2mXJeFHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="79823763"
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="79823763"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:46:19 -0800
-X-CSE-ConnectionGUID: Oh/FLYvsRpiq7l8qsCeGYg==
-X-CSE-MsgGUID: w/b5Z9c3Q8aw0OB7g6Hw3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="234884303"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.154])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:46:12 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 1C7BC120742;
-	Mon, 12 Jan 2026 21:46:10 +0200 (EET)
-Date: Mon, 12 Jan 2026 21:46:10 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Tarang Raval <tarang.raval@siliconsignals.io>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hao Yao <hao.yao@intel.com>,
-	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v7 1/2] media: dt-bindings: i2c: add Himax HM1246 image
- sensor
-Message-ID: <aWVPgtRnxfL2zSSu@kekkonen.localdomain>
-References: <20260112-hm1246-v7-0-fee8587f2808@emfend.at>
- <20260112-hm1246-v7-1-fee8587f2808@emfend.at>
+	s=arc-20240116; t=1768247482; c=relaxed/simple;
+	bh=4Lu6pbEjxU9vVEUJ6IJCISofVK1ATmvsPJSfgIoGW8Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CCwuIcae36k4r4AEFVjspRTn4uwZVgTHD/bFg03xnanQDrFV5PR/KRPevAFZG8yqeJW3y8D6QX2qq/67I1ttyuVSLnDKevYqYY5s42rCA+cvvcc/tSyqQQke+xhJ+nPzKmTP+KrkBIz4lpYNymO+S9xonHy3oWTU516kqBBwEZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZA9Je4oq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PhfY1G6Y; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60CHfB2P1376550
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 19:51:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	AyrQeNRGMKiWJm9jy2A0UK3uV8Lg7oA7wv2Q1YlslQE=; b=ZA9Je4oqZW40L1hB
+	+78wHZw/b74HNB62MD4k0vJK0pyTwjMEDTuW2gjj3VM48Zjl6lRGWTwD6ngd9ksl
+	PilZmg5s+d0GXyNkFfZ3t+5tFkmxki5jQRyZnvm01lcc3cg5RvrUUGQQvxs6XPuX
+	tJDbn1ieTXQbgQvuzBifG2/KsURVdkjJ3z3EsDrLtIGjBijY+6d4wZ8Hcjn/axTP
+	VyEovzbyIQkIeln0IYtKshzMmIIfjq/YJHivJ/dN8iavUc4+e/uZ15iHmrFXwltT
+	Vsx41pi7wHh8gZw9ZkZJu08iGBmGT5G8zE6zsDldc6svK8L+TfS9uTLm4gVLdkPm
+	lIOUMw==
+Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bmxdvsvme-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 19:51:20 +0000 (GMT)
+Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-2ae6ef97ac5so24497555eec.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 11:51:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768247479; x=1768852279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AyrQeNRGMKiWJm9jy2A0UK3uV8Lg7oA7wv2Q1YlslQE=;
+        b=PhfY1G6YcarV7W0WhwiRC8uArKlp6AjgnPrn3iDkiNNvx6+WD6fzdRS4FlrjWvMvQ4
+         MWe+P28fl2VyrJmX75n61crJziQdZ8QMOYxjU5+PPpM7GblRFFUZg+x0f9KGl0HNlXST
+         LEYryw1UMPeAtRnpwsRzCxF3kpNkux+FEa2mFMtYtR4wr39S80/qWGQLoy/pKpHGaakN
+         eSALM175jmqeD0EnynE99V55i9Z8i/mjj4+ou9gn8OMlqsVNthaw0HOXuKmOpfxCUPrQ
+         R4IHYA+LlWBOZBBkmyh3SMc7F1YE160isCFuXuJo/QZv7Q6i9XbtxRe5Qs0RhIBU2CHw
+         FWtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768247479; x=1768852279;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AyrQeNRGMKiWJm9jy2A0UK3uV8Lg7oA7wv2Q1YlslQE=;
+        b=OkXDmME2o33LDCWCWZJ0SHEQcEihMcYV1CeGU5TTcQFEGU2p1e9hj8XI+RrnPXUll1
+         7R8FcZyAPhgzl8tpVXlIlMiJ/wT04loKABoxKCM8OAFFYpVeYN7TcVkoQAzzzrDH4Hfk
+         GewIUqx8B8rkem5aIJi+1Sjz/IolA5+QGKRxSASb4IcmYTUEweWBBJgSU9unQBZOdcFU
+         HlK5/YDIOW4atWNnZLu7U6Pjj4VEl8sqY5fnZlKUZk99OWKWY9WK3VkpdE5tPxuhB41B
+         N2vXjn9tn2sIgrQfGzAA6D/rkcyl0gPRT32cSyMPtgk6xDi43no8F6qx6CojIy2cctYu
+         YQgA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSPKjLulUhHTwwLfZGUTsLZTc+5hu4s6KDaSzgMkEemzW9PMAFiDfu3ODFV9GwX3bfCFpVM0LVA6wC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEQhsN58m4SPpZi3MF7dKZlT5G63XX//lR7kWiBovBKr49cJYh
+	TiJcp35uGI6Oj7vNG5/lrI31n5kMkqfh48xf5YCrtOkCZs4jobjferQDxGxHgqA/1alYtNJegSX
+	IemLOU14aBNWwOqa89wR8YuqtYdB85O4liwmdlXbi4VHV290jZSrqodqeZ00NkLsl
+X-Gm-Gg: AY/fxX6WwjptzTykGSBHXEmgblnHn2yPWMTH6TBlnPyROe5pSAWTYyMUSa9J1YTxw3/
+	sgq8fKcj4Ad6agcgQ88yeo0zSjdxWPR0ryg4KfLC5i/5zhGScM8Io1vh45Bd1/6L+BzZdd/isIx
+	b3OGuM+TYLJIF3N6V/vXMSVO8pIT1F4IOSDa+IO92nWkPZS1Hju0pafGljcPR4l56po7qSAOUNn
+	L3t9SCaj9Pezq/8DC0IfHpUKBaMqVqLtxdqGwkWk/AakhGLi69iPRr59GeiYGYMpg4jcaldoQA+
+	g+bByICz7AsB1nPQ2HGMerdOwZlkQ+FSmeBz3uTp5Wjw7LFdTRqsMUmnWN8jWNkFbHomgrhTC2m
+	buu6v481mq8ke+8UfcyRCpVP8Kg+WHQx0SOOeHbW7XBdBCnLsI9so4ARvrCQ33kZTKEB2D15RWy
+	j6
+X-Received: by 2002:a05:7301:490b:b0:2ab:9f55:d15a with SMTP id 5a478bee46e88-2b17d318ccemr12574115eec.29.1768247479047;
+        Mon, 12 Jan 2026 11:51:19 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHk6xYB4ZRN+cIwyeLW8/iG9JuwoV/B2OUgags4UdIMA807zGQKH2Qblcn9/Gn+mcQnl8ucdA==
+X-Received: by 2002:a05:7301:490b:b0:2ab:9f55:d15a with SMTP id 5a478bee46e88-2b17d318ccemr12574098eec.29.1768247478533;
+        Mon, 12 Jan 2026 11:51:18 -0800 (PST)
+Received: from [192.168.1.3] (c-24-130-122-79.hsd1.ca.comcast.net. [24.130.122.79])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b1707d76aasm15520905eec.33.2026.01.12.11.51.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 11:51:18 -0800 (PST)
+Message-ID: <0ad4722d-1557-4d8d-ae45-c0fdf893067f@oss.qualcomm.com>
+Date: Mon, 12 Jan 2026 11:51:16 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260112-hm1246-v7-1-fee8587f2808@emfend.at>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH ath-current 2/2] dt-bindings: net: wireless: ath11k-pci:
+ deprecate 'firmware-name' property
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+        johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
+ <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
+ <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
+ <76d1c3ad-d648-4719-b016-1f16b195e64c@kernel.org>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <76d1c3ad-d648-4719-b016-1f16b195e64c@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: _tSnBeFlgoyPmmF8mIfKGIeeDmgRk5ea
+X-Proofpoint-GUID: _tSnBeFlgoyPmmF8mIfKGIeeDmgRk5ea
+X-Authority-Analysis: v=2.4 cv=HoZ72kTS c=1 sm=1 tr=0 ts=696550b8 cx=c_pps
+ a=cFYjgdjTJScbgFmBucgdfQ==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8
+ a=V5SxF7jbE5cyk4fQ5xYA:9 a=QEXdDO2ut3YA:10 a=scEy_gLbYbu1JhEsrz4S:22
+ a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEyMDE2NSBTYWx0ZWRfX6pERoFc1GMty
+ Yl2wG7fHPEClpdbFdnCdxv0GSrLtNvHPz+BM0QTS7vVFeIh97VBr2IWhU3s4nGoEsJCn/diYin3
+ jmgTfKkJuUfYfwAVj12K6dvmkQmWq5fi5uOO4mDFyxby/jXTPAnxy+BLZcvtgKxLIFC++BoTwQo
+ 7GW6SQAievoB7UxOjKb4NMiNTo9ssGEPAvxcA37y7D+fj0NP1b4JLSPU5h+Jxi1neEDGqkRQAhC
+ s23hs/eXxRe0oK9h+0sdL8UsoJVsyOSNI8s75evb61L675ChPMckdnK3vLUryCANU4f+3EeClyv
+ hVpTRgh5yf3+cW9RqFkFA+WM1HnvG3J1x4gBESf7jFZkUxPiqDBAuWJLmhPWkMoutQfBZVgnZOh
+ PyJ0Qz023dfVvL/Fn+NhTX1BmAjJG3VUIp2osXAhd+TSNliYIRDMIhgbv7u0JQ0264AOp2dQZOj
+ Mo6RcfRGVRcfOcOVOrA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-12_05,2026-01-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0 clxscore=1015
+ bulkscore=0 malwarescore=0 spamscore=0 priorityscore=1501 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601120165
 
-Hi Matthias,
-
-On Mon, Jan 12, 2026 at 03:49:32PM +0100, Matthias Fend wrote:
-> Add YAML device tree binding for Himax HM1246 image sensor.
+On 12/11/2025 7:23 PM, Krzysztof Kozlowski wrote:
+> On 11/12/2025 17:44, Jeff Johnson wrote:
+>> On 12/3/2025 11:11 PM, Miaoqing Pan wrote:
+>>> The firmware-name property was introduced to allow end-users and
+>>> integrators to select usecase specific firmware for the WCN6855.
+>>> However, specifying firmware for an M.2 WLAN module in the Device
+>>> Tree is not appropriate. Instead, this functionality will be handled
+>>> within the ath11k driver.
+>>>
+>>> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+>>> ---
+>>>  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>>> index e34d42a30192..0162e365798b 100644
+>>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>>> @@ -37,6 +37,7 @@ properties:
+>>>  
+>>>    firmware-name:
+>>>      maxItems: 1
+>>> +    deprecated: true
+>>>      description:
+>>>        If present, a board or platform specific string used to lookup
+>>>        usecase-specific firmware files for the device.
+>>
+>> The driver patch completely removes support for this, so is this really
+>> considered deprecated? Or should this actually be considered obsolete and
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> ---
->  .../bindings/media/i2c/himax,hm1246.yaml           | 117 +++++++++++++++++++++
->  MAINTAINERS                                        |   7 ++
->  2 files changed, 124 insertions(+)
+> That's silent ABI break. I will formally NAK the patch.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..deecc1105105a67e81d1ddb7f31324baa8188f88
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2025 Matthias Fend <matthias.fend@emfend.at>
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/himax,hm1246.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax HM1246-AWD 1/3.7-Inch megapixel SoC image sensor
-> +
-> +maintainers:
-> +  - Matthias Fend <matthias.fend@emfend.at>
-> +
-> +description:
-> +  The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
-> +  array size of 1296 x 976. It is programmable through an I2C interface and
-> +  connected via parallel bus.
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: himax,hm1246
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: Input reference clock (6 - 27 MHz)
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: Active low XSHUTDOWN pin
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-> +    description: Power for analog circuit (3.0 - 3.6 V)
-> +
-> +  iovdd-supply:
-> +    description: Power for I/O circuit (1.7 - 3.6 V)
-> +
-> +  dvdd-supply:
-> +    description: Power for digital circuit (1.5 / 1.8 V)
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +    description: Parallel video output port
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          hsync-active:
-> +            default: 1
-> +
-> +          vsync-active:
-> +            default: 1
-> +
-> +          pclk-sample:
-> +            default: 0
-
-I think you should have bus-width here as well -- either make it mandatory
-or add a default.
-
-> +
-> +        required:
-> +          - link-frequencies
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - avdd-supply
-> +  - iovdd-supply
-> +  - dvdd-supply
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        sensor@24 {
-> +            compatible =  "himax,hm1246";
-> +            reg = <0x24>;
-> +
-> +            clocks = <&hm1246_clk>;
-> +
-> +            reset-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
-> +
-> +            avdd-supply = <&hm1246_avdd>;
-> +            iovdd-supply = <&hm1246_iovdd>;
-> +            dvdd-supply = <&hm1246_dvdd>;
-> +
-> +            orientation = <2>;
-> +            rotation = <0>;
-> +
-> +            port {
-> +                endpoint {
-> +                    remote-endpoint = <&isp_par_in>;
-> +                    bus-width = <10>;
-> +                    hsync-active = <1>; /* active high */
-> +                    vsync-active = <1>; /* active high */
-> +                    pclk-sample = <1>; /* sample on rising edge */
-> +                    link-frequencies = /bits/ 64 <42200000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 752ccaea38b0ee74282e06f233463eba122fa92c..c09de45c5260b70af8a524721d4a999a1efa415d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11290,6 +11290,13 @@ L:	linux-kernel@vger.kernel.org
->  S:	Maintained
->  F:	drivers/misc/hisi_hikey_usb.c
->  
-> +HIMAX HM1246 SENSOR DRIVER
-> +M:	Matthias Fend <matthias.fend@emfend.at>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media_tree.git
-
-I think this can be dropped as I understand you don't have commit access.
-
-> +F:	Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
-> +
->  HIMAX HX83112B TOUCHSCREEN SUPPORT
->  M:	Job Noorman <job@noorman.info>
->  L:	linux-input@vger.kernel.org
 > 
+>> completely removed?
+>>
+>> Do any DTS files actually reference this?
+>>
+>> /jeff
+> 
+> 
+> Best regards,
+> Krzysztof
 
--- 
-Kind regards,
+Krzysztof,
+Can you check the v2 to see if you still want to NAK?
 
-Sakari Ailus
+https://msgid.link/20251214025230.716387-3-miaoqing.pan@oss.qualcomm.com
+
+Thanks,
+/jeff
 
