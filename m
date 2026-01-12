@@ -1,160 +1,97 @@
-Return-Path: <devicetree+bounces-254209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2547D15DEA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:48:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F9FFD15E31
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:54:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D09763014110
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:48:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2DB6D301413F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFFB72820C6;
-	Mon, 12 Jan 2026 23:48:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="mJ7zvACA";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="JAgcyPVO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3992D3A93;
+	Mon, 12 Jan 2026 23:54:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from lgeamrelo11.lge.com (lgeamrelo11.lge.com [156.147.23.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70ADA241CB7;
-	Mon, 12 Jan 2026 23:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961A2296BBB
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 23:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.147.23.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768261731; cv=none; b=QD0ua/51AjNUxzd17hSCM7jfUOS+wg37WHtY2VX7JQNLOUvOgRiaYymOmgAAThxqUzGETSRjYHwHrd+U8qWdfGKHmFDu3X8PnmcYwpoXO8bk0Yaz8osuC/STNafL0+hwbW1BAS+v8nes6NB3J/TUksFi15jwcmVLN8Xg4MIQcL0=
+	t=1768262044; cv=none; b=Iok4ozT4kwNH+a9dQj+zpHBOfBDqgX6t8ipLOlL4m5A8UR5EoLxGuHd2UhF6CmJm89X/+PVjEicEEIRLTu0SFzJZlwkX2ZGQxRS0Y1iQMS+dOVnXXdnbkXfu9J+lOYhmDDUzOcAQt+UP2rBdK1EgSU27wYtrCzPyj7FjD6moh20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768261731; c=relaxed/simple;
-	bh=guR1x4pmWGhxAafhSDEMtu2AZcQTLvFYliTeM1igFrI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Jh7WxbFVlhO5Um6Do5IefWAYDaDu/UG35e8JfJtkbMOqn/u9DYHlW3dK0hUZ8eld+skWd6YaoirnJLFUDGFrEbNzALJWayoRCi5uxsyO8fe9v52rTQAF3zGTbgxMVGPFXChYH9TcYAV/Pp8jCapmnudkbZ5UZkX11Bbt2y5KPXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=mJ7zvACA; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=JAgcyPVO; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dqpxD5Pjfz9srT;
-	Tue, 13 Jan 2026 00:48:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768261728;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iM2b5gOUQ7qmIDWC4AJaeVNpSYjr/hygekEC/yksaTg=;
-	b=mJ7zvACAPuS98kMc2hpYBK/8t+96Uy6Td5Bh2bcBQGqn7c8j8MapVn/CGjYufvm+OKB6u+
-	63OEyrZB+/VwpS1sArnQhpeY6AibkaRFjZd8x4+1I8wUt4rQPsvj0RJjMKPOso0cEUM/wy
-	AFD66Yfesmc6/z796zgFXnakLB5cltL6DX8iH/P+kuNz3m8+t0BT9r22Hye9gJ47xeyJEB
-	soRn0gEHjZ63XjADs1r6Jt9FK5mbfnaVuzyDRsl+JVjdfCmaNJT3iqAyRErEN+Wjeljdm3
-	37P0Cm7zBUl+9dvBheKwM+eJ5t1rYuFz/sCb7ubZwcxmkE7H7hoqMW5nxb8qKQ==
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768261726;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iM2b5gOUQ7qmIDWC4AJaeVNpSYjr/hygekEC/yksaTg=;
-	b=JAgcyPVOQh0PHdqbNF/co/ClYMOycDEiFVR/lB1lSQlKePLdrdYrCkM8AsGgr+hdimzSJO
-	EvM3r7AJ71QmiUgCbGO6Juj44MXgSAKrMsW/4g4J9YiDdoSgk8VTwVZjKXbYTaIe233nOi
-	OyKBAJpV1KjBcC1hjxRzXyT8H6jFRn51nFr/pNejHm35bbCyxok6qhZLM5vzybO8SYyYRi
-	6vMK5flU2mpi4z/87HcNQ1t6B7761gq3UXTvJNb0hwJBo3RYBn0Gz6p7Gb2dfGJrk64QDI
-	uyDxYIWxTaMhtESNob3A5QohW4YIpogj6ulPxCh8XUw4heax+qZp8YB7MySd/g==
-To: dri-devel@lists.freedesktop.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
+	s=arc-20240116; t=1768262044; c=relaxed/simple;
+	bh=4oxNUc17aQSZzmiB4Jf4llsqgEjCk64375WkRx0s9oQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vc/x8V/1vw2MMeXhk1fS7Z+i7HqrICVVAQneSA5TerVK9DGwO2MWLFizT6D0PhPG+nRzuG3HqsXInJi72Kwm9r6li0Qg+UDVBrH3zeEBx1BKJXyFMcxznVNeSdMj5hEfs5ILBaeIVGqVw0vuCbL6SvdXBR3kDUHY6r1sT1T/87g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com; spf=pass smtp.mailfrom=lge.com; arc=none smtp.client-ip=156.147.23.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lge.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lge.com
+Received: from unknown (HELO lgemrelse7q.lge.com) (156.147.1.151)
+	by 156.147.23.51 with ESMTP; 13 Jan 2026 08:53:58 +0900
+X-Original-SENDERIP: 156.147.1.151
+X-Original-MAILFROM: chanho.min@lge.com
+Received: from unknown (HELO BRUNHILD) (10.178.31.97)
+	by 156.147.1.151 with ESMTP; 13 Jan 2026 08:53:58 +0900
+X-Original-SENDERIP: 10.178.31.97
+X-Original-MAILFROM: chanho.min@lge.com
+Date: Tue, 13 Jan 2026 08:53:58 +0900
+From: Chanho Min <chanho.min@lge.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Joseph Guo <qijian.guo@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 2/2] drm/bridge: waveshare-dsi: Add support for 1..4 DSI data lanes
-Date: Tue, 13 Jan 2026 00:47:39 +0100
-Message-ID: <20260112234834.226128-2-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260112234834.226128-1-marek.vasut+renesas@mailbox.org>
-References: <20260112234834.226128-1-marek.vasut+renesas@mailbox.org>
+	Kever Yang <kever.yang@rock-chips.com>,
+	Kael D'Alcamo <dev@kael-k.io>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2 v3] dt-bindings: arm: lg: Add compatible for LG1215
+ SoC and reference board
+Message-ID: <aWWJlkzlb6rHbKTF@BRUNHILD>
+References: <20260112053421.3185738-1-chanho.min@lge.com>
+ <20260112053421.3185738-2-chanho.min@lge.com>
+ <20260112-agile-elite-tuatara-dea08d@quoll>
+ <aWTWwLsm+ZoR0aW/@BRUNHILD>
+ <8d9b4ca4-5db5-49f0-8178-b528f9cf2eb3@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: f9bd0521b2c6d8e43f1
-X-MBO-RS-META: ku7re1uxjpbu3y6fiowt6k9aeoa54y8d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8d9b4ca4-5db5-49f0-8178-b528f9cf2eb3@kernel.org>
 
-Parse the data lane count out of DT. Limit the supported data lanes
-to 1..4 which is the maximum available DSI pairs on the connector of
-any known panels which may use this bridge. Internally, this bridge
-is an ChipOne ICN6211 which loads its register configuration from a
-dedicated storage and its I2C does not seem to be accessible. The
-ICN6211 also supports up to 4 DSI lanes, so this is a hard limit.
+On Mon, Jan 12, 2026 at 05:31:26PM +0100, Krzysztof Kozlowski wrote:
+> On 12/01/2026 12:10, Chanho Min wrote:
+> > On Mon, Jan 12, 2026 at 10:07:05AM +0100, Krzysztof Kozlowski wrote:
+> >> On Mon, Jan 12, 2026 at 02:34:20PM +0900, Chanho Min wrote:
+> >>> --- a/Documentation/devicetree/bindings/arm/lge.yaml
+> >>> +++ b/Documentation/devicetree/bindings/arm/lge.yaml
+> >>> @@ -24,5 +24,10 @@ properties:
+> >>>            - const: lge,lg1313-ref
+> >>>            - const: lge,lg1313
+> >>>  
+> >>> +      - description: Boards with LG1215 SoC
+> >>
+> >> 1215 < 1313, so this looks oddly sorted.
+> > 
+> > Agreed, the order looks odd numerically.  
+> > But it's intentional to reflect release order (LG131x earlier).
+> > 
+> 
+> Then you have to remember and enforce the sorting rule here, because I
+> won't be able.
 
-To avoid any breakage on old DTs where the parsing of data lanes from
-DT may fail, fall back to the original hard-coded value of 2 lanes and
-warn user.
+Understood!
 
-The lane configuration is preconfigured in the bridge for each of the
-WaveShare panels. The 13.3" DSI panel works with 4-lane configuration,
-others seem to use 2-lane configuration. This is a hardware property,
-so the actual count should come from DT.
-
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Joseph Guo <qijian.guo@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- drivers/gpu/drm/bridge/waveshare-dsi.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/bridge/waveshare-dsi.c b/drivers/gpu/drm/bridge/waveshare-dsi.c
-index 9254446f54958..7fcb878f37e2b 100644
---- a/drivers/gpu/drm/bridge/waveshare-dsi.c
-+++ b/drivers/gpu/drm/bridge/waveshare-dsi.c
-@@ -66,7 +66,11 @@ static int ws_bridge_attach_dsi(struct ws_bridge *ws)
- 	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_MODE_VIDEO |
- 			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
- 	dsi->format = MIPI_DSI_FMT_RGB888;
--	dsi->lanes = 2;
-+	dsi->lanes = drm_of_get_data_lanes_count_ep(dev->of_node, 0, 0, 1, 4);
-+	if (dsi->lanes < 0) {
-+		dev_warn(dev, "Invalid DSI lane count %d, falling back to 2 lanes\n", dsi->lanes);
-+		dsi->lanes = 2;	/* Old DT backward compatibility */
-+	}
- 
- 	ret = devm_mipi_dsi_attach(dev, dsi);
- 	if (ret < 0)
--- 
-2.51.0
-
+Thanks,
+Chanho
+> 
+> Best regards,
+> Krzysztof
 
