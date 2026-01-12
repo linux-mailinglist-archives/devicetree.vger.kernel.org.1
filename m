@@ -1,137 +1,198 @@
-Return-Path: <devicetree+bounces-254123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09295D145CC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:29:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 249B8D145D8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:29:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 238C4303ADF0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:22:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8D2A33020CC0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:24:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8A637997F;
-	Mon, 12 Jan 2026 17:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE8737B413;
+	Mon, 12 Jan 2026 17:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MhfGDDRd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dUOBF+Hv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DF2379982
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE8937B3E7
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 17:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768238561; cv=none; b=CEnQqESqKOeY5YUS+SH6oocJXvgb7sS4DEUryQESQFC0HxcNVCnOERPJwkKz4tDSbcwrwpNQLgLp2KSK+tbUBPX10MoZUFqcbfM2bDyvr17rHEbFJ1tbbojg5RvKFtkwaFR4mC8+OZwcuwitObIz6hAocpjmXtz+1PqXld68/JM=
+	t=1768238655; cv=none; b=nQ95D3r/cMKwJzYCKDSuhKnb6aa7QVhyKCQNM1s4euroTODgbq9ukVlQJt95TRJSYIU5oPEgDo3fO3BbMtDhJTcSbYqPzCa47bhDJrRTq2gFHgS3WT3s6aDZMQ8vCtsu6IwT5WBxyrs81+jBIPubOWIpqDWeOSfHb+1Ry6qqlnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768238561; c=relaxed/simple;
-	bh=fx7f5gmSSFswdPvJeifq7ynDjzUV9iVZu+1agK7gRrs=;
+	s=arc-20240116; t=1768238655; c=relaxed/simple;
+	bh=JEUShUcBn6WVVCyv1/izNcZLY2tqPOkmYnvqIuBZXKo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mz7YeJjXS/vVPH2Pm3lRU0Rv43tNqNjt4pbmawViU0B/EiV91a1ueUUN4EB8dQSsQ8qSc6BtIxz6bduV+6k84B13Pe957gHnborQ6pPDWY5NRTRvP2c15PSQZt/TcGLque2Dcf5R9M/rl5KOjWqOc0AAB6Y4HCgdeVkmFiME/bM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MhfGDDRd; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-430f3ef2d37so5704963f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:22:39 -0800 (PST)
+	 To:Cc:Content-Type; b=Nc2+TFUnuc5wmN0r3ZW9zyx48aMmnIhq6T9bNfuY7sSizIzsFBS8R+XMGcqcNspanbkBp9aaTeW36joy6CsnSMCb5n8RzqB4RMyqUY/fmVhk8WNXEBmQ8FE3J/d2ewnsxUNYjt7YFJkfSNDSN3hKzKxkKitMz5yvvfZgcFZfMBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dUOBF+Hv; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-38316d0c26eso34314241fa.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 09:24:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768238558; x=1768843358; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1768238651; x=1768843451; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XoIbqIePTgpLSL+UJuksj1YbjxdBor7s2BPUSHPW4i8=;
-        b=MhfGDDRd/LwYXErNq3CRw4v75O2GtYdikijcLCzjdnXQbye5MOWDKOLlzPAvrTxDsH
-         HmgcdcKtqGjIb5Ttvub6lCaX7LNO0bFltrDZhCUNRD2o9pMpuBd06P/tjHsRcrwn43Hj
-         dRlCNgbd/kmKpVgyVqBP3eDwevnILt6qyajGtm48P+yvzpJA3VG68gf7zePmFfhyG3IV
-         3w2TUsthB66C6zrOLfJp8JDshrPUM0tB8SmE9lN1UnUYiur7bWPZ7iO0mz/VLaQndU1V
-         atMIgh1ZbHksBEVGETmFkpFN8E5mM5r9AwgqKE/gypB5GQz13qiLhAp1boIf5/CiO1sa
-         tGCw==
+        bh=paTthnqDXOZr7d/25HaUzXH+xhp3M/b/nGQdFVCn7j0=;
+        b=dUOBF+HvOegu6DOujijSGEGpvnFDvUQPMe4Md06S5QPz43OE5cVc56tgwss7E8vc/b
+         8L8T2hAem95D93RVdByzNHlJlSZixzOEXfXUngpxE1pVglXxb5j3IcttWZTyfH8sV/FP
+         5qawQOCkT4HFN/Bopz4gGkiipg2KCT4ZxAuobqajnFW6WBDsEyDI3Bxim3648D6zNJpV
+         UQfG+vvF9oqwiPCaT+7hOJZw4i+lGwybb6j+JV88lKzmEfMN20u/83ClJ8zoE2ev44tV
+         zW8JQ2SRkTG+yK+mkPSYkUg5R/nVNKAbzmZHT+iBuRBuIQy2u9d/b0LbtPI43b5Qubh0
+         fshQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768238558; x=1768843358;
+        d=1e100.net; s=20230601; t=1768238651; x=1768843451;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=XoIbqIePTgpLSL+UJuksj1YbjxdBor7s2BPUSHPW4i8=;
-        b=HY8KY4SI0kJLmJGrhkYsALIX594YL0kYlsVZx4bkgPCoZ18gyQUQcrh2rbHZ77n5Cs
-         YFDfbXkt3Ayh/QtwvtnfQtME/vCmDUHeKp/2SbxUxir0YHyc+T7FaPO1GAnJXQ6bhhsu
-         DwypmnBZsffJpoTWpGhaUWnu10QNVAPDjdPFrNSmeMV2GxocfrazeoeEJqJDkSKDG6Fe
-         JdWH5+cbJd9FoPwtuoJykfkfH3bA4W+Yq925RGrdcbbDDgHRVpecneVANkBYDZQhljHN
-         GPkHmOnDeRdaHwxty+hH/+k9lBfG08k4lWiKvq3QzMoUGqUpuSuY3ULMbTGyHV6Ar+OV
-         t15g==
-X-Forwarded-Encrypted: i=1; AJvYcCX57o72Zoy27I85ytC8wg0YwWMrjU/Ec+02IOet3/WFo3PshFq/+049u8DsCkqmbf64Edk3jfHE7aj6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7YvX+rz2Ff1v0ftvCDPx9rnBwsVN4si1Xgb8XAtnN2J0+AzUc
-	dXjJffjlJe5N+H+B7wEhJMQ0eJkbAst6V70kg/PoRn2Ls8T+P7ybo0u062NsTd0ZV+9NFCTQwJP
-	INQwamAfm4VmytbBgxOMTfGRnFMruKy4=
-X-Gm-Gg: AY/fxX46cbVecSlSH3c4W15pKJrYyBMlfUzwQ/B26bl75Gx1o5bqy2EunRACZYgbLNx
-	MEyJeyDkSxNHNoenYbg1tjJ5FjWFihVVINw7lotB1h29Nms3VqqJI1DEvB9r0OBmG2Md0c3yCI6
-	1B95ewGoaPHyNQUpdZBdmvRxyMJ0S76nddgtj5wRzPl8FbMTNjwuubuQrhuj92in3jTkHjxojVC
-	0uBD/i8lq89qEQdXqJHrJIHZN4/rMulYeWXJl+PdUb1JxTkEL+Z3kMjZDoi6CetDBRNgv04P8f5
-	ws+j/JFbxk0rg1hl7ukYdE8ythkMxeGcDH5kV3PZLAc0WObTE6y0WLM=
-X-Google-Smtp-Source: AGHT+IG/ubWG6WT8UaNamVE9wwO9Y/Hw5RZXTRbAXjYODB9xkPQrnY+3FbRELxIqmo/4LwdPCkLYYFvvXzvI19vTsYQ=
-X-Received: by 2002:a05:6000:2912:b0:433:2f55:7cab with SMTP id
- ffacd0b85a97d-4332f557ccdmr3324827f8f.37.1768238558343; Mon, 12 Jan 2026
- 09:22:38 -0800 (PST)
+        bh=paTthnqDXOZr7d/25HaUzXH+xhp3M/b/nGQdFVCn7j0=;
+        b=GRlc2iQcjdABseU1wiRRT6fj2r4cVXIRm3xQkuovQwKqpLaoxcRT2VqbPHEtjjCfkh
+         eBsVbGTqS6TpLPSxM+EYdMEhQg7c3Uo4Ei3h4iK2YZxve277hOqMZjGRJQsqmhluufEZ
+         ZiY7RHz/bYLgQ2s4DPOgvh7H01wpPNCznw8fVxNZ+HMa12dUtv2DQkNfgKSMGz2I3zai
+         WswlzXiATCzrQ3ZOeJ2q/0zKK5GVMvNQVxvxtqEwvvEq5oP0V8yP23H7jDNzYoabJ3d9
+         RMk7LDd/cbYbQ/yHtLTttRb5X1/9kBFdARUfVsLph0w8AjF4lnfKyVIcIFeDPledwbRp
+         VvZg==
+X-Forwarded-Encrypted: i=1; AJvYcCXzJLE6XjH4GLY9ogdGE9xicj//ZM8gTMXjtEU9a/MeMFOpC7NOzle8GHf28md9m2W0Y0vE3RYOIeu4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzinDpCqrLQ96yQeFzvPfkmr47fHHnBjMsFO49rOnSal8okWRdF
+	lmUfyyijyvRcVKh23eW/n6BkHAIoAjKDrhZze9aUmDmR5cRBK7VRwJQil43o2rCV2tMQKpsDg18
+	F2v/J1qwoLsZgnPY7zFl2uHH4LVafJS5rDv9Izo3P6FB5rr+a3X3r
+X-Gm-Gg: AY/fxX5dz3f0x7oM52yhxDGIFKAEhgfvkr+w3ytKfoet90ei7vHx3VXmRqUlndBN2TE
+	SzFnCGt5UkWIwLC2Jk/FANlHxYO85Y4kzPEg1k/YwkoabWDWl1lAJx30Bt3+uf35yDFD/w//a3u
+	Gl3EyIr7Rz8dQTw7XzTdfPfmXSgXuQOXSsMblNOOkHnos+RwYBpte4rPgORevqGitmmkualNcT+
+	R3Zbxtq9Wme28SkjfWKDE9odIDx1UQ/eWeJROsorqogpJMzjpZMlhL1HyjRnegf1xgVY82W
+X-Google-Smtp-Source: AGHT+IEviiqE2SlQm6eemgttI8MVkNfaOt6WGDe20ZhviMpdVwklyiWV5N+bno3nacD2dlPGOaJ0qmPzOJFZ2N7sXEI=
+X-Received: by 2002:a2e:a812:0:b0:383:19ea:6a33 with SMTP id
+ 38308e7fff4ca-38319ea6fecmr36543881fa.15.1768238651260; Mon, 12 Jan 2026
+ 09:24:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260109125128.2474156-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260109125128.2474156-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260111-poetic-dark-butterfly-97993f@quoll> <CA+V-a8un48Gfqg-K6YToxUgnZawOcb-nQHsBcOfHdpAR7_Uu4Q@mail.gmail.com>
- <dd053cff-af8f-4378-9550-9f99f91cea20@kernel.org>
-In-Reply-To: <dd053cff-af8f-4378-9550-9f99f91cea20@kernel.org>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 12 Jan 2026 17:22:12 +0000
-X-Gm-Features: AZwV_QheTCZD0kXACD-Cz1Ovwf3K6_ymWIYncKkzsX5Y79IsYicxyLq7YTcbuwA
-Message-ID: <CA+V-a8tZAUoPxp7NanALW5HmVLMQAprcDXPME5povLT6nH6bTw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: can: renesas,rcar-canfd: Document
- RZ/T2H and RZ/N2H SoCs
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260110-mmc-pwrseq-v1-1-73de9d6456f4@valla.it> <CACRMN=d8YX1LG4NSPnNXGnU2u-Ej7wsTom_DpVrD4T_byRE2CQ@mail.gmail.com>
+In-Reply-To: <CACRMN=d8YX1LG4NSPnNXGnU2u-Ej7wsTom_DpVrD4T_byRE2CQ@mail.gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 12 Jan 2026 18:23:35 +0100
+X-Gm-Features: AZwV_QilpAjI0AMTTaytJBNTqzjACUviJaFVXH3fFF6FekA5ZD2r02SbeNMcupw
+Message-ID: <CAPDyKFqZsSi54FtYQR+vmjjUVmFPftipPdpUpDhCmEkTPiRH2w@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Add support for "mmc-pwrseq"
+To: Sarav K <sarav.devel@gmail.com>, Francesco Valla <francesco@valla.it>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
-
-On Mon, Jan 12, 2026 at 4:30=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
+On Mon, 12 Jan 2026 at 03:19, Sarav K <sarav.devel@gmail.com> wrote:
 >
-> On 12/01/2026 15:04, Lad, Prabhakar wrote:
-> >   - if:
-> >       properties:
-> >         compatible:
-> >           contains:
-> >             # SoCs WITH resets but WITHOUT reset-names
-> >             enum:
-> >               - renesas,rcar-gen3-canfd
-> >               - renesas,rcar-gen4-canfd
-> >     then:
-> >       required:
-> >         - resets
-> >       properties:
-> >         reset-names: false
+> On Sat, Jan 10, 2026 at 7:28=E2=80=AFAM Francesco Valla <francesco@valla.=
+it> wrote:
 > >
->
-> Yes, although now I wonder why do you have such case... There are no
-> benefits in disallowing reset-names, even for single entries.
->
-Ok, I will update the resets property in patch 1/4 as below. Would you
-prefer reset-names as a required property for single resets?
+> > Add support for parsing MMC power sequencing (pwrseq) binding so that
+> > fw_devlink can enforce the dependency.
+> >
+> > Signed-off-by: Francesco Valla <francesco@valla.it>
+> > ---
+> > Resending this patch as it slipped through the cracks (of my attention,
+> > at least).
+> >
+> > Original submission is at [0]; there it appears as a v2 because it was
+> > the first time I used b4. It was also part of [1], which wasn't really
+> > a patchset but a follow-up to the boot time SIG meeting.
+> >
+> > I added Ulf and CC'd the mmc list, hoping they can (more
+> > authoritatively than me) reply to Saravan's question:
+> >
+> > """
+> > I took a quick look at the documentation. It's not clear to me that
+> > mmc-pwrseq always points to a supplier. Can someone with more
+> > experience on this confirm that is what it's supposed to point at?
 
-  reset-names:
-    minItems: 1
-    maxItems: 2
-    items:
-      enum:
-        - rstp_n
-        - rstc_n
+Yes, the mmc-pwrseq property provides a phandle to the supplier.
 
-Cheers,
-Prabhakar
+> >
+> > Meaning if A lists B as pwrseq, is it always the case that B needs to
+> > be powered on? The binding documentation doesn't say anything about B
+> > needs to be powered on first. It's just saying A and B have an
+> > ordering requirement.
+
+I assume with "powered on" you mean "probed". In that case, yes, A
+(consumer) can't probe unless B (provider) has probed first.
+
+Up until now, we have relied on deferred probing to manage this.
+
+> >
+> > If the meaning of the binding is _ALWAYS_ B needs to be powered on
+> > first, then yes, this patch is correct and I can give a reviewed-by.
+> > """
+>
+> Ulf, in case you missed it, this email is directed at you or other MMC fo=
+lks.
+>
+> Francesco, can you see who added support for that property and direct
+> your question specifically to them (in case it's not Ulf)?
+>
+> Is this fixing a specific issue for you that's pressing? If so, we can
+> land  this and then see if anyone complains.
+
+Thanks for pinging me about this. Please let me know if there is
+anything unclear.
+
+>
+> Thanks,
+> Saravana
+>
+> >
+> > [0] https://lore.kernel.org/all/20250930-mmc_pwrseq-v2-1-80a8c6be0fb0@v=
+alla.it/
+> > [1] https://lore.kernel.org/linux-embedded/20251126-beagleplay-probes-v=
+1-0-c833defd4c9b@valla.it/T/
+> >
+> > Thank you!
+> >
+> > Regards,
+> > Francesco
+> > ---
+> >  drivers/of/property.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index 4e3524227720a596b0f12976f83357851e9b94f3..05ae33a58b5aec0a8f4d3b7=
+237ce88066d86dc9d 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1410,6 +1410,7 @@ DEFINE_SIMPLE_PROP(post_init_providers, "post-ini=
+t-providers", NULL)
+> >  DEFINE_SIMPLE_PROP(access_controllers, "access-controllers", "#access-=
+controller-cells")
+> >  DEFINE_SIMPLE_PROP(pses, "pses", "#pse-cells")
+> >  DEFINE_SIMPLE_PROP(power_supplies, "power-supplies", NULL)
+> > +DEFINE_SIMPLE_PROP(mmc_pwrseq, "mmc-pwrseq", NULL)
+> >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+> >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> >
+> > @@ -1557,6 +1558,7 @@ static const struct supplier_bindings of_supplier=
+_bindings[] =3D {
+> >         { .parse_prop =3D parse_msi_parent, },
+> >         { .parse_prop =3D parse_pses, },
+> >         { .parse_prop =3D parse_power_supplies, },
+> > +       { .parse_prop =3D parse_mmc_pwrseq, },
+> >         { .parse_prop =3D parse_gpio_compat, },
+> >         { .parse_prop =3D parse_interrupts, },
+> >         { .parse_prop =3D parse_interrupt_map, },
+> >
+> > ---
+> > base-commit: b6151c4e60e5f695fac8b5c3e011cfcfd6e27cba
+> > change-id: 20260110-mmc-pwrseq-e885e677ca2b
+> >
+> > Best regards,
+> > --
+> > Francesco Valla <francesco@valla.it>
+> >
+
+Kind regards
+Uffe
 
