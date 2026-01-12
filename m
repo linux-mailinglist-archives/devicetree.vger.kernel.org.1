@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-253729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E810BD10E37
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:33:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35592D10E2B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CDD5430D283E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:32:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2D1853002505
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:33:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525C83321B0;
-	Mon, 12 Jan 2026 07:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EADCB331A5D;
+	Mon, 12 Jan 2026 07:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N+AGYuHi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TYTEdSE5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7F6330B2B;
-	Mon, 12 Jan 2026 07:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C481C330B0E;
+	Mon, 12 Jan 2026 07:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768203128; cv=none; b=tu+fNzWwPEBj23FBWnXfw5UgM10s5tYxfg68An/pr5c30/rxHT8h76b5CmNzAuuaXY0r2hUHIiXksRRA8Gkmnuy9oYZX2kkOlDjueiKd7+IwLfwoLYFBkcHDJPGsvMvfXlmqxFt9G0Jrjy5AnOJ4a18w6yc85B75npS8UkdU2wk=
+	t=1768203184; cv=none; b=E7aT6cMxjgyISOJ1aZgIbT3vozN2nvBeYs6Y6arS8vqhHUk9u9diYUoC1uwuNzTP/zGCGoAsO4Da4ru3IBF/R8Au72bK/FHE6SK7Vcafhcy3DXpM9JP5iCU85oBz19f5XgKw/S8TKaY2kvPL71BYEw7k7ehEg57rBB75TM/HcYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768203128; c=relaxed/simple;
-	bh=x9zUZcTbJ63fS+4P9YOXAvKk0aAAogf1Y9hTZ8aFPxE=;
+	s=arc-20240116; t=1768203184; c=relaxed/simple;
+	bh=KdRXhfGl56K1YQnkAzeYiX2UFWqFdyLMMf/xAfsazgs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NRjmTdTy4dAvfN4wEgnyt5s6gXUeaWcMvp7KYSffGhGAZHWL3k7Yqk/qLBoOBSXBzOM52xU97hCBtPWbwb/LWOi3lMmyILMX1je440yZbRnIElOMwWB8/WlHlCdVhlxP/fjQHXrj7dw2h5Vq0ASe80kRfHEGaEPOZEhLVXR8qHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+AGYuHi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F22C116D0;
-	Mon, 12 Jan 2026 07:32:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gOfbOiOW4S8JH0Q93ClCgw3ujtpUjptiG9G1BWJSKo4UtnzcB/IWFv3jwk9DDtfv/9gMY3ZgQ3ARtgtMqi6MAuuwBazKxjSSFn0gRK+mVMY2q8rgmwO0mHY+vqGV/uZqUwbjKZ5hnJgZKtZpTHhOKh6lHlklDpn3OdCB80X5WME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TYTEdSE5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 488DBC116D0;
+	Mon, 12 Jan 2026 07:33:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768203127;
-	bh=x9zUZcTbJ63fS+4P9YOXAvKk0aAAogf1Y9hTZ8aFPxE=;
+	s=k20201202; t=1768203184;
+	bh=KdRXhfGl56K1YQnkAzeYiX2UFWqFdyLMMf/xAfsazgs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N+AGYuHi0yU4tlRHAlboUD7yJLGpn2/bO7n4v8xeDMRmm7oTT+81o/Toulh5zux5M
-	 LEMvQLpBvYLfJ9dPMjKCapJALqQxaZSkj8FKWU3iznQ+C3mBw4SjEfqv17++V+SivI
-	 G2wcDD1NUuxyhBpLIXo/lT+x7Ms/t6Plb9rYWSjsP6SMoLidibLHBQjFxplrOlpZF9
-	 MmeGx3izEy6wvW2/tBEInZv909T/gfh7hXcE4Yww/1i8Shr0DlJZlv84a6uHUc1uWV
-	 qEKCTgkazAuZjMICBZxhEsPUcGlxRPGC6HRMzakkhxNYq84Uoxl0ks7P+gtrz37Zs3
-	 Bpoc0QwuYGJ1g==
-Message-ID: <a0199465-b488-4afe-8a42-4a082a780ed4@kernel.org>
-Date: Mon, 12 Jan 2026 08:32:03 +0100
+	b=TYTEdSE5ONs10N1xaPrLoOvFhlajmZC79SjRE83TF7XfFJULFahdt0TuhRjcfaXO+
+	 HpZHPUNqMueI5PPPYmTBezPxDhEKBC+5QpOqWz1GndAFtPwUG61jMWHR568SNtPn3I
+	 TPuMcCVFlklcHwxykFQsAYaBil2g5ivBrZcQGD34OPCS/m8NrBFnXDm3SpSjKZAcWW
+	 dCZxagfOgWdeOoP0mUfbuiyBROVs2ixnjVYecK/7lSZWNBnI/nGrv1M7KDnczx0dF1
+	 20IpcW4Nf/lDZvoVkRh57gHFU3C+i7j4Ti6lpL/57yB1ml9uz6/lyf497/pkYvuTjW
+	 xCfBPr4Tg3N4w==
+Message-ID: <e5d1d9ce-0268-4b1b-9ce9-2b871926acbf@kernel.org>
+Date: Mon, 12 Jan 2026 08:32:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,17 +48,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/6] dt-bindings: gpio-mmio: Add opencores GPIO
-To: Stafford Horne <shorne@gmail.com>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Linux OpenRISC <linux-openrisc@vger.kernel.org>,
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260109134409.2153333-1-shorne@gmail.com>
- <20260109134409.2153333-3-shorne@gmail.com>
- <20260111-amorphous-cow-of-stamina-6f2720@quoll> <aWPRHHhdjGE2f8aT@antec>
+Subject: Re: [PATCH v3 1/3] dt-bindings: crypto: eip93: add clock gate and
+ reset line
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: benjamin.larsson@genexis.eu, chester.a.unal@arinc9.com,
+ davem@davemloft.net, angelogioacchino.delregno@collabora.com,
+ ansuelsmth@gmail.com, conor+dt@kernel.org, herbert@gondor.apana.org.au,
+ krzk+dt@kernel.org, matthias.bgg@gmail.com, robh@kernel.org,
+ sergio.paracuellos@gmail.com, tsbogend@alpha.franken.de,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org
+References: <20260102155341.3682013-1-olek2@wp.pl>
+ <20260103-sweet-micro-manul-12eaee@quoll>
+ <d7ab5be3-8502-407c-baf6-714ac3a89cb7@wp.pl>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,45 +107,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aWPRHHhdjGE2f8aT@antec>
+In-Reply-To: <d7ab5be3-8502-407c-baf6-714ac3a89cb7@wp.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/01/2026 17:34, Stafford Horne wrote:
-> On Sun, Jan 11, 2026 at 11:20:38AM +0100, Krzysztof Kozlowski wrote:
->> On Fri, Jan 09, 2026 at 01:43:53PM +0000, Stafford Horne wrote:
->>> Add a device tree binding for the opencores GPIO controller.
->>>
->>> On FPGA Development boards with GPIOs the OpenRISC architecture uses the
->>> opencores gpio verilog rtl which is compatible with the MMIO GPIO driver.
->>>
->>> Link: https://opencores.org/projects/gpio
->>> Signed-off-by: Stafford Horne <shorne@gmail.com>
->>> ---
->>> Since v2:
->>>  - Fixup patch to simply add opencores,gpio and add an example.
->>> Since v1:
->>>  - Fix schema to actually match the example.
->>>
->>>  Documentation/devicetree/bindings/gpio/gpio-mmio.yaml | 9 +++++++++
->>>  1 file changed, 9 insertions(+)
->>
->> This does not even apply now. Your previous version was applied almost
->> one month before and you WERE notified about it.
->>
->> Why did you ignore Bartosz's reply?
-> 
+On 11/01/2026 14:36, Aleksander Jan Bajkowski wrote:
 > Hi Krzysztof,
 > 
-> Sorry for the confusion, we discussed [1] this patch in the last Series with Geert
-> and Linus W. We decided to Fixup (replace) the original patch with this and a
-> patch to the GPIO MMIO driver instead.  I pointed it out in the cover letter but
-> it may have not been clear.
-> 
-> I will reply to Bartosz's original mail too so he can understand the intent.
+> On 1/3/26 15:11, Krzysztof Kozlowski wrote:
+>> On Fri, Jan 02, 2026 at 04:47:33PM +0100, Aleksander Jan Bajkowski wrote:
+>>> Add the clock gate and reset line, both of which are available
+>>> on the Airoha AN7581.
+>>>
+>>> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+>>> ---
+>>> v3:
+>>> - introduce patch
+>>> ---
+>>>   .../crypto/inside-secure,safexcel-eip93.yaml       | 14 ++++++++++++++
+>>>   1 file changed, 14 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+>>> index 997bf9717f9e..c6c99c08dc68 100644
+>>> --- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+>>> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+>>> @@ -48,20 +48,34 @@ properties:
+>>>     interrupts:
+>>>       maxItems: 1
+>>>   
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  resets:
+>>> +    maxItems: 1
+>>> +
+>>>   required:
+>>>     - compatible
+>>>     - reg
+>>>     - interrupts
+>>> +  - clocks
+>>> +  - resets
+>> That's ABI break without explanation in the commit msg.
+>>
+> I think that the reset line and clock gate are available on all SoCs
+> with this IP Core. Should the reset line and clock gate only be
 
-But you did not send any fixup, anything which would change what was
-applied almost one month ago!
+Not related. I did not say that hardware has or has not. I speak about
+ABI, so the interface.
+
+> required for newly added SoCs, and remain optional for existing ones?
 
 Best regards,
 Krzysztof
