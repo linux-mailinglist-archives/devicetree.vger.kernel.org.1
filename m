@@ -1,95 +1,86 @@
-Return-Path: <devicetree+bounces-253955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B92CD12FE8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:06:18 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E594D13054
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:11:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3C1A9300854F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:06:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 268F53001FE4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A0932A3F5;
-	Mon, 12 Jan 2026 14:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D4F35292E;
+	Mon, 12 Jan 2026 14:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dO8zo0Mf"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="WO9meBC6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36BB327E06C;
-	Mon, 12 Jan 2026 14:06:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04EF1D555;
+	Mon, 12 Jan 2026 14:11:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768226774; cv=none; b=GO4poEiNRoSIWiE6KUszhF02sShzjWxtcZ1CTbA8Ybv2rPT2/tO2kInEDmCouTxkD1DXU68V+7pmK6DIZSRKz21Ad9UwD7YD7Oh1hUfR3xoybgwPSDMLdtf/jJcL6Q1htRQOd1n5HBV1K7h4tM5woP3GzR5MxwXZ3nTjSmNKxmg=
+	t=1768227088; cv=none; b=a/b++PN/wMD7rGjG87limPbjsLWR0iWbwTFgOHy5qd2a1sgXgL2kRovzOLsjuEga+HgCmbC0NLhu/U5MvIlGniaiRdFkovH+x4xr4m5RV13m9e9UvVfEiSe0Qtr1F52MRBq5v7EeW3ABZsXd0/Gyq4P25Jn7nUwzXqORk2DgW1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768226774; c=relaxed/simple;
-	bh=rsyIsgBkGIjphgcCMskKizrQMVbuRwnXGKfAose0lAs=;
+	s=arc-20240116; t=1768227088; c=relaxed/simple;
+	bh=7lrWSdDUtbzutpJ8Bd+iY4IwWHoB70kZ4hUO7fm6+20=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f9S3oklb/6d+19o68vcngxvII8KgqbgtmW+UbCM3JAgK7zz2qg95Ptour3iEGuFHa9gEEx6AxzVXpdlzCUugHDlbNaV5hed6p+lXJhi+TH5BVJ7aTWgEmNpxnUdSI4O/qwX92ouZhqXmL4kCCNJ+RTsB7XGuDaN31vyzyE0TaEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dO8zo0Mf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 880BAC16AAE;
-	Mon, 12 Jan 2026 14:06:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768226773;
-	bh=rsyIsgBkGIjphgcCMskKizrQMVbuRwnXGKfAose0lAs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dO8zo0MfJUeu+esVfJmzLFj/hOY6pZHBE48DHbyIQRhJKLE+8Ft2+eOUUzftvviFc
-	 p4TPTuzTAiu1iMtHsY1JREqWmGJ+uWPaMcOAm+fGz2RUhnQW78PJAkeGe7mPqiBXII
-	 hzxIa+6nHGaKvXJdE+mI/b9izlqB5vV6GFclPn/Bkd+FviP3e+JiPbDH/W93s+ANgC
-	 E3/3J49y0bvE+kyWcm6+hztARA6/IGn1lbfq0GJfmszouQpF2Zpo8mzkaUQfxeOGaz
-	 hiTPoS9hhPJdxU68U2WRV9mtX26B55TrF1cpoScrju4ESMzdT71FkQ4gdAlLfcXPjO
-	 wIMBOI2ToUNEg==
-Date: Mon, 12 Jan 2026 14:06:08 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Joseph Chen <chenjh@rock-chips.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ssCaPDCH2hUTYm6k59my2A1SroEr63QH9fHV6pVXvh+A0o/8lwY+oZJxycxe+KyQNvRgnQQkEdsFI11sXichtAbpFsPzzvrKNKbe44jdhk8J7vFwL/5CRfzSr0y7ACpSKgqIoNyNT7KwZaibozPEeYyBA8wAzKuxubdkS2+oBTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=WO9meBC6; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=cPfe4+F1jIR6NngD7tHxvuqFjI5b1NGNvcVIx0XSAp0=; b=WO9meBC6JFVYzT9n+3xSr0vVLT
+	zxcw1xSA/aMOBUhxNeM8GjHtiNSaNVSX0rpDYdJMmqBMI0BTS91OZb+2lWuHStidjEEgbkTIMA3qQ
+	hmAmx3UgHROZE/SbnGgy995EQ1RlxddrCDCWonGcHwpe0LDIObLo+KpPtSrdIEGyKbGE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vfIdb-002UCA-HD; Mon, 12 Jan 2026 15:11:19 +0100
+Date: Mon, 12 Jan 2026 15:11:19 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 3/3] regulator: rk808: Add RK801 support
-Message-ID: <affddac9-813f-4835-a8b9-e3bab520987c@sirena.org.uk>
-References: <20260112124351.17707-1-chenjh@rock-chips.com>
- <20260112124351.17707-4-chenjh@rock-chips.com>
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next 2/2] net: airoha: npu: Add the capability to
+ read firmware names from dts
+Message-ID: <81f98b9a-3905-4bd9-80ee-348facefeab9@lunn.ch>
+References: <20260112-airoha-npu-firmware-name-v1-0-d0b148b6710f@kernel.org>
+ <20260112-airoha-npu-firmware-name-v1-2-d0b148b6710f@kernel.org>
+ <f57867a0-a57d-4572-b0ed-b2adb41d9689@lunn.ch>
+ <aWT4vcBzG6UnaqOF@lore-desk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8DIUkVIkcTq+IojV"
-Content-Disposition: inline
-In-Reply-To: <20260112124351.17707-4-chenjh@rock-chips.com>
-X-Cookie: Surprise due today.  Also the rent.
-
-
---8DIUkVIkcTq+IojV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <aWT4vcBzG6UnaqOF@lore-desk>
 
-On Mon, Jan 12, 2026 at 08:43:51PM +0800, Joseph Chen wrote:
+> > Why cannot this scheme be extended with another compatible?
+> 
+> yes, that is another possibility I was thinking of but then I found
+> "firwmare-name" property was quite a common approach.
+> Something like:
 
-> Add support for rk801 to the existing rk808 regulator driver.
-> It provides 4 BUCK, 2 LDO and 1 SWITCH.
+Having two different ways of doing the same thing in one driver just
+add unneeded complexity. Please just key of the compatible like all
+other devices this driver supports.
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
+    Andrew
 
---8DIUkVIkcTq+IojV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlk/9AACgkQJNaLcl1U
-h9BQFwf/cqOmYM+t/IYJjfuTxz15Dllx6K8nDXEsGWUFL5K556/wH+M0jlnOClfk
-vvCt3aP8xVJdVqHOBJf/u0VGwYBjzjM2s5Apbh4FeYQbwAmE+ywK6ms8IRhS1nwr
-HIZRZLUgj7ONflXNSkPqQltqVdT37idPD26jz/bCAM5/1lxcW8er3kmySBKuXQgB
-rFIBhDjDGsS0Is5pVtudcvOU8dLQ0XHKg7kXSGGYXmT0nTkrK1TuceAg426MIPkd
-+pAEMr/iMWoSSdP8qlGYADJnt9Yd6C+Z9wrMhyn5FAttKd+Pt1Dggb9O6XNl+kR8
-yU3q3xHbm4SPQ98BSNUrIeqS2lpvpg==
-=G4Z3
------END PGP SIGNATURE-----
-
---8DIUkVIkcTq+IojV--
+---
+pw-bot: cr
 
