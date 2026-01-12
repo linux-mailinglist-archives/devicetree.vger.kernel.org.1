@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-253773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2E30D11410
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:34:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94138D1144C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:37:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D1E3A30080E1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:34:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 894F130C8455
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE2133E369;
-	Mon, 12 Jan 2026 08:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E941234166A;
+	Mon, 12 Jan 2026 08:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eJJCqHnz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cCLh5/1m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A44315D49;
-	Mon, 12 Jan 2026 08:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F32341642;
+	Mon, 12 Jan 2026 08:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768206858; cv=none; b=CmGhdq0NluGT4FVvEJKVOfGh3SlUVQ41SPk/Q6d+qyDo4ZEMrzfjwVpGjryyYjm2iH26kRuDSNOhl+TQ7g9dAkVi1Y8mpQFU5BUCfTEJJLMzDf2JAd6hA70bmm859yxcjxsA9nXUs2kTU/LCNm6opbhEahXMZ4jYKgFcdv+G9EY=
+	t=1768206927; cv=none; b=ZgCs1YoK8mOowO5D0SvO9a3CP2dhBt/JTXbyydaOpUMCtWDjpTSAO5y+1gYWvg6GL+3HNHNLvsnf4gj5L8zzENvV5Ernt9N4pFcYfmT/nRSosyHHraYIxkoyXi5+ozezD78OqYDDAqtiGk5q0W7HqZaDz/bKj7RS/gxY6kdpXYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768206858; c=relaxed/simple;
-	bh=yyyHm2438aWQA34Vik4X+gVuE+Vq6Q07322WkXCIJg8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=d1GfN/SBV24rW2/Etj3aFO5iPwixSDfIF0xoVuUN5wugqodPO8SXNw7TxCXxP0Tt9pLFKXU3pwzJgskludIsd5ijCBT3QQ6eAuw3g1z1cJIAAxqzZO/XZ2aoGVO7LA9qfa2G1Ez9jfGpRHhEmend75mZnLADFYi6/xi6iZbfknQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eJJCqHnz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCD95C116D0;
-	Mon, 12 Jan 2026 08:34:14 +0000 (UTC)
+	s=arc-20240116; t=1768206927; c=relaxed/simple;
+	bh=V5D00KQSSCPAuJwNVFZw4bpS7MfziiEJZ+NDz6IbqPI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=cVWaiH8LNZyz00mfKvSs3N8G2WDvLfq/GSZIirFmeV6sX8wRwkeQH5JWDlbPfdWVtdEpi9CLZrbvm94QEIssMa+nwyaSUpVC3xNfSU5IioCivfr5mfHd7TzU9/ArIZF5fM2YsU1pvtwI12i6Nr2eZlajoBcCOqqJumH7iAOn/Ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cCLh5/1m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E932C116D0;
+	Mon, 12 Jan 2026 08:35:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768206857;
-	bh=yyyHm2438aWQA34Vik4X+gVuE+Vq6Q07322WkXCIJg8=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=eJJCqHnz/hoKwSwgk0fJxk4gFYlJk6/NYD6uqC1C4zqK+XBVmHyeW82o5/0gbdLLA
-	 lkapEboHTQ4zeP9j5UFpVece4zZfn1rJkDRresx5RR9i1QZ/nMm7E6z55/o5XfgrrX
-	 AW+94pCCfUaFL0DyogqZZYMPaDossnab6ZbhzjmLBLcOX9Df0jvz5V3gEEwq0AqeMt
-	 7V28yAQzUf63YWYPSy//7B5CEs5H1arjJykcnV2A7lSZupRe1bCF0ZwXekdShZ5nbr
-	 6spoGkkbTQ2mtkjj6UNnS4FSE7wKGIkBOHD8602SWCkxoRe3a4z4MxhPQCd3aaIiwc
-	 yRLFFTwJu+MNQ==
-Message-ID: <041acb02-13de-4efe-a7d0-630390fb2940@kernel.org>
-Date: Mon, 12 Jan 2026 09:34:13 +0100
+	s=k20201202; t=1768206927;
+	bh=V5D00KQSSCPAuJwNVFZw4bpS7MfziiEJZ+NDz6IbqPI=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=cCLh5/1mBKOFC24ud3nOCAYSUhYidmyN+RroCh/NLRqB6KSR/8lrBYkkrV+QN7WfQ
+	 W1qadPTMeJX2GHgRikgU6vrIKB8dliwspP8R90q4df/n++0/PYhSTntbB8fgxAto/J
+	 Tr7U04P1d5v+CnSXydEspGSjBh1jc+tEi+D++fThLPPxZDCM6QhpOAfP21g++lhVcA
+	 gEn6gN39y22isbe0ZwWJLe55idVGOgdJcN88Nkj0E2BPESV0PHukraTvc/cGZ4WWPc
+	 oefbH+gN6rWIuLoqENd96noLutNysoUOOsnB03BWON/OuFQ1GuC6sddkg39F4qQ7GQ
+	 s/Azf+E9jjHhQ==
+Message-ID: <5cc6b959-4424-4d34-a8b4-eeff237266e2@kernel.org>
+Date: Mon, 12 Jan 2026 09:35:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,20 +48,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: phy: axiado,ax3000-emmc-phy: add Axiado
- eMMC PHY
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tzu-Hao Wei <twei@axiado.com>
-Cc: SriNavmani A <srinavmani@axiado.com>,
- Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-phy@lists.infradead.org,
+Subject: Re: [PATCH] arm64: dts: axiado: Use lowercase hex
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-References: <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-0-dd43459dbfea@axiado.com>
- <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-1-dd43459dbfea@axiado.com>
- <20260111-camouflaged-shiny-wrasse-796dbd@quoll>
+ linux-kernel@vger.kernel.org
+References: <20251223152432.155299-2-krzysztof.kozlowski@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -106,26 +100,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260111-camouflaged-shiny-wrasse-796dbd@quoll>
+In-Reply-To: <20251223152432.155299-2-krzysztof.kozlowski@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/01/2026 11:37, Krzysztof Kozlowski wrote:
-> On Fri, Jan 09, 2026 at 05:43:29PM +0800, Tzu-Hao Wei wrote:
->> From: SriNavmani A <srinavmani@axiado.com>
->>
->> Axiado AX3000 SoC contains Arasan PHY which provides the interface to the
->> HS200 eMMC host controller.
->>
->> Signed-off-by: SriNavmani A <srinavmani@axiado.com>
->> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
->> ---
+On 23/12/2025 16:24, Krzysztof Kozlowski wrote:
+> The DTS code coding style expects lowercase hex for values and unit
+> addresses.
 > 
-> You did not bother to test your code...
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+> ---
+> 
+> Patches done with sed, verified with comparing unflattened DTB and
+> dtx_diff.
+> ---
+>  arch/arm64/boot/dts/axiado/ax3000.dtsi | 2 +-
 
-And this is not even v1, but v2 and you completely ignored that part.
-
-So did you implement any previous feedback?
+Ping! Anyone in Axiado is handling patches?
 
 Best regards,
 Krzysztof
