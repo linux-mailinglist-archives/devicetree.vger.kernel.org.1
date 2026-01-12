@@ -1,175 +1,330 @@
-Return-Path: <devicetree+bounces-253892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64EB2D126CD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:59:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA073D126DC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:00:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7672B307894F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:58:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 09BFD30131ED
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C9935770B;
-	Mon, 12 Jan 2026 11:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089F2357732;
+	Mon, 12 Jan 2026 12:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="l3OGzIUN"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="VRUDcRsx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010065.outbound.protection.outlook.com [52.101.228.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5883570D1
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 11:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768219133; cv=none; b=dHfYclm15Dds0EarH5sCVNzs/EXUAJ0iCT2Bbj4JmqmBuoIIS6XMJBGmUmIo/pyXlD466GY1Tdx+1FBmSDS/tM4rG2rpdcWBq6y0pRdI5E5Swe8lAGUogmWQ1t4OAgomMmZNDZpoANgwrbHSYvQ7X4yG1AKG0UIx4pOyr2aXJog=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768219133; c=relaxed/simple;
-	bh=lAO33T1KFMqFpJot8ObRF3j6h3bz9TaOzcEeSel5n4M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TMRVGYY5kOojMh1l/nsZ2J98KPPxEgPAFtT37q7NZuBG2W6gKKK0OAt3/3KN4q+Q1s3TfBMkuvnZU2YByonfFHpIcy76NtjuB/Gu33CGVUOlSYDufaBfjE76Sht9o1luonen06yTNdyzUrkJiAwNMy1gB9/RyoTSs7h5cD784pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=l3OGzIUN; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-3ffbfebae12so1939077fac.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 03:58:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1768219131; x=1768823931; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/STUq3tlNYx1CRPqYo/MSQ91muzU5RYxKWjoD/GoBRc=;
-        b=l3OGzIUNKhjHJigxQGv0u0n/pGgC0LeyF5T3bcPEnij4UBPH6UDD8kLP8f2z9bXITB
-         OcGiZNv0Nzjh+EREf2NKZYcwRFnHPgZVWuv60M525kqlBkjFgPlLT1idGyJcFYupXgKm
-         atlqKCBeHvL6IQTa0XShEERKdwQ2ykwZtVNrZ2J56mF2XbhokHL1IF+bCryn8A9dO6wR
-         Z1TSROdBVOivCYzHz6RJ1VIRNvgckUqEEXbWzegqS4rNg85G7OwSaOcrSsgEkXBpVMmC
-         J4VeCzsmy2Jj9K9aFTH50SpcCxoWttPlQlRITxxz2kvKs/uIBG1K9yIWfy6nArDHarfy
-         foaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768219131; x=1768823931;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=/STUq3tlNYx1CRPqYo/MSQ91muzU5RYxKWjoD/GoBRc=;
-        b=b82/Yu+RCRUoccBm9JTOCXAjWLmpTF+nMawYpQlXVrwCgQFMHPEoPjOl4lnRyBQPWt
-         vI+ybKMFIxix4PWVJ0ojdLXRyiC6IfypNvZ2LaP/sETSTguiwqw3DEAX0Ygawbw2ESQ2
-         Kt4D2zO3o78thlHt94ceGcb4lkFk9G19AlO1it/8CwtxuccBj2JOYq//2j/j/4MHxQT0
-         w7ZnzUZliATvsnsVfbwuIo10gmSwqEjQ7TlNf1TAmPuaXp3A6Kx+l+bzUsHjr3AmOd5X
-         tp8YGvrycJntgZSv+IH2yLSBH9B4WN66p5rHTEGDkwYo0IsWMgKCwDEdsdrlx79cXrID
-         +NRw==
-X-Forwarded-Encrypted: i=1; AJvYcCU0AzsWQowk7EoKZU4szOpqlUxcfV2uEhDi4DD6IvR0nR2tu04bAdabz/2ue+jNjITzdOlvZG913EhY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzH1Qku+o2vY2U+kEkW+W184IjQYqohpWu+jPsP0PZjwZ0N5+H4
-	si/81YXLQ+EbPnQMlD5tCahALFoOWsBzbPKiEspMY4YgdXQVddwZwHGypR8ABY89IVGS9KQXCSA
-	4T2rOXNI1oW5rDPvGA9+ZsxvEs6F1HPF2lkqvtno+Ew==
-X-Gm-Gg: AY/fxX7f1Nn3klhNUOyCS/o6+4mUVDnrElmwbwJAezyIOR5Fyk+b4kMmaro3jehbq3q
-	+Dt41FSBfISY9vt4UZKg7lBMJ1NMEIF5ZkRkVmu6mSim/8TQi9sBDqkn0E767o283DH7Pex9LyV
-	CcUcvFonALpbhNjq0DknzYUM3Sc+hjhitS0PbV4wjmCL4C67/O0cUVXvBda5ECUJT+i/vPSWBo6
-	HmMzJRmrXVsENJNNRcxQFx9sS35c2Hj7WmdmLuHUNnjbC4mu3JvQIdL6DkDRjtVXChK1M/Ra/u1
-	N/vQikY44Dbvl05JtrzQVJ/02cWXRe26hVhsHpV0SiAGHTfhMQA/rXwDcw==
-X-Google-Smtp-Source: AGHT+IF39t3pEDBTDiz8rtvG2ug4qMAL7z0aOTj1Od1tfioVHcOSk11OADaheOvt4o4y6lBRYQlM3myJcoiNTwzaEUw=
-X-Received: by 2002:a05:6820:625:b0:65f:6705:3f83 with SMTP id
- 006d021491bc7-65f6705421amr5066461eaf.28.1768219130936; Mon, 12 Jan 2026
- 03:58:50 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF5D346FD1;
+	Mon, 12 Jan 2026 12:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768219203; cv=fail; b=c6gRosjDS6d5NoCyr7RAaJcfM8rRA81md46NKzDzA59LFji4J/1GBmwWlIg2v1huRRv4RUhE2f9IWcq6mTXy7v3n1FtS+Q53swzH9eTs4ws3WxT30xg7QtPa5SYnroZyMKrEzk8xDM2N0MOFFkcAXf18LKUARdM78rgDIXHJbEw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768219203; c=relaxed/simple;
+	bh=kmgAtHV5w3ARoRWmHTZrmgy+3fPbOUWngoXgNDT6uTM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=W+17S9DssktqKeBkgL8E7joRvHZSLV3/345c9JZviU4sMPdyUaoOH+OC9kcyYqpOCmgc/QiqjImmlADGGI1rzQnptVWBIMfzpLIP5eKjrSjTsc6m0lhcvPTvtujO4iXP1/cXZtu9gNkfNPitfkRyWCWXBpEmk9kdgXLuIh37luM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=VRUDcRsx; arc=fail smtp.client-ip=52.101.228.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=n0OlHXnlCiWF7KP1ASO9m1KCAE4pU0R7KG582lRm7F8FCChCuPVapi4kMqkXJMlZfSkgjIZOekv0hlKJCsnGCubHgtDTjSC4NqL3sph/9IwfS5Huy64jtXMUKiAmwgZ2HGPMD1d0bCyLxHFI3DoXQAU88ObVa5vYc7FihXyiSNaqLBZMij/fHtEyechVKh8hM0vEBhzcfzGU2CE276LqV9U0+Rs8DwtKDxInEo4v27OCc7dbp0e8E6yBYqns0l7lTNd3y5JAxGjEVVr4ih2/rHWKF5986E4bK9VNnKOBSscwwvtGdu0x/OrHj8hE9W9L62IIbT793xp1HIrS+xH16Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Gyqu2gF4PpmoD8ysDPqfYjBYqBHS8NS8AectZQO6fB4=;
+ b=Io+T9draECsplCHJF0nxZfrugkSdp7FMFKKl0YwmBjWMnZ62UnZPaJxgFT3g6zzkenH7BgS7h6WqcL4xPlFB1d8PjVwSt/fPIgYdeIVpfsrNmwnpSndqNaMo5o+ceYg+9t5snlUUFvMcEJadpDEPi/EyeeyclEI97S9uOCpkNje3hhHJQ/oMZI1tUeMftq1jJE17uru8tbEUDbxUTPWslsngobEUYhWr9c/OQqVYkBsKYv22KyK5Q4nzDSY6R+Eub9Ib1BotrTWH+xM0Mq/b8ivO/622qBlAplrviqoF7XBFuXhJ2+6XRLIdn5pQnd6EkEABic0mrmvC4Lhw15fOsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gyqu2gF4PpmoD8ysDPqfYjBYqBHS8NS8AectZQO6fB4=;
+ b=VRUDcRsxynVl8dlHHFTvPvBJd47gz8EsU2qs0GRcXd25BOCMmo2KKqLga+PczelS1iUSsdUSpfZ8jA78dc7uYHJMP/SBWdyfuqSOgWKJV0PzLy6N2roRDUifLIUPXTNa+wAkg3T8SMbp69mL2W+tusZBf6xucqhgtg6zpGeNf4M=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
+ by TYYPR01MB12544.jpnprd01.prod.outlook.com (2603:1096:405:198::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Mon, 12 Jan
+ 2026 11:59:56 +0000
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9520.003; Mon, 12 Jan 2026
+ 11:59:56 +0000
+Date: Mon, 12 Jan 2026 12:59:37 +0100
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, tomm.merciai@gmail.com,
+	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 09/22] dt-bindings: display: bridge: renesas,dsi: Add
+ support for RZ/G3E SoC
+Message-ID: <aWTiKQFBZT4hpaG_@tom-desktop>
+References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+ <1c7657d6c06d99bc2f90251995ad272b5704717d.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+ <42bbdec7-ce6d-417c-a13d-ce0a6782bc9a@kernel.org>
+ <aWEnfJonv4egKhXo@tom-desktop>
+ <CAMuHMdUm-yHkRw0k42pfq9BD8urLO7rqF2yD7s2JbkMFpRTQwQ@mail.gmail.com>
+ <aWE8ikhsthB_0VQV@tom-desktop>
+ <CAMuHMdWGf7MgFzxjuea8agZgSyAMzXwFYO22NmRZ7i1-VPzqFw@mail.gmail.com>
+ <aWTYS9BjWn2bY5Lz@tom-desktop>
+ <CAMuHMdVdntJrcT8d4sCBXdnYr1m3X7s-_58KBiEDV5+GAW353A@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVdntJrcT8d4sCBXdnYr1m3X7s-_58KBiEDV5+GAW353A@mail.gmail.com>
+X-ClientProxiedBy: FR2P281CA0186.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9f::20) To TYCPR01MB11947.jpnprd01.prod.outlook.com
+ (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260106092117.3727152-1-joshua.yeong@starfivetech.com>
- <20260106092117.3727152-5-joshua.yeong@starfivetech.com> <CABdD5xmVVkQu6rYzF52V-JrsdL=NOQa9N9i8PsMgfaOh3GT-Bg@mail.gmail.com>
-In-Reply-To: <CABdD5xmVVkQu6rYzF52V-JrsdL=NOQa9N9i8PsMgfaOh3GT-Bg@mail.gmail.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Mon, 12 Jan 2026 17:28:39 +0530
-X-Gm-Features: AZwV_QiG8kGYWz6U6xcjoWbaLPAqYlKLwNkT660rcNE0-IopoQC27BXEnEP-0xA
-Message-ID: <CAAhSdy17NphDM=bgyvM-eNA9DAGku6p56HSXv5hgZh5VmMfE7Q@mail.gmail.com>
-Subject: Re: [PATCH 4/5] cpufreq: Add cpufreq driver for the RISC-V RPMI
- performance service group
-To: Rahul Pathak <rahul@summations.net>
-Cc: Joshua Yeong <joshua.yeong@starfivetech.com>, leyfoon.tan@starfivetech.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, rafael@kernel.org, 
-	viresh.kumar@linaro.org, sboyd@kernel.org, jms@oss.tenstorrent.com, 
-	darshan.prajapati@einfochips.com, charlie@rivosinc.com, 
-	dfustini@oss.tenstorrent.com, michal.simek@amd.com, cyy@cyyself.name, 
-	jassisinghbrar@gmail.com, andriy.shevchenko@linux.intel.com, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TYYPR01MB12544:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ddfa839-8381-4206-6f76-08de51d21aa0
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?k/0kQWHaTwZ1DVMr8WBJS8U0DXI7xsWp8GYh3Mz0gu5NQlLiGA7GeNBosg3R?=
+ =?us-ascii?Q?bcw/RRgaH8mMs9EAj57QZLwAhellxox84pSa0+9oGrglLOKIOgGwEVpedoAN?=
+ =?us-ascii?Q?N6qiJaTJ5B35pojoD2MU0ArFReaeTGV1Z6PKEyCR+Y+DO0a/o0S5GmVb9oUi?=
+ =?us-ascii?Q?Z8DjPUANnIdaKjrfEjDFEK5L9HS1Lt96/9VfhimQFjedWBZqL5OKvsUzh/mo?=
+ =?us-ascii?Q?fMAyPC2a3zNPl59Lv2ndVL98jXRE3yLjRAcqc/0WZkn4Q58WyPWQe29TLHOl?=
+ =?us-ascii?Q?Jhp5UC99PBuH7Xf9e6d/E/jO0W9Q5+2LreUigyP6jM5gl+5YoGgVwFT2Bwws?=
+ =?us-ascii?Q?CCqOgOGVtaMHKtsV4+Hw6YzPrO/FxnE5OyD1M315bVIDv9DJhPQxq/szDVMu?=
+ =?us-ascii?Q?IyMSzZb3kMOyRxTUfCHmSL9pawwX0jHtS7KHnx/PVClMV0L0kF4GFMheos4q?=
+ =?us-ascii?Q?89eLNxLr+0etO9nDXwm740FWphaXnyi8lzq6Uxd4zvO/qgcpGSK+SF1f2akH?=
+ =?us-ascii?Q?Ih3kE8gYLceqlHKwKsHkLkfQNWmroILlNBnNvROD6A/SmbRk0LWIIEE8Nhak?=
+ =?us-ascii?Q?wLaoAyDS8cNZ4dj9ppSzZElcIDQapICCw17XglukODQuoMqMP9kKN9ZAsaqD?=
+ =?us-ascii?Q?jwZcv+taAs4eVorJmGDwneT9XQ3ca9saylq/c63olkwYgjWXKu+vZy6uoC/7?=
+ =?us-ascii?Q?FJYOt/7zF4VbGAWEtTkDNK1sL8gnxgjqLRopBBvXSzKJo+J9GaSr2i9HCZFC?=
+ =?us-ascii?Q?rNKdC1yUJfkkLvmkEGI7pQH4h5xLmjci22GRdKKxfqfDlYmko1GIqr3A+97Z?=
+ =?us-ascii?Q?C724rXz9LTe+qYmB7Uk2GYgss0Ul5MOi2gDxZ0vvFPV3eJuX7KanlVDXzKTr?=
+ =?us-ascii?Q?owY6TQrKcHYK82tC4T36T4Hgg7KYnqjchPsj2Dh6Fkn9Ew/nCqfKe9W5xreF?=
+ =?us-ascii?Q?zyVY3jW8+hX1m1NBsQxVCEDprYQ1QaLBGvsISr5STzFNZ/L3WdNLkL2iXYap?=
+ =?us-ascii?Q?a73RI3NUtwz3pg6UFmPeNFjw4hl07lOsRN2HEiIT/ZWsKH6+IlfLLsEeAsQx?=
+ =?us-ascii?Q?MoK8yfjyySMPVmf/jqxwrw0/WAP19vqiL9HCf3079nEREIQVxz6a6fOortsH?=
+ =?us-ascii?Q?ZpAMgas+Wl4xx/YZo8Ulc90BBWAxVkhOEcmpOBVWU45YCX4hHYypIoQlD2qM?=
+ =?us-ascii?Q?XROVmp4qTkrvvuNDMYy1FetTxBxxYUPzO5+SS9bn+kQjBI4741hpL65164YR?=
+ =?us-ascii?Q?IsP/v05Cq23NAY15w2Oqy+sWxCH7WclRGyyjju1md7ZQHOr7j3e5arL5tA1Q?=
+ =?us-ascii?Q?n2YjpaJCpSTwDgbR98k0CD/BsW2KFWnFmDOBNR+ZY4XfVR0ORkv1ILOjmbEc?=
+ =?us-ascii?Q?w+yqJWa+gVxLFZQDIQqtjpmMbNd2lCmeMGbLkdACwxZKdaBTE7fMj53xGJbz?=
+ =?us-ascii?Q?NdQ2TVzd4QED8YjGoYAupgaqcu7BVvhZ27f4H+hCf3uaumiyKVHhC1kfuRYG?=
+ =?us-ascii?Q?o4+EK3f4z22JalzTjDToQYr6qJrp5i4ZtdnC?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?0rw9xftp5YClaxp2M+YO+A0laYDRmchTrZ1yQLGfVtP7ScHIHB1Rinq8mVp6?=
+ =?us-ascii?Q?oYhlJmDsHo2VDkobs+FGylkGdq9cYzWS5FfpGuSBEyOyN2ifibjr3q/Bkm2e?=
+ =?us-ascii?Q?yktiW0PYEOeiu4FCEqoPpW41GjOHIoze2ci8/+XjiT9Azrrg5jAa08j3xAN8?=
+ =?us-ascii?Q?xcw1KWzCERkYojJosoyUV3yB8/VbnN1hBRSwtCogY5K8YFHX/329zfFJVTJ8?=
+ =?us-ascii?Q?EjI38wtveKFcsrksgsk4OlogsQMtyCfxUPg9OMhzNFxL4t+iD1Td6FwHpI90?=
+ =?us-ascii?Q?cUd7BJUBasuyLSbj5gXyhxonAZCZWeZ+/EAcYuiRFJqwu0bj+/BR9ZtWSUS6?=
+ =?us-ascii?Q?52mJ+nsblv2eUZj0Ij21J216VBDUXXhf5B3DNr9uqNbnK7GdpnDAhHFJvslV?=
+ =?us-ascii?Q?8K/i3r0pi1gt85srgD7f2QzfwlvYiDIKbk8SNbR1G8aNG6ZeMCuGK9gPUNQE?=
+ =?us-ascii?Q?3GJrbUwc6KnaeM87lw72NBaMFvPp+FFn7LgbARWRtUbfj3y7sRBiRLhGTqmv?=
+ =?us-ascii?Q?g4FX+78r/P0dmVS+zu22KBlUvFk8GIHblzhsa+cbR09n8Ga+QBc7EtJhA/Yd?=
+ =?us-ascii?Q?o2iPTx54YVocx5BjSRfWkNZC6WrF6wjTpsUTysWnfSy5lKUVVmT2KLNOoyhQ?=
+ =?us-ascii?Q?yMGGajEuu53T5oBdUKlXgjlmBtAHmiPJzqJNJQtfG9AwJSWhKd/NRhMAvPjp?=
+ =?us-ascii?Q?JTkHe/r9f8dROpxPO9p4p9CLWrcrC0wgdGbnQ6gnkbXMIB5iBolJFKwVckre?=
+ =?us-ascii?Q?3Nvub/JTChWcfTjx66Td+nSkfVZup2MBcMvzc1AJ1fGuTM9zN96T/3f/4LH5?=
+ =?us-ascii?Q?e/KpLgixr2Yl3N54gxAQ3SJXpTvdteqIlJsHO5ScabGUVSVBENOVyGeelL/H?=
+ =?us-ascii?Q?HYajA6QEs0jbR5tUA9+mpyeqRykvyOIE6T5Xw4P0iDHS/GV16GRseN1lpeaW?=
+ =?us-ascii?Q?Mred1DSl4vMLQhHWrUOJy+WCsoyBEZT2cliOL5f0KBpcLAgiE3RhLYFkwgN9?=
+ =?us-ascii?Q?8XvZ1G5cs+oIkRiZF4l6a0srBn02YuKRJsRPEXv3umZwW8VXVoxKxmi02Izi?=
+ =?us-ascii?Q?2/UTo6zCd+N5+UQhyv/4H1m56wJnFuabsOXXN2rXqZER3GafB9g0BOwE5hbA?=
+ =?us-ascii?Q?g6Du1B+2cCPgVmVd3i9DDENLYg++2mNsM67t9urhfpIYtyQYz/oHhKxlt4RQ?=
+ =?us-ascii?Q?0vl3749xxpWpw32Iai+Gwl4NTskhH2tZHxL2fwo3yoc6UINEZ7o8IP43Jn15?=
+ =?us-ascii?Q?W9jSQRg+bOpwt6Mep4ggdbW6RjfrDBZdsew+rugq7NpOK4Diwmi2xUUueSHG?=
+ =?us-ascii?Q?vbOQxSACVEDQ/UPjVkP1hHTP/h+CkFNPCuqTjKwy0BNmmXRVAtxUqvB2eF2c?=
+ =?us-ascii?Q?I7X93VMRWNvFSVMduf9H1gJgN01HCU6eUjYmqpdk1L/J9YvunIL0WznVmMz3?=
+ =?us-ascii?Q?FuN8VdlX5b3yPfqDWUcwIm9iUsJa6AAQr7qROydCIx1A//AMpmSZ+wtxBiI2?=
+ =?us-ascii?Q?HyN72ZxtnuQ4POV84t3GzYfO1X5alna+t1f6LolUXBIhDiL/zCoDIG1c40i9?=
+ =?us-ascii?Q?hPdNRi6Y2w3Pln6T5LYQ/u1rXcaJ1vEvC7C3qPl4zXDOByIshKxE9q4X4oQi?=
+ =?us-ascii?Q?HEQ6lO7IM6ou9KicWXxmRt4IwxovsejZtCC6A+dCo2wsXqTJRW73G4GmTi9V?=
+ =?us-ascii?Q?W/GZWrjNS0j128SrAHlJHdUEAiDY15vMwyH54Xh76RakB8BJ1wZsjnfVgwqb?=
+ =?us-ascii?Q?yaDmcfLOvxAvXQD4muLJ4x8VODy71WppQAKkN4K1SU6VAUOCGRTE?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ddfa839-8381-4206-6f76-08de51d21aa0
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 11:59:56.8113
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 10YYqQvxrfs9ZoqF08opFdpVeZiOBKtGVDVtPDIfhJnOxIpdXI7pzuT/7n56ZSf12naSN3WTm3v8AY4ZiV3uHfXu8M5ytqYRQlT7Pzd41pA3o3Le1TnKUs4S1aiZQaLL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB12544
 
-On Mon, Jan 12, 2026 at 4:18=E2=80=AFPM Rahul Pathak <rahul@summations.net>=
- wrote:
->
-> > +
-> > +static int rpmi_cpufreq_probe(struct platform_device *pdev)
-> > +{
-> > +       struct device *dev =3D &pdev->dev;
-> > +       struct rpmi_perf *mpxy_perf;
-> > +       struct rpmi_ctx *mpxy_ctx;
-> > +       int num_domains =3D 0;
-> > +       int ret, i;
-> > +
-> > +       mpxy_ctx =3D devm_kzalloc(&pdev->dev, sizeof(*mpxy_ctx), GFP_KE=
-RNEL);
-> > +       if (!mpxy_ctx)
-> > +               return -ENOMEM;
-> > +
-> > +       /* Setup mailbox client */
-> > +       mpxy_ctx->client.dev            =3D dev;
-> > +       mpxy_ctx->client.rx_callback    =3D NULL;
-> > +       mpxy_ctx->client.tx_block       =3D false;
-> > +       mpxy_ctx->client.knows_txdone   =3D true;
-> > +       mpxy_ctx->client.tx_tout        =3D 0;
-> > +
-> > +       /* Request mailbox channel */
-> > +       mpxy_ctx->chan =3D mbox_request_channel(&mpxy_ctx->client, 0);
-> > +       if (IS_ERR(mpxy_ctx->chan))
-> > +               return PTR_ERR(mpxy_ctx->chan);
-> > +
-> > +       ret =3D rpmi_cpufreq_attr_setup(dev, mpxy_ctx);
-> > +       if (ret) {
-> > +               dev_err(dev, "failed to verify RPMI attribute - err:%d\=
-n", ret);
-> > +               goto fail_free_channel;
-> > +       }
-> > +
-> > +       /* Get number of performance domain */
-> > +       ret =3D rpmi_perf_get_num_domains(mpxy_ctx, &num_domains);
-> > +       if (ret) {
-> > +               dev_err(dev, "invalid number of perf domains - err:%d\n=
-", ret);
-> > +               goto fail_free_channel;
-> > +       }
->
-> The domain space in RPMI performance for CPU and Device
-> is not separate and a domain can be either CPU or a Device.
-> How the driver will make sure that the domains which are returned
-> are CPU only and not the device.
->
-> > +MODULE_DEVICE_TABLE(of, rpmi_cpufreq_of_match);
-> > +
-> > +static struct platform_driver rpmi_cpufreq_platdrv =3D {
-> > +       .driver =3D {
-> > +               .name =3D "riscv-rpmi-performance",
-> > +               .of_match_table =3D rpmi_cpufreq_of_match,
-> > +       },
-> > +       .probe =3D rpmi_cpufreq_probe,
-> > +       .remove =3D rpmi_cpufreq_remove,
-> > +};
-> > +
-> > +module_platform_driver(rpmi_cpufreq_platdrv);
-> > +
-> > +MODULE_AUTHOR("Joshua Yeong <joshua.yeong@starfivetech.com>");
-> > +MODULE_DESCRIPTION("CPUFreq Driver based on SBI MPXY extension");
->
-> NIT: CPUFreq driver based on SBI MPXY extension and RPMI protocol   -
-> something like this
+Hi Geert,
+Thanks for your comment.
 
-Currently, the mailbox controller is based on SBI MPXY but in
-the future mailbox controller for some other RPMI transport can
-also show up.
+On Mon, Jan 12, 2026 at 12:35:15PM +0100, Geert Uytterhoeven wrote:
+> Hi Tommaso,
+> 
+> On Mon, 12 Jan 2026 at 12:18, Tommaso Merciai
+> <tommaso.merciai.xr@bp.renesas.com> wrote:
+> > On Fri, Jan 09, 2026 at 06:59:12PM +0100, Geert Uytterhoeven wrote:
+> > > On Fri, 9 Jan 2026 at 18:36, Tommaso Merciai
+> > > <tommaso.merciai.xr@bp.renesas.com> wrote:
+> > > > On Fri, Jan 09, 2026 at 05:22:02PM +0100, Geert Uytterhoeven wrote:
+> > > > > On Fri, 9 Jan 2026 at 17:06, Tommaso Merciai
+> > > > > <tommaso.merciai.xr@bp.renesas.com> wrote:
+> > > > > > On Sun, Nov 30, 2025 at 09:24:57AM +0100, Krzysztof Kozlowski wrote:
+> > > > > > > On 26/11/2025 15:07, Tommaso Merciai wrote:
+> > > > > > > > The MIPI DSI interface on the RZ/G3E SoC is nearly identical to that of
+> > > > > > > > the RZ/V2H(P) SoC, except that this have 2 input port and can use vclk1
+> > > > > > > > or vclk2 as DSI Video clock, depending on the selected port.
+> > > > > > > >
+> > > > > > > > To accommodate these differences, a SoC-specific
+> > > > > > > > `renesas,r9a09g047-mipi-dsi` compatible string has been added for the
+> > > > > > > > RZ/G3E SoC.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> 
+> > > > > > > > --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+> > > > > > > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+> > > > > > > > @@ -28,6 +28,7 @@ properties:
+> > > > > > > >            - const: renesas,r9a09g057-mipi-dsi
+> > > > > > > >
+> > > > > > > >        - enum:
+> > > > > > > > +          - renesas,r9a09g047-mipi-dsi # RZ/G3E
+> > > > > > > >            - renesas,r9a09g057-mipi-dsi # RZ/V2H(P)
+> > > > > > > >
+> > > > > > > >    reg:
+> > > > > > > > @@ -84,6 +85,13 @@ properties:
+> > > > > > > >            - const: pclk
+> > > > > > > >            - const: vclk
+> > > > > > > >            - const: lpclk
+> > > > > > > > +      - items:
+> > > > > > > > +          - const: pllrefclk
+> > > > > > > > +          - const: aclk
+> > > > > > > > +          - const: pclk
+> > > > > > > > +          - const: vclk1
+> > > > > > > > +          - const: vclk2
+> > > > > > > > +          - const: lpclk
+> > > > > > >
+> > > > > > > Why are you creating completely new lists every time?
+> > > > > > >
+> > > > > > > No, come with unified approach.
+> > > > > >
+> > > > > > The intent is not to create a completely new clock list per IP, but to keep a
+> > > > > > unified clock definition that can scale with feature differences.
+> > > > > >
+> > > > > > The previous IP supports a single DSI input port, whereas this IP supports two
+> > > > > > DSI input ports.
+> > > > > >
+> > > > > > Because of this added capability, the hardware naturally introduced an
+> > > > > > additional clock.
+> > > > > >
+> > > > > > Can you please suggest how to handle it?
+> > > > >
+> > > > > Keep on calling the first vclk "vclk", and add "vclk2" at the end of the list?
+> > > > > Then RZ/V2H can specify the first 5 clocks, and RZ/G3E can specify all 6.
+> > > >
+> > > > Testing a bit your suggestion
+> > > > we can do:
+> > > >
+> > > >   clock-names:
+> > > >     oneOf:
+> > > >       - items:
+> > > >           - const: pllclk
+> > > >           - const: sysclk
+> > > >           - const: aclk
+> > > >           - const: pclk
+> > > >           - const: vclk
+> > > >           - const: lpclk
+> > > >       - minItems: 5
+> > > >         items:
+> > > >           - const: pllrefclk
+> > > >           - const: aclk
+> > > >           - const: pclk
+> > > >           - const: vclk
+> > > >           - const: lpclk
+> > > >           - const: vclk2
+> > > >
+> > > > Then later into the compatible if switch we can do:
+> > > >
+> > > >
+> > > >   - if:
+> > > >       properties:
+> > > >         compatible:
+> > > >           contains:
+> > > >             const: renesas,r9a09g047-mipi-dsi
+> > > >     then:
+> > > >       properties:
+> > > >         clocks:
+> > > >           items:
+> > > >             - description: DSI PLL reference input clock
+> > > >             - description: DSI AXI bus clock
+> > > >             - description: DSI Register access clock
+> > > >             - description: DSI Video clock
+> > > >             - description: DSI D-PHY Escape mode transmit clock
+> > > >             - description: DSI Video clock (2nd input clock)
+> > >
+> > > All descriptions belong at the top level. Just add the 6th one.
+> >
+> > Please correct me if I'm wrong but if we move up:
+> >
+> >         - description: DSI Video clock (2nd input clock)
+> >
+> > To the top level description we will have 6 clocks for G3E and 6 for
+> > RZ/G2L. With that I think dt_binding_check will fail ("is valid under
+> > each of") because of the oneOf.
+> 
+> RZ/G2L and RZ/V2H need "maxItems: 5" in their if-sections.
 
-In reality, the driver is only RPMI based since it uses mailbox APIs.
+RZ/V2H -> maxItems: 5 is fine.
+RZ/G2L -> needs 6 clocks no?
 
-Regards,
-Anup
+Please correct me if I'm wrong.
+
+Kind Regards,
+Tommaso
+
+> 
+> > > >         clock-names:
+> > > >           minItems: 6
+> > >
+> > > Exactly.
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+> 
 
