@@ -1,160 +1,152 @@
-Return-Path: <devicetree+bounces-254042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC473D1349D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:50:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90739D134C4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:50:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DA3D231101A4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:32:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 61DC830FA1F3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:33:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2AF29BDA2;
-	Mon, 12 Jan 2026 14:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22DC2E7F11;
+	Mon, 12 Jan 2026 14:28:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="thc7tCXH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VhFOcj9d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7B429D27D
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:26:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D65D2BDC16;
+	Mon, 12 Jan 2026 14:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227973; cv=none; b=Rw9+ewbx4u4Ij6QSeLCbCqk20A48Gps9tMHwD21pIzAsQptfzLumSqc4D5P7wEx/8n7ri7jP5Upg4vcmyIAElLSGfa9rJhcyl0qB17xE0h/VEA1qpWA+Q5nBt6d84DUloGOZEseOrxGuf1kHHC1A7Uv4WC3gve0ytq7tH5pSQDU=
+	t=1768228136; cv=none; b=HlNAj6oT/qLccS2HLnysxnA4YnrgnwsQWYFh/bTOAewIe4BNiIrloEtESJJTRyJgT5spHPLGqxiaC7ycairIw76WWVtUdTW8pxFppaa+wBE85YtGelY3eA0h2Heewt5UWNjh0nVgt2/1spUg/2bmaDRz3SRjNlYIwcwpmZ37yss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227973; c=relaxed/simple;
-	bh=MS8wKf7u9HcQpruwLfOyUPj69gKiTphjKQB/fIaDSQ8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nqn8fBuQFGaKsEH1J6yGrntoAWt5TYZNZaaRaSxfvodxXB39FFh7AaxgeRqJtnQvfFVsLpHVLVN94Am/WUEfudd6CGdfn+wQ2OLIz5ODnk1+pkwMdW4OOlVIdQmchNK/k6vnvUDP1ZEs1J8GU3uws+PGJ4FH9igHfdLni3GaXOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=thc7tCXH; arc=none smtp.client-ip=209.85.222.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-8c30365ac43so612466385a.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:26:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768227971; x=1768832771; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=MS8wKf7u9HcQpruwLfOyUPj69gKiTphjKQB/fIaDSQ8=;
-        b=thc7tCXHqXR1NShM8ZzJy/on+iZeMNFCH5izWy9/OBjTiX2QrkASYAknkkQ1dBZJzX
-         IpcjQzcIaXHx/oIJz3xMJtVlsM17ZOeDD4aK8x0c/EsK2wOqgIv4XFLa1V6P5MNJbP/D
-         N8iLKXuNGz6c5n21SvQcoQsCboAYAZEmyoDDgbdeM6Fi4a8jbaYWLr132hjk1d9oEJfk
-         36sX89A9LtFFyYH3qeSZOvhINGG1ZxOY9pWUNpxmeFxlBnhJ0tQWc5P4p8FY6e4saeCn
-         eFIimsQwDX2zPP7DpvL5l154EExHQhaBmtZzqbHGkvPDRm1lFqjHSxD065lzU00lXFCj
-         j9aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768227971; x=1768832771;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MS8wKf7u9HcQpruwLfOyUPj69gKiTphjKQB/fIaDSQ8=;
-        b=jV5qm5Zv8ItjVkYI2z4rTpqh1ZgbKG0D61OOGTXLruFJHykge9sMhChhMI4E5t83Ym
-         zekhyGBAAZleXLvWq8iot06vGgZHd1nf84gqfSwnXXp1/p5hFnU89+jVkXuq/BRyYFTF
-         QpHyf8ztEAwjHA+g6NF+S7eUKqhwVo20lKUqF98X7BqDhchePOazM2cuWG+Xe6Es0XzG
-         bs2g2KJHYa/m9dmIBJrwJFKZSXyk/67L4/G1UG2n718OOY5u2YM8MRsu1088X0c+6knb
-         Nu7cbcxkVxqQTxZEG+5nQclanprxyZa8pwBByGLpW4ZAzonc2j2DzS8Qh2bUe1OhJX98
-         rBRg==
-X-Forwarded-Encrypted: i=1; AJvYcCWw9ayrYJYujW6y+2QijbE6TwGzez8UmzQIz5bXMn9GuLGAVBxQZmSyOBT0hY3OmJILxp8UGY2/ZsYt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1YTWJam4EjVpWENEK80om7YenwkuWpg+BHWBoBbQhcv6NsjH6
-	LuQ8xp9ZeWg6Az4IrL1YRGbg5nVEj89wanKABEJi0cg1pw3oSkPgdp8SOCoyn9XBs9M=
-X-Gm-Gg: AY/fxX6Vrbv0rVcO92xJTTg5uggOquaz+Jl7n73EOhiwhB3XIHrCp5ycPVi+IsQJAdg
-	1F0bIfThmBftXstIijZXEiAxVWuW8S4KThxQWzaE/F/53rt5DkY887W2MufMCz4M8TJ1nK2Up8G
-	C50vQDCJ1TegFxEpuX/AtnOF86Qjpi9GTb/c5N7vhi+sWirkgMr/jenzN1Sa1ho3saiWZYHOrCr
-	eOutID0vck+v3jb9hRWdnhBVMXGLVvqtk1TjbTJftIdHnUNcMKyTvAXkkiR0d33CemEQMj0UQVK
-	Wp8bJH92pO190Eo3+gGsH75q6wkUdNPQzk0MlIwwSSrFfGtS7kR4GcQuF0r9NmnVFVcoQImVLUd
-	semqOOP3na3peLC8xr0Y6TgtweyoAziG8aehgJgH0v0yTrL8igd8r/EIC2bE+T33iq8KfZikKvb
-	9QMDNHdaHI1IqWaLqT
-X-Google-Smtp-Source: AGHT+IEXjJKk5zH4bo+R8LKpMF4MK489YPX2dESNeMCN9H3Av3eoQMSWyP5H4NLuxZlAI34TDI5m9A==
-X-Received: by 2002:a05:620a:708a:b0:8b2:e827:14bc with SMTP id af79cd13be357-8c3893ea256mr2530528585a.56.1768227970407;
-        Mon, 12 Jan 2026 06:26:10 -0800 (PST)
-Received: from draszik.lan ([212.129.79.54])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c37f530f99sm1509223485a.36.2026.01.12.06.26.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 06:26:10 -0800 (PST)
-Message-ID: <ba585515010ab9a9b417d000ba744f8178ca9e24.camel@linaro.org>
-Subject: Re: [PATCH v2 1/5] dt-bindings: clock: google,gs101-clock: fix
- alphanumeric ordering
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
- <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki	
- <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
-	kernel-team@android.com, Will McVicker <willmcvicker@google.com>, Juan
- Yescas	 <jyescas@google.com>, Doug Anderson <dianders@google.com>
-Date: Mon, 12 Jan 2026 14:26:48 +0000
-In-Reply-To: <20260112-dpu-clocks-v2-1-bd00903fdeb9@linaro.org>
-References: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
-	 <20260112-dpu-clocks-v2-1-bd00903fdeb9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1768228136; c=relaxed/simple;
+	bh=3VnkUbTBEArOUSGeAaf3mQrAVgBFlS6FTAMdfaVarkc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G+BUekAIC/7Gt5668U5gJ3FITUleB4OF8adx3JQZiHaaFdayVVBVzgHZHeOMH0fVjs3EQDNXtfwEesRwOIAwpPp/5BANaBFO8uQgJwg60wSlfl8DPqAFlXE0d2W24eCg28Zmcn59g0VB5UZSaTAmQSFtBLAnhLEaNwTt7s8Tckk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VhFOcj9d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A196CC16AAE;
+	Mon, 12 Jan 2026 14:28:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768228136;
+	bh=3VnkUbTBEArOUSGeAaf3mQrAVgBFlS6FTAMdfaVarkc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VhFOcj9d1mLIpngG5dKREWoyeL0bO4SB9n2CBuzTcs3VnteIe9yAc0V15IhVlyf/S
+	 GE61DWri81IE3rIqK4v4PN9NvZqqSXC4Cdri5FWsxOPbpJKdrwVrtW7wxjI7HceCSc
+	 YNi4mzMMGTrwxow1DtlfWOi92B1pWbOMo39n+9fhKboL4G6T9nWQTWxIE3nxlBT3Oj
+	 a4BERb8xCj+2Pc4ADChBBS7H7c15hhqErPLuS0urhymDTsnnJaoJpuIXBszjSQ+FAW
+	 BNNpkRiWBLrZ3rnA0RR8XjEOfoswF9SQaCVdSu6tiZ8WtJodo5PtsZxOCf/NftchFV
+	 d9euQqH+pSVDQ==
+Message-ID: <b4eb4ab6-6fde-4c01-8069-470545ffdac4@kernel.org>
+Date: Mon, 12 Jan 2026 15:28:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: usb: Add binding for WCH CH334/CH335
+ hub controller
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>, Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Quentin Schulz <quentin.schulz@cherry.de>, Jonas Karlman <jonas@kwiboo.se>,
+ Hsun Lai <i@chainsx.cn>, John Clark <inindev@gmail.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20260112022823.91-1-kernel@airkyi.com>
+ <20260112022823.91-2-kernel@airkyi.com>
+ <20260112-lively-hallowed-beetle-fc15b2@quoll>
+ <1515a445-576a-4833-a604-c31062f7d3fa@rock-chips.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1515a445-576a-4833-a604-c31062f7d3fa@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2026-01-12 at 14:16 +0000, Peter Griffin wrote:
-> Fix the places that don't have correct alphanumeric ordering. This will
-> make reasoning about where to add future entries more straightforward.
->=20
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
-> =C2=A0Documentation/devicetree/bindings/clock/google,gs101-clock.yaml | 6=
- +++---
-> =C2=A01 file changed, 3 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clock.y=
-aml b/Documentation/devicetree/bindings/clock/google,gs101-
-> clock.yaml
-> index 09e679c1a9def03d53b8b493929911ea902a1763..a8176687bb773ae90800b9c25=
-6bcccebfdef2e49 100644
-> --- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
-> @@ -27,13 +27,13 @@ description: |
-> =C2=A0properties:
-> =C2=A0=C2=A0 compatible:
-> =C2=A0=C2=A0=C2=A0=C2=A0 enum:
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-top
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-apm
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-misc
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-hsi0
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-hsi2
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-misc
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-peric0
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-peric1
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-top
+On 12/01/2026 09:59, Chaoyi Chen wrote:
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/gpio/gpio.h>
+>>> +    usb {
+>>> +        dr_mode = "host";
 
-If we keep 'top' at the top as one outlier, it'd reflect that it is the
-top unit and all other CMUs are children of it.
+One more thing - drop above line.
 
-> =C2=A0
-> =C2=A0=C2=A0 clocks:
-> =C2=A0=C2=A0=C2=A0=C2=A0 minItems: 1
-> @@ -70,8 +70,8 @@ allOf:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-enum:
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - google,gs101-cmu-top
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 - google,gs101-cmu-apm
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 - google,gs101-cmu-top
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        hub: hub@1 {
+>>> +            compatible = "usb1a86,8091";
+>>> +            reg = <1>;
+>>> +            reset-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+>>
+>> Are you sure?
+> 
+> I guess what you're concerned about here is the polarity? 
+> If that's the case, then there's no problem.
 
-And here.
+Yes, I was wondering whether polarity is set correctly.
 
-Either way, I don't mind:
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-
-Cheers,
-Andre'
+Best regards,
+Krzysztof
 
