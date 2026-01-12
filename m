@@ -1,433 +1,228 @@
-Return-Path: <devicetree+bounces-254198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5534AD157E4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 22:51:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE06CD15834
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 23:03:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 26144301E928
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 21:51:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 76047302D2B9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 22:03:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCAC23446C5;
-	Mon, 12 Jan 2026 21:51:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D8D2DECA5;
+	Mon, 12 Jan 2026 22:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CG7tizDs"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="f4BoSaab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010049.outbound.protection.outlook.com [52.101.56.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141FA3446A4
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 21:51:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768254699; cv=none; b=Tn3MO6xbuaunHGm5qSrBE8ifbB4tS4MRyhMftoj9tr+QlUq5FjgQWaowtInVpzrjW+5hx/ADPmYnQVc7OqZ3v0zvYvhhQJxe4y0MoqzJ4okrzV3zguuT0HNnaJ813GsHMFL5hhy0O273LM3sN0vbYsvf6OGS4sizBz/oPH7+j+I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768254699; c=relaxed/simple;
-	bh=uJGSkaBryiEwfJcObh/EX5hbxEIJBywlpx5zXQ1LFyM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qrmBgkUWc6jAQhAOX6QQipmz+66fGe0lHC//FX2IgaQAfTd7TbmLZUlXz8YjNZZe0/N59C+Hq5FW1MeZVxqVNazozR680POAeesSjWmZhvszZw0w9yMeLy8EjgQVWUpwXwBA30i1Wuf4z0pSstj/rzhxJoVb9SXuYAz+yMSaaWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CG7tizDs; arc=none smtp.client-ip=74.125.82.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f46.google.com with SMTP id a92af1059eb24-121bf277922so8016958c88.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 13:51:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768254697; x=1768859497; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=hzjlp69EH4PoMxJM59b5nlCiVtVzp7dqTTMG2qwHpKQ=;
-        b=CG7tizDs/jVfCAW39jDwkH0Q64Oybme5Rdz80hVERq+ke7BPUXzW34rgvMAiVAbM4D
-         ezJKY9QxWgCYG0QRg44ce+Gr1sDj31fBBWYL/dUVhqHQbfSAFW2X7/0szN3FJh0aPq0O
-         TgWVFcF0JxUEHEljt9v1tAzyoa80cUzHTJb2zPB2xmpqoctLmlKUlf1/PkfVxQ51Y309
-         KP9QD1ow14ICwTt2h7y20c5hC4rWYFAaIq9of2rPago+TTKX/2uhDS7IZkrZAYDNCBxM
-         8U6fWNEdjkz4NBvdI0B9nRqKsi/UmmaPu4XahGcUoCnoNFcGIytFs1ZOHEZFZi7fpx21
-         qOwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768254697; x=1768859497;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hzjlp69EH4PoMxJM59b5nlCiVtVzp7dqTTMG2qwHpKQ=;
-        b=lCrUUGbHOl4Pmglg4rynzgAh5FKggQyk7XFzyo67k7pgcENuUnJcPsKTNcTGiM/aeN
-         mBPAo4reUyQ8wJm1U7XHiRbwph82IvZYb8ywbgDsTVBdZYwvyMXEOvRp3yAy0eGNnnX7
-         JlP8+wdEVCPsfYVQPxCEybzKtJGEyh0KPbnK7oVqViFcvO9BzJgelcE0LgeqWWBCVhuv
-         e/Z0AXMQaIkBI+HEURfPsZtLilCub+218oeF4sGq1Cj1tGxnwiWcpi2FH+rgB1uO9EP1
-         L7Fa5tHnL9HcbbXSqKiIrx4ejLqw7bcVM4NsmK+44qitFDdU3rmv84YeyxR3f5IePAyu
-         SkcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWqgntrCUHX0AYXItTg+3/FYVx1wKBOx40bK9kaImO59nWbDeXwdkAoNA2XdvWZRCgurMPy8oX8EqzL@vger.kernel.org
-X-Gm-Message-State: AOJu0YycP/hd+XJUU7gE5DyOJ4qdMNv3GjAs61Rl3Og9GtPtW3ga9GcK
-	7Wm1Aiyo7rRww1Jh/TvYfm+Ft0lviJxEbssnS41kYbIYSJbPxbCzDy9f
-X-Gm-Gg: AY/fxX5XhNQj3w/0b8jvOUHp2OYZ3yep/X+qV477q4M8lRlOevvJofnf+MNnZgPO+uJ
-	l9JqTzw0nWw7LroDGMWMXARPrnOoA3TOF+n0LLF2OjslqLI22x+EJQ+SnMcUVbb+1keWwujGh3s
-	YfSzZ4IsYQUsCa5JKJd020F8yeHB2cPKckRKz/Y2vRbFLf3UTWejlBX7LKlxIAWKCEaBiOEohHO
-	yMk4Dg9j4WY97lCbPBX+OS4GpVSlrP0iBf2C3/L9k63xUifLcKLMHv8Yt/MgtPF2kCRM1zX+P3h
-	SUvKiFivU0jGSOnLSQwkwmebfx+0Q0pEEfnX4PHGXSRqKcwLPA/8EmY1NhHp2GTVjpMvRBDu2+2
-	ykKIpltGMyOin1fMg80N4JgBu1hpDVJSVRnOZLmqgddekk3btjvp/G92sKEgNbqeGJsTn5/HUKX
-	ybPbH3fntoP6t3tSwHNaGW+sWqAE9xHcNYZI3UD1Htguuu55Srtv9FIbAs8vQnixm4hwnK8wU=
-X-Google-Smtp-Source: AGHT+IGT9H7ZxYmUaXhwguC1AN5LDGunxgvlyzpVpSLg0P6bV37rWxCw3QaKjKJNoBn4qg5tubppyQ==
-X-Received: by 2002:a05:7022:6723:b0:11b:9386:8267 with SMTP id a92af1059eb24-121f8b9bef5mr15449088c88.44.1768254696645;
-        Mon, 12 Jan 2026 13:51:36 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-121f248bb6esm25438522c88.12.2026.01.12.13.51.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jan 2026 13:51:36 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <03da3b10-dfe9-466a-9dc9-b51e29938e3e@roeck-us.net>
-Date: Mon, 12 Jan 2026 13:51:34 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D06A38D;
+	Mon, 12 Jan 2026 22:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768255427; cv=fail; b=kPr5QQb6vuJ6xRmF7hJbJQsMbIyr5ViZJE01kLji2bC+bjtARwG2vpc1AAWteemjHkMmpdqH/xyXNhFTTxAPri0J2I3oqdeM1+NKv9h0oyTuopiTOfI4MNUMwsBgibOKvS0StZUlwecpR5EgzHFVZsOXB+yuAozRqw2qUUH8VNc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768255427; c=relaxed/simple;
+	bh=ckyIHqAOFjjwnS9aqrnQsXjsaRSt8QX4w38S4dib9To=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=JBADrwLp33uc7/i377xfp4VbEXj59BGmwMMb69fXaos87ccbPt57E7b1UtTfxOjKlGeb02Te2xXAX9rKaQAJgLnQSvRgf93TigSwvinZDjOxAxzhGXBt3Kp92r+sJgDUiKYpi/MWo8zCpgD/Ow4c6eKeVGN9SEZ+4ERCx9Xu48I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=f4BoSaab; arc=fail smtp.client-ip=52.101.56.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jAOgB80gKbiHsaWyaJ4hjqLNMP0wVurP4v4w/oaW4u10tZF2SxZuaaHT1IEev6RNDZ2y6DWYszGggy3L2/3c7h1cL4Sl47bUrj2gkpxv6g5r+ubwEifXQe9zm0GRTpKpHXraN7h6PvTMvVwRgLuaErkAJpkhSVBVIcN3W+rdwoP90tnTy3XRzKOxXe8zvP+R4m+rl4O2BwnwkEdfM3hB/oPWjdX+ZQfN5N1ZB9cHQJY3vmIrISorTVN212T21nryBBxAEF61Pp5+OUSQVLC6RZwGWQzJ5EBdX2AArmrkDlCCEjazdFk94MF5IwYUJYN0Mvs3xJnIOekNy6Azj62aqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a9RCndJ2w/ZxC6n+tugBEIn6uT5tFcH27pNoaKLstsg=;
+ b=BXH4XnRwRl/+4tgFDZOd1oLHeLr540S4lL0ZFeaJ+ta5g175qITMuPb4a9Ug1xCm+Ok14COmTHW+eYmPZ1uSW7QLKynd1u3gA6xEUohNU4gy6v88r59Rg2YMF1ZTXhS60K117AlwHDoPZTussfxh0n5bRoqZ/iawd7RIBUF/hO5aQWydeMIStR53yqQC9PULgaLI+A8CdJSH8dSePumDtbKv84mPmIuOjSD8RA4mXo5CklZhlkLh9LhG4M6SOXqklMSLSTndj2KBWFtDJXrHHuHKxXLf/v4OslC9yv8RWBjXjGXo8gIBRHrxkbHcL06ydQdtzZYTuxfAOyK+t1jPSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a9RCndJ2w/ZxC6n+tugBEIn6uT5tFcH27pNoaKLstsg=;
+ b=f4BoSaabcV10BanuipJUV9Qcx0/ivibF1qWVUoEKwgxTLyuFx8tr9d9SQjKOMxT93d1BZ8Ms4TMzbUKc/wxxShoAWBnV9arouqZ52ahNqJGqo2ZG3HQNEX1NPuHjXTWtIGUYpN/wi3M0z1iU9MWR+Bb2ngRfFILDhJkySfbm4iGkr/2vXcZiedaMAFrOteEWp/u2pHTIdi6qAGJ1aIpsPracruOONQnguon+nKSH/6qrly9JaX5W1IfdiaCxv3JpjOFGRUdFOB3LefB+3xaxKVyQlj7yGIkxULl6xoREY/tTnzWqaq1abO2Z+ECbsF0LHkIv/miIviSjjp4shr/vAw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS2PR12MB9750.namprd12.prod.outlook.com (2603:10b6:8:2b0::12)
+ by DM4PR12MB5890.namprd12.prod.outlook.com (2603:10b6:8:66::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
+ 2026 22:03:42 +0000
+Received: from DS2PR12MB9750.namprd12.prod.outlook.com
+ ([fe80::56a8:d6bf:e24c:b391]) by DS2PR12MB9750.namprd12.prod.outlook.com
+ ([fe80::56a8:d6bf:e24c:b391%5]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
+ 22:03:41 +0000
+Message-ID: <ea60f024-1f39-483c-87e3-36624bd58d49@nvidia.com>
+Date: Mon, 12 Jan 2026 22:03:35 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] arm64: tegra: smaug: Add usb-role-switch support
+To: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+ Mathias Nyman <mathias.nyman@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
+ <20251204-diogo-tegra_phy-v1-5-51a2016d0be8@tecnico.ulisboa.pt>
+Content-Language: en-US
+From: Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20251204-diogo-tegra_phy-v1-5-51a2016d0be8@tecnico.ulisboa.pt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0206.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:1a5::13) To DS2PR12MB9750.namprd12.prod.outlook.com
+ (2603:10b6:8:2b0::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] hwmon:(pmbus/tda38740a) TDA38740A Voltage
- Regulator Driver
-To: ASHISH YADAV <ashishyadav78@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ASHISH YADAV <Ashish.Yadav@infineon.com>
-References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PR12MB9750:EE_|DM4PR12MB5890:EE_
+X-MS-Office365-Filtering-Correlation-Id: c392d31a-8d3e-4a92-0cbb-08de52267200
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|10070799003|366016|921020|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?NVJGdFUwUmV4ZitPSk1nOWM4MGlleUZZeVZncUV3QTBYbkVET0FVS3BtUTQv?=
+ =?utf-8?B?eWx2cSs0WjBKM1V5cGJqY29XWlQvMlQxc3Myemt2Tml4RVp5YzVZeEluNGZM?=
+ =?utf-8?B?TlRydUluQUg2WG1ma3Nac09CWE44NTR3OHRFbTlqWUwwSmtyS1NlZjFZaFp6?=
+ =?utf-8?B?SVpHalB2dFB3RFYrblV1eXhDVnZ4YlNtNXVUSGlGczZ6dlZpd2J6RTR6U0xH?=
+ =?utf-8?B?bG5ldGlESkpLaEh5VmsrZ2w0OXF2azUyVjFTMmpvVjAzWDhwNEhOSjhMZDhq?=
+ =?utf-8?B?bEtiTmt1cmpDQ2pYVHpoNmFCNWdLUUdjbXBSM0pQNmtaeEJKaSt2Uzl1VXdU?=
+ =?utf-8?B?UHBxL0s3V1NNdEI1bEg5ZC9WM0dEZGN5bHVDQVBBT2tpY2M4MUp0QmhUVU1S?=
+ =?utf-8?B?aTM4QnFCdVZ3N1dFcEZKOXNtdHZpTjZDMU82WDdsbkptb3NnK0lxbUFwcTQv?=
+ =?utf-8?B?dk9tMHAzL1JQbFNzQURnR2NnRDU3Mnl0ZVBOTHlSdHpDVzRVR1drY2lJdnNG?=
+ =?utf-8?B?bDZMQ2xZb2JoNFJpWFZlZkloQUpUMCtQd3N1WkpLbGFUT0dHK3VzTWZnSFR6?=
+ =?utf-8?B?S29MZzZRK3BsSFAyVHBveFk2VlBnN0x3TXI5Z3EwT1duWXRocHNuSFovUnlT?=
+ =?utf-8?B?NGpXM2ErMmFqM3pGUzJoNUtlQjVmTExUWDl3YkpVeVRNS01lNER3SlNJbXd5?=
+ =?utf-8?B?MDNCQ0lUcXFHRkpmdVBoV3dHaG01akpPNUE4UURVRVFtdmx1L2N5Wk5Pd3pK?=
+ =?utf-8?B?cXF3SmNrQVI0bXhsUEM4M29pc0dYZ1FOc1BDbVBLTmdnMUMxOHJ1M1YyWmNI?=
+ =?utf-8?B?Y2VVUmF1L0svcjR4RlFySEwyR3VMeXpyNzB4L1ZockIvYWpabzhVZkVqNEhN?=
+ =?utf-8?B?Z1VrV0JkTWtUWUVpY0dIUjdmMEZrRG00RW9OdzZ3VTNtWUhhU2h6dXBkdlcy?=
+ =?utf-8?B?RWowRUdHSzZqeHpWWjArN1Yvak1yQklqRUQvUTB1ZUhGaEhqTFFtTHdtcS95?=
+ =?utf-8?B?NHpvaWhQTUJKQmlHblBJNWVJSUJjNko3RmFPbEdCU21oSXdmZEJLdFBWZjg0?=
+ =?utf-8?B?UnlYeFQzY0dtT0pjakdFWVd6WDdVS0RDZC9BR21IeitSaXVyaGpIS1F0dFZ0?=
+ =?utf-8?B?ME9WS29XMWl4R2ZTZUhEUUd1N1lKdjBOMXVhL0kvellsMkRta3BPMVk0OVZB?=
+ =?utf-8?B?R2NnWjlsam9GSU9ZNDV0WVRncDVxVU56N09JT01hSStMeVJzaEx1Y2lDRTRE?=
+ =?utf-8?B?NWhPRjg3bU1DR0Z3T1Y5KzNzS3o3elZkODYzWG5jRkxwL3hIV1FWSXJnWFdm?=
+ =?utf-8?B?djdWOHRwbjlNSmY1d1hsWFBNUytKeGxIZ2ZVYUk3bHpPcUZGZHkvOHMxbGQw?=
+ =?utf-8?B?L1JUMjdqZnRnNDNxY202dVprWE80RUdzZGlTb1UrNG9seHpEZjNnUXltWHNJ?=
+ =?utf-8?B?U2pwTXBkSHdqSkdjM1pJME5pQ0RlY2JtMEp0NkhvWkpXNVJ1eGRaQkhsS3lx?=
+ =?utf-8?B?SjE4ZnVHSElNZXZVTVdDQ05CM2hWWG5YbEMrUGh4RFpNNzNsSXdzbWhyY3c1?=
+ =?utf-8?B?dGJ6ZkFzcjZsRnhhN1lBbDU1V0FZK2cxbkVJY1hRN0EraGFoRzM2MFo4NmZp?=
+ =?utf-8?B?QzVxWEwzVHovcXp3dVd5OHBxRFN6ejFJWFRtNStTTCtGT3lVYUFkNm5WaFN2?=
+ =?utf-8?B?VnpTR0t5b3JLMmF1azVVRCt2N3c1M0JwZTJ1VXAxc1pLV2l3dlc1L0lrckNS?=
+ =?utf-8?B?dmpqc0Z2UjlFdzRjN1MvTWlRazM2LzVwNTlPbmlHUjYxMGYzaHA3N01hQVdR?=
+ =?utf-8?B?ZEl2RW5nbW1Nbm1BNWRodDlsVjhHaDhCVXJxYWRMVGNROUFLZDcxSFRDVkxJ?=
+ =?utf-8?B?eWtXQnNDNTIvRDNlakJzaktWU3NNVWI2bFlHb2xsczVtOUhZb1VZQjJaMVRY?=
+ =?utf-8?B?cUZhcVhLSkJ4eHNvUWFnTlRPT1J5SklSMm1JVDE4ZTk2aXFJZ0lYMVg2TFNB?=
+ =?utf-8?B?M1M0YWhxT0Vob3FRQU5nenFYdUluVHJibmpBSHlBaDlnblRoc0MzRTZybktI?=
+ =?utf-8?Q?ChQa/t?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR12MB9750.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(10070799003)(366016)(921020)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aC85SFJqY2o1d1FsUjJzY1FNeGY3M0tmSit5L2lNaGdtdVNQdE5rWkNsN2dv?=
+ =?utf-8?B?LzF4ZThRTDhMQ2U3WHBoV0lFbnJGMlBRcG1NeWJacUZPVE9jVElpL081MVBD?=
+ =?utf-8?B?VUFac0VScHM2UVl0MkZ5OTRrVEZPeFhoTldJNk9zM0lDeDJTdCttVGVxajVK?=
+ =?utf-8?B?U210bWNHaVdrVUF1b2xBK3hmeDRIaWtEVlFVSTloZkJUYXE5UkVURXd1WlZE?=
+ =?utf-8?B?M0FjR1dJQVM0bUtwUTVTRCtuWTFsUmxyQnZUWTZhVHkvYlhSZWdqUnZadHRL?=
+ =?utf-8?B?VVZaSjJYVnZqQjRpVnh0UEVocTZDK1ZsWTVMM3hURGY3QzBtTy9Fa0dPa1VN?=
+ =?utf-8?B?UXl0aGMyRWNBQ3pCRVF6N202NkpvL05hVFFVTFVpMlFaOVJnb2ZyQk5VZjR4?=
+ =?utf-8?B?SWtaZGVwS256UXkrZnlwN0RxQm5Najl6UFZlRHZYdUR1MGcyS2RlaURrRSt2?=
+ =?utf-8?B?bE1BeGk1L2Fib1FHK3Q4c1hPRkFnN2NEQ1BTMVRjSHJyV0piVm1mcXFHTHht?=
+ =?utf-8?B?ZFRjc3lSOHdyaldMdFVNY1N2RGN0SldKSDJ0eUxpQ2RINVNyeDM0WDZhVE4x?=
+ =?utf-8?B?QkJXZU1DQUdub0V5TFhBRktBVlZ1eEplL2s2djB1VUJnR216dCs1NjBZamg2?=
+ =?utf-8?B?UzFBa2hsakc2VEdxQkJscUxYQ3M4QVJJUkJBRnoveUJmK1JQemxER05XN3BI?=
+ =?utf-8?B?NnNIWm9hMzNkVy9LTnBFdzBlQjV1MStHUXVSY3lSaE9sa3dqNUxqWHVEUms5?=
+ =?utf-8?B?Mmo5WlEzc2dDMlh3dENpRzU2MDI2QVYwVDd3cXlManZnRXgyMitMM1dGK1Br?=
+ =?utf-8?B?ZTR5eitYOWdzVWZGcDF3Y0hGWEFwWjIxdVoreFZMcERPU3BGNlNBcjZTV3NK?=
+ =?utf-8?B?MGxsMk9UU3J1MXZtVWdZd3hnTzBXQmFEc0tHZ0VaU0s3bERyZUdvUXY2Vnlw?=
+ =?utf-8?B?Q0VzNnhkWHJuRkJjWktYNUpKWHV4Q205Umh5S0M1Y1hkdURvUzRLeVV0ckQ3?=
+ =?utf-8?B?aWhYSlVHZmoxdXVkZEVTb3NjdkFVQm5RbUVDZUFxR3ZycTRxZzVYajVXdzJN?=
+ =?utf-8?B?Y1JhUVg1NHZxM0V3cG5NUmcySFErY3VzUGxsYTkzNWFsYzAzTDJXWm5nZzNV?=
+ =?utf-8?B?YkpGRlljU21qNFFVTFJTRVN6TitrcWlhWnNvSEpFNWJ5VmVtSVFIQmo0bTBv?=
+ =?utf-8?B?dDZxZWZhTzVJWmNML2xDSDhhbzVmdWJKNXh1d1NXN1AyZ2xRV0ZtLzlKWERB?=
+ =?utf-8?B?azVjZGZOcGdPc2syVnNPY0lPN2RMZjJYaXo3VmpXMzhuMjVwV1kreFhjS2FP?=
+ =?utf-8?B?Uzd4c1E5Sjc3NjhQalZXeTZqS1dIZzZidVpyMno2WW5KcFZsWVlrUll0Rk5m?=
+ =?utf-8?B?Z0tZWWdkYWtFb3pvdVpOU3pBNGxURVVmZThCMlc5MWFSaXg3YjdibWIyekJX?=
+ =?utf-8?B?clZJMDBleFhWcVFRTmNlejJmSHBuNWVZNUR5Z2ptcWRMR2NEZWZQS0NKT0po?=
+ =?utf-8?B?L09lOTRUTFZRbFMxTmVFc0ZUVTErbVdGbkYvVU9taGNCOW9qWGFML01sOVh6?=
+ =?utf-8?B?Z1lzbzBRZk0ydndvMUZhL2NBSytOdkwvNHBtWHlpUGpQSHZYRnliNzZ4cCtH?=
+ =?utf-8?B?NHpSS1pPYXJKZGlxODVYZUQxMVFGdlJWRTRrZ0hYOTJQZ01ER2UwYTFHdk9z?=
+ =?utf-8?B?N3NkUkczZmJsb3gxTmxkeXRDZkZPL2FCU1cyb1FtYnAzRUROblBpbDhlMFNM?=
+ =?utf-8?B?QzZUL3E4bE9aNklQY0tlc0hvMWJnVUllb2Jsa2Ircko5My81d2gvcm15MGs1?=
+ =?utf-8?B?NnR4Uy94MHFJeUkrODdrNCtWOXFvV3ZjOXluOGNzWDZoc21TZ0daYy9tZW1J?=
+ =?utf-8?B?UCszOHdwWXcvaEF2cFloUHk5NGlUZ25WMFFSR2tETUFyWTdBRlpWWnp2VUpI?=
+ =?utf-8?B?RGY0UTg2TUdSMFFzbjFzcjM2ekJ0anpzdlBmemk3OW9pZ2RIcEdHRkFiaDM3?=
+ =?utf-8?B?Q2hxcTUzRUUzbVVUVzhCNitrNEhXYldab3NySmVSYXgyZGFrUHlGN1NoQjNk?=
+ =?utf-8?B?eHBITUdrSWdENkdmc2gyS0JpU0pxMVhKOTFTcHNkMUgwMDZvTzdNUUR6Myti?=
+ =?utf-8?B?K3gxL3E5VDR0SFM4UE9DMXp0QkNmbm80Wk1yNXhwdXJrM1MzeFRvOWw3MUNo?=
+ =?utf-8?B?K0l5am5Xa0dkb0tiSVhaRnpFbnFuU3hzRWprT2d5ejIrVDJNcjljMDN2R0Ns?=
+ =?utf-8?B?STN6dW5yVVdVWTBGMXJzazR1S01FY3ZDRG9za0xsSlpFVnk2N0c4OGhjRmFQ?=
+ =?utf-8?B?ZUFvYWhNZEl1UW1sM0hpazJaU3hqTTNIT1lZMENMcWJUd3dWeWtDcnU3V2JZ?=
+ =?utf-8?Q?ivP2rHMRnLWB+CPQN75+ew+NO4OQZsYySEkvz/InlmOVr?=
+X-MS-Exchange-AntiSpam-MessageData-1: bJBaQgRF4FQrew==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c392d31a-8d3e-4a92-0cbb-08de52267200
+X-MS-Exchange-CrossTenant-AuthSource: DS2PR12MB9750.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 22:03:40.9036
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yfmtnAzkOjHyHAGTTzD7IRCa7uhpMpUVJcP5e9pZyYBi1Hkxk1wpQ/MUo4RjFoeMqgEczm/NXLHCngW6oFHlIA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5890
 
-On 1/7/26 06:45, ASHISH YADAV wrote:
-> Add the pmbus driver for the Infineon TDA38740A/TDA38725A
-> DC-DC voltage regulator.
+
+On 04/12/2025 21:27, Diogo Ivo wrote:
+> The USB2 port on Smaug is configured for OTG operation but lacked the
+> required 'usb-role-switch' property, leading to a failed probe and a
+> non-functioning USB port. Add the property along with setting the default
+> role to host.
 > 
-> Signed-off-by: ASHISH YADAV <Ashish.Yadav@infineon.com>
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 > ---
-> Changes in v2:
->   - Review comments address.
-
-That is not a change log.
-
->   - Another Patch for Devicetree binding submitted for Driver
->     Documentation.
-> ---
->   drivers/hwmon/pmbus/Kconfig     |  16 +++
->   drivers/hwmon/pmbus/Makefile    |   1 +
->   drivers/hwmon/pmbus/tda38740a.c | 203 ++++++++++++++++++++++++++++++++
-
-Documentation is missing.
-
->   3 files changed, 220 insertions(+)
->   create mode 100644 drivers/hwmon/pmbus/tda38740a.c
+>   arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index f3fb94cebf1a..e7d7ff1b57df 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -602,6 +602,22 @@ config SENSORS_TDA38640_REGULATOR
->   	  If you say yes here you get regulator support for Infineon
->   	  TDA38640 as regulator.
->   
-> +config SENSORS_TDA38740A
-> +	tristate "Infineon TDA38740A"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for Infineon
-> +	  TDA38740A/25A.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called tda38740a.
-> +
-> +config SENSORS_TDA38740A_REGULATOR
-> +	bool "Regulator support for TDA38740A and compatibles"
-> +	depends on SENSORS_TDA38740A && REGULATOR
-> +	help
-> +	  If you say yes here you get regulator support for Infineon
-> +	  TDA38740A/25A as regulator.
-> +
->   config SENSORS_TPS25990
->   	tristate "TI TPS25990"
->   	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 349a89b6d92e..f422c80cf3d8 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -58,6 +58,7 @@ obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
->   obj-$(CONFIG_SENSORS_Q54SJ108A2)	+= q54sj108a2.o
->   obj-$(CONFIG_SENSORS_STPDDC60)	+= stpddc60.o
->   obj-$(CONFIG_SENSORS_TDA38640)	+= tda38640.o
-> +obj-$(CONFIG_SENSORS_TDA38740A)  += tda38740a.o
->   obj-$(CONFIG_SENSORS_TPS25990)	+= tps25990.o
->   obj-$(CONFIG_SENSORS_TPS40422)	+= tps40422.o
->   obj-$(CONFIG_SENSORS_TPS53679)	+= tps53679.o
-> diff --git a/drivers/hwmon/pmbus/tda38740a.c b/drivers/hwmon/pmbus/tda38740a.c
-> new file mode 100644
-> index 000000000000..b31e1b5c6916
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/tda38740a.c
-> @@ -0,0 +1,203 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/**
-> + * Hardware monitoring driver for Infineon Integrated-pol-voltage-regulators
-> + * Driver for TDA38725A and TDA38740A
-> + *
-> + * Copyright (c) 2025 Infineon Technologies
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/regulator/driver.h>
-> +#include "pmbus.h"
-> +
-> +#define TDA38725A_IC_DEVICE_ID "\xA9"
-> +#define TDA38740A_IC_DEVICE_ID "\xA8"
-> +
-> +static const struct i2c_device_id tda38740a_id[];
-> +
-> +enum chips { tda38725a, tda38740a };
-> +
-> +struct tda38740a_data {
-> +	enum chips id;
-> +	struct pmbus_driver_info info;
-> +	u32 vout_voltage_multiplier[2];
-> +};
-> +
-> +#define to_tda38740a_data(x) container_of(x, struct tda38740a_data, info)
-> +
-> +static const struct regulator_desc __maybe_unused tda38740a_reg_desc[] = {
-> +	PMBUS_REGULATOR("vout", 0),
-> +};
-> +
-> +static int tda38740a_read_word_data(struct i2c_client *client, int page,
-> +				    int phase, int reg)
-> +{
-> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-> +	const struct tda38740a_data *data = to_tda38740a_data(info);
-> +	int ret;
-> +
-> +	/* Virtual PMBUS Command not supported */
-> +	if (reg >= PMBUS_VIRT_BASE)
-> +		return -ENXIO;
-> +
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> index b8d854f90be7..49bf23d6f593 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> @@ -1809,6 +1809,8 @@ usb2-0 {
+>   				status = "okay";
+>   				vbus-supply = <&usbc_vbus>;
+>   				mode = "otg";
+> +				usb-role-switch;
+> +				role-switch-default-mode = "host";
+>   			};
 
-Why is this needed (instead of just returning -ENODATA) ?
 
-> +	switch (reg) {
-> +	case PMBUS_READ_VOUT:
-> +		ret = pmbus_read_word_data(client, page, phase, reg);
-> +		if (ret < 0)
-> +			return ret;
-> +		ret = ((ret * data->vout_voltage_multiplier[0]) /
-> +		       data->vout_voltage_multiplier[1]);
+This change does add the following warning when building with CHECK_DTBS
+...
 
-The need for this, especially why it would only be needed for PMBUS_READ_VOUT
-but not for any other VOUT related commands, is still insufficiently explained
-(and I failed to understand the rationale provided earlier).
+arch/arm64/boot/dts/nvidia/tegra210-smaug.dtb: padctl@7009f000 (nvidia,tegra210-xusb-padctl): ports:usb2-0: 'role-switch-default-mode' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra210-xusb-padctl.yaml
 
-> +		break;
-> +	case PMBUS_VOUT_COMMAND:
-> +	case PMBUS_VOUT_MAX:
-> +	case PMBUS_VOUT_MARGIN_HIGH:
-> +	case PMBUS_VOUT_MARGIN_LOW:
-> +	case PMBUS_VOUT_TRANSITION_RATE:
-> +	case PMBUS_VOUT_DROOP:
-> +	case PMBUS_VOUT_SCALE_LOOP:
-> +	case PMBUS_VOUT_OV_FAULT_LIMIT:
-> +	case PMBUS_VOUT_UV_FAULT_LIMIT:
-> +	case PMBUS_IOUT_OC_FAULT_LIMIT:
-> +	case PMBUS_OT_FAULT_LIMIT:
-> +	case PMBUS_OT_WARN_LIMIT:
-> +	case PMBUS_VIN_OV_FAULT_LIMIT:
-> +	case PMBUS_STATUS_WORD:
-> +	case PMBUS_READ_VIN:
-> +	case PMBUS_READ_IIN:
-> +	case PMBUS_READ_IOUT:
-> +	case PMBUS_READ_TEMPERATURE_1:
-> +	case PMBUS_READ_POUT:
-> +	case PMBUS_READ_PIN:
-> +		ret = pmbus_read_word_data(client, page, phase, reg);
+I know that there are many warnings seen for the smaug DTB, but it would
+be good to ensure we don't add more.
 
-I fail to see why this would be necessary. Just return -ENODATA.
+Cheers
+Jon
 
-> +		break;
-> +	default:
-> +		ret = -ENODATA;
-> +		break;
-> +	}
-> +	return ret;
-> +}
-> +
-> +static struct pmbus_driver_info tda38740a_info[] = {
-> +	[tda38740a] = {
-> +		.pages = 1,
-> +		.read_word_data = tda38740a_read_word_data,
-> +		.format[PSC_VOLTAGE_IN] = linear,
-> +		.format[PSC_VOLTAGE_OUT] = linear,
-> +		.format[PSC_CURRENT_OUT] = linear,
-> +		.format[PSC_CURRENT_IN] = linear,
-> +		.format[PSC_POWER] = linear,
-> +		.format[PSC_TEMPERATURE] = linear,
-> +
-> +		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
-> +			| PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP
-> +			| PMBUS_HAVE_IIN
-> +			| PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
-> +			| PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
-> +			| PMBUS_HAVE_POUT | PMBUS_HAVE_PIN,
-> +#if IS_ENABLED(CONFIG_SENSORS_TDA38740A_REGULATOR)
-> +		.num_regulators = 1,
-> +		.reg_desc = tda38740a_reg_desc,
-> +#endif
-> +	},
-> +};
-> +
-> +static int tda38740a_get_device_id(struct i2c_client *client)
-> +{
-> +	u8 device_id[I2C_SMBUS_BLOCK_MAX + 1];
-> +	enum chips id;
-> +	int status;
-> +
-> +	status = i2c_smbus_read_block_data(client, PMBUS_IC_DEVICE_ID,
-> +					   device_id);
-> +	if (status < 0 || status > 1) {
-> +		dev_err(&client->dev,
-> +			"Failed to read Device ID or unexpected/unsupported Device\n");
-
-How about printing the device ID here if it is unsupported ?
-It could be printed as hex string.
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (!memcmp(TDA38725A_IC_DEVICE_ID, device_id, 1)) {
-> +		id = tda38725a;
-> +	} else if (!memcmp(TDA38740A_IC_DEVICE_ID, device_id, 1)) {
-> +		id = tda38740a;
-> +	} else {
-> +		dev_err(&client->dev, "Unsupported device with ID:%s\n",
-> +			device_id);
-
-device_id is not terminated, and it is not a user readable string.
-It should be printed as hex string, or as hex byte (0xXX).
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	return id;
-> +}
-> +
-> +static int tda38740a_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct tda38740a_data *data;
-> +	int chip_id;
-> +
-> +	if (!i2c_check_functionality(client->adapter,
-> +				     I2C_FUNC_SMBUS_BYTE |
-> +					     I2C_FUNC_SMBUS_BYTE_DATA |
-> +					     I2C_FUNC_SMBUS_WORD_DATA |
-> +					     I2C_FUNC_SMBUS_BLOCK_DATA))
-> +		return -ENODEV;
-> +
-> +	chip_id = tda38740a_get_device_id(client);
-> +	if (chip_id < 0)
-> +		return chip_id;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +	data->id = chip_id;
-> +	memcpy(&data->info, &tda38740a_info[chip_id], sizeof(data->info));
-> +
-> +	if (!of_property_read_u32_array(client->dev.of_node, "infineon,vout-voltage-multiplier",
-> +					data->vout_voltage_multiplier,
-> +		    ARRAY_SIZE(data->vout_voltage_multiplier))) {
-> +		dev_info(&client->dev,
-> +			 "vout-voltage-multiplier from Device Tree:%d %d\n",
-> +			 data->vout_voltage_multiplier[0],
-> +			 data->vout_voltage_multiplier[1]);
-> +	} else {
-> +		dev_info(&client->dev,
-> +			 "vout-voltage-multiplier not available from Device Tree,using default values");
-> +		data->vout_voltage_multiplier[0] = 0x01;
-> +		data->vout_voltage_multiplier[1] = 0x01;
-> +	}
-> +
-> +	return pmbus_do_probe(client, &data->info);
-> +}
-> +
-> +static const struct i2c_device_id tda38740a_id[] = { { "tda38725a", tda38725a },
-> +						     { "tda38740a", tda38740a },
-> +						     {} };
-> +
-> +MODULE_DEVICE_TABLE(i2c, tda38740a_id);
-> +
-> +static const struct of_device_id __maybe_unused tda38740a_of_match[] = {
-> +	{ .compatible = "infineon,tda38725a", .data = (void *)tda38725a },
-> +	{ .compatible = "infineon,tda38740a", .data = (void *)tda38740a },
-> +	{}
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, tda38740a_of_match);
-> +
-> +static struct i2c_driver tda38740a_driver = {
-> +	.driver = {
-> +		.name = "tda38740a",
-> +		.of_match_table = of_match_ptr(tda38740a_of_match),
-> +	},
-> +	.probe = tda38740a_probe,
-> +	.id_table = tda38740a_id,
-> +};
-> +
-> +module_i2c_driver(tda38740a_driver);
-> +
-> +MODULE_AUTHOR("Ashish Yadav <Ashish.Yadav@infineon.com>");
-> +MODULE_DESCRIPTION("PMBus driver for Infineon TDA38725A/40A IPOL");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("PMBUS");
+-- 
+nvpublic
 
 
