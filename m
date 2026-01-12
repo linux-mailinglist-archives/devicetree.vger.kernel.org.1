@@ -1,150 +1,268 @@
-Return-Path: <devicetree+bounces-253761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7751CD112DF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:22:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 949F5D11300
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 09:23:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1AB26300BD99
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:20:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D87FC302858B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F1B33EB1A;
-	Mon, 12 Jan 2026 08:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A08430F7FE;
+	Mon, 12 Jan 2026 08:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F5CuCvyh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Wi1BrilE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B861A1B81A1;
-	Mon, 12 Jan 2026 08:20:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768206009; cv=none; b=W0ocR5O2/L0lTQsYAC0Afew06CW8fRl1aPpvWJphM15JQXOsZ7eBvgCcA6NalaCGZHAK7i8My4T4TMFaCZtNqXl3KmilgFELNT22aaqLAFN3jVwIE/d8/MukkPksHEMd09LNkBgCj6jK7Tia/t+pK8pM1kh245DTMNvuwBrjsSI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768206009; c=relaxed/simple;
-	bh=ObX+40NwErgZLVy8CTMLW715TtcaqkDgsLRG8Rr9aJA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AZiWTnVq2WPvOORnXotkNHzcQuUJjbnk5jAcF8+YaAZtafaffBOwHcMMjig6XuRGzOLRqoA3sBiKMD+OZTjkhsueCC+z3fdNFK6zm9EuhBv7I9UzBjcm1ziD2Dcdkclff1xq5qI+vJRs3RPlSyoGTJ9gOrdhOAhGzOHod5+jpTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F5CuCvyh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77F3FC116D0;
-	Mon, 12 Jan 2026 08:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768206009;
-	bh=ObX+40NwErgZLVy8CTMLW715TtcaqkDgsLRG8Rr9aJA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F5CuCvyhm2riEqGGgzes8RZtIEOU75MGImNDFuozGz2Jz+F9dTzS6vcg4adqbEq+D
-	 Y0uG7NkQ21KMaqfUq/O/1CtMAjnIq2FXP2BBG9svamx10MWrLpOCdL0M4lQnG8uoVv
-	 HbTXahN4reNjYfBZ+ypD7Hlo+AcK9Z8w8ZumZZ2M3AQcBRK8btY5aLdRK4Ef9HcyYz
-	 8DMfamTVtgpnY7KmQs+odq13vph91FQIlRd2faJxFw/IY3ZEBn+GRQvREvv0puBp4R
-	 1GE2AmwyQkkCT2UEryiQ2PwetHQLQrqU4Mzn8EO0L+0N83mwtebBFJrjqoHfK0yKgc
-	 9viWCGiBFSXcw==
-Date: Mon, 12 Jan 2026 13:49:54 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, Rob Herring <robh@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org, 
-	Sui Jingfeng <sui.jingfeng@linux.dev>
-Subject: Re: [PATCH v3 03/14] software node: Implement device_get_match_data
- fwnode callback
-Message-ID: <6l3rs5pv6xnrbygpvqrdxqoqtybjyefsltk5bl4336q56rfoza@ejo3sxuufghe>
-References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
- <20260110-pci-m2-e-v3-3-4faee7d0d5ae@oss.qualcomm.com>
- <aWSpFk9z0zpyKjr6@smile.fi.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8F2523EA8B;
+	Mon, 12 Jan 2026 08:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.17
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768206224; cv=fail; b=K8yx5ere6fZ1WYKELoUaK6OfnM/CvKriFhBdML2B1iwR5MviIWniottRi7PS01q7O1B4RamfHzCm//K0zHoUnsrHyM1ZJR/k0T8xrC8IxqeJ77JcsdLcIzASTfzeoveBGW+NS+lHgyMVPTFw4Htmw9Q8XEgtAslk8sZIYZaHoHo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768206224; c=relaxed/simple;
+	bh=T9XI6pKemkhlOyrL2lInpONqf6yaSvatlInNqc3FjWE=;
+	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=UfoENaSnBr3tps0iXyOkZHrR0tpMfv6iNWtDPkJyo0RGqsSDb2uPsR1YiU8dnnb+JGNm9CjscfqRJjCgjEojI7BqD7aN8czkm0bIIRDXK1hR1tFrKTLMOnuPY/sl3eJ/TieGFqrAT5PTOFfPt2QWVyQ4u3WxEsgeGwNGMxvUDrI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Wi1BrilE; arc=fail smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768206222; x=1799742222;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=T9XI6pKemkhlOyrL2lInpONqf6yaSvatlInNqc3FjWE=;
+  b=Wi1BrilElOAnptdm24IVPA/QPf6JcLkXu21ASRGbvXnuLtpj/AXa4+9q
+   UolmZj3XQ6rPPHPjyBUMFAnw8I6K2O2o93+WFIE2GSTh1tdZtYkeNnFMV
+   8uUXvulrNA+lQ05+ibcoj2V2aKSJsTBe57PLIHZDrndc8kjTTlqQJMQ4K
+   LsOHunAeavsHgxUjPOMEc7N7CCrKnvOB38Qhi8NvZ9/Ndut5xO8zgAcl0
+   1w10cl1PDx4rzMetNoQXPWZ7CfhYlbtESfExBqH/6XREerCRktN/D7d6H
+   X+il4sLhWRSDABiDCXTy2RznLbNR8TmeJ3qKXqClKB0jKjYRLq4/kOF4Q
+   w==;
+X-CSE-ConnectionGUID: I7Dnh5vwTbWuMbkb4BhBmQ==
+X-CSE-MsgGUID: Kp0+1Gz/Q7GlPa7PtCdVIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11668"; a="69390101"
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; 
+   d="scan'208";a="69390101"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 00:23:42 -0800
+X-CSE-ConnectionGUID: KALQh3aVSFWrK45ULrkxaQ==
+X-CSE-MsgGUID: adYCZgrjToqcPdLFpxBbfQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,219,1763452800"; 
+   d="scan'208";a="204107306"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 00:23:42 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 12 Jan 2026 00:23:41 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Mon, 12 Jan 2026 00:23:41 -0800
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.41) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 12 Jan 2026 00:23:41 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mXLS3F87IfxkHa9mj5+qDyy/XII0G76ri1eYHBBdDHu0BFXHZzPXIlyY12O8Gx5619nUqkTFhyg5dcPysCtYI6R237ApfQJbO7KtNtQkc/P77pyjCesK+Wy1IK7Wc4ZikubbPZTg1tdNdPK05v6pQU87mvr61ay0qlHpKU8QMO2ylfC/pKaPX/scmowDsmovl30HyLEmwZQ2Gcb+hnws2G2KiCb4IvgZmkhzRxt6+xlgUhlsg1/pRM3/2KMQDToQEeb+IhAyisFrQIoeRdlkELlrLysfRf1xPzvdPRR8b1ShjvuyH4wpfSUSf/H95rMekj+6Z4bufaMNPwXETalIfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mhf/b1RRgf05TyJGIzg21Fp9z1KB3VHnO0PNjCxejDU=;
+ b=HNNVYU4U3x7ec5V+mJAB9dZbcm1j9PmGzyg7NZHni+1r5am+LCgwtvPuGYRwzAgw5aXdP7x8umcqeOayokrTyOEJBCNFf+VRFwNax5XPkfT5qwUGYhLQzup5ciH6o02LnWtx22TS/iGKfSVIvVrqkGqvpq+jNig1Y3OwfdL0L1aIEvtMcmk++k4jSQf2h2r7z49Z9qvR1GlwmNcwQqD9Ne3fuZWRTvjP60HAdMfBtGPzwlVLGRbSI1TRE6t+Qf3fNyoxAMSWcC5M8XPGfPtA13Ve3zd5R4/IimTYVSpu7/Pibd85capFKznzjeGj76Bl9hz2pXvJxbuz3+l86APNng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15)
+ by SJ0PR11MB5021.namprd11.prod.outlook.com (2603:10b6:a03:2dc::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
+ 2026 08:23:40 +0000
+Received: from IA1PR11MB7198.namprd11.prod.outlook.com
+ ([fe80::2c4e:e92a:4fa:a456]) by IA1PR11MB7198.namprd11.prod.outlook.com
+ ([fe80::2c4e:e92a:4fa:a456%6]) with mapi id 15.20.9499.005; Mon, 12 Jan 2026
+ 08:23:33 +0000
+Message-ID: <d370870a-d4f9-4989-ade3-e2b26b2a1134@intel.com>
+Date: Mon, 12 Jan 2026 10:23:28 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] mmc: sdhci-of-arasan: add support on Axiado AX3000
+ SoC
+To: Tzu-Hao Wei <twei@axiado.com>, SriNavmani A <srinavmani@axiado.com>,
+	Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>,
+	"Neil Armstrong" <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Michal Simek <michal.simek@amd.com>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-mmc@vger.kernel.org>, <openbmc@lists.ozlabs.org>
+References: <20260109-axiado-ax3000-add-emmc-host-driver-support-v2-0-934f1a61f7c0@axiado.com>
+ <20260109-axiado-ax3000-add-emmc-host-driver-support-v2-2-934f1a61f7c0@axiado.com>
+Content-Language: en-US
+From: Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
+ 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
+ 4, Domiciled in Helsinki
+In-Reply-To: <20260109-axiado-ax3000-add-emmc-host-driver-support-v2-2-934f1a61f7c0@axiado.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO2P123CA0086.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:138::19) To IA1PR11MB7198.namprd11.prod.outlook.com
+ (2603:10b6:208:419::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aWSpFk9z0zpyKjr6@smile.fi.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR11MB7198:EE_|SJ0PR11MB5021:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2892040a-3a3b-49c8-860f-08de51b3e030
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024|921020|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VDZFNE5RVHpHZldEZGxFZzExVmFZMzE4OFgxRUh2YWRiN1JuSExTd3B2RzhD?=
+ =?utf-8?B?UjhHRHRwK3hRMUhQelN1RGxVTnNmZUZ1RVlYVGRDa3dmQm9ZY3BWNDVPUElK?=
+ =?utf-8?B?YjkrSDdGaHFRSGxoc1RIZ3MwMEFWUDgzWXc3R3FYRjFBWjZWUzlNNDBHUE0w?=
+ =?utf-8?B?NVRZT3JOVTQwRlRMQjBYc0RRVUZpNTVDTDhDeDBGRFZMK1NoZDhqbVVKNlRy?=
+ =?utf-8?B?RzBROFU4R3A0ZG9ZUVNMQUg2T0daeTllUmVoYUNYNFpNVTlJVFBPN2l4M1hV?=
+ =?utf-8?B?eFp5cXhUS2xJVWYwR2hMdGRpT0wzSmxaZHkvUFVFVk1VbHU1TzJ4NEJnL1Fr?=
+ =?utf-8?B?UnRaZ1FEUWM3YTRjUEtQMkt1Y25UTnhZamJFczg1aUVudUpsb2pCSVpoekcz?=
+ =?utf-8?B?OXFLQmNLNVBnOFZRMUJTVlZoU0VYOUlqR0tzLzhzUWx3Yy9xMmdlVHFTd2RW?=
+ =?utf-8?B?S1ZOSTkreDVZbUdyN0ZvR1FRQ2xnU1B6YlQyWUlUMWI3S25xdjJUNmIvY2NG?=
+ =?utf-8?B?SVFYbzI2Z2o1UklWaDVzU01SaFg2M05PQ3U2cXZIRnlvVkV6M3JyZUJGU1di?=
+ =?utf-8?B?VldtUTFCcGZGSEFqWnFKa0RMNXp0YzVqT0g1c3ZJdUR1T2NzWFdoZGgvcnR4?=
+ =?utf-8?B?R2JWem96QXJLOE1IRzJESDh3SkFOMmk0eDhmY1dRQzJzSVRRbWpheGUwY2Rv?=
+ =?utf-8?B?MEU0bmN6d2R3UTM1Y0UrTmRiS0NlenJCZ0RVdlBBak94Z1Z1aUw2Y293SGUw?=
+ =?utf-8?B?QXd5K1o5L2pnblhDdVVUc1RmWU9oOEtGWCtSSGpXajQ3cWVvTGpTSStCUFMx?=
+ =?utf-8?B?SWQzd3dpOHl4ei9vTWRuaFpKdG1lekNvdWtzaXo4c1gxZ0ZtSW5uZ3h5aXhN?=
+ =?utf-8?B?ZDdrdVREWVBIcVkxZ0VqbmhRNGRSRzVIOFJQRXE2d3NBUElDdEJiUDVnWkQx?=
+ =?utf-8?B?ZTZrMlJGUTJNZWd6VFhMVTRibFk0TjNqZWh5b0E5VnArbm13b0ZTbUFhMnoz?=
+ =?utf-8?B?Wi9jazVDbURaT1IrN09mbk1CR05Ha2diWFpFUlZ1b3czdzhOMURPcDZFRGNq?=
+ =?utf-8?B?dDJYelh2S1pDTFRqLzVVRWUyRWlmT0JRbExrbkdrWklGNHlxWFcxd3N4a3VJ?=
+ =?utf-8?B?MVRTRTQ1Q28yZ28xRnVDUDJhK1FTV3VWNUZRZjZKQk1sQldYMVdrUjFSS0l3?=
+ =?utf-8?B?UmVoUnZSMW9DWSs1c3J4OE80VWVIbm15R2wzRnhqOHVpOTB2SEFHTnlUKzhn?=
+ =?utf-8?B?SFdDTGZ6OVArVTRJTEVhVFJ6SmM1VFB4UVFVRzgzemszaGpidktCVGxNcHJM?=
+ =?utf-8?B?Y1d1M0lBb2p1SWlqdzF5Uk5LMjFHZ0lnbi9GRXNLYzkrbmJTRXBzcStSSmNr?=
+ =?utf-8?B?MFdCMUZjVW9VVDRZV0JZRFltUWZvd2RiREZkVGMwMjVUc3phUjd3WWRtbkcy?=
+ =?utf-8?B?RzB4M3BaRWtUSzBSeTNsamo1QnlMeTlPUFhlWm5JWlZTVEljVGhweEZpSVJh?=
+ =?utf-8?B?YzBCa291a1hrZ0ZLcGszNHNWclVjWWVEOHdQK04ydU1nSlhvNHpDSkJPazNT?=
+ =?utf-8?B?bG1FeGJIaEcveVlTYVZRUkdmNDN6ZVVQandNUDFSbit0Z24zZnl1N3B2ODBY?=
+ =?utf-8?B?dEQrMGFSRUhCZWpVVWk3OUNOaVdoZ0ZPZ2ZOTjJ5Yzh5VkhMUXkybmJFUlVL?=
+ =?utf-8?B?aHdGcW1DenhZUkpyZFcxTzFxSyt3bG1JUTBCZUlrbUNiOHZsTGMxWDhtRklD?=
+ =?utf-8?B?d1JZbUYyMTNaRHpSSk9zWE51MkFkTldMbW11TWFDYUYyRjl5emZNVFAxVzdh?=
+ =?utf-8?B?anU1aFQrZ3F4MU4wZllhNHpZeGhuZWJ2WFJFektRLzhPWVFsbWtyQ1JzQzhV?=
+ =?utf-8?B?SkxRMzhGTXlDQ0J0SkN3OUM2NG4rVnVTMWpqNkhObU1qaEh5elQ2ME5pcUxa?=
+ =?utf-8?B?cmovUnBwdCthY0NqOS9ZWFZDMWQ1OGtDSElYMGNkb2dQcFIrVjFIS2QzSm5w?=
+ =?utf-8?Q?+3y47sTHZnpZ5B+J/FdxDQxAXKPhaQ=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB7198.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(921020)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b0IwSmJsQTlHNFJLT3c5bkZXbW1nTW9UVE1tOTZQSGxCbSs2SEVkeTVVaUJ6?=
+ =?utf-8?B?QTVHZi84MzFadWJKdXR3TkRJRnBEb2MyNUk5VndsZTNOU2QrSUtaTmEvWXBO?=
+ =?utf-8?B?cDA0aGtkTHMvSU5yREdwRHhlbk1Sd1ZqVXI0MExYb09zVE9ublpuM2NYQkVo?=
+ =?utf-8?B?WnVCR1p1VGVtVVlZNDJQQWZTNkx3ZnF6MG54bHFGU0RmbEFVbUZyVlpGVGR3?=
+ =?utf-8?B?eTB3Y1VwVkYwWWUvTDRyMTM3N1NSUVBCQXZPMlR2WVRBSndKWEFXZzJUQnYw?=
+ =?utf-8?B?M2xQdi8vTlp0SjhwTXRyeU5tRlJ2c3p4UDJKZ2pWZkJkQTBUOUtnMm1xZHpM?=
+ =?utf-8?B?bkJLa2kyalFtalkvQzFGSG5OekViWTgzZndnU1BTU09Wb2hYWjMrMVg5SWlT?=
+ =?utf-8?B?dDhMOG5mNWlLNzdlMEpuMjh0RmpDdHFQdVNhbk5tYkp5c28zb2dWRXdseVI1?=
+ =?utf-8?B?UzViNytzT0gwbUhWOUh4Ti9rY2U1Rzd6NkNvU2pxRlhFYXdGN0h3SGd1OEY2?=
+ =?utf-8?B?cGdIeFBBZTRDSHlZR2VPZldHeTFNYTFlVDlqVnBiY2xBNDl5SzEzb1JXaHRE?=
+ =?utf-8?B?TGNzZXYvbzlJSXh4cjRNTWE3OXpaUWNzKzlWdk9yVE05aGlEd0g4UWswRnBh?=
+ =?utf-8?B?TFVjaHhtNGY4SW56MFJqNm5pT2JIWWl2U0ZmUWpOQUtxQ3pkSkU5NWNaT0pY?=
+ =?utf-8?B?UVNpaXEwRENVYTA1emNEaXEyeDBQSWo3c3NlM1hKNXNicC9PUXRGVngwajNx?=
+ =?utf-8?B?clJQbVU1RkhPVmN3dmNMcTgxb29wd3ZZc2FxOXhMTlhnOTk3dFpKeEN6MG5H?=
+ =?utf-8?B?Z0tXRlZmdCt1RVQ2TWdUZklUMW8yM2FnUkFiTGFUYWszMmlkemdhMVptTGhp?=
+ =?utf-8?B?VENHQWF4TGRlTUovQldMOHFFN1NRQVJBaEliMnZQSzEzdytLUzFSRDYrRjBN?=
+ =?utf-8?B?ckdYMEVudGMzYnVMa0d1RWVhaHFJWUpDOVVvY01OaS9HanNGK2E2Ui9VcDh1?=
+ =?utf-8?B?V3BvQVBtU056bUR5THFlcHprV3JFYW9ra1RTNVNIQ3pjejJpUTg0MkZqWWNF?=
+ =?utf-8?B?R2h5U3BkS08xdWZETG5XU0EwQ3JSNkVKaFBDeFk5MjJDUkMrOHNlS01nQ0Vm?=
+ =?utf-8?B?TW5RN05yUHdJallJbUk5Wm5rVjFkcisxY2VweXpxU3AwQXVFSzN3cWJmYThH?=
+ =?utf-8?B?UG1TQkNrVGxiOGl0Z1plNWR4SWxON2hqNVZRUytOdDhETlhhbElMZlFGcFlp?=
+ =?utf-8?B?Z04xQzd0Z09pcE0yT25GR215a0pDSlpVejN3U2F4d3pPWEpCcWJ6a203Mzhs?=
+ =?utf-8?B?TDhBV3V3TUJVZ1QxcDZ2R0wrRUlRa1pxTHVqQWNITkRMSk1KdWJJbEZ0bi8v?=
+ =?utf-8?B?d2VSYVJORitERGpuajFKVWR5T0J2L3lwZnZ0UklKS2NnY1JWd1Z1cFZWeUhy?=
+ =?utf-8?B?TnNqdlVCS3gwWVcxblhQY3dlNnM2YTZOUlFrc1g5b0xhdjNCdkZ2czJuWHJC?=
+ =?utf-8?B?aG50NXBDUmZha1ZYSVlpN3dQbTRHMjU0cEYvbUUvdUJ5MTJzL0VoQklCZ2lT?=
+ =?utf-8?B?MTJsaVlQN2Jwdk5wVVliNEdsd3IwVWFUcDdoR2Q1TlYxUjBZL2RmcWRKU0M2?=
+ =?utf-8?B?aFJUUVljUmNoMG0xZ3F5VzI3RlhyUFRBa3lYUzJTVXB0djFEdnFEWGh6U1F3?=
+ =?utf-8?B?MjI5K3pITVRlREZWSlVDM2RIVGVzWVJwK1M5TzFGMjlZVzhMc21CWnJ1NG9M?=
+ =?utf-8?B?b01lY0xTbHNmREU2WEdaOVM2Y3pJZmZuc1gxVFBlWEswQXl3K09UYUtJME9t?=
+ =?utf-8?B?VzBDd2V6cHBKVG9xWmxpck04cUk3bnFjYVhMbzUrYnhlaXdINlNCaER3M2pU?=
+ =?utf-8?B?czlYekdjL055TTdKQzV3MGZLU1prdzVQYkc2NVN2U25ldENXcmJsbmp5WVRO?=
+ =?utf-8?B?Z3BibXhMdmxWYkd0YXRKMHJQRHRPbVJHNng3Z0pmSUlCSm0vUDg1Uk5zbXdh?=
+ =?utf-8?B?SDlkWGZBZU8vT3h5QTZIMDRrbGI5RTNUYU5lNEwrR1hXRXNYbzM5U2Nmak9o?=
+ =?utf-8?B?YjJWZ1BBZit3MEgycUFhMVRZQlJiU05GM2orT0FVd09VK2pWaGVtYVo4VS9P?=
+ =?utf-8?B?c0did3d0ckdSeGJpSE01MzMvNm42R0cwTXJ3MEZPcGdvZVpvZGRiWGV3c0Yz?=
+ =?utf-8?B?S0tyTDdkVVhTV3BWZE1xWGpKSXR0UFdWTkxNUFZiTHVqTCtRcE9EREg4cVl0?=
+ =?utf-8?B?R21aWmxScVZ4dm15TnFKTHo3Wm4zN2pybzdTaG5PY0pNY3JtSllzaDRTVTRa?=
+ =?utf-8?B?cmVnckpZbGp4akwrK0VZNW54ZDhRSW9zTWN5dnYrZEhBU2lCYS9jQT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2892040a-3a3b-49c8-860f-08de51b3e030
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7198.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 08:23:33.7893
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QjAhuvQz4O6ZJkaZzAk/nOy8lADW4SD4v/UQXA679lAAP5BteOUlRSOf5ENUDapMqSKNX08wA+Cktp+Nw1Nmxg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5021
+X-OriginatorOrg: intel.com
 
-+ Dmitry Torokhov (who was against this patch previously)
-
-On Mon, Jan 12, 2026 at 09:56:06AM +0200, Andy Shevchenko wrote:
-> On Sat, Jan 10, 2026 at 12:26:21PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+On 09/01/2026 11:46, Tzu-Hao Wei wrote:
+> From: SriNavmani A <srinavmani@axiado.com>
 > 
-> > Because the software node backend of the fwnode API framework lacks an
-> > implementation for the .device_get_match_data function callback.
+> Axiado AX3000 SoC eMMC controller is based on Arasan eMMC 5.1 host
+> controller IP.
 > 
-> Maybe this is done on purpose. Have you thought about this aspect?
+> Signed-off-by: SriNavmani A <srinavmani@axiado.com>
+> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
+
+Apart from dt-bindings issues:
+
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+
+> ---
+>  drivers/mmc/host/sdhci-of-arasan.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-
-IMO, software nodes were introduced to add sub-properties to the existing
-firmware nodes, but it has usecase/potential to go beyond that. More below.
-
-> > This makes it difficult to use(and/or test) a few drivers that originates
-> > from DT world on the non-DT platform.
-> 
-> How difficult? DSA implementation went to the way of taking DT overlay
-> approach. Why that one can't be applied here?
-> 
-
-Sometimes you do not have any DT node at all. For example, in this series, the
-M.2 pwrseq driver creates the serdev software device for the M.2 BT card to
-match it with the existing OF based BT driver (for non-M2 device). From the
-driver's point of view, a BT device attached to the M.2 slot and over custom
-connectors are both the same. Only difference is that, in the case of custom
-connectors, the bluetooth DT node will have the BT device described and in the
-case of M.2, the device won't get described, but just the connector [1]. But for
-the driver to identify the device (since it cannot enumerate it), either it has
-to rely on DT/ACPI or some other means.
-
-In the previous version of this series [2], I used the serdev ID based on the
-product name for creating the serdev device and added a new id_table for serdev
-driver to match with the device [3]. This almost duplicated the existing OF
-match logic. Then Bartosz suggested to use swnode approach [4], to get rid of
-the custom serdev ID based matching. When I prototyped, it mostly worked well,
-except that swnode needed to have its own .device_get_match_data(), match() and
-uevent/modalias functions. And if the swnode reused the existing DT compatible
-string, it can work with the existing BT driver without modifications. And this
-approach can also be extended to devices instantiated from the board specific
-drivers.
-
-[1] https://lore.kernel.org/all/20260110-pci-m2-e-v3-10-4faee7d0d5ae@oss.qualcomm.com/
-[2] https://lore.kernel.org/all/20251125-pci-m2-e-v2-0-32826de07cc5@oss.qualcomm.com/
-[3] https://lore.kernel.org/all/20251125-pci-m2-e-v2-2-32826de07cc5@oss.qualcomm.com/
-[4] https://lore.kernel.org/all/CAMRc=Mc-WebsQZ3jt2xirioNMticiWj9PJ3fsPTXGCeJ1iTLRg@mail.gmail.com/
-
-> > Implement the .device_get_match_data fwnode callback, which helps to keep
-> > the three backends of the fwnode API aligned as much as possible. This is
-> > also a fundamental step to make a few drivers OF-independent truely
-> > possible.
-> > 
-> > Device drivers or platform setup codes are expected to provide a software
-> > node string property, named as "compatible". At this moment, the value of
-> > this string property is being used to match against the compatible entries
-> > in the of_device_id table. It can be extended in the future though.
-> 
-> I really do not want to see this patch without very good justification
-> (note, there were at least two attempts in the past to add this stuff
->  and no-one was merged, have you studied those cases?).
+> diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
+> index ab7f0ffe7b4f007a58eb0a26868b08b0b02b40f3..5da915edd7416ab5c725a784867098c5e19236b6 100644
+> --- a/drivers/mmc/host/sdhci-of-arasan.c
+> +++ b/drivers/mmc/host/sdhci-of-arasan.c
+> @@ -1512,6 +1512,16 @@ static struct sdhci_arasan_of_data intel_keembay_sdio_data = {
+>  	.clk_ops = &arasan_clk_ops,
+>  };
+>  
+> +static const struct sdhci_pltfm_data sdhci_arasan_axiado_pdata = {
+> +	.ops = &sdhci_arasan_ops,
+> +	.quirks = SDHCI_QUIRK_BROKEN_CQE,
+> +};
+> +
+> +static struct sdhci_arasan_of_data sdhci_arasan_axiado_data = {
+> +	.pdata = &sdhci_arasan_axiado_pdata,
+> +	.clk_ops = &arasan_clk_ops,
+> +};
+> +
+>  static const struct of_device_id sdhci_arasan_of_match[] = {
+>  	/* SoC-specific compatible strings w/ soc_ctl_map */
+>  	{
+> @@ -1538,6 +1548,10 @@ static const struct of_device_id sdhci_arasan_of_match[] = {
+>  		.compatible = "intel,keembay-sdhci-5.1-sdio",
+>  		.data = &intel_keembay_sdio_data,
+>  	},
+> +	{
+> +		.compatible = "axiado,ax3000-sdhci-5.1-emmc",
+> +		.data = &sdhci_arasan_axiado_data,
+> +	},
+>  	/* Generic compatible below here */
+>  	{
+>  		.compatible = "arasan,sdhci-8.9a",
 > 
 
-Yes I did. I didn't put the above justification in the cover letter, as it was
-already overwhelmed with too much information regarding the connector node.
-Maybe I should've added it in the comments section of this patch. But I didn't
-know how to do that with b4.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
