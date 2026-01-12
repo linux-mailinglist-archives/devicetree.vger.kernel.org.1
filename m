@@ -1,252 +1,139 @@
-Return-Path: <devicetree+bounces-254196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FD8ED1577F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 22:42:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D1DD15796
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 22:46:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 013053026AD5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 21:42:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 54B253047949
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 21:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A97342CA1;
-	Mon, 12 Jan 2026 21:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E5B324B33;
+	Mon, 12 Jan 2026 21:46:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hj449o4i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bX5JX1Gr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3E9D342500
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 21:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836931891A9;
+	Mon, 12 Jan 2026 21:46:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768254161; cv=none; b=KWuABaAUYwvcB3k4dIMhtL9K02INEa9Ktf7lwFlIITGp0RaQ+kEYsTqLCMq4D3b4wQc31dg4lIkcE7SlypH+TTGsO1CBZ2Oqz1+/PYXPSf+tDoQLtnlfK18cl8m4AN2s1hzJAk5D0ACTyZ6ds+W+d8XfQn78df3VSXg9qNYeuW8=
+	t=1768254366; cv=none; b=UMFvg+QUQaDOsSbyfF74XzO2Tm5GTMywFi9JNjKqi1BhooUp+of64y8Ds0an+QibwKFhDGzflvI/JEESUp/mX/IeQfBtcgM7eYD7Lkp4zppGEt4KO+oli8w5NA12IkgVn9GjkcMwri0QBX8EQbZdv2V+oFr61Q68f/cKkyjjttY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768254161; c=relaxed/simple;
-	bh=dz2CmtqGglp5Xbabzn3gouFe0lBg+qGdkrzZBwpId9U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HwavzUlkA8J6MZxdV7mYN8fOETIE2zpoMvI5u8rNveanJweu3x0V580eOjl0y3XU/G/BwLAtV/+l8Q4rJUMZx84oA5HCipc/BGRPcOJRgvx2erjIpF3WPmIi9pMR0o4jRz67MDv4+bF4UzGJq+QCErH1fTKvGdJYtP0b5r9+eiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hj449o4i; arc=none smtp.client-ip=74.125.82.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f49.google.com with SMTP id a92af1059eb24-121bf277922so8007361c88.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 13:42:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768254159; x=1768858959; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=xoGqILNXLp9iGFwFId1fIPUgWUaCUXOdhluIYSxRCJU=;
-        b=Hj449o4i17H4Qb/JLBjYZAj9YuAHs3IUa8u/yfV9ufdPKIfPYLXaao5m0Hu0rUFuOb
-         ob26tyKDUfyOQm0KfdGk+CzTts4wyNnjgHNN+B/HO03CzMz/Z8w9VdNEHGtg/89QHvOJ
-         CxbLEYPCrwUSLelIyjzjRx2otsAIwxMRJm4qTcVE4z3IxpWNX1QfhlGd3s81e6pHe1Jq
-         +togzQI8I7LrAIuzUnsK2r7rGekqmzTfhloKK/N1KLqpsp44WwBIduZnLhBQJS5/VexW
-         JB7PZBvkodtkPgedXQzKiRDcMevvLBP3UvIrc4bBPYBS7ZqBJoETT/9VIRWrpBgCNgJz
-         HZtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768254159; x=1768858959;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xoGqILNXLp9iGFwFId1fIPUgWUaCUXOdhluIYSxRCJU=;
-        b=Bbgu4Z3WkLmlt+OVQK/Op5Kq6lXvuK5OtGkr5z4q99whYruErytHSVsOqL1xOdzhld
-         gBiN0cb/L1grLHnNCEFCEinr9spXyXUyGWdsMuffyuxlCTaxcQ4X3k+1Hpndslvg08Uo
-         1cqVP3yYUnx+n5sXWYv6cRHuj9v84qnTPGfb8Jw3j7Vjphy+le4u7KdkgdscSUDCqf6h
-         rZZRX9zJAHZDD/AougALVXYs9R3OYhnj1tQO4QDMYMg2IxpdVa5Ku+/ijGOGvhXEMD2K
-         A3K428zPtloy4sVVwd2tYifaaNZOKfnvZ6/w1bMrm43iNEqmxEbMM5CQiZk0fTLKgQWi
-         8bCw==
-X-Forwarded-Encrypted: i=1; AJvYcCUE/3UCT8IOstbTJfwKFVGL/1Whg1skz1RXp730JMYxkZt6bS0mGtEdWBEE9iRysBwz7CjeqdbigqPU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzip4TQ6IBoJj8lxx/+PSvB5cAx7o5KAsELjdA9GqFee8e+koID
-	QfRFIKs4Peav//Ode5K4cvaAd4bakwXuc6pBtsNLdHSckkuSDZ9LMzAUoi/WZw==
-X-Gm-Gg: AY/fxX4Nc09rfQMFfst8d+yfQpK6HbnoJIKOHpEsQchjVd9R4fsgoUmEbhoXMQWeo0z
-	M/sc1h5rjuuvWDoelZpNmnAVLI0E3lja6ge83wUW9QkE8B1Y0YeMjToxlpL6uGWKnl1MoYKOFNG
-	m8jpDfciGvgo348yLuhwMW672ph61W8MF83NoSRqokk/lnMo0Mlq1LLYqNosxTRvyOAI4oHV9mv
-	mwnynIk8I0y07WqLcdHGfYP+RqFKA+4JaqkQM7q3aCMrPBDFQMagUl7jepPyxptcHY4+rn+dH3y
-	4bMFUJEfaF/TPBqzwTeSAr1yVL7pbq7At1UvUH4e0wL/tl7qbEi1c/lsQh2JKuZpAjoOpEYx4Hb
-	YQZyczB5pyIa887vJUATfsgkBfJRTXYqrJ01et/lDCGtjgCcpWibX0wNvvN4KKnt5KC6OKGz0YI
-	IS/CivLyhG7MWTQxcY12KPu2+xJ9ro1ubcS+CAPlRwqmOL34dknM3XamJw1knK1i7h0P8tMXI=
-X-Google-Smtp-Source: AGHT+IFBqTJ1Om0TiFmR3UMFcq6ybfet+uH2iZtl6JLYYKVjMKSvkjPV1HFnXhhRI3hh2JK8R3HIdw==
-X-Received: by 2002:a05:7022:927:b0:11b:9386:826b with SMTP id a92af1059eb24-121f8b9cf08mr17914494c88.48.1768254158927;
-        Mon, 12 Jan 2026 13:42:38 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b1707b21dasm18420909eec.27.2026.01.12.13.42.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jan 2026 13:42:38 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <89927834-9e3c-4076-83c3-add8bbfdf187@roeck-us.net>
-Date: Mon, 12 Jan 2026 13:42:37 -0800
+	s=arc-20240116; t=1768254366; c=relaxed/simple;
+	bh=+A7nQFMk6BRPZjLEa0VYC39l7M4sHP9QSmOHqvMF7xU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IVuMRn5DvzK7FliRgsXpfUuuoZgLiQfeoBEHzOdtkwfX+FCqKyukOAyzoVLvHoOpuTNmgolJfEJuUonDdZh/ETxrFUi59no1sb82LpByR1CTkTR7kB2Ijq5RcYMKg+zdUtySGvTZqA0rS7XOtymWQ1oPJcfKrQtL2AZejG9lNUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bX5JX1Gr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02C9BC116D0;
+	Mon, 12 Jan 2026 21:46:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768254366;
+	bh=+A7nQFMk6BRPZjLEa0VYC39l7M4sHP9QSmOHqvMF7xU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bX5JX1Grl3nbFcEKpaj45bcdJsFiuhmR3dWVC8VCVXk76K4H9xCRYzRG/Aol6Gs5B
+	 OfQK3kb3n+sbGOisprw0w41eHMeCdZ3+XCRHu09e3ixHgoqY5e/KUVibawqQ5SacSi
+	 obZbL45Ra+LOhjA4FuI18kyXK/3z713bRnFJeH6+LHfv9vxlD4RKQ01hbHGxw2rAfs
+	 1ZJFTcKn+vC/9nkrIIggwswNuGLNCqf6Sb71OLYWMeNOue8TEnvc7LDlq07fAGA7Z5
+	 xgiaL1f+4QfLgjNd6oczPE1lq+jinbsqajrOMgciogHocp63w4d8H5AC+5buYug3/6
+	 poUA/rY+FHejA==
+Date: Mon, 12 Jan 2026 21:45:58 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Heinrich Schuchardt <xypron.glpk@gmx.de>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev, linux-serial@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 00/11] riscv: spacemit: Add SpacemiT K3 SoC and K3
+ Pico-ITX board
+Message-ID: <20260112-shrivel-sarcastic-36d9acd2d96a@spud>
+References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon/pmbus: Add Infineon TDA38740A
-To: ASHISH YADAV <ashishyadav78@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ASHISH YADAV <Ashish.Yadav@infineon.com>
-References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
- <20260107144507.46491-2-Ashish.Yadav@infineon.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20260107144507.46491-2-Ashish.Yadav@infineon.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eGeDqA2+RAjxIlOp"
+Content-Disposition: inline
+In-Reply-To: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
 
-On 1/7/26 06:45, ASHISH YADAV wrote:
-> Document the TDA38740A/25A device tree binding.
-> 
-> Signed-off-by: ASHISH YADAV <Ashish.Yadav@infineon.com>
-> 
-> ---
-> Changes in v2:
->   - Review comments address:
-> https://lore.kernel.org/all/2ee75453-0869-4348-ad92-f7ff71aca75d@kernel.org/
-> 
 
-That is not a change log.
+--eGeDqA2+RAjxIlOp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Guenter
+On Sat, Jan 10, 2026 at 01:18:12PM +0800, Guodong Xu wrote:
 
-> Driver code in review process:
-> https://www.spinics.net/lists/kernel/msg5985470.html
-> ---
->   .../hwmon/pmbus/infineon,tda38740a.yaml       | 81 +++++++++++++++++++
->   1 file changed, 81 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38740a.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38740a.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38740a.yaml
-> new file mode 100644
-> index 000000000000..cd4102350a15
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38740a.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38740a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Infineon TDA38740A and TDA38725A Synchronous Buck Regulator with I2C
-> +
-> +maintainers:
-> +  - ASHISH YADAV <Ashish.Yadav@infineon.com>
-> +
-> +description: |
-> +  The Infineon TDA38740A/TDA38725A is a 40A/25A Single-voltage Synchronous
-> +  Buck Regulator with I2C designed for Industrial use.
-> +
-> +  Datasheet:
-> +  https://www.infineon.com/assets/row/public/documents/24/49/infineon-tda38740a-tda38725a-datasheet-en.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - infineon,tda38725a
-> +      - infineon,tda38740a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  infineon,vout-voltage-multiplier:
-> +    description: |
-> +      TDA38740/25 pin strap parts are available in two flavors of 1:1 & 1:2
-> +      vout scale loop.
-> +      For the 1:1 vout_scale_loop version, there is no need for any resistor
-> +      divider as output voltage sense pins are directly connected to
-> +      the output.
-> +
-> +      For a 1:2 scale loop version, it is recommended to use 499 ohms each for
-> +      top and bottom across the feedback path.
-> +      However, in some applications customers tend to use an intentional
-> +      resistor divider across the output with a different divider ratio other
-> +      than 1:1 or 1:2 to alter the actual output voltage.
-> +
-> +      For example, if pin strap part is set to Vboot of 0.7V,they use a
-> +      resistor divider to generate 0.75V using the equation provided in
-> +      Section 13.3 of the datasheet.In this case, as there are only two
-> +      vout_scale_loop options of 1:1 and 1:2 that the IC can identify,
-> +      Read_Vout would still read as 0.7V in the telemetry and the baseboard
-> +      management controllers would use this telemetry data to monitor the
-> +      rail parameters leading to false tripping of the system.
-> +      This multiplier is used to offset the telemetry output voltage Read_Vout
-> +      so that the telemetry data is reported correctly to the monitoring
-> +      controller,in this example the multiplier would be 0.75/0.7 = 1.071.
-> +
-> +      This multiplier is required only for any external monitoring of the rail
-> +      output voltage. All the other Vout related parameters are used
-> +      internally by the IC and there is only a slight impact on the fault
-> +      thresholds.The impact can be calculated using equations in Section 13.3
-> +      of the datasheet.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        hwmon@40 {
-> +            compatible = "infineon,tda38740a";
-> +            reg = <0x40>;
-> +            infineon,vout-voltage-multiplier = <75 70>;
-> +        };
-> +    };
+> Hi, Conor
+>=20
+> For the binding riscv/extensions.ymal, here's what changed in v3 (no
+> change in v4):
+>=20
+>  1. Dropped the patch of adding "supm" into extensions.yaml. At the same
+>     time, I will start another patchset which implements the strategy
+>     outlined by Conor in Link [2] and by Samuel in Link [3].
 
+Okay, that seems reasonable to separate out.
+
+>=20
+>  2. Dropped the dependency checks for "sha" on "h", "shcounterenw", and
+>     6 others. "sha" implies these extensions, and it should be allowed
+>     to be declared independently. Like "a" implies "zaamo" and "zalrsc".
+>=20
+>  3. Enchanced the dependency check of "ziccamoa" on "a". Specifically,
+>      - added the dependency check of "ziccamoa" on "zaamo" or on "a".
+>      - added the dependency check of "za64rs" on "zalrsc" or on "a".
+>      - added the dependency check of "ziccrse" on "zalrsc" or "a".
+>     The commit message of this patch is updated too, to better explain the
+>     relationship  between "ziccamoa", "za64rs", "ziccrse" and "a".
+>=20
+>  4. Enhanced checking dependency of "b" and "zba", "zbb", "zbs", making t=
+he
+>     dependency check in both directions, as discussed in [4]. Since "b"
+>     was ratified much later than its component extensions (zba/zbb/zbs),
+>     existing software and kernels expect these explicit strings. This
+>     bidirectional check ensures cores declaring "b" remain compatible
+>     with older software that only recognizes zba/zbb/zbs.
+
+This I asked about in the relevant patch, I would like to know what your
+plan for adding the "b"s is.
+
+Spacemit folks, I assume you weren't planning on taking the
+extensions.yaml stuff via your tree? If you weren't, I'll grab it once
+the question about b is answered.
+
+--eGeDqA2+RAjxIlOp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaWVrlgAKCRB4tDGHoIJi
+0st5AQDVaFm0gq6ucDRxlFFW8jqtiLUa1O+EbmMgmTfjYPiaGAEAyjt/iYppXkBk
+aori5mGpiMWtHrLZBCiZPe+bPh6TpAY=
+=kYkG
+-----END PGP SIGNATURE-----
+
+--eGeDqA2+RAjxIlOp--
 
