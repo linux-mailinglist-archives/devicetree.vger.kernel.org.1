@@ -1,100 +1,153 @@
-Return-Path: <devicetree+bounces-253727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD713D10DEF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:30:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC9CD10DFE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:31:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3777930869AB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:28:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 74EF83014631
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:31:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13EAD33064E;
-	Mon, 12 Jan 2026 07:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23873328E4;
+	Mon, 12 Jan 2026 07:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="LKKwR3TZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZpyP91ty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54747314B72
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 07:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571B2331A6A;
+	Mon, 12 Jan 2026 07:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768202919; cv=none; b=LfkaUo9z77R+gSK0PPGkVtylo8UjEHTyijGN85oygZavmCr3/YBrdm/9qfbiKWzkYH2DC/WSQjM8zrGRMRVz8vQIJMUBiPwP2YPTC8lsINllnMwO7b2A+0HBqgpI6hwwyz6IjtWzSmwcBMiyHyGkrDOuDzpZY3LbsyV9bbGwXZo=
+	t=1768203068; cv=none; b=B+Sw+kAonN0ljEYY07elsGk2qdJj/A1GubUt4GgCbzNA3TmmaOI103lc+3yiSdS+vBhPx5leb68pZ4pCl53GrRhT4gSc8SuKQhV0q5FYxbM11EF8l09QPlIRQhJdZ3vQRhbV4zTYY/FoVBzawqJkKABoAvjXKoATMO5BMxYLOPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768202919; c=relaxed/simple;
-	bh=/al0P732L/og3jdqGor9t3lBoCQ/uX7BhVeOm6+zIlw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ppQLWDC3t+iLTOfuIkBMXaHn6tJV8jwuqTtNMTCL01KmwDvbSBpZy3/5OOpn1rstnZU3zgkH3FiSO1QbiYuggORo/UWjsE9GkJZHjxPincIyFG9Sxy9meTHN57D0XqNmU0tQs5eF6ZMoCHRBH/lNJSYqa7tT7YWeJZ4LRDuy/Yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=LKKwR3TZ; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-59b6d5bd575so5427579e87.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 23:28:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1768202914; x=1768807714; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/al0P732L/og3jdqGor9t3lBoCQ/uX7BhVeOm6+zIlw=;
-        b=LKKwR3TZ2rltwm58gfAW8j/D2Dr16LLECdwVNq3xyN/2aYIOPr/zW7ylhPWBnuKOUM
-         JOF9KG+3bQnYm6lfgli/YEwLTcA7WMfZ5KFsNOvgr7Vnp2e/2umaCR2lPDS90ofVdzuq
-         TBp1+aj9t6szuaHC4fSD2XyYy8Fy1gE2BXeFw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768202914; x=1768807714;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=/al0P732L/og3jdqGor9t3lBoCQ/uX7BhVeOm6+zIlw=;
-        b=W1V5ZUd9cD7ZWBvyLnEqBj3qHMZNboHmSLCLAQ31QlIhOTaj4+hBl+DtsneDggEEOP
-         7P8oGAR3bxfeLstNay20YAvHZsVhEasn73dlx/nwdoxge3+qLwdZW+1iOB1p5/Zv6v5S
-         MIr1ZYFHK7OlbHzVLMMD8KzmSlR3aSM7RsMwG9DNbaCIrCcewrOAW06lsUmvmuTpq3l4
-         UifKxtJbuqWhKf5kD7BbooxoVBJbf2lyQI1t7I9KwoNwEZ1RUIjyIibSHXNwtWWel61L
-         6DhdIm9+Yau5jwfGV+QE6KPctaAymjK5D0cEuKFyGsDYZKnU66DnXvULvkZeu2gREg3r
-         TV9w==
-X-Forwarded-Encrypted: i=1; AJvYcCWtr7NDekVWs3rHiQrzvU8LGj8DJ1+1UcarjMUs7wfhcgHIoRJe/klk6BDp8J/IRUir158nSvujHPZi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXzIR/3b5FpoePb1cmcId2dhLinZjHKCdFVZuBtP1KV3CfPCuD
-	atQ+2o3JZJV31CUBAA4wIywWJvEbiSGOsXRIkYo/ts3wJIZjyFFDGLglBN/rwNUrAG6mtfubUCo
-	c1nljll4/j3KwzG4xQ/sm9Xfa03Xhne+fGCHQVj0OGcmFN/QhcSKx9Q==
-X-Gm-Gg: AY/fxX50rJT2h31TjQEpRS0fpQUVt3c6ug3R8yVwJ1ctDZVpCdk7zSxjobP5D73rPNH
-	KFYKHwMyHWoW7FHMBTjwsmp9F+eIHTAz+vP3R77xzLyxAlLNRsXdpsAaTyHCGqErp7zAjbdlgHD
-	Vf678iUQQHLqnMimgoYkfyhotkBMzqod/1xY20wUNbkh2hYsJhMhfKxcCzgyZ26SNHrT8e5V6pW
-	FbmQKKl7idXo8wP78ayuDnpw6h0VkZ/JiuOG/i5PQ0rx2qiNus6a9pkqpehEPUgTvnGYOAdUa5E
-	tCj/8p98TwHbLuMK8vdL+tkT
-X-Google-Smtp-Source: AGHT+IGMwy6DQKFlVywYqY1p1e6uprSqkxqICel2tbPSMKWFuPJXPyRbKkq2UeKMJs7PxPYan4+ENRZ4rgeXEWRIvrQ=
-X-Received: by 2002:a05:6512:3b85:b0:59b:7b59:a4a3 with SMTP id
- 2adb3069b0e04-59b7b59a4fdmr3780571e87.17.1768202914583; Sun, 11 Jan 2026
- 23:28:34 -0800 (PST)
+	s=arc-20240116; t=1768203068; c=relaxed/simple;
+	bh=eB0/zyf/Sogxto5VFEyCo+QRxlgafOBFBnEd4EKzrDE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fgp9bSuQSbPlU2zzeMdpRfu3RRHPj1WzWYfof1/BpuCTRAu9atvuRK9I+xxFmIze49Bg19GjyJlAHzu7TF+vZxGAPYxoFekuqYQnEDW4md/m6/lzVRoNCo5NwmN7vG/6tkfGOC3DZTu6vERQO985N+rAtT4VN/L+Yg1bdtJNwOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZpyP91ty; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88041C19422;
+	Mon, 12 Jan 2026 07:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768203067;
+	bh=eB0/zyf/Sogxto5VFEyCo+QRxlgafOBFBnEd4EKzrDE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZpyP91tyjPy45op0LnPIegZwM0xwcySpcaNYfWGYnDEok156TVYWtxzqz2tShRacx
+	 pYZhvYBaIv8BSfZ7H2RPd3d2NcJny3XYlP9Cg92f5udUE4Y6ZnyALAkCte0Lnm5Kjw
+	 5ei7NajkmV/pESX1lVMawkHnUlax5hwFK/AEwwjFG3EgaRJ9dnH+sVAaDUrutWeLv0
+	 Wny8hJvoW7rb2KnczGM9SrujwHJnYhy8OZWGKNuNEtbRhSdsQ1ksYk3KNRcc/cNcRH
+	 2n/PnqKfr3iEVF/IqaNNoehzRrCUJkqr4EV+OSq8wx9ymYCVx//iHFL1YqrWFzn3U3
+	 ibZAfrZdnQtjg==
+Message-ID: <fb977dc3-54ea-4c58-be85-111fd7e1c371@kernel.org>
+Date: Mon, 12 Jan 2026 08:31:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260109114747.37189-1-angelogioacchino.delregno@collabora.com> <20260109114747.37189-7-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20260109114747.37189-7-angelogioacchino.delregno@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 12 Jan 2026 15:28:23 +0800
-X-Gm-Features: AZwV_QiB5ptUV19bOdXdm9RPLXnLOlfR_HO5ST_wuq0ulRnSOTzymqRKhyICJhE
-Message-ID: <CAGXv+5HtoJbt3QWK2+J5wP38EfnQZGB_KUtc5MBDN5UL6xpJZg@mail.gmail.com>
-Subject: Re: [PATCH 06/11] arm64: dts: mediatek: mt8183-pumpkin: Fix pinmux
- node names
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, matthias.bgg@gmail.com, sjoerd@collabora.com, 
-	hsinyi@chromium.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/6] dt-bindings: gpio-mmio: Add opencores GPIO
+To: Stafford Horne <shorne@gmail.com>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260109134409.2153333-1-shorne@gmail.com>
+ <20260109134409.2153333-3-shorne@gmail.com>
+ <20260111-bold-wolf-of-champagne-58fac7@quoll> <aWPT_HsRVC0dQ_j6@antec>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aWPT_HsRVC0dQ_j6@antec>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jan 9, 2026 at 7:48=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Change all of the pinmux main nodes to have a "-pins" suffix to
-> satisfy devicetree bindings checks.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+On 11/01/2026 17:46, Stafford Horne wrote:
+> On Sun, Jan 11, 2026 at 11:18:42AM +0100, Krzysztof Kozlowski wrote:
+>> On Fri, Jan 09, 2026 at 01:43:53PM +0000, Stafford Horne wrote:
+>>> Add a device tree binding for the opencores GPIO controller.
+>>>
+>>> On FPGA Development boards with GPIOs the OpenRISC architecture uses the
+>>> opencores gpio verilog rtl which is compatible with the MMIO GPIO driver.
+>>>
+>>> Link: https://opencores.org/projects/gpio
+>>> Signed-off-by: Stafford Horne <shorne@gmail.com>
+>>> ---
+>>> Since v2:
+>>>  - Fixup patch to simply add opencores,gpio and add an example.
+>>
+>> Simplify? You completely changed the meaning of binding here - now
+>> device is not compatible.
+>>
+>> I don't know which one is correct, but your changelog must explain why
+>> now devices are not compatible but they were before.
+> 
+> Hello,
+> 
+> Did you miss the 1/6 patch in this series?  We add the compatible string to the
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+There is no 1/6!
+
+> driver there before we add it here.
+
+How does it matter? How can you add something to the driver before you
+document the ABI? Did you read the submitting patches doc?
+
+
+> 
+> Sorry, I thought the series and the over letter would be enough to understand
+> what I meant by the "Fixup" description here.
+
+You still did not answer to my comments.
+
+
+
+Best regards,
+Krzysztof
 
