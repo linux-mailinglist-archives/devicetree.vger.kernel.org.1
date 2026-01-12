@@ -1,129 +1,93 @@
-Return-Path: <devicetree+bounces-254146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815A8D14ADA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:09:31 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E905D14D59
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:00:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 057673005335
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 18:09:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 051863006E2B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 758543815C4;
-	Mon, 12 Jan 2026 18:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A581F21FF4D;
+	Mon, 12 Jan 2026 19:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IsHC/MNw"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="JSBhX8W8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3FD630EF65
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 18:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9116650094C;
+	Mon, 12 Jan 2026 19:00:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768241369; cv=none; b=CA0XdFuV8YCOcvv5AjUi1Z958WYtks28r5uucu7N7kDLdbbqrwhdM50OgkpxWVA9Yq5Bl87yBaijj486FrGhhMtnwBncXKQuNQLToZOy6yvitfTzAwU3ybPA9FsM7t4YQNWjSLo2gv4SAgl8mOYOUYt6EPPtNVPUwiu/p+qeya8=
+	t=1768244433; cv=none; b=GKtHQcikkHU2GT6ZM+JMzhx+WKVUEuP9YIRhpxSVo5RHEVoTOL65jA5CTTpwII3NF8IPOeXH7o8KzEfP9nomkQTX2UJ7fi42ziiG5Opky42WCX22bStVMIVg2m4ea5lV0zZad9d20Kpov8hbRvVwCVVNDXzfJBmxCHVTJGiwv5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768241369; c=relaxed/simple;
-	bh=mhixNK8lHUjegBa385fwvTFBsDtFeR8hvKlCRxJ9cMQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mLnAKqoorMvCqxUT4x/1T43g2XE6BaI5DoqYz36eePvQBG/p6BN2CzZDfy918kKgWrQmbbYLv5nmR72Uq8RgNI6TlJDS9PkZ629pE0DFbWzRgM66eKbQWzBkygiEicARIoG65Kn9/ZVK0xNcfyWy3f4Nlqdzye9hWB6dVrKTllk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IsHC/MNw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BBE1C116D0
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 18:09:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768241368;
-	bh=mhixNK8lHUjegBa385fwvTFBsDtFeR8hvKlCRxJ9cMQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=IsHC/MNw5Kbwk7exiZ8wgOqCZo+QuDBew9GugLZR5L/4fw9UPRm8p2WIVs1QjYt7N
-	 DZU2+JAvqXdifGwlpEUAIok8U89yAL69c+NWtBXvA6JpgEWerYG2qdRp9McRoFvrNY
-	 hxNjG2eF7FTw47/LiEsPLgNSP7l1cQFTNYGfwGOiB170VMJZf14BnfJv5DcKr+P5w6
-	 QCePoTvsFBoVhZ3jeGTn6KJlkaVTWouuNatxs5WVrCEBmArGLy5Y5dzyhlb7Gzyj7s
-	 cHCdgTE6GcAbJdfvvZBIciWmIoC0MU1ypwNR6dWUmWbKRM5ESj6TROAv1G28eHoz7b
-	 MEEdoNdb+6A8Q==
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-64d30dc4ed7so13111374a12.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 10:09:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUoM4mbeB+TTvOpl0pddgwAM7Cik/7XZfp+DP8MeeM3J1+CGZETXo+tEboZEgFai2J5GjBwby3lPM7O@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz94zGhX1MGsdLH15JoKRObypLoHkCD16Igk+/JKZ37WR60BTL6
-	yWPxZp/r/4ek2VF3g0VQIy4VtLLX0tOvvVRaPycYolvIfAXGZJvlT2rcPSQV+yp2fg5pnZsKWF5
-	0yyvTVRjagV28CujdoPbbTjeiGECkuA==
-X-Google-Smtp-Source: AGHT+IG5xcKR7v4cX8GZZCxRqqj4tQDG/nJdB3WUDW/MrkeY66RSUIccQFsDV7uCNUFFhk++0NMnKzp1y2ffQS7au7Q=
-X-Received: by 2002:a17:906:ef0d:b0:b80:3346:496 with SMTP id
- a640c23a62f3a-b8444f61b72mr1837030866b.42.1768241366844; Mon, 12 Jan 2026
- 10:09:26 -0800 (PST)
+	s=arc-20240116; t=1768244433; c=relaxed/simple;
+	bh=ZOfrDgIEbBG5mTBCA4fwkzl/+8aonTu3wXaplk8tyxw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iINuOGo5+e1cAfIszDJILoS4L6vllT6H4SJxoPgxhv/kPpu6yBoLnWAO73WHSAhsgepScg8d/YB9WLYsPFdeaQU+AgixQdLxpffz1VY+P49v/S6grLlbgvLCerqBYuD+lhSW8RbC7SwMZIeZFyuWdvKONE7o//412GxdrTBDwhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=JSBhX8W8; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=Efk5es/KivDi0Fc3yeVmnS+OZ0K+LJKJU0wLWQjYd7s=; b=JSBhX8W8/VsK3yVcNpQ0ka9BZR
+	wjEq4Ne7MheY7ujuihBOnCFpNhGDksfHn2ZHLtfww97gSCNdDqzIdsSs1FMlwWgu+jduVS/5mItM5
+	u7IuLueGXkMbkaZPLSTdsCToGT3580T1J5G214BxY2Tz/bUP/jBm13+E31PcuEzFeDvLiOMzb+Ac8
+	7TKxeW9Sniv9YnJatn7m3EqVo5yeFOAgkGZutEGwaT+z2f+sKXjkIoK71SpzHJLt3hgxW2cdhyveb
+	owdG37vqClCZhuceZZbaoH+C1QpTE6CBhCD9xjdzbz1NCt7TwYXN/clPxUP2BcAh2aWZ/eJHtVkee
+	BbvNhMqA==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vfN9R-00000005xF2-28FJ;
+	Mon, 12 Jan 2026 19:00:29 +0000
+Message-ID: <a0ba6721-d41e-40e6-8bf8-9b75defd2189@infradead.org>
+Date: Mon, 12 Jan 2026 11:00:28 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260106-dt-dtbs-broadcom-fixes-v1-0-ba45874e4553@kernel.org>
- <CGME20260109120137eucas1p221b9dd341c2319c0f9d0da1fbd48d1b3@eucas1p2.samsung.com>
- <20260106-dt-dtbs-broadcom-fixes-v1-2-ba45874e4553@kernel.org> <e98ad883-7ba2-417b-8cd3-19f5f863b03d@samsung.com>
-In-Reply-To: <e98ad883-7ba2-417b-8cd3-19f5f863b03d@samsung.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 12 Jan 2026 12:09:15 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKNKCOWj_eSTtDwsex3pUhgc+7QwAwLZn4MWVzOkOOHcg@mail.gmail.com>
-X-Gm-Features: AZwV_QjocnkRXAoPVNdU9kvYmv1w2H2D-xJ5BkaNLSfLGbUqcsTJiUivNFh6LKc
-Message-ID: <CAL_JsqKNKCOWj_eSTtDwsex3pUhgc+7QwAwLZn4MWVzOkOOHcg@mail.gmail.com>
-Subject: Re: [PATCH 02/13] ARM: dts: broadcom: bcm2835-rpi: Move non
- simple-bus nodes to root level
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, devicetree@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] gpio: remove the gpio-tn48m driver
+To: Linus Walleij <linusw@kernel.org>, Robert Marko <robert.marko@sartura.hr>
+Cc: Lee Jones <lee@kernel.org>, Robert Marko <robimarko@gmail.com>,
+ linux-kernel@vger.kernel.org, Bartosz Golaszewski <brgl@kernel.org>,
+ linux-gpio@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20260112064950.3837737-1-rdunlap@infradead.org>
+ <CAD++jLnrcsEjKpBQWL=RHKVyyfq1UDk-sDZ7MP-16z0hBLC_dA@mail.gmail.com>
+ <CA+HBbNFKyOFfhRu=XAE891dREPatFRD9VJ5=upz6xPBb8khGjQ@mail.gmail.com>
+ <CAD++jLmPt9M5HEtN4psbk7Du8j4Y6_a0YzhxOM6wds53jT3kHg@mail.gmail.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <CAD++jLmPt9M5HEtN4psbk7Du8j4Y6_a0YzhxOM6wds53jT3kHg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jan 9, 2026 at 6:01=E2=80=AFAM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
->
-> On 07.01.2026 03:09, Rob Herring (Arm) wrote:
-> > The 'gpu' and 'firmware' nodes are not MMIO devices, so they should not=
- be
-> > under a 'simple-bus'. Additionally, the "raspberrypi,bcm2835-power" nod=
-e
-> > is part of the firmware, so move it under the /firmware node.
-> >
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->
-> This breaks operation of all drivers under the firmware node. I'm not
-> exactly sure why, but they are not properly instantiated. It must be
-> something specific to "firmware" name, but I didn't dig enough to find
-> exactly where and why.
->
-> After changing the "/firmware" node name "xfirmware" everything works aga=
-in:
->
->
-> diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-> b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-> index 9ab70b519a63..464f032ccb71 100644
-> --- a/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-> +++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi
-> @@ -1,7 +1,7 @@
->   #include <dt-bindings/power/raspberrypi-power.h>
->
->   / {
-> -       firmware: firmware {
-> +       firmware: xfirmware {
->                  compatible =3D "raspberrypi,bcm2835-firmware", "simple-m=
-fd";
->                  mboxes =3D <&mailbox>;
->
->
-> Same issue occurs with bcm2712 change (patch 3/13).
 
-The issue is how /firmware is handled in drivers/of/platform.c and it
-doesn't create a device for the /firmware node. I think the fix here
-is /firmware needs to be just a container node and move
-"raspberrypi,bcm2835-firmware" down a level. That also allows for
-different types of firmware such as a TEE or SCMI should those or
-something similar ever be needed.
 
-I'll see if I can get kernelci to test that change. I don't think my
-branch boots all boards though...
+On 1/12/26 8:16 AM, Linus Walleij wrote:
+> On Mon, Jan 12, 2026 at 1:24 PM Robert Marko <robert.marko@sartura.hr> wrote:
+> 
+>> It would be awesome to see it in the tree again, as the drivers
+>> themselves work just fine
+>> and allow SFP-s to work on the TN48M and I have patches for TN4810M
+>> (Which is a SFP only version).
+> 
+> I sent a rebased version of the old patch as v11 of that series
+> so Lee can pick it up and we sort out this.
+> 
+> Yours,
+> Linus Walleij
 
-Rob
+Thanks. Sounds good.
+
+-- 
+~Randy
+
 
