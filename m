@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-253880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FCF1D12408
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:21:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 198C9D12414
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 12:21:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5065E306747E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:20:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 70BEC306CCD8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 11:20:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8164C3563F5;
-	Mon, 12 Jan 2026 11:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED05356A11;
+	Mon, 12 Jan 2026 11:20:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="PJNdqLtl"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tEfovcWc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0023563DA;
-	Mon, 12 Jan 2026 11:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87B983563F6;
+	Mon, 12 Jan 2026 11:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768216808; cv=none; b=a8rvT80vSQuvCQQGVWSKFDlQjQ7XIY9p9pz5K7L57nXa+uL1GdyCQY7MnASBU1brnMfT9l/D7wvJFwb9sPsDGKPeHDYx5zt2FaRkisxqZyPYxZouGKZr/9tfp3Z+hQ7YBuUDoEGTnsCA7iDVZzftTvQOYqxssYGyUcl59f2XSRw=
+	t=1768216809; cv=none; b=PQGrgAnsbJk4y1eEveoEx0f0aMTFjwVT04/8PNrEQ8fa0SbcH1YIDPJJHEpmoT/NB40RStT5mqNjBJBGNOCPkzYnQKjBgucuruCkrbiqsLnCp1sH8phpQwH6UkPValFm9FLCExIuYLGbPOm2uD/8u4HzOeYqHmhn3YG1yPiRofQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768216808; c=relaxed/simple;
-	bh=9ej8J1aZ3loXRs29McB2qWVnK7bVOI1xJP2oRmJpeJc=;
+	s=arc-20240116; t=1768216809; c=relaxed/simple;
+	bh=0szjEvMiEGlcssl+EUr72h1PstkrFcFYIOp9mvH/YK0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ZuxUj34zVPhgbvtEnQ8P1+Vs2dO6b5a8rbf1/R6tIv0NJlH+Te0ROfrNv2dhq+ly4hfLq1bCJ1Y1EwT6iNkNn0nTLC+A9Ow9AJo6Pdr9NQOsCnE49utENyBJKm4J4SCgrtC/1QX/ru4Tw3IRpf72lmY1s9OyPw87YJGsyIE+yu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=PJNdqLtl; arc=none smtp.client-ip=68.232.153.233
+	 In-Reply-To:To:CC; b=rJ0TK31RtebFowmztY4Xuykq4Fhbzg/Th7bbegXMjaSlo5ElQMaNK5J9WNFJfWNBHsS0VnKO0KbbkEnKZlnxNcB+Qvc6c5u0RTKGNtQUXjad8/Otk6uhYSP+QrDqqLbmnmMvOR5RjlPrhYKC9XRnYpXTwtO+L+Ui5BA7x9owcdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tEfovcWc; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1768216806; x=1799752806;
+  t=1768216808; x=1799752808;
   h=from:date:subject:mime-version:content-transfer-encoding:
    message-id:references:in-reply-to:to:cc;
-  bh=9ej8J1aZ3loXRs29McB2qWVnK7bVOI1xJP2oRmJpeJc=;
-  b=PJNdqLtl4GAKTGasnSqXjLK4RWaaNoPOsnpT/OMLG66HuuPWM055cbjB
-   XaaL5XGSO+uuNnwEiAJTCJXJZ39YnNbSKJnWV7HECVcCVRJ+lv41pjIgZ
-   uGN38V7GgXFCo2ff4E2qawCPRQ3vM1bF8sNdfiAbr3UaRlOQ8Xk4gAUxf
-   5Kqlx61qCYyFWiH1a8t5kpW97WV1k30X0qfNGyAhEZrsHboy3iaMlDNGG
-   rVge2f6y2HWLTEigBDme1UDmRd+wiUcQSGf1R0Ff0EI12Adfy6Ozgv+a4
-   Eu0N97EDr2nhwLWgFfxeVSd8NZvkp16sqT9C3fuQPywqX9Jqi8zhM+Pm0
-   g==;
+  bh=0szjEvMiEGlcssl+EUr72h1PstkrFcFYIOp9mvH/YK0=;
+  b=tEfovcWclikU3boqBbPU9iwSFdC+NdtTDeLoJFQoGGBxo9nNaXLFJZq+
+   miyZiO4a9zRQdGyfthx1J2e+MFh5U+XhE+tc8xeH8u7M5sK3jdDQqO96R
+   gK9W8RodswqJ0iHU9TjA25iHXkmfO18Oq5P/ekJU13VK3vc1DVoWxWp5D
+   cNlbhJLOXCYOo7mZkKOOkvc8Kn/3zYh54GxkYENN+oFQmYrc4pEkp2zzs
+   x5MIHZBHfLLmI0erFl/XkVXc1pJC0VGLpWCrKASOjg8DklIg26U0riDrb
+   +/EuVQs+ZaCLgLxJqUS7fyj9FFyIqufmB0dXODNAkEa6LGcmIo34e2+yq
+   w==;
 X-CSE-ConnectionGUID: 2FQW9J3NQsejMtiFniwPwQ==
-X-CSE-MsgGUID: 0fAS2BCVRAq74/RfstotZw==
+X-CSE-MsgGUID: y6IdOM5VT9mC8QxaizR6YA==
 X-IronPort-AV: E=Sophos;i="6.21,219,1763449200"; 
-   d="scan'208";a="58675295"
+   d="scan'208";a="58675296"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Jan 2026 04:19:47 -0700
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Jan 2026 04:19:48 -0700
 Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
  chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Mon, 12 Jan 2026 04:19:12 -0700
+ 15.1.2507.58; Mon, 12 Jan 2026 04:19:16 -0700
 Received: from ROU-LL-M19942.mpu32.int (10.10.85.11) by
  chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Mon, 12 Jan 2026 04:19:09 -0700
+ 15.1.2507.58 via Frontend Transport; Mon, 12 Jan 2026 04:19:13 -0700
 From: Cyrille Pitchen <cyrille.pitchen@microchip.com>
-Date: Mon, 12 Jan 2026 12:17:59 +0100
-Subject: [PATCH v4 4/5] ARM: dts: microchip: sam9x7: Add GFX2D GPU
+Date: Mon, 12 Jan 2026 12:18:00 +0100
+Subject: [PATCH v4 5/5] ARM: configs: at91_dt_defconfig: enable GFX2D
+ driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20260112-cpitchen-mainline_gfx2d-v4-4-f210041ad343@microchip.com>
+Message-ID: <20260112-cpitchen-mainline_gfx2d-v4-5-f210041ad343@microchip.com>
 References: <20260112-cpitchen-mainline_gfx2d-v4-0-f210041ad343@microchip.com>
 In-Reply-To: <20260112-cpitchen-mainline_gfx2d-v4-0-f210041ad343@microchip.com>
 To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
@@ -81,42 +82,36 @@ CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	Cyrille Pitchen <cyrille.pitchen@microchip.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=936;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=751;
  i=cyrille.pitchen@microchip.com; h=from:subject:message-id;
- bh=9ej8J1aZ3loXRs29McB2qWVnK7bVOI1xJP2oRmJpeJc=;
- b=owGbwMvMwCXmf6yzKqEsVIbxtFoSQ2bKjXm3rCYYf8r2WRHxbsHvqtchx8Lag+Nynn7evYo5I
- Tj5QVlVRykLgxgXg6yYIsuhN1t7M4+/emz3SlQKZg4rE8gQBi5OAbjJBYwMn/10Ol8LvW3+b/b7
- 5pPW2/8zy9a1e7a85Ly6wX3F3+kM7Qx/uJXqf81tX/C+q8ngXbLVPy/n4qPTxe8/T/kf/3+9wJl
- 3DAA=
+ bh=0szjEvMiEGlcssl+EUr72h1PstkrFcFYIOp9mvH/YK0=;
+ b=owGbwMvMwCXmf6yzKqEsVIbxtFoSQ2bKjXlREXbtn7X37WCVPdf4XFlqT5GVzbu8guUC2QXfL
+ Czzn8V0lLIwiHExyIopshx6s7U38/irx3avRKVg5rAygQxh4OIUgIms2snIMFNEhsHWahZb1N4P
+ Cya43BHQW79it9Z6/6DwZXOE5klcDWf4Z1y8ZvNRjXfL5ok12B8wMvm5smmywX7btYeedL6atZ3
+ vKxMA
 X-Developer-Key: i=cyrille.pitchen@microchip.com; a=openpgp;
  fpr=7A21115D7D6026585D0E183E0EF12AA1BFAC073D
 
-Add support for the GFX2D GPU.
+The GFX2D GPU is embedded in both SAM9X60 and SAM9X75; enable the
+driver to use it.
 
 Signed-off-by: Cyrille Pitchen <cyrille.pitchen@microchip.com>
 ---
- arch/arm/boot/dts/microchip/sam9x7.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm/configs/at91_dt_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/microchip/sam9x7.dtsi b/arch/arm/boot/dts/microchip/sam9x7.dtsi
-index 46dacbbd201ddb68a7456d6fe1afafa59db90ec8..79a82962264f51c4c243530b9dad9010f8cf1347 100644
---- a/arch/arm/boot/dts/microchip/sam9x7.dtsi
-+++ b/arch/arm/boot/dts/microchip/sam9x7.dtsi
-@@ -292,6 +292,14 @@ AT91_XDMAC_DT_PERID(26))>,
- 			status = "disabled";
- 		};
- 
-+		gpu: gpu@f0018000 {
-+			compatible = "microchip,sam9x7-gfx2d";
-+			reg = <0xf0018000 0x4000>;
-+			interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&pmc PMC_TYPE_PERIPHERAL 36>;
-+			status = "disabled";
-+		};
-+
- 		i2s: i2s@f001c000 {
- 			compatible = "microchip,sam9x7-i2smcc", "microchip,sam9x60-i2smcc";
- 			reg = <0xf001c000 0x100>;
+diff --git a/arch/arm/configs/at91_dt_defconfig b/arch/arm/configs/at91_dt_defconfig
+index 4f1153098b16f4a93ff21f05ec73cc569f4ebe64..b38fb185670c05e74e09f6341128be5908c86451 100644
+--- a/arch/arm/configs/at91_dt_defconfig
++++ b/arch/arm/configs/at91_dt_defconfig
+@@ -144,6 +144,7 @@ CONFIG_VIDEO_OV2640=m
+ CONFIG_VIDEO_OV7740=m
+ CONFIG_DRM=y
+ CONFIG_DRM_ATMEL_HLCDC=y
++CONFIG_DRM_MICROCHIP_GFX2D=y
+ CONFIG_DRM_MICROCHIP_LVDS_SERIALIZER=y
+ CONFIG_DRM_PANEL_SIMPLE=y
+ CONFIG_DRM_PANEL_EDP=y
 
 -- 
 2.51.0
