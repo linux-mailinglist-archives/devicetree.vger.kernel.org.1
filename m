@@ -1,311 +1,277 @@
-Return-Path: <devicetree+bounces-254050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C42F8D1355D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:55:35 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6649D139AC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:21:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 137E430B2BB6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:50:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4BE4D30299C8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617B11E4AF;
-	Mon, 12 Jan 2026 14:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 566282DCBEC;
+	Mon, 12 Jan 2026 15:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="pOjSkoNB"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="AC8VesTz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277602BE63F
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:50:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D3E2DC321;
+	Mon, 12 Jan 2026 15:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768229408; cv=none; b=a1v0ziiIMkqfOKQe+AHKpRfbaQhzN6aWO1M8DRNMCjFhai6MAeTP51vKsG5rTW+i+cGxMBFMNcV/FwPeI9y4e3ioXeinuEIeHxPYaAF3a6j9m+NZzstlgPZ0elwBrN4WL4PRXZOuNZsTQ8+/sHXPw/vFlmbNvkiVdBeaNb/7rOQ=
+	t=1768230143; cv=none; b=BDuTRLM7ZPImki3udjPghs6G6DGlOtRESLPt2MzSgWL69bQbxnM4N/HkZb4yZ6A/Z1z1l+oEgjR+u4Cgd7fAS8LJNzSRdczFQw4GlCgEhgjKxdmsgbABr8pB5/sYihNkWPdFWyNK4z/MZAUbNrYmL6mE+8AtJzT1r1nXZRhcp/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768229408; c=relaxed/simple;
-	bh=uISQheE0pdNi8PMGZkGjpJYf2bS5dOA2vOuLAhqXWnQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kkedukGUS7WN2UiRxpDriJyiBBjVzDhfx/R7EIMiMaCw0zvwPeINFBiK2y7Co6T/3QSwHQMgk5r6Os1VkJ5TcQ/2lDkDJrqW/RXLX7RtSRGyTlWMaTOpO5F28pikCRIl2yRWq3silfdCGN51PTThhsSAaaQbK4OQgunLu6lIpBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=pOjSkoNB; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-81f3fba4a11so1660208b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:50:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1768229405; x=1768834205; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TrdNmceHvILHOLnUZ2MtDNO2Dyo6n2swJrWONR1zlek=;
-        b=pOjSkoNBpTxuSZd3s+33Fy39szF8uVet5ug17IB0KKR4eidPeypk/HyIJMgtTymqBq
-         RehNC15ev+OohweZ1xLf1duDUxXGLOb3n9RNcgIshzG44PzTHNJHOjE1l21Grb0pQTlQ
-         uv5cJcRu1kVH5JUOeVbhWaiFI1zF/19L/1rSjcGNJ8faSHac49JYO0twyu39z9vQss8d
-         MmdyR/7oITPIn58Kw6dcOFxgp5BIdkW32Z6Cv3i7xHam5qB0aQSN4zMzs3LbegO1QDBH
-         nVFp5vYJg3+kkOFgy4EaU7/TSdX8c2w2irpLQPqtfqaBN6XVx1FPD2P+qUlbv7/IyO7u
-         8XeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768229405; x=1768834205;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TrdNmceHvILHOLnUZ2MtDNO2Dyo6n2swJrWONR1zlek=;
-        b=rWBT/N9y2c5Pneg2jQmR7vbCXSBtercPYE+PqS3Ic5etFwrpauG0jZGcweSXc6PsrH
-         iK9lrV2Ymurg4JFLYjmx6fNwPxld0lszEpMMdUBtXar3F9rLGqv3VnNkfphSFe5fQhA8
-         H1/otOU/wb0mFWVjS4tyU3s1M/IiggxNqZOyrp+HG/t2inM90q7IFy/O2cpCX4Ti9iKs
-         AaNIfhMyKwlW0pvfGNVQ26hgVnkCw0jRP1ke0Ldpum6P1L+RpqhaqOK+lsTt61NnixAb
-         YTdiCjVsGzn6N9negyuN3/24AN/J7rCF6VLwxlZSUv03cQ/DGVtwmYtot8PG/oy5xTmk
-         hX/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUIeY7QOxoJId+FjrgBQ0KD3A2nSnqXf+I6MGiVgV8QghwoJTMmynLle1JKPshmbiLsfVdWJ5XXm5JM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAbJ9ohYlrvD+m5BVZsRWXW5yDhVG/1k4MsXClAuTMdtdKef1U
-	4ustfcdd2JPUwHCZRj0+QOx9ywX4OTIsUykIUxx8Id3yEVkbaXUMJ2FyP4PS1zSmuw==
-X-Gm-Gg: AY/fxX5MxhAcDZJMozcl0ezGiMK8aK9XcFufrjClgJXuWx9uZQ30MWwnhBqAvZjzSOx
-	3HHleag3IrJo1QycD91Jg1CrQH7ZgN6lT2/rEYUFO9U93MQD3cTpaNuI3WZE3ewdYzEENBuLUKz
-	lB76+fRYSv8lWTD40aHhx5ukPVk2HrKrLDf+XF8EZ+fiG/jbnePsVsBLoQ9iGTEEQGbNPy/QNJg
-	b//KjOh58jUK/0gMK4qbcLHzHu+OAlWj2AiNGnTcTvnq7e2WC7fuo8EnVJj/7VzBu2E+UNp8jFw
-	N4RE2ymxG6DbepMPeXLd6uE1sejml+XQGGWl07sUY+BPDaFFcX+l/1de7nAo5tyhO6Zvwqr6EL1
-	d4C7VlItTaNH5FLohkhe07I7i+Cj7oJ5jXko8XhZ6bQlSnD6xQvxcZRSZidXLCf5wrjhH/E6MOU
-	R4cwaZdiYls7MJx30qqy/MGgKsXahs63HYxQsh7wUpdvmYXXSyC79vXO+9lxaH3A==
-X-Google-Smtp-Source: AGHT+IEEV+bBFxaL+HmGXBYLPXT8QOI/i365W+3G3efvHjjGOVeF8J2mcr/VroAfeB15j4B99ujTew==
-X-Received: by 2002:a05:6a21:9984:b0:35d:6bbc:e9ce with SMTP id adf61e73a8af0-3898f8d5d20mr15229340637.16.1768229405359;
-        Mon, 12 Jan 2026 06:50:05 -0800 (PST)
-Received: from ?IPV6:2401:4900:1f3f:e311:7179:901d:930c:942? ([2401:4900:1f3f:e311:7179:901d:930c:942])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34f5f7b1d81sm17890973a91.1.2026.01.12.06.50.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jan 2026 06:50:04 -0800 (PST)
-Message-ID: <de02ed8c-0176-4996-ad7a-680a2e115161@beagleboard.org>
-Date: Mon, 12 Jan 2026 20:19:59 +0530
+	s=arc-20240116; t=1768230143; c=relaxed/simple;
+	bh=yn8MCtcif3vjyzt3Y+OBWdEgr8rZbuJP88mx6V0tjR0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=N9r2F0C5TdSSJkj/DhpUPVc+fPA/auMKTqWzxFMzGZDSApbKUSCmoRFJtDvOkkiK/ymk9n5ZzndMjOGuhDM/LzEbdmWbwYSFFL4mLsn5Hq1ZgZTBLehShEbfFrI1eeFsm2InVRg/ZqhKr76ioh911PoL0zMOUXSgAGqPdNmMEKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=AC8VesTz; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=WSq8SwXJO6cMaFMXhLdYezNiIMIcw6UBmGovGr9XM/4=; b=AC8VesTzAQXSu2pKTYP7kHoH5+
+	rmXryg9cutfVdUD/X6iXhjSvh/1eAcPXrBOwizFJ+LuX6IPbDb30PhAHXfdk7RUcVFZqaIgSvbyLa
+	Hw4/X6wjH38P7wKXzszC+pC9580goKqeJl9uIatI7bIPqN19dUZ8DeQMscSPga4cztGU=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:58069 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1vfJEc-0097Ka-FY; Mon, 12 Jan 2026 15:49:35 +0100
+From: Matthias Fend <matthias.fend@emfend.at>
+Subject: [PATCH v7 0/2] media: add Himax HM1246 image sensor
+Date: Mon, 12 Jan 2026 15:49:31 +0100
+Message-Id: <20260112-hm1246-v7-0-fee8587f2808@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 00/77] Add support for dtb metadata and addon
- device-trees
-To: Herve Codina <herve.codina@bootlin.com>,
- David Gibson <david@gibson.dropbear.id.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
- Hui Pu <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPwJZWkC/2XOu27DMAwF0F8JNFeFROrZqf9RZNCDqjXECezAa
+ BD43ytnkAt3EXAFnks+2UxTpZl9nJ5soqXO9Tq2YN9OLA1h/CZec8sMBGihBPLhIkEZ7k0UKYd
+ oLSbWhm8TlfrzKvo6tzzU+X6dHq/eRW6//yoWyQVH4b3IVsak4JMuhcb8Hu5sq1hgZxpMZ9CYi
+ c6BAxsw6CPDnXkJneG2LTpflM0lKDwy1ZkU0namGiNE5yhAES4dmd6ZFKoz3Zi3yRXQUSvpj8z
+ srD2dme1I8oayiVhK+MvWdf0FAyOkf68BAAA=
+X-Change-ID: 20250403-hm1246-96b0cdab773c
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Hans de Goede <hansg@kernel.org>, Ricardo Ribalda <ribalda@chromium.org>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ Tarang Raval <tarang.raval@siliconsignals.io>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
+ Sylvain Petinot <sylvain.petinot@foss.st.com>, 
+ Dongcheng Yan <dongcheng.yan@intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Alan Stern <stern@rowland.harvard.edu>, 
+ Jingjing Xiong <jingjing.xiong@intel.com>, 
+ Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, 
+ Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>, 
+ Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>, 
+ Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, 
+ Matthias Fend <matthias.fend@emfend.at>, 
+ bsp-development.geo@leica-geosystems.com
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
-On 1/12/26 7:48 PM, Herve Codina wrote:
+Hello,
 
-> This big picture series adds support for dtb metadata and addon
-> device-trees.
->
-> Before giving details about the series content, let me give a little bit
-> of context.
->
-> The use-case is to support additional boards that can be hot-plugged to
-> a connector available in a base board. This connector is standardized in
-> terms of resources available on each pin. Any additional boards
-> compatible with the connector should be able to be connected to base
-> board and all base boards where this connector is implemented should
-> support any additional boards.
->
-> TLDR: The last patch, patch 77, gives an example of dts and dtsa (new
->        addon device-tree) handling this use-case. It provides an example
->        of a realistic base board description (dts) and an realistic
->        additional board description (dtsa).
->
-> Each base board is described by its own device-tree and the real
-> resource connected to the connector depends on each board. For instance
-> an i2c bus on the connector can come from the i2c1 controller from base
-> board A and i2c5 controller from base board B. This is obviously the
-> case for all resources wired to the connector.
->
-> On the other hand, the device-tree describing the additional board has
-> no reason to be changed based on the base board the additional board is
-> going to be connected. Indeed this device-tree describes the additional
-> board hardware and this hardware doesn't change if the additional board
-> is connected to the base board A or the base board B.
->
-> In order to extend a device-tree at runtime, a device-tree overlay can
-> be used. The drawback of current overlay implementation is that an
-> overlay is tightly coupled with the base device-tree it is applied to.
->
-> If a symbol of the base device-tree has to be used by the overlay, all
-> symbols available in the base device-tree need to be visible by the
-> overlay and the overlay can use only those symbol without any kind of
-> name translation.
->
-> With current overlay implementation, a overlay depends on the base
-> board. Indeed, if an overlay wants to add an I2C device on the I2C bus
-> available on the base board A connector, it needs to reference the i2c1
-> bus whereas it needs to reference the i2c5 bus if it used with the base
-> board B.
->
-> In order to fix the issue, the 'export symbol' concept has been
-> proposed. This concept allows some specific node to 'export' symbols in
-> order to be seen by an overlay applied to this node.
->
-> The use-case and the export symbol proposal have been detailed during
-> a talk at ELCE 2025. Have a look at the slides [1] and/or the video [2]
-> to have a clear view of the topic
->
-> [1] https://bootlin.com/pub/conferences/2025/elce/ceresoli-hotplug-status.pdf
-> [2] https://www.youtube.com/watch?v=C8dEQ4OzMnc
->
-> The export symbol proposal based on an export-symbol node in the
-> device-tree have been rejected by device-tree and dtc maintainers.
->
-> A discussion about the topic has been started on the mailing-list [3].
-> This discussions led to:
->
-> - The addition of meta-data in dtb instead of having __fixup__, __local__fixup__,
->    an similar nodes in the device-tree used by overlays
->
-> - A new kind of device-tree, an addon device-tree, in order to replace the
->    usage of the overlay device-tree in this 'hot-plugging additional board'
->    use-case.
->
-> [3] https://lore.kernel.org/all/20250902105710.00512c6d@booty/
->
-> This current RFC is the implementation of features discussed on the
-> mailing-list. A lot of things are new in dtb format (new tags) and dts
-> format (new keyword, new kind of references) and not yet mentioned in
-> the standard.
->
-> The purpose of this big picture RFC is to move forward on this topic
-> based on code and some concrete dts / dtb example. Indeed, this RFC also
-> adds tests for each feature introduced. Those tests are performed using
-> dts files and the content of those dts files can also help in the
-> discussion.
->
-> The first patch is just a simple fix and can probably be merged out of this
-> meta-data and addon discussion.
->
->    - Patches 2..12: Introduce new meta-data dtb tags based on markers
->
->      Those new tags are FDT_REF_LOCAL and FDT_REF_PHANDLE.
->
->      FDT_REF_LOCAL (details in patch 6) is used to tag property using a
->      phandle and this phandle points to a local node (i.e. a node
->      existing in the dtb).
->
->      FDT_REF_PHANDLE (details in patch 11) is used to tag a property
->      using a phandle but this phandle points to a non local node (i.e.
->      the node doesn't exist in the dtb). The reference to the node is
->      present with the tag and the phandle value has to be fixed when the
->      dtb is applied. This tag can only be present in plugins (overlays)
->      and addons dtb.
->
->    - Patches 13..17: Introduce addons device-tree
->
->      This part introduce the new /addon/ dts keyword
->
->    - Patches 18..30: Introduce /export/ keyword and related dtb tags
->
->      This part introduces the new /export/ dts keyword (details in patch
->      20) and the related FDT_EXPORT_SYM and FDT_EXPORT_SYM_REF dtb tags.
->
->      FDT_EXPORT_SYM (details in patch 25) is used when the exported
->      symbol involved is a local node and FDT_EXPORT_SYM_REF (details in
->      patch 29) is used when the node involved is a non local node.
->
->    - Patches 31..38: Introduce /import/ keyword and related dtb tags
->
->      This part introduces the new /import/ dts keyword (details in patch
->      33) and the related FDT_IMPORT_SYM dtb tag (details in patch 35).
->
->    - Patches 39..63: Introduce orphan nodes
->
->      Even if the orphan nodes concept was already present in overlays,
->      the final encoding of those nodes in addon dtbs is different
->      compared to overlays dtbs.
->
->      In overlays, orphan nodes are transformed to a /fragment@n/__overlay__
->      node. This is not the way used in addons.
->
->      Indeed, in addons, orphan nodes are not transformed to fit in
->      something like /fragment@n/__overlay__. They are encoded in the dtb
->      using a specific tag.
->
->      This part, after some preparation, introduces orphan nodes (details
->      in patch 48) and the related FDT_BEGIN_NODE_REF_SYM dtb tag (details
->      in patch 56).
->
->      It also adds support for addons dts/dtb without a 'root' (details in
->      patch 58).
->
->      This part ended with the support for merging orphan node described
->      in dts when relevant (details patch 60).
->
->    - Patches 64..65: Reference orphan nodes and its sub-nodes by path
->
->      A new syntax is needed to be able to reference a an orphan node and
->      its sub-nodes by path.
->
->      This new syntax is '${$<orphan_name>/<path>}' (details in patch #60)
->
->    - Patches 66..67: Namespace labels references
->
->      Add Namespace labels references with the new syntax '&foo.bar.baz'.
->
->      This new syntax, only allowed in addons, allows to 'jump' from node
->      to node based on exported symbols defined at each node (details in
->      patch 66).
->
->    - Patches 68..71: Support for applying an addon
->
->      First, add fdt_addon_apply() in libfdt (details in patch 70) and
->      then the fdtaddon command line tool (details in patch 71).
->
->    - Patches 72..76: fdtaddon test
->
->      Several tests related to addon application
->
->    - Patch 77: A more Realistic test
->
->      A last test based on use-case we want to handle.
->
->      This last patch (and its dts and dtsa files) shows the kind of usage
->      is expected for addons.
->
->      Also it proves that metadata and addons features handles our
->      use-case.
->
-> I know this series is a huge series but I would like to give the big
-> picture in this RFC (I hope this was a good idea). Of course, this
-> series can be split for the upstreaming step and handled by parts by
-> parts. Let me know.
->
-> Tests are provided for each feature. In addition to be used for testing,
-> tests input source files and expected output files can be used to see
-> the expected behavior related to each feature.
->
-> I hope also that this first RFC will help in moving forward regarding
-> this 'handling an additional board described by a device-tree' topic.
->
-> Best regards,
-> Hervé
+this series adds support for the Himax HM1246 image sensor.
+The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+array size of 1296 x 976.
+Currently, only the native RAW mode is supported. Other modes and the
+internal image signal processing pipeline are not currently supported.
+The data sheet is available on the manufacturer's website [1].
+Tested on i.MX8MP hardware. A Toshiba TC358746 bridge was used to convert
+the sensor's parallel video output into MIPI signals for the i.MX8MP.
 
-Hello Herve,
+Best regards
+ ~Matthias
+ 
+[1] https://www.himax.com.tw/wp-content/uploads/2024/03/HM1246-AWD_DS_v01.pdf
 
+v4l2-compliance 1.28.1, 64 bits, 64-bit time_t
 
-I was just in the process of typing out a reply in the old thread for 
-the topic regarding restarting discussion and how we should move towards 
-extending DT. So imagine my surprise when this lands in my mailbox. 
-Thanks for all this work.
+Compliance test for device /dev/v4l-subdev4:
 
-I will go through this series and check things in reference with my 
-connector + addon baord setups.
+Driver Info:
+        Driver version   : 6.12.0
+        Capabilities     : 0x00000000
+        Client Capabilities: 0x0000000000000003
+streams interval-uses-which
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
 
+Allow for multiple opens:
+        test second /dev/v4l-subdev4 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
 
-Best Regards,
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
 
-Ayush Singh
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 15 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev4: 45, Succeeded: 45, Failed: 0, Warnings: 0
+
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+---
+Changes in v7:
+- Expect the PLL to generate the exact link frequency specified in DT (Laurent, Sakari)
+- Dropped {g,s}_register functions
+- Link to v6: https://lore.kernel.org/r/20251202-hm1246-v6-0-3e96ed6b3ffa@emfend.at
+
+Changes in v6:
+- Rework includes to follow include-what-you-use (Andy)
+- Replace 'fsleep(6000)' with 'fsleep(6 * USEC_PER_MSEC)' (Andy)
+- Simplify hm1246_get_selection() return (Andy)
+- Use explicit indexes for test pattern array (Andy)
+- Improve some line-wrappings (Andy)
+- Avoid using __maybe_unused (Andy)
+- Drop an unnecessary type cast (Andy)
+- Use '0' instead of '0x0' (Andy)
+- Reword comments about timings (Andy)
+- Simplify error handling of hm1246_init_controls() (Sakari)
+- Revert 'rework PLL calc to use goto' (Andy, Sakari)
+- Link to v5: https://lore.kernel.org/r/20251104-hm1246-v5-0-97c8f25b5419@emfend.at
+
+Changes in v5:
+- Converted to lower case hexadecimals
+- Use consistent returns in switch of hm1246_get_selection()
+- Adjust some variable types/attributes
+- Removed redundant parentheses
+- Rework PLL calc to use goto
+- Simplified some function returns
+- Use array definition for test patterns
+- Source format adjustments
+- Properly init minimum of pixel_rate control
+- dropped hm1246_update_controls()
+- require and check DT link frequencies
+- Link to v4: https://lore.kernel.org/r/20251017-hm1246-v4-0-e3388ea2f08c@emfend.at
+
+Changes in v4:
+- Split changes to MAINTAINERS into commits
+- Fix comma after statement (use semicolon)
+- Replace abs() with abs_diff() in PLL calculation
+- Inverse needs_cmu_update logic
+- Drop mode from hm1246_set_ctrl()
+- Return if xclk frequency is out of range
+- Fix reset_gpio dev_err_probe()
+- Rebased on media-committers/next
+- Link to v3: https://lore.kernel.org/r/20250912-hm1246-v3-0-3b89f47dfa43@emfend.at
+
+Changes in v3:
+- Bindings: Remove bus-type and add default polarity values
+- Select V4L2_CCI_I2C
+- Convert additional macros to use HZ_PER_*
+- Replace cur_mode with v4l2_find_nearest_size()
+- Remove duplicates in the register init sequence
+- Use container_of_const
+- Check return of hm1246_update_controls()
+- Correct multi-line comments
+- Replace hm1246_cci_write_cmu()
+- Consistently use hm1246->dev
+- Use pm_runtime_put_autosuspend()
+- Remove v4l2 event handling
+- Convert to devm_v4l2_sensor_clk_get()
+- Configure PM before registering subdev
+- Link to v2: https://lore.kernel.org/r/20250526-hm1246-v2-0-6b882827a3a5@emfend.at
+- Depends-on: https://lore.kernel.org/all/20250707143253.167910-1-mehdi.djait@linux.intel.com/
+
+Changes in v2:
+- Use macros for 64-bit division
+- Avoid compiler warnings about potentially uninitialized variables
+- Fix two uses of dev_err_probe
+- Link to v1: https://lore.kernel.org/r/20250403-hm1246-v1-0-30990d71bc42@emfend.at
+
+---
+Matthias Fend (2):
+      media: dt-bindings: i2c: add Himax HM1246 image sensor
+      media: i2c: add Himax HM1246 image sensor driver
+
+ .../bindings/media/i2c/himax,hm1246.yaml           |  117 ++
+ MAINTAINERS                                        |    8 +
+ drivers/media/i2c/Kconfig                          |   10 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/hm1246.c                         | 1302 ++++++++++++++++++++
+ 5 files changed, 1438 insertions(+)
+---
+base-commit: 3aa9296a23ec41a8424e9a2346eea59fb6cb7d8c
+change-id: 20250403-hm1246-96b0cdab773c
+
+Best regards,
+-- 
+Matthias Fend <matthias.fend@emfend.at>
 
 
