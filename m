@@ -1,227 +1,273 @@
-Return-Path: <devicetree+bounces-254164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D1BD151A7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:41:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65AF4D151EC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8B38D300B35D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:37:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C07F303AE96
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BC6324B33;
-	Mon, 12 Jan 2026 19:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09893033D1;
+	Mon, 12 Jan 2026 19:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="30Hqqb/Q"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Lzo1rJdW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com [74.125.82.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6221632470D
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 19:37:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B3E199EAD;
+	Mon, 12 Jan 2026 19:46:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768246666; cv=none; b=e6kU1L4xxnlA0CYd3Hr5NP3nEtSed/UsP+JnYQjAbrzGGMkVXXT9UFgAXWpKCiYCUfEt2OZhO74aJVmZNlbYQsoMKetrnAYbS6TjxCXZSAcnGSI+uMJJk/JsejUL4E78vB2h3pKlwae4ig/8aw5YD3YPiWl95ShnutdEpsLXBnM=
+	t=1768247181; cv=none; b=tC8B+7HqEzYHHdJ6NB6oJp60llIz6Ww8POJcZLPU094fUfOy94z93J3lmvVhRonA65aEq0yktYGTa3veacvUEVmRreJZyKh1x28kZsqOvWubUZ1WoDq6bJw7dOWpM5gL4Sw90+eBfrmkjQ1rG0W1Ajv7ut6vFOFcPXa2o5bIpeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768246666; c=relaxed/simple;
-	bh=kCNuLKa3OcBY6DWrPNqUq+zuzLUQGDhG7wkIuXt18dM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U1DOqUnf7rXKiy4vO2kBrHY1JVZyc6oG7L+p627Q6Tg1cFtUFKJaXa/vQGfHlznxe2rHLegJdgneyzjlpv4LEjIyV4V1vis+OwZshaGU4CKEgCOawgxCMqSVj8RQYM2Izd46Be1RkkFLzg18zZgB/8tm7NBm5UtuylxijmqEzfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=30Hqqb/Q; arc=none smtp.client-ip=74.125.82.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-dy1-f175.google.com with SMTP id 5a478bee46e88-2b19939070fso6576993eec.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 11:37:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1768246663; x=1768851463; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MMKzD4neKMQA/a71hLZaF9K+onAvp6LuTb7/ocIRVF8=;
-        b=30Hqqb/Qg2M/DClti7RHUsO+bjKz5um6j/PP38je7T6hzY+F81eKQdpUUe90FNkYZ9
-         K6NxlxJuym74IBjIuqdT6q5bBk55d042HV7DOfmdi5BxtX8UhsYUagRCVGpdbF+4e/xo
-         wsRwEjty5yIG/FyYbaqul+TVca/ukDii1i7ExgICs9o7I6RribQekPjhJyNx5eZcUSbo
-         cRdBcXSZfQQ+KTyiFN9ACq6VmBunxro3WsuH6vasiw1tC3pBfIhGyPk+qOFaME5eMMvw
-         6Bnwfy8uIqF9++ZkPerBWdrBrLXYBfy0Vc8SPfS8TWv7FYXmbhqFD2bMx4cECL2icqg+
-         XlQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768246663; x=1768851463;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MMKzD4neKMQA/a71hLZaF9K+onAvp6LuTb7/ocIRVF8=;
-        b=Rkb4apEfYPDYuYdTeXAB+OXy3kzfpFOT2gMpNKeivDzl6ij6rnnE3s/R+Dx3PbpmLP
-         fZjde2scgK+P+cMxONC3z64a6sjRMkGlYP8t+mXd79CvuDde6uofVR3748XIod5je2ER
-         cUJ8FXoHI1WxifSVsFVC2w28S4Mq2KbqyG9p1xkaGEHLzXQ6n862JrrsB8Qr6Mq41cXL
-         LEoVfV32cfn7OuKQ6mthZQJ51pM6ZRalna1VswhBmS2erac5NLTbiUR31HvrUybTYxA1
-         I6uKQCO8RMyvjtKfn29trUJNI+J5trgM6td2KHpFTAX6slEKxSZRYHOLM669cewZLloY
-         taqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXJ5joBcfbf51Ulht7+HIZxLtBPBlXE3Pu0h/pD/pBuSmzfUcZ0HYsNGI8D7LyeJCg6xZcKj4oIL14p@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuuOCwPQfifc0Pfk2d9VNjRjWwUtRvjGJvx9JNf+87SHpvVSX7
-	C7zjeu/9qJHqdvaI1sjDWR6jyv2WbUxxCCVBDwsJk/9nWg3n4dmyQL2jQMqx2oKi9Q==
-X-Gm-Gg: AY/fxX5W1fJZEUdU8aAjF5ClqdKor/l3qxwlTrdNp9DJWRP00QkprScs3QOHm5SnnRR
-	U1dX/HK6L/+88dk2ApmlHk+GRVuEFKSf44pQcgl6aHKq3YKG0qxWL6m/XwsOKwtKZmvNBkWWCiT
-	SZP8QVTYliJUJbq9fHOBFNXavQzrZ5nVid3Nr+lvNV7/3AlwZArbtLzfyFDfUHP5KueYwndeOXf
-	mrLGVuuMH+oP8VSAK5yBAIgOTatf0sf3gjTZdddZK9XuAs9YFBlZxTWmL8aZGBbHg4+4pQEOAjU
-	f41woMqHQ3Y3doVgKtyyL9hPbqJ9JKkFmA87ZJvA9umuqyRFkrlHKEWuJg9Yd9M4spn0C/9uIIQ
-	SoTVE8H8DH5x/oy1VdWNpLfXOLbhukUurbO+Ta7yhxzAD4NjRUoRCAaQsI5lJQNY8a8KPjuhc8s
-	CILd8sprXP16h5OOHn7N4xiPQHNaHOxH0MmzgSH5C15cOgQRD4wbDmaY6B91NwCpNf1S4klooBl
-	PgJsp0OQxvNow==
-X-Google-Smtp-Source: AGHT+IEmezECFIaAtAhii/tXhYAvteHOsxJwusDFq7+Qy4kltOc3o9BThd5irNt42thvcdsfukrSaA==
-X-Received: by 2002:a05:7301:29a5:b0:2b0:3d03:37db with SMTP id 5a478bee46e88-2b17d2e2b29mr11583342eec.35.1768246663076;
-        Mon, 12 Jan 2026 11:37:43 -0800 (PST)
-Received: from ?IPV6:2a00:79e0:2e7c:8:8e84:2c31:d2b4:9c1f? ([2a00:79e0:2e7c:8:8e84:2c31:d2b4:9c1f])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b17078d818sm15886663eec.21.2026.01.12.11.37.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jan 2026 11:37:42 -0800 (PST)
-Message-ID: <bb9b9afa-0bfa-428e-9372-549d9ba8603c@google.com>
-Date: Mon, 12 Jan 2026 11:37:40 -0800
+	s=arc-20240116; t=1768247181; c=relaxed/simple;
+	bh=VXJ6h3xFbwt2UIWSnC4R8hbSW7fTxGdJagGd17ozxnM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NYLMHTFHjF1Sr18zo/b86RAnWHZjkXX6kTW9OotYys5VQSGlEjQEa8BIdVrchfuEV7kEIWh2jdo9swRfdG4HZ7aeiIkcnvYt5mxJmk0pGzmf6N8XIPComsvzMaIYn9zOUjxcYg5k1Rxw4L7GPh0DNy+5kGHahKAxQAlUxsh+VGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Lzo1rJdW; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768247180; x=1799783180;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VXJ6h3xFbwt2UIWSnC4R8hbSW7fTxGdJagGd17ozxnM=;
+  b=Lzo1rJdWrzWSn+8B3pT5UxeSImmZ5Az9Wt62FVlG/wz7Hc/KkY0E+CSm
+   Uun2yR1Ib6Wp79c44Z09OglefpVM/kxItSzXPJwcDlkYuh+3wiBXWNy5a
+   6tv1qXgiMC08wfScQRO6MZXYSys5FSqFQc+1vGqzwSzZt/DokZMiQf3Ij
+   LIRdRGgtsVPxdCyW1JF8ERpiiBHR88J5u7xtOWwtA9Mg7P9kqoB6MjMG1
+   iBKguOw+ICa8hUVqzdaKc3bKs/2sTu/di2XZwnvciszlGKPILykW3IeOo
+   ZUft59JZaTxji7PLFLS5NiwKfZ3VCjFH2WFgsP4k9bVtILhsKYSEfIl80
+   A==;
+X-CSE-ConnectionGUID: mZ34YCZaSdaMeATnsZqILQ==
+X-CSE-MsgGUID: 2cznFjS1QSyrfZ2mXJeFHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="79823763"
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="79823763"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:46:19 -0800
+X-CSE-ConnectionGUID: Oh/FLYvsRpiq7l8qsCeGYg==
+X-CSE-MsgGUID: w/b5Z9c3Q8aw0OB7g6Hw3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="234884303"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.154])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:46:12 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 1C7BC120742;
+	Mon, 12 Jan 2026 21:46:10 +0200 (EET)
+Date: Mon, 12 Jan 2026 21:46:10 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Alan Stern <stern@rowland.harvard.edu>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Hao Yao <hao.yao@intel.com>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v7 1/2] media: dt-bindings: i2c: add Himax HM1246 image
+ sensor
+Message-ID: <aWVPgtRnxfL2zSSu@kekkonen.localdomain>
+References: <20260112-hm1246-v7-0-fee8587f2808@emfend.at>
+ <20260112-hm1246-v7-1-fee8587f2808@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] power: supply: max77759: add charger driver
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
- <20251227-max77759-charger-v3-4-54e664f5ca92@google.com>
- <298ca35590d2180fdcf334f94964b6110e17c606.camel@linaro.org>
- <50c29a62-1fdb-4de2-8887-0d551eee5ec0@google.com>
- <255d7726-6758-43ed-b35f-db14726bcc9b@google.com>
- <2869d309358f27652289c40810ca36b2ec155d1d.camel@linaro.org>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <2869d309358f27652289c40810ca36b2ec155d1d.camel@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260112-hm1246-v7-1-fee8587f2808@emfend.at>
 
-Hi Andre',
+Hi Matthias,
 
-On 1/12/26 5:47 AM, André Draszik wrote:
-> Hi Amit,
->
-> On Tue, 2026-01-06 at 17:14 -0800, Amit Sunil Dhamne wrote:
->> On 1/6/26 3:41 PM, Amit Sunil Dhamne wrote:
->>> Hi Andre',
->>>
->>> On 1/5/26 9:32 AM, André Draszik wrote:
->>>> Hi Amit,
->>>>
->>>> I haven't done a full review, but a few things caught my eye.
->>>>
->>>> On Sat, 2025-12-27 at 00:04 +0000, Amit Sunil Dhamne via B4 Relay wrote:
->>>>> diff --git a/drivers/power/supply/Makefile
->>>>> b/drivers/power/supply/Makefile
->>>>> index 4b79d5abc49a..6af905875ad5 100644
->>>>> --- a/drivers/power/supply/Makefile
->>>>> +++ b/drivers/power/supply/Makefile
->>>>> [...]
->>>>> +
->>>>> +static irqreturn_t irq_handler(int irq, void *data)
->>>>> +{
->>>>> +    struct max77759_charger *chg = data;
->>>>> +    struct device *dev = chg->dev;
->>>>> +    u32 chgint_ok;
->>>>> +    int i;
->>>>> +
->>>>> +    regmap_read(chg->regmap, MAX77759_CHGR_REG_CHG_INT_OK,
->>>>> &chgint_ok);
->>>> You might want to check the return value and return IRQ_NONE if it
->>>> didn't
->>>> work?
->>>>
->>>>> +
->>>>> +    for (i = 0; i < ARRAY_SIZE(irqs); i++) {
->>>>> +        if (irqs[i] == irq)
->>>>> +            break;
->>>>> +    }
->>>>> +
->>>>> +    switch (i) {
->>>>> +    case AICL:
->>>>> +        dev_dbg(dev, "AICL mode: %s",
->>>>> +            str_no_yes(chgint_ok & MAX77759_CHGR_REG_CHG_INT_AICL));
->>>>> +        break;
->>>>> +    case CHGIN:
->>>>> +        dev_dbg(dev, "CHGIN input valid: %s",
->>>>> +            str_yes_no(chgint_ok & MAX77759_CHGR_REG_CHG_INT_CHGIN));
->>>>> +        break;
->>>>> +    case CHG:
->>>>> +        dev_dbg(dev, "CHG status okay/off: %s",
->>>>> +            str_yes_no(chgint_ok & MAX77759_CHGR_REG_CHG_INT_CHG));
->>>>> +        break;
->>>>> +    case INLIM:
->>>>> +        dev_dbg(dev, "Current Limit reached: %s",
->>>>> +            str_no_yes(chgint_ok & MAX77759_CHGR_REG_CHG_INT_INLIM));
->>>>> +        break;
->>>>> +    case BAT_OILO:
->>>>> +        dev_dbg(dev, "Battery over-current threshold crossed");
->>>>> +        break;
->>>>> +    case CHG_STA_CC:
->>>>> +        dev_dbg(dev, "Charger reached CC stage");
->>>>> +        break;
->>>>> +    case CHG_STA_CV:
->>>>> +        dev_dbg(dev, "Charger reached CV stage");
->>>>> +        break;
->>>>> +    case CHG_STA_TO:
->>>>> +        dev_dbg(dev, "Charger reached TO stage");
->>>>> +        break;
->>>>> +    case CHG_STA_DONE:
->>>>> +        dev_dbg(dev, "Charger reached TO stage");
->>>>> +        break;
->>>> Are the above debug messages really all needed?
->> I forgot to respond to this comment in my previous email.
->>
->> I think we can keep AICL, BAT_OILO, INLIM. They're either special
->> conditions (AICL) or faulty conditions (like BAT_OILO) and we can in
->> fact keep them at dev_info level. Rest can be removed and a
->> power_supply_changed() is sufficient.
->>
->> Let me know what you think?
-> I don't think dev_info() in an interrupt handler is appropriate. At
-> least it should be ratelimited.
->
-> If it's something special / unexpected that needs attention, having
-> a dev_dbg() message only will usually not be visible to anybody.
+On Mon, Jan 12, 2026 at 03:49:32PM +0100, Matthias Fend wrote:
+> Add YAML device tree binding for Himax HM1246 image sensor.
+> 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+> ---
+>  .../bindings/media/i2c/himax,hm1246.yaml           | 117 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 ++
+>  2 files changed, 124 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..deecc1105105a67e81d1ddb7f31324baa8188f88
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
+> @@ -0,0 +1,117 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2025 Matthias Fend <matthias.fend@emfend.at>
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/himax,hm1246.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Himax HM1246-AWD 1/3.7-Inch megapixel SoC image sensor
+> +
+> +maintainers:
+> +  - Matthias Fend <matthias.fend@emfend.at>
+> +
+> +description:
+> +  The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+> +  array size of 1296 x 976. It is programmable through an I2C interface and
+> +  connected via parallel bus.
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: himax,hm1246
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: Input reference clock (6 - 27 MHz)
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: Active low XSHUTDOWN pin
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Power for analog circuit (3.0 - 3.6 V)
+> +
+> +  iovdd-supply:
+> +    description: Power for I/O circuit (1.7 - 3.6 V)
+> +
+> +  dvdd-supply:
+> +    description: Power for digital circuit (1.5 / 1.8 V)
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +    description: Parallel video output port
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          hsync-active:
+> +            default: 1
+> +
+> +          vsync-active:
+> +            default: 1
+> +
+> +          pclk-sample:
+> +            default: 0
 
-I agree. I can change the prints to dev_info_ratelimited for the stuff 
-we care about.
+I think you should have bus-width here as well -- either make it mandatory
+or add a default.
 
+> +
+> +        required:
+> +          - link-frequencies
+> +
+> +    required:
+> +      - endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - avdd-supply
+> +  - iovdd-supply
+> +  - dvdd-supply
+> +  - port
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        sensor@24 {
+> +            compatible =  "himax,hm1246";
+> +            reg = <0x24>;
+> +
+> +            clocks = <&hm1246_clk>;
+> +
+> +            reset-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
+> +
+> +            avdd-supply = <&hm1246_avdd>;
+> +            iovdd-supply = <&hm1246_iovdd>;
+> +            dvdd-supply = <&hm1246_dvdd>;
+> +
+> +            orientation = <2>;
+> +            rotation = <0>;
+> +
+> +            port {
+> +                endpoint {
+> +                    remote-endpoint = <&isp_par_in>;
+> +                    bus-width = <10>;
+> +                    hsync-active = <1>; /* active high */
+> +                    vsync-active = <1>; /* active high */
+> +                    pclk-sample = <1>; /* sample on rising edge */
+> +                    link-frequencies = /bits/ 64 <42200000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 752ccaea38b0ee74282e06f233463eba122fa92c..c09de45c5260b70af8a524721d4a999a1efa415d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11290,6 +11290,13 @@ L:	linux-kernel@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/misc/hisi_hikey_usb.c
+>  
+> +HIMAX HM1246 SENSOR DRIVER
+> +M:	Matthias Fend <matthias.fend@emfend.at>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +T:	git git://linuxtv.org/media_tree.git
 
->
-> Also will the call to power_supply_changed() down below handle the
-> special conditions (e.g. convey to upper levels)? If not, can it be
-> made to do so?
+I think this can be dropped as I understand you don't have commit access.
 
-Yes it does, as I can see a call to kobject_uevent() inside 
-power_supply_changed_work(). Also, power_supply_changed() also notifies 
-other subsystems that have registered their notifiers downstream of this 
-power_supply object. So I believe we're good there.
+> +F:	Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
+> +
+>  HIMAX HX83112B TOUCHSCREEN SUPPORT
+>  M:	Job Noorman <job@noorman.info>
+>  L:	linux-input@vger.kernel.org
+> 
 
-If all the above sounds good, I will proceed with sending the next 
-revision including the fixes  :).
+-- 
+Kind regards,
 
-
-BR,
-
-Amit
-
->
-> Cheers,
-> Andre
->
+Sakari Ailus
 
