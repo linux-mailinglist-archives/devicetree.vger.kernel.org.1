@@ -1,153 +1,137 @@
-Return-Path: <devicetree+bounces-254105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931ACD1411A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:34:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC95D14150
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 17:36:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A094B307E04B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:30:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EA2223043758
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EDF369973;
-	Mon, 12 Jan 2026 16:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEAF3364EB1;
+	Mon, 12 Jan 2026 16:30:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b="IS1gC0hN";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="0PAptMsJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PPt+r9qI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8DEE36920F;
-	Mon, 12 Jan 2026 16:28:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89CE9364046;
+	Mon, 12 Jan 2026 16:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768235343; cv=none; b=Ee/anwpRu4Tzja3LwkneuSJO2LKDyww7ZCleFPQTQAa1cameBxMmtG+V+2WOq9yXrjfRu9CUFDWFZoxCmU+iqi5BbQAio3hlKuvVlZLyY2CsPVfeUrQXmx9KNr0shXutNxFeO/dEtjIxRnHx3dgdmH6QMXebtrOFaaHfeaOxaDo=
+	t=1768235443; cv=none; b=ahO21X/oqNchvWhXlwBP6ZbpSidOGa6js2Kt1357y5FBeBKYGNGxa+bXYWaz5teRBdjfBXw8lNGAtkos/VXc2Pg4Q5Piwed05IoGfAkZxpl134fJEdDew+4o0CcOGdBOC4OTAKKYZBCSUPeBq+aq40gPZc5JnMZy/gC0Z37FeU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768235343; c=relaxed/simple;
-	bh=YlCu7k+Wp5aO3LXoKIvn1JdG466yBIodD6PEhjLg/ss=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=akjKDJLc0rwVCP/ts7aLcVG6Pg9H2H+gs7ivmvw12oqngvKsFHe+h2Qo/878GgULal8WVKhz7lqu5h4hsMHbR+G7Epe0UDivNUkgPQFqhRG8R7hQz8RCOQd9Z0ix9D+Q8SNb0odTz9MYpod2tR/QHEhvvS0u1eYFuiZ5g7QTrMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in; spf=pass smtp.mailfrom=machinesoul.in; dkim=pass (2048-bit key) header.d=machinesoul.in header.i=@machinesoul.in header.b=IS1gC0hN; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=0PAptMsJ; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=machinesoul.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=machinesoul.in
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id EDD351400150;
-	Mon, 12 Jan 2026 11:28:40 -0500 (EST)
-Received: from phl-imap-14 ([10.202.2.87])
-  by phl-compute-01.internal (MEProxy); Mon, 12 Jan 2026 11:28:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=machinesoul.in;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1768235320; x=1768321720; bh=QCDkMBMy2ui8oxl3R/8b2JxjhGAtXl0M
-	UjPheNK+Gl0=; b=IS1gC0hNFEjj4Ap3saiW/1AyyTeilvauJqhPdJMuiKRM+4uQ
-	1ymheQsF7aVkBQIKIv/fE3YZNrrvKd1TaHewQ+xnJKZFBuDk9napcPm20tle8kNb
-	WpAkjQVmQ5IU8UjSpMMSSvFpNC1HdVfxGMV4JcHhU2husmywXEp3dBvb4qrSZHvc
-	wziH19rGGJSVrXyWLYzQkT256m5tLk43YJiC9yEgBcDoGMuWeNlR5UASl8NsDr46
-	00UOzPIUWbJicH4g416dwaPC0EkkG8PhhX1mwt8YycLBoU9USdmfJwk+Xb1AP6ir
-	9Zr9CYs3+YWIHL50GkLN9E2CG1VE8FBmguN+9w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1768235320; x=
-	1768321720; bh=QCDkMBMy2ui8oxl3R/8b2JxjhGAtXl0MUjPheNK+Gl0=; b=0
-	PAptMsJC2GmCAKx2xI4FECp3q4u/b9m8MpamhLQ88Vk8oorzsIeh10n0UJ0vpWYv
-	M15qV/AB+z1zgziVPc2I0f9HQnqDvSUVk3tsBDvg+RhrjuJ3i+iR3BlwjNdlvrT+
-	yn5/mDTZVxdL/ZcO2AZjoBLIYsW1GS35L4fY7M1d1jZbQrw6ypxYZb1vf3MihUrR
-	VAIhxGmsaRny3IbDW03CVeCU6iDxLp2xnKRT3x8HYq7Osy+o2V2hcOMpj9NFEPET
-	GYnICoPUXdyMZjf8SNUV99N0hiPh04FjI2BMifu6xvnUd3v46gYYmPs59dpbzuhC
-	Mzy2nlpf3wsiDjU+B1Zeg==
-X-ME-Sender: <xms:NyFlaYrwBTPJfSElJTj1apBOJxxZ4HnXbzZcpi-5xlioA0cn-1H03Q>
-    <xme:NyFlaZc6alYE-o1MunTw231t1qzDfZtSEqcgnfC_1BjqIEtC3KpihfuoYr8m0lMSI
-    cd96BCpzRl5ra-aDMeUCc6rCiTTyJ4nR7Zvd1Vs-FOOX1yEyL_Os-Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduudejleefucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedfuehhrghr
-    rggufigrjhcutfgrjhhufdcuoegshhgrrhgrugifrghjrdhrrghjuhesmhgrtghhihhnvg
-    hsohhulhdrihhnqeenucggtffrrghtthgvrhhnpeefteefieetuddvgeetgfehteeitdek
-    gefhleejjeffgfeiueevleeuheeigfffleenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpegshhgrrhgrugifrghjrdhrrghjuhesmhgrtghhihhn
-    vghsohhulhdrihhnpdhnsggprhgtphhtthhopeduiedpmhhouggvpehsmhhtphhouhhtpd
-    hrtghpthhtohepfigrnhhgfigvihguohhnghdrrgesrgifihhnihgtrdgtohhmpdhrtghp
-    thhtoheplhhutggrrdifvghishhssehfrghirhhphhhonhgvrdgtohhmpdhrtghpthhtoh
-    eplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgv
-    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrd
-    horhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthht
-    ohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvg
-    hlrdhorhhgpdhrtghpthhtohepmihpohhsthhmrghrkhgvthhoshdsuhhpshhtrhgvrghm
-    ihhngheslhhishhtshdrshhrrdhhth
-X-ME-Proxy: <xmx:NyFlacwVYsK8zgGesQ7LmXZCEHDzvwhlZaNsIIO-ZYZt4LsPh5hPCA>
-    <xmx:NyFlaRMOoR-I4fMznodGpzCz4oA99JkrftFAL9yWzNDHYgxowvY81Q>
-    <xmx:NyFlaeoVaXxHHpO1bZGDebwkgVZuO4Kg3zETDnDlDAOlTSTbJX-7Vg>
-    <xmx:NyFlaY9aqC8BKFPZrYCw8_pQ_07VyZluaHKEaexrM1ZM0Kqkt49Teg>
-    <xmx:OCFlaYK1sbb36iceZ7Oe11c2yeZB9TyUnXcp_AxS8UGHJ_JOricyzUM2>
-Feedback-ID: i19fe481e:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 44875C4006D; Mon, 12 Jan 2026 11:28:39 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1768235443; c=relaxed/simple;
+	bh=/U1bAA9jEK+gLxl+zJrnIOjbJpnXDq6EJ0/3M6gnvtM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ApzLC8KLVN+KpHWmsMsyHi8rEwNCaY/VHhwYxUNnfRb4UuDC+rCKe5upMKuvsSINeYRD8Ty4dFbueugz6VlT2a5cQAgqbzkWJesr2kJ6iWFtFx0wbJxefs9Hso9RnVix86zxsKbEnm0afunSeRHE7dIjoHzZBYfFSMU23+n/WWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PPt+r9qI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6368C116D0;
+	Mon, 12 Jan 2026 16:30:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768235443;
+	bh=/U1bAA9jEK+gLxl+zJrnIOjbJpnXDq6EJ0/3M6gnvtM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PPt+r9qILe/bpJGHgP3YZLTPYAgof+0JzHqWnPE6aufgRYU+BtjZxEuSoOlKLEOQ+
+	 2VPJWU1IRdF532D6IYBMa391QLRsY7nxt7CEaZWMtYPvCkyApQnWiasV4sn1nqnFnm
+	 X0lEG5WqsQTQ6191EEXGunOXQ7XVX3AEoZ5WZHeadkChXxQHgWF3yC3HtII7VnGXKp
+	 HCiYLkfqVRF3tw95g/zm4irufNMrqO1RHHrYPJ1WsStyQGoemWtn6zkbhOcXhjzYhd
+	 fk1LdjauIQTc4bSotZ4McqacCh8SOo2cAktAhip3vB0O+Bydt8EAhhYKlWOK6D1KpW
+	 jNyOcUGaXmMzA==
+Message-ID: <dd053cff-af8f-4378-9550-9f99f91cea20@kernel.org>
+Date: Mon, 12 Jan 2026 17:30:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AHXG7HT5u_Wc
-Date: Mon, 12 Jan 2026 21:57:46 +0530
-From: "Bharadwaj Raju" <bharadwaj.raju@machinesoul.in>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>,
- "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
- "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Weidong Wang" <wangweidong.a@awinic.com>
-Cc: "Bhushan Shah" <bhushan.shah@machinesoul.in>,
- "Luca Weiss" <luca.weiss@fairphone.com>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Message-Id: <19035a09-8b6b-4590-a816-82350c1389e3@app.fastmail.com>
-In-Reply-To: <1ab13178-8253-4dc7-9143-6684ededd8f9@kernel.org>
-References: <20260111-aw88261-dvdd-v1-0-83fa0850d561@machinesoul.in>
- <20260111-aw88261-dvdd-v1-2-83fa0850d561@machinesoul.in>
- <9249c034-de8c-479b-a9c5-f1252e0beba2@kernel.org>
- <5e47fe91-e150-4b5d-a669-3a7beeea4f03@app.fastmail.com>
- <1ab13178-8253-4dc7-9143-6684ededd8f9@kernel.org>
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: document dvdd-supply property for
- awinic,aw88261
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] dt-bindings: can: renesas,rcar-canfd: Document
+ RZ/T2H and RZ/N2H SoCs
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+ Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260109125128.2474156-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260109125128.2474156-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260111-poetic-dark-butterfly-97993f@quoll>
+ <CA+V-a8un48Gfqg-K6YToxUgnZawOcb-nQHsBcOfHdpAR7_Uu4Q@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CA+V-a8un48Gfqg-K6YToxUgnZawOcb-nQHsBcOfHdpAR7_Uu4Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Sun, 11 Jan 2026, at 9:40 PM, Krzysztof Kozlowski wrote:
-> On 11/01/2026 13:48, Bharadwaj Raju wrote:
->> On Sun, 11 Jan 2026, at 5:00 PM, Krzysztof Kozlowski wrote:
->>> Why? Was it missing? Why require it, which is an ABI break (or is not?)?
->>> Why is ABI break allowed or what is its impact?
->> 
->> Right now there are no users of aw88261 in the kernel device tree sources.
->> This patch is part of an effort to mainline the FairPhone 5, for which we 
->> will add the first use of this compatible, and there we need to specify 
->> dvdd-supply for this chip's power supply.
->
-> You mean the bindings were incomplete?
+On 12/01/2026 15:04, Lad, Prabhakar wrote:
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             # SoCs WITH resets but WITHOUT reset-names
+>             enum:
+>               - renesas,rcar-gen3-canfd
+>               - renesas,rcar-gen4-canfd
+>     then:
+>       required:
+>         - resets
+>       properties:
+>         reset-names: false
+> 
 
-Yes, the chip needs DVDD to power on.
+Yes, although now I wonder why do you have such case... There are no
+benefits in disallowing reset-names, even for single entries.
 
->> 
->> Since there are no present users, I thought it was OK to add a new required 
->> property. If not, I can make it optional.
->
-> Nothing like that was explained in commit msg. Also your explanation
-> above does not consider out of tree users of this ABI. That's fine in
-> general, but needs reason why you are doing this.
-
-After looking at other codec drivers, they generally make it optional 
-in the binding but error out from probe if it can't be enabled.
-
-I'll resend the series with it made optional.
-
-Regards,
-Bharadwaj
+Best regards,
+Krzysztof
 
