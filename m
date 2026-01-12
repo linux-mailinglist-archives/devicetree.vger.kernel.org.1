@@ -1,205 +1,270 @@
-Return-Path: <devicetree+bounces-253924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 387C3D12B16
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:10:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31307D12B07
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B58F307676C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:09:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB4C23025A6A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 13:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6A5358D0D;
-	Mon, 12 Jan 2026 13:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25B43587D7;
+	Mon, 12 Jan 2026 13:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="H0YIwPNC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ONUb602Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010016.outbound.protection.outlook.com [52.101.61.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA61D358D00;
-	Mon, 12 Jan 2026 13:09:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.16
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768223345; cv=fail; b=FPJEifniI4BYOCinofeQvUKBwjFFF3jxj5IIUGdR1xs1P9SgZtK4LubeCeoQJV5jnxiSObTJKW/PS+aDpIvhrK53WfZxBpMRYbbVYu1DUCWLvObK+Us6dCaoUabX4Pb/LN/iRKg+rfmh+9KdSRq2JclS2XGCU77Z3aYeX80xBX4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768223345; c=relaxed/simple;
-	bh=nVrm846pIWwu8ZPCG4QtnUTwFjvIdj1VkmJsmdjTGKY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PQivvA3pdveu7HI3huDUfi9CAAH4MIOCnZYOp5O7HapJGkyC2paDyZADg+whqn/nL9AOcuWfeXGNbEAjzqE34GBMvOBSUPbbCLbUCwhjMnfSFKAtoaZ1cm/EaoyqHh4H2xerVkd9a4aB2JFDGXErJQ79knD3t4ilv/mEPdX0rpY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=H0YIwPNC; arc=fail smtp.client-ip=52.101.61.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WaJJP+tad1StwSp3H6KllR8ehTYjejtaFufHFmVeK5gQIVFkIIJe0e1XIcQKrGr0Z/N/wlYldA2Kg5sRRJQK3O6LfsXYaewMlfJY3fLwZL0IfzkC9pdkud5LVIvnHWyS/DV1HSvlG4wxGJjXuOfVk3YuotEoZ9sToYzC6fKu4jedLqCBFw6W9aMozXgV12UVuqNpkqSnavLk815YwkhYcjM3RMG2cAJQlfpXcKDoc8z5LIk8euLP8oL04LU/nV2xzQAbwkDwwcSaYRlNd/gX9F5ViaqBKUsgeGuZ7eT/aEOIcj7CsoPos99VebwkVmw68rwCcg32v73Zd8fVl6xGAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=puThyK3zA4CcndHOvIZCGH6RxjnQrNKfmjAmzy5CtnA=;
- b=A7v8N6VCfdta1U8yH87IYFvHWkVWWNjBLVhepIdaB2zin6L83iCLRj7mlH5GJOGKnL41Z9/IMdqIa1F72ln13FF4+C5QV8/Wfo+vLBJXxURsftsK9mQf78taCL6wqVT579upOZcB/KIJMlB9Jeib2FvimpyUbFOM1HlQbLeAOuPcvswOk7QbOcLitoQKbFpI9ItmFMymCNcMT4N8+wQdrU/qEj+6M/9iUN8oKtDj+3IA11IrYxl6hKZnHj/2DU7DFzC1ST0t/UP/ocNeq7pCSLYd++YEl7gYvEcfgUzvEgszxo3G2JrCigz37hPEh9qidcsxkMn7mdEBAsO/RcZQ9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
- pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=puThyK3zA4CcndHOvIZCGH6RxjnQrNKfmjAmzy5CtnA=;
- b=H0YIwPNCYbfIfBFJxNBOXqoq8rW6zdReA0a7Sdi+YA9BrHAm2Uk3GZ2xj6/iBn83iv8tNDkbt4ZlPw/pC5komv9lVUMHJDMfmxLkQmZDC9QX0Gt3/tZU7vMAjve32BPrem1B5pDzSSWhChvFQk+6RMemTaM26bsJtaLDkb6WYYVGyqWCIpgaHoN3RJn0JD2mizYMZYgbOR14tCN9AWG6vZ2/chdeLGh/bBNNy41lfTu7c8dbwp6LwyceY6XeibNuEfZ3EQyUl6l16eV/yMnoLf9IoLayn0ssdZ4BclQsk9tpjgYFm2Q8GTCVnpMDbLh8J60cvWsBrasDwo6gKCHoAQ==
-Received: from BN9P220CA0028.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:13e::33)
- by BY1PR22MB5489.namprd22.prod.outlook.com (2603:10b6:a03:4b3::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Mon, 12 Jan
- 2026 13:08:58 +0000
-Received: from BN2PEPF00004FBA.namprd04.prod.outlook.com
- (2603:10b6:408:13e:cafe::71) by BN9P220CA0028.outlook.office365.com
- (2603:10b6:408:13e::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.7 via Frontend Transport; Mon,
- 12 Jan 2026 13:08:49 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
- smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
-Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
- not designate 165.85.157.49 as permitted sender)
- receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=mkerelay1.compute.ge-healthcare.net;
-Received: from mkerelay1.compute.ge-healthcare.net (165.85.157.49) by
- BN2PEPF00004FBA.mail.protection.outlook.com (10.167.243.180) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Mon, 12 Jan 2026 13:08:57 +0000
-Received: from podman-dev.fihel.lab.ge-healthcare.net (zoo10.fihel.lab.ge-healthcare.net [10.168.174.92])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id D4AC9F2E71;
-	Mon, 12 Jan 2026 15:08:52 +0200 (EET)
-From: Nandor Han <nandor.han@gehealthcare.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de,
-	festevam@gmail.com,
-	nandor.han@gehealthcare.com,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] watchdog: imx2_wdt: Allow to continue in low power mode
-Date: Mon, 12 Jan 2026 15:08:49 +0200
-Message-Id: <20260112130849.3748465-3-nandor.han@gehealthcare.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251230-pastoral-enigmatic-chamois-b65343@quoll>
-References: <20251230-pastoral-enigmatic-chamois-b65343@quoll>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 169943587AA
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 13:08:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768223335; cv=none; b=gkSVcUX2Py+9rgJ29JnDDRnjMZkbL7BogwuS7L0kK1cBg6dHShcaVDW3AE5hNmEKorV/Pe/jkEGrX55xa7ewUuN7P8qCOvwWjjr/KZbKKqvAkCt9C/nGHOcjCZV0A12ropMZj43Ka67Z3rcGfcUvV3DxjMXMRqrdHUG+iUKliGw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768223335; c=relaxed/simple;
+	bh=YTVkCN24/ARJNxBRMbLG2byyse7jCJp1KD9YVEJe7fg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=YGp2m3C76IYYgmIoVZkaBhYrifa36KflvUtgrSsvWnwrAALIRAGCjZnTlA8VdrLgRETYmgA4e+nyoaF2I2WWKNGKwDwv3XEfP+8v2WCY/RY8RDaFB+yi5ksf7z9Io5CauEa7hbP4OVYa+cfs8srH8YEctsknZwSTPHvN568co3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ONUb602Q; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso58439245e9.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 05:08:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768223331; x=1768828131; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BF9HRCZwVM8HohHOVVmaFmMZoI1kBoRSnqS8ZzxwdRQ=;
+        b=ONUb602QVTxB0uTYiPCiU6+kXahVGELlLm3CowLbvvfwCD5mCGdVTasZm5O1ldbT2C
+         VGcxR4itUDFm6VeSBgxaf1gwxRXDJZZOPNgqJVdDeZlW7C2FuPA0mkYYYmhrSrrNLL2e
+         pRKlwPbOSJCgX76N3tQHSjy1+Dcv8453zZp7Y5YxFqeT3T23c3yGhynXocuH3wminpVk
+         PjcmmS2VDK7AFoZCPAUQ76XDNVz+vdz0LL4ME5MRWbHT0q1KZWuAIJkLclzBM/rRVcOX
+         qG8Z6e1sSzpsblBKsVFMJFZM6i7s8AWDfwo0qOLwX3uhplET2h6JPy8BiZxzCMLEmgeq
+         QGzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768223331; x=1768828131;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BF9HRCZwVM8HohHOVVmaFmMZoI1kBoRSnqS8ZzxwdRQ=;
+        b=l/+gzSc9BUQxeAXkmJsXTlTW+DEmisE0b6R1EpEpxMTE8ipHckV2Drg7+SOERk/IA2
+         sxoNvl7E85zEPv+msb5FKDuBuZ0Nz5/hs1GFeilhx8a8A9YBHvazI7tHJZw/k/ZhKLSu
+         r3bdfJ4QeuaNbufYjcIH4GDdyER2zJrWvrWdtbYAygAsuo/vVSpRIjB5Qd3+UmYpymWO
+         Og23c6XZJ7EVIxQBtlPZLX29srH2QqOMFuRMzggAeRvNYsXFvW5TT/F1XPBFNX+LWghm
+         7E1/3D89EhmRk37jmJz5DqykZXh27Up3HsmN3UH+sE+ovJ52KRaA066QveayNWavCyyZ
+         Wlpg==
+X-Forwarded-Encrypted: i=1; AJvYcCXwFtddEebfhtI9qhaC8TBy7m/TC5V/ZxcmCW8j1MwTQltwWpGE3QVa5B+c+Ua9esh2FWKnQ5e0bjis@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLbmQA7zybjUUn0YG7qr8x+DyxpNbXsHdjxmUreGcZzQmh3OP5
+	Qxi6EIW7YdcS4RftNietQddV2rPAJza34QbI/AM4Jjq0yxMfSEjE8fPBnlwNoDw/bfY=
+X-Gm-Gg: AY/fxX5xbFzSFpOXR/KSSM2rV0O1dHhg0nc8KmO3B+FCytifJOqY380NDhpEaQ5AR0o
+	Q4h7JjWSwLzzyyGsRv//LHZSX+FsCCGaTSVOd+Pj2dnoV1UVgQW+fwhe+Zw06UOwYZVJhMRgeks
+	azYpT0WiKziW+rKFOgMkTcduZrrED5+giQdACQ0r2CjHyJPOZNeV4UUD5XpISZQ7BxcO0NJvpGq
+	kxZ9Zx9GwtjwMf9+wn5TRQbCOw1Gygdzg0oWc8vUTDvhwApRO4h7QeodYr0Lbd2pNTJEGoqCNaF
+	tJNQuGRmfYJf3m87AG7OHl/UZV15JpOa1rg7ifNrZ2sBbm1VqJuApw6Mzp8gFsIuSzpSE91YKWQ
+	N6u2HV3MIwEYWbXCQeYsBbrCys+tryTGGnevslBhaC76Cw3nzA1387iCE9O/bjU4D/9UCN7giXB
+	TeTrO/RvZrSfSy3DjrerL7CqdCatmDOlnSP+FZu5Q=
+X-Google-Smtp-Source: AGHT+IEtO2xzsh2F6bjVyeH53ljL8NiwROmn+6MmXlos+dptQWGriTYDZzCaDlYWz//1QpK6zSKEIg==
+X-Received: by 2002:a05:600c:3110:b0:479:3a86:dc1a with SMTP id 5b1f17b1804b1-47d84b41176mr203344865e9.36.1768223331152;
+        Mon, 12 Jan 2026 05:08:51 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080::fa42:7768? ([2a01:e0a:3d9:2080::fa42:7768])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5fe67csm38528840f8f.40.2026.01.12.05.08.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 05:08:50 -0800 (PST)
+Message-ID: <99ec09fa-b4e3-4f68-9980-a3dfb81635e8@linaro.org>
+Date: Mon, 12 Jan 2026 14:08:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: milos: Add UFS nodes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Luca Weiss <luca.weiss@fairphone.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20260107-milos-ufs-v1-0-6982ab20d0ac@fairphone.com>
+ <20260107-milos-ufs-v1-5-6982ab20d0ac@fairphone.com>
+ <2486dc4b-71f3-4cd9-8139-b397407d7e4d@linaro.org>
+ <543d9e55-c858-40f9-8785-c9f636850120@linaro.org>
+ <DFMH8W40TCJ0.XCTHNRJFJE4T@fairphone.com>
+ <ccbaff51-d7fa-4b22-8d4e-02bea5d8a529@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <ccbaff51-d7fa-4b22-8d4e-02bea5d8a529@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBA:EE_|BY1PR22MB5489:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 69e709d3-e779-44d3-2e76-08de51dbbf4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?gNWG5TofsqO8v1O+d6xc+lFLbUfkBWZxmzdgpjA5FL0E4HoR3qE4fqE4+AO8?=
- =?us-ascii?Q?U7nRmHSPRbuTR6J+A5VYNRVLt88JKVq7+229uPePIpUc3n+1jgTxvYce823r?=
- =?us-ascii?Q?ezSiQBYpkhyNaaqCBdnohxbumXT5gpMAKYwfXSKzlIbNlJwfTFqFCgSNOG3U?=
- =?us-ascii?Q?/VKt2e/fDhhaY9u7WYz7zEPszCe//zo6/xnNbasrRDWGCp3nVm8T6AXwd0Yz?=
- =?us-ascii?Q?xzzFCj/AcM3NXu8u8QYy1fA5Pmc0BMXeOoCFCmxHK2ddFdXK3RQcO+fyKd9O?=
- =?us-ascii?Q?FfHXRqqZV14DewdvUg5sURQrWUKVr3bNqSbIkDPrsRlv96QqYssHyGjtRzLG?=
- =?us-ascii?Q?2NJQsV7CTHLo17c46lrMY8141bIookrfWVelUb9o4w6e9oBLTzN9eSw85GSc?=
- =?us-ascii?Q?tIUp50qLZY/TvamCKV358HI8dP3gDkFTGp7upiXz36ozZo3BKn5LBaYVUUHG?=
- =?us-ascii?Q?sTQg2ovCgrxJLq8HzlKstugYnG4vM8wIc6s8xU5hEDTa/s6uH+5FNWOlN4ec?=
- =?us-ascii?Q?VzZHyqcSUE9rqbqN2DBGHaruNvAt97jomrxl4Z3gwOV4saHzlAPE+8i/IKYa?=
- =?us-ascii?Q?D4FPTmMOpMObb/WEWFNzw2rTyH5JdUm6vPzEetr5efeRZTPr6pZnbrHxUabI?=
- =?us-ascii?Q?v7yMdtBvnfymD2rOzVOG0xhdvJKKKwkuCXj92h5KzLRJOYvQTytjjlVMkY7Z?=
- =?us-ascii?Q?/AF7oA9r9NjuuAfZ6/l0ktIMZihD269UCVZQghGWhtMRQ5Na2fjpo5BziltI?=
- =?us-ascii?Q?blaRUnVEmsIovODd662DIGOFXNKZkQPb1b+mSsPcP5OpyUpajgy9VdZ52FDB?=
- =?us-ascii?Q?WmbpCx4vcFsTj+G9VfKmZlx+SFMBQHseevVZYusoAiLrsW2sxHap4gVojxsY?=
- =?us-ascii?Q?I5N5fQT3skwNZfm5iLYxWLcRb+9v4iwf41pnc1RLFk+cOKs6F+aYrkOAaTcs?=
- =?us-ascii?Q?2FvpC7RXXo9HXWOxjXJX2QqPWiu42+7z5f8n1sv0FUfj0G5c0b103jrKXnYa?=
- =?us-ascii?Q?4XwAbWwXt3SXU6f1Qi8giXjIxYgeFJtFRHpl1TBxuZ165adk1a0YWAzsPs0p?=
- =?us-ascii?Q?S8j8iv9cMb/S+YIm1aOSM83j2hANqTtbVz75djtsHsknBv6aDRBx4m7ke+bI?=
- =?us-ascii?Q?e+ZuCr+ux6wGE1Ay8jyHazTmWMq+EzWfFenVsArEbSJdx5pBeWu3+T+HDL5q?=
- =?us-ascii?Q?94VfoXVn9sw1dv5M6K8AfRy7aoBySz5JnToUqyovHBsX2rh4MnQ8PvlpnR2h?=
- =?us-ascii?Q?q9HHXj8fBY80H1YmEcOVlFcNuoTHzV81TTBuF4Zp/awo+7EuMS73y7lT8bLG?=
- =?us-ascii?Q?C81SnTxBkUoLd3SzRsdf4M8bmBtnCn/LR3v6kQFh+AIBLBbHjlZzMK5yInoO?=
- =?us-ascii?Q?NHdOyFNrVp4o50nlWJI+fsP8O96vgjehmBCq6Y+N5AtjMZBVZWTER+lLV1FH?=
- =?us-ascii?Q?dw0CHl+0wH5U4IlQ0ijCIHTREN78331fsYPum7/QwULeOyHZ8OBeILo7vf8c?=
- =?us-ascii?Q?MJu+ImYfLv60mXN2NacumieVyHEEF77D7bjrUeVCLKueODSLWusUbRlofDJt?=
- =?us-ascii?Q?x6aufTDXfZ7RPhIEwJg=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mkerelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2026 13:08:57.9583
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 69e709d3-e779-44d3-2e76-08de51dbbf4f
-X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[mkerelay1.compute.ge-healthcare.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-BN2PEPF00004FBA.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR22MB5489
 
-By default, the driver suspends the watchdog in low power modes (STOP
-and DOZE). In some situations this is not desired.
+On 1/12/26 11:29, Konrad Dybcio wrote:
+> On 1/12/26 9:45 AM, Luca Weiss wrote:
+>> Hi Neil,
+>>
+>> On Mon Jan 12, 2026 at 9:26 AM CET, Neil Armstrong wrote:
+>>> On 1/7/26 14:53, Neil Armstrong wrote:
+>>>> Hi,
+>>>>
+>>>> On 1/7/26 09:05, Luca Weiss wrote:
+>>>>> Add the nodes for the UFS PHY and UFS host controller, along with the
+>>>>> ICE used for UFS.
+>>>>>
+>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/milos.dtsi | 127 +++++++++++++++++++++++++++++++++++-
+>>>>>    1 file changed, 124 insertions(+), 3 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
+>>>>> index e1a51d43943f..0f69deabb60c 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/milos.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/milos.dtsi
+>>>>> @@ -797,9 +797,9 @@ gcc: clock-controller@100000 {
+>>>>>                     <&sleep_clk>,
+>>>>>                     <0>, /* pcie_0_pipe_clk */
+>>>>>                     <0>, /* pcie_1_pipe_clk */
+>>>>> -                 <0>, /* ufs_phy_rx_symbol_0_clk */
+>>>>> -                 <0>, /* ufs_phy_rx_symbol_1_clk */
+>>>>> -                 <0>, /* ufs_phy_tx_symbol_0_clk */
+>>>>> +                 <&ufs_mem_phy 0>,
+>>>>> +                 <&ufs_mem_phy 1>,
+>>>>> +                 <&ufs_mem_phy 2>,
+>>>>>                     <0>; /* usb3_phy_wrapper_gcc_usb30_pipe_clk */
+>>>>>                #clock-cells = <1>;
+>>>>> @@ -1151,6 +1151,127 @@ aggre2_noc: interconnect@1700000 {
+>>>>>                qcom,bcm-voters = <&apps_bcm_voter>;
+>>>>>            };
+>>>>> +        ufs_mem_phy: phy@1d80000 {
+>>>>> +            compatible = "qcom,milos-qmp-ufs-phy";
+>>>>> +            reg = <0x0 0x01d80000 0x0 0x2000>;
+>>>>> +
+>>>>> +            clocks = <&rpmhcc RPMH_CXO_CLK>,
+>>>>> +                 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+>>>>> +                 <&tcsr TCSR_UFS_CLKREF_EN>;
+>>>>> +            clock-names = "ref",
+>>>>> +                      "ref_aux",
+>>>>> +                      "qref";
+>>>>> +
+>>>>> +            resets = <&ufs_mem_hc 0>;
+>>>>> +            reset-names = "ufsphy";
+>>>>> +
+>>>>> +            power-domains = <&gcc UFS_MEM_PHY_GDSC>;
+>>>>> +
+>>>>> +            #clock-cells = <1>;
+>>>>> +            #phy-cells = <0>;
+>>>>> +
+>>>>> +            status = "disabled";
+>>>>> +        };
+>>>>> +
+>>>>> +        ufs_mem_hc: ufshc@1d84000 {
+>>>>> +            compatible = "qcom,milos-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>>>>> +            reg = <0x0 0x01d84000 0x0 0x3000>;
+>>>>> +
+>>>>> +            interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
+>>>>> +
+>>>>> +            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>>>>> +                 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+>>>>> +                 <&gcc GCC_UFS_PHY_AHB_CLK>,
+>>>>> +                 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+>>>>> +                 <&tcsr TCSR_UFS_PAD_CLKREF_EN>,
+>>>>> +                 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+>>>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>>>>> +                 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+>>>>> +            clock-names = "core_clk",
+>>>>> +                      "bus_aggr_clk",
+>>>>> +                      "iface_clk",
+>>>>> +                      "core_clk_unipro",
+>>>>> +                      "ref_clk",
+>>>>> +                      "tx_lane0_sync_clk",
+>>>>> +                      "rx_lane0_sync_clk",
+>>>>> +                      "rx_lane1_sync_clk";
+>>>>> +
+>>>>> +            resets = <&gcc GCC_UFS_PHY_BCR>;
+>>>>> +            reset-names = "rst";
+>>>>> +
+>>>>> +            interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+>>>>> +                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>>>>> +                    <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+>>>>> +                     &cnoc_cfg SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+>>>>> +            interconnect-names = "ufs-ddr",
+>>>>> +                         "cpu-ufs";
+>>>>> +
+>>>>> +            power-domains = <&gcc UFS_PHY_GDSC>;
+>>>>> +            required-opps = <&rpmhpd_opp_nom>;
+>>>>> +
+>>>>> +            operating-points-v2 = <&ufs_opp_table>;
+>>>>> +
+>>>>> +            iommus = <&apps_smmu 0x60 0>;
+>>>>
+>>>> dma-coherent ?
+>>
+>>
+>> Given that downstream volcano.dtsi has dma-coherent in the ufshc@1d84000
+>> node, looks like this is missing in my patch.
+> 
+> Seems that way
+> 
+>>>>
+>>>> and no MCQ support ?
+>>
+>> Not sure, I could only find one reference to MCQ on createpoint for
+>> milos, but given there's no mcq_sqd/mcq_vs reg defined downstream, and I
+>> couldn't find anything for the same register values in the .FLAT file, I
+>> don't think Milos has MCQ? Feel free to prove me wrong though.
+>>
+>>>
+>>> So, people just ignore my comment ?
+>>>
+>>> Milos is based on SM8550, so it should have dma-coherent, for the MCQ
+>>> I hope they used the fixed added to the SM8650 UFS controller for MCQ.
+>>
+>> Not sure what this should mean regarding MCQ...
+> 
+> This platform doesn't support MCQ
 
-Add the possibility to configure the continuation of the watchdog timer
-in the above mentioned low power modes.
+Ack, it must be same situation as Kailua then,
 
-Note:
-Please be advised that the difference between the variable name and the
-device tree option has been intentionally selected to uphold the
-prevailing driver functionality. This ensures that the watchdog remains
-suspended by default in low power mode, while also facilitating a clear
-and intelligible device tree option name.
+Thanks
+Neil
 
-Signed-off-by: Nandor Han <nandor.han@gehealthcare.com>
----
- drivers/watchdog/imx2_wdt.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
-index 4b3a192ee3e8..6e837cfc3c5a 100644
---- a/drivers/watchdog/imx2_wdt.c
-+++ b/drivers/watchdog/imx2_wdt.c
-@@ -71,6 +71,7 @@ struct imx2_wdt_device {
- 	struct watchdog_device wdog;
- 	const struct imx2_wdt_data *data;
- 	bool ext_reset;
-+	bool wdt_suspend_in_low_power;
- 	bool clk_is_on;
- 	bool no_ping;
- 	bool sleep_wait;
-@@ -135,7 +136,8 @@ static inline void imx2_wdt_setup(struct watchdog_device *wdog)
- 	regmap_read(wdev->regmap, IMX2_WDT_WCR, &val);
- 
- 	/* Suspend timer in low power mode, write once-only */
--	val |= IMX2_WDT_WCR_WDZST;
-+	if (wdev->wdt_suspend_in_low_power)
-+		val |= IMX2_WDT_WCR_WDZST;
- 	/* Suspend timer in low power WAIT mode, write once-only */
- 	if (wdev->sleep_wait)
- 		val |= IMX2_WDT_WCR_WDW;
-@@ -326,6 +328,9 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
- 	wdev->ext_reset = of_property_read_bool(dev->of_node,
- 						"fsl,ext-reset-output");
- 
-+	wdev->wdt_suspend_in_low_power = !of_property_read_bool(dev->of_node,
-+						"fsl,wdt-continue-in-low-power");
-+
- 	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait")) {
- 		if (!wdev->data->wdw_supported) {
- 			dev_err(dev, "suspend-in-wait not supported\n");
--- 
-2.39.5
+> 
+> Konrad
 
 
