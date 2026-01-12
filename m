@@ -1,183 +1,84 @@
-Return-Path: <devicetree+bounces-253670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24F91D1047C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 02:48:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB10D104FD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 03:04:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C6F1230208C3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 01:48:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 04985300F24B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 02:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C1B21FF49;
-	Mon, 12 Jan 2026 01:47:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="go3Z1fPX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86C82EC562;
+	Mon, 12 Jan 2026 02:04:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267E31B394F;
-	Mon, 12 Jan 2026 01:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7DF326B955;
+	Mon, 12 Jan 2026 02:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768182479; cv=none; b=kxdISINx0QvHWvSOAv1Fdt5TLIqnZAqEzI6kjIY7mTXvVTiM1MD1M2mRYM34aRIJFVVl40oKuludRLCPW6apunqTbH9EQY2eN0c5Dmvv0S4pS6kEBzB8m8JMhZL5dsdaG9ilo274CnbywN5QYJOV560RlEgFv57hQzzqOq4QyCA=
+	t=1768183452; cv=none; b=M50iNNcQNOU7DRnqXU3N+3NNRqTot4ZdQDcpkovR+NKCKQ23XmyM1Og8amPg70QjQubDB0Kj7BMWXjMU87w69rjGScLcXBSaWmFBSHM00soImA7Hvx7E1eJ+BKFQTtUvHZWHdayxA2y/SN28LaUOmXdf7zwQakM0L4BQtqrl6i4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768182479; c=relaxed/simple;
-	bh=NslrzmeSjxjr6QBxOKRR8RHHiSio5MmWCVd/B3ay+wA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NgrXdqsUTR8ShlvrOResZaIzUb2w/M6UEM73gQ/cHhIguHOkdJs0EhPhBNBmK7m2LrTXy4gkOLeuOWq4csYCpUP/zUIk8HC7xYd5dVQhFBRlOcbPnUAcLnkfqGrqLJGwDc0LLkG11dRQ6LIP9DoRe2b0QKDX9/2rSXb1Y4ZU3KA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=go3Z1fPX; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1768182475;
-	bh=V9knavuyCT6oMajtPRYkTyO37PoH9hWBI4tf+SPVJ9A=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=go3Z1fPXa5bUPR03yLVrGGZm9mRU49Jry1I2HmDOI4bZadYTX+Vqrzd7+2DiuDGPp
-	 DzjCEOakYzF+015VYQK2VNaLP3fEjnwSxO5fvAM0OQVsJjpusVi0yHFsIUI5Zrb1YP
-	 yADtbm2VuJxZoiLQALWuXzDbCRN20LQBoE2RNg2zEo+LQnmeqFCbs1gl4eDXADnwDS
-	 LgQTRsxG70Y2jn1hHRjP/Ew3IPdhEG0uhCM4cluMYd/3Hyq2Lk0Ac/21AhtYlRIc9A
-	 Oqnw9ssHTfW2FPT6cC/yRmJG7GZG2fQGfJUsBXY+oa19+8dbKeV0MmqlkO3OuntbHi
-	 hSb0BY1xxkMkg==
-Received: from [192.168.68.115] (unknown [180.150.112.60])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7D84F648B5;
-	Mon, 12 Jan 2026 09:47:55 +0800 (AWST)
-Message-ID: <3db927cd7ece9b0672b9e62eab64b951594470dd.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add Asus IPMI card
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Anirudh Srinivasan <anirudhsriniv@gmail.com>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley	 <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Mon, 12 Jan 2026 12:17:55 +1030
-In-Reply-To: <20260111201040.162880-3-anirudhsriniv@gmail.com>
-References: <20260111201040.162880-1-anirudhsriniv@gmail.com>
-	 <20260111201040.162880-3-anirudhsriniv@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1768183452; c=relaxed/simple;
+	bh=nP19cY9BLe+A+fwC7uSB2Gu1dLYRgTIoa9a2IkM2Fis=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LEujIzJ90V+3zpsTnlQPqVvas7dZt4xdwGP+E2xgJjmJgLVd3qD1/Uq1FAzfaHdSwTVizowVfQUR460LmJTyRhczPMyeRaJp7HMyhOcJ0DHmKC3hoKEMohKzfbc780Hs3eYJrcF75+Xxei/zTaUee+NFjJ8ta1kRH1uX1ju5hpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id BD2EE340FDB;
+	Mon, 12 Jan 2026 02:04:08 +0000 (UTC)
+Date: Mon, 12 Jan 2026 10:03:59 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Ze Huang <huang.ze@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Aurelien Jarno <aurelien@aurel32.net>
+Subject: Re: [PATCH v3 0/3] riscv: dts: spacemit: Add USB 3.0 support for K1
+Message-ID: <20260112020359-GYA19769@gentoo.org>
+References: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
 
-Hi Anirudh,
+Hi Ze,
 
-On Sun, 2026-01-11 at 14:10 -0600, Anirudh Srinivasan wrote:
-> Add device tree for Asus IPMI card, an AST2600 BMC PCIe card
->=20
-> Signed-off-by: Anirudh Srinivasan <anirudhsriniv@gmail.com>
-> ---
-> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0.../dts/aspeed/aspeed-bmc-asus-ipmi-card.dts=C2=A0 | 136 ++++++++++=
-++++++++
-> =C2=A02 files changed, 137 insertions(+)
-> =C2=A0create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-ca=
-rd.dts
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
-/Makefile
-> index 9adf9278dc94..ff40d9ab88b7 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
-> =C2=A0	aspeed-bmc-asrock-spc621d8hm3.dtb \
-> =C2=A0	aspeed-bmc-asrock-x570d4u.dtb \
-> =C2=A0	aspeed-bmc-asus-x4tf.dtb \
-> +	aspeed-bmc-asus-ipmi-card.dtb \
-> =C2=A0	aspeed-bmc-bytedance-g220a.dtb \
-> =C2=A0	aspeed-bmc-delta-ahe50dc.dtb \
-> =C2=A0	aspeed-bmc-facebook-bletchley.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-card.dts b/arc=
-h/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-card.dts
-> new file mode 100644
-> index 000000000000..fea94360245c
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-ipmi-card.dts
-> @@ -0,0 +1,136 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +// Copyright 2025 Anirudh Srinivasan
-> +
-> +/dts-v1/;
-> +
-> +#include "aspeed-g6.dtsi"
-> +#include "aspeed-g6-pinctrl.dtsi"
-> +#include <dt-bindings/i2c/i2c.h>
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +
-> +/ {
-> +	model =3D "ASUS IPMI Card BMC";
+On 14:41 Sun 11 Jan     , Ze Huang wrote:
+> This patch series enables the DWC3 USB 3.0 host controller on the
+> Spacemit K1 SoC and enables it for the Banana Pi F3 board.
+> 
+> For testing, the following kernel configurations should be enabled:
+> 
+> CONFIG_PHY_SPACEMIT_K1_USB2=y
+> CONFIG_PHY_SPACEMIT_K1_PCIE=y
+> CONFIG_USB_DWC3=y
+> CONFIG_USB_ONBOARD_DEV=y
+> 
+> This series is based on the spacemit k1/for-next branch.
+> 
+> Link: https://github.com/spacemit-com/linux
+> 
+> Signed-off-by: Ze Huang <huang.ze@linux.dev>
+looks good to me
 
-I'd drop the "BMC" from the model description as well (wrt the
-discussion on patch 1/2).
+Reviewed-by: Yixun Lan <dlan@gentoo.org>
 
-> +	compatible =3D "asus,ipmi-card-bmc", "aspeed,ast2600";
-> +
-> +	aliases {
-> +		serial4 =3D &uart5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D "serial4:115200n8";
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type =3D "memory";
-> +		reg =3D <0x80000000 0x40000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <1>;
-> +		ranges;
-> +
-> +		video_engine_memory: video {
-> +			size =3D <0x04000000>;
-> +			alignment =3D <0x01000000>;
-> +			compatible =3D "shared-dma-pool";
-> +			reusable;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible =3D "gpio-leds";
-> +
-> +		led-fault {
-> +			gpios =3D <&gpio1 ASPEED_GPIO(C, 5) GPIO_ACTIVE_HIGH>;
-> +			panic-indicator;
-> +			default-state =3D "off";
-> +		};
-> +
-> +		led-heartbeat {
-> +			gpios =3D <&gpio0 ASPEED_GPIO(A, 7) GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger =3D "timer";
-> +		};
-> +
-> +	};
-> +};
-> +
-> +&mdio2 {
-> +	status =3D "okay";
-> +
-> +	ethphy2: ethernet-phy@0 {
-> +		compatible =3D "ethernet-phy-ieee802.3-c22";
-> +		reg =3D <0>;
-> +	};
-> +};
-> +
-> +&mac2 {
-
-This looks good in general.
-
-For the purpose of review I've started requesting that phandle
-references be ordered alphabetically, because it's tedious to confirm
-they're ordered by unit address, and it's nice to have consistency
-across the files. Can you please fix that along with Andrew Lunn's
-concern about the phy-mode?
-
-Andrew
+-- 
+Yixun Lan (dlan)
 
