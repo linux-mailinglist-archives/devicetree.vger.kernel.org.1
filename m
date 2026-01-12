@@ -1,84 +1,83 @@
-Return-Path: <devicetree+bounces-253719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F975D10D57
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:19:59 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B06D10D6F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 08:21:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BEF76300FF8A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:19:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 373CA3011B14
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 07:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5088A32D7F1;
-	Mon, 12 Jan 2026 07:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8045B32E6A3;
+	Mon, 12 Jan 2026 07:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PeMuDwGG"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="j4v9lxWn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B71C32B99D
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 07:19:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D697832B996
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 07:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768202397; cv=none; b=bfIPyainMFtlsqovnJ4EDHKiO6ctehq4j6LfgQHgK+spJ8TlayQzh4NAmG7ZgtGUyEYbaG/mOAgPtkMNlYsRdCUW6EUE+x3zCTmkjSmZxLozEJKzfOT/Og5juyKW9IMFzHJDNV0/FP8mTyQ1ZoQe654b/4/SZrZPC8x96BC27cU=
+	t=1768202470; cv=none; b=DaaVn2kZIWjeI+5gK5RUdUPCjRIBcdsliVzogJek0prHdEhyI53joqiPzXcKm6apqEQH/6CwacNRA9pLI9P47PsUn5+lEFwQpb+EB4xMdtz12cS8LNx9F41SXfzK27LG7ydr/LXgem6fmnly3fkZ5G25uMNkzkF8nffmgVSjhyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768202397; c=relaxed/simple;
-	bh=AN1yX5rxct6fwdqhRaRJAn2eX4PBR9xyRB85ITybH2U=;
+	s=arc-20240116; t=1768202470; c=relaxed/simple;
+	bh=HBaom7v74+gHXWd7YrxJuL0o3qS56NROqcnQWMlUGCM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ga9+bU7p08YljSbGCecGAom8RcLR1z4PxNm9Ic3xq5tFx9eqCs2aqBxD88KBUxFuJ3ACbdV0/gwcSTpl8brAbnZ2kh0DOUCrQXGEE7/6JqafZyaQGKl837seFpgo3tZDqLgtUGNgl+WztmSlpY4fqpjUmVyYb7tTEKd+8M68AoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=PeMuDwGG; arc=none smtp.client-ip=209.85.167.54
+	 To:Cc:Content-Type; b=mQLRZI/g8K8j7XcKhD7NozaWFROpuYc/omBlIWJnqsys5n3ejQQOpkuJcBseSseABJEHUZbk54dZ3aqMvl+vLoWu0AzZaHSStqKXT0eBHUD+psH1vBxgONS3By287ZvnJhdKsJkm7h7hmoq+i5JuCcReghzEE4BHBXxVQj5+fLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=j4v9lxWn; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-59b855a4700so1379182e87.0
-        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 23:19:55 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-59b6c89d302so4958419e87.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Jan 2026 23:21:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1768202394; x=1768807194; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1768202467; x=1768807267; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4Ph/Etg5Sr0NTZwxuYotbPw8N7SzYppkUoPjd6ftsrA=;
-        b=PeMuDwGGQorJnT9wN0yu7DrpxeiKJAbc5viY1eubICmR2xy4kVCxSCCiT8LO58pCWc
-         TZt3jyIOLjl/VAC/0prXVTswvcDh5yjMAdTEoUI1T11gEJcBdqlO3yj9EdazUyD6cVzC
-         zNg57fQcHN7mkLZj/YtZmxgVIou9+nT6efw4c=
+        bh=HBaom7v74+gHXWd7YrxJuL0o3qS56NROqcnQWMlUGCM=;
+        b=j4v9lxWnpmgEg+5PrVdN5C8fEMdFE4Y+VdlfAq2IRBmLoUJmt/glxkJ8xWz4xL2w0L
+         ZE0tRBCjoFfiQD0x3SEr1+eDNNeJwg1UPag6aSIS8/aVo8vjrUY/brWb3jEka/bS/zpB
+         HRl08gYhC0RZNa4xoSquqJgSfLSYfTVbYyAfo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768202394; x=1768807194;
+        d=1e100.net; s=20230601; t=1768202467; x=1768807267;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=4Ph/Etg5Sr0NTZwxuYotbPw8N7SzYppkUoPjd6ftsrA=;
-        b=Ir30CsdPoTWbZFcLFgRpHWlOXk3eKT85rgMnp5XnjWyyokert/tHzIwkpcIL41jgB/
-         4KSfXMzuD5NLVCckxjSITpWX1EpingeF/Msy3IujivRYSkojGZ8O6b+rHll61FZ2ttL4
-         2KRZg60IJXDcfcevyR5HeFFz5Q6AWWsIL41VbRrkFfVyU7dtSdGSTzf9YkBjJ5t6PYT6
-         RimP/08DdMFfKLpvFJ/zPB0AK0EjzWTm30y2dL5OXutiahAuBcaODKR5RuvQYWcUFasO
-         1K4o2aO6a8u6UqrpxWyG/ubgHQ8aS/+HS1YIbPDoZvEQV7MAm/S0HU0ugwLZr6IPUbYp
-         R1Lw==
-X-Forwarded-Encrypted: i=1; AJvYcCVs7EbRLw14xsBk6o0pxK6pHS1/pyt7wp5WTW6voVpRc/BuSfYEfIzy4r5pHgomitgSOq1Qu4wh46oF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLjyaYZ3NF+CVbWt/PMBeQ+0kGr86t56db+MuXhXKm0/BCMdhS
-	nFGei+eSDOhmYpfkYROFv+39gmjXC1kNDmR7jGTRxKolheScBNjZ5aLRFY0gRj15JCS5MFJdVhr
-	KkpgA9lhkA6Lz7G7gFvC8CDF5dVCgo6/tPCfxf1Jp
-X-Gm-Gg: AY/fxX44a/Ugq1ejt8/vGmxrgaiYUQBdDW8pSC8xrzeDo5lPSFAeE9UDByM0uJigvTJ
-	0izLcwb/aPvUoVyrT6pp78HitQCBtAVrlxsD/Z59KDBss51VroFZ4soECCooHl1CGB5Xal3Jckg
-	wqFnAKJF1JRPJDrgzWQOUckqRaeeXNscdmrfMT0OoELY6v/nPAuTHMIyvDhK2NyWdHsoA01P6JJ
-	ZAuxJdq8DENZM4IRZC3OI4XWZ2OSRDDSpoc/s+hLdCLdQGlKE43MJozoWBuXO6CpBx4TZe8ThGh
-	UPxwmpuVwoWwnXaDYlwHCo88
-X-Google-Smtp-Source: AGHT+IG5kl0ZwX10KZuxnttOREwQR6GL+Z0E9J2N56/uwpX3vjlGU2NciA+itFAj/Kp8QX6ABfil/wuy6GMvq1S6NvQ=
-X-Received: by 2002:a05:6512:3d1e:b0:59b:85ea:5a6 with SMTP id
- 2adb3069b0e04-59b85ea063emr2341817e87.49.1768202393448; Sun, 11 Jan 2026
- 23:19:53 -0800 (PST)
+        bh=HBaom7v74+gHXWd7YrxJuL0o3qS56NROqcnQWMlUGCM=;
+        b=FctGZme9l1vLI0THXmopGA3mR5UjmXFZ90ZDlvssQiTDQHorzmXk620xO8OwK6SUeS
+         0BWDgHNb0rV4vE+0VZKHEJNPZlA84pnRazuOdOgw6kSYyQKT0I5POpshSRIO7nAw43y2
+         LEbVyiL0rt40xM+X2Jce/RRJenDGpCWVekT8qctPy2xpoYbP5eB+RNKJPGRutRsWeoL7
+         O15QDOgq+ydUQ5lAtyCO9AbzxFbjjYWOhhp5NP+eksUFrVS17h5ll0Kv4U/+bzJvfOTL
+         V9wChlVgA0VCllnn0e99zOy7U8nKMObJVpFl0yNZP7Lpc3/dUIRXV6RcUFSHhEy0M5t7
+         2I5A==
+X-Forwarded-Encrypted: i=1; AJvYcCVIjPbkvWh7CN8vz/rpfkKY89mnNrFFfPlt4wt2zrXA0VqVq8a+G9LC8M9NR7/CnDvsT4eo2W70kTa9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxq17qQ1A9aVtsBLA+N3yHP5pUy/hEP2Kz17k0DIYjnyQoLbmk8
+	fJ6yCznRo1J/3Nc5gbyWBoA43g0FJ3v2Vx3PYCOjJz1L3hLKze18IgX0m9czKJCDI7LGRnGwXxe
+	wQkTGCU8JzEnDlBbBCgOmiZWQSGTM4aU1fRxt7p2+
+X-Gm-Gg: AY/fxX5pdk+lBw1FLyOuM/5gbx/UF7MxINKh5+0qw9cgbt/Yo6GaTFBTjMpAo3ZYjfH
+	Um3D+l620AS00YxLDO4mK6XVVM0FWvKjULI++jQLVBTBQdxIb59Wo0PhGKaPPmmZDrjmqmsiFWN
+	s8facdPao67a9r0od0QoNMN6f+wZl+dgkb03uuyUSHpZVwIQz/Jy2YlYYDTGQomZB4K632+7wRP
+	5gkcBB5CTeFzUChBSMAUB96cenMYpVUvnyZSi4YaHt2QT0c76c0eySO5ipchNYWBEcsJHU2wnSg
+	Lu1XDOMlyO4w6COnXTEJZTBl
+X-Google-Smtp-Source: AGHT+IFHBYZnjE2UIMYyCZr1lmpvutyhqNd7MN48WeOyKPWqQYxDJZuAlIZdNeAX4+9N0k+bGMB+CsiFpY5ooLKHPQo=
+X-Received: by 2002:a05:6512:3086:b0:594:2f1a:6ff0 with SMTP id
+ 2adb3069b0e04-59b6ef1892amr5277756e87.9.1768202467013; Sun, 11 Jan 2026
+ 23:21:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260109114747.37189-1-angelogioacchino.delregno@collabora.com> <20260109114747.37189-3-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20260109114747.37189-3-angelogioacchino.delregno@collabora.com>
+References: <20260109114747.37189-1-angelogioacchino.delregno@collabora.com> <20260109114747.37189-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260109114747.37189-4-angelogioacchino.delregno@collabora.com>
 From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 12 Jan 2026 15:19:41 +0800
-X-Gm-Features: AZwV_Qj1Q-eovEPEvCaFCrkejPJ97W98r-3qCY7fgi6Nqe05K80d4_P2-yj-wb0
-Message-ID: <CAGXv+5GEdqgbr5yPJ4_7gBKsg8=PkBvFCvarp+=Qcsq8kqWR_A@mail.gmail.com>
-Subject: Re: [PATCH 02/11] arm64: dts: mediatek: mt8183: Fix dtb warnings in
- display graph
+Date: Mon, 12 Jan 2026 15:20:56 +0800
+X-Gm-Features: AZwV_Qh9NvJukEMC2ZGE9lVW3yo6iRXBbDejhBCVijUHZb39tsOJnyn9JZhLLrA
+Message-ID: <CAGXv+5Ea9bWvuQJuYBgvwrn0nRT-utdLLLo5e=hOzFY21kJYxg@mail.gmail.com>
+Subject: Re: [PATCH 03/11] arm64: dts: mediatek: mt8183-evb: Fix dtbs_check warnings
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, 
 	conor+dt@kernel.org, matthias.bgg@gmail.com, sjoerd@collabora.com, 
@@ -89,90 +88,14 @@ Content-Transfer-Encoding: quoted-printable
 
 On Fri, Jan 9, 2026 at 7:48=E2=80=AFPM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
-
-No commit message?
-
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 119 +++++------------------
->  1 file changed, 23 insertions(+), 96 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt8183.dtsi
-> index db86e2bd0c7b..676f8ecd89e2 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-
-[...]
-
-> @@ -1904,9 +1880,9 @@ ports {
->                                 #size-cells =3D <0>;
+> Change the Murata NCM03WF104 node name from "thermal-sensor" to
+> "thermistor" (as that's what it is, after all), and change all
+> of the pinmux main nodes to have a "-pins" suffix to satisfy
+> devicetree bindings checks.
 >
->                                 port@0 {
-> -                                       reg =3D <0>;
->                                         #address-cells =3D <1>;
->                                         #size-cells =3D <0>;
-> +                                       reg =3D <0>;
-
-reg should be first or second (when the first property is "compatible")
-property under a node.
-
-Ref: "Order of Properties in Device Node" in
-     Documentation/devicetree/bindings/dts-coding-style.rst
-
->
->                                         rdma1_in: endpoint@1 {
->                                                 reg =3D <1>;
-> @@ -1915,9 +1891,9 @@ rdma1_in: endpoint@1 {
->                                 };
->
->                                 port@1 {
-> -                                       reg =3D <1>;
->                                         #address-cells =3D <1>;
->                                         #size-cells =3D <0>;
-> +                                       reg =3D <1>;
-
-Same here.
-
->
->                                         rdma1_out: endpoint@1 {
->                                                 reg =3D <1>;
-
-[...]
-
-> @@ -2165,9 +2092,9 @@ ports {
->                                 #size-cells =3D <0>;
->
->                                 port@0 {
-> -                                       reg =3D <0>;
->                                         #address-cells =3D <1>;
->                                         #size-cells =3D <0>;
-> +                                       reg =3D <0>;
->
->                                         dpi_in: endpoint@1 {
->                                                 reg =3D <1>;
-> @@ -2176,11 +2103,11 @@ dpi_in: endpoint@1 {
->                                 };
->
->                                 port@1 {
-> -                                       reg =3D <1>;
->                                         #address-cells =3D <1>;
->                                         #size-cells =3D <0>;
-> +                                       reg =3D <1>;
->
-> -                                       dpi_out: endpoint@1 {
-> +                                       dpi_out: endpoint@1  {
->                                                 reg =3D <1>;
->                                         };
->                                 };
-
-Same for these two blocks.
-
-So all the deletions are correct, but the simple reordering is wrong and
-not needed.
-
-Once fixed,
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
 
 Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-
-ChenYu
 
