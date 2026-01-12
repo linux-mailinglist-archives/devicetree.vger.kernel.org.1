@@ -1,117 +1,135 @@
-Return-Path: <devicetree+bounces-254051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D61AD13730
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:06:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731D8D1377E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:07:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D575830F5CE2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:53:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 14CA83081F9F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:55:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601372C0F84;
-	Mon, 12 Jan 2026 14:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617E62DB7AE;
+	Mon, 12 Jan 2026 14:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vj3GhAml"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="fQLVxZON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com [209.85.222.195])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FEE2BEFFB
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:53:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2529E6F2F2
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768229619; cv=none; b=jWAzs8lMCsO41XNyxl6Q1Ye8M9xz72xT8yKp2uJ4B0csxdC6l3nlil0QfydFryfNPY1bDZ0RPTZVHZWEQRRFzLrD2LkNjovCZk5AHTpMyYyR/RZPtWmH87N69xWUidCnVYr316WGLaamEl/IZ3tSb4MjDyynJffsvWWVQAlInQA=
+	t=1768229721; cv=none; b=pjTeJpLhfgzrMwvfUqJWK8KaJU3N2xjiLp4l7M+f2KhlFad0K5/4BkJf5mVsy5jzYrYv9NO4FUiAQe/pdVncQK8SMfve7ulflTjhVjt1CsifdQUhfQl+RlGRDDlwsirm3eWMgYo756lFANDLHSL1fZfZil+rIZ0rIl6OW3PZU98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768229619; c=relaxed/simple;
-	bh=pDZDm+F+vmrFcUjSN8q/XEiPjVl5A43rJxAi5NUM+pU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tXMxeo/VOluXSQqnC/MWMnPX8JMPVOpsIe97BGexicwOM3qtVR44iof7rf33hmUgpH6XZxcBHrUfqmltjA6ej5daAMb03OVY9px+k1mASMX1ci2mxtmxo869AakIoCLQhHKpAQ3Dt9Y/QpMKH3DwwPdFXyuK2MQMwtG+NPZSJyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vj3GhAml; arc=none smtp.client-ip=209.85.222.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qk1-f195.google.com with SMTP id af79cd13be357-8b2d6df99c5so553939785a.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:53:37 -0800 (PST)
+	s=arc-20240116; t=1768229721; c=relaxed/simple;
+	bh=udw57NFssotqrqEj8KCqBZXIM1DX+Oq6n2i7cO+vzXc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c8EfE8d78LnRxutFNwEXavPctGzzIdXsIo1SysVEnjo0KQJlOWV/iW56RAJyGyV/0j2Av2ahrJWlWf/sMDgxlaWQ/TGVtLxGcMkwIT1wQ/rPBnu+XGYxSpm1Zmigd8NXaKoy2XABnajWNFhC+Gtww3vjmCUnpJy/9SESGwS0kmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=fQLVxZON; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-bcfd82f55ebso2222402a12.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 06:55:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768229617; x=1768834417; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=pDZDm+F+vmrFcUjSN8q/XEiPjVl5A43rJxAi5NUM+pU=;
-        b=Vj3GhAmlIePXTh2b5Q8nf02OFyHS3ifCtAmmpK2VSoISkLSGSB2Q05/Zr8uOHdddJd
-         7chTYyjFmEeDQss2kZNBF97g8b5qVBlz9z84FYuPnUCOICkx3++ljA9hQZcycvQSnDOZ
-         /ugPpjugXZvLc002l2+kOxpGyI6O1qch5ER8M4nyGraxd/xaZqYOHw24BwuMKQpt5BvW
-         GD4VFNkej5UuOe6LxmgVonzaymMauoVxEZ+gOLIFOMDY0t9HawyLUxSZa/649UyXg12c
-         lKtrYHFndZFvzo2hHsPS/Tzq3LMKANvArj8su3O94+qfZFG1de3oUUJocG3ivIHhp8Jz
-         2+3g==
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1768229717; x=1768834517; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tCeoeD1NcujYFAQDlchiAtvGNFTdOsvTnQ6PwbSGdbo=;
+        b=fQLVxZONYxMDVdpj/3G6ippit2tlMlUNxItSJKjLNhC2yp8EPMOFaTDuMQ7PvtQYR3
+         r5iL0G0hErDPbnCi1MzZlz3uAtSoO1q0pmyFnQN8NyKCmxEb52kyDss+WkxFQnRHjuWa
+         xhGR/Ik9bAPkNIvHFQR55exKY6om8qSpurcwfSgiJIT2BhQGzP2hSB6ndz0p6Y3+VGco
+         XZSNvXTuHM7P8XSvdXkvtagh8HR/6By2lOygz2pPqanB3SKBDegJMoLLl1QlRBX1KDUO
+         qlvT+14T5zbH/BaXg9/4xpjbmHreusFHhYm2YJ2bBSI8niyjLiYJr+0XeQwsWGJc28+u
+         BZhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768229617; x=1768834417;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pDZDm+F+vmrFcUjSN8q/XEiPjVl5A43rJxAi5NUM+pU=;
-        b=Mn7Hc4WQZ0lIX6+/16Az55hApEhzPtjF/R7IKlF8T8dYSuz8YlfLznY37F47H4v3nL
-         iu+1GUjcnEKmpajQCaZbT6HdG4pDcQPahWgHmbmi9VjmSjc41lQEgO7QxliJzs40DH7W
-         hDNbUSObNeW81kOWfI/RF/3yivUNt/VmhTFsctgNd6j+vQ68rxTIl35Hcn5le+kTERnX
-         OntntufhzyAJQ81F8LbC0osb984AXRGcbmTHX2rSQdL0A6c6sTOvxhZP0TIpfknHjaFT
-         gTSS9j00oycW59Yqbq6/nGoOxgLWiHf200fdL9mJIyoKSKXfxcRzYVmN0NXJM3enpzxq
-         4tjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU2b1BuMAYVR0VEq2sGbqPtqWT59aVHmvOusHb7qYdk5dUirAYGMY7BAzUWj+bWngjK9eA7l67eM8W4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzclx0KzM1HSbIbrsGLP994ruPdYFd8h3UtKz+L+7nj5EYjJ3Lg
-	cLYbcQzDj+VCP+Gm0gvcQA7Q65XxQQKX9mMQ7lnS3Q0ZW6kv2RwRmKlWFdbmDbyEm0o=
-X-Gm-Gg: AY/fxX7WYSIsagYPjxjEw5MI2vVRh1/doumYMGcftryHzPPtO9HqFltb9L62AZ4poRZ
-	i6X/sXYxs2deqTpY7WK/O/hwAahhaWu+br7UZYjlKIAwoiBiWJl0TWhOCEgx4UbwOUIDe5Dh7hR
-	1N9n9ffVpalVhbwzYqbelmxyFs4rK4wvizU/bsw6e0g4n6PyK9OnHhaZbg0IR/OacqlKtf79Yh2
-	GsISkpy128jQclCGJxMZJ+hBMcF+KpS0HdzSv23nqLw4XJhwMv1Rqr2teKjjf941GEnFREz8klt
-	MTe6FmoO128jd1Ted1nUArbD5X/EzLYHnZbLLhefO7oWjwpW96VdfPuVuHcprUjUMJaET83rb4l
-	DUWF0BFQzZoGVOVq/MTWok8jNp4cN88T8+0vF+i3DgI6btLbEovLuY97gQhM8fI/GhEc9CqPYE2
-	i7ysMPHa1pkY0lug8n
-X-Google-Smtp-Source: AGHT+IHT8VjWMJ5Rzt6/g2IIlWMwlHfMloJNg8k85JHX1D4CqQQ3AYqCTokG+u+U2mL3ZC97mPnI+A==
-X-Received: by 2002:a05:620a:4096:b0:8b8:7f8d:c33d with SMTP id af79cd13be357-8c37f54eb44mr3088215685a.45.1768229616536;
-        Mon, 12 Jan 2026 06:53:36 -0800 (PST)
-Received: from draszik.lan ([212.129.79.54])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c37f53c422sm1585790285a.46.2026.01.12.06.53.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 06:53:36 -0800 (PST)
-Message-ID: <b30ca585bf401a3f68316afa8c217ff7130e0af3.camel@linaro.org>
-Subject: Re: [PATCH v2 5/5] arm64: dts: exynos: gs101: add cmu_dpu and
- sysreg_dpu dt nodes
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
- <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki	
- <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
-	kernel-team@android.com, Will McVicker <willmcvicker@google.com>, Juan
- Yescas	 <jyescas@google.com>, Doug Anderson <dianders@google.com>
-Date: Mon, 12 Jan 2026 14:54:14 +0000
-In-Reply-To: <20260112-dpu-clocks-v2-5-bd00903fdeb9@linaro.org>
-References: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
-	 <20260112-dpu-clocks-v2-5-bd00903fdeb9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+        d=1e100.net; s=20230601; t=1768229717; x=1768834517;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tCeoeD1NcujYFAQDlchiAtvGNFTdOsvTnQ6PwbSGdbo=;
+        b=gjOnR9A7YetdAps1ZvXcs/+lChMfmuRKvFqDJLIkbzSB1qwYPre/kXGgikc+mbfTK2
+         cK6o8H58MZ81HO7rb7q1L0Yf4YB0cQesUExaw2XTjAHuaaN4EYrKuKwv3QfaAhxA4Spq
+         5Ppgtwzy2BwrnQFb8MGsiNIJ2luq8P7zilU4NVAsMg1fsV3VhKtl4tWBs52PRKKOjk8X
+         t5SewUCYCHgygQiJkQTK9NmdT/qSZBBKctRE7W0tHNszoGJzsm924/3EThMzFPt5MBp7
+         EAYRJg5mdZOVptN2xGlK6c9rYAowZFfp3bLu/uug8hWa7uPjEvUsUGoVNSJfAuTAZZsR
+         tJRA==
+X-Forwarded-Encrypted: i=1; AJvYcCXWZlDmxqmsVqlOhIt00zGIV1nL5/gG2BFavAurHrKjes08Ve2UUHIXc+tOtfwA5qsqCe+SXWi0hs05@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqFJ6M22+PnH779tsGhv0CA5yxSbBPKvexzM40ED0by1BSmaK8
+	RgfUitJ1HMLmO0zMTOSq+t3Mf1FKMute2Yv9M6/WLHpXXeaoy98SfNq1+kYLNJk5ow==
+X-Gm-Gg: AY/fxX5j3vC1A5w3WAEecfl5hcYbIsTL1yz9mCSEtb/HP6oKCJ5F8i3zknwSVjzX7ni
+	RKdB5UfrlUVH4xELhVRFMD3nvKjfHcZFAFZjJZrg7ojEXicsSDGEFz9yW8SMX28pvRaZqhhnAu4
+	X5C/QmGtQgFK28R2jp0KnrrAu2shvwvL04EDMMTEP8SrniL2nziNuFE5fNQsDtYESBhnl2+7aem
+	/VVmtOP05ZwUFUWq/AC4UqiE9w631yK6M9NPiLn6KAAzkAn8h0hU3vT9c0JKtZGV5n28vvwD0WC
+	F2ykJ8ZBwDPpu6bZboyhAoDhmETc4jOv53baoAYaL9TekGBTrMhcZKhAUjMPpVQRvGpOHKeOTiH
+	qFGrzXiA1CmcdDap5Ld1V06hCFRu0HeF7bGDKchmEuvxi3+tkWsNB/3FdPgv7SvPVpVUN2TqZ58
+	p2LGgJKGluMP3/TSj5NSPf7mrlYMnhy0p+C0ucHJ0kCyv2l8jEtxJRh1AMDtOETA==
+X-Google-Smtp-Source: AGHT+IFtAul1lYvdpQwZc3IOUtzJ/XS1Y7WP0i8vum43wraXPGoTXB6Ts5DFcP4wiioQIdrskbtilw==
+X-Received: by 2002:a17:902:da8f:b0:2a0:c92e:a378 with SMTP id d9443c01a7336-2a3edb24516mr170956045ad.7.1768229716815;
+        Mon, 12 Jan 2026 06:55:16 -0800 (PST)
+Received: from ?IPV6:2401:4900:1f3f:e311:7179:901d:930c:942? ([2401:4900:1f3f:e311:7179:901d:930c:942])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cc8d76sm177066875ad.84.2026.01.12.06.55.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 06:55:16 -0800 (PST)
+Message-ID: <c725c753-c3a1-461f-856f-7080eb8a97ba@beagleboard.org>
+Date: Mon, 12 Jan 2026 20:25:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 01/77] checks: Use consistent type for strspn()
+ returned value
+To: Herve Codina <herve.codina@bootlin.com>,
+ David Gibson <david@gibson.dropbear.id.au>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+ Hui Pu <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <20260112142009.1006236-2-herve.codina@bootlin.com>
+Content-Language: en-US
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <20260112142009.1006236-2-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2026-01-12 at 14:16 +0000, Peter Griffin wrote:
-> Enable the cmu_dpu clock management unit. It feeds some of the display
-> IPs. Additionally add the sysreg_dpu node which contains the
-> BUSCOMPONENT_DRCG_EN and MEMCLK registers required by cmu_dpu to enable
-> dynamic root clock gating of bus components.
->=20
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+On 1/12/26 7:48 PM, Herve Codina wrote:
+
+> strspn() returns a size_t value.
+>
+> The function is called in several places and in all places this value is
+> stored in a size_t variable except in check_node_name_chars_strict().
+>
+> Fix the variable type used in check_node_name_chars_strict().
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
-> =C2=A0arch/arm64/boot/dts/exynos/google/gs101.dtsi | 17 +++++++++++++++++
-> =C2=A01 file changed, 17 insertions(+)
+>   checks.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/checks.c b/checks.c
+> index 5d09216..041e565 100644
+> --- a/checks.c
+> +++ b/checks.c
+> @@ -324,7 +324,7 @@ ERROR(node_name_chars, check_node_name_chars, NODECHARS);
+>   static void check_node_name_chars_strict(struct check *c, struct dt_info *dti,
+>   					 struct node *node)
+>   {
+> -	int n = strspn(node->name, c->data);
+> +	size_t n = strspn(node->name, c->data);
+>   
+>   	if (n < node->basenamelen)
+>   		FAIL(c, dti, node, "Character '%c' not recommended in node name",
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+
+Reviewed-by: Ayush Singh <ayush@beagleboard.org>
 
 
