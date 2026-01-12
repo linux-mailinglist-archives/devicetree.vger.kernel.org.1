@@ -1,118 +1,227 @@
-Return-Path: <devicetree+bounces-254163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71BEED15111
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:35:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D1BD151A7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:41:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 886F830206A7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:35:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8B38D300B35D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB30232471B;
-	Mon, 12 Jan 2026 19:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BC6324B33;
+	Mon, 12 Jan 2026 19:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Gk4PYzyh"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="30Hqqb/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com [74.125.82.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28833242C0;
-	Mon, 12 Jan 2026 19:35:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6221632470D
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 19:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768246539; cv=none; b=p0wUqHuO0IsWjfpI1YsMRvJMuMH0SWhMU1KvAgbOuRersKse/a8yD4vv8NTx4LGx5tZwgjG3//XiXLZJ9EJ4NVEfwFIGhBFcxmNMHKc6WmXL+6qctlbmnsFpHfN1LqFVk2XciErabbc7js4sCucc2wrFmq1mB3WMFafLfe6JQN0=
+	t=1768246666; cv=none; b=e6kU1L4xxnlA0CYd3Hr5NP3nEtSed/UsP+JnYQjAbrzGGMkVXXT9UFgAXWpKCiYCUfEt2OZhO74aJVmZNlbYQsoMKetrnAYbS6TjxCXZSAcnGSI+uMJJk/JsejUL4E78vB2h3pKlwae4ig/8aw5YD3YPiWl95ShnutdEpsLXBnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768246539; c=relaxed/simple;
-	bh=dwnfhhlWwjKBzZ/++zJtBbcRr4tEH0QKns5wtabi5Lc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kO86dwS1x7aykmXIHeP+h6VFpjW84b6/FaDM9Qnz5Z8D63eL73oIk3HcLbIrdqRaMgg4bWYD6bqsk9DLOWjm4c0IfHjW4KFHIrCq/5ociU+cYcYaE49/4I17zttrySVhJo31uxoDe4ZrZ/zmFsmdUMAN+huod1Mm21PR7Gfhn2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Gk4PYzyh; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768246538; x=1799782538;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dwnfhhlWwjKBzZ/++zJtBbcRr4tEH0QKns5wtabi5Lc=;
-  b=Gk4PYzyhbu8xLjFxLRD+DMknoSilGNPgOeXtGC+kjSEOZUTAEqI9Mgx3
-   Q6ooGn8GnQsmux3XQyruhMR4em+KPj52F/quy4yzJO87HdEJUYe0uYtO2
-   cuOvnZL3kQWhUrFoH6d2UWRSxffdizycs169pklZvKpm1ckEYe0VtUHvY
-   2r0n0kSXgsSpiaYZ7r77HMnG53IQMymq39f2S+xWjkeU8GCAbmkF2gkWn
-   N6nu140aqlC3TLu8t0d7Zyi4yfI3tlekRpIXogm7bFnG6oM3e+1aHQYTa
-   JfEGkY1hFNpHa+O+kojn3yrou4BxVbu0EznSdv6WZ7Yiz5tSL7PB9nIS+
-   A==;
-X-CSE-ConnectionGUID: yiARljkAQPSeZ/raHA/pUw==
-X-CSE-MsgGUID: 5Z5koySvRjilCVjZ2bbjTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="68533984"
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="68533984"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:35:37 -0800
-X-CSE-ConnectionGUID: Zviq7gKNSJqaRdB8e32U5A==
-X-CSE-MsgGUID: ymTWk6OkRX6QRA5xQm/dUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="204577132"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.37])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:35:34 -0800
-Date: Mon, 12 Jan 2026 21:35:32 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 3/9] spi: support controllers with multiple data lanes
-Message-ID: <aWVNBPfv-R5erugo@smile.fi.intel.com>
-References: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
- <20260112-spi-add-multi-bus-support-v5-3-295f4f09f6ba@baylibre.com>
- <aWVGZWg7zLpeG3Kz@smile.fi.intel.com>
- <22a6a28c-0f03-4571-b2a0-8c9b82788b68@sirena.org.uk>
+	s=arc-20240116; t=1768246666; c=relaxed/simple;
+	bh=kCNuLKa3OcBY6DWrPNqUq+zuzLUQGDhG7wkIuXt18dM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U1DOqUnf7rXKiy4vO2kBrHY1JVZyc6oG7L+p627Q6Tg1cFtUFKJaXa/vQGfHlznxe2rHLegJdgneyzjlpv4LEjIyV4V1vis+OwZshaGU4CKEgCOawgxCMqSVj8RQYM2Izd46Be1RkkFLzg18zZgB/8tm7NBm5UtuylxijmqEzfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=30Hqqb/Q; arc=none smtp.client-ip=74.125.82.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-dy1-f175.google.com with SMTP id 5a478bee46e88-2b19939070fso6576993eec.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 11:37:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1768246663; x=1768851463; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MMKzD4neKMQA/a71hLZaF9K+onAvp6LuTb7/ocIRVF8=;
+        b=30Hqqb/Qg2M/DClti7RHUsO+bjKz5um6j/PP38je7T6hzY+F81eKQdpUUe90FNkYZ9
+         K6NxlxJuym74IBjIuqdT6q5bBk55d042HV7DOfmdi5BxtX8UhsYUagRCVGpdbF+4e/xo
+         wsRwEjty5yIG/FyYbaqul+TVca/ukDii1i7ExgICs9o7I6RribQekPjhJyNx5eZcUSbo
+         cRdBcXSZfQQ+KTyiFN9ACq6VmBunxro3WsuH6vasiw1tC3pBfIhGyPk+qOFaME5eMMvw
+         6Bnwfy8uIqF9++ZkPerBWdrBrLXYBfy0Vc8SPfS8TWv7FYXmbhqFD2bMx4cECL2icqg+
+         XlQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768246663; x=1768851463;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MMKzD4neKMQA/a71hLZaF9K+onAvp6LuTb7/ocIRVF8=;
+        b=Rkb4apEfYPDYuYdTeXAB+OXy3kzfpFOT2gMpNKeivDzl6ij6rnnE3s/R+Dx3PbpmLP
+         fZjde2scgK+P+cMxONC3z64a6sjRMkGlYP8t+mXd79CvuDde6uofVR3748XIod5je2ER
+         cUJ8FXoHI1WxifSVsFVC2w28S4Mq2KbqyG9p1xkaGEHLzXQ6n862JrrsB8Qr6Mq41cXL
+         LEoVfV32cfn7OuKQ6mthZQJ51pM6ZRalna1VswhBmS2erac5NLTbiUR31HvrUybTYxA1
+         I6uKQCO8RMyvjtKfn29trUJNI+J5trgM6td2KHpFTAX6slEKxSZRYHOLM669cewZLloY
+         taqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXJ5joBcfbf51Ulht7+HIZxLtBPBlXE3Pu0h/pD/pBuSmzfUcZ0HYsNGI8D7LyeJCg6xZcKj4oIL14p@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuuOCwPQfifc0Pfk2d9VNjRjWwUtRvjGJvx9JNf+87SHpvVSX7
+	C7zjeu/9qJHqdvaI1sjDWR6jyv2WbUxxCCVBDwsJk/9nWg3n4dmyQL2jQMqx2oKi9Q==
+X-Gm-Gg: AY/fxX5W1fJZEUdU8aAjF5ClqdKor/l3qxwlTrdNp9DJWRP00QkprScs3QOHm5SnnRR
+	U1dX/HK6L/+88dk2ApmlHk+GRVuEFKSf44pQcgl6aHKq3YKG0qxWL6m/XwsOKwtKZmvNBkWWCiT
+	SZP8QVTYliJUJbq9fHOBFNXavQzrZ5nVid3Nr+lvNV7/3AlwZArbtLzfyFDfUHP5KueYwndeOXf
+	mrLGVuuMH+oP8VSAK5yBAIgOTatf0sf3gjTZdddZK9XuAs9YFBlZxTWmL8aZGBbHg4+4pQEOAjU
+	f41woMqHQ3Y3doVgKtyyL9hPbqJ9JKkFmA87ZJvA9umuqyRFkrlHKEWuJg9Yd9M4spn0C/9uIIQ
+	SoTVE8H8DH5x/oy1VdWNpLfXOLbhukUurbO+Ta7yhxzAD4NjRUoRCAaQsI5lJQNY8a8KPjuhc8s
+	CILd8sprXP16h5OOHn7N4xiPQHNaHOxH0MmzgSH5C15cOgQRD4wbDmaY6B91NwCpNf1S4klooBl
+	PgJsp0OQxvNow==
+X-Google-Smtp-Source: AGHT+IEmezECFIaAtAhii/tXhYAvteHOsxJwusDFq7+Qy4kltOc3o9BThd5irNt42thvcdsfukrSaA==
+X-Received: by 2002:a05:7301:29a5:b0:2b0:3d03:37db with SMTP id 5a478bee46e88-2b17d2e2b29mr11583342eec.35.1768246663076;
+        Mon, 12 Jan 2026 11:37:43 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e7c:8:8e84:2c31:d2b4:9c1f? ([2a00:79e0:2e7c:8:8e84:2c31:d2b4:9c1f])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b17078d818sm15886663eec.21.2026.01.12.11.37.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 11:37:42 -0800 (PST)
+Message-ID: <bb9b9afa-0bfa-428e-9372-549d9ba8603c@google.com>
+Date: Mon, 12 Jan 2026 11:37:40 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <22a6a28c-0f03-4571-b2a0-8c9b82788b68@sirena.org.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/5] power: supply: max77759: add charger driver
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
+ <20251227-max77759-charger-v3-4-54e664f5ca92@google.com>
+ <298ca35590d2180fdcf334f94964b6110e17c606.camel@linaro.org>
+ <50c29a62-1fdb-4de2-8887-0d551eee5ec0@google.com>
+ <255d7726-6758-43ed-b35f-db14726bcc9b@google.com>
+ <2869d309358f27652289c40810ca36b2ec155d1d.camel@linaro.org>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <2869d309358f27652289c40810ca36b2ec155d1d.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 12, 2026 at 07:11:26PM +0000, Mark Brown wrote:
-> On Mon, Jan 12, 2026 at 09:07:17PM +0200, Andy Shevchenko wrote:
-> > On Mon, Jan 12, 2026 at 11:45:21AM -0600, David Lechner wrote:
+Hi Andre',
 
-...
+On 1/12/26 5:47 AM, André Draszik wrote:
+> Hi Amit,
+>
+> On Tue, 2026-01-06 at 17:14 -0800, Amit Sunil Dhamne wrote:
+>> On 1/6/26 3:41 PM, Amit Sunil Dhamne wrote:
+>>> Hi Andre',
+>>>
+>>> On 1/5/26 9:32 AM, André Draszik wrote:
+>>>> Hi Amit,
+>>>>
+>>>> I haven't done a full review, but a few things caught my eye.
+>>>>
+>>>> On Sat, 2025-12-27 at 00:04 +0000, Amit Sunil Dhamne via B4 Relay wrote:
+>>>>> diff --git a/drivers/power/supply/Makefile
+>>>>> b/drivers/power/supply/Makefile
+>>>>> index 4b79d5abc49a..6af905875ad5 100644
+>>>>> --- a/drivers/power/supply/Makefile
+>>>>> +++ b/drivers/power/supply/Makefile
+>>>>> [...]
+>>>>> +
+>>>>> +static irqreturn_t irq_handler(int irq, void *data)
+>>>>> +{
+>>>>> +    struct max77759_charger *chg = data;
+>>>>> +    struct device *dev = chg->dev;
+>>>>> +    u32 chgint_ok;
+>>>>> +    int i;
+>>>>> +
+>>>>> +    regmap_read(chg->regmap, MAX77759_CHGR_REG_CHG_INT_OK,
+>>>>> &chgint_ok);
+>>>> You might want to check the return value and return IRQ_NONE if it
+>>>> didn't
+>>>> work?
+>>>>
+>>>>> +
+>>>>> +    for (i = 0; i < ARRAY_SIZE(irqs); i++) {
+>>>>> +        if (irqs[i] == irq)
+>>>>> +            break;
+>>>>> +    }
+>>>>> +
+>>>>> +    switch (i) {
+>>>>> +    case AICL:
+>>>>> +        dev_dbg(dev, "AICL mode: %s",
+>>>>> +            str_no_yes(chgint_ok & MAX77759_CHGR_REG_CHG_INT_AICL));
+>>>>> +        break;
+>>>>> +    case CHGIN:
+>>>>> +        dev_dbg(dev, "CHGIN input valid: %s",
+>>>>> +            str_yes_no(chgint_ok & MAX77759_CHGR_REG_CHG_INT_CHGIN));
+>>>>> +        break;
+>>>>> +    case CHG:
+>>>>> +        dev_dbg(dev, "CHG status okay/off: %s",
+>>>>> +            str_yes_no(chgint_ok & MAX77759_CHGR_REG_CHG_INT_CHG));
+>>>>> +        break;
+>>>>> +    case INLIM:
+>>>>> +        dev_dbg(dev, "Current Limit reached: %s",
+>>>>> +            str_no_yes(chgint_ok & MAX77759_CHGR_REG_CHG_INT_INLIM));
+>>>>> +        break;
+>>>>> +    case BAT_OILO:
+>>>>> +        dev_dbg(dev, "Battery over-current threshold crossed");
+>>>>> +        break;
+>>>>> +    case CHG_STA_CC:
+>>>>> +        dev_dbg(dev, "Charger reached CC stage");
+>>>>> +        break;
+>>>>> +    case CHG_STA_CV:
+>>>>> +        dev_dbg(dev, "Charger reached CV stage");
+>>>>> +        break;
+>>>>> +    case CHG_STA_TO:
+>>>>> +        dev_dbg(dev, "Charger reached TO stage");
+>>>>> +        break;
+>>>>> +    case CHG_STA_DONE:
+>>>>> +        dev_dbg(dev, "Charger reached TO stage");
+>>>>> +        break;
+>>>> Are the above debug messages really all needed?
+>> I forgot to respond to this comment in my previous email.
+>>
+>> I think we can keep AICL, BAT_OILO, INLIM. They're either special
+>> conditions (AICL) or faulty conditions (like BAT_OILO) and we can in
+>> fact keep them at dev_info level. Rest can be removed and a
+>> power_supply_changed() is sufficient.
+>>
+>> Let me know what you think?
+> I don't think dev_info() in an interrupt handler is appropriate. At
+> least it should be ratelimited.
+>
+> If it's something special / unexpected that needs attention, having
+> a dev_dbg() message only will usually not be visible to anybody.
 
-> > > +	/* Multi-lane SPI controller support. */
-> > > +	u32			tx_lane_map[SPI_DEVICE_DATA_LANE_CNT_MAX];
-> > > +	u32			num_tx_lanes;
-> > > +	u32			rx_lane_map[SPI_DEVICE_DATA_LANE_CNT_MAX];
-> > > +	u32			num_rx_lanes;
-> 
-> > This adds 72 bytes in _each_ instance of spi_device on the platforms that do
-> > not use the feature and might not ever use it. Can we move to the pointer
-> > and allocate the mentioned fields separately, please?
-> 
-> Do we have real systems where we have enough SPI devices for anyone to
-> care?
-
-Define "enough" :-) To me even dozen of devices is enough (it gets almost a 1kB
-of space) esp. if we are talking about quite low profile embedded systems.
-
--- 
-With Best Regards,
-Andy Shevchenko
+I agree. I can change the prints to dev_info_ratelimited for the stuff 
+we care about.
 
 
+>
+> Also will the call to power_supply_changed() down below handle the
+> special conditions (e.g. convey to upper levels)? If not, can it be
+> made to do so?
+
+Yes it does, as I can see a call to kobject_uevent() inside 
+power_supply_changed_work(). Also, power_supply_changed() also notifies 
+other subsystems that have registered their notifiers downstream of this 
+power_supply object. So I believe we're good there.
+
+If all the above sounds good, I will proceed with sending the next 
+revision including the fixes  :).
+
+
+BR,
+
+Amit
+
+>
+> Cheers,
+> Andre
+>
 
