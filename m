@@ -1,151 +1,144 @@
-Return-Path: <devicetree+bounces-254063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE21AD139DA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:22:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 963E3D13AE7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 16:31:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DBEE8303167D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:06:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1F92730334D7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:13:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425A52DCF43;
-	Mon, 12 Jan 2026 15:06:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254DC2E0914;
+	Mon, 12 Jan 2026 15:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OnZtIzO4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lumYmJh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BE424A07C
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 15:06:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF292BDC0E;
+	Mon, 12 Jan 2026 15:13:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768230416; cv=none; b=r4ENY9nBhdpiBQXIRk5DgBHEwl1RjExZ10Knb+oE5gDD3WE09Z6exZGcZvHukCTrD/iuguK4wr1do3d50FMDmYaWDWjW6q0XzO9adgwhuYTfuvtAX0hr4bo6dbQ+S6tjh7k2AqK5z7c9Wcdb6gQ5rKF7Z0hIkKEWEsGyScdapxE=
+	t=1768230817; cv=none; b=hoOlYE0CZ0JJqZhzP7BHqfqOB744nSDzO0hU95cnMXGFsutkL503OhNf8Blz6lBdSE1rRkFcJqcApme8c7EWlU8o0mPvt6r7jHFviBgF6+mlmztTNIwk2HWJ2aDxhM4wJj3t4rvLmcm5eQiLHigLjozmSWWsgOUjSH9GEgibpPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768230416; c=relaxed/simple;
-	bh=75MQjJBAxr5y5jIsOd2DHhXFNZlk3zoenuPM48yKilI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=W3izdoe7KCckkAMdNBDagIrmU821W4WzfLVUf0Uq9h33y58+RP5HmpD62c97tNYM8rxChJBdwVAEMC3YwzXYQCVmY9CovQbquXDA9XWqmFf/ybtqXDGi281HAcTHVIW30Ee57Vkw43Ipm9QEIQLl0FCCW+07QE6wSjE/WtHSe9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OnZtIzO4; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-81ef4b87291so1031019b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 07:06:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768230414; x=1768835214; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=HP6AkMvuLhfF7BdOoI9QTFT1HBmcbloV9tH4WSSJF80=;
-        b=OnZtIzO4kGV2h899ADR0q8KyLPcBMXJot72RWGn6yRyRwRmpW/bcGjHlUvfeoqU71o
-         QQnojS4gL7dYJZeShxPnQhDdMteungeiKCI9Wz2Uao/ZMPkf4c22eHNp3lHwbfMOm78t
-         dRxblA/rTeYzsK6JJw2DfyY1uioMZO8EeCEy5Z8fLRU6xWFjYEH0X3nApD1h4F5/rU5J
-         z34Ibz7ok8FM8GIoV3IK7Jw+sLNNO+dz1eVAs98qYPH6RUx2RZ0gNMNQsvXmHo2DBA0+
-         UVPaG4/udrG22ZuLc6XJgsYwDbcRWiBAffNbzS7cjl9meh/9l4gO/X4fkwm/jovYxeTv
-         BzHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768230414; x=1768835214;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HP6AkMvuLhfF7BdOoI9QTFT1HBmcbloV9tH4WSSJF80=;
-        b=au0aJfX0xad+yNv8Vf1XGlKKQ0GCg6IHxPE/7fEno2EgdQqREh8w1SR3EJyf43/1zM
-         LHT161jNQ2ildGlz1c6qHlSFcU2xTx3a4KPSTz80W0tovnRPN6ToKuX1XAHgOu7eZwXs
-         ypxSS/xC46Rv6BpBs05CU8+EVfMf5IQtY3IF1w/vJnYEK4iXtu0/5YqVG0UwQUI64YUu
-         HcdIhVqLM+8r7tLgjzdb4bk4H9xdnWZAWMFXYIQajLfgCJBmR6tW2jLHtsliQv+5AilX
-         3oWSBqJUGl2ARd9vmM4kGI9lw3F4PMhrnsGMe/GycrnAv3TQUcT8OcDw8q71kliMddl+
-         9dKw==
-X-Forwarded-Encrypted: i=1; AJvYcCVW9uQPt5T4bBbDePW8VwybXai3dAXEEriFoHkzlbZrM2SxCXVUQ2cuIiggiZoUuB51VkW2tLz0DJ6x@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZltOAz0lKz3EyAfwDLiwvGDpN4N7bnt4lCcGE/HmeeAZ41mkZ
-	G4MN+qCEJx8kArLHFLsJZPKE81rNHfiXoUZxQu51uIC9cdkEVzYE3xRHuPl2wCqyVaY=
-X-Gm-Gg: AY/fxX56igQS6ZWxIoFLgOXLovxenTTjEqHsGyXiDwFcB/1c1nBPiKrR9cRjs9Zuq5n
-	tpYMwNY7SsrX6YCpyEHBeHozaXlXmBTLmR7TxHfYrj86fRihtorB8fFuQMcMdXG41ItOufIpsA7
-	ig6flx9ZiTxNz62OWWXaHU8JD35jITTfqM9Hdash8/md/wbDjOieWF2g+W5V7n20NkJHjTZDNKw
-	inheQvXZk2uvMHtUM7AOqpsp8ogw2q79KZ2V27tKYYz8Y8NNe7hjRQGQNkU/ecHEzDBJyvtajY4
-	sgiUIXL2Vu53U1aaOhPqVlBqvs6ahHLtmXifsrRyKP46QwREGY/ElD07a5s4dIuHTrUbYYp73/4
-	xxk/W3BmxxaELn+21UxRVtJn4r+6iTGmw5lmEXXfyY/tG/ZH5FJHmT5w3Na1QLaCLSrR6sXvn9N
-	f+km+uA6LvVr1AnJkg
-X-Google-Smtp-Source: AGHT+IEPMgDPCYjsxat+foxE0Th9ljcBX6K2Ppfj2CK2lZL+CCALz+VFGZbGbJZ0pdZjm8CcOhAGug==
-X-Received: by 2002:a05:6a00:90a6:b0:7e8:4398:b34f with SMTP id d2e1a72fcca58-81b7f7e226fmr16141102b3a.34.1768230413899;
-        Mon, 12 Jan 2026 07:06:53 -0800 (PST)
-Received: from draszik.lan ([212.129.79.54])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81e6c8199f4sm6182089b3a.68.2026.01.12.07.06.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 07:06:53 -0800 (PST)
-Message-ID: <7097507636282e4613d324ff5acb74eb747d519b.camel@linaro.org>
-Subject: Re: [PATCH v2 4/5] clk: samsung: gs101: add support for Display
- Process Unit (DPU) clocks
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
- <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki	
- <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
-	kernel-team@android.com, Will McVicker <willmcvicker@google.com>, Juan
- Yescas	 <jyescas@google.com>, Doug Anderson <dianders@google.com>
-Date: Mon, 12 Jan 2026 15:07:20 +0000
-In-Reply-To: <20260112-dpu-clocks-v2-4-bd00903fdeb9@linaro.org>
-References: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
-	 <20260112-dpu-clocks-v2-4-bd00903fdeb9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1768230817; c=relaxed/simple;
+	bh=FH5lvgGlxlgcsI/c3Wc4LZGoA4WSMGev1ZgnwDVgbkw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pW3B5hU+gNtS+E8mRN741XEszJDg8Er6qiHLbS9B/NiN/I1fQQdWY6W+kQ5jYNJ+lyB5YoHbjXDrvZeSFNijvXkoFw3ZuwfA2tpt68cJCfU9qx+n5DYJhtvMruu4u/J+m+9WLMaakwbyMzG24OKOWUFAbjPc0fPeh2j/aPXHZKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lumYmJh3; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768230815; x=1799766815;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FH5lvgGlxlgcsI/c3Wc4LZGoA4WSMGev1ZgnwDVgbkw=;
+  b=lumYmJh3lREzppEyuWTo96UN5qHsU6SL4JQMeIdp+CNHsYruHmIcldGb
+   c5iXHEWz1RaJ2Et9I1WXmOddUjWq0imkB1AZPJ6jwZHnj8uKz8U7fMnL8
+   zggojf93pYbJjHJ3U0FT0TD8Muq65qWKbG6/AtAUYafaNJBI7mNeKlb9R
+   cPQWGpdu8HK3F6NzqjyIBlGDu4npJssEhuh5x618zfzjKS3KBQ530aYzx
+   ldO0snRQhq6UiZvQOn4aoQIKY20Nvix6C6M72OA9/uYajeDjal+tZWWRy
+   mWxxKA/MtX9sQdRYQ6PrYeeB6PfyvljQbBntcRhsL3FXmXzcglmLHeOjv
+   A==;
+X-CSE-ConnectionGUID: rVkuwlMYTtqccaomg/qjxg==
+X-CSE-MsgGUID: AuS1hlPGRe+K/evU/xG+fw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="73349100"
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="73349100"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 07:13:34 -0800
+X-CSE-ConnectionGUID: mwqoedS6SCmoCk5xw0p26g==
+X-CSE-MsgGUID: imcgvPMSRA2CwgvMwt4IgQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
+   d="scan'208";a="208632334"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 12 Jan 2026 07:13:29 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vfJbi-00000000DUC-04q9;
+	Mon, 12 Jan 2026 15:13:26 +0000
+Date: Mon, 12 Jan 2026 23:13:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Eric Dumazet <edumazet@google.com>,
+	Tony Nguyen <anthony.l.nguyen@intel.com>,
+	Rob Herring <robh@kernel.org>, Leon Romanovsky <leon@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, linux-rdma@vger.kernel.org,
+	Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	intel-wired-lan@lists.osuosl.org, Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Jiri Pirko <jiri@resnulli.us>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Mark Bloch <mbloch@nvidia.com>, linux-kernel@vger.kernel.org,
+	Tariq Toukan <tariqt@nvidia.com>,
+	Alexander Lobakin <aleksander.lobakin@intel.com>,
+	Jonathan Lemon <jonathan.lemon@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Saeed Mahameed <saeedm@nvidia.com>
+Subject: Re: [Intel-wired-lan] [PATCH net-next 06/12] dpll: Support dynamic
+ pin index allocation
+Message-ID: <202601122216.BCarSN6K-lkp@intel.com>
+References: <20260108182318.20935-7-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260108182318.20935-7-ivecera@redhat.com>
 
-On Mon, 2026-01-12 at 14:16 +0000, Peter Griffin wrote:
-> cmu_dpu is the clock management unit used for the Display Process Unit
-> block. It generates clocks for image scaler, compressor etc.
->=20
-> Add support for the muxes, dividers and gates in cmu_dpu.
->=20
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
-> Changes in v2:
-> =C2=A0- Update gout_dpu_dpu_pclk to gout_dpu_gpc_dpu_pclk (Peter)
-> =C2=A0- Fix dout_dpu_busp parent (Peter)
-> ---
-> =C2=A0drivers/clk/samsung/clk-gs101.c | 283 +++++++++++++++++++++++++++++=
-+++++++++++
-> =C2=A01 file changed, 283 insertions(+)
->=20
-> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs=
-101.c
-> index 8551289b46eb88ec61dd1914d0fe782ae6794000..b38c6c8749aae42319d2004ff=
-5ffbc9a19320cac 100644
-> --- a/drivers/clk/samsung/clk-gs101.c
-> +++ b/drivers/clk/samsung/clk-gs101.c
-> @@ -25,6 +25,7 @@
-> =C2=A0#define CLKS_NR_MISC	(CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
-> =C2=A0#define CLKS_NR_PERIC0	(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
-> =C2=A0#define CLKS_NR_PERIC1	(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
-> +#define CLKS_NR_DPU	(CLK_GOUT_DPU_SYSREG_DPU_PCLK + 1)
+Hi Ivan,
 
-Between APM and HSI0 to keep alphabetic ordering :-)
+kernel test robot noticed the following build warnings:
 
-> =C2=A0
-> =C2=A0#define GS101_GATE_DBG_OFFSET 0x4000
-> =C2=A0#define GS101_DRCG_EN_OFFSET=C2=A0 0x104
-> @@ -4426,6 +4427,285 @@ static const struct samsung_cmu_info peric1_cmu_i=
-nfo __initconst =3D {
-> =C2=A0	.drcg_offset		=3D GS101_DRCG_EN_OFFSET,
-> =C2=A0};
-> =C2=A0
-> +/* ---- CMU_DPU --------------------------------------------------------=
------ */
+[auto build test WARNING on net-next/main]
 
-I'll do a full review later, but this new block should also be between
-existing CMU_APM and CMU_HSI0 blocks to keep alphabetic ordering.
+url:    https://github.com/intel-lab-lkp/linux/commits/Ivan-Vecera/dt-bindings-dpll-add-common-dpll-pin-consumer-schema/20260109-022618
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20260108182318.20935-7-ivecera%40redhat.com
+patch subject: [Intel-wired-lan] [PATCH net-next 06/12] dpll: Support dynamic pin index allocation
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20260112/202601122216.BCarSN6K-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260112/202601122216.BCarSN6K-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601122216.BCarSN6K-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/dpll/dpll_core.c: In function 'dpll_pin_idx_free':
+>> drivers/dpll/dpll_core.c:499:28: warning: integer overflow in expression of type 'int' results in '-2147483648' [-Woverflow]
+     499 |         pin_idx -= INT_MAX + 1;
+         |                            ^
 
 
-Cheers,
-Andre'
+vim +499 drivers/dpll/dpll_core.c
+
+   490	
+   491	static void dpll_pin_idx_free(u32 pin_idx)
+   492	{
+   493		if (pin_idx <= INT_MAX)
+   494			return; /* Not a dynamic pin index */
+   495	
+   496		/* Map the index value from dynamic pin index range to IDA range and
+   497		 * free it.
+   498		 */
+ > 499		pin_idx -= INT_MAX + 1;
+   500		ida_free(&dpll_pin_idx_ida, pin_idx);
+   501	}
+   502	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
