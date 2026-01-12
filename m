@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-254009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85C4FD1326C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6785FD133E0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:43:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DC1563024249
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:26:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EB1EE3023D3C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5173624CF;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE623624D9;
 	Mon, 12 Jan 2026 14:21:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="neW6A/ev"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LgAx6Gh+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A613836212E;
-	Mon, 12 Jan 2026 14:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14FF33624A0
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227696; cv=none; b=mQO+xnW/hELDvRdfEBT0FcLTsKEeNGxwdWuEMk7IvbBl3sCGMu73YUMG08cJCWReA4QFpHH91D7+zMeLvnzMbWVUkHGFCruXtQGzWIqCwiIhOgXUs7hORLaiJacSxumOyZFxyK6rmx51IR40j+DOxdsUKmJkMbAuTYHZNwFUB9w=
+	t=1768227696; cv=none; b=o+QAbAB02TA/Hf5JhOhBYENfH971W2QvdRTZp4UjfhVhls0AUhFhmpKorgQPTqvyGi/ssAXan7/1f5tIloViQt2lQCCVtI6p0pZ8Ah5RyGYd9mqPyyu5DthgdG8PAL3DFPIMY8pQrBhCD5YOtYJSFmMm1vvoVtcT0tHqGK7zZf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768227696; c=relaxed/simple;
-	bh=Q1Jcf8MoLeMwNAM9YXolzqu1U6JMXXZJYqA8IOX1ZGE=;
+	bh=zA9I0cK5eNnHIPe3u7Byxko5th3j/+EPsblx2R/GH+I=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YFwjuh2kiH33OcK/GWYeMg0wWsoLovHea/Xblji2DGIs/jX9FjcJRxHzcgByddfCxluo5YyZ1clbz0Zmp6K7T3AJX8Wi0ZLgZucea3g9lXQAR3KsBbqTw5UOvrbXXqAxHv4Uj+m8wUaTiPPI0T+hqmXmpX5YQPGcO2BLhMdC1BI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=neW6A/ev; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version; b=gBjL2PGp7KYlge7GSsNDYEu4hmPFofHvEje/oxubYxLxRF+cHJZoBH/nB4u5OPpAHf0yEzQnMRanm5BYJ8GDa/44r32YHVcNVRqCL2oeD7ygzrFoiu/0aj4WzYZ23/V1W4F8Nx1QRQ4ZhLLSATlEWyeJiFNynlXXuTudL/ab/J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LgAx6Gh+; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 8B3AF1A2810;
-	Mon, 12 Jan 2026 14:21:31 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 6C700C20869;
+	Mon, 12 Jan 2026 14:21:06 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 61BD1606FA;
-	Mon, 12 Jan 2026 14:21:31 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5211B103C8C61;
-	Mon, 12 Jan 2026 15:21:29 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E4B91606FA;
+	Mon, 12 Jan 2026 14:21:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E861E103C8CD8;
+	Mon, 12 Jan 2026 15:21:30 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227690; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227692; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ApNNZkGBMsyCar9fLA5GMRRYXn3l1pTg4D1D7ZaVA8o=;
-	b=neW6A/evWJMpR9n1IFvGrJGVsnfF7CmNz2YrSzPePAJfg1UbHd9qftI7iY+Jgawzla+C3d
-	V8FXweDYZZY2vg8+9gfytEKoSQ62Louei20wu5p2NtXnSpUpLLXWID0Q8hfrB1KaJuHCw0
-	m3cidEiXwVFxoEcxeXYRiXoKWiUfxhJSsOLBKZsUb6e7hfl9svoe000GMSIMhOTlT5sfOp
-	KM7outFF1ttwvygNrfaofAvmemQnupL2snhDKE78+Dq1QPGUuVoEkDy2YZ/bg68Rjp7Ccl
-	hXDNGdVSFwI1kM2KfSygRSNvcAdmcuXUP4mKwmRdCwR6o5sjG5RaYuM3Qmf/cg==
+	bh=uzCy+w7Ql4bGyUjuL6W7OYetqStlfivDtS8ed9Atdc4=;
+	b=LgAx6Gh+sb8snu+Txj4ablt1MQtpGDgACxQmQ3hHkA1PnYbtPTFYG2cl8NOyNoSnr/SfR5
+	YG2gkWmJFzknntuZzqvbsRAS2oZlglljBX+gp3/cMfyl94gtT1NsxEqny5ddNmiSliZ+Rg
+	1h8Iiga7t/l8braGcO92z5QK9hNGHQ0jj37XkVBpjVjJPZioXpgvZhOC6eftTQpvgEIqBD
+	6fB+DRSP0u/I8fDpSMJqILr+8b99vai0mcfwQDbgQiq5gluCdrjO4QV++rNb0di9Fpa7uc
+	mxMmjQsWqilnGOQG7e6sQF/Xlt4s1vimfTLXYIBRuYv8wuu4gLif4oBvhfPA9Q==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 46/77] dtc: Introduce dti_get_marker_label()
-Date: Mon, 12 Jan 2026 15:19:36 +0100
-Message-ID: <20260112142009.1006236-47-herve.codina@bootlin.com>
+Subject: [RFC PATCH 47/77] dtc: Introduce dti_fill_fullpaths()
+Date: Mon, 12 Jan 2026 15:19:37 +0100
+Message-ID: <20260112142009.1006236-48-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -86,11 +86,10 @@ Also, an addon device-tree can have only trees based on orphan nodes. In
 other words an addon device-tree is valid without having the classical
 'root' tree.
 
-To prepare this change, introduce and use dti_get_marker_label().
+To prepare this change, introduce and use dti_fill_fullpaths().
 
-dti_get_marker_label() retrieves a marker and its related node and
-property based on the label value. It behaves in the same way as
-get_marker_label() but it works at the struct dt_info level.
+dti_fill_fullpaths() builds fullpaths of nodes available in a
+tree like fill_fullpaths() but it works at the struct dt_info level.
 
 It handles the case where a 'root' device-tree is not present and will
 handle orphan nodes trees as soon as they will be introduced.
@@ -99,92 +98,36 @@ This introduction doesn't lead to any functional changes.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- checks.c   |  5 ++---
- dtc.h      |  4 ++--
- livetree.c | 18 +++++++++++++++++-
- 3 files changed, 21 insertions(+), 6 deletions(-)
+ dtc.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/checks.c b/checks.c
-index 75040c0..0a855f9 100644
---- a/checks.c
-+++ b/checks.c
-@@ -439,7 +439,6 @@ static void check_duplicate_label(struct check *c, struct dt_info *dti,
- 				  const char *label, struct node *node,
- 				  struct property *prop, struct marker *mark)
- {
--	struct node *dt = dti->dt;
- 	struct node *othernode = NULL;
- 	struct property *otherprop = NULL;
- 	struct marker *othermark = NULL;
-@@ -449,8 +448,8 @@ static void check_duplicate_label(struct check *c, struct dt_info *dti,
- 	if (!othernode)
- 		otherprop = dti_get_property_by_label(dti, label, &othernode);
- 	if (!othernode)
--		othermark = get_marker_label(dt, label, &othernode,
--					       &otherprop);
-+		othermark = dti_get_marker_label(dti, label, &othernode,
-+						 &otherprop);
- 
- 	if (!othernode)
- 		return;
-diff --git a/dtc.h b/dtc.h
-index 399e7fa..d45a84c 100644
---- a/dtc.h
-+++ b/dtc.h
-@@ -318,8 +318,6 @@ const char *get_unitname(struct node *node);
- struct property *get_property(struct node *node, const char *propname);
- cell_t propval_cell(struct property *prop);
- cell_t propval_cell_n(struct property *prop, unsigned int n);
--struct marker *get_marker_label(struct node *tree, const char *label,
--				struct node **node, struct property **prop);
- struct node *get_subnode(struct node *node, const char *nodename);
- 
- uint32_t guess_boot_cpuid(struct node *tree);
-@@ -358,6 +356,8 @@ cell_t dti_get_node_phandle(struct dt_info *dti, struct node *node);
- struct property *dti_get_property_by_label(struct dt_info *dti,
- 					   const char *label,
- 					   struct node **node);
-+struct marker *dti_get_marker_label(struct dt_info *dti, const char *label,
-+				    struct node **node, struct property **prop);
- 
- /* DTS version flags definitions */
- #define DTSF_V1		0x0001	/* /dts-v1/ */
-diff --git a/livetree.c b/livetree.c
-index d023075..79f7b55 100644
---- a/livetree.c
-+++ b/livetree.c
-@@ -620,7 +620,7 @@ static struct property *get_property_by_label(struct node *tree, const char *lab
- 	return NULL;
+diff --git a/dtc.c b/dtc.c
+index e0a0b54..59f4d77 100644
+--- a/dtc.c
++++ b/dtc.c
+@@ -45,6 +45,13 @@ static void fill_fullpaths(struct node *tree, const char *prefix)
+ 		fill_fullpaths(child, tree->fullpath);
  }
  
--struct marker *get_marker_label(struct node *tree, const char *label,
-+static struct marker *get_marker_label(struct node *tree, const char *label,
- 				struct node **node, struct property **prop)
- {
- 	struct marker *m;
-@@ -853,6 +853,22 @@ struct property *dti_get_property_by_label(struct dt_info *dti,
- 	return NULL;
- }
- 
-+struct marker *dti_get_marker_label(struct dt_info *dti, const char *label,
-+				    struct node **node, struct property **prop)
++static void dti_fill_fullpaths(struct dt_info *dti)
 +{
-+	struct marker *marker;
-+
-+	if (dti->dt) {
-+		marker = get_marker_label(dti->dt, label, node, prop);
-+		if (marker)
-+			return marker;
-+	}
-+
-+	*prop = NULL;
-+	*node = NULL;
-+	return NULL;
++	/* Fill fullpaths for the root node */
++	if (dti->dt)
++		fill_fullpaths(dti->dt, "");
 +}
 +
- static void add_phandle_property(struct node *node,
- 				 const char *name, int format)
- {
+ /* Usage related data. */
+ static const char usage_synopsis[] = "dtc [options] <input file>";
+ static const char usage_short_opts[] = "qI:O:o:V:d:R:S:p:a:fb:i:H:sW:E:@LAThv";
+@@ -326,7 +333,7 @@ int main(int argc, char *argv[])
+ 	if (cmdline_boot_cpuid != -1)
+ 		dti->boot_cpuid_phys = cmdline_boot_cpuid;
+ 
+-	fill_fullpaths(dti->dt, "");
++	dti_fill_fullpaths(dti);
+ 
+ 	/* on a plugin, generate by default */
+ 	if (dti->dtsflags & DTSF_PLUGIN) {
 -- 
 2.52.0
 
