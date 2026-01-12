@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-253980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-253982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A27FD131CD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:26:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE001D131EE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 15:28:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E914E30835FF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:21:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A88A7302E3EA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 14:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169982E62D9;
-	Mon, 12 Jan 2026 14:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4192EA482;
+	Mon, 12 Jan 2026 14:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="D6wtx5al"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ADn6gJZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAB042E2DF2
-	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F24A2E11AA
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768227649; cv=none; b=ZRXFFLWFejE/xN+sSn2c3kYFQC+PSMJBq+AZK4t7Wqg0b7vwQRfMwMkso9hFeNnXeZ/upLxVP5yEhNZDyb/WKKxPlqhBT6GqPLUib8/UOg3Yz/nkazESVx+6OJiUnyPVyT69aLSYDysMW+eZ7h6iXXHDtMWRzArm3LMDjFvvF40=
+	t=1768227652; cv=none; b=LF71fFOmnOeFCbu/+SM0IT/R0L0jwu2y8alBCgPv8PvqN3hMGFmgMnoPqCdRicvOFi/2sPqlu6EwjZlDGCxHpN5H503CZiUf/cUr7yPee/QdMgDAmlA9McuK42hORT3SpQ8Hv2GBTVqSwxw5u/gFptQ4dyv5nL74QYkJq1BXmas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768227649; c=relaxed/simple;
-	bh=YO3kQz2fR8DAC3SdoniBXXwcSaVv9biWxGqGAHPUv88=;
+	s=arc-20240116; t=1768227652; c=relaxed/simple;
+	bh=rAKGpL+MO0wznmSRiK03TBFwuWCatM3EtB022hXSn+E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=m6o5pZoED19aTpm5BB/UYKW+CG6AbriJjVtbVnVAMzmnMKdTqKz999BRO28Ro2UFvD+/Ja3GgIWZ8cIbPflqCpPVbx5OhQ3ChbycKyBYrJqITxJPVyL+gjHjdIjLmvMmjuOqndIRb0WdOVBUL1N4dMrmjxFOeHkpPbXiuZBZTGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=D6wtx5al; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version; b=nNvL96raYFqYSGX8IVqGNeI2Rtk58bOuWzjzhBuUF2cEVkxF+2LAYgZ7Qh+cqHxmqngCAvPwM8Spsy1EJ8GQoX2VXlYpZMKDQu6SFRVjaJ3aWg2EpF6DsOgaycJtaYh8Xdpf8NBilp5jdq78ydCOJEJJy2JgpOXzLqh2Nf0oqHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ADn6gJZZ; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id CCB571A27FC;
-	Mon, 12 Jan 2026 14:20:46 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 583B04E42088
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 14:20:48 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A252A606FA;
-	Mon, 12 Jan 2026 14:20:46 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B28B7103C9269;
-	Mon, 12 Jan 2026 15:20:44 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 282C9606FA;
+	Mon, 12 Jan 2026 14:20:48 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3315C103C926E;
+	Mon, 12 Jan 2026 15:20:46 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768227645; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1768227647; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=vovB9PJwe7q82dhVvrskUXYb/fGDuEJF62Jmd31jrl0=;
-	b=D6wtx5alwH/bc4Z2IFvnSyvqi9HVyHD6Cr1DvkW8rv+qAcJj275g+fvH0Z5/ySQ9K+CQlb
-	A+suecQV/dd/Mhjx6jNMyMSyFxuEnNOFP0gUfFbCX0Vuh29S9swI4nXxPuf+K7TzVWFxCE
-	MU1Rux5ktyBkbSVytj8lXsIdsZwpYM2eqDdyqa6xTrvBQJMfxXBRjr9AeoQMv+1O/Ft4rh
-	d/iZvHXjflZCvar3fO35LnPoLboAA9y4nfquOUsyo3WAbxzRTTaIOD++1rPYUnGD1ohUs0
-	4uodWgQ7FO4DzByjHhXALEY0upiJZz8OtL8oN7M3qneybJYXAwzNznUa3VIWnw==
+	bh=e2wg2ep97sbhvDd+Jf681JB+w9NK5Ex/WMqJnPY+158=;
+	b=ADn6gJZZZuLRAnbD8EnQ3/B4zeJyv4oWU9f0lLpaDLQNS+ahjp7O9hOhZSqK0ZBb5DhdKS
+	dZb8wenRhmt0ImjjvBejrMy+rtZD3bO5TU2VkCDUwHZxDJ6eXwBX+yv5pxniFwXLfI0sm5
+	TIzoj2d2XaTaZUkYnoK01BlBFa8IaV9vtTtgl5NNZnM9/fmTUhmx+nK/RHD1jRBpfZtpR2
+	bGrdhRC2rcDVrNLh+5FSFd+Sg3MiW5PJKyRKwaU0D0o2iSJnvzFtCQ7wAXhKpcD/m8DdrX
+	ecMz6zdo1rIm/cK071gfLuxjqeFuKuy9hoLrqbUqvC/t5/erzv/FB3ZXi+ZoUQ==
 From: Herve Codina <herve.codina@bootlin.com>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Ayush Singh <ayush@beagleboard.org>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Herve Codina <herve.codina@bootlin.com>
-Subject: [RFC PATCH 16/77] tests: metadata: Add a test related to addon dt_flags header value
-Date: Mon, 12 Jan 2026 15:19:06 +0100
-Message-ID: <20260112142009.1006236-17-herve.codina@bootlin.com>
+Subject: [RFC PATCH 17/77] tests: metadata: Add a basic addon test
+Date: Mon, 12 Jan 2026 15:19:07 +0100
+Message-ID: <20260112142009.1006236-18-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260112142009.1006236-1-herve.codina@bootlin.com>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
@@ -77,33 +77,65 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-Addon dtbs leads to the dt_flags header field set to FDT_FLAG_ADDON
-(0x1).
+Support for addon dts (/addon/ keyword) and addon dtb (FDT_FLAG_ADDON
+header flag) have been recently introduced.
 
-Add a specific test to check this value.
+Even if the FDT_FLAG_ADDON dtb flag itself has its own test already
+available, add a basic addon test in the metadata 'dts->dts and
+dts->dtb->dts' test patterns to check that addon dts/dtb are
+handled correctly.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 ---
- tests/metadata_dtflags1.dtb.expect |  1 +
- tests/metadata_dtflags1.dts        | 11 +++++++++++
- tests/run_tests.sh                 |  6 ++++++
- 3 files changed, 18 insertions(+)
- create mode 100644 tests/metadata_dtflags1.dtb.expect
- create mode 100644 tests/metadata_dtflags1.dts
+ tests/metadata_addon_base.dtb.dts.expect | 10 ++++++++++
+ tests/metadata_addon_base.dtb.expect     | 10 ++++++++++
+ tests/metadata_addon_base.dts            | 14 ++++++++++++++
+ tests/metadata_addon_base.dts.dts.expect | 10 ++++++++++
+ tests/run_tests.sh                       |  3 ++-
+ 5 files changed, 46 insertions(+), 1 deletion(-)
+ create mode 100644 tests/metadata_addon_base.dtb.dts.expect
+ create mode 100644 tests/metadata_addon_base.dtb.expect
+ create mode 100644 tests/metadata_addon_base.dts
+ create mode 100644 tests/metadata_addon_base.dts.dts.expect
 
-diff --git a/tests/metadata_dtflags1.dtb.expect b/tests/metadata_dtflags1.dtb.expect
+diff --git a/tests/metadata_addon_base.dtb.dts.expect b/tests/metadata_addon_base.dtb.dts.expect
 new file mode 100644
-index 0000000..00f98f3
+index 0000000..739f9db
 --- /dev/null
-+++ b/tests/metadata_dtflags1.dtb.expect
-@@ -0,0 +1 @@
-+// dt_flags:		0x1
-diff --git a/tests/metadata_dtflags1.dts b/tests/metadata_dtflags1.dts
++++ b/tests/metadata_addon_base.dtb.dts.expect
+@@ -0,0 +1,10 @@
++/dts-v1/;
++/addon/;
++
++/ {
++
++	node-a {
++		prop = <0x01>;
++		ref-base = <&base>;
++	};
++};
+diff --git a/tests/metadata_addon_base.dtb.expect b/tests/metadata_addon_base.dtb.expect
 new file mode 100644
-index 0000000..d2b2295
+index 0000000..6c2a89a
 --- /dev/null
-+++ b/tests/metadata_dtflags1.dts
-@@ -0,0 +1,11 @@
++++ b/tests/metadata_addon_base.dtb.expect
+@@ -0,0 +1,10 @@
++/dts-v1/;
++/addon/;
++
++/ {
++    node-a {
++        prop = <0x00000001>;
++        ref-base = <0xffffffff>;
++        // [FDT_REF_PHANDLE] ref-base[0], ref = base
++    };
++};
+diff --git a/tests/metadata_addon_base.dts b/tests/metadata_addon_base.dts
+new file mode 100644
+index 0000000..5e29cef
+--- /dev/null
++++ b/tests/metadata_addon_base.dts
+@@ -0,0 +1,14 @@
 +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
 +/*
 + * Copyright (C) 2026 Bootlin
@@ -113,25 +145,41 @@ index 0000000..d2b2295
 +/addon/;
 +
 +/ {
-+	prop = <1>;
++	node-a {
++		prop = <1>;
++		ref-base = <&base>;
++	};
++};
+diff --git a/tests/metadata_addon_base.dts.dts.expect b/tests/metadata_addon_base.dts.dts.expect
+new file mode 100644
+index 0000000..739f9db
+--- /dev/null
++++ b/tests/metadata_addon_base.dts.dts.expect
+@@ -0,0 +1,10 @@
++/dts-v1/;
++/addon/;
++
++/ {
++
++	node-a {
++		prop = <0x01>;
++		ref-base = <&base>;
++	};
 +};
 diff --git a/tests/run_tests.sh b/tests/run_tests.sh
-index 496fcb9..688d81d 100755
+index 688d81d..def1a7e 100755
 --- a/tests/run_tests.sh
 +++ b/tests/run_tests.sh
-@@ -1147,6 +1147,12 @@ metadata_tests() {
- 	# Keep only lines containing 'dt_flags'
- 	sed -i '/dt_flags/!d' metadata_dtflags0.dtb.out
- 	base_run_test check_diff metadata_dtflags0.dtb.out "$SRCDIR/metadata_dtflags0.dtb.expect"
-+
-+	run_dtc_test -I dts -O dtb -o metadata_dtflags1.dtb "$SRCDIR/metadata_dtflags1.dts"
-+	base_run_test wrap_fdtdump metadata_dtflags1.dtb metadata_dtflags1.dtb.out
-+	# Keep only lines containing 'dt_flags'
-+	sed -i '/dt_flags/!d' metadata_dtflags1.dtb.out
-+	base_run_test check_diff metadata_dtflags1.dtb.out "$SRCDIR/metadata_dtflags1.dtb.expect"
+@@ -1125,7 +1125,8 @@ wrap_fdtdump () {
  }
  
- pylibfdt_tests () {
+ metadata_tests() {
+-	for dt in metadata_reflocal metadata_refphandle; do
++	for dt in metadata_reflocal metadata_refphandle \
++		  metadata_addon_base; do
+ 		run_dtc_test -I dts -O dts -o $dt.dts.dts "$SRCDIR/$dt.dts"
+ 		base_run_test check_diff $dt.dts.dts "$SRCDIR/$dt.dts.dts.expect"
+ 		run_dtc_test -I dts -O dtb -o $dt.dtb "$SRCDIR/$dt.dts"
 -- 
 2.52.0
 
