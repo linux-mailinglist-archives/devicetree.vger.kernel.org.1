@@ -1,127 +1,122 @@
-Return-Path: <devicetree+bounces-254156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A99D14DC4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:07:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE39D14DEB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 20:11:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 018253024D58
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:07:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3B1A33085A6A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jan 2026 19:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8675311C01;
-	Mon, 12 Jan 2026 19:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823AD313273;
+	Mon, 12 Jan 2026 19:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Lrj+AdOE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="etFx61KC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642F827B327;
-	Mon, 12 Jan 2026 19:07:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198123126A7
+	for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 19:09:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768244844; cv=none; b=bmGlGWKn4UKaqRd53MjQ/JXFsnBlzEOTq1jppGGZgQGH+KgyyMFvFTW/yirqAR1TFj/q2dzwqRyqfIUppHYKzFrvhoi9rH0qU03eujjxQiEncAmcamatxOvC8kOdIREeUTBAgdU4vmzLMbByj/yGGrQCXuUQPhC5ZMGIi+tG0bY=
+	t=1768244990; cv=none; b=VAbuCfUP6YQBCWWZb9a+svbEoO3VM4QwFOjA6hOWsNIjVbUtsB1xaLSKNRBgxYoCgOmcL5QDAJfNcBWuT9X0kmiqSlhrdyqf2k9WeJ59Lm7/+uegO7b2d7uh62iwr8jO+botgQQA400ximaFcHwLtq3jdujwEFmjdOb1ij7My9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768244844; c=relaxed/simple;
-	bh=cm8ilyUoh3xtgcTiQcIyID35hTWfERtQ+ghgLmFFgsA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GnBlHuI3zxromDV9rZyDxzkV6c9gWClAa4CRPO1Q4hWeNyC5RjcKqjn8tfb33IVAjj9uL9aGn05I+UeDXCqRbQRjC565d5cWdgGyETIc5HRP5zyJ7A96Aa0AUssuHM2/go1iwoILT1AB1PchulrVTXxc+1xHHrCZ9r0OGwTfcSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Lrj+AdOE; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768244844; x=1799780844;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cm8ilyUoh3xtgcTiQcIyID35hTWfERtQ+ghgLmFFgsA=;
-  b=Lrj+AdOEMhAHPlYU+SUx1maJWDnObVwYWyF/kiRo8B7Sdt+kgU4bAULT
-   aInse8yz+pNg3hAgITZLz5dSrKB3pdtz+Yqyu9VvKl73xYM3vJL9mmrLX
-   bsyshdaRFGsS+OCo+xandhEmdPusa5ejjKh6a0HCxGfTKAZFAY3YaCvQ8
-   RQSWd47Fhc1y68ZXPEJPTA0+4lyIscQ47yQ/8JoQCL5qegsak62wy0FR4
-   vYvwnUoad9X1pgcAlqEpk4rh78FU/wXoeG7pjcfTVkzmmsvKN3JIFf0HB
-   0xQ893j3E81LsQ4ALYk8ODf+eGN+6sWUmZdDzKpVw5Ex368h4XgT/zQz0
-   A==;
-X-CSE-ConnectionGUID: iCwzP5tJQp2cW2HwCVBrBA==
-X-CSE-MsgGUID: RLV1EFk+TZq0k1/KFu+7HA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="80977507"
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="80977507"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:07:23 -0800
-X-CSE-ConnectionGUID: YUEhW/TRQ4Cs7p4bnqVTNA==
-X-CSE-MsgGUID: oL1HEsjRR1SgYReRS84LSQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,221,1763452800"; 
-   d="scan'208";a="209246253"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.37])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 11:07:20 -0800
-Date: Mon, 12 Jan 2026 21:07:17 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 3/9] spi: support controllers with multiple data lanes
-Message-ID: <aWVGZWg7zLpeG3Kz@smile.fi.intel.com>
-References: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
- <20260112-spi-add-multi-bus-support-v5-3-295f4f09f6ba@baylibre.com>
+	s=arc-20240116; t=1768244990; c=relaxed/simple;
+	bh=3xgYxXVz7pTlrANFhJdQjdekTrJ2dMKKIhvMM9hszBs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WNU1i4+0Fn7E7cBj7zLIiE5ND26vVA0f5mMQmMEl7iooMK1MbUoDGsvjrfc+Kq/XElLxGfyJPEUeVG+3mQHvRfCVimcQDK3TN5H/NYZGh3VvwLL7d+rYHXmoFTKmlxzlGkbNimQBq/xLrsapc05y7eb5kc3pu4SxVkT/mPDaWFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=etFx61KC; arc=none smtp.client-ip=209.85.167.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-459a516592eso4457859b6e.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 11:09:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768244986; x=1768849786; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3xgYxXVz7pTlrANFhJdQjdekTrJ2dMKKIhvMM9hszBs=;
+        b=etFx61KCpSg30zE2a9h6DQp8IIJbxvo1WHJe9ALB77rs4QpU1RuwYf5lMObivyY7tb
+         UTRrFJiGJMYSEzCUv81mDC4lVydW0CnFbGuFxPkaPKQQBTKajaxxdoE4x5UDJUXiZ5Yf
+         uhP29RBk+ZVWuacKRRQwaaNro+JC+L0Q66x2JVO6ustYMUcuQfzmPCkYQwhkXTTyIbyq
+         eODBg48oVR9qGzOUUXDU7ls9jrQUgk3AXSbfHKuziiyphI8pC0kNavPcvuHnaFnYTH0k
+         0u1Wffu1Dvfbg44GQQpyZynKkIsw57sZ4RN+X/z1+cNSQAso4VHEQ/dafnceH3rks3QA
+         oefQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768244986; x=1768849786;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=3xgYxXVz7pTlrANFhJdQjdekTrJ2dMKKIhvMM9hszBs=;
+        b=BLyyyai9C8oc3JwuIFb0lM4ECyT5GgTs+pTg8PWhBADYZHZjOkFkiaDfX0B5QR1gjp
+         15WvCEwFqGb12uQ1h5puMq4zr5dGo5RvzGVPlhFyfIfs4dFPYO164RAsPHj1HRbY30EH
+         RFoIz+dONtb///FyA647xxzpfRrbpy/IgClIa4vZxB9fQ8qbnwrBNgg1yRY8eyeu3oii
+         BKDpyToL+L5EEGepExg1eJ9zR/VaY5aofFQoDaSfS+mapeTQY7i/eCww5O2Tl1sjVxYs
+         EOeFQRY58VbDFloKkzVsOLl54BRm2mTJlbQzEBkY1JmgciJqJF+SrL58dgB3VoNlP7wQ
+         g0ZA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNECnKIxT5p6vXwN1IzCOX0bMVcg1aymjDI2P9xAYDYoSPbrKFwuUPmBITf/MkiB9APzjhjdIiqLGj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCwjxpAeAkr50l1OM482P2YjTHhFcgD2iM4u3OKbwJvJOQnOwg
+	iLsoTt45EdW4yJIkrJ5duf5KR0iLUMepIjQoKSQZKZb6qIj6Lu2IZEQDHlnKcvW+UNrVgs0o10R
+	5/kAczfyJqsCUBe4Z9sFQl8d/9cxBhaE=
+X-Gm-Gg: AY/fxX4QboPYTkli3+x5ky4iy9smVnZ404OoMNdArQERkLcsUook3uNN/Fr6E/gAOC9
+	CZm9D9+9DbFr2Ip21v1xOHV41pezn5t2r4hTw2pXpYS02gQLI51KO6AgwpH50+spW/IvuQXe+Bn
+	ZQVexHOIDiFZW/9O4G+/2qs4+Iaf4cOQDuLNa76q2d9MC++ngFQDhR7G83gjD+uQheVSq6t7URN
+	0qTwghFZnP9u5qWjdeAdGbwCyZsJWPo5CV9IsXnd9wxKU7L4gxMnbToezmI+0c7/jSy4Z+0fAnu
+	wC/wA8a3kT++H7WVe55yzJeTsNQ=
+X-Google-Smtp-Source: AGHT+IEwDmLeVhBFXh9EVFS3176R5WTz9bHFuYfygwgWJn3bI7U+szmlFfINN1R6jPICkSRAQjR3WA/cuwePtfThcjs=
+X-Received: by 2002:a05:6808:18aa:b0:450:32f0:4887 with SMTP id
+ 5614622812f47-45a6bdfd28fmr7796703b6e.31.1768244985965; Mon, 12 Jan 2026
+ 11:09:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260112-spi-add-multi-bus-support-v5-3-295f4f09f6ba@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260110010715.1610159-1-mschirrmeister@gmail.com>
+ <67ccb8f6-f9bd-4266-b79a-b688bd6d030b@rock-chips.com> <8536413c-8687-4d75-befb-8f25e54838bf@rock-chips.com>
+ <c3ee063c-ca11-44e4-9e7d-3861a82db3ea@rock-chips.com> <a346ba30-43f1-4579-91e7-f10d2ccff039@rock-chips.com>
+In-Reply-To: <a346ba30-43f1-4579-91e7-f10d2ccff039@rock-chips.com>
+From: Marco Schirrmeister <mschirrmeister@gmail.com>
+Date: Mon, 12 Jan 2026 20:09:35 +0100
+X-Gm-Features: AZwV_QhduoYwkSZhCEw-t8HBLxeWwsxbNWZkTjbia4I_1o_9SGTrHxB5ncQ2lVs
+Message-ID: <CAGJh8eCJEwSySH3jddmcLjdtbFkn2yDmoE4mH1snmZJQHopA0Q@mail.gmail.com>
+Subject: Re: [PATCH v1 0/3] mmc: dw_mmc-rockchip: Add stability quirk for
+ NanoPi R76S
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, heiko@sntech.de, ulf.hansson@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 12, 2026 at 11:45:21AM -0600, David Lechner wrote:
-> Add support for SPI controllers with multiple physical SPI data lanes.
-> (A data lane in this context means lines connected to a serializer, so a
-> controller with two data lanes would have two serializers in a single
-> controller).
-> 
-> This is common in the type of controller that can be used with parallel
-> flash memories, but can be used for general purpose SPI as well.
-> 
-> To indicate support, a controller just needs to set ctlr->num_data_lanes
-> to something greater than 1. Peripherals indicate which lane they are
-> connected to via device tree (ACPI support can be added if needed).
-> 
-> The spi-{tx,rx}-bus-width DT properties can now be arrays. The length of
-> the array indicates the number of data lanes, and each element indicates
-> the bus width of that lane. For now, we restrict all lanes to have the
-> same bus width to keep things simple. Support for an optional controller
-> lane mapping property is also implemented.
+On Mon, Jan 12, 2026 at 9:58=E2=80=AFAM Shawn Lin <shawn.lin@rock-chips.com=
+> wrote:
 
-...
+> >> I found several problems on RK3576 for supporting sd cards. I wondered
+> >> how all upstream RK3576 boards claiming SD support work? Anyway, I sen=
+t
+> >> a series to the list[1], not sure if it fixes the problem you faced, b=
+ut
+> >> these should be the right patches you should have a try.
+> >>
+> >> [1]https://lore.kernel.org/linux-rockchip/1768189768-96333-1-git-send-=
+email-shawn.lin@rock-chips.com/T/#t
 
-> struct spi_device {
+I will give it a try on the NanoPi R76S. Have also ordered a Rock 4D.
+But it will take a while before it arrives.
 
-> +	/* Multi-lane SPI controller support. */
-> +	u32			tx_lane_map[SPI_DEVICE_DATA_LANE_CNT_MAX];
-> +	u32			num_tx_lanes;
-> +	u32			rx_lane_map[SPI_DEVICE_DATA_LANE_CNT_MAX];
-> +	u32			num_rx_lanes;
+> > cannot be detected. However, if the SD card is inserted before Linux
+> > boots, it can at least start up. I suspect that other boards may behave
+> > the same way :)
+>
+> This is true, because .get_cd() returns card present when booting for
+> the first time, you the only way for upstream RK3576 boards to use sd
+> cards is to insert the card before booting. But then hot-plug case will
+> not able to work.
 
-This adds 72 bytes in _each_ instance of spi_device on the platforms that do
-not use the feature and might not ever use it. Can we move to the pointer
-and allocate the mentioned fields separately, please?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+I can confirm the same. sd card only works, when inserted before boot.
+No hotplug.
 
