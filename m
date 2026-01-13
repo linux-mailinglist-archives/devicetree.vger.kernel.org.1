@@ -1,117 +1,156 @@
-Return-Path: <devicetree+bounces-254751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D83C1D1B949
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:26:19 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC3CD1B96A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D04853033F9A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:26:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 309823002855
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30DBA3570B2;
-	Tue, 13 Jan 2026 22:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F64F35BDC2;
+	Tue, 13 Jan 2026 22:28:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gAjQsh2Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QGp0tGmT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D0F435580E;
-	Tue, 13 Jan 2026 22:26:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB8C352F86
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 22:28:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768343177; cv=none; b=cQwgp3dA2wRTodO2Z68NK7ZENjljjTkqA8n3MxnIw4v7IJDlJPfzifeLuA0gRoutHoQmziYrus0mYPasSyeTvZ9xzHNpTjslxFSfPM/xUAQrDy186yEvV2O9T7AdVfNbLyRJZSzn8AbqlEWRPRdS04vkWqK61BGrCE7aUwjxcLI=
+	t=1768343329; cv=none; b=YFRkd1+YBxemkQD3SV2c/7RoBm+xWN1elfCz938Evql9eYxDJ9g4qxkl3lawAfdSXxsd6jmSFfAtDfcMdIE/CwxCnwoW/UAUe8uYv9i5t4odpfnMXw4BdxV8L7PulW7KTl9XH6iIGtwokKVWYY0r+MBjEKBQp72pbrlsW8nk3pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768343177; c=relaxed/simple;
-	bh=WCS1gUFqazlCTZYwN0/IDLbkTzKhRaU1clOA1skX9OI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=u43NsAzXcztijl0yF4CfDPF0vcieFIb1sq2CMStGNR8AahKixsT91DRVgpGVp6h28+nHB+sctNbYnIp5/G6waIzLuIZXcOoMJrlMDRXXBzCIhFa14m0Bw2cryvFZkokdmimSPXiqHFFjgP9S42AAeeZxpYLMCCTUTujTcoh8vlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gAjQsh2Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96B47C116C6;
-	Tue, 13 Jan 2026 22:26:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768343176;
-	bh=WCS1gUFqazlCTZYwN0/IDLbkTzKhRaU1clOA1skX9OI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gAjQsh2Q8Zo8IrkWVzvZOinEeTF56+8fVVF4LG6nZDqUhljjuk4hSkg+KlH3JEjBI
-	 A6klso1FXuHD1841HEoboi8VO7hBqMNWkn1ypIvsX7z01Azz0jZ+BMcyZbcL/Moghv
-	 F6VfWNj1vOyHOZjy0Z399rj3BOJBbw5mWJ3srJEj3Q1RfoAhCkdbcR1WikzBO5Oe6v
-	 HaAC/ZUHKm3wSqqpphM2HgIQKhZDe7dnioc5xIPJUHaa1C1B0yJQcVfi3h8mKKFuit
-	 BP1HYDeJOqiU3BC475n2y51T6ubFW9QkAmu76wOKBLewGGTAxSyrTrxyGOGB6OGVQL
-	 W5aAezq+Sc3eg==
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Guodong Xu <guodong@riscstar.com>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Heinrich Schuchardt <xypron.glpk@gmx.de>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	linux-serial@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Subject: Re: (subset) [PATCH v4 00/11] riscv: spacemit: Add SpacemiT K3 SoC and K3 Pico-ITX board
-Date: Tue, 13 Jan 2026 22:25:23 +0000
-Message-ID: <20260113-prism-unvaried-abf3b4679e3a@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
-References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
+	s=arc-20240116; t=1768343329; c=relaxed/simple;
+	bh=NZn7mF1Uh2yzjWRMxoCJBNg1BcB1qNB2lTNBd5v+HmM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u0VMAZr+Mt5ak6Fq20btL3f1fbWEuFUuuZngLB56CmLcTpOFAKehwIEM35/u1tyoVDORZoff+3QnE5hrviS3X1I8iJUA+r/Eerw2BxfkAeR8Xj/ApZTKkil1ty9bLWLpWHUXhcg9LeS99BV9rSC+NXPkwpWmTriXPzNjpTk/5go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QGp0tGmT; arc=none smtp.client-ip=74.125.82.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f43.google.com with SMTP id a92af1059eb24-121b251438eso249774c88.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 14:28:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768343327; x=1768948127; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pmmfdk/VKZ1fvQfbgF33VHoYwFfmSOZu5CB3CRtPMbs=;
+        b=QGp0tGmTbiaVGJMSeW/xBTMdsT8cR0DDnkUrMTC+296M8J8h8SSU5zDD8lDLD7Gedl
+         uonvuN6coHCeQS28/jt5zfYG5LiAQ0xW21lmkDFxju7fR+jtSJv99xZjFzZHtFtSSDyo
+         7y+OaI/Y3xaTsT62GdV1C8UZljL0tYXwzozv+ZqG45jGx8SeV1EcJ6j02SPBSM6rbewS
+         175iK/BtX5tCQkQ9A85YkTblaGtclmKv4f/SEmlQWh3sif7hxsfJvO3PfxuzTIV2ckvS
+         SXYpbLAT7h4xSEdRkVpP92MKKvoYc0m8KFSMf3V35Ufv2gc8StJFxGHlqf5WoqEJZDg1
+         YV+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768343327; x=1768948127;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=pmmfdk/VKZ1fvQfbgF33VHoYwFfmSOZu5CB3CRtPMbs=;
+        b=WpHrxYJp8mrV7erg/DXh6Dde8vcEyN0johRZ3QzNYwDvAzOVreEj5CfwmEsdoo71Sp
+         L5gV7CRKtSUS/jJVnGkIqbUDsDNC6UPouTfJTs/TVs/2eJIDobymA1+3NQxUFP2BvFgx
+         IeDXjmZeU2hKtMTYzL49P+0ub0ve4B+m3XCVhGA+6/y7hlNc91LRJSPcaJRZ/ey1JkHI
+         kn61m9U/OSunFf6CoMrvoywyMySy/r2hbnxBMGP3Takwi3Rn0hkDxMQ/nUyYflQXqZNW
+         Vtt7IiQ8rxT8bRsj3JkAZ2kxZ4qB+GtVh3JFPwdfAN41KXRZ/6n/9z9pSyuXEXBwWnGx
+         5mMg==
+X-Forwarded-Encrypted: i=1; AJvYcCVZEjcORpl7S/0i3xDif1e1sCPnYwC33ufx3WKDj5c5O8CWiWeW8KDYoeUSbaND9l3To2FbRWBjtFgB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzVTPzW/7Rq7HvwfcELmBrBAl/T4Le+VBF8BwaAqEiBe29zO/x
+	MXYHCPK8qhW8wXlloG9saKkIrtG+lM0pPIsV+WdjBEVAQNDunfsrsqcadFNPg1utk1QOPQ/27hA
+	KuYJPxv1rvKaFdvstskqGhmaVwOJRfETZxJ0B
+X-Gm-Gg: AY/fxX7oxaa90lGqvFdsKIedFQvXeADU2RoJ/Mso1kZxJyCzrZVwz005SMVWcljOQaz
+	4bU6VxI+/E0oOfcZoGzTmXeFuI32H54ube17spNKMc/EwS8wXNE0HgVDrBBj4xbG5kdvB/9EZpi
+	oKVhiZbME13S12l8vLvWxBihYfAezkgev8cZ1Z1VC6RcyR/Ad/x1UHPoGdHPLNxHEFuGD4b7sD1
+	iS4jQqlHwsiLNX0nehpne7WE4osj2gVqN3qC7BB8Bh3TDtIEjsFnsCWggqWQ+dOi8gk5H5804Ww
+	Fvat8fvW
+X-Received: by 2002:a05:7022:6284:b0:121:d898:edae with SMTP id
+ a92af1059eb24-12336ab1486mr479738c88.24.1768343326543; Tue, 13 Jan 2026
+ 14:28:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1079; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=dGkt94bjVYf12COX+6dHA67nfAJ4JApCVWihf8slfBY=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJlpx4Iz3wp4M1SZqzktZ5nzr3riytyZKtM+VhvcaM4UW /VsesfTjlIWBjEuBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEyE4zQjw4VdTbFHuj64X5lZ 47Lp1K3PW1silW2KxfmZrUxUpix/4MrI8ObLZtPFV7SiqgoDbtco1Vx/ks95OF/Z66bb9oDFIZb h/AA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+References: <20260111201040.162880-1-anirudhsriniv@gmail.com>
+ <20260111201040.162880-2-anirudhsriniv@gmail.com> <45bdf2a6c0d33dd6ce0fd3cc279ef6edc509a540.camel@codeconstruct.com.au>
+ <20260112-whimsical-annoying-fulmar-25e4d9@quoll> <CAJ13v3RKydFK+sP_Cm-HnQjsOJSDyX_dsGs_Yy564V=Wc7tQFw@mail.gmail.com>
+ <e97b7a193f8bbfca9ec00037808ad80a5baf9f00.camel@codeconstruct.com.au>
+In-Reply-To: <e97b7a193f8bbfca9ec00037808ad80a5baf9f00.camel@codeconstruct.com.au>
+From: Anirudh Srinivasan <anirudhsriniv@gmail.com>
+Date: Tue, 13 Jan 2026 16:28:34 -0600
+X-Gm-Features: AZwV_Qj3tLQCdlXGc4mVCUHplcJiv-ygH2rDEByc1Cc6_E5RuzTQMstHuy-HUGo
+Message-ID: <CAJ13v3QYWRfyivrbP=+hreHuMkYWGPkngW3kJyq6xNVL6YdpgQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: Add Asus IPMI card
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Hi Andrew
 
-On Sat, 10 Jan 2026 13:18:12 +0800, Guodong Xu wrote:
-> This series introduces basic support for the SpacemiT K3 SoC and the
-> K3 Pico-ITX evaluation board.
-> 
-> This series (starting from v2) also adds descriptions about ISA extensions
-> mandated by the RVA23 Profile Version 1.0 into riscv/extensions.yaml.
-> There are extensive discussions about how to handle these new extensions
-> in v2. In v3 (now v4), here is my best understading of what I think we have
-> reached consensus on.
-> 
-> [...]
+On Mon, Jan 12, 2026 at 6:57=E2=80=AFPM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
+>
+> Perhaps we could incorporate either of those?
+>
+>  * asus,e21524-ipmi-expansion-card
+>  * asus,ipmi-expansion-card-r1-04
+>
+> However, they're not without some risk:
+>
+>    1. It's hard to tell whether E21524 is properly representative
+>    2. R1.04 may also problematic as an AST2700-based card will likely
+>       restart the numbering and risk a collision
+>
+> Otherwise, I guess there's:
+>
+>  * asus,ipmi-expansion-card-ast2600
+>
 
-Applied 6-9 to riscv-dt-for-next :)
+There seem to be multiple revisions of this card. The photos have the
+revision number printed on the board and the manuals have the E21XXX
+number on them.
+R1.01 - E21362 photo [1] manual[2]
+R1.04 - E21524 photo [3] manual[4]
 
-[06/11] dt-bindings: riscv: Add B ISA extension description
-        https://git.kernel.org/conor/c/0cdb7fc1879b
-[07/11] dt-bindings: riscv: Add descriptions for Za64rs, Ziccamoa, Ziccif, and Zicclsm
-        https://git.kernel.org/conor/c/b321256a4f36
-[08/11] dt-bindings: riscv: Add Ssccptr, Sscounterenw, Sstvala, Sstvecd, Ssu64xl
-        https://git.kernel.org/conor/c/c712413333f8
-[09/11] dt-bindings: riscv: Add Sha and its comprised extensions
-        https://git.kernel.org/conor/c/89febd6a0276
+Mine is the latter. There seem to be some differences in the layout of
+the different headers on the board, but the same set of headers are on
+both boards. There is only one fw image on Asus's site, so I guess
+they're the same from a sw point of view.
 
-Thanks,
-Conor.
+I've linked a screenshot [5] from the webui on the stock fw and it
+says that the firmware model is "KOMMANDO". Asus also seems to name
+the fw update file for this board KODO1140.ima (KODO is short for
+KOMMANDO?, 1140 is the version number).
+
+I looked at other Asus Motherboard onboard BMC fw updates and they
+seem to be named <Mobo Model><version>.ima. Example board "Pro WS
+W680M" [6], fw update name W680M1121.ima, another example board "Pro
+WS W790E" [7], fw update name W7901167.ima
+
+"asus,kommando-ipmi-expansion-card" is a bit long, so maybe we should
+go with "asus,kodo-ipmi-expansion-card". SEO for either of the 2 terms
+is not very good, but that's not what we're looking for here are we?
+
+[1] https://uk.store.asus.com/media/catalog/product/9/0/90mc0ah0-mvuby0-7.j=
+pg
+[2] https://manuals.plus/m/8bcc92c2f7a875eda34d546e0e297d339ea55863fea0c6ab=
+cf0f338cd26f299d_optim.pdf
+[3] https://i.ebayimg.com/images/g/Um8AAeSw27JpOYcU/s-l1600.jpg
+[4] https://dlcdnets.asus.com/pub/ASUS/mb/Add-on_card/IPMI_EXPANSION_CARD/E=
+21524_IPMI_Card_QSG_V2_WEB.pdf?model=3DIPMI%20EXPANSION%20CARD
+[5] https://ibb.co/kg96CsYY
+[6] https://www.asus.com/us/motherboards-components/motherboards/workstatio=
+n/pro-ws-w680m-ace-se/helpdesk_bios?model2Name=3DPro-WS-W680M-ACE-SE
+[7] https://www.asus.com/us/motherboards-components/motherboards/workstatio=
+n/pro-ws-w790e-sage-se/helpdesk_bios?model2Name=3DPro-WS-W790E-SAGE-SE
+
+--=20
+Regards
+Anirudh Srinivasan
 
