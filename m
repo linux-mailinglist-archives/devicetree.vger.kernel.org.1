@@ -1,124 +1,165 @@
-Return-Path: <devicetree+bounces-254748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55644D1B8F0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:12:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7158BD1B909
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:17:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9F243066F31
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:12:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2EC52301FC1A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63DB0354AF1;
-	Tue, 13 Jan 2026 22:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDFF34F257;
+	Tue, 13 Jan 2026 22:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ckhfq/su"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mK5+qEb1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A44352F98;
-	Tue, 13 Jan 2026 22:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8909172610;
+	Tue, 13 Jan 2026 22:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768342331; cv=none; b=lX4Klbd4IcpIN0g67F8vuYPusfuox7We4eDSrbsvnQf0f92KqW7coTF1QlrDc265k3a12sHiIgDNoczL0sDarwWSfM3YBb1+Iyct2JBPxVJl5Icrx3vW2kgK7yo7l76IvBGp7tk2MAnDv4XiXg6Ol9Jpj3aFP7pSZoLqfFBK5Oo=
+	t=1768342628; cv=none; b=nPUFzjv75xSb7Sy7cmLe8gaouS/L6guAOESNZMP7Ir3I5T1ptNscgIvyRmO3Jolrmi6m5C3qWWB7o3i96VvpYhukdpObr3/vKq1WocjdiSReBQvYNi8skw23PpJYc23nL+Ibe3x1LftbQI2K7gB/e9POfcyphGQis0Y7OphWhnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768342331; c=relaxed/simple;
-	bh=28SFQN8Tnumdev8ylgHSFbtz98QUFPG1RsovO8KRHrE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OhoqC9q7zdwiOeH3dXb0bWbJUh/kimVRcSnoMOZoBTVy9VJLlcazBoAcwe2sxDKst2WKWsc16peeGQL3QTr6KIYSI3myNzgKgwEWaX9Rsqlq/YKDMpKQtMkFslf/anAPDFlGhB+INw7sexktFuBb1j6AOXlq3PW0y+aErFDjXJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ckhfq/su; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81689C116C6;
-	Tue, 13 Jan 2026 22:12:08 +0000 (UTC)
+	s=arc-20240116; t=1768342628; c=relaxed/simple;
+	bh=+3ONtD2eR+s+kOgpmP2sSSr8GNW6z60TPEcWwd0I1sg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xg+PO6E2DZ6PLgmJgdftgVEVygVedBgztEwvrkSnVjjo2LKi3Xr9sgxqgdqP0n2rT6kP5gRQAisFgxnwuR1YWVHO20K9eLRQCoPY8Jli8sznM5Dx/cDPmg3rznEAdOTieVPh6RJ+ciXu5KSRrcHSFE4VJxM8o/2Y+vQmTNjIQp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mK5+qEb1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3894C116C6;
+	Tue, 13 Jan 2026 22:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768342331;
-	bh=28SFQN8Tnumdev8ylgHSFbtz98QUFPG1RsovO8KRHrE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ckhfq/suIKuhvaMuOr780x/hkTKkcGahNklE+Tr1T6YGG9oi7RpP+4esk/EI7tx93
-	 QECxZEXR+th+48q2IV7UMsYRuIDeAhh5x3d020i/9AeA8fICKHicO212HYVVv0YIqI
-	 5SFy829TBOT2hKZIM37JngyOyyHSFK3YyJd5DQ34OcIKHMVfTYhEYYTONeTxJcReDK
-	 b1LjmVughVgH7w7POgNaJMnfi9k+lW/zqpWojftXYxWMYKeHsZBcymGX/+7OUTc/wQ
-	 63NKLrBxKWmX/7vidKEriZgQHLrceTIMW0yAk22fGDnjzmWMZ82YrT914C76jHHLK0
-	 /Xjdlf/izYsgQ==
+	s=k20201202; t=1768342628;
+	bh=+3ONtD2eR+s+kOgpmP2sSSr8GNW6z60TPEcWwd0I1sg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mK5+qEb1w6ITkZA4f1kCvraKXZ4nw6/IB986JiaILnjehCVdOQgO3D33B3BcTEwn3
+	 drbxLmGvLIRDstNaX8/TmR5DkhdmsrMsy2qc1rFcSAWZL+kujYTRc7jMnJ6/nE4hhM
+	 C/LbK7JiXKWskezaDTu9xGfYe4RPQi4U3ST6w8fif48X/lo1ARSCXhY4G+MCtcwakE
+	 GOp8IkUPzi7CisiyFgEwzhZKwduYOkETw00qdIGlQdS7MbVJ9UxkzR3Aoi77MVqOT3
+	 XxO4WiBClPfzdrfRw1oNNpU7vuA5uzrIsOfpiQGgVqHpXSxUXEn8diy6Vy+fPNTiNr
+	 TZwHFeRQgHtVg==
+Date: Tue, 13 Jan 2026 22:17:00 +0000
 From: Conor Dooley <conor@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Guodong Xu <guodong@riscstar.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v3 3/3] dt-bindings: clock: mpfs-clkcfg: Add pic64gx compatibility
-Date: Tue, 13 Jan 2026 22:11:47 +0000
-Message-ID: <20260113-glue-justifier-566ffab2ffd3@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260113-snagged-blemish-52af3d00d88e@spud>
-References: <20260113-snagged-blemish-52af3d00d88e@spud>
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Heinrich Schuchardt <xypron.glpk@gmx.de>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev, linux-serial@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 00/11] riscv: spacemit: Add SpacemiT K3 SoC and K3
+ Pico-ITX board
+Message-ID: <20260113-swarm-mama-cbd7d0546578@spud>
+References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
+ <20260112-shrivel-sarcastic-36d9acd2d96a@spud>
+ <20260113002123-GYA19926@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1501; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=2bDhTZLUYJ0LPw3YfkkGQ1+HBQ8bn68ICCZRyZt/Obw=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJlph9V76l4sco0wN/9lWFc8b7v8FgPLz81zs5WiUx59X 9DZu6++o5SFQYyLQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABMxDWP4K5x28LrNFyPdFS/b 2OLDAu9o75zuuX6TS0ho/LMdVoZMsgz/M/VZznJtKj1+faqk3vfy2ZH12iq95jW8VwV3L2LzUHr FBgA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xUPru1lBOhmdPMEM"
+Content-Disposition: inline
+In-Reply-To: <20260113002123-GYA19926@gentoo.org>
 
-From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-pic64gx has a clock controller compatible with mpfs-clkcfg. Don't permit
-the deprecated configuration that was never supported for this SoC.
+--xUPru1lBOhmdPMEM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../bindings/clock/microchip,mpfs-clkcfg.yaml    | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+On Tue, Jan 13, 2026 at 08:21:23AM +0800, Yixun Lan wrote:
+> Hi Conor,
+>=20
+> On 21:45 Mon 12 Jan     , Conor Dooley wrote:
+> > On Sat, Jan 10, 2026 at 01:18:12PM +0800, Guodong Xu wrote:
+> >=20
+> > > Hi, Conor
+> > >=20
+> > > For the binding riscv/extensions.ymal, here's what changed in v3 (no
+> > > change in v4):
+> > >=20
+> > >  1. Dropped the patch of adding "supm" into extensions.yaml. At the s=
+ame
+> > >     time, I will start another patchset which implements the strategy
+> > >     outlined by Conor in Link [2] and by Samuel in Link [3].
+> >=20
+> > Okay, that seems reasonable to separate out.
+> >=20
+> > >=20
+> > >  2. Dropped the dependency checks for "sha" on "h", "shcounterenw", a=
+nd
+> > >     6 others. "sha" implies these extensions, and it should be allowed
+> > >     to be declared independently. Like "a" implies "zaamo" and "zalrs=
+c".
+> > >=20
+> > >  3. Enchanced the dependency check of "ziccamoa" on "a". Specifically,
+> > >      - added the dependency check of "ziccamoa" on "zaamo" or on "a".
+> > >      - added the dependency check of "za64rs" on "zalrsc" or on "a".
+> > >      - added the dependency check of "ziccrse" on "zalrsc" or "a".
+> > >     The commit message of this patch is updated too, to better explai=
+n the
+> > >     relationship  between "ziccamoa", "za64rs", "ziccrse" and "a".
+> > >=20
+> > >  4. Enhanced checking dependency of "b" and "zba", "zbb", "zbs", maki=
+ng the
+> > >     dependency check in both directions, as discussed in [4]. Since "=
+b"
+> > >     was ratified much later than its component extensions (zba/zbb/zb=
+s),
+> > >     existing software and kernels expect these explicit strings. This
+> > >     bidirectional check ensures cores declaring "b" remain compatible
+> > >     with older software that only recognizes zba/zbb/zbs.
+> >=20
+> > This I asked about in the relevant patch, I would like to know what your
+> > plan for adding the "b"s is.
+> >=20
+> ..
+> > Spacemit folks, I assume you weren't planning on taking the
+> > extensions.yaml stuff via your tree? If you weren't, I'll grab it once
+> > the question about b is answered.
+>=20
+> sure, please take extension stuff which are patches 6-9, for 1-5, it's
+> all about adding support for SpacemiT K3 SoC, to avoid petential conflict=
+s,
+> I wouldn't mind if you also taking them? then I can handle the rest 10,11=
+ for DT
 
-diff --git a/Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.yaml b/Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.yaml
-index ee4f31596d97..a23703c281d1 100644
---- a/Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.yaml
-+++ b/Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.yaml
-@@ -19,7 +19,11 @@ description: |
- 
- properties:
-   compatible:
--    const: microchip,mpfs-clkcfg
-+    oneOf:
-+      - items:
-+          - const: microchip,pic64gx-clkcfg
-+          - const: microchip,mpfs-clkcfg
-+      - const: microchip,mpfs-clkcfg
- 
-   reg:
-     oneOf:
-@@ -69,6 +73,16 @@ required:
-   - clocks
-   - '#clock-cells'
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: microchip,pic64gx-clkcfg
-+then:
-+  properties:
-+    reg:
-+      maxItems: 1
-+
- additionalProperties: false
- 
- examples:
--- 
-2.51.0
+Stuff for spacemit is either for you or for the relevant subsystem
+maintainers. You're probably safe enough taking the
+timer/interrupt-controller stuff if the maintainers don't apply it in a
+reasonable period, it's not abnormal for those in particular to go via
+the platform maintainer in my experience. Just be clear that you have
+done so. I'm only interested in taking 6-9.
 
+--xUPru1lBOhmdPMEM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaWbEXAAKCRB4tDGHoIJi
+0v1dAQCafQYTWiGoSJPD2C3gwhnu05KfEBJ3q6AZTkjohRvudAD/foVWQs+/lj8U
+CTtVpHi8NR/uKI23LWrPTtpjaG0dSgo=
+=4H5t
+-----END PGP SIGNATURE-----
+
+--xUPru1lBOhmdPMEM--
 
