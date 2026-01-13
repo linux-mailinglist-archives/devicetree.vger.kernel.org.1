@@ -1,97 +1,233 @@
-Return-Path: <devicetree+bounces-254552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A885D19467
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:05:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 705ECD1951B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:11:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1187B301514D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:04:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B645530275BC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958EF392B9A;
-	Tue, 13 Jan 2026 14:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBE6392B97;
+	Tue, 13 Jan 2026 14:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="i5vpYb10"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="oRAIoYSs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF16A392B98
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 14:04:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4E43392C59;
+	Tue, 13 Jan 2026 14:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768313079; cv=none; b=gB5FmN3ESHyTg/8O5Tg/xjEgSLcF5KJ1BWnnxUnUqXZnCCUR4fAe4szvtDbFS2vkFRBCTdZR50VkqmT6WM6Yoxg88+QVp07wQUgHQudmkdwCv+PTiQzrkppNrcB1Ktkhk2VKA2a0aErn5W3SNfgt012KNVV4TrDBmdQQvJ9I+2I=
+	t=1768313123; cv=none; b=Qwltp/ffb3BxkzpdC6mdtaltgMAnoARYh74tV6Gxl/XJwJrvDWz5khy5RnJKTciijVOWqSJbMBSb3GWfNiubU3A1J5iI7L3huXrlNd3MaMucoL13GUdL8k/DPY3ksg+llPmsTCqD8qZ6jFUJ0Z/EnsL57cVf04ZcYNPEdYUSvPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768313079; c=relaxed/simple;
-	bh=KrYPdssMIwWZVUu4AhH8JfCAnKdffQiDlNYUBdiUj+A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Xml7ziKmnVdZvHPZvPrsBwVGj0Ct6shswrOuLUrd9Yo6E7zX4gOCGXgvpV67mYCy/smMJnZTwjDgo0Dard+4fXTgLUJWzp8tdw2a62rbhpfKXfJpdAfzQxuUZt+98HBqUwGO43T95tx/B//kVV4NfcpS+wnDK1w1hQMqSPr4bp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=i5vpYb10; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=AQO1vg4mmW5S/RBUtw1dHkSxQcde9e9m0fNMRR8sntw=; b=i5vpYb10UyIszz7mEEuZ+U++QB
-	+Q5EVfZU6iIcJbqVKUbPGcE9vAnW0eVWmare8L04kfSlootIanmLvWBP9kVIWoDu3JDaX5qBBfVzY
-	cvjcIS3dXol3FOo4nmOnVK/YMKqqnYCiK8eJ54OEvKTFkR2hGbfroXk7kRGR4di/IeeWUxm2pdPQA
-	CCN7UofK0kYkQAcWlrRLiDFNjFeLfuoBhjB6Nq1TtZ38ePaW4jcW4o6MAEA3tkLkBCj7QbekkGDCk
-	PFeNgYwkNHkaF7nw8wQ/EaQroXBViXm6lXzEnCkIEKp/IjfRxiEJxVHdWESa5rYbc8qdOIMUNA3vp
-	fHZhjzhA==;
-Received: from i53875b63.versanet.de ([83.135.91.99] helo=phil..)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vff0Q-0027FZ-7e; Tue, 13 Jan 2026 15:04:22 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dsimic@manjaro.org,
-	sebastian.reichel@collabora.com,
-	kylepzak@projectinitiative.io,
-	damon.ding@rock-chips.com,
-	alchark@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4] arm64: dts: rockchip: Make eeprom read-only for Radxa ROCK 3C/5A/5C
-Date: Tue, 13 Jan 2026 15:04:19 +0100
-Message-ID: <176831295372.3955755.10476613035498683234.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20260108034252.2713-1-naoki@radxa.com>
-References: <20260108034252.2713-1-naoki@radxa.com>
+	s=arc-20240116; t=1768313123; c=relaxed/simple;
+	bh=G71ZTVFEhrqDU+KGsLZMvUHvDRdYUm1yNqMiq+c96DA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NMamR7AyHj+ktWFVD0NI2iu17PEaFcb19NQQbuPjSTmILPqKUufZ6EtRa16bl6dhOuMyMMvK8fKTxNuN90jgXX2iPEAATnVtEz9BsmNr5GkMmHbfYAg01Vbr1uB4dlh15fuU9f8PN9RtKzlachWyNnDKIorffo84L6T67FBiUK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=oRAIoYSs; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id C1EEC600140C;
+	Tue, 13 Jan 2026 14:05:18 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id DD9nfRmJoBh4; Tue, 13 Jan 2026 14:05:16 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 3E9986002991;
+	Tue, 13 Jan 2026 14:05:16 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1768313116;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=z7n8wksu/3JrjxuLRTNuz4hWvUhYdtUmBvv385ffnm4=;
+	b=oRAIoYSsggSbtT8Ueiu2Wq9NdoWTRI4WhmrIhareLtskg9A0rgMGybNYUWWXIbG/OYP7Do
+	F66//LidT8oTWgQCR5JlFT61WMSnDNil4ZDF0TACJBl5fuvdMpCwFQUKqUK3eqd40Xmy/i
+	CQbKT8lT5u1DvrIqzrjdTCMmCPygdZhWrUytDwps1ilZts3DR5H2rEJmCeFNry2OigE770
+	QoM81tnzPQbb5+3Ik/lOoRZF2VRlW7krpLLN/42OzPptYLcRrHbAUIlr9kMCudrGJt/AD5
+	rFXhDzvTzbGMD3LN6ynFyJhE7eNq49O3NYg/xq3s7h5MJxFz4WapZlfEJ/1foA==
+Received: from [192.168.2.110] (unknown [148.63.39.39])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id D022F36008A;
+	Tue, 13 Jan 2026 14:05:15 +0000 (WET)
+Message-ID: <ae36f759-e889-4371-8c08-b8ffd1b69250@tecnico.ulisboa.pt>
+Date: Tue, 13 Jan 2026 14:05:12 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] phy: tegra: xusb: Fix ordering issue when switching
+ roles on USB2 ports
+To: Jon Hunter <jonathanh@nvidia.com>, Mathias Nyman
+ <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
+ <20251204-diogo-tegra_phy-v1-3-51a2016d0be8@tecnico.ulisboa.pt>
+ <86cd3ff0-1609-44cb-911c-f0e97652ca1b@nvidia.com>
+Content-Language: en-US
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <86cd3ff0-1609-44cb-911c-f0e97652ca1b@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 08 Jan 2026 03:42:52 +0000, FUKAUMI Naoki wrote:
-> The BL24C16 EEPROM implemented on the Radxa ROCK 3C, 5A, and 5C [1]
-> [2] [3] is designed to have data written during factory programming
-> (regardless of whether data is actually written or not), and we at
-> Radxa permit users to read the data but not write to it. [4]
-> Therefore, we will add a read-only property to the eeprom node.
+
+On 1/13/26 11:56, Jon Hunter wrote:
 > 
-> [1] https://dl.radxa.com/rock3/docs/hw/3c/v1400/radxa_rock_3c_v1400_schematic.pdf p.13
-> [2] https://dl.radxa.com/rock5/5a/docs/hw/radxa_rock5a_V1.1_sch.pdf p.19
-> [3] https://dl.radxa.com/rock5/5c/docs/hw/v1100/radxa_rock_5c_schematic_v1100.pdf p.18
-> [4] https://github.com/radxa/u-boot/blob/next-dev-v2024.10/drivers/misc/radxa-i2c-eeprom.c
+> On 04/12/2025 21:27, Diogo Ivo wrote:
+>> The current implementation of USB2 role switching on Tegra relies on
+>> whichever the previous USB controller driver was using the PHY to first
+>> "yield" it back to USB_ROLE_NONE before the next controller configures
+>> it for the new role. However, no mechanism to guarantee this ordering
+>> was implemented, and currently, in the general case, the configuration
+>> functions tegra_xhci_id_work() and tegra_xudc_usb_role_sw_work() end up
+>> running in the same order regardless of the transition being HOST->DEVICE
+>> or DEVICE->HOST, leading to one of these transitions ending up in a
+>> non-working state due to the new configuration being clobbered by the
+>> previous controller driver setting USB_ROLE_NONE after the fact.
+>>
+>> Fix this by introducing a helper that waits for the USB2 port’s current
+>> role to become USB_ROLE_NONE and add it in the configuration functions
+>> above before setting the role to either USB_ROLE_HOST or
+>> USB_ROLE_DEVICE. The specific parameters of the helper function are
+>> choices that seem reasonable in my testing and have no other basis.
 > 
-> [...]
+> This is no information here about why 6 * 50/60us is deemed to be 
+> sufficient? May be it is, but a comment would be nice.
+> 
+>> This was tested on a Tegra210 platform (Smaug). However, due to the 
+>> similar
+>> approach in Tegra186 it is likely that not only this problem exists there
+>> but that this patch also fixes it.
+>>
+>> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+>> ---
+>>   drivers/phy/tegra/xusb.c            | 23 +++++++++++++++++++++++
+>>   drivers/usb/gadget/udc/tegra-xudc.c |  4 ++++
+>>   drivers/usb/host/xhci-tegra.c       | 15 ++++++++++-----
+>>   include/linux/phy/tegra/xusb.h      |  1 +
+>>   4 files changed, 38 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
+>> index c89df95aa6ca..e05c3f2d1421 100644
+>> --- a/drivers/phy/tegra/xusb.c
+>> +++ b/drivers/phy/tegra/xusb.c
+>> @@ -740,6 +740,29 @@ static void 
+>> tegra_xusb_parse_usb_role_default_mode(struct tegra_xusb_port *port)
+>>       }
+>>   }
+>> +bool tegra_xusb_usb2_port_wait_role_none(struct tegra_xusb_padctl 
+>> *padctl, int index)
+>> +{
+>> +    struct tegra_xusb_usb2_port *usb2 = 
+>> tegra_xusb_find_usb2_port(padctl,
+>> +                                      index);
+>> +    int retries = 5;
+>> +
+>> +    if (!usb2) {
+>> +        dev_err(&usb2->base.dev, "no port found for USB2 lane %u\n", 
+>> index);
+> 
+> This appears to be a bug. If !usb2 then dereference usb2->base anyway.
 
-Applied, thanks!
+It is a bug, will fix in v2.
 
-[1/1] arm64: dts: rockchip: Make eeprom read-only for Radxa ROCK 3C/5A/5C
-      commit: 4ad1a7548080e9e9ac1a1e78672ce2acb25e69d8
+>> +        return false;
+>> +    }
+>> +
+>> +    do {
+>> +        if (usb2->role == USB_ROLE_NONE)
+>> +            return true;
+>> +
+>> +        usleep_range(50, 60);
+>> +    } while (retries--);
+>> +
+>> +    dev_err(&usb2->base.dev, "timed out waiting for USB_ROLE_NONE");
+>> +
+>> +    return false;
+>> +}
+>> +
+>>   static int tegra_xusb_usb2_port_parse_dt(struct tegra_xusb_usb2_port 
+>> *usb2)
+>>   {
+>>       struct tegra_xusb_port *port = &usb2->base;
+>> diff --git a/drivers/usb/gadget/udc/tegra-xudc.c b/drivers/usb/gadget/ 
+>> udc/tegra-xudc.c
+>> index 0c38fc37b6e6..72d725659e5f 100644
+>> --- a/drivers/usb/gadget/udc/tegra-xudc.c
+>> +++ b/drivers/usb/gadget/udc/tegra-xudc.c
+>> @@ -698,8 +698,12 @@ static void tegra_xudc_restore_port_speed(struct 
+>> tegra_xudc *xudc)
+>>   static void tegra_xudc_device_mode_on(struct tegra_xudc *xudc)
+>>   {
+>> +    int port = tegra_xusb_padctl_get_port_number(xudc->curr_utmi_phy);
+>>       int err;
+>> +    if (!tegra_xusb_usb2_port_wait_role_none(xudc->padctl, port))
+>> +        return;
+>> +
+>>       pm_runtime_get_sync(xudc->dev);
+>>       tegra_phy_xusb_utmi_pad_power_on(xudc->curr_utmi_phy);
+>> diff --git a/drivers/usb/host/xhci-tegra.c b/drivers/usb/host/xhci- 
+>> tegra.c
+>> index 9c69fccdc6e8..9944593166a3 100644
+>> --- a/drivers/usb/host/xhci-tegra.c
+>> +++ b/drivers/usb/host/xhci-tegra.c
+>> @@ -1352,18 +1352,23 @@ static void tegra_xhci_id_work(struct 
+>> work_struct *work)
+>>       struct tegra_xusb_mbox_msg msg;
+>>       struct phy *phy = tegra_xusb_get_phy(tegra, "usb2",
+>>                               tegra->otg_usb2_port);
+>> +    enum usb_role role = USB_ROLE_NONE;
+>>       u32 status;
+>>       int ret;
+>>       dev_dbg(tegra->dev, "host mode %s\n", str_on_off(tegra- 
+>> >host_mode));
+>> -    mutex_lock(&tegra->lock);
+> 
+> Extra blank line here.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Will fix in v2.
+
+>> -    if (tegra->host_mode)
+>> -        phy_set_mode_ext(phy, PHY_MODE_USB_OTG, USB_ROLE_HOST);
+>> -    else
+>> -        phy_set_mode_ext(phy, PHY_MODE_USB_OTG, USB_ROLE_NONE);
+>> +    if (tegra->host_mode) {
+>> +        if (!tegra_xusb_usb2_port_wait_role_none(tegra->padctl,
+>> +                             tegra->otg_usb2_port))
+>> +            return;
+>> +        role = USB_ROLE_HOST;
+>> +    }
+>> +
+>> +    mutex_lock(&tegra->lock);
+>> +    phy_set_mode_ext(phy, PHY_MODE_USB_OTG, role);
+>>       mutex_unlock(&tegra->lock);
+> 
+> I am trying to understand why you opted to implement it this way around 
+> and not add the wait loop after setting to the mode to USB_ROLE_NONE in 
+> the original code all within the context of the mutex?
+
+I did that to minimize the amount of time we wait while holding the
+mutex, as we can now possibly wait a significant amount of time for the
+role switch. Is this an unneccessary optimization?
+
+Thanks,
+Diogo
+
+> Thanks
+> Jon
 
