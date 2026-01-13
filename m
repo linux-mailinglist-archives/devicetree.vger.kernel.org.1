@@ -1,124 +1,151 @@
-Return-Path: <devicetree+bounces-254492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8776BD187F8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 599D0D18816
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:35:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B315F302F81A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:30:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D9E2E300C0E6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85999302CD5;
-	Tue, 13 Jan 2026 11:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D33029A9F9;
+	Tue, 13 Jan 2026 11:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ypiZBYLJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WPVxA1ZO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8520236BCDB
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89527302CD5
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:35:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768303856; cv=none; b=JOodltKlx8IEeQv0H5/HaZyH4celQZXhkaSZlpvTBjK3Qf+3TtBZeinnLabhEbIszU4okg5O9ulCHBVu2CHXDssaE2oUuvBmgom31SY6Q1uo1od1zcyrNqoRYUHLPP3KHTFBxigaS/rDaAC7Udr4JD9QIlTcRLr5+/RqAKpM4bM=
+	t=1768304113; cv=none; b=TZVMejEI3WX9uVspctLhihnhZkFMw8ZJ3llF0iCfwxhHFwSLiIIjpwyD3GLzEYpH60ZmlRTAUKdnjVVdLykWJi53EPW6rU2QyFrYQWSTCq0ptXx2KdWogbTcd8yFMUppGEiNf7hfJC/uvOuSWjLJxqZ333NcyWALL/G3FpIRTZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768303856; c=relaxed/simple;
-	bh=f4wVU9QaczKT/9p32vT2mvG6pfkyMA13UZGXDs37Bbs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bQSto7HaFIPzO1GCj11OvcSOxmaxfnQa1zXoEdk/UFAou7BMdD+jHYz9MD5OC8c5ktvCyDjqkGpCUiJNs5n+yiUGSr3GtZA/mMfX7LujH8pTfL4rF62cS5kGtlc4XUyJNkvosAqTu6hGPZvkalkRPozRrvPhJDJU2c8fbuu+jpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ypiZBYLJ; arc=none smtp.client-ip=74.125.82.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2ae2eb49b4bso9571455eec.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 03:30:53 -0800 (PST)
+	s=arc-20240116; t=1768304113; c=relaxed/simple;
+	bh=DzjdrARxpA4Phl2lJLNsZj4+3xCd8O7dW6cZCQoDiMM=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To:Content-Type; b=QKZ5wyoVicTNyu3UFq0qlyvKSDfPhaklQfTlVTsRGplKvhcK6hWS94nqjW+v0PIqfveGzb4v0JtCt4g8f2dSuEq544f5dpZrOhDhvTxMZ9X+TiyNyyOF72AlleCWi4+mU0w3XkEeqjA1oEoBjqIbenR0ltmhrJQ67LpnYItKphk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WPVxA1ZO; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-78d6a3c3b77so69520887b3.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 03:35:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768303853; x=1768908653; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+        d=gmail.com; s=20230601; t=1768304111; x=1768908911; darn=vger.kernel.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=f4wVU9QaczKT/9p32vT2mvG6pfkyMA13UZGXDs37Bbs=;
-        b=ypiZBYLJwq4M61y/wA3xFHM25YVqCiYHbmqaVnS/UQwheMZI2xbR9i3AKLbSwNVj6j
-         t7xOHInIbvA4VQ2NB/2OCtrlwqpkXuSTBOG+Hbi6Ctt+SO/u9swUACxHJbqWN+v/BhsL
-         Q7ovqaNQyVDLLFTg6e2ly+RaAr/Yq6zeIeSfBq5FywtC2EKoAYoWTxXjuDekTBWHNoCE
-         3osTqAeAtdXugZAzSDZzbNeCe8ii6Pw6MWKOlkXdEF+ZMAWV/07XMFXGTa+CX8dY4Pll
-         /gII+WoWN3Eq1suql8MfTa7gl3UX+zyNJoB02iaATV4hIblqcb33Ayuk0EiXFDNZVOul
-         xaWw==
+        bh=DzjdrARxpA4Phl2lJLNsZj4+3xCd8O7dW6cZCQoDiMM=;
+        b=WPVxA1ZOvRvwdNUzhtP+YZ1n824UA5Wh3aiKsCkhwJdrZK8AiYSlB5SngKdXdEClQX
+         dmxUFCbSh4rQ9x/mZGOqjyIBKi7M9EFbc22MJmtNWou2gj8yOHXOmis+n/mwohGqSXnk
+         wZ4ya2fEitw0WNjh9TaOGA5c0d2CEiAZst4GefxZU69g2XFKbC1GVYaYM1f5wfF7Tmqn
+         pZ8YQXfoBmPEKb2zon/d4rDYObzFZdNLy9yRIRxXj36JmQIERrTI4S5kjU1KosQ95xsT
+         5wTyAD7j1SAwJJitYza4vMxun2V8YHM5cetVlIWUcOqzIgcLlnd3VRtYbq0MiQDt9ZRE
+         TbnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768303853; x=1768908653;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+        d=1e100.net; s=20230601; t=1768304111; x=1768908911;
+        h=to:subject:message-id:date:from:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f4wVU9QaczKT/9p32vT2mvG6pfkyMA13UZGXDs37Bbs=;
-        b=p2G87aKeAGFUij2ERUkkhhrW0uOLTpRpO0kISjteIUPYv6XVtKstYGv4YF14IdMGgj
-         EoyW3/EYvz32GrImog9LuK6UZnwePSWWjZYikRVnbZNNdc6vWIq9P+y/6lPyJnNf7Bbu
-         ppP1uBmqKeSFUA83pR3VZtsVnqOJrr3IijfatcGPwsn+bgQOPA59vAlZNV+Bf6Bs3sOz
-         01hNIjAbOmmmnovY6L45SZET3Tjmp3b+ujklcs0Jd/LFLOxBdSJT0Qqz4foi0BtlG2Va
-         vyB6uDOeb/aLc20SOlhCMZMP39q9RPEeHOxala92l5EVi4YjyKUnwKb5XC7/iE2vfMOt
-         sm/A==
-X-Forwarded-Encrypted: i=1; AJvYcCVdoluktch0NC5xahjj51pryuGNFulJI6bE72Bx7z3e/m3D5dpjnvrRI2wd7+rer7NPKTDlvvOyBpCV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIpPLA65BUodSz8iN3z9mUQHzKLaHDRzHZeqUQPtPPj0pdnaUj
-	XU1rfM75FxVUSSdyKQu5MGMF398SVkcE74AoV9ZmOCoNX5bHgcy4/LrguUl5FGeJUCI=
-X-Gm-Gg: AY/fxX5cedPMDHqSN9FVdezJP6W5MaIwVskPlnzkcmenerjspVCk0PScveOzZhypomB
-	8/05zAGW/MnbsvWtGfJ2dnX6HpiugEsEMWeq4XaflZfSaHl9zw4NH18LT/eIUnUo2PlCaYQd22j
-	NWaD7dRHFjutGm48YlGA/tTXy4BW9Il/7m0kohf9orAGR6Aya3/jujDk/9VmDFJJF8qn8j5BW1b
-	gD6Cp6xDTT2KQsvJUfURiqEUwoECZpA2x5vDl1N9yppS2le3C09GCWWfpoMQtcl65dWRp9vK0iU
-	l6D4AwBxkQz+DzCO23rG53Ng413Fg7BUMen0uN74ReI6YluO9miK5EZ8kw/s4+5Cs6bYgOyZ49G
-	NVXCbCrzU7D14onUVkLTspwB/F9Tuh14Cdp3yas5/sfyYCLRjSA2L95cShu3lOOnJfw3KvkYx1j
-	F1Hf4PjDbf42jEG3AwbdAFRFkamx4=
-X-Google-Smtp-Source: AGHT+IE2PQGkBRDHh0wt/RR1JmU3vgEQYzdNyA0r5cB4mfroq+TTyqSFY3sc0gpnweUJAe3hVTED4Q==
-X-Received: by 2002:a05:7300:cb07:b0:2b0:3d03:37d4 with SMTP id 5a478bee46e88-2b17d1e4d38mr24451146eec.3.1768303852511;
-        Tue, 13 Jan 2026 03:30:52 -0800 (PST)
-Received: from draszik.lan ([212.129.80.26])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b17078d9b1sm19000610eec.18.2026.01.13.03.30.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 03:30:52 -0800 (PST)
-Message-ID: <ca6de8e5aa0dbd99c74481a9dba9ea9f1ac61a1f.camel@linaro.org>
-Subject: Re: [PATCH v3 2/5] dt-bindings: clock: google,gs101-clock: Add DPU
- clock management unit
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
- <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki	
- <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
-	kernel-team@android.com, Will McVicker <willmcvicker@google.com>, Juan
- Yescas	 <jyescas@google.com>, Doug Anderson <dianders@google.com>
-Date: Tue, 13 Jan 2026 11:31:28 +0000
-In-Reply-To: <20260113-dpu-clocks-v3-2-cb85424f2c72@linaro.org>
-References: <20260113-dpu-clocks-v3-0-cb85424f2c72@linaro.org>
-	 <20260113-dpu-clocks-v3-2-cb85424f2c72@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+        bh=DzjdrARxpA4Phl2lJLNsZj4+3xCd8O7dW6cZCQoDiMM=;
+        b=R2ejZhQno97lx3dqdT73ulL1vRFBqUJDC8DZwVX3MGdyWACdiqMA+9sXVUSZ37+3K1
+         ABnZlQZKDZMUmf+16HFQHUQzXXgmEnCthTULmygYxkNhC4kplxec2XwBTCeUyCquWYIk
+         6rY0T3TB5JA85TX6kIcRI1QKi9lslvaeSQBA3EZukw1EC3dZekz4s69XjL2p6cn8OJoW
+         8Ly2cTNnZXaPZL5/bNLkTuURf1nZmbe8lh187QgDUjIwRppKcyrfLujJFQk/E1NWn5n/
+         vfqg2AMiU7PTp88cpHE0R+wA3nLcC/QYF7BsTCh0Fjqbo6za/YMTcZyyzVtP9DJcoLz0
+         N7dw==
+X-Forwarded-Encrypted: i=1; AJvYcCVqnjn23vI/MCfjQLWVlwI/PByDGZlftVn5D2lJxbXvvszG+eHzr68RnD78gdKtHcN/fnj2EbnmOj3w@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYq3L+4NSyEK7l+lxZjylEydI9Z3marltxpWqG7tiMFky7ovpe
+	VCBFdSlo5QeGsBsDxN829T3/PzUlwmR9bZvfFeorPCWRsHlnnOKSkJvtvlUhTWR48S3zHE63wKE
+	KlSc51orLKxAkEhUMXhBDOlqa4tpcy1ULm3LzUOY=
+X-Gm-Gg: AY/fxX7qhFp9JA3ckfI6eVhauRgtGP6Rpn935oTB7Jn0tXybDAX6arjPKdv51KV2N2w
+	q1otgzSFdCcvCspj+XnynlpIiSemNrLKsp9pRBbkRryr4CnYVxjVIZpE1uNS/oWwgpVKlVh3IO4
+	91/bMcLt9y3Zo5Ime3bHsmhTJzIxPxv9z5Rswmz9SdyGgBOJMFQAMpxykgmKH1F4Tda/k7AeJmf
+	AJm6g3fu7EXB1njTdid61Xexr/QNJH4SWtQP2EUUWi7RyLcxxpUN05a1hwXgis2PKnrfxlnU0Lk
+	VrNfXDIIb9lpH4mKdrDZniZVMnNdHBhy/1oAk6w=
+X-Received: by 2002:a05:690e:1911:b0:63f:b6c0:23f8 with SMTP id
+ 956f58d0204a3-648f632650fmr2385586d50.33.1768304111464; Tue, 13 Jan 2026
+ 03:35:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+From: Mohamed Bana <mohamed.omar.bana@gmail.com>
+Date: Tue, 13 Jan 2026 11:34:35 +0000
+X-Gm-Features: AZwV_QgRIY4y2FKn3J1qzZ-zHhHBo5sHHsuRCjmzLnB3NtO81kh5D36QhzTBV_o
+Message-ID: <CAOygLHJFN3BwLLYFF-rViJm_YUa5zzt4KnDN2cHUyev712h-Og@mail.gmail.com>
+Subject: arm64: dts: qcom: Issue with the dts for Medion SPRCHRGD 14 S1 Elite
+To: linux-next@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 2026-01-13 at 10:58 +0000, Peter Griffin wrote:
-> Add dt schema documentation and clock IDs for the Display Process Unit
-> (DPU) clock management unit (CMU). This CMU feeds IPs such as image scale=
-r,
-> enhancer and compressor.
->=20
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
-> Changes in v3
-> =C2=A0- alphanumeric in gs101.h header (Andre)
-> Changes in v2
-> =C2=A0- alphanumeric placement (Krzysztof)
-> ---
-> =C2=A0.../bindings/clock/google,gs101-clock.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 19 ++++++++++++
-> =C2=A0include/dt-bindings/clock/google,gs101.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 36 ++++++++++++++++++++++
-> =C2=A02 files changed, 55 insertions(+)
+Support was added for the Medion SPRCHRGD 14 S1, which is based on the
+Qualcomm Snapdragon X Elite SoC (X1E78100) in [1]. I am
+unsure if the suffix Elite makes a difference to this device tree
+working or not, but I suspect it does not.
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+1. I am having trouble booting the
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts
+or rather at the time of writing this
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/arch/arm64/boot/dts/qcom/x1e80100-medion-sprchrgd-14-s1.dts?id=8cf65490cdb03c0254448a54f9098686bf9029ec.
+I think I have narrowed it down to this in the `.dts` file:
+
+x1e80100-medion-sprchrgd-14-s1.dts:
+
+```dts
+...
+// Some combination of `mdss_dp0.status ="okay"` and `mdss_dp2.status
+="okay"` cause the system not to boot.
+// So, set do not set `mdss_dp2.status ="okay"` otherwise it will fail
+to boot and probably just lead to a restart.
+&mdss_dp2 {
+sound-name-prefix = "DisplayPort2";
+// status = "okay";
+};
+...
+```
+
+After re-compiling the `.dts` with `mdss_dp2.status ="okay"` commented
+out, I can boot. You can see more information at [4].
+
+2. Could we possibly rename the file to
+`x1e78100-medion-sprchrgd-14-s1-elite.dts` instead of
+`x1e80100-medion-sprchrgd-14-s1.dts`? The laptop is actually a
+`x1e78100` and the name ends with Elite.
+
+3. Did someone or a group of people test out the `.dts` before it was
+pushed to `linux-next`? I am basically wondering
+why it fails to boot on my laptop [2].
+
+4. I am trying to get sound working but to no avail. Based on [3], I
+tried the below but still no audio:
+
+```sh
+sudo apt install git build-essential m4
+
+git clone -b medion-display-port
+git@github.com:tuxedo-ggo/audioreach-topology.git
+cd audioreach-topology/
+cmake .
+cmake --build .
+sudo cp -vi qcom/x1e80100/X1E80100-MEDION-SPRCHRGD-14-S1-tplg.bin
+/lib/firmware/qcom/x1e80100/
+
+cd ..
+
+git clone -b medion-sprchrgd-dp git@github.com:tuxedo-ggo/alsa-ucm-conf.git
+cd alsa-ucm-conf/ucm2
+sudo cp -avi * /usr/share/alsa/ucm2/
+
+reboot
+```
+
+References:
+
+[1]: https://lkml.org/lkml/2025/12/4/963
+[2]: https://www.scan.co.uk/products/14-medion-sprchrgd-14-s1-elite-28k-wqxgaplus-120hz-snapdragon-x1e-78-100-32gb-ddr5-1tb-nvme-ssd-adre
+[3]: https://lists.openwall.net/linux-kernel/2025/12/04/1008
+[4]: https://bugs.launchpad.net/ubuntu-concept/+bug/2137257
+
+Kind regards,
+- Bana
 
