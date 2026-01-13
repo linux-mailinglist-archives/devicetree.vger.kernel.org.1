@@ -1,179 +1,94 @@
-Return-Path: <devicetree+bounces-254601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05D5D19C34
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:12:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E19D19C47
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:13:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A47C3011749
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:05:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8AC70302A7F7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150492D838E;
-	Tue, 13 Jan 2026 15:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A2F310777;
+	Tue, 13 Jan 2026 15:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="lLmeBwXH"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="aAkIdK25"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+Received: from mail-10631.protonmail.ch (mail-10631.protonmail.ch [79.135.106.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7078D17A31E;
-	Tue, 13 Jan 2026 15:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C3D2EDD45;
+	Tue, 13 Jan 2026 15:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.31
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768316727; cv=none; b=IAcFzpU3kbHn9mBwJ3O08KLyp6cDn6e016K2mtUX3Ol+mRYebZk8JwhMJZ3X/irC2OUvxvkDdQlt5O7Yf6IzAf8Cn24jjx89E5j3Rq522Oy0aw6SYegJ6RAcbXa62ADgwG7O9lD54i5WuNW5GfhXZ6fduNd8EEDNIrX1f2FLqMs=
+	t=1768316848; cv=none; b=ngP9nUIbpkOFtF2yvqjMjf37Xx4Dh5Ejbtkk7YUAkUFKgW7dXG25ZaqnQqd9HJeEsDOL406G/n9LsdjXaB7bG686kWbNDmXj7E16rwCATQwxglYm9m1204b6Fu4QDltTUNxfeeshOvYng4QWTBVtc0iLs6XttS1p/KFczLFmmnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768316727; c=relaxed/simple;
-	bh=CK8+T3XHgaRp2Ua982EyXh6oIKCY8+OOZQTJ5cRE9LE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G4DWUNyXl423Meh9yHmOT5FtV0fx93daTW1IDqm6+s8IvYF/Fsxuu5UuT/mIyQqIvbFGcjXABYlqsdIkgtq6WsO2rw7FIWGKAP1tp6yJvOEaCDS89yV34Y0f/wg8DpNkT6Tjeoj20LWIqe0KCESROxAQjzYVhUmTvCSzyA6lFKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=lLmeBwXH; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 4AFDF6003015;
-	Tue, 13 Jan 2026 15:05:20 +0000 (WET)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id ylJm_Cvi6WdJ; Tue, 13 Jan 2026 15:05:18 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 9F5946003006;
-	Tue, 13 Jan 2026 15:05:17 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail2; t=1768316717;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VZOf9DBWzhOubMrj72rv5+jVNjLliSIo7m9F4zNgEbA=;
-	b=lLmeBwXHWaaX8/+ae4RoeFcX+wfMxwh7HhKAXlFS+gLaHlTHlFjCuVFqfiJTwErirH7PFI
-	4AeNZWFB9HXEiFtm/s+zp/7a/q87k+ixkKDRoAOm30uCDcy+4F5NWmBGLeYWBQuZhB8Lbp
-	Q4HEEu8fug5mJVPXgl1eZfxZjco9+V2DVlC1wX5/2/l+w+pT9SD2DzPKG9omLjeY5vfITp
-	TLyfDwq2VD4xOvMuZspzzziKePL42L6XpeDEjbjg3YykmySGRfefpHoRAipsL3PY6LYhV7
-	LgJ+s4srcsONfx2u7FauiQQshh2fN1hiCFeFOMEUP+O5AKKH7qmqQCKb2BD1Kw==
-Received: from [192.168.2.110] (unknown [148.63.39.39])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 11723360147;
-	Tue, 13 Jan 2026 15:05:17 +0000 (WET)
-Message-ID: <f942f18f-76f7-477d-8861-6e9d1a29655c@tecnico.ulisboa.pt>
-Date: Tue, 13 Jan 2026 15:05:16 +0000
+	s=arc-20240116; t=1768316848; c=relaxed/simple;
+	bh=aThNGjTBNgO51mbqH9WUWWw8yriA/DqkYmAuwRaxee8=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NZGwCaNiEF5O0ekBY2eVzOnckMxJiIaS79PpRO5QaIKvUatlSHV2EOKdii6aDV8uUwGiLUmSSi+D8pUt0EMS20ehv6ZVZK4GP28uNWkIQ7AxtUiqII6J2L7QrSKWNq5JAS9S3ImC3tgI3a/HiiTug6qFgdYQOpQQCTawq2DbXJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=aAkIdK25; arc=none smtp.client-ip=79.135.106.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1768316843; x=1768576043;
+	bh=aThNGjTBNgO51mbqH9WUWWw8yriA/DqkYmAuwRaxee8=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=aAkIdK25BT3Pgr93W/+mSYasIGDE4kvJbhnh6eZBApn7/fF3e4dLH28hFd1Wq6j+S
+	 w2IyL6r4XEG5A1h59eNYZg7Q6FyleVqJj5auzzzyi4kgjrfnNvPrE3NKdR+OzEO+ih
+	 0qQjgbM5+lNBx6lngE9CmmPXx7+x7vnX+Jh6AMCZM0lvKv3JOLnJyyYB81mk3TMCfA
+	 A022/iUrbLct1HVXzpJ5tHDDmmUEtHBUOlheKQ58Qvuk9ExQp0ruqDVfXfoOpSqxGn
+	 i6zA45VjZBLQbtfMoPsOOkQOSf2lfCplJGthTcc8/EqI+35pxa22pmz/2dLNEatiz4
+	 J/n57KALelrIA==
+Date: Tue, 13 Jan 2026 15:07:20 +0000
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+From: Alexander Koskovich <AKoskovich@pm.me>
+Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, hrishabh.rajput@oss.qualcomm.com, Konrad Dybcio <konradybcio@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
+Message-ID: <pquvJnlBgedyrF5RUTrHBUoqCIR7sQMWjwvcpm-5MuqAOxcbLg7i4H2RkuI27usOGZO000h3c90TM_kr6c5UFfViPCzGXX5MNWKFHugevXE=@pm.me>
+In-Reply-To: <ee448445-8a6e-40ea-9464-1c2ae52b84cd@oss.qualcomm.com>
+References: <b105810a-63a8-4d81-9ad8-b0788e2e1431@pm.me> <e469548a-8d74-4d3b-9617-2b06f36013e2@oss.qualcomm.com> <ABmlNqg6uJXJLkDZo3uaZLdrTCFIjRXOJ68Hrx1MnHHYMnPJ9_g7GW0HGRhZBKv4--_PANfXgTV7h-n7HFC51zKNW6JkmEhpB6_EhFQ27Rw=@pm.me> <ee448445-8a6e-40ea-9464-1c2ae52b84cd@oss.qualcomm.com>
+Feedback-ID: 37836894:user:proton
+X-Pm-Message-ID: e48a1256c62ae53081944281cdd61ffda019514f
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] phy: tegra: xusb: Fix USB2 port regulator disable
- logic
-To: Jon Hunter <jonathanh@nvidia.com>, Mathias Nyman
- <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
- <20251204-diogo-tegra_phy-v1-2-51a2016d0be8@tecnico.ulisboa.pt>
- <c5450fc7-230e-4435-bd1d-3db4f1f6e736@nvidia.com>
- <54afff11-df9b-4c25-bd1d-8134196ce093@tecnico.ulisboa.pt>
- <043663d0-d592-432b-8550-10669674d17a@nvidia.com>
-Content-Language: en-US
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-In-Reply-To: <043663d0-d592-432b-8550-10669674d17a@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+On Tuesday, January 13th, 2026 at 9:50 AM, Konrad Dybcio <konrad.dybcio@oss=
+.qualcomm.com> wrote:
 
+> What I had in mind is that with the sources you can track down where
+> the issue comes from with a fair degree of confidence.. if that's a
+> Fairphone-specific issue, maybe you could prettyplease ask these folks
+> for a BL update somewhere down the line
+>=20
+> If you still come to a conclusion that the hyp is wrong, we can accept
+> that workaround..
 
-On 1/13/26 14:42, Jon Hunter wrote:
-> 
-> On 13/01/2026 13:59, Diogo Ivo wrote:
->>
->>
->> On 1/13/26 12:01, Jon Hunter wrote:
->>>
->>> On 04/12/2025 21:27, Diogo Ivo wrote:
->>>> The USB2 PHY mode handling on Tegra210 incorrectly relied on
->>>> regulator_is_enabled() when determining whether the VBUS supply should
->>>> be disabled during role changes. This is because regulator_is_enabled()
->>>> reports exactly what is states and not if there is an unbalanced number
->>>> of calls between regulator_enable() and regulator_disable(). For
->>>> example, regulator_is_enabled() always reports true on a fixed- 
->>>> regulator
->>>> with no enable gpio, which is the case on the Pixel C.
->>>>
->>>> This then leads to the PHY driver wrongfully calling 
->>>> regulator_disable()
->>>> when transitioning from USB_ROLE_DEVICE to USB_ROLE_NONE since the 
->>>> driver
->>>> did not previously call the corresponding regulator_enable().
->>>>
->>>> Fix this by keeping track of the current role and updating the logic to
->>>> disable the regulator only when the previous role was USB_ROLE_HOST.
->>>>
->>>> While at it fix a small typo in a comment.
->>>>
->>>> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
->>>> ---
->>>>   drivers/phy/tegra/xusb-tegra210.c | 5 +++--
->>>>   drivers/phy/tegra/xusb.h          | 1 +
->>>>   2 files changed, 4 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/ 
->>>> xusb-tegra210.c
->>>> index 3409924498e9..63ad57d95514 100644
->>>> --- a/drivers/phy/tegra/xusb-tegra210.c
->>>> +++ b/drivers/phy/tegra/xusb-tegra210.c
->>>> @@ -1934,9 +1934,9 @@ static int tegra210_usb2_phy_set_mode(struct 
->>>> phy *phy, enum phy_mode mode,
->>>>               /*
->>>>                * When port is peripheral only or role transitions to
->>>>                * USB_ROLE_NONE from USB_ROLE_DEVICE, regulator is not
->>>> -             * be enabled.
->>>> +             * enabled.
->>>>                */
->>>> -            if (regulator_is_enabled(port->supply))
->>>> +            if (port->role == USB_ROLE_HOST)
->>>>                   regulator_disable(port->supply);
->>>>               tegra210_xusb_padctl_id_override(padctl, false);
->>>> @@ -1944,6 +1944,7 @@ static int tegra210_usb2_phy_set_mode(struct 
->>>> phy *phy, enum phy_mode mode,
->>>>           }
->>>>       }
->>>> +    port->role = submode;
->>>>       mutex_unlock(&padctl->lock);
->>>>       return err;
->>>> diff --git a/drivers/phy/tegra/xusb.h b/drivers/phy/tegra/xusb.h
->>>> index d2b5f9565132..273af147dfd3 100644
->>>> --- a/drivers/phy/tegra/xusb.h
->>>> +++ b/drivers/phy/tegra/xusb.h
->>>> @@ -317,6 +317,7 @@ struct tegra_xusb_usb2_port {
->>>>       enum usb_dr_mode mode;
->>>>       bool internal;
->>>>       int usb3_port_fake;
->>>> +    enum usb_role role;
->>>>   };
->>>
->>>
->>> A similar fix was made to the Tegra186 code by commit cefc1caee9dd 
->>> ("phy: tegra: xusb: Fix unbalanced regulator disable in UTMI PHY 
->>> mode"). Although the above looks simpler, I am wondering if we should 
->>> make a similar change to the Tegra210 code so that they both are 
->>> implemented in the same way?
->>
->> Looking at cefc1caee9dd my approach leads to less changes but I do agree
->> that standardization benefits us here. However in that case I think we
->> can take it a step further and actually just have a single function
->> tegra_xusb_padctl_id_override() (and likewise for vbus_override() and
->> set_mode()) since they all seem to do the same thing in both platforms.
-> 
-> Yes I think that would be fine. I can't say I have looked at that in 
-> detail but that would seem like the logical way to go.
+To clarify the device I'm seeing the issue on is the Nothing Phone 3a which=
+ is another milos device.
 
-Ok, then I'll do just that.
+Not sure if this affects the FP6 as well but issue was also seen on an 8550=
+ platform, so seems to have the potential to affect anything 8550+ at least=
+:
+https://gitlab.incom.co/cm-ayn/android_kernel_ayn_kernel/-/commit/7ae656510=
+8654991aaac9b73a2221509511e59d3
 
-> Jon
+It's not that I think hyp is wrong, what I'm guessing is it's a bug in boot=
+loader exposed by a change in hyp dtb (since it doesn't affect blair on sam=
+e abl tag). If that's the case is it still acceptable to workaround?
+
+For the majority of devices on the market you can't really update bootloade=
+r, it's signed by the OEM and sending a support ticket about it probably wo=
+n't go anywhere since it doesn't affect downstream (since it has the label)=
+.
+
+Thanks,
+Alex
 
