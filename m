@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-254654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B3B2D1A6AB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:52:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3734D1A6B9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:53:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 83D963006721
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:52:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8D9AF303BA9E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:52:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9B334DB6D;
-	Tue, 13 Jan 2026 16:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BC5034DCFD;
+	Tue, 13 Jan 2026 16:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zuh5SqVI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mD2Z9EEl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D706D30AAD8
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 743B62BCF6C
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768323149; cv=none; b=sgqCLNrEqiefiZnFVAtqymGoGGym25ldWuKANfyZV+cTO6vUQSDaeEX036di7IP7+ci6Rn0CBkNvzD8uuFHEecB70nmuXix9Sj8rva51nE1HHEn4+v2OwZlojUEMgTkt7lRsbosj/d9kpOwPBdAgFiJYLc+ibqP/XJ48OJKVhRU=
+	t=1768323151; cv=none; b=S9xckfzvPuA10C7uwRSqN85MSwOSuFShmPexOQEFV76FrWiWFegGzqzTu9Laz+VBCSxIanE1aoyS968Vyfaxz/9cV95zFgP5J2SuFPbfLZZ1SaHpAGJLenFPCrYfcAJHGD5s/eyu4lAqVwpNZXpWhqzQ1zepAYZKABpvTA3uM6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768323149; c=relaxed/simple;
-	bh=87sM8oKP90w0z33dkwRxWaZIAcg0ysEHSvMr/Qcbr1U=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ebsJy+wjqlGXhVzN7DiWP+kaYxK/Igo5pEy1ft/OtqAfPfJJqveAhWTFbe591+n7+rlFS2TkjXjNJWgvA54CVyg3jScPVteJOKoP8ZyfPcN/A/yiCrtZ2nMsvQCTt7hdCQDNu0ejo5fS+qa0wZWWDaKjIj3aLRuoDR1nH5X+aVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Zuh5SqVI; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1768323151; c=relaxed/simple;
+	bh=m0D9V4x0TDiYMScx+B2rDcfNHpt1W4utB08H2EYXkTI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=bnLz7l2qo43ICtIwJqpsZdFLMUBkRyjDjmRuYfKup2ki25+/+cTVHYH4yRpNQ4Ns+L1piSEPVbjUWDyG+Ub126c+NlE5H1BmFFgoQG4alaZ6Fz5274NLZO4g1k0hieeFd7NjcCJ7HIFiDneyditCSpYzKgIhHrIVck2S8YbL5yE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mD2Z9EEl; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee2715254so709015e9.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:52:27 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47eddddcdcfso3446655e9.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:52:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768323146; x=1768927946; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pccbmgwn2QEBQTzOfFfVx5vnJQO1AdZUP/7cqVG+l70=;
-        b=Zuh5SqVI3nB1f2A6D0Xwke4Uwe7iANDCX52uSozJ/uEowwwbOREqM8UKK7zqgZN4rJ
-         9juBxgesr1nARzjrm9Ik/P4KpZn0BjKK1wckKEhT7Npqvm8fDFfPg020JKZ5fFx+zyzw
-         BZfi97nYZ2nYmLfIH4xgh2dPCeQao3xGq7LWUfDI1iHujMwvfgeQN1ijs5zq7GDvlNW5
-         U+6lBtnzrOkWCBhF8/419BZ0S0qeruKEg7wgaarORgmxw1o8mO42+Vk6N9XYIc+PvaD4
-         IoLFNB9U0qvnkH9mp6Rvmxp06jETnrEP9SnZ9YFvu+9QLYXRjWlmUjkP8vbJYUnERv6a
-         RA4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768323146; x=1768927946;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1768323148; x=1768927948; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Pccbmgwn2QEBQTzOfFfVx5vnJQO1AdZUP/7cqVG+l70=;
-        b=Qdaq10ulr0a3dJWta1HVnKYXnawRzmzQFHpWjLNgtPeO8Z7G5T46AizMGvriGfRwXa
-         ZJ673K/YhkVvhSyKu9A473o0c7RDuvpv0r6U4OT7d6YNqFKdcz/0+AL1C00wtHnik1Ej
-         CzNAvB63eXCo5UV36BXDU5JnjwlDIP/RYDdxHI4wPD4Oewm9Nvo+w7UviFJGj1Jj8Yr5
-         3n1d4IeL7VZEhJxaz7/zCsJyNfs8onVEN66VGNU2KY3jdbljbWTcuO2M0r9iN8DGdyCG
-         32dwqmVG4YjeE1uAWKAa+qfK6Ub+SQWHd/ZDcVGDoh58lFJUZPRGQH2xfHEoHlusNtuJ
-         oeLA==
-X-Forwarded-Encrypted: i=1; AJvYcCVEgwScytzm8P2CRfLAktXsB7YwBlsV3M6bKPYEWOsJxby2EWL1GxQ2ODSPyAkwZp3aGDLKJjOmmIDp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yypeh06JNdbsU7Y5chyN0wFLsnIXjszVJFnG8qj+6SZIh7RIEnM
-	1YHH4cXpThwVDN0twc5rEI+dbNkN31/+AqW7NNq6zn1U5y89Wwk0pqcougV7oOew/XY=
-X-Gm-Gg: AY/fxX5UvPpbDxAxhwVfFv9qUPQrWlmd8qOcQ/TMX5u6evc34H8HX/IHXveVAQE+vO+
-	AXbLV39Mnp90GvfvgcVKpH67WyHmVCjS4nIxAAdaofckH99KhTDMJRf6i189bGUYDsAm3/sNZYv
-	1Kz60I58VBn+ezeOLMFklPrTX0gX9vA9AMGhlKnvZVd9H/ONxovIGcTWX2PF/AUPuLBif4xAoh8
-	MGHD40F5TYv87lVRxXG8Dq9krlSsXq2zRryn/k0e1a4GFQ9XJeFYSYETB0H3vRozWP3RzC5uHuL
-	4R4ykzImwG7YXdz0Nv+z4SmvbOkHp2nHer3H6DjcL9kzhGRKvj8tbvtDCqTxG0lb7ygI/txt2/z
-	H1n857IuYSxx7IRYvM7IHzWMMZxq5SkuQad8t95/uccIXOP6c6P625OKlCaOzBChuqTaFM5+fJI
-	2BujMpv1AIIZsTp/DbW+nu7ctwb5TrGUw=
-X-Google-Smtp-Source: AGHT+IEIp1YZBUlweYWaCnnIBVy0+bF1LqyJ+T0qOr1ZxyTRb97O7yWvJcGGelOgdVfuRVXXKCscSg==
-X-Received: by 2002:a05:600c:3114:b0:47d:3ffa:5c75 with SMTP id 5b1f17b1804b1-47d84b31531mr215631915e9.20.1768323146177;
-        Tue, 13 Jan 2026 08:52:26 -0800 (PST)
+        bh=reHYsRVhVlhU9/XLdVBvX/hBxL5PqvrIU5ifd6VhtQI=;
+        b=mD2Z9EElqKO/hQhsq9tOguQfawJojXnQNFJ4eey+mu+S/YDB57FMwV+D41IhXfKKvc
+         OXqJA21UXgmBZVxarYyOCTYbPD/9HKJ6W7fhj0iSTMT1mRd3DuOUF9i/0SRg7HuNf41j
+         8g5owQ2OsouP+UJWETa6gn8JzTQlHJ/tpyYL7+5MI9G4DR+XniahuTtsZy80w2KfRqdE
+         w3gpmEMVnqz+w2sq94Tz/iYd0/Hbo1XgUYZI9rW4E8KMtVXSoKtY/ur82nhM1XyRYHP7
+         GwPrWPlltPJdnJczlViPTIh9vslFbQH79H/ADhi62PcSg5daIjdc2arouTzrTgcgls4d
+         l6kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768323148; x=1768927948;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=reHYsRVhVlhU9/XLdVBvX/hBxL5PqvrIU5ifd6VhtQI=;
+        b=IHh/UI8RJUQngEe19B8TsKMBwuVXJDWhlEftcUhtIVffCBS3ueGt8+/QBePOHIFbgB
+         Xe4jY65e5M0bbyGeDP+PIOysyuT+yXGEEF0raw505XzdljcG1OAQOKDir3lWstufjB6t
+         /K8GWBKxgyAnczl7GIbY089RKpB2+rh7MwJcJy+V3nIAu+9E4wexj1JurybyD4yQdlKc
+         Ww/v94u9tv81ONE5NeIe9vRUki4hjNwbd3RgbP8dFOqRFGoRxETkc/z84N6cfCE1dOEU
+         KmhRcb8naQwdBWKqxCqOo+t6RD8kqHzLMxg5fCU+CZ1LN0jHkMWR/y63TvTUhNvDVekp
+         hrZw==
+X-Forwarded-Encrypted: i=1; AJvYcCV//N3Ntp2kRP97mG0qzED+YoOCA/pwTqC7umvsqJxzsukImF47pjxssMzkhSYgValCTSf5Df161pCS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdAgIW9htkQ26JaSOHcHk/7zhpyuWGg9vfAxLggu+bc45jUgMS
+	Dkr+VOthVUv6NcjTO1trDI0vTbvtOQp6NtGjQbMT6maO4SgTYvbQuA/CBxvTjhN2svM=
+X-Gm-Gg: AY/fxX6uDyKO6L5CnxPmCx6JA4X1JJN2fHlz0qXej/YyUnq1qRlD+lLN7jizGtjzNWd
+	KyB86waYNu906JxJUc15bZ4jQ9RmR5wt8XKYnIxY+yj3zpK4J9mNdFCIiIUdAkmX3nE8tjqtlxK
+	kx24OOrA0A3VbTBCZPFdFJSgBXOzKxKetfurdaHCAvLWMs7h5mwBS+DU4hmzrp1te0MDeFEqBYf
+	GDF54qBMyU0Agc6cOfhvdh7pvJTNUUEFQRPpXea8REpDTGfMSILUfrLOOhFdEPMBwQbSWosmUqe
+	pjEt4THzXl4QFuJn7kDBFqNSR0+3x7xl0aKie7+eO390WaqlqCVPiV9ecSXQJ+OkLExCLHaWj2e
+	cKsOtIFalCOwswu1U4uoS2ykZb6G6LWWORVgSJEtRX+paARi0yRs/ij40h508o39CoQD7lHm0ls
+	ZevHdqF5oO6Mjx+QTMb+wK5YcOuvC7WuA=
+X-Google-Smtp-Source: AGHT+IE2mf8KyPtT6cpp9Z+sIL+E+Nhzb//si5kbvx2m3OmBsCtIM58L0qqoJtaQDiBQE8qxSXV8Ag==
+X-Received: by 2002:a05:600c:500d:b0:477:9d54:58d7 with SMTP id 5b1f17b1804b1-47d84b3b881mr210609265e9.29.1768323147822;
+        Tue, 13 Jan 2026 08:52:27 -0800 (PST)
 Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:3594:70ab:9964:c5ec])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f41eb3bsm431684925e9.7.2026.01.13.08.52.25
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f41eb3bsm431684925e9.7.2026.01.13.08.52.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 08:52:25 -0800 (PST)
+        Tue, 13 Jan 2026 08:52:26 -0800 (PST)
 From: Daniel Lezcano <daniel.lezcano@linaro.org>
 To: wbg@kernel.org
 Cc: Frank.li@nxp.com,
@@ -80,10 +82,12 @@ Cc: Frank.li@nxp.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-iio@vger.kernel.org
-Subject: [PATCH v5 0/3] Add the System Timer Module counter
-Date: Tue, 13 Jan 2026 17:52:17 +0100
-Message-ID: <20260113165220.1599038-1-daniel.lezcano@linaro.org>
+Subject: [PATCH v5 1/3] counters: Reorder the Makefile
+Date: Tue, 13 Jan 2026 17:52:18 +0100
+Message-ID: <20260113165220.1599038-2-daniel.lezcano@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260113165220.1599038-1-daniel.lezcano@linaro.org>
+References: <20260113165220.1599038-1-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,72 +96,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The NXP S32 family provides a System Timer Module (STM), a 32-bit
-free-running counter clocked from a peripheral clock. The STM includes
-a prescaler and one or more compare channels generating optional
-interrupts. When used as a generic hardware counter, only the main
-free-running counter is required, while the compare channels are
-typically unused.
+The next changes provide a new driver. For the sake of clarity,
+reorder the Makefile alphabetically.
 
-On S32G2 devices, the STM is exposed as a simple counter block that
-can operate continuously and be shared across subsystems such as the
-Linux kernel, firmware components running on Cortex-M7 cores, or other
-co-processors. The counter can be read atomically and provides a
-stable timestamp source to correlate events occurring in different
-execution contexts.
+No functional changes intended.
 
-The Linux kernel controls the STM through a memory-mapped interface,
-configuring the prescaler, enabling or disabling the counter, and
-accounting for wrap-arounds. Other subsystems access the counter in
-read-only mode, making it a shared timestamp reference across the
-platform.
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ drivers/counter/Makefile | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
-This driver adds support for the STM when used as a counter on S32G2
-platforms. The device is described in the device tree using the
-following compatible:
-
-compatible = "nxp,s32g2-stm-cnt";
-
-The driver exposes basic counter functionality: start, stop, reset,
-prescaler configuration, and overflow handling.
-
-Changelog:
-	* v5
-	  - Use a lockless version to implement accumulated time (Frank Li)
-
-	* v4
-	  - Split context structure to suspend/resume
-	  - Converted counter to a u64 to accumulate the time
-	  - Replaced 'reset' to a count write to reset (William Breathitt Gray)
-	  - Added events for userspace (William Breathitt Gray)
-	  - Added action COUNTER_SYNAPSE_ACTION_RISING_EDGE for signal (William Breathitt Gray)
-	  - Renamed counter name to "System Timer Module Counter" (William Breathitt Gray)
-
-	* v3
-	  - Fixed compatible typo "nxp,s32g2-stm" to "nxp,s32g2-stm-cnt"
-
-	* v2
-	  - Added Rob's tag
-	  ** kbuild
-	  - Reordered alphabetically the headers
-	  - Added bitfield.h header
-	  - Use DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr()
-
-Daniel Lezcano (3):
-  counters: Reorder the Makefile
-  dt-bindings: counter: Add NXP System Timer Module Counter
-  counter: Add STM based counter
-
- .../bindings/counter/nxp,s32g2-stm-cnt.yaml   |  64 +++
- arch/arm64/boot/dts/freescale/s32g2.dtsi      |   6 +-
- .../boot/dts/freescale/s32g274a-rdb2.dts      |  10 +-
- drivers/counter/Kconfig                       |  10 +
- drivers/counter/Makefile                      |  21 +-
- drivers/counter/nxp-stm-cnt.c                 | 432 ++++++++++++++++++
- 6 files changed, 524 insertions(+), 19 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/counter/nxp,s32g2-stm-cnt.yaml
- create mode 100644 drivers/counter/nxp-stm-cnt.c
-
+diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
+index fa3c1d08f706..40e644948e7a 100644
+--- a/drivers/counter/Makefile
++++ b/drivers/counter/Makefile
+@@ -6,14 +6,16 @@
+ obj-$(CONFIG_COUNTER) += counter.o
+ counter-y := counter-core.o counter-sysfs.o counter-chrdev.o
+ 
+-obj-$(CONFIG_I8254)		+= i8254.o
+-obj-$(CONFIG_104_QUAD_8)	+= 104-quad-8.o
++obj-$(CONFIG_104_QUAD_8)		+= 104-quad-8.o
++obj-$(CONFIG_FTM_QUADDEC)		+= ftm-quaddec.o
++obj-$(CONFIG_I8254)			+= i8254.o
++obj-$(CONFIG_INTEL_QEP)			+= intel-qep.o
+ obj-$(CONFIG_INTERRUPT_CNT)		+= interrupt-cnt.o
+-obj-$(CONFIG_RZ_MTU3_CNT)	+= rz-mtu3-cnt.o
+-obj-$(CONFIG_STM32_TIMER_CNT)	+= stm32-timer-cnt.o
+-obj-$(CONFIG_STM32_LPTIMER_CNT)	+= stm32-lptimer-cnt.o
+-obj-$(CONFIG_TI_EQEP)		+= ti-eqep.o
+-obj-$(CONFIG_FTM_QUADDEC)	+= ftm-quaddec.o
+ obj-$(CONFIG_MICROCHIP_TCB_CAPTURE)	+= microchip-tcb-capture.o
+-obj-$(CONFIG_INTEL_QEP)		+= intel-qep.o
+-obj-$(CONFIG_TI_ECAP_CAPTURE)	+= ti-ecap-capture.o
++obj-$(CONFIG_RZ_MTU3_CNT)		+= rz-mtu3-cnt.o
++obj-$(CONFIG_STM32_TIMER_CNT)		+= stm32-timer-cnt.o
++obj-$(CONFIG_STM32_LPTIMER_CNT)		+= stm32-lptimer-cnt.o
++obj-$(CONFIG_TI_ECAP_CAPTURE)		+= ti-ecap-capture.o
++obj-$(CONFIG_TI_EQEP)			+= ti-eqep.o
++
++
 -- 
 2.43.0
 
