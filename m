@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-254327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13BB0D1738B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:12:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7460CD17382
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:12:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5637E30AA6CE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:08:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EFF57300DD87
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE4D3793AE;
-	Tue, 13 Jan 2026 08:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EA8F3793AE;
+	Tue, 13 Jan 2026 08:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dmE3/pIY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eZjanKlM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 256423793A9;
-	Tue, 13 Jan 2026 08:08:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03A1378D98;
+	Tue, 13 Jan 2026 08:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768291738; cv=none; b=mf6T29UWFRO/6Pfwd6vLn8dEs5s5P94sK+UpVKjOqT4D8zp+cxskM/7cxDvreaVoAZWy/F2hwB7vtX48ItrzpQzrBUFxdVbC8JsuGt93rjNlFplAY/3dBo9mXhCjhYY0o240PWtOvn3SX1IhiSfy6Y6bMj/M1UvVYl+/UmMs+QQ=
+	t=1768291922; cv=none; b=aAO36d2IwZm8X+C0q/2GBf3ajYrVhJftCCy+TWmrHS+FcPUPPCJ9E5bRwCdBDiz/IoFFmtAlJstXHtlOg/NNw5/NVUuQPTEC8ZMm/uUxDsFYv2uObpo3kmb3G0zJtj+RLQKNaL8NLszpRLZ7oS2cw08R0ug0vJmtqLLi+kqxg1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768291738; c=relaxed/simple;
-	bh=nEkrc/Oh+3NzIyLSk2QgA+bYBseCe2JUpKmxyygTlN4=;
+	s=arc-20240116; t=1768291922; c=relaxed/simple;
+	bh=qm+rItbWD7M6gskD+2ZgtO4El9J3UiCyaHNXI3efs/U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NpQxWp0LVfvtSk1M51bRl3H9i73IHbHVQIQ1LOLBCODzfiGC55eQsml58MfC3brS19EUNk69MVTj2JwLGsNfxgAKmcF31hm0e1iYsdYAABcMdC81yHTeOQotYCnsE4nWNfvzU7NqTl4HJ2DVC93LvGJMnqGCK4jg7IjL4lKyDd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmE3/pIY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37D3FC116C6;
-	Tue, 13 Jan 2026 08:08:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cL0faCbqEf0/ssoybCPI47tse3XT5rxfbYVNbW9J13DkpH9R7v1aX3/U/usoWFCP9zJ27qborkEFB4M3I58CGk4sxixlRODDTXwN8oudwxVBA9+xohj7UJnA5/WAzcVYpHASQq8cZpey62fhd1VpZyk6eBkL15+cIVezq1PWG6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eZjanKlM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D22BAC19422;
+	Tue, 13 Jan 2026 08:12:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768291737;
-	bh=nEkrc/Oh+3NzIyLSk2QgA+bYBseCe2JUpKmxyygTlN4=;
+	s=k20201202; t=1768291922;
+	bh=qm+rItbWD7M6gskD+2ZgtO4El9J3UiCyaHNXI3efs/U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dmE3/pIYfU+TK5k2ZGmULC/Fyzu71VBQYHos9zhKooJtn4+FADDVsyN/D1q+dbr7F
-	 mxqAlZd29Dk644UWZgoieMaWZw/YvecGgNUKRe06S2ukA+2+ZSIOBEQ5Btpyv3tBJs
-	 tPpHzrgjj5ODKWOqfO3h9LdTLqNjwKzGa5wNYj64FcsIG2ZSLC2L5uGOl0+6zsj9om
-	 dWWRl1z0g4aRFA953uXWlv1cG7eNuEuoRtIllyBP7ZFq2nVsuuAM2EZAommdC8YTNA
-	 Q/wmoi3dHDsoVBM8kpU1nlN53mMaBlayrXVo/NEXESeb+BVZNTrAaNXadIgBQTGkJA
-	 fI8om3OHCXf9w==
-Date: Tue, 13 Jan 2026 09:08:55 +0100
+	b=eZjanKlMYS8SKbsSbk7gld33H5Rjqz+qoh2LhRDxxzvc308SPu/wGjII103/86xT+
+	 2yk8pa1RkbwxrnktMYHCYIt6MMJsArZzBqpO479BeZ8T8OmhOxA6HWs2/DXKLl0xUc
+	 AVznyIw+aG269hooPrcqDeqnVmD4jT8Iw4yWDcB04RRimNFBNOrZjGUJd6zFDJPxAu
+	 CAoPLkMHx5c/2KsCSEJ4sjqePC4SG0a4P+EswmMNWxrDxERViZvAqk6rXEma0335SZ
+	 aoTQu8cWdN89DZliKEpEstXNewtCsPyFVNnd184yF5msyk8m99NDgWymms5qNSfJBt
+	 YS2o/R3qBsCjQ==
+Date: Tue, 13 Jan 2026 09:11:59 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: serial: sh-sci: Fold single-entry
- compatibles into enum
-Message-ID: <20260113-jolly-pug-of-serendipity-d3538f@quoll>
-References: <20260112095722.25556-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next 2/2] net: airoha: npu: Add the capability to
+ read firmware names from dts
+Message-ID: <20260113-beige-guillemot-of-painting-575bda@quoll>
+References: <20260112-airoha-npu-firmware-name-v1-0-d0b148b6710f@kernel.org>
+ <20260112-airoha-npu-firmware-name-v1-2-d0b148b6710f@kernel.org>
+ <f57867a0-a57d-4572-b0ed-b2adb41d9689@lunn.ch>
+ <aWT4vcBzG6UnaqOF@lore-desk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,24 +63,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260112095722.25556-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <aWT4vcBzG6UnaqOF@lore-desk>
 
-On Mon, Jan 12, 2026 at 09:57:22AM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Jan 12, 2026 at 02:35:57PM +0100, Lorenzo Bianconi wrote:
+> > static const struct of_device_id of_airoha_npu_match[] = {
+> >         { .compatible = "airoha,en7581-npu", .data = &en7581_npu_soc_data },
+> >         { .compatible = "airoha,an7583-npu", .data = &an7583_npu_soc_data },
+> >         { /* sentinel */ }
+> > };
+> > 
+> > Why cannot this scheme be extended with another compatible?
 > 
-> Group single compatibles into enum.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v1->v2:
-> - Dropped "- items:" to reduce indentation level.
-> - Added Reviewed-by tag. 
-> ---
->  .../devicetree/bindings/serial/renesas,scif.yaml  | 15 +++++----------
->  1 file changed, 5 insertions(+), 10 deletions(-)
+> yes, that is another possibility I was thinking of but then I found
+> "firwmare-name" property was quite a common approach.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+"firmware-name" is for cases when the firmware is per board, not per
+SoC.
 
 Best regards,
 Krzysztof
