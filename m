@@ -1,260 +1,164 @@
-Return-Path: <devicetree+bounces-254653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26802D1A686
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:51:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3B2D1A6AB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:52:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11F363081106
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:48:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 83D963006721
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B307334D3B6;
-	Tue, 13 Jan 2026 16:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9B334DB6D;
+	Tue, 13 Jan 2026 16:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DSQDeeEP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zuh5SqVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E37334CFCC;
-	Tue, 13 Jan 2026 16:48:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D706D30AAD8
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768322928; cv=none; b=YwpEUiRArKOuQ7ChbOp74vNLWTkE0MvcBTrHvhEjy4pVh6FCATQfVxmHKvWRz8+cDUqzlXQBUOJBuqEC8vStuyuRugAvTE54vG8kPYlTEuJI63zcQjHzmyDiYW6ts3DnTYNmYNQf5LLSR5+gtkxoNRmXIkAhzFdllrRP5LizDT4=
+	t=1768323149; cv=none; b=sgqCLNrEqiefiZnFVAtqymGoGGym25ldWuKANfyZV+cTO6vUQSDaeEX036di7IP7+ci6Rn0CBkNvzD8uuFHEecB70nmuXix9Sj8rva51nE1HHEn4+v2OwZlojUEMgTkt7lRsbosj/d9kpOwPBdAgFiJYLc+ibqP/XJ48OJKVhRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768322928; c=relaxed/simple;
-	bh=9Xi4F4hDVlUXQAZiuT7/skN/sMa6mBICWxabbaie9bo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ea8kLLyJHb/lw9JTuX/EunMvusO+ShAE9zAVr2ASEdiZsbbLWn72Wwz+QgdhIJh4Soxq67YY7t9gTqa9T9cU2d6FqqTLDYkVb4LalAUTaUjKyMFEMj5zyNyZC1LQI3UBkjLDTwDqXO7h3MeJSKsSKO1vaMD+d3qth8OLBsjJBUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DSQDeeEP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD37BC19422;
-	Tue, 13 Jan 2026 16:48:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768322928;
-	bh=9Xi4F4hDVlUXQAZiuT7/skN/sMa6mBICWxabbaie9bo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DSQDeeEP3Ac1HUW7ML9da+hYHgxI5RJ0f2MMfzbJSzVBZpioIAiqG/Pa2edk5MH+p
-	 dT2ipZcgIeS2csLEFvgScSCMgNs+IAcz3aPxnwbJbM9EnZiq4Pw4ccK6TdlIQkjs8W
-	 bUo2LRvT3QM05Hv1i2wadPMsgM6fphmlmkLzNk+iNVqq0f8LkDdep8fMEtT+a4zlgu
-	 nZUBWI3g6RI9ptg0W8y2FL7QjzvRtE0msLoP5CmEHbxzcFYMRwHiKJhTAIBlRMXO6E
-	 uoPOwnpgyG0RyC31amahaWSekoj+C/gWrcSwHbCzE/WTT9DQfoZM5GCIpPq3MnZpH5
-	 hY9xmI13JIiqA==
-Date: Tue, 13 Jan 2026 22:18:38 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-pm@vger.kernel.org, linux-ide@vger.kernel.org, 
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v5 2/5] dt-bindings: connector: Add PCIe M.2 Mechanical
- Key M connector
-Message-ID: <mlgfs2v4eoovrdjba5l72yceudut5fa3xvi57s6cxukyfkyau4@7oo3dfohn2z3>
-References: <20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com>
- <20260107-pci-m2-v5-2-8173d8a72641@oss.qualcomm.com>
- <20260113163733.GA3743579-robh@kernel.org>
+	s=arc-20240116; t=1768323149; c=relaxed/simple;
+	bh=87sM8oKP90w0z33dkwRxWaZIAcg0ysEHSvMr/Qcbr1U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ebsJy+wjqlGXhVzN7DiWP+kaYxK/Igo5pEy1ft/OtqAfPfJJqveAhWTFbe591+n7+rlFS2TkjXjNJWgvA54CVyg3jScPVteJOKoP8ZyfPcN/A/yiCrtZ2nMsvQCTt7hdCQDNu0ejo5fS+qa0wZWWDaKjIj3aLRuoDR1nH5X+aVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Zuh5SqVI; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee2715254so709015e9.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:52:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768323146; x=1768927946; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pccbmgwn2QEBQTzOfFfVx5vnJQO1AdZUP/7cqVG+l70=;
+        b=Zuh5SqVI3nB1f2A6D0Xwke4Uwe7iANDCX52uSozJ/uEowwwbOREqM8UKK7zqgZN4rJ
+         9juBxgesr1nARzjrm9Ik/P4KpZn0BjKK1wckKEhT7Npqvm8fDFfPg020JKZ5fFx+zyzw
+         BZfi97nYZ2nYmLfIH4xgh2dPCeQao3xGq7LWUfDI1iHujMwvfgeQN1ijs5zq7GDvlNW5
+         U+6lBtnzrOkWCBhF8/419BZ0S0qeruKEg7wgaarORgmxw1o8mO42+Vk6N9XYIc+PvaD4
+         IoLFNB9U0qvnkH9mp6Rvmxp06jETnrEP9SnZ9YFvu+9QLYXRjWlmUjkP8vbJYUnERv6a
+         RA4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768323146; x=1768927946;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pccbmgwn2QEBQTzOfFfVx5vnJQO1AdZUP/7cqVG+l70=;
+        b=Qdaq10ulr0a3dJWta1HVnKYXnawRzmzQFHpWjLNgtPeO8Z7G5T46AizMGvriGfRwXa
+         ZJ673K/YhkVvhSyKu9A473o0c7RDuvpv0r6U4OT7d6YNqFKdcz/0+AL1C00wtHnik1Ej
+         CzNAvB63eXCo5UV36BXDU5JnjwlDIP/RYDdxHI4wPD4Oewm9Nvo+w7UviFJGj1Jj8Yr5
+         3n1d4IeL7VZEhJxaz7/zCsJyNfs8onVEN66VGNU2KY3jdbljbWTcuO2M0r9iN8DGdyCG
+         32dwqmVG4YjeE1uAWKAa+qfK6Ub+SQWHd/ZDcVGDoh58lFJUZPRGQH2xfHEoHlusNtuJ
+         oeLA==
+X-Forwarded-Encrypted: i=1; AJvYcCVEgwScytzm8P2CRfLAktXsB7YwBlsV3M6bKPYEWOsJxby2EWL1GxQ2ODSPyAkwZp3aGDLKJjOmmIDp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yypeh06JNdbsU7Y5chyN0wFLsnIXjszVJFnG8qj+6SZIh7RIEnM
+	1YHH4cXpThwVDN0twc5rEI+dbNkN31/+AqW7NNq6zn1U5y89Wwk0pqcougV7oOew/XY=
+X-Gm-Gg: AY/fxX5UvPpbDxAxhwVfFv9qUPQrWlmd8qOcQ/TMX5u6evc34H8HX/IHXveVAQE+vO+
+	AXbLV39Mnp90GvfvgcVKpH67WyHmVCjS4nIxAAdaofckH99KhTDMJRf6i189bGUYDsAm3/sNZYv
+	1Kz60I58VBn+ezeOLMFklPrTX0gX9vA9AMGhlKnvZVd9H/ONxovIGcTWX2PF/AUPuLBif4xAoh8
+	MGHD40F5TYv87lVRxXG8Dq9krlSsXq2zRryn/k0e1a4GFQ9XJeFYSYETB0H3vRozWP3RzC5uHuL
+	4R4ykzImwG7YXdz0Nv+z4SmvbOkHp2nHer3H6DjcL9kzhGRKvj8tbvtDCqTxG0lb7ygI/txt2/z
+	H1n857IuYSxx7IRYvM7IHzWMMZxq5SkuQad8t95/uccIXOP6c6P625OKlCaOzBChuqTaFM5+fJI
+	2BujMpv1AIIZsTp/DbW+nu7ctwb5TrGUw=
+X-Google-Smtp-Source: AGHT+IEIp1YZBUlweYWaCnnIBVy0+bF1LqyJ+T0qOr1ZxyTRb97O7yWvJcGGelOgdVfuRVXXKCscSg==
+X-Received: by 2002:a05:600c:3114:b0:47d:3ffa:5c75 with SMTP id 5b1f17b1804b1-47d84b31531mr215631915e9.20.1768323146177;
+        Tue, 13 Jan 2026 08:52:26 -0800 (PST)
+Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:3594:70ab:9964:c5ec])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f41eb3bsm431684925e9.7.2026.01.13.08.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jan 2026 08:52:25 -0800 (PST)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: wbg@kernel.org
+Cc: Frank.li@nxp.com,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	s32@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: [PATCH v5 0/3] Add the System Timer Module counter
+Date: Tue, 13 Jan 2026 17:52:17 +0100
+Message-ID: <20260113165220.1599038-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260113163733.GA3743579-robh@kernel.org>
 
-On Tue, Jan 13, 2026 at 10:37:33AM -0600, Rob Herring wrote:
-> On Wed, Jan 07, 2026 at 07:41:24PM +0530, Manivannan Sadhasivam wrote:
-> > Add the devicetree binding for PCIe M.2 Mechanical Key M connector defined
-> > in the PCI Express M.2 Specification, r4.0, sec 5.3. This connector
-> > provides interfaces like PCIe and SATA to attach the Solid State Drives
-> > (SSDs) to the host machine along with additional interfaces like USB, and
-> > SMBus for debugging and supplementary features.
-> > 
-> > The connector provides a primary power supply of 3.3v, along with an
-> > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
-> > 1.8v sideband signaling.
-> > 
-> > The connector also supplies optional signals in the form of GPIOs for fine
-> > grained power management.
-> > 
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> >  .../bindings/connector/pcie-m2-m-connector.yaml    | 133 +++++++++++++++++++++
-> >  1 file changed, 133 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
-> > new file mode 100644
-> > index 000000000000..e912ee6f6a59
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
-> > @@ -0,0 +1,133 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/connector/pcie-m2-m-connector.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: PCIe M.2 Mechanical Key M Connector
-> > +
-> > +maintainers:
-> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > +
-> > +description:
-> > +  A PCIe M.2 M connector node represents a physical PCIe M.2 Mechanical Key M
-> > +  connector. The Mechanical Key M connectors are used to connect SSDs to the
-> > +  host system over PCIe/SATA interfaces. These connectors also offer optional
-> > +  interfaces like USB, SMBus.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: pcie-m2-m-connector
-> > +
-> > +  vpcie3v3-supply:
-> > +    description: A phandle to the regulator for 3.3v supply.
-> > +
-> > +  vpcie1v8-supply:
-> > +    description: A phandle to the regulator for VIO 1.8v supply.
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    description: OF graph bindings modeling the interfaces exposed on the
-> > +      connector. Since a single connector can have multiple interfaces, every
-> > +      interface has an assigned OF graph port number as described below.
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Host interfaces of the connector
-> > +
-> > +        properties:
-> > +          endpoint@0:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: PCIe interface
-> > +
-> > +          endpoint@1:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: SATA interface
-> > +
-> > +        anyOf:
-> > +          - required:
-> > +              - endpoint@0
-> > +          - required:
-> > +              - endpoint@1
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: USB 2.0 interface
-> > +
-> > +      i2c-parent:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > +        description: SMBus interface
-> 
-> This belongs outside of 'ports'. I would expect you'd get an error if 
-> you tried to put it here as '/schemas/graph.yaml#/properties/ports' 
-> shouldn't allow it. Please include the property in the example.
-> 
+The NXP S32 family provides a System Timer Module (STM), a 32-bit
+free-running counter clocked from a peripheral clock. The STM includes
+a prescaler and one or more compare channels generating optional
+interrupts. When used as a generic hardware counter, only the main
+free-running counter is required, while the compare channels are
+typically unused.
 
-Okay.
+On S32G2 devices, the STM is exposed as a simple counter block that
+can operate continuously and be shared across subsystems such as the
+Linux kernel, firmware components running on Cortex-M7 cores, or other
+co-processors. The counter can be read atomically and provides a
+stable timestamp source to correlate events occurring in different
+execution contexts.
 
-> > +
-> > +    required:
-> > +      - port@0
-> > +
-> > +  clocks:
-> > +    description: 32.768 KHz Suspend Clock (SUSCLK) input from the host system to
-> > +      the M.2 card. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.1 for
-> > +      more details.
-> > +    maxItems: 1
-> > +
-> > +  pedet-gpios:
-> > +    description: GPIO input to PEDET signal. This signal is used by the host
-> > +      systems to determine the communication protocol that the M.2 card uses;
-> > +      SATA signaling (low) or PCIe signaling (high). Refer, PCI Express M.2
-> > +      Specification r4.0, sec 3.3.4.2 for more details.
-> > +    maxItems: 1
-> > +
-> > +  viocfg-gpios:
-> > +    description: GPIO output to IO voltage configuration (VIO_CFG) signal. This
-> > +      signal is used by the M.2 card to indicate to the host system that the
-> > +      card supports an independent IO voltage domain for the sideband signals.
-> > +      Refer, PCI Express M.2 Specification r4.0, sec 3.1.15.1 for more details.
-> > +    maxItems: 1
-> > +
-> > +  pwrdis-gpios:
-> > +    description: GPIO input to Power Disable (PWRDIS) signal. This signal is
-> > +      used by the host system to disable power on the M.2 card. Refer, PCI
-> > +      Express M.2 Specification r4.0, sec 3.3.5.2 for more details.
-> > +    maxItems: 1
-> > +
-> > +  pln-gpios:
-> > +    description: GPIO output to Power Loss Notification (PLN#) signal. This
-> > +      signal is use to notify the M.2 card by the host system that the power
-> > +      loss event is expected to occur. Refer, PCI Express M.2 Specification
-> > +      r4.0, sec 3.2.17.1 for more details.
-> > +    maxItems: 1
-> > +
-> > +  plas3-gpios:
-> > +    description: GPIO output to Power Loss Acknowledge (PLA_S3#) signal. This
-> 
-> GPIO input?
-> 
+The Linux kernel controls the STM through a memory-mapped interface,
+configuring the prescaler, enabling or disabling the counter, and
+accounting for wrap-arounds. Other subsystems access the counter in
+read-only mode, making it a shared timestamp reference across the
+platform.
 
-I defined the role from a card PoV, but it should be the other way around, from
-the connector/host PoV. In that case, this will become input. I will change
-others also.
+This driver adds support for the STM when used as a counter on S32G2
+platforms. The device is described in the device tree using the
+following compatible:
 
-> > +      signal is used by the M.2 card to notify the host system, the status of
-> > +      the M.2 card's preparation for power loss.
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - vpcie3v3-supply
-> 
-> All the GPIOs are really optional?
-> 
+compatible = "nxp,s32g2-stm-cnt";
 
-Yes.
+The driver exposes basic counter functionality: start, stop, reset,
+prescaler configuration, and overflow handling.
 
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  # PCI M.2 Key M connector for SSDs with PCIe interface
-> > +  - |
-> > +    connector {
-> > +        compatible = "pcie-m2-m-connector";
-> > +        vpcie3v3-supply = <&vreg_nvme>;
-> > +
-> > +        ports {
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            port@0 {
-> > +                #address-cells = <1>;
-> > +                #size-cells = <0>;
-> > +
-> > +                reg = <0>;
-> > +
-> > +                endpoint@0 {
-> > +                    reg = <0>;
-> > +                    remote-endpoint = <&pcie6_port0_ep>;
-> > +                };
-> 
-> Please make the example as complete as possible.
-> 
+Changelog:
+	* v5
+	  - Use a lockless version to implement accumulated time (Frank Li)
 
-Okay.
+	* v4
+	  - Split context structure to suspend/resume
+	  - Converted counter to a u64 to accumulate the time
+	  - Replaced 'reset' to a count write to reset (William Breathitt Gray)
+	  - Added events for userspace (William Breathitt Gray)
+	  - Added action COUNTER_SYNAPSE_ACTION_RISING_EDGE for signal (William Breathitt Gray)
+	  - Renamed counter name to "System Timer Module Counter" (William Breathitt Gray)
 
-- Mani
+	* v3
+	  - Fixed compatible typo "nxp,s32g2-stm" to "nxp,s32g2-stm-cnt"
+
+	* v2
+	  - Added Rob's tag
+	  ** kbuild
+	  - Reordered alphabetically the headers
+	  - Added bitfield.h header
+	  - Use DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr()
+
+Daniel Lezcano (3):
+  counters: Reorder the Makefile
+  dt-bindings: counter: Add NXP System Timer Module Counter
+  counter: Add STM based counter
+
+ .../bindings/counter/nxp,s32g2-stm-cnt.yaml   |  64 +++
+ arch/arm64/boot/dts/freescale/s32g2.dtsi      |   6 +-
+ .../boot/dts/freescale/s32g274a-rdb2.dts      |  10 +-
+ drivers/counter/Kconfig                       |  10 +
+ drivers/counter/Makefile                      |  21 +-
+ drivers/counter/nxp-stm-cnt.c                 | 432 ++++++++++++++++++
+ 6 files changed, 524 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/counter/nxp,s32g2-stm-cnt.yaml
+ create mode 100644 drivers/counter/nxp-stm-cnt.c
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.43.0
+
 
