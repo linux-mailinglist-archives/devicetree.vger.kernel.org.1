@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-254645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF56D1A5B3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:42:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF99BD1A5E6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:44:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4FDE230915E4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:38:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B37FB30C6C94
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4437D30F80F;
-	Tue, 13 Jan 2026 16:38:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oOvOZOLk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29AEA3101C5;
+	Tue, 13 Jan 2026 16:39:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0A930FC08;
-	Tue, 13 Jan 2026 16:37:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619802E7199
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768322280; cv=none; b=WZRscCw3grBjU64GWmBiQbljWHriz2cXzqyZgnMce7B1+fPJfKB2n0c0sKj9pZ0ov3sF90cXj8LjJZHbAm3Fj/vOGGhUCZunLVTRjAFDQj7vYYX58KeN7Vl6AON6GKkREbplWj2AThgkoJzqgkqGzef/QjgmyeEqX8fGLbSaiIQ=
+	t=1768322387; cv=none; b=ARkeARzrLypb2GWwn4fsRVpr2EMI31fJU8yP3GQGlNBHkl+H3q2ku1sJNLP2peLyuKw+XP4QmE8x3p4hxPHYnHMW3fRxRalPMhvKsZFIvgfbxMBEAZBnjQKp3bY/17P6dGI3mKA6c+npAJaeyHWd9NawgkdTAoauQrPySAABeqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768322280; c=relaxed/simple;
-	bh=waBlxOEVBKC2lAPWIlT19JK2tiXFYS2bj0TZqRtFJk8=;
+	s=arc-20240116; t=1768322387; c=relaxed/simple;
+	bh=un+OnYAKpWv31OPXE9Ml69Wwy72czNmDKes0PjOtimM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mzrcrcVyfdIhrc2+o0ppkYF4rnQRryyqnvolXzzS4yzKzNIZxJQRDdY0lJS4tq8j9xnhXO56mtdZWzlHVnCO8+tLCE9pUarPywUVhok6TNEQNP7OYl+CFxhiz+IZLf1bWaaJB7AkYs9KSzWyeVhyrmQ+ef+IThWK0RiwZypw+aY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oOvOZOLk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9412EC19422;
-	Tue, 13 Jan 2026 16:37:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768322279;
-	bh=waBlxOEVBKC2lAPWIlT19JK2tiXFYS2bj0TZqRtFJk8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oOvOZOLkm1zlHmHjr8cJoFKcpicEo0RgIvTaahRG694IG30RGJiNyMBhAcV7nJRR3
-	 mlXl63yDowExc+w/f6Hnau9V2+8fsyyAhoin8qfCyM92VrKDeX22oHfarCg5yjxgUQ
-	 ywZbc9axNUbY491ID1/iIp6kaPtA0z72Fsi9mXxmZGg89fTe+JH9EXsWfysU0eIuEi
-	 7nZT1DdL9ivfpvFKZ9DHT0ztqNeT5LluaFiYLyE7ktDkOsyXaCD4DQCKbRMKh8vdD6
-	 Y++KNmRJZcHz3y7OlnbYIPDguW/xbxb/ejZTKPFKEdNkac7i5NKfn8GeMJQpkMl+2R
-	 Vr1eeinhS6nSQ==
-Date: Tue, 13 Jan 2026 10:37:58 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Niklas Cassel <cassel@kernel.org>, linux-pci@vger.kernel.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-pm@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=J5DsIyvjuRQnNegwQ17wKYc26oEN1C6fUzpQ2rcr4rb7RIQMsalS7rEXJlq5skrUqvS5xne9Y0BlSd1Xu8A1eXX2T20gaPstQFzP4+vhmiUNCkXzN7/wOZ2sm2Li/lclpwBhjCPEJkc8LF0wXBGhOeBgWNrJO1e5YWYWG9aSNG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vfhQc-0007MI-35; Tue, 13 Jan 2026 17:39:34 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vfhQb-000SBd-12;
+	Tue, 13 Jan 2026 17:39:32 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vfhQa-009v7W-1h;
+	Tue, 13 Jan 2026 17:39:32 +0100
+Date: Tue, 13 Jan 2026 17:39:32 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: dri-devel@lists.freedesktop.org, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Peng Fan <peng.fan@nxp.com>, Liu Ying <victor.liu@nxp.com>,
+	imx@lists.linux.dev,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>
-Subject: Re: [PATCH v5 1/5] dt-bindings: ata: sata: Document the graph port
-Message-ID: <176832227818.3917225.8091775807499906423.robh@kernel.org>
-References: <20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com>
- <20260107-pci-m2-v5-1-8173d8a72641@oss.qualcomm.com>
+	Lucas Stach <l.stach@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH v3] drm/bridge: fsl-ldb: Parse register offsets from DT
+Message-ID: <20260113163932.vx4245vyiafwvehg@pengutronix.de>
+References: <20260104213712.128982-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,20 +70,221 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260107-pci-m2-v5-1-8173d8a72641@oss.qualcomm.com>
+In-Reply-To: <20260104213712.128982-1-marek.vasut@mailbox.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Marek,
 
-On Wed, 07 Jan 2026 19:41:23 +0530, Manivannan Sadhasivam wrote:
-> An external connector like M.2 could expose the SATA interface to the
-> plugin cards. So add the graph port to establish link between the SATA Port
-> and the connector node.
+On 26-01-04, Marek Vasut wrote:
+> The DT bindings for this bridge describe register offsets for the LDB,
+> parse the register offsets from DT instead of hard-coding them in the
+> driver. No functional change.
+
+during the discussion of the i.MX9 PDFC bridge dt-bindings [1] we came
+to the conclusion that the 'reg' property shouldn't have been added to
+the dt-bindings in the first place.
+
+[1] https://lore.kernel.org/all/20251219153537.zgxcokyhcqerw4jp@pengutronix.de/
+
+As descibed in [1], the PDFC and LDB aren't standalone IPs with
+dedicated register spaces. For some cases like the LDB, there may be two
+dedicated registers, but for other cases like the PDFC, there is only a
+single register-field and the register containing this field is shared
+between the PDFC and the MIPI-DSI block.
+
+Therefore the 'reg' DT abstraction is wrong, instead the BLK-CTRL child
+devices should appear without a 'reg' property as simple child devices.
+The child devices need to get the register space from the syscon parent
+and need to code the registers and register-fields within the driver
+like the LDB does currently.
+
+Sorry for the late feedback.
+
+Regards,
+  Marco
+
+> The LDB was always meant to parse the 'reg' offsets out of the DT, it
+> only went somewhat wrong in the process and we ended up with hard-coded
+> reg<->compatible mapping. It was never intended to be that way, so fix
+> it.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
 > ---
->  Documentation/devicetree/bindings/ata/sata-common.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Liu Ying <victor.liu@nxp.com>
+> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+> V2: - Switch to of_property_read_reg()
+>     - Parse single-register LDB variants from DT too
+> V3: - Update commit message
+>     - Drop "likely" from the comment
+> ---
+>  drivers/gpu/drm/bridge/fsl-ldb.c | 58 ++++++++++++++++++++------------
+>  1 file changed, 36 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/fsl-ldb.c b/drivers/gpu/drm/bridge/fsl-ldb.c
+> index 5c3cf37200bce..aa352c70b9ab2 100644
+> --- a/drivers/gpu/drm/bridge/fsl-ldb.c
+> +++ b/drivers/gpu/drm/bridge/fsl-ldb.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_address.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> @@ -61,24 +62,13 @@ enum fsl_ldb_devtype {
+>  };
+>  
+>  struct fsl_ldb_devdata {
+> -	u32 ldb_ctrl;
+> -	u32 lvds_ctrl;
+>  	bool lvds_en_bit;
+> -	bool single_ctrl_reg;
+>  };
+>  
+>  static const struct fsl_ldb_devdata fsl_ldb_devdata[] = {
+> -	[IMX6SX_LDB] = {
+> -		.ldb_ctrl = 0x18,
+> -		.single_ctrl_reg = true,
+> -	},
+> -	[IMX8MP_LDB] = {
+> -		.ldb_ctrl = 0x5c,
+> -		.lvds_ctrl = 0x128,
+> -	},
+> +	[IMX6SX_LDB] = { },
+> +	[IMX8MP_LDB] = { },
+>  	[IMX93_LDB] = {
+> -		.ldb_ctrl = 0x20,
+> -		.lvds_ctrl = 0x24,
+>  		.lvds_en_bit = true,
+>  	},
+>  };
+> @@ -90,8 +80,11 @@ struct fsl_ldb {
+>  	struct clk *clk;
+>  	struct regmap *regmap;
+>  	const struct fsl_ldb_devdata *devdata;
+> +	u64 ldb_ctrl;
+> +	u64 lvds_ctrl;
+>  	bool ch0_enabled;
+>  	bool ch1_enabled;
+> +	bool single_ctrl_reg;
+>  };
+>  
+>  static bool fsl_ldb_is_dual(const struct fsl_ldb *fsl_ldb)
+> @@ -204,15 +197,15 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
+>  		reg |=	(fsl_ldb->ch0_enabled ? LDB_CTRL_DI0_VSYNC_POLARITY : 0) |
+>  			(fsl_ldb->ch1_enabled ? LDB_CTRL_DI1_VSYNC_POLARITY : 0);
+>  
+> -	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->ldb_ctrl, reg);
+> +	regmap_write(fsl_ldb->regmap, fsl_ldb->ldb_ctrl, reg);
+>  
+> -	if (fsl_ldb->devdata->single_ctrl_reg)
+> +	if (fsl_ldb->single_ctrl_reg)
+>  		return;
+>  
+>  	/* Program LVDS_CTRL */
+>  	reg = LVDS_CTRL_CC_ADJ(2) | LVDS_CTRL_PRE_EMPH_EN |
+>  	      LVDS_CTRL_PRE_EMPH_ADJ(3) | LVDS_CTRL_VBG_EN;
+> -	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, reg);
+> +	regmap_write(fsl_ldb->regmap, fsl_ldb->lvds_ctrl, reg);
+>  
+>  	/* Wait for VBG to stabilize. */
+>  	usleep_range(15, 20);
+> @@ -220,7 +213,7 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
+>  	reg |=	(fsl_ldb->ch0_enabled ? LVDS_CTRL_CH0_EN : 0) |
+>  		(fsl_ldb->ch1_enabled ? LVDS_CTRL_CH1_EN : 0);
+>  
+> -	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, reg);
+> +	regmap_write(fsl_ldb->regmap, fsl_ldb->lvds_ctrl, reg);
+>  }
+>  
+>  static void fsl_ldb_atomic_disable(struct drm_bridge *bridge,
+> @@ -231,12 +224,12 @@ static void fsl_ldb_atomic_disable(struct drm_bridge *bridge,
+>  	/* Stop channel(s). */
+>  	if (fsl_ldb->devdata->lvds_en_bit)
+>  		/* Set LVDS_CTRL_LVDS_EN bit to disable. */
+> -		regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl,
+> +		regmap_write(fsl_ldb->regmap, fsl_ldb->lvds_ctrl,
+>  			     LVDS_CTRL_LVDS_EN);
+>  	else
+> -		if (!fsl_ldb->devdata->single_ctrl_reg)
+> -			regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, 0);
+> -	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->ldb_ctrl, 0);
+> +		if (!fsl_ldb->single_ctrl_reg)
+> +			regmap_write(fsl_ldb->regmap, fsl_ldb->lvds_ctrl, 0);
+> +	regmap_write(fsl_ldb->regmap, fsl_ldb->ldb_ctrl, 0);
+>  
+>  	clk_disable_unprepare(fsl_ldb->clk);
+>  }
+> @@ -296,7 +289,7 @@ static int fsl_ldb_probe(struct platform_device *pdev)
+>  	struct device_node *remote1, *remote2;
+>  	struct drm_panel *panel;
+>  	struct fsl_ldb *fsl_ldb;
+> -	int dual_link;
+> +	int dual_link, idx, ret;
+>  
+>  	fsl_ldb = devm_drm_bridge_alloc(dev, struct fsl_ldb, bridge, &funcs);
+>  	if (IS_ERR(fsl_ldb))
+> @@ -309,6 +302,27 @@ static int fsl_ldb_probe(struct platform_device *pdev)
+>  	fsl_ldb->dev = &pdev->dev;
+>  	fsl_ldb->bridge.of_node = dev->of_node;
+>  
+> +	/* No "reg-names" property means single-register LDB */
+> +	idx = of_property_match_string(dev->of_node, "reg-names", "ldb");
+> +	if (idx < 0) {
+> +		fsl_ldb->single_ctrl_reg = true;
+> +		idx = 0;
+> +	}
+> +
+> +	ret = of_property_read_reg(dev->of_node, idx, &fsl_ldb->ldb_ctrl, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!fsl_ldb->single_ctrl_reg) {
+> +		idx = of_property_match_string(dev->of_node, "reg-names", "lvds");
+> +		if (idx < 0)
+> +			return idx;
+> +
+> +		ret = of_property_read_reg(dev->of_node, idx, &fsl_ldb->lvds_ctrl, NULL);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	fsl_ldb->clk = devm_clk_get(dev, "ldb");
+>  	if (IS_ERR(fsl_ldb->clk))
+>  		return PTR_ERR(fsl_ldb->clk);
+> -- 
+> 2.51.0
+> 
+> 
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+-- 
+#gernperDu 
+#CallMeByMyFirstName
 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
