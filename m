@@ -1,81 +1,105 @@
-Return-Path: <devicetree+bounces-254611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 854B7D19E73
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:31:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB14D19F0F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:35:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1050D30223D4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:31:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9244A3039999
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97222FF151;
-	Tue, 13 Jan 2026 15:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACAE1392C58;
+	Tue, 13 Jan 2026 15:33:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="b//yKE6q"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="CqykJfQA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 335282DF3DA
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 15:31:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4985430216D;
+	Tue, 13 Jan 2026 15:33:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768318277; cv=none; b=mIhZ/fJnY+gpa4MRAOueybrh3Snob3ZxJ4JhEbDCF/X0LSWhZx2xWhG59wDcPC+yjiRgx6rqhTuXkfowrCqLMD3zek9HAd9q7Y724h00AHES0JaWJuqRFlkI/DGS3i1DYhXBpneuis9i7LaudXXHUd1kGGvGax4uvJ1W7huyWMc=
+	t=1768318412; cv=none; b=moZmM1VXsSwKqxkCmo9MSter0rv+0kQK8at4164ZKVYFefYxpBrf2/NYOLicGxO0acC6KCXSKzz8Y6hFRsekVz0ndW/oIb+Oqf10q1iFUmmcEyEBQqZ9x0cWcgwAF/32wcv6u0DJtnqQ0FohemkYE1xSo//+nwi3ajJWNy7itxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768318277; c=relaxed/simple;
-	bh=FcGay/4lt79PMY2WhaeLVJo/w2x4GzZMPvFzaqw/i3A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oOcNbwT6xUbjcWIOCfhvrgoPqIJYI41+j7wt+FSLFKjyry907OyekjJngsKr5MrNy0UvfrW46blrvedaDHnSbcq+D4UDZDbMo20JRlwAjKEfWRO/ycbNlfKccB83zhABEZSjoIX9DR4vCQUCvDArdONr8xHtrQM5ZWpvGzNK07Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=b//yKE6q; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=bfub
-	b3D0fkSpRc+J48p6HTqpyJx0mKk+BvFrJYYZyI4=; b=b//yKE6qQWqEuFAW9FmO
-	4WzBvqUVopy7AyiOvh+pIdFSTjzXChIh4O5PD9bLXRQU1Te+HadUraX6lfcGzowE
-	uLHQQdyVGAuqGY4185GemRYsBt0ohf4TW2MYPFqPKfZ0SHgEtLdiwBX6CGsw2BZc
-	7tpEzA2pa+3gxs/ByuxIAJ5xTp9tzZpF7VrCHZzeCBPBPjvSJMlUWYnqflnz84IY
-	GxV5MX3H+xKYHy2NOqWyR+8oyaM9ppMN8tlQlNFXQJ7MgrwHcl5D8dwKdh1j1thb
-	8w6CpKO6TSHA9cjDopdIqBUE2Geqk0Vclj168kPDKfST5fju5QBWvx+lX0lNs3UX
-	pw==
-Received: (qmail 1752685 invoked from network); 13 Jan 2026 16:31:13 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Jan 2026 16:31:13 +0100
-X-UD-Smtp-Session: l3s3148p1@VHtDrkZIiOgujnvx
-Date: Tue, 13 Jan 2026 16:31:07 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Andi Shyti <andi.shyti@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: brcm,iproc-i2c: Allow 2 reg entries
- for brcm,iproc-nic-i2c
-Message-ID: <aWZlOydXFVQMVL6d@ninjato>
-References: <20251215212805.3322218-1-robh@kernel.org>
+	s=arc-20240116; t=1768318412; c=relaxed/simple;
+	bh=bBc+mfqKr3uL9dadx2ba1PgNMN8oNbSq2rlIFExQJKo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YQbOnTdLom3pyrJvpvXhcCGNO4eVAqetZMuAxhb+zQ+Cn7h8q7UJrMoaCNPMhfjbaLUykgdsvjIdisU9OF0GwewJlrroaFLnEuwiXRKyrdSD8D55qPw8ioDK0wUjFp6EQNjraELwiZLHarJdnBRvMHAaT6k4JdX8Tb+H3Ulxs5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=CqykJfQA; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=TBIjrv4Y8OCNFBCu4sCpO8dv9dAjBKgPmh8xrmvTw4k=; b=CqykJfQAMzzxW08XAMUVqzuQd/
+	dXeHErJk8dedGFD3st4JDdDkPr0WhUw8QajWMph/fr+cElv98NIcffLsu9o8BD/ZR8hx6n8mAVrsk
+	eJObhJaU6hIey5iDdBkG4hmPZb93FCNC0mgz2Sqyqox3phEdoAA7EQMm8orI4IOpTNVaIrQlj2rHB
+	xYk3FavNqgyJwouerKTB9nvin2dS7ufexoiysNfz6y5tZdcuKAPstEf2OzIMLsMqe2UZc75QP8pL5
+	JMhWAHzFXkyCrdMeBAn3qKdrzY/RGlRjwNRKrefO95ydJdNp91RmEhPV3EygYAr4Ka15qEQ325Kj5
+	tQR9uZcQ==;
+From: Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH 0/3] ARM: dts: imx: wire up the TPS65185 for various
+ ereaders
+Date: Tue, 13 Jan 2026 16:31:33 +0100
+Message-Id: <20260113-tps65185-dt-v1-0-66d376ba5f65@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215212805.3322218-1-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFVlZmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQ0Nj3ZKCYjNTQwtT3ZQS3dTUFHOTRAMLS1ODZCWgjoKi1LTMCrBp0bG
+ 1tQATdF29XQAAAA==
+X-Change-ID: 20260113-tps65185-dt-eed74a08950c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Andreas Kemnade <andreas@kemnade.info>, Josua Mayer <josua.mayer@jm0.eu>
+X-Mailer: b4 0.15-dev-a6db3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1073; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=bBc+mfqKr3uL9dadx2ba1PgNMN8oNbSq2rlIFExQJKo=;
+ b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJlpqU3yv37qTa68uEWQI5J7o1t1+m6W9NL1J+Vfp669e
+ sD4peimjlIWBjEuBlkxRZZf1gpun1Se5QZPjbCHmcPKBDKEgYtTACayvoPhf0yRbOw8E+XEjM/M
+ ucWtNkuyNcO+vSqwbtilJzz5iMkyCUaGz3vvsMvGbRaLOK5srxY8L49ZyFb607d/6kYPW3e99Fn
+ LDwA=
+X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
+ fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 
-On Mon, Dec 15, 2025 at 03:28:05PM -0600, Rob Herring (Arm) wrote:
-> The brcm,iproc-nic-i2c variant has 2 reg entries.
-> 
-> The second one is related to the brcm,ape-hsls-addr-mask property, but it's
-> not clear what a proper description would be.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+As the driver is now upstream, wire it up for various ebook readers
+containing imx6sl/6sll/50 SoCs.
 
-Applied to for-current, thanks!
+The driver for the EPD itself (not included) still needs polishing
+which would be the consumer for these regulators.
+
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+Andreas Kemnade (2):
+      ARM: dts: imx: tolino-shine2: add tps65185
+      ARM: dts: imx: e60k02: add tps65185
+
+Josua Mayer (1):
+      ARM: dts: imx50-kobo-aura: add epd pmic description
+
+ arch/arm/boot/dts/nxp/imx/e60k02.dtsi              | 35 ++++++++++++-
+ arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts      | 60 +++++++++++++++++++++-
+ .../boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts    | 55 +++++++++++++++++++-
+ arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine3.dts | 26 ++++++++++
+ arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts | 26 ++++++++++
+ 5 files changed, 199 insertions(+), 3 deletions(-)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20260113-tps65185-dt-eed74a08950c
+
+Best regards,
+--  
+Andreas Kemnade <andreas@kemnade.info>
 
 
