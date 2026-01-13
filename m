@@ -1,165 +1,127 @@
-Return-Path: <devicetree+bounces-254749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7158BD1B909
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:17:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B5A7D1B939
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:21:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2EC52301FC1A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:17:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9295C302F2E6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDFF34F257;
-	Tue, 13 Jan 2026 22:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADE135580E;
+	Tue, 13 Jan 2026 22:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mK5+qEb1"
+	dkim=pass (2048-bit key) header.d=szczurek.yt header.i=szczurek@szczurek.yt header.b="brXBe4/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender-of-o53.zoho.eu (sender-of-o53.zoho.eu [136.143.169.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8909172610;
-	Tue, 13 Jan 2026 22:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768342628; cv=none; b=nPUFzjv75xSb7Sy7cmLe8gaouS/L6guAOESNZMP7Ir3I5T1ptNscgIvyRmO3Jolrmi6m5C3qWWB7o3i96VvpYhukdpObr3/vKq1WocjdiSReBQvYNi8skw23PpJYc23nL+Ibe3x1LftbQI2K7gB/e9POfcyphGQis0Y7OphWhnQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768342628; c=relaxed/simple;
-	bh=+3ONtD2eR+s+kOgpmP2sSSr8GNW6z60TPEcWwd0I1sg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xg+PO6E2DZ6PLgmJgdftgVEVygVedBgztEwvrkSnVjjo2LKi3Xr9sgxqgdqP0n2rT6kP5gRQAisFgxnwuR1YWVHO20K9eLRQCoPY8Jli8sznM5Dx/cDPmg3rznEAdOTieVPh6RJ+ciXu5KSRrcHSFE4VJxM8o/2Y+vQmTNjIQp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mK5+qEb1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3894C116C6;
-	Tue, 13 Jan 2026 22:17:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768342628;
-	bh=+3ONtD2eR+s+kOgpmP2sSSr8GNW6z60TPEcWwd0I1sg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mK5+qEb1w6ITkZA4f1kCvraKXZ4nw6/IB986JiaILnjehCVdOQgO3D33B3BcTEwn3
-	 drbxLmGvLIRDstNaX8/TmR5DkhdmsrMsy2qc1rFcSAWZL+kujYTRc7jMnJ6/nE4hhM
-	 C/LbK7JiXKWskezaDTu9xGfYe4RPQi4U3ST6w8fif48X/lo1ARSCXhY4G+MCtcwakE
-	 GOp8IkUPzi7CisiyFgEwzhZKwduYOkETw00qdIGlQdS7MbVJ9UxkzR3Aoi77MVqOT3
-	 XxO4WiBClPfzdrfRw1oNNpU7vuA5uzrIsOfpiQGgVqHpXSxUXEn8diy6Vy+fPNTiNr
-	 TZwHFeRQgHtVg==
-Date: Tue, 13 Jan 2026 22:17:00 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Guodong Xu <guodong@riscstar.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Heinrich Schuchardt <xypron.glpk@gmx.de>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev, linux-serial@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 00/11] riscv: spacemit: Add SpacemiT K3 SoC and K3
- Pico-ITX board
-Message-ID: <20260113-swarm-mama-cbd7d0546578@spud>
-References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
- <20260112-shrivel-sarcastic-36d9acd2d96a@spud>
- <20260113002123-GYA19926@gentoo.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA83354AEB
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 22:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.169.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768342894; cv=pass; b=tH2KNx0XxW/LR/K6jN5JlbNmwnDfXNUNSdV9O/1S2+YP5CYNkl3cvn31wiBmJkefuzFHVdWbmLkvX9FMpK8Gi4QkWXHS7j6UosbERTsFbXFb19xurht8CuQAgkFP+Hb5E4/d650lUav8WuC/KGfLzKzY973fD34pT0RfbjVL2XA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768342894; c=relaxed/simple;
+	bh=nI27uuCm0XzivezOpxbJIHywUyoGwWkR45ngMp9q1Bg=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=skL6NNHbyTSVmUbG2f5vDej2X/Km1EzEXGTPiJsU9eEGWlqzrI+zMJssqfKfDoFGPQiPLdKdYufG5csU/xxRPn+TNb4O0Xq6zGwwmpMEECeXCPVCqlouTyGKs+en7Mi5esMNkurc6lX+ij9ciVoW/YsDcnmhgjY7c3+JFh28L7c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=szczurek.yt; spf=pass smtp.mailfrom=szczurek.yt; dkim=pass (2048-bit key) header.d=szczurek.yt header.i=szczurek@szczurek.yt header.b=brXBe4/i; arc=pass smtp.client-ip=136.143.169.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=szczurek.yt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczurek.yt
+ARC-Seal: i=1; a=rsa-sha256; t=1768342863; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=JcJpcQpuBm5TZ+WW9ULjuWb0buKfzHTXWxSgIN3gdTaMtJKFD55DI4YVBSxEk52xVKyGxixJ3tFOqwpAbbaFcsIIsrkw17+MbN3+Y8tnqbEy1N5Rbinhco1jVeRh7EXuPp9cMMQmUXNkKJNO+yoreLrwATaJ4OQNufunywLGKQk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1768342863; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=6t0XRyLt6y4Y7XbjooZD3bqn9xJkWxhySXVzC3fK/0E=; 
+	b=aHZsqlrgU1vx3kl6DbL6lM0trKwthPmrxQCzSE6qicfBzpGYHBZEiaMXenH2KQuPfrqPEj6aHyX3i+n+JeYkDNQXcZmmjzevoDbMr9QqhG7U/ok8CprhnDXQFCQTyXUnIUeZTGbcsK14V7LL1XK6zxLIWykrVBr8QXGf9BY6m0U=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=szczurek.yt;
+	spf=pass  smtp.mailfrom=szczurek@szczurek.yt;
+	dmarc=pass header.from=<szczurek@szczurek.yt>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768342863;
+	s=zoho; d=szczurek.yt; i=szczurek@szczurek.yt;
+	h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=6t0XRyLt6y4Y7XbjooZD3bqn9xJkWxhySXVzC3fK/0E=;
+	b=brXBe4/iRB2SrWoAX7REoZZob5gc4foBfGwluVQ8fyk0XijzZdoDBe0QVqrMzINU
+	cTeOkw1/vu1m1tGw8FYWjPhJS/oAed991/Pj5INQ43EJhBAibmrRHcSGaQRI8iTLP3K
+	0U+9ylqk9rLTfancw7awdEDjTThQFgCY6xICUbATO62N3UwOM6JdqngFkH0DTV6m2GK
+	CyhhQ+9AZdy4q2t2iFMZeGrloqxJn9OiwT1ZdE5R8QN1pql9SuAyjSYrFWC3w8UtTCL
+	vsTCmuUAf75fiwEQXSx2vtSFK3F9tRtd3/j0M227lgMp87YNqMe0lTQw6fhLcqqd5xN
+	N3h1H4FzQg==
+Received: from mail.zoho.eu by mx.zoho.eu
+	with SMTP id 1768342862318952.1865680945543; Tue, 13 Jan 2026 23:21:02 +0100 (CET)
+Date: Tue, 13 Jan 2026 23:21:02 +0100
+From: Szczurek <szczurek@szczurek.yt>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+Cc: "yedaya.ka" <yedaya.ka@gmail.com>,
+	"Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+	"Rob Herring" <robh@kernel.org>,
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+	"Conor Dooley" <conor+dt@kernel.org>,
+	"Bjorn Andersson" <andersson@kernel.org>,
+	"Konrad Dybcio" <konradybcio@kernel.org>,
+	"linux-input" <linux-input@vger.kernel.org>,
+	"devicetree" <devicetree@vger.kernel.org>,
+	"linux-kernel" <linux-kernel@vger.kernel.org>,
+	"linux-arm-msm" <linux-arm-msm@vger.kernel.org>
+Message-ID: <19bb972b9d3.12a7d3da3105717.8521466650832407846@szczurek.yt>
+In-Reply-To: <o4eu2db3y3wrxaxtxcbxupdc2tzemqvb4fupwfkjfjqmy5qudd@v4umeav2oib2>
+References: <20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com>
+ <20260113-touchscreen-patches-v1-2-a10957f32dd8@gmail.com> <o4eu2db3y3wrxaxtxcbxupdc2tzemqvb4fupwfkjfjqmy5qudd@v4umeav2oib2>
+Subject: Re: [PATCH 2/3] drivers: input: touchscreen: edt-ft5x06: Add
+ FocalTech FT3518
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xUPru1lBOhmdPMEM"
-Content-Disposition: inline
-In-Reply-To: <20260113002123-GYA19926@gentoo.org>
-
-
---xUPru1lBOhmdPMEM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 
-On Tue, Jan 13, 2026 at 08:21:23AM +0800, Yixun Lan wrote:
-> Hi Conor,
+On Tue, Jan 13, 2026 at 20:28:27 +0100 Dmitry Baryshkov <dmitry.baryshkov@o=
+ss.qualcomm.com> wrote:
+
+>On Tue, Jan 13, 2026 at 09:12:36PM +0200, Yedaya Katsman via B4 Relay wrot=
+e:=20
+> From: Yedaya Katsman <yedaya.ka@gmail.com>=20
 >=20
-> On 21:45 Mon 12 Jan     , Conor Dooley wrote:
-> > On Sat, Jan 10, 2026 at 01:18:12PM +0800, Guodong Xu wrote:
-> >=20
-> > > Hi, Conor
-> > >=20
-> > > For the binding riscv/extensions.ymal, here's what changed in v3 (no
-> > > change in v4):
-> > >=20
-> > >  1. Dropped the patch of adding "supm" into extensions.yaml. At the s=
-ame
-> > >     time, I will start another patchset which implements the strategy
-> > >     outlined by Conor in Link [2] and by Samuel in Link [3].
-> >=20
-> > Okay, that seems reasonable to separate out.
-> >=20
-> > >=20
-> > >  2. Dropped the dependency checks for "sha" on "h", "shcounterenw", a=
-nd
-> > >     6 others. "sha" implies these extensions, and it should be allowed
-> > >     to be declared independently. Like "a" implies "zaamo" and "zalrs=
-c".
-> > >=20
-> > >  3. Enchanced the dependency check of "ziccamoa" on "a". Specifically,
-> > >      - added the dependency check of "ziccamoa" on "zaamo" or on "a".
-> > >      - added the dependency check of "za64rs" on "zalrsc" or on "a".
-> > >      - added the dependency check of "ziccrse" on "zalrsc" or "a".
-> > >     The commit message of this patch is updated too, to better explai=
-n the
-> > >     relationship  between "ziccamoa", "za64rs", "ziccrse" and "a".
-> > >=20
-> > >  4. Enhanced checking dependency of "b" and "zba", "zbb", "zbs", maki=
-ng the
-> > >     dependency check in both directions, as discussed in [4]. Since "=
-b"
-> > >     was ratified much later than its component extensions (zba/zbb/zb=
-s),
-> > >     existing software and kernels expect these explicit strings. This
-> > >     bidirectional check ensures cores declaring "b" remain compatible
-> > >     with older software that only recognizes zba/zbb/zbs.
-> >=20
-> > This I asked about in the relevant patch, I would like to know what your
-> > plan for adding the "b"s is.
-> >=20
-> ..
-> > Spacemit folks, I assume you weren't planning on taking the
-> > extensions.yaml stuff via your tree? If you weren't, I'll grab it once
-> > the question about b is answered.
+> The driver also works with FT3518, which supports up to 10 touch points.=
+=20
+>  Add compatible data for it.=20
 >=20
-> sure, please take extension stuff which are patches 6-9, for 1-5, it's
-> all about adding support for SpacemiT K3 SoC, to avoid petential conflict=
-s,
-> I wouldn't mind if you also taking them? then I can handle the rest 10,11=
- for DT
+> Co-developed-by: SzczurekYT <szczurek@szczurek.yt>=20
+> Signed-off-by: SzczurekYT <szczurek@szczurek.yt>=20
+=20
+>This doesn't look like a name.
 
-Stuff for spacemit is either for you or for the relevant subsystem
-maintainers. You're probably safe enough taking the
-timer/interrupt-controller stuff if the maintainers don't apply it in a
-reasonable period, it's not abnormal for those in particular to go via
-the platform maintainer in my experience. Just be clear that you have
-done so. I'm only interested in taking 6-9.
+Hello
+Yes, it isn't a real name.
+Yedaya Katsman is upstreaming those patches by me, under my permission,
+and I forgot to tell him my name, so he took it from gitlab, which is just =
+a nickname.
+All of "SzczurekYT <szczurek@szczurek.yt>" should be replaced with "Kamil G=
+o=C5=82da <kamil.golda@protonmail.com>",
+this is my name and the e-mail I would like this to be under.
+Excuse me for the chaos.
+=20
+> Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>=20
+> ---=20
+>  drivers/input/touchscreen/edt-ft5x06.c | 6 ++++++=20
+>  1 file changed, 6 insertions(+)=20
+>=20
+=20
+>--=20
+>With best wishes=20
+>Dmitry
 
---xUPru1lBOhmdPMEM
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards
+Kamil Go=C5=82da
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaWbEXAAKCRB4tDGHoIJi
-0v1dAQCafQYTWiGoSJPD2C3gwhnu05KfEBJ3q6AZTkjohRvudAD/foVWQs+/lj8U
-CTtVpHi8NR/uKI23LWrPTtpjaG0dSgo=
-=4H5t
------END PGP SIGNATURE-----
-
---xUPru1lBOhmdPMEM--
 
