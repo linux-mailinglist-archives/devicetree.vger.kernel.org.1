@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-254282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B3DD16DF7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 07:42:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43771D16DF1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 07:42:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F62F301AD3D
+	by sin.lore.kernel.org (Postfix) with ESMTP id CA5D4300CB56
 	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 06:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9CD368283;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BD4366DD9;
 	Tue, 13 Jan 2026 06:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CVkNgAwo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sIcmLKmd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2184D35971B;
-	Tue, 13 Jan 2026 06:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 217C52DE6F3;
+	Tue, 13 Jan 2026 06:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768286546; cv=none; b=hX8ljt64RUghOrUeBnB/U/AgcpbBC9O2KXSRKMCrfjZGjVG4dR+eD4nXYZroDkeZE6Qj2rmgdI7QvhBNvn/h+hb4A7Xd5HUkT4CrO4a67O/Zalia7g9duDRPJ40BgoAQ8zuW/k6pUul/qDCY/43ar1WBBjwV2/APo0taZUz4MNs=
+	t=1768286546; cv=none; b=lDp/M2QsecD0Uex0niksSe0rY0bfWVTcOLk6D4erxtnYUNGATtjB76pWe/YnMt7zcNrmKkdl04ZqOJhcWaBPoe51fRTsVtY1h3SmMiTwnUBdp3p9P5y47ZXDRbOvNBhmTwOoiYM7Xxtqv3faI2KiKggKNuKzzWs+Hy5ETQJGsNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768286546; c=relaxed/simple;
-	bh=tgNrJivakY84LN4ffX7ynvqrLuzdsKS6bBMEvtxUBUM=;
+	bh=mWrwJnOeRgEO6bZMfF2f2PPydNykNaiqT+Cf+jwnAHo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JWFktmeOEWzPzeML49wf4we33uwCX5nLin2Of+lYloEmXcbwr2qyHz+FdI6bsJ3LMZi0/ZQb8e3RD/CutJRVllcyuP+ogDXZyN/Q1SlV+Wxsb4zIphj1M6owIfKPA8tZ/a2Glk83wfBVCdHLnUlGgaXOnBuiDh8fk426rwThzPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CVkNgAwo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C0098C19423;
+	 In-Reply-To:To:Cc; b=h1nbXGpZqT6v1uX3L4lX96HA0w6/hhTCGu93EVFnmM41dggNjNkNshAjti3zicX94Be/QczuKDTT12nxAArsZHbHBOnZoMmbVPCEd+gP8pVWLCL+9AfiED7xlx/eAjUPJKjdq9rOKshT25z9B3AYNUVUUqweU7HAZ7rutL9bUio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sIcmLKmd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CD381C19422;
 	Tue, 13 Jan 2026 06:42:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1768286545;
-	bh=tgNrJivakY84LN4ffX7ynvqrLuzdsKS6bBMEvtxUBUM=;
+	bh=mWrwJnOeRgEO6bZMfF2f2PPydNykNaiqT+Cf+jwnAHo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=CVkNgAwowTw3rkY43D3p+qbnYOV8nlcpIC+gdamWnBdYYkQiH60E0xY+VYSGKvOz3
-	 W//tZqbuemKHNoltN36iKRkAU2grVtUr+sTmkErxuhM5ajrbynxok6UsVCbhR55q/P
-	 2+sInRkNCU0PYrIRyEPOCOyISf4g5IVKkQrbWv0HhV9pu6ZHSc7VsSnTcnTVx/We5L
-	 4gIu42OyGTRLwhcpxsUgMY0eIyGNwJ0cu+fMHsqRQtTaxtdXMYHb/QRkw6Lq6drmtI
-	 5hW6Jz8xMXOeSqgvm6wMo1F8PTsYNZd2u62L6mAGqDziM/QWAzZxCDwpSvyjyP2+5r
-	 4Nsyq3ObCbeHw==
+	b=sIcmLKmdrQdddoInVxvmz048vQnrtpYGM2efLLp3hutIhqSlMJcU8duxoMvi5IpKi
+	 2X/jGdvC+4e0+UoezK76cY8ZDSYsicNKiLCOauHRMr1oJl6OuzRpJz7K5wAn7hb/x3
+	 8to9jOzkVyCGzHDl4XkFxQKUCI0vYi9DWebC6CKAa5VLBOnzltCHE38yh9y1KBeNGO
+	 BujdCdpBZHLYt24NaTAIkmltcHCBlzcsIPUFa3cJlpVlOFW4dS4fb7Nyi/RXzoPnW1
+	 yb5qWOQfH4fdb2IuEwpt/4XW+Go18WxYXGXwq/G4iwfbopBYt1+xF/5Q7nEqLDSlWu
+	 vaSBpuOWewZMQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B0374D29DDC;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C09F4D29DDD;
 	Tue, 13 Jan 2026 06:42:25 +0000 (UTC)
 From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
-Date: Mon, 12 Jan 2026 22:42:24 -0800
-Subject: [PATCH 1/3] arm64: dts: rockchip: Add modem to the Pinephone Pro
+Date: Mon, 12 Jan 2026 22:42:25 -0800
+Subject: [PATCH 2/3] mfd: rk8xx-core: Configure `rk808-clkout2` function
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +53,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260112-ppp_connectivity-v1-1-284d6e83b212@gmail.com>
+Message-Id: <20260112-ppp_connectivity-v1-2-284d6e83b212@gmail.com>
 References: <20260112-ppp_connectivity-v1-0-284d6e83b212@gmail.com>
 In-Reply-To: <20260112-ppp_connectivity-v1-0-284d6e83b212@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -61,15 +61,15 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Lee Jones <lee@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Rudraksha Gupta <guptarud@gmail.com>, Martijn Braam <martijn@brixit.nl>, 
+ Rudraksha Gupta <guptarud@gmail.com>, 
  =?utf-8?q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>, 
- Ondrej Jirman <megi@xff.cz>, Danct12 <danct12@disroot.org>
+ Martijn Braam <martijn@brixit.nl>, Ondrej Jirman <megi@xff.cz>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768286545; l=3643;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768286545; l=1504;
  i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
- bh=4uS+h5BwUlSPrxpCAFJLMPNjdiivO6iFy+cSgNfP0p0=;
- b=2ksy0syKTvw7tTSOjQGRnnffr+1niVslNBIkAg2/x41pqLBRVxPYmnDfrYxHhjVTbjbMotF10
- 4/L/4w2w6ybD5Ram1A8zLKUfrUbuTb4LTHAN8WNWBnfPBjxYbRoVaqX
+ bh=ySfNjI6t8Mnuq2/ifE0ZjoFXQgOPGkiy/R6d0iMEMgg=;
+ b=RYIUKOvuwbl5bNrcjJRBKCvN4zR/uEWENYzfyCgtOLKTGNhHcD6wgIPpYaUDMVU+2EzN4GNLR
+ mVb3zHI1nmvCzdRUtIDJ4jN4KmqqTvgyiFD50giORdpGvKrZrMSfPzG
 X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
  pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
 X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
@@ -77,145 +77,47 @@ X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
 X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
 Reply-To: guptarud@gmail.com
 
-From: Rudraksha Gupta <guptarud@gmail.com>
+From: Kamil Trzciński <ayufan@ayufan.eu>
 
-This adds the Quectel EG25-G modem to the Pinephone Pro.
+While the Wifi and Bluetooth chip are defined in the Pinephone Pro's
+DTS, it actually isn't able to be used. Let's define rk808-clkout2 so
+that userspace can actually interact with Wifi and Bluetooth
 
 Co-developed-by: Martijn Braam <martijn@brixit.nl>
 Signed-off-by: Martijn Braam <martijn@brixit.nl>
-Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
 Signed-off-by: Kamil Trzciński <ayufan@ayufan.eu>
-Co-developed-by: Ondrej Jirman <megi@xff.cz>
 Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Co-developed-by: Danct12 <danct12@disroot.org>
-Signed-off-by: Danct12 <danct12@disroot.org>
 Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
 ---
- .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 83 ++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
+ drivers/mfd/rk8xx-core.c  | 1 +
+ include/linux/mfd/rk808.h | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 6b35f59cd58e..97d0bf455258 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -97,6 +97,46 @@ multi-led {
- 		leds = <&led_red>, <&led_green>, <&led_blue>;
- 	};
- 
-+	vcc_4g_5v: regulator-vcc-4g-5v {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc_4g_5v_en>;
-+		regulator-name = "vcc_4g_5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_4g: regulator-vcc-4g {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PC7 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc_4g_en>;
-+		regulator-name = "vcc_4g";
-+		regulator-min-microvolt = <3800000>;
-+		regulator-max-microvolt = <3800000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+	};
-+
-+	vcc5v0_sys: regulator-vcc5v0-host {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&boost_otg>;
-+
-+		regulator-state-mem {
-+			regulator-on-in-suspend;
-+		};
-+	};
-+
- 	vcc_sys: regulator-vcc-sys {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_sys";
-@@ -274,6 +314,17 @@ rk818: pmic@1c {
- 		vcc9-supply = <&vcc3v3_sys>;
- 
- 		regulators {
-+			boost_otg: DCDC_BOOST {
-+				regulator-name = "boost_otg";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <5000000>;
-+				regulator-max-microvolt = <5000000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
- 			vdd_cpu_l: DCDC_REG1 {
- 				regulator-name = "vdd_cpu_l";
- 				regulator-always-on;
-@@ -702,6 +753,16 @@ blue_led_pin: blue-led-pin {
- 		};
- 	};
- 
-+	modem {
-+		vcc_4g_5v_en: vcc-4g-5v-en-pin {
-+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		vcc_4g_en: vcc-4g-en-pin {
-+			rockchip,pins = <4 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pmic {
- 		pmic_int_l: pmic-int-l {
- 			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -827,6 +888,16 @@ &tsadc {
- 	status = "okay";
+diff --git a/drivers/mfd/rk8xx-core.c b/drivers/mfd/rk8xx-core.c
+index def4587fdfb8..602218694334 100644
+--- a/drivers/mfd/rk8xx-core.c
++++ b/drivers/mfd/rk8xx-core.c
+@@ -282,6 +282,7 @@ static const struct rk808_reg_data rk818_pre_init_reg[] = {
+ 	{ RK818_H5V_EN_REG,	  BIT(0),	    RK818_H5V_EN },
+ 	{ RK808_VB_MON_REG,	  MASK_ALL,	    VB_LO_ACT |
+ 						    VB_LO_SEL_3500MV },
++	{ RK808_CLK32OUT_REG, CLK32KOUT2_FUNC_MASK, CLK32KOUT2_FUNC },
  };
  
-+
-+&u2phy1 {
-+	status = "okay";
-+};
-+
-+&u2phy1_host {
-+	status = "okay";
-+	phy-supply = <&vcc5v0_sys>;
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
-@@ -852,6 +923,18 @@ &uart2 {
- 	status = "okay";
- };
+ static const struct regmap_irq rk805_irqs[] = {
+diff --git a/include/linux/mfd/rk808.h b/include/linux/mfd/rk808.h
+index 28170ee08898..077fe2e15b78 100644
+--- a/include/linux/mfd/rk808.h
++++ b/include/linux/mfd/rk808.h
+@@ -934,6 +934,8 @@ enum rk806_dvs_mode {
  
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
- &vopb {
- 	status = "okay";
- 	assigned-clocks = <&cru DCLK_VOP0_DIV>, <&cru DCLK_VOP0>,
+ #define VOUT_LO_INT	BIT(0)
+ #define CLK32KOUT2_EN	BIT(0)
++#define CLK32KOUT2_FUNC		(0 << 1)
++#define CLK32KOUT2_FUNC_MASK	BIT(1)
+ 
+ #define TEMP105C			0x08
+ #define TEMP115C			0x0c
 
 -- 
 2.52.0
