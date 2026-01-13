@@ -1,105 +1,233 @@
-Return-Path: <devicetree+bounces-254344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A3AD176D7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:58:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 841EFD17732
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:02:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A5B203007F30
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:58:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B87AE3002D22
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E21837FF64;
-	Tue, 13 Jan 2026 08:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9745B3815CE;
+	Tue, 13 Jan 2026 09:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cUS2UaGn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qqqdRzKA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F5937BE84
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:58:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520973815DB
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768294719; cv=none; b=W5AYd/Iz2KtWCeuXAfzTEimBntn9NTGrROvBB+ZpblGpkLOEOqWvuRRObwFNtNtl9SSTR+9kYDPxoTS2S9FePiX185eGtsDboZ5wlrZjU3x+3pSm1GjEQb200ZoqfgdlGn4E9/X0WFtqEMNrFiwVhzcvbAtOga+8prQah6KurdM=
+	t=1768294919; cv=none; b=mNEiMaIYP5HQmudDM0Zkm9hOQflhv4EQpp3Ev+q4Lio+AGIhd93UwDocbMohXLhxDwVAlktWGc+7wm+C0rlYSBaHXMnaXTk7tmMvQ4lTzaWB2x1f1jz2nkxg1gR7FOLvsVNO7aa0X5GXinvUVUjxjE3JYusUc+w3eIq8d5VM08I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768294719; c=relaxed/simple;
-	bh=qFAe31p8PPO4mtj+DijEpW3hOfltqumeq8By/+jReis=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y+uUR7DrE3gB+3bExmwvgqrcVLc5R+x/tobDkDoHIeYwShtRgTQZqLLQ6yxZV6jz3ibIwmR+VUQ6/Kh8t8YAxGdNnDgO2A9GOH3W1evf1dPOsmHuoi/NzyG4YSWccOAvRNEEVJndktOQMArqCQJQUOCZiJram1jvx3UndY5w5hc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cUS2UaGn; arc=none smtp.client-ip=74.125.82.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f54.google.com with SMTP id a92af1059eb24-11f3e3f0cacso9197586c88.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 00:58:38 -0800 (PST)
+	s=arc-20240116; t=1768294919; c=relaxed/simple;
+	bh=d5vjg7xqY7UHMmCIfFmjlupVbmddXpBXVY3p8jlYrm8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S+Szngm7xThxKoRvMyAOFfIM50N91ZEpipLwc3DNGl2tREwBBbu3lN2Yp6xNDVXQV7cIE2t5sgk9TEh1KuUYCnvA54dptBHrod8tKht950O4EMkboKwV8H+v4h4Pny1nmRKCFn+weBz+MW0U0ZK5tnjqFbrecZK3w4IJCiphPoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qqqdRzKA; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-42fb03c3cf2so3877591f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 01:01:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768294717; x=1768899517; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qFAe31p8PPO4mtj+DijEpW3hOfltqumeq8By/+jReis=;
-        b=cUS2UaGnBv7KPR3OLSypvgIcCy9+LaWCIWJu1CesVLMq6XrkQGxebf1XDOHVp8h/mW
-         /922KNKSyPIwgvTiEWFTU0ldfIvCRN92ZeWsVTSNl+bEIBeAbhA+AyRUVDuj63s4FeC9
-         mfpK5UpFzhq6qcuuvZvr4kuIz0U1X4zE7X3rHFqhP3ppAH2H/kUgFbFqv7ti1DZLeo8I
-         OAlRDnXv6j6K4AFYfmzFceZfwXbNxw7Vj1LdsANWvdpzDAqF8Sa9PbjvdRqRXSkrRIzn
-         drJ7YlSNjUSfjkeAEc+CJTlEBQ4izXF6yGqH+Ctbd/nSzFU7tWyld90ly1ARugY+kdob
-         jGMA==
+        d=linaro.org; s=google; t=1768294910; x=1768899710; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zLayOWuB+aXoZiDViiMppHrDe6uab9ztwbJVajwHoL0=;
+        b=qqqdRzKA+Y8PDfN/CVIv9++Oh+tq2fdIvcuGIGAfk8s+eCgv6Mc7864UuMd8OnOfN3
+         C8Y8Q9Ij4A/en/qIGG9sAE67Qtuma4J+bh86LFUPAGuwGZSJIhSkuQitILfkRebkJK+8
+         PI9dXFFXb+cYB1fm23J+wE8TsCBK1sY6b00hcT7kEnIJInxfWNn36JnZgDwgrkkbU9bo
+         yg2mPqBB3gKuQNAObSW6fxRaLLLm4Z9V7sYxjNMuQYJ2ONiuQAqzA4+9zMAVW7dqnmp4
+         yn41a4yYk0WEyRnRBHzZXW4ZY9W3K58q4IissEUiP3cOGBrBs0w6pocrRmJmqi45Dcrx
+         fKNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768294717; x=1768899517;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=qFAe31p8PPO4mtj+DijEpW3hOfltqumeq8By/+jReis=;
-        b=NdDShwppEKwJsLsICz3pJwqr6BuQM3Zwyad/0NoH/khqDEAj5ouHE4QhSkUBYfpPU9
-         7RRv11iPbH/G7Uol5Wo2V5NYF0hW6+ACna1QDefmwUQMtO59aB2zLfVcq+jAv/RyGZHD
-         fmug7Ln05SSYDwcYyFN2ZbrF9jE95W1aJP2SwoTPa6ZmtLY8Hd2I75OpOnjG5KlLfDis
-         ixFfCqa/7V3ab9rGE4hP619mlzMLZSBvKaLjau2G+bVSYlCCoT28jC52AtQhozQTU038
-         7J7T6RaeIPHXBMxocGcXZv4SpYFnmPqyzAI5HBERaCvUCUjhf45xZdOxCZ7DMSMiLsv0
-         MoCA==
-X-Forwarded-Encrypted: i=1; AJvYcCWWFQaGoqZtltPoEM1xlwgYSx1B5Gce3+oN2moXSIp87wwanCgLhDyNBcB8uY2DuSfcxH/uveBXN7qd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+hKBkNdMhowpdbxhA1iST8p+1YqtkFiQUam+AJW9Q2Cw6PaXl
-	vbHmh5sRVgkvRByvuY6g8TqvLivhbvAKzfrJ50kvxA/EcRLl35CqJEYqGSmzCXzddahnEacsdan
-	4DQXhGAgTcZa9hetaPG5G051d25OmPXs=
-X-Gm-Gg: AY/fxX5TKivtPEhyzkx4aO3TabPhC7PB2VbkfDzWwWZKordWNc3ZODP7AMp47Z/t32D
-	gynZHvWMid8uG0FJq6QyxtB1cUK7SprmsemivgNsnXqLstOofFhYRtKl325RWfOfw/OiOMiAczm
-	xSZdX4UdInmCsJD5q0N91Fuc6zjIIlLJ6F10DQw84vh0o3DOSgGLtSWuLVVLwp37rEh5Sh7nRcj
-	p61dpzCityFxM2Rf82dZla+ajuR20M8fjrgBterhrzyyKJRX7b2vY1URHBXWTcxbfMOxGsArZmM
-	KK2WEORWhUnUmU/Ko1uo9tgkzJbZ8aURPLr13KmuNW57K2L1KVSs2uZhav6y9r7HQWVL9OK0v7k
-	YF2s+MTu7yw==
-X-Google-Smtp-Source: AGHT+IHiFhj1SBZLl1zt634a7vOzJVi0cLQ2+ekOBzZnK6j9L0o9kjlibBH9Kh5FRme3B2cB/y9gNpIFI0l3hUxnOM0=
-X-Received: by 2002:a05:7022:126:b0:121:cae0:a843 with SMTP id
- a92af1059eb24-121f8adce2dmr17795472c88.13.1768294717350; Tue, 13 Jan 2026
- 00:58:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768294910; x=1768899710;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zLayOWuB+aXoZiDViiMppHrDe6uab9ztwbJVajwHoL0=;
+        b=CWsnLchmcMbBin57FIJLIxklO2u9N9pWXuYfqf2Tm2fNohDdPTQO5W2Rm2fLexDxg8
+         9NQiysj4sQbLScal7V2qdq4dfZXKvWso6w6J73jLAibO4G2dg1jPwIEPO2jxgbp2Bury
+         0oIjMnLXVJgY7mi/t+tfUkFS0hKkSghyn122po3Q2bY8EXt5pl02eOaafHBKPZQllAEC
+         +EPTLTEklEC+Uuxum6gjXs5pOLaEODsRj+nguTmpOtQUZRXerva+nncSwGi3T3rqzfN4
+         Cfz1/yTY/fvUbltC+JCG4IgZ0PPvHnWzCiJGchu8gO088dIVuHAppVKcTlnNHktsxLs2
+         MUkw==
+X-Forwarded-Encrypted: i=1; AJvYcCUANSmdis+JpJANYCO4V3D9CqBVg8klOwvxQErI0iI0kHHgtIJfltez/9KeSyjzN8bxEEWnjus0Hgs1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKH8BJ5bf891ygf24l8Yfl53wb6xlobDbzEgD8V1dVq/Jeh6RF
+	eRJ1KRuAJN5ZrB6PLUXKAh3rBl5cqQo7AJutgZF7eg+5O3IYpuRfavh0S2dfPE3F2Hc=
+X-Gm-Gg: AY/fxX6SCTRWjx5pcfgn8i+7EjpqMdQv3C0gXKvU2dZ6shoEhTUy/4vG0a9prRuTtpe
+	iWistkSBYoppdYJMOl2Cg7/ArxkrrmBYcauV7mqlUtIaEbda+Axj4nqtpsXnpu3CZ0316TjJJNS
+	t9zwAPjsDNORPm82scVIt4CaVxa7ntWGe+TUqvmvh6j41282GMsqGHJ/atmVRrWrw+engynCI9v
+	9L9CBWxPWm1H6WoGTYiRZ8NpnSCl9NY5KTj4/+4DCnTDllFa25+NWvFPlfR+aOdl/5VJ7p7Y7Ts
+	zDcjEt/VadsdtUVseyKLJF3ZvlTBS5TdzXQ502FDAWln5K/OQTj10lWjIHDmhS9VcHhA8oQ/eNt
+	K5ANW+LZUg1PoAW3DEMZN27+kxAt+FGAdD8VuqJ4zhmczWxSoX0OKb5C740Z/jbD8z+B2pdSzu+
+	xdN5RZZhfjM3W5t7MI9iLvk7LSF6v6FbL0HodEXqs=
+X-Google-Smtp-Source: AGHT+IGL6cmE/nd1MZd/Ljre/Dci5mn4Zxy9lXnPUTvY0Zx1DkovQdRnHMs/laovytBzLKvFHqa6FA==
+X-Received: by 2002:a05:6000:438a:b0:432:c0e6:cfc0 with SMTP id ffacd0b85a97d-432c3778dd3mr26202405f8f.57.1768294910387;
+        Tue, 13 Jan 2026 01:01:50 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080::fa42:7768? ([2a01:e0a:3d9:2080::fa42:7768])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5df9afsm45524987f8f.24.2026.01.13.01.01.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jan 2026 01:01:49 -0800 (PST)
+Message-ID: <782ed3c8-d031-4934-9a8c-6366abefbf7c@linaro.org>
+Date: Tue, 13 Jan 2026 10:01:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260111-imx952-dts-v2-v2-0-5773fa57e89e@nxp.com> <20260111-imx952-dts-v2-v2-5-5773fa57e89e@nxp.com>
-In-Reply-To: <20260111-imx952-dts-v2-v2-5-5773fa57e89e@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 13 Jan 2026 11:01:07 +0200
-X-Gm-Features: AZwV_Qgo7fPdD9gHTGPqvBycw28dLEq2C2vaqXtaAyuZNVr2OJaK4dq1mXPXdQ8
-Message-ID: <CAEnQRZDc6nbGZt6jzFTYv3VrS+HvcZ9uXCYOGm0XKR7qWSLQbg@mail.gmail.com>
-Subject: Re: [PATCH v2 05/10] arm64: dts: imx952-evk: Enable SPI7
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: Add support for ECS LIVA QC710
+To: Val Packett <val@packett.cool>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260111085726.634091-2-val@packett.cool>
+ <20260111085726.634091-6-val@packett.cool>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260111085726.634091-6-val@packett.cool>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, Jan 11, 2026 at 2:44=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.co=
-m> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Enable SPI7 for i.MX952-EVK.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+Hi,
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+On 1/11/26 09:35, Val Packett wrote:
+> Add a device tree for the ECS LIVA QC710 (Snapdragon 7c) mini PC/devkit.
+> 
+> Working:
+> - Wi-Fi (wcn3990 hw1.0)
+> - Bluetooth
+> - USB Type-A (USB3 and USB2)
+> - Ethernet (over USB2)
+> - HDMI Display
+> - eMMC
+> - SDHC (microSD slot)
+> 
+> Not included:
+> - HDMI Audio
+> - EC (IT8987)
+> 
+> Signed-off-by: Val Packett <val@packett.cool>
+> ---
+>   arch/arm64/boot/dts/qcom/Makefile             |   2 +
+>   .../boot/dts/qcom/sc7180-ecs-liva-qc710.dts   | 625 ++++++++++++++++++
+>   2 files changed, 627 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/sc7180-ecs-liva-qc710.dts
+
+<snip>
+
+> +
+> +	hdmi-bridge {
+> +		compatible = "algoltek,ag6311";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				hdmi_bridge_dp_in: endpoint {
+> +					remote-endpoint = <&usb_1_qmpphy_dp_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				hdmi_bridge_tmds_out: endpoint {
+> +					remote-endpoint = <&hdmi_con>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_con: endpoint {
+> +				remote-endpoint = <&hdmi_bridge_tmds_out>;
+> +			};
+> +		};
+> +	};
+> +
+
+<snip>
+
+> +
+> +&usb_1_qmpphy {
+> +	vdda-phy-supply = <&vreg_l3c_1p2>;
+> +	vdda-pll-supply = <&vreg_l4a_0p8>;
+> +
+> +	/delete-property/ mode-switch;
+> +	/delete-property/ orientation-switch;
+> +
+> +	status = "okay";
+> +
+> +	ports {
+> +		port@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			/delete-node/ endpoint;
+> +
+> +			usb_1_qmpphy_dp_out: endpoint@0 {
+> +				reg = <0>;
+> +
+> +				data-lanes = <3 2>;
+> +				remote-endpoint = <&hdmi_bridge_dp_in>;
+> +			};
+> +
+> +			usb_1_qmpphy_usb_ss_out: endpoint@1 {
+> +				reg = <1>;
+> +
+> +				data-lanes = <1 0>;
+> +				remote-endpoint = <&usb_a_connector_ss_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+<snip>
+
+Hehe, finally seems my work was quite useful after all :-)
+Thanks,
+Neil
 
