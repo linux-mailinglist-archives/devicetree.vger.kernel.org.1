@@ -1,107 +1,190 @@
-Return-Path: <devicetree+bounces-254213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3EFED15EAF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 01:05:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D959DD15ECE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 01:07:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A7FDB3015961
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:05:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9B868302A965
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 00:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095DA171C9;
-	Tue, 13 Jan 2026 00:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F903B1BD;
+	Tue, 13 Jan 2026 00:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W3Zxm7KM"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="uMF0s+UK";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="UDmx9jM0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E45E555
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 00:05:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 096496FBF;
+	Tue, 13 Jan 2026 00:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768262724; cv=none; b=Q2AkyovNAZDSAQt3PPvQzScvoUDwhnxKaUhf2dfRTfFNd7/xoyNhtAgLYK+ynG1X1OVUgj3vs+38im7Xp2hDslNcA387Iafht5APHY8YyfujwzeK1o2FYxtN4BKWFioVMJvCfFZAYNC4kzdiGoCPr+Z+x2EljEDfD59v0V8J6qE=
+	t=1768262857; cv=none; b=Lm/yxANsbvBWfBx+2xB8W14xzyLPIosWb452tfu/Dp9I7CEOdXQYUZvC9svNBRkw/FhiJbEc4mwnIq8A55K7BPSwVQviDvpX2WxDSHz3vGAHF6XsBCxf34FU+kcsLwUt5E6W0FD25xzTyv/YZHIbUaCLA6nzhDTnvPGA5j636/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768262724; c=relaxed/simple;
-	bh=TBQZ706dz2v4czmT9bidyuALkagvTVYafuXaqgUtD1A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JZ2cQD0RrZYTyEyprKeos2KOuAR8qM3PMH0sClG7lmoTM06+1f3Xm3NhDyKjkiP+opi5bMaCW9ZTEyi5J78hOwf1/K52XyuaKizdhOF/yjPX8ajAtx1jvJrnFkSfA+bKei4A8i5vacjtcGTQexFYIytCQ4COqH35+CZeVTo9cgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W3Zxm7KM; arc=none smtp.client-ip=74.125.82.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f50.google.com with SMTP id a92af1059eb24-121a0bcd364so7847827c88.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 16:05:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768262723; x=1768867523; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GncgElqiq32w9qexfmBMBu8AFPxia/UeTgvOHBdx+u0=;
-        b=W3Zxm7KM/4R8zViV7ZSa89zGO8HTGUCNGQmS4FI7s17a1bs4qo0ylv5Z2j/shLpGzR
-         plrEvnAM2klVglrUaI83dIjGu41lC25Mrc2AuNoM770yUvCmHDg+PkT5LbLYbjq8l5F4
-         WbfrGQ4ZIvAAQMNvNFxrFDutJz2e1wk2Qv5l9Vo3ioAs49BC4uKiLIpLfbie3nhlWyFw
-         voaEghDLE5SaDgEWcC9wwwLFifH2V5H4z+eTJ5K+IZJ9W/RP9fT1ZBF5bMvg51a2jVwW
-         Gs+O1pYQ+a79ED8wtpWpvvxJUbxK01VosjOc+COsmJcq0esKcLllHEy+2xEJwvD7HrYY
-         j4VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768262723; x=1768867523;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GncgElqiq32w9qexfmBMBu8AFPxia/UeTgvOHBdx+u0=;
-        b=d5nZDS2k2UPqvIkFxHONa4EnN2R6X5o1GFdFKjmkSbZfqXIhy4l7rYqVpOgmVCRfyn
-         jZtlYBQG1tIHj1ki9QbTW/x/6N0eVGKMgrQhn1Os9vtmjUpUZr9VRegoR5JTTRcDdGDT
-         sv+/wxiXsSSwfKJh46YyuFuHmIPxKUKV8mHFOOPbBv3qWudQjyUDycxb4PHvfDXz5GX5
-         yMBtW96vjCy+ktrUWNxKcxa4ulggFkgQK7SsXVHkIMI/pUbAGdROYQlEMcqGUbiJF1Jk
-         zhox1fYP7Q7F4IZoqnp4VL3EUZ2HSR1FpyLXCwbPMuhcTtYhrm9iBHFYKnHPE+9T8rIm
-         oOdg==
-X-Forwarded-Encrypted: i=1; AJvYcCUHtOb0w8XU7LUiEinJduCCZmsKnlKolyFzOhVlpDt5MED0dIvYB7Xc0MvZjIsUll421FIqLhscqWnt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAUPSXaSWwQL/KkJ7SbPjG3mX1pYFkdedmK7yq0vXHyMDyxhWg
-	N+kDFT4qmaDGqCvoLCmKEQ3y0T4FShyZc/pvwq2OenGnzrrBOj3Ldimk
-X-Gm-Gg: AY/fxX6Xo9GGp4PhHRWUnKORqjt/FbLf3amk+fNL4v+/nxyrJKIZ4VnvAqI2xKdKBcu
-	PYJvYd18S/D45YdGOOuwttfIBKY3CpnU+dcR7DtC4zyS9S928GZXTPE6hUxiyh0uTCCBzkG9U7s
-	BpG6YElW6qaSE5jGWXIjG8kglSo473dmrn3rKyTGiZUsSN8q8I9KRJzlgrqLQCSXBMYkFtVEboZ
-	C4PrnA0oLeTV16blV13FEXpG3KqLnCmtDbWquIWs5779aXqFr0ni50U8hGNZQA540du3Bt0pBwT
-	E2OhJbthvZ3L/1027y5SovpTur4T3ljkPqSMCoW8JMXKWHtPejjoUiPLJs92w3SsvtT7l+4tRJ4
-	P2VM3/+9UAcRGL8akkooB53ujCvIROyv6+b6rbsOb8/YgYioVv0yxfS23ug5CPtgFpoTjKAFk9r
-	1zSSdaSB3EJxCAL6x16QS/RqpX
-X-Google-Smtp-Source: AGHT+IH2st110NI9ogLDebj2HC2DR5r6GB93sOZj+ArBjQ5xYxHE/S9g7UoPc+q/6FHGx3twpcufbg==
-X-Received: by 2002:a05:7022:eacb:b0:119:e56c:18b3 with SMTP id a92af1059eb24-121f8b7bb53mr13709063c88.27.1768262722658;
-        Mon, 12 Jan 2026 16:05:22 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-121f243f6c7sm20613445c88.7.2026.01.12.16.05.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jan 2026 16:05:22 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 12 Jan 2026 16:05:21 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-Cc: corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, wyx137120466@gmail.com,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: Add mps mp5926 driver bindings
-Message-ID: <90dd6919-562a-4697-843e-cca988806cf6@roeck-us.net>
-References: <20251223012231.1701-1-Yuxi.Wang@monolithicpower.com>
- <20251223012231.1701-2-Yuxi.Wang@monolithicpower.com>
+	s=arc-20240116; t=1768262857; c=relaxed/simple;
+	bh=hpQ1FooqYtCD9FMAMh0mp3G30UmT9NByzJvHV436mYA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MPCOztFbppsORJBN5SbHjrdf1dcE4hEZhmCT9I+Oa3cVSwt5+RrUyZo3uucx4BLkP4mSL8ir/IQZlruNfu0MX3mDTjwQfi5L7lWgKOTP38GDNUpgjuAI7ZSeh4pimxobo4YMBCjB2meb4itenfj/TKtt6nw0VmXhJxPZ0lR75yE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=uMF0s+UK; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=UDmx9jM0; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dqqLl06Zdz9sqQ;
+	Tue, 13 Jan 2026 01:07:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768262847;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=2pTxnpKtVagF5+gCjQtKJ1gRyYFDd8W2XyMeI2ZD/XA=;
+	b=uMF0s+UKdHBLvQliR0o8jop9QNhzxsgjXqwQzCDmGXrjIUz6MU2ntZTCwUzLFa60vJ3jND
+	orq2r3rvmj4CvB5J6tRShFpcLzYKYYQ/PkDJluGJGuPGAXniHmgmMM33O4eoJXxZ2qbKdH
+	KeMMouKKMkXfUBku6N+uO3nN9ScbArnChnbm2+ApZ55OlXZT3nDyb+9eHHYT7AdqkeSh8a
+	N9lph3uIMzkV0nVaBgBwITAuM3eJE5WOtBG/nIeHXyC7FpLhcwBJxu/fhKHdmNu63BxUKW
+	v0VdYt/kZgX1fHBF7CQxefKpTZy09IcHOildaixoD2tAS5UlU+2kDQWeaFQ83g==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=UDmx9jM0;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768262844;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=2pTxnpKtVagF5+gCjQtKJ1gRyYFDd8W2XyMeI2ZD/XA=;
+	b=UDmx9jM0pT1R3d8WCVWuqA/0vfoLwdisqPoMEgFrq5oN1+az1HYet/kZwNTU/8qzVB+VLE
+	2AbKMshA29uDu7rWRf2o4sMaytuR3I8vhlgLuP6pA5IfXj5WjIwO/W1Xch2oNuCAI+3j4k
+	BEPCypmtEo2+3vde3YJT9yzvSobWbEW4Ev8whx0wfif7GX6WmAzXUlYBdz0zS5rqKz+Ls8
+	zdnHDu2xfCkfPwr7qGMwZ7yI4VYOl0jXtKm7EIeeKv/I/NthBnNoyDvXbw9Wao+1R7FAz5
+	4QKrCt3YnHbrGihvXB+L+FOGYZqL6HUNWhQpFnvrxxiPSg9IhwmXC4+86/4tBQ==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: display: panel: Fork Waveshare panels into separate document
+Date: Tue, 13 Jan 2026 01:05:30 +0100
+Message-ID: <20260113000715.231238-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251223012231.1701-2-Yuxi.Wang@monolithicpower.com>
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 9tpdposorz9wu4i5rnpdtenewup5u5wd
+X-MBO-RS-ID: ed51021b6f7a264a3dc
+X-Rspamd-Queue-Id: 4dqqLl06Zdz9sqQ
 
-On Tue, Dec 23, 2025 at 09:22:30AM +0800, Yuxi Wang wrote:
-> Add a device tree bindings for mp5926 device.
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+Move the Waveshare panels description into separate document, so they
+can be properly described with compatible = "waveshare,...", "panel-dpi"
+and attached to "waveshare,dsi2dpi" bridge.
 
-Applied.
+While these panels are described as DPI panels, they are generally part
+of a larger unit in non-removable metal casing, so the actual internal
+configuration is not known. It is likely that internally, those panels
+are LVDS panels, connected to ICN6211 DSI-to-DPI bridge and then another
+unknown DPI-to-LVDS bridge.
 
-Thanks,
-Guenter
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Jessica Zhang <jesszhan0024@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ .../bindings/display/panel/panel-simple.yaml  |  4 ---
+ .../bindings/display/panel/waveshare,dpi.yaml | 32 +++++++++++++++++++
+ 2 files changed, 32 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/waveshare,dpi.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index e4a5b30ccfc93..62bfc3f4fee14 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -335,10 +335,6 @@ properties:
+       - vivax,tpc9150-panel
+         # VXT 800x480 color TFT LCD panel
+       - vxt,vl050-8048nt-c01
+-        # Waveshare 13.3" FHD (1920x1080) LCD panel
+-      - waveshare,13.3inch-panel
+-        # Waveshare 7.0" WSVGA (1024x600) LCD panel
+-      - waveshare,7.0inch-c-panel
+         # Winstar Display Corporation 3.5" QVGA (320x240) TFT LCD panel
+       - winstar,wf35ltiacd
+         # Yes Optoelectronics YTC700TLAG-05-201C 7" TFT LCD panel
+diff --git a/Documentation/devicetree/bindings/display/panel/waveshare,dpi.yaml b/Documentation/devicetree/bindings/display/panel/waveshare,dpi.yaml
+new file mode 100644
+index 0000000000000..40a6a8e98cc33
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/waveshare,dpi.yaml
+@@ -0,0 +1,32 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/waveshare,dpi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Waveshare Touch Display
++
++maintainers:
++  - Marek Vasut <marek.vasut+renesas@mailbox.org>
++
++allOf:
++  - $ref: panel-dpi.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - waveshare,13.3inch-panel
++          - waveshare,7.0inch-c-panel
++      - {} # panel-dpi, but not listed here to avoid false select
++
++  height-mm: true
++  label: true
++  panel-timing: true
++  port: true
++  power-supply: true
++  width-mm: true
++
++additionalProperties: false
++
++...
+-- 
+2.51.0
+
 
