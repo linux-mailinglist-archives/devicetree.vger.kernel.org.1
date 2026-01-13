@@ -1,177 +1,151 @@
-Return-Path: <devicetree+bounces-254667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C4DD1AB05
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 18:43:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDBC8D1AB1B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 18:44:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E54FB3017EFC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:43:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 48576301E9B7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6633B352F90;
-	Tue, 13 Jan 2026 17:43:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="J3SKXSst"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA7D392C49;
+	Tue, 13 Jan 2026 17:44:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04BF834EEFC
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 17:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5851F3806A1
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 17:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768326216; cv=none; b=XgaLoUUS7btSgXdUTJU119bS5h5rcgRSrbyq6UGO1fGfhcEpXlOdCInJySeyy0Y8AwSwQPqGb/zoOeBI6+KMQS///TyycG5Gm/8K6o9HhpcJT9xgLJQYlAsOeyhhTXTdk2vsiQzfWgZmzyXOCqBYRciTYoW435uAdb9TwtLAhrg=
+	t=1768326290; cv=none; b=lbQ12WIPFfpZAoz5rGUS4wRulY/rPDQODDOsMwNB3NJkB7NEU9S8B0l58tLxLuPENAibbhZ/y6R50PZvzmy7FxOqp23yTBjhkeRQ5gp3o3xt2yNSzj5WgTArTAjHFZ8t/ghD2m/jHtj3dm5rEodf1M4cuuuDzz+emrZWuqklEJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768326216; c=relaxed/simple;
-	bh=MY9rQIVkNttiXg02iqmK+j16GgE1BjxACqj6+wxn5Ag=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YZKOVAQVOx8AQroU0nx2whICmvhI3j+0EiHgL3TbzTr5uOU247leDMq/bJE5SWvxKmBf7efm6l5izoCzFfVQ3ZKklYyJREWoQVHiXlrgsfFuIRTq5GDrJ0hbGn7/WXpOVJlnQbMZ6DqmptsBptUUxWGhpx2lDJn/QOwa19/iuUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=J3SKXSst; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=kERDgTlZwEI8Z2uNkyJk/3htfhljWR3RUEeqFlNQCek=; b=J3SKXSstDC/Z/7l9Y2WHu8sKM3
-	fEv+8hlRmqWShI0vJ1TTBFu5CP4bCMBE4HLZy8oOvSBo2Ba/yWFy9fRNm6HU0G7juuXCW9mLm870h
-	hStVDsd0TgpXxYKq6orRt8W1WdkUhfD8Rv1b1jhtrtLOpQ/X3B2SDaz+LqGnPNfJuR/vQjUpe/uzU
-	hcIM71lQIVPf7bxD6AkWmWX7ICso2gjIVYdpvc52o6z5lwD/8Q6hxoOyRLfeRY0KvZOfgw4oocmdA
-	0zm0m6mNIk5WvvYdEsdp2o5W4WLUxa5LtLP15k6H3tMOrktV4wo5gXxx35MkXvK/NirgTb9dLiCKB
-	vQMOZMvA==;
-Received: from i53875b63.versanet.de ([83.135.91.99] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vfiQB-0029ih-Iu; Tue, 13 Jan 2026 18:43:12 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- FUKAUMI Naoki <naoki@radxa.com>,
- Marco Schirrmeister <mschirrmeister@gmail.com>,
- John Clark <inindev@gmail.com>, Tianling Shen <cnsztl@gmail.com>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Shawn Lin <shawn.lin@rock-chips.com>
-Subject:
- Re: [PATCH v2 2/3] soc: rockchip: grf: Support multiple grf to be handled
-Date: Tue, 13 Jan 2026 18:43:11 +0100
-Message-ID: <1906413.BzM5BlMlMQ@diego>
-In-Reply-To: <1768267105-127385-3-git-send-email-shawn.lin@rock-chips.com>
-References:
- <1768267105-127385-1-git-send-email-shawn.lin@rock-chips.com>
- <1768267105-127385-3-git-send-email-shawn.lin@rock-chips.com>
+	s=arc-20240116; t=1768326290; c=relaxed/simple;
+	bh=ydCY4dMkYiDlitiuC6Z0F5oaftjzbWrrsxFgbMP3eh8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mMVLb7n6cv0UKTFfFhBuufxTT59lAsAdQCZIA09zsczG9W2t55oG1UcPIHEnG7zgoGZ0GDK8uVWo2zWf3lmIj73kegUE3sLanSDSlH5VX89l0uNxaSQl9qewN7vo/c0oDP9GPjiftFnaDkczV23IO0zawM33mHZ3cyUdHxkwdPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b87281dbdbcso314367166b.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:44:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768326286; x=1768931086;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nRDDaI8PSQ9i8fUQYmRubU2lZ9FKKoqL8+7T/Yos84E=;
+        b=URgqD8Ly5SqSMk35zpVpVCq1HmCpGHY/5OU5kGn3vwMpKhBashzJClI7rah4PP+K6F
+         g4qbwuPLC5mIlkHgV7MZhKb5fUAgZEr+Fl7N3VtWhNzFQkBF124gk6POthoUWNpxYcGH
+         R0ewFDGwORxL4HMrKkXc0mr7CXrrgehey5jnQy2MMnXHlG0vKE+k21XIEt8AgH0qtT1y
+         Va7TuoOgg7yVrFmsQMt9m7MxPF6cVfBnf1sQXcwSnhzxKyTDceQdP46BynBT6uBOAkVz
+         1nSC09Kp1sHJyNxlR9rhntQgF1qEWjpiiQXADnDB51/sSjC9P3fJ5auJulHCLL0561VS
+         ESoA==
+X-Forwarded-Encrypted: i=1; AJvYcCV6iXpZGll3yb5s/xnMqc/1xXQlRvCq0uYagtpohNpq5bgnULfuhy3nMqCB65cjpIj8FFI+R7sp3cFC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvIy6L5kJzf7Apn9uWk1BUidVXv4FR0pIlhnF3q50Fs0iQ+0gl
+	8vTmk9tzGUaKXt1gU10YHxW1SpR/QkyhA2YIA7gmHywRJSk8IfzwGKfU/oZeEw==
+X-Gm-Gg: AY/fxX6w5WU+jz0kFtSY2Gha6TfouNJI76WFl7iVGOpitxqnAYO6Kh4S8U5t/tB1PNm
+	BS/+3ZXw6N5U2N59X+y+KLp90lkvVPkw1TZyPE4iaKC3MHi8U2+RWuIQ7LojUt8q+SeAt/0EZdt
+	/yf01sabHZPoqFeGlHofK3sCCjEaC06+jkpPIekhpN4iPHYC67LEzj7eZnNQQhy+fbTkviZXQWR
+	a8lvu/1vSWtfKyAOh96KKsSe0ZtfCXbbIgLM1iPzyexr+zxSDglySdIHcwNbJllQ9AW/Po2JbUT
+	k8N/IY5SDvXC8aTuXYJrZAhwEee3u7GwOOnkg4RJ5GSTZKfiltyjaNMLjrDO4GrrvwioGLnJu65
+	r5WqR91wb3reucVuwfOWP2CHWqeLM0R4sq1DInAo2tFmYmotvUZLAX9lUXWU8WCHG+jW2uJnz/l
+	4cEMCpEsxmnwecgc88y9qyIkjjtjyExH/52GvhbXNnrxy7Yw==
+X-Google-Smtp-Source: AGHT+IF2LxGsN/6Keoe3DyT2UHG1IbdrBpLZY09D3elBScNdSzuVpg3kGMzeCVp/wgijXP8twmjnjw==
+X-Received: by 2002:a17:906:7954:b0:b87:2579:b6cf with SMTP id a640c23a62f3a-b872579ba1bmr579850766b.41.1768326285367;
+        Tue, 13 Jan 2026 09:44:45 -0800 (PST)
+Received: from [10.42.0.1] (cst-prg-36-231.cust.vodafone.cz. [46.135.36.231])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507be655aesm20873259a12.17.2026.01.13.09.44.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jan 2026 09:44:44 -0800 (PST)
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Subject: [PATCH 0/5] New DRM accel driver for Texas Instruments' C7x DSPs
+Date: Tue, 13 Jan 2026 18:44:34 +0100
+Message-Id: <20260113-thames-v1-0-99390026937c@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIKEZmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQ0Nj3ZKMxNzUYl1jYxNDI/NEoxRLwxQloOKCotS0zAqwQdGxtbUAsQm
+ 1olgAAAA=
+X-Change-ID: 20260113-thames-334127a2d91d
+To: Nishanth Menon <nm@ti.com>, "Andrew F. Davis" <afd@ti.com>, 
+ Randolph Sapp <rs@ti.com>, Jonathan Humphreys <j-humphreys@ti.com>, 
+ Andrei Aldea <a-aldea@ti.com>, Chirag Shilwant <c-shilwant@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, linux-media@vger.kernel.org, 
+ linaro-mm-sig@lists.linaro.org, Tomeu Vizoso <tomeu@tomeuvizoso.net>
+X-Mailer: b4 0.14.2
 
-Hi Shawn,
+This series adds a new DRM/Accel driver that supports the C7x DSPs
+inside some Texas Instruments SoCs such as the J722S. These can be used
+as accelerators for various workloads, including machine learning
+inference.
 
-Am Dienstag, 13. Januar 2026, 02:18:24 Mitteleurop=C3=A4ische Normalzeit sc=
-hrieb Shawn Lin:
-> Currently, only the first matched node will be handled. This leads
-> to jtag switching broken for RK3576, as rk3576-sys-grf is found before
-> rk3576-ioc-grf. Change the code to scan all the possible nodes to fix
-> the problem.
->=20
-> Fixes: e1aaecacfa13 ("soc: rockchip: grf: Add rk3576 default GRF values")
-> Cc: Detlev Casanova <detlev.casanova@collabora.com>
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> ---
->=20
-> Changes in v2:
-> - use for_each_matching_node_and_match(Heiko)
->=20
->  drivers/soc/rockchip/grf.c | 54 +++++++++++++++++++++++-----------------=
-=2D-----
->  1 file changed, 27 insertions(+), 27 deletions(-)
->=20
-> diff --git a/drivers/soc/rockchip/grf.c b/drivers/soc/rockchip/grf.c
-> index 8974d1c..9b36390 100644
-> --- a/drivers/soc/rockchip/grf.c
-> +++ b/drivers/soc/rockchip/grf.c
-> @@ -217,34 +217,34 @@ static int __init rockchip_grf_init(void)
->  	struct regmap *grf;
->  	int ret, i;
-> =20
-> -	np =3D of_find_matching_node_and_match(NULL, rockchip_grf_dt_match,
-> -					     &match);
-> -	if (!np)
-> -		return -ENODEV;
-> -	if (!match || !match->data) {
-> -		pr_err("%s: missing grf data\n", __func__);
-> +	for_each_matching_node_and_match(np, rockchip_grf_dt_match, &match) {
-> +		if (!of_device_is_available(np))
-> +			continue;
-> +		if (!match || !match->data) {
-> +			pr_err("%s: missing grf data\n", __func__);
-> +			of_node_put(np);
-> +			return -EINVAL;
-> +		}
-> +
-> +		grf_info =3D match->data;
-> +
-> +		grf =3D syscon_node_to_regmap(np);
->  		of_node_put(np);
+This driver controls the power state of the hardware via remoteproc and
+communicates with the firmware running on the DSP via rpmsg_virtio.  The
+kernel driver itself allocates buffers, manages contexts, and submits
+jobs to the DSP firmware. Buffers are mapped by the DSP itself using its
+MMU, providing memory isolation among different clients.
 
-This of_node_put can go away I think.
+The source code for the firmware running on the DSP is available at:
+https://gitlab.freedesktop.org/tomeu/thames_firmware/.
 
-for_each_matching_node_and_match iterates over the nodes via=20
-	of_find_matching_node_and_match(dn, matches, match)   [0]
+Everything else is done in userspace, as a Gallium driver (also called
+thames) that is part of the Mesa3D project: https://docs.mesa3d.org/teflon.html
 
-and of_find_matching_node_and_match() will of_node_put() the from node [1]
+If there is more than one core that advertises the same rpmsg_virtio
+service name, the driver will load balance jobs between them with
+drm-gpu-scheduler.
 
+Userspace portion of the driver: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/39298
 
-Heiko
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+---
+Tomeu Vizoso (5):
+      arm64: dts: ti: k3-j722s-ti-ipc-firmware: Add memory pool for DSP i/o buffers
+      accel/thames: Add driver for the C7x DSPs in TI SoCs
+      accel/thames: Add IOCTLs for BO creation and mapping
+      accel/thames: Add IOCTL for job submission
+      accel/thames: Add IOCTL for memory synchronization
 
-[0] https://elixir.bootlin.com/linux/v6.18.4/source/include/linux/of.h#L1469
-[1] https://elixir.bootlin.com/linux/v6.18.4/source/drivers/of/base.c#L1147
+ Documentation/accel/thames/index.rst               |  28 ++
+ MAINTAINERS                                        |   9 +
+ .../boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi      |  11 +-
+ drivers/accel/Kconfig                              |   1 +
+ drivers/accel/Makefile                             |   3 +-
+ drivers/accel/thames/Kconfig                       |  26 ++
+ drivers/accel/thames/Makefile                      |  11 +
+ drivers/accel/thames/thames_core.c                 | 161 +++++++
+ drivers/accel/thames/thames_core.h                 |  53 +++
+ drivers/accel/thames/thames_device.c               |  93 +++++
+ drivers/accel/thames/thames_device.h               |  46 ++
+ drivers/accel/thames/thames_drv.c                  | 180 ++++++++
+ drivers/accel/thames/thames_drv.h                  |  21 +
+ drivers/accel/thames/thames_gem.c                  | 407 ++++++++++++++++++
+ drivers/accel/thames/thames_gem.h                  |  45 ++
+ drivers/accel/thames/thames_ipc.h                  | 204 +++++++++
+ drivers/accel/thames/thames_job.c                  | 463 +++++++++++++++++++++
+ drivers/accel/thames/thames_job.h                  |  51 +++
+ drivers/accel/thames/thames_rpmsg.c                | 276 ++++++++++++
+ drivers/accel/thames/thames_rpmsg.h                |  27 ++
+ 20 files changed, 2113 insertions(+), 3 deletions(-)
+---
+base-commit: 27927a79b3c6aebd18f38507a8160294243763dc
+change-id: 20260113-thames-334127a2d91d
 
-> -		return -EINVAL;
-> -	}
-> -
-> -	grf_info =3D match->data;
-> -
-> -	grf =3D syscon_node_to_regmap(np);
-> -	of_node_put(np);
-> -	if (IS_ERR(grf)) {
-> -		pr_err("%s: could not get grf syscon\n", __func__);
-> -		return PTR_ERR(grf);
-> -	}
-> -
-> -	for (i =3D 0; i < grf_info->num_values; i++) {
-> -		const struct rockchip_grf_value *val =3D &grf_info->values[i];
-> -
-> -		pr_debug("%s: adjusting %s in %#6x to %#10x\n", __func__,
-> -			val->desc, val->reg, val->val);
-> -		ret =3D regmap_write(grf, val->reg, val->val);
-> -		if (ret < 0)
-> -			pr_err("%s: write to %#6x failed with %d\n",
-> -			       __func__, val->reg, ret);
-> +		if (IS_ERR(grf)) {
-> +			pr_err("%s: could not get grf syscon\n", __func__);
-> +			return PTR_ERR(grf);
-> +		}
-> +
-> +		for (i =3D 0; i < grf_info->num_values; i++) {
-> +			const struct rockchip_grf_value *val =3D &grf_info->values[i];
-> +
-> +			pr_debug("%s: adjusting %s in %#6x to %#10x\n", __func__,
-> +				val->desc, val->reg, val->val);
-> +			ret =3D regmap_write(grf, val->reg, val->val);
-> +			if (ret < 0)
-> +				pr_err("%s: write to %#6x failed with %d\n",
-> +					__func__, val->reg, ret);
-> +		}
->  	}
-> =20
->  	return 0;
->=20
-
-
-
+Best regards,
+-- 
+Tomeu Vizoso <tomeu@tomeuvizoso.net>
 
 
