@@ -1,198 +1,157 @@
-Return-Path: <devicetree+bounces-254408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0A1D17F36
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:18:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53BB9D17FF6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:27:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A9BBF3003B24
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:17:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EC65130056CB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E845F38A29F;
-	Tue, 13 Jan 2026 10:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E2D7346E54;
+	Tue, 13 Jan 2026 10:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ei01QDuc";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WxYXyn1m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I2b8IKVO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4953876DD
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 10:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F9A2C3268
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 10:21:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768299427; cv=none; b=ZKo/KqTQOs1Dqip8iQTC5jqasITb6vmVDSVHmoEk4LKsOBdqHq5i00PeE5g7PK50Kr4EipwIBpUFbdnE6szwdgi8Bd6YPw0RvXTQQtGvzP3eu2AdyFTXx6M3sGQrMep3BO+aUDS7mCmmMqV7p838RIbqdgCS8wNUFTr3lOgNZ2w=
+	t=1768299711; cv=none; b=C6Cefo43zpN4lm1C9iaHihApcgVxyJufvdgU7l8cBB6fBLTdh23JbtvKcx1kOjwZHZUZ51opsdMmGeKLK2S2jz1OEK2pOjZVzBaQslglRirpO1QMBV2KsUOYhktdSPuJQV+GN21wteOCY4PZF2V0eVG9HjVcJNsnpwqB7loDnAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768299427; c=relaxed/simple;
-	bh=JdNy8sNfb3B2tZc+8y/an6mYG+m45FuEcTQ7VE8oRzk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CmveGkDdeKLayTMAKb+Q6a8l/agvc245QObX8lLnMeGnBeNoWxQ1YhAfScSGGPn8NotxudeIHbW0ZLL85IRILEDCL67O8bHAXomy14ed4swPLE4eiVbMC0zCn9yVwQDCSIdIhvyNnDlXt4zjhNHUfJ9gV3MRpTu/TfPTKH22E6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ei01QDuc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WxYXyn1m; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60D7Px3E177711
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 10:17:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8m5J388itfZHsfuUBn8i7fNih4A/EUVP3ZyZJLcCkdQ=; b=ei01QDucBb8Qh2jG
-	PdDGVBILia2mNv9d3J/PLuI0qRu4Uua2OdXHhbp7UlZu/5vK7lNV+rsQQbtwjvFP
-	lC3va9LSv5Ok3u9MV+iTdhU2VJO9/digxAEpVevA+7slSEJQx4VcP8QgJY/GGO3U
-	un9C9uYrM7UuJy5SHSNeAbO02NqcL8nsJK86yHo4rKkvxZGp8FpJphG6EU2k/ibI
-	9zPOMYUixthhcZElYm8cErFZ7xOKO4YocIjtt7w/tV2Aw/kRE2Fr2V0KkvyC42sA
-	PpYGPhQZsy5ST1FntefvCsD2HGt1lSl0HIq+OADLfGrk01cIZcMlo8rBCbx1swm8
-	xbZ7TQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bn52f2t2u-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 10:17:05 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ffc6560f05so17066111cf.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 02:17:05 -0800 (PST)
+	s=arc-20240116; t=1768299711; c=relaxed/simple;
+	bh=YXBUMz5vGaUA/FkR8v+yvZwyJDwVOrdh30LVLAsVIPU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iK67iKahT2+MWrHjyhqLfurIJ8QlRrJHfDkX9crUmv1QbwGOqj+5lfi0e3ULaTLzLoauEiuJIzSckJVpaKcQu1E2UzHeLlz/73Z4dGirXxUB2zQMuBkglb7SCCvca1L0jE1d2viFfygkyRMbffRAsu1vjDlOISHZz8WBy2YrQR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=I2b8IKVO; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6536e4d25e1so395747a12.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 02:21:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768299425; x=1768904225; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8m5J388itfZHsfuUBn8i7fNih4A/EUVP3ZyZJLcCkdQ=;
-        b=WxYXyn1m/s5voZl7CfIu4MZCI/giEfvJKplDCAl6FHMnIy11bN8G6u7soorje1U6J7
-         K/pUT+UQ4B8NbjJvf1BkNpVuTe0Ldmyj83WWKSRXdPNgEneCgFepHFUEvxZHW6mPJC9s
-         /mvAk5tPBHoYvVLGdlXQpN0EPEqSJYboUI6PVu+7aGFBevjJgtNhV9T2dC0dv4vTJNGs
-         zeXktV7k9PRBcnXy8q345yf3VlXfQLOLDkwW1DtiX8nCJzIyeZMgME4XX7JOQuqMP4Dw
-         Bjk0fk/OknbwCS7+vb6OVdc1YBiDmjftVg3rgQjYjzJjvhXHR64vZusD0d+c3B/q0+4Y
-         YDkQ==
+        d=linaro.org; s=google; t=1768299708; x=1768904508; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ujA74UFzyY1R7k8wF+Fji5Xa7ziOl0VUUEmZ6sQVnWc=;
+        b=I2b8IKVOYRQZ6sZsYnL9CVhzf9B2GVErlZ9xyQgARb84PiUam9vu0VJhQp5VtzEQS4
+         VbxVApz64LBGmRMcRWyZ+nrNdPhEwhK2A5ZL7XDJ4WhfAP7vhFwFSVihCifktbgQ+FvT
+         6AAdVW7Ejj+gRl5Zc++jc1PNrBgGsCUz0aQlzkR3ElkuJjzomINHqdWYO76n2uK75R8e
+         Dq8nR0/gxXRtqUSt/SmeKvi0NVBeCGgzGDtEywaeINH7hHQwajv3B53L9p77r3q81sUm
+         pjVUjaZSL3pcYWZnx38tpUj9a0V0kK7A9mLfT+UbNBnJMij6I85v37YNBvXYKU9TVmGk
+         WFEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768299425; x=1768904225;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8m5J388itfZHsfuUBn8i7fNih4A/EUVP3ZyZJLcCkdQ=;
-        b=UwXmJWfFZ37y8KqO23Ak1wdZjjB0PRPeRZvHsMKGJhc89FVKCZx+AVEKmttupGnWXK
-         jOlbm2ayp6shmUJKVLPwlQs+pKsZYmLx3cpvEqHgO2/TBB4Ke7cP1tTxmrl2OSA5MBW2
-         G8mHxDyOo7wwzwuB/kyiCgEAJbRkRltJWfpseBAOmjzjiRwmbhtmdvgsqWgSucufxI3P
-         DIwjRtcdlcozBsF7pOv/Rmn2Lwk3/I7BUWPztito2V3YLjVBm3fe1NL1ObtqrzF8x2yy
-         CBDNwGlBMYPvxVMSrHTqsHV1AgI6ojjLjrW5yVM2c7l1ic3NoJLFl5F2BLItErAkGaN7
-         eoJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6XBt3k7bSC10Ygk2GMBHhjp832mlBO1WTAWDQ5OUXpuVtXHrxPqmIYtUBzYcB4IDHNwGJNCiksbLd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz09wGnOgYUF7V1AVOAsBmbxOPNzIE9q8ZGOpm8TzDaO+sG6NZF
-	3DH5ypox4gQEuiEZqM1KhzDQAjBe0MtGdZ4GxlooIt0fArgBs+NtI1+87HeA/zDn9rc3qdlP88O
-	0Zt+KEL678ocON8h37q43cjj0uiewgxHrrD8FJJijHcrgbsTJtFaHxCIevBMkqtPt
-X-Gm-Gg: AY/fxX764d9p8/qTAUK6XcHNJFsGeh/k4JnsyMw6IJMsao17c8OQMw20Vnk9a37d2qk
-	DWo33vo4q5NynSJn39YKR1g3fOxu4GVTX47iHZNvooXoHCFn+5s1k7rNvAWUku6HXAakDisb2cN
-	PG7xUEVfQT6SAKtXIxXorKb4qWI+LjzWx+ZEHmEb4hGzneXArqYcxAL+j+tA0aOzJVHLl/7duKX
-	OUTp32yxX+r4Q8Ia+VO1IxpUR5szQIE0gVx9FnFQ9whJHPu9/Z1pSPnN+jxChW7rthQfOZFs4sL
-	2r595CRqEOPw9DnZWTwLiTTT9LST+LxNK+QycgWMaNG1QUhAF9gGRka3SO4dyqC8CGFzhnjjf6o
-	Xr+1uGv6J1IITh1IGDtL/SDYR+ZJdYhfnQOqlr03KKv4R1MM3UFILUk8g3l5m9eiQ+xY=
-X-Received: by 2002:a05:622a:143:b0:4f1:96c5:b592 with SMTP id d75a77b69052e-4ffb4a9a78bmr221411081cf.10.1768299424683;
-        Tue, 13 Jan 2026 02:17:04 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFK+vv3gA4hjODwWxcfQyeHDe1Dp5QAj0SJ3Fn03cgepBVloEbtKW/sg9yS5kcFqUJDq9URWg==
-X-Received: by 2002:a05:622a:143:b0:4f1:96c5:b592 with SMTP id d75a77b69052e-4ffb4a9a78bmr221410921cf.10.1768299424286;
-        Tue, 13 Jan 2026 02:17:04 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf6d5absm19732052a12.33.2026.01.13.02.17.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jan 2026 02:17:03 -0800 (PST)
-Message-ID: <a16d4a29-7bbe-4192-9975-8bfc21be1908@oss.qualcomm.com>
-Date: Tue, 13 Jan 2026 11:17:01 +0100
+        d=1e100.net; s=20230601; t=1768299708; x=1768904508;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ujA74UFzyY1R7k8wF+Fji5Xa7ziOl0VUUEmZ6sQVnWc=;
+        b=C+BF8VAA4dI7M87wcF2JVylZOAOvh4ZmXUsMuyzaE+EszNZnrUMb+cU1x+I+48LdQc
+         H9Qo8KyVeWa8Y7XKhxPB4Nlberyo22bUSNZrS7IDtOiMYS93r1vQEzi9prCd/BvTF4Um
+         hJraJQfJUkIQHDrBrV51WT4nYV0BV3mnZ+IpddKfB2Sg0w4aMq9USTo+ttOOrtlMpkhM
+         R4cOlqUPKoQI32daT+kx4czz8KT1LL0jdeeEv2qMeJMIEaQqaa9hJBT0vQxFF7E1C6PB
+         nEeSOk5jZTsput4ic5804EkbNHjPWsH8kpwu+sHbNsM8pLgm/vdrTd43j4Fyhk/36ZbG
+         IbIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX/SHVhOkEPTM59ZufbcXiSuZCHKsTRTxIPbSu/xN4CFHbDiCeOJm9F0bCZhA4MpXzkuROpdKu40fRe@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAX1siXDlB39evMktrL6Fm5oWR26l21zv1NvwPexr++v7mjXUf
+	QExrzRfC0jtgalof6VE/mabuMAIks3lcdpV98KiUaiBqBWnATklhxxeGj2Oh2GCMnWAlNyzLehH
+	8GJY1Pmzhkv2Q0Ae3z17JIqLYDsiAoeHOe5bRKMVpjA==
+X-Gm-Gg: AY/fxX6KREEC8/TSosCce+maHQVY4rhtJR6v2PAZNpJKypwydAd3CXpI0Tl0jUCfEea
+	J6CbMco48UMvH9/FGn29gNmrqDPeiP1P+ujZXr9PxLE3dbK/Jytxkf/JV0yC+vc+AXShG/0mJE+
+	O1HJtgK+HRaJCoF2uMXjlGmuhguQ/MnPbSCg9j1fsMMBSwo7nYs19cJBIItf/237S5yXheZGdaL
+	1cc7cW3Lk0k273O9aGOdJ2zQ/B9RKEOGYAELM3xZzIXMCwE393D4Hq8+3vz9v1r0yu6/GKP5pSV
+	vL1MageDRPbDV9Z+KcJGOC4lAhyI
+X-Google-Smtp-Source: AGHT+IE6Wy/aibh8AKdbvQrUZa3QES7svhGaiNX2I9LwEcDIqqUrH20FYSyHYt1NDfOmk/19+sQBut9iwFovaQ/hDUI=
+X-Received: by 2002:a05:6402:5247:b0:64d:65d:2327 with SMTP id
+ 4fb4d7f45d1cf-65097e59b47mr21305946a12.17.1768299708020; Tue, 13 Jan 2026
+ 02:21:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: Add support for ECS LIVA QC710
-To: Nikita Travkin <nikita@trvn.ru>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Val Packett <val@packett.cool>, cros-qcom-dts-watchers@chromium.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260111085726.634091-2-val@packett.cool>
- <20260111085726.634091-6-val@packett.cool>
- <wyqml5ywfzwh3uulp4gzlfzx24kb2545w36pkpnz5g27xtnqoi@yywysi37tdor>
- <3dd54179-7a22-4596-a6ef-224530c4b2c6@packett.cool>
- <2f0d6bd9-0786-4445-94d2-5189f6b44d01@oss.qualcomm.com>
- <e7j3hctjlly44pjwe3jvjtpjuj33bdvpyo6pzc6o3q5tjjlyib@7evgyweq2deg>
- <fcc6544f-b0dd-4f23-ade7-4d6f8b6a612f@oss.qualcomm.com>
- <e3530bff3d39bbb06b01364b30a5a21a@trvn.ru>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <e3530bff3d39bbb06b01364b30a5a21a@trvn.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEzMDA4NyBTYWx0ZWRfX8dXFcbFB6MC3
- WIJrZUijNP1BNzYRIKzIJEfLZyvnOOsGE9r8IfxxvApcUzlP1trvPw6q+Xhi3QoWNQZOVZFEtym
- siHHTDO3oiF5ECy5VEweGObmOUYkAAHnwkRqQfjHE3ji7W+BDP90g4VGX+FkRZIpACo3nBhFfiX
- rOETRWsKOOYkNRKVnYN8eNHKCqNiPqxV7JkjOEXBQ+c5zCqsp/Rbaj3k/q8m2QBfvAK+wiAlGSH
- gsjlf7idh8rOPhHmf18E5wXfKbkf9Zq6XpJBhm0Eu69fqTfogSUYiCmGTy6gUQ8Ir/XBybrFAZq
- jtcyO7IIqwdzNeo8D2h2AbyCTVpmG62I9QKLdZ/GGu/uSxev6j/BHwHO8ZqB0dZ+tAjh1fqZcpZ
- zVC1nbLcVKLL7ywnSxuRI977Z5+9IZObaB80J4uXDdjyQ6XAV8dRvs6hM+UvH80NZHy/DGobYoJ
- seqaLEb6EPBgqFASd2Q==
-X-Authority-Analysis: v=2.4 cv=TcCbdBQh c=1 sm=1 tr=0 ts=69661ba1 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=XEyYHXuZucbaV8Fn5vgA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-GUID: VDoFCxBul0MYX3z5C0ElVJy2wCGRk7_b
-X-Proofpoint-ORIG-GUID: VDoFCxBul0MYX3z5C0ElVJy2wCGRk7_b
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-13_02,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 impostorscore=0 adultscore=0 bulkscore=0 suspectscore=0
- lowpriorityscore=0 phishscore=0 spamscore=0 clxscore=1015 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601130087
+References: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
+ <20260112-dpu-clocks-v2-4-bd00903fdeb9@linaro.org> <7097507636282e4613d324ff5acb74eb747d519b.camel@linaro.org>
+In-Reply-To: <7097507636282e4613d324ff5acb74eb747d519b.camel@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 13 Jan 2026 10:21:36 +0000
+X-Gm-Features: AZwV_QjOP9Ch49Q2hgsiMLNrbriy5_cS7vekI0_2rDle6kIOrdJ55TM-KAAjG_A
+Message-ID: <CADrjBPpphmaiQRWhncxFPur0x4M-wY1FbYi_k4iTAHB38fEd0A@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] clk: samsung: gs101: add support for Display
+ Process Unit (DPU) clocks
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk@kernel.org>, kernel-team@android.com, 
+	Will McVicker <willmcvicker@google.com>, Juan Yescas <jyescas@google.com>, 
+	Doug Anderson <dianders@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/13/26 10:30 AM, Nikita Travkin wrote:
-> Konrad Dybcio писал(а) 13.01.2026 13:30:
->> On 1/13/26 2:31 AM, Dmitry Baryshkov wrote:
->>> On Mon, Jan 12, 2026 at 11:50:25AM +0100, Konrad Dybcio wrote:
->>>> On 1/12/26 1:31 AM, Val Packett wrote:
->>>>> [resent for the lists as plaintext, oops]
->>>>>
->>>>> On 1/11/26 1:50 PM, Dmitry Baryshkov wrote:
->>>>>
->>>>>> On Sun, Jan 11, 2026 at 05:35:12AM -0300, Val Packett wrote:
->>>>>>> Add a device tree for the ECS LIVA QC710 (Snapdragon 7c) mini PC/devkit.
->>>>>>> [..]
->>>>>>> +&dpu_intf1_out {
->>>>>>> +    /delete-property/ remote-endpoint;
->>>>>> Why? It should not be necessary.
->>>>>
->>>>> It seemed to be implicated in annoying EPROBE_DEFER issues.. But you're right, it wasn't this after all.
->>>>>
->>>>>>> +
->>>>>>> +&pm6150_pon {
->>>>>>> +    status = "disabled";
->>>>>> Do you know, how is Power-On routed?
->>>>> I think it's handled by the EC. Keeping this enabled doesn't make power-off work, and doesn't make the power button deliver events either.
->>>>>>> +};
->>>>
->>>> FYI I don't think a modern QC SoC can turn on without PON
->>>>
->>>> What do you mean by "doesn't make power-off work"?
->>>
->>> It is basically a laptop SoM in the embedded case, so it has EC and PoN
->>> generated via the EC.
->>
->> I got that part, but this doesn't answer my question. Val mentioned that
->> separately from the power button not generating keypress events.
->>
-> 
-> FWIW on Aspire1 the power key is routed to the ec, and ec is routed to
-> pmic pon/resin (as well as ps_hold etc etc). Pressing the power key,
-> obviously, boots the laptop but after that it has no effect in windows
-> or in firmware. In linux neither pon nor resin receive any input events
-> when pressed so my guess was that EC pokes PON once to boot the system
-> and maybe pokes resin if user presses it long to do a hard reset. Due
-> to that I've disabled the pon node in aspire1 so there is no bogus input
-> device. I'm guessing Val has inherited that from aspire1.
+Hi Andr=C3=A9,
 
-I'd still prefer to keep it enabled, as it's physically present on the
-system. If it turns out that the EC randomly fires events at undesirable
-times, we can disable it
+On Mon, 12 Jan 2026 at 15:06, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+>
+> On Mon, 2026-01-12 at 14:16 +0000, Peter Griffin wrote:
+> > cmu_dpu is the clock management unit used for the Display Process Unit
+> > block. It generates clocks for image scaler, compressor etc.
+> >
+> > Add support for the muxes, dividers and gates in cmu_dpu.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> > Changes in v2:
+> >  - Update gout_dpu_dpu_pclk to gout_dpu_gpc_dpu_pclk (Peter)
+> >  - Fix dout_dpu_busp parent (Peter)
+> > ---
+> >  drivers/clk/samsung/clk-gs101.c | 283 ++++++++++++++++++++++++++++++++=
+++++++++
+> >  1 file changed, 283 insertions(+)
+> >
+> > diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-=
+gs101.c
+> > index 8551289b46eb88ec61dd1914d0fe782ae6794000..b38c6c8749aae42319d2004=
+ff5ffbc9a19320cac 100644
+> > --- a/drivers/clk/samsung/clk-gs101.c
+> > +++ b/drivers/clk/samsung/clk-gs101.c
+> > @@ -25,6 +25,7 @@
+> >  #define CLKS_NR_MISC (CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
+> >  #define CLKS_NR_PERIC0       (CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
+> >  #define CLKS_NR_PERIC1       (CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
+> > +#define CLKS_NR_DPU  (CLK_GOUT_DPU_SYSREG_DPU_PCLK + 1)
+>
+> Between APM and HSI0 to keep alphabetic ordering :-)
 
-Konrad
+will fix
+
+>
+> >
+> >  #define GS101_GATE_DBG_OFFSET 0x4000
+> >  #define GS101_DRCG_EN_OFFSET  0x104
+> > @@ -4426,6 +4427,285 @@ static const struct samsung_cmu_info peric1_cmu=
+_info __initconst =3D {
+> >       .drcg_offset            =3D GS101_DRCG_EN_OFFSET,
+> >  };
+> >
+> > +/* ---- CMU_DPU ------------------------------------------------------=
+------- */
+>
+> I'll do a full review later, but this new block should also be between
+> existing CMU_APM and CMU_HSI0 blocks to keep alphabetic ordering.
+
+Will fix.
+
+Thanks,
+
+Peter.
 
