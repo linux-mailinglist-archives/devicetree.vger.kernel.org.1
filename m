@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-254629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E8CD1A2BE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:19:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 842E8D1A2DE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:20:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A4BC830C1B53
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:15:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E8D1230CDDB9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5A42264C9;
-	Tue, 13 Jan 2026 16:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57D9B27602C;
+	Tue, 13 Jan 2026 16:15:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fQ//JyQy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CUaveW4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B9D19C540
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:15:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ECFD221F13
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:15:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768320928; cv=none; b=Yn/OEc4FKUT5/I2+AwqUIPLJYDm5S8SGtUgBOtMB1n3P0B0WQeMs1ANkS2b0SPISyk0Y3G2xIAKPZlQXP3C3bNJxAsMtoztFcImjbkGMgATQmeO1tv92sjnG1FOo1Qarhu+gM86GOrgpOAtPKBnFSw9JB1xUqN2fcKvr0212oKY=
+	t=1768320934; cv=none; b=jr5N57BqQezciLBvtJVUzp4JJFnsA1X7VwPGOR1FF6BEgXwQvK5oUjZBKdbOpB2IwXJKp7yXcD0ZSUEuMx9taie6/VNHU2fqlK/DpSNehNwdGi0muC9z3TuQCNDqkqxqsFsoDM5zHwRqNTTYt2UHtQgFGNRtRLara2iSMs+EZ9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768320928; c=relaxed/simple;
-	bh=Upo/KeJ1tydzhEX3FEnB2Lq6CdSMUiNT1LlycW0K1NM=;
+	s=arc-20240116; t=1768320934; c=relaxed/simple;
+	bh=s41epkAbLG9smlbYYXWvYNaWVozGaFQ8TXpu/2hzAWw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VnPcyvTSJ5pcwLW0WR/Mz8v4MDW6PMpwXxkZ6rj4ea6k9NiAWCCIt8AERfu4VcpzAS5p4ZnIvz7Hut5DLVuboYXIHkHcLwOEXOJ4bT3Hzgib+N3sFodyJ/3+9mW85DBZRV6Tqe/jFMfRdqEoNsh6KELn95TV3a6CVW23NnQ05VA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fQ//JyQy; arc=none smtp.client-ip=209.85.128.46
+	 MIME-Version; b=DSJTwNhXND68PP6Xgj0uweeLRo6aE+gdUv+ekItYeapV29fsWkf62AyN/2Cx60iffsQw9CgkNJretvM8pefCTYKVcjRwtrlEURaEDQ7CJHUm8BahlhMSH1/lPj+SxmimFx3hhXvI295+bKQd3cRz7+zEhz5wMUHI/H8oQdpsDWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CUaveW4v; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-47d3ffb0f44so53212165e9.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:15:26 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47d182a8c6cso45654745e9.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:15:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768320925; x=1768925725; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768320931; x=1768925731; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VFXHMGeoomdbZOLp3ce3D0yDHo0q4hSajO4R4fHl4CQ=;
-        b=fQ//JyQyUIHGRfPyqTagnrhK/DKLTuhvB07e7n05qtUhSzDKIsDLJJqLyPQS3XxaAQ
-         qWWs2UrAW5Zh+YuLeGXt07YkZPOpqI+u8kDM9rB8W62ksUS+38pm734rbMdeapRJSdKz
-         GlXxy6LIP/bSpBEG1ZgrHJ6ZieusMZ94+5i9YiUtHWvynwa/j2Zx8VpLvmB4bL7RoMSU
-         zcRcKqhouU1wji5mtg+ybcZl60KHAUqFhXHMTfcFAP7EkdGcc5svElF7dEaDOq5+Tr4k
-         j0ZXG+16SyNSe0gD8v7CuXf37UjdRmatcVonJLGnzmy7uxSUMpNYa/+CYOI5jZws/mME
-         aWGA==
+        bh=3u+3JeZcHRgFBFE83J1Rhnm4t9otRBPxkyt04fpaFbg=;
+        b=CUaveW4vjBWPZTsKNsUL4+nytLX093sNsOcwq1Ah0PaDdfmQ02F39GQ38D5mUlyYmZ
+         cbrSiB7kcJnXm2WSfE845xTC+x3ZOxw7hkj7JUxyQs73ql699jvHoM7GanCmyVodZlqj
+         3/V0NfDdpGx7vfvPc7AaHvJ+r3YwxkX6O8Cc4gnCigd/Jvmh6YarJlFhXB5JNAecvUbt
+         BViCrP/5IvewpOi6wxOWwhznHVT3gq4HVN3wJptKBJKcTL1FR9hOedweHDjKvdWi6M18
+         ZiFFXX7vW15LY9lzrIzpe4IcvwT0XdaSf3xq9qkkPE/hnwPNTgTFGZRhgu2GHMYLO5gI
+         2mdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768320925; x=1768925725;
+        d=1e100.net; s=20230601; t=1768320931; x=1768925731;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=VFXHMGeoomdbZOLp3ce3D0yDHo0q4hSajO4R4fHl4CQ=;
-        b=CKDZNBwRJlQALiWFzk6GoILPeX0TWGN1v2eI17jAOtf5vcPDdy+es+6OKQLTYGvtwc
-         yRJDgF6GwkhtKOm0Sz3QAAQzh8bzM8ZfJ7jS5vLBbDB4cPQw9Y4ciDPSH6MWOvf25RiG
-         Rkr0HsGQQjzDiuO2qBJq/Ve+lYS5VFrCOcCD6ztrZEhoNF8xwIuza6eo3ZxofHwwufux
-         jCjOXGa8qtwvLrAytA7CPFGi+vnx2VzD8F4E0eLz0mNPy5Bhnat/UorUEmlh2zTScTM7
-         Rs0zRk6QyT1/Od5asmyJsb7rKdbEE4PIBdcKXevYOR8eraT9LPdqyoghKLnAPEvF7Btt
-         vMVw==
-X-Forwarded-Encrypted: i=1; AJvYcCVE58ezEKU5HEAUTM06DGJOLfHbJlnvHSsSe8reiPqX7BUdX+K6ELq9EJEFHRYg71u3lR3c02q8vF4H@vger.kernel.org
-X-Gm-Message-State: AOJu0YwB44IFG+UmumhiuWm9+CQkHJrl3cCKQ6LHTZKFUOVwzsUrkXFN
-	JIUNQr6Xn1R0mxnUDJau5ovE9hXu/QuWBZ4ns7Y94VVDovBdXa2O6ypg
-X-Gm-Gg: AY/fxX6VGeCztN2hdlzvYGDttPq+M93HiNll7EmRQLNGgN9PvpnSDbKT88YoNbtZ3oH
-	RiJjffOng34sj0JOizIlnWAjMOmwZ5ffT4IcDfQ2MUeZPMbAYk06hl3WyZMd2vmy/oyxvedDO7u
-	CwUZDacQO1sux0OAbgvM20SrX8VWwllpJlLukbnUX6OqEVFdwHPtl64rpli02amPLHhf79DQsoN
-	fg9e2H6jdxsB6negqO0nVmO7VEL5rPpEygjnEJdZ6+nHa2819CnyuKlSFSEi/r6Q1Xkj1X+hLUE
-	B5H4eINy6CaNn9gUj98MrayrLH/uTTOJa+GbfPrTyIifAAENCMcNE2pWVl5eBziDHkaC9UCxx80
-	dSJoU3h6dsuUjCsVGMxe9Eb2JH3nXJkAst2BGqM/CU5jY/1FRInP2I14OWuk0lXiNsyzEuOGclz
-	nQT/90HmZx9Dgt9wbtPxQT6CJqkMgI2SnRsZC5CJlDrk5dFWcNow9IORYSv/FvvY0d
-X-Google-Smtp-Source: AGHT+IFNlvwrKp+KJG2284DCa8NpoGDbY3vjhJ6xtVEGbHn019G4ljpezxVBqkiUcpZVaYK+N7/Z1A==
-X-Received: by 2002:a05:600c:1393:b0:477:55ce:f3bc with SMTP id 5b1f17b1804b1-47d84b3bad4mr246429825e9.19.1768320924653;
-        Tue, 13 Jan 2026 08:15:24 -0800 (PST)
+        bh=3u+3JeZcHRgFBFE83J1Rhnm4t9otRBPxkyt04fpaFbg=;
+        b=Tsl+AvZal+sCCeIC0ghlKozca6t6gUhYdjFWn4FGO+n4w/C0+O9kjvEkKwPKB/my1r
+         6XT/2c0M+ZRvnk77L9RuVt/mE9HQNSuxMtPeN31fNwNM5c9vYXLEXU1J5ILrCmWeUGwa
+         dqGyT8xmrRXigaHLk3sT+nQmeNtLX+o+4Z6hest/gkebUSDHzY2Qvan8UaA3+foA0qYU
+         M/sD8PlM5oGr8GIOa22l0uRI43uYh/7Py51JWXsOSIPfQKqtVLAKg/vdruHciec+/lAo
+         w/Vm42AMBH9Q6iL/5ZzGUOTttMs8v8LnusFwl93bgPC1iYH9l9id2RVDwY35w+EaMLxy
+         PN7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWVlB8g+TpDgIqjdOXsY+skpx4P9+7qtCwzWRMLKA+z+VimpQiUPD4YCJj5Dxszvpjer3jw6LWnX2jl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzlybgo65gsRcUZsdUS33m+gxAGfuWAaVMYwRjm4Be9aKHYfTaa
+	AjD0YyNCId+kdTlQJkRoa14Lv/NgH4RfK7yxVq2LEgpU5XH9jCScguhy
+X-Gm-Gg: AY/fxX53KgyYlOTJcyGmV9ZHXAZfHbu9r6/Zekbw+ZHgoWwjEikQE1i4fKmx+X0pP2f
+	mY5ufPPcJpzifMx7FwGPKckrGt9TF0aEHU6dc1eNFJIk3e6AjvQJE/lJhVvolNd1/iOlw4YNamU
+	DXHpJogyPbuD81gnAF/cpXZ49iNzzFfSUreW+BNakHH+zWmKFUB1nScO6XlsXYoBdTt1kT+OIwK
+	4XWlDGt+MmXl0y76St2Fys7TaFQTbKoI7zpc6J/IuqHTs3S400hFjV5M3A477yeI1W6qv/osxd8
+	wTvaiSctW1jxfsyeOBz8oJvVCRJohQz+9wMGb0SSj9lmA7Qs0x8ISZZmIvo9wsJ0H98ywghvDXS
+	rGaHMo/vlS1eCVHrSzAgL+NtrluoG30mjx6lCLbV52RK+2715JwF3bphUm/FAA5NISUHVWdM4ME
+	Yc1OPIpMlluRzPo3sX/6GBb/JNfZeO34047hBP2Ie5alu/ZMcIMXZmmR8+8qghKMSQ
+X-Google-Smtp-Source: AGHT+IGhLvJfxVLRGqghrhgN1dMGCIANA0QJw3+JAhwPNyMjUoAIPGjWB7rlYfend9xQbfhK4N/+2w==
+X-Received: by 2002:a05:600c:4fd0:b0:477:7925:f7fb with SMTP id 5b1f17b1804b1-47d84b200d1mr257784645e9.10.1768320930358;
+        Tue, 13 Jan 2026 08:15:30 -0800 (PST)
 Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47d7f4184e1sm403945455e9.4.2026.01.13.08.15.23
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ee27cf06bsm1066485e9.4.2026.01.13.08.15.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 08:15:23 -0800 (PST)
+        Tue, 13 Jan 2026 08:15:27 -0800 (PST)
 From: Stafford Horne <shorne@gmail.com>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Linux OpenRISC <linux-openrisc@vger.kernel.org>,
@@ -82,10 +82,10 @@ Cc: Linux OpenRISC <linux-openrisc@vger.kernel.org>,
 	Stafford Horne <shorne@gmail.com>,
 	Jonas Bonn <jonas@southpole.se>,
 	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-	Thomas Gleixner <tglx@linutronix.de>
-Subject: [PATCH v4 4/6] openrisc: Fix IPIs on simple multicore systems
-Date: Tue, 13 Jan 2026 16:11:37 +0000
-Message-ID: <20260113161152.3688309-5-shorne@gmail.com>
+	Masahiro Yamada <masahiroy@kernel.org>
+Subject: [PATCH v4 5/6] openrisc: dts: Split simple smp dts to dts and dtsi
+Date: Tue, 13 Jan 2026 16:11:38 +0000
+Message-ID: <20260113161152.3688309-6-shorne@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260113161152.3688309-1-shorne@gmail.com>
 References: <20260113161152.3688309-1-shorne@gmail.com>
@@ -97,186 +97,116 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Commit c05671846451 ("openrisc: sleep instead of spin on secondary
-wait") fixed OpenRISC SMP Linux for QEMU. However, stability was never
-achieved on FPGA development boards.  This is because the above patch
-has a step to unmask IPIs on non-boot cpu's but on hardware without
-power management, IPIs remain masked.
-
-This meant that IPI's were never actually working on the simple SMP
-systems we run on development boards.  The systems booted but stability
-was very suspect.
-
-Add the ability to unmask IPI's on the non-boot cores.  This is done by
-making the OMPIC IRQs proper percpu IRQs.  We can then use the
-enabled_percpu_irq() to unmask IRQ on the non-boot cpus.
-
-Update the or1k PIC driver to use a flow handler that can switch between
-percpu and the configured level or edge flow handlers at runtime.
-This mechanism is inspired by that done in the J-Core AIC driver.
+Split out the common memory, CPU and PIC definitions of the simple SMP
+system to a DTSI file which we will later use for our De0 Nano multicore
+board device tree.  We also take this opportunity to swich underscores
+to dashes as that seems to be the more common convention for DTS files.
 
 Signed-off-by: Stafford Horne <shorne@gmail.com>
 ---
- arch/openrisc/include/asm/smp.h |  3 ++-
- arch/openrisc/kernel/smp.c      | 22 +++++++++++++++++++++-
- drivers/irqchip/irq-ompic.c     | 15 +++++++++++----
- drivers/irqchip/irq-or1k-pic.c  | 27 ++++++++++++++++++++++++++-
- 4 files changed, 60 insertions(+), 7 deletions(-)
+Since v3:
+ - No changes.
+Since v2:
+ - Sort blocks alphabetically.
 
-diff --git a/arch/openrisc/include/asm/smp.h b/arch/openrisc/include/asm/smp.h
-index e21d2f12b5b6..007296f160ef 100644
---- a/arch/openrisc/include/asm/smp.h
-+++ b/arch/openrisc/include/asm/smp.h
-@@ -20,7 +20,8 @@ extern void smp_init_cpus(void);
- extern void arch_send_call_function_single_ipi(int cpu);
- extern void arch_send_call_function_ipi_mask(const struct cpumask *mask);
- 
--extern void set_smp_cross_call(void (*)(const struct cpumask *, unsigned int));
-+extern void set_smp_cross_call(void (*)(const struct cpumask *, unsigned int),
-+			       unsigned int irq);
- extern void handle_IPI(unsigned int ipi_msg);
- 
- #endif /* __ASM_OPENRISC_SMP_H */
-diff --git a/arch/openrisc/kernel/smp.c b/arch/openrisc/kernel/smp.c
-index 86da4bc5ee0b..040ca201b692 100644
---- a/arch/openrisc/kernel/smp.c
-+++ b/arch/openrisc/kernel/smp.c
-@@ -13,6 +13,7 @@
- 
- #include <linux/smp.h>
- #include <linux/cpu.h>
-+#include <linux/interrupt.h>
- #include <linux/sched.h>
- #include <linux/sched/mm.h>
- #include <linux/irq.h>
-@@ -25,6 +26,7 @@
- 
- asmlinkage __init void secondary_start_kernel(void);
- 
-+static unsigned int ipi_irq __ro_after_init;
- static void (*smp_cross_call)(const struct cpumask *, unsigned int);
- 
- unsigned long secondary_release = -1;
-@@ -39,6 +41,14 @@ enum ipi_msg_type {
- 
- static DEFINE_SPINLOCK(boot_lock);
- 
-+static void or1k_ipi_enable(void)
-+{
-+	if (WARN_ON_ONCE(!ipi_irq))
-+		return;
+ arch/openrisc/boot/dts/simple-smp.dts         | 25 +++++++++++++++++++
+ .../dts/{simple_smp.dts => simple-smp.dtsi}   | 11 ++++----
+ arch/openrisc/configs/simple_smp_defconfig    |  2 +-
+ 3 files changed, 31 insertions(+), 7 deletions(-)
+ create mode 100644 arch/openrisc/boot/dts/simple-smp.dts
+ rename arch/openrisc/boot/dts/{simple_smp.dts => simple-smp.dtsi} (90%)
+
+diff --git a/arch/openrisc/boot/dts/simple-smp.dts b/arch/openrisc/boot/dts/simple-smp.dts
+new file mode 100644
+index 000000000000..01cf219e6aac
+--- /dev/null
++++ b/arch/openrisc/boot/dts/simple-smp.dts
+@@ -0,0 +1,25 @@
++// SPDX-License-Identifier: GPL-2.0
 +
-+	enable_percpu_irq(ipi_irq, 0);
-+}
++/dts-v1/;
 +
- static void boot_secondary(unsigned int cpu, struct task_struct *idle)
- {
- 	/*
-@@ -136,6 +146,7 @@ asmlinkage __init void secondary_start_kernel(void)
- 	complete(&cpu_running);
- 
- 	synchronise_count_slave(cpu);
-+	or1k_ipi_enable();
- 	set_cpu_online(cpu, true);
- 
- 	local_irq_enable();
-@@ -195,9 +206,18 @@ void smp_send_stop(void)
- 	smp_call_function(stop_this_cpu, NULL, 0);
- }
- 
--void __init set_smp_cross_call(void (*fn)(const struct cpumask *, unsigned int))
-+void __init set_smp_cross_call(void (*fn)(const struct cpumask *, unsigned int),
-+			       unsigned int irq)
- {
-+	if (WARN_ON(ipi_irq))
-+		return;
++#include "simple-smp.dtsi"
 +
- 	smp_cross_call = fn;
++/ {
++	model = "Simple SMP Board";
++};
 +
-+	ipi_irq = irq;
++&cpu0 {
++	clock-frequency = <20000000>;
++};
 +
-+	/* Enabled IPIs for boot CPU immediately */
-+	or1k_ipi_enable();
- }
- 
- void arch_send_call_function_single_ipi(int cpu)
-diff --git a/drivers/irqchip/irq-ompic.c b/drivers/irqchip/irq-ompic.c
-index e66ef4373b1e..f0e0b435bb1d 100644
---- a/drivers/irqchip/irq-ompic.c
-+++ b/drivers/irqchip/irq-ompic.c
-@@ -84,6 +84,8 @@ DEFINE_PER_CPU(unsigned long, ops);
- 
- static void __iomem *ompic_base;
- 
-+static DEFINE_PER_CPU_READ_MOSTLY(int, ipi_dummy_dev);
++&cpu1 {
++	clock-frequency = <20000000>;
++};
 +
- static inline u32 ompic_readreg(void __iomem *base, loff_t offset)
- {
- 	return ioread32be(base + offset);
-@@ -183,12 +185,17 @@ static int __init ompic_of_init(struct device_node *node,
- 		goto out_unmap;
- 	}
- 
--	ret = request_irq(irq, ompic_ipi_handler, IRQF_PERCPU,
--				"ompic_ipi", NULL);
--	if (ret)
-+	irq_set_percpu_devid(irq);
-+	ret = request_percpu_irq(irq, ompic_ipi_handler, "ompic_ipi",
-+				 &ipi_dummy_dev);
++&enet0 {
++	status = "okay";
++};
 +
-+	if (ret) {
-+		pr_err("ompic: failed to request irq %d, error: %d",
-+		       irq, ret);
- 		goto out_irq_disp;
-+	}
- 
--	set_smp_cross_call(ompic_raise_softirq);
-+	set_smp_cross_call(ompic_raise_softirq, irq);
- 
- 	return 0;
- 
-diff --git a/drivers/irqchip/irq-or1k-pic.c b/drivers/irqchip/irq-or1k-pic.c
-index 48126067c54b..73dc99c71d40 100644
---- a/drivers/irqchip/irq-or1k-pic.c
-+++ b/drivers/irqchip/irq-or1k-pic.c
-@@ -118,11 +118,36 @@ static void or1k_pic_handle_irq(struct pt_regs *regs)
- 		generic_handle_domain_irq(root_domain, irq);
- }
- 
-+/*
-+ * The OR1K PIC is a cpu-local interrupt controller and does not distinguish or
-+ * use distinct irq number ranges for per-cpu event interrupts (IPI). Since
-+ * information to determine whether a particular irq number should be treated as
-+ * per-cpu is not available at mapping time, we use a wrapper handler function
-+ * which chooses the right handler at runtime based on whether IRQF_PERCPU was
-+ * used when requesting the irq.  Borrowed from J-Core AIC.
-+ */
-+static void or1k_irq_flow_handler(struct irq_desc *desc)
-+{
-+#ifdef CONFIG_SMP
-+	struct irq_data *data = irq_desc_get_irq_data(desc);
-+	struct or1k_pic_dev *pic = data->domain->host_data;
++&serial0 {
++	clock-frequency = <20000000>;
++};
+diff --git a/arch/openrisc/boot/dts/simple_smp.dts b/arch/openrisc/boot/dts/simple-smp.dtsi
+similarity index 90%
+rename from arch/openrisc/boot/dts/simple_smp.dts
+rename to arch/openrisc/boot/dts/simple-smp.dtsi
+index 71af0e117bfe..42d6eda33b71 100644
+--- a/arch/openrisc/boot/dts/simple_smp.dts
++++ b/arch/openrisc/boot/dts/simple-smp.dtsi
+@@ -1,4 +1,3 @@
+-/dts-v1/;
+ / {
+ 	compatible = "opencores,or1ksim";
+ 	#address-cells = <1>;
+@@ -22,15 +21,15 @@ memory@0 {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		cpu@0 {
 +
-+	if (irqd_is_per_cpu(data))
-+		handle_percpu_devid_irq(desc);
-+	else
-+		pic->handle(desc);
-+#endif
-+}
++		cpu0: cpu@0 {
+ 			compatible = "opencores,or1200-rtlsvn481";
+ 			reg = <0>;
+-			clock-frequency = <20000000>;
+ 		};
+-		cpu@1 {
 +
- static int or1k_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
- {
- 	struct or1k_pic_dev *pic = d->host_data;
++		cpu1: cpu@1 {
+ 			compatible = "opencores,or1200-rtlsvn481";
+ 			reg = <1>;
+-			clock-frequency = <20000000>;
+ 		};
+ 	};
  
--	irq_set_chip_and_handler(irq, &pic->chip, pic->handle);
-+	if (IS_ENABLED(CONFIG_SMP))
-+		irq_set_chip_and_handler(irq, &pic->chip, or1k_irq_flow_handler);
-+	else
-+		irq_set_chip_and_handler(irq, &pic->chip, pic->handle);
-+
- 	irq_set_status_flags(irq, pic->flags);
+@@ -57,7 +56,6 @@ serial0: serial@90000000 {
+ 		compatible = "opencores,uart16550-rtlsvn105", "ns16550a";
+ 		reg = <0x90000000 0x100>;
+ 		interrupts = <2>;
+-		clock-frequency = <20000000>;
+ 	};
  
- 	return 0;
+ 	enet0: ethoc@92000000 {
+@@ -65,5 +63,6 @@ enet0: ethoc@92000000 {
+ 		reg = <0x92000000 0x800>;
+ 		interrupts = <4>;
+ 		big-endian;
++		status = "disabled";
+ 	};
+ };
+diff --git a/arch/openrisc/configs/simple_smp_defconfig b/arch/openrisc/configs/simple_smp_defconfig
+index 6008e824d31c..db77c795225e 100644
+--- a/arch/openrisc/configs/simple_smp_defconfig
++++ b/arch/openrisc/configs/simple_smp_defconfig
+@@ -20,7 +20,7 @@ CONFIG_SLUB=y
+ CONFIG_SLUB_TINY=y
+ CONFIG_MODULES=y
+ # CONFIG_BLOCK is not set
+-CONFIG_BUILTIN_DTB_NAME="simple_smp"
++CONFIG_BUILTIN_DTB_NAME="simple-smp"
+ CONFIG_SMP=y
+ CONFIG_HZ_100=y
+ CONFIG_OPENRISC_HAVE_SHADOW_GPRS=y
 -- 
 2.51.0
 
