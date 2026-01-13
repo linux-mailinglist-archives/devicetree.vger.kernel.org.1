@@ -1,128 +1,101 @@
-Return-Path: <devicetree+bounces-254252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED9EED168F6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 04:50:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 918FDD168D8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 04:47:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AEF2C3016DD0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 03:50:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2F143304103B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 03:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D553016FB;
-	Tue, 13 Jan 2026 03:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CEA42EFD9E;
+	Tue, 13 Jan 2026 03:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ICLXnlUC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cNcnXEJG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15590.qiye.163.com (mail-m15590.qiye.163.com [101.71.155.90])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9459163;
-	Tue, 13 Jan 2026 03:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6F52E9ECA;
+	Tue, 13 Jan 2026 03:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768276252; cv=none; b=tA+shgujkeVZwmfOgJTGUiBR1c0FF24yfHoaipV2IT5O80bs0MLiifyzcVP09SMvRJH5s7BpU8tnWkywdwi8m4wCevvT86Wgl+xta0pMnCd1UOUqg8pNfHJxl9bWvdXte4gZLaiwrKqMovOMz3n5HdJ4c4zL1SOMEBNf6VtUj1o=
+	t=1768275981; cv=none; b=LTdXkTnNw5vGETNTMFG4pzHDS+RgLMYbCE1+lOqF5G8HmX528clkkx2hbvK2p6KTpKbzknN3vNwaGpkqthaXYlzX1x53ufpUGidYWds8H41/SXqOSJF27fgUe/jgwBNByKEhAQp9CAOmHb6o33tx8llovPVQ0QsG86tkgO6BPHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768276252; c=relaxed/simple;
-	bh=+0/2IF5z7o1wcBvsgWG+eBqE4okj4szedjYBDDu8QF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QfJwHLDnnTg/nrtjwQXQFiAU5SKlMOfNvuPxhe+zCTzzGcUCl0ZZSWC7adJMuzCrw+GG4L+M1KcYCbOYNxSTxRQyNpjBGCnts75pJ/54j/mFcFz71BegdhZv/y/db8EXA/VEWXFH2n+CHmM3tC0REVXflbVF7rCaPd+Fex6hNIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ICLXnlUC; arc=none smtp.client-ip=101.71.155.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [127.0.0.1] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 306affc4c;
-	Tue, 13 Jan 2026 11:45:35 +0800 (GMT+08:00)
-Message-ID: <b901011c-d062-4a4f-8a2e-9f918eab3838@rock-chips.com>
-Date: Tue, 13 Jan 2026 11:45:30 +0800
+	s=arc-20240116; t=1768275981; c=relaxed/simple;
+	bh=e8ar5iRaPWcIRipGAbsY+EJ9j4DyfXTRDnfzAz6mJSg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Zl0OU+7dRRxgBUHx6Z3+CIqcqee9QTANN8OTI/zilkbdYHCLMxLInwInsBnqc1rjYBT/ImgG612pfBo9gMNfO7PGy1hiJd7TP1zEbIBXnxwOs7SKhk22ySFq1DLkSJaEKbAXbKzCpu7fjOq4qvr91NLFRwvIrPWmzpH9TjMfs48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cNcnXEJG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B684CC116C6;
+	Tue, 13 Jan 2026 03:46:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768275981;
+	bh=e8ar5iRaPWcIRipGAbsY+EJ9j4DyfXTRDnfzAz6mJSg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cNcnXEJGD+9i2sqchkDQeHfKczZ8BAYi4M/9RosqLwYz03V0EZt5p2+eceYAZd2V7
+	 /8BiFiSddn+5Kt1PFe1xEr9lGa1ep1vJX3E1xJT9tx1C9e9fCtpgyeo1YX8MJQex95
+	 8eOoNYvaTkt31ZSTzz/vsVJ5x1QgtAvHjIKed8zfE7K5F4DYnfN8RwU9L0hY57OvhU
+	 pHXI+ti83sqliKVzxfhXVDtPxN/cViBq+FWqYW3gaFfeDmWLMP2Zn8BCnXeNbpwSW6
+	 RIAJxaY2ht/6kBo7t0qDtzIHxO9bideDH7LNhV4vUGccIWm/9VHh0ngq0fe+GQbcGa
+	 EaA1PROS8sOcw==
+Date: Mon, 12 Jan 2026 19:46:19 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: "Chalios, Babis" <bchalios@amazon.es>
+Cc: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "richardcochran@gmail.com" <richardcochran@gmail.com>,
+ "dwmw2@infradead.org" <dwmw2@infradead.org>, "andrew+netdev@lunn.ch"
+ <andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "netdev@vger.kernel.org"
+ <netdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "Graf (AWS), Alexander" <graf@amazon.de>,
+ "mzxreary@0pointer.de" <mzxreary@0pointer.de>, "Cali, Marco"
+ <xmarcalx@amazon.co.uk>, "Woodhouse, David" <dwmw@amazon.co.uk>
+Subject: Re: [PATCH v5 4/7] ptp: ptp_vmclock: Add device tree support
+Message-ID: <20260112194619.70ed3a24@kernel.org>
+In-Reply-To: <20260107132514.437-5-bchalios@amazon.es>
+References: <20260107132514.437-1-bchalios@amazon.es>
+	<20260107132514.437-5-bchalios@amazon.es>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: Add binding for WCH CH334/CH335
- hub controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, Chaoyi Chen <kernel@airkyi.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Quentin Schulz <quentin.schulz@cherry.de>, Jonas Karlman <jonas@kwiboo.se>,
- Hsun Lai <i@chainsx.cn>, John Clark <inindev@gmail.com>,
- Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
- Michael Riesch <michael.riesch@collabora.com>,
- Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20260112022823.91-1-kernel@airkyi.com>
- <20260112022823.91-2-kernel@airkyi.com>
- <20260112-lively-hallowed-beetle-fc15b2@quoll>
- <1515a445-576a-4833-a604-c31062f7d3fa@rock-chips.com>
- <b4eb4ab6-6fde-4c01-8069-470545ffdac4@kernel.org>
- <568b9e25-bf96-4e78-9af0-4791cbb90a56@rock-chips.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <568b9e25-bf96-4e78-9af0-4791cbb90a56@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9bb575818903abkunm0fc5f439c0aac
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkoaHlZPGEoaHRlPH0tPGRhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=ICLXnlUCKdw0l4C5PwjkIWI+IVk7r4/+WwkYTgaVw86rZ636qn6GnsMAlH3m9KDe331gcSkS3TklrGhw8/QrO0k6/hTC3s1bGoI9x213B9d26cr4/F/RDXu76m2tvVwDtwq+Qyw1eBwnYz+/a3EN9/JjCw818hD+5H3XmHoPYvc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=RLlZk5JLSHjXxq4/+unFmqq6XhZxTOn9ntEjqGDpUTM=;
-	h=date:mime-version:subject:message-id:from;
 
-On 1/13/2026 11:27 AM, Chaoyi Chen wrote:
-> Hi Krzysztof,
-> 
-> On 1/12/2026 10:28 PM, Krzysztof Kozlowski wrote:
->> On 12/01/2026 09:59, Chaoyi Chen wrote:
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    #include <dt-bindings/gpio/gpio.h>
->>>>> +    usb {
->>>>> +        dr_mode = "host";
->>
->> One more thing - drop above line.
->>
-> 
-> Will fix in next version.
-> 
->>>>> +        #address-cells = <1>;
->>>>> +        #size-cells = <0>;
->>>>> +
->>>>> +        hub: hub@1 {
->>>>> +            compatible = "usb1a86,8091";
->>>>> +            reg = <1>;
->>>>> +            reset-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
->>>>
->>>> Are you sure?
->>>
->>> I guess what you're concerned about here is the polarity? 
->>> If that's the case, then there's no problem.
->>
->> Yes, I was wondering whether polarity is set correctly.
-> 
-> Yes, it is active-low, so during normal operation it should be set to high.
-> 
+On Wed, 7 Jan 2026 13:26:01 +0000 Chalios, Babis wrote:
+> +static int vmclock_setup_notification(struct device *dev,
+> +				      struct vmclock_state *st)
+> +{
+> +	/* The device does not support notifications. Nothing else to do */
+> +	if (!(le64_to_cpu(st->clk->flags) & VMCLOCK_FLAG_NOTIFICATION_PRESENT))
+> +		return 0;
+> +
+> +	if (has_acpi_companion(dev)) {
+> +		return vmclock_setup_acpi_notification(dev);
+> +	} else {
+> +		return vmclock_setup_of_notification(dev);
+> +	}
+> +
+> +}
+> +
+> +
+>  static void vmclock_put_idx(void *data)
 
-Sorry, I didn't consider the driver situation. 
-I will fix it in the next version.
+Please run checkpatch.
 
--- 
-Best, 
-Chaoyi
+CHECK: Blank lines aren't necessary before a close brace '}'
+#109: FILE: drivers/ptp/ptp_vmclock.c:636:
++
++}
+
+CHECK: Please don't use multiple blank lines
+#111: FILE: drivers/ptp/ptp_vmclock.c:638:
++
++
 
