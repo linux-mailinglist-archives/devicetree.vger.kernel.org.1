@@ -1,80 +1,108 @@
-Return-Path: <devicetree+bounces-254523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43988D18FF6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:04:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77942D19002
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:04:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE9473011772
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:04:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CBF143002D22
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:04:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F41E38F936;
-	Tue, 13 Jan 2026 13:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992B838FEFA;
+	Tue, 13 Jan 2026 13:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="V+1h2I/i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YPxCBnoE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB4B38B9A7
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 13:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7669738B7C5;
+	Tue, 13 Jan 2026 13:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768309454; cv=none; b=XMyFRzmkpTzSqIu4Fjwu+Khxd7zrEgSfYS6OJ2BYvezWOGChTCGUHvjR30/ZCL9JGVsuHdgi637BdsgIkiwQQf3n9uzb5Ze9b5YF9fDNUX1D2NEVyz4FAasJyRZErehN3OxLiOj2GCUq1j8tY35RfQ6NSO/+GACeMSNSuqEjBlc=
+	t=1768309467; cv=none; b=P1g4F97hdY2vDzRw6cHIZEt2xOjtgvbvjaSAzelCxBwMi1aRdfCPc30LemX4Zw4RcSIsMfQu0oH8I4r19ZUMzNIIKADUeFfDw44ozjjmfmYJvMPY2iN+6AU6C8Q1Ss8OcapyD33DQ8VIxpWBk3uQsXpXttN0ChZD0aegctOVF2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768309454; c=relaxed/simple;
-	bh=7zHYQuLMLThX61XguZDJYltNArOv8k/59IiGsM+379E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XsYMWK++JMsednoa6/3Bq2ehWN0BvKLD4BNtU+21YcpHZK6CuLMECNMeAtbArghrICNPJEKMJu5C+ZryjuN1ZF7MjgJqRgCTscYRS+psEwS0GrQW+6o2fzk6zk7C0vjBg4H1flbDyKMVT/l6+oc5ei6A4z5ZxQlae+qHqcK9QwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=V+1h2I/i; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=7DPc
-	02BPDXRCPlk55tE1zQ0yL7hZ4M+jB2XH8eiaI/I=; b=V+1h2I/iWdDQ7lWhEi2l
-	9pJAtKZx+A6z/JC/8qe1ZTjaH2STVl1tsXNQ1KIX2ObdGT9BSYi4MCDq78mpqmPx
-	5SQtOie9cfkkiG9X8CBwC+lCS/Gf2q1FyXTbSYE+4TcaDFbDe32ocmZZXjefETjF
-	ahT8VBejvt3D6z050ICyY93HKlWeBwyhN0hZKQIwdh88FqKd4EI7gvt1sviqw2h2
-	OejEjQS8cjiHsCd45kYAY+lTCAwhLqu8/HPAFZvzaNEKS2Y2H4pfx3wAcsVYVk9+
-	qVsC6/DIoT3AD//boMi4BQobmP2E8+7hxyUKGtASFmqcsdWcBUP5Dvezz1/rYuJ2
-	dA==
-Received: (qmail 1687664 invoked from network); 13 Jan 2026 14:04:10 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Jan 2026 14:04:10 +0100
-X-UD-Smtp-Session: l3s3148p1@QnyfoERI7q0ujnvx
-Date: Tue, 13 Jan 2026 14:04:09 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: i2c: st,stm32-i2c: add 'power-domains'
- property
-Message-ID: <aWZCyYc8QAY1LOtF@ninjato>
-References: <20251215-stm32-i2c-mp2x-dt-updates-v1-0-2738a05a7af8@foss.st.com>
- <20251215-stm32-i2c-mp2x-dt-updates-v1-1-2738a05a7af8@foss.st.com>
+	s=arc-20240116; t=1768309467; c=relaxed/simple;
+	bh=FF7eRDNfJ5J+APdgHMEkJXsDZSXXuomOQ67NlMpAa0k=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=fgVnl/YtZFSuoxqtvPmLfhoy7ws2xWCUfG6ja16e24hh71gb4YMUhVcruHsKkb4LOZFTDF6mGCmytWarGSQ2/Z/vS6BOinqo0QYkGd6HqdaC/zzZQe8Po9nfNnB4rgiuMzMoaDuGdIYtCqBH2KYYlAwt6Bpal5OUtFnEZYBldkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YPxCBnoE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14298C116C6;
+	Tue, 13 Jan 2026 13:04:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768309467;
+	bh=FF7eRDNfJ5J+APdgHMEkJXsDZSXXuomOQ67NlMpAa0k=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=YPxCBnoE+SyxZDEeynxsXS4Z1S6VzL/6DmOq4I7m8PsEMjk6HKKE4kfrtLDhdIDw+
+	 NJrX4xeSwiG1JqxWFygfE0J5WJXwoBQWPL58YWQoUhGCF0VZHHH8hu2M3kX99qjCYq
+	 DCARABK9Vy/aw5cAzfeO/1pmL7vDtMyG0t3VBrs4YP2kFxPpg6oMhe28G9HPf0s4kx
+	 OeI4BSv0IHK1B9/uNgZDhJIqph6f09NJVw6WKXcDOfIV2Vl4teMzVQbmbwTmI5mC25
+	 n0GAVpG7T98+Kt+KReBfGlneV9u+88LjvJ5WB/ItYKn46i7Y/v/vmtqhwkF/NRyipB
+	 bNZPZQbgHu1VA==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
+ Andreas Kemnade <andreas@kemnade.info>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-hwmon@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Josua Mayer <josua.mayer@jm0.eu>
+In-Reply-To: <20260102-tps65185-submit-v3-0-23bda35772f2@kemnade.info>
+References: <20260102-tps65185-submit-v3-0-23bda35772f2@kemnade.info>
+Subject: Re: [PATCH v3 0/2] regulator: Add TPS65185
+Message-Id: <176830946479.57532.9044166740752095483.b4-ty@kernel.org>
+Date: Tue, 13 Jan 2026 13:04:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215-stm32-i2c-mp2x-dt-updates-v1-1-2738a05a7af8@foss.st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-47773
 
-On Mon, Dec 15, 2025 at 01:19:40PM +0100, Alain Volmat wrote:
-> STM32 I2C may be in a power domain which is the case for the STM32MP2x
-> based boards. Allow a single 'power-domains' entry for STM32 I2C.
+On Fri, 02 Jan 2026 11:13:55 +0100, Andreas Kemnade wrote:
+> Add a driver for the TPS65185 regulator which provides the
+> comparatively high voltages needed for electronic paper displays.
 > 
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> Datasheet for the TPS65185 is at https://www.ti.com/lit/gpn/tps65185
+> 
+> To simplify things, include the hwmon part directly which is only
+> one temperature sensor and there are no other functions besides regulators
+> in this chip.
+> 
+> [...]
 
-Applied to for-next, thanks!
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/2] regulator: dt-bindings: Document TI TPS65185
+      commit: da1456e435ae84852bda484cd4d60f47228d52fc
+[2/2] regulator: Add TPS65185 driver
+      commit: b0fc1e7701940d12ea2c41f386aa552bc4cc3629
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
