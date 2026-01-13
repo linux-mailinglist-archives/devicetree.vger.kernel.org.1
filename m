@@ -1,40 +1,50 @@
-Return-Path: <devicetree+bounces-254691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFAEFD1AF64
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 20:10:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 000EBD1AFF1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 20:16:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2F25A30730F8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 19:07:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 718D830CE4CD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 19:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D94358D30;
-	Tue, 13 Jan 2026 19:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11A135F8BE;
+	Tue, 13 Jan 2026 19:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eB6IrzNG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FE5358D02
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 19:07:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B57535EDD5;
+	Tue, 13 Jan 2026 19:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768331266; cv=none; b=WxyxeuZeChmz3NXuuZBUn2kIRNplq24VjePZ9UXrd+ZT9KT3h74b1utG73+6KFm+HRA3Dvz9jkC9JYPedm+nyc7+mO3P9cgmKg8TFiDQyNe+I5dL99VVtVMBp2Z9BSNjNkngIFK5qy12t50OVzFYVY0oq63lag06iZKY5Qn+QiQ=
+	t=1768331574; cv=none; b=mfLyo8kj1r8LUkNcQnE5KEe4jZxG+B4hubTOn0rq45fSiLdkS1tgJJ9RuLLL5Me6oL6EVvtsGs4e/LyLDKEUZEU02/MhpNkLKmG9yxieHeX6deJ5005y0IRnND3C3Y/mK/B+EuWpTItmN3iiaSTNwb3gobM9LJBteqmH49dfQnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768331266; c=relaxed/simple;
-	bh=6GzEO5B1xEnUxV7yC8QlkAoYLKPFxG2WvfwOaqX2bWw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=h3AQZ0qI00Lp7Zf54c+2/Zx14zbWiPXzsAsDxvY/k7xE0mimDH2fpn9EqZ4mxluGwwnnvLWMbTPyi+MuyivJfq73JaJGiYzttUqSVf71c2OJFCcnEfcp4YIte7kJXYX5nRRZWiPi3mMcHrwYUnxcTQORs8SVo13+DrpTaQKF3mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1vfjjn-0008Q2-SD; Tue, 13 Jan 2026 20:07:31 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Tue, 13 Jan 2026 20:07:29 +0100
-Subject: [PATCH v8 3/3] arm64: dts: imx93: Add parallel display output
- nodes
+	s=arc-20240116; t=1768331574; c=relaxed/simple;
+	bh=shKJzKw1Ih0HkN9nyF0ttMJM0COgi6vVUCHPLcv23a0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Nz9wd8ubCvBS/i3e6FLFfO/TnzzvSWSRMHLX9+HupyggWviUxfG9iE+kcY+h2PsrVdoZJzhRWVWTvR5TLTxIkEDB1NGkG7z8BjcgOZMIAQQCvCkkNJQuDATPyMXSq704KI6UA1Mvm0ahBrv9sxAYhdA/pKup9zEKZgXseqwM/Hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eB6IrzNG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2538BC19422;
+	Tue, 13 Jan 2026 19:12:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768331574;
+	bh=shKJzKw1Ih0HkN9nyF0ttMJM0COgi6vVUCHPLcv23a0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=eB6IrzNGKIulgcUAfuwBBRVNNGuCK77XhMqRlyW/2PsVN+5EAiX+nF1adXwNLLYGq
+	 UklQ0XapSMjljTqVy/gXkzya3eKINbade1C5b/W2khLiLhICsMwdpH5fqF4blPrhGx
+	 O7VnZDP9sUkmMHzbHckbSR8j7sAfkuSWuTv6qcO6YKin0/jMaOQ2AX2v7j4NITX2lM
+	 L7e3e5L/JRaSxt9Q8gxJ5o0cW+6QNoESFbkQppFXJqjobqUa0mbidl8v/qCabyk+iM
+	 YEBsDlXp/hjI76ex3xLl/0sDx5pfaClsEHldVD6dn3Qy9otHTzd+HnQ0+ACkeFo+v0
+	 4XT++ovb5GUkQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 12795D2F32D;
+	Tue, 13 Jan 2026 19:12:54 +0000 (UTC)
+From: Yedaya Katsman via B4 Relay <devnull+yedaya.ka.gmail.com@kernel.org>
+Subject: [PATCH 0/3] Support FT3518 touchscreen in xiaomi-laurel
+Date: Tue, 13 Jan 2026 21:12:34 +0200
+Message-Id: <20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,142 +53,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260113-v6-18-topic-imx93-parallel-display-v8-3-4abccdc473a5@pengutronix.de>
-References: <20260113-v6-18-topic-imx93-parallel-display-v8-0-4abccdc473a5@pengutronix.de>
-In-Reply-To: <20260113-v6-18-topic-imx93-parallel-display-v8-0-4abccdc473a5@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
- Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, kernel@pengutronix.de, 
- Marco Felsch <m.felsch@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqAIBBG4avErBPSyEVXiRZpvzkbC6cikO6et
+ PwW7xUSZIbQ2BTKuFl4TxW6bcjHJW1QvFaT6YzttO7VuV8+is9AUsdy+ghRDs4Mxrp1CI5qeWQ
+ Efv7rNL/vBxiP+z1lAAAA
+X-Change-ID: 20260113-touchscreen-patches-beb2526bd5fb
+To: SzczurekYT <szczurek@szczurek.yt>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Yedaya Katsman <yedaya.ka@gmail.com>
 X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768331572; l=928;
+ i=yedaya.ka@gmail.com; s=20260113; h=from:subject:message-id;
+ bh=shKJzKw1Ih0HkN9nyF0ttMJM0COgi6vVUCHPLcv23a0=;
+ b=DSEKKDFVGI+3VF3inejaQDMH0Q2L84sZznBHxBxkwtTsKkvrib5jvhZ5ponszHQDj0MXnyaLn
+ TfEB7BOf3BlDPItmL57iGvyLkaQe8lSujNEX2aM4Ros1mz+d2oLahZ1
+X-Developer-Key: i=yedaya.ka@gmail.com; a=ed25519;
+ pk=CgNmxD3tYSws5dZfpmJfc6re/bV/f47veVijddHLytk=
+X-Endpoint-Received: by B4 Relay for yedaya.ka@gmail.com/20260113 with
+ auth_id=601
+X-Original-From: Yedaya Katsman <yedaya.ka@gmail.com>
+Reply-To: yedaya.ka@gmail.com
 
-Add required OF nodes to support the i.MX93 parallel output (DPI) path.
+Adds support for the touchscreen in the Xiaomi Mi A3 (xiaomi-laurel)
+ smartphone, FocalTech FT3518
 
-On the i.MX93 a single LCDIF is connected to three bridges: DPI, LVDS
-LDB and the MIPI-DSI whereas the i.MX91 support only the DPI bridge.
+Original tree was here:
+ Link: https://gitlab.postmarketos.org/SzczurekYT/linux/-/commits/laurel
 
-Map endpoint@0 as DPI bridge output since the i.MX93 TRM (Figure 485.
-MEDIAMIX block diagram) doesn't mention any port-number <-> bridge
-combination.
-
-Set the MEDIA-AXI and MEDIA-APB clocks to the overdrive (OD) values
-since the i.MX93 and i.MX91 use the overdrive (OD) clk settings per
-default.
-
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
 ---
- arch/arm64/boot/dts/freescale/imx91_93_common.dtsi | 54 ++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx93.dtsi           | 12 +++++
- 2 files changed, 66 insertions(+)
+Yedaya Katsman (3):
+      dt-bindings: input: touchscreen: edt-ft5x06: Add FocalTech FT3518
+      drivers: input: touchscreen: edt-ft5x06: Add FocalTech FT3518
+      arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Add Focaltech FT3518 touchscreen
 
-diff --git a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-index 7958cef353766a430df5e626ff2403dc05a974b1..5a8813df6bc993d559fb0b20fc742a106bfe6315 100644
---- a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-@@ -1122,8 +1122,62 @@ media_blk_ctrl: system-controller@4ac10000 {
- 				 <&clk IMX93_CLK_MIPI_DSI_GATE>;
- 			clock-names = "apb", "axi", "nic", "disp", "cam",
- 				      "pxp", "lcdif", "isi", "csi", "dsi";
-+			assigned-clocks = <&clk IMX93_CLK_MEDIA_AXI>,
-+					  <&clk IMX93_CLK_MEDIA_APB>,
-+					  <&clk IMX93_CLK_MEDIA_DISP_PIX>;
-+			assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1>,
-+						 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
-+						 <&clk IMX93_CLK_VIDEO_PLL>;
-+			assigned-clock-rates = <400000000>, <133333333>;
- 			#power-domain-cells = <1>;
- 			status = "disabled";
-+
-+			dpi_bridge: dpi-bridge {
-+				compatible = "nxp,imx93-pdfc";
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						dpi_from_lcdif: endpoint {
-+							remote-endpoint = <&lcdif_to_dpi>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						dpi_to_panel: endpoint {
-+						};
-+					};
-+				};
-+			};
-+		};
-+
-+		lcdif: display-controller@4ae30000 {
-+			compatible = "fsl,imx93-lcdif";
-+			reg = <0x4ae30000 0x23c>;
-+			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX93_CLK_MEDIA_DISP_PIX>,
-+				 <&clk IMX93_CLK_LCDIF_GATE>,
-+				 <&clk IMX93_CLK_MEDIA_AXI>;
-+			clock-names = "pix", "axi", "disp_axi";
-+			power-domains = <&media_blk_ctrl IMX93_MEDIABLK_PD_LCDIF>;
-+			status = "disabled";
-+
-+			port {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				lcdif_to_dpi: endpoint@0 {
-+					reg = <0>;
-+					remote-endpoint = <&dpi_from_lcdif>;
-+				};
-+			};
- 		};
- 
- 		usbotg1: usb@4c100000 {
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 7b27012dfcb564650882dc8c40e836e797b2fda1..5436b48b30e89eb1f939b398ce1bf105abe7e34b 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -150,6 +150,18 @@ l3_cache: l3-cache {
- 	};
- };
- 
-+&lcdif {
-+	port {
-+		lcdif_to_ldb: endpoint@1 {
-+			reg = <1>;
-+		};
-+
-+		lcdif_to_dsi: endpoint@2 {
-+			reg = <2>;
-+		};
-+	};
-+};
-+
- &src {
- 	mlmix: power-domain@44461800 {
- 		compatible = "fsl,imx93-src-slice";
+ .../bindings/input/touchscreen/edt-ft5x06.yaml     |  1 +
+ .../boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 34 ++++++++++++++++++++++
+ drivers/input/touchscreen/edt-ft5x06.c             |  6 ++++
+ 3 files changed, 41 insertions(+)
+---
+base-commit: b71e635feefc852405b14620a7fc58c4c80c0f73
+change-id: 20260113-touchscreen-patches-beb2526bd5fb
 
+Best regards,
 -- 
-2.47.3
+Yedaya Katsman <yedaya.ka@gmail.com>
+
 
 
