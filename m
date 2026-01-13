@@ -1,141 +1,160 @@
-Return-Path: <devicetree+bounces-254404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F75D17D6A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:03:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75A45D17D3A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:00:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3497B300A37C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:59:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EECAA3012762
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:58:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1CAE389DFF;
-	Tue, 13 Jan 2026 09:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BA8389469;
+	Tue, 13 Jan 2026 09:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="tpsd08T3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qoXWdqNH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50098389DE9;
-	Tue, 13 Jan 2026 09:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F075732549E
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:58:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768298374; cv=none; b=j/dovn83jcIYhQV7i3aUY5+itVgaZU2/UiHsn/ZA8yGfx053wyAUzDFpnPC+Ozh0qWDvt03t+IB5r/KmNmumUHc7Y9vUkPD6SPUhtcozVzHnPgNhrXhTBFRcIm24xu3sxq0BVdr8eW921d+xYNwLK5INy9iVpVzmenb2G3zRLCI=
+	t=1768298292; cv=none; b=Jfa8tgUGGchrjhEde72AOoqC2LHevGlIATHFj17WllcXifElLofR28+qcegSfZB5eGxR7voM9QnecGSJSXJmPx04E/tTtwxz9y1S8/q2Hv5rZ4TQTtb4y9sfgWv6cPCBO4NmWucWZJFmap8TLi/ssbKF/lEYBVpgKwrHHvxnUkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768298374; c=relaxed/simple;
-	bh=bT1uQ9drhXxmD/GhPOeu6ouOD2VsmqIIY1NfWguUaJE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=doYefulyeM64NLnpDhufRCeJCYL/Nx5N6qTqblk4v62sykCHvwuFPu4sJiQBR0d++r7SHiYYlPKxoRpCm0ozSjLIV1KH/8qECCEg7/AwEW/blAfQBypW5C3jZPi1EikQR90UNtFrxXymnq1/ygOJrt6tAz9WKzwsNbrNs9fNgH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=tpsd08T3; arc=none smtp.client-ip=15.184.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1768298331;
-	bh=n14gJw1sUD9px9VDJGiSaecDAuTmIrzgbdKTpKKj2bY=;
-	h=From:To:Subject:Date:Message-Id;
-	b=tpsd08T3hKcySI0Umw38xBCiKMGl80xlOlfJiKTTkPMYiFm0KEN0YuHooLrn1OjAX
-	 fl3XEZqpC0awKOENrSGc0d+/WAE5C3mzN5HIJ25KjZ+VROYD0L4g4UdJZ8lbFKcWqB
-	 l9DnLpr+KcgUwGVrU3UHkM5JVEHdiZ9I9mWfTWUM=
-X-QQ-mid: zesmtpgz5t1768298326t250b0fe2
-X-QQ-Originating-IP: 4rFH5EMm2c5Q2EwqWXxYK5bMdKCpUec8lIl4fJysJJk=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 13 Jan 2026 17:58:43 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2202216565104918497
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Popescu <catalin.popescu@leica-geosystems.com>,
-	Stephen Boyd <swboyd@chromium.org>,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Pin-yen Lin <treapking@chromium.org>,
-	=?UTF-8?q?J=2E=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Cc: linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Subject: [PATCH v2 2/2] usb: misc: onboard_dev: Add WCH CH334 USB2.0 Hub (1a86:8091)
-Date: Tue, 13 Jan 2026 17:58:27 +0800
-Message-Id: <20260113095827.115-3-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20260113095827.115-1-kernel@airkyi.com>
-References: <20260113095827.115-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
-X-QQ-XMAILINFO: N6FMNTMYeW5JiJ0bknrkSl8L/bzD4OTla3AdjSztrvM8WyXXhntjO85y
-	7lcQASPKTPrmOPcTjV50RIscNIPPfEAZPypDKZatgP2WVVo6KNbSbKVBYW0TJ0d+nSqij9F
-	f8kCBSiflUPL0WLobBFJ3Zz3taiZ3HRVKz3WzYUSnpchzor3UpGAsQ5b5EohlpeJ+c0cCy0
-	aPol1e0+wyjGLUkjmx0bPzA9etd0S8iW5eRjmr+asLAn7zciRB6MgrCDqTCuGjFCVs4I9Ho
-	lNI+YUmkRzYfHOmch3WlFuLDYyBL4sIsJ3gDFwk8SBrtFF7uera6Fy6iN0ndzGWF4ZiJhOm
-	CGqWim1qOEXxWTH/kKizLRegQjd3TCBnYtdh5UbKNbQp/LRfEaHX+NNZIfIfddYwwAMxFez
-	avGixtw7lBH8zBOj/gPsjwlNSY/ODnStdK6Y/QphCcuPM04356FDyV/ARlzgBbb0vkbrwvb
-	KB9T1SodQ1V+DFNM0XymoxdzAHweWctGMId/OjuL/KD/CBlWwDRasJA+8+uernuEYYSgcGK
-	IRo5kfGGU85V/ddmTTG8AEtCytj21zFhQA8WzQLJO6mpKkW81EVPuCAN+Fos1iLcLJDvMBr
-	AywL0z+rnPqzyYEjXi8s38gKiYf5G4BwlknsxSUOeBYfD3CLETzQYi0lDP2tq0jBksh0Pzw
-	Yh8YUQ4viZpp2Oi0KWsNaaTr5zPXWCd5qx53XnhghZmJ3npk1ruRWHiz/+iZ//QUgJtVNVe
-	VW8rdyVJHlGkuuTU1/BTwz6wkGs+xkRXSKWvIsIGfnMWbdyKWprnLYeR19hQJer4A1cKtmR
-	l1+qC8e5T/cLa2Z8+djhk1yJFXRCZsU8n8LChGlIJcnQFzZ5XCJTI+gcdKyosBe7x+0mqxF
-	S5yUlHMNYWDCDXr7L4udNI95D8lfbGJEeBcEyTzFvjPt52msxHXC9qBQqlaoCDPYkCWg3Cg
-	H9WaTU/lyaVHa7w8b1c6YBBqh4xF8VD5OTGbWzJ0ZIrZY4kk/ehrVGDDYgAh3BIrxxlUQX3
-	WAqmCirABmS5i2vCbtrYBU6cFV078=
-X-QQ-XMRINFO: MSVp+SPm3vtSI1QTLgDHQqIV1w2oNKDqfg==
-X-QQ-RECHKSPAM: 0
+	s=arc-20240116; t=1768298292; c=relaxed/simple;
+	bh=dhbnhDNALcR78uDRf6sBCK/dgtValZQ5tQnOJGX+vEE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=VMtMPjxZTYujvBm2TSrS5wZN1jA3G2OUJze2Qqsia4X2ZSerwJKQTqY1P6e4LItVn2iuxhsdT3bIhzHJ6RiMNX8u1gt5GZrOLq2A3ffoJn2u1AUuOuCiwTy1yVtraf6xvEwz/KdLrnYormAA2oBV1ZYfKKKkFuOrSRqP2aNAMx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qoXWdqNH; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a07fac8aa1so55394305ad.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 01:58:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768298290; x=1768903090; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dhbnhDNALcR78uDRf6sBCK/dgtValZQ5tQnOJGX+vEE=;
+        b=qoXWdqNHFdUMyFePbOBzvWC4BETwEudjHoza0f8rdfQjwvb1lqLbZUJy2O1JcFxkAM
+         tIKX4cRzYwcIEPH72FGo/XlkG0G+BPRZ4mvEstbFtp7hhdLlEqf/q8H7X+zAy4hruq7m
+         NbYsf7cs3Dt5LJ9gFvZhKntfWxx0ItY24eVCjXClqFpCbTcjuWZCgkeGSncuQ/whrwgv
+         HhHqQgYLE5K51eyUXlFrSeXziomHVdwuDW2VF2j4iZ8ct5vmZ6inJRuWvvC6gW0oeYCS
+         XNSoddRxGRTrcjGaunHJoOKSvutnmJva/s7hL5/yjyVHE647bFOsbjSIRBE/zfIsfSUi
+         1iLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768298290; x=1768903090;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dhbnhDNALcR78uDRf6sBCK/dgtValZQ5tQnOJGX+vEE=;
+        b=ASNuTmgQ4frC7+kHoQVXi0oWCRbnHzS6xzajguWGEUU6AEySk9UfHw1Ch1dB2WyYBg
+         Y+TB1tE9ViNQxjG6tmtkWYb5gJGbeRdKBhighujX9Eg2R3wq49bydRy9CF6fRn5kd2Wi
+         wFmP/D1SXW5QOzk5jJzTfE/sb6oprGuMOTfpr8GLOaAzhzCTt1D2IAnBhwHKqe+/TO2K
+         L2mW+7PHy/9udMydJRTwJb5KhsZnKup5d+K2fJEPFK+cTsYsanVZMpyhikvHWiwaQE+7
+         Ctg2gBXiCZbyJoVNGeaoF+WB0FfYeq+l8+mnouFNSMiMSzMJ8Y6pc9sYOVhWdUm3Z04v
+         QB3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXeEx2GkZkNFO5f5i09UGEHObZvw/VNaDgpqNmQ2a7t1MNCOH9DlKfp9Zc9Be5+ynRHhHDLP1M6uEYE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJOaQhAELKo4zhQlY6ykzqvzDziF0kMITQxZfn5ByZT6IOPc2q
+	QosGdTkNces0RmHGL1Rr0hOBJAdXpBEIVAWhqjNvHVkGNL5s/+GyXqeIHjnkE7/1dmE=
+X-Gm-Gg: AY/fxX4hs4OfCeV0AICgoe5OT2o6LzalhQhzE8StcaR4X9XQoxCsucgOmAHjEsgFoPH
+	rxQiJ8z5hrONygEaQ/G15w5GBwRmkUyvyIixaIPJR2CvVM5SRSp0jQ4naQj8gfVg+9VSSpUpI3I
+	XV10XKUibsqz0rmJVN8VYjJe8vf6Odjev+d/HCGm0xQOQyEK7/ofIu3LXIW3eGQm0yGYVXIRV90
+	BWOiMSdBPy5hpWUlwogTl4vFRUBFpLvb2bQDunglQbZA7zsCWZPgWxyemH5SaStGYOKomCW/yTH
+	M9xXBUVxxDIu5jaRXhbsqIYBQlYC58hZZO4MWtEsCjzVpKARz2etRh+iJHifUA0VCPxzfNlkdZd
+	pHTqER1uavn8uKPBIXt8ANKkkiSt3R9TU1Ol86r/9WcJlwqauxU30ZA57FgZGRDYjebB0rEEZKB
+	ZYxW+TvSr/ehFCgSJl
+X-Google-Smtp-Source: AGHT+IGd8O7bXon4aWxByHwIR+r6yYy/wzypobdk+VV4f1Z0lhI6RmpCFqfxtS7zisBuvgEEiCwJmA==
+X-Received: by 2002:a17:902:e807:b0:2a1:e19:ff0 with SMTP id d9443c01a7336-2a3ee4b3165mr186626875ad.39.1768298290235;
+        Tue, 13 Jan 2026 01:58:10 -0800 (PST)
+Received: from draszik.lan ([212.129.80.26])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3c5ceeasm195176785ad.45.2026.01.13.01.57.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jan 2026 01:58:09 -0800 (PST)
+Message-ID: <c1045dd2f33ed3a618381448717b0b5d5b28dcb5.camel@linaro.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: clock: google,gs101-clock: fix
+ alphanumeric ordering
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette	
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Sylwester
+ Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+	kernel-team@android.com, Will McVicker <willmcvicker@google.com>, Juan
+ Yescas	 <jyescas@google.com>, Doug Anderson <dianders@google.com>
+Date: Tue, 13 Jan 2026 09:58:38 +0000
+In-Reply-To: <CADrjBPomC-QaL8aR4QsEPm+Uu5_QoWQZUomLMZt+09-ywH3wjA@mail.gmail.com>
+References: <20260112-dpu-clocks-v2-0-bd00903fdeb9@linaro.org>
+	 <20260112-dpu-clocks-v2-1-bd00903fdeb9@linaro.org>
+	 <ba585515010ab9a9b417d000ba744f8178ca9e24.camel@linaro.org>
+	 <CADrjBPomC-QaL8aR4QsEPm+Uu5_QoWQZUomLMZt+09-ywH3wjA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Hi Peter,
 
-The WCH CH334/CH335[0] are USB2.0 protocol compliant 4-port USB HUB
-controller chips, supporting USB2.0 high-speed and full-speed for
-upstream ports, and USB2.0 high-speed 480Mbps, full-speed 12Mbps and
-low-speed 1.5Mbps for downstream ports, supporting not only low-cost STT
-mode (single TT schedules 4 downstream ports in time share), but also
-supports high performance MTT mode (4 TTs each corresponding to 1 port,
-concurrent processing).
+On Tue, 2026-01-13 at 09:13 +0000, Peter Griffin wrote:
+> Hi Andr=C3=A9,
+>=20
+> On Mon, 12 Jan 2026 at 14:26, Andr=C3=A9 Draszik <andre.draszik@linaro.or=
+g> wrote:
+> >=20
+> > On Mon, 2026-01-12 at 14:16 +0000, Peter Griffin wrote:
+> > > Fix the places that don't have correct alphanumeric ordering. This wi=
+ll
+> > > make reasoning about where to add future entries more straightforward=
+.
+> > >=20
+> > > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > > ---
+> > > =C2=A0Documentation/devicetree/bindings/clock/google,gs101-clock.yaml=
+ | 6 +++---
+> > > =C2=A01 file changed, 3 insertions(+), 3 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clo=
+ck.yaml
+> > > b/Documentation/devicetree/bindings/clock/google,gs101-
+> > > clock.yaml
+> > > index 09e679c1a9def03d53b8b493929911ea902a1763..a8176687bb773ae90800b=
+9c256bcccebfdef2e49 100644
+> > > --- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> > > @@ -27,13 +27,13 @@ description: |
+> > > =C2=A0properties:
+> > > =C2=A0=C2=A0 compatible:
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 enum:
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-top
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-apm
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-misc
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-hsi0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-hsi2
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-misc
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-peric0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-peric1
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - google,gs101-cmu-top
+> >=20
+> > If we keep 'top' at the top as one outlier, it'd reflect that it is the
+> > top unit and all other CMUs are children of it.
+>=20
+> Thanks for the review. I opted to just keep it alphanumeric so it's
+> (hopefully) obvious what all future ordering should be.
 
-[0]: https://www.wch-ic.com/downloads/CH334DS1_PDF.html
+One last comment: except that all other source files in the tree place
+cmu_top at the top. It'd be more consistent with those files if done
+similarly here.
 
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
----
- drivers/usb/misc/onboard_usb_dev.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/usb/misc/onboard_usb_dev.h b/drivers/usb/misc/onboard_usb_dev.h
-index c1462be5526d..1a1e86e60e04 100644
---- a/drivers/usb/misc/onboard_usb_dev.h
-+++ b/drivers/usb/misc/onboard_usb_dev.h
-@@ -115,6 +115,13 @@ static const struct onboard_dev_pdata vialab_vl817_data = {
- 	.is_hub = true,
- };
- 
-+static const struct onboard_dev_pdata wch_ch334_data = {
-+	.reset_us = 14000,
-+	.num_supplies = 2,
-+	.supply_names = { "vdd33", "v5" },
-+	.is_hub = true,
-+};
-+
- static const struct onboard_dev_pdata xmos_xvf3500_data = {
- 	.reset_us = 1,
- 	.num_supplies = 2,
-@@ -146,6 +153,7 @@ static const struct of_device_id onboard_dev_match[] = {
- 	{ .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
- 	{ .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
- 	{ .compatible = "usbbda,5414", .data = &realtek_rts5411_data, },
-+	{ .compatible = "usb1a86,8091", .data = &wch_ch334_data, },
- 	{ .compatible = "usb1da0,5511", .data = &parade_ps5511_data, },
- 	{ .compatible = "usb1da0,55a1", .data = &parade_ps5511_data, },
- 	{ .compatible = "usb2109,817", .data = &vialab_vl817_data, },
--- 
-2.51.1
-
+Cheers,
+Andre
 
