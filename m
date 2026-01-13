@@ -1,151 +1,150 @@
-Return-Path: <devicetree+bounces-254723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45BED1B559
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:02:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 136C7D1B5AD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:09:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5FCE13051C47
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 21:01:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E85363017ECE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 21:09:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065272FD1B1;
-	Tue, 13 Jan 2026 21:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5AB43242AC;
+	Tue, 13 Jan 2026 21:09:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPvj8vBh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s++d/Z+b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB87272E56;
-	Tue, 13 Jan 2026 21:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD05731DDA4;
+	Tue, 13 Jan 2026 21:09:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768338106; cv=none; b=jxkdf4UjIGaClilIs95218PXncycZx4NHW0i9to6rCzo4eu6GIF+6dw6xIz9E1X41fcIktKpqLwRKPYC6jio7DW2NT19y0gt0SYckiwP3CLYSVQbx2ew9t9EI/Es0fljQILnM2Tmz4dmTPVLGsPazgwruE4NIpLfbYX8XDLF7CE=
+	t=1768338580; cv=none; b=eXUi8KsMHvwWEXO5cKhVGra5ZkLvnNLejjgQHeHbYMIQVQzc6vSZwcHyNYfvF4jgyCpS7wttVX6ZT6vXCC7+ZwMAv0FEc9Y5YmpF5nAW5lXUD/b0QZEIQIL6C2lRZE5tHSs5LPnqf62LJaJHm/5L8VvpZ1eZkodgFqQQybDkUL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768338106; c=relaxed/simple;
-	bh=VDI3DVjPVUzXeIS/ii4S5gx3Rk4MHsg9+e5F/Ix2ak4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oxMPRvyS4PZQFoh63UIfl9CmRZ4KtEbagGbn+OHZiLAf1eRnkC9817DkvxbLf/To7NHLF2W86bznFtxtxJ2gHoaoC3iwHvequpOT8cB6ESHhpuOG5Fo0UpLi4Gy8IeleNt9JYWLFR65SFONS7KGq4xNr/DHc5lr2khlYeT1DgQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPvj8vBh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57577C116C6;
-	Tue, 13 Jan 2026 21:01:43 +0000 (UTC)
+	s=arc-20240116; t=1768338580; c=relaxed/simple;
+	bh=WCnY/lj3fzjvIsFQZM824I87yHl/GftCvl+s4jhP2qM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dLBEBKA4tkvVZLOgdK2E2FIkVDEweOABryXW3UagpjRo6gDLIn4WQ+udmvUn0P8cuTYCtm7+MDUPgx7wAfVxcE9K2Ay/CQVXvJG5D8i0r6ugIIsWwD0a7KLj1m3KYtZ5RE48Bv9Al1Zw+YZP+Ippv2V2gsZ+EN1kOXf/kaAhaDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s++d/Z+b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 44C15C116C6;
+	Tue, 13 Jan 2026 21:09:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768338106;
-	bh=VDI3DVjPVUzXeIS/ii4S5gx3Rk4MHsg9+e5F/Ix2ak4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LPvj8vBhdEr2cBowVtH8J2qJTQc+b6lobw4ewV1O8hbJKmPJ6IRNPubeT/wzpTW5B
-	 fhciW4p7E/FvzwBbwKpT4U606qt1/nXe5bWORiVnH4HQpuY5HlhcH0JcQrlgBkSR3j
-	 EGaBvG5S3o6vPQV/UjtoIg0RSsM9Q3Jf/MywfHuq6a8d7hlEauVPn+qEmNjNDukrCb
-	 Z1k9FxErV158UWBfXVraYnaoAoekh3KgQkc3aR/J78nT3FBAOqxKANf33dieQnCdlN
-	 0igkzDn7mE8tRe+rxIu/AMLtZnLisBypv7pwVerB6iUnxetUydm1BdY6Z8pAPr4Ou8
-	 9FlX5rzyP4oTA==
-Message-ID: <52ede134-143d-4571-9aef-34bc54d4bc01@kernel.org>
-Date: Tue, 13 Jan 2026 22:01:41 +0100
+	s=k20201202; t=1768338580;
+	bh=WCnY/lj3fzjvIsFQZM824I87yHl/GftCvl+s4jhP2qM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=s++d/Z+bEk6fzJBnFcofzRHEws4wiB54gfrZfdYmDcMCQBJWHfV02dWrj7OWH4/Cs
+	 RwPVFNMKeMjbAmXHBEmwkK3REplE4496kItVQJZdYAi5+XudabybpH/vV2APUdf8/B
+	 hQBfHRNEIxI7QlnOglhrgBCfpv+IkuGZQ3SBKRlWUq2+itWr5hMaRsKauKdfhRzlev
+	 F33nhlU3jfAVtFcQoFYnRcX3tiX7yWb7H3Zd69BK+6IBWHhsGRvpLXD7oxdqs0g1im
+	 0nzURsN8Uhpy7UHqlZnM8TLgL0vkEtr/5F942w92c74yhVtYosEkLW3NZqip8DhYCp
+	 xz1OCh0+QUDUA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30CC8D30CC4;
+	Tue, 13 Jan 2026 21:09:40 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH v3 0/3] media: rockchip: add driver for the rockchip mipi
+ csi-2 receiver
+Date: Tue, 13 Jan 2026 22:09:26 +0100
+Message-Id: <20251114-rockchip-mipi-receiver-v3-0-16e83aa7f395@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] dt-bindings: can: renesas,rcar-canfd: Document
- RZ/T2H and RZ/N2H SoCs
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260109125128.2474156-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260109125128.2474156-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260111-poetic-dark-butterfly-97993f@quoll>
- <CA+V-a8un48Gfqg-K6YToxUgnZawOcb-nQHsBcOfHdpAR7_Uu4Q@mail.gmail.com>
- <dd053cff-af8f-4378-9550-9f99f91cea20@kernel.org>
- <CA+V-a8tZAUoPxp7NanALW5HmVLMQAprcDXPME5povLT6nH6bTw@mail.gmail.com>
- <CAMuHMdUrSUeOFvyX-RhjFV8HfiGtvOvBT-Wd328C4P-j-N0fHw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAMuHMdUrSUeOFvyX-RhjFV8HfiGtvOvBT-Wd328C4P-j-N0fHw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIa0ZmkC/42NQQ7CIBBFr9KwFgMUtXXlPYwLmE7txArNoETT9
+ O6iSze6fD/5780iIRMmsa9mwZgpUQwF6lUlYHDhjJK6wsIos9FaW8kRLjDQJK80kWQEpIwslXe
+ 9sRZaaFCUs3cJpWcXYCj3cB/HMk6MPT0+teOp8EDpFvn5iWf9Xn92spZKdrpWzRYbrbruAHEcn
+ Y/s1hCv4q3N5j+VKSr0rbd1vdv1YL9Vy7K8AAsmfIQgAQAA
+To: Michael Riesch <michael.riesch@collabora.com>, 
+ Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Hans Verkuil <hverkuil@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Michael Riesch <michael.riesch@collabora.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768338578; l=2431;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=WCnY/lj3fzjvIsFQZM824I87yHl/GftCvl+s4jhP2qM=;
+ b=9GXyZism98d3SmCPnycvQNmO2IPoOV7DU3RAw4adv0rP7MXMuxrgKEZXkw9elfePxd0vs7B0O
+ 4aMZme0FfhPBWnS6X+iRvRXmOkxlwt1Nn8ZIgxKMQau8ApvCRsNbLk5
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
 
-On 13/01/2026 20:25, Geert Uytterhoeven wrote:
-> On Mon, 12 Jan 2026 at 18:22, Lad, Prabhakar <prabhakar.csengg@gmail.com> wrote:
->> On Mon, Jan 12, 2026 at 4:30 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>> On 12/01/2026 15:04, Lad, Prabhakar wrote:
->>>>   - if:
->>>>       properties:
->>>>         compatible:
->>>>           contains:
->>>>             # SoCs WITH resets but WITHOUT reset-names
->>>>             enum:
->>>>               - renesas,rcar-gen3-canfd
->>>>               - renesas,rcar-gen4-canfd
->>>>     then:
->>>>       required:
->>>>         - resets
->>>>       properties:
->>>>         reset-names: false
->>>>
->>>
->>> Yes, although now I wonder why do you have such case... There are no
->>> benefits in disallowing reset-names, even for single entries.
-> 
-> Except that I have no idea which of the two names I should use in
-> case of renesas,rcar-gen3-canfd and renesas,rcar-gen4-canfd, as
-> the hardware documentation doesn't explain that?  AFAIU it is just
-> a single, common reset for the whole block...
-So there is a reason why reset-names should be disallowed :). It's fine
-then.
+Habidere,
+
+This series adds support for the Rockchip MIPI CSI-2 Receiver that is
+integrated into recent Rockchip SoCs, such as the RK3568 and the RK3588.
+
+These changes have been discussed and reviewed thoroughly in roughly 10
+iterations of the rkcif patch series (see [0] and predecessors). Thus,
+they should be ready for inclusion in mainline.
+
+However, as has been discussed in [0], it would be beneficial to add
+support for the split mode (a feature of the Rockchip CSI-2 DPHY)
+before integrating the MIPI CSI-2 Receiver into the respective SoC
+device tree includes. We can readily add the DT binding and the driver
+as I am positive they will not need to be changed when this feature is
+introduced, but there are no patches in the series that introduce the
+DT nodes.
+
+This constitutes a small step towards mainline video capture and camera
+support on the Rockchip RK3588.
+
+Looking forward to your comments!
+
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+
+[0] https://lore.kernel.org/r/20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com
+
+---
+Changes in v3:
+- rebased onto v6.19/recent media-committers/next
+- Link to v2: https://lore.kernel.org/r/20251114-rockchip-mipi-receiver-v2-0-eb9b43377fc4@collabora.com
+
+Changes in v2:
+- dropped one R-b by Bryan, as there were two of them on the same patch
+  (Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20251114-rockchip-mipi-receiver-v1-0-d13086e810dd@collabora.com
+
+---
+Michael Riesch (3):
+      media: dt-bindings: add rockchip mipi csi-2 receiver
+      media: rockchip: add driver for the rockchip mipi csi-2 receiver
+      arm64: defconfig: enable rockchip mipi csi-2 receiver
+
+ .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 146 ++++
+ MAINTAINERS                                        |   7 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/media/platform/rockchip/Kconfig            |   1 +
+ drivers/media/platform/rockchip/Makefile           |   1 +
+ drivers/media/platform/rockchip/rkcsi/Kconfig      |  16 +
+ drivers/media/platform/rockchip/rkcsi/Makefile     |   3 +
+ drivers/media/platform/rockchip/rkcsi/rkcsi.c      | 742 +++++++++++++++++++++
+ 8 files changed, 917 insertions(+)
+---
+base-commit: 3aa9296a23ec41a8424e9a2346eea59fb6cb7d8c
+change-id: 20251114-rockchip-mipi-receiver-0baf244c9c8e
 
 Best regards,
-Krzysztof
+-- 
+Michael Riesch <michael.riesch@collabora.com>
+
+
 
