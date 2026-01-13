@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-254303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1EB9D17058
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:30:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC63D170D3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 227E33041018
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 07:30:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 27DAF30131C6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 07:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37C33313554;
-	Tue, 13 Jan 2026 07:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96C5334AB06;
+	Tue, 13 Jan 2026 07:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t5eliOJ/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pcRZhtst"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137A9311C1B;
-	Tue, 13 Jan 2026 07:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DA31BC08F;
+	Tue, 13 Jan 2026 07:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768289436; cv=none; b=PiNUcl4BkUZYGQdcrvZkrh7rrNnRGrvCDLYc4p+j2hCeQSz5NdX4G55XZlISGquj7oubYi4wUlHH2bVdeBONol7FkJVEEKwVCQ4zpijGbF8bkJD3MjGZjodUnrAHWF+KUYJBhcLxsdrcGozu0w3tkhf6xur9x4fReSOjYQe6RfU=
+	t=1768290080; cv=none; b=IFwGAwJ4i9xv98djmMIOBnY8PB36+6xnDtjDknbj99sK9bGe5d5KL9iqBGOSnFlQNL4mqRdEQMx0SMEdwpzLNB0GoeN0AA2Su30PUu4pbV6js7gJUhBw5ALEnEOBRe/6B620vHv260KjxxYlRRRdMROatAloUSPG5jfN8PxLjHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768289436; c=relaxed/simple;
-	bh=GkuVz6PJ37bXi+SsxKuFykpOfTC/ZcnWw1QD/eObPQI=;
+	s=arc-20240116; t=1768290080; c=relaxed/simple;
+	bh=81HjT9+8N+O6Gr1++xyqf2PHHjPaLODnq0PKKKCxY30=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KczXS7IF+JJ9WWtOlxUSw/2IpqRB2tgwkKa6mIBCgXGbkMdIMMw7sFAdkRxoZZOfsLBueWBU9wF61kXsTbqatR5RawoqCJ30ByI+u51NPncxWvboolAZzSbGBYRwCjMZX9B4fnOrtybevmgcML20tNoxbSChByHJg+rXTQKx/Ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t5eliOJ/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B75C116C6;
-	Tue, 13 Jan 2026 07:30:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Z6D3YOeUg+U1a1wj1XtA52dX6lyCdGDuiyjkD2u2gfvYJBMsgYvMMJH4L+0Wo3SNHhh3dd2AzjZcHMfb7/0nw1YCLryvk2V6bJqm8m8zg5qetsoGd6AkKmUJpK4vx5QIZqDS816TyiYvfFXc2v0tpmFMZNZ92TeGeMcMZ9vloEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pcRZhtst; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E5A5C116C6;
+	Tue, 13 Jan 2026 07:41:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768289435;
-	bh=GkuVz6PJ37bXi+SsxKuFykpOfTC/ZcnWw1QD/eObPQI=;
+	s=k20201202; t=1768290079;
+	bh=81HjT9+8N+O6Gr1++xyqf2PHHjPaLODnq0PKKKCxY30=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t5eliOJ/FiqE2tCMO4evqlPqp7LNVswtFLvaC/174Tm9zXKFncsP9Z6CFpZ+Yd1h9
-	 gkJsqdY9P14c8LUkyvfJkVrqAjd/TNRlQcsbWonGe/qwTvYMZmwTnaxrxhGogj00OT
-	 aO7IcP6WIjfgCeXLNwsP0vSBW1TG0tPx3IzOSy9a1xIoH6+Ir7JftVAbn/faJOcHz/
-	 PN/t+KhNXqVX5PCzt1oeqJve9G2w4PEZ8mNgd+aiyCBhJHeC0VAk9o3X+uBNaO8i52
-	 GzDtglPOBDQathEI2w77Swe06/VwSMCsFxV2eYqy60vRcQQK21/Ljqwoj2YxiTy2HU
-	 FRTavSpN9DQqw==
-Message-ID: <12234020-267c-4d62-baff-89e6d053f24e@kernel.org>
-Date: Tue, 13 Jan 2026 08:30:31 +0100
+	b=pcRZhtstZvUuvOptugh4Q3/Fuah9diETRW4laC1ty0aa1mD0ICVe42Hy23qx9SVKd
+	 +UoWycQZgkO8Z5Umj7MS0zO5RfvzagBNHvuMJwaJwG9Dd173SLv4rsDBnvGMdcwgb2
+	 uDGrqhgv0pXFOzFFFCvpDVxPI4NPFBsBZrYLn5TJPMQRT/PZ2pSEyHz8P2rq5m/WEI
+	 8dlaC+aWUIFZnnHjq29a3nrXVCfRyvRC+j+UJrU33+L88cVcjKmAozUJFoexHs+tcY
+	 4EqofYZl+MxlAnPmcW9gDoIw26Q2eKaZRR//0usKTBG1oipcP+7qX9hLKneqioCddT
+	 ECJccb1BK2E8A==
+Message-ID: <90011b58-3c12-45ec-b64f-b3847d9a3e16@kernel.org>
+Date: Tue, 13 Jan 2026 08:41:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,16 +48,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 ath-current 1/2] wifi: ath11k: add usecase firmware
- handling based on device compatible
-To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
- johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-References: <20251214025230.716387-1-miaoqing.pan@oss.qualcomm.com>
- <20251214025230.716387-2-miaoqing.pan@oss.qualcomm.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: usb: Add binding for WCH CH334/CH335
+ hub controller
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>, Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Quentin Schulz <quentin.schulz@cherry.de>, Jonas Karlman <jonas@kwiboo.se>,
+ Hsun Lai <i@chainsx.cn>, John Clark <inindev@gmail.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20260112022823.91-1-kernel@airkyi.com>
+ <20260112022823.91-2-kernel@airkyi.com>
+ <20260112-lively-hallowed-beetle-fc15b2@quoll>
+ <1515a445-576a-4833-a604-c31062f7d3fa@rock-chips.com>
+ <b4eb4ab6-6fde-4c01-8069-470545ffdac4@kernel.org>
+ <568b9e25-bf96-4e78-9af0-4791cbb90a56@rock-chips.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,38 +115,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251214025230.716387-2-miaoqing.pan@oss.qualcomm.com>
+In-Reply-To: <568b9e25-bf96-4e78-9af0-4791cbb90a56@rock-chips.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/12/2025 03:52, Miaoqing Pan wrote:
-> For M.2 WLAN chips, there is no suitable DTS node to specify the
-> firmware-name property. In addition, assigning firmware for the
-> M.2 PCIe interface causes chips that do not use usecase specific
-> firmware to fail. Therefore, abandoning the approach of specifying
-> firmware in DTS. As an alternative, propose a static lookup table
-> mapping device compatible to firmware names. Currently, only WCN6855
-> HW2.1 requires this.
+On 13/01/2026 04:27, Chaoyi Chen wrote:
+> Hi Krzysztof,
 > 
-> For details on usecase specific firmware, see:
-> https://lore.kernel.org/all/20250522013444.1301330-3-miaoqing.pan@oss.qualcomm.com/.
+> On 1/12/2026 10:28 PM, Krzysztof Kozlowski wrote:
+>> On 12/01/2026 09:59, Chaoyi Chen wrote:
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/gpio/gpio.h>
+>>>>> +    usb {
+>>>>> +        dr_mode = "host";
+>>
+>> One more thing - drop above line.
+>>
 > 
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+> Will fix in next version.
 > 
-> Fixes: edbbc647c4f3 ("wifi: ath11k: support usercase-specific firmware overrides")
-> Reviewed-by: Baochen Qiang <baochen.qiang@oss.qualcomm.com>
-> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-> ---
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <0>;
+>>>>> +
+>>>>> +        hub: hub@1 {
+>>>>> +            compatible = "usb1a86,8091";
+>>>>> +            reg = <1>;
+>>>>> +            reset-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+>>>>
+>>>> Are you sure?
+>>>
+>>> I guess what you're concerned about here is the polarity? 
+>>> If that's the case, then there's no problem.
+>>
+>> Yes, I was wondering whether polarity is set correctly.
+> 
+> Yes, it is active-low, so during normal operation it should be set to high.
 
-I already said why it is wrong patch and you did not improve. You also
-added tags from reviews of something completely different, which
-effectively bypassed my filters. I find it unacceptable.
+Then it is wrong.
 
-Let me mark it formally:
+> 
 
-NAK
-
-Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
