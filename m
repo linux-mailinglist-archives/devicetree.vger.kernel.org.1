@@ -1,113 +1,357 @@
-Return-Path: <devicetree+bounces-254394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30517D17B89
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:41:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF5DD17C2B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:48:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DE2C6300EA31
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:41:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DFDFD303533B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94458320CD5;
-	Tue, 13 Jan 2026 09:41:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aY8ziSAb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8065B33BBC6;
+	Tue, 13 Jan 2026 09:42:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304721EB5FD;
-	Tue, 13 Jan 2026 09:41:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E002C1EB5FD
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768297298; cv=none; b=ofoHtDl93cGLemeKm7xtdEo7bSPOxaELgBn7NuLD4+Q2NfKkXk8nH6sZTFErf3ozb9vKE5u6lrYTGHNG6FZEyQpGW7KoQZqs26NJrBW2eHZY1hpMtw9YZQdJ92oIWQLBCC8aNMrEwJfzBaDGvWVqf76KaQtGZKPlUjHUQyUWA+8=
+	t=1768297345; cv=none; b=hqXlWOoOzioiKOd1qJJTz62JdvmObNMKSdLUpQN87ORjcRHOPViIgNI3LjHZllB1dGADDNtNd4tmRHgJ6a2/yMswrbBY/7nZrM6ndzgAAsZDNlmx5tKSzncANss3s23SLA0851OhAeGPFy9GIhjKTgV8qbNlbMzWL4L9kxJyUNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768297298; c=relaxed/simple;
-	bh=iE95smHEjzG/wQTPAel/4fDjVeV/ShrWOzxFKHCEHGE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G6Ay2M0Q0aHMbpkl3j8TeI+bDDjZld8hVCHzOr0RSZaG7k9FAi1gEGoCp1olooBzozjQdKdw+Az5lIrln2E7QD3nNhhmUKSNVgkWBcP5/Uib7hJEjUCQiUrLlqH+O365cp3gCDF+GKfYkOCi9XU4BKF7M9wu9uLYJ5tjMR6ILuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aY8ziSAb; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768297297; x=1799833297;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=iE95smHEjzG/wQTPAel/4fDjVeV/ShrWOzxFKHCEHGE=;
-  b=aY8ziSAb1Cti7qXo0WyB7aubr6WOfXAfpBS/ua9USLfbZyUnCP1evL6Z
-   tBp/nA9GXL+J4g6PFUeDnHkQJr3euFHBKEfzB+OcI9p60K5JICpEMx6Te
-   NeyC3CQZsp78zWsNOC6QP/1LyWPuQ2QNhy1aUyA2VHMqfjUUAf4p/2Zbg
-   vR8LYyg6TIEMzZtCykx83QafGAV1D2O2y49WgkwIaK/dZncZPhO3JrqDk
-   IsdgfaJ8zTRO6bLsbvi2iiwNZV3dJyf7CDGoF+rTQ+gDILyDKaZ0o7PGE
-   462pyjB4uF1G3g/uYnHiAuS5SpwwiiK00AbD8lXMt9LwdxsIBWjxnD7/9
-   w==;
-X-CSE-ConnectionGUID: 6DWYWwcdQJmTYXwBzX0sqw==
-X-CSE-MsgGUID: +T7IZ3ZcS1qXpHLA1x1MMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="86994100"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
-   d="scan'208";a="86994100"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 01:41:36 -0800
-X-CSE-ConnectionGUID: 9xkvBvVpRkCbzi06srT0qQ==
-X-CSE-MsgGUID: vRerlrgWTyOmTxteTd7bLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
-   d="scan'208";a="203496125"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.177])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 01:41:34 -0800
-Date: Tue, 13 Jan 2026 11:41:32 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Sirat <email@sirat.me>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, andy@kernel.org,
-	geert@linux-m68k.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/4] auxdisplay: Add support for TM1637 7-segment display
- driver
-Message-ID: <aWYTTKmKHFzPo0xZ@smile.fi.intel.com>
-References: <20260113040242.19156-1-email@sirat.me>
- <CAHp75VdGNd9HY-ihhgjPXv5rtiMrtKgxtvve1RcCz1x+Fj6ZKg@mail.gmail.com>
- <CANn+LWLECPY-F_fsDg1VxbjJdN-pLnkRpQn4OEFSa6yiARoU9A@mail.gmail.com>
+	s=arc-20240116; t=1768297345; c=relaxed/simple;
+	bh=w0jhGZnQ0sdkIpEiarOLFC8TsNoxz6kDGsumXc3uZY4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eNIsyxeArKTnkOTKnHn2ErsSUGKP7bMna1A+1DcI/3WjvQjfWdkjmF4Ta2/cIv9kyc7QjzkMK/jv5Jqj8jFanzppWlRGueE1IPQu0oa3pFTueKvv6tR2xJuGyVlX7ENwZo1wGlFk8FqOnkYhUnyXTEu/SC0zAzJp2RFq+xgJTl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-790b7b3e594so58383827b3.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 01:42:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768297343; x=1768902143;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=csQULM9JgTHkure8QZVoDiumEgvbYegm0kv54lw6dcE=;
+        b=ntnCBCPaSJWSAiK6EW8YeEfJdpnPXweNtUU++Wk6B9r8R6DU6tgDCCGRB3Ol2NxHz4
+         /eWrd/jcO+pHy2hnrNqMtvOTUV3Zltmcq+CdThfr2SKc3mrdAW8zfgeotDtAtcXxitPj
+         QJwKr0YHii+FxwKRW0PTpgSI159kBB4M+Bl8N3M1G90RwWDzyqc0/5YNHsMVo5tsZeKp
+         HShpR3RUYiUl0p2L2SR/tRBN+eQQe8vi0p/2AFqjjHzB623imBruxWf0oqqtAIAz9/m1
+         xDYKjUtyx7RUOOm2wQioNVt64q3K886jhlpMHyokBm0igc71cxl4qnYpCvejEMV5OcyF
+         9O+w==
+X-Forwarded-Encrypted: i=1; AJvYcCX6WlEELD48zpiAwuLpVM7gz5whNlWpJl7xuq/8GDySKXxVGQUJ/x2DyRH1RHNMINn8D12200feJqdH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0XURHrf7fmJO5ZIHhbltHSsKyiLY7+GNfyneq+WIZrQDWPzxo
+	OkM26OpcbP9KsVnzK+nmGHt8nHsmTsbQBnfsLpXOUIpIR4GBPNdfglNQC3XoGhz7
+X-Gm-Gg: AY/fxX496lzojJsBNNxrn/XkZamavMMValP0CmqLWmoT+cHBsOaLT09zM3kY6540rSg
+	08zG4QRsKSwZlQ88h3HmB3zKruh9sdboMt79q/ZXcQUhQb7DSxIlPPSs+GbrkkjXh1+R7czCwts
+	wkvv7JAAkoRA2CIWtiMLngt7/vMluzWyM0vlkpfc6JNSAaIIT0AgAvIUmIWUzzENx1qhxE30+TW
+	lgOrLhn0MTzgXuw0Cty2el+7JzFZNdd/V+zyC26KlaqW6AGyH8584ZDv38qrfQlq7nsBd+8jJ2f
+	V0P4ge1zFtNISMj9TEO1ZMuDhaASnBZUlQ4jVA19Sjc2zPs3c1edPxR4JivQdCrDif74spxcaWE
+	/tC6RZykGQD6Gl6UlOY4XIwBiy7DzUknTWfmCKlfO5mG44RLsl2Gntxi9r9W3hWbEbDh1IeNNRp
+	2bKqv1lACN2rvJLcd1fD6cF9e/tttqHg6MQY9w24BNtVrT
+X-Google-Smtp-Source: AGHT+IFCGBoFRJwDctSV4lU2l/e1PlKJrMH7Bz7kbUU9vm0bEbTnFlngOrX6j64YBaayT+Ij3YJYFA==
+X-Received: by 2002:a05:690c:2605:b0:788:88b4:5d0f with SMTP id 00721157ae682-790b5762fecmr182218517b3.25.1768297342773;
+        Tue, 13 Jan 2026 01:42:22 -0800 (PST)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-790aa6a7abdsm77998057b3.44.2026.01.13.01.42.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jan 2026 01:42:22 -0800 (PST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-790884840baso77129427b3.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 01:42:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUG+VooI5+NMp/RFM5PxsxvgCxGc7Nj1oNvahhy3+e7lTU+l/Jx/Ef3tp/MH5XE+JnsZqbWVOGAMxWG@vger.kernel.org
+X-Received: by 2002:a05:690e:14ce:b0:645:5a2f:7d1c with SMTP id
+ 956f58d0204a3-64716c4163amr17504329d50.74.1768297341476; Tue, 13 Jan 2026
+ 01:42:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANn+LWLECPY-F_fsDg1VxbjJdN-pLnkRpQn4OEFSa6yiARoU9A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260113040242.19156-1-email@sirat.me> <20260113040242.19156-4-email@sirat.me>
+ <CAHp75VdCoHPp_ynzsrvbzx_LY_N5x4sMxvzQnDkatWiEe91j1A@mail.gmail.com>
+In-Reply-To: <CAHp75VdCoHPp_ynzsrvbzx_LY_N5x4sMxvzQnDkatWiEe91j1A@mail.gmail.com>
+From: Sirat <email@sirat.me>
+Date: Tue, 13 Jan 2026 15:42:09 +0600
+X-Gmail-Original-Message-ID: <CANn+LW+PkAcZ2ZVSUpAQwYhDucruiiN90cAakDMXnayRPW0jUQ@mail.gmail.com>
+X-Gm-Features: AZwV_QiYfMovHJtyWmjRWcqkT0wJejob8pDyEUUycg8BIQFB2QktRX1qtkMCw-M
+Message-ID: <CANn+LW+PkAcZ2ZVSUpAQwYhDucruiiN90cAakDMXnayRPW0jUQ@mail.gmail.com>
+Subject: Re: [PATCH 3/4] auxdisplay: tm1637: Add driver for TM1637
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: andy@kernel.org, geert@linux-m68k.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 13, 2026 at 03:19:32PM +0600, Sirat wrote:
+Hi Andy,
 
-> Regarding Jean-François's series: I did check that out. It seems focused on
-> the TM16xx variants that speak proper I2C or SPI (like TM1650/TM1638).
+Thanks for the review. appreciate the mentorship on the coding style.
 
-> The TM1637 has no slave address,
+On the I2C point: I did check, but the TM1637 is incompatible with
+standard I2C adapters. It expects LSB-first data and there's no slave
+address so bit-banging is the only option here.
 
-IIRC we have drivers for I2C peripherals that do not support the address.
-Seems gpio-pca9570.c is the one I remember.
+I'll handle the rest in v2:
+- Switching to `linedisp`.
+- Fixing the struct alignment and locking with `guard()`.
+- Cleaning up the headers (IWYU), units, and version numbers.
 
-> and data is sent LSB-first which makes it
-> incompatible with standard I2C adapters,
+Thanks,
+Sirat
 
-Does it? What prevents from reversing bits? (We have bitrev.h APIs)
-
-> so I can't really piggyback on that driver's I2C backend.
-
-Please, reconsider.
-
-...
-
-And please, do not top-post!
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+On Tue, Jan 13, 2026 at 1:53=E2=80=AFPM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Tue, Jan 13, 2026 at 6:03=E2=80=AFAM Siratul Islam <email@sirat.me> wr=
+ote:
+> >
+> > Add a driver for the Titanmec TM1637 7-segment display controller.
+> >
+> > The TM1637 uses a custom two-wire protocol (similar to I2C but without
+> > a slave address) which requires bit-banging via GPIOs. This driver
+> > implements the protocol manually as it does not fit the standard I2C
+> > subsystem.
+> >
+> > The driver exposes a character device interface via sysfs:
+> > - 'message': Write a string to display (supports alphanumeric & dots).
+> > - 'brightness': Control intensity (0-8).
+> >
+> > Standard 7-segment mapping is handled using the kernel's map_to_7segmen=
+t
+> > utility.
+>
+> Thanks for your contribution. I believe in the current form (design
+> wise) this is no go (we want linedisp and better understanding of the
+> protocol here), but below is just a shallow review to get you an idea
+> about some common mistakes people make (usually style related) to
+> avoid similar problems in the future. It means a free review for
+> making your code better in the future.
+>
+> ...
+>
+> > +Date:          January 2026
+> > +KernelVersion: 6.19
+>
+> At bare minimum this could be material for 6.21. Use
+> https://hansen.beer/~dave/phb/ prediction machine for this.
+>
+> ...
+>
+> > +config TM1637
+> > +       tristate "Shenzhen Titan Micro Electronics TM1637 7-Segment Dis=
+play"
+> > +       depends on GPIOLIB || COMPILE_TEST
+> > +       select AUXDISPLAY
+> > +       help
+> > +         This driver provides support for the Titanmec TM1637 7-segmen=
+t
+> > +         display controller connected via GPIO bit-banging.
+> > +
+> > +         This driver exposes a character interface for controlling the
+> > +         display content and brightness via sysfs.
+>
+> We also expect the name of the module being mentioned if the user chooses=
+ M.
+>
+> ...
+>
+> The below block doesn't follow the IWYU (Include What You Use)
+> principle. E.g., bits.h is missing.
+>
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/property.h>
+> > +#include <linux/slab.h>
+>
+> + blank line
+>
+> > +#include <linux/map_to_7segment.h>
+>
+> ...
+>
+> > +/* Protocol timing */
+> > +#define TM1637_BIT_DELAY_MIN 100
+> > +#define TM1637_BIT_DELAY_MAX 120
+>
+> What units are these? We do suffixes like _MS for milliseconds, for examp=
+le.
+>
+> ...
+>
+> > +struct tm1637 {
+> > +       struct device *dev;
+> > +       struct gpio_desc *clk;
+> > +       struct gpio_desc *dio;
+> > +       struct mutex lock; /* Protects display buffer and brightness */
+> > +       u8 brightness;
+> > +       u8 buf[TM1637_DIGITS];
+>
+> Always think about alignment in the data types.  Definitely we want a
+> possibility for the code to use one assembly instruction to get a full
+> buffer to the register. With this layout it becomes impossible on
+> (some) 32-bit architectures. Also `pahole` should be your tool to
+> check structure layouts.
+>
+> > +};
+>
+> ...
+>
+> > +static void tm1637_delay(void)
+> > +{
+> > +       usleep_range(TM1637_BIT_DELAY_MIN, TM1637_BIT_DELAY_MAX);
+> > +}
+>
+> Unneeded wrapper, just use fsleep() directly in the code with the
+> comment above on each case.
+>
+> ...
+>
+> > +static void tm1637_start(struct tm1637 *tm)
+> > +{
+> > +       gpiod_direction_output(tm->dio, 1);
+> > +       gpiod_set_value(tm->clk, 1);
+> > +       tm1637_delay();
+> > +       gpiod_set_value(tm->dio, 0);
+> > +       tm1637_delay();
+> > +       gpiod_set_value(tm->clk, 0);
+> > +       tm1637_delay();
+> > +}
+> > +
+> > +static void tm1637_stop(struct tm1637 *tm)
+> > +{
+> > +       gpiod_direction_output(tm->dio, 0);
+> > +       gpiod_set_value(tm->clk, 1);
+> > +       tm1637_delay();
+> > +       gpiod_set_value(tm->dio, 1);
+> > +       tm1637_delay();
+> > +}
+> > +
+> > +static bool tm1637_write_byte(struct tm1637 *tm, u8 data)
+> > +{
+> > +       bool ack;
+> > +       int i;
+> > +
+> > +       for (i =3D 0; i < 8; i++) {
+> > +               gpiod_set_value(tm->clk, 0);
+> > +               tm1637_delay();
+> > +
+> > +               if (data & BIT(i))
+> > +                       gpiod_direction_input(tm->dio);
+> > +               else
+> > +                       gpiod_direction_output(tm->dio, 0);
+> > +
+> > +               tm1637_delay();
+> > +               gpiod_set_value(tm->clk, 1);
+> > +               tm1637_delay();
+> > +       }
+> > +
+> > +       gpiod_set_value(tm->clk, 0);
+> > +       gpiod_direction_input(tm->dio);
+> > +       tm1637_delay();
+> > +
+> > +       gpiod_set_value(tm->clk, 1);
+> > +       tm1637_delay();
+> > +
+> > +       ack =3D !gpiod_get_value(tm->dio);
+> > +
+> > +       if (!ack)
+> > +               gpiod_direction_output(tm->dio, 0);
+> > +
+> > +       tm1637_delay();
+> > +       gpiod_set_value(tm->clk, 0);
+> > +
+> > +       return ack;
+> > +}
+>
+> This looks like the I2C bitbanging protocol. Have you checked that
+> one? And why I2C with raw transfers can't be used? I doubt this can't
+> be proper i2c peripheral driver.
+>
+> ...
+>
+> > +       if (brightness > TM1637_BRIGHTNESS_MAX + 1)
+> > +               brightness =3D TM1637_BRIGHTNESS_MAX + 1;
+>
+> min() / max()  (from minmax.h)?
+>
+> ...
+>
+> > +       mutex_lock(&tm->lock);
+>
+> > +       mutex_unlock(&tm->lock);
+>
+> Use guard()() or scoped_guard() from cleanup.h.
+>
+> ...
+>
+> > +static struct attribute *tm1637_attrs[] =3D {
+> > +       &dev_attr_message.attr,
+> > +       &dev_attr_brightness.attr,
+> > +       NULL};
+>
+> Two lines on a single one. Split.
+>
+> ...
+>
+> > +static int tm1637_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device *dev =3D &pdev->dev;
+> > +       struct tm1637 *tm;
+> > +
+> > +       tm =3D devm_kzalloc(dev, sizeof(*tm), GFP_KERNEL);
+> > +       if (!tm)
+> > +               return -ENOMEM;
+> > +
+> > +       tm->dev =3D dev;
+> > +
+> > +       tm->clk =3D devm_gpiod_get(dev, "clk", GPIOD_OUT_LOW);
+> > +       if (IS_ERR(tm->clk))
+> > +               return dev_err_probe(dev, PTR_ERR(tm->clk), "Failed to =
+get clk GPIO\n");
+> > +
+> > +       tm->dio =3D devm_gpiod_get(dev, "dio", GPIOD_OUT_LOW);
+> > +       if (IS_ERR(tm->dio))
+> > +               return dev_err_probe(dev, PTR_ERR(tm->dio), "Failed to =
+get dio GPIO\n");
+>
+> > +       mutex_init(&tm->lock);
+>
+> Use devm_mutex_init().
+>
+> > +       tm->brightness =3D TM1637_BRIGHTNESS_MAX + 1;
+> > +
+> > +       platform_set_drvdata(pdev, tm);
+> > +       tm1637_update_display(tm);
+> > +
+> > +       return 0;
+> > +}
+>
+> ...
+>
+> > +       mutex_destroy(&tm->lock);
+>
+> Will be gone per above.
+>
+> ...
+>
+> > +static const struct of_device_id tm1637_of_match[] =3D {
+> > +       {.compatible =3D "titanmec,tm1637"},
+>
+> Missing spaces inside {}.
+>
+> > +       {}};
+>
+> Two lines on a single one. Please, split.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
 
