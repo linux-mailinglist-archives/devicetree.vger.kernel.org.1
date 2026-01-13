@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-254608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069B8D19D56
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:21:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D7FD19C25
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:12:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BDBDA3061EDD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:11:45 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B6F76300B9FA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:11:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0D5378D8F;
-	Tue, 13 Jan 2026 15:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AF938FF19;
+	Tue, 13 Jan 2026 15:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XjfUI6hM"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="XhasqdgP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9228F38F258;
-	Tue, 13 Jan 2026 15:11:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D04279DC8;
+	Tue, 13 Jan 2026 15:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768317097; cv=none; b=uwh1dBlzcRZgu9tYYZPAlPc2Pnnx9VsTJbGVdTEhHSgB6VppzuyRzIwQw0KQmRjG5izA2I6u6b0T/U0Frn4qzb9ZjIw56iuN067Zzc337A/Wi5G/BO2lyHlSsVQ/lbkHM2Ssb0PVwT3Q7bd1krWEcggnO2bF8DMvwNxxRUr5yOA=
+	t=1768317098; cv=none; b=a4Ae+DOaZZAGvkYC9BikMkELWL+dKH11v7QiJW+9e1fnfnPfGxLUZcKahKKbQjxEyJkjEf7N0QDAjVgEFSdovnc1DrA6Ic9YEq6qT7tFrz/9ze8swgKit2Z1h0NWRRnFooDJoMJavr5j71zmDWD504M40qHRUsMea7FJDQ2WUt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768317097; c=relaxed/simple;
-	bh=7XznA18BA70UboFGcQVIjFlVsDecJjM7njq32R22DrE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JotuotPP84628AoZvbZFzKaV4Z//5JUKxT4lmZWxbvae7v2+2q39Koyn5TJyjyZQ3Xs8PISZeGmkS2x31bo7mBrMrkbLKSH3dsvddJx8MJQWrsx/N64QVdB86Bfgkoe2nqrALrNU5K8hmb81j8X/gkxfFJGtelfIwmLEuNe1dEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=XjfUI6hM; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1768317095; x=1799853095;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=7XznA18BA70UboFGcQVIjFlVsDecJjM7njq32R22DrE=;
-  b=XjfUI6hMLptuz4mTDBw3ElweDYUvYsuxuMln1fZhugY2M6oezogqeHlj
-   jp/wOXNrK9nccRxkUqgpRtVndRo8oUKO/X7AzYxeCJD3oIvkqRccWHyr/
-   iMx56Wr2jrtFfwFO4JgkriZDK1zpfzEjLwiuHqhGbsm+MrywaZzuYgErk
-   94pVO+KaYZ2uMuL5pqWeIuTYcf5Dcs+NvLx9HIXQiT9JhJe5NXYBcpfSE
-   tjA+agpiaJ6oNAU7yFDAeJlNtc3RU401nWe1bTovL6qx6BrAV1xJyXqHk
-   E7n/HBph1rTIjPnodDQ1cIWtlK65ediWF3+lZ1RqbDSGQGm029dJlV6aL
-   w==;
-X-CSE-ConnectionGUID: elVzir9fTFac2yKBdCUdNg==
-X-CSE-MsgGUID: PRgTA9VDTSiMPgwjr6n34Q==
-X-IronPort-AV: E=Sophos;i="6.21,222,1763449200"; 
-   d="scan'208";a="52247948"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 08:11:34 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
- chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Tue, 13 Jan 2026 08:11:12 -0700
-Received: from [10.159.205.69] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Tue, 13 Jan 2026 08:11:09 -0700
-Message-ID: <468e4624-355b-400f-8d03-4db5c37e3ec7@microchip.com>
-Date: Tue, 13 Jan 2026 16:11:09 +0100
+	s=arc-20240116; t=1768317098; c=relaxed/simple;
+	bh=oYURUZDdfxqaujzRgJFyJvgic5MypRI4QKnO/vJyFxk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H1zQWw/fk5TcJ7lT1It8ETKwwgSURJLq0Mq0BXBFFMMKRQxYZHg1YnJ7519eqqdgLnF8tQi1iph6gzFggUVq/7BeD+Vq9Rg7lIQv3COSdibABXcMEe7DlwwSwDoHVTdUwocOk5yiq1fdXLNWM2bjufNj/HODg+Oasgn7SVUSuyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=XhasqdgP; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 0DA0D600084C;
+	Tue, 13 Jan 2026 15:11:35 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id aulEY0Telgc1; Tue, 13 Jan 2026 15:11:32 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 91B8E6001401;
+	Tue, 13 Jan 2026 15:11:29 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1768317089;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=V20ZBD9CJ8yUjiXed4dOqLBy4fH72bgYz4DmEJlM3Y8=;
+	b=XhasqdgPmo06L9jvO+SGzbdwCXghoeYvU2TV+6ad1ux3djoWNiHgZ5DsGKOTSGrlmmRU6e
+	koctDBA09Zpz5ejInp7Z3oCPAdpSUbsKU+tpfCz3ecrgu4zF5YpbBbaN6uBW8fip2tsPrl
+	+kJabVIEi6/1pk57SqHYwHTN/Z81G8CquEnLahApyLauXA3EZJ/izwsDe7NLDEDyBdyHZA
+	CV81OyulP3MRC8lWhLzkvgIOnj1Ux9LEdAy0mYOHlyLCnsNYkss0oZ1sOI2tlNVTEYShPv
+	drio9ynDGPZPIvVIecXHLohKYtPcQ5WdPJ/FOhjo/ctmeRzSVYaHlF8Zlsa6NA==
+Received: from [192.168.2.110] (unknown [148.63.39.39])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 57D68360148;
+	Tue, 13 Jan 2026 15:11:29 +0000 (WET)
+Message-ID: <d2f01fe4-f92a-408a-890c-7e37f7c414c3@tecnico.ulisboa.pt>
+Date: Tue, 13 Jan 2026 15:11:29 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,58 +64,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/5] ARM: dts: microchip: sam9x60: Add GFX2D GPU
-To: Cyrille Pitchen <cyrille.pitchen@microchip.com>, David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Russell King <linux@armlinux.org.uk>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20260113-cpitchen-mainline_gfx2d-v5-0-9cdab8fa699b@microchip.com>
- <20260113-cpitchen-mainline_gfx2d-v5-3-9cdab8fa699b@microchip.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <20260113-cpitchen-mainline_gfx2d-v5-3-9cdab8fa699b@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [PATCH 5/5] arm64: tegra: smaug: Add usb-role-switch support
+To: Jon Hunter <jonathanh@nvidia.com>, Mathias Nyman
+ <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
+ <20251204-diogo-tegra_phy-v1-5-51a2016d0be8@tecnico.ulisboa.pt>
+ <ea60f024-1f39-483c-87e3-36624bd58d49@nvidia.com>
+ <ea4ee289-fb46-44be-b5e6-9d3beca7c0d8@tecnico.ulisboa.pt>
+ <42df7bb1-c587-429f-88ac-1e5ffa7c2b3f@nvidia.com>
+Content-Language: en-US
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <42df7bb1-c587-429f-88ac-1e5ffa7c2b3f@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 13/01/2026 at 14:10, Cyrille Pitchen wrote:
-> Add support for the GFX2D GPU.
+
+
+On 1/13/26 14:49, Jon Hunter wrote:
 > 
-> Signed-off-by: Cyrille Pitchen <cyrille.pitchen@microchip.com>
-> ---
->   arch/arm/boot/dts/microchip/sam9x60.dtsi | 8 ++++++++
->   1 file changed, 8 insertions(+)
+> On 13/01/2026 14:20, Diogo Ivo wrote:
+>>
+>>
+>> On 1/12/26 22:03, Jon Hunter wrote:
+>>>
+>>> On 04/12/2025 21:27, Diogo Ivo wrote:
+>>>> The USB2 port on Smaug is configured for OTG operation but lacked the
+>>>> required 'usb-role-switch' property, leading to a failed probe and a
+>>>> non-functioning USB port. Add the property along with setting the 
+>>>> default
+>>>> role to host.
+>>>>
+>>>> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+>>>> ---
+>>>>   arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 2 ++
+>>>>   1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/ 
+>>>> arm64/boot/dts/nvidia/tegra210-smaug.dts
+>>>> index b8d854f90be7..49bf23d6f593 100644
+>>>> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+>>>> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+>>>> @@ -1809,6 +1809,8 @@ usb2-0 {
+>>>>                   status = "okay";
+>>>>                   vbus-supply = <&usbc_vbus>;
+>>>>                   mode = "otg";
+>>>> +                usb-role-switch;
+>>>> +                role-switch-default-mode = "host";
+>>>>               };
+>>>
+>>>
+>>> This change does add the following warning when building with CHECK_DTBS
+>>> ...
+>>>
+>>> arch/arm64/boot/dts/nvidia/tegra210-smaug.dtb: padctl@7009f000 
+>>> (nvidia,tegra210-xusb-padctl): ports:usb2-0: 'role-switch-default- 
+>>> mode' does not match any of the regexes: '^pinctrl-[0-9]+$'
+>>>      from schema $id: http://devicetree.org/schemas/phy/ 
+>>> nvidia,tegra210- xusb-padctl.yaml
+>>>
+>>> I know that there are many warnings seen for the smaug DTB, but it would
+>>> be good to ensure we don't add more.
+>>
+>> The 'role-switch-default-mode' property is read by the driver to set the
+>> initial role for the port [0] and is needed in order for the port to work
+>> when booting so in order to fix the warning this property needs to be 
+>> added
+>> to the binding.
 > 
-> diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> index b075865e6a7688005d471665459b3f6f1f26f7a4..338a0f3b336ffa6f1e3f900a4b4a58e4e3f93bb8 100644
-> --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-> @@ -353,6 +353,14 @@ AT91_XDMAC_DT_PERID(26))>,
->   				status = "disabled";
->   			};
->   
-> +			gpu: gpu@f0018000 {
-> +				compatible = "microchip,sam9x60-gfx2d";
-> +				reg = <0xf0018000 0x4000>;
-
-Same here, probably smaller size for register map is better.
-
-Regards,
-   Nicolas
-
-> +				interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
-> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 36>;
-> +				status = "disabled";
-> +			};
-> +
->   			i2s: i2s@f001c000 {
->   				compatible = "microchip,sam9x60-i2smcc";
->   				reg = <0xf001c000 0x100>;
+> Correct.
 > 
+>> As for the other warning ('connector' is a dependency of 'usb-role- 
+>> switch')
+>> again I think the binding needs to be adjusted since in the Pixel C the
+>> connector node should be under the (as for now not present)
+>> cros-ec-typec node and the usb2-0 is then modeled as a remote-endpoint
+>> for the full connector. I am currently working on fixing the cros-ec- 
+>> typec
+>> driver and already have a working fix for automatic role switching but
+>> in any case I think the binding is what needs changing. If you agree
+>> with this then I will add the necessary changes to the DT binding in v2.
+> 
+> Yes in both cases we need fixes to the DT binding that's all.
 
+Perfect, will do for v2.
+
+Diogo
+
+> Jon
+> 
 
