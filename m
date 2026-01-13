@@ -1,118 +1,110 @@
-Return-Path: <devicetree+bounces-254325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8031DD172E1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:04:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9868D17355
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:09:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 30EBD3005F1E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:04:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3FB4E30471B5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B508376BE8;
-	Tue, 13 Jan 2026 08:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C028836E483;
+	Tue, 13 Jan 2026 08:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="DBF3yMEq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NFp92bCP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 600B1374196;
-	Tue, 13 Jan 2026 08:04:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA292F6925;
+	Tue, 13 Jan 2026 08:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768291478; cv=none; b=YCY5U5Y+GvIJSQhR3Vpd4K4RKYlwssZzSZ4OGRi/VCtvA59JYSl/6T22mOAcvz7BsrTkDdicjlLYMRRtbarfh1EW3AtY06DBKN9Bp4bke4XKhwsgHgJbotXhDoU+b1AfZ2+LwJEOIZR5qLA9xKz2QyWjNhOVxE0dasDgGnbJHpQ=
+	t=1768291622; cv=none; b=OvSHZ2Xbmi3SuIuYxec2n9sEEgdKN7TJOyp3Wog+1xxgShmsjVjl7CWdBbse/bWwCn5+hzDDYWmxE8pUZyqrYGyccQqYV+Fd/P5oVqHLO2rNHWY/E0fMoIROwTc9f+OHjJfAWof0HsQFyRvlzkmS89rvb17vOSWnvivt4e6FN9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768291478; c=relaxed/simple;
-	bh=GjwYrgYrfMZ4SvDh0mCFrmc9NLm4jQkn+5aDxC0HviA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=db5+wVTeVcMWtHJKVVyPm4TdSNujjOjm6yeULRBf1kb8d3hq8r+6rOUzno+w7FOIBjsNQtKx9Ef4o5KudulKz5WgjHhj4mM15Wy9AMjgf+bA1FwR3BlRuhou4SsPzkTfcnI8pChRviuU9tBQAgvBmsidwMr14bgS//YvInUSVgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=DBF3yMEq; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dr1x547kYz9tgD;
-	Tue, 13 Jan 2026 09:04:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768291465;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GkIauvv0RSplXY/m2pwszJK6bmYJH/Xs+FM5mAF4Bo0=;
-	b=DBF3yMEq4YspPN6urHOQmHeSj0DvBnNq3ZFqsK7kz6uawWnUr8kLqU5WP1Ibr9D7xHLIrz
-	N2yXhqBrc+LjzSfzfNZnoAi6YhF18GJNpAvW434/3HOatO0f5iIY2u0FZ27DQsj8w7g7nF
-	igvXSl0pOdFWJ0sN43QBUTSWHPAa/mlRugoxp8/YNelN7fsNkIAnlFRXSAxi7tzAjh7sSR
-	w2CZmTWUApIMLoTQehHtwQUl6GHiFhjKtRkfgc7Z0CM3ta3bTUI/4BG877Pi8U+iG1hN0z
-	0tJ4PPrfs+mKP8/nSclPeKxqSS535NYabfqb2CKdcTohN/eGOoNKjoSJLZQQnQ==
-Message-ID: <65ccfeb6-4962-4964-be1d-cfb0ed41773e@mailbox.org>
-Date: Tue, 13 Jan 2026 09:04:17 +0100
+	s=arc-20240116; t=1768291622; c=relaxed/simple;
+	bh=tl0LvjbKamYGyoZPZjCIGjKCgfTZTdlHGgKC0fbqXt8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kx8S5J1W1GPizt6om0TFA2PmD8RHtU8zc/QIt7x/1NNs8nLpew4Yi59CuL+cNQwNTi3b2qs96bdoo4JeCfCLpM5SMtrU3nqVHXLQrt3MMp0UHdxEgDz2iqJrip7gamQJS649NX32QfJaAi4/G/mKRsGkOoylOcoawCErdnokeko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NFp92bCP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C309C116C6;
+	Tue, 13 Jan 2026 08:07:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768291622;
+	bh=tl0LvjbKamYGyoZPZjCIGjKCgfTZTdlHGgKC0fbqXt8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NFp92bCPmSjbL4utwb/0i7OkgbhlBUvyKs2Hxq0nVpmBdVt7M5zIdcsU99axDrFpf
+	 wt08/US1GoooACkX5srReymFp4Dk5yWpTpVM6vxy5HETCo1T3rQJsOajWMkgt9F1mz
+	 yhC5mnBkLooG2EylObCjeDhociEYr4+0iw88kPOb9tSBtR4AmOQl6PfzmV6PauGO99
+	 jFZPY5fNoaJm9VNSqox33lmDE3R/th04nXnziaAj2WTRzcVs5gVPYAf9ox4ENEi3QE
+	 T1SermmCuRwb3j+gW6N0i38Jh3KsHmpIiyVddXcj+vOY/3vv2EOIe00JuLpdZUe+5F
+	 4GS8p+TiMT3xg==
+Date: Tue, 13 Jan 2026 09:06:59 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Edelweise Escala <edelweise.escala@analog.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: Add LTC3220 18 channel LED
+ Driver
+Message-ID: <20260113-wine-kingfisher-of-glee-cdac0c@quoll>
+References: <20260112-ltc3220-driver-v2-0-d043058fc4df@analog.com>
+ <20260112-ltc3220-driver-v2-1-d043058fc4df@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [EXT] [PATCH 2/2] drm/bridge: waveshare-dsi: Add support for 1..4
- DSI data lanes
-To: Joseph Guo <qijian.guo@nxp.com>, dri-devel@lists.freedesktop.org
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20260112234834.226128-1-marek.vasut+renesas@mailbox.org>
- <20260112234834.226128-2-marek.vasut+renesas@mailbox.org>
- <773b6e43-4f86-4b11-8e6b-a9f2561a75de@nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <773b6e43-4f86-4b11-8e6b-a9f2561a75de@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: fa438034bf0a4b1c6ad
-X-MBO-RS-META: gkcgcibyibgwe769u53joe6mewjg9ju6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260112-ltc3220-driver-v2-1-d043058fc4df@analog.com>
 
-On 1/13/26 7:41 AM, Joseph Guo wrote:
-> On 1/13/2026 7:47 AM, Marek Vasut wrote:
->> [You don't often get email from marek.vasut+renesas@mailbox.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>
->> Caution: This is an external email. Please take care when clicking links or opening attachments. When in doubt, report the message using the 'Report this email' button
->>
->>
->> Parse the data lane count out of DT. Limit the supported data lanes
->> to 1..4 which is the maximum available DSI pairs on the connector of
->> any known panels which may use this bridge. Internally, this bridge
->> is an ChipOne ICN6211 which loads its register configuration from a
->> dedicated storage and its I2C does not seem to be accessible. The
->> ICN6211 also supports up to 4 DSI lanes, so this is a hard limit.
->>
->> To avoid any breakage on old DTs where the parsing of data lanes from
->> DT may fail, fall back to the original hard-coded value of 2 lanes and
->> warn user.
->>
->> The lane configuration is preconfigured in the bridge for each of the
->> WaveShare panels. The 13.3" DSI panel works with 4-lane configuration,
->> others seem to use 2-lane configuration. This is a hardware property,
->> so the actual count should come from DT.
->>
->>
-> Hi Marek,
+On Mon, Jan 12, 2026 at 04:55:54PM +0800, Edelweise Escala wrote:
+> Document device tree bindings for the LTC3220 18-channel LED driver
+> with I2C interface, individual brightness control, and hardware-assisted
+> blink/gradation features.
 > 
-> I don't have 4 lanes waveshare panel on my hands. Have you tested with the 4-lane panel already?
-Yes, the 13.3" DSI panel is 4-lane 
-https://www.waveshare.com/13.3inch-dsi-lcd.htm , I have it connected to 
-Retronix Sparrow Hawk board which has 4-lane port.
+> Signed-off-by: Edelweise Escala <edelweise.escala@analog.com>
+> ---
 
-See also this patch I submitted, that is the DT binding for it:
+No changelog in the cover letter, no changelog here.
 
-[PATCH 2/2] arm64: dts: renesas: sparrow-hawk: Add overlay for WaveShare 
-Display 13.3"
+>  .../devicetree/bindings/leds/leds-ltc3220.yaml     | 120 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 ++
+>  2 files changed, 127 insertions(+)
+> 
+
+> +  adi,quick-write:
+> +    type: boolean
+> +    description:
+> +      Enables the hardware quick-write feature where a write to the LED 1
+> +      output register simultaneously updates all 18 LED output registers
+> +      to the same value. Only applicable when LED 1 output is physically
+> +      present and defined in the device tree.
+
+I have doubts that this works fine. If you define 18 different LED
+nodes, each can be controlled by user-space or kernel independently, but
+with this property updates to LED 1 would overwrite updates to other
+LEDs.
+
+Isn't this then an aggregated LED, so in such case only one LED can be
+defined in DT (optionally with 18 led-sources)?
+
+> +
+> +patternProperties:
+> +  '^led@([1-9]|1[0-8])$':
+> +    type: object
+> +    $ref: /schemas/leds/common.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      reg:
+> +        description: Output channel for the LED (1-18 maps to LED outputs D1-D18).
+> +        minimum: 1
+> +        maximum: 18
+
+Best regards,
+Krzysztof
+
 
