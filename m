@@ -1,178 +1,131 @@
-Return-Path: <devicetree+bounces-254368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD81D1790A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:19:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03BCDD17946
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:22:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 327653085588
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:15:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D53AA303804B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DAB7389DF8;
-	Tue, 13 Jan 2026 09:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6394D38947D;
+	Tue, 13 Jan 2026 09:15:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="jSr5nuqf";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="XA/m3aMJ"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="cP8pqTgt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42EF9387575;
-	Tue, 13 Jan 2026 09:14:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17963815F2;
+	Tue, 13 Jan 2026 09:15:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768295704; cv=none; b=dc3zNGKYsg1etGfRzPbjFsoYJvwLPkLt3p2Pq1wEDDevlBZ3Vb603lzk47PbyMbEiR7ypcpVX60EzQ4jTcJuyqpFObQqUPvjvDu8MbBaAScRxYW7aQuOs+sedUkhnrVI7JvvZKgfH1+iAbCWyeG/7SPp7JXLXDfV7/DctbdYJEs=
+	t=1768295742; cv=none; b=WrdBUzplm6+wRPcqvUP5PFg3XFrP/i5cD1X7y7s20TP9jVSdw/nszEIDWHMOzIvgNMz18wtSa4e03/02TXU5J569rxUGkY9v5Fn9h6IMFjO9qcM61/PRIFgZ02HJhwuTdbTIFFZSK7x74o4ZH4YvPb3wxQkEfWmteMLzvAzVqTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768295704; c=relaxed/simple;
-	bh=uE1O703MTwrvx70+5/z1Z11tZ9XJbRwyQmBnjwbPzho=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=QKq6k579Rm4HAPirW8XoBTvfKWEjlpWTEAqtnlbNg9YLdHUpnWarn+O36AFiiDjB9cV22UTEEX6lAZOd2QgzUR6NA/jQaAkvx79JA8gRM9JD9fKsmytIwfGZ30NcFP8VYHl41Ka+u9CV3YWWsQLGjpwOXj7U/shGTyyKUbdz/Es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=jSr5nuqf; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=XA/m3aMJ; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1768295646; bh=XJi73LOycOABa27w8/gzfka
-	dRBaz+DQ7mqMDZGSxJ2E=; b=jSr5nuqf3VMzItVKoI9XeejQxzPtwyeph8sS8DtkvYexN8O5Lm
-	dTLqK1XNcnlhcUeVjdJYOKb/NjdewbvFSdyYEtjZaMvMxSXf+RMBemo5i5hoC3XLHDbwXGx0j6O
-	TrlgCyuOueGFv5/gofU8+jG/NrZxwVwMqKcmQfUljo7V4KMaqrdpp08N4TrNjINpxDH5jlUeLfK
-	hb2HArIxP5AGy8UWYK2jU9k2TArzq05hBXg03yFkrtDzJDpwfj5tEU2DhNdPpOj3ZuW9XIKE3pO
-	/xCpwPqe75cnyF7VjlzyVZYR9o2scHFXP/IaAwcGLGes42p2lgV8ZZUahGvUd+ZCFRg==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1768295646; bh=XJi73LOycOABa27w8/gzfka
-	dRBaz+DQ7mqMDZGSxJ2E=; b=XA/m3aMJ1ceAVBTMJmTzrP0XWTbQdmtiYI8shh0NNnZwltlJJu
-	TJnm+DhB5Hl0dfKxxmxaO+ZYz9zc2dgh1ABQ==;
+	s=arc-20240116; t=1768295742; c=relaxed/simple;
+	bh=nIIksL5mUlWdTnTjhPHMrEehI9aA1snjhXPcWS3H0qs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Jk/kbUrKCGrqOECa1ymT3KU/oRP7pLYa2rb0WyWUwFiEeHprwqWvHOxdUF6QSS83YqFGSukcJStscXeO+OaB+eUyDba+Iamczl+9kGQYMNaOi5fCKvJJwgNXgE0/YrkznltAFkmOJksHMTMC42lV3PU2IwHsdzYP/WtgX99OMEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=cP8pqTgt; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dr3Vz5gLqz9sbt;
+	Tue, 13 Jan 2026 10:15:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768295723;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wQ7AtPjQ2Ronaqwmz5J5bM5bR7wWBP2yp8oCfP+eth0=;
+	b=cP8pqTgtxZhtLZglYZrNCDjSY1DlxxBf8Nc39IYaS5vLeGZ1cXqNaQoSAj80RykGRkZZRx
+	clLouFGJSJt5ib18IoC/Lqcp+fZ6N6BYpRVk6sbmfVKqzcQVveZ2Kl4JPsHAoIt6KFIoYy
+	xrNxStCJdEM/niCTkMI003ySVC8b7tUc8nOdoRHs3TXLFF2gxmZZQRXSmY6tiIsApU0vAB
+	q8JkCD69W979TVzpnPuaF6+9A3pDm9rr/ItBkmWbO1RN6FVVygyLgVIgximr7WIE/KpFjh
+	GQV2zrnFkGw97l46Yo6DwRQ1OiUFlYofE5zM4OnS4VQi2BRUotV50vaUfKwZ4w==
+Message-ID: <9c59661e-98e6-473e-9a5e-b6002048c51a@mailbox.org>
+Date: Tue, 13 Jan 2026 10:15:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 13 Jan 2026 10:14:06 +0100
-From: barnabas.czeman@mainlining.org
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Gabriel Gonzales
- <semfault@disroot.org>, Kees Cook <kees@kernel.org>, Tony Luck
- <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- Biswapriyo Nath <nathbappai@gmail.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
-Subject: Re: [PATCH 2/6] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct
- reserved memory ranges
-In-Reply-To: <233f73de-b247-4b22-a079-5bd3f5ece5cd@oss.qualcomm.com>
-References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
- <20260112-xiaomi-willow-v1-2-8e4476897638@mainlining.org>
- <233f73de-b247-4b22-a079-5bd3f5ece5cd@oss.qualcomm.com>
-Message-ID: <dd141d65b3ee1c9e1f3148bccee6e964@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [EXT] [PATCH 2/2] drm/bridge: waveshare-dsi: Add support for 1..4
+ DSI data lanes
+To: Joseph Guo <qijian.guo@nxp.com>, dri-devel@lists.freedesktop.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20260112234834.226128-1-marek.vasut+renesas@mailbox.org>
+ <20260112234834.226128-2-marek.vasut+renesas@mailbox.org>
+ <773b6e43-4f86-4b11-8e6b-a9f2561a75de@nxp.com>
+ <65ccfeb6-4962-4964-be1d-cfb0ed41773e@mailbox.org>
+ <409cdcf0-af9b-4084-845f-d863ad6303c5@nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <409cdcf0-af9b-4084-845f-d863ad6303c5@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: zhhta6mtoru8d4m813ormdjwi7reu7uu
+X-MBO-RS-ID: 0283d1e8558795067bf
 
-On 2026-01-13 09:53, Konrad Dybcio wrote:
-> On 1/12/26 9:13 PM, Barnabás Czémán wrote:
->> The device was crashing on high memory load because the reserved 
->> memory
->> ranges was wrongly defined. Correct the ranges for avoid the crashes.
->> Change the ramoops memory range to match with the values from the 
->> recovery
->> to be able to get the results from the device.
->> 
->> Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for 
->> xiaomi-ginkgo")
->> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts | 44 
->> ++++++++++++++++-------
->>  1 file changed, 32 insertions(+), 12 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts 
->> b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> index bf03226a6f85..4c548cb5f253 100644
->> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> @@ -13,6 +13,12 @@
->>  #include "sm6125.dtsi"
->>  #include "pm6125.dtsi"
->> 
->> +/delete-node/ &adsp_pil_mem;
->> +/delete-node/ &cont_splash_mem;
->> +/delete-node/ &gpu_mem;
->> +/delete-node/ &ipa_fw_mem;
->> +/delete-node/ &ipa_gsi_mem;
->> +
->>  / {
->>  	model = "Xiaomi Redmi Note 8";
->>  	compatible = "xiaomi,ginkgo", "qcom,sm6125";
->> @@ -36,28 +42,42 @@ framebuffer0: framebuffer@5c000000 {
->>  	};
->> 
->>  	reserved-memory {
->> -		debug_mem: debug@ffb00000 {
->> -			reg = <0x0 0xffb00000 0x0 0xc0000>;
->> +		adsp_pil_mem: adsp_pil_mem@55300000 {
->> +			reg = <0x0 0x55300000 0x0 0x2200000>;
->>  			no-map;
->>  		};
->> 
->> -		last_log_mem: lastlog@ffbc0000 {
->> -			reg = <0x0 0xffbc0000 0x0 0x80000>;
->> +		ipa_fw_mem: ipa_fw_mem@57500000 {
->> +			reg = <0x0 0x57500000 0x0 0x10000>;
->>  			no-map;
->>  		};
->> 
->> -		pstore_mem: ramoops@ffc00000 {
->> -			compatible = "ramoops";
->> -			reg = <0x0 0xffc40000 0x0 0xc0000>;
->> -			record-size = <0x1000>;
->> -			console-size = <0x40000>;
->> -			pmsg-size = <0x20000>;
->> +		ipa_gsi_mem: ipa_gsi_mem@57510000 {
->> +			reg = <0x0 0x57510000 0x0 0x5000>;
->> +			no-map;
->>  		};
->> 
->> -		cmdline_mem: memory@ffd00000 {
->> -			reg = <0x0 0xffd40000 0x0 0x1000>;
->> +		gpu_mem: gpu_mem@57515000 {
->> +			reg = <0x0 0x57515000 0x0 0x2000>;
->>  			no-map;
->>  		};
->> +
->> +		framebuffer@5c000000 {
->> +			reg = <0x0 0x5c000000 0x0 (2340 * 1080 * 4)>;
->> +			no-map;
->> +		};
->> +
->> +		/*
->> +		 * Matching with recovery values
->> +		 * to be able to get the results.
->> +		 */
+On 1/13/26 9:15 AM, Joseph Guo wrote:
+> On 1/13/2026 4:04 PM, Marek Vasut wrote:
+>> [You don't often get email from marek.vasut@mailbox.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+>>
+>> Caution: This is an external email. Please take care when clicking links or opening attachments. When in doubt, report the message using the 'Report this email' button
+>>
+>>
+>> On 1/13/26 7:41 AM, Joseph Guo wrote:
+>>> On 1/13/2026 7:47 AM, Marek Vasut wrote:
+>>>> [You don't often get email from marek.vasut+renesas@mailbox.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+>>>>
+>>>> Caution: This is an external email. Please take care when clicking links or opening attachments. When in doubt, report the message using the 'Report this email' button
+>>>>
+>>>>
+>>>> Parse the data lane count out of DT. Limit the supported data lanes
+>>>> to 1..4 which is the maximum available DSI pairs on the connector of
+>>>> any known panels which may use this bridge. Internally, this bridge
+>>>> is an ChipOne ICN6211 which loads its register configuration from a
+>>>> dedicated storage and its I2C does not seem to be accessible. The
+>>>> ICN6211 also supports up to 4 DSI lanes, so this is a hard limit.
+>>>>
+>>>> To avoid any breakage on old DTs where the parsing of data lanes from
+>>>> DT may fail, fall back to the original hard-coded value of 2 lanes and
+>>>> warn user.
+>>>>
+>>>> The lane configuration is preconfigured in the bridge for each of the
+>>>> WaveShare panels. The 13.3" DSI panel works with 4-lane configuration,
+>>>> others seem to use 2-lane configuration. This is a hardware property,
+>>>> so the actual count should come from DT.
+>>>>
+>>>>
+>>> Hi Marek,
+>>>
+>>> I don't have 4 lanes waveshare panel on my hands. Have you tested with the 4-lane panel already?
+>> Yes, the 13.3" DSI panel is 4-lane
+>> https://www.waveshare.com/13.3inch-dsi-lcd.htm, I have it connected to
+>> Retronix Sparrow Hawk board which has 4-lane port.
+>>
+>> See also this patch I submitted, that is the DT binding for it:
+>>
+>> [PATCH 2/2] arm64: dts: renesas: sparrow-hawk: Add overlay for WaveShare
+>> Display 13.3"
 > 
-> /* This is an unnecessarily
->  * squashed comment that could
->  * easily go into a single line
->  */
-> 
-> 
->> +		ramoops@61600000 {
->> +			compatible = "ramoops";
->> +			reg = <0x0 0x61600000 0x0 0x400000>;
->> +			record-size = <0x80000>;
->> +			pmsg-size = <0x200000>;
->> +			console-size = <0x100000>;
-> 
-> Does your recovery image not specify ecc-size?
-No.
-> 
-> In my past experience, that led to much better results wrt the data
-> being actually readable.. you might want to rebuild your recovery (or
-> at least the dt and repack the boot.img) for that
-I would not because i have got good results with this settings and
-users could use already built recoveries to get the result.
-> 
-> Konrad
+> OK, thank you.
+> Reviewed-by: Joseph Guo <qijian.guo@nxp.com>
+Thank you too.
 
