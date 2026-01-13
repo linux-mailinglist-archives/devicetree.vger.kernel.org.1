@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-254453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344B5D18539
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:06:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0077DD1856F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:07:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 084EE3041CDB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:01:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C863304C6EC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:01:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8944378D8C;
-	Tue, 13 Jan 2026 11:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A73338BDCF;
+	Tue, 13 Jan 2026 11:00:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dI8R5Q8v"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Mc+Pm4+b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C835342C88;
-	Tue, 13 Jan 2026 11:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A3538A70F;
+	Tue, 13 Jan 2026 11:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768302014; cv=none; b=rzXGLo1LyyApZW40kZI2YtZO+sY8QjzA17kwMhavxSAgSH7EoZJjdAWI5BwCSI0eUom/ADZ1zmugcdo7HCZE9LQpPsa4PZ3YnDSq6GRgzzP4iCq8QpBhiu6VDp+fnwWEUB/l4FmXdPNWV0LMykmiaf0onRISNi/pM7XBGxxBABI=
+	t=1768302016; cv=none; b=a0Yfg97H80TUqGhi+BglI/hkCMkwry7cs4M4uQPD9y34UGp25VpM2jaa+VZuYrgpwVo6ViK+JRqIhGL6+OWkKfe9x0TlV4QDpaRScY/o/woVhgX4a+QZsEuExwOwFrGg3HzV4z6uwiebOb48IaSbsBlwWPYijGkZSJcl/P0y76w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768302014; c=relaxed/simple;
-	bh=YrrX4LhkIqhiJ1xMnYBI7HsHkhFKyR5kTvGyFViGPiE=;
+	s=arc-20240116; t=1768302016; c=relaxed/simple;
+	bh=f/A/I/VodskiOgbzllbCrqIcjWpEWW93JtNibaeAlv8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dcFyM0uWeRd/posZ1PkKoUL6iNcoBQJ3FiS5VgYWVu7y3lKLy2abcaJgXyR3bWg9CkqeTrR60MYwFrExiI3+OvUbE/IK32FOjcBX8tsgRemOgfHBrHOyN2mq9sZd7khg/djRfnX9PHl6+8YdEzTGtxicwsFu72MbpqhOmxcBFaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dI8R5Q8v; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=AMDvLlxrX2CfgjopDzE2UBxmVKYwEpkE98Y8rKpWMOCXBR59QcgZLKR9Wsz1gxJOutaoa/flj9s9fDd+0HVMVci4WQjQvBcjE3bwyvarlY8s3gyYO59nRQZwtZNhjx/NPaTTTja949iwV2dQtUsDM5gEZ+E9P/Mp+fOi0olruf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Mc+Pm4+b; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1768302006;
-	bh=YrrX4LhkIqhiJ1xMnYBI7HsHkhFKyR5kTvGyFViGPiE=;
+	s=mail; t=1768302007;
+	bh=f/A/I/VodskiOgbzllbCrqIcjWpEWW93JtNibaeAlv8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dI8R5Q8vld24qRwJNodGjix4Zz9uisevI8kIPKqTZRNe0eLhRBxANCyYmNBH4nW2u
-	 jEDrci1Epx+jv1X5mLqScrcPntPDHy39dqcXsEGX+uBhPbv/nrWJcE5Y38NTjY7da2
-	 lT35tyVC/r7xkjDnnaeVIZZ1YL4EAi6mDMBw0jo4CfIUgJm5vO546zZPAyg/LGUkxP
-	 RAeYx86Q3FVVCRNW9/cF8J6RgOoq6uAY0vHz/56udMTqyxgKRiY/95ZvW0i63K3O0i
-	 cauCRPOWFSiasmdhZ/UodGK/jwur88HvHYcTfV91wdFDNP+xG3kTMtUahtZ5NK3dO+
-	 rCCvZrfS/sfvQ==
+	b=Mc+Pm4+befzqQwqspF5nC4T6pKeG5ShW1g6eENK5nAMUVoeBkTeeB2EQ1bTA1LB1g
+	 BCSxDZTRpMyCp+DZukMIY4Iup9LBI7lF2ieqsOwNxrcwiUL8KOd8iRn9+MOXqS2YOf
+	 MI/ZPQc4kCCf1O44KU/KD+Q3f8mFCtT0//JUzO1xgim8eePhRTylKIgTuTRstJw0W/
+	 5sAdg8NxeV0vIM/+KHMcg6a9Kqgs4+0wTypuvxobO2Cy6KWksAzl9qbGYiUMm6uNkP
+	 nRgUL2FAw9tK1HX9ElhObXOAHPcr9U/QjraIM6W6trWWgKKJpG75nR7/C/8S5ZTPKn
+	 mtE5jKA6QLVMQ==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6A53F17E10F4;
-	Tue, 13 Jan 2026 12:00:05 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2037D17E150D;
+	Tue, 13 Jan 2026 12:00:07 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: linux-mediatek@lists.infradead.org
 Cc: robh@kernel.org,
@@ -64,9 +64,9 @@ Cc: robh@kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	kernel@collabora.com
-Subject: [PATCH 1/6] dt-bindings: mfd: mediatek,mt8195-scpsys: Add mediatek,mt6795-scpsys
-Date: Tue, 13 Jan 2026 11:59:55 +0100
-Message-ID: <20260113110000.36953-2-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 3/6] dt-bindings: regulator: mediatek,mt6331: Add missing ldo-vio28 vreg
+Date: Tue, 13 Jan 2026 11:59:57 +0100
+Message-ID: <20260113110000.36953-4-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
 References: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
@@ -78,26 +78,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add a new compatible for the SCPSYS IP block found in the MT6795
-Helio X10 SoC.
+The MT6331 has a "ldo-vio28" regulator but this was missing in the
+list: add it to resolve a dtbs_check warning.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- .../devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml          | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/regulator/mediatek,mt6331-regulator.yaml         | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-index 1cb9d6797b92..4cafa381979b 100644
---- a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-+++ b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-@@ -19,6 +19,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - mediatek,mt6795-scpsys
-           - mediatek,mt6893-scpsys
-           - mediatek,mt8167-scpsys
-           - mediatek,mt8173-scpsys
+diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6331-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6331-regulator.yaml
+index c654acf13768..eb16e53cb5bf 100644
+--- a/Documentation/devicetree/bindings/regulator/mediatek,mt6331-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6331-regulator.yaml
+@@ -40,13 +40,13 @@ patternProperties:
+ 
+     unevaluatedProperties: false
+ 
+-  "^ldo-v(dig18|emc33|ibr|mc|mch|mipi|rtc|sim1|sim2|sram|usb10)$":
++  "^ldo-v(dig18|emc33|ibr|io28|mc|mch|mipi|rtc|sim1|sim2|sram|usb10)$":
+     type: object
+     $ref: regulator.yaml#
+ 
+     properties:
+       regulator-name:
+-        pattern: "^v(dig18|emc33|ibr|mc|mch|mipi|rtc|sim1|sim2|sram|usb)$"
++        pattern: "^v(dig18|emc33|ibr|io28|mc|mch|mipi|rtc|sim1|sim2|sram|usb)$"
+ 
+     unevaluatedProperties: false
+ 
 -- 
 2.52.0
 
