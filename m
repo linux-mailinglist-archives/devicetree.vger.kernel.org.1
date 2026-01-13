@@ -1,217 +1,121 @@
-Return-Path: <devicetree+bounces-254388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B78D17A45
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:32:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A68AD17C19
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:47:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 047F03047186
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:31:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A70D3067DE4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:37:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D5E38A9AE;
-	Tue, 13 Jan 2026 09:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348E9341678;
+	Tue, 13 Jan 2026 09:37:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="htDAx1B5"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="E484a46S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (box.trvn.ru [45.141.101.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8CCE387589;
-	Tue, 13 Jan 2026 09:29:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7AAF1EB5FD;
+	Tue, 13 Jan 2026 09:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.141.101.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768296551; cv=none; b=HcYbP37zhVIMFtEbcVL8oY+0oYCreRbfaqJT5Bl7d62RsecczLC/jcLgwA//LioLU/cm769K5A9ZgCbzOD+YM9LaQhcgc0RtrZu1sdSKu4TwgabM8fU+StwyDySoK0/zVJ8Zaykzn94TcwJC7FKgHpMGZUy3cTbkxGioh9u2eC8=
+	t=1768297063; cv=none; b=qUH+yFrvAo/KYhObhh4P+pdDRjt3p+v9x6glufoKW07cCEJgSmnuB46jx9qYH4/ysB7bbv1GzJ2GpkEJ+01Q/DLC/5DUGF8IkJC7Qrc4gaQVWdYAmW+bENuAsbebGuQsD5GFGpqnkZg/SS2dbJJ73Zsye9j07LyXVyNLt4nC1Fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768296551; c=relaxed/simple;
-	bh=kQMGQJt3EWSe0u3U839AQ9IRNSi4mm7LKDLeTyueEOY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eOB8aWLtaVxsWlLn4FHzs+cB1OE2lTXk7+SZ0VMGVXiPjLnER2PsXr18cM8PzBAI07mfN0jfzcplwTbpq92kCTckSwonldE27MDAxHLOc5kXzOAiu6PT1t6V/4EliMwAtSSsWb7Qo0zgtr8ZMAwB5PCPMlQte4doLZUY13yKNoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=htDAx1B5; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768296549; x=1799832549;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=kQMGQJt3EWSe0u3U839AQ9IRNSi4mm7LKDLeTyueEOY=;
-  b=htDAx1B5PrcKx7Tuin+u2kn1nPmbp2PLHhPxne2Z2Fpx6HxQc0rcyqdH
-   VSxAkbY8vbBve0OeRMJ2lrfAW4AUQdlqLyb1WLZJJ5CcJ05sFxMhCvgMc
-   xyJC/wLIR4m4B1PeJG5iQ4UC1NbdV8E/PIBFRPLJkQ0zbxRkFFbuUbo9U
-   0PwLl6FyW6rD4t3jXu6+r1Jwi/qqTktuXsfm5DwCEU0enB6814/k8jKIZ
-   ZD4RskskK0sslOSiGBa/g8hLm5CatZn1v75doJbFrAlSbBQTzRMWxoUpp
-   Qw0q9o7viUbnQaJck1c4TtVvar6s1MGSc8pi5+qfCjkI0nBEkTA485E2q
-   g==;
-X-CSE-ConnectionGUID: PdF+/WN8QReZ/cd6n1RSKA==
-X-CSE-MsgGUID: fZIsDEU/QraplTJJojL+5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="80298205"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
-   d="scan'208";a="80298205"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 01:29:05 -0800
-X-CSE-ConnectionGUID: xGYGW6cpT7m2vKG8s5vKcw==
-X-CSE-MsgGUID: HwnBLT8/S1CG/FeRRl7THg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
-   d="scan'208";a="204419013"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.177])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 01:28:59 -0800
-Date: Tue, 13 Jan 2026 11:28:56 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Hans de Goede <hansg@kernel.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Tarang Raval <tarang.raval@siliconsignals.io>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hao Yao <hao.yao@intel.com>,
-	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v7 2/2] media: i2c: add Himax HM1246 image sensor driver
-Message-ID: <aWYQWAQnnFW0Kf9z@smile.fi.intel.com>
-References: <20260112-hm1246-v7-0-fee8587f2808@emfend.at>
- <20260112-hm1246-v7-2-fee8587f2808@emfend.at>
- <aWVFE-Y5HRi_XZRE@smile.fi.intel.com>
- <f2e77bb5-957e-4751-8304-d9fb94927417@emfend.at>
+	s=arc-20240116; t=1768297063; c=relaxed/simple;
+	bh=olNAMn+G4iuCUvoLcnEj1L1oYP+Daz/mSqmRGxS5qtM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=QvwdcCJEsBgqYLEuf5l75kfIpDPiAVq60v10CtElR3jZlXbBZDjCQgZuJMaxC8TEFDgX3iWgbw8Ft0LVEMbdEqFu2UNPW5cvPCOngDqXpddKxxC9o3Wr4Ol2r1ArK0ZFXeDu38BhyLVbGyGi1AMlgOcodB+ALO/NvlxYF+1dvfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=E484a46S; arc=none smtp.client-ip=45.141.101.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1768296602; bh=olNAMn+G4iuCUvoLcnEj1L1oYP+Daz/mSqmRGxS5qtM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=E484a46SeA5IrUzQFnBUh1hcuqByqySFUt9JSs4PiJ7ReKaAeKVx2YsqmcOdywT1W
+	 QWBbqaYGMkeiGR0o8ikLm4n1FvAmr2g/BqqkkmOpePmoUIalLDjIQGilTTg1H9I0Qt
+	 BNbgwRM01f7/m5f7YJxoh9ktDRYE0hgAgoUp3/Zj1pxm69+vAvwSNXOFw+SArPNtzD
+	 TgoAgGVTKvCrDwBDww5pKsnLDz6V8C7s31GqvC3i0L8lgTH1zaa60cj/iWO1BgSH5j
+	 Waf4gAUN5xCIQzRQ3q0+hde1haQ30PiSO1TvHZZpTv+T1Y3tJrqJihknedfKMCd9gl
+	 vuIeEvGEPyz0w==
+Received: from authenticated-user (box.trvn.ru [45.141.101.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 1C90069155;
+	Tue, 13 Jan 2026 14:30:02 +0500 (+05)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Date: Tue, 13 Jan 2026 14:30:01 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Val Packett
+ <val@packett.cool>, cros-qcom-dts-watchers@chromium.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: Add support for ECS LIVA QC710
+In-Reply-To: <fcc6544f-b0dd-4f23-ade7-4d6f8b6a612f@oss.qualcomm.com>
+References: <20260111085726.634091-2-val@packett.cool>
+ <20260111085726.634091-6-val@packett.cool>
+ <wyqml5ywfzwh3uulp4gzlfzx24kb2545w36pkpnz5g27xtnqoi@yywysi37tdor>
+ <3dd54179-7a22-4596-a6ef-224530c4b2c6@packett.cool>
+ <2f0d6bd9-0786-4445-94d2-5189f6b44d01@oss.qualcomm.com>
+ <e7j3hctjlly44pjwe3jvjtpjuj33bdvpyo6pzc6o3q5tjjlyib@7evgyweq2deg>
+ <fcc6544f-b0dd-4f23-ade7-4d6f8b6a612f@oss.qualcomm.com>
+Message-ID: <e3530bff3d39bbb06b01364b30a5a21a@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f2e77bb5-957e-4751-8304-d9fb94927417@emfend.at>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Tue, Jan 13, 2026 at 10:06:36AM +0100, Matthias Fend wrote:
-> Hi Andy,
-> Am 12.01.2026 um 20:01 schrieb Andy Shevchenko:
-> > On Mon, Jan 12, 2026 at 03:49:33PM +0100, Matthias Fend wrote:
-
-...
-
-> > > +struct hm1246_mode {
-> > > +	u32 codes[4];
-> > > +	u32 clocks_per_pixel;
-> > 
-> > > +	u32 top;
-> > > +	u32 left;
-> > > +	u32 width;
-> > > +	u32 height;
-> > 
-> > Why not use struct v4l2_rect?
+Konrad Dybcio писал(а) 13.01.2026 13:30:
+> On 1/13/26 2:31 AM, Dmitry Baryshkov wrote:
+>> On Mon, Jan 12, 2026 at 11:50:25AM +0100, Konrad Dybcio wrote:
+>>> On 1/12/26 1:31 AM, Val Packett wrote:
+>>>> [resent for the lists as plaintext, oops]
+>>>>
+>>>> On 1/11/26 1:50 PM, Dmitry Baryshkov wrote:
+>>>>
+>>>>> On Sun, Jan 11, 2026 at 05:35:12AM -0300, Val Packett wrote:
+>>>>>> Add a device tree for the ECS LIVA QC710 (Snapdragon 7c) mini PC/devkit.
+>>>>>> [..]
+>>>>>> +&dpu_intf1_out {
+>>>>>> +    /delete-property/ remote-endpoint;
+>>>>> Why? It should not be necessary.
+>>>>
+>>>> It seemed to be implicated in annoying EPROBE_DEFER issues.. But you're right, it wasn't this after all.
+>>>>
+>>>>>> +
+>>>>>> +&pm6150_pon {
+>>>>>> +    status = "disabled";
+>>>>> Do you know, how is Power-On routed?
+>>>> I think it's handled by the EC. Keeping this enabled doesn't make power-off work, and doesn't make the power button deliver events either.
+>>>>>> +};
+>>>
+>>> FYI I don't think a modern QC SoC can turn on without PON
+>>>
+>>> What do you mean by "doesn't make power-off work"?
+>> 
+>> It is basically a laptop SoM in the embedded case, so it has EC and PoN
+>> generated via the EC.
 > 
-> Valid question. I would save something in six places, but add something in
-> about 27 others. Because of this ratio, I opted for the current way.
-
-It's more about standardization. Can you provide an example of the place where
-you need to add something?
-
-> > > +	u32 hts;
-> > > +	u32 vts_min;
-> > > +	const struct hm1246_reg_list reg_list;
-> > > +};
-
-...
-
-> > > +static int hm1246_get_selection(struct v4l2_subdev *sd,
-> > > +				struct v4l2_subdev_state *state,
-> > > +				struct v4l2_subdev_selection *sel)
-> > > +{
-> > > +	const struct v4l2_mbus_framefmt *format;
-> > > +	const struct hm1246_mode *mode;
-> > > +
-> > > +	format = v4l2_subdev_state_get_format(state, 0);
-> > > +	mode = v4l2_find_nearest_size(hm1246_modes, ARRAY_SIZE(hm1246_modes),
-> > > +				      width, height, format->width,
-> > > +				      format->height);
-> > > +
-> > > +	switch (sel->target) {
-> > > +	case V4L2_SEL_TGT_CROP:
-> > > +		sel->r = *v4l2_subdev_state_get_crop(state, 0);
-> > > +		return 0;
-> > > +
-> > > +	case V4L2_SEL_TGT_NATIVE_SIZE:
-> > > +		sel->r.top = 0;
-> > > +		sel->r.left = 0;
-> > > +		sel->r.width = HM1246_NATIVE_WIDTH;
-> > > +		sel->r.height = HM1246_NATIVE_HEIGHT;
-> > > +		return 0;
-> > > +
-> > > +	case V4L2_SEL_TGT_CROP_DEFAULT:
-> > > +	case V4L2_SEL_TGT_CROP_BOUNDS:
-> > 
-> > > +		sel->r.top = mode->top;
-> > > +		sel->r.left = mode->left;
-> > > +		sel->r.width = mode->width;
-> > > +		sel->r.height = mode->height;
-> > 
-> > Seems in the same way here.
-> > 
-> > > +		return 0;
-> > > +	}
-> > 
-> > > +	return -EINVAL;
-> > 
-> > Why not making it a default case?
+> I got that part, but this doesn't answer my question. Val mentioned that
+> separately from the power button not generating keypress events.
 > 
-> I prefer it when the return statement is at the end of the function. Do you
-> see a problem here?
 
-For the matter of fact I do see a problem here. But it's not how code works
-right now, it's about maintenance. The disrupted returns like this may lead
-to subtle mistakes when the code gets changed (grows) and more cases added
-including ones that might want to share something as a success path.
+FWIW on Aspire1 the power key is routed to the ec, and ec is routed to
+pmic pon/resin (as well as ps_hold etc etc). Pressing the power key,
+obviously, boots the laptop but after that it has no effect in windows
+or in firmware. In linux neither pon nor resin receive any input events
+when pressed so my guess was that EC pokes PON once to boot the system
+and maybe pokes resin if user presses it long to do a hard reset. Due
+to that I've disabled the pon node in aspire1 so there is no bogus input
+device. I'm guessing Val has inherited that from aspire1.
 
-> > > +}
+Nikita
 
-...
-
-> > > +	hm1246->reset_gpio =
-> > > +		devm_gpiod_get_optional(hm1246->dev, "reset", GPIOD_OUT_HIGH);
-> > > +	if (IS_ERR(hm1246->reset_gpio))
-> > > +		return dev_err_probe(hm1246->dev, PTR_ERR(hm1246->reset_gpio),
-> > > +				     "failed to get reset GPIO\n");
-> > 
-> > Can it be GPIO reset driver used instead? (Note, it's made agnostic now.)
-> 
-> That would probably be possible, but I currently don't see any advantage for
-> I2C image sensors. If I understand correctly, you would first have to define
-> a reset controller that could then be used in the sensor – instead of simply
-> specifying the GPIO directly.
-
-Again, standardization.
-
-> The advantage of being able to share the reset line with other components
-> probably doesn't make sense for these sensors in most cases. That's perhaps
-> also the reason why it hasn't been used before.
-> 
-> Maybe the media maintainers have an opinion on this?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Konrad
 
