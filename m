@@ -1,122 +1,133 @@
-Return-Path: <devicetree+bounces-254665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44530D1A99A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 18:25:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A7CFD1A9CA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 18:28:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 450CA3006467
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:25:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CDE73302C12C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D75350D45;
-	Tue, 13 Jan 2026 17:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E1EF350D45;
+	Tue, 13 Jan 2026 17:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/jeB1KF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fMgNnZah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com [209.85.210.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73AE3502A5;
-	Tue, 13 Jan 2026 17:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0273A350293
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 17:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768325137; cv=none; b=bfCl2To0FLIb3sjrkJ48Pq6ZlE9aOeyyH7eEV3RKUm/AiDjwRm745ex6mnZDzbah3Xu92sW3bwla8gbvPm3LQjXac57rHoDyAZ6vo9x2EOqn7SfSWT4DnEsD2LEmWcP/dDKG5BU2UcOrL86SBD7JrvwuAH+RFc5CjGJc2aWGtio=
+	t=1768325274; cv=none; b=gSYntnUNcXU4p84g9jV80qxHIYSxd195V7dS4dBNuKU+PE+oZUqk6qICODol1p9+efhLVnRrVfRQO7QmpCC11/F+rtb/s/naihqHnx0rubD2Njg3bBAl1ZtO51ACjV7NiLtVtpOcPAb2iwhtLfT4iKSfO2+eMVPZJH+elMVYZo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768325137; c=relaxed/simple;
-	bh=adh6nRjj4+RlJ7Axtj/4b81J0YYWlHJV3CYCdPPKpyM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kNpK18fVMGaEThi1VliHv5ZPhbj/RbxqwdfwREPIrNChfFOfes0LOeB9U7uqakRxXgFvfcVohwsfkEAcXhyaxDmXiJa7gBFgQ/qBc3UP/tcLSvlKoz4GD0R4/oot80fN4VKl5Tmz8PMsMZqM95M4CVvadzasxnmYGeTYF/1KVe8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/jeB1KF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68FEFC116C6;
-	Tue, 13 Jan 2026 17:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768325137;
-	bh=adh6nRjj4+RlJ7Axtj/4b81J0YYWlHJV3CYCdPPKpyM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h/jeB1KFdLdMVHHsD1HqYRsMkAl3liD/kCiRpmWWoMPlGFRzzRNRkBYe9gqkpJLKN
-	 BSYzreQKE4eFKVNO6PqeZknEPH1mUXiQHwqENmTeY39X7ETTq4AcQf/NDeHJmCCrwZ
-	 1Ecn5SOZcv98DTuHdhOf3XDyzPjXHG5p0jP0MiVW39dYICFv849a8cSKIehd7l0PKh
-	 uwmOj9kKyOnmIviCtmwsPUCYp2tVaMAezUnxgZBaWh1wpeiCZ5jtV4IrQOvwkaSB0/
-	 H06dl/2rPLEnf0+kuRe1wM68+eT4FiDp+ypL++VAzCguGkF+m8pU9Yu2R7LvZang08
-	 sa/EO/KXkbDJA==
-Date: Tue, 13 Jan 2026 11:25:36 -0600
-From: Rob Herring <robh@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas.schier@linux.dev>,
-	Hans de Goede <hansg@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Pearson <mpearson-lenovo@squebb.ca>,
-	"Derek J. Clark" <derekjohn.clark@gmail.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v4 6/9] dt-bindings: connector: m2: Add M.2 1620 LGA
- soldered down connector
-Message-ID: <20260113172536.GA3975461-robh@kernel.org>
-References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
- <20260112-pci-m2-e-v4-6-eff84d2c6d26@oss.qualcomm.com>
+	s=arc-20240116; t=1768325274; c=relaxed/simple;
+	bh=frju41CddkaBY4Kzofa1mx3Txjlx1h9nbA7zsFc4BMM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=jHFgHGbnFRnuJMvSgAEElJRJIxgG03SB7ld/FNk9cwwk4g+iW14aLem5w6EO42weiLzPP/20DRGBrq/KZQLvdyFuEXG9JVzGUutr/VbYdfSsrsm9Pzlqryxhr0PosvejwcU08+uCcO2Co/JzO3aKzbuCwr3eS1L/xLEuqD4sRcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fMgNnZah; arc=none smtp.client-ip=209.85.210.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f194.google.com with SMTP id d2e1a72fcca58-81f3fcdb556so1643745b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:27:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768325272; x=1768930072; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=frju41CddkaBY4Kzofa1mx3Txjlx1h9nbA7zsFc4BMM=;
+        b=fMgNnZah+tRAxSaJewPIFrosBRbo01e9/jZaE9ir/CH03hixdrLA8IZKctOPryUPKu
+         1wEbM6o/hRJuE2eD37Z6LuOCykY+6TujYzSGu93mSarbbDtDNYQdcB1yH781RnW2KLrr
+         e+RHhJIcS5LRIVFlI+vBUUg8kFtyiMMzfmk6qhoo7epDjLfu9DZbFp5FT3lu1XQTsrIK
+         fdjG+oOx7x2IyKkdqe5Xy+P6VprdupsiqmBjUareDBv/fg+JCPAjkKFlKujsN0cZc0hR
+         B3e3jlip0DNZ5BjOIObaKWNfTf1XWPt2vh4fWu7qBl4Mz1cQ+3kxdzOltuTZJGpi1iWy
+         4KeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768325272; x=1768930072;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=frju41CddkaBY4Kzofa1mx3Txjlx1h9nbA7zsFc4BMM=;
+        b=CdXWR9lJYZnOebIDd/U77YkyKdduGRAr+dRXmWd2A301hDgY3CaaYm7nNFJ0lE+qJ/
+         nBir78ME8Zv8x7zjAbalFSQshgC/uXdoLoNFoseC2YImFj0Wpg6pO1VK1r88YMYxheBv
+         EjTfOliE6pS2bwRWn8hoz0wRPJlIfb4nQVbkntwAdM+OLWKUcC6LBKQDqcgL2iFYgjnq
+         UDykv54tqk1+x4MF0N9hpgVNfVltZsZBOCMOdg0igdX2eaeCT9BlBuKZ7ENz1kwYSYuv
+         BG5uqFA5YfVifWPFoZ9TKM4WMR5DAfQ8CvcMI6VyalobUNM+u19KfWA5TH4l8j38X0KZ
+         9W/w==
+X-Forwarded-Encrypted: i=1; AJvYcCXa77Yejx0KyhSHwY7hvibZO5gHVocvuFWWjhqhu6Qg2wLKTwhD7HOrO8ou+OYgdriALAxQaS3oNM8A@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkinJitjftXkKSAOzruQOnF0umVjyXfuROifjA6j61OdeLFxz2
+	aOGP67SgyVCtQia3M3fMzLhrOKBTJW1F7aCVQC7etOLXc+hCFCLALbY9+3AS819FPWg=
+X-Gm-Gg: AY/fxX6Z5PujSaCjFW238Eh/n/exQKGRvP3B9Lug/8/Rk/XJd1Vpb3/GuZHEMtRhuTI
+	lfu4tnfaOZxtfN3UFGrw76Z0SJySAFB9cgMNzmxDejkZnUI3LOnms0KHeztqhi842qOcStx5eyh
+	w0Hv6IMWWdHfQJvQG5SxFrjfTjOw/15YTUODcUwZDd5K2duB4nl/Mh+77Yi1om4lxjgvnFSgFCe
+	wyjCD/on0drJTUQTFT+rkxykUX9qSCkg9MSGd1RuqdNnsQBBLvjdXBf/y9gAEYN7zNMYX4gWpsB
+	sE6/ASQpLZlsgEd4YA5RmUe+e1aY2RDYi3edu0YCOZa1CLvxfkSwzu+MD7EJlYwMSjA1LmCQ0Gj
+	xy3UQc5PmxqG0z5XPcgFObn+qwynZ/DpQ6OcOvwsNKPJ77ld9p5jJRg2AGh7FW4GVDdTqG9jOiu
+	E6CBxFs9efud/u7WZX
+X-Google-Smtp-Source: AGHT+IG41cDPOQCdX3XgrEWI3F6tVAXs0IS7rlseRYjYEyKPvHunMkGKaXtqLwq05QF3FCKe9goC/w==
+X-Received: by 2002:a05:6a20:2583:b0:366:14ac:e204 with SMTP id adf61e73a8af0-3898fa57649mr17093420637.66.1768325272156;
+        Tue, 13 Jan 2026 09:27:52 -0800 (PST)
+Received: from draszik.lan ([212.129.80.26])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81f44a94e98sm5809433b3a.69.2026.01.13.09.27.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jan 2026 09:27:51 -0800 (PST)
+Message-ID: <4502ece1dc8e949e23f971a93dc06dab2d4f0bf7.camel@linaro.org>
+Subject: Re: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
+ drivers
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,  Bartosz Golaszewski	 <brgl@bgdev.pl>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij	
+ <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Peter Griffin	
+ <peter.griffin@linaro.org>, Will McVicker <willmcvicker@google.com>, Juan
+ Yescas <jyescas@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-gpio@vger.kernel.org, Bartosz
+ Golaszewski	 <bartosz.golaszewski@oss.qualcomm.com>
+Date: Tue, 13 Jan 2026 17:28:20 +0000
+In-Reply-To: <6ace23c4-d858-4bdf-9987-104e706190cd@sirena.org.uk>
+References: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
+	 <20260113112244.GE1902656@google.com>
+	 <6ace23c4-d858-4bdf-9987-104e706190cd@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260112-pci-m2-e-v4-6-eff84d2c6d26@oss.qualcomm.com>
 
-On Mon, Jan 12, 2026 at 09:56:05PM +0530, Manivannan Sadhasivam wrote:
-> Lenovo Thinkpad T14s is found to have a soldered down version of M.2 1620
-> LGA connector. Though, there is no 1620 LGA form factor defined in the M.2
-> spec, it looks very similar to the M.2 Key M connector. So add the
-> "pcie-m2-1620-lga-connector" compatible with "pcie-m2-e-connector" fallback
-> to reuse the Key M binding.
+Hi Mark, Lee,
 
-Key M or Key E? I'm confused.
+On Tue, 2026-01-13 at 16:20 +0000, Mark Brown wrote:
+> On Tue, Jan 13, 2026 at 11:22:44AM +0000, Lee Jones wrote:
+>=20
+> > MFD pieces look okay to me.
+>=20
+> > Once Mark provides his AB, I can merge the set.
+>=20
+> Given that the bulk of the series is regulator changes I'd been
+> expecting to take it?
 
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/connector/pcie-m2-e-connector.yaml       | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> index b65b39ddfd19..9757fe92907b 100644
-> --- a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> @@ -17,7 +17,14 @@ description:
->  
->  properties:
->    compatible:
-> -    const: pcie-m2-e-connector
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - pcie-m2-1620-lga-connector
-> +          - const: pcie-m2-e-connector
-> +      - items:
-> +          - enum:
-> +              - pcie-m2-e-connector
->  
->    vpcie3v3-supply:
->      description: A phandle to the regulator for 3.3v supply.
-> 
-> -- 
-> 2.48.1
-> 
+Just FYI:
+1) I just noticed I have to rebase/resend this mainly due to
+patch context of the binding updates.
+
+2) this series depends on another MFD series of mine
+https://lore.kernel.org/all/20260113-s5m-alarm-v3-0-855a19db1277@linaro.org=
+/
+(again only due to patch context) which is still pending.
+
+I was under the (perhaps incorrect) impression that changes that touch
+MFD always go via the MFD tree. I guess that's not the case. I'll update
+the relevant phrasing in the cover letter with whatever you two decide :-)
+
+
+Cheers,
+Andre'
 
