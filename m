@@ -1,113 +1,83 @@
-Return-Path: <devicetree+bounces-254616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3B9CD19FFF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:46:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C38D1A005
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 73B793032DEF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:38:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB171302BA40
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177803939A3;
-	Tue, 13 Jan 2026 15:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 362993939BE;
+	Tue, 13 Jan 2026 15:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYi9WhYw"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jpyHEriD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD29313E05;
-	Tue, 13 Jan 2026 15:38:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607EB29D27D
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 15:43:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768318727; cv=none; b=OUR8FPeqCPFkI5UuoyLwffICSM6ewZx9SY84cX9TJ+0auNya6gnTN0ZFNSl/Cg6UKGZ1OsyVaI4PmtESRVE9TXZ8YHPr0dtp1zJ1r1oVAeMIOz+e9o9cfJf9DbtPhQDJKkHA6y5n505fu8sd10kslLWGWQKl1IxTpE7NTswMM1Y=
+	t=1768318996; cv=none; b=Mgi8r63Yn0o8XXKtuF+GfR0RbIzngck+6qYCTgQJLxf3sq12Sj73hDTE3bveegfNmxfNWnq85wawBebDkTCe8Tp7FMffZWKbG8vKLsKGC5nLR0refg892H9ib/3nnbgz7uY+GfEY0kqkJw84qsvN8LnTutgKahlRZoMfZ82eZuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768318727; c=relaxed/simple;
-	bh=ljT5os089R8jUo9auIHE9TI3ncsDNdnWjL/OJch4leA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=icwSPvmaUIB3mGu2iWz99GDUWxUSnTnfBY5PGIQUE867x+lLyz+Z5AgxyAYpfkL0dKtAZw5BBD5NWSRbGEzLWoBQhOp78SleSEmHPE0qpf3H/8vqBWtzlm8S144vtXVK8yWXMlBwWskxiLr4jEw4FOa2xg/RKx8n+4klO59Hufc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYi9WhYw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCC28C116C6;
-	Tue, 13 Jan 2026 15:38:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768318727;
-	bh=ljT5os089R8jUo9auIHE9TI3ncsDNdnWjL/OJch4leA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=lYi9WhYwgD1Orn9n6DwmOzaGYJX/YkrW8INCxFw2FUtssTuV52T9mNyNFgbdZO1rM
-	 m1HDAiuhHpQ3+VaKnZNSzdqadV5nizrxEZmxwMlPsxCERJHprQjR/GF63nchWAgjKG
-	 9vA1Oq3zzVBlL2iyBvIlwLv0nGwx2/NEa7u5fshSVEmEX935+uoYgh/ip8ptqawmIo
-	 FInWYr/y+tMpjzOuwK2pcgGAXpq/ykIn/I9qv9At+8LNQna1D/DfkwkhYo8KlEO/OM
-	 mfB5c+OO9ShzZ66z54hNwnpWJcPdCqNBttcamyWEWKb5OGHCkelO2rR/QEXkrmaeXi
-	 tL2N+KJqy5AgQ==
-From: Mark Brown <broonie@kernel.org>
-To: linux-mediatek@lists.infradead.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- sen.chu@mediatek.com, sean.wang@mediatek.com, macpaul.lin@mediatek.com, 
- lee@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com, 
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- kernel@collabora.com
-In-Reply-To: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
-References: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: (subset) [PATCH 0/6] Fix dtbs_check warnings for MediaTek
- Helio X10 platform
-Message-Id: <176831872457.153367.14622745892314897122.b4-ty@kernel.org>
-Date: Tue, 13 Jan 2026 15:38:44 +0000
+	s=arc-20240116; t=1768318996; c=relaxed/simple;
+	bh=trdjpNRuyKh0ijGhouOP8ESYRszym+iNK1WKErLYUac=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iPLk+yCguF6fQF3ENciithZEDA856RCoiyEKlneTHL78/dsXmnRyBbrPEVtpB++LC27/UZm3vhd6DUj259bpK3Z92iIfY5QxOfm1gWPPoiyWuKAwn9nOH9MC1HSeb2lAfELlDdI7AtU+N2CQLrowQaEkpp1M+6DfQjgZnrWh9ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jpyHEriD; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=H4v5
+	yccwRnwyIzZU/tOnqVXFj3q694NbnMlwjQYPU+o=; b=jpyHEriDOxxkOWuXWpbW
+	IrP0PnzWN3ZKbELaYIvtoeAsRsZj3qdM5nPrjqDPKyutPRMHimEsAGH6+iTcUyN/
+	VbAYVbXt/7ZJNKE+v3qOUESwivRmRM6+ZDTuYfPHnBEHEr4lfGaJOApwV4aHRMXT
+	ub4ClZPYxsGKRTa5VHIP+q7/qnZjerxMrkK5o5JzRPQm08J3tPvn9xoiLnpfob92
+	yR2W7GMV3kZIsQSTqtNlIHG9jyw1IG67ULyDOWhVrEFEoeamk03JwRoKe7kdWXuJ
+	SbWqjl7LzBThyJw8MWCg6W3uVIQeQNv2MsRcc7L40ochGYfvkCsigu4HmG6udvP9
+	mg==
+Received: (qmail 1758506 invoked from network); 13 Jan 2026 16:43:12 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Jan 2026 16:43:12 +0100
+X-UD-Smtp-Session: l3s3148p1@24lj2UZIXocujnvx
+Date: Tue, 13 Jan 2026 16:43:12 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: Qii Wang <qii.wang@mediatek.com>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	kernel@collabora.com, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: i2c: i2c-mt65xx: Add compatible for MT8189
+ SoC
+Message-ID: <aWZoEIA2shjPDUVz@ninjato>
+References: <20251030-mt8189-dt-bindings-i2c-v1-1-5b60914c6453@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251030-mt8189-dt-bindings-i2c-v1-1-5b60914c6453@collabora.com>
 
-On Tue, 13 Jan 2026 11:59:54 +0100, AngeloGioacchino Del Regno wrote:
-> This series fixes various dtbs_check warnings happening on the MediaTek
-> Helio X10 platform devicetrees.
+On Thu, Oct 30, 2025 at 08:56:29AM +0100, Louis-Alexis Eyraud wrote:
+> Add compatible string for MT8189 SoC.
+> Its multiple I2C controller instances are compatible with the ones
+> found in the MT8188 SoC.
 > 
-> Depending on correctness, either the bindings or the devicetree was
-> changed as a dtbs_check warning fix.
-> 
-> AngeloGioacchino Del Regno (6):
->   dt-bindings: mfd: mediatek,mt8195-scpsys: Add mediatek,mt6795-scpsys
->   dt-bindings: mfd: mediatek: mt6397: Add missing MT6331 regulator
->     compat
->   dt-bindings: regulator: mediatek,mt6331: Add missing ldo-vio28 vreg
->   arm64: dts: mediatek: mt6331: Fix VCAM IO regulator name
->   arm64: dts: mediatek: mt6795: Fix issues in SCPSYS node
->   arm64: dts: mediatek: mt6795-xperia-m5: Rename PMIC leds node
-> 
-> [...]
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[3/6] dt-bindings: regulator: mediatek,mt6331: Add missing ldo-vio28 vreg
-      commit: de9f1b1583aecb246b659effb03f2456604fab64
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Applied to for-next, thanks!
 
 
