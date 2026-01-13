@@ -1,111 +1,102 @@
-Return-Path: <devicetree+bounces-254322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3CC9D17319
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:07:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B74DED17286
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:02:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B558130C62E6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:02:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 251983046754
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C773932E6B8;
-	Tue, 13 Jan 2026 08:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7143136CDEC;
+	Tue, 13 Jan 2026 08:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eUq1SejK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c6rP5VTl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A92DC354AF9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C29E352C2D;
 	Tue, 13 Jan 2026 08:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768291358; cv=none; b=FHIivqznkKPFSaUY92/CWUQmMxNGNOJncX8G5cU0A8ct5T3sNYx1zonh8TTRHHHf1DKqbCGxwarHVtvoLUasbYjwZ8hYYt7tDuA6ncodxo5VPDW3Bc8DP6jCOkKY+o+rqVCrnB0JIVxcQ4oZ0xwO9QPLMfygMYGx+noZ8UQ3FOs=
+	t=1768291348; cv=none; b=HHjdnIgNqYkuU/UGKc+aWESbhiQ3CHXQjb2t6Et7Anfj+tFsQAlJklAkoK/FN4waQT8kvvjldfvKeHbXBcV8HQQpfln6UsSLo8v3pVIaCdLK+E0yJgz/LbDBLhu/lk9qpgga8/CWPsA9HPoU6y3GOlqa6xupgKboq1tHo0KiUYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768291358; c=relaxed/simple;
-	bh=qcXa97CRToZ5YY95GwskKDcO6CO5tuicjzb8ZpokXh4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pAAygf8oV6zGlxIPeYziJKaQYQ9HOVP1oIToBaypAQxwKja61ZgTdyGHaT7/rOf9S9nbjXdCt8lZU0LWNY2Jh20Ooye4kmFOd3vIVR3Q7T+YViBtH/dbBTB7tlJnIu/LDvtHVf4mDrO4phlc3Ap8IE5kSRhst50sz2dGXwEY8Xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eUq1SejK; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id AA07AC20878;
-	Tue, 13 Jan 2026 08:01:57 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 316BE60732;
-	Tue, 13 Jan 2026 08:02:24 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 698A7103C92AC;
-	Tue, 13 Jan 2026 09:02:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768291343; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=1SJc2k5EYXpf3Mw2uOPUkgNSsGuCU2bdxx8UB84ppvE=;
-	b=eUq1SejK6Y7BhoFfM4i7J2V+WVSwAYNMDVqPn+AdkjVRjy1h7LCJ8PW5UGmYZMJnfbWxvS
-	fhztrUDxpqAuTwX8QaVTqgSHYQ9l9LVxRxditM34ZJCyxxUIgpgCRCwe8Ee3knG+RiMoeM
-	xeoSErFUoB+aqUImq9SUJ0aujOyclWF0umvY/s5xdrtiBxINmdV+xzvqYgEXbouQxhDPh/
-	LcN27kcIKy/ns/zNRZfQuo+E2ROB0/aHT3+HxJmZrGJ444xD/EW0X5t5Lb/0PGgshfWyiu
-	ogdIgJLNh65Bo4XWWA8ZTviAcL00Mnq9mDBwsvuBnnVqEk/W57/iGYr/i51ysw==
-Date: Tue, 13 Jan 2026 09:02:16 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 01/77] checks: Use consistent type for strspn()
- returned value
-Message-ID: <20260113090216.34d71ee4@bootlin.com>
-In-Reply-To: <aWXNN0bW_xx-YMy1@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-2-herve.codina@bootlin.com>
-	<aWW3Rs_uoJdksA_n@zatzit>
-	<aWXNN0bW_xx-YMy1@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768291348; c=relaxed/simple;
+	bh=J3hBtI77EfhzmvcrvjNUQr86h+zI8ManKW7DJecFKQY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tpbt3cB0kliEP1uSd5bhBePRFDC/Fh4zS37IPG882K6YKQSG621Up/hpKUW4XMBcRTn8LdZ8yQuinDZ/2dUvSQ8mXJ24e+qb4nv7ARy4tVcmORsqXVq0vms/rBcULF/XAUd4Jaljkzf99Ia0AtkjwLQu64AxtV+rf4lhn8F7+OY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c6rP5VTl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2FC6C19422;
+	Tue, 13 Jan 2026 08:02:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768291348;
+	bh=J3hBtI77EfhzmvcrvjNUQr86h+zI8ManKW7DJecFKQY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c6rP5VTl4V97plwwwkx2p3C2XbgPLNTlxq7nUjU/y/FlH1xbQ72V2tyFbLsXFSjMp
+	 y7ZIlJ6Nu1kiKqwu/l4PeokQBfkxrWLE0Rjmo16bHZiDuYt5OgvX93jPBzOGKYGxWp
+	 7OiuOgSOTk+L7oURS0XNos0bnAgSqFVoxTSiRpoafjdhmP/EAaPHV+fvb9obuSe/bD
+	 kHz2K97TPpHKiqNNkiYlZhj6ctcIONi2WevyA63qYwK3Ndt08Dlax2U8PJfl8lczP0
+	 gKCFycErKmB5XnUisa63mbIuscjRED3ceZZHN9ECutDNJ8lG/NIXQICfmxQZ6xCtQk
+	 /2HRQ7gPcRkCA==
+Date: Tue, 13 Jan 2026 09:02:25 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Edelweise Escala <edelweise.escala@analog.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Add Support for LTC3220 18 Channel LED Driver V2
+Message-ID: <20260113-remarkable-determined-pogona-bfb2ab@quoll>
+References: <20260112-ltc3220-driver-v2-0-d043058fc4df@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260112-ltc3220-driver-v2-0-d043058fc4df@analog.com>
 
-Hi David,
-
-On Tue, 13 Jan 2026 15:42:31 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
-
-> On Tue, Jan 13, 2026 at 02:08:54PM +1100, David Gibson wrote:
-> > On Mon, Jan 12, 2026 at 03:18:51PM +0100, Herve Codina wrote:  
-> > > strspn() returns a size_t value.
-> > > 
-> > > The function is called in several places and in all places this value is
-> > > stored in a size_t variable except in check_node_name_chars_strict().
-> > > 
-> > > Fix the variable type used in check_node_name_chars_strict().
-> > > 
-> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>  
-> > 
-> > This one makes sense regardless of the rest, so, merged.  
+On Mon, Jan 12, 2026 at 04:55:53PM +0800, Edelweise Escala wrote:
+> The LTC3220/LTC3220-1 is a multi-display LED driver, which contains a
+> high-efficiency, low-noise charge pump to provide power to up to
+> 18 LED current sources. The LEDs are individually configurable to
+> 64-step linear brightness control, blinking and gradation control
+> via 2-wire I2C interface. The blinking and gradation configuration
+> is shared across all LED.
 > 
-> I spoke too soon.  This causes a compile error:
+> LTC3220 has a quick write function which allows changing the brightness
+> on all LEDS simultaneously when the brightness is changed on led 1.
+> For this we made quick write a device property which user can set on the 
+> device tree. We would like to know if this approach is alright?
+> Another way we might want to know is, is it alright to just make a
+> virtual led for the quick write function. Changing brightness on 
+> the virtual led will change the brightness for all.
 > 
-> https://github.com/dgibson/dtc/actions/runs/20944813954/job/60185662154#step:5:130
+> V2 Changelog:
+> leds-ltc3220.yaml changes
+> -Fix wrapping on description
+> -Improve description and commit messge to describe hardware
+> -Drop ltc3220-1
+> -Drop charge pump
+> ltc3220.c changes
+> -Fix wrapping
+> -Drop ltc3220-1
+> -Drop devname_mandatory 
 > 
-> For some reason it's only showing on the make build, not meson.  I
-> guess there must be a mismatch in which warnings are enabled.
+> Signed-off-by: Edelweise Escala <edelweise.escala@analog.com>
+> ---
+> Changes in v2:
+> - EDITME: describe what is new in this series revision.
+> - EDITME: use bulletpoints and terse descriptions.
 
-I used only meson and so I missed the signed/unsigned comparison warning.
+Huh?
 
-I will remove this signed/unsigned warning in the next iteration.
+> - Link to v1: https://lore.kernel.org/r/20260106-ltc3220-driver-v1-0-73601d6f1649@analog.com
 
 Best regards,
-Hervé
+Krzysztof
+
 
