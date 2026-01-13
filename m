@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-254366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B470BD178CD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:15:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1BDCD17904
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3B6CC30146C9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:14:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 889E93082D16
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:14:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4465389DF0;
-	Tue, 13 Jan 2026 09:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A777389475;
+	Tue, 13 Jan 2026 09:14:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZGTVlRjb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dVrc+Rsr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0867936BCFA
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:14:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76934389DE4
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:14:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768295689; cv=none; b=Dr3r65qF3+wXx1E2boQtlq491Z6sVlnKUsYaG/DGGXP3403wOihIYvmSecLJadzd8mx2SOL+T671u880Q/JlmfQnuOuBxD8Zh+pw0+rw8b3s2Ij9KJB1489zw8rnSLfAT6W3cC5C2E8GSMpmSHVS/Z9i1K7EyLW3GWNKMRFibBw=
+	t=1768295695; cv=none; b=iYSWBopF+dctZPp2rmTEsnf2l4+KEUxCEWY2gy/oJSz3j98QiPWZaOij8IWCuaugVWHOw+J1VSwXmwjELQeTtEjkX+nWYFQHAtitM5FH+cUb7FfOoIKAjPNTNHyI58y7YbcjzJ6CJT33a+G2eG4v+n2nFL/mYQMDIsmzZRWX/IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768295689; c=relaxed/simple;
-	bh=rPtVf65kJ1N1TywGctCCtpLt0SJGZD6s+R+h8f8siOg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=ruIUx7MiHmLKJbn21LSE35OtRrZrIRV7uc5pbpdNrHkwBqA2MAsN3UM+ZCz0y7V4I+qR21YPrTXB2BZyxtJVds93i4Vq9o9BCCZaRmSQq+/XgcfcXkJUlnwb94xL/Z90kt4VR3dxUfPp89q96oNRzK4ebj+4isXZqFBAlBISseM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZGTVlRjb; arc=none smtp.client-ip=209.85.210.181
+	s=arc-20240116; t=1768295695; c=relaxed/simple;
+	bh=aJZmPl5AgPqLgiF3qd8YsAsL22rFKXMOHqLQuJhG3KY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=IZAlmfsl1uf5KHzz733XTl7n+7G7pj6MnaxCZnNhPJlssktJTc8UVJKGoZMTdRFrLB0W8M3QfVwDCgBdW1xW14lEDzKkJOlhhl/q9Irsm+LpKQQrOKLiMHWyt63hSdMoAED0wN1w4qyu6YZmY652mrzRN/SQ++WRyu3TML6wdvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dVrc+Rsr; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-81f3fcdb556so1355274b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 01:14:41 -0800 (PST)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a0bb2f093aso50413335ad.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 01:14:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768295679; x=1768900479; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768295682; x=1768900482; darn=vger.kernel.org;
         h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=bot5yzHGRpdORn4dGLGp5ZsMsBNZegUjwbOB3QegdQ8=;
-        b=ZGTVlRjb2C/V77rpbPzFq2KlSa+JlX3FIRghjheILcpVSduNtf+q2FqRvpX/Qoj0sG
-         z/rOqhvFDJbAjAKZHaTMxVVpQ67zkm9J7nnjTCJHXiRbRcQooK4xHBLhWO8AGyIl2xTB
-         +o7X5uoAD2xmfJipCc9KgZccewl2VeeXUbvCdjXVIP/PuHaI90+GnzYgZhvZepqJHMp/
-         5VunLxURTnLwJywr8tpsGeGhoF5bKxt0FunLBwAZD7j5wRZAwhKfh1C/ASMu+LXFy6hc
-         SH3IzHpQP5i0K5dzYTStcRzT352mhLa1r0oUOkzUglc3zGQg3yZUKsCpicoDHuhkOSu7
-         qyrw==
+        bh=gIKHQA9Koa5dAWUwBAWIQNMUXdy4WVVSFWlJdkhck6g=;
+        b=dVrc+Rsr+4tg3l4Rhlia2S2tdS0EUHvNCXqJWvVbZwaidnCgLL6Y5rXokxOgfTlK2n
+         37EU+3lPjtflMk6iHUFHw7RgM88r/sOm6UR/XouhAeAu6cVuLf0UMU+gx0d7HgOPrDif
+         gTSxxapcYvXGmYvCP0d50Cu7ocZmptTVmpQu7aRwKuC4PguAxmQtID5GKD4k9yEe3noU
+         QwAOwehhnIByvUwDeowdmouvdHgViQW/AAEFJ1wWDnacArqdkiHJZXG95pVpUu5zTJos
+         e6x040rS8f0OQUKCpUuxcnuWDBSe5F0EsGKv6siQ07hA3+dOhG04VcFAxQ3hiWoaon7Z
+         VHDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768295679; x=1768900479;
+        d=1e100.net; s=20230601; t=1768295682; x=1768900482;
         h=references:in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bot5yzHGRpdORn4dGLGp5ZsMsBNZegUjwbOB3QegdQ8=;
-        b=uYdsljchrZhqqY5N7TvYlBTrnZjUIOLCr8oF0+oA4MhBIf9JAlrNJX23Y/6/cz79Fx
-         OrRfaNOxwaiQ/d+t2XJZ2XTb+kC6J2PMx15REycJzRE86dzp/vBW21CPPJin8a7AHnBb
-         orhTSdB08odc6b8DiCbu98NpOTduUxFM0kY80BD/SeVhMb2/855JdxXQrps3iMeX5O/e
-         iLMhof+S70gfqK8PkwxIzU7T3m2XOWidKIZbRsf6AvP61JMu/Ojadj0/MRt1QFEX1WOA
-         2367E9j8G3bIVPwkQPKbLDEaWuZQmTFrARz/zkVuIJFCcAax4NvUunMAOwYjwKQMpkCo
-         n5Vg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuQR3LON/jLUnN8DEBSqBgPaqlPHwMoo8T0QsezSpMpqZeZ/zf+MvUxQ+BsuRWJV2/azjt7vq+TeEP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkMW5w8DQbtYEVE+UdFmfe5ljbajApREtBL2VOyIxMLgV3Ejby
-	0yyHySFvEHdqieD18CDU9Nekp1Tf26LwRQM+4xv+o7MHZXh1kilfh8ZA
-X-Gm-Gg: AY/fxX5gZqQ5nAFfoJIEblvsmPgfoyZa4UUj2NsgHrFs46bfvY/bX3PhH3wkU9Oq9oL
-	v0bSJdDK3kPqYE1hluetI8UWSv8a2IFdNiTm1zd9knjNZUjff9E9RsR6/UVD4mttHkXOqwfCYxa
-	Ncd7utFvaE1zx+d5W57H9bVT767Xva7oDXqzYGF+rQqY7nxSYN+h2c1UzQ4P4vnrT9rNG08SCbT
-	AsnXgF6TZdquVdVmmBXhm2sqTvqVjdLsJVeK4VF3VYkITDOXpG5ukJuqb6XiUG3Prwo48wJOO6j
-	4+FqhwBT+IYBXclH/I1+vvQ5IxQBPEephKstJBGtXisyR0T3Bvl3827jwUB54D09Vxh0WGUkmwC
-	+I7YjdRKWGJrTfLHyk0r4NktqgXDOgXB3yRf5vWy4Eit1uAKOgahoEp2rc2vo7CiYvFCv0D0Q+D
-	5AZexgQAQ=
-X-Google-Smtp-Source: AGHT+IGsHeyylseX5uTR0Zuev3x2aRQU9RlBAKG0seW0iIbuL5lWyCYCsms8xRBNCrhbFAf8lGITDA==
-X-Received: by 2002:a05:6a20:2583:b0:366:14ac:e204 with SMTP id adf61e73a8af0-3898fa57649mr15886967637.66.1768295678911;
-        Tue, 13 Jan 2026 01:14:38 -0800 (PST)
+        bh=gIKHQA9Koa5dAWUwBAWIQNMUXdy4WVVSFWlJdkhck6g=;
+        b=hjdNjk0tmNmaj5rzC2jSXSaAtmBZoMcehcAwjXxP6G4Cg2UUt9pj0AqrovDYP/lWCS
+         xtFw80Q8bm38GAGVAguiOPCjDTDySepTyYED52fALwiU9VibhfLCVmJ7daT7wktYtS2x
+         zXPtTEI9mBrCix8NK0YyJMOCm0xlN0mxfw+qaxvpd80YCsAVW3JJu5hYb1SSQq02efOq
+         cjDYlgmJv9up6roQtVNWmZpJLyfR3b8Pa3z+3eiv5uPk3nrxV+WY+/LiH533h7oTufVp
+         2xiMZ4kzu2nBCHPvLfkob3/qgheqFpDqSodJ4UZKhWfCfUvtf4owXfDvpWn4FOUrYivF
+         PPFA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIwNBMfzHTWY03UHj6kLaSNbRDnZ26HyPNhSwSOfa7sgTzmOxiVIPAK95yofaFPKmP8EIM4qby8B3F@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNQqvCEDFG4/2Go/FH/bJ7VG9JwLLlSFJBEl8EjlUeq4w8jmMJ
+	rq0EN8vrMsX8bV/uAibuvWaT9Nlvx6gwuoo+MsMkE0fsr0Fbj5icZfYG
+X-Gm-Gg: AY/fxX76BLr6HzufmPFhiOwvzs6qx6noWP6zf8vYO7b1qCgBgaPvhLPJh2syhvdZX6n
+	F1RAWkMioDWeD784wL8Hdjqer7SyJi8jZsxgMfgzKBBO6SSYLp7TDsf+C8rt4JKOy9Boq92DHDh
+	HWvgIuBJ9n+pKBCs65Z7e6QpKp1vaoSbYr6T5xSU928yh6LcGS29cN0JGqgsjwydtIOsuXQ8hfK
+	46MRKOXNRhoiG+M5Safy5Wrsi2oRixQrYnFisTowIgR6DeeaVnwx7LP5RjEJLcMxaF3D8nOaCpS
+	MhcXnCd+ZIcQYTie7xKSofgPbSxuBL2Eu2IxGiCoEmqIZfRsBlCyuwdboD7leXJHRYToT27YS4n
+	CWlEslhJfZmIrEbjjDIYMtmJc1zyiRmINaROiLxL8nZvO1eTP6D7zrGrE5VH8PLutUpKtMyGlj7
+	6rbfX2rTs=
+X-Google-Smtp-Source: AGHT+IHpabFlSVaMvIjeDmekiCt4f6v2Xl95ZHSz3fxaipc1z6UfyXOAZumovWpEHXCAcpcvCKPXig==
+X-Received: by 2002:a17:903:1a6f:b0:2a3:ee53:d201 with SMTP id d9443c01a7336-2a3ee53d218mr208331835ad.12.1768295682052;
+        Tue, 13 Jan 2026 01:14:42 -0800 (PST)
 Received: from localhost.localdomain ([47.82.78.41])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3c48c0bsm15293915ad.31.2026.01.13.01.14.36
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3c48c0bsm15293915ad.31.2026.01.13.01.14.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 01:14:38 -0800 (PST)
+        Tue, 13 Jan 2026 01:14:41 -0800 (PST)
 From: Nick Xie <xieqinick@gmail.com>
 X-Google-Original-From: Nick Xie <nick@khadas.com>
 To: neil.armstrong@linaro.org,
@@ -85,9 +85,9 @@ Cc: xianwei.zhao@amlogic.com,
 	robh@kernel.org,
 	conor+dt@kernel.org,
 	nick@khadas.com
-Subject: [PATCH v1 1/2] dt-bindings: arm: amlogic: add Khadas VIM1S binding
-Date: Tue, 13 Jan 2026 17:09:50 +0800
-Message-Id: <20260113090951.35928-2-nick@khadas.com>
+Subject: [PATCH v1 2/2] arm64: dts: add initial device-tree for Khadas VIM1S
+Date: Tue, 13 Jan 2026 17:09:51 +0800
+Message-Id: <20260113090951.35928-3-nick@khadas.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20260113090951.35928-1-nick@khadas.com>
 References: <20260113090951.35928-1-nick@khadas.com>
@@ -97,31 +97,242 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-Add devicetree binding for Khadas VIM1S board based on
-Amlogic S4 S905Y4 SoC.
+The Khadas VIM1S uses the Amlogic S905Y4 SoC, based on the
+Amlogic S4 SoC family, on a board with the same form factor as the
+VIM/VIM2/VIM3/VIM4 models. Serial debug console, ethernet, SD card
+work with this initial device-tree.
+
+It features:
+ - 2GB LPDDR4 RAM
+ - 16GB eMMC 5.1 storage
+ - 32MB SPI flash
+ - 100 Base-T Ethernet
+ - AP6256 Wireless (802.11 a/b/g/n/ac, BT5.0)
+ - HDMI 2.1 video
+ - 2x USB 2.0 ports
+ - 1x USB-C (power) with USB 2.0 OTG
+ - 2x LED's (1x red, 1x white)
+ - 3x buttons (power, function, reset)
+ - IR receiver
+ - 40pin GPIO Header
+ - 1x micro SD card slot
 
 Signed-off-by: Nick Xie <nick@khadas.com>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-s4-s905y4-khadas-vim1s.dts  | 191 ++++++++++++++++++
+ 2 files changed, 192 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 08d9963fe9259..55663e0f7f915 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -247,6 +247,12 @@ properties:
-               - amlogic,aq222
-           - const: amlogic,s4
- 
-+      - description: Boards with the Amlogic Meson S4 S905Y4 SoC
-+        items:
-+          - enum:
-+              - khadas,vim1s
-+          - const: amlogic,s4
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 219fb088c704d..15f9c817e5023 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -85,6 +85,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-ugoos-am3.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-s4-s905y4-khadas-vim1s.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-gbit.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m2-pro.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
+new file mode 100644
+index 0000000000000..0cd5f9b674830
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
+@@ -0,0 +1,191 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2026 Khadas Technology Co., Ltd.
++ */
 +
-       - description: Boards with the Amlogic S6 S905X5 SoC
-         items:
-           - enum:
++/dts-v1/;
++
++#include "meson-s4.dtsi"
++
++/ {
++	model = "Khadas VIM1S";
++	compatible = "khadas,vim1s", "amlogic,s4";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		mmc0 = &emmc; /* eMMC */
++		mmc1 = &sd; /* SD card */
++		mmc2 = &sdio; /* SDIO */
++		serial0 = &uart_b;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		/* 52 MiB reserved for ARM Trusted Firmware */
++		secmon_reserved: secmon@5000000 {
++			reg = <0x0 0x05000000 0x0 0x3400000>;
++			no-map;
++		};
++	};
++
++	sdio_32k: sdio-32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
++	};
++
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		clocks = <&sdio_32k>;
++		clock-names = "ext_clock";
++	};
++
++	main_5v: regulator-main-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
++
++	sdcard_power: regulator-sdcard {
++		compatible = "regulator-fixed";
++		regulator-name = "SDCARD_POWER";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio GPIOD_4 GPIO_ACTIVE_LOW>;
++		enable-active-low;
++		regulator-always-on;
++	};
++
++	vddio_card: gpio-regulator {
++		compatible = "regulator-gpio";
++		regulator-name = "VDDIO_CARD";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		gpios = <&gpio GPIOD_9 GPIO_ACTIVE_HIGH>;
++		gpios-states = <1>;
++		states = <1800000 1
++				3300000 0>;
++	};
++
++	/* SY8120B1ABC DC/DC Regulator. */
++	vddcpu: regulator-vddcpu {
++		compatible = "pwm-regulator";
++
++		regulator-name = "VDDCPU";
++		regulator-min-microvolt = <689000>;
++		regulator-max-microvolt = <1049000>;
++
++		vin-supply = <&main_5v>;
++
++		pwms = <&pwm_ij 1 1500 0>;
++		pwm-dutycycle-range = <100 0>;
++
++		regulator-boot-on;
++		regulator-always-on;
++		/* Voltage Duty-Cycle */
++		voltage-table = <1049000 0>,
++				<1039000 3>,
++				<1029000 6>,
++				<1019000 9>,
++				<1009000 12>,
++				<999000 14>,
++				<989000 17>,
++				<979000 20>,
++				<969000 23>,
++				<959000 26>,
++				<949000 29>,
++				<939000 31>,
++				<929000 34>,
++				<919000 37>,
++				<909000 40>,
++				<899000 43>,
++				<889000 45>,
++				<879000 48>,
++				<869000 51>,
++				<859000 54>,
++				<849000 56>,
++				<839000 59>,
++				<829000 62>,
++				<819000 65>,
++				<809000 68>,
++				<799000 70>,
++				<789000 73>,
++				<779000 76>,
++				<769000 79>,
++				<759000 81>,
++				<749000 84>,
++				<739000 87>,
++				<729000 89>,
++				<719000 92>,
++				<709000 95>,
++				<699000 98>,
++				<689000 100>;
++	};
++};
++
++&ethmac {
++	status = "okay";
++	phy-handle = <&internal_ephy>;
++	phy-mode = "rmii";
++};
++
++&ir {
++	status = "okay";
++	pinctrl-0 = <&remote_pins>;
++	pinctrl-names = "default";
++};
++
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins1>;
++	pinctrl-names = "default";
++};
++
++&pwm_ij {
++	status = "okay";
++};
++
++&sd {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	bus-width = <4>;
++	cap-sd-highspeed;
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	max-frequency = <200000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
++
++	vmmc-supply = <&sdcard_power>;
++	vqmmc-supply = <&vddio_card>;
++};
++
++&spicc0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spicc0_pins_x>;
++	cs-gpios = <&gpio GPIOX_10 GPIO_ACTIVE_LOW>;
++};
++
++&uart_b {
++	status = "okay";
++};
 -- 
 2.34.1
 
