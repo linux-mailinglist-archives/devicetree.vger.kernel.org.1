@@ -1,121 +1,122 @@
-Return-Path: <devicetree+bounces-254392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A68AD17C19
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:47:53 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3466FD17C74
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:52:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6A70D3067DE4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:37:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0CF0730E81DE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348E9341678;
-	Tue, 13 Jan 2026 09:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30BAE32E6BE;
+	Tue, 13 Jan 2026 09:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="E484a46S"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Up6ZaMm1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from box.trvn.ru (box.trvn.ru [45.141.101.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7AAF1EB5FD;
-	Tue, 13 Jan 2026 09:37:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.141.101.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A127136C590;
+	Tue, 13 Jan 2026 09:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768297063; cv=none; b=qUH+yFrvAo/KYhObhh4P+pdDRjt3p+v9x6glufoKW07cCEJgSmnuB46jx9qYH4/ysB7bbv1GzJ2GpkEJ+01Q/DLC/5DUGF8IkJC7Qrc4gaQVWdYAmW+bENuAsbebGuQsD5GFGpqnkZg/SS2dbJJ73Zsye9j07LyXVyNLt4nC1Fw=
+	t=1768296642; cv=none; b=RPtWcUPjvI0ulyrzCNsSjMan+S1xEuWPM3b9Ul7xWkX3/Vp2j8wRHHxbVOhiIB735TPhEXjvks/BkknJRMqqOP2R2z+IjUrvrycoAanfPrCdFsDXqHUMtsIruIegoP9NXF2YUBe4A27Aul6EOOBrq3tUFCHk8XGAhz0k1VRUYnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768297063; c=relaxed/simple;
-	bh=olNAMn+G4iuCUvoLcnEj1L1oYP+Daz/mSqmRGxS5qtM=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=QvwdcCJEsBgqYLEuf5l75kfIpDPiAVq60v10CtElR3jZlXbBZDjCQgZuJMaxC8TEFDgX3iWgbw8Ft0LVEMbdEqFu2UNPW5cvPCOngDqXpddKxxC9o3Wr4Ol2r1ArK0ZFXeDu38BhyLVbGyGi1AMlgOcodB+ALO/NvlxYF+1dvfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=E484a46S; arc=none smtp.client-ip=45.141.101.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1768296602; bh=olNAMn+G4iuCUvoLcnEj1L1oYP+Daz/mSqmRGxS5qtM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=E484a46SeA5IrUzQFnBUh1hcuqByqySFUt9JSs4PiJ7ReKaAeKVx2YsqmcOdywT1W
-	 QWBbqaYGMkeiGR0o8ikLm4n1FvAmr2g/BqqkkmOpePmoUIalLDjIQGilTTg1H9I0Qt
-	 BNbgwRM01f7/m5f7YJxoh9ktDRYE0hgAgoUp3/Zj1pxm69+vAvwSNXOFw+SArPNtzD
-	 TgoAgGVTKvCrDwBDww5pKsnLDz6V8C7s31GqvC3i0L8lgTH1zaa60cj/iWO1BgSH5j
-	 Waf4gAUN5xCIQzRQ3q0+hde1haQ30PiSO1TvHZZpTv+T1Y3tJrqJihknedfKMCd9gl
-	 vuIeEvGEPyz0w==
-Received: from authenticated-user (box.trvn.ru [45.141.101.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id 1C90069155;
-	Tue, 13 Jan 2026 14:30:02 +0500 (+05)
+	s=arc-20240116; t=1768296642; c=relaxed/simple;
+	bh=5ubcJKa03epeMU/Rz/HAE+xd6v1dXE+MKytXOHB4lzY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mVDsFo2/qx7UKCY42fKVfu8X3Ik/TtkdNTG7hU378kCWjEW1Q83S/Unz4nzEw88Gb8U0zS/+FMjs8SkuCtmLieS2u+ZB7pDyMSYiI+2UqrwikwdAOWGkp8kjcU71fkPh0S6BMrHeL6IeR2J13U7LL8Q9GP14svY1qsFPj8vXyb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Up6ZaMm1; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768296641; x=1799832641;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5ubcJKa03epeMU/Rz/HAE+xd6v1dXE+MKytXOHB4lzY=;
+  b=Up6ZaMm18eH2qlUg0FHgvY126FSIXC0ioB1e5kMgqBJVh5ZAHTwsMqad
+   SCNpPo4fZ0ZA03ENGeuphG57NRf1fED45bfQKSF7qgMK2ubmjdsgVKUw/
+   9reTLJN7e2d8BsV7DqReYDLHFnZECEpxKQjzGZpiVsz7IPpEB2zqr3CcU
+   aagV3wv9JYWAxbIdHZ18jvPYiLSc62p2x+TANyqO2Me4mBOOo9Bc8V16I
+   tHGYSilX85CrivKHzkK0dAi+jXeQH919P44vJ6oyq9gK02quUrmSrvZaB
+   Xn2RveSL0g+OyYR7kTiJFG76QzWw1Y2SX7HNErcuFh5pRwODbS0b/rChU
+   Q==;
+X-CSE-ConnectionGUID: oRVlcP6zTPCXiQPLH++bpw==
+X-CSE-MsgGUID: Omr78eGxQB2vHOrxiHQgIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="95052377"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
+   d="scan'208";a="95052377"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 01:30:40 -0800
+X-CSE-ConnectionGUID: WHA9BL8TRma+ka8v6pkKgA==
+X-CSE-MsgGUID: X85ZyysRT8eGLEY/qntF4g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
+   d="scan'208";a="204738667"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.177])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 01:30:34 -0800
+Date: Tue, 13 Jan 2026 11:30:32 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans de Goede <hansg@kernel.org>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Alan Stern <stern@rowland.harvard.edu>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Hao Yao <hao.yao@intel.com>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v8 0/2] media: add Himax HM1246 image sensor
+Message-ID: <aWYQuJDinMlmxHgk@smile.fi.intel.com>
+References: <20260113-hm1246-v8-0-ea93947b192e@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 13 Jan 2026 14:30:01 +0500
-From: Nikita Travkin <nikita@trvn.ru>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Val Packett
- <val@packett.cool>, cros-qcom-dts-watchers@chromium.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: Add support for ECS LIVA QC710
-In-Reply-To: <fcc6544f-b0dd-4f23-ade7-4d6f8b6a612f@oss.qualcomm.com>
-References: <20260111085726.634091-2-val@packett.cool>
- <20260111085726.634091-6-val@packett.cool>
- <wyqml5ywfzwh3uulp4gzlfzx24kb2545w36pkpnz5g27xtnqoi@yywysi37tdor>
- <3dd54179-7a22-4596-a6ef-224530c4b2c6@packett.cool>
- <2f0d6bd9-0786-4445-94d2-5189f6b44d01@oss.qualcomm.com>
- <e7j3hctjlly44pjwe3jvjtpjuj33bdvpyo6pzc6o3q5tjjlyib@7evgyweq2deg>
- <fcc6544f-b0dd-4f23-ade7-4d6f8b6a612f@oss.qualcomm.com>
-Message-ID: <e3530bff3d39bbb06b01364b30a5a21a@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260113-hm1246-v8-0-ea93947b192e@emfend.at>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Konrad Dybcio писал(а) 13.01.2026 13:30:
-> On 1/13/26 2:31 AM, Dmitry Baryshkov wrote:
->> On Mon, Jan 12, 2026 at 11:50:25AM +0100, Konrad Dybcio wrote:
->>> On 1/12/26 1:31 AM, Val Packett wrote:
->>>> [resent for the lists as plaintext, oops]
->>>>
->>>> On 1/11/26 1:50 PM, Dmitry Baryshkov wrote:
->>>>
->>>>> On Sun, Jan 11, 2026 at 05:35:12AM -0300, Val Packett wrote:
->>>>>> Add a device tree for the ECS LIVA QC710 (Snapdragon 7c) mini PC/devkit.
->>>>>> [..]
->>>>>> +&dpu_intf1_out {
->>>>>> +    /delete-property/ remote-endpoint;
->>>>> Why? It should not be necessary.
->>>>
->>>> It seemed to be implicated in annoying EPROBE_DEFER issues.. But you're right, it wasn't this after all.
->>>>
->>>>>> +
->>>>>> +&pm6150_pon {
->>>>>> +    status = "disabled";
->>>>> Do you know, how is Power-On routed?
->>>> I think it's handled by the EC. Keeping this enabled doesn't make power-off work, and doesn't make the power button deliver events either.
->>>>>> +};
->>>
->>> FYI I don't think a modern QC SoC can turn on without PON
->>>
->>> What do you mean by "doesn't make power-off work"?
->> 
->> It is basically a laptop SoM in the embedded case, so it has EC and PoN
->> generated via the EC.
-> 
-> I got that part, but this doesn't answer my question. Val mentioned that
-> separately from the power button not generating keypress events.
-> 
+On Tue, Jan 13, 2026 at 10:07:25AM +0100, Matthias Fend wrote:
 
-FWIW on Aspire1 the power key is routed to the ec, and ec is routed to
-pmic pon/resin (as well as ps_hold etc etc). Pressing the power key,
-obviously, boots the laptop but after that it has no effect in windows
-or in firmware. In linux neither pon nor resin receive any input events
-when pressed so my guess was that EC pokes PON once to boot the system
-and maybe pokes resin if user presses it long to do a hard reset. Due
-to that I've disabled the pon node in aspire1 so there is no bogus input
-device. I'm guessing Val has inherited that from aspire1.
+> this series adds support for the Himax HM1246 image sensor.
+> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+> array size of 1296 x 976.
+> Currently, only the native RAW mode is supported. Other modes and the
+> internal image signal processing pipeline are not currently supported.
+> The data sheet is available on the manufacturer's website [1].
+> Tested on i.MX8MP hardware. A Toshiba TC358746 bridge was used to convert
+> the sensor's parallel video output into MIPI signals for the i.MX8MP.
 
-Nikita
+Please, do not send a new version when we have been in the middle of the
+discussion.
 
-> Konrad
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
