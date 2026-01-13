@@ -1,211 +1,124 @@
-Return-Path: <devicetree+bounces-254491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 905DFD187D1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:29:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8776BD187F8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 02513300765A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:29:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B315F302F81A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE6E38B7C5;
-	Tue, 13 Jan 2026 11:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85999302CD5;
+	Tue, 13 Jan 2026 11:30:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Czavlnb7";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JEPiDRyX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ypiZBYLJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8F638B999
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8520236BCDB
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:30:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768303790; cv=none; b=FzVVEs2rlgqu4GGp0V6mLd+PfPxVoKpZeJBnII8N2JkWuDQn+zOObFdtuZipKqTpksWY7n+V3fiXbew0hr4PyDAymc8xY6AfGiiOwahMSQ773PYFC8mOBJ8Ug1whf3q3dwZY7t9hLE1jfdhvtPdoEaFvZ3PVQKQqpuWKzEHbckI=
+	t=1768303856; cv=none; b=JOodltKlx8IEeQv0H5/HaZyH4celQZXhkaSZlpvTBjK3Qf+3TtBZeinnLabhEbIszU4okg5O9ulCHBVu2CHXDssaE2oUuvBmgom31SY6Q1uo1od1zcyrNqoRYUHLPP3KHTFBxigaS/rDaAC7Udr4JD9QIlTcRLr5+/RqAKpM4bM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768303790; c=relaxed/simple;
-	bh=Qq/N+o4nLV/SHQyIdoEjTgJx2bvxNx51OhBHoFXWwrA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oA9B3+aZcRdBcCZ88Bg1GDKJ1HEyw6VGn+O5uPoySEZ8e6r20lz0Rqn+pNVNiPuy9CfNCjG/XRrxNBeJgOVUw5sZFw6mjHrjLR3rZF/KEcaqdxdgNZsD5b2WEXEwy0B3FgA2p0QbXS1eSEfvOuMX/+vyRwyhzPdwQ4gNXLY2FWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Czavlnb7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JEPiDRyX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60D7xImd3299678
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:29:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Pv6sRN0RquiZ+JSbepqsZ52JkUQDgR3HACjDvriGVzI=; b=Czavlnb7J+PlfM0S
-	WtjF/7cI+rJpdgoi/La+tzJHP29XWQ3KDP5wlFaztAeZz+6XutjOUgnGvMUUy/NH
-	xME/4wWWgwVYp4Fs9Mj0dGZhxbE7h/aE9O4fzmXo2t4UdjdF9rRTSQVtUFZH8fMd
-	Ztp+HiTeUI5Xn4raETgCkHsZ4LpKDJKtA212Ze1eu8dSjGX+j3ocu5JMm5V8rAZ5
-	/Rmj4y9Ib6d+6l3O9fUNMAfGk/0GRRTbpNJlxHp8hJsxCu2BmTPw2VthKxqnD7cc
-	a4HXMbvb1jvUY+CJ0WPDGmhXxbyJnrjolIkPiqEcZ0DmkbbsUangjhCaar9DJAH2
-	Y8dyeA==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bn6jmak8b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:29:47 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-501423e1faaso442981cf.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 03:29:47 -0800 (PST)
+	s=arc-20240116; t=1768303856; c=relaxed/simple;
+	bh=f4wVU9QaczKT/9p32vT2mvG6pfkyMA13UZGXDs37Bbs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=bQSto7HaFIPzO1GCj11OvcSOxmaxfnQa1zXoEdk/UFAou7BMdD+jHYz9MD5OC8c5ktvCyDjqkGpCUiJNs5n+yiUGSr3GtZA/mMfX7LujH8pTfL4rF62cS5kGtlc4XUyJNkvosAqTu6hGPZvkalkRPozRrvPhJDJU2c8fbuu+jpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ypiZBYLJ; arc=none smtp.client-ip=74.125.82.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2ae2eb49b4bso9571455eec.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 03:30:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768303787; x=1768908587; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pv6sRN0RquiZ+JSbepqsZ52JkUQDgR3HACjDvriGVzI=;
-        b=JEPiDRyXtptKoPKTupJ6O/u1xT5wf5wfJ3nnDWzd3Ma4C9smGziBSjUlxfMU6nuYXI
-         3YB90/jDU19IwOgpL/oIbjnA/odvBO7/ePoczpkSLMRaoZzuiEiIDYuqLkm7GxYDJMzo
-         Er9KfZVy3mFlTKGx4T46hn+wvEYKiYCiMVcQ3DEpJELX+YBavl3xuH94EtZTayLg3XBP
-         srPDkbNYYiyGd3+Cdhxd91LAhvApQSl01l+oh1scJRLLQqJt2Ha6m3HZq54JIMYKxoHS
-         Ci258FO30pndj0xf+cl3+eIfgxrmttXmTE27D/yTtB0X7cPU9MSZreO1P5aRRO1XV8T/
-         WYrA==
+        d=linaro.org; s=google; t=1768303853; x=1768908653; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=f4wVU9QaczKT/9p32vT2mvG6pfkyMA13UZGXDs37Bbs=;
+        b=ypiZBYLJwq4M61y/wA3xFHM25YVqCiYHbmqaVnS/UQwheMZI2xbR9i3AKLbSwNVj6j
+         t7xOHInIbvA4VQ2NB/2OCtrlwqpkXuSTBOG+Hbi6Ctt+SO/u9swUACxHJbqWN+v/BhsL
+         Q7ovqaNQyVDLLFTg6e2ly+RaAr/Yq6zeIeSfBq5FywtC2EKoAYoWTxXjuDekTBWHNoCE
+         3osTqAeAtdXugZAzSDZzbNeCe8ii6Pw6MWKOlkXdEF+ZMAWV/07XMFXGTa+CX8dY4Pll
+         /gII+WoWN3Eq1suql8MfTa7gl3UX+zyNJoB02iaATV4hIblqcb33Ayuk0EiXFDNZVOul
+         xaWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768303787; x=1768908587;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pv6sRN0RquiZ+JSbepqsZ52JkUQDgR3HACjDvriGVzI=;
-        b=KrHzhuoYbc8jKeysu9kF4fTOfZ4IiFPR67Im9YK7uMcCrBCzwtKCD6zcCZC1YKx6jQ
-         aJ5i03y+9n+rtf77Lpgqn9zJ4r501ECJ15tBRDOVz1zahz/USxomejPozJbfrKCLb5tk
-         H9sR9RltUX4L72sqAMVsMKmE6R6ylNnNLCTU4VOIDe0Xd3m/ljmpDFsR/LwrHiGs5/JS
-         bAKkAWqOoRbRdOOKIPex37jr10YhUM+PfZ2E2hnsotOHxq386rkcimGp7gtfsRaWCYHQ
-         EHZb2k3fXW0pqvDgd+L79nwcaV1xtWsuwxUsxkGGSrdszAsGTltoTv31qTcva2SD0B6A
-         UL2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVLy8C+0tiRGY3jj3I4AQQWjPScm9JGhUAgJb7u7kaOXW5QbGizS1UQUOdK8dfeMTX8SrulYZLlMrEe@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvDbz4Bi7MNDHCvldPepcIZ8zGazmTpqMtANrkooOjlejCJ65b
-	iBjzcRs0bwNNrNXcTDKb1w/IUa7/J89lYJoGLppv5KJ3BqiI0xyLsGTmJrqjUSaTKTzToxIlWuF
-	nAqWHTtm3E4beQiNU8D9TH4Vy1IZwjMATMm+mKRFRswMdTpA0Jcsl3gO0vagzyfjI
-X-Gm-Gg: AY/fxX4se7SagDl/0FoHskwsmbfi7ujprixZ3RwXgDqL2wrwKO1wnnfdAUIX56GSZfN
-	1Du0b94Br7fAKme1G2cbd/543xGbgFG+dE2tMhaI4m/bosryr5PwyqbC4Vn6XHc0hsdTpOZ1cDR
-	e8u/QQ8UL5IZJG9N9Swk7z/JmXz9R4LAc4jo9Yo+pbeLP2MPHUAby7oIRgOKgCVOqiSdL3+EgWS
-	4CjA0sKYSJDW+ynH2i5P+7DvTlFQRUSSgkyI7xWaIQyVljV+VFqIKeYSjoQh0IDeZOHGlol1+GW
-	q/RrRmRCRpzaXzdnf3yf6Ssohf5DBKaXcMYU0Fv+C3/FqSAmB9eLelc4SgiuwS9ESIQUI1Xot3t
-	C3lZHD3qlq/k81AXpPygp4CezBKFrirudzdXmAOqkUyt9yaE7nrjVDeeLFnjpP3wdScU=
-X-Received: by 2002:a05:622a:4cd:b0:4ee:1063:d0f3 with SMTP id d75a77b69052e-4ffb4a8df70mr231718101cf.11.1768303787196;
-        Tue, 13 Jan 2026 03:29:47 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGwdVEflx7OpPTCKX3BRJ3HQbYZfg28s3T8WyQHLH5htbkHGEaDVYjrBZKs5MOT9x8w/venow==
-X-Received: by 2002:a05:622a:4cd:b0:4ee:1063:d0f3 with SMTP id d75a77b69052e-4ffb4a8df70mr231717941cf.11.1768303786758;
-        Tue, 13 Jan 2026 03:29:46 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a27c0casm2188447666b.19.2026.01.13.03.29.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jan 2026 03:29:46 -0800 (PST)
-Message-ID: <7050d5e6-ddcc-4ccf-99b6-0888318c5d7f@oss.qualcomm.com>
-Date: Tue, 13 Jan 2026 12:29:43 +0100
+        d=1e100.net; s=20230601; t=1768303853; x=1768908653;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f4wVU9QaczKT/9p32vT2mvG6pfkyMA13UZGXDs37Bbs=;
+        b=p2G87aKeAGFUij2ERUkkhhrW0uOLTpRpO0kISjteIUPYv6XVtKstYGv4YF14IdMGgj
+         EoyW3/EYvz32GrImog9LuK6UZnwePSWWjZYikRVnbZNNdc6vWIq9P+y/6lPyJnNf7Bbu
+         ppP1uBmqKeSFUA83pR3VZtsVnqOJrr3IijfatcGPwsn+bgQOPA59vAlZNV+Bf6Bs3sOz
+         01hNIjAbOmmmnovY6L45SZET3Tjmp3b+ujklcs0Jd/LFLOxBdSJT0Qqz4foi0BtlG2Va
+         vyB6uDOeb/aLc20SOlhCMZMP39q9RPEeHOxala92l5EVi4YjyKUnwKb5XC7/iE2vfMOt
+         sm/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVdoluktch0NC5xahjj51pryuGNFulJI6bE72Bx7z3e/m3D5dpjnvrRI2wd7+rer7NPKTDlvvOyBpCV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIpPLA65BUodSz8iN3z9mUQHzKLaHDRzHZeqUQPtPPj0pdnaUj
+	XU1rfM75FxVUSSdyKQu5MGMF398SVkcE74AoV9ZmOCoNX5bHgcy4/LrguUl5FGeJUCI=
+X-Gm-Gg: AY/fxX5cedPMDHqSN9FVdezJP6W5MaIwVskPlnzkcmenerjspVCk0PScveOzZhypomB
+	8/05zAGW/MnbsvWtGfJ2dnX6HpiugEsEMWeq4XaflZfSaHl9zw4NH18LT/eIUnUo2PlCaYQd22j
+	NWaD7dRHFjutGm48YlGA/tTXy4BW9Il/7m0kohf9orAGR6Aya3/jujDk/9VmDFJJF8qn8j5BW1b
+	gD6Cp6xDTT2KQsvJUfURiqEUwoECZpA2x5vDl1N9yppS2le3C09GCWWfpoMQtcl65dWRp9vK0iU
+	l6D4AwBxkQz+DzCO23rG53Ng413Fg7BUMen0uN74ReI6YluO9miK5EZ8kw/s4+5Cs6bYgOyZ49G
+	NVXCbCrzU7D14onUVkLTspwB/F9Tuh14Cdp3yas5/sfyYCLRjSA2L95cShu3lOOnJfw3KvkYx1j
+	F1Hf4PjDbf42jEG3AwbdAFRFkamx4=
+X-Google-Smtp-Source: AGHT+IE2PQGkBRDHh0wt/RR1JmU3vgEQYzdNyA0r5cB4mfroq+TTyqSFY3sc0gpnweUJAe3hVTED4Q==
+X-Received: by 2002:a05:7300:cb07:b0:2b0:3d03:37d4 with SMTP id 5a478bee46e88-2b17d1e4d38mr24451146eec.3.1768303852511;
+        Tue, 13 Jan 2026 03:30:52 -0800 (PST)
+Received: from draszik.lan ([212.129.80.26])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b17078d9b1sm19000610eec.18.2026.01.13.03.30.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jan 2026 03:30:52 -0800 (PST)
+Message-ID: <ca6de8e5aa0dbd99c74481a9dba9ea9f1ac61a1f.camel@linaro.org>
+Subject: Re: [PATCH v3 2/5] dt-bindings: clock: google,gs101-clock: Add DPU
+ clock management unit
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
+ <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki	
+ <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+	kernel-team@android.com, Will McVicker <willmcvicker@google.com>, Juan
+ Yescas	 <jyescas@google.com>, Doug Anderson <dianders@google.com>
+Date: Tue, 13 Jan 2026 11:31:28 +0000
+In-Reply-To: <20260113-dpu-clocks-v3-2-cb85424f2c72@linaro.org>
+References: <20260113-dpu-clocks-v3-0-cb85424f2c72@linaro.org>
+	 <20260113-dpu-clocks-v3-2-cb85424f2c72@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: Add PURWA-IOT-SOM platform
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        YijieYang <yijie.yang@oss.qualcomm.com>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com>
- <20260113102822.590677-3-yijie.yang@oss.qualcomm.com>
- <nfhjbfqflsrye7hqbtgwr5hwkwdtq5z4tbvnta7lk7p7jtvhl4@zbttn6coc7br>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <nfhjbfqflsrye7hqbtgwr5hwkwdtq5z4tbvnta7lk7p7jtvhl4@zbttn6coc7br>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: ooX566hAwmJXKLc0SqnyOe6nrieQvvkf
-X-Authority-Analysis: v=2.4 cv=SK1PlevH c=1 sm=1 tr=0 ts=69662cab cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=djAAhpaB5YPX027tirAA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-ORIG-GUID: ooX566hAwmJXKLc0SqnyOe6nrieQvvkf
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEzMDA5NyBTYWx0ZWRfXzcDzSzkuhYKV
- 9IRAB6N2D1aoOFJQOFAVPD6opUQZtsSxUEIm1fqnZw4XTNK1bK0zREwB2o45Gf4hpcWKwd/15SU
- TfG205XlN01Bggb2gSdx3zndja+3G+SjlvzpxPXoaS+pXUBGpZoRDf/wTOTeVpdlQaOhtS4BM5l
- bdjsNmNe3JqGL7dTgJv5ycMrIQAro9kQsEpxz6QJs92JG4FpWF460ziV7Ln3oO4M6CTF2N5e4kQ
- 13fORuCTWl8VR63/Od2CSn+8myEjxFsVriGUcm66VaTJ3LiaVjkQffojRNV4bYoh7lxzjAU/97I
- odqjSdDpTJmLloLoHfxbmTHPQeI95xYyeqJ15Lm0tcFzRsOlnVGRpJ9BcDdfl4aMDynxQ1CBQUw
- 1gEOtEeLD1FOQdlz9/Ku6wq5n4GRBQpBp4P+h/TPBczTNbz2C/cC/DqRB8rxzLkJbLYlI7qFehn
- nDIFE0BFTH02GKW2i2Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-13_02,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 spamscore=0 impostorscore=0 priorityscore=1501
- lowpriorityscore=0 suspectscore=0 clxscore=1015 adultscore=0 bulkscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601130097
 
-On 1/13/26 11:47 AM, Dmitry Baryshkov wrote:
-> On Tue, Jan 13, 2026 at 06:28:15PM +0800, YijieYang wrote:
->> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>
->> The PURWA-IOT-SOM is a compact computing module that integrates a System
->> on Chip (SoC) — specifically the x1p42100 — along with essential
->> components optimized for IoT applications. It is designed to be mounted on
->> carrier boards, enabling the development of complete embedded systems.
->>
->> Make the following peripherals on the SOM enabled:
->> - Regulators on the SOM
->> - Reserved memory regions
->> - PCIe3, PCIe4, PCIe5, PCIe6a
->> - USB0 through USB6 and their PHYs
->> - ADSP, CDSP
->> - Graphic
->>
->> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
->> ---
->>  .../qcom/{hamoa-iot-som.dtsi => purwa-iot-som.dtsi}   | 11 +++++------
->>  1 file changed, 5 insertions(+), 6 deletions(-)
->>  copy arch/arm64/boot/dts/qcom/{hamoa-iot-som.dtsi => purwa-iot-som.dtsi} (99%)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi b/arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi
->> similarity index 99%
->> copy from arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
->> copy to arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi
->> index b8e3e04a6fbd..fb90beb1096f 100644
->> --- a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi
->> @@ -3,11 +3,14 @@
->>   * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->>   */
->>  
->> -#include "hamoa.dtsi"
->> +#include "purwa.dtsi"
->>  #include "hamoa-pmics.dtsi"
->>  #include <dt-bindings/gpio/gpio.h>
->>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>  
->> +/delete-node/ &pmc8380_6;
->> +/delete-node/ &pmc8380_6_thermal;
->> +
->>  / {
->>  	reserved-memory {
->>  		linux,cma {
->> @@ -378,16 +381,12 @@ vreg_l3j_0p8: ldo3 {
->>  	};
->>  };
->>  
->> -&iris {
->> -	status = "okay";
->> -};
-> 
-> Why?
+On Tue, 2026-01-13 at 10:58 +0000, Peter Griffin wrote:
+> Add dt schema documentation and clock IDs for the Display Process Unit
+> (DPU) clock management unit (CMU). This CMU feeds IPs such as image scale=
+r,
+> enhancer and compressor.
+>=20
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+> Changes in v3
+> =C2=A0- alphanumeric in gs101.h header (Andre)
+> Changes in v2
+> =C2=A0- alphanumeric placement (Krzysztof)
+> ---
+> =C2=A0.../bindings/clock/google,gs101-clock.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 19 ++++++++++++
+> =C2=A0include/dt-bindings/clock/google,gs101.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 36 ++++++++++++++++++++++
+> =C2=A02 files changed, 55 insertions(+)
 
-Purwa has a slightly different Iris hw version (8.1.2 on Hamoa, 8.1.11 on Purwa)
-which I would assume is slighly weaker, plus there's probably a freqtbl change
-
-Let's take this as-is and enable it later
-
-+Vikash, Dikshita this seems like a really low-hanging fruit, could you take
-a look at Purwa support in Iris?
-
-Konrad
+Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
