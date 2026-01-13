@@ -1,53 +1,60 @@
-Return-Path: <devicetree+bounces-254506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BDDED189C9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:01:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA182D189E4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:02:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 683BB3005BBB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:59:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B924A301DBA0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA48035B12B;
-	Tue, 13 Jan 2026 11:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2316038E5D7;
+	Tue, 13 Jan 2026 12:00:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BGK1u/tJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UCrFxAeE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A65341653;
-	Tue, 13 Jan 2026 11:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F264629A2;
+	Tue, 13 Jan 2026 12:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768305563; cv=none; b=VZbRi5aaHsOTT8hBe2zadlj89QBgezXrRuKv+tX/w0jjGrWk61kdFnk8RSjAuonMkMGCR3NX01R3aVirhaZkOE7dbMSo+zP1Ms/9c3GoBmwvC+P/DOR1n1linweirI89Tt9BXhIMtcbaolj6vfpC8GVZyhyI6uOx7NRUka5CReY=
+	t=1768305659; cv=none; b=SKik4xeF3K2GESzr+jBupBbgYb6s4pDrtfNkXtpdHz2x41c4bK6s85OSRONGJf9VW52MPSo6EmI/CbtCmOQVFI6ZfB/77jNXhDj7aocg3c/R1wDnhTvyS8+0d+jTQYwUYjgnng6HUG3zSC9oXUiHfnSzix52O9ZQUpEPtf66Kkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768305563; c=relaxed/simple;
-	bh=YlM4ZddPuo22HqM7jOnnsFg+qeLmfQXwQDMvYw3UNrg=;
+	s=arc-20240116; t=1768305659; c=relaxed/simple;
+	bh=mqeFINh0lcaoGMDWtCok1S/caE3mdnBWa3OQ+vMRNWI=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ATngAvRPjJn4fLnFWtQgT/HqJEdpSaKzFZ1O71mjQNt1P1EsND+tBDRjm/3nrQ3qVs+hZja9nZ5mG9M1/Jqn2JDNgvEf2tGKFJfkED8OSn6QQA5Q7dGgJ4pER2/iU0oIe5vf8/7QsEmoaPVavBcfZOPE7IGxgcUyYBTSu6hj3hQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BGK1u/tJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7E47C116C6;
-	Tue, 13 Jan 2026 11:59:21 +0000 (UTC)
+	 MIME-Version:Content-Type; b=bUCvwgblcnodWZ7x3S2U7YbV9QyUzlN3ArgTILcuhXW0IXyNqZ3lYvs/Lbn3rZXXwHC/VQV/k6ycVRoh8LzB+spV1cYIg6JW0BsyMG+Zd8p4+1XFGD24J6EDkreftFZtk1akFJnBZVp2eWYAILC2Rafc9rFp9i5npvqyr5xbQu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UCrFxAeE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DA2EC116C6;
+	Tue, 13 Jan 2026 12:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768305563;
-	bh=YlM4ZddPuo22HqM7jOnnsFg+qeLmfQXwQDMvYw3UNrg=;
+	s=k20201202; t=1768305658;
+	bh=mqeFINh0lcaoGMDWtCok1S/caE3mdnBWa3OQ+vMRNWI=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=BGK1u/tJJnDOWB4nEmE6341O8Y6aTKqu6jajKHbXlPUxCawYqxCmaJxkT+EiZHfnA
-	 nhwA7W2OiHxbqkRSl9/9YtvWJfYqlTUtO2cWE+/qPE6F/KSp+5TeGIOiO0mu1INf3q
-	 LjaEQV5N4cYmz04CW8FX9lvg0MyNcd8Ag3nuto1K0Az/6AR080GCs8bfmsuyeS8ERY
-	 Na23+rO3kyS8DklmJq9XnocDjZTbozff0Fm5P1QxraqnpxmO0dBKQOBJS+5774WKvC
-	 rpgl/3tBdCQkUmEd9G+2I0V+G/kcp2y/dBwp6FzgzPrE9J5TWImllo8m6ClSvQoWgi
-	 +xp0tRGaqSU3Q==
+	b=UCrFxAeEwYhNR+Cw8ssn+5DxmDhdqdtmOj8feiHhM7eN02t7dTuU6fBzJUyWPtye5
+	 Ae04SFhU0VjhIAdqvzZ7OlzMamxWEPIpO5CSxbgVgZEBRcjfP4V5m3pFQI/NDjtm2U
+	 aXLREFubOpcyEj1JwqdTcScRz3hPRluaKv04+waeh3xMv794PTzm+v9WiUJPKqE1DL
+	 FPbs2W6fsllkSh+kYxhHpP0n9AdHVmUAT3mEkwWdOoXgiHJLbQfwrfDVf//zDfPapV
+	 jqVBugu4Vw5HP/42DHT9b4DmgNQ/byYYtGuyPkOtciZ9sRJtcvMF/of16+Xv2qrxS1
+	 EondEb136XNCg==
 From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260104173310.2685852-1-heiko@sntech.de>
-References: <20260104173310.2685852-1-heiko@sntech.de>
-Subject: Re: [PATCH 0/2] qnap-mcu: Add TS133 support
-Message-Id: <176830556163.2818350.7195069440412413434.b4-ty@kernel.org>
-Date: Tue, 13 Jan 2026 11:59:21 +0000
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Fenglin Wu <quic_fenglinw@quicinc.com>, 
+ Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ aiqun.yu@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com, 
+ yijie.yang@oss.qualcomm.com, jingyi.wang@oss.qualcomm.com
+In-Reply-To: <20251215-knp-pmic-leds-v3-0-5e583f68b0e5@oss.qualcomm.com>
+References: <20251215-knp-pmic-leds-v3-0-5e583f68b0e5@oss.qualcomm.com>
+Subject: Re: [PATCH v3 0/2] dt-bindings: leds: Add bindings for Kaanapali
+ PMIC peripherals
+Message-Id: <176830565503.2820182.11923707151729950479.b4-ty@kernel.org>
+Date: Tue, 13 Jan 2026 12:00:55 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,22 +65,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.15-dev-52d38
 
-On Sun, 04 Jan 2026 18:33:08 +0100, Heiko Stuebner wrote:
-> The completionist in me made me grab a TS133 1-bay variant for cheap.
-> Not yet sure what to do with it, but at least once one understands the
-> basic layout, adding support for more variants gets easy :-) .
+On Mon, 15 Dec 2025 16:41:03 +0530, Jishnu Prakash wrote:
+> Add bindings for flash led and PWM devices present on Kaanapali PMICs.
 > 
-> So this small series adds support for 1-bay consumer variant of
-> the QNAP NAS series based on Rockchip RK3566/RK3568 SoCs.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: mfd: qnap,ts433-mcu: Add qnap,ts133-mcu compatible
-      commit: 7093a9f58cd759fcb9bf77a6a4c93a06c00f9c3c
-[2/2] mfd: qnap-mcu: Add driver data for TS133 variant
-      commit: 5380ce6d573059ae840e846a643a06521ef2cee3
+[1/2] dt-bindings: leds: leds-qcom-lpg: Add support for PMH0101 PWM
+      commit: b0235d5724851d223d347b16630b6db304a1b15d
+[2/2] dt-bindings: leds: qcom,spmi-flash-led: Add PMH0101 compatible
+      commit: a19ae77cf3c71379188b71aacdc3ed906f84f22b
 
 --
 Lee Jones [李琼斯]
