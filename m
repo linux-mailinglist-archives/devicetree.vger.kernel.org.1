@@ -1,29 +1,29 @@
-Return-Path: <devicetree+bounces-254449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4AA8D184FA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:03:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE34ED184BB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:02:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 593F13059A71
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 11:00:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CF7C30734F8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9162438E11C;
-	Tue, 13 Jan 2026 10:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6117F38A9A6;
+	Tue, 13 Jan 2026 10:59:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C231738BDA5
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 10:59:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D552938B7A2
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 10:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768301986; cv=none; b=ZykpVkQGXx8QUvGW72EClbz55aIQljMT5bbls+cf1xDzRYy3XvxFOUHlo3Y7wgKB6cZT1xdM8Y9ARk1VW0PeXYNZupyshBroUMDHcqZLL19Y3LYCa8DUBSo1iL8/aY8N6ob0xMfz2kgb1a9EqD+nlitIjMWB4T9vTZMT/FH7Qu8=
+	t=1768301982; cv=none; b=fkxoG66I4ohkLKXviAmf3QunUTW02zBViNjRkvMX0wJJiIc8rXaW2FQ3wGh07/bGu3Px1CZIzGE4TzCs9iJoFZadtQqPzp8M6DjkL08uEa01NpurUYirR+wtkA1gCYiD4FcoawvFv2uV6YE/If98dWHX3pWaL+4FqNupf25jcwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768301986; c=relaxed/simple;
-	bh=uI48RSG+a+nSuEyywiQ6swM+axk120OhOUA8CnTh+yk=;
+	s=arc-20240116; t=1768301982; c=relaxed/simple;
+	bh=41flRPH4TSGsnCvQyNzqSTUzQqo/QHTY/SRkQLuvrVs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZZdVzXDJKWfcSb+GlufYiUj198zWXFqXKcTKRLdERe4XDBf6Pnx/ll8jE1aC5Pabkp3U29hrMeKAFAM4XiFKN4g0GrCNRdI2cHTEMcrFSlo2RKJObkAcABIt+zziI0JT2+FkMA5wq1s/NjuS9w+srW9Rw41GqyqSdC7y6Q7SkN4=
+	 In-Reply-To:To:Cc; b=ClQxFcx/QZqQ8RRFXgiWqNl47LOR5iJMGl/Dz6+DoE6AAwYyPMD7Rqp3VkJcvKpDMJJ9qGkLmHocKrbL4DxaxF/HVovyR8BLIL6QDGOtCpHndSHxyyszA5ZHPkgVn3ymQAakNjy6PvwLEjNIbKHpRhKE8IETqBesaGM+8hgDLiI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -31,21 +31,21 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vfc78-0008DF-Al; Tue, 13 Jan 2026 11:59:06 +0100
+	id 1vfc78-0008DE-Al; Tue, 13 Jan 2026 11:59:06 +0100
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vfc74-000PMC-2b;
+	id 1vfc74-000PMA-2X;
 	Tue, 13 Jan 2026 11:59:02 +0100
 Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
 	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vfc73-00000004mJf-3p0Q;
+	id 1vfc73-00000004mJf-3r1u;
 	Tue, 13 Jan 2026 11:59:01 +0100
 From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Tue, 13 Jan 2026 11:58:44 +0100
-Subject: [PATCH v4 01/10] ASoC: tlv320adcx140: invert DRE_ENABLE
+Date: Tue, 13 Jan 2026 11:58:45 +0100
+Subject: [PATCH v4 02/10] ASoC: tlv320adcx140: fix null pointer
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260113-sound-soc-codecs-tvl320adcx140-v4-1-8f7ecec525c8@pengutronix.de>
+Message-Id: <20260113-sound-soc-codecs-tvl320adcx140-v4-2-8f7ecec525c8@pengutronix.de>
 References: <20260113-sound-soc-codecs-tvl320adcx140-v4-0-8f7ecec525c8@pengutronix.de>
 In-Reply-To: <20260113-sound-soc-codecs-tvl320adcx140-v4-0-8f7ecec525c8@pengutronix.de>
 To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
@@ -71,11 +71,11 @@ Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
  Emil Svendsen <emas@bang-olufsen.dk>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768301941; l=1278;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768301941; l=1573;
  i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=WfOW2anrTgz/4XEyF51/kruoQkV8SVMulwmjlAzpc1c=;
- b=n9FTliga4EaJE1x7pWFw0Upb2MjvXIEiJw5Rf7Mx4Zjb3UN+jtqCTUADByhNGV4RZORIBDIrU
- xDcyIuVNUjKCBlAsIfiy9IUv8D0/DJHb8MLl7S8QyFFadNusYWYRs0c
+ bh=Rp2iiRNuVwV+taJffar+hJiVimp4OjAE0fMMm0vIwyQ=;
+ b=0qNVGH6hCvH+R0LFN+H8JaR2PCgvIvjjz9ls4EplufBemqpH7D2u/zyLEXoshQrAlp/OXD4x1
+ 3im3rBi+Y5hBtBHaAbQaRRJZhx0m1/9rjTMbALl6AJ8dA0fjVkl+eXt
 X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
  pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -85,37 +85,46 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 From: Emil Svendsen <emas@bang-olufsen.dk>
 
-Looking at section 8.6.1.1.69 in datasheets for both 5140 and 6140 (3140
-doesn't support DRE). REG ADCX140_DSP_CFG1 BIT 3 field "DRE_AGC_SEL" it
-select either DRE or AGC.
-It states:
- * 0 = DRE
- * 1 = AGC
+The "snd_soc_component" in "adcx140_priv" was only used once but never
+set. It was only used for reaching "dev" which is already present in
+"adcx140_priv".
 
-The control is called "DRE_ENABLE" and for it to be true it has to be
-active low.
-
-This commit will invert the control so "DRE_ENABLE" is active low.
-
+Fixes: 4e82971f7b55 ("ASoC: tlv320adcx140: Add a new kcontrol")
 Signed-off-by: Emil Svendsen <emas@bang-olufsen.dk>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- sound/soc/codecs/tlv320adcx140.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ sound/soc/codecs/tlv320adcx140.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index 443cf59cb71ab3e70f47c4395159752a0331b1ef..75e1007012a48a569586bc2896400e79ddce1c71 100644
+index 75e1007012a48a569586bc2896400e79ddce1c71..3fb1b6251e6f8b361e8f82ce6381a7e8cfcd1935 100644
 --- a/sound/soc/codecs/tlv320adcx140.c
 +++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -338,7 +338,7 @@ static const struct snd_kcontrol_new adcx140_dapm_ch4_dre_en_switch =
- 	SOC_DAPM_SINGLE("Switch", ADCX140_CH4_CFG0, 0, 1, 0);
+@@ -23,7 +23,6 @@
+ #include "tlv320adcx140.h"
  
- static const struct snd_kcontrol_new adcx140_dapm_dre_en_switch =
--	SOC_DAPM_SINGLE("Switch", ADCX140_DSP_CFG1, 3, 1, 0);
-+	SOC_DAPM_SINGLE("Switch", ADCX140_DSP_CFG1, 3, 1, 1);
+ struct adcx140_priv {
+-	struct snd_soc_component *component;
+ 	struct regulator *supply_areg;
+ 	struct gpio_desc *gpio_reset;
+ 	struct regmap *regmap;
+@@ -699,7 +698,6 @@ static void adcx140_pwr_ctrl(struct adcx140_priv *adcx140, bool power_state)
+ {
+ 	int pwr_ctrl = 0;
+ 	int ret = 0;
+-	struct snd_soc_component *component = adcx140->component;
  
- /* Output Mixer */
- static const struct snd_kcontrol_new adcx140_output_mixer_controls[] = {
+ 	if (power_state)
+ 		pwr_ctrl = ADCX140_PWR_CFG_ADC_PDZ | ADCX140_PWR_CFG_PLL_PDZ;
+@@ -711,7 +709,7 @@ static void adcx140_pwr_ctrl(struct adcx140_priv *adcx140, bool power_state)
+ 		ret = regmap_write(adcx140->regmap, ADCX140_PHASE_CALIB,
+ 			adcx140->phase_calib_on ? 0x00 : 0x40);
+ 		if (ret)
+-			dev_err(component->dev, "%s: register write error %d\n",
++			dev_err(adcx140->dev, "%s: register write error %d\n",
+ 				__func__, ret);
+ 	}
+ 
 
 -- 
 2.47.3
