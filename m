@@ -1,120 +1,221 @@
-Return-Path: <devicetree+bounces-254353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FAC3D177E0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:07:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D362D17916
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:19:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D755030524C8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:06:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 91297308D788
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B3E3815FC;
-	Tue, 13 Jan 2026 09:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wlyv04j+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D95389478;
+	Tue, 13 Jan 2026 09:15:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from rmisp-mx-out2.tele.net (rmisp-mx-out2.tele.net [194.208.23.37])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00963815E5
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:06:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCD6389475;
+	Tue, 13 Jan 2026 09:15:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.208.23.37
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768295169; cv=none; b=a72fP+/YydppR310wFrYvXtPGPHVsjCT42ZMyWR9Umcb0j7EI2spP/bJIe1nbrg4pZfCblarVFUe7aR1uIbXOKWnikLY5MhatHXKgm/MkZWY0VV1Lng1+PAFiR/9/KfBRLuyWaSah5yq6jkogQ8kx8kJ1Xc9iuezI44rbRvqJSQ=
+	t=1768295710; cv=none; b=FyEfV4sEHukxfHf+F6xSZ1qOVcRG6vy3QQ0nvmrnaGmGdmFBgm/Xy5Yhlt2Xj1uw8vtBZSPE56XFwUSEK+/oBtNwcMf/WGBBF3G32vC+hSjDB9twCxRdasY2xSjtVH7519a9k40cRqenMVZLeVXnKCuDFhYQ127sW7FI0qmEl1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768295169; c=relaxed/simple;
-	bh=bQ9suiMEOGkOzWpBF9UrQIbL0FguRigKVKzhBdibr+A=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=RwHAFETthzbuYzmp+Rpv8FEgYe6DhMhVhbHdwjLoSwls5OflmRCN205IeuEe/mumly4ZZKCvaPh1NTtz0fkr+PSIv1XhOFPL3cPW3FLdITmwMkxCsg14l9T3ABvvfJsTb3ljdI14wg8a/6+A1FmBHHLQeqjWVWh0X2Wc8R6d168=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wlyv04j+; arc=none smtp.client-ip=209.85.128.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-47755de027eso41891365e9.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 01:06:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768295166; x=1768899966; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GwNEb3LQLMo8imJ7VMEa6yN/R9/2JX2cEE8MIs3WRVg=;
-        b=Wlyv04j+k6RdEm2q6Vacll5lH8nx2wWEL8firS1sBEnX/VXKrv6BBsQ+bhGcpLQ5YM
-         lkQHqqyt70INDiRYxnjB4htFOlQ31uOWYE/hiQQ/JdnTQYY9eYNLLL0wkoy3JOXyL2yI
-         y3gMXsDlx1jRRF5UQQZgCR6oGex7d+LBtA692gjwdnK/dkQrDNb6NGt4QE1kTNM59oPj
-         7pdBZAqTOXCC3FabP36X1j+gA+uKirdN5HIRB4nJmq1iuWXXXsjMk2D0RVwHLtbuF8BW
-         Me73dT1zzur76GC0JDh36sX7+2l3kYJLSeNlBvsNK/DBnj3ppvVgaALL8n/naFVhBAfi
-         lzyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768295166; x=1768899966;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=GwNEb3LQLMo8imJ7VMEa6yN/R9/2JX2cEE8MIs3WRVg=;
-        b=NAwuDaueh9H/Bsg1Xc5iKAdMEnw8Jo4v4vOMiVZQnY3J2H+cfM6kxu3w15s3b/mTCD
-         SubhkMZpENtFbp3MfYL6cpy7MD0Id+SNjPYClzuQlqliF2281CGvqT7pCd+K0UvxtYEs
-         OgkcBj+CLuCnCKgN1m4cIg0ZFvSPoe7somrJndh4O2WCDA5X2LquRKtvrCa5whHJ8gqK
-         pmmQ3FzC7UQunTjkIsYVgdP7hU1VKR0pEZeyf328daenLYEakYRoIt3Ny1jdeHghmWkM
-         E7JmNbYIx9HfHXWEWOd/Qur145ZantGDYARqY0Ew7tF190oxusjcka37fX3/C1flIfq6
-         6/Vg==
-X-Forwarded-Encrypted: i=1; AJvYcCXJ0ewKqT+S06ZvowYDCAgPPWdWIOEftLCCF5hnOeKa5sRMrvNr00B7Zz+SNGYwRIp2XFVfvpMQLilg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNOxnXPo/oKtAhBsWaGQL6kFR6zw90x3aA5UfJnmb/wUBsWOfI
-	5qWQiCM+dWjpJ4f9VztELQNYfbJ2bEPVunh0T11i4ZyvQpq1IA74KfF1zLIN4xHEpqobHOeciiP
-	GRGEP
-X-Gm-Gg: AY/fxX4z4ktpd4z6/cKG4GyzlyurDHjAgIumaR3eZ8uZoZ0pfMIljByWgOmEhZ8Ox5f
-	OuLKP5cSh7Za+vzBCzV/CUGJrGbGu4oHavMka+cp0YsxUzDUQawKs8pPdtSXDPVoiEO14Tssyty
-	HA9dRVLd9Hzs1oLZzXdaPrQDw8HlCs6GeViCCl5rs4T71iBso8PLJhZASA1QXZKiVuLBMTZzpAt
-	imZPgJHQP2cI8hAIYbHY7jwUJEWXp51RKSr+3JyC0LsbiD1yiNL2hKIf7VXYxUDpPaVR6wPKSgQ
-	/E4kDJMUQclU2jomCthLJqxuN/Pf6s64HLeZAyBrTIoOpwTuE+GSh/y/g6BzFDc0+lLjW3hq+s/
-	6+2CSIr7M+6g+WHICsXj5mkk3x+GlsFDu4Tc80OhbW3Ucv0ptGVSTkqZzuIuoWRrqEv07yFvSHY
-	19PVSnlVkVijZLCudleCY=
-X-Google-Smtp-Source: AGHT+IFTsSsAvkGISPTEuC38L64Wym2rKYPexAbnCwSYfMjdchJnY/RVyoVWKtIiVU7s2aPS+Ux0tw==
-X-Received: by 2002:a05:600c:a102:b0:477:7a53:f493 with SMTP id 5b1f17b1804b1-47d84b32793mr208905215e9.23.1768295166202;
-        Tue, 13 Jan 2026 01:06:06 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080::17ad:35a9])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ed9fe7ac3sm11118635e9.4.2026.01.13.01.06.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 01:06:05 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jessica Zhang <jesszhan0024@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20260105193220.3166778-1-robh@kernel.org>
-References: <20260105193220.3166778-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: display: panel-simple: Allow
- "data-mapping" for "yes-optoelectronics,ytc700tlag-05-201c"
-Message-Id: <176829516546.3839584.710833770035842126.b4-ty@linaro.org>
-Date: Tue, 13 Jan 2026 10:06:05 +0100
+	s=arc-20240116; t=1768295710; c=relaxed/simple;
+	bh=O4Qpy5B7lwVnt3ddGls9FXndTqJkqO3iFyLaT5+kbW0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=td0to7UUwHH8jzW7/yGneapmSIfdQorYElG40ybtTdyKlsuMUqbNxtT1XkL41mfGprvmE7bcmLAHpV5KRpTmUEgjNYnq2+p6wxsNthUziapjRDgBzp7ceXQu5WDsamO35VD9+QrZD3RSJOex//gPLEuX3NRdVc57/Di7r2drJPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=fail smtp.mailfrom=emfend.at; arc=none smtp.client-ip=194.208.23.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=emfend.at
+Received: from [192.168.0.207] (194-208-208-245.tele.net [194.208.208.245])
+	by rmisp-mx-out2.tele.net (Postfix) with ESMTPA id 743C610E3CAC;
+	Tue, 13 Jan 2026 10:06:42 +0100 (CET)
+Message-ID: <f2e77bb5-957e-4751-8304-d9fb94927417@emfend.at>
+Date: Tue, 13 Jan 2026 10:06:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/2] media: i2c: add Himax HM1246 image sensor driver
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Hans de Goede
+ <hansg@kernel.org>, Ricardo Ribalda <ribalda@chromium.org>,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ Tarang Raval <tarang.raval@siliconsignals.io>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Sylvain Petinot <sylvain.petinot@foss.st.com>,
+ Dongcheng Yan <dongcheng.yan@intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Alan Stern <stern@rowland.harvard.edu>,
+ Jingjing Xiong <jingjing.xiong@intel.com>,
+ Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+ Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+ Svyatoslav Ryhel <clamor95@gmail.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Hao Yao <hao.yao@intel.com>,
+ Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+ bsp-development.geo@leica-geosystems.com
+References: <20260112-hm1246-v7-0-fee8587f2808@emfend.at>
+ <20260112-hm1246-v7-2-fee8587f2808@emfend.at>
+ <aWVFE-Y5HRi_XZRE@smile.fi.intel.com>
+Content-Language: de-DE
+From: Matthias Fend <matthias.fend@emfend.at>
+In-Reply-To: <aWVFE-Y5HRi_XZRE@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Hi Andy,
 
-On Mon, 05 Jan 2026 13:32:19 -0600, Rob Herring (Arm) wrote:
-> The "data-mapping" property is in use already with the
-> "yes-optoelectronics,ytc700tlag-05-201c" panel, so allow it in the
-> schema.
+thanks a lot for feedback.
+
+Am 12.01.2026 um 20:01 schrieb Andy Shevchenko:
+> On Mon, Jan 12, 2026 at 03:49:33PM +0100, Matthias Fend wrote:
+>> Add a V4L2 sub-device driver for Himax HM1246 image sensor.
+>>
+>> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+>> array size of 1296 x 976. It is programmable through an I2C interface and
+>> connected via parallel bus.
+>>
+>> The sensor has an internal ISP with a complete image processing pipeline
+>> including control loops. However, this driver uses the sensor in raw mode
+>> and the entire ISP is bypassed.
 > 
+> ...
 > 
+>> +struct hm1246_mode {
+>> +	u32 codes[4];
+>> +	u32 clocks_per_pixel;
+> 
+>> +	u32 top;
+>> +	u32 left;
+>> +	u32 width;
+>> +	u32 height;
+> 
+> Why not use struct v4l2_rect?
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+Valid question. I would save something in six places, but add something 
+in about 27 others. Because of this ratio, I opted for the current way.
 
-[1/1] dt-bindings: display: panel-simple: Allow "data-mapping" for "yes-optoelectronics,ytc700tlag-05-201c"
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/94ccf742309be5373314a865a7d6512b9665eae4
+> 
+>> +	u32 hts;
+>> +	u32 vts_min;
+>> +	const struct hm1246_reg_list reg_list;
+>> +};
+> 
+> ...
+> 
+>> +static int hm1246_set_format(struct v4l2_subdev *sd,
+>> +			     struct v4l2_subdev_state *state,
+>> +			     struct v4l2_subdev_format *fmt)
+>> +{
+>> +	struct hm1246 *hm1246 = to_hm1246(sd);
+>> +	struct v4l2_mbus_framefmt *mbus_fmt;
+>> +	struct v4l2_rect *crop;
+>> +	const struct hm1246_mode *mode;
+>> +
+>> +	mode = hm1246_find_mode_by_mbus_code(hm1246, fmt->format.code);
+>> +	if (IS_ERR(mode))
+>> +		mode = &hm1246_modes[0];
+>> +
+>> +	crop = v4l2_subdev_state_get_crop(state, 0);
+> 
+>> +	crop->top = mode->top;
+>> +	crop->left = mode->left;
+>> +	crop->width = mode->width;
+>> +	crop->height = mode->height;
+> 
+> With the above done this becomes a one-liner:
+> 
+> 	*crop = mode.<rect>; // <rect> is whatever name for the embedded field
+> 
+>> +	hm1246_update_pad_format(hm1246, mode, &fmt->format);
+>> +	mbus_fmt = v4l2_subdev_state_get_format(state, 0);
+>> +	*mbus_fmt = fmt->format;
+>> +
+>> +	return 0;
+>> +}
+> 
+> ...
+> 
+>> +static int hm1246_get_selection(struct v4l2_subdev *sd,
+>> +				struct v4l2_subdev_state *state,
+>> +				struct v4l2_subdev_selection *sel)
+>> +{
+>> +	const struct v4l2_mbus_framefmt *format;
+>> +	const struct hm1246_mode *mode;
+>> +
+>> +	format = v4l2_subdev_state_get_format(state, 0);
+>> +	mode = v4l2_find_nearest_size(hm1246_modes, ARRAY_SIZE(hm1246_modes),
+>> +				      width, height, format->width,
+>> +				      format->height);
+>> +
+>> +	switch (sel->target) {
+>> +	case V4L2_SEL_TGT_CROP:
+>> +		sel->r = *v4l2_subdev_state_get_crop(state, 0);
+>> +		return 0;
+>> +
+>> +	case V4L2_SEL_TGT_NATIVE_SIZE:
+>> +		sel->r.top = 0;
+>> +		sel->r.left = 0;
+>> +		sel->r.width = HM1246_NATIVE_WIDTH;
+>> +		sel->r.height = HM1246_NATIVE_HEIGHT;
+>> +		return 0;
+>> +
+>> +	case V4L2_SEL_TGT_CROP_DEFAULT:
+>> +	case V4L2_SEL_TGT_CROP_BOUNDS:
+> 
+>> +		sel->r.top = mode->top;
+>> +		sel->r.left = mode->left;
+>> +		sel->r.width = mode->width;
+>> +		sel->r.height = mode->height;
+> 
+> Seems in the same way here.
+> 
+>> +		return 0;
+>> +	}
+> 
+>> +	return -EINVAL;
+> 
+> Why not making it a default case?
 
--- 
-Neil
+I prefer it when the return statement is at the end of the function. Do 
+you see a problem here?
+
+> 
+>> +}
+> 
+> ...
+> 
+>> +	hm1246->reset_gpio =
+>> +		devm_gpiod_get_optional(hm1246->dev, "reset", GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(hm1246->reset_gpio))
+>> +		return dev_err_probe(hm1246->dev, PTR_ERR(hm1246->reset_gpio),
+>> +				     "failed to get reset GPIO\n");
+> 
+> Can it be GPIO reset driver used instead? (Note, it's made agnostic now.)
+
+That would probably be possible, but I currently don't see any advantage 
+for I2C image sensors. If I understand correctly, you would first have 
+to define a reset controller that could then be used in the sensor – 
+instead of simply specifying the GPIO directly.
+The advantage of being able to share the reset line with other 
+components probably doesn't make sense for these sensors in most cases. 
+That's perhaps also the reason why it hasn't been used before.
+
+Maybe the media maintainers have an opinion on this?
+
+Thanks
+  ~Matthias
+
+> 
 
 
