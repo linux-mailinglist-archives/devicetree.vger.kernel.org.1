@@ -1,179 +1,325 @@
-Return-Path: <devicetree+bounces-254549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA04D1947C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:05:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D58AD19419
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:03:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E90DF305F668
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:59:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AA76E30360DE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:00:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CBA5392813;
-	Tue, 13 Jan 2026 13:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98908392B64;
+	Tue, 13 Jan 2026 14:00:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="nIMFDr1+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUqO98mK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081B33921F5;
-	Tue, 13 Jan 2026 13:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62CDC392834
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 14:00:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768312789; cv=none; b=W2RH7JuezE+TD8M+TQGO6HkS1wQ1VVrKisbq8CKjFh6F43Ea33vb2CfaZcpRfLnkRUsXEYDrRuSxdhLEdAZgoItzIv0Dh/1rO8nDdYW67iQ0W5fIFMW7p990ccs3O7RIPVovD7vG9FxryFk+E0JIPKSv/QBIYmHQxFrjCYFpFuI=
+	t=1768312839; cv=none; b=spZTJCoMe6tgyiOS74J8wjyyC5yferRHgevIPYz8EfB6VsTiI/Kgopa4BqGhYlE1zQn/oBX1H0YlRh0n7YoXhm1ibGKfnX4nxnWwckGEOqB6bbehV2ihow2+VdARLkoWIrmTTdFYlPFTGYFV0V3uCeC6DrfwvibJk8+5noSM12g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768312789; c=relaxed/simple;
-	bh=1NOB23KjqkNEX2q85h9ijctm1Q+VBwHTGm+0eWFGdf0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oFgS9+KZX06R4cOPqQ0JKNwA/qXKmh/xsTFxnjtIojNknM4i+99ESo3s8x3AiUgi25ieB0Y/SpFvQbt8nC/Sd7BpoYlAbY6QNeLNzfiQFNRgJW/LX3BaM9HzDPoYU1qzh5hmrYKxjN4B8Hrqz/+jI6AcIQfBowr03AoJmhFczWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=nIMFDr1+; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id E745D60020FD;
-	Tue, 13 Jan 2026 13:59:44 +0000 (WET)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id BgFzxKaSSs0T; Tue, 13 Jan 2026 13:59:42 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 157BB60020FA;
-	Tue, 13 Jan 2026 13:59:42 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail2; t=1768312782;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JO4R37mcEoyhSRhm7svRimrluDd63HB0W7nMcvakBb8=;
-	b=nIMFDr1+HEkm4OwiWzcVOEr4CgcV1lko/yOAxN/wYpUZTVcKhsJZ1UXTeXAd0UyIk36U9Z
-	sTMqPOXMvfbcykhY5X6dqFnrLNrCR9VNAsvtSYlIe6U2Nt4W31p4Z7a8mfATSO5j2OK3kl
-	Cl6aln5IgDQdPY67JoxFIYc4VCNPYuklPYIuHdWWD2KH9xaUT6M3mocaIIhrAXSajh60s1
-	LmIo+dqzSrQQROLk+osH3cYRCUdVgrxPan8g9I4955PASvXGvjj8br8XTYOonMmMIfIElc
-	Yorw9jHL6zSbJCYslIG5eU/3u9JiyKJJ5OJyFzwx08dhFDtJUA3Ennrv8/td9Q==
-Received: from [192.168.2.110] (unknown [148.63.39.39])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id C9BB8360148;
-	Tue, 13 Jan 2026 13:59:41 +0000 (WET)
-Message-ID: <87364ee8-4cde-49f5-949c-b01674798c37@tecnico.ulisboa.pt>
-Date: Tue, 13 Jan 2026 13:59:39 +0000
+	s=arc-20240116; t=1768312839; c=relaxed/simple;
+	bh=X8mXhJTgAGq9IOf4F3jJlDw/W05b42TP8HpZ/2Vdrwg=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HA0iekQduAk2Er+HSKR1jev6rmcJReGE/NMR3J/UgNjPh/0/HbMnkgbGMlkyCiSpc9xcf9Fg5KFxX1L2cmrug5ORqEkzt5ST3H+NFMpwZWCEv5JXVttHfa3BHe5s/ifKZCD59r8L9H7L8BSz/yguObTjPxGBWmtDUZm7omQNEbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUqO98mK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 277F6C2BC9E
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 14:00:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768312839;
+	bh=X8mXhJTgAGq9IOf4F3jJlDw/W05b42TP8HpZ/2Vdrwg=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=nUqO98mKJE7NXi7FLSuiAtTZXAqYxZ1nyDsJZzG7jWaaPs2Hy4EO/Y3i3mieoa7p+
+	 KN5m6yAgwsjf/88I+ElOWZElAVlfvtWoVohX2rXGsdq/xejw4/8YWFTQTmEZryzsIg
+	 HbmCLngM24fUzxvLJgyXm57Ppwr8+TwuUdAGb0qAJuUPHPTK2AFvVD3EgoNiymJlmZ
+	 uB4GfrHwgPeUzSGYayJrFSLyGPIEpbuq9qfoA7yx5tW7hlErFUditSkIqSEh/jFwty
+	 SAhH/SQ4wMYQluc0fAkdfY9HSpZG/mWKRaCfeJish4i12UcX24vqxEq16jRrkuOdeQ
+	 74ndcQTjSb1hg==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-59b786b2a5dso6498181e87.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 06:00:39 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVILeRu96CF6Tl3T6dilJE7t29w92PG8g39KxhNjFif2ondpyLzMfcu+WFk9QnUxPeYN1afIZICO0ji@vger.kernel.org
+X-Gm-Message-State: AOJu0Yys9Q0PvgnfwD9TPoZa8W6DXIjhs+X3qawrEyTAZVgxDwJ9g++1
+	sBBm+8ai2Th4jLMJv//nau2KXAkwKJVJN1CLbCxkx6ssA7oFGWvwaDGFXwIxOJdQjrjTZjYeAp6
+	+fB+lBh6vbN/weuauH4oQA/o7ZomNroVcwgLvw7bOvA==
+X-Google-Smtp-Source: AGHT+IHkGbH56mpERCqebm4I83lw0PurcteLr7cgNC0e+0pRpGvxWPIiTZ7DW2io/Q37pf6iiDvx11af8oXDK5+wY0I=
+X-Received: by 2002:a05:6512:239c:b0:59b:7c23:c639 with SMTP id
+ 2adb3069b0e04-59b7c23c757mr4838943e87.26.1768312837703; Tue, 13 Jan 2026
+ 06:00:37 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 13 Jan 2026 06:00:35 -0800
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 13 Jan 2026 06:00:35 -0800
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260112-pci-m2-e-v4-8-eff84d2c6d26@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] phy: tegra: xusb: Fix ordering issue when switching
- roles on USB2 ports
-To: Jon Hunter <jonathanh@nvidia.com>, Mathias Nyman
- <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
- <20251204-diogo-tegra_phy-v1-3-51a2016d0be8@tecnico.ulisboa.pt>
- <e9f18b0d-6462-43e7-955f-45337914b321@nvidia.com>
- <6a0d379f-d215-4efc-bdd0-c9a74d31614a@nvidia.com>
-Content-Language: en-US
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-In-Reply-To: <6a0d379f-d215-4efc-bdd0-c9a74d31614a@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com> <20260112-pci-m2-e-v4-8-eff84d2c6d26@oss.qualcomm.com>
+Date: Tue, 13 Jan 2026 06:00:35 -0800
+X-Gmail-Original-Message-ID: <CAMRc=McBamKzNYvWDcGeNU1raq1a1fdK0Pu2Ub154nTtMhFc5A@mail.gmail.com>
+X-Gm-Features: AZwV_QjzcyvwXxlEQgHd6qIWvQVbATOW0nBj5REO6Ph0AfkAJuuTNk3sa_W8efk
+Message-ID: <CAMRc=McBamKzNYvWDcGeNU1raq1a1fdK0Pu2Ub154nTtMhFc5A@mail.gmail.com>
+Subject: Re: [PATCH v4 8/9] power: sequencing: pcie-m2: Add support for PCIe
+ M.2 Key E connectors
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>, 
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
+On Mon, 12 Jan 2026 17:26:07 +0100, Manivannan Sadhasivam via B4 Relay
+<devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org> said:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>
+> Add support for handling the power sequence of the PCIe M.2 Key E
+> connectors. These connectors are used to attach the Wireless Connectivity
+> devices to the host machine including combinations of WiFi, BT, NFC using
+> interfaces such as PCIe/SDIO for WiFi, USB/UART for BT and I2C for NFC.
+>
+> Currently, this driver supports only the PCIe interface for WiFi and UART
+> interface for BT. The driver also only supports driving the 3.3v/1.8v power
+> supplies and W_DISABLE{1/2}# GPIOs. The optional signals of the Key E
+> connectors are not currently supported.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+>  drivers/power/sequencing/Kconfig          |   1 +
+>  drivers/power/sequencing/pwrseq-pcie-m2.c | 110 ++++++++++++++++++++++++++++--
+>  2 files changed, 104 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
+> index f5fff84566ba..29bd204319cc 100644
+> --- a/drivers/power/sequencing/Kconfig
+> +++ b/drivers/power/sequencing/Kconfig
+> @@ -38,6 +38,7 @@ config POWER_SEQUENCING_TH1520_GPU
+>  config POWER_SEQUENCING_PCIE_M2
+>  	tristate "PCIe M.2 connector power sequencing driver"
+>  	depends on OF || COMPILE_TEST
+> +	depends on PCI
 
+Now we can no longer compile-test it without PCI, I don't think this was the
+goal? Maybe "depends on (PCI && OF) || COMPILE_TEST"?
 
-On 1/13/26 11:44, Jon Hunter wrote:
-> 
-> On 13/01/2026 11:35, Jon Hunter wrote:
->>
->> On 04/12/2025 21:27, Diogo Ivo wrote:
->>> The current implementation of USB2 role switching on Tegra relies on
->>> whichever the previous USB controller driver was using the PHY to first
->>> "yield" it back to USB_ROLE_NONE before the next controller configures
->>> it for the new role. However, no mechanism to guarantee this ordering
->>> was implemented, and currently, in the general case, the configuration
->>> functions tegra_xhci_id_work() and tegra_xudc_usb_role_sw_work() end up
->>> running in the same order regardless of the transition being HOST- 
->>> >DEVICE
->>> or DEVICE->HOST, leading to one of these transitions ending up in a
->>> non-working state due to the new configuration being clobbered by the
->>> previous controller driver setting USB_ROLE_NONE after the fact.
->>>
->>> Fix this by introducing a helper that waits for the USB2 port’s current
->>> role to become USB_ROLE_NONE and add it in the configuration functions
->>> above before setting the role to either USB_ROLE_HOST or
->>> USB_ROLE_DEVICE. The specific parameters of the helper function are
->>> choices that seem reasonable in my testing and have no other basis.
->>>
->>> This was tested on a Tegra210 platform (Smaug). However, due to the 
->>> similar
->>> approach in Tegra186 it is likely that not only this problem exists 
->>> there
->>> but that this patch also fixes it.
->>>
->>> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
->>> ---
->>>   drivers/phy/tegra/xusb.c            | 23 +++++++++++++++++++++++
->>>   drivers/usb/gadget/udc/tegra-xudc.c |  4 ++++
->>>   drivers/usb/host/xhci-tegra.c       | 15 ++++++++++-----
->>>   include/linux/phy/tegra/xusb.h      |  1 +
->>>   4 files changed, 38 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
->>> index c89df95aa6ca..e05c3f2d1421 100644
->>> --- a/drivers/phy/tegra/xusb.c
->>> +++ b/drivers/phy/tegra/xusb.c
->>> @@ -740,6 +740,29 @@ static void 
->>> tegra_xusb_parse_usb_role_default_mode(struct tegra_xusb_port *port)
->>>       }
->>>   }
->>> +bool tegra_xusb_usb2_port_wait_role_none(struct tegra_xusb_padctl 
->>> *padctl, int index)
->>> +{
->>> +    struct tegra_xusb_usb2_port *usb2 = 
->>> tegra_xusb_find_usb2_port(padctl,
->>> +                                      index);
->>> +    int retries = 5;
->>> +
->>> +    if (!usb2) {
->>> +        dev_err(&usb2->base.dev, "no port found for USB2 lane %u\n", 
->>> index);
->>> +        return false;
->>> +    }
->>> +
->>> +    do {
->>> +        if (usb2->role == USB_ROLE_NONE)
->>> +            return true;
->>> +
->>> +        usleep_range(50, 60);
->>> +    } while (retries--);
->>> +
->>> +    dev_err(&usb2->base.dev, "timed out waiting for USB_ROLE_NONE");
->>> +
->>> +    return false;
->>> +}
->>
->>
->> This patch is causing the following build error today with -next ...
-> 
-> Sorry this is not in -next, I had just applied locally on top!
-> 
->>    MODPOST Module.symvers
->> ERROR: modpost: "tegra_xusb_usb2_port_wait_role_none" [drivers/usb/ 
->> host/ xhci-tegra.ko] undefined!
->>
->> The above function symbol needs to be exported.
+>  	help
+>  	  Say Y here to enable the power sequencing driver for PCIe M.2
+>  	  connectors. This driver handles the power sequencing for the M.2
+> diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> index e01e19123415..4b85a40d7692 100644
+> --- a/drivers/power/sequencing/pwrseq-pcie-m2.c
+> +++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> @@ -4,12 +4,16 @@
+>   * Author: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>   */
+>
+> +#include <linux/err.h>
+>  #include <linux/device.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/pci.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pwrseq/provider.h>
+>  #include <linux/regulator/consumer.h>
+> @@ -25,17 +29,19 @@ struct pwrseq_pcie_m2_ctx {
+>  	const struct pwrseq_pcie_m2_pdata *pdata;
+>  	struct regulator_bulk_data *regs;
+>  	size_t num_vregs;
+> -	struct notifier_block nb;
 
-You're right, thanks for catching this. I'll fix it in v2.
+Should this even be part of [1] at all then? It doesn't seem used now when
+I looked again?
 
-> 
-> Nonetheless this needs to be fixed.
-> 
-> Jon
-> 
+> +	struct gpio_desc *w_disable1_gpio;
+> +	struct gpio_desc *w_disable2_gpio;
+> +	struct device *dev;
+>  };
+>
+> -static int pwrseq_pcie_m2_m_vregs_enable(struct pwrseq_device *pwrseq)
+> +static int pwrseq_pcie_m2_vregs_enable(struct pwrseq_device *pwrseq)
+>  {
+>  	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+>
+>  	return regulator_bulk_enable(ctx->num_vregs, ctx->regs);
+>  }
+>
+> -static int pwrseq_pcie_m2_m_vregs_disable(struct pwrseq_device *pwrseq)
+> +static int pwrseq_pcie_m2_vregs_disable(struct pwrseq_device *pwrseq)
+>  {
+>  	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+>
+> @@ -44,18 +50,84 @@ static int pwrseq_pcie_m2_m_vregs_disable(struct pwrseq_device *pwrseq)
+>
+>  static const struct pwrseq_unit_data pwrseq_pcie_m2_vregs_unit_data = {
+>  	.name = "regulators-enable",
+> -	.enable = pwrseq_pcie_m2_m_vregs_enable,
+> -	.disable = pwrseq_pcie_m2_m_vregs_disable,
+> +	.enable = pwrseq_pcie_m2_vregs_enable,
+> +	.disable = pwrseq_pcie_m2_vregs_disable,
+>  };
+>
+> -static const struct pwrseq_unit_data *pwrseq_pcie_m2_m_unit_deps[] = {
+> +static const struct pwrseq_unit_data *pwrseq_pcie_m2_unit_deps[] = {
+>  	&pwrseq_pcie_m2_vregs_unit_data,
+>  	NULL
+>  };
+>
+> +static int pwrseq_pci_m2_e_uart_enable(struct pwrseq_device *pwrseq)
+> +{
+> +	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+> +
+> +	return gpiod_set_value_cansleep(ctx->w_disable2_gpio, 0);
+> +}
+> +
+> +static int pwrseq_pci_m2_e_uart_disable(struct pwrseq_device *pwrseq)
+> +{
+> +	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+> +
+> +	return gpiod_set_value_cansleep(ctx->w_disable2_gpio, 1);
+> +}
+> +
+> +static const struct pwrseq_unit_data pwrseq_pcie_m2_e_uart_unit_data = {
+> +	.name = "uart-enable",
+> +	.deps = pwrseq_pcie_m2_unit_deps,
+> +	.enable = pwrseq_pci_m2_e_uart_enable,
+> +	.disable = pwrseq_pci_m2_e_uart_disable,
+> +};
+> +
+> +static int pwrseq_pci_m2_e_pcie_enable(struct pwrseq_device *pwrseq)
+> +{
+> +	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+> +
+> +	return gpiod_set_value_cansleep(ctx->w_disable1_gpio, 0);
+> +}
+> +
+> +static int pwrseq_pci_m2_e_pcie_disable(struct pwrseq_device *pwrseq)
+> +{
+> +	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
+> +
+> +	return gpiod_set_value_cansleep(ctx->w_disable1_gpio, 1);
+> +}
+> +
+> +static const struct pwrseq_unit_data pwrseq_pcie_m2_e_pcie_unit_data = {
+> +	.name = "pcie-enable",
+> +	.deps = pwrseq_pcie_m2_unit_deps,
+> +	.enable = pwrseq_pci_m2_e_pcie_enable,
+> +	.disable = pwrseq_pci_m2_e_pcie_disable,
+> +};
+> +
+>  static const struct pwrseq_unit_data pwrseq_pcie_m2_m_pcie_unit_data = {
+>  	.name = "pcie-enable",
+> -	.deps = pwrseq_pcie_m2_m_unit_deps,
+> +	.deps = pwrseq_pcie_m2_unit_deps,
+> +};
+> +
+> +static int pwrseq_pcie_m2_e_pwup_delay(struct pwrseq_device *pwrseq)
+> +{
+> +	/*
+> +	 * FIXME: This delay is only required for some Qcom WLAN/BT cards like
+> +	 * WCN7850 and not for all devices. But currently, there is no way to
+> +	 * identify the device model before enumeration.
+> +	 */
+> +	msleep(50);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwrseq_target_data pwrseq_pcie_m2_e_uart_target_data = {
+> +	.name = "uart",
+> +	.unit = &pwrseq_pcie_m2_e_uart_unit_data,
+> +	.post_enable = pwrseq_pcie_m2_e_pwup_delay,
+> +};
+> +
+> +static const struct pwrseq_target_data pwrseq_pcie_m2_e_pcie_target_data = {
+> +	.name = "pcie",
+> +	.unit = &pwrseq_pcie_m2_e_pcie_unit_data,
+> +	.post_enable = pwrseq_pcie_m2_e_pwup_delay,
+>  };
+>
+>  static const struct pwrseq_target_data pwrseq_pcie_m2_m_pcie_target_data = {
+> @@ -63,11 +135,21 @@ static const struct pwrseq_target_data pwrseq_pcie_m2_m_pcie_target_data = {
+>  	.unit = &pwrseq_pcie_m2_m_pcie_unit_data,
+>  };
+>
+> +static const struct pwrseq_target_data *pwrseq_pcie_m2_e_targets[] = {
+> +	&pwrseq_pcie_m2_e_pcie_target_data,
+> +	&pwrseq_pcie_m2_e_uart_target_data,
+> +	NULL
+> +};
+> +
+>  static const struct pwrseq_target_data *pwrseq_pcie_m2_m_targets[] = {
+>  	&pwrseq_pcie_m2_m_pcie_target_data,
+>  	NULL
+>  };
+>
+> +static const struct pwrseq_pcie_m2_pdata pwrseq_pcie_m2_e_of_data = {
+> +	.targets = pwrseq_pcie_m2_e_targets,
+> +};
+> +
+>  static const struct pwrseq_pcie_m2_pdata pwrseq_pcie_m2_m_of_data = {
+>  	.targets = pwrseq_pcie_m2_m_targets,
+>  };
+> @@ -126,6 +208,16 @@ static int pwrseq_pcie_m2_probe(struct platform_device *pdev)
+>  		return dev_err_probe(dev, ret,
+>  				     "Failed to get all regulators\n");
+>
+> +	ctx->w_disable1_gpio = devm_gpiod_get_optional(dev, "w-disable1", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->w_disable1_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->w_disable1_gpio),
+> +				     "Failed to get the W_DISABLE_1# GPIO\n");
+> +
+> +	ctx->w_disable2_gpio = devm_gpiod_get_optional(dev, "w-disable2", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->w_disable2_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->w_disable2_gpio),
+> +				     "Failed to get the W_DISABLE_2# GPIO\n");
+> +
+>  	ctx->num_vregs = ret;
+>
+>  	ret = devm_add_action_or_reset(dev, pwrseq_pcie_free_resources, ctx);
+> @@ -151,6 +243,10 @@ static const struct of_device_id pwrseq_pcie_m2_of_match[] = {
+>  		.compatible = "pcie-m2-m-connector",
+>  		.data = &pwrseq_pcie_m2_m_of_data,
+>  	},
+> +	{
+> +		.compatible = "pcie-m2-e-connector",
+> +		.data = &pwrseq_pcie_m2_e_of_data,
+> +	},
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, pwrseq_pcie_m2_of_match);
+>
+> --
+> 2.48.1
+>
+>
+>
+
+Otherwise LGTM.
+
+Bart
+
+[1] https://lore.kernel.org/all/20260107-pci-m2-v5-5-8173d8a72641@oss.qualcomm.com/
 
