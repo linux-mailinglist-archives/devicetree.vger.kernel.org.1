@@ -1,103 +1,153 @@
-Return-Path: <devicetree+bounces-254699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1780DD1B062
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 20:24:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23B02D1B079
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 20:26:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 896D9300DB16
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 19:24:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CBCA2302AAD5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 19:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B37B230CD92;
-	Tue, 13 Jan 2026 19:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AUUeiyTQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF913587CA;
+	Tue, 13 Jan 2026 19:26:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f68.google.com (mail-ua1-f68.google.com [209.85.222.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C782749C7;
-	Tue, 13 Jan 2026 19:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD3830FC12
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 19:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768332255; cv=none; b=CaJ1p6qA3bzFj5GM1gRvm8ZAvxvbD50p24O7Mg6GRLOaexZli4OeWuhZyv9fipy5K/R7Y/kQZxWnJyiyYN6G6sgM82PlAK4C/WwIiS4cK+dMfnk+kmZ0nLR+FXjipCRwCf3ArlsWXN7/QFFTYrt4uNXfV7abQI8PGe79ZzmAhw0=
+	t=1768332361; cv=none; b=CMjK9gOdzYqDLA1rORG4Fl8X4Loy0epEpYcwWO3/2M5Dc4SUwZTLsrdkzdpTeD1D4hUboYbymXQDpwHoOfz7fEo3GQlN+lw3ik39Z72/SWwVD4K/XxqpvcUH9mfANVqPGphBIc0zf2/Yjuy/4P6xhulMpI3gzJDNUBC4SwAzZIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768332255; c=relaxed/simple;
-	bh=aGHnWKoxrswCR40fkHeiu5haG1V+3VsNg1NaCX4sHok=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=YU1P09CN1c34JKWSn3otA0Md85KmdsXWCT8AP3RoIqw60mEqZLfQkZ+DJ+dhDqeLCEbhak1OuRpntyfWwsXNnAB1BIrj7R/QHVsce2OjUCvnyaUsA/dx+YzP+bWBa5Hei0aXDcu7h88zb7KhJd7h6dCGHMVZ3T1dn3gqF1GlU1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AUUeiyTQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 151DEC116C6;
-	Tue, 13 Jan 2026 19:24:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768332255;
-	bh=aGHnWKoxrswCR40fkHeiu5haG1V+3VsNg1NaCX4sHok=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AUUeiyTQsH+8Ff90pRPQiD0ZDy3y8YIaNa3NsR+dHpNAx9NETSLaInWq+zL+UYXEz
-	 Ji4YQKc4VdzBgCOPCOGT9iNsvs5RUMica3J40WLrbUovCLpfsNINQIPHtnyBbjlcbN
-	 R3s6yWMyPrmdW04H8eoTg8YkOB9UcQmPglYsNY5jYPkS8u3KmnA05ohrHmWN59kFFJ
-	 nXZNcF3BhxySjF28POISn6HyMV2uflm8J5RmJ6W56OPlKsxgkJwhYHtyZFcPbLFNuU
-	 HT/hZgK5HVyuZJkRJz69NsV+IdkqaVhRJeYMz2XSzSFqYmDK8OsOEtnu2WVtnDcAC4
-	 1QhkgJn7lSJwA==
-From: Mark Brown <broonie@kernel.org>
-To: devicetree@vger.kernel.org, Marek Vasut <marex@nabladev.com>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-rpi-kernel@lists.infradead.org
-In-Reply-To: <20260107213638.505319-1-marex@nabladev.com>
-References: <20260107213638.505319-1-marex@nabladev.com>
-Subject: Re: [PATCH] regulator: dt-bindings: rpi-panel: Mark 7" Raspberry
- Pi as GPIO controller
-Message-Id: <176833225281.1138309.16211933019311463007.b4-ty@kernel.org>
-Date: Tue, 13 Jan 2026 19:24:12 +0000
+	s=arc-20240116; t=1768332361; c=relaxed/simple;
+	bh=3ZrwEeBiZv2/57vkV16rP297m0IfYLbOdaycMnUgZvA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LNLU1Bg1YhJ1bjsEoP1pWccbdjV0A5Wd9ZsNSsEU4Cb4ykwoBwBZCAQJoVK87zKRPjJsw24xSDTaesIXlgwCtHd1W0efCJ2rdw/ywsJE50bmcEsMGBCC6CCr+syzYlOhd/oVYWMn4xnHAU/mCBG+by1a2KaKG/fs/MUapsiE3kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f68.google.com with SMTP id a1e0cc1a2514c-9412cb281acso2611316241.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:26:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768332359; x=1768937159;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=lGxD9M4RQU4+hrSLm2mQz70yQm9QgTmeWCOFRtIxY9c=;
+        b=vd3gXAT6SEkQo7uP8iXreFBxeYBpDwFqR2+mMlBx1fOsSFIJOsmorGkULgW18vxBdj
+         VG7Mt+2qlsH+YRbi7pTgvqwvOzcvu/b31PLMAUbw2zV2yZdmtZfHXIL55Yzz3BL7zeFm
+         8qptc1O++8Aw2NaF3Lj5o0qojvt+7XvVPm5sba/im2FBMQ2eWCJCrHwhiXI1JiqZiDj+
+         jcQEXcWP9Ra0eRYpRGRjmHC0Pu+FTI/5gOvfdexKRs19dgMPFJGhhy97Lz8VSXLmCrLy
+         E2vK4QF61QIE8iAxHI2jJ9gPIcgQpwjSeGeM7+zEZKkG7MgnZolFsh9Y7bZDmqITKEIu
+         72kA==
+X-Forwarded-Encrypted: i=1; AJvYcCW5cvusPn1jmlYTM0ygpqaDq0C2EF7rb39OoECnDtcFMeJyDHPLc2zhBZ5OdUoB/BYgnr6Lg3fVfZb9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1h5nTzaRuk8VjyjOMYBv14LyqT18NZNMKXFKSTamJMDX0tsTx
+	+NSI/7vNNECoqmaQrG+3uXDOI0BRVoziljUsdsf2us8BkLqcFp8yDYAR7JvBRFApYps=
+X-Gm-Gg: AY/fxX7Bcp0T3UhH2OFpRAf5dWJektJlnQdr7+ZfTJ/wvB8gML36xmwvYyKcQs5uLWb
+	77aSEJQNfwc2cYMCJi4tDjEA33RAXhJQjYpJgKioeI+0SRes1QGkFG1peaojyB2BeP9DuGqEiDl
+	07m6jDQYWVlApbqVdSxBXGY1sJy1SMLbQymB+vq5uPW+5A5kpJUZkociS9P/y8mHTdl78ZzBAjL
+	kbM5S4NCe1xSMUeWivr0yH7BYWeKn2D1WhtxO4lD0mJHvrBamahXzq8HZBcUCLYK1Lrd+816tPc
+	WbzQA4i3ui6Ue24kCjF0xbbXZ43xbbDp7ibStmeUnamBqvlFVbliUkyHhTiO2idP0Ts6UukOUKQ
+	AclE4Ke3AqnrszLu62QOoWTsDvhRUIGVOJmwcCcryWXAXRpgNguqWKUuvzsKJSoFHv23tyWKV11
+	hVDM6QMrSb6yLu0RsEZYh/6M+bIulSw7VyUR74QLFdzc7QZMhH5YzL
+X-Received: by 2002:a05:6102:3f09:b0:5db:3111:9330 with SMTP id ada2fe7eead31-5f17f58e481mr151874137.27.1768332359287;
+        Tue, 13 Jan 2026 11:25:59 -0800 (PST)
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec772af325sm21526614137.10.2026.01.13.11.25.58
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jan 2026 11:25:58 -0800 (PST)
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-5635e6b80easo1597037e0c.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:25:58 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX8whBJhjsz61kh2MMZb69gOMMohJk4B+PpWvZhrd9Ok4XESiKYs4t7qbeHRzIgFtNT3nVxzDTslF+s@vger.kernel.org
+X-Received: by 2002:a05:6122:7cd:b0:563:4a93:a5f4 with SMTP id
+ 71dfb90a1353d-563a091550dmr145996e0c.4.1768332358235; Tue, 13 Jan 2026
+ 11:25:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+References: <20260109125128.2474156-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260109125128.2474156-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260111-poetic-dark-butterfly-97993f@quoll> <CA+V-a8un48Gfqg-K6YToxUgnZawOcb-nQHsBcOfHdpAR7_Uu4Q@mail.gmail.com>
+ <dd053cff-af8f-4378-9550-9f99f91cea20@kernel.org> <CA+V-a8tZAUoPxp7NanALW5HmVLMQAprcDXPME5povLT6nH6bTw@mail.gmail.com>
+In-Reply-To: <CA+V-a8tZAUoPxp7NanALW5HmVLMQAprcDXPME5povLT6nH6bTw@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 13 Jan 2026 20:25:47 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUrSUeOFvyX-RhjFV8HfiGtvOvBT-Wd328C4P-j-N0fHw@mail.gmail.com>
+X-Gm-Features: AZwV_Qi5VDWrgJaVOTjXTW8AVFjCwxmek62R9X6THbS3twvGucCrR-aVI1pn-1o
+Message-ID: <CAMuHMdUrSUeOFvyX-RhjFV8HfiGtvOvBT-Wd328C4P-j-N0fHw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: can: renesas,rcar-canfd: Document
+ RZ/T2H and RZ/N2H SoCs
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 07 Jan 2026 22:36:25 +0100, Marek Vasut wrote:
-> Mark the Raspberry Pi 7" Display 1 ATTINY based regulator
-> as GPIO controller, because the hardware behaves that way
-> in addition to being a regulator. Add fixed gpio-cells as
-> well.
-> 
-> 
+On Mon, 12 Jan 2026 at 18:22, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
+rote:
+> On Mon, Jan 12, 2026 at 4:30=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> > On 12/01/2026 15:04, Lad, Prabhakar wrote:
+> > >   - if:
+> > >       properties:
+> > >         compatible:
+> > >           contains:
+> > >             # SoCs WITH resets but WITHOUT reset-names
+> > >             enum:
+> > >               - renesas,rcar-gen3-canfd
+> > >               - renesas,rcar-gen4-canfd
+> > >     then:
+> > >       required:
+> > >         - resets
+> > >       properties:
+> > >         reset-names: false
+> > >
+> >
+> > Yes, although now I wonder why do you have such case... There are no
+> > benefits in disallowing reset-names, even for single entries.
 
-Applied to
+Except that I have no idea which of the two names I should use in
+case of renesas,rcar-gen3-canfd and renesas,rcar-gen4-canfd, as
+the hardware documentation doesn't explain that?  AFAIU it is just
+a single, common reset for the whole block...
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> Ok, I will update the resets property in patch 1/4 as below. Would you
+> prefer reset-names as a required property for single resets?
+>
+>   reset-names:
+>     minItems: 1
+>     maxItems: 2
+>     items:
+>       enum:
+>         - rstp_n
+>         - rstc_n
 
-Thanks!
+I.e. which one should I pick?
+<grin>Obviously the first, so dtbs_check succeeds?</grin>
 
-[1/1] regulator: dt-bindings: rpi-panel: Mark 7" Raspberry Pi as GPIO controller
-      commit: 62b04225e99a5d1c71c5c73d2aa6618bc2c0738f
+Gr{oetje,eeting}s,
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+                        Geert
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
