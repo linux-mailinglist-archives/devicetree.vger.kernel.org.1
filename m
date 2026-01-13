@@ -1,151 +1,116 @@
-Return-Path: <devicetree+bounces-254284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A7DD16E49
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 07:50:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3417ED16E9A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 07:54:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 94BDA303B440
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 06:50:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 177AB300E8EA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 06:54:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94AFF368283;
-	Tue, 13 Jan 2026 06:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16609369220;
+	Tue, 13 Jan 2026 06:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OyTqHz2U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BhJFP7Ij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F08C834FF77
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 06:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C220369229
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 06:54:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768287033; cv=none; b=X8nrJWXLout7gOxBIqnq2gbhsEHWMitOPmjZ5SjbFFD2e3HG28QhukZsbXsuUQfMjK03mdCn5kgycvw/BFZoagfa3mltqQwupA35gUi85EAPaQY1t44TCFkMLSQ/jiZrNTv0teB4kdfyCitmee/CCMYcxDXQ/XiJYht3LN0iWfQ=
+	t=1768287288; cv=none; b=gLk+D4XkZBUgwVEDmd7P/U5BywpK5g3TjDVf1rP0O8fyNHv8aZQNVcqs8peCgxp+QTg1mJKyzQ0NFYEK2l29b7J9EFkabDz8ALz2pyT3825mp4Ytcke/Uue+qP7yKDhOe2PwDYRsXSmrAuViWy/eE8jIyUZ8CCLBjSX8U0EoiYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768287033; c=relaxed/simple;
-	bh=vWWkI8Ucxv7LLsC4EwcqO0otoFPc0wLp32vKoD8J2lA=;
+	s=arc-20240116; t=1768287288; c=relaxed/simple;
+	bh=QIEz2iPUowNcUwBXSgq9zpqKfkl981xBKD3hZQmbb9g=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pwofmJaUgJGERv3Dg/v7O/NAwGw1G+yXhTTQFNgVxZaFIP4GX3enXNXqMW5X9zcAWM4C5xnnYUDOij7Xgh06RlI9MCtn1UGF02k0AO6lorTBBU34fjorBEGyCjDPojgp6qfxVjHRvWLvA45x8+LqFPGKoAHe23bcR2FKHwUy1r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OyTqHz2U; arc=none smtp.client-ip=209.85.218.53
+	 To:Cc:Content-Type; b=l7qwF3vGahDxmHMO3jdCmE66pqSgKrQfHgCefV8tHeo/7OmMRJZQrfTKaUwQnNQFnObvHw5rwbfbnjcJTtF+bDErSB+rzOEGjdMPKLbDjmBb3jdXItnwuOspwjpajuXR8eNWhIKGAADDDVe1nlfIF9e0C80mTNz58thbNjG6cj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BhJFP7Ij; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b8719aeebc8so298779366b.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 22:50:31 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b86f81d8051so417507466b.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 22:54:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768287030; x=1768891830; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768287285; x=1768892085; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BDFhHs1bZ2tXFlSAK9bO89iNUEo/gzgYCa9HumpSvtU=;
-        b=OyTqHz2UJ5gF0nbcpvmiXsVxpOKwFBZPHllNFaar+NAna44jvrRk4ryHLw5TS7Bsu8
-         f1KUKfACf9iufQCp41GfCZSgdiL9oiDIc0oXdzP+uXUC+lnarmFXG6AT3dQO1uWM/8UH
-         xMDRNzVq7QJMoaOMtnaHbk4mDFU7AGA4r01p44Cq6QCJZsWeo21YGItX836I5yb7mUOT
-         nbqiUWNqs7pB8QrMHHwJJNOfWqghoRBUVTiTJ6B3F9X2/ysx38AxmeOFfxRL3HAHAXCh
-         iMfNskvPL1IaQgtFDyCtkGZU0toN9LDCD8g8MDoDh3dMuDXacC+r7LYPrM4cuc0+5LYx
-         dq+g==
+        bh=QIEz2iPUowNcUwBXSgq9zpqKfkl981xBKD3hZQmbb9g=;
+        b=BhJFP7IjQV4F/PR+lyYWnyRptv/5tJvx/LseTXS0rZ9Cmkt+1dsaCDPN0r0SYy/HcB
+         dPAiJk0R/AUTfqAJ69wr8txIdCkKB9t7gaG2AmMJhiqrsyLnY6DT4G8boS/Pnf4q/6ih
+         0Ca8Px4c9dRV1+D7rJeAmKR1ZLfFDSkHQytEoEDfg4cjkxMfUopl2L1yuIRNGOHzi75p
+         gGjC+AQcTQzqpXkH7aQZYjR75KmqON2INkt5HUnv+CPtT3rx7x41eSRNHwAktKVRFiHL
+         mCt+nFs3gMD0mJLava6Mv/UbvzVro+n76FNRLVVB1bWrxv3vsSfGNvWER1uqg3R9zPJ6
+         nzwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768287030; x=1768891830;
+        d=1e100.net; s=20230601; t=1768287285; x=1768892085;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=BDFhHs1bZ2tXFlSAK9bO89iNUEo/gzgYCa9HumpSvtU=;
-        b=EwxJb3wC/JZIss2gVD9LcedUcC06ABsrQhrjGJ3P5Y+M1vFH+Qi7BFKViN2OLPkgcy
-         PpG85Ar2ZzsliHbXhhynA4QD/UEgHd7C9qODKF1UJb5i+tt4QgXiZmtwBiiawRSkRB2G
-         qm/3di5mmq0JIN/OAoqME1ykeSq9NXLvIwQOIC88aZYq8EwVEEAxHLypYwRqsPfK3OFW
-         VBZY6xlQlS0iGgvZ6PeZj0UKFzmMq/ZBL2esgttqzt1Y23fdJGOXDIvrHVvHlXan7B2Q
-         puGIHu9JEz1rVYwBhBYUuwivHgJD3NoDrBF9fhdGz/zFfRRxQEC4XbIGbWCMvnLi7Xhw
-         l8Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCVjMtlpBXXsZ+r2qzsZ5XC+zM8NH2+klNIW1vB30xPJo9SfWeKzL0/bFu3IdntJ2rrANIp2ZeMSDVhr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYKbltndfA4hcT6M+Nx2wiCILXdMtPD0oLXv3NcRjstnwcZVf8
-	RX3ROTj0Yk/I5o7M8X0Q0nmSU+N3Lx7JMSDvPPtxeDWXjcj7BWyygphoOfrdK/ixOFLb6uvl6tV
-	CXlz8O/sijz6vWqXJrDgFk1uIeZGmkq4=
-X-Gm-Gg: AY/fxX5rxuCeygjAgsDsLF2e+9Vij2/T5knBdRmlfIZk9Ls1ytB3ocnOSZh1Cb7jCXQ
-	Jv4ggMEOkvfgleFI37f8l8RQO12uP6JrcU1jfRPowlAFqjk60zIjtd717N5pkUcu092/f1UTFPt
-	n+1Kp2E24HveTSYRTgD+WVaTAbDjybZgHjZKzgPnJ5BsXiTNTW2ydryVwArfzHbIsKaiv+07aye
-	aEAEhi+O2UEv2FOSRD5AmP5j0I6ZAiH6/WBtuJqJsPMy6Uas2GthIzxCR3ASPIWwQIfNdUsYwmz
-	/EMqtrJtoeFEetI8+SFnEw1bzCJMkM1kmCdeAZ7ChaoAx0LbUNXIjtH9TbTKslO8dolbykQ=
-X-Google-Smtp-Source: AGHT+IHTMaEj1d79MXWnrtD/D1BiTaFbQG661Hd0qVzPt9MGhEU4KTKvVFDgrAZVOMIFGnSyzgcpUUFGM8BY5zo4wBU=
-X-Received: by 2002:a17:907:705:b0:b83:73ee:9dc0 with SMTP id
- a640c23a62f3a-b8445177102mr1831267166b.65.1768287029999; Mon, 12 Jan 2026
- 22:50:29 -0800 (PST)
+        bh=QIEz2iPUowNcUwBXSgq9zpqKfkl981xBKD3hZQmbb9g=;
+        b=WIRDJLs//5gUxVvg4MAnAjw71Xd2h7KiIJF3QHWbAgsgeoqeB4w7tlIJe20JAVEEjw
+         uJTpQSdixbn9qNNWW6PCWs9Ln6MxsS2iFsV7yx7f81Qcf9ZSYZeAM5qhhmzAnJhzDxZ9
+         YBrvNNdwD3pWjKgSpV7U3B+5LXCS7d65GPfO2/bFWJwNWuOR0H43DiXtpypGVdT/Ey40
+         SQ2H/Ooq3l+UZACPKLZV27ZVeF4ODY8/MjqCSiMlYJLrU5+mFvj/RZjUka7yN1JWjaPy
+         iXHKpl0JwONIG0zl8/jIC615onHRhy8sTmIEug5jzdc5/W8v4oMT911tweIJ2fjWKM0y
+         zrHA==
+X-Forwarded-Encrypted: i=1; AJvYcCXnGn3F0RozrRyc+6/KL3r/ebeVqE8dFpdaemh2odDM3tVCmElNpbgPmdhT86pQjI8Q4yrD1RPs3bSS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVlnju/5lZpPmvbR7Syxwn+LS4jqWEfu7CAQiAQA3Dn76EbYZE
+	ANMdpF6nmFM1xvv7v69tqbJo54cw0ozlSd6+4UkrPQpuNyIwLV8XZVdSd2vBRcoH+6eG0/oGQ0T
+	kaEdEhS4X8NuCGlqMtqAJZVTS/D28jok=
+X-Gm-Gg: AY/fxX5SZX0K7vkdS1yoYEwMqrbc+trfm/B20EcoE2xB1oXZDXzkF1C63QxyJjM5jpH
+	lVSsdNZ3zI32zNZ06aLYhw3Ar0bEa58hEeXR608aed0UsYvD427uQUG08sr/zS3LkYfpeFKGzQW
+	qMP7OSeLZaeisJzkRqgk5KW+7shsgQRWJ9Kw1slNrKKmB0kawddepbrljrt6sJWpxc9W28vHYU0
+	R7G8snPZOUYKPQ8aTdfeakzoSJ8TI5J9A+NLT9hyoxMFCIK2YJylyLgdcPTtrUXwN9pKJdFz2g6
+	+8hMTQ4gjzF8NXnTWjFdQGEPn6eFQC9pQ0Q9Ofac+7sAd6qURXZD9x+Qa7WVTqohpJwLFjk=
+X-Google-Smtp-Source: AGHT+IHlPuya5XxFCIacLim6C0qvemXQbDYDqpsLQy22eM8mkwhyfdPV4OBLHXC+RJZypPmgB+jXgwZaKZXIUhZqDms=
+X-Received: by 2002:a17:906:4fc7:b0:b70:4f7d:24f8 with SMTP id
+ a640c23a62f3a-b873597460bmr126372766b.22.1768287284759; Mon, 12 Jan 2026
+ 22:54:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1765900411.git.Jonathan.Santos@analog.com>
- <43504217d5b3c32da946bed0ce4d81e216f7c7c7.1765900411.git.Jonathan.Santos@analog.com>
- <20251227155525.6d712f42@jic23-huawei> <CAHp75Vd0n+aTkdzMC53y9LrPW4t0mckpzmmud4Ez5gXbAdLeVg@mail.gmail.com>
- <aWMG6+ORRTy4ll8d@JSANTO12-L01.ad.analog.com>
-In-Reply-To: <aWMG6+ORRTy4ll8d@JSANTO12-L01.ad.analog.com>
+References: <20260113040242.19156-1-email@sirat.me>
+In-Reply-To: <20260113040242.19156-1-email@sirat.me>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 13 Jan 2026 08:49:53 +0200
-X-Gm-Features: AZwV_QhDHCn-yzHlTaIbM5IT9Av2UWj3kDnIDefGCsUzJc3Zki1Ju0XwfgtNBz0
-Message-ID: <CAHp75Vffgz7mc4Z_KibtuuVCvBfVEYPG0iEPBXrEFzYkaymGKA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/5] units: add PERCENT and BASIS_POINTS macros
-To: Jonathan Santos <jonath4nns@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Jonathan Santos <Jonathan.Santos@analog.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org
+Date: Tue, 13 Jan 2026 08:54:08 +0200
+X-Gm-Features: AZwV_QhlpP6GGDH3Y9_OKspa55FSa-0_GajtPJLOYt8n6pBC7Pdcmyr51iOriqo
+Message-ID: <CAHp75VemUUq6jU3CB9P9O=8tSJhbruKkJw0T_LDTXXBo3gLDAg@mail.gmail.com>
+Subject: Re: [PATCH 0/4] auxdisplay: Add support for TM1637 7-segment display driver
+To: Siratul Islam <email@sirat.me>, =?UTF-8?Q?Jean=2DFran=C3=A7ois_Lessard?= <jefflessard3@gmail.com>
+Cc: andy@kernel.org, geert@linux-m68k.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 13, 2026 at 5:32=E2=80=AFAM Jonathan Santos <jonath4nns@gmail.c=
-om> wrote:
-> On 12/27, Andy Shevchenko wrote:
-> > On Sat, Dec 27, 2025 at 5:55=E2=80=AFPM Jonathan Cameron <jic23@kernel.=
-org> wrote:
-> > > On Wed, 17 Dec 2025 02:52:45 -0300
-> > > Jonathan Santos <Jonathan.Santos@analog.com> wrote:
-
-...
-
-> > > > +/*
-> > > > + * Percentage and basis point units
-> > > > + *
-> > > > + * Basis points are 1/100th of a percent (1/100), commonly used in=
- finance,
-> > > > + * engineering or other applications that require precise percenta=
-ge
-> > > > + * calculations.
-> > > > + *
-> > > > + * Examples:
-> > > > + *   100% =3D 10000 basis points =3D BASIS_POINTS
-> > > > + *   1%   =3D 100 basis points   =3D PERCENT
-> > >
-> > > I don't understand the final equality in these examples.
-> > > The top line is as it says 10000 basis points but you have it equal
-> > > to BASIS_POINTS?
-> >
-> > Also there are pp (percentage points) and others like per mille
-> >
-> > https://en.wikipedia.org/wiki/Percentage_point (see "Related units" sec=
-tion).
+On Tue, Jan 13, 2026 at 6:03=E2=80=AFAM Siratul Islam <email@sirat.me> wrot=
+e:
 >
-> Hi, Andy. Thanks for the suggestions,but I am still questioning how
-> the percentage points would be implemented, since it is defined as the
-> difference between two percentages and we cannot use floating points.
-
-My comment was more about the prefix (PER) and the naming (not
-BASIS_POINTS, but something from PER*), and for the comprehension I
-would rather see all three defined (pp is _not_ part of these as you
-mentioned its semantics is different).
-
-> Also, should we keep this approach of unit conversion?
-> Example:
-> value / PERCENT -> converts a value from percent to ratio
-> value * PERCENT -> converts a value from ratio to percent
+> This series adds a driver for the Titan Micro TM1637 7-segment display
+> controller.
 >
-> Just to make sure it is consistent with the rest.
+> The TM1637 uses a custom two-wire protocol (CLK/DIO) that resembles I2C
+> but lacks a slave address, requiring a bit-banging implementation.
+>
+> The driver exposes standard sysfs attributes for 'message' (text) and
+> 'brightness'. It handles standard ASCII-to-7-segment mapping using the
+> kernel's map_to_7segment utility.
+>
+> Note on implementation:
+> This driver is implemented as a standalone platform driver rather than
+> using the auxiliary display 'linedisp' framework. The TM1637 protocol
+> requires manual handling of the decimal point (merging it with the
+> previous digit), which is difficult to achieve cleanly with the current
+> linedisp character buffer abstraction.
 
-Sounds good at the first glance.
-
-> > > > + */
-> > > > +#define PERCENT              100UL
-> > > > +#define BASIS_POINTS 10000UL
+Wait, what happens to
+https://lore.kernel.org/lkml/20251121145911.176033-1-jefflessard3@gmail.com=
+/
+?
 
 --=20
 With Best Regards,
