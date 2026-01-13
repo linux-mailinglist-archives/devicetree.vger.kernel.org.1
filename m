@@ -1,74 +1,64 @@
-Return-Path: <devicetree+bounces-254522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3058FD18EF5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43988D18FF6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:04:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 179973019194
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:50:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DE9473011772
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B22838F95F;
-	Tue, 13 Jan 2026 12:50:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F41E38F936;
+	Tue, 13 Jan 2026 13:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Jh0Q9Kkg"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="V+1h2I/i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D182E38F257
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:50:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB4B38B9A7
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 13:04:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768308636; cv=none; b=VJMbHSe4IMmG67PqwOPxI3NVSe7Yqumn5JQeyxbwUu/45uNKFBhCWLundf/n3a7h1zxdokpHAD6YpwNyFJDoKyErKQtZqHyzJ6M9pHnMnLaUy9FUynEQrLWRRzA7yILKILzRRMXP/jeNnpGS9FkcHvCDyIbmhj91J1IkqOM52w0=
+	t=1768309454; cv=none; b=XMyFRzmkpTzSqIu4Fjwu+Khxd7zrEgSfYS6OJ2BYvezWOGChTCGUHvjR30/ZCL9JGVsuHdgi637BdsgIkiwQQf3n9uzb5Ze9b5YF9fDNUX1D2NEVyz4FAasJyRZErehN3OxLiOj2GCUq1j8tY35RfQ6NSO/+GACeMSNSuqEjBlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768308636; c=relaxed/simple;
-	bh=1DKmmAMrTMc/B32nL+XGjSAKOro5Gz96ACGi7IqMW9k=;
+	s=arc-20240116; t=1768309454; c=relaxed/simple;
+	bh=7zHYQuLMLThX61XguZDJYltNArOv8k/59IiGsM+379E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qpGiBvg6gd9iY2SXrnBL8Q//a9rSWwUro6VwXFLDVC4PMZATR3tyUEBVXxD5weNtslQNK0tv+Ad5XJJBuZOmEQJtjLtQXsd5j/F2Cti7mXyAzZ3vMjip4l3cI5Lh2tc/RcZsoj5B+TIU54uRXig3v8db04ErXIIe3sQgyoO8PBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Jh0Q9Kkg; arc=none smtp.client-ip=194.117.254.33
+	 Content-Type:Content-Disposition:In-Reply-To; b=XsYMWK++JMsednoa6/3Bq2ehWN0BvKLD4BNtU+21YcpHZK6CuLMECNMeAtbArghrICNPJEKMJu5C+ZryjuN1ZF7MjgJqRgCTscYRS+psEwS0GrQW+6o2fzk6zk7C0vjBg4H1flbDyKMVT/l6+oc5ei6A4z5ZxQlae+qHqcK9QwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=V+1h2I/i; arc=none smtp.client-ip=194.117.254.33
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=bgYz
-	Q023QCEOFph6EUgTHi0vVdD25uncinH1QX1E4EQ=; b=Jh0Q9Kkg9hoNCkqQXdhX
-	gcQkYx9o2x2ZvYqfkeWiPR4Rkaj1Zf3CajlD71h1nMVg0c+0U4UjtOWGqg/ZOPEX
-	/BTlcNWWF8rtomnudWesc7ZlFTxZBmXB1g7oavfNE1OPq3JejuM46kUz5UApMOir
-	5c+p8x6pM5dgbBnNjRjB7s/sydNLK/TL7Nyy5H6F0nb0XzI1esKAT0mKlBi2iktG
-	S4UawpvkqZ+Y7tSpLv/uy4aYQn0w82z6Ohw59LIuyUN6AkduqdwWrZLZsnl6+nEN
-	UEvaydNjnROjP+RQ9g8y3Vmupz74Mu64hEkIPhSzTbpzi0usr51RLyLOfM5wo/TI
-	6w==
-Received: (qmail 1683370 invoked from network); 13 Jan 2026 13:50:26 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Jan 2026 13:50:26 +0100
-X-UD-Smtp-Session: l3s3148p1@aJd4b0RI2soujnvx
-Date: Tue, 13 Jan 2026 13:50:24 +0100
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=7DPc
+	02BPDXRCPlk55tE1zQ0yL7hZ4M+jB2XH8eiaI/I=; b=V+1h2I/iWdDQ7lWhEi2l
+	9pJAtKZx+A6z/JC/8qe1ZTjaH2STVl1tsXNQ1KIX2ObdGT9BSYi4MCDq78mpqmPx
+	5SQtOie9cfkkiG9X8CBwC+lCS/Gf2q1FyXTbSYE+4TcaDFbDe32ocmZZXjefETjF
+	ahT8VBejvt3D6z050ICyY93HKlWeBwyhN0hZKQIwdh88FqKd4EI7gvt1sviqw2h2
+	OejEjQS8cjiHsCd45kYAY+lTCAwhLqu8/HPAFZvzaNEKS2Y2H4pfx3wAcsVYVk9+
+	qVsC6/DIoT3AD//boMi4BQobmP2E8+7hxyUKGtASFmqcsdWcBUP5Dvezz1/rYuJ2
+	dA==
+Received: (qmail 1687664 invoked from network); 13 Jan 2026 14:04:10 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Jan 2026 14:04:10 +0100
+X-UD-Smtp-Session: l3s3148p1@QnyfoERI7q0ujnvx
+Date: Tue, 13 Jan 2026 14:04:09 +0100
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, herbert@gondor.apana.org.au,
-	davem@davemloft.net, vkoul@kernel.org, andi.shyti@kernel.org,
-	lee@kernel.org, andrew+netdev@lunn.ch, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, linusw@kernel.org,
-	Steen.Hegelund@microchip.com, daniel.machon@microchip.com,
-	UNGLinuxDriver@microchip.com, olivia@selenic.com,
-	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	broonie@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-	lars.povlsen@microchip.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-i2c@vger.kernel.org, netdev@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-clk@vger.kernel.org, luka.perkov@sartura.hr,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 06/15] dt-bindings: i2c: atmel,at91sam: add
- microchip,lan9691-i2c
-Message-ID: <aWY_kMIX_G2iSltN@ninjato>
-References: <20251223201921.1332786-1-robert.marko@sartura.hr>
- <20251223201921.1332786-7-robert.marko@sartura.hr>
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: i2c: st,stm32-i2c: add 'power-domains'
+ property
+Message-ID: <aWZCyYc8QAY1LOtF@ninjato>
+References: <20251215-stm32-i2c-mp2x-dt-updates-v1-0-2738a05a7af8@foss.st.com>
+ <20251215-stm32-i2c-mp2x-dt-updates-v1-1-2738a05a7af8@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +67,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251223201921.1332786-7-robert.marko@sartura.hr>
+In-Reply-To: <20251215-stm32-i2c-mp2x-dt-updates-v1-1-2738a05a7af8@foss.st.com>
 
-On Tue, Dec 23, 2025 at 09:16:17PM +0100, Robert Marko wrote:
-> Document Microchip LAN969x I2C compatible.
+On Mon, Dec 15, 2025 at 01:19:40PM +0100, Alain Volmat wrote:
+> STM32 I2C may be in a power domain which is the case for the STM32MP2x
+> based boards. Allow a single 'power-domains' entry for STM32 I2C.
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Acked-by: Andi Shyti <andi.shyti@kernel.org>
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 
 Applied to for-next, thanks!
 
