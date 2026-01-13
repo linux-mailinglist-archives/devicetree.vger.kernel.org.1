@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-254753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAF6FD1B973
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:30:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1077D1B9AC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:36:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B0D8A3011EF7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:30:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F41DA300EA18
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273D534FF46;
-	Tue, 13 Jan 2026 22:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37DCF322B94;
+	Tue, 13 Jan 2026 22:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k9UNEkrz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aEd1jP+3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 027C634EF05;
-	Tue, 13 Jan 2026 22:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A1A632;
+	Tue, 13 Jan 2026 22:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768343405; cv=none; b=ldper4yqBnj+CR3FLpTqBuXkeZFHDVDmyxNU7ZLb/AEXrt4UDle8XbCpMtQBpw94wRqq7ZzzxzC6aFTYlmjv8P7/0IJdTZMZvMPFluJwBeEMifMCGT2sZBJMiMF7BxD86NkEtXvXbUXyLSzRmcNbusF5SJzZuEbuItAm62HUJdY=
+	t=1768343816; cv=none; b=a4/C7w1EttqjjxQ6K0oKaH8RefYaati4XXmxPMz4Dfd5cF1Hlivf94IJ7zPlyIIbUqFyoquWA1jqmFXk3nDwadq+QX8IX9ayIVaiUjUwUWhSeBWLrfGuAFLy5ypgS7dpNdSjlloUknQZI8FCkF3KysHq698wBAZY+CmS0vVO9XQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768343405; c=relaxed/simple;
-	bh=HhYgya/+gHZZL3BnlzehiCFBNBYrrXdk9ohT+saOEB0=;
+	s=arc-20240116; t=1768343816; c=relaxed/simple;
+	bh=KnVjavPiBn10fAwKoZ9AxMWWLrQDeyNt9CWuUHHMCaU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y/9iM77inlXQXZ344HQmGKmWtrxBQ7Rn1CreDeUYmjKjineuPjCa6OAXyWDjXucM8fzqap6qe0+LlS7jfH9xtw5KMTp1Y4lwTS2uCiFmm0dh5/mZsx02G/XxqiY0dNnHru4PTfe4gupD500QK0dhBb2m5VmTt7Iq/6VLXWmkIoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k9UNEkrz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62439C116C6;
-	Tue, 13 Jan 2026 22:30:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kqqltx8zxChlXMw8J0MrxouT0ykmwW5osvIaSK0/uPJy0Ma44wGx+dAUzmEVg3jiHoeFc3fgoxsJ6Imac5tYt2H6J9VZi03FVCr/V61shxKXJq8yyCrnD0c8bCOGoyNnLpcf+ACBJIGRK+2KKCsBZRTCKLV5XN+Kv8HnJN/jtI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aEd1jP+3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6461FC116C6;
+	Tue, 13 Jan 2026 22:36:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768343404;
-	bh=HhYgya/+gHZZL3BnlzehiCFBNBYrrXdk9ohT+saOEB0=;
+	s=k20201202; t=1768343815;
+	bh=KnVjavPiBn10fAwKoZ9AxMWWLrQDeyNt9CWuUHHMCaU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k9UNEkrzSjMl/w0ZA3UHVOgoZR6ZfgYF77Fdp1b6d5mcBmMTaPRQ1Yd25VgPUGyit
-	 2HtjtFKjF0TQJdj7UuNrJqqPX4fKIq3v+VY3q4wNdvwKxTQZz/uCAxVQlswbTu0j69
-	 13G1cMBRBsllf7Vtlt6fT2O7o4WBqaz0WZuZfA2gTP65PFBz4B/J3srLI0Wyy/fih+
-	 72y4bN3s/RhYejt4JZCKArQfgFVMZ/EQywshTc11ff8fWgc+ZyFgDTMjh4H2Nrhh3e
-	 1ACeuTDzMx97tDYgI+J6rWcSLStQlijzcKofHweCezpx/6Ofz0zDzV1UgIo4YiUxWf
-	 d1uH3rLoSdV9A==
-Date: Tue, 13 Jan 2026 16:30:03 -0600
-From: Rob Herring <robh@kernel.org>
+	b=aEd1jP+3Ckz+Toi+4/j3sSrkYBiGUhlh3646PpYh8fwZotQDP44U2fcLomASRxzA4
+	 ZJjIvL0zq7Bf2x/iH5LrGadET7fhRU16mfWwdxA685CK5VklFl5lhw7kl364Pd1viw
+	 fv4T23vynYdf4HskNp5o4aFZtYgt252xTwltgpPVochev2I37ztbFuQS/7GHZw96/w
+	 FaZl3/2LpUyi6P6eKIItQ5+ZEXv3LgX8HHy8DnagVtdiRD8s8LN6ci7HfpG86K2fSP
+	 q7KoYDaN4Nlzf8QEQkT+3oBhN36h/L5dZpupb7FZSEcFgBZsSZsumH8m4nMH3iMU6G
+	 Wuq9WJAjN2aSQ==
+Date: Tue, 13 Jan 2026 16:36:54 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, andrew@lunn.ch, olteanv@gmail.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, arinc.unal@arinc9.com,
-	Landen.Chao@mediatek.com, dqfext@gmail.com, sean.wang@mediatek.com,
-	daniel@makrotopia.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH] dt-bindings: net: dsa: mt7530: Allow interrupts-extended
- dependency
-Message-ID: <20260113223003.GA198961-robh@kernel.org>
-References: <20260113110020.37013-1-angelogioacchino.delregno@collabora.com>
+Cc: davem@davemloft.net, conor+dt@kernel.org, andrew@lunn.ch,
+	matthias.bgg@gmail.com, gregory.clement@bootlin.com,
+	kernel@collabora.com, devicetree@vger.kernel.org,
+	linux-crypto@vger.kernel.org, atenart@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	sebastian.hesselbarth@gmail.com, herbert@gondor.apana.org.au,
+	linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: crypto: inside-secure,safexcel: Add
+ SoC compatibles
+Message-ID: <176834381386.366633.8858781364146409753.robh@kernel.org>
+References: <20260112145558.54644-1-angelogioacchino.delregno@collabora.com>
+ <20260112145558.54644-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,49 +63,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260113110020.37013-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260112145558.54644-2-angelogioacchino.delregno@collabora.com>
 
-On Tue, Jan 13, 2026 at 12:00:20PM +0100, AngeloGioacchino Del Regno wrote:
-> When the MT7530 switch is configured as an interrupt-controller it
-> also needs an interrupt but, in this case, only "interrupts" was
-> allowed.
-> 
-> Some devicetrees instead use the interrupts-extended property as a
-> shorter form, and in place of "interrupts" and "interrupt-parent",
-> as an equivalent.
-> 
-> For this reason, when interrupt-controller is present, depend on
-> either `interrupts` or `interrupts-extended`; this also resolves
-> some dtbs_check warnings.
+
+On Mon, 12 Jan 2026 15:55:55 +0100, AngeloGioacchino Del Regno wrote:
+> Add SoC specific compatibles for the SafeXcel crypto engine,
+> including one for the EIP197B used by Marvell Armada CP110 and
+> and two for the EIP97IES used by Marvell Armada 3700 and by
+> MediaTek MT7986.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml       | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+>  .../bindings/crypto/inside-secure,safexcel.yaml           | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index 815a90808901..ffeb8d5836fe 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -279,8 +279,11 @@ allOf:
->          - resets
->          - reset-names
->  
-> -  - dependencies:
-> -      interrupt-controller: [ interrupts ]
-> +  - anyOf:
-> +      - dependencies:
-> +          interrupt-controller: [ interrupts ]
-> +      - dependencies:
-> +          interrupt-controller: [ interrupts-extended ]
 
-We already fixup this case:
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-dependencies:
-  interrupts: ...
-
-And there's a few other cases like yours. So I've pushed a dtschema 
-change to handle this case.
-
-Rob
 
