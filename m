@@ -1,46 +1,56 @@
-Return-Path: <devicetree+bounces-254636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC0ACD1A41E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:29:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89263D1A3D0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:27:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 413DC300942B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:24:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D7F7A30687AF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADDC92DCC08;
-	Tue, 13 Jan 2026 16:24:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA302EDD74;
+	Tue, 13 Jan 2026 16:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VB+/Nkgr"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="bFsn/J3v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD201F5825;
-	Tue, 13 Jan 2026 16:24:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768321489; cv=none; b=lHRRbp/DZ2sfMt7QRb4LrBwK0N3ZFuNMzIPIEb74Z6XtruV8+EkNgK02FYWwaopS3M4lLAQnWkuJRHyMgIkpHniovRiLnw40TO8ANcjLiebBc8NDsY870n219/kaT2EeWujgSzKfjxhO9SLKSBBXeXlpaWPSUNzv4gAPU4p6DpY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768321489; c=relaxed/simple;
-	bh=S7XOKbzqmq6CsP63WbNJcLIrkjpbeR6VrYHgR3rW9Vg=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 733521A2392;
+	Tue, 13 Jan 2026 16:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768321571; cv=pass; b=k6j1Wb1Glyudic7rm+jp57Lu+E/mUdzGJlbvjd3UqDCIYB++K2lHgmje20q5F4wzMXmeqGvIM+Tfmb1qer88Y4CtaXXpUHeNbltCqjY2Gc79t0OHzroP31BAyrITR2WNEK+04a7+3Y4dDU4HzLBjnfwxiyCJ9Jx53sb57GMX9BU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768321571; c=relaxed/simple;
+	bh=8N4Z3VgUP3MWafV03tf45truWB+Bm887dDFsDVFqNtQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ddZqGldbPvPSGjH97ruFuKLet19esCiRHMyTwmp3P4xq5yXTMPqZ99TjuXNdIp03arxwbCjjMAEfVdey8MPOBi/4+Gkl5yWLUIcCzvRrOJmwUvMb5NkfuP+d154xUBX4boDFmyUY8KzEpSGxIdZJhYYrWiOMSvwnxvvdiXyQtOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VB+/Nkgr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6662CC116C6;
-	Tue, 13 Jan 2026 16:24:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768321489;
-	bh=S7XOKbzqmq6CsP63WbNJcLIrkjpbeR6VrYHgR3rW9Vg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VB+/Nkgr6DfbYwqZ6ZJq0bX9WjNN447u6tnyFjpXtibnDd4pFFRsznUf4gfWUV+KS
-	 z6qu4vUXCz8mwSocFqlnYkAHvjpamlVxV6tNm+voIZa7dCLA/cDnARSY3a9s9Z8uvV
-	 nzJ71bqVt4YkThuIUIolJD6fArJlHQhwTJhfODe+WW4GFo4uX0N8Mo856B/2zRluJZ
-	 yfa7jdwr5pxIFVEmo8Qge8kl5NgACVdYSLsaEzrV3q8aoj4JHyKOSFOi7QVsucGDCf
-	 OSUlYRhfTB5sTrinAP/JvSr3j3joWl0jSD3C0qGz4XNQUpjk7OlYgzoDLXlU7CFxBH
-	 LQdSUtynkobHQ==
-Message-ID: <3c25d80a-460d-481d-82ae-7d8046750a22@kernel.org>
-Date: Tue, 13 Jan 2026 17:24:45 +0100
+	 In-Reply-To:Content-Type; b=T0q+acyD7SQc81SPaLtH+UioTL0DUmrH/DkLReQAQYvOrr8Ei1kdt/jZ88bp5Ej2BP+34kwUc5g64v/7fnG92vnfC90O0jjTQMV6J3iZ1GIXHNobavnqfLG49IKkF2r1Ebehc2E4A3K6Nu8j0lCDakTSl9YMhfhZnbfC9Sa+dLk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=bFsn/J3v; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1768321546; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=DLH1LzOnCusazCYXX75NuMLJP83JxGsgedB7KGa2sOKG+ZQh30Ix6X7QNmnVES7B4DAWPiylYujhrPJE9ePCwSkntdEA5nL1CVKVfteb1RaoOj1wF2i9iVWdBt5d3+qpkgc3kik760CsUjrhjGNU/rcCApQeFD8K33jsNJx3dpY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1768321546; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=8MTiHfloStfO84sC7uhvGAOAjhnPQBxw01aUbUwJ3uE=; 
+	b=SIsa1Y1QhTpfxhlrqSjL11vkUWAxF4a14NFrBtl6MFGqPyH+MBBvJ1Pq0koF5F3ZfIv9DRZV/OGVvAP6TphHRk/eY/Nxj3li1dCQKtyGDIZPNXrrMsAcaK8AFQByg4q3VTz2Nn+c++AEG3M962pc0JuQ7h+kt4LacuI63sX/hVU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768321546;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=8MTiHfloStfO84sC7uhvGAOAjhnPQBxw01aUbUwJ3uE=;
+	b=bFsn/J3vxgypV86zjeTIuOFJba9OL7HTRMgwvfjDsAWBPlJqF5E9KD/xVc6mLg/A
+	z699RwO9we9zu32cwiVCaTr0RyW756EanyoVO6BITFHOkh7cbSZHv6VO63qwc4PN1T8
+	v4A4I79/8OHgO7pEwg7pT5zNNzTrbj1vp17KxPV4=
+Received: by mx.zohomail.com with SMTPS id 1768321544021680.0980354267477;
+	Tue, 13 Jan 2026 08:25:44 -0800 (PST)
+Message-ID: <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
+Date: Tue, 13 Jan 2026 17:25:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,89 +58,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: auxdisplay: Add titanmec,tm1637
-To: Siratul Islam <email@sirat.me>, andy@kernel.org, geert@linux-m68k.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260113040242.19156-1-email@sirat.me>
- <20260113040242.19156-3-email@sirat.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
+To: Will Deacon <will@kernel.org>
+Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+ kernel@collabora.com
+References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
+ <20260107101005.84039-4-benjamin.gaignard@collabora.com>
+ <aWZui-rn5RDPwpEO@willie-the-truck>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260113040242.19156-3-email@sirat.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <aWZui-rn5RDPwpEO@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 13/01/2026 05:02, Siratul Islam wrote:
-> +title: TM1637 7-segment LED display controller
-> +
-> +maintainers:
-> +  - Siratul Islam <email@sirat.me>
-> +
-> +description:
-> +  The TM1637 is a 7-segment LED display controller with a two-wire serial
-> +  interface. It can drive up to 4 digits and includes brightness control.
-> +
-> +properties:
-> +  compatible:
-> +    const: titanmec,tm1637
-> +
-> +  clk-gpios:
-> +    maxItems: 1
-> +    description: GPIO for clock line
-> +
-> +  dio-gpios:
-> +    maxItems: 1
-> +    description: GPIO for data input/output line
 
-So you are bitbanging in the kernel? This looks too tightly coupled to
-the implementation. If this is some sort of standard interface, I would
-expect following standard bus-child relationship, like i2c, spi, serial
-or even 1-wire.
+Le 13/01/2026 à 17:10, Will Deacon a écrit :
+> Hi Benjamin,
+>
+> Thanks for posting a v11.
+>
+> On Wed, Jan 07, 2026 at 11:09:53AM +0100, Benjamin Gaignard wrote:
+>> The Verisilicon IOMMU hardware block can be found in combination
+>> with Verisilicon hardware video codecs (encoders or decoders) on
+>> different SoCs.
+>> Enable it will allow us to use non contiguous memory allocators
+>> for Verisilicon video codecs.
+>> If both decoder and this iommu driver are compiled has modules
+>> there is undefined symboles issues so this iommu driver could
+>> only be compiled has built-in.
+>>
+>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> ---
+>> changes in version 11:
+>> - Fix dependency issue when decoder driver is build as module.
+>>
+>>   drivers/iommu/Kconfig     |  11 +
+>>   drivers/iommu/Makefile    |   1 +
+>>   drivers/iommu/vsi-iommu.c | 808 ++++++++++++++++++++++++++++++++++++++
+>>   include/linux/vsi-iommu.h |  21 +
+>>   4 files changed, 841 insertions(+)
+>>   create mode 100644 drivers/iommu/vsi-iommu.c
+>>   create mode 100644 include/linux/vsi-iommu.h
+> Based on your reply to v9:
+>
+> https://lore.kernel.org/all/0eff8b1a-c45f-47b1-a871-59f4a0101f0f@collabora.com/
+>
+> I took another look at this to see whether it had changed significantly
+> from v6 when compared to the rockchip driver. Sadly, they still look
+> very similar to me and I continue to suspect that the hardware is a
+> derivative. I really don't understand why having a shared implementation
+> of the default domain ops is difficult or controversial. Have you tried
+> to write it?
+>
+> However, given that nobody from the Rockchip side has contributed to the
+> discussion and you claim that this is a distinct piece of IP, I don't
+> want to block the merging of the driver by leaving the conversation
+> hanging.
+>
+> There is still one thing I don't understand (which, amusingly, the
+> rockchip driver doesn't seem to suffer from):
+>
+>> +static void vsi_iommu_flush_tlb_all(struct iommu_domain *domain)
+>> +{
+>> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+>> +	struct list_head *pos;
+>> +	unsigned long flags;
+>> +
+>> +	spin_lock_irqsave(&vsi_domain->lock, flags);
+>> +
+>> +	list_for_each(pos, &vsi_domain->iommus) {
+>> +		struct vsi_iommu *iommu;
+>> +		int ret;
+>> +
+>> +		iommu = list_entry(pos, struct vsi_iommu, node);
+>> +		ret = pm_runtime_resume_and_get(iommu->dev);
+>> +		if (ret < 0)
+>> +			continue;
+>> +
+>> +		spin_lock(&iommu->lock);
+>> +
+>> +		writel(VSI_MMU_BIT_FLUSH, iommu->regs + VSI_MMU_FLUSH_BASE);
+>> +		writel(0, iommu->regs + VSI_MMU_FLUSH_BASE);
+>> +
+>> +		spin_unlock(&iommu->lock);
+>> +		pm_runtime_put_autosuspend(iommu->dev);
+>> +	}
+>> +
+>> +	spin_unlock_irqrestore(&vsi_domain->lock, flags);
+>> +}
+> [...]
+>
+>> +static const struct iommu_ops vsi_iommu_ops = {
+>> +	.identity_domain = &vsi_identity_domain,
+>> +	.release_domain = &vsi_identity_domain,
+>> +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
+>> +	.of_xlate = vsi_iommu_of_xlate,
+>> +	.probe_device = vsi_iommu_probe_device,
+>> +	.release_device = vsi_iommu_release_device,
+>> +	.device_group = generic_single_device_group,
+>> +	.owner = THIS_MODULE,
+>> +	.default_domain_ops = &(const struct iommu_domain_ops) {
+>> +		.attach_dev		= vsi_iommu_attach_device,
+>> +		.map_pages		= vsi_iommu_map,
+>> +		.unmap_pages		= vsi_iommu_unmap,
+>> +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
+> This has no callers and so your unmap routine appears to be broken.
 
-> +
-Best regards,
-Krzysztof
+It is a leftover of previous attempt to allow video decoder to clean/flush
+the iommu by using a function from the API.
+Now it is using vsi_iommu_restore_ctx().
+I while remove it in version 12.
+
+Thanks for your review.
+Benjamin
+
+>
+> Will
 
