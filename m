@@ -1,81 +1,62 @@
-Return-Path: <devicetree+bounces-254606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44579D19CA9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:15:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65387D19CCC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:18:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1B19630A9EB4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:10:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4C4F63035CEC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748A53921C8;
-	Tue, 13 Jan 2026 15:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E54E2E2679;
+	Tue, 13 Jan 2026 15:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BP389UcA"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="hQ8aVbNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C62DC38F956
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 15:10:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB53C279DC8;
+	Tue, 13 Jan 2026 15:11:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768317009; cv=none; b=ECxo5U4xj0abdw7KjJVN3UfVvTXvEVHEX2dAyxR7eTC53vpTYdxj1X3AuyNUgQqJTU7v2l+TSWwIvZwh1w7OwhjVMRiDmpJNYR3PPbeGcWwpOn+9CkCmN8vNTLlbS4D6v2CAw7PPJK38rfur4QNbeRaCjcB0ba+uq5ETIfeAqSE=
+	t=1768317090; cv=none; b=ILK8PdaAwvqciMXWPFZxTKPjzFbywuZgOSCUoQvpyBBqjEiATa7PFG56jZQD5pc1k2xFUIY7LXtW5fwBTKtAQ7Yjzrcww+fdfR2RFfUbQPGsxtzQOQPSAmFP3jzG01F0b7flJYy3zM38qLfqdCDLCIf0bzn17yKFvDp/Etchotg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768317009; c=relaxed/simple;
-	bh=Gxb3l2ZkVTN8/AW+TlsPGmW4d4paIYYrU+ykzKv31xc=;
+	s=arc-20240116; t=1768317090; c=relaxed/simple;
+	bh=bytzEBphdnUDiq59jCY+y+9/lSfdJjO2JXZ6AF5/lVk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BZjbYyzvBq4ufuSlybarI116VJykOgYzqXjbOr52j4oyfiI3W3ClBnPkhO0kwv9A4zDDzXzWpuKTMZ9oD0VIQQDohHr5Yp7CsTuX/kzNac2e4JjcEwwCWrfCZC3DNvZlkf2Q17lbOHV125F0AYTWXCWwl+DEs1q+K2Dui7K1ay4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BP389UcA; arc=none smtp.client-ip=74.125.82.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2b04a410f42so6648310eec.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 07:10:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768317007; x=1768921807; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=tsl7cqadgB0ILyuJ5pleT6+lRwkh2wBTJUg/m3d1c4U=;
-        b=BP389UcAySGw8CojUXWpYT0ugKU8kcOw8Ry293mBVkM9l+B5darYDR/fXN3YoG2e8s
-         fScPzbpax3TidGuVvrWlnYj53fhLrCDG6X0/5iwHBiHdUKkZYLFqZ8x5xBDih6+EiIfp
-         0RfBwqpFsqVgCggxO53+3dHwVp8zdwXC3jY1lA+zTwbSFUFg9TPK8oNmouEqyUO+Ei+J
-         Xh8IrZPuvXdVWKcza88WAU/H20D5HDptR7Tua2pbQUxOA/ED2ylophfhiktlM+XsyjFq
-         nRs24hylYsMWUv5R1Q75nmMPKAFrIA08rt4ILKvkGCdvuWjrGXwA/DsbgVDOgjlriSaj
-         0s5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768317007; x=1768921807;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tsl7cqadgB0ILyuJ5pleT6+lRwkh2wBTJUg/m3d1c4U=;
-        b=fvUJoLop76GVh7oJRpfNQ8kcvNhCCEmuLLYC+jeMkhAF+ELGzlCs7p/wtblTw+BKhr
-         YOzk+Joilp3cRQCsXQmst8Tor9xB1JZXJNwW/5jqelhB3Dpci6U4wLMO8jjkBWY0Q8Yg
-         gOjksPux8W0d96J42LF6pewTLkD/xkTVrI208fFXR0qTfvdEsDZ8Rm/wIBL1ziwmpOyX
-         uDXbLZk42BMkPfWHRrpw8h4ysPNjRoB8HWlYCvcH6uYDDvcCkiOFCAObuJY191GT7WkU
-         kk5WUr2IrXMt/dV39JSqApaIxBNInaPnQFacWHWGH2qt15gF77nfao//hnHgonZIdPkW
-         MJyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWpg3Otuxn332E3Z5HaDPAWWbkRfpRQTS1LkyNEtt+pHnrHlnGZCzE4aQZhhbjgG9Jo0BNyYkiwX4P/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeqMDWyVfHDs4qehYqpkEPvIF8rd905YrHwFD7HGVCCTfgkxd3
-	x23BMKYwJ1RZK2yHxmMPN542ajv8xoczdJVSRGneQlvTTOWf3+KS/IzG2BjnuQ==
-X-Gm-Gg: AY/fxX7w0U1nNk9nFjkEyDyW6FtyE8UefVn/Pdeler2Ln1ocKhSxYKdY60GZNZ1nvyy
-	2uyDYktUTLm7eF6UKScswMvFhfR347Heic7tQGzGob0QlJQSnqGDiiKvrDSqshAVCppWdx51qtB
-	VQtcqkb6sVNIw4OBWYVO9X8LWj/jGqQ/Q/6sXpR/vd0AkDs9ywNbqXrB+KTVk5qYZZemPnPeI9w
-	MNX3sxy/smkNHiN/+gl4Uch+KanJXTGpvp0pW2XseFxKfl9My/Q1Oy6JaPxJEoFH3I3P/CDCV9d
-	5/5ee9LHhGJh3E9uf6M4iCycJIzjkhIPRJ8nSFokhuR3loxe4Dp7rEi1BIFoaqVr3ralOzRNgiS
-	Ka1K+cJlAsyKC+hzoVYuB5HjL8ErXQDKOQMqej4nEpD5E77Kn2PyMn0aMZRi61lbbWVKUs2fX6i
-	AEyl6vcUP7rLTu4Vvar9m1OiH2LzT/mRgUwTBy1ydS9SZVb0cwS+Z49pmRxexT
-X-Google-Smtp-Source: AGHT+IHDyD5oG2uXUZIVEGCqh29+M+KMR34zeyrN9l/9A7q54mG4sz3mCfwqFTvAWjK975OSjaMbCw==
-X-Received: by 2002:a05:7301:1e8f:b0:2ae:5d3b:e1c6 with SMTP id 5a478bee46e88-2b17d31c5a3mr26669210eec.21.1768317006674;
-        Tue, 13 Jan 2026 07:10:06 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b1706a6386sm17950034eec.14.2026.01.13.07.10.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jan 2026 07:10:06 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f0d230be-676b-47b9-9565-22319b8e62cc@roeck-us.net>
-Date: Tue, 13 Jan 2026 07:10:04 -0800
+	 In-Reply-To:Content-Type; b=UXfA36ZP8gpWVTSx3CZyuq7YlICxw3fgjkwuxQdKNV0csp2ARrxCbbGjsUIAp1ramhhqiacNcEoTba7NHPjAldyzvrNtggWLsopN7r/xD3SPrEaecJdledK5rTASM+d7M8IpqQ01PfTibZjdOO8CIwkIU7iZ1+2qx8P54mwzFzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=hQ8aVbNg; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id D414160029BD;
+	Tue, 13 Jan 2026 15:11:25 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id EFa79Lnypwl6; Tue, 13 Jan 2026 15:10:55 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id E9591600140A;
+	Tue, 13 Jan 2026 15:10:54 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1768317055;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xbxfq9jp74vtOydBQ9RJUch+aysnR2/gbokPt1O0PRU=;
+	b=hQ8aVbNgfgrCXaG1NnhxmbPhehvMedmR85kuHoWkKJfQof85QlT61K7wLPQtao65dlgEeS
+	pfAgnNKdSEz3gqPePO9+GB4XiOepQjmxDyiABWzmZ9trqhy8iM0MFZVSo7Eyl7HcX7vbFS
+	hBNUfhA4S4XD9rwl5rJ8MCJQtjHw8NJXb1cbeWlnwuNSn2ZhjNh7y/1LrmVJOEcLtkfvIK
+	32ARMFWkPMXN17ZtZXKgCHXcN00QRr+wtCDG0KMKrDI+tKzgI8mYaRiu4oLd2zRbXrbUAy
+	U7XUYzexKWK/NEfEAj6SFpj7W5jgVQQH8BDHf1XrbrE3iS+mTk0EVzFRFgmb6w==
+Received: from [192.168.2.110] (unknown [148.63.39.39])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 7AA72360107;
+	Tue, 13 Jan 2026 15:10:54 +0000 (WET)
+Message-ID: <c3f54ffb-cf4b-47ae-871a-6dd60b17c9cb@tecnico.ulisboa.pt>
+Date: Tue, 13 Jan 2026 15:10:54 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,82 +64,188 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] hwmon:(pmbus/tda38740a) TDA38740A Voltage
- Regulator Driver
-To: ashish yadav <ashishyadav78@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ASHISH YADAV <Ashish.Yadav@infineon.com>
-References: <20260107144507.46491-1-Ashish.Yadav@infineon.com>
- <03da3b10-dfe9-466a-9dc9-b51e29938e3e@roeck-us.net>
- <CAJKbuCYcRMrX5H5rWXWXOz4FCZi5iu8CCE2Oi3WEsWqEikqsYg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] phy: tegra: xusb: Fix ordering issue when switching
+ roles on USB2 ports
+To: Jon Hunter <jonathanh@nvidia.com>, Mathias Nyman
+ <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
+ <20251204-diogo-tegra_phy-v1-3-51a2016d0be8@tecnico.ulisboa.pt>
+ <86cd3ff0-1609-44cb-911c-f0e97652ca1b@nvidia.com>
+ <ae36f759-e889-4371-8c08-b8ffd1b69250@tecnico.ulisboa.pt>
+ <703a470d-87fc-4580-a743-952e422984d4@nvidia.com>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <CAJKbuCYcRMrX5H5rWXWXOz4FCZi5iu8CCE2Oi3WEsWqEikqsYg@mail.gmail.com>
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <703a470d-87fc-4580-a743-952e422984d4@nvidia.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/12/26 23:24, ashish yadav wrote:
 
->> The need for this, especially why it would only be needed for PMBUS_READ_VOUT
->> but not for any other VOUT related commands, is still insufficiently explained
->> (and I failed to understand the rationale provided earlier).
+
+On 1/13/26 14:48, Jon Hunter wrote:
+> 
+> On 13/01/2026 14:05, Diogo Ivo wrote:
 >>
+>>
+>> On 1/13/26 11:56, Jon Hunter wrote:
+>>>
+>>> On 04/12/2025 21:27, Diogo Ivo wrote:
+>>>> The current implementation of USB2 role switching on Tegra relies on
+>>>> whichever the previous USB controller driver was using the PHY to first
+>>>> "yield" it back to USB_ROLE_NONE before the next controller configures
+>>>> it for the new role. However, no mechanism to guarantee this ordering
+>>>> was implemented, and currently, in the general case, the configuration
+>>>> functions tegra_xhci_id_work() and tegra_xudc_usb_role_sw_work() end up
+>>>> running in the same order regardless of the transition being HOST- 
+>>>> >DEVICE
+>>>> or DEVICE->HOST, leading to one of these transitions ending up in a
+>>>> non-working state due to the new configuration being clobbered by the
+>>>> previous controller driver setting USB_ROLE_NONE after the fact.
+>>>>
+>>>> Fix this by introducing a helper that waits for the USB2 port’s current
+>>>> role to become USB_ROLE_NONE and add it in the configuration functions
+>>>> above before setting the role to either USB_ROLE_HOST or
+>>>> USB_ROLE_DEVICE. The specific parameters of the helper function are
+>>>> choices that seem reasonable in my testing and have no other basis.
+>>>
+>>> This is no information here about why 6 * 50/60us is deemed to be 
+>>> sufficient? May be it is, but a comment would be nice.
+>>>
+>>>> This was tested on a Tegra210 platform (Smaug). However, due to the 
+>>>> similar
+>>>> approach in Tegra186 it is likely that not only this problem exists 
+>>>> there
+>>>> but that this patch also fixes it.
+>>>>
+>>>> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+>>>> ---
+>>>>   drivers/phy/tegra/xusb.c            | 23 +++++++++++++++++++++++
+>>>>   drivers/usb/gadget/udc/tegra-xudc.c |  4 ++++
+>>>>   drivers/usb/host/xhci-tegra.c       | 15 ++++++++++-----
+>>>>   include/linux/phy/tegra/xusb.h      |  1 +
+>>>>   4 files changed, 38 insertions(+), 5 deletions(-)
+>>>>
+>>>> diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
+>>>> index c89df95aa6ca..e05c3f2d1421 100644
+>>>> --- a/drivers/phy/tegra/xusb.c
+>>>> +++ b/drivers/phy/tegra/xusb.c
+>>>> @@ -740,6 +740,29 @@ static void 
+>>>> tegra_xusb_parse_usb_role_default_mode(struct tegra_xusb_port *port)
+>>>>       }
+>>>>   }
+>>>> +bool tegra_xusb_usb2_port_wait_role_none(struct tegra_xusb_padctl 
+>>>> *padctl, int index)
+>>>> +{
+>>>> +    struct tegra_xusb_usb2_port *usb2 = 
+>>>> tegra_xusb_find_usb2_port(padctl,
+>>>> +                                      index);
+>>>> +    int retries = 5;
+>>>> +
+>>>> +    if (!usb2) {
+>>>> +        dev_err(&usb2->base.dev, "no port found for USB2 lane 
+>>>> %u\n", index);
+>>>
+>>> This appears to be a bug. If !usb2 then dereference usb2->base anyway.
+>>
+>> It is a bug, will fix in v2.
+>>
+>>>> +        return false;
+>>>> +    }
+>>>> +
+>>>> +    do {
+>>>> +        if (usb2->role == USB_ROLE_NONE)
+>>>> +            return true;
+>>>> +
+>>>> +        usleep_range(50, 60);
+>>>> +    } while (retries--);
+>>>> +
+>>>> +    dev_err(&usb2->base.dev, "timed out waiting for USB_ROLE_NONE");
+>>>> +
+>>>> +    return false;
+>>>> +}
+>>>> +
+>>>>   static int tegra_xusb_usb2_port_parse_dt(struct 
+>>>> tegra_xusb_usb2_port *usb2)
+>>>>   {
+>>>>       struct tegra_xusb_port *port = &usb2->base;
+>>>> diff --git a/drivers/usb/gadget/udc/tegra-xudc.c b/drivers/usb/ 
+>>>> gadget/ udc/tegra-xudc.c
+>>>> index 0c38fc37b6e6..72d725659e5f 100644
+>>>> --- a/drivers/usb/gadget/udc/tegra-xudc.c
+>>>> +++ b/drivers/usb/gadget/udc/tegra-xudc.c
+>>>> @@ -698,8 +698,12 @@ static void 
+>>>> tegra_xudc_restore_port_speed(struct tegra_xudc *xudc)
+>>>>   static void tegra_xudc_device_mode_on(struct tegra_xudc *xudc)
+>>>>   {
+>>>> +    int port = tegra_xusb_padctl_get_port_number(xudc->curr_utmi_phy);
+>>>>       int err;
+>>>> +    if (!tegra_xusb_usb2_port_wait_role_none(xudc->padctl, port))
+>>>> +        return;
+>>>> +
+>>>>       pm_runtime_get_sync(xudc->dev);
+>>>>       tegra_phy_xusb_utmi_pad_power_on(xudc->curr_utmi_phy);
+>>>> diff --git a/drivers/usb/host/xhci-tegra.c b/drivers/usb/host/xhci- 
+>>>> tegra.c
+>>>> index 9c69fccdc6e8..9944593166a3 100644
+>>>> --- a/drivers/usb/host/xhci-tegra.c
+>>>> +++ b/drivers/usb/host/xhci-tegra.c
+>>>> @@ -1352,18 +1352,23 @@ static void tegra_xhci_id_work(struct 
+>>>> work_struct *work)
+>>>>       struct tegra_xusb_mbox_msg msg;
+>>>>       struct phy *phy = tegra_xusb_get_phy(tegra, "usb2",
+>>>>                               tegra->otg_usb2_port);
+>>>> +    enum usb_role role = USB_ROLE_NONE;
+>>>>       u32 status;
+>>>>       int ret;
+>>>>       dev_dbg(tegra->dev, "host mode %s\n", str_on_off(tegra- 
+>>>> >host_mode));
+>>>> -    mutex_lock(&tegra->lock);
+>>>
+>>> Extra blank line here.
+>>
+>> Will fix in v2.
+>>
+>>>> -    if (tegra->host_mode)
+>>>> -        phy_set_mode_ext(phy, PHY_MODE_USB_OTG, USB_ROLE_HOST);
+>>>> -    else
+>>>> -        phy_set_mode_ext(phy, PHY_MODE_USB_OTG, USB_ROLE_NONE);
+>>>> +    if (tegra->host_mode) {
+>>>> +        if (!tegra_xusb_usb2_port_wait_role_none(tegra->padctl,
+>>>> +                             tegra->otg_usb2_port))
+>>>> +            return;
+>>>> +        role = USB_ROLE_HOST;
+>>>> +    }
+>>>> +
+>>>> +    mutex_lock(&tegra->lock);
+>>>> +    phy_set_mode_ext(phy, PHY_MODE_USB_OTG, role);
+>>>>       mutex_unlock(&tegra->lock);
+>>>
+>>> I am trying to understand why you opted to implement it this way 
+>>> around and not add the wait loop after setting to the mode to 
+>>> USB_ROLE_NONE in the original code all within the context of the mutex?
+>>
+>> I did that to minimize the amount of time we wait while holding the
+>> mutex, as we can now possibly wait a significant amount of time for the
+>> role switch. Is this an unneccessary optimization?
 > 
-> It is specifically needed for READ_VOUT as it is being used by
-> external controller to monitor the rail health.
-> Other Vout related parameters are used internally in the IC to for
-> output voltage related protections and does not impact any external
-> decision making.
+> Do you mean it will be longer than a few 100us?
+
+Currently the worst case in wait_role_none() is around 300us but again
+this is simply because I chose the values with no criteria except that
+in my testing they have worked thus far. Do you have access to any
+internal documentation where the transition length is documented?
+
+In any case I think that the underlying principle of minimizing the time
+we hold the mutex is solid, no?
+
+Diogo
+
+> Jon
 > 
-
-Sorry, that doesn't really make sense. How would the chip know to match
-VOUT with its VOUT limits if both don't use the same scale ?
-
-Guenter
-
 
