@@ -1,101 +1,107 @@
-Return-Path: <devicetree+bounces-254540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EAF8D19250
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:46:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D100BD19371
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:57:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 47301302082D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:46:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E032030478F8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9EE38E5E8;
-	Tue, 13 Jan 2026 13:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 432253904ED;
+	Tue, 13 Jan 2026 13:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="mZ6EEVYi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOcJT2k2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC461509AB;
-	Tue, 13 Jan 2026 13:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1101C38E5E8;
+	Tue, 13 Jan 2026 13:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768311994; cv=none; b=uBzghOEkq7W7LjA91uCHqDJHJMGlzbCqHFyteWMHjTzNcDhdRBHvrSGihy/+HllxqdyzZQz/OPynvzn98cCH9kkpCzwo+Wjx0FD2YPlg/JSrtBG9tStAout+h4F2UMbAAU7ziYBiJkkfgOibdGll8Ia33prxEaxcu6NsYwfcLGU=
+	t=1768312196; cv=none; b=QVNjjB545FyxqU6i9Y0SkGjN3mMWt9V6q7/6/k1JP+n3izMecXwL1/i3YW0/AjnKvHTVJIor4qy9dMXTAacnz4WuuTG5DGv5HGcQ2KFhImaAFPmk561Xlz98r9ORwkkZgw9KzfLE9KShxUaUaNDuLLgIVeLf5hyg/Cc9XiNSyAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768311994; c=relaxed/simple;
-	bh=B1XKwTriXAjAkyFzryOp2BYHFzaZSQFWOI/BybvyBYw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JRBbgTlOUCKBGQ8XnJEQqvKGqpNSKKDlqstTz0VV5xPZtnNvu7Kwb7GH6SKkHKxmzQbFCFzVL7T+LXfBuNIAQCa0NRKEcNibr+YnVSdNc+exm/BDKOOJ5DX9nO0PH724weMk52Z1iGWugYT+2AKhFRb8iXo/W8OUguc1a+OcpVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=mZ6EEVYi; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dr9Wl230xz9tbf;
-	Tue, 13 Jan 2026 14:46:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768311987;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9ruF/DsgLWD0LRXxihhCM3ESkEbVG3zR2tbPJGjW51E=;
-	b=mZ6EEVYiZBBXdssndtpObyqnE1uihRU40kAdZos5gzlOWVPeu5Lq4cNGqaZgKTJ6p99jxz
-	7DyKSFZxk5a3Jq/KRvd8AVUW0KtjzwRQHkIJpto/M+PWwKWXYwXP1xgiQu1obNaxunmqF0
-	e1J4M0N+0znpD2GSehQI4mFwXtneGvZjD004PeWZ1k5eqWOO1dlGTk0PDc4nYKqRDR+DBp
-	6QSKDeT+nDTR+Z4h7ugsUvH2iy1P1AZKRN/pE3k8KnqSqfcinYJ0XhuTpFNkYu8JOmAwtJ
-	vnNKTNQHvYIk2qx02zy3RhtTSkpj9rjnS9EZfbLf6mKCS7mAlwnj/f7lwY8Axw==
-Message-ID: <16413d54-ee02-4939-af51-d7f9ab0404f7@mailbox.org>
-Date: Tue, 13 Jan 2026 14:46:21 +0100
+	s=arc-20240116; t=1768312196; c=relaxed/simple;
+	bh=p98FtoqAXFNOtD2ZQ6r64ILT019grpNp4nJQzPaUEMw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=p2RWClr4+C/+inhxhm6EOOiaaRI023OOUHxziP4CDrir3QnPCMtRpH64+X+Gxc6s72s+cczOsuxdEM6vnTiSSBQGcRPzuPD9RONzS6hbw94zw2qoptuFuyk7SpQqY93uYydBDwtt2JEubXuRBg3TEmTZ7sPWTvQCHLJyXZ6IAQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOcJT2k2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2991C16AAE;
+	Tue, 13 Jan 2026 13:49:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768312195;
+	bh=p98FtoqAXFNOtD2ZQ6r64ILT019grpNp4nJQzPaUEMw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=NOcJT2k2MN2KVBPuoChVgXNUzdNSQYkkqKUoHfB6D2jqwDBeV3AKNqDjjcqCkFl8b
+	 MXiHlCtPOU/9TZFVpLLVWqCAr0/mKMYUwl+lY0BkBABI3cxsAwn3w+7kU9VGm9M3V3
+	 KMqq2tDva2pcMkmzpwxO4wVAEJEsBOUjxjLcfrVe8Ak1t84NZofvXkerwuZuUQXe0B
+	 6VHe8UvAobPn8lHCy2BSk5AUHXDV+84DFP5Ncqo92N8UPRua74ul+P5XGL8UVSPVgx
+	 WWMXstrxCdKMeuS3VtEX7AKoPk2+SsDZKBTqFFYs1TmS6xroNejLl2vZeMgBflXKyr
+	 sPbZZrh9dBtgA==
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cy_huang@richtek.com
+Cc: Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ musk_wang@richtek.com, roy_chiu@richtek.com, allen_lin@richtek.com, 
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org
+In-Reply-To: <cover.1767948925.git.cy_huang@richtek.com>
+References: <cover.1767948925.git.cy_huang@richtek.com>
+Subject: Re: [PATCH 0/3] ASoC: Update rtq9128 document and source file
+Message-Id: <176831219353.70484.6698601019095177736.b4-ty@kernel.org>
+Date: Tue, 13 Jan 2026 13:49:53 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Fork Waveshare panels
- into separate document
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Sam Ravnborg <sam@ravnborg.org>, Simona Vetter <simona@ffwll.ch>,
- Thierry Reding <thierry.reding@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20260113000715.231238-1-marek.vasut+renesas@mailbox.org>
- <CAMuHMdVGsfCTzSSjh474Ohimad2W5h1Z=vNhS6zU=Lb9f5Zbxw@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <CAMuHMdVGsfCTzSSjh474Ohimad2W5h1Z=vNhS6zU=Lb9f5Zbxw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 588823f942cb957b9f4
-X-MBO-RS-META: nhcdrwhot3odx4wmekmq13qmg4s4teu5
+X-Mailer: b4 0.15-dev-47773
 
-On 1/13/26 10:13 AM, Geert Uytterhoeven wrote:
-
-Hello Geert,
-
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/panel/waveshare,dpi.yaml
->> @@ -0,0 +1,32 @@
->> +# SPDX-License-Identifier: GPL-2.0
+On Fri, 09 Jan 2026 17:03:51 +0800, cy_huang@richtek.com wrote:
+> This patch series include two parts
+> - Update initial setting for rtq9128 specific feature
+> - Add rtq9154 backward compatible with rtq9128
 > 
-> scripts/checkpatch.pl:
+> ChiYuan Huang (3):
+>   ASoC: codecs: rtq9128: Modify the chip initial setting
+>   dt-bindings: sound: rtq9128: Add rtq9154 backward compatible
+>   ASoC: codecs: rtq9128: Add compatible changes for rtq9154
 > 
->      WARNING: DT binding documents should be licensed (GPL-2.0-only OR
-> BSD-2-Clause)
->      #68: FILE: Documentation/devicetree/bindings/display/panel/waveshare,dpi.yaml:1:
-Sigh, fixed in V2, thanks .
+> [...]
 
-I'll send V2 in a few days to get some feedback on 2/2 first.
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/3] ASoC: codecs: rtq9128: Modify the chip initial setting
+      commit: daf86dcdbb40c4a0e4b8e579c6eecf148560711f
+[2/3] dt-bindings: sound: rtq9128: Add rtq9154 backward compatible
+      (no commit info)
+[3/3] ASoC: codecs: rtq9128: Add compatible changes for rtq9154
+      commit: 6be9ea62afedef0f976eb3dba4c117be0c1d3809
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
