@@ -1,197 +1,182 @@
-Return-Path: <devicetree+bounces-254673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03319D1AB74
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 18:47:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C08D1AB86
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 18:47:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C72F3041F7A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:45:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6006830021DF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507F6394469;
-	Tue, 13 Jan 2026 17:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281503939B1;
+	Tue, 13 Jan 2026 17:46:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Oar8G33g";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WCrmyVT0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AEED393DEC
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 17:45:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 983B2239E76
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 17:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768326302; cv=none; b=q1eWDNPWpjliS4Z0TLfNCX8I5cax2MRxZlvs7hatSLwTG0oO/I9+DS3hR2eP6c5rr6rEYf6kpdJpRypRNhOhXwwHghT/BhPaRpziRa+TTCINcM0bYyX7ycRhnY30spowhASg6IwKPVsjhVurqlpt+76aW32xY+Z91DDvZPdzLN4=
+	t=1768326414; cv=none; b=ZfcMInlNEF3R3J62B3BP22BlZyCUcg8cnCGxGY/Y0g8XlmUk+V+wZ8Xg9o1woz5ElHuc/ctxYwyqIfWZToCZQTZpWUOJ6puWNv7E+REhTKKzNEsjqR9IdyeGRYBBDwD4xLujMyvNBeTHRnT4VwyfeUhBHd7DleSsjX+4jaM/Pa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768326302; c=relaxed/simple;
-	bh=gru4oOn5Z4uZPsJ0ld3fd8SL8rSg/YQgIjZocoovrQc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=K/U6ZECw5qYoqzpOd5y/J2jeNrxun8haPlQWYpM8ps++pEOS2QGi+oVl/4l3LzFSxYZ9YRQk9bd+dJjDP4nM/O3M37duJzDkCbTPqRlugRwjKdXk6eJxFDFLbZjiaqlx+3VLn/zJbjyvdkVRnHLPzPVyXeh8U3RXmWxlM5Ee/mE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64d0d41404cso12895859a12.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:45:00 -0800 (PST)
+	s=arc-20240116; t=1768326414; c=relaxed/simple;
+	bh=kAm150RBe+Ve/uG5CPwxyZ1geCYlVSsPBaYdKA/Ie8Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E79GrlsyVdDqCqCeDOzfLgy7ENf17mJkNaBa6ftmeGb9HN+Hh7WYKKhZi1zZ2c5ZqFAqIMK3REgGvYVseTxwDiGOLDgPlJkf8ZWJ3WiYdAiFG9Ytsh/8Ewfwm/I1ziI6bObrKvQHQNQK6/sRyRc6j1xBKZGp4GahbI7Wcjdt+Yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Oar8G33g; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WCrmyVT0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60DEjPik4080763
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 17:46:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=c0Rmdrq5iPGvDKU3Zgg5zT1L
+	t9NNiWFpzo/icT2F5vw=; b=Oar8G33gVCvJsGFYXPPZ5rou3AMynNwQyDELaouu
+	854wRQY2/XMFDi/Pk4SW87Xi9u1WsJgzltJI9t++JF/HwIrMVDIqcdNu9veI6WKF
+	t974Fh9fsCioCE3gZCXMmDvL06acqBirn1uY8AZASUyVto4RJMVlXQZkt42eP5o2
+	aKT0ELIzZgjWY+0cxIvqlXQJWfhS9YbA61W1f/LbJOWBafn11FzLF1dD7bGVv42Z
+	Hi2stKaSDUxEnR/QTicAjJPKFSWNEkILR6Kclvwp8KfYFCgpYTMJ63dJxvdsyU/8
+	14GaLM0ns4w9UH/FuzRMnhSmhLf0LJeqlvuNtMMOLNDZOg==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bnr3e8n9k-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 17:46:51 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a089575ab3so82033785ad.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:46:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768326410; x=1768931210; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=c0Rmdrq5iPGvDKU3Zgg5zT1Lt9NNiWFpzo/icT2F5vw=;
+        b=WCrmyVT0AuwU36CwpgQrwuAsqDWxv927X9GTJt2uY5HJwH8jmSNdhs7DTPqa+3XVXl
+         dQZAAGWt4aJslS7Sb6ZsgUY7M1IG9RJ7t/5WlMYdUsqm5Viw0TfeW2Z8CsZ9pXduE4MJ
+         gPcBuQaxfT4Q6LH863544Xb1Z7teTafmat4dCDsGbr65/MY5wuKKg8Y2/TkKgftHmGX7
+         266P0DLrLBc4FgUAPiBTLy6hWei7XvyaG6TH0EOlgvloNXwEtllZnN1zTXqIV9ehL3QQ
+         7v3IjaahSGqSLMY2ezN/C2fQPDSxhUJC5nqiJUq71HLKBp2ZsCq9dtdeWnhBMvXj25xk
+         O1tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768326299; x=1768931099;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eavvu1t15qKvDTI2jSsLTlj8ivnyPIJR0TkymEC1eF0=;
-        b=reeKe0JArZXg0iz8MJcJsBC7medEocaUzxak/S+ZZQB/cJGd3SsrIfI9F7Yh3eCEgH
-         uzR7UvnXyYXgE55RVpxx+mV3Hom9O7heBZGjDSnPm6cggtsNUpCQOTAoBEdUxMlogarJ
-         9jQt/QH1pZdbT1PycFwu8K41/xsl1lTWI6mETBGp6jB/MDrqhULO8RpOG+/z0/3JU/KM
-         LVvnr9K0jRrxrpCHigTfkuJ3RgUl+ao18xyVX7Ejni8ploBo+I92wlX0R9Yr9xQXbOb1
-         iyfLeW66UiAjXRlkD3IXZVeaoVVj2N8GbCgimZiNkLCi7GAMCf7GX/RpmwgtD9G8tC9k
-         jO9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXz+GyfoG+6g7MO3V4K2fC+2SUc/9sGxzTuHUMM2v6s1BQHGjYMkOA8rMUaxEpUsKsUUpdX52kzw7uR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcfWxYFhlkpxQ/Pj1lI5apZMm9ZdApgWerySrCUfUVHX1CiTWj
-	jYrLbHvlKTNiQKazrdBq20JNTjfjhmqCAMKzK19DpWVEXxr3eMVprEbsMyCe4w==
-X-Gm-Gg: AY/fxX6D+LkxXLGmANZNr8Dng/YX5REDRsWakAZlBZhoOxAhXe/1OfrKC3w2m09tXD4
-	20I6zxU9zzS3Tl/Rk/VGHzmRh3naAa7H9W1U9S/J3R6PajMOdAEIHuUpDgHmloMwOeV0uoiJ36B
-	2ZI4n+6onf1gzlu+Iz6MphpzacAZAqSd/F+3PNEk9FsZNLE0+o0ITnka+eC+zYkHppuQAiAlnRU
-	UMT7eOhh904SGW2mCzR2YTIdFNYNGeFnfz81aZQ6j+h35JSbGQA97YKUHyZOVF9mDl3x9fCtUqw
-	EI0RAXXWFBndzFmSx7maHLa2I6Q7rgvF6VqF7/JISwIxBhBoSFksQksXgd/1DGcAq27tymv6sJq
-	IF0fHvrsjymFlT26p4XAz6lEUhY85tfTisOTJrHRVUtCi1A/v+3ThoQBAyqrRU1R20vpZ4ZNaB7
-	U8aEQBCMXeWdmBCw+3j4iHnekOGaa3MW2/HOPj6Mtvy02pCQ==
-X-Google-Smtp-Source: AGHT+IHjwdSSN4mTRKXDjSC9xCBKsqwskTn4GwaR+B+tRXZTp9WDKqbrL/GHsxrwpYwUo4qku7MY+g==
-X-Received: by 2002:a17:907:7742:b0:b87:1eaf:377c with SMTP id a640c23a62f3a-b871eaf3facmr466107266b.38.1768326298728;
-        Tue, 13 Jan 2026 09:44:58 -0800 (PST)
-Received: from [10.42.0.1] (cst-prg-36-231.cust.vodafone.cz. [46.135.36.231])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507be655aesm20873259a12.17.2026.01.13.09.44.55
+        d=1e100.net; s=20230601; t=1768326410; x=1768931210;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=c0Rmdrq5iPGvDKU3Zgg5zT1Lt9NNiWFpzo/icT2F5vw=;
+        b=Aua30IUR6wh6kXFmobeYZB2bc8Z6DHWA7XBES7uKzIprzRWrTgwqe2zA3GGrKW+/zs
+         lp/YWMvDBLP+r39Vvk05fMsOfnhrDLe+faghGTd620/K1kT1alP/YTsLIKk6N7NgLVeL
+         Z8tSpsDAp58ILRONrKuPPuRNlEE9BKyZbCOXtKc2Pzp03ku83UbvUipxLg4agN5Axat+
+         w/Cg/cBRkdXXZhMK5bZFqGfJkaNuMfl6VYvMCrJ9CjVD2Un8u0f/Szk1PLioOOH6TD4Z
+         YycO4+w7aNX5JFkqi9OKyYHde2LXCvCCSg23FstpKi32Lgg/HeehslSl3xX+OjkqO68V
+         2xjw==
+X-Forwarded-Encrypted: i=1; AJvYcCW2GrloPVZxYA7alff4Hlutg0l96f8u4kusPRqLfFhAK7wgg8eKTTfLwNxwqn64rxNVE9KZeAvu7zE7@vger.kernel.org
+X-Gm-Message-State: AOJu0YylKkcbkcKMaHTi8B/2ILodC+7czm9mlwPxz6UmtWgI16tp9pap
+	4rFwaSk+xDcb2C5hpg81Z8/pn7HxQXmqRl2NHIM6+IbyR/qgikA0jz/MEMXLszfK7PYOIk3ALeB
+	OxWjxma7BZ1tP/E1XRLwrqwvRjElR2L5v+qaVwOCEPaN8Oyi2izsnWd5e9lbRCXCT
+X-Gm-Gg: AY/fxX7YSN/XvTXZzEOTIucG2s6fl0yFzg5mSTOX3maHqwcQWxhXx6zhIIRyKlLIoXx
+	WO89nzm578EOR1xye7sQiNpB5mvn94PnRwd65Zdeq+IdTt6Ubjs+LmCuf/8nhNhaAfGcVqKgvH5
+	SraTQZr8ayANlv42vEXXd5tuSW/NUtH9nyxyJD5Gg/sX0dfL0oEDwj3fkISTt6IR1K5iFTOU8+E
+	yY0+A1iJ8NXIySgwKArMkZxrIscVrOOCUc7SpSpHJldmDWNWL8qDIjX1RZSUFimuQJxs5eMv1QS
+	6JqnteSis+lSAt80YrjPCJQnI2xKtee80wnuThhYQiRRYdWmk4Q0+4qi8ZyZrn0C2sXTKCnnf8S
+	RGpuXw1OFcTnlCzBrcVnXkNPJ/Q2RD8eEw1BA
+X-Received: by 2002:a17:903:3c30:b0:2a0:fe4a:d67c with SMTP id d9443c01a7336-2a3ee437a5dmr213955005ad.10.1768326410266;
+        Tue, 13 Jan 2026 09:46:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHjmaUwHmPjmnYmFWIlrdB/0BkZOSrvnSsyk0caCsNdSxAUjH1er6rZGGT7crdmlI15yfv2oA==
+X-Received: by 2002:a17:903:3c30:b0:2a0:fe4a:d67c with SMTP id d9443c01a7336-2a3ee437a5dmr213954565ad.10.1768326409700;
+        Tue, 13 Jan 2026 09:46:49 -0800 (PST)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cb2e1bsm208755305ad.60.2026.01.13.09.46.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 09:44:57 -0800 (PST)
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Date: Tue, 13 Jan 2026 18:44:39 +0100
-Subject: [PATCH 5/5] accel/thames: Add IOCTL for memory synchronization
+        Tue, 13 Jan 2026 09:46:49 -0800 (PST)
+Date: Tue, 13 Jan 2026 23:16:42 +0530
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Alexander Koskovich <AKoskovich@pm.me>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        hrishabh.rajput@oss.qualcomm.com,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
+Message-ID: <20260113174642.eba7zkptqnmrp6nm@hu-mojha-hyd.qualcomm.com>
+References: <b105810a-63a8-4d81-9ad8-b0788e2e1431@pm.me>
+ <e469548a-8d74-4d3b-9617-2b06f36013e2@oss.qualcomm.com>
+ <ABmlNqg6uJXJLkDZo3uaZLdrTCFIjRXOJ68Hrx1MnHHYMnPJ9_g7GW0HGRhZBKv4--_PANfXgTV7h-n7HFC51zKNW6JkmEhpB6_EhFQ27Rw=@pm.me>
+ <ee448445-8a6e-40ea-9464-1c2ae52b84cd@oss.qualcomm.com>
+ <pquvJnlBgedyrF5RUTrHBUoqCIR7sQMWjwvcpm-5MuqAOxcbLg7i4H2RkuI27usOGZO000h3c90TM_kr6c5UFfViPCzGXX5MNWKFHugevXE=@pm.me>
+ <20260113155821.7iesxxuf74ncr7ue@hu-mojha-hyd.qualcomm.com>
+ <a7RkLrctXwaW1s2WCUMkvMMk8imG2fGJBHbdsrljwgzYuSEpgRXlSRLrF4ONtCMxlT6hkHsvALfEOps7KBZWX1oIEMh-b9PHEFLqeC1CTI0=@pm.me>
+ <20260113164744.6lwz6oox6pdlxn7z@hu-mojha-hyd.qualcomm.com>
+ <tKcoAs2SS60FpZ7kb5BZTDoNFMgIBPe3Lvu59uksDQNhOoXPrF7bsvp7rs-s63V_xbnmqV0_nGXa-OiFW6V9a5waP3VK9lLxv30mxSayfF0=@pm.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260113-thames-v1-5-99390026937c@tomeuvizoso.net>
-References: <20260113-thames-v1-0-99390026937c@tomeuvizoso.net>
-In-Reply-To: <20260113-thames-v1-0-99390026937c@tomeuvizoso.net>
-To: Nishanth Menon <nm@ti.com>, "Andrew F. Davis" <afd@ti.com>, 
- Randolph Sapp <rs@ti.com>, Jonathan Humphreys <j-humphreys@ti.com>, 
- Andrei Aldea <a-aldea@ti.com>, Chirag Shilwant <c-shilwant@ti.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, linux-media@vger.kernel.org, 
- linaro-mm-sig@lists.linaro.org, Tomeu Vizoso <tomeu@tomeuvizoso.net>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <tKcoAs2SS60FpZ7kb5BZTDoNFMgIBPe3Lvu59uksDQNhOoXPrF7bsvp7rs-s63V_xbnmqV0_nGXa-OiFW6V9a5waP3VK9lLxv30mxSayfF0=@pm.me>
+X-Authority-Analysis: v=2.4 cv=TPFIilla c=1 sm=1 tr=0 ts=6966850b cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=k3Xfc6bkAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=nV5-Ws2sAuVwJ0BKl64A:9 a=CjuIK1q_8ugA:10 a=324X-CrmTo6CU4MGRt3R:22
+ a=vs4QOAmQMkZ3NkxV1SYa:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEzMDE0OCBTYWx0ZWRfX6yHSIlYnAPTU
+ VFdVr+wKhrKPeAuxqhZiEheMyTFuSAq/02xH6/5P53iI555t8lvaeHUt/zUPsQPNFBJcytdAQ0C
+ xUMIlW07CNhQFnf+4gdHj73+RQBHRZcWChxLEA+UgFjQDBxvu4i6HPS1hgAZL9sK3lcnu4qjHrc
+ q2DnPd0izJk98ESvlUQeYOROC5R/BdikYsJuiA+Unb/b/MnXglp4qcHdmnkQubrqfOGFysgVqIE
+ CZd+NvBMkrIXVrKilCVRy73PIqhMeb5Qyz+NqQNtad+UbC34CaRTlk1DQPa+HrEpAjylP9JPax6
+ 3l2Ktf5noeMp1bmFP1sYd2rBOzxlWedWmsY6MjhPyymt48PQrHDFzV+fXC5OMjtqxhYGTyzCR9P
+ k6HDkYV3ouazvBYF+9lB3Buh5gcvqWL4WnAog0Ax0ornQPuT4Dsn7pB7rTC3mveRT6XZEMnZBE9
+ KkKfNHpAcgJq+/G0Mnw==
+X-Proofpoint-GUID: pA7JTI36M4GS1nkJo8AIoHSNTqUQeqS2
+X-Proofpoint-ORIG-GUID: pA7JTI36M4GS1nkJo8AIoHSNTqUQeqS2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-13_04,2026-01-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 phishscore=0 clxscore=1015 spamscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601130148
 
-The DSP cores have their own access to the memory bus, and it isn't
-cache coherent with the CPUs.
+On Tue, Jan 13, 2026 at 04:55:56PM +0000, Alexander Koskovich wrote:
+> 
+> 
+> On Tuesday, January 13th, 2026 at 11:47 AM, Mukesh Ojha <mukesh.ojha@oss.qualcomm.com> wrote:
+> 
+> > Just to clarify you said, there is no issue if you just use dtb and not use dtbo ?
+> > And issue happen when you start using a dtbo, even a dummy one, right ?
+> 
+> Yeah, the cases are as follows:
+> 
+> dtb only (no arch_timer label) = boots
+> dtb (no arch_timer label) + dtbo = fails
+> dtb (has arch_timer label) + dtbo = boots
 
-Add IOCTLs so userspace can mark when the caches need to be flushed, and
-also when a writer job needs to be waited for before the buffer can be
-accessed from the CPU.
+Yes, this is expected..some nodes in dtb is expected which
+gets patched during boot up.
 
-Initially based on the same IOCTLs from the Etnaviv driver.
+https://gitlab.incom.co/cm-ayn/android_kernel_ayn_kernel/-/commit/7ae6565108654991aaac9b73a2221509511e59d3
 
-Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
----
- drivers/accel/thames/thames_drv.c |  2 ++
- drivers/accel/thames/thames_gem.c | 52 +++++++++++++++++++++++++++++++++++++++
- drivers/accel/thames/thames_gem.h |  4 +++
- 3 files changed, 58 insertions(+)
+One of the reason, you will see below change to fix one of the expected
+name qcom_scm in the downstream.
 
-diff --git a/drivers/accel/thames/thames_drv.c b/drivers/accel/thames/thames_drv.c
-index bf7355832241d5a671e196f465d891effaa4a8fb..9b72db433fbb8f9239a16a047a52520f0a01d125 100644
---- a/drivers/accel/thames/thames_drv.c
-+++ b/drivers/accel/thames/thames_drv.c
-@@ -76,6 +76,8 @@ static const struct drm_ioctl_desc thames_drm_driver_ioctls[] = {
- 	THAMES_IOCTL(BO_CREATE, bo_create),
- 	THAMES_IOCTL(BO_MMAP_OFFSET, bo_mmap_offset),
- 	THAMES_IOCTL(SUBMIT, submit),
-+	THAMES_IOCTL(BO_PREP, bo_prep),
-+	THAMES_IOCTL(BO_FINI, bo_fini),
- };
- 
- DEFINE_DRM_ACCEL_FOPS(thames_accel_driver_fops);
-diff --git a/drivers/accel/thames/thames_gem.c b/drivers/accel/thames/thames_gem.c
-index a153e73a15253e0f955d74020b4765a1fa833fc4..2ad5a62bea275eb38a96b9d9bea804ed94ffb011 100644
---- a/drivers/accel/thames/thames_gem.c
-+++ b/drivers/accel/thames/thames_gem.c
-@@ -353,3 +353,55 @@ int thames_ioctl_bo_mmap_offset(struct drm_device *ddev, void *data, struct drm_
- 
- 	return 0;
- }
-+
-+int thames_ioctl_bo_prep(struct drm_device *ddev, void *data, struct drm_file *file)
-+{
-+	struct drm_thames_bo_prep *args = data;
-+	struct drm_gem_object *gem_obj;
-+	struct drm_gem_shmem_object *shmem_obj;
-+	unsigned long timeout = drm_timeout_abs_to_jiffies(args->timeout_ns);
-+	long ret = 0;
-+
-+	if (args->reserved != 0)
-+		return -EINVAL;
-+
-+	gem_obj = drm_gem_object_lookup(file, args->handle);
-+	if (!gem_obj)
-+		return -ENOENT;
-+
-+	ret = dma_resv_wait_timeout(gem_obj->resv, DMA_RESV_USAGE_WRITE, true, timeout);
-+	if (!ret)
-+		ret = timeout ? -ETIMEDOUT : -EBUSY;
-+
-+	shmem_obj = &to_thames_bo(gem_obj)->base;
-+
-+	dma_sync_sgtable_for_cpu(ddev->dev, shmem_obj->sgt, DMA_FROM_DEVICE);
-+
-+	drm_gem_object_put(gem_obj);
-+
-+	return ret;
-+}
-+
-+int thames_ioctl_bo_fini(struct drm_device *ddev, void *data, struct drm_file *file)
-+{
-+	struct drm_thames_bo_fini *args = data;
-+	struct drm_gem_shmem_object *shmem_obj;
-+	struct thames_gem_object *thames_obj;
-+	struct drm_gem_object *gem_obj;
-+
-+	if (args->reserved != 0)
-+		return -EINVAL;
-+
-+	gem_obj = drm_gem_object_lookup(file, args->handle);
-+	if (!gem_obj)
-+		return -ENOENT;
-+
-+	thames_obj = to_thames_bo(gem_obj);
-+	shmem_obj = &thames_obj->base;
-+
-+	dma_sync_sgtable_for_device(ddev->dev, shmem_obj->sgt, DMA_TO_DEVICE);
-+
-+	drm_gem_object_put(gem_obj);
-+
-+	return 0;
-+}
-diff --git a/drivers/accel/thames/thames_gem.h b/drivers/accel/thames/thames_gem.h
-index 785843c40a89a9e84ab634aad77e9ec46111693e..e5a8278e98c578c2903cf23aea1bf887be0389e8 100644
---- a/drivers/accel/thames/thames_gem.h
-+++ b/drivers/accel/thames/thames_gem.h
-@@ -29,6 +29,10 @@ int thames_ioctl_bo_create(struct drm_device *ddev, void *data, struct drm_file
- 
- int thames_ioctl_bo_mmap_offset(struct drm_device *ddev, void *data, struct drm_file *file);
- 
-+int thames_ioctl_bo_prep(struct drm_device *ddev, void *data, struct drm_file *file);
-+
-+int thames_ioctl_bo_fini(struct drm_device *ddev, void *data, struct drm_file *file);
-+
- int thames_context_create(struct thames_file_priv *priv);
- 
- void thames_context_destroy(struct thames_file_priv *priv);
+https://lore.kernel.org/lkml/20251217-multi_waitq_scm-v11-1-f21e50e792b8@oss.qualcomm.com/
+
+> 
+> Alex
 
 -- 
-2.52.0
-
+-Mukesh Ojha
 
