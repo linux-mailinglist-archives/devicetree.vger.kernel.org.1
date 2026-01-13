@@ -1,161 +1,140 @@
-Return-Path: <devicetree+bounces-254259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D3FD169BD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 05:42:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD80D169C3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 05:45:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 57A3B301CEAF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 04:42:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 280A83026F20
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 04:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA92C35293E;
-	Tue, 13 Jan 2026 04:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E30B2DAFA8;
+	Tue, 13 Jan 2026 04:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="ndgCuU4I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YuVJsQA3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D66284883;
-	Tue, 13 Jan 2026 04:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F2E50097B
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 04:45:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768279358; cv=none; b=to8Ghc8qM85iSz7lLi2Qb8wZ5kpy0ys7tWiRnGYygTw3dRhVE8LsDAFscUhcod96PVTHnqDCaBS2MGUzSAWXr3v/3o1griM/sv6AN13FrPZQ4saT3Tse1ZUP8L9BzM5z1FFA4db9pgOu7Y76e7I9srura8vXrUcz4EQLkgPmkR8=
+	t=1768279532; cv=none; b=EvYXDUnwaitVymd3Cki4G/U8LzV+mfNojy/P3dbc4xjdXNIcPqdWpgNrRmJfz7hY448LZvWVrNIWWdks4ps0r2aBBuQP6B6zilI7BjCXyAtYKSeaCO+T+kenxBFOdEdRAECweVaaxlIxxECfgRRx190hyGLO2wLrzcf2i1J8Tdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768279358; c=relaxed/simple;
-	bh=qZ/QXwmlDf0NOn2hvRH4cNm9ljmV6HFHu7E2KJlf1tw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MJg+S2v1D7AIWimRRymvA6GnrN7a2x9+OXT3CHBJfNHR4B4R0hfkbduRNSBOfaXVQ+OngwHJZtKG2kyPJg3lF7TlJOGFdNk2ZFJMetA4jV0D01weBiO9bwmKagn0uAkLIWnGw5xorgPz+LTbaz/nnpC/fn8XVdVfwi9LDxoMfAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=ndgCuU4I; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+	s=arc-20240116; t=1768279532; c=relaxed/simple;
+	bh=cN1lliBDvJ2161XpgMqnGbtxFjb3awzneHzXZEap+mk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kLIKQt4MEeGm1koGAYEJgbkjWzWHTz/t2PMusJg63fvClsU6fT+tBkN+5PG0ZT4qyYTD631hVs6PYxk1kEAjHhbluRwxE1GvK2F/udbfxy1q98G6j+os/G28lIEG6gY51o+1YEBP7rVU6q9+pjOIyjmMZuDpb+4DSirLsN1Hfo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YuVJsQA3; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-81f223c70d8so2236169b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 20:45:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768279354;
-	bh=sRH8xieb1EUnHQo86vAkMHuUKPF0QCGxVZM52+pVzjY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ndgCuU4I77JVYpi9CXZ5pFYjMUkBJyG2yo2XTwUWErmwYV6LbwRLjyyi2I1o2w2ZX
-	 5kRZEikY2nLKFvJKdZ4bil9QIPWUnyddFKJgI6UOW/kOFe0tSc90hDbMSHX4dQFWj0
-	 oyUZsIL7ul0huAdVs97JBYLPQ+Lz1DFu0Gl3dnBzq7kdYSw5gXKYYBn8ZIy1ULi6LK
-	 vgHWzG5w2BFxwdWS7Xd1E7Paia9VFLZb+mfPHqh5jfA/Spz3QHEvgagfAp1tpnxCbz
-	 BO8exKG52f9Uj++mbYuMC8wHZnd/s69+FmR5L9/Ap6xzbx4hBD5XOEfNEj6qQcvLAt
-	 KGCzJ5+i743HQ==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4dqxSB29bqz4wGs; Tue, 13 Jan 2026 15:42:34 +1100 (AEDT)
-Date: Tue, 13 Jan 2026 15:42:31 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 01/77] checks: Use consistent type for strspn()
- returned value
-Message-ID: <aWXNN0bW_xx-YMy1@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-2-herve.codina@bootlin.com>
- <aWW3Rs_uoJdksA_n@zatzit>
+        d=gmail.com; s=20230601; t=1768279530; x=1768884330; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Iy6S9q8/CD1KaKEpgdKuwKLpEadDje8AFP0pfPr3/5I=;
+        b=YuVJsQA3Res31y46H78DBm8nL4DRqWkA0OnGcC8aMdPhc7SJgxNz+xh0jWdwp1tTpc
+         IKU42eIgHvAmQVhRpj7/TmvHBpDSVJNMNJWujPh6/AC8Qr8fM9J7lalJs60RnF5eazUR
+         lnBIlSvxLbwdS8P53zapTA7P/7RqIajhv/pOzfScahgdayojMH2t0IVCQertgK1lZPc7
+         tqR4dcwE9UBJawy/MpSB9o6R6Ljy3pryxPV3BrUUeNNvCLdKF+6g8bgTP5nRZK1XsAsY
+         9JchQB/IE5Ptnhd45oT4PM4daLNm4ykcT6yskaVhvlkm8d6QKzOBgcPkLagSIL2HST3B
+         G0yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768279530; x=1768884330;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Iy6S9q8/CD1KaKEpgdKuwKLpEadDje8AFP0pfPr3/5I=;
+        b=dr6p5+sOBuHXVuBkLhSRfcu42egh9jNuvCVLkn/Fj67ejcUBqEu3oCDFCM9sx9HItK
+         l4z47mM3aODp9zRWD09TsuqJeE6GeYY4AMBdPHFBEptxXQ6DaNB4uy2gCnjFu0s2yzN9
+         WJCR1AdSG75UswL2NKjryb3Q06RO4RjO5/wwcLJ4IuWjHFTNZUlT6e1d+pdK2qrzTOg9
+         YYlj0U4t53BTPGln7cpEAEa8KQhGHNk0KBgo8v+FO330/oqFzZDQw6RuPD0ufGbU8pGn
+         jceRI1IBuTkJtgGquTy5YSf0/bOT5d2uaiDGctgz1jAdk+75hXaTFqeFa1ikIEY42E4A
+         unTw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQe1MZRQylWxuG0W0cwvn0bY8sMkgrpJiO82QJunPRZQJnCXIf0sVmB1b7dRVC6XUw4hXBYkv8ub1w@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjtYOY6i4gHHx3pLkDhw5Ca11j+RXPiR2/5U9yQdOyC5nqYCmZ
+	cTOONR1CbR+b3QGvzJVEP8IlfKWTC4zZidsFn7aLCe9/bHPrqBkIyFC6
+X-Gm-Gg: AY/fxX4JqamqH/qWjTNMYE3JkgcCFrJuowoz9hv4OB6ZGXopMxj4sSzd27kuwrEXw1U
+	bSmWCTN6J4qujbfTHQOWRJjoW16vxs1AQZ9WoZFSKnxrHt+FVq3Fs3uU5I7V2aSG0EqQ1RImNHR
+	hO5Li/B4DKY2+7S8n4ZIDcjNGMbmeIuoC9ellrWRyGBbGHnGEyBkIN0rMQWx24oDudFovy4sePl
+	hHQ+EE+t3GmWdWMtMdKt9TwN2bo7rRfuHzs+TZACeR/5yOhdAioV/44lpVcz1q77Y04uI5IULjP
+	ILL2B/Vi9RGMY05EAVDMe2Gsd3GMJopCd58ah3lRvn14sgMG96XtIyiEXYsN6Fon7bpB3eqff9q
+	EzKGW3xW9ZtKGIox/CdbltBjShL+cZIIRsVOK8/3xBkZ1EFVZaYj596bh7k6kTBLlaoevHQ+9Gh
+	U3Xe+cT+vrW8J1wMoJZ023ICuQurL7MY/TsQ==
+X-Google-Smtp-Source: AGHT+IFqbGus3DZt4vurEFth5/Rb5XoyKQRcXgMFVDwspPX6ajf+F0/ZgCzEPgnpPLFp0Bu5b44dew==
+X-Received: by 2002:a05:6a00:438a:b0:81f:4ce8:d641 with SMTP id d2e1a72fcca58-81f4ce8f745mr5760972b3a.37.1768279530424;
+        Mon, 12 Jan 2026 20:45:30 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.253.21])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81f36f88f4bsm8338351b3a.36.2026.01.12.20.45.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jan 2026 20:45:29 -0800 (PST)
+Message-ID: <c182df66-8503-49cf-8d1d-7da17214b843@gmail.com>
+Date: Tue, 13 Jan 2026 10:15:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4XSruWxvwWrUL5aL"
-Content-Disposition: inline
-In-Reply-To: <aWW3Rs_uoJdksA_n@zatzit>
-
-
---4XSruWxvwWrUL5aL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jan 13, 2026 at 02:08:54PM +1100, David Gibson wrote:
-> On Mon, Jan 12, 2026 at 03:18:51PM +0100, Herve Codina wrote:
-> > strspn() returns a size_t value.
-> >=20
-> > The function is called in several places and in all places this value is
-> > stored in a size_t variable except in check_node_name_chars_strict().
-> >=20
-> > Fix the variable type used in check_node_name_chars_strict().
-> >=20
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
->=20
-> This one makes sense regardless of the rest, so, merged.
-
-I spoke too soon.  This causes a compile error:
-
-https://github.com/dgibson/dtc/actions/runs/20944813954/job/60185662154#ste=
-p:5:130
-
-For some reason it's only showing on the make build, not meson.  I
-guess there must be a mismatch in which warnings are enabled.
-
->=20
-> > ---
-> >  checks.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/checks.c b/checks.c
-> > index 5d09216..041e565 100644
-> > --- a/checks.c
-> > +++ b/checks.c
-> > @@ -324,7 +324,7 @@ ERROR(node_name_chars, check_node_name_chars, NODEC=
-HARS);
-> >  static void check_node_name_chars_strict(struct check *c, struct dt_in=
-fo *dti,
-> >  					 struct node *node)
-> >  {
-> > -	int n =3D strspn(node->name, c->data);
-> > +	size_t n =3D strspn(node->name, c->data);
-> > =20
-> >  	if (n < node->basenamelen)
-> >  		FAIL(c, dti, node, "Character '%c' not recommended in node name",
-> > --=20
-> > 2.52.0
-> >=20
-> >=20
->=20
-> --=20
-> David Gibson (he or they)	| I'll have my music baroque, and my code
-> david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-> 				| around.
-> http://www.ozlabs.org/~dgibson
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: backlight: gpio-backlight: allow
+ multiple GPIOs
+To: Daniel Thompson <daniel@riscstar.com>
+Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
+ pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260105085120.230862-1-tessolveupstream@gmail.com>
+ <20260105085120.230862-2-tessolveupstream@gmail.com>
+ <aVuKdAyXfWLs-WJI@aspen.lan>
+Content-Language: en-US
+From: tessolveupstream@gmail.com
+In-Reply-To: <aVuKdAyXfWLs-WJI@aspen.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+On 05-01-2026 15:25, Daniel Thompson wrote:
+> On Mon, Jan 05, 2026 at 02:21:19PM +0530, Sudarshan Shetty wrote:
+>> Update the gpio-backlight binding to support configurations that require
+>> more than one GPIO for enabling/disabling the backlight.
+>>
+>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>> ---
+>>  .../bindings/leds/backlight/gpio-backlight.yaml      | 12 +++++++++++-
+>>  1 file changed, 11 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>> index 584030b6b0b9..1483ce4a3480 100644
+>> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>> @@ -17,7 +17,8 @@ properties:
+>>
+>>    gpios:
+>>      description: The gpio that is used for enabling/disabling the backlight.
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 2
+> 
+> Why 2?
+> 
 
---4XSruWxvwWrUL5aL
-Content-Type: application/pgp-signature; name=signature.asc
+In the current design, the LVDS panel has a single backlight that
+is controlled by two GPIOs. Initially, It described as two separate 
+backlight devices using the same gpio-backlight driver, since the 
+existing driver supports only one GPIO per instance.
 
------BEGIN PGP SIGNATURE-----
+So the maintainer suggested to extend the gpio-backlight driver 
+and bindings to support multiple GPIOs.
+https://lore.kernel.org/all/q63bdon55app4gb2il5e7skyc6z2amcnaiqbqlhen7arkxphtb@3jejbelji2ti/
+> 
+> Daniel.
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmllzTYACgkQzQJF27ox
-2GffIg//Wjx4xPMVPcXBXtTFp61rkYSVHIbaZhn1in1qchWAlJtSJOPrjIHQzzSN
-L0WpMVWpOp3qP/nnj9hkEGOK4pBGrLB2lf5wniyu2h0wJfOGLNj9AGVQ4S3HKAWE
-4fJEd5+THKeB/ajqG/jF4bTXbmEiIl7vnoANgEZ0jQh33/0GcM/eUd7x618MsuWE
-Dnx8x1SWIQAJls6VGzIgcvAUfVZilGOGiMNknNhKmQISuJ3xFVBWxLz/KeSR+2B9
-uqm+nCvqJpEPEk7+Lwhc0dZqreHXu8gtx++xUadberiPsTsk07rWyhiwq5fDUjB5
-24AltwDoYMmBcO9qWW3sSJqgfuHh6jbydm1gh8a4JNYLbPCC/rsfsIEziXMw4Trh
-6TIP7wxoua2biolujuNcdqmxN/E7/0ljUnZC1P2RjjPK3O5aiVlwNlHMnSt51tlY
-+6epTsGcfIL00iGipm8jCaljyMao+XcSA91/Q++Oh3YrP8vqD4hoS91MZTzdTZ8R
-8XtKYcSOAgx7dv7iSi47UHzHpEc8dhCaj9rxnfRrOYeOHWsLtUKLIvkrnhw7Jn5v
-+s4P6HP7w5aPnQIfSBGgPm9KzzQrZiwr8CsMPmOG1gcKhWvxwdqO8O3SutveCOWC
-f+eiPvt+MU0FdNr9thLfKZ7ukiTEDPH9QQmlTt7d/D2dR1ISYhc=
-=boE4
------END PGP SIGNATURE-----
-
---4XSruWxvwWrUL5aL--
 
