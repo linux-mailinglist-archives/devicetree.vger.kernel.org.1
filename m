@@ -1,175 +1,198 @@
-Return-Path: <devicetree+bounces-254526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554BCD1903B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:06:37 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5596CD190B6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:11:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E95FE303ACFE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:05:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5C65030031B6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:11:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A4FA38FF10;
-	Tue, 13 Jan 2026 13:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03BC38FEF9;
+	Tue, 13 Jan 2026 13:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RRyPBOk7";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MlZkdwm3"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="QvM+znw2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4751F38BF6A
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 13:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1299036B066;
+	Tue, 13 Jan 2026 13:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768309508; cv=none; b=IC0faUhwvX4O10U15rDqVNKjtMoV0nJOqplWaCME0mqMXP+OxWW/jGKNid9ZJDdDoG7b1iyaUcIpP8JWd41rT/PVQwV0gY2xYJbO3MGrSJRTQxy+089OnqC39JWSKcM+wThn6vsjOL3g5HJvEgu5qQBOuyQg4DhKlBQaduS5JBM=
+	t=1768309913; cv=none; b=YEScOEAGOBa3/q02fSd4WkHRe4+4pdWFYLlwVsYhVu4WmVH7yaIOO1uK5SEYzVVaxSxO3FC6JBOBqEmV4YOv9wdMWKbw9JhQhZX11hutHKgaHX95MA3ay4NWoRnqK4Lr6Lye0hv7+H03TTz2isJ2UnuOUPRkOKhrdpm/xBymBSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768309508; c=relaxed/simple;
-	bh=bdsxR1lkTR1NMiMQrWc6Z5waeQ593rIW/DnTKDqARn0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LxZzdg3Rg4g6Uht5LD8rp0Ph/NQLkU9RoPqfdlzCNcsgFxZgzun6L/JiB+X8xynBhyZgpZxXT8QLLRAtmld6gCL6ufeqPcuLGFGWFfcVD3pT435xPvyH6J6ISdwqtMbfvtEUXkc4GrZ/OQ0PDmpZBimJAlkLz9GbQCpDAm3JLzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RRyPBOk7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MlZkdwm3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60DA5srE3799083
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 13:05:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	neiMhCUlfo05tbI3e1iPEgmhFazGW0tLIbSzyaNtg+M=; b=RRyPBOk7Nm8g+wrP
-	laZKyGWES6UbvCouMzZeoOuzf8FL9tTHXKT92tF8tvKtlcX/MJJA60yEUDbot+OG
-	OkcaicScs18pH1EnSLwUiY1f1Irq9LKXpPudlDgZ5bqUrUQvnKzivW4/4t4vfkv7
-	deejTZSFYcurz/5KpfKVF/Hh06lEPoIUmbM4j3SsSqjo4q9Nak7BAYUGJLn0KJ2A
-	HA1uu32dPeaMDbPc3jGhzmwgjxMpZEbsF53i7djb4LiI3h3AxHC/1S4WQ7Z9hd3D
-	xaNtIvOgMjmyMQxYseanZCyLySGvoAzm/GaSlG90H69mN+Ybg4eij/XMfOtJx7pZ
-	Tskgbg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bnm0drgtd-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 13:05:05 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-501468a59d6so58371cf.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 05:05:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768309505; x=1768914305; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=neiMhCUlfo05tbI3e1iPEgmhFazGW0tLIbSzyaNtg+M=;
-        b=MlZkdwm3i2o41mr8+6gEzv30XbVWy5T0UkerAGD0WzoyUpFor9IwbV646xX00TsWJE
-         Kux5QhJNWc70ldsXAljP3HyAbh4U/oRHEFP0WGOSlRo8+2LWsxAe+iux7yaetC6pEDXf
-         2li6zBQhskwA1hM16qgVp0QVFueatFl1VFAY2+ounk2ylKXDzCd6nqaCVKn/Y0iLwDkF
-         hJaafP58GIUTtzzeHeMPCqLykp9Ohj0yNmV9F9/KtNPqjZfvBiR5r6G0t0zp1cASrETY
-         mYdScuemzCCQcE+MQXrqjaLRWuJQhfRmu7pvhiOGdcLWhIuJJqUKQZO8TE6B4KCUFmNp
-         neUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768309505; x=1768914305;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=neiMhCUlfo05tbI3e1iPEgmhFazGW0tLIbSzyaNtg+M=;
-        b=gS8xHZMsBcFniq2m7eSv06Z6Kng973vRgYGcu2ozM+MKIT1z16Jw5iN/yo+MYQjMNv
-         bDyqRT7MXXeTOJmbkDQZLlaf1YvYrZ67+Zn+u4sbzpr5jOabhD82WzZ/9eIYgLd33Ghg
-         cpPXTk6sbb1x/sfnw08mZIyxvaPhG85Tuza0jTY/qLRKGkDgQjIZCBDUMjbicCz8YThf
-         LUcOk9IFllGTf+GmVpZF1kB5XV5iwhkvRCnEPbLtuUE1vjeWtCCooMy5IKOTZot1rsz3
-         Wj/ID5EdolWXu5nKamjn9w7gJvExNiP/sTQG1vZD4cY60jb3lPVKp1rJBk5heMQiUpN6
-         G/sQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZ7fWEPFkPSMj/qtcdBMymnwSBL8p+YROfU55duCPqgDQqysD6REMpoRaMlt/qQfvvSVRHsc2kgqY3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7cQuDkjWsT//pA/i/5ZFaOTSN691Mqt6wAhL7Q2p5YJ9eiMHj
-	X+FO9yHetIs4Wt9fljCvXJu51Qps1xtKl8j3A3/yKuq1MqwOGhrjv/EKBl1ioRkhxLuJcnJnCKP
-	GJR69TnjC/WhQYjhJYEZsLVyVY9ga/LulQw+JKO/IqHLOr+bMIp3Q81xVmI5CWcEz
-X-Gm-Gg: AY/fxX42MnEQJbGwOw1esOzHjkACggcAGEoyWkKV3/jSS0abPdONeumxcjJY2VxdpK5
-	5gPDw17CMhRcrGCkWl/6YwBqeYFmhQBYDS6vCuDuRni/sJe6tS7fy6lFquZufvD2WDpRkUZUBWj
-	vqj4xVxMTdODcNXmuC7+nz4+4bjinvAPJve/0c4eMpEMGYOKkZ6OcknGWeYl7uGT5xrEqodZlJF
-	BBbZ7BN45l3pa5MPovToPR1i2yNyjLHkKj0B0mpZX0netu0nVZXT5523/jhhYJPqLNOXrkRZtSG
-	dk9Yq9Pjob2x4Adc6xjhZL/J1L9EJKMvSAGVRd1fC+p+UtrTKDYAbha6Bk26t57XPZCr4rXr2I5
-	lg2oRw/7V34VPjBbESGXF9mwbGhPJI7ZTLGbSJ8Ad7gbhyg6wY8PBoGsbdIxRWuEXbmw=
-X-Received: by 2002:a05:622a:211:b0:4ee:1367:8836 with SMTP id d75a77b69052e-4ffb48b6d14mr240324591cf.5.1768309504804;
-        Tue, 13 Jan 2026 05:05:04 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEcplFnlt2Sv4raFaeWXiNUyu2EYwm++k8ojATvugdaV3zGrnz0m/KWdSnZbVGQVoSM6EZpUw==
-X-Received: by 2002:a05:622a:211:b0:4ee:1367:8836 with SMTP id d75a77b69052e-4ffb48b6d14mr240324181cf.5.1768309504347;
-        Tue, 13 Jan 2026 05:05:04 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507b9d4c89sm19171192a12.10.2026.01.13.05.05.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jan 2026 05:05:03 -0800 (PST)
-Message-ID: <3ad20ed6-d870-4532-9559-9e6c39e545e4@oss.qualcomm.com>
-Date: Tue, 13 Jan 2026 14:05:01 +0100
+	s=arc-20240116; t=1768309913; c=relaxed/simple;
+	bh=sX6OznMuIUrSvUxILVJgYAGkkNNvdOpOBQDTkd5KsG4=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=A6pQATefDx3vRgVAdWDrL+uc0rtk59We9J02tQvfnkEvYC+IJgeL0rhKJeb4I1fo1f/qMq8fpoIDqJzr813J7GIbH521kkv/riySK4OepbE9QCknoMcJJPecD+Istni4MfBTaiQ+SIejn12yPejiJTaAwaGgeoSp9fQ7TKZC7Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=QvM+znw2; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1768309910; x=1799845910;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=sX6OznMuIUrSvUxILVJgYAGkkNNvdOpOBQDTkd5KsG4=;
+  b=QvM+znw2zSCA4DliugDC7H6nOGe4NaYStVtRsp2xPigD+k9kLkD47Ln/
+   y7hMlg/uo0CAy1sySQSqkAp+5LJvEdVIiZy3CLmMZff5+0QVFXlfr4aFP
+   e2chmHmQ9xorvTc0fYWDzO8LJ85fIi06JcNrehmPMrceag1XVS3Cua2wh
+   cXunpB4ZwJ0/lCI0mGGyURY/LGR6diACKdLicZ3TASdHp+eLpE7i4vKbq
+   JMkQLfQ+eixn2RSj5BDOogG2iWxLIMZEX/x8TEqCWx7YDR2DJXymWGiJ3
+   arH1KnY2u1K1zG9+vaqSodqEeA/VRgxOVLnNDrTeiJC8Li25jfWxEkrvZ
+   Q==;
+X-CSE-ConnectionGUID: 8rvEDYAoRBeujHnu6Z8ZqA==
+X-CSE-MsgGUID: J1vh5jIQToehOpRuoUEufw==
+X-IronPort-AV: E=Sophos;i="6.21,222,1763449200"; 
+   d="scan'208";a="219095244"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Jan 2026 06:11:40 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 13 Jan 2026 06:11:11 -0700
+Received: from ROU-LL-M19942.mpu32.int (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Tue, 13 Jan 2026 06:11:08 -0700
+From: Cyrille Pitchen <cyrille.pitchen@microchip.com>
+Subject: [PATCH v5 0/5] drm/microchip: add GFX2D support for SAM9X60 and
+ SAM9X75
+Date: Tue, 13 Jan 2026 14:10:36 +0100
+Message-ID: <20260113-cpitchen-mainline_gfx2d-v5-0-9cdab8fa699b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT 1/3] dt-bindings: usb: qcom,dwc3: Allow high-speed
- interrupt on Glymur, Hamoa and Milos
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20260113-dts-qcom-glymur-add-usb-support-v1-0-98d6d387df01@oss.qualcomm.com>
- <20260113-dts-qcom-glymur-add-usb-support-v1-1-98d6d387df01@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260113-dts-qcom-glymur-add-usb-support-v1-1-98d6d387df01@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=BYXVE7t2 c=1 sm=1 tr=0 ts=69664301 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=iuyhanrI9R5_42HSFcsA:9
- a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-ORIG-GUID: 6jV94jbQriY2iUInK4DulxbJThJoYno6
-X-Proofpoint-GUID: 6jV94jbQriY2iUInK4DulxbJThJoYno6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEzMDEwOSBTYWx0ZWRfX7zH8gwaAGQY4
- hiQ99nI3DcvL2lU3SExX8NPZont3Nen4DbquZ3RuYpuU/efMl3WCb0kQU6Uddwm7Prk3gonsinf
- xWwjbwZVAQagWLViJpD/WV88mC/q9Ki4sPyirSC9XH1fs9aoEpp00bgcxzgchL4EaYSX2tyal0a
- ehmzft293vQB6UUW1WhLpGY+QQbpAuWeKTrNO0Vgh9Nr1yeyoyaVMCha8yu6KkPde1J5qfxHUWg
- kE/hgzrqcNZAWzmJgAR3utjRJpmmTvZUbuGKoA13/CzPehE3c6HWobK74dmWt+AiGBI1AF5UP90
- Pwz8m5YBvymZgCrhixSWYYSMJhk79QGNiTVpTTX7dLBLR6tT634ykf9cxVQ1oUElNeFpndDl2xH
- ye7PeDpr5zFUm6Uh3iGfsbdzo/kNyf3PQEQDw9ibPZh0BHks9ywGF55IpVKraqAk9dKwq9/5r9r
- 035dhEoLEumJg1ZJTuw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-13_03,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 impostorscore=0
- spamscore=0 malwarescore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601130109
+X-B4-Tracking: v=1; b=H4sIAExEZmkC/4XNQWrDMBCF4asErauiGcmy3VXvUUpQpFE8UMtGD
+ iYh+O6RAw2hxHT5P5hvrmKizDSJj91VZJp54iGVqN52wncuHUlyKC1QYaVaAOlHPvmOkuwdpx9
+ OtD/GMwZprQZqdYUu1qJcj5kin+/y13fpjqfTkC/3RzOs6//mDFLJUEd3AKcbIPrs2efBdzy++
+ 6EXqzvjs9VsW1gs66PzbaisBXxl6YcFgGbb0qul6th4o2ps7CvL/FpWFWzbMsWKCEoZcEEb/dd
+ aluUGwVOZxqYBAAA=
+X-Change-ID: 20250911-cpitchen-mainline_gfx2d-6631e9352af7
+To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	"Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+	"Alexandre Belloni" <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Russell King <linux@armlinux.org.uk>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Cyrille Pitchen <cyrille.pitchen@microchip.com>, Conor Dooley
+	<conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4492;
+ i=cyrille.pitchen@microchip.com; h=from:subject:message-id;
+ bh=sX6OznMuIUrSvUxILVJgYAGkkNNvdOpOBQDTkd5KsG4=;
+ b=owGbwMvMwCXmf6yzKqEsVIbxtFoSQ2aaS1rbt0X/TKsT0gPrakybTgUaXNoguebmw6eqWTl6G
+ RfWnT/UUcrCIMbFICumyHLozdbezOOvHtu9EpWCmcPKBDKEgYtTACbicoyRYUFfYpdYict67h3e
+ HmznD7DGzn4jqHhtiafaqf9nNr03ymX4n1j/OOdadIOk0vfdzxab+qXOt0q/KnsizYSrNPMrd+5
+ pHgA=
+X-Developer-Key: i=cyrille.pitchen@microchip.com; a=openpgp;
+ fpr=7A21115D7D6026585D0E183E0EF12AA1BFAC073D
 
-On 1/13/26 1:33 PM, Abel Vesa wrote:
-> Some of the controllers found of these platforms can be tied up to a
-> single high-speed PHY, basically rendering them as USB 2.0 controllers.
-> So in this case, the interrupt to the Synopsys DesignWare Core is coming
-> from the high-speed PHY, so allow the interrupt to reflect that.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
-> index 7d784a648b7d..f879e2e104c4 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
-> @@ -500,7 +500,7 @@ allOf:
->              - const: pwr_event
->              - const: dp_hs_phy_irq
->              - const: dm_hs_phy_irq
-> -            - const: ss_phy_irq
-> +            - enum: [hs_phy_irq, ss_phy_irq]
+Hi all,
 
-I fear git may mis-merge this.. if you send a v2, please tweak the config
-to add more context
+This series of patches adds GFX2D support.
+The GFX2D is a 2D GPU embedded in some Microchip SoCs such as the
+SAM9X60 and SAM9X75.
 
-Konrad
+Patches have been developped on top the 'linux-6.12-mchp' branch of the
+https://github.com/linux4microchip/linux.git repository and tested on
+mainly on a sam9x75-curiosity board and also on a sam9x60-ek board.
+
+Then patches have been rebased on top of the 'drm-misc-next' branch
+of the https://gitlab.freedesktop.org/drm/misc/kernel.git repository
+for mainlining.
+
+About the tests, the GFX2D driver was used with the M2D (Multi 2D)
+library: https://github.com/linux4sam/libm2d
+
+This is an open source library that abstracts 2D GPUs like the Microchip
+GFX2D (and later the Vivante GC520UL), providing graphics applications
+of libraries with a unified API, inspired from OpenGL but focused on 2D
+GPUs. The libm2d library itself relies on the libdrm library to send
+commands to the relevant DRM driver in the Linux kernel.
+
+M2D comes with a m2d_test program to run basic unitary tests.
+In addition, libm2d has been integrated to two graphics frameworks:
+- EGT: https://github.com/linux4sam/egt
+- LVGL: https://github.com/lvgl/lvgl/pull/8729
+
+BR,
+
+Cyrille
+
+Signed-off-by: Cyrille Pitchen <cyrille.pitchen@microchip.com>
+---
+Changes in v5:
+- Fixed compilation issues in patch 2:
+  + Included <drm/drm_print.h> from mchp_gfx2d_cmd.c, mchp_gfx2d_drv.c
+    and mchp_gfx2d_gem.c.
+  + Replaced '.remove_new' with '.remove' in definition of 'struct
+    platform_driver mchp_gfx2d_platform_driver' to match the latest
+    definition of 'struct platform_driver'.
+  + Removed the '.date' member from the definition of 'struct drm_driver
+    mchp_gfx2d_drm_driver' since this 'date' member has been removed from
+    'struct drm_driver'.
+- Fixed typos in doxygen documentations of two functions:
+  + mchp_gfx2d_process_completed_commands()
+  + mchp_gfx2d_init_command_queue()
+- Link to v4: https://lore.kernel.org/r/20260112-cpitchen-mainline_gfx2d-v4-0-f210041ad343@microchip.com
+
+Changes in v4:
+- Rebased onto the 'drm-misc-next' branch on 2026-01-12.
+- Link to v3: https://lore.kernel.org/r/20251124-cpitchen-mainline_gfx2d-v3-0-607f8c407286@microchip.com
+
+Changes in v3:
+- Collected Acked-by tag from Conor Dooley on patch 1
+- Rebased onto the 'drm-misc-next' branch on 2025-11-24.
+- Link to v2: https://lore.kernel.org/r/20250918-cpitchen-mainline_gfx2d-v2-0-6cfac9d56612@microchip.com
+
+Changes in v2:
+- Renamed microchip,gfx2d.yaml into microchip,sam9x60-gfx2d.yaml.
+- Removed the 'clock-names' property from the DT bindings.
+- Renamed the GPU node from 'gfx2d' to 'gpu' in sam9x{60,7}.dtsi files.
+- Link to v1: https://lore.kernel.org/r/20250911-cpitchen-mainline_gfx2d-v1-0-d7fab1a381ee@microchip.com
+
+---
+Cyrille Pitchen (5):
+      dt-bindings: gpu: add bindings for the Microchip GFX2D GPU
+      drm/microchip: add a driver for the Microchip GFX2D GPU
+      ARM: dts: microchip: sam9x60: Add GFX2D GPU
+      ARM: dts: microchip: sam9x7: Add GFX2D GPU
+      ARM: configs: at91_dt_defconfig: enable GFX2D driver
+
+ .../bindings/gpu/microchip,sam9x60-gfx2d.yaml      |   46 +
+ MAINTAINERS                                        |   10 +
+ arch/arm/boot/dts/microchip/sam9x60.dtsi           |    8 +
+ arch/arm/boot/dts/microchip/sam9x7.dtsi            |    8 +
+ arch/arm/configs/at91_dt_defconfig                 |    1 +
+ drivers/gpu/drm/Kconfig                            |    1 +
+ drivers/gpu/drm/Makefile                           |    1 +
+ drivers/gpu/drm/microchip/Kconfig                  |   21 +
+ drivers/gpu/drm/microchip/Makefile                 |    8 +
+ drivers/gpu/drm/microchip/mchp_gfx2d_cmd.c         | 1809 ++++++++++++++++++++
+ drivers/gpu/drm/microchip/mchp_gfx2d_cmd.h         |  169 ++
+ drivers/gpu/drm/microchip/mchp_gfx2d_drv.c         |  350 ++++
+ drivers/gpu/drm/microchip/mchp_gfx2d_drv.h         |  132 ++
+ drivers/gpu/drm/microchip/mchp_gfx2d_gem.c         |  264 +++
+ drivers/gpu/drm/microchip/mchp_gfx2d_gem.h         |   90 +
+ drivers/gpu/drm/microchip/mchp_gfx2d_ioctl.c       |  274 +++
+ drivers/gpu/drm/microchip/mchp_gfx2d_ioctl.h       |   17 +
+ include/uapi/drm/microchip_drm.h                   |  286 ++++
+ 18 files changed, 3495 insertions(+)
+---
+base-commit: 4a768c544f64eaa2fc7cfa91e46f43aa4aad0c40
+change-id: 20250911-cpitchen-mainline_gfx2d-6631e9352af7
+
+Best regards,
+-- 
+Cyrille Pitchen <cyrille.pitchen@microchip.com>
+
 
