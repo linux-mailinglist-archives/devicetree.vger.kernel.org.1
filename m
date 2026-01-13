@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-254541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D100BD19371
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:57:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4299D1929C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:50:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E032030478F8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:49:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C92B1304674A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 432253904ED;
-	Tue, 13 Jan 2026 13:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D296392800;
+	Tue, 13 Jan 2026 13:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOcJT2k2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WhnFJoJR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1101C38E5E8;
-	Tue, 13 Jan 2026 13:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07DF03921FC;
+	Tue, 13 Jan 2026 13:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768312196; cv=none; b=QVNjjB545FyxqU6i9Y0SkGjN3mMWt9V6q7/6/k1JP+n3izMecXwL1/i3YW0/AjnKvHTVJIor4qy9dMXTAacnz4WuuTG5DGv5HGcQ2KFhImaAFPmk561Xlz98r9ORwkkZgw9KzfLE9KShxUaUaNDuLLgIVeLf5hyg/Cc9XiNSyAk=
+	t=1768312207; cv=none; b=QWU50XbFcNvgCOJATj0JIWrhzR6zWtpo65EucIhz71uy8SPcsfXcXnk4GfqECSQA9TaF+vVWdceTeWtGBSvTbXcC1eH8qe5h8UqfH+osq8hGl7aFwu0XelHXQmVhXswaN6LNCIZcDRXoo0Z0sJ4jGO6YzMsg/Ktbsa6LTRISHdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768312196; c=relaxed/simple;
-	bh=p98FtoqAXFNOtD2ZQ6r64ILT019grpNp4nJQzPaUEMw=;
+	s=arc-20240116; t=1768312207; c=relaxed/simple;
+	bh=O/ufUS1ejEBbKS5Ea5alMxQF73hHCU1/fhBl/pMj/rg=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=p2RWClr4+C/+inhxhm6EOOiaaRI023OOUHxziP4CDrir3QnPCMtRpH64+X+Gxc6s72s+cczOsuxdEM6vnTiSSBQGcRPzuPD9RONzS6hbw94zw2qoptuFuyk7SpQqY93uYydBDwtt2JEubXuRBg3TEmTZ7sPWTvQCHLJyXZ6IAQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOcJT2k2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2991C16AAE;
-	Tue, 13 Jan 2026 13:49:53 +0000 (UTC)
+	 MIME-Version:Content-Type; b=pYKRY4f9/APKn3vYHLqt0DwzYCQ/cLbEw2TIca8D+cw5HXqzIPD5A2GfG3gHictT4u8R0RvVWr8JELPF5FCBr+DR0t1UwgAb7bk8TgPgSdCbC5TanztmYZ5tHYTtRWyGZf85GadeqaS0RrJDwsnbWX87NBF9bp1AMKLUw+WK+1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WhnFJoJR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9016DC19422;
+	Tue, 13 Jan 2026 13:50:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768312195;
-	bh=p98FtoqAXFNOtD2ZQ6r64ILT019grpNp4nJQzPaUEMw=;
+	s=k20201202; t=1768312206;
+	bh=O/ufUS1ejEBbKS5Ea5alMxQF73hHCU1/fhBl/pMj/rg=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=NOcJT2k2MN2KVBPuoChVgXNUzdNSQYkkqKUoHfB6D2jqwDBeV3AKNqDjjcqCkFl8b
-	 MXiHlCtPOU/9TZFVpLLVWqCAr0/mKMYUwl+lY0BkBABI3cxsAwn3w+7kU9VGm9M3V3
-	 KMqq2tDva2pcMkmzpwxO4wVAEJEsBOUjxjLcfrVe8Ak1t84NZofvXkerwuZuUQXe0B
-	 6VHe8UvAobPn8lHCy2BSk5AUHXDV+84DFP5Ncqo92N8UPRua74ul+P5XGL8UVSPVgx
-	 WWMXstrxCdKMeuS3VtEX7AKoPk2+SsDZKBTqFFYs1TmS6xroNejLl2vZeMgBflXKyr
-	 sPbZZrh9dBtgA==
+	b=WhnFJoJR1JVke1lDWfwXQxyyIDbHE3GG6F28e+GG86gbgmBZiD+m/KJ4D0ac5kqgR
+	 7lZ6AF7XojI+BsR8iOSOIsSiPgZEJC3HN26RX6BRIYb3sH4OIJ1nO/gEvWXaLUQsSX
+	 2sbY2L6GDPLxpmYPjUlrRMOlz5UtgpZcuR4YO4V/zn7R7QLYQWKIDIApD8k1HZV4oJ
+	 QvjM4Moq675ZzAk+9XxxgRcKdVNL/Gw2Y2c/0MLOS/8N8lhGYBMmVzYkw+tPiRPJsX
+	 03U1O2PZDWZxsA3kNcUa3xp5zVU8TkIiyj1T2GopIZJhjSQ6Ym8C0rKFq1UikPNQKU
+	 Ex1OcShM8Y+qg==
 From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, cy_huang@richtek.com
-Cc: Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- musk_wang@richtek.com, roy_chiu@richtek.com, allen_lin@richtek.com, 
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-In-Reply-To: <cover.1767948925.git.cy_huang@richtek.com>
-References: <cover.1767948925.git.cy_huang@richtek.com>
-Subject: Re: [PATCH 0/3] ASoC: Update rtq9128 document and source file
-Message-Id: <176831219353.70484.6698601019095177736.b4-ty@kernel.org>
-Date: Tue, 13 Jan 2026 13:49:53 +0000
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, cy_huang@richtek.com
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, musk_wang@richtek.com, 
+ roy_chiu@richtek.com, allen_lin@richtek.com, devicetree@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <cover.1768180827.git.cy_huang@richtek.com>
+References: <cover.1768180827.git.cy_huang@richtek.com>
+Subject: Re: [PATCH v2 0/3] ASoC: Update rtq9128 document and source file
+Message-Id: <176831220432.70484.10730103796055155517.b4-ty@kernel.org>
+Date: Tue, 13 Jan 2026 13:50:04 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,15 +60,13 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-47773
 
-On Fri, 09 Jan 2026 17:03:51 +0800, cy_huang@richtek.com wrote:
+On Mon, 12 Jan 2026 09:27:31 +0800, cy_huang@richtek.com wrote:
 > This patch series include two parts
 > - Update initial setting for rtq9128 specific feature
 > - Add rtq9154 backward compatible with rtq9128
 > 
-> ChiYuan Huang (3):
->   ASoC: codecs: rtq9128: Modify the chip initial setting
->   dt-bindings: sound: rtq9128: Add rtq9154 backward compatible
->   ASoC: codecs: rtq9128: Add compatible changes for rtq9154
+> v2
+> - Fix commit message typo
 > 
 > [...]
 
@@ -81,7 +79,7 @@ Thanks!
 [1/3] ASoC: codecs: rtq9128: Modify the chip initial setting
       commit: daf86dcdbb40c4a0e4b8e579c6eecf148560711f
 [2/3] dt-bindings: sound: rtq9128: Add rtq9154 backward compatible
-      (no commit info)
+      commit: b7d53fe53cb57db1ca5743d2ac2db28140c37647
 [3/3] ASoC: codecs: rtq9128: Add compatible changes for rtq9154
       commit: 6be9ea62afedef0f976eb3dba4c117be0c1d3809
 
