@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-254614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE0BD19EF7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:35:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5266ED19EF4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:35:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DB5FB300DD88
+	by sto.lore.kernel.org (Postfix) with ESMTP id 48D06300CEF0
 	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA1931691C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D278D312803;
 	Tue, 13 Jan 2026 15:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="QuTCv7UY"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="k3HqSlBr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E2B2BE639;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DAC29AB15;
 	Tue, 13 Jan 2026 15:33:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768318411; cv=none; b=OEdbV3MApkGq43Z51wZNyrXhq8+l8DGe9du4fwDL33YObcbiiWsBx/l53nODWjQYKz0uwSIP15/D625tEH6+kDs/xk6p2wb94+Iwb1KZfcof+A5SrqYd01pCWJw6C9LQ6vQwvX5qt0VUj77PIRX6Sblzw9lbhG2TW+ghar0q6qo=
+	t=1768318411; cv=none; b=J3pig6byvzL3DZ0/gnXPPnm9T04z/ZOF4PwpatMYql4Y5GjZnNwZ6yxcamEx6dj7eQmOL/f0Uib2r1KtQ8zAwcav9Pi0D2CnWFmATOWp/cl5snrcy0puXWbJwgKtJedFGGy/EMn1JY0C+MadjhThk59+e++5ED1IQZ7sbxqnpSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768318411; c=relaxed/simple;
-	bh=n17zCB2DY7rtD9EKlgtwvWjqoDBFr/HFyM+J9npiiZk=;
+	bh=PNoY+oPVcq1qySKpu5bkjrebwhB2LtCybrJ+6fvflog=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZQUqzkVgd8y4BNjQCEv8QNksvefQuSCoQO3JOtW6n21gLdlM0zGNCf6VJlQ7tAZ/eP42MWKaVrHw6f96oQ31DHuwsFctqnj3NiBG+e1D0mUBR3MZ0jg25QtUIVQGSmGhIZ/M2g9rtyh61kQOVwut5FubrEoBUnt7/jKHlZfkWDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=QuTCv7UY; arc=none smtp.client-ip=178.238.236.174
+	 In-Reply-To:To:Cc; b=VtRJMg67XPDPLBZAqxzOAVnvmKe9MtW+onByF1ueTgp/BsCnW7tKoOQjPzV8kGRuDx40QM/58gcMNGmbvZJIf7XMVRk0wf0PhxUk00L5pDSALWooXXEbHSlqzcDJwjHUKJA2kUFQwk91ja1KvGlSBWvBNcwLXbc65mY/Wj51Vug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=k3HqSlBr; arc=none smtp.client-ip=178.238.236.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=kemnade.info; s=20220719; h=Cc:In-Reply-To:References:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=5q3ravDG1w5SjgMDo2WRXLnVcRNkSoxT344OuV9m7l8=; b=QuTCv7UY7QvdlY5fCbXlDrOV2F
-	BrDH8t1i7MngriXWn5K/I7GyEaP6HXhwtZhss5yBl6ukAB1isJy+uYBgNADRPAyH7FyP8YHM7+1xO
-	eb7x6QRCOexMy87pQK6ciObCBVoPlrBkIO/jalrCkZfV1feFbb/uEJPgDWSzS2reXI/1huIfKgP+J
-	HcP836/B4hcGnFsWUQC5d7riV6FEUsdcRAS+kGcIzUVI37AWI5RzQyhOQMpjM4wChn7mMqaexz8/c
-	IsMe/Z6OpmmpS+EIYM4/2HbRS2C3hCietFOGHvuGZWMcl0fZq52Q1eI6Y7+7QmRVjxwnUEhiMNo56
-	9AMT2/9w==;
+	bh=i9tPInbRYZ5DqbTROuvEuMqdg4B8OEQPATOSgbmxIds=; b=k3HqSlBr938lscRgQVFS8xsNdi
+	xmMgvVMTEgZwVcJcOTQhGeSVC8TwGkzY2N0FEq7LbSUmFd+RVBqXiTz0iWeq+KWew7mcWm059YHrM
+	h31T6HOdhyX67zko8iWztVbG9XgHgva5Xt3OTFgKREmgBED2QK6Jb/5Y6dXhANhAMSlb6g1stcKL/
+	qvGbtzqryDEEtSBozJ/ELG/TvqO0sPqEobMcOB4kZDg9kzOIFuLf61PzhcT3jEVG1veujpBnl6uhw
+	wTLZ5fGnaxlFErRFmHTHe34m5YIvSC34sflfqDroVjSPXhq/tlAE3LqnsZCvHIaoFc0O3wo+4Bbhl
+	8C3kxFtg==;
 From: Andreas Kemnade <andreas@kemnade.info>
-Date: Tue, 13 Jan 2026 16:31:34 +0100
-Subject: [PATCH 1/3] ARM: dts: imx: tolino-shine2: add tps65185
+Date: Tue, 13 Jan 2026 16:31:35 +0100
+Subject: [PATCH 2/3] ARM: dts: imx50-kobo-aura: add epd pmic description
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260113-tps65185-dt-v1-1-66d376ba5f65@kemnade.info>
+Message-Id: <20260113-tps65185-dt-v1-2-66d376ba5f65@kemnade.info>
 References: <20260113-tps65185-dt-v1-0-66d376ba5f65@kemnade.info>
 In-Reply-To: <20260113-tps65185-dt-v1-0-66d376ba5f65@kemnade.info>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -60,75 +60,79 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Fabio Estevam <festevam@gmail.com>
 Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Andreas Kemnade <andreas@kemnade.info>
+ Andreas Kemnade <andreas@kemnade.info>, Josua Mayer <josua.mayer@jm0.eu>
 X-Mailer: b4 0.15-dev-a6db3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2849; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=n17zCB2DY7rtD9EKlgtwvWjqoDBFr/HFyM+J9npiiZk=;
- b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJlpqbPUuW3jrxfpqpwLFvRc/GRvoajG4YM3VMT2TL/qd
- uZR+TyWjlIWBjEuBlkxRZZf1gpun1Se5QZPjbCHmcPKBDKEgYtTACayq56RYVcEl49fdOKLzdsf
- PPz8O1447MT1aqnZbm/3bfidppTlE87I8K/Gd7d09SON9BiHi93FwX79DrlHi2/b+xyw3rGx0t2
- DEwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2670; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=jBmRxWjmO330uO2yWkvQ8CKi7YrP9xdjB0Sm7QHVf+4=;
+ b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJlpqbNKSvJUc9afqjI8YGTVybKqdP+kqha5ORLXHjwIe
+ 3pYYfrOjlIWBjEuBlkxRZZf1gpun1Se5QZPjbCHmcPKBDKEgYtTACbyVIyR4e0Fz3tKk0v49otb
+ LZy2QTju5qGCc1PXxro55xk+jQ5LdGRk2Bd79/pHsy37O77WJiapswrvVNfSunm8bVVl6vQ0GR8
+ ZZgA=
 X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
  fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 
-Wire up the TPS65185 regulator needed for the display.
+From: Josua Mayer <josua.mayer@jm0.eu>
 
+Kobo Aura (N514) includes a TPS65185 PMIC for the epaper display.
+
+Add description for this pmic and its vin power-supply.
+
+Signed-off-by: Josua Mayer <josua.mayer@jm0.eu>
 Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
- .../boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts    | 55 +++++++++++++++++++++-
- 1 file changed, 54 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts | 60 ++++++++++++++++++++++++++-
+ 1 file changed, 59 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-index b6c336e3079e..4c655579f43e 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine2hd.dts
-@@ -37,6 +37,16 @@ chosen {
- 		stdout-path = &uart1;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts b/arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts
+index b1a6a9c58ac3..4725ee241cb1 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts
+@@ -58,6 +58,16 @@ event-frontlight {
+ 		};
  	};
  
 +	epd_pmic_supply: regulator-epd-pmic-in {
 +		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_epd_pmic_supply>;
 +		regulator-name = "epd_pmic_supply";
-+		gpio = <&gpio2 14 GPIO_ACTIVE_HIGH>;
++		gpio = <&gpio1 27 GPIO_ACTIVE_HIGH>;
 +		enable-active-high;
 +		startup-delay-us = <20000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_epd_pmic_supply>;
 +	};
 +
- 	gpio_keys: gpio-keys {
- 		compatible = "gpio-keys";
+ 	sd2_pwrseq: pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
  		pinctrl-names = "default";
-@@ -147,8 +157,35 @@ zforce: touchscreen@50 {
- 		touchscreen-inverted-x;
- 	};
+@@ -135,7 +145,34 @@ &i2c2 {
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
  
 -	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
-+	tps65185: pmic@68 {
++	pmic@68 {
 +		compatible = "ti,tps65185";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tps65185_gpio>;
 +		reg = <0x68>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_epd_pmic>;
++		pwr-good-gpios = <&gpio3 28 GPIO_ACTIVE_HIGH>;
++		vcom-ctrl-gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
++		enable-gpios = <&gpio3 30 GPIO_ACTIVE_HIGH>;
++		wakeup-gpios = <&gpio3 29 GPIO_ACTIVE_HIGH>;
 +		vin-supply = <&epd_pmic_supply>;
-+		pwr-good-gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
-+		vcom-ctrl-gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
-+		wakeup-gpios = <&gpio2 7 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
++		interrupts-extended = <&gpio4 15 IRQ_TYPE_LEVEL_LOW>;
 +
 +		regulators {
-+			vcom_reg: vcom {
++			vcom {
 +				regulator-name = "vcom";
 +			};
 +
-+			vposneg_reg: vposneg {
++			vposneg {
 +				regulator-name = "vposneg";
 +				regulator-min-microvolt = <15000000>;
 +				regulator-max-microvolt = <15000000>;
 +			};
- 
-+			v3p3_reg: v3p3 {
++
++			v3p3 {
 +				regulator-name = "v3p3";
 +			};
 +		};
@@ -136,36 +140,34 @@ index b6c336e3079e..4c655579f43e 100644
  };
  
  &i2c3 {
-@@ -328,6 +365,12 @@ MX6SL_PAD_EPDC_PWRCTRL3__GPIO2_IO10 0x10059
+@@ -161,6 +198,27 @@ MX50_PAD_CSPI_SS0__GPIO4_11		0x0	/* INT */
  		>;
  	};
  
-+	pinctrl_epd_pmic_supply: epdc-pmic-supplygrp {
++	pinctrl_epd_pmic: epd-pmic-grp {
 +		fsl,pins = <
-+			MX6SL_PAD_EPDC_PWRWAKEUP__GPIO2_IO14 0x40010059 /* pwrall */
++			/* PWRUP */
++			MX50_PAD_EPDC_PWRCTRL1__GPIO3_30	0x0
++			/* WAKEUP */
++			MX50_PAD_EPDC_PWRCTRL0__GPIO3_29	0x0
++			/* VCOMCTRL */
++			MX50_PAD_EPDC_VCOM0__GPIO4_21		0x0
++			/* PWRGOOD: enable internal 100k pull-up */
++			MX50_PAD_EPDC_PWRSTAT__GPIO3_28		0xe0
++			/* INT: enable internal 100k pull-up */
++			MX50_PAD_ECSPI1_SS0__GPIO4_15		0xe0
 +		>;
 +	};
 +
- 	pinctrl_gpio_keys: gpio-keysgrp {
- 		fsl,pins = <
- 			MX6SL_PAD_SD1_DAT1__GPIO5_IO08  0x17059
-@@ -425,6 +468,16 @@ MX6SL_PAD_KEY_COL2__GPIO3_IO28	0x1b8b1 /* ricoh619 bat_low_int */
- 		>;
- 	};
- 
-+	pinctrl_tps65185_gpio: tps65185-gpio-grp {
++	pinctrl_epd_pmic_supply: epd-pmic-supply-grp {
 +		fsl,pins = <
-+			MX6SL_PAD_EPDC_VCOM0__GPIO2_IO03	0x40010059 /* vcom_ctrl */
-+			MX6SL_PAD_EPDC_PWRCTRL0__GPIO2_IO07	0x40010059 /* wakeup */
-+			MX6SL_PAD_EPDC_PWRCTRL1__GPIO2_IO08	0x40010059 /* enable */
-+			MX6SL_PAD_EPDC_PWRCTRL2__GPIO2_IO09	0x17059 /* nINT */
-+			MX6SL_PAD_EPDC_PWRSTAT__GPIO2_IO13	0x17059 /* pwr-good */
++			MX50_PAD_EIM_CRE__GPIO1_27		0x0
 +		>;
 +	};
 +
- 	pinctrl_uart1: uart1grp {
+ 	pinctrl_gpiokeys: gpiokeysgrp {
  		fsl,pins = <
- 			MX6SL_PAD_UART1_TXD__UART1_TX_DATA 0x1b0b1
+ 			MX50_PAD_CSPI_MISO__GPIO4_10		0x0
 
 -- 
 2.47.3
