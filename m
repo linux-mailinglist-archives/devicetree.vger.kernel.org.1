@@ -1,428 +1,216 @@
-Return-Path: <devicetree+bounces-254573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE280D1974C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:30:02 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 016BFD1968E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:23:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B409A3061965
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:18:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0EBCF3049F44
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5895D2BD5B4;
-	Tue, 13 Jan 2026 14:18:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QY01MfMJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8241A284896;
+	Tue, 13 Jan 2026 14:19:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010034.outbound.protection.outlook.com [52.101.85.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA3B27B353;
-	Tue, 13 Jan 2026 14:18:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.34
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768313900; cv=fail; b=tg9YeF1YoxXI52pFY29uGROppS2LbtcDg8WWJKcGrNIvUvs6Zl1s7nqyzTRdhyar4hX2mjUIXK9wcBl+4XDyleC8/GP3ZM2LWaxV9quTg85OeMlOIZyk0+Hx/fiWrm+B7QLSPFA1wZAU2hFZGRCVC39Vqwftp+VxsZEwVdqQ8dE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768313900; c=relaxed/simple;
-	bh=ZtmYj06csuF15LU1jMeOTTuo1AvBsMoM4DrJNLqLp0A=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XXhS6M6xGWDCTAgGaCJUFThCMA8tya4Xb+hSxktF0hhyJa6M7CiDKkr8XKexh83057mQuQiW61ZY/Llpr5oAa2SLyz1rv+vWdDomJiiEasc6vDj2W2IXx/SIwfS3Byiae9jNMqtExDvkYd2Z0bt3AFXKSpDwxmnOtazcDJot8zo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QY01MfMJ; arc=fail smtp.client-ip=52.101.85.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W3k6N7uHWhPVLvblTf2x7QJucQ/IjDvHUflVJq+MzxzjDyWzk5i3+oXGqjnOfkcjRTfnavHU2Z1ReTkPLYInODZGTmjeY42uscnAuGIRR5V8WJrTM1IF9xyQ6olShBq4qt1qFy4NkVdOku5W/xlmeMLuBRnlg38hjGtEvcUWWq3g7lOxQBAHS2M8AYGDiVmMD85kYJHTa6G0nMntr5R9Aeal96M9Nhi50C8kKKrFiaDpRnZMP9iwDuJ+wwHu96gyFy0wscyJBElIZPdBKMwG2P7XI5dV59pK7jhqCKVJDD7sIoNiR0xFJZjmS5slxAx3MBk3xMIL1fe8gLxDMZfw2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tfE9C6oing1XSrvwEGDY22K2aCrgY8v0f9ScgeN+KwU=;
- b=uOcTtOGRgXqbTD7AEtgu8DO3Hf0qlY+ex/9yHEyliLl91Sdh/tXXN16rxLwxRElLpiv0XONDIHMgvSyUNAyhqXMqvXHnRQfje7LeKm+tpYVeAvKE+3kcUoEASZc8TNkckPtaRTXZCKtPMLYZ0VMjBufZR9vccKW/hASjwdq3KIrlwrVc2aH7Hq1l96qhayd/8XBRMrxs1iVaZsaMOoGj1SFGBi2UmBOPM7zXAL7Dxe42m63S6zG8gw0ffQBYe9W5SBbuxBxVBTPWrnY1tPLjwbxeuCCOEqM9GAlRsbPdbySVvv/cs5IcnBuKYeN2/qK4R8ADVmbJNEiWmmpM8jLAXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tfE9C6oing1XSrvwEGDY22K2aCrgY8v0f9ScgeN+KwU=;
- b=QY01MfMJVr3i1T5EeVwOimBXs35QtRxRMQ/J6gISBnZPY7k/Qst6xr5noD/gx3ztHPIF1qku4UegtoHbIbGpca+zz/PJElrMWpi8Bdz1xjgp1DEdDx9oqSXIE7rXDPbcQNHdLct6JU26hkbuLrULibrTL6crej6FGXjWTbS/DVg=
-Received: from BL0PR02CA0073.namprd02.prod.outlook.com (2603:10b6:208:51::14)
- by CYYPR10MB7650.namprd10.prod.outlook.com (2603:10b6:930:b8::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Tue, 13 Jan
- 2026 14:18:11 +0000
-Received: from BL6PEPF00022572.namprd02.prod.outlook.com
- (2603:10b6:208:51:cafe::a4) by BL0PR02CA0073.outlook.office365.com
- (2603:10b6:208:51::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.4 via Frontend Transport; Tue,
- 13 Jan 2026 14:18:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BL6PEPF00022572.mail.protection.outlook.com (10.167.249.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Tue, 13 Jan 2026 14:18:09 +0000
-Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 13 Jan
- 2026 08:17:36 -0600
-Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 13 Jan
- 2026 08:17:36 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 13 Jan 2026 08:17:36 -0600
-Received: from santhoshkumark.dhcp.ti.com (santhoshkumark.dhcp.ti.com [172.24.233.254])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60DEGLov2381510;
-	Tue, 13 Jan 2026 08:17:30 -0600
-From: Santhosh Kumar K <s-k6@ti.com>
-To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <miquel.raynal@bootlin.com>, <richard@nod.at>,
-	<vigneshr@ti.com>, <tudor.ambarus@linaro.org>, <pratyush@kernel.org>,
-	<mwalle@kernel.org>
-CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-	<praneeth@ti.com>, <u-kumar1@ti.com>, <p-mantena@ti.com>, <a-dutta@ti.com>,
-	<s-k6@ti.com>
-Subject: [RFC PATCH v2 12/12] spi: cadence-quadspi: enable PHY for direct reads and writes
-Date: Tue, 13 Jan 2026 19:46:17 +0530
-Message-ID: <20260113141617.1905039-13-s-k6@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260113141617.1905039-1-s-k6@ti.com>
-References: <20260113141617.1905039-1-s-k6@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5137F286D7D
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 14:19:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768313967; cv=none; b=jQU8OpcgEqkE/Q61S/BDS6hFHIl/9VW6qUSj2urMRqNPbP/70oO0obnWwXcyZOL4ZrjgePoghWcFthHJwyx+LXQMlqRlYOB7nI4BSE2yVhZgjnKYJ2/1wdkMU4UrxulaiJLLPbOP44GtkpoW7KMdJWIe4SIP/xnbcKKA8G5OKH8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768313967; c=relaxed/simple;
+	bh=uIpqQqtA/lJKBwjwwDPXE3suNhtvcxttY7BDb8S7rWg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YXHhJay8TuKEeAgDqQI3hLpewDcvME0af4E5RfMC0AavCHuWFdZADLLEdlqHK2Wqz1MtnjgDX8tscc/o+Me0YKiY5cq2JXRwdz1GJ6HtJhbtRUjoEpBRHadsvWMCP72a1IT1MX32K1mBbiLRIytgDnme+Yz/hklGBsNns7zHAQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-563686cba0aso1244539e0c.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 06:19:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768313964; x=1768918764;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xwGbtz4WHBgjbaUVUACc9YQ7tp8fqM7Cfldv3SNB0Jo=;
+        b=A+o14r0R2pUWUTp+HzH4PknI8Gx1EluE4mUUYvmvvOzHOF+2wTJOQkHDqAgQqS6H8B
+         LUdfINvedP4LCZsG8dtdzyLUsjFB4BRCAAIwHJMPzE/79mFlARhz1CiElfh+YRMkqs7k
+         ZKX5w98t58m/hh0MCq6K69+OrdnQGn6H+Xi7fkHp/0fs5DOWsBh+H4egPMLE4WgXt9c3
+         TM++tcscQDrwPTTuQeBX/U3aYGHSTsSNsJ7qkQQUoHhCXqzZ9jaOhZdRjbu6PqqAFVdI
+         Y74Y9/ObYHPdRGNLyjrn+/uiNQ0tSx6CPajfeWBz75ea0qIHltLnJhlzrgQaSWN4zexn
+         00Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCVJGHDDWoEl0PqCZbdsL7hjIg28iSLEmRv0w02vN6qoepwsKnIH71tAY+Zm7ywmmCEPdhJc7pkw45st@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzsjbuhz8CFhz7a/BXsDJxmfVRis08bGyaNwT4mVo50jFprYvPd
+	jCUFPgkfrpISrXsLcg2vIXvup+80P7UyO0B/xM/MZ3G/mx+HTs4a6y+9GMl3uvB0
+X-Gm-Gg: AY/fxX7+/JZ9WSM+4uc9qh/o3Cb2FIvp4v9BK7MPNmMHSflaPnaghN+W2cy7icxLJBc
+	GmwbQfHR/Oc85yYaXixr7OFJUlX5oK50NrR2OwOfANDQR4mb+pm7QFV3DKbJS4rugq5PguYI3o5
+	SiKkYYtGr3hRAp+U/5NCLvTRlbDnk5R5NMJQP114I1zq0Z7t8C5f6rFYpdU4q/WDNCSixcql5U3
+	hB2iSO1loBPxDoQkSsdBfQ9M1K4uj++Uk1qsI+vC9bPt0ClK/8jbxrabdkg1oes/V1BHF8LvBVf
+	6WVjrxESybG3EhyH7vxn8FdIEHjVjZMwDt5tu90LfGl9SiKgWnm1t9PaMa0zJFRm13vSVWSF0pd
+	paVMvyN83O7Fw48qX4ftgFP2U60KsagYmDltgFDOhbOmrR8VI+08w23R1NrPoaKh9fyGC1iCX3y
+	g2HH37hvt4M+8SV+dYdELzRbRw/+2kFQWKlLx0ei8MZzRFGXETRoA4mSuoTgo=
+X-Google-Smtp-Source: AGHT+IFCiIMLgC9fq8lTF7xRq7ooZt7BQaKQA+X+X4DHtfRxHxJY2Ec5BhB8NVJZviC5fFlyXYoDFw==
+X-Received: by 2002:a05:6122:895:b0:54a:8cfe:193e with SMTP id 71dfb90a1353d-56347d4a486mr7024487e0c.5.1768313962742;
+        Tue, 13 Jan 2026 06:19:22 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5634ca16da7sm17905069e0c.17.2026.01.13.06.19.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jan 2026 06:19:21 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-943d0cafe77so2464023241.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 06:19:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWl1zng0pzdgMC8o+VEtFisqso0sD94kJov2J1byKvN3rQKICxfMdcMBF4hVuTRjCKzjirYuq/bw/zq@vger.kernel.org
+X-Received: by 2002:a05:6102:5120:b0:5f1:55c9:11a2 with SMTP id
+ ada2fe7eead31-5f155c91443mr2213235137.43.1768313960828; Tue, 13 Jan 2026
+ 06:19:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00022572:EE_|CYYPR10MB7650:EE_
-X-MS-Office365-Filtering-Correlation-Id: ca6933dd-b4f1-4f64-1e84-08de52ae9460
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|82310400026|36860700013|34020700016|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?uHB2J0C5cl6h/JKPZ1mscCBJEPz0jmE+dvCNZc+DxwO7wf6X90eagkNdZetb?=
- =?us-ascii?Q?7MyhXTP9NtNoBoPeOHoTScM3p4ykrBno2jvGx7txyUhmwFt8XK4oL4l8gJFE?=
- =?us-ascii?Q?Nzkhcrx7um8OJjguAQptIn1LypYENeg5iKlgVMrzsu39Mwag9Fu3pT0rCrTo?=
- =?us-ascii?Q?RcDej5WcjnzTMh9gSha1QEBtOPgCMNcVWVvPtzjK3hbjNxO3nmSWz1T/OIUq?=
- =?us-ascii?Q?UyUbOUPQBfzgBoYBuMHomgovPdWuA2malSYGGDxJB+xkNzsOywjNbf3Zgi55?=
- =?us-ascii?Q?7BTCRGfvBxmGp5p6b+tsNCf/cng0H/BOBPL1pxmUYjnNoDJPP2adszNHKoOy?=
- =?us-ascii?Q?0DJVkzAgd3SLctRVbcfHH/iaE2bde7eVONth6kucQWLP2R9F7pQg/ZCAPkzX?=
- =?us-ascii?Q?hSH3JqqsX2sQx2gPP0exx/09VAda9qoD+Pm3+pvTF1hW8/vxHWiTRUMHVHkY?=
- =?us-ascii?Q?CzeFaZw+Ez1hz1iOTp7MT5v8bFi6ccTgGn6FhBGZceL+twFUE4tohkSDfCGU?=
- =?us-ascii?Q?hE+s75/eB9IetXQIygMWY/fNK3Yas7fCoXYDtgrXQ0PjRlIYKcZxNRWWavps?=
- =?us-ascii?Q?L4z7i1RXwoFZXjwuNHitfjkiZoYCqJO4jVV+uIarNX1eq4iyKFTsisthLVsi?=
- =?us-ascii?Q?PS+xaSCzlzlLVG3QOlK927/DgGZWdbXmy/gtScLJlgP4+cQ2dX5VR+EMnyNm?=
- =?us-ascii?Q?ly73TrxkBKSTV1nkrj3SuUvxNCqs3SwNTIwQ3QFL7XeAhtgTXuUN9Pq3Ism4?=
- =?us-ascii?Q?AvzgGkuWPBPVtLgBe2yb3KGOvRVMTPqEq7T+jdgvT56ghpxmgGA6p9vJhG4Z?=
- =?us-ascii?Q?SPZc7NU3rfkPYuQkvlolXMVtA64d3W8H7hDYihKNnDoDQ11rhrUp8BVLE+/I?=
- =?us-ascii?Q?23kTZ9ryHCiZDihOgHGehxXUrkNMTcGs9D0SYc9MyGea9UAL8+BS+Xl27AGr?=
- =?us-ascii?Q?jeIDwISRgfHz+c6FRbDbdlb0AWHXxK3DATXJFyQLwhTgGn81JZdoE9S9nDDu?=
- =?us-ascii?Q?INVkbGVUU40hS5ssFOMcQxqIwBDYITpCcA5WdulACHf0P+PaI2fxJ0p7KJql?=
- =?us-ascii?Q?ZmENw6Gjof4t4gKuBfUdu/y8j1l17yhJPeDV9c3l3ptGlQtI4B+tw9DrLcnT?=
- =?us-ascii?Q?kuqqHJh+W/jLUTV3+zqBLRz1oWyROoCNqhcxaq2Y5sa29dJqGPehtWKEJghm?=
- =?us-ascii?Q?z9MX3LFIB24HYu+Qbu8EzfLaCmLZX6agpDZVUm1OzNNvzqqUwrEKZp2E9IjK?=
- =?us-ascii?Q?EYDR6Pery7oeVS/Ef+pOpgvEZcVfvaziyRJs2urJ63yjB5PK3Hy+AyCCq8qG?=
- =?us-ascii?Q?wmycx1InGRb0clwgO/IAhV3BJci9QNypAZ5YziRam56QbwpqSzzkoPlTdvRS?=
- =?us-ascii?Q?wZcNhrWXGWW5jliQdUtewG4aJX/UZDdf9gsBkOBiT2MDM11nG2fTClo6ELnR?=
- =?us-ascii?Q?e4bGJZG9i93/AKIeBBp1L8D0qR6MOR5ucD/xALZXzyn4IfW0D45ywJakv5HX?=
- =?us-ascii?Q?JaeTeXkfH312krT+zFRjmcCJW0zUlqU/43n/JwqtYFWb2+SWHiWmI8vU7wIJ?=
- =?us-ascii?Q?8Z68N1xFgXYgHx/esv36dgKodiUwapyVZnu2dr1N?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(82310400026)(36860700013)(34020700016)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 14:18:09.9155
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca6933dd-b4f1-4f64-1e84-08de52ae9460
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF00022572.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR10MB7650
+References: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 13 Jan 2026 15:19:08 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVyQpOBT+Ho+mXY07fndFN9bKJdaaWGn91WOFnnYErLyg@mail.gmail.com>
+X-Gm-Features: AZwV_Qgc2H6REA8fgJsKnqRk5KR8TM9uu7EdHnPsHrNotI7sbZvhls2j-N9ukmU
+Message-ID: <CAMuHMdVyQpOBT+Ho+mXY07fndFN9bKJdaaWGn91WOFnnYErLyg@mail.gmail.com>
+Subject: Re: [PATCH 00/11] Describe PCIe/USB3.0 clock generator on R-Car Gen3
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Enable PHY mode for direct memory-mapped reads and large indirect writes
-(>= 1KB) to leverage calibrated RX/TX timing delays for high-frequency
-operations.
+Hi Marek,
 
-PHY mode requires 16-byte alignment. For reads, split unaligned transfers
-into non-PHY head, PHY-enabled middle, and non-PHY tail. Small transfers
-use CPU copy to avoid DMA setup overhead.
+On Thu, 1 Jan 2026 at 21:39, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Describe the 9FGV0841 PCIe and USB3.0 clock generator present on various
+> R-Car Gen3 boards. The clock generator supplies 100 MHz differential clock
+> for PCIe ports, USB 3.0 PHY and SATA.
+>
+> The series effectively has three parts, the first three patches are part 1,
+> which fills in the missing USB 3.0 PHY on R-Car E3 Ebisu and enables it,
+> thus aligning the Ebisu USB 3.0 support with the rest of the Gen3 boards.
+>
+> The second part is description of PCIe root ports on R-Car Gen3 SoCs where
+> applicable, in this case that is H3/M3W/M3N/E3. The root port is used with
+> PCIe port power control to also control the PCIe port clock. This is needed
+> on Gen3 boards, because they often use separate clock output from the PCIe
+> clock generator 9FGV0841 to supply clock to the controller and to the PCIe
+> port.
+>
+> The third part is enablement of the 9FGV0841 PCIe clock controller on the
+> R-Car Salvator-X/XS, ULCB and Ebisu boards. The boards use the PCIe clock
+> controller outputs in a slightly different manner, all use the outputs to
+> supply PCIe controllers and slots, as well as USB 3.0 SuperSpeed PHY. The
+> ULCB board also uses the 9FGV0841 to supply SATA IP, but this is not yet
+> described in DT, therefore it is also not part of this series.
+>
+> Marek Vasut (11):
+>   dt-bindings: phy: renesas: usb3-phy: add r8a77990 support
+>   arm64: dts: renesas: r8a77990: Add USB 3.0 PHY and USB3S0 clock nodes
+>   arm64: dts: renesas: ebisu: Enable USB 3.0 PHY
+>   arm64: dts: renesas: r8a77951: Describe PCIe root ports
+>   arm64: dts: renesas: r8a77960: Describe PCIe root ports
+>   arm64: dts: renesas: r8a77961: Describe PCIe root ports
+>   arm64: dts: renesas: r8a77965: Describe PCIe root ports
+>   arm64: dts: renesas: r8a77990: Describe PCIe root port
+>   arm64: dts: renesas: salvator-common: Describe PCIe/USB3.0 clock
+>     generator
+>   arm64: dts: renesas: ulcb: ulcb-kf: Describe PCIe/USB3.0 clock
+>     generator
+>   arm64: dts: renesas: ebisu: Describe PCIe/USB3.0 clock generator
 
-PHY mode requires one less dummy cycle due to improved timing margins.
-Adjust dummy cycles when toggling PHY mode.
+Thanks for your series!
 
-Add optimized I/O copy for 8D-8D-8D operations using 4-byte bulk reads
-for 32-bit platform compatibility.
+This causes a crash during s2idle on e.g. Salvator-XS with R-Car
+H3 ES2.0:
 
-Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
----
- drivers/spi/spi-cadence-quadspi.c | 177 ++++++++++++++++++++++++++++--
- 1 file changed, 167 insertions(+), 10 deletions(-)
+    PM: suspend entry (s2idle)
+    Filesystems sync: 0.014 seconds
+    Unable to handle kernel NULL pointer dereference at virtual
+address 0000000000000008
+    Mem abort info:
+      ESR = 0x0000000096000004
+      EC = 0x25: DABT (current EL), IL = 32 bits
+      SET = 0, FnV = 0
+      EA = 0, S1PTW = 0
+      FSC = 0x04: level 0 translation fault
+    Data abort info:
+      ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+      CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+      GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+    user pgtable: 4k pages, 48-bit VAs, pgdp=0000000504be2000
+    [0000000000000008] pgd=0000000000000000, p4d=0000000000000000
+    Internal error: Oops: 0000000096000004 [#1]  SMP
+    CPU: 2 UID: 0 PID: 1000 Comm: s2idle Not tainted
+6.19.0-rc5-arm64-renesas-04116-g331b300b41b0 #3416 PREEMPT
+    Hardware name: Renesas Salvator-X 2nd version board based on r8a77951 (DT)
+    pstate: a00000c5 (NzCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+    pc : devres_for_each_res+0x60/0xe8
+    lr : devres_for_each_res+0x48/0xe8
+    sp : ffff800083263a70
+    x29: ffff800083263a70 x28: 0000000000000000 x27: ffff0004c125aec8
+    x26: ffff800083263af8 x25: ffff80008167bd38 x24: ffff800083263af8
+    x23: ffff80008071b2f4 x22: ffff0004c125aed0 x21: ffff80008071acd8
+    x20: ffff80008071ad44 x19: ffff0004c125ac20 x18: 0000000000000001
+    x17: 00000000ffffffff x16: ffff800081b93ac8 x15: 0056c6b8a4d0b0e4
+    x14: 00001998170d3e20 x13: 188a4fd930ce7024 x12: 0000000529c8ad17
+    x11: 00000000000000c0 x10: 0000000000000960 x9 : ffff800083263a50
+    x8 : ffff800083263b38 x7 : 0000000000000000 x6 : ffff0004c0dc36c0
+    x5 : ffff800083263af8 x4 : 0000000000000000 x3 : 0000000000000001
+    x2 : 0000000000000000 x1 : 0000000000000000 x0 : 0000000000000000
+    Call trace:
+     devres_for_each_res+0x60/0xe8 (P)
+     dev_cache_fw_image+0x5c/0x1a8
+     dpm_for_each_dev+0x50/0x80
+     fw_pm_notify+0xc0/0xec
+     blocking_notifier_call_chain_robust+0x70/0xdc
+     pm_notifier_call_chain_robust+0x24/0x40
+     pm_suspend+0x13c/0x1e0
+     state_store+0x7c/0x100
+     kobj_attr_store+0x14/0x24
+     sysfs_kf_write+0x78/0x8c
+     kernfs_fop_write_iter+0x128/0x1d0
+     vfs_write+0x210/0x390
+     ksys_write+0x6c/0x100
+     __arm64_sys_write+0x18/0x20
+     invoke_syscall+0x44/0x100
+     el0_svc_common.constprop.0+0x3c/0xd4
+     do_el0_svc+0x18/0x20
+     el0_svc+0x24/0xd8
+     el0t_64_sync_handler+0x98/0xdc
+     el0t_64_sync+0x154/0x158
+    Code: f94004dc eb1600df 540000e1 14000018 (f9400780)
+    ---[ end trace 0000000000000000 ]---
+    note: s2idle[1000] exited with irqs disabled
+    note: s2idle[1000] exited with preempt_count 1
 
-diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
-index 3669936ae4e1..8ed6b2f5b573 100644
---- a/drivers/spi/spi-cadence-quadspi.c
-+++ b/drivers/spi/spi-cadence-quadspi.c
-@@ -565,6 +565,59 @@ static void cqspi_readdata_capture(struct cqspi_st *cqspi, const bool bypass,
- 	writel(reg, reg_base + CQSPI_REG_READCAPTURE);
- }
- 
-+static void cqspi_phy_enable(struct cqspi_flash_pdata *f_pdata, bool enable)
-+{
-+	struct cqspi_st *cqspi = f_pdata->cqspi;
-+	void __iomem *reg_base = cqspi->iobase;
-+	u32 reg;
-+	u8 dummy;
-+
-+	if (enable) {
-+		cqspi_readdata_capture(cqspi, true, f_pdata->has_dqs,
-+				       f_pdata->phy_setting.read_delay);
-+
-+		reg = readl(reg_base + CQSPI_REG_CONFIG);
-+		reg |= CQSPI_REG_CONFIG_PHY_EN | CQSPI_REG_CONFIG_PHY_PIPELINE;
-+		writel(reg, reg_base + CQSPI_REG_CONFIG);
-+
-+		/* PHY mode requires one less dummy cycle */
-+		reg = readl(reg_base + CQSPI_REG_RD_INSTR);
-+		dummy = FIELD_GET(CQSPI_REG_RD_INSTR_DUMMY_MASK
-+					  << CQSPI_REG_RD_INSTR_DUMMY_LSB,
-+				  reg);
-+		dummy--;
-+		reg &= ~(CQSPI_REG_RD_INSTR_DUMMY_MASK
-+			 << CQSPI_REG_RD_INSTR_DUMMY_LSB);
-+		reg |= FIELD_PREP(CQSPI_REG_RD_INSTR_DUMMY_MASK
-+					  << CQSPI_REG_RD_INSTR_DUMMY_LSB,
-+				  dummy);
-+		writel(reg, reg_base + CQSPI_REG_RD_INSTR);
-+	} else {
-+		cqspi_readdata_capture(cqspi, !cqspi->rclk_en, false,
-+				       f_pdata->read_delay);
-+
-+		reg = readl(reg_base + CQSPI_REG_CONFIG);
-+		reg &= ~(CQSPI_REG_CONFIG_PHY_EN |
-+			 CQSPI_REG_CONFIG_PHY_PIPELINE);
-+		writel(reg, reg_base + CQSPI_REG_CONFIG);
-+
-+		/* Restore original dummy cycle count */
-+		reg = readl(reg_base + CQSPI_REG_RD_INSTR);
-+		dummy = FIELD_GET(CQSPI_REG_RD_INSTR_DUMMY_MASK
-+					  << CQSPI_REG_RD_INSTR_DUMMY_LSB,
-+				  reg);
-+		dummy++;
-+		reg &= ~(CQSPI_REG_RD_INSTR_DUMMY_MASK
-+			 << CQSPI_REG_RD_INSTR_DUMMY_LSB);
-+		reg |= FIELD_PREP(CQSPI_REG_RD_INSTR_DUMMY_MASK
-+					  << CQSPI_REG_RD_INSTR_DUMMY_LSB,
-+				  dummy);
-+		writel(reg, reg_base + CQSPI_REG_RD_INSTR);
-+	}
-+
-+	cqspi_wait_idle(cqspi);
-+}
-+
- static int cqspi_exec_flash_cmd(struct cqspi_st *cqspi, unsigned int reg)
- {
- 	void __iomem *reg_base = cqspi->iobase;
-@@ -1192,6 +1245,7 @@ static int cqspi_indirect_write_execute(struct cqspi_flash_pdata *f_pdata,
- 	void __iomem *reg_base = cqspi->iobase;
- 	unsigned int remaining = n_tx;
- 	unsigned int write_bytes;
-+	bool use_phy_write;
- 	int ret;
- 
- 	if (!refcount_read(&cqspi->refcount))
-@@ -1227,6 +1281,12 @@ static int cqspi_indirect_write_execute(struct cqspi_flash_pdata *f_pdata,
- 	if (cqspi->apb_ahb_hazard)
- 		readl(reg_base + CQSPI_REG_INDIRECTWR);
- 
-+	/* Use PHY only for large writes where setup overhead is amortized */
-+	use_phy_write = n_tx >= SZ_1K && f_pdata->use_phy;
-+
-+	if (use_phy_write)
-+		cqspi_phy_enable(f_pdata, true);
-+
- 	while (remaining > 0) {
- 		size_t write_words, mod_bytes;
- 
-@@ -1267,6 +1327,9 @@ static int cqspi_indirect_write_execute(struct cqspi_flash_pdata *f_pdata,
- 		goto failwr;
- 	}
- 
-+	if (use_phy_write)
-+		cqspi_phy_enable(f_pdata, false);
-+
- 	/* Disable interrupt. */
- 	writel(0, reg_base + CQSPI_REG_IRQMASK);
- 
-@@ -1278,6 +1341,9 @@ static int cqspi_indirect_write_execute(struct cqspi_flash_pdata *f_pdata,
- 	return 0;
- 
- failwr:
-+	if (use_phy_write)
-+		cqspi_phy_enable(f_pdata, false);
-+
- 	/* Disable interrupt. */
- 	writel(0, reg_base + CQSPI_REG_IRQMASK);
- 
-@@ -1448,8 +1514,17 @@ static void cqspi_rx_dma_callback(void *param)
- 	complete(&cqspi->rx_dma_complete);
- }
- 
--static int cqspi_direct_read_execute(struct cqspi_flash_pdata *f_pdata,
--				     u_char *buf, loff_t from, size_t len)
-+static bool cqspi_use_phy(struct cqspi_flash_pdata *f_pdata,
-+			  const struct spi_mem_op *op)
-+{
-+	if (!f_pdata->use_phy || op->data.nbytes < 16)
-+		return false;
-+
-+	return op->max_freq > f_pdata->non_phy_clk_rate;
-+}
-+
-+static int cqspi_direct_read_dma(struct cqspi_flash_pdata *f_pdata, u_char *buf,
-+				 loff_t from, size_t len)
- {
- 	struct cqspi_st *cqspi = f_pdata->cqspi;
- 	struct device *dev = &cqspi->pdev->dev;
-@@ -1461,19 +1536,14 @@ static int cqspi_direct_read_execute(struct cqspi_flash_pdata *f_pdata,
- 	dma_addr_t dma_dst;
- 	struct device *ddev;
- 
--	if (!cqspi->rx_chan || !virt_addr_valid(buf)) {
--		memcpy_fromio(buf, cqspi->ahb_base + from, len);
--		return 0;
--	}
--
- 	ddev = cqspi->rx_chan->device->dev;
- 	dma_dst = dma_map_single(ddev, buf, len, DMA_FROM_DEVICE);
- 	if (dma_mapping_error(ddev, dma_dst)) {
- 		dev_err(dev, "dma mapping failed\n");
- 		return -ENOMEM;
- 	}
--	tx = dmaengine_prep_dma_memcpy(cqspi->rx_chan, dma_dst, dma_src,
--				       len, flags);
-+	tx = dmaengine_prep_dma_memcpy(cqspi->rx_chan, dma_dst, dma_src, len,
-+				       flags);
- 	if (!tx) {
- 		dev_err(dev, "device_prep_dma_memcpy error\n");
- 		ret = -EIO;
-@@ -1507,6 +1577,93 @@ static int cqspi_direct_read_execute(struct cqspi_flash_pdata *f_pdata,
- 	return ret;
- }
- 
-+static void cqspi_memcpy_fromio(const struct spi_mem_op *op, void *to,
-+				const void __iomem *from, size_t count)
-+{
-+	if (op->data.buswidth == 8 && op->data.dtr) {
-+		unsigned long from_addr = (unsigned long)from;
-+
-+		/* Handle unaligned start with 2-byte read */
-+		if (count && !IS_ALIGNED(from_addr, 4)) {
-+			*(u16 *)to = __raw_readw(from);
-+			from += 2;
-+			to += 2;
-+			count -= 2;
-+		}
-+
-+		/* Use 4-byte reads for aligned bulk (no readq for 32-bit) */
-+		if (count >= 4) {
-+			size_t len = round_down(count, 4);
-+
-+			memcpy_fromio(to, from, len);
-+			from += len;
-+			to += len;
-+			count -= len;
-+		}
-+
-+		/* Handle remaining 2 bytes */
-+		if (count)
-+			*(u16 *)to = __raw_readw(from);
-+
-+		return;
-+	}
-+
-+	memcpy_fromio(to, from, count);
-+}
-+
-+static int cqspi_direct_read_execute(struct cqspi_flash_pdata *f_pdata,
-+				     const struct spi_mem_op *op)
-+{
-+	struct cqspi_st *cqspi = f_pdata->cqspi;
-+	loff_t from = op->addr.val;
-+	loff_t from_aligned, to_aligned;
-+	size_t len = op->data.nbytes;
-+	size_t len_aligned;
-+	u_char *buf = op->data.buf.in;
-+	int ret;
-+
-+	if (!cqspi->rx_chan || !virt_addr_valid(buf) || len <= 16) {
-+		cqspi_memcpy_fromio(op, buf, cqspi->ahb_base + from, len);
-+		return 0;
-+	}
-+
-+	if (!cqspi_use_phy(f_pdata, op))
-+		return cqspi_direct_read_dma(f_pdata, buf, from, len);
-+
-+	/* Split into unaligned head, aligned middle, unaligned tail */
-+	from_aligned = ALIGN(from, 16);
-+	to_aligned = ALIGN_DOWN(from + len, 16);
-+	len_aligned = to_aligned - from_aligned;
-+
-+	if (from != from_aligned) {
-+		ret = cqspi_direct_read_dma(f_pdata, buf, from,
-+					    from_aligned - from);
-+		if (ret)
-+			return ret;
-+		buf += from_aligned - from;
-+	}
-+
-+	if (len_aligned) {
-+		cqspi_phy_enable(f_pdata, true);
-+		ret = cqspi_direct_read_dma(f_pdata, buf, from_aligned,
-+					    len_aligned);
-+		cqspi_phy_enable(f_pdata, false);
-+		if (ret)
-+			return ret;
-+		buf += len_aligned;
-+	}
-+
-+	if (to_aligned != (from + len)) {
-+		ret = cqspi_direct_read_dma(f_pdata, buf, to_aligned,
-+					    (from + len) - to_aligned);
-+		if (ret)
-+			return ret;
-+		buf += (from + len) - to_aligned;
-+	}
-+
-+	return 0;
-+}
-+
- static ssize_t cqspi_read(struct cqspi_flash_pdata *f_pdata,
- 			  const struct spi_mem_op *op)
- {
-@@ -1523,7 +1680,7 @@ static ssize_t cqspi_read(struct cqspi_flash_pdata *f_pdata,
- 		return ret;
- 
- 	if (cqspi->use_direct_mode && ((from + len) <= cqspi->ahb_size))
--		return cqspi_direct_read_execute(f_pdata, buf, from, len);
-+		return cqspi_direct_read_execute(f_pdata, op);
- 
- 	if (cqspi->use_dma_read && ddata && ddata->indirect_read_dma &&
- 	    virt_addr_valid(buf) && ((dma_align & CQSPI_DMA_UNALIGN) == 0))
+I do not know what is the actual issue.  Adding debug prints to
+rs9_suspend() and rs9_resume() shows these functions are not called,
+while adding 'status = "disabled"' to the renesas,9fgv0841 clock node
+in arch/arm64/boot/dts/renesas/salvator-common.dtsi does fix the issue.
+
+Perhaps you have pending patches for the rs9 or PCIe drivers?
+Do you have a clue?
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
