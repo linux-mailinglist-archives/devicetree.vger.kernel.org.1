@@ -1,83 +1,133 @@
-Return-Path: <devicetree+bounces-254519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33FD7D18DC0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:43:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59530D18E53
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:47:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 50886302DD7A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:40:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7F4683042867
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:41:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438E5395241;
-	Tue, 13 Jan 2026 12:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD67E38FF05;
+	Tue, 13 Jan 2026 12:38:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ITei+nWu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DMKO3wDO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C137F38FEF7;
-	Tue, 13 Jan 2026 12:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1CD39526C
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768307887; cv=none; b=Tvh3Fo4iRngKhs+9kSE3I4pvecM6LyZy46vlURUMK0eGapraO8q+R5uv69f2NfsVug/j/9mLm4XdqQwX+zWu1yrNR6XgRWmlDEezWNz8AyS6e+G1g/mZWOzmP3TsO9NNdR7fChUN83kE71CXWULKn4y64v9TlyBLjTCggtx97eI=
+	t=1768307902; cv=none; b=Fh/vb3v746W2IJXjWktcwtdOgIAFhUQZxRVqBn/k+We1ZH0ll6EKNr53xTgCXdRfug3OdTiBUy/pFmmN81huCNsHa/Hqm5qIqjJ448mNFa672pR3zC6Fp4SQEy+olyQ841OFnLPFSTIJTOvhPcFu0qef/BlLwx3KB5xwhGO7Jbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768307887; c=relaxed/simple;
-	bh=XBh651uOFdz895yL+g9RcE+L3CQnvJrQsqohr3JUpro=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=fUEEFSmh0KueyQ9WgTuZynrK2/TsKYx3ofFP1xryRoCg0JBnz21Ok1sybpONjHExBZgV9oY5Hn0W/G1blsdGdlvMPzWvsMzDPNUskbwPO74AdetoQbmbjab5sr4vJXAYA60fQXPv5VUdPbpxv/scpYMRbvR0oC5jkuQJNdgESyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ITei+nWu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02E73C16AAE;
-	Tue, 13 Jan 2026 12:38:04 +0000 (UTC)
+	s=arc-20240116; t=1768307902; c=relaxed/simple;
+	bh=qXScHYuCzd215t8hnmVMyfAJzYu9LaTDkfUenYtogos=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mGnl+pYnqDZTrhubotv7FS8qyUEYK31FTWE/X40Hz2P8FyEeroQRU6jiiuicDP55tQbD3/lBA6CgP4KGY8zW5mzUntRWebt2n6SD+vpH9ZT2kkc8jGfszIN5ZuFB9jLnqySj82sHL9qdVO8QLAia3KZre6SXrvbMg+oEvEr/oSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DMKO3wDO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2307CC2BC87
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:38:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768307887;
-	bh=XBh651uOFdz895yL+g9RcE+L3CQnvJrQsqohr3JUpro=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ITei+nWuD0tmntKUe3z5GLKo96BDN6bl2LcQ2KuQO8tRhW73non6+I7D66FKs+POa
-	 9UR+MtSJ9ntb2TxeuPYwi2+LCL8jSaCrg4oNSxQAe0hhp0mvF0idnXxdhWyNUGMiYr
-	 l3TS/+ez5GBB9H3iJ5loMPeI1KlrLf2Ey6S96jXSCe+uoF/LTb1Ltv0kas3kJQe1Dd
-	 jchfWlDhv7K831iQlXB6QCuUekkkos4sJebdg51tOKi4DiOw+r2ipzWlkRpvS76OfI
-	 2J+8K7gnNGsLG4+YDM6HNF7/Wna4d7ca03ON4Kvv8fFDor2cfuZWIb3g65qvFMM5JM
-	 +0LCSQ9UIzWLQ==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, sjoerd@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, kernel@collabora.com
-In-Reply-To: <20260109114356.36454-1-angelogioacchino.delregno@collabora.com>
-References: <20260109114356.36454-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: (subset) [PATCH] dt-bindings: mfd: syscon: Allow syscon
- compatible for mediatek,mt7981-topmisc
-Message-Id: <176830788476.2846051.17154311682129442278.b4-ty@kernel.org>
-Date: Tue, 13 Jan 2026 12:38:04 +0000
+	s=k20201202; t=1768307901;
+	bh=qXScHYuCzd215t8hnmVMyfAJzYu9LaTDkfUenYtogos=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=DMKO3wDOQyqAMkRsF3KjP1QgKWLmG/bIgkwkqikQWX7/JxeRnNe7RTYQnbhOkMfPE
+	 G+G+GVnK7BcA67OKp/w9uYGtoDKb6gYsPJFta0W9o3WbrjYSxf+gdK+PIoWXEDVRpB
+	 Q5EBZu76fgMusQwSmXX/liK7piEEVzbTmPGCiEh5Np1ueLICoCxv+JeymLWcnk+8zE
+	 HJZlIdI9MFRGAndmHTk7bTK8js1iFU5lIaAW8gyi5nhPAB7QNOe9kboOVP1zt4i3+k
+	 wUKGh42sKh+F35XHH38iMuMWdGE+RTZk9+LCDvYE3jVMx6N3ZypoG2kBxgAbxjzKHh
+	 WESRwPJzz6AdA==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-382fb535b73so59720421fa.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 04:38:20 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXwF2o2PQ/P5snvFD1ZHO3bLQpC7Jjdn0zkpZiux0T+ieVIHPIiZzzqMkx26fOk08MOQ7Mbib5UNHxw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZStrISeHuIecGGISw/bDdu6xuCyKV+4vulbSh9FwAUQqXa3z1
+	IHcsJDZcfC2QQSE9HAqUfDn+A8Y7lpsOZOVteyq0xa2ld1rCqz++1UflNWtotZLwwddv8/GNIlF
+	96ZFpbutyehYh72GkDEvDlks6+1RTufyjUyGfwnQwtA==
+X-Google-Smtp-Source: AGHT+IHqazDCuLxwH7Iu/G2PkGJgVTJ7/k1UTcZwajhZd9YF9n/CenHYLasZcuGAB0SV4lL43Mgtox5RINYhxwkIRxc=
+X-Received: by 2002:a05:651c:30c9:b0:37b:967e:d73 with SMTP id
+ 38308e7fff4ca-382ff8115efmr73607701fa.29.1768307899461; Tue, 13 Jan 2026
+ 04:38:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-52d38
+References: <20260112-qcom-sa8255p-emac-v6-0-86a3d4b2ad83@oss.qualcomm.com>
+ <20260112-qcom-sa8255p-emac-v6-7-86a3d4b2ad83@oss.qualcomm.com> <41b9a414-55a0-4602-9be5-54137a691d9f@lunn.ch>
+In-Reply-To: <41b9a414-55a0-4602-9be5-54137a691d9f@lunn.ch>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Tue, 13 Jan 2026 13:38:07 +0100
+X-Gmail-Original-Message-ID: <CAMRc=McP7vt2VS=2FpzYcXNG_+beb9O0AAvAJ9E2g8DT2WTfPA@mail.gmail.com>
+X-Gm-Features: AZwV_QhJCTDCGsC5t4RHVGQlo_Vyd1Okk9vVsia2jA5DJVHGvVefyoWQdJ752O4
+Message-ID: <CAMRc=McP7vt2VS=2FpzYcXNG_+beb9O0AAvAJ9E2g8DT2WTfPA@mail.gmail.com>
+Subject: Re: [PATCH RESEND net-next v6 7/7] net: stmmac: qcom-ethqos: add
+ support for sa8255p
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Matthew Gerlach <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Keguang Zhang <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
+	Romain Gantois <romain.gantois@bootlin.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>, 
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Maxime Ripard <mripard@kernel.org>, Shuang Liang <liangshuang@eswincomputing.com>, 
+	Zhi Li <lizhi2@eswincomputing.com>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
+	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, Clark Wang <xiaoning.wang@nxp.com>, 
+	Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>, 
+	Samin Guo <samin.guo@starfivetech.com>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S <swathi.ks@samsung.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 09 Jan 2026 12:43:56 +0100, AngeloGioacchino Del Regno wrote:
-> Commit a95419ff9f21 ("dt-bindings: mfd: syscon: Add mt7981-topmisc")
-> added the mediatek,mt7981-topmisc compatible to the `select` block
-> which is used only for compatibility with older dtschema, but did
-> not add it in the actual block allowing to specify the "syscon"
-> fallback compatible, which is required for such node to do anything
-> meaningful in the end.
-> 
-> [...]
+On Mon, Jan 12, 2026 at 2:55=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Mon, Jan 12, 2026 at 11:15:46AM +0100, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <brgl@kernel.org>
+> >
+> > Extend the driver to support a new model - sa8255p. Unlike the
+> > previously supported variants, this one's power management is done in
+> > the firmware using SCMI. This is modeled in linux using power domains s=
+o
+> > add support for them.
+>
+> >  static const struct of_device_id qcom_ethqos_match[] =3D {
+> >       { .compatible =3D "qcom,qcs404-ethqos", .data =3D &emac_qcs404_da=
+ta},
+> > +     { .compatible =3D "qcom,sa8255p-ethqos", .data =3D &emac_sa8255p_=
+data},
+>
+> Is this device being probed via DT or ACPI?
+>
 
-Applied, thanks!
+On the sa8255p it's probed via DT but all its resources are managed in
+firmware over SCMI.
 
-[1/1] dt-bindings: mfd: syscon: Allow syscon compatible for mediatek,mt7981-topmisc
-      commit: a4d1081e82d588bd549284ad5321c018c86e6935
-
---
-Lee Jones [李琼斯]
-
+Bartosz
 
