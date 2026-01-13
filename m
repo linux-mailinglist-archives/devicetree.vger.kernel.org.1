@@ -1,149 +1,128 @@
-Return-Path: <devicetree+bounces-254697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3B7BD1AF9D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 20:12:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF38D1B040
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 20:22:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6A79030146F4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 19:12:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 919FC301786B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 19:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC6D35F8B3;
-	Tue, 13 Jan 2026 19:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F9AB328621;
+	Tue, 13 Jan 2026 19:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oaK7WmUd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OVbU0vbH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9998835F8A2;
-	Tue, 13 Jan 2026 19:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7E730C632
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 19:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768331574; cv=none; b=MWr2VeGzBRyHVLdkPcXbUAb9BNo9Pc3kcsogJqgdMANFRVR+cskpAlOT0SnlLsILef5/OLvWWq7pApQnEdVzxKQYdMj6Ue9VdnRrrcWVfreOGsHeHLcQ6pP0Y7Sl3uxRh68ATNOh7EsUvNkZVzO5RCV+5FG8fRYEYKFZzkYIeRY=
+	t=1768332142; cv=none; b=XpR260a+dUe69HSIEcjbCzXMHzmAkpjyhAM6pful0ogyN3Cix+CS9UdTmWQMRgAWNjIHPSExJTq9b3RxJnxK0kWgPPeitc7jCcq8SEhdeCi5/Pj70tgjVE0ZElSVAa7qej7q18CxXq/qBlUFlg85Dt8cpBIaH2Saf7Cw5OUjOZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768331574; c=relaxed/simple;
-	bh=0kFijDOcv+vm45cY8ChqpQ8slT5vfyOnuCap/rUiGyY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NpCOzr/Y4jEFjSJg7ZG17Q6fLFuecOXHyF3AdB+9VLNI7SaVjYSyGkMGZfc7aGY5ocqdZ2iiag9txSmD2K+DFL/4lXYhmTesd30jDApG7xeuMfXnb7SPxqbE8wP+//n5xuq/EGQk1o0NuofU9TT1SOflYx/Ny8U4L2WAdCmU6c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oaK7WmUd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 50871C4AF11;
-	Tue, 13 Jan 2026 19:12:54 +0000 (UTC)
+	s=arc-20240116; t=1768332142; c=relaxed/simple;
+	bh=KCqNiCnoFXG2qnUjPKHhREhKguCUf493xV+T7T1XAlM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZFx1WIak73ICdCwa8A7uV3r7wx4U3yuKAMfs2u6WhWK/Fm3WGv/R92XvMSzd+IiQq67q5Pz3KDZAKhiwOKZ+Cz6Oe9yVU4fTfwTcP+SN4qxXPeSD+eKuCZCkyQNXKz79Ve3XGMOeHB+0jGZHg2ZuclKttO8RxweFsgnPAOEgpWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OVbU0vbH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47F63C19425
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 19:22:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768331574;
-	bh=0kFijDOcv+vm45cY8ChqpQ8slT5vfyOnuCap/rUiGyY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=oaK7WmUdRHwP5gFz/OZb6hXOtICPNqXw/Irz2C2gSWFBaaHgPtCOFqNZ17EtLPU8i
-	 qlad/pRXISdAjLpaiMe3Fx1lry5WKSeVhRc44J2F0QDNfdNqaeSSHXWnswid58PSQV
-	 30mOMn7K5KQb4ijIEITmYFzexD6crWmfvIThauwT4vNRgk9lj2rmiaw3Wn4F5IWLwV
-	 Ow/TpBpM/3C4gUqdhHWoLc05vny58UJ2UfWBW4jakyWADjfGsJO+EeVuC3tAwBhnLx
-	 pa+0Jhfb2BC4SCk25HUIntto3hgzHAGCkKpQD8cP3g1jgKV5FeiDhbsC7dExAhn9Sy
-	 I9jTUkxfpvdlg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40246D2502E;
-	Tue, 13 Jan 2026 19:12:54 +0000 (UTC)
-From: Yedaya Katsman via B4 Relay <devnull+yedaya.ka.gmail.com@kernel.org>
-Date: Tue, 13 Jan 2026 21:12:37 +0200
-Subject: [PATCH 3/3] arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Add
- Focaltech FT3518 touchscreen
+	s=k20201202; t=1768332142;
+	bh=KCqNiCnoFXG2qnUjPKHhREhKguCUf493xV+T7T1XAlM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=OVbU0vbHCLBJdTOzkIolq11JbEnmhgdTZGqWgQkTtez0DGtYxdl7zyuH0wOWtZURI
+	 Q4ab240gmhSSIfQNsDc38qUxn30vgDIjQ+uxoPU+MEQtMT64x+i553o9HE1wFNqPG0
+	 4thJdrkwnnLSxnZBpfFwEz/+g8+RnWVCynt5GhOwW5qq77Ii8SZuWRGeefkEzcoxKC
+	 NolIfh45Za3PR6nmpu0pM37gBohmYpNGugefVNW8sAZd80ZQszl+v3IOuEltdm+v9v
+	 XGUJI+t+el92wehpET/IJN5PNK1PbpqAcEL3U6/a3MCTHm4l457hXdGe/n+yrub4W0
+	 CCHCvKYYRfZOw==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b8706ce18c0so483784266b.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:22:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVOjKQ+m8xpQnR9gWj3382B+wGKeozmh6uPyzUWCB3FuUaufbudZKSsf+QUYxr7rfsYxblQ6KsH5JRA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxu/krMyWvanjqX6ziSivCZd8OEJ2vWeeiFwrwXU9rC2o/F5fkX
+	a1V8mLefPqAbml1ZGYLh/pStOdaLzIHjHHKHUvw6QHuFXixAHdDRz5uKb+aZxwXX75meGl2rRV1
+	F1JthtcfnwRUpO6TyO6F9Kcq7+gjrAw==
+X-Received: by 2002:a17:906:fd8b:b0:b87:2fcd:1955 with SMTP id
+ a640c23a62f3a-b87613d6796mr15394666b.50.1768332140863; Tue, 13 Jan 2026
+ 11:22:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260113-touchscreen-patches-v1-3-a10957f32dd8@gmail.com>
-References: <20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com>
-In-Reply-To: <20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com>
-To: SzczurekYT <szczurek@szczurek.yt>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Yedaya Katsman <yedaya.ka@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768331572; l=1665;
- i=yedaya.ka@gmail.com; s=20260113; h=from:subject:message-id;
- bh=G8tF74xDojoie4elyfMmN4wtgVzbzTbxl5RkQ9cPElA=;
- b=CZNXBSuCbx5TRlVSw/G8H282U6ssHspK3rRxwE2x0mM0EOTPQhSkTnFhdJfNmFi46ejk7NKj+
- n+84X1fOk5OC1VHBoWyaUmRENIzp+wsQgVrfdgLgMdqvFZ1YZlqW6xF
-X-Developer-Key: i=yedaya.ka@gmail.com; a=ed25519;
- pk=CgNmxD3tYSws5dZfpmJfc6re/bV/f47veVijddHLytk=
-X-Endpoint-Received: by B4 Relay for yedaya.ka@gmail.com/20260113 with
- auth_id=601
-X-Original-From: Yedaya Katsman <yedaya.ka@gmail.com>
-Reply-To: yedaya.ka@gmail.com
+References: <20260112142009.1006236-1-herve.codina@bootlin.com> <20260112142009.1006236-7-herve.codina@bootlin.com>
+In-Reply-To: <20260112142009.1006236-7-herve.codina@bootlin.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 13 Jan 2026 13:22:08 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+EDvrEqqwsFjs0sGxYfKgQuSFqCiqQs-1b3TnbG+gATQ@mail.gmail.com>
+X-Gm-Features: AZwV_QiB3iRBM8q9KM_-ENn_wA7vX-SS57cfKXRjAmuNOjocE2jTW3JoPADtbNc
+Message-ID: <CAL_Jsq+EDvrEqqwsFjs0sGxYfKgQuSFqCiqQs-1b3TnbG+gATQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 06/77] Add support for FDT_REF_LOCAL dtb tag
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, devicetree-compiler@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree-spec@vger.kernel.org, Hui Pu <hui.pu@gehealthcare.com>, 
+	Ian Ray <ian.ray@gehealthcare.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Yedaya Katsman <yedaya.ka@gmail.com>
+On Mon, Jan 12, 2026 at 8:20=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
+com> wrote:
+>
+> FDT_REF_LOCAL dtb tag is a meta-data tag attached to a property.
+>
+> It indicates that the property defined before this tag (FDT_PROP) uses a
+> phandle value and the node related to this phandle value is local (i.e.
+> the node is present in the device-tree blob).
+>
+> It is followed by one value:
+>  - offset (32bit):
+>      Offset in the property data where the phandle is available.
+>
+> Example:
+>   FDT_PROP 0x00000008 xxxxxxxx 0xca 0xfe 0xde 0xca 0x01 0x02 0x03 0x04
+>   FDT_REF_LOCAL 0x00000004
+>
+>   This means that at the offset 4 of the property data, the value
+>   (0x01020304) is a phandle and the related node is available in the
+>   dtb.
+>
+>   This is what is encoded in the dtb when the related dts has a property
+>   with the value set to <0xcafedeca &foo> with 'foo' a reference to an
+>   existing node where the phandle value is 0x01020304.
+>
+> If several local phandles are used in the property data, several
+> FDT_REF_LOCAL are present after the FDT_PROP tag. Each of them points
+> with its offset value to the position of one phandle.
+>
+> For instance, if a first property with 8 bytes of data has a phandle
+> value at offset 4 and a second property with 16 bytes of data has
+> phandle values at offset 0 and 8, the following tags sequence is
+> present:
+>   FDT_PROP 0x00000008 xxxxxxxx <data bytes>
+>   FDT_REF_LOCAL 0x00000004
+>   FDT_PROP 0x00000010 xxxxxxxx <data bytes>
+>   FDT_REF_LOCAL 0x00000000
+>   FDT_REF_LOCAL 0x00000008
 
-Add device tree node for the Focaltech FT3518 touchscreen on
-Xiaomi Mi A3 (laurel-sprout).
+To follow up on my desire to both be easily extended and have more
+type info, I have something like this in mind:
 
-Enable qupv3_id_0 and i2c2 bus that the touchscreen is on.
+FDT_TYPE_INFO 0x10 FDT_REF_LOCAL 0x0 FDT_TYPE_U32 0x4 FDT_REF_LOCAL
+0x8 FDT_TYPE_U32 0xc
 
-Co-developed-by: SzczurekYT <szczurek@szczurek.yt>
-Signed-off-by: SzczurekYT <szczurek@szczurek.yt>
-Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
----
- .../boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 34 ++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+Length is 16 because I would do u16 for the types and lengths. I'm not
+sure what the max property length is. In theory 2^32, but I suspect
+we'd run into other issues (e.g. libfdt offsets are 32-bit on 32-bit
+systems). We could also do 8 bits for type and 24 bits for offset.
+Offset could also be relative to the prior offset.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-index 994fb0412fcbdf5466f87a325c48b697a37b514b..97feed708d3b6483eab72cfb0ae39be6f5ae3a11 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-@@ -119,6 +119,18 @@ active-config0 {
- 			};
- 		};
- 	};
-+
-+	ts_vdd_supply: ts-vdd-supply {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ts_vdd_supply";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 83 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		startup-delay-us = <70000>;
-+	};
- };
- 
- &hsusb_phy1 {
-@@ -411,3 +423,25 @@ &usb3 {
- &usb3_dwc3 {
- 	extcon = <&extcon_usb>;
- };
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "focaltech,ft3518";
-+		reg = <0x38>;
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <88 IRQ_TYPE_EDGE_FALLING>;
-+
-+		vcc-supply = <&ts_vdd_supply>;
-+
-+		reset-gpios = <&tlmm 87 GPIO_ACTIVE_LOW>;
-+
-+		touchscreen-size-x = <720>;
-+		touchscreen-size-y = <1560>;
-+	};
-+};
-
--- 
-2.52.0
-
-
+Rob
 
