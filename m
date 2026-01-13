@@ -1,217 +1,190 @@
-Return-Path: <devicetree+bounces-254247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC08D16872
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 04:38:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E2FD1687E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 04:42:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BE5D43007522
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 03:38:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4BCF23012DF4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 03:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646242ED164;
-	Tue, 13 Jan 2026 03:38:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAAA2F39A4;
+	Tue, 13 Jan 2026 03:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="fp1coUA1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EFkHMZUi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11022074.outbound.protection.outlook.com [52.101.48.74])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28A02DCBE6;
-	Tue, 13 Jan 2026 03:38:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768275524; cv=fail; b=kQPccKa1NXGvTADusv5Ea1UY2IuD3zaKl+fYV5QEwxiMF5KJWRv9BdSmgP6u0fM6jDk5Nd0bE24VrnAQFiuGYpxC74G5U3p4hknCtYfAy3vg+HzICsBBsQKkLytijvMwwqVzdcufbuBLDTkJwOoNoEDA/oF68vuh9QPn5oQUhXU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768275524; c=relaxed/simple;
-	bh=QHz7e1cqJ58Yq853qs03Jb9ZXBAaN0WBIx4tcLnZVQY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=ObzVOJvyJFsf26EthjMRcNDueVPMIajXLXtydFcffBJcXyVRyjW60ZHF1qNHZpPq1NuOjS3ZLuUXXd43V9PzK5zvfqxVj3/Avo4/2El+3m8hzupmv5vTOmiECSAsixALde7SCnT6sg/U+GRNkgX0IeR5aZ2i6JJUCaJhfIKSEFY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=fp1coUA1; arc=fail smtp.client-ip=52.101.48.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cxWwPCoYqrh4+pTTxPki3meXcHZdT2nlPPvGTtSxeTZQEitEF55Qwn+gBR6ffpQ71QW99HyOA4ny8j5BrpwAqyfjroxS0TSh5URHwTKauaTnKWz1OqlMrIi5+odeVoSAxtYZYL3UMoTAi1OEfN4iHpKqcQyapMo8dTmQJyoG9CTnvmHo38vweEt96lVcntPsRZMayKJYNQeQHj5tiHcE122AnZdD823OHTp98Epv4nbEY2W4dnekwCFTv74KFh1uSxq9YRHh/d2BOY6puHLeZxc/frMXPjmowlUaxgYC7szHPCzaTlXGilSiuiQkv7gjxblEKhiGOmQKBbSgkvgHKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mkn174s9Gi7/x7kveHTMV+IY0L+Fse2qkREHmFR4lEs=;
- b=Ij5CV+xEpIxkvTvBVHydNZlyIEq5EKLG63AcbZbqpOqOc38p1gFT7k2Z38QW3qbhhobUO36Uiqj+ipqQ/xjRKbdJywHV9GnfEKkwHcpgijySxdXUdC2n4M3km9X4r62cbYuKQUQm+Cyi2hob0pvF0ujHlQprcDCxv+N964T96JIJq0qiX8pOPh3bHQ0/L48sSh/KRQmttJnTOyyrrMayRNSMsiennVEzwcWaHGOHOl5jFyFNY7kA4VUN8La6EsO7K58UpmLxrfPxlMw9KotM0LO2sTM7ocn0TcAXgMxUuTa9fxdiD4li3fFm30xThHd/zf6eLdWziMb4QesFFFDVew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axiado.com; dmarc=pass action=none header.from=axiado.com;
- dkim=pass header.d=axiado.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mkn174s9Gi7/x7kveHTMV+IY0L+Fse2qkREHmFR4lEs=;
- b=fp1coUA17X0wmlGKD6w5lZuhyJjBu/olaF4amSnl6PWIV5LcS4ATkrVPac7rJLlfyCexo2mVm3ioy4RCMJ1TnsB8m8zgO2PZekvfqTYUZ5/aobKmJTi6TdlJ7AeqeVhgZ31MU31mxA9pvBfXITWFLikMlyHspxncyGbU+D4SJI5rl7ZXRR1kT9T4tB0BNsQfn1JzhkX4BhinbLGwN1qG/482FpbjHL9Q/rDxe9UQr9o62j1gR2w+RA8JzbA/HUznbGBFN8AaQMRs4gs2Q3caXLZDxbAbi24gNGsJ6X/DallYOV8aBrXBBnsf86mnJYmGSh8na+qYJLQ5xGuTIbPpZQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received: from PH0PR18MB4558.namprd18.prod.outlook.com (2603:10b6:510:ac::13)
- by PH0PR18MB4005.namprd18.prod.outlook.com (2603:10b6:510:2d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Tue, 13 Jan
- 2026 03:38:40 +0000
-Received: from PH0PR18MB4558.namprd18.prod.outlook.com
- ([fe80::7a75:75a5:694b:2311]) by PH0PR18MB4558.namprd18.prod.outlook.com
- ([fe80::7a75:75a5:694b:2311%4]) with mapi id 15.20.9499.005; Tue, 13 Jan 2026
- 03:38:40 +0000
-Message-ID: <0642a1b1-bdb8-4c04-bfa2-1253044e4b77@axiado.com>
-Date: Tue, 13 Jan 2026 11:38:32 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] MAINTAINERS: Add Axiado AX3000 eMMC PHY driver
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: SriNavmani A <srinavmani@axiado.com>,
- Prasad Bolisetty <pbolisetty@axiado.com>, Vinod Koul <vkoul@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-References: <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-0-dd43459dbfea@axiado.com>
- <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-3-dd43459dbfea@axiado.com>
- <20260111-watchful-pigeon-of-brotherhood-6ada05@quoll>
-Content-Language: en-US
-From: Tzu-Hao Wei <twei@axiado.com>
-In-Reply-To: <20260111-watchful-pigeon-of-brotherhood-6ada05@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN6PR2101CA0010.namprd21.prod.outlook.com
- (2603:10b6:805:106::20) To PH0PR18MB4558.namprd18.prod.outlook.com
- (2603:10b6:510:ac::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AFC41C84BD;
+	Tue, 13 Jan 2026 03:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768275740; cv=none; b=m8jBIYRG96XILC4nD9yuhiyVZ9fXyz4DzlKbnk3cjJYMFIdsNQfImHMHHnPEpwl/WVWhhJJKuf+tZbaPAC/Gr+RlPFUdF3ZpG9PLBypOhYj/shZ9tcTrl/6Iwd/hcySiX3Jjb5eZN2VFcbmyR7+B1NOx9dZby0sSexuXDFpGnqE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768275740; c=relaxed/simple;
+	bh=a189GyiyLwJgfD4HhPrDhWNPYwV0vohFYoQElg4PC7Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYa5F0vkoLMoZtX6f9RanpS9bpbE/jGIaTBf1st/YVsBZdVMggGnI8+oULY8XH116fldTcaaXcdigl6gi01Vpi7qjj1sBZzohuVLKDoOWIRL9ygRSZHT3WSAvfI7fIRNnRCcLyV5R5QKsldfQk3oR7IL0jFLNow/YHZqzFP7iaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EFkHMZUi; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768275739; x=1799811739;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=a189GyiyLwJgfD4HhPrDhWNPYwV0vohFYoQElg4PC7Y=;
+  b=EFkHMZUi7WxQvDLe/zDFLeZWzKg9AX1G/emY+qkluoHqQLV4LY342gq6
+   ZqCub8cx7X14ZwOZM3iwUYcQ+n4HEJSO0GY1bBzuPEtV+aJtfi4BJjn3y
+   tSjNQQ2z+nJUH7fbve7CGyvUHMeq27witXhMe1UHz/tmk1pMRl98y3lTb
+   Xr6xT1x4Nvp57qF+HEy1yBekuf2UqgVYblE5mK92J1eNEuqZ6yF4gHUR6
+   69R0jswG6OqffclzzCVhLwIFPgDRQSFKi6fSNHgmzA63IVduxmtv4dJrx
+   8qz0p7Jy9eF+Oy5sPTrRzAXTxP4JCbzPUVIJjlH/jIo/B6ECKZB+YlgHg
+   A==;
+X-CSE-ConnectionGUID: GtmMukQxQtaSi+09jrGuqA==
+X-CSE-MsgGUID: sZmTl+CsRZ6lIklfeXJaYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="73189396"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
+   d="scan'208";a="73189396"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 19:42:18 -0800
+X-CSE-ConnectionGUID: P0cr0bG/S/qezmCmaThNYA==
+X-CSE-MsgGUID: ts13jOezTKKjb3EQe9wSoQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
+   d="scan'208";a="204078696"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 12 Jan 2026 19:42:13 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vfVII-00000000EAy-3c1r;
+	Tue, 13 Jan 2026 03:42:10 +0000
+Date: Tue, 13 Jan 2026 11:41:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org,
+	Gregory CLEMENT <gregory.clement@bootlin.com>
+Subject: Re: [PATCH v3 2/4] of: reserved_mem: Support multiple 'reg' entries
+ for memory-region
+Message-ID: <202601131101.q65jw7p0-lkp@intel.com>
+References: <20260107-mtd-memregion-v3-2-f9fc9107b992@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR18MB4558:EE_|PH0PR18MB4005:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8da3fc17-b22e-4d34-72a5-08de52553e2f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|7416014|42112799006|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?OVdsNzI4dmpQY2R0bzdxU2hQTFNvYWYwejJ6RlBSOXJPU2N4Z0IzdnYwdDZ2?=
- =?utf-8?B?NG1IbjY5TjBYRitXaUszZjgyb1Zhd1U4YjJpN3JFZUhVK2JvYVVWeDBQZ3pk?=
- =?utf-8?B?bUxEeFd0K0NvblQ3RGNBSDNlZDkyeEJ5MWVnTmdoYmF5ZForMEt6bCs0a1Zh?=
- =?utf-8?B?ZHFGcDR6S2hHemxxY2xnQXhpREx1YUxJUEJJVzUxbDhERXRQWE10MVlHTVk2?=
- =?utf-8?B?RE96T292OGlMWm1UZ3ZBUVRvRUhkVGxWVlNLdDZwVjlnRWNiOFZoaXdhUzUz?=
- =?utf-8?B?eEgza0VPcUN0OVgzdXFaL3Q1NlU0OTlCdDg1eThwanUyS0Nuc2g5dmdwVmg3?=
- =?utf-8?B?WmsyNldkdFVxckVwSGlPUW9CQlUySUM5QnluV01BRnlTM0k3MUJlSzB4Ykxz?=
- =?utf-8?B?UDl1dHIzeGlMejNGQ2lBSUlkZStJQ3ZkL2RUNldCdnpMdTRleEFqU2NrcXFE?=
- =?utf-8?B?N3lGSG5kWkcvNVkrZGxGeUFacUVOZGhuSDNRd09lRTBJWVRZTjIzVXNJM0NC?=
- =?utf-8?B?S1JodDNSdUlYMlhYZEdRTVNueWhlVTFjdWN2cnFIMnlPRTM1ZlNkNDhiNEtN?=
- =?utf-8?B?QnVLdDQ3cFNtWmdTaDZ2Q0JiNHlPeFJvWFdYNXBxQm45b3A1ejJNaC91N3d3?=
- =?utf-8?B?MjdLRjFkSWYzMS9Jc2c1VUs4SUMwMFU0MzN1SGRoSmFVS1MyYXdtYnVoaTli?=
- =?utf-8?B?OHpFQUhFeElnOWZPSGx5RHJ2eW1pWFBzb2tqbWZicVg3TFk0MU4vaFJWYk1Z?=
- =?utf-8?B?VC9ZalJyWWpJMUJoY0RIR2FJcFk3SnpOejNZZ2pNd3M5NjlXbitKN2RQbVZO?=
- =?utf-8?B?N2pIckZHaTFlQUhCbmFici9pYUJRbnlDOVhyelJJOXlYbjFtQzhzdG00WGtC?=
- =?utf-8?B?QllLS0RBVUlCQjcybEh2RG4yZmdYeG5zRVJtRmQ1OStDdGJuYTBiWUUwK1VW?=
- =?utf-8?B?TDVYQWVPc1ZncloxM2JBcHcvZmhBZjhOdzJwamNhVlArRDhwelhzczI1d0dE?=
- =?utf-8?B?VG95aHpuRGdNU2xieUNQbEFJTVRubTh0dzhwOTVBZkVuT3k1dFdGb21tLzd0?=
- =?utf-8?B?MlhxNTExbFBXbXFMM1Y3c0IrUE8rVmtsczJYVEE5aFBKVDFDMVNWVkNEamh3?=
- =?utf-8?B?WG5wYjByRHplWmlzT004Nm9EbFRSRjI4VjlIVlZsS1YvZEt4SUtPbU1LM3NR?=
- =?utf-8?B?c3huL3IvY1QxWnlZeGFhWEFuMXVtSlZWYml1LzR0NnJ0OE9ScDJIaXFuY1lY?=
- =?utf-8?B?SVRIR1greTNOUEppUWNSSkNJTCtkVWp3WVprRm5OaDVBN1Z4dkhTTmJkUlFF?=
- =?utf-8?B?SkEra05YNG1ibm1ScEZFNkNpbjlwcnRRL1FZNS92S0lvdmZabU5BVms3bGMx?=
- =?utf-8?B?RkFBMUxlcjlQYlN1b1FBcVcreU5CSTVJOUxXYWxSNHV3a2hlbnNDRUFXT1lY?=
- =?utf-8?B?cHJrdnZidnV4WUJxWkpCY0Y4SWJOZEtxMjNPYmlhN1g2d0gvTXhlVHM4aVZQ?=
- =?utf-8?B?OTRsL3BJTTE1d0ZMOTI0UTVGdGo1Rzd5MlJrZ2tESWJRWFVmeEZndEtJSnNq?=
- =?utf-8?B?bGJEbWVoNFdkRlBQdXZxaUtFY2FSNXVFSklpS1NjTEtMS0Y4bFE1K3dLU0VS?=
- =?utf-8?B?OHdsbTJDeENvWkdBT2Z6THgvUXdVQWo0SVpYMGNhazdLZzE2SmtwdWRVQWtI?=
- =?utf-8?B?azc4RUxDaGovbDdaMHB2ZDZ2amxaQUhDMmdwSnhLR3FiN0JuUVZTYURUVWp0?=
- =?utf-8?B?bzd6cTdldFJBZi9hL0VJVVAzT3ZOM3RxOTN0NnZTMTZER2Yva0NHYnZNYUNl?=
- =?utf-8?B?SXFMSk5xMFRSN20vaEx5eFQrN0s3MEovdFBlWkZ5MERRRFBDN0kvN0JpakFp?=
- =?utf-8?B?aUZCREROcHFLcUkvSHc1WUo3NlZveDh5dEtndCtBWWpCY2g3Q210L2h4NlRJ?=
- =?utf-8?B?QWY4UkJ5SVFtN0FQTEtSRWhkQU9jZmUwc1VJWGE3TmIzckJIZ1AwbXpKbk1q?=
- =?utf-8?B?bHNsMXR4OC93PT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR18MB4558.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(7416014)(42112799006)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Zzd1Z3A0dmdxVjZMM3Y3NjRjZm1TN1FFL1VPdG5nM1NvdFBSQ0h4K0Y1c3Zm?=
- =?utf-8?B?eWwySyt1cE9pTFdrczY3UU1VTFdJMW5UOEw5ZTRBdVFNSnJEMk5iUnNlNTBW?=
- =?utf-8?B?WUd2YTh1WTIvT2dsZ1RmTEhXdk1VdmJaWTRmS0oxYzBTVS9tM3lBWVlMa1I0?=
- =?utf-8?B?WjBhUlVkVGhzaTBVeEVFM1A5ZXpqNmFNeGFlZVlDdnFFZUtiMkpoUkR4VTZk?=
- =?utf-8?B?ZDF6c3lXaG5aNnpmUEJyb3RHc04za0EvRHEyenJoYVl6N2prb1BaZFE2b2R0?=
- =?utf-8?B?QTB5c3VmOEt6RGFBTzlieVZRNG8wUnFUV3g4Y1hVejNxMll4RGduZkVpTGFC?=
- =?utf-8?B?ZFRVNjNmUkJRakRYSVJKeURMaXB1K0dlbXpVWVc1eXZxYk01N0lXRk5OUVMx?=
- =?utf-8?B?Ri96WVJ1MkR1SU1aU1J2aVJHSGFMa1JnTndBUU04RzNaYk5sVVFUZ3ozNk1v?=
- =?utf-8?B?SWlKbWtkMWx3WmtnbnFGenNIUG8rOGk2blM3SmRUdzhtekRxY1NPLzNzRWNG?=
- =?utf-8?B?bnBvZW4xUWpUUWxra3FWeldlODFQeWwxL2Z5cytJbWpvTVNBaUVNcGcxMEpO?=
- =?utf-8?B?ZGdSRmYwdE50SG1xNEpPK00xc3hGZ04wYlRMcU03dkZQdHg4ZkJSbUR4TnJI?=
- =?utf-8?B?WWkzNzBSSm1yK3hpZXZzRXRNNkIzVC96eEI0U3VtNHVkQi9VQVIzdGF4QW9J?=
- =?utf-8?B?YlM0Kzk0ejNMa3BBSXBqcDNLM1BsRnRuNk92L2h2UFlKbm0yejJmdSt2dVVy?=
- =?utf-8?B?R01xVGhMd056b3VqMm4zdDhaSm44RzJvV3ZvSVQzVHRPbW45OFR3aGNhbFZR?=
- =?utf-8?B?Wm5GYllDRy9zVHkwYno4S2ZrU1lDeXFyZXBGemtRTEQ2UWdHTXQ0dGFRTjdl?=
- =?utf-8?B?aEd3RjVremhDQUJqK1BlYWVHY2xlV2FyN1hHb0FMb3VGcXdsZzlDb0h1Z3A5?=
- =?utf-8?B?OUhTSFJoRU9jWjdGWUpSbjA4RGJNRC9DL0prdzBwZ05WZFZReUFjMThxUGVB?=
- =?utf-8?B?VjFqKzVka3g4RXF2MkwrTGdXVGtCSWpja0FFWE1LNW9ZSFo2Q29yK1FGRENq?=
- =?utf-8?B?amJnYnc1dkhlb2ozdEJPMHhhV2xPNm1qV3grRmJCd0hydEFmMlJQM0w4VVhB?=
- =?utf-8?B?MmI1c05LaFVrTGZTOHB5aHhpaG9zMnkrL3c0bmhZUmFWNUhjdUFVbmF5S0VL?=
- =?utf-8?B?bDJjUGFIWmM5anpuamZiMlc3UU5oQlA0cWNaRmxDWmVMck5ObktrcGhWWmlw?=
- =?utf-8?B?Y2ZDRjNMUWQ1bWhNNUIwUmxZRWplQTd3TEN3aXBEMWkzdndMZzJxZThublBU?=
- =?utf-8?B?WitpWkVNV0JtVzFmYVM1K2RMUG9qanVseWQ5WWNxYXRRR1BiY0VmSlg2Qmsr?=
- =?utf-8?B?dVlsYWRzdzFqQjUzaG9DaWVJTWRoaWxxWEtON0JEMnJKZS9rVlpOY3p5WGZH?=
- =?utf-8?B?dmZtUnZXWWJkQ0EwaDR0SE9CVXNUK2NPeUluOXBEUnUrS1JGK0lkTVZzQytj?=
- =?utf-8?B?Z3JFa3hmVGV6dDlhRXpsaVh2ZlpYMy9jZEpyVUpKQTVNZHVTcUVKZlhpTmtr?=
- =?utf-8?B?c1hwaXFDL2h3TnVrSHRYeUVJSHMrWmRreHJxenVjOUo5SkIzckxKck1ZRXZL?=
- =?utf-8?B?Zi9IS1Fzclh4NUVFNFg3eVlyYU52NHBaZ0VJcmdFOFJTN2pHMk54RVBoTTll?=
- =?utf-8?B?M0tNOWgzY2o4R0t0em5jV3BNRkJmNlQxRWhHYUtyZzhyZktmaWUwOXFRaHlS?=
- =?utf-8?B?ampNYjFRVUhoQjZSMFBtM1dFSDBQaFFxMlBWdWhESzUvaDdqaEZlS3daYlJm?=
- =?utf-8?B?MXRpanhvVzhLeUlMdGM2WG40LzJUL3hxSWlsQmJPZlRLeG5scmxGdThrSUMz?=
- =?utf-8?B?UGluMGkzSUt3eTU5bUs2d3I3czVKUis3YTFSUUVIcnlpRHBWTUVzUk9pbDUz?=
- =?utf-8?B?a2QwZCtSRjlKSDkrS2p3MVpnNDdwdzJVTlFOQlRBeStUWFdYcXlNNkljU3B4?=
- =?utf-8?B?SDVIOHg3dTVRUWJmbGRpK3ZoRWhBYjc1U04vcUhpbXVkYk1NeUZpa0xzWTNJ?=
- =?utf-8?B?ZDNUckVLUDBYWDdwYzZ4RWNlNW5OK2JpbkdqL3Rid1ZOb3U2MS9jN3F3enVH?=
- =?utf-8?B?M0d0TE5XTXRGV3MrZXhZMXdOSmFPVmhlWEJ3dmVvUUZIWUFsSWgwcE9QSGtO?=
- =?utf-8?B?SGdxMSs3aDVNWDNtV2htMDdjWnExZkprbWFxb050dzlILzNkT0p6SGFYL3V3?=
- =?utf-8?B?NmlRb0w3cExjSkUxcVhCbm53MDlKb0VlZm1FdGN4R2U0bzhrcnluWGY4T3I5?=
- =?utf-8?B?RXB0cjV3Y0c1VzhvVzJjS3MzSUhhK3orNlFiLzB0dzJtUEdsK0Vzdz09?=
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8da3fc17-b22e-4d34-72a5-08de52553e2f
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR18MB4558.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 03:38:40.4053
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +ZPz6BE6KO19WWR5Kv0QCph9I52KlIkTLJLPvqG+FSoS7fKC0X3riaSvvhLjIE7i
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR18MB4005
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260107-mtd-memregion-v3-2-f9fc9107b992@bootlin.com>
 
-On 1/11/2026 6:40 PM, Krzysztof Kozlowski wrote:
->>
->> +AXIADO EMMC PHY DRIVER
->> +M:   SriNavmani A <srinavmani@axiado.com>
-> 
-> No activity:
-> https://lore.kernel.org/all/?q=f%3Asrinavmani%40axiado.com
-> 
->> +M:   Tzu-Hao Wei <twei@axiado.com>
->> +M:   Prasad Bolisetty <pbolisetty@axiado.com>
-> 
-> No reviews:
-> https://lore.kernel.org/all/?q=f%3Apbolisetty%40axiado.com
-> 
-> Are these maintainers going to actually maintain code? At least Prasad
-> should provide proper review now.
-> 
-I'll ask them to Ack/Review the patches. 
+Hi Gregory,
 
->> +L:   linux-phy@lists.infradead.org (moderated for non-subscribers)
->> +S:   Maintained
->> +F:   Documentation/devicetree/bindings/phy/axiado,ax3000-emmc-phy.yaml
-> 
->> +F:   drivers/phy/axiado/Kconfig
->> +F:   drivers/phy/axiado/phy-axiado-emmc.c
-> 
-> If you are a maintainer of Kconfig you imply you maintain everything, so
-> simply entire directory...
-> 
-Yes, we will maintain everything in drivers/phy/axiado/
+kernel test robot noticed the following build warnings:
 
-Best regards,
-TH
+[auto build test WARNING on 8f0b4cce4481fb22653697cced8d0d04027cb1e8]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Gregory-CLEMENT/of-reserved_mem-Fix-placement-of-__free-annotation/20260107-211455
+base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
+patch link:    https://lore.kernel.org/r/20260107-mtd-memregion-v3-2-f9fc9107b992%40bootlin.com
+patch subject: [PATCH v3 2/4] of: reserved_mem: Support multiple 'reg' entries for memory-region
+config: arm-allnoconfig (https://download.01.org/0day-ci/archive/20260113/202601131101.q65jw7p0-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260113/202601131101.q65jw7p0-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601131101.q65jw7p0-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/of/of_reserved_mem.c:317:7: warning: variable 'err' is uninitialized when used here [-Wuninitialized]
+     317 |                 if (err == -ENOENT && of_get_flat_dt_prop(child, "size", NULL)) {
+         |                     ^~~
+   drivers/of/of_reserved_mem.c:300:10: note: initialize the variable 'err' to silence this warning
+     300 |                 int err, ret;
+         |                        ^
+         |                         = 0
+   1 warning generated.
+
+
+vim +/err +317 drivers/of/of_reserved_mem.c
+
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  278  
+54c180e73ffa3e Rob Herring        2024-03-11  279  /*
+54c180e73ffa3e Rob Herring        2024-03-11  280   * fdt_scan_reserved_mem() - scan a single FDT node for reserved memory
+54c180e73ffa3e Rob Herring        2024-03-11  281   */
+54c180e73ffa3e Rob Herring        2024-03-11  282  int __init fdt_scan_reserved_mem(void)
+54c180e73ffa3e Rob Herring        2024-03-11  283  {
+54c180e73ffa3e Rob Herring        2024-03-11  284  	int node, child;
+00c9a452a235c6 Oreoluwa Babatunde 2024-10-08  285  	int dynamic_nodes_cnt = 0, count = 0;
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  286  	int dynamic_nodes[MAX_RESERVED_REGIONS];
+54c180e73ffa3e Rob Herring        2024-03-11  287  	const void *fdt = initial_boot_params;
+54c180e73ffa3e Rob Herring        2024-03-11  288  
+54c180e73ffa3e Rob Herring        2024-03-11  289  	node = fdt_path_offset(fdt, "/reserved-memory");
+54c180e73ffa3e Rob Herring        2024-03-11  290  	if (node < 0)
+54c180e73ffa3e Rob Herring        2024-03-11  291  		return -ENODEV;
+54c180e73ffa3e Rob Herring        2024-03-11  292  
+54c180e73ffa3e Rob Herring        2024-03-11  293  	if (__reserved_mem_check_root(node) != 0) {
+54c180e73ffa3e Rob Herring        2024-03-11  294  		pr_err("Reserved memory: unsupported node format, ignoring\n");
+54c180e73ffa3e Rob Herring        2024-03-11  295  		return -EINVAL;
+54c180e73ffa3e Rob Herring        2024-03-11  296  	}
+54c180e73ffa3e Rob Herring        2024-03-11  297  
+54c180e73ffa3e Rob Herring        2024-03-11  298  	fdt_for_each_subnode(child, fdt, node) {
+54c180e73ffa3e Rob Herring        2024-03-11  299  		const char *uname;
+8be14ac8dccc70 Gregory CLEMENT    2026-01-07  300  		int err, ret;
+54c180e73ffa3e Rob Herring        2024-03-11  301  
+54c180e73ffa3e Rob Herring        2024-03-11  302  		if (!of_fdt_device_is_available(fdt, child))
+54c180e73ffa3e Rob Herring        2024-03-11  303  			continue;
+54c180e73ffa3e Rob Herring        2024-03-11  304  
+54c180e73ffa3e Rob Herring        2024-03-11  305  		uname = fdt_get_name(fdt, child, NULL);
+54c180e73ffa3e Rob Herring        2024-03-11  306  
+8be14ac8dccc70 Gregory CLEMENT    2026-01-07  307  		ret = __reserved_mem_reserve_reg(child, uname);
+8be14ac8dccc70 Gregory CLEMENT    2026-01-07  308  		if (ret > 0)
+8be14ac8dccc70 Gregory CLEMENT    2026-01-07  309  			count += ret;
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  310  		/*
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  311  		 * Save the nodes for the dynamically-placed regions
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  312  		 * into an array which will be used for allocation right
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  313  		 * after all the statically-placed regions are reserved
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  314  		 * or marked as no-map. This is done to avoid dynamically
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  315  		 * allocating from one of the statically-placed regions.
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  316  		 */
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08 @317  		if (err == -ENOENT && of_get_flat_dt_prop(child, "size", NULL)) {
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  318  			dynamic_nodes[dynamic_nodes_cnt] = child;
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  319  			dynamic_nodes_cnt++;
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  320  		}
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  321  	}
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  322  	for (int i = 0; i < dynamic_nodes_cnt; i++) {
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  323  		const char *uname;
+00c9a452a235c6 Oreoluwa Babatunde 2024-10-08  324  		int err;
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  325  
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  326  		child = dynamic_nodes[i];
+8a6e02d0c00e7b Oreoluwa Babatunde 2024-10-08  327  		uname = fdt_get_name(fdt, child, NULL);
+00c9a452a235c6 Oreoluwa Babatunde 2024-10-08  328  		err = __reserved_mem_alloc_size(child, uname);
+00c9a452a235c6 Oreoluwa Babatunde 2024-10-08  329  		if (!err)
+00c9a452a235c6 Oreoluwa Babatunde 2024-10-08  330  			count++;
+54c180e73ffa3e Rob Herring        2024-03-11  331  	}
+00c9a452a235c6 Oreoluwa Babatunde 2024-10-08  332  	total_reserved_mem_cnt = count;
+54c180e73ffa3e Rob Herring        2024-03-11  333  	return 0;
+54c180e73ffa3e Rob Herring        2024-03-11  334  }
+54c180e73ffa3e Rob Herring        2024-03-11  335  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
