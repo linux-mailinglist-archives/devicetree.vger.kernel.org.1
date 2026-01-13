@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-254607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65387D19CCC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:18:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 069B8D19D56
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:21:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4C4F63035CEC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:11:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BDBDA3061EDD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E54E2E2679;
-	Tue, 13 Jan 2026 15:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0D5378D8F;
+	Tue, 13 Jan 2026 15:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="hQ8aVbNg"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XjfUI6hM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB53C279DC8;
-	Tue, 13 Jan 2026 15:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9228F38F258;
+	Tue, 13 Jan 2026 15:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768317090; cv=none; b=ILK8PdaAwvqciMXWPFZxTKPjzFbywuZgOSCUoQvpyBBqjEiATa7PFG56jZQD5pc1k2xFUIY7LXtW5fwBTKtAQ7Yjzrcww+fdfR2RFfUbQPGsxtzQOQPSAmFP3jzG01F0b7flJYy3zM38qLfqdCDLCIf0bzn17yKFvDp/Etchotg=
+	t=1768317097; cv=none; b=uwh1dBlzcRZgu9tYYZPAlPc2Pnnx9VsTJbGVdTEhHSgB6VppzuyRzIwQw0KQmRjG5izA2I6u6b0T/U0Frn4qzb9ZjIw56iuN067Zzc337A/Wi5G/BO2lyHlSsVQ/lbkHM2Ssb0PVwT3Q7bd1krWEcggnO2bF8DMvwNxxRUr5yOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768317090; c=relaxed/simple;
-	bh=bytzEBphdnUDiq59jCY+y+9/lSfdJjO2JXZ6AF5/lVk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UXfA36ZP8gpWVTSx3CZyuq7YlICxw3fgjkwuxQdKNV0csp2ARrxCbbGjsUIAp1ramhhqiacNcEoTba7NHPjAldyzvrNtggWLsopN7r/xD3SPrEaecJdledK5rTASM+d7M8IpqQ01PfTibZjdOO8CIwkIU7iZ1+2qx8P54mwzFzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=hQ8aVbNg; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id D414160029BD;
-	Tue, 13 Jan 2026 15:11:25 +0000 (WET)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id EFa79Lnypwl6; Tue, 13 Jan 2026 15:10:55 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id E9591600140A;
-	Tue, 13 Jan 2026 15:10:54 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail2; t=1768317055;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xbxfq9jp74vtOydBQ9RJUch+aysnR2/gbokPt1O0PRU=;
-	b=hQ8aVbNgfgrCXaG1NnhxmbPhehvMedmR85kuHoWkKJfQof85QlT61K7wLPQtao65dlgEeS
-	pfAgnNKdSEz3gqPePO9+GB4XiOepQjmxDyiABWzmZ9trqhy8iM0MFZVSo7Eyl7HcX7vbFS
-	hBNUfhA4S4XD9rwl5rJ8MCJQtjHw8NJXb1cbeWlnwuNSn2ZhjNh7y/1LrmVJOEcLtkfvIK
-	32ARMFWkPMXN17ZtZXKgCHXcN00QRr+wtCDG0KMKrDI+tKzgI8mYaRiu4oLd2zRbXrbUAy
-	U7XUYzexKWK/NEfEAj6SFpj7W5jgVQQH8BDHf1XrbrE3iS+mTk0EVzFRFgmb6w==
-Received: from [192.168.2.110] (unknown [148.63.39.39])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 7AA72360107;
-	Tue, 13 Jan 2026 15:10:54 +0000 (WET)
-Message-ID: <c3f54ffb-cf4b-47ae-871a-6dd60b17c9cb@tecnico.ulisboa.pt>
-Date: Tue, 13 Jan 2026 15:10:54 +0000
+	s=arc-20240116; t=1768317097; c=relaxed/simple;
+	bh=7XznA18BA70UboFGcQVIjFlVsDecJjM7njq32R22DrE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JotuotPP84628AoZvbZFzKaV4Z//5JUKxT4lmZWxbvae7v2+2q39Koyn5TJyjyZQ3Xs8PISZeGmkS2x31bo7mBrMrkbLKSH3dsvddJx8MJQWrsx/N64QVdB86Bfgkoe2nqrALrNU5K8hmb81j8X/gkxfFJGtelfIwmLEuNe1dEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=XjfUI6hM; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1768317095; x=1799853095;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=7XznA18BA70UboFGcQVIjFlVsDecJjM7njq32R22DrE=;
+  b=XjfUI6hMLptuz4mTDBw3ElweDYUvYsuxuMln1fZhugY2M6oezogqeHlj
+   jp/wOXNrK9nccRxkUqgpRtVndRo8oUKO/X7AzYxeCJD3oIvkqRccWHyr/
+   iMx56Wr2jrtFfwFO4JgkriZDK1zpfzEjLwiuHqhGbsm+MrywaZzuYgErk
+   94pVO+KaYZ2uMuL5pqWeIuTYcf5Dcs+NvLx9HIXQiT9JhJe5NXYBcpfSE
+   tjA+agpiaJ6oNAU7yFDAeJlNtc3RU401nWe1bTovL6qx6BrAV1xJyXqHk
+   E7n/HBph1rTIjPnodDQ1cIWtlK65ediWF3+lZ1RqbDSGQGm029dJlV6aL
+   w==;
+X-CSE-ConnectionGUID: elVzir9fTFac2yKBdCUdNg==
+X-CSE-MsgGUID: PRgTA9VDTSiMPgwjr6n34Q==
+X-IronPort-AV: E=Sophos;i="6.21,222,1763449200"; 
+   d="scan'208";a="52247948"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 08:11:34 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.29; Tue, 13 Jan 2026 08:11:12 -0700
+Received: from [10.159.205.69] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 13 Jan 2026 08:11:09 -0700
+Message-ID: <468e4624-355b-400f-8d03-4db5c37e3ec7@microchip.com>
+Date: Tue, 13 Jan 2026 16:11:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,188 +65,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] phy: tegra: xusb: Fix ordering issue when switching
- roles on USB2 ports
-To: Jon Hunter <jonathanh@nvidia.com>, Mathias Nyman
- <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
- <20251204-diogo-tegra_phy-v1-3-51a2016d0be8@tecnico.ulisboa.pt>
- <86cd3ff0-1609-44cb-911c-f0e97652ca1b@nvidia.com>
- <ae36f759-e889-4371-8c08-b8ffd1b69250@tecnico.ulisboa.pt>
- <703a470d-87fc-4580-a743-952e422984d4@nvidia.com>
-Content-Language: en-US
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-In-Reply-To: <703a470d-87fc-4580-a743-952e422984d4@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v5 3/5] ARM: dts: microchip: sam9x60: Add GFX2D GPU
+To: Cyrille Pitchen <cyrille.pitchen@microchip.com>, David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, Russell King <linux@armlinux.org.uk>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20260113-cpitchen-mainline_gfx2d-v5-0-9cdab8fa699b@microchip.com>
+ <20260113-cpitchen-mainline_gfx2d-v5-3-9cdab8fa699b@microchip.com>
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Content-Language: en-US, fr
+Organization: microchip
+In-Reply-To: <20260113-cpitchen-mainline_gfx2d-v5-3-9cdab8fa699b@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-
-On 1/13/26 14:48, Jon Hunter wrote:
+On 13/01/2026 at 14:10, Cyrille Pitchen wrote:
+> Add support for the GFX2D GPU.
 > 
-> On 13/01/2026 14:05, Diogo Ivo wrote:
->>
->>
->> On 1/13/26 11:56, Jon Hunter wrote:
->>>
->>> On 04/12/2025 21:27, Diogo Ivo wrote:
->>>> The current implementation of USB2 role switching on Tegra relies on
->>>> whichever the previous USB controller driver was using the PHY to first
->>>> "yield" it back to USB_ROLE_NONE before the next controller configures
->>>> it for the new role. However, no mechanism to guarantee this ordering
->>>> was implemented, and currently, in the general case, the configuration
->>>> functions tegra_xhci_id_work() and tegra_xudc_usb_role_sw_work() end up
->>>> running in the same order regardless of the transition being HOST- 
->>>> >DEVICE
->>>> or DEVICE->HOST, leading to one of these transitions ending up in a
->>>> non-working state due to the new configuration being clobbered by the
->>>> previous controller driver setting USB_ROLE_NONE after the fact.
->>>>
->>>> Fix this by introducing a helper that waits for the USB2 port’s current
->>>> role to become USB_ROLE_NONE and add it in the configuration functions
->>>> above before setting the role to either USB_ROLE_HOST or
->>>> USB_ROLE_DEVICE. The specific parameters of the helper function are
->>>> choices that seem reasonable in my testing and have no other basis.
->>>
->>> This is no information here about why 6 * 50/60us is deemed to be 
->>> sufficient? May be it is, but a comment would be nice.
->>>
->>>> This was tested on a Tegra210 platform (Smaug). However, due to the 
->>>> similar
->>>> approach in Tegra186 it is likely that not only this problem exists 
->>>> there
->>>> but that this patch also fixes it.
->>>>
->>>> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
->>>> ---
->>>>   drivers/phy/tegra/xusb.c            | 23 +++++++++++++++++++++++
->>>>   drivers/usb/gadget/udc/tegra-xudc.c |  4 ++++
->>>>   drivers/usb/host/xhci-tegra.c       | 15 ++++++++++-----
->>>>   include/linux/phy/tegra/xusb.h      |  1 +
->>>>   4 files changed, 38 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
->>>> index c89df95aa6ca..e05c3f2d1421 100644
->>>> --- a/drivers/phy/tegra/xusb.c
->>>> +++ b/drivers/phy/tegra/xusb.c
->>>> @@ -740,6 +740,29 @@ static void 
->>>> tegra_xusb_parse_usb_role_default_mode(struct tegra_xusb_port *port)
->>>>       }
->>>>   }
->>>> +bool tegra_xusb_usb2_port_wait_role_none(struct tegra_xusb_padctl 
->>>> *padctl, int index)
->>>> +{
->>>> +    struct tegra_xusb_usb2_port *usb2 = 
->>>> tegra_xusb_find_usb2_port(padctl,
->>>> +                                      index);
->>>> +    int retries = 5;
->>>> +
->>>> +    if (!usb2) {
->>>> +        dev_err(&usb2->base.dev, "no port found for USB2 lane 
->>>> %u\n", index);
->>>
->>> This appears to be a bug. If !usb2 then dereference usb2->base anyway.
->>
->> It is a bug, will fix in v2.
->>
->>>> +        return false;
->>>> +    }
->>>> +
->>>> +    do {
->>>> +        if (usb2->role == USB_ROLE_NONE)
->>>> +            return true;
->>>> +
->>>> +        usleep_range(50, 60);
->>>> +    } while (retries--);
->>>> +
->>>> +    dev_err(&usb2->base.dev, "timed out waiting for USB_ROLE_NONE");
->>>> +
->>>> +    return false;
->>>> +}
->>>> +
->>>>   static int tegra_xusb_usb2_port_parse_dt(struct 
->>>> tegra_xusb_usb2_port *usb2)
->>>>   {
->>>>       struct tegra_xusb_port *port = &usb2->base;
->>>> diff --git a/drivers/usb/gadget/udc/tegra-xudc.c b/drivers/usb/ 
->>>> gadget/ udc/tegra-xudc.c
->>>> index 0c38fc37b6e6..72d725659e5f 100644
->>>> --- a/drivers/usb/gadget/udc/tegra-xudc.c
->>>> +++ b/drivers/usb/gadget/udc/tegra-xudc.c
->>>> @@ -698,8 +698,12 @@ static void 
->>>> tegra_xudc_restore_port_speed(struct tegra_xudc *xudc)
->>>>   static void tegra_xudc_device_mode_on(struct tegra_xudc *xudc)
->>>>   {
->>>> +    int port = tegra_xusb_padctl_get_port_number(xudc->curr_utmi_phy);
->>>>       int err;
->>>> +    if (!tegra_xusb_usb2_port_wait_role_none(xudc->padctl, port))
->>>> +        return;
->>>> +
->>>>       pm_runtime_get_sync(xudc->dev);
->>>>       tegra_phy_xusb_utmi_pad_power_on(xudc->curr_utmi_phy);
->>>> diff --git a/drivers/usb/host/xhci-tegra.c b/drivers/usb/host/xhci- 
->>>> tegra.c
->>>> index 9c69fccdc6e8..9944593166a3 100644
->>>> --- a/drivers/usb/host/xhci-tegra.c
->>>> +++ b/drivers/usb/host/xhci-tegra.c
->>>> @@ -1352,18 +1352,23 @@ static void tegra_xhci_id_work(struct 
->>>> work_struct *work)
->>>>       struct tegra_xusb_mbox_msg msg;
->>>>       struct phy *phy = tegra_xusb_get_phy(tegra, "usb2",
->>>>                               tegra->otg_usb2_port);
->>>> +    enum usb_role role = USB_ROLE_NONE;
->>>>       u32 status;
->>>>       int ret;
->>>>       dev_dbg(tegra->dev, "host mode %s\n", str_on_off(tegra- 
->>>> >host_mode));
->>>> -    mutex_lock(&tegra->lock);
->>>
->>> Extra blank line here.
->>
->> Will fix in v2.
->>
->>>> -    if (tegra->host_mode)
->>>> -        phy_set_mode_ext(phy, PHY_MODE_USB_OTG, USB_ROLE_HOST);
->>>> -    else
->>>> -        phy_set_mode_ext(phy, PHY_MODE_USB_OTG, USB_ROLE_NONE);
->>>> +    if (tegra->host_mode) {
->>>> +        if (!tegra_xusb_usb2_port_wait_role_none(tegra->padctl,
->>>> +                             tegra->otg_usb2_port))
->>>> +            return;
->>>> +        role = USB_ROLE_HOST;
->>>> +    }
->>>> +
->>>> +    mutex_lock(&tegra->lock);
->>>> +    phy_set_mode_ext(phy, PHY_MODE_USB_OTG, role);
->>>>       mutex_unlock(&tegra->lock);
->>>
->>> I am trying to understand why you opted to implement it this way 
->>> around and not add the wait loop after setting to the mode to 
->>> USB_ROLE_NONE in the original code all within the context of the mutex?
->>
->> I did that to minimize the amount of time we wait while holding the
->> mutex, as we can now possibly wait a significant amount of time for the
->> role switch. Is this an unneccessary optimization?
+> Signed-off-by: Cyrille Pitchen <cyrille.pitchen@microchip.com>
+> ---
+>   arch/arm/boot/dts/microchip/sam9x60.dtsi | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 > 
-> Do you mean it will be longer than a few 100us?
+> diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> index b075865e6a7688005d471665459b3f6f1f26f7a4..338a0f3b336ffa6f1e3f900a4b4a58e4e3f93bb8 100644
+> --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> @@ -353,6 +353,14 @@ AT91_XDMAC_DT_PERID(26))>,
+>   				status = "disabled";
+>   			};
+>   
+> +			gpu: gpu@f0018000 {
+> +				compatible = "microchip,sam9x60-gfx2d";
+> +				reg = <0xf0018000 0x4000>;
 
-Currently the worst case in wait_role_none() is around 300us but again
-this is simply because I chose the values with no criteria except that
-in my testing they have worked thus far. Do you have access to any
-internal documentation where the transition length is documented?
+Same here, probably smaller size for register map is better.
 
-In any case I think that the underlying principle of minimizing the time
-we hold the mutex is solid, no?
+Regards,
+   Nicolas
 
-Diogo
-
-> Jon
+> +				interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
+> +				clocks = <&pmc PMC_TYPE_PERIPHERAL 36>;
+> +				status = "disabled";
+> +			};
+> +
+>   			i2s: i2s@f001c000 {
+>   				compatible = "microchip,sam9x60-i2smcc";
+>   				reg = <0xf001c000 0x100>;
 > 
+
 
