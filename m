@@ -1,85 +1,122 @@
-Return-Path: <devicetree+bounces-254664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71464D1A976
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 18:22:01 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44530D1A99A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 18:25:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C22B6300A37F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:21:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 450CA3006467
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378D03502AA;
-	Tue, 13 Jan 2026 17:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D75350D45;
+	Tue, 13 Jan 2026 17:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+MS80qH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/jeB1KF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10A4435028D;
-	Tue, 13 Jan 2026 17:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73AE3502A5;
+	Tue, 13 Jan 2026 17:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768324919; cv=none; b=A0QHVmfQkMpuvpR1VlJtBoWfn5q2IVBVM++cwyfRJUznI2AAPxnUcCn7KEMHmJWupXcaSZBwr4iPx51zHGkHCG7en1stjV9x/GjR2g8fo8HifhLj7o0nP9Ue8GhuEB6o3WJSwDSvFds1qm32vd+sIoKK7PPV2UzGmUE8ghD/F8o=
+	t=1768325137; cv=none; b=bfCl2To0FLIb3sjrkJ48Pq6ZlE9aOeyyH7eEV3RKUm/AiDjwRm745ex6mnZDzbah3Xu92sW3bwla8gbvPm3LQjXac57rHoDyAZ6vo9x2EOqn7SfSWT4DnEsD2LEmWcP/dDKG5BU2UcOrL86SBD7JrvwuAH+RFc5CjGJc2aWGtio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768324919; c=relaxed/simple;
-	bh=DmdxVNADDSkeNMAizGMypkPsSI6HPYbYejnjeZHryHo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=YWaYEjR6vDFj+/Ssz7riy71OY3BN0f6sAn4ZH78jCBKIC1x9MwR8RJ07EtgB58JzIEZYhlGViSg18oFTJ76ydQ8Y6r3Mf4C2pyN2txfyljUzRucoMlGTXtwGeJuw4C8mwUFwNkHAB4KNYK4HoDX1uKbewmNPeQqBApoDTuvWoVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+MS80qH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BDB6C116C6;
-	Tue, 13 Jan 2026 17:21:58 +0000 (UTC)
+	s=arc-20240116; t=1768325137; c=relaxed/simple;
+	bh=adh6nRjj4+RlJ7Axtj/4b81J0YYWlHJV3CYCdPPKpyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kNpK18fVMGaEThi1VliHv5ZPhbj/RbxqwdfwREPIrNChfFOfes0LOeB9U7uqakRxXgFvfcVohwsfkEAcXhyaxDmXiJa7gBFgQ/qBc3UP/tcLSvlKoz4GD0R4/oot80fN4VKl5Tmz8PMsMZqM95M4CVvadzasxnmYGeTYF/1KVe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/jeB1KF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68FEFC116C6;
+	Tue, 13 Jan 2026 17:25:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768324918;
-	bh=DmdxVNADDSkeNMAizGMypkPsSI6HPYbYejnjeZHryHo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=W+MS80qHLW0VHLsxCa0/gp40GFMcd0SQr/LIc1MRfwBkPFqrK2rtiTIjqGaFB37R9
-	 urg+Ai959hw/XSgffwSs+Hhiz9x/SrqlFFrfj7bbQPi+RGxOJBRf2eI6Ngwai5wivo
-	 VskgfuizXS4lrs05Uo2CjIGgk2FKpwXtcdHGIbWPO3yEIj+TQQwQZpXneYX0K9R6YL
-	 67IoqTcIvCGqVPRWA2LX+FfnYa26/C6f5JlGD0+P+wm/eEwhe/hIB0O2cIwIOE8ijv
-	 ghCYDX/e/gdzN3V/mldeacMmCfj0e+3A0KUCTTbefGb5MIM3LOIAJUAsfG1qLklmbe
-	 V08HDoWRYGGYA==
-From: Thomas Gleixner <tglx@kernel.org>
-To: Stafford Horne <shorne@gmail.com>, LKML <linux-kernel@vger.kernel.org>
-Cc: Linux OpenRISC <linux-openrisc@vger.kernel.org>, devicetree
- <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Stafford Horne <shorne@gmail.com>, Jonas Bonn <jonas@southpole.se>, Stefan
- Kristiansson <stefan.kristiansson@saunalahti.fi>
-Subject: Re: [PATCH v4 4/6] openrisc: Fix IPIs on simple multicore systems
-In-Reply-To: <20260113161152.3688309-5-shorne@gmail.com>
-References: <20260113161152.3688309-1-shorne@gmail.com>
- <20260113161152.3688309-5-shorne@gmail.com>
-Date: Tue, 13 Jan 2026 18:21:55 +0100
-Message-ID: <873449jumk.ffs@tglx>
+	s=k20201202; t=1768325137;
+	bh=adh6nRjj4+RlJ7Axtj/4b81J0YYWlHJV3CYCdPPKpyM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h/jeB1KFdLdMVHHsD1HqYRsMkAl3liD/kCiRpmWWoMPlGFRzzRNRkBYe9gqkpJLKN
+	 BSYzreQKE4eFKVNO6PqeZknEPH1mUXiQHwqENmTeY39X7ETTq4AcQf/NDeHJmCCrwZ
+	 1Ecn5SOZcv98DTuHdhOf3XDyzPjXHG5p0jP0MiVW39dYICFv849a8cSKIehd7l0PKh
+	 uwmOj9kKyOnmIviCtmwsPUCYp2tVaMAezUnxgZBaWh1wpeiCZ5jtV4IrQOvwkaSB0/
+	 H06dl/2rPLEnf0+kuRe1wM68+eT4FiDp+ypL++VAzCguGkF+m8pU9Yu2R7LvZang08
+	 sa/EO/KXkbDJA==
+Date: Tue, 13 Jan 2026 11:25:36 -0600
+From: Rob Herring <robh@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nicolas.schier@linux.dev>,
+	Hans de Goede <hansg@kernel.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Mark Pearson <mpearson-lenovo@squebb.ca>,
+	"Derek J. Clark" <derekjohn.clark@gmail.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v4 6/9] dt-bindings: connector: m2: Add M.2 1620 LGA
+ soldered down connector
+Message-ID: <20260113172536.GA3975461-robh@kernel.org>
+References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
+ <20260112-pci-m2-e-v4-6-eff84d2c6d26@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260112-pci-m2-e-v4-6-eff84d2c6d26@oss.qualcomm.com>
 
-On Tue, Jan 13 2026 at 16:11, Stafford Horne wrote:
-> Commit c05671846451 ("openrisc: sleep instead of spin on secondary
-> wait") fixed OpenRISC SMP Linux for QEMU. However, stability was never
-> achieved on FPGA development boards.  This is because the above patch
-> has a step to unmask IPIs on non-boot cpu's but on hardware without
-> power management, IPIs remain masked.
->
-> This meant that IPI's were never actually working on the simple SMP
-> systems we run on development boards.  The systems booted but stability
-> was very suspect.
->
-> Add the ability to unmask IPI's on the non-boot cores.  This is done by
-> making the OMPIC IRQs proper percpu IRQs.  We can then use the
-> enabled_percpu_irq() to unmask IRQ on the non-boot cpus.
->
-> Update the or1k PIC driver to use a flow handler that can switch between
-> percpu and the configured level or edge flow handlers at runtime.
-> This mechanism is inspired by that done in the J-Core AIC driver.
->
-> Signed-off-by: Stafford Horne <shorne@gmail.com>
+On Mon, Jan 12, 2026 at 09:56:05PM +0530, Manivannan Sadhasivam wrote:
+> Lenovo Thinkpad T14s is found to have a soldered down version of M.2 1620
+> LGA connector. Though, there is no 1620 LGA form factor defined in the M.2
+> spec, it looks very similar to the M.2 Key M connector. So add the
+> "pcie-m2-1620-lga-connector" compatible with "pcie-m2-e-connector" fallback
+> to reuse the Key M binding.
 
-Acked-by: Thomas Gleixner <tglx@kernel.org>
+Key M or Key E? I'm confused.
+
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/connector/pcie-m2-e-connector.yaml       | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
+> index b65b39ddfd19..9757fe92907b 100644
+> --- a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
+> @@ -17,7 +17,14 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: pcie-m2-e-connector
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - pcie-m2-1620-lga-connector
+> +          - const: pcie-m2-e-connector
+> +      - items:
+> +          - enum:
+> +              - pcie-m2-e-connector
+>  
+>    vpcie3v3-supply:
+>      description: A phandle to the regulator for 3.3v supply.
+> 
+> -- 
+> 2.48.1
+> 
 
