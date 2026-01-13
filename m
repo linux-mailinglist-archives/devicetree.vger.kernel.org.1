@@ -1,157 +1,110 @@
-Return-Path: <devicetree+bounces-254351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 384C3D17828
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:10:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAF86D1782B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 10:10:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F2223026282
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:05:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 33846301E21C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 545C930ACF2;
-	Tue, 13 Jan 2026 09:05:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9094A3876A7;
+	Tue, 13 Jan 2026 09:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZAORsajj"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Dvey9OxE";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="NFOZycLT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1C50346FB3
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 09:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7D9E3815FD;
+	Tue, 13 Jan 2026 09:09:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768295101; cv=none; b=XhQl7Wn57RaDcn/FELBGxaumx0XSJ6LIdudpFZK6fMgK2q7k8FW6EyzE4qdEeU+zWCiJj/5jDrruJCoSMOoE0YyGJBugDNFfYUvrbp3gb+NXB/IvoPmqf1n1lpWk0q0HviupBuR4lM7WxmntrTjLUvLvK/3uKy6vis0RU56iY2o=
+	t=1768295382; cv=none; b=oR2XfUK5y2uoNoP4nW3fgC8scqUtAQxxn2HImMTqjtHDcmo2jrNY3YpG9k3o5qxTR9XCwDSF7CvMgLyZvMiMlk8dzTNrSJef36ro/sJ8Qcu+XI8z7NoShLC9KW1d2ui5/4wSAXS3+xYSRG58b4cxYNy3c5gNcDL47+4OVpG1RiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768295101; c=relaxed/simple;
-	bh=7UftW7AxgAgJS4Mb3DiWtQZF+1LauWyB2nHqcsVo2YI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HpdLqzAoXObVOQkPaB2c76QHUVH9LOtGpmKarLv9cWW7IFTsjIw2U3u/PjGuklJzxDMBgqvlsLRHVVeCASPbGPi6xLZbWPOrs3xK26eNsdETOkyDmOtBYpUK5nP2fsR2w/mV9nzLjYS4/lbD2/pNGOweuHWYfEZ03YuvrheN0UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZAORsajj; arc=none smtp.client-ip=74.125.82.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f43.google.com with SMTP id a92af1059eb24-11df4458a85so9817484c88.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 01:04:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768295099; x=1768899899; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TF3eFYrkHc1cOZLA7Pry0zv5VjtfYubZccA+TeijqI4=;
-        b=ZAORsajjbupEG+z4GANJenqPsXRaNGGdN4jeU6fmdId8gIFQTvnIlRmpo/tgTGVUie
-         6y4Q6qMpuGyrDou8JhTcBzfqwKOgNEp9UMG3kkPAuck3sUc7KHUsmfJl8wlhQPSoYp5P
-         5W90oAURuVJMwSqfd8vDxntewK/8MsRnwwNzYjpzSoqX+m78AEIY6eHyEMznFYPxtzW8
-         Qohq8iS0uPuS9W2y9l5UDde61j0KmJg4ZJVlD6CzY/cywRiz+q83ibRalnfoPA8s97I5
-         yGDklviWQkgTsHU7Va36A71sTH9Jb3UrKJT7MCtFMoN/YYPJZuVhOsUAIyF1LYXpRNNp
-         iI2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768295099; x=1768899899;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=TF3eFYrkHc1cOZLA7Pry0zv5VjtfYubZccA+TeijqI4=;
-        b=i+q3z7/K7TxGvfLLjc2gMcEYeoknmaLxQBQgw72rZ2eT4hrYFccEjg4hOxJs0d7vfn
-         3x3pIEGpnaqWwUID6ECblOJ17AUJrI4QuVLb892zWQH2/Oiz+QGl5uJXMDQevD3r3fgG
-         JU8KmYi1c+EWxUCUPNycHNEqR/W8JxZ/PZmgSSySUOzp8eQKrZOrgu1063tkK10i/u3V
-         h3toplCizgK1VlUsqWmmWD1RTJKIA/4/Li3A0cYKke76hFQ2WFTLi6kTMuQ2n2mWSjnO
-         mQm16k0ciR7N33P9MyxM3vFxOkfBoha1YgYNVXJsae9cvpYiTTiti6WAtUSShoTsJqre
-         WZ9A==
-X-Forwarded-Encrypted: i=1; AJvYcCWnT1i4v2jJxIA5Rg6rcZMZppehfBBVFbM5Zv8QPH56d8qGmjtCBXI+7OA7+ztRZsnk+XShPpwxnvCt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7oGD4l79VRyqk8hB0KvUPnYQBgVc0tGQHGR6/jPQnGZwJUdDw
-	LMx/NdUHZYMh9eqNy704djMdXBCnTL9N4pIVObTNUb7RGmUxNzIsmgu8QbPA81mvA4YhR2rWdO8
-	AbJg6PbMp7O9KEw3dCv1ECO4IJiFg/lQ=
-X-Gm-Gg: AY/fxX4QMx7w06qmMpxh3nNE/AiOAP7hXcQCtyXYGQjVXS9UUkwPSSpKUz+DF6vMSih
-	akx3jqOggQhU6bh+4YRMa3uDvDRxizQmGWlR8OzmVlPcEaq4OiirOetX5HmziBoElPsGQ64EW19
-	WPFfl7Leo3os9hb9LGlYLIVBKrLG9aociuUSa0i7tzqCVRk4ssvbGzBrkRMeWY2HWVjXWVX9Krt
-	1dYSnnGkFRcqWYFY3Ekg9MrJ96E3Tr8lSA5HP4dxBq8o38yjcuzbH1cPNH+x53TGFCMu0MR02F8
-	njPU+B9WVjek1zxbvQPFlk00DOcyR3+2UTuUmjx03bwd2JGY6qDZ9JS6fwPSNcdgqO4mEG9qSS/
-	iQ930GyGwmg==
-X-Google-Smtp-Source: AGHT+IH1J0toJnhizL3PbL7ktkyTfdnjpbyE1HhT2awO0xq5WfFz2zWAUDP63sX81eGbqeQTkeo9sdBX4290VLvm5yw=
-X-Received: by 2002:a05:7022:248e:b0:122:33e:7545 with SMTP id
- a92af1059eb24-122033e7683mr17502402c88.6.1768295098705; Tue, 13 Jan 2026
- 01:04:58 -0800 (PST)
+	s=arc-20240116; t=1768295382; c=relaxed/simple;
+	bh=gTtDAusvRw7LI+dlD+CYQN99LPzBYnBE4C/Fu3XhQZ4=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=WPm2GbS71uogdbUFZ+PMXDEmG6Gv9Jf7vw/fNl5bDVTL1CcgjqyELtI11fkXpI15UAnCRJLmC5TytZ3Rx1Bo7ACElvnzFDOcxhuxJdGXu4UXGyHdN+Y372ErDgeLI0y9V53NjYV3Efut7KmmFs57gQyt2ovMj+5gmB0nuS1yS+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Dvey9OxE; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=NFOZycLT; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1768295306; bh=QnLl0L/h/5jRa9gkOcyx4vd
+	8lCg1PB5lHVg4ATEg4OU=; b=Dvey9OxEmcIk6GU63NyPcurvFpy1s261GXo+0NbmPPhUg2Vkmu
+	Lae5xxBJYmH/ce3LVLSJwNo00XgPmjU6mtD8L3ijmRcs05e5bJMnGQBY2jAsvcOc1w0qZSQcneG
+	M5y8ZZPMYtkQnVm+u0KpEwQy/u8s7imWJ4JN1gIFinVPMJVUjqLz81OtMBGfbMIxrodUp6JS/yN
+	mwKUc+g8/Hc5cwSUuc/DkHw0XGCm6NzBiSaqk9mfHXeOY6cgdefPY9UXp8nczIVi+R7+lNuLzOI
+	aSBMr5M9hRJ0ewQffONg31Y1uUZWsemUZf0hplCE0rtiC5fF4zunLr0R51wiBvAbPTg==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1768295306; bh=QnLl0L/h/5jRa9gkOcyx4vd
+	8lCg1PB5lHVg4ATEg4OU=; b=NFOZycLT29OLI0dnMru2MMjoy97G2whk+81tne2AtYUPAa0t/l
+	azYJnj0sMdaxDpskDNX5afDuJXC1TKZoYeDQ==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260111-imx952-dts-v2-v2-0-5773fa57e89e@nxp.com> <20260111-imx952-dts-v2-v2-9-5773fa57e89e@nxp.com>
-In-Reply-To: <20260111-imx952-dts-v2-v2-9-5773fa57e89e@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 13 Jan 2026 11:07:28 +0200
-X-Gm-Features: AZwV_Qi865ruliWjfUeM4dFbMw-2xdIzSGSLpHt9sdtKpygo1iYWiegXtWJvoTs
-Message-ID: <CAEnQRZBpD67MWk7T4j6RTymGiFJNW5kAs2TMS=BxVTVs7qjUAQ@mail.gmail.com>
-Subject: Re: [PATCH v2 09/10] arm64: dts: imx952-evk: Add flexcan support
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Peng Fan <peng.fan@nxp.com>, Haibo Chen <haibo.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Tue, 13 Jan 2026 10:08:26 +0100
+From: barnabas.czeman@mainlining.org
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Gabriel Gonzales
+ <semfault@disroot.org>, Kees Cook <kees@kernel.org>, Tony Luck
+ <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+ Biswapriyo Nath <nathbappai@gmail.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix reserved
+ gpio ranges
+In-Reply-To: <11ee77c1-2ea6-4c7c-b955-22f10d879ad7@oss.qualcomm.com>
+References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
+ <20260112-xiaomi-willow-v1-4-8e4476897638@mainlining.org>
+ <11ee77c1-2ea6-4c7c-b955-22f10d879ad7@oss.qualcomm.com>
+Message-ID: <dd4ad11c57d00e9d9f532f40f408b637@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jan 11, 2026 at 2:46=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.co=
-m> wrote:
->
-> From: Haibo Chen <haibo.chen@nxp.com>
->
-> Add flexcan support, since flexcan1 share pins with PDM,
-> default disable flexcan1.
->
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx952-evk.dts | 45 ++++++++++++++++++++++=
-++++++
->  1 file changed, 45 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx952-evk.dts b/arch/arm64/bo=
-ot/dts/freescale/imx952-evk.dts
-> index 21b951a2156414819dfb589e5e7e736e7b1fe48a..bae7b88f8229babc42952b7ab=
-beb912cbefc10fd 100644
-> --- a/arch/arm64/boot/dts/freescale/imx952-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx952-evk.dts
-> @@ -64,6 +64,22 @@ linux_cma: linux,cma {
->                 };
->         };
->
-> +       flexcan1_phy: can-phy0 {
-> +               compatible =3D "nxp,tjr1443";
-> +               #phy-cells =3D <0>;
-> +               max-bitrate =3D <8000000>;
-> +               enable-gpios =3D <&pcal6416 6 GPIO_ACTIVE_HIGH>;
-> +               standby-gpios =3D <&pcal6416 5 GPIO_ACTIVE_LOW>;
-> +       };
-> +
-> +       flexcan2_phy: can-phy1 {
-> +               compatible =3D "nxp,tjr1443";
-> +               #phy-cells =3D <0>;
-> +               max-bitrate =3D <8000000>;
-> +               enable-gpios =3D <&i2c4_pcal6408 4 GPIO_ACTIVE_HIGH>;
-> +               standby-gpios =3D <&i2c4_pcal6408 3 GPIO_ACTIVE_LOW>;
-> +       };
-> +
->         reg_3p3v: regulator-3p3v {
->                 compatible =3D "regulator-fixed";
->                 regulator-max-microvolt =3D <3300000>;
-> @@ -108,6 +124,21 @@ reg_usb_vbus: regulator-vbus {
->
->  };
->
-> +/* pin conflict with PDM */
-> +&flexcan1 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pinctrl_flexcan1>;
-> +       phys =3D <&flexcan1_phy>;
-> +       status =3D "disabled";
-> +};
-
-So we add this here just for simplicity right? And then enable
-flexcan1 in a separate dts?
-
-With this,
-
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+On 2026-01-13 10:01, Konrad Dybcio wrote:
+> On 1/12/26 9:13 PM, Barnabás Czémán wrote:
+>> The device was crashing on boot because the reserved gpio ranges
+>> was wrongly defined. Correct the ranges for avoid pinctrl crashing.
+>> 
+>> Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for 
+>> xiaomi-ginkgo")
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+> 
+> That's odd.. were you able to confirm that these values are alright for
+> both the Note 8 and the 8T?
+Yes, it was tested on both devices. The original devicetree was never 
+boot.
+> 
+>>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts 
+>> b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+>> index 666daf4a9fdd..163ecdc7fd6c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+>> @@ -296,7 +296,7 @@ &sdhc_2 {
+>>  };
+>> 
+>>  &tlmm {
+>> -	gpio-reserved-ranges = <22 2>, <28 6>;
+>> +	gpio-reserved-ranges = <0 4>, <30 4>;
+> 
+> Any chance you know/could deduce what they're connected to and describe
+> it, like in x1-crd.dtsi?
+https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/willow-p-oss/drivers/pinctrl/qcom/pinctrl-msm.c#L605
+https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/ginkgo-p-oss/drivers/pinctrl/qcom/pinctrl-msm.c#L610
+> 
+> Konrad
 
