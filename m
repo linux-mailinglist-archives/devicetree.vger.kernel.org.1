@@ -1,257 +1,336 @@
-Return-Path: <devicetree+bounces-254508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D215D189CF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:01:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD978D18A23
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:07:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 84C2E3002D14
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:01:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D4C853005EBA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B8538E5D7;
-	Tue, 13 Jan 2026 12:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Ieq1JfMw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9692FC876;
+	Tue, 13 Jan 2026 12:07:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012034.outbound.protection.outlook.com [52.101.43.34])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D66929A2;
-	Tue, 13 Jan 2026 12:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.34
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768305710; cv=fail; b=QHMO7D57q+dlrE9wZKocqv/B3cXmyJKXQKRnvvftjfRkWKIucGg/Jr8C98ys4UDfH4zG8hEyUX0p190YEvm6TyXKeuupLig3PW2W2KnwEztnvM55cnPpsrK9e7IJ62Oo/VwBrHDszK6lRGPrYjGgxouBBVMqgrOEHFBWxbe5Evw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768305710; c=relaxed/simple;
-	bh=ISoNfgCNDmgOkSLY4ipuNqV/tArOONpVBKoLvTIFN0c=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=cw+6Im/AZ8gnbdjdoP/fjtP8WbjNwtmHloZPJFSrIQhfB89BnH4bJ/zfVj9FGLpvclb1wzM8gYbiCVp5FAX324VnabOmC22lBEXm3K5I93ozOL5hR5tyKn+m419CKX1EJ03hNr+pdaUECmBjEXyooH5ckyuywMtIrbtj8VvCEzs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Ieq1JfMw; arc=fail smtp.client-ip=52.101.43.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Colsjn04R55h5tLH5r42d5cTxe7wVAQtyGEsoNGQmOfDn+pTD3fks5x0msoPZae6CIVPGJ8WNoBNgykk4CRdrBoX70yJF5+ichz774fc1q+Xyjp8zKcqV8RUXYci0iblaoH8jEzyHtawwr2/URjjP7Lm0xwuSCXqBRja5c5wLCMdw/S3fEADV8UqB4lIoxwfXE+97PHLRL13OpzgLASxQ/OpMZ9ZTEHx4/MZ0m/eMhKYkrZrSuj1XxwAWCb3K7xYsBzM/O6qy3iqqgE6zbsZ9ZjByt+yrURVWiJlCb8HPFGw0+ejza99ra+C1azWQUOhqTIwe0AqkXHvMc5GM6n50A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j+P+Cy2/lQknuJJiwl/zsb9d+0yXJKJgRxtr4XHL4nw=;
- b=g1MuaOYbtNGlbG085aKsq8ayDz1MPnhGzPYvsW1NzJww1w7lNFRUpnjzzlcHxp1wWbaVy0xzO+GpQbhFJ6XNYk8cZbP/Bjx4PGp6p8bzwFRjB/5OZTeUE0D5LdqY/jZ34K2Jpp3CmgplWyzW33n6wSw+dbcUoMQ1/j/X4oEjcW/MqAjg7q+So7SNR6f71w7e7plTPkqdE/UXeNCS3ucEBMwZreb0ntoVqELo9CfEqybLbbq15aY0MqRgmKuXvCtJWbHm3EPJpaF4YhY43A6Ce3trvaM7OMXcNrywsTuYw39yIPRJBmlZK0zIpiKg+sOh3QWdNTTKYODRprQl0hTbdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j+P+Cy2/lQknuJJiwl/zsb9d+0yXJKJgRxtr4XHL4nw=;
- b=Ieq1JfMwckrBRqdrfkQAnF/+7dZdJ/TzOoxm2pVtNfvOIumtIbceQpJGcOhk7QcrJ+vBC1bHGj01X/c6Yvmh2OsGernGJk17t1eoRrZdWCPE5joXdmbtksBGy2Wdnhha1KrPJRw7mUzSwcxcMja47Dtd+XeBe+46keSt4MFv1gT41t2nPILNO02ZvN4d8TS3FhadtLbcrZzcJWCdYI3O96mCiTEjRA7dToIAotMBR0N/AGqW96S95UCdMBcgJAV9I7/4QTrePEsvxl/1aOQdYHoWEH+R5sS5fqN7kr7zLyN6qzPDj9zWkfqDZ0aZhzWD0X0bg7cieVDy3iXLYegpWg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS2PR12MB9750.namprd12.prod.outlook.com (2603:10b6:8:2b0::12)
- by SN7PR12MB8772.namprd12.prod.outlook.com (2603:10b6:806:341::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Tue, 13 Jan
- 2026 12:01:45 +0000
-Received: from DS2PR12MB9750.namprd12.prod.outlook.com
- ([fe80::56a8:d6bf:e24c:b391]) by DS2PR12MB9750.namprd12.prod.outlook.com
- ([fe80::56a8:d6bf:e24c:b391%5]) with mapi id 15.20.9499.005; Tue, 13 Jan 2026
- 12:01:44 +0000
-Message-ID: <c5450fc7-230e-4435-bd1d-3db4f1f6e736@nvidia.com>
-Date: Tue, 13 Jan 2026 12:01:38 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] phy: tegra: xusb: Fix USB2 port regulator disable
- logic
-To: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
- Mathias Nyman <mathias.nyman@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
- <20251204-diogo-tegra_phy-v1-2-51a2016d0be8@tecnico.ulisboa.pt>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20251204-diogo-tegra_phy-v1-2-51a2016d0be8@tecnico.ulisboa.pt>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P302CA0038.GBRP302.PROD.OUTLOOK.COM
- (2603:10a6:600:317::6) To DS2PR12MB9750.namprd12.prod.outlook.com
- (2603:10b6:8:2b0::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA972BE620
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:07:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768306027; cv=none; b=DGRkNDQpDeephINwFaw28i36A6GhIpodBOyZSUXJUUvK1EeeLe592Yk6/ekfV9cn3T3B2WxVF9+HZb/ZozAeQD+c2fbDK6yuJF44CL6kxvc0UpcjT0jRudIDH1hnYcsn6vIPHanc94YVRhuyFGaK/jrgSvUIatcO7BiSy3C8LG8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768306027; c=relaxed/simple;
+	bh=012aFC6eZ1elcVQiXrCoLRyLQ2amIqj/qKm0+JztLBY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RNWA6PdEr7h23Yw4jOhKP5JM+4kjfHTNbO12UXa+WE6vAoxubpa2PSP03y4dyt7Ap1z2Oy+R7P91FiAvTI2oT7k0/FwZZYNdm+luP+X3Rm3SRq7RGDVMb6yUjvXeD1JOleS4wu3sxvJ1imQDsdEgnSzMFGA798iHzoONIu5p35k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vfdAj-000705-LC; Tue, 13 Jan 2026 13:06:53 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vfdAk-000Pwc-0B;
+	Tue, 13 Jan 2026 13:06:53 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vfdAj-000000006Nj-1I6b;
+	Tue, 13 Jan 2026 13:06:53 +0100
+Message-ID: <07ba7a3a4325f927fa1db3b0f0af124ea9cd2ee4.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/9] clk: realtek: Add basic reset support
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Yu-Chun Lin <eleanor.lin@realtek.com>, mturquette@baylibre.com, 
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ 	cylee12@realtek.com, jyanchou@realtek.com
+Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, james.tai@realtek.com, cy.huang@realtek.com, 
+	stanley_chang@realtek.com
+Date: Tue, 13 Jan 2026 13:06:53 +0100
+In-Reply-To: <20260113112333.821-3-eleanor.lin@realtek.com>
+References: <20260113112333.821-1-eleanor.lin@realtek.com>
+	 <20260113112333.821-3-eleanor.lin@realtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PR12MB9750:EE_|SN7PR12MB8772:EE_
-X-MS-Office365-Filtering-Correlation-Id: c6bd460c-3fb4-4d70-1225-08de529b8521
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|7416014|1800799024|921020|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TEEyNm55cTdSTHFib1owK2pmNWIwSHA2ck1Qdk5LL0lXYkNIc2JpTm1BZE01?=
- =?utf-8?B?N1ZpclorNWlWMXc4SU1BTUxGUXBPbFNvL1p1Ym1yeGZER0ExelFXN240OVM1?=
- =?utf-8?B?UFBUakFXSW5tZHZmbWNxb1B1amZseDlDeHdZUTdnSFRkbXRrb2g4N0JoVE96?=
- =?utf-8?B?NEhNRmw4eXg3WUhkNDlsWEdlUTVyV21pZnlZNDhmN0w5djJYdTFyOG5pRzc1?=
- =?utf-8?B?V2U3eEtoMUtDQXNpd2xoUTRWaW81Q0Fnb0daUG5ZbnBrek9UcjNTMVBEV0RJ?=
- =?utf-8?B?bWxVY1VqNkdHeVQvdGY0U2tnSkpROG9XY0dMMU1KSG54ZVkxSjhwU3hjWE1Z?=
- =?utf-8?B?c0FmN2R6c2tTcXAyQThrR3hxMG9IUHRXNGRiNVAwMCtDVktnN0xRV0JabWZ6?=
- =?utf-8?B?eFAyMzhLeExDYTVidXI4Y2swV1ZLR0xCVTBwNVo5NXE4QWNuS1FpUkdpOUJI?=
- =?utf-8?B?M1F0UzNCbEo3Uy9kU1VBQ3lwSlBXM1paVjM5Ly9XSWFqRzYzQ1FVbklVWjhD?=
- =?utf-8?B?QmZqbkZHRnBDWkRzUk1TK0VzVS9YMEZEcHg5ejRDdWVaSTM5bzZCVk1qQ0xu?=
- =?utf-8?B?dVFMN3ppbkx6WnVxb29KWWZvUFRCN1JaMFZETXRwbXEwYWlBQWxRTVNTeWx5?=
- =?utf-8?B?V2F2dkNhSXY5bGc4T3JLYy9ILzRHd0ZSblh1aU5pRWt5OVo4bGVkUU5TcXJG?=
- =?utf-8?B?ZUpGNTNFQTBjTFJTZkFyZGp1MGlMRnNraDlwbjJiYVZ0UmJwV0lDYVVRT1U0?=
- =?utf-8?B?YzZmdldkOTNSdFp4aXRHeXBlblM2dnpsWFVDNWYyU1B0bjdhQ3hiVXVqeFh2?=
- =?utf-8?B?Z05nV0FFNm83ZGIxS0dPTUdodGRFb014Mm9RSEc1a0V6Wk5PY1dhVXUwaVV2?=
- =?utf-8?B?RzFjSG9IWTNaa2kzYXI3ajBBOWJzVmN6T2pxRDVxMjNsVGpKUnZCbk52ZE04?=
- =?utf-8?B?Mm5JWjVWWHFmUlA3alcxNUVwNnhkNmw3elNybUkzR2djSFlyR2pyR2xiQnVP?=
- =?utf-8?B?L0tpUnJjb01NOW9Ra3RrekYyWGdacXYxTzVsYjcvRndvWXM0ZEROelBlcVlp?=
- =?utf-8?B?NitnTTA2U3NzRktOMTB4a2F5TjByMDJmWTk1ZHUranBvSDZkeHhvcXBTZFlM?=
- =?utf-8?B?bDcvN2hXL3dkWWwwU3pGZmxacjZVYnpkUmNvRU9BOWtYd29YNVdaTUc5QU1s?=
- =?utf-8?B?bWlPWFB5RStSTjA0dGlGWHhXZWpNd0RwMDNxbkRGamFVeGNIeFNjY01pVHY3?=
- =?utf-8?B?Mi8rMGN4UUJTNFQ4dytYS2dlU2VreFhhY3FNVkc3SHlQdXQrdXVOY2VMQVVx?=
- =?utf-8?B?RnkrSkpjckIveUsweVBNbGg2S1NMMnpmTXhXekZRZE52b0pHQmR2bjBqbFZL?=
- =?utf-8?B?cHJDc3dSSXkrWlhZWTNGRWxYUUtXMlFub2NUR3RQNUp3THVKVmlZVUNxTHp6?=
- =?utf-8?B?dEVWVVFlNWNBT1AxNkI3Z2NLU2NjQ0FlakdUMWt5UlZBZ2VzcWsxSTRuZ1hy?=
- =?utf-8?B?QnpiemxQS3VMSmVQNGw0VXc4Ukd4bC9OdkQ4aktjQldmTmdNOHN5cjBESlNr?=
- =?utf-8?B?bGZtOUhvclUwVjRqTFdoQnV4NFUzYWJsbEVWaXBoVEowM2VCd1JOUW1RTXNp?=
- =?utf-8?B?TXBDOXZVeUJrT04wamVJUlhBZ2hzQ1JoN2RmTWkyLzVkQ0Ztc2FKRmt3SVZP?=
- =?utf-8?B?d2hxWjdRSm5GVjdkWDZVWXNBODQvZEVGMmxiYkRsdFE5bVBUQ0ljdWpJa2xW?=
- =?utf-8?B?ZnZzTld4TlZsK1FSWTl2RWU4YXlxMnBiRERPdlFhcS81VVp5ME1uN1ZvSnU0?=
- =?utf-8?B?R2Q1V1BOWWtYQUY4N292YXhwelViY0xkeE8wWU54U0JTZGZ1MWsrSXNrUThU?=
- =?utf-8?B?ZmUyZlFrRmYxRlNleFplemtVK29yRFBDZWF0Z243Wk5NQTUxMjFwWi9CMFBi?=
- =?utf-8?B?NkhsUlQ0Slp6TGZjSUZpZFJqZ3l3Mi91TmJOYU5GK2ZtQldQUlpFeVVyNUhT?=
- =?utf-8?Q?AVIxeKTN32MBfyFacbdbBySdSm0To4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR12MB9750.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(921020)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aFpWTElmMzlrOHJDSXpYTXhOVDZyRGVxVlNjQS9DcmcvYm5nNFJoSTJSOHQr?=
- =?utf-8?B?M3NUenkvSnlrendLOWxtdlZHMUU4YUMyVmN3U3FPdmlqaS9oNkFoL254a1pW?=
- =?utf-8?B?bmcreUJxblFVbU5Kb1J0VlRkUHd4VTl0UTZsN0FuMlBWeGI4ellxb2JNOU9V?=
- =?utf-8?B?VktqZDJKUGpZc1A5djdYSHcwOVAxUVFqUFVmR3c0Uk8rUFhqSERtbVg1bWNT?=
- =?utf-8?B?M2ZGclNRVFVmQzdhaCtGcFVsY2VPUG05MnhNSmswLzZ5REZqYytNemtheTRq?=
- =?utf-8?B?N2tRNE9kQmNSb0REWnR1VmREV0ovSjk4L0hZMjgxZmJ2M3luaDRac0lQS2xw?=
- =?utf-8?B?dG83dS9LSmhwSXl4QjhxNGN3RDY2ZHNNVHd0eEdubU9hSS9ySVZIVVNCTWNo?=
- =?utf-8?B?TjBWTFl6bElNSEtnYm0zeGtrUC9VWDMwZmRFbGJXMmg2RFA0cTl5SytyZWVL?=
- =?utf-8?B?TWNydlhrM2NsNFZNRHl0UERSZXh6L0VmS2pKa0VKbFV2c0JyZGtOc3hybG5P?=
- =?utf-8?B?aFR0cHJiR0NXOThDYkhFTUpvUEVCTjl1N2Myd1MraEhqRjR5NkJDQkJWL0R0?=
- =?utf-8?B?d1lkY0pGcmEvYXdzcDNDNzVZK1ErU0M5NGt5NnpZRDBvajNJQzFVWE5JVEc3?=
- =?utf-8?B?N0ROYnRRSE9sNVg5Vng0SWhjL245bkdPcjNJK2xKVExBdjNiMUpGakNCQlFi?=
- =?utf-8?B?YU44V3hvQTFqZkFVTUpaUG14QUhlbitCb3MvVTc4bjdJMzNuUTRjbmdrQ3F4?=
- =?utf-8?B?WEZZZGZYbEEzeDZuNkZlNnZPT2FmSnM5c2ZTWmFKays4dENUZ0trZk4waXdo?=
- =?utf-8?B?alFvV2RIcmh5UGpWL05PeEtuZENjdmlFelRUaE4xa2kxYmJQYnhIalRMdjI3?=
- =?utf-8?B?VG5Qalo4NUJCbzVJOHNuR3dIV1dyenN3OHhPSjV5VkxEUzdjV3hYY2RBYzlC?=
- =?utf-8?B?LzQ3ZUhwM0NLMUtDaUdmaFloMXM1djMxM2xPUHBjbEd0UitPVWt5dnpCT0dQ?=
- =?utf-8?B?R1FmSDNENnAwa1BwRFdGb0w5enJDR3ZrZWtzL0VSalY1TWk4akNCQk9GNjUz?=
- =?utf-8?B?aEhEdy9UNVBIMjdLRTJydnBjcjllQSs1SVVsT1JUUy9sWmMwZTk4UkxuYkx6?=
- =?utf-8?B?dTdtbXBIcnFTbUthNGovMkJIOERra0xlNG43TEFQL2N5TkpGQy9HcTdVbHVq?=
- =?utf-8?B?ZUkwT3VGekhYWUt4aUcxdXFQY1NKU2ZBMTdCVGFiMmFPdUhNeFdtdmpiWG8x?=
- =?utf-8?B?UG9haGtZSlBVaGh5aEg5R0x5dWpEOC96RkprOUlrN0xiYXcyTWZLUU85TjZB?=
- =?utf-8?B?bi85SmdzdEp6NHV5N1NWVjJyTnlBenJYc1ArNjNXQzVUcW5OaGZSZXNtMWVa?=
- =?utf-8?B?WUZpOVNlRXVWc0JHc0g1L1VnZnB0ME1NUkcwdkRRbCt3OXpUV2JmY0ZSbjE2?=
- =?utf-8?B?cE9uUXQ2NGl3d05DYit5UzJUZjYwenZpNnU4UXpuZlk4dkpOL2JEd2ZuSjQ0?=
- =?utf-8?B?TVJHdE5Cb0syNUNkWkNvVUp3MHo4QkFKdXQ1WTRxYmFhRXpUOXVmT1IzZkJZ?=
- =?utf-8?B?WmJ6c3ZVTXc4b2xiVmRkRDdjeHhCR0ZrMFFWcWVJNTkxNDcrU0ZSUDMzM29U?=
- =?utf-8?B?Z1VBQk1Vdi9hYTF0NHNKeTYyQzd4UG5NTzlVc2thWGlYT25vUGRVUGxjdWNl?=
- =?utf-8?B?RDVtOEJsSmxIYWNrYTlnYTR2NEtHUU4ycjdRdmp2MVBoMlpCdmtNTDdHcE55?=
- =?utf-8?B?NUhYUnRrd0t5NnhtUklwaUR2a1BsSUpLMVFWc2orclFYZ01TUWJEbklnM2Jm?=
- =?utf-8?B?akVNbC9DRnM2V3dEc3M1dlVSaU1TakFyR093UWxFckJSSVVCZCtpNjZUUVJi?=
- =?utf-8?B?aWFQbm1WRHlHRll5bnNqK084V1J2MDhlRGFDM1hKSjIySG96OWtwMHpjNTZu?=
- =?utf-8?B?NkNQWldNMGRYTmxnYmdDOGFhUElTY3hrcG0vdmhlOHRFQnhsZkVpVWVIZ3dn?=
- =?utf-8?B?eVpRY2xWL3NYNnFsTVV6dHlYdkZCS3pQZVVxc0dHQnZha2g5VG5WeEVDWUJo?=
- =?utf-8?B?bDkvR3hIUXdOMzBqNkxGS0JJdlRicnZHVE00QXJNellrdjY2aDV6Q1ZPbFZa?=
- =?utf-8?B?bjFla0FWV1JXbVBjekdiL2hlZWJ0TU9HQjJXQ2Q5bW9PUHRXV3BZVjVrSmRY?=
- =?utf-8?B?VzZ0QndDK21keS9PTzhxakVJWnNybTltMlBLWEdDYkgvZDIxWmN6SVN1VkZ5?=
- =?utf-8?B?YjFRVmpWK05lOFBFVytXQW4yL3J2ZVk0aDM5ZE50WDVFV3JsQVJwNHFPZ3hl?=
- =?utf-8?B?cERKYitCdlpabFdqbkhtL0JDaWx3RElxbXpnenV1R0dmUFpuS3NLZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6bd460c-3fb4-4d70-1225-08de529b8521
-X-MS-Exchange-CrossTenant-AuthSource: DS2PR12MB9750.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 12:01:44.2119
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 28VfumsKj73lQvsjAs1q5sQzxGEDuq8sUKQ+fpsH+CcRE+MdHSlvuJ9wHxG1KdLf37ezl6EzHfEprLkfDyGx+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8772
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
-On 04/12/2025 21:27, Diogo Ivo wrote:
-> The USB2 PHY mode handling on Tegra210 incorrectly relied on
-> regulator_is_enabled() when determining whether the VBUS supply should
-> be disabled during role changes. This is because regulator_is_enabled()
-> reports exactly what is states and not if there is an unbalanced number
-> of calls between regulator_enable() and regulator_disable(). For
-> example, regulator_is_enabled() always reports true on a fixed-regulator
-> with no enable gpio, which is the case on the Pixel C.
-> 
-> This then leads to the PHY driver wrongfully calling regulator_disable()
-> when transitioning from USB_ROLE_DEVICE to USB_ROLE_NONE since the driver
-> did not previously call the corresponding regulator_enable().
-> 
-> Fix this by keeping track of the current role and updating the logic to
-> disable the regulator only when the previous role was USB_ROLE_HOST.
-> 
-> While at it fix a small typo in a comment.
-> 
-> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+On Di, 2026-01-13 at 19:23 +0800, Yu-Chun Lin wrote:
+> From: Cheng-Yu Lee <cylee12@realtek.com>
+>=20
+> Define the reset operations backed by a regmap-based register
+> interface and prepare the reset controller to be registered
+> through the reset framework.
+>=20
+> Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
+> Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 > ---
->   drivers/phy/tegra/xusb-tegra210.c | 5 +++--
->   drivers/phy/tegra/xusb.h          | 1 +
->   2 files changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-tegra210.c
-> index 3409924498e9..63ad57d95514 100644
-> --- a/drivers/phy/tegra/xusb-tegra210.c
-> +++ b/drivers/phy/tegra/xusb-tegra210.c
-> @@ -1934,9 +1934,9 @@ static int tegra210_usb2_phy_set_mode(struct phy *phy, enum phy_mode mode,
->   			/*
->   			 * When port is peripheral only or role transitions to
->   			 * USB_ROLE_NONE from USB_ROLE_DEVICE, regulator is not
-> -			 * be enabled.
-> +			 * enabled.
->   			 */
-> -			if (regulator_is_enabled(port->supply))
-> +			if (port->role == USB_ROLE_HOST)
->   				regulator_disable(port->supply);
->   
->   			tegra210_xusb_padctl_id_override(padctl, false);
-> @@ -1944,6 +1944,7 @@ static int tegra210_usb2_phy_set_mode(struct phy *phy, enum phy_mode mode,
->   		}
->   	}
->   
-> +	port->role = submode;
->   	mutex_unlock(&padctl->lock);
->   
->   	return err;
-> diff --git a/drivers/phy/tegra/xusb.h b/drivers/phy/tegra/xusb.h
-> index d2b5f9565132..273af147dfd3 100644
-> --- a/drivers/phy/tegra/xusb.h
-> +++ b/drivers/phy/tegra/xusb.h
-> @@ -317,6 +317,7 @@ struct tegra_xusb_usb2_port {
->   	enum usb_dr_mode mode;
->   	bool internal;
->   	int usb3_port_fake;
-> +	enum usb_role role;
->   };
+> Changes in v2:
+> - Added missing Co-developed-by tag.
+> - Added missing maintainer entry for driver/clk.
+> - Removed explicit of_xlate/of_reset_n_cells assignment as it matches def=
+aults.
+> - Added error handling for rtk_reset_read() return value
+> ---
+>  MAINTAINERS                  |   1 +
+>  drivers/clk/Kconfig          |   1 +
+>  drivers/clk/Makefile         |   1 +
+>  drivers/clk/realtek/Kconfig  |  28 ++++++++
+>  drivers/clk/realtek/Makefile |   4 ++
+>  drivers/clk/realtek/reset.c  | 125 +++++++++++++++++++++++++++++++++++
+>  drivers/clk/realtek/reset.h  |  36 ++++++++++
+>  7 files changed, 196 insertions(+)
+>  create mode 100644 drivers/clk/realtek/Kconfig
+>  create mode 100644 drivers/clk/realtek/Makefile
+>  create mode 100644 drivers/clk/realtek/reset.c
+>  create mode 100644 drivers/clk/realtek/reset.h
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 66c0f4924c1e..de772e0026de 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21975,6 +21975,7 @@ L:	devicetree@vger.kernel.org
+>  L:	linux-clk@vger.kernel.org
+>  S:	Supported
+>  F:	Documentation/devicetree/bindings/clock/realtek*
+> +F:	drivers/clk/realtek/*
+>  F:	include/dt-bindings/clock/realtek*
+> =20
+>  REALTEK SPI-NAND
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 3a1611008e48..2f2cacf87c38 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -530,6 +530,7 @@ source "drivers/clk/nuvoton/Kconfig"
+>  source "drivers/clk/pistachio/Kconfig"
+>  source "drivers/clk/qcom/Kconfig"
+>  source "drivers/clk/ralink/Kconfig"
+> +source "drivers/clk/realtek/Kconfig"
+>  source "drivers/clk/renesas/Kconfig"
+>  source "drivers/clk/rockchip/Kconfig"
+>  source "drivers/clk/samsung/Kconfig"
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index 61ec08404442..075a1c410b90 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -141,6 +141,7 @@ obj-$(CONFIG_COMMON_CLK_PISTACHIO)	+=3D pistachio/
+>  obj-$(CONFIG_COMMON_CLK_PXA)		+=3D pxa/
+>  obj-$(CONFIG_COMMON_CLK_QCOM)		+=3D qcom/
+>  obj-y					+=3D ralink/
+> +obj-$(CONFIG_COMMON_CLK_REALTEK)	+=3D realtek/
+>  obj-y					+=3D renesas/
+>  obj-$(CONFIG_ARCH_ROCKCHIP)		+=3D rockchip/
+>  obj-$(CONFIG_COMMON_CLK_SAMSUNG)	+=3D samsung/
+> diff --git a/drivers/clk/realtek/Kconfig b/drivers/clk/realtek/Kconfig
+> new file mode 100644
+> index 000000000000..121158f11dd1
+> --- /dev/null
+> +++ b/drivers/clk/realtek/Kconfig
+> @@ -0,0 +1,28 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +config COMMON_CLK_REALTEK
+> +	bool "Clock driver for Realtek SoCs"
+> +	depends on ARCH_REALTEK || COMPILE_TEST
+> +	select MFD_SYSCON
+> +	default y
+> +	help
+> +	  Enable the common clock framework infrastructure for Realtek
+> +	  system-on-chip platforms.
+> +
+> +	  This provides the base support required by individual Realtek
+> +	  clock controller drivers to expose clocks to peripheral devices.
+> +
+> +	  If you have a Realtek-based platform, say Y.
+> +
+> +if COMMON_CLK_REALTEK
+> +
+> +config RTK_CLK_COMMON
+> +	tristate "Realtek Clock Common"
+> +	select RESET_CONTROLLER
+> +	help
+> +	  Common helper code shared by Realtek clock controller drivers.
+> +
+> +	  This provides utility functions and data structures used by
+> +	  multiple Realtek clock implementations, and include integration
+> +	  with reset controllers where required.
+> +
+> +endif
+> diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
+> new file mode 100644
+> index 000000000000..52267de2eef4
+> --- /dev/null
+> +++ b/drivers/clk/realtek/Makefile
+> @@ -0,0 +1,4 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_RTK_CLK_COMMON) +=3D clk-rtk.o
+> +
+> +clk-rtk-y +=3D reset.o
+> diff --git a/drivers/clk/realtek/reset.c b/drivers/clk/realtek/reset.c
+> new file mode 100644
+> index 000000000000..0ba0d46811d4
+> --- /dev/null
+> +++ b/drivers/clk/realtek/reset.c
+> @@ -0,0 +1,125 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2019 Realtek Semiconductor Corporation
+> + */
+> +
+> +#include <linux/of.h>
+> +#include <linux/device.h>
+> +#include "reset.h"
+> +
+> +#define RTK_RESET_BANK_SHIFT         8
+> +#define RTK_RESET_ID_MASK            0xff
+
+Why are there 256 possible ids per bank? Each bank is only a 32-bit
+register, containing 32 (or in the case of write_en) 16 reset controls.
+
+> +#define to_rtk_reset_controller(r) container_of(r, struct rtk_reset_data=
+, rcdev)
+
+Please make this an inline function.
+
+> +static inline struct rtk_reset_bank *
+> +rtk_reset_get_bank(struct rtk_reset_data *data, unsigned long idx)
+> +{
+> +	int bank_id =3D idx >> RTK_RESET_BANK_SHIFT;
+> +
+> +	return &data->banks[bank_id];
+> +}
+> +
+> +static inline int rtk_reset_get_id(struct rtk_reset_data *data,
+> +				   unsigned long idx)
+> +{
+> +	return idx & RTK_RESET_ID_MASK;
+> +}
+> +
+> +static int rtk_reset_update_bits(struct rtk_reset_data *data, u32 offset=
+,
+> +				 u32 mask, u32 val)
+> +{
+> +	int ret;
+> +
+> +	ret =3D regmap_update_bits(data->regmap, offset, mask, val);
+> +	return ret;
+> +}
+> +
+> +static int rtk_reset_read(struct rtk_reset_data *data, u32 offset, u32 *=
+val)
+> +{
+> +	int ret;
+> +
+> +	ret =3D regmap_read(data->regmap, offset, val);
+> +	return ret;
+> +}
+
+The local variable ret is superfluous. And why not use
+regmap_read/update_bits() directly below?
+
+> +
+> +static int rtk_reset_assert(struct reset_controller_dev *rcdev,
+> +			    unsigned long idx)
+> +{
+> +	struct rtk_reset_data *data =3D to_rtk_reset_controller(rcdev);
+> +	struct rtk_reset_bank *bank =3D rtk_reset_get_bank(data, idx);
+> +	u32 id =3D rtk_reset_get_id(data, idx);
+> +	u32 mask =3D bank->write_en ? (0x3 << id) : BIT(id);
+> +	u32 val =3D bank->write_en ? (0x2 << id) : 0;
+
+I'd use UL(0x3) / UL(0x2) to avoid UB when compiling for 32-bit.
+
+Only even ids are allowed for banks with write_en set?
+
+> +
+> +	return rtk_reset_update_bits(data, bank->ofs, mask, val);
+> +}
+> +
+> +static int rtk_reset_deassert(struct reset_controller_dev *rcdev,
+> +			      unsigned long idx)
+> +{
+> +	struct rtk_reset_data *data =3D to_rtk_reset_controller(rcdev);
+> +	struct rtk_reset_bank *bank =3D rtk_reset_get_bank(data, idx);
+> +	u32 id =3D rtk_reset_get_id(data, idx);
+> +	u32 mask =3D bank->write_en ? (0x3 << id) : BIT(id);
+> +	u32 val =3D mask;
+> +
+> +	return rtk_reset_update_bits(data, bank->ofs, mask, val);
+> +}
+> +
+> +static int rtk_reset_reset(struct reset_controller_dev *rcdev,
+> +			   unsigned long idx)
+> +{
+> +	int ret;
+> +
+> +	ret =3D rtk_reset_assert(rcdev, idx);
+> +	if (ret)
+> +		return ret;
+> +	return rtk_reset_deassert(rcdev, idx);
+> +}
+> +
+> +static int rtk_reset_status(struct reset_controller_dev *rcdev,
+> +			    unsigned long idx)
+> +{
+> +	struct rtk_reset_data *data =3D to_rtk_reset_controller(rcdev);
+> +	struct rtk_reset_bank *bank =3D &data->banks[idx >> RTK_RESET_BANK_SHIF=
+T];
+> +	u32 id =3D idx & RTK_RESET_ID_MASK;
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret =3D rtk_reset_read(data, bank->ofs, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return !((val >> id) & 1);
+> +}
+> +
+> +static const struct reset_control_ops rtk_reset_ops =3D {
+> +	.reset    =3D rtk_reset_reset,
+> +	.assert   =3D rtk_reset_assert,
+> +	.deassert =3D rtk_reset_deassert,
+> +	.status   =3D rtk_reset_status,
+> +};
+> +
+> +int rtk_reset_controller_add(struct device *dev,
+> +			     struct rtk_reset_initdata *initdata)
+> +{
+> +	struct rtk_reset_data *data;
+> +
+> +	data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->dev =3D dev;
+> +	data->num_banks =3D initdata->num_banks;
+> +	data->banks =3D initdata->banks;
+> +	data->regmap =3D initdata->regmap;
+> +	data->rcdev.owner =3D THIS_MODULE;
+> +	data->rcdev.ops =3D &rtk_reset_ops;
+> +	data->rcdev.dev =3D dev;
+> +	data->rcdev.of_node =3D dev->of_node;
+> +	data->rcdev.nr_resets =3D initdata->num_banks * 0x100;
+
+This is misleading. Surely there's not num_banks * 256 resets, since
+each bank can only carry 16 or 32 resets. It'd probably better to not
+use nr_resets at all and implement your own of_xlate.
 
 
-A similar fix was made to the Tegra186 code by commit cefc1caee9dd 
-("phy: tegra: xusb: Fix unbalanced regulator disable in UTMI PHY mode"). 
-Although the above looks simpler, I am wondering if we should make a 
-similar change to the Tegra210 code so that they both are implemented in 
-the same way?
-
-Jon
--- 
-nvpublic
-
+regards
+Philipp
 
