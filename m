@@ -1,182 +1,185 @@
-Return-Path: <devicetree+bounces-254638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89263D1A3D0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:27:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE5FDD1A4C9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:34:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D7F7A30687AF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:26:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 32FB430B2912
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA302EDD74;
-	Tue, 13 Jan 2026 16:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982902F2607;
+	Tue, 13 Jan 2026 16:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="bFsn/J3v"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="R45WKOEB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010051.outbound.protection.outlook.com [52.101.56.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 733521A2392;
-	Tue, 13 Jan 2026 16:26:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE5127FD51;
+	Tue, 13 Jan 2026 16:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768321571; cv=pass; b=k6j1Wb1Glyudic7rm+jp57Lu+E/mUdzGJlbvjd3UqDCIYB++K2lHgmje20q5F4wzMXmeqGvIM+Tfmb1qer88Y4CtaXXpUHeNbltCqjY2Gc79t0OHzroP31BAyrITR2WNEK+04a7+3Y4dDU4HzLBjnfwxiyCJ9Jx53sb57GMX9BU=
+	t=1768321774; cv=fail; b=LdrYXkDSmXuDlUTnQBlYJlcbSPd9/6Vevg2jdGGSKqNUBshtUXUgd8la8wwJZJGTVxgKlDX3+xZOD088KxrFy9xNnkzw9CwUa2Nccac+A0BaAdBMzpdcfjr21UbyE3DOgXot9qHlnWwIExDFikSj6MQCbD8tO9txM0lC/luDrkA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768321571; c=relaxed/simple;
-	bh=8N4Z3VgUP3MWafV03tf45truWB+Bm887dDFsDVFqNtQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T0q+acyD7SQc81SPaLtH+UioTL0DUmrH/DkLReQAQYvOrr8Ei1kdt/jZ88bp5Ej2BP+34kwUc5g64v/7fnG92vnfC90O0jjTQMV6J3iZ1GIXHNobavnqfLG49IKkF2r1Ebehc2E4A3K6Nu8j0lCDakTSl9YMhfhZnbfC9Sa+dLk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=bFsn/J3v; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1768321546; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=DLH1LzOnCusazCYXX75NuMLJP83JxGsgedB7KGa2sOKG+ZQh30Ix6X7QNmnVES7B4DAWPiylYujhrPJE9ePCwSkntdEA5nL1CVKVfteb1RaoOj1wF2i9iVWdBt5d3+qpkgc3kik760CsUjrhjGNU/rcCApQeFD8K33jsNJx3dpY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1768321546; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=8MTiHfloStfO84sC7uhvGAOAjhnPQBxw01aUbUwJ3uE=; 
-	b=SIsa1Y1QhTpfxhlrqSjL11vkUWAxF4a14NFrBtl6MFGqPyH+MBBvJ1Pq0koF5F3ZfIv9DRZV/OGVvAP6TphHRk/eY/Nxj3li1dCQKtyGDIZPNXrrMsAcaK8AFQByg4q3VTz2Nn+c++AEG3M962pc0JuQ7h+kt4LacuI63sX/hVU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768321546;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=8MTiHfloStfO84sC7uhvGAOAjhnPQBxw01aUbUwJ3uE=;
-	b=bFsn/J3vxgypV86zjeTIuOFJba9OL7HTRMgwvfjDsAWBPlJqF5E9KD/xVc6mLg/A
-	z699RwO9we9zu32cwiVCaTr0RyW756EanyoVO6BITFHOkh7cbSZHv6VO63qwc4PN1T8
-	v4A4I79/8OHgO7pEwg7pT5zNNzTrbj1vp17KxPV4=
-Received: by mx.zohomail.com with SMTPS id 1768321544021680.0980354267477;
-	Tue, 13 Jan 2026 08:25:44 -0800 (PST)
-Message-ID: <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
-Date: Tue, 13 Jan 2026 17:25:38 +0100
+	s=arc-20240116; t=1768321774; c=relaxed/simple;
+	bh=CXIywrFuFlAnULzqaDAXfAfacyPIFUBUJDrkfppfu0A=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W24t4kvnK+1apvpatKEkomDR0blZ1ReCvd/HE//pVSNYkMyoNlNqEhKijXVH9vdzDmtrIoRneFa5c0/qx+PT75byU/YwZipEsEfjOP+/13v1uy/tG1JxYfGkAbjx/4QAglU6kR9JUmdfqxgchSfuefmqV8gp/RBO799zNLJkpck=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=R45WKOEB; arc=fail smtp.client-ip=52.101.56.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P1ntOu58E7o420TxWsN2RJIXCotb7eqvrXk/8M8dYmcOaP6W2jHfbSaGIqiH5hBJqGvzWIdGeV5A8tyh723caZBCnmRumJdOW78KMqRkEx5VGbJrkiLvfOxXUQzqyZ3kxmQmi9ekTWvYU7QGWgqTydEGnHnYrRgBYfmHBbNH0imQmFauI4qnYCmcIJt0EMrsFWxxEdEclspXW/RYAP4pvj90kMbEyZ/QJL0lk3Noy2Gsm2n8A70L4KpDdxh9wpA4ZdLXmtocgw4CY6U9ErluPfHOoIjxYZa6gi8Q1nWL3qZ0RSbZ2VU4738bpqcHLK5stpbjGUpftKMgkEI+9zwkgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z3Nr8ialqxZbEIZ06b753URl0qRRT9pahEbTECOC/pw=;
+ b=R7AMiHsYo1ShjGipx+ssmRJua77mcGCMLwXwuEiOrYVuR9q7P68CJpEQmovFgdRyuHGBBx4ZrZ3XHQAWCw9UMZ9qPKVt7vYJio5XZD7EVYDWg4gX7H3Rd5mvnAbKXY9D7ExoRyCwfs5HZ6vjrLMv2sAduclXB9wF5dmq6KXLugHvBN6Gcv7sqHB+2twwEFK3C6D835od5Hw3/KRa89JJbZmFGc0D4RZ4mMO4vn7shdagdfASCGJNhzQKqu5YDhwXsX7vucRQIcRIvZm2bUpOW0s1NS2Accz25nnQd3Tiirg8RDxnDxvDTGJvVjrW/N19MchIBRL8rnOKY4fQmGzl0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z3Nr8ialqxZbEIZ06b753URl0qRRT9pahEbTECOC/pw=;
+ b=R45WKOEBKxJJCwz8L4qVESRHiZ0rPMw00TrQqG6M+AyBPYe8eRpBeZGYR0YOlobx9IwJx7x0Gv+OAG9jo/MUcZnW0nbWcSh9/BGZndgOXPQnyY216aP4K/OTxU2Btd9Hdr1jAZeKO81b8Z6tucsEcRR0XSQ/sdhBKgTXLoSeMMw=
+Received: from MN2PR08CA0016.namprd08.prod.outlook.com (2603:10b6:208:239::21)
+ by CO6PR10MB5537.namprd10.prod.outlook.com (2603:10b6:303:134::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Tue, 13 Jan
+ 2026 16:29:30 +0000
+Received: from BN3PEPF0000B078.namprd04.prod.outlook.com
+ (2603:10b6:208:239:cafe::74) by MN2PR08CA0016.outlook.office365.com
+ (2603:10b6:208:239::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.4 via Frontend Transport; Tue,
+ 13 Jan 2026 16:29:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BN3PEPF0000B078.mail.protection.outlook.com (10.167.243.123) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Tue, 13 Jan 2026 16:29:29 +0000
+Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 13 Jan
+ 2026 10:29:27 -0600
+Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 13 Jan
+ 2026 10:29:27 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 13 Jan 2026 10:29:27 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60DGTR2c2555396;
+	Tue, 13 Jan 2026 10:29:27 -0600
+Date: Tue, 13 Jan 2026 10:29:27 -0600
+From: Nishanth Menon <nm@ti.com>
+To: "Padhi, Beleswar" <b-padhi@ti.com>
+CC: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vigneshr@ti.com>,
+	<kristo@kernel.org>, <afd@ti.com>, <u-kumar1@ti.com>, <hnagalla@ti.com>,
+	<linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/3] arm64: dts: ti:
+ k3-{j784s4-j742s2/j721s2}-mcu-wakeup: Add HSM M4F node
+Message-ID: <20260113162927.hmf5dnkm44kyefpt@stained>
+References: <20260106104755.948086-1-b-padhi@ti.com>
+ <20260106104755.948086-3-b-padhi@ti.com>
+ <20260109192735.rijejfwwrkunosdp@gauging>
+ <8a4692f8-4366-49f2-bcef-b087a7bcc24c@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
-To: Will Deacon <will@kernel.org>
-Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
- nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
- kernel@collabora.com
-References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
- <20260107101005.84039-4-benjamin.gaignard@collabora.com>
- <aWZui-rn5RDPwpEO@willie-the-truck>
-Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <aWZui-rn5RDPwpEO@willie-the-truck>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <8a4692f8-4366-49f2-bcef-b087a7bcc24c@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B078:EE_|CO6PR10MB5537:EE_
+X-MS-Office365-Filtering-Correlation-Id: d1fb576e-4114-497b-a5ca-08de52c0ecba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|34020700016|82310400026|36860700013|376014|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?WdplwGRmyewNHPRngd11BUq4TBV65N2NhI8xcQas3mPDL61DsqIeY0IkFB3X?=
+ =?us-ascii?Q?jgtDMUk7m6OOWNbgrvSXqLOZDeLu7B7UFw/lSuIPBFmpAuqO2LLW1k7QkRxz?=
+ =?us-ascii?Q?xoKgcVbGWNgBPgwCUgcTCmCttoE5OpOPaXDJQvIevb0q2RhCgWfcbosIe2j4?=
+ =?us-ascii?Q?mASLKiECME48L+syjrWT19GEvIo7DlDE5qHvb3GVxaAh90K/9iPFwxAAYoFu?=
+ =?us-ascii?Q?9zeMTR8sWA2TkwALgW77c/MiUmiJ/gafg1kNGeDiMZrOVTfFTOcqApiKlpOn?=
+ =?us-ascii?Q?bAFH7HZo9BnwqeqJYRKIHKz7QPpWCmXYaF3ir4zgfJ/uyq4rCLIruGokouRb?=
+ =?us-ascii?Q?IPrVPCwbl7ZxAsI8acayesS3o80DvTHExElqL6j7H4+GU+iOajSymU24pzN0?=
+ =?us-ascii?Q?GTFaRgOv4YUAVPMjoVAgBaO5crYAGxn0Zusx1U9+0xzatB5zni7Q5dbqPjOF?=
+ =?us-ascii?Q?eXMaso9yCEd7q2iR/5Vz6lCPIe1W5R8h8wSjGZSSUnd1NszFWKFYEG+/lUP3?=
+ =?us-ascii?Q?wi0xafCjDM+L9fdynDFNeaBBK/aNHckePyFnvF9+VQgbZnW98bcUP9d2JSIX?=
+ =?us-ascii?Q?qtSriY5ETLiBTvW9oEeheISiHvL/ViAASGycYPEcnPbB/6r1RUWezBYXnWxo?=
+ =?us-ascii?Q?rmiCybo5vRHnzScq9aoZMktmvpnqfsU2q/43lARhy7XUUcKzzB6fEOqKd044?=
+ =?us-ascii?Q?ocbAPct8HIzez7snitQFY9WDAGAIb8csGi3Gmp8/lZoEXAw/H0yJvsDMjGaQ?=
+ =?us-ascii?Q?iIhaw/7NhKcCTDLe2tpi4rPVRPIp8Ih8gHUho3V39SLI8bBFw4MbWwgnyHsm?=
+ =?us-ascii?Q?6oFyCUjfbXHQqq8GBP40Mw8dVmpWXrwXcuEVShUrAIjqQJq0FpiO38wQast8?=
+ =?us-ascii?Q?gpk0S497m0BLm7VQPy1vJHZwTaVDJB2cI6yIeBVWLyhLarPF8M4DfdRsmpNX?=
+ =?us-ascii?Q?lxbSAXneCK0l3LX1kXWCGFGHG9NQFm//sTlldAwqjQ4hv1AzpoDNF9dSlZzK?=
+ =?us-ascii?Q?nwciFksTbWEytcqaKwsLDUoLhboJ8BK89iAoTBIkudPiwuY2KpxyJLqi2mcZ?=
+ =?us-ascii?Q?/sBksV8+wSS6eskrJGkeYidf18fmMZauF3Iq2gMs1xx7znn9fDybOSbWjZZa?=
+ =?us-ascii?Q?3oZBrNfA5TKo9HOAO8utp2ihzdIO5w9ZNJQCzLYg5PvGv88vwevscNYH7Rim?=
+ =?us-ascii?Q?WlRm/u8pT6JCiCyIQlmluGJdWCaqFQeQBe/C8mKvsZosCGdwy7Z1yuRlg5o+?=
+ =?us-ascii?Q?EYO+GAONwukShsEGnXmNt2DC81RTXn5c7cMMMPKkacjtifjlJdiRaGMKvHcF?=
+ =?us-ascii?Q?nBMg+Saifha+QpCwSK/zZfVDd85qxW2g/UZQF+dQ6NEH3ANF5e9iqkbAYU53?=
+ =?us-ascii?Q?uwsbHC3IFsj1jzrFY7BIDwt6rxqLAv9lJJdR4cy9bQoxDlQOS6reID4x5GYO?=
+ =?us-ascii?Q?slas5OWM2JfHp2rhWvFloE6yWHpXfHRq8PrEZG3Z8fHA+ViauvVlzZMUgtVK?=
+ =?us-ascii?Q?5iCNq37fEyn8599C9jWCgy4zDSFAdyL6T3VlmGJjq2uhm6dPpSfWhP6xNFrQ?=
+ =?us-ascii?Q?UfnAeBlfqd3k7yE5eOk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(34020700016)(82310400026)(36860700013)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 16:29:29.0817
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1fb576e-4114-497b-a5ca-08de52c0ecba
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN3PEPF0000B078.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR10MB5537
+
+On 21:34-20260113, Padhi, Beleswar wrote:
+[...]
+
+> > > +		reg-names = "sram0_0", "sram0_1", "sram1";
+> > > +		resets = <&k3_reset 304 1>;
+> > > +		firmware-name = "hsm.bin";
+> > I am not a fan of putting firmware-name in SoC.dtsi - esp when it is
+> > reserved,
+> 
+> 
+> I thought the opposite way. Since it is reserved (and not a general purpose
+> remote core), it is unlikely boards out there are going to use a separate
+
+Fair enough.. I see that the base firmware name is in SoC.dtsi on a per
+SoC basis. Agreed that exception can be an override if required
+(unlikely in this case). Please document that rationale in the commit
+message.
+
+Since we just have a single HSM in each of the SoCs, am62p-hsm-m4f-fw
+j722s-hsm-m4f-fw etc in SoC.dtsi would make sense.. just dont do a
+generic hsm.bin kind of deal.
 
 
-Le 13/01/2026 à 17:10, Will Deacon a écrit :
-> Hi Benjamin,
->
-> Thanks for posting a v11.
->
-> On Wed, Jan 07, 2026 at 11:09:53AM +0100, Benjamin Gaignard wrote:
->> The Verisilicon IOMMU hardware block can be found in combination
->> with Verisilicon hardware video codecs (encoders or decoders) on
->> different SoCs.
->> Enable it will allow us to use non contiguous memory allocators
->> for Verisilicon video codecs.
->> If both decoder and this iommu driver are compiled has modules
->> there is undefined symboles issues so this iommu driver could
->> only be compiled has built-in.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->> changes in version 11:
->> - Fix dependency issue when decoder driver is build as module.
->>
->>   drivers/iommu/Kconfig     |  11 +
->>   drivers/iommu/Makefile    |   1 +
->>   drivers/iommu/vsi-iommu.c | 808 ++++++++++++++++++++++++++++++++++++++
->>   include/linux/vsi-iommu.h |  21 +
->>   4 files changed, 841 insertions(+)
->>   create mode 100644 drivers/iommu/vsi-iommu.c
->>   create mode 100644 include/linux/vsi-iommu.h
-> Based on your reply to v9:
->
-> https://lore.kernel.org/all/0eff8b1a-c45f-47b1-a871-59f4a0101f0f@collabora.com/
->
-> I took another look at this to see whether it had changed significantly
-> from v6 when compared to the rockchip driver. Sadly, they still look
-> very similar to me and I continue to suspect that the hardware is a
-> derivative. I really don't understand why having a shared implementation
-> of the default domain ops is difficult or controversial. Have you tried
-> to write it?
->
-> However, given that nobody from the Rockchip side has contributed to the
-> discussion and you claim that this is a distinct piece of IP, I don't
-> want to block the merging of the driver by leaving the conversation
-> hanging.
->
-> There is still one thing I don't understand (which, amusingly, the
-> rockchip driver doesn't seem to suffer from):
->
->> +static void vsi_iommu_flush_tlb_all(struct iommu_domain *domain)
->> +{
->> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
->> +	struct list_head *pos;
->> +	unsigned long flags;
->> +
->> +	spin_lock_irqsave(&vsi_domain->lock, flags);
->> +
->> +	list_for_each(pos, &vsi_domain->iommus) {
->> +		struct vsi_iommu *iommu;
->> +		int ret;
->> +
->> +		iommu = list_entry(pos, struct vsi_iommu, node);
->> +		ret = pm_runtime_resume_and_get(iommu->dev);
->> +		if (ret < 0)
->> +			continue;
->> +
->> +		spin_lock(&iommu->lock);
->> +
->> +		writel(VSI_MMU_BIT_FLUSH, iommu->regs + VSI_MMU_FLUSH_BASE);
->> +		writel(0, iommu->regs + VSI_MMU_FLUSH_BASE);
->> +
->> +		spin_unlock(&iommu->lock);
->> +		pm_runtime_put_autosuspend(iommu->dev);
->> +	}
->> +
->> +	spin_unlock_irqrestore(&vsi_domain->lock, flags);
->> +}
-> [...]
->
->> +static const struct iommu_ops vsi_iommu_ops = {
->> +	.identity_domain = &vsi_identity_domain,
->> +	.release_domain = &vsi_identity_domain,
->> +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
->> +	.of_xlate = vsi_iommu_of_xlate,
->> +	.probe_device = vsi_iommu_probe_device,
->> +	.release_device = vsi_iommu_release_device,
->> +	.device_group = generic_single_device_group,
->> +	.owner = THIS_MODULE,
->> +	.default_domain_ops = &(const struct iommu_domain_ops) {
->> +		.attach_dev		= vsi_iommu_attach_device,
->> +		.map_pages		= vsi_iommu_map,
->> +		.unmap_pages		= vsi_iommu_unmap,
->> +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
-> This has no callers and so your unmap routine appears to be broken.
-
-It is a leftover of previous attempt to allow video decoder to clean/flush
-the iommu by using a function from the API.
-Now it is using vsi_iommu_restore_ctx().
-I while remove it in version 12.
-
-Thanks for your review.
-Benjamin
-
->
-> Will
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
