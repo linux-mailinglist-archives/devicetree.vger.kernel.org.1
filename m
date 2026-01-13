@@ -1,127 +1,117 @@
-Return-Path: <devicetree+bounces-254750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B5A7D1B939
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:21:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D83C1D1B949
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 23:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9295C302F2E6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:21:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D04853033F9A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:26:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADE135580E;
-	Tue, 13 Jan 2026 22:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30DBA3570B2;
+	Tue, 13 Jan 2026 22:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=szczurek.yt header.i=szczurek@szczurek.yt header.b="brXBe4/i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gAjQsh2Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender-of-o53.zoho.eu (sender-of-o53.zoho.eu [136.143.169.53])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA83354AEB
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 22:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.169.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768342894; cv=pass; b=tH2KNx0XxW/LR/K6jN5JlbNmwnDfXNUNSdV9O/1S2+YP5CYNkl3cvn31wiBmJkefuzFHVdWbmLkvX9FMpK8Gi4QkWXHS7j6UosbERTsFbXFb19xurht8CuQAgkFP+Hb5E4/d650lUav8WuC/KGfLzKzY973fD34pT0RfbjVL2XA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768342894; c=relaxed/simple;
-	bh=nI27uuCm0XzivezOpxbJIHywUyoGwWkR45ngMp9q1Bg=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=skL6NNHbyTSVmUbG2f5vDej2X/Km1EzEXGTPiJsU9eEGWlqzrI+zMJssqfKfDoFGPQiPLdKdYufG5csU/xxRPn+TNb4O0Xq6zGwwmpMEECeXCPVCqlouTyGKs+en7Mi5esMNkurc6lX+ij9ciVoW/YsDcnmhgjY7c3+JFh28L7c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=szczurek.yt; spf=pass smtp.mailfrom=szczurek.yt; dkim=pass (2048-bit key) header.d=szczurek.yt header.i=szczurek@szczurek.yt header.b=brXBe4/i; arc=pass smtp.client-ip=136.143.169.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=szczurek.yt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=szczurek.yt
-ARC-Seal: i=1; a=rsa-sha256; t=1768342863; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=JcJpcQpuBm5TZ+WW9ULjuWb0buKfzHTXWxSgIN3gdTaMtJKFD55DI4YVBSxEk52xVKyGxixJ3tFOqwpAbbaFcsIIsrkw17+MbN3+Y8tnqbEy1N5Rbinhco1jVeRh7EXuPp9cMMQmUXNkKJNO+yoreLrwATaJ4OQNufunywLGKQk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1768342863; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=6t0XRyLt6y4Y7XbjooZD3bqn9xJkWxhySXVzC3fK/0E=; 
-	b=aHZsqlrgU1vx3kl6DbL6lM0trKwthPmrxQCzSE6qicfBzpGYHBZEiaMXenH2KQuPfrqPEj6aHyX3i+n+JeYkDNQXcZmmjzevoDbMr9QqhG7U/ok8CprhnDXQFCQTyXUnIUeZTGbcsK14V7LL1XK6zxLIWykrVBr8QXGf9BY6m0U=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=szczurek.yt;
-	spf=pass  smtp.mailfrom=szczurek@szczurek.yt;
-	dmarc=pass header.from=<szczurek@szczurek.yt>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768342863;
-	s=zoho; d=szczurek.yt; i=szczurek@szczurek.yt;
-	h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=6t0XRyLt6y4Y7XbjooZD3bqn9xJkWxhySXVzC3fK/0E=;
-	b=brXBe4/iRB2SrWoAX7REoZZob5gc4foBfGwluVQ8fyk0XijzZdoDBe0QVqrMzINU
-	cTeOkw1/vu1m1tGw8FYWjPhJS/oAed991/Pj5INQ43EJhBAibmrRHcSGaQRI8iTLP3K
-	0U+9ylqk9rLTfancw7awdEDjTThQFgCY6xICUbATO62N3UwOM6JdqngFkH0DTV6m2GK
-	CyhhQ+9AZdy4q2t2iFMZeGrloqxJn9OiwT1ZdE5R8QN1pql9SuAyjSYrFWC3w8UtTCL
-	vsTCmuUAf75fiwEQXSx2vtSFK3F9tRtd3/j0M227lgMp87YNqMe0lTQw6fhLcqqd5xN
-	N3h1H4FzQg==
-Received: from mail.zoho.eu by mx.zoho.eu
-	with SMTP id 1768342862318952.1865680945543; Tue, 13 Jan 2026 23:21:02 +0100 (CET)
-Date: Tue, 13 Jan 2026 23:21:02 +0100
-From: Szczurek <szczurek@szczurek.yt>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Cc: "yedaya.ka" <yedaya.ka@gmail.com>,
-	"Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
-	"Rob Herring" <robh@kernel.org>,
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Bjorn Andersson" <andersson@kernel.org>,
-	"Konrad Dybcio" <konradybcio@kernel.org>,
-	"linux-input" <linux-input@vger.kernel.org>,
-	"devicetree" <devicetree@vger.kernel.org>,
-	"linux-kernel" <linux-kernel@vger.kernel.org>,
-	"linux-arm-msm" <linux-arm-msm@vger.kernel.org>
-Message-ID: <19bb972b9d3.12a7d3da3105717.8521466650832407846@szczurek.yt>
-In-Reply-To: <o4eu2db3y3wrxaxtxcbxupdc2tzemqvb4fupwfkjfjqmy5qudd@v4umeav2oib2>
-References: <20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com>
- <20260113-touchscreen-patches-v1-2-a10957f32dd8@gmail.com> <o4eu2db3y3wrxaxtxcbxupdc2tzemqvb4fupwfkjfjqmy5qudd@v4umeav2oib2>
-Subject: Re: [PATCH 2/3] drivers: input: touchscreen: edt-ft5x06: Add
- FocalTech FT3518
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D0F435580E;
+	Tue, 13 Jan 2026 22:26:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768343177; cv=none; b=cQwgp3dA2wRTodO2Z68NK7ZENjljjTkqA8n3MxnIw4v7IJDlJPfzifeLuA0gRoutHoQmziYrus0mYPasSyeTvZ9xzHNpTjslxFSfPM/xUAQrDy186yEvV2O9T7AdVfNbLyRJZSzn8AbqlEWRPRdS04vkWqK61BGrCE7aUwjxcLI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768343177; c=relaxed/simple;
+	bh=WCS1gUFqazlCTZYwN0/IDLbkTzKhRaU1clOA1skX9OI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=u43NsAzXcztijl0yF4CfDPF0vcieFIb1sq2CMStGNR8AahKixsT91DRVgpGVp6h28+nHB+sctNbYnIp5/G6waIzLuIZXcOoMJrlMDRXXBzCIhFa14m0Bw2cryvFZkokdmimSPXiqHFFjgP9S42AAeeZxpYLMCCTUTujTcoh8vlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gAjQsh2Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96B47C116C6;
+	Tue, 13 Jan 2026 22:26:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768343176;
+	bh=WCS1gUFqazlCTZYwN0/IDLbkTzKhRaU1clOA1skX9OI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=gAjQsh2Q8Zo8IrkWVzvZOinEeTF56+8fVVF4LG6nZDqUhljjuk4hSkg+KlH3JEjBI
+	 A6klso1FXuHD1841HEoboi8VO7hBqMNWkn1ypIvsX7z01Azz0jZ+BMcyZbcL/Moghv
+	 F6VfWNj1vOyHOZjy0Z399rj3BOJBbw5mWJ3srJEj3Q1RfoAhCkdbcR1WikzBO5Oe6v
+	 HaAC/ZUHKm3wSqqpphM2HgIQKhZDe7dnioc5xIPJUHaa1C1B0yJQcVfi3h8mKKFuit
+	 BP1HYDeJOqiU3BC475n2y51T6ubFW9QkAmu76wOKBLewGGTAxSyrTrxyGOGB6OGVQL
+	 W5aAezq+Sc3eg==
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Guodong Xu <guodong@riscstar.com>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Heinrich Schuchardt <xypron.glpk@gmx.de>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	linux-serial@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Subject: Re: (subset) [PATCH v4 00/11] riscv: spacemit: Add SpacemiT K3 SoC and K3 Pico-ITX board
+Date: Tue, 13 Jan 2026 22:25:23 +0000
+Message-ID: <20260113-prism-unvaried-abf3b4679e3a@spud>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
+References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Importance: Medium
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1079; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=dGkt94bjVYf12COX+6dHA67nfAJ4JApCVWihf8slfBY=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJlpx4Iz3wp4M1SZqzktZ5nzr3riytyZKtM+VhvcaM4UW /VsesfTjlIWBjEuBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEyE4zQjw4VdTbFHuj64X5lZ 47Lp1K3PW1silW2KxfmZrUxUpix/4MrI8ObLZtPFV7SiqgoDbtco1Vx/ks95OF/Z66bb9oDFIZb h/AA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 13, 2026 at 20:28:27 +0100 Dmitry Baryshkov <dmitry.baryshkov@o=
-ss.qualcomm.com> wrote:
+From: Conor Dooley <conor.dooley@microchip.com>
 
->On Tue, Jan 13, 2026 at 09:12:36PM +0200, Yedaya Katsman via B4 Relay wrot=
-e:=20
-> From: Yedaya Katsman <yedaya.ka@gmail.com>=20
->=20
-> The driver also works with FT3518, which supports up to 10 touch points.=
-=20
->  Add compatible data for it.=20
->=20
-> Co-developed-by: SzczurekYT <szczurek@szczurek.yt>=20
-> Signed-off-by: SzczurekYT <szczurek@szczurek.yt>=20
-=20
->This doesn't look like a name.
+On Sat, 10 Jan 2026 13:18:12 +0800, Guodong Xu wrote:
+> This series introduces basic support for the SpacemiT K3 SoC and the
+> K3 Pico-ITX evaluation board.
+> 
+> This series (starting from v2) also adds descriptions about ISA extensions
+> mandated by the RVA23 Profile Version 1.0 into riscv/extensions.yaml.
+> There are extensive discussions about how to handle these new extensions
+> in v2. In v3 (now v4), here is my best understading of what I think we have
+> reached consensus on.
+> 
+> [...]
 
-Hello
-Yes, it isn't a real name.
-Yedaya Katsman is upstreaming those patches by me, under my permission,
-and I forgot to tell him my name, so he took it from gitlab, which is just =
-a nickname.
-All of "SzczurekYT <szczurek@szczurek.yt>" should be replaced with "Kamil G=
-o=C5=82da <kamil.golda@protonmail.com>",
-this is my name and the e-mail I would like this to be under.
-Excuse me for the chaos.
-=20
-> Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>=20
-> ---=20
->  drivers/input/touchscreen/edt-ft5x06.c | 6 ++++++=20
->  1 file changed, 6 insertions(+)=20
->=20
-=20
->--=20
->With best wishes=20
->Dmitry
+Applied 6-9 to riscv-dt-for-next :)
 
-Regards
-Kamil Go=C5=82da
+[06/11] dt-bindings: riscv: Add B ISA extension description
+        https://git.kernel.org/conor/c/0cdb7fc1879b
+[07/11] dt-bindings: riscv: Add descriptions for Za64rs, Ziccamoa, Ziccif, and Zicclsm
+        https://git.kernel.org/conor/c/b321256a4f36
+[08/11] dt-bindings: riscv: Add Ssccptr, Sscounterenw, Sstvala, Sstvecd, Ssu64xl
+        https://git.kernel.org/conor/c/c712413333f8
+[09/11] dt-bindings: riscv: Add Sha and its comprised extensions
+        https://git.kernel.org/conor/c/89febd6a0276
 
-
+Thanks,
+Conor.
 
