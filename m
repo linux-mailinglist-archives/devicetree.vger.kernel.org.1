@@ -1,171 +1,260 @@
-Return-Path: <devicetree+bounces-254652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8338CD1A619
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:47:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26802D1A686
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 35CE83007648
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:47:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 11F363081106
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6323E34C811;
-	Tue, 13 Jan 2026 16:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B307334D3B6;
+	Tue, 13 Jan 2026 16:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hkpjmnt+";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AtFJ2GMN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DSQDeeEP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA30234B421
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:47:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E37334CFCC;
+	Tue, 13 Jan 2026 16:48:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768322876; cv=none; b=InspvAHrKUOj+U9mPB1tHzSI5g/1bZq6SZ7XjfVMjdHIj315M8XDXDNchYNoa3XmIv+p71xfFm4bUt/TLKsIRcKeavUQglszwIxFUIBfJkC+G4CToF63fwAqt8sJqyxEqnxR+umYNdb5fpn/NZYbybheGCe75ZSlttBXehqHvoE=
+	t=1768322928; cv=none; b=YwpEUiRArKOuQ7ChbOp74vNLWTkE0MvcBTrHvhEjy4pVh6FCATQfVxmHKvWRz8+cDUqzlXQBUOJBuqEC8vStuyuRugAvTE54vG8kPYlTEuJI63zcQjHzmyDiYW6ts3DnTYNmYNQf5LLSR5+gtkxoNRmXIkAhzFdllrRP5LizDT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768322876; c=relaxed/simple;
-	bh=RJmRwTj3K/zyjI/6ibebPVP+Br+k5iGtacdim9Ql4Fo=;
+	s=arc-20240116; t=1768322928; c=relaxed/simple;
+	bh=9Xi4F4hDVlUXQAZiuT7/skN/sMa6mBICWxabbaie9bo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cG6NPxOna3SRDKmoB04po1ydN/fc2TcNXIipJFP+dtV5NuHFZjLMXFjQw39oQ9t/3aNu/sgdmdsZU4hzK2QHwJKMXCDsqRHgz3pKk50oan5DvpU4my7yWe13H47mGFeT+3H8jZj6Fmz8NjrD+0003q7pFJaO9Qvx2/G7qT91YV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hkpjmnt+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AtFJ2GMN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60DFGZuV4153520
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:47:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=MTyn2KRC9wTRTEtP9zy63Czm
-	v+1kN9LAqhEzCYvNoo8=; b=hkpjmnt+L3ZLGS7kOJWexB43k1nkIpfyucEh8WlM
-	GnP/1NSCrQAZiYO/G7L2spmYkfGcsL9xmmsJ2gKvVrX10BS8MuVofha0Ruycqkmt
-	8iQjE2ocCAVSZPRW+ZulDqKoS0VXCgG9yNNXwBfpOrRiwVgG3NMjvIF8yvoRGD+4
-	lRaJdB1Pwms1dO8aZtJ17vwiWJt0LshmzfkKbv08RQJzVh97nDaYMasuM+eK0tWi
-	HsJ/oxxKp85vlU/bDkhA3mfMrFwc5p54kTKTxp/OVvwJcYuYoISjetWKtY5smMAx
-	4jKm9SJE+RCoCcoPvK2n/k0C4ljZBiNTj5B9Xo2ALpTvtg==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bnr3e8ess-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:47:53 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-81c5e1e3beeso4648933b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:47:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768322873; x=1768927673; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MTyn2KRC9wTRTEtP9zy63Czmv+1kN9LAqhEzCYvNoo8=;
-        b=AtFJ2GMNEJ/YFL6IjuOw8ONMQtxlZI/GqU+mqdxDzTQ9nKEe72MA+tiM07nmXl+bP5
-         TVP5mjR5l3JYli+WYVQ9Mh1Lb08uRkLMNZciZuBvvh0bkEfOBaS3UnMd8eysemUb5eq+
-         TeQz6+NBUvhfVhNJWnGvDNGfVBTjg5+8ZjiFftGuuxp0kZAmj9wFZSNA/3+aioyTM1di
-         hX3SdkKLp4PjiVbyub9bJFLghtKwI+Zbh7+B22eDWyUIMf/zNPqgyumsUa4f7+1lkWfs
-         4ct4q4+rmm0UEZzZTPB5WYLEmfz/+w1LyAzgjY6jAUZ2tGRfMyh8i4/Bk/wvIurU60x4
-         VJrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768322873; x=1768927673;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MTyn2KRC9wTRTEtP9zy63Czmv+1kN9LAqhEzCYvNoo8=;
-        b=UmsdhBMIplC0xapgFOgsyCkhtoYsXkPmO9imG8/rKHjYgTYH5LifNuJmH58KB5ooIE
-         wz0dlu3Rp+4DR+M1G2mA2T1HG0n+hAE/GTSLdJgKJ0yDVMFAE0xbR13mGkZ1C9YwSQlH
-         EpNLxYPzACXflKp/xGEagsxKfEemExK35HTgm4Oj3074keQ+sBCQb5SPqyxSbRF3fGTn
-         WToKVLSODZys0Vr+UWDU+7sd1BQZcM/BdbTLQLEOd3zoCAHayHoCB3gsFGbtrDxbAdL0
-         uDGdOgs4K4N1oEbR55tEY2HInVsLY40p7bHZwUCK2p/aP8K9g7pk7ZPn+maqX4Hs2Pgq
-         SHbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUohVQyPSOimdEsIrURJapUshnJVsUmrBNtYKJrWqIhSddrBWcYqS013iPReQv7YVkWzzBaapRdhCpt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNw9TrhjS0SiKly2ecp/MP29Gzlw+zGQHpwkWf8GXeV819zjKR
-	0coQ6IpWs23kO291v6zakBgPFP2qPY/4Vd7c6irjO9QpTELpmRe0DLc72pMF052Dagkz7Ok2e5R
-	Bua9BXPgwBd4FfKBzTq9VyqqlelhX/APuCDmHBXM+MGrZWNm+KNf6zQ4GQ5fIi6D+
-X-Gm-Gg: AY/fxX6Zn3Q2bUe6sPlcdV9L2BScNsvvC+fmBG55shNLlaZZs1MgglX41pA+LzOVt+c
-	cjytc3vPjmDJkUcium9/noIxzGJeBN3TbdOvbfEKnFSi4Xpoi6H2YhAASwV2II4U73MZT9Rt1uw
-	+tTruiV9eRPyEcaLIrtdEmiGweXYmwomf/41F6DNmZWKoMXYhVB0VmLca02WGSXltxyaLNuTXnB
-	5I8YEe9J9cxXHXWVO9Q7BwADm6dZK4Kik4ECSU1Iljinfjha6ukSeVgPzWQdFTRz+xED9+IH02N
-	p+FAX04/4L4rcsCthuFMVbzSaWRulOPEjzgleCQT436kVaZF5Eyck15bfAABCrXEYNFn4pXWZQz
-	wT2JWhBozu1V+u0zr0nx9PVfy2ducDf4z8hMM
-X-Received: by 2002:a05:6a00:408c:b0:81f:5f49:690d with SMTP id d2e1a72fcca58-81f5f497111mr5738464b3a.18.1768322872818;
-        Tue, 13 Jan 2026 08:47:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEZlMg32RqQTDNGfAe87X0hkNlc6WB8E1XbLMp5bNhyiNlI3t1suoaXs4tBsUJc9iAJ0den1w==
-X-Received: by 2002:a05:6a00:408c:b0:81f:5f49:690d with SMTP id d2e1a72fcca58-81f5f497111mr5738428b3a.18.1768322872128;
-        Tue, 13 Jan 2026 08:47:52 -0800 (PST)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81e3eb854e3sm12462968b3a.5.2026.01.13.08.47.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 08:47:51 -0800 (PST)
-Date: Tue, 13 Jan 2026 22:17:44 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Alexander Koskovich <AKoskovich@pm.me>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        hrishabh.rajput@oss.qualcomm.com,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
-Message-ID: <20260113164744.6lwz6oox6pdlxn7z@hu-mojha-hyd.qualcomm.com>
-References: <b105810a-63a8-4d81-9ad8-b0788e2e1431@pm.me>
- <e469548a-8d74-4d3b-9617-2b06f36013e2@oss.qualcomm.com>
- <ABmlNqg6uJXJLkDZo3uaZLdrTCFIjRXOJ68Hrx1MnHHYMnPJ9_g7GW0HGRhZBKv4--_PANfXgTV7h-n7HFC51zKNW6JkmEhpB6_EhFQ27Rw=@pm.me>
- <ee448445-8a6e-40ea-9464-1c2ae52b84cd@oss.qualcomm.com>
- <pquvJnlBgedyrF5RUTrHBUoqCIR7sQMWjwvcpm-5MuqAOxcbLg7i4H2RkuI27usOGZO000h3c90TM_kr6c5UFfViPCzGXX5MNWKFHugevXE=@pm.me>
- <20260113155821.7iesxxuf74ncr7ue@hu-mojha-hyd.qualcomm.com>
- <a7RkLrctXwaW1s2WCUMkvMMk8imG2fGJBHbdsrljwgzYuSEpgRXlSRLrF4ONtCMxlT6hkHsvALfEOps7KBZWX1oIEMh-b9PHEFLqeC1CTI0=@pm.me>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ea8kLLyJHb/lw9JTuX/EunMvusO+ShAE9zAVr2ASEdiZsbbLWn72Wwz+QgdhIJh4Soxq67YY7t9gTqa9T9cU2d6FqqTLDYkVb4LalAUTaUjKyMFEMj5zyNyZC1LQI3UBkjLDTwDqXO7h3MeJSKsSKO1vaMD+d3qth8OLBsjJBUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DSQDeeEP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD37BC19422;
+	Tue, 13 Jan 2026 16:48:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768322928;
+	bh=9Xi4F4hDVlUXQAZiuT7/skN/sMa6mBICWxabbaie9bo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DSQDeeEP3Ac1HUW7ML9da+hYHgxI5RJ0f2MMfzbJSzVBZpioIAiqG/Pa2edk5MH+p
+	 dT2ipZcgIeS2csLEFvgScSCMgNs+IAcz3aPxnwbJbM9EnZiq4Pw4ccK6TdlIQkjs8W
+	 bUo2LRvT3QM05Hv1i2wadPMsgM6fphmlmkLzNk+iNVqq0f8LkDdep8fMEtT+a4zlgu
+	 nZUBWI3g6RI9ptg0W8y2FL7QjzvRtE0msLoP5CmEHbxzcFYMRwHiKJhTAIBlRMXO6E
+	 uoPOwnpgyG0RyC31amahaWSekoj+C/gWrcSwHbCzE/WTT9DQfoZM5GCIpPq3MnZpH5
+	 hY9xmI13JIiqA==
+Date: Tue, 13 Jan 2026 22:18:38 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-pm@vger.kernel.org, linux-ide@vger.kernel.org, 
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v5 2/5] dt-bindings: connector: Add PCIe M.2 Mechanical
+ Key M connector
+Message-ID: <mlgfs2v4eoovrdjba5l72yceudut5fa3xvi57s6cxukyfkyau4@7oo3dfohn2z3>
+References: <20260107-pci-m2-v5-0-8173d8a72641@oss.qualcomm.com>
+ <20260107-pci-m2-v5-2-8173d8a72641@oss.qualcomm.com>
+ <20260113163733.GA3743579-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <a7RkLrctXwaW1s2WCUMkvMMk8imG2fGJBHbdsrljwgzYuSEpgRXlSRLrF4ONtCMxlT6hkHsvALfEOps7KBZWX1oIEMh-b9PHEFLqeC1CTI0=@pm.me>
-X-Authority-Analysis: v=2.4 cv=TPFIilla c=1 sm=1 tr=0 ts=69667739 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=kj9zAlcOel0A:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=CZwxL6zrGSaLU6OBQ7oA:9
- a=CjuIK1q_8ugA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEzMDE0MCBTYWx0ZWRfXzcT+/uHBbOi6
- zTao1H42GwXmXqXIuGphTYkGtaJpRK1VErxWt3DAcC8c421KVVyJCT4KEQZky9pCn+0htxR7oPl
- KRAC8SUlxouPtZ4Fmmmwp5RRUQD3oDGDiojr2VJFygar0BGWNaY5MSOncXxVSQg/1YF22JQOBlb
- 8jLyBi+7QWOzLfyC8EEvHPRK8t9fDpkbxKFSjvsXifpIm6IzxUMsvK73Cvdl8ndhMPgrY2Xfb7k
- HFNd3oTuf9BLm8h71cLQMove1mwFSp7rGltqOl+5c+NWhTi10LItSCoKcmyqnRAFl+fMRtLSN/U
- JG7DH4IetUJFFjg24gBd6tr8Dg8hA/eBL1Z3HGf/vszL7vakClmEcucpXFlmdjfEV1nL6yuoTme
- 64xwvScAe4f0zEOgemc/8d1sQBjZl69IfwLANNQk9ZiQn+iOi1cUt1lcXqPsLIidC02BAA5y6uu
- DPcmS6abRBwcsR5HDKA==
-X-Proofpoint-GUID: qfJa3AaVr_OId6rDBwGrGCICvYJkpldM
-X-Proofpoint-ORIG-GUID: qfJa3AaVr_OId6rDBwGrGCICvYJkpldM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-13_04,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 phishscore=0 clxscore=1015 spamscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601130140
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260113163733.GA3743579-robh@kernel.org>
 
-On Tue, Jan 13, 2026 at 04:09:13PM +0000, Alexander Koskovich wrote:
-> On Tuesday, January 13th, 2026 at 10:59 AM, Mukesh Ojha <mukesh.ojha@oss.qualcomm.com> wrote:
-> 
-> > Are you trying to modify hyp dtb here ? how ?
+On Tue, Jan 13, 2026 at 10:37:33AM -0600, Rob Herring wrote:
+> On Wed, Jan 07, 2026 at 07:41:24PM +0530, Manivannan Sadhasivam wrote:
+> > Add the devicetree binding for PCIe M.2 Mechanical Key M connector defined
+> > in the PCI Express M.2 Specification, r4.0, sec 5.3. This connector
+> > provides interfaces like PCIe and SATA to attach the Solid State Drives
+> > (SSDs) to the host machine along with additional interfaces like USB, and
+> > SMBus for debugging and supplementary features.
 > > 
-> > blair is very old SoC and may not be running with Gunyah at all.
+> > The connector provides a primary power supply of 3.3v, along with an
+> > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
+> > 1.8v sideband signaling.
+> > 
+> > The connector also supplies optional signals in the form of GPIOs for fine
+> > grained power management.
+> > 
+> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > ---
+> >  .../bindings/connector/pcie-m2-m-connector.yaml    | 133 +++++++++++++++++++++
+> >  1 file changed, 133 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
+> > new file mode 100644
+> > index 000000000000..e912ee6f6a59
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
+> > @@ -0,0 +1,133 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/connector/pcie-m2-m-connector.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: PCIe M.2 Mechanical Key M Connector
+> > +
+> > +maintainers:
+> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > +
+> > +description:
+> > +  A PCIe M.2 M connector node represents a physical PCIe M.2 Mechanical Key M
+> > +  connector. The Mechanical Key M connectors are used to connect SSDs to the
+> > +  host system over PCIe/SATA interfaces. These connectors also offer optional
+> > +  interfaces like USB, SMBus.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: pcie-m2-m-connector
+> > +
+> > +  vpcie3v3-supply:
+> > +    description: A phandle to the regulator for 3.3v supply.
+> > +
+> > +  vpcie1v8-supply:
+> > +    description: A phandle to the regulator for VIO 1.8v supply.
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +    description: OF graph bindings modeling the interfaces exposed on the
+> > +      connector. Since a single connector can have multiple interfaces, every
+> > +      interface has an assigned OF graph port number as described below.
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: Host interfaces of the connector
+> > +
+> > +        properties:
+> > +          endpoint@0:
+> > +            $ref: /schemas/graph.yaml#/properties/endpoint
+> > +            description: PCIe interface
+> > +
+> > +          endpoint@1:
+> > +            $ref: /schemas/graph.yaml#/properties/endpoint
+> > +            description: SATA interface
+> > +
+> > +        anyOf:
+> > +          - required:
+> > +              - endpoint@0
+> > +          - required:
+> > +              - endpoint@1
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: USB 2.0 interface
+> > +
+> > +      i2c-parent:
+> > +        $ref: /schemas/types.yaml#/definitions/phandle
+> > +        description: SMBus interface
 > 
-> No, don't have the means to modify hyp dtb. Was just guessing at reasons why this issue occurs.
-> 
-> Was just using blair since it's the only secure boot off platform I had on hand so only one I could flash ABL on, but if it's using a different hypervisor than not really a relevant test then.
+> This belongs outside of 'ports'. I would expect you'd get an error if 
+> you tried to put it here as '/schemas/graph.yaml#/properties/ports' 
+> shouldn't allow it. Please include the property in the example.
 > 
 
-Just to clarify you said, there is no issue if you just use dtb and not use dtbo ?
-And issue happen when you start using a dtbo, even a dummy one, right ?
+Okay.
 
--Mukesh
+> > +
+> > +    required:
+> > +      - port@0
+> > +
+> > +  clocks:
+> > +    description: 32.768 KHz Suspend Clock (SUSCLK) input from the host system to
+> > +      the M.2 card. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.1 for
+> > +      more details.
+> > +    maxItems: 1
+> > +
+> > +  pedet-gpios:
+> > +    description: GPIO input to PEDET signal. This signal is used by the host
+> > +      systems to determine the communication protocol that the M.2 card uses;
+> > +      SATA signaling (low) or PCIe signaling (high). Refer, PCI Express M.2
+> > +      Specification r4.0, sec 3.3.4.2 for more details.
+> > +    maxItems: 1
+> > +
+> > +  viocfg-gpios:
+> > +    description: GPIO output to IO voltage configuration (VIO_CFG) signal. This
+> > +      signal is used by the M.2 card to indicate to the host system that the
+> > +      card supports an independent IO voltage domain for the sideband signals.
+> > +      Refer, PCI Express M.2 Specification r4.0, sec 3.1.15.1 for more details.
+> > +    maxItems: 1
+> > +
+> > +  pwrdis-gpios:
+> > +    description: GPIO input to Power Disable (PWRDIS) signal. This signal is
+> > +      used by the host system to disable power on the M.2 card. Refer, PCI
+> > +      Express M.2 Specification r4.0, sec 3.3.5.2 for more details.
+> > +    maxItems: 1
+> > +
+> > +  pln-gpios:
+> > +    description: GPIO output to Power Loss Notification (PLN#) signal. This
+> > +      signal is use to notify the M.2 card by the host system that the power
+> > +      loss event is expected to occur. Refer, PCI Express M.2 Specification
+> > +      r4.0, sec 3.2.17.1 for more details.
+> > +    maxItems: 1
+> > +
+> > +  plas3-gpios:
+> > +    description: GPIO output to Power Loss Acknowledge (PLA_S3#) signal. This
+> 
+> GPIO input?
+> 
 
-> Alex
+I defined the role from a card PoV, but it should be the other way around, from
+the connector/host PoV. In that case, this will become input. I will change
+others also.
+
+> > +      signal is used by the M.2 card to notify the host system, the status of
+> > +      the M.2 card's preparation for power loss.
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - vpcie3v3-supply
+> 
+> All the GPIOs are really optional?
+> 
+
+Yes.
+
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  # PCI M.2 Key M connector for SSDs with PCIe interface
+> > +  - |
+> > +    connector {
+> > +        compatible = "pcie-m2-m-connector";
+> > +        vpcie3v3-supply = <&vreg_nvme>;
+> > +
+> > +        ports {
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            port@0 {
+> > +                #address-cells = <1>;
+> > +                #size-cells = <0>;
+> > +
+> > +                reg = <0>;
+> > +
+> > +                endpoint@0 {
+> > +                    reg = <0>;
+> > +                    remote-endpoint = <&pcie6_port0_ep>;
+> > +                };
+> 
+> Please make the example as complete as possible.
+> 
+
+Okay.
+
+- Mani
 
 -- 
--Mukesh Ojha
+மணிவண்ணன் சதாசிவம்
 
