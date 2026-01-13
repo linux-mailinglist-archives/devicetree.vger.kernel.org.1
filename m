@@ -1,153 +1,132 @@
-Return-Path: <devicetree+bounces-254700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23B02D1B079
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 20:26:05 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 154D6D1B0CD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 20:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CBCA2302AAD5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 19:26:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8D12230012F6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 19:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF913587CA;
-	Tue, 13 Jan 2026 19:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC9A27057D;
+	Tue, 13 Jan 2026 19:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="e9dUKdor"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f68.google.com (mail-ua1-f68.google.com [209.85.222.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD3830FC12
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 19:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C01B20F08C
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 19:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.97.179.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768332361; cv=none; b=CMjK9gOdzYqDLA1rORG4Fl8X4Loy0epEpYcwWO3/2M5Dc4SUwZTLsrdkzdpTeD1D4hUboYbymXQDpwHoOfz7fEo3GQlN+lw3ik39Z72/SWwVD4K/XxqpvcUH9mfANVqPGphBIc0zf2/Yjuy/4P6xhulMpI3gzJDNUBC4SwAzZIA=
+	t=1768332633; cv=none; b=e/i2fH+yXYjlco+G3hCFk3dK8NeacBuHl1gHJeLS2lozU4+2nEpiHcKp+ChO/MZ0gJXBbEKCT9xypJM7flNgKEF+tZKDqcfTw4+eLVWJxgnS7vF2hl0fVHQeI43NYvdp4mY1vhznxLGh6rLnCKDlEvQapQE+ORyprpG93WNmVAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768332361; c=relaxed/simple;
-	bh=3ZrwEeBiZv2/57vkV16rP297m0IfYLbOdaycMnUgZvA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LNLU1Bg1YhJ1bjsEoP1pWccbdjV0A5Wd9ZsNSsEU4Cb4ykwoBwBZCAQJoVK87zKRPjJsw24xSDTaesIXlgwCtHd1W0efCJ2rdw/ywsJE50bmcEsMGBCC6CCr+syzYlOhd/oVYWMn4xnHAU/mCBG+by1a2KaKG/fs/MUapsiE3kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f68.google.com with SMTP id a1e0cc1a2514c-9412cb281acso2611316241.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:26:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768332359; x=1768937159;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lGxD9M4RQU4+hrSLm2mQz70yQm9QgTmeWCOFRtIxY9c=;
-        b=vd3gXAT6SEkQo7uP8iXreFBxeYBpDwFqR2+mMlBx1fOsSFIJOsmorGkULgW18vxBdj
-         VG7Mt+2qlsH+YRbi7pTgvqwvOzcvu/b31PLMAUbw2zV2yZdmtZfHXIL55Yzz3BL7zeFm
-         8qptc1O++8Aw2NaF3Lj5o0qojvt+7XvVPm5sba/im2FBMQ2eWCJCrHwhiXI1JiqZiDj+
-         jcQEXcWP9Ra0eRYpRGRjmHC0Pu+FTI/5gOvfdexKRs19dgMPFJGhhy97Lz8VSXLmCrLy
-         E2vK4QF61QIE8iAxHI2jJ9gPIcgQpwjSeGeM7+zEZKkG7MgnZolFsh9Y7bZDmqITKEIu
-         72kA==
-X-Forwarded-Encrypted: i=1; AJvYcCW5cvusPn1jmlYTM0ygpqaDq0C2EF7rb39OoECnDtcFMeJyDHPLc2zhBZ5OdUoB/BYgnr6Lg3fVfZb9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1h5nTzaRuk8VjyjOMYBv14LyqT18NZNMKXFKSTamJMDX0tsTx
-	+NSI/7vNNECoqmaQrG+3uXDOI0BRVoziljUsdsf2us8BkLqcFp8yDYAR7JvBRFApYps=
-X-Gm-Gg: AY/fxX7Bcp0T3UhH2OFpRAf5dWJektJlnQdr7+ZfTJ/wvB8gML36xmwvYyKcQs5uLWb
-	77aSEJQNfwc2cYMCJi4tDjEA33RAXhJQjYpJgKioeI+0SRes1QGkFG1peaojyB2BeP9DuGqEiDl
-	07m6jDQYWVlApbqVdSxBXGY1sJy1SMLbQymB+vq5uPW+5A5kpJUZkociS9P/y8mHTdl78ZzBAjL
-	kbM5S4NCe1xSMUeWivr0yH7BYWeKn2D1WhtxO4lD0mJHvrBamahXzq8HZBcUCLYK1Lrd+816tPc
-	WbzQA4i3ui6Ue24kCjF0xbbXZ43xbbDp7ibStmeUnamBqvlFVbliUkyHhTiO2idP0Ts6UukOUKQ
-	AclE4Ke3AqnrszLu62QOoWTsDvhRUIGVOJmwcCcryWXAXRpgNguqWKUuvzsKJSoFHv23tyWKV11
-	hVDM6QMrSb6yLu0RsEZYh/6M+bIulSw7VyUR74QLFdzc7QZMhH5YzL
-X-Received: by 2002:a05:6102:3f09:b0:5db:3111:9330 with SMTP id ada2fe7eead31-5f17f58e481mr151874137.27.1768332359287;
-        Tue, 13 Jan 2026 11:25:59 -0800 (PST)
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ec772af325sm21526614137.10.2026.01.13.11.25.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jan 2026 11:25:58 -0800 (PST)
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-5635e6b80easo1597037e0c.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 11:25:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX8whBJhjsz61kh2MMZb69gOMMohJk4B+PpWvZhrd9Ok4XESiKYs4t7qbeHRzIgFtNT3nVxzDTslF+s@vger.kernel.org
-X-Received: by 2002:a05:6122:7cd:b0:563:4a93:a5f4 with SMTP id
- 71dfb90a1353d-563a091550dmr145996e0c.4.1768332358235; Tue, 13 Jan 2026
- 11:25:58 -0800 (PST)
+	s=arc-20240116; t=1768332633; c=relaxed/simple;
+	bh=cUg/k9Of74tpJ/6NoEiWsFjvqu+qspfG3qIZQ6WG17M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=shgU8m1NPIyUiYR6tqEviRlwZVvvEcfgcmSd5yvSrsiV8yU3MXf9qGx+n/skzH1ZG2LMOIv17rZLAUtDFzDYKhyUAjzrsCgpMq3E/KUtBzaJhqhsD0x3mpRv3tlcOb+vKE143r5wQyBj+mDMBiGicb5pJMgL9GkIRLLCGfT/Sos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=e9dUKdor; arc=none smtp.client-ip=213.97.179.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+	Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=r/peNOTgTzGUFYVPiT7tpBUbzIfn4ZdTgKaGtsMJe5Q=; b=e9dUKdor4XnLs4+cbsWzD3cpi+
+	31ZxfYMZWguc7zxDrnmFVDEG2blVr/YUXm2JSnSXmq4qDPxp7XBYqwbQkaVYgvZXvFm64yzzuGZEE
+	DTpLT6MgaLDORrRfJzdMXRUH5XFUILq1Qqvwu+d/wWCD/HaKGMF5waRgUuBX1QIZ9X6G5OuZHC06H
+	mVhd9aLoeCVdNhhjz05FanWhLTj0zrxX90vC+3J7rcG6PeHygdhpg75r7rtrSqzBXnQmhK/LavivX
+	IXglOlpYJflfWEXpt8guB0PbECTc9sxnt3vlwPClbzhHbOG/UD9Ei8BJZ9lnfDaj+nDPbX3aW11Ea
+	0FHQy67g==;
+Received: from [187.36.210.68] (helo=localhost.localdomain)
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA512__CHACHA20_POLY1305:256) (Exim)
+	id 1vfk5q-004ymG-8d; Tue, 13 Jan 2026 20:30:18 +0100
+From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel-dev@igalia.com,
+	=?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+Subject: [PATCH] arm64: dts: broadcom: bcm2712: Add V3D device node
+Date: Tue, 13 Jan 2026 16:28:21 -0300
+Message-ID: <20260113192902.48046-2-mcanal@igalia.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260109125128.2474156-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260109125128.2474156-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260111-poetic-dark-butterfly-97993f@quoll> <CA+V-a8un48Gfqg-K6YToxUgnZawOcb-nQHsBcOfHdpAR7_Uu4Q@mail.gmail.com>
- <dd053cff-af8f-4378-9550-9f99f91cea20@kernel.org> <CA+V-a8tZAUoPxp7NanALW5HmVLMQAprcDXPME5povLT6nH6bTw@mail.gmail.com>
-In-Reply-To: <CA+V-a8tZAUoPxp7NanALW5HmVLMQAprcDXPME5povLT6nH6bTw@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 13 Jan 2026 20:25:47 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUrSUeOFvyX-RhjFV8HfiGtvOvBT-Wd328C4P-j-N0fHw@mail.gmail.com>
-X-Gm-Features: AZwV_Qi5VDWrgJaVOTjXTW8AVFjCwxmek62R9X6THbS3twvGucCrR-aVI1pn-1o
-Message-ID: <CAMuHMdUrSUeOFvyX-RhjFV8HfiGtvOvBT-Wd328C4P-j-N0fHw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: can: renesas,rcar-canfd: Document
- RZ/T2H and RZ/N2H SoCs
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, 12 Jan 2026 at 18:22, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
-rote:
-> On Mon, Jan 12, 2026 at 4:30=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> > On 12/01/2026 15:04, Lad, Prabhakar wrote:
-> > >   - if:
-> > >       properties:
-> > >         compatible:
-> > >           contains:
-> > >             # SoCs WITH resets but WITHOUT reset-names
-> > >             enum:
-> > >               - renesas,rcar-gen3-canfd
-> > >               - renesas,rcar-gen4-canfd
-> > >     then:
-> > >       required:
-> > >         - resets
-> > >       properties:
-> > >         reset-names: false
-> > >
-> >
-> > Yes, although now I wonder why do you have such case... There are no
-> > benefits in disallowing reset-names, even for single entries.
+Commits 0ad5bc1ce463 ("drm/v3d: fix up register addresses for V3D 7.x")
+and 6fd9487147c4 ("drm/v3d: add brcm,2712-v3d as a compatible V3D device")
+added driver support for V3D on BCM2712, but the corresponding device
+tree node is still missing.
 
-Except that I have no idea which of the two names I should use in
-case of renesas,rcar-gen3-canfd and renesas,rcar-gen4-canfd, as
-the hardware documentation doesn't explain that?  AFAIU it is just
-a single, common reset for the whole block...
+Add the V3D device tree node to the BCM2712 DTS.
 
-> Ok, I will update the resets property in patch 1/4 as below. Would you
-> prefer reset-names as a required property for single resets?
->
->   reset-names:
->     minItems: 1
->     maxItems: 2
->     items:
->       enum:
->         - rstp_n
->         - rstc_n
+Signed-off-by: Maíra Canal <mcanal@igalia.com>
+---
+ .../boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts  |  4 ++++
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi          | 14 ++++++++++++++
+ 2 files changed, 18 insertions(+)
 
-I.e. which one should I pick?
-<grin>Obviously the first, so dtbs_check succeeds?</grin>
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
+index 7d4742ebe247..97522c6803c5 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
++++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
+@@ -247,3 +247,7 @@ &pcie1 {
+ &pcie2 {
+ 	status = "okay";
+ };
++
++&v3d {
++	clocks = <&firmware_clocks 5>;
++};
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+index 330a121ebfcb..4c9c63fcf037 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+@@ -1,5 +1,6 @@
+ // SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/soc/bcm2835-pm.h>
+ 
+ / {
+ 	compatible = "brcm,bcm2712";
+@@ -642,6 +643,19 @@ mip1: msi-controller@1000131000 {
+ 			msi-ranges = <&gicv2 GIC_SPI 247 IRQ_TYPE_EDGE_RISING 8>;
+ 			brcm,msi-offset = <8>;
+ 		};
++
++		v3d: gpu@2000000 {
++			compatible = "brcm,2712-v3d";
++			reg = <0x10 0x02000000 0x0 0x4000>,
++			      <0x10 0x02008000 0x0 0x6000>,
++			      <0x10 0x02030800 0x0 0x0700>;
++			reg-names = "hub", "core0", "sms";
++
++			power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
++			resets = <&pm BCM2835_RESET_V3D>;
++			interrupts = <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ 
+ 	vc4: gpu {
+-- 
+2.52.0
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
