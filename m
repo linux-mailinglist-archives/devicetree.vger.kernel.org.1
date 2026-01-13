@@ -1,185 +1,116 @@
-Return-Path: <devicetree+bounces-254593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56E6D199FA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:52:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C689D19B5C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:05:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 84F5F3008F06
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:52:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C59BC302ABBF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE9E2D4806;
-	Tue, 13 Jan 2026 14:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDE12D73B1;
+	Tue, 13 Jan 2026 14:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JrI5yQ3Q"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l5ipTEwg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB1D42D3A93;
-	Tue, 13 Jan 2026 14:52:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44F52D6E6A;
+	Tue, 13 Jan 2026 14:58:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768315923; cv=none; b=Eq9cdaNRnf3l6ng7EtM3tro/s6vZVJ00iEFAvJcF8DCg5RqrzmdNEdn6B4JyH1Gis29MnXEOKCJXzqybZTSc9ts0U9h/gWPtsO1elJmnStjpFQZRmfKKhbWf8E1FhijIXARswBkY88xJoO12Ml17uGLsxrIrGnChucpsTxMb5Mc=
+	t=1768316301; cv=none; b=YKbEfhnwLsXcBiJAzMNCaS1oRHAHwvUttgDPXPa7eMmoJ7LyN4c0xRme1GdLEyKos5KlTAdMXk8rHP1bjEV/b4DTyo5uBUQrUaE37ccHriIL/AzpJG9uKalMIrSnsBPjEBuqN270NPbip2qqUd7u79uurzEC3dhr08BcPwECGTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768315923; c=relaxed/simple;
-	bh=kvlId5NM0l4ViurO0jCBcc4yqePaw9YJyCkPq/XY+Xc=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=dNS3TyPJz1pLsKnb/vvLrhFIYeQIAWBlyNK1wwl3hjDapsbygq+tneH7537DYl8gvx5Yq0wTKhytqJtwVt3ZmyZBGY1TsSwyjk+rmV51jKehRht8KlfYTHt0aRuRqFH5ARd+SS91vtgbf5aqrVVdEGdJxzrt//4AhEdC+9c9jME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JrI5yQ3Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35FC3C116C6;
-	Tue, 13 Jan 2026 14:52:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768315923;
-	bh=kvlId5NM0l4ViurO0jCBcc4yqePaw9YJyCkPq/XY+Xc=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=JrI5yQ3QG9o3JYptN5Kjy5lEHPiy711F+UVKiWRfw6NMygOJ3tFP9gmdAKtFWWjk8
-	 EJIzGDR4CK21WZmnz40XfaKvchmxGA5ixjVeg25ryvKXaMeLSOwPsJHY2kPzENpBpX
-	 m25+2f5lHhlKkxotPK0TosLWwI1i9oLzSTtMhkZ08n248CZLgLwdKSm42D4l99UH4v
-	 mZj6MFSH4rsuOkWZhAZEDPxdF4Aqx+KXP2/IShdM+W3G9Wm01I/S+EAi6jVapR7Yif
-	 iiZsmwtxSW6aWVoi27phAV9sHVdXycS2MaqbAwCWvnAFd8MBmHrUY2iQM5H+BdMNNw
-	 bohblJPb6C72A==
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 13 Jan 2026 08:52:02 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1768316301; c=relaxed/simple;
+	bh=OmnMtX662btR77iUa1zvEko68M1Ld3hW70qvg0CZLDA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u7jmNhW6TVS8/srXxu5szlzp0AF/cOiRe7nNnqhV/j20T6T63c1Df+DHWy4ODmm8GC2wQDxYMnu6+f+6EH6qWdWfls/8XnXS15WFLb8o0tZBBg2SoOV1UA5cEUqTzucuXCRLLw3kFo81jvBXCYytqMmYTONnDnwy2ihvOeLAcCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=l5ipTEwg; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768316300; x=1799852300;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OmnMtX662btR77iUa1zvEko68M1Ld3hW70qvg0CZLDA=;
+  b=l5ipTEwgA2WA33IXZSm5W+YIagykNKLM9SOPWJwOm9sbK4B/UnbnQJHd
+   mWbhr+f555S1meH+s6t6rJr8rXsLbySGDxQtOgx7kN79GAHTANws7EYZd
+   7/b5LsUphX3eBOGQCSC1W83+paqg9jqVmTLZjP2fZBAJkXl6y8gMBsMHv
+   FZ7qW+sTWqdH/wxrL7ZU25eJupf6Y/6YXwF61nyRqKfOzAg6Df2z5C7oO
+   GpQH3BsNNMTkswT39tSelSaYyiBn1FuFqxG3o5HV+7QzgMp491yt9ip6L
+   /NljySMOQ/B9XTl2soCGVDAcF8gmMRAxWg+j1Y4+brHhN3p0jYY1DRzBU
+   Q==;
+X-CSE-ConnectionGUID: Q0NwRQlQRNCkBTj04tY+5A==
+X-CSE-MsgGUID: cFIje/p5Sjuy8RZN0dZH0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="69334071"
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
+   d="scan'208";a="69334071"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 06:58:19 -0800
+X-CSE-ConnectionGUID: fcm3ABW8Rv+veYV7VWgZ8Q==
+X-CSE-MsgGUID: gRIUg2RQR+mQXCpFRRcBzw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
+   d="scan'208";a="235658196"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 13 Jan 2026 06:58:16 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vffqY-00000000ExU-3EgU;
+	Tue, 13 Jan 2026 14:58:14 +0000
+Date: Tue, 13 Jan 2026 22:57:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Siratul Islam <email@sirat.me>, andy@kernel.org, geert@linux-m68k.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Siratul Islam <email@sirat.me>
+Subject: Re: [PATCH 3/4] auxdisplay: tm1637: Add driver for TM1637
+Message-ID: <202601132253.Up9189vT-lkp@intel.com>
+References: <20260113040242.19156-4-email@sirat.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- konradybcio@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: YijieYang <yijie.yang@oss.qualcomm.com>
-In-Reply-To: <20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com>
-References: <20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com>
-Message-Id: <176831569115.3744422.15173874983797485239.robh@kernel.org>
-Subject: Re: [PATCH v3 0/4] Initial patch set for PURWA-IOT-EVK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260113040242.19156-4-email@sirat.me>
 
+Hi Siratul,
 
-On Tue, 13 Jan 2026 18:28:12 +0800, YijieYang wrote:
-> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
-> 
-> Introduce the device tree, DT bindings, and driver updates required to enable
-> the bring-up of the PURWA-IOT-EVK evaluation board. Focus is on two key
-> hardware components:
-> 
-> PURWA-IOT-SOM — A compact System-on-Module integrating the SoC, GPIOs, and
-> PMICs. Designed for modularity, it can pair with various carrier boards to
-> support diverse use cases.
-> 
-> PURWA-IOT-EVK — A carrier board tailored for IoT scenarios, providing
-> essential peripherals such as UART, on-board PMICs, and USB components.
-> 
-> Together, these components form a flexible and scalable platform. Initial
-> functionality is achieved through proper device tree configuration and driver
-> support.
-> 
-> The PURWA-IOT-EVK/SOM shares most of its hardware design with
-> HAMOA-IOT-EVK/SOM, differing primarily in the BOM. Consequently, the DTS files
-> are largely similar. Both platforms belong to Qualcomm’s IQ-X family. For more
-> details on the IQ-X series, see:
-> https://www.qualcomm.com/internet-of-things/products/iq-x-series
-> 
-> Hardware differences between HAMOA-IOT and PURWA-IOT:
-> - Display — PURWA uses a different number of clocks and frequency compared to
->   HAMOA.
-> - GPU — PURWA integrates a different GPU.
-> - USB0 — PURWA uses a PS8833 retimer, while HAMOA employs an FSUSB42 as the
->   SBU switch.
-> 
-> Features added and enabled:
-> - UART
-> - On-board regulators
-> - Regulators on the SOM
-> - PMIC GLINK
-> - USB0 through USB6 and their PHYs
-> - Embedded USB (eUSB) repeaters
-> - USB Type-C mux
-> - PCIe3, PCIe4, PCIe5, PCIe6a
-> - Reserved memory regions
-> - Pinctrl
-> - NVMe
-> - ADSP, CDSP
-> - WLAN, Bluetooth (M.2 interface)
-> - USB DisplayPort and eDP
-> - Graphics
-> - Audio
-> 
-> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
-> ---
-> Changes in v2:
-> - Update the GPU firmware path.
-> - Update the description in the cover letter.
-> - Reorder the patches.
-> - Use separate DTS files for Purwa and Hamoa.
-> - Update base commit.
-> - Link to v1: https://lore.kernel.org/all/20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com/
-> 
-> Changes in v3:
-> - Delete unused PMIC and thermal nodes.
-> - Add WiFi node.
-> - Add display backlight node.
-> - Add connectors and VBUS regulators for USB3 and USB6.
-> - Enable PCIe3 and PCIe5; add PCIe ports along with reset and wake-up GPIOs.
-> - Link to v2: https://lore.kernel.org/r/20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com
-> 
-> ---
-> Yijie Yang (4):
->       dt-bindings: arm: qcom: Document PURWA-IOT-EVK board
->       firmware: qcom: scm: Allow QSEECOM on PURWA-IOT-EVK
->       arm64: dts: qcom: Add PURWA-IOT-SOM platform
->       arm64: dts: qcom: Add base PURWA-IOT-EVK board
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
->  arch/arm64/boot/dts/qcom/Makefile               |    1 +
->  arch/arm64/boot/dts/qcom/purwa-iot-evk.dts      | 1539 +++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi     |  685 ++++++++++
->  drivers/firmware/qcom/qcom_scm.c                |    1 +
->  5 files changed, 2232 insertions(+)
-> ---
-> base-commit: 377054868ffa544991cc491ecc4016589fc58565
-> change-id: 20251113-purwa-907ec75b4959
-> 
-> Best regards,
-> --
-> Yijie Yang <yijie.yang@oss.qualcomm.com>
-> 
-> 
-> 
+kernel test robot noticed the following build errors:
 
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.19-rc5 next-20260113]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+url:    https://github.com/intel-lab-lkp/linux/commits/Siratul-Islam/dt-bindings-vendor-prefixes-Add-titanmec/20260113-161216
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260113040242.19156-4-email%40sirat.me
+patch subject: [PATCH 3/4] auxdisplay: tm1637: Add driver for TM1637
+config: riscv-randconfig-002-20260113 (attached as .config)
+compiler: riscv64-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260113/202601132253.Up9189vT-lkp@intel.com/reproduce)
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601132253.Up9189vT-lkp@intel.com/
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+All errors (new ones prefixed by >>):
 
-  pip3 install dtschema --upgrade
+>> error: recursive dependency detected!
+   symbol AUXDISPLAY is selected by TM1637
+   symbol TM1637 depends on AUXDISPLAY
+   For a resolution refer to Documentation/kbuild/kconfig-language.rst
+   subsection "Kconfig recursive dependency limitations"
 
-
-This patch series was applied (using b4) to base:
- Base: 377054868ffa544991cc491ecc4016589fc58565 (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com:
-
-arch/arm64/boot/dts/qcom/purwa-iot-evk.dtb: phy@1bd4000 (qcom,x1p42100-qmp-gen4x4-pcie-phy): 'qcom,4ln-config-sel' is a required property
-	from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-
-
-
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
