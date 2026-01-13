@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-254294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02C6D16FC8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:22:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B10C9D16FD4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:23:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 996183033F88
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 07:22:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 780673018195
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 07:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12CD336EC7;
-	Tue, 13 Jan 2026 07:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E650036997F;
+	Tue, 13 Jan 2026 07:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tTk9oHso"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tkOuDhwJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D52D1BC08F;
-	Tue, 13 Jan 2026 07:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2604336EC7;
+	Tue, 13 Jan 2026 07:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768288958; cv=none; b=b1uPwMz+eoIgswe1BjYRhYMFLGy3y3LLwfoi9OdK2UbcpOfhu+M8h5Kjxz/dgWW0Gn9cCXnSMh7u2heTONlbJXixXRxnHe0riJiUXY6e5s5n+2HlU5sp8hm5p/1EjdRNtrawfEP1YQ567poeW174GKkp4o1xN+klqAQb23QdYUk=
+	t=1768289007; cv=none; b=g/r2sxVn+jr1PbTaLklRClBMzyUxpwZ1ZRNX8mdA1Qoq+EdvMm1pdeiWibeLTG1ccdYXStdS64TdVo4ImhE87DyKTghnGOzz12WDSJD7gwMXVdfbgcaXXAQe6p6CjlOtZax7rCeWWLyfc/b0fp0XMtp/NLlRfSR2naLNLGkBc4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768288958; c=relaxed/simple;
-	bh=nvhotzmMws5lLcKwEEb//eLMnErYS7i8F844e5p4vNQ=;
+	s=arc-20240116; t=1768289007; c=relaxed/simple;
+	bh=1+F6dFfPAeqLcbkEBw1S8hDM8CN5TNoOf8Mc+HFOoGI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bwlBztytBzEVOWEt5L7gpJ8Pg+7nsJ5wkHGHSjBNJM+97fF5CUh8qcAcs5kSmvA62BmMg0YZVhWgwRgN2nmTY9bt+/7YXnuRlxSV0KxFT2NUYPqfFNWWN3ssyHaOfgn5Vrck+WJpTGeonEBCedH3j19M384ceUFsMe0CvGsrEzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tTk9oHso; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 202A1C116C6;
-	Tue, 13 Jan 2026 07:22:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=b41Xj3pS8hQbSbgJyLImgr8yeM5seziaQBqrj+C/4jOlqwU9T/fKgZIxSnjWiBbAt6v3ZQb4ICMEsrzxKL7zLP9XwyGC4dN9MfCuk0rQu6/weie0Cwg645yEzn26P867zih3ZfG5ZYpQv+K1TKHmpewQHcVj/6NSlFsURGAEMEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tkOuDhwJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7408C116C6;
+	Tue, 13 Jan 2026 07:23:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768288958;
-	bh=nvhotzmMws5lLcKwEEb//eLMnErYS7i8F844e5p4vNQ=;
+	s=k20201202; t=1768289007;
+	bh=1+F6dFfPAeqLcbkEBw1S8hDM8CN5TNoOf8Mc+HFOoGI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tTk9oHsosDc6bkVRA3p0hqLFjp5+Uhnsj7Ojnq1PBZq9eHpXpQEMkfwuVSS7X6xWI
-	 4u3JtXRwVubpzv7NaAj2pUHmhN/3+zz60eaNeAY+Rd7yiBOShCfCSfV3es6Rv+Io1w
-	 oq9Wqud+Q3YBe9hJDbuunvclp1L+OGL9M4QALPsmvbSjfWbhNJU7GEPzC8lWOFLjLe
-	 /oP3NBsxiR/13Yfq1044k0HiNgZ1aUiXKUw1FTxkPgT82cMcjqIhJPHgJxcRsuKyHm
-	 EQ35SOY+dldDN6NPgbnBEy1L6kvqsUxQy629sGaljQgkIrDdCa6rl4LAIX10fu9gWQ
-	 4+mhjunbLPmcw==
-Message-ID: <bcee4f0b-6159-46c9-81ba-ec2970994613@kernel.org>
-Date: Tue, 13 Jan 2026 08:22:33 +0100
+	b=tkOuDhwJmqo7p/d6TraJiEDtVh/tUnO0ZJLZ8yJ6kXY4HJjndlpfqtcWWvOU71yqH
+	 qQjw/oqxwq2qrr+g7CzjVx2JjSTq/K5A9n0F33Pe7whm5Dx/rJvNJZ/h5vjwjvb7GR
+	 7nhswMS/H/QiaXAHT/5rNy313fBoRuQyXO/w1B2n1miZpc9l01lyXDVfCyL+r7h80v
+	 HAynuK7vbVUz4ECeMUcYeL2B22ugKQ8EF4DLGfJOLczYns0/yqJJVpwsv7Mpvocrip
+	 TNe4DurmCxMMDeqjaMvI+SK7CAalFBSsVlxHo8Zs9ePJ85yO1JBvAtw9Nrk/2b47xa
+	 9l5vz/YOzoh1w==
+Message-ID: <3458d586-75a0-44c7-ac5d-e33539b8eb26@kernel.org>
+Date: Tue, 13 Jan 2026 08:23:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,18 +48,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add modem to the Pinephone Pro
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Remove interrupt GPIO for WiFi
+ for the Pinephone Pro
 To: guptarud@gmail.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
  Lee Jones <lee@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Martijn Braam <martijn@brixit.nl>, =?UTF-8?Q?Kamil_Trzci=C5=84ski?=
- <ayufan@ayufan.eu>, Ondrej Jirman <megi@xff.cz>,
- Danct12 <danct12@disroot.org>
+ Ondrej Jirman <megi@xff.cz>, Martijn Braam <martijn@brixit.nl>,
+ =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>
 References: <20260112-ppp_connectivity-v1-0-284d6e83b212@gmail.com>
- <20260112-ppp_connectivity-v1-1-284d6e83b212@gmail.com>
+ <20260112-ppp_connectivity-v1-3-284d6e83b212@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,27 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260112-ppp_connectivity-v1-1-284d6e83b212@gmail.com>
+In-Reply-To: <20260112-ppp_connectivity-v1-3-284d6e83b212@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 On 13/01/2026 07:42, Rudraksha Gupta via B4 Relay wrote:
-> From: Rudraksha Gupta <guptarud@gmail.com>
+> From: Ondrej Jirman <megi@xff.cz>
 > 
-> This adds the Quectel EG25-G modem to the Pinephone Pro.
+> Wifi is currently unusable if interrupts are defined. Let's remove them
+> so that Wifi networks are actually discoverable.
 > 
 > Co-developed-by: Martijn Braam <martijn@brixit.nl>
 > Signed-off-by: Martijn Braam <martijn@brixit.nl>
 > Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
 > Signed-off-by: Kamil Trzciński <ayufan@ayufan.eu>
-> Co-developed-by: Ondrej Jirman <megi@xff.cz>
 > Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Co-developed-by: Danct12 <danct12@disroot.org>
-> Signed-off-by: Danct12 <danct12@disroot.org>
 
-You need full names.
+So three people were developing this simple interrupt removal patch? How so?
 
-Are you sure so many people actually were co-developing this?
 
 Best regards,
 Krzysztof
