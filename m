@@ -1,251 +1,225 @@
-Return-Path: <devicetree+bounces-254641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24A56D1A541
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:39:19 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 275E1D1A4DE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:35:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D91E30C4DE5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:34:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A09F030031A9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:35:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7814530DEA4;
-	Tue, 13 Jan 2026 16:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D2092F12B7;
+	Tue, 13 Jan 2026 16:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FBQIpbWj"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="bOPVTB4K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013018.outbound.protection.outlook.com [40.107.162.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F2BA280A5A;
-	Tue, 13 Jan 2026 16:34:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768322088; cv=none; b=No1UYvaSuvS7z6kedw/9nm1pRuc8jxMIk9PlpMRsd//6RbIGpRxPOfDDD2KmFPwx+h5KISzlAEezi3lsUnIwPtcAYzsxbASbAgU67PepFuk6ckrxtzXGeNPFvafcXZC3qmEVqmh7aEYgjyXl6kx8AbUxUfYxZLdFCQXCVnvbhXo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768322088; c=relaxed/simple;
-	bh=h0gckYf/2eQitVs/qpheSug3BpiAFpijfck5eDwbWGg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gM/Mo1dGO4rID6nsKrYO4+WeLGLIbMI66OS3Ul6PT/vbLU2KyVGH2EVLiEDDIaEAYkzggZc1Ydu9bGDBi0Gik4kzi1QyWbuui5EGYD6oZjZQc7BMYxxJn975ByHpz0GB+eeGQueCsJ7BJyGjIUGfr/ZQ/ZY0chhzgatoefMdSlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FBQIpbWj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E8B0C116C6;
-	Tue, 13 Jan 2026 16:34:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768322088;
-	bh=h0gckYf/2eQitVs/qpheSug3BpiAFpijfck5eDwbWGg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FBQIpbWjH24K4Z06fK0wcuB9dT0G7ItXDQ7rKdptW7iiuM/mixJ1Z3/mDBMRMu4W2
-	 cZYo/UGeP92toiDT+ZADi1aDiKQdDNsGIx/09uENsNkcdDfllDgrIurJ2qPcix+LUq
-	 FhLxuv+gcvmnjabCS2sFd1CmdIiAWVSERAGXfBVOv9cP9C7HKCplH61YFkM7gkpQCX
-	 A1sHICLXghk5m6+bUyHsgE4LUehprgZwsn5DlnVHliC/BSPqMnHGNByl5mmsCWJG6M
-	 wwIDlTSBsb3jrTdnMgZq6ai1y3+vE65FObQAiypLy4k1ZMe7UNouaKmWIQkIideAqC
-	 wSPzt8FE5AddQ==
-Date: Tue, 13 Jan 2026 22:04:35 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, Rob Herring <robh@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v4 8/9] power: sequencing: pcie-m2: Add support for PCIe
- M.2 Key E connectors
-Message-ID: <rxfnx6cq6dqifongrmhanpltacjqdkcn2yor7d7qsrrskmhueo@m3se3iyd4pfy>
-References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
- <20260112-pci-m2-e-v4-8-eff84d2c6d26@oss.qualcomm.com>
- <2432dafc-4101-4b23-90b2-85ea5459435c@linux.dev>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F400D29D27D;
+	Tue, 13 Jan 2026 16:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.18
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768322119; cv=fail; b=C11ntDDodWShTmhhKYlYhMHt+kpyOGV2Lmumun4yBBPRoRsLt+OP9iLAurDV7z+7yWnTzbPMEloiXej6DOf7nrCX2bX3euXbSR3YMNfd8PRduD9MbiDudQ5zE6DYhOFWii6TXduYKGSt4Vcc86V1vqAC9JbHFkCD5xLZF87p9qQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768322119; c=relaxed/simple;
+	bh=QLnfGA4u2zx+2sKKMloI/m4h7BQnj4vp31a/qK+g1aI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ehkilZcPA/A7b/WoEUq+MU6TNYBoyvut+Ik7F+9zUh+bTiMADZ3D9HLKl29FK08PFu+utSi/YD//nTR2FyF6Y+scD4/GwGpM5yeujDnMWfnBBcdvxMimP3NRxjeJaMrEFBS1Isfy/trRaQNmDLMS4nTUURei48OXhJCwO09iFVg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=bOPVTB4K; arc=fail smtp.client-ip=40.107.162.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=j3/iwcH5JbCxbgjXMLB7nIhVNeLVeXneklUgOB/3h4yyjHi4rMEMkevulHDMpPJwNw0Dqo2+iFD0xAiEEZLD3fhZ+fCGUQPoUOByGvNGDvYxHoYrTUIpIlkKwjY76NTIsG1CziMT7sMr4ZkfNcyzsudwZq4uhzrEPWZ69nTECvQfBa1Zi5GPpmqQ7Z+GoOGdvUfE530pn3/pKCSkNIpGHsPAymbd6LJDOiSSBmDruMsXcWjKQgKs8SoxLZdjWJNwNtwxt+Ga77X89nWe0mIphbTrt64qcwPQv6Zlrae6eaoKxYa8Y0pIN/p6Dcxha6G5z+q1mOJwDjTVoohMspWioQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2FWYKb+2Uun/ftE2iUTGaddtR8zz8u3d2rXCcmwshaA=;
+ b=sNFfZghZMDscd7f+Cu1yNPRE8qY/5tTYUYnXvbdAQgen1kKWS8SOGMhgfAp9e9qiQw64trPfWlR8B8Cxv/BX5hDAZv4lxBvYTbmwYKRyLp2nthUEw/3Fj3mIF5a6J+KPwuv2PblJlTcQdmUGuDgz4+ukkBHmB5ZHHrkOYakUMeyBB7GOdHVg1qhr2yliKxCQ40hv/imcuU/V5JX67L3z3Q0eIXFCxQ1XR5ZReDj6MdlnkIzjDiA6ccLXXDHfJNPxhYEl9vpLZxmngTncrfgxwnNBZI1Gj1JOWwrQdBXSu9HqkGsUB/nlqSZna65kbNMLDAaiJEbzevBaAS4ngTZM1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2FWYKb+2Uun/ftE2iUTGaddtR8zz8u3d2rXCcmwshaA=;
+ b=bOPVTB4KQ70z87Y1fj6V93z8xcxQg7JD0WEkTq+L2XHgalNiZ7n9KIPJlLuUhsVi94vMXyTmxlz3J3BvaVfdMC0vY9scDPVuhJxXYyGtQTDF6KwgP1OBspuaJHKWTgHiWVZ2U5j10FMFBLzN4w2NHqhoXk1CAzVI3JwwyUgsAgJrWzrstAFO/B5tnWiixFGW4DzV+uWyg4CxrZ3WTJK3GIjdMFgxSKnzBiaWJgza04rnuAt/bZYqW2dBkEaISD0ZAEd2Yf+geKCRmNfEyO1xDotcihKpXafW3+ZEDxw5HaZ4DRgOcvMsn39YvSFcGwxqvBqRBe7JxoPWZ96smZflMg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8948.eurprd04.prod.outlook.com (2603:10a6:20b:42f::17)
+ by PAXPR04MB9446.eurprd04.prod.outlook.com (2603:10a6:102:2b3::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.6; Tue, 13 Jan
+ 2026 16:35:14 +0000
+Received: from AS8PR04MB8948.eurprd04.prod.outlook.com
+ ([fe80::843f:752e:60d:3e5e]) by AS8PR04MB8948.eurprd04.prod.outlook.com
+ ([fe80::843f:752e:60d:3e5e%4]) with mapi id 15.20.9499.002; Tue, 13 Jan 2026
+ 16:35:14 +0000
+Date: Tue, 13 Jan 2026 11:35:05 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Job Noorman <job@noorman.info>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: touchscreen: trivial-touch: Drop
+ 'interrupts' requirement for old Ilitek
+Message-ID: <aWZ0OQpQw814smri@lizhi-Precision-Tower-5810>
+References: <20260112234534.225954-1-marek.vasut+renesas@mailbox.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260112234534.225954-1-marek.vasut+renesas@mailbox.org>
+X-ClientProxiedBy: BYAPR11CA0064.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::41) To AS8PR04MB8948.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42f::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2432dafc-4101-4b23-90b2-85ea5459435c@linux.dev>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8948:EE_|PAXPR04MB9446:EE_
+X-MS-Office365-Filtering-Correlation-Id: acb604c0-9d4f-4ce8-3a1b-08de52c1ba51
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|19092799006|1800799024|376014|366016|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?XSrH1BPxtOoJnh1qvIE51/p8o2e69EIFuIXHHtVyg9byiOVro5kBSxmVXQD8?=
+ =?us-ascii?Q?UuXIWpFAy/j9fh1JyGHn+qU1tScNzbuTsu77P/5ZJPwcgrRnb4i56o+05YPR?=
+ =?us-ascii?Q?STA+gwezYjqOn6nh67j2cTp8nTpoAWR/kpN0NsaEVR9g7yespxSF83qyYM84?=
+ =?us-ascii?Q?mDDANMaGXpEt9hY+Pz6NwJ31FHOsj3b8Jx8sZf9E7YSQGePBiOML7l2fD/FZ?=
+ =?us-ascii?Q?KD+n58GT1NCniG7SujkD7GkF0h9c/VOfMOhBWZlUSCsGU5T/iUs57cEHxvp+?=
+ =?us-ascii?Q?jmH1QP8SiKF6xYEEBdKy7udPmnE5+S+YcOR3wBfkCuteKnTLCxIRxdW3ORbX?=
+ =?us-ascii?Q?ZLetQbbd06RKnsKVDIMXvzKgEtT1nCcl6WMkcD2nRyWcvAYYEvioLH4GcU+k?=
+ =?us-ascii?Q?waAU5vA4wPbv9ZlItkIylgW9g6KtiistBAYMpFiqeOSFoJ3Tc8ES0BwdYz51?=
+ =?us-ascii?Q?9QcAJwX1B2xYJbAzkvQb63XJcgi/bQeRIw3lYgJct8RSYRqc9up2H36GU+vh?=
+ =?us-ascii?Q?Wp9nIrtMcBJPQr0+7XKUVkQpQJp03p8GwmiXviGK+1IAS6nD1nXHiQtfIfol?=
+ =?us-ascii?Q?JDy+Tx/zv25N8xg3QHxavGrFAdFELi7QbSb4GKqZuyfavoihT+A/jXuBQMpP?=
+ =?us-ascii?Q?cEawgWImFWKuHoq0QO2lLXts1hweHKT4AbBgb+c6S8PfuydoRVdnetgDX+um?=
+ =?us-ascii?Q?er6im+0ISZllrfBfZm4TryKRCogS2NLTF41oNJmXhdE593XGXVVjqBznRK0E?=
+ =?us-ascii?Q?q4PuMpvZCPI5gikKHxlRR3LUpxVOB9kMPtFiSAK9Sum4908d82eUZxJ4VQ9a?=
+ =?us-ascii?Q?EzqbdpyjfnhkLbkDvhgORWNbTX2ntJ3IsHN0zEKLAuoej6WC/xVni8aJ2sAR?=
+ =?us-ascii?Q?sbE9UEXAbGu5Nr60Y6dYUs5flGway4QS+cKu+1rJFBW3y6xZ291CNyeFAuah?=
+ =?us-ascii?Q?wmDGK8VXPuwbfAXSLQEi3PS4hSc1N+yML9G/cYUGvMvJ8ziVNZehoChXDV4/?=
+ =?us-ascii?Q?CAAYtJE9V0/lPSBVFX4umS3NY10Vn/ijbFL9SBCiSOCDbuJZeBKyJk4+yvjD?=
+ =?us-ascii?Q?TL2jD/OtVh/Ier//QF3tsUjj64/MC2PGkXtkOC6rndPtkQcQbgDzQZkwNhOs?=
+ =?us-ascii?Q?VHaROpnR+uFFXLY5Ho+0qByeMvkZ2vZ5BinLMebu6K8ogLeOFj4ZoZFqBB+M?=
+ =?us-ascii?Q?sHBfle+hGj26KJemfzYIv/VZeML1/cd2ZpqvN4osIO4j2CDW5k6n2/ke7Q+0?=
+ =?us-ascii?Q?tvnEkBQB7269tE2/CFdFleT5/ZjMhQH8CianQefrUwZsB1XJIZe8vs42ZcfB?=
+ =?us-ascii?Q?grWAYs3N78tdClQqoQg0Swr3OJj2xoHv+s+1MPn/SJmkK6CnWHDoVKHw11/U?=
+ =?us-ascii?Q?e4kDI8NTRULfbdPrOVyScsj+lGUktrB7E8ZZHP2/qx5+eQgeeaGSPRtDY2YT?=
+ =?us-ascii?Q?2SJKk/OZn3+TnJD/YfBQQuWHyUex8q4C4xlmFu7GyE6M5XAgE/nX3EQtSG9D?=
+ =?us-ascii?Q?ql8HgHarczkROLvWiogfgcVcRk5zcC+agA86?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8948.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(19092799006)(1800799024)(376014)(366016)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?SdKMYPt35xbyv+ehggNpAm/ZtCHK/09POGA78crHIfnqEKEdTS1vLBp/q/Ne?=
+ =?us-ascii?Q?Gz5s8qLUOLBQ/guALHuVtD9vReDLOPi2vTVngLnxhloVuRTCWlpXtKYlVeHj?=
+ =?us-ascii?Q?YXwCvKmUyJfyoulX1ZIoaCTVLz0zhQ2kHA4mNJ97r7rqgQgrJVRmEBMGzgqq?=
+ =?us-ascii?Q?643kswXzyJr0kws1J/xUJgEjmKTuGF0L6DbZvD+BpntcnIsYP48hT+F6RFFp?=
+ =?us-ascii?Q?dJdLUMSMKqz1Poa402cfTbavBz6tK4FvDkCm5INwz4GOZt7UqBcKk6ffVh+I?=
+ =?us-ascii?Q?onMmC2FcTGMLxUAMiwGtzu8lgYTtAdmBdNmWxOO4ipnZifzMTurDQqFgWtrS?=
+ =?us-ascii?Q?/7gZpzEvvS8BE6uKzzG8x0QB8XNYJXhsrkItv2P+IdIqjR6uD9ikeHUm+Iir?=
+ =?us-ascii?Q?u0SmE8yIjsoXRtnlRF7pBjuMQZxb8R6EGU9JMsPnuWLBjXBbc3s9Gz4VvkhO?=
+ =?us-ascii?Q?MRXlRI/Csb5qmvg+HiQ5ZmKBrPNFL70BUDe9hmDkV9ro0M8MlHSEmxEbUDuy?=
+ =?us-ascii?Q?XTaSPW3Ff0lVWOfMsWybXvHPDXhqO956lE0IstKfb9YWhI+YNFt8vAssQe1S?=
+ =?us-ascii?Q?fCmhnHBboFhLdd1+0aniyUAaK/T+pqwyTFCMGwtY6lS2JIdNGyxu0t57SJq2?=
+ =?us-ascii?Q?IZ1oYNsekcPAp9lEUvYI5wxJfs3ITRz0Npf2kteSpabOU2I9iFaeqH/lOAHh?=
+ =?us-ascii?Q?lP4aSYrLoW62MCICBr1GGzPrwC6akNsFadzBEjoNjIj7KvjyekTCBtEn5Q9q?=
+ =?us-ascii?Q?1wfPbgcFRMNGR5Z2a+rXycBGcb4eDHGSEaaYwMi/4efluMjfyrMlhhinihR+?=
+ =?us-ascii?Q?uRV2+2ArBEJjlZmvxt7HoGRh8B4RcQzNN+tttheIWnNsBthpNQtXCvxJ1THW?=
+ =?us-ascii?Q?RB/laactx8fkw7TSa6AnBGBnEd0r/NP/ZBauwT4OYmRVDo3+esjv3Kj5DbvT?=
+ =?us-ascii?Q?23OTHw9lWE5xfoqpF7eLniYslKfpFakS0Ew3hiIkT4us0gA0rZmusU+5N6DR?=
+ =?us-ascii?Q?/j7pHq596LkD7y0WIoRswAVXZsTIXQLCZRR1rVsMcwRjrwW1NqKnaxlvPWYN?=
+ =?us-ascii?Q?5mI1QZxUYKPvlixIxxVKBF6atl6B0wBo3cSHhAZpb2yJLYqqZdqgFRXh7Khc?=
+ =?us-ascii?Q?5Y6PMZhpoimUn9siaFrJx1eb+s8yS0laBzIn+EWxwV9G1TTWN4HdMH9YKlYl?=
+ =?us-ascii?Q?y/LMqneIVNxcbpAAoMMysDdzzLy8cx7AbMCURvWpy3B7NFubb+FdWydWbSpT?=
+ =?us-ascii?Q?lzfbJWNnNDASMYa3mzjDwsk0juRhR4h5fr1nwwpBZRAAVXRTMEUGYRqyMcWW?=
+ =?us-ascii?Q?/GOj4UELCWTfNHX1rjOC/NSClJdqgSj7a+ruAar5CMQctBBF2z3bT+wT+ngZ?=
+ =?us-ascii?Q?hh7HZh+EuyHoaxs5B0DC7G0g13kbP0aM/z9ox2C2jS95iwBkCTTQM9SViv7/?=
+ =?us-ascii?Q?Ky9HRQK530+f4llrCmOwnn+AfPZQOKL+RfGXQHrIzX6Kt5kS88jSEr2XDM9U?=
+ =?us-ascii?Q?/cMQTD+siurmpuGaRwPkO9rQn0AHF5/KSGqiU1x/0kvkBE6G8VTWHQfIvXyJ?=
+ =?us-ascii?Q?Oswsmmg+BO6lzvB/CwP1oBge81pMTcKleeBnXW+AaE3TxxP8DmACCaAAPkRc?=
+ =?us-ascii?Q?kcSzghZkxdtRfmrvq4h5zKWFQJ9nJ9Qi823WxHJBKyTWwGnLV76YJhEnsZip?=
+ =?us-ascii?Q?a0lhfKbz6lo/VdO/0TCIgOiB1rWDr5aPV1xozrnP1/odQoi7?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: acb604c0-9d4f-4ce8-3a1b-08de52c1ba51
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8948.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 16:35:14.3743
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uN/yqw9bJfpUjR5fe74TIitD72EtjkFM4y2Xb3KYmma0tGDJ4IjoM3+pBY6m4qoKOQTQVe6SCMzqunOVsc3Wqw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9446
 
-On Tue, Jan 13, 2026 at 10:26:04AM -0500, Sean Anderson wrote:
-> On 1/12/26 11:26, Manivannan Sadhasivam via B4 Relay wrote:
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > 
-> > Add support for handling the power sequence of the PCIe M.2 Key E
-> > connectors. These connectors are used to attach the Wireless Connectivity
-> > devices to the host machine including combinations of WiFi, BT, NFC using
-> > interfaces such as PCIe/SDIO for WiFi, USB/UART for BT and I2C for NFC.
-> > 
-> > Currently, this driver supports only the PCIe interface for WiFi and UART
-> > interface for BT. The driver also only supports driving the 3.3v/1.8v power
-> > supplies and W_DISABLE{1/2}# GPIOs. The optional signals of the Key E
-> > connectors are not currently supported.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> >  drivers/power/sequencing/Kconfig          |   1 +
-> >  drivers/power/sequencing/pwrseq-pcie-m2.c | 110 ++++++++++++++++++++++++++++--
-> >  2 files changed, 104 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
-> > index f5fff84566ba..29bd204319cc 100644
-> > --- a/drivers/power/sequencing/Kconfig
-> > +++ b/drivers/power/sequencing/Kconfig
-> > @@ -38,6 +38,7 @@ config POWER_SEQUENCING_TH1520_GPU
-> >  config POWER_SEQUENCING_PCIE_M2
-> >  	tristate "PCIe M.2 connector power sequencing driver"
-> >  	depends on OF || COMPILE_TEST
-> > +	depends on PCI
-> >  	help
-> >  	  Say Y here to enable the power sequencing driver for PCIe M.2
-> >  	  connectors. This driver handles the power sequencing for the M.2
-> > diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/sequencing/pwrseq-pcie-m2.c
-> > index e01e19123415..4b85a40d7692 100644
-> > --- a/drivers/power/sequencing/pwrseq-pcie-m2.c
-> > +++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
-> > @@ -4,12 +4,16 @@
-> >   * Author: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> >   */
-> >  
-> > +#include <linux/err.h>
-> >  #include <linux/device.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/gpio/consumer.h>
-> >  #include <linux/mod_devicetable.h>
-> >  #include <linux/module.h>
-> >  #include <linux/of.h>
-> >  #include <linux/of_graph.h>
-> >  #include <linux/of_platform.h>
-> > +#include <linux/pci.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/pwrseq/provider.h>
-> >  #include <linux/regulator/consumer.h>
-> > @@ -25,17 +29,19 @@ struct pwrseq_pcie_m2_ctx {
-> >  	const struct pwrseq_pcie_m2_pdata *pdata;
-> >  	struct regulator_bulk_data *regs;
-> >  	size_t num_vregs;
-> > -	struct notifier_block nb;
-> > +	struct gpio_desc *w_disable1_gpio;
-> > +	struct gpio_desc *w_disable2_gpio;
-> > +	struct device *dev;
-> >  };
-> >  
-> > -static int pwrseq_pcie_m2_m_vregs_enable(struct pwrseq_device *pwrseq)
-> > +static int pwrseq_pcie_m2_vregs_enable(struct pwrseq_device *pwrseq)
-> >  {
-> >  	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-> >  
-> >  	return regulator_bulk_enable(ctx->num_vregs, ctx->regs);
-> >  }
-> >  
-> > -static int pwrseq_pcie_m2_m_vregs_disable(struct pwrseq_device *pwrseq)
-> > +static int pwrseq_pcie_m2_vregs_disable(struct pwrseq_device *pwrseq)
-> >  {
-> >  	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-> >  
-> > @@ -44,18 +50,84 @@ static int pwrseq_pcie_m2_m_vregs_disable(struct pwrseq_device *pwrseq)
-> >  
-> >  static const struct pwrseq_unit_data pwrseq_pcie_m2_vregs_unit_data = {
-> >  	.name = "regulators-enable",
-> > -	.enable = pwrseq_pcie_m2_m_vregs_enable,
-> > -	.disable = pwrseq_pcie_m2_m_vregs_disable,
-> > +	.enable = pwrseq_pcie_m2_vregs_enable,
-> > +	.disable = pwrseq_pcie_m2_vregs_disable,
-> >  };
-> >  
-> > -static const struct pwrseq_unit_data *pwrseq_pcie_m2_m_unit_deps[] = {
-> > +static const struct pwrseq_unit_data *pwrseq_pcie_m2_unit_deps[] = {
-> >  	&pwrseq_pcie_m2_vregs_unit_data,
-> >  	NULL
-> >  };
-> >  
-> > +static int pwrseq_pci_m2_e_uart_enable(struct pwrseq_device *pwrseq)
-> > +{
-> > +	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-> > +
-> > +	return gpiod_set_value_cansleep(ctx->w_disable2_gpio, 0);
-> > +}
-> > +
-> > +static int pwrseq_pci_m2_e_uart_disable(struct pwrseq_device *pwrseq)
-> > +{
-> > +	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-> > +
-> > +	return gpiod_set_value_cansleep(ctx->w_disable2_gpio, 1);
-> > +}
-> > +
-> > +static const struct pwrseq_unit_data pwrseq_pcie_m2_e_uart_unit_data = {
-> > +	.name = "uart-enable",
-> > +	.deps = pwrseq_pcie_m2_unit_deps,
-> > +	.enable = pwrseq_pci_m2_e_uart_enable,
-> > +	.disable = pwrseq_pci_m2_e_uart_disable,
-> > +};
-> > +
-> > +static int pwrseq_pci_m2_e_pcie_enable(struct pwrseq_device *pwrseq)
-> > +{
-> > +	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-> > +
-> > +	return gpiod_set_value_cansleep(ctx->w_disable1_gpio, 0);
-> > +}
-> > +
-> > +static int pwrseq_pci_m2_e_pcie_disable(struct pwrseq_device *pwrseq)
-> > +{
-> > +	struct pwrseq_pcie_m2_ctx *ctx = pwrseq_device_get_drvdata(pwrseq);
-> > +
-> > +	return gpiod_set_value_cansleep(ctx->w_disable1_gpio, 1);
-> > +}
-> > +
-> > +static const struct pwrseq_unit_data pwrseq_pcie_m2_e_pcie_unit_data = {
-> > +	.name = "pcie-enable",
-> > +	.deps = pwrseq_pcie_m2_unit_deps,
-> > +	.enable = pwrseq_pci_m2_e_pcie_enable,
-> > +	.disable = pwrseq_pci_m2_e_pcie_disable,
-> > +};
-> > +
-> >  static const struct pwrseq_unit_data pwrseq_pcie_m2_m_pcie_unit_data = {
-> >  	.name = "pcie-enable",
-> > -	.deps = pwrseq_pcie_m2_m_unit_deps,
-> > +	.deps = pwrseq_pcie_m2_unit_deps,
-> > +};
-> > +
-> > +static int pwrseq_pcie_m2_e_pwup_delay(struct pwrseq_device *pwrseq)
-> > +{
-> > +	/*
-> > +	 * FIXME: This delay is only required for some Qcom WLAN/BT cards like
-> > +	 * WCN7850 and not for all devices. But currently, there is no way to
-> > +	 * identify the device model before enumeration.
-> > +	 */
-> > +	msleep(50);
-> 
-> Section 3.1.4 of the M.2 spec says that "Power Valid to PERST# input
-> inactive" (T_PVPGL) is "Implementation specific recommended 50 ms." So I
-> think we should delay for at least 50 ms for all M.2 cards.
+On Tue, Jan 13, 2026 at 12:44:56AM +0100, Marek Vasut wrote:
+> The old Ilitek touch controllers V3 and V6 can operate without
+> interrupt line, in polling mode. Drop the 'interrupts' property
+> requirement for those four controllers.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Frank Li <Frank.Li@nxp.com>
+> Cc: Job Noorman <job@noorman.info>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-input@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+>  .../input/touchscreen/trivial-touch.yaml      | 20 +++++++++++++++----
+>  1 file changed, 16 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+> index fa27c6754ca4e..a2145a62f9723 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+> @@ -57,13 +57,25 @@ properties:
+>
+>    wakeup-source: true
+>
+> -allOf:
+> -  - $ref: touchscreen.yaml
+> -
+>  required:
+>    - compatible
+>    - reg
+> -  - interrupts
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - ilitek,ili210x
+> +                - ilitek,ili2117
+> +                - ilitek,ili2120
+> +                - ilitek,ili251x
+> +    then:
+> +      required:
+> +        - interrupts
 
-Yes, this pretty much looks like T_PVPGL, but this delay is already accounted
-for in pcie-qcom.c as a part of PERST# deassertion (I believe WCN7850 was tested
-with Qcom host). I will check it and get back.
+Generally, if there are special requirements, move these to dedicated
+yaml file to avoid complex if-else in trivial-touch.yaml.
 
-> Additionally, the PCIe CEM specifies that "Power stable to PERST#
-> inactive" (T_PVPERL) must be at least 100 ms. So I think we should just
-> delay for 100 ms regardless of the slot, perhaps making this
-> configurable in the devicetree if e.g. the system integrator knows the
-> soldered-down M.2 requires less initialization time. This is exactly
-> what I proposed in [1].
-> 
+Frank
 
-I'd love to do it in the pwrctrl/pwrseq driver, but most of the controller
-drivers are already handling this delay as a part of their PERST# deassertion.
-This was the only reason I didn't add the T_PVPERL delay here. Also, those
-controller drivers handle non-pwrctrl design as well (for backwards
-compatibility), so they need the delay anyway and it will make them messy if the
-delay is only handled in non-pwrctrl case.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+>
+>  unevaluatedProperties: false
+>
+> --
+> 2.51.0
+>
 
