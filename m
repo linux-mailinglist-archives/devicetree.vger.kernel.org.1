@@ -1,78 +1,93 @@
-Return-Path: <devicetree+bounces-254733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C2BD1B6CB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:36:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46EEFD1B6DD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:36:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E82243037690
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 21:35:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2ED2C3040D09
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 21:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E43731E11F;
-	Tue, 13 Jan 2026 21:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B492433FE2B;
+	Tue, 13 Jan 2026 21:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MEfwqBsi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lKYTYVTY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5B022D7B1;
-	Tue, 13 Jan 2026 21:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B9332ED30;
+	Tue, 13 Jan 2026 21:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768340157; cv=none; b=HzvtMivLvVbJDPRAy+EKYPAiXkLbDd4KTjZi60oZoZ5Sqg5PTTAMTgBenljZp5hlNVdeh1mVvOpsbjMgdXl8T16If/tfs5qZrui05TT2Xy3o2wgU2n7VvrG8osYkadq5R6vuoGOw7m2oT+NglbGi3AKRAAAixuZR8moFYq++7tM=
+	t=1768340182; cv=none; b=BnjTm47cYiQshwhgiIuRxdnF0kA9ug+kD09LX5qYs6iHYN6mV3XH5jLhDb22A75SsNL+0Kk/vhProzaBiHZtegbgVrNEXtQea3fFFrijkH93WJzhhzWb2Jfh18WDsDdvaz1+7ZYydUn1zOo0T+WdxORgy98l9b+clLEcmrQzr94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768340157; c=relaxed/simple;
-	bh=OS4rK1JpIL2tCKHvZYkTq7ert1jUWu/mrzJ2UfQFEoo=;
+	s=arc-20240116; t=1768340182; c=relaxed/simple;
+	bh=FEkMizbDSsQypYg+svblccChMUIqdyLjDJVlgTL1oeM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OL9+AIKb6w+gHG7Sv9wSCZJkIARnXZTBuBVdjvBohD7/+oZV8TaaXeshxDcd2PwNhQaZXqBfD2FjbD5Ep7OwEKEgOKULNg9kFdiO4fXdO9JlL+oTsHcH3WHX7je/1LIbpkbVUT7RSWEVHLsyfIL3zuy3DWBTADe+uJpv7Lx9Wmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MEfwqBsi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0369C116C6;
-	Tue, 13 Jan 2026 21:35:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B/mTC91Kq1uXK0tM4seaxrI0YUTp4WwbSqg8yt+CBcwcXnwDQfB2lCj/skESQe1xtxZUMrMt7mBoSIBbWf4DguFYFgafOoUuU5gyyjiNh8tSuU+EPO9LAJjd9TZgqZbX1YqXEzRZlalkNSJ2GYl3J4MpZiQLEBSkgCanAO7mAH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lKYTYVTY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36014C16AAE;
+	Tue, 13 Jan 2026 21:36:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768340157;
-	bh=OS4rK1JpIL2tCKHvZYkTq7ert1jUWu/mrzJ2UfQFEoo=;
+	s=k20201202; t=1768340182;
+	bh=FEkMizbDSsQypYg+svblccChMUIqdyLjDJVlgTL1oeM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MEfwqBsivmfsVpYNPb4w9WcETiTFSM8PtivcaexoMCZxPCIHO41iEy8WqxeI3RoWB
-	 eUiuEHvKrxBFgN8pJ2IB6JcmN+5UnIX+NPh5xapopDD6l8lt5LY/EJjCBfNcpqwnDQ
-	 Ur/nVNRinCeRmVK6Qihoa2wTp6NPglxH2xnaofXUXjpjtyH4hZbfPP572xHDT+bP3r
-	 Z8757qv5xILqVg6d1siuFQOp+IrzxKH6vBHctU/gkKqJlPuoqS5PHwPrlaW6/gl/fJ
-	 cn91Jop/ClGjidwmcXScn7kIuidUvVmV98XZE0dllHlxsOrNiPHQcetgIg8m/QB2aC
-	 e5Et9gOzwT2dA==
-Date: Tue, 13 Jan 2026 15:35:56 -0600
+	b=lKYTYVTY2nqg+BQH/i5PvS6FoyoODvwBzij8SP8vPrb4+MurhvFUSXQbPuG1U1rzW
+	 LVyclwmUIVHDVYlUrAwI5//tA8K58bumt/c/yr+D0c/wwaUyWfljPr2fqfb1wdQk3P
+	 fJNqdTFqU391Ncj5t1QNEuz8fZzeunfYG0cxN9FBc0GCzA9GVftZtzXEqS9HcL4RyN
+	 YY7rVG4kp6QHVyjD9702xOXOIGSqkyV5mTM8yTz2xhyiQ8xvHTwzTxB4I7MWAAlMBs
+	 jZc9xZ+zkJ6E/K933mOi6U+wH1/s/xbGPOO38WCWQq6PKQ+Lv27SN3eLsLkJsMyL+k
+	 pU9FmDJkUpgdQ==
+Date: Tue, 13 Jan 2026 15:36:21 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: macpaul.lin@mediatek.com, linux-arm-kernel@lists.infradead.org,
-	broonie@kernel.org, lgirdwood@gmail.com, kernel@collabora.com,
-	sean.wang@mediatek.com, krzk+dt@kernel.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	sen.chu@mediatek.com, matthias.bgg@gmail.com,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	conor+dt@kernel.org, lee@kernel.org
-Subject: Re: [PATCH 2/6] dt-bindings: mfd: mediatek: mt6397: Add missing
- MT6331 regulator compat
-Message-ID: <176834015357.196719.2715657328472319678.robh@kernel.org>
-References: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
- <20260113110000.36953-3-angelogioacchino.delregno@collabora.com>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: Juan Yescas <jyescas@google.com>, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	linux-clk@vger.kernel.org,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Will McVicker <willmcvicker@google.com>,
+	linux-kernel@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-samsung-soc@vger.kernel.org,
+	Doug Anderson <dianders@google.com>, kernel-team@android.com
+Subject: Re: [PATCH v3 1/5] dt-bindings: clock: google,gs101-clock: fix
+ alphanumeric ordering
+Message-ID: <176834017914.197388.17009547252471169772.robh@kernel.org>
+References: <20260113-dpu-clocks-v3-0-cb85424f2c72@linaro.org>
+ <20260113-dpu-clocks-v3-1-cb85424f2c72@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260113110000.36953-3-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260113-dpu-clocks-v3-1-cb85424f2c72@linaro.org>
 
 
-On Tue, 13 Jan 2026 11:59:56 +0100, AngeloGioacchino Del Regno wrote:
-> Add the missing mediatek,mt6331-regulator in the compatible string
-> list for the regulators subnode.
+On Tue, 13 Jan 2026 10:58:58 +0000, Peter Griffin wrote:
+> Ensure children of cmu_top have alphanumeric ordering. Top is special as it
+> feeds all the other children CMUs. This ordering then matches the
+> clk-gs101.c file.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: André Draszik <andre.draszik@linaro.org>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Changes in v3:
+>  - keep 'top' first and alphanumeric for cmu_top children (André)
+> ---
+>  Documentation/devicetree/bindings/clock/google,gs101-clock.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
