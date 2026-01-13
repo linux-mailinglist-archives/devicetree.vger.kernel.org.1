@@ -1,492 +1,125 @@
-Return-Path: <devicetree+bounces-254517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8661D18C16
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:35:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F67D18C55
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 13:37:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 43441301CFB2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:34:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E3DD9300AC5E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 12:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E45338E5F5;
-	Tue, 13 Jan 2026 12:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1598D2749C1;
+	Tue, 13 Jan 2026 12:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JgVOlV3j";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iKhaoOpM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="djdbXGFB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDFD38FF0C
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E66702556E
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768307614; cv=none; b=FGCChQJt/Na10SRo4SYQPfQRZyf6OLCETqscFc4gSox9IhnWrZ+D9vLMvQ31IXbuW2OAeJGtxYlJUXzGztndglOj3rWSF3+ucLtuOW2YoffK+2dIVymIVRS4KID5oIpuGPy7BFpqFv4InwLhPQzl+7Ees+JF8k9WX30oFURcXF8=
+	t=1768307828; cv=none; b=kVgTvPIXFlHpMUnENG0ZVibS/pVALDWFISPmcrobTDuDsZLeCyfEfNM2vOqznQv2W3CuZNQI+IeJFh3MfM2MVoXXIoPOfMFlO+5q8nIvoMDb5KAkMt6BNnwqZQHjFXlzwljbuisDvtNhYZwF7RJXKXkiLyy+XAvHa/U4tPOXgbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768307614; c=relaxed/simple;
-	bh=jV9YVSmg0xmvxaDYubtemA6ix8Y6EsHbhfZrpZsrmIg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Y3xhFZRQTKFQPwsLUTkiZaGZJMJc1q3084cahiAV3m0P177u3sRIlzSMkrIDKnjPL/KpV+oVN7Xbrkfu1hJP0JD3sLdUzD+Mwx797XUy3iIlPQA11M7LPxGpmACnld3MG4l1mN4WxZX3VsMiZzXrNFvlyZV9/y0lB5ZObtaxIdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JgVOlV3j; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iKhaoOpM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60DA5siH3799057
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:33:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Yxh6B8k3jihNeWs5tigsgEFI7JKeMCafOGI7nzIv30k=; b=JgVOlV3jNlq9P4mW
-	Czkj5hJE8BiB8bsVSNLw719K2Qgk70tAq+E6QZ5xXB62PVAC1tzilJMg42nUPP6G
-	2XRR5bt8U7xJ29YAl613gn7LwZEEUhj3kZVNLCDRS5aIepLW7gOT7uuk23tJa+Ce
-	OO02e18QH5ZisYcXIj4bHd8FuDgfhiu1UuYyP+AnYJZfpXBcxlHTPuhjQcqFAdJA
-	A3YBpk4YG6Yy5dFLqP5w+j9PjL4Y23x/xCvPn27C5/eWGdmZ0Nu7O6AG+RZZs5fa
-	6RmIAAMTOX868R131OUi2tD4xpTQYYMpgkRAzgTgXzeE6V6Ona8Jk6Ah2WMomiaE
-	Yt2ybg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bnm0dreak-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:33:31 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c52dcf85b2so18723185a.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 04:33:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768307611; x=1768912411; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Yxh6B8k3jihNeWs5tigsgEFI7JKeMCafOGI7nzIv30k=;
-        b=iKhaoOpMX7c646R8wCTB7+9PS3r7BrZDLJTS/6PdbpPDoCYPvXXBFLdoJDevcWvyGh
-         I7vOwiDHmALfnWSCCY7fWbRVSuwk/IeKynOIfyAppMXVh56mvM+00+bsP0E1RaekgzFI
-         4xySbRN891RJRkZNOcHicNs5+Wbg00nzcMWuByFDIx2O9vxKUGvxBqpywqJhbfq7DqPF
-         n5sxWhrhyopSFr84xKLc9cqPSu8wRfZwh0KRl6IriuSUhnV3qPNsAWnebEw51/sIPF9y
-         xWuqP1HV9t/t723hRP3DLWj8XouXSR3RFxHrTRQbS0bx3Gt9I0nVb7FEYUWKbkDjz9Au
-         nBCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768307611; x=1768912411;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Yxh6B8k3jihNeWs5tigsgEFI7JKeMCafOGI7nzIv30k=;
-        b=siCiQjuueDOgG6PzqLfhJGv5UoYgxnq5YPEuSocEEiNNWzryEgQAm3HIpD9/9sk0Q2
-         /g9MTJtppdH2erc3eBcsomAjpdP1xpNSXFCwrk3PS5p7S7heJkHRvpC9xBN1RJb+GDob
-         nhIIkcAOQHohj3OAfgcXxsIYX2RCw+fzdBwLSBj7PPEEhFFqF6YsV3A95y/1aqHxGHk3
-         rCOWeqB/Az85UHJHZLuIrC7l0hUV4SZ573C8cSgVnCIy/MwSA/SnccMyP1kFako+4Fhy
-         cf38IqA3cmTj4VSsvQQYtH26IxV2uW9zRctLdaWd5+T6gLd22QDE4P52m9jTPkWB1C5/
-         l8tQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZcmEVmL+RFfxPHQuWcKpt455Z1QMuvuxjBU9nXFys4zLniBXQ3dgKCPy084WOJ09PVcKOQo24+p2G@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQXSdzIS4rULSXgIaPSxOrZ/CPtydSN0xu2kYDZrADg/Z8cC97
-	2dom2n9gZm3IzWgqjeYdOm5NbBMU+NmVbz/hh7JkxwR9JGA2dXQz3FUPHfIZPbF6+Udy/ekVTFw
-	0Y730VecqJhWTvmHRDhi5Wh66MXtwmm7Nc8+xL80w2Ct89pGd8+LUdOLSGrvyt/9D
-X-Gm-Gg: AY/fxX7AdMRuR2yLHEnlbMAt1wRP4oeKu4hBjUvmlXa3tUqoeyYeAmBCQ8/UFNNrFbl
-	wAj9im43c5AAdNgtNdI/FC7S8TQNBubUzbM3AW5T0928POG6wOjvjSMS/OsZAc7goZxSa9v5Ozv
-	EAtNoLS06jeKXk2mrvJ5rhr4qjKmEfMe/rysjCeenYVRFLxz6UOTMM8/jJVhox6UvSMU6ydjoa9
-	v2xfP6id1MgtMEIkCck/ch036zUrtLYxcQ3LXsj6swxW5hp4Oy17qi59/3z6dGZZ0Vh2RFbYNqN
-	M37g0cQ274OxVJsMxd5pEZ2LZOjzc6hKJZlEHIaJIRXL0RVmUaazx8M71L4MvODSBwQlO4EAV9Y
-	V1pOLr95Vf2U93ds4Bg==
-X-Received: by 2002:a05:620a:4620:b0:8b2:efe7:d82b with SMTP id af79cd13be357-8c389399f06mr2782051585a.30.1768307610580;
-        Tue, 13 Jan 2026 04:33:30 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHY/r3WybAjncHTZdfiXmeOBR7h2+Uyd85HeRu2VOPW9Zqj1njU/vGizWB5hD1ZsyX+RzkweA==
-X-Received: by 2002:a05:620a:4620:b0:8b2:efe7:d82b with SMTP id af79cd13be357-8c389399f06mr2782047485a.30.1768307610045;
-        Tue, 13 Jan 2026 04:33:30 -0800 (PST)
-Received: from hackbox.lan ([86.121.163.152])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8715952fc3sm635303166b.50.2026.01.13.04.33.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 04:33:29 -0800 (PST)
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Date: Tue, 13 Jan 2026 14:33:06 +0200
-Subject: [PATCH RFT 3/3] arm64: dts: qcom: glymur-crd: Enable USB support
+	s=arc-20240116; t=1768307828; c=relaxed/simple;
+	bh=/jEbcQNNf+2y5DghSoCRU+Htja2/wQhqeKPPtGlgrS8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tMHVqS9JAuO95UmhiMkrzvYLzJLZO7RH/i/i7c6ks9L75KzUIzZ7EhhDXJwQ+Ajp80BpbHTlWw0xbCb2TaiapH16kcYeYX90SfktvnV/tXb1mqCkWCNLVhT/d4vBefOwAACf87bko9F3iGXvqSCc+P7q1wFGLEjoLe6F2h/tgQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=djdbXGFB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D656C2BCB0
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 12:37:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768307827;
+	bh=/jEbcQNNf+2y5DghSoCRU+Htja2/wQhqeKPPtGlgrS8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=djdbXGFB/0vFYnxrpHaPDsmzQQ20F7Osv04XDibZ2U163NlSPT6o1qMPl+o0mVNbP
+	 +bJYC/uONDGWEOcsPMDaJW6nsYc+VkjK795U4Il/TEvVcY1W9Y5QaKATY7Syf5Pn/S
+	 K2NEgIZSD6lIohY1OEP4eJkee0IH2jlvRpfZz1cTjBCyl2ePRW8Xy1r+EKGgnUmqhR
+	 Y5p2hkTY8XmCFhTtDYEybg3wOd3X3vfFDnANyXDKYeO8LD70k1+8jhfS1623TFn+Ov
+	 GW9pnukDXb1nmpYWUO9sFSrv0u1kusskQNElUZ4sA94yQDoIS4w9IWKnG844y3NboS
+	 mOgETq9y0Eh8A==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-382fd45a1feso58927131fa.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 04:37:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWaOOL02LUEWINfNeDibquOgH76j/2vogS+aUFs/7Zvblsnhs9M06G6Zqm9vH3AR1SpGZzn8IxSEu/q@vger.kernel.org
+X-Gm-Message-State: AOJu0YznMLtiHAWl+dT25weZ29DB7fvaM78e+4Udtl2syIPW5+WYd6lg
+	keJaoUisc0UneT2hBqusdYnD12rZRTUDzyTe7gGi0X5LRsqUbxBGVgnX1pTuZND9ep6xkLekEzg
+	xdTqhFrRoq9T62Azwd8EdMhlTvH2ikDiBdqmGElFGGg==
+X-Received: by 2002:a2e:ab19:0:b0:37b:9361:711d with SMTP id
+ 38308e7fff4ca-38350a55384mr8601501fa.8.1768307826023; Tue, 13 Jan 2026
+ 04:37:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260113-dts-qcom-glymur-add-usb-support-v1-3-98d6d387df01@oss.qualcomm.com>
-References: <20260113-dts-qcom-glymur-add-usb-support-v1-0-98d6d387df01@oss.qualcomm.com>
-In-Reply-To: <20260113-dts-qcom-glymur-add-usb-support-v1-0-98d6d387df01@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6823;
- i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
- bh=ISv/PcwLMmw/6FOT35evAfeT0Eih0KQ5AmQhHuFmVmY=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpZjuRJeSJfRJf4+w/KTS0n8e72/fa2eBfs65+8
- KAkLpv+2umJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaWY7kQAKCRAbX0TJAJUV
- VkPSD/9eDJ9ns+b1VweCi72uB0Lu2iasGrTCfe3BVVRQ91jvGYHw9GHH/+MGwgtMvX9Re1+4CWL
- BeQsN3FXTN0WNboOtk92S9dYWz0AO3u0NfGTc+PfSTgS3DTtCdAIRytrJshHs8wZujuY1G2Dg8p
- boZaghSal6gsceg/Q783POord3qOpGplw5AU3zAILlIo2ro0mcKBfigVixLJBapoJTUw7rZRzCw
- 67WIqFQH7sWrVtrzmR9epDEYpncJxfMAiDlxzGp3azlUFwSuDFhV/H9pEGqt6n6RJKxK6e6ypmr
- A+pSn++GU5ZcBvZL+xZC4O8KOqSyBC1MQv8/zHW+OBWdvEjulOonrIt+IyOkYjWXyGvzxyna5A8
- fGXK+P9z+wHboUxeBXDWuv4r7IIzC/I+O2SQ24pOF3/Ca8cey8AJOM+rYQ9Hh4ODpwc3G0h4FDS
- 9o8pbzLoxV+sKoBJ/rHu5jyIQ+/hTdDTZ4m2tE/1YoTClLwDaa4rI/qmE7AKwH5cvbVHjsbXP1Z
- d/XUEki8GL5LHv7koluOLK+LPEZt4HROyTNnhTrud5+U1Wk5/St9U6zu/i8I5qCXfHfHQwOW8+U
- Qm/MqEN0u+tSe9xDe7L1w/5SeQFOzHTV3W2YKVETWjumU7hVmfjQ8TqupPJ+R7s5R0OU2yaq41p
- xIai0OpgN99zkwA==
-X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
-X-Authority-Analysis: v=2.4 cv=BYXVE7t2 c=1 sm=1 tr=0 ts=69663b9b cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=RUlelSpolvTNyr7Sls5SJA==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=IZckZgOlll8TeJU42_cA:9
- a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-ORIG-GUID: GONKKgPI4kAwEXDfYg_ze39K3EFzQC9P
-X-Proofpoint-GUID: GONKKgPI4kAwEXDfYg_ze39K3EFzQC9P
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEzMDEwNiBTYWx0ZWRfX9aseJiTq2Fnb
- nS9FJssNCcvuAk5leRJ+KRsq1VU5pRQQKHmKNzXhCycOOS/5QEduziFczQLAATdrPfGsW4qzAO/
- tieNMbT+Zm8uP0MtvCaFeALiQxTknyezrfvaD3mea68qMIaiLzTaCIl/f6oEe9ludEQU+JJTmHA
- r3b7bdNLYYD+ZnrK6LxoHibzB2GvKDESVH4qu7ZcRkb5rbWlCpEfXP9EkV4bDlmDxIDFpYvRjso
- 0bLLvuAj4YqM6MUbmjQYVMo9Z74si9LtmLParEDwCX8PtFpzn3W+Q9sJzoWhW5pCYjTuedZyGf5
- zrTI1/hlz18NPBHM+bN7ul2FZ7xUa+1bCfpKp/MpPOhNe2uCBo1OuXjO+JMuUNdTP7zNTs/+297
- RYyqRTuGiqAxFjKXkVsMiU208No6Jfwm28viRXtoGuq+KDU54hDMuiI/pyN0CR/OCkOcYji5JkU
- GhGW3tkjLInMClWWJOg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-13_02,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 impostorscore=0
- spamscore=0 malwarescore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601130106
+References: <20260112-qcom-sa8255p-emac-v6-0-86a3d4b2ad83@oss.qualcomm.com>
+ <20260112-qcom-sa8255p-emac-v6-2-86a3d4b2ad83@oss.qualcomm.com> <a2a610a3-aead-4e85-8a4c-7b83ccf276dc@lunn.ch>
+In-Reply-To: <a2a610a3-aead-4e85-8a4c-7b83ccf276dc@lunn.ch>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Tue, 13 Jan 2026 13:36:53 +0100
+X-Gmail-Original-Message-ID: <CAMRc=Mf8TTTcU9A3gc_LQF3Ow6Ww0omVJH6x-DQEnOSPXfaUQw@mail.gmail.com>
+X-Gm-Features: AZwV_QhI9rebW3ffX0n9A2EUYniK94gLsNSjXRbzl9peLeeXv9eI-nHhZ9l6ybY
+Message-ID: <CAMRc=Mf8TTTcU9A3gc_LQF3Ow6Ww0omVJH6x-DQEnOSPXfaUQw@mail.gmail.com>
+Subject: Re: [PATCH RESEND net-next v6 2/7] net: stmmac: qcom-ethqos: use
+ generic device properties
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Matthew Gerlach <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Keguang Zhang <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
+	Romain Gantois <romain.gantois@bootlin.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>, 
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Maxime Ripard <mripard@kernel.org>, Shuang Liang <liangshuang@eswincomputing.com>, 
+	Zhi Li <lizhi2@eswincomputing.com>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
+	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, Clark Wang <xiaoning.wang@nxp.com>, 
+	Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>, 
+	Samin Guo <samin.guo@starfivetech.com>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S <swathi.ks@samsung.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+On Mon, Jan 12, 2026 at 2:45=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Mon, Jan 12, 2026 at 11:15:41AM +0100, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <brgl@kernel.org>
+> >
+> > In order to drop the dependency on CONFIG_OF, convert all device proper=
+ty
+> > getters from OF-specific to generic device properties and stop pulling
+> > in any linux/of.h symbols.
+>
+> Is the intention to read these properties from ACPI tables?
+>
 
-The Qualcomm Glymur Compute Reference Device comes with 3 Type-C ports,
-one USB Type-A, and a fingerprint reader connected over USB. Each of these
-3 Type-C ports are connected to one of the USB combo PHYs and one of the
-M31 eUSB2 PHYs. The Type-A is connected to the USB Multi-port controller
-via one of the M31 eUSB2 PHYs and one combo PHY. The fingerprint reader
-is connected to the USB_2 controller. All M31 eUSB2 PHYs have associated
-eUSB2 to USB 2.0 repeaters, which are either part of SMB2360 PMICs or
-dedicated NXP PTN3222.
+No. Other than a couple property getters which can use the fwnode
+abstraction, there's nothing here that requires the OF dependence.
 
-So enable all needed controllers, PHYs and repeaters, while describing
-their supplies. Also describe the PMIC glink graph for Type-C connectors.
-
-Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Co-developed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/glymur-crd.dts | 283 ++++++++++++++++++++++++++++++++
- 1 file changed, 283 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-index 7c168e813f1e..3188bfa27bea 100644
---- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-@@ -56,6 +56,97 @@ key-volume-up {
- 		};
- 	};
- 
-+	pmic-glink {
-+		compatible = "qcom,glymur-pmic-glink";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_hs_in: endpoint {
-+						remote-endpoint = <&usb1_ss0_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss_in: endpoint {
-+						remote-endpoint = <&usb1_ss0_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_hs_in1: endpoint {
-+						remote-endpoint = <&usb1_ss1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss_in1: endpoint {
-+						remote-endpoint = <&usb1_ss1_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@2 {
-+			compatible = "usb-c-connector";
-+			reg = <2>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_hs_in2: endpoint {
-+						remote-endpoint = <&usb1_ss2_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss_in2: endpoint {
-+						remote-endpoint = <&usb1_ss2_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	vreg_nvme: regulator-nvme {
- 		compatible = "regulator-fixed";
- 
-@@ -331,6 +422,72 @@ trip1 {
- 	};
- };
- 
-+&i2c5 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	ptn3222_0: redriver@43 {
-+		compatible = "nxp,ptn3222";
-+		reg = <0x43>;
-+
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+
-+		vdd3v3-supply = <&vreg_l8b_e0_1p50>;
-+		vdd1v8-supply = <&vreg_l15b_e0_1p8>;
-+
-+		#phy-cells = <0>;
-+	};
-+
-+	ptn3222_1: redriver@4f {
-+		compatible = "nxp,ptn3222";
-+		reg = <0x4f>;
-+
-+		reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
-+
-+		vdd3v3-supply = <&vreg_l8b_e0_1p50>;
-+		vdd1v8-supply = <&vreg_l15b_e0_1p8>;
-+
-+		#phy-cells = <0>;
-+	};
-+
-+	ptn3222_2: redriver@47 {
-+		compatible = "nxp,ptn3222";
-+		reg = <0x47>;
-+
-+		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-+
-+		vdd3v3-supply = <&vreg_l8b_e0_1p50>;
-+		vdd1v8-supply = <&vreg_l15b_e0_1p8>;
-+
-+		#phy-cells = <0>;
-+	};
-+};
-+
-+&smb2370_j_e2_eusb2_repeater {
-+	vdd18-supply = <&vreg_l15b_e0_1p8>;
-+	vdd3-supply = <&vreg_l7b_e0_2p79>;
-+};
-+
-+&smb2370_k_e2_eusb2_repeater {
-+	vdd18-supply = <&vreg_l15b_e0_1p8>;
-+	vdd3-supply = <&vreg_l7b_e0_2p79>;
-+};
-+
-+&smb2370_l_e2_eusb2_repeater {
-+	vdd18-supply = <&vreg_l15b_e0_1p8>;
-+	vdd3-supply = <&vreg_l7b_e0_2p79>;
-+};
-+
-+&usb1_ss0_hsphy {
-+	vdd-supply = <&vreg_l3f_e0_0p72>;
-+	vdda12-supply = <&vreg_l4h_e0_1p2>;
-+
-+	phys = <&smb2370_j_e2_eusb2_repeater>;
-+
-+	status = "okay";
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <4 4>, /* EC TZ Secure I3C */
- 			       <10 2>, /* OOB UART */
-@@ -858,3 +1015,129 @@ &pcie6_port0 {
- 	reset-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
- 	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
- };
-+
-+&usb1_ss0_qmpphy {
-+	vdda-phy-supply = <&vreg_l4h_e0_1p2>;
-+	vdda-pll-supply = <&vreg_l3f_e0_0p72>;
-+	refgen-supply = <&vreg_l2f_e0_0p82>;
-+
-+	status = "okay";
-+};
-+
-+&usb1_ss0_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss_in>;
-+};
-+
-+&usb1_ss0_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_hs_in>;
-+};
-+
-+&usb1_ss0 {
-+	status = "okay";
-+};
-+
-+&usb1_ss1_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss_in1>;
-+};
-+
-+&usb1_ss1_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_hs_in1>;
-+};
-+
-+&usb1_ss1_hsphy {
-+	vdd-supply = <&vreg_l3f_e0_0p72>;
-+	vdda12-supply = <&vreg_l4h_e0_1p2>;
-+
-+	phys = <&smb2370_k_e2_eusb2_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb1_ss1_qmpphy {
-+	vdda-phy-supply = <&vreg_l4h_e0_1p2>;
-+	vdda-pll-supply = <&vreg_l1h_e0_0p89>;
-+	refgen-supply = <&vreg_l2f_e0_0p82>;
-+
-+	status = "okay";
-+};
-+
-+&usb1_ss1 {
-+	status = "okay";
-+};
-+
-+&usb1_ss2_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss_in2>;
-+};
-+
-+&usb1_ss2_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_hs_in2>;
-+};
-+
-+&usb1_ss2_hsphy {
-+	vdd-supply = <&vreg_l4c_e1_0p72>;
-+	vdda12-supply = <&vreg_l4f_e1_1p08>;
-+
-+	phys = <&smb2370_l_e2_eusb2_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb1_ss2_qmpphy {
-+	vdda-phy-supply = <&vreg_l4f_e1_1p08>;
-+	vdda-pll-supply = <&vreg_l4c_e1_0p72>;
-+	refgen-supply = <&vreg_l1c_e1_0p82>;
-+
-+	status = "okay";
-+};
-+
-+&usb1_ss2 {
-+	status = "okay";
-+};
-+
-+&usb_2 {
-+	status = "okay";
-+};
-+
-+&usb_2_hsphy {
-+	phys = <&ptn3222_2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_mp_hsphy0 {
-+	vdd-supply = <&vreg_l2h_e0_0p72>;
-+	vdda12-supply = <&vreg_l4h_e0_1p2>;
-+
-+	phys = <&ptn3222_0>;
-+
-+	status = "okay";
-+};
-+
-+&usb_mp_hsphy1 {
-+	vdd-supply = <&vreg_l2h_e0_0p72>;
-+	vdda12-supply = <&vreg_l4h_e0_1p2>;
-+
-+	phys = <&ptn3222_1>;
-+
-+	status = "okay";
-+};
-+
-+&usb_mp_qmpphy0 {
-+	vdda-phy-supply = <&vreg_l4h_e0_1p2>;
-+	vdda-pll-supply = <&vreg_l2h_e0_0p72>;
-+	refgen-supply = <&vreg_l4f_e1_1p08>;
-+
-+	status = "okay";
-+};
-+
-+&usb_mp_qmpphy1 {
-+	vdda-phy-supply = <&vreg_l4h_e0_1p2>;
-+	vdda-pll-supply = <&vreg_l2h_e0_0p72>;
-+	refgen-supply = <&vreg_l4f_e1_1p08>;
-+
-+	status = "okay";
-+};
-+
-+&usb_mp {
-+	status = "okay";
-+};
-
--- 
-2.48.1
-
+Bartosz
 
