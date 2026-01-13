@@ -1,212 +1,340 @@
-Return-Path: <devicetree+bounces-254646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 557F0D1A55F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:39:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CF7D1A595
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:41:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C9598300DD89
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:39:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 43FC43014DF4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16ED13126B7;
-	Tue, 13 Jan 2026 16:39:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80D1B3101DD;
+	Tue, 13 Jan 2026 16:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J5ZCgaIW";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Wb1SL0ya"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XiX5APez"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013005.outbound.protection.outlook.com [40.107.162.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 685AE2EC571
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:39:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768322379; cv=none; b=l/1e03e6mIvAKjb1Bsd/fnHIZCbtUGNnT8iGIo5EiRkAlg1ZEGTT5ayNN7LkhHK9RwwQ+7kW664TG4pMs3cAB0yH1k0cDskmQYD2Yw3TA39t4NiYDT7YdJha5y0K/DruDtn1WXqLti40THJyZAzfSj3Iw4TB5FrFUyWZn3I+Hy8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768322379; c=relaxed/simple;
-	bh=Hb6Og6xXJJ2OlnU+hg0AXc8Xss6+0Mj0oNwh4Er1AWU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=J2ZXr4W2ZzASA3ayBQn2N7toZi/5GPoTQdZotSQRh+2RF7aP8QgC6HHESFR3b06qn/HiXiBdtmTAYsYqISNe7JfkgFha095Hb1YEbq04GDaJgrO7Yk1Vzea7kqVjDn+9wvCS+UDs9mLRfsXflhcnLaEGQSYLPzUta4mjyeZj1vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J5ZCgaIW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Wb1SL0ya; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60DCr1Cd3636889
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:39:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=FNg3uz7IZ6kkY04yZJe4ti
-	LTrzESWpojlhR8mWqbOtk=; b=J5ZCgaIWURJJZCaGdqGEGhrbGQ9pEX5WetuOqg
-	mfr46i5L4yGMXC1OKG7FYFiZ6Qo+NuEZvEmRCh7112b6MyJeiX0YGFE2yZJ+EhHp
-	0cxWfH2G2+IBlfkBSdq59q4fvlsRsWb7SHfEmtz9LY6UCaJysoMChwN0EE76j8Ay
-	y11JaMi9s67Nvgth8yv+RlpxnRaIXkVhMOgYS9zddaSFa+9VFNvb3InKGGvReH9w
-	Sjth37wkYaxNVQwUTiQE5f/kD0GI+OGPSGP2aMeWHxJLCdmhE3Jf9cDmn8GgTU1p
-	nGrZXZYCYbeA4kQcTCF+jhvPqbqpKAAz4n0Gz7GIkn0xVr+w==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bng2c24rh-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:39:35 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8bb9f029f31so2127926085a.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:39:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768322375; x=1768927175; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FNg3uz7IZ6kkY04yZJe4tiLTrzESWpojlhR8mWqbOtk=;
-        b=Wb1SL0yaqjz8t9+0meQDOezfI1fTrDdgGtf2l57Y50X1NbUzm1VasZKrFUs3UYDAwk
-         442l+7euykXX9JI5gk16vgREO9iYUTHR1+1P/coVeo50Sz7J/k6bqvepkv9UJE9M5TAk
-         V70OOUoSD1qT1PgfWg1srAc66ilouoyxOcf5+y517wZDRGrSEmKOiFxNbtjIhfqzfzNG
-         VQu9sVXY4QpqX1BQMrR3ivdBWcVVCpdDVto5YHMByhwrBzEjlTj3rSEgavZFoAofbXqA
-         fBLV4Gi5Ei9dVdJ/V2lsW8j5ks2RFG8XO8FE6DDT/bhO1T62rk4CoNnMZ4e5xvVJZ0lX
-         r8LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768322375; x=1768927175;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FNg3uz7IZ6kkY04yZJe4tiLTrzESWpojlhR8mWqbOtk=;
-        b=oklbZ604ahLHKR1iR9CDoCorsrArq9zkGLKnfet4BYUYeMlsXEWcC0iDcuPLcsUBX1
-         faVg5rrtaAqkg4eL5FxG6RRbLNl9BiPRwn+etTNg5JffJQdTDBKrHyv594Z7qNZ657Wy
-         udR2u7T3R/eD5FmVu4A3GkXIBhJyL7bwTa7F0K0j7vSxT0twejCveQRqhtyj2XEfqI+2
-         m9siN9KTPWJrv53ucJzuKlbtxyxrCb3BpJ4/LgaviXJY6gzd84gs4oNYu1tWbI9h+mm/
-         kb2bB1wRys7BlvxNy7B73GwMWP0mxhi9/4XbN2XztuDgiEKP47Mh0BhTMcOzVs+nrwRA
-         +LMA==
-X-Forwarded-Encrypted: i=1; AJvYcCUS69lC/L75OZdpFeabl4ApEm69FW0ALXWBKCK9ndJBvjSL5TOOWo/gYishHEMO6EIxpTfhBqw0/rQE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBuUMEo8eJzhSYyyOvmqWlcQf5GWAsUg30BCvgS81fCclbkxSo
-	z/1ycNgNY+vADRtRvump8xZOLu/Ki+NrQMd81abRMI1qu5dbq4mqCA4mIAGzYFDwLACiGhcZT64
-	X0omxF5vUqoh5XATMk4IY8NpeMJtbmbEr1kaF6BVXSu/7wLCZ3FDVz7Khvyr09+VV
-X-Gm-Gg: AY/fxX6uBOGSyyhdDJQyFJtmoGUhE9HKT4IQm013SCeoEuFJXog8CRpLJ59L4+hhpTr
-	+EBv6tx86yieCPHhUMVpdMc/fodqGe467ZETNc03q12ZW/rQ/RKo/FWwaWURam3Yaof3nrP6Mkz
-	fqZ2PmlbG+25buid4Hmg7V59MQ8TwNdtwGwREEo0z+WgpQNdFEyaXl36STmYBmkJe3xtqslndns
-	9JDY057n4UiKx1zjy4JbUEqW5reb5kmfJdw9m4rnfRMMEwtw+hSWu8MPD1+G0IFhxoG69HMOJ8f
-	SDXRgWbUUnhg1pgPhJZIbB+JFAsKHV+1kTy3gPwvD1bQEGDHnp7kwPjs/oxipas6Xb84nWWBdLh
-	qj2hYClWg9Qa4Q+xfjWqGW0b4nIs+mwzWKL32KrNrej5yMJaXqzyMXVVPxmSraCHEhLMU+AkYna
-	oW9CGTWAklcN5Blr1cs+LfvqM=
-X-Received: by 2002:a05:620a:4493:b0:8c2:228e:78eb with SMTP id af79cd13be357-8c389368b81mr3354421285a.7.1768322374709;
-        Tue, 13 Jan 2026 08:39:34 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGUtRq+Y2gECtoAYtXxWvidMka+3b7Bm+Yt2rBK5+ICtGhPN11kgsg70TbEETlXVu6W01QW1g==
-X-Received: by 2002:a05:620a:4493:b0:8c2:228e:78eb with SMTP id af79cd13be357-8c389368b81mr3354416685a.7.1768322374246;
-        Tue, 13 Jan 2026 08:39:34 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-382fb295f5csm38560801fa.49.2026.01.13.08.39.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 08:39:33 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Tue, 13 Jan 2026 18:39:32 +0200
-Subject: [PATCH] arm64: dts: qcom: agatti: enable FastRPC on the ADSP
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B269425B1FC;
+	Tue, 13 Jan 2026 16:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.5
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768322480; cv=fail; b=KVszFrdkRGoQ+da/xmB4/3z0HupxLeXgz8bEr+nl958C3fpor/R0/J72xmmSbd6Qo7uLRe3D+6Mt7VnUVSBkyMxEWk7kiw7MdVbhRa+eSRK/3jGQhkmpqTKL77s8aJ3IqVhu+et0e51Qt28gXfk2w8rTykW29DyOSZ0X3h5K+1g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768322480; c=relaxed/simple;
+	bh=clqEuNBx2Ciedckp+jZj2xNFAamLc/SohdVYttuHm+I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Zjb6y24o2y7jgVSxAmMl/rjecJjxByiMFtCjnXOemEqFfQpwfrIOcw1NaQSSN+lT0eq2/cuJo+4bStaw4uThKfr3PGzmdwK1b+O9klh5K7csT8PzeKBwf8nocXFueU1U/0lI5qNT/aQ6qq2v32n5TKM8Ovf398GLm6vu0WA2UOU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XiX5APez; arc=fail smtp.client-ip=40.107.162.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=p1VYmdDVM6X0xtDzj3RKcfxwG+2ToklDpJ2rFcLoMQhXlrEasEwx8aSICACoI1QSoF8XDfxCCO9bQPEl8FszE9+ZFe6k6pqJ2fsOE17tRBzzF1UKaCKbW2iDnTyVicVJOGXDvTcuXSIww9x9VW9VzDL3MhNkFGY5pSx0d4+pr/k02HZJpCGJQmZd2uYFgMVPRrx5g0gXIcb1/BFcB3oXSGm8kE2IRlao5kvBS5OX55z8kyxNHdmrmujbdr94U5hD3AOouDC5wn78eOQdbVSOkjhx9u6oGbgIqneHlr6v/3JbRPZFeS0/rJIDTZY2FmJVIMtVjiPbJkHIu4R0GMnVFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=moR1Hrq4rk+MeYF/P6xf5Z6mULWNXzvdGRGfk1ovYGg=;
+ b=x+k3FsLpYdhS8A9CqYcC6nDfyK8+PnjFXBRfiCLUJlxiD49MCoH+ixHQ/HoOy4m+nqiSRFW73HfvVvd0+43vuPeuYO70/RVIuO4nCSLJYYLuXXbqXrzXXVzNUn7PQM0g1vErv/Ujj5pT5+rfSVykvR/BD2nTyio4XPE/dy1whLda9BpH5MKDSJedbYj5AfH6RPEJwFsRmWhpYzWPoN+FwRS7tLXniAt+u5R8GPau0Cm0KgWtcitVzYL7O1DFvNJCU8tHpEor0jA+ZkQwZXto5jt25UnUDErJ+gV2vzdr4NxPHMc/12mFiWchsW/nD7SB60I1G1dUhp38NPM5JCwdxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=moR1Hrq4rk+MeYF/P6xf5Z6mULWNXzvdGRGfk1ovYGg=;
+ b=XiX5APezguXJ7jEppSMX6+9H8Yw4FNaayI2xLWIXWEzPpsxLyojbHBzGkCcZmrNTBW64u0vFjRCdaSzeN8pPg6Pvju4Kqv7k1FyQhi81zOXahSA0qhyjwwtSJc47sTRCSg5JT/H3YXpCca0qKT5nkUQVqb6C/iVV/iLqYsy/m7IfPpjHCRoW0uBK+XjF563HgZeVwD25J0uGHp8bSEY1RekoT8IrpSCAoSEi4k81Rh92ZPJUqMQxR0UzskoOKlWQ9fuJTgEzjR2HgQFexy1dN8+IF5BiscSVjWv/uzCTMsznSm0NT+cRaeX2vraZ0/EoYtZ2lHpdJFWQPt6wNi81Uw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8948.eurprd04.prod.outlook.com (2603:10a6:20b:42f::17)
+ by AS8PR04MB9063.eurprd04.prod.outlook.com (2603:10a6:20b:446::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Tue, 13 Jan
+ 2026 16:41:15 +0000
+Received: from AS8PR04MB8948.eurprd04.prod.outlook.com
+ ([fe80::843f:752e:60d:3e5e]) by AS8PR04MB8948.eurprd04.prod.outlook.com
+ ([fe80::843f:752e:60d:3e5e%4]) with mapi id 15.20.9499.002; Tue, 13 Jan 2026
+ 16:41:15 +0000
+Date: Tue, 13 Jan 2026 11:41:08 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Job Noorman <job@noorman.info>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/2] Input: ili210x - add support for polling mode
+Message-ID: <aWZ1pG5RRWlDSCwC@lizhi-Precision-Tower-5810>
+References: <20260112234534.225954-1-marek.vasut+renesas@mailbox.org>
+ <20260112234534.225954-2-marek.vasut+renesas@mailbox.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260112234534.225954-2-marek.vasut+renesas@mailbox.org>
+X-ClientProxiedBy: PH5P222CA0006.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:510:34b::6) To AS8PR04MB8948.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42f::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260113-agatti-fastrpc-v1-1-e210903ffcb1@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAEN1ZmkC/x3MQQqAIBBA0avIrBNylBZdJVqMNtpsKlQikO6et
- HyL/xsUzsIFZtUg8y1FzqPDDArCTkdiLVs34IjTaIzVlKhW0ZFKzVfQbCM7z4TeIfToyhzl+Yf
- L+r4f3BytB2AAAAA=
-X-Change-ID: 20260113-agatti-fastrpc-e3fe4bea2b42
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1476;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=Hb6Og6xXJJ2OlnU+hg0AXc8Xss6+0Mj0oNwh4Er1AWU=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBpZnVFg6ora4I4sr4L2UU46WpIYweDVR81Cyisw
- ZbZ+UdAeaOJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaWZ1RQAKCRCLPIo+Aiko
- 1TIJCACiwMkkYRSNR3iQ/e5TghOXQkz42rjN8x1NiCPxm6ygomHK19bAcPd0S8RpLgyWInyboFo
- OM9x3EH9yFUTk9ljIvFJQEoIxNEVO2H1P6UNxcVnHFSc2lQ+kTLJ3MEmVqvdanfFfKqrkU2yHr6
- QC/u3gOKwn8x30E61J3ezsFsKn/7WWmbjUDgK+V8Am90AwePKfbUOpqvxneVKdwFj2PnD1DYWnr
- hkI+1Q6d2DY8jrcgwx7p55Mki6mpHfjbWYGqhwOty/zdKuxgpOL4seVRrKV3+0L1ZAGrG4GwKj9
- 6mLjHbMrjepLNLGJ74zNuAhN/jwqB2bp4hsRJKIgntJRFppd
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEzMDEzOCBTYWx0ZWRfXzoLsgFJf7I4j
- Rxqx8N/HGWR0q4n3gJdVuqTPTENONPvkX3KNLoo2LN9UqjrJDZmmB54vVMvUg8yh/yBe14IaOEW
- Jp7NM3Zt1KK+Lx9mK2ZEf7RB5aOA/ljEpdY6mSXwhUkr7B0/Se1R9xpV7exRY/s+OOsa+DJl5z5
- jEVt40Mx83pj+HlBcUZGkg5gCX+yU2iHBVatVscDpTNmDvVdXvV5mUvZyVfNWAkuAbSxR1jDwDl
- svDySymQpKoboOIoEhMIE5RmNrgBprrITLVlMz5+199ZRaSii4dQKw+7xS1AVFyzq4pmB5nV5Q7
- i5uZJcWunaWtumGsvX8kbdaQrbveVe5DTagA5qMCQb69VRyZEQPC3CdDnTviiEQxOBLV/lgBQI1
- RH26s5s0xMjkITslUwt52sfkEGVjfQ6xBaSnUaq1jeK5eSeWNf/g6elXN2oiDIYSlIzOkg54Qpo
- 6oL9kHkxl+oY23etRlA==
-X-Authority-Analysis: v=2.4 cv=C5TkCAP+ c=1 sm=1 tr=0 ts=69667547 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=qnRtB28rPDfBZ8ych9EA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-GUID: KgDS5I7v0CfPIWlicJ-PgC1yqZVPcB8S
-X-Proofpoint-ORIG-GUID: KgDS5I7v0CfPIWlicJ-PgC1yqZVPcB8S
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-13_04,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 suspectscore=0 lowpriorityscore=0
- malwarescore=0 clxscore=1015 bulkscore=0 impostorscore=0 adultscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601130138
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8948:EE_|AS8PR04MB9063:EE_
+X-MS-Office365-Filtering-Correlation-Id: 35f9022c-d237-4e12-c5c1-08de52c2918c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|19092799006|52116014|366016|1800799024|38350700014|7053199007|18082099003;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?+ms88DpBnWbCGTDfw8PFXXX/OAf1iLjbELmX6QCELnshsunpYSWnXoRYTIet?=
+ =?us-ascii?Q?dUGX6JClTuCZUU7uAuxyMU6LH4OOrK3n6DjHI6Vnpc6iYwW5dQrOJ6cIrWwM?=
+ =?us-ascii?Q?ca8GBj+XNmjY3IEsK+VR3TV6D1dszD6vOC0hs5qPlBTpDIHH5wfx8pGkiHSx?=
+ =?us-ascii?Q?JNWzj5CUEuT97x7kSyZmEZIRCp0HkMPuiRvTV9Wk4iezEbO94DO7xXTc9kW0?=
+ =?us-ascii?Q?FtZmJkPRmNY9gAMrErLVdtCMutEbX+Mo5XIjpKK7Fx6tvV4GgH6EnkEojwxc?=
+ =?us-ascii?Q?nTNMUpQAOBBmfrV2faEC2O7FjIoKFohNK0dakvzh1vUMVF6LtEuJki263YrW?=
+ =?us-ascii?Q?dSrmffAMhctaJB3CrbcRx9NE8WB8+1QjmoRKTSi6CFsIXPOvXm9JDT2wCgDM?=
+ =?us-ascii?Q?4KkPH/FIF+WTpEQRSgYhh/B1U1NxxcD03DqAw6soY+0W/Nd5va8x/aoVr86T?=
+ =?us-ascii?Q?OlJ9UK8RS+l0hEp/pR6ChAM/ZS53kL0iS9Lstc6QT9PRS4ZtvgNgIi6dFptJ?=
+ =?us-ascii?Q?G3OP9URfd/edT9/zU35QbThGsnSwdPPb4oxRgKl3dRL3H/M7aULqd4j8vsrA?=
+ =?us-ascii?Q?5xMvP8iPMxXB1sHCV99Dfd5/qMKydLLp6rjBSsM7z/5zGyPbllTj7Ho0g+2x?=
+ =?us-ascii?Q?S0xb5GuQopUBcz7LEe/qy9J7jfcVZNC0Qhy5yCQRA2F4LoDU5Ce+jAoV/yUB?=
+ =?us-ascii?Q?hqMyHJZIfb/3xa7MNpGbp3uc/4XuQzm9tEkuoe8mG1bx52HX7yVY2BVAKYtZ?=
+ =?us-ascii?Q?tr0G7dDmnN2yDqoqOecsBgifG7TzkSSelqWSguJcjv/Z4QY/Kzv7ObsmhKmi?=
+ =?us-ascii?Q?6hP/jWgC8dJ9iv3TZU71Xqw7JbY94AXT5xCOvJsdhnUlKih1Fdc/oOuKclRT?=
+ =?us-ascii?Q?K96xPoSK4bWRZsXXAcAoWjCM4/Jt85Bp0zfXBkk8fkrL4cmAqUh9fB+J0S5U?=
+ =?us-ascii?Q?nyIaRF8sGFgE2IKd+KKbxgykCgIIKs1DW5iasDU7bTzta41/3SBSyuMH1q+D?=
+ =?us-ascii?Q?cksViEhmLRu6uNwpqIfHYy2TFPoTuu29l3yHn1/fLzpiDzqdQ9UrovLLU4Fg?=
+ =?us-ascii?Q?YUQtOCz+eUQHlnh2LrXc8xZaRE7xmcxjY5LyeCD7kVpTs8byWqdXKM8JOgN0?=
+ =?us-ascii?Q?6xSgoH8qjRZekTRu5T3/Djd44g6CcN5jvHM5FaGxHdptLdCctDWFriZIgJye?=
+ =?us-ascii?Q?AAXCocUd8kIgjYXMuq3+Tm4XkHDLfNKj9gey5IisGzmPUgNxYdVb+Tt+P4C0?=
+ =?us-ascii?Q?B5JNNIfXXL8HTo0RnHqNVYB7Fz9Uid0HT2VpF8TaHM0IJOXf/PEpD6NFygbv?=
+ =?us-ascii?Q?DIVLcgy1jn2/QeAGjq0bogiKcY4J+qG3e2ZR+XL6dx7HrhpqlfcVv+M+7sUH?=
+ =?us-ascii?Q?l/jN9VleAGMzU1Dt6eUn+hIPbUdFFIVMTOCFbZp39GOuD0F8tKhl4NRtkf0e?=
+ =?us-ascii?Q?ru5t4sNRCsagD3YbCtnx6phRW+qOUKnY9Xrb12lNxTPrO5AGEraqabynEZyw?=
+ =?us-ascii?Q?vEYuAKZ63Q5QeHwEp47TOvvBLZR6htpexup3?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8948.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(19092799006)(52116014)(366016)(1800799024)(38350700014)(7053199007)(18082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?EqvwMfj2TCMoyK8EjrJdTelJjzW3SYc+delkETpiUJW3FJvt8n2oWz+RSK9r?=
+ =?us-ascii?Q?JqM5Imf5pYZ+ozcUCwpSN0qRBfG328/nyaqh1i86vtMTTjW4hnX2POd/c0ci?=
+ =?us-ascii?Q?26DsQMvrYpxgLE/Gr6xDvAnB+f8vvFyl6wIPPJMCHRDLWgsVjn9FFZ+Xl/pg?=
+ =?us-ascii?Q?bzpJ6apoznVEej9W8+Y+i1yEPThiXca09jWVX2asqT7NNB0SaobCCkIwd8Gm?=
+ =?us-ascii?Q?NNu5MFYFoaR+cr06Jy6NjvxL7Wy+OKQY0q1nQU+bgAFoOpOrGpLBgKf18jRB?=
+ =?us-ascii?Q?XEkhfCpqTOzjV9+eDsn8rHDoSheKnGIMVm2PKWCj5T8Cd8T1o+h+z6OJrkcM?=
+ =?us-ascii?Q?B541hI7xe2bMobyp/bc6ZVGrl8pbtrZUKy53W0p8WFrm4ydznvi/rIzlikL0?=
+ =?us-ascii?Q?XrEHphTuoeowpssS2Me0s8T9XSNliskQ6XkUqh+RUEkhy37HFiZ7lEa9uc7S?=
+ =?us-ascii?Q?Re/A1NFE3zbYRs6mXuU2HEbxsEsMu83QWE2aTUAccgLMVI19og2kOy/kQtA+?=
+ =?us-ascii?Q?zVIixkh+27DPmvkZ0kYOc3EL8S047aB5oJ2vUiYYv0XhxtucqRYsmfUuQ+HF?=
+ =?us-ascii?Q?Pdxdl1bI0tOBzolBgKL5jZIyv8xDRrw+oYXd0IM3/UBzTNTOYhsB/ef4yx4T?=
+ =?us-ascii?Q?nIME033lBmCPG/qtdXNMo6OVqV8ZfTCeWzMmTaJJ7pX87ig5ii5eB4YPkAbs?=
+ =?us-ascii?Q?h1eegYfBYpf8Vb3cIgK1mFvDvNE3c0mhUYDq8mOvRzcEAY8v7Rkpo+5RzKuZ?=
+ =?us-ascii?Q?6RGFrAU5P9ndMlRew4jqUbwhakli/c+K8EBddAACOLGaXlmpId09hVAJANJM?=
+ =?us-ascii?Q?so8s1r3nbR1RY29LHBGaCeEbpRFe0fL3TllnHdOfuM7jJ4nNrIJ4Vk15vTzc?=
+ =?us-ascii?Q?qPL4KaH0rOHLU5zlzvug4nnHQMl9C3+6705EuYyZL15KpzDu+y5G14rWL1nD?=
+ =?us-ascii?Q?Py+6fBkaWAB0AA45Eo1JhBVHQ1JOTew9YGyJwMOPOFbGd3MnIN38Yg0oUBZ2?=
+ =?us-ascii?Q?jD4s3MuvidVjKI9DQxUQl6zb6V5nSe7EoQ8OkrPWym2dpHodwBQS+PSYbTM4?=
+ =?us-ascii?Q?1L/6jpz3SrlBquVm6r3zCOKrspOV8z82dV5xGvHkE5dc7sJIf6oFT1ltofs0?=
+ =?us-ascii?Q?5tRvFjhysH5QO90Zfr+u4aI8e3mBMje0XHDDw4W4go/W6mhBkPGsp39bgOJ1?=
+ =?us-ascii?Q?XOBGlRQZPQ6TRdvjvmqzh9QW1TD8KjA2/Q7+jTEFT+3Fr7aER4A73h7HRfJF?=
+ =?us-ascii?Q?hiQGeidxaBUlV/ncXTkBPuPp6XZD2tX2JRSHMjQmfxaI99BfZLI4ytov21/J?=
+ =?us-ascii?Q?gPrbmXY9JcZQLj73Go5KpKJ0psGYZ9BGxBJh+T/0AStLf3bh+b3FmFdzdf0H?=
+ =?us-ascii?Q?9m5/0WY7UmMdRvVj7LBnzWQ+C3yF91E4BuE9tYhd0V79R+ZMQpxipcUYzeAv?=
+ =?us-ascii?Q?r7pFjucqJ4Yu0WmSbH75te1Z4uN0AluNi5Z0cO2VzPn8DmwjOXAeqIZucu0o?=
+ =?us-ascii?Q?VCEM5xxtqXzw0L2+sxaDagc3RvUjfJwaz0meiQRIBE77DuCz7UJ0lON7yCBj?=
+ =?us-ascii?Q?0mpKlktq/qah2W8YgFovgiaAbw09932m49me5BG1KKYGU322Mqfq8kYo+VXW?=
+ =?us-ascii?Q?tB2nAuvZJmaYtJWI9gqQZDRGNjfu8r6xGqKjLddxhQmlJEB+mghrHRCvDtJi?=
+ =?us-ascii?Q?dT/fRVmIaFXcPvkz0KuosU/SzZdzEwMgMQz3SkQMVq/MgvIS?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35f9022c-d237-4e12-c5c1-08de52c2918c
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8948.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2026 16:41:15.3738
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pQc46wGAI61D9y4BXG0XK+Cyc8BQ0+A+XdL0ScYiioE5Tw5KM7elePBvTxW8EVR1b/IV+rn2QCZR7qFQEYv1Hw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9063
 
-On Agatti platform the ADSP provides FastRPC support. Add corresponding
-device node, in order to be able to utilize the DSP offload from the
-Linux side.
+On Tue, Jan 13, 2026 at 12:44:57AM +0100, Marek Vasut wrote:
+> There are designs incorporating Ilitek ILI2xxx touch controller that
+> do not connect interrupt pin, for example Waveshare 13.3" DSI display.
+> To support such systems use polling mode for the input device when I2C
+> client does not have interrupt assigned to it.
+>
+> Factor out ili210x_firmware_update_noirq() to allow conditional scoped
+> guard around this code. The scoped guard has to be applied only in case
+> the IRQ line is connected, and not applied otherwise.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Frank Li <Frank.Li@nxp.com>
+> Cc: Job Noorman <job@noorman.info>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-input@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+>  drivers/input/touchscreen/ili210x.c | 84 ++++++++++++++++++++---------
+>  1 file changed, 60 insertions(+), 24 deletions(-)
+>
+> diff --git a/drivers/input/touchscreen/ili210x.c b/drivers/input/touchscreen/ili210x.c
+> index fa38d70aded7b..3220848a4b843 100644
+> --- a/drivers/input/touchscreen/ili210x.c
+> +++ b/drivers/input/touchscreen/ili210x.c
+> @@ -327,9 +327,8 @@ static bool ili210x_report_events(struct ili210x *priv, u8 *touchdata)
+>  	return contact;
+>  }
+>
+> -static irqreturn_t ili210x_irq(int irq, void *irq_data)
+> +static void ili210x_process_events(struct ili210x *priv)
+>  {
+> -	struct ili210x *priv = irq_data;
+>  	struct i2c_client *client = priv->client;
+>  	const struct ili2xxx_chip *chip = priv->chip;
+>  	u8 touchdata[ILI210X_DATA_SIZE] = { 0 };
+> @@ -356,8 +355,22 @@ static irqreturn_t ili210x_irq(int irq, void *irq_data)
+>  				usleep_range(time_delta, time_delta + 1000);
+>  		}
+>  	} while (!priv->stop && keep_polling);
+> +}
+> +
+> +static irqreturn_t ili210x_irq(int irq, void *irq_data)
+> +{
+> +	struct ili210x *priv = irq_data;
+> +
+> +	ili210x_process_events(priv);
+>
+>  	return IRQ_HANDLED;
+> +};
+> +
+> +static void ili210x_work_i2c_poll(struct input_dev *input)
+> +{
+> +	struct ili210x *priv = input_get_drvdata(input);
+> +
+> +	ili210x_process_events(priv);
+>  }
+>
+>  static int ili251x_firmware_update_resolution(struct device *dev)
+> @@ -829,12 +842,32 @@ static int ili210x_do_firmware_update(struct ili210x *priv,
+>  	return 0;
+>  }
+>
+> +static ssize_t ili210x_firmware_update_noirq(struct device *dev,
+> +					     const u8 *fwbuf, u16 ac_end, u16 df_end)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct ili210x *priv = i2c_get_clientdata(client);
+> +	const char *fwname = ILI251X_FW_FILENAME;
+> +	int error;
+> +
+> +	dev_dbg(dev, "Firmware update started, firmware=%s\n", fwname);
+> +
+> +	ili210x_hardware_reset(priv->reset_gpio);
+> +
+> +	error = ili210x_do_firmware_update(priv, fwbuf, ac_end, df_end);
+> +
+> +	ili210x_hardware_reset(priv->reset_gpio);
+> +
+> +	dev_dbg(dev, "Firmware update ended, error=%i\n", error);
+> +
+> +	return error;
+> +}
+> +
+>  static ssize_t ili210x_firmware_update_store(struct device *dev,
+>  					     struct device_attribute *attr,
+>  					     const char *buf, size_t count)
+>  {
+>  	struct i2c_client *client = to_i2c_client(dev);
+> -	struct ili210x *priv = i2c_get_clientdata(client);
+>  	const char *fwname = ILI251X_FW_FILENAME;
+>  	u16 ac_end, df_end;
+>  	int error;
+> @@ -860,16 +893,12 @@ static ssize_t ili210x_firmware_update_store(struct device *dev,
+>  	 * the touch controller to disable the IRQs during update, so we have
+>  	 * to do it this way here.
+>  	 */
+> -	scoped_guard(disable_irq, &client->irq) {
+> -		dev_dbg(dev, "Firmware update started, firmware=%s\n", fwname);
+> -
+> -		ili210x_hardware_reset(priv->reset_gpio);
+> -
+> -		error = ili210x_do_firmware_update(priv, fwbuf, ac_end, df_end);
+> -
+> -		ili210x_hardware_reset(priv->reset_gpio);
+> -
+> -		dev_dbg(dev, "Firmware update ended, error=%i\n", error);
+> +	if (!client->irq) {
+> +		scoped_guard(disable_irq, &client->irq) {
+> +			error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
+> +		}
+> +	} else {
+> +		error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
+>  	}
+>
+>  	return error ?: count;
+> @@ -947,11 +976,6 @@ static int ili210x_i2c_probe(struct i2c_client *client)
+>  		return -ENODEV;
+>  	}
+>
+> -	if (client->irq <= 0) {
+> -		dev_err(dev, "No IRQ!\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+>  	if (IS_ERR(reset_gpio))
+>  		return PTR_ERR(reset_gpio);
+> @@ -1003,12 +1027,24 @@ static int ili210x_i2c_probe(struct i2c_client *client)
+>  		return error;
+>  	}
+>
+> -	error = devm_request_threaded_irq(dev, client->irq, NULL, ili210x_irq,
+> -					  IRQF_ONESHOT, client->name, priv);
+> -	if (error) {
+> -		dev_err(dev, "Unable to request touchscreen IRQ, err: %d\n",
+> -			error);
+> -		return error;
+> +	input_set_drvdata(input, priv);
+> +
+> +	if (client->irq) {
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/agatti.dtsi | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+0 is validated irq number
 
-diff --git a/arch/arm64/boot/dts/qcom/agatti.dtsi b/arch/arm64/boot/dts/qcom/agatti.dtsi
-index 7815ece261ea..71f8a0972b0a 100644
---- a/arch/arm64/boot/dts/qcom/agatti.dtsi
-+++ b/arch/arm64/boot/dts/qcom/agatti.dtsi
-@@ -2287,6 +2287,35 @@ q6routing: routing {
- 						};
- 					};
- 				};
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "adsp";
-+
-+					qcom,non-secure-domain;
-+
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x1c3 0x0>;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x1c4 0x0>;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x1c5 0x0>;
-+					};
-+				};
- 			};
- 		};
- 
+https://elixir.bootlin.com/linux/v6.19-rc4/source/drivers/base/platform.c#L284
 
----
-base-commit: 0f853ca2a798ead9d24d39cad99b0966815c582a
-change-id: 20260113-agatti-fastrpc-e3fe4bea2b42
+if (irq < 0)
 
-Best regards,
--- 
-With best wishes
-Dmitry
+But it is strange that touch don't connect irq line althougth it works,
+touch generally is wakeup source of system.
 
+Frank
+
+> +		error = devm_request_threaded_irq(dev, client->irq, NULL, ili210x_irq,
+> +						  IRQF_ONESHOT, client->name, priv);
+> +		if (error) {
+> +			dev_err(dev, "Unable to request touchscreen IRQ, err: %d\n",
+> +				error);
+> +			return error;
+> +		}
+> +	} else {
+> +		error = input_setup_polling(input, ili210x_work_i2c_poll);
+> +		if (error) {
+> +			dev_err(dev, "Could not set up polling mode, err: %d\n",
+> +				error);
+> +			return error;
+> +		}
+> +		input_set_poll_interval(input, ILI2XXX_POLL_PERIOD);
+>  	}
+>
+>  	error = devm_add_action_or_reset(dev, ili210x_stop, priv);
+> --
+> 2.51.0
+>
 
