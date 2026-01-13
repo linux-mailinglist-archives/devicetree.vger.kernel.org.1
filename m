@@ -1,159 +1,147 @@
-Return-Path: <devicetree+bounces-254236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9095BD165C8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 03:51:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A43D1660F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 03:58:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0C821300A536
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 02:51:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5C36E3024E4D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 02:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB89C2DECA3;
-	Tue, 13 Jan 2026 02:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F366E26562D;
+	Tue, 13 Jan 2026 02:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="unriAT9A"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iWcGNLfT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com [74.125.224.42])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C37C25A33F
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 02:51:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A582863CB
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 02:58:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768272703; cv=none; b=rQsoq3VdokTcj+N1YDKh3mLnHeCQgVeUmavLXlLH8sUxGiZnZ4NAYz8KGz+Ne6Wjp0c7h4XgtTN5ImJdjPek16gMNm1jJxFEzlUPcqrEC5OfB9pPO8eWWjkFLEcH10iXpyKqvVltGVyeADf801EnOBvYDgJkiRf3KEwI6Q50AzM=
+	t=1768273088; cv=none; b=EENXpSN34j8Zbe/X0Rd52JrPQBMUtNW83agduG/wnzHV+VAtdJ5u585Q5On1ycJTdlSkQPm4U3dPevOV6MK23ZOyKmPdAaIDCKrTS6FtgAn5g6DAlwj1vuu5VVP1cQ8lizkPUucXdmiLoZPlCZHUpiSXUAfDTJxh3RAhfqYaPeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768272703; c=relaxed/simple;
-	bh=ucRpV6w0bt2B3mlFHkbnKhNVeKaPi5p4NBMvpLeeRI0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FQ06VbGx8FEkPUBnOxUq2QywlIqGFnxjrYELMnf3rpDsLVg16PF/mpdK4Tgii+0jogBkyPwbOGUZTbhFDdjhnjfxDVbUVUK6El3PHGHrLuFbJwxnnAD/7VWZ7mans4obUWkdJnF4z1rGk0T0xLro+EHxLaN7kfexk3Gh99Ru6gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=unriAT9A; arc=none smtp.client-ip=74.125.224.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-646e2b3600fso6496255d50.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 18:51:42 -0800 (PST)
+	s=arc-20240116; t=1768273088; c=relaxed/simple;
+	bh=4g+wGXOzU9O4o728wxdzupLqoaY0H+UaF3VynGflQsc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Qn/GDi1VBKxi2resAj03lZ/RmEg/3FoJaCaHSnAKM45IKsOy5CbY6VRvu1toLOzoxlv6Vkxn9GtoVyWOeFitrNDv1n0nq+BOg2gCwmoCNfunuxI6xzEs5LZVZBcpUafUwag91DfID0kPGodgJfvdEz5r+2991h1clVIx4ASv95Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iWcGNLfT; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-81ecbdfdcebso1764175b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Jan 2026 18:58:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768272701; x=1768877501; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A3EDLsI4gmCoGqH3Z2k2GRncDMxWHUvXOn29qxpSYSQ=;
-        b=unriAT9A+UuJfMwrqZXlxNFtEvFk8rOgD2+2CBeXkISuKnPbaGfGFrkQkWXIggSV5u
-         HyqIokkT6GNWa+j0BBgUsWjPx6DguHN2DxHZIeyUj32he9KkoW+2/yRoaAqRpuc34ZzH
-         VewmEXQXd06LBmY1c+u1bPRYrqNzO5xhEm0nVrZqqf6xrO3Oqwdaw1icGR3ZOgk+6Feg
-         cGfp25m0MY+RgX5nC3YVSQJMLg60nPE9pbTRawC1WWqTZ7bntrBWcNNk2hAeeossN58S
-         60fBNTWuDeYkE0PBMmxQQ/ToZfZoQXaM6xlcBZWnnBxvpGQcQPly7ZLDFrggOyf+Q7Ko
-         H5Hg==
+        d=gmail.com; s=20230601; t=1768273087; x=1768877887; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rFfXODjCRVHA3oXyZnoybHJItYbj+O62t+8u9pd99Xw=;
+        b=iWcGNLfTcUbMkY2w0fVCOkfge6HK9ajcoEnSUJ2KjSQYeH92aulq7M7BuRMfwzJ4Hp
+         e1W3CA0uc+xI32i0hdq9Vl6OOrglbSD60JLVDh931dqHqenjHbA90b0ped3rCkMcfFda
+         174UrQr3ZCKhwyOymG9w4LouVOAQFUkRhifi3u3Ij6SFRRI2ZQtWj1P6SXIsFpdLkiWN
+         MFYN5DtQjsfMKEvNS6oVT8upnnsmhFN6t7FE1V/TCaeehJt8OgyFbwnUSRNTZAKUOuS0
+         SaLK6OEtiDhSLomXoVrsw3ZayH8e5lU5ZPkCIAuiLm3xiGo8S/+fg49pstB5n45C3LyZ
+         lhPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768272701; x=1768877501;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=A3EDLsI4gmCoGqH3Z2k2GRncDMxWHUvXOn29qxpSYSQ=;
-        b=ojJlqDabYBKI9s0Os9InrgcuoMRLo+TMa1fy9jO4CcZmUbfgm4wlEVxAl7ttWZReJD
-         L3AS/6Bm+DNHFv349wPEI4sK0ES97lHj02dYVvijX4qdTPKmUzy1i/8lLZKDycEJ/qDb
-         bFqyG1ISNzh0HRQRidaChQ1Wv9N6ZVQ5WV5ZIuK2rZyEzkPqBecW2yMuMF+fd9DOWiny
-         OmrsSDYO9By6nN/8g+FfYhv37ZGru9zovoz0aODu5rjvM0ZRo4AbnThdAFoOV1O66mOl
-         CcHDDzkjSpGG1JJdC7gyq0ZoS7tBuSRA/LSWFfYA7aSWxvl6h9QyJxesLJDYHYJSGZH/
-         c+BA==
-X-Forwarded-Encrypted: i=1; AJvYcCXyINdy0RbCLv8y5Mw2MtZYMP+yx8P75INCPpFmmyEfrAIfXlvhLwCOI4CfLYMKPJiFP3KxwskU/Qc6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOcGf0YBCU+kTZWvtow9Aegu4NI/e4FLmPxuApeD5bSKMtMf31
-	2vfF2oR1p61RAo8U/5zL5//Rd6ZQlkwTGEDLvZbzI/T9pFg/YVLAYxI60iCtDZcSqgGpS/zpsbi
-	0FT/m+V7A+jHs0Yugsanb4w8q/IRwcntN6QzYMHMqNw==
-X-Gm-Gg: AY/fxX4x9WJyDmKkjYVHReF9VSbAgsYPuKvgkIdl+ndfM3Xrg+ybCiFPucvH4BDGMa8
-	HnPWDVaBXcpXEjjUX3bGOKPouy/y2cfKVI+6kLm03xdm7A+Z2XjS9lY2n5IOAFRpza6XLP/ZL5y
-	oT+ftoaaNGc7i1t6sNsGlYSyj+sCz3FFceLeRgUqYxYiU72dCtYg5eXXXnf7OUMGLrkri0C3jIb
-	AHou/iZcU7HihOHkMec9ryQogKnS+a2KrE5ZFgv216RL6mm9fk3stRaT0LBP+eH4mN5PMJHeZlM
-	Ck5n6JjZMJGejJ3/nYPdYD76yqzk5snYs3ztEQ==
-X-Google-Smtp-Source: AGHT+IGY8QkMTn4FKDtsguPkPZlInIEAk3s30SOaRJ7i+o+AsKUMCFEY8+PBpcpdqGZl22WHl4ejg4hQ7dqsombF9rE=
-X-Received: by 2002:a05:690e:e8a:b0:641:f5bc:6983 with SMTP id
- 956f58d0204a3-64716c2c6eamr15484452d50.79.1768272701490; Mon, 12 Jan 2026
- 18:51:41 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768273087; x=1768877887;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rFfXODjCRVHA3oXyZnoybHJItYbj+O62t+8u9pd99Xw=;
+        b=AsQuMPm8c8aeB3disurZWYR4funDBJWej03bO4bBl7hwS8+x19rTIOvOrimr1xIvT0
+         dYBjJZNmYqDInpmty0MTNPYZwajaO+UqDElw53F+Hm8vRFEVkdSdOgPPjxcy1yB4KvTE
+         /OVtlDda0HrI9Cg+//JqgBD157gIhb7jVoHdRJZ84rn6gCVlHbpZTGMwSokUxKYoRwd/
+         3AX6ElyAIh5RtmrQFesIx2GVa1K8zi7wQ8Z1Ly2w446ndu+QbrPMv1vkNfTl7Snj9K2w
+         VkxW0jBQV8c0bOjpHnQTvW0cZlbG4lCPcmQM01+2LcyJsQgsgHlET7VKAH5gnnhBYSFd
+         wyag==
+X-Gm-Message-State: AOJu0YxC5Q5y++OO9TYHywVAN7p7tte6AHd94S5bzHstqkFm/2xRscRt
+	F9kea4xn3hiu0qkb2OY28EDmbrGoTvDkfjYSSER4iV1QKrWqoe70fnPs
+X-Gm-Gg: AY/fxX5kAtm8XAG+kUiJCAx1YQLMlbpSZIMxGndl7dDBoV+6xQ7soSFaxz/Sz0UJKQZ
+	pytmdBrlKm2ufznu4B2NdpDXyoHbDOUSt8kkx2F50KK+BwI7XUMjrzNYU0aoWeCaksVt71xi755
+	SlRlszvCkM5Fl/rcyVYpcsVN9/Gn0liSDVwWH5fw7RcGimdnphFhOPWDHZmc+a/k99jyXi+0pd0
+	6E8A1A/rj4IqUIWa6Exx65I2zhp/KDK4cwhWHh9XWOPz02tmsuPqwdTZC3ntimah0vCxe6rSWLT
+	68ttSlP3xMlSeiPAKkT4we8/wzw1l6wo108Lvc5rIRELWHA6CIeJdvGv7KxSdWGOjidqL3jnb+D
+	4tEAtx5Lhnvx8MYPV25OZ5dL5ikMr1Y5Wm528OwpfCAAekl0R8IGWSDU81obHpXbETtL84yMj2v
+	Xo8dQWw0OOcSbKh/huvF10oU29MR2C9mljZW2XyoLmkxy/YDdC2C4=
+X-Google-Smtp-Source: AGHT+IFGjSWJ0/N/jssuSA4G7vWWabFAFD8WCwkp8/+SFuj7W2uo6HpZBUBUR8JLjzWJaFq/fn4bfQ==
+X-Received: by 2002:a05:6a00:6511:b0:81f:3c34:fa7a with SMTP id d2e1a72fcca58-81f3c34fc14mr5522589b3a.39.1768273086884;
+        Mon, 12 Jan 2026 18:58:06 -0800 (PST)
+Received: from [127.0.1.1] (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c530133csm18702724b3a.31.2026.01.12.18.58.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jan 2026 18:58:06 -0800 (PST)
+From: Kyle Hsieh <kylehsieh1995@gmail.com>
+Subject: [PATCH v3 0/2] Add Meta(Facebook) ventura2 BMC(AST2600)
+Date: Tue, 13 Jan 2026 10:57:57 +0800
+Message-Id: <20260113-ventura2_initial_dts-v3-0-2dbfda6a5b47@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com> <20260112-shrivel-sarcastic-36d9acd2d96a@spud>
-In-Reply-To: <20260112-shrivel-sarcastic-36d9acd2d96a@spud>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Tue, 13 Jan 2026 10:51:29 +0800
-X-Gm-Features: AZwV_Qh6psUrOlkmdvJ5XMadMeDGqdGdDoMMCEqx-N5Umm_2TBrLFIEtUXleAvI
-Message-ID: <CAH1PCMa_rGWJsNiu3dGiOBxF9df-RL6qyanoGde3YqvmfGLyxA@mail.gmail.com>
-Subject: Re: [PATCH v4 00/11] riscv: spacemit: Add SpacemiT K3 SoC and K3
- Pico-ITX board
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Lubomir Rintel <lkundrak@v3.sk>, Yangyu Chen <cyy@cyyself.name>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, Andrew Jones <ajones@ventanamicro.com>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
-	linux-serial@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALW0ZWkC/4XNQQ6CMBCF4auQrq1pp9CKK+9hDCm0wCRQTIuNh
+ nB3CytdGJf/S+abhQTr0QZyzhbibcSAk0shDhlpeu06S9GkJsCg4ABAo3Xzw2uo0OGMeqjMHGj
+ JylqAUkbKgqTTu7ctPnf2ekvdY5gn/9q/RL6tf8DIKaO8ZZJL2aiTFpdu1Dgcm2kkGxjhE8l/I
+ JCQlpei1oXJmfpC1nV9A5xs8TL9AAAA
+X-Change-ID: 20251222-ventura2_initial_dts-909b3277d665
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Kyle Hsieh <kylehsieh1995@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1324;
+ i=kylehsieh1995@gmail.com; h=from:subject:message-id;
+ bh=4g+wGXOzU9O4o728wxdzupLqoaY0H+UaF3VynGflQsc=;
+ b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBpZbS7Nwp6cSSumZLmoON0Cq6yF7x8Kf26aO5sX
+ 7TAG9KFxv6JATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCaWW0uwAKCRClg0K3CVbE
+ gUylB/42ekjg9KvH3E9Mz9qnzsc0txXIwLQK/t2U85LJDsO+zMrJXCUonA4apS0nQBHnIGBUGS3
+ vZpHn5wrjMjRau6TfaRuDKcVvdZBKGYjzU6OKKW1mAWNGLAgbC8MnDyUaUFCiruIsPTPcYjyuoK
+ dbdXv86abQbgosBL5rHdkOFfqwyz3iWpSjI31GlFbQc28+76UpLe5Zm4QcSJn1wJgtWbUUp3lZq
+ 1dIFTQP1glVTi3VqHrpKj1uDLC1QZUzumV2A1SblHgMBoROx9qxOO8ofcCEtQ1TgNZlUhnxrJ99
+ GKFKECn8vOMN2sHZqoSlrh2LV820xgUFcyNlkk3SLfUPxfHu
+X-Developer-Key: i=kylehsieh1995@gmail.com; a=openpgp;
+ fpr=C91EC68D64E758F931C6A897A58342B70956C481
 
-On Tue, Jan 13, 2026 at 5:46=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Sat, Jan 10, 2026 at 01:18:12PM +0800, Guodong Xu wrote:
->
-> > Hi, Conor
-> >
-> > For the binding riscv/extensions.ymal, here's what changed in v3 (no
-> > change in v4):
-> >
-> >  1. Dropped the patch of adding "supm" into extensions.yaml. At the sam=
-e
-> >     time, I will start another patchset which implements the strategy
-> >     outlined by Conor in Link [2] and by Samuel in Link [3].
->
-> Okay, that seems reasonable to separate out.
->
-> >
-> >  2. Dropped the dependency checks for "sha" on "h", "shcounterenw", and
-> >     6 others. "sha" implies these extensions, and it should be allowed
-> >     to be declared independently. Like "a" implies "zaamo" and "zalrsc"=
-.
-> >
-> >  3. Enchanced the dependency check of "ziccamoa" on "a". Specifically,
-> >      - added the dependency check of "ziccamoa" on "zaamo" or on "a".
-> >      - added the dependency check of "za64rs" on "zalrsc" or on "a".
-> >      - added the dependency check of "ziccrse" on "zalrsc" or "a".
-> >     The commit message of this patch is updated too, to better explain =
-the
-> >     relationship  between "ziccamoa", "za64rs", "ziccrse" and "a".
-> >
-> >  4. Enhanced checking dependency of "b" and "zba", "zbb", "zbs", making=
- the
-> >     dependency check in both directions, as discussed in [4]. Since "b"
-> >     was ratified much later than its component extensions (zba/zbb/zbs)=
-,
-> >     existing software and kernels expect these explicit strings. This
-> >     bidirectional check ensures cores declaring "b" remain compatible
-> >     with older software that only recognizes zba/zbb/zbs.
->
-> This I asked about in the relevant patch, I would like to know what your
-> plan for adding the "b"s is.
+Summary:
+Add linux device tree entry related to Meta(Facebook) ventura2.
+specific devices connected to BMC(AST2600) SoC.
 
-Thanks for confirming the above. Yes, I will start a follow up patch to upd=
-ate
-the dtsi files related to the "b" extension.
+Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+Changes in v3:
+- Add annotation for marvel 88e6393x
+- Modify the gpio-line-name
+- Modify the node order alphabetically
+- Modify dt-bindings document for rmc instead of bmc
+- Move the gpio-line-names to original node
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v2: https://lore.kernel.org/r/20251224-ventura2_initial_dts-v2-0-f193ba5d4073@gmail.com
+
+Changes in v2:
+- Remove unused mdio
+- Link to v1: https://lore.kernel.org/r/20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com
+
+---
+Kyle Hsieh (2):
+      dt-bindings: arm: aspeed: add Meta ventura2 board
+      ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
+
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |    1 +
+ .../dts/aspeed/aspeed-bmc-facebook-ventura2.dts    | 2874 ++++++++++++++++++++
+ 3 files changed, 2876 insertions(+)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20251222-ventura2_initial_dts-909b3277d665
 
 Best regards,
-Guodong Xu
+-- 
+Kyle Hsieh <kylehsieh1995@gmail.com>
 
->
-> Spacemit folks, I assume you weren't planning on taking the
-> extensions.yaml stuff via your tree? If you weren't, I'll grab it once
-> the question about b is answered.
 
