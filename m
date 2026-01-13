@@ -1,168 +1,128 @@
-Return-Path: <devicetree+bounces-254249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0ABD16885
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 04:42:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED9EED168F6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 04:50:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5838D3011A80
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 03:42:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AEF2C3016DD0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 03:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8818D348867;
-	Tue, 13 Jan 2026 03:42:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D553016FB;
+	Tue, 13 Jan 2026 03:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mePDu0JA"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ICLXnlUC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from mail-m15590.qiye.163.com (mail-m15590.qiye.163.com [101.71.155.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C58B328243;
-	Tue, 13 Jan 2026 03:42:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9459163;
+	Tue, 13 Jan 2026 03:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.90
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768275760; cv=none; b=HJ/5LvFEweZQG4xXRMFIxq/1pIzBi6fTwhWt6ZiswqV6tj70K6/SXsAG4npcL+FgpkHfg9ww9CwmpbcIKnHlWObpS6rtV7I9kYmhDE2mFLipbs/jgjPHUGSCwhydUPeC2zvX1nHXPrI/1n6xaATrPFPbWCy4dyKxUSaEy5jzRCU=
+	t=1768276252; cv=none; b=tA+shgujkeVZwmfOgJTGUiBR1c0FF24yfHoaipV2IT5O80bs0MLiifyzcVP09SMvRJH5s7BpU8tnWkywdwi8m4wCevvT86Wgl+xta0pMnCd1UOUqg8pNfHJxl9bWvdXte4gZLaiwrKqMovOMz3n5HdJ4c4zL1SOMEBNf6VtUj1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768275760; c=relaxed/simple;
-	bh=wRx+TNLJBbL2ubl8LIvhEos4LxCfMOOdQi3XJl6jDyE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FD+YITgr5nTiXF+HEsEgC239XkLnBFedOPKQ5Q4H3OpdzYzDxd8xIk7bSBzD8lqMgH8y7LmESDH5ywsJT6VDiCnwDetN4ihFIFjwDFLPS3b6Rx5TQe7ngE31pTeLOnUwjlpbQjGVN3WnEzNU/fkTx1nVEMyqxWOoTIFdKIUzae8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mePDu0JA; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768275759; x=1799811759;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wRx+TNLJBbL2ubl8LIvhEos4LxCfMOOdQi3XJl6jDyE=;
-  b=mePDu0JAe8NxouW206yBW2Z8KhgkyES7Dav+pb3l0uoHlK5A1iAnzYf/
-   6uDyUP1go7glL5mqi61wbTDcmChaYfQut+Nde5SB2YostLeEX2pWg4GXt
-   +9nCsVfuwROYcY2z0T96xSSmJqn5Bo+pU5thluXGOmaE38gsEXZempqkQ
-   BVjjfXp0F6GmulHx99/O/8b4eIf1+7gJXHs2a4fTJSL5KWR03ezgY67of
-   vzPEI9o2QEYoB2AqvPz0WatmwvPjU5g3piqnvieOrUu4dOmTXNudPrXTi
-   Q6r+UdMrF7Y67+MU2JbHu/ojcVe+wLyQH4aAzgfD8OENeHXDjzQy909yA
-   g==;
-X-CSE-ConnectionGUID: 84uiV0klQTeYFBseWqMtsQ==
-X-CSE-MsgGUID: NlDycj6FRQGchAAaKgDNuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11669"; a="81009557"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
-   d="scan'208";a="81009557"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2026 19:42:39 -0800
-X-CSE-ConnectionGUID: Dp9NJNqyRymYSYWocfCcrQ==
-X-CSE-MsgGUID: jSeE+nXDRt2HMQrAxmYNXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
-   d="scan'208";a="209098823"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 12 Jan 2026 19:42:34 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vfVIe-00000000EB2-1gwZ;
-	Tue, 13 Jan 2026 03:42:32 +0000
-Date: Tue, 13 Jan 2026 11:41:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Cyrille Pitchen <cyrille.pitchen@microchip.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Russell King <linux@armlinux.org.uk>
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Cyrille Pitchen <cyrille.pitchen@microchip.com>
-Subject: Re: [PATCH v4 2/5] drm/microchip: add a driver for the Microchip
- GFX2D GPU
-Message-ID: <202601131146.aeqDjJy1-lkp@intel.com>
-References: <20260112-cpitchen-mainline_gfx2d-v4-2-f210041ad343@microchip.com>
+	s=arc-20240116; t=1768276252; c=relaxed/simple;
+	bh=+0/2IF5z7o1wcBvsgWG+eBqE4okj4szedjYBDDu8QF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QfJwHLDnnTg/nrtjwQXQFiAU5SKlMOfNvuPxhe+zCTzzGcUCl0ZZSWC7adJMuzCrw+GG4L+M1KcYCbOYNxSTxRQyNpjBGCnts75pJ/54j/mFcFz71BegdhZv/y/db8EXA/VEWXFH2n+CHmM3tC0REVXflbVF7rCaPd+Fex6hNIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ICLXnlUC; arc=none smtp.client-ip=101.71.155.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 306affc4c;
+	Tue, 13 Jan 2026 11:45:35 +0800 (GMT+08:00)
+Message-ID: <b901011c-d062-4a4f-8a2e-9f918eab3838@rock-chips.com>
+Date: Tue, 13 Jan 2026 11:45:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260112-cpitchen-mainline_gfx2d-v4-2-f210041ad343@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: usb: Add binding for WCH CH334/CH335
+ hub controller
+To: Krzysztof Kozlowski <krzk@kernel.org>, Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Quentin Schulz <quentin.schulz@cherry.de>, Jonas Karlman <jonas@kwiboo.se>,
+ Hsun Lai <i@chainsx.cn>, John Clark <inindev@gmail.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Alexey Charkov <alchark@gmail.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20260112022823.91-1-kernel@airkyi.com>
+ <20260112022823.91-2-kernel@airkyi.com>
+ <20260112-lively-hallowed-beetle-fc15b2@quoll>
+ <1515a445-576a-4833-a604-c31062f7d3fa@rock-chips.com>
+ <b4eb4ab6-6fde-4c01-8069-470545ffdac4@kernel.org>
+ <568b9e25-bf96-4e78-9af0-4791cbb90a56@rock-chips.com>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <568b9e25-bf96-4e78-9af0-4791cbb90a56@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9bb575818903abkunm0fc5f439c0aac
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkoaHlZPGEoaHRlPH0tPGRhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=ICLXnlUCKdw0l4C5PwjkIWI+IVk7r4/+WwkYTgaVw86rZ636qn6GnsMAlH3m9KDe331gcSkS3TklrGhw8/QrO0k6/hTC3s1bGoI9x213B9d26cr4/F/RDXu76m2tvVwDtwq+Qyw1eBwnYz+/a3EN9/JjCw818hD+5H3XmHoPYvc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=RLlZk5JLSHjXxq4/+unFmqq6XhZxTOn9ntEjqGDpUTM=;
+	h=date:mime-version:subject:message-id:from;
 
-Hi Cyrille,
+On 1/13/2026 11:27 AM, Chaoyi Chen wrote:
+> Hi Krzysztof,
+> 
+> On 1/12/2026 10:28 PM, Krzysztof Kozlowski wrote:
+>> On 12/01/2026 09:59, Chaoyi Chen wrote:
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/gpio/gpio.h>
+>>>>> +    usb {
+>>>>> +        dr_mode = "host";
+>>
+>> One more thing - drop above line.
+>>
+> 
+> Will fix in next version.
+> 
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <0>;
+>>>>> +
+>>>>> +        hub: hub@1 {
+>>>>> +            compatible = "usb1a86,8091";
+>>>>> +            reg = <1>;
+>>>>> +            reset-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+>>>>
+>>>> Are you sure?
+>>>
+>>> I guess what you're concerned about here is the polarity? 
+>>> If that's the case, then there's no problem.
+>>
+>> Yes, I was wondering whether polarity is set correctly.
+> 
+> Yes, it is active-low, so during normal operation it should be set to high.
+> 
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 38feb171b3f92d77e8061fafb5ddfffc2c13b672]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Cyrille-Pitchen/dt-bindings-gpu-add-bindings-for-the-Microchip-GFX2D-GPU/20260112-192254
-base:   38feb171b3f92d77e8061fafb5ddfffc2c13b672
-patch link:    https://lore.kernel.org/r/20260112-cpitchen-mainline_gfx2d-v4-2-f210041ad343%40microchip.com
-patch subject: [PATCH v4 2/5] drm/microchip: add a driver for the Microchip GFX2D GPU
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20260113/202601131146.aeqDjJy1-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260113/202601131146.aeqDjJy1-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601131146.aeqDjJy1-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/microchip/mchp_gfx2d_cmd.c: In function 'mchp_gfx2d_enable_exend':
->> drivers/gpu/drm/microchip/mchp_gfx2d_cmd.c:44:9: error: implicit declaration of function 'drm_dbg'; did you mean 'dev_dbg'? [-Wimplicit-function-declaration]
-      44 |         drm_dbg(&priv->drm, "enable EXEND interrupt\n");
-         |         ^~~~~~~
-         |         dev_dbg
---
->> drivers/gpu/drm/microchip/mchp_gfx2d_drv.c:61:10: error: 'const struct drm_driver' has no member named 'date'
-      61 |         .date = "20240716",
-         |          ^~~~
->> drivers/gpu/drm/microchip/mchp_gfx2d_drv.c:61:17: error: initialization of 'unsigned int' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
-      61 |         .date = "20240716",
-         |                 ^~~~~~~~~~
-   drivers/gpu/drm/microchip/mchp_gfx2d_drv.c:61:17: note: (near initialization for 'mchp_gfx2d_drm_driver.driver_features')
-   drivers/gpu/drm/microchip/mchp_gfx2d_drv.c:62:28: warning: initialized field overwritten [-Woverride-init]
-      62 |         .driver_features = DRIVER_GEM | DRIVER_RENDER,
-         |                            ^~~~~~~~~~
-   drivers/gpu/drm/microchip/mchp_gfx2d_drv.c:62:28: note: (near initialization for 'mchp_gfx2d_drm_driver.driver_features')
-   drivers/gpu/drm/microchip/mchp_gfx2d_drv.c: In function 'mchp_gfx2d_thread':
->> drivers/gpu/drm/microchip/mchp_gfx2d_drv.c:98:9: error: implicit declaration of function 'drm_dbg'; did you mean 'dev_dbg'? [-Wimplicit-function-declaration]
-      98 |         drm_dbg(&priv->drm, "enter IRQ thread\n");
-         |         ^~~~~~~
-         |         dev_dbg
-   drivers/gpu/drm/microchip/mchp_gfx2d_drv.c: At top level:
->> drivers/gpu/drm/microchip/mchp_gfx2d_drv.c:344:10: error: 'struct platform_driver' has no member named 'remove_new'; did you mean 'remove'?
-     344 |         .remove_new = mchp_gfx2d_remove,
-         |          ^~~~~~~~~~
-         |          remove
---
-   drivers/gpu/drm/microchip/mchp_gfx2d_gem.c: In function 'mchp_gfx2d_gem_create':
->> drivers/gpu/drm/microchip/mchp_gfx2d_gem.c:127:17: error: implicit declaration of function 'drm_dbg'; did you mean 'dev_dbg'? [-Wimplicit-function-declaration]
-     127 |                 drm_dbg(dev, "failed to allocate buffer with size %zu\n", size);
-         |                 ^~~~~~~
-         |                 dev_dbg
-   drivers/gpu/drm/microchip/mchp_gfx2d_gem.c: In function 'mchp_gfx2d_gem_prime_import_sg_table':
->> drivers/gpu/drm/microchip/mchp_gfx2d_gem.c:201:9: error: implicit declaration of function 'drm_dbg_prime' [-Wimplicit-function-declaration]
-     201 |         drm_dbg_prime(dev, "dma_addr = %pad, size = %zu\n",
-         |         ^~~~~~~~~~~~~
-
-
-vim +44 drivers/gpu/drm/microchip/mchp_gfx2d_cmd.c
-
-    41	
-    42	static void mchp_gfx2d_enable_exend(struct mchp_gfx2d_device *priv)
-    43	{
-  > 44		drm_dbg(&priv->drm, "enable EXEND interrupt\n");
-    45		writel(GFX2D_IRQ_EXEND, priv->regs + GFX2D_IE);
-    46	}
-    47	
+Sorry, I didn't consider the driver situation. 
+I will fix it in the next version.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best, 
+Chaoyi
 
