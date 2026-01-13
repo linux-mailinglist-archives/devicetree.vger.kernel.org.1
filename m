@@ -1,116 +1,161 @@
-Return-Path: <devicetree+bounces-254594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C689D19B5C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:05:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E112D19B17
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C59BC302ABBF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:58:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8F893301AE4A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDE12D73B1;
-	Tue, 13 Jan 2026 14:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F772E6CA8;
+	Tue, 13 Jan 2026 15:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l5ipTEwg"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nWazay0W";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="R97/PjO3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44F52D6E6A;
-	Tue, 13 Jan 2026 14:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1891E2D374F
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 15:00:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768316301; cv=none; b=YKbEfhnwLsXcBiJAzMNCaS1oRHAHwvUttgDPXPa7eMmoJ7LyN4c0xRme1GdLEyKos5KlTAdMXk8rHP1bjEV/b4DTyo5uBUQrUaE37ccHriIL/AzpJG9uKalMIrSnsBPjEBuqN270NPbip2qqUd7u79uurzEC3dhr08BcPwECGTY=
+	t=1768316408; cv=none; b=UdnCv3qhqsmJcJDGXkh2P4+4CfgvI8lwWckt9G6BtUBocttyL1gWf7GiFAp1XPAemLjrGwoZWl9v7YF1qUdZUFv3TEdu4NQEuiq2odEkRz06133S1GAJbTBTo+3efkGxdXtU5CuYgcg3EnfSDf49bKb4pYsEhCZMg5KCwg5uFa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768316301; c=relaxed/simple;
-	bh=OmnMtX662btR77iUa1zvEko68M1Ld3hW70qvg0CZLDA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u7jmNhW6TVS8/srXxu5szlzp0AF/cOiRe7nNnqhV/j20T6T63c1Df+DHWy4ODmm8GC2wQDxYMnu6+f+6EH6qWdWfls/8XnXS15WFLb8o0tZBBg2SoOV1UA5cEUqTzucuXCRLLw3kFo81jvBXCYytqMmYTONnDnwy2ihvOeLAcCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=l5ipTEwg; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768316300; x=1799852300;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OmnMtX662btR77iUa1zvEko68M1Ld3hW70qvg0CZLDA=;
-  b=l5ipTEwgA2WA33IXZSm5W+YIagykNKLM9SOPWJwOm9sbK4B/UnbnQJHd
-   mWbhr+f555S1meH+s6t6rJr8rXsLbySGDxQtOgx7kN79GAHTANws7EYZd
-   7/b5LsUphX3eBOGQCSC1W83+paqg9jqVmTLZjP2fZBAJkXl6y8gMBsMHv
-   FZ7qW+sTWqdH/wxrL7ZU25eJupf6Y/6YXwF61nyRqKfOzAg6Df2z5C7oO
-   GpQH3BsNNMTkswT39tSelSaYyiBn1FuFqxG3o5HV+7QzgMp491yt9ip6L
-   /NljySMOQ/B9XTl2soCGVDAcF8gmMRAxWg+j1Y4+brHhN3p0jYY1DRzBU
-   Q==;
-X-CSE-ConnectionGUID: Q0NwRQlQRNCkBTj04tY+5A==
-X-CSE-MsgGUID: cFIje/p5Sjuy8RZN0dZH0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="69334071"
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
-   d="scan'208";a="69334071"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2026 06:58:19 -0800
-X-CSE-ConnectionGUID: fcm3ABW8Rv+veYV7VWgZ8Q==
-X-CSE-MsgGUID: gRIUg2RQR+mQXCpFRRcBzw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,222,1763452800"; 
-   d="scan'208";a="235658196"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 13 Jan 2026 06:58:16 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vffqY-00000000ExU-3EgU;
-	Tue, 13 Jan 2026 14:58:14 +0000
-Date: Tue, 13 Jan 2026 22:57:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Siratul Islam <email@sirat.me>, andy@kernel.org, geert@linux-m68k.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Siratul Islam <email@sirat.me>
-Subject: Re: [PATCH 3/4] auxdisplay: tm1637: Add driver for TM1637
-Message-ID: <202601132253.Up9189vT-lkp@intel.com>
-References: <20260113040242.19156-4-email@sirat.me>
+	s=arc-20240116; t=1768316408; c=relaxed/simple;
+	bh=r5bVxz5fd5226yh5qcQYbAXqPX6xGUFlKgPtj0iHSHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ra/NzVjyFa1kc1AmfTI02A3W+xm6vCIWaKY33+lL2zTp/+TenZ1kP3P7zHEbcWcX/sChsJI8brfgOTaLf0gGUM+bob7CU0nPDoNq4nrUaghZh/MVGLWTi7A0ckiMBvRDy8JMJp1f6oR0mHmQ2ZeqATk46FqLeDvrfO6GZahDwiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nWazay0W; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=R97/PjO3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60DCUfBw3809909
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 15:00:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ktm2n2UyqtKwdocxHv9UajYRbFEg/OQhxiByX9habIo=; b=nWazay0WqOMfywOg
+	iGGBIxweKZ2XEeCo5orxLzaVrSuhlllOTp3FOrLPMzK7fnOTe2uf6BHRr6yup9X1
+	qfboyLflN3qKpY6Rj4S/eqD5am/9AYafGo6BwVxxR/TNcEoDExhgs+SN+SoSxeZg
+	JEQrZ2ERM/juSbZHn37MwoTzIVQGQ+HO7GtLeKT7mZFizIiqTb5s3rg2luN8QBD9
+	wQBmpx31v9xh6ixBV+dmUJz3MS+snEmoUNM2fMryMMTuNJDsMDjRdt0p3bK3bgER
+	yPnBFsjsBMHB/bvD5DK9lt7FJYyBfHeJgQUfBqv6FEyJOaO3dUDoaXf5eXs4RZBV
+	ZhFOiA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bng55sqwu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 15:00:06 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b222111167so137894285a.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 07:00:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768316405; x=1768921205; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ktm2n2UyqtKwdocxHv9UajYRbFEg/OQhxiByX9habIo=;
+        b=R97/PjO3xwGCPyCBzY7iPAPN8SlWYDZOj7xyMx6QzzpBQNrdC/05HZHRAAHhjy/J9X
+         6FtFR/SsG56mcyel243PWifVagD1y27EeWdwZnTY5x1WBoIePrL5QdWJmbFhv6OMC5mV
+         D8IS8UKwUdoQE17WsOToOggmkw1ZpAHqgsNLnAB/uLL7GwMgwx5aSbw5kdvTmnyVfBwZ
+         PdDCLhG6zjt4CF539bt4aNKQNfssTwTBU1T+7vowtIjnTibf9uX+PoWSfHwisZoe5h7n
+         Cx7dv5iWazoyuK9jNo7da9ICzfaSmAObmshOUFmmb/2RHNhDG+dmr+L1tsh/PmNG+0tn
+         htzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768316405; x=1768921205;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ktm2n2UyqtKwdocxHv9UajYRbFEg/OQhxiByX9habIo=;
+        b=X2YCEgRhYImc2+0B6ta78QYxnJpKhe3fhlSZpgbQjYPlaJ6T3P8qziV/3PjlPswqIu
+         KtttRwYZ60phNe1ie2OlU/ASfkXJbT1PvsTZGPR7xewuxYCYfb8ZkCNCktcLyw3DVbsF
+         m0DTHwx2fCZPrwAdWZJDnnaGcLS+FZA9WeBYXwsaY48s2do2iAAm9xKzilVBbo3B59bu
+         o/FpHHoZekFohmJhQrOkjTgpkC8C6Ky5cMvGLINQcvws2AucPGxPy/A+2WrtuplPLnOb
+         YnM/P6fD9HjsdNN+jNwKcYtiynik3e/6s358/ylLazo7Id15ceewC3mnx3w3NDdspn/c
+         x93A==
+X-Forwarded-Encrypted: i=1; AJvYcCV73afaKa/NfBPGywiyc9SzD1xxRN5ItZPVSgSYjpaim0k/yShhlQJY7S3jRyNaIvIYOZGyWB/FizsU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz659coL1dFvi6Te9c7yOfQtoHxhFtGhXuM7wPysQ+EibdT7Yqo
+	sbn9MD3QkYezXCtWv00Gh07lWqQeR4oXLCVii+wAuuwdBe40IRhSKxeDSpIEBEivVPgbLypHSwh
+	RLQ+sApunAc/vlQrSbEU+8kFhQ/hcNN9VetTHVKwJrH+wjPdcmORsLGysoCM8XxuD
+X-Gm-Gg: AY/fxX4kweRBpMkAgZ3ygAa9EyyQX1QYMMAs84+xA2C+Aq+Re3vlvNURY0CDuvtPPnL
+	men4+PJwcxB1P3pO+0CMbXR7NeOqNwyTLZ7HS5oaZaLJ5fbKoCn+lRtZcfnb+bJHsM55iJMQ7Q4
+	8m3znkReb9y4T9Zc04j6zXRUF3krKeC4eDcpofcPvS2Mp12NUsf2BSDIyjskL7mL/BO+ydg2BCC
+	sFgYk5uz6JX5/TDx2xyv1yJqi8NHlmX2467H9pgXrMBMLUzRHTrn32GLeFaxw3PrWBBmZQE3w/w
+	K+tOFYdiazatlHxyZeql+tUjOwvuY89y52DiUb3m6eH99JIeigzdqgwaZ+aofdREjz8KsUCIuYV
+	EIgyumz4afEwV4jC+DxWCF7BWH/mSgSWG9IHpqNI0lOGn+2NYZLWbFDmovFk2K4FNRdU=
+X-Received: by 2002:a05:620a:4620:b0:891:c59a:a9c0 with SMTP id af79cd13be357-8c389399eb0mr2130316885a.5.1768316405164;
+        Tue, 13 Jan 2026 07:00:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEdONpxl9J431dvGAQAnM9vO8ucFgCRI0lQsiVnjL5pNFyfzCrP0QoJRqVWlJoEgu22V8539Q==
+X-Received: by 2002:a05:620a:4620:b0:891:c59a:a9c0 with SMTP id af79cd13be357-8c389399eb0mr2130311785a.5.1768316404422;
+        Tue, 13 Jan 2026 07:00:04 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b87099fcef6sm820866666b.22.2026.01.13.07.00.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jan 2026 07:00:04 -0800 (PST)
+Message-ID: <1fcb607d-f3dc-4dcb-b640-452eae750952@oss.qualcomm.com>
+Date: Tue, 13 Jan 2026 16:00:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260113040242.19156-4-email@sirat.me>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC] arm64: dts: qcom: qcs6490-rb3gen2: power on onboard
+ uPD720201 controller
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260109-rb3gen2-upd720201-v1-1-50d9b22dbc2a@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260109-rb3gen2-upd720201-v1-1-50d9b22dbc2a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: ZHDeqSXiNhkXN4lizOlkKFugs6WOuqDt
+X-Proofpoint-ORIG-GUID: ZHDeqSXiNhkXN4lizOlkKFugs6WOuqDt
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTEzMDEyNiBTYWx0ZWRfX0JMG9f9GnvmL
+ TUuJBQlKlteV9cpW6+gM9d3r2XZSzpycrdffd7cZiCqvRxy5xzkChzKkTSEKrlSr6IfQSgaLIaI
+ kF6QpJu50mcgnc3uKsSJc8W3R57g2UwZ7YbKz9ZrRtLC47kPwc9U4RRvGQ1WxNNHzs/e+8wjGaO
+ eChmSlNIeuB9KIZ+0T6v5FdDteM6e5zyUvnal3s+a6ni6BdAtTmb5qIf9+R8BkGrVs0qNt2RLvi
+ 2b8D7TfLL0ZyBLvjf95+u/7Q1j2ymk1UuTRQ0oE1IVG80tLgD0tcLOmxGl8rTEF5u2npXD6rwUz
+ X1tyui/EDR3ZaEWBWgFFsbstTdtDMRAOODpov9k+C3suUkWFIqviUDOn17nO/mredlyNnmVp+WN
+ uGOWgOaWa6BYpyP77j6siHcrU5PSY1UaUdXqA/CXub4s1DEGANFG0KVwPfwAH/gsjuiRXsmMIHF
+ u7UNJzYl+hI2YfCXLmw==
+X-Authority-Analysis: v=2.4 cv=IIsPywvG c=1 sm=1 tr=0 ts=69665df6 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=v0cVDqjUyCw1FM0saaMA:9
+ a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-13_03,2026-01-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 clxscore=1015 bulkscore=0
+ phishscore=0 priorityscore=1501 suspectscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601130126
 
-Hi Siratul,
+On 1/9/26 4:30 PM, Dmitry Baryshkov wrote:
+> One of ports of the TC9563 bridge is connected to the PCIe Renesas host
+> controller. Specify the voltage regulator, powering on the USB host
+> controller.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+> Note, with these changes I can't get the onboard hub / ASIX controller
+> to work. Most likely those need to be powered on separately, but my
+> quick attempts to do it failed up to now.
+> ---
 
-kernel test robot noticed the following build errors:
+I assume it's connected to the switch?
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.19-rc5 next-20260113]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Does it show up on the bus? What if if you rescan the bus manually?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Siratul-Islam/dt-bindings-vendor-prefixes-Add-titanmec/20260113-161216
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260113040242.19156-4-email%40sirat.me
-patch subject: [PATCH 3/4] auxdisplay: tm1637: Add driver for TM1637
-config: riscv-randconfig-002-20260113 (attached as .config)
-compiler: riscv64-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260113/202601132253.Up9189vT-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601132253.Up9189vT-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> error: recursive dependency detected!
-   symbol AUXDISPLAY is selected by TM1637
-   symbol TM1637 depends on AUXDISPLAY
-   For a resolution refer to Documentation/kbuild/kconfig-language.rst
-   subsection "Kconfig recursive dependency limitations"
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
