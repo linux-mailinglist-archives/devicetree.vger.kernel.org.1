@@ -1,216 +1,149 @@
-Return-Path: <devicetree+bounces-254574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016BFD1968E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:23:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF578D19799
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:32:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0EBCF3049F44
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:19:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AF31E300E4DD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 14:20:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8241A284896;
-	Tue, 13 Jan 2026 14:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F87287516;
+	Tue, 13 Jan 2026 14:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="SpNlV70t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5137F286D7D
-	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 14:19:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B5B286881;
+	Tue, 13 Jan 2026 14:20:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768313967; cv=none; b=jQU8OpcgEqkE/Q61S/BDS6hFHIl/9VW6qUSj2urMRqNPbP/70oO0obnWwXcyZOL4ZrjgePoghWcFthHJwyx+LXQMlqRlYOB7nI4BSE2yVhZgjnKYJ2/1wdkMU4UrxulaiJLLPbOP44GtkpoW7KMdJWIe4SIP/xnbcKKA8G5OKH8=
+	t=1768314041; cv=none; b=dThi5j149Qt3XQEv3s62GwUMR6xd6EiZw1L8b3WaOqkSSc5KX7M3ic+9gXOemxadpJaJg64Vqh6O+HK5ETbau4ASnsGSZKxX6o9LPWds+ViCUFZvepl+vhU7c6cXvuhSNTPB0yJF3w4fKGozq5YprsaFGOl0V0BU+5a+5UmotSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768313967; c=relaxed/simple;
-	bh=uIpqQqtA/lJKBwjwwDPXE3suNhtvcxttY7BDb8S7rWg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YXHhJay8TuKEeAgDqQI3hLpewDcvME0af4E5RfMC0AavCHuWFdZADLLEdlqHK2Wqz1MtnjgDX8tscc/o+Me0YKiY5cq2JXRwdz1GJ6HtJhbtRUjoEpBRHadsvWMCP72a1IT1MX32K1mBbiLRIytgDnme+Yz/hklGBsNns7zHAQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-563686cba0aso1244539e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 06:19:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768313964; x=1768918764;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xwGbtz4WHBgjbaUVUACc9YQ7tp8fqM7Cfldv3SNB0Jo=;
-        b=A+o14r0R2pUWUTp+HzH4PknI8Gx1EluE4mUUYvmvvOzHOF+2wTJOQkHDqAgQqS6H8B
-         LUdfINvedP4LCZsG8dtdzyLUsjFB4BRCAAIwHJMPzE/79mFlARhz1CiElfh+YRMkqs7k
-         ZKX5w98t58m/hh0MCq6K69+OrdnQGn6H+Xi7fkHp/0fs5DOWsBh+H4egPMLE4WgXt9c3
-         TM++tcscQDrwPTTuQeBX/U3aYGHSTsSNsJ7qkQQUoHhCXqzZ9jaOhZdRjbu6PqqAFVdI
-         Y74Y9/ObYHPdRGNLyjrn+/uiNQ0tSx6CPajfeWBz75ea0qIHltLnJhlzrgQaSWN4zexn
-         00Ew==
-X-Forwarded-Encrypted: i=1; AJvYcCVJGHDDWoEl0PqCZbdsL7hjIg28iSLEmRv0w02vN6qoepwsKnIH71tAY+Zm7ywmmCEPdhJc7pkw45st@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzsjbuhz8CFhz7a/BXsDJxmfVRis08bGyaNwT4mVo50jFprYvPd
-	jCUFPgkfrpISrXsLcg2vIXvup+80P7UyO0B/xM/MZ3G/mx+HTs4a6y+9GMl3uvB0
-X-Gm-Gg: AY/fxX7+/JZ9WSM+4uc9qh/o3Cb2FIvp4v9BK7MPNmMHSflaPnaghN+W2cy7icxLJBc
-	GmwbQfHR/Oc85yYaXixr7OFJUlX5oK50NrR2OwOfANDQR4mb+pm7QFV3DKbJS4rugq5PguYI3o5
-	SiKkYYtGr3hRAp+U/5NCLvTRlbDnk5R5NMJQP114I1zq0Z7t8C5f6rFYpdU4q/WDNCSixcql5U3
-	hB2iSO1loBPxDoQkSsdBfQ9M1K4uj++Uk1qsI+vC9bPt0ClK/8jbxrabdkg1oes/V1BHF8LvBVf
-	6WVjrxESybG3EhyH7vxn8FdIEHjVjZMwDt5tu90LfGl9SiKgWnm1t9PaMa0zJFRm13vSVWSF0pd
-	paVMvyN83O7Fw48qX4ftgFP2U60KsagYmDltgFDOhbOmrR8VI+08w23R1NrPoaKh9fyGC1iCX3y
-	g2HH37hvt4M+8SV+dYdELzRbRw/+2kFQWKlLx0ei8MZzRFGXETRoA4mSuoTgo=
-X-Google-Smtp-Source: AGHT+IFCiIMLgC9fq8lTF7xRq7ooZt7BQaKQA+X+X4DHtfRxHxJY2Ec5BhB8NVJZviC5fFlyXYoDFw==
-X-Received: by 2002:a05:6122:895:b0:54a:8cfe:193e with SMTP id 71dfb90a1353d-56347d4a486mr7024487e0c.5.1768313962742;
-        Tue, 13 Jan 2026 06:19:22 -0800 (PST)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5634ca16da7sm17905069e0c.17.2026.01.13.06.19.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jan 2026 06:19:21 -0800 (PST)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-943d0cafe77so2464023241.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 06:19:21 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWl1zng0pzdgMC8o+VEtFisqso0sD94kJov2J1byKvN3rQKICxfMdcMBF4hVuTRjCKzjirYuq/bw/zq@vger.kernel.org
-X-Received: by 2002:a05:6102:5120:b0:5f1:55c9:11a2 with SMTP id
- ada2fe7eead31-5f155c91443mr2213235137.43.1768313960828; Tue, 13 Jan 2026
- 06:19:20 -0800 (PST)
+	s=arc-20240116; t=1768314041; c=relaxed/simple;
+	bh=XgmtYky/vQ9E76Bok9Zee6YvcNrFlfq07wYTyrlfKQ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ReMEj4KhfD/NOMvnNj6y58A7ZZALesGpVe8DruMpEL98r8xSBVMBmEt4IAI/jhEByfRz+O7S+VdPNIBt0L3k/3nrecvGE7EhfRvV8hMiNqJIadYJUvj1RyKvh36ecufGOUrNkxGs8h6KAjZbXVyQFy6YUoRba0dnGZKSmf2Bgz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=SpNlV70t; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 5139F6003C03;
+	Tue, 13 Jan 2026 14:20:37 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id 9-I0FvP7k-o5; Tue, 13 Jan 2026 14:20:34 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 3A9A16003C17;
+	Tue, 13 Jan 2026 14:20:34 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1768314034;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=rtTEO7u089b0r7hQr05Hu+7UDpMKL6cZI20/qSEFFrs=;
+	b=SpNlV70tDLvGsv3x3Ag8L3/ByS87trHOSx91ZCtzendOUhrwPQsi0TkZCwEVNuO3gZXq2Z
+	NK+kwyAE39sWcdvU6G5T2y5HfERW9nro0D4aVMxFZNUBsVPj+1ITsAp+MsPl4k6UEgLG/n
+	+jeB33YNN/WSK2qc4k97aj+APwgzT7ypkJ3fVE+7EmjwgFFD5VzJn0j7YK++BF7ID9WRWS
+	5MRuYHzJl6YzrMACiS9jbqT/gPuQKnkIwtO3AxiCoQpPph92k4HHbiUheYaWfOo/MI4/1v
+	JjqHti0vi45JCB4yadfb9HHjhm2ps3cu1K3JWAfrkP4Hifytk/zEJtT3RK41cQ==
+Received: from [192.168.2.110] (unknown [148.63.39.39])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id C170A360147;
+	Tue, 13 Jan 2026 14:20:33 +0000 (WET)
+Message-ID: <ea4ee289-fb46-44be-b5e6-9d3beca7c0d8@tecnico.ulisboa.pt>
+Date: Tue, 13 Jan 2026 14:20:33 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 13 Jan 2026 15:19:08 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVyQpOBT+Ho+mXY07fndFN9bKJdaaWGn91WOFnnYErLyg@mail.gmail.com>
-X-Gm-Features: AZwV_Qgc2H6REA8fgJsKnqRk5KR8TM9uu7EdHnPsHrNotI7sbZvhls2j-N9ukmU
-Message-ID: <CAMuHMdVyQpOBT+Ho+mXY07fndFN9bKJdaaWGn91WOFnnYErLyg@mail.gmail.com>
-Subject: Re: [PATCH 00/11] Describe PCIe/USB3.0 clock generator on R-Car Gen3
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] arm64: tegra: smaug: Add usb-role-switch support
+To: Jon Hunter <jonathanh@nvidia.com>, Mathias Nyman
+ <mathias.nyman@intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thierry Reding <thierry.reding@gmail.com>, JC Kuo <jckuo@nvidia.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
+ <20251204-diogo-tegra_phy-v1-5-51a2016d0be8@tecnico.ulisboa.pt>
+ <ea60f024-1f39-483c-87e3-36624bd58d49@nvidia.com>
+Content-Language: en-US
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <ea60f024-1f39-483c-87e3-36624bd58d49@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Marek,
 
-On Thu, 1 Jan 2026 at 21:39, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Describe the 9FGV0841 PCIe and USB3.0 clock generator present on various
-> R-Car Gen3 boards. The clock generator supplies 100 MHz differential clock
-> for PCIe ports, USB 3.0 PHY and SATA.
->
-> The series effectively has three parts, the first three patches are part 1,
-> which fills in the missing USB 3.0 PHY on R-Car E3 Ebisu and enables it,
-> thus aligning the Ebisu USB 3.0 support with the rest of the Gen3 boards.
->
-> The second part is description of PCIe root ports on R-Car Gen3 SoCs where
-> applicable, in this case that is H3/M3W/M3N/E3. The root port is used with
-> PCIe port power control to also control the PCIe port clock. This is needed
-> on Gen3 boards, because they often use separate clock output from the PCIe
-> clock generator 9FGV0841 to supply clock to the controller and to the PCIe
-> port.
->
-> The third part is enablement of the 9FGV0841 PCIe clock controller on the
-> R-Car Salvator-X/XS, ULCB and Ebisu boards. The boards use the PCIe clock
-> controller outputs in a slightly different manner, all use the outputs to
-> supply PCIe controllers and slots, as well as USB 3.0 SuperSpeed PHY. The
-> ULCB board also uses the 9FGV0841 to supply SATA IP, but this is not yet
-> described in DT, therefore it is also not part of this series.
->
-> Marek Vasut (11):
->   dt-bindings: phy: renesas: usb3-phy: add r8a77990 support
->   arm64: dts: renesas: r8a77990: Add USB 3.0 PHY and USB3S0 clock nodes
->   arm64: dts: renesas: ebisu: Enable USB 3.0 PHY
->   arm64: dts: renesas: r8a77951: Describe PCIe root ports
->   arm64: dts: renesas: r8a77960: Describe PCIe root ports
->   arm64: dts: renesas: r8a77961: Describe PCIe root ports
->   arm64: dts: renesas: r8a77965: Describe PCIe root ports
->   arm64: dts: renesas: r8a77990: Describe PCIe root port
->   arm64: dts: renesas: salvator-common: Describe PCIe/USB3.0 clock
->     generator
->   arm64: dts: renesas: ulcb: ulcb-kf: Describe PCIe/USB3.0 clock
->     generator
->   arm64: dts: renesas: ebisu: Describe PCIe/USB3.0 clock generator
 
-Thanks for your series!
+On 1/12/26 22:03, Jon Hunter wrote:
+> 
+> On 04/12/2025 21:27, Diogo Ivo wrote:
+>> The USB2 port on Smaug is configured for OTG operation but lacked the
+>> required 'usb-role-switch' property, leading to a failed probe and a
+>> non-functioning USB port. Add the property along with setting the default
+>> role to host.
+>>
+>> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+>> ---
+>>   arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/ 
+>> arm64/boot/dts/nvidia/tegra210-smaug.dts
+>> index b8d854f90be7..49bf23d6f593 100644
+>> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+>> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+>> @@ -1809,6 +1809,8 @@ usb2-0 {
+>>                   status = "okay";
+>>                   vbus-supply = <&usbc_vbus>;
+>>                   mode = "otg";
+>> +                usb-role-switch;
+>> +                role-switch-default-mode = "host";
+>>               };
+> 
+> 
+> This change does add the following warning when building with CHECK_DTBS
+> ...
+> 
+> arch/arm64/boot/dts/nvidia/tegra210-smaug.dtb: padctl@7009f000 
+> (nvidia,tegra210-xusb-padctl): ports:usb2-0: 'role-switch-default-mode' 
+> does not match any of the regexes: '^pinctrl-[0-9]+$'
+>      from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra210- 
+> xusb-padctl.yaml
+> 
+> I know that there are many warnings seen for the smaug DTB, but it would
+> be good to ensure we don't add more.
 
-This causes a crash during s2idle on e.g. Salvator-XS with R-Car
-H3 ES2.0:
+The 'role-switch-default-mode' property is read by the driver to set the
+initial role for the port [0] and is needed in order for the port to work
+when booting so in order to fix the warning this property needs to be added
+to the binding.
 
-    PM: suspend entry (s2idle)
-    Filesystems sync: 0.014 seconds
-    Unable to handle kernel NULL pointer dereference at virtual
-address 0000000000000008
-    Mem abort info:
-      ESR = 0x0000000096000004
-      EC = 0x25: DABT (current EL), IL = 32 bits
-      SET = 0, FnV = 0
-      EA = 0, S1PTW = 0
-      FSC = 0x04: level 0 translation fault
-    Data abort info:
-      ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
-      CM = 0, WnR = 0, TnD = 0, TagAccess = 0
-      GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
-    user pgtable: 4k pages, 48-bit VAs, pgdp=0000000504be2000
-    [0000000000000008] pgd=0000000000000000, p4d=0000000000000000
-    Internal error: Oops: 0000000096000004 [#1]  SMP
-    CPU: 2 UID: 0 PID: 1000 Comm: s2idle Not tainted
-6.19.0-rc5-arm64-renesas-04116-g331b300b41b0 #3416 PREEMPT
-    Hardware name: Renesas Salvator-X 2nd version board based on r8a77951 (DT)
-    pstate: a00000c5 (NzCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-    pc : devres_for_each_res+0x60/0xe8
-    lr : devres_for_each_res+0x48/0xe8
-    sp : ffff800083263a70
-    x29: ffff800083263a70 x28: 0000000000000000 x27: ffff0004c125aec8
-    x26: ffff800083263af8 x25: ffff80008167bd38 x24: ffff800083263af8
-    x23: ffff80008071b2f4 x22: ffff0004c125aed0 x21: ffff80008071acd8
-    x20: ffff80008071ad44 x19: ffff0004c125ac20 x18: 0000000000000001
-    x17: 00000000ffffffff x16: ffff800081b93ac8 x15: 0056c6b8a4d0b0e4
-    x14: 00001998170d3e20 x13: 188a4fd930ce7024 x12: 0000000529c8ad17
-    x11: 00000000000000c0 x10: 0000000000000960 x9 : ffff800083263a50
-    x8 : ffff800083263b38 x7 : 0000000000000000 x6 : ffff0004c0dc36c0
-    x5 : ffff800083263af8 x4 : 0000000000000000 x3 : 0000000000000001
-    x2 : 0000000000000000 x1 : 0000000000000000 x0 : 0000000000000000
-    Call trace:
-     devres_for_each_res+0x60/0xe8 (P)
-     dev_cache_fw_image+0x5c/0x1a8
-     dpm_for_each_dev+0x50/0x80
-     fw_pm_notify+0xc0/0xec
-     blocking_notifier_call_chain_robust+0x70/0xdc
-     pm_notifier_call_chain_robust+0x24/0x40
-     pm_suspend+0x13c/0x1e0
-     state_store+0x7c/0x100
-     kobj_attr_store+0x14/0x24
-     sysfs_kf_write+0x78/0x8c
-     kernfs_fop_write_iter+0x128/0x1d0
-     vfs_write+0x210/0x390
-     ksys_write+0x6c/0x100
-     __arm64_sys_write+0x18/0x20
-     invoke_syscall+0x44/0x100
-     el0_svc_common.constprop.0+0x3c/0xd4
-     do_el0_svc+0x18/0x20
-     el0_svc+0x24/0xd8
-     el0t_64_sync_handler+0x98/0xdc
-     el0t_64_sync+0x154/0x158
-    Code: f94004dc eb1600df 540000e1 14000018 (f9400780)
-    ---[ end trace 0000000000000000 ]---
-    note: s2idle[1000] exited with irqs disabled
-    note: s2idle[1000] exited with preempt_count 1
+As for the other warning ('connector' is a dependency of 'usb-role-switch')
+again I think the binding needs to be adjusted since in the Pixel C the
+connector node should be under the (as for now not present)
+cros-ec-typec node and the usb2-0 is then modeled as a remote-endpoint
+for the full connector. I am currently working on fixing the cros-ec-typec
+driver and already have a working fix for automatic role switching but
+in any case I think the binding is what needs changing. If you agree
+with this then I will add the necessary changes to the DT binding in v2.
 
-I do not know what is the actual issue.  Adding debug prints to
-rs9_suspend() and rs9_resume() shows these functions are not called,
-while adding 'status = "disabled"' to the renesas,9fgv0841 clock node
-in arch/arm64/boot/dts/renesas/salvator-common.dtsi does fix the issue.
+Thanks,
+Diogo
 
-Perhaps you have pending patches for the rs9 or PCIe drivers?
-Do you have a clue?
-Thanks!
+[0]: 
+https://elixir.bootlin.com/linux/v6.18.4/source/drivers/phy/tegra/xusb.c#L730
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> Cheers
+> Jon
 
