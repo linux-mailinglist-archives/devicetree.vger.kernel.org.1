@@ -1,102 +1,282 @@
-Return-Path: <devicetree+bounces-254321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B74DED17286
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:02:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2F39D1731C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 09:07:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 251983046754
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:02:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 17D61306B1CC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 08:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7143136CDEC;
-	Tue, 13 Jan 2026 08:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3733C36C0D2;
+	Tue, 13 Jan 2026 08:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c6rP5VTl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BW0kqUjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C29E352C2D;
-	Tue, 13 Jan 2026 08:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89A834EEEF
+	for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 08:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768291348; cv=none; b=HHjdnIgNqYkuU/UGKc+aWESbhiQ3CHXQjb2t6Et7Anfj+tFsQAlJklAkoK/FN4waQT8kvvjldfvKeHbXBcV8HQQpfln6UsSLo8v3pVIaCdLK+E0yJgz/LbDBLhu/lk9qpgga8/CWPsA9HPoU6y3GOlqa6xupgKboq1tHo0KiUYQ=
+	t=1768291362; cv=none; b=boP6b5WRz8HQZ1pGlLefRIcUgxy60xm0Gsf0AGkPOT1lT0kFVhJi3EcU9sXXRhF2HyfWFE6qnyCsQN0lkPbGqfEeaq7kFK3cx/ksBSGf4qw6JrmYFNeFM9OUIx1cv3HGNWOVLoYbvxQfmo+xPrDVCJZornREjYyo6DHuXFeBBdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768291348; c=relaxed/simple;
-	bh=J3hBtI77EfhzmvcrvjNUQr86h+zI8ManKW7DJecFKQY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tpbt3cB0kliEP1uSd5bhBePRFDC/Fh4zS37IPG882K6YKQSG621Up/hpKUW4XMBcRTn8LdZ8yQuinDZ/2dUvSQ8mXJ24e+qb4nv7ARy4tVcmORsqXVq0vms/rBcULF/XAUd4Jaljkzf99Ia0AtkjwLQu64AxtV+rf4lhn8F7+OY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c6rP5VTl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2FC6C19422;
-	Tue, 13 Jan 2026 08:02:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768291348;
-	bh=J3hBtI77EfhzmvcrvjNUQr86h+zI8ManKW7DJecFKQY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c6rP5VTl4V97plwwwkx2p3C2XbgPLNTlxq7nUjU/y/FlH1xbQ72V2tyFbLsXFSjMp
-	 y7ZIlJ6Nu1kiKqwu/l4PeokQBfkxrWLE0Rjmo16bHZiDuYt5OgvX93jPBzOGKYGxWp
-	 7OiuOgSOTk+L7oURS0XNos0bnAgSqFVoxTSiRpoafjdhmP/EAaPHV+fvb9obuSe/bD
-	 kHz2K97TPpHKiqNNkiYlZhj6ctcIONi2WevyA63qYwK3Ndt08Dlax2U8PJfl8lczP0
-	 gKCFycErKmB5XnUisa63mbIuscjRED3ceZZHN9ECutDNJ8lG/NIXQICfmxQZ6xCtQk
-	 /2HRQ7gPcRkCA==
-Date: Tue, 13 Jan 2026 09:02:25 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Edelweise Escala <edelweise.escala@analog.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] Add Support for LTC3220 18 Channel LED Driver V2
-Message-ID: <20260113-remarkable-determined-pogona-bfb2ab@quoll>
-References: <20260112-ltc3220-driver-v2-0-d043058fc4df@analog.com>
+	s=arc-20240116; t=1768291362; c=relaxed/simple;
+	bh=CfGLLHtAMP5se33ly666hJEy8681yRbGQLMykeBbx1k=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=sawslkF88FbI/2SNqSB6shGA3iQyRCMHwdadvpZUHJj54sGsA2uYy7s+FoIDMs08rXiXmx009NGG/uD9THmwkL3bq2Oyu5ogDLIk+nsxIpfCcChJ3w4ucOw4luf4tDLNJM4oSQoUjasc0I8TtXAr9IXP0a2pLhVpZ2Ehf8OBJAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BW0kqUjQ; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso65996385e9.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 00:02:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768291353; x=1768896153; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g6A7r611q476j/8oCIaN8K7+Q8yqCShfdSd5Arz3Gpc=;
+        b=BW0kqUjQPz7P/T47Y9g3A3OwkseZzCGJKk3QD2GbuTLwrFM5yj09E2CUTcsa7mUijz
+         YlXMjyvrXvMQiYawHLxi8KIq22k7l0xmDXyhp06GI3QUjmqmWftacYZI1R1iddaAPAGi
+         HsWMKJGWm1Y44zAycuTjyndNXkeguznUxLwVPyhx2o/N4RHA625ObBA+pSBu44wdmA+y
+         luccyS/6WAEnLYfflRYuME2HpkD3BTJ3Pc/K7ST+wYayjlcSNn6JNZVhhSrEGRWXf1KB
+         s96fIaPzf7RSw6HzjmtafWwfEMwJvwXqEhpy3q4DD1gBBP4ERRPeYc+YNFEw6yZp8c+C
+         bZ5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768291353; x=1768896153;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g6A7r611q476j/8oCIaN8K7+Q8yqCShfdSd5Arz3Gpc=;
+        b=ubMcrnlgRirFdm17Zekad0Gml+bH2tB5VRWyEu4ClGeK4LJuTioJh/slkqpQdYXKrF
+         uKW8dSzQAe+CYahI8xuISv+TaSpiZjQMUWoOl9ATBHPEeUsSz1wCPwLLjv7g17iTDhpK
+         dUvRgKkP3KJcovpHdG5RZaUYYP+HajIjCs0JNGCG/BngpmqXdesdKrFn3KfsgW/hdSX+
+         r7Lw0but6eQOp6ptKRHiJZt15KHUZ2sO82w+791Ivl7b8sjmzPt5jYgz5xRYK+aEmMQK
+         uvwiakIcSb11GUy1fbhOBJtomQxfKXDTbMWNyNQyDBwetFT0HBWDP/kVKJmEnvqwnsPJ
+         lFCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV9CWd2vhB8nRU6E1PLxSFugTnrtfk0xsGW/12kFig1xe+xOQAJXGqvp+mfBd3uWlExzVuqdRGQ4XnA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS3OA7FODMbVh28gBVhWbiaGkAu/udVfYV+Yhwx/p/FPUCZMJo
+	Sls8ibdEji+6UbvrwYSW6DaSLojgCPthCwQlcp9brBO/yUz/6dq61Ntwh/Rx6Hf6cLc=
+X-Gm-Gg: AY/fxX4HnsGzbusZ/VeUAjNBZBCnT+Zx/Hb/zYqSrAJNBwoZoIAGU65b+F5SOf8QQMn
+	qc0KReXBPQB81rR1GdHztweTueIiUBB7nM7Nt1TjdkNORV2xyEPZonB0RKjKb7Q9bAXbbGPli9l
+	tvDlRT2BgEeKh774I9C7KtE19zGWf98cJ4sWvmNuFsqIrMKoZI0rDg5EGX6V99uSqshH/CyzluW
+	TnBB077AgrtYNs+pptGx8SRuZbDSBCAsFme0DUuNwszUGy2tmH9plM1H5sdKj0qy1sc/Bn5kQtJ
+	Vz0DM61F2azMk7ZzHteFhx7ukTU6Fi3XII6k7+xC8V955tsdTPSAewzibYBKwSrDF7HFOUevZEv
+	Bd7XHOcTJYyx7i0XaPymgpxCiz2X16NLVxndJnJmOwb+koVeGm/iuD0jr65Nsd987lIUlIJbtS8
+	bvzANNl0Y95NGYeiOegnzn2VroKhHzxNceBecY9AM=
+X-Google-Smtp-Source: AGHT+IHrnnPCXrF0NOJBoPGixzBrnHBCDRj20M4yCZwqxFE51GxNlKuyIibw+hyJVZQowMJPsFEW1w==
+X-Received: by 2002:a05:600c:4fc6:b0:477:5ad9:6df1 with SMTP id 5b1f17b1804b1-47d84b0aaa3mr221663015e9.3.1768291352911;
+        Tue, 13 Jan 2026 00:02:32 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:3d9:2080::fa42:7768? ([2a01:e0a:3d9:2080::fa42:7768])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ecf6a5466sm109514045e9.11.2026.01.13.00.02.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jan 2026 00:02:31 -0800 (PST)
+Message-ID: <186438aa-a39e-4c85-9187-cd47d6abd2e7@linaro.org>
+Date: Tue, 13 Jan 2026 09:02:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260112-ltc3220-driver-v2-0-d043058fc4df@analog.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 4/6] phy: qcom-qmp-ufs: Add Milos support
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Vinod Koul <vkoul@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org,
+ Abel Vesa <abel.vesa@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20260112-milos-ufs-v2-0-d3ce4f61f030@fairphone.com>
+ <20260112-milos-ufs-v2-4-d3ce4f61f030@fairphone.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260112-milos-ufs-v2-4-d3ce4f61f030@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 12, 2026 at 04:55:53PM +0800, Edelweise Escala wrote:
-> The LTC3220/LTC3220-1 is a multi-display LED driver, which contains a
-> high-efficiency, low-noise charge pump to provide power to up to
-> 18 LED current sources. The LEDs are individually configurable to
-> 64-step linear brightness control, blinking and gradation control
-> via 2-wire I2C interface. The blinking and gradation configuration
-> is shared across all LED.
+On 1/12/26 14:53, Luca Weiss wrote:
+> Add the init sequence tables and config for the UFS QMP phy found in the
+> Milos SoC.
 > 
-> LTC3220 has a quick write function which allows changing the brightness
-> on all LEDS simultaneously when the brightness is changed on led 1.
-> For this we made quick write a device property which user can set on the 
-> device tree. We would like to know if this approach is alright?
-> Another way we might want to know is, is it alright to just make a
-> virtual led for the quick write function. Changing brightness on 
-> the virtual led will change the brightness for all.
-> 
-> V2 Changelog:
-> leds-ltc3220.yaml changes
-> -Fix wrapping on description
-> -Improve description and commit messge to describe hardware
-> -Drop ltc3220-1
-> -Drop charge pump
-> ltc3220.c changes
-> -Fix wrapping
-> -Drop ltc3220-1
-> -Drop devname_mandatory 
-> 
-> Signed-off-by: Edelweise Escala <edelweise.escala@analog.com>
+> Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
-> Changes in v2:
-> - EDITME: describe what is new in this series revision.
-> - EDITME: use bulletpoints and terse descriptions.
+>   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 96 +++++++++++++++++++++++++++++++++
+>   1 file changed, 96 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> index 8a280433a42b..df138a5442eb 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> @@ -84,6 +84,68 @@ static const unsigned int ufsphy_v6_regs_layout[QPHY_LAYOUT_SIZE] = {
+>   	[QPHY_PCS_POWER_DOWN_CONTROL]	= QPHY_V6_PCS_UFS_POWER_DOWN_CONTROL,
+>   };
+>   
+> +static const struct qmp_phy_init_tbl milos_ufsphy_serdes[] = {
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_EN_SEL, 0xd9),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_CONFIG_1, 0x16),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x11),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_HS_SWITCH_SEL_1, 0x00),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_EN, 0x01),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_IVCO, 0x0f),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_IETRIM, 0x0a),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_IPTRIM, 0x17),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_MAP, 0x04),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BG_TIMER, 0x0e),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_INITVAL2, 0x00),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x82),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE0, 0x14),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE0, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE0, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0xff),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x0c),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE1, 0x98),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE1, 0x14),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE1, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE1, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE1, 0x32),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE1, 0x0f),
+> +};
+> +
+> +static const struct qmp_phy_init_tbl milos_ufsphy_tx[] = {
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_LANE_MODE_1, 0x05),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_RES_CODE_LANE_OFFSET_TX, 0x07),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_RES_CODE_LANE_OFFSET_RX, 0x0e),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_TX_FR_DCC_CTRL, 0xcc),
+> +};
+> +
+> +static const struct qmp_phy_init_tbl milos_ufsphy_rx[] = {
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_UCDR_FO_GAIN_RATE2, 0x0c),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_VGA_CAL_MAN_VAL, 0x3e),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_RX_EQU_ADAPTOR_CNTRL4, 0x0f),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B0, 0xce),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B1, 0xce),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B2, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B3, 0x1a),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B4, 0x0f),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE_0_1_B6, 0x60),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE2_B3, 0x9e),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE2_B6, 0x60),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B3, 0x9e),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B4, 0x0e),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B5, 0x36),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_MODE_RATE3_B8, 0x02),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V6_RX_UCDR_PI_CTRL1, 0x94),
+> +};
+> +
+> +static const struct qmp_phy_init_tbl milos_ufsphy_pcs[] = {
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_PLL_CNTL, 0x0b),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0f),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_SIGDET_CTRL2, 0x68),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x04),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x04),
+> +};
+> +
+>   static const struct qmp_phy_init_tbl msm8996_ufsphy_serdes[] = {
+>   	QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x0e),
+>   	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0xd7),
+> @@ -1165,6 +1227,11 @@ static inline void qphy_clrbits(void __iomem *base, u32 offset, u32 val)
+>   }
+>   
+>   /* Regulator bulk data with load values for specific configurations */
+> +static const struct regulator_bulk_data milos_ufsphy_vreg_l[] = {
+> +	{ .supply = "vdda-phy", .init_load_uA = 140120 },
+> +	{ .supply = "vdda-pll", .init_load_uA = 18340 },
+> +};
+> +
+>   static const struct regulator_bulk_data msm8996_ufsphy_vreg_l[] = {
+>   	{ .supply = "vdda-phy", .init_load_uA = 51400 },
+>   	{ .supply = "vdda-pll", .init_load_uA = 14600 },
+> @@ -1258,6 +1325,32 @@ static const struct qmp_ufs_offsets qmp_ufs_offsets_v6 = {
+>   	.rx2		= 0x1a00,
+>   };
+>   
+> +static const struct qmp_phy_cfg milos_ufsphy_cfg = {
+> +	.lanes			= 2,
+> +
+> +	.offsets		= &qmp_ufs_offsets_v6,
+> +	.max_supported_gear	= UFS_HS_G4,
+> +
+> +	.tbls = {
+> +		.serdes		= milos_ufsphy_serdes,
+> +		.serdes_num	= ARRAY_SIZE(milos_ufsphy_serdes),
+> +		.tx		= milos_ufsphy_tx,
+> +		.tx_num		= ARRAY_SIZE(milos_ufsphy_tx),
+> +		.rx		= milos_ufsphy_rx,
+> +		.rx_num		= ARRAY_SIZE(milos_ufsphy_rx),
+> +		.pcs		= milos_ufsphy_pcs,
+> +		.pcs_num	= ARRAY_SIZE(milos_ufsphy_pcs),
+> +	},
+> +	.tbls_hs_b = {
+> +		.serdes		= sm8550_ufsphy_hs_b_serdes,
+> +		.serdes_num	= ARRAY_SIZE(sm8550_ufsphy_hs_b_serdes),
+> +	},
+> +
+> +	.vreg_list		= milos_ufsphy_vreg_l,
+> +	.num_vregs		= ARRAY_SIZE(milos_ufsphy_vreg_l),
+> +	.regs			= ufsphy_v6_regs_layout,
+> +};
+> +
+>   static const struct qmp_phy_cfg msm8996_ufsphy_cfg = {
+>   	.lanes			= 1,
+>   
+> @@ -2166,6 +2259,9 @@ static int qmp_ufs_probe(struct platform_device *pdev)
+>   
+>   static const struct of_device_id qmp_ufs_of_match_table[] = {
+>   	{
+> +		.compatible = "qcom,milos-qmp-ufs-phy",
+> +		.data = &milos_ufsphy_cfg,
+> +	}, {
+>   		.compatible = "qcom,msm8996-qmp-ufs-phy",
+>   		.data = &msm8996_ufsphy_cfg,
+>   	}, {
+> 
 
-Huh?
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-> - Link to v1: https://lore.kernel.org/r/20260106-ltc3220-driver-v1-0-73601d6f1649@analog.com
-
-Best regards,
-Krzysztof
-
+Thanks,
+Neil
 
