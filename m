@@ -1,47 +1,59 @@
-Return-Path: <devicetree+bounces-254612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6688D19EFA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:35:20 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B9CD19FFF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:46:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0E3203016EF4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:33:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 73B793032DEF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 15:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8732530FF20;
-	Tue, 13 Jan 2026 15:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177803939A3;
+	Tue, 13 Jan 2026 15:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="dU2/1g8/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYi9WhYw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF8C30F815;
-	Tue, 13 Jan 2026 15:33:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD29313E05;
+	Tue, 13 Jan 2026 15:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768318411; cv=none; b=k/XL5jeT75AOY6lGvvUxXRT1SwcV18Ha2etcq4vN+msJ1svXWUtVp1To67yuY4U119VLD/lGG/PhljdzaFBet9FeFg6+tRRuxy+iMcHahEZJmOH/ZAkV7QOQm4/WwuIDZ2BC1b1UN5cCEb1T+1KHfBjNt6l/STe/oTmRMDGTwK0=
+	t=1768318727; cv=none; b=OUR8FPeqCPFkI5UuoyLwffICSM6ewZx9SY84cX9TJ+0auNya6gnTN0ZFNSl/Cg6UKGZ1OsyVaI4PmtESRVE9TXZ8YHPr0dtp1zJ1r1oVAeMIOz+e9o9cfJf9DbtPhQDJKkHA6y5n505fu8sd10kslLWGWQKl1IxTpE7NTswMM1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768318411; c=relaxed/simple;
-	bh=hYsyR4vSg3KkDsH/14JJzUlj+JNroWuLLkBbWg+BP40=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CaBOC3aLmVoKfca9IGIX5CvwGRuNotuU7EUOttfKAbLIFyZKkqoE0+Cl059hqH43yblzsWRRrrI1Ubyk/GgFcygTvxBKNB8otbfFU7M5uFvc6akI2s4T6EFFhAbQyE4DsYRxym7LCIN7VrwrASC0mlW2QcOOk0YNIwLqi2S/LtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=dU2/1g8/; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:In-Reply-To:References:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Qz/Ll9ghwmV1mMLr5f94o6CVbG9aX9BQ9L7ebvVm/xs=; b=dU2/1g8/HeJ4CdHdzRmZOHHEfS
-	Hpi5mZqh8nLDtdEgu7SidTSc7p9Mcxvj7it44iicISBiKN66CyaDW02mGwAeV44w0CGb6r5qsvO8Z
-	vzTfdfP5oshRft1qQ2gl0SAhJR8RLHFEZV1vz8qL0p0cJyRc4yY9O5PTC3GY03V6QiGYG4i+6o+ll
-	KwtNjdl9SVJL6oiR3foHGlOGz2dk1jmo8l6JwkF8CpiRBI41XDOlEab4bfx8u+ajVhYg+qw1ORhht
-	gp7hCxKA48pVpiXs1PjQw/c5OiyMQl6xi2Z9nOaXvgBjVdrUBAwWwiWdgcgy6bD2iCp53CE09wdHK
-	QD9mWKdw==;
-From: Andreas Kemnade <andreas@kemnade.info>
-Date: Tue, 13 Jan 2026 16:31:36 +0100
-Subject: [PATCH 3/3] ARM: dts: imx: e60k02: add tps65185
+	s=arc-20240116; t=1768318727; c=relaxed/simple;
+	bh=ljT5os089R8jUo9auIHE9TI3ncsDNdnWjL/OJch4leA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=icwSPvmaUIB3mGu2iWz99GDUWxUSnTnfBY5PGIQUE867x+lLyz+Z5AgxyAYpfkL0dKtAZw5BBD5NWSRbGEzLWoBQhOp78SleSEmHPE0qpf3H/8vqBWtzlm8S144vtXVK8yWXMlBwWskxiLr4jEw4FOa2xg/RKx8n+4klO59Hufc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYi9WhYw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCC28C116C6;
+	Tue, 13 Jan 2026 15:38:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768318727;
+	bh=ljT5os089R8jUo9auIHE9TI3ncsDNdnWjL/OJch4leA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=lYi9WhYwgD1Orn9n6DwmOzaGYJX/YkrW8INCxFw2FUtssTuV52T9mNyNFgbdZO1rM
+	 m1HDAiuhHpQ3+VaKnZNSzdqadV5nizrxEZmxwMlPsxCERJHprQjR/GF63nchWAgjKG
+	 9vA1Oq3zzVBlL2iyBvIlwLv0nGwx2/NEa7u5fshSVEmEX935+uoYgh/ip8ptqawmIo
+	 FInWYr/y+tMpjzOuwK2pcgGAXpq/ykIn/I9qv9At+8LNQna1D/DfkwkhYo8KlEO/OM
+	 mfB5c+OO9ShzZ66z54hNwnpWJcPdCqNBttcamyWEWKb5OGHCkelO2rR/QEXkrmaeXi
+	 tL2N+KJqy5AgQ==
+From: Mark Brown <broonie@kernel.org>
+To: linux-mediatek@lists.infradead.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ sen.chu@mediatek.com, sean.wang@mediatek.com, macpaul.lin@mediatek.com, 
+ lee@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ kernel@collabora.com
+In-Reply-To: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
+References: <20260113110000.36953-1-angelogioacchino.delregno@collabora.com>
+Subject: Re: (subset) [PATCH 0/6] Fix dtbs_check warnings for MediaTek
+ Helio X10 platform
+Message-Id: <176831872457.153367.14622745892314897122.b4-ty@kernel.org>
+Date: Tue, 13 Jan 2026 15:38:44 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,208 +62,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260113-tps65185-dt-v1-3-66d376ba5f65@kemnade.info>
-References: <20260113-tps65185-dt-v1-0-66d376ba5f65@kemnade.info>
-In-Reply-To: <20260113-tps65185-dt-v1-0-66d376ba5f65@kemnade.info>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: b4 0.15-dev-a6db3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5314; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=hYsyR4vSg3KkDsH/14JJzUlj+JNroWuLLkBbWg+BP40=;
- b=owGbwMvMwCUm/rzkS6lq2x3G02pJDJlpqbN/NEUY/Vou77z7tLtC1ZXDd5i6fmQkrv3KwHncV
- PtYcY1vRykLgxgXg6yYIssvawW3TyrPcoOnRtjDzGFlAhnCwMUpABMRVWBkWJF2p/rDJLlF706x
- h1hmShsYpPkYBFS5Mv8IsrIynSB4iJFhe7aUm6Ps9BmGJc7mfZL2V2SWJR/ad0KDd8ak7ZuWiEY
- wAwA=
-X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
- fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
+X-Mailer: b4 0.15-dev-47773
 
-Wire up the TPS65185 regulator needed for the display.
+On Tue, 13 Jan 2026 11:59:54 +0100, AngeloGioacchino Del Regno wrote:
+> This series fixes various dtbs_check warnings happening on the MediaTek
+> Helio X10 platform devicetrees.
+> 
+> Depending on correctness, either the bindings or the devicetree was
+> changed as a dtbs_check warning fix.
+> 
+> AngeloGioacchino Del Regno (6):
+>   dt-bindings: mfd: mediatek,mt8195-scpsys: Add mediatek,mt6795-scpsys
+>   dt-bindings: mfd: mediatek: mt6397: Add missing MT6331 regulator
+>     compat
+>   dt-bindings: regulator: mediatek,mt6331: Add missing ldo-vio28 vreg
+>   arm64: dts: mediatek: mt6331: Fix VCAM IO regulator name
+>   arm64: dts: mediatek: mt6795: Fix issues in SCPSYS node
+>   arm64: dts: mediatek: mt6795-xperia-m5: Rename PMIC leds node
+> 
+> [...]
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/nxp/imx/e60k02.dtsi              | 35 +++++++++++++++++++++-
- arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine3.dts | 26 ++++++++++++++++
- arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts | 26 ++++++++++++++++
- 3 files changed, 86 insertions(+), 1 deletion(-)
+Applied to
 
-diff --git a/arch/arm/boot/dts/nxp/imx/e60k02.dtsi b/arch/arm/boot/dts/nxp/imx/e60k02.dtsi
-index 0029c12f16c8..aac7b9ef7627 100644
---- a/arch/arm/boot/dts/nxp/imx/e60k02.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/e60k02.dtsi
-@@ -23,6 +23,14 @@ chosen {
- 		stdout-path = &uart1;
- 	};
- 
-+	epd_pmic_supply: regulator-epd-pmic-in {
-+		compatible = "regulator-fixed";
-+		regulator-name = "epd_pmic_supply";
-+		gpio = <&gpio2 14 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <20000>;
-+	};
-+
- 	gpio_keys: gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -119,8 +127,33 @@ touchscreen@24 {
- 		vdd-supply = <&ldo5_reg>;
- 	};
- 
--	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
-+	tps65185: pmic@68 {
-+		compatible = "ti,tps65185";
-+		reg = <0x68>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+		vin-supply = <&epd_pmic_supply>;
-+		pwr-good-gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
-+		vcom-ctrl-gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
-+		wakeup-gpios = <&gpio2 7 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
-+
-+		regulators {
-+			vcom_reg: vcom {
-+				regulator-name = "vcom";
-+			};
-+
-+			vposneg_reg: vposneg {
-+				regulator-name = "vposneg";
-+				regulator-min-microvolt = <15000000>;
-+				regulator-max-microvolt = <15000000>;
-+			};
- 
-+			v3p3_reg: v3p3 {
-+				regulator-name = "v3p3";
-+			};
-+		};
-+	};
- };
- 
- &i2c3 {
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine3.dts b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine3.dts
-index 5ba6f15e9ed5..58b9ccd9b605 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine3.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-shine3.dts
-@@ -26,6 +26,11 @@ / {
- 	compatible = "kobo,tolino-shine3", "fsl,imx6sl";
- };
- 
-+&epd_pmic_supply {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_epd_pmic_supply>;
-+};
-+
- &gpio_keys {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_gpio_keys>;
-@@ -59,6 +64,12 @@ MX6SL_PAD_SD1_DAT2__GPIO5_IO13                0x10059 /* TP_RST */
- 		>;
- 	};
- 
-+	pinctrl_epd_pmic_supply: epdc-pmic-supplygrp {
-+		fsl,pins = <
-+			MX6SL_PAD_EPDC_PWRWAKEUP__GPIO2_IO14 0x40010059
-+		>;
-+	};
-+
- 	pinctrl_gpio_keys: gpio-keysgrp {
- 		fsl,pins = <
- 			MX6SL_PAD_SD1_DAT1__GPIO5_IO08	0x17059	/* PWR_SW */
-@@ -159,6 +170,16 @@ MX6SL_PAD_KEY_COL2__GPIO3_IO28                         0x1b8b1 /* ricoh619 bat_l
- 		>;
- 	};
- 
-+	pinctrl_tps65185_gpio: tps65185-gpio-grp {
-+		fsl,pins = <
-+			MX6SL_PAD_EPDC_VCOM0__GPIO2_IO03	0x40010059 /* vcom_ctrl */
-+			MX6SL_PAD_EPDC_PWRCTRL0__GPIO2_IO07	0x40010059 /* wakeup */
-+			MX6SL_PAD_EPDC_PWRCTRL1__GPIO2_IO08	0x40010059 /* enable */
-+			MX6SL_PAD_EPDC_PWRCTRL2__GPIO2_IO09	0x17059 /* nINT */
-+			MX6SL_PAD_EPDC_PWRSTAT__GPIO2_IO13	0x17059 /* pwr-good */
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX6SL_PAD_UART1_TXD__UART1_TX_DATA 0x1b0b1
-@@ -308,6 +329,11 @@ &ricoh619 {
- 	pinctrl-0 = <&pinctrl_ricoh_gpio>;
- };
- 
-+&tps65185 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_tps65185_gpio>;
-+};
-+
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts
-index 18c9ac8f7560..1000ee8b807a 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts
-@@ -36,6 +36,11 @@ &cpu0 {
- 	soc-supply = <&dcdc1_reg>;
- };
- 
-+&epd_pmic_supply {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_epd_pmic_supply>;
-+};
-+
- &gpio_keys {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_gpio_keys>;
-@@ -69,6 +74,12 @@ MX6SLL_PAD_SD1_DATA2__GPIO5_IO13                0x10059 /* TP_RST */
- 		>;
- 	};
- 
-+	pinctrl_epd_pmic_supply: epdc-pmic-supplygrp {
-+		fsl,pins = <
-+			MX6SLL_PAD_EPDC_PWR_WAKE__GPIO2_IO14 0x40010059
-+		>;
-+	};
-+
- 	pinctrl_gpio_keys: gpio-keysgrp {
- 		fsl,pins = <
- 			MX6SLL_PAD_SD1_DATA1__GPIO5_IO08	0x17059	/* PWR_SW */
-@@ -169,6 +180,16 @@ MX6SLL_PAD_KEY_COL2__GPIO3_IO28	0x1b8b1 /* ricoh619 bat_low_int */
- 		>;
- 	};
- 
-+	pinctrl_tps65185_gpio: tps65185-gpio-grp {
-+		fsl,pins = <
-+			MX6SLL_PAD_EPDC_VCOM0__GPIO2_IO03	0x40010059 /* vcom_ctrl */
-+			MX6SLL_PAD_EPDC_PWR_CTRL0__GPIO2_IO07	0x40010059 /* wakeup */
-+			MX6SLL_PAD_EPDC_PWR_CTRL1__GPIO2_IO08	0x40010059 /* enable */
-+			MX6SLL_PAD_EPDC_PWR_CTRL2__GPIO2_IO09	0x17059 /* nINT */
-+			MX6SLL_PAD_EPDC_PWR_STAT__GPIO2_IO13	0x17059 /* pwr-good */
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX6SLL_PAD_UART1_TXD__UART1_DCE_TX 0x1b0b1
-@@ -310,6 +331,11 @@ &ricoh619 {
- 	pinctrl-0 = <&pinctrl_ricoh_gpio>;
- };
- 
-+&tps65185 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_tps65185_gpio>;
-+};
-+
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
--- 
-2.47.3
+Thanks!
+
+[3/6] dt-bindings: regulator: mediatek,mt6331: Add missing ldo-vio28 vreg
+      commit: de9f1b1583aecb246b659effb03f2456604fab64
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
