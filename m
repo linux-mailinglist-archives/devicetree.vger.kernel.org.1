@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-254635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E297BD1A31F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:22:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0ACD1A41E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 17:29:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6F806300FD7E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:22:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 413DC300942B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 16:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248F92EDD4D;
-	Tue, 13 Jan 2026 16:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADDC92DCC08;
+	Tue, 13 Jan 2026 16:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUAcsuQG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VB+/Nkgr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C142EB5A9;
-	Tue, 13 Jan 2026 16:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD201F5825;
+	Tue, 13 Jan 2026 16:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768321355; cv=none; b=dRFWqH2l1SAo0s0zLdsA77z0lvYqVQxK5LgeYj4xPUJ2fw2V9vUjRYXgLOyC8oFSTD0umF4h5m0vFsyfzaEK5XX4SXBp6s86U4aPpvqp3p/HKETdq2h4GMM/XmHJ6QMQveBJG5+UcTeYQ/ilMqFONxoTwS8UwaB1JC0hxnshL58=
+	t=1768321489; cv=none; b=lHRRbp/DZ2sfMt7QRb4LrBwK0N3ZFuNMzIPIEb74Z6XtruV8+EkNgK02FYWwaopS3M4lLAQnWkuJRHyMgIkpHniovRiLnw40TO8ANcjLiebBc8NDsY870n219/kaT2EeWujgSzKfjxhO9SLKSBBXeXlpaWPSUNzv4gAPU4p6DpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768321355; c=relaxed/simple;
-	bh=YpHhhQr4zq2TV/4Wd0UkGUYWe02ytnUvgCMMavOuY/s=;
+	s=arc-20240116; t=1768321489; c=relaxed/simple;
+	bh=S7XOKbzqmq6CsP63WbNJcLIrkjpbeR6VrYHgR3rW9Vg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i1ylBVOcGcwC38AkhSvw0eG2fXh16a/TKGS66LyuYCqqMiJQqz6ay8Zj4jB7UTgCpxzLvEmV3ZrJ+Xr8W7wqCQuDjJoJt6rhL+KE4tPjTDbYc0LzZonjRcN2cNd14zftuJW7DS7V1iLz1lQQOKR0tkWCtl3H1c0qJIZAQ7nkBk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUAcsuQG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73AAFC116C6;
-	Tue, 13 Jan 2026 16:22:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ddZqGldbPvPSGjH97ruFuKLet19esCiRHMyTwmp3P4xq5yXTMPqZ99TjuXNdIp03arxwbCjjMAEfVdey8MPOBi/4+Gkl5yWLUIcCzvRrOJmwUvMb5NkfuP+d154xUBX4boDFmyUY8KzEpSGxIdZJhYYrWiOMSvwnxvvdiXyQtOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VB+/Nkgr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6662CC116C6;
+	Tue, 13 Jan 2026 16:24:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768321355;
-	bh=YpHhhQr4zq2TV/4Wd0UkGUYWe02ytnUvgCMMavOuY/s=;
+	s=k20201202; t=1768321489;
+	bh=S7XOKbzqmq6CsP63WbNJcLIrkjpbeR6VrYHgR3rW9Vg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gUAcsuQGGZugQoOHgIv8Fq4E1p3MSn6/tNX5saL9cBXrQiLq0br9N/w8nF/BP3MLB
-	 9dVwj5NE3nMn9P+UyDA1NEDjEDMJR8P75V164I3bbFCgaIsMiudZg+Xpg6C/GAbfPP
-	 Ln3LEJcL5R/CHLcSOEvIBOeE7BsB3WRytmIkAqnVyOZYMQ0KpawN6gKwyBTzio3l5m
-	 z4R4l5Zbpk1LxMY85Ke8ebnhQLXyfgFSNFnzIOvMeWqNhNE4HYRHx9WJkfEnScDkTK
-	 iocJb0x1XxJ8EtcJwQ8QbjYFgEWnCs/0GH28xewpd0D0RDV2it6K4hIVxTOr5ePb0b
-	 u+O6wLHK26uFw==
-Message-ID: <12fb0abe-23a4-48cd-8f99-529aea6834be@kernel.org>
-Date: Tue, 13 Jan 2026 17:22:31 +0100
+	b=VB+/Nkgr6DfbYwqZ6ZJq0bX9WjNN447u6tnyFjpXtibnDd4pFFRsznUf4gfWUV+KS
+	 z6qu4vUXCz8mwSocFqlnYkAHvjpamlVxV6tNm+voIZa7dCLA/cDnARSY3a9s9Z8uvV
+	 nzJ71bqVt4YkThuIUIolJD6fArJlHQhwTJhfODe+WW4GFo4uX0N8Mo856B/2zRluJZ
+	 yfa7jdwr5pxIFVEmo8Qge8kl5NgACVdYSLsaEzrV3q8aoj4JHyKOSFOi7QVsucGDCf
+	 OSUlYRhfTB5sTrinAP/JvSr3j3joWl0jSD3C0qGz4XNQUpjk7OlYgzoDLXlU7CFxBH
+	 LQdSUtynkobHQ==
+Message-ID: <3c25d80a-460d-481d-82ae-7d8046750a22@kernel.org>
+Date: Tue, 13 Jan 2026 17:24:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,12 +48,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: vendor-prefixes: Add titanmec
+Subject: Re: [PATCH 2/4] dt-bindings: auxdisplay: Add titanmec,tm1637
 To: Siratul Islam <email@sirat.me>, andy@kernel.org, geert@linux-m68k.org,
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20260113040242.19156-1-email@sirat.me>
- <20260113040242.19156-2-email@sirat.me>
+ <20260113040242.19156-3-email@sirat.me>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -99,19 +99,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260113040242.19156-2-email@sirat.me>
+In-Reply-To: <20260113040242.19156-3-email@sirat.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13/01/2026 05:02, Siratul Islam wrote:
-> Add vendor prefix for Shenzhen Titan Micro Electronics Co., Ltd.
-> 
-> Signed-off-by: Siratul Islam <email@sirat.me>
-> ---
+> +title: TM1637 7-segment LED display controller
+> +
+> +maintainers:
+> +  - Siratul Islam <email@sirat.me>
+> +
+> +description:
+> +  The TM1637 is a 7-segment LED display controller with a two-wire serial
+> +  interface. It can drive up to 4 digits and includes brightness control.
+> +
+> +properties:
+> +  compatible:
+> +    const: titanmec,tm1637
+> +
+> +  clk-gpios:
+> +    maxItems: 1
+> +    description: GPIO for clock line
+> +
+> +  dio-gpios:
+> +    maxItems: 1
+> +    description: GPIO for data input/output line
 
+So you are bitbanging in the kernel? This looks too tightly coupled to
+the implementation. If this is some sort of standard interface, I would
+expect following standard bus-child relationship, like i2c, spi, serial
+or even 1-wire.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
+> +
 Best regards,
 Krzysztof
 
