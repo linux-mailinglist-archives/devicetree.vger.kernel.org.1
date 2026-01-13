@@ -1,171 +1,179 @@
-Return-Path: <devicetree+bounces-254739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE40D1B719
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:38:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A2B4D1B76A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 22:44:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A78CA30124F8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 21:38:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 924D530127B4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jan 2026 21:44:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA9434D4E6;
-	Tue, 13 Jan 2026 21:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C4030EF87;
+	Tue, 13 Jan 2026 21:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HUtJyVo6"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="ONVo5bmM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA5234AAFB;
-	Tue, 13 Jan 2026 21:38:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768340285; cv=none; b=ZhZaMf+Yen2QbBpKYSqZ2rECOrrR/ZOx/+p06g86w4+y0CJLXIYqLHJq4Bo39DIxj3ZRhzsELF5vnSDEgdau3RRrkqEbZYXim9FYwrNduWMZ7VI4galmwDu1RlQwp081Y9cOABCG+JD/Fb9ZFdE5SByb+7de7Jd/2/hLaGq5R9U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768340285; c=relaxed/simple;
-	bh=Ue0kX6WDxmwPMCZ/GKz/k0/R9KvOYfmHiZqM0wnXDGQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gIhVcEwX7dhN2+qnNP/n+2JvD+XjVuhl9mBJ1o7bzfUhv8EWdnPjX3i9+yoPQ1HeoiQJdIeh2ZRULruSBtbdNIEo4kY6qqYj6NgS0z2MvkBmYfUn48jXwjsHPL3+ci+NDn4XgAuqvd+gnqfQgjO8dtA+BvZZ+3fJBUgWEqhLgAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HUtJyVo6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F3A9C16AAE;
-	Tue, 13 Jan 2026 21:38:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768340285;
-	bh=Ue0kX6WDxmwPMCZ/GKz/k0/R9KvOYfmHiZqM0wnXDGQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HUtJyVo6tFy6D2+6OTOd9Tv6Ujj2G4eqP8Sqsp6CvXxIi0m6pfEMUN9iQxl2niTkb
-	 MZaA2823gSY+QqfaKURHBIVDbZc6kHXd5Hsqd4GW/aUmuaqZ9Vea7JPQ94ATsXpG+Y
-	 RAtRBh5tNZx6yt9jD7gISK/kxvrTOs0VHn/zOsN8sEa7+raVMmkzjhQIMdXZS2txTA
-	 8s2gr8MCbCvgLXZdWwiugtv+zvnvfh45af0wunCFtZQ8R7v9V0Du6A+WQhnk1Yd8oS
-	 tc7eRpVIAqyjS6oMMCbu1n7emEUzmAUwM2WG51axjcZknTaW+UKkGNvjFyCD2sQYjb
-	 gaJE9bb5U6EGQ==
-Message-ID: <a2dc72ae-0798-4baa-b4d2-fa66c334576a@kernel.org>
-Date: Tue, 13 Jan 2026 15:37:57 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC992D77FE;
+	Tue, 13 Jan 2026 21:44:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768340654; cv=pass; b=A5Zw7RtZlkofm5Wz30z/8uTwUVnAOKmPbhlKtOk0wQXGDnJPcd/OXi80Kd63iATqcrvu4+huxRpDgIX+38Tk7qfu0XL+/lKhbSdBFoMCy5P61Fzg+220cqgOOSubwCG1s7Np89+hjN5DvYYT9SaWGsaFMYUgr5g4mKF8QJioY8M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768340654; c=relaxed/simple;
+	bh=g5ZhvMqr9u9ysAC0VtYDENJNeQXQ+kK9DBRR9f5IM34=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sVsu6UIODgnC6rHBYPfB/AWtLJYpv3psPPYzYPActfTF817ywI6gteQROO3thGj8aTfxbdmbmmKuuuDmm3HVMt0/RrJe7AukXsEO94o9pm+EHhYRT1+x7qoBURCXnrTss//oE7WSrmz5r2ozqtoMVmcLYh/GTZ8nwn0ekSb7q0k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=ONVo5bmM; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1768340630; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=l0WuONUE02bm6kJBK+49JHXfvEtd0LAUtlh8OeqXtrsajWOxisuIwi9vYET/F3bxSR3PNjMlqGEusD6yM8g++c6ILKqP7Rvnd2W2e825IQ8EopqhFTtfaZPrnnPFUTENQl1DV55YrHCwrtb8tiKlFdE9YGjLCj5grsAzg/PphKI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1768340630; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=QHBYeueOqFpt4Agp3p/anXw1jafjMamStjjeOnNMbD8=; 
+	b=SYdShVrwJvyHDvrKXGcRxXvLuhmsce3mR4WdPYr0rOUUdFTjFRmII3Z3CaTlk8LRp8VrPwmV4n9Erwu4MezMUdi/QN2iX5N7Chb3h6E78fHH0OsYxGxoZMHB0z/EoZCFNdH9zK3iFJi6lAdeUoI2JYGPs+T7ITrkgAPJFqPkoj4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768340630;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=QHBYeueOqFpt4Agp3p/anXw1jafjMamStjjeOnNMbD8=;
+	b=ONVo5bmMIeFAeQDNjZJoS1GrrtSjrJ+hAWW94uOjHjGHq4SGXtytQqx0scvlGrMh
+	HHqVz31t8RHQKGD5iZ3Mm9H5N06mHGPHfHsId8ExffR7ItXmcaqQ4LEws94GRQ0ch1v
+	AoZtUBRy3xUrFXibZVPyW7seyom6j+qTdL3l6z/I=
+Received: by mx.zohomail.com with SMTPS id 176834062782856.444600686903414;
+	Tue, 13 Jan 2026 13:43:47 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id F3AB3181010; Tue, 13 Jan 2026 22:43:41 +0100 (CET)
+Date: Tue, 13 Jan 2026 22:43:41 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, dmitry.baryshkov@oss.qualcomm.com, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, cristian.ciocaltea@collabora.com, 
+	Laurent.pinchart@ideasonboard.com, mripard@kernel.org, hjc@rock-chips.com, robh@kernel.org, 
+	tzimmermann@suse.de, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 5/5] arm64: dts: rockchip: Add DisplayPort dt node for
+ rk3576
+Message-ID: <aWa7M24CNaC6iz4K@venus>
+References: <20260109080054.228671-1-andyshrk@163.com>
+ <20260109080054.228671-6-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] net: stmmac: socfpga: add call to assert/deassert
- ahb reset line
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mamta Shukla <mamta.shukla@leica-geosystems.com>,
- Ahmad Fatoum <a.fatoum@pengutronix.de>,
- bsp-development.geo@leica-geosystems.com,
- Pengutronix Kernel Team <kernel@pengutronix.de>, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260108-remove_ocp-v3-0-ea0190244b4c@kernel.org>
- <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
- <aV_W2yLmnHrTvbTP@shell.armlinux.org.uk>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <aV_W2yLmnHrTvbTP@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fi3utza5uiabvpxq"
+Content-Disposition: inline
+In-Reply-To: <20260109080054.228671-6-andyshrk@163.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.5.1/268.322.40
+X-ZohoMailClient: External
 
 
+--fi3utza5uiabvpxq
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 5/5] arm64: dts: rockchip: Add DisplayPort dt node for
+ rk3576
+MIME-Version: 1.0
 
-On 1/8/26 10:10, Russell King (Oracle) wrote:
-> On Thu, Jan 08, 2026 at 07:08:09AM -0600, Dinh Nguyen wrote:
->> The "stmmaceth-ocp" reset line of stmmac controller on the SoCFPGA
->> platform is essentially the "ahb" reset on the standard stmmac
->> controller. But since stmmaceth-ocp has already been introduced into
->> the wild, we cannot just remove support for it. But what we can do is
->> to support both "stmmaceth-ocp" and "ahb" reset names. Going forward we
->> will be using "ahb", but in order to not break ABI, we will be call reset
->> assert/de-assert both ahb and stmmaceth-ocp.
->>
->> The ethernet hardware on SoCFPGA requires either the stmmaceth-ocp or
->> ahb reset to be asserted every time before changing the phy mode, then
->> de-asserted when the phy mode has been set.
-> 
-> This is not SoCFPGA specific. The dwmac core only samples its
-> phy_intf_sel_i signals when coming out of reset, and then latches
-> that as the operating mode.
-> 
-> Currently, the dwmac core driver does not support dynamically changing
-> plat_dat->phy_interface at runtime. That may change in the future, but
-> as it requires a hardware reset which will clear out the PTP state, it
-> would need consideration of that effect.
-> 
-> The SoCFPGA driver only calls the set_phy_mode() methods from
-> socfpga_dwmac_init(), which in turn is called from the plat_dat->init
-> hook. This will be called from:
-> 
-> 1. When stmmac_dvr_probe() is called, prior to allocating any
->     resources, and prior to the core driver's first call to:
->     reset_control_deassert(priv->plat->stmmac_ahb_rst);
-> 
-> 2. As plat_dat->resume is not populated by the glue driver, the init
->     hook will also be called when resuming from stmmac_resume().
-> 
-> Lastly, nothing in the main driver corrently writes to ->phy_interface.
-> 
-> I would like to see the platform glue drivers using more of what is
-> in the core driver, rather than re-inventing it, so I support the
-> idea of getting rid of dwmac->stmmac_ocp_rst.
-> 
-> What I suggest is to get rid of dwmac->stmmac_ocp_rst now.
-> devm_stmmac_probe_config_dt() will parse the device tree, looking for
-> the "ahb" reset, and assigning that to plat->stmmac_ahb_rst. If it
-> doesn't exist, then plat->stmmac-ahb_rst will be NULL.
-> 
-> So, in socfpga_dwmac_probe(), do something like this:
-> 
-> 	struct reset_control *ocp_rst;
-> ...
-> 	if (!plat_dat->stmmac_ahb_rst) {
-> 		ocp_rst = devm_reset_control_get_optional(dev, "stmmaceth-ocp");
-> 		if (IS_ERR(ocp_rst))
-> 			return dev_err_probe(dev, PTR_ERR(ocp_rst),
-> 					     "failed to get ocp reset");
-> 
-> 		if (ocp_rst)
-> 			dev_warn(dev, "ocp reset is deprecated, please update device tree.\n");
-> 
-> 		plat_dat->stmmac_ahb_rst = ocp_rst;
-> 	}
-> 
-> Then, change all remaining instances of dwmac->stmmac_ocp_rst to
-> dwmac->plat_dat->stmmac_ahb_rst... and job done. You have compatibility
-> with device trees that use "ahb", and with device trees that use
-> "stmmaceth-ocp".
-> 
-> Given that struct socfpga_dwmac contains the plat_dat pointer, rather
-> than copying plat_dat->stmmac_rst to your private structure, please
-> use the one in the plat_dat structure.
-> 
-> The next question I have is - do you need to assert both the AHB reset
-> and stmmac_rst to set the PHY interface mode? I don't see a dependency
-> between these two resets in the socfpga code - the driver doesn't treat
-> them as nested. It asserts the AHB reset _then_ the stmmac reset, and
-> then releases them in the same order rather than reverse order. This
-> suggests there's no interdependence between them, and probably it's
-> only necessary to assert the stmmac core's reset (stmmac_rst).
-> 
-> So, maybe the driver can leave the handling of plat_dat->stmmac_ahb_rst
-> to the stmmac core code?
-> 
+Hi,
 
-Thanks for the suggestion. According to this commit[1], it seems that 
-both reset lines need to get toggled. But I'm going to run some test on 
-HW and make the appropriate changes.
+On Fri, Jan 09, 2026 at 04:00:48PM +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
+>=20
+> The DisplayPort on rk3576 is compliant with DisplayPort Specification
+> Version 1.4 with MST support, and share the USBDP combo PHY with USB 3.1
+> OTG0 controller.
+>=20
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> ---
 
-Dinh
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-[1] 
-https://lore.kernel.org/all/20250205134428.529625725@linuxfoundation.org/
+Greetings,
 
+-- Sebastian
+
+>  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 28 ++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/d=
+ts/rockchip/rk3576.dtsi
+> index a86fc6b4e8c4..a153c3976cb3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> @@ -1446,6 +1446,34 @@ hdmi_out: port@1 {
+>  			};
+>  		};
+> =20
+> +		dp: dp@27e40000 {
+> +			compatible =3D "rockchip,rk3576-dp";
+> +			reg =3D <0x0 0x27e40000 0x0 0x30000>;
+> +			interrupts =3D <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>;
+> +			assigned-clocks =3D <&cru CLK_AUX16MHZ_0>;
+> +			assigned-clock-rates =3D <16000000>;
+> +			clocks =3D <&cru PCLK_DP0>, <&cru CLK_AUX16MHZ_0>,
+> +				 <&cru ACLK_DP0>;
+> +			clock-names =3D "apb", "aux", "hdcp";
+> +			resets =3D <&cru SRST_DP0>;
+> +			phys =3D <&usbdp_phy PHY_TYPE_DP>;
+> +			power-domains =3D <&power RK3576_PD_VO1>;
+> +			status =3D "disabled";
+> +
+> +			ports {
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <0>;
+> +
+> +				dp0_in: port@0 {
+> +					reg =3D <0>;
+> +				};
+> +
+> +				dp0_out: port@1 {
+> +					reg =3D <1>;
+> +				};
+> +			};
+> +		};
+> +
+>  		sai7: sai@27ed0000 {
+>  			compatible =3D "rockchip,rk3576-sai";
+>  			reg =3D <0x0 0x27ed0000 0x0 0x1000>;
+> --=20
+> 2.43.0
+>=20
+
+--fi3utza5uiabvpxq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlmvI0ACgkQ2O7X88g7
++pqGeBAAgSIlurnmjn/ludGRWvRQic6y7Frdz87wPJMlJunZdxA1iDokPIlfv6BW
+UHnKxecSag+yanMjJB/pGuzCRzfIeqz0GQa6mboNnDlhvbGG+Gp8hTCXhQllOo9c
+1AvqKwhOpXpEfg7Qx/RTy9kp/lWvteCXw30GIy2ninhuzsLjypYNg7dZtEC7pNax
+ppxDTtkSwZ2rKRfVDis/rGLja2mDtTn9lNxoEidAVRntddxLu12/rseOj/AeooNo
+RDTGM8Wn66U5i5ogVxfuDdr4N1yZDGZxk8iI35uZgFfFHQeYpy/EGPoijj+nwsX8
++2No89u6MnPG3MqNmPzrZMns+D80zAkH4WOo5vOsCq2tHspWieUVx3U3py4DUKnG
+RDVpkDbSIZuTPRGFmcQekIIzrUJgPcxfDpLiOQ03Iq5M/sPkS92w7m0EH6vq5XkA
+KKTyeJrhq/qy3B391KtFRnuXquA3Wq2pxsfjIbMjV2BItt4V9Pc0zM84fRsRIJcX
+s4fyN6IxSrQpODIgo7P7NSezcAyX/KyEaHspoYzcZI+CZO/luM5+a5ycNoBbznwk
+9pdSI25ZlnwS+/PWrtAZzonFtZnczjoPXKqNLUyvve/EGDDtetevss2JYG2G8xzW
+5QrORuh/s0apFAYDhKK1+uI8pZb+UaaoT3FX6o0yYFibp5Xhlso=
+=Bik6
+-----END PGP SIGNATURE-----
+
+--fi3utza5uiabvpxq--
 
