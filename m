@@ -1,139 +1,148 @@
-Return-Path: <devicetree+bounces-255005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1EBAD1E5D7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:23:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2CAAD1E507
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:08:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F12CD30145AB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:23:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A17823017670
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F13A33B6EE;
-	Wed, 14 Jan 2026 11:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1338395254;
+	Wed, 14 Jan 2026 11:03:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2466C2F1FC4
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 11:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2844229DB99
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 11:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768389804; cv=none; b=OOSjQoL2MgbbukfGpAfUQZ3eeEYHZUlZrPmr+SfMVZ0ebtEoaAxZXpY00NVAh8irsr5PeiPEpMJZ3UFikN7qlAOLi0S9PgS+QDHbnB3IK7kloSQYNcqxUR40LcMRpo+J2ZDoNJt5GiKJMrNbGeYzSprZOS1H1QY+B5/nXACo13E=
+	t=1768388604; cv=none; b=TRJXfLBPAcqetGJ62ygz0ZgJYtSM0+1mx/cduEVqaeE1/oNA8MqyHoXsmz1EZm+GycSZaB0XLscgNHColfXoexBjbgJS1NXJZ+X01uik1VriSHrbgGJ7dp73jQdPgkdIm4ars78rDC55gFnAFUel3By9rVtIF4RZAbscgDA5854=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768389804; c=relaxed/simple;
-	bh=CiDHpss1hVeyB4RZ3H82ibrygcnDTVOy55OV2SWKALE=;
+	s=arc-20240116; t=1768388604; c=relaxed/simple;
+	bh=qd0533iR+vH2yJrigMDVDGXUaNwIKBKelU7zTFCg0J4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R9l9Qwjf1X9UYZcwau6/lL5u5J8ImYbj2bRlv61nyf3z+RB2zwnD3uv50+MGE5KNCHzLtlETmRAAETlVx+/AbHazbt5SEW3ql/cfKfYKm2x6vOE7isLBbpHx7nLgw0L2k+RvB7Sp5EvFRmiYEjdjErkVzWbgSFRTJ7OgJREmv6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=74.125.82.172
+	 To:Cc:Content-Type; b=MxpdetfH+qll22JywtzCIiC45et+iUc1F1RC+Y/a5vL0VDQAZGEd7d4wZH6fVR6DOXn2cSCJPT0iWyUU7NpheOO/lwVuupExaef6SZVRrOUHbkXIYK4uH4zc2PNc0wmh2Z4915+U2EQzvqyVRrxYvSbp5AyXA22Wy+Y4PWglPnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-2ae57f34e22so9464121eec.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 03:23:22 -0800 (PST)
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-50146fcf927so6578001cf.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 03:03:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768389802; x=1768994602;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RlUeVi88PIKWMzTWAKceP+tOAwQMJqEvuH7YKzydUAQ=;
-        b=Pil+8tL4mvOfJuoffpZMDL9LnT/DyQr+Dunk4Tfdg06dppYADS0FWG2N458OZ8pfQb
-         0cEvj6eLmImbF1uulSvLSQW6xajDSWiDtETO6BjCjtESTiAchMh1nc9VkVekMjx6LL2e
-         ymopxhd9Pbm/Zk7IlJrQHFZcbDjs2hlzsaAnqSoAroyhXwsB5P17X+9DcRlQyt5H67aZ
-         r6ZsqIqZsxwX6D7SR6fc1Mvuf1zL9RYp+g1Lt/0avyxidsuBucQXtY/wC4PNyCvGo2/0
-         W6aNM/eelymAC7FMg3FENX6h/7Ffx2/oQZWrt/74bTv1heCGYpHwCAG2qLd9EZtjkL9v
-         zFLw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5m4SfLwGDscObm0a68ZtxvQejiONZMkxRE8d6vpYNHxH2UQih+RFDdQysUxUd8Py10hvYxJ2wGfW7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/1WUu0XMFXsVtT7OAp/pepZQ9emOVP5Z+DYCM2J56ZF/JxW4I
-	mgqwOlyp/9RNuObPTZaFrZk3BwiIEBHlxJzUJi0E0tk91JOd00Ry/t/Y/DI29H5P
-X-Gm-Gg: AY/fxX5Wgj16cPLAL+weDPqGW32mBqaIs4wID2S0InoWQrNrOBBEA1yyE2BQGGdtAXg
-	82aF3GZgIG/YDGs7gEqlBQlNMdCJgRzjFBo4T/WCq/dFF2jdgjLSPNZn175o1s1XfdW34SY3aw4
-	qSv3FgigZA6djw2qDxP2CclGQcJtmTDY0SSg1+YGUi4ScePVtyP9wIDLwcowsn1neZnT5fjQPrI
-	q4t9HQoYASFUxXLL8cEbbILtr+UMf1ITiGXsh5KQsDDIL3duZQyeROX6EgxcYPNM7sDXNi4/8eh
-	XhZW/9zSM3qmDPJGDxzOv0eCpHs7UkDwAdS+E7SM0PPjlrJrueTlSp5bLKxfJKAOB6xKqiK/ET8
-	AKEK0BowgxUjh2nN+VUM2eAxlWeF8GAH8Ol/dPtw8zuubvO8r79ffUjn1QoO+vnVbRC88CJXnIW
-	32l81JPQTNRi0GoauHos597Tx7Srrzp1K0zCvxDYIIyNQ8U0AETau47Kkj/ps=
-X-Received: by 2002:a05:6102:6ca:b0:5ee:a094:d4d2 with SMTP id ada2fe7eead31-5f17f415847mr711053137.1.1768383447361;
-        Wed, 14 Jan 2026 01:37:27 -0800 (PST)
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-944124a3386sm21491441241.11.2026.01.14.01.37.26
+        d=1e100.net; s=20230601; t=1768388589; x=1768993389;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=jUj0QZHjKgRIKXHXvtdXuKCfmZJrYVq/PNABBtIJEcs=;
+        b=dbuahujVACss6xfneN8fy/YfWtGn+Yvd2qFfXzvc4szEH5RX4DfK1bDXoqucBkhlgK
+         YhZm5oQiWRLcBHxRrUYLndc+OEZLKSAiPGHPAKdyuaBkUCGsNLHOGXFGsJ1lVRtfvquz
+         6AXSLtRqBS+7qKlmUvao5JzXNqIAiTAngLjS52sTgOdt3Fb9GLPGTsKJ7O2olz+DFh4P
+         36rCmdU/VyRD7iGz5ULe0VuSwlg/dCP6Fq2GU73RCaSCoaIQXOYb6fHBjJc6u7Eunro1
+         18BNRTZ8gUGBnhcYITKzSrKxxOO6iLZV9yMSSfJPGSHj2jnEHQeLCAcSneMZOf7Xsf9o
+         zj5A==
+X-Forwarded-Encrypted: i=1; AJvYcCX+PsTos31m+yZTD1X4uTz48mcDhVh6HTPsFucuDWN52enOuKNs2lbZxQMQnXwB1wCEFw/o9p7OySuS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyO7s0nGmrs7I430w3xKkcEzWI4x0Zbrtfhz0qS0xzzHdxHNhe0
+	OvjoFLn0jCITmYJaxKAHMwfilmIVpEXTa+IP2282kfzCYooCq03D+7i3Vq+fdAfH
+X-Gm-Gg: AY/fxX6sdCXpllnyOvqZC339dsf27I5c0v3kC74Vi1RSi/4ykRFTKv5zH8vMLITOzip
+	mrQYSNcYz8Ge+df16SW64HtEVJ6g0yCqstW+7pvzVJ//dywSKijHO9isKQZUfoL2aiz8U4k6mQo
+	CeR16UR5rozE02W87ZTrRfPYaXss/TvRrU8frth1hzKpcyV8dfME7qkJTo9wOhzflMfL97+50mn
+	GmHEbLOYr3L92yN2d/vt8ZULFRgchXqbj8RUC62Qyy37AH6wTUlHAKknQX0Mo0hX4BC5ej+lb9v
+	8hZHvZTBPpIxJqgQ48YpFn8Lztm07qL+Kkr3eeufw379jc2AVs34ggWz0ZpyQ6pz15pXsys7o4l
+	aENM7ku68AQh3ThzlOZHCe2EIC1g2JJy3djBXRvOGegYc79vgJHuP5qDxMCiijKdnEUOlVv8q/C
+	Oh3f5KCdesDfRfhb4e6aXAuEYNM8za3W53Wzf0Sz0xwwCsZ2e/deY9
+X-Received: by 2002:a05:622a:114f:b0:4ff:82aa:d845 with SMTP id d75a77b69052e-5014883b154mr27491881cf.41.1768388589258;
+        Wed, 14 Jan 2026 03:03:09 -0800 (PST)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com. [209.85.160.178])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50148ecc0e4sm11635891cf.23.2026.01.14.03.03.08
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 01:37:26 -0800 (PST)
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-93f5774571eso2832091241.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 01:37:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUj7hp89PP2EACfGEsNTTfS3zUREsPRAn9NCCLvuwIFtwjPGa1hS1NXlkcfEMAWC6nf1weE/QeF4TpD@vger.kernel.org
-X-Received: by 2002:a05:6102:41a7:b0:5ed:bc1:823a with SMTP id
- ada2fe7eead31-5f17f6592aemr793700137.33.1768383446392; Wed, 14 Jan 2026
- 01:37:26 -0800 (PST)
+        Wed, 14 Jan 2026 03:03:09 -0800 (PST)
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4f1aecac2c9so9698911cf.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 03:03:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVG2Xp6MLGLxASHCGm2c4YJYmnu5Er4xCgLLTuJZ4a5zm3cGxO+W0NquD+hvXQeZItxUIXquHYYi3qa@vger.kernel.org
+X-Received: by 2002:a67:e7ca:0:b0:5ef:a3c1:86e1 with SMTP id
+ ada2fe7eead31-5f16caf02dcmr2636191137.11.1768388217149; Wed, 14 Jan 2026
+ 02:56:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260112234534.225954-1-marek.vasut+renesas@mailbox.org>
- <20260112234534.225954-2-marek.vasut+renesas@mailbox.org> <aWZ1pG5RRWlDSCwC@lizhi-Precision-Tower-5810>
-In-Reply-To: <aWZ1pG5RRWlDSCwC@lizhi-Precision-Tower-5810>
+References: <20260104222653.1659382-1-niklas.soderlund+renesas@ragnatech.se> <20260104222653.1659382-3-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20260104222653.1659382-3-niklas.soderlund+renesas@ragnatech.se>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 14 Jan 2026 10:37:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXb3-EFy8WA9FTAqvyYHaF4nGch60bUQ6bbKu6Dzbh6YQ@mail.gmail.com>
-X-Gm-Features: AZwV_QixtfIM8YCIiXj7v0fzbdqd9QL-Kw8ynN88vc69gt7t-8CBMGxLdXH8t2o
-Message-ID: <CAMuHMdXb3-EFy8WA9FTAqvyYHaF4nGch60bUQ6bbKu6Dzbh6YQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] Input: ili210x - add support for polling mode
-To: Frank Li <Frank.li@nxp.com>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-input@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Job Noorman <job@noorman.info>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
+Date: Wed, 14 Jan 2026 11:56:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW-yM0=1nVqWvCMD0a-5izxFE1LLsuNuFCtfz=Od=QB1Q@mail.gmail.com>
+X-Gm-Features: AZwV_QghUYTO_u0eAcOvYe5E9g88VVEx4bvinDAi6XyZ4obaigG9hTvrBIdoK34
+Message-ID: <CAMuHMdW-yM0=1nVqWvCMD0a-5izxFE1LLsuNuFCtfz=Od=QB1Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a77995: Add GE8300 GPU node
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Conor Dooley <conor+dt@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>, 
+	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Frank,
+Hi Niklas,
 
-On Tue, 13 Jan 2026 at 17:41, Frank Li <Frank.li@nxp.com> wrote:
-> On Tue, Jan 13, 2026 at 12:44:57AM +0100, Marek Vasut wrote:
-> > There are designs incorporating Ilitek ILI2xxx touch controller that
-> > do not connect interrupt pin, for example Waveshare 13.3" DSI display.
-> > To support such systems use polling mode for the input device when I2C
-> > client does not have interrupt assigned to it.
-> >
-> > Factor out ili210x_firmware_update_noirq() to allow conditional scoped
-> > guard around this code. The scoped guard has to be applied only in case
-> > the IRQ line is connected, and not applied otherwise.
-> >
-> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> > --- a/drivers/input/touchscreen/ili210x.c
-> > +++ b/drivers/input/touchscreen/ili210x.c
-
-> > @@ -1003,12 +1027,24 @@ static int ili210x_i2c_probe(struct i2c_client *client)
-> >               return error;
-> >       }
-> >
-> > -     error = devm_request_threaded_irq(dev, client->irq, NULL, ili210x_irq,
-> > -                                       IRQF_ONESHOT, client->name, priv);
-> > -     if (error) {
-> > -             dev_err(dev, "Unable to request touchscreen IRQ, err: %d\n",
-> > -                     error);
-> > -             return error;
-> > +     input_set_drvdata(input, priv);
-> > +
-> > +     if (client->irq) {
+On Sun, 4 Jan 2026 at 23:28, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Describe Imagination Technologies PowerVR Rogue GE8300 BNVC 22.67.54.30
+> present in Renesas R-Car R8A77995 D3 SoC.
 >
-> 0 is validated irq number
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/r8a77995.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
+> @@ -1295,6 +1295,21 @@ gic: interrupt-controller@f1010000 {
+>                         resets =3D <&cpg 408>;
+>                 };
 >
-> https://elixir.bootlin.com/linux/v6.19-rc4/source/drivers/base/platform.c#L284
+> +               gpu: gpu@fd000000 {
+> +                       compatible =3D "renesas,r8a77995-gpu",
+> +                                    "img,img-ge8300",
+> +                                    "img,img-rogue";
+> +                       reg =3D <0 0xfd000000 0 0x40000>;
+> +                       interrupts =3D <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
 
-Not anymore ;-)
+119
 
-https://elixir.bootlin.com/linux/v6.19-rc4/source/drivers/base/platform.c#L299
+> +                       clocks =3D <&cpg CPG_CORE R8A77995_CLK_ZG>,
+> +                                <&cpg CPG_CORE R8A77995_CLK_S3D1>,
+> +                                <&cpg CPG_MOD 112>;
+> +                       clock-names =3D "core", "mem", "sys";
+> +                       power-domains =3D <&sysc R8A77995_PD_ALWAYS_ON>;
+> +                       resets =3D <&cpg 112>;
+> +                       status =3D "disabled";
+> +               };
+> +
+>                 vspbs: vsp@fe960000 {
+>                         compatible =3D "renesas,vsp2";
+>                         reg =3D <0 0xfe960000 0 0x8000>;
+
+The rest LGTM.
 
 Gr{oetje,eeting}s,
 
                         Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
                                 -- Linus Torvalds
 
