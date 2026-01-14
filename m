@@ -1,95 +1,149 @@
-Return-Path: <devicetree+bounces-254852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB79D1D266
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:37:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA97D1D25E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:37:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7CF113027A42
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:35:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6AE0F3031791
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD5D37F722;
-	Wed, 14 Jan 2026 08:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B380B37F742;
+	Wed, 14 Jan 2026 08:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zn3wYT/R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qhcD4IcY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4823137F724;
-	Wed, 14 Jan 2026 08:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2257B37F721
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768379746; cv=none; b=dRXtGObgVQX2zjYhza4wjbdS3Cq2bNovCRMYAqFFNRwMHcZ0CFn8fbncXCgP8jYyiHayPgSj67k//wdAQx6CbCAh/ORU98+T48sa9BXU/kqHci2h/njAS6xjEQGrYmZdrocOtTPyKWtMRcyLm1MqwkkCd+KH1v3Tet420Ns7fA4=
+	t=1768379830; cv=none; b=XQ4mK1FdywmUgUGX6nzJv6MqL3JdMgD2puhyKXERB9yPHLAwK2gb87yOdeQQ926BjnRSksG83vQoKlsuy3PVgxX+sloW8N+xJ9KA0A+PGNPP4iG76YHkjMUdiCtOjKzStdWKGDC786B9sWsfyEpB8D3Z4FrV6CmuOYrekoZGfEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768379746; c=relaxed/simple;
-	bh=DxiGW0weUzqeG+ae5w/kEulEAA0JgRZ+wmxUHIbNego=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C1LlR2l1JKJDNuoFS0c7HWuNj36IX7d5qr3gBKUpmz39l/8WyuRuJ4BcNA/aB4C8EG25NyPsvpgfZzhBPrq//TfNKoGY/uxd6FXkW++51GJ3o/GPolBM68QnZU8mJp8pzJIzVcItnLHwcFvYIC+FBv7i/tVzi57fj/wj1KaLAx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zn3wYT/R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0C85C19425;
-	Wed, 14 Jan 2026 08:35:44 +0000 (UTC)
+	s=arc-20240116; t=1768379830; c=relaxed/simple;
+	bh=RRIJRG5Pvsqy92X+cKBrGTIyYEPHbNu+BVuReetdu48=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NaAe7Cy1yqHdLOMqrJnDVqVRaim67A/GIxDfFTg7PeOSNZJBfGYw7UM6yuZipOsH0RtAmBy4spMCAetr/N+pTOD1SndqR+phOyT/Q+v5CWEg9sWsDa6nwFBPV2Cb9p6TAUuBVCT39KIxY7rvv+NuHiNuLPUdczdQeLFs0e+TqC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qhcD4IcY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40304C4CEF7
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:37:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768379745;
-	bh=DxiGW0weUzqeG+ae5w/kEulEAA0JgRZ+wmxUHIbNego=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zn3wYT/RVmzxK7Adq94nG8mMzMm8Mq2Oype7ZkPP7gJRq7vg7PiW/4LU/KiucA7Qj
-	 LA3JI3gE6AHRP3+oBm7i8XOeKO5b3NINHcpoRKeQw2yT3Wdf6wK21T3RipFCvcBVAs
-	 aQ5DoaOsS6aCQQoT1IKJplhovM6KfZ2JxEj2f5DedIEzTFe7j8bM9D6FZZZU88j+nO
-	 jRhUpT4iAhr8F3UFYm0bMXZShm3WxHnIqeAy8SzbIMCLvqTeoEcx9er4jAdrykpRTp
-	 4TW0qqjXpoArUkRryT7hPxoYkAR9JXxFNDSOddXTtPya1Q+sqoK3ALqqweFxs+mfBM
-	 OnxWHetWDUK2Q==
-Date: Wed, 14 Jan 2026 09:35:42 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
- EN7581-7996 support
-Message-ID: <20260114-heretic-optimal-seahorse-bb094d@quoll>
-References: <20260113-airoha-npu-firmware-name-v2-0-28cb3d230206@kernel.org>
- <20260113-airoha-npu-firmware-name-v2-1-28cb3d230206@kernel.org>
+	s=k20201202; t=1768379828;
+	bh=RRIJRG5Pvsqy92X+cKBrGTIyYEPHbNu+BVuReetdu48=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=qhcD4IcY3e3mEwVH63yGFMvRPNYJlcemRqqDTa7Qjt5DIQB3jOUu6QEbi3jJ9vput
+	 vXuVWUogtTbOOWNiEZSks6Gb0o6al3AovQ2V3h7Armg2fk0vxCgJmhMlHtZhBE+zbV
+	 InyXkwi6tPcoLmWs1aNNHgzRt8w4ri3yCOof44W0wk0FY16iSznPWRWm+XLQXmvera
+	 e9byu7dwdHveT5R+5E5GStDJqLm86WPZsmbIInMDCB2aTElGGJEHLo33xJHTPj7KuA
+	 MfS84uLgCdt+tyiy4OvZN0EZ7mVs2R4mNRYvOgO/aAywkaQy8RhXZxyjo2m3bmmhkj
+	 gJbprwqPTgtXA==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-59b834e3d64so6039828e87.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 00:37:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWMpDvDh/lo+0D42RV6Xx0BapFWKGehcBPuzXo5JEcFb2hnJ9m6wA6K6765GX37lYxhiLa+DgFHCgCu@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaiHzTYYM2wnM0VWJyVWRKoqcDaqchomlgZmoM5FUSCCBAzLrG
+	UhV0bYcQJ9Y4MnK3bYrtgGZR/jT3UuYkBslIYqX5etVFsd/dO4RIS1dX0KpJrlZbhCVLemo4gzv
+	wKybQ67gj8u0zYrEGV0AlZYyq+bKMjmx64kUCABLifw==
+X-Received: by 2002:a05:6512:2213:b0:59b:78ad:fb9e with SMTP id
+ 2adb3069b0e04-59ba0f5df7dmr550456e87.10.1768379826948; Wed, 14 Jan 2026
+ 00:37:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260113-airoha-npu-firmware-name-v2-1-28cb3d230206@kernel.org>
+References: <20260113161152.3688309-1-shorne@gmail.com> <20260113161152.3688309-2-shorne@gmail.com>
+ <CAMRc=MfLqoPvCiEtunvfidaRGAfZFbGM98y8vjj8R187ziUtdg@mail.gmail.com>
+ <aWZzZWTjctHasCHh@antec> <20260114-agile-kangaroo-of-honor-963dc6@quoll>
+In-Reply-To: <20260114-agile-kangaroo-of-honor-963dc6@quoll>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Wed, 14 Jan 2026 09:36:55 +0100
+X-Gmail-Original-Message-ID: <CAMRc=Meicads1OAYM+bRN3B8P2Jt9=D=VNSL-KQytsUiBLaAbg@mail.gmail.com>
+X-Gm-Features: AZwV_QicL-NMGKpWgpsji24MIWu6hu9pD8ISWG5CiwXSXP6Yg_kdXxH0cqrxqwI
+Message-ID: <CAMRc=Meicads1OAYM+bRN3B8P2Jt9=D=VNSL-KQytsUiBLaAbg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/6] dt-bindings: gpio-mmio: Add opencores GPIO
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Stafford Horne <shorne@gmail.com>, LKML <linux-kernel@vger.kernel.org>, 
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>, devicetree <devicetree@vger.kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 13, 2026 at 09:20:27AM +0100, Lorenzo Bianconi wrote:
-> Introduce en7581-npu-7996 compatible string in order to enable MT76 NPU
-> offloading for MT7996 (Eagle) chipset since it requires different
-> binaries with respect to the ones used for MT7992 on the EN7581 SoC.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> index 59c57f58116b568092446e6cfb7b6bd3f4f47b82..96b2525527c14f60754885c1362b9603349a6353 100644
-> --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> @@ -18,6 +18,7 @@ properties:
->    compatible:
->      enum:
->        - airoha,en7581-npu
-> +      - airoha,en7581-npu-7996
+On Wed, Jan 14, 2026 at 9:31=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Tue, Jan 13, 2026 at 04:31:33PM +0000, Stafford Horne wrote:
+> > On Tue, Jan 13, 2026 at 05:20:28PM +0100, Bartosz Golaszewski wrote:
+> > > On Tue, Jan 13, 2026 at 5:15=E2=80=AFPM Stafford Horne <shorne@gmail.=
+com> wrote:
+> > > >
+> > > > Add a device tree binding for the opencores GPIO controller.
+> > > >
+> > > > On FPGA Development boards with GPIOs the OpenRISC architecture use=
+s the
+> > > > opencores gpio verilog rtl which is compatible with the MMIO GPIO d=
+river.
+> > > >
+> > > > Link: https://opencores.org/projects/gpio
+> > > > Signed-off-by: Stafford Horne <shorne@gmail.com>
+> > > > Reviewed-by: Linus Walleij <linusw@kernel.org>
+> > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > ---
+> > > > Since v3:
+> > > >  - Removed example.
+> > > >  - Re-order this patch to be before adding compatible string to dri=
+ver as per
+> > > >    device tree binding patch rules.
+> > > >  - Add Reviewed-by's.
+> > > > Since v2:
+> > > >  - Fixup (replace) patch to simply add opencores,gpio and add an ex=
+ample.
+> > > >    (It was incorrect to specifying opencores,gpio with brcm,bcm6345=
+-gpio
+> > > >     as opencores,gpio is not the same hardware, its 8-bit vs 32-bit=
+)
+> > > > Since v1:
+> > > >  - Fix schema to actually match the example.
+> > > >
+> > > >  Documentation/devicetree/bindings/gpio/gpio-mmio.yaml | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml =
+b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> > > > index ee5d5d25ae82..a8823ca65e78 100644
+> > > > --- a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> > > > +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> > > > @@ -23,6 +23,7 @@ properties:
+> > > >        - ni,169445-nand-gpio
+> > > >        - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GP=
+IO controller
+> > > >        - intel,ixp4xx-expansion-bus-mmio-gpio
+> > > > +      - opencores,gpio
+> > > >
+> > > >    big-endian: true
+> > > >
+> > > > --
+> > > > 2.51.0
+> > > >
+> > >
+> > > This is not a follow-up patch. Please rebase your fix on top of
+> > > linux-next. I already have the previous patch in my tree and will not
+> > > be rebasing the entire for-next branch.
+> >
+> > OK, understood, I wasn't aware you would not rebase. I will rework this=
+ rebasing
+> > on linux-next reberting my previous dt-binding: patch first.
+>
+> No, you need to rebase, not revert.
+>
 
-This does not warrant new compatible. There is some misunderstanding and
-previous discussion asked you to use proper compatible, not invent fake
-one for non-existing hardware.  Either you have en7996-npu or
-en7581-npu. Not some mixture.
+Just to be extra-clear: take current linux-next (next-20260114) and -
+on top of it - create a patch that fixes the issues in an incremental
+way. No reverts. Also: add the Fixes: tag to your commit before your
+SoB.
 
-
-Best regards,
-Krzysztof
-
+Bartosz
 
