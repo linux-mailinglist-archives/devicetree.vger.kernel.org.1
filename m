@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-254978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2074D1E197
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:34:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFD8D1E262
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:41:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8C57B3017FAB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:33:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 87B06301A1A6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D126392C56;
-	Wed, 14 Jan 2026 10:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6765938A704;
+	Wed, 14 Jan 2026 10:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vg6D8f7f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OEzTGLvY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD2B392C2F;
-	Wed, 14 Jan 2026 10:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B180E38BDCE;
+	Wed, 14 Jan 2026 10:35:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768386814; cv=none; b=Uz0Eclcd1FgCxaesYpAv5EcH16kERQRwLKxyOBSJg0Tg5TZMLBvN+s57Zcq8oZW9uneTfmj25L1wY/nmGLO6jSlPpMu0w9X28ff5HVuBXzIPrpTimFToRj9HuyRjgJcHFnpTOyp4LIl+bbKDppokBRtcQmbk0NR+7LyPDogR3CA=
+	t=1768386900; cv=none; b=sohpY9NzfvT6U0j37e+IGxJVrNWWnM0N+ztARGY019CZ7g4KQnSHUNyBEPVAesOmwHXjaOt9vAjAUwMuU0x/CaxSW9FDwQKipPHoAYYqMwLMvZJkKDmuT10BR8ptpOkGbRns7FizO0MlE0ngmVVTmSaAQwyYJVQ0xKYhREgAh+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768386814; c=relaxed/simple;
-	bh=2ZiLyAKqaZ48YVIn7VvFsZOXbZKEr36Pyd+9rE9cSlo=;
+	s=arc-20240116; t=1768386900; c=relaxed/simple;
+	bh=Aci1VfUrOZ2vmVbNLWJQMYGWQewDFxkS6jVls4tevd4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QnY201AxqzTvdt3j9CRD1eqxs2BgLPk5Sl9kNkPb9x4BZS9EwSsz5sHSlnmMWGc9JLjklozAQLV1xGtTHnp6lQar/W+VuA6b63cScKcAMhWh0lyKBrmndaNiqnlYz7ksx7j2FGGAgU0GSUYCCYUq7yCETS/y7zlt+visG8WjIf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vg6D8f7f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FA1BC16AAE;
-	Wed, 14 Jan 2026 10:33:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Hog2thZ80Wo5yra9IPORygxn7XyxTqyEUAPXZaGsRGzCZ8TLXE0okIB3UU8MOKFk0wAltUtYauYwk6FvfZVHlDhyaq+Vr2ZwvfzgAcn8CzJmihsCVJYaIlgryGUavSEabiH9PR34a6U7/06e2zo7iveLSl4uOeBN7eHeE8GszIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OEzTGLvY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EC60C4CEF7;
+	Wed, 14 Jan 2026 10:34:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768386812;
-	bh=2ZiLyAKqaZ48YVIn7VvFsZOXbZKEr36Pyd+9rE9cSlo=;
+	s=k20201202; t=1768386900;
+	bh=Aci1VfUrOZ2vmVbNLWJQMYGWQewDFxkS6jVls4tevd4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Vg6D8f7fpiwoLuuQYzYq0/07ebXpKlmOgJ6F5fs90/fxuaHUeYjNKDCnO0TIsufpD
-	 cRHbs5SjDbGgTpZx9F4KK47aJ/3wGYjYtQJ46OinicypOvqVBMH57d8Kp5eAPAm3Nl
-	 7UZOOwbFf7tqZKmlvUXvCoO2b3jyl0flRaY7CP0FqDQ0mndGF1LPPsDIH1h2yI9bW8
-	 6SXs6/IP3RtykcZmzCNl2hkGaKFxdHXYqsb7PPTrV0ZrM5rpAbS5f+bb3sQQEGUq18
-	 e7Jigg6TMJWIRTNIuZ1Thamt3Al4B4v9VRW0Rfat7ZwMQ7DMbJGiT6Tfrtjq22sfNR
-	 NzWaf/WVhhYMw==
-Message-ID: <39bb1820-6e4d-4f50-87e0-93844d779f6c@kernel.org>
-Date: Wed, 14 Jan 2026 11:33:26 +0100
+	b=OEzTGLvYDXEV6L79EExc0h67Wmmw9yYzCqGdEdEmo68q+BecSb2Sgs6upW6aDcIcH
+	 +7iUx5JkmePrf5ANUaO+K4cRwmYE0+mMkR2mL6QzVlvPaIF++outnSad3JGIkSJToU
+	 Pv1cBpNf6H6TJ0lwoMybO4nQ9RMle2v7HsR40lMgAMu16Utd7lc0YdBgrtaeMZwGlf
+	 u1gvWeRegKMa/2f+UqYUUHSV7kjQb5RKxZIslquh4WjOk5YNPCB9iridTElQ8MVggt
+	 c+w1K4meVe1yrQlnOABvgu08M/2b2gqKYxtQFW1+NB8PCKbU69k+06mCw65KWa8Hnn
+	 P3LsqGkOiUMXQ==
+Message-ID: <e2d2c011-e041-4cf7-9ff5-7d042cd9005f@kernel.org>
+Date: Wed, 14 Jan 2026 11:34:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,19 +48,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add Khadas VIM1S
- binding
-To: Nick Xie <xieqinick@gmail.com>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, xianwei.zhao@amlogic.com,
- christianshewitt@gmail.com, krzk+dt@kernel.org, robh@kernel.org,
- conor+dt@kernel.org, nick@khadas.com
-References: <20260114062549.68954-1-nick@khadas.com>
- <20260114062549.68954-2-nick@khadas.com>
- <20260114-slick-passionate-mink-216a3a@quoll>
- <CAP4nuTXeC1-6ktwLpDt_1ZRHxPSiNAoDKTxLzqEYJUfcnVogcQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
+ EN7581-7996 support
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20260113-airoha-npu-firmware-name-v2-0-28cb3d230206@kernel.org>
+ <20260113-airoha-npu-firmware-name-v2-1-28cb3d230206@kernel.org>
+ <20260114-heretic-optimal-seahorse-bb094d@quoll> <aWdbWN6HS0fRqeDk@lore-desk>
+ <75f9d8c9-20a9-4b7e-a41c-8a17c8288550@kernel.org>
+ <69676b6c.050a0220.5afb9.88e4@mx.google.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,64 +108,94 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAP4nuTXeC1-6ktwLpDt_1ZRHxPSiNAoDKTxLzqEYJUfcnVogcQ@mail.gmail.com>
+In-Reply-To: <69676b6c.050a0220.5afb9.88e4@mx.google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 14/01/2026 11:07, Nick Xie wrote:
-> Krzysztof Kozlowski <krzk@kernel.org> 于2026年1月14日周三 16:51写道：
->>
->> On Wed, Jan 14, 2026 at 02:25:48PM +0800, Nick Xie wrote:
->>> Add devicetree binding for Khadas VIM1S board based on
->>> Amlogic S4 S905Y4 SoC.
+On 14/01/2026 11:09, Christian Marangi wrote:
+> On Wed, Jan 14, 2026 at 10:26:33AM +0100, Krzysztof Kozlowski wrote:
+>> On 14/01/2026 10:01, Lorenzo Bianconi wrote:
+>>>> On Tue, Jan 13, 2026 at 09:20:27AM +0100, Lorenzo Bianconi wrote:
+>>>>> Introduce en7581-npu-7996 compatible string in order to enable MT76 NPU
+>>>>> offloading for MT7996 (Eagle) chipset since it requires different
+>>>>> binaries with respect to the ones used for MT7992 on the EN7581 SoC.
+>>>>>
+>>>>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml | 1 +
+>>>>>  1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+>>>>> index 59c57f58116b568092446e6cfb7b6bd3f4f47b82..96b2525527c14f60754885c1362b9603349a6353 100644
+>>>>> --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+>>>>> @@ -18,6 +18,7 @@ properties:
+>>>>>    compatible:
+>>>>>      enum:
+>>>>>        - airoha,en7581-npu
+>>>>> +      - airoha,en7581-npu-7996
+>>>>
+>>>> This does not warrant new compatible. There is some misunderstanding and
+>>>> previous discussion asked you to use proper compatible, not invent fake
+>>>> one for non-existing hardware.  Either you have en7996-npu or
+>>>> en7581-npu. Not some mixture.
 >>>
->>> Signed-off-by: Nick Xie <nick@khadas.com>
->>
->> You still have the same From/SoB mismatch.
-> 
-> OK,  I will fix it in next version.
-> 
->>
->>> ---
->>>  Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
->>>  1 file changed, 6 insertions(+)
+>>> Hi Krzysztof,
 >>>
->>> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
->>> index 08d9963fe9259..55663e0f7f915 100644
->>> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
->>> @@ -247,6 +247,12 @@ properties:
->>>                - amlogic,aq222
->>>            - const: amlogic,s4
-
-Look here
-
+>>> We need to specify which fw binaries the airoha NPU module should load
+>>> according to the MT76 WiFi chipset is running on the board (since the NPU
+>>> firmware images are not the same for all the different WiFi chipsets).
+>>> We have two possible combinations:
+>>> - EN7581 NPU + MT7996 (Eagle)
+>>> - EN7581 NPU + MT7992 (Kite)
 >>>
->>> +      - description: Boards with the Amlogic Meson S4 S905Y4 SoC
->>> +        items:
->>> +          - enum:
+>>> Please note the airoha NPU module is always the same (this is why is just
+>>> added the -7996 suffix in the compatible string). IIUC you are suggesting
+>>> to use the 'airoha,en7996-npu' compatible string, right?
 >>
->> Yopu already have exactly such enum with such description, so your
->> compatible goes there. Look - it is called "Boards" - plural.
+>> No. I am suggesting you need to describe here the hardware. You said
+>> this EN7581 NPU, so this is the only compatible you get, unless (which
+>> is not explained anywhere here) that's part of MT799x soc, but then you
+>> miss that compatible. Really, standard compatible rules apply - so
+>> either this is SoC element/component or dedicated chip.
+>>
+>>
 > 
-> The exist board aq222 is based on SoC S905X2, but the new board vim1s
-> is baed on S905Y4,
-> they are different SoC, so we need to put S905Y4 under S805X2 ?
+> Hi Krzysztof,
+> 
+> just noticing this conversation and I think there is some confusion
+> here.
+> 
+> The HW is the following:
+> 
+> AN/EN7581 SoC that have embedded this NPU (a network coprocessor) that
+> require a dedicated firmware blob to be loaded to work.
+> 
+> Then the SoC can have various WiFi card connected to the PCIe slot.
+> 
+> For the WiFi card MT7996 (Eagle) and the WiFi card MT7992 (Kite) the NPU
+> can also offload the WiFi traffic.
+> 
+> A dedicated firmware blob for the NPU is needed to support the specific
+> WiFi card.
+> 
+> This is why v1 proposed the implementation with the firmware-names
+> property.
+> 
+> v2 introduce the compatible but I feel that doesn't strictly describe
+> the hardware as the NPU isn't specific to the WiFi card but just the
+> firmware blob.
+> 
+> 
+> I still feel v1 with firmware-names should be the correct candidate to
+> handle this.
 
-What is the point of having two separate lists with enums ending the
-same SoC compatible?
+Yes. What you plug into PCI is not a part of this hardware, so cannot be
+part of the compatible.
 
 > 
->>
->>> +              - khadas,vim1s
->>> +          - const: amlogic,s4
-
-And here.
-
->>
->> Best regards,
->> Krzysztof
->>
+> Hope now the HW setup is more clear.
+> 
 
 
 Best regards,
