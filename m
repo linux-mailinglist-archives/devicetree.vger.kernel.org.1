@@ -1,224 +1,126 @@
-Return-Path: <devicetree+bounces-254996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521CAD1E3F3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:56:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61FBBD1E373
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:49:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6BEE30A2E32
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:46:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1E2D8304D198
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C093393DD0;
-	Wed, 14 Jan 2026 10:46:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="JZA/od7k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC7439446E;
+	Wed, 14 Jan 2026 10:47:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD8B7393DCC
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2B0395267
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768387579; cv=none; b=Fkp1wjSjHRYSqYOV7XV1MycFcsHS97LOmwdN00Di4Am9F+fXy5YS61i0BGGRiPfhQYLhBCDqRwlVIukLMEK276185fr2tw489aQTR3QwLXPVBL2lxAm2wsfwmJWYWi7ZwmPEVdzQ8ybLA6UjAOpMIKcC68J4nyYgPZVv6FWUjLA=
+	t=1768387636; cv=none; b=kz5S1kyD36GtNTQSH4MT7F7LvNVb8WKpfSAxxO23T6l3fQ/LwSEeRAqTN3cTC6nooVzYd2FbHpA13ZuYO14cmCe8jHb32VkSp6Hsnx4/HzfyO1lzh15FWufLNnxb2s939ajKlKpq1j3WNuhhh9ho2XN13UMf8+lfiP+azENIk98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768387579; c=relaxed/simple;
-	bh=vsY4t7iAts2jcnxV0WlUarWK8oCzNJWy2N9i6xt4aQU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kE3Kut6BJuhDtwv1dAyLtPa8TLpSo9RKPtHMZbureai3Jc1plVPMUeLktAC4JPSx5CoZwzbTJXqmgcLW4C1wTT80zHhFm9JrHTUS60lexk0UsW9kPtMrPePSBuUjQ4atd3n03JmQaPlWK+g83jLR3HbaiztMhGdp8j4cGMw8bOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=JZA/od7k; arc=none smtp.client-ip=185.136.65.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 20260114104604e269558a2100020741
-        for <devicetree@vger.kernel.org>;
-        Wed, 14 Jan 2026 11:46:04 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=alexander.sverdlin@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=8bqFlPeW8UEYO5QEsPzlMr7wox/ozy0QqtSh3S128C8=;
- b=JZA/od7kt1ur1J7+WEbJHCWCMPCE2vWJjQcSVaLPaCH9cDDOtzPss29jl/2jWRPAGoO/qQ
- hmi1toCef6bMTHs4yInljX1AG2pIeZfgW+RZdoi6waadOlceyeSmLAxi3k3dLc8wZuvoQPsa
- i2SJNKgyUM7Uhd/LDq0rikgsmyn0e/vrkfeFQ2jtoq4azkRa8wb+VAF61pUnRu+fiWLrZp1D
- lU0YekrauPx9YBkACaP6GrxE/TOiZchkI3JRMvmsG6HUyPHyDx6zcHzCLxUtTAkLrXZJnCQp
- NEYzRjuXkFVyndd/09j2cVAZ3WnEQ79WN1LhvBHRvOdayUp1q5fmy+hA==;
-From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
-To: netdev@vger.kernel.org
-Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Hauke Mehrtens <hauke@hauke-m.de>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Daniel Golle <daniel@makrotopia.org>
-Subject: [PATCH net-next v5 2/2] net: dsa: mxl-gsw1xx: Support R(G)MII slew rate configuration
-Date: Wed, 14 Jan 2026 11:45:04 +0100
-Message-ID: <20260114104509.618984-3-alexander.sverdlin@siemens.com>
-In-Reply-To: <20260114104509.618984-1-alexander.sverdlin@siemens.com>
-References: <20260114104509.618984-1-alexander.sverdlin@siemens.com>
+	s=arc-20240116; t=1768387636; c=relaxed/simple;
+	bh=l7Vms44D7cdWM2JTmvA6ZUvD6bdQNJphB0NNGZJgeu0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tJ+LERbT92Tz2o+tBOZx+BUV4BEU6OOsAYHJU7LQOG4y+1yHgnSsTLY5LOBNN/tJLKmHTDqZ+CiyAkDTtTMdW2C2ag+SeJ0MXWLXworZnMRZa58bIOs2ojuNddmc5NIlhLSpbhxI0WdDpDDSMUODO9QWHiKn7mqKK0iv0AFOWyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-5635f3eff8aso1710405e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:47:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768387627; x=1768992427;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Eqj4xnVKq5dPU3hM1G946buXrOEhzZ5Yj8GNkLNrprY=;
+        b=ctcGHDvlsAnEPVIoPEiRrxQtN44n9g5pjuPlvmY6mbDz4nUYYugO4JVzY1eGE8VMNs
+         OFyXiKgkfcpUpfTYqSjKnevLm9ENgGfSucX4uw1lTjVrypkS+DVgNqd2jBojI92+JcNm
+         NKRiRurgCDy2AnGR0IbVQFZ8LrOen1rs1X+T54UoJGu1IJ055HgNAhSF1CkHIuSnRl6g
+         NYk6VRa8ZHoSYOPzROjkP19B+81duqi2TdGb1gk0ZTzxpzLHVxAXRwMXmh+Pzp3KVziQ
+         w6MaVv15iMSquIOZU31Q+yxZrrh4bAD9sD+3C+Dwj4RwLyKwF9tYzInmzu1xYSHGpOyI
+         mzHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXahEaZ5ff6nXV1Wm8+KFyH8jdJ1txAtyeQniq/+Z2QUo02WIK42XKJN+Ys09sFYm0Zarxkz0Yvk4eX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvGxSneUkZJd6vdXdmq4CixFHS6qYpf7IRX8eevHqWjEUYVgWV
+	K0MAos5X16b6y4PIKie7leaDw2AvtRxrJ6MTms1EyNHTi0uOWPIfcdYCOyHYVFlt
+X-Gm-Gg: AY/fxX4XEQpkw2BUPzW/EABHYQID4SytfkPZVfzEvTlwP+ZDhFXQ6Fif2J+y4tYY7LM
+	kixUJR5IUlRI8ErQF7Lr+6Ccqn/p5xyOZ3VM5KQKftprxWmagXkAavIHDS7HoPXDUtN7zLGB74N
+	weLa7CGdHg9CkHRHAzDCk4ehW0O0pHz1C86lBx9hT19c02yT6SukbsFfInc+6A3R14hJgzFQVAU
+	60s3ZBcehPmHEr1HhdJRXMsy7i60ap1KoOxKO9YpWV+ve76TqecHJ3VzMo987CRdV42IFeGvCo1
+	mK7QoruI4B9NPbymdbHw4rbIpt4KQ7gu/OisqERQCDHWQxejCeF6nBVs5rGpRItU7Cl1ajVxCHk
+	BqU4910rXVEWhjpAOnFZaEQCn3NyT0mvtqFYPGSZn8Hc61rUwA1UCQMjPSZmqIIJ+jEOEE2Kyd4
+	9omInEraZr6EaxcFdMiQQuz9rtWAXuc/szjX7szTx/wx8W3i+q1zeRr1IZruA=
+X-Received: by 2002:a05:6123:2e6:b0:563:72d8:ea6 with SMTP id 71dfb90a1353d-563a0a208ddmr801565e0c.10.1768387627377;
+        Wed, 14 Jan 2026 02:47:07 -0800 (PST)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5637f6ce00esm10326443e0c.0.2026.01.14.02.47.07
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jan 2026 02:47:07 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-9412edb5defso2382199241.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:47:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVJreckMaRkQdhSaoNzVQKuCTk8YVInWRxp7Kqus14uTUAI91gGTqgLND5asw7iiFC5oznvQyOxrlKT@vger.kernel.org
+X-Received: by 2002:a05:6102:6ca:b0:5ee:a094:d4d2 with SMTP id
+ ada2fe7eead31-5f17f415847mr755513137.1.1768387626957; Wed, 14 Jan 2026
+ 02:47:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-456497:519-21489:flowmailer
+References: <20260114093938.1089936-1-herve.codina@bootlin.com> <aWdp_jMVUBN04is3@ninjato>
+In-Reply-To: <aWdp_jMVUBN04is3@ninjato>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 14 Jan 2026 11:46:55 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWkGevDsBuUs1k=r5yeKJZHvs93b2SDfPwKoF4fFr-3Ow@mail.gmail.com>
+X-Gm-Features: AZwV_Qhqb9GutQaQvQYv5ThIdOZpT1v0OWVzDimT8VJV3ZwAupoboLFYD3l7moY
+Message-ID: <CAMuHMdWkGevDsBuUs1k=r5yeKJZHvs93b2SDfPwKoF4fFr-3Ow@mail.gmail.com>
+Subject: Re: [PATCH v8 0/8] gpio: renesas: Add support for GPIO and related
+ interrupts in RZ/N1 SoC
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+On Wed, 14 Jan 2026 at 11:03, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> > Rob, Thomas, this series is blocked waiting for your feedback and your
+> > acks if you are okay.
+>
+> This was a little hidden between the other text, so let me emphasize
+> that these acks are needed. The other option is to send the irq stuff
+> and the SoC stuff seperately.
 
-Support newly introduced maxlinear,slew-rate-txc and
-maxlinear,slew-rate-txd device tree properties to configure R(G)MII
-interface pins' slew rate. It might be used to reduce the radiated
-emissions.
+The irq and SoC stuff depend on the of stuff, so doing so would
+delay the former by one cycle.
 
-Reviewed-by: Daniel Golle <daniel@makrotopia.org>
-Tested-by: Daniel Golle <daniel@makrotopia.org>
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
----
-Changelog:
-v5:
-- unchanged
-v4:
-- separate properties for TXD and TXC pads
-v3:
-- use [pinctrl] standard "slew-rate" property as suggested by Rob
-  https://lore.kernel.org/all/20251219204324.GA3881969-robh@kernel.org/
-- better sorted struct gswip_hw_info initialisers as suggested by Daniel
-v2:
-- do not hijack gsw1xx_phylink_mac_select_pcs() for configuring the port,
-  introduce struct gswip_hw_info::port_setup callback
-- actively configure "normal" slew rate (if the new DT property is missing)
-- properly use regmap_set_bits() (v1 had reg and value mixed up)
+On IRC, Rob sort of agreed to option A from my proposal (see v7 cover
+letter):
 
- drivers/net/dsa/lantiq/lantiq_gswip.h        |  1 +
- drivers/net/dsa/lantiq/lantiq_gswip_common.c |  6 +++
- drivers/net/dsa/lantiq/mxl-gsw1xx.c          | 40 ++++++++++++++++++++
- drivers/net/dsa/lantiq/mxl-gsw1xx.h          |  2 +
- 4 files changed, 49 insertions(+)
+  A. Rob takes the first two patches, and provides an immutable branch.
+     Then Thomas takes the irqchip patches, and I take the rest.
 
-diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.h b/drivers/net/dsa/lantiq/lantiq_gswip.h
-index 2e0f2afbadbbc..8fc4c7cc5283a 100644
---- a/drivers/net/dsa/lantiq/lantiq_gswip.h
-+++ b/drivers/net/dsa/lantiq/lantiq_gswip.h
-@@ -263,6 +263,7 @@ struct gswip_hw_info {
- 				 struct phylink_config *config);
- 	struct phylink_pcs *(*mac_select_pcs)(struct phylink_config *config,
- 					      phy_interface_t interface);
-+	int (*port_setup)(struct dsa_switch *ds, int port);
- };
- 
- struct gswip_gphy_fw {
-diff --git a/drivers/net/dsa/lantiq/lantiq_gswip_common.c b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-index e790f2ef75884..17a61e445f00f 100644
---- a/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-+++ b/drivers/net/dsa/lantiq/lantiq_gswip_common.c
-@@ -425,6 +425,12 @@ static int gswip_port_setup(struct dsa_switch *ds, int port)
- 	struct gswip_priv *priv = ds->priv;
- 	int err;
- 
-+	if (priv->hw_info->port_setup) {
-+		err = priv->hw_info->port_setup(ds, port);
-+		if (err)
-+			return err;
-+	}
-+
- 	if (!dsa_is_cpu_port(ds, port)) {
- 		err = gswip_add_single_port_br(priv, port, true);
- 		if (err)
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.c b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-index f8ff8a604bf53..6afc7539fefbe 100644
---- a/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-@@ -559,6 +559,43 @@ static struct phylink_pcs *gsw1xx_phylink_mac_select_pcs(struct phylink_config *
- 	}
- }
- 
-+static int gsw1xx_rmii_slew_rate(const struct device_node *np, struct gsw1xx_priv *priv,
-+				 const char *prop, u16 mask)
-+{
-+	u32 rate;
-+	int ret;
-+
-+	ret = of_property_read_u32(np, prop, &rate);
-+	/* Optional property */
-+	if (ret == -EINVAL)
-+		return 0;
-+	if (ret < 0 || rate > 1) {
-+		dev_err(&priv->mdio_dev->dev, "Invalid %s value\n", prop);
-+		return (ret < 0) ? ret : -EINVAL;
-+	}
-+
-+	return regmap_update_bits(priv->shell, GSW1XX_SHELL_RGMII_SLEW_CFG, mask, mask * rate);
-+}
-+
-+static int gsw1xx_port_setup(struct dsa_switch *ds, int port)
-+{
-+	struct dsa_port *dp = dsa_to_port(ds, port);
-+	struct device_node *np = dp->dn;
-+	struct gsw1xx_priv *gsw1xx_priv;
-+	struct gswip_priv *gswip_priv;
-+
-+	if (dp->index != GSW1XX_MII_PORT)
-+		return 0;
-+
-+	gswip_priv = ds->priv;
-+	gsw1xx_priv = container_of(gswip_priv, struct gsw1xx_priv, gswip);
-+
-+	return gsw1xx_rmii_slew_rate(np, gsw1xx_priv,
-+				     "maxlinear,slew-rate-txc", RGMII_SLEW_CFG_DRV_TXC) ?:
-+	       gsw1xx_rmii_slew_rate(np, gsw1xx_priv,
-+				     "maxlinear,slew-rate-txd", RGMII_SLEW_CFG_DRV_TXD);
-+}
-+
- static struct regmap *gsw1xx_regmap_init(struct gsw1xx_priv *priv,
- 					 const char *name,
- 					 unsigned int reg_base,
-@@ -707,6 +744,7 @@ static const struct gswip_hw_info gsw12x_data = {
- 	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
- 	.phylink_get_caps	= &gsw1xx_phylink_get_caps,
- 	.supports_2500m		= true,
-+	.port_setup		= gsw1xx_port_setup,
- 	.pce_microcode		= &gsw1xx_pce_microcode,
- 	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
- 	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-@@ -720,6 +758,7 @@ static const struct gswip_hw_info gsw140_data = {
- 	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
- 	.phylink_get_caps	= &gsw1xx_phylink_get_caps,
- 	.supports_2500m		= true,
-+	.port_setup		= gsw1xx_port_setup,
- 	.pce_microcode		= &gsw1xx_pce_microcode,
- 	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
- 	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-@@ -732,6 +771,7 @@ static const struct gswip_hw_info gsw141_data = {
- 	.mii_port_reg_offset	= -GSW1XX_MII_PORT,
- 	.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
- 	.phylink_get_caps	= gsw1xx_phylink_get_caps,
-+	.port_setup		= gsw1xx_port_setup,
- 	.pce_microcode		= &gsw1xx_pce_microcode,
- 	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
- 	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.h b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-index 38e03c048a26c..8c0298b2b7663 100644
---- a/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-@@ -110,6 +110,8 @@
- #define   GSW1XX_RST_REQ_SGMII_SHELL		BIT(5)
- /* RGMII PAD Slew Control Register */
- #define  GSW1XX_SHELL_RGMII_SLEW_CFG		0x78
-+#define   RGMII_SLEW_CFG_DRV_TXC		BIT(2)
-+#define   RGMII_SLEW_CFG_DRV_TXD		BIT(3)
- #define   RGMII_SLEW_CFG_RX_2_5_V		BIT(4)
- #define   RGMII_SLEW_CFG_TX_2_5_V		BIT(5)
- 
--- 
-2.52.0
+Unfortunately that part hasn't happened yet...
 
+Meanwhile, I'm queuing the DTS patches for v6.20 anyway, as they
+have no dependencies.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
