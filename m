@@ -1,101 +1,104 @@
-Return-Path: <devicetree+bounces-255275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7F29D21C2D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:28:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB43DD21C39
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:28:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C21B3036AC4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:27:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BAA43038F70
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:28:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A3238BF8B;
-	Wed, 14 Jan 2026 23:27:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7253939DD;
+	Wed, 14 Jan 2026 23:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NRckAmLX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftSJZrR7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE67A33B947
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 23:27:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EADE133B947;
+	Wed, 14 Jan 2026 23:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768433263; cv=none; b=XvWt4I7pWHfJ57T7ZJAaosv/13dplWGBpHC4gQgltb/GTxn3BCLE8dLftvMMssGCdjjDhDb5SAqAIf7YT/FxCRaNQtUro4Cu/qe/OR5IkWR9tzXSrPGDk6H6o9NtnTaaemjntP0q+vwL2x4Mk9XxaU0D8t50FMRlYLpma6VPzaU=
+	t=1768433287; cv=none; b=Hh9L9qzJ+/3NN5kyOTnR1KlNlRrvbuMXCluD9fJWCNZEAwdM3m0AYAZ7O5ZafyYwMLwmGlNR8XV/f0eI+CFW+ycs29fGgqqGuFUAqbQ0gfxtvG/eo+bcu/bYHT9djXn0yWmF07od/XJF5A+YNYLMsWNtd4qRRvrFJ8dnT+eaWfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768433263; c=relaxed/simple;
-	bh=7CUg3xaON2YJyNDUAfyHXm5zz5PYeFuwzhozRYxq9FY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZLwvvNjLAXceJbld/lOVkAJ9pr4mMqzRSZ/B6SOlNZtdfyhatVSh21cyOvCse/jZAdWPGs14L/FjoGXb6ipfHdVWjCvMpu8Fid2PHLmUWRXyqaMQuUrMQ0G3CgnuVqE51eUs3qfxYDz4Mf2KOXp4NwFhm0m5mnYiNA52c5fjqxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NRckAmLX; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59b6f04cae6so339802e87.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:27:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768433250; x=1769038050; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zO7/rwLXC5yGRDXneYIJQs+eB1xaWdUmRL6MCrxGUVo=;
-        b=NRckAmLXQTmDNgYWUlmjejyavZ/T3x8/2/qWB9kSI66UFZehw++BSp/DKq90LkJ9Ys
-         BU8NidRECMCIlegq0mx/vXPs8bChq+lJTwr7kndaW2QEey2NswfGJ42IWjhJBT/1oAzF
-         ezLvefXuNi44ehLrTNIqEwS0vy51stKVJEHTTGGi4xluA70qKPKhtM2uV4eUxUwRGIyW
-         eSxsR9ZRwJ43S8Gf7q54FFbghR01YzGPGPhQW5zv8MjYKXck1vgFDCeporbbPuo3JkLK
-         J32leOzGqQVhJAEjDAAmk5Lqifv1rOUELZ4LlwuCN8sWYFFPy/YdSklB6ODtkX0A0u1G
-         09/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768433250; x=1769038050;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=zO7/rwLXC5yGRDXneYIJQs+eB1xaWdUmRL6MCrxGUVo=;
-        b=SZ/0jX45bfzwDeazd+MgzbEeaRjRZr+ROp8WyjLdEksDO0R+Mcqnkfop+xLPSN2yMk
-         GsNN0giu4FklZXV9SsKGb+Pb5b+aH2e6FwQ6vugSBdp0TiJqDoUpIr0HgmvoOQInz3lJ
-         Yz1WfGUt86FaXSuTNOJPUytPafAtNwllgzhh99u/pqQLC7K2Gsx4SAOWiR2sY0jS+kuP
-         j/6NFQCH8Wv80uEhPn7BPNcIksa2nthAry8Zq67+5OHU+cgY0jHKIQFcnNAHhCc1FYh4
-         UQfmgBY58sD5bcRPGxhF3x2JnGea/41WvOi1ft6Dq++racbXsWfC3tPoZAcLYUupOfVy
-         USjg==
-X-Forwarded-Encrypted: i=1; AJvYcCUv/z0CkYMi9YYdUGk1H0n/jmqjxXE50oMXE+yWwurmCNcUq8Y6wXvHuFQIiHSMhbEdoC31Ovqgr5ex@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhryqcH28EVBnZsBDUK01qYgeF5eXdk7R86ES3K7Jyj8wNHb1/
-	3IogapCCihatoa1jMZInuYHjOIbJIUa4jpsan6ABiBWUZjjw3yYnENeW27k465L8EjUqk2RNcJV
-	5RtmKyQTxpLnX9K9ue6hdJTNxZnAP9joBdA==
-X-Gm-Gg: AY/fxX6ILjk/4N+PnT5Xr3UQCgIEsVdCtI5erydR/356H6INXtp+cR7ejNH3eF98Or+
-	xf9ljSnJDKZ/FOCu/xIwebjV774OsGOEAQHEMKj9HvWPdn01swBPUVBA9awrWDZpjUfl7QBmTen
-	K9+s8qwRCbg/tpBoQkffVhDQDQOql3mENASsjm2zeB7jZHt36Jf8mcV9C5zfIYnjzYPm5TDlckA
-	B/JJjFDLvIGsrNDrIuueCp5p66IfbD+krkb8yVaPuPAcwQ6h0+5N80Q1OlhW+UHYQ8GMwPrOHMM
-	VgepEEJYY6HMdMe34ARYOrnzDh4=
-X-Received: by 2002:a05:6512:b90:b0:594:25a6:9996 with SMTP id
- 2adb3069b0e04-59ba0f5fd8bmr1478472e87.10.1768433249392; Wed, 14 Jan 2026
- 15:27:29 -0800 (PST)
+	s=arc-20240116; t=1768433287; c=relaxed/simple;
+	bh=EI7BTv41G7olOZumH0mmXwnej0g2v1o+TsoL4iuuqBI=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=kwvuIlFDYHh4KHJRDI2bZHFNnPDF+2PnUprP/ob81hUxcJDDBfXrzOjiafNMZj4sburqI5/M8Y/yRn+3/CpvmjGpaxyu1SNikq7xgOXBNWsc3Awhx/lGt6nRqJ2lSlybAwTRwLhYPaoQx7/BRRe+IUM72+T2Ucm+t/1yRBk2kPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftSJZrR7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28D08C4CEF7;
+	Wed, 14 Jan 2026 23:28:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768433284;
+	bh=EI7BTv41G7olOZumH0mmXwnej0g2v1o+TsoL4iuuqBI=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=ftSJZrR70jl3YW9IC8y2ZJcUSo96xUVBE8KZCYUgZUhzfKJF9Dbjk3BhVTLJcH/dH
+	 iqDlYbsyaYsHvnykBIf5QKOYV4s9Kzw5Crb+nUDI3tLWYkqfGsajOjTgsTmmJnp2Er
+	 aX0LuILbS4R+4Onmel83tfFc7Mm5KYywvgXQc6ijueGYfV5/g8rQqRvBVyK+a9yJic
+	 3etmK609O1U/qT5h2iwB9R4fPqR7wCKb3VlToJ+KkKIR4s0pqIUoyuwFyRsauDqS+/
+	 DppzwFWTJ8eNnWgCV0NZYZwZVOhBg5PMdV/SNI1r0eeO2AA9/7dSiJwek8M6iVsX5o
+	 RPtPmGtf5kJQQ==
+Date: Wed, 14 Jan 2026 16:27:56 -0700 (MST)
+From: Paul Walmsley <pjw@kernel.org>
+To: Guodong Xu <guodong@riscstar.com>
+cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+    Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
+    Daniel Lezcano <daniel.lezcano@linaro.org>, 
+    Thomas Gleixner <tglx@linutronix.de>, 
+    Samuel Holland <samuel.holland@sifive.com>, 
+    Anup Patel <anup@brainfault.org>, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+    Yangyu Chen <cyy@cyyself.name>, Paul Walmsley <paul.walmsley@sifive.com>, 
+    Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
+    Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
+    Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org, 
+    linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+    spacemit@lists.linux.dev, linux-serial@vger.kernel.org, 
+    Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+    Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Subject: Re: [PATCH v4 01/11] dt-bindings: riscv: add SpacemiT X100 CPU
+ compatible
+In-Reply-To: <20260110-k3-basic-dt-v4-1-d492f3a30ffa@riscstar.com>
+Message-ID: <006317ae-dec7-a893-372b-c68afe35863e@kernel.org>
+References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com> <20260110-k3-basic-dt-v4-1-d492f3a30ffa@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260114-mxsdma-module-v1-0-9b2a9eaa4226@nxp.com> <20260114-mxsdma-module-v1-2-9b2a9eaa4226@nxp.com>
-In-Reply-To: <20260114-mxsdma-module-v1-2-9b2a9eaa4226@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 14 Jan 2026 20:27:18 -0300
-X-Gm-Features: AZwV_QhLF-nZE9rj0D3-1M6Zo3V1EfOAoeRCu5Cv2BQMtPfiN1SS9FZTgf1Ap2k
-Message-ID: <CAOMZO5AF5-=-2F2W_U9=VbkwtBp2_hzKkJziefLeufD97xNj=g@mail.gmail.com>
-Subject: Re: [PATCH 02/13] dmaengine: mxs-dma: Use local dev variable in probe()
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Vinod Koul <vkoul@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Shawn Guo <shawn.guo@freescale.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 
-On Wed, Jan 14, 2026 at 7:33=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+On Sat, 10 Jan 2026, Guodong Xu wrote:
 
->         ret =3D of_dma_controller_register(np, mxs_dma_xlate, mxs_dma);
->         if (ret) {
-> -               dev_err(mxs_dma->dma_device.dev,
-> +               dev_err(dev,
->                         "failed to register controller\n");
+> Add compatible string for the SpacemiT X100 core. [1]
+> 
+> The X100 is a 64-bit RVA23-compliant RISC-V core from SpacemiT. X100
+> supports the RISC-V vector and hypervisor extensions and all mandatory
+> extersions as required by the RVA23U64 and RVA23S64 profiles, per the
+> definition in 'RVA23 Profile, Version 1.0'. [2]
+> 
+> >From a microarchieture viewpoint, the X100 features a 4-issue
+> out-of-order pipeline.
+> 
+> X100 is used in SpacemiT K3 SoC.
+> 
+> Link: https://www.spacemit.com/en/spacemit-x100-core/ [1]
+> Link: https://docs.riscv.org/reference/profiles/rva23/_attachments/rva23-profile.pdf [2]
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Reviewed-by: Yixun Lan <dlan@gentoo.org>
+> Reviewed-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
 
-Better put the dev_err() into a single line now.
+(just for completeness, since I acked the older version)
+
+Acked-by: Paul Walmsley <pjw@kernel.org>
+
+
+- Paul
+
 
