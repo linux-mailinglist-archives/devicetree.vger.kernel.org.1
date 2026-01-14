@@ -1,141 +1,142 @@
-Return-Path: <devicetree+bounces-255135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D75DDD1FF24
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C364FD1FF56
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:53:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 56DB7300288E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:51:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 443EC300387B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB2A3A0EA6;
-	Wed, 14 Jan 2026 15:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D12B3A0B09;
+	Wed, 14 Jan 2026 15:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oV99po6T"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="hQOHDn7T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE9B3A0E84
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:51:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5D338737C
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768405885; cv=none; b=nLze6SUprCgZ5Sm9YiY0yM53CXMRyxyYJ11Ex46sIQbK6OVWncUXK4gwr3ZiN/0r9+V+1FEzPAPUjd6AYl/wE/XCvvaT9CW5U7xsjjfa4Fg0jru1HiPdpiHwRc15Pjv48Gdi3YDBWbIOe3JKvVosAOHXmdChGe9IZwCr7ygB1Jk=
+	t=1768406021; cv=none; b=U2qHgm2gK5m54tyBYtV7pJ7RA4snwWoKxNHsRb5AzYAoeqfuW9noMiTEKE1jpV53Z4PAIXeoBjPfBEGjOkRADHse0ymxLZt0uBZx+xh3ebZvPjHsjL+7jz3qA1FLdiYdS+iu6OaNS++AqMyK8kYF0atu5VE89o9GpqYxYH7Lrc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768405885; c=relaxed/simple;
-	bh=o+OEjagxl3Dsp9tfzVfdkpH30i7BI82gz0LPNnSdpig=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sX4pi2GExtyD/vdLJTHdc2dgqfeJNsRQr05TX4Vx/6POAdnI0Uv7JtYJ+PBSIuulaITxMauU84qo0AwJ19uWJ+e+fMyL+qeKZ8Jbq6EKtxt4IwyhRDZoAlaEN17ZD5tS+qkmKaDy50BD40HytSbuPKRIqHg60bHYSSrTVCkOJJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oV99po6T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61CEBC19424
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:51:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768405884;
-	bh=o+OEjagxl3Dsp9tfzVfdkpH30i7BI82gz0LPNnSdpig=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=oV99po6TWGN66FZNu68+tXjcgzzqBQtGJvf2c8saHanKFdPhspHdN1GZhrIuKHsjA
-	 SSaK553cE8RqTE9v+zDUd5FQKz+/3T4i9cqDqTRHzBm3/BfwNeUg+rXwCFPNMv3lfP
-	 VpSxIlY+dw1Fw7wsW+/9LYbD+RutrbCzTA8Mylhfhov3GmNi+rucwYfFT/X3vZWGiA
-	 WILUNvyzJnrTxcvlnKleNtMnCmVjlMG583qwqABoqIIkKBYV1e3BEvsmgTI2szUAqe
-	 uW6qTnrSALTVmaXdGHVC8vuISvQJ799TukaeaRMWgtsFbsmto7ZcgaMc4ENjXC9NuD
-	 DG6xpGwrOmAuw==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-59b7b27ebf2so5696311e87.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 07:51:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX0KyQxG0XzTTfvciNSbvOqmUIte2aVdYSTh6HsMECeN1IYuZNqIVmJfPLecyYpJ30Jtb3H3VdTLFbd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyu2iaXBQiA1+zy2PbfYxFcjHfrnxZEWhpr+NTrEKeJwUZV6emm
-	Wb0X/qBxOpzHIYr6PT+RI5LTXZsnf4q3pEO/Pp3KPOn6uxwmW7GPdvMDJMB3UV3lU/QMdnTkPlH
-	10GOGxFGJ2W3WEeUqXchOudrXuKTICGvdkjAegqXdiQ==
-X-Received: by 2002:a05:6512:2316:b0:59b:8472:48ca with SMTP id
- 2adb3069b0e04-59ba0f63088mr1131918e87.12.1768405882412; Wed, 14 Jan 2026
- 07:51:22 -0800 (PST)
+	s=arc-20240116; t=1768406021; c=relaxed/simple;
+	bh=MjjY0CZe9m074IFDhBfEpVxdyYS7Z3Q8v4zhohpRutw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tKNEwnqJsQL3g7xolzdKvHfmUl9S1MnzTRQuL89rieiVtfB5cFIh6jAOHlHLfqZ+zUj4cw5d6bBOILblL6QheEj9mk350Tharwbr0R4oqo2nd4d+71pe+1P9kgSzzuwTdiik5YnR4jLcESMwBGlfq6R3QjRaPROCY//nKSOli5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=hQOHDn7T; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47d493a9b96so51003155e9.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 07:53:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768406017; x=1769010817; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mrePS2BeC/5/zU5iIVNiA/HxBMqtaGmBB9n2hBMQrA0=;
+        b=hQOHDn7T8PjZDNbgPW6/0eJb4z6nY8heDKKRssw5W6YsE5B3CgY+QUeaMtbG5HIozl
+         BDLBuXvzh89+smKariIFQ7c90ZLHqF628Z1MqBVZ3Q0VPI2tRK1eLhvGW0OojO9/Yey5
+         0xvtKFtmC/LqrRbPA6uFHC6hOnai1pCmRQ4cQxni+Ukjf1sv+M+V74u7x1+rJRu+ZEqm
+         Cn67cB2aPBtozrafM2L2mXNDWC6YaMd77RDv+KdgxTi9bA3cbnjMlnHqeJ9cYxgEv2tR
+         BTXWeUnO6BTE0YiKHa0DpdhBbZ0sDkFAKWi+INFckGy9OStXhLXTnm93tG7D8WZHQdU3
+         ne+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768406017; x=1769010817;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mrePS2BeC/5/zU5iIVNiA/HxBMqtaGmBB9n2hBMQrA0=;
+        b=rbgp15agut2yboW4TR4ZV3+U/a1wO+xYbFT+gBHWK01BZsiY7Ki0TvkosDjhIhfZ92
+         iEmzATtdp4lnINtsFQjqmUXcxbzwthwzPEhI2z8LPku62jvNcnkRAth8/GSu+kRAOErs
+         qTkAOw6ZMJBAGoXLsbZtxSSr6Mbr/J7pei36gdZzBh0MPtIhZrsS+77K32nUsuwAUaCu
+         SVVfaBzsp1nRLLRvtoMc6XpMwzZugZBp4EWsfVLJKFNeoOI/Lfu1PYJ58VkRQxe144uM
+         7DM3vZ5JQYJjBLRNs0X49U6LBx7v27aRqFIInYAkoHTtflUYeA8gEBtuakKsfcvIZL5X
+         h5Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCXeF9kZSX2M94glVyRsAW6JYxuniQ1mpMMMB1114/9P3OygGRQTGJ3vyNt34QOz7gFplgsge8+8AdPZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuTpx59nLxY2kT0Gn4ued58+/hJXXObV+iKk1Dq6U4wiaZ0V2o
+	Kjbthd5rqOC7cHAzRa2MZzF29T7vJIpFhIDOhggmF0yqyE5TODzrcmt+jUN41qOC5w0owwOvYBm
+	0fXXA
+X-Gm-Gg: AY/fxX75MQJVss/ddFrbv9r6R8565QQjcWUoWdLFVpr/ds/Pnt6Dg00PTWWiqXMQkgs
+	hpNypLCrUdC6vvOGTFhJddwsr1pX+TwGcaEhLwH9XQkOavTRTrQ1DZPpvCTdSOFU2DCbNHNtnMc
+	Zm5NcE1qh5uC/cPYw4U8ul49iAawkt9cHdjkpuJDQPMlWcYhrBVdSa9vI5vCeHLvi4LUQIO4iuj
+	vF5Bn7sU64PYXQ5//I9lezIzGxGqB2UZv9pGoA3jc/0IVEMW6fiyZZHSmaGRkoyNGF9dIwRjpKS
+	vR15MhYP6+hVA4f/b2muTB5U7fdL/qQqy4WVWQ1AxLcSb2pYQWW+h3RxuVaZIyrviCO5Q1RniVD
+	ZasP6WvznImgalQYk+SaNYQ2myb218nZAy22fU8qgBrinejzSPpND6Kx8z3DF7sAYE9R0qSc1+N
+	hZB3KWhaZ0ZIMiDvxOaj80vzjzOXxJIzgOgGQsgtBkgKuvRJrDLo5P5V4fADXzDoReooCxM34xF
+	ukiOQSfJqkwXX3C2r8sHA3irzwu70iKFJ5kNJ3z7MZBkc/Sx5ztzHcvuHUeVuRi8IC/rMUlacNc
+	tJHHYA0=
+X-Received: by 2002:a05:600c:4515:b0:45c:4470:271c with SMTP id 5b1f17b1804b1-47ee339455dmr35015355e9.18.1768406016823;
+        Wed, 14 Jan 2026 07:53:36 -0800 (PST)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ee870sm51184009f8f.36.2026.01.14.07.53.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 07:53:36 -0800 (PST)
+Date: Wed, 14 Jan 2026 15:53:34 +0000
+From: Daniel Thompson <daniel@riscstar.com>
+To: tessolveupstream@gmail.com
+Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
+	pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+	linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: backlight: gpio-backlight: allow
+ multiple GPIOs
+Message-ID: <aWe7_hFpmO0E2sJe@aspen.lan>
+References: <20260105085120.230862-1-tessolveupstream@gmail.com>
+ <20260105085120.230862-2-tessolveupstream@gmail.com>
+ <aVuKdAyXfWLs-WJI@aspen.lan>
+ <c182df66-8503-49cf-8d1d-7da17214b843@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260112-qcom-sa8255p-emac-v6-0-86a3d4b2ad83@oss.qualcomm.com>
- <20260112-qcom-sa8255p-emac-v6-2-86a3d4b2ad83@oss.qualcomm.com>
- <a2a610a3-aead-4e85-8a4c-7b83ccf276dc@lunn.ch> <CAMRc=Mf8TTTcU9A3gc_LQF3Ow6Ww0omVJH6x-DQEnOSPXfaUQw@mail.gmail.com>
- <7865a1fb-91bb-4aec-ab3a-b53050d992e8@lunn.ch>
-In-Reply-To: <7865a1fb-91bb-4aec-ab3a-b53050d992e8@lunn.ch>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Wed, 14 Jan 2026 16:51:10 +0100
-X-Gmail-Original-Message-ID: <CAMRc=Md-z9+RdVPB9kKeVwWWJni7se7HfbhwGmvQ9Wd3CwJqeQ@mail.gmail.com>
-X-Gm-Features: AZwV_QiTx85beob9IcsRkXcH-FzLKf11MkfoXrcsCiRgQ4kLBhgc1kcRpkaBWZY
-Message-ID: <CAMRc=Md-z9+RdVPB9kKeVwWWJni7se7HfbhwGmvQ9Wd3CwJqeQ@mail.gmail.com>
-Subject: Re: [PATCH RESEND net-next v6 2/7] net: stmmac: qcom-ethqos: use
- generic device properties
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Matthew Gerlach <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Keguang Zhang <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Romain Gantois <romain.gantois@bootlin.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>, 
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Maxime Ripard <mripard@kernel.org>, Shuang Liang <liangshuang@eswincomputing.com>, 
-	Zhi Li <lizhi2@eswincomputing.com>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
-	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, Clark Wang <xiaoning.wang@nxp.com>, 
-	Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>, 
-	Samin Guo <samin.guo@starfivetech.com>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S <swathi.ks@samsung.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c182df66-8503-49cf-8d1d-7da17214b843@gmail.com>
 
-On Tue, Jan 13, 2026 at 11:06=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote=
-:
+On Tue, Jan 13, 2026 at 10:15:53AM +0530, tessolveupstream@gmail.com wrote:
 >
-> On Tue, Jan 13, 2026 at 01:36:53PM +0100, Bartosz Golaszewski wrote:
-> > On Mon, Jan 12, 2026 at 2:45=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wr=
-ote:
-> > >
-> > > On Mon, Jan 12, 2026 at 11:15:41AM +0100, Bartosz Golaszewski wrote:
-> > > > From: Bartosz Golaszewski <brgl@kernel.org>
-> > > >
-> > > > In order to drop the dependency on CONFIG_OF, convert all device pr=
-operty
-> > > > getters from OF-specific to generic device properties and stop pull=
-ing
-> > > > in any linux/of.h symbols.
-> > >
-> > > Is the intention to read these properties from ACPI tables?
-> > >
+>
+> On 05-01-2026 15:25, Daniel Thompson wrote:
+> > On Mon, Jan 05, 2026 at 02:21:19PM +0530, Sudarshan Shetty wrote:
+> >> Update the gpio-backlight binding to support configurations that require
+> >> more than one GPIO for enabling/disabling the backlight.
+> >>
+> >> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+> >> ---
+> >>  .../bindings/leds/backlight/gpio-backlight.yaml      | 12 +++++++++++-
+> >>  1 file changed, 11 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> >> index 584030b6b0b9..1483ce4a3480 100644
+> >> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> >> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> >> @@ -17,7 +17,8 @@ properties:
+> >>
+> >>    gpios:
+> >>      description: The gpio that is used for enabling/disabling the backlight.
+> >> -    maxItems: 1
+> >> +    minItems: 1
+> >> +    maxItems: 2
 > >
-> > No. Other than a couple property getters which can use the fwnode
-> > abstraction, there's nothing here that requires the OF dependence.
+> > Why 2?
+> >
 >
-> So what is the need for not using OF? Why do you want this patch?
+> In the current design, the LVDS panel has a single backlight that
+> is controlled by two GPIOs. Initially, It described as two separate
+> backlight devices using the same gpio-backlight driver, since the
+> existing driver supports only one GPIO per instance.
 >
+> So the maintainer suggested to extend the gpio-backlight driver
+> and bindings to support multiple GPIOs.
+> https://lore.kernel.org/all/q63bdon55app4gb2il5e7skyc6z2amcnaiqbqlhen7arkxphtb@3jejbelji2ti/
 
-We've had a higher-level abstraction for OF nodes for years now. Since
-I'm already touching the driver, it makes sense to switch to using it,
-as OF-centric APIs are not recommended in new code even if it's an
-OF-only driver.
+Right. So, once we support multiple GPIOs then why limit it to 2?
 
-Bartosz
+
+Daniel.
 
