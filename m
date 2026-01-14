@@ -1,118 +1,206 @@
-Return-Path: <devicetree+bounces-254818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D15D1CBD3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 07:53:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B165CD1CC06
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 07:55:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6CC06300D28E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 06:53:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF3933025159
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 06:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B15136E477;
-	Wed, 14 Jan 2026 06:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DF8374189;
+	Wed, 14 Jan 2026 06:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fRGJjSnL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wd7kn3Gp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E01368264
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 06:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46FAA37419E
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 06:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768373629; cv=none; b=m5xIJ3Cnt/obOAQK4SDc1+vCnsiVVROBM28ULl6qXWzUIJYOIAsBYau4F7zUEZCmFG6RwubJxlXHJ3SCMQoo6j0XxylwQPXdtwJngUB89pB1wiNeuNzTdsIrMLkfM069eJjf3rAOR3E1QnLRxfi7+d5Q+FR3uID6+9nbrpeiAtI=
+	t=1768373665; cv=none; b=bmX+D/GaWyzHWrOu0WE1r+E0YUpfLYoMfjCe96LDNrCKWLcCfc9IoWpwDtpY3i5wtq9wIDUI8GCFN14pqv/1ZIc94wYE/Iy2oSmCkqksxUhZeXzZr1l8zGPX211Cw5ysHnJykGE7sVQskHeXIm5paufazDEZJcOSHAlZJQ2YFc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768373629; c=relaxed/simple;
-	bh=wDjPr147o530hTp6AyG0aKzFnBjfrT6c3amHxS7WXs8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MRpqbxyPZJLFvDQp7IgOZXE5WV9dL2lD0QcZg987fx9/OzMvY4eLcA/0HqsKjeZIsyXyHFl+EGZ/ai7tnhHD7NZpurrdnb9LmiLGpl2xGlz4H03JujlyXfojdHtNC2chG2zNcqMgI7EyAiUxSzBKR2wLABegSDqabjJGH/BeLS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fRGJjSnL; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-34cf1e31f85so4918463a91.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 22:53:40 -0800 (PST)
+	s=arc-20240116; t=1768373665; c=relaxed/simple;
+	bh=eZE7On40794J7ydQFeiSBE2S0pwhbuh9801PWQaEf/Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tjkHagtTtkCemHk8FLia2lZMp6x3C3VG1ByPdWTBiXZPpKfU5aLVBRxX5SqHTLNhyvDYvIX1nWQrroOIcxCiq5hs+dcsDw4A8cdVnzcgqiOVNNcFgFKJG2TvL9UoLOsBeS0pvLPyAqnq3Jc59s3G5Hq3wHsn+J/rBOQxw1Wm2Hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wd7kn3Gp; arc=none smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-65f54073b63so2744523eaf.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 22:54:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768373619; x=1768978419; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qd+X65nK6RfRAsO3cC//JEtjHJbo+v1uWTT4QcX9DGI=;
-        b=fRGJjSnLeIGuOjNH6R4dIGCGs+Q+xe4RhCtaQubMc13lldvw9Ysj3xFViyBuI2WuE7
-         Iae8yZ5Yr3SJ0wJP6lNq8OckJliS9XNAX2W8kOMo0hNsUJ6mVUqt1eU0kpsZFTobJto+
-         xACYMKo/BZlOjwqRNKQSh3JtFywT3dkRMtTX7r9mwdftwmya30pjQ+V90X6FdoQB6O7W
-         sHb0lEKQLB0WoDbxI+I/vV8a7qxfBacGY01fCH/YNiRm9nXd32+neCPqKjsHqev6hEaB
-         xdFTHFb69ctDse2kc5ylTEUznvBOobW5LDDvMSaokjU18bLpdnctwWx4MLFoGAPEUvNW
-         nb1w==
+        d=linaro.org; s=google; t=1768373650; x=1768978450; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=09+Za/fvs9ACcRouCmvdjIQsUYyJ1cWO4IFmVOeFocw=;
+        b=Wd7kn3GpZcEZr3GuosI+DCnov3/JuaAk+p8gYJ7CrFU79ulZQkONKYZc+nK/dbEV0g
+         RhzdGb4txyYlKKyZBzxH/xh6LuImfhHUDwGdBg6BQ48lXaJVnXoDkaSYJ0hE3rkZTsd1
+         vBnjcTQTC8EnI8OlQaplHOhPQpv+rW5u4yhk3TjIQmboYT5AGjiy+Jgn1iE83jAGzqeV
+         3cJXQeyWWZtYlscY2CG6Y+oFFdxVrjUjgh6DFC4u4WpNQWOx4gyd/XyMHVLk7aSJZDBY
+         wyLfkMNOevLOZHWDCn9/6SNIV6uXIkSCXdpRUUS/YQNSY52uFRPXTWZuueGvN/HYeoFc
+         pRLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768373619; x=1768978419;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Qd+X65nK6RfRAsO3cC//JEtjHJbo+v1uWTT4QcX9DGI=;
-        b=DgYRcnvMbP2QN6R2l0hji6+1+ver3tQMAKwXbtuDM2RmIPpi8Thm4MqgaReGQ5QjSO
-         P6ULFVpODIp7ANN4WPobJGY9jt5ASEmaNj3oeV+4EAY1HXAlEhokI3f+kGwynd+YVMEM
-         7C1bv3C+TfRqesci0HqJ4Kncz8hvBc3evgEKFQa48AyYyFjfTJh8IqVmSnDl7+PKqtV8
-         2rLqwge8KqrDLLCSai8higTAgjZ7IqUSLBiHjvPsnUZkCruTGn5OcfWFBVsqdRlwb89M
-         05ux6UoyemE4J+MumtHU/2Jni9N7lyFd50NilV9bu6ByN50+Nm73e2Fo2h89tIJh5hJk
-         t3gg==
-X-Forwarded-Encrypted: i=1; AJvYcCUqt8ZNwJC8gcaZ8zgYtYwpuP6N+lyw2A+M1TqN0hE9lpPxNzjkFLXUMB453DlB3QULlzbSO2iQQRIC@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlthXkU9D37egtX5ZidhbeZrZ8AprlDEeyMrHI2da1pwaVRXxo
-	ed/dyM57fVBqrrgmWLB0jDtsDMqQ2u6rvzgzas7Hh+usJ2meBippKAEO
-X-Gm-Gg: AY/fxX56WtJN+ohha0FBJx+qdZgQm1/47Gx8NWyMrMW/KPT9UWHWuo6U90yCKVzKHgY
-	+lwzKq+nKpOzvcxckuVpVGI9GIWgZu30Lzqp/OKRVshu4Tbg7s6ZjTMvY214U2MfkgjTUjhr/0s
-	RNNEKrAysMiDCoRKa2FiNMP9XpcNnDRGIrwmzWQa+w6U2BSgmd4iqXblOsw0KtEha9Hgn9bqgpV
-	PTNAu4wi3k/w6KH3N72wdsMd61CTxk3spTuntgxSxWvigc59ziWv7PChKPBcVJIx5WP6PBUDAGZ
-	IA8UvsUG18Kkc3CaVpU5u3jUiuPmiEiRf1Nf/wksJUQDEuHPovHM8ccME/rVosB3ROcfx75ePJ/
-	0pLUQ7kYsnKYceMPPrRsZ40UIfx8Asqo+yPM4g3pXQk9rpRDeRNR2mCaZW4uMBmBOQarc+aDpS6
-	8lILt46As53vYWlsaMKE5/MVsYNzYIgrtBnw==
-X-Received: by 2002:a17:90b:1c02:b0:340:d511:e164 with SMTP id 98e67ed59e1d1-3510911a179mr1754182a91.19.1768373618586;
-        Tue, 13 Jan 2026 22:53:38 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.253.21])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35109c78f20sm980556a91.13.2026.01.13.22.53.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jan 2026 22:53:38 -0800 (PST)
-Message-ID: <2117527d-c95e-4043-a5f3-7e4550e8fe2b@gmail.com>
-Date: Wed, 14 Jan 2026 12:23:58 +0530
+        d=1e100.net; s=20230601; t=1768373650; x=1768978450;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=09+Za/fvs9ACcRouCmvdjIQsUYyJ1cWO4IFmVOeFocw=;
+        b=jvKGsCzNDRqBduyVAzcL1jncx+0NTFuBGlHMaEA+9Z2fZDO238NebIx7J44GE4jBi3
+         vdQd8MQbhdT8AuVLDnbZgvun95RMHc3IR5HXb9svCZ2XTxDtfc4ADPEzIoBzqFaR7/fV
+         J9+uQSWG/drkZMoRa9Bxz1RD0rpYASpIeTYYot04wCp0nscPzj2tkTu9U7dHtJxoc1ik
+         OZWRClXPPPPhoT20CO5k/vE7Na72ESdv550Yb1LML+GXLZeko1F8Qbhk7RDlMuVzb114
+         vSBctt7gztvKq/NmUOcvfkU2GqvAdUcmW+jlMG07Gw1QNdsZXrScymVLBRzT1q7e74er
+         Cgbg==
+X-Forwarded-Encrypted: i=1; AJvYcCVFHW9ruzQACtI2Kt5OLdrICIqYZ6XsTx8jKmgS/yGBqG+vl7bWoYCmDSLQx0+o48MsI6433wvFeQTt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJKCrKE1P/ruZ/+p1uyfMnFzFohl3UahjwBmaCoH2MBO3fCaq0
+	uYiQnIZmJQ67fw/r/rEs2P4NtvaPqxxpMUXQ1ujqD2ZCURKjtRlsqwPy2UzJoq9adt2/faABSSX
+	Gk/82wDIf+l6MWB5AJ0EcW+lz2yw3yxGlapzPLiQgjw==
+X-Gm-Gg: AY/fxX7Y+pXFLCrQxh0Xn13tn+jH78Op5yPrqRp2yZ3qKQil0LSK2WagJUH6QjATdqP
+	YX0eg4Yy5ZyLVO0n4Vup3jKYVKKZwd30D9Ag6gQbhLoJuueVljS7r0l0RBHYQk8VBXwX8amIV5P
+	FUlle1Ke3eL0BXJpKCPnwCXLOJXomfjLSo19cqz3fcZRXN9wZUsMeXGsK/FUbfwBU/Ea7wFOxoz
+	p2DgkQhEMwzHKgmh7ZUIrb26fu/fXDxzbgLFrDyCGAVOvodewO4LDQVswygJ6UNps8lIWTYk/cX
+	OdsIG0wYV32dHlBp14JcSIv7QTmpQNXqOQrW
+X-Received: by 2002:a05:6820:668c:b0:65f:2902:4fa4 with SMTP id
+ 006d021491bc7-66102df2e32mr770769eaf.65.1768373650571; Tue, 13 Jan 2026
+ 22:54:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/5] dt-bindings: arm: qcom: talos-evk: Add QCS615
- Talos EVK SMARC platform
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251230130227.3503590-1-tessolveupstream@gmail.com>
- <20251230130227.3503590-2-tessolveupstream@gmail.com>
- <2e533b51-399a-47e8-bc3e-ab61797d6762@kernel.org>
- <f6ff2086-19f2-46cc-ac89-d8ef3847b9f0@gmail.com>
- <d23e3693-0cf8-4b31-a3e4-e562621911d5@kernel.org>
- <dce7702f-e845-4940-8679-a8d80563988a@gmail.com>
- <d9267c08-4470-481c-b56b-390627e9e61e@kernel.org>
- <49ce6fee-36dd-4e0d-b2e2-b516b16a8b25@oss.qualcomm.com>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <49ce6fee-36dd-4e0d-b2e2-b516b16a8b25@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260109-debug_bus-v1-0-8f2142b5a738@foss.st.com>
+ <20260109-debug_bus-v1-5-8f2142b5a738@foss.st.com> <CAHUa44Gc+q0qJ0XJ8Y-OMT2t9o0W_WeDMHg_S0HPC5i2Zmxhiw@mail.gmail.com>
+ <8b3b6cb6-31d0-425e-9894-bf33f2ea3dda@foss.st.com>
+In-Reply-To: <8b3b6cb6-31d0-425e-9894-bf33f2ea3dda@foss.st.com>
+From: Jens Wiklander <jens.wiklander@linaro.org>
+Date: Wed, 14 Jan 2026 07:53:59 +0100
+X-Gm-Features: AZwV_QjQvehCkstZ603G-yGEHjndP2wcqmxShTV0eKq96xdT4eINMWBA-NAc2Vg
+Message-ID: <CAHUa44ERuPKeNHoU9UpLWTxZrSvR15RbiuOPXqi2SBYnBfg44w@mail.gmail.com>
+Subject: Re: [PATCH 05/11] drivers: bus: add the stm32 debug bus driver
+To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@linaro.org>, 
+	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
+	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, 
+	Linus Walleij <linusw@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, coresight@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jan 13, 2026 at 5:09=E2=80=AFPM Gatien CHEVALLIER
+<gatien.chevallier@foss.st.com> wrote:
+>
+>
+>
+> On 1/13/26 15:45, Jens Wiklander wrote:
+> > Hi,
+> >
+> > On Fri, Jan 9, 2026 at 11:57=E2=80=AFAM Gatien Chevallier
+> > <gatien.chevallier@foss.st.com> wrote:
+> >>
+> >> Add the stm32 debug bus driver that is responsible of checking the
+> >> debug subsystem accessibility before probing the related peripheral
+> >> drivers.
+> >>
+> >> This driver is OP-TEE dependent and relies on the STM32 debug access
+> >> PTA.
+> >>
+> >> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> >> ---
+> >>   MAINTAINERS                 |   1 +
+> >>   drivers/bus/Kconfig         |  10 ++
+> >>   drivers/bus/Makefile        |   1 +
+> >>   drivers/bus/stm32_dbg_bus.c | 285 ++++++++++++++++++++++++++++++++++=
+++++++++++
+> >>   4 files changed, 297 insertions(+)
+> >>
+> >
+> > [snip]
+> >
+> >> +
+> >> +static const struct tee_client_device_id optee_dbg_bus_id_table[] =3D=
+ {
+> >> +       {UUID_INIT(0xdd05bc8b, 0x9f3b, 0x49f0,
+> >> +                  0xb6, 0x49, 0x01, 0xaa, 0x10, 0xc1, 0xc2, 0x10)},
+> >> +       {}
+> >> +};
+> >> +
+> >> +static struct tee_client_driver stm32_optee_dbg_bus_driver =3D {
+> >> +       .id_table =3D optee_dbg_bus_id_table,
+> >> +       .driver =3D {
+> >> +               .name =3D "optee_dbg_bus",
+> >> +               .bus =3D &tee_bus_type,
+> >> +               .probe =3D stm32_dbg_bus_probe,
+> >> +               .remove =3D stm32_dbg_bus_remove,
+> >> +       },
+> >> +};
+> >
+> > Just a heads up. With
+> > https://lore.kernel.org/op-tee/cover.1765791463.git.u.kleine-koenig@bay=
+libre.com/
+> > we're switching to use bus methods instead of device_driver callbacks.
+> > That plan is to merge that patch set in the next merge window.
+> >
+> > Cheers,
+> > Jens
+> >
+>
+> Hello Jens,
+>
+> Thank you for the link!
+> Is it fine if I push on top on your "next" branch for the review along
+> with the appropriate changes? I'm open to suggestions.
 
+Please base it on the tee_bus_callback_for_6.20 branch instead.
 
-On 07-01-2026 16:47, Konrad Dybcio wrote:
-> JFYI Sudarshan, there is a neat oneliner to do this:
-> 
-> git rebase --onto linux-next/master $(git describe --abbrev=0)
-> 
-> where linux-next/master is the target commit/branch to rebase onto, and the
-> second argument is the pointer to the start of the chunk you want to rebase
+Cheers,
+Jens
 
-Sure, got it. Thanks for sharing the tip!
-
+>
+> Thanks,
+> Gatien
+>
+> >> +
+> >> +static int __init optee_dbg_bus_mod_init(void)
+> >> +{
+> >> +       int ret;
+> >> +
+> >> +       ret =3D driver_register(&stm32_optee_dbg_bus_driver.driver);
+> >> +       if (ret)
+> >> +               return ret;
+> >> +
+> >> +       ret =3D platform_driver_register(&stm32_dbg_bus_driver);
+> >> +       if (ret)
+> >> +               driver_unregister(&stm32_optee_dbg_bus_driver.driver);
+> >> +
+> >> +       return ret;
+> >> +}
+> >> +
+> >> +static void __exit optee_dbg_bus_mod_exit(void)
+> >> +{
+> >> +       platform_driver_unregister(&stm32_dbg_bus_driver);
+> >> +       driver_unregister(&stm32_optee_dbg_bus_driver.driver);
+> >> +}
+> >> +
+> >> +module_init(optee_dbg_bus_mod_init);
+> >> +module_exit(optee_dbg_bus_mod_exit);
+> >> +
+> >> +MODULE_LICENSE("GPL");
+> >> +MODULE_AUTHOR("Gatien Chevallier <gatien.chevallier@foss.st.com>");
+> >> +MODULE_DESCRIPTION("OP-TEE based STM32 debug access bus driver");
+> >>
+> >> --
+> >> 2.43.0
+> >>
+> >>
+>
 
