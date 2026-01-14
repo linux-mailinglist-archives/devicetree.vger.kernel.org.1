@@ -1,148 +1,217 @@
-Return-Path: <devicetree+bounces-255067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08B3CD1F579
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:16:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21BF3D1F59B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:17:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 09944300BEC2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:16:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3CAFB300EA33
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:17:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E50E02D94BB;
-	Wed, 14 Jan 2026 14:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51EB02DCC04;
+	Wed, 14 Jan 2026 14:17:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="htk+x4Na"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z0z8lVLy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BD7231829;
-	Wed, 14 Jan 2026 14:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FBB2DAFBB
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 14:17:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768400180; cv=none; b=fh3aja0plzHBvsRzOHb/tH5X5xjqEP473PO3OUJ9LzXjzix9oWWXorcHaTazV4scSAMt1tIvnpKu+63CpKTpnqxyhBICSleC9S1BFjre3HbFIpiB6WfDIaWDkKPPrYDV0BIn1aqDCgS9XMzezQiznRNjD28TmLfU9b3anO48FQ0=
+	t=1768400229; cv=none; b=ijsWuMxe4d/EyksdU0Q/kuy88kyfYmiYjg61wyZWEPVp2ZDnsFcouWX3h9YvGRsSBsQ+1vc9ZmSJ92dljs8/tRewsILSQxMDPD9lnRu58CggSPFSZLSjv+K0TqJSVCJnSilrbvl4EepEzIAm8bfX5nsUvR0NvQZ72s2gxUShsA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768400180; c=relaxed/simple;
-	bh=Zk+X0U0nP+GtJI9b23g7B8znsodnQPS5UKylro1oFwE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xzvx485fnRh2JGtEFiuptTHurs0GfvWU1eBPIToOL46OYfuPGOEHpW1n53ICgoo7UxJANeLDI7oOvZIyzwqxG8R9RCTQXEI9S4pihgaguxXdkujjdtZgnWvl+5Wn11eI2DW0jLlhJoL4+CKZSRU23tzCUNYzuhCSvZw7NBCvAOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=fail (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=htk+x4Na reason="signature verification failed"; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 628C540E0194;
-	Wed, 14 Jan 2026 14:16:17 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=fail (4096-bit key)
-	reason="fail (body has been altered)" header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id U9i6nnOD5eUv; Wed, 14 Jan 2026 14:16:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1768400172; bh=VRoSE/2YTwFhEpBBl9wXpY8ydPU6I1xxtgwmqqKape0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=htk+x4Natx08his9bWPcyT1eRR2E8mDo6r0Ufv6M7oX9I1xf/5nuKcRZPOt5JxFil
-	 0DvrlAz0d2fonr1AfsbmuosW50C8y8AmnD9ABkAVcz/irfYQKSMHS3Y9ltalVds6wU
-	 DTuRZk1RmrxFdRMrSl+9eeEWHB+qnXrGlJIW18D40BH0Xy6VF5Du6dcAqHL/QItIOG
-	 RhFxknDK9aKTwPtwPZsc81Qo0JEgFJCxA1h/UwnEh/jQkCQG/L+NJn8fXYLTBuk/W4
-	 1VKxEB5pqHN7dp5Cq1iwvaQ+uh/YYx/6aGXFad82Mh4WYRT2IpNSty94gOwXqUgk88
-	 iKFWzxUOws2xTDEzs8v7XzGbqOe+Rd6ucImcyNSW4ZQGj+KdtHAiOrbA+YGgScbR2t
-	 QRL7tKqgCCIA+X48lHwrFW3P4rqDumjugBJINl8I0z+W59xVpbdlcDhJ7sg2om9sb/
-	 Vg8KkN7bmGqZdrjoBMYFo9BhQESYLdHsRAMR4uvUmD7lK3Qrl/6CiaGP0QSHTxCdwJ
-	 ql6xe/rslfuUVQk11RN3dRitXJxteJ/bvPvKYj3QndGFsiI8Z/9qcxMUg+EWW7qpZX
-	 VtDCCiOy6v1ID7knmO7TX5qxIvsynDRvzdk0cPpkA4nPPz7chJwTdXHX3AZ2hHoj8I
-	 Smbu6S3Z1aBrY+pY/st1NB+g=
-Received: from zn.tnic (pd953023b.dip0.t-ipconnect.de [217.83.2.59])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 5C64E40E0280;
-	Wed, 14 Jan 2026 14:15:58 +0000 (UTC)
-Date: Wed, 14 Jan 2026 15:15:51 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Ahmed Tiba <ahmed.tiba@arm.com>
-Cc: linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-	tony.luck@intel.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
-	linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
-	linux-doc@vger.kernel.org, Dmitry.Lamerov@arm.com,
-	Michael.Zhao2@arm.com
-Subject: Re: [PATCH 00/12] ras: share firmware-first estatus handling
-Message-ID: <20260114141551.GKaWelF-Gsvzr71LUs@fat_crate.local>
-References: <20251221013534.GAaUdO5vWqMWAdbWbd@renoirsky.local>
- <20251229115440.2734800-1-ahmed.tiba@arm.com>
+	s=arc-20240116; t=1768400229; c=relaxed/simple;
+	bh=7iSVRaIrBvJwUyayWLQUtaaFeLqq1IG5ekXvTcN/l1c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OqCvaIq/rGOCLHzWuzaG1pc8k2rz3C7TiyLdf/0+YOJpHtCJfzdrkw8rlK1IzTo+9uO+2SJN1y9swRG2ChcIWfogin/4yv64Z4OA3fSA0jzta2+ZKsWikl4Nt82uoPfTTxfQy5GRvKkyoaTWvCar1AeA0v9/q0ZkCxjcVujVVew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z0z8lVLy; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47ee3a63300so7667175e9.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 06:17:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768400225; x=1769005025; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gOr0r09swBSNVjbYo9yz2YviIiFXOTNHaYP7I0YlkxY=;
+        b=Z0z8lVLyQLeqDwuhkbZVuQ5++pZfrDPu2pxhe8lQIi0PmwOoRLwVMy9hgYGktPLShd
+         H9bbJGJdsiCLbQX/nhQfaYMGEXjY5JeU/KVue6YJkUJgadVQgdTdeor1qQZ5hruzAbpz
+         wdSt+BDSnxkskGNzePz4sO5+qHW0svzXAhiYV865Jy4W0Kud1Ex2oVAjrChyc+FjTdjj
+         iKQSDInPMicx4dIhuyZ9PtZgHg08AcTTF5zvMe4gpnocKsiVIme0g4SxcPFEpiJw1e7G
+         uoLfZza/1NyYLLg917wPHnSYLKbEGvkeExVtK9RAOJkrCaGEyQk4GMFK5U9NYChz9OKG
+         KaZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768400225; x=1769005025;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gOr0r09swBSNVjbYo9yz2YviIiFXOTNHaYP7I0YlkxY=;
+        b=Vr41yTaXoQfEXbhQUKvVaOzuEcU6uVcOse4meKN8wqTN/f/FvgkJ1nkbm0htEQ2cfs
+         cMm8vTCehWMHLSuwonHDpWNiwfDk6nLcGsvmOpvZeLoEWhpG8IRN+Ng8uJH8BA+ALmrh
+         gyFzQuCgavD5+MoDCw49LjlPHDaUTKw3zcLwMrugHktDc7MokHEzojEZJnZQMqUjLUir
+         89hU0VTScfL8gjDFH7RP7O7W0rkHBSJswtf8egsXkavvOzSxj4QO8KnOSrzHQKRZLU3C
+         0m1TQa9o/+N/csdqvh76bmU0QqcdvBfm8aFNaB+FytCcW/YZsTHcyt2fBfbjrWC8uVmZ
+         itcA==
+X-Forwarded-Encrypted: i=1; AJvYcCUiTlI5gmg4FbBAeKDLF7hVZRPFcgF2Zi7uSAYmy8vsISXyC1OucmmeHqin/inR1QQSDNc6k3hL/IQ4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCezq2UFm5OvI1VufPHkHRwbOjhC2BJlFMXBoFSIcwa8X+FBpT
+	q+V1uzdqNYfiOPX6DA3nvWUirKPNzXTzXLmKzqednoG1soSfQTay1hgLEw0qxBgucl8=
+X-Gm-Gg: AY/fxX4cBly/IkBxrNW6f4hIXnjT+WJsM+osh17ITR6Q3MafZmbDbuiK1ruPgxdlM5z
+	G5St0dztDVyrcHunBi2ZM62vxUk4ud/JL/JFhVcoQGyDHCjEVfhCkDnIesCQ1XickS1+OL4Ifmc
+	rDlp3PTrCsyRkarpp+GuZhfjtUoQyQs+PsUE9slgh2FnjRVUAD5J4tGS7279ZV0it1LICD8Pk/c
+	BXUvv+uwpGpEN6qLtwx0gR/f3GtUhNwemjVKGbRT0Xfs3hgiwHE+PC2iWdN66sNlNkapbyeCdGd
+	zi5ac+w8OokZkl19iOxZyrNuO/0x3PmPjsc0oPvmBXMdZKjyzHQ3NFuFEnZOthEmrgNygaufCg1
+	cOyr2NterA3cJwCkQstO1ls9hnKCGAvZYHJWY42IjwWjmaojPJsF/6uJ6p/NfCF1dTwXPNPo5ei
+	QgReOxe4VLjWxioE1yexn6kwm5+h58xT0/HDhIOONHYKiOgDKk3RH/afrP5ZX9JyheW7Qm/g==
+X-Received: by 2002:a05:600c:548c:b0:477:fcb:2256 with SMTP id 5b1f17b1804b1-47ee3371876mr36058035e9.17.1768400225203;
+        Wed, 14 Jan 2026 06:17:05 -0800 (PST)
+Received: from ta2.c.googlers.com (164.102.240.35.bc.googleusercontent.com. [35.240.102.164])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ee57a2613sm29595445e9.6.2026.01.14.06.17.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 06:17:04 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH 0/8] thermal: samsung: Add support for Google GS101 TMU
+Date: Wed, 14 Jan 2026 14:16:28 +0000
+Message-Id: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251229115440.2734800-1-ahmed.tiba@arm.com>
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAD2lZ2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQ0Nj3cTkglzdktxSXSPzVCPDNINUo2TjJCWg8oKi1LTMCrBR0bG1tQB
+ +IQsDWgAAAA==
+X-Change-ID: 20260113-acpm-tmu-27e21f0e2c3b
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768400224; l=4502;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=7iSVRaIrBvJwUyayWLQUtaaFeLqq1IG5ekXvTcN/l1c=;
+ b=VldPEq1aLcmN8GvMlCPb3GSq97ZYIjYcVJ1HPKvNgmWuc/m5TOg/1yIYM3XuK7n87gKGGVHI9
+ asGZcF9DEDIDlAGWAhUklMa+lXPxsoBl7nyIKO6JUw/CJxYJ3u7I4N9
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-On Mon, Dec 29, 2025 at 11:54:36AM +0000, Ahmed Tiba wrote:
-> By =E2=80=9Cerror status=E2=80=9D I=E2=80=99m referring to the UEFI CPE=
-R Generic Error Status block,
-> which is the standard firmware-produced error payload that Linux alread=
-y
+This series adds support for the Thermal Management Unit (TMU) on the
+Google GS101 SoC (Tensor).
 
-Standard, schmandard - a bunch of fw crap.
+The GS101 TMU implementation differs from previous Exynos generations.
+It utilizes a hybrid architecture where control responsibilities are
+split between the kernel and the Alive Clock and Power Manager (ACPM)
+firmware.
 
-That's UEFI's understanding of a common platform error record, no?
+Dependencies
+============
+1. The thermal driver patch (5) depends on the firmware helpers (4).
+2. Typical dependency of the DT patch (7) depending on the bindings
+   patches (1), (2) and (3) (to pass dtbs_check)
+3. defconfig (8) logical dependency on (5).
 
-So why is this a generic estatus and not part of CPER-something?
+The bindings patches (1-3) are independent of each other. They can be
+applied in any order, though logical grouping (Firmware -> Thermal)
+is still nice for reading.
 
-You're calling something "estatus" which sounds like a generic thing but =
-it is
-simply a subset of functionality you need to make it work on ARM without
-ACPI and have packaged whatever you need under the name "estatus".
+The Firmware driver (4) is independent.
 
-Why does this thing need to be called an "estatus core"?
+Given the dependencies, I'd suggest everything to go through the
+Samsung SoC tree, with ACKs from the MFD and Thermal maintainers.
 
-I'd expect to see a compilation unit which contains shared functionality,=
- gets
-linked to your stuff and that's it. No "fanfares", no CONFIG symbols, no
-nothing.
+If the Thermal maintainers prefer to take patch 5 via their tree, an
+immutable branch containing patch 4 (firmware) will be required from the
+Samsung SoC tree to serve as a base.
 
-> consumes via GHES on ACPI systems. I=E2=80=99m not introducing a new er=
-ror model
-> here; the intent is to reuse the existing CPER decoding and handling on=
-ce
-> that payload exists.
+Architecture Overview
+=====================
 
-So why aren't you doing only that? Why are you doing all that extra stuff=
-?
+1. Firmware Responsibility (ACPM):
+   - Initializes the hardware.
+   - Performs ADC conversions and temperature calibration.
+   - Manages thermal thresholds and hysteresis configuration.
+   - Exposes a high-level protocol for temperature reading and trip
+     point configuration.
 
-> The practical use case is firmware-first RAS platforms that emit CPER
-> records but do not use ACPI/APEI GHES for discovery or notification. To=
-day,
-> those platforms either have to duplicate CPER parsing logic or miss out=
- on
-> the common Linux RAS handling (standard logging, memory failure flow,
-> vendor notification paths). As a result, the full firmware-first RAS
-> pipeline effectively only works when CPER arrives through GHES.
+2. Kernel Responsibility:
+   - Communicates with ACPM via the mailbox protocol to set thresholds
+     and read temperatures.
+   - Monitors the interrupt pending status registers directly via a
+     syscon interface.
+   - Maps physical hardware interrupts to logical thermal zones.
 
-Yah, got it.
+Sensor Mapping (One-to-Many)
+============================
 
-But see above.
+A key aspect of this hardware is the mapping between the logical "ACPM
+Sensors" and the physical TMU sensors.
 
-Please do not "over-design" this into a separate thing but simply carve o=
-ut
-the functionality and share it. And leave it where it belongs
-- drivers/firmware/efi/ is not the right place as this isn't really EFI. =
-This
-is a piece of APEI/GHES crap you need.
+The SoC contains multiple physical temperature sensors scattered across
+the die (e.g., near specific cores). However, the ACPM firmware abstracts
+these into logical groups (Clusters).
 
-Later, when there's need to make it more sophisticated, then we can talk
-again.
+- ACPM Sensor 0 (Big Cluster): Aggregates physical sensors 0, 6, 7, 8, 9.
+- ACPM Sensor 1 (Mid Cluster): Aggregates physical sensors 4, 5.
+- ACPM Sensor 2 (Little Cluster): Aggregates physical sensors 1, 2.
 
-Thx.
+While ACPM reports a single temperature per logical sensor (likely the
+max of the group), the thermal interrupts are raised by the physical
+blocks individually.
 
---=20
-Regards/Gruss,
-    Boris.
+Therefore, the driver is designed to map these physical interrupt bits
+back to their logical parent. When an interrupt fires, the driver checks
+the syscon register against the masks defined above. If any bit within
+a group's mask is set, the corresponding logical thermal zone is updated.
 
-https://people.kernel.org/tglx/notes-about-netiquette
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Tudor Ambarus (8):
+      dt-bindings: thermal: Add Google GS101 TMU
+      dt-bindings: firmware: google,gs101-acpm-ipc: Add TMU child node
+      dt-bindings: mfd: Add Google GS101 TMU Syscon
+      firmware: samsung: acpm: Add TMU protocol support
+      thermal: samsung: Add support for GS101 TMU
+      MAINTAINERS: Add entry for Samsung Exynos ACPM thermal driver
+      arm64: dts: exynos: gs101: Add thermal management unit
+      arm64: defconfig: enable Exynos ACPM thermal support
+
+ .../bindings/firmware/google,gs101-acpm-ipc.yaml   |  17 +
+ .../bindings/mfd/google,gs101-tmu-syscon.yaml      |  37 ++
+ .../bindings/thermal/google,gs101-tmu-top.yaml     |  64 +++
+ MAINTAINERS                                        |   8 +
+ arch/arm64/boot/dts/exynos/google/gs101-tmu.dtsi   | 209 +++++++
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       |  22 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/firmware/samsung/Makefile                  |   1 +
+ drivers/firmware/samsung/exynos-acpm-tmu.c         | 212 +++++++
+ drivers/firmware/samsung/exynos-acpm-tmu.h         |  33 ++
+ drivers/firmware/samsung/exynos-acpm.c             |  12 +
+ drivers/thermal/samsung/Kconfig                    |  16 +
+ drivers/thermal/samsung/Makefile                   |   2 +
+ drivers/thermal/samsung/acpm-tmu.c                 | 638 +++++++++++++++++++++
+ .../linux/firmware/samsung/exynos-acpm-protocol.h  |  24 +
+ 15 files changed, 1296 insertions(+)
+---
+base-commit: fefc12a70eb12e0b04f0b59b623965dd3ab1f4ba
+change-id: 20260113-acpm-tmu-27e21f0e2c3b
+
+Best regards,
+-- 
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
