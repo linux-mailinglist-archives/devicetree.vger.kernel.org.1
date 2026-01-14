@@ -1,108 +1,105 @@
-Return-Path: <devicetree+bounces-255058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83534D1F495
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:04:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BF21D1F4E6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:07:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E5D88301EF26
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:02:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B09173002D01
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6332BFC85;
-	Wed, 14 Jan 2026 14:02:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8EystbP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B97B12C0F68;
+	Wed, 14 Jan 2026 14:07:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED7682BDC02;
-	Wed, 14 Jan 2026 14:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E842926ED48;
+	Wed, 14 Jan 2026 14:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768399326; cv=none; b=j4xFVdbb0hAq6/Qdq482C0GxbvMQCjrd8zDEG9E4hjddi8Ns50jfWbG04BGrtsqTaaX+LthEpqyHTArkERwFtKebOKWwmA4xhXZ/aM2o7RKfCfi4COatTSaV1QYfA99RVOP4nLavqoJKOKT4YM9eFFEFckuAqFIxQz84dRvR1d0=
+	t=1768399622; cv=none; b=daVZ9mHCaRLqroCM/KTX+QdvgJRR8QN0pqDlZE5KYyTumVQUSZArt/NBNi+BMBeJjOyG6DkylAu58UJChCRjdbEh6ocdWec3M8mmIm7hVKBtjo0rH+WGNO+1igl17FWob+ha+B9mRzZNID29mo+NHrSvz405lfxYfVWKKX7wcoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768399326; c=relaxed/simple;
-	bh=haCM6T+YzB8uXZZd8uUQUcECd5pePHN87zdScN5Eg9c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=SDlrKt31Kca3xnP4XFbw7uHgxhJy0VvWwdszG0QoyZp+O8UfHFXqzKG2OKcolmSgjq8VqS+t/0Sy/cSmu55EflLlllY8O6+wipKB1mAxf6ALMuP6YLjBmE9fgVddkKLgEknqskWCWLBilxSVIl22+ZnBVZx0v375/A3cIKF4G7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M8EystbP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1352C2BC86;
-	Wed, 14 Jan 2026 14:01:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768399325;
-	bh=haCM6T+YzB8uXZZd8uUQUcECd5pePHN87zdScN5Eg9c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=M8EystbPzjf3hIbat0l79Q5+uB24T3/rSm58fwr9j9jsIzZ6HHh1yxy06+ycFdWzA
-	 kCQ/MsWRHRVcN9TXxklMfR/x8Gk1woAJjz6RiF50A5XDghuMMg7BczGpkZ01mlMkeB
-	 g5um/0dqrqfSquRa4qmC5hiqJhsuVU9WMvitJ2M1N6PNGw1Un8+te/jW4S3aatLO8Z
-	 kkE/AwbTuxO/UzQVfVgNXt56CiAQLxiqLQfvk/vFy/Bid+4YUXdVf3S6I9vRQCiADp
-	 FNOY60maEkzw6Ms0vCj/ulWN2D6c4GcZWL99ODS+so9OJciWAK+JmthSByE0ctjfYo
-	 WvWwYUk6P2leQ==
-From: Vinod Koul <vkoul@kernel.org>
-To: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-phy@lists.infradead.org, Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, Daniel Golle <daniel@makrotopia.org>, 
- Horatiu Vultur <horatiu.vultur@microchip.com>, 
- =?utf-8?q?Bj=C3=B8rn_Mork?= <bjorn@mork.no>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Eric Woudstra <ericwouds@gmail.com>, 
- =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>, Lee Jones <lee@kernel.org>, 
- Patrice Chotard <patrice.chotard@foss.st.com>
-In-Reply-To: <20260111093940.975359-1-vladimir.oltean@nxp.com>
-References: <20260111093940.975359-1-vladimir.oltean@nxp.com>
-Subject: Re: (subset) [PATCH v3 net-next 00/10] PHY polarity inversion via
- generic device tree properties
-Message-Id: <176839931828.937923.5236613118963138163.b4-ty@kernel.org>
-Date: Wed, 14 Jan 2026 19:31:58 +0530
+	s=arc-20240116; t=1768399622; c=relaxed/simple;
+	bh=y5u8cltlwT2+49hSOGuYdfse6QUPO2ckdibtKTQtok4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BAT7R0pP4I6D7dqSizjmXvrim9bBGRRWgfyka3YMndFa46RCUnzmvFUJLlqEbYcXV0jHwTSImHLFQAqe2A4p++oOOKEk/ic1y3gzfW3p7elyVcvhwNLcq+VF0CCZbn7lXNGNSeQXZzHEL6WQOkC/QdOiJhTCN3fqNGeLyiwlupc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8E9BE1515;
+	Wed, 14 Jan 2026 06:06:52 -0800 (PST)
+Received: from orionap.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 08C2E3F632;
+	Wed, 14 Jan 2026 06:06:56 -0800 (PST)
+Date: Wed, 14 Jan 2026 14:06:53 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun7i: a20: fix MMC index enumeration
+Message-ID: <20260114140653.05365221@orionap.fritz.box>
+In-Reply-To: <20260114105005.3136045-1-giulio.benetti@benettiengineering.com>
+References: <20260114105005.3136045-1-giulio.benetti@benettiengineering.com>
+Organization: ARM
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
 
+On Wed, 14 Jan 2026 11:50:04 +0100
+Giulio Benetti <giulio.benetti@benettiengineering.com> wrote:
 
-On Sun, 11 Jan 2026 11:39:29 +0200, Vladimir Oltean wrote:
-> Introduce "rx-polarity" and "tx-polarity" device tree properties.
-> Convert two existing networking use cases - the EN8811H Ethernet PHY and
-> the Mediatek LynxI PCS.
+Hi Giulio,
+
+> Currently, the OLinuXino-A20-Micro experiences non-deterministic MMC
+> enumeration during boot. When both an SDIO WiFi module (MMC1) and
+> an SD card (MMC0) are present, the kernel may swap their indices.
 > 
-> Requested merge strategy:
-> Patches 1-5 through linux-phy
-> linux-phy provides stable branch or tag to netdev
-> patches 6-10 through netdev
+> Explicitly define mmc* aliases to ensure consistent device naming
+> and prevent mapping conflicts.
+
+So this comes up every now and then, but for sunxi it was decided to not
+support this. The enumeration of devices in the kernel is never guaranteed
+to follow some order, and this is widely accepted for SCSI (/dev/sda) and
+NVMe. Distros are coping with this forever since, using more sustainable
+designations like UUIDs or labels.
+
+If you don't want to change the way you communicate the root device to the
+kernel, you can actually use U-Boot's DTs, which adds the indicies for its
+own purposes, and can pass this on to the kernel. Just don't load a DT
+from storage (which you shouldn't be doing anyways), and just use
+$fdtcontroladdr as the DT address when booting the kernel.
+
+Cheers,
+Andre
+
+> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> ---
+>  arch/arm/boot/dts/allwinner/sun7i-a20.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> [...]
-
-Applied, thanks!
-
-[01/10] dt-bindings: phy: rename transmit-amplitude.yaml to phy-common-props.yaml
-        commit: b7b4dcd96e3dfbb955d152c9ce4b490498b0f4b4
-[02/10] dt-bindings: phy-common-props: create a reusable "protocol-names" definition
-        commit: 33c79865c7d3cc84705ed133c101794902e60269
-[03/10] dt-bindings: phy-common-props: ensure protocol-names are unique
-        commit: 01fc2215940c20bbb22fa196a331ec9d50e45452
-[04/10] dt-bindings: phy-common-props: RX and TX lane polarity inversion
-        commit: fceb17ac05e772ffc82f1f008e876bf7752f0576
-[05/10] phy: add phy_get_rx_polarity() and phy_get_tx_polarity()
-        commit: e7556b59ba65179612bce3fa56bb53d1b4fb20db
-
-Best regards,
--- 
-~Vinod
-
+> diff --git a/arch/arm/boot/dts/allwinner/sun7i-a20.dtsi b/arch/arm/boot/dts/allwinner/sun7i-a20.dtsi
+> index 5f44f09c5545..a958400bcd7c 100644
+> --- a/arch/arm/boot/dts/allwinner/sun7i-a20.dtsi
+> +++ b/arch/arm/boot/dts/allwinner/sun7i-a20.dtsi
+> @@ -55,6 +55,10 @@ / {
+>  	#size-cells = <1>;
+>  
+>  	aliases {
+> +		mmc0 = &mmc0;
+> +		mmc1 = &mmc1;
+> +		mmc2 = &mmc2;
+> +		mmc3 = &mmc3;
+>  		ethernet0 = &gmac;
+>  	};
+>  
 
 
