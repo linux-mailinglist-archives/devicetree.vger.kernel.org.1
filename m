@@ -1,200 +1,103 @@
-Return-Path: <devicetree+bounces-255267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B964DD21BA5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:16:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3942D21BB2
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:17:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 38BC4300D287
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:16:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 433C8302D539
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F39630E828;
-	Wed, 14 Jan 2026 23:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E5A30E82B;
+	Wed, 14 Jan 2026 23:17:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/e0wuaV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9C2264A9D;
-	Wed, 14 Jan 2026 23:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB50264A9D;
+	Wed, 14 Jan 2026 23:17:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768432561; cv=none; b=BsuGdBYT4+bTStXsxGea8YtWicNM5r4otDxzh1X3Y40x6Kh3wMuZsZB+vVRroEz5EZYKu3uz2H4fH1s6Bd+BKPTWCSKJqYmg2cA9WkOReC4FUiZWEznlrSEkho23AD6mbKpRBJtRfqC8dAFB3/2kRrFLAC8/PHmtWiNcB4wrNIM=
+	t=1768432655; cv=none; b=MqqjWsNAVmUxRNpAr1QFL7xykLgipfHJh/qLS76qmGcNqJviAXyL3lwgK+5XsdF9ckWZJh4NVtrvyzUBJNivEDZ1g0250d28MqB3EZ3l3TS6qb34J83POulRa2cAIRGj981IgPD2IUGZoJzTx1dJ5MIAIki5uKoQOTLBgt3G5f0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768432561; c=relaxed/simple;
-	bh=OGaMxOeTXn1pcqctpASMy5+LhqsiC8UuEMurex7JKGE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iIzQvzleLZVOwV/8PWE+/fQTcoqnV5kRaf6vN+vf+1CZ5fT6ci9c88HfIL9Ly/w/+8BAWD8jjeRa9wx5sfc5iNfMOkEMi+FzpD22e65hM1pcYok9LVusGm2VxaoEH9XRbbV18/7ORw5bZKtqQBJXdoMyvDH/N2FTCXMWTHu5rj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vgA5Y-000000001lr-0fbU;
-	Wed, 14 Jan 2026 23:15:44 +0000
-Date: Wed, 14 Jan 2026 23:15:40 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH net-next v5 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <aWgjnJEAV4M3WrcP@makrotopia.org>
-References: <cover.1768225363.git.daniel@makrotopia.org>
- <cover.1768225363.git.daniel@makrotopia.org>
- <169e8a64d3f4db3139f2c85ac5164c52ca861156.1768225363.git.daniel@makrotopia.org>
- <169e8a64d3f4db3139f2c85ac5164c52ca861156.1768225363.git.daniel@makrotopia.org>
- <20260114225736.c7w3tpfol7bdc4so@skbuf>
+	s=arc-20240116; t=1768432655; c=relaxed/simple;
+	bh=yiZaT2+yUxyzhmN9BLG28Zi7rtf5bP+HzkcRffYh+5w=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=W10kWN2DwA+qneC0hM4MwNFQujwsq6R6esz3KsCprEHSuIZxElA/wWQYNeqRG4y8Wkc6nSjTWp1WFoV83yL7w4WAO4xilZFdFn94TFtVJuIkdpie4ZskgRmRntS/M9nB22JuQ/JyScUt7KEOhROvbrSorW9Gkcvb/TpNm0M09fM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/e0wuaV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F9B3C4CEF7;
+	Wed, 14 Jan 2026 23:17:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768432655;
+	bh=yiZaT2+yUxyzhmN9BLG28Zi7rtf5bP+HzkcRffYh+5w=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=s/e0wuaVujPJ1SdsmwMkhm3Ij1DfE1MgW3bPGlVytD562/c2dbAEJhmCsodwRlcVC
+	 AoWp/x/ep8hA2D3AUmd99Nzz/nMxJ2c3YsqiEWLGzmw8pHnTxvlb7YADZ49Q3n1h6u
+	 FumOYq6cMf6O/kS3fDkB1PWUsqrUCFJTVAqGBve1QyueuC+UtTUMDtvAbsN8y911BK
+	 m1+gta1U34OtyMzjo3wbDvhqarDbs37HFqXzVeVKGibJYZJh+bYL1dgaKhj1C4CW2E
+	 gbEbXSbXVMLN7fs3xQ/ByFOc5p06RAEe3mfTUVpWRehrll28lZIeo8eaOtVrB8xr4a
+	 MA6EoF2XZ5kcg==
+Date: Wed, 14 Jan 2026 16:17:32 -0700 (MST)
+From: Paul Walmsley <pjw@kernel.org>
+To: Guodong Xu <guodong@riscstar.com>
+cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+    Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
+    Daniel Lezcano <daniel.lezcano@linaro.org>, 
+    Thomas Gleixner <tglx@linutronix.de>, 
+    Samuel Holland <samuel.holland@sifive.com>, 
+    Anup Patel <anup@brainfault.org>, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+    Yangyu Chen <cyy@cyyself.name>, Paul Walmsley <paul.walmsley@sifive.com>, 
+    Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
+    Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
+    Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org, 
+    linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+    spacemit@lists.linux.dev, linux-serial@vger.kernel.org, 
+    Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+    Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Subject: Re: [PATCH v3 01/11] dt-bindings: riscv: add SpacemiT X100 CPU
+ compatible
+In-Reply-To: <20260108-k3-basic-dt-v3-1-ed99eb4c3ad3@riscstar.com>
+Message-ID: <d15c3e1a-509b-0e99-c408-976fa4cf8e32@kernel.org>
+References: <20260108-k3-basic-dt-v3-0-ed99eb4c3ad3@riscstar.com> <20260108-k3-basic-dt-v3-1-ed99eb4c3ad3@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260114225736.c7w3tpfol7bdc4so@skbuf>
+Content-Type: text/plain; charset=US-ASCII
 
-On Thu, Jan 15, 2026 at 12:57:36AM +0200, Vladimir Oltean wrote:
-> On Mon, Jan 12, 2026 at 01:52:52PM +0000, Daniel Golle wrote:
-> > Add very basic DSA driver for MaxLinear's MxL862xx switches.
-> > 
-> > In contrast to previous MaxLinear switches the MxL862xx has a built-in
-> > processor that runs a sophisticated firmware based on Zephyr RTOS.
-> > Interaction between the host and the switch hence is organized using a
-> > software API of that firmware rather than accessing hardware registers
-> > directly.
-> > 
-> > Add descriptions of the most basic firmware API calls to access the
-> > built-in MDIO bus hosting the 2.5GE PHYs, basic port control as well as
-> > setting up the CPU port.
-> > 
-> > Implement a very basic DSA driver using that API which is sufficient to
-> > get packets flowing between the user ports and the CPU port.
-> > 
-> > The firmware offers all features one would expect from a modern switch
-> > hardware, they will be added one by one in follow-up patch series.
-> > 
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > ---
-> > v5:
-> >  * output warning in .setup regarding unknown pre-configuration
-> >  * add comment explaining why CFGGET is used in reset function
-> > 
-> > RFC v4:
-> >  * poll switch readiness after reset
-> >  * implement driver shutdown
-> >  * added port_fast_aging API call and driver op
-> >  * unified port setup in new .port_setup op
-> >  * improve comment explaining special handlign for unaligned API read
-> >  * various typos
-> > 
-> > RFC v3:
-> >  * fix return value being uninitialized on error in mxl862xx_api_wrap()
-> >  * add missing descrition in kerneldoc comment of
-> >    struct mxl862xx_ss_sp_tag
-> > 
-> > RFC v2:
-> >  * make use of struct mdio_device
-> >  * add phylink_mac_ops stubs
-> >  * drop leftover nonsense from mxl862xx_phylink_get_caps()
-> >  * use __le32 instead of enum types in over-the-wire structs
-> >  * use existing MDIO_* macros whenever possible
-> >  * simplify API constants to be more readable
-> >  * use readx_poll_timeout instead of open-coding poll timeout loop
-> >  * add mxl862xx_reg_read() and mxl862xx_reg_write() helpers
-> >  * demystify error codes returned by the firmware
-> >  * add #defines for mxl862xx_ss_sp_tag member values
-> >  * move reset to dedicated function, clarify magic number being the
-> >    reset command ID
-> > 
-> >  MAINTAINERS                              |   1 +
-> >  drivers/net/dsa/Kconfig                  |   2 +
-> >  drivers/net/dsa/Makefile                 |   1 +
-> >  drivers/net/dsa/mxl862xx/Kconfig         |  12 +
-> >  drivers/net/dsa/mxl862xx/Makefile        |   3 +
-> >  drivers/net/dsa/mxl862xx/mxl862xx-api.h  | 177 +++++++++
-> >  drivers/net/dsa/mxl862xx/mxl862xx-cmd.h  |  32 ++
-> >  drivers/net/dsa/mxl862xx/mxl862xx-host.c | 230 ++++++++++++
-> >  drivers/net/dsa/mxl862xx/mxl862xx-host.h |   5 +
-> >  drivers/net/dsa/mxl862xx/mxl862xx.c      | 433 +++++++++++++++++++++++
-> >  drivers/net/dsa/mxl862xx/mxl862xx.h      |  24 ++
-> >  11 files changed, 920 insertions(+)
-> >  create mode 100644 drivers/net/dsa/mxl862xx/Kconfig
-> >  create mode 100644 drivers/net/dsa/mxl862xx/Makefile
-> >  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-api.h
-> >  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
-> >  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.c
-> >  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.h
-> >  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.c
-> >  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.h
-> > 
-> > +static int mxl862xx_setup(struct dsa_switch *ds)
-> > +{
-> > +	struct mxl862xx_priv *priv = ds->priv;
-> > +	int ret;
-> > +
-> > +	ret = mxl862xx_reset(priv);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = mxl862xx_wait_ready(ds);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = mxl862xx_setup_mdio(ds);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	dev_warn(ds->dev, "Unknown switch pre-configuration, ports may be bridged!\n");
+On Thu, 8 Jan 2026, Guodong Xu wrote:
+
+> Add compatible string for the SpacemiT X100 core. [1]
 > 
-> Nack. User space needs to be in control of the forwarding domain of the
-> ports, and isolating user ports is the bare minimum requirement,
-> otherwise you cannot even connect the ports of this device to a switch
-> without creating L2 loops.
+> The X100 is a 64-bit RVA23-compliant RISC-V core from SpacemiT. X100
+> supports the RISC-V vector and hypervisor extensions and all mandatory
+> extersions as required by the RVA23U64 and RVA23S64 profiles, per the
+> definition in 'RVA23 Profile, Version 1.0'. [2]
 > 
-> It seems that it is too early for this switch to be supported by
-> mainline. Maybe in staging...
+> >From a microarchieture viewpoint, the X100 features a 4-issue
+> out-of-order pipeline.
+> 
+> X100 is used in SpacemiT K3 SoC.
+> 
+> Link: https://www.spacemit.com/en/spacemit-x100-core/ [1]
+> Link: https://docs.riscv.org/reference/profiles/rva23/_attachments/rva23-profile.pdf [2]
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Reviewed-by: Yixun Lan <dlan@gentoo.org>
+> Reviewed-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
 
-In order to avoid the detour via staging, from my perspective there are two
-ways to go from here:
+I think Yixun Lan is going to pick this up, so 
 
-a) Keep nagging MaxLinear to provide a switch firmware with an additional
-firmware command which flushes the pre-configuration and puts the switch
-in a well-defined state (all ports isolated, learning disabled) for DSA.
+Acked-by: Paul Walmsley <pjw@kernel.org>
 
-b) Extend the patch to cover all the API calls needed to do this
-manually (more than double of LoC).
 
-Obviously a) would be better for me and you, but MaxLinear indicated they
-prefer not to release an new firmware adding that feature at this point.
-
-b) would allow me to proceed right away, but it would burden reviewers
-with a rather huge patch for initial support for this switch.
-For the sake of making review more easy I'd prefer to still keep this
-in a series of not terribly huge patches rather than a single patch
-which immediately brings in everything (ie. have bridge and bridgeport
-configuration in one patch, FDB access in the next, ...). Would a
-series adding everything needed to end up with isolated ports be
-acceptable?
-
-Please let me know what you think.
+- Paul
 
