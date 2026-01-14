@@ -1,395 +1,149 @@
-Return-Path: <devicetree+bounces-255168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8827D206D9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:10:06 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D164D206CF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:09:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DF883003498
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:04:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E7CA13015BD3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B58C2D47F4;
-	Wed, 14 Jan 2026 17:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1592EC571;
+	Wed, 14 Jan 2026 17:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="WQA8+na/"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2MhFrzc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D260D2857CC;
-	Wed, 14 Jan 2026 17:04:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4842E92BC
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768410293; cv=none; b=MXSExyRhtz9kCwTB9+pIT4Ol0YqVkKJ/f3DHNe9PetJYnJGbYjKLJe5FxOS2FksJhVvI8Fma6AnEPbqc2lDc7RNSJl0aUBQuCwCAm3s5scIN/sXeDIPcegAE4yolEgJwnHGgESLihnaLpi4y1zemExNBpY2J31nJhtgxEm+NTnI=
+	t=1768410561; cv=none; b=gS9qKAkTM5mbi2P9l7gRYEisVW7lmm97A2GjARCZpYWfNhigHvz1j8+Jq3yZdGX4j6D6lmhX4lXtvpQpVK6OjQ4CMQtdbwmFlM7FmShR/fNHfpxSCk4+2N/WDJuNInxyyOZRgfUHW/Q76IXEQvtyLNIZdkaGAlHqwsUcKOm87Zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768410293; c=relaxed/simple;
-	bh=eBpyoEQTjwaP1FIuFPJn+Xc7rbLhEgaAA+UFnNwI8G8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NP/OzxX+yfxRcuVYIi/qBuStUF3aCAPMGW2da0Qle/JLMoDOVWpygaEZb7rxucPUi2i/TaRWbd6ApEfQUIPdIzgZBdpE/Fich5gfyySexiJx5BaUQxuNVidi+XXeo9IahkmBmJoFaH2FPP9uluJcn0IaQNvf0TaR3WIqZkuNJAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=WQA8+na/; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A04F855C;
-	Wed, 14 Jan 2026 18:04:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1768410262;
-	bh=eBpyoEQTjwaP1FIuFPJn+Xc7rbLhEgaAA+UFnNwI8G8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WQA8+na/JqZMerROtUbeogfYBsOZllHSybvZNnP0zQO9p9cdBvnlHsKNATqJkAcV0
-	 qRYaxH7AnYUGxRguLrlA17nwlX7otT6wCM1YpUFSHO/c70db+2gQlA45k3OGAWK5VK
-	 c/YcC8wau4q2cccnZXXSepsIxfAbELXB8FcE1/qE=
-Message-ID: <e1c78777-d7ea-43f5-9ee7-d0609416a32d@ideasonboard.com>
-Date: Wed, 14 Jan 2026 19:04:44 +0200
+	s=arc-20240116; t=1768410561; c=relaxed/simple;
+	bh=osL3XON6lRfI69E18cOlW4Vk5fOS+vLWguNhE5gZqKM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AwTs3rvggM9KuMPGjwKd4ecudONHV3ZSFza4f4TE7BbO9rw/yz67yliYgAD4UJGYLZfnknN6z5h6PaBej0NPdSiSFPNGCw0Tr4n0AwOxp0M6pVjvi5pgA9yHNwveyr0T0+ppWR4e9J/9qzq+aQDYFcW5QAxauPAZrJk2LuCm/Uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2MhFrzc+; arc=none smtp.client-ip=209.85.128.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-47d1d8a49f5so379725e9.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:09:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768410558; x=1769015358; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=reYbQywtfs6l3YId6TEn7g/nU2+zvlCK5bs8kkfE33Q=;
+        b=2MhFrzc+/enyJU0oEKJkaqEKOrHoz8AuQQspLshO/dNVkJgh6TLn1t7Ksksv/8yFK+
+         Rowc8fA/YSyu3vzDCuDdDeJXZkRavRGpbSuBMo7VZdzsMysLtam8hcuMPn3vdwhrJ7CP
+         TgFiO68YTwqHVVVIJVTG1qC4VW87234JSrDSJYZkkaB/otWVAE454kZrLh8wfqlGEJyM
+         qj0DOJKKoSamsrQxolMStQY7D+TxB1d4siavJrJzLpkdeXCxEHskUu9FOixVlX7QrSbt
+         3BQMiebBE+EILuDOTNx0IWn01QpGV4ZYGBfxauS+YqY/n91f/fIrJmk0WoK/mf3ACcRo
+         Wavw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768410558; x=1769015358;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=reYbQywtfs6l3YId6TEn7g/nU2+zvlCK5bs8kkfE33Q=;
+        b=YP/X8erZVT/N/+Ts0VU3ycoEBNgSejSnfFWnKGej77PRAIBbUe9d3WegXOc/Ns/mLO
+         mZzw9EBFugr6zIsFCKdL7MfenubnvtOKaLYnNFnWd6orIj2/JjY/9QtIfUoH0yZ3pMmC
+         PiOLEwRMWHR3mm5tW+TRN4KuoNxTjEWe7GA5ZM+JXuAeaWdSUZddhZDg+EHdl93o3e/g
+         wKCSbYviTRJxr9TjZ8yUrIa4Oz6hwdBczVyCJieA5zWGjjZn8LZTOUKFZ6uJ6mpL8Exx
+         mOPjjzBAbnIITcur1PxbDrQGgOvw+7+sGDb8cn3fCK5Ji9QQfR7IXnBDSd4zmDRWb4Zd
+         XqbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUxJ3PaX4nB6TOMocTHnumAeO4TAXAxkqp24CjchwdJyEk7K0jsSG2W1eSUzk6myHArcL20RP6Dq776@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLSSFlvJ2aUVu2qOjldQh0yxMIkfqO9OMwpo1y2sLxdVMtNOWI
+	9wonz1H69KBhgD5HSy9tjax42MhaRsZZfZYCDgEw5Aq1KDk5geFA7pPDGL/eBoFKF2c=
+X-Gm-Gg: AY/fxX4h71tzgRiN8roepklDpYvNn122/fkpevfWLbLpt1DpYkrlgGKYQuq6+0NnzUZ
+	TWlmDqdQxJfRT5bUUVTiRQMuQKVWfk8TUDwkWmStrtb8oZwRUmYCjqzzrenFrwBoa8Jj7DRaRji
+	voZfJRPKWPWZxiYSCQuqpwL7L7gtt4se1qqFWELkHVKI4hfk8XCTEFa+NzXYwLLmdyD9qD0IK/f
+	spGzrHACQ+JLc4BHd3aeqN1waXDGTlmUrp6zkdIkE+PbCInpUwMRAobBwb4ajZrvP9XISY8bq/p
+	q3cjm5lwuIM5S3WYlvwIEPNDrM+z/wms838QYW7LcPFBKLKnqc7AxArNperTdCBGgAWAKob2iZy
+	Ce/ebojeavI/Hx6q0Z9+rxSsiAzdK/HLcBTyoiddM9ZeGtGihix/rcvg8WpSQuSmQipqKBh6SZY
+	4CYTcNkPtpmg==
+X-Received: by 2002:a05:6000:1847:b0:430:ff81:2947 with SMTP id ffacd0b85a97d-4342c535b91mr4556126f8f.40.1768410557880;
+        Wed, 14 Jan 2026 09:09:17 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:d3d1:7ba4:2f56:d18a])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-434af653632sm428077f8f.11.2026.01.14.09.09.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 09:09:17 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+Subject: [PATCH 0/6] arm64: dts: amlogic: assign the MMC signal clocks
+Date: Wed, 14 Jan 2026 18:08:47 +0100
+Message-Id: <20260114-amlogic-mmc-clocks-followup-v1-0-a999fafbe0aa@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 17/19] media: cadence: csi2rx: Support runtime PM
-To: Rishikesh Donadkar <r-donadkar@ti.com>
-Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
- vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
- hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
- changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
- sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, jai.luthra@linux.dev,
- laurent.pinchart@ideasonboard.com, mripard@kernel.org
-References: <20251230083220.2405247-1-r-donadkar@ti.com>
- <20251230083220.2405247-18-r-donadkar@ti.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20251230083220.2405247-18-r-donadkar@ti.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ/NZ2kC/x3MSwrCMBAA0KuUWTuQTz/qVYqLME7bwaRTEtRC6
+ d0NLt/mHVA4Cxe4Nwdk/kgRXSvspQFawjozyrManHG9sbbFkKLOQpgSIUWlV8FJY9Tve8NgBu+
+ Jupu7eqjDlnmS/b+Pj/P8AWHOBLZtAAAA
+X-Change-ID: 20260114-amlogic-mmc-clocks-followup-a0733cc59283
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Yixun Lan <yixun.lan@amlogic.com>, Nan Li <nan.li@amlogic.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Jerome Brunet <jbrunet@baylibre.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1373; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=osL3XON6lRfI69E18cOlW4Vk5fOS+vLWguNhE5gZqKM=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBpZ82qSDQH6O9jmtXAKWRTCoF+LxEBOk9KYznRS
+ Zd6puz8K6OJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaWfNqgAKCRDm/A8cN/La
+ heaED/9btb9Oa74WI86rTRohOlO3HHZXXSA93nDaSoSWSFXdvpZcHmSQG9jFM67Cs7/lCekRJnT
+ 1QKo9KcmQmLDJWuvi31AjnTRy2LcmfauU1tweirotmb3i5MmlUR90jma1qBBo6w3dqEmLBzLCDx
+ FavwLmK8mFn1Oq4gC7q8WbIWn1N0J1Oqrw9Q0EcekLoEQEFgpRvvYuxnNr6CIE4m2vkRkVSgLxl
+ XlZ93u0gadznFmppwbYckjrP4sNg42qQ4zPDvUySI/3o72DO/3mI4b4AAxVgAe76+t+jJ+kB+n+
+ FK6uXbkPsNwcM/y3zo6fESeg1YQNaLp9BXotqQeE3ZfLOFU2sNCaAmBaIPoKOOsizhy9l8wxvgh
+ 9nHqASssLqwUiDLG94JwjlNSgL2AArURMcgmyWjUYplZdcBu6zpLXkn5H48v0XwyGYrjDV93w1H
+ pC1qoV+wj9mOjtWWy2H5j+gz5wHZXwz6x28H+h1o9y+afu1PHXwcpzjp/8oEVH7OHtJQJn9CnmZ
+ 4bbHWgaBbDZJiENt6SdYd52Iu4f21OCzIi4W51ZWsnwMyMjbCWaLYQv9krAwx7JI5786PdqdC1a
+ l9ud+ACyxYzvRHWQd4+CijXikNgk1xgzIHQz9u0GK5HF2W8S0bHnwcNSBb2dY41NteiJzSNePgy
+ PCHKqKf+gbUoQpw==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 
-Hi,
+The amlogic MMC driver operate with the assumption that MMC clock
+is configured to provide 24MHz. It uses this path for low
+rates such as 400kHz.
 
-On 30/12/2025 10:32, Rishikesh Donadkar wrote:
-> From: Changhuang Liang <changhuang.liang@starfivetech.com>
-> 
-> Use runtime power management hooks to save power when CSI-RX is not in
-> use. Also, shift to goto based error handling in
-> csi2rx_enable_streams() function
-> 
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> ---
->  drivers/media/platform/cadence/Kconfig       |   1 +
->  drivers/media/platform/cadence/cdns-csi2rx.c | 136 ++++++++++++-------
->  2 files changed, 88 insertions(+), 49 deletions(-)
+Assign the clocks to make sure they are properly configured
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+This fix has been split into multiple changes to get the Fixes tag
+right and help stable pick up the change.
 
- Tomi
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+Jerome Brunet (6):
+      arm64: dts: amlogic: c3: assign the MMC signal clocks
+      arm64: dts: amlogic: a1: align the mmc clock setup
+      arm64: dts: amlogic: axg: assign the MMC signal clocks
+      arm64: dts: amlogic: gx: assign the MMC signal clocks
+      arm64: dts: amlogic: g12: assign the MMC B and C signal clocks
+      arm64: dts: amlogic: g12: assign the MMC A signal clock
 
-> diff --git a/drivers/media/platform/cadence/Kconfig b/drivers/media/platform/cadence/Kconfig
-> index 1aa608c00dbce..ea85ef82760e6 100644
-> --- a/drivers/media/platform/cadence/Kconfig
-> +++ b/drivers/media/platform/cadence/Kconfig
-> @@ -5,6 +5,7 @@ comment "Cadence media platform drivers"
->  config VIDEO_CADENCE_CSI2RX
->  	tristate "Cadence MIPI-CSI2 RX Controller"
->  	depends on VIDEO_DEV
-> +	depends on PM
->  	select MEDIA_CONTROLLER
->  	select VIDEO_V4L2_SUBDEV_API
->  	select V4L2_FWNODE
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index 5c16a2e509136..40c947c813248 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -337,11 +337,6 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
->  	u32 reg;
->  	int ret;
->  
-> -	ret = clk_prepare_enable(csi2rx->p_clk);
-> -	if (ret)
-> -		return ret;
-> -
-> -	reset_control_deassert(csi2rx->p_rst);
->  	csi2rx_reset(csi2rx);
->  
->  	if (csi2rx->error_irq >= 0)
-> @@ -382,7 +377,7 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
->  		if (ret) {
->  			dev_err(csi2rx->dev,
->  				"Failed to configure external DPHY: %d\n", ret);
-> -			goto err_disable_pclk;
-> +			return ret;
->  		}
->  	}
->  
-> @@ -397,12 +392,6 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
->  	 * hence the reference counting.
->  	 */
->  	for (i = 0; i < csi2rx->max_streams; i++) {
-> -		ret = clk_prepare_enable(csi2rx->pixel_clk[i]);
-> -		if (ret)
-> -			goto err_disable_pixclk;
-> -
-> -		reset_control_deassert(csi2rx->pixel_rst[i]);
-> -
->  		writel(CSI2RX_STREAM_CFG_FIFO_MODE_LARGE_BUF |
->  			       FIELD_PREP(CSI2RX_STREAM_CFG_NUM_PIXELS_MASK,
->  					  csi2rx->num_pixels[i]),
-> @@ -415,30 +404,8 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
->  		       csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
->  	}
->  
-> -	ret = clk_prepare_enable(csi2rx->sys_clk);
-> -	if (ret)
-> -		goto err_disable_pixclk;
-> -
-> -	reset_control_deassert(csi2rx->sys_rst);
-> -
-> -	clk_disable_unprepare(csi2rx->p_clk);
->  
->  	return 0;
-> -
-> -err_disable_pixclk:
-> -	for (; i > 0; i--) {
-> -		reset_control_assert(csi2rx->pixel_rst[i - 1]);
-> -		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
-> -	}
-> -
-> -	if (csi2rx->dphy) {
-> -		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
-> -		phy_power_off(csi2rx->dphy);
-> -	}
-> -err_disable_pclk:
-> -	clk_disable_unprepare(csi2rx->p_clk);
-> -
-> -	return ret;
->  }
->  
->  static void csi2rx_stop(struct csi2rx_priv *csi2rx)
-> @@ -447,10 +414,6 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
->  	u32 val;
->  	int ret;
->  
-> -	clk_prepare_enable(csi2rx->p_clk);
-> -	reset_control_assert(csi2rx->sys_rst);
-> -	clk_disable_unprepare(csi2rx->sys_clk);
-> -
->  	writel(0, csi2rx->base + CSI2RX_ERROR_IRQS_MASK_REG);
->  
->  	for (i = 0; i < csi2rx->max_streams; i++) {
-> @@ -465,14 +428,8 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
->  		if (ret)
->  			dev_warn(csi2rx->dev,
->  				 "Failed to stop streaming on pad%u\n", i);
-> -
-> -		reset_control_assert(csi2rx->pixel_rst[i]);
-> -		clk_disable_unprepare(csi2rx->pixel_clk[i]);
->  	}
->  
-> -	reset_control_assert(csi2rx->p_rst);
-> -	clk_disable_unprepare(csi2rx->p_clk);
-> -
->  	if (csi2rx->dphy) {
->  		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
->  
-> @@ -548,10 +505,15 @@ static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
->  	 * enable the whole controller.
->  	 */
->  	if (!csi2rx->count) {
-> +		ret = pm_runtime_resume_and_get(csi2rx->dev);
-> +		if (ret < 0)
-> +			goto err;
-> +
->  		csi2rx_update_vc_select(csi2rx, state);
-> +
->  		ret = csi2rx_start(csi2rx);
->  		if (ret)
-> -			return ret;
-> +			goto err_put_pm;
->  	}
->  
->  	/* Start streaming on the source */
-> @@ -561,13 +523,20 @@ static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
->  		dev_err(csi2rx->dev,
->  			"Failed to start streams %#llx on subdev\n",
->  			sink_streams);
-> -		if (!csi2rx->count)
-> -			csi2rx_stop(csi2rx);
-> -		return ret;
-> +		goto err_stop_csi;
->  	}
->  
->  	csi2rx->count++;
->  	return 0;
-> +
-> +err_stop_csi:
-> +	if (!csi2rx->count)
-> +		csi2rx_stop(csi2rx);
-> +err_put_pm:
-> +	if (!csi2rx->count)
-> +		pm_runtime_put(csi2rx->dev);
-> +err:
-> +	return ret;
->  }
->  
->  static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
-> @@ -589,8 +558,10 @@ static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
->  	csi2rx->count--;
->  
->  	/* Let the last user turn off the lights. */
-> -	if (!csi2rx->count)
-> +	if (!csi2rx->count) {
->  		csi2rx_stop(csi2rx);
-> +		pm_runtime_put(csi2rx->dev);
-> +	}
->  
->  	return 0;
->  }
-> @@ -1057,6 +1028,7 @@ static int csi2rx_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_cleanup;
->  
-> +	pm_runtime_enable(csi2rx->dev);
->  	ret = v4l2_async_register_subdev(&csi2rx->subdev);
->  	if (ret < 0)
->  		goto err_free_state;
-> @@ -1071,6 +1043,7 @@ static int csi2rx_probe(struct platform_device *pdev)
->  
->  err_free_state:
->  	v4l2_subdev_cleanup(&csi2rx->subdev);
-> +	pm_runtime_disable(csi2rx->dev);
->  err_cleanup:
->  	v4l2_async_nf_unregister(&csi2rx->notifier);
->  	v4l2_async_nf_cleanup(&csi2rx->notifier);
-> @@ -1089,9 +1062,73 @@ static void csi2rx_remove(struct platform_device *pdev)
->  	v4l2_async_unregister_subdev(&csi2rx->subdev);
->  	v4l2_subdev_cleanup(&csi2rx->subdev);
->  	media_entity_cleanup(&csi2rx->subdev.entity);
-> +	pm_runtime_disable(csi2rx->dev);
->  	kfree(csi2rx);
->  }
->  
-> +static int csi2rx_runtime_suspend(struct device *dev)
-> +{
-> +	struct csi2rx_priv *csi2rx = dev_get_drvdata(dev);
-> +	unsigned int i;
-> +
-> +	reset_control_assert(csi2rx->sys_rst);
-> +	clk_disable_unprepare(csi2rx->sys_clk);
-> +
-> +	for (i = 0; i < csi2rx->max_streams; i++) {
-> +		reset_control_assert(csi2rx->pixel_rst[i]);
-> +		clk_disable_unprepare(csi2rx->pixel_clk[i]);
-> +	}
-> +
-> +	reset_control_assert(csi2rx->p_rst);
-> +	clk_disable_unprepare(csi2rx->p_clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int csi2rx_runtime_resume(struct device *dev)
-> +{
-> +	struct csi2rx_priv *csi2rx = dev_get_drvdata(dev);
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(csi2rx->p_clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	reset_control_deassert(csi2rx->p_rst);
-> +
-> +	for (i = 0; i < csi2rx->max_streams; i++) {
-> +		ret = clk_prepare_enable(csi2rx->pixel_clk[i]);
-> +		if (ret)
-> +			goto err_disable_pixclk;
-> +
-> +		reset_control_deassert(csi2rx->pixel_rst[i]);
-> +	}
-> +
-> +	ret = clk_prepare_enable(csi2rx->sys_clk);
-> +	if (ret)
-> +		goto err_disable_pixclk;
-> +
-> +	reset_control_deassert(csi2rx->sys_rst);
-> +
-> +	return 0;
-> +
-> +err_disable_pixclk:
-> +	for (; i > 0; i--) {
-> +		reset_control_assert(csi2rx->pixel_rst[i - 1]);
-> +		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
-> +	}
-> +
-> +	reset_control_assert(csi2rx->p_rst);
-> +	clk_disable_unprepare(csi2rx->p_clk);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct dev_pm_ops csi2rx_pm_ops = {
-> +	RUNTIME_PM_OPS(csi2rx_runtime_suspend, csi2rx_runtime_resume, NULL)
-> +};
-> +
->  static const struct of_device_id csi2rx_of_table[] = {
->  	{ .compatible = "starfive,jh7110-csi2rx" },
->  	{ .compatible = "cdns,csi2rx" },
-> @@ -1106,6 +1143,7 @@ static struct platform_driver csi2rx_driver = {
->  	.driver	= {
->  		.name		= "cdns-csi2rx",
->  		.of_match_table	= csi2rx_of_table,
-> +		.pm		= &csi2rx_pm_ops,
->  	},
->  };
->  module_platform_driver(csi2rx_driver);
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi       | 7 +++++++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 5 +++--
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 9 +++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 9 +++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 9 +++++++++
+ 6 files changed, 43 insertions(+), 2 deletions(-)
+---
+base-commit: cd3b654a413c14648d0074ca160da62e4e29ac88
+change-id: 20260114-amlogic-mmc-clocks-followup-a0733cc59283
+
+Best regards,
+-- 
+Jerome
 
 
