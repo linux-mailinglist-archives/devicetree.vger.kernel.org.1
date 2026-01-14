@@ -1,161 +1,289 @@
-Return-Path: <devicetree+bounces-254956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 942D3D1DF9E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:20:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6DCBD1E003
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:24:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C99AE30501BC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:19:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C68B6307E988
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:19:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DF0389E0C;
-	Wed, 14 Jan 2026 10:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AA8387590;
+	Wed, 14 Jan 2026 10:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eiksRxOS";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="harLuZYe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UC6xqira"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F4D38A70E
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071A33559F8
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768385995; cv=none; b=PclnsnCOybNJIu3H8s5bey+PtUt741M2GqbR4S/cKwQe6qXTPYFzgEmKP7P/UvuLx7Njffzcl5ILTFU2KXzaShEZEmQZkt9lTvvVIenyRtWSdqNKg9dKIMBtmG8zzlSmgRXsPBdCj8kDBFJONplS6B+FXMmxcmguHkFNDsUNY7g=
+	t=1768385986; cv=none; b=nChArZKEjStpMtaQamtqnMsOjuRWcH2lB+n8ZVjgw+XCfUBdz6D7vegD0xxvkx1MlB0V2yLsKQBu9B/0ssP7yxAEZOxAdERCv5h50wiUUtOzfV+L0r+3ejdOAP/TdUmX6PJkcUTC52djkVJxT7a4rv6trz1e5JuD+w+kur0r5EI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768385995; c=relaxed/simple;
-	bh=dmkX72+Xk8VqOBF7d/15vyTFIpcvj0gtwsE/mjCIme4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nc45eM0aMuN/zHjOzK9L71z/w29Gz0swhDIhcqNcrN3zmxz1Weovfw8jIDpQM0r6jLsQ9aURD8v/MzzqmLPI6GcwlGpsdX4RlazCWwfoqt97B8e2dPSZNGTlUPeYrLY9ZVOvAbUews78wAnWIP5XQoHPiSLMhQ9pnndIcHaVzkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eiksRxOS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=harLuZYe; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60E85qxv1943063
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:19:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WeYiMieQGRV55JsqetPUkF7GL2y5h1/hERPAKX2wqj4=; b=eiksRxOSfz5qUs2C
-	TYqUSl9T9XZqGVo0z7s4ATHfkSs/EMGMbrjOgJFxW9P+PH5I0yt61MsIXOlX8XBh
-	lMXxPWxcV6tJOCXY/R3oD2Fdv75bDVefiUwoR2nIL09wt0MARpeNTfYd43aLyXSf
-	xkCfVI235KTDcls22inzhgfMRV+ctVT0pO/+SsMkigzqAuvBu0iXWAWDqBJcwoy/
-	CdjiSSC/rTlzxzCvO156d2GuyP9eIOiEDNjnq0l+jERjGsovwvmGZpG3avbGPClt
-	vOZPt2tkNYdEGJpb1btPSaaM6p346wxnLOC+vh35Vvh0LtSobh6n4ko6P3qLHoVZ
-	dQSJww==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bp7b6rh2d-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:19:48 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-5014549e7d6so3547351cf.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:19:48 -0800 (PST)
+	s=arc-20240116; t=1768385986; c=relaxed/simple;
+	bh=8eibjd2N5XiVRRI4N4yeokngezFp8SvzkItH6b1iECM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=g/qs139s6NpwE6Kdidl9Du7p5sFH/6sPIXK4z8eKVvZrJU3xWgvr1i4jIB++aBiJQnegVLLF0X3QXsHH0lnpYjlwNBb95RiG1JgaD8PsyJizLJjKmHWLz07yGC5R6CQZv85osQZjiD87Mw+cqvKA7A5bApGGQSH1BIVkJ6HynPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UC6xqira; arc=none smtp.client-ip=74.125.82.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-dl1-f49.google.com with SMTP id a92af1059eb24-12336f33098so396539c88.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:19:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768385988; x=1768990788; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WeYiMieQGRV55JsqetPUkF7GL2y5h1/hERPAKX2wqj4=;
-        b=harLuZYeIMAtIagW2EDk5XXC/49Ta25NfdDuG7UXn6153X3V9YFwMel93p3AOwQVxB
-         ZnWZKlJPbCb/n88oXDMgo8rGtDaJhEjzLhq8L7eGYUwVtskEOCZJuYlUHunzEyV3kgRO
-         EW/P1fTFgbkla8E58OA2ya9HVTqQrwYjxWXhy8OXyARgspjSk3QPQNT4z8oKxC2hifvw
-         q8KnHIlEYUj6xYmzwBvqO/MLNxtCthBnt94WVuiASkaelJx3CgqlERmEMvnogjaapeRp
-         Pwi0LJ7k2oD20sel/ywQhuTpj9DpKWanojxvo7XKmlB9R03qU74fB6yt4hAVKLpTBMVZ
-         /NGg==
+        d=linaro.org; s=google; t=1768385984; x=1768990784; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8eibjd2N5XiVRRI4N4yeokngezFp8SvzkItH6b1iECM=;
+        b=UC6xqirahJ9gIyGufYimhxLA6Qge3YzR1jHRVEXuZM51fue2fvFOv8G5b9KYJ5bO4c
+         BPx99f6iUwAgMmT6Ng9+Dflyc3QW/gdhkF0Tuly113EhLxRKFOkI/cEpN5Ioq5OFqKNq
+         rQfAk0MDMTpXeQSJGQ7ZNZUR2BPm1M5jWhPoRKO2TUGNR8g1EprTBwT1g+GiB2wZF0AG
+         /LyJjIhtaNqplsPIQVsadRu/wBFgTaIvyJf+LbzedsazhGGn4Ap8caKW4ch6eYC65zkk
+         xDKNyBoqfhT1Kb3hXv5BIIdqqeoNNz1Bx4pMljmJtgqyGVE41J0E1qyvGF7X6qvaGW9D
+         DFhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768385988; x=1768990788;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WeYiMieQGRV55JsqetPUkF7GL2y5h1/hERPAKX2wqj4=;
-        b=gKeSRIlDll1DP7KQr+5pildNMElPk418Gaxltrkh2hti7UK5JcfLt/yhCgrWhSahzT
-         UeFmKnDth5IvA92GubTOCNS7C1N5IjqeltoC48v8/LVZVAqoEw8eicUcC00lFku7rGwo
-         x4cngQkr1VZqMIA24K3dUDgMJ5l4+tzwzafI6DPW5uFAlHdcg3pfacpupCUqk+Ut0rst
-         GbEttHo2/qwaN06Gpsa6l9R+qEKknT84LtkD/iDdqEHjYYIh92YgV3YvSWdB/6JDQSMm
-         Mh1hF16U1ML8yUK2KTX8ao1M8uMG8bsYevE0SVv/WawI27zL7T5dr9uoVEpwkw1e6j/v
-         A1Iw==
-X-Forwarded-Encrypted: i=1; AJvYcCVhYbHd+3ofDOta6n1lyNoG5EH6DWrQzqpi8v7s6DJVCNo8gXoLvSeeELX96ohJOxeOVyRDcxpX+SD0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/o8JFX4PaTfDiHqblmJ0td6QopS9LErbzghtmnp0Wp3ejIlAf
-	JUcvosA8QjH+9OfIBCW4woAvckDjEwRO6r32iUABAECo/p0kWCqK37Thw/71hVBRNDWDFHW+DcI
-	7NcUbImhkM5AVoSio1vBPqN/mHbbp10tW9y8IqvKDnU8pCRzJBGw9kaV0PZCHr6s4
-X-Gm-Gg: AY/fxX6/x5pLiqymiqmR5QtQmL4vSWc43NQMAwnPkVcNlySgoBfxUI/4pGm1/mU5j1I
-	29gYBz99c7fd5apbS35tiaovQ5BpzOYtBUCWvQg0+1czQZS7mN9gcot5dlFUPPq4QHmXk71ffht
-	IgloYiMZbRT+FMrdewkfggzNYFqxIUNsbi7J3LDeXL3Sl1OS35nthZDlbrFEz8RxONWezHL5fiS
-	MCW/kP9tyobQDm/wZHXsEA9iGLhP1Zpa/Z8m/VV7i/MvN2jfMwQV+sFqwHVMNJSVlpTYJ2HIiA2
-	Xuonv8NnyPfG/657KTZAOsKLe/RRup8UGptPM4E/BUUtaEL4EOopuk7kiwzs3RHGp/MiiutU0Ht
-	tyiMJ2JyyQz0bRDb5cSxC7Icuz4k17pDVvk7TS6v8XeAZ7L0PCv2JJKAGYjdHLKwzhr4=
-X-Received: by 2002:ac8:7d01:0:b0:4f1:d267:dd2b with SMTP id d75a77b69052e-501481d69bdmr22376911cf.1.1768385988254;
-        Wed, 14 Jan 2026 02:19:48 -0800 (PST)
-X-Received: by 2002:ac8:7d01:0:b0:4f1:d267:dd2b with SMTP id d75a77b69052e-501481d69bdmr22376681cf.1.1768385987873;
-        Wed, 14 Jan 2026 02:19:47 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a563f0esm2519984666b.60.2026.01.14.02.19.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 02:19:47 -0800 (PST)
-Message-ID: <444b2e30-5675-4a17-89dc-ca24ca3910d9@oss.qualcomm.com>
-Date: Wed, 14 Jan 2026 11:19:45 +0100
+        d=1e100.net; s=20230601; t=1768385984; x=1768990784;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8eibjd2N5XiVRRI4N4yeokngezFp8SvzkItH6b1iECM=;
+        b=kkq8HDJ9uS3KgTsrsrXLOKE+I0TTQohHGLbcPOpNodPe53q3AsNyqMnI39a8YCuSUs
+         3Otz0+TrxAFlA/Ouqaxtag5ml2jg3au3kFKZXza6R9eSNBD5x9OMOtK95rWOAuoXj0nN
+         uW4GcuWddDKMP/e2XsdwJw7AQA1gMsn/XEvRRryCTs0oCB8ojcocZGhFptARS1xaslLa
+         fZQ5uj2RXIQk1c4O30PDruk61seQoSG+IZYmrIRbOjGQmWw9GSuNt7k0yId0W8kFOP5R
+         McnjvVNNt9g6xn3a+CoXsSkB/myPjxZFdXFfAw6BMkbsz51xtGM8aLsjSg40nDg3p/Dx
+         ckwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVypp6wAzs9FQynAJUhvv5igDj/HM8hS9QJwoDlB0YUsVZNHJ2One2oKzgBxUWP23qkBm/sau2crjY7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlhB/EPE5/nb5HFr8ns6JpbFO1qzXXMYBz+9BhGa3U7SyqMKED
+	Oc5zmCvb57cuqXTc+KVuld1SobadoF142dxfBJ7W6vPJLIc+EMLkiNJ/qXSih12Vy5s=
+X-Gm-Gg: AY/fxX5RvLD+CTbAE8eC7UXzkefLrcoBn5mzt4D7hDt+Tta8k9kMyyAw2U+Ot18HBuJ
+	URxBPVouCrBKwUoL8OisaSiUba7sM4UWwKumc3NAOlaqdXZ/SBufx4pV2yNjSyB2jbJ7/Nf4rae
+	uQGzr5XT8ghuIS7QXGbnFYeXwEtsKO5JP02+7LKbNdSGoaCYC6eO1Dfe73JQkOtFlIW+Gvo6plr
+	ssIDKCHInjaMcfzr8xCciAjh/CYW368c93wK/DyKsioVDdgKOM6hN8hlz2L6FuLn6WN3p+Z/4Px
+	BvLRW1KxRkC8prxS6tief4S4Y2cqOPMZylM3KaO+WL5DaRwGugsUe3FctXnBR5JMII9tcVaZwVq
+	/l3WMR/lR1oEtnFI27yUocMZ6qR9LbvQuWssT+OzXU1vjkD4gAfvfDSfrIUYSmQFasfPr7PyCKC
+	E5LibsRqbVLWV1irrd
+X-Received: by 2002:a05:693c:3008:b0:2a4:3593:ddf3 with SMTP id 5a478bee46e88-2b4871d0cc3mr3162205eec.32.1768385983766;
+        Wed, 14 Jan 2026 02:19:43 -0800 (PST)
+Received: from draszik.lan ([212.129.75.26])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b170673b2esm19824293eec.6.2026.01.14.02.19.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 02:19:42 -0800 (PST)
+Message-ID: <48d52ef389ee0e878c36184efbfaa85071f5549a.camel@linaro.org>
+Subject: Re: [PATCH v3 4/5] power: supply: max77759: add charger driver
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Amit Sunil Dhamne <amitsd@google.com>, Sebastian Reichel
+ <sre@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Lee Jones
+ <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Badhri
+ Jagan Sridharan	 <badhri@google.com>, Heikki Krogerus
+ <heikki.krogerus@linux.intel.com>,  Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Alim
+ Akhtar	 <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
+ Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Date: Wed, 14 Jan 2026 10:20:17 +0000
+In-Reply-To: <378ee786-2b44-44e7-a3f6-0cd1db3c0481@google.com>
+References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
+	 <20251227-max77759-charger-v3-4-54e664f5ca92@google.com>
+	 <298ca35590d2180fdcf334f94964b6110e17c606.camel@linaro.org>
+	 <50c29a62-1fdb-4de2-8887-0d551eee5ec0@google.com>
+	 <255d7726-6758-43ed-b35f-db14726bcc9b@google.com>
+	 <2869d309358f27652289c40810ca36b2ec155d1d.camel@linaro.org>
+	 <bb9b9afa-0bfa-428e-9372-549d9ba8603c@google.com>
+	 <6b37b88e9b7ee57eb1c006916fd995c813ab5e6e.camel@linaro.org>
+	 <378ee786-2b44-44e7-a3f6-0cd1db3c0481@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 2/3] arm64: dts: qcom: talos/qcs615-ride: Fix
- inconsistent USB PHY node naming
-To: Sudarshan Shetty <tessolveupstream@gmail.com>, andersson@kernel.org,
-        konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260114100043.1310164-1-tessolveupstream@gmail.com>
- <20260114100043.1310164-3-tessolveupstream@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260114100043.1310164-3-tessolveupstream@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Dhyh-uZZ9cNwUSBuJG9b9sgLuNtFoKd8
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE0MDA4NCBTYWx0ZWRfX5tXxu774vfby
- p+FBa/CM9F/qQ6tuvk+PQYcJaKhMRXcAsCbYBXGGoDLCJ1EIc1hduOWR49DQLTwsUF+NUBjvoTo
- jTXLQa57jVDBvuDBC00kpI1ipypx4kl0QmvrA1zG17xz73LLOuHXp8ivXjphgpg0WUUiFI6z7Q/
- QJhmcdtfxdebswKFUJl0hV8KL8eXDnSUTMHnVEWan8I4BMr9Ubjgzma3A3dlIGK4esuBcnUN3MW
- OqeQQRmZ3+r9SODwvKBv00MoNFrTDbHqwRY9GH2PrWfmNYUsx6S9ZHJA+tziBIMcZgbVPmWG65f
- b0VesXrUO/bbxtSyZoaH1zTShQnfnLAM1oCre4Lx2ZzVMFGKoiPS9wS+dwi1pO/6Q57daERpMLn
- SPf6e9r9daE5HumKNgP4dT228g8IHDaHzJyNQ7jfVqI/sm1bgq2Sz073lt8JzMBRrPncqsmTrrN
- OAEzKy3sT0TfO7a7d4g==
-X-Authority-Analysis: v=2.4 cv=W+w1lBWk c=1 sm=1 tr=0 ts=69676dc4 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=mKMLXjToGYiuz-cdMPkA:9 a=QEXdDO2ut3YA:10
- a=QYH75iMubAgA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-GUID: Dhyh-uZZ9cNwUSBuJG9b9sgLuNtFoKd8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-14_03,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 malwarescore=0 spamscore=0
- lowpriorityscore=0 clxscore=1015 adultscore=0 suspectscore=0 phishscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601140084
 
-On 1/14/26 11:00 AM, Sudarshan Shetty wrote:
-> The USB PHY nodes has inconsistent labels as 'usb_1_hspy'
-> and 'usb_hsphy_2' across talos.dtsi and qcs615-ride.dts.
-> This patch renames them to follow a consistent naming
-> scheme.
+On Tue, 2026-01-13 at 16:47 -0800, Amit Sunil Dhamne wrote:
+> Hi Andre',
+>=20
+> On 1/13/26 2:02 AM, Andr=C3=A9 Draszik wrote:
+> > Hi Amit,
+> >=20
+> > On Mon, 2026-01-12 at 11:37 -0800, Amit Sunil Dhamne wrote:
+> > > Hi Andre',
+> > >=20
+> > > On 1/12/26 5:47 AM, Andr=C3=A9 Draszik wrote:
+> > > > Hi Amit,
+> > > >=20
+> > > > On Tue, 2026-01-06 at 17:14 -0800, Amit Sunil Dhamne wrote:
+> > > > > On 1/6/26 3:41 PM, Amit Sunil Dhamne wrote:
+> > > > > > Hi Andre',
+> > > > > >=20
+> > > > > > On 1/5/26 9:32 AM, Andr=C3=A9 Draszik wrote:
+> > > > > > > Hi Amit,
+> > > > > > >=20
+> > > > > > > I haven't done a full review, but a few things caught my eye.
+> > > > > > >=20
+> > > > > > > On Sat, 2025-12-27 at 00:04 +0000, Amit Sunil Dhamne via B4 R=
+elay wrote:
+> > > > > > > > diff --git a/drivers/power/supply/Makefile
+> > > > > > > > b/drivers/power/supply/Makefile
+> > > > > > > > index 4b79d5abc49a..6af905875ad5 100644
+> > > > > > > > --- a/drivers/power/supply/Makefile
+> > > > > > > > +++ b/drivers/power/supply/Makefile
+> > > > > > > > [...]
+> > > > > > > > +
+> > > > > > > > +static irqreturn_t irq_handler(int irq, void *data)
+> > > > > > > > +{
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 struct max77759_charger *chg =3D data;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 struct device *dev =3D chg->dev;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 u32 chgint_ok;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 int i;
+> > > > > > > > +
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 regmap_read(chg->regmap, MAX77759_CHGR_=
+REG_CHG_INT_OK,
+> > > > > > > > &chgint_ok);
+> > > > > > > You might want to check the return value and return IRQ_NONE =
+if it
+> > > > > > > didn't
+> > > > > > > work?
+> > > > > > >=20
+> > > > > > > > +
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < ARRAY_SIZE(irqs); i++=
+) {
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (irqs[i] =3D=
+=3D irq)
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 }
+> > > > > > > > +
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 switch (i) {
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case AICL:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "A=
+ICL mode: %s",
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 str_no_yes(chgint_ok & MAX77759_CHGR_REG_CHG_INT_AICL));
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case CHGIN:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "C=
+HGIN input valid: %s",
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 str_yes_no(chgint_ok & MAX77759_CHGR_REG_CHG_INT_CHGIN));
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case CHG:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "C=
+HG status okay/off: %s",
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 str_yes_no(chgint_ok & MAX77759_CHGR_REG_CHG_INT_CHG));
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case INLIM:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "C=
+urrent Limit reached: %s",
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 str_no_yes(chgint_ok & MAX77759_CHGR_REG_CHG_INT_INLIM));
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case BAT_OILO:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "B=
+attery over-current threshold crossed");
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case CHG_STA_CC:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "C=
+harger reached CC stage");
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case CHG_STA_CV:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "C=
+harger reached CV stage");
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case CHG_STA_TO:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "C=
+harger reached TO stage");
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > > +=C2=A0=C2=A0=C2=A0 case CHG_STA_DONE:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(dev, "C=
+harger reached TO stage");
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break;
+> > > > > > > Are the above debug messages really all needed?
+> > > > > I forgot to respond to this comment in my previous email.
+> > > > >=20
+> > > > > I think we can keep AICL, BAT_OILO, INLIM. They're either special
+> > > > > conditions (AICL) or faulty conditions (like BAT_OILO) and we can=
+ in
+> > > > > fact keep them at dev_info level. Rest can be removed and a
+> > > > > power_supply_changed() is sufficient.
+> > > > >=20
+> > > > > Let me know what you think?
+> > > > I don't think dev_info() in an interrupt handler is appropriate. At
+> > > > least it should be ratelimited.
+> > > >=20
+> > > > If it's something special / unexpected that needs attention, having
+> > > > a dev_dbg() message only will usually not be visible to anybody.
+> > > I agree. I can change the prints to dev_info_ratelimited for the stuf=
+f
+> > > we care about.
+> > If it's an erroneous condition, maybe warn or even err are more appropr=
+iate?
+> >=20
+> > But then, what is the expectation upon the user observing these message=
+s?
+> > What can or should they do? Who is going to look at these and can do
+> > something sensible based on them?
+>=20
+> The logging will help in postmortem analysis which may or may not=20
+> possible with just publishing uevents to userspace hoping that they log=
+=20
+> the psy properties. Illustrating a situation:
+>=20
+> 1. Over current situation happened where the Battery to System current=
+=20
+> exceeds the BAT_OILO threshold. This would also generate an interrupt.
+>=20
+> 2. The MAX77759 takes protective measures if the condition lasts for a=
+=20
+> certain specified time and reset. Resetting will cause Vsys to collapse=
+=20
+> to 0 if the system is only battery powered.
+>=20
+> 3. It'd be better that the BAT_OILO interrupt is logged in dmesg,=20
+> instead of just delegating it to user space as user can debug this=20
+> condition by looking at last_kmsg or pstore.
+>=20
+> 4. This signal can help the user debug conditions such as moisture (this=
+=20
+> signal + contaminant detection) or indicative of a mechanical failure.
+>=20
+> I do agree though that this is a hypothetical or very rare situation and=
+=20
+> if you have a strong opinion against this I am okay with removing the=20
+> prints completely.
 
-Sorry for only noticing this now, but usb_hsphy_x is wrong..
+Thanks for details. OK, they sound useful in this case, but should still
+be warn, not dbg.
 
-*every* other dtsi uses usb_x_hsphy, please flip it around
+> > >=20
+>=20
+>=20
+> >=20
+> > Also, I just noticed there is a max77705 charger driver. It seems quite
+> > similar to this one, maybe it can be leveraged / extended?
+>=20
+> Thanks for the feedback. I reviewed the max77705 charger driver. .
+>=20
+> Here is a breakdown of why I believe a separate driver may be a better=
+=20
+> approach:
 
-$ rg 'usb_1_hsphy' arch -l | wc -l
-93
+[...]
 
-$ rg 'usb_hsphy_1' arch -l |  wc -l
-0
+Thanks for the analysis, I agree with your conclusion. Mainly I noticed tha=
+t
+as part of AICL interrupt handling that driver does a bit of work, while he=
+re
+we don't. I am wondering if that is applicable here is well.
 
-Konrad
+Cheers,
+Andre'
 
