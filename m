@@ -1,292 +1,186 @@
-Return-Path: <devicetree+bounces-254773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 642FDD1BDFE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 01:56:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 569F9D1C2AE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 03:51:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4F4330204B7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 00:56:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6ECB23001FE2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 02:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369002222A9;
-	Wed, 14 Jan 2026 00:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C9D3148CC;
+	Wed, 14 Jan 2026 02:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="ERWZVRix"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="dxpzBcNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mail-m32100.qiye.163.com (mail-m32100.qiye.163.com [220.197.32.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A7D14A8E;
-	Wed, 14 Jan 2026 00:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768352176; cv=pass; b=ld2ebLmQl/jsK81JNCS/djHReoM7lYb45gFNbU+6mzJzuLkHf73l5G5IT+qWE3UVxMK8iJuYROfKtCSzu7hrgb1VYn7KjeCufhfWNYAwW20aGWf1nN+Dxfz2eLXlqHEbdNQIB3RwMKwWT6XzifXWW8eBfr27pU6L1Q3Fe3V6w4Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768352176; c=relaxed/simple;
-	bh=IkZ347Tvh5UxWpgJAceJUvRXHnVqjkqtVJclMQ6s3/g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UOD4SB64QETj+iLUMMj7Vc7hWPsKzoytLm9OrfCVpVOWIpSIwg1IpR8+2FftA/s3VHNIjCvXGzpiTUBAIthJI/p9NuB22a+o3KCe5RWONm352uqhM6VhjwKzAhvhWYUwQF01jzH1Z8R9Byljq79Ba552thRWuWVdXB4/IWqeDHE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=ERWZVRix; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1768352154; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=me9Ls9oYKtfulWvqnrW70RBJKuT3fgrHZlaS6eZZIlmo2fBZp8RpzLKj1pRsVQJRHIeo/g7hTGsNT0x/l8Ee8T/tRuaTkgQ0Hpltl4NUEy5Y6IXozvNSRabS8wwq19GnAJIjUrQwIxHLpX9qQTHnPrEXEAXIe1tv6buBzxMXxEs=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1768352154; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=+Ext8msLhoBecX7Fpbdp+73tXE9MeV0UomGOCXQFEQM=; 
-	b=ZA53bfwfeeTbNZ1beM57SYhMTcuC7W56YEQo6wYuyO465DYkyD2HnMaCR4ZLIQHSqX1k8Ix3I4anJdAaH+xip5dXh2NFnkEChQXVFazVXI2OAaLNGEuR0omeS+GBrovLZ4kFgX1fLqSMyoz1C9lUftrX6ZI803a3M5O59wCeYEU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768352154;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=+Ext8msLhoBecX7Fpbdp+73tXE9MeV0UomGOCXQFEQM=;
-	b=ERWZVRixuIRt4OzNh7HTLrMngknLqEDfsmVUuTd/aILZuNqhvFmtw5KWG3O7mBgh
-	HYrxV2Gs6iozUBdS039SiIYyNQq1xZgpPuqnVnwwQKeCoGEmUkT8AoQLTzIcTevCbC2
-	fEjU4VJV8NlGFJCVwtNxB1XS5ejYqteYHuMumQy8=
-Received: by mx.zohomail.com with SMTPS id 1768352152701661.3386817883359;
-	Tue, 13 Jan 2026 16:55:52 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id BDB05181010; Wed, 14 Jan 2026 01:55:47 +0100 (CET)
-Date: Wed, 14 Jan 2026 01:55:47 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Josua Mayer <josua.mayer@jm0.eu>
-Cc: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/4] power: supply: add battery driver for netronix ec
-Message-ID: <aWblrimQTy5-khZF@venus>
-References: <20260102-kobo-aura-battery-v1-0-501f2a8fa575@jm0.eu>
- <20260102-kobo-aura-battery-v1-3-501f2a8fa575@jm0.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD4229E0E9
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:50:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.100
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768359040; cv=none; b=MnBKf+CgF37tk8kIks7UoXI3rCxvjQZ+b+KEOj7QFT9IpdreCEPQpIZUXBYr7ycvyRKgKfrjIXbZQumTMNcKhKLTcbepl4rZ+mvXAOxkCxk/Sjyvnj8+E5DU8lAN7+DL1Dw4QRFDiUTQ6lEC5T+bCXns5yh1AyV8bb1vOkgEfyU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768359040; c=relaxed/simple;
+	bh=rZQ6xk+q338RD2hcPYH6Xt5vf1bMHuh1m8XugVBMLq4=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=lacqjHTMd0OnNT21rNl9Tz0d7DTirGBIDywGw7yDNZk42RUmfBLktEwTSz+vw56i+zkwxnw5x/Tg/Mek6HN/kIsYKLAoQxS4FOLY/cTeEWnkgo37U0dhX5qKM+C0mq4fy6dJ2OLzqJkyAoMm1qfLExwhKXY10HDdxb2tfMU+ah0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=dxpzBcNc; arc=none smtp.client-ip=220.197.32.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 308ba407a;
+	Wed, 14 Jan 2026 09:34:47 +0800 (GMT+08:00)
+Message-ID: <1d37cfd0-9f7d-4d76-89ed-798c0a74e737@rock-chips.com>
+Date: Wed, 14 Jan 2026 09:34:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sqik7oiq3dkakjj4"
-Content-Disposition: inline
-In-Reply-To: <20260102-kobo-aura-battery-v1-3-501f2a8fa575@jm0.eu>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.5.1/268.322.40
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>,
+ Marco Schirrmeister <mschirrmeister@gmail.com>,
+ John Clark <inindev@gmail.com>, Tianling Shen <cnsztl@gmail.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Subject: Re: [PATCH v2 2/3] soc: rockchip: grf: Support multiple grf to be
+ handled
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+References: <1768267105-127385-1-git-send-email-shawn.lin@rock-chips.com>
+ <1768267105-127385-3-git-send-email-shawn.lin@rock-chips.com>
+ <1906413.BzM5BlMlMQ@diego>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <1906413.BzM5BlMlMQ@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9bba241d8c09cckunm1a0062cb4258e8
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ08ZHlYaGU5LSRgdGUkYGUtWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=dxpzBcNcsDZpDP0fFm1eM6xr6VUHHOrYerFdzSBXc5rBTCzo0Svt+aKJKfZX6PgoLTC6joeCRztiH7rJGaQDT79hQgzgBtEc/jLrYWJ1KkO75jbpZfeVEu1yH7xd+QZ3LdjuU+RfnYXVpQqIU5TgJoDShCX+ONZ9ziae8no2KMA=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=eLLLL3EGNXyO3a3fdg3PFPHxX91Uc6ZtPLkE1izmkQc=;
+	h=date:mime-version:subject:message-id:from;
 
+在 2026/01/14 星期三 1:43, Heiko Stübner 写道:
+> Hi Shawn,
+> 
+> Am Dienstag, 13. Januar 2026, 02:18:24 Mitteleuropäische Normalzeit schrieb Shawn Lin:
+>> Currently, only the first matched node will be handled. This leads
+>> to jtag switching broken for RK3576, as rk3576-sys-grf is found before
+>> rk3576-ioc-grf. Change the code to scan all the possible nodes to fix
+>> the problem.
+>>
+>> Fixes: e1aaecacfa13 ("soc: rockchip: grf: Add rk3576 default GRF values")
+>> Cc: Detlev Casanova <detlev.casanova@collabora.com>
+>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+>> ---
+>>
+>> Changes in v2:
+>> - use for_each_matching_node_and_match(Heiko)
+>>
+>>   drivers/soc/rockchip/grf.c | 54 +++++++++++++++++++++++-----------------------
+>>   1 file changed, 27 insertions(+), 27 deletions(-)
+>>
+>> diff --git a/drivers/soc/rockchip/grf.c b/drivers/soc/rockchip/grf.c
+>> index 8974d1c..9b36390 100644
+>> --- a/drivers/soc/rockchip/grf.c
+>> +++ b/drivers/soc/rockchip/grf.c
+>> @@ -217,34 +217,34 @@ static int __init rockchip_grf_init(void)
+>>   	struct regmap *grf;
+>>   	int ret, i;
+>>   
+>> -	np = of_find_matching_node_and_match(NULL, rockchip_grf_dt_match,
+>> -					     &match);
+>> -	if (!np)
+>> -		return -ENODEV;
+>> -	if (!match || !match->data) {
+>> -		pr_err("%s: missing grf data\n", __func__);
+>> +	for_each_matching_node_and_match(np, rockchip_grf_dt_match, &match) {
+>> +		if (!of_device_is_available(np))
+>> +			continue;
+>> +		if (!match || !match->data) {
+>> +			pr_err("%s: missing grf data\n", __func__);
+>> +			of_node_put(np);
+>> +			return -EINVAL;
+>> +		}
+>> +
+>> +		grf_info = match->data;
+>> +
+>> +		grf = syscon_node_to_regmap(np);
+>>   		of_node_put(np);
+> 
+> This of_node_put can go away I think.
+> 
+> for_each_matching_node_and_match iterates over the nodes via
+> 	of_find_matching_node_and_match(dn, matches, match)   [0]
+> 
+> and of_find_matching_node_and_match() will of_node_put() the from node [1]
+> 
+> 
 
---sqik7oiq3dkakjj4
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/4] power: supply: add battery driver for netronix ec
-MIME-Version: 1.0
+Oops, will fix.
 
-Hi,
+Thanks.
 
-On Fri, Jan 02, 2026 at 07:00:32PM +0100, Josua Mayer wrote:
-> Implement a simple battery driver for monitoring voltage with the
-> netronix embedded controller found in certain ebook readers.
->=20
-> Signed-off-by: Josua Mayer <josua.mayer@jm0.eu>
-> ---
->  drivers/power/supply/Kconfig         |   9 ++++
->  drivers/power/supply/Makefile        |   1 +
->  drivers/power/supply/ntxec-battery.c | 101 +++++++++++++++++++++++++++++=
-++++++
+> Heiko
+> 
+> [0] https://elixir.bootlin.com/linux/v6.18.4/source/include/linux/of.h#L1469
+> [1] https://elixir.bootlin.com/linux/v6.18.4/source/drivers/of/base.c#L1147
+> 
+>> -		return -EINVAL;
+>> -	}
+>> -
+>> -	grf_info = match->data;
+>> -
+>> -	grf = syscon_node_to_regmap(np);
+>> -	of_node_put(np);
+>> -	if (IS_ERR(grf)) {
+>> -		pr_err("%s: could not get grf syscon\n", __func__);
+>> -		return PTR_ERR(grf);
+>> -	}
+>> -
+>> -	for (i = 0; i < grf_info->num_values; i++) {
+>> -		const struct rockchip_grf_value *val = &grf_info->values[i];
+>> -
+>> -		pr_debug("%s: adjusting %s in %#6x to %#10x\n", __func__,
+>> -			val->desc, val->reg, val->val);
+>> -		ret = regmap_write(grf, val->reg, val->val);
+>> -		if (ret < 0)
+>> -			pr_err("%s: write to %#6x failed with %d\n",
+>> -			       __func__, val->reg, ret);
+>> +		if (IS_ERR(grf)) {
+>> +			pr_err("%s: could not get grf syscon\n", __func__);
+>> +			return PTR_ERR(grf);
+>> +		}
+>> +
+>> +		for (i = 0; i < grf_info->num_values; i++) {
+>> +			const struct rockchip_grf_value *val = &grf_info->values[i];
+>> +
+>> +			pr_debug("%s: adjusting %s in %#6x to %#10x\n", __func__,
+>> +				val->desc, val->reg, val->val);
+>> +			ret = regmap_write(grf, val->reg, val->val);
+>> +			if (ret < 0)
+>> +				pr_err("%s: write to %#6x failed with %d\n",
+>> +					__func__, val->reg, ret);
+>> +		}
+>>   	}
+>>   
+>>   	return 0;
+>>
+> 
+> 
+> 
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
-That's indeed simple :)
-
->  3 files changed, 111 insertions(+)
->=20
-> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-> index 92f9f7aae92f..0f944c10e50b 100644
-> --- a/drivers/power/supply/Kconfig
-> +++ b/drivers/power/supply/Kconfig
-> @@ -1132,4 +1132,13 @@ config FUEL_GAUGE_MM8013
->  	  the state of charge, temperature, cycle count, actual and design
->  	  capacity, etc.
-> =20
-> +config BATTERY_NTXEC
-> +	tristate "Battery driver for Netronix embedded controller"
-> +	depends on MFD_NTXEC
-
-You can add "|| COMPILE_TEST"
-
-> +	help
-> +	  Say yes here to enable netronix ec battery monitoring driver.
-> +	  It enables the monitoring battery voltage on certain e-book readers
-> +	  using an embedded controller by ODM Netronix. Battery design
-> +	  characteristics are read from device-tree if available.
-> +
->  endif # POWER_SUPPLY
-> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-> index 4b79d5abc49a..db6fc815f9da 100644
-> --- a/drivers/power/supply/Makefile
-> +++ b/drivers/power/supply/Makefile
-> @@ -128,3 +128,4 @@ obj-$(CONFIG_CHARGER_SURFACE)	+=3D surface_charger.o
->  obj-$(CONFIG_BATTERY_UG3105)	+=3D ug3105_battery.o
->  obj-$(CONFIG_CHARGER_QCOM_SMB2)	+=3D qcom_smbx.o
->  obj-$(CONFIG_FUEL_GAUGE_MM8013)	+=3D mm8013.o
-> +obj-$(CONFIG_BATTERY_NTXEC)	+=3D ntxec-battery.o
-> diff --git a/drivers/power/supply/ntxec-battery.c b/drivers/power/supply/=
-ntxec-battery.c
-> new file mode 100644
-> index 000000000000..f49f0966d18d
-> --- /dev/null
-> +++ b/drivers/power/supply/ntxec-battery.c
-> @@ -0,0 +1,101 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * The Netronix embedded controller is a microcontroller found in some
-> + * e-book readers designed by the original design manufacturer Netronix,=
- Inc.
-> + * It contains RTC, battery monitoring, system power management, and PWM
-> + * functionality.
-> + *
-> + * This driver implements battery monitoring.
-> + *
-> + * Copyright 2021 Josua Mayer <josua.mayer@jm0.eu>
-> + */
-> +
-> +#include <linux/mfd/ntxec.h>
-
-^ you probably don't need this with my comments down below :)
-
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/power_supply.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +
-> +static const enum power_supply_property ntxec_battery_properties[] =3D {
-> +	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-> +};
-> +
-> +struct ntxec_battery {
-> +	struct ntxec *ec;
-> +};
-
-Store the regmap instead of the ec. You don't need anything else.
-
-> +#define NTXEC_REG_READ_BATTERY	0x41
-> +
-> +static int ntxec_battery_get_property(struct power_supply *psy,
-> +				     enum power_supply_property psp,
-> +				     union power_supply_propval *val)
-> +{
-> +	struct ntxec_battery *priv =3D power_supply_get_drvdata(psy);
-> +	int ret;
-> +	unsigned int value;
-> +
-> +	switch (psp) {
-> +		case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-> +			ret =3D regmap_read(priv->ec->regmap, NTXEC_REG_READ_BATTERY, &value);
-> +			if (ret < 0)
-> +				return ret;
-> +
-> +			/* ec value to microvolt conversion:
-> +			 * vendor kernel source suggests linear behaviour from 3V to 4.2V
-> +			 * with readings 767 to 1023; each increment represents 4687,5uV.
-
-4687.5uV ?
-
-> +			 * adjust 3V boundary slightly to report exactly 4.2V when full.
-> +			 */
-> +			val->intval =3D 2999872 + (value - 767) * 4688;
-> +			break;
-> +		default:
-> +			dev_err(&psy->dev, "%s: invalid property %u\n", __func__, psp);
-> +			return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct power_supply_desc ntxec_battery_desc =3D {
-> +	.name =3D "ec-battery",
-> +	.type =3D POWER_SUPPLY_TYPE_BATTERY,
-> +	.properties =3D ntxec_battery_properties,
-> +	.get_property =3D ntxec_battery_get_property,
-> +	.num_properties =3D ARRAY_SIZE(ntxec_battery_properties),
-> +};
-> +
-> +static int ntxec_battery_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct ntxec *ec =3D dev_get_drvdata(dev->parent);
-
-Based on the regmap comment above, I think you can just do the
-following and completley avoid 'struct ntxec' (please test):
-
-struct regmap *regmap =3D dev_get_regmap(dev->parent, NULL);
-
-> +	struct power_supply_config psy_cfg =3D {};
-> +	struct ntxec_battery *priv;
-> +	struct power_supply *psy;
-> +
-> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->ec =3D ec;
-> +	psy_cfg.drv_data =3D priv;
-> +	psy_cfg.fwnode =3D dev_fwnode(dev->parent);
-> +	psy_cfg.no_wakeup_source =3D true;
-> +	psy =3D devm_power_supply_register(dev, &ntxec_battery_desc, &psy_cfg);
-> +	if (IS_ERR(psy))
-> +		return PTR_ERR(psy);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver ntxec_battery_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "ntxec-battery",
-> +	},
-> +	.probe =3D ntxec_battery_probe,
-> +};
-> +module_platform_driver(ntxec_battery_driver);
-> +
-> +MODULE_AUTHOR("Josua Mayer <josua.mayer@jm0.eu>");
-> +MODULE_DESCRIPTION("Battery driver for Netronix EC");
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("platform:ntxec-battery");
-
-I know there are a bunch of wrong examples in my subsystem, but the
-proper way to do this is to drop this alias and instead add a
-platform_device_id table together with MODULE_DEVICE_TABLE(platform, ...).
-See for example cros_peripheral_charger.c
-
-Greetings,
-
--- Sebastian
-
---sqik7oiq3dkakjj4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmlm6ZAACgkQ2O7X88g7
-+pq9fg/9G9xfrQVyTahHnzobU36zUpcA4CWZCRUiREKpiVLJYXLaR3j6bhluf4cU
-DUP7DBU5U+OqFxS6pLuPJUe4m92iy2t3YEGiSCxGUmf7Mss5z2UytzFl1aqaZzgX
-UZeu6n073CtgPwILLykDZJq6dFDlVFVRS2JuN27XiqZy/rZ0XbE6YKna/HxLAHCo
-MNPg0kjtfya69ULOtiTxk1PJqkyoq5k6D4A/2kEDtKBPAgj/fosghtJZAaepPLz+
-5TrtBW0XeSMz1u0aKKvdyRWHM67NqTggXhxVa9R9gRVzaCAp9wUWmQBSHKgaXEGg
-jTz4N3VJMtcFrPVMnE5J1TgKRZT68xJlgnmd3tX1Eby2SoiiBdzgzNwaILnoyDDL
-fidH96UM9/lC8GlWM0FKeoY5xlWMcEbj8vogBRfO2XSfgAhGIaX8986QE7d6tMtW
-K5A6LRfjtvpZCA6uSJK/Flw7MDZ+3z6bwL1WlLAjeVh4ubxU+aWjgQRgH381DjlO
-FDqJgfQf3WCEMfmfhCpCeGQc7xRKcvL3U5ymJD2eh256p0XS47Oj2qzgQ+kr7KNQ
-Bcp0IIypmebUyoo3xYaRIctevxdB++pFvFPBioCSHRjxH0nwaFBeel900VW2Yq04
-qIweScg+GJjyzepFcjxN/CDE9pfLfW4yK+0lVz8pm0L4UxKp8yE=
-=fqrB
------END PGP SIGNATURE-----
-
---sqik7oiq3dkakjj4--
 
