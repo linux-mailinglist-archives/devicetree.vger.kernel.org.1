@@ -1,214 +1,128 @@
-Return-Path: <devicetree+bounces-255046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19656D1F3B7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:56:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DF9D1F3C9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:57:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 895E8309DE04
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:50:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DA08D304C935
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD5BA21D3CC;
-	Wed, 14 Jan 2026 13:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E15C272813;
+	Wed, 14 Jan 2026 13:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mFIuC31e";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CCbwReK8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pqc2EcwD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75CE126C39F
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 13:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB6A261573
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 13:52:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768398634; cv=none; b=dFVv9cpe1OsBzcNBxDtXA8HY3lHGElwS5Ezk4EhHsUAJ4eNo2Ogr2OAuyRCt0CH5jtb9cdb63FiOUJBgSXVPr0tyawAJLUwkkaR2aJpdSwYz/zVZi3ap89lmkTmqwD+YwBWjxXoYjgY7B+VPCfe1AvB4H/SBHibkV8xmMh1ESZo=
+	t=1768398732; cv=none; b=GmDlIpkbOm/WGKHezoXvBEnJTcOXq7CqD/wgNTUOIzbTyYoBg3C4NqZM+QFuRouTEuw3qBsb/NRvZPOGsm/en6k78lgc90/PhyCvzUr/HF7O6TUh9gIS12mIfPp/yEph9lA/NTMMUgmaYEBgtBWXlhy8h3a/00IVXXC8dYX/3uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768398634; c=relaxed/simple;
-	bh=sQk0IONpCy3GwT1D1yNgeAf+WDcg9S1RnsuIimCM21U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Iq+SngxZWokxGeGCrZnUIhwkpQCpahVA5JJzPWQ+QeSRT3aMqLzqPjKaUGTKc025RJiOuBgQ7DQkKHaFFbFu35fO/Hcg0wXOj1SsKryGyWG2CxNWMGaHoNg2KN48aC6BIFb8k+A2spfQUgh+/9jXvETM0H8jTrh2Akw3VzGJXKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mFIuC31e; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CCbwReK8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60EChU5O3925406
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 13:50:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3hcYlrqLxQZtevp/QOeek4/Zc7JVOfbl0ukS0wWgQzE=; b=mFIuC31e4BF91IoD
-	h7Rt0+OrfhuCJ9xgD/lxttsk5ZPRrOwEvWIKmSYEzneRX2UW9UJw9D+/teT0kpep
-	Jd6yrJ+GGyZhvxFjU2/NrSZRClel8y2Hf4K0+cdQIKvkEaCmpkVRh1k3MSTUp6xR
-	URrMVV0xVL3hY4dQ4iNS91iSFABVp6LOX+Evja8YXgpUtNkpQZ86QxcA4/pQM7+/
-	CKpwZ9sWUC1zD302gZdsakiip4QPGXiDMDIuy8tPwFGYUll578WtlihQdw9vWxxL
-	KeYEgVnoaDX7hExPDzEoJnF9fbtW5GA65LOFE6qvchZRI5OHoKxbbyViTSOb6GIg
-	M636Kw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bpbdbr5mx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 13:50:32 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c533f07450so13278685a.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 05:50:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768398632; x=1769003432; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3hcYlrqLxQZtevp/QOeek4/Zc7JVOfbl0ukS0wWgQzE=;
-        b=CCbwReK8SocuizvJb1A4kCoA2x31VvCMCBbfksVok8Oa42m0SzsGauCOEsbJ8zyAGW
-         9MdVB9I+7VFpB+QpJJsjk8ZA7YVOmLB6A8i1xlBpPppZV0Ekji7w/uHQRg//j/qcUr9E
-         iX5KnGhMc8D/kIAx7974Vdd8HWEGD2bEQz9+i1/CDjmYq26kssZ3rP/wksOoue/aeIHf
-         HOuapL5U96MDdDmbZzyYy+CJZKH1Iw3e7dPAx1tEr++pQYcSoBOUYooPWzyDubkM9ojS
-         T3wPcpBTXHUhOiKiwa3F6eiP+Tg/Pllxni8Ekh6bX3Mu3RZPm0Hj5GgFp68j+oqDMa0B
-         AMsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768398632; x=1769003432;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3hcYlrqLxQZtevp/QOeek4/Zc7JVOfbl0ukS0wWgQzE=;
-        b=dy/dXBiw90bXV1HzGHQh+OT+2bfWK74SLMlBKWtrOfbzZl3Wl7Bv8dRsaGEll9gtH6
-         galqrCQP0xGoPq2Vulp5AY+IIh4sezfwW26LG7PNtAZeP1pNdO2mwOWB1PdA4XHiTZhm
-         Rgn08wIuyu8DulnJFr1iWe3o5TRV8yRC5JeRAfoZMoGVJGCxOsolLhwo1eTwRyVCxo0W
-         nAroe+abXUrRi7e3xIQwOuVa+GHa0X1yyem3tMrRCCdlKcaXOJI4fnCQTWBZAc9jNu9l
-         drNx4OiUGYXdFt+L4n1YZVXeZugQ/t6PSAwruNKKkYyElH6OgzVIuoCETEVy476810Ff
-         Dz8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVBQ4g3/W6u1XE5Yki/t7xR3+On2U6XLs8vO3isMxgaV+QiiHRBJ4dLiSHpE5vX1Bsk9GTN1Qbotfvr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhehbJjEyvGTt+zhJfe2Ky/BF4gk2mO5X1gzXsHUq+z359Ekb9
-	LkTZmdz9YseFCoc4LJFmFT2zhOu1FAzcyK5QM53+q3Z7OubMnuUTqalAe+hffy/r1KIL/9kaS1R
-	0IQwNxJ3Hx3HjgRf/SaC0YqPrPHUPbeyvcqIK6E2+CN+hVwQ5zYeXphaMx5bM3VWS
-X-Gm-Gg: AY/fxX5Beh7v4TAh66A5jeCtigJXj29g2TJ3M3RZrXpT0ZoAwnV68Rzaz8KuuNKs48L
-	rWEhGMt5qxI1RxnsNzNNmdCYFqbE1nqgWmTk1CrUAwedJEgL/hHvfoHMqRE6REo/kDJxSoxSIrE
-	y2XtETVDnd1gccmbGjjDsNjotm6jR/3rlDOIT9DypJQ7xaJd+DmHHNUqh4vcxNExKyG7luZPJOF
-	9RCtdqqUzA2aOtMYmEieF5t5mnj95//KuMOTccrH26APzquBLfpKQhbocV35a3cwE0w2/yVX1AF
-	JgWtBVB4oem5lzQZh5b/BNdHlFtI+AXMzsQ0aKRWYctALQLNlyekM/906MEbfLQfww85l5/LprK
-	/zfmAG0tazY1jpbglZnFX5jCz0xXDyCiJo42iwdlBOQoO+YVbKpueAYkffwXM0wS9MIk=
-X-Received: by 2002:a05:620a:1a94:b0:8a3:d644:6930 with SMTP id af79cd13be357-8c52fb794c6mr268355185a.5.1768398631900;
-        Wed, 14 Jan 2026 05:50:31 -0800 (PST)
-X-Received: by 2002:a05:620a:1a94:b0:8a3:d644:6930 with SMTP id af79cd13be357-8c52fb794c6mr268351785a.5.1768398631425;
-        Wed, 14 Jan 2026 05:50:31 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507b8c3f89sm22846240a12.5.2026.01.14.05.50.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 05:50:30 -0800 (PST)
-Message-ID: <52ef95e2-9d60-4004-b342-7517180dc349@oss.qualcomm.com>
-Date: Wed, 14 Jan 2026 14:50:28 +0100
+	s=arc-20240116; t=1768398732; c=relaxed/simple;
+	bh=o4N5JpJTNXUU0Dc7hQeHgC2iDV+P+SrbzUWxsdpSo3A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ghgsTmnFGLj3XO5Af1fS6IMp/uznV1WbzI7K6Gl9JZAsWxTQLzcDV0uXgEamJx8sUy+NOR1dosJmX/zPw/Nk/aljtEN2E8wIKBXIJTDMNYR4lUKKNiDB/eYinXahAGx3Zr1LNv6TkmagIXt+ebBxEUs5wD6l1RnOYkI6Euc+738=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pqc2EcwD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C128FC19422
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 13:52:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768398731;
+	bh=o4N5JpJTNXUU0Dc7hQeHgC2iDV+P+SrbzUWxsdpSo3A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Pqc2EcwDie1UjUzq3h7Bv3OYukc52J0+yCS8rZwDrsJC9EIim6uQ8S21XtpCqXq7Z
+	 FDT6uk7awJZSV60CsDWj5pgHIh9v8f6goRKQBEWfCnQIfI+xPrP6ZwLq00T8/DMMnB
+	 Xs7BAgOnqGpZxYRGPMODZ/EzA0Bc+GyuIPFFCDDoSpQTlitt6BoO1FERCcnDNANJOG
+	 vYq/pMrLO9F7npAcj4M4fV90hwUqOrYXbinuV/XuFdBI6HxhL9bNpwMhHf90royxEI
+	 RVwl/TuHyMZOrO+cBN15A97bSKFOz80f+GvCyqljbuJcWsT9bRhEqalAukgJ5a7Pxl
+	 pjBD6BDLC9TcA==
+Received: by mail-yx1-f48.google.com with SMTP id 956f58d0204a3-64472c71fc0so8687902d50.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 05:52:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVC1kgi8uopaHYp4gGpumHiJFWfrcaLiZVCNHtabZMTbzRniI6Xig1/ZEdY+6150WGPGYOQGVICyv3f@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKPd2QSphHGY8eZcb+Js1fSZMFZciqzIIq3GsV3s8BeVky7CIp
+	i69iAkpjb5UkIMzo91Q+EPYL/R9YiaLAJUzqjp+jagTGT7DGS2oE96qUwOLqdrEAW8dI1wpzzHW
+	EfNhxsIik6YRCOUWvx3EUL1sZwjGdyFI=
+X-Received: by 2002:a05:690e:140f:b0:63f:bdfa:666 with SMTP id
+ 956f58d0204a3-64901aae935mr2397419d50.27.1768398731080; Wed, 14 Jan 2026
+ 05:52:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: glymur: Enable Glymur CRD board
- support
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260112-upstream_v3_glymur_introduction-v4-0-8a0366210e02@oss.qualcomm.com>
- <20260112-upstream_v3_glymur_introduction-v4-4-8a0366210e02@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260112-upstream_v3_glymur_introduction-v4-4-8a0366210e02@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=NvncssdJ c=1 sm=1 tr=0 ts=69679f28 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=hK1IRukzHlbEjjPHDEsA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-ORIG-GUID: SPxuzXoDB_fIme9KMR6foav2O8mCmyGE
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE0MDExNSBTYWx0ZWRfX1ma6TxVmIb9A
- cOgubGW0+9yfHFkcb0cvr2ph71Qo6EG6eU8BZ9Ss2vDoP1yjoprNOModjGwAtHdL89LlF3XiMk1
- LWMAIxNb/Qy5UbEKYmWa82ZEMZN5kAxZGiENY6Dr8pdC0wzQU5bdyltKbB/JC6fPBe+T7UuXRWW
- wxC3mI2GTOI9XLFT5wC6TrpYFv9210HhkFyKus/Bbb+WRe/+SfYoyI9iv534h/bcdWXkWz3ZvWq
- qxs1NYG6TJN1RRvD2ArchIUIofhSkkmoyodSLQjHBY7v/ekzPVn4f0XgTPOCsAuZBBWgwKuvkZx
- iM5WBgngOHau01rvikFKxcPd78NJN3UMkm9H4y7V5IMJXbU2JcpUvVykC2Bc+iOgalms4E+naAb
- czGHVB7KiilVcmkhEqMuED2oZhxfrMQXt7SXyc8rhxV6IbP3ERjtOWb4k2RrGKmPt7OylZwCNUF
- sRXGCFSqV19gAGmbVZg==
-X-Proofpoint-GUID: SPxuzXoDB_fIme9KMR6foav2O8mCmyGE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-14_04,2026-01-14_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 suspectscore=0 bulkscore=0 clxscore=1015
- malwarescore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601140115
+References: <20260113-mcp23s17-multiple-addr-names-v1-0-f14b60f92c82@yoseli.org>
+ <20260113-mcp23s17-multiple-addr-names-v1-2-f14b60f92c82@yoseli.org>
+In-Reply-To: <20260113-mcp23s17-multiple-addr-names-v1-2-f14b60f92c82@yoseli.org>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 14 Jan 2026 14:52:00 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmP13oeiZJx9_Y4oOCvFbJ=TaU_exHu9qqZjnCR9DGAbA@mail.gmail.com>
+X-Gm-Features: AZwV_QiRtEgKAiU1dv5vzvOUpkKQqMPq253iD_8iSg8523y5Rf5h9D-1uMx6KQc
+Message-ID: <CAD++jLmP13oeiZJx9_Y4oOCvFbJ=TaU_exHu9qqZjnCR9DGAbA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mcp23s08: Add multi-chip example
+To: jeanmichel.hautbois@yoseli.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, 
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/12/26 1:22 PM, Pankaj Patil wrote:
-> Add initial device tree support for the Glymur Compute Reference
-> Device(CRD) board, with this board dts glymur crd can boot to shell
-> with rootfs on nvme and uart21 as serial console
-> 
-> Features enabled are:
-> - Board and sleep clocks
-> - Volume up/down keys
-> - Regulators 0 - 4
-> - Power supplies and sideband signals (PERST, WAKE, CLKREQ) for
->   PCIe3b/4/5/6 controllers and PHYs
-> 
-> Co-developed-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-> Co-developed-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile       |   1 +
->  arch/arm64/boot/dts/qcom/glymur-crd.dts | 601 ++++++++++++++++++++++++++++++++
->  2 files changed, 602 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 0ccd6ec16dfb..84579b86ef39 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= glymur-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= hamoa-iot-evk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-tplink-archer-ax55-v1.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-> new file mode 100644
-> index 000000000000..e9c606c413dd
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-> @@ -0,0 +1,601 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "glymur.dtsi"
-> +#include "pmcx0102.dtsi"	/* SPMI0: SID-2/3	SPMI1: SID-2/3	*/
+Hi Jean-Michel,
 
-IDK if it's thunderbird messing with me, but it may be that a \t is missing to
-align this line with the others
+thanks for your patch!
 
-Otherwise
+On Tue, Jan 13, 2026 at 3:29=E2=80=AFPM Jean-Michel Hautbois via B4 Relay
+<devnull+jeanmichel.hautbois.yoseli.org@kernel.org> wrote:
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> +  gpio-line-names: true
 
-Konrad
+I have a bit of similar concerns as Krzysztof, this is unlimited.
 
+This is actually:
+- 8 for microchip,mcp23008 and microchip,mcp23s08
+- 16 for microchip,mcp23017, microchip,mcp23018, microchip,mcp23s17
+and microchip,mcp23s18
+
+(The "s" variants are just the SPI variants of the same chip...)
+
+Make some fancy - if: clauses to decide the maxItems from the compatible.
+Don't hesitate to ask for help if this gets complicated, I get a panic
+every time I have to deal with it because of the whitespacing business.
+
+ +            /*
+> +             * Names assigned sequentially in address order.
+> +             * First 16 names for chip at address 0 (GPA0-7, GPB0-7).
+> +             * Next 16 names for chip at address 1 (GPA0-7, GPB0-7).
+> +             */
+> +            gpio-line-names =3D
+> +                "EXP0_GPA0", "EXP0_GPA1", "EXP0_GPA2", "EXP0_GPA3",
+> +                "EXP0_GPA4", "EXP0_GPA5", "EXP0_GPA6", "EXP0_GPA7",
+> +                "EXP0_GPB0", "EXP0_GPB1", "EXP0_GPB2", "EXP0_GPB3",
+> +                "EXP0_GPB4", "EXP0_GPB5", "EXP0_GPB6", "EXP0_GPB7",
+> +                "EXP1_GPA0", "EXP1_GPA1", "EXP1_GPA2", "EXP1_GPA3",
+> +                "EXP1_GPA4", "EXP1_GPA5", "EXP1_GPA6", "EXP1_GPA7",
+> +                "EXP1_GPB0", "EXP1_GPB1", "EXP1_GPB2", "EXP1_GPB3",
+> +                "EXP1_GPB4", "EXP1_GPB5", "EXP1_GPB6", "EXP1_GPB7";
+
+So we get this, and we already have this (from the example):
+
+            gpiopullups: pinmux {
+                pins =3D "gpio0", "gpio1", "gpio2", "gpio3",
+                       "gpio4", "gpio5", "gpio6", "gpio7",
+                       "gpio8", "gpio9", "gpio10", "gpio11",
+                       "gpio12", "gpio13", "gpio14", "gpio15";
+                bias-pull-up;
+            };
+
+This is wild, we need some constraints I think.
+
+Whatever we come up with to limit the number of items in gpio-line-names
+should also be applied to the "pins" list in the pinmux node.
+
+Yours,
+Linus Walleij
 
