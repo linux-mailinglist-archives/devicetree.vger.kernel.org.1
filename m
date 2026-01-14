@@ -1,124 +1,109 @@
-Return-Path: <devicetree+bounces-254830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 530D9D1CF79
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:55:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EB3AD1CF7F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:56:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3A2C8300E165
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 07:55:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0684E30215EB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 07:56:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D0A37BE99;
-	Wed, 14 Jan 2026 07:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9427D37BE95;
+	Wed, 14 Jan 2026 07:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="ajlDFMyE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mVLIefO0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from nalicastle.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D3D37BE78;
-	Wed, 14 Jan 2026 07:55:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10D1218AAD
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 07:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768377329; cv=none; b=vEScZVNUL77QA/oLKZAtBxTsJFFn5uLOnRVF2g25qV+AlHAGeR6MNc78tnueR5yIECHPKPX1LhiM5P6Y56P6CnscLiAsyoxNA9nBQ1Bojksq3ZtHT29y59fkpjA08LVPGcBxjTEJPHuZgtc2z/d3CJamAogRQurxaqYBMIVinSw=
+	t=1768377364; cv=none; b=ewQwa1xq3QfbOIfvpGH/pTsFzEqANq0jA3LuAdi3QYf0I3VY1tsaIx9USkPDq0RcytV3DpwEj6DRcsfkg/K78UdpyRDC7E08WfW2ncUgMirkgRjgvDwYfkJojgfgv6jjkFnLT7eanimvAWnYmHDDSxop5ZQLMBIqytgwN0I0Cnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768377329; c=relaxed/simple;
-	bh=GnKrYcsopNdMlVTP+QvAio2TiaHlo7ghgsNZ+LqLeLA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FdqNvimOrpCMchU71vL67wfEkhCouUbmBI5DrtzUCMPeBCJC8ukqyULhnbqVFqBxzQggbZwVvOYcvfPfSARSa5P0z0r1cXVrhqEjUrTB+odOUvM3xoatNIwTN1LU7qKTgNZd3hqt1GhBvIxB8Fx15Yn+gfMP1YrIpkmTn/5GiE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=ajlDFMyE; arc=none smtp.client-ip=172.105.74.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
-Received: from sunspire.home.arpa (unknown [IPv6:2a02:2f0e:300:8a00:e2d5:5eff:fed9:f1c4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by nalicastle.subdimension.ro (Postfix) with ESMTPSA id 0375316020B;
-	Wed, 14 Jan 2026 09:51:59 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
-	s=mail; t=1768377120;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9Q7u2EhI4eBfmAlWLst1u3yxl/bYP3Vvu9LhuWN9AKk=;
-	b=ajlDFMyEqSypJTRGVCvH7YrRGfmEHJdlAjNhlWtpB9IDebVlaJes9B5lTEZSazWWhCOXwI
-	x4024Hk3UNGbCSmE6fY2V0UaNkDxD59xnNQ+UD19wNfNJvIP+X23pQCtzKMf2f0eX02GXS
-	59gsTYwMRbVANgSY5rmHOv8u9Xjj/PbMuNdKdZRY7O6aYlNrZ/fksT7YjTj2vSoR8tW5/8
-	3p4WwXIU+RJK8YkA43MXXqBb/L4kGdVmczaniPuOB/lkk21re79r/5BE+kSRNQFbhO2Giy
-	4oZ4acQm+s+2AsVPiCKe/ztMXva7am+86dKRRg9lzJ9XjNmABp0k8ZeT5fIu4A==
-From: Petre Rodan <petre.rodan@subdimension.ro>
-Date: Wed, 14 Jan 2026 09:51:38 +0200
-Subject: [PATCH v6 2/2] iio: pressure: abp2030pa: remove error message
+	s=arc-20240116; t=1768377364; c=relaxed/simple;
+	bh=qykM1JYbULj151QKzbc/hEiAVXe8AXiyAC3x5F6hwNA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WEbNAcTULQBpjV/jY+9Qe7hgarR/oprW4Cc0vT/L2dqbdvWdeSRYVrFzfkMYbl4JSkqt8HBpHn2TYCXmDqnd/xQP4/AeuZR4h2t7BAtXjue/HUUrVyYhNBnPY+m3wM2l6141sSsT86XFSxqoP+dHuAG0ITwR1/Ovk34cw4Sqk3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mVLIefO0; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b871cfb49e6so492125366b.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 23:56:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768377359; x=1768982159; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qykM1JYbULj151QKzbc/hEiAVXe8AXiyAC3x5F6hwNA=;
+        b=mVLIefO0pTPrZbdi6zYFlTo2PoXY6Tto9cq/dgBCTVhGk33OX4Mx+ZIt8u656FIdf2
+         N33ALNw0AI6gJGyipcVEe9eTWDQIiYhPAHl2CiaWJGGhrWkMlypH/VAiMBUcfH1UZ19f
+         jKsRKoR75f6V8KD+6+3b7JtqTztEvqQQ+0u1b3U0LbD3aPXziOJu7I9hcGYnQGJHNHA3
+         Mf+bBo6XY1pNIKF/II5GGRwzM+Lh9rYOHWgGl3pLukSVb9fJL9ijj3Ek6OG0xSzssyeG
+         y3Sw7UphyHcLH5nsyWmUTXnovCEsvFLLxe/V4a2fVxG2JXupPyjv6KgTNQBe1ylj3V/2
+         dboQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768377359; x=1768982159;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=qykM1JYbULj151QKzbc/hEiAVXe8AXiyAC3x5F6hwNA=;
+        b=gJNwm3b8V9Cyu5uANwzg9pSIhzv+T7KOuVZUZXBS/rvAeG+mdtkNK6T/Cyq/YyWhHT
+         g9CiTfu8ELoE2zovw1VAQOnxnXwTPVGf2N+d1P2+hsZl3G38PbvtZu9NWaGAWG6jf/U1
+         rA4PcHDMS7bLcSGJmUjN8rIlknq2zc1NpeWSaS8RqAATJND8Ddcaux/mJu52VDuf6TM2
+         AvRJ1QKxbhqG3B9l8znR56DW8CHs9RXr6GOhvu6a6ncwgpqt1NDTu/EKcEiL14dsNEOi
+         cCRchhaKccAgh6my6Wouhe0+QPsZex4De8n6Ycbb7cy1q5Y+9BF5leXYC4Gg/DIlKoxB
+         xCkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXp1hVyVmTuog6L3zrup+yaUty+0Wb4SJ5p1GbX9wkg9H9djl1+TrBnncGJba88pM5Oh5QCFjF97oas@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvQYULY/EFSU+tweX2Gcmblz6XA57hsr2tmMSt0A5txJKQyqLm
+	ZVp6ZAqJ6MXgwYXdBVkaHjzUgl7lBiTmT7AdYr/J3/g0+u6ejfL+GSrzWlf5N3XWZSl9JgpP3tr
+	N7K4WVbMNOjvDOUQ6RS1PWQ6xouBXXQ8=
+X-Gm-Gg: AY/fxX7x7GmmbQv+WIBQbmARWcQDuZ6vjabNv0bU3s693If13bzHrKbvCrxbEehc80F
+	elIzvESHxzl4QFmHX5x+DILmDgWfDs8ONyC/VUhOm2ICz28jGByAuCGJOn/I6my6ABQKc8hiNxt
+	IpKUeKsIwZRVMT586Z9vy0jcFfD7VC5vxlpekteLRBHvCrAlKduf45gz44Q81xn9X4aQ/Tlvw3b
+	1UAyOtkH/p7m0xO6PdnOJz5lnzLGTfcmDQ1OzJ8TTHyxOK1KE6MOSlaM2vv9sEauvKHkrUlsulN
+	0I+naXLQuue9+tKqIAc2sbU9zxtRNI7eT/VDObDesOsRlC5/Hn3cWc09MfyNykUZDaxLklE=
+X-Received: by 2002:a17:907:72c4:b0:b87:3740:dd87 with SMTP id
+ a640c23a62f3a-b8761028cb8mr153119766b.26.1768377358593; Tue, 13 Jan 2026
+ 23:55:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260114-honeywell_abp2_driver-v6-2-231c3a8c222b@subdimension.ro>
-References: <20260114-honeywell_abp2_driver-v6-0-231c3a8c222b@subdimension.ro>
-In-Reply-To: <20260114-honeywell_abp2_driver-v6-0-231c3a8c222b@subdimension.ro>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Andy Shevchenko <andriy.shevchenko@intel.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=882;
- i=petre.rodan@subdimension.ro; h=from:subject:message-id;
- bh=GnKrYcsopNdMlVTP+QvAio2TiaHlo7ghgsNZ+LqLeLA=;
- b=LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgpvd0o0bkFHSkFuYjlrQTBEQUFvQmRDc25wM
- k02U1dNQnl5WmlBR2xuU3gzdjFxckRRY2dhSVlId2gxeWVVMmJjCkYwSDV1aWFTR2oxV1cvMmxH
- T2h3OG9rQ1R3UUFBUW9BT1JZaEJCb2ltQncrRGJ4UXBFNmlkM1FySjZkak9rbGoKQlFKcFowc2R
- HeFNBQUFBQUFBUUFEbTFoYm5VeUxESXVOU3N4TGpFeExESXNNZ0FLQ1JCMEt5ZW5ZenBKWTJEbA
- pELzBSc0dZdmdQbklmUWRhUTJXaUFrd2NQQW0xTnFHbzNkckswUHV0R0lXQmJEZi9tY2pkaW1XZ
- GlJbnIzQzU1CnZDb3Qzdkg5by9UbWo2RGpRU1pIdFAwMU51SW9nUUl0NEsxbDIza05zc1ZxL2Iv
- OWFFNGxvU25BYTgrSVJyVTQKOHdwVTBBK0NpOU1iMmpReUFFbHZHUHlYVFpVaC9IYUw4aVZIUWg
- zelJuaDZSaVB1SXVZd1lGZHJ3QjNnTlVEZAoyUGZiNW1BWURDYVF1czBXTkNXY2VWN0JwV2lxM1
- E2a2EyMnZIaGZvZ3dQR0pObzB6V1NFM28xS0VkMDU3MCt1ClNtREdCdWNXS0dyOFBzcWhXN25lN
- TlMQTVVSkFENmNWaXdzbUFEUUROcWU1QTUyZjl1VE9GYlNqYXFpVkVEb3MKSXdzUm1BQTJENU85
- d2gweFczMlNrSHNWblgxcjRXYmFacmwyUDlKQ2RYODFLUTV3a08ybksyTm1nYi9BM0RNdQp5TmQ
- 4ZlZ5L0JTTFFzZXZQbmR2U2lVZ3pxNVhPbWx5Mml4a0YrOWFORDllNis5NGlQclRuK2F5L0R1eX
- QwWVJTCklrUmh4TCt1cVdKd0RBMElXYWdtSEt1bWVScEg0a2ZyRWRqV3JGVEpWR3B1Qm9lZFB0Q
- nU2cm5LbVZkTUlmWVUKMTQ4M2FLR3FwNFpHbXpMNGk3aG5YcTBjN2labjFhYzVUQUtMOWFzNEhD
- Z01XS1lBUkg0NnMyZnFFemhBVHZMWQpHc3d4bkpDNHZ1TlJnZU84SFp5UmxUZWlMc0NlZTFOYVR
- 5Tzl2cUJyU1RmU3IrTUt0djJPdTllMUtKRXlzeXJsCjNnY3ZDMUpRbDFjaGQ4MFR5WEJNVHhsSj
- FyekM1WXowWElISGZaZlR2dFl1dFZ3T0tDND0KPU9lOXYKLS0tLS1FTkQgUEdQIE1FU1NBR0UtL
- S0tLQo=
-X-Developer-Key: i=petre.rodan@subdimension.ro; a=openpgp;
- fpr=D80A7FC176151935EC3E5FA9CF269999844E7F30
+References: <20260114-honeywell_abp2_driver-v6-0-231c3a8c222b@subdimension.ro> <20260114-honeywell_abp2_driver-v6-2-231c3a8c222b@subdimension.ro>
+In-Reply-To: <20260114-honeywell_abp2_driver-v6-2-231c3a8c222b@subdimension.ro>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 14 Jan 2026 09:55:22 +0200
+X-Gm-Features: AZwV_QjeZfZf02MH8c_Fn9ULWM2JP_J64viMY4LtyiOs2gGz_6slFb6GduuSBKU
+Message-ID: <CAHp75VeUkNEHeF5ey08AU+drZKunL5PzoSJ=0JPXzc0Z2Um3ng@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] iio: pressure: abp2030pa: remove error message
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Andy Shevchenko <andriy.shevchenko@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Do not print redundant error message if devm_request_irq() fails.
+On Wed, Jan 14, 2026 at 9:52=E2=80=AFAM Petre Rodan <petre.rodan@subdimensi=
+on.ro> wrote:
+>
+> Do not print redundant error message if devm_request_irq() fails.
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
----
- drivers/iio/pressure/abp2030pa.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+the duplicate
 
-diff --git a/drivers/iio/pressure/abp2030pa.c b/drivers/iio/pressure/abp2030pa.c
-index be11e28208ec..4ca056a73cef 100644
---- a/drivers/iio/pressure/abp2030pa.c
-+++ b/drivers/iio/pressure/abp2030pa.c
-@@ -523,7 +523,7 @@ int abp2_common_probe(struct device *dev, const struct abp2_ops *ops, int irq)
- 		ret = devm_request_irq(dev, irq, abp2_eoc_handler, IRQF_ONESHOT,
- 				       dev_name(dev), data);
- 		if (ret)
--			return dev_err_probe(dev, ret, "request irq %d failed\n", data->irq);
-+			return ret;
- 	}
- 
- 	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
+(It's not redundant, it's duplicate because that API prints something
+very similar.)
 
--- 
-2.52.0
+P.S. Do not send a new version for this, I hope Jonathan can tweak
+this small detail whilst applying.
 
+--=20
+With Best Regards,
+Andy Shevchenko
 
