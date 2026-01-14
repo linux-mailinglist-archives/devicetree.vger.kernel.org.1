@@ -1,216 +1,92 @@
-Return-Path: <devicetree+bounces-254833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80533D1D0AC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:15:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2CDED1D0BE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:16:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D12E63045688
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:13:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E196B300C2BD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DA337C104;
-	Wed, 14 Jan 2026 08:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE1D37C0FE;
+	Wed, 14 Jan 2026 08:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CLMaFGbv";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kILZT2p0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtzuplXP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC3A37C0F0
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:13:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6FE25783C;
+	Wed, 14 Jan 2026 08:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768378415; cv=none; b=M1idJHurBPsZDJtrJV/wGZXW4mavt6TIomqZTHmfM3pPiYy/Pr0Ic9+FBN9JX3NUmNGg1BpSYjCt8ZwhmtrgZ6fsRIrH6jnsYuIjqilKGLTXXwSXSlVWtpV+XevaKLLzYWr6I/36yjKwvDohgIZCHKs23KHsPUaf9/w2Ui5rd6A=
+	t=1768378468; cv=none; b=q0sh0Q4xFbo7FEcIqj3B7RPJdKnRiev7ugpUfJkyqlP39ziZHGN8VmKd/JDWyPlj8scftVcslfa+Dd/grR6sX1mWyQbcGWHTTEh5f0Wvs1UU5zO1KKB4nPDZpnBUxZqcsVe7aQeQsh7xoZjUPABSvzMUHFZTgrdAPWIfnNdbx58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768378415; c=relaxed/simple;
-	bh=kJ6JoMuxxz8m7+gqy24BMxC84P3aMchfFqwPNv1E8DQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HGhUGt3NdEF/Sy6NqchXXtmNml2ubh12401H3x5rHrV404rG8to90kj6KBWSRtJG3fmPayuq8ZMREvKWBAewNRKcto0GJ7wgwmKtZopzKfTUc/bbRdoqJf3K6JvBTAVkA/JcbYN/kCRwM7jD1gK1LFLyU4zwgQM7d6wjhMKuvNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CLMaFGbv; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kILZT2p0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60E7j64j2056634
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:13:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=1l6eCARhoCy5RZ0rpOpVAWZCDGwcoewH/cP
-	nAbp1TLY=; b=CLMaFGbvYakC65jU2HYH1+4g6ZHMp07SDxolk+lc+JOVPuCmEKZ
-	qYK2B+oT/X/HYNlkK7MY0gh6EYf52RvThDRilt3MRA/8SBcnGWLjGlIRI2Gpv9tc
-	cZJkalxe0Nm+GRwrySGfoLKBK11uCOyWgFb3Guhi9hkVb4cjCgD27ot2zgyS0V4L
-	EVx9JOJ70i12dNuXnDiyz2b6J/AlSeRI31YLqaHOkkJZLCJQ1kTGUyFrrC4zwNLv
-	xmAOe1Ddem1M5SoPqzz+1lKCctjEOc4kcx6PFOwU+FqF9K9mPX6unNDn9BGVoBED
-	63ruSgsthLnCKxCaZmd1XEpAQPW5Voyuazw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bnr3eb8pv-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:13:30 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ed6ceab125so241326201cf.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 00:13:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768378410; x=1768983210; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1l6eCARhoCy5RZ0rpOpVAWZCDGwcoewH/cPnAbp1TLY=;
-        b=kILZT2p0OGTrqDUehoVCVyAJqmyvTIJbtdW7yXukTbz8fm0DbfulPmevwoWbWQiIN0
-         SU6hyP0tZyFoN4P6Yr6uTdPSaC16XYnlSW6y9Av97fehEW32U7TtqO0/V2i04XVXXyLy
-         IUgwGMkMbxAKCUMnkWtXoLiNmdkO3uP4Gwa9SqL8eXjl2CxolYSjluYWWo3A5G1yIM+T
-         yjyGyarkbWVIy72RojReqLfdeS3I6bnU2QADAvQ5JatoJprONmM07M3uGB6fzx9/4vld
-         7kZ5/R+XAc0oEi8ZwrFmVL7Es9eJipJVNj3Dv0T/x6S8uv8idtdF/OD87PamGrgRnpBu
-         p+0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768378410; x=1768983210;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1l6eCARhoCy5RZ0rpOpVAWZCDGwcoewH/cPnAbp1TLY=;
-        b=kTc1k/Kg574Lw1aXt9UjSuiGrdl2WP4mszIimjwGge7qAUywCV4S0vi6n4GZ4UJ212
-         bQyAFZalD8LAA2YyeZY8huhKqoKaxOMLpr2rxE1cdHI17HlrDyzSJaJxKFX7JWRiuZVX
-         wbPRfSP30vC3glf7PoAK6e7T+nTF37xCsafQVPTLLJwsudVekjkMDFNT6cYqnEPThyUq
-         61OW2WKI28nbI5LRFwZ4XO1hxIZNnrk0rD1EBwjDWOA83BO0nqAM0zgd5SwAC25OWGKX
-         odmJ+sBb+dfxmgvRXm2eWOSeCpg+M6jzyhb30rrbmU609VR9NStJ05MRjQ0t+Qhmb8Nw
-         2RKA==
-X-Forwarded-Encrypted: i=1; AJvYcCUh2GS94RHEZ3XlMjCkfaQsgDNPT1mC4EbXT5E2QSRhwHnbkpTOTQk7KO9wM2hqQovmIoXjbHlgBecJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAkp9SXmTIBoumPAeVsWWKIgmH0GLfnnP9x5Xq/1r6awjOQtHG
-	7xQ3XbStP5ijED+3HhqZ04bTlER40n+XnD1o8yNKxPj1rM5ZaOo/UhKi14Tof3lQIAKG2mziwTt
-	PL/T2wBP5pw4G+OTKmJWl88hGCdWijHhBUvmvTqWmdXnIhCllxmMBu2jrNV9liEAr
-X-Gm-Gg: AY/fxX78IlG6iV5mnSrmEcpO6F4zD1T5zNsnq11p3Ap1hQy10SuZBLyDugtmVa+M2Ir
-	KWb90xQ8h8qopvDKHCEW2rXm3Adt0QuhNcCr8yK6Yv6wZZ8Iym/2JRt01xQhNNwbNa09B8YQBgu
-	f2acKXMGIlfgcu4+rBh7Cq4XTacvwHsvJYOT2GR8G5Dmo2yhWCVmNclZbUO/L5vwlltGAU6oU8X
-	izdigv5ytgucL2x5Q4msBT1UVexCE0AH+nTVAGmvc8aDHwpiOQXL5wNpkSduS3p3hx1qPljqh+P
-	+3J4EWMyZStDZJDqALKk0/moZaQxrOcM50ls2xB6JCNB/xrRFvmmfD76JbtttW9okOSuf5Wchr1
-	KEa6YGZs7/Qk+A/vqTDll+/N8KQ==
-X-Received: by 2002:a05:620a:f03:b0:85e:24c3:a612 with SMTP id af79cd13be357-8c5316b37ccmr170155285a.32.1768378410316;
-        Wed, 14 Jan 2026 00:13:30 -0800 (PST)
-X-Received: by 2002:a05:620a:f03:b0:85e:24c3:a612 with SMTP id af79cd13be357-8c5316b37ccmr170152485a.32.1768378409769;
-        Wed, 14 Jan 2026 00:13:29 -0800 (PST)
-Received: from quoll ([178.197.218.229])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a4cfe76sm2407851066b.40.2026.01.14.00.13.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 00:13:29 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Del Regno <angelogioacchino.delregno@collabora.com>,
-        Tianping Fang <tianping.fang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH] dt-bindings: Fix I2C bus node names in examples
-Date: Wed, 14 Jan 2026 09:13:23 +0100
-Message-ID: <20260114081322.53411-2-krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1768378468; c=relaxed/simple;
+	bh=9BtM4xDtv05kFWe+zj/Ig9PlRfKcY93LHPz3M4mDXJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sa7gjfq/ZHKE15UzGHbM5rOve+d1KVHeWKo4RL9+XUymfYSYfNULa4zABR0E2RxyNrIXMhah5zQkbIE+8ijFeOsnzIPalqaQYIeBUzDZlcRUBLvln5jPYf6QJdOpuPDQiG9mJ6b7bClztki++drhppbQgGO6Tz8Wu/xWchTpzH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtzuplXP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A841C4CEF7;
+	Wed, 14 Jan 2026 08:14:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768378467;
+	bh=9BtM4xDtv05kFWe+zj/Ig9PlRfKcY93LHPz3M4mDXJo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CtzuplXPdzu3Zecu/Zu2jpl2kYNKizSqkmeoQT7reHKsfRLhmS7nK6pACVLnLyMh7
+	 /RgMd4OMMuzIY6stXmk5z61WHOx3BEIW0vQ62FrhNthg4W9EuJNIV7lTfeTv4qIvhM
+	 G1RlYvcABnI8eyvPDOcmVJvncuvNUYCHi1TqS2hwRR3tftb73jbwIAm+KuCS8JWTNo
+	 go2mg6mGJM68yZth1Tmiwreb5MgG7PsSqgmJngDPfIS3613teOhfco0ol7YFqxpRL1
+	 I9PKiO+BZb7jX8cFA3U0mJiHzBHDL4vEBXDNiaUhIVX3CAAjAM85DE3qjS2aNGN5Rg
+	 0i8IMKyMXhN+Q==
+Date: Wed, 14 Jan 2026 09:14:25 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
+	Baojun Xu <baojun.xu@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Clark Williams <clrkwllms@kernel.org>, 
+	Steven Rostedt <rostedt@goodmis.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+	Dan Murphy <dmurphy@ti.com>, linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Kevin Lu <luminlong@139.com>, linux-rt-devel@lists.linux.dev, devicetree@vger.kernel.org, 
+	Emil-Juhl <juhl.emildahl@gmail.com>
+Subject: Re: [PATCH v4 07/10] ASoC: dt-bindings: clarify areg-supply
+ documentation
+Message-ID: <20260114-rampant-spiked-heron-a4fb58@quoll>
+References: <20260113-sound-soc-codecs-tvl320adcx140-v4-0-8f7ecec525c8@pengutronix.de>
+ <20260113-sound-soc-codecs-tvl320adcx140-v4-7-8f7ecec525c8@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2544; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=kJ6JoMuxxz8m7+gqy24BMxC84P3aMchfFqwPNv1E8DQ=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpZ1AivFlUqD5ADdLH+YG+gG3aTr3JllMR1QxTO
- VVhoa7m35CJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaWdQIgAKCRDBN2bmhouD
- 10EwEACZYYyM2VLukY9l3saEG9yRWOUMVqzf2nc0p1MS7L2PYsrqU3Ka4k10uWbNIBv/OTlLYDE
- iufSeWPHv9ecrGN1s0fDfVQ39q0iKgey7sUV7MEM26ky9rm3PPGh2TyCmz3EFV0xz76wTb/0Vuz
- DD+oxLRQTP9hFu0sLKfrkNAoiDCccB4GQlDYZ+phLoeS5/gAntVahdqxmz+6tl4DQl595EmbAtK
- 7iKrv4QFiZg2Kn1Ci4TfCr27Lu32mzl3TNHFtngaYZ4HXcyR8WC+1s5DWHTzm+Zotl+B+zSfqUM
- NW3xM2rJF6cX/xrfLyKF8NGlGR4txxQrFW3a7qaImVSfaCS/LDGdkcxK6hMjVbQ/JWRccj7yvMT
- gW4bp0/y9hJJul4Bk9lPy0KMsIVeJRCEyQ6RijksgdoAwm7CYl8GzFPOr1rmjqp8TZj2yy92w/A
- BrbuO3X2xEHBikeUPoIFvwpgLhsTvkZKNMwl+QTLe7OkPtVMGKA5qvYQPsFs0g7594/hfzlMgJL
- Tpqj0lsmKDyNvObXEn+9HdQKPHPeHr6lJIteQn3jWH/1IAkhqL8xZ/h5CZyUrveE9jkXBkVUp0F
- +01ZPR2z1PE+kAvhAVdh98Q36iNb1b2pk0PXXWQzqHfYWn73C0R8vYlu4ZgIcjJXnVREdqWGVxA NVyaBeRjRH9FODw==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=TPFIilla c=1 sm=1 tr=0 ts=6967502a cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=gJ7PcVzKR3cp7Bqf8_MA:9
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE0MDA2NCBTYWx0ZWRfXyhuO9+vyKGeB
- 8KDhWz7UMDPoIoGNgEf/RiFPf3eG/6r77g1BCCRjBcKcCkpyGC8GV03nhaiI9Xt1OW+rJzE6tNO
- iZdgMFUTcwrIr7y14cRfmjb2YbE+UT27Le/qzYwa7feV2884ttkHnOHhnS8dzgXjAYGH6dRRsDh
- 89C7zqVtxImHpWVLwMOFwRJF4ZIfXBGdvv+pkpeiZVa6eAvJFTRpwmYD34wDqW8SQC2SKol++GW
- w7ZfpQ6c/y2L6SfCLuvab0JpvH/xueJ3bdLsR7gZELV4G3PSvrKnlezL8SsV/zXONb2a/nJV9Tv
- Qsndku+qt0o5pOGTFUZiFqYIMqc6siVg9/qQTV5kPrCdDmNAaY5Q9n3V/UUP8Suc4DfIw5aaiSQ
- KJYRjJ368g8mFVSLHeHnyg2+T7b4kC1A+5abQtO9HDQZMmDzHTjQURa2JAgICacYeR24u9AdrxD
- moPu31kaGWcpgZMPMew==
-X-Proofpoint-GUID: U_DdQPmXOx8zVDmGKJ59Oy5z9oo4Pcc9
-X-Proofpoint-ORIG-GUID: U_DdQPmXOx8zVDmGKJ59Oy5z9oo4Pcc9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-14_02,2026-01-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 phishscore=0 clxscore=1015 spamscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601140064
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260113-sound-soc-codecs-tvl320adcx140-v4-7-8f7ecec525c8@pengutronix.de>
 
-I2C bus node names are expected to be just "i2c", if there is just one
-such node in given example.  Replace remaining bad examples with
-scripted:
+On Tue, Jan 13, 2026 at 11:58:50AM +0100, Sascha Hauer wrote:
+> From: Emil-Juhl <juhl.emildahl@gmail.com>
+> 
+> The documentation for areg-supply could cause confusion mainly in terms
+> of the relationship between AREG and AVDD.
+> According to the datasheet[1] the AREG can be one of two cases:
+> 
+> 1) an external 1.8V supply
+> 2) generated by an internal regulator (hence a 1.8V output)
+> 
+> [1] https://www.ti.com/lit/ds/symlink/tlv320adc5140.pdf
+> 
+> Signed-off-by: Emil-Juhl <juhl.emildahl@gmail.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-  git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/i2c[0-9] {/i2c {/'
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
----
-
-Like Rob's commit 20a72af11f41 ("dt-bindings: Fix SPI and I2C bus node
-names in examples"). I checked also for SPI.
-
-Rebased on Rob's tree - can you pick it up directly? Applies also on
-linux-next, so I do not expect conflicts.
----
- .../bindings/embedded-controller/lenovo,yoga-c630-ec.yaml       | 2 +-
- Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml   | 2 +-
- Documentation/devicetree/bindings/usb/ite,it5205.yaml           | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml b/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
-index a029b38e8dc0..c88fbd6ad940 100644
---- a/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
-+++ b/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
-@@ -50,7 +50,7 @@ additionalProperties: false
- examples:
-   - |+
-     #include <dt-bindings/interrupt-controller/irq.h>
--    i2c1 {
-+    i2c {
-         clock-frequency = <400000>;
- 
-         #address-cells = <1>;
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-index a89f740214f7..dffd23ca4839 100644
---- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-@@ -95,7 +95,7 @@ examples:
-     #include <dt-bindings/gpio/gpio.h>
-     #include <dt-bindings/media/video-interfaces.h>
- 
--    i2c0 {
-+    i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
-diff --git a/Documentation/devicetree/bindings/usb/ite,it5205.yaml b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
-index 889710733de5..045fcb41ac4b 100644
---- a/Documentation/devicetree/bindings/usb/ite,it5205.yaml
-+++ b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
-@@ -49,7 +49,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/irq.h>
--    i2c2 {
-+    i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
--- 
-2.51.0
+Best regards,
+Krzysztof
 
 
