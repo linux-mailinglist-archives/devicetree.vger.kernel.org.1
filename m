@@ -1,156 +1,216 @@
-Return-Path: <devicetree+bounces-255264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 879DED21AAF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:55:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 965C1D21AD3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:57:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9BAB030380EE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 22:55:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9D17D30133C9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 22:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B5038B98D;
-	Wed, 14 Jan 2026 22:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C8738F225;
+	Wed, 14 Jan 2026 22:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ULLpnZ13"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KC0CYTo8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8BB8350293
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 22:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0283738BF88
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 22:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768431312; cv=none; b=fzXiohpFwp2njvcCuIiKsoNu0YxZHdmKE9RCCvir26OVxvfuUfX2AsnYWjWGDkS3P9fk+At5127wsXpUQUcsN7T+yfyiYlRbDqxu/OAgSl0P4TtOtYBxrHZtLeDHu25ekz/YMtUg37rwawt9plloWWP3xOQmFTYk2ijYKWUZOKY=
+	t=1768431469; cv=none; b=cxKqmywK2O8I2TBNFFZrcBBypueVxZNq5A8cQ++Jvxrux4P8xhWr2OhT1++UIzoHdbnVI2/3rke6qvpudfnkFSIkcRSlIeNrs6Q7P0DDSJuPB7ir90uQPZBvgEwCxMDvQ9xWYIuMZv1Pf+lqVFFA9jHvUrFgpe/cy+W9aHPG114=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768431312; c=relaxed/simple;
-	bh=V1py82AjhxEE3vmI27KtbVxIIIMpzO9ROtiUPz6KBIM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CT/r+DhTUYomY/s/lNaLfrXxRX/nBjEdCriNOiwzYS9/RMiK8/viXqboeHurzqmnE9W4YgYLx/Jd3NTCFhv/fl9Y4Td+jpc5TxvWuJHCym7IJhSUIk3oEHh7M++gEibQlv/D5DpqDtoyh49/b0TEQLD6H29V/Vt/cMYC2ISKeeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ULLpnZ13; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-79018a412edso2869567b3.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 14:55:09 -0800 (PST)
+	s=arc-20240116; t=1768431469; c=relaxed/simple;
+	bh=X4m5VYxNJdf+yKlu1tqW+laO95L93p8ppKJQ7NmDSNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rXLJ4l/xh/V0AS9rcZwPeokQcyxaqxhCnB5AVmngGaT1Qx3Jm/jglUAeVevqDLQW7dXaNS3QIwV9Y3T6TSOiwspLlUgak/C9cH9JXyJe/ryww5QklfeTmBO4T2K0GvWwT6I65sRXCVjTP+0sb9ixLPA1nbsFrn7/QIsORh5A1CY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KC0CYTo8; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47ee66dab14so417315e9.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 14:57:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768431308; x=1769036108; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R3aA2X7iGQsnnel6fRLVe4SLr2+v2d/5zouhV3Vlqcs=;
-        b=ULLpnZ13u0uAWoBNOyx2pQX7xk573XQRxshqnkDODrBfdlOGHdBLeiGjQUMMJ7e0MT
-         yaxOaIMTKucIcX4OfsR6gfN1eFNdXT1pWQSb1rBy3+hTxxs8BpHH9ujUcKvWGon++zOc
-         frasvVhgblBEFDQvNS4s+VdZbgKRWfLOdyvLVXZKdXMyjGooin++rQelFJ+Ai0cyIWdj
-         3nXmWjRLOcdLlDhMrPX1xyFazfSpsNB1YbCdAwXXgzGP0dxA0Aj6b1/FYPc28C0wygDL
-         gFBm5ONEJLhsh0on5iB1eim+lHgZygUTwvX5PlvB8Fv7BYrr1aiO4p1zyYFyQKfiKHOu
-         f66w==
+        d=gmail.com; s=20230601; t=1768431462; x=1769036262; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MDobwa87FnFNj7Jj1JsOkjtdbqkfgMfRw4tVEyrijTI=;
+        b=KC0CYTo86H+DHpVcySlUbm1ce14VT3pI3B/Er2bJodB/2MMqNXzxvSlolLjKqKiFaI
+         0EhPeYgHxywPdUeFcDLzgXZ7LuXAi/ocH1i1lE6yDiFiQC++0GXzlpvMdh+4QyXebU4j
+         lv7nTJrrYM6B9e+9lKS93XFiLEEcnsM+mwXUZsMiHGtqd9WF88zyvlNtTWk64r6/Y5W+
+         t3pTcJOI3EjSMhYUg6sWVwvfEcYLvZcWLrBBT9UeG3in7DdvoqXXiWkdBF8SX28eNUGL
+         ji58X9wsLa1OPm7z/ONeSbf6ca3y4dkMYv69ylvKgJUDp0jSm4/G+T7d0raEacOTUJnn
+         rkJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768431308; x=1769036108;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=R3aA2X7iGQsnnel6fRLVe4SLr2+v2d/5zouhV3Vlqcs=;
-        b=TuRuKX057M5J8b8GSdCtgmFAakNaWMR7VaGaH8AHbgSNZ26lOEgdXcLErGyqWuppbY
-         gFYp/hXI4EQUgGfLmfT0260IizscLakNVKSGiYviqX9/6rsSSDC7CgSj8DymB9jX/0Zk
-         30EprnA5ribc4fyKf/7TZ4DfNSv52cJO11/xeaRgPThGtO+aGeXYUZz/XdsUJ/TQeSI7
-         LNpOmV9MSbIPX9DiQ04xJJtcn0Xk1vOtDKnzeoULQs7gAiIPhJNFigpeTDD927BXfqJL
-         bY+0RTfph2FK8SF1LWhYcCVpaG2pP7OLK9FW+kW7vzn9rrlbsj46RJULCLEmknXXJVdz
-         mnBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXrdHhYPs2RMPOnTCrvRLoe5eh9bDnjqMq4ihSeSCjryl4KedhSRIx0BxxqQORGmbmU+dpf4ejV5g8y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyz4byq6qiJdZ4WTcQK4LXMFCNKWQg07t3jrn7o6/s9cx2QM7xy
-	9uAVGy8NRSbgxHsrgmGjXt3nz8ChRl3YQ7SVGvRG3RJQeaUthHZIUvSLfopkQ8387zH0pvtVICG
-	vx+RuUGY7k6V4YNSTWeiWgMQxwi4F2z+RDgLEC0spFg==
-X-Gm-Gg: AY/fxX7OtYBC579dT1m85RskkYH6Xyn0eo2gUjAiQfRVsb8P222Id2i5vCCfGG5Bift
-	/7wH3ERPpFP9Na7Tkkblu45z9lY+7xY2w90hYpRxz+wRLoeGyU7Big4tjqVCPnZwSJyl0zV5jYP
-	OAORq+e1lC+gmA0vZK5VXhOICmR46lqmJ//tIJrBh5vk597j2atPXOj1JVvxmAYl4qPl2Uy3usQ
-	TnU2hfYCYVCTfomOaTvzufe979Xi9JIcpgFVSrh/MWU7PvdUqvu8pLhgNim8UCySrJBI3NdBRuo
-	XFR+SE5CK8VugqMilUxPnZxdTDbslxuXk4wrPw==
-X-Received: by 2002:a05:690e:b8d:b0:644:77bb:5705 with SMTP id
- 956f58d0204a3-64903b55ebbmr2982962d50.77.1768431307959; Wed, 14 Jan 2026
- 14:55:07 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768431462; x=1769036262;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MDobwa87FnFNj7Jj1JsOkjtdbqkfgMfRw4tVEyrijTI=;
+        b=b8xQEJrsgA+m8PH4DhOcJunmbkmxxfMTEC/9BXZMKRM9qcO/zyjaLYeqEqSVcuDGi0
+         HN6znNr7rCZ5cAH4DR0L5zrAMSKRN3rCwdccNBzTQYYkqf3KNTpoXcHrc2BVG0JTGxjy
+         Ui8KuzvuKAG27WXUK/oeNvBZk2+r5nwZQL6GitzepK/4kpic367GQfedKdWXsOwtNQOC
+         mGEexyOe+pKDXbNAPGHfHf/TBrbc/wuUjJwup8pdjecIKYvQbiqlr/RDxDdYyUR4SCzv
+         iHznNFgph8NjqInmEcJ5fqGsH7obK/miN9RPl6tpGioLREX78YK1ZalJupx6QcVD6RL7
+         3Apg==
+X-Forwarded-Encrypted: i=1; AJvYcCXPbfCvl5Ws/jV0X+R2fxmLpIS0zgJNiXSukoFjzfuh8zIrureiAZ+NQ1fwxfSxkVZyoC8jDb5m2keb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPUK52c46XNYT8ki5sCRHmlz9hQPhWJSBMmOiWL3GGfFppr2qa
+	jwIM/TA4tK9poraJ244GtZjvttrUnaGDbd4ydUukk8MCT8nWmG9goDYx
+X-Gm-Gg: AY/fxX6W4GtAtXVY9MP6ZKe68ouA6HsKPNXoa2gv5B25PLivzjPg6jZurT8H1SvUH3U
+	aHtqadty9+4GBEZIKuq6LgeipDa7OGaOQ73PU0EQNs4PaONiFszfROkLUcPtnjXIqcCWSULFrVE
+	XZIntNf+QGFM4LeOe76AuRGY+Naj06nv2y0g9XC/0/UwSh/G0HmhxMmrh6XDUEm1uYV8qSFGu0Y
+	iA987MuXEC3h/oEDDHZYGPJjilM/0feapo/tnBNlPMzw9Swk53T44w82H0j0Ud3hJHkOqyldFs9
+	tJRIlAscYDdE0dOmneFQWvkIyPLMlmhtWsFKxy4lgG9N0bQukld9RtJzimnn5eazr5CI0uN5K5R
+	QBQhcWYgpRErFM4r9yEmGnVRXUajR5c5mUlBvZ5O69BDiZPoWHAgA42WRhowJISfORmqPL+AtDi
+	7Clg==
+X-Received: by 2002:a05:6000:1a8a:b0:429:d084:d217 with SMTP id ffacd0b85a97d-4342c38bf52mr2902416f8f.0.1768431461615;
+        Wed, 14 Jan 2026 14:57:41 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d703:5400:d5b0:b41:b5b3:8c4d])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-434af6e1698sm1957816f8f.37.2026.01.14.14.57.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 14:57:39 -0800 (PST)
+Date: Thu, 15 Jan 2026 00:57:36 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH net-next v5 4/4] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <20260114225736.c7w3tpfol7bdc4so@skbuf>
+References: <cover.1768225363.git.daniel@makrotopia.org>
+ <cover.1768225363.git.daniel@makrotopia.org>
+ <169e8a64d3f4db3139f2c85ac5164c52ca861156.1768225363.git.daniel@makrotopia.org>
+ <169e8a64d3f4db3139f2c85ac5164c52ca861156.1768225363.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260113-adding-b-dtsi-v1-0-22d6e55d19df@riscstar.com>
- <20260113-adding-b-dtsi-v1-2-22d6e55d19df@riscstar.com> <20260113075339-GYA25466@gentoo.org>
- <CAH1PCMarzrZJ072iyAQthB-i-LHFCSJ+tZLx6HcWiVcUrQeafw@mail.gmail.com> <20260114-evergreen-gluten-b1c8558e7684@spud>
-In-Reply-To: <20260114-evergreen-gluten-b1c8558e7684@spud>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 15 Jan 2026 06:54:57 +0800
-X-Gm-Features: AZwV_Qhkxzj_Y9cwaD4tSP0GMlfoxTMZyhjGCrw4ED-TcUztP4RUDmlAh8THzag
-Message-ID: <CAH1PCMZAEwO4Vg=TdZ9SR1uwm3OOw_y79iCRC+E+SZiVRNtp+w@mail.gmail.com>
-Subject: Re: [PATCH 2/2] riscv: dts: Add "b" ISA extension to existing devicetrees
-To: Conor Dooley <conor@kernel.org>
-Cc: Yixun Lan <dlan@gentoo.org>, Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Conor Dooley <conor.dooley@microchip.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Junhui Liu <junhui.liu@pigmoral.tech>, linux-doc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev, spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <169e8a64d3f4db3139f2c85ac5164c52ca861156.1768225363.git.daniel@makrotopia.org>
+ <169e8a64d3f4db3139f2c85ac5164c52ca861156.1768225363.git.daniel@makrotopia.org>
 
-On Thu, Jan 15, 2026 at 4:42=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Wed, Jan 14, 2026 at 10:33:34AM +0800, Guodong Xu wrote:
-> > Hi, Conor, Yixun
-> >
-> > On Tue, Jan 13, 2026 at 3:53=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wro=
-te:
-> > >
-> > > Hi Guodong,
-> > >
-> > >
-> > > On 15:45 Tue 13 Jan     , Guodong Xu wrote:
-> > > > "b" is ratified (Apr/2024) much later than its components zba/zbb/z=
-bs
-> > > > (Jun/2021). With "b" added into riscv/extensions.yaml, a dependency
-> > > > checking rule is now enforced, which requires that when zba, zbb, a=
-nd zbs
-> > > > are all specified, "b" must be added as well. Failing to do this wi=
-ll
-> > > > cause dtbs_check schema check warnings.
-> > > >
-> > > > According to uabi.rst, as a single-letter extension, "b" should be =
-added
-> > > > after "c" in canonical order.
-> > > >
-> > > > Update existing devicetree files to conform to this rule. Line bala=
-ncing
-> > > > is performed where needed to improve readability.
-> > > >
-> > > > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > > > ---
-> > > >  arch/riscv/boot/dts/anlogic/dr1v90.dtsi     |   5 +-
-> > > >  arch/riscv/boot/dts/sophgo/sg2044-cpus.dtsi | 256 ++++++++++++++--=
-------------
-> > > >  arch/riscv/boot/dts/spacemit/k1.dtsi        |  32 ++--
-> > > >  3 files changed, 147 insertions(+), 146 deletions(-)
-> > > please have separated patch for different SoCs, so they can go via
-> >
-> > Understand your concern.
-> >
-> > > their own SoC tree.. thanks
-> >
-> > Conor, is it possible to take this as one patch instead?
-> >
-> > It fixes the same dtbs_check warnings from riscv/extensions.yaml across=
- three
-> > SoCs. Keeping them together maintains readability and clear tracking, I=
-MHO.
-> >
-> > Happy to split if needed, but wanted to check first.
->
-> I'd rather you split it, sorry.
+On Mon, Jan 12, 2026 at 01:52:52PM +0000, Daniel Golle wrote:
+> Add very basic DSA driver for MaxLinear's MxL862xx switches.
+> 
+> In contrast to previous MaxLinear switches the MxL862xx has a built-in
+> processor that runs a sophisticated firmware based on Zephyr RTOS.
+> Interaction between the host and the switch hence is organized using a
+> software API of that firmware rather than accessing hardware registers
+> directly.
+> 
+> Add descriptions of the most basic firmware API calls to access the
+> built-in MDIO bus hosting the 2.5GE PHYs, basic port control as well as
+> setting up the CPU port.
+> 
+> Implement a very basic DSA driver using that API which is sufficient to
+> get packets flowing between the user ports and the CPU port.
+> 
+> The firmware offers all features one would expect from a modern switch
+> hardware, they will be added one by one in follow-up patch series.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+> v5:
+>  * output warning in .setup regarding unknown pre-configuration
+>  * add comment explaining why CFGGET is used in reset function
+> 
+> RFC v4:
+>  * poll switch readiness after reset
+>  * implement driver shutdown
+>  * added port_fast_aging API call and driver op
+>  * unified port setup in new .port_setup op
+>  * improve comment explaining special handlign for unaligned API read
+>  * various typos
+> 
+> RFC v3:
+>  * fix return value being uninitialized on error in mxl862xx_api_wrap()
+>  * add missing descrition in kerneldoc comment of
+>    struct mxl862xx_ss_sp_tag
+> 
+> RFC v2:
+>  * make use of struct mdio_device
+>  * add phylink_mac_ops stubs
+>  * drop leftover nonsense from mxl862xx_phylink_get_caps()
+>  * use __le32 instead of enum types in over-the-wire structs
+>  * use existing MDIO_* macros whenever possible
+>  * simplify API constants to be more readable
+>  * use readx_poll_timeout instead of open-coding poll timeout loop
+>  * add mxl862xx_reg_read() and mxl862xx_reg_write() helpers
+>  * demystify error codes returned by the firmware
+>  * add #defines for mxl862xx_ss_sp_tag member values
+>  * move reset to dedicated function, clarify magic number being the
+>    reset command ID
+> 
+>  MAINTAINERS                              |   1 +
+>  drivers/net/dsa/Kconfig                  |   2 +
+>  drivers/net/dsa/Makefile                 |   1 +
+>  drivers/net/dsa/mxl862xx/Kconfig         |  12 +
+>  drivers/net/dsa/mxl862xx/Makefile        |   3 +
+>  drivers/net/dsa/mxl862xx/mxl862xx-api.h  | 177 +++++++++
+>  drivers/net/dsa/mxl862xx/mxl862xx-cmd.h  |  32 ++
+>  drivers/net/dsa/mxl862xx/mxl862xx-host.c | 230 ++++++++++++
+>  drivers/net/dsa/mxl862xx/mxl862xx-host.h |   5 +
+>  drivers/net/dsa/mxl862xx/mxl862xx.c      | 433 +++++++++++++++++++++++
+>  drivers/net/dsa/mxl862xx/mxl862xx.h      |  24 ++
+>  11 files changed, 920 insertions(+)
+>  create mode 100644 drivers/net/dsa/mxl862xx/Kconfig
+>  create mode 100644 drivers/net/dsa/mxl862xx/Makefile
+>  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-api.h
+>  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
+>  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.c
+>  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.h
+>  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.c
+>  create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.h
+> 
+> +static int mxl862xx_setup(struct dsa_switch *ds)
+> +{
+> +	struct mxl862xx_priv *priv = ds->priv;
+> +	int ret;
+> +
+> +	ret = mxl862xx_reset(priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mxl862xx_wait_ready(ds);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mxl862xx_setup_mdio(ds);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_warn(ds->dev, "Unknown switch pre-configuration, ports may be bridged!\n");
 
-Sure, will do.
-Thank you both.
+Nack. User space needs to be in control of the forwarding domain of the
+ports, and isolating user ports is the bare minimum requirement,
+otherwise you cannot even connect the ports of this device to a switch
+without creating L2 loops.
 
-BR
-Guodong Xu
+It seems that it is too early for this switch to be supported by
+mainline. Maybe in staging...
+
+> +
+> +	return 0;
+> +}
 
