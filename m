@@ -1,115 +1,96 @@
-Return-Path: <devicetree+bounces-255142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 622A5D20064
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:02:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D79BD20139
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EFABB30022C9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:02:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3F7BB30A3B8C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AE73A1CED;
-	Wed, 14 Jan 2026 16:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3BC53A1CFA;
+	Wed, 14 Jan 2026 16:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kvz6IhCI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="amjRuC+h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECE539E6E2;
-	Wed, 14 Jan 2026 16:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC9C63A1CF8;
+	Wed, 14 Jan 2026 16:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768406534; cv=none; b=MH1vxNoE7pjdMnuRgfGybmCY+Gq/fCzXZs7z+bw4XxAX1giIMVyUSkwQ9+EcfCRMdJq6BLWMq2xQMgffwoj7Fzof57xjcXxp4Zix+H9XWUyc8F05c61rvaunaIbLEFJBhHr6pUvpRJ15gNT7r/5Xt3yzNjqXtfzyOWIwiUC9bOE=
+	t=1768406568; cv=none; b=qwBhGO4AXz5s2xqMN3NFHJ3oruESu3WnYeqA4v5BotOxBSPA3bKy9ksfH2A1ChyYTE2VaEZpNYU8TyHOM9G2owRpr+UJgnqiIVyAeqb8nD0h3CNeHxX56CGYBninKStoiY0XLc/YRtU40RDriziIH5JHgj08R8kq9KJahkPOxeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768406534; c=relaxed/simple;
-	bh=FK5r/eruOjqTcJeKWxc+VkGWRoHylO78FiANFJ2/F5k=;
+	s=arc-20240116; t=1768406568; c=relaxed/simple;
+	bh=wV599lCJWD0emKelFhGhRgh0UvESyeT0Bez9AhUAqT8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ctnHHpJp0+MwirCjbSCpnfajJPVZP5ESUm22fIgq4qfbP+m1z8j0IxO7doGFEdn47aFfP4T05bBUfSB23/wQF0yPwFdOokQ/4/x6zzH0dOOWtlVcrVskFcSubsj3dGPEKG4yzMKTzzNmGlgzVeHsCL408xnrXWs+6W2m1EVDIqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kvz6IhCI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82910C4CEF7;
-	Wed, 14 Jan 2026 16:02:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tGwHdtzOWVN0hOYMDs+j5qQchkBEuiNV6y+Og+dk2LJmCIv5rsGgq8Uxar0gcPPPonuVcMNe3tk5Sqwt4nkvqTf6qwA8aWwAK48luWr/tQn0NgKew2U09p5Pb12YYGX7TGdi6+lVt8JtrLY8JlsZh+UlMvyKA1A9fvq+rt/Uyi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=amjRuC+h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E19C6C4CEF7;
+	Wed, 14 Jan 2026 16:02:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768406534;
-	bh=FK5r/eruOjqTcJeKWxc+VkGWRoHylO78FiANFJ2/F5k=;
+	s=k20201202; t=1768406568;
+	bh=wV599lCJWD0emKelFhGhRgh0UvESyeT0Bez9AhUAqT8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kvz6IhCI/iKQ3aCzByh5yu4QJqn51REAWz93ozl52tF0groNrJ06igRODbT5OcCZM
-	 S7M2sVx0GGwalTEAPv3f/DPA2tYT11i3xttdW02U2VVkuMhWJY6i5uW7/Jlzsb95AS
-	 hXwS1nQKqhV4rC4vmtNCWGwWJJ8CWh1m/a0XXeU+XwH6wRXnn/q0e0xvu6LjDmWl1Z
-	 DtHcIncf8zcAjNjQHFZshD2NM5akoR4+kz3Zx7c17DNag3B7R5O2VgCpBvBSUD7sBs
-	 l0rtFwe5ojkJblG20x8Y6AWB6jnRl73qb8/UDn9cY7KhbIlN6weIXH0CuKZ9L5Xjw6
-	 o2N+1EnjEeq+Q==
-Date: Wed, 14 Jan 2026 16:02:07 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Will McVicker <willmcvicker@google.com>,
-	Juan Yescas <jyescas@google.com>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
- drivers
-Message-ID: <b9df01e9-c4ba-4e2c-b458-bc93663ab78e@sirena.org.uk>
-References: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
- <20260113112244.GE1902656@google.com>
- <6ace23c4-d858-4bdf-9987-104e706190cd@sirena.org.uk>
- <20260114155011.GC2842980@google.com>
+	b=amjRuC+hzMMz1fjJtD3vxq0/PyncJeQaxN6oumutA9TDFFzsHXZiPRWkTyDaPx1L7
+	 x60fNiIqCaukd3UJ2ypQbfqJmIvgHEqRNqnBHMdkPr1YSVvLeGRg3APG/LwMvndL7k
+	 ajBfiwH18gdzIkwdV2RqFe49OsVAYEISChpUA29BDELP70bUZ0Kqpc9kOf7yme2h58
+	 RGLuF90Nq/sIT8nwEiSL/e/WXx8gBr1peOR5gJgsam7O+jrFSF9XT+YwX7X89a5Nyn
+	 z7518tgIzLcTQFJZJ2Hm0snF6IKFw9DQ7B6c14aydH10VFVetbjdyqXCflkaBeLZqv
+	 xb+U05Wn3YWlQ==
+Date: Wed, 14 Jan 2026 21:32:30 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: manivannan.sadhasivam@oss.qualcomm.com, Rob Herring <robh@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Bartosz Golaszewski <brgl@kernel.org>, 
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	linux-acpi@vger.kernel.org, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v4 3/9] serdev: Do not return -ENODEV from
+ of_serdev_register_devices() if external connector is used
+Message-ID: <zvwvsflb6aejqwhwbacux3v46fwlfo7m54n5apvrxdqklnq6va@qxsxhk45gopi>
+References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
+ <20260112-pci-m2-e-v4-3-eff84d2c6d26@oss.qualcomm.com>
+ <aWVKTnatLTGwmNVh@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sP0C4lxuJbobslsN"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260114155011.GC2842980@google.com>
-X-Cookie: Absence makes the heart grow frantic.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aWVKTnatLTGwmNVh@smile.fi.intel.com>
 
+On Mon, Jan 12, 2026 at 09:23:58PM +0200, Andy Shevchenko wrote:
+> On Mon, Jan 12, 2026 at 09:56:02PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> 
+> > If an external connector like M.2 is connected to the serdev controller
+> > in DT, then the serdev devices may be created dynamically by the connector
+> > driver. So do not return -ENODEV from of_serdev_register_devices() if the
+> > static nodes are not found and the graph node is used.
+> 
+> ...
+> 
+> > +	if (!found && !of_graph_is_present(ctrl->dev.of_node))
+> 
+> dev_of_node()
+> 
 
---sP0C4lxuJbobslsN
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Ack.
 
-On Wed, Jan 14, 2026 at 03:50:11PM +0000, Lee Jones wrote:
-> On Tue, 13 Jan 2026, Mark Brown wrote:
+- Mani
 
-> > Given that the bulk of the series is regulator changes I'd been
-> > expecting to take it?
-
-> I have no issues with that, providing you offer a succinct immutable
-> branch containing just this set for me to pull from.
-
-> Failing that, I have the machinery in place to offer you the same.
-
-Yeah, given what Andr=E9 said about dependencies if you could apply the
-MFD commits and send a PR that'd be great.
-
---sP0C4lxuJbobslsN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlnvf4ACgkQJNaLcl1U
-h9Cp1gf+OZ6fMIplgRtBgwqPYPb5uS6hZEcun26WBH76uuVBF7Cr+M7qHAuKj0I9
-YKrrf/wm3fEA51yXKdniN6DnwYFx7yockoUuIMOK+ounuw1gJ3L0FZyXe2EpiiFy
-4symRoAStI8qV49Ex9UOc0E7LRRQTr85fmAJ0FmWNG5xE7QR2mv4vxzPQcWFeeCW
-fOw9Iya57+RAt85lSj5tUdU9oV9ENBBz6daMm8yykGFOKRas4ahqRJ/uF0PheSfH
-JdzhtPnHVmsPh1Axb49xvRb61ZHRFef5o6qFl2wfp8odiurZ0Hng32TFNLzGIi0i
-Y2sFv6GmSGj4KqGX2PHPRffLa1jGuw==
-=sBc4
------END PGP SIGNATURE-----
-
---sP0C4lxuJbobslsN--
+-- 
+மணிவண்ணன் சதாசிவம்
 
