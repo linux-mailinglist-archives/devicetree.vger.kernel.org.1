@@ -1,126 +1,102 @@
-Return-Path: <devicetree+bounces-254791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACDFBD1C310
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 04:04:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B0B5D1C397
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 04:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CAED23047117
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 03:04:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 421B23026C0A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 03:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8150325701;
-	Wed, 14 Jan 2026 03:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964BE2D3A93;
+	Wed, 14 Jan 2026 03:16:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NWD5rE6+"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="UDwBVrXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m32101.qiye.163.com (mail-m32101.qiye.163.com [220.197.32.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94464324B3B;
-	Wed, 14 Jan 2026 03:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A98257423
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 03:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768359849; cv=none; b=HzZrgOYu6hoI3OZavYs8iKvzpKC1NaMWXaqOgdgqpwIeR6aZ3OIvn7MrS+U43RkZ18dJ8z01YPYRECbu1op+0UIXIS4b4tX7GyULH67FquM8Pty3jlebvNZQYn2lK4x/Gq06oLgdJiJYJ21X8+mozqUVWyfNOfZ8ka+qd0T7A/Y=
+	t=1768360615; cv=none; b=axqOvXViC2Oi+OJRbl+XAutTNVUgWV4vYwA8ygEGhHpB9b6tPUQZsPLEmZNCR/YVSlLn1UmLK6jLgpANNLjew3+evw0x2AVnFLXrbR23HD8DZCIUbXKtlG1h3OS2/7vcE32Fgoce+o159EkGSsmlysylRnWRr7psB8YpoBdPnXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768359849; c=relaxed/simple;
-	bh=jJVWTKrbZnnrbSSyMrERZV7TPbUDbyAnpakRYlfbiWE=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=eTfjIm622Kw1Wle3O9IGCNpjBNKLVJIyLGrWLofuO0Grx2xO0zEeFFftPS4hwoHBEPsZ0CmEKIGqCM9lh5wfdF4ODcbzG6wa4YHKjrkkaPrNQAVhT0lBF7s/n4pp6DWNRYVVX6sm/PMqFQR5w+7HbNv81xncMtFP1/HH5OUbXjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NWD5rE6+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A330C19423;
-	Wed, 14 Jan 2026 03:04:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768359849;
-	bh=jJVWTKrbZnnrbSSyMrERZV7TPbUDbyAnpakRYlfbiWE=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=NWD5rE6+pXNTWgwxgdJh+3zWszpwjjMyTMfd6sG/wGgRdujF8GeSf5UXNMsTgpvYt
-	 6WSrJOuOn+CTYXmfUd30Gmg/v+iQtOJmyX8WIiRnwp+7RnMng2qENI321/tAQqfmAc
-	 rKoyogVmV83ymAyX0x5hpHNQtaPw7O1CNKsSpR1QHgVCjZTBSTUux6sC4xB7YSUQUT
-	 fWwcJNVt2a6wHwqYr+nKeaqeooq9/0KBYVcgWl0gYkklRvxFEEYZcGclIChI2sRGsG
-	 jZ1AutkgWo9HFWL04xFyHRtOF0Qw4W3hEJPNhecunfECJUmmV/+LQ577tXSf/G/W9D
-	 ISJJpL1YLMpeQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id B649F3808200;
-	Wed, 14 Jan 2026 03:00:43 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1768360615; c=relaxed/simple;
+	bh=G48swz4CGDD7j4SmaPJWAPjzyZu+jvl4eVvNd5e8KDE=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=c5PibhrbXQuN3Ku/G24u3nBnbCDcvdEvMoXB4xzReNDxAYxwYPnbjSDaEMUZN2+FIqbaEW7yWMn0dRbWBBqJ8l9FnmL1alsulkoQm0K0yMxW4ep2lk58x1sL86L34YnT6AxHLrhxItVwdhDXHhzJ0buAfsrp+oRxIauNp6d2gBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=UDwBVrXC; arc=none smtp.client-ip=220.197.32.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 308cc1bf2;
+	Wed, 14 Jan 2026 10:01:09 +0800 (GMT+08:00)
+Message-ID: <05979948-1bc2-4bc0-ad2f-b0c3cd1c367f@rock-chips.com>
+Date: Wed, 14 Jan 2026 10:01:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, Heiko Stuebner <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ FUKAUMI Naoki <naoki@radxa.com>, John Clark <inindev@gmail.com>,
+ Tianling Shen <cnsztl@gmail.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Subject: Re: [PATCH v2 0/3] Fix sd card support for RK3576
+To: Marco Schirrmeister <mschirrmeister@gmail.com>
+References: <1768267105-127385-1-git-send-email-shawn.lin@rock-chips.com>
+ <CAGJh8eAXC+CAMfjxOP8LUwR-xcQGgbwyxFkNLgAujFiP6c2hOg@mail.gmail.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <CAGJh8eAXC+CAMfjxOP8LUwR-xcQGgbwyxFkNLgAujFiP6c2hOg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v22 00/14]  net: phy: Introduce PHY ports
- representation
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <176835964227.2565069.4308063830365885517.git-patchwork-notify@kernel.org>
-Date: Wed, 14 Jan 2026 03:00:42 +0000
-References: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
-In-Reply-To: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com, andrew@lunn.ch,
- kuba@kernel.org, edumazet@google.com, pabeni@redhat.com,
- linux@armlinux.org.uk, linux-arm-kernel@lists.infradead.org,
- christophe.leroy@csgroup.eu, herve.codina@bootlin.com, f.fainelli@gmail.com,
- hkallweit1@gmail.com, vladimir.oltean@nxp.com, kory.maincent@bootlin.com,
- kabel@kernel.org, o.rempel@pengutronix.de, nicveronese@gmail.com,
- horms@kernel.org, mwojtas@chromium.org, atenart@kernel.org,
- devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, romain.gantois@bootlin.com, daniel@makrotopia.org,
- dimitri.fedrau@liebherr.com, tariqt@nvidia.com
+X-HM-Tid: 0a9bba3c3f7a09cckunm945f63b942b5c2
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkxCSVZKHUhDSB0eTkkfHk1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=UDwBVrXCaVtqIYVs6qzI0xGX+D3JfSbP920C/M75WdA7On08Lv2/H2J4GegQvhiSKNmjlIijqL0GPWOKX0lw46JGodAMW7WkNoqfWkyHAsMPAjLmnpQhftX2gFLbLS/DWwwmoUHeGA1coHqNr07vuOIbJF6NOTShbQMN616owZc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=vbBSKZDRjU8UtCXxv4OwpYCJNOYxh2lr4Kodtylvbj0=;
+	h=date:mime-version:subject:message-id:from;
 
-Hello:
-
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Thu,  8 Jan 2026 09:00:25 +0100 you wrote:
-> Hi everyone,
+在 2026/01/14 星期三 4:35, Marco Schirrmeister 写道:
+> Hi Shawn,
 > 
-> This is v22 of the phy_port work. Main items from this versions are :
+> On Tue, Jan 13, 2026 at 2:19 AM Shawn Lin <shawn.lin@rock-chips.com> wrote:
+>>
+>> This series fixes this mess but only adds slot-gpio support for RK3576-EVB1.
+>> Other boards are also missing slot-gpio support, but folks are all cced for
+>> checking the boards they are using.
+>>
+>> Please review and test
 > 
->  - Rebase on net-next :)
->  - Removed a "contains" keyword in the binding
->  - Added a comment for phy_port SFP implementation
+> I tested this series on the FriendlyElec NanoPi R76S.
+> With the addition of 'cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;'
+> in the board DTS, the µSD hot-plug now works correctly.
 > 
-> [...]
 
-Here is the summary with links:
-  - [net-next,v22,01/14] dt-bindings: net: Introduce the ethernet-connector description
-    https://git.kernel.org/netdev/net-next/c/fb7a8d0786e4
-  - [net-next,v22,02/14] net: ethtool: Introduce ETHTOOL_LINK_MEDIUM_* values
-    https://git.kernel.org/netdev/net-next/c/3f25ff740950
-  - [net-next,v22,03/14] net: phy: Introduce PHY ports representation
-    https://git.kernel.org/netdev/net-next/c/589e934d2735
-  - [net-next,v22,04/14] net: phy: dp83822: Add support for phy_port representation
-    https://git.kernel.org/netdev/net-next/c/333c29a27f96
-  - [net-next,v22,05/14] dt-bindings: net: dp83822: Deprecate ti,fiber-mode
-    https://git.kernel.org/netdev/net-next/c/ffb8587363a3
-  - [net-next,v22,06/14] net: phy: Create a phy_port for PHY-driven SFPs
-    https://git.kernel.org/netdev/net-next/c/07f3ca9e092c
-  - [net-next,v22,07/14] net: phy: Introduce generic SFP handling for PHY drivers
-    https://git.kernel.org/netdev/net-next/c/d7c6082f7e77
-  - [net-next,v22,08/14] net: phy: marvell-88x2222: Support SFP through phy_port interface
-    https://git.kernel.org/netdev/net-next/c/ea317f077a38
-  - [net-next,v22,09/14] net: phy: marvell: Support SFP through phy_port interface
-    https://git.kernel.org/netdev/net-next/c/1384e1383829
-  - [net-next,v22,10/14] net: phy: marvell10g: Support SFP through phy_port
-    https://git.kernel.org/netdev/net-next/c/35d1a5464b47
-  - [net-next,v22,11/14] net: phy: at803x: Support SFP through phy_port interface
-    https://git.kernel.org/netdev/net-next/c/4e26a284b9be
-  - [net-next,v22,12/14] net: phy: qca807x: Support SFP through phy_port interface
-    https://git.kernel.org/netdev/net-next/c/154bc3b66c31
-  - [net-next,v22,13/14] net: phy: Only rely on phy_port for PHY-driven SFP
-    https://git.kernel.org/netdev/net-next/c/bad869b5e41a
-  - [net-next,v22,14/14] Documentation: networking: Document the phy_port infrastructure
-    https://git.kernel.org/netdev/net-next/c/62518b5b3d8e
+Thanks for testing.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> However, even with this fix, the NanoPi R76S still suffers from the
+> constant 400kHz retuning loop when runtime PM is enabled. I will send
+> a v2 of my driver quirk to address this board-specific instability.
+> 
 
+When talking about board-specific instability of SD support, the
+intuitive reaction is bus more or frequency related. I never came
+across this kind of problem which caused by runtime PM support. That
+being said, there is potential unveiled problems for your boards.
+I will comment your v2 to see if we could sort them out.
+
+> Link to v1: https://lore.kernel.org/all/20260110010715.1610159-1-mschirrmeister@gmail.com/T/#t
+> 
+> Tested-by: Marco Schirrmeister <mschirrmeister@gmail.com>
+> 
 
 
