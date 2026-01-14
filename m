@@ -1,376 +1,210 @@
-Return-Path: <devicetree+bounces-255192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0CF9D20B80
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 19:02:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F34D20E75
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 19:51:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 43F02307AFA1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:01:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 415BD3002972
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76AF32C928;
-	Wed, 14 Jan 2026 18:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7E8337101;
+	Wed, 14 Jan 2026 18:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="waolrKMs"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b="2ZxTgRxK";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=valla.it header.i=@valla.it header.b="UgMg9dg9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azhn15010010.outbound.protection.outlook.com [52.102.149.10])
+Received: from delivery.antispam.mailspamprotection.com (delivery.antispam.mailspamprotection.com [185.56.87.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80B12367B8;
-	Wed, 14 Jan 2026 18:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.149.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB522FD1CA;
+	Wed, 14 Jan 2026 18:51:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.56.87.1
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768413714; cv=fail; b=tbLfS3qceAeT7ygO7JAE5NSBYNez0ruGc+oR2EoqQtXuTPLmAfAUhqWDo+0DN2QQC3WKhg8rPVQp0Dlyy9y0fT8MVuLURlejjMXu3c4L6/p3G3dl6iDVpX9HPHvY9MAEYs1Kx6opSsypBsXkZYyavA4bYcqVvPiYaE1OW3W7AMk=
+	t=1768416695; cv=pass; b=TXtdcDk5ee1tFoTrx/NQF4rS2JCyHWUlcDRJSe+CHCJ3kVft93cJO6o4fTn4qWRfp0sDEnDxGy5PPiOMvPCNXHGN9/XoGhdA4ZmbWApvvIuEqqjCGTNSZ3GnYrDXgTBufEro2ZfVYgFPmDoxh1lgQBomdmMhaOqsTKFSY+UKbYw=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768413714; c=relaxed/simple;
-	bh=QHmu7xJKIzHRMvQQuqhcWkyVcddbz9vxjGR2M/f0WBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=N6xbpSJw9FyobneHFzDeP0zE32Y/23WIN7BUbtdn82nU5Kb64MJ2Xz3QPqvjCXTKtzFpsk672B82dLvWaCzUi1tYYqbt7Yr7ATp6f7/YJzmMmbxNCxnk9WEs9HfcjwkxNDW0zWbxvnL3PparxvaHgwtK6JeYjZbuDBBH/j5QORI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=waolrKMs; arc=fail smtp.client-ip=52.102.149.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rgPYrwVBd+sAxcZzDUtXRJMr7xRe45tNMkDj0ycU9lzOgLdU6hqPXzUYuaJCsV4Zu2v26rJeSX/GAg0HSUbS9zbwn3UujP0ozrfgCln9JN/q4K5vdvr7Yb+6EASlbDwMcnI/OHXXRczIXZ1V6mkK/jcqj5TjLxkaLofcytQiR8pVRhYmHr1dsD8LxNIYvCtUezBZX0DIn94Ujz9g+t1brUpTy5KVK4/tfwJI/dT6sdOe6ncl5C2nhwfNq7WlEpKbJq4XvO8QISoCawywELvkciJ2DPNJPLqC79kkBG5EiS8Ug0yLRMnfwl0eo+y7WUxiAAzYugwh8NPHm7cC8/YVyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V/yuBBaDAznftGhhFsXmsET3hkGuuS/ENIedWO8VvpY=;
- b=J8cshxXT/PXFHtWk9CUZixSAi2NwJ2Un9tMhfjyDFnk/GJoPMrYzjv+tj645n8OlXY0f6yUERu6JX1u7ewFZMR6hwA9QgKw/3ZPoooqWsLeDZ8Gs0EnQLFcfYQph48tgwHkNR51Ls34C5kBCtpwgQauSycl9EQ5abBJVD+OkRwYyAZ+TIanXG9NADmkSWG//SYeHKjaL8zkGkNoG/IrYfdSjjKzStATta9ZT38DZYR6lR98x6fj+aL4WHwP1BtIAC+wzea7dV3HTxV3aHuUpuegObEw7EHvJMFulnIwzEZRDAwLn4NscnJFeU3+MiSLEVoTgUouDC3hqP+6plTqv8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.linaro.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V/yuBBaDAznftGhhFsXmsET3hkGuuS/ENIedWO8VvpY=;
- b=waolrKMsxJF5mP5CAwCNmDGFpDeZceMFhrfqfmXObXNlKxzfJhmJOHEuKA+aWjczXs3VT6Vo3MmNFdoArjvvB0yE34Nlzy2ViA3pUJFbrPPIQpYlk2+95wY8+t+Nw6b86xEXgwXEzw7NwF2rzZ5OgDHEEdqGAZ4vVZjvxLYHFQg=
-Received: from BYAPR11CA0051.namprd11.prod.outlook.com (2603:10b6:a03:80::28)
- by IA3PR10MB8323.namprd10.prod.outlook.com (2603:10b6:208:583::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Wed, 14 Jan
- 2026 18:01:43 +0000
-Received: from CO1PEPF000066E7.namprd05.prod.outlook.com
- (2603:10b6:a03:80:cafe::e4) by BYAPR11CA0051.outlook.office365.com
- (2603:10b6:a03:80::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.4 via Frontend Transport; Wed,
- 14 Jan 2026 18:01:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CO1PEPF000066E7.mail.protection.outlook.com (10.167.249.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Wed, 14 Jan 2026 18:01:42 +0000
-Received: from DLEE211.ent.ti.com (157.170.170.113) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
- 2026 12:01:42 -0600
-Received: from DLEE206.ent.ti.com (157.170.170.90) by DLEE211.ent.ti.com
- (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
- 2026 12:01:34 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE206.ent.ti.com
- (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 14 Jan 2026 12:01:34 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60EI1XDc196359;
-	Wed, 14 Jan 2026 12:01:34 -0600
-Message-ID: <7628b04f-df46-47cc-a33d-c40650b256e7@ti.com>
-Date: Wed, 14 Jan 2026 12:01:33 -0600
+	s=arc-20240116; t=1768416695; c=relaxed/simple;
+	bh=ItaR7NR4AgDe3rSPiWtFPKFq1neRYIZXFOOcVjXrw/I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jYfGP45EwhcqBr7tI3cSepU5AqE2inZWrLYmUOmy7I4dqMdU8mQWuRuUgUQSTHfPP5UwP0k90uN3ddKKHtWOU1gxfXwCEkH1i4RqfkZPDLmCp3gCNZVd9lhG6DvIFYOB3wh5hbdi47uA+lAZGofkk6iaLXuUSy0MwWxGCF09Mhw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it; spf=pass smtp.mailfrom=valla.it; dkim=pass (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b=2ZxTgRxK; dkim=pass (1024-bit key) header.d=valla.it header.i=@valla.it header.b=UgMg9dg9; arc=pass smtp.client-ip=185.56.87.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=valla.it
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-n57h.prod.antispam.mailspamprotection.com; s=arckey; t=1768416693;
+	 b=JpLl7J2rkmoW9/im3Ylj1QXDlCA/Xb3Xj+JDzGlNfpMz6fkEkx6vafbn6l7MSQAlIWpdOwVTqs
+	  YbTKgS3WwVKNXSjC8lHYHaPgFN3uvXVzLbWcn7FDMcxyhVwDSHB4u1Bw7GdyCITVakSOWXdT+7
+	  oEmkTpRwcLS+WzwOzz+MoJawGliS/k0ty4zSlSBAKB+cObVn/gbbF0j2QQ5Shz1+K3wq5+lSeJ
+	  11Xy0WHxL5NtCxAPckQIVKwVqIUnPzALQA4pNlalaOd+ohJH02bn3KpZs9566Zz6uP9OkeZXcg
+	  LfJayo8HELJ8rftyRqotA6ftMwKHvaOQiffa1wUuopVQhw==;
+ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-n57h.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-n57h.prod.antispam.mailspamprotection.com; s=arckey; t=1768416693;
+	bh=ItaR7NR4AgDe3rSPiWtFPKFq1neRYIZXFOOcVjXrw/I=;
+	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:
+	  From:Date:DKIM-Signature:DKIM-Signature;
+	b=ZqL5jhvQzTAHWHmG3Vdy18JCT3harvOGx/lnqI0pfuq2Ikf3f/0lqnXxQ9QWngWSJJXxiEZ1Iq
+	  cgWVSvXSn0RDiYiW9d2iLaSbkfZDUxaJYEGKCEfbV+qBLYK/qpS8TVbBbXlsqCyurLNzRlvYSV
+	  BD0r6NfGapaMPc9JegAqVkBm74iA3kqy3nwZQVPGVNlPkcc+Ag9jPtanp3FXcLZ8onjb45TjeX
+	  930f18gs5YbiL4NlgpTCxOBxSUDkTXjEW8hSKkoaFRrwKG3svLUUL7/yzRYy4vDtm/Oprb0fma
+	  Rh+UabOvMuOn2xStydSSZK6UEWxYhtzzcfWjyC7NOOjZEg==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
+	:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	List-Unsubscribe:Content-Transfer-Encoding;
+	bh=KeYcgQYeu8I7ysABYtWCJh1Wk1DZPlWME5u9+VeXyUM=; b=2ZxTgRxK6myaTAm0o0DQMHVSYv
+	cWPZpJH2w7rEK0hNdE2NERMiw6zU3q+EgrNj91ywGOO0ZEOiqFScw2hzaCTsRXzEPn4rCzu5RFMe0
+	57ZKwXdNbFYD3jcyY8V3ovezZtr4jRw2WOnU7v7A/Op1ywkyU40qtPFd1yM4KLSFuNEE=;
+Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
+	by instance-europe-west4-n57h.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <francesco@valla.it>)
+	id 1vg5LF-00000008CB1-3lKd;
+	Wed, 14 Jan 2026 18:11:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
+	s=default; h=Subject:Cc:To:From:Date:list-help:list-unsubscribe:
+	list-subscribe:list-post:list-owner:list-archive;
+	bh=KeYcgQYeu8I7ysABYtWCJh1Wk1DZPlWME5u9+VeXyUM=; b=UgMg9dg9phAh2zXYHLfgObTenB
+	9K3Od55ULWamIYLZvLG/GlMOvjfW7tPVBLE+oDOKPwWq0bdJsE9Tk6j/HmDPCFa4R8ZeFX6rVze8J
+	wJJx/nHWqLg3Wwg+QxXVuoZkyvIgorowCRfQCu52BD8vKm7dO5GRJSZnEKngEDvP6zUg=;
+Received: from [95.248.141.113] (port=62575 helo=bywater)
+	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.1)
+	(envelope-from <francesco@valla.it>)
+	id 1vg5Kz-00000000GgK-1k1W;
+	Wed, 14 Jan 2026 18:11:21 +0000
+Date: Wed, 14 Jan 2026 19:11:19 +0100
+From: Francesco Valla <francesco@valla.it>
+To: Daniel Baluta <daniel.baluta@nxp.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Tom Zheng <haidong.zheng@nxp.com>
+Subject: Re: [PATCH v3] arm64: dts: imx93-11x11-frdm: Add MQS audio support
+Message-ID: <aWfcRxYBME4H0BQH@bywater>
+References: <20260113075002.561453-1-daniel.baluta@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] accel/thames: Add driver for the C7x DSPs in TI
- SoCs
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Nishanth Menon <nm@ti.com>,
-	"Randolph Sapp" <rs@ti.com>, Jonathan Humphreys <j-humphreys@ti.com>, Andrei
- Aldea <a-aldea@ti.com>, Chirag Shilwant <c-shilwant@ti.com>, Vignesh
- Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet
-	<corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
-	=?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Robert Nelson
-	<robertcnelson@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-	<linux-doc@vger.kernel.org>, <linux-media@vger.kernel.org>,
-	<linaro-mm-sig@lists.linaro.org>
-References: <20260114-thames-v2-0-e94a6636e050@tomeuvizoso.net>
- <20260114-thames-v2-2-e94a6636e050@tomeuvizoso.net>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20260114-thames-v2-2-e94a6636e050@tomeuvizoso.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066E7:EE_|IA3PR10MB8323:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7093ad7f-5d98-4c27-6dd9-08de5396f971
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|7416014|36860700013|34020700016|1800799024|376014|921020|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Sm81cXhEYUFvV0V0T3BCSFgwMG5GalYvdFA5TVdRM2JzM2EycVBBclI5cHB6?=
- =?utf-8?B?MXpFWWQ0azRWcThUYXlwUXdvYnBEZDFFZTJ4UExBaWNRcTVHbHkyQlk4YjlM?=
- =?utf-8?B?YlFSYW0vbHh2NmRxREVXMmVhdmdESGlHOXNqNXYxdUFucGswSGFLOHl4QjVM?=
- =?utf-8?B?TVF2SnpPNktyTE9hT3piUFRYdDZRUG1BUGFyYlpDRkh5bC9sZi91cC9YaGpM?=
- =?utf-8?B?WGQzQmVPTmVJVkZCTU5SVG9wMFpHM1YwWDU5bDBWTzNaN0hBckRyRnRJeXlB?=
- =?utf-8?B?K1hud2FjWlFrUzgxRDQrUVUyakFOa1JXQkk4ZTg3aDI1eFFQT2dKZ3VIblpO?=
- =?utf-8?B?VHRSTkFORThuRGJBS21wYWRJdnBURktnZVkyUWJNL09WVWhieVB1MzgvOG44?=
- =?utf-8?B?MVhSaml3YUFaUVYwUTlBSm5lZU5GM1hTSUgrWmFxM0FrQ05KVDBHbEh0eG1t?=
- =?utf-8?B?Zk5WRDlnelRQZzZ4K01ieGFwN2crZHlwVjhYQmFvVEhmOGN1dUI5b0krUTF5?=
- =?utf-8?B?QUN3U3pXNUpLZGVGSUF6am9wRUNHdlpyTVdMcjdQbC9tMWdLL2RGd3VWbytl?=
- =?utf-8?B?R1FnZisxZFRMNFVZYUZJdkttczdDZXdUeERFQ1dPbkllZ0xoNDlDMWZJOFBC?=
- =?utf-8?B?MTdDNUNKajZzcjlUUmJ4RTNIeDV4NEFMMXA4Y1RiRnVjMlNhOVo5M1ZYZkpn?=
- =?utf-8?B?M1VmYTdpREtkVHgyMzhGaHcvcjJOSWtLcGMvSUtBUnBaV21RL3RkV3ptbk9I?=
- =?utf-8?B?KzBPMk1PTWg0YmhYUC80bk9GYTJ1SFQ0TnV6OEgvaE1YeWluTlhtNHIwQUZu?=
- =?utf-8?B?dklsY0luV3N1dFByalJMVnF1VXhsVGxEWWo0YjE3eHFrRnpoMzNwVUd0VVgv?=
- =?utf-8?B?NE9hTUpmem1qVDBpQ1pQZGo3QnhJSWFqZGZZRWk3WTk3SFNxM2FIZUM2SGVt?=
- =?utf-8?B?M3hTN29pQ3o3SDN0T2hkamExL25QbUsvYXJnOGwvNXlxSEdJeWxCUkFDWWx2?=
- =?utf-8?B?OFJmelZMQWtiQTdJQlZ5di9BWFNSNmV4VkpuVjlDNjRlQTZyM2xQYVg5dm1Q?=
- =?utf-8?B?YVV0ZFFqN1U2bDBLaktpcVJrL0kwQ21TMWt6UmxLSGtObm9mWTRoUDN6T1h1?=
- =?utf-8?B?b1hOaUx0aVkzM2FJaGJpVDM5SHRhV1lGczhTTzd6alR3WDBBcDRCTkwzRkFB?=
- =?utf-8?B?R3NSdGk0eHh5eFdpMmFpSmMvTk9DOURBRkxyVkt1c0VvR3RKZzZLSGttblBi?=
- =?utf-8?B?ZEtTYm80cm5uNFdMV3B4SXNrVjRvNlU3bVMrcFFkN2wrQWxKTDFkUnk5UnVq?=
- =?utf-8?B?cld5Wkh1WitSK25lb2FtL204SEVqMFNOTVJWeTB2T3Z3STZNRjN6dnoxRkpY?=
- =?utf-8?B?Rzc2bzkxbWFCRW1QS1dqZUxubllYSC9abzViekJBVGR5K2F6aTRjcTkrNkpX?=
- =?utf-8?B?NzNtNFBjZW0vWVdPeGxXYldFRUdTSWYwMTA4M3dxb1RxT3dnN1VBYUhKaGVw?=
- =?utf-8?B?d3h5WFJsc0luckxuU3F3cTRlc3ZzMnRFd0wxVlFkaEh5djBYa1dvczhodEsr?=
- =?utf-8?B?cVBhSUo2QVVmZ2hkbGtFN1VoaTVUUm4yVTAxbU1PVEUzWnpJSmZGQzNiaGlD?=
- =?utf-8?B?Y3BsSGdzOXU3c0pURUxhaGZ4dU9LOGZmaGlYRVo3Y0ptd1NTaFF5S3pia25R?=
- =?utf-8?B?aVAwUk5EN1pRVDl3YmUweDJBVTUweU04d0xsQ1E1YzcwL0FjUzdlSEtIek5E?=
- =?utf-8?B?d0dvTHIwak5ETlYxam5acXg0aXNidFV6K3FLOHZUYVdxMWk2TnVrSjB2MHpZ?=
- =?utf-8?B?L25RSHNwd2ZoV1FJcURtWHdHUW1sV251RHBzWFdwMjFLMGxQQkdtMy91eHZU?=
- =?utf-8?B?YS9hdDdqZUc4SEhZMStIWGFqM3FrSmRZaXBnS0pSbjk2Vit4YkJaT1czWVE3?=
- =?utf-8?B?cEw2SlBWbzViV2RXOXZocC8yeVZDaXllVFZFbjFJV2FodHMyVmhlYzdraWZQ?=
- =?utf-8?B?U0ZUbjRScFJjMUtnQXZic0hrL3ZiVlVIZFlQZkR0Z3E5K0FnUUVsc0Zqb2FO?=
- =?utf-8?B?NXVwZGZJdWczMWcwZEFsSUFsRG5MOS8xM1pYeHlscUJZd0lmVHhyNkNpYnc2?=
- =?utf-8?B?L0xTc3g1YlM5T0pXUi8xRGdyZnR3QmNVdWdaUW94VlBjRTFKTk9UTVVySnEr?=
- =?utf-8?Q?E5fVoL49n8Td/uiAHMicOck=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(36860700013)(34020700016)(1800799024)(376014)(921020)(12100799066);DIR:OUT;SFP:1501;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 18:01:42.7078
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7093ad7f-5d98-4c27-6dd9-08de5396f971
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000066E7.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8323
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260113075002.561453-1-daniel.baluta@nxp.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - esm19.siteground.biz
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - valla.it
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-SGantispam-id: c1b107ada6d20e7924658df0b31e340a
+AntiSpam-DLS: false
+AntiSpam-DLSP: 
+AntiSpam-DLSRS: 
+AntiSpam-TS: 1.0
+CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
+CFBL-Feedback-ID: 1vg5LF-00000008CB1-3lKd-feedback@antispam.mailspamprotection.com
+Authentication-Results: outgoing.instance-europe-west4-n57h.prod.antispam.mailspamprotection.com;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
 
-On 1/14/26 2:46 AM, Tomeu Vizoso wrote:
-> Some SoCs from Texas Instruments contain DSPs that can be used for
-> general compute tasks.
+On Tue, Jan 13, 2026 at 09:50:02AM +0200, Daniel Baluta wrote:
+> Enable Medium Quality Sound (MQS) output on the i.MX93 FRDM 11x11 board
+> by adding sound card description and enabling sai1 and mqs1 dts nodes,
+> together with necessary clocks and pinmux.
 > 
-> This driver provides a drm/accel UABI to userspace for submitting jobs
-> to the DSP cores and managing the input, output and intermediate memory.
+> This supports audio playback via SAI1 DAI which is connected to the MQS1
+> block.
 > 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Co-developed-by: Tom Zheng <haidong.zheng@nxp.com>
+> Signed-off-by: Tom Zheng <haidong.zheng@nxp.com>
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
 > ---
->   Documentation/accel/thames/index.rst |  28 +++++
->   MAINTAINERS                          |   9 ++
->   drivers/accel/Kconfig                |   1 +
->   drivers/accel/Makefile               |   3 +-
->   drivers/accel/thames/Kconfig         |  26 +++++
->   drivers/accel/thames/Makefile        |   9 ++
->   drivers/accel/thames/thames_core.c   | 155 ++++++++++++++++++++++++++
->   drivers/accel/thames/thames_core.h   |  53 +++++++++
->   drivers/accel/thames/thames_device.c |  93 ++++++++++++++++
->   drivers/accel/thames/thames_device.h |  46 ++++++++
->   drivers/accel/thames/thames_drv.c    | 155 ++++++++++++++++++++++++++
->   drivers/accel/thames/thames_drv.h    |  21 ++++
->   drivers/accel/thames/thames_ipc.h    | 204 +++++++++++++++++++++++++++++++++++
->   drivers/accel/thames/thames_rpmsg.c  | 155 ++++++++++++++++++++++++++
->   drivers/accel/thames/thames_rpmsg.h  |  27 +++++
->   15 files changed, 984 insertions(+), 1 deletion(-)
+> Changes since v2:
+> * Remove  "fsl,imx6sx-sdb-mqs" compatible from sound-mqs as it doesn't
+>   make much sense to use it as per Fabio suggestion
+> * Link to v2: https://lore.kernel.org/imx/20260112135612.465325-1-daniel.baluta@nxp.com/
 > 
-> diff --git a/Documentation/accel/thames/index.rst b/Documentation/accel/thames/index.rst
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..ca8391031f226f7ef1dc210a356c86acbe126c6f
-> --- /dev/null
-> +++ b/Documentation/accel/thames/index.rst
-> @@ -0,0 +1,28 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
+>  .../boot/dts/freescale/imx93-11x11-frdm.dts   | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
+> index 066c5139842b..5bb6ae0d154a 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
+> @@ -81,6 +81,13 @@ vdevbuffer: vdevbuffer@a4020000 {
+>  			no-map;
+>  		};
+>  	};
 > +
-> +============================================================
-> + accel/thames Driver for the C7x DSPs from Texas Instruments
-> +============================================================
+> +	sound-mqs {
+> +		compatible = "fsl,imx-audio-mqs";
+> +		model = "mqs-audio";
+> +		audio-cpu = <&sai1>;
+> +		audio-codec = <&mqs1>;
+> +	};
+>  };
+>  
+>  &adc1 {
+> @@ -315,6 +322,27 @@ &lpuart1 { /* console */
+>  	status = "okay";
+>  };
+>  
+> +&mqs1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_mqs1>;
+> +	clocks = <&clk IMX93_CLK_MQS1_GATE>;
+> +	clock-names = "mclk";
+> +	status = "okay";
+> +};
 > +
-> +The accel/thames driver supports the C7x DSPs inside some Texas Instruments SoCs
-> +such as the J722S. These can be used as accelerators for various workloads,
-> +including machine learning inference.
+> +&sai1 {
+> +	#sound-dai-cells = <0>;
+> +	clocks = <&clk IMX93_CLK_SAI1_IPG>, <&clk IMX93_CLK_DUMMY>,
+> +		 <&clk IMX93_CLK_SAI1_GATE>, <&clk IMX93_CLK_DUMMY>,
+> +		 <&clk IMX93_CLK_DUMMY>, <&clk IMX93_CLK_AUDIO_PLL>;
+> +	clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k";
+> +	assigned-clocks = <&clk IMX93_CLK_SAI1>;
+> +	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
+> +	assigned-clock-rates = <24576000>;
+> +	fsl,sai-mclk-direction-output;
+> +	status = "okay";
+> +};
 > +
-> +This driver controls the power state of the hardware via :doc:`remoteproc </staging/remoteproc>`
-> +and communicates with the firmware running on the DSP via :doc:`rpmsg_virtio </staging/rpmsg_virtio>`.
-> +The kernel driver itself allocates buffers, manages contexts, and submits jobs
-> +to the DSP firmware. Buffers are mapped by the DSP itself using its MMU,
-> +providing memory isolation among different clients.
+>  &usbotg1 {
+>  	adp-disable;
+>  	disable-over-current;
+> @@ -479,6 +507,13 @@ MX93_PAD_GPIO_IO29__LPI2C3_SCL			0x40000b9e
+>  		>;
+>  	};
+>  
+> +	pinctrl_mqs1: mqs1grp {
+> +		fsl,pins = <
+> +			MX93_PAD_PDM_CLK__MQS1_LEFT		0x31e
+> +			MX93_PAD_PDM_BIT_STREAM0__MQS1_RIGHT	0x31e
+> +		>;
+> +	};
 > +
-> +The source code for the firmware running on the DSP is available at:
-> +https://gitlab.freedesktop.org/tomeu/thames_firmware/.
-> +
-> +Everything else is done in userspace, as a Gallium driver (also called thames)
-> +that is part of the Mesa3D project: https://docs.mesa3d.org/teflon.html
-> +
-> +If there is more than one core that advertises the same rpmsg_virtio service
-> +name, the driver will load balance jobs between them with drm-gpu-scheduler.
-> +
-> +Hardware currently supported:
-> +
-> +* J722S
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index dc731d37c8feeff25613c59fe9c929927dadaa7e..a3fc809c797269d0792dfe5202cc1b49f6ff57e9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7731,6 +7731,15 @@ F:	Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml
->   F:	drivers/accel/rocket/
->   F:	include/uapi/drm/rocket_accel.h
->   
-> +DRM ACCEL DRIVER FOR TI C7x DSPS
-> +M:	Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> +L:	dri-devel@lists.freedesktop.org
-> +S:	Supported
-> +T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-> +F:	Documentation/accel/thames/
-> +F:	drivers/accel/thames/
-> +F:	include/uapi/drm/thames_accel.h
-> +
->   DRM COMPUTE ACCELERATORS DRIVERS AND FRAMEWORK
->   M:	Oded Gabbay <ogabbay@kernel.org>
->   L:	dri-devel@lists.freedesktop.org
-> diff --git a/drivers/accel/Kconfig b/drivers/accel/Kconfig
-> index bdf48ccafcf21b2fd685ec963e39e256196e6e17..cb49c71cd4e4a4220624f7041a75ba950a1a2ee1 100644
-> --- a/drivers/accel/Kconfig
-> +++ b/drivers/accel/Kconfig
-> @@ -30,5 +30,6 @@ source "drivers/accel/habanalabs/Kconfig"
->   source "drivers/accel/ivpu/Kconfig"
->   source "drivers/accel/qaic/Kconfig"
->   source "drivers/accel/rocket/Kconfig"
-> +source "drivers/accel/thames/Kconfig"
->   
->   endif
-> diff --git a/drivers/accel/Makefile b/drivers/accel/Makefile
-> index 1d3a7251b950f39e2ae600a2fc07a3ef7e41831e..8472989cbe22746f1e7292d2401fa0f7424a6c15 100644
-> --- a/drivers/accel/Makefile
-> +++ b/drivers/accel/Makefile
-> @@ -5,4 +5,5 @@ obj-$(CONFIG_DRM_ACCEL_ARM_ETHOSU)	+= ethosu/
->   obj-$(CONFIG_DRM_ACCEL_HABANALABS)	+= habanalabs/
->   obj-$(CONFIG_DRM_ACCEL_IVPU)		+= ivpu/
->   obj-$(CONFIG_DRM_ACCEL_QAIC)		+= qaic/
-> -obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
-> \ No newline at end of file
-> +obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
-> +obj-$(CONFIG_DRM_ACCEL_THAMES)		+= thames/
-> \ No newline at end of file
-> diff --git a/drivers/accel/thames/Kconfig b/drivers/accel/thames/Kconfig
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..50e0b6ac2a16a942ba8463333991f5b0161b99ac
-> --- /dev/null
-> +++ b/drivers/accel/thames/Kconfig
-> @@ -0,0 +1,26 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +config DRM_ACCEL_THAMES
-> +	tristate "Thames (support for TI C7x DSP accelerators)"
-> +	depends on DRM_ACCEL
-> +	depends on TI_K3_R5_REMOTEPROC || COMPILE_TEST
+>  	pinctrl_pcal6524: pcal6524grp {
+>  		fsl,pins = <
+>  			MX93_PAD_CCM_CLKO2__GPIO3_IO27			0x31e
+> -- 
+> 2.45.2
+> 
+>
 
-COMPILE_TEST part shouldn't be needed here, TI_K3_R5_REMOTEPROC can be built
-under COMPILE_TEST so TI_K3_R5_REMOTEPROC would just be enabled to test.
+Tested-by: Francesco Valla <francesco@valla.it>
 
-> +	depends on RPMSG
-> +	depends on MMU
-> +	select DRM_SCHED
-> +	select DRM_GEM_SHMEM_HELPER
-> +	help
-> +	  Choose this option if you have a Texas Instruments SoC that contains
-> +	  C7x DSP cores that can be used as compute accelerators. This includes
-> +	  SoCs such as the AM62A, J721E, J721S2, and J784S4.
-> +
-> +	  The C7x DSP cores can be used for general-purpose compute acceleration
-> +	  and are exposed through the DRM accel subsystem.
-> +
-> +	  The interface exposed to userspace is described in
-> +	  include/uapi/drm/thames_accel.h and is used by the Thames userspace
-> +	  driver in Mesa3D.
-> +
-> +	  If unsure, say N.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called thames.
-> diff --git a/drivers/accel/thames/Makefile b/drivers/accel/thames/Makefile
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..7ccd8204f0f5ea800f30e84b319f355be948109d
-> --- /dev/null
-> +++ b/drivers/accel/thames/Makefile
-> @@ -0,0 +1,9 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +obj-$(CONFIG_DRM_ACCEL_THAMES) := thames.o
-> +
-> +thames-y := \
-> +	thames_core.o \
-> +	thames_device.o \
-> +	thames_drv.o \
-> +	thames_rpmsg.o
-> diff --git a/drivers/accel/thames/thames_core.c b/drivers/accel/thames/thames_core.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..92af1d68063116bcfa28a33960cbe829029fc1bf
-> --- /dev/null
-> +++ b/drivers/accel/thames/thames_core.c
-> @@ -0,0 +1,155 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
-> +
-> +#include "linux/remoteproc.h"
-> +#include <linux/dev_printk.h>
-> +#include <linux/err.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/completion.h>
-> +#include <linux/jiffies.h>
-> +#include <linux/rpmsg.h>
-> +
-> +#include "thames_core.h"
-> +#include "thames_device.h"
-> +#include "thames_rpmsg.h"
-> +
-> +/* Shift to convert bytes to megabytes (divide by 1048576) */
-> +#define THAMES_BYTES_TO_MB_SHIFT 20
 
-Seems unused/unneeded.
+Regards,
+Francesco
 
-[...]
-
-> +
-> +static const struct rpmsg_device_id thames_rpmsg_id_table[] = { { .name = THAMES_SERVICE_NAME },
-> +								{} };
-> +
-
-Some odd formatting here.
-
-> +static struct rpmsg_driver thames_rpmsg_driver = {
-> +	.drv = {
-> +		.name = "thames",
-> +		.owner = THIS_MODULE,
-
-Above line shoulnd't be needed.
-
-Andrew
 
