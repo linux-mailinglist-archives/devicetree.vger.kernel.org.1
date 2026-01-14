@@ -1,107 +1,88 @@
-Return-Path: <devicetree+bounces-255082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3F0D1F949
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:59:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F43D1F9F2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:09:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9FCAD3007694
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:57:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2C351301F5F9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98FDD2C0F69;
-	Wed, 14 Jan 2026 14:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955A52DE6F9;
+	Wed, 14 Jan 2026 15:05:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KZmWypcq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QIktclfU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE8330E0EC;
-	Wed, 14 Jan 2026 14:57:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7229A2D661C;
+	Wed, 14 Jan 2026 15:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768402673; cv=none; b=bVjW/7OFjSd4cJSZDwCwU14NAzrrt/+49NSp01niHn0xqoaLiF4yVSjSJrwMuWVsjQmy0awvzqHlbLgTvBmD9FquLjY1bumEN8LjRXtB30LkBusG9WgSlQ+glfIC1f9pxfWzQrp+Y9OIa8AJRqcIiWTsNnU5mvktn0SLMoK4DLI=
+	t=1768403158; cv=none; b=KseEMEYbOxXQf4lm2lSAKsJ7HcyyS7kLK5SdA3HP6rGDp4jQOhCuYXu+iEqcnZZ6aASry5IDQ0Zjz1DIGMk92B4+ZTjr7GiZCbYq/W+kRP16l1N5yhi7/3M1UOeS/vTYWWyXm0Orc9kNJRE/0hT+z7KHFb5VLWT3tNAMg+lno0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768402673; c=relaxed/simple;
-	bh=nmUrIBbrvEJ0xHsjaFEh0gYKvpLXTEy/itkXA0JyI74=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=mQBAxM499zUp7KwDEUM8QntlvP+jYWDrfHugHZYl9dY503BolRLkHi4MLkGg86U8qBzBeAIb8WYqMcURXyPf/Uusi3/kEq8N2i1sGywHbwBzVOhl6b5q1szag35/i0q8sfHJ/IQIhFdc8qbkBkwPZoH7C+UbdfosQlTOtblrhsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KZmWypcq; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id DA38F1A2808;
-	Wed, 14 Jan 2026 14:57:49 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AE5C26074A;
-	Wed, 14 Jan 2026 14:57:49 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2858310B68265;
-	Wed, 14 Jan 2026 15:57:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768402668; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=r1j2W7fLaN75ysT9kcrcB6wEZb9WQOiNcbJymTXioUg=;
-	b=KZmWypcqb11mMoEL7UWMWRDYg9XiW+BQOHiui3nAMVTgOjeJ4eIwvJ/eBYvkih9kH+Gv7o
-	B6ZBmRUCbVbfZYJ7ScqSD+ooxoUB6FvHp7vtdfUC0/giw/rqf7OJsUXAm/SrpLT6aPD/Fw
-	4AwvnYr615T27i9KAsLbjqBs2tkhVG/sja0ToJ7eEUHNRxCLAmJwbeTysNCgCq/4piq9Pj
-	sQKuFRtJGRrTHkCnIqcClDRKGKU5WgUFEz3eCfqqCUyCX6VI6YfOhKKtITnNlX4OK2sduD
-	FYzcvtWpL6EWiaTqazSu05WmDlFICl6Fhs6gPFT4nXpAv1o1XNSG9pCa3GlWOQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,  Mark Brown <broonie@kernel.org>,
-  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  Geert Uytterhoeven
- <geert+renesas@glider.be>,  Magnus Damm <magnus.damm@gmail.com>,  Vaishnav
- Achath <vaishnav.a@ti.com>,  Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  =?utf-8?Q?Herv=C3=A9?= Codina
- <herve.codina@bootlin.com>,
-  Vignesh Raghavendra <vigneshr@ti.com>,  Santhosh Kumar K <s-k6@ti.com>,
-  Pratyush Yadav <pratyush@kernel.org>,  Pascal Eberhard
- <pascal.eberhard@se.com>,  linux-spi@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 01/13] spi: dt-bindings: cdns,qspi-nor: Add Renesas
- RZ/N1D400 to the list
-In-Reply-To: <aUZ2tbK8fMoY4AZ9@shikoro> (Wolfram Sang's message of "Sat, 20
-	Dec 2025 11:13:09 +0100")
-References: <20251219-schneider-6-19-rc1-qspi-v1-0-8ad505173e44@bootlin.com>
-	<20251219-schneider-6-19-rc1-qspi-v1-1-8ad505173e44@bootlin.com>
-	<20251220-sexy-feathered-gorilla-3a6aab@quoll>
-	<aUZ2tbK8fMoY4AZ9@shikoro>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Wed, 14 Jan 2026 15:57:45 +0100
-Message-ID: <87bjiww8ba.fsf@bootlin.com>
+	s=arc-20240116; t=1768403158; c=relaxed/simple;
+	bh=eLxZBrlzViqA3hk+WyHQ10DzOHjIaa9CraG4ejvLTqU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=azoKxB2yOqghzMXA2+epIGeA76XOI4601H2HfIOMku2UcrWOQdt7VcORPlio19YQiRa4yHp5RPeGF3A9su4+ylpYardWYqnf28nfPgEm+H5NFOqbweFfIu1Oj8phggoZm1TJNO0EujK3fgN3fee4SIFu4DJPnsiD3QUoAOXQPMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QIktclfU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8D1C4CEF7;
+	Wed, 14 Jan 2026 15:05:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768403158;
+	bh=eLxZBrlzViqA3hk+WyHQ10DzOHjIaa9CraG4ejvLTqU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QIktclfUh1sKVUAOgfy2Sqs6YzzCFfmDRT9QgwSwGEdOUFsfYPjXbs6C8oufpGkEh
+	 NpRhgDOrBvzMW/lni3FxkJZozhk/HVsauAAxZ3g2PKW4aoH4+f/bVgJRCqmX8v5ZjM
+	 +hwbWwNa8vR/q2twYpP9t/lsKchsGs6q82WqtCZazMpeIdooqk6Tv1YymZowaTvFOv
+	 P0l8q4QLTGy3l6twzqEz6zgw4tHz5wkfUtLna7Ba1LRMWA01hlVdGF5GRE9BKO/yLn
+	 6ghRg76ctlK1IUAvrnTPcSxqs4H1bAVgkQpphoTV3XZBlKAJrWiD1B7Rk1XE9UFkzG
+	 1BgzyFNyk6qtg==
+Date: Wed, 14 Jan 2026 16:05:53 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>, Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org, dmitry.baryshkov@oss.qualcomm.com, 
+	bjorn.andersson@oss.qualcomm.com, prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com, 
+	aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com
+Subject: Re: [PATCH v3 00/12] Enable I2C on SA8255p Qualcomm platforms
+Message-ID: <aWewgtTx1MCKmxpv@zenone.zhora.eu>
+References: <20260112104722.591521-1-praveen.talari@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260112104722.591521-1-praveen.talari@oss.qualcomm.com>
 
-On 20/12/2025 at 11:13:09 +01, Wolfram Sang <wsa+renesas@sang-engineering.c=
-om> wrote:
+Hi Mukesh,
 
->> > +      - items:
->> > +          - const: renesas,r9a06g032-qspi
->>=20
->> This should be enum, knowing how Renesas adds more devices.
->
-> In general, yes...
->
->>=20
->> > +          - const: renesas,rzn1-qspi
->
-> ... but this platform is old. We are at N2 meanwhile. Extremly likely
-> that no more N1 variants come out. And the other existing ones cannot
-> run Linux (no SDRAM interface). I think const is fine in this case.
+> Praveen Talari (12):
+>   soc: qcom: geni-se: Refactor geni_icc_get() and make qup-memory ICC
+>     path optional
+>   soc: qcom: geni-se: Add geni_icc_set_bw_ab() function
+>   soc: qcom: geni-se: Introduce helper API for resource initialization
+>   soc: qcom: geni-se: Add resources activation/deactivation helpers
+>   soc: qcom: geni-se: Introduce helper API for attaching power domains
+>   soc: qcom: geni-se: Introduce helper APIs for performance control
+>   dt-bindings: i2c: Describe SA8255p
+>   i2c: qcom-geni: Isolate serial engine setup
+>   i2c: qcom-geni: Move resource initialization to separate function
+>   i2c: qcom-geni: Use resources helper APIs in runtime PM functions
+>   i2c: qcom-geni: Store of_device_id data in driver private struct
+>   i2c: qcom-geni: Enable I2C on SA8255p Qualcomm platforms
 
-Indeed, it is a rather old SoC, unlikely to get new cousins, but I don't
-mind switching to enum either, I like future proof descriptions :), so
-either ways I'm fine.
+Anyone from Qualcomm willing to take a look here, please? Mukesh?
+Viken?
 
-Cheers,
-Miqu=C3=A8l
+Thanks,
+Andi
 
