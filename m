@@ -1,311 +1,179 @@
-Return-Path: <devicetree+bounces-255153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED0DD2028E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:20:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A96ED2032A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:24:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D86143042FEE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:18:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3ABFE3068BE2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64B4A3A35CD;
-	Wed, 14 Jan 2026 16:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D02D23A35A5;
+	Wed, 14 Jan 2026 16:18:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="F+0Rp8FP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sfsdGIxm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5C11D5170;
-	Wed, 14 Jan 2026 16:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD21A2749C1;
+	Wed, 14 Jan 2026 16:18:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768407514; cv=none; b=N0iBecsd55lmiuvlvDusDlGAVrnNlkyGHO54oBr/7XLDpiKVSsXBtg/PYp9oI6/6WGmCxHfV8NI53VjTPMQ6Y9qGqvsf+NYEKHb7sOd1mqXAsFr/8hdgdkwBllUWred0NjtMsRRjDwH2LFJaOP2TuRW99b4drZFxbKUwNDJFSg4=
+	t=1768407536; cv=none; b=tBlimZPpK30FFi7GXtvbUAXmyexN4YR60z841I5bR5SMjYRmX0mhRMLFv1eUDPXtlIqO1AHRfvHtcvZh4Ik5usTN8jqX797zY6UgiU33qtABLRrqpw03DR7A7wzdmabGGjALcPjGJohstqGvfd22dB8AWQY2UHxfuTcfvuf2G9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768407514; c=relaxed/simple;
-	bh=LkS1aFv+C1O9U2Z5sGYXPWpC6E4J1ceA2kJ7wPxqjhg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=btK7bm0z6ENLM2urlsb5AFD57vyL2s9yziS3oNaHD1/cFG/S9+x2JisSFsgWhDVmxjxJomeCZGhrbko6jIUWwtIW46mFJ66BDl13yTb+wRoJ450obkT5JEygIFmkrEQgYggUatV3N/Sy88onF9SfHFGDJOgXJkEeWVuqDf6TllM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=F+0Rp8FP; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 985984E420D7;
-	Wed, 14 Jan 2026 16:18:30 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 69EEC6074A;
-	Wed, 14 Jan 2026 16:18:30 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A905010B6828C;
-	Wed, 14 Jan 2026 17:18:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768407509; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=TLnD61qP5ZBMkv6EgFlAJDkzsgnOcSQSowMp8xouw7g=;
-	b=F+0Rp8FPhiiRLgvAQ03fhy7d8ubzYat3E0MMNidZYeHj7//bV08vlAE/jpLi87LdoTnl63
-	s+dS4bk7TxpnPnxL37f84WU7pCh78dcR+gqP/feiN0XfGvVG9E65QDxMDBL1xdhuaKV1+B
-	dZpyyFTzZAQ4mqUOoFgozj13MlhXthc2MU1e60yTzMZWlwErfFmQ39WXw2jOvk/hq2UoLC
-	NLUj4+sLunYZltCnM6ozBOCu7YMwJahOf3qynh9GEm5Qdu7ayCPg6HxhPWhWbwLlRrDhIv
-	VDXJ7+PE71D9cymMdq0YrpvEKeZF4qZw5Wje/CNu0n/BRvF+mZFC0NNaBIo3EA==
-Date: Wed, 14 Jan 2026 17:18:22 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: David Gibson <david@gibson.dropbear.id.au>, Krzysztof Kozlowski
- <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ayush Singh
- <ayush@beagleboard.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Saravana Kannan <saravanak@kernel.org>
-Subject: Re: [RFC PATCH 00/77] Add support for dtb metadata and addon
- device-trees
-Message-ID: <20260114171822.2a44d2a5@bootlin.com>
-In-Reply-To: <CAL_JsqK4nH0B-CfKz5wgg12C+Vzi31ceHeOes94Z8hg3uN=X1g@mail.gmail.com>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<CAL_JsqK4nH0B-CfKz5wgg12C+Vzi31ceHeOes94Z8hg3uN=X1g@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768407536; c=relaxed/simple;
+	bh=FLBkDzDld6DYfohRX1q/2GpcjES2Dy2oiTRhwNsJ+BI=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=FafoYqQD8vdvVcSrWy1nXVfRMzT0zwtnIapYEHa9XosJ9GsU9nPCCX85vhebVJ4VYJYIkkgFwBBKEeeJS1uPghFfb4mroQVmhIsHtL2xr9QX2wMEwinkaXju5qUo2tNyW3TyvjljCxfXvcebHrDhjepC9HrRsGBgw9kzbD2tSMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sfsdGIxm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAA9AC4CEF7;
+	Wed, 14 Jan 2026 16:18:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768407536;
+	bh=FLBkDzDld6DYfohRX1q/2GpcjES2Dy2oiTRhwNsJ+BI=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=sfsdGIxmrdraumdqxRjzam6AipFOnU/a/RdTF4BvpITkIxtGxEe6XBjPCJxUjv7+g
+	 j7HKrnsoSDLRXHVe/sY9oFD5d9l9U4PE4uB1hl80BIxqN3ndSiuGD8l7i7ubUj/lkT
+	 eS52rl0YGw1oJ1MfSQ5pTKIbxk3IOfEyouKNbFEgEU89ErNDh8sSCi4pRlJJyRsAnD
+	 unlZh8imF4oZf5FCbdfoiO7+34FQZ5tIjkgZbDfzBuipBlNQVankpdEQSxqua5KGw1
+	 5NnO/OAcag3wF3gU2qA+EGBBdRZ/yjOjNfdcfhLUDpCrya875UnIjrvyTB3uif4ko1
+	 rBSNvWkmB4K7A==
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 14 Jan 2026 10:18:55 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Cc: linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ krzk+dt@kernel.org, ulf.hansson@linaro.org, devicetree@vger.kernel.org, 
+ andersson@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org
+To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+In-Reply-To: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
+References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
+Message-Id: <176840729246.2734238.959231359705262987.robh@kernel.org>
+Subject: Re: [PATCH v2 0/2] Enable Inline crypto engine for kodiak
 
-Hi Rob,
 
-On Tue, 13 Jan 2026 12:44:07 -0600
-Rob Herring <robh@kernel.org> wrote:
-
-> On Mon, Jan 12, 2026 at 8:20 AM Herve Codina <herve.codina@bootlin.com> wrote:
-
-...
-
-> >
-> > - A new kind of device-tree, an addon device-tree, in order to replace the
-> >   usage of the overlay device-tree in this 'hot-plugging additional board'
-> >   use-case.  
+On Wed, 14 Jan 2026 15:18:46 +0530, Neeraj Soni wrote:
+> Document Inline Crypto Engine (ICE) handle for SDHC and add its device-tree
+> node to enable it for kodiak.
 > 
-> I guess "addons" is overlays 2.0. Do you envision any use for overlays
-> 1.0 after this? I wouldn't think so other than compatibility for
-> existing overlays.
-
-On my side, with use cases I know about, I plan to switch to addons.
-
-Of course, our connector use case which was the use case that leads to
-series will use addons.
-
-Also, I plan to move the overlay used in the LAN966x PCI use case (overlay on
-top of PCI devices) to addons. I will do that when all needed support for this
-feature will be available in the Linux kernel.
-
+> How this patch was tested:
+> - export ARCH=arm64
+> - export CROSS_COMPILE=aarch64-linux-gnu-
+> - make menuconfig
+> - make defconifg
+> - make DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/sdhci-msm.yaml dt_binding_check
+> - make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CHECK_DTBS=y dtbs
 > 
-> Maybe a conversion tool and/or function would be useful (not asking
-> for that now).
-
-Indeed, this kind of tool could be a nice to have.
-
+> ---
+> Changes in v2:
+> - Removed the "if: required:" description for "qcom,ice" dt-binding
+>   as the ICE node is optional.
+> - Corrected the ICE dt node entry according to the dt-binding description.
+> - Added test details.
 > 
-> > [3] https://lore.kernel.org/all/20250902105710.00512c6d@booty/
-> >
-> > This current RFC is the implementation of features discussed on the
-> > mailing-list. A lot of things are new in dtb format (new tags) and dts
-> > format (new keyword, new kind of references) and not yet mentioned in
-> > the standard.  
+> Changes in v1:
+> - Updated the dt-binding for ICE node.
+> - Added the dt node for ICE for kodiak.
 > 
-> spec follows code. :)
+> Neeraj Soni (2):
+>   dt-bindings: mmc: sdhci-msm: Add ICE phandle
+>   arm64: dts: qcom: kodiak: enable the inline crypto engine for SDHC
 > 
-> > The purpose of this big picture RFC is to move forward on this topic
-> > based on code and some concrete dts / dtb example. Indeed, this RFC also
-> > adds tests for each feature introduced. Those tests are performed using
-> > dts files and the content of those dts files can also help in the
-> > discussion.
-> >
-> > The first patch is just a simple fix and can probably be merged out of this
-> > meta-data and addon discussion.
-> >
-> >   - Patches 2..12: Introduce new meta-data dtb tags based on markers
-> >
-> >     Those new tags are FDT_REF_LOCAL and FDT_REF_PHANDLE.
-> >
-> >     FDT_REF_LOCAL (details in patch 6) is used to tag property using a
-> >     phandle and this phandle points to a local node (i.e. a node
-> >     existing in the dtb).
-> >
-> >     FDT_REF_PHANDLE (details in patch 11) is used to tag a property
-> >     using a phandle but this phandle points to a non local node (i.e.
-> >     the node doesn't exist in the dtb). The reference to the node is
-> >     present with the tag and the phandle value has to be fixed when the
-> >     dtb is applied. This tag can only be present in plugins (overlays)
-> >     and addons dtb.  
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
+>  arch/arm64/boot/dts/qcom/kodiak.dtsi                 | 9 +++++++++
+>  2 files changed, 13 insertions(+)
 > 
-> This is very much aligned with what I would like to see. We've
-> discussed new DTB formats in the past and it becomes a laundry list of
-> changes likely resulting in something entirely different. I think
-> that's never going to move forward (it's only been discussed for 10+
-> years). I think doing something like this is much easier to define and
-> deploy.
+> --
+> 2.34.1
 > 
-> I think the first step is just allowing the FDT format to have
-> additional tags with metadata that's not yet defined. Ideally that
-> would be just "allow unknown tags" instead of giving a parsing error.
-> However, I think we have to at least know the length of data for
-> unknown tags, so maybe we define a range of tag values which are
-> followed by a length. Either way, that should be a pretty small change
-> and easily deployed everywhere (that uses libfdt). After that, then we
-> can start to define the specific tags and meta-data we want. I would
-> like to see not just phandle info, but all type information for
-> example.
 > 
-> The addition of phandle info is also useful for fw_devlink (which is
-> the kernel's device dependency tracking), and I've been talking with
-> Saravana some about an approach like this.
-> 
-> >   - Patches 13..17: Introduce addons device-tree
-> >
-> >     This part introduce the new /addon/ dts keyword
-> >
-> >   - Patches 18..30: Introduce /export/ keyword and related dtb tags
-> >
-> >     This part introduces the new /export/ dts keyword (details in patch
-> >     20) and the related FDT_EXPORT_SYM and FDT_EXPORT_SYM_REF dtb tags.
-> >
-> >     FDT_EXPORT_SYM (details in patch 25) is used when the exported
-> >     symbol involved is a local node and FDT_EXPORT_SYM_REF (details in
-> >     patch 29) is used when the node involved is a non local node.  
-> 
-> More generally, would these just be "node metadata" tags?
 > 
 
-I think we can have metadata at 3 differents levels:
-- Property
-- Node
-- Global dtb
 
-With the suggestion you did on patch 6 related to FDT_REF_LOCAL and if I
-understood correctly, you expect to have a kind of "container" tag to group
-metadata on each level.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Also you expect to have the ability to handle all 'for now unknown' tag
-smoothly and so, I agree, the length of the data related to a tag are
-needed to be present with the tag itself. I see to kind of tag, some with
-the length of data available in the u32 following the tag and other without
-the length encoded.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Tags without length encoded are followed by one u32 field containing data
-related to the tag. This allow to avoid a lot of 'TAG_XXX 0x04 u32_data'
-Indeed, I have the feeling that quite a lot of tags will have only one u32
-field as data part and so, having 0x04 encoded (cell aligned) each time.
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-A tag value is on 32bits. We can define the structure of this value.
-  - bit 31 (msb):
-     - 0: This is not a new kind to tag and so it doesn't follow this definition.
-          All existing tags are in this categorie
-     - 1: New kind of tag adopting this definition
-
-  - bits 30..28:
-     tag data length encoding
-     0b000: No data related to the tag
-     0b001: 1 data cell (u32) directly follows the tag
-     0b010: 2 data cells (2 u32) directly follow the tag
-     ...
-     0b110: 6 data cells (6 u32) directly follow the tag
-     0b111: Tag is followed by a cell (u32) indicating the size (in bytes)
-            of data available just after this cell (including any padding
-            if needed).
-	    Because this size include some possible padding, its value is a
-            multiple of 4 bytes.
-            The offset of the tag + 4 + size points to the next tag.
-          
-
-  - bit 27..0
-     tag specific identifier
-
-With that definition, the following tags can be defined:
-  - FDT_INFO_PROPERTY (new tag, length encoding): 0xf0000001
-     This tag is available after a property.
-     It is followed by a cell for the length of data, the data part is a
-     sequence of tags (and related data) giving information related to the
-     last property available before the tag.
-
-  - FDT_REF_LOCAL (new tag, 1 cell data): 0x90000002:
-     The cell after this tag is the offset in the property where a local
-     phandle is available
-
-  - FDT_REF_PHANDLE (new tag, length encoding): 0xf0000003
-     Cf. patch 11 for definition
-     It is followed by a cell for the length of data. The data part is
-     composed of:
-       - offset (u32)
-       - label (string including \0)
-       - padding if needed to have next item aligned on 32bits
+  pip3 install dtschema --upgrade
 
 
-With that defined, supposing the following dts example:
-  --- 8< ---
-  /* 'foo' is a reference to local node,
-   * 'bar' is a reference to an external node
-   */
-  prop = <1 2 &foo &bar1>;
-  --- 8< ---
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/v6.19-rc1-102-g3af51501e2b8 (exact match)
+ Base: tags/v6.19-rc1-102-g3af51501e2b8 (use --merge-base to override)
 
-The dtb will see the following structure:
-FDT_PROP ...
-FDT_INFO_PROPERTY (0xf0000001)
-  28 (length = (4+4)+(4+4+12) bytes)
-  FDT_REF_LOCAL (0x90000002)
-    0x8                             <--- offset of &foo
-  FDT_REF_PHANDLE (0xf0000003)
-    12 (length = 4+4+1+3 bytes)
-    0xc                             <--- offset of &bar
-    "bar1" + its \0                 <-- reference to resolve
-    0x00 0x00 0x00                  <-- 3 bytes padding
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
 
-Adding FDT_TYPE_U32 later will consist in defining
-its value, probably a 0x9 family (1 cell after the tag for the
-offset value)
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com:
 
-At any point, only looking at the higher part of the tag (i.e. 0xN.......), we
-can skip the tag and its data if don't know about the tag.
- - 0x0: Old tag format
-    -> Error if unknown
+arch/arm64/boot/dts/qcom/sm7325-nothing-spacewar.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-crd-pro.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pmic@2 (qcom,pm8350c): pwm:nvmem: [[386, 387]] is too short
+	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml
+arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pwm (qcom,pm8350c-pwm): nvmem: [[386, 387]] is too short
+	from schema $id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/qcm6490-idp.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/qcm6490-particle-tachyon.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-idp.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-idp2.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-nvme-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-nvme.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-crd-r3.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dtb: soc@0 (simple-bus): crypto@7C8000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
 
- - 0x8 to 0xe: New format followed by 0 (0x8) to 6 cells of data
-    -> Ignore if unknown and skip the N cells of data to look at the next
-
- - 0xf: New format followed by 1 cell giving the size of following data.
-    -> Ignore if unknown and read the length available in the cell after the
-       tag, skip length byte of data to look at the next.
-       If the length read is not a multiple of 4: Error, invalid tag.
 
 
-For this series we need the container tags:
-- FDT_INFO_PROPERTY for information related to a property
-  Among known tags defined in this series, only FDT_REF_LOCAL and
-  FDT_REF_PHANDLE can be grouped into a FDT_INFO_PROPERTY.
 
-- FDT_INFO_NODE for information related to a node
-  Among known tags defined in this series, only FDT_EXPORT_SYM_LOCAL
-  and FDT_EXPORT_SYM_REF can be grouped into a FDT_INFO_NODE.
-
-- FDT_INFO_DTB for information related to the dtb
-  Among known tags defined in this series, only FDT_IMPORT_SYM can
-  be present into a FDT_INFO_DTB.
-
-IMHO, the new tag FDT_BEGIN_NODE_REF related to orphan nodes doesn't
-have to be in one of those containers. Indeed, FDT_BEGIN_NODE_REF
-is more a node definition than a metadata.
-
-Rob, does this could fit with what you expect?
-
-If it does, is it relevant to keep the length cell available in 0xf
-family to be in bytes. It should be a multiple of 4 in all cases and
-so it can be given in the number of 32bit words instead of bytes.
-
-Best regards,
-Hervé
 
 
