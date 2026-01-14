@@ -1,214 +1,158 @@
-Return-Path: <devicetree+bounces-255032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC6E7D1EE6D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:51:35 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71075D1EF10
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:00:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7FA92302ABA1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:51:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5251D3007650
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:00:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98B7397AC0;
-	Wed, 14 Jan 2026 12:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="gKPJV0TZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7F1399037;
+	Wed, 14 Jan 2026 12:59:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359FB399A59;
-	Wed, 14 Jan 2026 12:51:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EB6393DEB
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 12:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768395092; cv=none; b=g8X4LtWHXI/zQMZW75UDya3FGcYzHE6iNfxuz+xHop/NyrWvb1jyUgs+UzhJXg55rvLBzkSceSDNPxXTahb4FG0LKx3+HkSz7ON86mC34KsemvAytWbP0AKgQ/R0EEUe8AjefaD4utfMku3ZELr6jtUYWqWA5q2DVxs7Sena3Zo=
+	t=1768395599; cv=none; b=hCypHdUddEE1JaqSnooTtJ6NJPGslXHZvwbq5qdRJf/vpTBDkODvGPG3X6dsPIoQyErsoGA8c17pMty7EJmfcXDJ17XRAJWwZC3kxWMViPp3T8Gi/l28Y0zN4jK9fSb7EFTQvuNa5mmTzOoQnLkaUihFuwhjzF4U36L6/K0nFzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768395092; c=relaxed/simple;
-	bh=LvhYESA3d/xLPNEnsIiUTbDMUK5xZBgP4wYl7OyKiPg=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=osAq7XMJnl9mXuQMhIagY83rPOCsYlgoS5aXuiLjEdXhP11wpRq2hae8+MMTHtlP1mu7/QTP7MC6amCLpAceLq6udajec1hyfJexOmW0ETsvo8MhAf23zC/r9bagA7zRg0QRTpZ6mHqkVvv+dhwE8eNnpLxGOzgaODbyu95UHX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=gKPJV0TZ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c31:76ee:df3c:dc54:9316:8c06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B11E51D1C;
-	Wed, 14 Jan 2026 13:50:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1768395060;
-	bh=LvhYESA3d/xLPNEnsIiUTbDMUK5xZBgP4wYl7OyKiPg=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=gKPJV0TZL7DpdFfPqhISX9/wmMFI54zNFEjDo9PkLQfmRzuZmAeQJNye1SZKH4Yvn
-	 pWboHp2TJandomfOPJDB/Wi6c+MtYRIdcrXgrdkC2n/WgT+/cB1W8EtpDhILbZaH4K
-	 BUgyQQeQvZEa1uDgjceaWNF2XqNHMCkVKz9djoPo=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1768395599; c=relaxed/simple;
+	bh=/5eWFDEf6KwzasaJ03bBW4Tg2xk5g+Pd7eH2QVdydoY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f27065Yx+ZIZQMEMLeyV5MGIFTbjh7oSDkLj/i+ls0l21bMACD59T8oDObgvKL/K6CgdE/LUdKlVMJGRMQ8Q0UdafpGpxbUhXC+yKH6SbJISMnbLtRhXUsdJROsOVXFwsXyCp5mn9hsicQz+YbjIgn7Q1vGENDLLSyOW5bPzB4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56379cb870bso1093465e0c.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 04:59:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768395590; x=1769000390;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dOi1xuIgOKeNmhtu/zXsVbi5AW8T0pSjiAWSdoOenWg=;
+        b=huObPztRLtVmT345SYApIHFWE4FOMyV0tg9iypwMsYMEhJq/FNaisQMDvIJmtphmcG
+         XGSbO8iikC33eqJfgsW6MpbuozNR6NbDUbwE1xjrbJyr5rVdjKargDGg0gqVljWPsAM0
+         8rysGWboCbYNzRMsWcJ8V2sxFzwpgvFrYYCMeoER8F++UJRxUsGNvieLYh+Taoi6DxT1
+         OKZ9PPm/6/aEqGc/wIXxnj258atOO0Rh4plcCd54+6y7wrO8M7QltL7rKl/kmtSx2qiT
+         b+QYFWU7EjHmL11guqp2ZgNrYt4QyxCqU9WmiaP6Q/FpunbMAzsA03noIjSo25ciTgjb
+         dUyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVd6Zxg1SenM7gICYt6pKOTaNmE4u26/BThsFNeU7gRPVrRZu+rZv9lalVUNWk7OeIJoPTgz+NPEfdp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8LbTpTTeO8fAh1POtAqFuMTMfgCYrUyjL9GunQLcZUtG7OX1V
+	sGFZiFSAPHLSy1OVlJ+3UJwt/3FcZlqcUbz1EL7cXCtgFuvsA/mEGjxOGTwbU72h
+X-Gm-Gg: AY/fxX4OvPNuOy0EYLppuxx1pHVdakIKLFQfkqrI3Lbc5qROcVNtnUGrOKNqHhdB/6U
+	Iuv/T/xe6HDU6nht9soDszT9qVwEzgx4Lb6wOpvnpBQgdNuBloxqCTVR5GTlrokJy8e0I+kaMZ5
+	kJ5/ViyT952PofvnJxW5jv8K+S/+eMszDxehEPRgkIZTf0+nmXbbRcG6KUoTvry69zxUBhvMA0O
+	21Znik5IAlrO5QFDrig52psw1U7AB34m5XI6h06r8CEAn9v0cM4p3X7+gEB60YHF9NClfuGpj7h
+	+gRDuhDCEgzRo16B4QKi8mRHSuDvvnJ1PXE6V3B/i0+3aJtQwGDORotct+SIJHIbZDk42g9YJPL
+	hEcV5oPYmibcaD+gwNV2x+f4m5Lhlgt3E2qXd0lXCx/HYrGkfDO5GiBifPiqP6xxjdpr10K/mEf
+	GYQTClKU/ZH10e02mfkdAnX8OEBzBYJUD8DKaBLBC+RjEOnAKG
+X-Received: by 2002:a05:6122:2a56:b0:55b:305b:4e46 with SMTP id 71dfb90a1353d-563a2258469mr557194e0c.18.1768395590465;
+        Wed, 14 Jan 2026 04:59:50 -0800 (PST)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5636dc36a20sm14094152e0c.13.2026.01.14.04.59.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jan 2026 04:59:49 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5eea31b5cb7so2122287137.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 04:59:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXglA+XBfY3ybMj3dQTeOi5GC0vrH09wCShdPRFjDVgmcwPqVYcOF/o+1FVXmWJOPQypUsYtDy1DT3h@vger.kernel.org
+X-Received: by 2002:a05:6102:38c9:b0:5f1:555e:a0b4 with SMTP id
+ ada2fe7eead31-5f183bdce22mr616871137.32.1768395587922; Wed, 14 Jan 2026
+ 04:59:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251230083220.2405247-9-r-donadkar@ti.com>
-References: <20251230083220.2405247-1-r-donadkar@ti.com> <20251230083220.2405247-9-r-donadkar@ti.com>
-Subject: Re: [PATCH v9 08/19] media: staging: starfive: Move to enabel-disable streams in starfive drivers
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: r-donadkar@ti.com, y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, tomi.valkeinen@ideasonboard.com, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
-To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Date: Wed, 14 Jan 2026 18:21:21 +0530
-Message-ID: <176839508123.9154.16324392708272572564@freya>
-User-Agent: alot/0.12.dev62+gb9d6144a6
+References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com> <3ab81490b7bdbd2dafd7a940ae242f07d30aaa17.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <3ab81490b7bdbd2dafd7a940ae242f07d30aaa17.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 14 Jan 2026 13:59:36 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUBN0OKOOTw+j3XuWi+hVYBVRyzp=J-+0yMfem2BfT+Eg@mail.gmail.com>
+X-Gm-Features: AZwV_QjCdG9CLFFvTy17z_yoeEbQmRYHkFE3zh-jRCvSjUp5PEJNAk_rO0NIbA8
+Message-ID: <CAMuHMdUBN0OKOOTw+j3XuWi+hVYBVRyzp=J-+0yMfem2BfT+Eg@mail.gmail.com>
+Subject: Re: [PATCH 01/22] clk: renesas: rzv2h: Add PLLDSI clk mux support
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Rishikesh,
+Hi Tommaso,
 
-Thanks for the patch.
+On Wed, 26 Nov 2025 at 15:08, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> Add PLLDSI clk mux support to select PLLDSI clock from different clock
+> sources.
+>
+> Introduce the DEF_PLLDSI_SMUX() macro to define these muxes and register
+> them in the clock driver.
+>
+> Extend the determine_rate callback to calculate and propagate PLL
+> parameters via rzv2h_get_pll_dtable_pars() when LVDS output is selected,
+> using a new helper function rzv2h_cpg_plldsi_smux_lvds_determine_rate().
+>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-> Subject: [PATCH v9 08/19] media: staging: starfive: Move to enabel-disabl=
-e streams in starfive drivers
+Thanks for your patch!
 
-s/enabel/enable
+> --- a/drivers/clk/renesas/rzv2h-cpg.c
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
 
-Quoting Rishikesh Donadkar (2025-12-30 14:02:09)
-> The enable_streams() API in v4l2 supports passing a bitmask to enable
-> each pad/stream combination individually on any media subdev. Use this
-> API instead of  s_stream() API in the starfive drivers
-
-nit: I think the description can be explicit that this driver does not
-support "multiple streams" (at least right now), but just switching to the
-new API while ignoring the passed streams mask.
-
->=20
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> ---
->  .../staging/media/starfive/camss/stf-isp.c    | 43 ++++++++++++-------
->  .../staging/media/starfive/camss/stf-video.c  |  4 +-
->  2 files changed, 30 insertions(+), 17 deletions(-)
->=20
-> diff --git a/drivers/staging/media/starfive/camss/stf-isp.c b/drivers/sta=
-ging/media/starfive/camss/stf-isp.c
-> index df7a903fbb1b0..4930ffb0e07a6 100644
-> --- a/drivers/staging/media/starfive/camss/stf-isp.c
-> +++ b/drivers/staging/media/starfive/camss/stf-isp.c
-> @@ -55,27 +55,43 @@ int stf_isp_init(struct stfcamss *stfcamss)
->         return 0;
->  }
-> =20
-> -static int isp_set_stream(struct v4l2_subdev *sd, int enable)
-> +static int isp_sd_enable_stream(struct v4l2_subdev *sd,
-> +                               struct v4l2_subdev_state *state,
-> +                               u32 pad, u64 streams_mask)
->  {
->         struct stf_isp_dev *isp_dev =3D v4l2_get_subdevdata(sd);
->         struct v4l2_subdev_state *sd_state;
->         struct v4l2_mbus_framefmt *fmt;
->         struct v4l2_rect *crop;
-> +       int ret;
-> =20
-> -       sd_state =3D v4l2_subdev_lock_and_get_active_state(sd);
-> +       sd_state =3D v4l2_subdev_get_locked_active_state(sd);
->         fmt =3D v4l2_subdev_state_get_format(sd_state, STF_ISP_PAD_SINK);
->         crop =3D v4l2_subdev_state_get_crop(sd_state, STF_ISP_PAD_SRC);
-> =20
-> -       if (enable) {
-> -               stf_isp_reset(isp_dev);
-> -               stf_isp_init_cfg(isp_dev);
-> -               stf_isp_settings(isp_dev, crop, fmt->code);
-> -               stf_isp_stream_set(isp_dev);
-> -       }
-> +       stf_isp_reset(isp_dev);
-> +       stf_isp_init_cfg(isp_dev);
-> +       stf_isp_settings(isp_dev, crop, fmt->code);
-> +       stf_isp_stream_set(isp_dev);
 > +
-> +       ret =3D v4l2_subdev_enable_streams(isp_dev->source_subdev, 1, BIT=
-(0));
+> +static int rzv2h_cpg_plldsi_smux_lvds_determine_rate(struct rzv2h_cpg_priv *priv,
+> +                                                    struct pll_clk *pll_clk,
+> +                                                    struct clk_rate_request *req)
+> +{
+> +       struct rzv2h_pll_div_pars *dsi_params;
+> +       struct rzv2h_pll_dsi_info *dsi_info;
+> +       u8 lvds_table[] = { 7 };
+> +       u64 rate_millihz;
+> +
+> +       dsi_info = &priv->pll_dsi_info[pll_clk->pll.instance];
+> +       dsi_params = &dsi_info->pll_dsi_parameters;
+> +
+> +       rate_millihz = mul_u32_u32(req->rate, MILLI);
+> +       if (!rzv2h_get_pll_divs_pars(dsi_info->pll_dsi_limits, dsi_params,
+> +                                    lvds_table, 1, rate_millihz)) {
 
-Given you have a streams_mask argument in this function now, it might be
-cleaner to use it here (and let stf-video populate it with BIT(0)).
+s/1/ARRAY_SIZE(lvds_table)/
 
-> +       if (ret)
-> +               return ret;
+> +               dev_err(priv->dev, "failed to determine rate for req->rate: %lu\n",
+> +                       req->rate);
+> +               return -EINVAL;
+> +       }
+> +
+> +       req->rate = DIV_ROUND_CLOSEST_ULL(dsi_params->div.freq_millihz, MILLI);
+> +       req->best_parent_rate = req->rate;
+> +       dsi_info->req_pll_dsi_rate = req->best_parent_rate * dsi_params->div.divider_value;
 > +
 > +       return 0;
 > +}
-> =20
-> -       v4l2_subdev_call(isp_dev->source_subdev, video, s_stream, enable);
-> +static int isp_sd_disable_stream(struct v4l2_subdev *sd,
-> +                                struct v4l2_subdev_state *state,
-> +                                u32 pad, u64 streams_mask)
-> +{
-> +       struct stf_isp_dev *isp_dev =3D v4l2_get_subdevdata(sd);
-> +       int ret;
-> +
-> +       ret =3D v4l2_subdev_disable_streams(isp_dev->source_subdev, 1, BI=
-T(0));
 
-Same here.
+Gr{oetje,eeting}s,
 
-> +       if (ret)
-> +               return ret;
-> =20
-> -       v4l2_subdev_unlock_state(sd_state);
->         return 0;
->  }
-> =20
-> @@ -300,20 +316,17 @@ static int isp_init_formats(struct v4l2_subdev *sd,
->         return isp_set_format(sd, sd_state, &format);
->  }
-> =20
-> -static const struct v4l2_subdev_video_ops isp_video_ops =3D {
-> -       .s_stream =3D isp_set_stream,
-> -};
-> -
->  static const struct v4l2_subdev_pad_ops isp_pad_ops =3D {
->         .enum_mbus_code =3D isp_enum_mbus_code,
->         .get_fmt =3D v4l2_subdev_get_fmt,
->         .set_fmt =3D isp_set_format,
->         .get_selection =3D isp_get_selection,
->         .set_selection =3D isp_set_selection,
-> +       .enable_streams =3D isp_sd_enable_stream,
-> +       .disable_streams =3D isp_sd_disable_stream,
->  };
-> =20
->  static const struct v4l2_subdev_ops isp_v4l2_ops =3D {
-> -       .video =3D &isp_video_ops,
->         .pad =3D &isp_pad_ops,
->  };
-> =20
-> diff --git a/drivers/staging/media/starfive/camss/stf-video.c b/drivers/s=
-taging/media/starfive/camss/stf-video.c
-> index a0420eb6a0aa0..2db29bf8bdef8 100644
-> --- a/drivers/staging/media/starfive/camss/stf-video.c
-> +++ b/drivers/staging/media/starfive/camss/stf-video.c
-> @@ -287,7 +287,7 @@ static int video_start_streaming(struct vb2_queue *q,=
- unsigned int count)
-> =20
->         video->ops->start_streaming(video);
-> =20
-> -       ret =3D v4l2_subdev_call(video->source_subdev, video, s_stream, t=
-rue);
-> +       ret =3D v4l2_subdev_enable_streams(video->source_subdev, 1, BIT(0=
-));
+                        Geert
 
-Now that I think of it, it was not necessary to implement enable / disable
-API for the ISP subdev driver given v4l2_subdev_*_streams falls back on
-s_stream. But it's anyway good to move drivers, so I guess it's alright.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
->         if (ret) {
->                 dev_err(video->stfcamss->dev, "stream on failed\n");
->                 goto err_pm_put;
-> @@ -311,7 +311,7 @@ static void video_stop_streaming(struct vb2_queue *q)
-> =20
->         video->ops->stop_streaming(video);
-> =20
-> -       v4l2_subdev_call(video->source_subdev, video, s_stream, false);
-> +       v4l2_subdev_disable_streams(video->source_subdev, 1, BIT(0));
-> =20
->         pm_runtime_put(video->stfcamss->dev);
-> =20
-> --=20
-> 2.34.1
->=20
->=20
-
-Thanks,
-    Jai
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
