@@ -1,159 +1,115 @@
-Return-Path: <devicetree+bounces-255141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53A8D20116
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:07:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 622A5D20064
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:02:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ED869305379B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:00:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EFABB30022C9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 755173A1CF8;
-	Wed, 14 Jan 2026 16:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AE73A1CED;
+	Wed, 14 Jan 2026 16:02:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nv6Jwqug"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kvz6IhCI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9112459D9;
-	Wed, 14 Jan 2026 16:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECE539E6E2;
+	Wed, 14 Jan 2026 16:02:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768406441; cv=none; b=QyV/DhZKwoAWoO+CQt4qwjUpHovs9CX1ZJVyDt7FMcUDSn4EmSNEiPKdf5LPX1ZnnNAZT0esmYid8EfdPg0yzT62CBhsKAlSM4XOo75qFJuR9Nz/tPjRkzMaHBQrANV4SJR3fF6UsLINXmVymBkufr3xe4zhA71HAwUJ1tAHbzI=
+	t=1768406534; cv=none; b=MH1vxNoE7pjdMnuRgfGybmCY+Gq/fCzXZs7z+bw4XxAX1giIMVyUSkwQ9+EcfCRMdJq6BLWMq2xQMgffwoj7Fzof57xjcXxp4Zix+H9XWUyc8F05c61rvaunaIbLEFJBhHr6pUvpRJ15gNT7r/5Xt3yzNjqXtfzyOWIwiUC9bOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768406441; c=relaxed/simple;
-	bh=UQRJ5fcHhllBfv67yGhnNCJ+Tsu6dEXBnujxEqv1usA=;
+	s=arc-20240116; t=1768406534; c=relaxed/simple;
+	bh=FK5r/eruOjqTcJeKWxc+VkGWRoHylO78FiANFJ2/F5k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Orlmbs7Eg7Bum23WhjgieQd2FaQ6l+D9NERRIiedn9Du5kg5/BbQxKnu+myAFj8ADfcBvmt+ChZGHc+EeFYHIecTC6cDmjSrTcMgWADO+oPJLFn19Oa371UjJQRi/03W9roHqc7TOFtvPsu4446KyUuOhCuqLMvVcLpzif1xYKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nv6Jwqug; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A9C0C4CEF7;
-	Wed, 14 Jan 2026 16:00:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ctnHHpJp0+MwirCjbSCpnfajJPVZP5ESUm22fIgq4qfbP+m1z8j0IxO7doGFEdn47aFfP4T05bBUfSB23/wQF0yPwFdOokQ/4/x6zzH0dOOWtlVcrVskFcSubsj3dGPEKG4yzMKTzzNmGlgzVeHsCL408xnrXWs+6W2m1EVDIqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kvz6IhCI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82910C4CEF7;
+	Wed, 14 Jan 2026 16:02:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768406440;
-	bh=UQRJ5fcHhllBfv67yGhnNCJ+Tsu6dEXBnujxEqv1usA=;
+	s=k20201202; t=1768406534;
+	bh=FK5r/eruOjqTcJeKWxc+VkGWRoHylO78FiANFJ2/F5k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Nv6Jwqughj9EJzqz+t+wK38BiQT/64D4Qc8eIsadsxCORoTCISzN9YG1rpQ3yTsGQ
-	 N9jVj96OzvxxpXvncaXTTFORVsaKTgOA4IgARR3sKY46Ha5ZUGe2EV4SuRMN7Db1BY
-	 ZbkAbcJM5lukvvtC9yO3CLZB3Pf1bJOHkinkUmXV8hcSv0vwzrrWqePlk4vphhZdXl
-	 jGGePLJWeJmv/UaNwiI3dWS4ZHFhtFiRwliITrQvQc8rx+BF8H8R90Ih6Vpym27tsm
-	 bk4VdHbxA7U7J7IXJ6G7BaD2cTxScUXatw7hyIDWpQps6KXTcF15s9N8iA18mBwifw
-	 MxrCfGmDVzgNw==
-Date: Wed, 14 Jan 2026 21:30:23 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Hans de Goede <hansg@kernel.org>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, Rob Herring <robh@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Mark Pearson <mpearson-lenovo@squebb.ca>, 
-	"Derek J. Clark" <derekjohn.clark@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v4 2/9] serdev: Add an API to find the serdev controller
- associated with the devicetree node
-Message-ID: <jngg3qmacno5obsz3ksaggt2pg5btrtuwjwuzrqr7x6timnm5n@ez6ta7uvql7i>
-References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
- <20260112-pci-m2-e-v4-2-eff84d2c6d26@oss.qualcomm.com>
- <2a44e967-ebae-4641-88d7-ccb4536ee3b7@kernel.org>
+	b=Kvz6IhCI/iKQ3aCzByh5yu4QJqn51REAWz93ozl52tF0groNrJ06igRODbT5OcCZM
+	 S7M2sVx0GGwalTEAPv3f/DPA2tYT11i3xttdW02U2VVkuMhWJY6i5uW7/Jlzsb95AS
+	 hXwS1nQKqhV4rC4vmtNCWGwWJJ8CWh1m/a0XXeU+XwH6wRXnn/q0e0xvu6LjDmWl1Z
+	 DtHcIncf8zcAjNjQHFZshD2NM5akoR4+kz3Zx7c17DNag3B7R5O2VgCpBvBSUD7sBs
+	 l0rtFwe5ojkJblG20x8Y6AWB6jnRl73qb8/UDn9cY7KhbIlN6weIXH0CuKZ9L5Xjw6
+	 o2N+1EnjEeq+Q==
+Date: Wed, 14 Jan 2026 16:02:07 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Will McVicker <willmcvicker@google.com>,
+	Juan Yescas <jyescas@google.com>, kernel-team@android.com,
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: Re: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
+ drivers
+Message-ID: <b9df01e9-c4ba-4e2c-b458-bc93663ab78e@sirena.org.uk>
+References: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
+ <20260113112244.GE1902656@google.com>
+ <6ace23c4-d858-4bdf-9987-104e706190cd@sirena.org.uk>
+ <20260114155011.GC2842980@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sP0C4lxuJbobslsN"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a44e967-ebae-4641-88d7-ccb4536ee3b7@kernel.org>
+In-Reply-To: <20260114155011.GC2842980@google.com>
+X-Cookie: Absence makes the heart grow frantic.
 
-On Wed, Jan 14, 2026 at 03:01:51PM +0100, Hans de Goede wrote:
-> Hi Mani,
-> 
-> Thank you for your work in this.
-> 
-> On 12-Jan-26 17:26, Manivannan Sadhasivam via B4 Relay wrote:
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > 
-> > Add of_find_serdev_controller_by_node() API to find the serdev controller
-> > device associated with the devicetree node.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> >  drivers/tty/serdev/core.c | 16 ++++++++++++++++
-> >  include/linux/serdev.h    |  9 +++++++++
-> >  2 files changed, 25 insertions(+)
-> > 
-> > diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
-> > index b33e708cb245..25382c2d63e6 100644
-> > --- a/drivers/tty/serdev/core.c
-> > +++ b/drivers/tty/serdev/core.c
-> > @@ -504,6 +504,22 @@ struct serdev_controller *serdev_controller_alloc(struct device *host,
-> >  }
-> >  EXPORT_SYMBOL_GPL(serdev_controller_alloc);
-> >  
-> > +/**
-> > + * of_find_serdev_controller_by_node() - Find the serdev controller associated
-> > + *					 with the devicetree node
-> > + * @node:	Devicetree node
-> > + *
-> > + * Return: Pointer to the serdev controller associated with the node. NULL if
-> > + * the controller is not found.
-> > + */
-> > +struct serdev_controller *of_find_serdev_controller_by_node(struct device_node *node)
-> > +{
-> > +	struct device *dev = bus_find_device_by_of_node(&serdev_bus_type, node);
-> > +
-> > +	return (dev && dev->type == &serdev_ctrl_type) ? to_serdev_controller(dev) : NULL;
-> > +}
-> > +EXPORT_SYMBOL_GPL(of_find_serdev_controller_by_node);
-> > +
-> 
-> This new of_find_serdev_controller_by_node() function needs:
-> 
-> #ifdef CONFIG_OF ... #endif
-> 
-> around it, to match the stubbing you are doing in serdev.h
-> 
 
-Ack.
+--sP0C4lxuJbobslsN
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> >  static int of_serdev_register_devices(struct serdev_controller *ctrl)
-> >  {
-> >  	struct device_node *node;
-> > diff --git a/include/linux/serdev.h b/include/linux/serdev.h
-> > index ecde0ad3e248..db9bfaba0662 100644
-> > --- a/include/linux/serdev.h
-> > +++ b/include/linux/serdev.h
-> > @@ -333,4 +333,13 @@ static inline bool serdev_acpi_get_uart_resource(struct acpi_resource *ares,
-> >  }
-> >  #endif /* CONFIG_ACPI */
-> >  
-> > +#ifdef CONFIG_OF
-> > +struct serdev_controller *of_find_serdev_controller_by_node(struct device_node *node);
-> > +#else
-> > +struct serdev_controller *of_find_serdev_controller_by_node(struct device_node *node)
-> > +{
-> > +	return NULL;
-> > +}
-> 
-> stubs like this one should be static inline to avoid warnings like this one:
-> 
-> In file included from drivers/tty/serdev/core.c:21:
-> ./include/linux/serdev.h:339:27: warning: no previous prototype for ‘of_find_serdev_controller_by_node’ [-Wmissing-prototypes]
->   339 | struct serdev_controller *of_find_serdev_controller_by_node(struct device_node *node)
->       |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
+On Wed, Jan 14, 2026 at 03:50:11PM +0000, Lee Jones wrote:
+> On Tue, 13 Jan 2026, Mark Brown wrote:
 
-Darn... Will fix it. Thanks for spotting!
+> > Given that the bulk of the series is regulator changes I'd been
+> > expecting to take it?
 
-- Mani
+> I have no issues with that, providing you offer a succinct immutable
+> branch containing just this set for me to pull from.
 
--- 
-மணிவண்ணன் சதாசிவம்
+> Failing that, I have the machinery in place to offer you the same.
+
+Yeah, given what Andr=E9 said about dependencies if you could apply the
+MFD commits and send a PR that'd be great.
+
+--sP0C4lxuJbobslsN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlnvf4ACgkQJNaLcl1U
+h9Cp1gf+OZ6fMIplgRtBgwqPYPb5uS6hZEcun26WBH76uuVBF7Cr+M7qHAuKj0I9
+YKrrf/wm3fEA51yXKdniN6DnwYFx7yockoUuIMOK+ounuw1gJ3L0FZyXe2EpiiFy
+4symRoAStI8qV49Ex9UOc0E7LRRQTr85fmAJ0FmWNG5xE7QR2mv4vxzPQcWFeeCW
+fOw9Iya57+RAt85lSj5tUdU9oV9ENBBz6daMm8yykGFOKRas4ahqRJ/uF0PheSfH
+JdzhtPnHVmsPh1Axb49xvRb61ZHRFef5o6qFl2wfp8odiurZ0Hng32TFNLzGIi0i
+Y2sFv6GmSGj4KqGX2PHPRffLa1jGuw==
+=sBc4
+-----END PGP SIGNATURE-----
+
+--sP0C4lxuJbobslsN--
 
