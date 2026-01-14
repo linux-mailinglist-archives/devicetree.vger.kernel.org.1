@@ -1,108 +1,190 @@
-Return-Path: <devicetree+bounces-255039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FCD2D1F00D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:13:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6215ED1F023
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:14:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 81F663095671
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:10:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7408B30AB2CA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6BB4399A79;
-	Wed, 14 Jan 2026 13:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0119A39526D;
+	Wed, 14 Jan 2026 13:11:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVt/ptqz"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="X0ks54VN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C253D13777E;
-	Wed, 14 Jan 2026 13:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768396248; cv=none; b=MLkSWdJLGVv6otZIHpJMfrDzNdYYemB1gC2ggUGHse3BcJ5vUPwhI4Kretst2tbz1z8L9I0w4DglIztCc6gfaNa2OOvJ40cDORBShr/B9N8s7BNC0f3cQE/8jy0NpBfKwp8YdZQg8T+Rd6InOtC1UXKWl66cwJItx1c3hNkJ284=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768396248; c=relaxed/simple;
-	bh=Lbi2dkKS+CDo0VctVbxA1brjkGK2rdj50pCjLj4bluA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i8a5vjYqFTKjWXw16xZcKPo7BsDMe0JF1gN7iv/wqmTPHz/Owf+tw1Sqf4ZkTgrzYBYeM7t9dpMvCw0oxdE5t8P8kiUTRmoZ5FuczWWi+X5wQYgGW7Mn/Zor7w94ZD6HQHTcycdjOrlj1JpbpVO+WiqFtM9a3LGz4nJ5BF+A7mY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVt/ptqz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C188C4CEF7;
-	Wed, 14 Jan 2026 13:10:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768396248;
-	bh=Lbi2dkKS+CDo0VctVbxA1brjkGK2rdj50pCjLj4bluA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NVt/ptqz34aItSGZgocy9xdXCuD9dKmJxuyqSDXO0AMFnuI8NtXYLrQc5A9pu+SvU
-	 gwBab5cCLYokIDGMQ5GOhl7HJHIbDXYxl8VKQem28J4zWopWXNeUmxNj6hhVhBbSls
-	 Ybct1F1sWabl1HKOgTK1Hqve/iiqVkOzWCEkB+WjbruQ53Pw8Ti0eKOGnHfHajqo4X
-	 upzATJnxuH8rICv9R+HRYJNRJ9FK0PSLf3HG+Y3ujcvrCCAyLaX41XFk+yGvFaaD37
-	 qQIXCBmThqq9b4q/4dMcOUVJZZGjXc0AjrEIixMXjZaeeLKUuemzZmyoXDn2TPUu49
-	 mCE86yrnxtdBw==
-Date: Wed, 14 Jan 2026 18:40:44 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: =?iso-8859-1?Q?Bj=F8rn?= Mork <bjorn@mork.no>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Eric Woudstra <ericwouds@gmail.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: Re: [PATCH v3 net-next 05/10] phy: add phy_get_rx_polarity() and
- phy_get_tx_polarity()
-Message-ID: <aWeV1CEaEMvImS-9@vaman>
-References: <20260111093940.975359-1-vladimir.oltean@nxp.com>
- <20260111093940.975359-6-vladimir.oltean@nxp.com>
- <87o6n04b84.fsf@miraculix.mork.no>
- <20260111141549.xtl5bpjtru6rv6ys@skbuf>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88099399A79;
+	Wed, 14 Jan 2026 13:11:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768396282; cv=pass; b=shhH+EVKGqcYrspzddN9G34XwCkPvUFkPQzbwOl9TRjVYZv6U4CT4NmXmE5FdHN6Wli20qjKJDuKAw3gLq01bVR4kwqDSM1iYYzTByPcR2uO8feVtf0FPLbBOMYQxzZLeS73u5dF6FN5qHFvEjCm5tMMIxQIRxV6XMW94OkANlw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768396282; c=relaxed/simple;
+	bh=hEBx7s5oIuzjVK0WdxnRyJ/sv3t+07BmPx76PT3AJmo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=udXH7Sufn6Ss7obdhp/uXzgnTThtmKmULDJgqVZp+B7hRzZ9WX6AhhCLItzZtYNw784ExOat45YzADHbYtJMKF3d8P/tRdtmAtPwALJht4s9YybE0MDHXERhdF8B5QGyiLLh50TOehJYAOhWUoWfMmkw8xksdZy6n3WfWxlOEDU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=X0ks54VN; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1768396254; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=fzE7FgxAedH8uxX0VAeiDhzKipXVqRZ2kiSaXoud202thrp2+5O0CXyk+xIlkiRZd5FelhJ7OfDbg7xjDiPjBQHnMrFQA4eg5yMHe2vJFDsPFTzStZaMYkZ+0a6VwBMQrDybVis6CkxQNWYIKk2FvDI+mq8EJsjL31tFIBxCJhE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1768396254; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4hNT9bMCTFBIbSQvqXd0vDReNnQZh/9obugkKAGLY2o=; 
+	b=Z3ypKbyrmN4UqyBQ/OpBF0Xt+PTnoN3lrsmi+bnS58U5VogPFE79P61hocJTfKf5V4yeQUd9Dfy44nOaW/WC25OHnrTWbgoBS3LtfodwTnaOr6emvOzBy7xsnqNFLv3pUEjJzX10wSd/uftfocWF4QyMhk9grdCDQXvxtzl1+lU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768396254;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=4hNT9bMCTFBIbSQvqXd0vDReNnQZh/9obugkKAGLY2o=;
+	b=X0ks54VN6tfrUJdG2MPakQ5UFB3h6zKvKNfKKUpWpfUgWbgTHNnEgeD2+PI0HybV
+	/b/+j9T6abRwqDw2PyUsCs8QMYnRBo+QkfQoyl0BFB0gA9BjsbvJnHM3TbfTefcK6+5
+	tNFmo4rlMi7g8x4CgqPkwptI/h8vsuTzlNYwEVbs=
+Received: by mx.zohomail.com with SMTPS id 1768396253114813.88687353656;
+	Wed, 14 Jan 2026 05:10:53 -0800 (PST)
+Message-ID: <db0950f1-b357-47c2-9829-e33262ab456d@collabora.com>
+Date: Wed, 14 Jan 2026 14:10:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
+To: Will Deacon <will@kernel.org>
+Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, mchehab@kernel.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+ kernel@collabora.com
+References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
+ <20260107101005.84039-4-benjamin.gaignard@collabora.com>
+ <aWZui-rn5RDPwpEO@willie-the-truck>
+ <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
+ <aWeTQ50DOtntcniN@willie-the-truck>
+Content-Language: en-US
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <aWeTQ50DOtntcniN@willie-the-truck>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260111141549.xtl5bpjtru6rv6ys@skbuf>
 
-On 11-01-26, 16:15, Vladimir Oltean wrote:
-> On Sun, Jan 11, 2026 at 12:53:15PM +0100, Bj�rn Mork wrote:
-> > Vladimir Oltean <vladimir.oltean@nxp.com> writes:
-> > 
-> > > Add helpers in the generic PHY folder which can be used using 'select
-> > > GENERIC_PHY_COMMON_PROPS' from Kconfig
-> > 
-> > The code looks good to me now.
-> > 
-> > But renaming stuff is hard. Leftover old config symbol in the commit
-> > description here. Could be fixed up on merge, maybe?
-> > 
-> > 
-> > Bj�rn
-> 
-> This is unfortunate. I'll let Vinot comment on the preferred approach,
-> although I also wouldn't prefer resending to fix a minor commit message
-> mistake. Thanks for spotting and for the review in general.
 
-Yes fixed that while applying
+Le 14/01/2026 à 13:59, Will Deacon a écrit :
+> On Tue, Jan 13, 2026 at 05:25:38PM +0100, Benjamin Gaignard wrote:
+>> Le 13/01/2026 à 17:10, Will Deacon a écrit :
+>>> Hi Benjamin,
+>>>
+>>> Thanks for posting a v11.
+>>>
+>>> On Wed, Jan 07, 2026 at 11:09:53AM +0100, Benjamin Gaignard wrote:
+>>>> The Verisilicon IOMMU hardware block can be found in combination
+>>>> with Verisilicon hardware video codecs (encoders or decoders) on
+>>>> different SoCs.
+>>>> Enable it will allow us to use non contiguous memory allocators
+>>>> for Verisilicon video codecs.
+>>>> If both decoder and this iommu driver are compiled has modules
+>>>> there is undefined symboles issues so this iommu driver could
+>>>> only be compiled has built-in.
+>>>>
+>>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>>> ---
+>>>> changes in version 11:
+>>>> - Fix dependency issue when decoder driver is build as module.
+>>>>
+>>>>    drivers/iommu/Kconfig     |  11 +
+>>>>    drivers/iommu/Makefile    |   1 +
+>>>>    drivers/iommu/vsi-iommu.c | 808 ++++++++++++++++++++++++++++++++++++++
+>>>>    include/linux/vsi-iommu.h |  21 +
+>>>>    4 files changed, 841 insertions(+)
+>>>>    create mode 100644 drivers/iommu/vsi-iommu.c
+>>>>    create mode 100644 include/linux/vsi-iommu.h
+>>> Based on your reply to v9:
+>>>
+>>> https://lore.kernel.org/all/0eff8b1a-c45f-47b1-a871-59f4a0101f0f@collabora.com/
+>>>
+>>> I took another look at this to see whether it had changed significantly
+>>> from v6 when compared to the rockchip driver. Sadly, they still look
+>>> very similar to me and I continue to suspect that the hardware is a
+>>> derivative. I really don't understand why having a shared implementation
+>>> of the default domain ops is difficult or controversial. Have you tried
+>>> to write it?
+>>>
+>>> However, given that nobody from the Rockchip side has contributed to the
+>>> discussion and you claim that this is a distinct piece of IP, I don't
+>>> want to block the merging of the driver by leaving the conversation
+>>> hanging.
+>>>
+>>> There is still one thing I don't understand (which, amusingly, the
+>>> rockchip driver doesn't seem to suffer from):
+>>>
+>>>> +static void vsi_iommu_flush_tlb_all(struct iommu_domain *domain)
+>>>> +{
+>>>> +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+>>>> +	struct list_head *pos;
+>>>> +	unsigned long flags;
+>>>> +
+>>>> +	spin_lock_irqsave(&vsi_domain->lock, flags);
+>>>> +
+>>>> +	list_for_each(pos, &vsi_domain->iommus) {
+>>>> +		struct vsi_iommu *iommu;
+>>>> +		int ret;
+>>>> +
+>>>> +		iommu = list_entry(pos, struct vsi_iommu, node);
+>>>> +		ret = pm_runtime_resume_and_get(iommu->dev);
+>>>> +		if (ret < 0)
+>>>> +			continue;
+>>>> +
+>>>> +		spin_lock(&iommu->lock);
+>>>> +
+>>>> +		writel(VSI_MMU_BIT_FLUSH, iommu->regs + VSI_MMU_FLUSH_BASE);
+>>>> +		writel(0, iommu->regs + VSI_MMU_FLUSH_BASE);
+>>>> +
+>>>> +		spin_unlock(&iommu->lock);
+>>>> +		pm_runtime_put_autosuspend(iommu->dev);
+>>>> +	}
+>>>> +
+>>>> +	spin_unlock_irqrestore(&vsi_domain->lock, flags);
+>>>> +}
+>>> [...]
+>>>
+>>>> +static const struct iommu_ops vsi_iommu_ops = {
+>>>> +	.identity_domain = &vsi_identity_domain,
+>>>> +	.release_domain = &vsi_identity_domain,
+>>>> +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
+>>>> +	.of_xlate = vsi_iommu_of_xlate,
+>>>> +	.probe_device = vsi_iommu_probe_device,
+>>>> +	.release_device = vsi_iommu_release_device,
+>>>> +	.device_group = generic_single_device_group,
+>>>> +	.owner = THIS_MODULE,
+>>>> +	.default_domain_ops = &(const struct iommu_domain_ops) {
+>>>> +		.attach_dev		= vsi_iommu_attach_device,
+>>>> +		.map_pages		= vsi_iommu_map,
+>>>> +		.unmap_pages		= vsi_iommu_unmap,
+>>>> +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
+>>> This has no callers and so your unmap routine appears to be broken.
+>> It is a leftover of previous attempt to allow video decoder to clean/flush
+>> the iommu by using a function from the API.
+>> Now it is using vsi_iommu_restore_ctx().
+>> I while remove it in version 12.
+> Don't you still need some invalidation on the unmap path?
 
--- 
-~Vinod
+In vsi_iommu_unmap_iova() page is invalided by calling vsi_mk_pte_invalid().
+That clear BIT(0) so the hardware knows the page is invalid.
+Do I have miss something here ?
+
+Benjamin
+
+>
+> Will
+>
 
