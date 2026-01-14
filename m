@@ -1,163 +1,158 @@
-Return-Path: <devicetree+bounces-255126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12782D1FE76
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:45:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00948D1FEE8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:49:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 52A52300FA01
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:43:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78643300DC8C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D3639E6F4;
-	Wed, 14 Jan 2026 15:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5307624677F;
+	Wed, 14 Jan 2026 15:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JYHl9+Cw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BQN8X8K5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4C839B493;
-	Wed, 14 Jan 2026 15:43:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88BEA2D77F7
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768405420; cv=none; b=pfJxMFRqCOWuN4fdr+Zg2PTKpbmpGtpwqV0ao8yfpCj3OBe2NcoO1zWKWacIY0WvcMlp2tqernVNKhkB/0TVg8WId8z1TXqoO0ZuZVCfxBJV5OVuP3VlNysV6YFWzYYXX96DMJfq/pguaiD+KPKLldAKOUaNZwcQO4UN7yYvMy8=
+	t=1768405531; cv=none; b=VF7UzrRkjEAR9n7g5fp5CpQO9mdtxK4XpL7eUk3JqIVipYsu7RYfRnMTefuQGRFP7dWN1nyxvvAfgqrPydnE531q8zJ01NeUf26PNBlwf6C+qqatGD6CxdKGEBxFIzTrtPXzNxrg/iHxf7M+Y+yG1Nxcj7vfhCVxymfs6FUk8M8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768405420; c=relaxed/simple;
-	bh=idqp3Zu4I6O64lQPngAPq0QtjIQKaXwmYdZOFn0aqV8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IkO1i10Nb9zt4qNvHiqgYG3W4V/ZNZnYfp1wb1CVoNcXfH7D+Z7B5zw+pqvNFVOzi4fRTqJJKmEfgvIOyXHD1rYjnMNr9KGkMXzLcP0tCdgOuao1RTaHAvPkErZVRFImmAz07MQpXfqEd8m9m/QAAfZPzGvTmslvooxgbO8kdYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JYHl9+Cw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97A67C4CEF7;
-	Wed, 14 Jan 2026 15:43:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768405419;
-	bh=idqp3Zu4I6O64lQPngAPq0QtjIQKaXwmYdZOFn0aqV8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JYHl9+CwklM2ZB/cZLwVt8AUTazCwMM+/nCulCnal+3guu1Z4Rn9ZJ+9kUnsGLIZs
-	 qh5poSnVVWkIcv+UZswVBcSNH5bXLlwFrmRplZiJWmsWvlMsbMMgJW7CcE7ZjblW8s
-	 tWwbHp4+WPt3C6Iyyh5XDelzHoqV7mghGOIMxvv8LsT2idh0rNGoFdYT8uAsT3Rx9y
-	 3ogAjRDST28+OjeX4TxUOwGpF0+gt2B2ZBIpBWatP2XQ4rf6wTq5VJ5Vqr+LNooIAh
-	 K3kIAItnw0szbazD5egn5RkbINyE+crnOVv57YPTtVF0C7cBwA5pfkNXY6ABym0rWP
-	 Uc5J5onLD548Q==
-Message-ID: <0bb9de0d-f811-45ff-b673-8811540b5376@kernel.org>
-Date: Wed, 14 Jan 2026 16:43:35 +0100
+	s=arc-20240116; t=1768405531; c=relaxed/simple;
+	bh=Up2AstbZWFGTvOK9odG/3yJUO1giaEyY5igE6wJD6Jc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=K6vj549/Yx27wfjVM1PI4T8EsZc+8zTfe0v+9IsJb8ibpqRB3M6UShaa7QJCwOf+ERmSVSnQPyTJBCAVbDtcYCFxRudfQvdULGghThhU1bw5C29QSGV7qOUSGLeZ+NoB1kciqRF0BTgmhQDg6292Kv5f5J5wtaHAZxZti32i6cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BQN8X8K5; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47795f6f5c0so55833125e9.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 07:45:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768405528; x=1769010328; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+KLyVPl7ef6pflNddejrx56gS9wwrDJcy0wiU6lH7IE=;
+        b=BQN8X8K5oQLntQjbYTr+qhNa4mEVDEazwQOTi8zvqXTP66WodEGasnj5jA5f4v6syZ
+         qcZj7ooOnq4mdp3IFHyXJnowIKriPjqvOgfYDEz0vIvtZ4DI0HtRyZOVTmRlOTXcYcCt
+         f+zYcg4kuLG6ec0LtWQq1xxutTtkwEUXMvN/E2VeH1XG3UlyPgt2YUJd8lrtzXR0d49h
+         2Wx0cCaHJRfEYrigIjB8pevhZ//5N8MqXaFEj87J7AWPPLM5FKUUqZwY8QnoAgUsY7XR
+         N411LOXwcg5kSeYnfuXD0DlS0KZGjbZ8evhgZiuFQBycik6ms6FlParQzi1uUKfCgJ79
+         gTeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768405528; x=1769010328;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+KLyVPl7ef6pflNddejrx56gS9wwrDJcy0wiU6lH7IE=;
+        b=AbhR+72kSXR9lUwBxMM8DpiME6zI09S5dXXjqEk93ohd/ddFXJCP5X+jFA118BZKED
+         67oD4+318nW/21EcNkGK5RuHs6cy+UYYl4pGmehk1aiR9goW3c6TU+EA+n0KfOOjwI0O
+         w6u/fnpRPmoJ8eQxA1bh87zScYV4P3va/RrEPLv9XrqTktMGXBQ6Rrc8SU9pp/0BLcSH
+         gm8MSHYbhrxVvfCme0/Qm0u4sLdiLUUcj0IqY6d4srY3qpaABQW3dcBOpwJ1iEYQ0Yle
+         qJZIyXDhztHkPrR0O7dOzSSX33C2jcEXFt7rUNsbw0Nzk8ZqGYx5vwRmnKL7rKir5PvA
+         xq9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWWrblPSpbt4EzwVDUHEoK6u5t5sXHEFvWcJ4HkRQ0PuokqRgomsgL1J4KEkyI//3i8mrIBzb6Ch1hG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIB7qf1DUdmoRb+C2n2jiP99NWh2VmuMEo45VUVD6b1S+Sjgrw
+	0w8qf//A/xjHpxVshgSdzoPFqOqVKCCMb1yewpdl9BPkwTP1skeuZNFw
+X-Gm-Gg: AY/fxX53MqpdN2AeI3zUGdfClBKpE7qWMtUhAyy+62Cs+kxD7/0ZYSN4+qXYCFQGGyJ
+	b/yzt4vQMs9eRLdinKJdjeyYlfgx+DdcsUQ9MbJt63tjQRPHsZ7ECQ/iGJroJV9ocuW+b7Gls1j
+	OuEICwc37UjwS1TzZdTMs0aXKQ9S/5LUleGr2gZn7A23ik6p6D8JW9BSu3YP3yh87M9QbPjJzFj
+	ltupmG+D/gDex+4R2q4GVLtKFSthF4k1g9LDhWRflpUqnLyS+bh5V/4SEVSaqSZorVmzRwNmkIT
+	Qm4tmDFJw/9p9dynUTWsUzH7TZfj0nK/n3ahUed925lNUBbZ4kSteQbZHov9V6NSk7o5k5sJUDg
+	X3iEBtSynXPcQWD7C/O4toaUsiwJr9trKyAai4c71Kxlr8G3+fdiH3ZyciN2FZPm8d/ExvjZ2z4
+	54QFiWul3WA2mBOGkoaQxeSNNX3tebaKthXsgtXJenGTOZoQErwcSP9gKZlQ4l6u4BUNFeB5tcU
+	J6JSRSOOti/KafBA7DlgUAC
+X-Received: by 2002:a05:600c:3483:b0:477:9fcf:3ff9 with SMTP id 5b1f17b1804b1-47ee33a0fe7mr38193535e9.27.1768405527738;
+        Wed, 14 Jan 2026 07:45:27 -0800 (PST)
+Received: from iku.Home ([2a06:5906:61b:2d00:7f20:df14:ac2b:3d74])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ee544387fsm33867105e9.0.2026.01.14.07.45.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 07:45:27 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/4] Add CANFD support to R9A09G056/057/077/087 SoCs
+Date: Wed, 14 Jan 2026 15:45:21 +0000
+Message-ID: <20260114154525.3169992-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/6] dt-bindings: gpio-mmio: Correct opencores GPIO
-To: Stafford Horne <shorne@gmail.com>, LKML <linux-kernel@vger.kernel.org>
-Cc: Linux OpenRISC <linux-openrisc@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, linux-gpio@vger.kernel.org
-References: <20260114151328.3827992-1-shorne@gmail.com>
- <20260114151328.3827992-2-shorne@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260114151328.3827992-2-shorne@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/01/2026 16:13, Stafford Horne wrote:
-> In commit f48b5e8bc2e1 ("dt-bindings: gpio-mmio: Add compatible
-> string for opencores,gpio") we marked opencores,gpio to be allowed with
-> brcm,bcm6345-gpio. This was wrong, opencores,gpio is not hardware
-> equivalent to brcm,bcm6345-gpio. It has a different register map and
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-"is not compatible with brcm,...."
+Hi All,
 
+This patch series adds CANFD support to RZ/V2H(P), RZ/V2N, RZ/T2H and
+RZ/N2H SoCs.
+The CANFD controller on RZ/V2H(P) and RZ/V2N SoCs is similar to the one
+on RZ/G3E SoC, while the CANFD controller on RZ/T2H and RZ/N2H SoCs is
+similar to R-Car Gen 4 SoCs but with some differences in terms of
+number of channels and AFLPN and CFTML bits.
 
-> is 8-bit vs braodcom which is 32-bit.  Change opencores,gpio to be a
-> separate compatible string for MMIO GPIO.
-> 
-> Fixes: f48b5e8bc2e1 ("dt-bindings: gpio-mmio: Add compatible string for opencores,gpio")
-> Signed-off-by: Stafford Horne <shorne@gmail.com>
-> ---
-> Since v4:
->  - New patch.
->  - Rebased old patch and rewrote commit message.
-> 
->  .../devicetree/bindings/gpio/gpio-mmio.yaml      | 16 ++++++----------
->  1 file changed, 6 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
-> index 7ee40b9bc562..a8823ca65e78 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
-> @@ -18,16 +18,12 @@ description:
->  
->  properties:
->    compatible:
-> -    oneOf:
-> -      - enum:
-> -          - brcm,bcm6345-gpio
-> -          - ni,169445-nand-gpio
-> -          - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
-> -          - intel,ixp4xx-expansion-bus-mmio-gpio
-> -      - items:
-> -          - enum:
-> -              - opencores,gpio
-> -          - const: brcm,bcm6345-gpio
-> +    enum:
-> +      - brcm,bcm6345-gpio
-> +      - ni,169445-nand-gpio
-> +      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
-> +      - intel,ixp4xx-expansion-bus-mmio-gpio
-> +      - opencores,gpio
+The patch series includes:
+- Specifying reset-names for RZ/G2L and RZ/G3E CANFD controllers.
+- Documenting the CANFD controller on RZ/V2H(P) and RZ/V2N SoCs.
+- Documenting the CANFD controller on RZ/T2H and RZ/N2H SoCs.
+- Adding RZ/T2H SoC support in the rcar_canfd driver.c file.
 
-So if you are changing all of the lines here, you can as well sort it
-and put the new entry not at the end but in alphabetical spot.
+Note this patch series applies on top of:
+https://lore.kernel.org/all/20251126155911.320563-1-biju.das.jz@bp.renesas.com/
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+v3->v4:
+- Added Reviewed-by tag for patch 1/4.
+- No changes made for patches 2/4 and 4/4.
+- For patch 3/4:
+ * Dropped Reviewed-by from Geert due to below changes.
+ * Moved single compatible entries into an enum and to below oneOf.
+ * Synced the resets/reset-names handling with other similar SoCs.
 
-Best regards,
-Krzysztof
+v2->v3:
+- Updated commit message to clarify that reset-names existed previously
+  but was dropped for patch 1/4.
+- Grouped single compatible entries into an enum in patch 3/4.
+- Updated commit message about disallowing reset-names property
+  for patch 3/4.
+- Added Acked-by and Reviewed-by tags.
+
+v1->v2:
+- Moved reset-names to top-level properties.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (4):
+  dt-bindings: can: renesas,rcar-canfd: Specify reset-names
+  dt-bindings: can: renesas,rcar-canfd: Document RZ/V2H(P) and RZ/V2N
+    SoCs
+  dt-bindings: can: renesas,rcar-canfd: Document RZ/T2H and RZ/N2H SoCs
+  can: rcar_canfd: Add RZ/T2H support
+
+ .../bindings/net/can/renesas,rcar-canfd.yaml  | 79 +++++++++++++++----
+ drivers/net/can/rcar/rcar_canfd.c             | 18 +++++
+ 2 files changed, 83 insertions(+), 14 deletions(-)
+
+-- 
+2.52.0
+
 
