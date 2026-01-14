@@ -1,197 +1,176 @@
-Return-Path: <devicetree+bounces-255023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE4FD1ED72
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:42:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 309CED1EDCB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:45:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0625530486B1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:40:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 268C33022B8C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C47BB397ADD;
-	Wed, 14 Jan 2026 12:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80AF39A81A;
+	Wed, 14 Jan 2026 12:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="uNacfl4B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vRbfv42m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FEBF396D16;
-	Wed, 14 Jan 2026 12:40:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BEF439A809;
+	Wed, 14 Jan 2026 12:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768394423; cv=none; b=babZC4rP/DHYqGUqXYzCEE7q+MMpdsFDbg4MsNB9/P/5nbm9CMskEmbLAYD9j8+/+g2b93ECn1zKA79uqj1eQAwmOJSW6hNBJR7hP5d8T5G3CodvGl/+V89GcPxuGstFk76lEh96q732F0GpxprcPveAlDhJjheH7jSSHFrF1jc=
+	t=1768394565; cv=none; b=rsF9xCIUemI00fzmoNrZcD38lSckszMRYpT2JXHlWRI7yoFgZG0pkGvKQghevdG1LLf09JzPJQDPA1y/Q66H0jCUqHC2QRdErm86o3IFOKeWXpGTlVdczaby/HPeoSoV438ZNwA1IsCBgMmTYc3afJVu9tnwvWMJMu45TqRKFcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768394423; c=relaxed/simple;
-	bh=i3ywdlJEEbMCErXDckWbFK8qjmi5xbJlVYcN7KDYJQ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ShL2z7JoxS29v13P9xvdWB24IypYEldPHMbtcvno+csz965un7mh6xycXoM/K1iVVScLpuYQeu2HqMWmwaHJ41P5q8Y3mZ/RIzFFmZ20s6F7cnd//iV5YjWgKMnEplzjYNmmkgq6MgvH7YYwpmd99z1JHnBv9r1ZBAD9xOrDdsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=uNacfl4B; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 7194B4E41FEC;
-	Wed, 14 Jan 2026 12:40:19 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2F36F6074A;
-	Wed, 14 Jan 2026 12:40:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AE9C110B68235;
-	Wed, 14 Jan 2026 13:40:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768394417; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=LdTB9SICd7x5Se7c+EJ+56/scU6NfThvAUtGnGGrMx4=;
-	b=uNacfl4Bs/+dFN/j5D9PlwbjgNS6nb7BgwzaR6oj2DCUMhGki9TlUQ/otRArV4T4TEPthb
-	vLECnyHHIjy9A5cLIyIKysmamaHZLz7lGf9CbftO+0yfLYGAJInMJJcocP1D42nN95FHhu
-	aYoE64ScAcn5BFZ2SnxBsUH+GiBv9fQeYg2sPyuLhoWjcTOT3cDH+pa9NU43D5fftdQd6h
-	mtCKjvOuuQbvV3ChzfQGdId8DRnDXRksF2WWqhMzKpPOb44Pj7ZhKKguWpUfIv6mOnptLC
-	urt5saAEuBgrYfeu017oRmKJVfhFd9ONDBz0VgyPVwVqmSl2jLy0Wjti0WNS1g==
-Date: Wed, 14 Jan 2026 13:40:04 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
- <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas
- Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, Ilpo
- =?UTF-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Mark Pearson
- <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>,
- Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann
- <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- linux-acpi@vger.kernel.org, Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>, Sui Jingfeng <sui.jingfeng@linux.dev>
-Subject: Re: [PATCH v3 00/14] Add support for handling PCIe M.2 Key E
- connectors in devicetree
-Message-ID: <20260114134004.11023a7e@bootlin.com>
-In-Reply-To: <aWSuYd8zqCxZ9DYE@smile.fi.intel.com>
-References: <20260110-pci-m2-e-v3-0-4faee7d0d5ae@oss.qualcomm.com>
-	<aWSq_7_5kkQIv9Hc@smile.fi.intel.com>
-	<aWSuYd8zqCxZ9DYE@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768394565; c=relaxed/simple;
+	bh=FyIrMH60JpVUQq8N/l694yqmTnLtex7jySFj1xeLIFA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=YlO087GaYHU7vboQbsbXPvCfzvcaZjZSckacBTFNpp+mV+KVi8hnx2S2yJDsB124PP4YAexKKZh1WMKTl1nyqE/jfccOHXz4nDaVopKIDQEXq9Nlo0NX3JH6pMLki9n1XaQDeO5nFay+/M3LluhOZqhB2WRuNQ0I7YXOKxV8XaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vRbfv42m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF3AC19422;
+	Wed, 14 Jan 2026 12:42:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768394565;
+	bh=FyIrMH60JpVUQq8N/l694yqmTnLtex7jySFj1xeLIFA=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=vRbfv42mCMALWtxAwa7lEq+qt8+flqk/xCUoa1pDI7avlYFKcTyvE3TlyVdkhz+F5
+	 ooQmf01vOqDWu++vjn4/HVgmFetIaeZX7vP9KOWc11puV1Kyg818I21JBT64vBKial
+	 hMcpBbE/rLgDuVmpxgnjYHfd0kwcD5VjW7nLFr90bxv0JbuNqxI2QeDaKdFGwJWwCC
+	 k6VDCvNTnyyELmK9tgh/MHGpB7TZ9TrZlUoBN+6W4/GDS4UtiLhA9jYEX9j0n6JjWp
+	 Awn9XfXV5BR6M0MIJWasGvIQZrC5zQPXgiblHec9IULGjg2bT8tMMdchSQV9l7Af8p
+	 NdwOSruCh/ejQ==
+Message-ID: <ba8192c7-d452-4ee3-bfc7-eedff746e590@kernel.org>
+Date: Wed, 14 Jan 2026 06:42:43 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: socfpga: agilex: add emmc support
+To: tzeyee.ng@altera.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1768378952.git.tzeyee.ng@altera.com>
+ <9ed64240436c2dce96db8882f620468dfe5e1981.1768378952.git.tzeyee.ng@altera.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <9ed64240436c2dce96db8882f620468dfe5e1981.1768378952.git.tzeyee.ng@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Andy, Manivannan,
 
-On Mon, 12 Jan 2026 10:18:41 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-> +Cc: Herve (btw, any news on LAN966x support?)
-
-Related to LAN966x support, I am still stucked on issues related to
-fw_devlink and DT overlays [1].
-
-[1] https://lore.kernel.org/all/20260112154731.6540453b@bootlin.com/
-
+On 1/14/26 03:42, tzeyee.ng@altera.com wrote:
+> From: Ng Tze Yee <tzeyee.ng@altera.com>
 > 
-> On Mon, Jan 12, 2026 at 10:04:24AM +0200, Andy Shevchenko wrote:
-> > On Sat, Jan 10, 2026 at 12:26:18PM +0530, Manivannan Sadhasivam via B4 Relay wrote:  
-> > > Hi,
-> > > 
-> > > This series is the continuation of the series [1] that added the initial support
-> > > for the PCIe M.2 connectors. This series extends it by adding support for Key E
-> > > connectors. These connectors are used to connect the Wireless Connectivity
-> > > devices such as WiFi, BT, NFC and GNSS devices to the host machine over
-> > > interfaces such as PCIe/SDIO, USB/UART and NFC. This series adds support for
-> > > connectors that expose PCIe interface for WiFi and UART interface for BT. Other
-> > > interfaces are left for future improvements.
-
-Related to describing a connector in DT. If DT overlays are involved to described
-what is connected to this connector, some issues need to be fixed.
-
-Those issues are related to referencing an external symbol from the overlay.
-
-We, at Boolin, have been working on the topic
-
-A talk (last year at ELC Europe) gives all details about the topic an related issue:
-  https://bootlin.com/pub/conferences/2025/elce/ceresoli-hotplug-status.pdf
-  https://www.youtube.com/watch?v=C8dEQ4OzMnc
-
-Also a discussion took place after this talk:
-  https://lore.kernel.org/all/20250902105710.00512c6d@booty/
-
-Recently, I also send a RFC series to DTC in order to move forward on this symbol
-reverence topic. This series implements features emerged from the pointed out
-discussion.
-
-> > > 
-> > > Serdev device support for BT
-> > > ============================
-> > > 
-> > > Adding support for the PCIe interface was mostly straightforward and a lot
-> > > similar to the previous Key M connector. But adding UART interface has proved to
-> > > be tricky. This is mostly because of the fact UART is a non-discoverable bus,
-> > > unlike PCIe which is discoverable. So this series relied on the PCI notifier to
-> > > create the serdev device for UART/BT. This means the PCIe interface will be
-> > > brought up first and after the PCIe device enumeration, the serdev device will
-> > > be created by the pwrseq driver. This logic is necessary since the connector
-> > > driver and DT node don't describe the device, but just the connector. So to make
-> > > the connector interface Plug and Play, the connector driver uses the PCIe device
-> > > ID to identify the card and creates the serdev device. This logic could be
-> > > extended in the future to support more M.2 cards. Even if the M.2 card uses SDIO
-> > > interface for connecting WLAN, a SDIO notifier could be added to create the
-> > > serdev device.
-> > > 
-> > > Open questions
-> > > ==============
-> > > 
-> > > Though this series adds the relevant functionality for handling the M.2 Key M
-> > > connectors, there are still a few open questions exists on the design. 
-> > > 
-> > > 1. I've used the DT compatible for the serdev swnode to match the existing OF
-> > > device_id of the bluetooth driver. This avoids implementing custom serdev id
-> > > matching as implemented till v2.  
-> > 
-> > Yeah, swnodes are not designed to replace the real DT or other firmware
-> > interface. The idea of swnodes is to have them providing quirks if needed (i.e.
-> > fixing up the broken or missed FW device properties). This should not have been
-> > done this way. Please, consider another approach, e.g. DT-overlay.  
+> The Agilex devkit supports a separate eMMC daughter card. The
+> eMMC daughter card replaces the SDMMC slot that is on the default
+> daughter card and thus requires a separate board dts file.
 > 
-> This is what I have in mind when replied to you:
+> Signed-off-by: Ng Tze Yee <tzeyee.ng@altera.com>
+> ---
+> Changes in v2:
+> - Fix space indentation in socfpga_agilex_socdk_emmc.dts
+> - Fix compatible string in socfpga_agilex_socdk_emmc.dts
+> - Rephase commit messages for clarity
+> ---
+>   arch/arm64/boot/dts/intel/Makefile            |   1 +
+>   .../dts/intel/socfpga_agilex_socdk_emmc.dts   | 105 ++++++++++++++++++
+>   2 files changed, 106 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_socdk_emmc.dts
 > 
-> https://lore.kernel.org/all/20251015071420.1173068-1-herve.codina@bootlin.com/
-> 
-> > > 2. PCIe client drivers of some M.2 WLAN cards like the Qcom QCA6390, rely on
-> > > the PCIe device DT node to extract properties such as
-> > > 'qcom,calibration-variant', 'firmware-name', etc... For those drivers, should we
-> > > add the PCIe DT node in the Root Port in conjunction with the Port node as
-> > > below?
-> > > 
-> > > pcie@0 {
-> > > 	wifi@0 {
-> > > 		compatible = "pci17cb,1103";
-> > > 		...
-> > > 		qcom,calibration-variant = "LE_X13S";
-> > > 	};
-> > > 
-> > > 	port {
-> > > 		pcie4_port0_ep: endpoint {
-> > > 			remote-endpoint = <&m2_e_pcie_ep>;
-> > > 		};
-> > > 	};
-> > > };
+> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+> index a117268267ee..6f4da79725de 100644
+> --- a/arch/arm64/boot/dts/intel/Makefile
+> +++ b/arch/arm64/boot/dts/intel/Makefile
+> @@ -1,6 +1,7 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+>   dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
+>   				socfpga_agilex_socdk.dtb \
+> +				socfpga_agilex_socdk_emmc.dtb \
+>   				socfpga_agilex_socdk_nand.dtb \
+>   				socfpga_agilex3_socdk.dtb \
+>   				socfpga_agilex5_socdk.dtb \
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_emmc.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_emmc.dts
+> new file mode 100644
+> index 000000000000..c616c1eb6f1c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_emmc.dts
+> @@ -0,0 +1,105 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2026, Intel Corporation
 
-Using mechanisms used by the LAN966x, those wifi@0 and port nodes could be added by
-a DT overlay by the PCI device driver handling the Qcom QCA6390 PCI device.
+This should be Altera.
 
-Best regards,
-Hervé
+> + */
+> +#include "socfpga_agilex.dtsi"
+> +
+> +/ {
+> +	model = "SoCFPGA Agilex SoCDK";
+
+Please append "eMMC daughter board" to the model.
+
+> +	compatible = "intel,socfpga-agilex-socdk-emmc", "intel,socfpga-agilex";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		ethernet0 = &gmac0;
+> +		ethernet1 = &gmac1;
+> +		ethernet2 = &gmac2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		led0 {
+> +			label = "hps_led0";
+> +			gpios = <&portb 20 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		led1 {
+> +			label = "hps_led1";
+> +			gpios = <&portb 19 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		led2 {
+> +			label = "hps_led2";
+> +			gpios = <&portb 21 GPIO_ACTIVE_HIGH>;
+> +		};
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		/* We expect the bootloader to fill in the reg */
+> +		reg = <0 0x80000000 0 0>;
+> +	};
+> +};
+> +
+> +&gpio1 {
+> +	status = "okay";
+> +};
+> +
+> +&gmac2 {
+> +	status = "okay";
+> +	/* PHY delays is configured via skew properties */
+> +	phy-mode = "rgmii";
+> +	phy-handle = <&phy0>;
+> +
+> +	max-frame-size = <9000>;
+> +
+> +	mdio0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "snps,dwmac-mdio";
+> +		phy0: ethernet-phy@0 {
+
+This should be ethernet-phy@4
+
+Dinh
 
