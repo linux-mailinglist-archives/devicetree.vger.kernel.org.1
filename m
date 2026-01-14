@@ -1,252 +1,171 @@
-Return-Path: <devicetree+bounces-255161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0C4D203C9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:37:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9C5D20417
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:41:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A51A03027A40
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:34:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9EBB4308CDDC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69FAA3A0E9F;
-	Wed, 14 Jan 2026 16:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701D73A4AD7;
+	Wed, 14 Jan 2026 16:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="FgrTIg0l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bot3ecRr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010031.outbound.protection.outlook.com [52.101.229.31])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8073224466D;
-	Wed, 14 Jan 2026 16:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.31
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768408484; cv=fail; b=JZrfrRDjqZywW3NZgvUja61pjo3pDrlPG7q4TzETQQuPybic4Pf0r/rv9xUc0cTjQK98FId14V78HxU2kUmxSeP6qJgNFyawxaeguV4gEMUvhAFymv1f+IiKqCSbk0/0D92/3QrX2BbajmwWl2j08Ugt0bSAN6DQes4BVH4/5U0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768408484; c=relaxed/simple;
-	bh=TyBmEWbLxTo7spKkB6jUMJJVwZSLCZbGrO4CWOKKeZo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=cAOr9NrK5Pgv4tqtxuc9WsJ9OPMGiqyMEWAxNaeEymgDozzeA36qqwp0b2z+QE2UbYpz/Qja/DmNei99Klf3aijq8uciHhTcezEQH5NFyWmXV0Br7WdPvlLJREQJOIq2WbwW4hLjiWKnkCXkp2hXsC17OZhGVp081Qr6AXR6vPk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=FgrTIg0l; arc=fail smtp.client-ip=52.101.229.31
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f+NJ7yZnnVyQzE+eBLxSU3WwY0/a9+NiEwEf/tqwOAkvGrPx2QV23OA6LFsH+8F/JtLkiGFdKpzOf95JPo+4n1TblU08qgB1uSSIpUQQ0FHGoCNSt9tMtqUB7mc+abOpiFycmxcPaAM+TU7R04YfeTjGLKIIAuZ9rdyfJ4RS8x2ijYgqlOcSAH9rCbDUOAGUlfOADN1owmYh4LbXamBMhNVVt8VkAmXzlHHxRahsLNWdxCyh7qXb8uhpT4kFqIIY7uOPC0fKhRDdat0NB331TfV6/u6fXMqNBvwoQPbh2Zsw4/S6YAbnFSeJ8BEH916TpUf9yWNJ7e/V3ejRdgmFaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sZK0wxfJ+oQhV7I33CcWJZUbebYfEZMlCwVyQKpaytI=;
- b=as7kee16uH16eU+kFrvh2VO2yN5/Q7lzA5oOCMFWaggS+arTfe08h1NmW/ksJ7v6Ixpj+l99rMAXw8A5C5J/LGQxGNd+9jl834aZG8scW7U6dpCDeLK1jKmDjBAONPHgf4AY1RKWGyPW6dDH7bMuOVaGcFzxXCx8kJwlMIXUkDWQDIDGf4vaAec2cedw3gWEGx7bJncAigDqZeWL0HF4D4Ab22LFqXtS1cTCaZ+jHSojwhjh3RsDxyrVRKNEH6YXjDU/RWzTvHXFs/sddevE/kGq7se0fWhcLMFbjLV4E5wpK4pKSGKF0W8R0rq90X5Yn1ZDs7T1oy8TXyMpPxTA4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sZK0wxfJ+oQhV7I33CcWJZUbebYfEZMlCwVyQKpaytI=;
- b=FgrTIg0lPfPQF7YijSy/kAZv/pdKGbAFCvDUqhZUDbI9eVTQmexX6qo8bDybAOwynVfPeCICRldW0dXngv2C9GjPXUL0AHJDXIXeeriqrtnnl5VEnf4jRx2rWAL4DEztH/OzkO+eTvYzKyabznLWs1ch6sGEwjzMLNERjvoDkT4=
-Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com (2603:1096:405:35b::6)
- by OS9PR01MB12279.jpnprd01.prod.outlook.com (2603:1096:604:2e9::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Wed, 14 Jan
- 2026 16:34:37 +0000
-Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com
- ([fe80::aa7e:1460:f303:3fd8]) by TY6PR01MB17377.jpnprd01.prod.outlook.com
- ([fe80::aa7e:1460:f303:3fd8%6]) with mapi id 15.20.9520.005; Wed, 14 Jan 2026
- 16:34:33 +0000
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>, Claudiu Beznea
-	<claudiu.beznea.uj@bp.renesas.com>, "lpieralisi@kernel.org"
-	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
-	"mani@kernel.org" <mani@kernel.org>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com"
-	<bhelgaas@google.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	magnus.damm <magnus.damm@gmail.com>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "john.madieu@gmail.com" <john.madieu@gmail.com>
-Subject: RE: [PATCH 16/16] arm64: dts: renesas: r9a09g047e57-smarc: Enable
- PCIe
-Thread-Topic: [PATCH 16/16] arm64: dts: renesas: r9a09g047e57-smarc: Enable
- PCIe
-Thread-Index: AQHchWur0QNnJZ0tzEqmzsYZqV6cE7VR2GYAgAAC0JA=
-Date: Wed, 14 Jan 2026 16:34:33 +0000
-Message-ID:
- <TY6PR01MB1737773DEF65ABEBEF11D2E96FF8FA@TY6PR01MB17377.jpnprd01.prod.outlook.com>
-References: <20260114153337.46765-1-john.madieu.xa@bp.renesas.com>
- <20260114153337.46765-17-john.madieu.xa@bp.renesas.com>
- <TY3PR01MB11346AE1205D35A8D8BC90B9B868FA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To:
- <TY3PR01MB11346AE1205D35A8D8BC90B9B868FA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Accept-Language: en-US, en-GB
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY6PR01MB17377:EE_|OS9PR01MB12279:EE_
-x-ms-office365-filtering-correlation-id: 5cc2badc-cdd9-41ac-4ad6-08de538acc4d
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021|7053199007;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?do1BLIDzvBmJAlygH9KDvrGiDhhhkdumzQ+tvpxjHIq2HwxHngB62x7hRGEh?=
- =?us-ascii?Q?HuDxCH2rrs+k9B7OMH4FZWl8Mx5nmov3XNcQqXDf1H44FCCwiHD3HXOV+X98?=
- =?us-ascii?Q?6J8nNYi/MFIN2EIjImq3lelElx4LaRWFdlRNHms+WoAFXYYLHLjvqvmQ2OJb?=
- =?us-ascii?Q?eQx8nDNw0pOaxA4mczVvWMf0zcMJOzDLLqbySSoVR7T/XeaO339yg5zl7jIE?=
- =?us-ascii?Q?Y6jv9O3b+QRKFGvGYPBhuTcWhshHUhaHcYFtuVF6Gdy0bK31/uI3vcD7NN88?=
- =?us-ascii?Q?+tvv19+/TuxDwyGsZSNaHl2mZfcl9uUICBiDv69rjM/iPXXrMsgaunVQ3ASd?=
- =?us-ascii?Q?+7IhMXsJqkQRjWzWbT/yfyVQFuXwr9LxDjV+j2mgOhPoyzDGw1npJmn/pzYD?=
- =?us-ascii?Q?9Mr6EVF1SktgL1+fl842GK8vF3r/HeuQdrnACuV/dYxucB4G4BnyG+nsn072?=
- =?us-ascii?Q?QX7HfW6GbA/8xVJ61HQKzoFrsE6CDtCdHhdHvMX76MT5/6DgqLffL4i4Wtem?=
- =?us-ascii?Q?sF+Iw+Z+eq2TLfHrEEEWM4pCX/LscWi0VM3woOKFc0fG8UkKfNAEKChb4XZ6?=
- =?us-ascii?Q?2vhNc4iGhyLwMr/9LB+pFg1DjwKqfOiHAMAdZOIX+NSnxM6SXHZ08WW4mIda?=
- =?us-ascii?Q?pSV+z53zry50aLzUh5cq2iKTDnPiAf+YPBoqi+LvoMr0IKUskPArv1OLetSZ?=
- =?us-ascii?Q?g/oFgLaLTBv1zRmUmYvnBuMNNzovT6m1NUYHocwjGV/ZB9wrW30BdIWvSu2I?=
- =?us-ascii?Q?ecKO5wbEf9UxXIPIzn6Io3gn2MQbCwBFMexfeaPoFkA+WnMURJSyDU/RjV46?=
- =?us-ascii?Q?Ny78nHEsavObcWUfSmvhDIHAcKbHDTsfeGeIZYrrh3bOrHPb0xPfKNHa0ETu?=
- =?us-ascii?Q?58F71Ko3mbl2o9Re/s8mGRf63FJUKxzFdSt4x7E35NpaJjdXevNyJXvRUQaG?=
- =?us-ascii?Q?9/UbIgaiucZjrT8HP523vIF3n+K98LoIoQSDj9UMeXDwPf201XdNxo9eMaa9?=
- =?us-ascii?Q?u5hnR0+nrsVoUZD67gqX0rra+SMa0B86LtP+KIajHeIn0IIWBp2yx80JNRJ0?=
- =?us-ascii?Q?Uk3caTmDtqKy7rYLlKlvHbfwwdO3+pDkKWjKahsC80WNJon52fjSCkvlmrrF?=
- =?us-ascii?Q?dTmFBu8ygiEypu12P4OiLqfqgsljGelkPwb2wLawMM7zMORo5/aAMal1Bb4L?=
- =?us-ascii?Q?Fim14PitJiCTnsm45gjktLtYdDCbnzgifLalfaOeGiKsm4i2wkfQ8mFdUynd?=
- =?us-ascii?Q?OxaSSGRvQ8xPAMINE1Gny0qbHTKh60PvPbGE/aiME56FBEIchz27SBtzWd6v?=
- =?us-ascii?Q?3e4AywTJzvcdzl7YpXw9CCmQ2LlUUgo/MsSHT9LNGoAoIQ4WROxhySUtwO/D?=
- =?us-ascii?Q?s5m9HfjPh2/0lfdR72QeCUYoq3q1Wxe/E0G/JwUjFhJqkIwNJkqtm5nutK6v?=
- =?us-ascii?Q?LO5cc1SSLjiMNZIUhcuet+mq5f1mLdVjRQGI1GbJPMEKnXkpjWRDxGw56E3w?=
- =?us-ascii?Q?AeYuvmFztECXqmNBmcIzhXktMlBovqVyDUCyFiU5GADkdAtZqs/AI6pDE+Vg?=
- =?us-ascii?Q?nZAmqK3e2pUUCeNjGX4KU2Ki2CbYgnxi2i6aYl8yMDdmHuqp8CEbv086Gqzb?=
- =?us-ascii?Q?AHJsiPpIFBFJGeYtNVw1RwE=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY6PR01MB17377.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021)(7053199007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?UyXb8WgQv2wFTANvLvExjV/VO7vadGmXU1dsh4qDLwuShShnkz1weja2SZBO?=
- =?us-ascii?Q?4HCx8C0L7CeCYlGDhSTERgv6rqJdSENFWKG+d2FHedO9MyhqZnPYHrTD0w/L?=
- =?us-ascii?Q?0Ts8Z0Qop5CBdfbw9xY9GV659wLXbpi/nxcfmpVHWNthgK+oOklz4uPP3VOp?=
- =?us-ascii?Q?BislyODZs3sCftTN165nReL4oaupi2snsM0RN6yQnL/KwZEXhPNDQHKXBc67?=
- =?us-ascii?Q?Fhes6QGyltcoinstlL+DaEKXXKzlHS4xVDlYJbAG3tkAKGdaBlaP85TG6t6l?=
- =?us-ascii?Q?iZB083Vu5mDKX3aaHbaXr1VgzxymsvqQ+x20jIn1wZfE4h4X+GnI9d6QUqct?=
- =?us-ascii?Q?b9+fD4tF96PFNJzs/UMOKJzoV+6vzceLfaJFMLto0OT/n7poyvRNafA2noVO?=
- =?us-ascii?Q?iOsYEzY9rCNekvBZY5+U/RVwAKUuxZAEePHu4QQQX/jY0M95xYjHY630Opt4?=
- =?us-ascii?Q?IdIQdSLIO3ceey6kK+iXunz1HIVU7rUIhuEyrRdnCwrFJBwXX66cTN5en5Qg?=
- =?us-ascii?Q?DdZHSRqIpCUvVE2H8xyi+wlqz7f1XpJQTMVPjV00L6ScE56nwPBx39nDjbBT?=
- =?us-ascii?Q?PUsN6LbdBX0E+IP3rUgilG7+aORe++BCIarR2Jica/Dz0vhtV2CzlyJmRtWY?=
- =?us-ascii?Q?QUHqo6gR1IDxrmbYqKlNCOdjWiWffslNunaHLRVb3+VvPk7LcORZmPLDtZr7?=
- =?us-ascii?Q?asF45OHkEwOsg6+ftCYsb6VSXvKiUiWZ4MuEenuyYqgZov2XyBm5E3ilTv1o?=
- =?us-ascii?Q?wkV6LPBJwL0lOkX4tDorIzzejOxFx5i5I+3bjwDbLlRaX5WT7CXOCDHUBygF?=
- =?us-ascii?Q?x7KidfHosB4f9lCxzO2UMTTrqAgypf8ZPMGsTNwcGjNMKYbZNBbcFVtiE+Wy?=
- =?us-ascii?Q?9XwqyQ0OnjNzWU6on9Pklmsg0M69Naqmx+d8+vEB3nF0ZDJwXGWljI46GP2f?=
- =?us-ascii?Q?27TjT0ktVqQ4MDiYymFKLhpJ/s/uEc2DiMnXu6Rkbnp4r5HrwBFitcOK8kNC?=
- =?us-ascii?Q?dx0k2HRQxkfgXecAt0OMMEQL/TqL5I+8+8SLKDvFYU7jWGB0YhNeFqbu41MU?=
- =?us-ascii?Q?k/fa4CqlYurLVEOr/3eOwi6ZK8KRqaMPe4DOdterqz4h2FymPrZS9ASYd9VT?=
- =?us-ascii?Q?3iK8vCz6sQL7ig96Rwy4BvQa9BukkjsGp3XcuqG/f4kThh9plaJZ4AQlNapt?=
- =?us-ascii?Q?gI3zVta0n9678sGIw4/+invLeNQM8dRSfCx+UxNcs1+kCUn95xFonvtp3OoX?=
- =?us-ascii?Q?KSgsxUEGZt0AaBQM5Nios0h+9NRtJlx+SmloyEotlA/DANAClgSY4vugER2T?=
- =?us-ascii?Q?DwuKtYOpKQNTLuEpr4DWyKPXFFdVJC7BKSB1mhapXsywimbN57zSOuSHTeOG?=
- =?us-ascii?Q?GHAMU97zLWV3rH5hfc0K8BEhj5frGtNMlkHnyS/pTlzofTRfL5CpWyeGCX/k?=
- =?us-ascii?Q?0V/BMwOBfSSyBJkgAFnRWBmT7xTFwvez3Xy7ousHuydzW0/0WZQPGuY3vgvF?=
- =?us-ascii?Q?BHuHLKj8hB+/r5y0rx8jnmhQlsSZqcHdCvk1rtJwN/y59DSdIQjFWHhGIWAO?=
- =?us-ascii?Q?ALU49V7kkqvMPdHK26SvVeMZP377Ia7Ba1f3aq+QcMu+Q4UZOHpkweS2NhGO?=
- =?us-ascii?Q?ZLQgskAj5RKtn3A69p+xEXUwTeOJNsigZlG7kYZcBd3keVGELYBniAobQ7jV?=
- =?us-ascii?Q?rLNcUB3cJdV56OJCNP6+ju3FYweZJYM3VunWZ2iVfKXP40zSuxUjN8KpVMP4?=
- =?us-ascii?Q?piIVR0PctCsRE3NGeD/TOOQRUB71W80=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A37E53A4F2D
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 16:38:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768408742; cv=none; b=rxDbbTSeWJJKW0a/uG5GCbos68G5v2G6jwtey5w1r6VncoGQiMBAc1oHtPlTBfujlzuMk1uRs4gJJQ1O3oWjQXGo9nKMc8FLoJkKaX86Q6Nv5Qr8xxiCnIraxNKmiEkD3wFvj6r1swdt/HgB8BKyiAb0LLgpOysjBN/AK+wxiaM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768408742; c=relaxed/simple;
+	bh=JCUV58cUqQKhCjdeo/XygWeSJIfKra0j28AlW6+loGA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RmjXsIH3EiHFgN638hER7Q3C7us7ubnuNEqymH7/s0+Mhqu6HHBRyMup2Lpv3at+XCosO7ZqcTJnReJhCAJg92+z3wfseOz7z1G9hYHblx3ASuh2RcphiWq0j43Sq3qdW5wYa9Ty0wfFeGg1IvHDQSk/Mdx9T3jF9fq6bqsbDx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bot3ecRr; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42fb03c3cf2so23912f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:38:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768408736; x=1769013536; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kz9SH3CkZz+PQQkAjq5SbvfDuE757gp5ylXm52bn0UQ=;
+        b=bot3ecRr/tikhJxHe8k6PPUFR7TOxUap1cxNxaivX//Veeh/pEXVRyINzg+OTZ66xy
+         mKUIYsCRFL3qC1RSALTBCw37Umva0hjBcg3rEPlCLr3qEDXp/OuUvM5UJpNq7SnpizL2
+         l39I8wizkYhNKTbTLcaGfBUXhpdJXh+b1+LWt1Pmtly75Eg6k3Hwkox35YroZzY25esj
+         7Zqs6NduJZTHABCDK5Gi6hiqOY6Wx8cUAaEwdVcGroRX8iFO3Ao6Gpms0Zj+zfnkDJQb
+         UbvXodfD8kC2p0C45qGsn0YaXJjM46UFk9iJq96jqJ6vrhXVs1XOrvmRUk8+xhek4hzO
+         e5iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768408736; x=1769013536;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kz9SH3CkZz+PQQkAjq5SbvfDuE757gp5ylXm52bn0UQ=;
+        b=Uxx0CVUjfYZpC0E4VijKOO3VSOusAdmiDLe9wqJ4dNq9KKd8698drq0/EywJwYjnnK
+         5lLDWMlxbhCwsBHT9Ym+xdE2ZoV1t4yYTJgkAL/Jydf/8DTnq9wSp4pJ7awAjOif9CGU
+         5T/pN6VXta2cSz4lDA45L3WUJBTDjxyTVZyc5jfWjoblnFor87IG3pPuUoZxWYl778mr
+         VPenzcpq2JIRG25UD2yzX5XJZZC1Ox788XqI6b5/kmER9z2LYIsUc0JPE5pbj6lL3m1G
+         14IH86CMUTVOwzm51m/ow8hg+srQE+EpJltdubgyPLCl7ln21io/BJbPtN2dOhahiN/m
+         QWzw==
+X-Forwarded-Encrypted: i=1; AJvYcCWHEGLL9ovVdg8V0QTh6Rtxo9BNhwwHrotOpo0RN96sdLlbZCfDoAWhSwJntjPqjWUvR9k6HYxtyh0q@vger.kernel.org
+X-Gm-Message-State: AOJu0YydqlSDvjxTRQAlvTkkuBe6N5YmeWZc+bc68hYtazQcP1DZhdhr
+	Yg17uQ5MBnQtyvPfZvburT5Bj3CbtbKRG46hyDeYAWGM+dglKVxZl0Pv+pmROpcE1CM=
+X-Gm-Gg: AY/fxX7fssCQlhcMpkDCoQBxymWodFIak+A3CLKij5VJROhC6m+/rYvU2KD2sp2i+g/
+	HuoWEeen8eIoTwONUy5pLTe0M3eKALxuRlmjbgFpcND2uBvhj9E+OTDM0fmzi+Gte6zSUmYMpYb
+	z61kLtDEmt/jOuc98IJrBRDjyPsEHjBUYYdFuehYjBLHP27wrliTbIVqpKRbBHGwt4PEdSECuqh
+	W5uL76RnpB4l+dCgOg1YIMj6OXrcX08moOdXKV3Kaea2SO84ZmWII8aTrO0e1pnJPZ5e9AZzq2a
+	aYldEgBwkd1cp4ol7CTAD8U9S0hRFG3hW6HFbu1lRNdIlMbSifNGg4L1o9eozYuq6G0QFirn5Ew
+	r0MvvQ37YSGz295nLLX8BAPySrZo+MNOtG3rJPZvfS9iChdxitvS5trgocpEY/L4zoBQFIouKK2
+	WhBVDJI37wJuVTdiEUWRQ/SqFx2rRlaokNB05bbTz/wqfMYKg=
+X-Received: by 2002:a05:6000:616:b0:432:c37c:d83a with SMTP id ffacd0b85a97d-4342c4ffd94mr3862827f8f.15.1768408735959;
+        Wed, 14 Jan 2026 08:38:55 -0800 (PST)
+Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-434af6d90aasm207556f8f.29.2026.01.14.08.38.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jan 2026 08:38:55 -0800 (PST)
+Message-ID: <19dbdd5d-42d8-4ce6-8d8e-f91251348780@linaro.org>
+Date: Wed, 14 Jan 2026 17:38:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY6PR01MB17377.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cc2badc-cdd9-41ac-4ad6-08de538acc4d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jan 2026 16:34:33.1062
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: d7UOtlZ3wwJE+lzq34mSy+zrgp6Ay2KpibOYbztbmxWT5dLfYWEnOL0BNzUnovMqGHb2dHf3TIOfvlKPN+JXr3y3XYM9NsTP/oRL2NizPn0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB12279
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/3] counter: Add STM based counter
+To: Frank Li <Frank.li@nxp.com>
+Cc: wbg@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ s32@nxp.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20260113165220.1599038-1-daniel.lezcano@linaro.org>
+ <20260113165220.1599038-4-daniel.lezcano@linaro.org>
+ <aWaIXRLxGBh0bjuQ@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <aWaIXRLxGBh0bjuQ@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Biju,
+On 1/13/26 19:01, Frank Li wrote:
+> On Tue, Jan 13, 2026 at 05:52:20PM +0100, Daniel Lezcano wrote:
+>> The NXP S32G2 automotive platform integrates four Cortex-A53 cores and
+>> three Cortex-M7 cores, along with a large number of timers and
+>> counters. These hardware blocks can be used as clocksources or
+>> clockevents, or as timestamp counters shared across the various
+>> subsystems running alongside the Linux kernel, such as firmware
+>> components. Their actual usage depends on the overall platform
+>> software design.
+>>
+>> In a Linux-based system, the kernel controls the counter, which is a
+>> read-only shared resource for the other subsystems. One of its primary
+>> purposes is to act as a common timestamp source for messages or
+>> traces, allowing correlation of events occurring in different
+>> operating system contexts.
+>>
+>> These changes introduce a basic counter driver that can start, stop,
+>> and reset the counter. It also handles overflow accounting and
+>> configures the prescaler value.
+>>
+>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>> ---
 
-Thanks for the feedback.
+[ ... ]
 
-> -----Original Message-----
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: Wednesday, January 14, 2026 5:20 PM
-> To: John Madieu <john.madieu.xa@bp.renesas.com>; Claudiu Beznea
-> <claudiu.beznea.uj@bp.renesas.com>; lpieralisi@kernel.org;
-> kwilczynski@kernel.org; mani@kernel.org; geert+renesas@glider.be;
-> krzk+dt@kernel.org
-> Subject: RE: [PATCH 16/16] arm64: dts: renesas: r9a09g047e57-smarc: Enabl=
-e
-> PCIe
->=20
-> Hi John Madieu,
->=20
-> Thanks for the patch.
->=20
-> > -----Original Message-----
-> > From: John Madieu <john.madieu.xa@bp.renesas.com>
-> > Sent: 14 January 2026 15:34
-> > Subject: [PATCH 16/16] arm64: dts: renesas: r9a09g047e57-smarc: Enable
-> > PCIe
-> >
-> > The RZ Smarc Crarrier-II board has PCIe slots mounted on it.
-> > Enable PCIe support.
-> >
-> > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> > ---
-> >  arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> > b/arch/arm64/boot/dts/renesas/renesas-
-> > smarc2.dtsi
-> > index b607b5d6c259..3db7d31be2b2 100644
-> > --- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> > @@ -96,6 +96,13 @@ &i2c0 {
-> >  	clock-frequency =3D <400000>;
-> >  };
-> >
-> > +&pcie {
-> > +	dma-ranges =3D <0x42000000 0 0x40000000 0 0x40000000 1 0x00000000>;
->=20
-> This entry to be only in SoC dtsi like RZ/G3S.
->=20
-> > +	pinctrl-0 =3D <&pcie_pins>;
-> > +	pinctrl-names =3D "default";
->=20
-> The pinctrl entries to be moved to board specific file as it will be used
-> by RZ/G3S, RZ/G3E and Upcoming SoC in future.
->=20
+>> +static int nxp_stm_cnt_count_read(struct counter_device *dev,
+>> +				  struct counter_count *count, u64 *val)
+>> +{
+>> +	struct nxp_stm_cnt *stm_cnt = counter_priv(dev);
+>> +	u32 w1, w2, cnt;
+>> +
+>> +	do {
+>> +		w1 = atomic_read(&stm_cnt->nr_wraps);
+>> +		cnt = nxp_stm_cnt_get_counter(stm_cnt);
+>> +		w2 = atomic_read(&stm_cnt->nr_wraps);
+>> +	} while (w1 != w2);
+> 
+> Still have problem. Does hardware have overflow flags? This way is just
+> work for hardware overflow
 
-To summarize, you suggest me to keep only the dma-ranges update in this
-file and move pinctrl assignment into r9a09g047e57-smarc.dts right ?
+No, there is no overflow flag. Just a comparator.
 
-> Cheers,
-> Biju
->=20
-Regards,
-John
+> CPU1
+> 
+> 	w1  = 0
+>          count = 0xffff,ffff
+> 	w2 = 0
+> 
+> 
+> when count wrap to 0, triger irq, but irq handle have latency at CPU0,
+> CPU0 have not chance to sevice irq. you can add printk at irq sevice to
+> create corner case.
+> 
+> So CPU1 get
+> 
+> 	w1= 0
+> 	count = 0
+> 	w2=0
+> 
+> so counter still suddently change to 0.
 
-> > +	status =3D "okay";
-> > +};
-> > +
-> >  &scif0 {
-> >  	status =3D "okay";
-> >  };
-> > --
-> > 2.25.1
+Ok, so I think I'll stick to the initial implementation and just give 
+the counter number instead of trying to do fancy things.
 
+
+[ ... ]
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
