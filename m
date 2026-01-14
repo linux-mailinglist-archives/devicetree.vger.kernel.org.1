@@ -1,67 +1,57 @@
-Return-Path: <devicetree+bounces-255053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C88D9D1F45C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:03:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55688D1F48F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:04:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0004030178C1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:01:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 59F3E301FAEC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75888280037;
-	Wed, 14 Jan 2026 14:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9E22C032C;
+	Wed, 14 Jan 2026 14:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QTbhI3eY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ujjep2On"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C802BE647;
-	Wed, 14 Jan 2026 14:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0D92C0270;
+	Wed, 14 Jan 2026 14:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768399303; cv=none; b=NGFCOoLbki0YC9CmVRudHm5QZWrzPNo1JXGuQyEWOn6qg3UQq77dOCZv4BrPBuqkmplo8Q/S4CKUH40AOcAoN8iJSwTqKMITz54EIBYGMnycT0SuVWz56CVJnOpi/kudTt145r8ad5BCLGzUHaBzP9Igrw94k98oGMO6i7Y4eTs=
+	t=1768399310; cv=none; b=rXhxNxEkUp1hAAZf7koLnUc+CyondoE+rx8pAtE1OT7ZhVfFum04nthjR/medWSPS4/rodXFqpgnKzwWhniwMJrqdYwxhzdWbVMAAilXc7XTF7OTN/Ch/DNUAHpK6j6ZGRIlo3r+SNu1+3xXOKRHG/Cj0du44/dfVIrbmzUZfPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768399303; c=relaxed/simple;
-	bh=enCvrz8y/9rxsUlw1ssbCZBDFIf1yBnbNn8Z6/4K4hA=;
+	s=arc-20240116; t=1768399310; c=relaxed/simple;
+	bh=JhUn9TqR1P15NoVS+X8zJgLMi4jcAWVe91/hg+g8+XQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=dA0VEJPgE6OGtPdvRNSPKZtG9u6Qtkr39ArtkXvtqAPBGZQ+h+t68HUAAwyIiojzGjS97tJtvQPlzKei1TC6XR2C9O09WHdbfevh4Ol5Totuu54hYqvtkK1KjTOpyPy8xPnN7QeBmBr3jXNQkitu6vLlvc8uKKx5/H00gonqxSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QTbhI3eY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1AFEC4CEF7;
-	Wed, 14 Jan 2026 14:01:36 +0000 (UTC)
+	 MIME-Version:Content-Type; b=M/NnmRoPDypLoksbyONzyAiCcTkGu0X8Y2ksEFGSwcFHZmpZRhxBXGGcB1Y4f4bmZ9+0S/LFv+YThT08ZK6btdwvoJ0A6XRyV3aYvgNmxgHCHvRgxB6n/AOxUgmLLvKuma7yNujxJ+r0Ng+SZHrw8BBQY7tKUyohlQEzjNKAb/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ujjep2On; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D78FC4CEF7;
+	Wed, 14 Jan 2026 14:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768399302;
-	bh=enCvrz8y/9rxsUlw1ssbCZBDFIf1yBnbNn8Z6/4K4hA=;
+	s=k20201202; t=1768399310;
+	bh=JhUn9TqR1P15NoVS+X8zJgLMi4jcAWVe91/hg+g8+XQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=QTbhI3eYuVO9pJXj0FPP9M9Z53GRE4eX9s7MgRSPPMH6LfCa2vPcyrbsf/sJtwCID
-	 BT+gk+12FZyqsoZvMHQHzLHsyrc6Ut2vZOuB2VuMcZFd1rBiAsk9ZIfjahQDGXeh9x
-	 1A8Jrm4lptla50UGAqWVu4gCqX+yO+cGkKAc4k9Py6hN5Qq11GWn1O2/wvLY8XLFwB
-	 2+0MWgPfMi/U/NxKOMSPpoKczXetlS4IcWSv6DqKhVIeL40k8aH9JPcBohB7RjApXJ
-	 Wx1jW3LAPcfdcH4OMkzVsVqjW/KnDuUkbSeP+5rLeHXe9qQ2oM1TSmWSRcIqxojxHf
-	 i4QxvH0jplnTQ==
+	b=Ujjep2OnS5oFpyvmoHdhTj2gamsTcVSU4u2dMzbdeUj9Ames4AbCRjiZ4scWPntoO
+	 Mr62FQH2GPiYqNOj+b3PT2JKHlzOajo7w/EHzRhcbQKb0QW0sWPzveOlisNjhliRu5
+	 NWXSv7F1APi52affZvTC4Wl9DKUWiSuSun7USJu7tNwhw6P4nKHuShoVePZlgFl/Qs
+	 5/vuIHzt1xrDvuN0r9ngeUiDmL8W7rLbsHLG6vctEdtcomKytQOPrShFx0sBtAn7/O
+	 EkOnt4lY4E80bInnl5tZZwvWdV/lgDv5+IRxDyqLQz5nLckFYMo7DaVVI3NuRCeTA8
+	 nysyN2h98geGQ==
 From: Vinod Koul <vkoul@kernel.org>
-To: Herbert Xu <herbert@gondor.apana.org.au>, 
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
- Bart Van Assche <bvanassche@acm.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Abel Vesa <abel.vesa@oss.qualcomm.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <20260112-milos-ufs-v2-0-d3ce4f61f030@fairphone.com>
-References: <20260112-milos-ufs-v2-0-d3ce4f61f030@fairphone.com>
-Subject: Re: (subset) [PATCH v2 0/6] Enable UFS support on Milos
-Message-Id: <176839929655.937923.9686904791516121188.b4-ty@kernel.org>
-Date: Wed, 14 Jan 2026 19:31:36 +0530
+To: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, sjakhade@cadence.com, rogerq@kernel.org, 
+ thomas.richard@bootlin.com, Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: andrew@lunn.ch, linux-phy@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, srk@ti.com
+In-Reply-To: <20260112054636.108027-1-s-vadapalli@ti.com>
+References: <20260112054636.108027-1-s-vadapalli@ti.com>
+Subject: Re: [PATCH v3 0/2] Cadence: Torrent: Enable PCIe + XAUI multilink
+ configuration
+Message-Id: <176839930614.937923.15521389501056523456.b4-ty@kernel.org>
+Date: Wed, 14 Jan 2026 19:31:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,18 +63,30 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Mon, 12 Jan 2026 14:53:13 +0100, Luca Weiss wrote:
-> Add inline-crypto-engine and UFS bindings & driver parts, then add them
-> to milos dtsi and enable the UFS storage on Fairphone (Gen. 6).
+On Mon, 12 Jan 2026 11:16:29 +0530, Siddharth Vadapalli wrote:
+> This patch series adds the dt-binding for PHY_TYPE_XAUI and adds the
+> driver support for enabling PCIe + XAUI multilink configuration.
 > 
+> Patch series is based on linux-next tagged next-20260109.
 > 
+> v2 of this patch series is at:
+> https://lore.kernel.org/r/20260104114422.2868321-1-s-vadapalli@ti.com/
+> Changes since v2:
+> - Collected Acked-by tag from Rob Herring (Arm) <robh@kernel.org>
+>   https://lore.kernel.org/r/176772419699.2512006.6478554353373580831.robh@kernel.org/
+> - The commit message in the second patch has been updated to explain the
+>   changes made to the LINKx_MASK/SHIFT and REFCLKx_MASK/SHIFT macros to
+>   address feedback from Andrew Lunn <andrew@lunn.ch> at:
+>   https://lore.kernel.org/r/7fd42221-d602-4ce4-9f7f-6754ed91e7aa@lunn.ch/
+> 
+> [...]
 
 Applied, thanks!
 
-[3/6] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy: document the Milos QMP UFS PHY
-      commit: ed0a26aa453b6ec7faec32ddb4fb3d4360e1676c
-[4/6] phy: qcom-qmp-ufs: Add Milos support
-      commit: 3554ded4f02aa8e95af66911aa666b2cd192022d
+[1/2] dt-bindings: phy: Add PHY_TYPE_XAUI definition
+      commit: a632a2a0db8b4d24076a03889efa25c6058d0746
+[2/2] phy: cadence-torrent: Add PCIe + XAUI multilink configuration for 100MHz refclk
+      commit: 02cf3710c55d55d956f080e6610b841e2b6ddca0
 
 Best regards,
 -- 
