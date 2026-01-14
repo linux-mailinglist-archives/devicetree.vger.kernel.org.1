@@ -1,320 +1,324 @@
-Return-Path: <devicetree+bounces-255103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE5E8D1FC0C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:31:01 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A82D1FCB1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:35:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BBAF30A2E1B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:24:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 52F9F300460E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C28399038;
-	Wed, 14 Jan 2026 15:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5482E31D390;
+	Wed, 14 Jan 2026 15:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="ryHfyYuJ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mkcmw4CN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazon11013057.outbound.protection.outlook.com [40.93.196.57])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9648396D19;
-	Wed, 14 Jan 2026 15:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.196.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768404237; cv=fail; b=PJPT6jJPOxVZK2QfVH0uOv4IBbf8yEJZQtXh909vL81//Zb8H7dLnRwUeD259F8lxMNbikDnuTER3AMTN0JM38BTcbZIFi3y4YtSpDU/rTWXBVt5vYqm4ah6W3TBZWPHHW0fdCoO6fKrT/5hmiagGrszHf4t0vdevjqWFmfWiHM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768404237; c=relaxed/simple;
-	bh=a/DraAq5uCFJVmWQypxL10/4RWzVAz9CxL+A1UQE7Qs=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=W29ybgvatRzsOqs8PEJ6mn2KfBX1QH0kGwhxJs7oV4hUaewtHJ8wTfbKs50yTw08H09QksHDcKFr6744k0jT31eRyr9D96vSknVDrcOF43D5noec4vd5PLG0TcHW4Z2sCCGs8v0k/xVcCl3tLKGB45Xo5TNrS7LOAd0c0Hg7X9s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=ryHfyYuJ; arc=fail smtp.client-ip=40.93.196.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bicrcdG5q2WMR2xwwQhYXVZ4TCF2A2IxDevZaOg+P6v730RXKX+CInHip3ohnXgtRVnAUybXaEv+iBO+FNBvDsK+XnxMONRwo9EzMW8GGi1XD0fK1MxlvW22hYul8EcjJCTVZ7QAySn8dpWPGS/Al1r9Bq9cftdRI1whxeI9Bfu1mVtv/omGKHywozCH2QUilvPdbadC8JiW9rtV7/DPbc09fdmo1tLvR0U37xyLFr/frwHlm0rR7BAC3ss2OGEGEsV6YuKvYZ9p3TTeqXuE1N4unam6pI3VoPwO5lOlqrtbWkgaD5xYJwcwQLbrJbxOVYKkNFyHyY74mZ7kykMxAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aB81BoPoyGnT5gwaBHo30yTuyejd7YDiJsvuBQ6iPDU=;
- b=Ej0QcKmeXe84VcnCayI5GPW+awBRm9zo/ATLonGgmR0ehIFGBMAF8K9MmWNIybOYtUZoExWhYg/gq/5sCTSzISHWhgC5OiG7ct56P33D7vpYi+EbGZqefEjDy9RGxSXVyjBndQrBF1SYEodAws269G8Bh5BckFaT575s3tVrQNQoJj+2tS9a2GxkNugZdskmHg1U0/q09BryT7uackNwTicliB+3926L0Gu52/7ApzXDlZFa3/A0ReuqK0nhr8PZJfI4kWFr+/440h1pkH8d9pDTByX+zqXKe5TvcJsV6U9LDgzi2aAg60yiQbImALPBta8wXfgMuz+BasIs0Ue+Ug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aB81BoPoyGnT5gwaBHo30yTuyejd7YDiJsvuBQ6iPDU=;
- b=ryHfyYuJvHnXX1DBvvQMlr/SWnbuh7lsmvSg/taw34/pVm4iSEh+4sWwzIwNrS0/7MNbmJmMwgAViJYy1t0S02yb5sCLSuxt6bOgTmqzmkqnqZURUENHWLNRmVCoFB9A1DrzKg7z/2yxGAD8QntKsim2wJHFUAEnMqk23g1d7EOa91VDqOw6W750S9g1tkYKkGgXR7FXlrIPeoiun7GJNdiCx7kDSrN1IhejJYIL4nPMeazzrTxRpKlRYaMduk+OxyO0nz+ae5BvmqyI9QxkdlnLD9uitLkf7VPwlNIP6iez+k9MGK+ebF5iA5+LuQMvGUymLhf7lSr5rvOQFc4csQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS2PR12MB9750.namprd12.prod.outlook.com (2603:10b6:8:2b0::12)
- by PH8PR12MB6769.namprd12.prod.outlook.com (2603:10b6:510:1c4::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.6; Wed, 14 Jan
- 2026 15:23:52 +0000
-Received: from DS2PR12MB9750.namprd12.prod.outlook.com
- ([fe80::56a8:d6bf:e24c:b391]) by DS2PR12MB9750.namprd12.prod.outlook.com
- ([fe80::56a8:d6bf:e24c:b391%5]) with mapi id 15.20.9520.005; Wed, 14 Jan 2026
- 15:23:52 +0000
-Message-ID: <3bdfd531-698c-40a7-be76-254c122dfcb6@nvidia.com>
-Date: Wed, 14 Jan 2026 15:23:49 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V8 3/4] dt-bindings: iommu: Add NVIDIA Tegra CMDQV support
-To: Ashish Mhetre <amhetre@nvidia.com>, will@kernel.org,
- robin.murphy@arm.com, joro@8bytes.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nicolinc@nvidia.com
-Cc: thierry.reding@gmail.com, vdumpa@nvidia.com, jgg@ziepe.ca,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20260113054935.1945785-1-amhetre@nvidia.com>
- <20260113054935.1945785-4-amhetre@nvidia.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20260113054935.1945785-4-amhetre@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0055.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:60::19) To DS2PR12MB9750.namprd12.prod.outlook.com
- (2603:10b6:8:2b0::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C6626E71F;
+	Wed, 14 Jan 2026 15:25:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768404327; cv=none; b=q/WZSL5di4VcKwGH6gyVMrc0+fIjlG7pn9Fd5wkCmMTHlitwZTnz6Ca0F4pHVrN1BRCUcLna2U/on3XiM3l2V1l34aHJ5I4+/u1cOEXnUGr5qnlMRDsb3zpq2cBEd48ZQNVwBIKkXC7zFCfPrPGQ5ScXGn9PsNepaUm8Eo3/YkQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768404327; c=relaxed/simple;
+	bh=JEPgbnBV8NR9F2sgE2tsXfJ1BNyd6TZW9fi/HCqps7g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E5wicZAeMoxw9xAuGmqMvTmdJoGAgZk2SNp7+viseN5YmFdvQiyiVZQwMSVoeUuYBEWSeWDdjVzRHkXH7shMeZUT1e/DGOOayobAApQ5+7JEYA09CewKuyriYUcBfwufcj9+DPXoqL8pidfHbuySHeSVWXt5cVLcJ2kWq91yEzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=mkcmw4CN; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3C5CE55C;
+	Wed, 14 Jan 2026 16:24:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768404296;
+	bh=JEPgbnBV8NR9F2sgE2tsXfJ1BNyd6TZW9fi/HCqps7g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mkcmw4CNx6ZgM5tqEheZywLMQSh45oku6IexiwvnIpqBi+1miLLPvDlkSIWZ3EEkP
+	 OdHsxftksYeytqG4rBG1XImfkEssGDt6waET0D8NS6BKyAwlZbMs/bMyO6ylK/zEjU
+	 4pXcTytZwmie2bnlcg6zQqzx973oCsmx85+S3E1A=
+Message-ID: <d5830999-cd0b-4328-886c-25abc37660e5@ideasonboard.com>
+Date: Wed, 14 Jan 2026 17:25:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PR12MB9750:EE_|PH8PR12MB6769:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd071f5e-16b6-4013-360a-08de5380ec70
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|10070799003|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?djFwZkg3R25aSnZRbzRxNlN4R3J2a24rNEVEUE4yM2tMb3BVQStUSWVITVdk?=
- =?utf-8?B?bmlWbFZwWXVrM3JzcFllQThSWitKc3lnZzFlRWpOejBSQlVNQUN0eG1Qc3l6?=
- =?utf-8?B?YXJ4NGY5czNtT0dJcDd6dHFvVkdGQ0Y3MFhKbkptUVBidm9ReWpKWjBiZVZR?=
- =?utf-8?B?cjJqUHkxYnU1Z2lMSzhYckNaR0UxcEdxcU9RWkhMb0hKMzNIcmVRSXVMS0NR?=
- =?utf-8?B?ZkRZUXNSSlVHWm94Y2hhUFRnc1lwekdNK0M0SCt1SnJGV1VZaVYwRFIxSHk1?=
- =?utf-8?B?eldudEUzKzBqdFdVQlRXdmc0aXUzNlZwT05mbE5SWkFTMFI2L0tGTFllQWgw?=
- =?utf-8?B?L3lrZkJ3UFhJTTZyWFVIMHRYb2dKdURvbGFtLzFaM1NHYXNIbElwOGRFMGJk?=
- =?utf-8?B?NzVQZUFRc1N6ajBLTFhwSFhSNEZ5amkzbE9zUW9UeTJUeUxCVGhPaXVNUWY1?=
- =?utf-8?B?bi96eE43SWl2SjNzN3hkQ2JNdjhvN0QwblJIWHVqakw0V29KTHVNMytGczRG?=
- =?utf-8?B?cmJya3lCZE9ZZlUzYlNBM21USVZxMzQ5SU1FRHhkQUJYSGd0SnpLUXV6N2lI?=
- =?utf-8?B?SkpaMTRXMnh4NkNDZ0ZOQXZ4Rk9DRUtKYXpPa3loMzA5NnZCZUpVeU9ENTVS?=
- =?utf-8?B?TWljMzNqUkRzcUFSUTdsK1VNay9qTUVCeVR4VDZ0UnErRmFZREcyS2ttdmcy?=
- =?utf-8?B?c2VpRUUyZHFOazhLcUNWdTF6SStUaDA0dy9mOXpCSGM4VG9DeVB0YVdLQnMy?=
- =?utf-8?B?SXgrN2ZDZFM1YVo0QWI3SW9kc2YydVlnUzdGaWg2cDQ1dTdxcTdsRG9CZ1RK?=
- =?utf-8?B?VXdibG5hWmlQWnVZaDRsWjZiUEV6dHdpZ1lWZWpuT3NhTkR6Vk9DWVlUbTFr?=
- =?utf-8?B?WDhhQW9ZazNPMGN6MmdIYmxEem9DOEtOMW03L2pTZjRzamxnQ3RENm93VzJK?=
- =?utf-8?B?NzlyVXd1MFFSUmhrMWhLcFhjVnZRdGM4QlNjRkRtRU5YYlNwMXQ4bE8vdTJC?=
- =?utf-8?B?OWxCMXBDRnNUb2dFSDE0YVFxOEVGTU5aTVh5L0ZDNHBPRVVRall1aTJrQXMw?=
- =?utf-8?B?MVZRd3NlNmNlZk9BTFBwUnVoY2NXNTNWaDMrRlNEd1ZnTXliWUVhQkNDSTcz?=
- =?utf-8?B?UzJ5bzFicldZTm8xSmpJR1RibTRFUjB2M2ZsMUpHVUdPRU90MzNnK2ZJL0Qr?=
- =?utf-8?B?MnRCRG9zNnByOGJKRnlxYkF5cE50Z1Vxd0diam5JdFJKZ3ZPUjBXUUtBWDJX?=
- =?utf-8?B?NTFFNzdDRGZSRVBIU0NTdUVjY2s1ejhPUWJQbzBYU2JHS3BrcTBLQlYweGM4?=
- =?utf-8?B?Q3pvZU9tWDU3d01qUmtWbXFaNVpVbithbmJWREU4OGtxUHJTeDkzWXRWRG9O?=
- =?utf-8?B?U3lEcEJlL0NlVk5rdmpNb09HM2xGTmduQXMwRGF1dnROOFVueGEzS3ZQYmox?=
- =?utf-8?B?VHZCNmt4SEdGMnJIcURMRnFPZWpwMUMydU9yc0p4NW1jT29OY2lFSHBMZ2J4?=
- =?utf-8?B?QWpkYm16Ylo2S2lNcXBHK0t1eFZ4MjVBYjVFWkQ5aFl0MnNoaktjdVpRdVdy?=
- =?utf-8?B?Q09SN2RaN2Z2MWhrWlF5dFBvWjgzTzdacmFTYXFUZDNBNkkvL1VoOCt6ZUkv?=
- =?utf-8?B?eVB5VVpUaE1KUDc5bkhtRFVwVFN5UkkrUzRQZ25UKzZ1OVdkeGREL0s1ZER1?=
- =?utf-8?B?TDY1MmN0NzNKWGF0ZDk2SEh3amhoZEdhUmYxdStqamlFQWVrL0NHNEUxYmJr?=
- =?utf-8?B?K1pJcGFrQjNXR0s2ZUJmN09CQVFPeElvVmIyTDU4TCttTktmcitOLzFtbE45?=
- =?utf-8?B?QlJlNkJJTnBEcXpSV2x1ejBmYVZqbVc2ZWxqeVZtNXdhcWdMMm5MeUIwenVG?=
- =?utf-8?B?clNuTituZXRrTzRkZW5wS0lPUVVLNUV1VXFaU1FaWi9aM2QxcXJycS9yMlF2?=
- =?utf-8?B?anRRYmtwZm84czNpcHZoOFpFdWZpdCs1eTl0bXZjRFVZZDg3MDhhdGFkbDJk?=
- =?utf-8?B?VGdhK2NNZ2tyYkRTU2VXU1JhSitDcU9VbjVkNUthQUpJdGludTFCSVZ4VnpC?=
- =?utf-8?B?akpaRnV5S3ZtVkZycGZtWG94TTRHcDZuTjhTSllTNGtJVkNDZXlMNFRiaFdq?=
- =?utf-8?Q?uXtY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR12MB9750.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(7416014)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QlVSV1VFcHhFM3BDWExwV1o5SHlhYUsvcnZWTzZPRE5uRnQ4Vit5bkFFdjho?=
- =?utf-8?B?NHBCQnJTUnFoNW00VEVpWGRndVdMVkY4YXZkdm81RDZybldTeGVDTzh1L05J?=
- =?utf-8?B?bCsxZ3NMZ2FDTjFLZktSdXB0TDlQY0lONEcxVkxIaER3RFJvTFV4SGhVS2k0?=
- =?utf-8?B?cmRZdHJVekRxaVhSTlhESi80aXE5RDdvL2FNZHNCZTd1TUhOZFcwQ1RuNWQx?=
- =?utf-8?B?aXZlZ3NIWTRMZ0cwN2t4UVRJUFEzbW0rR2s1aEl0TXE0YTg3ZjZkb3U5QkNR?=
- =?utf-8?B?SHZkcnk5RDhIRkZScm1ZbnNpdFAxZWFmMjI1c2VNLzRqZWd2N29hZFozeGJv?=
- =?utf-8?B?VTN2WlU3MzhPTkY0cVIrT0tUVFgrUGFETDhDdTdTQlBFUmtidHF2cmFzZGFX?=
- =?utf-8?B?L0pSb0R6a08yT3F4bCs5dk90U2g2MDVmNHB1MDkxUGo0enN0aFg4ZDJuQnJN?=
- =?utf-8?B?dWlGemloY0REU09sZ0QrNWoxVUt3NVFUWGhscjdvR2VUSGwxNnV0NDNBL05k?=
- =?utf-8?B?SEdzRjY5a29vS0ZTY1dyaklOSFF3d3YzQWtuUlhiR044MEF6UG00KzcvOXlH?=
- =?utf-8?B?L2pCNHdzcTVkdnpaL1MzSVpNUFZQdnE5Ulg3Q1RXVnZkYk9MRjVGRkZZeHFj?=
- =?utf-8?B?QjB1SkRwTG0yajlaS29PRW40eTk4UzRjTWRpcmZ0WXhVTDlXdVlzckRYV1Zn?=
- =?utf-8?B?UVBkWk9WMytyTFZ1ZWRHRnhkN1RJajNuWjlMb2JGMHE1SlVENk1pQWpkVGlq?=
- =?utf-8?B?V1JSRVV2RTRLZG1CNjBjSHBUdjNLWXJyMTRWQVFqV3ZDSEhSOVova1BlQmsx?=
- =?utf-8?B?Uks5a0VFb2hMZXNmanZCYXFrMUFIK2NrZkIzS0VISVd5ZUdCNzY0d09YMXIw?=
- =?utf-8?B?Z3dwck43dGxjK0lRcTVlaUVwUzZMUnNIMTFndXU1LzVBM0lvTUU3ZnRkczFy?=
- =?utf-8?B?S3VkYWdGWWk3Uk85ekFHM0hJVlJ3YWtoOHBHRllza0VmSjdFRXJwVmdsYmhl?=
- =?utf-8?B?YVJnQlNUK1I0TDN5WWlFM0VqM2pvZUthREIwVjNVM0EwOHlRQm9jTHJTYnZ2?=
- =?utf-8?B?VVNzbkk1dEVsSTdwY0duZzE2bmExMjB1dEczZVcrd0lyVVFMZlo5a1k5QW5M?=
- =?utf-8?B?QTVUTEhPeTlkNDRqTXVLbnBQWndtdjJnRVY2MDR1clJOcUdCQm9Yd3ltTEN2?=
- =?utf-8?B?c1dpNFZpRHlYcmNSZk5MQ3BEbGVuWnRKVVBmZjdrdHB6VG85U2hDWlpkR2pS?=
- =?utf-8?B?WXdGSFhlSTQrZ1JkM0R4eEh0ZHF3SEl5SzZMUGpiT2lqQ05kcit3eTdmSXJk?=
- =?utf-8?B?MURhUEh3OTdQbVFTa25ValFESU1jdWFmZ0RuZHUyR2NDRXZzVytnYUhvVEJE?=
- =?utf-8?B?RWs3UFM1eUkrWnpRcmR0cXIxTmJQZUFTWHJ3TnA5aHArclB3Y1VjejNZMkNM?=
- =?utf-8?B?T3cvSGxmbXYxam1XMmRSL0VMOU1Gd2hTamlzbUcvOGdERnlKZlNiZ3ZFSjJx?=
- =?utf-8?B?QWF2clVHZmtwbVVYeHRSdERyWGN2bUQ5RWszcktFL04wdytPOGpmTW1VcWVY?=
- =?utf-8?B?cnJ6dFBnNVNjT3g4aDFwQ1V6V1l3MnlBenlkV3VFc1RndnNMUXBoZ0VLczd4?=
- =?utf-8?B?Mm8rTUJYekRSTG5ZK1JvZDRwa0lmenpXOExrSkxIZnkrejJhY29McldEelpp?=
- =?utf-8?B?c3BjcVZQcWRGWTJkRURKT2plQmtLa3B2WWptRHFZQXpuMU5uMkRJcGM2aEZ2?=
- =?utf-8?B?c1YwVUtaUmVsMmcrV1cxVkVlNytJVjVycG9JTGpnNDhlT0ljU1dIMW4wVnd0?=
- =?utf-8?B?cmFoZGgyMytYTWpJWm84N3o2ZVVzSGRweEFKRi9HblllNEwrdUhuZkdjMkh2?=
- =?utf-8?B?ckZ0a0hiMmxxUXcza3UzN0VaRms0d0E3blZxbUtPSjR0blpIR01hMEZCSVQ3?=
- =?utf-8?B?Y2pvNFNtMTFuaVNzVW4vdEpKUGlEb2xQVFY4eFJNRkMxQ21tT1lReENQZWFD?=
- =?utf-8?B?SjBMR0p4alJXNFFBWm5kNnc4S2IzUGhyOHl2VDdEQWE1L00rNFJEVUxNMktV?=
- =?utf-8?B?VnRQODJvd2tnNUtuK2JXYmxnMU9aUng2N0pLdlE3WUtPSkprVDB0UVN0SFdT?=
- =?utf-8?B?Wnd2VlpwbUZYZjRGK1IzMXhyT2FHRThYVFlNYzNTQVEzeVFDNGpwa3dqYzdL?=
- =?utf-8?B?L0RMaDlha092Zldpa21HdXhDakM2bklLdit6SzdZY0JkcFgrUEg4V2hablZo?=
- =?utf-8?B?alFZdUtnUGRPT0FRd2dnY3o1NnptQXhCZmFJSjJ4aXlEWEtIdDRYcThXZFdO?=
- =?utf-8?B?TlFNeU1lSEMvZ3dHV3Y0RlYrSTBqdnJLMDFibXEwWnp6YVZkaVdpZ2MzdEhB?=
- =?utf-8?Q?1XGZwg0Dvm/efsUl7e0QMlDuxEBUIHtd8W2c+2jb5i8YX?=
-X-MS-Exchange-AntiSpam-MessageData-1: fPpIA8c1zQawpA==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd071f5e-16b6-4013-360a-08de5380ec70
-X-MS-Exchange-CrossTenant-AuthSource: DS2PR12MB9750.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 15:23:52.3137
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BEYMZOCP9CZT3D857tU0+gAeWzMM6bdbio9NCu8yKGOu3VXustS1dMHW03/lK/7TU+iPjpFXAQ4BAPz2OJ6m4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6769
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 07/19] media: cadence: csi2rx: Move to
+ .enable/disable_streams API
+To: Rishikesh Donadkar <r-donadkar@ti.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+ vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
+ changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+ sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, jai.luthra@linux.dev,
+ laurent.pinchart@ideasonboard.com, mripard@kernel.org
+References: <20251230083220.2405247-1-r-donadkar@ti.com>
+ <20251230083220.2405247-8-r-donadkar@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251230083220.2405247-8-r-donadkar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi,
 
-
-On 13/01/2026 05:49, Ashish Mhetre wrote:
-> The Command Queue Virtualization (CMDQV) hardware is part of the
-> SMMUv3 implementation on NVIDIA Tegra SoCs. It assists in
-> virtualizing the command queue for the SMMU.
+On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+> The enable_streams() API in v4l2 supports passing a bitmask to enable
+> each pad/stream combination individually on any media subdev. Use this
+> API instead of  s_stream() API.
 > 
-> Add a new device tree binding document for nvidia,tegra264-cmdqv.
+> Implement the enable_stream and disable_stream hooks in place of the
+> stream-unaware s_stream hook.
 > 
-> Also update the arm,smmu-v3 binding to include an optional nvidia,cmdqv
-> property. This property is a phandle to the CMDQV device node, allowing
-> the SMMU driver to associate with its corresponding CMDQV instance.
-> Restrict this property usage to Nvidia Tegra264 only.
+> Remove the lock that was used to serialize stream starts/stops which
+> is not required anymore since the v4l2-core serializes the
+> enable/disable_streams() calls for the subdev.
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Acked-by: Nicolin Chen <nicolinc@nvidia.com>
-> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
 > ---
->   .../bindings/iommu/arm,smmu-v3.yaml           | 27 +++++++++++-
->   .../bindings/iommu/nvidia,tegra264-cmdqv.yaml | 42 +++++++++++++++++++
->   2 files changed, 68 insertions(+), 1 deletion(-)
->   create mode 100644 Documentation/devicetree/bindings/iommu/nvidia,tegra264-cmdqv.yaml
+>  drivers/media/platform/cadence/cdns-csi2rx.c | 108 +++++++++----------
+>  1 file changed, 54 insertions(+), 54 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> index 75fcf4cb52d9..82957334bea2 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-> @@ -20,7 +20,12 @@ properties:
->     $nodename:
->       pattern: "^iommu@[0-9a-f]*"
->     compatible:
-> -    const: arm,smmu-v3
-> +    oneOf:
-> +      - const: arm,smmu-v3
-> +      - items:
-> +          - enum:
-> +              - nvidia,tegra264-smmu
-> +          - const: arm,smmu-v3
->   
->     reg:
->       maxItems: 1
-> @@ -58,6 +63,15 @@ properties:
->   
->     msi-parent: true
->   
-> +  nvidia,cmdqv:
-> +    description: |
-> +      A phandle to its pairing CMDQV extension for an implementation on NVIDIA
-> +      Tegra SoC.
-> +
-> +      If this property is absent, CMDQ-Virtualization won't be used and SMMU
-> +      will only use its own CMDQ.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
->     hisilicon,broken-prefetch-cmd:
->       type: boolean
->       description: Avoid sending CMD_PREFETCH_* commands to the SMMU.
-> @@ -69,6 +83,17 @@ properties:
->         register access with page 0 offsets. Set for Cavium ThunderX2 silicon that
->         doesn't support SMMU page1 register space.
->   
-> +allOf:
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              const: nvidia,tegra264-smmu
-> +    then:
-> +      properties:
-> +        nvidia,cmdqv: false
-> +
->   required:
->     - compatible
->     - reg
-> diff --git a/Documentation/devicetree/bindings/iommu/nvidia,tegra264-cmdqv.yaml b/Documentation/devicetree/bindings/iommu/nvidia,tegra264-cmdqv.yaml
-> new file mode 100644
-> index 000000000000..3f5006a59805
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/nvidia,tegra264-cmdqv.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iommu/nvidia,tegra264-cmdqv.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra264 CMDQV
-> +
-> +description:
-> +  The CMDQ-Virtualization hardware block is part of the SMMUv3 implementation
-> +  on Tegra264 SoCs. It assists in virtualizing the command queue for the SMMU.
-> +
-> +maintainers:
-> +  - Nicolin Chen <nicolinc@nvidia.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,tegra264-cmdqv
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    cmdqv@5200000 {
-> +            compatible = "nvidia,tegra264-cmdqv";
-> +            reg = <0x5200000 0x830000>;
-> +            interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
 
-Looks good to me!
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+ Tomi
 
-Cheers
-Jon
-
--- 
-nvpublic
+> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+> index 8c19f125da3e5..8e7af2da62262 100644
+> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+> @@ -125,12 +125,6 @@ struct csi2rx_priv {
+>  	unsigned int			count;
+>  	int				error_irq;
+>  
+> -	/*
+> -	 * Used to prevent race conditions between multiple,
+> -	 * concurrent calls to start and stop.
+> -	 */
+> -	struct mutex			lock;
+> -
+>  	void __iomem			*base;
+>  	struct clk			*sys_clk;
+>  	struct clk			*p_clk;
+> @@ -268,20 +262,21 @@ static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
+>  		&csi2rx->source_subdev->entity.pads[csi2rx->source_pad];
+>  	union phy_configure_opts opts = { };
+>  	struct phy_configure_opts_mipi_dphy *cfg = &opts.mipi_dphy;
+> -	struct v4l2_subdev_format sd_fmt = {
+> -		.which	= V4L2_SUBDEV_FORMAT_ACTIVE,
+> -		.pad	= CSI2RX_PAD_SINK,
+> -	};
+> +	struct v4l2_subdev_state *state;
+> +	struct v4l2_mbus_framefmt *framefmt;
+>  	const struct csi2rx_fmt *fmt;
+>  	s64 link_freq;
+>  	int ret;
+>  
+> -	ret = v4l2_subdev_call_state_active(&csi2rx->subdev, pad, get_fmt,
+> -					    &sd_fmt);
+> -	if (ret < 0)
+> -		return ret;
+> +	state = v4l2_subdev_get_locked_active_state(&csi2rx->subdev);
+>  
+> -	fmt = csi2rx_get_fmt_by_code(sd_fmt.format.code);
+> +	framefmt = v4l2_subdev_state_get_format(state, CSI2RX_PAD_SINK, 0);
+> +	if (!framefmt) {
+> +		dev_err(csi2rx->dev, "Did not find active sink format\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	fmt = csi2rx_get_fmt_by_code(framefmt->code);
+>  
+>  	link_freq = v4l2_get_link_freq(src_pad,
+>  				       fmt->bpp, 2 * csi2rx->num_lanes);
+> @@ -401,16 +396,10 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>  
+>  	reset_control_deassert(csi2rx->sys_rst);
+>  
+> -	ret = v4l2_subdev_call(csi2rx->source_subdev, video, s_stream, true);
+> -	if (ret)
+> -		goto err_disable_sysclk;
+> -
+>  	clk_disable_unprepare(csi2rx->p_clk);
+>  
+>  	return 0;
+>  
+> -err_disable_sysclk:
+> -	clk_disable_unprepare(csi2rx->sys_clk);
+>  err_disable_pixclk:
+>  	for (; i > 0; i--) {
+>  		reset_control_assert(csi2rx->pixel_rst[i - 1]);
+> @@ -459,9 +448,6 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>  	reset_control_assert(csi2rx->p_rst);
+>  	clk_disable_unprepare(csi2rx->p_clk);
+>  
+> -	if (v4l2_subdev_call(csi2rx->source_subdev, video, s_stream, false))
+> -		dev_warn(csi2rx->dev, "Couldn't disable our subdev\n");
+> -
+>  	if (csi2rx->dphy) {
+>  		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
+>  
+> @@ -485,38 +471,56 @@ static int csi2rx_log_status(struct v4l2_subdev *sd)
+>  	return 0;
+>  }
+>  
+> -static int csi2rx_s_stream(struct v4l2_subdev *subdev, int enable)
+> +static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
+> +				 struct v4l2_subdev_state *state, u32 pad,
+> +				 u64 streams_mask)
+>  {
+>  	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
+> -	int ret = 0;
+> -
+> -	mutex_lock(&csi2rx->lock);
+> -
+> -	if (enable) {
+> -		/*
+> -		 * If we're not the first users, there's no need to
+> -		 * enable the whole controller.
+> -		 */
+> -		if (!csi2rx->count) {
+> -			ret = csi2rx_start(csi2rx);
+> -			if (ret)
+> -				goto out;
+> -		}
+> +	int ret;
+>  
+> -		csi2rx->count++;
+> -	} else {
+> -		csi2rx->count--;
+> +	/*
+> +	 * If we're not the first users, there's no need to
+> +	 * enable the whole controller.
+> +	 */
+> +	if (!csi2rx->count) {
+> +		ret = csi2rx_start(csi2rx);
+> +		if (ret)
+> +			return ret;
+> +	}
+>  
+> -		/*
+> -		 * Let the last user turn off the lights.
+> -		 */
+> +	/* Start streaming on the source */
+> +	ret = v4l2_subdev_enable_streams(csi2rx->source_subdev, csi2rx->source_pad,
+> +					 BIT_U64(0));
+> +	if (ret) {
+> +		dev_err(csi2rx->dev,
+> +			"Failed to start streams %d on subdev\n", 0);
+>  		if (!csi2rx->count)
+>  			csi2rx_stop(csi2rx);
+> +		return ret;
+>  	}
+>  
+> -out:
+> -	mutex_unlock(&csi2rx->lock);
+> -	return ret;
+> +	csi2rx->count++;
+> +	return 0;
+> +}
+> +
+> +static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
+> +				  struct v4l2_subdev_state *state, u32 pad,
+> +				  u64 streams_mask)
+> +{
+> +	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
+> +
+> +	if (v4l2_subdev_disable_streams(csi2rx->source_subdev,
+> +					csi2rx->source_pad, BIT_U64(0))) {
+> +		dev_err(csi2rx->dev, "Couldn't disable our subdev\n");
+> +	}
+> +
+> +	csi2rx->count--;
+> +
+> +	/* Let the last user turn off the lights. */
+> +	if (!csi2rx->count)
+> +		csi2rx_stop(csi2rx);
+> +
+> +	return 0;
+>  }
+>  
+>  static int csi2rx_enum_mbus_code(struct v4l2_subdev *subdev,
+> @@ -611,10 +615,8 @@ static const struct v4l2_subdev_pad_ops csi2rx_pad_ops = {
+>  	.enum_mbus_code	= csi2rx_enum_mbus_code,
+>  	.get_fmt	= v4l2_subdev_get_fmt,
+>  	.set_fmt	= csi2rx_set_fmt,
+> -};
+> -
+> -static const struct v4l2_subdev_video_ops csi2rx_video_ops = {
+> -	.s_stream	= csi2rx_s_stream,
+> +	.enable_streams         = csi2rx_enable_streams,
+> +	.disable_streams        = csi2rx_disable_streams,
+>  };
+>  
+>  static const struct v4l2_subdev_core_ops csi2rx_core_ops = {
+> @@ -623,7 +625,6 @@ static const struct v4l2_subdev_core_ops csi2rx_core_ops = {
+>  
+>  static const struct v4l2_subdev_ops csi2rx_subdev_ops = {
+>  	.core		= &csi2rx_core_ops,
+> -	.video		= &csi2rx_video_ops,
+>  	.pad		= &csi2rx_pad_ops,
+>  };
+>  
+> @@ -829,7 +830,6 @@ static int csi2rx_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
+>  	platform_set_drvdata(pdev, csi2rx);
+>  	csi2rx->dev = &pdev->dev;
+> -	mutex_init(&csi2rx->lock);
+>  
+>  	ret = csi2rx_get_resources(csi2rx, pdev);
+>  	if (ret)
 
 
