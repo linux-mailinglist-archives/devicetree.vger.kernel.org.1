@@ -1,207 +1,157 @@
-Return-Path: <devicetree+bounces-254944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F070D1DF4F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:18:46 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F65D1DE69
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:14:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2637C305A79F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:10:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 730FF3055716
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8616A38BF6B;
-	Wed, 14 Jan 2026 10:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F7538F948;
+	Wed, 14 Jan 2026 10:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BNTrzFA5"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AlnMEg2e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B24F38B99C;
-	Wed, 14 Jan 2026 10:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D99E38B7BA;
+	Wed, 14 Jan 2026 10:09:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768385338; cv=none; b=eiC7bBW8likCwOYXVO5o8EpXSW2DrBa3RHJ+imC/4S95X+5+Dhasl948NM5jkhiGM+4EOf/ZHcuM/7PhxQNn1XbTwhkbVTche0ZDPe1LCT0Xr4kX7LC6+F117f3ARIHrhTZMF2DC0yUnSssPH0+3YQ0JtRKPHJ+FCOXTgDaio2g=
+	t=1768385371; cv=none; b=fWX9phXOISoOBy9YpEwn28OZTabaLg/GPSAmW9JlnNHQA185BUkmspJJgIlar7XCs/g7w9i3mhCZiLbWWm+d0JDoqnLdht3EKx9RMe7yLN0YTKpxBYZzIndG+nyjLOAHIAEbrcCObFmhYGYLZMH9P1YOIPAJrjP+0eJGbnf0Iwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768385338; c=relaxed/simple;
-	bh=B8uw2XRpfRfyUglpmkl1Ya7toisPuPn6DrBBErbtgZQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=k0vtu/gIcBfrao49WXi03G67WyGrOGCa8fFq7P8GeSIbfj77dhC2VOY+XH0N2absddzAj1gl9aLAPv8jY6zEHPynzpZUNLN8act3KcrbVQsyP5DJeLCFTqa+RrESsPg7FGJuLFxHnzb9W524o7Al5tkU9TMm8SL/nP0shV8mr8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BNTrzFA5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EEF80C19421;
-	Wed, 14 Jan 2026 10:08:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768385338;
-	bh=B8uw2XRpfRfyUglpmkl1Ya7toisPuPn6DrBBErbtgZQ=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=BNTrzFA51xhjj1oY+b5F6GD2I6Wp4R2D0qFwYbaA4LX1F15V4u5IUuGE0PxESM2Ui
-	 S5SY9NHRLXVlPrAwO2jehIMajRzkbcKv9x2qJE43PQwGwcXjuim+4tWDN1HitFkLr5
-	 u8m6nUeKyfWSFpJkSaQ0hzQV0NeAcrI7CvsRwmbW3fXqcgM4e4txjkRQHeECcgM8I0
-	 ckqTEhgDv/0V57jkHfVi5C/zFImjePC3hjABVebsowkbe5THIVe4ixWnm05yOVQSD+
-	 dgXh4Zez3tXAUEWZBhltngStsKXFtRkPPg1c8Og0Fb9m4qxnGJBVUOomeT3kKKwi9+
-	 0mkbmHEr2VDHw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DF207D31A38;
-	Wed, 14 Jan 2026 10:08:57 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Wed, 14 Jan 2026 11:08:45 +0100
-Subject: [PATCH v3] arm64: dts: qcom: sdm845: Introduce camera master clock
- pinctrl
+	s=arc-20240116; t=1768385371; c=relaxed/simple;
+	bh=DNtLMGNbZb6Rx7hXH70qj+NI37bo1I4GXdx0IehFZUk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aaRJB3VIgWAeehCWdxdBomgIGHLvNfPXiobYbf1rflEb7gOoELWeWb9XmrreNTK99boqkmoWmr5jHDv4oDHa6VpDSKeidrBC5U9qm90co98vhHOm1QEl7LTnD/tCWqOe6uV5HQdo++wYLNU+oOLOiXS11e7aYfeHUvWauXjW1Vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AlnMEg2e; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768385367;
+	bh=DNtLMGNbZb6Rx7hXH70qj+NI37bo1I4GXdx0IehFZUk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=AlnMEg2e1zxsSG5taOVeiWQd8KWq7fUvwlsgur8Ag9kbN15koWkGWxik7QdVGAALc
+	 2RqifSLwOa9W/fgtUsmMCczEWbf9kQMb6+6vZOlgg1OmJ+R+Av7Lc0++t6z5H0lQd6
+	 aycLkCZKNp0jyybwWskXmyhwUXYBFLeuF+Dd+MbUVrCbAqjJrUp9nFYZSlZ1x646Jj
+	 wv0HoXXrFDocjr49DTid7d1vaFbwyKrhjRuE6Fp1AjwfAhrjXZW1El/7ZBKYGpFV9k
+	 oziHsI3omcdIm/fwHcpWJv1ebzgyhoo+V2NhtrKPL6BqsctagRHYgPrckibpA8RDuQ
+	 RhytmLaV0rmKQ==
+Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:1dad:60e8:7174:bd20])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: benjamin.gaignard)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 512CD17E10C8;
+	Wed, 14 Jan 2026 11:09:27 +0100 (CET)
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To: joro@8bytes.org,
+	will@kernel.org,
+	robin.murphy@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	nicolas.dufresne@collabora.com,
+	p.zabel@pengutronix.de,
+	mchehab@kernel.org
+Cc: iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-media@vger.kernel.org,
+	kernel@collabora.com,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH v12 0/6] Add support for Verisilicon IOMMU used by media
+Date: Wed, 14 Jan 2026 11:09:12 +0100
+Message-ID: <20260114100922.149187-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260114-sdm845-mclk-v3-1-c9351deaf4f2@ixit.cz>
-X-B4-Tracking: v=1; b=H4sIACxrZ2kC/23MQQ7CIBCF4as0rMUwU5DiynsYFxXQTrStgYZUm
- 95d2o2auHwv+f6JRR/IR7YvJhZ8okh9l0e5KZht6u7qObm8GQpUgFDy6NpKKt7a+40LCResjUJ
- fAsviEfyFxrV2POXdUBz68FzjCZb3fycBFxyMPlsjtZN2d6CRhq19saWS8FvqX4lZaoGVRScMS
- PWR8zy/AbBSpOzeAAAA
-X-Change-ID: 20251213-sdm845-mclk-041f2a952e31
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3175; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=VjhjaqM3XS+2n8GQ/x6ApyiqxtWTj+IRWhXyXFadzb0=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpZ2s4qUlnsUVwtA6W65uL1mnojYILhVNWEt82U
- g/yf/DzcLGJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaWdrOAAKCRBgAj/E00kg
- cs7+D/9ML+U8eqXXOOZTcHPNgeiBo/mhZ0Z3jrLg/n2w6HWaR6tRiVitKZRAg+utC4b6Y02ad1U
- DXACGzZP6l1BIypVgyNPSxSMLMLoRycoDSF7O15SsqDnTroiv4KgYJGol1DsANCobEn9bKKGvBm
- 0ch5BK5JN5k5hcQzMWkYggLs2Lm0dWrEd24V/EQGm6zbnsM5pq6bhp9bzzwk0rviyTX8I13AEpe
- XuzV8JoVN/wSMOnyu1uvfG578OT9zQTpApIPRQl4sj+EVFYiyhH4YHc9RF7/FwM3WxWdCU/J0kS
- A7MkMM9RO2KSduFDSB65Q9DVu0mXuz7kFf46S6sPzLfGCDwJCN1yfA1BqqxjqyGUwo0eXheAogw
- ePh78bIqgRBB9xblTehQYoYg9JYTADE1sqg+VzrRbX/BLSGiblS2QzyO1X+LTB5OGzNKaj29kOC
- bGDUY3fz0/C+JskQ0A3y3k2Vpo+EtFEi6GqvxIyhlEPA6PyU7DpIYUALzFPVxTVy/MACvFcS77b
- hADQVAB5xl4W95+QrU9yZTmMm1V6oTKq+6bdUSYZ2rJikN/FkxBapu2qutVEfxFZmJDbEyarQLZ
- thyraLsVcjGW5binxvRxcixhfeHhsx1kq8UYS4z7E6MvxlqV6D8LBxPyMt8yzaS3gbqM5i+Xf5D
- 4X1ATcbIHiWqd3Q==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Content-Type: text/plain; charset=a
+Content-Transfer-Encoding: 8bit
 
-From: David Heidelberg <david@ixit.cz>
+Hi all,
 
-Put clock pins configuration for camera master clock into the dtsi.
+This patch series adds support for the Verisilicon IOMMU, which is found
+in front
+of hardware encoder and decoder blocks in several SoCs using Verisilicon
+IP. 
+A first implementation of this IOMMU is available on the Rockchip RK3588
+SoC.
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
-Inspired by Richard's patch set for SDM670, I noticed that SDM845
-follows the same pattern. This change prepares for enabling
-additional cameras.
+Rockchip provides a driver for this hardware in their 6.1 kernel branch:
+https://github.com/rockchip-linux/kernel/blob/develop-6.1/drivers/iommu/rockchip-iommu-av1d.c
 
-These pinctrl settings have been verified against the downstream
-SDM845 kernel.
+This series includes:
+- a new binding for the Verisilicon IOMMU
+- a driver implementation
+- DT updates for RK3588
 
-Since most of these are not yet used in mainline, testing was done
-on sdm845-next using OnePlus 6 cameras with downstream drivers.
+The driver was forward-ported from Rockchip’s 6.1 implementation, 
+the prefix was renamed to vsi for generality, and several fixes were
+applied.
 
-Thank you
-David
----
-Changes in v3:
-- Dropped 2nd patch
-  ("arm64: dts: qcom: sdm845-db845c: Use pad fn instead of defining own")
-  as there is no documentation or people who can answer questions for
-  now, so we can move forward with the main camera work.
-- Link to v2: https://lore.kernel.org/r/20251217-sdm845-mclk-v2-0-7028c2d09145@ixit.cz
+AV1 decoding was tested using the stateless VPU driver and Fluster.
+The test results show a score of 205/239, which confirms that no
+regressions were introduced by this series.
 
-Changes in v2:
-- Added mclk3. (Vladimir)
-- Reword commit messages.
-- Corrected commit msg name. (Konrad)
-- Link to v1: https://lore.kernel.org/r/20251213-sdm845-mclk-v1-0-197bc947d4c6@ixit.cz
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 56 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+Feedback and testing welcome.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index bf2f9c04adba7..c0f21a745fb0c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2805,6 +2805,62 @@ tlmm: pinctrl@3400000 {
- 			gpio-ranges = <&tlmm 0 0 151>;
- 			wakeup-parent = <&pdc_intc>;
+changes in version 12:
+- Remove useless vsi_iommu_flush_tlb_all()
+- Merge MAINTAINERS changes in the patch introducing VSI iommu driver
+
+changes in version 11:
+- Fix dependency issue when decoder driver is build as module.
+
+changes in version 10:
+- Update vsi_iommu_identity_attach() and vsi_iommu_attach_device()
+  prototypes.
+- Fix build as module issue when Verisilicon video decoder is built-in.
+- Rebase on master branch.
+
+changes in version 9:
+- removing blanks lines.
+
+changes in version 8:
+- Add myself in MAINTAINERS file.
+- Add API to restore VSI iommu context from decoder driver
+- Fix reported checkpatch issues: add comment in pinlock_t declaration
+  and remove blank line.
+- Include board name in defconfig patch commit message
+
  
-+			cam_mclk0_default: cam-mclk0-default-state {
-+				pins = "gpio13";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
-+			cam_mclk0_sleep: cam-mclk0-sleep-state {
-+				pins = "gpio13";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
-+			cam_mclk1_default: cam-mclk1-default-state {
-+				pins = "gpio14";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
-+			cam_mclk1_sleep: cam-mclk1-sleep-state {
-+				pins = "gpio14";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
-+			cam_mclk2_default: cam-mclk2-default-state {
-+				pins = "gpio15";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
-+			cam_mclk2_sleep: cam-mclk2-sleep-state {
-+				pins = "gpio15";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
-+			cam_mclk3_default: cam-mclk3-default-state {
-+				pins = "gpio16";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
-+			cam_mclk3_sleep: cam-mclk3-sleep-state {
-+				pins = "gpio16";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
- 			cci0_default: cci0-default-state {
- 				/* SDA, SCL */
- 				pins = "gpio17", "gpio18";
+Benjamin Gaignard (6):
+  dt-bindings: vendor-prefixes: Add Verisilicon
+  dt-bindings: iommu: verisilicon: Add binding for VSI IOMMU
+  iommu: Add verisilicon IOMMU driver
+  media: verisilicon: AV1: Restore IOMMU context before decoding a frame
+  arm64: dts: rockchip: Add verisilicon IOMMU node on RK3588
+  arm64: defconfig: enable Verisilicon IOMMU for Rockchip RK3588
 
----
-base-commit: 0f853ca2a798ead9d24d39cad99b0966815c582a
-change-id: 20251213-sdm845-mclk-041f2a952e31
+ .../bindings/iommu/verisilicon,iommu.yaml     |  71 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  11 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/iommu/Kconfig                         |  11 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/vsi-iommu.c                     | 778 ++++++++++++++++++
+ .../verisilicon/rockchip_vpu981_hw_av1_dec.c  |  15 +
+ include/linux/vsi-iommu.h                     |  21 +
+ 10 files changed, 919 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/verisilicon,iommu.yaml
+ create mode 100644 drivers/iommu/vsi-iommu.c
+ create mode 100644 include/linux/vsi-iommu.h
 
-Best regards,
 -- 
-David Heidelberg <david@ixit.cz>
-
+2.43.0
 
 
