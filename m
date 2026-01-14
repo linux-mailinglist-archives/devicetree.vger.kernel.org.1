@@ -1,463 +1,1210 @@
-Return-Path: <devicetree+bounces-254871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8B1ED1D4DC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:59:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99C9AD1E245
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:40:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8FBE93008737
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:59:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 295A7303504C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:39:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E533803C1;
-	Wed, 14 Jan 2026 08:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CtdXhCD7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AA3393DE3;
+	Wed, 14 Jan 2026 10:39:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BB137F110
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB671E98E6
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768381157; cv=none; b=FZR7APAzNA10mCce8/MOYeZbh4GNiXIC0QekgW1eij9tqbGkkGVBp+IIR1uevKbltNAqu6f9yevZ8iLL7z1C1ybOySxCZXi+aSZ2oeHaw17Jyqr1JEQDoaBKR3YrTpszc5PhEr/80NXsIYitV5BRlomAxHH0c2gS2idyGwpGEEk=
+	t=1768387167; cv=none; b=LCYtDftqG35n+smRhEsoMMvDK0B6/pYwOOgBQXkqALNK4XURWch5L1TYSwd3dOepUbT9VwzM/mDwylrUfXQ9IJnMFmcvotcoxbnv/mygBCTPcWbjbvHvPh3Nhz+XvhZwPBG9ZrIVIjuf2kqtc9dWN2GK+oiIrBXZVS24TBQJ8Cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768381157; c=relaxed/simple;
-	bh=alYneXG4Kl+PUCMkLvREjdXsq4e/uGVZBEyuXSPJFH8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=V6IJm5t7p2OG7P/e+HZ3Ua8LWIGUC59csNpHoP4LBPm8GV3xBhB8gLfr/DK2mx2JVbDVChUrUNAVbhVYjNQiVUZDzQBerGzHX8y7lwUJqwlJ36kXVKsOjaGhchSSqb3VMGK/QYIOAogDvIHGxb4Btv3jutVaohBlh1PEvZDnVuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CtdXhCD7; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id E07A94E420CA;
-	Wed, 14 Jan 2026 08:59:09 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B245A6074A;
-	Wed, 14 Jan 2026 08:59:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AAE35103C837F;
-	Wed, 14 Jan 2026 09:59:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768381148; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references:autocrypt;
-	bh=764/c4Amod76UQU+5CMpywB2vKHz4yp6Ft021kUrQzA=;
-	b=CtdXhCD7qavBZyQ9oqDIRvIFtpeK6y87husbympn81pcnT6eA/azlQjTns8Kgnf7HCtAUj
-	OZyM3QviC21htUDch2QoazV/mfle8bolKPl1cb7aJ28qdNN7i9qXMhOtnj/x8Xs08/mwic
-	zXjbRtnjYEx8zlfhPDRMVRq244G1aT9PzgcRUMNy9UCyHv2BivdfPwjrxRti5XH0ANijBs
-	6CecRbupwYjKXLuUQexsr3lhcqMn0mdckSIaA5T/lbtBTHX4ARyREEot7ip5Gy48eE6DJV
-	NLQgmq+koXwxAU+1DVhHEmYx+GVNZGMNUPxnwdC8HB2tDNvWSpQYIet6EN0fag==
-Message-ID: <0c6073253466314acde4394c5b8d3703a59b28b7.camel@bootlin.com>
-Subject: Re: [PATCH 5/8] mfd: aaeon: Add SRG-IMX8PL MCU driver
-From: Thomas Perrot <thomas.perrot@bootlin.com>
-To: Lee Jones <lee@kernel.org>
-Cc: thomas.perrot@bootlin.com, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus
- Walleij <linusw@kernel.org>,  Bartosz Golaszewski	 <brgl@kernel.org>, Shawn
- Guo <shawnguo@kernel.org>, Sascha Hauer	 <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,  Fabio Estevam
- <festevam@gmail.com>, =?ISO-8859-1?Q?J=E9r=E9mie?= Dautheribes
- <jeremie.dautheribes@bootlin.com>,  Wim Van Sebroeck
- <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Date: Wed, 14 Jan 2026 09:59:03 +0100
-In-Reply-To: <20260109171431.GE1808297@google.com>
-References: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com>
-	 <20251212-dev-b4-aaeon-mcu-driver-v1-5-6bd65bc8ef12@bootlin.com>
-	 <20260109171431.GE1808297@google.com>
-Autocrypt: addr=thomas.perrot@bootlin.com; prefer-encrypt=mutual;
- keydata=mQGNBF+/ZOUBDAC2DghCjZvmgYcve02OG7dGZ7Iy58uEwne3LB7w7nRwdAxKw7ZaiVqwY
- O+yNGVi+GVx7oA6Wn4pv46z+QDRLQiq6OseuXhkSGCg7U/yBCUq12B/GRGO1Qt2Qi1mJJT1s+1qZ5
- Gxv6Nypz9qKVn94GM2bR1hXBga0t87vBpebThOHmX5d/0dqIcVxRCM7onNb0dDyRoVgLS5rBhQzrL
- CMrJaCy39xZUy0J1SOlH4Mgk6EhJIPYY4wlzikGX6urg+Tc9EjGd78ry0e0p5U5qgjFR5QGJDy1Gn
- U3CfwbT9sowdCASDbQDUoltlv2iWJCLa0xl97KVchCa0pr7HKbFA3J5SLKqFYUBCkFL+5WudYlz2n
- XxiUgyviMQxyK+ij66kEi6/2zFDAecd43pHV7790ptqZBC3Jc67Emj7Vo3ShX6RXPPxxbeCTOF2uk
- I45aJ9XcVFH/MFE96NjXj8uahnIsiTPyuCUoJu8tj7TSQyue874qJqVQvqlFyt2aZYJZ8ruq8AEQE
- AAbQpVGhvbWFzIFBlcnJvdCA8dGhvbWFzLnBlcnJvdEBib290bGluLmNvbT6JAc4EEwEIADgCGwMF
- CwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQSHQHfGpqMKIwOoEiGfwAsFcf4K7QUCX79mdwAKCRCfw
- AsFcf4K7fhbC/wP0kSl6id2E/K3+UdXk6CLMVRbCFLCREzQs5WFpQ6l/I0WGOamhrOgegdszheiVF
- orlUP8d37XSpFAqydhKGaN78V5Dps0Wmwm4lIlS4MtQXJtSLUHXDJLIZLW0pw8tiPLKsd1o/yDkXE
- dnpsjJTRG6SdDSHnyOB2/gh4p+yTaLytFdARk/r4/P26+L+FiH0fFl+RnBt19LPklfKgeDc7GwIif
- ja+nIWpp3W23DAUuI6xduEut25Q89yu7Ci8CliLfAiLy9bIGjBQWU2Y+1/j/7KuPj6VbBsZWLTZY0
- hUmpJSTnWAqc9SMsNxo7NSQuddgviz5e2tqucaRqxP02FGzNa8U4NAKdWaXrlHG5Dglj9XH0DK+SH
- +c96qqFewYD8VPQ6XAGxQcXbrtJmiMor1R2DfziispLRvJcfYs8xqabbCtoS3ouXB9XRi8hn7A2kh
- ME1ryS+Oh63JshXHnw6bmjCpVd/p+fGLIGU6A47pJOpviKR4jEO84pl2ejtDZ3Tc=
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-kiPaB+C8pSildM/wevlA"
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1768387167; c=relaxed/simple;
+	bh=ARqCQv3wEbCgZq48lQ8M3Wi7MHgfqSHye/tSUjJUxtA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=qQFgAla1JEnCc1mMJo7kh9IadpnMNvZO+SC2vM2HbT94dlXCJrW0F0HFIKxDRnQVhtPDdKdM1ryXZeqZaXKrLsmXvqh2U2KDIUIQ81pm5l2VFtA/c5k6hpp/I99I8AiOQN5hX+A+bpjjngWNs3fLSjxFsT6Nt7o7rj/JmaS6dic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6505d141d02so13672444a12.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:39:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768387163; x=1768991963;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=p15e32WbNaL2KGaBjlfT55qZ8Pa+6Ph5Zi1/eLI5a5E=;
+        b=LDRGIXF4cfb5y3wursQTzLc4p+LSySq4/YnC5EB/Qh0un5xdFlWKV3rvBPeXyef88W
+         GeyiGLoNocVHkK24k+Lkh8E/LbZYbgLunGWZ6tf4egiMTqu7llBrhwFomYkFS7A3n+8i
+         mJSRzc4+UkwtTOBGeu8txeKw3tswcLeD2BNQsH8NyTVkql27ddrj5pjdGtJogt8vkyjk
+         6/SWJxZd6ENrDX2JvpSIdrwxKhKOeeii62N+q2w9KZfx93iJlUzqzS3AMtakZCoJtSwY
+         PgIXQIB6A5nFot9Wo9sjBZb2nAwq/BtEcMV48oT4v9qNWXU6AYFN9KStNOuOaK241F5f
+         B1oQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV07xv5YUWh1c8z7KH8E46g/GcECIIhgLr0u3aJen+3Y3BRfK/Adb0Sk8dZqIivV2gTpfu91W+nli1X@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmRfRhJkg7o2crR7DKbFiKn6RVODztl8LxsD/umI2Jhw5kmZ7S
+	SR27mN8C5LsguzAyCBrmfhMlsvRsg+EjPTvniP2Lp9Qy+p4F5mzbeL2Z/Kj8FA==
+X-Gm-Gg: AY/fxX7LQ20a8y6BZtfN6VgoQxsHu3q+TB9lu/BgPDXwGZCethLDJbXJz6tbY/1EFzc
+	FbKoMauzk+O8pI9ujWu/qw4JbF+GsqaVxiN97S3PDRA4IoTKLRVN9uL2saZZaPuM8QfqxZPOznm
+	t6iiBojBCp0JaGMI3CKhAi6Ho1ilcmvKULQruOyVw+kX8t0RGZcOFmv8Ao/94FteEGuamIaYL0p
+	OiDaVTCq8fPbPOvk71IqX0rwPVybUq1NbQ1+QEFEJoaD9feEn/RHp5V4etXxPxJq+RthouC3+Iu
+	+1nEfu7syKTGcP1Qf7BXuz8GuEMMV2oSiYNQMnhTOzXebVXLeD9ZpV6+mdFLTw8hnT6s7nf1Dxl
+	8dlNWJjzkjQbGDChZDlALwvYkqNKCYSCPzNCOs3fd+0qXh0xWxWi1OJ1pATXnxySM/a120u+vqo
+	qVc+Gcs//Dd+KqsTycD4sWdoO9/vJVHWI5QgAVi8f+8RrysQ==
+X-Received: by 2002:a05:6402:13c3:b0:64d:e1c:4c0a with SMTP id 4fb4d7f45d1cf-653ebf703famr1606697a12.0.1768380438100;
+        Wed, 14 Jan 2026 00:47:18 -0800 (PST)
+Received: from [10.42.0.1] (cst-prg-36-231.cust.vodafone.cz. [46.135.36.231])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6507bf6d5d4sm22379136a12.32.2026.01.14.00.47.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 00:47:17 -0800 (PST)
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Wed, 14 Jan 2026 09:46:49 +0100
+Subject: [PATCH v2 2/5] accel/thames: Add driver for the C7x DSPs in TI
+ SoCs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260114-thames-v2-2-e94a6636e050@tomeuvizoso.net>
+References: <20260114-thames-v2-0-e94a6636e050@tomeuvizoso.net>
+In-Reply-To: <20260114-thames-v2-0-e94a6636e050@tomeuvizoso.net>
+To: Nishanth Menon <nm@ti.com>, "Andrew F. Davis" <afd@ti.com>, 
+ Randolph Sapp <rs@ti.com>, Jonathan Humphreys <j-humphreys@ti.com>, 
+ Andrei Aldea <a-aldea@ti.com>, Chirag Shilwant <c-shilwant@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Robert Nelson <robertcnelson@gmail.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, linux-media@vger.kernel.org, 
+ linaro-mm-sig@lists.linaro.org, Tomeu Vizoso <tomeu@tomeuvizoso.net>
+X-Mailer: b4 0.14.2
 
+Some SoCs from Texas Instruments contain DSPs that can be used for
+general compute tasks.
 
---=-kiPaB+C8pSildM/wevlA
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This driver provides a drm/accel UABI to userspace for submitting jobs
+to the DSP cores and managing the input, output and intermediate memory.
 
-Hello Lee,
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+---
+ Documentation/accel/thames/index.rst |  28 +++++
+ MAINTAINERS                          |   9 ++
+ drivers/accel/Kconfig                |   1 +
+ drivers/accel/Makefile               |   3 +-
+ drivers/accel/thames/Kconfig         |  26 +++++
+ drivers/accel/thames/Makefile        |   9 ++
+ drivers/accel/thames/thames_core.c   | 155 ++++++++++++++++++++++++++
+ drivers/accel/thames/thames_core.h   |  53 +++++++++
+ drivers/accel/thames/thames_device.c |  93 ++++++++++++++++
+ drivers/accel/thames/thames_device.h |  46 ++++++++
+ drivers/accel/thames/thames_drv.c    | 155 ++++++++++++++++++++++++++
+ drivers/accel/thames/thames_drv.h    |  21 ++++
+ drivers/accel/thames/thames_ipc.h    | 204 +++++++++++++++++++++++++++++++++++
+ drivers/accel/thames/thames_rpmsg.c  | 155 ++++++++++++++++++++++++++
+ drivers/accel/thames/thames_rpmsg.h  |  27 +++++
+ 15 files changed, 984 insertions(+), 1 deletion(-)
 
-On Fri, 2026-01-09 at 17:14 +0000, Lee Jones wrote:
-> On Fri, 12 Dec 2025, Thomas Perrot (Schneider Electric) wrote:
->=20
-> > Add Multi-Function Device (MFD) driver for the Aaeon SRG-IMX8PL
->=20
-> Drop all mentions of MFD.=C2=A0 It's not a real thing - we made it up.
->=20
-> > embedded controller. This driver provides the core I2C
-> > communication
-> > interface and registers child devices (GPIO and watchdog
-> > controllers).
-> >=20
-> > The MCU firmware version is queried during probe and logged for
-> > diagnostic purposes. All I2C transactions are serialized using a
-> > mutex
-> > to ensure proper communication with the microcontroller.
-> >=20
-> > Co-developed-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric)
-> > <jeremie.dautheribes@bootlin.com>
-> > Signed-off-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric)
-> > <jeremie.dautheribes@bootlin.com>
-> > Signed-off-by: Thomas Perrot (Schneider Electric)
-> > <thomas.perrot@bootlin.com>
-> > ---
-> > =C2=A0drivers/mfd/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 10 ++++
-> > =C2=A0drivers/mfd/aaeon-mcu.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 133
-> > ++++++++++++++++++++++++++++++++++++++++++
-> > =C2=A0include/linux/mfd/aaeon-mcu.h |=C2=A0 30 ++++++++++
-> > =C2=A03 files changed, 173 insertions(+)
-> >=20
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index
-> > aace5766b38aa5e46e32a8a7b42eea238159fbcf..9195115c7bcd619439cb9ff71
-> > d70e46629291867 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -1574,6 +1574,16 @@ config AB8500_CORE
-> > =C2=A0	=C2=A0 the irq_chip parts for handling the Mixed Signal chip
-> > events.
-> > =C2=A0	=C2=A0 This chip embeds various other multimedia
-> > functionalities as well.
-> > =C2=A0
-> > +config MFD_AAEON_MCU
-> > +	tristate "Aaeon SRG-IMX8PL MCU Driver"
-> > +	depends on I2C
-> > +	select MFD_CORE
-> > +	help
-> > +	=C2=A0 Select this option to enable support for the Aaeon SRG-
-> > IMX8PL
-> > +	=C2=A0 onboard microcontroller (MCU). This driver provides the
-> > core
-> > +	=C2=A0 functionality to communicate with the MCU over I2C. The
-> > MCU
-> > +	=C2=A0 provides various sub-devices including GPIO and watchdog
-> > controllers.
->=20
-> Is that an exhaustive list of sub-devices?
->=20
-> > =C2=A0config MFD_DB8500_PRCMU
-> > =C2=A0	bool "ST-Ericsson DB8500 Power Reset Control Management
-> > Unit"
-> > =C2=A0	depends on UX500_SOC_DB8500
-> > diff --git a/drivers/mfd/aaeon-mcu.c b/drivers/mfd/aaeon-mcu.c
-> > new file mode 100644
-> > index
-> > 0000000000000000000000000000000000000000..472d44d5e8627f46806015599
-> > 542753a5bda4526
-> > --- /dev/null
-> > +++ b/drivers/mfd/aaeon-mcu.c
-> > @@ -0,0 +1,133 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Aaeon MCU MFD driver
->=20
-> Not MFD - describe the actual device.
->=20
-> > + *
-> > + * Copyright (C) 2025 Bootlin
->=20
-> Has it been agreed that you would hold the copyright to this?
->=20
+diff --git a/Documentation/accel/thames/index.rst b/Documentation/accel/thames/index.rst
+new file mode 100644
+index 0000000000000000000000000000000000000000..ca8391031f226f7ef1dc210a356c86acbe126c6f
+--- /dev/null
++++ b/Documentation/accel/thames/index.rst
+@@ -0,0 +1,28 @@
++.. SPDX-License-Identifier: GPL-2.0-only
++
++============================================================
++ accel/thames Driver for the C7x DSPs from Texas Instruments
++============================================================
++
++The accel/thames driver supports the C7x DSPs inside some Texas Instruments SoCs
++such as the J722S. These can be used as accelerators for various workloads,
++including machine learning inference.
++
++This driver controls the power state of the hardware via :doc:`remoteproc </staging/remoteproc>`
++and communicates with the firmware running on the DSP via :doc:`rpmsg_virtio </staging/rpmsg_virtio>`.
++The kernel driver itself allocates buffers, manages contexts, and submits jobs
++to the DSP firmware. Buffers are mapped by the DSP itself using its MMU,
++providing memory isolation among different clients.
++
++The source code for the firmware running on the DSP is available at:
++https://gitlab.freedesktop.org/tomeu/thames_firmware/.
++
++Everything else is done in userspace, as a Gallium driver (also called thames)
++that is part of the Mesa3D project: https://docs.mesa3d.org/teflon.html
++
++If there is more than one core that advertises the same rpmsg_virtio service
++name, the driver will load balance jobs between them with drm-gpu-scheduler.
++
++Hardware currently supported:
++
++* J722S
+diff --git a/MAINTAINERS b/MAINTAINERS
+index dc731d37c8feeff25613c59fe9c929927dadaa7e..a3fc809c797269d0792dfe5202cc1b49f6ff57e9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7731,6 +7731,15 @@ F:	Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml
+ F:	drivers/accel/rocket/
+ F:	include/uapi/drm/rocket_accel.h
+ 
++DRM ACCEL DRIVER FOR TI C7x DSPS
++M:	Tomeu Vizoso <tomeu@tomeuvizoso.net>
++L:	dri-devel@lists.freedesktop.org
++S:	Supported
++T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
++F:	Documentation/accel/thames/
++F:	drivers/accel/thames/
++F:	include/uapi/drm/thames_accel.h
++
+ DRM COMPUTE ACCELERATORS DRIVERS AND FRAMEWORK
+ M:	Oded Gabbay <ogabbay@kernel.org>
+ L:	dri-devel@lists.freedesktop.org
+diff --git a/drivers/accel/Kconfig b/drivers/accel/Kconfig
+index bdf48ccafcf21b2fd685ec963e39e256196e6e17..cb49c71cd4e4a4220624f7041a75ba950a1a2ee1 100644
+--- a/drivers/accel/Kconfig
++++ b/drivers/accel/Kconfig
+@@ -30,5 +30,6 @@ source "drivers/accel/habanalabs/Kconfig"
+ source "drivers/accel/ivpu/Kconfig"
+ source "drivers/accel/qaic/Kconfig"
+ source "drivers/accel/rocket/Kconfig"
++source "drivers/accel/thames/Kconfig"
+ 
+ endif
+diff --git a/drivers/accel/Makefile b/drivers/accel/Makefile
+index 1d3a7251b950f39e2ae600a2fc07a3ef7e41831e..8472989cbe22746f1e7292d2401fa0f7424a6c15 100644
+--- a/drivers/accel/Makefile
++++ b/drivers/accel/Makefile
+@@ -5,4 +5,5 @@ obj-$(CONFIG_DRM_ACCEL_ARM_ETHOSU)	+= ethosu/
+ obj-$(CONFIG_DRM_ACCEL_HABANALABS)	+= habanalabs/
+ obj-$(CONFIG_DRM_ACCEL_IVPU)		+= ivpu/
+ obj-$(CONFIG_DRM_ACCEL_QAIC)		+= qaic/
+-obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
+\ No newline at end of file
++obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
++obj-$(CONFIG_DRM_ACCEL_THAMES)		+= thames/
+\ No newline at end of file
+diff --git a/drivers/accel/thames/Kconfig b/drivers/accel/thames/Kconfig
+new file mode 100644
+index 0000000000000000000000000000000000000000..50e0b6ac2a16a942ba8463333991f5b0161b99ac
+--- /dev/null
++++ b/drivers/accel/thames/Kconfig
+@@ -0,0 +1,26 @@
++# SPDX-License-Identifier: GPL-2.0-only
++
++config DRM_ACCEL_THAMES
++	tristate "Thames (support for TI C7x DSP accelerators)"
++	depends on DRM_ACCEL
++	depends on TI_K3_R5_REMOTEPROC || COMPILE_TEST
++	depends on RPMSG
++	depends on MMU
++	select DRM_SCHED
++	select DRM_GEM_SHMEM_HELPER
++	help
++	  Choose this option if you have a Texas Instruments SoC that contains
++	  C7x DSP cores that can be used as compute accelerators. This includes
++	  SoCs such as the AM62A, J721E, J721S2, and J784S4.
++
++	  The C7x DSP cores can be used for general-purpose compute acceleration
++	  and are exposed through the DRM accel subsystem.
++
++	  The interface exposed to userspace is described in
++	  include/uapi/drm/thames_accel.h and is used by the Thames userspace
++	  driver in Mesa3D.
++
++	  If unsure, say N.
++
++	  To compile this driver as a module, choose M here: the
++	  module will be called thames.
+diff --git a/drivers/accel/thames/Makefile b/drivers/accel/thames/Makefile
+new file mode 100644
+index 0000000000000000000000000000000000000000..7ccd8204f0f5ea800f30e84b319f355be948109d
+--- /dev/null
++++ b/drivers/accel/thames/Makefile
+@@ -0,0 +1,9 @@
++# SPDX-License-Identifier: GPL-2.0-only
++
++obj-$(CONFIG_DRM_ACCEL_THAMES) := thames.o
++
++thames-y := \
++	thames_core.o \
++	thames_device.o \
++	thames_drv.o \
++	thames_rpmsg.o
+diff --git a/drivers/accel/thames/thames_core.c b/drivers/accel/thames/thames_core.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..92af1d68063116bcfa28a33960cbe829029fc1bf
+--- /dev/null
++++ b/drivers/accel/thames/thames_core.c
+@@ -0,0 +1,155 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
++
++#include "linux/remoteproc.h"
++#include <linux/dev_printk.h>
++#include <linux/err.h>
++#include <linux/of.h>
++#include <linux/of_address.h>
++#include <linux/platform_device.h>
++#include <linux/completion.h>
++#include <linux/jiffies.h>
++#include <linux/rpmsg.h>
++
++#include "thames_core.h"
++#include "thames_device.h"
++#include "thames_rpmsg.h"
++
++/* Shift to convert bytes to megabytes (divide by 1048576) */
++#define THAMES_BYTES_TO_MB_SHIFT 20
++
++int thames_core_get_iova_range(struct rpmsg_device *rpdev, u64 *iova_start, u64 *iova_size)
++{
++	struct rproc *rproc;
++	struct device_node *of_node;
++	struct device_node *mem_node;
++	struct resource mem_res;
++	int err;
++
++	if (!iova_start || !iova_size)
++		return -EINVAL;
++
++	rproc = rproc_get_by_child(&rpdev->dev);
++	if (!rproc) {
++		dev_err(&rpdev->dev, "Failed to get rproc device\n");
++		return -ENODEV;
++	}
++
++	of_node = rproc->dev.parent->of_node;
++	put_device(&rproc->dev);
++
++	if (!of_node) {
++		dev_err(&rpdev->dev, "No device tree node found on rproc parent\n");
++		return -ENODEV;
++	}
++
++	/*
++	 * Read the IOVA pool range from the device tree node.
++	 * The third memory-region (index 2) defines the virtual address range.
++	 * The first two regions are typically:
++	 *   [0] = DMA memory region for remoteproc (physically contiguous)
++	 *   [1] = Code/data memory region for remoteproc (physically contiguous)
++	 *   [2] = Virtual address pool for BO mappings (firmware-managed MMU)
++	 */
++	mem_node = of_parse_phandle(of_node, "memory-region", 2);
++	if (!mem_node) {
++		dev_err(&rpdev->dev, "Missing third memory-region (DSP VA pool) in device tree\n");
++		return -EINVAL;
++	}
++
++	err = of_address_to_resource(mem_node, 0, &mem_res);
++	of_node_put(mem_node);
++	if (err) {
++		dev_err(&rpdev->dev, "Failed to get DSP VA pool range from memory-region[2]: %d\n",
++			err);
++		return err;
++	}
++
++	*iova_start = mem_res.start;
++	*iova_size = resource_size(&mem_res);
++
++	if (!*iova_size) {
++		dev_err(&rpdev->dev, "Invalid DSP VA pool size: 0\n");
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static int thames_core_validate_iova_range(struct thames_core *core)
++{
++	struct thames_device *tdev = core->tdev;
++	u64 iova_start, iova_size;
++	int err;
++
++	err = thames_core_get_iova_range(core->rpdev, &iova_start, &iova_size);
++	if (err)
++		return err;
++
++	if (iova_start != tdev->iova_start || iova_size != tdev->iova_size) {
++		dev_err(core->dev,
++			"Core %d IOVA range mismatch! Expected 0x%llx-0x%llx, got 0x%llx-0x%llx\n",
++			core->index, tdev->iova_start, tdev->iova_start + tdev->iova_size - 1,
++			iova_start, iova_start + iova_size - 1);
++		dev_err(core->dev,
++			"All cores must have the same memory-region[2] (IOVA pool) in device tree\n");
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++int thames_core_init(struct thames_core *core)
++{
++	int err = 0;
++
++	err = thames_core_validate_iova_range(core);
++	if (err)
++		return err;
++
++	err = thames_rpmsg_init(core);
++	if (err)
++		return err;
++
++	err = thames_rpmsg_ping_test(core);
++	if (err)
++		return err;
++
++	return 0;
++}
++
++void thames_core_fini(struct thames_core *core)
++{
++	thames_rpmsg_fini(core);
++}
++
++void thames_core_reset(struct thames_core *core)
++{
++	struct rpmsg_device *rpdev = core->rpdev;
++	struct rproc *rproc;
++	int ret;
++
++	dev_warn(core->dev, "Resetting DSP core %d", core->index);
++
++	if (!atomic_read(&core->reset.pending))
++		dev_warn(core->dev, "Reset called without reset.pending set\n");
++
++	rproc = rproc_get_by_child(&rpdev->dev);
++	if (!rproc) {
++		dev_err(core->dev, "Failed to get rproc for reset\n");
++		return;
++	}
++
++	ret = rproc_shutdown(rproc);
++	if (ret) {
++		dev_err(&rproc->dev, "Failed to shut down DSP: %d\n", ret);
++		goto put_rproc;
++	}
++
++	ret = rproc_boot(rproc);
++	if (ret)
++		dev_err(&rproc->dev, "Failed to boot DSP: %d\n", ret);
++
++put_rproc:
++	put_device(&rproc->dev);
++}
+diff --git a/drivers/accel/thames/thames_core.h b/drivers/accel/thames/thames_core.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..72c3d3d6c575f56cc1d8731d1c9dc958486dbf7f
+--- /dev/null
++++ b/drivers/accel/thames/thames_core.h
+@@ -0,0 +1,53 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
++
++#ifndef __THAMES_CORE_H__
++#define __THAMES_CORE_H__
++
++#include <linux/rpmsg.h>
++#include <drm/gpu_scheduler.h>
++#include <linux/mutex_types.h>
++#include <linux/completion.h>
++
++struct thames_msg_buffer_op;
++
++struct thames_core {
++	struct rpmsg_device *rpdev;
++	struct device *dev;
++	struct thames_device *tdev;
++	unsigned int index;
++
++	/* RPMSG communication context */
++	struct {
++		struct rpmsg_endpoint *endpoint;
++
++		struct {
++			u32 sequence;
++			u32 expected_data;
++			bool success;
++			struct completion completion;
++		} ping_test;
++	} rpmsg_ctx;
++
++	struct mutex job_lock;
++	struct thames_job *in_flight_job;
++
++	spinlock_t fence_lock;
++
++	struct {
++		struct workqueue_struct *wq;
++		struct work_struct work;
++		atomic_t pending;
++	} reset;
++
++	struct drm_gpu_scheduler sched;
++	u64 fence_context;
++	u64 emit_seqno;
++};
++
++int thames_core_init(struct thames_core *core);
++void thames_core_fini(struct thames_core *core);
++void thames_core_reset(struct thames_core *core);
++int thames_core_get_iova_range(struct rpmsg_device *rpdev, u64 *iova_start, u64 *iova_size);
++
++#endif
+diff --git a/drivers/accel/thames/thames_device.c b/drivers/accel/thames/thames_device.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..2b2aa32b07ee361ea388ab5ec781a13ff4359e5f
+--- /dev/null
++++ b/drivers/accel/thames/thames_device.c
+@@ -0,0 +1,93 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
++
++#include <drm/drm_drv.h>
++#include <linux/array_size.h>
++#include <linux/clk.h>
++#include <linux/dma-mapping.h>
++#include <linux/idr.h>
++#include <linux/platform_device.h>
++
++#include "thames_device.h"
++
++/* Shift to convert bytes to megabytes (divide by 1048576) */
++#define THAMES_BYTES_TO_MB_SHIFT 20
++
++struct thames_device *thames_device_init(struct platform_device *pdev,
++
++					 const struct drm_driver *thames_drm_driver, u64 iova_start,
++					 u64 iova_size)
++{
++	struct device *dev = &pdev->dev;
++	struct thames_device *tdev;
++	struct drm_device *ddev;
++	int err;
++
++	tdev = devm_drm_dev_alloc(dev, thames_drm_driver, struct thames_device, ddev);
++	if (IS_ERR(tdev))
++		return tdev;
++
++	tdev->num_cores = 0;
++	ddev = &tdev->ddev;
++	dev_set_drvdata(dev, tdev);
++
++	dma_set_max_seg_size(dev, UINT_MAX);
++
++	err = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(40));
++	if (err)
++		return ERR_PTR(err);
++
++	err = devm_mutex_init(dev, &tdev->sched_lock);
++	if (err)
++		return ERR_PTR(-ENOMEM);
++
++	ida_init(&tdev->bo_ida);
++	ida_init(&tdev->ctx_ida);
++	ida_init(&tdev->job_ida);
++	ida_init(&tdev->ipc_seq_ida);
++
++	/*
++	 * Initialize shared virtual address space for all DSP cores.
++	 *
++	 * IMPORTANT: This driver does NOT use Linux IOMMU. The TI C7x DSP cores
++	 * have their own MMUs that are managed entirely by the DSP firmware.
++	 * The VA space is shared across all cores - userspace receives VAs that
++	 * work on all cores. Each core's firmware programs its own MMU to map
++	 * the same VA to the same PA.
++	 *
++	 * The Linux driver's role is only to:
++	 * 1. Allocate non-overlapping virtual addresses from a safe range
++	 * 2. Provide physical addresses to each DSP firmware via IPC
++	 * 3. Let each firmware program its own MMU to map VA -> PA
++	 */
++	if (!iova_size) {
++		dev_err(dev, "Invalid DSP VA pool size: 0\n");
++		return ERR_PTR(-EINVAL);
++	}
++
++	tdev->iova_start = iova_start;
++	tdev->iova_size = iova_size;
++
++	drm_mm_init(&tdev->mm, iova_start, iova_size);
++	err = devm_mutex_init(dev, &tdev->mm_lock);
++	if (err)
++		return ERR_PTR(-ENOMEM);
++
++	err = drm_dev_register(ddev, 0);
++	if (err)
++		return ERR_PTR(err);
++
++	return tdev;
++}
++
++void thames_device_fini(struct thames_device *tdev)
++{
++	WARN_ON(tdev->num_cores > 0);
++
++	ida_destroy(&tdev->bo_ida);
++	ida_destroy(&tdev->ctx_ida);
++	ida_destroy(&tdev->job_ida);
++	ida_destroy(&tdev->ipc_seq_ida);
++	drm_mm_takedown(&tdev->mm);
++	drm_dev_unregister(&tdev->ddev);
++}
+diff --git a/drivers/accel/thames/thames_device.h b/drivers/accel/thames/thames_device.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..c7d8e521d4323122134e8c8e8d256d957c89ae5f
+--- /dev/null
++++ b/drivers/accel/thames/thames_device.h
+@@ -0,0 +1,46 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
++
++#ifndef __THAMES_DEVICE_H__
++#define __THAMES_DEVICE_H__
++
++#include <drm/drm_device.h>
++#include <drm/drm_mm.h>
++#include <linux/clk.h>
++#include <linux/container_of.h>
++#include <linux/idr.h>
++#include <linux/platform_device.h>
++
++#include "thames_core.h"
++
++#define MAX_CORES 8
++
++struct thames_device {
++	struct drm_device ddev;
++
++	struct mutex sched_lock;
++
++	struct thames_core cores[MAX_CORES];
++	unsigned int num_cores;
++
++	struct ida bo_ida;
++	struct ida ctx_ida;
++	struct ida job_ida;
++	struct ida ipc_seq_ida;
++
++	struct drm_mm mm;
++	struct mutex mm_lock;
++
++	u64 iova_start;
++	u64 iova_size;
++};
++
++struct thames_device *thames_device_init(struct platform_device *pdev,
++					 const struct drm_driver *thames_drm_driver, u64 iova_start,
++					 u64 iova_size);
++void thames_device_fini(struct thames_device *rdev);
++
++#define to_thames_device(drm_dev) \
++	((struct thames_device *)(container_of((drm_dev), struct thames_device, ddev)))
++
++#endif /* __THAMES_DEVICE_H__ */
+diff --git a/drivers/accel/thames/thames_drv.c b/drivers/accel/thames/thames_drv.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..473498dd6f0135f346b0986a2a17fc4411417f52
+--- /dev/null
++++ b/drivers/accel/thames/thames_drv.c
+@@ -0,0 +1,155 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
++
++#include <drm/drm_accel.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_gem.h>
++#include <drm/drm_ioctl.h>
++#include <linux/err.h>
++#include <linux/platform_device.h>
++#include <linux/remoteproc.h>
++#include <linux/rpmsg.h>
++
++#include "thames_drv.h"
++#include "thames_core.h"
++#include "thames_ipc.h"
++
++static struct platform_device *drm_dev;
++static struct thames_device *tdev;
++
++static int thames_open(struct drm_device *dev, struct drm_file *file)
++{
++	struct thames_device *tdev = to_thames_device(dev);
++	struct thames_file_priv *thames_priv;
++	int ret;
++
++	if (!try_module_get(THIS_MODULE))
++		return -EINVAL;
++
++	thames_priv = kzalloc(sizeof(*thames_priv), GFP_KERNEL);
++	if (!thames_priv) {
++		ret = -ENOMEM;
++		goto err_put_mod;
++	}
++
++	thames_priv->tdev = tdev;
++
++	file->driver_priv = thames_priv;
++
++	return 0;
++
++err_put_mod:
++	module_put(THIS_MODULE);
++	return ret;
++}
++
++static void thames_postclose(struct drm_device *dev, struct drm_file *file)
++{
++	struct thames_file_priv *thames_priv = file->driver_priv;
++
++	kfree(thames_priv);
++	module_put(THIS_MODULE);
++}
++
++static const struct drm_ioctl_desc thames_drm_driver_ioctls[] = {
++#define THAMES_IOCTL(n, func) DRM_IOCTL_DEF_DRV(THAMES_##n, thames_ioctl_##func, 0)
++
++};
++
++DEFINE_DRM_ACCEL_FOPS(thames_accel_driver_fops);
++
++static const struct drm_driver thames_drm_driver = {
++	.driver_features = DRIVER_COMPUTE_ACCEL | DRIVER_GEM,
++	.open = thames_open,
++	.postclose = thames_postclose,
++	.ioctls = thames_drm_driver_ioctls,
++	.num_ioctls = ARRAY_SIZE(thames_drm_driver_ioctls),
++	.fops = &thames_accel_driver_fops,
++	.name = "thames",
++	.desc = "thames DRM",
++};
++
++static int thames_probe(struct rpmsg_device *rpdev)
++{
++	u64 iova_start, iova_size;
++	unsigned int core;
++	int err;
++
++	if (!tdev) {
++		err = thames_core_get_iova_range(rpdev, &iova_start, &iova_size);
++		if (err)
++			return err;
++
++		tdev = thames_device_init(drm_dev, &thames_drm_driver, iova_start, iova_size);
++		if (IS_ERR(tdev)) {
++			dev_err(&rpdev->dev, "failed to initialize thames device\n");
++			return PTR_ERR(tdev);
++		}
++	}
++
++	core = tdev->num_cores;
++
++	tdev->cores[core].tdev = tdev;
++	tdev->cores[core].rpdev = rpdev;
++	tdev->cores[core].dev = &rpdev->dev;
++	tdev->cores[core].index = core;
++
++	tdev->num_cores++;
++
++	return thames_core_init(&tdev->cores[core]);
++}
++
++static void thames_remove(struct rpmsg_device *rpdev)
++{
++	unsigned int core;
++
++	for (core = 0; core < tdev->num_cores; core++) {
++		if (tdev->cores[core].rpdev == rpdev) {
++			thames_core_fini(&tdev->cores[core]);
++			tdev->num_cores--;
++			break;
++		}
++	}
++
++	if (!tdev->num_cores) {
++		thames_device_fini(tdev);
++		tdev = NULL;
++	}
++}
++
++static const struct rpmsg_device_id thames_rpmsg_id_table[] = { { .name = THAMES_SERVICE_NAME },
++								{} };
++
++static struct rpmsg_driver thames_rpmsg_driver = {
++	.drv = {
++		.name = "thames",
++		.owner = THIS_MODULE,
++	},
++	.id_table = thames_rpmsg_id_table,
++	.probe = thames_probe,
++	.remove = thames_remove,
++};
++
++static int __init thames_register(void)
++{
++	drm_dev = platform_device_register_simple("thames", -1, NULL, 0);
++	if (IS_ERR(drm_dev))
++		return PTR_ERR(drm_dev);
++
++	return register_rpmsg_driver(&thames_rpmsg_driver);
++}
++
++static void __exit thames_unregister(void)
++{
++	unregister_rpmsg_driver(&thames_rpmsg_driver);
++
++	platform_device_unregister(drm_dev);
++}
++
++module_init(thames_register);
++module_exit(thames_unregister);
++
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("DRM driver for Texas Instrument's C7x accelerator cores");
++MODULE_AUTHOR("Tomeu Vizoso");
++MODULE_ALIAS("rpmsg:" THAMES_SERVICE_NAME);
+diff --git a/drivers/accel/thames/thames_drv.h b/drivers/accel/thames/thames_drv.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..e03203eab8b88686ca91c10b45e55df1ea3d2e77
+--- /dev/null
++++ b/drivers/accel/thames/thames_drv.h
+@@ -0,0 +1,21 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
++
++#ifndef __THAMES_DRV_H__
++#define __THAMES_DRV_H__
++
++#include <drm/drm_mm.h>
++#include <drm/gpu_scheduler.h>
++
++#include "thames_device.h"
++
++struct thames_file_priv {
++	struct thames_device *tdev;
++
++	struct drm_sched_entity sched_entity;
++
++	u32 context_id;
++	bool context_valid;
++};
++
++#endif
+diff --git a/drivers/accel/thames/thames_ipc.h b/drivers/accel/thames/thames_ipc.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..60297b4bc2ffd990315cb735a96a23429d390f43
+--- /dev/null
++++ b/drivers/accel/thames/thames_ipc.h
+@@ -0,0 +1,204 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/
++ *
++ * This header defines the RPMSG message structures exchanged between
++ * the Linux kernel (host) and the C7x DSP (remote) firmware for the
++ * Thames DRM/accel driver.
++ */
++
++#ifndef _THAMES_IPC_H
++#define _THAMES_IPC_H
++
++#ifdef __KERNEL__
++#include <linux/types.h>
++#else
++#include <stdint.h>
++typedef uint8_t __u8;
++typedef uint16_t __u16;
++typedef uint32_t __u32;
++typedef uint64_t __u64;
++#endif
++
++#define THAMES_SERVICE_NAME "thames-service"
++
++/**
++ * @THAMES_MSG_TYPE: Simplified message type enumeration
++ */
++enum thames_msg_type {
++	/* --- Host (Kernel) -> Remote (DSP) --- */
++	THAMES_MSG_PING = 0x100, /* Ping message to test communication */
++	THAMES_MSG_CONTEXT_OP, /* Create/destroy context */
++	THAMES_MSG_BO_OP, /* Map/unmap buffer objects */
++	THAMES_MSG_SUBMIT_JOB, /* Submit job for execution */
++
++	/* --- Remote (DSP) -> Host (Kernel) --- */
++	THAMES_MSG_PING_RESPONSE = 0x200,
++	THAMES_MSG_CONTEXT_OP_RESPONSE,
++	THAMES_MSG_BO_OP_RESPONSE,
++	THAMES_MSG_SUBMIT_JOB_RESPONSE,
++};
++
++/**
++ * @THAMES_CONTEXT_OP: Context operation types
++ */
++enum thames_context_op {
++	THAMES_CONTEXT_CREATE = 0,
++	THAMES_CONTEXT_DESTROY,
++};
++
++/**
++ * @THAMES_BO_OP: Buffer Object operation types
++ */
++enum thames_bo_op {
++	THAMES_BO_MAP = 0,
++	THAMES_BO_UNMAP,
++};
++
++/**
++ * @THAMES_RESP_STATUS: Response status codes
++ */
++enum thames_resp_status {
++	THAMES_RESP_SUCCESS = 0,
++	THAMES_RESP_ERR_GENERIC = 1,
++	THAMES_RESP_ERR_NOMEM = 2,
++	THAMES_RESP_ERR_INVAL = 3,
++	THAMES_RESP_ERR_NO_CTX = 4,
++	THAMES_RESP_ERR_MMU = 5,
++	THAMES_RESP_ERR_JOB_TIMEOUT = 6,
++};
++
++/**
++ * struct thames_msg_hdr - Common header for all RPMSG messages
++ * @type: Message type from enum thames_msg_type
++ * @seq:  Sequence number for request/response matching
++ * @len:  Total message length including header
++ */
++struct thames_msg_hdr {
++	__u32 type;
++	__u32 seq;
++	__u32 len;
++	__u32 reserved;
++};
++
++/*
++ * ===================================================================
++ * Host (Kernel) -> Remote (DSP) Messages
++ * ===================================================================
++ */
++
++/**
++ * struct thames_msg_ping - Ping message to test communication
++ * @hdr:        Common message header
++ * @ping_data:  Optional ping data (timestamp, sequence, etc.)
++ */
++struct thames_msg_ping {
++	struct thames_msg_hdr hdr;
++	__u32 ping_data;
++};
++
++/**
++ * struct thames_msg_context_op - Context create/destroy operations
++ * @hdr:           Common message header
++ * @op:            Operation type (CREATE/DESTROY)
++ * @context_id:    Context ID
++ */
++struct thames_msg_context_op {
++	struct thames_msg_hdr hdr;
++	uint32_t op; /* enum thames_context_op */
++	uint32_t context_id;
++};
++
++/**
++ * struct thames_msg_bo_op - Buffer Object map/unmap operations
++ * @hdr:        Common message header
++ * @op:         Operation type (MAP/UNMAP)
++ * @context_id: Context ID that this BO belongs to
++ * @bo_id:      Buffer Object ID for tracking
++ * @vaddr:      Virtual address where BO should be mapped on DSP
++ * @paddr:      Physical address of the BO
++ * @size:       Size of the BO in bytes
++ */
++struct thames_msg_bo_op {
++	struct thames_msg_hdr hdr;
++	uint32_t op; /* enum thames_bo_op */
++	uint32_t context_id;
++	uint32_t bo_id;
++	uint64_t vaddr;
++	uint64_t paddr;
++	uint64_t size;
++};
++
++/**
++ * struct thames_msg_submit_job - Submit job for execution
++ * @hdr:         Common message header
++ * @context_id:  Context to run job in
++ * @job_id:      Host-generated job tracking ID
++ * @kernel_iova: IOVA of kernel code BO (first byte = first instruction)
++ * @kernel_size: Size of kernel code in bytes
++ * @args_iova:   IOVA of arguments BO (array of uint64_t values)
++ * @args_size:   Size of arguments BO in bytes
++ */
++struct thames_msg_submit_job {
++	struct thames_msg_hdr hdr;
++	uint32_t context_id;
++	uint32_t job_id;
++	uint64_t kernel_iova;
++	uint64_t kernel_size;
++	uint64_t args_iova;
++	uint64_t args_size;
++};
++
++/*
++ * ===================================================================
++ * Remote (DSP) -> Host (Kernel) Messages
++ * ===================================================================
++ */
++
++/**
++ * struct thames_msg_response - Generic response to commands
++ * @hdr:    Common message header (seq matches request)
++ * @status: Status code from enum thames_resp_status
++ * @data:   Optional response data (context-dependent)
++ */
++struct thames_msg_response {
++	struct thames_msg_hdr hdr;
++	uint32_t status;
++	uint32_t data;
++};
++
++/*
++ * ===================================================================
++ * Buffer Size Calculations
++ * ===================================================================
++ */
++
++/* Calculate the maximum message size by finding the largest structure */
++#define THAMES_MSG_SIZE_PING sizeof(struct thames_msg_ping)
++#define THAMES_MSG_SIZE_CONTEXT_OP sizeof(struct thames_msg_context_op)
++#define THAMES_MSG_SIZE_BO_OP sizeof(struct thames_msg_bo_op)
++#define THAMES_MSG_SIZE_SUBMIT_JOB sizeof(struct thames_msg_submit_job)
++#define THAMES_MSG_SIZE_RESPONSE sizeof(struct thames_msg_response)
++
++/* Helper macros to find maximum of multiple values */
++#define THAMES_MAX2(a, b) ((a) > (b) ? (a) : (b))
++#define THAMES_MAX3(a, b, c) THAMES_MAX2(THAMES_MAX2(a, b), c)
++#define THAMES_MAX5(a, b, c, d, e) THAMES_MAX2(THAMES_MAX3(a, b, c), THAMES_MAX2(d, e))
++
++/* Maximum size of any Thames IPC message */
++#define THAMES_IPC_MAX_MSG_SIZE                                                              \
++	THAMES_MAX5(THAMES_MSG_SIZE_PING, THAMES_MSG_SIZE_CONTEXT_OP, THAMES_MSG_SIZE_BO_OP, \
++		    THAMES_MSG_SIZE_SUBMIT_JOB, THAMES_MSG_SIZE_RESPONSE)
++
++/* RPMSG buffer size - should accommodate largest message + some padding */
++#define THAMES_RPMSG_BUFFER_SIZE ((THAMES_IPC_MAX_MSG_SIZE + 15) & ~15) /* 16-byte aligned */
++
++/* Compile-time size checks - use BUILD_BUG_ON in kernel code */
++#ifdef __KERNEL__
++#define THAMES_ASSERT_MSG_SIZE(msg_type) BUILD_BUG_ON(sizeof(struct msg_type) > 64)
++#else
++#define THAMES_ASSERT_MSG_SIZE(msg_type) \
++	_Static_assert(sizeof(struct msg_type) <= 64, #msg_type " too large")
++#endif
++
++#endif /* _THAMES_IPC_H */
+diff --git a/drivers/accel/thames/thames_rpmsg.c b/drivers/accel/thames/thames_rpmsg.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..ebc34f49353e5e7959734da8e8a935573c130e79
+--- /dev/null
++++ b/drivers/accel/thames/thames_rpmsg.c
+@@ -0,0 +1,155 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
++
++#include <linux/dev_printk.h>
++#include <linux/err.h>
++#include <linux/completion.h>
++#include <linux/jiffies.h>
++#include <linux/rpmsg.h>
++
++#include "thames_rpmsg.h"
++#include "thames_core.h"
++#include "thames_device.h"
++#include "thames_ipc.h"
++
++#define THAMES_PING_TEST_PATTERN 0xDEADBEEF
++#define THAMES_PING_TIMEOUT_MS 5000
++
++static int thames_rpmsg_callback(struct rpmsg_device *rpdev, void *data, int len, void *priv,
++				 u32 src)
++{
++	struct thames_msg_hdr *hdr = (struct thames_msg_hdr *)data;
++	struct thames_core *core = priv;
++
++	dev_dbg(&rpdev->dev, "Received response on core %d with length %d\n", core->index, len);
++
++	if (len < sizeof(struct thames_msg_hdr)) {
++		dev_err(&rpdev->dev, "Received message too short: %d bytes", len);
++		return -EINVAL;
++	}
++
++	switch (hdr->type) {
++	case THAMES_MSG_PING_RESPONSE: {
++		struct thames_msg_response *response = (struct thames_msg_response *)data;
++
++		dev_dbg(&rpdev->dev,
++			"Received PING response: status=%u, data=0x%x, expected_data=0x%x, seq=%u, expected_seq=%u\n",
++			response->status, response->data, core->rpmsg_ctx.ping_test.expected_data,
++			hdr->seq, core->rpmsg_ctx.ping_test.sequence);
++
++		if (hdr->seq != core->rpmsg_ctx.ping_test.sequence) {
++			dev_err(&rpdev->dev,
++				"PING response sequence mismatch: got %u, expected %u\n", hdr->seq,
++				core->rpmsg_ctx.ping_test.sequence);
++			ida_free(&core->tdev->ipc_seq_ida, hdr->seq);
++			return -EINVAL;
++		}
++
++		if (response->data != core->rpmsg_ctx.ping_test.expected_data) {
++			dev_err(&rpdev->dev,
++				"PING response data mismatch: got 0x%x, expected 0x%x\n",
++				response->data, core->rpmsg_ctx.ping_test.expected_data);
++			core->rpmsg_ctx.ping_test.success = false;
++			complete(&core->rpmsg_ctx.ping_test.completion);
++			ida_free(&core->tdev->ipc_seq_ida, hdr->seq);
++			return -EINVAL;
++		}
++
++		core->rpmsg_ctx.ping_test.success = (response->status == THAMES_RESP_SUCCESS);
++		complete(&core->rpmsg_ctx.ping_test.completion);
++
++		ida_free(&core->tdev->ipc_seq_ida, hdr->seq);
++
++		break;
++	}
++
++	default:
++		dev_warn(&rpdev->dev, "Unknown message type: %u\n", hdr->type);
++		break;
++	}
++
++	return 0;
++}
++
++static int thames_rpmsg_send_raw(struct thames_core *core, const void *data, size_t len)
++{
++	if (!core->rpmsg_ctx.endpoint) {
++		dev_err(core->dev, "RPMSG endpoint not available");
++		return -ENODEV;
++	}
++
++	return rpmsg_send(core->rpmsg_ctx.endpoint, (void *)data, len);
++}
++
++int thames_rpmsg_init(struct thames_core *core)
++{
++	struct rpmsg_device *rpdev = core->rpdev;
++	struct rpmsg_channel_info chinfo = {};
++
++	strscpy(chinfo.name, rpdev->id.name, sizeof(chinfo.name));
++	chinfo.src = RPMSG_ADDR_ANY; /* Let rpmsg assign an address */
++	chinfo.dst = RPMSG_ADDR_ANY;
++
++	core->rpmsg_ctx.endpoint = rpmsg_create_ept(rpdev, thames_rpmsg_callback, core, chinfo);
++	if (!core->rpmsg_ctx.endpoint) {
++		dev_err(core->dev, "Failed to create RPMSG endpoint for core %d", core->index);
++		return -ENODEV;
++	}
++
++	return 0;
++}
++
++void thames_rpmsg_fini(struct thames_core *core)
++{
++	if (core->rpmsg_ctx.endpoint) {
++		rpmsg_destroy_ept(core->rpmsg_ctx.endpoint);
++		core->rpmsg_ctx.endpoint = NULL;
++	}
++}
++
++int thames_rpmsg_send_ping(struct thames_core *core, u32 ping_data, u32 *sequence)
++{
++	struct thames_msg_ping ping_msg = {};
++
++	ping_msg.hdr.type = THAMES_MSG_PING;
++	ping_msg.hdr.seq = ida_alloc(&core->tdev->ipc_seq_ida, GFP_KERNEL);
++	ping_msg.hdr.len = sizeof(ping_msg);
++	ping_msg.hdr.reserved = 0;
++	ping_msg.ping_data = ping_data;
++
++	*sequence = ping_msg.hdr.seq;
++
++	return thames_rpmsg_send_raw(core, &ping_msg, sizeof(ping_msg));
++}
++
++int thames_rpmsg_ping_test(struct thames_core *core)
++{
++	const u32 test_data = THAMES_PING_TEST_PATTERN;
++	int ret;
++	unsigned long timeout;
++
++	core->rpmsg_ctx.ping_test.expected_data = test_data;
++	core->rpmsg_ctx.ping_test.success = false;
++	init_completion(&core->rpmsg_ctx.ping_test.completion);
++
++	ret = thames_rpmsg_send_ping(core, test_data, &core->rpmsg_ctx.ping_test.sequence);
++	if (ret) {
++		dev_err(core->dev, "Failed to send PING message to core %d: %d", core->index, ret);
++		return ret;
++	}
++
++	timeout = msecs_to_jiffies(THAMES_PING_TIMEOUT_MS);
++	ret = wait_for_completion_timeout(&core->rpmsg_ctx.ping_test.completion, timeout);
++	if (ret == 0) {
++		dev_err(core->dev, "PING test timed out - DSP core %d not responding", core->index);
++		return -ETIMEDOUT;
++	}
++
++	if (!core->rpmsg_ctx.ping_test.success) {
++		dev_err(core->dev, "PING test failed - incorrect PONG response from DSP core %d",
++			core->index);
++		return -EIO;
++	}
++
++	return 0;
++}
+diff --git a/drivers/accel/thames/thames_rpmsg.h b/drivers/accel/thames/thames_rpmsg.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..6d5195453b8d3eac2c333b7ac03e469b2744fb78
+--- /dev/null
++++ b/drivers/accel/thames/thames_rpmsg.h
+@@ -0,0 +1,27 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
++
++#ifndef __THAMES_RPMSG_H__
++#define __THAMES_RPMSG_H__
++
++#include <linux/completion.h>
++#include <linux/rpmsg.h>
++
++struct thames_core;
++
++int thames_rpmsg_init(struct thames_core *core);
++void thames_rpmsg_fini(struct thames_core *core);
++
++int thames_rpmsg_send_ping(struct thames_core *core, u32 ping_data, u32 *sequence);
++int thames_rpmsg_send_create_context(struct thames_core *core, u32 context_id);
++int thames_rpmsg_send_destroy_context(struct thames_core *core, u32 context_id);
++int thames_rpmsg_send_map_bo(struct thames_core *core, u32 context_id, u32 bo_id, u64 vaddr,
++			     u64 paddr, u64 size);
++int thames_rpmsg_send_unmap_bo(struct thames_core *core, u32 context_id, u32 bo_id);
++int thames_rpmsg_send_submit_job(struct thames_core *core, u32 context_id, u32 job_id,
++				 u64 kernel_iova, u64 kernel_size, u64 args_iova, u64 args_size,
++				 u32 *sequence);
++
++int thames_rpmsg_ping_test(struct thames_core *core);
++
++#endif /* __THAMES_RPMSG_H__ */
 
-Yes, we would like to retain the copyright.
+-- 
+2.52.0
 
-> > + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.=
-com>
-> > + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
-> > + */
-> > +
-> > +#include <linux/err.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/mfd/core.h>
-> > +#include <linux/mfd/aaeon-mcu.h>
->=20
-> Alphabetical.
->=20
-> > +#define AAEON_MCU_GET_FW_VERSION 0x76
->=20
-> Is that what the register is called in the datasheet?
->=20
-> The GET part is odd.
-
-There isn't a datasheet; the driver was written using reverse
-engineering.
-
-I will rename it to AAEON_MCU_FW_VERSION.
-
->=20
-> > +static struct mfd_cell aaeon_mcu_devs[] =3D {
-> > +	{
-> > +		.name =3D "aaeon-mcu-wdt",
-> > +		.of_compatible =3D "aaeon,srg-imx8pl-wdt",
-> > +	},
-> > +	{
-> > +		.name =3D "aaeon-mcu-gpio",
-> > +		.of_compatible =3D "aaeon,srg-imx8pl-gpio",
-> > +	},
-> > +};
-> > +
-> > +static int aaeon_mcu_print_fw_version(struct i2c_client *client)
-> > +{
-> > +	u8 cmd[3], version[2];
-> > +	int ret;
-> > +
-> > +	/* Major version number */
-> > +	cmd[0] =3D AAEON_MCU_GET_FW_VERSION;
-> > +	cmd[1] =3D 0x00;
-> > +	cmd[2] =3D 0x00;
-> > +
-> > +	ret =3D aaeon_mcu_i2c_xfer(client, cmd, 3, &version[0], 1);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	/* Minor version number */
-> > +	cmd[0] =3D AAEON_MCU_GET_FW_VERSION;
-> > +	cmd[1] =3D 0x01;
-> > +	/* cmd[2] =3D 0x00; */
-> > +
-> > +	ret =3D aaeon_mcu_i2c_xfer(client, cmd, 3, &version[1], 1);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	dev_info(&client->dev, "firmware version: v%d.%d\n",
-> > +		 version[0], version[1]);
->=20
-> What do you expect a user to do with this information?
->=20
-
-I believe this information can be useful, as there may be different
-firmware versions, potentially leading to varying behaviors or bugs.
-This will help us determine how to extend the driver to implement
-specific quirks or features based on the firmware version.
-
-> Let's cut the debug cruft - you can add it again locally if you need
-> to debug.
->=20
-> > +
-> > +	return 0;
-> > +}
->=20
-> Besides providing a questionable print, you don't seem to be doing
-> anything with this information - is it needed at all?
-
-This information isn't required for now, but it can be useful if
-different behavior is observed in the field for products using
-different firmware versions.
-
->=20
-> > +static int aaeon_mcu_probe(struct i2c_client *client)
-> > +{
-> > +	struct aaeon_mcu_dev *mcu;
-> > +	int ret;
-> > +
-> > +	mcu =3D devm_kzalloc(&client->dev, sizeof(*mcu),
-> > GFP_KERNEL);
-> > +	if (!mcu)
-> > +		return -ENOMEM;
-> > +
-> > +	i2c_set_clientdata(client, mcu);
->=20
-> > +	mcu->dev =3D &client->dev;
-> > +	mcu->i2c_client =3D client;
->=20
-> How do you expect to be able to 'get' this data back if you do not
-> have
-> the 'dev' or the 'client'?
-
-Thank you. I will remove the client and use to_i2c_client() instead.
-
->=20
-> > +	mutex_init(&mcu->i2c_lock);
-> > +
-> > +	ret =3D aaeon_mcu_print_fw_version(client);
-> > +	if (ret) {
-> > +		dev_err(&client->dev, "unable to read firmware
-> > version\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	return devm_mfd_add_devices(mcu->dev, PLATFORM_DEVID_NONE,
-> > aaeon_mcu_devs,
-> > +				=C2=A0=C2=A0=C2=A0 ARRAY_SIZE(aaeon_mcu_devs),
-> > NULL, 0, NULL);
-> > +}
-> > +
-> > +int aaeon_mcu_i2c_xfer(struct i2c_client *client,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const u8 *cmd, int cmd_len,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u8 *rsp, int rsp_len)
-> > +{
-> > +	struct aaeon_mcu_dev *mcu =3D i2c_get_clientdata(client);
-> > +	int ret;
-> > +
-> > +	mutex_lock(&mcu->i2c_lock);
-> > +
-> > +	ret =3D i2c_master_send(client, cmd, cmd_len);
-> > +	if (ret < 0)
-> > +		goto unlock;
-> > +
-> > +	ret =3D i2c_master_recv(client, rsp, rsp_len);
-> > +	if (ret < 0)
-> > +		goto unlock;
->=20
-> Isn't this all very generic?
-
-In this case, it doesn=E2=80=99t seem possible to use i2c_transfer() becaus=
-e
-the mcu requires a stop condition after receiving the command before it
-can respond.
-
-Kind regards,
-Thomas Perrot
-
-> I wonder how many similar functions there are in the kernel.
->=20
-> Worth making this global?
->=20
-> > +	if (ret !=3D rsp_len) {
-> > +		dev_err(&client->dev,
-> > +			"i2c recv count error (expected: %d,
-> > actual: %d)\n",
-> > +			rsp_len, ret);
-> > +		ret =3D -EIO;
-> > +		goto unlock;
-> > +	}
-> > +
-> > +	ret =3D 0;
-> > +
-> > +unlock:
-> > +	mutex_unlock(&mcu->i2c_lock);
-> > +	return ret;
-> > +}
-> > +EXPORT_SYMBOL_GPL(aaeon_mcu_i2c_xfer);
->=20
-> This should be much further up.=C2=A0 At least above probe - perhaps
-> higher.
-> > +static const struct of_device_id aaeon_mcu_of_match[] =3D {
-> > +	{ .compatible =3D "aaeon,srg-imx8pl-mcu" },
-> > +	{},
-> > +};
-> > +
->=20
-> Remove this line.
->=20
-> > +MODULE_DEVICE_TABLE(of, aaeon_mcu_of_match);
-> > +
-> > +static struct i2c_driver aaeon_mcu_driver =3D {
-> > +	.driver =3D {
-> > +		.name =3D "aaeon_mcu",
-> > +		.of_match_table =3D aaeon_mcu_of_match,
-> > +	},
-> > +	.probe =3D aaeon_mcu_probe,
-> > +};
-> > +
->=20
-> And this one.
->=20
-> > +module_i2c_driver(aaeon_mcu_driver);
-> > +
-> > +MODULE_DESCRIPTION("Aaeon MCU MFD Driver");
->=20
-> Not MFD.
->=20
-> > +MODULE_AUTHOR("J=C3=A9r=C3=A9mie Dautheribes");
->=20
-> Email?
->=20
-> > +MODULE_LICENSE("GPL");
-> > diff --git a/include/linux/mfd/aaeon-mcu.h
-> > b/include/linux/mfd/aaeon-mcu.h
-> > new file mode 100644
-> > index
-> > 0000000000000000000000000000000000000000..89632cb46bc6c9518755dc43a
-> > fb87faa94acb6f5
-> > --- /dev/null
-> > +++ b/include/linux/mfd/aaeon-mcu.h
-> > @@ -0,0 +1,30 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-or-later */
-> > +/*
-> > + * Aaeon MCU driver definitions
-> > + *
-> > + * Copyright (C) 2025 Bootlin
-> > + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.=
-com>
-> > + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
-> > + */
-> > +
-> > +#ifndef __LINUX_MFD_AAEON_MCU_H
-> > +#define __LINUX_MFD_AAEON_MCU_H
-> > +
-> > +/**
-> > + * struct aaeon_mcu_dev - Internal representation of the Aaeon MCU
-> > + * @dev: Pointer to kernel device structure
-> > + * @i2c_client: Pointer to the Aaeon MCU I2C client
-> > + * @i2c_lock: Mutex to serialize I2C bus access
-> > + */
-> > +
-> > +struct aaeon_mcu_dev {
-> > +	struct device *dev;
-> > +	struct i2c_client *i2c_client;
-> > +	struct mutex i2c_lock;
-> > +};
-> > +
-> > +int aaeon_mcu_i2c_xfer(struct i2c_client *client,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const u8 *cmd, int cmd_len,
-> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u8 *rsp, int rsp_len);
-> > +
-> > +#endif /*=C2=A0 __LINUX_MFD_AAEON_MCU_H */
-> >=20
-> > --=20
-> > 2.52.0
-> >=20
-
---=20
-Thomas Perrot, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---=-kiPaB+C8pSildM/wevlA
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iQGzBAABCAAdFiEEh0B3xqajCiMDqBIhn8ALBXH+Cu0FAmlnWtcACgkQn8ALBXH+
-Cu0AHgv/QJe8AKnxkTJHJ2FPZ4X8lSdzdvUj8++F6kvFDHU4mpCzrer6k2o8WDjL
-5x++1olrSjMPB2K2yTX+Jfz29rOwqz1DFqtpN4rKTlIO+a31E4kZKIKQwMcu0STg
-hNCjM9FhYrFqlpyFNbNRzBlcJpskh7N4t2cpY67QbyCZa7o46gCiWZ/OufI8tvJ8
-uwY4M31pL/a6IxxCq/jQ0vAGDwQNarWaTzXiQ2O+ldggMJP5nP72T0t9/JwQTPaP
-wRAbZW/4jJ7RPYDB3+Faad3loMOA3T6NgngVy47xr8ttH8cZSeBrskgiqOs3ox/h
-8rqkSMHWaW8TFsAqafu+sP2GSLSxbWRFKMVXjdL1OTpuzD7tSvy4GcNGVSakGMr3
-hFfnV2JkSJrZ8s2wbD3Pt75slixOHb6gRY+BfxP396o8bDCzaDNIdy/jh1ygrQiH
-5p9XaziocfxXRj+k+r6bca87rRLh/P7VLyjC3jWLlIE2SBFGsSNdElB3cEbxMJP9
-RlJcY6N1
-=35M5
------END PGP SIGNATURE-----
-
---=-kiPaB+C8pSildM/wevlA--
 
