@@ -1,105 +1,123 @@
-Return-Path: <devicetree+bounces-254949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFA7D1DFBB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:21:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3ADD1DEB5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:16:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 639D0307979C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:11:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 505C43059A41
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 028BF3939DA;
-	Wed, 14 Jan 2026 10:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C5938BDAF;
+	Wed, 14 Jan 2026 10:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IhnVViit"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ghupxcdT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F51B38F92D;
-	Wed, 14 Jan 2026 10:09:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B69BE38A9B6
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768385374; cv=none; b=UoNsu8DGiaioe6HeMG3HzenjfawLtzkuZPM1biXCjlSVqneoEeXKdyO5yufJmqhdj2j1lw/3l5rDB/moWxnbEMSSABSsG2XCccGRyIHrSV2s4HbSwiDTznH1XWKzCKskeGjfZ4rQniOEbKOkPYD1TU+5oi55h7NKQHqPs4PP0C8=
+	t=1768385326; cv=none; b=Dk5VzAS8X371wzQHyiVKwnkH/ssMm32F75WkRgO4neAZ2OOYUnOmZ1FH47kod5dTdBVVfbDVkczoOvdqsbfWAqr5siuwviVjCh3pZVWLgUYtTNLM5i3XHn6nmDeec/ef3q+HeQNVIekJtc4U8rdqhGkxE9ceHqUZnLcEWRLgQnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768385374; c=relaxed/simple;
-	bh=kfoyO6mLrJT+5jwg7vHiUeoqvatV7KVxcH5i/FCsdRc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=H28D3bhKeEivumfRjuRtWN9geh1omTkD+z5/WTg0ZnAB0SJaaHSbuHkAap8cV2spomJrcAwtoSSWSUazPpJxuzO2YoGz0r1vw0Tw36ZZGnFWZTjj8xJFh1Ium76sSe6cwnf80pDnAtImqHg/p31NwgGJuXtyhWraeBOIefjnQ44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IhnVViit; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1768385371;
-	bh=kfoyO6mLrJT+5jwg7vHiUeoqvatV7KVxcH5i/FCsdRc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=IhnVViitxQ0X37IQlOUJcltVqn1USTYsKeU+mV4NKl6qBFJaR2LuYrl2B7J4Dw2c8
-	 Ov0gO5HpqE1I0MnnVzeZRNGr5WC4jTnQVaskpcGTAvb4dOtoyyqDEQsgJ51KOA8RWU
-	 KaStQfxiGLua5E/qy0oaavf75KM0lI6Gagc5kddo3WfqaK4mb++ZN1ekxdhmvDXtYN
-	 LQltGJpP0MByFPRT4gOsLIxEnmwFguBttWQ+SpWqPptx0SK8Ymx+OFFVEUY/oePjsu
-	 TjZ7MlyOJTiD+aXeNT+eFlNwavQuN+7a0uJs3Y9HlqF65JOyALCUPBgSBe3YRoFs+R
-	 OZgq3EMJaqULA==
-Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:1dad:60e8:7174:bd20])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: benjamin.gaignard)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 04E6C17E1525;
-	Wed, 14 Jan 2026 11:09:30 +0100 (CET)
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To: joro@8bytes.org,
-	will@kernel.org,
-	robin.murphy@arm.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	nicolas.dufresne@collabora.com,
-	p.zabel@pengutronix.de,
-	mchehab@kernel.org
-Cc: iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-media@vger.kernel.org,
-	kernel@collabora.com,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v12 6/6] arm64: defconfig: enable Verisilicon IOMMU for Rockchip RK3588
-Date: Wed, 14 Jan 2026 11:09:18 +0100
-Message-ID: <20260114100922.149187-7-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260114100922.149187-1-benjamin.gaignard@collabora.com>
-References: <20260114100922.149187-1-benjamin.gaignard@collabora.com>
+	s=arc-20240116; t=1768385326; c=relaxed/simple;
+	bh=/VVV4Ijmp3Ls2wh1WtR/yQpGrW85l4Zba4/iPpipd0s=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RCnY5rNXRr6xkhdA6NQ3NdGCjTucTzGBLmi8WEOQy7W83mPp+d15tVrWbHn7srU3ZYtvbqk9u5ODJgNgEsE+9QQgwmPTrrZgzZRKDUPUqbRAA6Wx+q+687tTioIwTSWcapb+DTvsiBqeCsfjR4VuwFVTapoN6HWucQSaVRQupXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ghupxcdT; arc=none smtp.client-ip=74.125.82.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2b04a410f42so7623617eec.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:08:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768385324; x=1768990124; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/VVV4Ijmp3Ls2wh1WtR/yQpGrW85l4Zba4/iPpipd0s=;
+        b=ghupxcdT/aeHjf39mpyt5EcQaM6/SMavCFYJkPV3iqxOvscTht/DQNCF8XpBuKX0OL
+         4dCm4+Xpc6pL0zNpm2sNbj0C9A7k4UyYH1TNm1FGRoo2cHlV01XOYAqYW6j1gTV6tgrq
+         bYNXc82y4LdmyjeNxAYCmig+5ZUEeIuBe/pEswyWFcll+gqgg2Y2HzWId7D77SpA2Kle
+         IBM1RUOF94aIlOWB+E+Z0MipQW1QchLHE1yoh23nMF0CukXbbEDEWXRxmCUcHLeAxHJL
+         Gkw/eKwcsihF1W2axNw17An/0HOioTLhOD5nMXPkOvWTHY4DN7zjHQnHOeLoRzOXXdXK
+         vK6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768385324; x=1768990124;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/VVV4Ijmp3Ls2wh1WtR/yQpGrW85l4Zba4/iPpipd0s=;
+        b=nBxAShMHFk4eZJq4tDZulGBDa1GBg0sk6l/Q0Q9nBtQvoesfE1iGX7yjU7M4zeXeWD
+         bAQEzwS8hjogoGgcJBTg2ByBI3Ltus8B/JQ5j8uYfEtaB9XWqHL3fzS77N6ABV7z318D
+         p9iuE+HwQqaUojepGQqtTo/ttsjufuZz/Lk0r4V6ijAHDXhVEG4GkZ9IjPXVY34R+5XG
+         4lOSWjQVdVUTS8TowWt0gXzLu4CdAjv3RXdZvDKNGho31IqOOPp+dcSZmodSOhvLvwnF
+         XtLWyBQw1xYevlYhoGjUkDIaSK1G4aFSw1d4eopxOx6FKdZzfoNnDuDU7zWQLbwFozJI
+         YnCw==
+X-Forwarded-Encrypted: i=1; AJvYcCXxqpKkgk781giTkzrUoYaCA4GFFZXWA/XrQZP3RULwCQ29QEBQHHVk5lBJN59Gd2a+LlXcE3p0/qbB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzjh6fDn/Irvj1gi6dX6IcsQXit03DclyFWcaySFZ6Aeak4GiW+
+	MPjpu1+gquZtGbwCe5Voi1Nhtl2gjhRSNGWgEKxF3NR89O1sTJi2OWJtmOYTI6UXCgI=
+X-Gm-Gg: AY/fxX7prhTesL0S1jby6zc0T+JcevkHmPhYccvJgfQxbkP2OulH8/Cm1miZjifrgdB
+	WUrehG2pclEmqMXwrBqhwqruwyA8vXoPCNE/W2YU9aniBQog8eEe2oYC8q0OoXri4zJr10pXMNy
+	wF5/IU+V/Y8l/F4bYUmfnXUjq5FkYojlXpwnEnTvJqL2RN1WoCw8vICJ+Df9vrBKj5tEG/Bvf6K
+	x/KjEpBkdDAoDCGXs/eS0DKYzNQ/ekNs1YSFKZDl+Gal/U+r72deF7IdnBfcj5m35O+0goG2rkk
+	iWkXIEdm0UQbmdAjUgvr8BwAC1pRgLwZHsgZSy+FOoVT8RCCDKJoUDB550S0GcRzOrY8ZY1A/6t
+	TGk4Bg95iclmuWdShczQCnwvaZVg27efwIkoluC4twOlK4cmp+p6eGqWHyzDD6R5GEwNvS6/6Z6
+	GWSLI8hCpbF3nPX2Sr
+X-Received: by 2002:a05:7301:4e08:b0:2ac:1c5a:9950 with SMTP id 5a478bee46e88-2b4871eb693mr2526439eec.34.1768385323644;
+        Wed, 14 Jan 2026 02:08:43 -0800 (PST)
+Received: from draszik.lan ([212.129.75.26])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b1707d60b1sm19790893eec.31.2026.01.14.02.08.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 02:08:43 -0800 (PST)
+Message-ID: <c449218000258224fd9460e898b9705c1d0d415e.camel@linaro.org>
+Subject: Re: [PATCH v3 4/5] clk: samsung: gs101: add support for Display
+ Process Unit (DPU) clocks
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
+ <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Sylwester Nawrocki	
+ <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+	kernel-team@android.com, Will McVicker <willmcvicker@google.com>, Juan
+ Yescas	 <jyescas@google.com>, Doug Anderson <dianders@google.com>
+Date: Wed, 14 Jan 2026 10:09:20 +0000
+In-Reply-To: <20260113-dpu-clocks-v3-4-cb85424f2c72@linaro.org>
+References: <20260113-dpu-clocks-v3-0-cb85424f2c72@linaro.org>
+	 <20260113-dpu-clocks-v3-4-cb85424f2c72@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Enable Verisilicon IOMMU used by Rockchip RK3588 AV1 hardware codec.
-This hardware block could be found in Radxa Rock 5B board.
+On Tue, 2026-01-13 at 10:59 +0000, Peter Griffin wrote:
+> cmu_dpu is the clock management unit used for the Display Process Unit
+> block. It generates clocks for image scaler, compressor etc.
+>=20
+> Add support for the muxes, dividers and gates in cmu_dpu.
+>=20
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+> Changes in v3
+> =C2=A0- Alpabetic ordering for all cmu_top children (Andr=C3=A9)
+>=20
+> Changes in v2:
+> =C2=A0- Update gout_dpu_dpu_pclk to gout_dpu_gpc_dpu_pclk (Peter)
+> =C2=A0- Fix dout_dpu_busp parent (Peter)
+> ---
+> =C2=A0drivers/clk/samsung/clk-gs101.c | 283 +++++++++++++++++++++++++++++=
++++++++++++
+> =C2=A01 file changed, 283 insertions(+)
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 45288ec9eaf7..4751f7fa8bb0 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1525,6 +1525,7 @@ CONFIG_ARM_SMMU=y
- CONFIG_ARM_SMMU_V3=y
- CONFIG_MTK_IOMMU=y
- CONFIG_QCOM_IOMMU=y
-+CONFIG_VSI_IOMMU=y
- CONFIG_REMOTEPROC=y
- CONFIG_IMX_REMOTEPROC=y
- CONFIG_MTK_SCP=m
--- 
-2.43.0
-
+Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
