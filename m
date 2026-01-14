@@ -1,265 +1,234 @@
-Return-Path: <devicetree+bounces-255183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C131D20934
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:36:59 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C530D209B5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 160AD30428AB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:36:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C9D47300502E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC3E3033F1;
-	Wed, 14 Jan 2026 17:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EA831ED75;
+	Wed, 14 Jan 2026 17:45:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HN7eehvb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L3f4RUtw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010051.outbound.protection.outlook.com [52.101.46.51])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F632D8773;
-	Wed, 14 Jan 2026 17:36:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768412189; cv=fail; b=cl/Mc4EqHM1l8imWVAxaSvdc1Cb98NA1XoY/eY9drJ7HAhuAyLOtELUwPkya+DSun1pXfCutcmOs0ANqhSNfSdJt8KEo1H3Ol+aBRKfSi3FRjyRzZzYkNu+G/5We7qBoskcSjYmwo2Sm4tPsWLQGnkH9F9ED5W/dtC1fejWpf4Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768412189; c=relaxed/simple;
-	bh=eWfAx8zcMwtEGqC8/DplKK8oydDm7bhMwb3vOKuoTWE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hnS48cb402HCvJ/h11NKPMOKbFcBiOir43ChHYvIvFZ3RXSjdZ4Au69wX/hgH4U3OJWvKz92H8H+ss78zSmtZ+pVgIV2teX0C4S/tP/mCQI2bIS5G+YXw5HqI1NI/DTmDbhuL4MDTNysk7STV7slw3SWPmiyKq+bCBIKRnsuIvE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HN7eehvb; arc=fail smtp.client-ip=52.101.46.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sB5u0lW/J4engVAPbDaVHWlLNAwrbDkZfRFXlXlNOWsmGO79+I7yNZPiygI3G7ZAV3Eq5+8vMG33GZqqzbj3wwpMLc1E7apM+vJjP0sQgvukweLRdmOvPghFOJ1zUpGKQxEMRZS7FJTgzHPoDJBUG8rNqCajHqaprI9cN0wfFvssaK7HuzcWmuMYxZHcCQMpn+dYP9H0QXiVKYPzVH6Ueb1wi5TwD/u8iPsweagt6Hx8nBQ0jomSntmw7SYS32fC3IzBL0OzKzYkM8rV6zErKj22oylijlr5ftFvW7da+GHbOd2EOcXUQpdKUZNc67cLg1MhoZNRm8Gtta7BtFa3Cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y+DBbvvsjSacZfh+vdqxQk3ZYT1PpuyeaAD7nC6BeRs=;
- b=vWhAcF3vFYJgFVg7RPQw9DGyLSfge1rDjhyY4JvzB1NBmT6A81QlgjnSfhwQASDSSf17t3WrNEj72PRr0zOwSuD0ENvxr7JJeehF4Ojhjbf6dE8j7atD4tAMXZ7IiLeXgHivotV622q2frVVxZWPePPDKy9BhugnKFsyl8OtTA/JB2deO3f0LwKCxyogLzO71nvSlclcqTECtLeYFC3VrKpbI2AJCdxIdKaz4XrFnYeO6RI+n44f3wkIxORrBPgIXO5c//C+WDMy6E2mw3M7mtD8SlqClRc/AGuECsXtAOnE9BXUplYGenrhfc08GwGOdIZdwBLIVsyC2b1/Hh7kEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y+DBbvvsjSacZfh+vdqxQk3ZYT1PpuyeaAD7nC6BeRs=;
- b=HN7eehvbNwnD+2nU8OhhjeDpGhdr/hwoZpeVetRVKtOwJLyDwriBKNIbQhb6BJMN38AeKQD4OK3YJyZevxUZHURSei/NGRfs42n6se5XWsLtC7D8zgXiKquIUbcc03+fHJuwcm6e8isN76DU483yoNlqVSrhLTEZXPLo08dWlCs=
-Received: from MN0PR05CA0004.namprd05.prod.outlook.com (2603:10b6:208:52c::10)
- by BN0PR10MB5205.namprd10.prod.outlook.com (2603:10b6:408:116::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.6; Wed, 14 Jan
- 2026 17:36:26 +0000
-Received: from MN1PEPF0000F0E3.namprd04.prod.outlook.com
- (2603:10b6:208:52c:cafe::39) by MN0PR05CA0004.outlook.office365.com
- (2603:10b6:208:52c::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.5 via Frontend Transport; Wed,
- 14 Jan 2026 17:36:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- MN1PEPF0000F0E3.mail.protection.outlook.com (10.167.242.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Wed, 14 Jan 2026 17:36:25 +0000
-Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
- 2026 11:36:05 -0600
-Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE202.ent.ti.com
- (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
- 2026 11:36:04 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 14 Jan 2026 11:36:04 -0600
-Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.234.212])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60EHZpkO040370;
-	Wed, 14 Jan 2026 11:36:01 -0600
-From: Beleswar Padhi <b-padhi@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <afd@ti.com>, <u-kumar1@ti.com>, <hnagalla@ti.com>, <b-padhi@ti.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-am62p-j722s-common-main: Add HSM M4F node
-Date: Wed, 14 Jan 2026 23:05:51 +0530
-Message-ID: <20260114173551.2545088-3-b-padhi@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260114173551.2545088-1-b-padhi@ti.com>
-References: <20260114173551.2545088-1-b-padhi@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E612324B1A
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768412757; cv=none; b=L+CCN0w2hxS0BcN1GZbFpXNYcS2sLqCIrY2dBVW2tYlI348H/pmpC2vuBx5gmPw/3rSgpTDbtateVPxRB2G/QnyPxOvWxBhgE9qlYsRyBRtnOGQQa+usx6WA8h3GVz3HnFOvCvqI/D2swsacPP1Z171A6NuIETsWpDxfgh4eziQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768412757; c=relaxed/simple;
+	bh=VLyvNJXlQ7uY8tpXWo5FC7Z644s2L6LFH6yjNoy6qEE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Anr/JDteuM2SQ+mfQqdeamOglx8zI2BxXL9vn5sc2UHLk2p43WNF0PXorOY8ZgSb11HI/2DUmuaNjtc0s2faiuVa+bDMBcBwUWtiU9HQUMdbRI2VV6ZmBRIORfZlDddsLksczEkxwPcDS1Wc4aDPqsC0eGcZniN5oigqYqo8Xtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L3f4RUtw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27BE1C2BC9E
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:45:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768412757;
+	bh=VLyvNJXlQ7uY8tpXWo5FC7Z644s2L6LFH6yjNoy6qEE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=L3f4RUtwn3UXoZPZmKpVuAv7wS20RfV9nBeLqZmGUIuaNo8FvXrtH44hdthYVevDH
+	 QSVQZx/Ui5iVSgXFYt4fQV/OR2h5BgZM0KQs8bOzjqskmkZBBtcPZdAQe8kvMzlQV7
+	 0D8fQ5rfmBXgU6sADeLNFwDWj4BiYHWgcJBj3/HVC2LCKSPDslf04gYsc7F7fomOS6
+	 XAeELhC98vWgbpqPJYZUyYa6bAtBZ8ms96XRGp9rnARwthStUCk/pgZyhS8Dvx7NH+
+	 4ef2okqQF+r1LwZp/eSJ0JojapcPG691nvMn06RUn32l9vbyAkm7o3fyZIw/LWsY3F
+	 XlpOzBa2RmVkQ==
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b86ed375d37so14265366b.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:45:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXy34QruIvkroMSMopPRGMnnJZZHMnbNZNrW0CBj2ebr8JVTQjVT8M7+TcZa5xwvHiMZSYMenCUdAx+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwU0F3v1+WCU3+g1erE66qhuK+k9w19L9GxH8DJoBbK0JG7WL7Q
+	Ruyg/3nj+dr7gCB/5d/3d3qfw9BA1SwGyvddKxBcjcMVjkZ2GvSECGDc7Y4LmxOFRLUGMn2Jt6C
+	Rx7EuCyLFz5oODEJ9cEIkVWA9KHoxxQ==
+X-Received: by 2002:a17:907:6d14:b0:b7d:1d1b:217a with SMTP id
+ a640c23a62f3a-b87611110eamr270292166b.34.1768412755531; Wed, 14 Jan 2026
+ 09:45:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E3:EE_|BN0PR10MB5205:EE_
-X-MS-Office365-Filtering-Correlation-Id: 98fac0e3-aefe-4a16-db42-08de539370f2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|34020700016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?p8p6UXAE3wU9+iKgTSQpufESnq8ljqHdbtkd6ulC1lzR51W4T8MmOjJID1rA?=
- =?us-ascii?Q?YQRTrTqeczrc+pytOF8xME/KBmm8HlgaPQILdeULvTEAWiEiHTGhRAHV99ht?=
- =?us-ascii?Q?9ou9Y302FWNyy4JT+1AM8HofwD2F3tZJNK7cDGVvyT9VA0AHVG+tbxhcMgyz?=
- =?us-ascii?Q?JXqfAN9PXEWV0p0s/kBdyZUL+xgpTWL1ipS2gpQqDplckvYZ1lhuh9D+CbRm?=
- =?us-ascii?Q?uhhuMXlMabLjmCTq46wYZ24ogF9SAZTmpiYcWWJntdLQImW0ZI6cNuX+yYNw?=
- =?us-ascii?Q?Lzk19u4kTuaQ1KxYUTuZgBI9OwyBf5fbZpvjXy7HX0g8pLuqOR+o4fuVsHL7?=
- =?us-ascii?Q?3gEthwm6ziNXA0eGQnQAi+DjzeSWNQbMNh6VJH7t8KFiMBJo4y7tRvBVYaiE?=
- =?us-ascii?Q?Mrz5FSbWC9sLvuFPHF4a9PzEEFdjXqDQLDFRaIhbHHbzlvohzzUrDXfuZJKw?=
- =?us-ascii?Q?phRjXPSmTo9YC/ivK3geVfjfjJ7QsiGZ6MFxCAcdy+nrbHVuDrom1VinaPKG?=
- =?us-ascii?Q?gyw5nx6iNE3jNnILweFrF+hhD6FFEHUdMQi6sPXgJxzuvO7aO7A5LF4TYRtJ?=
- =?us-ascii?Q?sQxdEVwUJl+DecW2aEwsNA7qlm+U8GzjVrZRreh2Vc5H1sh7UALnmUu06vl/?=
- =?us-ascii?Q?ST2c93/dcTCUIHbA0VsZKYNmKHgi6iB5PsUXpZelJWj/k2jB9tT+eFUM1NMK?=
- =?us-ascii?Q?ClVYeHpM0x4KBNjT28sWn4ICOq8RlAzFYxqLhYVLBGxed70L6SbOV/TvesUr?=
- =?us-ascii?Q?qWQyn23NCTgC3XlxEuX0spkNIj4HkIm2TQVx9w05zFrhBaiUy6VP/4QVCQzY?=
- =?us-ascii?Q?3l5sxLxKpmTX+adJVy9+MhZ0/6Z5wYfZik26lRj97phIZCINlXHWmTxlqSMJ?=
- =?us-ascii?Q?IENvA0nnSb4jdAcXh1YdvQXjHvExz8P3H8ADo7AU+hw1QN3OvDmCoCRnt7T1?=
- =?us-ascii?Q?vnV8Oz0zUm2iEY1rrqIKVR8wbxA0+m9tbpDRzU8P17eV+nHJ+Tn1kUp1OaI8?=
- =?us-ascii?Q?iB9tX2BpHFDzwcPah6X44Ry9csm+l/p283mh3snx0DFMQelyE9a6WIaRFzZ+?=
- =?us-ascii?Q?ZLCFmqvQNwfnYyLVvEwo3Rcpjp6abHR7DJLucPzNbMN1VMN0/PO8L2dARdnG?=
- =?us-ascii?Q?dLS7auBnT6pUS4YsOem4mMKf6R73UzBUXqO5UyEMn1fr27CTcyP+ZM4yJK1h?=
- =?us-ascii?Q?Foi3OLsu2CP0wfOyW66azFEAN8CeOO4D5+nZNdoJhMOL2EOuPYbnCXx2tB5K?=
- =?us-ascii?Q?LcZQ2Yvp+bykzImukadsljWE5cQSX2G3mJ4PoS0OshnRc1IulHznfdExJe21?=
- =?us-ascii?Q?KYHLOd1u40j5+Pq5DCJlimzOvdESuGftL+ZW577CGcs8zNkmXZ1wiv99q9k6?=
- =?us-ascii?Q?yn9hmAJfXIndQ7bRD0Ug6LkWZJRERZhCXIAWcYHmObw6VOsdwOmimIbKj+eL?=
- =?us-ascii?Q?uyq9UmQlvIItUM4z6MNuU8Oxhcy1Mfw0Lca3E/uKLndj0BiYyQZDLtBNGVdW?=
- =?us-ascii?Q?KTlQp99MteUf6DSFowu1szNIzWtC1PZJJTfSVo7GychPEVVRrvsH7ZxoASwj?=
- =?us-ascii?Q?bFwgvQryF9KGWP4tfQ9d7mjvCHCtHZiLET3cYW8Q/d/Jhg3MA1A8VTDVryF5?=
- =?us-ascii?Q?Y32EtqGW1z8iwXQSUs+64nhrTp2BFueH3x7OzsuZwg2y01+VnKw0V2vIYazK?=
- =?us-ascii?Q?pbcw+g=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(34020700016)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 17:36:25.2245
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 98fac0e3-aefe-4a16-db42-08de539370f2
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000F0E3.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB5205
+References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
+ <20260112-pci-m2-e-v4-5-eff84d2c6d26@oss.qualcomm.com> <20260113171424.GA3925312-robh@kernel.org>
+ <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
+In-Reply-To: <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 14 Jan 2026 11:45:42 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJxBNm0y6T7vji6MXgsO65iDJ-tdUEo0cOxkw7EuMKpkg@mail.gmail.com>
+X-Gm-Features: AZwV_Qjd8RRdZiuji8UWlnEg_b-A7CkYgcetFKx6gFJZkZR9Wa6Q2Mjzt04XOZQ
+Message-ID: <CAL_JsqJxBNm0y6T7vji6MXgsO65iDJ-tdUEo0cOxkw7EuMKpkg@mail.gmail.com>
+Subject: Re: [PATCH v4 5/9] dt-bindings: connector: Add PCIe M.2 Mechanical
+ Key E connector
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The TI K3 AM62P and J722S SoCs have a HSM (High Security Module) M4F
-core in the MAIN Voltage Domain which could be used to run secure
-services like Authentication. Add Device Tree Node definitions for the
-HSM core in the respective SoC common main dtsi file.
+On Wed, Jan 14, 2026 at 10:14=E2=80=AFAM Manivannan Sadhasivam <mani@kernel=
+.org> wrote:
+>
+> On Tue, Jan 13, 2026 at 11:14:24AM -0600, Rob Herring wrote:
+> > On Mon, Jan 12, 2026 at 09:56:04PM +0530, Manivannan Sadhasivam wrote:
+> > > Add the devicetree binding for PCIe M.2 Mechanical Key E connector de=
+fined
+> > > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This connector
+> > > provides interfaces like PCIe or SDIO to attach the WiFi devices to t=
+he
+> > > host machine, USB or UART+PCM interfaces to attach the Bluetooth (BT)
+> > > devices. Spec also provides an optional interface to connect the UIM =
+card,
+> > > but that is not covered in this binding.
+> > >
+> > > The connector provides a primary power supply of 3.3v, along with an
+> > > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operati=
+ng at
+> > > 1.8v sideband signaling.
+> > >
+> > > The connector also supplies optional signals in the form of GPIOs for=
+ fine
+> > > grained power management.
+> > >
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualc=
+omm.com>
+> > > ---
+> > >  .../bindings/connector/pcie-m2-e-connector.yaml    | 154 +++++++++++=
+++++++++++
+> > >  MAINTAINERS                                        |   1 +
+> > >  2 files changed, 155 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-co=
+nnector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connec=
+tor.yaml
+> > > new file mode 100644
+> > > index 000000000000..b65b39ddfd19
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector=
+.yaml
+> > > @@ -0,0 +1,154 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-connector.yam=
+l#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: PCIe M.2 Mechanical Key E Connector
+> > > +
+> > > +maintainers:
+> > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > > +
+> > > +description:
+> > > +  A PCIe M.2 E connector node represents a physical PCIe M.2 Mechani=
+cal Key E
+> > > +  connector. Mechanical Key E connectors are used to connect Wireles=
+s
+> > > +  Connectivity devices including combinations of Wi-Fi, BT, NFC to t=
+he host
+> > > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and I2C.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: pcie-m2-e-connector
+> > > +
+> > > +  vpcie3v3-supply:
+> > > +    description: A phandle to the regulator for 3.3v supply.
+> > > +
+> > > +  vpcie1v8-supply:
+> > > +    description: A phandle to the regulator for VIO 1.8v supply.
+> >
+> > I don't see any 1.8V supply on the connector. There are 1.8V IOs and yo=
+u
+> > may need something in DT to ensure those are powered. However, there's
+> > no guarantee that it's a single supply.
+> >
+>
+> 1.8v VIO supply is an optional supply and is only required if the platfor=
+m
+> supports 1.8v for sideband signals such as PERST#, WAKE#... I can include=
+ it in
+> the example for completeness.
 
-The HSM node is reserved to be loaded and booted by the early-stage
-bootloader. The firmware-name property is defined at the SoC level
-since the HSM is not a general-purpose remote core and boards are
-unlikely to use separate firmware. If needed in exceptional cases,
-board-specific device trees can override this property.
+My point is that PERST# and WAKE# supplies could be 2 different 1.8V
+supplies and those supply the I/O pads of the GPIO pins (and possibly
+external pull-ups) that drive them. The 1.8V supply doesn't supply
+1.8V to the slot, so making it a slot/connector property is wrong.
 
-The corresponding reg ranges of HSM node has also been added to its
-parent node's (cbass_main bus) ranges property.
+This isn't exactly a new issue. It could be an issue on any binding
+with GPIOs. Perhaps this needs to be handled within GPIO or pinctrl.
 
-Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
----
-v3: Changelog:
-[Nishanth]:
- 1. Use generic node name 'remoteproc'
- 2. Use label 'hsm' instead of 'hsm_m4fss'
- 3. Add a comment for separate SRAMs
- 4. Update firmware-name property to match existing naming conventions
- 5. Change status to 'reserved' and add a commment
- 6. Re-order bootph-pre-ram property before vendor properties
- 7. Update commit msg adding rationale for firmware-name in SoC.dtsi
+> > > +
+> > > +    oneOf:
+> > > +      - required:
+> > > +          - port@0
+> > > +
+> > > +  clocks:
+> > > +    description: 32.768 KHz Suspend Clock (SUSCLK) input from the ho=
+st system to
+> > > +      the M.2 card. Refer, PCI Express M.2 Specification r4.0, sec 3=
+.1.12.1 for
+> > > +      more details.
+> > > +    maxItems: 1
+> > > +
+> > > +  w-disable1-gpios:
+> > > +    description: GPIO input to W_DISABLE1# signal. This signal is us=
+ed by the
+> > > +      system to disable WiFi radio in the M.2 card. Refer, PCI Expre=
+ss M.2
+> > > +      Specification r4.0, sec 3.1.12.3 for more details.
+> > > +    maxItems: 1
+> > > +
+> > > +  w-disable2-gpios:
+> > > +    description: GPIO input to W_DISABLE2# signal. This signal is us=
+ed by the
+> > > +      system to disable WiFi radio in the M.2 card. Refer, PCI Expre=
+ss M.2
+> > > +      Specification r4.0, sec 3.1.12.3 for more details.
+> > > +    maxItems: 1
+> > > +
+> > > +  viocfg-gpios:
+> > > +    description: GPIO output to IO voltage configuration (VIO_CFG) s=
+ignal. This
+> > > +      signal is used by the M.2 card to indicate to the host system =
+that the
+> > > +      card supports an independent IO voltage domain for the sideban=
+d signals.
+> > > +      Refer, PCI Express M.2 Specification r4.0, sec 3.1.15.1 for mo=
+re details.
+> > > +    maxItems: 1
+> >
+> > What about SDIO and UART WAKE, SDIO RESET, and vendor defined signals?
+> >
+>
+> Not sure about vendor defined signals as they can be either GPIO or inter=
+face
+> signals. How should them be defined?
 
-Link to v2:
-https://lore.kernel.org/all/20260106104755.948086-4-b-padhi@ti.com/
+That kind of breaks any notion of this being a generic slot/connector.
+How's the host supposed to know how to connect them? What if a card
+required them to be driven a certain way before you can discover the
+card? If they can be GPIOs and can be hooked up to the host system
+GPIOs, then you should define GPIOs for them. If they aren't GPIOs on
+a host, then you omit them.
 
-v2: Changelog:
-1. None
-
-Link to v1:
-https://lore.kernel.org/all/20251231165102.950644-4-b-padhi@ti.com/
-
- .../boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 17 +++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62p.dtsi            |  1 +
- arch/arm64/boot/dts/ti/k3-j722s-main.dtsi       |  5 +++++
- arch/arm64/boot/dts/ti/k3-j722s.dtsi            |  1 +
- 4 files changed, 24 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-index 3cf7c2b3ce2dd..0e1af2a69ca2e 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-@@ -1117,4 +1117,21 @@ vpu: video-codec@30210000 {
- 		clocks = <&k3_clks 204 2>;
- 		power-domains = <&k3_pds 204 TI_SCI_PD_EXCLUSIVE>;
- 	};
-+
-+	hsm: remoteproc@43c00000 {
-+		compatible = "ti,hsm-m4fss";
-+		/* contiguous regions but instantiated separately in HW */
-+		reg = <0x00 0x43c00000 0x00 0x20000>,
-+		      <0x00 0x43c20000 0x00 0x10000>,
-+		      <0x00 0x43c30000 0x00 0x10000>;
-+		reg-names = "sram0_0", "sram0_1", "sram1";
-+		resets = <&k3_reset 225 1>;
-+		firmware-name = "am62p-hsm-m4f-fw";
-+		bootph-pre-ram;
-+		ti,sci = <&dmsc>;
-+		ti,sci-dev-id = <225>;
-+		ti,sci-proc-ids = <0x80 0xff>;
-+		/* reserved for early-stage bootloader */
-+		status = "reserved";
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p.dtsi b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
-index e2c01328eb298..9d6266d6ddb82 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
-@@ -96,6 +96,7 @@ cbass_main: bus@f0000 {
- 			 <0x00 0x31100000 0x00 0x31100000 0x00 0x00050000>, /* USB1 DWC3 Core window */
- 			 <0x00 0x40900000 0x00 0x40900000 0x00 0x00030000>, /* SA3UL */
- 			 <0x00 0x43600000 0x00 0x43600000 0x00 0x00010000>, /* SA3 sproxy data */
-+			 <0x00 0x43c00000 0x00 0x43c00000 0x00 0x00040000>, /* HSM SRAM ranges */
- 			 <0x00 0x44043000 0x00 0x44043000 0x00 0x00000fe0>, /* TI SCI DEBUG */
- 			 <0x00 0x44860000 0x00 0x44860000 0x00 0x00040000>, /* SA3 sproxy config */
- 			 <0x00 0x48000000 0x00 0x48000000 0x00 0x06408000>, /* DMSS */
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-index 873415ec4fa37..9ee5d0c8ffd1e 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-@@ -429,6 +429,11 @@ &wkup_r5fss0_core0 {
- 	firmware-name = "j722s-wkup-r5f0_0-fw";
- };
- 
-+/* MAIN domain overrides */
-+&hsm {
-+	firmware-name = "j722s-hsm-m4f-fw";
-+};
-+
- &main_conf {
- 	serdes_ln_ctrl: mux-controller@4080 {
- 		compatible = "reg-mux";
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-index c8b634c346779..059c65ece183f 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
-@@ -173,6 +173,7 @@ cbass_main: bus@f0000 {
- 			 <0x00 0x31200000 0x00 0x31200000 0x00 0x00040000>, /* USB1 DWC3 Core window */
- 			 <0x00 0x40900000 0x00 0x40900000 0x00 0x00030000>, /* SA3UL */
- 			 <0x00 0x43600000 0x00 0x43600000 0x00 0x00010000>, /* SA3 sproxy data */
-+			 <0x00 0x43c00000 0x00 0x43c00000 0x00 0x00040000>, /* HSM SRAM ranges */
- 			 <0x00 0x44043000 0x00 0x44043000 0x00 0x00000fe0>, /* TI SCI DEBUG */
- 			 <0x00 0x44860000 0x00 0x44860000 0x00 0x00040000>, /* SA3 sproxy config */
- 			 <0x00 0x48000000 0x00 0x48000000 0x00 0x06408000>, /* DMSS */
--- 
-2.34.1
-
+Rob
 
