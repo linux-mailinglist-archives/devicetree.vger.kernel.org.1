@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-255128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1FC7D1FE97
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:47:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BF2D1FEA6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:47:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A76CD30524D5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:45:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C93A1305C40D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:45:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155183A0E85;
-	Wed, 14 Jan 2026 15:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 166793A0E9D;
+	Wed, 14 Jan 2026 15:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JnyuGnhc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eQay9AKd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E683A0B0A
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:45:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E24C3A0B3A
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768405532; cv=none; b=MklXjQqsx7TMa3TDULRBGsZAcJ5S9aW2ks5vpwwKfpnVGI52D6UdJ4Iq1PzJkDLdJYLDG5NK8KXHA39muVZZF7/MrZn//M3EKBFJqBUK7hOhQwrbDeiwQW7qa2618o0y3bwlCdpmCQqgJPCAw5SSgleh5bGnp0HCKgLI0jf7e8o=
+	t=1768405534; cv=none; b=uLYqNZl2GrAn/gcWx23TrlT34btJ8DenwRw9/ascqG2sQYU9UKecz8zcllz4cQVvx4ePt2isBH+rUIgwPjEA1Edk9SCNlNtwCkY7n+t3USuj9FmLQVB/kcO+VFXp9HTMMfcE01sEVE00Q8D+P17jbrhQB4FTMT0VzTnOO8DT9Dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768405532; c=relaxed/simple;
-	bh=qSCl/eFcYORT2xOr9C9aVf5NIUqIXDn3ZLWt6rVQW6Y=;
+	s=arc-20240116; t=1768405534; c=relaxed/simple;
+	bh=BeaGFvCEUNXGuH6KMXUttkAC8B37iG/MIp121wnhoII=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=V5JioA9US7jnKsSitxcIBSfGdG7l/TdW1RBfnqzXmKma6SvAoSTzqpShhYvLxJqE8xxpX0IPWkzFHrowc+jNppR8ZHJxHHohCbkmK0sEuYTLKXjMvEiyjfdD32FF/OL8Aj2sXmQWCqUCD73vq8gh/DUrSqKfMtNuxdYjKLVFpyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JnyuGnhc; arc=none smtp.client-ip=209.85.128.52
+	 MIME-Version; b=OOox0XVQkqLZT8gXrb6LMNuVnbx36Dv9N8GiAk6+CcZiHPv12U1ja/dKqkKmQrMOhSS1eFM2/ejvqHIG+opcqTTxUc7Z58PLGr3tijs1GtpZbf+C4vvgzc2Eh10BZLAVP8h1sXzCKxsXC64jPoMSLmzikMcCiG2Z8ZtL8JQb6lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eQay9AKd; arc=none smtp.client-ip=209.85.128.66
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-47d1d8a49f5so56210735e9.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 07:45:30 -0800 (PST)
+Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-4775e891b5eso40686735e9.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 07:45:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768405529; x=1769010329; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768405530; x=1769010330; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=omQbD76IKfBCNHbl78X1AUCJmtxXa2tDPyRYxCm9lbY=;
-        b=JnyuGnhcSed2xRu1S3JeNU1nRgEMKTPvZDoUo2nV8qO6U9dioZD6IiBg9MB4o6NteT
-         ekhZIhyeDyr7neBgPE+xnXH7rVZw8AO7JO2dUYFeHhn63VqM+MAGIa+z/0LXI3VWc+C+
-         3cO0Eo705kyFrhaWdMfmLJsB/p6TZiHSn7QXNZGDv71p6nU8734TjG4I4CgnKP5DiYwM
-         6UcsXaNyU+IMXeijlqW+rKPMapdfdyjgE2sVuYp0KXzPl8avHD+WxKxUR0QPZN5QL0y7
-         XcmjHWQF9gtWqXEvW1lljcarvVZSh3QWfJcST+jXVe5UzU3E9ZxNioX+RpyrhYutKdfL
-         u5Cw==
+        bh=3WgHhzWTacwK5LZn1+KNAfXyou7fks/IWFiJfss6To0=;
+        b=eQay9AKdhwXIXEydvBrxGaonobdeMbxwRZYmpAIWtt6ObeZgJgRDZYkWJe2GPc41sV
+         3Yg0xV5989ggKt/dREkt8bwQSw8vCAywbimIlaM/aqYNAYH6RQqyrFZBfzXFxVS51RDk
+         qpPM2evWqrNt/Ur6cEuQR4971jJprfsKuQ8b3HcweZdGVnuzShfYKQQ2bDjZwqPadTpi
+         hRiHLWC8U+Ah1mUtn71UzEcu53nxCBsS4E9whHjw/jOScUZDhVRYjWvBn/rsBJtTAIBj
+         +o8h0ty9JrNpUammeCRLw9V8jhZRxoAthxL1YseNrFcCoZ3YjwnyTInLnbSsV/cEJbml
+         knKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768405529; x=1769010329;
+        d=1e100.net; s=20230601; t=1768405530; x=1769010330;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=omQbD76IKfBCNHbl78X1AUCJmtxXa2tDPyRYxCm9lbY=;
-        b=uCczekJDevna5AaAMilRrYDCR5fOkfV3hhh4gc8dnOAc1FZT/Il1nk7GkMwhlSPdGB
-         4WWo1C5n3SlabWBfCaLxGdwLleUmiIGFFjvPZJM1PshXqsupD8Thqa4uKKIaJEqYiwns
-         vpaVS/aVcklqdO/+HjBIwExdKs+l4pTAvbuat7/PFg7vAVuk9LossHcD95jF1TD/qZ3z
-         SD16rZRcoODSUfim8J2pDAAqIrqfgBaehgo/wqnFtPZQwzsQL9k1+w/Oa+7Css08DHzJ
-         9tDuaiLqq++CSkYbTdqUFH+t4kUa7g9rGG/5ey7z/iHQrsjjW/5zLAeHi3SF1gEsXBnn
-         p6vw==
-X-Forwarded-Encrypted: i=1; AJvYcCXAJrNqWPmVvuOtS+AWI6tc07C9IqdNmydppKQ7FPFNjryjDA7rtBAOQvFG2LAf6AXXz/MbkgHSwZjd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNQZ1bc+5vLOD6/VNitcCqaP1zSlJ7wfBMew/t9CuIFrPrdz1f
-	jhrzn6ixbl9OZ7fFHIJpyn4K/Z0TnpcYCVK5LCCYv3mskdAaZFGZweom
-X-Gm-Gg: AY/fxX6jiFv4vb7mhaZFOuZRKnNHA7hSD86XlyP/PmoLDSVkEIBa191TX6psXBoY3DG
-	+AlKthNPbewqYix/CjKIwhx/acYdsZn5+BVIo8vHzppCXAvnGaRIU2uNX6Nxy8qzd2Ua2Byhq90
-	5KAync3Xr6qPN/YpeM+497lNGaSF5Tnq89gineZG2YiCbPAlmZBrd/MAvERZhCovvTTSvaF17xi
-	Vbme5PPgWSykmSExsfywCBHI/PdI4yk2u7ICZwS5ojRJN7/f6sqskxwzE0onQ1vzIEkBY5l4Q0u
-	sgy9MNqud8EnsVnv/QGPSr+/54rDeJssIsYLA/vhTFWe3m312wPEt7fY1ah6NOh7Yf6RRz6xJ1R
-	sbFIyee8/2UP22n4aY5d5ufn/nFCJl8CAGCwOQmqBzv7Gjw1RH/RXNE4RWgfSgXFagy0aPIzolp
-	kBEw9dm30Djk4eg9qRTECaaVdYZW2nbu1oYHTtRa/noI6j8PjowsjrekFkJSXuRSb+t2TscAQ29
-	EATw7cnikb6DZ2OlBcENKO5
-X-Received: by 2002:a05:600c:3586:b0:470:fe3c:a3b7 with SMTP id 5b1f17b1804b1-47ee32e0d5amr39228465e9.5.1768405529026;
-        Wed, 14 Jan 2026 07:45:29 -0800 (PST)
+        bh=3WgHhzWTacwK5LZn1+KNAfXyou7fks/IWFiJfss6To0=;
+        b=A1rxrhzs4B0/u2684mBtRZvmVWq9RoXKMj7LtcYtHSEJkNCqHgikmk+pVf5KcAde0e
+         p7/upAtsJQ+nfdVuqGnvotjEuy31P8iTtWi+0BXRWyiZM+Xp1jyQ3xl2KyDxNi+8He4b
+         rfr2DlceJUG0PSmvn9bCPwUUepT2cRztdsMxlZZFV9Cu4R97PfGID09CpV6qNUwSSqYL
+         J8e0U744ZlakMB7L0ow+g6LvyNqBPxXPyepvKC0d9wmqUVVJtZuqf0JkuOd8PA7Lblnv
+         1PHmGikju+csH8vX5vrmHVTKD1nqLvOyOzFvXZyf7vXicHApTiwgdcVlPSjtKagQyMAw
+         65Rg==
+X-Forwarded-Encrypted: i=1; AJvYcCWmovhBJ3SH1ellVy7NDvxG4J9KYPKiUN9IDlhDyuY44bkbILIdgHupNKAjmflgWT6j9ZUPv08C5Eot@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyeo3mP9ipc2/HXUC1GHQjT90i8g6yjps4zsmNoQ19AiIJoG4mJ
+	DI5MCS/Jm5ZYH02m0thexev9d7HI4sMsP6RweoOH97UW6H/hT/HP8yjD
+X-Gm-Gg: AY/fxX7IOtsCAGPF3eRFq0cY6X5RCNs7KPdWrHhTk2s7PkGHdvzKOvwSD8aInpgYglK
+	CsIP3qjV59XtpteKkSTKKcJrhQcCoOXKaaCsZiHlzI2u9uS+v0c6GvlHO8/uEri7MFLHS65XlCo
+	bs2rQM84VC5LeZDWqMC3Gz1uRolr8EWethOO1KQ1ZModRnckhaHp3gMDy7d0eLabBJ7kIoEOnuL
+	X8t5AtSegyU0yg0Jc3FBkLXrnYcoU0Mb5ilvWVGKtXrls7b1KipSRB3YBbEneEyrv+2qGvf7uLo
+	a7Ysf3XB85iJOiTG/Aj4qahUKi6RXYdWs8eS31miLsmVr1KiyAp3uO6uF+9RT1JC8SSrm1kdG5v
+	Tw0rVumU0f6ZfgRVDauq5p67lm/O+cre5XIlpemJuneIrQ1CLKcZWPa6w85UKdOcSS+oGGqqR+R
+	lrzjDTzNx5I/zkbcZki7W6wEYixh6cICEQKACrU5OIb35CPLYoaovEbUGGGjsFYJR1rkrIpwu1I
+	NJLwMRlQtRyhsvhxCK3n4M+
+X-Received: by 2002:a05:600c:3e8d:b0:47d:6c69:bf28 with SMTP id 5b1f17b1804b1-47ee481cf37mr30807625e9.24.1768405530249;
+        Wed, 14 Jan 2026 07:45:30 -0800 (PST)
 Received: from iku.Home ([2a06:5906:61b:2d00:7f20:df14:ac2b:3d74])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ee544387fsm33867105e9.0.2026.01.14.07.45.27
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ee544387fsm33867105e9.0.2026.01.14.07.45.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 07:45:28 -0800 (PST)
+        Wed, 14 Jan 2026 07:45:29 -0800 (PST)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: Marc Kleine-Budde <mkl@pengutronix.de>,
@@ -90,9 +90,9 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v4 1/4] dt-bindings: can: renesas,rcar-canfd: Specify reset-names
-Date: Wed, 14 Jan 2026 15:45:22 +0000
-Message-ID: <20260114154525.3169992-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 2/4] dt-bindings: can: renesas,rcar-canfd: Document RZ/V2H(P) and RZ/V2N SoCs
+Date: Wed, 14 Jan 2026 15:45:23 +0000
+Message-ID: <20260114154525.3169992-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260114154525.3169992-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20260114154525.3169992-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -106,99 +106,43 @@ Content-Transfer-Encoding: 8bit
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Specify the expected reset-names for the Renesas CAN-FD controller on
-RZ/G2L and RZ/G3E SoCs.
-
-The reset names rstp_n and rstc_n are defined in the SoC hardware manual
-and are already used by the driver since commit 76e9353a80e9 ("can:
-rcar_canfd: Add support for RZ/G2L family"). The reset-names property
-existed previously but was dropped by commit 466c8ef7b66b ("dt-bindings:
-can: renesas,rcar-canfd: Simplify the conditional schema").
-
-Restore and constrain reset-names in the binding so DT schema checks
-match the actual hardware requirements and driver expectations.
+Document CANFD IP found on the Renesas RZ/V2H(P) (R9A09G057) and RZ/V2N
+(R9A09G056) SoCs. The CANFD IP on these SoCs are identical to that found
+on the RZ/G3E (R9A09G047) SoC.
 
 Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
 v3->v4:
-- Added Reviewed-by tag.
+- No changes made.
 
 v2->v3:
-- Updated commit message to clarify that reset-names existed previously
-  but was dropped.
+- Added Acked-by and Reviewed-by tags.
 
 v1->v2:
-- Moved reset-names to top-level properties.
+- No changes made.
 ---
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 33 +++++++++++--------
- 1 file changed, 19 insertions(+), 14 deletions(-)
+ .../devicetree/bindings/net/can/renesas,rcar-canfd.yaml     | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index e129bdceef84..9bfd4f44e4d4 100644
+index 9bfd4f44e4d4..fb709cfd26d7 100644
 --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
 +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -122,6 +122,11 @@ properties:
+@@ -44,6 +44,12 @@ properties:
  
-   resets: true
+       - const: renesas,r9a09g047-canfd     # RZ/G3E
  
-+  reset-names:
-+    items:
-+      - const: rstp_n
-+      - const: rstc_n
++      - items:
++          - enum:
++              - renesas,r9a09g056-canfd     # RZ/V2N
++              - renesas,r9a09g057-canfd     # RZ/V2H(P)
++          - const: renesas,r9a09g047-canfd
 +
-   renesas,no-can-fd:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
-@@ -195,13 +200,6 @@ allOf:
-           minItems: 2
-           maxItems: 2
+   reg:
+     maxItems: 1
  
--        reset-names:
--          minItems: 2
--          maxItems: 2
--
--      required:
--        - reset-names
--
-   - if:
-       properties:
-         compatible:
-@@ -239,13 +237,6 @@ allOf:
-           minItems: 2
-           maxItems: 2
- 
--        reset-names:
--          minItems: 2
--          maxItems: 2
--
--      required:
--        - reset-names
--
-   - if:
-       properties:
-         compatible:
-@@ -299,6 +290,20 @@ allOf:
-       properties:
-         renesas,no-can-fd: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,r9a09g047-canfd
-+              - renesas,rzg2l-canfd
-+    then:
-+      required:
-+        - reset-names
-+    else:
-+      properties:
-+        reset-names: false
-+
- unevaluatedProperties: false
- 
- examples:
 -- 
 2.52.0
 
