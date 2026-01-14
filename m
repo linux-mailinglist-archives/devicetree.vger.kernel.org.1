@@ -1,158 +1,172 @@
-Return-Path: <devicetree+bounces-255034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71075D1EF10
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:00:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E133D1EEF8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:59:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5251D3007650
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:00:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B0C17300C36B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7F1399037;
-	Wed, 14 Jan 2026 12:59:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BFE399015;
+	Wed, 14 Jan 2026 12:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qyl+x6ni"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EB6393DEB
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 12:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2EB4318EE4;
+	Wed, 14 Jan 2026 12:59:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768395599; cv=none; b=hCypHdUddEE1JaqSnooTtJ6NJPGslXHZvwbq5qdRJf/vpTBDkODvGPG3X6dsPIoQyErsoGA8c17pMty7EJmfcXDJ17XRAJWwZC3kxWMViPp3T8Gi/l28Y0zN4jK9fSb7EFTQvuNa5mmTzOoQnLkaUihFuwhjzF4U36L6/K0nFzs=
+	t=1768395594; cv=none; b=sw+7tzvVG/rb72qCcGnUZ17eVl8GuG1k3oVYI2GGx31Muoi5tjauv+ey6jRffnFyEjEMUhTBiVkvGHrPyRS49EVlvADXQp9OW3Pe2x4h5bDnL1EM4gsVynw9dY+rVEG9oasjV0EIqfE7Tsqu0UzerUddWzn7BxUh2qlsdKcwD3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768395599; c=relaxed/simple;
-	bh=/5eWFDEf6KwzasaJ03bBW4Tg2xk5g+Pd7eH2QVdydoY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f27065Yx+ZIZQMEMLeyV5MGIFTbjh7oSDkLj/i+ls0l21bMACD59T8oDObgvKL/K6CgdE/LUdKlVMJGRMQ8Q0UdafpGpxbUhXC+yKH6SbJISMnbLtRhXUsdJROsOVXFwsXyCp5mn9hsicQz+YbjIgn7Q1vGENDLLSyOW5bPzB4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56379cb870bso1093465e0c.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 04:59:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768395590; x=1769000390;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dOi1xuIgOKeNmhtu/zXsVbi5AW8T0pSjiAWSdoOenWg=;
-        b=huObPztRLtVmT345SYApIHFWE4FOMyV0tg9iypwMsYMEhJq/FNaisQMDvIJmtphmcG
-         XGSbO8iikC33eqJfgsW6MpbuozNR6NbDUbwE1xjrbJyr5rVdjKargDGg0gqVljWPsAM0
-         8rysGWboCbYNzRMsWcJ8V2sxFzwpgvFrYYCMeoER8F++UJRxUsGNvieLYh+Taoi6DxT1
-         OKZ9PPm/6/aEqGc/wIXxnj258atOO0Rh4plcCd54+6y7wrO8M7QltL7rKl/kmtSx2qiT
-         b+QYFWU7EjHmL11guqp2ZgNrYt4QyxCqU9WmiaP6Q/FpunbMAzsA03noIjSo25ciTgjb
-         dUyg==
-X-Forwarded-Encrypted: i=1; AJvYcCVd6Zxg1SenM7gICYt6pKOTaNmE4u26/BThsFNeU7gRPVrRZu+rZv9lalVUNWk7OeIJoPTgz+NPEfdp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8LbTpTTeO8fAh1POtAqFuMTMfgCYrUyjL9GunQLcZUtG7OX1V
-	sGFZiFSAPHLSy1OVlJ+3UJwt/3FcZlqcUbz1EL7cXCtgFuvsA/mEGjxOGTwbU72h
-X-Gm-Gg: AY/fxX4OvPNuOy0EYLppuxx1pHVdakIKLFQfkqrI3Lbc5qROcVNtnUGrOKNqHhdB/6U
-	Iuv/T/xe6HDU6nht9soDszT9qVwEzgx4Lb6wOpvnpBQgdNuBloxqCTVR5GTlrokJy8e0I+kaMZ5
-	kJ5/ViyT952PofvnJxW5jv8K+S/+eMszDxehEPRgkIZTf0+nmXbbRcG6KUoTvry69zxUBhvMA0O
-	21Znik5IAlrO5QFDrig52psw1U7AB34m5XI6h06r8CEAn9v0cM4p3X7+gEB60YHF9NClfuGpj7h
-	+gRDuhDCEgzRo16B4QKi8mRHSuDvvnJ1PXE6V3B/i0+3aJtQwGDORotct+SIJHIbZDk42g9YJPL
-	hEcV5oPYmibcaD+gwNV2x+f4m5Lhlgt3E2qXd0lXCx/HYrGkfDO5GiBifPiqP6xxjdpr10K/mEf
-	GYQTClKU/ZH10e02mfkdAnX8OEBzBYJUD8DKaBLBC+RjEOnAKG
-X-Received: by 2002:a05:6122:2a56:b0:55b:305b:4e46 with SMTP id 71dfb90a1353d-563a2258469mr557194e0c.18.1768395590465;
-        Wed, 14 Jan 2026 04:59:50 -0800 (PST)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5636dc36a20sm14094152e0c.13.2026.01.14.04.59.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 04:59:49 -0800 (PST)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5eea31b5cb7so2122287137.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 04:59:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXglA+XBfY3ybMj3dQTeOi5GC0vrH09wCShdPRFjDVgmcwPqVYcOF/o+1FVXmWJOPQypUsYtDy1DT3h@vger.kernel.org
-X-Received: by 2002:a05:6102:38c9:b0:5f1:555e:a0b4 with SMTP id
- ada2fe7eead31-5f183bdce22mr616871137.32.1768395587922; Wed, 14 Jan 2026
- 04:59:47 -0800 (PST)
+	s=arc-20240116; t=1768395594; c=relaxed/simple;
+	bh=2/z3t3tjGrx/h34H8mnEiXZGVxzRQTFDBZSR/QkoL8s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i3GcEANFOsw/TxBXlPEW+o87hQEVxddKpb8eGbW7qGYBsjR+2TkQzsT5tlBSm8lsSH91YrP3uq7FfXIhaVHDvw16ycMAGUnCaO1Gg5vJPl1htxPiuWd24VhksGzthesO/TryniW2MjhyoQUM1YV73NoF6q97bMmC5G8XG1c0QWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qyl+x6ni; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5347DC19425;
+	Wed, 14 Jan 2026 12:59:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768395593;
+	bh=2/z3t3tjGrx/h34H8mnEiXZGVxzRQTFDBZSR/QkoL8s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qyl+x6niBnl+Hkqz669O/P43ZyunjSntia/2ZlIUSfxIlevMkhMao7Qj1TdQHI5Ik
+	 lq/rkz0Dfc1NJ8XdsUbMqrwIq6simoJ/gnqKq6L7Xy+mp/Np2Bt6wtAqi7hNKD7Ehq
+	 8vfXwH58/vx2kr3D32e/PnGfo3cJTC9dq+HytQRVUNZ4cBE5L8DHLF/nt/gogfGIU1
+	 ORST1I3YxO+MNv1TBAGazKLamw645HtPkKD/K/RJog7pJD0andkbL+APJ/ezW8e+nE
+	 nh0OSCokHR4CS5FQEgOlJoYlwn41MOuE0E3vZg1vH+CPraUVUSU8+GBgd8+irYngt4
+	 vEVTCOs43w7mQ==
+Date: Wed, 14 Jan 2026 12:59:47 +0000
+From: Will Deacon <will@kernel.org>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+	nicolas.dufresne@collabora.com, p.zabel@pengutronix.de,
+	mchehab@kernel.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
+Message-ID: <aWeTQ50DOtntcniN@willie-the-truck>
+References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
+ <20260107101005.84039-4-benjamin.gaignard@collabora.com>
+ <aWZui-rn5RDPwpEO@willie-the-truck>
+ <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com> <3ab81490b7bdbd2dafd7a940ae242f07d30aaa17.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
-In-Reply-To: <3ab81490b7bdbd2dafd7a940ae242f07d30aaa17.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 14 Jan 2026 13:59:36 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUBN0OKOOTw+j3XuWi+hVYBVRyzp=J-+0yMfem2BfT+Eg@mail.gmail.com>
-X-Gm-Features: AZwV_QjCdG9CLFFvTy17z_yoeEbQmRYHkFE3zh-jRCvSjUp5PEJNAk_rO0NIbA8
-Message-ID: <CAMuHMdUBN0OKOOTw+j3XuWi+hVYBVRyzp=J-+0yMfem2BfT+Eg@mail.gmail.com>
-Subject: Re: [PATCH 01/22] clk: renesas: rzv2h: Add PLLDSI clk mux support
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	biju.das.jz@bp.renesas.com, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
 
-Hi Tommaso,
+On Tue, Jan 13, 2026 at 05:25:38PM +0100, Benjamin Gaignard wrote:
+> 
+> Le 13/01/2026 à 17:10, Will Deacon a écrit :
+> > Hi Benjamin,
+> > 
+> > Thanks for posting a v11.
+> > 
+> > On Wed, Jan 07, 2026 at 11:09:53AM +0100, Benjamin Gaignard wrote:
+> > > The Verisilicon IOMMU hardware block can be found in combination
+> > > with Verisilicon hardware video codecs (encoders or decoders) on
+> > > different SoCs.
+> > > Enable it will allow us to use non contiguous memory allocators
+> > > for Verisilicon video codecs.
+> > > If both decoder and this iommu driver are compiled has modules
+> > > there is undefined symboles issues so this iommu driver could
+> > > only be compiled has built-in.
+> > > 
+> > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> > > ---
+> > > changes in version 11:
+> > > - Fix dependency issue when decoder driver is build as module.
+> > > 
+> > >   drivers/iommu/Kconfig     |  11 +
+> > >   drivers/iommu/Makefile    |   1 +
+> > >   drivers/iommu/vsi-iommu.c | 808 ++++++++++++++++++++++++++++++++++++++
+> > >   include/linux/vsi-iommu.h |  21 +
+> > >   4 files changed, 841 insertions(+)
+> > >   create mode 100644 drivers/iommu/vsi-iommu.c
+> > >   create mode 100644 include/linux/vsi-iommu.h
+> > Based on your reply to v9:
+> > 
+> > https://lore.kernel.org/all/0eff8b1a-c45f-47b1-a871-59f4a0101f0f@collabora.com/
+> > 
+> > I took another look at this to see whether it had changed significantly
+> > from v6 when compared to the rockchip driver. Sadly, they still look
+> > very similar to me and I continue to suspect that the hardware is a
+> > derivative. I really don't understand why having a shared implementation
+> > of the default domain ops is difficult or controversial. Have you tried
+> > to write it?
+> > 
+> > However, given that nobody from the Rockchip side has contributed to the
+> > discussion and you claim that this is a distinct piece of IP, I don't
+> > want to block the merging of the driver by leaving the conversation
+> > hanging.
+> > 
+> > There is still one thing I don't understand (which, amusingly, the
+> > rockchip driver doesn't seem to suffer from):
+> > 
+> > > +static void vsi_iommu_flush_tlb_all(struct iommu_domain *domain)
+> > > +{
+> > > +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+> > > +	struct list_head *pos;
+> > > +	unsigned long flags;
+> > > +
+> > > +	spin_lock_irqsave(&vsi_domain->lock, flags);
+> > > +
+> > > +	list_for_each(pos, &vsi_domain->iommus) {
+> > > +		struct vsi_iommu *iommu;
+> > > +		int ret;
+> > > +
+> > > +		iommu = list_entry(pos, struct vsi_iommu, node);
+> > > +		ret = pm_runtime_resume_and_get(iommu->dev);
+> > > +		if (ret < 0)
+> > > +			continue;
+> > > +
+> > > +		spin_lock(&iommu->lock);
+> > > +
+> > > +		writel(VSI_MMU_BIT_FLUSH, iommu->regs + VSI_MMU_FLUSH_BASE);
+> > > +		writel(0, iommu->regs + VSI_MMU_FLUSH_BASE);
+> > > +
+> > > +		spin_unlock(&iommu->lock);
+> > > +		pm_runtime_put_autosuspend(iommu->dev);
+> > > +	}
+> > > +
+> > > +	spin_unlock_irqrestore(&vsi_domain->lock, flags);
+> > > +}
+> > [...]
+> > 
+> > > +static const struct iommu_ops vsi_iommu_ops = {
+> > > +	.identity_domain = &vsi_identity_domain,
+> > > +	.release_domain = &vsi_identity_domain,
+> > > +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
+> > > +	.of_xlate = vsi_iommu_of_xlate,
+> > > +	.probe_device = vsi_iommu_probe_device,
+> > > +	.release_device = vsi_iommu_release_device,
+> > > +	.device_group = generic_single_device_group,
+> > > +	.owner = THIS_MODULE,
+> > > +	.default_domain_ops = &(const struct iommu_domain_ops) {
+> > > +		.attach_dev		= vsi_iommu_attach_device,
+> > > +		.map_pages		= vsi_iommu_map,
+> > > +		.unmap_pages		= vsi_iommu_unmap,
+> > > +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
+> > This has no callers and so your unmap routine appears to be broken.
+> 
+> It is a leftover of previous attempt to allow video decoder to clean/flush
+> the iommu by using a function from the API.
+> Now it is using vsi_iommu_restore_ctx().
+> I while remove it in version 12.
 
-On Wed, 26 Nov 2025 at 15:08, Tommaso Merciai
-<tommaso.merciai.xr@bp.renesas.com> wrote:
-> Add PLLDSI clk mux support to select PLLDSI clock from different clock
-> sources.
->
-> Introduce the DEF_PLLDSI_SMUX() macro to define these muxes and register
-> them in the clock driver.
->
-> Extend the determine_rate callback to calculate and propagate PLL
-> parameters via rzv2h_get_pll_dtable_pars() when LVDS output is selected,
-> using a new helper function rzv2h_cpg_plldsi_smux_lvds_determine_rate().
->
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Don't you still need some invalidation on the unmap path?
 
-Thanks for your patch!
-
-> --- a/drivers/clk/renesas/rzv2h-cpg.c
-> +++ b/drivers/clk/renesas/rzv2h-cpg.c
-
-> +
-> +static int rzv2h_cpg_plldsi_smux_lvds_determine_rate(struct rzv2h_cpg_priv *priv,
-> +                                                    struct pll_clk *pll_clk,
-> +                                                    struct clk_rate_request *req)
-> +{
-> +       struct rzv2h_pll_div_pars *dsi_params;
-> +       struct rzv2h_pll_dsi_info *dsi_info;
-> +       u8 lvds_table[] = { 7 };
-> +       u64 rate_millihz;
-> +
-> +       dsi_info = &priv->pll_dsi_info[pll_clk->pll.instance];
-> +       dsi_params = &dsi_info->pll_dsi_parameters;
-> +
-> +       rate_millihz = mul_u32_u32(req->rate, MILLI);
-> +       if (!rzv2h_get_pll_divs_pars(dsi_info->pll_dsi_limits, dsi_params,
-> +                                    lvds_table, 1, rate_millihz)) {
-
-s/1/ARRAY_SIZE(lvds_table)/
-
-> +               dev_err(priv->dev, "failed to determine rate for req->rate: %lu\n",
-> +                       req->rate);
-> +               return -EINVAL;
-> +       }
-> +
-> +       req->rate = DIV_ROUND_CLOSEST_ULL(dsi_params->div.freq_millihz, MILLI);
-> +       req->best_parent_rate = req->rate;
-> +       dsi_info->req_pll_dsi_rate = req->best_parent_rate * dsi_params->div.divider_value;
-> +
-> +       return 0;
-> +}
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Will
 
