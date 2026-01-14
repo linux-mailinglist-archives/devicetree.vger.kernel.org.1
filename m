@@ -1,89 +1,135 @@
-Return-Path: <devicetree+bounces-255048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44DC2D1F3E4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E955ED1F483
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:04:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 94A5F302AFFB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:54:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42535303B7F5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BF0275AF0;
-	Wed, 14 Jan 2026 13:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A10264A9D;
+	Wed, 14 Jan 2026 13:58:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cvxhmlDB"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RbaU2diT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF0A273D9A
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 13:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37DE726D4E5;
+	Wed, 14 Jan 2026 13:58:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768398870; cv=none; b=C6Y028Six396e34IwpAX86c6UYZVP0S6Nz0IEEq2vpHnZ5O5aFkrbLxKTz8+XYB76y8+aVw+zBvTOULjzaPeLilhqDq8OwXxRptQRbVGYsiaB4EBQQKnHFH7+GZ9q8yoTIY7/4rJa5pGbNeNxF0inkAMMDkJcbWLLq+DbqP1hFw=
+	t=1768399128; cv=none; b=bqTuzp7zQKtjS/VBjIDpugQpeOnNwdhHF6g+07JOz1a6sn+8Bm9YMHvZirypM7mgIv3B+iWuXo1B3kE3wml4MezNTQ5HikpN1D5MFL9JbtZobFcqm3plLTLEhnPARB+sK0TLTEe2GZmPEqa+z0NI/TW9kyGFvk3PlDT7DVmNp4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768398870; c=relaxed/simple;
-	bh=pko9oW1g+IluAhY7M1qdOiwhwRkDyq9ZjyBhU9sgrLY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=idX3lnBT1YDamKFJbl4RSSQSDmi0OyQxf0SeUnqLgghmla1k1bhHxiKMZrz9j/7nSzze3ZlkgqtBOkRhBB4pbk1m07kSHQcInW87tyTlqJTFYqpOzvi0mcy/KQZaRgJH8wbly0I6+1epnmM7SG8teKxxOkZLKv+saf9M9GwsD7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cvxhmlDB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76B8CC4CEF7
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 13:54:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768398870;
-	bh=pko9oW1g+IluAhY7M1qdOiwhwRkDyq9ZjyBhU9sgrLY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=cvxhmlDBIWz66KMgGJkZsiNg/kcCqFr1SH2ajz4Bvlp3FXF1JN9gkfEwuB94fgep1
-	 KS5DH+zPbowY5TrkhD/Zt5J/WdDPj7dWOv2cn/iyNDzs5idHyyp5AL02jAw5vU90wa
-	 Zv65yzYpKrdbVxK4cH3wJMcTIwAN88JY1bVrc5DyBMDw4syzWnhgJj7hObOk/jj9KM
-	 Dis0MQ7Wvhq5uQeNhfxgCSPCc3lUtg4hOBovQxeRBnMSdsJtfWm5grYPKc0WXD27Xv
-	 JmI7oGwHohvMSsppF/ppe1Xa0s7eSDHVlSCWWCymp53g0mCrR+7QSKuXVpQeNKhDkO
-	 Di5lkP5NfUR2Q==
-Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-646b8d2431dso7510884d50.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 05:54:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUWjoiypK2GJMHIbnGnzvEX8/X812qIvUQ1MrokRAatufEH5c8/jRaGFVmMw1rgr9Y680EXPqQYT22p@vger.kernel.org
-X-Gm-Message-State: AOJu0YxElp/8/MfZMRglRl03wyCotfS3LL5/ZIDkE2isYgt3B43KWBTI
-	pY5xhQmt0o2n0jEXfjX1ysPXHzw3nrV7BHTHeQ3ZWrtC4gxlgpzPIiBSd/9p3yf7g2C4lt0h+T0
-	VEgw2lGwENRtb/KsG3GUt3nkesw9clOs=
-X-Received: by 2002:a53:ac8b:0:b0:646:5019:f3f2 with SMTP id
- 956f58d0204a3-64901a9c702mr2454045d50.19.1768398869885; Wed, 14 Jan 2026
- 05:54:29 -0800 (PST)
+	s=arc-20240116; t=1768399128; c=relaxed/simple;
+	bh=QpeOW/sEaOfEuvoIhUjTAMw7y96h/aW+EFhSth1UXkg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=myCk+xyDwCVkeVpKKak0XhKVOXWbu9HHeGoHQJdQM9hW4GslUvRjfarsgf3/hCN7y95oo+uHdFvpmCsRqawBvKaR8ZZeOFA+RajmYTszIKUbNkp2+nSvG7lg7WYBX7APPZJgQanOU3PGfNO6++8FCRVCzDZExN3nRdlzTm1Kx2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RbaU2diT; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id C7364C1F1C2;
+	Wed, 14 Jan 2026 13:58:16 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 642E06074A;
+	Wed, 14 Jan 2026 13:58:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 03BC910B6824C;
+	Wed, 14 Jan 2026 14:58:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768399122; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=YNjffRp1/8+T59mlTHNitsw61Xuht8VMpF+gPH6kU5M=;
+	b=RbaU2diT+2o3nYB+qso994IAQmLHQwmq2nb5Cm1S9sWjjd2N+g9lyE1PdQq6qr2dcnN0K+
+	PjOdZ5IKST7oHXinJnIYyn3PT3yAmfDlxk/9qYNbc9iDtqTCVRS6fWWHoUIdMrTENH2zjl
+	L6IGjRDuGzHQspn8gMkoYiQbyQwNaY+YI+uTmwQ/yrdrAdN6NH6phsf22oGnt1p5aoI4C7
+	/Wo6Inw3e8tZA+sijnhWDwdmRU52crDrkE9NfW8byUv1DZFjaTRGmJruYxeij3y3CNxyTk
+	RfRlF6UmoxshF9bek40/kEqIDjKA0QoSRep7ESTW522/Zx/K6pqUADvOErmXoQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Brian Norris <computersforpeace@gmail.com>,
+  Kamal Dasu <kdasu.kdev@gmail.com>,  William Zhang
+ <william.zhang@broadcom.com>,  Nick Terrell <terrelln@fb.com>,  David
+ Sterba <dsterba@suse.com>,  =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>,  Simon Glass
+ <sjg@chromium.org>,  Linus Walleij <linusw@kernel.org>,  Ulf Hansson
+ <ulf.hansson@linaro.org>,  Marcus Folkesson <marcus.folkesson@gmail.com>,
+  Tony Lindgren <tony@atomide.com>,  Roger Quadros <rogerq@kernel.org>,
+  Hauke Mehrtens <hauke@hauke-m.de>,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-mmc@vger.kernel.org
+Subject: Re: [PATCH 07/10] dt-bindings: mtd: Ensure partition node
+ properties are documented
+In-Reply-To: <CAL_JsqKV+3ZnqpbQ4USmJh-dngik_jZdnpOw0bGcxD0RSSzfxA@mail.gmail.com>
+	(Rob Herring's message of "Fri, 9 Jan 2026 18:34:17 -0600")
+References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
+	<20260108-dt-mtd-partitions-v1-7-124a53ce6279@kernel.org>
+	<87fr8fxipc.fsf@bootlin.com>
+	<CAL_JsqKV+3ZnqpbQ4USmJh-dngik_jZdnpOw0bGcxD0RSSzfxA@mail.gmail.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Wed, 14 Jan 2026 14:58:35 +0100
+Message-ID: <87ms2gwb1w.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260114-k3-pinctrl-io-doc-fix-v2-1-025b05f9e65a@gentoo.org>
-In-Reply-To: <20260114-k3-pinctrl-io-doc-fix-v2-1-025b05f9e65a@gentoo.org>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 14 Jan 2026 14:54:17 +0100
-X-Gmail-Original-Message-ID: <CAD++jLk-dg1Hh28QaTo+0nONAP1PiOQza1-L3Nn4XJEeEShmuw@mail.gmail.com>
-X-Gm-Features: AZwV_QgO7G4JdjPod5hP416XqHCDN-684za1JJpJPBU8JnvDVeq9VXheBatx4Aw
-Message-ID: <CAD++jLk-dg1Hh28QaTo+0nONAP1PiOQza1-L3Nn4XJEeEShmuw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: pinctrl: spacemit: k3: fix drive-strength doc
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Guodong Xu <guodong@riscstar.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Jan 14, 2026 at 1:17=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
+Hi Rob,
 
-> Fix a typo in DT documentation, it should describe the 3.3V drive strengt=
-h
-> table of SpacemiT k3 SoC.
+>> > +$defs:
+>> > +  partition-node:
+>> > +    type: object
+>> > +    if:
+>> > +      not:
+>> > +        required: [ compatible ]
+>> > +    then:
+>> > +      $ref: '#'
+>> > +      unevaluatedProperties: false
+>> > +    else:
+>> > +      $ref: '#'
+>>
+>> This, however, is total blackmagic to me. Would you mind explaining what
+>>
+>>       $ref: '#'
+>>
+>> indicates? Is this a placeholder indicating "a reference must be given?
 >
-> Fixes: 5adaa1a8c088 ("dt-bindings: pinctrl: spacemit: add K3 SoC support"=
-)
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> It's what's known as JSON pointers. The '#' is a reference to the top
+> level of this schema.
+>
+>> Also I do not understand the final else case, what is it covering?
+>
+> It's really just there so a $ref to
+> partition.yaml#/$defs/partition-node applies the schema (all of
+> partition.yaml) whether there's a compatible property or not.
+>
+> This all just works around that a schema like this doesn't work:
+>
+> $ref: foo.yaml
+> if:
+>   ...
+> then:
+>   unevaluatedProperties: false
+>
+> The evaluation of unevaluatedProperties doesn't "see" the $ref being
+> in the parent. So we can't factor out the $ref.
 
-Patch applied.
+Oooh, ok, fully understood. I think I already faced that problem
+before. First time I hear about JSON pointers, thanks a lot for the
+heads up.
 
-Yours,
-Linus Walleij
+Regarding this series, it feels like in the end, if I understood the
+discussion with Krzysztof correctly, there is no modification to bring?
+Let me know if you plan on sending a v2 of if I shall take v1 otherwise.
+
+Thanks,
+Miqu=C3=A8l
 
