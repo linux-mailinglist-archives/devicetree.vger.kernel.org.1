@@ -1,109 +1,192 @@
-Return-Path: <devicetree+bounces-254831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB3AD1CF7F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:56:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60CFD1D06F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:10:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0684E30215EB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 07:56:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 85C7430CDE7E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:03:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9427D37BE95;
-	Wed, 14 Jan 2026 07:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0D037C111;
+	Wed, 14 Jan 2026 08:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mVLIefO0"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="x88kuLUq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10D1218AAD
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 07:56:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F0B37BE98
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768377364; cv=none; b=ewQwa1xq3QfbOIfvpGH/pTsFzEqANq0jA3LuAdi3QYf0I3VY1tsaIx9USkPDq0RcytV3DpwEj6DRcsfkg/K78UdpyRDC7E08WfW2ncUgMirkgRjgvDwYfkJojgfgv6jjkFnLT7eanimvAWnYmHDDSxop5ZQLMBIqytgwN0I0Cnk=
+	t=1768377776; cv=none; b=LHg5a09MA5JqVERspG+4JV+PCq4wx9rTCCVKqqDAgd/v32cSn6URE1IxMnyMAGLnPAxqHg9jAfXqs09SL2b0nEkR+cjrq7mB/KFEJowGEaKn15m04TViWdAPC2GukbQeSZXTcMQ3uLKX5ca65AD1077w3S0bdiKkKm/XrkbSJiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768377364; c=relaxed/simple;
-	bh=qykM1JYbULj151QKzbc/hEiAVXe8AXiyAC3x5F6hwNA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WEbNAcTULQBpjV/jY+9Qe7hgarR/oprW4Cc0vT/L2dqbdvWdeSRYVrFzfkMYbl4JSkqt8HBpHn2TYCXmDqnd/xQP4/AeuZR4h2t7BAtXjue/HUUrVyYhNBnPY+m3wM2l6141sSsT86XFSxqoP+dHuAG0ITwR1/Ovk34cw4Sqk3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mVLIefO0; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b871cfb49e6so492125366b.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 23:56:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768377359; x=1768982159; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qykM1JYbULj151QKzbc/hEiAVXe8AXiyAC3x5F6hwNA=;
-        b=mVLIefO0pTPrZbdi6zYFlTo2PoXY6Tto9cq/dgBCTVhGk33OX4Mx+ZIt8u656FIdf2
-         N33ALNw0AI6gJGyipcVEe9eTWDQIiYhPAHl2CiaWJGGhrWkMlypH/VAiMBUcfH1UZ19f
-         jKsRKoR75f6V8KD+6+3b7JtqTztEvqQQ+0u1b3U0LbD3aPXziOJu7I9hcGYnQGJHNHA3
-         Mf+bBo6XY1pNIKF/II5GGRwzM+Lh9rYOHWgGl3pLukSVb9fJL9ijj3Ek6OG0xSzssyeG
-         y3Sw7UphyHcLH5nsyWmUTXnovCEsvFLLxe/V4a2fVxG2JXupPyjv6KgTNQBe1ylj3V/2
-         dboQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768377359; x=1768982159;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=qykM1JYbULj151QKzbc/hEiAVXe8AXiyAC3x5F6hwNA=;
-        b=gJNwm3b8V9Cyu5uANwzg9pSIhzv+T7KOuVZUZXBS/rvAeG+mdtkNK6T/Cyq/YyWhHT
-         g9CiTfu8ELoE2zovw1VAQOnxnXwTPVGf2N+d1P2+hsZl3G38PbvtZu9NWaGAWG6jf/U1
-         rA4PcHDMS7bLcSGJmUjN8rIlknq2zc1NpeWSaS8RqAATJND8Ddcaux/mJu52VDuf6TM2
-         AvRJ1QKxbhqG3B9l8znR56DW8CHs9RXr6GOhvu6a6ncwgpqt1NDTu/EKcEiL14dsNEOi
-         cCRchhaKccAgh6my6Wouhe0+QPsZex4De8n6Ycbb7cy1q5Y+9BF5leXYC4Gg/DIlKoxB
-         xCkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXp1hVyVmTuog6L3zrup+yaUty+0Wb4SJ5p1GbX9wkg9H9djl1+TrBnncGJba88pM5Oh5QCFjF97oas@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvQYULY/EFSU+tweX2Gcmblz6XA57hsr2tmMSt0A5txJKQyqLm
-	ZVp6ZAqJ6MXgwYXdBVkaHjzUgl7lBiTmT7AdYr/J3/g0+u6ejfL+GSrzWlf5N3XWZSl9JgpP3tr
-	N7K4WVbMNOjvDOUQ6RS1PWQ6xouBXXQ8=
-X-Gm-Gg: AY/fxX7x7GmmbQv+WIBQbmARWcQDuZ6vjabNv0bU3s693If13bzHrKbvCrxbEehc80F
-	elIzvESHxzl4QFmHX5x+DILmDgWfDs8ONyC/VUhOm2ICz28jGByAuCGJOn/I6my6ABQKc8hiNxt
-	IpKUeKsIwZRVMT586Z9vy0jcFfD7VC5vxlpekteLRBHvCrAlKduf45gz44Q81xn9X4aQ/Tlvw3b
-	1UAyOtkH/p7m0xO6PdnOJz5lnzLGTfcmDQ1OzJ8TTHyxOK1KE6MOSlaM2vv9sEauvKHkrUlsulN
-	0I+naXLQuue9+tKqIAc2sbU9zxtRNI7eT/VDObDesOsRlC5/Hn3cWc09MfyNykUZDaxLklE=
-X-Received: by 2002:a17:907:72c4:b0:b87:3740:dd87 with SMTP id
- a640c23a62f3a-b8761028cb8mr153119766b.26.1768377358593; Tue, 13 Jan 2026
- 23:55:58 -0800 (PST)
+	s=arc-20240116; t=1768377776; c=relaxed/simple;
+	bh=fYWlMzo/H6Y+xJ86qirphWJAlV1PP+ab4iXQTYQcluk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=L/m2mLwlKtGGEeXjkYlroWWeUuif/jdefBjAV6p0rEAUpKuZcWYcthUhj5+HLHVPizJ4luUpwarE2ORxyguq+pR4PxIMeiYU2WQaBAbP2OHXx7Ez0mFQS9/RL+CwjwwdfSW3gFe02YwLhFKENpXlJV4jtZR0W2L6hSgEMH38fmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=x88kuLUq; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 9F7E0C1E4B4;
+	Wed, 14 Jan 2026 08:02:17 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0E5C76074A;
+	Wed, 14 Jan 2026 08:02:44 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 95556103C82AE;
+	Wed, 14 Jan 2026 09:02:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768377762; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=OrlcgvLEASE7cgCAVQW4sEC2L2tinvXr+j0pOUZUjvY=;
+	b=x88kuLUqFra37jp+2L7Hmyl1rJK9Luj34PccVPygGuBCC5mIUNebQlygEiXB90nJrOOq+B
+	bdtRJbNiaHF/QALBf/DPpUr60ZpM5vhmVOXLlkv7oMKeKJQNP+BV4YdafCKgB1jDyaAPS2
+	tq5kA2oEP25DWOWvI0u2Fyifk3icvqsLbMsUmjXV3ejO7GBvLUNaiqfEvB2ZkGbiC+5LTu
+	zHYrpWi9KCbcQZYi3IgsxHlw0lA3zBo1u/c47qXxbQWSy3rWbbKhvEIWU87kPC41Ert43H
+	A1ighEQjWb6vQJdU5S1OfOJxLVA3ZVpXbWi0B45Cr3vvnRFlbka6Iwu8FsX63Q==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260114-honeywell_abp2_driver-v6-0-231c3a8c222b@subdimension.ro> <20260114-honeywell_abp2_driver-v6-2-231c3a8c222b@subdimension.ro>
-In-Reply-To: <20260114-honeywell_abp2_driver-v6-2-231c3a8c222b@subdimension.ro>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 14 Jan 2026 09:55:22 +0200
-X-Gm-Features: AZwV_QjeZfZf02MH8c_Fn9ULWM2JP_J64viMY4LtyiOs2gGz_6slFb6GduuSBKU
-Message-ID: <CAHp75VeUkNEHeF5ey08AU+drZKunL5PzoSJ=0JPXzc0Z2Um3ng@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] iio: pressure: abp2030pa: remove error message
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Andy Shevchenko <andriy.shevchenko@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 14 Jan 2026 09:02:35 +0100
+Message-Id: <DFO5LHWDD7S2.19P595M4CWIPI@bootlin.com>
+Cc: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>
+To: "Marco Felsch" <m.felsch@pengutronix.de>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Shawn Guo" <shawnguo@kernel.org>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, "Pengutronix Kernel Team"
+ <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>, "Peng Fan"
+ <peng.fan@nxp.com>, "Liu Ying" <victor.liu@nxp.com>, "Andrzej Hajda"
+ <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
+ <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH v8 2/3] drm/bridge: imx: Add i.MX93 parallel display
+ format configuration support
+X-Mailer: aerc 0.20.1
+References: <20260113-v6-18-topic-imx93-parallel-display-v8-0-4abccdc473a5@pengutronix.de> <20260113-v6-18-topic-imx93-parallel-display-v8-2-4abccdc473a5@pengutronix.de>
+In-Reply-To: <20260113-v6-18-topic-imx93-parallel-display-v8-2-4abccdc473a5@pengutronix.de>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Jan 14, 2026 at 9:52=E2=80=AFAM Petre Rodan <petre.rodan@subdimensi=
-on.ro> wrote:
+Hello Marco, Liu,
+
+On Tue Jan 13, 2026 at 8:07 PM CET, Marco Felsch wrote:
+> From: Liu Ying <victor.liu@nxp.com>
 >
-> Do not print redundant error message if devm_request_irq() fails.
+> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
+> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+> field. Add a DRM bridge driver to support the display format configuratio=
+n.
+>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> [m.felsch@pengutronix.de: port to v6.19-rc1]
+> [m.felsch@pengutronix.de: add review feedback (Alexander)]
+> [m.felsch@pengutronix.de: fix to short Kconfig description (checkpath)]
+> [m.felsch@pengutronix.de: use "GPL" instead of "GPL v2" (checkpatch)]
+> [m.felsch@pengutronix.de: add bus-width support]
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 
-the duplicate
+I'm sorry to be reviewing at v8 only, I hadn't noticed this series before.
 
-(It's not redundant, it's duplicate because that API prints something
-very similar.)
+> ---
+>  drivers/gpu/drm/bridge/imx/Kconfig      |  11 ++
+>  drivers/gpu/drm/bridge/imx/Makefile     |   1 +
+>  drivers/gpu/drm/bridge/imx/imx93-pdfc.c | 221 ++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 233 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/=
+imx/Kconfig
+> index b9028a5e5a065c3237b404111d8df57e8e017f9d..181ee87bc0f9f65ee0b6e5edb=
+b48ba808dfbb71f 100644
+> --- a/drivers/gpu/drm/bridge/imx/Kconfig
+> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
+> @@ -99,4 +99,15 @@ config DRM_IMX93_MIPI_DSI
+>  	  Choose this to enable MIPI DSI controller found in Freescale i.MX93
+>  	  processor.
+>
+> +config DRM_IMX93_PARALLEL_DISP_FMT_CONFIG
+> +	tristate "NXP i.MX91/i.MX93 parallel display format configuration"
 
-P.S. Do not send a new version for this, I hope Jonathan can tweak
-this small detail whilst applying.
+Minor nit: this is a driver for a device, so calling it "configuration"
+seems weird. From the code it looks like a device converting the color
+format, so what about "NXP i.MX91/i.MX93 parallel display format
+converter"?
 
---=20
-With Best Regards,
-Andy Shevchenko
+[...]
+
+> +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct imx93_pdfc *pdfc;
+> +	struct device_node *ep;
+> +	int err;
+> +
+> +	pdfc =3D devm_drm_bridge_alloc(dev, struct imx93_pdfc, bridge, &funcs);
+> +	if (IS_ERR(pdfc))
+> +		return PTR_ERR(pdfc);
+> +
+> +	pdfc->regmap =3D syscon_node_to_regmap(dev->of_node->parent);
+> +	if (IS_ERR(pdfc->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(pdfc->regmap),
+> +				     "failed to get regmap\n");
+> +
+> +	/* No limits per default */
+> +	pdfc->phy_bus_width =3D 24;
+> +
+> +	/* Get output ep (port1/endpoint) */
+> +	ep =3D of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
+> +	if (ep) {
+> +		err =3D of_property_read_u32(ep, "bus-width", &pdfc->phy_bus_width);
+> +		of_node_put(ep);
+> +
+> +		/* bus-width is optional but it must have valid data if present */
+> +		if (err && err !=3D -EINVAL)
+> +			return dev_err_probe(dev, err,
+> +					     "failed to query bus-width\n");
+> +	}
+> +
+> +	pdfc->next_bridge =3D devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
+> +	if (IS_ERR(pdfc->next_bridge))
+> +		return dev_err_probe(dev, PTR_ERR(pdfc->next_bridge),
+> +				     "failed to get next bridge\n");
+> +
+> +	pdfc->dev =3D dev;
+> +	pdfc->bridge.driver_private =3D pdfc;
+
+pdfc embeds the struct drm_bridge, which is the mandatory design since
+devm_drm_bridge_alloc() got added, so driver_private shouldn't be needed
+anymore. Most drivers have a bridge_to_foo() inline function using
+component_of() to get the private struct from the drm_bridge pointer,
+e.g. [0] and [1].
+
+[0] https://elixir.bootlin.com/linux/v6.18.5/source/drivers/gpu/drm/bridge/=
+simple-bridge.c#L39-L43
+[1] https://elixir.bootlin.com/linux/v6.18.5/source/drivers/gpu/drm/bridge/=
+ti-sn65dsi83.c#L287-L290
+
+A short discussion took place a few months ago about driver_private, kind
+of suggesting it might be removed after all drivers have switched to
+devm_drm_bridge_alloc(). I think we should at least not introduce new users
+of driver_private at least.
+
+Best regards,
+Luca
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
