@@ -1,234 +1,138 @@
-Return-Path: <devicetree+bounces-255184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C530D209B5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:46:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ED06D20A1B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:48:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C9D47300502E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:45:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EC52C3045DF1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:47:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EA831ED75;
-	Wed, 14 Jan 2026 17:45:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044A0329360;
+	Wed, 14 Jan 2026 17:47:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L3f4RUtw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l5tyNnMa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E612324B1A
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:45:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45D1326934
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:47:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768412757; cv=none; b=L+CCN0w2hxS0BcN1GZbFpXNYcS2sLqCIrY2dBVW2tYlI348H/pmpC2vuBx5gmPw/3rSgpTDbtateVPxRB2G/QnyPxOvWxBhgE9qlYsRyBRtnOGQQa+usx6WA8h3GVz3HnFOvCvqI/D2swsacPP1Z171A6NuIETsWpDxfgh4eziQ=
+	t=1768412838; cv=none; b=dX5CE5+abSil6qN/MPgS+4Ivl8zGiO6cvy3+el68acXFFKupdgrkeHQ28WcRPqR71WnfNws3/A1uvGGNE4fu95XZRYfLtzqhdG21uOrzALyMIeIrB8rkLt68/UHm+qC1xHPNSLyPYOlLHGE6vVkKiTm+5b46ArS/Nu78DWlm1rE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768412757; c=relaxed/simple;
-	bh=VLyvNJXlQ7uY8tpXWo5FC7Z644s2L6LFH6yjNoy6qEE=;
+	s=arc-20240116; t=1768412838; c=relaxed/simple;
+	bh=tuWbZrH+4mGMGnXLlpjXIiy6C13bGh77pEf3nFBIEfs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Anr/JDteuM2SQ+mfQqdeamOglx8zI2BxXL9vn5sc2UHLk2p43WNF0PXorOY8ZgSb11HI/2DUmuaNjtc0s2faiuVa+bDMBcBwUWtiU9HQUMdbRI2VV6ZmBRIORfZlDddsLksczEkxwPcDS1Wc4aDPqsC0eGcZniN5oigqYqo8Xtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L3f4RUtw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27BE1C2BC9E
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:45:57 +0000 (UTC)
+	 To:Cc:Content-Type; b=Hpv7dM1BVKvHinIJh2o1pFo1uhLGIHxslJyZArXVn4tvZ5MkG5haK+k3FC0CneFugXVovwpY8k+eIX/qdlO01vy14+8+YUzdtqcAkfIvuGivFnDRoTrGLj88vlTwv9qFz77Azyt+CvZd6eJIzyNLqflAPkYFKuCAjAOPDs3baNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l5tyNnMa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C2C2C2BC9E
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:47:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768412757;
-	bh=VLyvNJXlQ7uY8tpXWo5FC7Z644s2L6LFH6yjNoy6qEE=;
+	s=k20201202; t=1768412838;
+	bh=tuWbZrH+4mGMGnXLlpjXIiy6C13bGh77pEf3nFBIEfs=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=L3f4RUtwn3UXoZPZmKpVuAv7wS20RfV9nBeLqZmGUIuaNo8FvXrtH44hdthYVevDH
-	 QSVQZx/Ui5iVSgXFYt4fQV/OR2h5BgZM0KQs8bOzjqskmkZBBtcPZdAQe8kvMzlQV7
-	 0D8fQ5rfmBXgU6sADeLNFwDWj4BiYHWgcJBj3/HVC2LCKSPDslf04gYsc7F7fomOS6
-	 XAeELhC98vWgbpqPJYZUyYa6bAtBZ8ms96XRGp9rnARwthStUCk/pgZyhS8Dvx7NH+
-	 4ef2okqQF+r1LwZp/eSJ0JojapcPG691nvMn06RUn32l9vbyAkm7o3fyZIw/LWsY3F
-	 XlpOzBa2RmVkQ==
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b86ed375d37so14265366b.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:45:57 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXy34QruIvkroMSMopPRGMnnJZZHMnbNZNrW0CBj2ebr8JVTQjVT8M7+TcZa5xwvHiMZSYMenCUdAx+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwU0F3v1+WCU3+g1erE66qhuK+k9w19L9GxH8DJoBbK0JG7WL7Q
-	Ruyg/3nj+dr7gCB/5d/3d3qfw9BA1SwGyvddKxBcjcMVjkZ2GvSECGDc7Y4LmxOFRLUGMn2Jt6C
-	Rx7EuCyLFz5oODEJ9cEIkVWA9KHoxxQ==
-X-Received: by 2002:a17:907:6d14:b0:b7d:1d1b:217a with SMTP id
- a640c23a62f3a-b87611110eamr270292166b.34.1768412755531; Wed, 14 Jan 2026
- 09:45:55 -0800 (PST)
+	b=l5tyNnMa2V8sEbsUu6u4sEgcscdLjn2FkqpB+TsEni23Pynl0stZsIIymYZbmrmZ3
+	 oqCpWy1NhejE4c8S+ZvmFhO7EBxWuc6KPRHCS0GAH9uCk/r4yolPzVXGygQy5fMYaW
+	 Zs7RaWO0vec8YiTYeiHzmFRBU8V3ASymJyEhGTJt2GENYBHv1HD313vdE6kvtb78C/
+	 OEbZrre/6Km+TY4waMNiSvMD3pqLoSGN/EkkkFbTEQ6bgLXIUvL4uPzSTLL5x2b4/B
+	 724RHmg/MwFi3kI6vb68TbzsEV2pwxz+u7irlmFiZcwSa6ltmzmSgjWkReCcKMeRJx
+	 lneKB5YW9Jihw==
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64daeb28c56so15731a12.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:47:18 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXWvBfFfadnvQCDJHTTyr3LjL6lKvIDO9frhKXsd2wAc08EZSl4HCkL8n3yahzTGphoIlTo9EyygJTB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjF0n36jiEy8mkBMLpEsvqD9HyMw5o4UAjVDlS322fo+y+KwdW
+	EdlUiEhbGcsRCc3/pUVTuY1j03eBmAbs15P7JRJceYoqrnaOL2CL5oGK9fLR5TuIQ12hEe2QBuC
+	aFjMgKHPQA0cUCTUbeEzANcDWw8o/8w==
+X-Received: by 2002:a17:907:d14:b0:b86:e938:1b3a with SMTP id
+ a640c23a62f3a-b876103e29bmr272686266b.17.1768412837150; Wed, 14 Jan 2026
+ 09:47:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
- <20260112-pci-m2-e-v4-5-eff84d2c6d26@oss.qualcomm.com> <20260113171424.GA3925312-robh@kernel.org>
- <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
-In-Reply-To: <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
+References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org>
+ <20260108-dt-mtd-partitions-v1-7-124a53ce6279@kernel.org> <87fr8fxipc.fsf@bootlin.com>
+ <CAL_JsqKV+3ZnqpbQ4USmJh-dngik_jZdnpOw0bGcxD0RSSzfxA@mail.gmail.com> <87ms2gwb1w.fsf@bootlin.com>
+In-Reply-To: <87ms2gwb1w.fsf@bootlin.com>
 From: Rob Herring <robh@kernel.org>
-Date: Wed, 14 Jan 2026 11:45:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJxBNm0y6T7vji6MXgsO65iDJ-tdUEo0cOxkw7EuMKpkg@mail.gmail.com>
-X-Gm-Features: AZwV_Qjd8RRdZiuji8UWlnEg_b-A7CkYgcetFKx6gFJZkZR9Wa6Q2Mjzt04XOZQ
-Message-ID: <CAL_JsqJxBNm0y6T7vji6MXgsO65iDJ-tdUEo0cOxkw7EuMKpkg@mail.gmail.com>
-Subject: Re: [PATCH v4 5/9] dt-bindings: connector: Add PCIe M.2 Mechanical
- Key E connector
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+Date: Wed, 14 Jan 2026 11:47:06 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ+4+Uq=GWwU-naqTs82hp=Kuw6QLRN-ZrhMDBGa_LGww@mail.gmail.com>
+X-Gm-Features: AZwV_QivgWJLWruGhaCte97C3vmWMU9MiWmx3wNuxEQ3mMcpnD0y11AtzYaHP24
+Message-ID: <CAL_JsqJ+4+Uq=GWwU-naqTs82hp=Kuw6QLRN-ZrhMDBGa_LGww@mail.gmail.com>
+Subject: Re: [PATCH 07/10] dt-bindings: mtd: Ensure partition node properties
+ are documented
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org
+	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
+	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
+	David Sterba <dsterba@suse.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Marcus Folkesson <marcus.folkesson@gmail.com>, 
+	Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 14, 2026 at 10:14=E2=80=AFAM Manivannan Sadhasivam <mani@kernel=
-.org> wrote:
+On Wed, Jan 14, 2026 at 7:58=E2=80=AFAM Miquel Raynal <miquel.raynal@bootli=
+n.com> wrote:
 >
-> On Tue, Jan 13, 2026 at 11:14:24AM -0600, Rob Herring wrote:
-> > On Mon, Jan 12, 2026 at 09:56:04PM +0530, Manivannan Sadhasivam wrote:
-> > > Add the devicetree binding for PCIe M.2 Mechanical Key E connector de=
-fined
-> > > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This connector
-> > > provides interfaces like PCIe or SDIO to attach the WiFi devices to t=
-he
-> > > host machine, USB or UART+PCM interfaces to attach the Bluetooth (BT)
-> > > devices. Spec also provides an optional interface to connect the UIM =
-card,
-> > > but that is not covered in this binding.
-> > >
-> > > The connector provides a primary power supply of 3.3v, along with an
-> > > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operati=
-ng at
-> > > 1.8v sideband signaling.
-> > >
-> > > The connector also supplies optional signals in the form of GPIOs for=
- fine
-> > > grained power management.
-> > >
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualc=
-omm.com>
-> > > ---
-> > >  .../bindings/connector/pcie-m2-e-connector.yaml    | 154 +++++++++++=
-++++++++++
-> > >  MAINTAINERS                                        |   1 +
-> > >  2 files changed, 155 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-co=
-nnector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connec=
-tor.yaml
-> > > new file mode 100644
-> > > index 000000000000..b65b39ddfd19
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector=
-.yaml
-> > > @@ -0,0 +1,154 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-connector.yam=
-l#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: PCIe M.2 Mechanical Key E Connector
-> > > +
-> > > +maintainers:
-> > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > > +
-> > > +description:
-> > > +  A PCIe M.2 E connector node represents a physical PCIe M.2 Mechani=
-cal Key E
-> > > +  connector. Mechanical Key E connectors are used to connect Wireles=
-s
-> > > +  Connectivity devices including combinations of Wi-Fi, BT, NFC to t=
-he host
-> > > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and I2C.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: pcie-m2-e-connector
-> > > +
-> > > +  vpcie3v3-supply:
-> > > +    description: A phandle to the regulator for 3.3v supply.
-> > > +
-> > > +  vpcie1v8-supply:
-> > > +    description: A phandle to the regulator for VIO 1.8v supply.
-> >
-> > I don't see any 1.8V supply on the connector. There are 1.8V IOs and yo=
-u
-> > may need something in DT to ensure those are powered. However, there's
-> > no guarantee that it's a single supply.
-> >
+> Hi Rob,
 >
-> 1.8v VIO supply is an optional supply and is only required if the platfor=
-m
-> supports 1.8v for sideband signals such as PERST#, WAKE#... I can include=
- it in
-> the example for completeness.
-
-My point is that PERST# and WAKE# supplies could be 2 different 1.8V
-supplies and those supply the I/O pads of the GPIO pins (and possibly
-external pull-ups) that drive them. The 1.8V supply doesn't supply
-1.8V to the slot, so making it a slot/connector property is wrong.
-
-This isn't exactly a new issue. It could be an issue on any binding
-with GPIOs. Perhaps this needs to be handled within GPIO or pinctrl.
-
-> > > +
-> > > +    oneOf:
-> > > +      - required:
-> > > +          - port@0
-> > > +
-> > > +  clocks:
-> > > +    description: 32.768 KHz Suspend Clock (SUSCLK) input from the ho=
-st system to
-> > > +      the M.2 card. Refer, PCI Express M.2 Specification r4.0, sec 3=
-.1.12.1 for
-> > > +      more details.
-> > > +    maxItems: 1
-> > > +
-> > > +  w-disable1-gpios:
-> > > +    description: GPIO input to W_DISABLE1# signal. This signal is us=
-ed by the
-> > > +      system to disable WiFi radio in the M.2 card. Refer, PCI Expre=
-ss M.2
-> > > +      Specification r4.0, sec 3.1.12.3 for more details.
-> > > +    maxItems: 1
-> > > +
-> > > +  w-disable2-gpios:
-> > > +    description: GPIO input to W_DISABLE2# signal. This signal is us=
-ed by the
-> > > +      system to disable WiFi radio in the M.2 card. Refer, PCI Expre=
-ss M.2
-> > > +      Specification r4.0, sec 3.1.12.3 for more details.
-> > > +    maxItems: 1
-> > > +
-> > > +  viocfg-gpios:
-> > > +    description: GPIO output to IO voltage configuration (VIO_CFG) s=
-ignal. This
-> > > +      signal is used by the M.2 card to indicate to the host system =
-that the
-> > > +      card supports an independent IO voltage domain for the sideban=
-d signals.
-> > > +      Refer, PCI Express M.2 Specification r4.0, sec 3.1.15.1 for mo=
-re details.
-> > > +    maxItems: 1
+> >> > +$defs:
+> >> > +  partition-node:
+> >> > +    type: object
+> >> > +    if:
+> >> > +      not:
+> >> > +        required: [ compatible ]
+> >> > +    then:
+> >> > +      $ref: '#'
+> >> > +      unevaluatedProperties: false
+> >> > +    else:
+> >> > +      $ref: '#'
+> >>
+> >> This, however, is total blackmagic to me. Would you mind explaining wh=
+at
+> >>
+> >>       $ref: '#'
+> >>
+> >> indicates? Is this a placeholder indicating "a reference must be given=
+?
 > >
-> > What about SDIO and UART WAKE, SDIO RESET, and vendor defined signals?
+> > It's what's known as JSON pointers. The '#' is a reference to the top
+> > level of this schema.
 > >
+> >> Also I do not understand the final else case, what is it covering?
+> >
+> > It's really just there so a $ref to
+> > partition.yaml#/$defs/partition-node applies the schema (all of
+> > partition.yaml) whether there's a compatible property or not.
+> >
+> > This all just works around that a schema like this doesn't work:
+> >
+> > $ref: foo.yaml
+> > if:
+> >   ...
+> > then:
+> >   unevaluatedProperties: false
+> >
+> > The evaluation of unevaluatedProperties doesn't "see" the $ref being
+> > in the parent. So we can't factor out the $ref.
 >
-> Not sure about vendor defined signals as they can be either GPIO or inter=
-face
-> signals. How should them be defined?
+> Oooh, ok, fully understood. I think I already faced that problem
+> before. First time I hear about JSON pointers, thanks a lot for the
+> heads up.
+>
+> Regarding this series, it feels like in the end, if I understood the
+> discussion with Krzysztof correctly, there is no modification to bring?
+> Let me know if you plan on sending a v2 of if I shall take v1 otherwise.
 
-That kind of breaks any notion of this being a generic slot/connector.
-How's the host supposed to know how to connect them? What if a card
-required them to be driven a certain way before you can discover the
-card? If they can be GPIOs and can be hooked up to the host system
-GPIOs, then you should define GPIOs for them. If they aren't GPIOs on
-a host, then you omit them.
+Right, I think v1 is good to go.
 
 Rob
 
