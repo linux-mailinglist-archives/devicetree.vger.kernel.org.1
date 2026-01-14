@@ -1,271 +1,463 @@
-Return-Path: <devicetree+bounces-254870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B4ED1D52F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:01:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8B1ED1D4DC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:59:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 16C0C307F60F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:58:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8FBE93008737
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3034B30E82B;
-	Wed, 14 Jan 2026 08:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E533803C1;
+	Wed, 14 Jan 2026 08:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="oblbZHRN"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CtdXhCD7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA4F635EDA3;
-	Wed, 14 Jan 2026 08:58:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BB137F110
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768381120; cv=none; b=tAQ53zKdIZ+7qrg9YcHLOm04MK9D1VDSpOuz5ZFNfYTgrQBdWDrmJ480mu4eNEz8BfNZXoa0cW6ag4D5kqa05GUhfxvwd9q+UeFYbfcR5idOFJSdB6AKLalk+JGSBvcs+WY1RchtfSTOTQ+gsd+GMduAp1pdvK6X0Z07PO9dKSo=
+	t=1768381157; cv=none; b=FZR7APAzNA10mCce8/MOYeZbh4GNiXIC0QekgW1eij9tqbGkkGVBp+IIR1uevKbltNAqu6f9yevZ8iLL7z1C1ybOySxCZXi+aSZ2oeHaw17Jyqr1JEQDoaBKR3YrTpszc5PhEr/80NXsIYitV5BRlomAxHH0c2gS2idyGwpGEEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768381120; c=relaxed/simple;
-	bh=N72IAqcQh0XyATFUHrnGax0u8hnNPVMit/XqxDzSf+0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Osd2EI66tK8MwlhQDqLBrJ/g8zSinWZgUvBfyh3guOPcs8R8yKtbKOr0bs+wqs9KpKlFPvKiAUjEisGPL6KCf5jL9hOpOEWnm/cEqAz8HsTmXL7l1YceKQ9G+bm9bdZmwrA7WVSFXERmI6TPXFCjK3R4EKlAaQlWocUTmJ4A0To=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=oblbZHRN; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 60E8w9P81633259, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1768381090; bh=N72IAqcQh0XyATFUHrnGax0u8hnNPVMit/XqxDzSf+0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:MIME-Version;
-	b=oblbZHRN42nlkEWde9GLz4xm1GQTnuiBhuYq8bcWTij31mfk4QbWc01bd+up3gvyI
-	 hgXPfoaSaH5c4zvV5uGhlvC6bIsh/3GYT1bUxBDTh6aAQZxN0nBixhhT8A4ljcnE1n
-	 hiDylYcnR3f5PHnzqwzNj3xRx2HMUZdbJNKOTWuMwHdM8LkUERnucs3CYsjeaJP3GF
-	 zliUm1PTpgNsGAPJ34q48b8jI6NJTAvh/vZSFU2+25iE5tErDc29yQIqmmRZLt2Vxl
-	 66HH3MG0qFAQgPTfOxCY2y73Vvm6jG65hBDfmj3GJs18zjJuOMUun0paDPKpcDleJV
-	 FnXb/OuUtnU7A==
-Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 60E8w9P81633259
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 14 Jan 2026 16:58:10 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 14 Jan 2026 16:58:09 +0800
-Received: from RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913]) by
- RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913%10]) with mapi id
- 15.02.1748.010; Wed, 14 Jan 2026 16:58:09 +0800
-From: =?utf-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
-        "mturquette@baylibre.com"
-	<mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        =?utf-8?B?RWRnYXIgTGVlIFvmnY7mib/oq61d?= <cylee12@realtek.com>,
-        =?utf-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>,
-        =?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>,
-        =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= <stanley_chang@realtek.com>
-Subject: RE: [PATCH v2 2/9] clk: realtek: Add basic reset support
-Thread-Topic: [PATCH v2 2/9] clk: realtek: Add basic reset support
-Thread-Index: AQHchH8NCsLT6OZP80af3lithfXkwrVPexuAgAHi3TA=
-Date: Wed, 14 Jan 2026 08:58:09 +0000
-Message-ID: <d143f7291ddc4f6fb5b3c3d15f4ec0e4@realtek.com>
-References: <20260113112333.821-1-eleanor.lin@realtek.com>
-	 <20260113112333.821-3-eleanor.lin@realtek.com>
- <07ba7a3a4325f927fa1db3b0f0af124ea9cd2ee4.camel@pengutronix.de>
-In-Reply-To: <07ba7a3a4325f927fa1db3b0f0af124ea9cd2ee4.camel@pengutronix.de>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1768381157; c=relaxed/simple;
+	bh=alYneXG4Kl+PUCMkLvREjdXsq4e/uGVZBEyuXSPJFH8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=V6IJm5t7p2OG7P/e+HZ3Ua8LWIGUC59csNpHoP4LBPm8GV3xBhB8gLfr/DK2mx2JVbDVChUrUNAVbhVYjNQiVUZDzQBerGzHX8y7lwUJqwlJ36kXVKsOjaGhchSSqb3VMGK/QYIOAogDvIHGxb4Btv3jutVaohBlh1PEvZDnVuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CtdXhCD7; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id E07A94E420CA;
+	Wed, 14 Jan 2026 08:59:09 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B245A6074A;
+	Wed, 14 Jan 2026 08:59:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AAE35103C837F;
+	Wed, 14 Jan 2026 09:59:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768381148; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references:autocrypt;
+	bh=764/c4Amod76UQU+5CMpywB2vKHz4yp6Ft021kUrQzA=;
+	b=CtdXhCD7qavBZyQ9oqDIRvIFtpeK6y87husbympn81pcnT6eA/azlQjTns8Kgnf7HCtAUj
+	OZyM3QviC21htUDch2QoazV/mfle8bolKPl1cb7aJ28qdNN7i9qXMhOtnj/x8Xs08/mwic
+	zXjbRtnjYEx8zlfhPDRMVRq244G1aT9PzgcRUMNy9UCyHv2BivdfPwjrxRti5XH0ANijBs
+	6CecRbupwYjKXLuUQexsr3lhcqMn0mdckSIaA5T/lbtBTHX4ARyREEot7ip5Gy48eE6DJV
+	NLQgmq+koXwxAU+1DVhHEmYx+GVNZGMNUPxnwdC8HB2tDNvWSpQYIet6EN0fag==
+Message-ID: <0c6073253466314acde4394c5b8d3703a59b28b7.camel@bootlin.com>
+Subject: Re: [PATCH 5/8] mfd: aaeon: Add SRG-IMX8PL MCU driver
+From: Thomas Perrot <thomas.perrot@bootlin.com>
+To: Lee Jones <lee@kernel.org>
+Cc: thomas.perrot@bootlin.com, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus
+ Walleij <linusw@kernel.org>,  Bartosz Golaszewski	 <brgl@kernel.org>, Shawn
+ Guo <shawnguo@kernel.org>, Sascha Hauer	 <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,  Fabio Estevam
+ <festevam@gmail.com>, =?ISO-8859-1?Q?J=E9r=E9mie?= Dautheribes
+ <jeremie.dautheribes@bootlin.com>,  Wim Van Sebroeck
+ <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Date: Wed, 14 Jan 2026 09:59:03 +0100
+In-Reply-To: <20260109171431.GE1808297@google.com>
+References: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com>
+	 <20251212-dev-b4-aaeon-mcu-driver-v1-5-6bd65bc8ef12@bootlin.com>
+	 <20260109171431.GE1808297@google.com>
+Autocrypt: addr=thomas.perrot@bootlin.com; prefer-encrypt=mutual;
+ keydata=mQGNBF+/ZOUBDAC2DghCjZvmgYcve02OG7dGZ7Iy58uEwne3LB7w7nRwdAxKw7ZaiVqwY
+ O+yNGVi+GVx7oA6Wn4pv46z+QDRLQiq6OseuXhkSGCg7U/yBCUq12B/GRGO1Qt2Qi1mJJT1s+1qZ5
+ Gxv6Nypz9qKVn94GM2bR1hXBga0t87vBpebThOHmX5d/0dqIcVxRCM7onNb0dDyRoVgLS5rBhQzrL
+ CMrJaCy39xZUy0J1SOlH4Mgk6EhJIPYY4wlzikGX6urg+Tc9EjGd78ry0e0p5U5qgjFR5QGJDy1Gn
+ U3CfwbT9sowdCASDbQDUoltlv2iWJCLa0xl97KVchCa0pr7HKbFA3J5SLKqFYUBCkFL+5WudYlz2n
+ XxiUgyviMQxyK+ij66kEi6/2zFDAecd43pHV7790ptqZBC3Jc67Emj7Vo3ShX6RXPPxxbeCTOF2uk
+ I45aJ9XcVFH/MFE96NjXj8uahnIsiTPyuCUoJu8tj7TSQyue874qJqVQvqlFyt2aZYJZ8ruq8AEQE
+ AAbQpVGhvbWFzIFBlcnJvdCA8dGhvbWFzLnBlcnJvdEBib290bGluLmNvbT6JAc4EEwEIADgCGwMF
+ CwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQSHQHfGpqMKIwOoEiGfwAsFcf4K7QUCX79mdwAKCRCfw
+ AsFcf4K7fhbC/wP0kSl6id2E/K3+UdXk6CLMVRbCFLCREzQs5WFpQ6l/I0WGOamhrOgegdszheiVF
+ orlUP8d37XSpFAqydhKGaN78V5Dps0Wmwm4lIlS4MtQXJtSLUHXDJLIZLW0pw8tiPLKsd1o/yDkXE
+ dnpsjJTRG6SdDSHnyOB2/gh4p+yTaLytFdARk/r4/P26+L+FiH0fFl+RnBt19LPklfKgeDc7GwIif
+ ja+nIWpp3W23DAUuI6xduEut25Q89yu7Ci8CliLfAiLy9bIGjBQWU2Y+1/j/7KuPj6VbBsZWLTZY0
+ hUmpJSTnWAqc9SMsNxo7NSQuddgviz5e2tqucaRqxP02FGzNa8U4NAKdWaXrlHG5Dglj9XH0DK+SH
+ +c96qqFewYD8VPQ6XAGxQcXbrtJmiMor1R2DfziispLRvJcfYs8xqabbCtoS3ouXB9XRi8hn7A2kh
+ ME1ryS+Oh63JshXHnw6bmjCpVd/p+fGLIGU6A47pJOpviKR4jEO84pl2ejtDZ3Tc=
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-kiPaB+C8pSildM/wevlA"
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Last-TLS-Session-Version: TLSv1.3
 
-SGksIFBoaWxpcHAsDQpUaGFua3MgZm9yIHlvdXIgcmV2aWV3IQ0KDQo+IE9uIERpLCAyMDI2LTAx
-LTEzIGF0IDE5OjIzICswODAwLCBZdS1DaHVuIExpbiB3cm90ZToNCj4gPiBGcm9tOiBDaGVuZy1Z
-dSBMZWUgPGN5bGVlMTJAcmVhbHRlay5jb20+DQo+ID4NCj4gPiBEZWZpbmUgdGhlIHJlc2V0IG9w
-ZXJhdGlvbnMgYmFja2VkIGJ5IGEgcmVnbWFwLWJhc2VkIHJlZ2lzdGVyDQo+ID4gaW50ZXJmYWNl
-IGFuZCBwcmVwYXJlIHRoZSByZXNldCBjb250cm9sbGVyIHRvIGJlIHJlZ2lzdGVyZWQgdGhyb3Vn
-aA0KPiA+IHRoZSByZXNldCBmcmFtZXdvcmsuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaGVu
-Zy1ZdSBMZWUgPGN5bGVlMTJAcmVhbHRlay5jb20+DQo+ID4gQ28tZGV2ZWxvcGVkLWJ5OiBZdS1D
-aHVuIExpbiA8ZWxlYW5vci5saW5AcmVhbHRlay5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogWXUt
-Q2h1biBMaW4gPGVsZWFub3IubGluQHJlYWx0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+IENoYW5nZXMg
-aW4gdjI6DQo+ID4gLSBBZGRlZCBtaXNzaW5nIENvLWRldmVsb3BlZC1ieSB0YWcuDQo+ID4gLSBB
-ZGRlZCBtaXNzaW5nIG1haW50YWluZXIgZW50cnkgZm9yIGRyaXZlci9jbGsuDQo+ID4gLSBSZW1v
-dmVkIGV4cGxpY2l0IG9mX3hsYXRlL29mX3Jlc2V0X25fY2VsbHMgYXNzaWdubWVudCBhcyBpdCBt
-YXRjaGVzDQo+IGRlZmF1bHRzLg0KPiA+IC0gQWRkZWQgZXJyb3IgaGFuZGxpbmcgZm9yIHJ0a19y
-ZXNldF9yZWFkKCkgcmV0dXJuIHZhbHVlDQo+ID4gLS0tDQo+ID4gIE1BSU5UQUlORVJTICAgICAg
-ICAgICAgICAgICAgfCAgIDEgKw0KPiA+ICBkcml2ZXJzL2Nsay9LY29uZmlnICAgICAgICAgIHwg
-ICAxICsNCj4gPiAgZHJpdmVycy9jbGsvTWFrZWZpbGUgICAgICAgICB8ICAgMSArDQo+ID4gIGRy
-aXZlcnMvY2xrL3JlYWx0ZWsvS2NvbmZpZyAgfCAgMjggKysrKysrKysNCj4gPiAgZHJpdmVycy9j
-bGsvcmVhbHRlay9NYWtlZmlsZSB8ICAgNCArKw0KPiA+ICBkcml2ZXJzL2Nsay9yZWFsdGVrL3Jl
-c2V0LmMgIHwgMTI1DQo+ID4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4g
-PiAgZHJpdmVycy9jbGsvcmVhbHRlay9yZXNldC5oICB8ICAzNiArKysrKysrKysrDQo+ID4gIDcg
-ZmlsZXMgY2hhbmdlZCwgMTk2IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
-IGRyaXZlcnMvY2xrL3JlYWx0ZWsvS2NvbmZpZyAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gZHJp
-dmVycy9jbGsvcmVhbHRlay9NYWtlZmlsZSAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gZHJpdmVy
-cy9jbGsvcmVhbHRlay9yZXNldC5jICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gPiBkcml2ZXJzL2Ns
-ay9yZWFsdGVrL3Jlc2V0LmgNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9NQUlOVEFJTkVSUyBiL01B
-SU5UQUlORVJTIGluZGV4DQo+ID4gNjZjMGY0OTI0YzFlLi5kZTc3MmUwMDI2ZGUgMTAwNjQ0DQo+
-ID4gLS0tIGEvTUFJTlRBSU5FUlMNCj4gPiArKysgYi9NQUlOVEFJTkVSUw0KPiA+IEBAIC0yMTk3
-NSw2ICsyMTk3NSw3IEBAIEw6ICAgIGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+ID4gIEw6
-ICAgbGludXgtY2xrQHZnZXIua2VybmVsLm9yZw0KPiA+ICBTOiAgIFN1cHBvcnRlZA0KPiA+ICBG
-OiAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9yZWFsdGVrKg0KPiA+
-ICtGOiAgIGRyaXZlcnMvY2xrL3JlYWx0ZWsvKg0KPiA+ICBGOiAgIGluY2x1ZGUvZHQtYmluZGlu
-Z3MvY2xvY2svcmVhbHRlayoNCj4gPg0KPiA+ICBSRUFMVEVLIFNQSS1OQU5EDQo+ID4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvY2xrL0tjb25maWcgYi9kcml2ZXJzL2Nsay9LY29uZmlnIGluZGV4DQo+
-ID4gM2ExNjExMDA4ZTQ4Li4yZjJjYWNmODdjMzggMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9j
-bGsvS2NvbmZpZw0KPiA+ICsrKyBiL2RyaXZlcnMvY2xrL0tjb25maWcNCj4gPiBAQCAtNTMwLDYg
-KzUzMCw3IEBAIHNvdXJjZSAiZHJpdmVycy9jbGsvbnV2b3Rvbi9LY29uZmlnIg0KPiA+ICBzb3Vy
-Y2UgImRyaXZlcnMvY2xrL3Bpc3RhY2hpby9LY29uZmlnIg0KPiA+ICBzb3VyY2UgImRyaXZlcnMv
-Y2xrL3Fjb20vS2NvbmZpZyINCj4gPiAgc291cmNlICJkcml2ZXJzL2Nsay9yYWxpbmsvS2NvbmZp
-ZyINCj4gPiArc291cmNlICJkcml2ZXJzL2Nsay9yZWFsdGVrL0tjb25maWciDQo+ID4gIHNvdXJj
-ZSAiZHJpdmVycy9jbGsvcmVuZXNhcy9LY29uZmlnIg0KPiA+ICBzb3VyY2UgImRyaXZlcnMvY2xr
-L3JvY2tjaGlwL0tjb25maWciDQo+ID4gIHNvdXJjZSAiZHJpdmVycy9jbGsvc2Ftc3VuZy9LY29u
-ZmlnIg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Nsay9NYWtlZmlsZSBiL2RyaXZlcnMvY2xr
-L01ha2VmaWxlIGluZGV4DQo+ID4gNjFlYzA4NDA0NDQyLi4wNzVhMWM0MTBiOTAgMTAwNjQ0DQo+
-ID4gLS0tIGEvZHJpdmVycy9jbGsvTWFrZWZpbGUNCj4gPiArKysgYi9kcml2ZXJzL2Nsay9NYWtl
-ZmlsZQ0KPiA+IEBAIC0xNDEsNiArMTQxLDcgQEAgb2JqLSQoQ09ORklHX0NPTU1PTl9DTEtfUElT
-VEFDSElPKQ0KPiArPSBwaXN0YWNoaW8vDQo+ID4gIG9iai0kKENPTkZJR19DT01NT05fQ0xLX1BY
-QSkgICAgICAgICArPSBweGEvDQo+ID4gIG9iai0kKENPTkZJR19DT01NT05fQ0xLX1FDT00pICAg
-ICAgICAgICAgICAgICs9IHFjb20vDQo+ID4gIG9iai15ICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICs9IHJhbGluay8NCj4gPiArb2JqLSQoQ09ORklHX0NPTU1PTl9DTEtf
-UkVBTFRFSykgICAgICs9IHJlYWx0ZWsvDQo+ID4gIG9iai15ICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICs9IHJlbmVzYXMvDQo+ID4gIG9iai0kKENPTkZJR19BUkNIX1JP
-Q0tDSElQKSAgICAgICAgICArPSByb2NrY2hpcC8NCj4gPiAgb2JqLSQoQ09ORklHX0NPTU1PTl9D
-TEtfU0FNU1VORykgICAgICs9IHNhbXN1bmcvDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvY2xr
-L3JlYWx0ZWsvS2NvbmZpZyBiL2RyaXZlcnMvY2xrL3JlYWx0ZWsvS2NvbmZpZw0KPiA+IG5ldyBm
-aWxlIG1vZGUgMTAwNjQ0IGluZGV4IDAwMDAwMDAwMDAwMC4uMTIxMTU4ZjExZGQxDQo+ID4gLS0t
-IC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvY2xrL3JlYWx0ZWsvS2NvbmZpZw0KPiA+IEBA
-IC0wLDAgKzEsMjggQEANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1v
-bmx5IGNvbmZpZyBDT01NT05fQ0xLX1JFQUxURUsNCj4gPiArICAgICBib29sICJDbG9jayBkcml2
-ZXIgZm9yIFJlYWx0ZWsgU29DcyINCj4gPiArICAgICBkZXBlbmRzIG9uIEFSQ0hfUkVBTFRFSyB8
-fCBDT01QSUxFX1RFU1QNCj4gPiArICAgICBzZWxlY3QgTUZEX1NZU0NPTg0KPiA+ICsgICAgIGRl
-ZmF1bHQgeQ0KPiA+ICsgICAgIGhlbHANCj4gPiArICAgICAgIEVuYWJsZSB0aGUgY29tbW9uIGNs
-b2NrIGZyYW1ld29yayBpbmZyYXN0cnVjdHVyZSBmb3IgUmVhbHRlaw0KPiA+ICsgICAgICAgc3lz
-dGVtLW9uLWNoaXAgcGxhdGZvcm1zLg0KPiA+ICsNCj4gPiArICAgICAgIFRoaXMgcHJvdmlkZXMg
-dGhlIGJhc2Ugc3VwcG9ydCByZXF1aXJlZCBieSBpbmRpdmlkdWFsIFJlYWx0ZWsNCj4gPiArICAg
-ICAgIGNsb2NrIGNvbnRyb2xsZXIgZHJpdmVycyB0byBleHBvc2UgY2xvY2tzIHRvIHBlcmlwaGVy
-YWwgZGV2aWNlcy4NCj4gPiArDQo+ID4gKyAgICAgICBJZiB5b3UgaGF2ZSBhIFJlYWx0ZWstYmFz
-ZWQgcGxhdGZvcm0sIHNheSBZLg0KPiA+ICsNCj4gPiAraWYgQ09NTU9OX0NMS19SRUFMVEVLDQo+
-ID4gKw0KPiA+ICtjb25maWcgUlRLX0NMS19DT01NT04NCj4gPiArICAgICB0cmlzdGF0ZSAiUmVh
-bHRlayBDbG9jayBDb21tb24iDQo+ID4gKyAgICAgc2VsZWN0IFJFU0VUX0NPTlRST0xMRVINCj4g
-PiArICAgICBoZWxwDQo+ID4gKyAgICAgICBDb21tb24gaGVscGVyIGNvZGUgc2hhcmVkIGJ5IFJl
-YWx0ZWsgY2xvY2sgY29udHJvbGxlciBkcml2ZXJzLg0KPiA+ICsNCj4gPiArICAgICAgIFRoaXMg
-cHJvdmlkZXMgdXRpbGl0eSBmdW5jdGlvbnMgYW5kIGRhdGEgc3RydWN0dXJlcyB1c2VkIGJ5DQo+
-ID4gKyAgICAgICBtdWx0aXBsZSBSZWFsdGVrIGNsb2NrIGltcGxlbWVudGF0aW9ucywgYW5kIGlu
-Y2x1ZGUgaW50ZWdyYXRpb24NCj4gPiArICAgICAgIHdpdGggcmVzZXQgY29udHJvbGxlcnMgd2hl
-cmUgcmVxdWlyZWQuDQo+ID4gKw0KPiA+ICtlbmRpZg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2Nsay9yZWFsdGVrL01ha2VmaWxlDQo+ID4gYi9kcml2ZXJzL2Nsay9yZWFsdGVrL01ha2VmaWxl
-IG5ldyBmaWxlIG1vZGUgMTAwNjQ0IGluZGV4DQo+ID4gMDAwMDAwMDAwMDAwLi41MjI2N2RlMmVl
-ZjQNCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVycy9jbGsvcmVhbHRlay9NYWtl
-ZmlsZQ0KPiA+IEBAIC0wLDAgKzEsNCBAQA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVy
-OiBHUEwtMi4wLW9ubHkNCj4gPiArb2JqLSQoQ09ORklHX1JUS19DTEtfQ09NTU9OKSArPSBjbGst
-cnRrLm8NCj4gPiArDQo+ID4gK2Nsay1ydGsteSArPSByZXNldC5vDQo+ID4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvY2xrL3JlYWx0ZWsvcmVzZXQuYyBiL2RyaXZlcnMvY2xrL3JlYWx0ZWsvcmVzZXQu
-Yw0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0IGluZGV4IDAwMDAwMDAwMDAwMC4uMGJhMGQ0Njgx
-MWQ0DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvY2xrL3JlYWx0ZWsvcmVz
-ZXQuYw0KPiA+IEBAIC0wLDAgKzEsMTI1IEBADQo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlm
-aWVyOiBHUEwtMi4wLW9ubHkNCj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0IChDKSAyMDE5IFJl
-YWx0ZWsgU2VtaWNvbmR1Y3RvciBDb3Jwb3JhdGlvbiAgKi8NCj4gPiArDQo+ID4gKyNpbmNsdWRl
-IDxsaW51eC9vZi5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvZGV2aWNlLmg+DQo+ID4gKyNpbmNs
-dWRlICJyZXNldC5oIg0KPiA+ICsNCj4gPiArI2RlZmluZSBSVEtfUkVTRVRfQkFOS19TSElGVCAg
-ICAgICAgIDgNCj4gPiArI2RlZmluZSBSVEtfUkVTRVRfSURfTUFTSyAgICAgICAgICAgIDB4ZmYN
-Cj4gDQo+IFdoeSBhcmUgdGhlcmUgMjU2IHBvc3NpYmxlIGlkcyBwZXIgYmFuaz8gRWFjaCBiYW5r
-IGlzIG9ubHkgYSAzMi1iaXQgcmVnaXN0ZXIsDQo+IGNvbnRhaW5pbmcgMzIgKG9yIGluIHRoZSBj
-YXNlIG9mIHdyaXRlX2VuKSAxNiByZXNldCBjb250cm9scy4NCj4gDQoNCllvdSBhcmUgcmlnaHQu
-IFVzaW5nIDI1NiBJRHMgcGVyIGJhbmsgY3JlYXRlcyBhIHNwYXJzZSBJRCBtYXAgd2l0aCB1bm5l
-Y2Vzc2FyeSBob2xlcy4NCldlIHBsYW4gdG8gY2hhbmdlIHRoZSBzdHJpZGUgdG8gMzIgKDw8IDUp
-LiBXaXRoIHRoaXMgY2hhbmdlLCBucl9yZXNldHMgd2lsbCBzaW1wbHkNCmJlIG51bV9iYW5rcyAq
-IDMyLg0KDQo+ID4gKyNkZWZpbmUgdG9fcnRrX3Jlc2V0X2NvbnRyb2xsZXIocikgY29udGFpbmVy
-X29mKHIsIHN0cnVjdA0KPiA+ICtydGtfcmVzZXRfZGF0YSwgcmNkZXYpDQo+IA0KPiBQbGVhc2Ug
-bWFrZSB0aGlzIGFuIGlubGluZSBmdW5jdGlvbi4NCj4gDQoNCkkgd2lsbCBmaXggaXQgaW4gdjMu
-DQoNCj4gPiArc3RhdGljIGlubGluZSBzdHJ1Y3QgcnRrX3Jlc2V0X2JhbmsgKiBydGtfcmVzZXRf
-Z2V0X2Jhbmsoc3RydWN0DQo+ID4gK3J0a19yZXNldF9kYXRhICpkYXRhLCB1bnNpZ25lZCBsb25n
-IGlkeCkgew0KPiA+ICsgICAgIGludCBiYW5rX2lkID0gaWR4ID4+IFJUS19SRVNFVF9CQU5LX1NI
-SUZUOw0KPiA+ICsNCj4gPiArICAgICByZXR1cm4gJmRhdGEtPmJhbmtzW2JhbmtfaWRdOw0KPiA+
-ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW5saW5lIGludCBydGtfcmVzZXRfZ2V0X2lkKHN0cnVj
-dCBydGtfcmVzZXRfZGF0YSAqZGF0YSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICB1bnNpZ25lZCBsb25nIGlkeCkgew0KPiA+ICsgICAgIHJldHVybiBpZHggJiBSVEtfUkVT
-RVRfSURfTUFTSzsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBydGtfcmVzZXRfdXBk
-YXRlX2JpdHMoc3RydWN0IHJ0a19yZXNldF9kYXRhICpkYXRhLCB1MzIgb2Zmc2V0LA0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1MzIgbWFzaywgdTMyIHZhbCkgew0KPiA+ICsg
-ICAgIGludCByZXQ7DQo+ID4gKw0KPiA+ICsgICAgIHJldCA9IHJlZ21hcF91cGRhdGVfYml0cyhk
-YXRhLT5yZWdtYXAsIG9mZnNldCwgbWFzaywgdmFsKTsNCj4gPiArICAgICByZXR1cm4gcmV0Ow0K
-PiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IHJ0a19yZXNldF9yZWFkKHN0cnVjdCBydGtf
-cmVzZXRfZGF0YSAqZGF0YSwgdTMyIG9mZnNldCwNCj4gPiArdTMyICp2YWwpIHsNCj4gPiArICAg
-ICBpbnQgcmV0Ow0KPiA+ICsNCj4gPiArICAgICByZXQgPSByZWdtYXBfcmVhZChkYXRhLT5yZWdt
-YXAsIG9mZnNldCwgdmFsKTsNCj4gPiArICAgICByZXR1cm4gcmV0Ow0KPiA+ICt9DQo+IA0KPiBU
-aGUgbG9jYWwgdmFyaWFibGUgcmV0IGlzIHN1cGVyZmx1b3VzLiBBbmQgd2h5IG5vdCB1c2UNCj4g
-cmVnbWFwX3JlYWQvdXBkYXRlX2JpdHMoKSBkaXJlY3RseSBiZWxvdz8NCj4gDQoNCkkgd2lsbCBk
-cm9wIHRoZSBmdW5jdGlvbi4NCg0KPiA+ICsNCj4gPiArc3RhdGljIGludCBydGtfcmVzZXRfYXNz
-ZXJ0KHN0cnVjdCByZXNldF9jb250cm9sbGVyX2RldiAqcmNkZXYsDQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICB1bnNpZ25lZCBsb25nIGlkeCkgew0KPiA+ICsgICAgIHN0cnVjdCBydGtf
-cmVzZXRfZGF0YSAqZGF0YSA9IHRvX3J0a19yZXNldF9jb250cm9sbGVyKHJjZGV2KTsNCj4gPiAr
-ICAgICBzdHJ1Y3QgcnRrX3Jlc2V0X2JhbmsgKmJhbmsgPSBydGtfcmVzZXRfZ2V0X2JhbmsoZGF0
-YSwgaWR4KTsNCj4gPiArICAgICB1MzIgaWQgPSBydGtfcmVzZXRfZ2V0X2lkKGRhdGEsIGlkeCk7
-DQo+ID4gKyAgICAgdTMyIG1hc2sgPSBiYW5rLT53cml0ZV9lbiA/ICgweDMgPDwgaWQpIDogQklU
-KGlkKTsNCj4gPiArICAgICB1MzIgdmFsID0gYmFuay0+d3JpdGVfZW4gPyAoMHgyIDw8IGlkKSA6
-IDA7DQo+IA0KPiBJJ2QgdXNlIFVMKDB4MykgLyBVTCgweDIpIHRvIGF2b2lkIFVCIHdoZW4gY29t
-cGlsaW5nIGZvciAzMi1iaXQuDQo+IA0KDQpJIHdpbGwgYXBwbHkgVUwoKSBhcyBzdWdnZXN0ZWQu
-DQoNCj4gT25seSBldmVuIGlkcyBhcmUgYWxsb3dlZCBmb3IgYmFua3Mgd2l0aCB3cml0ZV9lbiBz
-ZXQ/DQo+IA0KDQpZZXMsIGZvciBiYW5rcyB3aXRoIHdyaXRlX2VuLCB0aGUgaGFyZHdhcmUgbGF5
-b3V0IHVzZXMgMiBiaXRzIHBlciBjb250cm9sIChCaXQgTiBmb3INCnJlc2V0LCBCaXQgTisxIGZv
-ciBlbmFibGUpLg0KDQo+ID4gKw0KPiA+ICsgICAgIHJldHVybiBydGtfcmVzZXRfdXBkYXRlX2Jp
-dHMoZGF0YSwgYmFuay0+b2ZzLCBtYXNrLCB2YWwpOyB9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50
-IHJ0a19yZXNldF9kZWFzc2VydChzdHJ1Y3QgcmVzZXRfY29udHJvbGxlcl9kZXYgKnJjZGV2LA0K
-PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBsb25nIGlkeCkgew0KPiA+
-ICsgICAgIHN0cnVjdCBydGtfcmVzZXRfZGF0YSAqZGF0YSA9IHRvX3J0a19yZXNldF9jb250cm9s
-bGVyKHJjZGV2KTsNCj4gPiArICAgICBzdHJ1Y3QgcnRrX3Jlc2V0X2JhbmsgKmJhbmsgPSBydGtf
-cmVzZXRfZ2V0X2JhbmsoZGF0YSwgaWR4KTsNCj4gPiArICAgICB1MzIgaWQgPSBydGtfcmVzZXRf
-Z2V0X2lkKGRhdGEsIGlkeCk7DQo+ID4gKyAgICAgdTMyIG1hc2sgPSBiYW5rLT53cml0ZV9lbiA/
-ICgweDMgPDwgaWQpIDogQklUKGlkKTsNCj4gPiArICAgICB1MzIgdmFsID0gbWFzazsNCj4gPiAr
-DQo+ID4gKyAgICAgcmV0dXJuIHJ0a19yZXNldF91cGRhdGVfYml0cyhkYXRhLCBiYW5rLT5vZnMs
-IG1hc2ssIHZhbCk7IH0NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgcnRrX3Jlc2V0X3Jlc2V0KHN0
-cnVjdCByZXNldF9jb250cm9sbGVyX2RldiAqcmNkZXYsDQo+ID4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgIHVuc2lnbmVkIGxvbmcgaWR4KSB7DQo+ID4gKyAgICAgaW50IHJldDsNCj4gPiArDQo+
-ID4gKyAgICAgcmV0ID0gcnRrX3Jlc2V0X2Fzc2VydChyY2RldiwgaWR4KTsNCj4gPiArICAgICBp
-ZiAocmV0KQ0KPiA+ICsgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiArICAgICByZXR1cm4g
-cnRrX3Jlc2V0X2RlYXNzZXJ0KHJjZGV2LCBpZHgpOyB9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50
-IHJ0a19yZXNldF9zdGF0dXMoc3RydWN0IHJlc2V0X2NvbnRyb2xsZXJfZGV2ICpyY2RldiwNCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIGxvbmcgaWR4KSB7DQo+ID4gKyAg
-ICAgc3RydWN0IHJ0a19yZXNldF9kYXRhICpkYXRhID0gdG9fcnRrX3Jlc2V0X2NvbnRyb2xsZXIo
-cmNkZXYpOw0KPiA+ICsgICAgIHN0cnVjdCBydGtfcmVzZXRfYmFuayAqYmFuayA9ICZkYXRhLT5i
-YW5rc1tpZHggPj4NCj4gUlRLX1JFU0VUX0JBTktfU0hJRlRdOw0KPiA+ICsgICAgIHUzMiBpZCA9
-IGlkeCAmIFJUS19SRVNFVF9JRF9NQVNLOw0KPiA+ICsgICAgIHUzMiB2YWw7DQo+ID4gKyAgICAg
-aW50IHJldDsNCj4gPiArDQo+ID4gKyAgICAgcmV0ID0gcnRrX3Jlc2V0X3JlYWQoZGF0YSwgYmFu
-ay0+b2ZzLCAmdmFsKTsNCj4gPiArICAgICBpZiAocmV0KQ0KPiA+ICsgICAgICAgICAgICAgcmV0
-dXJuIHJldDsNCj4gPiArDQo+ID4gKyAgICAgcmV0dXJuICEoKHZhbCA+PiBpZCkgJiAxKTsNCj4g
-PiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCByZXNldF9jb250cm9sX29wcyBy
-dGtfcmVzZXRfb3BzID0gew0KPiA+ICsgICAgIC5yZXNldCAgICA9IHJ0a19yZXNldF9yZXNldCwN
-Cj4gPiArICAgICAuYXNzZXJ0ICAgPSBydGtfcmVzZXRfYXNzZXJ0LA0KPiA+ICsgICAgIC5kZWFz
-c2VydCA9IHJ0a19yZXNldF9kZWFzc2VydCwNCj4gPiArICAgICAuc3RhdHVzICAgPSBydGtfcmVz
-ZXRfc3RhdHVzLA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAraW50IHJ0a19yZXNldF9jb250cm9sbGVy
-X2FkZChzdHJ1Y3QgZGV2aWNlICpkZXYsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
-c3RydWN0IHJ0a19yZXNldF9pbml0ZGF0YSAqaW5pdGRhdGEpIHsNCj4gPiArICAgICBzdHJ1Y3Qg
-cnRrX3Jlc2V0X2RhdGEgKmRhdGE7DQo+ID4gKw0KPiA+ICsgICAgIGRhdGEgPSBkZXZtX2t6YWxs
-b2MoZGV2LCBzaXplb2YoKmRhdGEpLCBHRlBfS0VSTkVMKTsNCj4gPiArICAgICBpZiAoIWRhdGEp
-DQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gLUVOT01FTTsNCj4gPiArDQo+ID4gKyAgICAgZGF0
-YS0+ZGV2ID0gZGV2Ow0KPiA+ICsgICAgIGRhdGEtPm51bV9iYW5rcyA9IGluaXRkYXRhLT5udW1f
-YmFua3M7DQo+ID4gKyAgICAgZGF0YS0+YmFua3MgPSBpbml0ZGF0YS0+YmFua3M7DQo+ID4gKyAg
-ICAgZGF0YS0+cmVnbWFwID0gaW5pdGRhdGEtPnJlZ21hcDsNCj4gPiArICAgICBkYXRhLT5yY2Rl
-di5vd25lciA9IFRISVNfTU9EVUxFOw0KPiA+ICsgICAgIGRhdGEtPnJjZGV2Lm9wcyA9ICZydGtf
-cmVzZXRfb3BzOw0KPiA+ICsgICAgIGRhdGEtPnJjZGV2LmRldiA9IGRldjsNCj4gPiArICAgICBk
-YXRhLT5yY2Rldi5vZl9ub2RlID0gZGV2LT5vZl9ub2RlOw0KPiA+ICsgICAgIGRhdGEtPnJjZGV2
-Lm5yX3Jlc2V0cyA9IGluaXRkYXRhLT5udW1fYmFua3MgKiAweDEwMDsNCj4gDQo+IFRoaXMgaXMg
-bWlzbGVhZGluZy4gU3VyZWx5IHRoZXJlJ3Mgbm90IG51bV9iYW5rcyAqIDI1NiByZXNldHMsIHNp
-bmNlIGVhY2ggYmFuaw0KPiBjYW4gb25seSBjYXJyeSAxNiBvciAzMiByZXNldHMuIEl0J2QgcHJv
-YmFibHkgYmV0dGVyIHRvIG5vdCB1c2UgbnJfcmVzZXRzIGF0IGFsbA0KPiBhbmQgaW1wbGVtZW50
-IHlvdXIgb3duIG9mX3hsYXRlLg0KPiANCj4gDQo+IHJlZ2FyZHMNCj4gUGhpbGlwcA0KDQpBcyBt
-ZW50aW9uZWQgYWJvdmUsIGJ5IGNoYW5naW5nIHRoZSBzaGlmdCB0byA1LCBucl9yZXNldHMgYmVj
-b21lcyBudW1fYmFua3MgKiAzMi4NClNpbmNlIHRoZSBtYXBwaW5nIGJlY29tZXMgbGluZWFyLCBX
-ZSBiZWxpZXZlIG9mX3Jlc2V0X3NpbXBsZV94bGF0ZSBpcyBzdGlsbCBzdWl0YWJsZS4NCg0KQmVz
-dCBSZWdhcmRzLA0KWXUtQ2h1bg0K
+
+--=-kiPaB+C8pSildM/wevlA
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Lee,
+
+On Fri, 2026-01-09 at 17:14 +0000, Lee Jones wrote:
+> On Fri, 12 Dec 2025, Thomas Perrot (Schneider Electric) wrote:
+>=20
+> > Add Multi-Function Device (MFD) driver for the Aaeon SRG-IMX8PL
+>=20
+> Drop all mentions of MFD.=C2=A0 It's not a real thing - we made it up.
+>=20
+> > embedded controller. This driver provides the core I2C
+> > communication
+> > interface and registers child devices (GPIO and watchdog
+> > controllers).
+> >=20
+> > The MCU firmware version is queried during probe and logged for
+> > diagnostic purposes. All I2C transactions are serialized using a
+> > mutex
+> > to ensure proper communication with the microcontroller.
+> >=20
+> > Co-developed-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric)
+> > <jeremie.dautheribes@bootlin.com>
+> > Signed-off-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric)
+> > <jeremie.dautheribes@bootlin.com>
+> > Signed-off-by: Thomas Perrot (Schneider Electric)
+> > <thomas.perrot@bootlin.com>
+> > ---
+> > =C2=A0drivers/mfd/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 10 ++++
+> > =C2=A0drivers/mfd/aaeon-mcu.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 133
+> > ++++++++++++++++++++++++++++++++++++++++++
+> > =C2=A0include/linux/mfd/aaeon-mcu.h |=C2=A0 30 ++++++++++
+> > =C2=A03 files changed, 173 insertions(+)
+> >=20
+> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > index
+> > aace5766b38aa5e46e32a8a7b42eea238159fbcf..9195115c7bcd619439cb9ff71
+> > d70e46629291867 100644
+> > --- a/drivers/mfd/Kconfig
+> > +++ b/drivers/mfd/Kconfig
+> > @@ -1574,6 +1574,16 @@ config AB8500_CORE
+> > =C2=A0	=C2=A0 the irq_chip parts for handling the Mixed Signal chip
+> > events.
+> > =C2=A0	=C2=A0 This chip embeds various other multimedia
+> > functionalities as well.
+> > =C2=A0
+> > +config MFD_AAEON_MCU
+> > +	tristate "Aaeon SRG-IMX8PL MCU Driver"
+> > +	depends on I2C
+> > +	select MFD_CORE
+> > +	help
+> > +	=C2=A0 Select this option to enable support for the Aaeon SRG-
+> > IMX8PL
+> > +	=C2=A0 onboard microcontroller (MCU). This driver provides the
+> > core
+> > +	=C2=A0 functionality to communicate with the MCU over I2C. The
+> > MCU
+> > +	=C2=A0 provides various sub-devices including GPIO and watchdog
+> > controllers.
+>=20
+> Is that an exhaustive list of sub-devices?
+>=20
+> > =C2=A0config MFD_DB8500_PRCMU
+> > =C2=A0	bool "ST-Ericsson DB8500 Power Reset Control Management
+> > Unit"
+> > =C2=A0	depends on UX500_SOC_DB8500
+> > diff --git a/drivers/mfd/aaeon-mcu.c b/drivers/mfd/aaeon-mcu.c
+> > new file mode 100644
+> > index
+> > 0000000000000000000000000000000000000000..472d44d5e8627f46806015599
+> > 542753a5bda4526
+> > --- /dev/null
+> > +++ b/drivers/mfd/aaeon-mcu.c
+> > @@ -0,0 +1,133 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Aaeon MCU MFD driver
+>=20
+> Not MFD - describe the actual device.
+>=20
+> > + *
+> > + * Copyright (C) 2025 Bootlin
+>=20
+> Has it been agreed that you would hold the copyright to this?
+>=20
+
+Yes, we would like to retain the copyright.
+
+> > + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.=
+com>
+> > + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
+> > + */
+> > +
+> > +#include <linux/err.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/mfd/core.h>
+> > +#include <linux/mfd/aaeon-mcu.h>
+>=20
+> Alphabetical.
+>=20
+> > +#define AAEON_MCU_GET_FW_VERSION 0x76
+>=20
+> Is that what the register is called in the datasheet?
+>=20
+> The GET part is odd.
+
+There isn't a datasheet; the driver was written using reverse
+engineering.
+
+I will rename it to AAEON_MCU_FW_VERSION.
+
+>=20
+> > +static struct mfd_cell aaeon_mcu_devs[] =3D {
+> > +	{
+> > +		.name =3D "aaeon-mcu-wdt",
+> > +		.of_compatible =3D "aaeon,srg-imx8pl-wdt",
+> > +	},
+> > +	{
+> > +		.name =3D "aaeon-mcu-gpio",
+> > +		.of_compatible =3D "aaeon,srg-imx8pl-gpio",
+> > +	},
+> > +};
+> > +
+> > +static int aaeon_mcu_print_fw_version(struct i2c_client *client)
+> > +{
+> > +	u8 cmd[3], version[2];
+> > +	int ret;
+> > +
+> > +	/* Major version number */
+> > +	cmd[0] =3D AAEON_MCU_GET_FW_VERSION;
+> > +	cmd[1] =3D 0x00;
+> > +	cmd[2] =3D 0x00;
+> > +
+> > +	ret =3D aaeon_mcu_i2c_xfer(client, cmd, 3, &version[0], 1);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	/* Minor version number */
+> > +	cmd[0] =3D AAEON_MCU_GET_FW_VERSION;
+> > +	cmd[1] =3D 0x01;
+> > +	/* cmd[2] =3D 0x00; */
+> > +
+> > +	ret =3D aaeon_mcu_i2c_xfer(client, cmd, 3, &version[1], 1);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	dev_info(&client->dev, "firmware version: v%d.%d\n",
+> > +		 version[0], version[1]);
+>=20
+> What do you expect a user to do with this information?
+>=20
+
+I believe this information can be useful, as there may be different
+firmware versions, potentially leading to varying behaviors or bugs.
+This will help us determine how to extend the driver to implement
+specific quirks or features based on the firmware version.
+
+> Let's cut the debug cruft - you can add it again locally if you need
+> to debug.
+>=20
+> > +
+> > +	return 0;
+> > +}
+>=20
+> Besides providing a questionable print, you don't seem to be doing
+> anything with this information - is it needed at all?
+
+This information isn't required for now, but it can be useful if
+different behavior is observed in the field for products using
+different firmware versions.
+
+>=20
+> > +static int aaeon_mcu_probe(struct i2c_client *client)
+> > +{
+> > +	struct aaeon_mcu_dev *mcu;
+> > +	int ret;
+> > +
+> > +	mcu =3D devm_kzalloc(&client->dev, sizeof(*mcu),
+> > GFP_KERNEL);
+> > +	if (!mcu)
+> > +		return -ENOMEM;
+> > +
+> > +	i2c_set_clientdata(client, mcu);
+>=20
+> > +	mcu->dev =3D &client->dev;
+> > +	mcu->i2c_client =3D client;
+>=20
+> How do you expect to be able to 'get' this data back if you do not
+> have
+> the 'dev' or the 'client'?
+
+Thank you. I will remove the client and use to_i2c_client() instead.
+
+>=20
+> > +	mutex_init(&mcu->i2c_lock);
+> > +
+> > +	ret =3D aaeon_mcu_print_fw_version(client);
+> > +	if (ret) {
+> > +		dev_err(&client->dev, "unable to read firmware
+> > version\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	return devm_mfd_add_devices(mcu->dev, PLATFORM_DEVID_NONE,
+> > aaeon_mcu_devs,
+> > +				=C2=A0=C2=A0=C2=A0 ARRAY_SIZE(aaeon_mcu_devs),
+> > NULL, 0, NULL);
+> > +}
+> > +
+> > +int aaeon_mcu_i2c_xfer(struct i2c_client *client,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const u8 *cmd, int cmd_len,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u8 *rsp, int rsp_len)
+> > +{
+> > +	struct aaeon_mcu_dev *mcu =3D i2c_get_clientdata(client);
+> > +	int ret;
+> > +
+> > +	mutex_lock(&mcu->i2c_lock);
+> > +
+> > +	ret =3D i2c_master_send(client, cmd, cmd_len);
+> > +	if (ret < 0)
+> > +		goto unlock;
+> > +
+> > +	ret =3D i2c_master_recv(client, rsp, rsp_len);
+> > +	if (ret < 0)
+> > +		goto unlock;
+>=20
+> Isn't this all very generic?
+
+In this case, it doesn=E2=80=99t seem possible to use i2c_transfer() becaus=
+e
+the mcu requires a stop condition after receiving the command before it
+can respond.
+
+Kind regards,
+Thomas Perrot
+
+> I wonder how many similar functions there are in the kernel.
+>=20
+> Worth making this global?
+>=20
+> > +	if (ret !=3D rsp_len) {
+> > +		dev_err(&client->dev,
+> > +			"i2c recv count error (expected: %d,
+> > actual: %d)\n",
+> > +			rsp_len, ret);
+> > +		ret =3D -EIO;
+> > +		goto unlock;
+> > +	}
+> > +
+> > +	ret =3D 0;
+> > +
+> > +unlock:
+> > +	mutex_unlock(&mcu->i2c_lock);
+> > +	return ret;
+> > +}
+> > +EXPORT_SYMBOL_GPL(aaeon_mcu_i2c_xfer);
+>=20
+> This should be much further up.=C2=A0 At least above probe - perhaps
+> higher.
+> > +static const struct of_device_id aaeon_mcu_of_match[] =3D {
+> > +	{ .compatible =3D "aaeon,srg-imx8pl-mcu" },
+> > +	{},
+> > +};
+> > +
+>=20
+> Remove this line.
+>=20
+> > +MODULE_DEVICE_TABLE(of, aaeon_mcu_of_match);
+> > +
+> > +static struct i2c_driver aaeon_mcu_driver =3D {
+> > +	.driver =3D {
+> > +		.name =3D "aaeon_mcu",
+> > +		.of_match_table =3D aaeon_mcu_of_match,
+> > +	},
+> > +	.probe =3D aaeon_mcu_probe,
+> > +};
+> > +
+>=20
+> And this one.
+>=20
+> > +module_i2c_driver(aaeon_mcu_driver);
+> > +
+> > +MODULE_DESCRIPTION("Aaeon MCU MFD Driver");
+>=20
+> Not MFD.
+>=20
+> > +MODULE_AUTHOR("J=C3=A9r=C3=A9mie Dautheribes");
+>=20
+> Email?
+>=20
+> > +MODULE_LICENSE("GPL");
+> > diff --git a/include/linux/mfd/aaeon-mcu.h
+> > b/include/linux/mfd/aaeon-mcu.h
+> > new file mode 100644
+> > index
+> > 0000000000000000000000000000000000000000..89632cb46bc6c9518755dc43a
+> > fb87faa94acb6f5
+> > --- /dev/null
+> > +++ b/include/linux/mfd/aaeon-mcu.h
+> > @@ -0,0 +1,30 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> > +/*
+> > + * Aaeon MCU driver definitions
+> > + *
+> > + * Copyright (C) 2025 Bootlin
+> > + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.=
+com>
+> > + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
+> > + */
+> > +
+> > +#ifndef __LINUX_MFD_AAEON_MCU_H
+> > +#define __LINUX_MFD_AAEON_MCU_H
+> > +
+> > +/**
+> > + * struct aaeon_mcu_dev - Internal representation of the Aaeon MCU
+> > + * @dev: Pointer to kernel device structure
+> > + * @i2c_client: Pointer to the Aaeon MCU I2C client
+> > + * @i2c_lock: Mutex to serialize I2C bus access
+> > + */
+> > +
+> > +struct aaeon_mcu_dev {
+> > +	struct device *dev;
+> > +	struct i2c_client *i2c_client;
+> > +	struct mutex i2c_lock;
+> > +};
+> > +
+> > +int aaeon_mcu_i2c_xfer(struct i2c_client *client,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const u8 *cmd, int cmd_len,
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u8 *rsp, int rsp_len);
+> > +
+> > +#endif /*=C2=A0 __LINUX_MFD_AAEON_MCU_H */
+> >=20
+> > --=20
+> > 2.52.0
+> >=20
+
+--=20
+Thomas Perrot, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--=-kiPaB+C8pSildM/wevlA
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAABCAAdFiEEh0B3xqajCiMDqBIhn8ALBXH+Cu0FAmlnWtcACgkQn8ALBXH+
+Cu0AHgv/QJe8AKnxkTJHJ2FPZ4X8lSdzdvUj8++F6kvFDHU4mpCzrer6k2o8WDjL
+5x++1olrSjMPB2K2yTX+Jfz29rOwqz1DFqtpN4rKTlIO+a31E4kZKIKQwMcu0STg
+hNCjM9FhYrFqlpyFNbNRzBlcJpskh7N4t2cpY67QbyCZa7o46gCiWZ/OufI8tvJ8
+uwY4M31pL/a6IxxCq/jQ0vAGDwQNarWaTzXiQ2O+ldggMJP5nP72T0t9/JwQTPaP
+wRAbZW/4jJ7RPYDB3+Faad3loMOA3T6NgngVy47xr8ttH8cZSeBrskgiqOs3ox/h
+8rqkSMHWaW8TFsAqafu+sP2GSLSxbWRFKMVXjdL1OTpuzD7tSvy4GcNGVSakGMr3
+hFfnV2JkSJrZ8s2wbD3Pt75slixOHb6gRY+BfxP396o8bDCzaDNIdy/jh1ygrQiH
+5p9XaziocfxXRj+k+r6bca87rRLh/P7VLyjC3jWLlIE2SBFGsSNdElB3cEbxMJP9
+RlJcY6N1
+=35M5
+-----END PGP SIGNATURE-----
+
+--=-kiPaB+C8pSildM/wevlA--
 
