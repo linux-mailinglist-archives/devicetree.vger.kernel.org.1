@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-254860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5463CD1D47C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C9DDD1D49D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:57:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 565A3301276C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:51:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4B363093B35
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDA937C102;
-	Wed, 14 Jan 2026 08:51:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E4F3806C1;
+	Wed, 14 Jan 2026 08:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RuvCw2+q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WmbFwVVN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 068D737C10F;
-	Wed, 14 Jan 2026 08:51:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA48A37FF4A;
+	Wed, 14 Jan 2026 08:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768380675; cv=none; b=p1s6WaaY6lvexJe4PrkNVGBZ9SRxjap+AYZf4kjinNWnyHGWl1HqMjdzEdI3tepPV6CbFBtkqHCedtbl9ca6O1QzMuPbGempQeUdZErEqIO6u6c6V+28G/G3Bir3H6BljWEzzOT1p3UYCzW74u7xHee4pKOQ5U0emNmA0vEpPXo=
+	t=1768380719; cv=none; b=OP5HkdRuARpZCwhlg3njKwioJxuJ/lJ00Yv/Ru99K9QHNWBrWyuQh8eDh30HvdpEGjk+18RPR/WT6EvIKCP8J9DsYsy+Pl2TtdYu/O+p8op8JALgCnsLvfr/41WFii4swexQrh46fd6QkmlHWIULhjM9O1fpG2MA2IMtE8Vx2cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768380675; c=relaxed/simple;
-	bh=tHwsOI/njW36fmYeCP5unv0K4fnE8sD5VIB2pzlG0f0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=klXxATnCDwCMdIlo7rTU8scTglecNhS/ZaNl9h1CMO1zxwMCMorkEZOwTPXqGgKflH5uSE7sHL1VxjoSFMgcn0u8niwwgJiIFSKqHW0y7hbOlTxhE6dTTeEzvdzBd6ULmtZ3YhxVya+NSWG0dmrU6BSz4nrBr+5W6NtXP1DoElc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RuvCw2+q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E27B2C4CEF7;
-	Wed, 14 Jan 2026 08:51:13 +0000 (UTC)
+	s=arc-20240116; t=1768380719; c=relaxed/simple;
+	bh=lOZvqw3ggydiiHeL30T8f29Mcyk7YPU0Xtwl6LDxnSU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CGzAq29QQlVf4972EuS1wtQaRjKaWij6fSQGMpRWCfaeugMRU83UrvyV/ay1BDWIQKvJi22rZMRaf7VXR7RHRxtZfpndp2k6EtPMQMDN/vtniOoR28qFwOGkjvVeteHa4tE1zgObPuv07OgnrtZS21M1QuGu0UmEvNHmVlIxrkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WmbFwVVN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 089D6C4CEF7;
+	Wed, 14 Jan 2026 08:51:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768380674;
-	bh=tHwsOI/njW36fmYeCP5unv0K4fnE8sD5VIB2pzlG0f0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RuvCw2+qQkMHeYnLPdoKsLmhApvy8m2/N9xCpUa34KbC5OGehFBObxp+b/JbQqXzz
-	 9PHBHU0agGQkLhsvCOMzJgdOFHZFLAhLuLJwNOuIlLFuupmHYxFbrAfQghqt2NLyTg
-	 ySrH9vGcTdPODhdSLPfSklzy6+o/hxv6ooMvkZaXJv91qDS6zbnmiupKrNl7+r4SaQ
-	 OBR5ZwP+cklDbsPAwVuixJ9uvGrqa4G2uJjfUdmmjfisbYmz1AcEw8ugcj7JWA55NF
-	 gD7f7G3bIgK8BFubJQswDYZa4oPMLFHefS89/2nyGCVBEsPRzpFBuQFio+dN4Y8FJJ
-	 9N0s+bFCpXrew==
-Date: Wed, 14 Jan 2026 09:51:11 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nick Xie <xieqinick@gmail.com>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
-	martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, xianwei.zhao@amlogic.com, 
-	christianshewitt@gmail.com, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
-	nick@khadas.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add Khadas VIM1S
- binding
-Message-ID: <20260114-slick-passionate-mink-216a3a@quoll>
-References: <20260114062549.68954-1-nick@khadas.com>
- <20260114062549.68954-2-nick@khadas.com>
+	s=k20201202; t=1768380718;
+	bh=lOZvqw3ggydiiHeL30T8f29Mcyk7YPU0Xtwl6LDxnSU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WmbFwVVN3Oam+fcK0hElRSCDzdW/ra9IOkYzF+72MLi0IwleGUeOMUeTKUWe6GDyb
+	 aWSD76xfgG08hbbihqcr5nI1ZK8llg1nbFGKczcKpftFlNFt9ZYOyJzyxsDn5W5cS/
+	 KowzQ5j0sbfJdheeJaeDpQuAt33HvlRiOBi4mh5pCwtXUm+/YM0QLtNhAfvOeiVKpG
+	 pslWsxuSXeApvTJvv8gE4zAOEDkAgGiyZZPCKF+vOrQ+AKdwipfsH5Ze1Ia2KK0Azs
+	 TKunu0pWBoFx0KpXcf6PPPvQgdgmNYGbkaONXpJtvEhEwZukyEkbrdia/IoueKLpVq
+	 eQlt9aJihwTAw==
+Date: Wed, 14 Jan 2026 08:51:48 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v6 1/2] iio: pressure: abp2030pa: fix typo in Kconfig
+ description
+Message-ID: <20260114085148.15bb6ed8@jic23-huawei>
+In-Reply-To: <20260114-honeywell_abp2_driver-v6-1-231c3a8c222b@subdimension.ro>
+References: <20260114-honeywell_abp2_driver-v6-0-231c3a8c222b@subdimension.ro>
+	<20260114-honeywell_abp2_driver-v6-1-231c3a8c222b@subdimension.ro>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260114062549.68954-2-nick@khadas.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 14, 2026 at 02:25:48PM +0800, Nick Xie wrote:
-> Add devicetree binding for Khadas VIM1S board based on
-> Amlogic S4 S905Y4 SoC.
+On Wed, 14 Jan 2026 09:51:37 +0200
+Petre Rodan <petre.rodan@subdimension.ro> wrote:
+
+> Replace "I2C" with "SPI" in the SPI module description.
 > 
-> Signed-off-by: Nick Xie <nick@khadas.com>
+> Fixes: 47d323ce1e89 ("iio: pressure: add Honeywell ABP2 driver")
+> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+I dropped the fixes tag as we wouldn't normally bother for a help text
+typo (+ it might be a pain if I do have to rebase my tree for something
+nasty that I haven't noticed yet).
 
-You still have the same From/SoB mismatch.
-
+Applied.
 > ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  drivers/iio/pressure/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> index 08d9963fe9259..55663e0f7f915 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -247,6 +247,12 @@ properties:
->                - amlogic,aq222
->            - const: amlogic,s4
+> diff --git a/drivers/iio/pressure/Kconfig b/drivers/iio/pressure/Kconfig
+> index 0d25842aa414..838a8340c4c0 100644
+> --- a/drivers/iio/pressure/Kconfig
+> +++ b/drivers/iio/pressure/Kconfig
+> @@ -38,7 +38,7 @@ config ABP2030PA_SPI
+>  	depends on SPI_MASTER
+>  	select ABP2030PA
+>  	help
+> -	  Say Y here to build I2C bus support for the Honeywell ABP2
+> +	  Say Y here to build SPI bus support for the Honeywell ABP2
+>  	  series pressure and temperature digital sensor.
 >  
-> +      - description: Boards with the Amlogic Meson S4 S905Y4 SoC
-> +        items:
-> +          - enum:
-
-Yopu already have exactly such enum with such description, so your
-compatible goes there. Look - it is called "Boards" - plural.
-
-> +              - khadas,vim1s
-> +          - const: amlogic,s4
-
-Best regards,
-Krzysztof
+>  	  To compile this driver as a module, choose M here: the module
+> 
 
 
