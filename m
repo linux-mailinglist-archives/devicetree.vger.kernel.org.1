@@ -1,83 +1,118 @@
-Return-Path: <devicetree+bounces-254882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E77D1D6AC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:13:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15681D1D6DC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:14:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 90BBC3029C38
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:11:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B59073078EEA
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:12:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C2BC3815DB;
-	Wed, 14 Jan 2026 09:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318113816E0;
+	Wed, 14 Jan 2026 09:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G3SNn7HP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qo96mmx4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 068CE37F0E9;
-	Wed, 14 Jan 2026 09:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D25E37E2E3;
+	Wed, 14 Jan 2026 09:12:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768381859; cv=none; b=p8s6cw+qp9BrfRkwo2G9Khs7xHlJJ8Nya/i42i5/jNdlz40cfsp28xG6+qoSJ+yzQ+lJssZFaLqs3XjWyZoFPRZ/hj07V1oN3g/XVF6l6ftkWl47B8wfaFSFGXviUk+6ES3E86j92qkgRf+2M+78Ws+IgD885xDIx4Fo3Hh36FU=
+	t=1768381925; cv=none; b=HeeZJPciz/nyzsb9wIg2XJbXa1BaegA+o0V5kdWC0IYLy0MfV2Z+EvmL1SZhcq+ctANaoZZ8XX8UeXeKDmDf1IZsWNlLYUQPTrFyeeN9N05r1TcjeErBa82ZFAkRaHEy/55+rbZcwmYLwHY8CTfPnHGQpapKLTSAkk7PQgf2AHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768381859; c=relaxed/simple;
-	bh=kYtFUbSJr+CvmlzGiUmuhqtRPSfSYXgCjCGTdNmNzDw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lmpLr7Ucb5Obl7sm80ZuBupk43ItWRozxadSwC0g/rLqZ5A9Nxpfd49tGjz3C9m9VGDpXiuFxbsv0Wj1pTMWQoPtQQ2bIRbTxY9xr7iIt0WVRtq/I4pTVUk70y26u99FchufJ6w4MQo9k3bZ38PdBGgaFAq9dmSn5Uek5vvjQc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G3SNn7HP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32FF9C4CEF7;
-	Wed, 14 Jan 2026 09:10:57 +0000 (UTC)
+	s=arc-20240116; t=1768381925; c=relaxed/simple;
+	bh=0WzfsEJnGftiWIncn3ejD3A5GXQv4ftL3r6fn178h2Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mNdzj5TWHWyjadJathiP9e7tGwKWnA0sn8PT4u73kpawm70V8OXdKoJiv2lL+0KLYBA/FN3v8hyS69iQvKsapFO4/My3jo7+hJYXuyUcotM18GDXF1I65wbKr39X1qh37RHUKGda0If5iD6eLOrRPKpHJ7FWzMB4iDHqw4CWjjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qo96mmx4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 940ADC4CEF7;
+	Wed, 14 Jan 2026 09:11:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768381858;
-	bh=kYtFUbSJr+CvmlzGiUmuhqtRPSfSYXgCjCGTdNmNzDw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G3SNn7HPVEJvVsSTAwfGPi4tLLTjgj/JGDywxM6Y+fcV0IvWNiJ+nJrx+OXN8YguE
-	 oeSk5PXc++8gdoF47fQYcQFxA26JOPV6e/0fPqlRByvl5KEq/8c7/cit21e9mIX30Y
-	 yc52Jl/OsCbb4dW/rV7UZmLbIc+v832TBCSmMeuzP1dPnty7tWVwfFpR8Vb6OCJq0t
-	 B0N9MYp8D14tHU9JFhaXK5jC4hlMS9wX6XYnaw7rr8H7iUDkHkOlVl8gtxQB98hGEl
-	 AdHUFyCiYeiOZCWl4n2Kkl2/zP1llVfp1x3nyeDvdxsmFLyqNQR9Be/xjTSIRqH06D
-	 ArkPRObr5Sx/A==
-Date: Wed, 14 Jan 2026 10:10:55 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Gabriel Gonzales <semfault@disroot.org>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, Biswapriyo Nath <nathbappai@gmail.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
-Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix msm-id
- and remove board-id
-Message-ID: <20260114-impossible-cherry-crow-18349d@quoll>
-References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
- <20260112-xiaomi-willow-v1-1-8e4476897638@mainlining.org>
+	s=k20201202; t=1768381924;
+	bh=0WzfsEJnGftiWIncn3ejD3A5GXQv4ftL3r6fn178h2Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Qo96mmx4vv6JY+eYzyZSkrHbiLaERR3jaymA1ngbPCUsGhWAIWs1uqQwk3tCzN3f7
+	 LXhHk0tM/DvOq0TfBbu1qRb+FuI00IjkrXFIMRzphAKe53amweaGKcxGrbf1AIY0VE
+	 Vp/Ulc7QS22eV03zcc18O0/gQ9TIo8IijKc+uOmEQDIxNJkPE6imRTFIROojD626aF
+	 ksH5bGNx5N35OEVFHDjxC8ZedZ8c3B5VRPEH7SQPeouJ41DkLZh8nYB8EJMXTbpQcH
+	 3UHkJJtTtBcFy3DciVZFgg0hsnCgyL+88GD7yTCo+BIUcQHf1v3ppjSRAvU6eeXUi6
+	 zlMXY6KuBYnOQ==
+Date: Wed, 14 Jan 2026 09:11:54 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Sean Anderson
+ <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject: Re: [PATCH v5 6/9] spi: dt-bindings: adi,axi-spi-engine: add
+ multi-lane support
+Message-ID: <20260114091154.268d7c1e@jic23-huawei>
+In-Reply-To: <20260112-spi-add-multi-bus-support-v5-6-295f4f09f6ba@baylibre.com>
+References: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
+	<20260112-spi-add-multi-bus-support-v5-6-295f4f09f6ba@baylibre.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260112-xiaomi-willow-v1-1-8e4476897638@mainlining.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 12, 2026 at 09:13:24PM +0100, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wr=
-ote:
-> Correct msm-id what should contain the version 0x10000 and remove
-> board-id it is not necessary for the bootloader.
+On Mon, 12 Jan 2026 11:45:24 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-Separate commits and just pull in my earlier patch adding on top removal
-of msm-id:
-https://lore.kernel.org/all/20251229142806.241088-2-krzysztof.kozlowski@oss=
-=2Equalcomm.com/
+> Extend the ADI AXI SPI engine binding for multiple data lanes. This SPI
+> controller has a capability to read multiple data words at the same
+> time (e.g. for use with simultaneous sampling ADCs). The current FPGA
+> implementation can support up to 8 data lanes at a time (depending on a
+> compile-time configuration option).
+> 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+LGTM
+Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
 
-
-Best regards,
-Krzysztof
+> ---
+> v4 changes:
+> - Update to use spi-{tx,rx}-bus-width properties.
+> ---
+>  .../devicetree/bindings/spi/adi,axi-spi-engine.yaml       | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml b/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+> index 4b3828eda6cb..0f2448371f17 100644
+> --- a/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+> +++ b/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+> @@ -70,6 +70,21 @@ required:
+>  
+>  unevaluatedProperties: false
+>  
+> +patternProperties:
+> +  "^.*@[0-9a-f]+":
+> +    type: object
+> +
+> +    properties:
+> +      spi-rx-bus-width:
+> +        maxItems: 8
+> +        items:
+> +          enum: [0, 1]
+> +
+> +      spi-tx-bus-width:
+> +        maxItems: 8
+> +        items:
+> +          enum: [0, 1]
+> +
+>  examples:
+>    - |
+>      spi@44a00000 {
+> 
 
 
