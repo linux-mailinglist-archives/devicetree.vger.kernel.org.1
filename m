@@ -1,201 +1,216 @@
-Return-Path: <devicetree+bounces-254834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8807AD1D099
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:14:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80533D1D0AC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:15:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 074EB3008CAF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:14:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D12E63045688
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB12637C0F5;
-	Wed, 14 Jan 2026 08:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DA337C104;
+	Wed, 14 Jan 2026 08:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jt/DYDIZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CLMaFGbv";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kILZT2p0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49194.qiye.163.com (mail-m49194.qiye.163.com [45.254.49.194])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939342FB977;
-	Wed, 14 Jan 2026 08:14:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC3A37C0F0
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:13:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768378452; cv=none; b=AGuhjt/x+1lGyP7yaALxQt0cYLCjKyEQAnW10MG6oWmHrfTUJLEsMAZIHweWQuGue6M/LmRYgHewm1295H+yz0ck58lr9/HV13nUOefRl/I2dNueF/bwYqFHO/lGhtLw693/cDhcYOFtibrGgrpl+1xeW0G9hreMlezjbMmx8mM=
+	t=1768378415; cv=none; b=M1idJHurBPsZDJtrJV/wGZXW4mavt6TIomqZTHmfM3pPiYy/Pr0Ic9+FBN9JX3NUmNGg1BpSYjCt8ZwhmtrgZ6fsRIrH6jnsYuIjqilKGLTXXwSXSlVWtpV+XevaKLLzYWr6I/36yjKwvDohgIZCHKs23KHsPUaf9/w2Ui5rd6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768378452; c=relaxed/simple;
-	bh=zGn/XRcMqwwFuNLx0uSDVvM6VyHfqCJQGeCI1eHoVDQ=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=qBdi93kzkIn3UPStbHTJdmGk8CTLaBDSYQogm82lk9+tLLvrMgxFdOxny9tCo5k9aDDtjoO6xDk96tbO5+xmPVBrlivtUgbY1eiXTvNA3lK5ed95ddWaSBayaJf6mczI0LKkBNhXle9sS+aJM7UOWyf7ypdjjipu8gwsf/58EYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jt/DYDIZ; arc=none smtp.client-ip=45.254.49.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.14] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 309b22e7b;
-	Wed, 14 Jan 2026 16:08:44 +0800 (GMT+08:00)
-Message-ID: <6934ae0d-16c5-436f-97f6-c11d304ca51d@rock-chips.com>
-Date: Wed, 14 Jan 2026 16:08:43 +0800
+	s=arc-20240116; t=1768378415; c=relaxed/simple;
+	bh=kJ6JoMuxxz8m7+gqy24BMxC84P3aMchfFqwPNv1E8DQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HGhUGt3NdEF/Sy6NqchXXtmNml2ubh12401H3x5rHrV404rG8to90kj6KBWSRtJG3fmPayuq8ZMREvKWBAewNRKcto0GJ7wgwmKtZopzKfTUc/bbRdoqJf3K6JvBTAVkA/JcbYN/kCRwM7jD1gK1LFLyU4zwgQM7d6wjhMKuvNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CLMaFGbv; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kILZT2p0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60E7j64j2056634
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:13:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=1l6eCARhoCy5RZ0rpOpVAWZCDGwcoewH/cP
+	nAbp1TLY=; b=CLMaFGbvYakC65jU2HYH1+4g6ZHMp07SDxolk+lc+JOVPuCmEKZ
+	qYK2B+oT/X/HYNlkK7MY0gh6EYf52RvThDRilt3MRA/8SBcnGWLjGlIRI2Gpv9tc
+	cZJkalxe0Nm+GRwrySGfoLKBK11uCOyWgFb3Guhi9hkVb4cjCgD27ot2zgyS0V4L
+	EVx9JOJ70i12dNuXnDiyz2b6J/AlSeRI31YLqaHOkkJZLCJQ1kTGUyFrrC4zwNLv
+	xmAOe1Ddem1M5SoPqzz+1lKCctjEOc4kcx6PFOwU+FqF9K9mPX6unNDn9BGVoBED
+	63ruSgsthLnCKxCaZmd1XEpAQPW5Voyuazw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bnr3eb8pv-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:13:30 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ed6ceab125so241326201cf.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 00:13:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768378410; x=1768983210; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1l6eCARhoCy5RZ0rpOpVAWZCDGwcoewH/cPnAbp1TLY=;
+        b=kILZT2p0OGTrqDUehoVCVyAJqmyvTIJbtdW7yXukTbz8fm0DbfulPmevwoWbWQiIN0
+         SU6hyP0tZyFoN4P6Yr6uTdPSaC16XYnlSW6y9Av97fehEW32U7TtqO0/V2i04XVXXyLy
+         IUgwGMkMbxAKCUMnkWtXoLiNmdkO3uP4Gwa9SqL8eXjl2CxolYSjluYWWo3A5G1yIM+T
+         yjyGyarkbWVIy72RojReqLfdeS3I6bnU2QADAvQ5JatoJprONmM07M3uGB6fzx9/4vld
+         7kZ5/R+XAc0oEi8ZwrFmVL7Es9eJipJVNj3Dv0T/x6S8uv8idtdF/OD87PamGrgRnpBu
+         p+0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768378410; x=1768983210;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1l6eCARhoCy5RZ0rpOpVAWZCDGwcoewH/cPnAbp1TLY=;
+        b=kTc1k/Kg574Lw1aXt9UjSuiGrdl2WP4mszIimjwGge7qAUywCV4S0vi6n4GZ4UJ212
+         bQyAFZalD8LAA2YyeZY8huhKqoKaxOMLpr2rxE1cdHI17HlrDyzSJaJxKFX7JWRiuZVX
+         wbPRfSP30vC3glf7PoAK6e7T+nTF37xCsafQVPTLLJwsudVekjkMDFNT6cYqnEPThyUq
+         61OW2WKI28nbI5LRFwZ4XO1hxIZNnrk0rD1EBwjDWOA83BO0nqAM0zgd5SwAC25OWGKX
+         odmJ+sBb+dfxmgvRXm2eWOSeCpg+M6jzyhb30rrbmU609VR9NStJ05MRjQ0t+Qhmb8Nw
+         2RKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUh2GS94RHEZ3XlMjCkfaQsgDNPT1mC4EbXT5E2QSRhwHnbkpTOTQk7KO9wM2hqQovmIoXjbHlgBecJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAkp9SXmTIBoumPAeVsWWKIgmH0GLfnnP9x5Xq/1r6awjOQtHG
+	7xQ3XbStP5ijED+3HhqZ04bTlER40n+XnD1o8yNKxPj1rM5ZaOo/UhKi14Tof3lQIAKG2mziwTt
+	PL/T2wBP5pw4G+OTKmJWl88hGCdWijHhBUvmvTqWmdXnIhCllxmMBu2jrNV9liEAr
+X-Gm-Gg: AY/fxX78IlG6iV5mnSrmEcpO6F4zD1T5zNsnq11p3Ap1hQy10SuZBLyDugtmVa+M2Ir
+	KWb90xQ8h8qopvDKHCEW2rXm3Adt0QuhNcCr8yK6Yv6wZZ8Iym/2JRt01xQhNNwbNa09B8YQBgu
+	f2acKXMGIlfgcu4+rBh7Cq4XTacvwHsvJYOT2GR8G5Dmo2yhWCVmNclZbUO/L5vwlltGAU6oU8X
+	izdigv5ytgucL2x5Q4msBT1UVexCE0AH+nTVAGmvc8aDHwpiOQXL5wNpkSduS3p3hx1qPljqh+P
+	+3J4EWMyZStDZJDqALKk0/moZaQxrOcM50ls2xB6JCNB/xrRFvmmfD76JbtttW9okOSuf5Wchr1
+	KEa6YGZs7/Qk+A/vqTDll+/N8KQ==
+X-Received: by 2002:a05:620a:f03:b0:85e:24c3:a612 with SMTP id af79cd13be357-8c5316b37ccmr170155285a.32.1768378410316;
+        Wed, 14 Jan 2026 00:13:30 -0800 (PST)
+X-Received: by 2002:a05:620a:f03:b0:85e:24c3:a612 with SMTP id af79cd13be357-8c5316b37ccmr170152485a.32.1768378409769;
+        Wed, 14 Jan 2026 00:13:29 -0800 (PST)
+Received: from quoll ([178.197.218.229])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b842a4cfe76sm2407851066b.40.2026.01.14.00.13.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 00:13:29 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Del Regno <angelogioacchino.delregno@collabora.com>,
+        Tianping Fang <tianping.fang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH] dt-bindings: Fix I2C bus node names in examples
+Date: Wed, 14 Jan 2026 09:13:23 +0100
+Message-ID: <20260114081322.53411-2-krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-rockchip@lists.infradead.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, heiko@sntech.de, ulf.hansson@linaro.org
-Subject: Re: [PATCH v1 0/3] mmc: dw_mmc-rockchip: Add stability quirk for
- NanoPi R76S
-To: Marco Schirrmeister <mschirrmeister@gmail.com>
-References: <20260110010715.1610159-1-mschirrmeister@gmail.com>
- <67ccb8f6-f9bd-4266-b79a-b688bd6d030b@rock-chips.com>
- <8536413c-8687-4d75-befb-8f25e54838bf@rock-chips.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <8536413c-8687-4d75-befb-8f25e54838bf@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2544; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=kJ6JoMuxxz8m7+gqy24BMxC84P3aMchfFqwPNv1E8DQ=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpZ1AivFlUqD5ADdLH+YG+gG3aTr3JllMR1QxTO
+ VVhoa7m35CJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaWdQIgAKCRDBN2bmhouD
+ 10EwEACZYYyM2VLukY9l3saEG9yRWOUMVqzf2nc0p1MS7L2PYsrqU3Ka4k10uWbNIBv/OTlLYDE
+ iufSeWPHv9ecrGN1s0fDfVQ39q0iKgey7sUV7MEM26ky9rm3PPGh2TyCmz3EFV0xz76wTb/0Vuz
+ DD+oxLRQTP9hFu0sLKfrkNAoiDCccB4GQlDYZ+phLoeS5/gAntVahdqxmz+6tl4DQl595EmbAtK
+ 7iKrv4QFiZg2Kn1Ci4TfCr27Lu32mzl3TNHFtngaYZ4HXcyR8WC+1s5DWHTzm+Zotl+B+zSfqUM
+ NW3xM2rJF6cX/xrfLyKF8NGlGR4txxQrFW3a7qaImVSfaCS/LDGdkcxK6hMjVbQ/JWRccj7yvMT
+ gW4bp0/y9hJJul4Bk9lPy0KMsIVeJRCEyQ6RijksgdoAwm7CYl8GzFPOr1rmjqp8TZj2yy92w/A
+ BrbuO3X2xEHBikeUPoIFvwpgLhsTvkZKNMwl+QTLe7OkPtVMGKA5qvYQPsFs0g7594/hfzlMgJL
+ Tpqj0lsmKDyNvObXEn+9HdQKPHPeHr6lJIteQn3jWH/1IAkhqL8xZ/h5CZyUrveE9jkXBkVUp0F
+ +01ZPR2z1PE+kAvhAVdh98Q36iNb1b2pk0PXXWQzqHfYWn73C0R8vYlu4ZgIcjJXnVREdqWGVxA NVyaBeRjRH9FODw==
+X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9bbb8cc99a09cckunm9a308b3948f3f9
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkxMQlYaGE5PSx5OGkxPH05WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=jt/DYDIZPuInsl91a4KACW2hxs/z0RuH25bcKV7dul2XAuJBK6dSpkMoPrFZiufslHvTBdw6k63r1heN1qGUMdrl+snPB6OUfwOyQteYKn1TnIfMxUSGknCjppyYocg8r9VyH4ToDIZgaLjI1ib6+xWaECZ+pAEW1uzaL95PNsQ=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=8+Ps+QJX7O1TTlQB7KtvJFbgo7HUqA8ymA/xt0D2c0U=;
-	h=date:mime-version:subject:message-id:from;
+X-Authority-Analysis: v=2.4 cv=TPFIilla c=1 sm=1 tr=0 ts=6967502a cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=gJ7PcVzKR3cp7Bqf8_MA:9
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE0MDA2NCBTYWx0ZWRfXyhuO9+vyKGeB
+ 8KDhWz7UMDPoIoGNgEf/RiFPf3eG/6r77g1BCCRjBcKcCkpyGC8GV03nhaiI9Xt1OW+rJzE6tNO
+ iZdgMFUTcwrIr7y14cRfmjb2YbE+UT27Le/qzYwa7feV2884ttkHnOHhnS8dzgXjAYGH6dRRsDh
+ 89C7zqVtxImHpWVLwMOFwRJF4ZIfXBGdvv+pkpeiZVa6eAvJFTRpwmYD34wDqW8SQC2SKol++GW
+ w7ZfpQ6c/y2L6SfCLuvab0JpvH/xueJ3bdLsR7gZELV4G3PSvrKnlezL8SsV/zXONb2a/nJV9Tv
+ Qsndku+qt0o5pOGTFUZiFqYIMqc6siVg9/qQTV5kPrCdDmNAaY5Q9n3V/UUP8Suc4DfIw5aaiSQ
+ KJYRjJ368g8mFVSLHeHnyg2+T7b4kC1A+5abQtO9HDQZMmDzHTjQURa2JAgICacYeR24u9AdrxD
+ moPu31kaGWcpgZMPMew==
+X-Proofpoint-GUID: U_DdQPmXOx8zVDmGKJ59Oy5z9oo4Pcc9
+X-Proofpoint-ORIG-GUID: U_DdQPmXOx8zVDmGKJ59Oy5z9oo4Pcc9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-14_02,2026-01-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 phishscore=0 clxscore=1015 spamscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601140064
 
-在 2026/01/12 星期一 11:56, Shawn Lin 写道:
-> 在 2026/01/12 星期一 9:32, Shawn Lin 写道:
->> 在 2026/01/10 星期六 9:07, Marco Schirrmeister 写道:
->>> This series addresses a microSD stability issue on the FriendlyElec
->>> NanoPi R76S (RK3576). The board currently suffers from a 400kHz
->>> retuning loop when the controller attempts to enter runtime-suspend
->>> during idle periods.
->>>
->>> Evidence of the failure in dmesg:
->>> [Fri Jan  2 01:28:02 2026] mmc_host mmc1: Bus speed (slot 0) = 400000Hz
->>> [Fri Jan  2 01:28:03 2026] mmc_host mmc1: Bus speed (slot 0) = 
->>> 198000000Hz
->>> [Fri Jan  2 01:28:03 2026] dwmmc_rockchip 2a310000.mmc: Successfully 
->>> tuned phase to 233
->>> [Fri Jan  2 01:28:04 2026] mmc_host mmc1: Bus speed (slot 0) = 400000Hz
->>>
->>
->> Does this problem happen with all microSDs or just *a* microSD per
->> your description?
->> Have you ever tried to disable SDR104 support?
->>
-> 
-> A quick update.
-> 
-> I found several problems on RK3576 for supporting sd cards. I wondered
-> how all upstream RK3576 boards claiming SD support work? Anyway, I sent
-> a series to the list[1], not sure if it fixes the problem you faced, but
-> these should be the right patches you should have a try.
-> 
-> 
-> [1]https://lore.kernel.org/linux-rockchip/1768189768-96333-1-git-send- 
-> email-shawn.lin@rock-chips.com/T/#t
+I2C bus node names are expected to be just "i2c", if there is just one
+such node in given example.  Replace remaining bad examples with
+scripted:
 
+  git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/i2c[0-9] {/i2c {/'
 
-Except for the patch mentioned above for fixing the hot-plug problem
-which you confirmed to work fine. I looked the code a bit and see
-a potential problem related to the runtime suspend + power-domain.
-Please check the patch to see if it fixes your problem:
+Suggested-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
---- a/drivers/mmc/host/dw_mmc-rockchip.c
-+++ b/drivers/mmc/host/dw_mmc-rockchip.c
-@@ -36,6 +36,8 @@ struct dw_mci_rockchip_priv_data {
-         int                     default_sample_phase;
-         int                     num_phases;
-         bool                    internal_phase;
-+       int                     sample_phase;
-+       int                     drv_phase;
-  };
+---
 
-  /*
-@@ -573,9 +575,43 @@ static void dw_mci_rockchip_remove(struct 
-platform_device *pdev)
-         dw_mci_pltfm_remove(pdev);
-  }
+Like Rob's commit 20a72af11f41 ("dt-bindings: Fix SPI and I2C bus node
+names in examples"). I checked also for SPI.
 
-+static int dw_mci_rockchip_runtime_suspend(struct device *dev)
-+{
-+       struct platform_device *pdev = to_platform_device(dev);
-+       struct dw_mci *host = platform_get_drvdata(pdev);
-+       struct dw_mci_rockchip_priv_data *priv = host->priv;
-+
-+       if (priv->internal_phase) {
-+               priv->sample_phase = rockchip_mmc_get_phase(host, true);
-+               priv->drv_phase = rockchip_mmc_get_phase(host, false);
-+       }
-+
-+       return dw_mci_runtime_suspend(dev);
-+}
-+
-+static int dw_mci_rockchip_runtime_resume(struct device *dev)
-+{
-+       struct platform_device *pdev = to_platform_device(dev);
-+       struct dw_mci *host = platform_get_drvdata(pdev);
-+       struct dw_mci_rockchip_priv_data *priv = host->priv;
-+       int ret;
-+
-+       ret = dw_mci_runtime_resume(dev);
-+       if (ret)
-+               return ret;
-+
-+       if (priv->internal_phase) {
-+               rockchip_mmc_set_phase(host, true, priv->sample_phase);
-+               rockchip_mmc_set_phase(host, false, priv->drv_phase);
-+               mci_writel(host, MISC_CON, MEM_CLK_AUTOGATE_ENABLE);
-+       }
-+
-+       return ret;
-+}
-+
-  static const struct dev_pm_ops dw_mci_rockchip_dev_pm_ops = {
-         SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, 
-pm_runtime_force_resume)
--       RUNTIME_PM_OPS(dw_mci_runtime_suspend, dw_mci_runtime_resume, NULL)
-+       RUNTIME_PM_OPS(dw_mci_rockchip_runtime_suspend, 
-dw_mci_rockchip_runtime_resume, NULL)
-  };
+Rebased on Rob's tree - can you pick it up directly? Applies also on
+linux-next, so I do not expect conflicts.
+---
+ .../bindings/embedded-controller/lenovo,yoga-c630-ec.yaml       | 2 +-
+ Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml   | 2 +-
+ Documentation/devicetree/bindings/usb/ite,it5205.yaml           | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-  static struct platform_driver dw_mci_rockchip_pltfm_driver = {
-
-
-
-
-> 
->>> Testing confirmed that the issue can be manually addressed by
->>> disabling runtime PM via sysfs:
->>> echo on > /sys/devices/platform/soc/2a310000.mmc/power/control
->>>
->>> I experimented with various changes in the Device Tree, including
->>> lowering the bus frequency and attempting to keep the power domains
->>> active, but nothing stopped the retuning loop.
->>> The issue only went away when I forced the controller to stay active
->>> by disabling the runtime power management.
->>>
->>> This quirk is the only way I have found to keep the SDR104 link from
->>> crashing on the NanoPi R76S, I am open to suggestions if there is
->>> a better way to handle this in the driver or the DTS.
->>>
->>> Marco Schirrmeister (3):
->>>    dt-bindings: mmc: rockchip-dw-mshc: add rockchip,disable-runtime-pm
->>>    mmc: host: dw_mmc-rockchip: add rockchip,disable-runtime-pm quirk
->>>    arm64: dts: rockchip: add stability quirk to NanoPi R76S
->>>
->>>   .../bindings/mmc/rockchip-dw-mshc.yaml        |  8 ++++++
->>>   .../boot/dts/rockchip/rk3576-nanopi-r76s.dts  |  1 +
->>>   drivers/mmc/host/dw_mmc-rockchip.c            | 25 ++++++++++++++++---
->>>   3 files changed, 31 insertions(+), 3 deletions(-)
->>>
->>
->>
-> 
-> 
+diff --git a/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml b/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
+index a029b38e8dc0..c88fbd6ad940 100644
+--- a/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
++++ b/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
+@@ -50,7 +50,7 @@ additionalProperties: false
+ examples:
+   - |+
+     #include <dt-bindings/interrupt-controller/irq.h>
+-    i2c1 {
++    i2c {
+         clock-frequency = <400000>;
+ 
+         #address-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+index a89f740214f7..dffd23ca4839 100644
+--- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+@@ -95,7 +95,7 @@ examples:
+     #include <dt-bindings/gpio/gpio.h>
+     #include <dt-bindings/media/video-interfaces.h>
+ 
+-    i2c0 {
++    i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+diff --git a/Documentation/devicetree/bindings/usb/ite,it5205.yaml b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
+index 889710733de5..045fcb41ac4b 100644
+--- a/Documentation/devicetree/bindings/usb/ite,it5205.yaml
++++ b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
+@@ -49,7 +49,7 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
+-    i2c2 {
++    i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+-- 
+2.51.0
 
 
