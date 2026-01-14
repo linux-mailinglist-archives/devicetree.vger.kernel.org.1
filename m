@@ -1,103 +1,110 @@
-Return-Path: <devicetree+bounces-255010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05850D1EA07
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:03:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 003E0D1EA25
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:05:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B44483033712
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:03:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D5ED30351D8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:05:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C19B396B9A;
-	Wed, 14 Jan 2026 12:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2517327BF6;
+	Wed, 14 Jan 2026 12:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JlRW9ckv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bTleEYBv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1A638944E;
-	Wed, 14 Jan 2026 12:03:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4223557EA;
+	Wed, 14 Jan 2026 12:04:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768392198; cv=none; b=JOok4iJcPq6UsXu01K5ayVM/CyeP8R/ipr5dfRT3rvP9ifndV6+A+52hHFr4TmtA3Qvj8XEa7WKsDpPNcsNK3J1mtByh6rQKbmLuVh95l6yD4+522iKIYAAQEcJ4EOo5/2lSLguhyOLpAaJGHNiNuxL2AaNuieEzM0xoz9JwUZY=
+	t=1768392299; cv=none; b=AsIitnT9deqr8dNVV52f8X30/qavG/c7JIY+JiRAHRUfXlW/rVCel1ryFnbpJ9CqtXZQlPhBowkT7lw+Z0vvDOUXJndEBUQxL51vvj8fJwH9gxADFN/f3BhOyHdLU5wiUTcyxIj+Y7RXCeqjjqpBAvwCxvatpgmlXMccYVV4Y9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768392198; c=relaxed/simple;
-	bh=qywVRcGaD2KqxuM4DBT4NMc3DkW9DNr6HABcIy2FPJk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NpBQBKg4F4Uiw/Glh0DGeORJKWKA5vRQfAnrS/84koM1em/uzvR9vbMMOz3E06J/XOXM+OuRcoTE/uxV593S0ks+kNVscbT/sjNzKrivXE9j/K685jjlAjqAisY+G4zeLi+YFELq1dcAwLkX1IHeiWuVX6bpjsta7cfez2xydD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JlRW9ckv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A8FAC4CEF7;
-	Wed, 14 Jan 2026 12:03:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768392198;
-	bh=qywVRcGaD2KqxuM4DBT4NMc3DkW9DNr6HABcIy2FPJk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JlRW9ckvmOlYA/cT6xwBWJu5PhfbyeuG0GutR9V9ylFonqWkgo6h3mXmkYyVUCwcX
-	 4qEK3JYvQFYJG6T7siYkVUTHmE4K79KiQNvaZR7kFlYv6xNTMDmG8RDyAnng8eJ7Yj
-	 xrHhmXe4/LziG3aQ/CFrnHu+hv10idfda83w9tBOBZjDLQxNkKExzhk0clKVtWk9xv
-	 NOfp76jDL/0tLLM8CGjBG8bu+AJZkpDw7zqYRRiXu10P+mSdz/jYLEW7CYPPiw0B9o
-	 7WfsU4hkvbgeVINN9G7nOl0WABTFeosq5WgYU9yD1JpuGzCXjEPEykQ/m2PvHo7fOt
-	 kUlnjUVMUn/+A==
-Date: Wed, 14 Jan 2026 12:03:13 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 0/3] ASoC: dt-bindings: realtek,rt5640: Various fixes
-Message-ID: <829bbb9e-70e7-43cf-ad93-373e4c8da55e@sirena.org.uk>
-References: <20260108143158.351223-1-jonathanh@nvidia.com>
- <176832669841.1106728.13139168898095349975.b4-ty@kernel.org>
- <0e68c5f4-f68d-4544-bc7a-40694829db75@nvidia.com>
+	s=arc-20240116; t=1768392299; c=relaxed/simple;
+	bh=8Vys6z8x451y8jCfmv4tHJdqji+vE+8qZ4G6/y7V1fs=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=uUmqcilZifmKtrkJBmoogxHkpte6lnl3w1JX7a0beoCVlMCYy0wJhj1mSeyPei/DOnZiQE7ElpvRzr8g3CzHHctB12c3Wq6l25lFHGvvlM6P7cBZrrw9WO0Gi+Tjo4xRZhjS4npEER4EiDizihwytlyKkaKzJ89J+LSmIq93eXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bTleEYBv; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768392297; x=1799928297;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=8Vys6z8x451y8jCfmv4tHJdqji+vE+8qZ4G6/y7V1fs=;
+  b=bTleEYBvTPwiLQ7JdoJfPVn5CnnqxLFhU0cJXLT/WCocWWV+IrIsxH9Y
+   m0O+NZ88XyF+18CNPzRXV+VuIKzKFJndh2UouFGnHK9RfHykWen8hM8Im
+   PECNs5SOYDUMPhMAWf8HbHONDZDsw9jmPT9dqONtaIK1DCp6WyyL82VuX
+   Zz+6jMwMlMN02c2QjbeqHSXes9D9feSJOieYOPG5rpAUDvOI6rLE7hGLU
+   bjjZ/Z/vDvGUICwkPtxPbV8EW/++9bKIrK8N4YTpLbW8kU1guoQY1ubiV
+   7p7sjp6LuDgrBeVkI0uCHxM5QBqbrGD/Fka48fmiW5GEl6U2SqTahuao1
+   A==;
+X-CSE-ConnectionGUID: IS4Nkmv5Q0qzqL+nXJT6zw==
+X-CSE-MsgGUID: G1AuqM+JTWq8Wl5pWX/cRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="69608381"
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; 
+   d="scan'208";a="69608381"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 04:04:56 -0800
+X-CSE-ConnectionGUID: L5TFJIbzQHuz1awGSe6Qmg==
+X-CSE-MsgGUID: UaaRHJhvTS+nCq8qGoc/sQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; 
+   d="scan'208";a="242205696"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.246.94])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 04:04:48 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Nishanth Menon <nm@ti.com>,
+ "Andrew F. Davis" <afd@ti.com>, Randolph Sapp <rs@ti.com>, Jonathan
+ Humphreys <j-humphreys@ti.com>, Andrei Aldea <a-aldea@ti.com>, Chirag
+ Shilwant <c-shilwant@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Oded
+ Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Sumit
+ Semwal <sumit.semwal@linaro.org>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Subject: Re: [PATCH 4/5] accel/thames: Add IOCTL for job submission
+In-Reply-To: <20260113-thames-v1-4-99390026937c@tomeuvizoso.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260113-thames-v1-0-99390026937c@tomeuvizoso.net>
+ <20260113-thames-v1-4-99390026937c@tomeuvizoso.net>
+Date: Wed, 14 Jan 2026 14:04:44 +0200
+Message-ID: <1acdffd8f05eae0a3531d43d3919d8bd4558f37a@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CWBaJgro0LDfWvsn"
-Content-Disposition: inline
-In-Reply-To: <0e68c5f4-f68d-4544-bc7a-40694829db75@nvidia.com>
-X-Cookie: Absence makes the heart grow frantic.
+Content-Type: text/plain
+
+On Tue, 13 Jan 2026, Tomeu Vizoso <tomeu@tomeuvizoso.net> wrote:
+> +#include "linux/dev_printk.h"
+
+Random drive-by comment, please use <> instead of "" for include/
+headers.
+
+> +#include <drm/drm_file.h>
+> +#include <drm/drm_gem.h>
+> +#include <drm/drm_print.h>
+> +#include <drm/thames_accel.h>
+> +#include <linux/platform_device.h>
+
+In general, I think it will make everyone's life easier in the long run
+if the include directives are grouped and sorted.
+
+BR,
+Jani.
 
 
---CWBaJgro0LDfWvsn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jan 14, 2026 at 11:27:12AM +0000, Jon Hunter wrote:
-
-> I noticed on today's -next I am getting the following error when running
-> the dtbs_check ...
->=20
->  Documentation/devicetree/bindings/sound/realtek,rt5640.yaml: ignoring, e=
-rror parsing file
-
-> It appears that Rob also has merged similar fixes to the above and now
-> we have two lots of fixes merged and duplicated properties ...
-
-> So we need to drop one set of fixes from one of the trees.
-
-Can you send a patch that puts everything into a good state please?
-
---CWBaJgro0LDfWvsn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlnhgAACgkQJNaLcl1U
-h9Brmgf9HzDN6jYvPAqjB3Tgpf3cE4cmQg5AQcCZQmV2E59BMAio+j1Z847Pqb3/
-EOJlfYwaxOf5U6QInUyGGpARjQMvebjDdsyxGW7QqwyVVWI4sgMAooF8GvPdagv4
-5ByMevgC0VPsp2mxSGZzdIjlixWGp5w/xv1aZONziAwOqus4Zsuk5OPyU+aAuJGo
-ZVwMwj6sDqbKPUCEsOOWkwv4rwIkIUMgOsg7Zl5+30/VUstqevSyGKnAISSKd7MB
-q4vbMNOQ9Z3IQ+h+8CJkpZG0gui878erUUsXyTL1uBm1s5h5m/tR27+sB8ex8S2U
-bY+pSFZUHIrMmnAemjiiBT+iHTGr1Q==
-=KWSa
------END PGP SIGNATURE-----
-
---CWBaJgro0LDfWvsn--
+-- 
+Jani Nikula, Intel
 
