@@ -1,140 +1,78 @@
-Return-Path: <devicetree+bounces-255255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CE0D219C3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:36:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8457D219F3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:39:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CE5A73028688
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 22:35:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 43AA830286A8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 22:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0E73B8D43;
-	Wed, 14 Jan 2026 22:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CE33B5311;
+	Wed, 14 Jan 2026 22:36:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXg12Ors"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f6b78jPE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EED43B5310;
-	Wed, 14 Jan 2026 22:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443A835E531;
+	Wed, 14 Jan 2026 22:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768430114; cv=none; b=Y6IG6EDwNvNHVXT9tQSX2MJBSN1nk3R32ZpZ6RY5vUcyZaPfrjgsSxFSP2OeQV1nu+dFSdK44WMhHXmKm3+H51OwD3+EImk6SsjUHBef5o4E/n2hHy4PjMxQCydgUg4Z6TN8CUMCzRrYzFjcJEc68RWexHh2c+3pTNGpvmORlak=
+	t=1768430194; cv=none; b=hH5N4dk7M9VtUDM9TuSa4+s4pJbW7OZ3UMN6XV8xC9mfebGAAOTV8YrmjUfNxbwoRi/T6f33R6NmS+d1nG6vAmkhUqztRQWGReF69kB7gUD6b4S0Gr+61IRrKtiLg4P8/Z0x4OWyXMpOSywMKi3h8PZronjIdrBG+h36uJNlRWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768430114; c=relaxed/simple;
-	bh=bGPeZJuOX9kFSWCNT1OsWd84cPtXULGfVrA4w55KR8s=;
+	s=arc-20240116; t=1768430194; c=relaxed/simple;
+	bh=tOITCwcNkvuX/Q3/odZsyWjcoRVv7aqf+H54LU9E1pw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qK4NxQ4cBIZVWDELYWd/TE5jQUGil4eQFxb4P331xbn8jN059NJGf3sMvfYPgCz1tQVChQQxq7SDeHaUn1ge3NrNS7py+xmHulcIh60s4DyD66r5/X4+OpdjewpgDaYWKF/DHY503B4ToVpZk0RBKsM5CxG42D3o8y2VVLaWR4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXg12Ors; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5199FC4CEF7;
-	Wed, 14 Jan 2026 22:35:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sAnBPIiX6CFwwHgm10vlD+o9F+zCdJmUTy1rEJpH39XionS56b6YMb8lKdVy8oos1S1ZSt86x67P90sGT05yno8gTT0VTiPDls+D6MOeO/5hLS/vFGHFr7t2nLvl6L5m1DWxdWFpWIoDmF/6dMHjRFH4iX9CkQR5mwkXrN3IhIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f6b78jPE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6142DC4CEF7;
+	Wed, 14 Jan 2026 22:36:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768430112;
-	bh=bGPeZJuOX9kFSWCNT1OsWd84cPtXULGfVrA4w55KR8s=;
+	s=k20201202; t=1768430192;
+	bh=tOITCwcNkvuX/Q3/odZsyWjcoRVv7aqf+H54LU9E1pw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RXg12OrsRxSkC6k3bL4TBr3lPksxPQ4tRk1ebifPMy7VqNRMKLB7GQ5zbQMTsTD1w
-	 sb0gHNEEfR6Jlf+Hr1vcontVtcbWLU/byX/TdsQAqR1KRnN7zZnZz0pZ8vhLRv0TNV
-	 qD0M2ep09UXDHkOB0mR2btEZB6At0jLE/XZ3o3jR+UYSXj1lsqkXotacyDOLreJJli
-	 v4UkL0xjW6RUnTZQtOWuyh+6J4f5HACfRePfHihlV29q5qgJVNptIkf92INwJcuXgK
-	 Zuxr+rRaPmrbkHwYMqQuSdeUzNTD7bnTHM029jGuToB03xJpsPK/1ZyPQqxtH2e2Gh
-	 r5TSAfIk309mA==
-Date: Wed, 14 Jan 2026 23:35:10 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
- EN7581-7996 support
-Message-ID: <aWgaHqXylN2eyS5R@lore-desk>
-References: <aWdbWN6HS0fRqeDk@lore-desk>
- <75f9d8c9-20a9-4b7e-a41c-8a17c8288550@kernel.org>
- <69676b6c.050a0220.5afb9.88e4@mx.google.com>
- <e2d2c011-e041-4cf7-9ff5-7d042cd9005f@kernel.org>
- <69677256.5d0a0220.2dc5a5.fad0@mx.google.com>
- <76bbffa8-e830-4d02-a676-b494616568a2@lunn.ch>
- <6967c46a.5d0a0220.1ba90b.393c@mx.google.com>
- <9340a82a-bae8-4ef6-9484-3d2842cf34aa@lunn.ch>
- <aWfdY53PQPcqTpYv@lore-desk>
- <e8b48d9e-f5ba-400b-8e4a-66ea7608c9ae@lunn.ch>
+	b=f6b78jPE0dTDU/gdnUzi+iF1OneQmqH2B3bv5nS6hWooWRBVXoS9rgosUIllfcs6d
+	 +EYQbtoKircuYUAmW2ZFXWNETz4iOohJdUtUsoFL/SUfiRBxYEgDOCA6oLxjZQWUCz
+	 hXQgycybxeg/PHYM58aZBWLdcrOuQuLjIRBKdRlRI4/6ZSksq+3WEm7wKo7MjfuKrJ
+	 ymmcnKtSSzjO7AdEtFg/+fcvB87LjpZ6/0YZhEizfjgTyJ83UOCuIB1HqIoQ8174if
+	 BEBAaehDBfolZ0Li+T9Wk2ihwFkQBYvGgXIcRyhlT4yJ1tK/JB80wvw/Th1EdrSTCh
+	 dHtBXz8eCdwqA==
+Date: Wed, 14 Jan 2026 16:36:31 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	devicetree@vger.kernel.org, linux-scsi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] docs: dt: submitting-patches: Document prefixes for SCSI
+ and UFS
+Message-ID: <176843018897.3319721.14136829860575398565.robh@kernel.org>
+References: <20260107132248.47877-2-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hY6eQNj4UDrrBkRP"
-Content-Disposition: inline
-In-Reply-To: <e8b48d9e-f5ba-400b-8e4a-66ea7608c9ae@lunn.ch>
-
-
---hY6eQNj4UDrrBkRP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260107132248.47877-2-krzysztof.kozlowski@oss.qualcomm.com>
 
-> > In the current codebase the NPU driver does not need to access the WiFi=
- PCIe
-> > slot (or any other external device) since the offloading (wired and wir=
-eless)
-> > is fully managed by the NPU chip (hw + firmware binaries).
->=20
-> Are you saying the NPU itself enumerates the PCI busses and finds the
-> WiFi device?  If it can do that, why not ask it which PCI device it is
-> using?
 
-nope, we do not need any PCI enumeration in the NPU driver at the moment
-(please see below).
+On Wed, 07 Jan 2026 14:22:49 +0100, Krzysztof Kozlowski wrote:
+> Devicetree bindings patches going through SCSI/UFS trees also use
+> reversed subject prefix.
+> 
+> Cc: Martin K. Petersen <martin.petersen@oracle.com>
+> Cc: linux-scsi@vger.kernel.org
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/submitting-patches.rst | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
->=20
-> Or this the PCI slot to use somehow embedded within the firmware?
+Applied, thanks!
 
-in the current implementation the NPU driver does not need any reference to
-WiFi or Ethernet devices. The NPU exports offloading APIs to consumer devic=
-es
-(e.g. WiFi or Ethernet devices). In particular,
-1- during NPU module probe, the NPU driver configures NPU hw registers and
-   loads the NPU firmware binaries.
-2- NPU consumers (ethernet and/or wifi devices) get a reference to the NPU
-   device via device-tree in order to consume NPU APIs for offloading.
-3- netfilter flowtable offloads traffic to the selected ethernet and/or WiFi
-   device that runs the NPU APIs accessible via the NPU reference obtained =
-via
-   dts.
-
-The issue here is the NPU firmware binaries for EN7581, loaded by the NPU
-driver during NPU probe and used for offloading, depend on the WiFi chipset
-(e.g. MT7996 or MT7992) available on the EN7581 board (we have two different
-NPU binaries for MT7996 offloading and for MT7992 offloading).
-
-Regards,
-Lorenzo
-
->=20
-> Or is it simply hard coded in the NPU silicon which slot to use?
->=20
->    Andrew
-
---hY6eQNj4UDrrBkRP
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaWgaHgAKCRA6cBh0uS2t
-rJN6AQDkgeHf1sv0dehgGn3QZ1vcixxjd3NNGP9dNVCMq+9ssQEAys3dZo7kFmYB
-mF4zbcTbKw/Osa6twW99r8dYvPutLwE=
-=k96L
------END PGP SIGNATURE-----
-
---hY6eQNj4UDrrBkRP--
 
