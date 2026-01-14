@@ -1,196 +1,230 @@
-Return-Path: <devicetree+bounces-255151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F6F6D202A3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:21:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A645BD20285
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:20:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 64A6530C6CE5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:17:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 84C51302008E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:19:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80D33A35D2;
-	Wed, 14 Jan 2026 16:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659433A35D7;
+	Wed, 14 Jan 2026 16:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="BYOYY43n"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="rQbLJ7DZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D67A3A35A8
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 16:16:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491EA3A35AE;
+	Wed, 14 Jan 2026 16:18:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768407418; cv=none; b=F5lWn5K+Rcn9hXdG0wDYI9/X14uWrnWJ9aNIs0VTERLe7l7UxQjmpFzj/IZzodoIKkIHUxl2TG+encMgIe/p93NF5+AJbTnKXd/4S/hlMmfo0ojY+AOf4GIeA37q1ZQ/SnyvRKf+9/Ym6TWmxqK/l65i5WK9BLppcNFGdlbY5SE=
+	t=1768407539; cv=none; b=YiFbuqUdel/Wt6H3cQCmONdZV2SKnBQHaHCAfzfZ9tGCYauqu0BCjRgFxIQ7/PupawzBSkmkZMLUxw4sEJvLCRDHgiEe/Efs3meNoMIA2yl87d1MmLcIyghVRuICmGrnwvi2yoq0eDhRb78TRnsFGcXGV615/Ihc9O5jMGnmzOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768407418; c=relaxed/simple;
-	bh=/7ruZ18bk4ILc7L15msfTGNZdLRH8VjAH7g9n11/vYk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=srhvFhFo6Sur2MOv2crQv2LVx0MI8orQCWPskO3XfPlDDuqVgeYwYQ0Pxu2QLyiDu8bwm5zV7+dDpyt9KMwKjIzqWYKMYNH3fI62q7lCwouKMJSijb0h9GbV5kEOGHnC/RaGdr31Xw3vBwZgiN45QHjQ3oY6hc+lvd8eSCr6kD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=BYOYY43n; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b870732cce2so1503566b.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:16:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1768407405; x=1769012205; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HmBTNol25uWSbstgc/N/yY8zm994n6PPZLmjRz9SloM=;
-        b=BYOYY43neM2TpfBoAyPpm9sRswmvpX9ww/P+stS9ZCaoS8iCKOVnFKikImkVlDgSrz
-         STFoD3x94orPbzCwA7IDH7GaWGpsaw5d0MFPOQlVcHfZhVMlgvKnGEe4emNpbJ/9IFyf
-         JWdF1pt2r0jsXgnzncoAiV6ixyV+W8QjYkFes=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768407405; x=1769012205;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=HmBTNol25uWSbstgc/N/yY8zm994n6PPZLmjRz9SloM=;
-        b=YkJBEfyiYwGQFAaBI62H/NuakYVGO1X/UvzVwSwep0CEhmVaakhOWaMrQlDxDzl//v
-         bjF6bbU9g7vlAX1f/8/OxssqzRfA7VZaoITPaYklqMqSvJmAhpkobwNuUeoB4bodG3Xa
-         yY25yHz+QEfj1BF6YhoIANjuGgaaPwI7YJJbKGENUBMJADf52D2AXRUr3ENMV50eixcU
-         yY2SRlZX0sKxYIY0C6LqLjnfqRFgxeOiAdtCplhtUnIT6T/YZ46eyDZm/dZqM+erswWv
-         +3CwiYPRTI0rzgJr0v+GexOk7F2TkbAofG9x+e9h0Ge8xbHC10riTd2YJk38n/IcHHQR
-         2T4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVDrBrOQ6TXvpQVtyhJmolhX1mdbYXLONldGvZcCyUYjjwwgnS6WKa9E05RCBfhMtKsW0ZGsmKDfCqG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiW4QsXHtsaSxNxx0EUmTUM9SfdAsjFEi2zh3OLf7Joq8wVhPo
-	p1MlGmCharnV3FxjSkagDpC9hMMVn9JR1FAXwkBx5Yj1RV9wWPZ782W7mVB8/S47S3g=
-X-Gm-Gg: AY/fxX7zvh2cJTIaaC70mJjhzUvbbEAJJqxbaEjeDkHFXqTXuig8Aw7hUqmdRKhx6DV
-	hfJUb9zTFOlU2zGKqpFMk6MobeCf0Eq0kYdjABe5vpSTxr7wyoUTa8mcSjmOR0hScnK/KNFmhHt
-	y+WSwv2/790dXs/KtGkTyAp7APWpDU+o6MVR/20fqI72u4E4VmLC2sFj6s/bDoGgmANBYl3P+tw
-	CZtDdMbj0LwyU+kkkpnR7TVHHgDi8QeQuf1vIHpinVhtWBvHPskaUI72rx9RIZVEmp+mH29+EcS
-	DSyaI8JuPQAcZPWdHDpQragIifKy+NCh9dDjh8XH4qcurXOsHsjHEO4lJuFp35RnVO9f4YrpKX5
-	gnVn7Puq9ZLIc6OolYQLaZdMC3pAtHM1lNOdl97KHl8Gh29b/1dnKtah7qujLRoAKaw5drMIqEg
-	PPrdgzKQrF3eFqROS3+ylZw9xrR4umfSZGG1wr4vJ3AJ0KkkvsEDvj1OUr02zeVcKVA8nzlv1dd
-	+b4HSnCvbcy9miepC3i3hFrJBLXo9qXDpR1cJVJ1Ri0D/H7NDa0RiKADLq4YIcOKmUKLg==
-X-Received: by 2002:a17:907:72d1:b0:b6d:73f8:3168 with SMTP id a640c23a62f3a-b8760fcbe55mr263759866b.3.1768407405292;
-        Wed, 14 Jan 2026 08:16:45 -0800 (PST)
-Received: from dario-ThinkPad-P14s-Gen-5.amarulasolutions.com (93-47-52-235.ip111.fastwebnet.it. [93.47.52.235])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b876dd0e9ffsm152281566b.37.2026.01.14.08.16.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 08:16:44 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 3/4] dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
-Date: Wed, 14 Jan 2026 17:16:18 +0100
-Message-ID: <20260114161636.1076706-4-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260114161636.1076706-1-dario.binacchi@amarulasolutions.com>
-References: <20260114161636.1076706-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1768407539; c=relaxed/simple;
+	bh=Nf+12xOltk2ropuig0YP9tBRUCODOe250oZIgxrR3D0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=F3ySBemrAHVb0vK8uBKSqL2BjwqkEIoEqjsYlNkFr29R/1MkR2Zkj2TY5FF7goIw4yT7Xxwmej7iRKOp2p0u99H7LZjCFw3V5JloYgTh6cows55SJ1JmRgVPFqEY3cZZxx25f0CNWQ0tpZ7FOar1ZtR8JqzmuJVZGRif8ONlm2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=rQbLJ7DZ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60EG0kwA014549;
+	Wed, 14 Jan 2026 11:18:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=cIdW2lOdZ86IqA1QSHntZFx4xWm
+	DoFfI8aJkT86NS4A=; b=rQbLJ7DZ5D31IjFcuql9ypEtvFqT/V1M2QNQsOQgZYS
+	6fG+W4HnLESBHRTLGQEeM9igSyAzuw7MP3s8zrLD4NAZ/nwkbGCRT1nhoJxI4wvx
+	OkGnGRBDw+dtrXFwfzZ4BARCfYOFJWHN3DVEu3BWk9U4K7f9tX78L+qeD9mTv8v5
+	V9Uz7khIZ+L2dmoykrdmkW3hbLBx2WQ9lfDydxxqLCmiU2En8CdqPD9hOidC+L31
+	KTkOECClYvMqpcFMZsMUgIM0k3t1fPZa73G8/aMHWiXFohTVFfgVnyLKI88PzbWg
+	LpujVgkZOPis9FqUn05rVsEJAzbiqimRMGeM1EkhNew==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4bpau0bkk4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Jan 2026 11:18:30 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 60EGI6v1028135
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 14 Jan 2026 11:18:06 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Wed, 14 Jan
+ 2026 11:18:06 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Wed, 14 Jan 2026 11:18:06 -0500
+Received: from HYB-e1y2fvUQ3cx.ad.analog.com (HYB-e1y2fvUQ3cx.ad.analog.com [10.44.3.126])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 60EGHmHU028201;
+	Wed, 14 Jan 2026 11:17:54 -0500
+From: Janani Sunil <janani.sunil@analog.com>
+Subject: [PATCH v3 0/2] iio: dac: Add support for MAX22007 DAC
+Date: Wed, 14 Jan 2026 17:17:00 +0100
+Message-ID: <20260114-max22007-patch-v3-0-769298f50b8a@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHzBZ2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQ0MT3dzECiMjAwNz3YLEkuQMXbMk02QTi1RjcxNTcyWgpoKi1LTMCrC
+ B0bG1tQC3DWQFYAAAAA==
+X-Change-ID: 20260114-max22007-patch-6b5c48e37457
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <jan.sun97@gmail.com>, <gastmaier@gmail.com>,
+        Janani Sunil
+	<janani.sunil@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768407468; l=4450;
+ i=janani.sunil@analog.com; h=from:subject:message-id;
+ bh=Nf+12xOltk2ropuig0YP9tBRUCODOe250oZIgxrR3D0=;
+ b=UFzSI/LYLsV2a+d9WLKOFyPohZPvBi2kAK0W5i1gQUNcLa166mWc4ncZhOvwb4RCFkusCxL1a
+ LSB8v183saAAnKQw0Yqp9HNDY/Va/NqTyUSiycviVsrhfcaujCp9AAQ
+X-Developer-Key: i=janani.sunil@analog.com; a=ed25519;
+ pk=e25MyjRLPY3RWrYm/LrJ+/+t1MZJUbkgIW5CZg+g+hA=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE0MDEzNCBTYWx0ZWRfX08jOt2cOQdyI
+ uTrscGagHZcv4T3cqDtpjncKRfjahaq1UrkKLaJSGp932jS5JblmfT7DWFq1cWBWGfTqkCLV59W
+ CmvbRsdeZVFNO7z4anf6q90QxQ52vqkkQ2PuunRW+iKZsrqvMBsL26C7mwZoXJWswLIcVDVpOok
+ MuzMK3aBJhrlp1UEWPiSFWs6ZSZYCg3YAOFune0BBOWPA0p4IAHxwc+XKXEm1g24KNx0vQDwVre
+ /tawEBIopsSFF5j6Vemfvbt0Cf6iQP4WvgckHYiJzgNZdD3FTvdWRXmXOCFY2vQdQrvV1jBNzx4
+ gOyQfbtghb9EIB6s399NxNg6PoDGh9CsPy9KGEml5SLa4p78E7Dn46uRSPaVH7RHFi5MOU/0/tz
+ trI536imwln3LxgcHWuoR0mr/D+pppM/Tag54VRzNdhFmC5v6nXoT5OkmBLp2EBAoFjfYAAzpAy
+ +uaNAMWEhObkWifyhsA==
+X-Authority-Analysis: v=2.4 cv=YcWwJgRf c=1 sm=1 tr=0 ts=6967c1d6 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=07d9gI8wAAAA:8 a=pGLkceISAAAA:8
+ a=VA_PCd8hym60q8TugJUA:9 a=QEXdDO2ut3YA:10 a=e2CUPOnPG4QKp8I52DXD:22
+X-Proofpoint-ORIG-GUID: fTWq-H7k_QPd6evnuworkaTzXjXgrdbK
+X-Proofpoint-GUID: fTWq-H7k_QPd6evnuworkaTzXjXgrdbK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-14_05,2026-01-14_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0 clxscore=1011
+ priorityscore=1501 phishscore=0 bulkscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601140134
 
-Document the Rocktech 5" 480x854 panel based on the Ilitek ILI9806E
-controller.
+This patch series introduces support for the Analog Devices MAX22007, a
+quad-channel, 12-bit digital-to-analog converter (DAC) with integrated
+precision output amplifiers and configurable voltage/current output capability.
 
-This panel uses SPI for control and an RGB interface for display
-data, so adjust the binding requirements accordingly.
+**Device Overview:**
+The MAX22007 features four independent DAC channels that can each be configured
+for either voltage output (0-12.5V) or current output (0-25mA) mode. The device
+communicates via SPI interface with built-in CRC8 error checking for data integrity.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+**Features Implemented:**
+- Support for all 4 DAC channels with 12-bit resolution
+- Per-channel voltage/current mode configuration via device tree
+  property `adi,ch-func = [voltage, current]`
+- Independent power control for each channel (attribute)
+- Hardware reset support via GPIO (during probe)
+- CRC8 error checking for SPI communication
+
+**Patch Summary:**
+1. dt-bindings: Binding documentation with channel configuration
+2. driver: Implement IIO DAC driver
+
+**Testing:**
+The driver was hardware tested on a Raspberry Pi4 on top of v6.12.y
+kernel using the MAX22007EVKIT evaluation board.
+
+Janani Sunil (3):
+
+dt-bindings: iio: dac: Add max22007
+iio: dac: Add MAX22007 DAC driver support
+---
+To: Lars-Peter Clausen <lars@metafoo.de>
+To: Michael Hennerich <Michael.Hennerich@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Jonathan Corbet <corbet@lwn.net>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-doc@vger.kernel.org
+Cc: jan.sun97@gmail.com
+Cc: gastmaier@gmail.com
+Signed-off-by: Janani Sunil <janani.sunil@analog.com>
 
 ---
 
+Changes in v3:
+- Remove node defined for power supplies in the devicetree documentaiton
+- Made use of CRC8_TABLE_SIZE macro in the crc table definition
+- Corrected casting of reg address in the SPI read function
+- Applied reverse christmas tree variable ordering
+- Added a macro fro the reference voltage and reused the same in the
+  scale factor
+- Removed usage of 'supplies' in enabling bulk regulator and removed
+  unused variable 'i'
+- Added step n the probe function to toggle the reset GPIO
+- Updated spacing in macro definitions
+- Link to v2: https://lore.kernel.org/r/20260108-max22007-dev-v2-0-2506c738784f@analog.com/
+
 Changes in v2:
-- Restore vdd-supply as required for both DSI and SPI types
-- Dop useless settings in case of rocktech,rk050hr345-ct106a
+- Wrap commit messages as per coding guidelines
+- Removed all driver references from the hardware
+- Update property description for reset-gpio
+- Removed allOf
+- Added minimum/maximum limits for channel number in the devicetree
+  binding
+- Replaced adi,type with adi,ch-func.
+- Added reference to required supplies in the binding, configured them
+  in the driver
+- Channels are not a required property anymore.
+- Replaced instances of 'channel' in macros to just 'ch'
+- Added trailing commas wherever necessary, removed them as per comments
+- Add explicit values for enum- max22007_channel_power
+- Replace channel spec structure member 'iio_chan' with 'iio_chans'
+- Use spi_write_then_read() API in the max22007_spi_read() API
+- Check for reg_size ==1 and hardcode the size otherwise
+- Wrap lines in the driver to 80 characters
+- Update in-line comment on the resolution
+- Separate declarations with assignment, from the ones that don't
+- Update the usage of channel template
+- Add a local device descriptor to point to the SPI device
+- Add a transition of the Reset GPIO from low to high in the probe
+- Make use of regmap_set_bits() instead of regmap_update_bits during CRC
+  Enable function call.
+- Remove the documentation commit, as it is not needed anymore.
+- Link to v1: https://lore.kernel.org/r/20251219-max22007-dev-v1-0-242da2c2b868@analog.com
 
- .../display/panel/ilitek,ili9806e.yaml        | 38 ++++++++++++++++++-
- 1 file changed, 36 insertions(+), 2 deletions(-)
+---
+Janani Sunil (2):
+      dt-bindings: iio: dac: Add max22007
+      iio: dac: Add MAX22007 DAC driver support
 
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-index f80307579485..2080d9e0ffac 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Ilitek ILI9806E based MIPI-DSI panels
-+title: Ilitek ILI9806E based panels
- 
- maintainers:
-   - Michael Walle <mwalle@kernel.org>
-@@ -18,6 +18,7 @@ properties:
-       - enum:
-           - densitron,dmt028vghmcmi-1d
-           - ortustech,com35h3p70ulc
-+          - rocktech,rk050hr345-ct106a
-       - const: ilitek,ili9806e
- 
-   reg:
-@@ -30,11 +31,24 @@ required:
-   - compatible
-   - reg
-   - vdd-supply
--  - vccio-supply
-   - reset-gpios
-   - backlight
-   - port
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - rocktech,rk050hr345-ct106a
-+then:
-+  $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  required:
-+    - spi-max-frequency
-+else:
-+  required:
-+    - vccio-supply
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -60,5 +74,25 @@ examples:
-             };
-         };
-     };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
- 
-+        panel@0 {
-+            compatible = "rocktech,rk050hr345-ct106a", "ilitek,ili9806e";
-+            reg = <0>;
-+            vdd-supply = <&reg_vdd_panel>;
-+            spi-max-frequency = <10000000>;
-+            reset-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>;
-+            backlight = <&backlight>;
-+            port {
-+                panel_in_rgb: endpoint {
-+                    remote-endpoint = <&ltdc_out_rgb>;
-+                };
-+            };
-+        };
-+    };
- ...
+ .../devicetree/bindings/iio/dac/adi,max22007.yaml  | 116 +++++
+ MAINTAINERS                                        |  16 +
+ drivers/iio/dac/Kconfig                            |  13 +
+ drivers/iio/dac/Makefile                           |   1 +
+ drivers/iio/dac/max22007.c                         | 488 +++++++++++++++++++++
+ 5 files changed, 634 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20260114-max22007-patch-6b5c48e37457
+
+Best regards,
 -- 
-2.43.0
+Janani Sunil <janani.sunil@analog.com>
 
 
