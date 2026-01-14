@@ -1,50 +1,52 @@
-Return-Path: <devicetree+bounces-255198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B7CD20F96
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 20:07:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42660D20FD9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 20:17:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4DFE630393F9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 19:06:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B262A30123CF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 19:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB65329E46;
-	Wed, 14 Jan 2026 19:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1026833D6DC;
+	Wed, 14 Jan 2026 19:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="TrjKq+vQ"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="AaTzVf6Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from ixit.cz (ixit.cz [185.100.197.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87193033ED;
-	Wed, 14 Jan 2026 19:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7C7280CD5;
+	Wed, 14 Jan 2026 19:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768417601; cv=none; b=VxeN2GKUkMbSfoTIAHWbPs1CXIB6uwaZQdZAvxFVVJzTq8YsZ+zVfrfp54sE7Y3ISQ5FET7nZTaNir2BZxj+3WtDdnXe6pD8Js9pchcmL119s27oc/o4i0oRV10GtHpDf4VsuWpwN+cKpRMARd4UanTXguXmRuiUGMPtIEBQ5HM=
+	t=1768418219; cv=none; b=glY28G48c77xziXDuODK+j5hoesw/pSZ8gP/crztsQLl/7zQjJ7pUt96X++xqtAT9RL6V+7e/3wD1SNvOQLswqua/HDJJbHlWOn6vddsJFIPXCoswFCVFPte7YgzHi2CWWFQFwTQokBW6JZJ1b9iPbVIqDzPl8DghFGq1L5QxHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768417601; c=relaxed/simple;
-	bh=BjbEvGKrM6/uTuvoCN82lSElypxjb3gXUCDtFhg8NqI=;
+	s=arc-20240116; t=1768418219; c=relaxed/simple;
+	bh=PX3PGL2sMFUcgtkl7E09BojcyMqqqd4vKPwK8CoeQ/A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FGIv1cNp9snAL+rYCmzGR7f8ZHNbvItbjzhixvfHkq9FMaYKHlZuXw9PvRqriA/qsKEJrrzQjWltIlxgxS81uokci1L3IBzNdBgyQh+U/gEP8FKcGZQ78fPsOHcJaHgPDdc+Ija2IhP2taqeoolN/Zf5QTKoGiq9PMZ4bUgE4m4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=TrjKq+vQ; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=MqYY9HoGox5VJhwTh0fKFFPWA1fKcL3f/K/VaXSx/pQ=; b=TrjKq+vQePymuAoxR+5z1RQxz6
-	CLbbYgQCRyLwYwFhevpQgzdNUiSSmd2pWZTEav9dqY+vchO0hlVsJmIlU67i3o2S5055FUZkodK3z
-	5KQfjqRoWWd6jIxr7+wyclxu/3HL+K2s5S2PNDMKzeuwh55Gi/4hv1t9U4EQQgpE8G865ra4Uqdbe
-	TUMSZlgL4G/5Sk7wJLTQR7v02zb32YQcY1ri6RcKmgnWzfWtbs82DzxbmigDAOmxdnKAb1WzuSRqK
-	EnBALR97rIR0sHT6uFrMor4EQ67y/KuyqV6tSeZg5ZjUx9orExAWeTnT9NYg6KqUgF/oCZYZKFQnM
-	hYqZgedA==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
-	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vg6CS-0000000AQO2-1ik6;
-	Wed, 14 Jan 2026 19:06:36 +0000
-Message-ID: <6ec2b90e-c6e9-444d-926a-68d19f42acba@infradead.org>
-Date: Wed, 14 Jan 2026 11:06:34 -0800
+	 In-Reply-To:Content-Type; b=fn1ADb4XCOu9r5O37TYUeebZ1qAARUGFyWqb8TD+BuM7UgD7xIhIz598EKTVDVCu9cIHZ09vj+bVQp0LUNADkN49A7tLHG+BQyFI29vyOjtDplQrTUXNXRD7djxJbFFkirom2x+cx8GtJlVcvwH5JnzsHVKOurRU7Orl/OVhxFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=AaTzVf6Q; arc=none smtp.client-ip=185.100.197.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.88.125.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 0C4D45340A9A;
+	Wed, 14 Jan 2026 20:16:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1768418214;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=geIYeoeMsOsqFO9ETf7E20B8AJL/Nj/kkz6GE0rD5Rc=;
+	b=AaTzVf6QtGGyxqY7e/pd9WmZASDnfc/8LS5LHJ/oIZNqyo8cgRg95VVONRE6ju6raYrt/4
+	hQCzt+U20daZpx3YF15Ofhb4fuO/h18I3dgS2JGSvvcHJJjljNzlNH094dcSL0GInQC76m
+	4mq3M2lKKf/qv+mLKwg45hISnhp4qKs=
+Message-ID: <28254051-c01e-4c1d-a9cc-3fcbd3433853@ixit.cz>
+Date: Wed, 14 Jan 2026 20:16:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,130 +54,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] accel/thames: Add IOCTL for job submission
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Nishanth Menon <nm@ti.com>,
- "Andrew F. Davis" <afd@ti.com>, Randolph Sapp <rs@ti.com>,
- Jonathan Humphreys <j-humphreys@ti.com>, Andrei Aldea <a-aldea@ti.com>,
- Chirag Shilwant <c-shilwant@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Robert Nelson <robertcnelson@gmail.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-doc@vger.kernel.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org
-References: <20260114-thames-v2-0-e94a6636e050@tomeuvizoso.net>
- <20260114-thames-v2-4-e94a6636e050@tomeuvizoso.net>
+Subject: Re: [PATCH] kbuild: Fix unnecessary rebuilding DT base+overlay
+ targets
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, Nathan Chancellor
+ <nathan@kernel.org>, Nicolas Schier <nsc@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260114184640.3043083-1-robh@kernel.org>
 Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20260114-thames-v2-4-e94a6636e050@tomeuvizoso.net>
-Content-Type: text/plain; charset=UTF-8
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20260114184640.3043083-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-
-On 1/14/26 12:46 AM, Tomeu Vizoso wrote:
-> Using the DRM GPU scheduler infrastructure, with a scheduler for each
-> core.
+On 14/01/2026 19:46, Rob Herring (Arm) wrote:
+> Commit 5d0cac427d42 ("kbuild: Support directory targets for building
+> DTBs") causes base+overlay targets to be rebuilt every time. The problem
+> is due to the added check on $(MAKECMDGOALS) which now testing again
+> doesn't even seem to be needed. Revert that portion of the commit.
 > 
-> Contexts are created in all cores, and buffers mapped to all of them as
-> well, so all cores are ready to execute any job.
-> 
-> The job submission code was initially based on Panfrost.
-> 
-> v2:
-> - Add thames_accel.h UAPI header (Robert Nelson).
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Fixes: 5d0cac427d42 ("kbuild: Support directory targets for building DTBs")
+> Reported-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  drivers/accel/thames/Makefile       |   1 +
->  drivers/accel/thames/thames_core.c  |   6 +
->  drivers/accel/thames/thames_drv.c   |  19 ++
->  drivers/accel/thames/thames_job.c   | 463 ++++++++++++++++++++++++++++++++++++
->  drivers/accel/thames/thames_job.h   |  51 ++++
->  drivers/accel/thames/thames_rpmsg.c |  52 ++++
->  include/uapi/drm/thames_accel.h     |  54 +++++
->  7 files changed, 646 insertions(+)
+>   scripts/Makefile.dtbs | 3 ---
+>   1 file changed, 3 deletions(-)
 > 
 
+Whoa, that was quick! Thanks.
 
-> diff --git a/include/uapi/drm/thames_accel.h b/include/uapi/drm/thames_accel.h
-> index 0a5a5e5f6637ab474e9effbb6db29c1dd95e56b5..5b35e50826ed95bfcc3709bef33416d2b6d11c70 100644
-> --- a/include/uapi/drm/thames_accel.h
-> +++ b/include/uapi/drm/thames_accel.h
-
-> @@ -75,6 +78,55 @@ struct drm_thames_bo_mmap_offset {
->  	__u64 offset;
->  };
->  
-> +/**
-> + * struct drm_thames_job - A job to be run on the NPU
-> + *
-> + * The kernel will schedule the execution of this job taking into account its
-> + * dependencies with other jobs. All tasks in the same job will be executed
-> + * sequentially on the same core, to benefit from memory residency in SRAM.
-> + */
-
-Please make these comments full-fledged kernel-doc comments.
-E.g.:
-
-> +struct drm_thames_job {
-> +	/** Input: BO handle for kernel. */
-
-	/** @kernel: input: BO handle for kernel. */
-
-> +	__u32 kernel;
-> +
-> +	/** Input: Size in bytes of the compiled kernel. */
-> +	__u32 kernel_size;
-> +
-> +	/** Input: BO handle for params BO. */
-> +	__u32 params;
-> +
-> +	/** Input: Size in bytes of the params BO. */
-> +	__u32 params_size;
-> +
-> +	/** Input: Pointer to a u32 array of the BOs that are read by the job. */
-> +	__u64 in_bo_handles;
-> +
-> +	/** Input: Pointer to a u32 array of the BOs that are written to by the job. */
-> +	__u64 out_bo_handles;
-> +
-> +	/** Input: Number of input BO handles passed in (size is that times 4). */
-> +	__u32 in_bo_handle_count;
-> +
-> +	/** Input: Number of output BO handles passed in (size is that times 4). */
-> +	__u32 out_bo_handle_count;
-> +};
-> +
-> +/**
-> + * struct drm_thames_submit - ioctl argument for submitting commands to the NPU.
-> + *
-> + * The kernel will schedule the execution of these jobs in dependency order.
-> + */
-
-Same here.
-
-> +struct drm_thames_submit {
-> +	/** Input: Pointer to an array of struct drm_thames_job. */
-> +	__u64 jobs;
-> +
-> +	/** Input: Number of jobs passed in. */
-> +	__u32 job_count;
-> +
-> +	/** Reserved, must be zero. */
-> +	__u32 pad;
-> +};
-> +
-
-
--- 
-~Randy
-
+Tested-by: David Heidelberg <david@ixit.cz>
 
