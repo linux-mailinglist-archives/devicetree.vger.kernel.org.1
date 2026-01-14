@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-255270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A96AD21BCA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:19:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A43D3D21BD3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:19:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 18C69303C615
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:19:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 06DA6301315F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7633876D7;
-	Wed, 14 Jan 2026 23:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A28C138F256;
+	Wed, 14 Jan 2026 23:19:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="3L3Uarpv"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="06E9X8Db"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21EB4387575
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 23:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E988E38A9DF
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 23:19:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768432759; cv=none; b=VIEm79ijd4VjTjVHd3tGWVliE3egYMzLaV806LD4akF9SKeAp6oHKYRSs/OUSabWrVHExAoxFuEOFydtbDC8xqPBFMazoRcvDL/A/no9Lv/7de7XrYR3NMxd2/X4/mKwjV3qbAcMTr25f+hKN6vw3sfVDUrPE6LlBkE7OCFmmJw=
+	t=1768432771; cv=none; b=EwNXiMcaYok+9DTFsy+/w3OLVIbfBZfGAOi5DgQ2iCRdrRDv9iJ7+zdjK2QHZSFLGlffKAxH2JxM304BrmeaAa2j++Ad6VOGMhqm+fnnCTnBPfOmlxEvnvKEiz213SBr9o8O4pfdssq0rhHXT9ovFWZy+QDHBzyU8z/5jakNLiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768432759; c=relaxed/simple;
-	bh=Z0/JjbecIj4mMFn/eww29bfEtMYsLkii0TunPLdkuaI=;
+	s=arc-20240116; t=1768432771; c=relaxed/simple;
+	bh=g9R/DgoDWl6EF5D3q8DzkV6XBEbhurMxaGpLqhJaO2g=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JG5T6L8WsR5w4gKS//xRYytxxVjeBO8QFl2iNpfYx5FuDnSj7toG6Ql1Ll8aBEPtd+SDxwe4ht2UgQm6m6ghaafS7csEBqYaWlWYYzADDuMm32M13z6bYZ2D3P4sI4trmF6mN4uvjlN0Q4S0WQyF0rGfTHyB4RVZbYusgkWNIoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=3L3Uarpv; arc=none smtp.client-ip=209.85.214.193
+	 In-Reply-To:To:Cc; b=PhrbVFTyljRHhYA7jtRF/7pJ9wcX7jF9HONmn/FBXNX8YHjCg6zTdZjloIDGHibCMHO5X8gZPOZAhHPXQzJZETOYvuFWe9otz5gRbT4E++6CE+iSTRHIEnlZ5Aw22YwSuaNrOU+TtOZzTU7eANff0drVh8DlolZK2ARTt0vxcIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=06E9X8Db; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-2a0ac29fca1so2386505ad.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:19:16 -0800 (PST)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2a0d5c365ceso2542585ad.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:19:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768432756; x=1769037556; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768432763; x=1769037563; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Nbmp2d0HgOyIl8jX1BIaQZ3qrfCn/EZHa3mK+NXd3sU=;
-        b=3L3UarpvnoSE1BCkAKka2b7aUvdBkeMooO4+u+QtHXxwmnHvbVYgbzKSIbb+IAxdp8
-         nhcs9SRu0SufhLwfZtRjwgFmk61McJd8l9WBe0GniszTEdtuwkztc8zOVgTDklHmdD78
-         s93vKB8GzW6F1mS1gAKmBj/FlFIQtAInVtZHU88I4C3bPAPA3DQ2WL6pM2euTs2GCwvD
-         6BdiYHEh3URw6UKogpHvfu3/3cJu0UuNc/eBGiy8KA78eJIFX1SzEJAylX500mfUtwfb
-         YmpGTWLZVROoYHls/XqsP5IzRpwEhsaTLeMhp4JDbU4RfB8Lilj023qni0sQWO4opkvI
-         XTwg==
+        bh=kaSWKwxLaghni7N9hjcOEG+LzgsthN0XWKW1He+SYHg=;
+        b=06E9X8DbDizq7HZjDrz3eH+WNaCfytp50w6SeXd5h1DnyTv24T1pO39A5//oEqud53
+         Q77qvAX7eFz1dxddDuvHqkpSZdQCePXx6padmaWdPABpG1EAD4ILzGWby3wjK+ZtNWXX
+         VwQml3srcYfu9h6RX4iKcMLJPhweBkhtwnD2gXb6gRzFT8aukOOzFp49eWwzcjLkQEns
+         3HdsZuMQw1idiWZI/qKI9lZ19ixCH/4PdxK0GW8d1ch/CssAVJcPb/y3dN0Z1F1vAfie
+         duWJADyVv3RI+8kwy0eaXgALEYM6GbIz+fW8rNv0Ye2QlotYyDGm2OuBZuCW+b3zbFV+
+         h9/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768432756; x=1769037556;
+        d=1e100.net; s=20230601; t=1768432763; x=1769037563;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Nbmp2d0HgOyIl8jX1BIaQZ3qrfCn/EZHa3mK+NXd3sU=;
-        b=easuHNE31Kqu0+nrWQD4vBW0acXVCtq/m7U20XMO6jeaLsfC7jhJ6LnzgHYxgz7T7b
-         AZNzkp3/G84vUL4kv/dvIhGm0z4wtA6VPnpzJ1EwP0QVH0MizS4Nl239or6G0hl14RFT
-         Cvcica1Dm0VSLSnNGfhFLvTQrPuduI5w26YdKHxlivZS78QCu/aJwxW1Wu2pLs2VxGO+
-         A6NqnMxyGceh6xhMfQyOoSxhsOKmIGRHeK4EqKp310NNHUc5IxZY8FQUxBVfSIF+mBKd
-         envrANmNwW1q28hHwAT87xauHzJsjnrHG1l91HMqbfPKoj160qtOXvpwtV7f+eC40Q3X
-         pTeA==
-X-Forwarded-Encrypted: i=1; AJvYcCUC60JyzZKZvBJDy9q7vReZYfo/VJCYmg75iAe72sS3O6wykEuWRjK6dyuaGeLsodIiw5jWQqKN/CFf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAwCjIjZrvByOyihS+dz4XE3QuOPtyPGia5QEEDJ2ZCID8cnRS
-	DjQh4Wz2wQc2Q/5wjjK2bhGxvOos5zDB8XNRBPmZnRrt7wNoxGfO8ppFRyEu88FpjFQ=
-X-Gm-Gg: AY/fxX7CW/Wdf+Cqs1W2yTWJN4cjBVy7cDum5IstzyKlA6mOSiejeeT/DdD/eQvCaDa
-	yXsdkR+yslKusVWbc3pHkZhUgofrFX36Cb/XRnopMLnSQyAwldIAUUYQJqwSsP7DhTAKyDZ00Bt
-	GJ7yfYc9UZnI3VNl7/wrhkaVuwJGyVzQy4TVPj+PV7sF2+RqU9dfBzewzGD6DTZY2UzI4KJQQyc
-	IqN8mqW/ozpB4GKp3oT3q+86YGY5T2iR2/sP5iEQdJELVmf3fpRIWzXZH14vVEO7ItusRaYtLau
-	NluH7j/ysrGuRyAx9RByjBkK+k/DJI1gDtcy2w9XZQ4bd9orxm+te0vRhPskSvRqxk0nGzdw51h
-	lvZWzO6oqGd+5XaDXsMwALm2Qou2f73jpcOiJJTQSGcCQ66iHL5h0yKXtiSSN9ilDmylDiGVHe0
-	k5/v/f6NQQSvkUKfUc0EQFX321Dvg4rCVtY+LlJBPhfbzEC28AP52XKvzpxAHkpvqT
-X-Received: by 2002:a17:903:3bad:b0:295:3584:1bbd with SMTP id d9443c01a7336-2a599e8edb4mr40339635ad.41.1768432756448;
-        Wed, 14 Jan 2026 15:19:16 -0800 (PST)
+        bh=kaSWKwxLaghni7N9hjcOEG+LzgsthN0XWKW1He+SYHg=;
+        b=h3Ze1ip31HXs6l2LEke9odGiSVeMZ5JcYT2AYhRWs8102Z1Hkw+Qtzt84yl8mwJrbD
+         IlngJPRIn0aZfXVrBIPk8ISLgrPGYheVHFF6mo4eJs09oOx+0D/+HMbCcek7TkOHAdve
+         zdUhN76qkJwL7Z+r9KxIh6nKLxUsEceBYg313QDVBmHK/fH6bpEmP7p2UfwjXOzg4aBI
+         4jBza4CmZ8Gr73wJGw5/ixvl5roWtYW1W6HFiDlydPCKa1VyIsIGuFhTkVvo86a9PkxF
+         MtYPJxaV6qesY6ojB5OyocutCNRgGKW6zhAeEHmMci6iZXzJtQ6OYb6wEu+92EJsPgt2
+         s+Cg==
+X-Forwarded-Encrypted: i=1; AJvYcCXrYS20FzngLesQhF/mFPGg6JsUF7EiE6lKc9l3F64T1IcefDIhgceTz9x/6zYI09cLCvUfDfma4Pn1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxP4Kh47c20y0+ilaN+zipqjMxEWYfGC+TbRMWlotQwk4xrMuSo
+	5XnSIc8EJyC4JkymJm85vPtFawZBdaFmnnqMRLfVRgnJgrXcJVr0VeiiINQg0sdhDVQ=
+X-Gm-Gg: AY/fxX5t2mN0p6b6aXFKjWkATtvSQxOk74oRpW5fTixx0835fsBGNEmYGn3wl98nxBl
+	srtCiQtrEzacHpEbsEAtQnv2Sd2j2G4QlZv3jFzvL1bs9WY1TDOlY0PURg6OpnxxxHIaoR0TXYl
+	grFu8afkvcostFRpCT3HcC19ZYnkLcPLY4u7rDgguwHTNc7XNoY4+rrRIjhhtDvMKuC12KyIVd3
+	1vjvUDstU28ZB5tbHOuu190CKm2R8Ckx7z1FqQJcH7fndlpp8EdHG/RQOm9wA2f/6BNVx2wBSGg
+	oWSB99XdUWzocURuQVE6K1xHh1z8Q27rBDsud+VBrVlJSMfCdpPG/CnfV13BSJdceHdtIg6Dklw
+	eRmUHVKG8cN+B5q07M00IYKMrlCe7/v/hKEUQ0Z6gF/Nq6iLGcP0jpTHQh1xxP2yWo2Etfxq4Ga
+	UZwSJi2dL4rGqVMXdhx7r3Ql1m4AJkZKaEws2XaVG1jKZmjiwHyVxtFg==
+X-Received: by 2002:a17:902:fc8e:b0:297:f09a:51cd with SMTP id d9443c01a7336-2a599daf6afmr44260145ad.14.1768432762876;
+        Wed, 14 Jan 2026 15:19:22 -0800 (PST)
 Received: from [127.0.1.1] ([45.8.220.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cb2d6csm238591755ad.64.2026.01.14.15.19.10
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cb2d6csm238591755ad.64.2026.01.14.15.19.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 15:19:16 -0800 (PST)
+        Wed, 14 Jan 2026 15:19:22 -0800 (PST)
 From: Guodong Xu <guodong@riscstar.com>
-Date: Thu, 15 Jan 2026 07:18:57 +0800
-Subject: [PATCH v2 1/4] Documentation: riscv: uabi: Clarify ISA spec
- version for canonical order
+Date: Thu, 15 Jan 2026 07:18:58 +0800
+Subject: [PATCH v2 2/4] riscv: dts: anlogic: dr1v90: Add "b" ISA extension
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260115-adding-b-dtsi-v2-1-254dd61cf947@riscstar.com>
+Message-Id: <20260115-adding-b-dtsi-v2-2-254dd61cf947@riscstar.com>
 References: <20260115-adding-b-dtsi-v2-0-254dd61cf947@riscstar.com>
 In-Reply-To: <20260115-adding-b-dtsi-v2-0-254dd61cf947@riscstar.com>
 To: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <pjw@kernel.org>, 
@@ -99,38 +98,42 @@ Cc: Junhui Liu <junhui.liu@pigmoral.tech>, linux-doc@vger.kernel.org,
  spacemit@lists.linux.dev, Guodong Xu <guodong@riscstar.com>
 X-Mailer: b4 0.14.3
 
-Specify that chapter 27 refers to version 20191213 of the RISC-V ISA
-Unprivileged Architecture. The chapter numbering differs across
-specification versions - for example, in version 20250508, the ISA
-Extension Naming Conventions is chapter 36, not chapter 27.
+"b" is ratified (Apr/2024) much later than its components zba/zbb/zbs
+(Jun/2021). With "b" added into riscv/extensions.yaml, a dependency
+checking rule is now enforced, which requires that when zba, zbb, and zbs
+are all specified, "b" must be added as well. Failing to do this will
+cause dtbs_check schema check warnings.
 
-Historical versions of the RISC-V specification can be found via Link [1].
+According to uabi.rst, as a single-letter extension, "b" should be added
+after "c" in canonical order.
 
-Acked-by: Paul Walmsley <pjw@kernel.org>
-Link: https://riscv.org/specifications/ratified/ [1]
-Fixes: f07b2b3f9d47 ("Documentation: riscv: add a section about ISA string ordering in /proc/cpuinfo")
+Update dr1v90.dtsi to conform to this rule. Line balancing is performed
+to improve readability.
+
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
-v2: Add Acked-by from Paul.
+v2: New patch, a split from the Patch 2 in v1. This patch is for
+    Anlogic dr1v90.
 ---
- Documentation/arch/riscv/uabi.rst | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ arch/riscv/boot/dts/anlogic/dr1v90.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/arch/riscv/uabi.rst b/Documentation/arch/riscv/uabi.rst
-index 243e40062e34..0c5299e00762 100644
---- a/Documentation/arch/riscv/uabi.rst
-+++ b/Documentation/arch/riscv/uabi.rst
-@@ -7,7 +7,9 @@ ISA string ordering in /proc/cpuinfo
- ------------------------------------
+diff --git a/arch/riscv/boot/dts/anlogic/dr1v90.dtsi b/arch/riscv/boot/dts/anlogic/dr1v90.dtsi
+index a5d0765ade32..9fe183f5f5c8 100644
+--- a/arch/riscv/boot/dts/anlogic/dr1v90.dtsi
++++ b/arch/riscv/boot/dts/anlogic/dr1v90.dtsi
+@@ -27,8 +27,9 @@ cpu@0 {
+ 			mmu-type = "riscv,sv39";
+ 			reg = <0>;
+ 			riscv,isa-base = "rv64i";
+-			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zba", "zbb", "zbc",
+-					       "zbkc", "zbs", "zicntr", "zicsr", "zifencei",
++			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b",
++					       "zba", "zbb", "zbc", "zbkc", "zbs",
++					       "zicntr", "zicsr", "zifencei",
+ 					       "zihintpause", "zihpm";
  
- The canonical order of ISA extension names in the ISA string is defined in
--chapter 27 of the unprivileged specification.
-+Chapter 27 of the RISC-V Instruction Set Manual Volume I Unprivileged ISA
-+(Document Version 20191213).
-+
- The specification uses vague wording, such as should, when it comes to ordering,
- so for our purposes the following rules apply:
- 
+ 			cpu0_intc: interrupt-controller {
 
 -- 
 2.43.0
