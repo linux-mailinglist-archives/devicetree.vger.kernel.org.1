@@ -1,244 +1,133 @@
-Return-Path: <devicetree+bounces-255238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BFE7D218FA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C02D21918
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:30:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F04DA300CBBA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 22:26:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 51EEC300FFB8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 22:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D7073AEF5C;
-	Wed, 14 Jan 2026 22:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04F7D2EFD98;
+	Wed, 14 Jan 2026 22:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MyREzBrx"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rzQ9DGe1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B47425DAEA;
-	Wed, 14 Jan 2026 22:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7E6D3563ED
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 22:30:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768429587; cv=none; b=bjp2z3LlKGaXIv6tVUz4wn8ytyk7/lN/MaUZjQ2foTqLIoBySEWcemi2dMMRiycu77s3sdl5881SC2wpymEzXoeNjqKTbL+N1R9B9LInFcwpqQZkTIGOmfLtYgymg4UMhBYkIMFgR3e9njEnvw9lHLOmXvmTbCkQlGiGyU5APeA=
+	t=1768429826; cv=none; b=FWDGmlgH9/OlktiTAP6CevfsUPYuLw9LV2xvfCSc42NddxpciBkcFJ0MLZiXTL3Yz5lnaPpWLEODyyCWfXeTx8lMAeZHUE/UpvRMvZoyiAxXpsNYkqeJVeviuPEtzAbJAM2KER3kHNxjHqdWA+gqJbW3Yf1W7FkuXw9fF5xKX2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768429587; c=relaxed/simple;
-	bh=E23o1WuVCWV4lsZQpavmUfvaAT35SzN5pxwguUo9ASg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XX8Ak0oykktCpty9MUBruddZsGP6dHfv4e3HvSpK1WG6YBMAtcCjcd2H1ekoWpmxyYDGRKoCBmA5cp0p85nBQ1zuTv/Itmlq0TaRXMSVsyxl//CFKSg/GnAznFZKXxTa9X0GfP1MBS5ZAm/murb6HlgEcv8/T8H4xKF6DA+Sfi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MyREzBrx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C397C4CEF7;
-	Wed, 14 Jan 2026 22:26:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768429586;
-	bh=E23o1WuVCWV4lsZQpavmUfvaAT35SzN5pxwguUo9ASg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MyREzBrxP2KEIiRzAKjP6CRaaALpibZspraJYZxrV2N0erA+9u2YTERmy0/yPyO+K
-	 hgcYxDpp9HcdyaArIDgiMhD9PHWt4CHMW8wtNvB69IFMEt46JRTqluioeq7rsa+ygD
-	 Iv0MrniQRaGZnhGAKaacvnpDNT2XW03OQFNgDui4iLLD0DQSTxhPAvFEYCjX2yQEdl
-	 xysxNLVBsMykIHZm5ycX0F9GaAlqFSi2E2zKGw4xPjqyMbLiJlDtBb2VI1gmHgQ1gx
-	 WD5J4xbij2cHKdkWWakBj1QUaOWxqujnfhkQfZ8pyf9qq68St2O8WKYyNy5A9hzGWy
-	 2abu/B//8upLA==
-Date: Wed, 14 Jan 2026 22:26:20 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas,r9a09g077: Document
- pin configuration properties
-Message-ID: <20260114-wasabi-roster-77dff5518a79@spud>
-References: <20251014191121.368475-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251014191121.368475-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251016-dimmed-affidavit-90bae7e162aa@spud>
- <CA+V-a8un1cF=acNjG=79_v7oaR8gzBQ+3z1As8AqrJnOnk-OUw@mail.gmail.com>
- <CA+V-a8vq2EvTb_hXxRzW_Rbp+BPLSaLsEVkvaTjc1zRin-RV=Q@mail.gmail.com>
- <20251208-headgear-header-e17e162f0f52@spud>
- <CA+V-a8s0gPbe2ffmN1G_7ibVL4+=FKUEQZu3_CwQL=U0T3--DQ@mail.gmail.com>
+	s=arc-20240116; t=1768429826; c=relaxed/simple;
+	bh=PXVggypcbBwJihCtpCrmBLopaA1RXwINv+2Iwfde8Lk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=GnLg3tRndg/nh5NkUjBTlkTDCwq652LKCT14gPFKFwlEXSVsXlc+93f0+VUfIZWT+EIEinO2/il3VLQtqrNY3vjS4bvszRf1bJhcPCkKh/3clp0bz2y261d3aKRzgn7IsajOXWy9ELTnhNTI2qmx4ecOG9gAG+Vu5ot+i0y2wtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rzQ9DGe1; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-81f4e36512aso255659b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 14:30:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768429805; x=1769034605; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ymy5giR6WrVAtVFXMff8n5QnBmgyVv03sjiXQEbjz38=;
+        b=rzQ9DGe1vQYjvJmJI6BuZ7gB0/d8ncL1Nq0OTaqvyRvHoGfemAwaUORwMWkPJLdClU
+         srNXLcCX0jEwyWFvPlEmc12LFh0Wy72lVDoL+Myg/s0aq6WCpUzto5zf1wXAwyjI+Jmq
+         M/110jGt04M36BNknYY7K1Bp5EkYEhkF1ZoVyTtpRYPYwDnrYZB8uK+4S2Uti9Wy0Xtz
+         AaMtIIXJhtXYWC8kK1mY46bK+2IK839vGUIFj56ix2lVjKQZCeU9aKxKktV+I6cuJ54V
+         R6c1lI6ZnEgLpdQtXWa1VkRQIF1fTAbhwTxg9I5bHZxR43v8d8zmVddxJBnXbB9vsRlo
+         yetg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768429805; x=1769034605;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ymy5giR6WrVAtVFXMff8n5QnBmgyVv03sjiXQEbjz38=;
+        b=SMQ+Ra8JQNunmPrb7Qed1PpjT6vYEFOpDh127XfP5mG9OCs4l8l0X1MG2kSTbTmLpm
+         7sgrSQ3RA8AlqrESGNLcjnxyizzi4EkGr24EuS9LSWcN3FusUNxkTqFVoFh0Lf7a3YnZ
+         iesjkFjcPc3gRiaCfnMFWADvmSoddYbTElqKPAuowg6a4GEy7j0LZ1FVHMGBG/iQ4a1D
+         JmCVYG8l6ee1ZO+pKblrfDmQ5h0fWF62K2I5zj/4G9PWoTHBOqXjObEzCVR2Bn/hMgcj
+         p7mEC/Sq9Q1/7prHNmVqZEw6pnJNJkTDLkySAwmKrhlDlcBRsSAbgF21+ArI2sVOedx7
+         ehhA==
+X-Forwarded-Encrypted: i=1; AJvYcCUI9LNESeHlLqH/9OxBinAoge2ipK7isaseJfEk1WeBIaYWLIL+oQZPpCMLtsxH4f+xNBz0Nl4XNBIj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyobgEkgzepH6NAEWM20vl3IQuP7II8RNieLBKnKwss07qzOHqh
+	5nJvYL7elBdEU6t3QuwzfJIegmqEZPi9mTeH4CeJBBDJilxJJr+Gg1kKxGM3iq3+EZQ=
+X-Gm-Gg: AY/fxX4a+sU0JMitzyo/coXv7RzxBgnyrE+nAPnaGyIav12BDy/PBxSaE/GhFIVtUV7
+	itoaOsNj74SLNhLWyn8z2urlJ3zbHEJ2KsuJu0IdRt+4fl8XKb/Tom4TTEtrAiXBD2gu2iCiB0a
+	aehT5Kz3lMdhGieeHxbOpp7Ix8YBmfivUOyvZMSc3CBb815A7GjD4ofKKsK5tLvfNwPhu1Atok4
+	R4ao2hT/Yfr+2cVjULf4H+Qs5IiW/2P9+6IrzM3PP1m4GGUa9zkSG6L7TidPr3E+ls60u65PbOP
+	R+Fp+qBnMeiOh9b2YcdbRIgKaUSnDto0JeC3OIHv1hp7wrmD0z888nWnMXyous/qZota8FMd24u
+	eXh7F3GYMVvGGa8PkFqAivm/FcEnsPiAVKdJaP44E98NMAesVFRCF2w8ZBKqdzxWZ0/65IIk76v
+	vyc+fmLfCP
+X-Received: by 2002:a05:6a00:4145:b0:81f:3d13:e069 with SMTP id d2e1a72fcca58-81f81cdee8amr3317222b3a.8.1768429804947;
+        Wed, 14 Jan 2026 14:30:04 -0800 (PST)
+Received: from localhost ([71.212.208.158])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81f8e64c33dsm515228b3a.44.2026.01.14.14.30.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 14:30:02 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Andreas Kemnade <andreas@kemnade.info>, Jonathan Cameron <jic23@kernel.org>
+Cc: akemnade@kernel.org, Jean-Baptiste Maneyrol
+ <jean-baptiste.maneyrol@tdk.com>, David Lechner <dlechner@baylibre.com>,
+ Nuno =?utf-8?Q?S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko
+ <andy@kernel.org>, Aaro
+ Koskinen <aaro.koskinen@iki.fi>, Roger Quadros <rogerq@kernel.org>, Tony
+ Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: ti/omap: omap4-epson-embt2ws: fix typo in
+ iio device property
+In-Reply-To: <20260112094259.4648cfaa@kemnade.info>
+References: <20251231-mpu9150-v1-0-08ecf085c4ae@kernel.org>
+ <20251231-mpu9150-v1-2-08ecf085c4ae@kernel.org>
+ <20260111123200.6871a41b@jic23-huawei>
+ <20260112094259.4648cfaa@kemnade.info>
+Date: Wed, 14 Jan 2026 14:30:02 -0800
+Message-ID: <7ha4yfzv2t.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TyXLv511dB9v7TLC"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8s0gPbe2ffmN1G_7ibVL4+=FKUEQZu3_CwQL=U0T3--DQ@mail.gmail.com>
+Content-Type: text/plain
 
+Andreas Kemnade <andreas@kemnade.info> writes:
 
---TyXLv511dB9v7TLC
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Sun, 11 Jan 2026 12:32:00 +0000
+> Jonathan Cameron <jic23@kernel.org> wrote:
+>
+>> On Wed, 31 Dec 2025 22:14:17 +0100
+>> akemnade@kernel.org wrote:
+>> 
+>> > From: Andreas Kemnade <andreas@kemnade.info>
+>> > 
+>> > Define interrupts properly. Unfortunately, this hides a bug in the linux
+>> > driver, so it needs to be used with the driver fixed only.
+>> > 
+>> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>  
+>> 
+>> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+>> Not related to patch 1 so if TI soc folk can pick this up that would be
+>> great.
+>> 
+> well, it needs things fixed via patch 1 to avoid creating havoc...
+> But from a strictly dogmatic point of view the devicetree describes the
+> hardware, so it is unrelated.
+> ... but from a more pragmatic point of view, I do not want to have interrupts
+> enabled for drivers which do not handle them correctly.
+>
+> Of course this should be picked up by omap folks.
 
-On Wed, Jan 14, 2026 at 08:53:12PM +0000, Lad, Prabhakar wrote:
-> Hi All,
->=20
-> Sorry for the late reply.
->=20
-> On Mon, Dec 8, 2025 at 6:01=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
-> >
-> > On Mon, Dec 08, 2025 at 10:36:04AM +0000, Lad, Prabhakar wrote:
-> > > Hi Conor,
-> > >
-> > > Sorry for the delayed response. Ive got feedback from the HW team.
-> > >
-> > > On Fri, Oct 17, 2025 at 4:33=E2=80=AFPM Lad, Prabhakar
-> > > <prabhakar.csengg@gmail.com> wrote:
-> > > >
-> > > > Hi Conor,
-> > > >
-> > > > Thank you for the review.
-> > > >
-> > > > On Thu, Oct 16, 2025 at 5:41=E2=80=AFPM Conor Dooley <conor@kernel.=
-org> wrote:
-> > > > >
-> > > > > On Tue, Oct 14, 2025 at 08:11:20PM +0100, Prabhakar wrote:
-> > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > >
-> > > > > > Document the pin configuration properties supported by the RZ/T=
-2H pinctrl
-> > > > > > driver. The RZ/T2H SoC supports configuring various electrical =
-properties
-> > > > > > through the DRCTLm (I/O Buffer Function Switching) registers.
-> > > > > >
-> > > > > > Add documentation for the following standard properties:
-> > > > > > - bias-disable, bias-pull-up, bias-pull-down: Control internal
-> > > > > >   pull-up/pull-down resistors (3 options: no pull, pull-up, pul=
-l-down)
-> > > > > > - input-schmitt-enable, input-schmitt-disable: Control Schmitt =
-trigger
-> > > > > >   input
-> > > > > > - slew-rate: Control output slew rate (2 options: slow/fast)
-> > > > > >
-> > > > > > Add documentation for the custom property:
-> > > > > > - renesas,drive-strength: Control output drive strength using d=
-iscrete
-> > > > > >   levels (0-3) representing low, medium, high, and ultra high s=
-trength.
-> > > > > >   This custom property is needed because the hardware uses fixe=
-d discrete
-> > > > > >   levels rather than configurable milliamp values.
-> > > > > >
-> > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renes=
-as.com>
-> > > > > > ---
-> > > > > >  .../bindings/pinctrl/renesas,r9a09g077-pinctrl.yaml | 13 +++++=
-++++++++
-> > > > > >  1 file changed, 13 insertions(+)
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,=
-r9a09g077-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,=
-r9a09g077-pinctrl.yaml
-> > > > > > index 36d665971484..9085d5cfb1c8 100644
-> > > > > > --- a/Documentation/devicetree/bindings/pinctrl/renesas,r9a09g0=
-77-pinctrl.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/pinctrl/renesas,r9a09g0=
-77-pinctrl.yaml
-> > > > > > @@ -72,6 +72,19 @@ definitions:
-> > > > > >        input: true
-> > > > > >        input-enable: true
-> > > > > >        output-enable: true
-> > > > > > +      bias-disable: true
-> > > > > > +      bias-pull-down: true
-> > > > > > +      bias-pull-up: true
-> > > > > > +      input-schmitt-enable: true
-> > > > > > +      input-schmitt-disable: true
-> > > > > > +      slew-rate:
-> > > > > > +        enum: [0, 1]
-> > > > >
-> > > > > What are the meanings of "0" and "1" for slew rate? Why isn't thi=
-s given
-> > > > I'll add a description for it (0 =3D slow, 1 =3D fast) and the same=
- values
-> > > > are programmed in the register to configure the slew rate.
-> > > >
-> > > > > as the actual rates? The docs surely give more detail than just "=
-slow"
-> > > > > and "fast".
-> > > > You mean to represent slew-rate in some sort of a unit?
-> > > >
-> > > Based on the comments from the HW team, there is no numerical
-> > > definition to represent slow/fast It only defines a relative
-> > > relationship.
-> > > > >
-> > > > > > +      renesas,drive-strength:
-> > > > > > +        description:
-> > > > > > +          Drive strength configuration value. Valid values are=
- 0 to 3, representing
-> > > > > > +          increasing drive strength from low, medium, high and=
- ultra high.
-> > > > >
-> I got the feedback from the HW team "The RZ/T2H drive strength
-> (driving ability) is expressed using abstract levels such as Low,
-> Middle, and High. These values do not correspond directly to specific
-> mA units. To determine how much current the pin can actually drive,
-> the engineer must refer to the electrical characteristics table.
-> Therefore, the drive strength in RZ/T2H is a parameter that switches
-> the internal output transistor mode rather than directly representing
-> a physical drive current.
-> Consequently, expressing RZ/T2H drive strength in milli- or
-> micro-amps, as suggested by the reviewer, is inappropriate. To
-> accurately reflect the SoC's hardware specification, introducing a
-> custom property is essential."
+Based on the changelog comments, I will pick up the DT patch when the
+driver fix gets applied.
 
-I feel kinda stupid reading the extracted portions of the document, is
-it not just telling us what the drive strengths are in the "Conditions"
-cell of the output voltage rows?
-They don't directly correspond to current values, since it varies based
-on the type of buffer and the voltage level. Is that what your hardware
-guys are trying to say? That there's not a 1:1 fixed mapping because the
-meanings of "low" etc vary based on voltage and buffer?
-
-If that's the case, the voltage is discernible from "power-source", can
-the buffer type be determined from the pin number? Or maybe both can be
-determined from the pin number?
-
->=20
-> To elaborate more on this [0] has the tables which are extracted from
-> the HW manual [1] (which needs login). For example, considering SDHI
-> referring to table 58.39 in [0] the drive strength can be calculated
-> for SD using  I =3D C =C3=97 (delta V / deltaT).
->=20
-> For (SD) SDR104/ (eMMC)HS200 case C =3D 15pf, VDD1833 =3D 1.8 V and
-> rise/fall time 1ns that would result to 27.000 mA
-> For (SD) SDR50, SDR25, SDR12 (eMMC) High Speed SDR case C =3D 20pf,
-> VDD1833 =3D 1.8 V and rise/fall time 2ns that would result to 18.000 mA
->=20
-> As the drive strength is varying based on the speeds this cannot be
-> tied up to the fixed value. Hence to simplify the Table 58.11 in [0]
-> lists out the required drive strength and slew rate based on operating
-> voltage levels.
->=20
-> [0] https://gist.github.com/prabhakarlad/026a73c3a3922da2b88d0578db68276c
-> [1] https://www.renesas.com/en/document/mah/rzt2h-and-rzn2h-groups-users-=
-manual-hardware?language=3Den&r=3D25567515
->=20
-> Please share your thoughts.
->=20
-> Cheers,
-> Prabhakar
-
---TyXLv511dB9v7TLC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaWgYDAAKCRB4tDGHoIJi
-0n75AQDWg9Glu0MoZ1Ee0MGHGGyz7XnRjnrol7zAhdu2eDWtUQEArNuITtUnpFMx
-GVi7aMfMMDK9udygv6tpVhaadBeRNQM=
-=d9MZ
------END PGP SIGNATURE-----
-
---TyXLv511dB9v7TLC--
+Kevin
 
