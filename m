@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-254891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8485D1D7B5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:22:22 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2609CD1D7FD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:26:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DCCB03007F32
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:21:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B536230142D7
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B412337F732;
-	Wed, 14 Jan 2026 09:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8437C2E0916;
+	Wed, 14 Jan 2026 09:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KF/FVP69"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OgL+fOXV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F902DECB2;
-	Wed, 14 Jan 2026 09:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A762D8377;
+	Wed, 14 Jan 2026 09:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768382503; cv=none; b=P5hOKMN1Ueju+jF3nINNTSrBCoO1n5MUe83K4Se7yBlp+9hbNb1p8coezRx2lyVwMOg4owhfmummhO1z6j9n2G40oXHLnoQKoMAXoXPWI+G0LmY2JfikwFBnQ3971/2EnB6gqpoIqJ/LhI2f3YP+oxqU1jtS+leUTw+NTqhp/yI=
+	t=1768382578; cv=none; b=gq9w3DPNxSN7/NJZxYhdCqFYa8i4rzHOCetZnlNCg6wDFLz9bBZHqqO9Yxpa4XL4bBG+ard4MlgJMsADIA0GpBokAOXp2UYNAWKvD3w5HdGAGj1N0BQNF/NFo/aD6/kidUd2LNwhpZo6CLHudizknMwp/zZ9d7J+K0s+awO+scY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768382503; c=relaxed/simple;
-	bh=f2i7Ca7kE/tSd54T6g1tBC4smOuu0UifHpyMR2pxBlE=;
+	s=arc-20240116; t=1768382578; c=relaxed/simple;
+	bh=Yo8uRrjOQtUu3sP57XmGHMPngzKoh4iDTFvKQ8mfj9M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DwP3WDY3lSDRYFUWXGKToj86ACDFlD9roFRQpQQE4edUpv3UDdeTs1dTHj635NppwpfQFVoaZwBlPBjknhK7cWNY/Amv80JUHmq78IcehRo+oqGgBIjkpDOZKi/ME4qxWLKR1IgIVZNdl5f0al3xj6moEFtjTnX2EtdjXijHdIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KF/FVP69; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9959EC4CEF7;
-	Wed, 14 Jan 2026 09:21:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LHZ8uaEi9St8dUZO0q2htVCf+6Uyb4xupdkDRWgk8nfUjhiZ4qPNXuF/vfJP1lASPO36f+I7cLXJQHRpYme0u75JDfRcsfFKSTzzXzRfGgOSxCAkb+DhmZew/++qvVjv3La7UhUEBYx6i4e4VvVLNPjkneJ2AjU1ej/9VBjC+uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OgL+fOXV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E2CBC4CEF7;
+	Wed, 14 Jan 2026 09:22:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768382503;
-	bh=f2i7Ca7kE/tSd54T6g1tBC4smOuu0UifHpyMR2pxBlE=;
+	s=k20201202; t=1768382578;
+	bh=Yo8uRrjOQtUu3sP57XmGHMPngzKoh4iDTFvKQ8mfj9M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KF/FVP69hZkhwcLLAhCgtKUzKAURzqMtPpW/houIW0eg5evNCjlo/ZfJwrHR3u2Ew
-	 XtZmNLFnop1ZY1/54B5b/Lgj0Bmef/+RhSmOOMjZeVshwoixK3t9FUPOYORV6JzOSE
-	 VUkUN829dlCYf1kslFr5EoDc6in3lNwGZbt+4OSXkKOq4ViPc4B1emIf5uqY5bKb7l
-	 KwVzUjFYDs7aov98Ho2nKSEks9ihLAeRs6XZioyASFRNQAbIRAgSWTvoROm6Xqrn78
-	 KXSVu/3jb/hlE0BcTLyqr08apalgMqaadJf12jRqhnZeD0w12sqTF54XeL/Fz/Mo+h
-	 CJBZ3kM6FgUdQ==
-Date: Wed, 14 Jan 2026 10:21:40 +0100
+	b=OgL+fOXVH7H0C3YZjiZ0hk6pA018WwsQtcvpcguzIR+dWsUUo5h2zrtM4nuSC+k7K
+	 VvlLMjjBjiiRrv0IoVPUoUc7VUoGIpLPC/h2/tL+7N/IuWUfECXkMHTjJQMxorFplG
+	 8ethPnZZw7zCA2OUy0KL6w8kf17gIO8+sobc8E2arntkDDHSFhUPosEIA/L+KJq5dh
+	 YKxc+fchokpesZ5S2vAA5say6EV5EBTc/RKDN8ExddImtl2NyTdgHCK/rbs1j9sGe9
+	 xHj+wybsJfyPR/fP2BD+9tBUrrT7qXPhvQdEufsF9xioev+w5k7xuxbBwBE0r2dSbw
+	 hbKGObrNxkuNQ==
+Date: Wed, 14 Jan 2026 10:22:55 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Yedaya Katsman <yedaya.ka@gmail.com>
+Cc: SzczurekYT <szczurek@szczurek.yt>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mcp23s08: Add multi-chip
- example
-Message-ID: <20260114-woodoo-ubiquitous-turtle-bddbee@quoll>
-References: <20260113-mcp23s17-multiple-addr-names-v1-0-f14b60f92c82@yoseli.org>
- <20260113-mcp23s17-multiple-addr-names-v1-2-f14b60f92c82@yoseli.org>
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: input: touchscreen: edt-ft5x06: Add
+ FocalTech FT3518
+Message-ID: <20260114-cherubic-malachite-gecko-ecbfa3@quoll>
+References: <20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com>
+ <20260113-touchscreen-patches-v1-1-a10957f32dd8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,62 +61,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260113-mcp23s17-multiple-addr-names-v1-2-f14b60f92c82@yoseli.org>
+In-Reply-To: <20260113-touchscreen-patches-v1-1-a10957f32dd8@gmail.com>
 
-On Tue, Jan 13, 2026 at 03:29:48PM +0100, Jean-Michel Hautbois wrote:
-> Enable gpio-line-names property in the schema and add example showing
-> how to use it with multiple MCP23S08/17/18 chips sharing the same SPI
-> chip select. Names are assigned sequentially in hardware address order.
+On Tue, Jan 13, 2026 at 09:12:35PM +0200, Yedaya Katsman wrote:
+> Document FocalTech FT3518 support by adding the compatible.
 > 
-> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>
-> ---
->  .../bindings/pinctrl/microchip,mcp23s08.yaml       | 33 ++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/microchip,mcp23s08.yaml b/Documentation/devicetree/bindings/pinctrl/microchip,mcp23s08.yaml
-> index e07f4723de17..667be31b6da3 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/microchip,mcp23s08.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/microchip,mcp23s08.yaml
-> @@ -42,6 +42,8 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  gpio-line-names: true
+> Co-developed-by: SzczurekYT <szczurek@szczurek.yt>
+> Signed-off-by: SzczurekYT <szczurek@szczurek.yt>
 
-Variable number of GPIOs? No constraints possible at all? 
+You need to use real names or real known identity.
 
-> +
->    reset-gpios:
->      description: GPIO specifier for active-low reset pin.
->      maxItems: 1
-> @@ -159,3 +161,34 @@ examples:
->              microchip,spi-present-mask = /bits/ 8 <0x01>;
->          };
->      };
-> +
-> +  - |
-> +    /* Multiple chips sharing same SPI CS with gpio-line-names */
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        gpio@0 {
-> +            compatible = "microchip,mcp23s17";
-> +            reg = <0>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            spi-max-frequency = <10000000>;
-> +            /* Two chips at hardware addresses 0 and 1 */
-> +            microchip,spi-present-mask = /bits/ 8 <0x03>;
-> +            /*
-> +             * Names assigned sequentially in address order.
-> +             * First 16 names for chip at address 0 (GPA0-7, GPB0-7).
-> +             * Next 16 names for chip at address 1 (GPA0-7, GPB0-7).
-> +             */
-> +            gpio-line-names =
+See submitting patches.
 
-Just extend existing example. There is little point in adding one new
-example per one new different property.
+> Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
 
 Best regards,
 Krzysztof
