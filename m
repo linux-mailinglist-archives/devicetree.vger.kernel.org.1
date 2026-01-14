@@ -1,176 +1,214 @@
-Return-Path: <devicetree+bounces-255024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309CED1EDCB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:45:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC6E7D1EE6D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:51:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 268C33022B8C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:43:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7FA92302ABA1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80AF39A81A;
-	Wed, 14 Jan 2026 12:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98B7397AC0;
+	Wed, 14 Jan 2026 12:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vRbfv42m"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="gKPJV0TZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BEF439A809;
-	Wed, 14 Jan 2026 12:42:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359FB399A59;
+	Wed, 14 Jan 2026 12:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768394565; cv=none; b=rsF9xCIUemI00fzmoNrZcD38lSckszMRYpT2JXHlWRI7yoFgZG0pkGvKQghevdG1LLf09JzPJQDPA1y/Q66H0jCUqHC2QRdErm86o3IFOKeWXpGTlVdczaby/HPeoSoV438ZNwA1IsCBgMmTYc3afJVu9tnwvWMJMu45TqRKFcM=
+	t=1768395092; cv=none; b=g8X4LtWHXI/zQMZW75UDya3FGcYzHE6iNfxuz+xHop/NyrWvb1jyUgs+UzhJXg55rvLBzkSceSDNPxXTahb4FG0LKx3+HkSz7ON86mC34KsemvAytWbP0AKgQ/R0EEUe8AjefaD4utfMku3ZELr6jtUYWqWA5q2DVxs7Sena3Zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768394565; c=relaxed/simple;
-	bh=FyIrMH60JpVUQq8N/l694yqmTnLtex7jySFj1xeLIFA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=YlO087GaYHU7vboQbsbXPvCfzvcaZjZSckacBTFNpp+mV+KVi8hnx2S2yJDsB124PP4YAexKKZh1WMKTl1nyqE/jfccOHXz4nDaVopKIDQEXq9Nlo0NX3JH6pMLki9n1XaQDeO5nFay+/M3LluhOZqhB2WRuNQ0I7YXOKxV8XaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vRbfv42m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF3AC19422;
-	Wed, 14 Jan 2026 12:42:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768394565;
-	bh=FyIrMH60JpVUQq8N/l694yqmTnLtex7jySFj1xeLIFA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=vRbfv42mCMALWtxAwa7lEq+qt8+flqk/xCUoa1pDI7avlYFKcTyvE3TlyVdkhz+F5
-	 ooQmf01vOqDWu++vjn4/HVgmFetIaeZX7vP9KOWc11puV1Kyg818I21JBT64vBKial
-	 hMcpBbE/rLgDuVmpxgnjYHfd0kwcD5VjW7nLFr90bxv0JbuNqxI2QeDaKdFGwJWwCC
-	 k6VDCvNTnyyELmK9tgh/MHGpB7TZ9TrZlUoBN+6W4/GDS4UtiLhA9jYEX9j0n6JjWp
-	 Awn9XfXV5BR6M0MIJWasGvIQZrC5zQPXgiblHec9IULGjg2bT8tMMdchSQV9l7Af8p
-	 NdwOSruCh/ejQ==
-Message-ID: <ba8192c7-d452-4ee3-bfc7-eedff746e590@kernel.org>
-Date: Wed, 14 Jan 2026 06:42:43 -0600
+	s=arc-20240116; t=1768395092; c=relaxed/simple;
+	bh=LvhYESA3d/xLPNEnsIiUTbDMUK5xZBgP4wYl7OyKiPg=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=osAq7XMJnl9mXuQMhIagY83rPOCsYlgoS5aXuiLjEdXhP11wpRq2hae8+MMTHtlP1mu7/QTP7MC6amCLpAceLq6udajec1hyfJexOmW0ETsvo8MhAf23zC/r9bagA7zRg0QRTpZ6mHqkVvv+dhwE8eNnpLxGOzgaODbyu95UHX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=gKPJV0TZ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c31:76ee:df3c:dc54:9316:8c06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B11E51D1C;
+	Wed, 14 Jan 2026 13:50:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768395060;
+	bh=LvhYESA3d/xLPNEnsIiUTbDMUK5xZBgP4wYl7OyKiPg=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=gKPJV0TZL7DpdFfPqhISX9/wmMFI54zNFEjDo9PkLQfmRzuZmAeQJNye1SZKH4Yvn
+	 pWboHp2TJandomfOPJDB/Wi6c+MtYRIdcrXgrdkC2n/WgT+/cB1W8EtpDhILbZaH4K
+	 BUgyQQeQvZEa1uDgjceaWNF2XqNHMCkVKz9djoPo=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: socfpga: agilex: add emmc support
-To: tzeyee.ng@altera.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1768378952.git.tzeyee.ng@altera.com>
- <9ed64240436c2dce96db8882f620468dfe5e1981.1768378952.git.tzeyee.ng@altera.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <9ed64240436c2dce96db8882f620468dfe5e1981.1768378952.git.tzeyee.ng@altera.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251230083220.2405247-9-r-donadkar@ti.com>
+References: <20251230083220.2405247-1-r-donadkar@ti.com> <20251230083220.2405247-9-r-donadkar@ti.com>
+Subject: Re: [PATCH v9 08/19] media: staging: starfive: Move to enabel-disable streams in starfive drivers
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: r-donadkar@ti.com, y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, tomi.valkeinen@ideasonboard.com, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Date: Wed, 14 Jan 2026 18:21:21 +0530
+Message-ID: <176839508123.9154.16324392708272572564@freya>
+User-Agent: alot/0.12.dev62+gb9d6144a6
 
+Hi Rishikesh,
 
+Thanks for the patch.
 
-On 1/14/26 03:42, tzeyee.ng@altera.com wrote:
-> From: Ng Tze Yee <tzeyee.ng@altera.com>
-> 
-> The Agilex devkit supports a separate eMMC daughter card. The
-> eMMC daughter card replaces the SDMMC slot that is on the default
-> daughter card and thus requires a separate board dts file.
-> 
-> Signed-off-by: Ng Tze Yee <tzeyee.ng@altera.com>
+> Subject: [PATCH v9 08/19] media: staging: starfive: Move to enabel-disabl=
+e streams in starfive drivers
+
+s/enabel/enable
+
+Quoting Rishikesh Donadkar (2025-12-30 14:02:09)
+> The enable_streams() API in v4l2 supports passing a bitmask to enable
+> each pad/stream combination individually on any media subdev. Use this
+> API instead of  s_stream() API in the starfive drivers
+
+nit: I think the description can be explicit that this driver does not
+support "multiple streams" (at least right now), but just switching to the
+new API while ignoring the passed streams mask.
+
+>=20
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
 > ---
-> Changes in v2:
-> - Fix space indentation in socfpga_agilex_socdk_emmc.dts
-> - Fix compatible string in socfpga_agilex_socdk_emmc.dts
-> - Rephase commit messages for clarity
-> ---
->   arch/arm64/boot/dts/intel/Makefile            |   1 +
->   .../dts/intel/socfpga_agilex_socdk_emmc.dts   | 105 ++++++++++++++++++
->   2 files changed, 106 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_socdk_emmc.dts
-> 
-> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
-> index a117268267ee..6f4da79725de 100644
-> --- a/arch/arm64/boot/dts/intel/Makefile
-> +++ b/arch/arm64/boot/dts/intel/Makefile
-> @@ -1,6 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
->   				socfpga_agilex_socdk.dtb \
-> +				socfpga_agilex_socdk_emmc.dtb \
->   				socfpga_agilex_socdk_nand.dtb \
->   				socfpga_agilex3_socdk.dtb \
->   				socfpga_agilex5_socdk.dtb \
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_emmc.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_emmc.dts
-> new file mode 100644
-> index 000000000000..c616c1eb6f1c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_emmc.dts
-> @@ -0,0 +1,105 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2026, Intel Corporation
+>  .../staging/media/starfive/camss/stf-isp.c    | 43 ++++++++++++-------
+>  .../staging/media/starfive/camss/stf-video.c  |  4 +-
+>  2 files changed, 30 insertions(+), 17 deletions(-)
+>=20
+> diff --git a/drivers/staging/media/starfive/camss/stf-isp.c b/drivers/sta=
+ging/media/starfive/camss/stf-isp.c
+> index df7a903fbb1b0..4930ffb0e07a6 100644
+> --- a/drivers/staging/media/starfive/camss/stf-isp.c
+> +++ b/drivers/staging/media/starfive/camss/stf-isp.c
+> @@ -55,27 +55,43 @@ int stf_isp_init(struct stfcamss *stfcamss)
+>         return 0;
+>  }
+> =20
+> -static int isp_set_stream(struct v4l2_subdev *sd, int enable)
+> +static int isp_sd_enable_stream(struct v4l2_subdev *sd,
+> +                               struct v4l2_subdev_state *state,
+> +                               u32 pad, u64 streams_mask)
+>  {
+>         struct stf_isp_dev *isp_dev =3D v4l2_get_subdevdata(sd);
+>         struct v4l2_subdev_state *sd_state;
+>         struct v4l2_mbus_framefmt *fmt;
+>         struct v4l2_rect *crop;
+> +       int ret;
+> =20
+> -       sd_state =3D v4l2_subdev_lock_and_get_active_state(sd);
+> +       sd_state =3D v4l2_subdev_get_locked_active_state(sd);
+>         fmt =3D v4l2_subdev_state_get_format(sd_state, STF_ISP_PAD_SINK);
+>         crop =3D v4l2_subdev_state_get_crop(sd_state, STF_ISP_PAD_SRC);
+> =20
+> -       if (enable) {
+> -               stf_isp_reset(isp_dev);
+> -               stf_isp_init_cfg(isp_dev);
+> -               stf_isp_settings(isp_dev, crop, fmt->code);
+> -               stf_isp_stream_set(isp_dev);
+> -       }
+> +       stf_isp_reset(isp_dev);
+> +       stf_isp_init_cfg(isp_dev);
+> +       stf_isp_settings(isp_dev, crop, fmt->code);
+> +       stf_isp_stream_set(isp_dev);
+> +
+> +       ret =3D v4l2_subdev_enable_streams(isp_dev->source_subdev, 1, BIT=
+(0));
 
-This should be Altera.
+Given you have a streams_mask argument in this function now, it might be
+cleaner to use it here (and let stf-video populate it with BIT(0)).
 
-> + */
-> +#include "socfpga_agilex.dtsi"
+> +       if (ret)
+> +               return ret;
 > +
-> +/ {
-> +	model = "SoCFPGA Agilex SoCDK";
+> +       return 0;
+> +}
+> =20
+> -       v4l2_subdev_call(isp_dev->source_subdev, video, s_stream, enable);
+> +static int isp_sd_disable_stream(struct v4l2_subdev *sd,
+> +                                struct v4l2_subdev_state *state,
+> +                                u32 pad, u64 streams_mask)
+> +{
+> +       struct stf_isp_dev *isp_dev =3D v4l2_get_subdevdata(sd);
+> +       int ret;
+> +
+> +       ret =3D v4l2_subdev_disable_streams(isp_dev->source_subdev, 1, BI=
+T(0));
 
-Please append "eMMC daughter board" to the model.
+Same here.
 
-> +	compatible = "intel,socfpga-agilex-socdk-emmc", "intel,socfpga-agilex";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		ethernet0 = &gmac0;
-> +		ethernet1 = &gmac1;
-> +		ethernet2 = &gmac2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		led0 {
-> +			label = "hps_led0";
-> +			gpios = <&portb 20 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led1 {
-> +			label = "hps_led1";
-> +			gpios = <&portb 19 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led2 {
-> +			label = "hps_led2";
-> +			gpios = <&portb 21 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* We expect the bootloader to fill in the reg */
-> +		reg = <0 0x80000000 0 0>;
-> +	};
-> +};
-> +
-> +&gpio1 {
-> +	status = "okay";
-> +};
-> +
-> +&gmac2 {
-> +	status = "okay";
-> +	/* PHY delays is configured via skew properties */
-> +	phy-mode = "rgmii";
-> +	phy-handle = <&phy0>;
-> +
-> +	max-frame-size = <9000>;
-> +
-> +	mdio0 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "snps,dwmac-mdio";
-> +		phy0: ethernet-phy@0 {
+> +       if (ret)
+> +               return ret;
+> =20
+> -       v4l2_subdev_unlock_state(sd_state);
+>         return 0;
+>  }
+> =20
+> @@ -300,20 +316,17 @@ static int isp_init_formats(struct v4l2_subdev *sd,
+>         return isp_set_format(sd, sd_state, &format);
+>  }
+> =20
+> -static const struct v4l2_subdev_video_ops isp_video_ops =3D {
+> -       .s_stream =3D isp_set_stream,
+> -};
+> -
+>  static const struct v4l2_subdev_pad_ops isp_pad_ops =3D {
+>         .enum_mbus_code =3D isp_enum_mbus_code,
+>         .get_fmt =3D v4l2_subdev_get_fmt,
+>         .set_fmt =3D isp_set_format,
+>         .get_selection =3D isp_get_selection,
+>         .set_selection =3D isp_set_selection,
+> +       .enable_streams =3D isp_sd_enable_stream,
+> +       .disable_streams =3D isp_sd_disable_stream,
+>  };
+> =20
+>  static const struct v4l2_subdev_ops isp_v4l2_ops =3D {
+> -       .video =3D &isp_video_ops,
+>         .pad =3D &isp_pad_ops,
+>  };
+> =20
+> diff --git a/drivers/staging/media/starfive/camss/stf-video.c b/drivers/s=
+taging/media/starfive/camss/stf-video.c
+> index a0420eb6a0aa0..2db29bf8bdef8 100644
+> --- a/drivers/staging/media/starfive/camss/stf-video.c
+> +++ b/drivers/staging/media/starfive/camss/stf-video.c
+> @@ -287,7 +287,7 @@ static int video_start_streaming(struct vb2_queue *q,=
+ unsigned int count)
+> =20
+>         video->ops->start_streaming(video);
+> =20
+> -       ret =3D v4l2_subdev_call(video->source_subdev, video, s_stream, t=
+rue);
+> +       ret =3D v4l2_subdev_enable_streams(video->source_subdev, 1, BIT(0=
+));
 
-This should be ethernet-phy@4
+Now that I think of it, it was not necessary to implement enable / disable
+API for the ISP subdev driver given v4l2_subdev_*_streams falls back on
+s_stream. But it's anyway good to move drivers, so I guess it's alright.
 
-Dinh
+>         if (ret) {
+>                 dev_err(video->stfcamss->dev, "stream on failed\n");
+>                 goto err_pm_put;
+> @@ -311,7 +311,7 @@ static void video_stop_streaming(struct vb2_queue *q)
+> =20
+>         video->ops->stop_streaming(video);
+> =20
+> -       v4l2_subdev_call(video->source_subdev, video, s_stream, false);
+> +       v4l2_subdev_disable_streams(video->source_subdev, 1, BIT(0));
+> =20
+>         pm_runtime_put(video->stfcamss->dev);
+> =20
+> --=20
+> 2.34.1
+>=20
+>=20
+
+Thanks,
+    Jai
 
