@@ -1,129 +1,106 @@
-Return-Path: <devicetree+bounces-254957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A78ECD1E04D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:26:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30971D1E066
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:27:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B3E49306C4BB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:23:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F3D653060597
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:25:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9DDA389E0C;
-	Wed, 14 Jan 2026 10:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F24238A73F;
+	Wed, 14 Jan 2026 10:25:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pN0XnPc2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F271387592
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 310FF2C0269;
+	Wed, 14 Jan 2026 10:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768386179; cv=none; b=uGK15YpBoHCehp7FmXAM4tKdqu/WKJpyh3TKniuJwMR9gLrp8+Z4ET6u7eSSycGsyCNIs/ZrPXtCtiU8C6nv/aTBM716KLd2fNWh6QkEvbN72b8DQK9tARHKuJFiAO/bbHOx/x++tgKWDh9FaGRrqt9LPCkbLQ8/ezap1MsNVyY=
+	t=1768386321; cv=none; b=OTFMxwhM3djHYadgQDAaEEYuyN/b/xc6L4rjcVmGKBkZn0YGwlJe+HPegWDSLNQLkRf3JNukrL4bIHShOyPnw/oL0xydllgIkh7uMmDQZtaiVvCO92np5lqk2zywlqiCe2NY4uzTLMuv5t2q3WQyBU1Y0IzphCji5NOrDBJsDs0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768386179; c=relaxed/simple;
-	bh=4GqB9vyZU2yDv0/uVu6UpqHnTsDrDX9bTvz63MYsIz4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IbeBEy/TizN+r7xuaCLCWjUyzHd2C6KNNsyUmLsoYcoVb1iahblInbtptgMnP3j4GYX64+Hu08IjzTI1sxNnIhbMXdfJ4zjMmjl0cWWkI+hUZOpFu3yVTr7kFGCxQRGUhWyNQpaB90VPnoDC3mR586fcFs3cp2rV7xOZYhq0lJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5eea2b345fbso2162470137.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:22:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768386168; x=1768990968;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PQb4APq8JZCf6vJkgFja2UsHU1/oiSPOSOYM2wa7H1g=;
-        b=afD0eNbJrBUN8q0TlLKdkrWEDkw7YVhpM1SQqDzDNysNSHsjP7kP0ZAyi5ysiPJcQu
-         OEQn80jYuyQhloHpy/1D7TH7iNAH/QOiUqVlSJqRQ0+Yqq/exeHDHbiyUfR4h9wuvWHP
-         YBZ+OrzOLcXmP+1OV9o6qSoPc7raEZtS13nZgh2h/kU3qkwJj4+xd3BghHcK7fFkA9JQ
-         s/hsjKdLgLYfS3ckr7sZm5f2kNPU8WLk09IKV1wOiBlffrIJYdteqmXqXoh/GLf5dKsy
-         g+mnliAoneqJcxPJyLmRO3xtc9DVmwgPcr0IPPsD7hrqW5nHP3PlSD5GH7rMDkOS0Waj
-         7nZw==
-X-Forwarded-Encrypted: i=1; AJvYcCWuzfTodWlk3ngKIq+nwC3bSXVdYUCK8bgydJ/2Jb1mIviyp1D2kfyNZyRR0sGE6upNbfneMjSNlvoG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxg8Bj5IFsLyS2VHBgTJ6N2Bm3SxKck4WqeYeXXL3yGxgajb/FO
-	Cz0cpiqiyf/F/zIpNzPjcrqOC5+Ah2UWqpkNdktK8dJ9JKanzHRklCMIB5e1YfsR
-X-Gm-Gg: AY/fxX7hBCF79XoDn/hcd4Uhcf45WXzFOR2DntRaHrsq7tHM5fH6tL2a2pIxP2q35EA
-	uHzATLjbxb/TkxWEr9C8NkEZp2weadjenPW7eMm9nesjHJEapHN32SfrrwqDuTANdvegZT7DP8X
-	p8ES+yhoG/FM6ZrVHJV5NteQG27nbuPyn1VECZrpElbfUx/k6F+paxsG53RrTRTvyeGvZb4FNaV
-	Ln4z916ikW86u//p9U1si163sL5AkapzD9rdTnNt47YRavOG32PqdB3iFYiuNWZSQgRGaJUh3TZ
-	+ZEiXQIpQjSKIC06bwpK3wh4G7GqjFeKngsrkM9YVIOXtQiYvGuXHXS0o9PIzHv4nghzd8bOl5w
-	2KjfFHOabDYLYuR4E/S+N8T7EvM+LC7xDUipztJCfxu6Q+wPooKyPYIGKGPrKK6g+hfXGZ7Tmwj
-	l2UgdBZ456AVYdc2UPZ8VhFmcXJLHIhg4LlQlnDTkq9uLqiYMh
-X-Received: by 2002:a05:6102:3594:b0:5f1:4c53:3c21 with SMTP id ada2fe7eead31-5f183b8db6dmr408891137.24.1768386168391;
-        Wed, 14 Jan 2026 02:22:48 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5f1578d3887sm7646679137.14.2026.01.14.02.22.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 02:22:47 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-93f573ba819so3399431241.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:22:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVEvGxm+5+PVtjmza5kQ9vxiGcV0c2ftbAcoYFrIityP8pJMxxCOdl0jfjwTfInP50ZuVy5R+ubqyqR@vger.kernel.org
-X-Received: by 2002:a05:6102:50a6:b0:5ee:a93d:2cdd with SMTP id
- ada2fe7eead31-5f183c02702mr366472137.40.1768386167018; Wed, 14 Jan 2026
- 02:22:47 -0800 (PST)
+	s=arc-20240116; t=1768386321; c=relaxed/simple;
+	bh=/G0hPN7tF2VQr3A3z7o2ONwXq18rHIyi9oJC0xHRDBI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
+	 References:In-Reply-To; b=qHYsMWQHiggcVpKky/iHpTTpD2p2PwRw1X56Fa/DPNR9iA4sl/3DN1DX017mswYCEeMaf5VgiBtm/Fkrsm70EwVQYSUnUFgpqOmjDxQGx9S35uCmo/lJ8LTdFySXVjGduW6Gj3ZtaiyqBAD6Y5J6QgYnZBpi58zRC1ySx3ITaDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pN0XnPc2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70922C4CEF7;
+	Wed, 14 Jan 2026 10:25:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768386320;
+	bh=/G0hPN7tF2VQr3A3z7o2ONwXq18rHIyi9oJC0xHRDBI=;
+	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
+	b=pN0XnPc2DJImBLwmJvjM2oNnAlHIE3Kqoft/Rb1FnZrBHtTeHP9WtRcdjiZz+0Vpc
+	 XCu8x+4OXEwrBJE6/xObeuLcTRfv/7C/EaoijnEDhaU9DL1KbGadZv9ta/BHoX/G4N
+	 wtpEMsQsU99U8ap56HCe7jMWvNmYTCydWhCxQ1wsWNIlPDGifsGpgKSpXI0CCcba8Z
+	 6sulIHwj9PNQ0pdFbpA50GFmYmt3IFoW0hhsvEHKx79vtBZYXIALeblOYEaVSiaL+4
+	 3zmqJCiVhRDpTFc/XjoVB2FgTQ+hH/YweCjrBpFF1oVRFWBwYZ5M7KUNdW2BMwuMDq
+	 Jltc06xaZA4qA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org> <20260101203938.159161-2-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260101203938.159161-2-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 14 Jan 2026 11:22:36 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWZzL7nUCv6LnDaDhpMwfrnJp3ZYPAqQtDJ3BsZyH9k6g@mail.gmail.com>
-X-Gm-Features: AZwV_Qi-Eu9-CR2_DSC2JlXjPpAlkxhHqejeDJ45jkp3qmHmsOBPHJManLtOH4I
-Message-ID: <CAMuHMdWZzL7nUCv6LnDaDhpMwfrnJp3ZYPAqQtDJ3BsZyH9k6g@mail.gmail.com>
-Subject: Re: [PATCH 01/11] dt-bindings: phy: renesas: usb3-phy: add r8a77990 support
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=7eb0cd624331cbee9ee88fbf3e64a6b1cd9e4c24279d11d0edad060d6005;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Wed, 14 Jan 2026 11:25:11 +0100
+Message-Id: <DFO8MODWITUW.12PP5XZKPR7FL@kernel.org>
+Cc: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <praneeth@ti.com>,
+ <h-shenoy@ti.com>, <u-kumar1@ti.com>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Swamil Jain" <s-jain1@ti.com>, <jyri.sarha@iki.fi>,
+ <tomi.valkeinen@ideasonboard.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+ <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+ <tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <aradhya.bhatia@linux.dev>
+Subject: Re: [PATCH v3 2/3] drm/tidss: Power up attached PM domains on probe
+X-Mailer: aerc 0.20.0
+References: <20260107174525.1702585-1-s-jain1@ti.com>
+ <20260107174525.1702585-3-s-jain1@ti.com>
+In-Reply-To: <20260107174525.1702585-3-s-jain1@ti.com>
 
-Hi Marek,
+--7eb0cd624331cbee9ee88fbf3e64a6b1cd9e4c24279d11d0edad060d6005
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On Thu, 1 Jan 2026 at 21:39, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> This patch adds support for r8a77990 (R-Car E3).
+On Wed Jan 7, 2026 at 6:45 PM CET, Swamil Jain wrote:
+> From: Devarsh Thakkar <devarsht@ti.com>
 >
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-
-Thanks for your patch!
-
-> --- a/Documentation/devicetree/bindings/phy/renesas,usb3-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/renesas,usb3-phy.yaml
-> @@ -20,6 +20,7 @@ properties:
->            - renesas,r8a7796-usb3-phy  # R-Car M3-W
->            - renesas,r8a77961-usb3-phy # R-Car M3-W+
->            - renesas,r8a77965-usb3-phy # R-Car M3-N
-> +          - renesas,r8a77990-usb3-phy # R-Car E3
->        - const: renesas,rcar-gen3-usb3-phy
+> Some SoC's such as AM62P have dedicated power domains
+> for OLDI which need to be powered on separately along
+> with display controller.
 >
->    reg:
+> So during driver probe, power up all attached PM domains
+> enumerated in devicetree node for DSS.
+>
+> This also prepares base to add display support for AM62P.
+>
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> [j-choudhary@ti.com: fix PM call sequence causing kernel crash in OLDI]
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> Signed-off-by: Swamil Jain <s-jain1@ti.com>
 
-According to Section 76.1.3.5 ("PHY Register Configuration"), the
-USB3.0 PHY register block is only present on R-Car H3, M3-W, M3-W+,
-and M3-N, but not on R-Car E3?
+Tested-by: Michael Walle <mwalle@kernel.org> # on am67a
 
-Likewise, Figure 76.1 ("Clock Distribution [R-Car H3, H3-N, M3-W,
-M3-W+, M3-N]") does not cover R-Car E3. Unfortunately there is no
-separate picture for R-Car E3.
+-michael
 
-Gr{oetje,eeting}s,
+--7eb0cd624331cbee9ee88fbf3e64a6b1cd9e4c24279d11d0edad060d6005
+Content-Type: application/pgp-signature; name="signature.asc"
 
-                        Geert
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaWdvBxIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/hDQAF/ZthYmk3jSMbxH03FLpsKg7gCLmCWYjfA
+0xWDvcRPJKb0Uds6of/PbMPMPtfQ9z+rAX0a6mLC+znYbB4nwlKuhum6W9McZp1p
+EL2xTHr44m3/k5IasFhHRMbQz5QEhnwJ5nY=
+=K6zL
+-----END PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--7eb0cd624331cbee9ee88fbf3e64a6b1cd9e4c24279d11d0edad060d6005--
 
