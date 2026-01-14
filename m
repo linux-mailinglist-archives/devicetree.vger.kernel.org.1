@@ -1,146 +1,173 @@
-Return-Path: <devicetree+bounces-255176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D266BD20745
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:12:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C8ED206BD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:09:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D5F70307F603
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:10:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 17AC13005005
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:09:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF18F3043CE;
-	Wed, 14 Jan 2026 17:09:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B5DD2E9ECA;
+	Wed, 14 Jan 2026 17:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="p3g7IHwb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nPOFF5Wv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307E830275E
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:09:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222162E2679
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768410572; cv=none; b=aDhg20njcNc6MMu6gRipOJf7kAMuej0dNa377SXId/AZ0EU53L3dcI50nYjicQcF8akl7X1Og+VXkg5j/Iymemqn7t+ecktLku3JCFgb0pG1h8jltDSKvqAigkXfhOJECOX+uB07g4HQ8yX705eihMXGNbni1Kp46PJbJzmCIoE=
+	t=1768410552; cv=none; b=q0sJ6jqatIcoGtCuwaogSnuDPZO4k4MRwBrrp76PpJBsn1T1Th90D9Q2cpMeadvK5YQhVwx4ruglxLnTgNJ/sKfwtgjeWoFzHZ85mo0XQF3CO9uCYwgyTKdiIWKw3Jx+hZ+fcipKdXsKcBkXGnSlG3ZPVVI5cM1aF5zZkN3Rf2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768410572; c=relaxed/simple;
-	bh=/PhsslUI7oDbVoSzVh6hBjUgLUvCgo1Un4J0+MmBYI0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Suvge17YIkE719Z1Do6sso2WiHxxSJIFhQ22qZCUeENDZWzsY5hlaJVCpVxhdtMJ6iNaXBR+0UF/C7KZSJVk2WzEhIckRbhNtbyiuNXjYqZaUPLlmxqTnlby/UGEqIKSqvUGg/MEn3ZmtIHmvOdcyK5aCM7fZDIrw7wpYPyZbQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=p3g7IHwb; arc=none smtp.client-ip=209.85.221.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-432d2670932so54304f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:09:30 -0800 (PST)
+	s=arc-20240116; t=1768410552; c=relaxed/simple;
+	bh=98G5EZefFkl/9hWfVjLIKGerKNrUGutT82EZGZKIFWk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=reMFeEuq3ASnVXPQe2XC2uLqrogeKzK+kptJK0C3r1NsUVSLPgajJucD5xgQwSmD/7d2p63I1zCspKdIBPRaSjlz5Zgf/CNx9tSRIWIhl6QQ5gmdYXYpghK0oCYcZe3wy07SzCfOVBqRlZlaNATSNsY9mp7AaoXMSAoTXbcEHVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nPOFF5Wv; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2a081c163b0so401155ad.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:09:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768410570; x=1769015370; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1kTWfAnL5z5OhS7oeDB0hU1ojFDJcKULyH2iq6TuTBE=;
-        b=p3g7IHwbzOoC+g2mewys95jicvKRKLGjb+ucsMJLTrRlKCM5Dpw2VZgzYYIXZCLFlu
-         0PZqIo680cCbudt4MDkxqUxmFK2qoZuv7C78m/Xv4PFOzCkAbp6vGNgvW0WYtY80mnP6
-         /hHnsLCxpes0s6sm2V3D3n9obCH4Ad05RbAiJ6bJANXLL0+9VWy0Fclgs7Y8+mgvIRl3
-         xE5MyPla2rva+wSvHoTiNq7BWUIsqPL+ocVZ2VggseOVLQXBQ8iFfjZ/RGAqDVDODV2x
-         BCB7/YwgZTHtr4muKiNCTVmDvLRiUzH1AaaQzIQkH0Al5xlCfsyHgPhItbwfrpb+bMYO
-         MR7w==
+        d=linaro.org; s=google; t=1768410550; x=1769015350; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GYBoGaWLHXCd8PqOgncqDf0BayRCOnmKkumvRRhT/88=;
+        b=nPOFF5WvpP6JYLkGsTCz7jGiTmJo3jwZ0DTpNAB/ow7pn/vlxcFrZpwD29ke0UgB6J
+         rbJ3+aio9aQAN/cJ7p7agdIM2gArdtbkKpupdFule2uW9tjzKdw5wzEb9ZLIXMJcefvo
+         S1rTBS1zD+I9E0fKAeDXL/qwvanivjt8nVLkYF3XBmJqeX7JxVBfho6z82phixlXxKLy
+         WPnDVpUpNanxQJantCenNwBAHx5K1l7rYJlXR5rXwIai7XMizm9lHuRPOGMlEPCR4T18
+         bnDIaqGxUeIy+AfCP+wYoJnaDcStXD2y6Np0om2LDbnEqC2gzkvLZ8VzKenPkvEep7Nh
+         iqsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768410570; x=1769015370;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=1kTWfAnL5z5OhS7oeDB0hU1ojFDJcKULyH2iq6TuTBE=;
-        b=JhaoRg7gGKRAxyIHFhqBb2hobZp/0p/W6f2D9kL8AD0PdHisZDehsPdwahtuzSG4re
-         WgZzg70ZXxCElWEdpv9KFvQcT3B1SV6HAfYgslnYpZbjgyKVj02+K1IUcJNJQyyCBGa1
-         N5M+epgGH0tHaMulKCmtUQWCGzis1GI76tlHEKt0iC6KYYRKbvrYvea/NCP0AmpO6c6P
-         ucaXD+dLrwNwKP4ut1eBF8EF05rkShP/tDPuW0ylkQxiw8rrMeJd004DbX0KxLqoeIDa
-         fUNLjvZRIIv5Je652C7dQ95ay1wVdMDRMVJMveUTl5Gg8xZz+0c6R9TjFlNCZwAPDCaS
-         68dA==
-X-Forwarded-Encrypted: i=1; AJvYcCVNnJ9oglWe1n95nhlNhPHrvDEbW5xDg2ujjMZK9nRfTXccyzm2tn7JPqMO2VxnTAGbwKWEZbkRq1kx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyN22+d0gqPgAYz+XCmj5GZ6477rIxt+rK0218ruI0pPsRZGHs+
-	l8gAcGlM9OjcgstjFnFrjtEZWGjMnPC5bZbxu/1O5dzCoOdgxvV1E6Lt7uuRZehLFnU=
-X-Gm-Gg: AY/fxX7Iq2nJqeOxx1b0K2lJuI7Vts7rsbcm9YdOBKPlL822fbtYDpD9YSf2/AUni14
-	OisQfynETEerASg8iF/KQR/43laEFsJxigapyJQ1iVp05CCvRhF7qmMVLbSLbAIvjSWEfcy+9IM
-	7C15GEOrnmETj7/xtEjkEdb0ib6bHFG1C7C6lLPtpbxDEO7x6B8I/BZBbu/lEg+HDwJnGci8Uvl
-	B//Eh1kKGEfiLPbk43sbray+5Yk8Wz1+X5UyVcIX9GznaF5Vx7tZywaaV40U6RuWqg8I4hC2/2D
-	6kPheu2n4H1Duv7REkc++qaUcvtCtyM2mePPFB8lJGCZD32CzKbyKLFNTndwXYOFGwuKAN8q1ra
-	Q5dBAsZhZ/oGR7EoepnF106dv4vVGVN+hS9Ev9dJ92acKTS3wpEulj6DZPN0XZdo41IyQCgCoIG
-	6oa8v5yKgIhxShhV/Ged/9
-X-Received: by 2002:a05:6000:2004:b0:432:5bac:3915 with SMTP id ffacd0b85a97d-4342d5c39e8mr3948863f8f.39.1768410569619;
-        Wed, 14 Jan 2026 09:09:29 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:d3d1:7ba4:2f56:d18a])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-434af653787sm392682f8f.18.2026.01.14.09.09.29
+        d=1e100.net; s=20230601; t=1768410550; x=1769015350;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GYBoGaWLHXCd8PqOgncqDf0BayRCOnmKkumvRRhT/88=;
+        b=GpuX3JPB3e4qx+Ka5/xJ4zCJTdrGbp7NS5aeFlxUDu9aBqTDK1YnbPuME+8wXkc9oP
+         ePBIbcorsCEhEy+ChMtug/ABhr72RQrflZQ8M+8g/NLs3/akFw/8dkVVY7lGht2Yc5uM
+         s5XmaN0z/CrQTc8cjdiPi0G+Ai3S6409qq6Go/1R3KZtrG19QwQCHVR0cRm0CwI09A/+
+         IiFlL5oBfeww9KeIimGq7CLoUmaeqtwxZBaFvDdSxqvvKymXeHc8F2Ki9vPHea5FyAMg
+         cNUb2yeupc4Cz3po+6YLA5RVRkHGizluGSKdNyXhkTBYCHpdijBCW0h3BxvhH5Ofq4MW
+         pDYg==
+X-Forwarded-Encrypted: i=1; AJvYcCWKIu5q2KxiQakKQo8X1FJHY/96uu/qphs5ZpMcPAv1VfEqnpeDMUjAPy/Bqpjd1cOF224nLmLe5gfP@vger.kernel.org
+X-Gm-Message-State: AOJu0YywmhxfpprkRNVS8KFe+O/JdC0rE+wK3ZtUyxoENMkXX3NS8G5B
+	TVorx25cUl51g5t3+Xnkqjyfe8SUsByAAg8CPCGg1FqexZdIgnEf+j/xAcAeiGb6jxE=
+X-Gm-Gg: AY/fxX7WQ50+HOVpRXMaXXIHkLa6Rw8MtpSYfTciAwk7mA2WNjIj3X2U9heEWTf7mPE
+	Zpp0GkCWlezmNJ0rsveqT1CXYgRLCXoOrweoL1WwMGnFfq767n0vsFbml9TWF2pDclRGr/OdlMa
+	sz12PII2O+lYvf6DG0NHLk11WwrzaZusJ6kwi6y90bJ+iaJ/vLFL+NfxQvPq2T5U7X0pMAasrnt
+	mVu3QSLW/YS/RkOnv/oJf/MMZ5HqNnEHzB8vKMACq0CfWYH5x1O6nnmpZJBvNXWWw7COPR1cKrr
+	FoUaAwcX/1kELWEYzxTpIXNmwoUd2/JuihKq/c/kTBdpo3PWeo6nBX4Rup63v9/rl0sUk6QEGUK
+	j+IShTu6WQOstdD1xtxv8gYr8R672j/+YBeyBdryMwoh5OlVniKMUycuVFDWY666Uf6iR7iG6f/
+	hztu0d4F6drwHPVQ==
+X-Received: by 2002:a17:902:c949:b0:2a0:992c:c54e with SMTP id d9443c01a7336-2a599e33f1dmr33469595ad.48.1768410550174;
+        Wed, 14 Jan 2026 09:09:10 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:c447:f90e:a227:47bf])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cc88d8sm231003025ad.80.2026.01.14.09.09.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 09:09:29 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 14 Jan 2026 18:08:53 +0100
-Subject: [PATCH 6/6] arm64: dts: amlogic: g12: assign the MMC A signal
- clock
+        Wed, 14 Jan 2026 09:09:09 -0800 (PST)
+Date: Wed, 14 Jan 2026 10:09:06 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-imx@nxp.com
+Subject: Re: [PATCH v6 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
+Message-ID: <aWfNsrpC5Rgiwwp3@p14s>
+References: <20251212194341.966387-1-shenwei.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260114-amlogic-mmc-clocks-followup-v1-6-a999fafbe0aa@baylibre.com>
-References: <20260114-amlogic-mmc-clocks-followup-v1-0-a999fafbe0aa@baylibre.com>
-In-Reply-To: <20260114-amlogic-mmc-clocks-followup-v1-0-a999fafbe0aa@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Yixun Lan <yixun.lan@amlogic.com>, Nan Li <nan.li@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jerome Brunet <jbrunet@baylibre.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1024; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=/PhsslUI7oDbVoSzVh6hBjUgLUvCgo1Un4J0+MmBYI0=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBpZ827+hqCodT7BhBobrsVc6GPpXPR/mUIltr/w
- NN3POGH7ZaJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaWfNuwAKCRDm/A8cN/La
- hUrJD/9Bux8MYYOOciJCbRbpEyXFtkOTIkP9eOvzltnWiMuDOzmypyQb2uSeeRu4fp3hDClDAEC
- pkkAvkKuQa3RO3tXR79OgfOquhS0n/eU36O9kEFv/n88itYp4AbolA6087pzCHIvpglgUSQrvhU
- n66bZQuoGeCzS7Je9nHsYxS/HmlQmOFeSwOBGSjnySXlSDY+qzKWAgU9s41Wp6q6s3g0qU8NjG2
- 3fITWHfwU6y4TBdaR8l+HwGuy8OGzyJh8AuvWlitQgmVDzFZ++QSMF/9+BvGHBmfPTUlhwX/QYg
- 38doGi7Kp3IcnFk6GLxA55YxzWx/VAYxeEQ7neZiA7OCLnxshUe1iacqobSY8CtlMnOR1Nao+4l
- AN1s8G8nue/0KwBb/uT3RiWmt1+4x7nVgTdx/n/ShozmBfIQ8s5lFc/7x26llkdAaa41R3NHJol
- +H4fW8Cqx2rI+fSYH/PxMWd80LP2dJxWSLpQPYbQqJHCilm72rLwU29+6O97C7xFrRia2kpO0RX
- eetrGkaYojiH8o4AVxkhkPQShe+fsDtCJADp3kkcoyQY5ZQCKb/1zcfGP3si3NAGgEdHD16SRjt
- twB3A2ntaaC6Cjivt4LHjRpxO6xnTbfISqXGe2FolhnBMYZHEb5cJXD5vB//Uv0XV0MPueHNv3+
- TtizwRaL48HGHdg==
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251212194341.966387-1-shenwei.wang@nxp.com>
 
-The amlogic MMC driver operate with the assumption that MMC clock
-is configured to provide 24MHz. It uses this path for low
-rates such as 400kHz.
+On Fri, Dec 12, 2025 at 01:43:36PM -0600, Shenwei Wang wrote:
+> Support the remote devices on the remote processor via the RPMSG bus on
+> i.MX platform.
+> 
+> Changes in v6:
+>  - make the driver more generic with the actions below:
+>      rename the driver file to gpio-rpmsg.c
+>      remove the imx related info in the function and variable names
+>      rename the imx_rpmsg.h to rpdev_info.h
+>      create a gpio-rpmsg.yaml and refer it in imx_rproc.yaml
+>  - update the gpio-rpmsg.rst according to the feedback from Andrew and
+>    move the source file to driver-api/gpio
+>  - fix the bug reported by Zhongqiu Han
+>  - remove the I2C related info
+>
 
-Assign the clock to make sure it is properly configured
-
-Fixes: 8a6b3ca2d361 ("arm64: dts: meson: g12a: add SDIO controller")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 0085612cf735..00609d2da674 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2431,6 +2431,9 @@ sd_emmc_a: mmc@ffe03000 {
- 				 <&clkc CLKID_FCLK_DIV2>;
- 			clock-names = "core", "clkin0", "clkin1";
- 			resets = <&reset RESET_SD_EMMC_A>;
-+
-+			assigned-clocks = <&clkc CLKID_SD_EMMC_A_CLK0>;
-+			assigned-clock-rates = <24000000>;
- 		};
+NAK - I asked to use the virtio interface (in this case virtio-gpio), something
+I do not see in the above summary and the first 2 patches in this series.  This
+work will not move forward until that happens.
  
- 		sd_emmc_b: mmc@ffe05000 {
-
--- 
-2.47.3
-
+> Changes in v5:
+>  - move the gpio-rpmsg.rst from admin-guide to staging directory after
+>    discussion with Randy Dunlap.
+>  - add include files with some code improvements per Bartosz's comments.
+> 
+> Changes in v4:
+>  - add a documentation to describe the transport protocol per Andrew's
+>    comments.
+>  - add a new handler to get the gpio direction.
+> 
+> Changes in v3:
+>  - fix various format issue and return value check per Peng 's review
+>    comments.
+>  - add the logic to also populate the subnodes which are not in the
+>    device map per Arnaud's request. (in imx_rproc.c)
+>  - update the yaml per Frank's review comments.
+> 
+> Changes in v2:
+>  - re-implemented the gpio driver per Linus Walleij's feedback by using
+>    GPIOLIB_IRQCHIP helper library.
+>  - fix various format issue per Mathieu/Peng 's review comments.
+>  - update the yaml doc per Rob's feedback
+> 
+> Shenwei Wang (5):
+>   dt-bindings: remoteproc: imx_rproc: Add "rpmsg" subnode support
+>   remoteproc: imx_rproc: Populate devices under "rpmsg" subnode
+>   docs: driver-api: gpio: generic gpio driver over rpmsg bus
+>   gpio: rpmsg: add generic rpmsg GPIO driver
+>   arm64: dts: imx8ulp: Add rpmsg node under imx_rproc
+> 
+>  .../devicetree/bindings/gpio/gpio-rpmsg.yaml  |  49 ++
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  54 ++
+>  Documentation/driver-api/gpio/gpio-rpmsg.rst  | 232 +++++++++
+>  Documentation/driver-api/gpio/index.rst       |   1 +
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi    |  27 +
+>  drivers/gpio/Kconfig                          |  16 +
+>  drivers/gpio/Makefile                         |   1 +
+>  drivers/gpio/gpio-rpmsg.c                     | 490 ++++++++++++++++++
+>  drivers/remoteproc/imx_rproc.c                | 143 +++++
+>  include/linux/rpmsg/rpdev_info.h              |  33 ++
+>  10 files changed, 1046 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
+>  create mode 100644 Documentation/driver-api/gpio/gpio-rpmsg.rst
+>  create mode 100644 drivers/gpio/gpio-rpmsg.c
+>  create mode 100644 include/linux/rpmsg/rpdev_info.h
+> 
+> --
+> 2.43.0
+> 
 
