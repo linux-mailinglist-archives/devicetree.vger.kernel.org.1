@@ -1,93 +1,320 @@
-Return-Path: <devicetree+bounces-254772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B25FDD1BDCD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 01:49:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AC8D1BDB8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 01:48:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4AB36305E354
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 00:47:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 817D8304B3E4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 00:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC921DF980;
-	Wed, 14 Jan 2026 00:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A504B225403;
+	Wed, 14 Jan 2026 00:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="hoGGEBWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-dy1-f176.google.com (mail-dy1-f176.google.com [74.125.82.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB91C1CEADB;
-	Wed, 14 Jan 2026 00:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1473115853B
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 00:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768351671; cv=none; b=uStKZnZhWawqVTzwBjMqHfxxAlt9OanhtE+hJK8RxJ+XvZeQhrIIIyxJk6JRYLPKhd6bj5TNk8RJkS2X3BLLpndiC/HjzPqnXTw8radSKPXfZEhIyAv226ncnw1gbtb2GKyAagdo/FzBmsBk3xHwq2sOcZBprhaLrYDMbm+b8iU=
+	t=1768351666; cv=none; b=gKeVQFr0t30ef7MLicAmKdGU3gVe7NVwpXDOShSohUGlG0u9yCcAjWXRvI/oT4UQTLZB7EdOXn9Ra8bSawT78XwFX8qd4bnP+xKo6ASao6+PyPscnbStBdrKC/2vO6HgQL8xwIneLQM6fBfq0mfQy9RrSEki5UzVG6WppjaF2X0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768351671; c=relaxed/simple;
-	bh=F7PRGfzbZFNFqXLPAvX1nvariK6Gh2gtLkzBXyRb/b0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KT+1WNA3GqBnQQEUjPKsu65rVWviV8eXpK+3HuJ5vXURjswLGw40MspzVqytr/4v7txl7J444QqXNgWU+pQL0MZZyDripE15nos1StL5Ufae1PgGBn7uAbNEo9fnFy49vqXygHTL9tFU6e6vFGILObC0aloAocxU1pBUFVzj2C4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from ofovo.local (unknown [116.232.18.222])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 41FD5340F92;
-	Wed, 14 Jan 2026 00:47:43 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Ze Huang <huang.ze@linux.dev>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Aurelien Jarno <aurelien@aurel32.net>
-Subject: Re: [PATCH v3 0/3] riscv: dts: spacemit: Add USB 3.0 support for K1
-Date: Wed, 14 Jan 2026 08:47:36 +0800
-Message-ID: <176835146982.13007.17884535903013126936.b4-ty@gentoo.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
-References: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
+	s=arc-20240116; t=1768351666; c=relaxed/simple;
+	bh=FiEQxWP0gBazySZVKdQMaxlFntTAJXhqfST8zZRauYQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mdpte4nDA6rqW4zsl4f8rVLE7ESoWjPfbgFxDx/9mDQLq1c5C6DwiYuvTOOorGbVTFtuszIJ/FYdZF3am1Og+WUAvkNCiXK3s4GlcbEnk/lJev8gnhs5H195YE6lqwhNNvXF4aLDiT55RNy/kwwt4DJaAzmUSqM/xEoI/4INTT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=hoGGEBWN; arc=none smtp.client-ip=74.125.82.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-dy1-f176.google.com with SMTP id 5a478bee46e88-2ae5af476e1so202374eec.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 16:47:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1768351663; x=1768956463; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KrG7y4Xlsrv3rqpWtCTovQ72S57auUFAQpNG8Gw5noI=;
+        b=hoGGEBWNb3UCiGtiX7SL85zovHBykVEUvanIGuU+d6EsgY6RjElXGIHFhDnGUukBSw
+         8rvzUvQtTY6QBHhWsAzT/n27TcfOFrmPZh02H2FbVdSFa+HG12io17DZhDdJzsrP0iyp
+         6jb895lHqHNVtxRWCCx4jVzpaTBVVi1sJdySxNhl7vOo5unXiZ/2I4ZxyFxJ7bJ1wQcx
+         Ay0dk/gyDQWGa1ip+qJoxjv9Ayjb2mTsI3JiC9E+S/jSkQWgZxXVS3UGlEewbx97uMPU
+         RoGa32TGp7wlcl/raBi/uQmpQr+zt5yrT8DiDDIx55n9K70eCQxPD2uRLkrxc8gCro3Q
+         9jew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768351663; x=1768956463;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KrG7y4Xlsrv3rqpWtCTovQ72S57auUFAQpNG8Gw5noI=;
+        b=DPKh8OlYDO4Eb6TRygrdw+I4q/ePP7jfV2uEci5gTzRofvV8VpsJmpAe1YnJAa7Tun
+         N2VVqzGQC1NuWrYyX9cELWvY9FcfsQbA5e5WkYGlzF32VWE727FD/OlU5JtwAx8rfTSD
+         ImfRdAHM3zUBpm397kZeLKp9o4PWaDxjV6YpsaSwu5/AaM5l9EYxQnOShE31kiSlw6tN
+         wCHwEm6aYkdRstCzlrhhiBafUTt0XPgIxlVj7IxDj63+jIUkCOWvJ8KN0A/3tb0INOKm
+         QHUX2gPiS4apKyBInOAAevMc6sXtZgbW4FdAMU9PDqTkf3T6sHKXp05O3wjyNRmn4NKx
+         qyFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUXDWJeqqpcooUHkcgtJRLXVU5fGKBDUunyKBkQQV30COGTXADXi8fIWRmMMjRM9IN0/XJFLPe06qLF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiBpXQy/kiKbcPMRbguuYKSmcjnzP9Pq/fx7/zqqcQFSNj4jgn
+	zy4JhKy67mJ0LukrSqrmbaEvh8fxm8PKMYPewjdL+aF006oxVO03koDlttDFMjLc7A==
+X-Gm-Gg: AY/fxX5vobLGKVCGbwmbj3qrxMLjv1JYAspaTRNYSJNQTxdAD5m2w28sbkgJ2U921vS
+	eF+vsXhK3VstBeDPSqfxkgyps/9NxfQlHVvtZ3wQMGqLCMrDkKU2sXHCIr379gRxBnOHqnTy/OL
+	Zi9LEQnPfo50rXOsBemX66ifdzuEJOlClCktB8beXF1uJy/oxFJxAy6zxbp5fJRSgsVSYXxluhO
+	5AiFq5PSBVK193iSumODjpnNV+FdFlalR3JMEJRSHOZudyKJ4Bj/+yNtq6pT/ASkY4y6+CRJ1dx
+	hPDhiZDScKJtZOPpq6JWJa3xCxbwmkV4vgYgkoFtnd6zmgkMSXJXD2gk8il3eCDWYsfD6eEwa/A
+	mF4bSnBZHOqrUiZv0+u98/yYF+8yfoWI9GHKDKfwdhzNuJzCQN7zoQsFgAbIwGQM4yaWcieapGu
+	1VLXbSp8raKLTqTFHjDohElePQ4jheOEwvT1FCk7a/D54gJfPFNaTdFTMaSZdeyF7+u53jvqcxG
+	ZllfK3tHTAMvw==
+X-Received: by 2002:a05:7301:19ad:b0:2a4:6c74:c54a with SMTP id 5a478bee46e88-2b486f41ca8mr940567eec.18.1768351662492;
+        Tue, 13 Jan 2026 16:47:42 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e7c:8:b660:2cbe:a9b7:fc12? ([2a00:79e0:2e7c:8:b660:2cbe:a9b7:fc12])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b1706a5d3dsm17693801eec.13.2026.01.13.16.47.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jan 2026 16:47:41 -0800 (PST)
+Message-ID: <378ee786-2b44-44e7-a3f6-0cd1db3c0481@google.com>
+Date: Tue, 13 Jan 2026 16:47:40 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/5] power: supply: max77759: add charger driver
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+References: <20251227-max77759-charger-v3-0-54e664f5ca92@google.com>
+ <20251227-max77759-charger-v3-4-54e664f5ca92@google.com>
+ <298ca35590d2180fdcf334f94964b6110e17c606.camel@linaro.org>
+ <50c29a62-1fdb-4de2-8887-0d551eee5ec0@google.com>
+ <255d7726-6758-43ed-b35f-db14726bcc9b@google.com>
+ <2869d309358f27652289c40810ca36b2ec155d1d.camel@linaro.org>
+ <bb9b9afa-0bfa-428e-9372-549d9ba8603c@google.com>
+ <6b37b88e9b7ee57eb1c006916fd995c813ab5e6e.camel@linaro.org>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <6b37b88e9b7ee57eb1c006916fd995c813ab5e6e.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+Hi Andre',
 
-On Sun, 11 Jan 2026 14:41:01 +0800, Ze Huang wrote:
-> This patch series enables the DWC3 USB 3.0 host controller on the
-> Spacemit K1 SoC and enables it for the Banana Pi F3 board.
-> 
-> For testing, the following kernel configurations should be enabled:
-> 
-> CONFIG_PHY_SPACEMIT_K1_USB2=y
-> CONFIG_PHY_SPACEMIT_K1_PCIE=y
-> CONFIG_USB_DWC3=y
-> CONFIG_USB_ONBOARD_DEV=y
-> 
-> [...]
+On 1/13/26 2:02 AM, André Draszik wrote:
+> Hi Amit,
+>
+> On Mon, 2026-01-12 at 11:37 -0800, Amit Sunil Dhamne wrote:
+>> Hi Andre',
+>>
+>> On 1/12/26 5:47 AM, André Draszik wrote:
+>>> Hi Amit,
+>>>
+>>> On Tue, 2026-01-06 at 17:14 -0800, Amit Sunil Dhamne wrote:
+>>>> On 1/6/26 3:41 PM, Amit Sunil Dhamne wrote:
+>>>>> Hi Andre',
+>>>>>
+>>>>> On 1/5/26 9:32 AM, André Draszik wrote:
+>>>>>> Hi Amit,
+>>>>>>
+>>>>>> I haven't done a full review, but a few things caught my eye.
+>>>>>>
+>>>>>> On Sat, 2025-12-27 at 00:04 +0000, Amit Sunil Dhamne via B4 Relay wrote:
+>>>>>>> diff --git a/drivers/power/supply/Makefile
+>>>>>>> b/drivers/power/supply/Makefile
+>>>>>>> index 4b79d5abc49a..6af905875ad5 100644
+>>>>>>> --- a/drivers/power/supply/Makefile
+>>>>>>> +++ b/drivers/power/supply/Makefile
+>>>>>>> [...]
+>>>>>>> +
+>>>>>>> +static irqreturn_t irq_handler(int irq, void *data)
+>>>>>>> +{
+>>>>>>> +    struct max77759_charger *chg = data;
+>>>>>>> +    struct device *dev = chg->dev;
+>>>>>>> +    u32 chgint_ok;
+>>>>>>> +    int i;
+>>>>>>> +
+>>>>>>> +    regmap_read(chg->regmap, MAX77759_CHGR_REG_CHG_INT_OK,
+>>>>>>> &chgint_ok);
+>>>>>> You might want to check the return value and return IRQ_NONE if it
+>>>>>> didn't
+>>>>>> work?
+>>>>>>
+>>>>>>> +
+>>>>>>> +    for (i = 0; i < ARRAY_SIZE(irqs); i++) {
+>>>>>>> +        if (irqs[i] == irq)
+>>>>>>> +            break;
+>>>>>>> +    }
+>>>>>>> +
+>>>>>>> +    switch (i) {
+>>>>>>> +    case AICL:
+>>>>>>> +        dev_dbg(dev, "AICL mode: %s",
+>>>>>>> +            str_no_yes(chgint_ok & MAX77759_CHGR_REG_CHG_INT_AICL));
+>>>>>>> +        break;
+>>>>>>> +    case CHGIN:
+>>>>>>> +        dev_dbg(dev, "CHGIN input valid: %s",
+>>>>>>> +            str_yes_no(chgint_ok & MAX77759_CHGR_REG_CHG_INT_CHGIN));
+>>>>>>> +        break;
+>>>>>>> +    case CHG:
+>>>>>>> +        dev_dbg(dev, "CHG status okay/off: %s",
+>>>>>>> +            str_yes_no(chgint_ok & MAX77759_CHGR_REG_CHG_INT_CHG));
+>>>>>>> +        break;
+>>>>>>> +    case INLIM:
+>>>>>>> +        dev_dbg(dev, "Current Limit reached: %s",
+>>>>>>> +            str_no_yes(chgint_ok & MAX77759_CHGR_REG_CHG_INT_INLIM));
+>>>>>>> +        break;
+>>>>>>> +    case BAT_OILO:
+>>>>>>> +        dev_dbg(dev, "Battery over-current threshold crossed");
+>>>>>>> +        break;
+>>>>>>> +    case CHG_STA_CC:
+>>>>>>> +        dev_dbg(dev, "Charger reached CC stage");
+>>>>>>> +        break;
+>>>>>>> +    case CHG_STA_CV:
+>>>>>>> +        dev_dbg(dev, "Charger reached CV stage");
+>>>>>>> +        break;
+>>>>>>> +    case CHG_STA_TO:
+>>>>>>> +        dev_dbg(dev, "Charger reached TO stage");
+>>>>>>> +        break;
+>>>>>>> +    case CHG_STA_DONE:
+>>>>>>> +        dev_dbg(dev, "Charger reached TO stage");
+>>>>>>> +        break;
+>>>>>> Are the above debug messages really all needed?
+>>>> I forgot to respond to this comment in my previous email.
+>>>>
+>>>> I think we can keep AICL, BAT_OILO, INLIM. They're either special
+>>>> conditions (AICL) or faulty conditions (like BAT_OILO) and we can in
+>>>> fact keep them at dev_info level. Rest can be removed and a
+>>>> power_supply_changed() is sufficient.
+>>>>
+>>>> Let me know what you think?
+>>> I don't think dev_info() in an interrupt handler is appropriate. At
+>>> least it should be ratelimited.
+>>>
+>>> If it's something special / unexpected that needs attention, having
+>>> a dev_dbg() message only will usually not be visible to anybody.
+>> I agree. I can change the prints to dev_info_ratelimited for the stuff
+>> we care about.
+> If it's an erroneous condition, maybe warn or even err are more appropriate?
+>
+> But then, what is the expectation upon the user observing these messages?
+> What can or should they do? Who is going to look at these and can do
+> something sensible based on them?
 
-Applied, thanks!
+The logging will help in postmortem analysis which may or may not 
+possible with just publishing uevents to userspace hoping that they log 
+the psy properties. Illustrating a situation:
 
-[1/3] riscv: dts: spacemit: Add USB2 PHY node for K1
-      https://github.com/spacemit-com/linux/commit/0346e7284c2a1a39befc8711e5bc7f0306df7bdc
-[2/3] riscv: dts: spacemit: Add DWC3 USB 3.0 controller node for K1
-      https://github.com/spacemit-com/linux/commit/4b8fd1c95f0dd0398da1ea373ab67dd3559afb31
-[3/3] riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
-      https://github.com/spacemit-com/linux/commit/2c1c8ee2c30f90b2dc2d6629e364aaed622c98b6
+1. Over current situation happened where the Battery to System current 
+exceeds the BAT_OILO threshold. This would also generate an interrupt.
 
-Best regards,
--- 
-Yixun Lan <dlan@gentoo.org>
+2. The MAX77759 takes protective measures if the condition lasts for a 
+certain specified time and reset. Resetting will cause Vsys to collapse 
+to 0 if the system is only battery powered.
+
+3. It'd be better that the BAT_OILO interrupt is logged in dmesg, 
+instead of just delegating it to user space as user can debug this 
+condition by looking at last_kmsg or pstore.
+
+4. This signal can help the user debug conditions such as moisture (this 
+signal + contaminant detection) or indicative of a mechanical failure.
+
+I do agree though that this is a hypothetical or very rare situation and 
+if you have a strong opinion against this I am okay with removing the 
+prints completely.
+
+
+>
+>>> Also will the call to power_supply_changed() down below handle the
+>>> special conditions (e.g. convey to upper levels)? If not, can it be
+>>> made to do so?
+>> Yes it does, as I can see a call to kobject_uevent() inside
+>> power_supply_changed_work(). Also, power_supply_changed() also notifies
+>> other subsystems that have registered their notifiers downstream of this
+>> power_supply object. So I believe we're good there.
+> If erroneous conditions are handled by other / upper layers, why print a
+> message in this interrupt handler in the first place?
+
+I tried illustrating an example above.
+
+
+>
+> Also, I just noticed there is a max77705 charger driver. It seems quite
+> similar to this one, maybe it can be leveraged / extended?
+
+Thanks for the feedback. I reviewed the max77705 charger driver. .
+
+Here is a breakdown of why I believe a separate driver may be a better 
+approach:
+
+Similarities:
+
+1. Helper Functions: We could potentially leverage common logic for 
+get_charge_type, get_status, get_health, and get_input_current.
+
+2. Register Access: MAX77705 uses regfield abstractions to handle 
+register operations which can also be potentially leveraged.
+
+3. Initialization: Some hardware initialization steps appear similar, 
+though about 60% of the max77705 initialization (e.g., switching 
+frequency, WCIN regulation voltage, top-off time) is irrelevant for the 
+max77759 configuration I need.
+
+Differences:
+
+1. OTG Support: The max77759 driver supports OTG boost mode, which is a 
+key requirement for my use case. While the max77705 hardware might 
+support OTG based on its registers, the current driver implementation 
+does not support it.
+
+2. TCPCI/TCPM Integration: The max77759 driver is explicitly architected 
+to work with a TCPCI/TCPM-compliant Type-C controller to set input 
+current limits dynamically. It is ambiguous whether the max77705 device 
+uses a standard TCPCI/TCPM model or a proprietary one.
+
+3. Register Incompatibility: There are distinct register differences. 
+For example, the max77705 driver relies on BATP and BATP_DTLS registers, 
+which do not exist in the max77759. Conversely, the max77759 has a 
+dedicated second interrupt register (CHG_INT2) that reports critical 
+signals like BAT_OILO, SYS_UVLO, and charging stages, which appear 
+absent or handled differently in the max77705. Additionally, MAX77759 
+has input selection (wireless, usb) and uses it in the driver but it's 
+not evident from register definitions whether max77705 has it.
+
+4. Parameter Calculations: The formulas for calculating parameters like 
+Fast Charge Current (CHGCC) and Float Voltage are different between the 
+two chips. Merging the drivers would require separate, chip-specific 
+getter/setter functions for these core properties.
+
+5. Device-Specific Workarounds: The max77705 driver includes a 
+workaround in max77705_aicl_irq that is not relevant to the max77759. 
+There may also be future workarounds which may not be applicable to one 
+or the other.
+
+Logistical Constraints: I don't have access to max77705 hardware or its 
+full datasheet. This makes it impossible for me to test any shared code 
+changes to ensure I haven't introduced regressions on the max77705. IMO, 
+given these constraints and technical divergences, maintaining separate 
+drivers maybe a better choice. Please let me know wdyt?
+
+
+BR,
+
+Amit
+
+>
+>
+> Cheers,
+> Andre'
 
