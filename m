@@ -1,203 +1,281 @@
-Return-Path: <devicetree+bounces-254980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DFD8D1E262
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:41:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E48D1E2B6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:44:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 87B06301A1A6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:35:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 51524307F02A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6765938A704;
-	Wed, 14 Jan 2026 10:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D3C392829;
+	Wed, 14 Jan 2026 10:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OEzTGLvY"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="B8xKtRS/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013045.outbound.protection.outlook.com [40.107.201.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B180E38BDCE;
-	Wed, 14 Jan 2026 10:35:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768386900; cv=none; b=sohpY9NzfvT6U0j37e+IGxJVrNWWnM0N+ztARGY019CZ7g4KQnSHUNyBEPVAesOmwHXjaOt9vAjAUwMuU0x/CaxSW9FDwQKipPHoAYYqMwLMvZJkKDmuT10BR8ptpOkGbRns7FizO0MlE0ngmVVTmSaAQwyYJVQ0xKYhREgAh+E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768386900; c=relaxed/simple;
-	bh=Aci1VfUrOZ2vmVbNLWJQMYGWQewDFxkS6jVls4tevd4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hog2thZ80Wo5yra9IPORygxn7XyxTqyEUAPXZaGsRGzCZ8TLXE0okIB3UU8MOKFk0wAltUtYauYwk6FvfZVHlDhyaq+Vr2ZwvfzgAcn8CzJmihsCVJYaIlgryGUavSEabiH9PR34a6U7/06e2zo7iveLSl4uOeBN7eHeE8GszIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OEzTGLvY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EC60C4CEF7;
-	Wed, 14 Jan 2026 10:34:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768386900;
-	bh=Aci1VfUrOZ2vmVbNLWJQMYGWQewDFxkS6jVls4tevd4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OEzTGLvYDXEV6L79EExc0h67Wmmw9yYzCqGdEdEmo68q+BecSb2Sgs6upW6aDcIcH
-	 +7iUx5JkmePrf5ANUaO+K4cRwmYE0+mMkR2mL6QzVlvPaIF++outnSad3JGIkSJToU
-	 Pv1cBpNf6H6TJ0lwoMybO4nQ9RMle2v7HsR40lMgAMu16Utd7lc0YdBgrtaeMZwGlf
-	 u1gvWeRegKMa/2f+UqYUUHSV7kjQb5RKxZIslquh4WjOk5YNPCB9iridTElQ8MVggt
-	 c+w1K4meVe1yrQlnOABvgu08M/2b2gqKYxtQFW1+NB8PCKbU69k+06mCw65KWa8Hnn
-	 P3LsqGkOiUMXQ==
-Message-ID: <e2d2c011-e041-4cf7-9ff5-7d042cd9005f@kernel.org>
-Date: Wed, 14 Jan 2026 11:34:55 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CABA239340A;
+	Wed, 14 Jan 2026 10:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768387164; cv=fail; b=mwmWzvqgFQOkpkcJYL8DQPHoXaM2FjSAmfvryC9p0nGecYffEvJcReHoXvkFduOGhF8zMLtfxmNibLRwT+xa/wnG2LmOhoQdzdmHkshvS7m9WJUI3mMHVJ2f85QiJqgiYeVm6Khl9jfBEA5yaphF6qiQAqnStcYxNmlg6xcNc2Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768387164; c=relaxed/simple;
+	bh=nWtzEsZ3wY1YMMcGSJryr0aDOU3qqv2OSVcPfgWKluk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KlJQNgPUVXZcffpfYi5BaRCbCvd8G04oXSweHN0ZrqR7pyDJfynU9terkkiIlxpPMGQI9FeR3YLDibMX7qHOwd1B2/PJGIse2sGSMjO434XCMyFdzvKJDcWWXle0ChZRNzMvHJvBRHRF/O2SUCUmIeAj8eVioQPEdTqhMRfV3Vs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=B8xKtRS/; arc=fail smtp.client-ip=40.107.201.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QEqShmND8iW/WIKWh9DGG2wZgK2KClYe7JpIV944dvqQptnZiF2GO0mUGviT1QUS3Nrir4/uKiWWPCR1eOvWoJvTsqNxq7zuQNjxJZzITkytNXnG2M6e7FgGd8uxYTzBPywPOVoHx11mdkqKaDahZ0xggoTKOhk6uD0IKbC3TqJl22+4wUjFfvNbinjwWXxoZCPzQ80mJvJoTsBOLxm5COHg3oCmPrW/zn9BTYuFuefoFRVAA98xHZr6XHGp5VdfXWzpcKaFG1C+p7lYI/0x/oVVGmmC1P+KDzNcMsIr4YzZqpYpRN+klBOFZ4d2tV2ke0+lJzXx//jg3IlSYPm2Bg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EwSOdxwTyuZxmmnTw+5GKPg6Ks4BJUVwIeY4G3c8xhc=;
+ b=plSNlHBa/h2twDZXwOHd3leIiwt1z1csow30R52m18fRjUJyZA5izmiDYkwVpsi9Se54vtzt9kFYFRltwwoLqiyjb4HuSz3mSVWGsOH7a0dZjpqmksVIdLfd9DAL1vfxsspXE6MI+iQOC8DPJbbt2JbYvvqgZagGbfvHthzujAfDxiaK89n8RIBlCy61YE7pACEyYYpYkBQ7piULqcf/O3hFayBZmN1pHddbt3J8s7KDjBUNCfGA/ZsR+E9amHbiOANhvnO1tF2QpnRX3yCaXOT+1POKMlBEi8wMkg4WI/jhpxfcNLGHQ4ujw/g987nxUxjXHmYbvmliGYuzHxhBvQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EwSOdxwTyuZxmmnTw+5GKPg6Ks4BJUVwIeY4G3c8xhc=;
+ b=B8xKtRS/hfA06Udwyj2zfb+Zz1R08UYdGGWOinA0IQPuCRn32Xk/9VBZngJ+q/LPY6DCb+DKMMQEIULe8Ll6m6xehc9ouZquBnzjbcKc+QKMZBINlVHXYz3g0lY7wjUigi7jpNsaObhYIiYYxvZKmEP50JI7NOzisznjoMTMnX3NCIvbch26fuFxmHTit1IkdTW9+YWx583+fKJgSN3c2grlCvDxY4PLvu8kzV3ebti29u5/boz/g0hLJSSIggpeQKEMcP5MSSfvbYTQNUNPgH+Brz3gIoR6SSus9YFY3npWWZWD+ZNsV5s5lrmbqEnUi/BLuYG8u/YWsrYGzhLI1g==
+Received: from BN0PR04CA0128.namprd04.prod.outlook.com (2603:10b6:408:ed::13)
+ by MW4PR12MB5601.namprd12.prod.outlook.com (2603:10b6:303:168::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.7; Wed, 14 Jan
+ 2026 10:39:13 +0000
+Received: from BN1PEPF00004682.namprd03.prod.outlook.com
+ (2603:10b6:408:ed:cafe::24) by BN0PR04CA0128.outlook.office365.com
+ (2603:10b6:408:ed::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.6 via Frontend Transport; Wed,
+ 14 Jan 2026 10:39:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ BN1PEPF00004682.mail.protection.outlook.com (10.167.243.88) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Wed, 14 Jan 2026 10:39:12 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
+ 2026 02:38:56 -0800
+Received: from localhost (10.126.231.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
+ 2026 02:38:56 -0800
+From: Prathamesh Shete <pshete@nvidia.com>
+To: <linusw@kernel.org>, <brgl@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+	<robh@kernel.org>, <linux-gpio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <pshete@nvidia.com>
+Subject: [PATCH 1/3] dt-bindings: gpio: Add Tegra264 support
+Date: Wed, 14 Jan 2026 10:38:44 +0000
+Message-ID: <20260114103846.687338-1-pshete@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
- EN7581-7996 support
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20260113-airoha-npu-firmware-name-v2-0-28cb3d230206@kernel.org>
- <20260113-airoha-npu-firmware-name-v2-1-28cb3d230206@kernel.org>
- <20260114-heretic-optimal-seahorse-bb094d@quoll> <aWdbWN6HS0fRqeDk@lore-desk>
- <75f9d8c9-20a9-4b7e-a41c-8a17c8288550@kernel.org>
- <69676b6c.050a0220.5afb9.88e4@mx.google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <69676b6c.050a0220.5afb9.88e4@mx.google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004682:EE_|MW4PR12MB5601:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6094c355-b0af-48e8-23c6-08de53592879
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|7416014|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?cv5pA6rbHX+u6jk5BQ0d0GW9TxfFYKqtUsvosomRAoYO6+D9LMWch06i1J8u?=
+ =?us-ascii?Q?JI/W0tERimEDrNh48bgYOLp+8Y1JFAp033/xmk3syL0fTdgTtyxfQjVMxzmt?=
+ =?us-ascii?Q?GpkUjdD6Tydcm5ZDW5s8L+L6H1n+R72jnxHasRYcd8Jk9aoB2DTXvYAj8Kny?=
+ =?us-ascii?Q?K8iKLUtp2xnF/GJLll1EnT2Bm85e3aflh1R0lWGSYUkrBvQ9uO+++d9HaZhR?=
+ =?us-ascii?Q?q2i0MnoyL3A5aXAj9gWgCNxCd68Goh5BGVPjpVvNAgD/OUY2HylLPiMsa8RZ?=
+ =?us-ascii?Q?JkMaIHo6nSTZPknKaeF4SekGNhQuxaGKmxznYi9T2geQw3co06fMIuUN89PJ?=
+ =?us-ascii?Q?gIgkMeXmeqUkxq5i0s8bKJzC7wUJzW3N4PrDTwlaMiidA+e3TkhAouY8HwzY?=
+ =?us-ascii?Q?2QGcs0wNKPOv7E4ZxPt8OEyffDdjxOkJ2mLaQhtYxhFxWlEQsVRlz3upr8RI?=
+ =?us-ascii?Q?b2f1DbOT8KR6zkWDo6UUtlsFrnwNTApYzzBKy4ZkzPLDOGL6OTBe+fVukW7l?=
+ =?us-ascii?Q?hpjZvAZ2bWyFeOpIqGnvPaiu+MPkDCflSavOkgUg8IsKkPosHMsCXUa19QOW?=
+ =?us-ascii?Q?bTcqu2EwyfGoVseYY1lRqijg0IVEjK+qlbcnPPnRZcFVmz2HMyvg6vEgpnHY?=
+ =?us-ascii?Q?7NgEpdIiTnaMTi7NFhUZ3YitFxZFdCbUGXM150rvAcVXGPss12/Yo+PunlZO?=
+ =?us-ascii?Q?mhk8fkHpoI8iK093F+GMEbaloCw5VRIoaZ/TBuSsyiXTEpRSxbsj32MgJtBq?=
+ =?us-ascii?Q?fYQakRlBROosuLt8EeMU+uuevnU7w4WZcnmjI+LJ+owQ10l8/BiyUWcrVsL4?=
+ =?us-ascii?Q?mbpSRzFHozy/9vP4f2LuOVJkkGykLDZMl4t4I0+OvtCfRmiTSNaSYJF0NE2c?=
+ =?us-ascii?Q?jd+KZMvZaPNXMg21F3Mo+ojIjY3DqLNqYUnVI+K90AomQZ5Cg8UZKEuAVpjj?=
+ =?us-ascii?Q?5p3MqAaHtNhwSzT0qI9U66e/1wxYIrTR9VzIm6GKCIqRB83eterL3L4FOmwI?=
+ =?us-ascii?Q?7bnoTXB2NvDVr2CVz5yBoQ2RxJ+nWifls1OGKGG7pFSVJKQka1cnmTHC7jEj?=
+ =?us-ascii?Q?YUscKQCNrRO7ThMVNysw7AtzkL5NsM7298zIdDfRqQwXmb5lcgKTaaq9NWCN?=
+ =?us-ascii?Q?zR+Ma7K9ElBQSyo54ldeSqUODwVPHZ8Fj7AAa1lND5w7K4G/dYwpx0q0Tdgj?=
+ =?us-ascii?Q?+TDMUqVCb4vFBCIrIv2Kw9HzIKAKCyf9L2IUN8BvMP3uQUvKuCpxX1i9j/bM?=
+ =?us-ascii?Q?4+VZMZvp849+IjgF/C3tdwXrdFcmB8ABbE/0imwKWeWJnRkUYFY0s48KCCTc?=
+ =?us-ascii?Q?i/bxZ7XOeZS3nGuMoEb27LmWOqpxxgZsidUPMl7TWbm+hWxzGJrlS09lxB5S?=
+ =?us-ascii?Q?4P5WMMtdaciw5Ba+PvrnZTODzqTaAx0D7NjK0Y2W5pam+VZWqvytERjHcZBU?=
+ =?us-ascii?Q?2qmtgMKQy2Uh8e7+2mZQXMOjS/nrKl5eRy1ADzYgfuJpCi+s7Gz21R33eACS?=
+ =?us-ascii?Q?kAU4P7Z/VfTAQj+GhiK2Pkj5mlxtUnJ+udTG701UE3U7dYoGMVKCYA2uG07v?=
+ =?us-ascii?Q?7aBHJSiAtYPQuaPvZZ8++Pa5z2I26N6+g0Kv0KN37QNmGdfXV5bVHItXC83z?=
+ =?us-ascii?Q?dXM135F0hDoOXpA96Yi2nB9HXKpXWye5MPR25Xo9QRwASVPa9UkEnwK0jY/4?=
+ =?us-ascii?Q?D3SqArAW4XXMRhgOB5IKCWOIQZM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(7416014)(376014)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 10:39:12.7597
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6094c355-b0af-48e8-23c6-08de53592879
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN1PEPF00004682.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5601
 
-On 14/01/2026 11:09, Christian Marangi wrote:
-> On Wed, Jan 14, 2026 at 10:26:33AM +0100, Krzysztof Kozlowski wrote:
->> On 14/01/2026 10:01, Lorenzo Bianconi wrote:
->>>> On Tue, Jan 13, 2026 at 09:20:27AM +0100, Lorenzo Bianconi wrote:
->>>>> Introduce en7581-npu-7996 compatible string in order to enable MT76 NPU
->>>>> offloading for MT7996 (Eagle) chipset since it requires different
->>>>> binaries with respect to the ones used for MT7992 on the EN7581 SoC.
->>>>>
->>>>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
->>>>> index 59c57f58116b568092446e6cfb7b6bd3f4f47b82..96b2525527c14f60754885c1362b9603349a6353 100644
->>>>> --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
->>>>> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
->>>>> @@ -18,6 +18,7 @@ properties:
->>>>>    compatible:
->>>>>      enum:
->>>>>        - airoha,en7581-npu
->>>>> +      - airoha,en7581-npu-7996
->>>>
->>>> This does not warrant new compatible. There is some misunderstanding and
->>>> previous discussion asked you to use proper compatible, not invent fake
->>>> one for non-existing hardware.  Either you have en7996-npu or
->>>> en7581-npu. Not some mixture.
->>>
->>> Hi Krzysztof,
->>>
->>> We need to specify which fw binaries the airoha NPU module should load
->>> according to the MT76 WiFi chipset is running on the board (since the NPU
->>> firmware images are not the same for all the different WiFi chipsets).
->>> We have two possible combinations:
->>> - EN7581 NPU + MT7996 (Eagle)
->>> - EN7581 NPU + MT7992 (Kite)
->>>
->>> Please note the airoha NPU module is always the same (this is why is just
->>> added the -7996 suffix in the compatible string). IIUC you are suggesting
->>> to use the 'airoha,en7996-npu' compatible string, right?
->>
->> No. I am suggesting you need to describe here the hardware. You said
->> this EN7581 NPU, so this is the only compatible you get, unless (which
->> is not explained anywhere here) that's part of MT799x soc, but then you
->> miss that compatible. Really, standard compatible rules apply - so
->> either this is SoC element/component or dedicated chip.
->>
->>
-> 
-> Hi Krzysztof,
-> 
-> just noticing this conversation and I think there is some confusion
-> here.
-> 
-> The HW is the following:
-> 
-> AN/EN7581 SoC that have embedded this NPU (a network coprocessor) that
-> require a dedicated firmware blob to be loaded to work.
-> 
-> Then the SoC can have various WiFi card connected to the PCIe slot.
-> 
-> For the WiFi card MT7996 (Eagle) and the WiFi card MT7992 (Kite) the NPU
-> can also offload the WiFi traffic.
-> 
-> A dedicated firmware blob for the NPU is needed to support the specific
-> WiFi card.
-> 
-> This is why v1 proposed the implementation with the firmware-names
-> property.
-> 
-> v2 introduce the compatible but I feel that doesn't strictly describe
-> the hardware as the NPU isn't specific to the WiFi card but just the
-> firmware blob.
-> 
-> 
-> I still feel v1 with firmware-names should be the correct candidate to
-> handle this.
+Extend the existing Tegra186 GPIO controller device tree bindings with
+support for the GPIO controller found on Tegra264. The number of pins
+is slightly different, but the programming model remains the same.
 
-Yes. What you plug into PCI is not a part of this hardware, so cannot be
-part of the compatible.
+Add a new header, include/dt-bindings/gpio/tegra264-gpio.h,
+that defines port IDs as well as the TEGRA264_MAIN_GPIO() helper,
+both of which are used in conjunction to create a unique specifier
+for each pin.
 
-> 
-> Hope now the HW setup is more clear.
-> 
+Document nvidia,pmc property referencing the PMC node providing the
+parent interrupt domain. GPIO driver uses this to select the correct
+PMC,falling back to compatible-based lookup only if the phandle is
+absent.
 
+Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+---
+ .../bindings/gpio/nvidia,tegra186-gpio.yaml   | 10 +++
+ include/dt-bindings/gpio/tegra264-gpio.h      | 61 +++++++++++++++++++
+ 2 files changed, 71 insertions(+)
+ create mode 100644 include/dt-bindings/gpio/tegra264-gpio.h
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml b/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
+index 2bd620a1099b..93150504c03c 100644
+--- a/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
+@@ -86,6 +86,9 @@ properties:
+       - nvidia,tegra234-gpio
+       - nvidia,tegra234-gpio-aon
+       - nvidia,tegra256-gpio
++      - nvidia,tegra264-gpio
++      - nvidia,tegra264-gpio-uphy
++      - nvidia,tegra264-gpio-aon
+ 
+   reg-names:
+     items:
+@@ -110,6 +113,10 @@ properties:
+       ports, in the order the HW manual describes them. The number of entries
+       required varies depending on compatible value.
+ 
++  nvidia,pmc:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Phandle to the PMC node providing the parent interrupt domain.
++
+   gpio-controller: true
+ 
+   gpio-ranges:
+@@ -157,6 +164,8 @@ allOf:
+               - nvidia,tegra194-gpio
+               - nvidia,tegra234-gpio
+               - nvidia,tegra256-gpio
++              - nvidia,tegra264-gpio
++              - nvidia,tegra264-gpio-uphy
+     then:
+       properties:
+         interrupts:
+@@ -171,6 +180,7 @@ allOf:
+               - nvidia,tegra186-gpio-aon
+               - nvidia,tegra194-gpio-aon
+               - nvidia,tegra234-gpio-aon
++              - nvidia,tegra264-gpio-aon
+     then:
+       properties:
+         interrupts:
+diff --git a/include/dt-bindings/gpio/tegra264-gpio.h b/include/dt-bindings/gpio/tegra264-gpio.h
+new file mode 100644
+index 000000000000..d7baceace474
+--- /dev/null
++++ b/include/dt-bindings/gpio/tegra264-gpio.h
+@@ -0,0 +1,61 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Copyright (c) 2026, NVIDIA CORPORATION. All rights reserved. */
++
++/*
++ * This header provides constants for binding nvidia,tegra264-gpio*.
++ *
++ * The first cell in Tegra's GPIO specifier is the GPIO ID. The macros below
++ * provide names for this.
++ *
++ * The second cell contains standard flag values specified in gpio.h.
++ */
++
++#ifndef _DT_BINDINGS_GPIO_TEGRA264_GPIO_H
++#define _DT_BINDINGS_GPIO_TEGRA264_GPIO_H
++
++#include <dt-bindings/gpio/gpio.h>
++
++/* GPIOs implemented by main GPIO controller */
++#define TEGRA264_MAIN_GPIO_PORT_T  0
++#define TEGRA264_MAIN_GPIO_PORT_U  1
++#define TEGRA264_MAIN_GPIO_PORT_V  2
++#define TEGRA264_MAIN_GPIO_PORT_W  3
++#define TEGRA264_MAIN_GPIO_PORT_AL 4
++#define TEGRA264_MAIN_GPIO_PORT_Y  5
++#define TEGRA264_MAIN_GPIO_PORT_Z  6
++#define TEGRA264_MAIN_GPIO_PORT_X  7
++#define TEGRA264_MAIN_GPIO_PORT_H  8
++#define TEGRA264_MAIN_GPIO_PORT_J  9
++#define TEGRA264_MAIN_GPIO_PORT_K  10
++#define TEGRA264_MAIN_GPIO_PORT_L  11
++#define TEGRA264_MAIN_GPIO_PORT_M  12
++#define TEGRA264_MAIN_GPIO_PORT_P  13
++#define TEGRA264_MAIN_GPIO_PORT_Q  14
++#define TEGRA264_MAIN_GPIO_PORT_R  15
++#define TEGRA264_MAIN_GPIO_PORT_S  16
++#define TEGRA264_MAIN_GPIO_PORT_F  17
++#define TEGRA264_MAIN_GPIO_PORT_G  18
++
++#define TEGRA264_MAIN_GPIO(port, offset) \
++	((TEGRA264_MAIN_GPIO_PORT_##port * 8) + (offset))
++
++/* GPIOs implemented by AON GPIO controller */
++#define TEGRA264_AON_GPIO_PORT_AA  0
++#define TEGRA264_AON_GPIO_PORT_BB  1
++#define TEGRA264_AON_GPIO_PORT_CC  2
++#define TEGRA264_AON_GPIO_PORT_DD  3
++#define TEGRA264_AON_GPIO_PORT_EE  4
++
++#define TEGRA264_AON_GPIO(port, offset) \
++	((TEGRA264_AON_GPIO_PORT_##port * 8) + (offset))
++
++#define TEGRA264_UPHY_GPIO_PORT_A  0
++#define TEGRA264_UPHY_GPIO_PORT_B  1
++#define TEGRA264_UPHY_GPIO_PORT_C  2
++#define TEGRA264_UPHY_GPIO_PORT_D  3
++#define TEGRA264_UPHY_GPIO_PORT_E  4
++
++#define TEGRA264_UPHY_GPIO(port, offset) \
++	((TEGRA264_UPHY_GPIO_PORT_##port * 8) + (offset))
++
++#endif
+-- 
+2.25.1
+
 
