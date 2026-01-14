@@ -1,258 +1,126 @@
-Return-Path: <devicetree+bounces-254788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF817D1C299
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 03:49:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACDFBD1C310
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 04:04:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 455013032CEA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 02:49:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CAED23047117
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 03:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B7A320A2C;
-	Wed, 14 Jan 2026 02:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8150325701;
+	Wed, 14 Jan 2026 03:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="JR1xieqJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NWD5rE6+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023133.outbound.protection.outlook.com [40.107.44.133])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B9631AF36;
-	Wed, 14 Jan 2026 02:49:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.133
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768358951; cv=fail; b=fByQ/WoR8DPTbXLSLt2EGpg0P5DP81LG9zti2mklx5yihcYPffNsVY+3NZG8bypX8N+rjZI/kPlcFa7hXGr1IbFX45elt8GZcVooIB0WccMSvI7qZQhBRDipSNS0GDql0xer6VDBeQvO8JZSKnRvyTTvDrKiqE6q2rjP45Lmetk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768358951; c=relaxed/simple;
-	bh=ZRSUpXf1/UvQjrFr2DoAIE7IGUPkvlT4UMTRg28KOGk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=QVWyMc3SBZ/JCWmpqgat8cNK5MieMc+oXw7cJLSCyV4FSj8QulATNXYDGNizQrRxoRxiG4bVuBrOSlz9912eL7Fuwul3rVRxw9w/VeNOVJua+6LVqV1WTwcHamw2oXgem4w+DrZDVAttVhA5FmgfnnKUfURFgr4cQ6bgz3s/UcI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=JR1xieqJ; arc=fail smtp.client-ip=40.107.44.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bEXH3PgAW454rK6q/UfJFTpgvYLrMupXnirQG4rcZveXrIneIeFhG6eiS9DFoTgDXFjfAunKZsg6eECFqsJ4Osq3kuGKdSHsWkBi09MfIp1sfFUtBzkhQIuO34NU9sDWJQmUPxikfPbJPrIKjO/bjhYkveSI/9A1MUx47vKDx7DuyHKgGTO6QQr+mf/jj1187U0RcNeZYdquygaGZ7bSlVFzmQoHh+qmmBDObL6WidEsKZylBNY/00tE+l1HCkZ9Fsic1yG0LCIsN+ZnVgqZNKL8lFIUiwVqmPzky5bqMDwoqNQBIcRkVy8cA1uhWyVoB1Ga9P630w7sQICScFtzmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dhvt1NSFuihMsuCRuRb4tPBhdwlPPqehgTB7nK2I1/s=;
- b=VZJgeRF2z6u423J7SGvhfz/j7g/Z0JEaOU1P6qNUobsqkNU+AZmwZC9CgBPekSYmpvu/Jo0Fz45zdp9Z3cpk4Z5Ra+MXhFjghqKnupILhA3KOZsEqZWOxABndf0iwvccsJxOCXlIAGjmA01d/cnbwBXs9huPD8hQINxi8CbxDyPE9YPF0hH91862Kla+0OyLKiYM4tJ0t/BipBmpsQtetNwLnJk0NL0uxSIq1XAJxrsJOgjbidasRGT5B2kiNwfw8jpwYTX2W/BrbCwp6WWFNJAPECi8BX4hajtZL/oJVnLqfzbpPdoMdtiRolqpo5ectNtp5Myvb/ony1w2gTDo0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dhvt1NSFuihMsuCRuRb4tPBhdwlPPqehgTB7nK2I1/s=;
- b=JR1xieqJUagtk7d0PLppzUIiHfBxd5SkHzfvZs9kwIKEHXKzX/wuhwzffLIK52W5Fd2Of9zFlS+E9R/FbJeu1VrZs7QOBVYSOSkSeg7qEkyjENhJUGiSXn4Oj3YoIQ4HS0o/e7WfI/7Wd6qQ48Fisg/DCFgrawnimsjsxO3UBl5HuDGbzbPkMcMK6FxgLFI9JTwTVqoWvRdLXBdoV6L9cyEV1bYrqLupfYpUyKeiPK1vm2kJ+uAaFmJV2WFBCIJY8WVmQyIXqY4sxw7aEpofzqDz1sxmGhHyI1QHHdPBywZSFc1iR55RUfgz1q7cJSjbPgNDSObGoKsFjk+fVVAONQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
- by SEZPR03MB8778.apcprd03.prod.outlook.com (2603:1096:101:217::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.2; Wed, 14 Jan
- 2026 02:49:06 +0000
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e%5]) with mapi id 15.20.9499.005; Wed, 14 Jan 2026
- 02:49:06 +0000
-Message-ID: <2491170c-d055-4231-8fd1-164d89198ae3@amlogic.com>
-Date: Wed, 14 Jan 2026 10:48:18 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: s4: fix mmc clock assignment
-To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick Xie <nick@khadas.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260113-amlogic-s4-mmc-fixup-v1-0-1ab1fca0fb2f@baylibre.com>
- <20260113-amlogic-s4-mmc-fixup-v1-2-1ab1fca0fb2f@baylibre.com>
-From: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <20260113-amlogic-s4-mmc-fixup-v1-2-1ab1fca0fb2f@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYCP286CA0044.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:29d::17) To KL1PR03MB5778.apcprd03.prod.outlook.com
- (2603:1096:820:6d::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94464324B3B;
+	Wed, 14 Jan 2026 03:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768359849; cv=none; b=HzZrgOYu6hoI3OZavYs8iKvzpKC1NaMWXaqOgdgqpwIeR6aZ3OIvn7MrS+U43RkZ18dJ8z01YPYRECbu1op+0UIXIS4b4tX7GyULH67FquM8Pty3jlebvNZQYn2lK4x/Gq06oLgdJiJYJ21X8+mozqUVWyfNOfZ8ka+qd0T7A/Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768359849; c=relaxed/simple;
+	bh=jJVWTKrbZnnrbSSyMrERZV7TPbUDbyAnpakRYlfbiWE=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=eTfjIm622Kw1Wle3O9IGCNpjBNKLVJIyLGrWLofuO0Grx2xO0zEeFFftPS4hwoHBEPsZ0CmEKIGqCM9lh5wfdF4ODcbzG6wa4YHKjrkkaPrNQAVhT0lBF7s/n4pp6DWNRYVVX6sm/PMqFQR5w+7HbNv81xncMtFP1/HH5OUbXjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NWD5rE6+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A330C19423;
+	Wed, 14 Jan 2026 03:04:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768359849;
+	bh=jJVWTKrbZnnrbSSyMrERZV7TPbUDbyAnpakRYlfbiWE=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=NWD5rE6+pXNTWgwxgdJh+3zWszpwjjMyTMfd6sG/wGgRdujF8GeSf5UXNMsTgpvYt
+	 6WSrJOuOn+CTYXmfUd30Gmg/v+iQtOJmyX8WIiRnwp+7RnMng2qENI321/tAQqfmAc
+	 rKoyogVmV83ymAyX0x5hpHNQtaPw7O1CNKsSpR1QHgVCjZTBSTUux6sC4xB7YSUQUT
+	 fWwcJNVt2a6wHwqYr+nKeaqeooq9/0KBYVcgWl0gYkklRvxFEEYZcGclIChI2sRGsG
+	 jZ1AutkgWo9HFWL04xFyHRtOF0Qw4W3hEJPNhecunfECJUmmV/+LQ577tXSf/G/W9D
+	 ISJJpL1YLMpeQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id B649F3808200;
+	Wed, 14 Jan 2026 03:00:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|SEZPR03MB8778:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e766fa0-efc2-43db-f076-08de53177baa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|366016|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?K1hCRy9OL3RnRUowTlFpRDVSVEZ2YXhENU9qRmhuejZjVGJISUV1NnI0Z3N2?=
- =?utf-8?B?eEpNWGJUUzlPd0ordHlidFBJTTZPL1RBZTFzdzZxdGdMQ21VNUtlUHl4cVpM?=
- =?utf-8?B?TnpaZ3Zia1hvTVJFUWNMQUdvbk1paDVYTFZzOVNVRVZXL25MTW1GeGpwYlpS?=
- =?utf-8?B?em1LZk1la1ZyaVo0SE5TZzd0Mno1U05zWk5XUmJuMm1nUXJxMzh3OTAzYWNT?=
- =?utf-8?B?K0RobDQzUFkvb1RDMXJRN2UzL213MFJib25LK2dmWHIrMGVlMFQ2Zm5RdjdI?=
- =?utf-8?B?Ymd3ZU43NVhiZ2MxakkzaEthTGZlemNUTXZ6d3pxS0dNSHlsbHFDMS9qUmJM?=
- =?utf-8?B?OUZqRzk5aUJnQWI5Nkp3NjNqaWtyN05sL05qQUEvbm14T2xCNGllaHRmdnY5?=
- =?utf-8?B?Vk5Uck5wWnAyWUNrdWZnYUJMS3I2bml4RFkrekxBOW14TWI3OUk5VUdoSXRS?=
- =?utf-8?B?cHlYOG5MRFNLQmRSeWp5REFVK1UxVjFlYWhjQ1Bqa3BvK1M2ckZUa2hleVdD?=
- =?utf-8?B?aElxd0tJSm94UHBTWTNVeGM3NEt4Z3dBV3QreWtlbXYvMEkreExpWFB6cHpY?=
- =?utf-8?B?b21SeGNwQ1pRS0ZGVEZtVEYxUnFlWmNIdmJsd0dHTTlseU1pUW9YRmRzc2Vh?=
- =?utf-8?B?b2dmdjViK0ZwSnIzZ000eWpIb1gyNGkweDJLUzdMblB4VDhqV3EvbDNLM2sy?=
- =?utf-8?B?NHFGSUVOalJ0dlNFYUJPdzl3MzlsUGxXcEpONWxEQkhFY1ZveklldXNRVlYv?=
- =?utf-8?B?QnRLZEp3MnZDZmFXYU8zc0RXeEtFNGpJUU5Zc3B0aFBPZ29LY2dWSUM2dmVY?=
- =?utf-8?B?SlVQblFPQ3l6M01wYXFyNUI2cWV3ajdEZjJGVnRYUDBBUDI0V2xTS0NNWWdN?=
- =?utf-8?B?RVp6cXlQeFF5aGZiZ0l0MmpsTnF3cHRsNzY3Zk1xM1VpU2RGMmpLTlJTdU1Q?=
- =?utf-8?B?YUlXcUZnNjRYM3U5Q081MDlGNmdiMC9WTUZEanZxSFZSNHhDT1EvZ1lBUDJx?=
- =?utf-8?B?bEFGZVpkRVBDVjBNQ2pPR3liSlBKM2RlazRnblJOd3FkbU14aTI0U0lDbHkw?=
- =?utf-8?B?NlgxT3l1cldkUjBlbTEyNHNlTGNEVmVWaFJJWHJIaGJ5V0p1MHgxK3pjeXdj?=
- =?utf-8?B?bjBSRzYyQVBZU0hhUHA0dkVUSWZNL0pWOHg5cEF4d2t0Uy9tL1RTK3o0dGFa?=
- =?utf-8?B?aExTNlZpREpSQS9RR2llSGxXYWFUcEJwS1BNQkt4K2RaSnJHTXZGczQ3cGNI?=
- =?utf-8?B?TWFmL1RTMmJGdmVhTnhHQno1WFkwcXB0dlRVWFFoS2pMbmNQcStZcjZESU5P?=
- =?utf-8?B?eHg3YUViQVF5SnNZSGo2NmZBNzNSN2hpYkxScnd1QlF4b0EyU3pBblNndGlU?=
- =?utf-8?B?V1dPUXZFZ01vTVBodU9xYXo4QUU4eVhFaFVZK3lVS1NLclBiUURpQVBkajFx?=
- =?utf-8?B?dk5DNWIyNkJuOEZyZ0dwNlc3SjRZYjMvYjRKNXdlT1E1SzFLeXB0N3Byak95?=
- =?utf-8?B?YXhUNHRsQmd6Y1Nyc2Z4MUsvU2dac1pLbkx3bkwvZ0J4Rzg5aU10MW51TjZT?=
- =?utf-8?B?SjNWV3N1b21CMDhxT2M1K3c1UUpSSlppTVBYMWtLWE1lKzlDTnlsZk1keHRJ?=
- =?utf-8?B?RFRJZHJORHpvMmpoWm1kWE9zY2tZTnFCSzRSdGM4RTZYa0Fad1FHR2lKT1ND?=
- =?utf-8?B?UVRKbHM0SWxmSHBpUklqWWVlUzI2ei9TcFZXa0I4YmI1Tk5DR2FRVi9laGZh?=
- =?utf-8?B?VHAvMEhSVmFWSGl6a1JGUUM2LzI2Ym5CNVZpam9zYnUxVnF6S1dUSWtWVzJh?=
- =?utf-8?B?OVQydWdjQ3hPZGVEbjZRQStOUGFUSzY5RGdDN3NaRFpoZUtPT0E4eVdzS2JP?=
- =?utf-8?B?bjVxVDlWMWFyc0FKY3hOK2ZpaTc0RUVjakthZ0tNSUJiVUR1aytiRHFySmlE?=
- =?utf-8?B?Uit5SXIyZ2ZjdlJtbUF6Znh1Z2o2WEdUbW9iVXY4S1ZYaFl3RW5TcG5Hbnc5?=
- =?utf-8?B?Nm8vS1dlUFVBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(7053199007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VEpuSS9DREVWcGJHRC9WZmRJeUpaUFhpWllrU1pUbjJlcEN6Q0dFR0hzMzlB?=
- =?utf-8?B?b3o5NjBGZkVnWVZiQjMvRnFZRVpzTGtDTEpDN2R1bVNHZlZscXRKZkp6NXox?=
- =?utf-8?B?L00vZ3dKMDhJNkNsM2cvZnM5SWYvUWVrR2FXaVdUWGU0aVlmdlptN3BZL1R3?=
- =?utf-8?B?TEkzWTBIR2Raa25hVGV2a3B0QkFTNm10K1dOcFU5U3RSQ1I2ZkZuLzdjenlN?=
- =?utf-8?B?TXVGdkFFRWUvWHowN0NFOG5IUWFzZEdrQVpoNm1KbnhneGgrZE1rQlhtZGpP?=
- =?utf-8?B?bVdzY1RyamFKcWd6T081UlNkQVp6UUNKd2R5MkZWVk1iR2JtVnU1VGxPbnZv?=
- =?utf-8?B?ZGh0aEs4eHZFZHdZcFQ1em1rRXlxd0VwZnBxTHFRcS8zZ3ZvSytIMFZNeHBz?=
- =?utf-8?B?UzdqVlJidTNhSW9pNWxndy9FNDRIUngycUNHdmRRN0tJaEtzYWQzSzVrdzdr?=
- =?utf-8?B?T1BnVDNCb05GeFNNS2RFWXZmcnZhakV5KzVqOGFCaTVrc2g3dytNejZRbmRN?=
- =?utf-8?B?cVFjYkExZmtKTEE0azB2TVJsbjRLeG83OGJiNzZ4K1hPWlhJY01VOFJTU2Fw?=
- =?utf-8?B?anVneW15VkFwY1dlYWpRM0luMklCdUVEWm40VVhPcjh4dHJ4b2FGS2tORUU3?=
- =?utf-8?B?cHpaTE5ON2ZtTkxoR01NRFRoNmp5cDJnYVRBTW5MTStJU2kzNTlaTEdCRVox?=
- =?utf-8?B?RlJ6VXBTaThmNjcvcjB6N0lMYkVqRW1QeCtIOGQxVFNndEI3YjZmclZTdmJ6?=
- =?utf-8?B?YmYyU3QrZWpXRXpPZUNjTElzb1lRVWtOeHpDTXVxN1dDU0VTRldPNVQybU13?=
- =?utf-8?B?YU1mK1JvejMxS0pyNFF0Yi9EODR6RkVtRWJYbFlCbHkybGRxWTJOZmlWdmdI?=
- =?utf-8?B?NmNQQ3ZCb1U3ejkvcVJ5OUVhc3dsWXMrKzhuMUNvTzc2S1J0UTJydHhDVGlu?=
- =?utf-8?B?Q1I5TDVQUCtMNHBYaVFXbDhEN0tBYVY4M0JxL29oNElURk1jbVdzMnYwL1hn?=
- =?utf-8?B?bEp3VWY4c0dXTW43cGQ4TlpVQnpFQ1BoQk1WSXltNGlKVE9KenE2WGI0MU1L?=
- =?utf-8?B?YlZ0OWM5dGgzSUgrZFo5YW55dnRweU5BeFI4bnRDem9xdkxaT3ZxYmhzRENC?=
- =?utf-8?B?ak51czNrZ1ZwanpyWmFZRjV4ck45V3VORWw3REJzdWdRUWI3anB3VWJwdlNi?=
- =?utf-8?B?aEs1RFp4U0dFQ2ZDL2laTHFIMlZuUDZkZThNaFBjU3BwRnljOFVmYzJsSGFw?=
- =?utf-8?B?ZkZIM01pR1N3OHEyLy83RGlJMU8vVEVzejBkSlZlNmZPRjFtSnRodUlVTUZN?=
- =?utf-8?B?Z2RWVFc1bzBaTHl0cnEzcFNXazVYeEZ3dW50emxNZUJHTnQxVGYwcGZWZlBP?=
- =?utf-8?B?aWRRUE9vdXpTSmVOcFlDaUJSdUs3VGkrMXhBN010czMxcU5JUzZaNmEyT3hG?=
- =?utf-8?B?OFQyaFUxRlNvd3FBT0hxNk14REF2V1czTHpXaVJtZnNVWEwwc2dwakpBd0lC?=
- =?utf-8?B?Ym1tU1laR1g1UHFnd0UvVUwyMzk5TGpMSzJtVHJrZ2J1MmlXL2tUYUEweng3?=
- =?utf-8?B?aGpXaU5TaUNMbU1IQlMyc2ZrL2ZoNjZiUGlJK2VhY2o4ajJMNi9hTkJDdTVu?=
- =?utf-8?B?VkovOG13ejczQUxOaG9rQllBenZKeVIrRzRzNytIL2hNY3VxMlpWbjdLeSsz?=
- =?utf-8?B?MEZCTm9vdXg2cEc3dm9KQ3VubmRUK1QxVTNMNnpPSFZZZnRmdjZxdmUvd0JC?=
- =?utf-8?B?Y3dZYWJqRlRhMnZsVHpxZU5ZZmtneHBEUVAvWVpzWXNKQlh5dFB3bDFieER1?=
- =?utf-8?B?WkpaUWxMbFR2a1Z0WXdpSnlxVVJQTGlHL1RqNTZyLzBDWGRRUFJpNUpMdUkx?=
- =?utf-8?B?YTRmZlhUL1VOTll2RktiM0M1M1JTU0lxcFlNQ0VGUXlCYjVRYTU5cnZjY01D?=
- =?utf-8?B?K0RwVit1c0xkclE2U21ycDdoS3FmTXZsbHdrOFJaV080aE8yb2daajR5TTAv?=
- =?utf-8?B?N3RJU2tBY0tmNUF3MU9rcU5PTFh0VHN5anoyR2hJd0d2TkNYcWFKWjYwdThH?=
- =?utf-8?B?UnhBM1VpM0t0SkpCVEtVNC9MSGxraVl6UFVCUlNJN1BRS3MydFYwUW9CV3Vp?=
- =?utf-8?B?bDh6ZXpCWkVoTlRrSE15SWphTWRQZ2Erci83NzZFSUVVNlVoSGU1bU10RDhn?=
- =?utf-8?B?dlhPZURtWUtTRi9XakJpSWFCbm5sb1ZnWFU5MWNKeFVZRGtvRjlrSjlyc0x4?=
- =?utf-8?B?MzFUMkZGaDFacmR0MGJoK0Y4YXBjWmZrVUhBa0wybzVacmxoN2NTeEZFUTVw?=
- =?utf-8?B?WTJLVjZQWjJiWjV6ZG1iOEFrVHBYaXhlWXZlQnpJeDFTZFEzS3lIdz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e766fa0-efc2-43db-f076-08de53177baa
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 02:49:05.9500
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: L9rDe6a7UUjOmVNvCle3J69lVrJ8t+lxTm6Nh5Ub8NZcGCMlzqfP5k9EQb/Mn77f4nZ2L7XYJLfbuMeUvlSTgg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8778
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v22 00/14]  net: phy: Introduce PHY ports
+ representation
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176835964227.2565069.4308063830365885517.git-patchwork-notify@kernel.org>
+Date: Wed, 14 Jan 2026 03:00:42 +0000
+References: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
+In-Reply-To: <20260108080041.553250-1-maxime.chevallier@bootlin.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com, andrew@lunn.ch,
+ kuba@kernel.org, edumazet@google.com, pabeni@redhat.com,
+ linux@armlinux.org.uk, linux-arm-kernel@lists.infradead.org,
+ christophe.leroy@csgroup.eu, herve.codina@bootlin.com, f.fainelli@gmail.com,
+ hkallweit1@gmail.com, vladimir.oltean@nxp.com, kory.maincent@bootlin.com,
+ kabel@kernel.org, o.rempel@pengutronix.de, nicveronese@gmail.com,
+ horms@kernel.org, mwojtas@chromium.org, atenart@kernel.org,
+ devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, romain.gantois@bootlin.com, daniel@makrotopia.org,
+ dimitri.fedrau@liebherr.com, tariqt@nvidia.com
 
-hi Jerome,
+Hello:
 
-On 1/13/2026 6:39 PM, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> MMC A and C are mis-represented as having their "clkin0" input connected to
-> xtal while it is actually connected to the MMC clock, mostly in an attempt
-> to provide 24MHz to the device on this input.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Right.
+On Thu,  8 Jan 2026 09:00:25 +0100 you wrote:
+> Hi everyone,
+> 
+> This is v22 of the phy_port work. Main items from this versions are :
+> 
+>  - Rebase on net-next :)
+>  - Removed a "contains" keyword in the binding
+>  - Added a comment for phy_port SFP implementation
+> 
+> [...]
 
-> 
-> Fix this and assign the clock to 24MHz to actually provide the required
-> rate.
-> 
-> Fixes: 3ab9d54b5d84 ("arm64: dts: amlogic: enable some device nodes for S4")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 12 ++++++++++--
->   1 file changed, 10 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index 62538fd9db6b1ffb33a88e12628aadefbaa453ec..6324d1eb5994009df5b09923cce373a87229f4b8 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -819,13 +819,17 @@ sdio: mmc@fe088000 {
->                          reg = <0x0 0xfe088000 0x0 0x800>;
->                          interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
->                          clocks = <&clkc_periphs CLKID_SDEMMC_A>,
-> -                                <&xtal>,
-> +                                <&clkc_periphs CLKID_SD_EMMC_A>,
->                                   <&clkc_pll CLKID_FCLK_DIV2>;
->                          clock-names = "core", "clkin0", "clkin1";
->                          resets = <&reset RESET_SD_EMMC_A>;
->                          cap-sdio-irq;
->                          keep-power-in-suspend;
->                          status = "disabled";
-> +
-> +                       assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_A>;
-> +                       assigned-clock-parents = <0>;
+Here is the summary with links:
+  - [net-next,v22,01/14] dt-bindings: net: Introduce the ethernet-connector description
+    https://git.kernel.org/netdev/net-next/c/fb7a8d0786e4
+  - [net-next,v22,02/14] net: ethtool: Introduce ETHTOOL_LINK_MEDIUM_* values
+    https://git.kernel.org/netdev/net-next/c/3f25ff740950
+  - [net-next,v22,03/14] net: phy: Introduce PHY ports representation
+    https://git.kernel.org/netdev/net-next/c/589e934d2735
+  - [net-next,v22,04/14] net: phy: dp83822: Add support for phy_port representation
+    https://git.kernel.org/netdev/net-next/c/333c29a27f96
+  - [net-next,v22,05/14] dt-bindings: net: dp83822: Deprecate ti,fiber-mode
+    https://git.kernel.org/netdev/net-next/c/ffb8587363a3
+  - [net-next,v22,06/14] net: phy: Create a phy_port for PHY-driven SFPs
+    https://git.kernel.org/netdev/net-next/c/07f3ca9e092c
+  - [net-next,v22,07/14] net: phy: Introduce generic SFP handling for PHY drivers
+    https://git.kernel.org/netdev/net-next/c/d7c6082f7e77
+  - [net-next,v22,08/14] net: phy: marvell-88x2222: Support SFP through phy_port interface
+    https://git.kernel.org/netdev/net-next/c/ea317f077a38
+  - [net-next,v22,09/14] net: phy: marvell: Support SFP through phy_port interface
+    https://git.kernel.org/netdev/net-next/c/1384e1383829
+  - [net-next,v22,10/14] net: phy: marvell10g: Support SFP through phy_port
+    https://git.kernel.org/netdev/net-next/c/35d1a5464b47
+  - [net-next,v22,11/14] net: phy: at803x: Support SFP through phy_port interface
+    https://git.kernel.org/netdev/net-next/c/4e26a284b9be
+  - [net-next,v22,12/14] net: phy: qca807x: Support SFP through phy_port interface
+    https://git.kernel.org/netdev/net-next/c/154bc3b66c31
+  - [net-next,v22,13/14] net: phy: Only rely on phy_port for PHY-driven SFP
+    https://git.kernel.org/netdev/net-next/c/bad869b5e41a
+  - [net-next,v22,14/14] Documentation: networking: Document the phy_port infrastructure
+    https://git.kernel.org/netdev/net-next/c/62518b5b3d8e
 
-Is it possible to remove assigned-clock-parent?
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-> +                       assigned-clock-rates = <24000000>;
->                  };
-> 
->                  sd: mmc@fe08a000 {
-> @@ -849,13 +853,17 @@ emmc: mmc@fe08c000 {
->                          reg = <0x0 0xfe08c000 0x0 0x800>;
->                          interrupts = <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>;
->                          clocks = <&clkc_periphs CLKID_NAND>,
-> -                                <&xtal>,
-> +                                <&clkc_periphs CLKID_SD_EMMC_C>,
->                                   <&clkc_pll CLKID_FCLK_DIV2>;
->                          clock-names = "core", "clkin0", "clkin1";
->                          resets = <&reset RESET_NAND_EMMC>;
->                          no-sdio;
->                          no-sd;
->                          status = "disabled";
-> +
-> +                       assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_C>;
-> +                       assigned-clock-parents = <0>;
-> +                       assigned-clock-rates = <24000000>;
->                  };
->          };
->   };
-> 
-> --
-> 2.47.3
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 
