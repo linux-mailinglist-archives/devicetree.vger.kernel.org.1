@@ -1,51 +1,50 @@
-Return-Path: <devicetree+bounces-254976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC41D1E186
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:33:46 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E8AD1E189
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:33:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EE349300FEF1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:33:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1180030183AC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07CC38F956;
-	Wed, 14 Jan 2026 10:33:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E96D39283C;
+	Wed, 14 Jan 2026 10:33:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dBrkSDW6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qg876WF+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D47D3921F4;
-	Wed, 14 Jan 2026 10:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9F4392B8E;
+	Wed, 14 Jan 2026 10:33:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768386807; cv=none; b=RJBzDYBZH49FvioDfzyhRkuPm7Ja8ZTus6FT2HjfPAH3e+42eVNdRTwhr4h66EGz2GU2Xsla0Lr1PogOIKz+KgFOtFnBjIYLnvTG/UVrdUkththZGDjdwK1JdFQTcWFuucyG2cXC3KVTWDcwfbdd05NRM1F5xnQFxoByVFtk4DM=
+	t=1768386808; cv=none; b=LjhAfHDj05QE/8KISf0BS2B2CPr7UwbWl6p+tx1CnPyzlOIpL0b+Rj+MYC4AcOmlhCbZXv99a3L1H9uibe7U9wvsaR7Fj0v4xSpWtd15m5kiXFlSj3IDh60f+43Ubm0eD0N98aMKu6LwTN0yLZZyG/HPyOIv3B8WP5f41qfEEmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768386807; c=relaxed/simple;
-	bh=N1BdKy4sBKxvIIyVtsyzDq2V8jFFwsJOFrPu6Lzc2tg=;
+	s=arc-20240116; t=1768386808; c=relaxed/simple;
+	bh=WPs1qB/0LyCKIIy2QS6lVBV6S74qxzRR/rz1aA0heDI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XnwVx7CnzHvH3gz5RhvrpjZsvj9RsTWHpB2Bcs6ZsWNDkJgIeYWFkJ+scPkw+PqI5i576uEl9dC5xfsHIvctzZdA52YoAxaHcvBI2XS59FotD6lbGp+rEJ95DFt/VQUV7Lgf0UbmJGNfDw6gNueRj3yLphAVFHQWRoBI/NqeEQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dBrkSDW6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3F85CC16AAE;
+	 In-Reply-To:To:Cc; b=nDCuD4KTvmRHepJzRUonI4Czo6gzlBUy3OH0hVgpzHY7d+EwPNv8C1848S0ZA+F2Bann24ckcdi5gBHK0XfFUarHqpiNzuRn4qGVA/+BSnH/ZjAM+hzumPfSAMEcNkbUJX63f2GNC2AsR8K+J15ly4qSOkXtWTZEfHd1mXJnQnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qg876WF+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4C731C19422;
 	Wed, 14 Jan 2026 10:33:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1768386806;
-	bh=N1BdKy4sBKxvIIyVtsyzDq2V8jFFwsJOFrPu6Lzc2tg=;
+	bh=WPs1qB/0LyCKIIy2QS6lVBV6S74qxzRR/rz1aA0heDI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=dBrkSDW63df4ofNC4rmOdXPywp4yrcQkcU2ncSYV06QJRkXhENHg8ZrKOccHWhIBY
-	 0/RPRwDvXn5vekyjuDeDWcBcdZkXkCnEVl1oo6HoNhD6iUADRYabGIHJovW27mnLAB
-	 VORTQdOp9ieRDqf3WPGch+ozO1CE893riJ4pWlSVvN5i5+7cj0dKRDO3tgJJJ9MkJP
-	 a4O86dV90l8G6ZuOJUzK4vXREbTGrQpW0ezVIEqWKiTFgVDa7wdzDqMafSZceOOouL
-	 XFyCOybX4GbtLp5L3U9VC6kCsBm4AZlo1/YG1fgq1uNRhM66wnR/s6GXgjYlfr9XMI
-	 6SpSoG3uCrMhA==
+	b=qg876WF+TYfrBW/Rtajo/BeflA5nOvKHgXHW1SZKm4OhoErV7Vqid/Grx9f9P1O4K
+	 TcouXg7yXZa3I5VGCflxwcsh1g+YTNswChVIOHPp4fErulLOL2BGX/GZ18qZLmkWgV
+	 F6mI/D4SbNVqX3GIyOIBrbgE+mx4+Sencnjb8TANDfTyS3cFXjOgwAq4Jy4qoETsBM
+	 svJwP0xzmfaqhUhXSUbxaznD6x48J5jAA3tYOR2cu+Sz5PgS4kn2zbg4edbgfzmwgg
+	 b1QeiBrtQrVDck9SrxN/h30Kplo7FtrXTU+HRTbrsUCJFAsQH4bXg4l1coDWauasbc
+	 StySVcuBp+2ZA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F45FD29FE6;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DDD9D29FE5;
 	Wed, 14 Jan 2026 10:33:26 +0000 (UTC)
 From: Bharadwaj Raju via B4 Relay <devnull+bharadwaj.raju.machinesoul.in@kernel.org>
-Date: Wed, 14 Jan 2026 16:03:24 +0530
-Subject: [PATCH v2 1/2] ASoC: dt-bindings: document dvdd-supply property
- for awinic,aw88261
+Date: Wed, 14 Jan 2026 16:03:25 +0530
+Subject: [PATCH v2 2/2] ASoC: codecs: aw88261: use dvdd-supply regulator
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,7 +53,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260114-aw88261-dvdd-v2-1-ef485b82a7a7@machinesoul.in>
+Message-Id: <20260114-aw88261-dvdd-v2-2-ef485b82a7a7@machinesoul.in>
 References: <20260114-aw88261-dvdd-v2-0-ef485b82a7a7@machinesoul.in>
 In-Reply-To: <20260114-aw88261-dvdd-v2-0-ef485b82a7a7@machinesoul.in>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -67,11 +66,11 @@ Cc: Bhushan Shah <bhushan.shah@machinesoul.in>,
  linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768386804; l=1347;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768386804; l=1058;
  i=bharadwaj.raju@machinesoul.in; s=20260111; h=from:subject:message-id;
- bh=ytR+KVyf/ePc8ymcKGXV0QZMqpvAJw8hDP+6Qezgv+4=;
- b=FzKAImxPg3NqbTQ0C4Kf35xzU8OrTOeaM3al7ov8KZQXNIk/mrJOsAcYDPDrCzgvHYR05paM5
- GJwlIPfjo1SD3LJ8W4IM94SqXch/LjSVTc5UzzWumexHz8JEiK9ZUxj
+ bh=5/VP3xlRbiTybkiC7ajPqUVJkHZa2zb+dXom5nXLPzg=;
+ b=wKph1TQV7Hhg97we4Q4c6WN7gfcv9MZkCXzjOYMn/AxPgv5/tN4QcXtOZYz4gPW1YNg9cpASw
+ e+gi+0xI4MbC6vZhneKxlHJ7R0ei0iT0A8GwykjM8w7nR7g+WX11Mfe
 X-Developer-Key: i=bharadwaj.raju@machinesoul.in; a=ed25519;
  pk=0M1a+iMXDqasbx7bQL71NdtuutFXu+lVxsiSnEiyAIg=
 X-Endpoint-Received: by B4 Relay for bharadwaj.raju@machinesoul.in/20260111
@@ -81,49 +80,37 @@ Reply-To: bharadwaj.raju@machinesoul.in
 
 From: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
 
-Add (and require) the dvdd-supply property for awinic,aw88261 in
-the awinic,aw88395.yaml binding.
-
-The chip needs DVDD to power on, and currently there are no users of
-this compatible in the kernel device trees, so we should be fine to
-change the ABI in this case.
+The AW88261 needs the DVDD pin to be powered on to start up. Get and
+enable the dvdd-supply regulator.
 
 Signed-off-by: Bharadwaj Raju <bharadwaj.raju@machinesoul.in>
 ---
- Documentation/devicetree/bindings/sound/awinic,aw88395.yaml | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ sound/soc/codecs/aw88261.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-index bb92d6ca3144..994d68c074a9 100644
---- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-+++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
-@@ -33,6 +33,8 @@ properties:
-   reset-gpios:
-     maxItems: 1
+diff --git a/sound/soc/codecs/aw88261.c b/sound/soc/codecs/aw88261.c
+index 6bd6e7ffd1aa..9a2d167cf809 100644
+--- a/sound/soc/codecs/aw88261.c
++++ b/sound/soc/codecs/aw88261.c
+@@ -11,6 +11,7 @@
+ #include <linux/i2c.h>
+ #include <linux/firmware.h>
+ #include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
+ #include <sound/soc.h>
+ #include "aw88261.h"
+ #include "aw88395/aw88395_data_type.h"
+@@ -1295,6 +1296,10 @@ static int aw88261_init(struct aw88261 **aw88261, struct i2c_client *i2c, struct
+ 	unsigned int chip_id;
+ 	int ret;
  
-+  dvdd-supply: true
++	ret = devm_regulator_get_enable(&i2c->dev, "dvdd");
++	if (ret)
++		return dev_err_probe(&i2c->dev, ret, "Failed to enable dvdd supply\n");
 +
-   awinic,audio-channel:
-     description:
-       It is used to distinguish multiple PA devices, so that different
-@@ -65,6 +67,17 @@ allOf:
-     then:
-       properties:
-         reset-gpios: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: awinic,aw88261
-+    then:
-+      required:
-+        - dvdd-supply
-+    else:
-+      properties:
-+        dvdd-supply: false
- 
- unevaluatedProperties: false
- 
+ 	/* read chip id */
+ 	ret = regmap_read(regmap, AW88261_ID_REG, &chip_id);
+ 	if (ret) {
 
 -- 
 2.43.0
