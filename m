@@ -1,199 +1,116 @@
-Return-Path: <devicetree+bounces-254985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 149A4D1E2D7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:44:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E13B5D1E301
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:46:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8E3DB30A73C0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:39:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4C457300A9B0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400613904E0;
-	Wed, 14 Jan 2026 10:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c8pZQAuS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C0F394461;
+	Wed, 14 Jan 2026 10:41:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C37337F73F;
-	Wed, 14 Jan 2026 10:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B155038F257
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768387178; cv=none; b=qUTR9jJPkNMZ9CTftiAZNuRbiPLzmwJ/IRzUGdGrsJ5Bw2Z/ggMQNDl6COx0WHBKgg+73Zq2Uy4zXwMEI5TovmhFAFS2OmCew+e7UFgQ17jBZed0kYINo8f5vBuXHOmZsQSqZ5azPN1vCOyr/jGttmgVv+JqAwK1XFMV5910hnw=
+	t=1768387260; cv=none; b=vBfCQ3g74ZbeEBqPeYP7FkhrwNgOu36LbiavVFz+xpvrign5rb6qRj00oPcojkzfzQ3W4vRFoAtc1U0APbSKRu/G5tNWGrLZGqrH682esfn6kkVuaP1XgT9kTqC5ubv3Upb88jtVFLzFzhyn9KXo0bZSHlv9X0/b/oLP13CkVHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768387178; c=relaxed/simple;
-	bh=PmtSOXi6c4cRmNhidQU2+wsF/W2ejrabkd2m859hO1o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZqYj47ViatPJNr/WY2ReRbvJoaZ8eRgzh4yQwSBBJx/wNTbeG73t+JGRy6Qi7vs3CHEKEQ/Zt4Gd/YpILBvHErzP3lg9fHrv6Re94IU7CxAszwOfQ+nnsxEAxFhV1q27V9vx5GHKy+ZY/gg9xpoIU9zJn3yQ0PENHNJt1HyonDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c8pZQAuS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DC50C4CEF7;
-	Wed, 14 Jan 2026 10:39:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768387178;
-	bh=PmtSOXi6c4cRmNhidQU2+wsF/W2ejrabkd2m859hO1o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c8pZQAuS2x+DXrlRtx6UwoyXR/7RcnDqc3NIUxC3bJJQp/I59re4L7a4VfC353p/Z
-	 ANP0uWXeEAITH/OKD+02Umq+QCuxKGRd7m4UscqVRRfYAPW3OMKlhulQ3FOldAV8Y7
-	 FYlizb5GwrhY8WGovPnPKLsjWO1JOSBwPK3nh+GUDhcBg7Zf5qcex+Z6+7ivQzwqy4
-	 g5hWUPcLLZAEvnAeAi+OqarPuVV9enHrv42DGTE5xF/nrLN/koni2ttoGDaSoAMW+z
-	 tz/rNkcurxIfq9f/7q1za4joCdHKfXWWB+DJiB/9hamV7HHrKn4T+7Zj3wXLHieD5y
-	 4l/gk0KpiG0cA==
-Date: Wed, 14 Jan 2026 11:39:35 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
- EN7581-7996 support
-Message-ID: <aWdyZ0PAnxNCGVmn@lore-desk>
-References: <20260113-airoha-npu-firmware-name-v2-0-28cb3d230206@kernel.org>
- <20260113-airoha-npu-firmware-name-v2-1-28cb3d230206@kernel.org>
- <20260114-heretic-optimal-seahorse-bb094d@quoll>
- <aWdbWN6HS0fRqeDk@lore-desk>
- <75f9d8c9-20a9-4b7e-a41c-8a17c8288550@kernel.org>
- <69676b6c.050a0220.5afb9.88e4@mx.google.com>
- <e2d2c011-e041-4cf7-9ff5-7d042cd9005f@kernel.org>
+	s=arc-20240116; t=1768387260; c=relaxed/simple;
+	bh=+CpkI+BgHc6zaB6k60VnTXT0jloiPS7gjdxb71LJsAI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mL888vTlLsIOQA5W0Pcz3V3i3eUAs7Qe9BoBDfFZig/D++rCsPAxyhuXm46gortbbLTI0TuXdCHtaMg01oCbYD7WHos2NAJQ4/yQHDSP60hINvX9URoGdeGBSQO6tOeVtMn8jqMH58IhMuBOSARvICeCkFlqO7D5zaiyUgVc0o4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-5636784883bso4135959e0c.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:40:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768387258; x=1768992058;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tyHAPthnDWEMy7Xz8e1fs/6rcFrRy4CPLB9pLiuxF3I=;
+        b=pnb3bQzFAwA/fBI3y4dNEpJN9Y6ZND8hmAI+Dd8A1C4jRCt6TubyO8fCpQ4/+zV7I+
+         yT6KJa3Ob7F/5vPLWYOmM9oxqvV/CqNE7VqhrEg5ZmDwgbnuMKnWmHOrAAstXtDpt2HE
+         OvEKIXiPF8eD0VDH2rsUGwQxZyU9Gstqg/9jYXq7lYVl1qMfnAJHhf73/GKieDuowKFr
+         PX85P9Z37D63NFjEteDOOoGMaEhJVxxbrMVBPmFQsSkkIsNhRbh75LxgWe2r68XdMs0s
+         7i3p1dEoNJ1f/5pKpNsZ/E+yHoUs1rMChKFWgMY5kq/+S9R6VbLV6cuFeGbKXKT2M8Zb
+         DbDg==
+X-Forwarded-Encrypted: i=1; AJvYcCVYn6lO/bf+n/vpIa8ctcakruLXReB7t2cSfTNtYXy0Y0dAGDGEMW8FYlS1Wk2yDBqOCqmmMJ91f5Ua@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9kDxUFWyC9vnbN4eJnBFBZaajsZB8s/HK/iyJ2rfE1of3cZF/
+	DvJIXcL7cVhG6TqKTFscCBVJFtUZ3Mrz76MAap8xHZxwOv5+OzwP863tzWup3o9g
+X-Gm-Gg: AY/fxX6gENcA1Vqw45ghPgeudQonJVwRioYvZXEyeMqdBdrhdlmaDmwMdGmGRXmBLq5
+	v2rowRQryJ1oXj5UIs4BE41to/PfpFC0a28tVFFMw38+TDaDodezpBLSCIDbDTkCpZ8EJ30rgez
+	rATw6oQhBNRmBcQ0UporXIUqNuoLIisUJ2nZQYxQETZSZaFvuwRwvcaWBXdE45CCn5ZiRxL3ZOw
+	QPnKcCTc78zMNknZBzyhMbmCijcUObEqUa3yzeY6O5oKyEHPoV1r96K7DOUtYTD0lLZyoyrKFY7
+	t1LedQtxX98qLay4fFtItAgFJXnkNExs5tIZBns330/miM4Cdzc4Iq2SsL45r3DciW9xnxwDy60
+	lTVrzL2xeHk/PKYf3EschY3HPcU6F8LUTZmRI3t1RYRTy99hphpctDS2cTFPz1hiP2loxQ9pwzi
+	N5FziNj0F1E21r6Imq77TNE3RKHB8gLbm2mFO08adeohBLjI35
+X-Received: by 2002:a05:6122:288c:b0:563:77a3:ddf0 with SMTP id 71dfb90a1353d-563a091f5ebmr904794e0c.3.1768387257755;
+        Wed, 14 Jan 2026 02:40:57 -0800 (PST)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5634e959afbsm20134476e0c.1.2026.01.14.02.40.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jan 2026 02:40:57 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5eea9f9c29bso4106647137.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:40:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVz7KspKAgDtI/DxZEt24vcPWqgqJD4sqr+gy+xh78DrleOEL++9htoBTigNchsyeauzdPS/a513qkI@vger.kernel.org
+X-Received: by 2002:a05:6102:149c:b0:5ef:a4b0:bdba with SMTP id
+ ada2fe7eead31-5f17f4325b5mr758488137.8.1768387256797; Wed, 14 Jan 2026
+ 02:40:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="i+i1tfo+9kenP0X6"
-Content-Disposition: inline
-In-Reply-To: <e2d2c011-e041-4cf7-9ff5-7d042cd9005f@kernel.org>
+References: <20260114093938.1089936-1-herve.codina@bootlin.com> <20260114093938.1089936-6-herve.codina@bootlin.com>
+In-Reply-To: <20260114093938.1089936-6-herve.codina@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 14 Jan 2026 11:40:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXBD5W8GSvSJt73PXcTD-pbdgR6LvR37ESzEx5s6nrQgw@mail.gmail.com>
+X-Gm-Features: AZwV_QjGV8YAOz6mJPMHZ_hZCfKnrX7OINnAGBUggG34taCywTbcQHE61jaJ6l8
+Message-ID: <CAMuHMdXBD5W8GSvSJt73PXcTD-pbdgR6LvR37ESzEx5s6nrQgw@mail.gmail.com>
+Subject: Re: [PATCH v8 5/8] ARM: dts: r9a06g032: Add GPIO controllers
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
+On Wed, 14 Jan 2026 at 10:40, Herve Codina (Schneider Electric)
+<herve.codina@bootlin.com> wrote:
+> Add GPIO controllers (Synopsys DesignWare IPs) available in the
+> r9a06g032 (RZ/N1D) SoC.
+>
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
---i+i1tfo+9kenP0X6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks, will queue in renesas-devel for v6.20.
 
-On Jan 14, Krzysztof Kozlowski wrote:
-> On 14/01/2026 11:09, Christian Marangi wrote:
-> > On Wed, Jan 14, 2026 at 10:26:33AM +0100, Krzysztof Kozlowski wrote:
-> >> On 14/01/2026 10:01, Lorenzo Bianconi wrote:
-> >>>> On Tue, Jan 13, 2026 at 09:20:27AM +0100, Lorenzo Bianconi wrote:
-> >>>>> Introduce en7581-npu-7996 compatible string in order to enable MT76=
- NPU
-> >>>>> offloading for MT7996 (Eagle) chipset since it requires different
-> >>>>> binaries with respect to the ones used for MT7992 on the EN7581 SoC.
-> >>>>>
-> >>>>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> >>>>> ---
-> >>>>>  Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml | 1 +
-> >>>>>  1 file changed, 1 insertion(+)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-np=
-u.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> >>>>> index 59c57f58116b568092446e6cfb7b6bd3f4f47b82..96b2525527c14f60754=
-885c1362b9603349a6353 100644
-> >>>>> --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> >>>>> @@ -18,6 +18,7 @@ properties:
-> >>>>>    compatible:
-> >>>>>      enum:
-> >>>>>        - airoha,en7581-npu
-> >>>>> +      - airoha,en7581-npu-7996
-> >>>>
-> >>>> This does not warrant new compatible. There is some misunderstanding=
- and
-> >>>> previous discussion asked you to use proper compatible, not invent f=
-ake
-> >>>> one for non-existing hardware.  Either you have en7996-npu or
-> >>>> en7581-npu. Not some mixture.
-> >>>
-> >>> Hi Krzysztof,
-> >>>
-> >>> We need to specify which fw binaries the airoha NPU module should load
-> >>> according to the MT76 WiFi chipset is running on the board (since the=
- NPU
-> >>> firmware images are not the same for all the different WiFi chipsets).
-> >>> We have two possible combinations:
-> >>> - EN7581 NPU + MT7996 (Eagle)
-> >>> - EN7581 NPU + MT7992 (Kite)
-> >>>
-> >>> Please note the airoha NPU module is always the same (this is why is =
-just
-> >>> added the -7996 suffix in the compatible string). IIUC you are sugges=
-ting
-> >>> to use the 'airoha,en7996-npu' compatible string, right?
-> >>
-> >> No. I am suggesting you need to describe here the hardware. You said
-> >> this EN7581 NPU, so this is the only compatible you get, unless (which
-> >> is not explained anywhere here) that's part of MT799x soc, but then you
-> >> miss that compatible. Really, standard compatible rules apply - so
-> >> either this is SoC element/component or dedicated chip.
-> >>
-> >>
-> >=20
-> > Hi Krzysztof,
-> >=20
-> > just noticing this conversation and I think there is some confusion
-> > here.
-> >=20
-> > The HW is the following:
-> >=20
-> > AN/EN7581 SoC that have embedded this NPU (a network coprocessor) that
-> > require a dedicated firmware blob to be loaded to work.
-> >=20
-> > Then the SoC can have various WiFi card connected to the PCIe slot.
-> >=20
-> > For the WiFi card MT7996 (Eagle) and the WiFi card MT7992 (Kite) the NPU
-> > can also offload the WiFi traffic.
-> >=20
-> > A dedicated firmware blob for the NPU is needed to support the specific
-> > WiFi card.
-> >=20
-> > This is why v1 proposed the implementation with the firmware-names
-> > property.
-> >=20
-> > v2 introduce the compatible but I feel that doesn't strictly describe
-> > the hardware as the NPU isn't specific to the WiFi card but just the
-> > firmware blob.
-> >=20
-> >=20
-> > I still feel v1 with firmware-names should be the correct candidate to
-> > handle this.
->=20
-> Yes. What you plug into PCI is not a part of this hardware, so cannot be
-> part of the compatible.
+Gr{oetje,eeting}s,
 
-ack. So is it fine to use firmware-name property in this case as proposed in
-v1?
+                        Geert
 
-Regards,
-Lorenzo
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
->=20
-> >=20
-> > Hope now the HW setup is more clear.
-> >=20
->=20
->=20
-> Best regards,
-> Krzysztof
-
---i+i1tfo+9kenP0X6
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaWdyZwAKCRA6cBh0uS2t
-rNG6AP9ZgXi9DzZ/J5WNCHk+rSJoJ3WG0/Jl1sK+NvANqgO8RwEAvtrzXIcDbTBW
-axwTAak1fGU7QeE8dCYpEpRPA5aQNQA=
-=6lmW
------END PGP SIGNATURE-----
-
---i+i1tfo+9kenP0X6--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
