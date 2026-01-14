@@ -1,141 +1,80 @@
-Return-Path: <devicetree+bounces-255212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8B57D2134A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 21:42:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8A8D2138C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 21:51:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AA4B9301A633
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 20:42:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2ABB0302F6B0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 20:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03796356A2E;
-	Wed, 14 Jan 2026 20:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC173557ED;
+	Wed, 14 Jan 2026 20:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ifzLZ/+G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZ+BRXKT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15FD246782;
-	Wed, 14 Jan 2026 20:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998A632B991
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 20:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768423367; cv=none; b=qz3fNYX0wR/Yip1go/KRiPcfOmobIb6Bq/7PtCYFt+pZASlkFmwWkZFWUzMNqRlijJDgWlW/xOVa3CWSwtm8fFXbIw5paTUsox67c/8Xth9WufH0PyskJpUNoTIuPRKnxAdfc8yWvsNwgHDDuZ3HLpbX+wTe8ckTkfXAA3/ibIc=
+	t=1768423896; cv=none; b=BMBPdaZM2RGu+JuOQyYPRzIWJXqGZec8Dvqpw0rlidznqC5rb3ryqvI3Gs8HqeijDTmceTs8iMJ/WZd691rnhgb21g+9o5SzOYRoeKWswg/j4vCm3g9Ra+4Jz1L0p49hc49nfHOC0bTzsjexmn42yHlG0ofZ2SFnYAkt3w+V/po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768423367; c=relaxed/simple;
-	bh=pgnq+h4lcaecFQm8g3LERlvcaCOaQlkNzhkCzWyD7/s=;
+	s=arc-20240116; t=1768423896; c=relaxed/simple;
+	bh=dwL47rYgTdWjH2R9TONSAhn5UmSu6UH5MGZCn6Mj7KM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V+zEdb79sj0LYz300pcjMA3IptSbOqM/eDFYA8LsXMABniJB5RdmLwwMI5sbuppIpYmQPBTWB7FeegdpdATYwi+skKIFVHZVcyox+Wu5s8b+lNkdePBSKr0mkuRtBaYamCtuc2Ov3FHz5cx03VFIzRS8e510McOe9Czuxr5ZYwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ifzLZ/+G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2E95C4CEF7;
-	Wed, 14 Jan 2026 20:42:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dWjuE8oYKCyUtr6Fl6nRHS4W2XKe2Dc041vTr/nuPAJuCMq2xtGoEa44Ba48cVzMCZyxDQEPwoOllAa6m3+cVq556W0IjRIQHdn6WhSNWLkfDhmKxBXLH4wSGrtSsX5VbX3IJdbVhkDy5u3p+NEkDY68Id+iHVObupy6Y09H7sM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZ+BRXKT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 182EAC4CEF7;
+	Wed, 14 Jan 2026 20:51:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768423367;
-	bh=pgnq+h4lcaecFQm8g3LERlvcaCOaQlkNzhkCzWyD7/s=;
+	s=k20201202; t=1768423896;
+	bh=dwL47rYgTdWjH2R9TONSAhn5UmSu6UH5MGZCn6Mj7KM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ifzLZ/+G9uQ8yxnhdPHPfY5Z3W/SS5WrG1uTYHIi2nApxWMAcupS1fyKtKNEqWnrJ
-	 DHMgKB5jp4B4973L8g/CEvBlVcpsLVIx++SWWNCb1L2/qdBFtcPhOsBE+1SxHCCoMq
-	 tJFrOKF/UP+jPXT0ySS1INraAJODE640a4I5WRLIfO9zQNjmx0wyxvcDSzPVLeopR6
-	 bY0xVFxSmH0e3IVp2PjdFT7aQtCbFIbvqMBPEXNm/4m72aN12bWuTT6pGUa8aypdpq
-	 Y9ceXzl129WMVO8Z2EXAs8ALJQH0gpaprAwp0i8jHy/2z54/o1UCTDdgiZH4q0DFqF
-	 I3Kly4Wb+9Ukg==
-Date: Wed, 14 Jan 2026 20:42:41 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Yixun Lan <dlan@gentoo.org>, Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Junhui Liu <junhui.liu@pigmoral.tech>, linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH 2/2] riscv: dts: Add "b" ISA extension to existing
- devicetrees
-Message-ID: <20260114-evergreen-gluten-b1c8558e7684@spud>
-References: <20260113-adding-b-dtsi-v1-0-22d6e55d19df@riscstar.com>
- <20260113-adding-b-dtsi-v1-2-22d6e55d19df@riscstar.com>
- <20260113075339-GYA25466@gentoo.org>
- <CAH1PCMarzrZJ072iyAQthB-i-LHFCSJ+tZLx6HcWiVcUrQeafw@mail.gmail.com>
+	b=pZ+BRXKTkbWWaLyq4wWKeIIyjyEvlnSYP1AyEi0okhBLvkruc56wx94x5hQ/dL++t
+	 J+F3kX2fQdga3hsjc3ddvDYmVgce6C//rbGgAOZt0A5B2cC4cbgdm+vzBuBx9k5qfT
+	 xORbUo5FFff8Dh2ZavSCYzkllYCEyj85N/mY3QIF+wZ+scQHH/V/RuBaxkchGTTXz6
+	 OlIpeP6UVrLQJ5FCf0gGZe9UXrUYRJSGtksUuzPOSgje0DFx40WD9rjMHZ3g3s/INJ
+	 dB0CXdoigNscXM8Fv5DNbhSWsxEoDiKAl/iw7uRM2sPC1THyKQJKIda0ODI6jx+j3m
+	 v0oj0sP3vdzkg==
+Date: Wed, 14 Jan 2026 14:51:35 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: thierry.reding@gmail.com, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, neil.armstrong@linaro.org,
+	dri-devel@lists.freedesktop.org, sam@ravnborg.org,
+	dianders@chromium.org, linux-arm-kernel@lists.infradead.org,
+	heiko@sntech.de, jesszhan0024@gmail.com
+Subject: Re: [PATCH 1/4] dt-bindings: display: panel: Move FriendlyElec
+ HD702E to eDP
+Message-ID: <176842389446.3188655.18330903813710913313.robh@kernel.org>
+References: <cover.1767111804.git.robin.murphy@arm.com>
+ <80a68e706e869aadbdea228b207a5df52bbfd7b2.1767111807.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZDthVf/8OEPBoP0Y"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAH1PCMarzrZJ072iyAQthB-i-LHFCSJ+tZLx6HcWiVcUrQeafw@mail.gmail.com>
+In-Reply-To: <80a68e706e869aadbdea228b207a5df52bbfd7b2.1767111807.git.robin.murphy@arm.com>
 
 
---ZDthVf/8OEPBoP0Y
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 30 Dec 2025 17:20:31 +0000, Robin Murphy wrote:
+> The "E" alludes to the fact that FriendlyElec's HD702E is actually an
+> eDP panel - move its compatible to the appropriate binding doc.
+> 
+> Cc: <devicetree@vger.kernel.org>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>  .../devicetree/bindings/display/panel/panel-edp-legacy.yaml     | 2 ++
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 --
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
 
-On Wed, Jan 14, 2026 at 10:33:34AM +0800, Guodong Xu wrote:
-> Hi, Conor, Yixun
->=20
-> On Tue, Jan 13, 2026 at 3:53=E2=80=AFPM Yixun Lan <dlan@gentoo.org> wrote:
-> >
-> > Hi Guodong,
-> >
-> >
-> > On 15:45 Tue 13 Jan     , Guodong Xu wrote:
-> > > "b" is ratified (Apr/2024) much later than its components zba/zbb/zbs
-> > > (Jun/2021). With "b" added into riscv/extensions.yaml, a dependency
-> > > checking rule is now enforced, which requires that when zba, zbb, and=
- zbs
-> > > are all specified, "b" must be added as well. Failing to do this will
-> > > cause dtbs_check schema check warnings.
-> > >
-> > > According to uabi.rst, as a single-letter extension, "b" should be ad=
-ded
-> > > after "c" in canonical order.
-> > >
-> > > Update existing devicetree files to conform to this rule. Line balanc=
-ing
-> > > is performed where needed to improve readability.
-> > >
-> > > Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> > > ---
-> > >  arch/riscv/boot/dts/anlogic/dr1v90.dtsi     |   5 +-
-> > >  arch/riscv/boot/dts/sophgo/sg2044-cpus.dtsi | 256 ++++++++++++++----=
-----------
-> > >  arch/riscv/boot/dts/spacemit/k1.dtsi        |  32 ++--
-> > >  3 files changed, 147 insertions(+), 146 deletions(-)
-> > please have separated patch for different SoCs, so they can go via
->=20
-> Understand your concern.
->=20
-> > their own SoC tree.. thanks
->=20
-> Conor, is it possible to take this as one patch instead?
->=20
-> It fixes the same dtbs_check warnings from riscv/extensions.yaml across t=
-hree
-> SoCs. Keeping them together maintains readability and clear tracking, IMH=
-O.
->=20
-> Happy to split if needed, but wanted to check first.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-I'd rather you split it, sorry.
-
---ZDthVf/8OEPBoP0Y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaWf/wQAKCRB4tDGHoIJi
-0g2OAP41lDTLoHw2ey77+Zb0hIinJHKWR1OGlwRDWsqQC8dG1QEAuQ5DjAncDZ8e
-aSAgVSyVjvbWxg0rBa1e7p4ORk0iWww=
-=XHL2
------END PGP SIGNATURE-----
-
---ZDthVf/8OEPBoP0Y--
 
