@@ -1,93 +1,136 @@
-Return-Path: <devicetree+bounces-254850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9648DD1D20C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:33:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CA3D1D230
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:35:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB69C300940D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:32:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 658223046F94
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:33:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC14350D6D;
-	Wed, 14 Jan 2026 08:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B38E337F725;
+	Wed, 14 Jan 2026 08:33:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hzgD7Syv"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="H+kCVuP/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A1F37F112;
-	Wed, 14 Jan 2026 08:32:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3848C37E2F8;
+	Wed, 14 Jan 2026 08:33:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768379569; cv=none; b=AIFuflPUxYlAWcYpz+FYElcWaVAl7Hhhisg9uW8tBlICtPGjOCoQkAX/kkyIQQrwiIDeUZ+9yWCiKUr/k2TU4NeOBr7TWBzVMAm/ahUZs5axLRp4ye0j/jOVX95fhfjncvRW4HSoXu04s1H9JkKBFzRjvtcC6XYz5py9QQI1Mt0=
+	t=1768379624; cv=none; b=auR7JTSbwmjpJn6vKAQDEdjQlAFU2+nUVmjwFZx2y+0+oa8ezgHD93CWo3VA3lPk0KF9DoUYI7bpex5UOyiGIguzZzafJra0OEydnQk8buivCc1bVa/eyEtoivs+enOmTc1+cxFAexHTIZDvazbGE31PP5kFQxgn6+nQs8r9L6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768379569; c=relaxed/simple;
-	bh=6+qWrmtEe5KQBvisLBZsta91oEBPrK8AirW4JBB7LyA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=u0bOh4jIfDhZTVwgmTdel01Jw1hjnm8Df2L7TShF1B9oBOriiylpbOF/SvvDODAd3sPB5I7Uq6RbsJNztr/wKmmgabybG8DxoqO1cCkpxOUg9uB44d8zPAAo2oYIJ4wEaumY5gQoViAQ5MrBcGN2jEsuAeP5X7HP7wLYy08TYss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hzgD7Syv; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1768379564;
-	bh=6+qWrmtEe5KQBvisLBZsta91oEBPrK8AirW4JBB7LyA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=hzgD7SyvgGbS/tl4+IohuHJDQfoJgwHdw5s07scxDXp5Lw6jB9V4Kla+pW4W8QxiF
-	 3XdXkjyAiAGyWjdQOvB0e5943LNinneSN9NWQNIZA2Vv7UMXRKIHfJhHsclm5gTrC6
-	 7pADv65jEe1olikyATQzxQH5xtzDnMYVJXJ6lC9ZrMGE4Q62Ck+CuLp3Dzhu/pO0nH
-	 g1GS9pNv2dv4QL9uYil9952buTWsoRtyDkygGYTTfVRm+Z8yQ2GWf4TYKk2LyIjCMS
-	 GA289INV4CQp7rHOSmiCSLo+E08iV5ouXdWcU/jvy+8jSnT9cXMMi8UWSRmbbzw3Oe
-	 RH6EZa9IJ5BzA==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 50AF817E1513;
-	Wed, 14 Jan 2026 09:32:43 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: krzk+dt@kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net, robh@kernel.org, 
- conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, 
- sebastian.hesselbarth@gmail.com, matthias.bgg@gmail.com, atenart@kernel.org, 
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, kernel@collabora.com
-In-Reply-To: <20260112145558.54644-1-angelogioacchino.delregno@collabora.com>
-References: <20260112145558.54644-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: (subset) [PATCH v2 0/4] Fixes for EIP97/EIP197 binding and
- devicetrees
-Message-Id: <176837956327.8998.5572106308125358940.b4-ty@collabora.com>
-Date: Wed, 14 Jan 2026 09:32:43 +0100
+	s=arc-20240116; t=1768379624; c=relaxed/simple;
+	bh=SdOnQlW7B/5BOkOpSkztasF63ONbiG4MViw4r59Jczo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LfSOpaj+dt8/tFxKCMW5MktL5AyHUFu8X97JXBCyAYN76vaxNbQZTJs/+lnkxjYZGWdZj2Hj5eVacK2Lv3xt1PnTaFHOpYeeOHK/oFKTXmwP+T6uqWiavRuHMvN9XLnmICvv8P2ZRblfu4v4MKp8H3RVsb6FII8/scmnLQsorhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=H+kCVuP/; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 824C1316;
+	Wed, 14 Jan 2026 09:33:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768379592;
+	bh=SdOnQlW7B/5BOkOpSkztasF63ONbiG4MViw4r59Jczo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H+kCVuP/yBibKyA/dCuZin8bNqVedbrccHcitCmBtIhkAQo4g+md+4Ql4RmnvKXpy
+	 fzxQxObiv82SPw09DmFrwzksChAF51H2wNX6kfH6Xs2Lk7DX+x0iQVdcavz2asF1rl
+	 t4cetvj12+RkDoKkuQo4bPg+VfHXpmeqRUGtzrz8=
+Date: Wed, 14 Jan 2026 10:33:17 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Del Regno <angelogioacchino.delregno@collabora.com>,
+	Tianping Fang <tianping.fang@mediatek.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix I2C bus node names in examples
+Message-ID: <20260114083317.GH30544@pendragon.ideasonboard.com>
+References: <20260114081322.53411-2-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260114081322.53411-2-krzysztof.kozlowski@oss.qualcomm.com>
 
-On Mon, 12 Jan 2026 15:55:54 +0100, AngeloGioacchino Del Regno wrote:
-> Changes in v2:
->  - Reorder commits
->  - Change to restrict interrupts/interrupt-names minItems to MediaTek only
+On Wed, Jan 14, 2026 at 09:13:23AM +0100, Krzysztof Kozlowski wrote:
+> I2C bus node names are expected to be just "i2c", if there is just one
+> such node in given example.  Replace remaining bad examples with
+> scripted:
 > 
-> This series adds SoC compatibles to the EIP97/EIP197 binding, and also
-> fixes all of the devicetrees to actually declare those in their nodes.
+>   git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/i2c[0-9] {/i2c {/'
 > 
-> [...]
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Applied to v6.19-next/dts64, thanks!
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-[4/4] arm64: dts: mediatek: mt7986a: Change compatible for SafeXcel crypto
-      commit: 32c5491a8d73713578560f515cccd4e9460d156d
+> ---
+> 
+> Like Rob's commit 20a72af11f41 ("dt-bindings: Fix SPI and I2C bus node
+> names in examples"). I checked also for SPI.
+> 
+> Rebased on Rob's tree - can you pick it up directly? Applies also on
+> linux-next, so I do not expect conflicts.
+> ---
+>  .../bindings/embedded-controller/lenovo,yoga-c630-ec.yaml       | 2 +-
+>  Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml   | 2 +-
+>  Documentation/devicetree/bindings/usb/ite,it5205.yaml           | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml b/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
+> index a029b38e8dc0..c88fbd6ad940 100644
+> --- a/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
+> +++ b/Documentation/devicetree/bindings/embedded-controller/lenovo,yoga-c630-ec.yaml
+> @@ -50,7 +50,7 @@ additionalProperties: false
+>  examples:
+>    - |+
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> -    i2c1 {
+> +    i2c {
+>          clock-frequency = <400000>;
+>  
+>          #address-cells = <1>;
+> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> index a89f740214f7..dffd23ca4839 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> @@ -95,7 +95,7 @@ examples:
+>      #include <dt-bindings/gpio/gpio.h>
+>      #include <dt-bindings/media/video-interfaces.h>
+>  
+> -    i2c0 {
+> +    i2c {
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> diff --git a/Documentation/devicetree/bindings/usb/ite,it5205.yaml b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
+> index 889710733de5..045fcb41ac4b 100644
+> --- a/Documentation/devicetree/bindings/usb/ite,it5205.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
+> @@ -49,7 +49,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> -    i2c2 {
+> +    i2c {
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
 
-Cheers,
-Angelo
+-- 
+Regards,
 
-
+Laurent Pinchart
 
