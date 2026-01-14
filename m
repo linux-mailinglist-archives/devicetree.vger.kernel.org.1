@@ -1,253 +1,144 @@
-Return-Path: <devicetree+bounces-255148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C0F4D201E7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:14:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0495D20252
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:18:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6E90B3006983
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:14:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E6BA33004F3A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:16:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C9033A1E71;
-	Wed, 14 Jan 2026 16:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E6639E6E3;
+	Wed, 14 Jan 2026 16:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bKQ511Jr"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="ozrHSmMY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CE939E6DB;
-	Wed, 14 Jan 2026 16:14:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB4D11CBA
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 16:16:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768407290; cv=none; b=VF4iR9EXqBs4+vGtWLkQp+ZdXmV61fKrbHQto4bM5NSC+KZzBwqLXm/mMT1O6Y/tOwJne4mbq+pS3R+Czse2JKHkTQSsZanx8iA5I0lXTIeNr6UPRrVL9rSYWqdtnaPXE8QK7r3KpztWmmV90ZGVz7I5czL4LrF82d0/O4FB0oE=
+	t=1768407404; cv=none; b=DaTFsYvvhFAJV9geKpCRBRR3I0jm1BIRlRglXMVEIQw0lW0xp8KCgvqS6etqV1EVPwpiigfqW/1Hm8d7cd42KM8l2p6zF4CEw7VoTXS9ULNo4IpwoT4tEavA1+wrj7/TxLqlrhO2eVp2qcShkQZLkevMMI+qRfYpfgz9KABWDpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768407290; c=relaxed/simple;
-	bh=GhwmK4FZnhVlKOisYnJ/xfW9wiiV6ZkLJ6q2UyKhx9U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AosAfNUy5JvNTXgs+z8F4vFxGLAR87+HJn9ZsE/1wrcMH3wlGv8eDeV/XeJZu+zw6uDv+YzVSVPatSVMSt6LV2GW4Slf2l/TnvTz8A/VllU7QjXAgBUWFNeGDymUS6qSRTPT64u0+gTQUpdrs/yozCXuRl3DVyW7J50DRyBH0QU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKQ511Jr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 838E6C16AAE;
-	Wed, 14 Jan 2026 16:14:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768407289;
-	bh=GhwmK4FZnhVlKOisYnJ/xfW9wiiV6ZkLJ6q2UyKhx9U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bKQ511Jr8hxW3LfytH59Yr+E9WefLkWV+CausWBDOm+LAo+t7tHRoHnvv4LJQATsb
-	 2T5ZlbgRQkIpS+ejYatUCVVwpZ6QumKRr5w2l58DRwsiyQkkYeGiiPjHH+QYt87SFQ
-	 ssxy6VxI1xrxQDFIPxtTDLrVp71ENOiY+Z2e1NhfhOstOVPH2sLvQlIZz9fg2VqmQQ
-	 LiIS8OxNJzYNab8i8slpo2vQz6KLhlnqCteaSz6+7xHDriSw0trxyxvY2esu8X1vTp
-	 v8IKkdFlsQbzXpWbe+VtYWBC/6VDjEzW25hRiIAZN2uzEA/HtQ3kHM/Ue9U4qJ3zLa
-	 uB3kQNRl7/iVQ==
-Date: Wed, 14 Jan 2026 21:44:32 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v4 5/9] dt-bindings: connector: Add PCIe M.2 Mechanical
- Key E connector
-Message-ID: <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
-References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
- <20260112-pci-m2-e-v4-5-eff84d2c6d26@oss.qualcomm.com>
- <20260113171424.GA3925312-robh@kernel.org>
+	s=arc-20240116; t=1768407404; c=relaxed/simple;
+	bh=ysy/PvHHpOMwEi+sFwwevbjLx8uul5aJv+benzpg7Hs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZvjLbvS3iy1hQIMJSljJTmVtXVvilbwtxImy56zhaL0B289AJMTCjwSeq2Ck1B/OdtzR0eEcJxLoiaNgcxHq8c0WT3YWPuMOVP4UhnnfdO0kh6z6oHRLMkrDlDnpcs80Bd7pj0iKlsLWrxXrhlFcPrptKRl6bpkoutipEGJoYtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=ozrHSmMY; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b8708930695so332566b.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:16:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1768407401; x=1769012201; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tWjzrPidhfyZlS+0i9HgQ4Dnodyf3ucVLrFNdxloGQU=;
+        b=ozrHSmMYAXbdX/IXorviGkn8loFgIU+PvWQkqeh5RHGOU2lpI8oMMXIDmSdw4pAfL8
+         BDIyF19LDenFP3PZNoAPcRZRAlu7AuUCjJKYwZEOPMxiDChryvCybaGl1E5xG3Zge/Fi
+         o8EdS0GWmKVs5sfSFukixvb4RoXW/vZmv/6UM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768407401; x=1769012201;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tWjzrPidhfyZlS+0i9HgQ4Dnodyf3ucVLrFNdxloGQU=;
+        b=HzAhQxuj3o90QhOQUW16M1Tih+Cas7gzvWrMJvC0l5nIA8t0QY3Vt+7ifeIQFpEKkN
+         OPcgsu4m0JT2M/W57Kq0kW5xBwrKpLC/G2gfTtr4VDIiSLUszvqjqMVGUR9yyddqBi6t
+         ++Qz3wWUFTdcsrJZ7p66BaxbJMjj4135aNdcjn3KvULTozP2nkbiVzMklN8YUEJDbNl3
+         HHxkg07Ru7p+iSm7ARh7eCzvMkugCPbh/u8MUPhxYt/Mn7zCRLrNExo5qQ9h6J26kAxP
+         G7Gz3y30RccqNYNXbWF/+NT+UjCAFIUGNcUtji4twyNfw5kJEhcCSY6ccYCHRY5LIUry
+         x2aA==
+X-Forwarded-Encrypted: i=1; AJvYcCV8JuvMY/FdSgoNr5+hvEGuorOdvlWNuWuO1dU4LJ5o65Cmqja7JuezbGTRXBY9RQJVhx9wGRFkVJuQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlqLIz0phNfVPqAHCszZ4MV/01nFNo7N4OGJH7eW+OvVDF0C29
+	C3NhfJWAoPfBEmSAbUhBiULBeWFDQLdDuuuY4EPDP7uz0OSkjfmMLrlGzwjPmWOEYko=
+X-Gm-Gg: AY/fxX6Fsw/GA3ALdCcWaI95tZuNWODYMAnXeQP1tQgnMaWLJg/ZmuE7ucykh7aYxdY
+	3RQtl6/CTEXHx2wcx8vea+j8/zBKvK8ecu566aDjR+xMFtYqwdFyn0jjZlG+cmgRMgAuJ9ArkFe
+	1Uvi8MwcF33JZkZNSmdLbF1wl5LTL0Aeg3XqA3PolEHRAARGb/a2ffFjUySj6iGnAyTaUd6nh9N
+	4ASbBnlA2OikO6G9HdMoB0eadSxOgeEjFSHW9wQtnJ8pj3Zfvvt/bswBx7v9+MRGo6JMxClnfIn
+	/NOqZyQi4s+dU3VqHstvEmP87TTsA1OmDyhwkIGeVhe7IJp0O9nU+FYAyZx/Y1rQmOOL/B2moSG
+	beip+2iZskrLNN048kidGnlE7Uj21vOK7tg/8frWP/iGbXyecQUAl5brXhnnw/OjIT1QUKAVSkU
+	6XEs5D3WoI2KT/ByWB2Q1vgyiHMyUxPKGbP0HMKvLL5bqDlppoC1sWH6Y/Hfp9eUobZh1hB26r0
+	SBTyIC2C3DwdJY4GEKFhufi5KYl+Jh75MQ1ABxSf5WEEz8STWAzfuU6dzXv81Fo8ZOGMw==
+X-Received: by 2002:a17:907:d23:b0:b87:e58:e37d with SMTP id a640c23a62f3a-b8761283a13mr272159166b.48.1768407400930;
+        Wed, 14 Jan 2026 08:16:40 -0800 (PST)
+Received: from dario-ThinkPad-P14s-Gen-5.amarulasolutions.com (93-47-52-235.ip111.fastwebnet.it. [93.47.52.235])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b876dd0e9ffsm152281566b.37.2026.01.14.08.16.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 08:16:40 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 0/4] drm/panel: ilitek-ili9806e: add Rocktech RK050HR345-CT106A support
+Date: Wed, 14 Jan 2026 17:16:15 +0100
+Message-ID: <20260114161636.1076706-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260113171424.GA3925312-robh@kernel.org>
 
-On Tue, Jan 13, 2026 at 11:14:24AM -0600, Rob Herring wrote:
-> On Mon, Jan 12, 2026 at 09:56:04PM +0530, Manivannan Sadhasivam wrote:
-> > Add the devicetree binding for PCIe M.2 Mechanical Key E connector defined
-> > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This connector
-> > provides interfaces like PCIe or SDIO to attach the WiFi devices to the
-> > host machine, USB or UART+PCM interfaces to attach the Bluetooth (BT)
-> > devices. Spec also provides an optional interface to connect the UIM card,
-> > but that is not covered in this binding.
-> > 
-> > The connector provides a primary power supply of 3.3v, along with an
-> > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
-> > 1.8v sideband signaling.
-> > 
-> > The connector also supplies optional signals in the form of GPIOs for fine
-> > grained power management.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > ---
-> >  .../bindings/connector/pcie-m2-e-connector.yaml    | 154 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   1 +
-> >  2 files changed, 155 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> > new file mode 100644
-> > index 000000000000..b65b39ddfd19
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> > @@ -0,0 +1,154 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-connector.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: PCIe M.2 Mechanical Key E Connector
-> > +
-> > +maintainers:
-> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > +
-> > +description:
-> > +  A PCIe M.2 E connector node represents a physical PCIe M.2 Mechanical Key E
-> > +  connector. Mechanical Key E connectors are used to connect Wireless
-> > +  Connectivity devices including combinations of Wi-Fi, BT, NFC to the host
-> > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and I2C.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: pcie-m2-e-connector
-> > +
-> > +  vpcie3v3-supply:
-> > +    description: A phandle to the regulator for 3.3v supply.
-> > +
-> > +  vpcie1v8-supply:
-> > +    description: A phandle to the regulator for VIO 1.8v supply.
-> 
-> I don't see any 1.8V supply on the connector. There are 1.8V IOs and you 
-> may need something in DT to ensure those are powered. However, there's 
-> no guarantee that it's a single supply.
-> 
+This series extends the Ilitek ILI9806E panel driver to support the
+Rocktech RK050HR345-CT106A model via SPI.
 
-1.8v VIO supply is an optional supply and is only required if the platform
-supports 1.8v for sideband signals such as PERST#, WAKE#... I can include it in
-the example for completeness.
+To achieve this, the current driver (previously restricted to DSI) is
+refactored to support both DSI and SPI variants independently.
 
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    description: OF graph bindings modeling the interfaces exposed on the
-> > +      connector. Since a single connector can have multiple interfaces, every
-> > +      interface has an assigned OF graph port number as described below.
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Connector interfaces for Wi-Fi
-> > +
-> > +        properties:
-> > +          endpoint@0:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: PCIe interface
-> > +
-> > +          endpoint@1:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: SDIO interface
-> 
-> I think I already said this, but multiple endpoints are generally for 
-> something that's muxed. Looking at the connector pinout, PCIe and SDIO 
-> are not muxed. So these 2 should be 2 port nodes.
-> 
+The series includes:
+ - A refactoring of the existing driver and Kconfig to support
+   multiple buses.
+ - DT binding documentation for the Rocktech RK050HR345-CT106A.
+ - The implementation of the SPI-based driver for the Rocktech panel.
 
-Sorry, I didn't know that you were asking for 2 port nodes. Will switch to it.
+Changes in v2:
+- Introduce DRM_PANEL_ILITEK_ILI9806E_CORE hidden kconfig option.
+- Split core and DSI logic.
+- Restore vdd-supply as required for both DSI and SPI types in the
+  dt-bindings.
+- Dop useless settings in case of rocktech,rk050hr345-ct106a in the
+  dt-bindings.
 
-> > +
-> > +        anyOf:
-> > +          - required:
-> > +              - endpoint@0
-> > +          - required:
-> > +              - endpoint@1
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Connector interfaces for BT
-> > +
-> > +        properties:
-> > +          endpoint@0:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: USB 2.0 interface
-> > +
-> > +          endpoint@1:
-> > +            $ref: /schemas/graph.yaml#/properties/endpoint
-> > +            description: UART interface
-> 
-> And UART and USB are not muxed either.
-> 
+Dario Binacchi (4):
+  drm/panel: ilitek-ili9806e: rename to specific DSI driver
+  drm/panel: ilitek-ili9806e: split core and DSI logic
+  dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
+  drm/panel: ilitek-ili9806e: add Rocktech RK050HR345-CT106A SPI panel
 
-Ack.
-
-> 
-> > +
-> > +        anyOf:
-> > +          - required:
-> > +              - endpoint@0
-> > +          - required:
-> > +              - endpoint@1
-> > +
-> > +      port@2:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: PCM/I2S interface
-> > +
-> > +      i2c-parent:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle
-> > +        description: I2C interface
-> 
-> Move out of 'ports'.
-> 
-
-Ack.
-
-> > +
-> > +    oneOf:
-> > +      - required:
-> > +          - port@0
-> > +
-> > +  clocks:
-> > +    description: 32.768 KHz Suspend Clock (SUSCLK) input from the host system to
-> > +      the M.2 card. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.1 for
-> > +      more details.
-> > +    maxItems: 1
-> > +
-> > +  w-disable1-gpios:
-> > +    description: GPIO input to W_DISABLE1# signal. This signal is used by the
-> > +      system to disable WiFi radio in the M.2 card. Refer, PCI Express M.2
-> > +      Specification r4.0, sec 3.1.12.3 for more details.
-> > +    maxItems: 1
-> > +
-> > +  w-disable2-gpios:
-> > +    description: GPIO input to W_DISABLE2# signal. This signal is used by the
-> > +      system to disable WiFi radio in the M.2 card. Refer, PCI Express M.2
-> > +      Specification r4.0, sec 3.1.12.3 for more details.
-> > +    maxItems: 1
-> > +
-> > +  viocfg-gpios:
-> > +    description: GPIO output to IO voltage configuration (VIO_CFG) signal. This
-> > +      signal is used by the M.2 card to indicate to the host system that the
-> > +      card supports an independent IO voltage domain for the sideband signals.
-> > +      Refer, PCI Express M.2 Specification r4.0, sec 3.1.15.1 for more details.
-> > +    maxItems: 1
-> 
-> What about SDIO and UART WAKE, SDIO RESET, and vendor defined signals?
-> 
-
-Not sure about vendor defined signals as they can be either GPIO or interface
-signals. How should them be defined?
-
-- Mani
+ .../display/panel/ilitek,ili9806e.yaml        |  38 ++-
+ MAINTAINERS                                   |   3 +-
+ drivers/gpu/drm/panel/Kconfig                 |  24 +-
+ drivers/gpu/drm/panel/Makefile                |   4 +-
+ .../drm/panel/panel-ilitek-ili9806e-core.c    | 134 ++++++++
+ .../drm/panel/panel-ilitek-ili9806e-core.h    |  15 +
+ ...ili9806e.c => panel-ilitek-ili9806e-dsi.c} | 153 +++------
+ .../gpu/drm/panel/panel-ilitek-ili9806e-spi.c | 323 ++++++++++++++++++
+ 8 files changed, 576 insertions(+), 118 deletions(-)
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-core.c
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-core.h
+ rename drivers/gpu/drm/panel/{panel-ilitek-ili9806e.c => panel-ilitek-ili9806e-dsi.c} (82%)
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-spi.c
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.43.0
+
+base-commit: c537e12daeecaecdcd322c56a5f70659d2de7bde
+branch: rk050hr345-ct106a
 
