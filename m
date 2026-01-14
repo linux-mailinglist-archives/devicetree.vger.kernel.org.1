@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-254801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6F5D1C93D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 06:23:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 077CDD1C960
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 06:29:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8C2D730191AF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 05:23:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B66F43032AF4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 05:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185B034D3B6;
-	Wed, 14 Jan 2026 05:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B54369205;
+	Wed, 14 Jan 2026 05:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g8RX3Syo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cf+jTHIL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B94D32D44B
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 05:23:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79918369992
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 05:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768368193; cv=none; b=UCEQzTyNNomweVmlfWh1fb4nPv/FudHvS58tEyNl9Bi0MtIqYcIwi3dwUsXm0NhVE9zUgR4rtuLXBVgZlQFSd3kb2FcYgnIMed1iDKZXLedKSpB4A8J3TjBr5vweeOMG2YnRSV6UR6jvcAI/Km2F4J6MhcP2cvnj/sxLVFzEGzc=
+	t=1768368558; cv=none; b=LID7x+mmlMQycnRNwnfbJ7Ql2m+bjn38JuJDjpMiXEO++jBU+wuDaKTiIZ7/zO2Wfo6JHnNLbVAN4v4gTtlIr9lTuUGs/z8s/tWbbUnID9758a0Va8ikemxywMgSSRG9YSMVg7bw0RyeC5MCOZHIRu+Jj1xgn6SBCT1rQoJ04Vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768368193; c=relaxed/simple;
-	bh=Hkh9mVHV8jEBuh2bM7sXJ8jZxOZKJFPSOYL4/A5LALg=;
+	s=arc-20240116; t=1768368558; c=relaxed/simple;
+	bh=MVjK6WeI2M4GiEOYbDWK+8u7i2JuviaaxDLh3ANAi+M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bpBvS17yw/NRHTkuEVXkmNZP9ic4C4smDxm6YRoilX3Li6q7Kt1TmVxgJz5NR4GPkE3kENrlZSALuZtbUNatTeDQ5CQfzpADR5ugwKEuvN0np6zZac//FQJ8AMD6dkA37xINGKZiXX1YZaoIGYw3/bAQQTxNZdtrMdjgCzFOjJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g8RX3Syo; arc=none smtp.client-ip=209.85.214.171
+	 In-Reply-To:Content-Type; b=P1DkG33faa0ZsdYWRuhzZKyB7/Op/IYqf2ZfOII/23C/SONnmFS+2SEplAJXM+wX3pLeFAJZeibe3jAWblysQadO3tmf0L7vabai0mTocp1Eh4WALUdyd1Kvltg6Tz7khvOoC4VxFHZJs9eB/5P6Nc2sHyIkYr9WxLr31S60gbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cf+jTHIL; arc=none smtp.client-ip=209.85.215.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2a12ed4d205so52625145ad.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 21:23:06 -0800 (PST)
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-c54f700b5b1so3252885a12.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 21:29:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768368184; x=1768972984; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768368548; x=1768973348; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pw+P/vhMS7LNzSvseo/v0Y8/Etjvb5loLlH12yTLsr8=;
-        b=g8RX3Syox7r5vCMqj0+nDBbRmaMpAc2zRc5qEaAbHyhg3joFpg2gdlJX8iu4UdbVNj
-         8Htje7reBaEI1q8bMqWwABPJQW6RlcOQ/Y+4OpXvgVdrDvKqr0cc6iVQAKRgD+Xzb9LV
-         IrPYGeE92AEvrdKX/CiJ0JEk4MoZuCzGJDFF/D4CQ1h4ZhafP7ZdNOfwAoiUeTnbNOXp
-         bUw1+2plnINk0DG8hADH4BlqTBWhdhLcu5pKhp7MU+BkKAG1/tCOmKL1P6nDgSt5M/bv
-         Pr/iNW/Clr0ZI4PQsPLTxOfryir95343o7xsP73mkpxcvVETBRDMdQqqXfAyqch4Z1xw
-         YhZg==
+        bh=Rp3D1Gyy3CCTi05ytq+4em51FnTrdhdCrnVcIgHJxEI=;
+        b=cf+jTHILO621YsmQHzLRtujIxCztkgbXDkGUAQOZaKDs4xw0GUqfPs4WJJlh24A4GZ
+         MFjPJkDh3LxXPOC2hP6jrIa/qAKnulcvatFgxlyqiwv/KU2++48IlXDYeSi3jdzc/pnJ
+         m9BrpEESxQ9u51wWiMCy5AVEhb+Zcy0rF4uHw7AgB7QJvlp/cyMI1RqGMjgrvRPMypCu
+         rEh3/Rk306BR4CKBctI+mrfDeG7g8BJzVdiVwdjFqAgGZytC+iI4om4/uqTZcPlJwuNM
+         9Mf53gxKxdMW/+kGh4h2qusqCk8xox5o0kwxP9A64Jk6HxGbmZBCjnzNN+TBfoBCBn6/
+         Pc7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768368184; x=1768972984;
+        d=1e100.net; s=20230601; t=1768368548; x=1768973348;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Pw+P/vhMS7LNzSvseo/v0Y8/Etjvb5loLlH12yTLsr8=;
-        b=uHiTSE2dryMNjsTtk9jz1CpjbkrTi/BJpJciy7rA2C/cV5rHFRcyISl/vwrHNNsjiC
-         jdNahRmMnoSCIzikLfUQ1PAz0gFe/23A0pa1dWEr5QozfBUfOFk8HwxsJX996FopkcBm
-         xjwci8e50WylMtQ3MjRaxlowlbTN086tdWUCT07yvFsuVcru4tOavryj/B53PJjGTjkw
-         gdVzBHu9fXoiiW2JRMGY9IuwB2dhH6JgY5yuepd4mLbwHrpkNxu8f/PYKdsCrWBHIKFX
-         VksqJ/k/d9Pj1IJDrlv3Yx1MruzZr1cgWrE+NRRx1O263YbB4qAOUnEPQTaa7Oj6wpIb
-         cs1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUiceNXYz0ExYHWm5cKAt3CLjWZlnOL9kJFnR683nGMpA2KGMvWc+Y/+iYQtbCcETNJnqKE3u2IYiig@vger.kernel.org
-X-Gm-Message-State: AOJu0Yynmi5y4JT938gnsonexwgEhA9f26rCAI3NB/l0vRNFPkfG6K7v
-	M6GKZ9GPEzhm84lo4Q+LM9nTkkt/FAaev/8MxaVlf8i1Pl6eEisfwa7H
-X-Gm-Gg: AY/fxX4MByrAcY94BAK7xPVF1ZhtvjKEd5acKVSVrFWOYLOI3m5T2a8w9MnqRaSn5A2
-	CDVi8MAROj8FKhbd2zs6sylOpqToaltNt0udyLb9u9NiphxCWpD9xXltteQg2/NA/vOfV+Aj9Qf
-	sfD986Alccwhig2wEvYQyJqPbqRsfQ/bryXCXyWUlejAXeMizxbwNbEe+lsfjJhfE4aOdxW8nqB
-	ou91Q8DKPtul1yvQ7j/cAu0uvt4Ci3f9mbxrrKZn44lAy2b6hULM0ulJLTQZDhOLByBLiLMi4hq
-	k96kF+IfSmb2RkpUcCLjy8OR74Z8n1M6Rgs7qA07kw4Jb+wR7I8xUYqArsXqA1mGTLQBp5/31sF
-	Bzie9Otkdh1XrrZwkxlAAlxUkFZMHonc71So0CW78hkTU5n2S1GCZ0BlMZLJ8E8oMSc/eEFvvdm
-	n3DvRaoegDUUuNPonIz27fgdH3MgNCLbVFsA==
-X-Received: by 2002:a17:903:1b70:b0:2a0:8be7:e3d0 with SMTP id d9443c01a7336-2a599daaf0dmr13788695ad.10.1768368184334;
-        Tue, 13 Jan 2026 21:23:04 -0800 (PST)
+        bh=Rp3D1Gyy3CCTi05ytq+4em51FnTrdhdCrnVcIgHJxEI=;
+        b=DosKqu1vuSakUPNvNNLM6V8qt9KtsaURCqBuTIk0c9Ey/cV/l1csD2eOh3CW56RW5a
+         5bgDP3wRPqnPr1ZsgPpS1HbHR2JF/idSCKBPeWJMyEY9fVpmHiArxGOFP3zljaSNlLWD
+         NUiQMkbqBbH3VXUOofo8MSGOxZLAF4hO7mZfTJ7oOMmj/JcHch+HVQQT9ic5HUka6A0j
+         bMQR5YFaScsBBVz8hNjsGXxG8Dzl0W/bHnOyYNPPS2BhlkzMy9+oHgtKCAFextaj7tZH
+         xcMB4HKPiY9DOY43zqI27SFxJOL94FtaCuLJ8YhCqgMoBDs1wD3r45Ri0eMQjWpdc+tZ
+         mGMw==
+X-Forwarded-Encrypted: i=1; AJvYcCXPol/kCZ/aL9Oiy67HMfnRMswlosMiMomO66fLnz0B38Fdw1Av+lu5PPnXuB1TicjRYvmzOejKsZT3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqrJ0KPWi6FQgb7TIhID/3x0tdg97ds8gYrSbxCnHAgCu0KEfZ
+	fJBPZBmQS65sES6TSjZV10Q0RZvT2smdoYVekC+5FcOqidhYUH7nMsf2
+X-Gm-Gg: AY/fxX6Aobf4WGMM1VDebOkrA1b8tFbJNGtdt160UCe82Vv6Nlx4C/qmx6fAP4b5FA+
+	5ezbs6nTTcBx+Hq+4RJm6igFQEkF1av50wKnm4Yw+bwKOUK7O4YUfbW+4tbV3etlaWasRgnHpva
+	DL793QPLqjfkn3mLXuSl59v5g7Lz24PgPwnhhWwiyODLnk9gfMX4le/MPbu7PgDedoNWDMJLOcP
+	9geK0nm5i01EvCOqM/iiYPEoCbzDeocyMeeWy6wv7QRE++EOUQ4CtoCMj1EZo0r0QfV20AKxoNH
+	lR2+Eoz5stoo3fZRirffJuDQuLeOL7W1aIT60qYue2tVlj95r3uyIAg9fg3iaYckfyx/4XaNDIE
+	zxsmB289PITa56S+H3eFzeOv4lCTtO/6LjGcy1yaq3mQBv+3MdhQDuotV4hkGyafPTY19ji45qy
+	NuAB5v5yMb1T0EB2vwPT3KG4OtxmJpZZB7Zg==
+X-Received: by 2002:a05:6a20:7293:b0:372:18b8:49b5 with SMTP id adf61e73a8af0-38bed0b27b9mr1610097637.6.1768368548020;
+        Tue, 13 Jan 2026 21:29:08 -0800 (PST)
 Received: from [172.16.20.12] ([136.226.253.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a596365ce0sm12997235ad.41.2026.01.13.21.23.00
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c4cca06b16fsm22460613a12.31.2026.01.13.21.29.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jan 2026 21:23:03 -0800 (PST)
-Message-ID: <753fc364-3b32-496d-89f8-d9330d980f45@gmail.com>
-Date: Wed, 14 Jan 2026 10:53:29 +0530
+        Tue, 13 Jan 2026 21:29:07 -0800 (PST)
+Message-ID: <65f51660-a521-4803-ba7c-eacd53993982@gmail.com>
+Date: Wed, 14 Jan 2026 10:59:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,59 +81,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 3/4] arm64: dts: qcom: qcs615-ride: Fix USB PHY label
- reference
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 0/4] Add Qualcomm Technologies, Inc. Talos EVK SMARC
+ support
+To: Rob Herring <robh@kernel.org>
+Cc: andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260109095221.2847067-1-tessolveupstream@gmail.com>
- <20260109095221.2847067-4-tessolveupstream@gmail.com>
- <ba7845ba-9f85-45f4-bfdf-cb1c6f6c2f7e@oss.qualcomm.com>
+ <20260112153134.GA215739-robh@kernel.org>
 Content-Language: en-US
 From: tessolveupstream@gmail.com
-In-Reply-To: <ba7845ba-9f85-45f4-bfdf-cb1c6f6c2f7e@oss.qualcomm.com>
+In-Reply-To: <20260112153134.GA215739-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
-On 09-01-2026 15:29, Konrad Dybcio wrote:
-> On 1/9/26 10:52 AM, Sudarshan Shetty wrote:
->> Update the USB high-speed PHY label from 'usb_1_hsphy' to
->> 'usb_hsphy_1' to maintain consistency with the naming
->> convention used in talos.dtsi, where the second PHY is
->> labeled 'usb_hsphy_2'.
->>
->> No functional changes, only label renaming.
->>
->> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> index be67eb173046..0ca6b50a6de1 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> @@ -609,7 +609,7 @@ bluetooth {
->>  	};
->>  };
->>  
->> -&usb_1_hsphy {
->> +&usb_hsphy_1 {
->>  	vdd-supply = <&vreg_l5a>;
->>  	vdda-pll-supply = <&vreg_l12a>;
->>  	vdda-phy-dpdm-supply = <&vreg_l13a>;
+On 12-01-2026 21:01, Rob Herring wrote:
+> On Fri, Jan 09, 2026 at 03:22:16PM +0530, Sudarshan Shetty wrote:
+>> Hi all,
 > 
-> This must be squashed with patch 2, otherwise patch 2 is going to
-> cause a build failure which must not happen at any point in the
-> git history (to make bisecting possible)
+> From the mail headers:
+>> Content-Type: text/plain; charset=y                                                                        
+>> Content-Transfer-Encoding: 8bit                                                                            
 > 
+> When git-send-email prompts you for which encoding to use, the correct 
+> answer is not 'y'. The default utf-8 is correct, so just hit enter. 
+> IIRC, newer git versions fixed this.
+>
 
-Okay, I will squash these changes with patch 2 in the next patch 
-series.
-> Konrad
+Okay, got it.
+ 
+> Rob
 
 
