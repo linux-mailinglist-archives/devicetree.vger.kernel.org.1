@@ -1,163 +1,122 @@
-Return-Path: <devicetree+bounces-255016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A31D1EA67
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:08:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B444BD1EA7C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:09:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 85A44304487B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:07:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 37EF3303E011
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67231393DC0;
-	Wed, 14 Jan 2026 12:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62983396B60;
+	Wed, 14 Jan 2026 12:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cKwCU2/j"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ccZ62Qnt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0206396D3A
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 12:07:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD064343D8F;
+	Wed, 14 Jan 2026 12:09:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768392471; cv=none; b=u20FkRhXqisrLQGdylS7DA+OQYTNAqvudzM3uo5kr6FAQHGS4G3Lr/XA4qQV5qpCI4PIEWXddQX7bFYQf38kgX6Bj6oQucWitRIXhx/85KGeHIM2z7b2R3JAiWUUdBgMxnc88oGJXgVeJVR45CK2IGrC0y1t55nbTseXZExOEm4=
+	t=1768392548; cv=none; b=nQRUd2M9jmOOpolDi2XvEvsGZjru72G21UILHrxbVidL7tbmK5JCm/zroy3pzP02rCvKTajcqLomoVxVEU7iCJ0BbNaM/N3RhxkVZ8c/V5ukRJxNN6Ehw7vp4LfhH8r5tpGkXf/pmVuELHi/TzsCgMmF+tnkDc4glRVsx9vGMo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768392471; c=relaxed/simple;
-	bh=MQTu0v924KgUeLBiqNsarmjMV9Y7rjIQ7CHr5enGXOA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ZkNcGO/NzHeIuuiS9y1Z6B+9AcOxnlrLZ3+2t3Tak4GUSptdqWMzbZf/BVGNrrDSUUzsreKZ/mDpHPEo/Af/+7o6uGn11Imd8tiJw9ZlPeFx1/xZuJ8QsH23VPTjwvJcfILUX3pxALP5hG/I1RLunjfNeMTfF8g1smGJxEMa9pA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cKwCU2/j; arc=none smtp.client-ip=209.85.128.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-47ee3da7447so4273485e9.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 04:07:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768392461; x=1768997261; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U3BIAKEVNAk9w++/Pw/AkpPOpkkgEFQigQGBuRd+nh0=;
-        b=cKwCU2/jRgxPejlgSFt2RDrkY/KEG17xAWtqaRRh8WN4YvyTzZqPXaFpM6BdyAtuy9
-         GCxl82kSS5EN1bwcZ57dkGYDHaAdZnN1+xldIaGHnF36l6tZlmhNjWutT4i4b4tcCJV2
-         lp7OPVwfuM45KUbHFRwZJfAp7ykyWbJx1sXVj0veixljVEPuefYl0NL4G+bYt+0OvI+R
-         mQnm24ghiMpOvptFC9LsDLeh4iJ1H29DpP1U21rxDEeyhu1IsryTw/RdhzoWTpt1zstL
-         f/uBase0j/F6eI199PX//MNpSQ7IEu4/Jf14diW6A/bekoeYsp/lUd85A2XusHqfU9Gd
-         xDOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768392461; x=1768997261;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U3BIAKEVNAk9w++/Pw/AkpPOpkkgEFQigQGBuRd+nh0=;
-        b=ViBgHvigmD7QrPLdx6zCKlzfbvzHTZAUn9Ne8HkhCcHNl6PZn1gf2Ylc+OhsLTDo41
-         qv/+9QyOQl1I1K5Y/qvawhBq/enZoe17ae/S48Axap8m/qxfQE1iqMBm2Wv/JTv1M3JE
-         ZvbYC/FENmqQS0wb4eGjJcytLV8OjudBLFMVaH4MbRils1kifZSRbv1zCnxO/io7jkrI
-         i+tQWphAduyst52sCccVKVQ/Ja9tEa/sL8QCcn/FIbgHqmaEUMC72ZjPZ7eSx0JGef/F
-         apBazJC2zh4T6wuoDhBxfGyIz5qnx2iRjMueEK5MFi0NcmruzFalVD8Svbq81biO25gD
-         niDQ==
-X-Gm-Message-State: AOJu0YyRV3Ia30sNKBywYy/kj2KOT/rZ0qUNp6ods/OWcbyEMBRmottm
-	9wMtl5yMoBfuGA0bPQBl2dPkPbC6iJ9k7glfUvPff5QslBaQLEHRqFgkbgvEpMfw96Y=
-X-Gm-Gg: AY/fxX7fH3BtplLR73IbCvRbsZTUxlNBKvTD+dZZ5TQx7jtBFcKr1UTq2pNzb3Y6Zam
-	Bvj6X2aUiflshLk/duvJ3ULJvwYiBUr1Rlu2SfRPX5MEEqrqWZk0LxkkrHPJK8rwXU0pzew+4An
-	rxDdrkcWbIz5trI0BQ/NlERZaaRdwKI3szyFwhff37ERsrtxUgKwRDG223Lppmvf9eXfQNgQzyZ
-	Y2C7VdT7gIzhTJxSIZigwsO21xxnjEw0+ZWwa8bYf7q7c5Ng5TWP4AHVvnn6eYeffDvfz3L39SD
-	AB/X8gV6WZwnMKTjK3j+9sG5B0YCp1nIbjXfmAwiKa9LyX84B9q8QzYZiH2aMCvwfeCs5qG23Zg
-	owF1Ziq00NyNabUVZhVlFt6CBmAg1jRgUtRPu7WdBz1LBuV2jtEXd2UybCEP8rLFrSXvJAu+joV
-	R1u5c8LJVYTE8aUCGSxE2z09pM7nZ/KEAP++tgpxCa/cv8plrqRn+ZfcugRnFMmAE=
-X-Received: by 2002:a05:600c:c4a6:b0:47d:3690:7490 with SMTP id 5b1f17b1804b1-47ee47c8db0mr22733155e9.9.1768392461180;
-        Wed, 14 Jan 2026 04:07:41 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b357:7e03:65d5:1450? ([2a01:e0a:3d9:2080:b357:7e03:65d5:1450])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ee54b8c9bsm24625715e9.3.2026.01.14.04.07.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 04:07:40 -0800 (PST)
-Message-ID: <695594a6-9c7b-4c9c-8134-f42e8729b0cd@linaro.org>
-Date: Wed, 14 Jan 2026 13:07:40 +0100
+	s=arc-20240116; t=1768392548; c=relaxed/simple;
+	bh=EYswg02gjuvqs73LUDwN0ChfKC/BQKKnQB+oeLlaqiM=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=V7aEuIFTxk2JemItOkMxuVwKbGoMbYylcDddyVSZi1lARWFEM4AmhoMZCBlHa72ZMGZSczYBCJgKCreD0E6pltfFblrjEr+JnuZ6fcS3QbO8/4meLE65mZWljK6SZecohCIcZgs+UnpLAuDMmLjxUHKnqwgLqFFAjh04qln6vnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ccZ62Qnt; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768392547; x=1799928547;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=EYswg02gjuvqs73LUDwN0ChfKC/BQKKnQB+oeLlaqiM=;
+  b=ccZ62QnttDIQuKNRrPINyW3NcuVpRv7Tb/nL9yvhw60jFURL4IIPnyZU
+   8kWpTYW/vlPhIvBbpDD+++HqzmWWqe/3OpRIkvLxyxHJ4hGZa9dfdEWx0
+   wYpCkEcNUAaVvfuhxUK6iOgyc6Fw9I019VndSt8rYXUEbaHVosvECmSQv
+   7ZfArwOTMAf/Dt1tOu3rMMCv9xtWyjQEnANaHH+IUQLHbDemOvjjKL+j9
+   e52jPr+DvyEIr1BRoiIsnPFesTUCp2sbesyKpnjg1U9HbwDEO7lZ5XKvC
+   G5rVsuIfN9Ot8MkKdwwz0qD35LwUVK50zAdJMdG6/xaNt52AlUTQt4n/z
+   g==;
+X-CSE-ConnectionGUID: C787EWblTDK4etiLJX6TPQ==
+X-CSE-MsgGUID: XOF3j2onS8q0q8j6lPql9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="68697369"
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; 
+   d="scan'208";a="68697369"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 04:09:06 -0800
+X-CSE-ConnectionGUID: YfId4127RIiRbKbn/2MR/A==
+X-CSE-MsgGUID: voMxLI1LSL+SxXySXk3osg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; 
+   d="scan'208";a="204943430"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.246.94])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 04:08:59 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Nishanth Menon <nm@ti.com>,
+ "Andrew F. Davis" <afd@ti.com>, Randolph Sapp <rs@ti.com>, Jonathan
+ Humphreys <j-humphreys@ti.com>, Andrei Aldea <a-aldea@ti.com>, Chirag
+ Shilwant <c-shilwant@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Oded
+ Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Sumit
+ Semwal <sumit.semwal@linaro.org>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Subject: Re: [PATCH 2/5] accel/thames: Add driver for the C7x DSPs in TI SoCs
+In-Reply-To: <20260113-thames-v1-2-99390026937c@tomeuvizoso.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260113-thames-v1-0-99390026937c@tomeuvizoso.net>
+ <20260113-thames-v1-2-99390026937c@tomeuvizoso.net>
+Date: Wed, 14 Jan 2026 14:08:56 +0200
+Message-ID: <5d2167dd7c898afdb374429a9dca8d262967d125@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 0/2] arm64: dts: amlogic: s4: mmc clock fixups
-To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick Xie <nick@khadas.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-On 1/14/26 11:43, Jerome Brunet wrote:
-> The patchset aims to address the issue raised here [1] for MMC B.
-> 
-> While checking this issue, I've found that MMC A and C also appear to be
-> improperly described in this platform's DT. The 2nd change fixes that.
-> 
-> To be on the safe side, the MMC clock should also be assigned on the other
-> SoCs. More changes will follow once things are sorted out for s4.
-> 
-> [1]: https://lore.kernel.org/linux-amlogic/20260113011931.40424-1-nick@khadas.com/
-> 
-> Changes in v3:
-> - Dropped useless assigned-clock-parents
-> - Link to v2: https://lore.kernel.org/r/20260114-amlogic-s4-mmc-fixup-v2-0-7e9ab5f12286@baylibre.com
-> 
-> Changes in v2:
-> - Collect Tested-by from Nick
-> - Fix some typos in the commit description
-> - Link to v1: https://lore.kernel.org/r/20260113-amlogic-s4-mmc-fixup-v1-0-1ab1fca0fb2f@baylibre.com
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
-> Jerome Brunet (2):
->        arm64: dts: amlogic: s4: assign mmc b clock to 24MHz
->        arm64: dts: amlogic: s4: fix mmc clock assignment
-> 
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 13 +++++++++++--
->   1 file changed, 11 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-> change-id: 20260113-amlogic-s4-mmc-fixup-92ad8b90b7be
-> 
-> Best regards,
+On Tue, 13 Jan 2026, Tomeu Vizoso <tomeu@tomeuvizoso.net> wrote:
+> diff --git a/drivers/accel/Makefile b/drivers/accel/Makefile
+> index 1d3a7251b950f39e2ae600a2fc07a3ef7e41831e..8472989cbe22746f1e7292d2401fa0f7424a6c15 100644
+> --- a/drivers/accel/Makefile
+> +++ b/drivers/accel/Makefile
+> @@ -5,4 +5,5 @@ obj-$(CONFIG_DRM_ACCEL_ARM_ETHOSU)	+= ethosu/
+>  obj-$(CONFIG_DRM_ACCEL_HABANALABS)	+= habanalabs/
+>  obj-$(CONFIG_DRM_ACCEL_IVPU)		+= ivpu/
+>  obj-$(CONFIG_DRM_ACCEL_QAIC)		+= qaic/
+> -obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
+> \ No newline at end of file
+> +obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
+> +obj-$(CONFIG_DRM_ACCEL_THAMES)		+= thames/
+> \ No newline at end of file
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Maybe add the newline while at it.
 
-Thanks,
-Neil
+> diff --git a/drivers/accel/thames/thames_core.c b/drivers/accel/thames/thames_core.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..92af1d68063116bcfa28a33960cbe829029fc1bf
+> --- /dev/null
+> +++ b/drivers/accel/thames/thames_core.c
+> @@ -0,0 +1,155 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/* Copyright 2026 Texas Instruments Incorporated - https://www.ti.com/ */
+> +
+> +#include "linux/remoteproc.h"
+
+Ditto here about <> not "".
+
+
+-- 
+Jani Nikula, Intel
 
