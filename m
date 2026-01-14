@@ -1,104 +1,137 @@
-Return-Path: <devicetree+bounces-255276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB43DD21C39
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:28:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF8DD21C86
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:48:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7BAA43038F70
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:28:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 219BB300DA72
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 23:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7253939DD;
-	Wed, 14 Jan 2026 23:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49A133120B;
+	Wed, 14 Jan 2026 23:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftSJZrR7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Stb8ea/b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EADE133B947;
-	Wed, 14 Jan 2026 23:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD122DECDE;
+	Wed, 14 Jan 2026 23:48:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768433287; cv=none; b=Hh9L9qzJ+/3NN5kyOTnR1KlNlRrvbuMXCluD9fJWCNZEAwdM3m0AYAZ7O5ZafyYwMLwmGlNR8XV/f0eI+CFW+ycs29fGgqqGuFUAqbQ0gfxtvG/eo+bcu/bYHT9djXn0yWmF07od/XJF5A+YNYLMsWNtd4qRRvrFJ8dnT+eaWfI=
+	t=1768434518; cv=none; b=oryXTgq9XksxPeDefE2zplmrhzx/gExl7XUXpWkYYR2JnnaLsTBJyf1rT1GjFuzIAv8AB8c7G+aGDBwKo/tVTuaSPnEkOG+d3YezR4kg7m5+9COxf33errgSiwDAfnWFdq15fG2uBx5+OVh2XallNxszdT/utTagSxuPTfTqhEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768433287; c=relaxed/simple;
-	bh=EI7BTv41G7olOZumH0mmXwnej0g2v1o+TsoL4iuuqBI=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=kwvuIlFDYHh4KHJRDI2bZHFNnPDF+2PnUprP/ob81hUxcJDDBfXrzOjiafNMZj4sburqI5/M8Y/yRn+3/CpvmjGpaxyu1SNikq7xgOXBNWsc3Awhx/lGt6nRqJ2lSlybAwTRwLhYPaoQx7/BRRe+IUM72+T2Ucm+t/1yRBk2kPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftSJZrR7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28D08C4CEF7;
-	Wed, 14 Jan 2026 23:28:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768433284;
-	bh=EI7BTv41G7olOZumH0mmXwnej0g2v1o+TsoL4iuuqBI=;
-	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-	b=ftSJZrR70jl3YW9IC8y2ZJcUSo96xUVBE8KZCYUgZUhzfKJF9Dbjk3BhVTLJcH/dH
-	 iqDlYbsyaYsHvnykBIf5QKOYV4s9Kzw5Crb+nUDI3tLWYkqfGsajOjTgsTmmJnp2Er
-	 aX0LuILbS4R+4Onmel83tfFc7Mm5KYywvgXQc6ijueGYfV5/g8rQqRvBVyK+a9yJic
-	 3etmK609O1U/qT5h2iwB9R4fPqR7wCKb3VlToJ+KkKIR4s0pqIUoyuwFyRsauDqS+/
-	 DppzwFWTJ8eNnWgCV0NZYZwZVOhBg5PMdV/SNI1r0eeO2AA9/7dSiJwek8M6iVsX5o
-	 RPtPmGtf5kJQQ==
-Date: Wed, 14 Jan 2026 16:27:56 -0700 (MST)
-From: Paul Walmsley <pjw@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
-    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-    Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
-    Daniel Lezcano <daniel.lezcano@linaro.org>, 
-    Thomas Gleixner <tglx@linutronix.de>, 
-    Samuel Holland <samuel.holland@sifive.com>, 
-    Anup Patel <anup@brainfault.org>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
-    Yangyu Chen <cyy@cyyself.name>, Paul Walmsley <paul.walmsley@sifive.com>, 
-    Conor Dooley <conor@kernel.org>, Heinrich Schuchardt <xypron.glpk@gmx.de>, 
-    Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
-    Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org, 
-    linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-    spacemit@lists.linux.dev, linux-serial@vger.kernel.org, 
-    Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
-    Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Subject: Re: [PATCH v4 01/11] dt-bindings: riscv: add SpacemiT X100 CPU
- compatible
-In-Reply-To: <20260110-k3-basic-dt-v4-1-d492f3a30ffa@riscstar.com>
-Message-ID: <006317ae-dec7-a893-372b-c68afe35863e@kernel.org>
-References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com> <20260110-k3-basic-dt-v4-1-d492f3a30ffa@riscstar.com>
+	s=arc-20240116; t=1768434518; c=relaxed/simple;
+	bh=fpZXJ3A96OROTDJRswE/08njjePXZh4rpSkE8q4iKxk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XB+XQPnQjg4779cXo8O9QqGmi9zJGLnXmWAitUsDM8wCvNWdyEKmyIaKFYyFRWqG/THbTRpGm0bL7Te5YdXI2B1sc1wqDeL45v765WgUDBVuX7tdRMthgWw3OF5byqnYh71IU3epwbAze4dZmz6UL8orZ7iRHi5yc/1HhuvD3wI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Stb8ea/b; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768434516; x=1799970516;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fpZXJ3A96OROTDJRswE/08njjePXZh4rpSkE8q4iKxk=;
+  b=Stb8ea/bUfF3T3/0f+fTHUnqGM+yDZxX+d1QbqKiaDQh+hXCOg3qbLum
+   Fhdetuk2hu9/6UEIJboBimT+xFrpyinPuEwEFmv/bxvrbQx9SSIY7yZBm
+   eIaD8RJtiPxWUa4YNb3UqH7FtdE7rMOurkfRdJb8BWcbNG8SJJlfDT458
+   8LCXNkYeKvKRK9tUYMZY5+A4kBdwBaAoe/cXRv/aclZMa41miwUhkjQ3B
+   HaEjOXf8vBtMNmlsIRtyMG1hPb9zvZd5SsaThDTgJMsQOH7IYDkUa3sYU
+   GiwRDr/ufUsBiJB14W/Ug1faUN4JmtAeAELZAqdYpcUUap4ES5KEopzco
+   A==;
+X-CSE-ConnectionGUID: X4xnxxuRSkCOsAtAylOkMA==
+X-CSE-MsgGUID: OPbWkL0RRyO7wcgZxcC4Iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="69718405"
+X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; 
+   d="scan'208";a="69718405"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 15:48:36 -0800
+X-CSE-ConnectionGUID: UdvjGCikQzS8ThzmgRTS7g==
+X-CSE-MsgGUID: /9XX4dGIS8mnyB/rVlwF4A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; 
+   d="scan'208";a="205226157"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 14 Jan 2026 15:48:32 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vgAbF-00000000HDY-4A5R;
+	Wed, 14 Jan 2026 23:48:29 +0000
+Date: Thu, 15 Jan 2026 07:48:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
+	linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
+	lee@kernel.org, Frank.Li@nxp.com, lgirdwood@gmail.com
+Cc: oe-kbuild-all@lists.linux.dev, vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com,
+	Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+Subject: Re: [PATCH v4 5/5] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x
+ I3C hub functionality
+Message-ID: <202601150750.NiEqaaGg-lkp@intel.com>
+References: <20260113114529.1692213-5-aman.kumarpandey@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260113114529.1692213-5-aman.kumarpandey@nxp.com>
 
-On Sat, 10 Jan 2026, Guodong Xu wrote:
+Hi Aman,
 
-> Add compatible string for the SpacemiT X100 core. [1]
-> 
-> The X100 is a 64-bit RVA23-compliant RISC-V core from SpacemiT. X100
-> supports the RISC-V vector and hypervisor extensions and all mandatory
-> extersions as required by the RVA23U64 and RVA23S64 profiles, per the
-> definition in 'RVA23 Profile, Version 1.0'. [2]
-> 
-> >From a microarchieture viewpoint, the X100 features a 4-issue
-> out-of-order pipeline.
-> 
-> X100 is used in SpacemiT K3 SoC.
-> 
-> Link: https://www.spacemit.com/en/spacemit-x100-core/ [1]
-> Link: https://docs.riscv.org/reference/profiles/rva23/_attachments/rva23-profile.pdf [2]
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Reviewed-by: Yixun Lan <dlan@gentoo.org>
-> Reviewed-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+kernel test robot noticed the following build errors:
 
-(just for completeness, since I acked the older version)
+[auto build test ERROR on i3c/i3c/next]
+[also build test ERROR on lee-mfd/for-mfd-next lee-mfd/for-mfd-fixes broonie-regulator/for-next linus/master v6.19-rc5 next-20260114]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Acked-by: Paul Walmsley <pjw@kernel.org>
+url:    https://github.com/intel-lab-lkp/linux/commits/Aman-Kumar-Pandey/dt-bindings-i3c-Add-NXP-P3H2x4x-i3c-hub-support/20260113-195318
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/i3c/linux.git i3c/next
+patch link:    https://lore.kernel.org/r/20260113114529.1692213-5-aman.kumarpandey%40nxp.com
+patch subject: [PATCH v4 5/5] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20260115/202601150750.NiEqaaGg-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260115/202601150750.NiEqaaGg-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601150750.NiEqaaGg-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/i3c/hub/p3h2840_i3c_hub_common.c:12:
+   drivers/i3c/hub/p3h2840_i3c_hub_common.c: In function 'p3h2x4x_configure_pullup':
+>> drivers/i3c/hub/p3h2840_i3c_hub.h:64:17: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+      64 |                 FIELD_PREP(P3H2x4x_TP0145_PULLUP_CONF_MASK, x)
+         |                 ^~~~~~~~~~
+   drivers/i3c/hub/p3h2840_i3c_hub_common.c:51:18: note: in expansion of macro 'P3H2x4x_TP0145_PULLUP_CONF'
+      51 |         pullup = P3H2x4x_TP0145_PULLUP_CONF(p3h2x4x_pullup_dt_to_reg
+         |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-- Paul
+vim +/FIELD_PREP +64 drivers/i3c/hub/p3h2840_i3c_hub.h
 
+    61	
+    62	#define P3H2x4x_TP0145_PULLUP_CONF_MASK				GENMASK(7, 6)
+    63	#define P3H2x4x_TP0145_PULLUP_CONF(x)	\
+  > 64			FIELD_PREP(P3H2x4x_TP0145_PULLUP_CONF_MASK, x)
+    65	#define P3H2x4x_TP2367_PULLUP_CONF_MASK				GENMASK(5, 4)
+    66	#define P3H2x4x_TP2367_PULLUP_CONF(x)	\
+    67			FIELD_PREP(P3H2x4x_TP2367_PULLUP_CONF_MASK, x)
+    68	#define P3H2x4x_PULLUP_CONF_MASK					GENMASK(7, 4)
+    69	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
