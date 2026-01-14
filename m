@@ -1,129 +1,146 @@
-Return-Path: <devicetree+bounces-254784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79ECED1C171
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 03:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34779D1C1A5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 03:14:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6750B302DB0C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 02:05:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 30C863011028
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 02:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4EFD2F2604;
-	Wed, 14 Jan 2026 02:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GQQo3i0k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B1B2F39B9;
+	Wed, 14 Jan 2026 02:14:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E491DEFE8
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931152F25FB;
+	Wed, 14 Jan 2026 02:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768356308; cv=none; b=upNxAvCcsESQ65doxpbgAhqDqDHeIdCEIFenfhuL2N01FagQGCgR92YhzlQPzfLRoFFkVrPnBnskIU0FFnNXgxRxnmQcoRyjOR48ZsxmpL4whfHnQRxVJrsYZDH2tL0psrpmdPGe/zymPP35kd14WRDnzyj5PrHAqqcadDgFwDI=
+	t=1768356852; cv=none; b=fCTrpqWSET96IvNsgju+lfukHlqtvUWLafc1RWcUMVZibrNMXVTkvO8Y80zAYkPUq8elMsyNMHWtBgz89mG+bSA49fJcynvxokk7a9NYj5S1F5rqRMT+3TJiSY7EzWSQMfRyUQyS1F5FWhSlwRnb10fLaxHboE0Ub3gTc3WR+Ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768356308; c=relaxed/simple;
-	bh=SOqcKxAXNbSdEcywpH2tweVIQ706P7fQ36Acj80r9E8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FLcnXykwy/Z4gc457TGC/b9m7Bp6nz+UB2Z7GrxKVaAx8iWbw/OZ2GXNhGViE85SxKXTzmw0MOlABct9yUE97sdpLnB3ng4UYS3TXpgcLyB4AH/o8PL/EP2ZaUFac2UaAvBurzJrHQ4493HRrHWMDjZ/swSlGoH+LUXZt7H2HIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GQQo3i0k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E023C2BC9E
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:05:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768356308;
-	bh=SOqcKxAXNbSdEcywpH2tweVIQ706P7fQ36Acj80r9E8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=GQQo3i0klccdMwJmToXV8lborVNCPyN55ZULpxrWDc4oFbgth4xn5o5Oqvf6izuo/
-	 UBS0nZlK48Ut6gNlXLBYK0PnNC04qwCYXPBLk7o7iTNEotJ5Lbzbo9TTae16RrQN5S
-	 Clu2JFlQc+Ja1QSvTEskO4drUGc5CqKd6nwta8Ka4O9b2JJVPWUqZfqd0Vi6/yqPKx
-	 ThSZclTO2O/9qH38PTaCo57+hhEEwQZ1bwnU6hIFv7ZebfHKzdRLOuJA4V5kiv6NJ+
-	 Zavkyevn56RFMnmPZcWYReYM34gFwSSN/0rblL4tydIxZTqMUADZc+q34SZoMuc1vD
-	 nvCXZMghw0vMQ==
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-64b9d01e473so13796579a12.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 18:05:07 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVTWQrQx2pYZpXzy5kFYsAuy1rDLoFFr95ey2RgvcNcwolCOph+5l4Q1ayPd4id1uzEXXfLwaVRyT75@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmM6EtHp3dtCjOw+97H3kzWjB0mLCRGFsfawg3ZfBHlbbyapC4
-	faK0GJ7KCUOyPq8314TbdWyWNWSAkTTvkjJootsL/AgVtJThJsFZp7aHsFk+TdPrcvCMcDTn+2u
-	LnM3z0rn2hFiRnJnMhiR73WDgeoSLNQ==
-X-Received: by 2002:a17:907:c24:b0:b87:1d30:7ec with SMTP id
- a640c23a62f3a-b87677a7f7fmr25999566b.37.1768356306546; Tue, 13 Jan 2026
- 18:05:06 -0800 (PST)
+	s=arc-20240116; t=1768356852; c=relaxed/simple;
+	bh=vwtGEmt9gJmYSfL0GnZ1AXkZ5AEWUxDZZhCG8UgGjWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P+8TGPgvMyrVsMEhad4ahpTnakgzufEcNh93gAcOkpKLBdse4GNLwA3nXSByHgejXLonNHB6Sv7af3EkapRh0gjC+P2jeHlW734v31ZCD4iWZrqi5rd6OO7/IN1h10Bb6Vvlw6XsxL0EfZ/XPHxEvecDxoJKLj4WeXCSeKDDQlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id DA74C341030;
+	Wed, 14 Jan 2026 02:14:09 +0000 (UTC)
+Date: Wed, 14 Jan 2026 10:14:05 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Conor Dooley <conor@kernel.org>, Paul Walmsley <pjw@kernel.org>
+Cc: Guodong Xu <guodong@riscstar.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Heinrich Schuchardt <xypron.glpk@gmx.de>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Andrew Jones <ajones@ventanamicro.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev, linux-serial@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 00/11] riscv: spacemit: Add SpacemiT K3 SoC and K3
+ Pico-ITX board
+Message-ID: <20260114021405-GYB25466@gentoo.org>
+References: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar.com>
+ <20260112-shrivel-sarcastic-36d9acd2d96a@spud>
+ <20260113002123-GYA19926@gentoo.org>
+ <20260113-swarm-mama-cbd7d0546578@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260107090019.2257867-1-alexander.sverdlin@siemens.com>
- <20260107090019.2257867-2-alexander.sverdlin@siemens.com> <20260113164128.GA3919887-robh@kernel.org>
- <aWZ57fz3EiwuXh6Y@makrotopia.org>
-In-Reply-To: <aWZ57fz3EiwuXh6Y@makrotopia.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 13 Jan 2026 20:04:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJyCPnSMeJ9y_qQcAgVqU6YtoXXKWB6h4REyJkrxoG73g@mail.gmail.com>
-X-Gm-Features: AZwV_Qh9EWI4sjYgMniS7FHt70isAZelUpH3TgUlIv5Sfe7decupJwGGZPPwOvQ
-Message-ID: <CAL_JsqJyCPnSMeJ9y_qQcAgVqU6YtoXXKWB6h4REyJkrxoG73g@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: dsa: lantiq,gswip: add
- MaxLinear R(G)MII slew rate
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "A. Sverdlin" <alexander.sverdlin@siemens.com>, netdev@vger.kernel.org, 
-	Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260113-swarm-mama-cbd7d0546578@spud>
 
-On Tue, Jan 13, 2026 at 10:59=E2=80=AFAM Daniel Golle <daniel@makrotopia.or=
-g> wrote:
->
-> On Tue, Jan 13, 2026 at 10:41:28AM -0600, Rob Herring wrote:
-> > On Wed, Jan 07, 2026 at 10:00:16AM +0100, A. Sverdlin wrote:
-> > > From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> > >
-> > > Add new maxlinear,slew-rate-txc and maxlinear,slew-rate-txd uint32
-> > > properties. The properties are only applicable for ports in R(G)MII m=
-ode
-> > > and allow for slew rate reduction in comparison to "normal" default
-> > > configuration with the purpose to reduce radiated emissions.
-> > >
-> > > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> > > ---
-> > > Changelog:
-> > > v4:
-> > > - separate properties for TXD and TXC pads ("maxlinear," prefix re-ap=
-pears)
-> > > v3:
-> > > - use [pinctrl] standard "slew-rate" property as suggested by Rob
-> > >   https://lore.kernel.org/all/20251219204324.GA3881969-robh@kernel.or=
-g/
-> > > v2:
-> > > - unchanged
-> > >
-> > >  .../devicetree/bindings/net/dsa/lantiq,gswip.yaml  | 14 ++++++++++++=
-++
-> > >  1 file changed, 14 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.y=
-aml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > index 205b683849a53..747106810cc17 100644
-> > > --- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-> > > @@ -106,6 +106,20 @@ patternProperties:
-> > >          unevaluatedProperties: false
-> > >
-> > >          properties:
-> > > +          maxlinear,slew-rate-txc:
-> > > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > > +            enum: [0, 1]
-> >
-> > default: 0
->
-> Not really. The default is not to touch the register value which may
-> have already been setup by the bootloader.
 
-Okay, please add that to the description.
+On 22:17 Tue 13 Jan     , Conor Dooley wrote:
+> On Tue, Jan 13, 2026 at 08:21:23AM +0800, Yixun Lan wrote:
+> > Hi Conor,
+> > 
+> > On 21:45 Mon 12 Jan     , Conor Dooley wrote:
+> > > On Sat, Jan 10, 2026 at 01:18:12PM +0800, Guodong Xu wrote:
+> > > 
+> > > > Hi, Conor
+> > > > 
+> > > > For the binding riscv/extensions.ymal, here's what changed in v3 (no
+> > > > change in v4):
+> > > > 
+> > > >  1. Dropped the patch of adding "supm" into extensions.yaml. At the same
+> > > >     time, I will start another patchset which implements the strategy
+> > > >     outlined by Conor in Link [2] and by Samuel in Link [3].
+> > > 
+> > > Okay, that seems reasonable to separate out.
+> > > 
+> > > > 
+> > > >  2. Dropped the dependency checks for "sha" on "h", "shcounterenw", and
+> > > >     6 others. "sha" implies these extensions, and it should be allowed
+> > > >     to be declared independently. Like "a" implies "zaamo" and "zalrsc".
+> > > > 
+> > > >  3. Enchanced the dependency check of "ziccamoa" on "a". Specifically,
+> > > >      - added the dependency check of "ziccamoa" on "zaamo" or on "a".
+> > > >      - added the dependency check of "za64rs" on "zalrsc" or on "a".
+> > > >      - added the dependency check of "ziccrse" on "zalrsc" or "a".
+> > > >     The commit message of this patch is updated too, to better explain the
+> > > >     relationship  between "ziccamoa", "za64rs", "ziccrse" and "a".
+> > > > 
+> > > >  4. Enhanced checking dependency of "b" and "zba", "zbb", "zbs", making the
+> > > >     dependency check in both directions, as discussed in [4]. Since "b"
+> > > >     was ratified much later than its component extensions (zba/zbb/zbs),
+> > > >     existing software and kernels expect these explicit strings. This
+> > > >     bidirectional check ensures cores declaring "b" remain compatible
+> > > >     with older software that only recognizes zba/zbb/zbs.
+> > > 
+> > > This I asked about in the relevant patch, I would like to know what your
+> > > plan for adding the "b"s is.
+> > > 
+> > ..
+> > > Spacemit folks, I assume you weren't planning on taking the
+> > > extensions.yaml stuff via your tree? If you weren't, I'll grab it once
+> > > the question about b is answered.
+> > 
+> > sure, please take extension stuff which are patches 6-9, for 1-5, it's
+> > all about adding support for SpacemiT K3 SoC, to avoid petential conflicts,
+> > I wouldn't mind if you also taking them? then I can handle the rest 10,11 for DT
+> 
+> Stuff for spacemit is either for you or for the relevant subsystem
+> maintainers. You're probably safe enough taking the
+> timer/interrupt-controller stuff if the maintainers don't apply it in a
+> reasonable period, it's not abnormal for those in particular to go via
+> the platform maintainer in my experience. Just be clear that you have
+> done so. I'm only interested in taking 6-9.
+Hi Conor,
+  Ok, I got, thank you!
 
-Rob
+Hi Paul Walmsley,
+  I assume you're responsible for more general riscv stuff with your
+effective maintainer hat, so do you mind if I take patches 1-5 via SpacemiT
+SoC tree? I think the potential conflicts should be low and easy to fix.
+  Or, in the other hand, just let me know which patches you would like
+to take, then I will handle the rest. Thanks
+
+-- 
+Yixun Lan (dlan)
 
