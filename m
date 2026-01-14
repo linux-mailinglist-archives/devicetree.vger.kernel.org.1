@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-255174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28823D206F3
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B446D206F4
 	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 18:10:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 746423016237
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:09:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 55A03301332D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3139D2FE595;
-	Wed, 14 Jan 2026 17:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1891F3019B2;
+	Wed, 14 Jan 2026 17:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="v2PxsQ2F"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AdNfkhw9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com [209.85.221.66])
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 735F02F8BCA
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:09:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DB22FF672
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:09:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768410569; cv=none; b=QBr7tPqkJ38Lov9yeua9NgcCVsYzR1OZQ1Jc2VWKqlTnHAzBpYFvzjsav8rWs3P70IqjQ3NYn63CktytofX4gJvaa1CvA3BiU5JnbFtGMf+mptDvx4bRMsKmSD5Dkq376VosQ+ejL8PsSMrBiyPKFXFJIt7UsE8+16gwV9oVMFs=
+	t=1768410571; cv=none; b=EbdRUmPGbxTprhEOJpuUWTnRWomtN6rPJBhe0vJXYllwxhdaZT3qoUaE7MvGcR5Z3/tZzIxfY2S6HMOZvXDgSJOi4MDJMH5WWuGap2aeAYRR07vqIswcTnZX2SlFc0JIYwihw++DatIK+58fkQSUGLRGTAjr8IAp+gcg3ZYZeto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768410569; c=relaxed/simple;
-	bh=9p95wrx4RVIpeGNcY2S7+iJZeATm0jJX+K1/uJDs0y4=;
+	s=arc-20240116; t=1768410571; c=relaxed/simple;
+	bh=6VYRsSlr+k3OtpRissBvC6EiliXJvLY5cMYIo4c8bpg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=izlrbCS2G7suTRsk+ayGq1O5Qn/nbsBspvGbrbvYiYTmzEgW/BCP9/pkS2q0sjRf84/sifql6pKJt5+k+ToHRn6Y/DqG4CIAwqi8BzX3vFxiFSTEPRG/m4bXT0o+33FvO9agroWVS042XAqj/7oXw/NV1t49pk9od5dSrPejyvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=v2PxsQ2F; arc=none smtp.client-ip=209.85.221.66
+	 In-Reply-To:To:Cc; b=JtR20Dhkqwlph5ABP15bWkGhBu7SGmDyb5JHiAy+r9ljHe6sHOg4+Gg4KFgCFM7yRzTK0L71UDWDQdssNXQ9HldOxwNk/wT6+mkPIMzyqqJvtCzofO0ugWdLjk3Ht+jEht9Zgntvv8SIE7BRhUnBPiqsutxPzbGwOfgUE6VbHto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=AdNfkhw9; arc=none smtp.client-ip=209.85.128.67
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f66.google.com with SMTP id ffacd0b85a97d-432dc56951eso49981f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:09:27 -0800 (PST)
+Received: by mail-wm1-f67.google.com with SMTP id 5b1f17b1804b1-4779a4fc95aso7517305e9.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:09:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768410566; x=1769015366; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768410568; x=1769015368; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sLZ+PvAjnR7DEP7BUAREJ2OVzk7/JAMCQdO1bdqxiqQ=;
-        b=v2PxsQ2FjHw2ulxtQgB//ffdZ3aCJKlkkKmCYyLRuDMSLXLGYqMEB30taG7hBzsk+m
-         5CKjILcmtvRhEq3YVWgPXmDsmjQ3qX3wP4LcIDtZsbaB61clqBxvnxvLM0hD9noOFvzh
-         h9PHT1xmAsho3/UNVdZwfxVwQXL7te0VPfpXhT0GH7qZDgQVfqiWPjNZPFfs7ldcprtk
-         3chRD6aLL/k4NsHwCcGJ9JVoTbY/ZEQH+bG3LeKKlIuoARjG+ZFoTBhGGbMiNDxB4e7o
-         RzMzBCSgWg2INOXUtd02MzM285vIqBCqFvj3+fzZsnhgP4GJzqEln2FyClIaVCicOcRo
-         L0MA==
+        bh=nVTJms2ugVSwB4TUdsv5u4am5qhw9xa03tN0c+1spsY=;
+        b=AdNfkhw9rp8xsaa3xczdAkGx7/fE3rs0dggcQB8cy/BBz3z8Rzidm1Lo7iUhFxSD8p
+         5yXQ3PLLnupait0VooRM1lP0AwJBLujuvd37+eRjF27gmdT/7YftMqNn17bZvrV5c59c
+         8WXF0cElKh1RAIRRKzze8boHCsv26LBKklrpqh3lFrmR1jW8z2IWNB7gOSLqrAdGgKpy
+         amOIV2T7ZE6q9cR92KVrAXpkPSFftIZOaJwOSb3m8oSUpXGTvM+/iBeK++ujptqFeDOG
+         ze+gLjVwLp4T2oQTJn6eXY/2tekIwndMpX1xZooa3ctWrO+rKTf0PIIAp+rDvUnOKS1Q
+         OCDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768410566; x=1769015366;
+        d=1e100.net; s=20230601; t=1768410568; x=1769015368;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=sLZ+PvAjnR7DEP7BUAREJ2OVzk7/JAMCQdO1bdqxiqQ=;
-        b=hV0DpkkQnvwlHHi0AvkfxWkFylzToKHsPdK0xl89wqtexKMdBlnbFoElIZ2ujX8rgY
-         QjpsYHTrx6qZtdJOk/TDlAxbveRiDfK01Vjz3TIhOYVmfsmHDu/62IZC/ttse5aTmAJP
-         U697OdQaumCB2BIpzFl7C7g8v6AWER1bE1cg4yVH6zp5OuaME9jl/DpnjHt7e5kJ4HPR
-         uV6cJz1s+AJkleGmLEVyKyUAMvh8gR343FhNSaHqvhRq15jP9AvjCJ92i/VM2asbBr2/
-         KLVtTlhPJ2cft77W7SQejv74RaMKcZdJW0w5QolIh0CqIoLtErMvzYC5QJ8f8iu5svF3
-         lOSA==
-X-Forwarded-Encrypted: i=1; AJvYcCXINFL90Zqj0IvzzWf7qLBO9st4svAzOUH+SWWqbJn1OLPCeta+eHirdaFR+PIFsa0IRLU/amQd2y3y@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoyT3aB4oqC/+VL6fBHwAePBYcj5LQ23uBKYN9604YDdfn0uYA
-	ZbGZhjhtpT8/QGS0CLAur9FMJCHknbeqaZV8EvkOoN5/A92uaF6eMS7vvASEGjC+wOA=
-X-Gm-Gg: AY/fxX58qZnbASm46rGn+rrVrW+ORLr2SYQhjVCGoS1QgJlPW+HaPGumYUDO1PCVYrZ
-	z7xqHi6K6cG2yxjCAU5mmm2imucJmtrPSqVuaodxxAzHLAetAxJXv982KiQ4XdRhKal/5WO4SfJ
-	qTYhtwEK2rFYnKN81BaHVImIzrNQq3ekaG3dVQT3HUqPCSzQmJaVustCZMWJcCS7hCdYG9XFCZO
-	GFE3PbOZyDw4sor+cX5xd68NYJwBb4NUE6ExfgXTAHCACD0VCGbJsFAkZ1jWw2HrIW98x8ZZNsD
-	wlLBbZ5du8351ciDz6+zzuXrC6qj7zd5t3TiNfhEYwYFQmPCLJkLz+ICPTjLFg63C2P45Cimo2j
-	MOZm7eRSAdx/sIOruks/UbuuFzQr3H73j2qUDwjC012Pabu9ZUW7NForYSuBpGER3FS1d4KiwVt
-	ZRuX+QulT0tQ==
-X-Received: by 2002:a5d:64c5:0:b0:432:84ef:715b with SMTP id ffacd0b85a97d-4342c3905dfmr3372260f8f.0.1768410565786;
-        Wed, 14 Jan 2026 09:09:25 -0800 (PST)
+        bh=nVTJms2ugVSwB4TUdsv5u4am5qhw9xa03tN0c+1spsY=;
+        b=UJ0Z7wqnkGbpA5W3uldozml2H6fPI+HyIvGt0aUZhctoTz6aqyfKG8HzdxY/8wdlDU
+         XLFC95YUHJA8RFFhctchh93j+aCdOslbqXgPWumqRg6dUCW2xunF9vqH1ywOlLFRtJ4Z
+         4qYcsCpwcr+IC6KY5fWUP9buQMKpqUzWZSVxzsvSM8bAIq3nJouiZCI71MnQFznwc8EO
+         rmwI7XcwqqTPUyQVwyeuUK8e4htUl/VvAlWfuf4jWHrjmBVq8N7pDw3IGZBXn0wyf+1C
+         7COiK4hm93ze+y8CzMohHjzdk5EmLorT0PdoREWPRm9q40VpWlQzC2AcTyzsLyvFpAUn
+         O6cA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpCadWRTZKXU2IC7Xoj1djOplXW/WH8HzurE4qE77V9G606uq92ghRZl11URtYUIjhD2Krgb96tOJ4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMgMB4/r5eC/y8cKmfsBnABPy90i8VSgDqf5zbfHcafv3FoJby
+	oSULLx5Jjwyt/N+Jlp1Tt7VXuO1hi56pd7/UvHUlOXHoJS6/hmx3+Le4YI4xdqyfkL4=
+X-Gm-Gg: AY/fxX4ypY8Iaaf52HAKrVr4pNc3on71P6lumTW9r7cn3YrfZ5FqnHkyuyY+JPogL/F
+	DXf6z/jJh2E+GugXE1ocW6+Pz+EdWi8GmUklQhve1uEgT68Sh6OR2FQWUFNqRIOW8T+0UWcvZ9V
+	xE8/ALd2ZM6WP/sj77RdHx89vkCNFrGbS8hf715M31dSuOTETg4f6Dl2u+kZGnmJ+80UF80H5mI
+	OyzmWSHb+y9PPv+gt1buR9K3dlzdt/ex0YFcuwNjJyPsPhCsBnV0pZJVU4+RIyzhGjeuZIczOSL
+	F1iy558cL9zlR6KiO3u5mSAbffsWO90yq1839klYhXGB9ODTeUVClRekkT8BfM5z/e3PLQf0yyy
+	lNvWrmxB2MS4gI4NsSXptPcndRVa9YO0lt1SbAzhgYFX3Xlsmv3CgCRkdoDrOCx7JH0P/rd1b3k
+	OrYwGCQAQzPQ==
+X-Received: by 2002:a05:6000:18c9:b0:430:fdc8:8bd6 with SMTP id ffacd0b85a97d-434d75be281mr140960f8f.31.1768410567832;
+        Wed, 14 Jan 2026 09:09:27 -0800 (PST)
 Received: from localhost ([2a01:e0a:3c5:5fb1:d3d1:7ba4:2f56:d18a])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-434af6d909fsm356157f8f.31.2026.01.14.09.09.25
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-434af64a778sm434244f8f.3.2026.01.14.09.09.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 09:09:25 -0800 (PST)
+        Wed, 14 Jan 2026 09:09:27 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 14 Jan 2026 18:08:51 +0100
-Subject: [PATCH 4/6] arm64: dts: amlogic: gx: assign the MMC signal clocks
+Date: Wed, 14 Jan 2026 18:08:52 +0100
+Subject: [PATCH 5/6] arm64: dts: amlogic: g12: assign the MMC B and C
+ signal clocks
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260114-amlogic-mmc-clocks-followup-v1-4-a999fafbe0aa@baylibre.com>
+Message-Id: <20260114-amlogic-mmc-clocks-followup-v1-5-a999fafbe0aa@baylibre.com>
 References: <20260114-amlogic-mmc-clocks-followup-v1-0-a999fafbe0aa@baylibre.com>
 In-Reply-To: <20260114-amlogic-mmc-clocks-followup-v1-0-a999fafbe0aa@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -95,20 +96,20 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2593; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=9p95wrx4RVIpeGNcY2S7+iJZeATm0jJX+K1/uJDs0y4=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBpZ825kW94g5pcZvsr+i9/i6GRnLfGgNa7pFFhK
- lmKhfwUVT2JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaWfNuQAKCRDm/A8cN/La
- hZVBEACqMuM881Nt8EJivf+CishVsuj4EC53+9mHxQCCW7WYXZtVp7tlD2DS5+2RAgJoYqTkLOl
- qCtSY66mv8M3w6UF8gdlisZrLCpDIQ34bZcnowKSd6NZESLyM/nv5jCqOwTNjjPqoATxHoH0JBD
- nZHtINboSwbmn8feJyOdDaZ71nk7evUI2FIZmXUr/dsMW+vs0X37K0blL42/6kBt8HDWV63J1Y1
- IVacEkKDMqfjHBxz4uvWbl0uG8KOur1oElrsC5JA08kVl0FQ1uSBJJylIf26fq/Hj2ULJjUcDTi
- 0rz7EqE35lpGWYwa6b78hrixY3LWSYVWPVZkJb61lJ4QpqRc68N8pa0SmScoXw24oVF4FJRe5tO
- jDIq7hfL1XquYyKg8vVpRsUqxFl5B4uLP7hrHiRRzCTFTVbm9ncUsV18UaNGHSLN97Ix1SH/yev
- CSfSi9n4HtaOa1hbgQFUlFOT2hA+hQdky626J/D4NHNUsyyRXm46TP7QMqTaKDfnmYr4U8Cjr2a
- fQmnGevOmt4L5R2jqr3h1l6pctbu1STvfSVHagoyzVlxl26Tkln4YZQsdcB+YpSSt00Ee91jhzr
- 7l8plfEx05/qUlV+VuqTEBNuozgSTCtlCmRaF33Av931U4wTvOvb3y4NMGFGrH5SYn2LXKlNZ3r
- 897NydBJCJWlL4g==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1323; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=6VYRsSlr+k3OtpRissBvC6EiliXJvLY5cMYIo4c8bpg=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBpZ826pKxtzMYX2hRhOSi+COd2s6Q7mxDZi9skR
+ j0dbAR/fPGJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaWfNugAKCRDm/A8cN/La
+ he+tD/0aw/vBvgqUMtpCqI5tRIgqz2YnwmpvwR8eyb3iwcXXyT/A7VwGUoVwwXXA9ekryGEAIjA
+ 3syJdJPHjO2J4xbtU4ipSLSncT5RZWsbYZHKg3Q8vWyYBNF7Te9kYJHGWOo5W6p1lX0zTMY4Atd
+ T8oLI0O8pvKnoT7JS0Sav7JLTTMVKyqnf5PaEJUjc1upbaCDENsGoZaHcjEAuzx33DQfzg2/TeS
+ ZYYbF66Ine4lwb1k4Du8xWE1eNRIH7cU9EeCBoRPj25/Bj0/hH5UUD1/nC6b0grAnDauEexnTSe
+ RXIT1dSuAjAOa2D24qxpsoR6N+sXv9Une7lckZ33wkMD6dpsNchoGbyaYRr5qlVdLF+AawbO9lh
+ i76T9uSWg/+XGI0rYTGVEo4zm1v6kqh5FDqTbsDmaeKaTri95GMOXA0lMm0neLs9Il6EuPGDO6v
+ kbLST4S/OG/T1aj1YZ680WRWAliAwrTC7tPmb212VKOQwMn4rbINb5CeDsJKvPrZVKJTcI7B8EO
+ W/RayeOd1hBCZ/8Z3zC3cAu9jDhbV0gZow76+T2/ThXxAbpkEAMlZK07py7bT38SKUePb5ADKVU
+ ONznBg5SIKrwyoxr0Hk+5MjYtDAi+umj9t1TZn7D99KraBVlAXpJvQBTYgpFdxV6xIM1Uhc8hfK
+ kQZ2w2qmG7lSGjA==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 
@@ -118,81 +119,36 @@ rates such as 400kHz.
 
 Assign the clocks to make sure they are properly configured
 
-Fixes: 50662499f911 ("ARM64: dts: meson-gx: Use correct mmc clock source 0")
+Fixes: 4759fd87b928 ("arm64: dts: meson: g12a: add mmc nodes")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 9 +++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 9 +++++++++
- 2 files changed, 18 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index f69923da07fe..a9c830a570cc 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -824,6 +824,9 @@ &sd_emmc_a {
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- 	resets = <&reset RESET_SD_EMMC_A>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index ca455f634834..0085612cf735 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2443,6 +2443,9 @@ sd_emmc_b: mmc@ffe05000 {
+ 				 <&clkc CLKID_FCLK_DIV2>;
+ 			clock-names = "core", "clkin0", "clkin1";
+ 			resets = <&reset RESET_SD_EMMC_B>;
 +
-+	assigned-clocks = <&clkc CLKID_SD_EMMC_A_CLK0>;
-+	assigned-clock-rates = <24000000>;
- };
++			assigned-clocks = <&clkc CLKID_SD_EMMC_B_CLK0>;
++			assigned-clock-rates = <24000000>;
+ 		};
  
- &sd_emmc_b {
-@@ -832,6 +835,9 @@ &sd_emmc_b {
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- 	resets = <&reset RESET_SD_EMMC_B>;
+ 		sd_emmc_c: mmc@ffe07000 {
+@@ -2455,6 +2458,9 @@ sd_emmc_c: mmc@ffe07000 {
+ 				 <&clkc CLKID_FCLK_DIV2>;
+ 			clock-names = "core", "clkin0", "clkin1";
+ 			resets = <&reset RESET_SD_EMMC_C>;
 +
-+	assigned-clocks = <&clkc CLKID_SD_EMMC_B_CLK0>;
-+	assigned-clock-rates = <24000000>;
- };
++			assigned-clocks = <&clkc CLKID_SD_EMMC_C_CLK0>;
++			assigned-clock-rates = <24000000>;
+ 		};
  
- &sd_emmc_c {
-@@ -840,6 +846,9 @@ &sd_emmc_c {
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- 	resets = <&reset RESET_SD_EMMC_C>;
-+
-+	assigned-clocks = <&clkc CLKID_SD_EMMC_C_CLK0>;
-+	assigned-clock-rates = <24000000>;
- };
- 
- &simplefb_hdmi {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index ba535010a3c9..e202d84f0672 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -894,6 +894,9 @@ &sd_emmc_a {
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- 	resets = <&reset RESET_SD_EMMC_A>;
-+
-+	assigned-clocks = <&clkc CLKID_SD_EMMC_A_CLK0>;
-+	assigned-clock-rates = <24000000>;
- };
- 
- &sd_emmc_b {
-@@ -902,6 +905,9 @@ &sd_emmc_b {
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- 	resets = <&reset RESET_SD_EMMC_B>;
-+
-+	assigned-clocks = <&clkc CLKID_SD_EMMC_B_CLK0>;
-+	assigned-clock-rates = <24000000>;
- };
- 
- &sd_emmc_c {
-@@ -910,6 +916,9 @@ &sd_emmc_c {
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- 	resets = <&reset RESET_SD_EMMC_C>;
-+
-+	assigned-clocks = <&clkc CLKID_SD_EMMC_C_CLK0>;
-+	assigned-clock-rates = <24000000>;
- };
- 
- &simplefb_hdmi {
+ 		usb: usb@ffe09000 {
 
 -- 
 2.47.3
