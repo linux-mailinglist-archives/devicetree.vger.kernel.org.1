@@ -1,172 +1,128 @@
-Return-Path: <devicetree+bounces-254879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF6F4D1D715
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:16:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2777ED1D637
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:10:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0996304A123
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:05:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A2F7D3018CA9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:06:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F1338735C;
-	Wed, 14 Jan 2026 09:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2423816EB;
+	Wed, 14 Jan 2026 09:06:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G2+Cnfsx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ex3xWVz4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 835033803CF
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 09:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89BD537F11D;
+	Wed, 14 Jan 2026 09:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768381540; cv=none; b=sXPA71Qw0A0jZaaRGd1tYRrlzEsBtYvFSQ09SVnef32D8l40Hw5b+B6tv/gq1evONJC+GJmx+vaWLqx0Wdo1Mr6Ku16Tk+3z/eJSnvrkCcMohy1k9ZLev63ttT0Tz6nYaQwpyTHLl4zRYYLZ0t0/3toUEBj9m7l2n5osEtSh07w=
+	t=1768381575; cv=none; b=ajzvzu9/r/ciH9cmi1f5n7X8CBPwd3RxHFLpET8zWc2gPdhrav/GNZnBYW6/kcdcjQL9y8vtwe2m1BW6lXnirQVSXeLksTQ7QfjcvQAvb8E8asFIHlf3LvRkamuYnh7xdOoJT02zCOCLBNsNoyFDdWntoygWfV8qIdmCa3ZWhEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768381540; c=relaxed/simple;
-	bh=YR4DwG8pCplYBUPao0aXPNwD6nlZciCukQORdqVQ6y4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Nlu7IRgNbajxQ2GJfq9E6nX6HOZ5AUW9aKNMy3IlORJ103GnsM55HYzMppCNOGHOPGuqp/RXUYuTMeSvas13NfXGHuDJnqLYtlvn5wJW+m1+/8YlqL4HvOPj1Rqk+e4NU7B9V3u2jp4IROCsTjAfndNd35yE48lcScc1ypznQI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G2+Cnfsx; arc=none smtp.client-ip=209.85.128.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f67.google.com with SMTP id 5b1f17b1804b1-47a95efd2ceso71168415e9.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 01:05:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768381537; x=1768986337; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XwG15GopvSaIUizczqNnDWH98rC0KVKMXbS2DOpVO8A=;
-        b=G2+CnfsxWbzk1l3cGpMDM3AXFv01IOiKrwKMuBI+3j3YYdP7LnVSCjLCnyej7SQ+Bq
-         GGVIz+M2l2YPnyci3+geOtoQRhTomB4Ogd42rHKD8jzfFPtsfyiXOdyVgwK5gsMEXl2e
-         bAYcvAjENznlqIDYsmOCjeO4SYUMBuwJ81zeVmLj+Ooap1h1WI0i/3rfFk/wWW5ljJVh
-         BoDFXvCJgvuTKWWDF/f4l4Hr+9oH+eNeJzB5/G8LTbptvwrIA7zLs4SOCjsxmtAGMRO9
-         rt5ExSYd5za8Lvk5fmQLqd9E7rV6ZShb+0P9UCTAd8OhEXKDIy6CclzUNmX5kl/PTT/7
-         lbhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768381537; x=1768986337;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XwG15GopvSaIUizczqNnDWH98rC0KVKMXbS2DOpVO8A=;
-        b=jIRt6en1+2pDSeLrHBz1f2D9kQ+AePbQeLh3g2N2sicrM6ZUIYvDJVEGXDzCjFYyWL
-         nO/rnjwHp+wvnWsbyOdiPu+ZvHmi7KdntGFiTvIopgYM8bMK2iLWoJk6H3vKCmtEwZ1j
-         wcJwa2kVev44kAddFzNDtCoGzzdMvkhfigdRF1IBWyFo2w6udywrz/2RHr9mOI0L7KWk
-         G1WtzuBAvcY4TU2M7cGwlaAU6I7gDrpzQxxdOrolL1UlRZkdlD/tL53RikeeaKGKzl4A
-         ByZ3gGxRRxd+M8E7l3MIYKlt8gK3tTJk8brwCC2mUaahz+uoC4vmJrt6ocTEIqisoAz3
-         JBTQ==
-X-Gm-Message-State: AOJu0Yz/ow95mnKZGhXW61YCy/3v1IR0PkNA2Mfi6FthiEKTubNbyfZg
-	r7aT7uJ1GTPiR5NnIgdgDz0nKnlP/2w7UNaljRNbvtntVibObFH40pOGQYTDFoueA1A=
-X-Gm-Gg: AY/fxX4jvCFaWiCaC7JFHpEZ0Zm7mUKk5FzXab+QHdNj4lrqa0ERsvndK0Qs02xgy01
-	/dbcn3ZldAjAwOJ3ddHap4lP2+IZVrB83ok23ePD+IRQQzy4yAYsyg6YXC0WY8g9zyNu9ARzg72
-	eZE18YKcArLnsYoKuwo3oYbGTzVuRdYfCdFPrqBofBzxnl6Qrkx3Qmn4Z4Bzf3ZSYhSIa+sE4gB
-	mulf5tHHwBUFO5CHSaBE+FhYq9YqZZkvrDRc9C8gthTpcSKf4u30+vZkqQiXz8FoQiofaL6oBsF
-	A74WfCeLdRJXr3ZDwU7RIUUksOio/FKcW4Xr9xXsHAM224TLCUtNVpb8FIdexsz82XE+TieS4qu
-	hkH7PCxJQmT8wynUqK23vIEJVFdVrv3hftoyl/052sdu2awgPrIdSngk58Z26TAs/oBnHl/NIKE
-	pfw6zici8fOXbW2CTgunwOU5bvtBy9pVS9JN6sYPTbhwpPKesdLIJRqwc8O9vtciWWye+rIwQFr
-	g==
-X-Received: by 2002:a05:600c:4446:b0:477:9ce2:a0d8 with SMTP id 5b1f17b1804b1-47ee47222f1mr14772495e9.0.1768381536276;
-        Wed, 14 Jan 2026 01:05:36 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b357:7e03:65d5:1450? ([2a01:e0a:3d9:2080:b357:7e03:65d5:1450])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47ee562d7aasm17655715e9.11.2026.01.14.01.05.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jan 2026 01:05:35 -0800 (PST)
-Message-ID: <d55bd5c6-d5f8-45d8-9c6b-22e401f6a7ff@linaro.org>
-Date: Wed, 14 Jan 2026 10:05:35 +0100
+	s=arc-20240116; t=1768381575; c=relaxed/simple;
+	bh=KYdqP8j7qXNdTgDTk0iu/82mcAvoZxCH5aKihyu+xOc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=p9UghNpoemO7S/h400Zp77sdvWCBpe+f9RTg3GpJ8kQYUimSsjAo3AWXOBkaqYL0jZJjdzg4cV9/c0tx0EM8S8MlnuqtmzqiqR6/KG0AjSQTahIrfa5rrxyXClhE8Ar/ZQXNlAlaNDdZxwljb29CqR6obf4tkXY0/29UPxnLIFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ex3xWVz4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCA73C19423;
+	Wed, 14 Jan 2026 09:06:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768381575;
+	bh=KYdqP8j7qXNdTgDTk0iu/82mcAvoZxCH5aKihyu+xOc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ex3xWVz4mwdvwZv76QvlignXUolEw/jXpH03zTS5y2eFEr0iN6scYiHfpWVynD+yU
+	 SXJCPRixoJ60n5OB6ZdMyYkk95XIf+pzUS5ZJXD1ZluQFBKMFuuqrjuks7WERTU2ci
+	 ZK0n3AU0E+DPp1bmyDPkiqRAcOebGbVfr+PZ8dvLotmIgJUj+K2qxgfTF/+NlOItnT
+	 uW59IDB68jvtGn6IFRmpsHVrH/oDA3fvoXIjOXMhnmiTP4jd7lckaaM/4zCAkpctEX
+	 9PjB3YBCUbXyY9EMUtbnXbfIBDXOPx3H2LacyM4ougyvjjH2yXMOmJ5twKzQ2/hZyi
+	 mthw+5NyKvEig==
+Date: Wed, 14 Jan 2026 09:06:04 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Sean Anderson
+ <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject: Re: [PATCH v5 4/9] spi: add multi_lane_mode field to struct
+ spi_transfer
+Message-ID: <20260114090604.031ed4f0@jic23-huawei>
+In-Reply-To: <20260112-spi-add-multi-bus-support-v5-4-295f4f09f6ba@baylibre.com>
+References: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
+	<20260112-spi-add-multi-bus-support-v5-4-295f4f09f6ba@baylibre.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 1/2] arm64: dts: amlogic: s4: assign mmc b clock to
- 24MHz
-To: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Nick Xie <nick@khadas.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260114-amlogic-s4-mmc-fixup-v2-0-7e9ab5f12286@baylibre.com>
- <20260114-amlogic-s4-mmc-fixup-v2-1-7e9ab5f12286@baylibre.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260114-amlogic-s4-mmc-fixup-v2-1-7e9ab5f12286@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 1/14/26 09:56, Jerome Brunet wrote:
-> The amlogic MMC driver operate with the assumption that MMC clock
-> is configured to provide 24MHz. It uses this path for low
-> rates such as 400kHz.
-> 
-> This assumption did hold true until but it now, but it is apparently
-> not the case with s4. The clock has been reported to provide 1GHz
-> instead. This is most likely due to how the bootloader is using the MMC
-> clock on this platform.
-> 
-> Regardless of why the MMC clock rate is 1GHz, if the MMC driver expects
-> 24MHz, the clock should be properly assigned, so assign it.
-> 
-> Reported-by: Nick Xie <nick@khadas.com>
-> Closes: https://lore.kernel.org/linux-amlogic/20260113011931.40424-1-nick@khadas.com/
-> Fixes: 3ab9d54b5d84 ("arm64: dts: amlogic: enable some device nodes for S4")
-> Tested-by: Nick Xie <nick@khadas.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+On Mon, 12 Jan 2026 11:45:22 -0600
+David Lechner <dlechner@baylibre.com> wrote:
+
+> Add a new multi_lane_mode field to struct spi_transfer to allow
+> peripherals that support multiple SPI lanes to be used with a single
+> SPI controller.
+>=20
+> This requires both the peripheral and the controller to have multiple
+> serializers connected to separate data lanes. It could also be used with
+> a single controller and multiple peripherals that are functioning as a
+> single logical device (similar to parallel memories).
+>=20
+> Acked-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> Acked-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+Fwiw looks fine to me (and so a tag mostly so I don't read it again in v6=20
+if that happens!)
+Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+
 > ---
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index 9d99ed2994df..62538fd9db6b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -838,6 +838,10 @@ sd: mmc@fe08a000 {
->   			clock-names = "core", "clkin0", "clkin1";
->   			resets = <&reset RESET_SD_EMMC_B>;
->   			status = "disabled";
+>=20
+> v4 changes:
+> * Shortened commit message (useful info will be in docs instead).
+> * Added whitespace to create clear grouping of macros and the field.
+>=20
+> v3 changes:
+> * Renamed "buses" to "lanes" to reflect devicetree property name change.
+> ---
+>  include/linux/spi/spi.h | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+> index 7aff60ab257e..eba7ae8466ac 100644
+> --- a/include/linux/spi/spi.h
+> +++ b/include/linux/spi/spi.h
+> @@ -981,6 +981,8 @@ struct spi_res {
+>   *      (SPI_NBITS_SINGLE) is used.
+>   * @rx_nbits: number of bits used for reading. If 0 the default
+>   *      (SPI_NBITS_SINGLE) is used.
+> + * @multi_lane_mode: How to serialize data on multiple lanes. One of the
+> + *      SPI_MULTI_LANE_MODE_* values.
+>   * @len: size of rx and tx buffers (in bytes)
+>   * @speed_hz: Select a speed other than the device default for this
+>   *      transfer. If 0 the default (from @spi_device) is used.
+> @@ -1117,6 +1119,12 @@ struct spi_transfer {
+>  	unsigned	cs_change:1;
+>  	unsigned	tx_nbits:4;
+>  	unsigned	rx_nbits:4;
 > +
-> +			assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_B>;
-> +			assigned-clock-parents = <0>;
-
-In this case, assigned-clock-parents should be dropped.
-
-Neil
-
-> +			assigned-clock-rates = <24000000>;
->   		};
->   
->   		emmc: mmc@fe08c000 {
-> 
+> +#define SPI_MULTI_LANE_MODE_SINGLE	0 /* only use single lane */
+> +#define SPI_MULTI_LANE_MODE_STRIPE	1 /* one data word per lane */
+> +#define SPI_MULTI_LANE_MODE_MIRROR	2 /* same word sent on all lanes */
+> +	unsigned	multi_lane_mode: 2;
+> +
+>  	unsigned	timestamped:1;
+>  	bool		dtr_mode;
+>  #define	SPI_NBITS_SINGLE	0x01 /* 1-bit transfer */
+>=20
 
 
