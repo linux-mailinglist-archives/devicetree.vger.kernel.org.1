@@ -1,144 +1,191 @@
-Return-Path: <devicetree+bounces-255149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0495D20252
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:18:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DD19D2026A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:19:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E6BA33004F3A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:16:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 08B4430628F5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E6639E6E3;
-	Wed, 14 Jan 2026 16:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30AC3A35CA;
+	Wed, 14 Jan 2026 16:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="ozrHSmMY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="UglqIB+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB4D11CBA
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 16:16:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B4C11CBA;
+	Wed, 14 Jan 2026 16:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768407404; cv=none; b=DaTFsYvvhFAJV9geKpCRBRR3I0jm1BIRlRglXMVEIQw0lW0xp8KCgvqS6etqV1EVPwpiigfqW/1Hm8d7cd42KM8l2p6zF4CEw7VoTXS9ULNo4IpwoT4tEavA1+wrj7/TxLqlrhO2eVp2qcShkQZLkevMMI+qRfYpfgz9KABWDpo=
+	t=1768407414; cv=none; b=e+U2157A2TzjWFW/tMCQV/XC2LVD4H5A/iN1i8g2tbIlbtLtem28YH2cOjyYXCFVLBb7zhCr1w0CDbJ8TMTpZC5mLJBV0wVDQtll3PTm+YJX7djkGovqEINZsO+NvXIcQdY9Kix6ifR4YsZo5yT1FqHR5/Q7rMnmjG5AQhatPHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768407404; c=relaxed/simple;
-	bh=ysy/PvHHpOMwEi+sFwwevbjLx8uul5aJv+benzpg7Hs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZvjLbvS3iy1hQIMJSljJTmVtXVvilbwtxImy56zhaL0B289AJMTCjwSeq2Ck1B/OdtzR0eEcJxLoiaNgcxHq8c0WT3YWPuMOVP4UhnnfdO0kh6z6oHRLMkrDlDnpcs80Bd7pj0iKlsLWrxXrhlFcPrptKRl6bpkoutipEGJoYtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=ozrHSmMY; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b8708930695so332566b.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:16:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1768407401; x=1769012201; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tWjzrPidhfyZlS+0i9HgQ4Dnodyf3ucVLrFNdxloGQU=;
-        b=ozrHSmMYAXbdX/IXorviGkn8loFgIU+PvWQkqeh5RHGOU2lpI8oMMXIDmSdw4pAfL8
-         BDIyF19LDenFP3PZNoAPcRZRAlu7AuUCjJKYwZEOPMxiDChryvCybaGl1E5xG3Zge/Fi
-         o8EdS0GWmKVs5sfSFukixvb4RoXW/vZmv/6UM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768407401; x=1769012201;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tWjzrPidhfyZlS+0i9HgQ4Dnodyf3ucVLrFNdxloGQU=;
-        b=HzAhQxuj3o90QhOQUW16M1Tih+Cas7gzvWrMJvC0l5nIA8t0QY3Vt+7ifeIQFpEKkN
-         OPcgsu4m0JT2M/W57Kq0kW5xBwrKpLC/G2gfTtr4VDIiSLUszvqjqMVGUR9yyddqBi6t
-         ++Qz3wWUFTdcsrJZ7p66BaxbJMjj4135aNdcjn3KvULTozP2nkbiVzMklN8YUEJDbNl3
-         HHxkg07Ru7p+iSm7ARh7eCzvMkugCPbh/u8MUPhxYt/Mn7zCRLrNExo5qQ9h6J26kAxP
-         G7Gz3y30RccqNYNXbWF/+NT+UjCAFIUGNcUtji4twyNfw5kJEhcCSY6ccYCHRY5LIUry
-         x2aA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8JuvMY/FdSgoNr5+hvEGuorOdvlWNuWuO1dU4LJ5o65Cmqja7JuezbGTRXBY9RQJVhx9wGRFkVJuQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlqLIz0phNfVPqAHCszZ4MV/01nFNo7N4OGJH7eW+OvVDF0C29
-	C3NhfJWAoPfBEmSAbUhBiULBeWFDQLdDuuuY4EPDP7uz0OSkjfmMLrlGzwjPmWOEYko=
-X-Gm-Gg: AY/fxX6Fsw/GA3ALdCcWaI95tZuNWODYMAnXeQP1tQgnMaWLJg/ZmuE7ucykh7aYxdY
-	3RQtl6/CTEXHx2wcx8vea+j8/zBKvK8ecu566aDjR+xMFtYqwdFyn0jjZlG+cmgRMgAuJ9ArkFe
-	1Uvi8MwcF33JZkZNSmdLbF1wl5LTL0Aeg3XqA3PolEHRAARGb/a2ffFjUySj6iGnAyTaUd6nh9N
-	4ASbBnlA2OikO6G9HdMoB0eadSxOgeEjFSHW9wQtnJ8pj3Zfvvt/bswBx7v9+MRGo6JMxClnfIn
-	/NOqZyQi4s+dU3VqHstvEmP87TTsA1OmDyhwkIGeVhe7IJp0O9nU+FYAyZx/Y1rQmOOL/B2moSG
-	beip+2iZskrLNN048kidGnlE7Uj21vOK7tg/8frWP/iGbXyecQUAl5brXhnnw/OjIT1QUKAVSkU
-	6XEs5D3WoI2KT/ByWB2Q1vgyiHMyUxPKGbP0HMKvLL5bqDlppoC1sWH6Y/Hfp9eUobZh1hB26r0
-	SBTyIC2C3DwdJY4GEKFhufi5KYl+Jh75MQ1ABxSf5WEEz8STWAzfuU6dzXv81Fo8ZOGMw==
-X-Received: by 2002:a17:907:d23:b0:b87:e58:e37d with SMTP id a640c23a62f3a-b8761283a13mr272159166b.48.1768407400930;
-        Wed, 14 Jan 2026 08:16:40 -0800 (PST)
-Received: from dario-ThinkPad-P14s-Gen-5.amarulasolutions.com (93-47-52-235.ip111.fastwebnet.it. [93.47.52.235])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b876dd0e9ffsm152281566b.37.2026.01.14.08.16.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 08:16:40 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+	s=arc-20240116; t=1768407414; c=relaxed/simple;
+	bh=Lu0FQTjo6owgFDAe5auJaLSofFYoxVkva31bfcDtA9c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tZU5FOpA6cP7nam3X6kKmX+tyZcjMVos1LX/ojnu5dFVFtMSm93CsHV9z4BTpVG6pjaSpnmigGRDQ+V5QgPn5lTFl7tnGiDW9yL6l2TfayP/BZi2CKojvpwXIYVebTdMKkOyyZ5wG90j5WK434s14IjGWhJL3qNz+DxPEM90OFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=UglqIB+1; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=jDEZj2tQ/lWE441pwvzkJV5WL54sUoxA3nZX64TSvWs=; b=UglqIB+1S2BMn0y/oTec/Afhcf
+	yhA5dUCtFPFLb/p3Om/n3BSg5GuABbW0u7WsnGhQfh25a6uF/CH6zjb+LpEDzP7RQBsKWjKoQKTcU
+	FAVu2lNhugMS8uZCf/X+urcd9gkmUMfVIfWEreUbEXt+/dWDSfUh38OEszcOlHG1Mi0mmS0DT5AT3
+	B/Z1SSOSOcstJIDGAWbP8iEIvaxp7CLyuKt3sTuW9g6ZQLRNbwgqP+8VE6On97ZJxB8wUzIcCbDuW
+	ga+f5WTl2BgzLwOknYY4qVSP4BmbGvyj/PpVGJTlBgnscypeUWszsgGhB9vvttXMcWfGHXN6nnfiP
+	AgGXLAQQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:52560)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vg3Xi-000000000M3-0AFG;
+	Wed, 14 Jan 2026 16:16:22 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vg3Xd-000000001mY-0K7W;
+	Wed, 14 Jan 2026 16:16:17 +0000
+Date: Wed, 14 Jan 2026 16:16:16 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: SHUKLA Mamta <mamta.shukla@leica-geosystems.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 0/4] drm/panel: ilitek-ili9806e: add Rocktech RK050HR345-CT106A support
-Date: Wed, 14 Jan 2026 17:16:15 +0100
-Message-ID: <20260114161636.1076706-1-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 1/3] net: stmmac: socfpga: add call to assert/deassert
+ ahb reset line
+Message-ID: <aWfBUPxvykOdygLO@shell.armlinux.org.uk>
+References: <20260108-remove_ocp-v3-0-ea0190244b4c@kernel.org>
+ <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
+ <aV_W2yLmnHrTvbTP@shell.armlinux.org.uk>
+ <a2dc72ae-0798-4baa-b4d2-fa66c334576a@kernel.org>
+ <c18fbdf0-b8e2-4fa7-8bb7-a3fed8960970@leica-geosystems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c18fbdf0-b8e2-4fa7-8bb7-a3fed8960970@leica-geosystems.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-This series extends the Ilitek ILI9806E panel driver to support the
-Rocktech RK050HR345-CT106A model via SPI.
+On Wed, Jan 14, 2026 at 02:09:27PM +0000, SHUKLA Mamta wrote:
+> Hello Dinh,
+> 
+> On Arria10 socfpga, both reset lines i.e stmmac_ocp_rst and stmmac_rst 
+> are needed since EMAC Controller on Arria10 supports Tx Rx FIFO with ECC
+> 
+> RAM and as per datasheet[1]:
+> 
+> `An EMAC ECC RAM reset asserts a reset to both the memory and the 
+> multiplexed EMAC bus interface clock, ap_clk. You should ensure that 
+> both the EMAC ECC RAM and the EMAC Module resets are deasserted before 
+> beginning transactions. Program the emac*ocp bits and the emac* bits in 
+> the per0modrst register of the Reset Manager to deassert reset in the 
+> EMAC's ECC RAM and the EMAC module, respectively.`
+> 
+> [1]https://docs.altera.com/r/docs/683711/22.3/intel-arria-10-hard-processor-system-technical-reference-manual/taking-the-ethernet-mac-out-of-reset
 
-To achieve this, the current driver (previously restricted to DSI) is
-refactored to support both DSI and SPI variants independently.
+Let's look at exactly what this is saying.
 
-The series includes:
- - A refactoring of the existing driver and Kconfig to support
-   multiple buses.
- - DT binding documentation for the Rocktech RK050HR345-CT106A.
- - The implementation of the SPI-based driver for the Rocktech panel.
+"An EMAC ECC RAM reset asserts a reset to both the memory and the
+multiplexed EMAC bus interface clock, ap_clk."
 
-Changes in v2:
-- Introduce DRM_PANEL_ILITEK_ILI9806E_CORE hidden kconfig option.
-- Split core and DSI logic.
-- Restore vdd-supply as required for both DSI and SPI types in the
-  dt-bindings.
-- Dop useless settings in case of rocktech,rk050hr345-ct106a in the
-  dt-bindings.
+1. Asserting the EMAC ECC RAM reset asserts reset to two items:
+    - memory
+    - the EMAC bus interface clock, ap_clk.
+   This is not referring to any other modules, but it does suggest that
+   the bus clock will be affected in some way, potentially stopping the
+   clock.
 
-Dario Binacchi (4):
-  drm/panel: ilitek-ili9806e: rename to specific DSI driver
-  drm/panel: ilitek-ili9806e: split core and DSI logic
-  dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
-  drm/panel: ilitek-ili9806e: add Rocktech RK050HR345-CT106A SPI panel
+"You should ensure that both the EMAC ECC RAM and the EMAC Module resets
+are deasserted before beginning transactions."
 
- .../display/panel/ilitek,ili9806e.yaml        |  38 ++-
- MAINTAINERS                                   |   3 +-
- drivers/gpu/drm/panel/Kconfig                 |  24 +-
- drivers/gpu/drm/panel/Makefile                |   4 +-
- .../drm/panel/panel-ilitek-ili9806e-core.c    | 134 ++++++++
- .../drm/panel/panel-ilitek-ili9806e-core.h    |  15 +
- ...ili9806e.c => panel-ilitek-ili9806e-dsi.c} | 153 +++------
- .../gpu/drm/panel/panel-ilitek-ili9806e-spi.c | 323 ++++++++++++++++++
- 8 files changed, 576 insertions(+), 118 deletions(-)
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-core.c
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-core.h
- rename drivers/gpu/drm/panel/{panel-ilitek-ili9806e.c => panel-ilitek-ili9806e-dsi.c} (82%)
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e-spi.c
+2. This states that both resets (EMAC ECC RAM and EMAC module) need to
+   be deasserted in order to access the EMAC. This is logical.
+
+   If the EMAC ECC RAM reset is asserted, then, because it affects the
+   bus interface clock, this may mean that accesses over the APB bus
+   can not be performed because there could be no clock to allow them
+   to complete. Thus attempting an access will probably stall the
+   processor. (We've seen SoCs where this happens.)
+
+   As having the DWMAC reset asserted means that the entire DWMAC
+   hardware would be held in reset, including the bus interface,
+   meaning that it will not respond to accesses. Whether that also
+   hangs the processor is questionable, because APB has error reporting.
+
+"Program the emac*ocp bits and the emac* bits in the per0modrst register
+of the Reset Manager to deassert reset in the EMAC's ECC RAM and the EMAC
+module, respectively.`
+
+3. This states where the reset bits allegedly are in the register set.
+   There is a link to https://docs.altera.com/r/docs/683711/22.3/intel-arria-10-hard-processor-system-technical-reference-manual/module-reset-signals
+   but interestingly, the per0modrst (which implies per0 group) doesn't
+   list emac*ocp resets. In fact, there is only one reference to "ocp"
+   on that web page, which is in a diagram of the reset controller,
+   specifically its bus interface.
+
+So, the quoted section doesn't state anything about the requirements for
+resetting the dwmac core.
+
+What it does state is that both resets need to be deasserted before any
+access is made, which is reasonable.
+
+> OTOH, we can't have both scp and ahb rst together while setting phy 
+> mode, since they are basically same reset lines and having both leads to 
+> warning:
+
+So it seems that you actually have a single reset bit, and you have
+that represented as a single shared reset - shared between your
+"stmamc_rst" and "stmmac_ocp_rst".
+
+I notice Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
+doesn't describe the resets, but has:
+  # TODO: Determine how to handle the Arria10 reset-name, stmmaceth-ocp, that
+  # does not validate against net/snps,dwmac.yaml.
+
+as dwmac describes at least one reset between one called "stmmaceth"
+and the other called "ahb".
+
+The only possibility I see for these "EMAC ECC RAM" resets are in
+Table 25.  RAM Clear Group, Generated Module Resets, there's a bunch
+of signals described there "emacN(tx|rx)_sec_ram_rst_n, and that
+table suggests that these resets are asserted and deasserted on
+cold and warm system level resets.
+
+Given that there seems to be no way for software to control these
+EMAC ECC RAM resets, they seem to be outside the realm of needing
+to be handled within the driver, and also should not be described
+in DT.
+
+Maybe I missed something?
 
 -- 
-2.43.0
-
-base-commit: c537e12daeecaecdcd322c56a5f70659d2de7bde
-branch: rk050hr345-ct106a
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
