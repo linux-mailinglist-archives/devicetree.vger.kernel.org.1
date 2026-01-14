@@ -1,138 +1,207 @@
-Return-Path: <devicetree+bounces-254939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1DFD1DDA7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:09:53 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F070D1DF4F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:18:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7FFBD3006AB2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:07:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2637C305A79F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71BC3815DE;
-	Wed, 14 Jan 2026 10:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8616A38BF6B;
+	Wed, 14 Jan 2026 10:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LKy2KQyG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BNTrzFA5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com [74.125.82.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CFC43803D1
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B24F38B99C;
+	Wed, 14 Jan 2026 10:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768385238; cv=none; b=Qyc91ghIDWIpzhYyCeIRRFzy9zmQrS5KkKXs1WhXdn+USZIN9aj+3X5gQlSZqxg9bqUn/fccgSPMbqZQruXF46aZuNBCswEHkcoP93r+3eWrSoy92TM3PtHA86m4rDvU+VZkBCIgoDTnH4dXQzZKn3QkIHEmmfRb+z6Nv+nvQJo=
+	t=1768385338; cv=none; b=eiC7bBW8likCwOYXVO5o8EpXSW2DrBa3RHJ+imC/4S95X+5+Dhasl948NM5jkhiGM+4EOf/ZHcuM/7PhxQNn1XbTwhkbVTche0ZDPe1LCT0Xr4kX7LC6+F117f3ARIHrhTZMF2DC0yUnSssPH0+3YQ0JtRKPHJ+FCOXTgDaio2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768385238; c=relaxed/simple;
-	bh=SARQHB95DbnJH7mQ/XMQN+5pmUXPOC6MVPj5s0bWIfs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X3h+GPBX4S3tehWmNvvvu4UVk56LKxPka+ycEmfQwh4z1MhPGRyo/0V8pZCso1iF917DzWOOanqLah93QNyvwHG40oE5edYF0QBI7pW3NFzn+yxagKgM0egsm6MAmvsZu7lViX+BtvWW6nSTJjOAsOfQeCRAv+XonXtHB7N3pLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LKy2KQyG; arc=none smtp.client-ip=74.125.82.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f177.google.com with SMTP id 5a478bee46e88-2ae53df0be7so14250452eec.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:07:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768385236; x=1768990036; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NQwoLslnjX1W0FyM8XHVf4CZqHjqzYWMX1mzng2p1Bk=;
-        b=LKy2KQyGJSsOWSY7KzVRGyBRXmSDksLJM4Din4HYKr3u15ayl+25+jOjUDq3qTHyvh
-         nV7qP0KXcPkX3NVaaab3eXhZbo5+bXZK5wcWKuaXdJCw+18XDxUqmdcSqiB7xfQgo10V
-         +RUNe9/14F6BPvvpQpHRhfTvEw54dpSm0K3XmAYY0fcCYoVABkM1zbr7hltgiZGOBtCm
-         usxOKT1VcSGRBv4gdg07YhXNfooCYtu6qiScaRPdqroTOabT1MqBGJsbwJvoWz/TL0ld
-         ouhr2lsS2GtcEUFHQKTmtOJ/+OnA5smSt/01BXXobcCMG2wUnkdwpB904HQkpOL15XGj
-         GBrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768385236; x=1768990036;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=NQwoLslnjX1W0FyM8XHVf4CZqHjqzYWMX1mzng2p1Bk=;
-        b=Ws5/NELkRpoNb+4MZLQkNjysokTaThOhbKKxRPzHncSHBO/wNBJkRRLXBnNgqk//A3
-         Y6tOjj/7MiDD5mektsXerIwa71++elpPMzW1z6Cbu+qSgFLtuzJxkp7dpJPm/s2Q7yPH
-         jqGvCLhHztX9A4wj0Zkc+QqFmBVnnFnJG3kkzdkvRgd+1+Bup04gVhW1wKnFsfgTawJK
-         SiXAfbaD6eqG1CCOfWwBPnOrnBGjZutTG/WC1VmLYlpwKouDnZYmhTGE62reaa3FYyxO
-         3ecqdBnWlRiF2ChFOSLvZRhS44ksec4JqOtDDNIf4hu/4v/oHjGqFw4r0ALp+aM+ZpAb
-         N3lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWurSQQ/qofGX5eBahWfetIzNqZ5hYb88lVljNNQrdthKu0PAorPdWE19vA48IydpqEVPCK/J0tSOP6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNckmg2kZRYNgJA6OV7f0rlLntwPVMfOme5ne5sMwrEZHd4nX9
-	MVOzuypRvktEpJlB7X2uLDPLASVtaXOlTBQhS9st+Q0/vJkgMrWYHeMkou9pH3nbEYC3g3ljVX2
-	i4TK80eJVLBa+eiAJBWq2me9MPRhELcg=
-X-Gm-Gg: AY/fxX6t9B17O1yKT3ROT5e3JfHoYxCEIqCDS6RkTaxUyVof9Ab3iSblk6ZvfRO8DXj
-	33g36WLIM97oUE8z+6YdMZhl8LlNN1NIeFHTWFia0Tv61PBmpP9SfqLX9P8Q2IrA4mvtLNdioVj
-	CxGGJMNaf5+gaLkdb5RdHJj8yimQo2Hqt5c7M2g+VUC1mCd85rs6jU7g+XVQAraXwwxW1sTHmH/
-	E/aTLQ77DD8XbMdXSsHPQI8c/3pn7EEXua5MJnwFOoKQkCnKX3Oj7yRg/TSI2RBhlX1QDRO
-X-Received: by 2002:a05:7301:6583:b0:2ab:ca55:b763 with SMTP id
- 5a478bee46e88-2b48f70baefmr2178644eec.42.1768385236327; Wed, 14 Jan 2026
- 02:07:16 -0800 (PST)
+	s=arc-20240116; t=1768385338; c=relaxed/simple;
+	bh=B8uw2XRpfRfyUglpmkl1Ya7toisPuPn6DrBBErbtgZQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=k0vtu/gIcBfrao49WXi03G67WyGrOGCa8fFq7P8GeSIbfj77dhC2VOY+XH0N2absddzAj1gl9aLAPv8jY6zEHPynzpZUNLN8act3KcrbVQsyP5DJeLCFTqa+RrESsPg7FGJuLFxHnzb9W524o7Al5tkU9TMm8SL/nP0shV8mr8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BNTrzFA5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EEF80C19421;
+	Wed, 14 Jan 2026 10:08:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768385338;
+	bh=B8uw2XRpfRfyUglpmkl1Ya7toisPuPn6DrBBErbtgZQ=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=BNTrzFA51xhjj1oY+b5F6GD2I6Wp4R2D0qFwYbaA4LX1F15V4u5IUuGE0PxESM2Ui
+	 S5SY9NHRLXVlPrAwO2jehIMajRzkbcKv9x2qJE43PQwGwcXjuim+4tWDN1HitFkLr5
+	 u8m6nUeKyfWSFpJkSaQ0hzQV0NeAcrI7CvsRwmbW3fXqcgM4e4txjkRQHeECcgM8I0
+	 ckqTEhgDv/0V57jkHfVi5C/zFImjePC3hjABVebsowkbe5THIVe4ixWnm05yOVQSD+
+	 dgXh4Zez3tXAUEWZBhltngStsKXFtRkPPg1c8Og0Fb9m4qxnGJBVUOomeT3kKKwi9+
+	 0mkbmHEr2VDHw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DF207D31A38;
+	Wed, 14 Jan 2026 10:08:57 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Date: Wed, 14 Jan 2026 11:08:45 +0100
+Subject: [PATCH v3] arm64: dts: qcom: sdm845: Introduce camera master clock
+ pinctrl
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260114062549.68954-1-nick@khadas.com> <20260114062549.68954-2-nick@khadas.com>
- <20260114-slick-passionate-mink-216a3a@quoll>
-In-Reply-To: <20260114-slick-passionate-mink-216a3a@quoll>
-From: Nick Xie <xieqinick@gmail.com>
-Date: Wed, 14 Jan 2026 18:07:05 +0800
-X-Gm-Features: AZwV_QjSdpwi2V3tZNa-BESE2_IXXSE5rUYX5Df18jOqnSGHXgYKZ2hDVq57tOo
-Message-ID: <CAP4nuTXeC1-6ktwLpDt_1ZRHxPSiNAoDKTxLzqEYJUfcnVogcQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: amlogic: add Khadas VIM1S binding
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
-	martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, xianwei.zhao@amlogic.com, 
-	christianshewitt@gmail.com, krzk+dt@kernel.org, robh@kernel.org, 
-	conor+dt@kernel.org, nick@khadas.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260114-sdm845-mclk-v3-1-c9351deaf4f2@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIACxrZ2kC/23MQQ7CIBCF4as0rMUwU5DiynsYFxXQTrStgYZUm
+ 95d2o2auHwv+f6JRR/IR7YvJhZ8okh9l0e5KZht6u7qObm8GQpUgFDy6NpKKt7a+40LCResjUJ
+ fAsviEfyFxrV2POXdUBz68FzjCZb3fycBFxyMPlsjtZN2d6CRhq19saWS8FvqX4lZaoGVRScMS
+ PWR8zy/AbBSpOzeAAAA
+X-Change-ID: 20251213-sdm845-mclk-041f2a952e31
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3175; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=VjhjaqM3XS+2n8GQ/x6ApyiqxtWTj+IRWhXyXFadzb0=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpZ2s4qUlnsUVwtA6W65uL1mnojYILhVNWEt82U
+ g/yf/DzcLGJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaWdrOAAKCRBgAj/E00kg
+ cs7+D/9ML+U8eqXXOOZTcHPNgeiBo/mhZ0Z3jrLg/n2w6HWaR6tRiVitKZRAg+utC4b6Y02ad1U
+ DXACGzZP6l1BIypVgyNPSxSMLMLoRycoDSF7O15SsqDnTroiv4KgYJGol1DsANCobEn9bKKGvBm
+ 0ch5BK5JN5k5hcQzMWkYggLs2Lm0dWrEd24V/EQGm6zbnsM5pq6bhp9bzzwk0rviyTX8I13AEpe
+ XuzV8JoVN/wSMOnyu1uvfG578OT9zQTpApIPRQl4sj+EVFYiyhH4YHc9RF7/FwM3WxWdCU/J0kS
+ A7MkMM9RO2KSduFDSB65Q9DVu0mXuz7kFf46S6sPzLfGCDwJCN1yfA1BqqxjqyGUwo0eXheAogw
+ ePh78bIqgRBB9xblTehQYoYg9JYTADE1sqg+VzrRbX/BLSGiblS2QzyO1X+LTB5OGzNKaj29kOC
+ bGDUY3fz0/C+JskQ0A3y3k2Vpo+EtFEi6GqvxIyhlEPA6PyU7DpIYUALzFPVxTVy/MACvFcS77b
+ hADQVAB5xl4W95+QrU9yZTmMm1V6oTKq+6bdUSYZ2rJikN/FkxBapu2qutVEfxFZmJDbEyarQLZ
+ thyraLsVcjGW5binxvRxcixhfeHhsx1kq8UYS4z7E6MvxlqV6D8LBxPyMt8yzaS3gbqM5i+Xf5D
+ 4X1ATcbIHiWqd3Q==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2026=E5=B9=B41=E6=9C=8814=E6=
-=97=A5=E5=91=A8=E4=B8=89 16:51=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Wed, Jan 14, 2026 at 02:25:48PM +0800, Nick Xie wrote:
-> > Add devicetree binding for Khadas VIM1S board based on
-> > Amlogic S4 S905Y4 SoC.
-> >
-> > Signed-off-by: Nick Xie <nick@khadas.com>
->
-> You still have the same From/SoB mismatch.
+From: David Heidelberg <david@ixit.cz>
 
-OK,  I will fix it in next version.
+Put clock pins configuration for camera master clock into the dtsi.
 
->
-> > ---
-> >  Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Docum=
-entation/devicetree/bindings/arm/amlogic.yaml
-> > index 08d9963fe9259..55663e0f7f915 100644
-> > --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> > @@ -247,6 +247,12 @@ properties:
-> >                - amlogic,aq222
-> >            - const: amlogic,s4
-> >
-> > +      - description: Boards with the Amlogic Meson S4 S905Y4 SoC
-> > +        items:
-> > +          - enum:
->
-> Yopu already have exactly such enum with such description, so your
-> compatible goes there. Look - it is called "Boards" - plural.
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Inspired by Richard's patch set for SDM670, I noticed that SDM845
+follows the same pattern. This change prepares for enabling
+additional cameras.
 
-The exist board aq222 is based on SoC S905X2, but the new board vim1s
-is baed on S905Y4,
-they are different SoC, so we need to put S905Y4 under S805X2 ?
+These pinctrl settings have been verified against the downstream
+SDM845 kernel.
 
->
-> > +              - khadas,vim1s
-> > +          - const: amlogic,s4
->
-> Best regards,
-> Krzysztof
->
+Since most of these are not yet used in mainline, testing was done
+on sdm845-next using OnePlus 6 cameras with downstream drivers.
+
+Thank you
+David
+---
+Changes in v3:
+- Dropped 2nd patch
+  ("arm64: dts: qcom: sdm845-db845c: Use pad fn instead of defining own")
+  as there is no documentation or people who can answer questions for
+  now, so we can move forward with the main camera work.
+- Link to v2: https://lore.kernel.org/r/20251217-sdm845-mclk-v2-0-7028c2d09145@ixit.cz
+
+Changes in v2:
+- Added mclk3. (Vladimir)
+- Reword commit messages.
+- Corrected commit msg name. (Konrad)
+- Link to v1: https://lore.kernel.org/r/20251213-sdm845-mclk-v1-0-197bc947d4c6@ixit.cz
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 56 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index bf2f9c04adba7..c0f21a745fb0c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -2805,6 +2805,62 @@ tlmm: pinctrl@3400000 {
+ 			gpio-ranges = <&tlmm 0 0 151>;
+ 			wakeup-parent = <&pdc_intc>;
+ 
++			cam_mclk0_default: cam-mclk0-default-state {
++				pins = "gpio13";
++				function = "cam_mclk";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
++			cam_mclk0_sleep: cam-mclk0-sleep-state {
++				pins = "gpio13";
++				function = "cam_mclk";
++				drive-strength = <2>;
++				bias-pull-down;
++			};
++
++			cam_mclk1_default: cam-mclk1-default-state {
++				pins = "gpio14";
++				function = "cam_mclk";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
++			cam_mclk1_sleep: cam-mclk1-sleep-state {
++				pins = "gpio14";
++				function = "cam_mclk";
++				drive-strength = <2>;
++				bias-pull-down;
++			};
++
++			cam_mclk2_default: cam-mclk2-default-state {
++				pins = "gpio15";
++				function = "cam_mclk";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
++			cam_mclk2_sleep: cam-mclk2-sleep-state {
++				pins = "gpio15";
++				function = "cam_mclk";
++				drive-strength = <2>;
++				bias-pull-down;
++			};
++
++			cam_mclk3_default: cam-mclk3-default-state {
++				pins = "gpio16";
++				function = "cam_mclk";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
++			cam_mclk3_sleep: cam-mclk3-sleep-state {
++				pins = "gpio16";
++				function = "cam_mclk";
++				drive-strength = <2>;
++				bias-pull-down;
++			};
++
+ 			cci0_default: cci0-default-state {
+ 				/* SDA, SCL */
+ 				pins = "gpio17", "gpio18";
+
+---
+base-commit: 0f853ca2a798ead9d24d39cad99b0966815c582a
+change-id: 20251213-sdm845-mclk-041f2a952e31
+
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
+
+
 
