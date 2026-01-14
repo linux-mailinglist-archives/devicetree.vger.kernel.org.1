@@ -1,93 +1,70 @@
-Return-Path: <devicetree+bounces-255136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C364FD1FF56
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:53:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA577D20061
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:02:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 443EC300387B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:53:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3007C305992F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D12B3A0B09;
-	Wed, 14 Jan 2026 15:53:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0213A0B39;
+	Wed, 14 Jan 2026 15:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="hQOHDn7T"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="tazNDxBv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5D338737C
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 15:53:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41CDA36C593;
+	Wed, 14 Jan 2026 15:56:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768406021; cv=none; b=U2qHgm2gK5m54tyBYtV7pJ7RA4snwWoKxNHsRb5AzYAoeqfuW9noMiTEKE1jpV53Z4PAIXeoBjPfBEGjOkRADHse0ymxLZt0uBZx+xh3ebZvPjHsjL+7jz3qA1FLdiYdS+iu6OaNS++AqMyK8kYF0atu5VE89o9GpqYxYH7Lrc4=
+	t=1768406170; cv=none; b=aV9xGuypt0XzwrZMLpq66t4Met1BDojdXe6DvChlOVrcPBw/Uq4bkLxAsjn1EzIByCyDRFU9HAfISVFOcls4FFf1xWNIEFIJJ+NiacqylPOmtrGTA+qKN7dJM0b+4qyVhfy1hPAovdzwccEg2w5NYg+YwBZUkrsJZunfvJhJ0Z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768406021; c=relaxed/simple;
-	bh=MjjY0CZe9m074IFDhBfEpVxdyYS7Z3Q8v4zhohpRutw=;
+	s=arc-20240116; t=1768406170; c=relaxed/simple;
+	bh=Ae1ieq+fhLkuJ+oyltSTjOyNtG71Vuue9fYPvx9QIpA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tKNEwnqJsQL3g7xolzdKvHfmUl9S1MnzTRQuL89rieiVtfB5cFIh6jAOHlHLfqZ+zUj4cw5d6bBOILblL6QheEj9mk350Tharwbr0R4oqo2nd4d+71pe+1P9kgSzzuwTdiik5YnR4jLcESMwBGlfq6R3QjRaPROCY//nKSOli5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=hQOHDn7T; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47d493a9b96so51003155e9.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 07:53:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768406017; x=1769010817; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mrePS2BeC/5/zU5iIVNiA/HxBMqtaGmBB9n2hBMQrA0=;
-        b=hQOHDn7T8PjZDNbgPW6/0eJb4z6nY8heDKKRssw5W6YsE5B3CgY+QUeaMtbG5HIozl
-         BDLBuXvzh89+smKariIFQ7c90ZLHqF628Z1MqBVZ3Q0VPI2tRK1eLhvGW0OojO9/Yey5
-         0xvtKFtmC/LqrRbPA6uFHC6hOnai1pCmRQ4cQxni+Ukjf1sv+M+V74u7x1+rJRu+ZEqm
-         Cn67cB2aPBtozrafM2L2mXNDWC6YaMd77RDv+KdgxTi9bA3cbnjMlnHqeJ9cYxgEv2tR
-         BTXWeUnO6BTE0YiKHa0DpdhBbZ0sDkFAKWi+INFckGy9OStXhLXTnm93tG7D8WZHQdU3
-         ne+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768406017; x=1769010817;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mrePS2BeC/5/zU5iIVNiA/HxBMqtaGmBB9n2hBMQrA0=;
-        b=rbgp15agut2yboW4TR4ZV3+U/a1wO+xYbFT+gBHWK01BZsiY7Ki0TvkosDjhIhfZ92
-         iEmzATtdp4lnINtsFQjqmUXcxbzwthwzPEhI2z8LPku62jvNcnkRAth8/GSu+kRAOErs
-         qTkAOw6ZMJBAGoXLsbZtxSSr6Mbr/J7pei36gdZzBh0MPtIhZrsS+77K32nUsuwAUaCu
-         SVVfaBzsp1nRLLRvtoMc6XpMwzZugZBp4EWsfVLJKFNeoOI/Lfu1PYJ58VkRQxe144uM
-         7DM3vZ5JQYJjBLRNs0X49U6LBx7v27aRqFIInYAkoHTtflUYeA8gEBtuakKsfcvIZL5X
-         h5Qg==
-X-Forwarded-Encrypted: i=1; AJvYcCXeF9kZSX2M94glVyRsAW6JYxuniQ1mpMMMB1114/9P3OygGRQTGJ3vyNt34QOz7gFplgsge8+8AdPZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuTpx59nLxY2kT0Gn4ued58+/hJXXObV+iKk1Dq6U4wiaZ0V2o
-	Kjbthd5rqOC7cHAzRa2MZzF29T7vJIpFhIDOhggmF0yqyE5TODzrcmt+jUN41qOC5w0owwOvYBm
-	0fXXA
-X-Gm-Gg: AY/fxX75MQJVss/ddFrbv9r6R8565QQjcWUoWdLFVpr/ds/Pnt6Dg00PTWWiqXMQkgs
-	hpNypLCrUdC6vvOGTFhJddwsr1pX+TwGcaEhLwH9XQkOavTRTrQ1DZPpvCTdSOFU2DCbNHNtnMc
-	Zm5NcE1qh5uC/cPYw4U8ul49iAawkt9cHdjkpuJDQPMlWcYhrBVdSa9vI5vCeHLvi4LUQIO4iuj
-	vF5Bn7sU64PYXQ5//I9lezIzGxGqB2UZv9pGoA3jc/0IVEMW6fiyZZHSmaGRkoyNGF9dIwRjpKS
-	vR15MhYP6+hVA4f/b2muTB5U7fdL/qQqy4WVWQ1AxLcSb2pYQWW+h3RxuVaZIyrviCO5Q1RniVD
-	ZasP6WvznImgalQYk+SaNYQ2myb218nZAy22fU8qgBrinejzSPpND6Kx8z3DF7sAYE9R0qSc1+N
-	hZB3KWhaZ0ZIMiDvxOaj80vzjzOXxJIzgOgGQsgtBkgKuvRJrDLo5P5V4fADXzDoReooCxM34xF
-	ukiOQSfJqkwXX3C2r8sHA3irzwu70iKFJ5kNJ3z7MZBkc/Sx5ztzHcvuHUeVuRi8IC/rMUlacNc
-	tJHHYA0=
-X-Received: by 2002:a05:600c:4515:b0:45c:4470:271c with SMTP id 5b1f17b1804b1-47ee339455dmr35015355e9.18.1768406016823;
-        Wed, 14 Jan 2026 07:53:36 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-432bd5ee870sm51184009f8f.36.2026.01.14.07.53.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 07:53:36 -0800 (PST)
-Date: Wed, 14 Jan 2026 15:53:34 +0000
-From: Daniel Thompson <daniel@riscstar.com>
-To: tessolveupstream@gmail.com
-Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
-	pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
-	linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: backlight: gpio-backlight: allow
- multiple GPIOs
-Message-ID: <aWe7_hFpmO0E2sJe@aspen.lan>
-References: <20260105085120.230862-1-tessolveupstream@gmail.com>
- <20260105085120.230862-2-tessolveupstream@gmail.com>
- <aVuKdAyXfWLs-WJI@aspen.lan>
- <c182df66-8503-49cf-8d1d-7da17214b843@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uN2jc46xY7fiT4xn9fAWEqUxSWzN1RxLsMHlIBdUuhplGe3ZJZk6xyll5JJUpDZBjuVXrvDqSPqHYLwA343loMRktp48+wOvBKj7nX5JrQaHezh1R5A4iTjLTjsRil1aiebpJChT1q7DletxjASXgzfXDnD3nP01cVicVjiNhkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=tazNDxBv; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=HPhK4KjjnRqSs9b7v5hKWxDnIeNV27SBK22m7p5AFTc=; b=tazNDxBvsypyesjPwJzb3+PoQj
+	S1+fjE9afh3Fm7eDFKgSWZSnz6l0FiNtvJ2DoNbLQPALi7MloHXcbj2qGjVl7zv8OXNEmYjZjQv/v
+	/Bl9JUgwpdIIOerJq7150ZXOF867L7Z3nkoUb3Xbq8iivwWFNt8DRZPQgH7Sei/7gnug=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vg3E2-002ocm-8m; Wed, 14 Jan 2026 16:56:02 +0100
+Date: Wed, 14 Jan 2026 16:56:02 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
+ EN7581-7996 support
+Message-ID: <76bbffa8-e830-4d02-a676-b494616568a2@lunn.ch>
+References: <20260113-airoha-npu-firmware-name-v2-0-28cb3d230206@kernel.org>
+ <20260113-airoha-npu-firmware-name-v2-1-28cb3d230206@kernel.org>
+ <20260114-heretic-optimal-seahorse-bb094d@quoll>
+ <aWdbWN6HS0fRqeDk@lore-desk>
+ <75f9d8c9-20a9-4b7e-a41c-8a17c8288550@kernel.org>
+ <69676b6c.050a0220.5afb9.88e4@mx.google.com>
+ <e2d2c011-e041-4cf7-9ff5-7d042cd9005f@kernel.org>
+ <69677256.5d0a0220.2dc5a5.fad0@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,47 +73,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c182df66-8503-49cf-8d1d-7da17214b843@gmail.com>
+In-Reply-To: <69677256.5d0a0220.2dc5a5.fad0@mx.google.com>
 
-On Tue, Jan 13, 2026 at 10:15:53AM +0530, tessolveupstream@gmail.com wrote:
->
->
-> On 05-01-2026 15:25, Daniel Thompson wrote:
-> > On Mon, Jan 05, 2026 at 02:21:19PM +0530, Sudarshan Shetty wrote:
-> >> Update the gpio-backlight binding to support configurations that require
-> >> more than one GPIO for enabling/disabling the backlight.
-> >>
-> >> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> >> ---
-> >>  .../bindings/leds/backlight/gpio-backlight.yaml      | 12 +++++++++++-
-> >>  1 file changed, 11 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> >> index 584030b6b0b9..1483ce4a3480 100644
-> >> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> >> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> >> @@ -17,7 +17,8 @@ properties:
-> >>
-> >>    gpios:
-> >>      description: The gpio that is used for enabling/disabling the backlight.
-> >> -    maxItems: 1
-> >> +    minItems: 1
-> >> +    maxItems: 2
-> >
-> > Why 2?
-> >
->
-> In the current design, the LVDS panel has a single backlight that
-> is controlled by two GPIOs. Initially, It described as two separate
-> backlight devices using the same gpio-backlight driver, since the
-> existing driver supports only one GPIO per instance.
->
-> So the maintainer suggested to extend the gpio-backlight driver
-> and bindings to support multiple GPIOs.
-> https://lore.kernel.org/all/q63bdon55app4gb2il5e7skyc6z2amcnaiqbqlhen7arkxphtb@3jejbelji2ti/
+> > Yes. What you plug into PCI is not a part of this hardware, so cannot be
+> > part of the compatible.
+> > 
+> 
+> Thanks for the quick response. Just to make sure Lorenzo doesn't get
+> confused, I guess a v3 would be sending v1 again (firmware-names
+> implementation series) with the review tag and we should be done with
+> this.
 
-Right. So, once we support multiple GPIOs then why limit it to 2?
+Since this is a PCI device, you can ask it what it is, and then load
+the correct firmware based on the PCI vendor:product. You don't need
+to describe the hardware in DT because it is enumerable.
 
-
-Daniel.
+   Andrew
 
