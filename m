@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-254810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596D0D1CAA4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 07:26:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88475D1CAB3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 07:26:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E011301119A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 06:26:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DC929302037B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 06:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE9E736C0DA;
-	Wed, 14 Jan 2026 06:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D9336CDF7;
+	Wed, 14 Jan 2026 06:26:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H9mfEbLV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VBIqhBEE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C1E36C5A1
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 06:26:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED8C33B6C7
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 06:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768371979; cv=none; b=XfEtDdle7z/mrtM89nu+K31ZPnSlaf8RH7W8BEnXYMkdyZx6roOELkKC2n0TqfLWR0WYKhZuGu+O5hAkZFFNnraV5jSH+AUHLymSdFo7eLRLSVtr6Iv8Gl0lwftCCa1mjXgjdmK9fd5oRqEPICJpnmqxoUdsLnnHpSVnbjtGWgs=
+	t=1768371983; cv=none; b=IyBrVL93ESlyUH6okSgoTxDGM3iBspXGJVhP3JivIjxw56y+Wkd39oObrzTGxYlst8JHaK+nOdqk6VQMaa9qkMh8t+wFLJu5NALkdmc4sTRz0A4bAjlPywpweSl7OOPzK/8RaygcEEYS/1zmm9JHzDM3n9CjTT6mH65IadhERZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768371979; c=relaxed/simple;
-	bh=tjbloRFSDK5CrgV+ZUNEOlHupL5+IVmFmI5w1TbPHGs=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=A6RoWl/FAWl9EWT8/RJfJ696U/AizfEhFRR6o4vZVM967Q53Gzk7X13GSLK+KOkrSON7WZOmNFIWQnV7m4BQgcrMHYbhor57847UnDyDNIaamxJSuZq1oUQ1cCRlqDU9HT1a3bPA5hcEJTFN3VcWLG/+Iju9S8OflFFKmOCBDSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H9mfEbLV; arc=none smtp.client-ip=209.85.216.42
+	s=arc-20240116; t=1768371983; c=relaxed/simple;
+	bh=rPtVf65kJ1N1TywGctCCtpLt0SJGZD6s+R+h8f8siOg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=EjinSOFp3F22LhfPdrZ2NYjgdt0qpCNc+H7S8J6/2gdF9TTiXn2Olqqhq8RlmAaZb3sRoL2N+gDNJXaneabwIZOS8SZ1QA0d+0u8ezehgm7vhetabWOLcLnAyk8G9V2yT0KbZ6vpAYr8QONg0TTkuh+DhD3xj5JgnFRxjRAsVo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VBIqhBEE; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-34ccbf37205so4634198a91.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 22:26:09 -0800 (PST)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-29efd139227so57221315ad.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Jan 2026 22:26:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768371967; x=1768976767; darn=vger.kernel.org;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ph6IxAnp6q3+uLiFT21GgPymCv9JqfeKX9RiduzDODk=;
-        b=H9mfEbLVw8YIk8OEBel5ugr/YalK4aZoIxpFXuhvAgpHWz87GegVntsifykXmWL6AS
-         ykrEKRb/TqDTuJ2KRj/vAJes1h3lJiI+p2wb6RHC32xI0tQZWHCEGEMDthO9vwC+szqR
-         vwYnylfXH+aANEjIw7Z3GmOlfvm/9TZRTYCmRc+IwBeDse4nuwuLJa5IsRDnRerW/MNR
-         ng5M77090R4/ldQvutO1klT748oPRjuiMolU+m0Q1U0lqdbphfeSVbtXLORQ5c0M9xXm
-         tix27GiOd6ndDFJjrRhZTP5AHNKYUet3Wn4U2glL4Ar2NgLf0ewBfQlyMc4wnFDFZxXr
-         neJA==
+        d=gmail.com; s=20230601; t=1768371970; x=1768976770; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bot5yzHGRpdORn4dGLGp5ZsMsBNZegUjwbOB3QegdQ8=;
+        b=VBIqhBEEmQey/7v817OCrSSVn8K3QrXgnTMycWcdZD0/DP0bj0j7SNgAInx6GjPTA9
+         jqdqCeZVWxRJVXHwNI7UaFJI2916+eVU7shswIFMEKOF3cLzsyZMh39STTATWTZLTK+w
+         h91caNeB84j6ZLp9NEYYNVHX2rxBkmdqsVTFG4GldHwXFbHuyguisSTBojfb+TiuysV/
+         8R2mj9tEtRalsl73ES+aene4COnNGCIH9nlXuotsivJCIu7hDlSMCcpVNIkDbu7pFIzN
+         aBKeEc2P4sPhcimmB33yyXleMHEI+js3UP/GXjhgsuIKlu97sGdy3PRtvozje7N7qyHg
+         83pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768371967; x=1768976767;
-        h=message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ph6IxAnp6q3+uLiFT21GgPymCv9JqfeKX9RiduzDODk=;
-        b=NQsyddf1upM3W1Yf+nCyLXGm7+iqrvIiP/WiXU08Qi3jcURLImyKCOxRuuFnLKCxB+
-         8KnSYBIpbw++HeVs3cHgHiaDU+bxka47yp8csrciE+Zw1OHuGkcCYbs6nbSdb2kLIaiQ
-         V3x1vgMdSxvtsAPAn1kHc/RmSrpmnVdp5sVSWBGdIAUQKtrqZ7C6WkK5+WKS+5Q0txMi
-         oWEl2P75CcPndq5FNHG5K7zC9pD5Zpg3RFeyZA3TyYgzqYqxKYkMstk419QqAkOlesDK
-         ajukkA1d1hZctO+OqR1ACctcNTVuG/y/z/bR4z01RnA6zY9xKyq7VziVP/iWUTlIsh6c
-         kUZw==
-X-Forwarded-Encrypted: i=1; AJvYcCVJgpzN+YTGU4pLNrrqMTu08piiQFYL8Z7kvo4YZ9+azrCRbdOjEW8pZI+6ea5SKJMwSX6yIVcv8FU8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJO5aXNn5LxTOjZpk/3BB3cmEbrU9X8OndWXM+nwGCNuVF0feU
-	c/E0B/Ir7qOP4rh22/qK5UHno2eD/8p7lGrMw6OMHwolUlmpYLDizTYN
-X-Gm-Gg: AY/fxX7qlVc0mM593yQWwadYh6D9ZIcEfjeBtrpoCSq6nr0PGzQNyBOeo4D6+3jeZfD
-	SyzTVyQDOKzUGWpBNrQn4cVZnDD7O14adz7zeyitr4rz/uYRXDOYBQBTKFBgZYaf95s9rBjZM1W
-	F/aynUD0kEhelr4saVECPbRomewwVcfssN9/3aPavEjnDJRGt13MnBtsYTHxYPERuKk87OrmvR4
-	yyWbX3CRT2wlxOUE1tegNt7K399iQI88v+vBE0QNfzOiLYYtQ98eANHlluXm52hnce1Hs6VYYqO
-	3ZZJGLuZHWNaf1QOPYSRhQHF7N5CvfXSvgH752PcxDUFMJyuM4xJZCOSLlUfmgrwwuNxmkhotLg
-	OflXLl75ZpuSc7KLjJT78pZxagaD7G/i94aQadAzjTfNb/mbSsG/JUKrF1tDKBScTpEmP+NV4Nx
-	Qzcmfh8mg=
-X-Received: by 2002:a17:90b:3d8f:b0:32d:e07f:3236 with SMTP id 98e67ed59e1d1-3510915bb29mr1745385a91.22.1768371967515;
-        Tue, 13 Jan 2026 22:26:07 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768371970; x=1768976770;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bot5yzHGRpdORn4dGLGp5ZsMsBNZegUjwbOB3QegdQ8=;
+        b=C2+i0E51OPR8fHuaoIqzaxH8H1qAwLNOyuMCmI7OTmmiTpR29il0Qezljw5wAag7+8
+         ldPaK1h54ooXdH765kJESoQhHOTtwmRMXmqkrSGlyuSaQYzKBpSMVsO+S1Iy1HAQ5f2x
+         nPGkhNO9Akyva/KjQ3Ctce/OX1Z7QFWfSycnaElu3qIYW4wkKoHASpvxYK3aRJhGupL5
+         QS841lSVd0I4AKQwOF5ABjkwo0J6aoIjRqinWwD746kqUB8P17VRvw1e50DiSWnjbB1c
+         Sse+GrzdTFdqmtjssmT+DU1xg4rkTUigTPu1OWOR09AhSFsp3Z8zW/bWxUlczHF2rj90
+         liKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW5UjKH9oRgHj6SEPz54QgTSp6uFxXjteQJ2MD0aCI7JoYNeKmQm/AhMxZrbdLl40a+qHBuOLNOrEjt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvvuwmexgCaduiKH4+HGhawXMo9hHvVr1its0n56poXRPJSjIC
+	h76Ypqbll/4QJ69+Z7HTsCtvTGvS4Lc1n91KbddH5EzgNi5OF2JQI/W7
+X-Gm-Gg: AY/fxX46IQGbHdPTWAjk+dWwhfSPKjEvuvf+If5iCeu5wqI2AIYeLLe9K2zdgkuoN4K
+	4ZEEivOLpq1JwBv8T1AZquuuMN/wbCkjDyYZHiRmVZe3ZfTrabXeluIqZxPLQpIVYvMNZ1jvoqP
+	vzpvD94fI961+ToWxdgG9pPpSK3k6AEVC5SsSj+CgvV7ddiKxohhe1Man4rjSMFSXCYQ2x0GOJ6
+	NLrUTXhJXztJMRqnlwyntqS1v87SaZ71o0XtwnrBSZCGcCrrJqP7IeSsLUL4Kn+No22TN1WFSOB
+	Me+eaScApY7bf2jwe8B155TWxAMI6VewZHFFM7ZG5HtE8FxG+RJAG+BRY2eeQWBv8Fn+MSXRmIW
+	4SeXFk93TVL/v9UC21bLC0jbN4dqBe7FXBrUKL8os6CGhet5Lo4nrOnz5ELBJr6ukUclUNy4s7T
+	knDcH4rus=
+X-Received: by 2002:a17:90b:2782:b0:340:9d52:44c1 with SMTP id 98e67ed59e1d1-3510916b54fmr1625255a91.35.1768371970530;
+        Tue, 13 Jan 2026 22:26:10 -0800 (PST)
 Received: from localhost.localdomain ([47.82.78.41])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35109d88f0esm891791a91.5.2026.01.13.22.26.04
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35109d88f0esm891791a91.5.2026.01.13.22.26.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jan 2026 22:26:07 -0800 (PST)
+        Tue, 13 Jan 2026 22:26:10 -0800 (PST)
 From: Nick Xie <xieqinick@gmail.com>
 X-Google-Original-From: Nick Xie <nick@khadas.com>
 To: neil.armstrong@linaro.org,
@@ -84,52 +84,43 @@ Cc: xianwei.zhao@amlogic.com,
 	robh@kernel.org,
 	conor+dt@kernel.org,
 	nick@khadas.com
-Subject: [PATCH v2 0/2] arm64: dts: meson-s4: add support for Khadas VIM1S
-Date: Wed, 14 Jan 2026 14:25:47 +0800
-Message-Id: <20260114062549.68954-1-nick@khadas.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: amlogic: add Khadas VIM1S binding
+Date: Wed, 14 Jan 2026 14:25:48 +0800
+Message-Id: <20260114062549.68954-2-nick@khadas.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20260114062549.68954-1-nick@khadas.com>
+References: <20260114062549.68954-1-nick@khadas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-This series adds initial support for the Khadas VIM1S single board computer.
+Add devicetree binding for Khadas VIM1S board based on
+Amlogic S4 S905Y4 SoC.
 
-The Khadas VIM1S is based on the Amlogic S905Y4 (S4 family) SoC.
-It features:
- - 2GB LPDDR4 RAM
- - 16GB eMMC 5.1 storage
- - 32MB SPI flash
- - 100 Base-T Ethernet
- - AP6256 Wireless (802.11 a/b/g/n/ac, BT5.0)
- - HDMI 2.1 video
- - 2x USB 2.0 ports
- - 1x USB-C (power) with USB 2.0 OTG
- - 2x LED's (1x red, 1x white)
- - 3x buttons (power, function, reset)
- - IR receiver
- - 40pin GPIO Header
- - 1x micro SD card slot
+Signed-off-by: Nick Xie <nick@khadas.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-The first patch adds the devicetree binding, and the second patch adds
-the board device tree.
-
-Changes in v2:
-- dts: fixed dtbs_check warning: removed unsupported 'enable-active-low' property
-  from regulator-sd-3v3 node
-- Link to v1: https://lore.kernel.org/linux-amlogic/20260113090951.35928-1-nick@khadas.com/
-
-Nick Xie (2):
-  dt-bindings: arm: amlogic: add Khadas VIM1S binding
-  arm64: dts: add initial device-tree for Khadas VIM1S
-
- .../devicetree/bindings/arm/amlogic.yaml      |   6 +
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-s4-s905y4-khadas-vim1s.dts  | 190 ++++++++++++++++++
- 3 files changed, 197 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 08d9963fe9259..55663e0f7f915 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -247,6 +247,12 @@ properties:
+               - amlogic,aq222
+           - const: amlogic,s4
+ 
++      - description: Boards with the Amlogic Meson S4 S905Y4 SoC
++        items:
++          - enum:
++              - khadas,vim1s
++          - const: amlogic,s4
++
+       - description: Boards with the Amlogic S6 S905X5 SoC
+         items:
+           - enum:
 -- 
 2.34.1
 
