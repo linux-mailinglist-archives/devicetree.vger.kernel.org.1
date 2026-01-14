@@ -1,191 +1,196 @@
-Return-Path: <devicetree+bounces-255150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DD19D2026A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:19:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F6F6D202A3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 17:21:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 08B4430628F5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:16:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 64A6530C6CE5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 16:17:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A30AC3A35CA;
-	Wed, 14 Jan 2026 16:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80D33A35D2;
+	Wed, 14 Jan 2026 16:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="UglqIB+1"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="BYOYY43n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B4C11CBA;
-	Wed, 14 Jan 2026 16:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D67A3A35A8
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 16:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768407414; cv=none; b=e+U2157A2TzjWFW/tMCQV/XC2LVD4H5A/iN1i8g2tbIlbtLtem28YH2cOjyYXCFVLBb7zhCr1w0CDbJ8TMTpZC5mLJBV0wVDQtll3PTm+YJX7djkGovqEINZsO+NvXIcQdY9Kix6ifR4YsZo5yT1FqHR5/Q7rMnmjG5AQhatPHk=
+	t=1768407418; cv=none; b=F5lWn5K+Rcn9hXdG0wDYI9/X14uWrnWJ9aNIs0VTERLe7l7UxQjmpFzj/IZzodoIKkIHUxl2TG+encMgIe/p93NF5+AJbTnKXd/4S/hlMmfo0ojY+AOf4GIeA37q1ZQ/SnyvRKf+9/Ym6TWmxqK/l65i5WK9BLppcNFGdlbY5SE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768407414; c=relaxed/simple;
-	bh=Lu0FQTjo6owgFDAe5auJaLSofFYoxVkva31bfcDtA9c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tZU5FOpA6cP7nam3X6kKmX+tyZcjMVos1LX/ojnu5dFVFtMSm93CsHV9z4BTpVG6pjaSpnmigGRDQ+V5QgPn5lTFl7tnGiDW9yL6l2TfayP/BZi2CKojvpwXIYVebTdMKkOyyZ5wG90j5WK434s14IjGWhJL3qNz+DxPEM90OFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=UglqIB+1; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=jDEZj2tQ/lWE441pwvzkJV5WL54sUoxA3nZX64TSvWs=; b=UglqIB+1S2BMn0y/oTec/Afhcf
-	yhA5dUCtFPFLb/p3Om/n3BSg5GuABbW0u7WsnGhQfh25a6uF/CH6zjb+LpEDzP7RQBsKWjKoQKTcU
-	FAVu2lNhugMS8uZCf/X+urcd9gkmUMfVIfWEreUbEXt+/dWDSfUh38OEszcOlHG1Mi0mmS0DT5AT3
-	B/Z1SSOSOcstJIDGAWbP8iEIvaxp7CLyuKt3sTuW9g6ZQLRNbwgqP+8VE6On97ZJxB8wUzIcCbDuW
-	ga+f5WTl2BgzLwOknYY4qVSP4BmbGvyj/PpVGJTlBgnscypeUWszsgGhB9vvttXMcWfGHXN6nnfiP
-	AgGXLAQQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:52560)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vg3Xi-000000000M3-0AFG;
-	Wed, 14 Jan 2026 16:16:22 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vg3Xd-000000001mY-0K7W;
-	Wed, 14 Jan 2026 16:16:17 +0000
-Date: Wed, 14 Jan 2026 16:16:16 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: SHUKLA Mamta <mamta.shukla@leica-geosystems.com>
-Cc: Dinh Nguyen <dinguyen@kernel.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1768407418; c=relaxed/simple;
+	bh=/7ruZ18bk4ILc7L15msfTGNZdLRH8VjAH7g9n11/vYk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=srhvFhFo6Sur2MOv2crQv2LVx0MI8orQCWPskO3XfPlDDuqVgeYwYQ0Pxu2QLyiDu8bwm5zV7+dDpyt9KMwKjIzqWYKMYNH3fI62q7lCwouKMJSijb0h9GbV5kEOGHnC/RaGdr31Xw3vBwZgiN45QHjQ3oY6hc+lvd8eSCr6kD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=BYOYY43n; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b870732cce2so1503566b.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:16:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1768407405; x=1769012205; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HmBTNol25uWSbstgc/N/yY8zm994n6PPZLmjRz9SloM=;
+        b=BYOYY43neM2TpfBoAyPpm9sRswmvpX9ww/P+stS9ZCaoS8iCKOVnFKikImkVlDgSrz
+         STFoD3x94orPbzCwA7IDH7GaWGpsaw5d0MFPOQlVcHfZhVMlgvKnGEe4emNpbJ/9IFyf
+         JWdF1pt2r0jsXgnzncoAiV6ixyV+W8QjYkFes=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768407405; x=1769012205;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=HmBTNol25uWSbstgc/N/yY8zm994n6PPZLmjRz9SloM=;
+        b=YkJBEfyiYwGQFAaBI62H/NuakYVGO1X/UvzVwSwep0CEhmVaakhOWaMrQlDxDzl//v
+         bjF6bbU9g7vlAX1f/8/OxssqzRfA7VZaoITPaYklqMqSvJmAhpkobwNuUeoB4bodG3Xa
+         yY25yHz+QEfj1BF6YhoIANjuGgaaPwI7YJJbKGENUBMJADf52D2AXRUr3ENMV50eixcU
+         yY2SRlZX0sKxYIY0C6LqLjnfqRFgxeOiAdtCplhtUnIT6T/YZ46eyDZm/dZqM+erswWv
+         +3CwiYPRTI0rzgJr0v+GexOk7F2TkbAofG9x+e9h0Ge8xbHC10riTd2YJk38n/IcHHQR
+         2T4w==
+X-Forwarded-Encrypted: i=1; AJvYcCVDrBrOQ6TXvpQVtyhJmolhX1mdbYXLONldGvZcCyUYjjwwgnS6WKa9E05RCBfhMtKsW0ZGsmKDfCqG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiW4QsXHtsaSxNxx0EUmTUM9SfdAsjFEi2zh3OLf7Joq8wVhPo
+	p1MlGmCharnV3FxjSkagDpC9hMMVn9JR1FAXwkBx5Yj1RV9wWPZ782W7mVB8/S47S3g=
+X-Gm-Gg: AY/fxX7zvh2cJTIaaC70mJjhzUvbbEAJJqxbaEjeDkHFXqTXuig8Aw7hUqmdRKhx6DV
+	hfJUb9zTFOlU2zGKqpFMk6MobeCf0Eq0kYdjABe5vpSTxr7wyoUTa8mcSjmOR0hScnK/KNFmhHt
+	y+WSwv2/790dXs/KtGkTyAp7APWpDU+o6MVR/20fqI72u4E4VmLC2sFj6s/bDoGgmANBYl3P+tw
+	CZtDdMbj0LwyU+kkkpnR7TVHHgDi8QeQuf1vIHpinVhtWBvHPskaUI72rx9RIZVEmp+mH29+EcS
+	DSyaI8JuPQAcZPWdHDpQragIifKy+NCh9dDjh8XH4qcurXOsHsjHEO4lJuFp35RnVO9f4YrpKX5
+	gnVn7Puq9ZLIc6OolYQLaZdMC3pAtHM1lNOdl97KHl8Gh29b/1dnKtah7qujLRoAKaw5drMIqEg
+	PPrdgzKQrF3eFqROS3+ylZw9xrR4umfSZGG1wr4vJ3AJ0KkkvsEDvj1OUr02zeVcKVA8nzlv1dd
+	+b4HSnCvbcy9miepC3i3hFrJBLXo9qXDpR1cJVJ1Ri0D/H7NDa0RiKADLq4YIcOKmUKLg==
+X-Received: by 2002:a17:907:72d1:b0:b6d:73f8:3168 with SMTP id a640c23a62f3a-b8760fcbe55mr263759866b.3.1768407405292;
+        Wed, 14 Jan 2026 08:16:45 -0800 (PST)
+Received: from dario-ThinkPad-P14s-Gen-5.amarulasolutions.com (93-47-52-235.ip111.fastwebnet.it. [93.47.52.235])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b876dd0e9ffsm152281566b.37.2026.01.14.08.16.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 08:16:44 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 1/3] net: stmmac: socfpga: add call to assert/deassert
- ahb reset line
-Message-ID: <aWfBUPxvykOdygLO@shell.armlinux.org.uk>
-References: <20260108-remove_ocp-v3-0-ea0190244b4c@kernel.org>
- <20260108-remove_ocp-v3-1-ea0190244b4c@kernel.org>
- <aV_W2yLmnHrTvbTP@shell.armlinux.org.uk>
- <a2dc72ae-0798-4baa-b4d2-fa66c334576a@kernel.org>
- <c18fbdf0-b8e2-4fa7-8bb7-a3fed8960970@leica-geosystems.com>
+	David Airlie <airlied@gmail.com>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 3/4] dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
+Date: Wed, 14 Jan 2026 17:16:18 +0100
+Message-ID: <20260114161636.1076706-4-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260114161636.1076706-1-dario.binacchi@amarulasolutions.com>
+References: <20260114161636.1076706-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c18fbdf0-b8e2-4fa7-8bb7-a3fed8960970@leica-geosystems.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jan 14, 2026 at 02:09:27PM +0000, SHUKLA Mamta wrote:
-> Hello Dinh,
-> 
-> On Arria10 socfpga, both reset lines i.e stmmac_ocp_rst and stmmac_rst 
-> are needed since EMAC Controller on Arria10 supports Tx Rx FIFO with ECC
-> 
-> RAM and as per datasheet[1]:
-> 
-> `An EMAC ECC RAM reset asserts a reset to both the memory and the 
-> multiplexed EMAC bus interface clock, ap_clk. You should ensure that 
-> both the EMAC ECC RAM and the EMAC Module resets are deasserted before 
-> beginning transactions. Program the emac*ocp bits and the emac* bits in 
-> the per0modrst register of the Reset Manager to deassert reset in the 
-> EMAC's ECC RAM and the EMAC module, respectively.`
-> 
-> [1]https://docs.altera.com/r/docs/683711/22.3/intel-arria-10-hard-processor-system-technical-reference-manual/taking-the-ethernet-mac-out-of-reset
+Document the Rocktech 5" 480x854 panel based on the Ilitek ILI9806E
+controller.
 
-Let's look at exactly what this is saying.
+This panel uses SPI for control and an RGB interface for display
+data, so adjust the binding requirements accordingly.
 
-"An EMAC ECC RAM reset asserts a reset to both the memory and the
-multiplexed EMAC bus interface clock, ap_clk."
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
-1. Asserting the EMAC ECC RAM reset asserts reset to two items:
-    - memory
-    - the EMAC bus interface clock, ap_clk.
-   This is not referring to any other modules, but it does suggest that
-   the bus clock will be affected in some way, potentially stopping the
-   clock.
+---
 
-"You should ensure that both the EMAC ECC RAM and the EMAC Module resets
-are deasserted before beginning transactions."
+Changes in v2:
+- Restore vdd-supply as required for both DSI and SPI types
+- Dop useless settings in case of rocktech,rk050hr345-ct106a
 
-2. This states that both resets (EMAC ECC RAM and EMAC module) need to
-   be deasserted in order to access the EMAC. This is logical.
+ .../display/panel/ilitek,ili9806e.yaml        | 38 ++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 2 deletions(-)
 
-   If the EMAC ECC RAM reset is asserted, then, because it affects the
-   bus interface clock, this may mean that accesses over the APB bus
-   can not be performed because there could be no clock to allow them
-   to complete. Thus attempting an access will probably stall the
-   processor. (We've seen SoCs where this happens.)
-
-   As having the DWMAC reset asserted means that the entire DWMAC
-   hardware would be held in reset, including the bus interface,
-   meaning that it will not respond to accesses. Whether that also
-   hangs the processor is questionable, because APB has error reporting.
-
-"Program the emac*ocp bits and the emac* bits in the per0modrst register
-of the Reset Manager to deassert reset in the EMAC's ECC RAM and the EMAC
-module, respectively.`
-
-3. This states where the reset bits allegedly are in the register set.
-   There is a link to https://docs.altera.com/r/docs/683711/22.3/intel-arria-10-hard-processor-system-technical-reference-manual/module-reset-signals
-   but interestingly, the per0modrst (which implies per0 group) doesn't
-   list emac*ocp resets. In fact, there is only one reference to "ocp"
-   on that web page, which is in a diagram of the reset controller,
-   specifically its bus interface.
-
-So, the quoted section doesn't state anything about the requirements for
-resetting the dwmac core.
-
-What it does state is that both resets need to be deasserted before any
-access is made, which is reasonable.
-
-> OTOH, we can't have both scp and ahb rst together while setting phy 
-> mode, since they are basically same reset lines and having both leads to 
-> warning:
-
-So it seems that you actually have a single reset bit, and you have
-that represented as a single shared reset - shared between your
-"stmamc_rst" and "stmmac_ocp_rst".
-
-I notice Documentation/devicetree/bindings/net/altr,socfpga-stmmac.yaml
-doesn't describe the resets, but has:
-  # TODO: Determine how to handle the Arria10 reset-name, stmmaceth-ocp, that
-  # does not validate against net/snps,dwmac.yaml.
-
-as dwmac describes at least one reset between one called "stmmaceth"
-and the other called "ahb".
-
-The only possibility I see for these "EMAC ECC RAM" resets are in
-Table 25.  RAM Clear Group, Generated Module Resets, there's a bunch
-of signals described there "emacN(tx|rx)_sec_ram_rst_n, and that
-table suggests that these resets are asserted and deasserted on
-cold and warm system level resets.
-
-Given that there seems to be no way for software to control these
-EMAC ECC RAM resets, they seem to be outside the realm of needing
-to be handled within the driver, and also should not be described
-in DT.
-
-Maybe I missed something?
-
+diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+index f80307579485..2080d9e0ffac 100644
+--- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
++++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Ilitek ILI9806E based MIPI-DSI panels
++title: Ilitek ILI9806E based panels
+ 
+ maintainers:
+   - Michael Walle <mwalle@kernel.org>
+@@ -18,6 +18,7 @@ properties:
+       - enum:
+           - densitron,dmt028vghmcmi-1d
+           - ortustech,com35h3p70ulc
++          - rocktech,rk050hr345-ct106a
+       - const: ilitek,ili9806e
+ 
+   reg:
+@@ -30,11 +31,24 @@ required:
+   - compatible
+   - reg
+   - vdd-supply
+-  - vccio-supply
+   - reset-gpios
+   - backlight
+   - port
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - rocktech,rk050hr345-ct106a
++then:
++  $ref: /schemas/spi/spi-peripheral-props.yaml#
++  required:
++    - spi-max-frequency
++else:
++  required:
++    - vccio-supply
++
+ unevaluatedProperties: false
+ 
+ examples:
+@@ -60,5 +74,25 @@ examples:
+             };
+         };
+     };
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
+ 
++        panel@0 {
++            compatible = "rocktech,rk050hr345-ct106a", "ilitek,ili9806e";
++            reg = <0>;
++            vdd-supply = <&reg_vdd_panel>;
++            spi-max-frequency = <10000000>;
++            reset-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>;
++            backlight = <&backlight>;
++            port {
++                panel_in_rgb: endpoint {
++                    remote-endpoint = <&ltdc_out_rgb>;
++                };
++            };
++        };
++    };
+ ...
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.43.0
+
 
