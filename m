@@ -1,192 +1,201 @@
-Return-Path: <devicetree+bounces-254832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60CFD1D06F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:10:12 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8807AD1D099
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:14:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 85C7430CDE7E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:03:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 074EB3008CAF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:14:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0D037C111;
-	Wed, 14 Jan 2026 08:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB12637C0F5;
+	Wed, 14 Jan 2026 08:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="x88kuLUq"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jt/DYDIZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mail-m49194.qiye.163.com (mail-m49194.qiye.163.com [45.254.49.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F0B37BE98
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 08:02:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939342FB977;
+	Wed, 14 Jan 2026 08:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768377776; cv=none; b=LHg5a09MA5JqVERspG+4JV+PCq4wx9rTCCVKqqDAgd/v32cSn6URE1IxMnyMAGLnPAxqHg9jAfXqs09SL2b0nEkR+cjrq7mB/KFEJowGEaKn15m04TViWdAPC2GukbQeSZXTcMQ3uLKX5ca65AD1077w3S0bdiKkKm/XrkbSJiU=
+	t=1768378452; cv=none; b=AGuhjt/x+1lGyP7yaALxQt0cYLCjKyEQAnW10MG6oWmHrfTUJLEsMAZIHweWQuGue6M/LmRYgHewm1295H+yz0ck58lr9/HV13nUOefRl/I2dNueF/bwYqFHO/lGhtLw693/cDhcYOFtibrGgrpl+1xeW0G9hreMlezjbMmx8mM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768377776; c=relaxed/simple;
-	bh=fYWlMzo/H6Y+xJ86qirphWJAlV1PP+ab4iXQTYQcluk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=L/m2mLwlKtGGEeXjkYlroWWeUuif/jdefBjAV6p0rEAUpKuZcWYcthUhj5+HLHVPizJ4luUpwarE2ORxyguq+pR4PxIMeiYU2WQaBAbP2OHXx7Ez0mFQS9/RL+CwjwwdfSW3gFe02YwLhFKENpXlJV4jtZR0W2L6hSgEMH38fmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=x88kuLUq; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 9F7E0C1E4B4;
-	Wed, 14 Jan 2026 08:02:17 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0E5C76074A;
-	Wed, 14 Jan 2026 08:02:44 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 95556103C82AE;
-	Wed, 14 Jan 2026 09:02:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768377762; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=OrlcgvLEASE7cgCAVQW4sEC2L2tinvXr+j0pOUZUjvY=;
-	b=x88kuLUqFra37jp+2L7Hmyl1rJK9Luj34PccVPygGuBCC5mIUNebQlygEiXB90nJrOOq+B
-	bdtRJbNiaHF/QALBf/DPpUr60ZpM5vhmVOXLlkv7oMKeKJQNP+BV4YdafCKgB1jDyaAPS2
-	tq5kA2oEP25DWOWvI0u2Fyifk3icvqsLbMsUmjXV3ejO7GBvLUNaiqfEvB2ZkGbiC+5LTu
-	zHYrpWi9KCbcQZYi3IgsxHlw0lA3zBo1u/c47qXxbQWSy3rWbbKhvEIWU87kPC41Ert43H
-	A1ighEQjWb6vQJdU5S1OfOJxLVA3ZVpXbWi0B45Cr3vvnRFlbka6Iwu8FsX63Q==
+	s=arc-20240116; t=1768378452; c=relaxed/simple;
+	bh=zGn/XRcMqwwFuNLx0uSDVvM6VyHfqCJQGeCI1eHoVDQ=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=qBdi93kzkIn3UPStbHTJdmGk8CTLaBDSYQogm82lk9+tLLvrMgxFdOxny9tCo5k9aDDtjoO6xDk96tbO5+xmPVBrlivtUgbY1eiXTvNA3lK5ed95ddWaSBayaJf6mczI0LKkBNhXle9sS+aJM7UOWyf7ypdjjipu8gwsf/58EYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jt/DYDIZ; arc=none smtp.client-ip=45.254.49.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 309b22e7b;
+	Wed, 14 Jan 2026 16:08:44 +0800 (GMT+08:00)
+Message-ID: <6934ae0d-16c5-436f-97f6-c11d304ca51d@rock-chips.com>
+Date: Wed, 14 Jan 2026 16:08:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 14 Jan 2026 09:02:35 +0100
-Message-Id: <DFO5LHWDD7S2.19P595M4CWIPI@bootlin.com>
-Cc: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>
-To: "Marco Felsch" <m.felsch@pengutronix.de>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Shawn Guo" <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, "Pengutronix Kernel Team"
- <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>, "Peng Fan"
- <peng.fan@nxp.com>, "Liu Ying" <victor.liu@nxp.com>, "Andrzej Hajda"
- <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
- <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v8 2/3] drm/bridge: imx: Add i.MX93 parallel display
- format configuration support
-X-Mailer: aerc 0.20.1
-References: <20260113-v6-18-topic-imx93-parallel-display-v8-0-4abccdc473a5@pengutronix.de> <20260113-v6-18-topic-imx93-parallel-display-v8-2-4abccdc473a5@pengutronix.de>
-In-Reply-To: <20260113-v6-18-topic-imx93-parallel-display-v8-2-4abccdc473a5@pengutronix.de>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-rockchip@lists.infradead.org,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, heiko@sntech.de, ulf.hansson@linaro.org
+Subject: Re: [PATCH v1 0/3] mmc: dw_mmc-rockchip: Add stability quirk for
+ NanoPi R76S
+To: Marco Schirrmeister <mschirrmeister@gmail.com>
+References: <20260110010715.1610159-1-mschirrmeister@gmail.com>
+ <67ccb8f6-f9bd-4266-b79a-b688bd6d030b@rock-chips.com>
+ <8536413c-8687-4d75-befb-8f25e54838bf@rock-chips.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <8536413c-8687-4d75-befb-8f25e54838bf@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9bbb8cc99a09cckunm9a308b3948f3f9
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkxMQlYaGE5PSx5OGkxPH05WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=jt/DYDIZPuInsl91a4KACW2hxs/z0RuH25bcKV7dul2XAuJBK6dSpkMoPrFZiufslHvTBdw6k63r1heN1qGUMdrl+snPB6OUfwOyQteYKn1TnIfMxUSGknCjppyYocg8r9VyH4ToDIZgaLjI1ib6+xWaECZ+pAEW1uzaL95PNsQ=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=8+Ps+QJX7O1TTlQB7KtvJFbgo7HUqA8ymA/xt0D2c0U=;
+	h=date:mime-version:subject:message-id:from;
 
-Hello Marco, Liu,
+在 2026/01/12 星期一 11:56, Shawn Lin 写道:
+> 在 2026/01/12 星期一 9:32, Shawn Lin 写道:
+>> 在 2026/01/10 星期六 9:07, Marco Schirrmeister 写道:
+>>> This series addresses a microSD stability issue on the FriendlyElec
+>>> NanoPi R76S (RK3576). The board currently suffers from a 400kHz
+>>> retuning loop when the controller attempts to enter runtime-suspend
+>>> during idle periods.
+>>>
+>>> Evidence of the failure in dmesg:
+>>> [Fri Jan  2 01:28:02 2026] mmc_host mmc1: Bus speed (slot 0) = 400000Hz
+>>> [Fri Jan  2 01:28:03 2026] mmc_host mmc1: Bus speed (slot 0) = 
+>>> 198000000Hz
+>>> [Fri Jan  2 01:28:03 2026] dwmmc_rockchip 2a310000.mmc: Successfully 
+>>> tuned phase to 233
+>>> [Fri Jan  2 01:28:04 2026] mmc_host mmc1: Bus speed (slot 0) = 400000Hz
+>>>
+>>
+>> Does this problem happen with all microSDs or just *a* microSD per
+>> your description?
+>> Have you ever tried to disable SDR104 support?
+>>
+> 
+> A quick update.
+> 
+> I found several problems on RK3576 for supporting sd cards. I wondered
+> how all upstream RK3576 boards claiming SD support work? Anyway, I sent
+> a series to the list[1], not sure if it fixes the problem you faced, but
+> these should be the right patches you should have a try.
+> 
+> 
+> [1]https://lore.kernel.org/linux-rockchip/1768189768-96333-1-git-send- 
+> email-shawn.lin@rock-chips.com/T/#t
 
-On Tue Jan 13, 2026 at 8:07 PM CET, Marco Felsch wrote:
-> From: Liu Ying <victor.liu@nxp.com>
->
-> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
-> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-> field. Add a DRM bridge driver to support the display format configuratio=
-n.
->
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> [m.felsch@pengutronix.de: port to v6.19-rc1]
-> [m.felsch@pengutronix.de: add review feedback (Alexander)]
-> [m.felsch@pengutronix.de: fix to short Kconfig description (checkpath)]
-> [m.felsch@pengutronix.de: use "GPL" instead of "GPL v2" (checkpatch)]
-> [m.felsch@pengutronix.de: add bus-width support]
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 
-I'm sorry to be reviewing at v8 only, I hadn't noticed this series before.
+Except for the patch mentioned above for fixing the hot-plug problem
+which you confirmed to work fine. I looked the code a bit and see
+a potential problem related to the runtime suspend + power-domain.
+Please check the patch to see if it fixes your problem:
 
-> ---
->  drivers/gpu/drm/bridge/imx/Kconfig      |  11 ++
->  drivers/gpu/drm/bridge/imx/Makefile     |   1 +
->  drivers/gpu/drm/bridge/imx/imx93-pdfc.c | 221 ++++++++++++++++++++++++++=
-++++++
->  3 files changed, 233 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/=
-imx/Kconfig
-> index b9028a5e5a065c3237b404111d8df57e8e017f9d..181ee87bc0f9f65ee0b6e5edb=
-b48ba808dfbb71f 100644
-> --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> @@ -99,4 +99,15 @@ config DRM_IMX93_MIPI_DSI
->  	  Choose this to enable MIPI DSI controller found in Freescale i.MX93
->  	  processor.
->
-> +config DRM_IMX93_PARALLEL_DISP_FMT_CONFIG
-> +	tristate "NXP i.MX91/i.MX93 parallel display format configuration"
+--- a/drivers/mmc/host/dw_mmc-rockchip.c
++++ b/drivers/mmc/host/dw_mmc-rockchip.c
+@@ -36,6 +36,8 @@ struct dw_mci_rockchip_priv_data {
+         int                     default_sample_phase;
+         int                     num_phases;
+         bool                    internal_phase;
++       int                     sample_phase;
++       int                     drv_phase;
+  };
 
-Minor nit: this is a driver for a device, so calling it "configuration"
-seems weird. From the code it looks like a device converting the color
-format, so what about "NXP i.MX91/i.MX93 parallel display format
-converter"?
+  /*
+@@ -573,9 +575,43 @@ static void dw_mci_rockchip_remove(struct 
+platform_device *pdev)
+         dw_mci_pltfm_remove(pdev);
+  }
 
-[...]
++static int dw_mci_rockchip_runtime_suspend(struct device *dev)
++{
++       struct platform_device *pdev = to_platform_device(dev);
++       struct dw_mci *host = platform_get_drvdata(pdev);
++       struct dw_mci_rockchip_priv_data *priv = host->priv;
++
++       if (priv->internal_phase) {
++               priv->sample_phase = rockchip_mmc_get_phase(host, true);
++               priv->drv_phase = rockchip_mmc_get_phase(host, false);
++       }
++
++       return dw_mci_runtime_suspend(dev);
++}
++
++static int dw_mci_rockchip_runtime_resume(struct device *dev)
++{
++       struct platform_device *pdev = to_platform_device(dev);
++       struct dw_mci *host = platform_get_drvdata(pdev);
++       struct dw_mci_rockchip_priv_data *priv = host->priv;
++       int ret;
++
++       ret = dw_mci_runtime_resume(dev);
++       if (ret)
++               return ret;
++
++       if (priv->internal_phase) {
++               rockchip_mmc_set_phase(host, true, priv->sample_phase);
++               rockchip_mmc_set_phase(host, false, priv->drv_phase);
++               mci_writel(host, MISC_CON, MEM_CLK_AUTOGATE_ENABLE);
++       }
++
++       return ret;
++}
++
+  static const struct dev_pm_ops dw_mci_rockchip_dev_pm_ops = {
+         SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, 
+pm_runtime_force_resume)
+-       RUNTIME_PM_OPS(dw_mci_runtime_suspend, dw_mci_runtime_resume, NULL)
++       RUNTIME_PM_OPS(dw_mci_rockchip_runtime_suspend, 
+dw_mci_rockchip_runtime_resume, NULL)
+  };
 
-> +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct imx93_pdfc *pdfc;
-> +	struct device_node *ep;
-> +	int err;
-> +
-> +	pdfc =3D devm_drm_bridge_alloc(dev, struct imx93_pdfc, bridge, &funcs);
-> +	if (IS_ERR(pdfc))
-> +		return PTR_ERR(pdfc);
-> +
-> +	pdfc->regmap =3D syscon_node_to_regmap(dev->of_node->parent);
-> +	if (IS_ERR(pdfc->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(pdfc->regmap),
-> +				     "failed to get regmap\n");
-> +
-> +	/* No limits per default */
-> +	pdfc->phy_bus_width =3D 24;
-> +
-> +	/* Get output ep (port1/endpoint) */
-> +	ep =3D of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
-> +	if (ep) {
-> +		err =3D of_property_read_u32(ep, "bus-width", &pdfc->phy_bus_width);
-> +		of_node_put(ep);
-> +
-> +		/* bus-width is optional but it must have valid data if present */
-> +		if (err && err !=3D -EINVAL)
-> +			return dev_err_probe(dev, err,
-> +					     "failed to query bus-width\n");
-> +	}
-> +
-> +	pdfc->next_bridge =3D devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-> +	if (IS_ERR(pdfc->next_bridge))
-> +		return dev_err_probe(dev, PTR_ERR(pdfc->next_bridge),
-> +				     "failed to get next bridge\n");
-> +
-> +	pdfc->dev =3D dev;
-> +	pdfc->bridge.driver_private =3D pdfc;
+  static struct platform_driver dw_mci_rockchip_pltfm_driver = {
 
-pdfc embeds the struct drm_bridge, which is the mandatory design since
-devm_drm_bridge_alloc() got added, so driver_private shouldn't be needed
-anymore. Most drivers have a bridge_to_foo() inline function using
-component_of() to get the private struct from the drm_bridge pointer,
-e.g. [0] and [1].
 
-[0] https://elixir.bootlin.com/linux/v6.18.5/source/drivers/gpu/drm/bridge/=
-simple-bridge.c#L39-L43
-[1] https://elixir.bootlin.com/linux/v6.18.5/source/drivers/gpu/drm/bridge/=
-ti-sn65dsi83.c#L287-L290
 
-A short discussion took place a few months ago about driver_private, kind
-of suggesting it might be removed after all drivers have switched to
-devm_drm_bridge_alloc(). I think we should at least not introduce new users
-of driver_private at least.
 
-Best regards,
-Luca
+> 
+>>> Testing confirmed that the issue can be manually addressed by
+>>> disabling runtime PM via sysfs:
+>>> echo on > /sys/devices/platform/soc/2a310000.mmc/power/control
+>>>
+>>> I experimented with various changes in the Device Tree, including
+>>> lowering the bus frequency and attempting to keep the power domains
+>>> active, but nothing stopped the retuning loop.
+>>> The issue only went away when I forced the controller to stay active
+>>> by disabling the runtime power management.
+>>>
+>>> This quirk is the only way I have found to keep the SDR104 link from
+>>> crashing on the NanoPi R76S, I am open to suggestions if there is
+>>> a better way to handle this in the driver or the DTS.
+>>>
+>>> Marco Schirrmeister (3):
+>>>    dt-bindings: mmc: rockchip-dw-mshc: add rockchip,disable-runtime-pm
+>>>    mmc: host: dw_mmc-rockchip: add rockchip,disable-runtime-pm quirk
+>>>    arm64: dts: rockchip: add stability quirk to NanoPi R76S
+>>>
+>>>   .../bindings/mmc/rockchip-dw-mshc.yaml        |  8 ++++++
+>>>   .../boot/dts/rockchip/rk3576-nanopi-r76s.dts  |  1 +
+>>>   drivers/mmc/host/dw_mmc-rockchip.c            | 25 ++++++++++++++++---
+>>>   3 files changed, 31 insertions(+), 3 deletions(-)
+>>>
+>>
+>>
+> 
+> 
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
