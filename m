@@ -1,152 +1,99 @@
-Return-Path: <devicetree+bounces-254842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04367D1D18B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:25:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D643CD1D1A3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:27:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 06CF73000B04
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:25:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 748503009D73
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 08:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20FB937BE77;
-	Wed, 14 Jan 2026 08:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107A237F105;
+	Wed, 14 Jan 2026 08:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHueQlK9"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UdOb5SP5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F85637E2F1;
-	Wed, 14 Jan 2026 08:25:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C4937F0EC;
+	Wed, 14 Jan 2026 08:27:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768379126; cv=none; b=OyjjB4iaPnAuZRFZbvSKb8QLfrtC+zeRmk73QPl2WwP0ctPUcES9lPbUlDH5Ac3CNnE3W9HjIkdIlegcc3P9FHkfXPYhvN3r5nKXgjPfktX1lTuFikSjIk/U9KlcpdbxtfmzZ4ssEFu6YkFQKIDXo8wfxEyOaO6jF8TcPGhVOrk=
+	t=1768379262; cv=none; b=OT7ur+PUtmA5eioq1WHbitfswfrXMp+nFjwsZMZjTvNBDshwQETuKcMo9m8xBzgZSzWWbPMT6l/7iTxZyJlZYLDPO7sTnoOA3FDJTDNVh6Jw/xWxyvo6Z4ALclrmv3ZGuCoJd2tUzqH+n1ysoMoPvj5Um0JyxcW35mOJm0bcJF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768379126; c=relaxed/simple;
-	bh=51eaIopXNp29AsBCtY4p+d5Nz/I0BkLOIg24rTR6Gao=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ob05QCVxjbnFEfRPpjt75i89aD/6J07vv5miw7GMxTAgnr2ZEpx0u+oO/edPpKQzis8jkOe7nCPFSWasXCa+v+/2AuAFII8xdn75igG0UyKmJmftnJyIFyVoL1l0nLGOKhMctIMf94MUq3i5pTgMFinbiiwTzFQZiUZnTIdStnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHueQlK9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACC61C4CEF7;
-	Wed, 14 Jan 2026 08:25:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768379125;
-	bh=51eaIopXNp29AsBCtY4p+d5Nz/I0BkLOIg24rTR6Gao=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qHueQlK9qPpG+K1nKMCF6hlNPMnnCPex3LKVaz9xxE2nJ6KrQMbYNfEhxP02P2VOl
-	 WnGBpA+LAGYvLKIS7YQtfGNqMzf1mtKMSFHtdq82od9UC9ckvtjPAuS+HDw+6/MzTp
-	 0lXp3/MI47uHnpApLpg8g7t4z+pDKqjMjBKiVY+np3hSel5wcBxzQYgcSMDh62fXZP
-	 BeOV3usenaZeRp0iOGhVOZe1WyldKmMNY9pBtdIq9mc+1erdzMZu8AzfV6emiDcy5O
-	 g96rSkjfhBU9Q412ZSXCvFrZU18fghYt8jD/24DMr3TCJxx/v9ZqJ9+A5hJMCKRWW3
-	 VbNf+NaFx+m3Q==
-Date: Wed, 14 Jan 2026 09:25:22 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org, 
-	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org, Frank.Li@nxp.com, 
-	lgirdwood@gmail.com, vikash.bansal@nxp.com, priyanka.jain@nxp.com, 
-	shashank.rebbapragada@nxp.com
-Subject: Re: [PATCH v4 4/5] regulator: p3h2x4x: Add driver for on-die
- regulators in NXP P3H2x4x i3c hub
-Message-ID: <20260114-resilient-cocky-skunk-2035eb@quoll>
-References: <20260113114529.1692213-1-aman.kumarpandey@nxp.com>
- <20260113114529.1692213-4-aman.kumarpandey@nxp.com>
+	s=arc-20240116; t=1768379262; c=relaxed/simple;
+	bh=8MK2K1fASDPVnowqxQJ1JsgFLtEXmJrr6pW4o1QRCyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qeG9sSCk2HdmhZajOWlQJNVGeXYLNgop6UzN2KYFDxvbaC9kFJOaUlGZLLgYnLiUcybwKwzFqwV3V/Tngk7YmuHuaYJDnxRFBc/STMEisMiaAMtDQ0B+lHprQW0X8lmtwms0r5bK9x+G8yYoJPdHmNEkZ1y5J8pMIuT4DtTP2tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UdOb5SP5; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768379254;
+	bh=8MK2K1fASDPVnowqxQJ1JsgFLtEXmJrr6pW4o1QRCyc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UdOb5SP5TUuhuFc/WhQJMKtJekNVy54o3R38/WoQOOwEqbI7Va76TVfEYmO9/o7G0
+	 osO2Dkd+3GI4pdGm9DxibTNa3cFFqVe8WfdT+MsFCvNhTXYBstc3/Cqb95tBD0rmIZ
+	 CJ6f+G2Di4ibr0mPV+RLLFpmBuhlT0vNaDbYp21iDG1XCJzos/SAbwVajHb7AAOaKD
+	 WBia4g9eXgNJ4B5l0m6bUV+DiclrhgU/GxxWQTWZRQcoLuhex+WX+X3acRLMP8N2cM
+	 1TqAIYUYg0uEW9ekIygOQAyOdpljqwakRH+bvff9FedRviDiosITXaBb58PXcW+RS0
+	 ZJVO7cSIognsw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 73DE517E0139;
+	Wed, 14 Jan 2026 09:27:34 +0100 (CET)
+Message-ID: <b38823d4-1bce-496b-a063-75f2139aa3bd@collabora.com>
+Date: Wed, 14 Jan 2026 09:27:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260113114529.1692213-4-aman.kumarpandey@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: arm: mediatek: mmsys: Allow single
+ vdo/mmsys endpoint
+To: Rob Herring <robh@kernel.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20260108143934.69634-1-angelogioacchino.delregno@collabora.com>
+ <20260113225346.GA367211-robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260113225346.GA367211-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 13, 2026 at 01:45:28PM +0200, Aman Kumar Pandey wrote:
-> The NXP P3H2x4x family integrates on-die regulators alongside I3C hub
-> functionality. This driver registers the regulators using the MFD
-> framework and exposes them via the regulator subsystem.
+Il 13/01/26 23:53, Rob Herring ha scritto:
+> On Thu, Jan 08, 2026 at 03:39:32PM +0100, AngeloGioacchino Del Regno wrote:
+>> The hardware supports using just a single output while leaving all
+>> of the others unconfigured (disabled), but the binding did not
+>> really allow specifying a single endpoint@0, because in this case
+>> one must either:
+>>   - Call the subnode `endpoint` and not declare any address and/or
+>>     size cells; or
+>>   - Call the subnode `endpoint@0` and have at least one more other
+>>     endpoint(@1 or @2), and declare address/size cells.
+>>
+>> Allow specifying a single `endpoint` subnode, without the `@0`
+>> implicit suffix to suppress warnings happening on this kind of
+>> valid usecase.
 > 
-> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
+> This series isn't needed. We've dropped this check from dtc. I'll do a
+> sync with upstream.
 > 
-> ---
-> Changes in v4:
->  - Split the driver into three separate patches (mfd, regulator and I3C hub) 
->  - Introduced driver for on-die regulators in NXP P3H2x4x I3C hub
-> ---
-> ---
->  MAINTAINERS                                   |   3 +
->  drivers/regulator/Kconfig                     |  10 ++
->  drivers/regulator/Makefile                    |   1 +
->  drivers/regulator/p3h2840_i3c_hub_regulator.c | 162 ++++++++++++++++++
->  4 files changed, 176 insertions(+)
->  create mode 100644 drivers/regulator/p3h2840_i3c_hub_regulator.c
+> In any case, it's also a W=1 warning which wouldn't be my top priority.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index aa7043499223..4bcd52d65f1a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18934,6 +18934,9 @@ F:	Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml
->  F:	drivers/mfd/Kconfig
->  F:	drivers/mfd/Makefile
->  F:	drivers/mfd/p3h2840.c
-> +F:	drivers/regulator/Kconfig
-> +F:	drivers/regulator/Makefile
+> Rob
 
-Huh? Why do you claim you maintain this? On what basis?
+Oh, okay! Thanks for the feedback :D
 
-> +F:	drivers/regulator/p3h2840_i3c_hub_regulator.c
->  F:	include/linux/mfd/p3h2840.h
-
-...
-
-> +	p3h2x4x_regulator = devm_kzalloc(dev, sizeof(*p3h2x4x_regulator), GFP_KERNEL);
-> +	if (!p3h2x4x_regulator)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, p3h2x4x_regulator);
-> +
-> +	p3h2x4x_regulator->regmap = p3h2x4x->regmap;
-> +	device_set_of_node_from_dev(dev, dev->parent);
-> +
-> +	rcfg.dev = dev;
-> +	rcfg.dev->of_node = dev->of_node;
-> +	rcfg.regmap = p3h2x4x_regulator->regmap;
-> +	rcfg.driver_data = p3h2x4x_regulator;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(p3h2x4x_regulators); i++) {
-> +		rdev = devm_regulator_register(&pdev->dev, &p3h2x4x_regulators[i], &rcfg);
-> +		if (IS_ERR(rdev)) {
-> +			ret = PTR_ERR(rdev);
-> +			dev_err(dev, "Failed to register %s\n", p3h2x4x_regulators[i].name);
-> +			return ret;
-
-Syntax is just return dev_err_probe.
-
-> +		}
-> +		p3h2x4x_regulator->rp3h2x4x_dev[i] = rdev;
-> +	}
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver p3h2x4x_regulator_driver = {
-> +	.driver = {
-> +		.name = "p3h2x4x-regulator",
-> +		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> +	},
-> +	.probe = p3h2x4x_regulator_probe,
-> +};
-> +module_platform_driver(p3h2x4x_regulator_driver);
-> +
-> +MODULE_AUTHOR("Aman Kumar Pandey <aman.kumarpandey@nxp.com>");
-> +MODULE_AUTHOR("vikash Bansal <vikash.bansal@nxp.com>");
-> +MODULE_DESCRIPTION("P3H2x4x I3C HUB driver");
-
-Do you use the same description everywhere?
-
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.25.1
-> 
+Cheers,
+Angelo
 
