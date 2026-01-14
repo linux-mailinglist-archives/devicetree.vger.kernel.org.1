@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-254991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18B95D1E37C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:49:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C97CD1E349
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 11:48:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A06DB3119C07
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:44:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 18F1A3004608
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:44:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BCAF393DE7;
-	Wed, 14 Jan 2026 10:43:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04393389E1B;
+	Wed, 14 Jan 2026 10:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aw+wos9Z"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UiX/JPSs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC3635EDC7
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810E838E5D6
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 10:43:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768387426; cv=none; b=PFQwKFXDY6wH3FDb19OVCgncuW7OFnV+6YJCrt+TtoOjXhGUzdiS+DasIypJ/Iv2DXQsAg5nTiikG21Yg2fmX2qnI816K17Y30Z4vffkqyCt4xZHow6pJU+ora7lqn8mLqcBwhb/8ceBgvTNIg6lMyWQ9CmmwZw3Z0o5FJt9TGU=
+	t=1768387427; cv=none; b=Cm9+yopMeN7PBny5d/kSvj0Zz0Pfv0c4DfwtXbrLY8BMRdzEsQkSBVCkVPxUWv5grZcp90cA6G9OD93mrGVoc5Br2Hy0Du2hu08ujY6hDpFUL8lCu66bQ7uugFM4OO68nBDc4Gv0mk1PjsxAQoFdrG4q3iI7XazE3C5lqLv450U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768387426; c=relaxed/simple;
-	bh=1LKCtim2I2hT1s40Y3DrwuSpkWo5wr0ZX4RSBFzQkDY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oF7vS2BJtL1NuGfVJjBOvAr9DQVhScgNskR0PzpfMQPb526yCkunEhaYia9C5hce7PtR06UE09MkDNzeccPtkwFaGmxBHWRcyRfhRvWxn+KSDqearp8EsrIq1zbHLbAr0MHyC9H+qJHZgmlkZwrZIyaeArNK3luAK0MjSl0nYDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aw+wos9Z; arc=none smtp.client-ip=209.85.221.41
+	s=arc-20240116; t=1768387427; c=relaxed/simple;
+	bh=VYGCJTyLWyZeqxrYJqis+f8MCWkH4xGdHO1FKT2JVf8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=PNxL/XzOE6pf2oUBFshWAg/EsqKrJeerdqAYc/wbz+zobl6EpA4imQ5MUrOP55Z29Y+n7McUxXsUfHPt8RP4N9GzkdU1DX6kvDyeAYJoQPwUJNr7cChXofvBUuM7dceh3772pcY8D9mrKCXffE7r4n/YjunlKzi1M6mF8loWWsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UiX/JPSs; arc=none smtp.client-ip=209.85.128.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-42fb4eeb482so4909924f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:43:42 -0800 (PST)
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-47d182a8c6cso50078165e9.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 02:43:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768387419; x=1768992219; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BlRF7x3GPWhzaZswMOKLBWLPrgVCED+FleXataOYLuA=;
-        b=aw+wos9ZxGGy4MFwOGzY+ubHMpuvwPYc4p1r5Z/otRndzDOMuz5+mOUqamoQK7Kzuo
-         MpSyZkKkM7Zegl5WRixWCpfR8oex6lixK1OB5l8H/5NLCYWlQchCh6QSqfwQdXrBMYTL
-         GvOH/zm+OsZ07hjS4LEvmYFgRt50hfPLgNVUAkr81ljOJcZNWDHn7xWs+MH5+9HYOuEX
-         TOuNEKFLPA0L4Ftkq3KGH4zYxZU7ML1n9jHZwrErHGBer7sb/iNhYBZff6yPGNWo144F
-         C3xUVMrNy2nQlGFprQszAEn9HAFOO0Ct4+IRepEisnxjpNZYMNc3rPxuPUICYq2Jppjq
-         6/EA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768387421; x=1768992221; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SlByN8C1Eu2c9UjKXvt2bF4y//Mr04/U71i3Y158psI=;
+        b=UiX/JPSsvWxzamq08XT8IiH6rv7X8eDKI//3h+ELwPV8z1mr8sSt0pf+S2Ob6j04Ha
+         Qb+P2D8G4Cw+P3XFb6DoK//YfXqYUuQrg5js2s00aDc8PeWoUHZBuOT/vnDQw6efpT4o
+         Sv74w58qy6IQABSg75sl6SEtpYUm8WcfOG4RALKa6iBdJJ9GXFGp6qQSHT0mcpDgLcuL
+         CKRKNyIbXXbeWlVrIWbucfELJLhP/N+a3NBVG44DGWog9pNnFnzhtL1VOXkGy4rgA9K7
+         CYThHKa0CoQZcgjKNtDbRH1YjEqlUlBTU24AfTnf+mPL9JjmHe6GGUWlM446Cl7KLF/Z
+         X4gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768387419; x=1768992219;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BlRF7x3GPWhzaZswMOKLBWLPrgVCED+FleXataOYLuA=;
-        b=vMxeADDY+YMAGZdePWoPcHTJ2MzSqtAwKPTAXiMBt16rqAr94XRSUa5w+lCdXawiGO
-         ur3tGqgjzxgy/2HOnuRqO7bRcM/eqfy55f7N8VFHOgMp4dDd8DxwYJ0RIDTcrk6ZEpl3
-         XQxkOhXIGS39c+BRTjqxyfqg5rLbamqmL4B94TTZSHGEkxbSJdnIT2Jj93E0SVZmUgRf
-         6FEXKxBvA5MM1d8AXE1MmchpXORKlPsI8e11Ywm9GEVNrjeblOcq1dAG64O8OYH0X8sM
-         /SKzf4vIGeY/lyL/BtRznnGOcr0bQGLVnBH6MWAFL/C20BOXN3D+X6pjoztcwE/omixa
-         qcWg==
-X-Gm-Message-State: AOJu0YwV9idgRtYFzPrSLzgjaGNeXDnemXLs0YRYgF2bq5f1PxtLGWHt
-	Kkrk0RmmuzrKKvxltYio14FsM7K0prwqYp88zLgo43sA0JrCgfc/0Xq7gunhfp2J9bY=
-X-Gm-Gg: AY/fxX7pNOcGa+5cy1nC/hMISq2nPZMs2a+WvrPL9GKGvt1BTgCQKZBaNygt1UpNDAl
-	Z/pS68bd8cSl+3e+PkgVwcyKhiA6oWBefuYUqU6XiCmfZJ6wgJYjq6uxTeXhlPoIdqdQsDO9avx
-	E3dfC7448gW//MKEV596/OilUb/SAtXmmGPhmT9ecG+ctpg57M80A9c3fdy7bzOsEXSt+lXi2Vz
-	1SXezIlrpzYkBE+xdbj6XgeQvNVf/XBh7wrQnOWv+sD3CyrNqQIkiOdKFMSlzUf+tvMeVekuqXr
-	cnwTkGOLd61xyBZprmVQO4ISLn/MEt6pAADyu9LJCbLqT1/4652gowMpOP2ci+0/Q9rG2w4aJIN
-	wkrMmYNil7KUjZkOnbg0Sg/on2UMxtgyFJed4tzouFTAxDwEZQLaiWa5Od5gKwdd9+5OmVaxnQH
-	ncgxguf2O78Q==
-X-Received: by 2002:a05:600c:548b:b0:477:b0b8:4dd0 with SMTP id 5b1f17b1804b1-47ee33948d1mr27636215e9.17.1768387419126;
-        Wed, 14 Jan 2026 02:43:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768387421; x=1768992221;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=SlByN8C1Eu2c9UjKXvt2bF4y//Mr04/U71i3Y158psI=;
+        b=LT9lFIex/N2l1X+IiIqenvZi61w8X+2GqMmRvgmOeZWeiEr9g6AYcSUq22Ksl1uuCA
+         Lca+cfH60NyzIrkluJoFdExNC8svrjzg7QbnyL1bwdK4G/Z4b8CqbUjpSg60PS1xzdFO
+         /REuPEmBOMzEqXj0s6bF02XmkVJWnStuRvPEGB/LHnHHGsabIYWP/W2D2P5Q4PGYAIzW
+         VpOS1zscudCwmoy4eS7s/fEtxjrtaUIwsjwTk8c6knxSXB2XE4UzdYvW/u5kn6rzic2q
+         Tv6HCD81isShTQRuFMaAZ9r0jJH5PwrMAGcK34R7TfWClyQd5xI//QdKLmKneHRRrwiY
+         1rUg==
+X-Gm-Message-State: AOJu0YwBwh3sSQ6V8rYcNFJAjPmoxjCSjmXb44/nQ+gx/bPz2QpxA1u4
+	DKHrjAOQbUrc1LON63uYnTT3/9Y2SdmKHTquj9WUBNgn5QXvJnm0IsXVXg3ja+k+Tt0=
+X-Gm-Gg: AY/fxX579FKQigvZsFk41X1xC2HvDUW3M/y/75XusRGSPRWT5tCEEt4sXp4+UE3EBij
+	z1j4bi6MCFBIdNRr7Cf9wlEM+CEakwvVLd4IEHeQWI6zh2WiEy1FmVVm84ru9j8U5wEPcTb2s4+
+	OVg4/RK9QbQSRylgpI8+IiJz8nS6OkjgwLDiHFS45pl2mVVWTH0HPKWZ1WkVqBdydSLDw27+9sD
+	1G8x1FfgP2uOKVzv6MTxWMpzV/5e6gNMj3gYWxxVEbAIwExj26n2KJaUtzPpr/fjmocpgzXbWLM
+	Tsiad4y+hTFezMCr1Bvt8QpI7KSv4xyP1na7H4RuTiSUdXXEoodwlVAnb4LP9Lce1oc1k/YHLI9
+	rbJCot0DuQ1CoY2nTjreLEJHxoXpJ1U2TxE1n09AbKTE++baKdSW/M4WPVL2wHMIBuRYBxp6rPd
+	opubHXoPtgxQ==
+X-Received: by 2002:a05:600c:45c8:b0:477:9a28:b0a4 with SMTP id 5b1f17b1804b1-47ee3071491mr26145085e9.0.1768387420967;
+        Wed, 14 Jan 2026 02:43:40 -0800 (PST)
 Received: from localhost ([2a01:e0a:3c5:5fb1:f2cc:bd72:2de3:86cd])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47ee27cf06bsm18320395e9.4.2026.01.14.02.43.38
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-47ee5613cfbsm21953065e9.0.2026.01.14.02.43.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 02:43:38 -0800 (PST)
+        Wed, 14 Jan 2026 02:43:40 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Subject: [PATCH v3 0/2] arm64: dts: amlogic: s4: mmc clock fixups
-Date: Wed, 14 Jan 2026 11:43:10 +0100
-Message-Id: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
+Date: Wed, 14 Jan 2026 11:43:11 +0100
+Subject: [PATCH v3 1/2] arm64: dts: amlogic: s4: assign mmc b clock to
+ 24MHz
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,11 +82,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAD5zZ2kC/4XNzQ6CMAzA8VchO1uzFeTDk+9hPGyjgyXgyKaLh
- PDuDk7GxHj8t+mvCwvkLQV2zhbmKdpg3T1FfsiY7uW9I7BtaoYcSy5EDnIcXGc1hALGUYOxr+c
- EDcq2Vg1XlSKWTidPabGz11vq3oaH8/P+JYpt+geMAjgIqYTRkhuF5qLkPFjl6ajdyDYz4qdT/
- HAwORU1Up2MQKzLL2dd1zeDp/ubAwEAAA==
-X-Change-ID: 20260113-amlogic-s4-mmc-fixup-92ad8b90b7be
+Message-Id: <20260114-amlogic-s4-mmc-fixup-v3-1-a4d3e136b3f2@baylibre.com>
+References: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
+In-Reply-To: <20260114-amlogic-s4-mmc-fixup-v3-0-a4d3e136b3f2@baylibre.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -95,56 +95,60 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1261; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=1LKCtim2I2hT1s40Y3DrwuSpkWo5wr0ZX4RSBFzQkDY=;
- b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBpZ3NSZJZtIWJKLF9AEgh31t4Xmgs/V4YDd+dFa
- 0XSd+pUp52JAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaWdzUgAKCRDm/A8cN/La
- hZUjD/9xs+WWSkkahEPEw76BOMvXlY+wH1U4EcYR3okK0755L+Ix+DqOmP7l1pX1kw7lrDkLYLr
- zlkegkq8eEyv8Ia7LSGlR8Jmjq2+I8+sk9IUh+WMD7oKDVI5mZ6U559ORfS2g3vYXD+XZ5LJ8TC
- 8Vu2FjUtF4+ovYxpiVdV6lJeIEOz/DNyaOFWdIlrRXp08FFl6czFmI3VQRF2yuHzEvvnbpcuSbX
- OhAEAPGyOqQ2x1XY8Oe61l8FYFJ3GTCN8UceZ3E9ys80BxAkBr32oaIN5tKILq8rzfB/rBP6KDs
- q3veyF23F3TRXrbAulemw7esd8lYg4/BGxWbyFebwZmp2eDXtTeduyhdxXUqbI3Sw+lKcYzUdIC
- gJUycJGUR2C6QFXp95eEwwA9QofkLVDMndVln7fDsCjOzyPWbD96plwtPgE31wkOEn2n9uSduLl
- FBNr9JtKnBiupNTh95URNfFsv1p7ENTP8No/mh/MWl5jjp4LKars5iBwvLvNWiYJzvql6CfgzBe
- dYMrTSwXoGzyRLyjPYLkm9ZQ5FzZjrhS6z8rOCD9Jp6YDvffFfQu2wmMS3kJY/hlXuXdKcPBmzM
- kGMZxoHi9FVTlGigcC8u5ALdVdRbuiOip+qTDhzFmNeHYli0nmhcQhVsrPh27odzMSvJpcTnMKc
- aKieeb0045kRqnA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1456; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=VYGCJTyLWyZeqxrYJqis+f8MCWkH4xGdHO1FKT2JVf8=;
+ b=owEBbQKS/ZANAwAKAeb8Dxw38tqFAcsmYgBpZ3NXDe1yYrYJvm7ef+o0HbQsBE36HBFvgGEFi
+ 3gDd6HBfxOJAjMEAAEKAB0WIQT04VmuGPP1bV8btxvm/A8cN/LahQUCaWdzVwAKCRDm/A8cN/La
+ hcFYD/9Q8GfbO+oTJmQEoIph6QdmzFBAunlGYVNjY3ojIk+xGMpx4K8lcWBjqy1KR2o+tv4/0XB
+ mOkxCqoU73aajqQG1Gtu/YjfrPOiz7CJX5LMd37ftHULi1G7bXOAqZ0ctJro+v71iLcAEOM5I74
+ 9Dn5u9+06E5fXfkVjEcyhPsx8wnkQxeeyY9lA1nV+qNH0qd1KSeqq5x/4vWdbmYPX6FQojk4cPP
+ /DS7poKOJnn37qdQTGs0FPwzeoWq4R/w+WrgcmVWSFjigeMfdqQy6RiA1IFWZp5zG/M255ngOpo
+ m5/JWAK4GOdNrCDZveD6tgTh/3wnGJa3c4esNQHRQwa/XlEO+pJlbSnSRZsJ5+QVdeg1padx9I8
+ 0FrGIODF2UxvRAeVcIwVgJ5iXE2XKI9VY5i0HELTE5mnenUeXL6u5+tKVHz+8HgYxyKKpYWPJtP
+ TLMCwoKFRs3jA2Le/KPc/zHL5qdm/DKJxpetbX/F1lnaN5yHBnk2c4twSz8HgRhjxm0CJQeP/tm
+ 5k/RpETe/LiozsreIgoOgVyKy/i6EWPEspD7Y3YmtK1hSniiSp3aJVfMKcBDH5NZ4ON/Qb21RhT
+ 43LnwBcgOL61sSI7h8gOCcno/p18o6a+uqjLV9bBmCdM0wZRrNTko7tYefxSI+4/65EjsVWK9i7
+ NhG7oRZ0RIkfLBw==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 
-The patchset aims to address the issue raised here [1] for MMC B.
+The amlogic MMC driver operate with the assumption that MMC clock
+is configured to provide 24MHz. It uses this path for low
+rates such as 400kHz.
 
-While checking this issue, I've found that MMC A and C also appear to be
-improperly described in this platform's DT. The 2nd change fixes that.
+This assumption did hold true until but it now, but it is apparently
+not the case with s4. The clock has been reported to provide 1GHz
+instead. This is most likely due to how the bootloader is using the MMC
+clock on this platform.
 
-To be on the safe side, the MMC clock should also be assigned on the other
-SoCs. More changes will follow once things are sorted out for s4.
+Regardless of why the MMC clock rate is 1GHz, if the MMC driver expects
+24MHz, the clock should be properly assigned, so assign it.
 
-[1]: https://lore.kernel.org/linux-amlogic/20260113011931.40424-1-nick@khadas.com/
-
-Changes in v3:
-- Dropped useless assigned-clock-parents
-- Link to v2: https://lore.kernel.org/r/20260114-amlogic-s4-mmc-fixup-v2-0-7e9ab5f12286@baylibre.com
-
-Changes in v2:
-- Collect Tested-by from Nick
-- Fix some typos in the commit description
-- Link to v1: https://lore.kernel.org/r/20260113-amlogic-s4-mmc-fixup-v1-0-1ab1fca0fb2f@baylibre.com
-
+Reported-by: Nick Xie <nick@khadas.com>
+Closes: https://lore.kernel.org/linux-amlogic/20260113011931.40424-1-nick@khadas.com/
+Fixes: 3ab9d54b5d84 ("arm64: dts: amlogic: enable some device nodes for S4")
+Tested-by: Nick Xie <nick@khadas.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
-Jerome Brunet (2):
-      arm64: dts: amlogic: s4: assign mmc b clock to 24MHz
-      arm64: dts: amlogic: s4: fix mmc clock assignment
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
----
-base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-change-id: 20260113-amlogic-s4-mmc-fixup-92ad8b90b7be
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index 9d99ed2994df..f314f07062ab 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -838,6 +838,9 @@ sd: mmc@fe08a000 {
+ 			clock-names = "core", "clkin0", "clkin1";
+ 			resets = <&reset RESET_SD_EMMC_B>;
+ 			status = "disabled";
++
++			assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_B>;
++			assigned-clock-rates = <24000000>;
+ 		};
+ 
+ 		emmc: mmc@fe08c000 {
 
-Best regards,
 -- 
-Jerome
+2.47.3
 
 
