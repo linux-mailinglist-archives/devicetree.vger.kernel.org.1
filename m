@@ -1,65 +1,62 @@
-Return-Path: <devicetree+bounces-255216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13440D21402
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 22:00:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72E3D21471
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 22:09:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ACCC9303E02A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 20:58:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 312D0300FD67
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 21:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CF0357A33;
-	Wed, 14 Jan 2026 20:58:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8001E3587AF;
+	Wed, 14 Jan 2026 21:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCcvHs7d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MQlP4ogz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126842F25F3;
-	Wed, 14 Jan 2026 20:58:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C11D339719;
+	Wed, 14 Jan 2026 21:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768424337; cv=none; b=J6sYqK/wr50BI2883dpCL6rvAkzWaxePXkAaXkKS5l0fn+e/E2qaXf3Y3YAfE/UD6DJDd5ObzSTOwuD638+je8UrjgG5mS1LgWWYWFCyQprkzQmqmEeCRS1NteSRlZ/j//1QggcEqWO/g/bUM5XqLGzVpQhki46/hf0MHyJuXmk=
+	t=1768424941; cv=none; b=MVHB7I3uvYe1TflcsHK1yWB04CyfkfbPHhbeRtdpuJBiAqHrWKjmNISFC3ql3M8aUSeCbN516OkQk0HvUPS/se8MFShpvheu2zVOJJci9NrgRIs4wp2cLVbRoRGM1jKjC+/18o4TUmPI5+z+KmlEAF4qhaYfBrH09oQ2phHD/q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768424337; c=relaxed/simple;
-	bh=t15mgHwN+WGpwIYDNelTtRTVGa0I3MDtGvlcDLcbvYY=;
+	s=arc-20240116; t=1768424941; c=relaxed/simple;
+	bh=WY2v7TTkVAMIoJ6VgjyCIHMaXfZc57Ip7xvQxHTv4p8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SSx7EEvYv/8+DULftnhv/pYV6/x4yo2y4PExe0fPreAvfgdOrjI6iGx7EEurGMS2bVj/uSTGrmD+Yconfzg0IHxV9V2/fDdmuroWt0CNOJkqz7VGn17xBDC1XWaTVF383kQyNSu6OjXiCe773a8WAG/OEiabfpOrnqZ0IegeKRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SCcvHs7d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 852BEC4CEF7;
-	Wed, 14 Jan 2026 20:58:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZPhFG7z9Q+9m0ETSIpB1nhevmUgxZRinPdWix40eXGx46fHqDWB/SOv3VftD8vDybl0alI1DeYxG1bHAx5WCXum6JK8oRYQWXXSKTWn1ETGr129vkBxQCBtfKZarmcoKJIKrjOEEv/AnxnyEEmv2rISFUto/KsJ6DLxYem5bcOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MQlP4ogz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F8A1C4CEF7;
+	Wed, 14 Jan 2026 21:09:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768424336;
-	bh=t15mgHwN+WGpwIYDNelTtRTVGa0I3MDtGvlcDLcbvYY=;
+	s=k20201202; t=1768424940;
+	bh=WY2v7TTkVAMIoJ6VgjyCIHMaXfZc57Ip7xvQxHTv4p8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SCcvHs7dfJFVxcq4dLHWL6gXUCCRWKtNiONjkzm/PR+KtBnxQlLSt1vJe3/CtfXRC
-	 6SaMBDntB34hDv1r+JdiAEb40VnpctKNWoW8bEjRO7I8Qiq1b24XtV2TprW+/f5kfR
-	 BcdhgHmi0dM6njT1NLDuxb53WSetxHmjUsJdUC7Ws/3HVEv7W0CyswhtXo8JamHYFw
-	 DXY8CMnAZ1Jo+uPvJ4pkrvFES59VrDwCAwGngHPjvF9UMRnqk+coXC7W1fU09bjgs6
-	 /m255OisvcgKH1GbuzzEMEfkRz+w3cCW+q+HKlRWrJWDZ5B+mA4E16mKOFEdoL02yx
-	 05I6Onq2/LF+Q==
-Date: Wed, 14 Jan 2026 14:58:55 -0600
+	b=MQlP4ogzmIg+JA/pCvyHUUO5wvv/C5zQHlnBqXHSLlASijL8pmOpQxN6Mp9g8yjZF
+	 JSbWr/fkUFCssMc/dFWx53WUUKe4zHJ6ZYkSjNd6r1yX3mp12SLuUxgl9ozv63ZnlZ
+	 jl3raBW0MaXvD6R6YWE58deFr8RmXTmk8TGzXsH0Sdi35Ya/1ZFr2ubX1tizPnxouv
+	 dvucGK7xwkmHYbzM9vwJrQRTq/Y/S9jRrITCBXqvHPHWZJixTXbAVxA08Spk1KIgSe
+	 lOZgKwHm4frxFppMK3Q/ZKKdz7ijGrqpXG3ah1bIYM6EXceqoiApHVgyMomBL50l0S
+	 HZqj6PBTuoFBQ==
+Date: Wed, 14 Jan 2026 15:08:59 -0600
 From: Rob Herring <robh@kernel.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-rtc@vger.kernel.org,
-	Xiaochuang Mao <maoxiaochuan@loongson.cn>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-	Keguang Zhang <keguang.zhang@gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-binding: rtc: loongson: Document
- Loongson-2K0300 compatible
-Message-ID: <20260114205855.GA3190839-robh@kernel.org>
-References: <cover.1767663073.git.zhoubinbin@loongson.cn>
- <8876bebaf08121bb5edd2500f5289284b75df011.1767663073.git.zhoubinbin@loongson.cn>
- <20260106191314.GA2568583-robh@kernel.org>
- <CAMpQs4LpKSLGKySmzHeysS3x78inUQy9DF4dShneNymDvAi4Ew@mail.gmail.com>
+To: Coiby Xu <coxu@redhat.com>
+Cc: kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	Arnaud Lefebvre <arnaud.lefebvre@clever-cloud.com>,
+	Baoquan he <bhe@redhat.com>, Dave Young <dyoung@redhat.com>,
+	Kairui Song <ryncsn@gmail.com>, Pingfan Liu <kernelfans@gmail.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64/kdump: pass dm-crypt keys to kdump kernel
+Message-ID: <20260114210859.GA3197242-robh@kernel.org>
+References: <20251226141116.1379601-1-coxu@redhat.com>
+ <CAL_JsqLEsUV34tMZWSMc6w-xDV=M0JpOmS95TxrtbbBMRoD3Jw@mail.gmail.com>
+ <aV49pPV3OViTDe8c@Rk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,38 +66,60 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMpQs4LpKSLGKySmzHeysS3x78inUQy9DF4dShneNymDvAi4Ew@mail.gmail.com>
+In-Reply-To: <aV49pPV3OViTDe8c@Rk>
 
-On Wed, Jan 07, 2026 at 09:22:41AM +0800, Binbin Zhou wrote:
-> Hi Rob:
+On Wed, Jan 07, 2026 at 07:39:24PM +0800, Coiby Xu wrote:
+> On Tue, Jan 06, 2026 at 09:44:37AM -0600, Rob Herring wrote:
+> > On Fri, Dec 26, 2025 at 8:11 AM Coiby Xu <coxu@redhat.com> wrote:
+> > > 
+> > > Based on the CONFIG_CRASH_DM_CRYPT feature, this patch adds
+> > > LUKS-encrypted device dump target support to ARM64 by addressing two
+> > > challenges [1],
+> > >  - Kdump kernel may not be able to decrypt the LUKS partition. For some
+> > >    machines, a system administrator may not have a chance to enter the
+> > >    password to decrypt the device in kdump initramfs after the 1st kernel
+> > >    crashes
+> > > 
+> > >  - LUKS2 by default use the memory-hard Argon2 key derivation function
+> > >    which is quite memory-consuming compared to the limited memory reserved
+> > >    for kdump.
+> > > 
+> > > 1st kernel will add device tree property dmcryptkeys as similar to
+> > > elfcorehdr to pass the memory address of the stored info of dm-crypt
+> > > keys to the kdump kernel.
+> > 
+> > Is there not any security issue with putting the key into the DT? The
+> > DT is provided to userspace. There's provisions already to not expose
+> > "security-*" properties to userspace (see __of_add_property_sysfs).
+> > Though I think that has a hole in that the FDT is also provided as-is.
+> > However, I don't even know who or what uses these properties.
+> > 
+> > Rob
 > 
-> Thanks for your review.
+> Hi Rob,
 > 
-> On Wed, Jan 7, 2026 at 3:13 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Tue, Jan 06, 2026 at 09:33:32AM +0800, Binbin Zhou wrote:
-> > > Add "loongson,ls2k0300-rtc" dedicated compatible to represent the RTC
-> > > interface of the Loongson-2K0300 chip.
-> > >
-> > > Its hardware design is similar to that of the Loongson-1B, but it does
-> > > not support the alarm feature.
-> >
-> > But you are requiring the interrupt property for it? Isn't it no alarm
-> > feature means no interrupt?
-> 
-> Yes, the `interrupts` attribute is not required without the alarm feature.
-> 
-> But my judgment condition is `not contains` (added in patch-1[1]).
-> There are only a few SoCs on the Loongson platform that don't support
-> the RTC alarm feature, so I think `not contains` looks cleaner and
-> simpler.
+> Thanks for raising the concern! If I understand DT correctly, this
+> property is only accessible to the kexec'ed kdump kernel. A new DT is
+> allocated and set up by of_kexec_alloc_and_setup_fdt. Btw, to be
+> precise, it's putting the memory address where the key is stored but
+> not the key itself into DT. The key is stored in the memory exclusively
+> reserved for kdump. For more info on by who and how this property will
+> used, I've created a dt-schema pull request as suggested by Krzysztof,
+> https://github.com/devicetree-org/dt-schema/pull/181
 
-I should have said allowing rather than requiring.
+Okay, that's a bit less sensitive. That still could expose a memory 
+address to user space which has generally been locked down in recent 
+years. Though I'm not sure we'd consider addresses of blobs passed by 
+kexec sensitive or secure.
 
-You are allowing (though not requiring) 'interrupts' for Loongson-1B and 
-Loongson-2K0300. In patch 1, you made it required for other platforms 
-which is an ABI change. That's fine if it was a mistake and is truly 
-required.
+> 
+> And yes, there is no need for even userspace of the kdump kernel to
+> access it. So this idea of "security-*" properties/__of_add_property_sysfs
+> seems desirable. Thanks for bringing it up! I'll give it a try.
+
+Since it is just the memory address, kdump just moving the key would be 
+sufficient. Or the property can be removed early on. I think we do that 
+with kaslr seed IIRC.
 
 Rob
 
