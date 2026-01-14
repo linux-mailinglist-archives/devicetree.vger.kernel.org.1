@@ -1,141 +1,148 @@
-Return-Path: <devicetree+bounces-255066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C206CD1F5BF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:17:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B3CD1F579
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 15:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 01C20305CA3C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:15:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 09944300BEC2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 14:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1872D837C;
-	Wed, 14 Jan 2026 14:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E50E02D94BB;
+	Wed, 14 Jan 2026 14:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wv8GtboC"
+	dkim=fail reason="signature verification failed" (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="htk+x4Na"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com [209.85.210.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3192D6624
-	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 14:15:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BD7231829;
+	Wed, 14 Jan 2026 14:16:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768400108; cv=none; b=ugw4ZlScFl2wM7t0hpLoPUvntyns0fZ4H3PSMQi6vwlYpMPyA7uZ2gLIijlvIVEwQMEJ0Skunba5aNXCC8BYunuGCxI6UhTD01Mp9yk6hp3phb/8updgTr0PlGigth7svTCCs5XoIMmHfQKVFE0icgEC7MHCP7EpjBXg+X4rp7I=
+	t=1768400180; cv=none; b=fh3aja0plzHBvsRzOHb/tH5X5xjqEP473PO3OUJ9LzXjzix9oWWXorcHaTazV4scSAMt1tIvnpKu+63CpKTpnqxyhBICSleC9S1BFjre3HbFIpiB6WfDIaWDkKPPrYDV0BIn1aqDCgS9XMzezQiznRNjD28TmLfU9b3anO48FQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768400108; c=relaxed/simple;
-	bh=NKlOFQD6uXj0VWLLS8qWtWdchxZnwtrtwtRRdnryD+E=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=dsyzzSH6RepnG0XW1qSaloVEd8oqUBIoZCF7FFiZiLY/BhS9tkj+cWo6s/5jT7Dqk0+rzEfvvADYxj3Bx0nqKeWKbturpEQrnzTf1Zz+JXbiE1+HXQYXOxwc37CyDx+BDxdvfslHIvbFxVAj5uSEVJ/NxkQusHVA0lW0F4HeId4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wv8GtboC; arc=none smtp.client-ip=209.85.210.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f193.google.com with SMTP id d2e1a72fcca58-7f89d0b37f0so511452b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 06:15:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768400106; x=1769004906; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=NKlOFQD6uXj0VWLLS8qWtWdchxZnwtrtwtRRdnryD+E=;
-        b=wv8GtboCLQVEKX3PxvU0xn7QrVV8gNToyphPCAMqAL7T7WFhU8eTGxMoH+NDoFP8no
-         akGDuzs0wBcK+eJsp7Wk9d9l1M3gTdI2UNqHMQWablpOzka3O9zIV0SAiwsSzEMTkOg+
-         oYVE4Q/aaiFymr4zjme/8z8hkfklGGkVzVN6RElslZp7LjL3bqHmiLiedVDuUdS2/qZt
-         rTt1IlsBqcFZUHiVXgZkam0cHwnxa+A6itw71WYhgwXEErqkSBjtGLyew4JOzm3AfYn3
-         5gKhJwoyVlmZHsj+I4XWEuTU2CJXTr3A/tVO6SBs4cI3RX/RoZNjB+LPf19O+hvN5nO2
-         4AoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768400106; x=1769004906;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NKlOFQD6uXj0VWLLS8qWtWdchxZnwtrtwtRRdnryD+E=;
-        b=UgWvk04wghYvApE++mE/W7BWfEv2wRs5V4TXGLv6QLR+anIdAZUmYeLzB6j4JnAgZD
-         C1zb0tYr8wzaE6NbiydgIcZuhR7gGSbkxuG9FWZtGq7a2NLCnEfinsEIdAdXAh5gLBbO
-         aTuSXEG3eqSs7KqiN2UBNFiHmrNSC9C4if9KdBqrVjiYm77zG8x+Y9XpiIjI0gzqiuLU
-         CsaexhwUx4+3f51wcOqyLUlgyS7i5B2W8Nun0b9VgfCoN9bDRL7d2Zw9qdaskVJZTCT0
-         rs35dOUUa1JbzPhnNulFpYS9A/FQT5RzjEuvLv3cTQfYMGDrSftzlgp5O5sWGVtzY8eR
-         mYKA==
-X-Forwarded-Encrypted: i=1; AJvYcCWMwdSYwrmIw5lNyLogBA2UOnP0ePbhb9a+VbdfVhKfrpdjAgNaMWHB7JEb31n/4OW+1x6o13UhQyoy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3B0QtZmaW7CN5yqDLDZBASsXz1YHZbvHGjg14b3WFi1m9oVCl
-	kfMKsmPHtqiSIYJj2EyNQO/RdO3vSz/ffDO2ozn9kgifkyJ04mzZb3/MWfimvgzG2Qc=
-X-Gm-Gg: AY/fxX4ygfTlp8VrYN2WdN0qr2q1CjbVrda0BQfZgn8U2vJp13fas9OIueWR082Oc3z
-	VI5mwmkop9CVMMDZDXOfUiJ38M2hXVgoMTGhS1LThJMQg0e3Z60pqb+2/oVI8XAf7LTmU4dHjLV
-	KfLO08auCvFCnvF5Oi1zQxcmcng36m5q+LIMwFGp02VXySS56YJdkRhRscwc2j0T61ExqqTJCf+
-	uX0k5KjbldbTShwK71QtaTS+xRdMFDcSf1Ir8I6/p+AY0K8xsVRowzUhzmF+14AnfHS4liZEHmK
-	pJkGkQsPmccDT5i5Y6yUlh6G6/c1QDccIMagCYE8+AcyK97cCwmWLI2oveltvBcf/D4L/XYntGD
-	FGD6TJUsakmMshpZc8eCkzPu9JV48NuXUsiFUxuln4NL8fUOEh/VGJ3mzqNiSH6XyXqUYSNIxVB
-	OBV3m5DGBzLMFsJI7W
-X-Received: by 2002:a05:6a20:430e:b0:366:57e1:3919 with SMTP id adf61e73a8af0-38bed3b0a3emr3088839637.26.1768400105900;
-        Wed, 14 Jan 2026 06:15:05 -0800 (PST)
-Received: from draszik.lan ([212.129.75.26])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-819c52f88casm23418638b3a.34.2026.01.14.06.14.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 06:15:05 -0800 (PST)
-Message-ID: <08a972c7a0fd17260a91f09ce0201167cb6ed7fd.camel@linaro.org>
-Subject: Re: [PATCH v6 00/20] Samsung S2MPG10 regulator and S2MPG11 PMIC
- drivers
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>,  Bartosz Golaszewski	 <brgl@bgdev.pl>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij	
- <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Peter Griffin	
- <peter.griffin@linaro.org>, Will McVicker <willmcvicker@google.com>, Juan
- Yescas <jyescas@google.com>, kernel-team@android.com,
- linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-gpio@vger.kernel.org, Bartosz
- Golaszewski	 <bartosz.golaszewski@oss.qualcomm.com>
-Date: Wed, 14 Jan 2026 14:15:34 +0000
-In-Reply-To: <4502ece1dc8e949e23f971a93dc06dab2d4f0bf7.camel@linaro.org>
-References: <20260105-s2mpg1x-regulators-v6-0-80f4b6d1bf9d@linaro.org>
-		 <20260113112244.GE1902656@google.com>
-		 <6ace23c4-d858-4bdf-9987-104e706190cd@sirena.org.uk>
-	 <4502ece1dc8e949e23f971a93dc06dab2d4f0bf7.camel@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1768400180; c=relaxed/simple;
+	bh=Zk+X0U0nP+GtJI9b23g7B8znsodnQPS5UKylro1oFwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xzvx485fnRh2JGtEFiuptTHurs0GfvWU1eBPIToOL46OYfuPGOEHpW1n53ICgoo7UxJANeLDI7oOvZIyzwqxG8R9RCTQXEI9S4pihgaguxXdkujjdtZgnWvl+5Wn11eI2DW0jLlhJoL4+CKZSRU23tzCUNYzuhCSvZw7NBCvAOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=fail (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=htk+x4Na reason="signature verification failed"; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 628C540E0194;
+	Wed, 14 Jan 2026 14:16:17 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=fail (4096-bit key)
+	reason="fail (body has been altered)" header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id U9i6nnOD5eUv; Wed, 14 Jan 2026 14:16:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1768400172; bh=VRoSE/2YTwFhEpBBl9wXpY8ydPU6I1xxtgwmqqKape0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=htk+x4Natx08his9bWPcyT1eRR2E8mDo6r0Ufv6M7oX9I1xf/5nuKcRZPOt5JxFil
+	 0DvrlAz0d2fonr1AfsbmuosW50C8y8AmnD9ABkAVcz/irfYQKSMHS3Y9ltalVds6wU
+	 DTuRZk1RmrxFdRMrSl+9eeEWHB+qnXrGlJIW18D40BH0Xy6VF5Du6dcAqHL/QItIOG
+	 RhFxknDK9aKTwPtwPZsc81Qo0JEgFJCxA1h/UwnEh/jQkCQG/L+NJn8fXYLTBuk/W4
+	 1VKxEB5pqHN7dp5Cq1iwvaQ+uh/YYx/6aGXFad82Mh4WYRT2IpNSty94gOwXqUgk88
+	 iKFWzxUOws2xTDEzs8v7XzGbqOe+Rd6ucImcyNSW4ZQGj+KdtHAiOrbA+YGgScbR2t
+	 QRL7tKqgCCIA+X48lHwrFW3P4rqDumjugBJINl8I0z+W59xVpbdlcDhJ7sg2om9sb/
+	 Vg8KkN7bmGqZdrjoBMYFo9BhQESYLdHsRAMR4uvUmD7lK3Qrl/6CiaGP0QSHTxCdwJ
+	 ql6xe/rslfuUVQk11RN3dRitXJxteJ/bvPvKYj3QndGFsiI8Z/9qcxMUg+EWW7qpZX
+	 VtDCCiOy6v1ID7knmO7TX5qxIvsynDRvzdk0cPpkA4nPPz7chJwTdXHX3AZ2hHoj8I
+	 Smbu6S3Z1aBrY+pY/st1NB+g=
+Received: from zn.tnic (pd953023b.dip0.t-ipconnect.de [217.83.2.59])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 5C64E40E0280;
+	Wed, 14 Jan 2026 14:15:58 +0000 (UTC)
+Date: Wed, 14 Jan 2026 15:15:51 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Ahmed Tiba <ahmed.tiba@arm.com>
+Cc: linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	tony.luck@intel.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+	linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
+	linux-doc@vger.kernel.org, Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com
+Subject: Re: [PATCH 00/12] ras: share firmware-first estatus handling
+Message-ID: <20260114141551.GKaWelF-Gsvzr71LUs@fat_crate.local>
+References: <20251221013534.GAaUdO5vWqMWAdbWbd@renoirsky.local>
+ <20251229115440.2734800-1-ahmed.tiba@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251229115440.2734800-1-ahmed.tiba@arm.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2026-01-13 at 17:28 +0000, Andr=C3=A9 Draszik wrote:
-> Hi Mark, Lee,
->=20
-> On Tue, 2026-01-13 at 16:20 +0000, Mark Brown wrote:
-> > On Tue, Jan 13, 2026 at 11:22:44AM +0000, Lee Jones wrote:
-> >=20
-> > > MFD pieces look okay to me.
-> >=20
-> > > Once Mark provides his AB, I can merge the set.
-> >=20
-> > Given that the bulk of the series is regulator changes I'd been
-> > expecting to take it?
->=20
-> Just FYI:
-> 1) I just noticed I have to rebase/resend this mainly due to
-> patch context of the binding updates.
+On Mon, Dec 29, 2025 at 11:54:36AM +0000, Ahmed Tiba wrote:
+> By =E2=80=9Cerror status=E2=80=9D I=E2=80=99m referring to the UEFI CPE=
+R Generic Error Status block,
+> which is the standard firmware-produced error payload that Linux alread=
+y
 
-I take this back, I got mixed up with a different branch. This series
-doesn't need rebasing and is good to go.
+Standard, schmandard - a bunch of fw crap.
 
-A.
+That's UEFI's understanding of a common platform error record, no?
 
->=20
-> 2) this series depends on another MFD series of mine
-> https://lore.kernel.org/all/20260113-s5m-alarm-v3-0-855a19db1277@linaro.o=
-rg/
-> (again only due to patch context) which is still pending.
->=20
-> I was under the (perhaps incorrect) impression that changes that touch
-> MFD always go via the MFD tree. I guess that's not the case. I'll update
-> the relevant phrasing in the cover letter with whatever you two decide :-=
-)
->=20
->=20
-> Cheers,
-> Andre'
+So why is this a generic estatus and not part of CPER-something?
+
+You're calling something "estatus" which sounds like a generic thing but =
+it is
+simply a subset of functionality you need to make it work on ARM without
+ACPI and have packaged whatever you need under the name "estatus".
+
+Why does this thing need to be called an "estatus core"?
+
+I'd expect to see a compilation unit which contains shared functionality,=
+ gets
+linked to your stuff and that's it. No "fanfares", no CONFIG symbols, no
+nothing.
+
+> consumes via GHES on ACPI systems. I=E2=80=99m not introducing a new er=
+ror model
+> here; the intent is to reuse the existing CPER decoding and handling on=
+ce
+> that payload exists.
+
+So why aren't you doing only that? Why are you doing all that extra stuff=
+?
+
+> The practical use case is firmware-first RAS platforms that emit CPER
+> records but do not use ACPI/APEI GHES for discovery or notification. To=
+day,
+> those platforms either have to duplicate CPER parsing logic or miss out=
+ on
+> the common Linux RAS handling (standard logging, memory failure flow,
+> vendor notification paths). As a result, the full firmware-first RAS
+> pipeline effectively only works when CPER arrives through GHES.
+
+Yah, got it.
+
+But see above.
+
+Please do not "over-design" this into a separate thing but simply carve o=
+ut
+the functionality and share it. And leave it where it belongs
+- drivers/firmware/efi/ is not the right place as this isn't really EFI. =
+This
+is a piece of APEI/GHES crap you need.
+
+Later, when there's need to make it more sophisticated, then we can talk
+again.
+
+Thx.
+
+--=20
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 
