@@ -1,110 +1,139 @@
-Return-Path: <devicetree+bounces-255011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 003E0D1EA25
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:05:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446BDD1EA46
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 13:06:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D5ED30351D8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:05:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6EDA7303E69E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 12:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2517327BF6;
-	Wed, 14 Jan 2026 12:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247BA36AB72;
+	Wed, 14 Jan 2026 12:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bTleEYBv"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="YJTJh68a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4223557EA;
-	Wed, 14 Jan 2026 12:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8339939525E
+	for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 12:06:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.97.179.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768392299; cv=none; b=AsIitnT9deqr8dNVV52f8X30/qavG/c7JIY+JiRAHRUfXlW/rVCel1ryFnbpJ9CqtXZQlPhBowkT7lw+Z0vvDOUXJndEBUQxL51vvj8fJwH9gxADFN/f3BhOyHdLU5wiUTcyxIj+Y7RXCeqjjqpBAvwCxvatpgmlXMccYVV4Y9c=
+	t=1768392396; cv=none; b=TLl/plivNHM1BPNuVLdfSvR5iVxbgufwYzXxK72x5ya0KbiKds0/6BVAPmoR6SCNleO3LZGD/KrgKgF5iHR9pqOuRzkudlU7Y7EFtMufIS6QlQFrtq1CNb44IykoNWarGrjbn/XC7X4gGfe8e/WRtyJCrxXqwHEzXDE3zk/n0hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768392299; c=relaxed/simple;
-	bh=8Vys6z8x451y8jCfmv4tHJdqji+vE+8qZ4G6/y7V1fs=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=uUmqcilZifmKtrkJBmoogxHkpte6lnl3w1JX7a0beoCVlMCYy0wJhj1mSeyPei/DOnZiQE7ElpvRzr8g3CzHHctB12c3Wq6l25lFHGvvlM6P7cBZrrw9WO0Gi+Tjo4xRZhjS4npEER4EiDizihwytlyKkaKzJ89J+LSmIq93eXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bTleEYBv; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768392297; x=1799928297;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=8Vys6z8x451y8jCfmv4tHJdqji+vE+8qZ4G6/y7V1fs=;
-  b=bTleEYBvTPwiLQ7JdoJfPVn5CnnqxLFhU0cJXLT/WCocWWV+IrIsxH9Y
-   m0O+NZ88XyF+18CNPzRXV+VuIKzKFJndh2UouFGnHK9RfHykWen8hM8Im
-   PECNs5SOYDUMPhMAWf8HbHONDZDsw9jmPT9dqONtaIK1DCp6WyyL82VuX
-   Zz+6jMwMlMN02c2QjbeqHSXes9D9feSJOieYOPG5rpAUDvOI6rLE7hGLU
-   bjjZ/Z/vDvGUICwkPtxPbV8EW/++9bKIrK8N4YTpLbW8kU1guoQY1ubiV
-   7p7sjp6LuDgrBeVkI0uCHxM5QBqbrGD/Fka48fmiW5GEl6U2SqTahuao1
-   A==;
-X-CSE-ConnectionGUID: IS4Nkmv5Q0qzqL+nXJT6zw==
-X-CSE-MsgGUID: G1AuqM+JTWq8Wl5pWX/cRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11670"; a="69608381"
-X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; 
-   d="scan'208";a="69608381"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 04:04:56 -0800
-X-CSE-ConnectionGUID: L5TFJIbzQHuz1awGSe6Qmg==
-X-CSE-MsgGUID: UaaRHJhvTS+nCq8qGoc/sQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,225,1763452800"; 
-   d="scan'208";a="242205696"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.246.94])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 04:04:48 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Nishanth Menon <nm@ti.com>,
- "Andrew F. Davis" <afd@ti.com>, Randolph Sapp <rs@ti.com>, Jonathan
- Humphreys <j-humphreys@ti.com>, Andrei Aldea <a-aldea@ti.com>, Chirag
- Shilwant <c-shilwant@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Oded
- Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Sumit
- Semwal <sumit.semwal@linaro.org>, Christian =?utf-8?Q?K=C3=B6nig?=
- <christian.koenig@amd.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-doc@vger.kernel.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Subject: Re: [PATCH 4/5] accel/thames: Add IOCTL for job submission
-In-Reply-To: <20260113-thames-v1-4-99390026937c@tomeuvizoso.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260113-thames-v1-0-99390026937c@tomeuvizoso.net>
- <20260113-thames-v1-4-99390026937c@tomeuvizoso.net>
-Date: Wed, 14 Jan 2026 14:04:44 +0200
-Message-ID: <1acdffd8f05eae0a3531d43d3919d8bd4558f37a@intel.com>
+	s=arc-20240116; t=1768392396; c=relaxed/simple;
+	bh=b0XpT+BQoS2VSUDlaAbBIuDLg6/NWQCEXx2nynYLw8k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cJaXyRqLF2pXPhADPyRAOkMK2vi496roL0PV6iU5G0u+GOkvJKuVvUfQvkWW7Zimqs40zI4qhbHgQcg9FMCno9w9YN7ZeZAVahR/rAHVytBR1bVdtohI45W9alqz4MW4+oNdfTKktGrCN86YD43jkVpLWyyYjCFO6XrSKNkh5/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=YJTJh68a; arc=none smtp.client-ip=213.97.179.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+	Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=GSEQCzndpMCTzZAiElbDw0E8ooqH9Iv/C1Bw0XbM1/4=; b=YJTJh68aWzrZwZ47DWwKJG7Eha
+	4tmnURY7cqRMZVdvqPSVMAf5a+XIuXekwSYreq8LqNWKg01dxTeJJ5RCySnJn+hlT2a7R2MvbjEaI
+	fe5K7PBSIOm9Gj+tVzuuoT6UNG7Mw8IpqX202IeAlBS/E+wKF+kSnhulCJZCn6bReC4/DuvL0GIAI
+	59trsW9munV1V1oqX+qOlYLHhf5CtMjhfv09p5CYd8XxFuPGGJOaFY9lldZuax7H3ziNdn0VndmRK
+	+hhqRndk2XqcBNhc/aJM+DjLMyKV0dBiF2Mn9izwoT0mMWTEpZv/tiYE2UVaBR3DABvoDMcMaMdk4
+	2QbHI0EQ==;
+Received: from [187.36.210.68] (helo=localhost.localdomain)
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA512__CHACHA20_POLY1305:256) (Exim)
+	id 1vfzdm-005GCf-8h; Wed, 14 Jan 2026 13:06:22 +0100
+From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel-dev@igalia.com,
+	=?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>
+Subject: [PATCH v2] arm64: dts: broadcom: bcm2712: Add V3D device node
+Date: Wed, 14 Jan 2026 09:04:58 -0300
+Message-ID: <20260114120610.82531-1-mcanal@igalia.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, 13 Jan 2026, Tomeu Vizoso <tomeu@tomeuvizoso.net> wrote:
-> +#include "linux/dev_printk.h"
+Commits 0ad5bc1ce463 ("drm/v3d: fix up register addresses for V3D 7.x")
+and 6fd9487147c4 ("drm/v3d: add brcm,2712-v3d as a compatible V3D device")
+added driver support for V3D on BCM2712, but the corresponding device
+tree node is still missing.
 
-Random drive-by comment, please use <> instead of "" for include/
-headers.
+Add the V3D device tree node to the BCM2712 DTS.
 
-> +#include <drm/drm_file.h>
-> +#include <drm/drm_gem.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/thames_accel.h>
-> +#include <linux/platform_device.h>
+Signed-off-by: Maíra Canal <mcanal@igalia.com>
 
-In general, I think it will make everyone's life easier in the long run
-if the include directives are grouped and sorted.
+---
+v1 -> v2:
 
-BR,
-Jani.
+- Rebased on top of linux-next (Stefan Wahren)
+- Fixed node's address (2000000 -> 1002000000) (Stefan Wahren)
+- Link to v1: https://lore.kernel.org/linux-devicetree/20260113192902.48046-2-mcanal@igalia.com/
+---
+ .../boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi    |  4 ++++
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi          | 14 ++++++++++++++
+ 2 files changed, 18 insertions(+)
 
-
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
+index 7d4742ebe247..97522c6803c5 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
+@@ -247,3 +247,7 @@ &pcie1 {
+ &pcie2 {
+ 	status = "okay";
+ };
++
++&v3d {
++	clocks = <&firmware_clocks 5>;
++};
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+index 330a121ebfcb..661668ef7419 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+@@ -1,5 +1,6 @@
+ // SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/soc/bcm2835-pm.h>
+ 
+ / {
+ 	compatible = "brcm,bcm2712";
+@@ -642,6 +643,19 @@ mip1: msi-controller@1000131000 {
+ 			msi-ranges = <&gicv2 GIC_SPI 247 IRQ_TYPE_EDGE_RISING 8>;
+ 			brcm,msi-offset = <8>;
+ 		};
++
++		v3d: gpu@1002000000 {
++			compatible = "brcm,2712-v3d";
++			reg = <0x10 0x02000000 0x00 0x4000>,
++			      <0x10 0x02008000 0x00 0x6000>,
++			      <0x10 0x02030800 0x00 0x0700>;
++			reg-names = "hub", "core0", "sms";
++
++			power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
++			resets = <&pm BCM2835_RESET_V3D>;
++			interrupts = <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ 
+ 	vc4: gpu {
 -- 
-Jani Nikula, Intel
+2.52.0
+
 
