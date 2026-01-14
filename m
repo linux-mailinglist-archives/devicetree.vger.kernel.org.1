@@ -1,179 +1,153 @@
-Return-Path: <devicetree+bounces-254806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1241D1C9EC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 06:57:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2F88D1CA2E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 07:08:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C5890302659F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 05:56:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C4A283025A91
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 06:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB9636BCCF;
-	Wed, 14 Jan 2026 05:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9A830AAD8;
+	Wed, 14 Jan 2026 06:08:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Lg7DywJZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.78.106])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CF3328B43;
-	Wed, 14 Jan 2026 05:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.78.106
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE18311C37;
+	Wed, 14 Jan 2026 06:08:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768370215; cv=none; b=Ibwz5p/rNwfoBZJHCH/lP7QJfxdFSC2LJHUxPin3D1CU1PbIPEZVx/yZl7PZvCpBKIO/kntEmoAOKJdwjJa/2FlxqbAECOKUws5VWDZPx4BUr5vU4X2MuAYx39L5PR4IuZGzHPLKZ3DdhvaCC4I2SjA3sgC+kqjDohLvMIgWQjA=
+	t=1768370902; cv=none; b=VJS9ICFb62iLMu6dp1K0BKshztCLfEhpai9ccTG2VmtMX4wNnfEIY39g3MmmTMTjgaQBqelwyQX7tzFgtXq0RsFj4sN4NHmvfweIst3adXlpU2c4cZdwI/koTz8ruOh8kc+GWXbY1XIMPRtjzFLDKYPMqnx5vzD+AqzkB4M3x10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768370215; c=relaxed/simple;
-	bh=bHgmxG53e8pW6jQNyUluGXEYcJYJo71PDAz20de2SDc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=P8cF4WwWR8dPF0tSLycr1cQeV7SwsAz3I9vAiXx22urZphaQAoM4wvrBdATTNyxw5pR45OB/Pl4lTGIejeG0AP0OFb+SNaKaKv2SGGP/C3bDBGMK+dOuTctUEv9EZv4RYbhZ4AajZrvGVaUlJxPtH8VC+sviVxNrF8WSg8Eefw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.78.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
- ajax-webmail-app2 (Coremail) ; Wed, 14 Jan 2026 13:56:27 +0800 (GMT+08:00)
-Date: Wed, 14 Jan 2026 13:56:27 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Huan He" <hehuan1@eswincomputing.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	luyulin@eswincomputing.com, weishangjuan@eswincomputing.com
-Subject: Re: Re: [PATCH v1 2/2] hwmon: Add Eswin EIC7700 PVT sensor driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <20260111-poetic-kittiwake-of-certainty-f60f4d@quoll>
-References: <20260109090718.442-1-hehuan1@eswincomputing.com>
- <20260109090929.567-1-hehuan1@eswincomputing.com>
- <20260111-poetic-kittiwake-of-certainty-f60f4d@quoll>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1768370902; c=relaxed/simple;
+	bh=McwtWZarGy/mqfWsR4TlM8acbCbH3jUkpH7EWjhWvVM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XcesFp7mwB+hMuvfawF/HtWMDAhofk3wsxG1+U8pN4p5HsX9S1TI8BTTmZfchf3Zhvh7ASxkAX3G54CEakfp1Q0Y1QPLoSnX0FAkvT6tcxBdkFINoU+rP2Xc1seYWWPYj2axLe4C7FMteg6nn+6HOaR18pw+I9neuXWCref/aNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Lg7DywJZ; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 9FCD525F65;
+	Wed, 14 Jan 2026 07:00:03 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id PMC-TBv38890; Wed, 14 Jan 2026 07:00:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1768370402; bh=McwtWZarGy/mqfWsR4TlM8acbCbH3jUkpH7EWjhWvVM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Lg7DywJZhDrdYLigBJpXvVi+gvXfb1x0GbLK8LVmtJSXSuAGZIdWUs9MR6HMf4ubX
+	 5hkran3Z6nplnFonZjtC+A87JXkLh0Fg3eiyY9qBOuA7NBwHovXBmvVcpR8q6CcAU7
+	 WjQBWxPlVNT8sy3WM+1iMbQaE3xHLMynnYHrLjC5MqmevEwCpl+NQFWvjh7XczrnOz
+	 BFTHteGavPoJiVPTbZ2nVRevuSq+BA/U3IydVFb91n66OvE+t5rKLqyG7JPdYfufYI
+	 dEmUjuZa1NQ+H4zisfuPuG3sYZ+FUuWJuI68NnE4Uor4yX+ZyzDZl4KirHhVDjrEjQ
+	 n1T64K/DHjQfg==
+From: Danct12 <danct12@disroot.org>
+To: guptarud@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Martijn Braam <martijn@brixit.nl>,
+ Kamil =?UTF-8?B?VHJ6Y2nFhHNraQ==?= <ayufan@ayufan.eu>,
+ Ondrej Jirman <megi@xff.cz>
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add modem to the Pinephone Pro
+Date: Wed, 14 Jan 2026 05:57:03 +0000
+Message-ID: <6468173.31r3eYUQgx@melttower>
+In-Reply-To: <bcee4f0b-6159-46c9-81ba-ec2970994613@kernel.org>
+References:
+ <20260112-ppp_connectivity-v1-0-284d6e83b212@gmail.com>
+ <20260112-ppp_connectivity-v1-1-284d6e83b212@gmail.com>
+ <bcee4f0b-6159-46c9-81ba-ec2970994613@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <7cc0a576.2446.19bbb13ac12.Coremail.hehuan1@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgAXiy0LMGdpoQoBAA--.227W
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAgEHCmlmc-8hWwAA
-	s3
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: multipart/signed; boundary="nextPart6104322.LvFx2qVVIh";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-PiA+ICtzdGF0aWMgdm9pZCBwdnRfY2xlYXJfZGF0YSh2b2lkICpkYXRhKQo+ID4gK3sKPiA+ICsJ
-c3RydWN0IHB2dF9od21vbiAqcHZ0ID0gZGF0YTsKPiA+ICsJaW50IGlkeDsKPiA+ICsKPiA+ICsJ
-Zm9yIChpZHggPSAwOyBpZHggPCBQVlRfU0VOU09SU19OVU07ICsraWR4KQo+ID4gKwkJY29tcGxl
-dGVfYWxsKCZwdnQtPmNhY2hlW2lkeF0uY29udmVyc2lvbik7Cj4gPiArCj4gPiArCW11dGV4X2Rl
-c3Ryb3koJnB2dC0+aWZhY2VfbXR4KTsKPiA+ICt9Cj4gPiArCj4gPiArc3RhdGljIHN0cnVjdCBw
-dnRfaHdtb24gKmVpYzc3MDBfcHZ0X2NyZWF0ZV9kYXRhKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2Ug
-KnBkZXYpCj4gPiArewo+ID4gKwlzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmcGRldi0+ZGV2Owo+ID4g
-KwlzdHJ1Y3QgcHZ0X2h3bW9uICpwdnQ7Cj4gPiArCWludCByZXQsIGlkeDsKPiA+ICsKPiA+ICsJ
-cHZ0ID0gZGV2bV9remFsbG9jKGRldiwgc2l6ZW9mKCpwdnQpLCBHRlBfS0VSTkVMKTsKPiA+ICsJ
-aWYgKCFwdnQpCj4gPiArCQlyZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsKPiA+ICsKPiA+ICsJcmV0
-ID0gZGV2bV9hZGRfYWN0aW9uKGRldiwgcHZ0X2NsZWFyX2RhdGEsIHB2dCk7Cj4gPiArCWlmIChy
-ZXQpIHsKPiA+ICsJCWRldl9lcnIoZGV2LCAiQ2FuJ3QgYWRkIFBWVCBkYXRhIGNsZWFyIGFjdGlv
-blxuIik7Cj4gPiArCQlyZXR1cm4gRVJSX1BUUihyZXQpOwo+IAo+IFdoeSBkbyB5b3Ugc2V0IHVw
-IGNsZWFuaW5nIC0gbXV0ZXggZGVzdHJveSwgY29tcGxldGUgLSBiZWZvcmUgZXZlbgo+IGluaXRp
-YWxpemluZyB0aGVtPwoKV2UgY29ycmVjdGVkIHRoZSBpbml0aWFsaXphdGlvbiBvcmRlci4gQm90
-aCBtdXRleF9pbml0KCkgYW5kCmluaXRfY29tcGxldGlvbigpIGFyZSBub3cgY2FsbGVkIGJlZm9y
-ZSByZWdpc3RlcmluZyB0aGUgY2xlYW51cCBhY3Rpb24Kd2l0aCBkZXZtX2FkZF9hY3Rpb24oKS4K
-Cj4gCj4gVGhpcyBpcyB2ZXJ5IG1lc3N5IG9yIGV2ZW4gYnVnZ3kgY29kaW5nIHN0eWxlLgo+IAo+
-ID4gKwl9Cj4gPiArCj4gPiArCXB2dC0+ZGV2ID0gZGV2Owo+ID4gKwlwdnQtPnNlbnNvciA9IFBW
-VF9TRU5TT1JfRklSU1Q7Cj4gPiArCW11dGV4X2luaXQoJnB2dC0+aWZhY2VfbXR4KTsKPiA+ICsK
-PiA+ICsJZm9yIChpZHggPSAwOyBpZHggPCBQVlRfU0VOU09SU19OVU07ICsraWR4KQo+ID4gKwkJ
-aW5pdF9jb21wbGV0aW9uKCZwdnQtPmNhY2hlW2lkeF0uY29udmVyc2lvbik7Cj4gPiArCj4gPiAr
-CXJldHVybiBwdnQ7Cj4gPiArfQo+ID4gKwo+ID4gK3N0YXRpYyB2b2lkIGVpYzc3MDBfcHZ0X3Jl
-bW92ZSh2b2lkICpkYXRhKQo+ID4gK3sKPiA+ICsJaW50IHJldDsKPiA+ICsJc3RydWN0IHB2dF9o
-d21vbiAqcHZ0ID0gZGF0YTsKPiA+ICsKPiA+ICsJcG1fcnVudGltZV9kaXNhYmxlKHB2dC0+ZGV2
-KTsKPiA+ICsJcG1fcnVudGltZV9kb250X3VzZV9hdXRvc3VzcGVuZChwdnQtPmRldik7Cj4gPiAr
-CXBtX3J1bnRpbWVfZ2V0X3N5bmMocHZ0LT5kZXYpOwo+ID4gKwo+ID4gKwlyZXQgPSByZXNldF9j
-b250cm9sX2Fzc2VydChwdnQtPnJzdCk7Cj4gPiArCWlmIChyZXQpCj4gPiArCQlkZXZfZXJyKHB2
-dC0+ZGV2LCAiRmFpbGVkIHRvIGFzc2VydCByZXNldDogJWRcbiIsIHJldCk7Cj4gPiArCj4gPiAr
-CWlmIChwbV9ydW50aW1lX2FjdGl2ZShwdnQtPmRldikpCj4gPiArCQljbGtfZGlzYWJsZV91bnBy
-ZXBhcmUocHZ0LT5jbGspOwo+ID4gKwo+ID4gKwlwbV9ydW50aW1lX3B1dF9ub2lkbGUocHZ0LT5k
-ZXYpOwo+ID4gK30KPiA+ICsKPiA+ICtzdGF0aWMgaW50IGVpYzc3MDBfcHZ0X2NyZWF0ZV9od21v
-bihzdHJ1Y3QgcHZ0X2h3bW9uICpwdnQpCj4gPiArewo+ID4gKwlzdHJ1Y3QgZGV2aWNlICpkZXYg
-PSBwdnQtPmRldjsKPiA+ICsJc3RydWN0IGRldmljZV9ub2RlICpucCA9IGRldi0+b2Zfbm9kZTsK
-PiA+ICsJY29uc3QgY2hhciAqbm9kZV9sYWJlbDsKPiA+ICsJaW50IHR5cGU7Cj4gPiArCWNvbnN0
-IGNoYXIgKm5hbWVzWzJdID0geyJzb2NfcHZ0IiwgImRkcl9wdnQifTsKPiA+ICsKPiA+ICsJaWYg
-KG9mX3Byb3BlcnR5X3JlYWRfc3RyaW5nKG5wLCAibGFiZWwiLCAmbm9kZV9sYWJlbCkpIHsKPiA+
-ICsJCWRldl9lcnIoZGV2LCAiTWlzc2luZyAnbGFiZWwnIHByb3BlcnR5IGluIERUUyBub2RlXG4i
-KTsKPiA+ICsJCXJldHVybiAtRUlOVkFMOwo+ID4gKwl9Cj4gPiArCj4gPiArCWlmIChzdHJjbXAo
-bm9kZV9sYWJlbCwgInB2dDAiKSA9PSAwKSB7Cj4gPiArCQl0eXBlID0gMDsKPiA+ICsJfSBlbHNl
-IGlmIChzdHJjbXAobm9kZV9sYWJlbCwgInB2dDEiKSA9PSAwKSB7Cj4gPiArCQl0eXBlID0gMTsK
-PiA+ICsJfSBlbHNlIHsKPiA+ICsJCWRldl9lcnIocHZ0LT5kZXYsICJVbnN1cHBvcnRlZCBsYWJl
-bDogJXNcbiIsIG5vZGVfbGFiZWwpOwo+ID4gKwkJcmV0dXJuIC1FSU5WQUw7Cj4gPiArCX0KPiA+
-ICsKPiA+ICsJcHZ0LT5od21vbiA9IGRldm1faHdtb25fZGV2aWNlX3JlZ2lzdGVyX3dpdGhfaW5m
-byhwdnQtPmRldiwgbmFtZXNbdHlwZV0sCj4gPiArCQkJCQkJCSAgcHZ0LCAmcHZ0X2h3bW9uX2lu
-Zm8sCj4gPiArCQkJCQkJCSAgTlVMTCk7Cj4gPiArCWlmIChJU19FUlIocHZ0LT5od21vbikpIHsK
-PiA+ICsJCWRldl9lcnIocHZ0LT5kZXYsICJDb3VsZG4ndCBjcmVhdGUgaHdtb24gZGV2aWNlXG4i
-KTsKPiA+ICsJCXJldHVybiBQVFJfRVJSKHB2dC0+aHdtb24pOwo+ID4gKwl9Cj4gPiArCj4gPiAr
-CXJldHVybiAwOwo+ID4gK30KPiA+ICsKPiA+ICtzdGF0aWMgaW50IGVpYzc3MDBfcHZ0X3Byb2Jl
-KHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4gPiArewo+ID4gKwlzdHJ1Y3QgcHZ0X2h3
-bW9uICpwdnQ7Cj4gPiArCWludCByZXQ7Cj4gPiArCj4gPiArCXB2dCA9IGVpYzc3MDBfcHZ0X2Ny
-ZWF0ZV9kYXRhKHBkZXYpOwo+ID4gKwlpZiAoSVNfRVJSKHB2dCkpCj4gPiArCQlyZXR1cm4gUFRS
-X0VSUihwdnQpOwo+ID4gKwo+ID4gKwlwbGF0Zm9ybV9zZXRfZHJ2ZGF0YShwZGV2LCBwdnQpOwo+
-ID4gKwo+ID4gKwlyZXQgPSBlaWM3NzAwX3B2dF9jcmVhdGVfc2Vuc29yX2luZm8ocHZ0KTsKPiA+
-ICsJaWYgKHJldCkgewo+ID4gKwkJZGV2X2VycigmcGRldi0+ZGV2LCAiRmFpbGVkIHRvIGNyZWF0
-ZSBzZW5zb3IgaW5mb1xuIik7Cj4gPiArCQlyZXR1cm4gcmV0Owo+ID4gKwl9Cj4gPiArCj4gPiAr
-CXB2dC0+cmVncyA9IGRldm1fcGxhdGZvcm1faW9yZW1hcF9yZXNvdXJjZShwZGV2LCAwKTsKPiA+
-ICsJaWYgKElTX0VSUihwdnQtPnJlZ3MpKQo+ID4gKwkJcmV0dXJuIFBUUl9FUlIocHZ0LT5yZWdz
-KTsKPiA+ICsKPiA+ICsJcHZ0LT5jbGsgPSBkZXZtX2Nsa19nZXRfZW5hYmxlZCgmcGRldi0+ZGV2
-LCBOVUxMKTsKPiA+ICsJaWYgKElTX0VSUihwdnQtPmNsaykpCj4gPiArCQlyZXR1cm4gZGV2X2Vy
-cl9wcm9iZSgmcGRldi0+ZGV2LCBQVFJfRVJSKHB2dC0+Y2xrKSwKPiA+ICsJCQkJICAgICAiQ291
-bGRuJ3QgZ2V0IGNsb2NrXG4iKTsKPiA+ICsKPiA+ICsJcHZ0LT5yc3QgPSBkZXZtX3Jlc2V0X2Nv
-bnRyb2xfZ2V0X29wdGlvbmFsX2V4Y2x1c2l2ZSgmcGRldi0+ZGV2LCBOVUxMKTsKPiA+ICsJaWYg
-KElTX0VSUihwdnQtPnJzdCkpCj4gPiArCQlyZXR1cm4gZGV2X2Vycl9wcm9iZShwdnQtPmRldiwg
-UFRSX0VSUihwdnQtPnJzdCksCj4gPiArCQkJCSAgICAgIkNvdWxkbid0IHRvIGdldCByZXNldCBj
-b250cm9sXG4iKTsKPiA+ICsKPiA+ICsJaWYgKHB2dC0+cnN0KSB7Cj4gPiArCQlyZXQgPSByZXNl
-dF9jb250cm9sX3Jlc2V0KHB2dC0+cnN0KTsKPiA+ICsJCWlmIChyZXQpCj4gPiArCQkJcmV0dXJu
-IGRldl9lcnJfcHJvYmUoJnBkZXYtPmRldiwgcmV0LAo+ID4gKwkJCQkJICAgICAiQ291bGRuJ3Qg
-dG8gdHJpZ2dlciByZXNldFxuIik7Cj4gPiArCX0KPiA+ICsKPiA+ICsJcmV0ID0gZWljNzcwMF9w
-dnRfY2hlY2tfcHdyKHB2dCk7Cj4gPiArCWlmIChyZXQpCj4gPiArCQlyZXR1cm4gcmV0Owo+ID4g
-Kwo+ID4gKwlyZXQgPSBlaWM3NzAwX3B2dF9pbml0X2lmYWNlKHB2dCk7Cj4gPiArCWlmIChyZXQp
-Cj4gPiArCQlyZXR1cm4gcmV0Owo+ID4gKwo+ID4gKwlyZXQgPSBlaWM3NzAwX3B2dF9yZXF1ZXN0
-X2lycShwdnQpOwo+ID4gKwlpZiAocmV0KQo+ID4gKwkJcmV0dXJuIHJldDsKPiA+ICsKPiA+ICsJ
-cG1fcnVudGltZV9lbmFibGUoJnBkZXYtPmRldik7Cj4gPiArCXBtX3J1bnRpbWVfc2V0X2F1dG9z
-dXNwZW5kX2RlbGF5KCZwZGV2LT5kZXYsIDMwMDApOwo+ID4gKwlwbV9ydW50aW1lX3VzZV9hdXRv
-c3VzcGVuZCgmcGRldi0+ZGV2KTsKPiA+ICsJcG1fcnVudGltZV9nZXRfbm9yZXN1bWUoJnBkZXYt
-PmRldik7Cj4gPiArCj4gPiArCXJldCA9IGVpYzc3MDBfcHZ0X2NyZWF0ZV9od21vbihwdnQpOwo+
-ID4gKwlpZiAocmV0KQo+IAo+IFlvdSBsZWFrIGhlcmUgLSBtaXNzaW5nIFBNIHJ1bnRpbWUgY2xl
-YW51cC4KCldlIGFkZGVkIGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChkZXYsIGVpYzc3MDBfcHZ0
-X2Rpc2FibGVfcG1fcnVudGltZSwgcHZ0KQppbW1lZGlhdGVseSBhZnRlciBjb25maWd1cmluZyBy
-dW50aW1lIFBNLiBUaGlzIGVuc3VyZXMgdGhhdCB0aGUgcnVudGltZSBQTQpjbGVhbnVwIHdpbGwg
-YmUgZXhlY3V0ZWQgb24gcHJvYmUgZmFpbHVyZSwgcHJvYmUgc3VjY2VzcywgYW5kIGRldmljZQpy
-ZW1vdmFsLCBwcmV2ZW50aW5nIGFueSBwb3RlbnRpYWwgcmVzb3VyY2UgbGVha3MuCgpzdGF0aWMg
-dm9pZCBlaWM3NzAwX3B2dF9kaXNhYmxlX3BtX3J1bnRpbWUodm9pZCAqZGF0YSkKewrCoCDCoCBz
-dHJ1Y3QgcHZ0X2h3bW9uICpwdnQgPSBkYXRhOwoKwqAgwqAgcG1fcnVudGltZV9kb250X3VzZV9h
-dXRvc3VzcGVuZChwdnQtPmRldik7CsKgIMKgIHBtX3J1bnRpbWVfZGlzYWJsZShwdnQtPmRldik7
-Cn0KClRoZSByZWxldmFudCBjb2RlIGNoYW5nZXMgaW4gZWljNzcwMF9wdnRfcHJvYmUoKToKwqAg
-wqAgcG1fcnVudGltZV9lbmFibGUoJnBkZXYtPmRldik7CsKgIMKgIHBtX3J1bnRpbWVfc2V0X2F1
-dG9zdXNwZW5kX2RlbGF5KCZwZGV2LT5kZXYsIDMwMDApOwrCoCDCoCBwbV9ydW50aW1lX3VzZV9h
-dXRvc3VzcGVuZCgmcGRldi0+ZGV2KTsKwqAgwqAgcG1fcnVudGltZV9nZXRfbm9yZXN1bWUoJnBk
-ZXYtPmRldik7CgrCoCDCoCByZXQgPSBkZXZtX2FkZF9hY3Rpb25fb3JfcmVzZXQocHZ0LT5kZXYs
-IGVpYzc3MDBfcHZ0X2Rpc2FibGVfcG1fcnVudGltZSwgcHZ0KTsKwqAgwqAgaWYgKHJldCkgCsKg
-IMKgIMKgIMKgIHJldHVybiBkZXZfZXJyX3Byb2JlKCZwZGV2LT5kZXYsIHJldCwKwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAiQ2FuJ3QgcmVnaXN0ZXIgUE0gY2xlYW51cFxuIik7CgrC
-oCDCoCByZXQgPSBlaWM3NzAwX3B2dF9jcmVhdGVfaHdtb24ocHZ0KTsKwqAgwqAgaWYgKHJldCkK
-wqAgwqAgwqAgwqAgcmV0dXJuIHJldDsKCj4gCj4gPiArCQlyZXR1cm4gcmV0Owo+ID4gKwo+ID4g
-KwlyZXQgPSBkZXZtX2FkZF9hY3Rpb25fb3JfcmVzZXQocHZ0LT5kZXYsIGVpYzc3MDBfcHZ0X3Jl
-bW92ZSwgcHZ0KTsKPiA+ICsJaWYgKHJldCkgewo+ID4gKwkJZGV2X2VycihwdnQtPmRldiwgIkNh
-bid0IGFkZCBQVlQgY2xvY2tzIGRpc2FibGUgYWN0aW9uXG4iKTsKPiAKPiBXaHkgUE0gcnVudGlt
-ZSBjbGVhbnVwIHNob3VsZCBoYXBwZW4gb25seSBmcm9tIHRoaXMgbW9tZW50L2Vycm9yIHBhdGg/
-Cj4gCj4gV2F5IHlvdSBvcmdhbml6ZWQgeW91ciBjb2RlIGFuZCBzdHVmZmVkIG11bHRpcGxlIGNs
-ZWFudXBzIGF0IG9uY2UgaXMKPiB2ZXJ5IG1lc3N5LiBUaGlzIGlzIHVucmVhZGFibGUgYXQgYmVz
-dCBvciBldmVuIGJ1Z2d5IGNvZGUuCgpXZSByZXBsYWNlZCBkZXZtX3Jlc2V0X2NvbnRyb2xfZ2V0
-X29wdGlvbmFsX2V4Y2x1c2l2ZSgpIGFuZCBtYW51YWwgcmVzZXQKaGFuZGxpbmcgd2l0aCBkZXZt
-X3Jlc2V0X2NvbnRyb2xfZ2V0X2V4Y2x1c2l2ZV9kZWFzc2VydGVkKCksIHdoaWNoCmF1dG9tYXRp
-Y2FsbHkgbWFuYWdlcyB0aGUgcmVzZXQgbGlmZWN5Y2xlLgoKPiAKPiA+ICsJCXJldHVybiByZXQ7
-Cj4gPiArCX0KPiA+ICsKPiA+ICsJcG1fcnVudGltZV9wdXRfYXV0b3N1c3BlbmQoJnBkZXYtPmRl
-dik7Cj4gPiArCj4gPiArCXJldHVybiAwOwo+ID4gK30KPiA+ICsKPiA+ICtzdGF0aWMgaW50IF9f
-bWF5YmVfdW51c2VkIGVpYzc3MDBfcHZ0X3J1bnRpbWVfcmVzdW1lKHN0cnVjdCBkZXZpY2UgKmRl
-dikKPiA+ICt7Cj4gPiArCXN0cnVjdCBwdnRfaHdtb24gKnB2dCA9IGRldl9nZXRfZHJ2ZGF0YShk
-ZXYpOwo+ID4gKwlpbnQgcmV0Owo+ID4gKwo+ID4gKwlpZiAoIXB2dC0+Y2xrKSB7Cj4gPiArCQlk
-ZXZfZXJyKGRldiwgImNsayBub3QgaW5pdGlhbGl6ZWRcbiIpOwo+IAo+IFdoYXQ/IEhvdz8KClRo
-aXMganVkZ21lbnQgaGFzIGJlZW4gcmVtb3ZlZC4KCkJlc3QgcmVnYXJkcywKSHVhbiBIZQo=
+--nextPart6104322.LvFx2qVVIh
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Danct12 <danct12@disroot.org>
+Date: Wed, 14 Jan 2026 05:57:03 +0000
+Message-ID: <6468173.31r3eYUQgx@melttower>
+In-Reply-To: <bcee4f0b-6159-46c9-81ba-ec2970994613@kernel.org>
+MIME-Version: 1.0
+
+Hi Krzysztof and Rudraksha,
+
+On Tuesday, January 13, 2026 7:22:33=E2=80=AFAM Coordinated Universal Time =
+Krzysztof=20
+Kozlowski wrote:
+> On 13/01/2026 07:42, Rudraksha Gupta via B4 Relay wrote:
+> > From: Rudraksha Gupta <guptarud@gmail.com>
+> >=20
+> > This adds the Quectel EG25-G modem to the Pinephone Pro.
+> >=20
+> > Co-developed-by: Martijn Braam <martijn@brixit.nl>
+> > Signed-off-by: Martijn Braam <martijn@brixit.nl>
+> > Co-developed-by: Kamil Trzci=C5=84ski <ayufan@ayufan.eu>
+> > Signed-off-by: Kamil Trzci=C5=84ski <ayufan@ayufan.eu>
+> > Co-developed-by: Ondrej Jirman <megi@xff.cz>
+> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> > Co-developed-by: Danct12 <danct12@disroot.org>
+> > Signed-off-by: Danct12 <danct12@disroot.org>
+=46or clarification, I did not add my Signed-off-by.
+
+I'm pretty sure the original patch came from [1] which was a distribution-
+specific patch applied on top of [2] Linux fork, which does not have a Sign=
+ed-
+off tag.
+
+Please remove my (nick)name, Signed-off-by and Co-developed-by from this pa=
+tch.
+
+>=20
+> You need full names.
+>=20
+> Are you sure so many people actually were co-developing this?
+>=20
+> Best regards,
+> Krzysztof
+
+[1]: https://github.com/dreemurrs-embedded/danctnix-packages/blob/main/pine=
+64/
+linux-megi/dts-pinephone-pro-remove-modem-node.patch
+[2]: https://codeberg.org/megi/linux
+
+Best regards,
+Dang
+--nextPart6104322.LvFx2qVVIh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE8JqTPA/gMx5VjKThZsq36qRd14EFAmlnMC8ACgkQZsq36qRd
+14GLtRAAraxXEz2JwF+2pZPPGY143ElMBaBuVO0UmPiP2C1cgLHQpW9OvoXnT082
+XGSl3jpjKBZH60MiWAHq3mp26nKLuByjCRklsIdG/eHxThcGYVbwi0xJS0BIus0I
+kpmR8X7lkdLYL4lndob6xE6xAdFmgqypI3DjpedjGQO/en+eoGqN7+lGODGa+iUU
+VJDs3OZDj7UMThD6+GepJgw+FS9SGwnsgeJRZou1HNaupaoQ/Bsrc1OA9S3SKlpD
+fDIrKchmHglpXhoC88bHf2VPO8Z0leT//+A0sDCTqeboDodlplrNLya+iIxGVBDF
+C2qJVGnee0oD6NJXtU7nhT9g0i16A86Ea+H6vT8VzNBFvA2RBZRRrXmCgH2SzqRr
+4/ycWKfhjLgALVty/q9wOE1lk5pejnX616zWikS1UKWi+nxyE0iq8SKnGi7CBHvz
+Jn3n+BWyEiVPp/EFbdRbmLcDcmOYdfD3FLaiaaUz+F9uBV6D5ug8JAL/sn7bor/0
+0LAQJ35PRi4MRYIyRq1XH2r56MYJEKcda0HQVVnsFoknnR5RCX2hr9t4j4K2ufnz
+DxA6bpgIhCN58BkA2NOsEL9JvxKCs6DFDVQj5MSW8feG3pdkO+ICaqvvrFtIfiP9
+Niu4Mr5U495aCGIDCEIrI4V+mBuKGZsduMyD19lzUA4/RhhHshI=
+=AxqS
+-----END PGP SIGNATURE-----
+
+--nextPart6104322.LvFx2qVVIh--
+
+
+
 
