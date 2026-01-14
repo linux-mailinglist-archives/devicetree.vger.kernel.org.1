@@ -1,83 +1,93 @@
-Return-Path: <devicetree+bounces-254770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABBE9D1BD01
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 01:32:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B25FDD1BDCD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 01:49:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CAC2330057D0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 00:32:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4AB36305E354
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 00:47:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C9D1946DA;
-	Wed, 14 Jan 2026 00:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="E7EXGDLa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC921DF980;
+	Wed, 14 Jan 2026 00:47:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C19B17BA2;
-	Wed, 14 Jan 2026 00:32:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB91C1CEADB;
+	Wed, 14 Jan 2026 00:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768350754; cv=none; b=pL1qN69faj9+GJk2cKGk51XrqVn3OZhoKGTG7uxfWe8gd7hnLrYIi21cxP+yfK7wXzK/kfA2ccpmE53+dCUrCRogJekbMmBSz/OisAUx+T/1Rn8yqwjn9zFHd/RuT7YIcDHKH5PFjPRiXGMzMwSjzrtUwCTCFIZupz40URbwEp8=
+	t=1768351671; cv=none; b=uStKZnZhWawqVTzwBjMqHfxxAlt9OanhtE+hJK8RxJ+XvZeQhrIIIyxJk6JRYLPKhd6bj5TNk8RJkS2X3BLLpndiC/HjzPqnXTw8radSKPXfZEhIyAv226ncnw1gbtb2GKyAagdo/FzBmsBk3xHwq2sOcZBprhaLrYDMbm+b8iU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768350754; c=relaxed/simple;
-	bh=ZRd8ycP0HInt9domfCK0GgLx5X0qKLG2LlahvqGiNN8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xm5aE3ux0wWgdwoCk7fGKLK3s3CltXPBKGEHZYXLNIVub9gKLWgfFUpYuCVIPtx3/+SsiOSXsBtID0dpZJEzZ9aZvfVtTL7Y8oab3/IVKqFOGRh+5xrMksB198G3Hcenxg2EcKMtLe4OZ0WKWliB6sk0nD16FrxfB8IoW3bmNh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=E7EXGDLa; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=hmI6L29WAjCZ2TxVqq2qTB2q3gkzS0APUeR8cbfOJrA=; b=E7EXGDLaRjj1x163ec8sFl6Ity
-	yraxAfXMZ5fz51Ef7cfJAJZhHkGyPzwJ11Fltk7d+dDc0x5kzc1YV+qwRTH0WbkhLK/BRzmKy5NGA
-	D6c71qoyFM/2rKu0KJzslPmBEsCUArR/7HkRYSpM8VVr/tDqDypE9dbvaaCGsdpT9SoY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vfooA-002iKC-2E; Wed, 14 Jan 2026 01:32:22 +0100
-Date: Wed, 14 Jan 2026 01:32:22 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1768351671; c=relaxed/simple;
+	bh=F7PRGfzbZFNFqXLPAvX1nvariK6Gh2gtLkzBXyRb/b0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KT+1WNA3GqBnQQEUjPKsu65rVWviV8eXpK+3HuJ5vXURjswLGw40MspzVqytr/4v7txl7J444QqXNgWU+pQL0MZZyDripE15nos1StL5Ufae1PgGBn7uAbNEo9fnFy49vqXygHTL9tFU6e6vFGILObC0aloAocxU1pBUFVzj2C4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from ofovo.local (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 41FD5340F92;
+	Wed, 14 Jan 2026 00:47:43 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v2 2/2] net: airoha: npu: Add en7581-npu-7996
- compatible string
-Message-ID: <75479a93-366d-4540-8f37-be2063594f17@lunn.ch>
-References: <20260113-airoha-npu-firmware-name-v2-0-28cb3d230206@kernel.org>
- <20260113-airoha-npu-firmware-name-v2-2-28cb3d230206@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Ze Huang <huang.ze@linux.dev>
+Cc: Yixun Lan <dlan@gentoo.org>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Aurelien Jarno <aurelien@aurel32.net>
+Subject: Re: [PATCH v3 0/3] riscv: dts: spacemit: Add USB 3.0 support for K1
+Date: Wed, 14 Jan 2026 08:47:36 +0800
+Message-ID: <176835146982.13007.17884535903013126936.b4-ty@gentoo.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
+References: <20260111-k1-usb3dts-v2-v3-0-f5ebd546e904@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260113-airoha-npu-firmware-name-v2-2-28cb3d230206@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 13, 2026 at 09:20:28AM +0100, Lorenzo Bianconi wrote:
-> Introduce "airoha,en7581-npu-7996" compatible string in order to
-> specify different firmware binaries if the EN7581 SoC is running MT7996
-> (Eagle) chipset.
-> This is a preliminary patch to enable MT76 NPU offloading for MT7996
-> (Eagle) chipset since it requires different binaries with respect to
-> the ones used for MT7992 on the EN7581 SoC.
+
+On Sun, 11 Jan 2026 14:41:01 +0800, Ze Huang wrote:
+> This patch series enables the DWC3 USB 3.0 host controller on the
+> Spacemit K1 SoC and enables it for the Banana Pi F3 board.
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> For testing, the following kernel configurations should be enabled:
+> 
+> CONFIG_PHY_SPACEMIT_K1_USB2=y
+> CONFIG_PHY_SPACEMIT_K1_PCIE=y
+> CONFIG_USB_DWC3=y
+> CONFIG_USB_ONBOARD_DEV=y
+> 
+> [...]
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Applied, thanks!
 
-    Andrew
+[1/3] riscv: dts: spacemit: Add USB2 PHY node for K1
+      https://github.com/spacemit-com/linux/commit/0346e7284c2a1a39befc8711e5bc7f0306df7bdc
+[2/3] riscv: dts: spacemit: Add DWC3 USB 3.0 controller node for K1
+      https://github.com/spacemit-com/linux/commit/4b8fd1c95f0dd0398da1ea373ab67dd3559afb31
+[3/3] riscv: dts: spacemit: Enable USB3.0 on BananaPi-F3
+      https://github.com/spacemit-com/linux/commit/2c1c8ee2c30f90b2dc2d6629e364aaed622c98b6
+
+Best regards,
+-- 
+Yixun Lan <dlan@gentoo.org>
 
