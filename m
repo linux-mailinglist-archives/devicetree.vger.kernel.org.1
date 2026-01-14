@@ -1,95 +1,138 @@
-Return-Path: <devicetree+bounces-254872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-254873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1BEFD1D691
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:12:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1322D1D6A3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 10:13:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72CE430AB942
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:00:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C79E930B7175
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jan 2026 09:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0C9381700;
-	Wed, 14 Jan 2026 09:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD56387361;
+	Wed, 14 Jan 2026 09:01:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SuNa2oNa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rqZV4UYo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C30C3803D2;
-	Wed, 14 Jan 2026 09:00:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3062387342;
+	Wed, 14 Jan 2026 09:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768381209; cv=none; b=T/vWiS+QWpueSVFX4KOhXq7k6zhp027YfDhPVHLr42dqeasnYF1mmysqTD6fdogmzDWUwwJU0nKxS1REde7/u1VKDbCpZNkWFiQ+UxB7vfV6N74Q8YaEmn6jVEVfzXbFH8VEEoeQZd13XvTOgEQikLUWYGuUTLEJxpAc3YVL/f0=
+	t=1768381275; cv=none; b=T12QC+RV7U45PsOMjO4bIvPHYsztyUs5PLJ+YgEwUJnmJ5kvXnOZGoijX/jO2PclBu5PvcFEO5UDlxZwPgPgsOM/BvZTA+PNpMbrLmEkBuX6xG8OciBQmzzaKEw+Lm1StwNszclFbuV2q6Z5zy6sAisIYOekp8ktqSecuFclI54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768381209; c=relaxed/simple;
-	bh=cMA2KZasj9r0FQVnNn9r02j58aCYrjJl3jl/KgqA7M0=;
+	s=arc-20240116; t=1768381275; c=relaxed/simple;
+	bh=VC3Dyy9rRZ0VzDKLm0/8sTI7TgiSnm3oReBYKX7dvy0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OTTNDuNM97RLVnATsnYgjEB9eW+KFu6ybNQ6XvWgBQ2+PV51MMWr1UkNN5jydqzjMohja/VXWFOTdE4CKfuU7PF+lfJOPg/atmXqibfu1D5X/8m2QmbWxfo44dDbjh6OQy3SoB5HPJEb2fhRL5waji0gFNWb6NAb6aYFKh8XtI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SuNa2oNa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 945EBC4CEF7;
-	Wed, 14 Jan 2026 09:00:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TPEN2aAX8mafUEmr0zj58k5H05c7M0vB0H4n2VRmHEByqeauWftX3PV1aEul4kgLsf6uByjc1v9Yo4J6IzawGirZ7syQ0D9cwk6idUSknfiJ396eYPtOqUfeCd4RwlsfYRS9UBd8GpW+l7ibgByndQ+leOaSgWwqiBzd8EnWPA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rqZV4UYo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8111EC4CEF7;
+	Wed, 14 Jan 2026 09:01:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768381209;
-	bh=cMA2KZasj9r0FQVnNn9r02j58aCYrjJl3jl/KgqA7M0=;
+	s=k20201202; t=1768381275;
+	bh=VC3Dyy9rRZ0VzDKLm0/8sTI7TgiSnm3oReBYKX7dvy0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SuNa2oNauyr+ScYJaHb2S1v4DJxGFZTR0WEmaD6W7Sz7wSs6lXrRCytqj3CZJjm0M
-	 1Gyo8KJ9JRwfIWNptp1FxJ4L9KYoOvl7QuDHmXKbU+xjiJd7IcXZyoalteTcy+fEvJ
-	 g/5nUYP3zcVO69OKsGsADDrAjgUJvcdMMKvcInPk9J++2TOAnX/12oDHjRlo6EDYkm
-	 /5+6REsrX5NBlpt7uCUefSV8Qmh4oqBJVbhJfh3U5yhifjzlqrLc+ffcay1bDdkm/o
-	 Rg60ayJvZvG+dogQUPk6p7sVsN7sDLnlDIVepvxGj6yKz/bsRocXrM2oJWi9Izbvtu
-	 0dPFLjdTOTHbw==
-Date: Wed, 14 Jan 2026 10:00:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Praveen Talari <praveen.talari@oss.qualcomm.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org, dmitry.baryshkov@oss.qualcomm.com, 
-	andersson@kernel.org, bjorn.andersson@oss.qualcomm.com, 
-	prasad.sodagudi@oss.qualcomm.com, mukesh.savaliya@oss.qualcomm.com, quic_vtanuku@quicinc.com, 
-	aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com
-Subject: Re: [PATCH v1 0/4] Enable SPI on SA8255p Qualcomm platforms
-Message-ID: <20260114-truthful-just-boobook-16494b@quoll>
-References: <20260112190134.1526646-1-praveen.talari@oss.qualcomm.com>
+	b=rqZV4UYoIrRR8OPjBi9jP1ZFUFpxC/VFAkyQFMKS1HufwAX7yzxDvnfX59j4kwxRC
+	 FSqJJwk+fOakasNtFUktQkbBGkVu/9r7j/PJtK5c0KAhuu603PAtbRXlZJIZ2fst+C
+	 JjSg0WnFcjP0dg99OP6tQUP7w754s7Ch/KVDcy2FXV0RYNft7Wvkx6tG1xHlKzdZl7
+	 hPT9F8dEmCeK50mjXZdfhjogeh7XePQcLN7hOzR79blIHLT1fRLz2kzlGM7aBeU3hE
+	 TNsQOBvXkur8ZZoeBoRc+AhNsv9BaWYDoMPiuD9xSrUmIiqAr8Xm0iBkBZIIW0OZRz
+	 GYydL0IPLJY9g==
+Date: Wed, 14 Jan 2026 10:01:12 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
+ EN7581-7996 support
+Message-ID: <aWdbWN6HS0fRqeDk@lore-desk>
+References: <20260113-airoha-npu-firmware-name-v2-0-28cb3d230206@kernel.org>
+ <20260113-airoha-npu-firmware-name-v2-1-28cb3d230206@kernel.org>
+ <20260114-heretic-optimal-seahorse-bb094d@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8Bo5O693e36+5lb1"
 Content-Disposition: inline
-In-Reply-To: <20260112190134.1526646-1-praveen.talari@oss.qualcomm.com>
+In-Reply-To: <20260114-heretic-optimal-seahorse-bb094d@quoll>
 
-On Tue, Jan 13, 2026 at 12:31:30AM +0530, Praveen Talari wrote:
-> The Qualcomm automotive SA8255p SoC relies on firmware to configure
-> platform resources, including clocks, interconnects and TLMM.
-> The driver requests resources operations over SCMI using power
-> and performance protocols.
-> 
-> The SCMI power protocol enables or disables resources like clocks,
-> interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
-> such as resume/suspend, to control power states(on/off).
-> 
-> The SCMI performance protocol manages SPI frequency, with each
-> frequency rate represented by a performance level. The driver uses
-> geni_se_set_perf_opp() API to request the desired frequency rate.
-> 
-> As part of geni_se_set_perf_opp(), the OPP for the requested frequency
-> is obtained using dev_pm_opp_find_freq_floor() and the performance
-> level is set using dev_pm_opp_set_opp().
-> 
-> Dependencies:
-> This series depends on Enable I2C on SA8255p Qualcomm platforms
-> https://lore.kernel.org/all/20260112104722.591521-1-praveen.talari@oss.qualcomm.com/
 
-It should not because it means it cannot be easily applied by
-maintainers.
+--8Bo5O693e36+5lb1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Why can't you decouple the dependencies?
+> On Tue, Jan 13, 2026 at 09:20:27AM +0100, Lorenzo Bianconi wrote:
+> > Introduce en7581-npu-7996 compatible string in order to enable MT76 NPU
+> > offloading for MT7996 (Eagle) chipset since it requires different
+> > binaries with respect to the ones used for MT7992 on the EN7581 SoC.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.ya=
+ml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > index 59c57f58116b568092446e6cfb7b6bd3f4f47b82..96b2525527c14f60754885c=
+1362b9603349a6353 100644
+> > --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >    compatible:
+> >      enum:
+> >        - airoha,en7581-npu
+> > +      - airoha,en7581-npu-7996
+>=20
+> This does not warrant new compatible. There is some misunderstanding and
+> previous discussion asked you to use proper compatible, not invent fake
+> one for non-existing hardware.  Either you have en7996-npu or
+> en7581-npu. Not some mixture.
 
-Best regards,
-Krzysztof
+Hi Krzysztof,
 
+We need to specify which fw binaries the airoha NPU module should load
+according to the MT76 WiFi chipset is running on the board (since the NPU
+firmware images are not the same for all the different WiFi chipsets).
+We have two possible combinations:
+- EN7581 NPU + MT7996 (Eagle)
+- EN7581 NPU + MT7992 (Kite)
+
+Please note the airoha NPU module is always the same (this is why is just
+added the -7996 suffix in the compatible string). IIUC you are suggesting
+to use the 'airoha,en7996-npu' compatible string, right?
+
+Regards,
+Lorenzo
+
+>=20
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+--8Bo5O693e36+5lb1
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaWdbWAAKCRA6cBh0uS2t
+rGmHAP95f/tsbA2Rhzx7wbJr9rMQoWI5S7e4n6hZj3izqRbdZAD+PvEnl+omt91+
+XqShavZHMb0vQr5jAsI2MD5uobYNcA4=
+=Z9AG
+-----END PGP SIGNATURE-----
+
+--8Bo5O693e36+5lb1--
 
