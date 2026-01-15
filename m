@@ -1,110 +1,104 @@
-Return-Path: <devicetree+bounces-255783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F446D28973
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 22:03:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2A1D28B32
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 22:21:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5BC973020CEE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 21:03:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A739E3049088
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 21:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62DD8318B91;
-	Thu, 15 Jan 2026 21:03:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA6F322527;
+	Thu, 15 Jan 2026 21:21:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ujGiB/MH"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="GqvJN12f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE22286409;
-	Thu, 15 Jan 2026 21:03:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555CB27815D;
+	Thu, 15 Jan 2026 21:21:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768511020; cv=none; b=s3tPssqz4u3YzI7aj0muGJvVsfgoHnl16sSGsv6UkHrdc/KCbDQJFsG/mXC/bjmenYsyjP+cIsW1GAzoVxReAT3O1t6mnPu5+Psi4ehWcCNEGsJ06Pn/hWgRBhwobDQAgGJQv+HWHGkTzslDEQ/KnOPG9Sr9S0bHM1qiYf2VjvA=
+	t=1768512103; cv=none; b=g0pZV6d1BKo5FDgv/APa/2IyUFNDyh3vqhfFNmAl+LZKOO82neBHtmx9tq3suzWP3uT08pwsssY/YkhHFqtMoqNypOBf6tMExKjJzMza8mIz0h1c6LS0ck47DIgLjLp4sZ4REs6biW/x4ahxYPmnNdlqbW7rvrXl3Nh9QXVwaho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768511020; c=relaxed/simple;
-	bh=Bfdh1ihpqGHMGuPqW6c73mjv5JMezBBfg7OgdT7IM0I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rdMneXmlOqXdNo2sdx35kulHVSOG9UhIvqj2zGS+MEQZdmLpVrbmWSRoutjzlUHjsiKSja7V20TF+Up/3RaauVN1zqZj5joM0mFc3z/ytyw0fK2DwEoX6EcjOMtMglS2kIqHoINyn+ZL4/imR1GEfgXJSlzQuPScKVsU3QpgEV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ujGiB/MH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 213FEC116D0;
-	Thu, 15 Jan 2026 21:03:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768511019;
-	bh=Bfdh1ihpqGHMGuPqW6c73mjv5JMezBBfg7OgdT7IM0I=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ujGiB/MHcXEUMMquCTYeVW1Z0CuGRIv8DgW6mCFGMHRcB2vuIrvLfZJh02ZJImnP7
-	 sRldwyf6qDQ36d/NVnzw9Y3qJiUwLaovnG97wG3tEfcaosNqi8/5xgiIRgpZN5fDzO
-	 kZ/gYoJnNEAGxCkhoNa3mcOqzXug70iUJ9atlHWOGjMdeuJE1KJw/ycWeBN6CNC6Qb
-	 4/VszlIprBQjAkI8f5itv8U7Mf4kNyB/TXU+j457T9HVkXIqtiyW2VnLcTzhuDmwtw
-	 Ak2yhw7DPo+RcLpVn9IzKWk3MCBD84J46JX+pNSEVPhz8eJ32eI+k88IZn6xnNDEYB
-	 BhMmx45rwOP5w==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Jeff Johnson <jjohnson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-	Matthias Kaehlcke <mka@chromium.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	ath10k@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v2 00/14] power: sequencing: extend WCN driver to support WCN399x device
-Date: Thu, 15 Jan 2026 15:03:34 -0600
-Message-ID: <176851101091.263753.12255000072756523298.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260106-wcn3990-pwrctl-v2-0-0386204328be@oss.qualcomm.com>
-References: <20260106-wcn3990-pwrctl-v2-0-0386204328be@oss.qualcomm.com>
+	s=arc-20240116; t=1768512103; c=relaxed/simple;
+	bh=Bbw+q476o4/OnnTU6+QY9IXXCNh1H5mwzldo7BImDYQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jK4N+VfdIMaUY4KMKhYm+Pfk9zE+hNEiP+xXtHiA0xUJxkarVKxnTgkDDXCH6Z4eyRwQQ8d7XFZXMkfHLW1RvMKBrajlVJY086S4v73pt+HRtIn+2nWsh/gAmdZ0GUGRd2wh9jlX2FNgk1NQ2cXyChez1wp6J55ehuv8wiXVs7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=GqvJN12f; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dsbWv40xsz9v7t;
+	Thu, 15 Jan 2026 22:21:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768512091;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=k/MO/rccwFZ1sY9kKioDxoQ75J8jMjTWo/N2+TA1EwQ=;
+	b=GqvJN12ff32MX69PJP2SD5lJ4sr8SUb+s335EGd2rvenUH6CiPlucR/5XwsBRump1XFRCi
+	skSlec/PHSfdmUNThH0Mr7tStSK9v/TtC8zXCrGBziVRqIhsnY0x9OnCWYKMcarD70acCX
+	qgySzYJVM9CqJG1y0wgv707/UIayFoZGovKWpV9NUalIKKt29MqvbmTcgV0XyOiq/bytPE
+	UjO0CWtZdGPTvuKLzwF2jz80VrQXsvdwj7eBj9Qpx/yV33g9NkqlR4Pz92kbnHyOLXrLVX
+	uO5UrihQqp7p26pUiOt3mL9Uv+QEvCjD237daCH7T6dsrc93jjVNYXFpkuAytQ==
+Message-ID: <7e7ea0ed-15e9-41cf-87bf-204b803b49c1@mailbox.org>
+Date: Thu, 15 Jan 2026 18:49:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 2/3] Input: ili210x - convert to dev_err_probe()
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+ Job Noorman <job@noorman.info>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20260115161858.20226-1-marek.vasut+renesas@mailbox.org>
+ <20260115161858.20226-2-marek.vasut+renesas@mailbox.org>
+ <CAMuHMdUd9TNWixxEYjEdOVLoR982tn4jgZXEnWKhnUTObYXuZQ@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdUd9TNWixxEYjEdOVLoR982tn4jgZXEnWKhnUTObYXuZQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: ffdf92c70d839d5677b
+X-MBO-RS-META: ahqzwt5azrfr9wsm7d1qmzmt6njko3zc
 
+On 1/15/26 5:21 PM, Geert Uytterhoeven wrote:
 
-On Tue, 06 Jan 2026 03:01:10 +0200, Dmitry Baryshkov wrote:
-> Qualcomm WCN3950, WCN3988 and WCN399x families of WiFi/BT chips preceed
-> the later WCN / QCA devices, but they still incorporate a very simple
-> PMU on die. It controls internal on-chip power networks, but, most
-> importantly, it also requires a certain start-up procedure (first bring
-> up VDD_IO, then bring up other voltages). In order to further unify code
-> supporting different families of QCA / WCN chips and in order to
-> maintain the required power up sequence, properly represent these chips
-> in DTs and modify drivers to use power sequencing for these chips.
+Hello Geert,
+
+>> --- a/drivers/input/touchscreen/ili210x.c
+>> +++ b/drivers/input/touchscreen/ili210x.c
+>> @@ -942,15 +942,11 @@ static int ili210x_i2c_probe(struct i2c_client *client)
+>>          chip = device_get_match_data(dev);
+>>          if (!chip && id)
+>>                  chip = (const struct ili2xxx_chip *)id->driver_data;
+>> -       if (!chip) {
+>> -               dev_err(&client->dev, "unknown device model\n");
+>> -               return -ENODEV;
+>> -       }
+>> +       if (!chip)
+>> +               return dev_err_probe(&client->dev, -ENODEV, "unknown device model\n");
+>>
+>> -       if (client->irq <= 0) {
+>> -               dev_err(dev, "No IRQ!\n");
+>> -               return -EINVAL;
+>> -       }
+>> +       if (client->irq <= 0)
+>> +               dev_err_probe(dev, -EINVAL, "No IRQ!\n");
 > 
-> [...]
+> Missing return.
+Fixed in v4, which I will send once I get some more feedback, thanks.
 
-Applied, thanks!
-
-[06/14] arm64: dts: qcom: qrb4210-rb2: Fix UART3 wakeup IRQ storm
-        commit: c5dc4812f6bf397b82290c540085e9ec98b47b30
-[07/14] arm64: dts: qcom: sdm845-db845c: drop CS from SPIO0
-        commit: 8bfb696ccdc5bcfad7a45b84c2c8a36757070e19
-[08/14] arm64: dts: qcom: sdm845-db845c: specify power for WiFi CH1
-        commit: c303e89f7f17c29981d09f8beaaf60937ae8b1f2
-[09/14] arm64: dts: qcom: sm8150: add uart13
-        commit: 0404b98c6bbca7a3b1e59a20d173fa149ac20194
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Note that this return-less code is removed in 3/3 .
 
