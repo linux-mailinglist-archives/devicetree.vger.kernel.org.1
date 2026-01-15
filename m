@@ -1,153 +1,159 @@
-Return-Path: <devicetree+bounces-255344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1380D225FC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 05:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F0CD2261A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 05:50:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C3D28301E220
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 04:43:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5A7DC3026C34
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 04:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 007B12C028F;
-	Thu, 15 Jan 2026 04:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D540E2D3750;
+	Thu, 15 Jan 2026 04:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Mmta06fk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VAqV74t/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C95029B224;
-	Thu, 15 Jan 2026 04:43:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4703A2C237E
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 04:50:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768452233; cv=none; b=LYAsVSg76AEi6LD0rmGXJ2QQP55bzXX+YE6kPI9XPYQWcXDJSlbysIaBwpJnnS67ryiJ5YAXo7W95/YuYS2lw2giNXPHdxwQyClGn449dxvhF/C2U/T+TR35abRgGekLBW3K8kvPtuEr/2h58xxYE4tEjreKR76GG2fw4eTkpWo=
+	t=1768452646; cv=none; b=VF9bqLUhnW2GHmngFB9g5xUCxnRjMqzHD3PN9BwDWTQuflIKnUWbZytCGNeUb4kCiwwvqPwP1FXnc7Hms+Cm5s7zwou+I3QCEfB80Swc72DbHmU++hqcaWfHVj8nU2ymXrn8UBoAkvs1mE26C0Bk3k2fu6lHpf/Z0hQmZNHvao4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768452233; c=relaxed/simple;
-	bh=PU18uA2LJk51uw3aVkod2MrmRi0NGqJm2Zlpr+b2mgI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nVdYI3f14gkV2QRejCEHET6k3r4w6qxBnrfRr/N3+lcH09m5BiclkQsWK+KWRRut1l5lkRdY1OdJmESCtEWZGvURfDFgZc0k3OF68sW8YDWccKWN6G7ICqSHjzt/BUthfEO9DHnFoFcBJp5U06LB6I2/ZKAjfGqAQiHMztlbr24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Mmta06fk; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768452230; x=1799988230;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PU18uA2LJk51uw3aVkod2MrmRi0NGqJm2Zlpr+b2mgI=;
-  b=Mmta06fk5N5JnR0s25UxnzGsyXb8yheJ01Rkf8JINm3HRHKDVRE7WfUA
-   zEGyHsR4FgU6RkxkrOBVzxP/eMXYZB5Y08hxrZA2CBqyz1GnKOtNCXSTE
-   apSQOnuq3qoioBy+oQUZYdTME4ddOEjcdwVifCgbpwSYVa4UUx+D4rQOg
-   TSSelCq+xyalpUBLXQc/qAGb+CJRMQOE6XBl902yxLPO8C4buGwIx1Ae4
-   nbMp0bbLtwuelDlunPxDGk4GNeglWdWANLOmYVeyYNGKacPE1aJ/jQ1Qt
-   B3kUZyuAUQNlEZz3tAv8F8EGQ131if+GiNH0V5B179tMH8OmILsEuy0DV
-   A==;
-X-CSE-ConnectionGUID: v/8hEP8IQgGfK0W/pyw2KA==
-X-CSE-MsgGUID: 0QBWAK+XQnSAUkORP6CE9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="68767461"
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; 
-   d="scan'208";a="68767461"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2026 20:43:49 -0800
-X-CSE-ConnectionGUID: IesX45u0Sw2DyWyX5uh/Ig==
-X-CSE-MsgGUID: UZf1tsOzQpeOZpqjANL9XQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; 
-   d="scan'208";a="209720405"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 14 Jan 2026 20:43:46 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vgFCx-00000000HYC-18v4;
-	Thu, 15 Jan 2026 04:43:43 +0000
-Date: Thu, 15 Jan 2026 12:43:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
-	John Madieu <john.madieu.xa@bp.renesas.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: Re: [PATCH v4 5/5] thermal: renesas: rzg3e: add support for RZ/T2H
- and RZ/N2H
-Message-ID: <202601151246.oPHRcNB4-lkp@intel.com>
-References: <20260108165324.11376-6-cosmin-gabriel.tanislav.xa@renesas.com>
+	s=arc-20240116; t=1768452646; c=relaxed/simple;
+	bh=bwH7TKQitdKzloCZTOTMKs7FMvbuDSsPsScuXO2XnSQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DYSU/evCCIqzkXKJnAHRgLQRFeX/zYRnA+rDv1fuYPuhEXfpHWsidBJgjpFzQKDyUoxVXgLbS9TiBro/dYepiWf2nQ+9C9FbAEfQ3v7WEmDb9DDd5qVF2L6rNPtBa7GhHE5bMfcXmKHoUVy/tLKn92S+5DsXKFLcwg502HT7NKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VAqV74t/; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-3f551ad50d1so172046fac.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 20:50:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768452644; x=1769057444; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gaxkG3FjcBbVuAmcMeHgDVclONwI7K7qJ4Bb/eS73xU=;
+        b=VAqV74t/w3hqcpKjdurhyCLdERsArrjqT4Nh7ItvYgIORi1xyGz6fnccOymsJYnO4V
+         HUAAdkaLwnEOoDYkapMZEsrDOruvgYHBj8I0lDbmAAG+ddByUstdzjnmnLn1ycivhusD
+         sTKkUZ2N2+pDlinagoD5mNzDjZS2MVofA4Em1tE+0LY/PnV84xn7DDfZwqy2tM0RKue6
+         TOOTvICAZfFAnJm3hbjS+apTERfDw7KcFFJe/NxnamvrY1whsXqHLx0MucFIdKF2vX7O
+         QwLCuSRxYtRIoBhHxFjMyJy91QEtxTiVGUwEfVSnDeHodnz/YkAKeIg+oE0dTXmgEAPD
+         Z/XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768452644; x=1769057444;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=gaxkG3FjcBbVuAmcMeHgDVclONwI7K7qJ4Bb/eS73xU=;
+        b=VYstZz2obyvWUNuTDBiIp15v4wn2aw9DD8fdYWLq8WAURjUsWrrtd+42QM8zlkyJax
+         jurMKsOdSoUJLSY5xcqjQN5W2fZ7mYKRBGGrJLtcWBjPURiiqAUa/Ap6eH7SKSc+DMx4
+         yB6FInxo0WmqotzMPsbJE6EnN1DKBld16U6LZBPtkr96FRPAVTx/mi0osfcXbUZl+isz
+         mamA3x1i9VZ1wGA+o+hsPPCUBzEwvDz3sOZmNXcG6RxkIYoWRMv2FwLBt0k3TQvfWj+X
+         LtYOmklKXGS363qUBQVGFpbs8aSlXMiA4I4HAHUNl77trgsKAa2dL6BqV59433Qi/2fv
+         Ku0A==
+X-Forwarded-Encrypted: i=1; AJvYcCXh653ybptSn1dNGvcsEJgxM6trYuZYdfSsBi7A1japg4OE+3XlK+gJUqNSc29RFour3nvvP0/BHJvM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWCN1xxilVURHTrlbBkpU7aPVuUOtTft03IBZ7AzbflEye//IB
+	lpnfOxlnOt65d4lt8g/BjydDdlcdz6QEXH4uvABer6xXdQ42ox4+xMZz
+X-Gm-Gg: AY/fxX7+wx2KrifN5peD+9mqlUbYePsdwGV4k3WS0Pof/LblN4RChdoy4i9FUDXJ+tB
+	FaPRd8uYK5hf+PCFEDcXXThf+j042Ay7CP6nZOjJrvy3k4dlHUkkeyp3lPdq6RgpVxlYSRG1hOh
+	VhQqhnvmIn2WZ+w0V9nmE7KenbKurYSXn9ITElxASVf6KtoSreOs+TewlepVr6LDO0OXwmR2M4l
+	6X1jIBFsifMrsI1RAo7dmtPWNB2oEEdhhMPr/3F1FB1hL2yOfvsGgVfPPOWJFSzcpHL0+tRZ+i2
+	C8+YPjznR/OXGO78iQDclchD6eEnFwn9tzqNKfaQShM5ahIyhNVeJaTn1IPtwxdk/KywTck26P7
+	bs0vIF3Ql4N0pRuoOd305BR7Rao+yXJLtlHL+3Kevq8huYgVdLRBlk9QkE6HjtC+kCPlFrLW1XA
+	vJUGsNzf3Bf2duyrUqL6iV5acsnn1vqwHtXS6Qg0pc8ok4QiJPaXmmzuf4+z3aThys4uqw5Sef4
+	PJHRofhxS3rB73ZEAPRIHMEEJG01Y4=
+X-Received: by 2002:a05:6870:c0c3:b0:3ec:4266:13f7 with SMTP id 586e51a60fabf-40407197688mr3586919fac.29.1768452644055;
+        Wed, 14 Jan 2026 20:50:44 -0800 (PST)
+Received: from nukework.gtech (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3ffa4de8cbfsm17750746fac.3.2026.01.14.20.50.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 20:50:42 -0800 (PST)
+From: "Alex G." <mr.nuke.me@gmail.com>
+To: andersson@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+ linux-remoteproc@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
+Cc: mathieu.poirier@linaro.org, robh@kernel.org, conor+dt@kernel.org,
+ konradybcio@kernel.org, sboyd@kernel.org, p.zabel@pengutronix.de,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject:
+ Re: [PATCH v2 0/9] remoteproc: qcom_q6v5_wcss: add native ipq9574 support
+Date: Wed, 14 Jan 2026 22:50:40 -0600
+Message-ID: <5206383.iZASKD2KPV@nukework.gtech>
+In-Reply-To: <cfa31127-2208-4c65-b8ef-3b5d534e050b@oss.qualcomm.com>
+References:
+ <20260109043352.3072933-1-mr.nuke.me@gmail.com>
+ <4814455.tdWV9SEqCh@nukework.gtech>
+ <cfa31127-2208-4c65-b8ef-3b5d534e050b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260108165324.11376-6-cosmin-gabriel.tanislav.xa@renesas.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Cosmin,
+On Tuesday, January 13, 2026 11:42:45 PM CST Vignesh Viswanathan wrote:
+> On 1/14/2026 9:24 AM, Alex G. wrote:
+> > On Tuesday, January 13, 2026 8:28:11 AM CST Konrad Dybcio wrote:
+> >> On 1/9/26 5:33 AM, Alexandru Gagniuc wrote:
+> >>> Support loading remoteproc firmware on IPQ9574 with the qcom_q6v5_wcss
+> >>> driver. This firmware is usually used to run ath11k firmware and enable
+> >>> wifi with chips such as QCN5024.
+> >>> 
+> >>> When submitting v1, I learned that the firmware can also be loaded by
+> >>> the trustzone firmware. Since TZ is not shipped with the kernel, it
+> >>> makes sense to have the option of a native init sequence, as not all
+> >>> devices come with the latest TZ firmware.
+> >>> 
+> >>> Qualcomm tries to assure us that the TZ firmware will always do the
+> >>> right thing (TM), but I am not fully convinced
+> >> 
+> >> Why else do you think it's there in the firmware? :(
+> > 
+> > A more relevant question is, why do some contributors sincerely believe
+> > that the TZ initialization of Q6 firmware is not a good idea for their
+> > use case?
+> > 
+> > To answer your question, I think the TZ initialization is an afterthought
+> > of the SoC design. I think it was only after ther the design stage that
+> > it was brought up that a remoteproc on AHB has out-of-band access to
+> > system memory, which poses security concerns to some customers. I think
+> > authentication was implemented in TZ to address that. I also think that
+> > in order to prevent clock glitching from bypassing such verification,
+> > they had to move the initialization sequence in TZ as well.
+> 
+> Exactly, the TZ interface is present to address the security concerns.
+> Also, as I mentioned in [1], on some platforms, TZ might access protect the
+> clocks and registers which might prevent the remoteproc bringup and throw
+> an access violation.
+> 
+> We can keep this support added for IPQ9574, as it is good to have, but can
+> we keep the default compatible in ipq9574 DTSI to use the TZ interface,
+> which has already picked up an R-b in this series [2].
 
-kernel test robot noticed the following build errors:
+I think that's an acceptable plan. For the TZ case, we'd have to keep the 
+clock framework from disabling the "unused" remoteproc clocks. Do you think 
+"protected-clocks" property is the right way to do it? Which series should add 
+it?
 
-[auto build test ERROR on rafael-pm/thermal]
-[also build test ERROR on linus/master v6.19-rc5 next-20260114]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Alex
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Cosmin-Tanislav/thermal-renesas-rzg3e-make-min-and-max-temperature-per-chip/20260109-015424
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
-patch link:    https://lore.kernel.org/r/20260108165324.11376-6-cosmin-gabriel.tanislav.xa%40renesas.com
-patch subject: [PATCH v4 5/5] thermal: renesas: rzg3e: add support for RZ/T2H and RZ/N2H
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20260115/202601151246.oPHRcNB4-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260115/202601151246.oPHRcNB4-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601151246.oPHRcNB4-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/thermal/renesas/rzg3e_thermal.c: In function 'rzg3e_thermal_get_smc_trim':
->> drivers/thermal/renesas/rzg3e_thermal.c:371:30: error: storage size of 'local_res' isn't known
-     371 |         struct arm_smccc_res local_res;
-         |                              ^~~~~~~~~
->> drivers/thermal/renesas/rzg3e_thermal.c:373:9: error: implicit declaration of function 'arm_smccc_smc' [-Wimplicit-function-declaration]
-     373 |         arm_smccc_smc(RZ_SIP_SVC_GET_SYSTSU, OTP_TSU_REG_ADR_TEMPLO,
-         |         ^~~~~~~~~~~~~
->> drivers/thermal/renesas/rzg3e_thermal.c:371:30: warning: unused variable 'local_res' [-Wunused-variable]
-     371 |         struct arm_smccc_res local_res;
-         |                              ^~~~~~~~~
+> 
+> [1]
+> https://lore.kernel.org/linux-remoteproc/21468f66-56df-43ea-99c2-7257d8d6bb
+> 7c@oss.qualcomm.com/T/#m688033ab79c63a8953e38f5575d1c0ff6b37b13a [2]
+> https://lore.kernel.org/linux-remoteproc/20260113092021.1887980-1-varadaraj
+> an.narayanan@oss.qualcomm.com/T/#t
+> > Alex
 
 
-vim +371 drivers/thermal/renesas/rzg3e_thermal.c
 
-   368	
-   369	static int rzg3e_thermal_get_smc_trim(struct rzg3e_thermal_priv *priv)
-   370	{
- > 371		struct arm_smccc_res local_res;
-   372	
- > 373		arm_smccc_smc(RZ_SIP_SVC_GET_SYSTSU, OTP_TSU_REG_ADR_TEMPLO,
-   374			      0, 0, 0, 0, 0, 0, &local_res);
-   375		priv->trmval0 = local_res.a0 & TSU_CODE_MAX;
-   376	
-   377		arm_smccc_smc(RZ_SIP_SVC_GET_SYSTSU, OTP_TSU_REG_ADR_TEMPHI,
-   378			      0, 0, 0, 0, 0, 0, &local_res);
-   379		priv->trmval1 = local_res.a0 & TSU_CODE_MAX;
-   380	
-   381		return 0;
-   382	}
-   383	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
