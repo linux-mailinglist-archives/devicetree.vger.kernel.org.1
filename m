@@ -1,254 +1,195 @@
-Return-Path: <devicetree+bounces-255688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4DBAD25ABD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:16:47 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1F8D25B24
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:21:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2ED6530EB531
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:10:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4832C30012CD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1ED93B8D53;
-	Thu, 15 Jan 2026 16:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E563B8D4C;
+	Thu, 15 Jan 2026 16:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sb1ml4z6"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="qKR/eMpW";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ktLSB1FD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11303A9633
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 16:10:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E7E93B8D7C;
+	Thu, 15 Jan 2026 16:19:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768493433; cv=none; b=gsVturMr3vjd2jde2H1zjFHRdt/IGxEQZqzlLwdzWCbfVBBESwKT43K0e5Erk8Z3VXyhl3X7bFi+jF4NSg+SkZTRftUV0iAz/lk9UAJymkvE4AtwkNz0x85MzXQ3CR9Hvx08oOjBuake7JLdvFKefyD87K3v6QIymY62wJoXPDM=
+	t=1768493954; cv=none; b=YBSUOHO6jDGx16B4DbTWt2dbEuNKe1kABl+BCBpt6PlHyGSf49fbjdfSdEzWex3++Grh8zdFmBBvYv+Z87QXuZD6K7TIWajZNhcU498L+ZY4+BMyZ6JS2ids5JWApxgU7WDBaZTG1n/L4pZV6PxR+fnSdikpSZNg6WbQaPvggQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768493433; c=relaxed/simple;
-	bh=46O3WGNI/I2BanZJr/n1NSM5aWJGCML3xJV6mE9CS8U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TKHvDdCaKZwGCxkqTyJ0X1JMxnLOtyu8hZnS7Uy/YVN5/j1t2aCMwkCoWaX25Xix4chDm6ptL8xkJWzBoQ/bRa9MGHBPKaK8mXwyTwxTnkcjjgVNkOP/McfiJJYLiZ8QJLIKAZDsWoOtsGNIUM5u1wySU/I2MWtIOeJY9HtTvnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sb1ml4z6; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4801d98cf39so1891095e9.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 08:10:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768493428; x=1769098228; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gQXGgSx7jpUFKQjZ6iyGO811lP9xodhRioXDBaDurfQ=;
-        b=sb1ml4z6vGndnWJE9lAodrXq7lQY4NB7xUzD+qbG/mAnWxwn9H+pYjdvJSz5wuJ9Gi
-         tLuM4acpgB8RUY9wnN1+Qe7FH4KmcEAcV841PS0tuyQDRiL9XTTT/RgXxAGJY0bUd75l
-         mcc8ysaCAe3O6o0JTqvYPjwLMDUwWba9JBR622/w8/8Zngd1U5IgtLbzQZaQ7I0kPwsm
-         cX8+yVFf0NUlujbTHc/UsJA1Tdm95062IZHl62NlAyTA9yyMVYvzgcsKT/3+kipYPF2r
-         VPIShMNkBaTznpraj5F4CxjIEam7A9I/pyqBodi3IPq3nAXhXFAEmIeCofSNM3Ari+E8
-         bf2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768493428; x=1769098228;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gQXGgSx7jpUFKQjZ6iyGO811lP9xodhRioXDBaDurfQ=;
-        b=feNBMfQVAq3Mfq3/gdvQmTfgPr2RNHVIhBh34mEMhowOm4iTrtL3YhyVLbx0l6W5EQ
-         adCiY1xa/rs3jkA1xIXwac1zARIfBULjFhCRvkM018JpCxrd3ae6DevtOJFfbV/ftBZz
-         UaB7ozpqvZuy0hl1BQlm+l8H3T+WIdcZ+5/Nhq+6zKt58EKwhvHxVQRWifzdG1UntdRW
-         Gt2I5uNc0zQD/l0X6k3vV3DTDUttZIgBXBfDWbjNiFmkno6Ll5thaGZEQwc94YJ+PlZx
-         xXCNxfw8BtzVoF2y75xCdVO+wPUbK9/qEfixL9hsF5mwq7dp4rchdqFPKXW98qcClTtT
-         Mteg==
-X-Forwarded-Encrypted: i=1; AJvYcCX+pH07JLqsY2+naDDmK78roLxE8loBoE1yqpyeCdXU00OWuzhqHfX9iENqKObonamwuHrFtLFqa6wc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxov1X24SGAqh5XfAZQlQUgQDA8omqEqccY0ShcJfEx2stper7l
-	eo3xrYcbgQMlf0h41WaU73E4Tt22HEjcLbptyfjiSLFoGhNAQ7cIUjK0DQiEvIkSSWU=
-X-Gm-Gg: AY/fxX4LFmqrs3xLIc4vb32FlhJsmpmab9tslwftd8u2yTxbbtoxR2rIpjczC7M4mpb
-	DNx1X+HYikFzeGTuLl/VAIyW86ygt/n63Fb58e5VnsCfe4bZJZUFesYAF/kIrCIEVOgvo+fAY8k
-	BLnyEKLzJnwY7vhiYbj9JDbQEsLcU6v+xJL+YPjVzNFgrgn1bXbODKAhYxSmUaQaUssvNx2YRMn
-	Y3HduMtladBMi680xq7XwTxnioIK2/r0X06xawHyoqTMXFds831JUOTVLuRRNseKcUiXtduAaru
-	OS9+wF5ErMTejdKDqiLf61JaDYKED5JoIZDMJa4188PMXrFSMKJxUJhK8+RxJqNEZ57iF41abiE
-	XNtz0E4jzg0ew/2NozhTemxKJpOXR0wMzXarJJ+zKCU+RDVEILzlzk/KNTSS/dRWBCyS+ooU81K
-	aa+LqAszXOFGIiiuG+xQ==
-X-Received: by 2002:a05:600c:c162:b0:475:de14:db1e with SMTP id 5b1f17b1804b1-4801e3387cdmr3797345e9.24.1768493427759;
-        Thu, 15 Jan 2026 08:10:27 -0800 (PST)
-Received: from [10.11.12.107] ([86.127.43.8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f4289b789sm53724735e9.1.2026.01.15.08.10.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jan 2026 08:10:27 -0800 (PST)
-Message-ID: <fcc5405e-189d-4195-8db0-3acf35bbc0a9@linaro.org>
-Date: Thu, 15 Jan 2026 18:10:24 +0200
+	s=arc-20240116; t=1768493954; c=relaxed/simple;
+	bh=RF383TaLUd1pEIXWlS46S8YghSF6y60dVTNmg8WY26g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xl+TjVdtj2ilqmqSLB+N7jwznT57T+K/rs2xAQt1ysUDuhwSRt/Wm4jyGMKfNKM9GtNEh4sPu4v6lM1HYX2QxFIxnihdWwnm1Jz9r3ELnGYhfBaEgfjtcIwdLD3eZIoHIrRLCbPPypymUyh9Uwm7iYljmsd+M5lRykGKjgTLC4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=qKR/eMpW; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ktLSB1FD; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dsSq20myZz9syt;
+	Thu, 15 Jan 2026 17:19:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768493950;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=16LcqABaAazl+snSHHcxi1+Mopm/hBQsbVtc+xjvqJI=;
+	b=qKR/eMpWHxMMFULrVi5khh3KKfPxfqYtkIcZYY9CovyU4IH8QkD4CoSmsXKe2lFRAUFcXj
+	LD+v8XBaHYRyuXftdkVWsIkXlSnoAxd+zTPBA7gRUvltJo8S1FYA0H0pOPn5ljOlyr/BGo
+	h1i0ZN3VAqnU9b+SagZ7GpeACxdFoG8b5LJJ/JhNgiboKnMAroFS9GbJrQDsmAhpBc3ntt
+	khpQdMR/AXD85djJEfPGQ7wHog4T5nDKecTXLkSxwKh86VJDgpDaJq8VSh65HywP7jcoeM
+	8yTlhvlXUroVBTSjRBClUgyhkWpdtfRTHlM9t0F6Zmt4B6d/h47jWiEC/nYCNQ==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768493947;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=16LcqABaAazl+snSHHcxi1+Mopm/hBQsbVtc+xjvqJI=;
+	b=ktLSB1FDNP8IsvArcN8XxQgK5orWng0EOuhBt8q38xx6KfF/sW/U1B6lnMD7edenX0fbIf
+	JKYVx50J11qE3GkU7u+3YTrrFtxVYgXSfzkRCKryxrctKHqtr4ZXa7gRk7jnWuL5FDBXMn
+	6LSUu8yo4f6s5EQ+0e3xFObAy2NClNg5VrwOggLkvWzOMUxyuz5yuvZjZ+UVxYHzFak+Wf
+	PJCzkD3mSiwnMBBwcW22OqLg33jaFYrXaMa7W19DP5gJTVkFGjDbYIFhDrKrMFBFMnI1Qe
+	nCY31epc2/A7Yz0kg4VzJrBQkRpVY22ikNObTBHEN7ZYEDkkBIxvaFbPoscM4A==
+To: linux-input@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Job Noorman <job@noorman.info>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 1/3] dt-bindings: touchscreen: trivial-touch: Drop 'interrupts' requirement for old Ilitek
+Date: Thu, 15 Jan 2026 17:18:07 +0100
+Message-ID: <20260115161858.20226-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] dt-bindings: mfd: Add Google GS101 TMU Syscon
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, willmcvicker@google.com,
- jyescas@google.com, shin.son@samsung.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
- <20260114-acpm-tmu-v1-3-cfe56d93e90f@linaro.org>
- <20260115-slim-denim-potoo-cad9cb@quoll>
- <200d34bf-150e-4f8a-b400-2f54863502ac@linaro.org>
- <e2f028d6-774f-4773-889f-7d56b833067e@kernel.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <e2f028d6-774f-4773-889f-7d56b833067e@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 389f7d00e9600d5212c
+X-MBO-RS-META: 7mnw9ospjqq4t6auwrswfjyszt4m9u5t
 
+The old Ilitek touch controllers V3 and V6 can operate without
+interrupt line, in polling mode. Drop the 'interrupts' property
+requirement for those four controllers. To avoid overloading the
+trivial-touch, fork the old Ilitek V3/V6 touch controller binding
+into separate document.
 
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Job Noorman <job@noorman.info>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-input@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+V2: Fork the Ilitek V3/V6 bindings into separate document
+V3: Add RB from Frank
+---
+ .../input/touchscreen/ilitek,ili210x.yaml     | 51 +++++++++++++++++++
+ .../input/touchscreen/trivial-touch.yaml      |  4 --
+ 2 files changed, 51 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek,ili210x.yaml
 
-On 1/15/26 5:34 PM, Krzysztof Kozlowski wrote:
-> On 15/01/2026 15:53, Tudor Ambarus wrote:
->>
->>
->> On 1/15/26 3:36 PM, Krzysztof Kozlowski wrote:
->>> On Wed, Jan 14, 2026 at 02:16:31PM +0000, Tudor Ambarus wrote:
->>>> Document the bindings for the Thermal Management Unit (TMU) System
->>>> Controller found on Google GS101 SoCs.
->>>>
->>>> This memory-mapped block exposes the registers required for reading
->>>> thermal interrupt status bits. It functions as a syscon provider,
->>>
->>> I don't think this is syscon, but the actual TMU. Syscon is various,
->>> unrelated system configuration registers.
->>>
->>>> allowing the main thermal driver to access these registers while
->>>> the firmware manages the core thermal logic.
->>>>
->>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->>>> ---
->>>>  .../bindings/mfd/google,gs101-tmu-syscon.yaml      | 37 ++++++++++++++++++++++
->>>>  1 file changed, 37 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
->>>> new file mode 100644
->>>> index 0000000000000000000000000000000000000000..6a11e43abeaa23ee473be2153478436856277714
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
->>>
->>> Not MFD either, but soc.
->>
->> You are right, it's not a syscon, it's just a normal thermal IP block
->> from which I need to access the interrupt pending registers.
->>
->> Then I guess I shall describe the new binding in bindings/thermal/,
->> please correct me if I'm wrong.
->>
->>>
->>>> @@ -0,0 +1,37 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/mfd/google,gs101-tmu-syscon.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Google GS101 TMU System Controller
->>>> +
->>>> +maintainers:
->>>> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
->>>> +
->>>> +description: |
->>>
->>> Drop |
->>>
->>>> +  The TMU System Controller provides a memory-mapped interface for
->>>> +  accessing the interrupt status registers of the Thermal Management
->>>> +  Unit. It is used as a syscon provider for the main TMU driver.
->>>
->>> No, it is not a syscon provider. Entire last sentence is incorrect. You
->>> must describe here hardware and this hardware does not provide any sort
->>> of syscon to any sort of driver.
->>>
->>
->> Indeed.
->>
->> I'm going to link the ACPM TMU child node with the TMU node via a
->> "samsung,tmu-regs" property.
-> 
-> This could be fine, but I actually wonder what's there. What registers
-> exactly. For example modern Exynos 88xx, already with APM block, still
-> have exactly the same TMU unit at 0x1008{04}000 with all typical
-> triminfo, current temperature and thresholds.
-> 
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ilitek,ili210x.yaml b/Documentation/devicetree/bindings/input/touchscreen/ilitek,ili210x.yaml
+new file mode 100644
+index 0000000000000..1d02aaba64f97
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/ilitek,ili210x.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/ilitek,ili210x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ilitek ILI21xx/ILI251x V3/V6 touch screen controller with i2c interface
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++  - Marek Vasut <marek.vasut+renesas@mailbox.org>
++
++properties:
++  compatible:
++    enum:
++      - ilitek,ili210x
++      - ilitek,ili2117
++      - ilitek,ili2120
++      - ilitek,ili251x
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  wakeup-source: true
++
++allOf:
++  - $ref: touchscreen.yaml
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        touchscreen@41 {
++            compatible = "ilitek,ili2120";
++            reg = <0x41>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+index fa27c6754ca4e..6441d21223caf 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+@@ -23,9 +23,6 @@ properties:
+       # Hynitron cstxxx series touchscreen controller
+       - hynitron,cst340
+       # Ilitek I2C Touchscreen Controller
+-      - ilitek,ili210x
+-      - ilitek,ili2117
+-      - ilitek,ili2120
+       - ilitek,ili2130
+       - ilitek,ili2131
+       - ilitek,ili2132
+@@ -33,7 +30,6 @@ properties:
+       - ilitek,ili2322
+       - ilitek,ili2323
+       - ilitek,ili2326
+-      - ilitek,ili251x
+       - ilitek,ili2520
+       - ilitek,ili2521
+       # MAXI MAX11801 Resistive touch screen controller with i2c interface
+-- 
+2.51.0
 
-It's the same for gs101, the TMU instances have all the typical registers,
-it's just that everything is handled via ACPM but the intpend registers.
-
->>
->> Some concern that I have is that I describe the clocks and interrupts in
->> the ACPM TMU child node. Usually the clocks and interrupts belong to the
->> node that contains the reg property. But I guess that's alright because
->> the interrupts property is expected to be in the node that the driver
->> binds to. For the clocks, by placing it in the ACPM child node, I allow
->> runtime PM to manage it.
-> 
-> You have to first know whether these clocks and interrupts are going TO
-> the ACPM node.
-
-They aren't, the clocks and interrupts are going to the TMU node.
-
-> 
-> All this looks like designing for drivers, sorry.
-> 
-
-It's fine, I'm not looking to cut corners. Thanks for the feedback, it
-helps us coming up to a better solution.
-
->>
->> Do you think the below description is accurate?
->>
->> soc: soc@0 {
->>     tmu_top: thermal-sensor@100a0000 {
->>         compatible = "google,gs101-tmu-top";
->>         reg = <0x100a0000 0x800>;
->>     };
->> };
->>
->> firmware {
->>     acpm_ipc: power-management {
->>         compatible = "google,gs101-acpm-ipc";
->>         /* ... */
->>
->>         thermal-sensor {
->>             compatible = "google,gs101-acpm-tmu-top";
->>             clocks = <&cmu_misc CLK_GOUT_MISC_TMU_TOP_PCLK>;
->>             interrupts = <GIC_SPI 769 IRQ_TYPE_LEVEL_HIGH 0>;
-> 
-> This I doubt, really. Why would ACPM child be hooked via CPU clock and
-> interrupts?
-> 
-
-Yeah, that was my concern as well. Then the clocks and interrupts will
-be described in the TMU node, not in the ACPM TMU child. The bindings
-are clear to me now, thanks.
-
-In what concerns the interrupts, I can obtain them via the phandle to the
-TMU node.
-
-The trickier part will be on how to handle runtime pm, I can no longer use
-pm_runtime_get_sync(dev) in the ACPM child. But I think I can handle it with
-device links. Get a pointer to the TMU device node and use device links:
-
-device_link_add(acpm_dev, &tmu_pdev->dev, DL_FLAG_PM_RUNTIME | DL_FLAG_AUTOREMOVE_CONSUMER);
-
-This tells the kernel that when the ACPM TMU driver is active, the TMU
-hardware block must also be active.
-
-Please let me know if this sounds reasonable. I'll start reworking the set.
-
-Thanks for the help, I appreciate it!
-ta
 
