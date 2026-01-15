@@ -1,175 +1,83 @@
-Return-Path: <devicetree+bounces-255666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3961D2584B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:55:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75593D25968
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:06:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A0E4E3012DCE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:54:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A6605301FC3B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336ED3A4AD4;
-	Thu, 15 Jan 2026 15:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0852B3B8D44;
+	Thu, 15 Jan 2026 15:59:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Juu3Teif"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pCPw/h/i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF40355025
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 15:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72BD37E2EB;
+	Thu, 15 Jan 2026 15:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768492476; cv=none; b=NjlMJhCGA7ZyAiET4Bpyu3I+sI4+FY6+V2YKmvqevGJrh8rF0GwYlcM/KtF2QENq1aOMWBSiwLZYTRtvNIBEoQqjZahvwDoSln2u6yu7YnfaaFXvoJZiDCUsmVhQcWj/1ZyQCUfyzXj2yNOSwH1bOoO01W6bSEtM4Jy170vHB+4=
+	t=1768492766; cv=none; b=USqJ0nOODR3GcDpa8SeaSRlzBskKKwokYSGx9W2glWSzLpAawU0um2WOVczYIEaOpCxXlNH4YqMHfRhIVXc5gaQHRQD0pn79qN9RoCdmbRNT0q35YVgEYZVC9Bm+0qPk8fpPU2vw7ff6njCRMiuh+mWbulCzEluyf7OSDVyzuf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768492476; c=relaxed/simple;
-	bh=dKCRi1EFVnoZ8wrCnpXxN/bjQgwl/QGrd9KTBQZB1lY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CizfTpGsIMUfFKhSpeB5uRtXpgwKgxtKnjOJ5V7xLsd6vRKnO9n3+KQUT0jayP9WvrT0HeQm0uZHyEvTNlaAo0y3hIzkmuAlJPR1MTbCLKXYbbjdOv4+DdOPwBX9uJDAMwbB2oj8tW6tqVKys6xZJT5IqCsXUPCGQh0c7R/9aGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Juu3Teif; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D60CDC4AF0C
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 15:54:35 +0000 (UTC)
+	s=arc-20240116; t=1768492766; c=relaxed/simple;
+	bh=bN9CLGNNCXd7vykIUfCDDnj+ImOvf0EhGAdjX48YNxg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AQWH/HeOWEo645ynVVMWQfrPiTp9C9tv4qp54ggOuN3LyokhY6I6WuM+bBnVk9lnVnkQ0iwYSbCnGigHSAJ0vgbsU2seO+gz5q6z9bTXgeXHPj+VVp0ExBsPjR4HN/yp4BdFuc8OV5o/3K+WWGaMihhjs3oJ4rNauApzFFzpxAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pCPw/h/i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF94C116D0;
+	Thu, 15 Jan 2026 15:59:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768492475;
-	bh=dKCRi1EFVnoZ8wrCnpXxN/bjQgwl/QGrd9KTBQZB1lY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Juu3Teifq+ANYIh9VPm99WpcGgNe5Hj5r9Ac9OEgv1EmhWmcEiiFUGJEZ0CF45AYq
-	 X0oPPMIqq1XCkzqrtbCm6OJ50+CBkgtn4HFtH6MfyGEavQRm12rcWV24R9svzG7jTn
-	 atsCytX+rYJRC+M0FbzHRb6v/gsGyo6yyGzRplBEE9MkO8hg6Bw1J48F9UPguxAZtj
-	 r2OfFq9UdSwwl5Ba9rB2sReFM4pMbQ/3HvEEsETlZQ9RDHwseAwCkpg5Ke+ucmoCn4
-	 HicxOKX5Q7Knmuyn/2GEgU+rKOQltRurwKgUcSvdHMGwzL4c+Ce+eypK0Bp5De6YeG
-	 jy4S887k1sx+g==
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b8718187eb6so156860866b.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 07:54:35 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUyrhP60qHsrCp8Wa2fbirkCZERQRG+Ybdi90sAsUSE6t8xvkunCPxDilO2gDlcRPXrLQTSmGyLe/Za@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhVj3xPPX/1KYmXNY7XsYo2+hcYxJjn1qXMj5q/14hP1ounlFh
-	mmXtd5ZPmJSGL7f/okhuI91kkZEF70v+e64c/mdIiJIemQlGY3EloL0B8PxK28IV2YtGBmckrNI
-	FN/YlaXUZC7nscM2Pu5y36EN7DXO9UQ==
-X-Received: by 2002:a17:907:6d20:b0:b87:1ffc:bfbc with SMTP id
- a640c23a62f3a-b8792e082ccmr7114066b.12.1768492474319; Thu, 15 Jan 2026
- 07:54:34 -0800 (PST)
+	s=k20201202; t=1768492766;
+	bh=bN9CLGNNCXd7vykIUfCDDnj+ImOvf0EhGAdjX48YNxg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pCPw/h/iq8wq47poL/XsPwxnR/U4QcUbLK2m017UAPPGx/Uv8IIL6hPZfRfwH2QG5
+	 sVBjvXZpmEtC0OI47IDSh0j6hptIlsJA2e8I/hwFcMZgAf/TTqcauwBYVeGGWvpWE0
+	 2mLptrXRw2Nggvj47G9nwjIc1BA3mN7gYfmulZ2Eurl1g8X/ooJlc9ORFcsS/j7+DK
+	 VLzr/Q3zJ5LJrvY3t6INv97dtgG6RiOy7B94QldSH6JRxv0qNxPlSBHSnHPe4Sbjil
+	 ow476hGSAjSeaubrA97JM7Dd4U4Q1bAAFq5FhPfvk69FHM+u6w39aZkMtD/x6D/Ask
+	 +OYvFm5l276Vg==
+Date: Thu, 15 Jan 2026 09:59:25 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Osose Itua <osose.itua@savoirfairelinux.com>
+Cc: michael.hennerich@analog.com, jerome.oufella@savoirfairelinux.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: adi,adin: document LP
+ Termination property
+Message-ID: <176849276514.689697.7161411224164893001.robh@kernel.org>
+References: <20260107221913.1334157-1-osose.itua@savoirfairelinux.com>
+ <20260107221913.1334157-2-osose.itua@savoirfairelinux.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-7-herve.codina@bootlin.com> <CAL_Jsq+EDvrEqqwsFjs0sGxYfKgQuSFqCiqQs-1b3TnbG+gATQ@mail.gmail.com>
- <aWg2JJstA0F-h9hi@zatzit>
-In-Reply-To: <aWg2JJstA0F-h9hi@zatzit>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 15 Jan 2026 09:54:22 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLx-NWM=gFdQfQ1Nw10ii2n5gX93WgH+zTcbHRt=Ze_vA@mail.gmail.com>
-X-Gm-Features: AZwV_QhbB9OdA6W3gPyZNM8SQiknAanmIyFSp2NdkrcPTLl8bGT4QVG8rHMzo7Q
-Message-ID: <CAL_JsqLx-NWM=gFdQfQ1Nw10ii2n5gX93WgH+zTcbHRt=Ze_vA@mail.gmail.com>
-Subject: Re: [RFC PATCH 06/77] Add support for FDT_REF_LOCAL dtb tag
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Herve Codina <herve.codina@bootlin.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, devicetree-compiler@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree-spec@vger.kernel.org, Hui Pu <hui.pu@gehealthcare.com>, 
-	Ian Ray <ian.ray@gehealthcare.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260107221913.1334157-2-osose.itua@savoirfairelinux.com>
 
-On Wed, Jan 14, 2026 at 6:51=E2=80=AFPM David Gibson
-<david@gibson.dropbear.id.au> wrote:
->
-> On Tue, Jan 13, 2026 at 01:22:08PM -0600, Rob Herring wrote:
-> > On Mon, Jan 12, 2026 at 8:20=E2=80=AFAM Herve Codina <herve.codina@boot=
-lin.com> wrote:
-> > >
-> > > FDT_REF_LOCAL dtb tag is a meta-data tag attached to a property.
-> > >
-> > > It indicates that the property defined before this tag (FDT_PROP) use=
-s a
-> > > phandle value and the node related to this phandle value is local (i.=
-e.
-> > > the node is present in the device-tree blob).
-> > >
-> > > It is followed by one value:
-> > >  - offset (32bit):
-> > >      Offset in the property data where the phandle is available.
-> > >
-> > > Example:
-> > >   FDT_PROP 0x00000008 xxxxxxxx 0xca 0xfe 0xde 0xca 0x01 0x02 0x03 0x0=
-4
-> > >   FDT_REF_LOCAL 0x00000004
-> > >
-> > >   This means that at the offset 4 of the property data, the value
-> > >   (0x01020304) is a phandle and the related node is available in the
-> > >   dtb.
-> > >
-> > >   This is what is encoded in the dtb when the related dts has a prope=
-rty
-> > >   with the value set to <0xcafedeca &foo> with 'foo' a reference to a=
-n
-> > >   existing node where the phandle value is 0x01020304.
-> > >
-> > > If several local phandles are used in the property data, several
-> > > FDT_REF_LOCAL are present after the FDT_PROP tag. Each of them points
-> > > with its offset value to the position of one phandle.
-> > >
-> > > For instance, if a first property with 8 bytes of data has a phandle
-> > > value at offset 4 and a second property with 16 bytes of data has
-> > > phandle values at offset 0 and 8, the following tags sequence is
-> > > present:
-> > >   FDT_PROP 0x00000008 xxxxxxxx <data bytes>
-> > >   FDT_REF_LOCAL 0x00000004
-> > >   FDT_PROP 0x00000010 xxxxxxxx <data bytes>
-> > >   FDT_REF_LOCAL 0x00000000
-> > >   FDT_REF_LOCAL 0x00000008
-> >
-> > To follow up on my desire to both be easily extended and have more
-> > type info, I have something like this in mind:
-> >
-> > FDT_TYPE_INFO 0x10 FDT_REF_LOCAL 0x0 FDT_TYPE_U32 0x4 FDT_REF_LOCAL
-> > 0x8 FDT_TYPE_U32 0xc
->
-> I think general type info should be out of scope for this:
->  * This series is already enormous and complicated without that
 
-It is enormous, but I don't think the intention was to finalize and
-merge it all at once. I certainly don't intend to review it all now.
-The final result looks sane to me and with that we have a good idea
-what information needs to go in the DTB. I think the first step is to
-define the new metadata tags and what DTB format changes are needed.
+On Wed, 07 Jan 2026 17:16:52 -0500, Osose Itua wrote:
+> Add "adi,low-cmode-impedance" boolean property which, when present,
+> configures the PHY for the lowest common-mode impedance on the receive
+> pair for 100BASE-TX operation by clearing the B_100_ZPTM_EN_DIMRX bit.
+> This is suited for capacitive coupled applications and other
+> applications where there may be a path for high common-mode noise to
+> reach the PHY.
+> 
+> If this value is not present, the value of the bit by default is 1,
+> which is normal termination (zero-power termination) mode.
+> 
+> Signed-off-by: Osose Itua <osose.itua@savoirfairelinux.com>
+> ---
+>  .../devicetree/bindings/net/adi,adin.yaml          | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
 
->  * phandles aren't just another type, they have structural relevance
->    which makes them a special case
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Fair enough.
-
-What's similar is we need to define FOO is at offset X just like the
-markers within dtc. We can add other types later, I'm just asking that
-the design here for new tags and phandles accounts for that.
-
-> Plus, I'm actually pretty dubious about adding type information to
-> dtbs in the first place.  It gives the impression that dt property
-> values are self-describing, but they're not.  If you want a
-> self-describing format, I think you'd be better off dropping the
-> OF-related past entirely, and using json or one of the various other
-> modern self-describing structure data formats.
-
-json has no concept of integer sizes (and numbers are floats). The
-typical work-around for that is encode everything as a string and then
-we're pretty much back to everything's a byte array. Pretty sure we've
-been thru this already. So I don't know what format we'd use. I've not
-come across one. Perhaps just DTS as that does have the type
-information. :) In any case, I'm not interested in a revolution, just
-evolution. I want a format that transparently works with only an
-updated libfdt. Anything else is simply going to go nowhere (as
-evident by the last 15 years of new DTB format discussions).
-
-I know you aren't a fan of relying on .dts information for type
-information, but that's not the only source anymore. We now have an
-entire database of every last property and its type. That could be
-what's used to populate type information. Again, we don't have to
-define how we do it now, just allow for it (and any other metadata we
-have yet to think about) in the DTB format changes.
-
-Rob
 
