@@ -1,56 +1,60 @@
-Return-Path: <devicetree+bounces-255775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0165D284FE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 21:07:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5D8DD2859D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 21:15:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2F718300D331
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:07:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E89C30E37E5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC7731ED83;
-	Thu, 15 Jan 2026 20:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE96322A29;
+	Thu, 15 Jan 2026 20:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mOsCR2ZU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LGqqIZDj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA8B310762;
-	Thu, 15 Jan 2026 20:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8905322C7F;
+	Thu, 15 Jan 2026 20:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768507633; cv=none; b=PTbwktm5Dsgtmw1CfxekDxZHNNuIIAwza4HjDsJGjrbHLwms8qq9kOR1mCqtzhQHNq0WoiQKqpxI3qg8j/n0aMQeI1ylzPOqIX6ormztIqPpB9qCjxDYZajvehRxiGFnnge+ffprp13+R5DKlvlTEFDX6Ox4i3/sf0voo6IhRBI=
+	t=1768508006; cv=none; b=OTk+lFzXBxb7VmFEk1ttIrvXi3hUfYv8exoObs37pgZX9Gfw3p1pSbcgx4qLfc0e7hitbSH8o0yODhoi/Oi3uxIYRzYUL+6d6bT1Y3g5zJMSgLy5DTiqjv4NCzn/nyCYxyhDXddCCpNn41YRCa4DJCeDfqD6fZEkq4cSNHOxlhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768507633; c=relaxed/simple;
-	bh=AQfvwzmGUBkkXUXjJnK6h8dwu1OWTx6cCBdi7caD6Qc=;
+	s=arc-20240116; t=1768508006; c=relaxed/simple;
+	bh=jr1ilPMwkKVPl5pCqJ+dK2J5Y6Fat4nqVFc+IPPKXho=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MoaJXNR834wfIo2cG0HIEPNZ1kUDbcMIzU+fgkCYAzV4SHHlaThSt/Ic9fPLn/9zezvmE0kOYDCMws0d/qYTNX3j59VNnEGyzUzKUar3GUTNSl0oIf5P8U8UtYaZJk3Nsw+ISHqSOmVrnhmzhupIgavQwBFLwYzQtpBNlbLLcGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mOsCR2ZU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 377B9C116D0;
-	Thu, 15 Jan 2026 20:07:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jt9Z1Ub+zsHq6VJMMydatCdiYGKogWM/A7JxoiSJHoArbzZkGuMpox9oARjeb7yfiHi+9xMYfkH5afMxK/o1d1aoHyABDFyBfX4FrDa0mdCU87sLg+Q5B37ZUnB20q6zxPqvUGyp7eEZMQIGkkxe+af/OhVAR5r5zp3rgS83OPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LGqqIZDj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69F62C116D0;
+	Thu, 15 Jan 2026 20:13:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768507633;
-	bh=AQfvwzmGUBkkXUXjJnK6h8dwu1OWTx6cCBdi7caD6Qc=;
+	s=k20201202; t=1768508002;
+	bh=jr1ilPMwkKVPl5pCqJ+dK2J5Y6Fat4nqVFc+IPPKXho=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mOsCR2ZUuD4CHhKsY9ZgjXKujOeYxKEALHxGb5A3Wlf8HVt3HEmOykFg6OUpR5l3A
-	 CMeAaA/8zUBqNT5JPFu8mKEyhmS0D03IUMVEiVgSDINJxXziP0P+aTDyrJI1Kz/Yz/
-	 DTP8PK8gan9AwIygsfd/W4+3cdw4wbgmupW/jk323QtrhccGgGiE3qD4V2NXq1yD5H
-	 0FjWzPxKlLy/ubo0Aw9dtvEU/0Qqm+KlvEpfDscTnI7yrawhFXMib37y0jmfaQLTut
-	 Nw9vtzGjT2gSObmVvtwojWDu8hRPxqyajWkxB1eq0PrmfSWbfxXmILrBIbYKeE8Ybm
-	 EO5YBmepqKm/A==
-Date: Thu, 15 Jan 2026 14:07:12 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: CL Wang <cl634@andestech.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org, tim609@andestech.com,
-	linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-	linux@roeck-us.net
-Subject: Re: [PATCH V2 1/3] dt-bindings: watchdog: Add support for Andes
- ATCWDT200
-Message-ID: <176850763136.1100313.4056997529955864589.robh@kernel.org>
-References: <20260115081444.2452357-1-cl634@andestech.com>
- <20260115081444.2452357-2-cl634@andestech.com>
+	b=LGqqIZDjoVPQtR/3wDlYFN+igzv6lrRttYgjEEaG7qVZ8lxeL5t3uvciHYzrgPMkZ
+	 /HsZyMZo5eDNW4ELBFcrY5S65A9WVUF9rt8+r1QblQnGG1bqLv5jtjClmTO8FTbEPa
+	 1KnivTllcA3pe2nLuFAem5cDhaoK/uh8bgNEUIAdsQy6r9y2fBYGVfVMel8s2Q3Lxq
+	 fKOPkVHcvikDMRP9F/02LE0pYiH46/4S2hWARlkdGuuOCbGHmF98wqzeZ2/7V2ztm8
+	 Wvz17wU+k8B2X2MN9rAU1AHN/ZRpCmWWY2pODee6inJcVRtciIVf7KZ+yTDjLwmioW
+	 6CSSre2cpKSkg==
+Date: Thu, 15 Jan 2026 14:13:21 -0600
+From: Rob Herring <robh@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: cpus: Deprecate Qualcomm generic
+ compatibles
+Message-ID: <20260115201321.GA1101678-robh@kernel.org>
+References: <20260115083503.43796-2-krzysztof.kozlowski@oss.qualcomm.com>
+ <59ae6b16-7866-413a-a1d2-4a735024c108@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,32 +63,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260115081444.2452357-2-cl634@andestech.com>
+In-Reply-To: <59ae6b16-7866-413a-a1d2-4a735024c108@oss.qualcomm.com>
 
+On Thu, Jan 15, 2026 at 11:19:47AM +0100, Konrad Dybcio wrote:
+> On 1/15/26 9:35 AM, Krzysztof Kozlowski wrote:
+> > Move four compatibles for Qualcomm Krait, Kryo, Oryon and Scorpion
+> > custom CPU cores out of the enum into separate one with deprecated: true
+> > annotation, because these are too generic names.
+> > 
+> > These are names of the families and there are significant differences
+> > within individual processors, e.g. Kryo6xx can based on architectures
+> > from Cortex-X2, A710, A510 to A78 and probably more.
+> > 
+> > Just like other vendor processors are differentiated, also Qualcomm CPUs
+> > should come with specific compatibles.
+> > 
+> > Cc: Bjorn Andersson <andersson@kernel.org>
+> > Cc: Konrad Dybcio <konradybcio@kernel.org>
+> > Cc: linux-arm-msm@vger.kernel.org
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> > ---
+> 
+> [...]
+> 
+> > -      - arm,armv8 # Only for s/w models
+> 
+> I'm still bitter about this one existing
+> 
+> $ rg '"arm,armv8"' arch -l | sort
+> 
+> arch/arm64/boot/dts/arm/foundation-v8.dtsi
+> 
+> This makes some sense (see [1])
+> 
+> arch/arm64/boot/dts/arm/fvp-base-revc.dts
+> arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
+> 
+> These seem to be spawned with a specific virtualized Cortex type
 
-On Thu, 15 Jan 2026 16:14:42 +0800, CL Wang wrote:
-> Add the devicetree binding documentation for the Andes ATCWDT200
-> watchdog timer.
-> 
-> ATCWDT200 is the IP name, which is embedded in AndesCore-based
-> platforms or SoCs such as AE350 and Qilai.
-> 
-> Signed-off-by: CL Wang <cl634@andestech.com>
-> ---
-> Changes in v2:
->   - Drop redundant text "including supported properties..." from the
->     commit message.
->   - Clarify the relationship between ATCWDT200 IP and SoCs (AE350/Qilai)
->     in the commit message.
->   - Add missing type definition ($ref: uint32), enum constraint, and
->     description for 'andestech,clock-source' property.
-> 
-> ---
->  .../watchdog/andestech,ae350-wdt.yaml         | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/andestech,ae350-wdt.yaml
-> 
+No, these are "generic" cores where arch features can be turned on/off 
+and configured.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> 
+> arch/arm64/boot/dts/nvidia/tegra264.dtsi
 
+It's hard to keep new ones from sneaking in...
+
+Rob
 
