@@ -1,100 +1,183 @@
-Return-Path: <devicetree+bounces-255600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34662D24A84
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:05:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E1B7D24AA9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:07:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A4514300462D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:05:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7FE073019959
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:07:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9A539E6C1;
-	Thu, 15 Jan 2026 13:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EBC36E47A;
+	Thu, 15 Jan 2026 13:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eU9vxoD4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qDIL7OiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011065.outbound.protection.outlook.com [52.101.62.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB2839C65F;
-	Thu, 15 Jan 2026 13:05:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768482320; cv=none; b=G4XU+YSSiIVSR83gcK074jrUDtutEWirHkjrgi/tX5M+TAcM2p4hrNu5XEUTIfeEJ895l2pz35yE7cAN4W6pLnD2Mpmvr7zUXSxM9JNcDBC+6/OM2pUAfLzUzDq0NuXOC+c1nrDMedvkuNsD6LgsCyjlTvBWP+R32zOFR1Abpo4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768482320; c=relaxed/simple;
-	bh=AV6S2P9Ha5EJDykqz3kCRpFsdgFAy2RLPRCtoH/Kzz0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Td31N2YBc2PKmsfQuhXOhTPgk+h+qgwJBkGc44BofDJxSY4zVJFA1ncYDodAywJyxaY60O88F5sUOc/e00UhKvGS/lk5JE4GGFu6FwnWtnts+eU/VvGAtZhfJsxcnctp18NzzRvTmLjt4yGNmYdly1u4g8sDu/RG6oib/ViSVFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eU9vxoD4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F018C116D0;
-	Thu, 15 Jan 2026 13:05:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768482320;
-	bh=AV6S2P9Ha5EJDykqz3kCRpFsdgFAy2RLPRCtoH/Kzz0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=eU9vxoD4XL73IBTOVJwGViXK6D7A6H3IAMJHC6NXDj+1kun0h/+o2h1lDoQsgGlvm
-	 Csgf82R5NrDoGDworAzQEcJGYOPI1TC8roBSHiHFHOp7PkC/5L04UPjCdjZfqMgRJg
-	 eqovAsYSYzEvtwUFj+VCQ6hzfKPBy4T2Xt8IN/q1lu2ot9Z1Q4XRQm/1ZEcObkNGIv
-	 vyMOHO3N38I5s/W6iInK7Ak7BwprdUmgV5vnsH5OLYJ4TngMjHy4AzImU3VW4A2pNA
-	 bcVbzYy1NzjfsR04XhhqU/tCZk9lX4LAxAqLJDTJfNuUBgwAE52K6O4Sgbd/SwS1kN
-	 N6VKW9aKZHe/A==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Mark Brown <broonie@kernel.org>
-Cc: Jon Hunter <jonathanh@nvidia.com>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260114-asoc-fix-rt5640-dt-clocks-v1-1-421d438673c2@kernel.org>
-References: <20260114-asoc-fix-rt5640-dt-clocks-v1-1-421d438673c2@kernel.org>
-Subject: Re: [PATCH] ASoC: rt5640: Fix duplicate clock properties in DT
- binding
-Message-Id: <176848231789.253446.13860422269412592694.b4-ty@kernel.org>
-Date: Thu, 15 Jan 2026 13:05:17 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C283612CB;
+	Thu, 15 Jan 2026 13:07:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768482466; cv=fail; b=PWRM98R5LpDjjsTRj139IsOYhYidtbqfkQpWFCnFt3ZXO7tlIZbVYMO1AeQITQIzOlG6/7SaHFdAszNDP2I2vThELMdnj9TJZGjFf1Hs94ryZ96tQ7V+2LTqzPBnXrWE8oscxcgomlcVt4hiz0JWe/bJbflNkrqKi/VwnFSJX3s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768482466; c=relaxed/simple;
+	bh=DXxhqG32qp3DEOTmnbG88BuOroZI0utFXejF3f7xYV0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X6qOp1QfjB4dzy6/TK3bgo0luLIRQ7nMYPkYHOCsOy/3is4KGF/UWIRedqT3PYUb+bJBU+AW4vjcuyyBH4zoYlP2FggD3/LOu/vBuG7h4RL0TeBhOTNmbC+3W4GAVgvrJ/K7nczjgqiZv5DmykHB8PAcDAGVDoNLQ3bnyDOyq0Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qDIL7OiO; arc=fail smtp.client-ip=52.101.62.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qnC/o5i/8JQ0/P0gOOc9Lecgz3yChPM+bNrrho6w5TufrXuCrKlpLrpDF+0kyvBbK42WE+iVrcKmQ19b5++XquzAR77Y0RHGyqaRYDqMfDRGT7U6IsV3+WsErYje7NLqSMJq/rOpcsflKhSaiwF8R1qW/bCTWCATiZj2VMzba+YI2JRaZt7qwefdt3FiF2elAiMkJiZRXRf5pqiU54zM20Vc22JfCaLxv2R1uw5CiKukca5LI89EZIFNh+OW2Y99Yy/gu5K3hzWksG+fWfIwli0P/iCgh73pO9EoXyQMP2Wvv40ZtHvm+ZSqRteqJGPD/fNSjBdDxVUBNUkVbeuVcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9ARSjK52W3i1ouFx04dQ6ryC4HgpymRlLxuM3P9k+nk=;
+ b=jsmKTI5DjwM2z8FLyVjPbfX6+K5Cm7ymMkydVkFu2UeHY4kFv89W3q/0L2jZuvN0hQvm6uuQdLT16JO2k55wCO/B5nbpRDqeyus2Gtc1GC/MQZeV5O5mQSd3Cc2gbeG+OQRPC4I+l1qUVLaA265MBS3H9aB7BicxME5ZIwdf2DyKBSLgl5mcOpZWMcL9xSPFieeruwIdne6OyBGE0QjV9a6KQGqQisZkXPMXNWhpZhYlggiwQ8OHZ7dYV9hfF18R2/fOsT9P+eN1CyMGv3Xh9pXesa6mnDtWQHUXvVs4Ehk3K1vddjC2en2yhIh0Awd/nqIHBws7OGPGfQd/k0V3Jg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9ARSjK52W3i1ouFx04dQ6ryC4HgpymRlLxuM3P9k+nk=;
+ b=qDIL7OiOdFgdXEpG+r8lIn907V/TEB465AZ9XnfPw5c6hF/4CoiSLh31tp0jdug+G5q0QmdRZm4yoSbBe/F0QU16lFysaFzrkscV7LIMKcbdwZy1sqw81LgFvjv2Aoa+zkvs8i/Pm5bBG4xJ0ELZGljE9rkKskq087cFYrTBYCM=
+Received: from PH7PR17CA0060.namprd17.prod.outlook.com (2603:10b6:510:325::24)
+ by SJ2PR10MB7707.namprd10.prod.outlook.com (2603:10b6:a03:578::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Thu, 15 Jan
+ 2026 13:07:39 +0000
+Received: from SJ1PEPF000023D3.namprd21.prod.outlook.com
+ (2603:10b6:510:325:cafe::65) by PH7PR17CA0060.outlook.office365.com
+ (2603:10b6:510:325::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.6 via Frontend Transport; Thu,
+ 15 Jan 2026 13:07:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SJ1PEPF000023D3.mail.protection.outlook.com (10.167.244.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.0 via Frontend Transport; Thu, 15 Jan 2026 13:07:37 +0000
+Received: from DFLE211.ent.ti.com (10.64.6.69) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 15 Jan
+ 2026 07:07:37 -0600
+Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 15 Jan
+ 2026 07:07:37 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 15 Jan 2026 07:07:37 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60FD7bhp1465433;
+	Thu, 15 Jan 2026 07:07:37 -0600
+Date: Thu, 15 Jan 2026 07:07:37 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Anshul Dalal <anshuld@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v8] dt-bindings: arm: keystone: add boot_* mboxes to
+ ti,sci
+Message-ID: <20260115130737.eol7wtlotzum5kxv@hamburger>
+References: <20260113-k3_syscon_add_boot_mailboxes-v8-1-d43954527b5d@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260113-k3_syscon_add_boot_mailboxes-v8-1-d43954527b5d@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D3:EE_|SJ2PR10MB7707:EE_
+X-MS-Office365-Filtering-Correlation-Id: e5b74bed-cf32-4a7e-90bc-08de54370ebb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|34020700016|36860700013|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Ep9Z853AuZ5cJC2YVxzeBGxzZMgqYTHDSuOKOpvt/WlEgzt340rXpzm625aj?=
+ =?us-ascii?Q?lZsninRbay5RNIOW9sf1seeT/Whhb/HNGM4JwP19QfumsUZ7TK/Z4aGQsZPt?=
+ =?us-ascii?Q?ix9mJH1igwBOcde9NNTGz6aX3d3YgD3L2Ba7PZWNxY1qLvVgLUx6yZAehSTz?=
+ =?us-ascii?Q?7HNPz0QYW8f9deZa0OnXUG5BnGQSLMAzwVIxvQ2BYmMJKp0LAIh+TgP2+x64?=
+ =?us-ascii?Q?VxMf31K/6m72TafaYlUla+JwCkMAQyXjD/v3fWrq6rPG+hHcLZ8ocqO/SRd0?=
+ =?us-ascii?Q?X5QGnPEyE0XLE6xj++vZm2GlWliIGIwFkK2Cj/kdwjCQKzjkHJ7Yaddw06Cp?=
+ =?us-ascii?Q?ViNPLdW7/wov2BdykBnE7pv9l35Lg9Oi82mEpdpk4aIOXkNODrZcrUa7cRb4?=
+ =?us-ascii?Q?jhuNInUnjJLIIo5Z/lF+/hDb3myn45uPR0iJfJnzrQ+zvLeMMEKKOvr2lVKv?=
+ =?us-ascii?Q?LN9EqpbrI3vdF7Mcd5FWmZo9dNWMGMNl5ZlP0869+FSPVKCIkHv5xVYiuHMi?=
+ =?us-ascii?Q?3/rSOpjvi8sj0cFwqy/z9XdYiUQsjhz/1ea4sBgYnGd17/HgUevQLk119GwT?=
+ =?us-ascii?Q?m1+yaMqN2cbBQJhH/vIqW4Rrmu+o+lR/cbvkuXmFEU7i7X+NV0jNqvoKDdci?=
+ =?us-ascii?Q?LBKnNHg1Wow9uxCbTJ92exg5oax50pN6KV/L1vGfOxLJIUVzv+O83n9wZje7?=
+ =?us-ascii?Q?SUvOO3G7Hg78Arw6p5G+K0FsMSBrNRawPXRij+lhta+R1qDkwSkB61aUlu2x?=
+ =?us-ascii?Q?8uAn36Hm6fWEVIFK/8LyM8jnUS7jYl3qYhnbRXonucj5Vu2mS1xOwf7ZrQf9?=
+ =?us-ascii?Q?BieiglShDbRoYeHxPluZiAEnLe5Zad7QZrSTG0sKBt0E55cbY+yADKJnHyBH?=
+ =?us-ascii?Q?39OAXXR3lg1cGBoM6mxH6oq6y+aCkQdTw9rJqf63qsHRu0X4AFJitUTm2LaN?=
+ =?us-ascii?Q?p+Yn0ydrvNY9Ti6XVVlfP3YK8AhnuaEgeNlgV+/EXWpIkmXJsq3Jbg/aP8YM?=
+ =?us-ascii?Q?8zVs88fe1iAWpGl+Q53AAO+reiF2eyuZ8VAqdpbLDkZ1/0UYMitEtJConU6l?=
+ =?us-ascii?Q?6pL2ZpzK8oM/66pTypewScFpk841p9rRPFmaLBs8yrINo06yKcUC1Zl3Yh/W?=
+ =?us-ascii?Q?mtYo8GwWr/yoD+lGyh7nHQ83s3ZjbC3cYGp0iKC7GDz+HY+rKsZ7rdPKeoHM?=
+ =?us-ascii?Q?J89Qq72KJDUwuiRztmC8t6VCKdoRql0YkUJipTaAavqKAsUoP/s9w8va02Gj?=
+ =?us-ascii?Q?4Zug43t90cP9l6k4Q0N7k3G6nIAVqm+3+W/xKj1YA8mQzuJ3o8wwCdzT5w+P?=
+ =?us-ascii?Q?lMZFn53t2ZNw0xxnAwTof6aqtXnt3rXAbXqoY4H7BA4AYQ+v8amdM90ePQBr?=
+ =?us-ascii?Q?H49Pq2UoMZphWR+nnCrUITBaiwjHdEu0dON3V5uUSj2+5k0OrtfsPoOH9r66?=
+ =?us-ascii?Q?Qg+lCDyz36qAh0H2niIYQwTgYx2OXPc6c47l+qiqHveeuHSN1DSsOLdqDBfZ?=
+ =?us-ascii?Q?paM7XAKZTugppARvWeF5GkQgIBgr+8fcDMFL+FonGb6YgQJGTRoo/gH4fXIW?=
+ =?us-ascii?Q?1UIPs7BGt9RAyZgpvTVm5DnEeRvVDs7vO/rRW1Tjv/3Mpmu+UDtnWL4QAKec?=
+ =?us-ascii?Q?VKcvP7ZEUOTas6XEcLTOWryxi2QZ7GF03hChSUTkOl20YNyqSN3VEQMfqdTV?=
+ =?us-ascii?Q?xjbi3g=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(34020700016)(36860700013)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 13:07:37.8915
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5b74bed-cf32-4a7e-90bc-08de54370ebb
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF000023D3.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR10MB7707
 
-On Wed, 14 Jan 2026 22:08:35 +0000, Mark Brown wrote:
-> Not quite overlapping changes to the rt5640 binding resulted in duplicate
-> definitions of the clocks and clock-names properties. Delete one of them,
-> preferring the simpler one.
+On 11:08-20260113, Anshul Dalal wrote:
+> The bootloader on K3 devices makes use of mailboxes as per the ROM spec
+> which might be different than one's available to the kernel (firmware
+> spec).
 > 
+> Therefore, this patch adds the missing mailbox entries to the DT binding
+> if the matching compatible is ti,am654-sci to represent the mailboxes
+> exposed by the hardware during boot for the purpose of loading the
+> firmware.
 > 
+> The newly added mboxes are made optional by keeping minItems as 2 to
+> remain compliant with existing device-trees. The new 'notify' channel is
+> not supported on all SoCs and is therefore kept at last in the list.
+> 
+> Signed-off-by: Anshul Dalal <anshuld@ti.com>
+> ---
+> Changes in v8:
+> - Refactored the patch to a simplified diff
+> - Link to v7: https://lore.kernel.org/r/20260107-k3_syscon_add_boot_mailboxes-v7-1-d97a943f0a52@ti.com
 
-Applied to
+Could you line this up with dts changes in a single series?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: rt5640: Fix duplicate clock properties in DT binding
-      commit: be5a39e7994ec9f003c8569b670c794a4e5d1551
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
