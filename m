@@ -1,170 +1,200 @@
-Return-Path: <devicetree+bounces-255289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5620D21E4D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:49:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA481D21E50
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:50:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C6793027D82
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:49:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E8ECE301D329
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2667155C87;
-	Thu, 15 Jan 2026 00:49:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F38C823DD;
+	Thu, 15 Jan 2026 00:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="SF5CWzRo";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="I5ZfffJb"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="mbgYGcOQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011034.outbound.protection.outlook.com [52.103.67.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E76427456;
-	Thu, 15 Jan 2026 00:49:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768438180; cv=none; b=knMZUEI/vtVmmn3V8GiLqW7BWhaDjbMn5eTOi3d65ezxQtHnuFMWTWZCwLJcXTS/VilLE8lRKwRdZabtza4jVeRo9atIIpuMLcuELM3dSaSO1cU0gJnT7rbOIl3A0MRVQDDWybi23yyfGIgmslrWl+4ihJtCtrrsisf9Q7ogxz0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768438180; c=relaxed/simple;
-	bh=wYCY1pxzKQkjbv4kdoUFNvWFBLbK7E2szQFk6tb4P8w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ren70gAidBkD8pJQPlbFDxYZcJQWOhBHnrgPqCfzkr5jKK1zTJsEoGikKDhZjaQ4v5H3nTu8iS0poxP1V7MoullHn7w+xqgr5SCZ0VRLjQCfchhXycu5vN4k8MYfFkxpYK2oxka9EbwTh/2z/KIVsUADnX8XU63Fe/44MrmjYG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=SF5CWzRo; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=I5ZfffJb; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4ds4BM2wF5z9tFN;
-	Thu, 15 Jan 2026 01:49:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768438171;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fibLDiv5UUGAgvXNRj0aodIc0SorV59XBE18JhLB0hc=;
-	b=SF5CWzRo1YG4ooEsJ6xYhrzCeG/gfCXXHgPOf5wzIEguAXVS7S1aonpL0BltFW/edR8yb6
-	P5cniITTV19GtlH86mKOn6H29RZyUbFXiJ5112rCHzZu8rYa9hwYQmrwh0Tzl2PzrKKbRd
-	c27/AtPtD7MknuTIscZOsMekbEkraz7ECmOa5RBQueCs9aqHlXTqC5dJRfAM8SfmaOzSwe
-	4HVYVPVlVabK7TxDPbsFylycVF1tm5bUp2cVstGKVFnCsLTXcEXvcSV+0MAXyyqQlMcV07
-	K/Rg8JT10uWGypzyuLOqG3KGfRmqsWg0HLbVAB5uu5XjPX6kVwuHCEiyTCFneg==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=I5ZfffJb;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768438169;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fibLDiv5UUGAgvXNRj0aodIc0SorV59XBE18JhLB0hc=;
-	b=I5ZfffJbwh0/nFUYO4qV4SOJCxkd/sVQFjkiyq5667RUPn2QlvzDrQ74ymcwsBCs7qiHHO
-	lic1tjSmET0ZTp9erOh6t3OtLhhwcseeMN7ETE27oAlaZCaXDwSLQlDRYPJrwddpWgLhQ3
-	ctUVzYI41846YOE7czCZcGt5r1QUphY81NrIhf8qe2dmVYQks/UI/DtVeSdv6/P6uAAFRq
-	hHHVEz8kuUBgCVJYGaIfxgr83wALnomqeiLbEglZIZehz52m3xarGr8Jub40pZl/+ZC4Fr
-	FpNnroCtkrVtOqDNqGnwkTf2l8q+rikVxJWN4y0YBoZp4G3SgEBgjsvBpXO2pQ==
-To: arm-scmi@vger.kernel.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 2/2] firmware: arm_scmi: Implement arm,no-completion-irq property
-Date: Thu, 15 Jan 2026 01:48:57 +0100
-Message-ID: <20260115004921.548282-2-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260115004921.548282-1-marek.vasut+renesas@mailbox.org>
-References: <20260115004921.548282-1-marek.vasut+renesas@mailbox.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E90208D0;
+	Thu, 15 Jan 2026 00:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.34
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768438211; cv=fail; b=Ld5fqQidPUJHEh6ffsQrUVnZeR8ee++K6WrdoMX8ESf7DPVYopAEpiG5faE/HU3bFLSF0b5kJXRK7xApISHASGdDd6MQM+39V/N8FDkliz+dbtdBx3eQzA4u9opG1m3xcmcl3Ro6ETmfPQKdJ/QmhVKwNz835KickdRwADxIVuA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768438211; c=relaxed/simple;
+	bh=oSQaYrIhH8qTknjrBUR551KVmzWCSmeV1pLrIhRhyf8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=figVsOKmyCIrXuE03m/fs7YK4NKR5IFMTIdqX9BYz/IsgCYBJSJSbHqqHEZJZEOB2C3kV8/Mh05/NKFybQZAGi4gQR6ClfvuTKPewCBoohDVEa+WKlC+sdRZu42qqscnsYn3+igXkP7j50B/9bnS7sIFCWhWwuVp+cfKh/sW+mM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=mbgYGcOQ; arc=fail smtp.client-ip=52.103.67.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YIAPNlnMq6+ZFioryRfsPMIbHYx25p7Zawe890rjKdsB3Z5/cmvurP/cfgDt+HzeWh7O/x0zIRPrVK3S1mhoxllB6AVXzbgTIcw0xGtVovGYEM/NOSEIhWPbfgyYZLkaHFkR1VmCNTWf3JbYYMHTeDaNvVR+ua75oXMOi1KMtvtxkFZ0yIO88DkXNWgIXZ9Qdb8Ri6eGsLmJ7GwK8WoJh4Lx7uahddLdJU5YvKc+HiA3A6hGcDmcqRmOc7TdICrEp9cBJGyqMTipugT/d+vLVmYwKpv5X6JhTPdf9lE/PsPeeeG56roqJIBIhzaAXDPF7U64K3pxhmdZ6BOI9YVE8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RN3f19/xdMXikayz6/ahcr27uRpgYokWWYhDex+JZaE=;
+ b=pkktb6HgBZP5wLImhGsjpfEIVO1GMBXw5RPfixeECgxWsIjQQ3VM/EfzbGOmB++RhI9aZww87nh1NoPmnAajnJ+9BhQZZNHcdVT0rOVP6aSG77d4wcj5PrHiY9cXicxyh9evErkzmAAe68bWzJFUkbsAHgCTnoipdViH+vhExsdrT3jOZ2GbzVa+DC2lMIUbSVuemTGib29LzNxZZKWFQTuXaXcEyRu5jc0CXtkgnWi5oovXdz+5/9s4SUJ4cITuf/YIpxpX1pXduDR5ksmQYsDS6UC2/KnKk9f/qOoJOkIsE9IU65+0rKQYDY/ftVXsaXrTs3bLPL0Wxmh8ASXpfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RN3f19/xdMXikayz6/ahcr27uRpgYokWWYhDex+JZaE=;
+ b=mbgYGcOQLaKiruvnsOf4kbKfdnsOiBtnt6ywV4POTR/38F6oV98XlNpWBRznc6yfY+qVXUfaHOLbZLa5nht9JowAmfpKhJdVudzqM9o8Bddxlij/Kd7tfdBUdn8sL9BaQ26STEXKMVcLlrejGwE0VOOs7ivqkxulGxY8bvAUxWNAzXm+04dUzYmOdO0WoRJrKg+ZERU/VlCPKCEO4ABNLRvtxGsrV9el/J1qnSg+WvVNr4KemXV9+SUBtseD9dyAagh8JvoodL5EmHjouxV6wp4nndBU/5doDSxA7UcHOvZz+Cm1KQNEyPrT12we7xpFbUxY5T9ZHX562BX9B8eeAg==
+Received: from MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1e9::18) by PN1PPF74CDA26B3.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c04:1::312) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Thu, 15 Jan
+ 2026 00:50:01 +0000
+Received: from MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8a6b:3853:1bc:67e4]) by MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8a6b:3853:1bc:67e4%6]) with mapi id 15.20.9520.005; Thu, 15 Jan 2026
+ 00:50:01 +0000
+Message-ID:
+ <MA5PR01MB1250082D757C8DEFE005EE71AFE8CA@MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM>
+Date: Thu, 15 Jan 2026 08:49:54 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] riscv: dts: sophgo: Move PLIC and CLINT node into CPU
+ dtsi
+To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Han Gao <rabenda.cn@gmail.com>,
+ Nutty Liu <liujingqi@lanxincomputing.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Zixian Zeng <sycamoremoon376@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+References: <20260113023828.790136-1-inochiama@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20260113023828.790136-1-inochiama@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: TP0P295CA0030.TWNP295.PROD.OUTLOOK.COM
+ (2603:1096:910:5::15) To MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1e9::18)
+X-Microsoft-Original-Message-ID:
+ <549858a4-6aa7-41ab-b312-14f42d10afa5@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 555a4aa9c6b107d7af9
-X-MBO-RS-META: 9sd5h5jh3fran9x4bgwhrg1xhawsyszs
-X-Rspamd-Queue-Id: 4ds4BM2wF5z9tFN
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA5PR01MB12500:EE_|PN1PPF74CDA26B3:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06eb6545-35d4-4294-dde3-08de53d0034b
+X-MS-Exchange-SLBlob-MailProps:
+	dx7TrgQSB6d5vbofsfC/jnGJ+j4hG4ECk1o3ZU7J+9crJwo4e18gR3WEWsM+3MS2hDctGJqS+VF29k19gqdjlt701oidm4VI55zBWiqWD8NImREoajmZxLQU6jhajWQFoz9DQxZjbZnxYBeOU/Fpeo4jssmIxn+eK0/BZOlwuSU/4ZJikjIb35VXjb0igvKBl8aDXjdycOZ98c0BjVuhSZObock3GHNy0Q6WGZbWwmLm7qwlgxvm41WBnAJJaitcvVFofVTeV4mn1GgsgSsJ/vBwuOsMYCLyWJVEKhNSgC8e1xMwwM2j9E4wwM58SsSxoJrYs6qxl6GXgU+OHSLMdqsXjwiulz+EQ5lX/WxC4Duyeyysn/asMfOL1SKSwraucrbA43QzmV2U4xHJR1cWzHHYIVLoTLXABgwyETo7k91dsTSUfD1ZLd6ynNC3GutdVq54XyONRU7or+bHUiiRXeGJRQhLz4OnErSaQG/vtS/IewV/rXaI1QyOsrQ8jOXT0AOFWWfwBWBEV7i1K8Uh/fVnoleg5CZF4UmIZqMyIcyrFyBoeu0ZCAuyIWzS3j1QvWu57UmEN1V3rr8dee6TRz5CgBTzitwyxuMni2jRgX1A6sykAn/HFHdVVyDOUkOaONyrQaY+40xoonyZaRCDOznvBHZ47WB3mZCupBjC2wyA4ZYtO0rUSHy/RSDsnqlVi0n3xGnjapx/JAXn5lZ26u8UDazXiYNqvvFZLTn1r9d7Pc9LF9/QxRwQE+aYkaUSvGgpOzQX7XQ=
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|15080799012|461199028|19110799012|6090799003|8060799015|5072599009|23021999003|3412199025|440099028|52005399003|40105399003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?d0tSdHAzRGV0YUNhVHEyUEpoeEdVUWtSY09Sb3NGVEIyOXYyM3VUVjVFUGJT?=
+ =?utf-8?B?ZWUwd2pYUmpkekEwNk51c1VSSlFpY2FrdjZFT012Q2xyYktvK1dpWHVyUlZG?=
+ =?utf-8?B?VUxUVC9OVGZvQ2NDK0ZwSVlNSFBqUzUvKzNabGIrQldFTlhqQzhEdHVmK3oy?=
+ =?utf-8?B?MURTRHZFa1hiY25BWVFUSjJWSjZNRGpzM21kM21hYmlweThZS1JyK1prT0Fw?=
+ =?utf-8?B?TEY1ejNRVXBicjRKKzZiM3ZHc3QvcHNYem4yNFcwcUgxN0VXWkcwMjZFRFJa?=
+ =?utf-8?B?V252eXQ4cGlPSEsvZ2l2Rnd2WElYREFETHZSRE1qczBmVlVJMzhvdnh3K3NU?=
+ =?utf-8?B?MDV2MzlmODFaQkxiL0JUT2svKzMwWnNEZjc5YTB5NHRPZzJOTmFMdmlwbGxr?=
+ =?utf-8?B?eTNyU1U0STdUM1dVVXNjM3dWaW13clNXQXFtWlNMZXJIa29wK0UyRW0ySWlY?=
+ =?utf-8?B?SUFzYmZYY0pqWUlSaEN5cnJxVWpRMDZqeTRsNDBOZDBEYnlrNDRHeTdTQ04x?=
+ =?utf-8?B?ekdPeldscURrejg4RENoTHFzcU9ZVlMzdlcyOVZ3MGhMdzQvYkhTSWZ6d0Y4?=
+ =?utf-8?B?S0hyRjR6U1huYkZPc2JDZCtQbVZUa0M2OEk4cFhDWnlFYlpraVB3WTVFTjZ1?=
+ =?utf-8?B?YnRaaS93c3UwSDBTMHhXRzd0bzRyTzUrRkVScjZWdm5KT1RVTDYxeFIzclh0?=
+ =?utf-8?B?Y21EdTlFTXpMSGV1T3BubVIrN1JZVHhuTmxtaWg5S25vdjJVNGlEWjhMRDJu?=
+ =?utf-8?B?RlFVeWZxbHZmV1dtcHlqRUsySGxRUlN4RHE0R2xMQ1EzRnBGdDgwZmFLRXdD?=
+ =?utf-8?B?Zjc1ZFArTnFtUlEzN0JVYlJlakhsWHJuSkc1SWs3eUhGMkNLUitwTVRyeEx1?=
+ =?utf-8?B?aWQxWXBIc3pkL0p0NmIwZ2ZIOHJ4UUpaOXkzZGluNDZ4dUl3VW91OTNqby9o?=
+ =?utf-8?B?dTJTS3IvWWRHL1ArdlZQOUxBV0w5VGl4NmhYdkNDTE5pc2h0eGw3ZGpSUmhH?=
+ =?utf-8?B?YitLdDRZTEc1dlQ5bGVUdFgreG9RaWJHenlMUTFqdWEwYlFibUhXK1NkY2lC?=
+ =?utf-8?B?QVl1ZXpEYzBlelYyWDhOeTRPZHhCYkF3bTcxUi9KUUE4bDh5dCtlZnBiM0ZV?=
+ =?utf-8?B?NGJ6OFl1TkUzd0pUc3EwTkN4aGlCa2lJeWdEK2R0OVhzcFRLWHF2YXVmdmM3?=
+ =?utf-8?B?VEY5V3JLRCtBbmVQaXp2dHhWMmNCL3licjZDRWJBSnZSUjFjUDAxV0ZJcWlO?=
+ =?utf-8?B?YTJVUG5wbS9QOTc3MDlEWUFHN1p3Yk9NVzMvQjhOc0JrTzArb1pwSDJsYTJ1?=
+ =?utf-8?B?MWgrbmVjb0xlcWZYa2xJcmh0RnUzODl0bHh5VmV2MVFKelRRdVFEVkpRVzl6?=
+ =?utf-8?B?SzRLNEJBcjhhRk5MQ2JCaTVWU2pKUnp0N0NrVmR2R3F6VytkNzJZekR5NVpS?=
+ =?utf-8?B?azhXK2JLcDlXVitKMk42Qm1VMHhsWW5ZcGVENVBtWTluT0tCNGR4cVpzN3pL?=
+ =?utf-8?B?S1JvTW55VmFhV2ZIM2lKaWhRTmpPRVFINzFlZi9PQno3MCtpV3lZZkFEQmVt?=
+ =?utf-8?B?bUpBQlZTejMvK1g0cnBRQktxN0tmVTZDREszNTM4V1FTd0VKNWhOVGZ6ci9B?=
+ =?utf-8?B?YnZ2dkF1eGZEckJmQllVLzVGL0o2bWc9PQ==?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?N0FJK3JTNzBGUlJuNDhBK1ZQWGZWODdwaWtRaHF6b2ZCL2FzblhMMERqRkF0?=
+ =?utf-8?B?bDNHazcyckp4WDdqUlM5OFJhYlFSMFdCL0Y5MWhuVGFzSTcreXlCRnNIYzZM?=
+ =?utf-8?B?djVjaytXamUyTDhidmNiRXdYRTlvYUF6N2ZaamNtMTBSaW1mWnhsbEtuNXZo?=
+ =?utf-8?B?VFVCTWRWU1ZMdHp5UXJ5YVlSU2NGdHBrNUVVWUpQSHo1YnZySkMxZmJhQkdX?=
+ =?utf-8?B?bVZpdkVLUEUvZUxlMFdnVU81ZXBtcW10d2FiVjZBVXNlcmQwN1BLVVlUZHN6?=
+ =?utf-8?B?Wit3cUNMN3dEdFBsWFllYTdKaURSUi9UK3ZOOXRENGpxbjRDdStCQ2lVVFlP?=
+ =?utf-8?B?WllydTV0UlJLVWRkL2FNRndpWWliU3VJYVRPdktNZnlkSnZFQzhEYWpxTFl1?=
+ =?utf-8?B?a1dWOG1RdWM5aVBKd2RSZ1NuN2x3bDZvUXI3R2VvZjlYVEM0MkZxRnFqTSto?=
+ =?utf-8?B?bkN4RXNQNXpDRWpEUWlLT3IzQklzVU1XRldMc25KdVNPR3FDV1dEUXVvOGhQ?=
+ =?utf-8?B?QjVvKzB1eGdQVXBnNENUeHkxK3k5ZEpKaVJrU1ZraEt6U21WcjcwbmpEN3Ju?=
+ =?utf-8?B?REhZdm41dk1ydlZJYXA1SnlTbk8vWWlLYkhTSk1nREdwSHZqbS9uZVdRYzVT?=
+ =?utf-8?B?VU94WUN6d3RmV3VhU2EwWnZ3VzF1MnVkMXovSW5EOEtkY2V6Q0FPdDRGOGRZ?=
+ =?utf-8?B?U3NaUjA3S3pWUTdaVHRNV0RLcXMrNHhWZWRLSXRrcmp2N1hzRWtNMzVBL1Ju?=
+ =?utf-8?B?WUx1SGV4Nk5tMjVvZnUyY2VvRXBiVjVmVXVSckVNUzNZQVBrSW40dTRRLzFT?=
+ =?utf-8?B?WHV0VDYyUlhlcThpSzM2Q01DdXFLSjRVTjRtaW1DaW1HWlc3OTdRam1mb1oy?=
+ =?utf-8?B?bWhPUkVNZ3ZTS1NsMVBvR1RIQUFXaDdjYVJqWEsvNExGVmUveXpJSFpERWIy?=
+ =?utf-8?B?ZmZJY01BZDJRWW9vblI5YjNYTzNWM3Z0YVBQMGpSYlJDWWVYRTU2Y2hXNXZq?=
+ =?utf-8?B?SWlKU1VuSVc4WC9BajRyWkZrd1hWRUd2ZnRGQW5yQlBKaldiQWlyZFhqSXVr?=
+ =?utf-8?B?K2hEZllrSzBtd1hMd2FOOWFuQ2NjQU44KytIeGg4T0ZlQmx3U0F2TllwN3Q3?=
+ =?utf-8?B?YzZYaU8rVTAxUFhSVEhqUm9PMEordS9Tcm53RUtORm40dWdNNG10d2FYSlVY?=
+ =?utf-8?B?VDR0dWJUM29HY1JRUytUUlRmLzJqQlJGS2dlZ2hlUjZCNGNIM3ZXRXBFOG1q?=
+ =?utf-8?B?UXYxZmZzZnQzOGxuUld2V0wrQ0JPTnFOMDUyU2tFUkh3RlJnaEtEdnpGaUxR?=
+ =?utf-8?B?VkIwY0hONGh1c1YrMVc3WnBaZ3BwdWVuSGM3NGFkdm1qZHZEeXpnSFhtbXFx?=
+ =?utf-8?B?aUdmMW8rZXpwS3hlWDB0SGNiODlpYUZlS2F3cm13ZTRjRllEOUZzQ1lDWFZr?=
+ =?utf-8?B?ZVhuRjNSK2FvYmdzZ3dIWE5saXVzUDBOV2pyb0VDYVNlT1NaRHljeHhhMFRP?=
+ =?utf-8?B?WUtOQ2NBa1J6NkVqVXhZTW1LNWZlNDZ2bStTQjAwZ3pBalhDQXExWkpGZ2hM?=
+ =?utf-8?B?aTZ3Qkw3c2VhQTk1c2VuN1ltT3YrT1FGU3VqWjJEZ0FhUXcwRTVFV1BSbTRD?=
+ =?utf-8?B?Rk5BZEdTa212U3RYWGtTSUtJcTA2SlBvTFR6c3lNaGhxNlFGMk5GM0owelQ2?=
+ =?utf-8?B?RFR0SVFTdUlhSFhWbXZhUzJaNm1tRXF0QlFtNnFpcXN1QXNJU05tUWs3VnRo?=
+ =?utf-8?B?YzRvKzA5SWVDNlpjaUdDdkFXMGRzQnByMWtrOVM3SklwRVMvbmRVcHRmMmJa?=
+ =?utf-8?B?NElnZVV5aVJOMmh3a0hXM3pBTWxpUkQvNjdtb2FOUTZYNmdmbkRzbE5kRW8v?=
+ =?utf-8?B?VmNmZzFBbGo0NnJJUE9ORk1hYUpHcExJd1ZidkUrUE4yWWVTVElzL2xGNldw?=
+ =?utf-8?Q?ivk6gI+U6NN2LGF05u+MInNhJ0ki3V0F?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06eb6545-35d4-4294-dde3-08de53d0034b
+X-MS-Exchange-CrossTenant-AuthSource: MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 00:50:01.0031
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1PPF74CDA26B3
 
-Implement new property arm,no-completion-irq, which sets all SCMI
-operation into poll mode. This is meant to work around uncooperative
-SCP implementations, which do not generate completion interrupts.
-This applies to mbox/shmem based implementations.
 
-With this property set, such implementations which do not generate
-interrupts can be interacted with, until they are fixed to generate
-interrupts properly.
+On 1/13/2026 10:38 AM, Inochi Amaoto wrote:
+> As we have a separate CPU dtsi file, move the PLIC and CLINT
+> node to the CPU dtsi file. This will make the sg2042.dtsi force
+> peripheral devices, and make the CPU dtsi force CPU related
+> devices.
+LGTM, except for the word "force" in the commit message; it seems a bit 
+odd. Perhaps it would be better to write: "This will make all peripheral 
+devices are defined in the sg2042.dtsi
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Cristian Marussi <cristian.marussi@arm.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sudeep Holla <sudeep.holla@arm.com>
-Cc: arm-scmi@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: Drop no IRQ handling from SMC transport and update commit message
-V3: Rename property from arm,poll-transport to arm,no-completion-irq
----
- drivers/firmware/arm_scmi/common.h | 4 ++++
- drivers/firmware/arm_scmi/driver.c | 4 ++++
- 2 files changed, 8 insertions(+)
+and all CPU-related are defined in the CPU dtsi."
 
-diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
-index 7c35c95fddbaf..7c9617d080a02 100644
---- a/drivers/firmware/arm_scmi/common.h
-+++ b/drivers/firmware/arm_scmi/common.h
-@@ -235,6 +235,9 @@ struct scmi_transport_ops {
-  *		      to have an execution latency lesser-equal to the threshold
-  *		      should be considered for atomic mode operation: such
-  *		      decision is finally left up to the SCMI drivers.
-+ * @no_completion_irq: Flag to indicate that this transport has no completion
-+ *		       interrupt and has to be polled. This is similar to the
-+ *		       force_polling below, except this is set via DT property.
-  * @force_polling: Flag to force this whole transport to use SCMI core polling
-  *		   mechanism instead of completion interrupts even if available.
-  * @sync_cmds_completed_on_ret: Flag to indicate that the transport assures
-@@ -254,6 +257,7 @@ struct scmi_desc {
- 	int max_msg;
- 	int max_msg_size;
- 	unsigned int atomic_threshold;
-+	bool no_completion_irq;
- 	const bool force_polling;
- 	const bool sync_cmds_completed_on_ret;
- 	const bool atomic_enabled;
-diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-index 3e76a3204ba4f..f167194f7cf67 100644
---- a/drivers/firmware/arm_scmi/driver.c
-+++ b/drivers/firmware/arm_scmi/driver.c
-@@ -2735,6 +2735,7 @@ static int scmi_chan_setup(struct scmi_info *info, struct device_node *of_node,
- 	cinfo->is_p2a = !tx;
- 	cinfo->rx_timeout_ms = info->desc->max_rx_timeout_ms;
- 	cinfo->max_msg_size = info->desc->max_msg_size;
-+	cinfo->no_completion_irq = info->desc->no_completion_irq;
- 
- 	/* Create a unique name for this transport device */
- 	snprintf(name, 32, "__scmi_transport_device_%s_%02X",
-@@ -3150,6 +3151,9 @@ static const struct scmi_desc *scmi_transport_setup(struct device *dev)
- 	if (ret && ret != -EINVAL)
- 		dev_err(dev, "Malformed arm,max-msg DT property.\n");
- 
-+	trans->desc.no_completion_irq = of_property_read_bool(dev->of_node,
-+							      "arm,no-completion-irq");
-+
- 	dev_info(dev,
- 		 "SCMI max-rx-timeout: %dms / max-msg-size: %dbytes / max-msg: %d\n",
- 		 trans->desc.max_rx_timeout_ms, trans->desc.max_msg_size,
--- 
-2.51.0
+Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+
+>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>   arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi | 305 ++++++++++++++++++++
+>   arch/riscv/boot/dts/sophgo/sg2042.dtsi      | 303 -------------------
+>   2 files changed, 305 insertions(+), 303 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi b/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+> index 94a4b71acad3..509488eee432 100644
+> --- a/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+
+[......]
+
 
 
