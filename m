@@ -1,83 +1,153 @@
-Return-Path: <devicetree+bounces-255667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75593D25968
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:06:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F4FD259B5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:09:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6605301FC3B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:59:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BD87930DA3DD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0852B3B8D44;
-	Thu, 15 Jan 2026 15:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592CA2BEC2E;
+	Thu, 15 Jan 2026 16:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pCPw/h/i"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OI6iFBwE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72BD37E2EB;
-	Thu, 15 Jan 2026 15:59:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC26A21256C
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 16:02:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768492766; cv=none; b=USqJ0nOODR3GcDpa8SeaSRlzBskKKwokYSGx9W2glWSzLpAawU0um2WOVczYIEaOpCxXlNH4YqMHfRhIVXc5gaQHRQD0pn79qN9RoCdmbRNT0q35YVgEYZVC9Bm+0qPk8fpPU2vw7ff6njCRMiuh+mWbulCzEluyf7OSDVyzuf8=
+	t=1768492930; cv=none; b=f/Cg5SPc4KOpfmb0DYAhVsCQb4+aSTPBGwsqOvH7oK9IhW4c5eJcI7IO1bw9NCjTV9AJtRFF/acK1iI7KGzqs169WaAmfll51DZyiARDzm8ZuUmYjF8iCMHWiMY4xOLv5wKkLXOuUppnTqlaplYZLnb1kMYWwVTS4cIT7G8UOpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768492766; c=relaxed/simple;
-	bh=bN9CLGNNCXd7vykIUfCDDnj+ImOvf0EhGAdjX48YNxg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AQWH/HeOWEo645ynVVMWQfrPiTp9C9tv4qp54ggOuN3LyokhY6I6WuM+bBnVk9lnVnkQ0iwYSbCnGigHSAJ0vgbsU2seO+gz5q6z9bTXgeXHPj+VVp0ExBsPjR4HN/yp4BdFuc8OV5o/3K+WWGaMihhjs3oJ4rNauApzFFzpxAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pCPw/h/i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF94C116D0;
-	Thu, 15 Jan 2026 15:59:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768492766;
-	bh=bN9CLGNNCXd7vykIUfCDDnj+ImOvf0EhGAdjX48YNxg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pCPw/h/iq8wq47poL/XsPwxnR/U4QcUbLK2m017UAPPGx/Uv8IIL6hPZfRfwH2QG5
-	 sVBjvXZpmEtC0OI47IDSh0j6hptIlsJA2e8I/hwFcMZgAf/TTqcauwBYVeGGWvpWE0
-	 2mLptrXRw2Nggvj47G9nwjIc1BA3mN7gYfmulZ2Eurl1g8X/ooJlc9ORFcsS/j7+DK
-	 VLzr/Q3zJ5LJrvY3t6INv97dtgG6RiOy7B94QldSH6JRxv0qNxPlSBHSnHPe4Sbjil
-	 ow476hGSAjSeaubrA97JM7Dd4U4Q1bAAFq5FhPfvk69FHM+u6w39aZkMtD/x6D/Ask
-	 +OYvFm5l276Vg==
-Date: Thu, 15 Jan 2026 09:59:25 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Osose Itua <osose.itua@savoirfairelinux.com>
-Cc: michael.hennerich@analog.com, jerome.oufella@savoirfairelinux.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: adi,adin: document LP
- Termination property
-Message-ID: <176849276514.689697.7161411224164893001.robh@kernel.org>
-References: <20260107221913.1334157-1-osose.itua@savoirfairelinux.com>
- <20260107221913.1334157-2-osose.itua@savoirfairelinux.com>
+	s=arc-20240116; t=1768492930; c=relaxed/simple;
+	bh=1NPuNKvbnM0G7hC3Q3V9qmseyfP5MXAnk1wgBftYtXc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nXmyoNZzXSO1xGZPiwVLDBC9NOSPgihlpwE2qPiURMlzBxYhHEl6B4YLboV2KI27UnVMB7reR5+3QOzJcaYi5m5glvZgaqJoEeMVS5Fft97AAT2TzB5+OXoB2GLhzHlutFw/nBRJSWtWnKsx1knG7PnhCO3JdbYXoEsCCIXkqjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OI6iFBwE; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 836CA1A2882;
+	Thu, 15 Jan 2026 16:02:07 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 48AFF606E0;
+	Thu, 15 Jan 2026 16:02:07 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F3EE710B685A5;
+	Thu, 15 Jan 2026 17:01:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768492922; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=XyN7Q0dEIRUyruaphCzrkm+AMluGqYLmuayZqMiQbGc=;
+	b=OI6iFBwEe2gf4+8uFT9KMSTaQhH7VX3DtC2Sa9i6LqhCTts6eiweCy92gwFHRdqJrLcSwV
+	gJ8tuTXNxsDGdmvrJXWznCFlpotACmQlYq2SLsmutWhXkMbxrrQb5Aea6Ja6FUps7/UHjV
+	CCpka4S0JoNAckVRX/lqqqCAbjSUYVs3v87bvwohhRTMg6xMJlIldLkkU1B7rrqTU00UrF
+	gmcce4ogBGbiMNjNYAKC4WaPX4232LEUuZfWglK4qvzQ7nw/LOJAWRh2BVSifKwjc/xXt6
+	zjc6ORpeOulB9py4acOpZzg1n1dlye6i/euUOR80pgBvjncTRDbl0ktSg/x0hA==
+From: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH] ARM: dts: renesas: r9a06g032: Add support for CPU frequency scaling
+Date: Thu, 15 Jan 2026 17:01:44 +0100
+Message-ID: <20260115160144.1200270-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107221913.1334157-2-osose.itua@savoirfairelinux.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+From: Herve Codina <herve.codina@bootlin.com>
 
-On Wed, 07 Jan 2026 17:16:52 -0500, Osose Itua wrote:
-> Add "adi,low-cmode-impedance" boolean property which, when present,
-> configures the PHY for the lowest common-mode impedance on the receive
-> pair for 100BASE-TX operation by clearing the B_100_ZPTM_EN_DIMRX bit.
-> This is suited for capacitive coupled applications and other
-> applications where there may be a path for high common-mode noise to
-> reach the PHY.
-> 
-> If this value is not present, the value of the bit by default is 1,
-> which is normal termination (zero-power termination) mode.
-> 
-> Signed-off-by: Osose Itua <osose.itua@savoirfairelinux.com>
-> ---
->  .../devicetree/bindings/net/adi,adin.yaml          | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
+In RZ/N1 SoCs, CPUs are allowed to work at 125, 250 or 500 MHz when the
+'ref' clock frequency value is set to 500 MHz which is the default 'ref'
+clock frequency value.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Add support for CPU frequency scaling defining those 3 frequencies in
+the opp-table with the assumption that the 'ref' clock is set to its
+default value.
+
+Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+---
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi | 35 ++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+index 8debb77803bb..9f21d8fba940 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
++++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+@@ -15,6 +15,39 @@ / {
+ 	#size-cells = <1>;
+ 	interrupt-parent = <&gic>;
+ 
++	/*
++	 * The CPUs clock is based on the 'ref' clock (output of OPPDIV divisor)
++	 * with x1, x2 or x4 ratio between the CPUs clock frequency and this
++	 * 'ref' clock frequency.
++	 *
++	 * The table below is built on the assumption that the 'ref' clock
++	 * frequency is set to 500MHz which is its default value.
++	 *
++	 * The table should be overridden in the board device-tree file based
++	 * on the 'ref' clock frequency if this frequency value is not the
++	 * default one.
++	 */
++	cpu_opp_table: opp-table-cpu {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-125000000 {
++			opp-hz = /bits/ 64 <125000000>;
++			/* ~35 clocks cycles at 125mhz */
++			clock-latency-ns = <300>;
++		};
++
++		opp-250000000 {
++			opp-hz = /bits/ 64 <250000000>;
++			clock-latency-ns = <300>;
++		};
++
++		opp-500000000 {
++			opp-hz = /bits/ 64 <500000000>;
++			clock-latency-ns = <300>;
++		};
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -24,6 +57,7 @@ cpu@0 {
+ 			compatible = "arm,cortex-a7";
+ 			reg = <0>;
+ 			clocks = <&sysctrl R9A06G032_CLK_A7MP>;
++			operating-points-v2 = <&cpu_opp_table>;
+ 		};
+ 
+ 		cpu@1 {
+@@ -33,6 +67,7 @@ cpu@1 {
+ 			clocks = <&sysctrl R9A06G032_CLK_A7MP>;
+ 			enable-method = "renesas,r9a06g032-smp";
+ 			cpu-release-addr = <0 0x4000c204>;
++			operating-points-v2 = <&cpu_opp_table>;
+ 		};
+ 	};
+ 
+-- 
+2.52.0
 
 
