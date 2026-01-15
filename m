@@ -1,229 +1,195 @@
-Return-Path: <devicetree+bounces-255357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2A19D227D4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:08:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71274D2284D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:17:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4AF1C300502E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:08:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4CA0B302AE1B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:15:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 695182D3A7B;
-	Thu, 15 Jan 2026 06:08:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92002DA76B;
+	Thu, 15 Jan 2026 06:15:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gX8N0aK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013053.outbound.protection.outlook.com [52.101.72.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CAAF2D8DB8;
-	Thu, 15 Jan 2026 06:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768457322; cv=none; b=aCtAwGA4HBpIa8foZn2st+mKHmkvaYTr8RQq8/GZZoPoiNeStRi9GZGyIsX/J4Mm71+N/3vZho58GtU/HFN/8iG8rVuykxA+lq5B965yshYE06eNOTsi4gUXi22bJOLZ0OrlucNbpJD9xksHQaBmMr4P4ZpWOJlrSLP1wyxK66M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768457322; c=relaxed/simple;
-	bh=3O/ALJcUKppE0fqJWY9HyRSg9aBIHQggbqk5QOnuMwI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BVTRziilsvmQxxB+fx1x//28Fzm4/SvT4vEuSkglidwqJFj4UtRmfUl1V1GnNDkmQOWQxl4/Kk5EWLhF0hB1H6TBKwg6/OVIxHDUAufA8B7WJc/FOMqzRCa9vpuf7yrx1PambrjX9hWVXixWv7NYVYCz2cKoCHIoBD4hpCUOAgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [223.160.207.69])
-	by APP-01 (Coremail) with SMTP id qwCowABH7mlMhGhpXOHCBA--.37756S4;
-	Thu, 15 Jan 2026 14:08:20 +0800 (CST)
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: conor@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	jiayu.riscv@isrc.iscas.ac.cn,
-	cyy@cyyself.name,
-	dlemoal@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A912D9EEC;
+	Thu, 15 Jan 2026 06:14:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768457700; cv=fail; b=u1dld9T0V5WdPPCfl59MmUFL7QCd9BCNu7AOhiUfqjlJBq4t9s1+1hDMzPfADodWXq4otisGXYqSYdH39gFFAo7/Ff25hLd4BHea/zsy/L9t3hrt7gtH8B37dTafLEHsMIgeuqNwSYjGFVBkymhT/9PGsh5jdGwTFehubVQlgfA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768457700; c=relaxed/simple;
+	bh=yGU2gLkGtIiIFhJXp9y5GJxR+3/GD+0idmcBfzjzQAE=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=o+E/st4h/O7R1D3hOHTbgKUH1qPKDUEnzMwGcnuo7/7Moi3P8qvAcJbHtESHHTogxvEp25RRKpPgh3DJRCvOZdFWcEjM2YjAh1YeM6fPO6p3zBdeBTtH5e7U7oo0W7dKyryKKNctCRgm/LEICCPqTyxfzOgtJP7HqXGiW5BW7V4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gX8N0aK/; arc=fail smtp.client-ip=52.101.72.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AmyuD6EwU8gg6kP1DBP3WBPg50uFdr2PwVz/SbbQFp2hajXUzqrpoGxk3HOldtN0JvtaqVSa0dSRp/qtLmQN64shqq/RlBWeazYAuSkFEXtcfyk4maK6PExmMyBLO1CYVAAq0XBcEq5pJUT9DaCDKcE3ooRbh2FZEdLR1Hw45pD/eqWMaHV7NjvIXOIJqC2FDIOa78ykj8dg7wGOgV5fJfQUQGLjrh3z5KcXOTGOCMD2/4GMJpGoG/L1isV0MfarlBvNDo2C0yOMQ9WENpf+MTpP56PleSgEeT0aqoJvle7MRUA5LF+XGN8X5GYWks8vg2iFKUJiRhDb0ZQ23Lhvog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VRX1bm6LSi+rvtgcb8qmg0DqnR1VewWVetxOmGk8KUs=;
+ b=QTNBF9G4T1fD9b8Gp6yG5WEICWfFXKAEV4McCDowk8jeoHiwcPDsctSXc7jzWD8FzNC6aTaPvJ2dY95LJyylUd2hrm+3nMxx0cwo5iFz2PxGAGAHaazzGceWSLQm5OHKxBNlwP6+2BDsdWT7CmVRK3CWpvW0VR+yHz2/p0jtr/ykXP46rUluajEZldHp9XTZ6OLOUR68udbKECoE+kNWbr9m90TLYYjQEjTw0c61rQeroULkDXCNnBbAnY7uZXMPKiBG33pAc2M0aud+0o601tkoPiU2bA5IjT2LYf4fsMBJ7diL1p3p+k3CiESmCzoztm7P74UOilPcd5+GQiX3zQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VRX1bm6LSi+rvtgcb8qmg0DqnR1VewWVetxOmGk8KUs=;
+ b=gX8N0aK/WQeGBLGhpdObdMFZt+5i9QSOhIMzAPoPAxxDW6X/dmVkZ0KAaSYrTh2nqItPSWYYWIVw4+L/06b2w8GGlSpSkC+vSx0ezU+1vdCRnCyYZeQIZaDnN/P0d9kZy/w1rHIxoa5Ite1QjOuUrbR2hi2sEh0gtRZUXaOXgBUo7u76fPidrwT42PRSFUQmFZQyaaYO7zS3pFDguiLjLYNlM20BkJGfSi8/3hCut8kuhDdh7QYRYIJscERkysR3l9x0/vl1sb/UpAqrV8LVAykf9Cl+M7phKQjm4Q2dypnErOTHmdWOX/gRmab5b+//uvc3YzRhFo1JDOQVipMRYA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
+ by AS5PR04MB11372.eurprd04.prod.outlook.com (2603:10a6:20b:6c7::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Thu, 15 Jan
+ 2026 06:14:55 +0000
+Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
+ ([fe80::bab2:d15c:fcf8:ef2b]) by AM0PR04MB7044.eurprd04.prod.outlook.com
+ ([fe80::bab2:d15c:fcf8:ef2b%7]) with mapi id 15.20.9520.005; Thu, 15 Jan 2026
+ 06:14:55 +0000
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+To: shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com,
+	festevam@gmail.com,
+	nicoleotsuka@gmail.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	linux-sound@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org,
-	gaohan@iscas.ac.cn
-Subject: [PATCH v3 2/2] riscv: dts: canaan: Add initial dshanpi board DT files
-Date: Thu, 15 Jan 2026 14:08:01 +0800
-Message-ID: <20260115060801.16819-3-jiayu.riscv@isrc.iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn>
-References: <20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn>
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2] ASoC: dt-bindings: fsl,sai: Add support for i.MX952 platform
+Date: Thu, 15 Jan 2026 14:14:18 +0800
+Message-Id: <20260115061418.4131432-1-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0037.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::9) To AM0PR04MB7044.eurprd04.prod.outlook.com
+ (2603:10a6:208:191::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowABH7mlMhGhpXOHCBA--.37756S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxZry5Xw18Cw15WF4UuF1rJFb_yoWrWF4kpw
-	s8urZxGFWI9F9a9FW2g34IgF43CF4qkas5Crn8JFyUtrWjqFyvkwn3t34rXF18Jr1UZ3yq
-	yan5Zryxtr1xZ3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmj14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_Jryl82xGYIkIc2
-	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
-	Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84
-	ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AI
-	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
-	v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
-	AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
-	2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcV
-	C2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kfnx
-	nUUI43ZEXa7VUbH5lUUUUUU==
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|AS5PR04MB11372:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90be80de-378d-4d72-103f-08de53fd6703
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|19092799006|376014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?HqVN+ucviCKBnMl/dPBLkAyhXkodS8CmaJbzecHxhZ1uEA/C1FxJdGp3u4+r?=
+ =?us-ascii?Q?BwkTV887Ign2VcjZT6chKZCeUWGXWR+Fv3IjACkMM5wqxGTvyjtkYbegZotV?=
+ =?us-ascii?Q?zRjOSrthu2GDECYOvhkcde/6tbYW6xesJ1fJ6UI8ikNdtpqf5Xf+DaJV5icM?=
+ =?us-ascii?Q?B6UJX7/gid+yX59D8SCS9JDwQZ6wLV8haztr+ASgjbSBHWkGiXAG63Uru75c?=
+ =?us-ascii?Q?KuNgPPPW0rpj2O6xE07C6+KCcuUi8BVpgxXR3xjsvB8vKTSzf+DjoBNNKiWt?=
+ =?us-ascii?Q?mGLgdoKeM2kjWnKxWyHRUml4UoS1TNvbGNHB6+EZneW4dyOUZqphE0KqP+Hm?=
+ =?us-ascii?Q?c4nWJQyYGkTVkM0jcAII4cske0AB1EO6IXlMlqEE+wlAoTOG90OV/VYYGoDQ?=
+ =?us-ascii?Q?A9XTtNhWAPTTpZfcCfWzyKLuI01RxgQTzokOgesu6JWruQMIG6uSVthr/m0q?=
+ =?us-ascii?Q?y3mzP8Px6iU8RqlCcjJkufHL2o5KfvlocJPAyhXua3BdP6cqetuRQti86XX4?=
+ =?us-ascii?Q?afHKNuXNiFWTD86tVRwZ0dhA2tGp/dVWm8V1V6cgtJA4oO453JU4kvO+7A1m?=
+ =?us-ascii?Q?griQZGBt98hueGBfaUlgPkdONY4I+1YH7CEB59wmW1u+ReAKHzB7AUS+Isk3?=
+ =?us-ascii?Q?J2K3R6tNpJwiwVCrD1j9aDt1aae09IRcvPt7QcRmnhBYiRqTIJFkCcTQE0N5?=
+ =?us-ascii?Q?fODBuIhtRStSzOxZ/fwgxHsAlKJQa6Nol6XVS3osjdwjXxEcPkeP47b+NQ4Q?=
+ =?us-ascii?Q?ihfEJtEII/p0tAcFrcNL8csW22ZnukZN6/7lc9W9SYAqZqrlFQfG2zyfwdnn?=
+ =?us-ascii?Q?FaxM6HEPrzDQF67zQHvanaFMaeCgXb2cInh/MCvvL2hny4Cpj3TXGjKOsxfV?=
+ =?us-ascii?Q?fUnLGuOVFUwg8dqCig3JelCIroHrQzcsfMydlrWjXrpFwgL24VImXL0AXBAN?=
+ =?us-ascii?Q?lJIh2RAcqw4XCLgRve9XgXn1yRfWXCvz4QOIpzIVderrxpDXrjAdQuTt1AY1?=
+ =?us-ascii?Q?OMqn3R5+p1O39ZT3cNSowdsrw/+ZOG7XVEYL/p5nNU3D2zstK93RxDRlKXYN?=
+ =?us-ascii?Q?UfHUHHMPG3RKR5NCRwo+TMB593l7NPQMiN3mgLnfJgC+/2ftrF+ZQ2iGQPn4?=
+ =?us-ascii?Q?VmEgQQzyB7Av8Bywp13tGmShz7tViXzVvfmwv+R/sO2PwJA0yU1SpoqVrr42?=
+ =?us-ascii?Q?gMIj5ahadbRKlKQd3VleG4nBB7SlflFw5QV+K4WkKrMiyTts+mKc6wNDino8?=
+ =?us-ascii?Q?V9z9wvBi9ZTI/UsC6ayZuZSO4U1GYc9HOfunSlldTVHSj6h26wpOevwMgiA9?=
+ =?us-ascii?Q?rvU+0dfBBBrxP9upm4zwTAhAl9Btw5nWu7Ubc9Db5t7T3vMz3iTob5VGB3So?=
+ =?us-ascii?Q?QMfwn2879/Jz4N1MLw0nK2ZKSjqD2UlrKactesElFTsg+yjukTumrS3EbyAT?=
+ =?us-ascii?Q?3UVjEaaGjyZFiy7To+GhwOywdHSbbse33PykxGQUMAQltzVVlhG26v459sku?=
+ =?us-ascii?Q?tlJfF9DgPmtxqoWr/Fo8AaOC/CIRjXTGlj+hqK+d1YlbwohtYnZ7eJzeychZ?=
+ =?us-ascii?Q?ZKeOzcSKlHiTSOjCJI8jGhB/AnVm2kPLwSqwqmDQttqr8JhrIaa8nz1YVytW?=
+ =?us-ascii?Q?YjaxCIiJkJ36XxDw+26Wvl+2G0g6gxV9FAIIoO0vhnsZ?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(19092799006)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?JbdgEsYE3R+ktCOCUb3BJnGXwyo5rxVrmIjMCVkUGzvkaG8IikAyAaxC0S4I?=
+ =?us-ascii?Q?3MEOiyAA+JGYnVdJTfOQ6/eNh6u82G08M2GiX6GHt11etV8JeLsF92K4N8jc?=
+ =?us-ascii?Q?IhD0YaD+2ZwmaEJogAxaQaDz4KPZQwlpLtW1lt+ye2LFK3QZrVeQe4QNRwEm?=
+ =?us-ascii?Q?W4mMMYs4nCnBe1HLe7xPN8SgdyL0zfHKOXNdpCsrwtGKdGtWz+s729I/fmPv?=
+ =?us-ascii?Q?pqHBCf1G82lK1kudtpHV7GrFDUVZ577QvSTnWKfe8lqmLE4kMQo1ZWm1trsM?=
+ =?us-ascii?Q?8y27JjP1EECh+omNP8DvUUpKsOjhLD5FCCGsVlr8d3/dzZR0zoY4cospizAQ?=
+ =?us-ascii?Q?sNCYDrxqB/UpKMR9X3+XL/OZ2pin4WLoNFUWx5tGBVy62g3J6dI6lQvin58h?=
+ =?us-ascii?Q?5MmVt0mUmEBQemBdW0ig4gelDUBzS5Yv0p8kB7KT5y1VQwRCwAdvcujIlse5?=
+ =?us-ascii?Q?RPvbsqVu3DvkIAuCMrEisKG3h8ZLFiNb/lJEZ2KKKjsw8nHvE27Y4xNvRv+8?=
+ =?us-ascii?Q?t5mVGMdgKGCMtJYJlW4616njNpO+eie5HKLx5yVC2MrCT+0l7pzKV9rCcYuO?=
+ =?us-ascii?Q?0GTqtwCct6sO1hChJyXYFfLtm5vudRqxvxnBv+ioexpEa+L1jgFKlZK3GqW8?=
+ =?us-ascii?Q?/oicYfetb63o2bvTUFpu+42WWlihdbU1ukHH5WpbajSSoGQt2HjABdM5elsB?=
+ =?us-ascii?Q?m9QFoveVYJs3yp155ncwI55TjJIttcxMYV32dlOdfrX7c1oUX8VnUHhiHm+R?=
+ =?us-ascii?Q?8zDyZYDr7iVCu0qh6yZqzvtWqU8vSxihWfRThSwXEGghdM5WdZdFROA286Y3?=
+ =?us-ascii?Q?E1i1JXkbGpr/K/od6sUD96VUMzpqTc7KF/K2yO8M9YwX7bRhy4b422vTV5Bk?=
+ =?us-ascii?Q?Zs8Fw4Xeq8TARBRMGKOf2X4mScmAC4JSKKXnpv7EMfe8Ku96ImPUUZgzOqVh?=
+ =?us-ascii?Q?jBusYSHrBVQmeY6EiT96j/CfG565um4u27g7TEyTlHKRQg7CxRmFDjMjXoMd?=
+ =?us-ascii?Q?WpAGeagTJRnGgaD3sAQaHPXmOum31ZASvTqDkjhPZutWGTGqEyVrMRFXgrfm?=
+ =?us-ascii?Q?vOYZCkVd6HZlJgmQPKrpcO29llXBUOU/n2DcfHl46DYk3LzB6ED+lT1N4J0m?=
+ =?us-ascii?Q?aDWEptf3xJ4W6ls0j9W2x+3FQ2bOvB5C0Zmx3VS7cUe6hpVskx0L9OPzmcaS?=
+ =?us-ascii?Q?a8LGj2TeyBS82P+9mx3JxQbsWq+SLn2X0qZMUZ+UK7rU2aIGmsKgCF6OmbG1?=
+ =?us-ascii?Q?LMqAougl1LUAtiCA420XWsvmoYimwwYm3Xc40TtSVgSokxKqz20Fhd9H3cDC?=
+ =?us-ascii?Q?agMOL7L1R65PrMTsR13pVIuIebLcldBvsv1XlHkDScoUCAAlLswRclJsMILB?=
+ =?us-ascii?Q?d4Q+aN0rRewVhV9Yg3L44ctc1M4eSMxr/tPbiTpmsD9rED3RA5oFiRlMXIHr?=
+ =?us-ascii?Q?yBoP8kgOv/6aRo7KS+JIGgTd3XYTma23H0m1wWT7W18/PDdryWxunC1di7hV?=
+ =?us-ascii?Q?MklzgjxbCLmtNmtq0/6lsoNJwDReoGKC9/NfKjQ0Kko2NcVBU+Ij2SfajG5p?=
+ =?us-ascii?Q?dq1QvV3GiRyQbhyMghPNfLLRxQp9HWVMdksrODqpr6kibq54vbqJJf7mTTif?=
+ =?us-ascii?Q?cUVi/FKj+Ywr1jbTB283K6PgcZMkCD1MeMijSoLKU/xSFDWqdqkl1s5disw+?=
+ =?us-ascii?Q?XxyVtVf/pHBssD+Oj4OA2rVVne/zWvnPGr1zI7xtlulIeTk1f2In8+REFqvg?=
+ =?us-ascii?Q?xk0jo57EUQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90be80de-378d-4d72-103f-08de53fd6703
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 06:14:55.4514
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /20aSoQSJcAuQLWtlXqe9EH0AGDIVnzFcdcmEKfmkpW5bOD9ffERJXO8PLsBlLrFSw2sjr2/6iO0yH8tNMzg9g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB11372
 
-Add board devicetree for 100ask K230 dashanpi, and also the SoM
-device utilized by the board. UART0 is enabled as the default
-console.
+Add a new compatible string 'fsl,imx952-sai' for i.MX952 platform, which
+is fallback compatible with 'fsl,imx95-sai'.
 
-Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 ---
- arch/riscv/boot/dts/canaan/Makefile           |  1 +
- .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 82 +++++++++++++++++++
- .../dts/canaan/k230-canmv-module-dshanpi.dtsi | 26 ++++++
- 3 files changed, 109 insertions(+)
- create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
- create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi
+changes in v2:
+- drop driver changes, as it is fallback compatible with mx95
 
-diff --git a/arch/riscv/boot/dts/canaan/Makefile b/arch/riscv/boot/dts/canaan/Makefile
-index 7d54ea5c6f3d..89cb64bde440 100644
---- a/arch/riscv/boot/dts/canaan/Makefile
-+++ b/arch/riscv/boot/dts/canaan/Makefile
-@@ -2,6 +2,7 @@
- dtb-$(CONFIG_ARCH_CANAAN) += canaan_kd233.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += k210_generic.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += k230-canmv.dtb
-+dtb-$(CONFIG_ARCH_CANAAN) += k230-canmv-dshanpi.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += k230-evb.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_bit.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_dock.dtb
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-new file mode 100644
-index 000000000000..4f95b534ee87
---- /dev/null
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-@@ -0,0 +1,82 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-+ */
-+
-+/dts-v1/;
-+
-+#include "k230-canmv-module-dshanpi.dtsi"
-+
-+/ {
-+	model = "100ask CanMV-K230-dshanpi";
-+	compatible = "100ask,canmv-k230-dshanpi",
-+		     "100ask,canmv-k230-module-dshanpi",
-+		     "canaan,kendryte-k230";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	vdd_5v: regulator-vdd-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_3v3: regulator-vdd-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vdd_5v>;
-+	};
-+
-+	vdd_1v8: regulator-vdd-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vdd_5v>;
-+	};
-+};
-+
-+&pinctrl {
-+	uart0_pins: uart0-pins {
-+		uart0-txd-cfg {
-+			pinmux = <K230_PINMUX(38, 1)>;
-+			slew-rate = <0>;
-+			drive-strength = <7>;
-+			power-source = <K230_MSC_1V8>;
-+			output-enable;
-+			bias-disable;
-+			input-schmitt-enable;
-+		};
-+
-+		uart0-rxd-cfg {
-+			pinmux = <K230_PINMUX(39, 1)>;
-+			slew-rate = <0>;
-+			drive-strength = <7>;
-+			power-source = <K230_MSC_1V8>;
-+			input-enable;
-+			bias-disable;
-+			input-schmitt-enable;
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pins>;
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi b/arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi
-new file mode 100644
-index 000000000000..566665d39239
---- /dev/null
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-+ */
-+
-+/dts-v1/;
-+
-+#include "k230.dtsi"
-+
-+/ {
-+	ddr: memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	timerx_pulse_in: clock-50000000 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+};
-+
-+&sysclk {
-+	clocks = <&osc24m>, <&timerx_pulse_in>;
-+	clock-names = "osc24m", "timer-pulse-in";
-+};
+ Documentation/devicetree/bindings/sound/fsl,sai.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+index 0d733e5b08a4..d838ee0b61cb 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+@@ -44,6 +44,7 @@ properties:
+       - items:
+           - enum:
+               - fsl,imx94-sai
++              - fsl,imx952-sai
+           - const: fsl,imx95-sai
+ 
+   reg:
 -- 
-2.52.0
+2.34.1
 
 
