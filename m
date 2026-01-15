@@ -1,121 +1,134 @@
-Return-Path: <devicetree+bounces-255553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12D1D24309
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:31:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1F2D242EE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:30:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E380230E946B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:25:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 781BB303CF68
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6079376BF3;
-	Thu, 15 Jan 2026 11:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD7C379960;
+	Thu, 15 Jan 2026 11:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dr6wYN62"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QuS7t6XS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F7F3563ED;
-	Thu, 15 Jan 2026 11:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE793793C1;
+	Thu, 15 Jan 2026 11:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768476351; cv=none; b=mk6NG0chC9cQUwtaqi50BXdhOskWJ2SO1Ww+TJpOpnv+MHZHdH3XGOhydWggItuECtTcj+W2VkChe/AIvIw1rsDrqXrFv4nOL4boOJm4EI539DrZaU6i2pq8O03+6JRWMNrsd8sJu7Qw7AG2pvg6LzfKGx/Uy8E8t1ITeIb4q9Y=
+	t=1768476607; cv=none; b=fJ07QUeOxq7Ztbo4TiFqsv5DvBuYU5BsOt+P+wzBCu8ugL5VXn7ghbEYP0T6rqxkusVPDu6OKzTIxb63DOidOlIk1jU4jGHZHndxAXU2H18pMjbDkgQmnKkUArV67PPLnIHgcDmXUqlDDauWq16NURiNwuTbq5muapDUwZCoDX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768476351; c=relaxed/simple;
-	bh=tsiMe+WrOUZswY8BkAD7/xBsL195aghvXVpZPqnWwZk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W/IMTiUgEumshq4Ae0fSHhhQj29SoO6Qeelc8eK2OjpNd4mD5J+CTQvO+c5nEO8/kKGbGGkCQ2UN4RPxdHOLmzuMSsw7ij9uvu/C4Ofhl7NfOKVlEwHbCjYbrvnqDXA+H1FAmj0c8n5gRDqPCrOuTws1lf3mxLRehmGZ6OcqTGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dr6wYN62; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2694C116D0;
-	Thu, 15 Jan 2026 11:25:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768476351;
-	bh=tsiMe+WrOUZswY8BkAD7/xBsL195aghvXVpZPqnWwZk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dr6wYN62OrUcJSPDnzxsah1HEBpAn7LBQ1KMVqhxtlFUx1CkTyjB0MQFHBgVqSk5t
-	 JPJDq6807eNbjq9cIfYsMjh+9xNza/phqCCGLMbCc7aaH4YFI6oe4kb0iT0qWYKulN
-	 JXaNzBBHzOIpIeQThqjNHIvDN7EEeHbRasHUB9AREfgcK2fy6VyW3Qe7aF90CIootQ
-	 SpfJmC8D1M7mUM5Rt7zB/jv9T0GC48auygRnEMBC/zbltlzHIxjCJum6Wt2BcJGbpv
-	 O1AklQSrNCbcDau03UBKIcCSH55Xh9Ti1sBJypa1ucWPj6S6OJ7DL0Abdttk4Hj2M+
-	 6u/G/JDJfjauA==
-From: Yixun Lan <dlan@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Guodong Xu <guodong@riscstar.com>
-Cc: Yixun Lan <dlan@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Conor Dooley <conor@kernel.org>,
-	Heinrich Schuchardt <xypron.glpk@gmx.de>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	linux-serial@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 0/7] riscv: spacemit: Add SpacemiT K3 SoC and K3 Pico-ITX board
-Date: Thu, 15 Jan 2026 19:25:29 +0800
-Message-ID: <176847617342.31179.10475730577206315668.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260115-k3-basic-dt-v5-0-6990ac9f4308@riscstar.com>
-References: <20260115-k3-basic-dt-v5-0-6990ac9f4308@riscstar.com>
+	s=arc-20240116; t=1768476607; c=relaxed/simple;
+	bh=sPpPbvhryAMe1NmcPn+z0LM6XHiUVy15HOBXB0+Othg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KEr6OHZKpHxDtETXVbxvP2GlYpUW5WB5SgmkLxxSpkIA0PL0ql+qvoBgKN62dVyqshyzvzrZszjLJtihJURyN1+F8i5ds3Dz9ncdr7wKopUpRwqbxoc/QxA1z5og0pFP8gfu3meDs4Xr90tGXDVICP/MKt8wvMaQdfZDO6lDcWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QuS7t6XS; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768476605; x=1800012605;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sPpPbvhryAMe1NmcPn+z0LM6XHiUVy15HOBXB0+Othg=;
+  b=QuS7t6XSFUNZVTyrjEGyBS43jCb/q+ZZqRUha4q1+k0u+uKL0bqKvvrM
+   K1YFw36DZ2v0yKHHzi9u/uxL4qije3q+wQ9d3US/dqU13UVEv6utPVKT4
+   gk9IfZ9QVRXj5kJhBfYuxepmW9Izfg8mfkErOCN08o4W9IzycvXgbmkjT
+   gd0xj7qONYlP+Xx1bkt5K9RdhFY72vLELdoJcKoi94ZyrDQHA2qDzW2Ll
+   ax4+hsrB9qh4Hv8al4MZZWQnIp7G5tJMWtE4MJesI4lsoNzwu9hyFez3n
+   rH6aE8mtvfUqGbUTIFLU9d/ifE5ZCv8xZz11MA+3sA4FyE6nZzoLBaXK+
+   g==;
+X-CSE-ConnectionGUID: Y0cIYDnaTNmjFqgFS6C/tQ==
+X-CSE-MsgGUID: ivlD26D8QZOwVpy7Wc4JIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="72365563"
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
+   d="scan'208";a="72365563"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 03:30:04 -0800
+X-CSE-ConnectionGUID: wowK3yctQJ6kdZmJLCRrOg==
+X-CSE-MsgGUID: I0F7nP7lR+Wm+3bfXfMI7A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
+   d="scan'208";a="235643729"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 15 Jan 2026 03:30:01 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vgLY6-00000000Hsy-0Utw;
+	Thu, 15 Jan 2026 11:29:58 +0000
+Date: Thu, 15 Jan 2026 19:29:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH 01/13] dmaengine: of_dma: Add
+ devm_of_dma_controller_register()
+Message-ID: <202601151942.cEs9s8Tj-lkp@intel.com>
+References: <20260114-mxsdma-module-v1-1-9b2a9eaa4226@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260114-mxsdma-module-v1-1-9b2a9eaa4226@nxp.com>
+
+Hi Frank,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 8f0b4cce4481fb22653697cced8d0d04027cb1e8]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/dmaengine-of_dma-Add-devm_of_dma_controller_register/20260115-063955
+base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
+patch link:    https://lore.kernel.org/r/20260114-mxsdma-module-v1-1-9b2a9eaa4226%40nxp.com
+patch subject: [PATCH 01/13] dmaengine: of_dma: Add devm_of_dma_controller_register()
+config: x86_64-randconfig-r071-20260115 (https://download.01.org/0day-ci/archive/20260115/202601151942.cEs9s8Tj-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.4.0-5) 12.4.0
+smatch version: v0.5.0-8985-g2614ff1a
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260115/202601151942.cEs9s8Tj-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601151942.cEs9s8Tj-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/tty/serial/fsl_lpuart.c:22:
+>> include/linux/of_dma.h:88:1: error: return type defaults to 'int' [-Werror=implicit-int]
+      88 | devm_of_dma_controller_register(struct device *dev, struct device_node *np,
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
 
 
-On Thu, 15 Jan 2026 14:51:39 +0800, Guodong Xu wrote:
-> This series introduces basic support for the SpacemiT K3 SoC and the
-> K3 Pico-ITX evaluation board.
-> 
-> In v5, patches 6-9 (dt-bindings) have been dropped as they were accepted
-> by Conor and applied to riscv-dt-for-next.
-> 
-> The series has been rebased on linux-next tag: next-20260114.
-> 
-> [...]
+vim +/int +88 include/linux/of_dma.h
 
-Applied, thanks!
+    86	
+    87	static inline
+  > 88	devm_of_dma_controller_register(struct device *dev, struct device_node *np,
+    89					struct dma_chan *(*of_dma_xlate)
+    90					(struct of_phandle_args *, struct of_dma *),
+    91					void *data)
+    92	{
+    93		return -ENODEV;
+    94	}
+    95	
 
-[1/7] dt-bindings: riscv: add SpacemiT X100 CPU compatible
-      https://github.com/spacemit-com/linux/commit/14f77777687e182aa782db86220409f4c149e0b8
-[2/7] dt-bindings: timer: add SpacemiT K3 CLINT
-      https://github.com/spacemit-com/linux/commit/b647b5e6a7e6533c2974f9aa3255aa7879a7b5f4
-[3/7] dt-bindings: interrupt-controller: add SpacemiT K3 APLIC
-      https://github.com/spacemit-com/linux/commit/23b3bd93e1e14c1cf7146166c39bdb24e7d713c7
-[4/7] dt-bindings: interrupt-controller: add SpacemiT K3 IMSIC
-      https://github.com/spacemit-com/linux/commit/5c414d0c0987b95cc985b23e532f1341371eef86
-[5/7] dt-bindings: riscv: spacemit: add K3 and Pico-ITX board bindings
-      https://github.com/spacemit-com/linux/commit/66041d5fd564d94249d41bb6aa004ff1e3f25787
-[6/7] riscv: dts: spacemit: add initial support for K3 SoC
-      https://github.com/spacemit-com/linux/commit/0ef9a718421fbc464edb6e5f6d483e0915e18599
-[7/7] riscv: dts: spacemit: add K3 Pico-ITX board support
-      https://github.com/spacemit-com/linux/commit/8e149fcd4854204bbb82ee037cdfb62a9978587f
-
-Best regards,
 -- 
-Yixun Lan <dlan@kernel.org>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
