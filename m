@@ -1,301 +1,400 @@
-Return-Path: <devicetree+bounces-255352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07660D22760
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:53:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7770D2282E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:15:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 90EE0300C6DD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 05:53:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D82223032FC8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:11:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12D721CC51;
-	Thu, 15 Jan 2026 05:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988A02DAFCC;
+	Thu, 15 Jan 2026 06:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kJUP/jym"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="P5kfWY60"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013033.outbound.protection.outlook.com [40.93.201.33])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D990D27732;
-	Thu, 15 Jan 2026 05:53:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.33
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768456435; cv=fail; b=X1HQzWXwL6YDc+3IdFxA4xQ0/2fo3O3VXYm6WtUA9SD6JbhcoRWxQz2shjr60WxOC0A66dNjC2LbUHvuJFy8hxWZmybLmtpYavVtuYoX224kbqjKC2kPZUBB52xiHBueGmlUTyMfJSnp3uHkE026qccAuRVg7bQHUSM8ou/wsHg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768456435; c=relaxed/simple;
-	bh=f0K5AzQqdiwRu63J5X05s0+KcOKmOThOnKm97r2i9/w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EiZP1EhEvbkMgKiZORz8JtsaDWkxH7TmLfYuZs6WB4Lesx7NJuv1nRnhYg23Ta0LniWM2CM6RedbtYo+CsM2ncs6c7fQo+tNN4FrPC3jDZqnvpMyi0pnEA/Ullm3kYf1TabBSKiUPSatX8okTEVoJNfqv+KelKUarQ3lTpdCsJs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kJUP/jym; arc=fail smtp.client-ip=40.93.201.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hr+i8058FLEn8zDxEfxJxz/KqduyUmjxH3lDWyTixvmoOxuCYMvxrFM77dZMNCi94KqMF1SOVcSF7c50JPCD/6tKYtLfHY2FIRmhjme6SA02k6ze5mAThA/gn+ylwZcepbAoP4Sustr1PSq1i44e8pjJUKyMsmGsltheUVjnuyrBPVNWgEccsoQM7LYduYwj6MZI9w9Su+RKqdj9ypkkgpYPS0a/LO+UyjkeFCLteer/Ey1640PeHNJDUoS0ZE10asWxZV+czvdxOONG/qZ9Jq65qX2VjOKZlgpS9I99n6xkoDK/Te6B2pU7JM06V26Yxu5h6Y9BBEXGrz2fJWlPxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MQT/8/FPeUydS8ane286/XtD5doNbYTfE1Tnu6gtWmY=;
- b=nvr//yr56QdNm2axRZxerPiL0GzvSUDJBPmxzFm1T4HhTJpAuzMYzPIzhxDBN7aFzw+p5Dkg4yUbXs9MOrtIZ5dNQKHPSy2vx4IOUmLcpra+KhhEda1aIzUDa31f1Bzux2cFI/5z/V4KNIwN/KySTrfgHOQNrL+1WMomuxdLuLnVov6SvpesLc8QvYmXt+VUWhxDLSkhcG0pOohDYLDRn8fGeAciVhVOZJpW6teejhbBg0DA+o11HLZY7sJZ2tP9wMOUizBnj8eWvbCtndorVHXW48rZQF3KXsg/a5ekxrfJoRWa+NMI3ut9SljmApnnLKgW1wAV/d/F2voKW+ayqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MQT/8/FPeUydS8ane286/XtD5doNbYTfE1Tnu6gtWmY=;
- b=kJUP/jymsman+MR/5LrNxrK6OBb/oeSapWWWtkUnRWHiDQBiAgWprJ/RVmijNxIfN9/Ei47aZWsWG4X36OS3SCWDbcVmXDlmz9htcbq1d6tif6r5PuqUyT/dwqv3Q3PtTWiETIYnQU7H3sFOqvAbWWGEmbxNi7DKVvRW07sytRo=
-Received: from BYAPR06CA0031.namprd06.prod.outlook.com (2603:10b6:a03:d4::44)
- by PH0PR10MB7100.namprd10.prod.outlook.com (2603:10b6:510:28b::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Thu, 15 Jan
- 2026 05:53:51 +0000
-Received: from CO1PEPF000066E8.namprd05.prod.outlook.com
- (2603:10b6:a03:d4:cafe::96) by BYAPR06CA0031.outlook.office365.com
- (2603:10b6:a03:d4::44) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.6 via Frontend Transport; Thu,
- 15 Jan 2026 05:53:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- CO1PEPF000066E8.mail.protection.outlook.com (10.167.249.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Thu, 15 Jan 2026 05:53:49 +0000
-Received: from DFLE214.ent.ti.com (10.64.6.72) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
- 2026 23:53:33 -0600
-Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE214.ent.ti.com
- (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
- 2026 23:53:33 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE211.ent.ti.com
- (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 14 Jan 2026 23:53:33 -0600
-Received: from [10.249.130.12] ([10.249.130.12])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60F5rSU2908196;
-	Wed, 14 Jan 2026 23:53:29 -0600
-Message-ID: <4eea8956-fcd9-4be4-acc3-b983f1cbe55b@ti.com>
-Date: Thu, 15 Jan 2026 11:23:27 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 593A92BF3E2;
+	Thu, 15 Jan 2026 06:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768457469; cv=none; b=BG8O00j0SLWkLeIMxllBA8CDASJwuFyBxm0uoyet63b/O4lOx8eiHPmlxYDF+rvuKOOOTAMUyXZZR35xRjKk0VNjMHdv11BtKUpxlbWR0RGlFy/gWJ3x89tb611/rf56NAhhiuyUbr2j7lnz9h4y72MZocRdfHpwLvzd/3t9X1k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768457469; c=relaxed/simple;
+	bh=deuyGtkR0fzb3Qh2OCewDd44P1zRCYVEjSp2WWaOVJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZyFieBEEfjM72LfbxbJKjD1GkfeH17FBZLiO1pzn57bTBro0aVqgkYG6E5eSwUESKi1NCWnvCoqafPtPZqx6jc1zYeQMuM4lLzbZVnFMCyijYNoS2GsUrHDyeGv1Y6YGTwX2x3O1d3sjEtXGYflG8/yyXmreKL8N3L9fEl0W4gQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=P5kfWY60; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202512; t=1768457464;
+	bh=RL6KQvPZCiHd+6lYFi1oFrd4+a0mwGyFM3/+gplWADw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P5kfWY60aXnXExWwIP5dXQHV9uUDbxgl8TpdJbKWZhM8hH5cWvVyGo6GyNTrSGMtS
+	 hjVPknCwbv/wDK4KaPYxiIYboTiu3lNCRttpilB38btFd+I+rgKiTccMjlpk402EI5
+	 gff2diqktcEFhyCpg3IR+V67u/86V8aEuCBPl8EugBEvIoDD2bJ0wCVQ/OK+YkIJnq
+	 mX4Hhcajt5HSP7uSZeavL2kDSTrUOWXnYb8krADP+AP/moAWW8V5KlchsIM6LitcTm
+	 b1rvQPdBu1x60ErpOcibJRTTjKHVU3s7hogiJ+DlBrpD7ddhyF7hoW5pkPDC69N+oF
+	 kxNxdmStjt4rg==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4dsCKN52Xlz4wBD; Thu, 15 Jan 2026 17:11:04 +1100 (AEDT)
+Date: Thu, 15 Jan 2026 16:57:50 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	Hui Pu <hui.pu@gehealthcare.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 20/77] dtc: Add support for /export/ dts keyword
+ parsing
+Message-ID: <aWiB3pDx4owt-70D@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <20260112142009.1006236-21-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-am62p-j722s-common-main: Add
- HSM M4F node
-To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <afd@ti.com>, <hnagalla@ti.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20260114173551.2545088-1-b-padhi@ti.com>
- <20260114173551.2545088-3-b-padhi@ti.com>
- <f4319457-6c2e-42b6-a57e-6f326c93fdcd@ti.com>
- <3a62d6f7-ff88-4f5a-8dfd-ded3e5ff1c86@ti.com>
- <cf8f1087-34d0-42c3-8245-38dc7312b29c@ti.com>
-Content-Language: en-US
-From: "Padhi, Beleswar" <b-padhi@ti.com>
-In-Reply-To: <cf8f1087-34d0-42c3-8245-38dc7312b29c@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066E8:EE_|PH0PR10MB7100:EE_
-X-MS-Office365-Filtering-Correlation-Id: 79828c3b-591f-486f-16b8-08de53fa74aa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|34020700016|36860700013|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Y1JUcnMvbjhhM09oT2JMRVB6bGNKaDkyM0hsYlVOeTB2ejFqVTBQKzVNV0ZZ?=
- =?utf-8?B?NDd3VkVWOUpnK1czQUFGVmt0NWdnVTEwekVYSll0ZWxxcDQrWG9GUzR4cVdH?=
- =?utf-8?B?TUJyOVBJSGsxd2hGbVV5N094QmhhMXA4MWxrb25FTVh2VTNncW52UU93ZnAw?=
- =?utf-8?B?aUV2clB5Q0Izckc2RDRnNjZFMmUyMnZhZHlGTkgrS25JcXdNTmR4V2RCb3E3?=
- =?utf-8?B?RmFNN29GSHhxYkNpV1BJZmlBU004dnQ1VWM4aFdUUldlN216dGNiVVQ1MXJO?=
- =?utf-8?B?dVdJZSs2dFRGa3gzUUpoUjlJWExhSlNDdnhoMjlmUGVtWjRhblQzMTV2Z29T?=
- =?utf-8?B?UThyNFZmMlBoMzcxcDdiY0FtSno1WldWeXV4cnd6ZU04RC8yWVNvZ0txdVhF?=
- =?utf-8?B?TzN6YTRsYms3SlJROHBxSXM1b1E0V2xjZS8rOUlYWTRSS21QckNpV0l4VlRM?=
- =?utf-8?B?ODBMVEVjUExnQ1VPMm80cXN2UFZvaEcrRFo3QlE1SjhYa09oRVZYZkdUaGlH?=
- =?utf-8?B?ck9Oa05KTVdVS0tIRjljaEhqVEI2alA0ZUVIQ01rU0Zwb0UxSHc4SGptZzZu?=
- =?utf-8?B?THVkeEJ2V0F4RXBiVzFzVTBXcG9QVXlCWGlwenFSOXBMUXV1bDFOZDJheU5z?=
- =?utf-8?B?WU1tN1AxRndNVDdNVHM1NEFWMUdBZHZvNG9QeDlSR25iNXhsdGVlaWw4WmNw?=
- =?utf-8?B?K1RFVWlIRnhGd3hvTzF1OEM5NXQ1MEhJY1ZhaFJSZnYwNnNncnlwOURSRlRC?=
- =?utf-8?B?RE5kN1ZDVXFwemtnS1BkODU3QUNWUXJpN2ZESHRJQzZDSWlCTzlPWDFHTkFM?=
- =?utf-8?B?SEY1ampPN3U3UEdCak1ZMURhNGl0ZFBmS0ZUbXRWeitBS1VTSEhqdnJzZmZh?=
- =?utf-8?B?SWZZOVcyT0wzSnduemtiRnViaVJjNEJ2UVBiQ3A1THZYUmNLcFA5OFhSNkc2?=
- =?utf-8?B?ZDh0RFRBemFaWU0yS3dDU1VaN2M5NmF0UHVhbFVDQnVtNnJTNk14d0ZHaWtn?=
- =?utf-8?B?R0lMTUZ2OFdjRGJkWUJmZW1vUklBMnNHQ1UycjJLbGVzeUs4dFB4N2JwREwy?=
- =?utf-8?B?N3lzNWkxWHE3bWI1ejNJSVFOMHhJM2tvYkdiVG9laFdiamNDZnRNQ1JPaXh2?=
- =?utf-8?B?djlIQWRpb0E5dEZUKzU4VXBnMkk0eDRyQ0VPdU0rR1NkTnpaSEcrRnkvQy8z?=
- =?utf-8?B?MlZ3ckhveW1ja0RiazZrTzJkbUkyTTdZOExaNXp6TTY5VUZSSHFzK2hyQ1lK?=
- =?utf-8?B?Z2JhWnIxckVHbkUyc3o4ZnAxR2RIVnkzcGduWTVnSWorYmZXSzdaKzlMaTdt?=
- =?utf-8?B?T3BuSm9YT21UeWh5Vm9NMVdOZDViVnJkYTRBa2x6b2NUcVN5elFFZ3JwNzdV?=
- =?utf-8?B?L01sT2crSlpEYnVvangvaE9aMnZjd25BSFlPY0RQYTZxMmNnSXp5R2R4MVhv?=
- =?utf-8?B?ODg5UUlGbUVuS08wT0YyOTI3VnZ6bk5TK1UwMXMzVTRmYm5HS0x6TTZxQ2l6?=
- =?utf-8?B?U3RVVkR4S2crNHh2Z0Vadk8xWHcrdkZzMlZKcnppVWZ0YTM1eG83azRjWTRj?=
- =?utf-8?B?SkxhSXJaZGNUY0ZPdlUveW9kcXB1RTNyUW1JOXRhV1I0Q21weFRXcVNYUDRp?=
- =?utf-8?B?bHhNR0pqaEZOemVEYXRuMEJlc2xJU2c0aWtvNnhBUjNVRTJaTFJ0bHpSQ2pT?=
- =?utf-8?B?TmYxWkxnSCtGbTh0eVA3dXU1VFpHMW1QNFBTcUljVDdhN25hdllVekU1ZmJ3?=
- =?utf-8?B?MUtTbWN4ZTB2TTFDNWtLQVhYc1NYRFRkaXZNNlZkZC9abnk0ZmRpdnF2Q1dL?=
- =?utf-8?B?MkRHQzFkSEFTdGl4ZmY4TzhRYUw5bkVqV0tMNEVIQ3FwSGM1dHlTN09rYmpN?=
- =?utf-8?B?VFVyRWhSV0tJZk52VEkzNWR5YmF3cUV3aFhRVmRMcHN1N09vQS9lQkZOUzNw?=
- =?utf-8?B?eWNqNlFnYmRrbTQ1Ykk3MSt6aEJDak5hYUg3UWdxa2EzRnYxOHVkMXJQYVIw?=
- =?utf-8?B?OHcvNkgwR2M0ZDNCSVpkYWFzdlR5RThzcGVrSjcwZ1R0WTF6UVJzMGJucllj?=
- =?utf-8?B?R2w4UDZCVW9uWHBQZGVmMjd0Y0p3OWZ1NklEcWlZSHo3L0J5REVEN0R1aXlP?=
- =?utf-8?B?OHZ6Zm1wYWZveVJYRHVBRk9aSStUenZzenJwRjZJeVkzVUpIU2lLbWhydENQ?=
- =?utf-8?B?L0ZIMHhjV2xnZ3I1NnpEdjJ1Q3l3RExZQ0FIdlVGVjNTU1UyWUp1R1lNVzht?=
- =?utf-8?Q?DwmZwSl3Jns5J6aKNt9fv7RKa7v3E0hQa7SIwLvxpU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(34020700016)(36860700013)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 05:53:49.6113
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79828c3b-591f-486f-16b8-08de53fa74aa
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000066E8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB7100
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nQ4PGTChdYHrGjAy"
+Content-Disposition: inline
+In-Reply-To: <20260112142009.1006236-21-herve.codina@bootlin.com>
 
 
-On 1/15/2026 11:16 AM, Kumar, Udit wrote:
->
-> On 1/15/2026 11:11 AM, Padhi, Beleswar wrote:
->> Hi Udit,
->>
->> On 1/15/2026 10:06 AM, Kumar, Udit wrote:
->>> Hi Beleswar,
->>>
->>> On 1/14/2026 11:05 PM, Beleswar Padhi wrote:
->>>> The TI K3 AM62P and J722S SoCs have a HSM (High Security Module) M4F
->>>> core in the MAIN Voltage Domain which could be used to run secure
->>>> services like Authentication. Add Device Tree Node definitions for the
->>>> HSM core in the respective SoC common main dtsi file.
->>>>
->>>> The HSM node is reserved to be loaded and booted by the early-stage
->>>> bootloader. The firmware-name property is defined at the SoC level
->>>> since the HSM is not a general-purpose remote core and boards are
->>>> unlikely to use separate firmware. If needed in exceptional cases,
->>>> board-specific device trees can override this property.
->>>>
->>>> The corresponding reg ranges of HSM node has also been added to its
->>>> parent node's (cbass_main bus) ranges property.
->>>>
->>>> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
->>>> ---
->>>> v3: Changelog:
->>>> [Nishanth]:
->>>>   1. Use generic node name 'remoteproc'
->>>>   2. Use label 'hsm' instead of 'hsm_m4fss'
->>>>   3. Add a comment for separate SRAMs
->>>>   4. Update firmware-name property to match existing naming 
->>>> conventions
->>>>   5. Change status to 'reserved' and add a commment
->>>>   6. Re-order bootph-pre-ram property before vendor properties
->>>>   7. Update commit msg adding rationale for firmware-name in SoC.dtsi
->>>>
->>>> Link to v2:
->>>> https://lore.kernel.org/all/20260106104755.948086-4-b-padhi@ti.com/
->>>>
->>>> v2: Changelog:
->>>> 1. None
->>>>
->>>> Link to v1:
->>>> https://lore.kernel.org/all/20251231165102.950644-4-b-padhi@ti.com/
->>>>
->>>>   .../boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 17 
->>>> +++++++++++++++++
->>>>   arch/arm64/boot/dts/ti/k3-am62p.dtsi            |  1 +
->>>>   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi       |  5 +++++
->>>>   arch/arm64/boot/dts/ti/k3-j722s.dtsi            |  1 +
->>>>   4 files changed, 24 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi 
->>>> b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->>>> index 3cf7c2b3ce2dd..0e1af2a69ca2e 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->>>> @@ -1117,4 +1117,21 @@ vpu: video-codec@30210000 {
->>>>           clocks = <&k3_clks 204 2>;
->>>>           power-domains = <&k3_pds 204 TI_SCI_PD_EXCLUSIVE>;
->>>>       };
->>>> +
->>>> +    hsm: remoteproc@43c00000 {
->>>> +        compatible = "ti,hsm-m4fss";
->>>> +        /* contiguous regions but instantiated separately in HW */
->>>> +        reg = <0x00 0x43c00000 0x00 0x20000>,
->>>> +              <0x00 0x43c20000 0x00 0x10000>,
->>>> +              <0x00 0x43c30000 0x00 0x10000>;
->>>> +        reg-names = "sram0_0", "sram0_1", "sram1";
->>>> +        resets = <&k3_reset 225 1>;
->>>> +        firmware-name = "am62p-hsm-m4f-fw";
->>>
->>> you don't need clock and power-domain for this ?
->>
->>
->> That info is abstracted out via ti-sci calls. ti_sci_cmd_get_device()
->> takes care of setting clocks and power domains for us.
->>
->> Same for other rprocs:
->> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi#L178 
->>
->
->
-> Is this specific handling for m4 core ? 
+--nQ4PGTChdYHrGjAy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jan 12, 2026 at 03:19:10PM +0100, Herve Codina wrote:
+> The /export/ dts keyword is the keyword used to define an exported
+> symbol at a given node level.
+>=20
+> This keyword can be present in a node definition (after properties and
+> before subnodes) to export a symbol. If several symbols need to be
+> exported, several /export/ keywords are present.
+>=20
+> The syntax used is the following:
+>   /export/ name: reference;
+>=20
+> with:
+>   name: The name of the exported symbol
+>   reference: The reference of a node the symbol is pointing to.
+>=20
+> For instance:
+>   - Reference by label:
+>       /export/ foo: &foo1;
+>=20
+>     The exported symbol foo references the node identified by
+>     the label foo1.
+>=20
+>   - Reference by path:
+>       /export/ foo: &{/path/to/foo@100};
+>=20
+>     The exported symbol foo references the node at /path/to/foo@100.
+>=20
+> Add support for /export/ dts keyword.
+>=20
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  dtc-lexer.l  |  6 ++++
+>  dtc-parser.y | 53 ++++++++++++++++++++++++++++++++++
+>  dtc.h        |  8 ++++++
+>  livetree.c   | 80 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 147 insertions(+)
+>=20
+> diff --git a/dtc-lexer.l b/dtc-lexer.l
+> index a4a8e0b..90fe70e 100644
+> --- a/dtc-lexer.l
+> +++ b/dtc-lexer.l
+> @@ -149,6 +149,12 @@ static void PRINTF(1, 2) lexical_error(const char *f=
+mt, ...);
+>  			return DT_OMIT_NO_REF;
+>  		}
+> =20
+> +<*>"/export/" 	{
+> +			DPRINT("Keyword: /export/\n");
+> +			BEGIN_DEFAULT();
+> +			return DT_EXPORT;
+> +		}
+> +
+>  <*>{LABEL}:	{
+>  			DPRINT("Label: %s\n", yytext);
+>  			yylval.labelref =3D xstrdup(yytext);
+> diff --git a/dtc-parser.y b/dtc-parser.y
+> index 9c93673..a0d0aef 100644
+> --- a/dtc-parser.y
+> +++ b/dtc-parser.y
+> @@ -46,6 +46,8 @@ static bool is_ref_relative(const char *ref)
+>  	struct property *proplist;
+>  	struct node *node;
+>  	struct node *nodelist;
+> +	struct symbol *symbol;
+> +	struct symbol *exportlist;
+>  	struct reserve_info *re;
+>  	uint64_t integer;
+>  	unsigned int flags;
+> @@ -60,6 +62,7 @@ static bool is_ref_relative(const char *ref)
+>  %token DT_DEL_PROP
+>  %token DT_DEL_NODE
+>  %token DT_OMIT_NO_REF
+> +%token DT_EXPORT
+>  %token <propnodename> DT_PROPNODENAME
+>  %token <integer> DT_LITERAL
+>  %token <integer> DT_CHAR_LITERAL
+> @@ -80,6 +83,8 @@ static bool is_ref_relative(const char *ref)
+>  %type <data> bytestring
+>  %type <prop> propdef
+>  %type <proplist> proplist
+> +%type <symbol> exportdef
+> +%type <exportlist> exportlist
+>  %type <labelref> dt_ref
+> =20
+>  %type <node> devicetree
+> @@ -276,6 +281,49 @@ nodedef:
+>  		{
+>  			$$ =3D build_node(NULL, $2, NULL, &@$);
+>  		}
+> +	| '{' proplist exportlist subnodes '}' ';'
+> +		{
+> +			/*
+> +			 * exportlist is created with chain_symbol() and so it
+> +			 * is created in reverse order. Reverse it now to have
+> +			 * it in correct order
+> +			 */
+> +			$$ =3D build_node($2, $4, reverse_symbol($3), &@$);
+> +		}
+> +	| '{' exportlist subnodes '}' ';'
+> +		{
+> +			/*
+> +			 * exportlist is created with chain_symbol() and so it
+> +			 * is created in reverse order. Reverse it now to have
+> +			 * it in correct order
+> +			 */
+> +			$$ =3D build_node(NULL, $3, reverse_symbol($2), &@$);
+> +		}
+> +	;
+> +
+> +exportlist:
+> +	  exportdef
+> +		{
+> +			$$ =3D chain_symbol($1, NULL);
+> +		}
+> +	| exportlist exportdef
+> +		{
+> +			$$ =3D chain_symbol($2, $1);
+> +		}
+> +	| exportlist propdef
+> +		{
+> +			ERROR(&@2, "Properties must precede exports");
+> +			YYERROR;
+> +		}
+> +	;
+> +
+> +exportdef:
+> +	DT_EXPORT DT_LABEL dt_ref ';'
+> +		{
+> +			$$ =3D build_exportsym($2, $3, 0, &@$);
+> +			free($2);
+> +			free($3);
 
-For all single cores like M4, DSP, R5F0_0/R5F0_1 etc.
+I mostly don't bother with free()s in dtc, on the grounds that it's
+generally a short-lived process - essentially using the process
+context as a crude pool allocator.
 
-> , I see other rproc got power at cluster level
+> +		}
+>  	;
+> =20
+>  proplist:
+> @@ -576,6 +624,11 @@ subnodes:
+>  			ERROR(&@2, "Properties must precede subnodes");
+>  			YYERROR;
+>  		}
+> +	| subnode exportdef
+> +		{
+> +			ERROR(&@2, "Exports must precede subnodes");
+> +			YYERROR;
+> +		}
+>  	;
+> =20
+>  subnode:
+> diff --git a/dtc.h b/dtc.h
+> index 6508694..0bf5ba5 100644
+> --- a/dtc.h
+> +++ b/dtc.h
+> @@ -273,6 +273,9 @@ struct node {
+>  	for_each_child_withdel(n, c) \
+>  		if (!(c)->deleted)
+> =20
+> +#define for_each_symbol(s0, s) \
+> +	for ((s) =3D (s0); (s); (s) =3D (s)->next)
+> +
+>  void add_label(struct label **labels, char *label);
+>  void delete_labels(struct label **labels);
+> =20
+> @@ -282,6 +285,11 @@ struct property *build_property_delete(const char *n=
+ame);
+>  struct property *chain_property(struct property *first, struct property =
+*list);
+>  struct property *reverse_properties(struct property *first);
+> =20
+> +struct symbol *build_exportsym(const char *name, const char *ref, cell_t=
+ phandle,
+> +			       struct srcpos *srcpos);
+> +struct symbol *chain_symbol(struct symbol *first, struct symbol *list);
+> +struct symbol *reverse_symbol(struct symbol *list);
+> +
+>  struct node *build_node(struct property *proplist, struct node *children,
+>  			struct symbol *exportsymlist, struct srcpos *srcpos);
+>  struct node *build_node_delete(struct srcpos *srcpos);
+> diff --git a/livetree.c b/livetree.c
+> index 0050492..4458437 100644
+> --- a/livetree.c
+> +++ b/livetree.c
+> @@ -36,6 +36,57 @@ void delete_labels(struct label **labels)
+>  		label->deleted =3D 1;
+>  }
+> =20
+> +struct symbol *build_exportsym(const char *name, const char *ref, cell_t=
+ phandle,
+> +			       struct srcpos *srcpos)
+> +{
+> +	struct symbol *new =3D xmalloc(sizeof(*new));
+> +
+> +	memset(new, 0, sizeof(*new));
+> +
+> +	new->name =3D xstrdup(name);
+> +	new->ref =3D ref ? xstrdup(ref) : NULL;
+> +	new->phandle =3D phandle;
+> +	new->srcpos =3D srcpos_copy(srcpos);
+> +
+> +	return new;
+> +}
+> +
+> +struct symbol *chain_symbol(struct symbol *first, struct symbol *list)
+> +{
+> +	assert(first->next =3D=3D NULL);
+> +
+> +	first->next =3D list;
+> +	return first;
+> +}
+> +
+> +struct symbol *reverse_symbol(struct symbol *list)
+> +{
+> +	struct symbol *p =3D list;
+> +	struct symbol *head =3D NULL;
+> +	struct symbol *next;
+> +
+> +	while (p) {
+> +		next =3D p->next;
+> +		p->next =3D head;
+> +		head =3D p;
+> +		p =3D next;
+> +	}
+> +	return head;
+> +}
+> +
+> +static void add_symbol(struct symbol **list, struct symbol *new)
+> +{
+> +	struct symbol **s;
+> +
+> +	new->next =3D NULL;
+> +
+> +	s =3D list;
+> +	while (*s)
+> +		s =3D &((*s)->next);
+> +
+> +	*s =3D new;
+> +}
+> +
+>  struct property *build_property(const char *name, struct data val,
+>  				struct srcpos *srcpos)
+>  {
+> @@ -144,6 +195,7 @@ struct node *merge_nodes(struct node *old_node, struc=
+t node *new_node)
+>  {
+>  	struct property *new_prop, *old_prop;
+>  	struct node *new_child, *old_child;
+> +	struct symbol *new_sym, *old_sym;
+>  	struct label *l;
+> =20
+>  	old_node->deleted =3D 0;
+> @@ -217,6 +269,34 @@ struct node *merge_nodes(struct node *old_node, stru=
+ct node *new_node)
+>  			add_child(old_node, new_child);
+>  	}
+> =20
+> +	/* Merge exported symbols. If there is a collision, keep the new one */
+> +	while (new_node->exportsymlist) {
+> +		/* Pop the symbol off the list */
+> +		new_sym =3D new_node->exportsymlist;
+> +		new_node->exportsymlist =3D new_sym->next;
+> +		new_sym->next =3D NULL;
+> +
+> +		/* Look for a collision, set new value if there is */
+> +		for_each_symbol(old_node->exportsymlist, old_sym) {
+> +			if (streq(old_sym->name, new_sym->name)) {
+> +				old_sym->is_local =3D new_sym->is_local;
+> +				free(old_sym->ref);
+> +				old_sym->ref =3D new_sym->ref;
+> +				old_sym->phandle =3D new_sym->phandle;
+> +				old_sym->fullpath =3D new_sym->fullpath;
+> +				srcpos_free(old_sym->srcpos);
+> +				old_sym->srcpos =3D new_sym->srcpos;
+> +				free(new_sym);
+> +				new_sym =3D NULL;
+> +				break;
+> +			}
+> +		}
+> +
+> +		/* if no collision occurred, add symbol to the old node list. */
+> +		if (new_sym)
+> +			add_symbol(&old_node->exportsymlist, new_sym);
+> +	}
+> +
+>  	old_node->srcpos =3D srcpos_extend(old_node->srcpos, new_node->srcpos);
+> =20
+>  	/* The new node contents are now merged into the old node.  Free
+> --=20
+> 2.52.0
+>=20
+>=20
 
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
 
-We don't make any ti-sci calls for the cluster level, which is why we
-need that info here in DT. Otherwise, ti-sci calls take care of the
-individual cores for us. That's why R5F child cores don't have
-power domain info in the DT:
-https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi#L1521-L1535
+--nQ4PGTChdYHrGjAy
+Content-Type: application/pgp-signature; name=signature.asc
 
-Thanks,
-Beleswar
+-----BEGIN PGP SIGNATURE-----
 
->
-> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi#L1518 
->
->
->
->>
->> Thanks,
->> Beleswar
->>
->>>
->>>
->>>> +        bootph-pre-ram;
->>>> +        ti,sci = <&dmsc>;
->>>> +        ti,sci-dev-id = <225>;
->>>> +        ti,sci-proc-ids = <0x80 0xff>;
->>>> +        /* reserved for early-stage bootloader */
->>>> +        status = "reserved";
->>>> +    };
->>>>   };
->>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p.dtsi 
->>>> b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
->>>> index e2c01328eb298..9d6266d6ddb82 100644
->>>> --- a/arch/arm64/boot/dts/ti/k3-am62p.dtsi
->>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
->>>> @@ -96,6 +96,7 @@ cbass_main: bus@f0000 {
->>>>                <0x00 0x31100000 0x00 0x31100000 0x00 0x00050000>, 
->>>> /* USB1 DWC3 Core window */
->>>>                <0x00 0x40900000 0x00 0x40900000 0x00 0x00030000>, 
->>>> /* SA3UL */
->>>> [..]
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmlogd0ACgkQzQJF27ox
+2Ge7zw/+N0RL5tJk8HBBELcIhBnbpOoTzjiFD/jX6IDtZ8yB4UHnEf2JP5PPg0ou
+VHQ2Yp0ncRo7sASQB03MR0XOllhvNm1TWG/SVyUMYttozfUP/a/DCmdOI3f2Qsc6
+zaZFzG/VY6tZIoOtY93HXXSrLrwxLWMKNyDQ13Dd8n2+JmmYBqwHnUOvP9mTKkyi
+JmbEXJVFkk1Zvn7yMyN0iaqBs2yF+qqnxhASJBKolO5b9pLysgJP8+S9XKBfMtco
+ivXuHFu/1Bc/RGFZ3LyLGMLjuVoYERzZosSclhoffTPNFqj4/toC4++SfhG27h1G
+URJg/sggB8W039KzvvSJY12K1J4mmz6xPZXQdjJmyoESP2f1OKtPg3XEm/19pFUb
+hOLeItpc/dp1PN1W+LIS8CRgNE6UdpitIp61TXVTXt9eAj0timQvStKdEjRAUPGR
++pAo8IahciFb+ol7K3KIC0QQfllXuFPlNciFeyuWu+WG5bNrNdYlwvynnvbVrE+c
++008Ha7NC+0dsJJ0inLRqGXUWufLL6aY+Eqlt306Aoh+F8u7dPJ4+n1IrB/Bn4Dg
+UiYFqpT9/QNRbFg6pS7yKcB0hIOBgMKx3N6rbYY812Zl5xx+qF0+TutjSmgkbL60
+IbqVo/HtDckJFG/SG9PF5HI2wWuQUDgMg1BspD7/am69DQeHXcc=
+=MWZe
+-----END PGP SIGNATURE-----
+
+--nQ4PGTChdYHrGjAy--
 
