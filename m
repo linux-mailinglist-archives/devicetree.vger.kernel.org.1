@@ -1,66 +1,53 @@
-Return-Path: <devicetree+bounces-255713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554A6D26682
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:29:31 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8594D269AD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:40:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F15523046B4C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:22:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2AC963015F4D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E343A7E07;
-	Thu, 15 Jan 2026 17:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F293BFE4E;
+	Thu, 15 Jan 2026 17:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fiXm5fxW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5NEArbr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1FA21CC5A;
-	Thu, 15 Jan 2026 17:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F803BFE46;
+	Thu, 15 Jan 2026 17:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768497771; cv=none; b=OCNQ+L+6N66eAKoWkBlTmFdVVkwPBW2sLZRNwcFznl5ZmCUvjutVzsIVUol34x8cHVKIoHBtbin/3ZnbVneznZr3BRQ6cSZsfzyAT4DpaEc/esipyk0z92KxBMFgm7JjOke0wt+cQP/f6rnhzq/DIn+lifERHgjxeXWd4+AcdMk=
+	t=1768497911; cv=none; b=n3yargCxnR0E/6FF55vV2GykYk53+4YnuYqeJ61sYI3Df68nvmcQbMfxAgXPaFtnRPSB/HV1ooYe9S3IBoXk7VYpSGwSiJTehYIkIEN2W1QWimxo05z0Ac8iCtFicSqirO+vTrBgqiOOwZDWEhBAzeY58Cgs+Rz/C6TgtJSST1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768497771; c=relaxed/simple;
-	bh=iZwBmxuFmyj5yd/MrkiJeSxiq8n2lmnresw5RhxA2iE=;
+	s=arc-20240116; t=1768497911; c=relaxed/simple;
+	bh=F301zU1vCBsJJwhbHsinIGYvb2uYINoBUeXNJkJ9o9Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hsVPeSnfp9kMn148jLdfnSikcxIEhYT98LXtZrH0g5Szzwv1ATKYOvY0QOVI9qtdwFziY2WgEH9BiHGwy483e0DR5FOw8KvQSG4LRluF2REnhq1u/LrmxVCf/y+PBIL/bJMr5DbyGxLutTw/eV78mlrqPxJcM1ipZUenD7imwoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiXm5fxW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AC0FC116D0;
-	Thu, 15 Jan 2026 17:22:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GCNM3BEQuAMd9c1y6AEzs3XR4TnTqo0OqIB6Fsne+Y89lTkJIiD0tB2lfmp0qILpQMR5fqhyDuqusTXAsxIRorfBkwdWkrStsK1/oVMqMJeJg6UAy5OM4a+IpykCT26vG6GMPfgRli9vpXsiquzMBRaAK82mvqZv4iN3Z2Z8OhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5NEArbr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C42AC19422;
+	Thu, 15 Jan 2026 17:25:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768497771;
-	bh=iZwBmxuFmyj5yd/MrkiJeSxiq8n2lmnresw5RhxA2iE=;
+	s=k20201202; t=1768497911;
+	bh=F301zU1vCBsJJwhbHsinIGYvb2uYINoBUeXNJkJ9o9Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fiXm5fxWUQPJgn7Cj+1ATSMBKYuXOHIJGsoL3bcW9HQioIxLdk/wlMwP2O6QnN/qs
-	 rTE/toiqVL1EHXqK+biWlzyUHt1U+aVbJiCXQsrlIGc5CnyJm4D8qjOQbgjkBpWeHP
-	 8h+ezAGL/Tu/mLnDTeEcySyOMlEfqVCReI6JLg4R2RWmyLIHS6RFmsg40CsCJ8ixh6
-	 YEe5w2Bd23BuoDzvuUL05lH7Ix00nPvHzcv396yZtXgY8TGY9MnRUzmhMcFrw8DlBs
-	 IknuMGYkcFy/2nIZ2sV1xb3vtRSsCdJBdsATB0O+8Y2UKREpoNGgRBWHUz+PE4uzBy
-	 v6b9IJw6cneJg==
-Date: Thu, 15 Jan 2026 11:22:50 -0600
+	b=W5NEArbrEFalAlEMGWfQYfz8F8ozBniK0/E+j/Xcyee57fhbtiuM3A5wqwTQo/kSE
+	 5Qmt0iocmyAhTCgyChCXJHqcPxZ2m/M8LIP/x4OGtPexlhrD+cKG9YZ81e1S9grPMa
+	 03Kj7oFRSssmrzo4j/PSnDusZ4YuSXnTf8aVYLYiP9FRqMxnGTYwcXjkYNfn+qBzA+
+	 bKZxNUG3l2JYlly1CP4LjTMQ3MXaudRSab6U/F748Yy3RIdHnGOB3DoenjNOqZet0M
+	 qU3Pl/vFg/SnxGqhCWJS9o9SNnRhpsudlk/IDY6Ss0GvRL78wVOPVCOC3xIXd3lqBi
+	 6XGHYJhCcz6Iw==
+Date: Thu, 15 Jan 2026 11:25:10 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Eric Dumazet <edumazet@google.com>, linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: pcs:
- renesas,rzn1-miic: Add renesas,miic-phylink-active-low property
-Message-ID: <176849776989.913679.4064770470334805366.robh@kernel.org>
-References: <20260109142250.3313448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260109142250.3313448-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Francesco Valla <francesco@valla.it>
+Cc: linux-kernel@vger.kernel.org, Saravana Kannan <saravanak@kernel.org>,
+	linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] of: property: fw_devlink: Add support for "mmc-pwrseq"
+Message-ID: <176849790816.916369.13545562565648281883.robh@kernel.org>
+References: <20260110-mmc-pwrseq-v1-1-73de9d6456f4@valla.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,38 +56,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260109142250.3313448-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260110-mmc-pwrseq-v1-1-73de9d6456f4@valla.it>
 
 
-On Fri, 09 Jan 2026 14:22:49 +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Sat, 10 Jan 2026 16:27:59 +0100, Francesco Valla wrote:
+> Add support for parsing MMC power sequencing (pwrseq) binding so that
+> fw_devlink can enforce the dependency.
 > 
-> Add the renesas,miic-phylink-active-low property to allow configuring the
-> active level of PHY link status signals provided by the MIIC block.
-> 
-> EtherPHY link-up and link-down status is required as a hardware feature
-> independent of whether GMAC or ETHSW is used. With GMAC, link status is
-> obtained via MDC/MDIO and handled in software. In contrast, ETHSW exposes
-> dedicated PHY link pins that provide this information directly in
-> hardware.
-> 
-> These PHY link signals are required not only for host-controlled traffic
-> but also for switch-only forwarding paths where frames are exchanged
-> between external nodes without CPU involvement. This is particularly
-> important for redundancy protocols such as DLR (Device Level Ring),
-> which depend on fast detection of link-down events caused by cable or
-> port failures. Handling such events purely in software introduces
-> latency, which is why ETHSW provides dedicated hardware link pins.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Francesco Valla <francesco@valla.it>
 > ---
-> v1->v2:
-> - Updated commit message to elaborate the necessity of PHY link signals.
+> Resending this patch as it slipped through the cracks (of my attention,
+> at least).
+> 
+> Original submission is at [0]; there it appears as a v2 because it was
+> the first time I used b4. It was also part of [1], which wasn't really
+> a patchset but a follow-up to the boot time SIG meeting.
+> 
+> I added Ulf and CC'd the mmc list, hoping they can (more
+> authoritatively than me) reply to Saravan's question:
+> 
+> """
+> I took a quick look at the documentation. It's not clear to me that
+> mmc-pwrseq always points to a supplier. Can someone with more
+> experience on this confirm that is what it's supposed to point at?
+> 
+> Meaning if A lists B as pwrseq, is it always the case that B needs to
+> be powered on? The binding documentation doesn't say anything about B
+> needs to be powered on first. It's just saying A and B have an
+> ordering requirement.
+> 
+> If the meaning of the binding is _ALWAYS_ B needs to be powered on
+> first, then yes, this patch is correct and I can give a reviewed-by.
+> """
+> 
+> [0] https://lore.kernel.org/all/20250930-mmc_pwrseq-v2-1-80a8c6be0fb0@valla.it/
+> [1] https://lore.kernel.org/linux-embedded/20251126-beagleplay-probes-v1-0-c833defd4c9b@valla.it/T/
+> 
+> Thank you!
+> 
+> Regards,
+> Francesco
 > ---
->  .../devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml     | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  drivers/of/property.c | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
