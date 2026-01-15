@@ -1,231 +1,178 @@
-Return-Path: <devicetree+bounces-255664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D5AD2562C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:34:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586E2D2578D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:47:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C3DF63000929
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:34:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 308E630198F5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BAB53ACF1C;
-	Thu, 15 Jan 2026 15:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3BB3B8BA3;
+	Thu, 15 Jan 2026 15:41:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oPMKsVzD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UfxJn74g";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iMb13m7v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB05E3A9D97;
-	Thu, 15 Jan 2026 15:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECA835503E
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 15:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768491287; cv=none; b=Kq+/cjYz8eI84yaqPcBRY4+SEQZYJAV6vwyZtTzRToA3gTYNi5PFy/ZOvoS9lTE/sz6PW1rCtld0e0Jq+uf7EaupeulUDLmqD5KaV/1lqvoD05H10OftS5yvoD2ZG1dduRhDgGVFqjivFeIm3KgN+LXwyA/vNwUhY9Iulz3WiqY=
+	t=1768491668; cv=none; b=K2HgifH1rjU575A9EVtIxduFQDoETEL749kPkdzU87r2juN1noUv7eLxL8jDbH6h4dCFc3Ept35bGAoS1sNi41SzQmA74LtTyW6758DFpVrdI5SZZdKiYgwr0A0i5Nw5RGfIoKFEl0sv7Jvv5k9H+iALqAPUT3UzfOGpSMXOkWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768491287; c=relaxed/simple;
-	bh=0JxRnZ4zP0bNYiDg6+YLfy06LKhjX39gyT0+B2N4vG8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gJPnZzM//n0lR2W0R6fWxVshx5aWP64YKr7Kxk8TKt5UXAsY4IzKNub+yc00jOQvs2maMwsJ3XRYBdqw2+kqAG1nYtWoiJJRNJtrKyXMerQk0jZgtS+dpA9pBR3cdJws7JA6mq2UEKmhYOoOHaJK/XwJkK2EtO/vs/UsbDxiPZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oPMKsVzD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC273C116D0;
-	Thu, 15 Jan 2026 15:34:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768491286;
-	bh=0JxRnZ4zP0bNYiDg6+YLfy06LKhjX39gyT0+B2N4vG8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oPMKsVzDcCt+ji0XfhGCxdFchmNMT8/iu5YPNYfGkGwthPZPabD/negWeDvxnRiXM
-	 xQip8+Hs8JehnqDmYpBQhtLttYVYQtSVRljY35Gf6PTJkck9zfxe9h+OcXPee7IRxW
-	 NHxuqZ8jsWMFtcb8uOnUuD1vgL4zjn1efTGjxEP8ZnYDRPy6ZJbvcepFVb9wesUvt+
-	 LjCzV7ZyCawnDLw7i4RS3aK/GLRL9lFvJia0I5E4Cvh95KwPThGbIKQZoA+T2NPh4P
-	 zMblEjwY1yEe74hbSaLTSlUK6zAXCxesj5sZJMrAK4Og3wQseLMN5Gd9uARNI3zxTY
-	 uu0rWf1GEuXZg==
-Message-ID: <e2f028d6-774f-4773-889f-7d56b833067e@kernel.org>
-Date: Thu, 15 Jan 2026 16:34:39 +0100
+	s=arc-20240116; t=1768491668; c=relaxed/simple;
+	bh=PVbD3JY/+2fLVRJDBALFlJGzI7Wuj6b5NRYNnDAixn4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TxrGo3BADTnWXJ+/aNj9ENIFER3lgkhy3bDBKANYm3LEjcXHr5okJGH0veb0S90RBB8mIogipSjnghO4GUltgBsWCiDLNArZUt4R30BGweRr9VH14hv7+GEFS/DBKQLxvEHZIFsfpTiNSJBSltZEGi9LivsVL/S+fFYts99VnBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UfxJn74g; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iMb13m7v; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60FFYGiH2701739
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 15:40:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6Jn8t5yJvZEuQyGDiKMOAfso4NUXVWf25vNU7V3mPF0=; b=UfxJn74g+jH8bGD2
+	3QJ6+kcaJsbSgH1oIRykFba4y9xAm0/3DzNZukuWkaaVprLqk5u5gSZrXVt8efQk
+	M9YLD1UPB4/Wtc+JD5Vv0NVHGD6H8Hn7O/BURVmBjfln1QOaWrOqNT2YppUI4xgh
+	AvDr6u8Hh9aYvFDCimO+fRh5hlEEXY4hCIuSPEtu+Femw0nnstvYludd5DCL6+sw
+	nTLD9EZSo+BlV/iX6o+ObbE/6qXxR1nxskU/2FB23ytGrJIVchVj72cglPMsxvfc
+	WXgSlQrz/H7UMbmg+/eJ6pI9vCnuc2Kf0bFj73LDWl6Wufp6BAWEANbmoqkQtDEY
+	vQPh0g==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bpj1ptxmq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 15:40:57 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c52dcf85b2so387358285a.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 07:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768491657; x=1769096457; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6Jn8t5yJvZEuQyGDiKMOAfso4NUXVWf25vNU7V3mPF0=;
+        b=iMb13m7vvAUyGNJtkKYFogQRLlDxJ/7Yx3LvV6kIdHo3BpHY25KwTK24C55ULxL53I
+         nNAqV625/S1+WMszyUIyCe4GEaNoIqUVdms5Osgs3Lur+6qV1OZ5RJSZsSi7tjJeovtb
+         TgNfiFZToTbLJiJoo/nrMZ42Eu8Oq4YRR0eKfq1zPhXGCv4f/NOghqjRZvWMUmmGCmL6
+         lKYKpvXGCVvWTnX2r4BOOaMmZnjl5sG6foUqwWy42xAqry9IGTDBTz3TJHDXD3cpTHrt
+         fu6lJbhybcIqbxsRdfbrAht9pfCqbJNk5pFDsvC5Cfdpcxsr17nje/K5rNv2F7UB5q5k
+         HWQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768491657; x=1769096457;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6Jn8t5yJvZEuQyGDiKMOAfso4NUXVWf25vNU7V3mPF0=;
+        b=BhA8MXdPX3jQBExD33LeGsr77fOvS0svPv129zg38qcXWXmbxFKRpd2rh8yiKJPOZr
+         HjnUbzdMVsGQ8nm9XUaRBkU2H4slV7rNMOsnyHy401rX2pweMQ7ARArNDIceM3/6MQtK
+         A7d9G+JBJSwV98FLLUiaT85hoYdYHjdU0TT3h7vGOwqFH0Ifmlo2P2b/DWA5vd2kG7gE
+         /JxruV8ccaeCr1+0TwyNYCZ5O03+rbvvvA9fQj7gKC1urgybb9VSqazXboGN4fcG/Kmn
+         +aC6IEv9oD3rzX3fV+QpOOghtlfgRL5rLhGMUIb29bGX2RSdqNL2OOt8sf7VNXkTK7bi
+         nD3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXIHEkNSu/DtLJgBCByl07GbADSVj4naJ0gBuFZoJPX00NH6A6/s7QjWLt6prEpJx06a/bbHXilgpAy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3102BJuEjduXwPwj9aa+wXZVc4o8KaUuLb5YblydHiLOuh0dV
+	7VuBCSmKtbfDHjwePMnm8UN1ncSj4FsIJ+HTurP8r91UCPPnTjz+e/zLYDDrGqtesmrrYdqCmJu
+	AviV/+Bihf1Rpfow3r4HHyMnu8odpwYs22EGvOwn9y71PmrGvEJVDhgG+vZrAOuT4
+X-Gm-Gg: AY/fxX4AI3ipq9dvJJkCKhFLM6c7n5XS1hBi3DVHU5vLA9jwxiQkkI/2oVmQDoPXdGS
+	W5sVYRAlIQQeVm0gzOj/inAnExrkDZ2Fxn18MV6l1snaowRSRs/a0YV1LfGWRexF6ntYDPSoyUj
+	jopWrIQwlUy8YEl4jpJExLFLARV6aA8oTBU+Ow84/Q3BHAWkt3+nX8aFmg3BCl26tmHoIMsqiwW
+	0ZLTBvpFJdNmjWvhZXXa/3rt27g8U41fWhG+x2MFZi0NkZzKvWrfmcSDAPiqnCc4KJUhU+uoWSJ
+	TSQmPRgAdJufMpyLjmVugcVkm5zdTNcQILM2AgG2YkJW3NdCHL+2uzVSy43gIXFu0UE1J23RPQr
+	h/1HPRmvCeqyDIgrYJ58MyIum1MLic+nbQn0FtA==
+X-Received: by 2002:a05:620a:2698:b0:8b2:6251:64f9 with SMTP id af79cd13be357-8c52fbe240cmr896665185a.58.1768491656759;
+        Thu, 15 Jan 2026 07:40:56 -0800 (PST)
+X-Received: by 2002:a05:620a:2698:b0:8b2:6251:64f9 with SMTP id af79cd13be357-8c52fbe240cmr896660685a.58.1768491656219;
+        Thu, 15 Jan 2026 07:40:56 -0800 (PST)
+Received: from brgl-qcom.home ([2a01:cb1d:dc:7e00:953a:ee90:691e:977d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f4b26764fsm52959475e9.12.2026.01.15.07.40.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jan 2026 07:40:55 -0800 (PST)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+To: LKML <linux-kernel@vger.kernel.org>, Stafford Horne <shorne@gmail.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+        Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: (subset) [PATCH v6 0/6] OpenRISC de0 nano single and multicore boards
+Date: Thu, 15 Jan 2026 16:40:53 +0100
+Message-ID: <176849165027.29734.708711779514578942.b4-ty@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260115151014.3956805-1-shorne@gmail.com>
+References: <20260115151014.3956805-1-shorne@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] dt-bindings: mfd: Add Google GS101 TMU Syscon
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, willmcvicker@google.com,
- jyescas@google.com, shin.son@samsung.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
- <20260114-acpm-tmu-v1-3-cfe56d93e90f@linaro.org>
- <20260115-slim-denim-potoo-cad9cb@quoll>
- <200d34bf-150e-4f8a-b400-2f54863502ac@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <200d34bf-150e-4f8a-b400-2f54863502ac@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE1MDExNyBTYWx0ZWRfXztaO64WqGUIk
+ AvN2ZUlTlKAe1wVARnqoID9P+U6VF66yZpZAHtUGqe6VF3Bmob9mwpSlH4Ujv6yjVaZroPD9erB
+ gWKSnBJySCoVVy7DngkzJoZAlAPJhtuVUtq0eRvK/ruyqIgX3TFnlh3RUB5Z8TjiWoxUv//KT5I
+ 8SnHmF8p6eLSn4HtJvp+N2J/s95GdWYY37nffHKA//hdRr9+9NGqPucGEI4weyF1xQVe0FHVzZk
+ 02NnvcZnp43WpVP5nIZg88M+6HFfIa8+iLVOtPqinKnWrv6P3K1UcudSbJB7aw1lPp69lgbB4GB
+ qdKydHVflvAaPArBRuTA4/jeA5vNEp2PuUHaV/mrMvH79PhVdzCVxRjKFLiXxFcXtqkg2jYDmMS
+ DFqaX/hdl1FNFwRL2F0ebSMLDREFrEyDGijIlyz7otgTNSNKAkH7jS9qOPwKwNIyj/1eArYF4Ms
+ AQaM1fH3xR76FBheWyw==
+X-Authority-Analysis: v=2.4 cv=J+KnLQnS c=1 sm=1 tr=0 ts=69690a89 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=OH7h5zJ7Ze-Sh0Qh2Y4A:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-GUID: -qEGy7DBIGY9ikBXL_ZDOJoyYhBz0Pax
+X-Proofpoint-ORIG-GUID: -qEGy7DBIGY9ikBXL_ZDOJoyYhBz0Pax
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-15_04,2026-01-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 priorityscore=1501 bulkscore=0 phishscore=0
+ clxscore=1015 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601150117
 
-On 15/01/2026 15:53, Tudor Ambarus wrote:
-> 
-> 
-> On 1/15/26 3:36 PM, Krzysztof Kozlowski wrote:
->> On Wed, Jan 14, 2026 at 02:16:31PM +0000, Tudor Ambarus wrote:
->>> Document the bindings for the Thermal Management Unit (TMU) System
->>> Controller found on Google GS101 SoCs.
->>>
->>> This memory-mapped block exposes the registers required for reading
->>> thermal interrupt status bits. It functions as a syscon provider,
->>
->> I don't think this is syscon, but the actual TMU. Syscon is various,
->> unrelated system configuration registers.
->>
->>> allowing the main thermal driver to access these registers while
->>> the firmware manages the core thermal logic.
->>>
->>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->>> ---
->>>  .../bindings/mfd/google,gs101-tmu-syscon.yaml      | 37 ++++++++++++++++++++++
->>>  1 file changed, 37 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
->>> new file mode 100644
->>> index 0000000000000000000000000000000000000000..6a11e43abeaa23ee473be2153478436856277714
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
->>
->> Not MFD either, but soc.
-> 
-> You are right, it's not a syscon, it's just a normal thermal IP block
-> from which I need to access the interrupt pending registers.
-> 
-> Then I guess I shall describe the new binding in bindings/thermal/,
-> please correct me if I'm wrong.
-> 
->>
->>> @@ -0,0 +1,37 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/mfd/google,gs101-tmu-syscon.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Google GS101 TMU System Controller
->>> +
->>> +maintainers:
->>> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
->>> +
->>> +description: |
->>
->> Drop |
->>
->>> +  The TMU System Controller provides a memory-mapped interface for
->>> +  accessing the interrupt status registers of the Thermal Management
->>> +  Unit. It is used as a syscon provider for the main TMU driver.
->>
->> No, it is not a syscon provider. Entire last sentence is incorrect. You
->> must describe here hardware and this hardware does not provide any sort
->> of syscon to any sort of driver.
->>
-> 
-> Indeed.
-> 
-> I'm going to link the ACPM TMU child node with the TMU node via a
-> "samsung,tmu-regs" property.
 
-This could be fine, but I actually wonder what's there. What registers
-exactly. For example modern Exynos 88xx, already with APM block, still
-have exactly the same TMU unit at 0x1008{04}000 with all typical
-triminfo, current temperature and thresholds.
-
+On Thu, 15 Jan 2026 15:09:56 +0000, Stafford Horne wrote:
+> Since v5:
+>  - Adjust dt-binding patch based on suggestions from Geert and Krzysztof.
+>  - Add reviewed-by's on the dt-binding patch.
+> Since v4:
+>  - Rebased the series on linux-next to allow patches to be incremental.
+>  - Rewrote the dt-bindings patch as an incremental patch, Due to this I
+>    dropped reviewed-by's.
+>  - Added acked-by to the IPI fix patch.
+> Since v3:
+>  - Switch order of gpio-mmio driver and bindings patches to patch binding
+>    first before driver.  Suggested by Krzysztof.
+>  - Removed example form binding suggested by Krzysztof.
+>  - Added Reviewed-by's from Geert and Linus W.
+> Since v2:
+>  - Fixup (replace) gpio-mmio patch to update driver compatible list and just add
+>    opencores,gpio to mmio-gpio bindings.  Discussed with Geert and Linus W
+>    because the 8-bit opencores,gpio is not the same as the 32-bit broadcom
+>    chip. [1].
+>  - Update new device trees to use proper ordering, remove debug options, remove
+>    unneeded "status" properties.  Suggested by Geert.
+> Since v1:
+>  - Use proper schema in gpio-mmio suggsted by Conor Dooley
+>  - Remove 0 clock-frequency definitions in dtsi file
 > 
-> Some concern that I have is that I describe the clocks and interrupts in
-> the ACPM TMU child node. Usually the clocks and interrupts belong to the
-> node that contains the reg property. But I guess that's alright because
-> the interrupts property is expected to be in the node that the driver
-> binds to. For the clocks, by placing it in the ACPM child node, I allow
-> runtime PM to manage it.
+> [...]
 
-You have to first know whether these clocks and interrupts are going TO
-the ACPM node.
+Applied, thanks!
 
-All this looks like designing for drivers, sorry.
-
-> 
-> Do you think the below description is accurate?
-> 
-> soc: soc@0 {
->     tmu_top: thermal-sensor@100a0000 {
->         compatible = "google,gs101-tmu-top";
->         reg = <0x100a0000 0x800>;
->     };
-> };
-> 
-> firmware {
->     acpm_ipc: power-management {
->         compatible = "google,gs101-acpm-ipc";
->         /* ... */
-> 
->         thermal-sensor {
->             compatible = "google,gs101-acpm-tmu-top";
->             clocks = <&cmu_misc CLK_GOUT_MISC_TMU_TOP_PCLK>;
->             interrupts = <GIC_SPI 769 IRQ_TYPE_LEVEL_HIGH 0>;
-
-This I doubt, really. Why would ACPM child be hooked via CPU clock and
-interrupts?
-
+[1/6] dt-bindings: gpio-mmio: Correct opencores GPIO
+      commit: b2b8d247ad8ee1abe860598cae70e2dbe8a09128
+[2/6] gpio: mmio: Add compatible for opencores GPIO
+      commit: 3a6a36a3fc4e18e202eaf6c258553b5a17b91677
 
 Best regards,
-Krzysztof
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
