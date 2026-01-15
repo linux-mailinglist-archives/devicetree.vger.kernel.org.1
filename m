@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-255670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B92ECD259B8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:09:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A07CCD259E6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:10:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4262030ECA58
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:02:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9F11A3016999
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:04:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3482BFC85;
-	Thu, 15 Jan 2026 16:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E7921256C;
+	Thu, 15 Jan 2026 16:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="topd3R6w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHyLs57T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C801D2BD5B9;
-	Thu, 15 Jan 2026 16:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156EB2BFC85;
+	Thu, 15 Jan 2026 16:04:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768492958; cv=none; b=oRfIx43iYuK2N9HcAEHdmhjTqTJ/FByKg1p1uCDmC+F9VHWpLlTJ5fn9c/e+piXEtmD+hPFQrdHTUJ7YZfgic69hIA3g7lvUKWZaXkfJALBYzlIqzplELpgTRDXjVBqov1pFLDCnk3ZSNzsF0+GjM+YfBzrxnRm3vzNwkM9wLj8=
+	t=1768493081; cv=none; b=fV+GCsMuaNRti+PrHq3okaRlBZJXPTP3wN5W4XFsxShKBohxHFab5Z2ujWA1wrcEVnSwzOttt7ja/vaGCF2lysu5z/6msVFphDuEGa3VML5sX/36cJBPDIYfTubp9JzqgDSz7Cq+RG26ODkAR9mk+PvOegC73WyXYNHpQmtWBL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768492958; c=relaxed/simple;
-	bh=9jQK/KV36GdLIy4VOJJ7i40Wd+Nl5CXsDfIILMRvP5I=;
+	s=arc-20240116; t=1768493081; c=relaxed/simple;
+	bh=VE6kYNx2SzH/A4QC3j/Bhcms/BhuO8QMuFZGjQwPbEo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HMvGjytU/vkhExcLUbDIrqeIciUGjtg+e052o+KfHaYCi0jH2ENkrM1rZwoBb6vkWDizTFTPf1IgAt9XgVrFascqMkaax8cK0UlOkXBkHrb68gs6aIbGUKzt1XiF56k8HQt7zr/3ksYf8g3UdvcOg8VjQH+hOlPGyZLH2rC94Fo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=topd3R6w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46E9EC116D0;
-	Thu, 15 Jan 2026 16:02:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GYf6nVwEhEhim33EgjlaT2TOsk4qGW4kfqKcASgflXh9gnrd5Qifn4TivGgeykXqDfSbTgC7N4BXQZy/f5vvfM4FFrug1hILYV5WM8e2VytXPLHHe6BXOhJjY5qmHIIdcOMelpXrjjTsTOtOc6IG61O8NIucBQKJi+tWc2tgqes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHyLs57T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91AE8C116D0;
+	Thu, 15 Jan 2026 16:04:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768492958;
-	bh=9jQK/KV36GdLIy4VOJJ7i40Wd+Nl5CXsDfIILMRvP5I=;
+	s=k20201202; t=1768493080;
+	bh=VE6kYNx2SzH/A4QC3j/Bhcms/BhuO8QMuFZGjQwPbEo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=topd3R6wOUynel1xYRzH4WRx2OLdAR1bYlYlOzRCtqPc+Pc63QW3x5ob4So02xO/K
-	 fe/xFZJ4GLcEyqjR1gsjJHiL5N8Bg43n9pYeeyhyNJ+caimEXW+qlxQnwjv1bL35w6
-	 14pWcegAtBlbYkcvG1EqkokvHCUJF/YaWQQ5b23JV83jZSiQhNRDlcB8GT9bkefr+Q
-	 byTx8/ANNkMdm2h80bp2KaUQ7ZFfaOOd4jE7DrCU2VMDV6+4z9qJMzuPY7PcpCG57l
-	 NRYpmcbQvL9Ug5IFL4y6rWZGY+wphWmE3I+wUatyHTzHVcmsjSOkwdObq0t768XGyB
-	 jA1WuTLpQ0dqg==
-Date: Thu, 15 Jan 2026 10:02:37 -0600
+	b=qHyLs57TSHDpYyYbKDaDMg1CidjvBMEFp/7Jsveo2QSS9LK1kzLiE5DorVFQSPiZ4
+	 DXUbk1hcbJ5KwXXTMRsBGeILs76xkch/Y6zFQJ1tdg7xV9SLRUaD7woPqzbhqgM/BJ
+	 g2VuDCUttvglZpVIDI8nzcJ8ykbQ+vIhuonDGvefQZ//oasfnNkOuD6jHav0SHdRTN
+	 F+JIlH4qdeRsxRHoxUGqSsmU6yufACBQ3aflDXhPbaSAGERVaD8tCunqLD05dF+ClX
+	 FBCehTGB59H7UL64x5Q9Hh5kjUHAYnri8bmSkoMqOUwU17JCi9OOB7/E272AI7rUDh
+	 55QJitB1P/BEQ==
+Date: Thu, 15 Jan 2026 10:04:39 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Linus Walleij <linusw@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, Paul Walmsley <pjw@kernel.org>,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: spacemit: add syscon
- property
-Message-ID: <176849295668.693144.16118634517088023109.robh@kernel.org>
-References: <20260108-kx-pinctrl-aib-io-pwr-domain-v2-0-6bcb46146e53@linux.spacemit.com>
- <20260108-kx-pinctrl-aib-io-pwr-domain-v2-1-6bcb46146e53@linux.spacemit.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	"David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>, linux-mediatek@lists.infradead.org,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: airoha: npu: Add BA
+ memory region
+Message-ID: <176849307902.695520.7167171864091079229.robh@kernel.org>
+References: <20260108-airoha-ba-memory-region-v3-0-bf1814e5dcc4@kernel.org>
+ <20260108-airoha-ba-memory-region-v3-1-bf1814e5dcc4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,28 +63,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260108-kx-pinctrl-aib-io-pwr-domain-v2-1-6bcb46146e53@linux.spacemit.com>
+In-Reply-To: <20260108-airoha-ba-memory-region-v3-1-bf1814e5dcc4@kernel.org>
 
 
-On Thu, 08 Jan 2026 14:42:38 +0800, Troy Mitchell wrote:
-> In order to access the protected IO power domain registers, a valid
-> unlock sequence must be performed by writing the required keys to the
-> AIB Secure Access Register (ASAR).
+On Thu, 08 Jan 2026 16:05:07 +0100, Lorenzo Bianconi wrote:
+> Introduce Block Ack memory region used by NPU MT7996 (Eagle) offloading.
 > 
-> The ASAR register resides within the APBC register address space.
-> A corresponding syscon property is added to allow the pinctrl driver
-> to access this register.
-> 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
-> Changelog in v2:
-> - add `spacemmit` prefix in the subject
-> - remove offset in syscon property
-> - remove `spacemit,apbc` property in required
-> - Link to v1: https://lore.kernel.org/spacemit/20260108042753-GYA2796@gentoo.org/T/#m2ab46cd63cbb1b110eb317ee5b9d540d39cbd82b
-> ---
->  Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../devicetree/bindings/net/airoha,en7581-npu.yaml  | 21 +++++++++++----------
+>  1 file changed, 11 insertions(+), 10 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
