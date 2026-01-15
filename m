@@ -1,179 +1,106 @@
-Return-Path: <devicetree+bounces-255454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B350D23349
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:41:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A71D23358
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:41:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 429D930574EE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:41:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E0520305D8A3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F2E33B947;
-	Thu, 15 Jan 2026 08:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C51F033A9D6;
+	Thu, 15 Jan 2026 08:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UvqQhx+p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SZ/XHSeO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CB4233B6EF;
-	Thu, 15 Jan 2026 08:41:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560C733A9E2
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 08:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768466467; cv=none; b=RZD0Y8DS3FyKiAdmWrFksMJhcmThuM4LKsEADvcG5v2w+uX2G9JjqPrnZLZFE8tC7HrmIRVUwM8F8kcbj/vTCRkHAGXi0FGke1FoEnj2DH3qqDNaGisYa0KdWCb6oe/x2/3RzW7sf4PX+uZCDFtJDjlqSYUmEdJZLZGDxMHC+Kw=
+	t=1768466484; cv=none; b=rWYopzPy82fDQabFvneD35xgpmNCGqy4ByoQwo49NyaxTDQNizo9m5l6mZ4DZ2ZLE4rHbE7PATU0LqOwl0gL4jfZRcu3Vd9vYABv0PKlcyOpK+1swIU01JGhsiRjl6O1xjFjDDndmK/QA4EJyRb++P3aJ+Fzhd5zvwljzRPpFtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768466467; c=relaxed/simple;
-	bh=nV4x3vpxUwlh1oOro3heNdmGg3EyGD4ZoC4sV7U5ApA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hibULkC8PsrrP/g6aHcj9Ev3xuJ8sfxPbrasOvUdd1iuh+Xn25C7N2uPRtS1xYKsoa1FPqttnFHsFEdDbJ5CtUntbT+ulx5XPPaIxA2Hf8ZFoIQh/kTaW2gZs1KPAqfzpNfAZqttdkkkD+kCGnYdsJuEeHJoOguU6EUe+hW+Kd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UvqQhx+p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF0C4C116D0;
-	Thu, 15 Jan 2026 08:41:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768466467;
-	bh=nV4x3vpxUwlh1oOro3heNdmGg3EyGD4ZoC4sV7U5ApA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UvqQhx+pjZh1Oe+q+kL7Gu0ar19zQS8RNvkcmQREWtdIfca850o/o56F1DUobQ0bp
-	 cA4vVWWvX4fC5tJqwRWRM//2bzUD2SEUhZq85+aHXc4l1+Xy38fnQcJiRmlSn82arq
-	 dtgmhjtgvl6nyX7iH27ONZDSjJfPobILq4kX2hC8VPnhyDD6HZUNl2EBI5OXX/IU80
-	 KCooyQgosVTMsafymUsGWPcXdGDwiKCYY5uh/afBxS42s+gCOGMItg6kQmQLDLHtWA
-	 FMiGCBK+YekuoOeC7alLsp1KETOn1M6sDD65SYWULHFiIX/qU08Vzqu/U/W6HLWIKo
-	 I2btgweAuHqKA==
-Message-ID: <c5d2d4af-41f6-4cbe-8754-deb5a06253c7@kernel.org>
-Date: Thu, 15 Jan 2026 09:41:01 +0100
+	s=arc-20240116; t=1768466484; c=relaxed/simple;
+	bh=pebBiil2ei/oib7mZd9mepzUxVShBPvTNogkSnHrW1U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YFdxladeq4Ns+tUzNIDskuQzm46ExdwD0RJR/y6uvC4a+/Xds5Ro5ipn8mWuOxTrOmuSqJFufESIk9eT8+SMG+92xI8voXbfE6vgtYI9XafxIijlczSrdwCfrxfpeJgNPjsWK/UOfOzm2z2oNbI6YjumYaz2+C26GC7PrmY67bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SZ/XHSeO; arc=none smtp.client-ip=74.125.82.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f46.google.com with SMTP id a92af1059eb24-11f42e97229so1477098c88.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 00:41:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768466482; x=1769071282; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pebBiil2ei/oib7mZd9mepzUxVShBPvTNogkSnHrW1U=;
+        b=SZ/XHSeO08Mn34xmfcutAj310xtfInQlFp0pit8oillBo1fBFke1FV7Y5hhdePw+Ap
+         qcLz/5iMAYoUos6lXJka0fp7vLHquAeLcPXf0gYfCee6oMIQiSNExFBDd7ALU/D8gzKo
+         Zs4eFXhZZF5mL5hHUIIQX3Yc2xLHn0d52xQExBlODtIvuCL/GG2l83oZ+9pQuW28lwuM
+         zRHtef2iqZ31pKcNOG5rZixfdUEpBrZBko3flJ3DQvGTsbrvB+quY9gXE0ONlexr30m3
+         S3G87qZRb/uOS4fWUKyrlhVA91/zIYBlstTIymiQlDcCya1DX8QNjrGFehVRNEfA82XI
+         h1EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768466482; x=1769071282;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=pebBiil2ei/oib7mZd9mepzUxVShBPvTNogkSnHrW1U=;
+        b=fEkH8JYJyYyaN0t1nJ4hoa1hxSHxf/LbumGl0FBACa/rcapdKYCJon57f3vROqeYJX
+         KitSfk3HxslG92gcgY9N8gakgtgLUkWHBOG+2eZouiZ7eBOEY+gBQrF2BNN1PlIpBpKW
+         0BDDS6jdde3+QNQkBgoXPPcfbagWAYJpm8M9MPa1dY6jjwZbZ8oso9nKehzNMIKgOtFa
+         M0PVQ1MOB6imFdJ6ScglQdbrduqlY/y1ryZdKAmduthT9EayO7qEWsDY5V+5ea3CuzG+
+         lnSUYYql7d6EdVv+UavMUA7YgogVoFFe/Q+B+f40GifoJJmS8PpLMlxwlavL9AjBeUdW
+         rIIA==
+X-Forwarded-Encrypted: i=1; AJvYcCWgFqObmbvpm+tm8pl8GaWb/R8fqYidnBaYyxjd9dktUHZ2TdAO/+c+yFdrwe/l1WwRWST3gIOh2p4T@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyPxQ3JaTNTSZHPhTQm5eHmPtt8CwRWK0mktRJ6bDfcE6NSvmq
+	c1kXhQjJY6L8+hZpmOrzKjae7GuC/E6jJXr3u/14FAG66/0nroRmMdzG85Lzn69xZW8YnIPrZFR
+	rFfpcAqr09LG3TCzHwIBxQxwV0El4qn4=
+X-Gm-Gg: AY/fxX4YVwnZTC+O6jMFwjsqewRgPhtRo8ftGCq9XZoK18HBIyMydWMjADhWIdc4rvz
+	kqCZVfxJt50U9iyjkM0kwLiqhb7RKLu/n/2HvlQ0O684xdF4xrRCLJVjsDauzP7tKrNCO6OnU4K
+	AZV8pXzjPbU3mdlWPgBf/gUe/ZcBKuKXfZB1xKLcqGuRKNakDa7/jigrlrWFsGoAEf+muKE5swI
+	fjFu943ldPa61iYXWEltdItBMBhOke7zR7CukxLB+OsvzI7/GFovJv9z2bl0swhGCrAH1acAQN7
+	JDLXRzCwOww/pb3vrJBRf1HlDeE7iuZwAY0iw0uWlH9RXa3ij0fTR4XTQiUlXsieqJIu8sfUjFE
+	HbMlKT2tSOg==
+X-Received: by 2002:a05:7022:2392:b0:11b:9386:a3bf with SMTP id
+ a92af1059eb24-12336adc557mr5402464c88.42.1768466482362; Thu, 15 Jan 2026
+ 00:41:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub
- and on-die regulator
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
- linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
- krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org,
- Frank.Li@nxp.com, lgirdwood@gmail.com, vikash.bansal@nxp.com,
- priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com
-References: <20260113114529.1692213-1-aman.kumarpandey@nxp.com>
- <20260113114529.1692213-3-aman.kumarpandey@nxp.com>
- <20260114-refreshing-groovy-buzzard-af2eeb@quoll>
- <20260114171732470bd389@mail.local>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260114171732470bd389@mail.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260114-mxsdma-module-v1-0-9b2a9eaa4226@nxp.com> <20260114-mxsdma-module-v1-1-9b2a9eaa4226@nxp.com>
+In-Reply-To: <20260114-mxsdma-module-v1-1-9b2a9eaa4226@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Thu, 15 Jan 2026 10:44:04 +0200
+X-Gm-Features: AZwV_QgLOj1RDdzVccL_41XskfEEs9aTrYg8yhWQDuDVwvWQC6YUiA6AbKgDm9g
+Message-ID: <CAEnQRZBkxugbzhNk+HE_t=2z_-1OZ_mgON=8=5Q6wV0zJcNHbA@mail.gmail.com>
+Subject: Re: [PATCH 01/13] dmaengine: of_dma: Add devm_of_dma_controller_register()
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Vinod Koul <vkoul@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, Shawn Guo <shawn.guo@freescale.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14/01/2026 18:17, Alexandre Belloni wrote:
-> On 14/01/2026 09:28:53+0100, Krzysztof Kozlowski wrote:
->>> +static int p3h2x4x_device_probe_i3c(struct i3c_device *i3cdev)
->>> +{
->>> +	struct p3h2x4x_dev *p3h2x4x;
->>> +	int ret;
->>> +
->>> +	p3h2x4x = devm_kzalloc(&i3cdev->dev, sizeof(*p3h2x4x), GFP_KERNEL);
->>> +	if (!p3h2x4x)
->>> +		return -ENOMEM;
->>> +
->>> +	i3cdev_set_drvdata(i3cdev, p3h2x4x);
->>> +
->>> +	p3h2x4x->regmap = devm_regmap_init_i3c(i3cdev, &p3h2x4x_regmap_config);
->>> +	if (IS_ERR(p3h2x4x->regmap)) {
->>> +		return dev_err_probe(&i3cdev->dev, PTR_ERR(p3h2x4x->regmap),
->>
->> Look here...
->>
->>> +				     "Failed to register I3C HUB regmap\n");
->>> +	}
->>> +
->>> +	p3h2x4x->is_p3h2x4x_in_i3c = true;
->>> +	p3h2x4x->i3cdev = i3cdev;
->>> +
->>> +	ret = devm_mfd_add_devices(&i3cdev->dev, PLATFORM_DEVID_NONE,
->>> +				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
->>> +				   NULL, 0, NULL);
->>> +	if (ret)
->>> +		return dev_err_probe(&i3cdev->dev, ret, "Failed to add sub devices\n");
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int p3h2x4x_device_probe_i2c(struct i2c_client *client)
->>> +{
->>> +	struct p3h2x4x_dev *p3h2x4x;
->>> +	int ret;
->>> +
->>> +	p3h2x4x = devm_kzalloc(&client->dev, sizeof(*p3h2x4x), GFP_KERNEL);
->>> +	if (!p3h2x4x)
->>> +		return -ENOMEM;
->>> +
->>> +	i2c_set_clientdata(client, p3h2x4x);
->>> +
->>> +	p3h2x4x->regmap = devm_regmap_init_i2c(client, &p3h2x4x_regmap_config);
->>> +	if (IS_ERR(p3h2x4x->regmap)) {
->>> +		ret = PTR_ERR(p3h2x4x->regmap);
->>
->> And here!
->>
->> Drop. This is completely redundant. How is it that in one place you use
->> one syntax and in other place completely different syntax?
-> 
-> I don't think it is redundant, one is for i2c and the other one for i3c
-> and the other i2c so I guess the hub can be sitting on any of those bus.
-> 
-> I guess the driver could be made so that we could only compile the i2c
-> part though.
+On Thu, Jan 15, 2026 at 12:34=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
+>
+> Add a managed API, devm_of_dma_controller_register(), to simplify DMA
+> engine controller registration by automatically handling resource
+> cleanup.
 
-I am speaking about ret assignment. This is where my comment was placed.
+<snip>
 
+> +static inline
+> +devm_of_dma_controller_register(struct device *dev, struct device_node *=
+np,
 
-
-Best regards,
-Krzysztof
+static inline int?
 
