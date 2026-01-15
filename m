@@ -1,200 +1,254 @@
-Return-Path: <devicetree+bounces-255689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37881D25AD9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:17:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4DBAD25ABD
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:16:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6D69230885A3
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:11:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2ED6530EB531
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52FE23054D0;
-	Thu, 15 Jan 2026 16:10:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1ED93B8D53;
+	Thu, 15 Jan 2026 16:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CkhfzMjM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sb1ml4z6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com [209.85.214.194])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063E83B960C
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 16:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11303A9633
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 16:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768493440; cv=none; b=sa1BqKrmYbxepVAwnPwCblDDc6+fm5v9pzx/CNFVT8lwV73dF9T/MtSEGAhl+SG+q/OfV4EyLl5DIKcJ0TkETOn36/KLImd3w1rxXn7l1koCh+rEq2+A1g8Nb+w1fIBOajaFqixOppKV3Z13jblLsfqVwgRJzvQa+HEsZts2lsU=
+	t=1768493433; cv=none; b=gsVturMr3vjd2jde2H1zjFHRdt/IGxEQZqzlLwdzWCbfVBBESwKT43K0e5Erk8Z3VXyhl3X7bFi+jF4NSg+SkZTRftUV0iAz/lk9UAJymkvE4AtwkNz0x85MzXQ3CR9Hvx08oOjBuake7JLdvFKefyD87K3v6QIymY62wJoXPDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768493440; c=relaxed/simple;
-	bh=p32qd1CMtpZrvOqiOyNxVvmMRWtTmW3d9z9hTfsYpGw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oE15TdOqHkF8Kz3t6hphXdAbHXkFJ8UXQKIouElJxFEWuM8jZuafQOYAjfoTCl+zHUq3JfPnWoGcC7s2tU+6ZAxs3knWaOFb1WQ2ZS3Y4/9Ux32BBG1/zXfB1BMtopMcpNry5//42G2spWWJGdWCyCZIuyhDrDsn3ni2tvhee90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CkhfzMjM; arc=none smtp.client-ip=209.85.214.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f194.google.com with SMTP id d9443c01a7336-2a0fe77d141so8397185ad.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 08:10:37 -0800 (PST)
+	s=arc-20240116; t=1768493433; c=relaxed/simple;
+	bh=46O3WGNI/I2BanZJr/n1NSM5aWJGCML3xJV6mE9CS8U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TKHvDdCaKZwGCxkqTyJ0X1JMxnLOtyu8hZnS7Uy/YVN5/j1t2aCMwkCoWaX25Xix4chDm6ptL8xkJWzBoQ/bRa9MGHBPKaK8mXwyTwxTnkcjjgVNkOP/McfiJJYLiZ8QJLIKAZDsWoOtsGNIUM5u1wySU/I2MWtIOeJY9HtTvnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sb1ml4z6; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4801d98cf39so1891095e9.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 08:10:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768493437; x=1769098237; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XnP7OKw91qUHBafMZ5I1kAG02nR+3IKvTt8SsYgVCHw=;
-        b=CkhfzMjMsWhs3clmN5O8bQkazXIN7Co4BUqv6MqR0ImsS7dq+uLesuzhzU3aKql3wm
-         islDtKmjR7epvIZG5+i5148WPdyeqFAX5aJvlUJIhVxRzWM0zcjg6tQLtW39/bZYTiiO
-         MnyTAgYu4Auyj9VX/uEb1bvkD8KxdOk/lu6MNyysOgMy94BLRQAAucn4QC1yfomFNww3
-         DoTKk8tBgpFeLe+Y4mD5W14coRPCQQQ6FXhcs/0/SdpantSlfV0SsyUM9wRZK/TPik/c
-         19M3vIlGHtjnJtDpv3/M3lDS1yIEMGvI8yTMuxORyVNNm/xobMEulryNIufHOnNGr6HB
-         SN+g==
+        d=linaro.org; s=google; t=1768493428; x=1769098228; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gQXGgSx7jpUFKQjZ6iyGO811lP9xodhRioXDBaDurfQ=;
+        b=sb1ml4z6vGndnWJE9lAodrXq7lQY4NB7xUzD+qbG/mAnWxwn9H+pYjdvJSz5wuJ9Gi
+         tLuM4acpgB8RUY9wnN1+Qe7FH4KmcEAcV841PS0tuyQDRiL9XTTT/RgXxAGJY0bUd75l
+         mcc8ysaCAe3O6o0JTqvYPjwLMDUwWba9JBR622/w8/8Zngd1U5IgtLbzQZaQ7I0kPwsm
+         cX8+yVFf0NUlujbTHc/UsJA1Tdm95062IZHl62NlAyTA9yyMVYvzgcsKT/3+kipYPF2r
+         VPIShMNkBaTznpraj5F4CxjIEam7A9I/pyqBodi3IPq3nAXhXFAEmIeCofSNM3Ari+E8
+         bf2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768493437; x=1769098237;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=XnP7OKw91qUHBafMZ5I1kAG02nR+3IKvTt8SsYgVCHw=;
-        b=k2v81A63JqLUPH28lmuwJG6/2Wi5vVjSsHKGX2qNmCmuF0cYe07B6H1ZI88JXgctQC
-         TtfhnpJfRTZpqFtokvnlGmq2Upff6i83aN9GkM2yEu9S/hoLfXq9rSYGvLZN1fZSlL96
-         60gnKjBEgA7cIf0tb/NBrNed+ZSKJplQfpnMsWgOSCUaQKBmTQArb8tH8YQTu1KScAB4
-         IAr+X3Y9ZsN3+bSzxbrxeTrZgf3afl4QZ42ePlT4vqwoV8lA8OJO0VhRz9V7Bi43IMSP
-         T4Qjaj2asON9NPrqH/vGrp6tQ8PVumhIGHYJt5G1DFKMOVh842aWyBLcxQ2df/KoNQtx
-         wmLg==
-X-Forwarded-Encrypted: i=1; AJvYcCXx8S80OkZIsPzlG10ynv9W4GnfiOPKIc8oNhQhem1YrwuVJ9gWHSbVwxwwwUm/jxXzSp+UjmnU93z+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFNFsxSdu/2kacH+cSdtPUq0x8IPv2iYkj7WOx0/LTtT9Q/9cF
-	4398ZNXVtBerEbUwT+aAA/+UbwW+nUngjyYK21zRunjY1Zxuno19hTC/4I/jRaLR
-X-Gm-Gg: AY/fxX7TQIlu/pMR9pklyHQr9LSpvxzWpi7uIZ1nqL937khLFeFkZpIElscVjesbSve
-	M8WVMJFzDYsGCLlbxKNJVRiPzYHJQn+1NXQLWvisTWKwN2mZaueLLsGoAiKp0MF5fiAuuc2Kr+J
-	6dfuWPMgITLQsFYmUQAxHiJ1FUn9bFhc2QuUR0XiB9UGaP3P2+NqBQV4eexTMjxpCT/mblhnVP1
-	Dbs5VjCJkEcS+Oqa/ND4Hvh7SRnkN5T9y2Gd7NFHX8owoQUfUPbfdLWkRkSPIDebi/pJSLUP4vF
-	zTGIsk0yrt3LOz3CBn29AVNDCS0vnVJNIrVCNzQ1yR9aRwPFV8po+XsrTWUAdcaNNFk2wCgwmM/
-	U2QbqQ+ibFsViGl48TpFAZIMpxmL6oAdaKcdTBpVgZ1OUKIdkUV4Uio8NrBeAPF+I7BrKl4DhG3
-	kPFhhSLicn42B9wBsRb/FfMQ==
-X-Received: by 2002:a17:902:f544:b0:2a0:ba6d:d0ff with SMTP id d9443c01a7336-2a717533f7fmr380715ad.16.1768493437015;
-        Thu, 15 Jan 2026 08:10:37 -0800 (PST)
-Received: from DESKTOP-P76LG1N.lan ([42.114.215.169])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a3e3cb2d88sm258523195ad.52.2026.01.15.08.10.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jan 2026 08:10:36 -0800 (PST)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: pavel@kernel.org,
-	gregkh@linuxfoundation.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Nam Tran <trannamatk@gmail.com>
-Subject: [PATCH v22 2/2] docs: leds: Document TI LP5812 LED driver
-Date: Thu, 15 Jan 2026 23:10:13 +0700
-Message-Id: <20260115161013.40706-3-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260115161013.40706-1-trannamatk@gmail.com>
-References: <20260115161013.40706-1-trannamatk@gmail.com>
+        d=1e100.net; s=20230601; t=1768493428; x=1769098228;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gQXGgSx7jpUFKQjZ6iyGO811lP9xodhRioXDBaDurfQ=;
+        b=feNBMfQVAq3Mfq3/gdvQmTfgPr2RNHVIhBh34mEMhowOm4iTrtL3YhyVLbx0l6W5EQ
+         adCiY1xa/rs3jkA1xIXwac1zARIfBULjFhCRvkM018JpCxrd3ae6DevtOJFfbV/ftBZz
+         UaB7ozpqvZuy0hl1BQlm+l8H3T+WIdcZ+5/Nhq+6zKt58EKwhvHxVQRWifzdG1UntdRW
+         Gt2I5uNc0zQD/l0X6k3vV3DTDUttZIgBXBfDWbjNiFmkno6Ll5thaGZEQwc94YJ+PlZx
+         xXCNxfw8BtzVoF2y75xCdVO+wPUbK9/qEfixL9hsF5mwq7dp4rchdqFPKXW98qcClTtT
+         Mteg==
+X-Forwarded-Encrypted: i=1; AJvYcCX+pH07JLqsY2+naDDmK78roLxE8loBoE1yqpyeCdXU00OWuzhqHfX9iENqKObonamwuHrFtLFqa6wc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxov1X24SGAqh5XfAZQlQUgQDA8omqEqccY0ShcJfEx2stper7l
+	eo3xrYcbgQMlf0h41WaU73E4Tt22HEjcLbptyfjiSLFoGhNAQ7cIUjK0DQiEvIkSSWU=
+X-Gm-Gg: AY/fxX4LFmqrs3xLIc4vb32FlhJsmpmab9tslwftd8u2yTxbbtoxR2rIpjczC7M4mpb
+	DNx1X+HYikFzeGTuLl/VAIyW86ygt/n63Fb58e5VnsCfe4bZJZUFesYAF/kIrCIEVOgvo+fAY8k
+	BLnyEKLzJnwY7vhiYbj9JDbQEsLcU6v+xJL+YPjVzNFgrgn1bXbODKAhYxSmUaQaUssvNx2YRMn
+	Y3HduMtladBMi680xq7XwTxnioIK2/r0X06xawHyoqTMXFds831JUOTVLuRRNseKcUiXtduAaru
+	OS9+wF5ErMTejdKDqiLf61JaDYKED5JoIZDMJa4188PMXrFSMKJxUJhK8+RxJqNEZ57iF41abiE
+	XNtz0E4jzg0ew/2NozhTemxKJpOXR0wMzXarJJ+zKCU+RDVEILzlzk/KNTSS/dRWBCyS+ooU81K
+	aa+LqAszXOFGIiiuG+xQ==
+X-Received: by 2002:a05:600c:c162:b0:475:de14:db1e with SMTP id 5b1f17b1804b1-4801e3387cdmr3797345e9.24.1768493427759;
+        Thu, 15 Jan 2026 08:10:27 -0800 (PST)
+Received: from [10.11.12.107] ([86.127.43.8])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f4289b789sm53724735e9.1.2026.01.15.08.10.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jan 2026 08:10:27 -0800 (PST)
+Message-ID: <fcc5405e-189d-4195-8db0-3acf35bbc0a9@linaro.org>
+Date: Thu, 15 Jan 2026 18:10:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/8] dt-bindings: mfd: Add Google GS101 TMU Syscon
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, willmcvicker@google.com,
+ jyescas@google.com, shin.son@samsung.com, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
+ <20260114-acpm-tmu-v1-3-cfe56d93e90f@linaro.org>
+ <20260115-slim-denim-potoo-cad9cb@quoll>
+ <200d34bf-150e-4f8a-b400-2f54863502ac@linaro.org>
+ <e2f028d6-774f-4773-889f-7d56b833067e@kernel.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <e2f028d6-774f-4773-889f-7d56b833067e@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The driver provides sysfs interfaces to control and configure the
-LP5812 device and its LED channels.
 
-The documetation describes the chip's capabilities, sysfs interface,
-and usage examples.
 
-Signed-off-by: Nam Tran <trannamatk@gmail.com>
----
- Documentation/leds/index.rst       |  1 +
- Documentation/leds/leds-lp5812.rst | 50 ++++++++++++++++++++++++++++++
- MAINTAINERS                        |  1 +
- 3 files changed, 52 insertions(+)
- create mode 100644 Documentation/leds/leds-lp5812.rst
+On 1/15/26 5:34 PM, Krzysztof Kozlowski wrote:
+> On 15/01/2026 15:53, Tudor Ambarus wrote:
+>>
+>>
+>> On 1/15/26 3:36 PM, Krzysztof Kozlowski wrote:
+>>> On Wed, Jan 14, 2026 at 02:16:31PM +0000, Tudor Ambarus wrote:
+>>>> Document the bindings for the Thermal Management Unit (TMU) System
+>>>> Controller found on Google GS101 SoCs.
+>>>>
+>>>> This memory-mapped block exposes the registers required for reading
+>>>> thermal interrupt status bits. It functions as a syscon provider,
+>>>
+>>> I don't think this is syscon, but the actual TMU. Syscon is various,
+>>> unrelated system configuration registers.
+>>>
+>>>> allowing the main thermal driver to access these registers while
+>>>> the firmware manages the core thermal logic.
+>>>>
+>>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>>>> ---
+>>>>  .../bindings/mfd/google,gs101-tmu-syscon.yaml      | 37 ++++++++++++++++++++++
+>>>>  1 file changed, 37 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
+>>>> new file mode 100644
+>>>> index 0000000000000000000000000000000000000000..6a11e43abeaa23ee473be2153478436856277714
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
+>>>
+>>> Not MFD either, but soc.
+>>
+>> You are right, it's not a syscon, it's just a normal thermal IP block
+>> from which I need to access the interrupt pending registers.
+>>
+>> Then I guess I shall describe the new binding in bindings/thermal/,
+>> please correct me if I'm wrong.
+>>
+>>>
+>>>> @@ -0,0 +1,37 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/mfd/google,gs101-tmu-syscon.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Google GS101 TMU System Controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
+>>>> +
+>>>> +description: |
+>>>
+>>> Drop |
+>>>
+>>>> +  The TMU System Controller provides a memory-mapped interface for
+>>>> +  accessing the interrupt status registers of the Thermal Management
+>>>> +  Unit. It is used as a syscon provider for the main TMU driver.
+>>>
+>>> No, it is not a syscon provider. Entire last sentence is incorrect. You
+>>> must describe here hardware and this hardware does not provide any sort
+>>> of syscon to any sort of driver.
+>>>
+>>
+>> Indeed.
+>>
+>> I'm going to link the ACPM TMU child node with the TMU node via a
+>> "samsung,tmu-regs" property.
+> 
+> This could be fine, but I actually wonder what's there. What registers
+> exactly. For example modern Exynos 88xx, already with APM block, still
+> have exactly the same TMU unit at 0x1008{04}000 with all typical
+> triminfo, current temperature and thresholds.
+> 
 
-diff --git a/Documentation/leds/index.rst b/Documentation/leds/index.rst
-index 76fae171039c..bebf44004278 100644
---- a/Documentation/leds/index.rst
-+++ b/Documentation/leds/index.rst
-@@ -25,6 +25,7 @@ LEDs
-    leds-lp5523
-    leds-lp5562
-    leds-lp55xx
-+   leds-lp5812
-    leds-mlxcpld
-    leds-mt6370-rgb
-    leds-sc27xx
-diff --git a/Documentation/leds/leds-lp5812.rst b/Documentation/leds/leds-lp5812.rst
-new file mode 100644
-index 000000000000..c2a6368d5149
---- /dev/null
-+++ b/Documentation/leds/leds-lp5812.rst
-@@ -0,0 +1,50 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+========================
-+Kernel driver for lp5812
-+========================
-+
-+* TI/National Semiconductor LP5812 LED Driver
-+* Datasheet: https://www.ti.com/product/LP5812#tech-docs
-+
-+Authors: Jared Zhou <jared-zhou@ti.com>
-+
-+Description
-+===========
-+
-+The LP5812 is a 4x3 matrix LED driver with support for both manual and
-+autonomous animation control. This driver provides sysfs interfaces to
-+control and configure the LP5812 device and its LED channels.
-+
-+Sysfs Interface
-+===============
-+
-+This driver uses the standard multicolor LED class interfaces defined
-+in Documentation/ABI/testing/sysfs-class-led-multicolor.rst.
-+
-+Each LP5812 LED output appears under ``/sys/class/leds/`` with its
-+assigned label (for example ``LED_A``).
-+
-+The following attributes are exposed:
-+  - multi_intensity: Per-channel RGB intensity control
-+  - brightness: Standard brightness control (0-255)
-+
-+Autonomous Control Modes
-+========================
-+
-+The driver also supports autonomous control through pattern configuration
-+(e.g., direct, tcmscan, or mixscan modes) defined in the device tree.
-+When configured, the LP5812 can generate transitions and color effects
-+without CPU intervention.
-+
-+Refer to the device tree binding document for valid mode strings and
-+configuration examples.
-+
-+Example Usage
-+=============
-+
-+To control LED_A::
-+    # Set RGB intensity (R=50, G=50, B=50)
-+    echo 50 50 50 > /sys/class/leds/LED_A/multi_intensity
-+    # Set overall brightness to maximum
-+    echo 255 > /sys/class/leds/LED_A/brightness
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8d840b34c924..394165660e67 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25841,6 +25841,7 @@ M:	Nam Tran <trannamatk@gmail.com>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/leds/ti,lp5812.yaml
-+F:	Documentation/leds/leds-lp5812.rst
- F:	drivers/leds/rgb/Kconfig
- F:	drivers/leds/rgb/Makefile
- F:	drivers/leds/rgb/leds-lp5812.c
--- 
-2.25.1
+It's the same for gs101, the TMU instances have all the typical registers,
+it's just that everything is handled via ACPM but the intpend registers.
 
+>>
+>> Some concern that I have is that I describe the clocks and interrupts in
+>> the ACPM TMU child node. Usually the clocks and interrupts belong to the
+>> node that contains the reg property. But I guess that's alright because
+>> the interrupts property is expected to be in the node that the driver
+>> binds to. For the clocks, by placing it in the ACPM child node, I allow
+>> runtime PM to manage it.
+> 
+> You have to first know whether these clocks and interrupts are going TO
+> the ACPM node.
+
+They aren't, the clocks and interrupts are going to the TMU node.
+
+> 
+> All this looks like designing for drivers, sorry.
+> 
+
+It's fine, I'm not looking to cut corners. Thanks for the feedback, it
+helps us coming up to a better solution.
+
+>>
+>> Do you think the below description is accurate?
+>>
+>> soc: soc@0 {
+>>     tmu_top: thermal-sensor@100a0000 {
+>>         compatible = "google,gs101-tmu-top";
+>>         reg = <0x100a0000 0x800>;
+>>     };
+>> };
+>>
+>> firmware {
+>>     acpm_ipc: power-management {
+>>         compatible = "google,gs101-acpm-ipc";
+>>         /* ... */
+>>
+>>         thermal-sensor {
+>>             compatible = "google,gs101-acpm-tmu-top";
+>>             clocks = <&cmu_misc CLK_GOUT_MISC_TMU_TOP_PCLK>;
+>>             interrupts = <GIC_SPI 769 IRQ_TYPE_LEVEL_HIGH 0>;
+> 
+> This I doubt, really. Why would ACPM child be hooked via CPU clock and
+> interrupts?
+> 
+
+Yeah, that was my concern as well. Then the clocks and interrupts will
+be described in the TMU node, not in the ACPM TMU child. The bindings
+are clear to me now, thanks.
+
+In what concerns the interrupts, I can obtain them via the phandle to the
+TMU node.
+
+The trickier part will be on how to handle runtime pm, I can no longer use
+pm_runtime_get_sync(dev) in the ACPM child. But I think I can handle it with
+device links. Get a pointer to the TMU device node and use device links:
+
+device_link_add(acpm_dev, &tmu_pdev->dev, DL_FLAG_PM_RUNTIME | DL_FLAG_AUTOREMOVE_CONSUMER);
+
+This tells the kernel that when the ACPM TMU driver is active, the TMU
+hardware block must also be active.
+
+Please let me know if this sounds reasonable. I'll start reworking the set.
+
+Thanks for the help, I appreciate it!
+ta
 
