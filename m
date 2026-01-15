@@ -1,116 +1,188 @@
-Return-Path: <devicetree+bounces-255728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A82DD273DD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:13:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBCD7D273DA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:13:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 216AC3047D80
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:58:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 37B0330383A7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF583D3484;
-	Thu, 15 Jan 2026 17:50:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C7A73D4113;
+	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2AAm5y+B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c5mVqqOA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90FC83D331E;
-	Thu, 15 Jan 2026 17:50:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 574EE3C1FF2;
+	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768499446; cv=none; b=WZuGcyhf+sKgqNvyrlpsTEXWGk0TvevgECJ4i901QurBQtkZeiXbUhrvcOMbaJrbZ85GE9dPWEHG1/GdmstTXLTCREqC8GFDd4zvXk8ZMjMkhrP1sYOfSOPJZKDNmqt3DckBiZjZbV1qTww51MwqRqW5cPxMGG2LYsIN8mX7kYU=
+	t=1768499571; cv=none; b=r4iDIa/CY7n5Kn80BlkQq/Ln/PEiFicKOmu9GG/YbBAJmoszMGHnC87F+FXBQtZTi50/9dAk1IzLt+0sPM8zxmecXtp5cofH+OHyDoVtaZJx0PqTyNDVk5WAT7GJpJiR542N5OZ0kMzU7ElPFgvzNGDpKxdAr9UDHGiaVrKp8Nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768499446; c=relaxed/simple;
-	bh=i25XwYpLXKExtbSv+EaBUvAAC9IPVYouqtTSkICRLOI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XzTkfLfgqjvCiBHG50xtggC7UrZ282vjrGg9DIjgv3/VQreugVwpC/nDOQOjbui+ZFZCBSUMwUPwi6j289wvICeMaUAeqgj5jgRu4mlqJ2phTscGJM4g73Uf6VF9GSjx+frRkRCW+zqmZdKPSXMtHgQ29pZqlFvMMIhftq8K1ZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2AAm5y+B; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=+6xb8o2Ek3tuPFQPXpObbPkIvoMHfb2HLA4bjqRg0b8=; b=2AAm5y+BIP3Fmq4cxnlrEl8McR
-	9Coy+P/Sw/9CfvKmeA37H8zDpdfSD+ghP7fGsvCEFdS9V1+H3+I0UPCoSFVSpu50iBGwSdv7kZEcr
-	zfCofb+xjPW52CFxyW4ruicCj190SdVYDcXe4DPTF+iT1QNriiVK5qotGs18dEaGk1XU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vgRUT-002y26-C2; Thu, 15 Jan 2026 18:50:37 +0100
-Date: Thu, 15 Jan 2026 18:50:37 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
- EN7581-7996 support
-Message-ID: <13947d52-b50d-425e-b06d-772242c75153@lunn.ch>
-References: <75f9d8c9-20a9-4b7e-a41c-8a17c8288550@kernel.org>
- <69676b6c.050a0220.5afb9.88e4@mx.google.com>
- <e2d2c011-e041-4cf7-9ff5-7d042cd9005f@kernel.org>
- <69677256.5d0a0220.2dc5a5.fad0@mx.google.com>
- <76bbffa8-e830-4d02-a676-b494616568a2@lunn.ch>
- <6967c46a.5d0a0220.1ba90b.393c@mx.google.com>
- <9340a82a-bae8-4ef6-9484-3d2842cf34aa@lunn.ch>
- <aWfdY53PQPcqTpYv@lore-desk>
- <e8b48d9e-f5ba-400b-8e4a-66ea7608c9ae@lunn.ch>
- <aWgaHqXylN2eyS5R@lore-desk>
+	s=arc-20240116; t=1768499571; c=relaxed/simple;
+	bh=SbiGDK7jyygOqLt6KSZkwL24dXZAECNwCnh0R9ahBI8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AWE4uEiqk8Df887SPmgPg76dw8JjE6WK/0ECgUwMhrCLqRCEOL8whDnLgD/x5VHFJ7h9AryHoz22ryWRndlyvs0YHv3MDMjyVQIm55EKuxwG2HJpqOiKX7jk30l/sjO1bWy4mdhasu8AApFlEdHOTCCyV+psxELk5FggNKOwzXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c5mVqqOA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 37891C16AAE;
+	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768499571;
+	bh=SbiGDK7jyygOqLt6KSZkwL24dXZAECNwCnh0R9ahBI8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=c5mVqqOATHWZPi2fWp2GWMHCEMldRrSgIIQqgNRq3vzDIA6wObuWGHgSMXgeC2gTZ
+	 uCalfRXvdAuLZnaEcUxrempp6a4m8qkyA+FI1SZ+rdRJ4yzkf98pdJgaUt0EtVbe+z
+	 tisT0HP/7NQF/ZZpBGKdNfXbz16ewWGiusx0B247JVobd8DgCz/9C2DIhPOZWERLsU
+	 iwCKZjJ3mVUbYCKgkMStsh6etdFTc8EnOf+o1sOsLOD6fI3crICA/uTG3iKQGN/nDJ
+	 uFpmAwTUmLvEyQ/vNZ2aSbqv0df2q89P2qT70CANS9IhZVeVkR3rtSxWgwGPISpB8V
+	 DxWrjQLNsxpow==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 296CED46608;
+	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
+Date: Thu, 15 Jan 2026 18:52:46 +0100
+Subject: [PATCH v2] arm64: dts: amlogic: add the type-c controller on Radxa
+ Zero 2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aWgaHqXylN2eyS5R@lore-desk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260115-arm64-dts-amlogic-radxa-zero2-additions-v2-1-948bb0479a45@pardini.net>
+X-B4-Tracking: v=1; b=H4sIAG0paWkC/5WNSw6DIBQAr9Kw7msAP9Gueo/GBfoe+pIKBoixN
+ d691Bt0ObOY2UWkwBTF/bKLQCtH9i6Dvl7EMBk3EjBmFlrqWipVgglzXQKmCGZ++ZEHCAY3Ax8
+ KXoNB5JQTEVpZVWVre8KCRK4tgSxv5+nZZZ44Jh/e53hVP/v/Y1UgoemrAW2hG4v0WExAdnxzl
+ ER3HMcX81QDj+AAAAA=
+X-Change-ID: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ricardo Pardini <ricardo@pardini.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3379;
+ i=ricardo@pardini.net; h=from:subject:message-id;
+ bh=o6AdblgGh5ZdlDwrmpT3OM+dmaO8Ys6WxijQzUk1YWc=;
+ b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpaSlypZjIsZFbEWdFKZ7C9I9qk7XcIl/qzQUBa
+ S+t3dWpDrOJATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaWkpcgAKCRA7Xj/jnsft
+ 6ZGUCACHpy7luG8T/fuQ+ektuogyYcMdc9EJcgK8F2Yw6FKSqqUEOADHTiEY0VBQhhl5FXdmqEt
+ ME1F0D1GKoQ/XfjtKNGwSZi9t2pstp4LkLIiLEcjBWjRFAkUcjN17AYOVuZr69Wnjj9M4bdKjT5
+ rrkbFhXbzjIws3ayW2eZYVZxqSTRelFe3qdYDA4UBfbEn1w0XfRtG1WVKqmS81YzA4kPHvlTw6S
+ gJfRZjREETuGIRtZXmPoQK7qsyEy4ZEK6UJOeCFdApVUyJ2DrLAdfBit08qghdDpGKLVf9aPr+t
+ lIqJivTfrQGUU/klUmFoW820L0AWnNuNzE9MSzs0cBUeSgid
+X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
+ fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
+X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
+ auth_id=588
+X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+Reply-To: ricardo@pardini.net
 
-On Wed, Jan 14, 2026 at 11:35:10PM +0100, Lorenzo Bianconi wrote:
-> > > In the current codebase the NPU driver does not need to access the WiFi PCIe
-> > > slot (or any other external device) since the offloading (wired and wireless)
-> > > is fully managed by the NPU chip (hw + firmware binaries).
-> > 
-> > Are you saying the NPU itself enumerates the PCI busses and finds the
-> > WiFi device?  If it can do that, why not ask it which PCI device it is
-> > using?
-> 
-> nope, we do not need any PCI enumeration in the NPU driver at the moment
-> (please see below).
-> 
-> > 
-> > Or this the PCI slot to use somehow embedded within the firmware?
-> 
-> in the current implementation the NPU driver does not need any reference to
-> WiFi or Ethernet devices. The NPU exports offloading APIs to consumer devices
-> (e.g. WiFi or Ethernet devices). In particular,
-> 1- during NPU module probe, the NPU driver configures NPU hw registers and
->    loads the NPU firmware binaries.
-> 2- NPU consumers (ethernet and/or wifi devices) get a reference to the NPU
->    device via device-tree in order to consume NPU APIs for offloading.
-> 3- netfilter flowtable offloads traffic to the selected ethernet and/or WiFi
->    device that runs the NPU APIs accessible via the NPU reference obtained via
->    dts.
-> 
-> The issue here is the NPU firmware binaries for EN7581, loaded by the NPU
-> driver during NPU probe and used for offloading, depend on the WiFi chipset
-> (e.g. MT7996 or MT7992) available on the EN7581 board (we have two different
-> NPU binaries for MT7996 offloading and for MT7992 offloading).
+From: Ricardo Pardini <ricardo@pardini.net>
 
-Maybe i'm getting the NPU wrong, but i assumed it was directly talking
-to the Ethernet and WiFi device on the PCIe bus, bypassing the host?
-If so, it most somehow know what PCIe slots these devices use?
+The Radxa Zero2 has an FUSB302 controller on i2c3 at address 0x22 and
+INT# wired to GPIOA-13; include a minimal connector.
 
-   Andrew
+Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+---
+This series adds a few things missing from the Radxa Zero 2:
+
+1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
+   (dropped as was already picked up in [1])
+2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22.
+   Describes it minimally, adding no functionality, but reserving the 0x22
+   address since i2c3 is also exposed on user-accessible 40-pin header.
+
+Krzysztof: v1 followed the node name I had found used in amlogic; I've
+           looked around more broadly and found 'fusb0: typec-portc@22'
+           to be quite popular, so went with this. Hope it is acceptable.
+
+Neil: I've fixed the interrupts pin, and described the required connector
+      even more minimally than you suggested, as to avoid including pd.h.
+      It is also done this way in a few other boards, hope it's correct.
+      I've rebased your/Christian's full-enablement patches on top of this,
+      tested with an r8152 which then works both ways, it's available at [2]
+
+[1] https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
+[2] https://github.com/rpardini/linux/tree/radxa-zero2-fusb302-minimal-plus-full-impl-rebase
+---
+Changes in v2:
+- npu: dropped NPU enablement patch as it was already picked up by Neil
+- fusb302: dropped 'status = "okay"'
+- fusb302: declare as 'fusb0: typec-portc@22' instead of 'fusb302@22'
+- fusb302: use correct pin (74 -> gpioA13) for interrupts
+- fusb302: add a (very minimal) connector so dtbs_check passes
+- Link to v1: https://lore.kernel.org/r/20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net
+---
+ .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    | 34 ++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+index 1e5c6f9849456..5d32c04de938e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
+@@ -364,12 +364,46 @@ hdmi_tx_tmds_out: endpoint {
+ 	};
+ };
+ 
++/* Also exposed on the 40-pin header: SDA pin 3, SCL pin 5 */
++&i2c3 {
++	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	fusb0: typec-portc@22 {
++		compatible = "fcs,fusb302";
++		reg = <0x22>;
++
++		pinctrl-0 = <&fusb302_irq_pins>;
++		pinctrl-names = "default";
++		interrupt-parent = <&gpio_intc>;
++		interrupts = <74 IRQ_TYPE_LEVEL_LOW>;
++
++		vbus-supply = <&ao_5v>;
++
++		connector {
++			compatible = "usb-c-connector";
++		};
++	};
++};
++
+ &ir {
+ 	status = "disabled";
+ 	pinctrl-0 = <&remote_input_ao_pins>;
+ 	pinctrl-names = "default";
+ };
+ 
++&periphs_pinctrl {
++	fusb302_irq_pins: fusb302-irq {
++		mux {
++			groups = "GPIOA_13";
++			function = "gpio_periphs";
++			bias-pull-up;
++			output-disable;
++		};
++	};
++};
++
+ &pwm_ab {
+ 	pinctrl-0 = <&pwm_a_e_pins>;
+ 	pinctrl-names = "default";
+
+---
+base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
+change-id: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
+
+Best regards,
+-- 
+Ricardo Pardini <ricardo@pardini.net>
+
+
 
