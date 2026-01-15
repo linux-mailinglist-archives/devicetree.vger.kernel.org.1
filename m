@@ -1,59 +1,56 @@
-Return-Path: <devicetree+bounces-255462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F9C3D23605
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:13:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFB5FD235F7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:13:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 903CC30A32E5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:09:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 754653006E2A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:13:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB51344024;
-	Thu, 15 Jan 2026 09:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D64B34D902;
+	Thu, 15 Jan 2026 09:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+5YXG2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iEWsq/6D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A022C029D;
-	Thu, 15 Jan 2026 09:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D410B347FD8;
+	Thu, 15 Jan 2026 09:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768468159; cv=none; b=rP/bTKrJWeCT+sLZ9F0pZGiwvAUU4ViCF7X9ISDIKN2tITuRDLfD8uPvliZj8W7w/iC+37+WvZSAw/WjroWHqux51BYL5ebIf6V4ntV3pTHejxCtfknFs8fDeQGdfyF+DarNVUG7JyPXDoZPfWqOYA6O16TgNdbZxdba9sm3Dzg=
+	t=1768468385; cv=none; b=kpWxLtcjRRCckXuo3HpET+5gK0wb0ef1oba/qU+LoS9wagPHo057NoSOLYCg2BXn63QHaX8wTXRhkzqy0c8rOHpioKFUL4TKFnXJyfj/2BFcXTpt64ztgwHWfu3rHVmdvJBg9GuHYb6thSFbQaVnNAPTF7TpKb1wE5FKOzbsCf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768468159; c=relaxed/simple;
-	bh=j2FfIGKRfnEPYzvSe7Oho7jWLI9ZgGOALELDlonxVyY=;
+	s=arc-20240116; t=1768468385; c=relaxed/simple;
+	bh=ktf5t8rKckanHeeSMUq0v6HMAMPm4fbmn7zo57Bhq4Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dreu132q0k0l9n0Ji8sXyat2yJJ/WyTMhbiDu2M0zb/LbTzsjdONTlJNRv7tJMcaBVAXsHfPLcULnDQ1Lx3a+s1KrH9n3vHx7wJlkibkxRRPXtsQuhMuAQvyLl06rvFO4H1sQc7QLV2Vd8ZvGREKyx+w4IRZKFvKP2FqjzwoDUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+5YXG2Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAD16C116D0;
-	Thu, 15 Jan 2026 09:09:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jbWt+JouIK0hRO1XrBDwHNl12BkGrQOjtlKkFokftqthpbkXT8wgt9coa5XyAUyptk7tvIOYuokgoQzGEVtQXbZ4WD58nXO10CreJh/ygpjzU8LH1FwR7WKWCC4o7GXVA9mCydzOgbp7APombAagtl71SPHQ9wKoVwZkuenKJPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iEWsq/6D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1DC0C116D0;
+	Thu, 15 Jan 2026 09:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768468159;
-	bh=j2FfIGKRfnEPYzvSe7Oho7jWLI9ZgGOALELDlonxVyY=;
+	s=k20201202; t=1768468385;
+	bh=ktf5t8rKckanHeeSMUq0v6HMAMPm4fbmn7zo57Bhq4Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U+5YXG2YD4lO08H9gCgLRvr7CTvfb303LA3UgJgfwWWP2hsDddULO/+2c85T8vuBE
-	 3HxubtMNXf+y8MTMYBrMhP3ln5PADGPq+WSVHmaB89/ZngJG/edD3JBeFiHXePoVJK
-	 Ak56Bna8aV+EYuttkD+KPZ5ncgOlQMZXfioWmxR8Zo4zJl8caeFe5zh0eDpkrTUv5R
-	 8FOjEzY/gy6+dr5wSdq2YqEyMsQl3FKB1nH7r3nOmhqzB4kFi5DRD0u7ARZHxedFjH
-	 QRm947rQCPqhFHPkoOSKHqSeHWeyk5AV/dBrHxvJDA4SGgUaU3Vmt03cEbQy/bRIml
-	 sMi8qWC5JDdzA==
-Date: Thu, 15 Jan 2026 10:09:16 +0100
+	b=iEWsq/6DAeW8byfxQ/m6OXGey6suH6ODj8vI03hO2Pn1ejQmO9PR2+1vfPwG9wskG
+	 XkIzrBTRxQdt7eSQ9Qs/niPpZ9zCU/S3i4ow7NSwOrhfmNV5yam7MgdqrE6Yv0+ga1
+	 Glk6JU6fRlVZl5U+dfy+9JS5epONszMTHOuDTcjGOC5J+atmjj51x108y6l6A8khWD
+	 +sGwY0y1smCaj7z1jigg2TjHnRKbJCm5ZmH89B0A773rAzNyx7wjVkEAZGUOsrn0bU
+	 WJqFtSBO8pDRG5TQYoDvtQces4R9SbtFjfA1xsFennx7MSq31EDvkodvFra/7uKBa2
+	 XHxzrQPFGUhQw==
+Date: Thu, 15 Jan 2026 10:13:02 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 3/4] dt-bindings: can: renesas,rcar-canfd: Document
- RZ/T2H and RZ/N2H SoCs
-Message-ID: <20260115-premium-piquant-coua-2f7b4e@quoll>
-References: <20260114154525.3169992-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260114154525.3169992-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, heikki.krogerus@linux.intel.com, 
+	gregkh@linuxfoundation.org, abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: soc: qcom: qcom,pmic-glink: Update
+ X1E80100 compatible string
+Message-ID: <20260115-powerful-impala-of-music-d281eb@quoll>
+References: <20260114211759.2740309-1-anjelique.melendez@oss.qualcomm.com>
+ <20260114211759.2740309-2-anjelique.melendez@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,28 +59,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260114154525.3169992-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260114211759.2740309-2-anjelique.melendez@oss.qualcomm.com>
 
-On Wed, Jan 14, 2026 at 03:45:24PM +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, Jan 14, 2026 at 01:17:56PM -0800, Anjelique Melendez wrote:
+> Currently, the X1E80100 compatible string is defined to fallback onto
+> SM8550 which is incorrect as X1E80100 and SM8550 are not compatible
+> devices. Update "qcom,x1e80100-pmic-glink" to be a standalone compatible
+> string.
 > 
-> Document the CAN-FD controller used on the RZ/T2H and RZ/N2H SoCs. The
-> CAN-FD IP is largely compatible with the R-Car Gen4 block, but differs
-> in that AFLPN and CFTML are different, there is no reset line for the IP,
-> and it only supports two channels.
-> 
-> Sync the resets and reset-names schema handling with other CAN-FD SoCs so
-> DT validation stays consistent and maintainable.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v3->v4:
-> - Dropped Reviewed-by from Geert due to below changes.
-> - Updated commit message.
-> - Moved single compatible entries into an enum and to below oneOf.
-> - Synced the resets/reset-names handling with other similar SoCs.
+> For now leave the original X1E80100 definition with fallback to SM8550
+> as is inorder to not break current definitions. This will be removed after
+> a grace period.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Just do it in one commit. I don't understand what is the benefit of your
+approach?
+
+You still break ABI, still break users, just silently so they will not
+notice they have isues?
 
 Best regards,
 Krzysztof
