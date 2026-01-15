@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-255409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BF0D22B48
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:05:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 448A5D22B3F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:05:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E93703051C76
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:05:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3A8CA301D63A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4C3326D76;
-	Thu, 15 Jan 2026 07:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE72332572E;
+	Thu, 15 Jan 2026 07:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="W+g20hbl"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="Rnm90M0B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40AB522DFA4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4772DC781;
 	Thu, 15 Jan 2026 07:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768460721; cv=none; b=GGVkukc7ABhnqM8YuxRrUabF2KlBjW6cTyRUd0ZAuGNIAaC+MMORvbdVod631aKFG8oEt9LZJoBiBw+x61bObbsistKZME5VxTREYeyTcuVrlR4p4mggkSORzcjUSS6JjDxdu5YEA+dfQ+4fKrKmAomZ/+dIklMAqvcnbDx7jqQ=
+	t=1768460719; cv=none; b=GlRaB25N3fCSwBxKHSjJ5WlieeeV59KHODash1YkXUu02z8Ei9lFTEhoU89h0GZeOrgiiuIz0rJPkkBkqmbaBid7wd2+4xJoHOz38QkXLDMYQGto7ekT1Mg4YpnNqQl0V3dB675fKai4wbft+oQtC//onEmuCJfx8IP/A8bu0eQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768460721; c=relaxed/simple;
-	bh=oR65bwc/N1LXK9noAyyb9pwwO2AltIi11B+NQHo8Kmo=;
+	s=arc-20240116; t=1768460719; c=relaxed/simple;
+	bh=t94hy6TYU8/83BVFilV/U5P1RrswKHTMeFjGdH+LtpU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KzUW66gc2GlCkCRL9g2Icnio4ACBvxIiN5oOZTMUVP+xjci1X4O/ylN/Zq4JhS+lrMTL8YcmqrsQpzRNP4YcYFQfATeW8qC0E8YDuZQMOLhI2DIhloVsu4Bn2sPmZhjEJzoWdqTzru8OuvdTxs+RGdlTHz7AlMoP+jqzQJ5x104=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=W+g20hbl; arc=none smtp.client-ip=150.107.74.76
+	 Content-Type:Content-Disposition:In-Reply-To; b=mXVWSwPHHezFiYhxq1qf+iWGweBtdAUbmTpwcFO1HUeBwJlHwhBExquSF0vA/Dsd++oM68z2pHziN5AfZUOV35dXhJCg72ZjjjjhtVPWd9SsH8n0KOEDrZaXUPT0UJqkRCMmh9W15xBNDF4dxtpwUln68yBBeEDwMiqO+YA5Yi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=Rnm90M0B; arc=none smtp.client-ip=150.107.74.76
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gibson.dropbear.id.au; s=202512; t=1768460715;
-	bh=5z3a7n2eITNYHyL73jcXA+OXs/PddEU63wV9SE/Wn8c=;
+	bh=FvPfE7dEWZemmuJqgy4/9hDQmDelsnLzzN4g/RRsfG8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W+g20hblm2ki78HsVa/1lROrjbPTxR5o3bZIcZXr1rpZOSSoSpO+TT+ow3NU01ILc
-	 KiwRP2nhLle0Y1L7hsrDUMjLeNP1+L7fQ2/r8Pstojnl9HgrOC87wRDXySsCxRaIpD
-	 gQNQZADDEPdpzfix4lwLThaMFm6NWiHxRuQeRuxz+hfPl9/naA2PDLN1xnYDu90Oy9
-	 HhBISeMLV9ff5SPwh8vrxQXSeI4FzwzVkcxLKtCruwQZg5HSgdiLaDkatAcdbprGXA
-	 aNaG6NuOOHqHOlX3DKhThRLNJjiY9HwH/fnW7LZdjxmO1aYQLKZkCzJKAZGfh8K7Ok
-	 agUEsGpEEN8QA==
+	b=Rnm90M0BnMu4utWsTQY1xyaowyf9Esr9AFcF8e/h4OVJQGa3j0dVeOCE62a2YlBj1
+	 6Oew3HRzk09R5DHIQP6wxYuIqdf9SsQUBPulI8J3soO8BFLdrFicE0Y3qASzo/j8ft
+	 Ov94VmC4M2y6RA+MYgYeIIH62QaOCrry09KXVA2M3PIN3pMabR6GcFCkAat+KtHnTY
+	 iwj+AqZbQxjNru+B5ZTwGZEl9v3UhbUE20R9IMYwZ/7qkocVGyVJVXp5FFOEdNyaXo
+	 OaTSqJSjHQU72aR/HN2ijkmVzrfJVWvad8+NCzkjooSwh7FV3CXPkqK5iZoNCJsewT
+	 +rdpvZ8B66hyQ==
 Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4dsDWv6Gsvz4wM1; Thu, 15 Jan 2026 18:05:15 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 17:55:05 +1100
+	id 4dsDWv6Q9bz4wM5; Thu, 15 Jan 2026 18:05:15 +1100 (AEDT)
+Date: Thu, 15 Jan 2026 17:56:07 +1100
 From: David Gibson <david@gibson.dropbear.id.au>
 To: Herve Codina <herve.codina@bootlin.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
@@ -54,11 +54,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
 	Ian Ray <ian.ray@gehealthcare.com>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 49/77] dtc: Handle orphan nodes in
- dti_get_xxx_by_yyy()
-Message-ID: <aWiPSQOCipvvItyo@zatzit>
+Subject: Re: [RFC PATCH 51/77] dtc: Avoid NULL fullpath for nodes in orphan
+ trees
+Message-ID: <aWiPhz92DBQImUw1@zatzit>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-50-herve.codina@bootlin.com>
+ <20260112142009.1006236-52-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,176 +66,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bEl2kBzIw+DR38I3"
+	protocol="application/pgp-signature"; boundary="/V7AOZv4r4IZse5l"
 Content-Disposition: inline
-In-Reply-To: <20260112142009.1006236-50-herve.codina@bootlin.com>
+In-Reply-To: <20260112142009.1006236-52-herve.codina@bootlin.com>
 
 
---bEl2kBzIw+DR38I3
+--/V7AOZv4r4IZse5l
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 12, 2026 at 03:19:39PM +0100, Herve Codina wrote:
+On Mon, Jan 12, 2026 at 03:19:41PM +0100, Herve Codina wrote:
 > Orphan nodes have been introduced recently.
 >=20
-> Retrieving a node, a property and/or a marker from an orphan node tree
-> is perfectly legit.
+> The process_checks() function uses fullpath in several places and
+> crashes due NULL pointer dereferences if fullpath is NULL.
 >=20
-> Those retrievals are performed by the dti_get_xxx_by_yyy() functions
-> family.
+> In order to have process_checks() function running without crashes with
+> orphan trees (i.e. trees based on orphan nodes), the fullpath of node
+> available in those orphan trees must not be NULL.
 >=20
-> Update them to handle orphan nodes.
+> Fullpath values are built by dti_fill_fullpaths(). Update it to handle
+> fullpath in trees based on orphan nodes.
+>=20
+> Use a simple "__orphan__/" prefix to avoid the NULL pointer and to be
+> distinct from the root node ("/" prefix).
+>=20
+> It is worth noting that this "__orphan__/" prefix is a temporary prefix
+> and it will be change later when support for reference by path involving
+> nodes in orphan tree is added.
 
-I think at least some of the orphan node stuff can be separated from
-the import/export symbol stuff, and dtb changes.  That can be reviewed
-and merged first, which will simplify the review task.
-
-The idea is this:  at the moment, when we have multiple tree sections
-in the dts, we merge them all together into a single tree as we parse.
-The idea would be that we first make a list of all those sections,
-then perform the merge as a separate step from parsing.
+It might be simpler to eliminate the fullpath field entirely, and
+instead have a function that calculates fullpaths at the point you
+need them.
 
 >=20
 > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
->  livetree.c | 42 ++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
+>  dtc.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 >=20
-> diff --git a/livetree.c b/livetree.c
-> index 057997a..fa9daff 100644
-> --- a/livetree.c
-> +++ b/livetree.c
-> @@ -789,6 +789,7 @@ static struct node *get_node_by_ref(struct node *tree=
-, const char *ref)
+> diff --git a/dtc.c b/dtc.c
+> index 59f4d77..5cf8f31 100644
+> --- a/dtc.c
+> +++ b/dtc.c
+> @@ -47,9 +47,14 @@ static void fill_fullpaths(struct node *tree, const ch=
+ar *prefix)
 > =20
->  struct node *dti_get_node_by_path(struct dt_info *dti, const char *path)
+>  static void dti_fill_fullpaths(struct dt_info *dti)
 >  {
 > +	struct node *orphan;
->  	struct node *node;
-> =20
->  	if (dti->dt) {
-> @@ -797,11 +798,18 @@ struct node *dti_get_node_by_path(struct dt_info *d=
-ti, const char *path)
->  			return node;
->  	}
-> =20
-> +	for_each_orphan(dti->orphanlist, orphan) {
-> +		node =3D get_node_by_path(orphan, path);
-> +		if (node)
-> +			return node;
-> +	}
 > +
->  	return NULL;
+>  	/* Fill fullpaths for the root node */
+>  	if (dti->dt)
+>  		fill_fullpaths(dti->dt, "");
+> +
+> +	for_each_orphan(dti->orphanlist, orphan)
+> +		fill_fullpaths(orphan, "__orphan__/");
 >  }
 > =20
->  struct node *dti_get_node_by_label(struct dt_info *dti, const char *labe=
-l)
->  {
-> +	struct node *orphan;
->  	struct node *node;
-> =20
->  	if (dti->dt) {
-> @@ -810,11 +818,18 @@ struct node *dti_get_node_by_label(struct dt_info *=
-dti, const char *label)
->  			return node;
->  	}
-> =20
-> +	for_each_orphan(dti->orphanlist, orphan) {
-> +		node =3D get_node_by_label(orphan, label);
-> +		if (node)
-> +			return node;
-> +	}
-> +
->  	return NULL;
->  }
-> =20
->  struct node *dti_get_node_by_phandle(struct dt_info *dti, cell_t phandle)
->  {
-> +	struct node *orphan;
->  	struct node *node;
-> =20
->  	if (dti->dt) {
-> @@ -823,11 +838,18 @@ struct node *dti_get_node_by_phandle(struct dt_info=
- *dti, cell_t phandle)
->  			return node;
->  	}
-> =20
-> +	for_each_orphan(dti->orphanlist, orphan) {
-> +		node =3D get_node_by_phandle(orphan, phandle);
-> +		if (node)
-> +			return node;
-> +	}
-> +
->  	return NULL;
->  }
-> =20
->  struct node *dti_get_node_by_ref(struct dt_info *dti, const char *ref)
->  {
-> +	struct node *orphan;
->  	struct node *node;
-> =20
->  	if (dti->dt) {
-> @@ -836,6 +858,12 @@ struct node *dti_get_node_by_ref(struct dt_info *dti=
-, const char *ref)
->  			return node;
->  	}
-> =20
-> +	for_each_orphan(dti->orphanlist, orphan) {
-> +		node =3D get_node_by_ref(orphan, ref);
-> +		if (node)
-> +			return node;
-> +	}
-> +
->  	return NULL;
->  }
-> =20
-> @@ -844,6 +872,7 @@ struct property *dti_get_property_by_label(struct dt_=
-info *dti,
->  					   struct node **node)
->  {
->  	struct property *property;
-> +	struct node *orphan;
-> =20
->  	if (dti->dt) {
->  		property =3D get_property_by_label(dti->dt, label, node);
-> @@ -851,6 +880,12 @@ struct property *dti_get_property_by_label(struct dt=
-_info *dti,
->  			return property;
->  	}
-> =20
-> +	for_each_orphan(dti->orphanlist, orphan) {
-> +		property =3D get_property_by_label(orphan, label, node);
-> +		if (property)
-> +			return property;
-> +	}
-> +
->  	*node =3D NULL;
->  	return NULL;
->  }
-> @@ -859,6 +894,7 @@ struct marker *dti_get_marker_label(struct dt_info *d=
-ti, const char *label,
->  				    struct node **node, struct property **prop)
->  {
->  	struct marker *marker;
-> +	struct node *orphan;
-> =20
->  	if (dti->dt) {
->  		marker =3D get_marker_label(dti->dt, label, node, prop);
-> @@ -866,6 +902,12 @@ struct marker *dti_get_marker_label(struct dt_info *=
-dti, const char *label,
->  			return marker;
->  	}
-> =20
-> +	for_each_orphan(dti->orphanlist, orphan) {
-> +		marker =3D get_marker_label(orphan, label, node, prop);
-> +		if (marker)
-> +			return marker;
-> +	}
-> +
->  	*prop =3D NULL;
->  	*node =3D NULL;
->  	return NULL;
+>  /* Usage related data. */
 > --=20
 > 2.52.0
 >=20
@@ -247,25 +137,25 @@ david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
 				| around.
 http://www.ozlabs.org/~dgibson
 
---bEl2kBzIw+DR38I3
+--/V7AOZv4r4IZse5l
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloj0gACgkQzQJF27ox
-2Gc7eRAAqjX4r6lNs0/gKO6AEGXtNZxrU4qaYqpu6f46Q+y2hq1Smi6RAQ6uXsz5
-huKjL2mbwGICIx6JiwXJPjGIYDbsYsvuMvawkVXvKjmFyMtVOfmS5hJmduG5m3Ov
-AuUy2nhul6NUhJRnoh1BtOA4CQfiR1ag4dEmh4SJEsobfDriC8Wff/pmnIr5s1oV
-LIPECrbf7N4zoU0QKn5fRqEVnFipHxfJtovG8s3BoA/rZmZRS8KOn/zGptrgxzoL
-T9zVtDhvG4MLSfJOJyaTgxJVXYoEwXgy6y0GIg743oMupLmWTnCafSukQ/o6msJA
-KE5itFLLiIN0bE50Sfk0QFqdW+haMe8Cteh1ozX71n7RGF4q1SEyWnGqN9Mxgmbu
-26qg7BUfRH7Y4svfnODsym9o9jygoUBh9GdeDUSVN+jrD2RhiGKKrRFi8le2iFzL
-a9Tag81TtQXGfXYi6X8g+OPX0yU8qXFgedop/+7ULZiY4i8FmSf0qOwCwMWXkoVy
-0WlMa5zev9czou/H6Loic/VbeceRiS0ZmAoGFFJgJIBleyMpk6stNNS0vF1laUBX
-6nC5yaHgC8se7roZEgYKh81ApPjgRB2BqHC44ZfTKtehTNPCye/DILzENxPOhsHS
-TeMp7zzfommBMmrTfQgcUCJsbNt7nAd7gwz8yIba5h2YyDkNjAA=
-=XHOw
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloj4cACgkQzQJF27ox
+2GdeEA//QngfyJtHSGb7EzSYkD/tdMl7RFk2CaOHxwGkLLZYL79i5AjbBYZM/L7F
+pCtdCmtyEhRRN0N58Jd3OTGYf+WGIC3DpzzpwJ3XbwUANVoL98SoATxJNtiyJNVh
+hvgy5j4OHuxXknFgY5kOXZ9GtPxec+PvXyp6frDpPJNIBxSsi4r1IWRInNatupIR
+qQa9DVDFCsD3P6UL/VK0EacF+hrq8YzK5qANmzjJE4l9gX8ADWR6AVMVfM75/nmn
+KotTaSBBEBcP1NSv292hYF/C21eyKZGIiwfeY6ypA/BNzBOqFbomtWwVn+brL2YP
+H4+0s/CwYJ8HKzYyBNrih6n9zyEev7GpP1pjQJGSgh6hWK52NeoL9uigSj+6vx9f
+7eBQEdk/am3pdPKSEZ03SC+ZnqP6tmnpYIaloVbMxCHAYkJvrjiqtmjN5Mtmzls9
+mXEqDGniE0voIeqDar8gXDSCSWzReZLGoHv5/PYJDUUCp9FKg35Ggilpja9w34Ea
+CBkEIVyrrWUPmA9dSoUWVFVCmF4WsM9FZVkYj6WEfvTvB5axXKKq/8Md2NeXpfpR
+37w8BeBSPaAWh051vDZBpuugwv4F6pdq1lVoHeV6p0Wex4XaiI4c9u29roNpOQiD
+CcXRTUeAtRFqDyxm8V1w4ECBNGEp6h6Jzs6DyWb3YtjD5x0bQ34=
+=CdWX
 -----END PGP SIGNATURE-----
 
---bEl2kBzIw+DR38I3--
+--/V7AOZv4r4IZse5l--
 
