@@ -1,135 +1,156 @@
-Return-Path: <devicetree+bounces-255704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACC15D2604E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:02:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB854D26057
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:02:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA1FE30A4EC2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:58:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E44A9302356B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B6F3B9619;
-	Thu, 15 Jan 2026 16:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B732D7DD7;
+	Thu, 15 Jan 2026 17:00:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hX8LMlh+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AUfdRN5y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A0CF3BC4EE;
-	Thu, 15 Jan 2026 16:58:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341ED29C338
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 17:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768496338; cv=none; b=vGoFzRrIKfI9W9GEV/E7TlAODlJla06zDVTLEupQCQ6ujhdL8AmIc8H1rmwd06SNnZGApVIDidEeHIPpoJHVDzJoNLrJ9+DbPV6BISQm1n5Cvh9sUxoEpExwO2QBkMYGvkyV8MbEftrx3mBPWEygLzdC3N/fosuYBlLM5vZJhwk=
+	t=1768496425; cv=none; b=GrwDfx9B1TLzJiMlwXO0T75O28oDSOlPOo6Z2Vw4SQZEzG2VwCmztYa3fViD1nm9fPI5WQK66vSyZWmDcpARaIdXnzMx2N3zmtasECRXnnPOZJqh1+RnIYjezEzBetz7H9zxOkhwEbM9y+/M9SriIzDkCXx+I4lBn0/mGDbvUf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768496338; c=relaxed/simple;
-	bh=MXUN7uVlUmr9dcSClQLwGriHQzZeir9abbbMwP99laI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d/JZgkOsU+uIL/AFHDsXhbYpul8J4D1MZAfoL5PBp+z+1m839H7txAOgyOdUmiQPDf3kjNVw3NXiVYfanc5GN2rVWAv25Y64ALHXCDAxkFJNvNugYZclop0lVAZQnLzXh+g02wvFGgpuRJTl+fQdVFGiPCVTmlgAWatS0fnitOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hX8LMlh+; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768496337; x=1800032337;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=MXUN7uVlUmr9dcSClQLwGriHQzZeir9abbbMwP99laI=;
-  b=hX8LMlh+3Toz//7YkDRlsj2wUg824yyZM46K9BjtXYVwRri0W9HX7lzw
-   X1c75AodPy/Iw6fgrEoXUzx86prmc3x6MtqyTJiucBuQ2sh54qLlVUXXf
-   A16exZ4SjqUvnI3NgEs/RyI/+fVaMz5EblVwhjPm5Lsy2DEIY70aY7pFB
-   0iZ8uax5z8WedmPhHGvOiQ7SDjgGmXQbIgEu/zcXOOu7v/x631rEESis7
-   V8ZvvXdU02HI6o7fOYa0wimwAaPjFuVq3oGbjuaCYtd1xtA/jOHvJbWDt
-   YaM+4qlrnlzPkcGuP7SKTIxvTsa7FX93uMYfi14QHw76ZUDwA8Hu7O8vn
-   g==;
-X-CSE-ConnectionGUID: +wcd/EoTTquNOsLnxU/0zw==
-X-CSE-MsgGUID: BkPKhX0RSnenmUl/WCnP2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="69897277"
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
-   d="scan'208";a="69897277"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 08:58:50 -0800
-X-CSE-ConnectionGUID: E0Q2A8BiS5eZn64q1EGqaQ==
-X-CSE-MsgGUID: C3nGcwgwQh2RXDgvhUNxfg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
-   d="scan'208";a="205276808"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.216])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 08:58:46 -0800
-Date: Thu, 15 Jan 2026 18:58:44 +0200
-From: Andriy Shevencho <andriy.shevchenko@linux.intel.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Jonathan Brophy <Professor_jonny@hotmail.com>,
-	Jonathan Brophy <professorjonny98@gmail.com>,
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-Subject: Re: [PATCH v5 0/7] leds: Add virtual LED group driver with priority
- arbitration
-Message-ID: <aWkcxGHINusTftex@smile.fi.intel.com>
-References: <20251230082336.3308403-1-professorjonny98@gmail.com>
- <20260113115701.GG1902656@google.com>
- <DS0PR84MB3746D50A75BCB4DB053E008E9F8EA@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
- <20260115150725.GF2842980@google.com>
+	s=arc-20240116; t=1768496425; c=relaxed/simple;
+	bh=ZXnoivxVBUQa2U3uRATn/SAEZubNzQew1oqA4+pLE1I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZF18W2NSmeu0QUz9IfzOy4rah3XK5sLAoYyw3ia/bYLFSrzG0VhrVa6uMvyl8OgoxXzuXAPTEyJ+qrn4aBjE5Vd8S5EhdcfW9aeX1Ibkro9okeIzLfMoxjPcuYlgMb5c7HMg60HDA+zsd3arTu9zs1gf9jc+DVdDEg5IiUSUM8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AUfdRN5y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18370C116D0
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 17:00:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768496425;
+	bh=ZXnoivxVBUQa2U3uRATn/SAEZubNzQew1oqA4+pLE1I=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=AUfdRN5ySROodg1BI3o15xiH4JsoMDB877j4dTgRH9k4raAv+e8hL8Ys7TKq70nOl
+	 kOZj3x1P3SdEOf7vQMx3JWxurj0yDmBotvXmG1sdjcm6SdCDxNgc8QIaHHFqP6tfXw
+	 FcTmkSbvsDQYXzVOl++OiBz9xlABaYom7L5n1cRAZ/8M/AaXY/2NK2bIj1a3gUWdTr
+	 XMJO44WzN24RiyL3XzsJG4YminHPHWYgP7UWymraxFOSOX3QgltGp/RlKB6DpqzpfN
+	 MnlvDmNPp1DLrfs6DZSVVbtmL9zTxCizkPTU2Txk2z6sApNPQvX/l+vcDUgLZBGt8b
+	 ixJHpbGemZKhw==
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b802d5e9f06so153865666b.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 09:00:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXXdKbF5OQaUDFy6rd45Oa4WYes6ISGtoQWjyseG/FJ8CqIG6+rPg/srlGywYVzBYpIMCAtK91xOa5w@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywcydccirqbzw3Y2NDNbeMoFk5t5LdW0cqz9jkoZCzQfmpH8hUj
+	pikJz4voIUVzpSUKs4hVW59Ht/1LGqkAQhOo6CGe8rJyRx71HGbuVZrByw4/IIKhrO97j4Z6MJh
+	KqmOv/qVP9QKib/wOdb9wMtcG70t3JQ==
+X-Received: by 2002:a17:907:a48:b0:b87:2f29:2062 with SMTP id
+ a640c23a62f3a-b8792dcdf4amr22448466b.19.1768496422244; Thu, 15 Jan 2026
+ 09:00:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260115150725.GF2842980@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <cover.1767663073.git.zhoubinbin@loongson.cn> <8876bebaf08121bb5edd2500f5289284b75df011.1767663073.git.zhoubinbin@loongson.cn>
+ <20260106191314.GA2568583-robh@kernel.org> <CAMpQs4LpKSLGKySmzHeysS3x78inUQy9DF4dShneNymDvAi4Ew@mail.gmail.com>
+ <20260114205855.GA3190839-robh@kernel.org> <CAMpQs4+v=KhLW_Cru801p06vmpjJFotvyDfKBALg6mbwxFU5-A@mail.gmail.com>
+In-Reply-To: <CAMpQs4+v=KhLW_Cru801p06vmpjJFotvyDfKBALg6mbwxFU5-A@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 15 Jan 2026 11:00:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJVD3o41Zch6fMY6s-qmyd9cQg6CJ+iya+3kdtuqvNMoA@mail.gmail.com>
+X-Gm-Features: AZwV_QhH7fbAW1uy00b0PiEt9cxyR0HtWiRhvd3H6Ah7cjw_EUJkNE0JYevgxT8
+Message-ID: <CAL_JsqJVD3o41Zch6fMY6s-qmyd9cQg6CJ+iya+3kdtuqvNMoA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-binding: rtc: loongson: Document
+ Loongson-2K0300 compatible
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-rtc@vger.kernel.org, 
+	Xiaochuang Mao <maoxiaochuan@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-mips@vger.kernel.org, Keguang Zhang <keguang.zhang@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 15, 2026 at 03:07:25PM +0000, Lee Jones wrote:
-> On Tue, 13 Jan 2026, Jonathan Brophy wrote:
-> 
-> > >>  drivers/leds/rgb/Kconfig                      |   17 +
-> > >>  drivers/leds/rgb/Makefile                     |    1 +
-> > >>  drivers/leds/rgb/leds-group-virtualcolor.c    | 3360 +++++++++++++++++
-> > 
-> > >This is an unreasonable request to ask of any reviewer.  I certainly don't have the time to go through this in any level of detail.
-> > 
-> > >--
-> > >Lee Jones [李琼斯]
-> > 
-> > Hi Yes it Is a big lump of code
-> > I will break this down into features and separate the driver in to sub 600 lines of code in a future patch.
-> > 
-> > I'm a junior coder It is easier for me to compute as a single file but yes you are correct it is daunting.
-> > 
-> > Ill finish additions and features first then send an update patch with the driver separated for ease of review in the future.
-> > I expect the code to split nicely into separate sections as the below layout: 
-> > core.c
-> > arbitration.c
-> > phys.c
-> > vled.c
-> > debugfs.c
-> > virtualcolor.h
-> > 
-> > Would this be a better arrangement ?
-> 
-> Patches should build on each other in terms of functionality, not filename.
+On Thu, Jan 15, 2026 at 1:39=E2=80=AFAM Binbin Zhou <zhoubb.aaron@gmail.com=
+> wrote:
+>
+> Hi Rob:
+>
+> Thanks for your reply.
+>
+> On Thu, Jan 15, 2026 at 4:58=E2=80=AFAM Rob Herring <robh@kernel.org> wro=
+te:
+> >
+> > On Wed, Jan 07, 2026 at 09:22:41AM +0800, Binbin Zhou wrote:
+> > > Hi Rob:
+> > >
+> > > Thanks for your review.
+> > >
+> > > On Wed, Jan 7, 2026 at 3:13=E2=80=AFAM Rob Herring <robh@kernel.org> =
+wrote:
+> > > >
+> > > > On Tue, Jan 06, 2026 at 09:33:32AM +0800, Binbin Zhou wrote:
+> > > > > Add "loongson,ls2k0300-rtc" dedicated compatible to represent the=
+ RTC
+> > > > > interface of the Loongson-2K0300 chip.
+> > > > >
+> > > > > Its hardware design is similar to that of the Loongson-1B, but it=
+ does
+> > > > > not support the alarm feature.
+> > > >
+> > > > But you are requiring the interrupt property for it? Isn't it no al=
+arm
+> > > > feature means no interrupt?
+> > >
+> > > Yes, the `interrupts` attribute is not required without the alarm fea=
+ture.
+> > >
+> > > But my judgment condition is `not contains` (added in patch-1[1]).
+> > > There are only a few SoCs on the Loongson platform that don't support
+> > > the RTC alarm feature, so I think `not contains` looks cleaner and
+> > > simpler.
+> >
+> > I should have said allowing rather than requiring.
+> >
+> > You are allowing (though not requiring) 'interrupts' for Loongson-1B an=
+d
+> > Loongson-2K0300. In patch 1, you made it required for other platforms
+> > which is an ABI change. That's fine if it was a mistake and is truly
+> > required.
+>
+> Emm, it's true that for the binding interface, Patch-1 is indeed an
+> ABI change, but it's more of a fixed patch.
+>
+> Throughout all existing Loongson DTS{i}, RTC nodes decide whether to
+> include the `interrupts` property or not based on the alarm feature.
+> Loongson-1c rtc nodes do not include the `interrupts` attribute [1],
+> while all other Loongson chip rtc nodes do [2].
+>
+> So, while this is an ABI change, I don't think it affects existing
+> Loongson DTS{i} rtc nodes. Also, it more accurately describes the
+> features of the corresponding RTC device.
+>
+> Therefore, I would like to clarify it in the Patch-1 commit message of
+> the next patch version and fix the error in the commit title:
+> dt-binding -> dt-bindings.
+>
+> How do you feel about that?
 
-While I am 100% with Lee here, the filenames strictly speaking are orthogonal
-to the patch split. But they are still helpful for the end result. So think
-about both file split and patch split (and the latter one in terms like Lee
-described below).
+That's fine, but you also need:
 
-> The first patch should provide just enough functionality to be useful.
-> 
-> Then build it up one piece at a time.
+else:
+  properties:
+    interrupts: false
 
--- 
-With Best Regards,
-Andy Shevchenko
+So that on the 2 platforms without an interrupt(alarm), 'interrupts'
+is not allowed.
 
+With that, you might as well just drop the 'not' and flip the 'then'
+and 'else' schemas around.
 
+Rob
 
