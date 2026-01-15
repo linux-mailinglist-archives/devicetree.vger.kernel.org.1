@@ -1,94 +1,102 @@
-Return-Path: <devicetree+bounces-255444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A30D23068
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:11:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2257D23126
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:21:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 49000300C369
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:11:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 83DAB301A733
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0151F31355D;
-	Thu, 15 Jan 2026 08:11:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="N6GVMSqJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043DF3218B2;
+	Thu, 15 Jan 2026 08:17:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A9632AACC;
-	Thu, 15 Jan 2026 08:11:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959452E11A6;
+	Thu, 15 Jan 2026 08:17:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768464690; cv=none; b=DQTC6dOSQHKPYtgvLak9U/xGrRIW1zkwAE5MCl98xvXGcanhf6Y1ZsemPvglz7Y4vazpGwmypOLe+LSmClaf38LlBeUrGmKYO8P98FTf3J080wpE4g2f0QY4gcxYu5kTz+7APhruTQ6OrslmaD05PuKev3TCz29/GDIaWIaXV8I=
+	t=1768465073; cv=none; b=cpeBo0TWS3dUR764gktUHbZx5LMRk9C93/tnxSgkBR2eoHD0osQ9TehqIVDnWSd/Tk2BHgxlD2obM4AIwyApjgs7rYhWdJxEUYszSIY7vPd0FBVwr25aY5eb2eX4aFlCtbDCIl9HO1ofv0k3elyzRkX+lWPQ1YRe7amjKPZo0x8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768464690; c=relaxed/simple;
-	bh=LRko8ZPK6lmm1lPdcjFvpKsGtawD0N6Ya1fudz7vCgA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tvxr/WvG7KRhmq44MKKbC8sjOIdTYlkSEr/PzBsUOdJPMcrbx5U1Bez6KzhrTscXk1G12UsK37BfDo7KU/ABR9p8u8Uz3mPwkkgZkRKshefvrCa3506/1trOQV/riO2Ki6mlmigZia551EIIT9X1jO04mfNna514SwmCYYxPwgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=N6GVMSqJ; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 134B01FC54;
-	Thu, 15 Jan 2026 09:11:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1768464687;
-	bh=QYGV+NwzF1dz9CuqQx4SAArBW6pXJn6utmAZk/0qyDY=;
-	h=Received:From:To:Subject;
-	b=N6GVMSqJjiwxk8xlrQZ0ahE2y+mzFxDaBDxtgJpIf55s9HxD/in1cOwyjN1OvyDvm
-	 D0OiunZnhegfh8giYoPUiUwqEFHATwZFPfhKPrttGERSVSLcdk39KHNauKdjTUlcKf
-	 FAYrFX1v6lbbPGPHWDga3VeRHT3k3wYw7SiGqRrchBk6tLNa7jDnZwFpsAm+bmGLtR
-	 /WKlrrJCdm6plhRk3r7RQH671fbuNM9ckyBzzMzcISFZLy1hZq9NtR4faF3AbJYKrx
-	 BUY1A/bhbWsbrxLbvCUPI/ybUHG5j0Aoq2XlRIBVtM0FiOONVSs+SnHJNIGP1Bbuag
-	 Qoi4pfmA0zTCw==
-Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
-	id BA5E37F9C8; Thu, 15 Jan 2026 09:11:26 +0100 (CET)
-Date: Thu, 15 Jan 2026 09:11:26 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Sherry Sun <sherry.sun@nxp.com>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, festevam@gmail.com, kwilczynski@kernel.org,
-	mani@kernel.org, bhelgaas@google.com, hongxing.zhu@nxp.com,
-	frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org,
-	kernel@pengutronix.de, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] fsl,imx6q-pcie: Remove the deprecated
- "reset-gpio-active-high" property
-Message-ID: <aWihLru9aT75LCPm@gaggiata.pivistrello.it>
-References: <20260115071816.115798-1-sherry.sun@nxp.com>
- <20260115073418.GA4366@francesco-nb>
- <aWigj011i0pGgTRi@smile.fi.intel.com>
+	s=arc-20240116; t=1768465073; c=relaxed/simple;
+	bh=f7DoDK8YktICt95JRDktRPwcZqr50IqTbI4V9CCKlM4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Z9XxRT38iRkbcmreE0ggDzkln3rxxVEy/+8P8sg21EyeD2fTZJfvYMrrKrgc75EcPYbP5fmIYKRqQbbOxSeu/4cnpoa8x+4vVjM0BWqIdG+dIfu7qkeOwK8rFI+fLv68GSmtZXUWwP0UNO/994C0L3SooRV0fXZG++qgPpgyEr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 60F8FEvm082627
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Thu, 15 Jan 2026 16:15:14 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 15 Jan
+ 2026 16:15:13 +0800
+From: CL Wang <cl634@andestech.com>
+To: <cl634@andestech.com>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <tim609@andestech.com>
+Subject: [PATCH v2 0/3] watchdog: Add support for Andes ATCWDT200
+Date: Thu, 15 Jan 2026 16:14:41 +0800
+Message-ID: <20260115081444.2452357-1-cl634@andestech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aWigj011i0pGgTRi@smile.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 60F8FEvm082627
 
-On Thu, Jan 15, 2026 at 10:08:47AM +0200, Andy Shevchenko wrote:
-> On Thu, Jan 15, 2026 at 08:34:18AM +0100, Francesco Dolcini wrote:
-> > On Thu, Jan 15, 2026 at 03:18:13PM +0800, Sherry Sun wrote:
-> 
-> ...
-> 
-> > And , the property is still handled, see commit b8b80348c57b
-> > ("gpiolib: of: add polarity quirk for Freescale PCIe controller"), the
-> > DT compatibility was not broken as you seem to imply in this series.
-> 
-> This is a quirk and not a 1st class support. There must be no such property
-> in new DTs, it's only present for the backward compatibility.
-> 
-> For the old ones, indeed the property is needed.
+This series adds support for the Andes ATCWDT200 watchdog timer.
 
-Ack, we just agree here.
+The driver integrates with the Linux watchdog framework and supports:
+  - Basic watchdog operations (start, stop, ping, set_timeout).
+  - Programmable reset and interrupt intervals.
+  - Automatic detection of the supported interrupt timer bit-width.
+  - System reset via the watchdog restart handler.
 
-Francesco
+Changes in v2:
+  - dt-bindings:
+    - Drop redundant text "including supported properties..." from the
+      commit message.
+    - Clarify the relationship between ATCWDT200 IP and SoCs (AE350/Qilai)
+      in the commit message.
+    - Add missing type definition ($ref: uint32), enum constraint, and
+      description for 'andestech,clock-source' property. 
+  - watchdog: atcwdt200:
+    - Use devm_clk_get_enabled() instead of devm_clk_get() and
+      clk_prepare_enable()
+    - Drop unnecessary "andestech,qilai-wdt" compatible
+    - Remove .owner assignment from platform_driver
+    - Simplify resume error handling
+
+CL Wang (3):
+  dt-bindings: watchdog: Add support for Andes ATCWDT200
+  watchdog: atcwdt200: Add driver for Andes ATCWDT200
+  MAINTAINERS: Add entry for Andes ATCWDT200
+
+ .../watchdog/andestech,ae350-wdt.yaml         |  53 ++
+ MAINTAINERS                                   |   6 +
+ drivers/watchdog/Kconfig                      |   9 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/atcwdt200_wdt.c              | 580 ++++++++++++++++++
+ 5 files changed, 649 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/andestech,ae350-wdt.yaml
+ create mode 100644 drivers/watchdog/atcwdt200_wdt.c
+
+-- 
+2.34.1
 
 
