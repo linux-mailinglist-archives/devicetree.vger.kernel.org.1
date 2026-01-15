@@ -1,167 +1,120 @@
-Return-Path: <devicetree+bounces-255309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2584D2208F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 02:35:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A24D220C5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 02:41:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 22F1F3012746
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:35:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D99030517F3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81352571DD;
-	Thu, 15 Jan 2026 01:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="t/Q/pFrG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA376246798;
+	Thu, 15 Jan 2026 01:41:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABF013DDA4;
-	Thu, 15 Jan 2026 01:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F27B23815B;
+	Thu, 15 Jan 2026 01:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768440908; cv=none; b=GNihydpwDw/9Kbasumq5pB4mW5mdzt6Rz9YIl2Uc5bfV3d2nL+Mtov3pkzcx7xIc+qxkhoiQgDoSkkXNG+U3mGFxEgM0JNKQs66v9lIsODpVvb1hHM13EH6+0aEmyG1D4lQkaFcZcxvlsDOatJX+oh7RFr4Yi5WZzPY+TFpVMkY=
+	t=1768441264; cv=none; b=lSfR6OpJ56tIE8sUQAXf+XVJqF9Fq7MfWP/KBRfOXptbM54f+0/sxUEyp5YIoHU9boF0+VVmmDbqE2BJTRphmN/YfBp6EIv6V/nY6Ay/yf2NRKw6nA2Hb48oSKBFRXmkQCp6lhjUtOAtcDgtBNMzQj9gWV02xpSrbmi1L10MqZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768440908; c=relaxed/simple;
-	bh=IIB6rmdHxnDD/EDjUiYO6oeknBj93toh21EVwc1DyN0=;
+	s=arc-20240116; t=1768441264; c=relaxed/simple;
+	bh=otwVYL7nOtrDHHkGJjmQ15xUyz53dvMV7ILy5SSUP2A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EHmgrIEiezMt+lqKKvHX7afrcPwmUGSGseHj3VsFbI+G3/yZfLm2GanOZ8T1jMdRUYDWay4I7yrkBLBa/5FTalZV7s3811LsqhmVyQcopK5PXwy0XXmQErM2fiBpKvX7Rcs5/Vo53Z83jznsrKALYoCUna8e3rkDkEOp2+ZXk0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=t/Q/pFrG; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768440903;
-	bh=Tih6SqZBzUB8yjh9hV3mhUeB91oHajBg2c04LaCkF00=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t/Q/pFrGFRTT98o6FNNfxyifD7mRhIy/dozbIU2yXIBS6U4vkwfziX9ICWQ8JvUn3
-	 VbpouMWDspyZOdKd+Ds4n21AEfUz8bjhRjC4YDfK8h+rxRD18+YoaOXT6hYLqskpY+
-	 L2743M3/vfSh+BsAkohNbzluORtN0IzD1ZhIuo0h/w01W80kx2iRbU/N7X+TVem56q
-	 rqTcv777tUYXnEqSuGBU0+oLZXhgELQ5DJkiA5YiywDxF0oqHWoHklBXPliv0NtSu4
-	 N71Njz/JcIneUhkyyBoTyzZ2jZyPcOwFCdvPqaWxpMQ497xL7EWfdh5S5rkDcsNKTR
-	 Y8ghvrhldHkEg==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4ds5Bv2dwSz4wDG; Thu, 15 Jan 2026 12:35:03 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 12:34:19 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=H38uJGRNCdgF55gOdjUPtsdp5soPHED7997y0XViC4FmijQMGcvMRxZnhbEPLhU43EwSNBgiL48L9/Xw0JfaTR10Pj3ho8JMiAWjmOqOnnybQJbPshcgxwKh1i3zN9He1afhfQ9rdThMReSK3c2YegpLF5YB2116z1GzE6gqyP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vgCM1-000000002A3-223U;
+	Thu, 15 Jan 2026 01:40:53 +0000
+Date: Thu, 15 Jan 2026 01:40:50 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 18/77] dtc-parser.y: Avoid an empty proplist
-Message-ID: <aWhEG0GQp04wjcLs@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-19-herve.codina@bootlin.com>
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Chen Minqiang <ptpt52@gmail.com>, Xinfa Deng <xinfa.deng@gl-inet.com>
+Subject: Re: [PATCH net-next v2 3/6] net: dsa: lantiq: allow arbitrary MII
+ registers
+Message-ID: <aWhFohyjEnaIeHSS@makrotopia.org>
+References: <cover.1768438019.git.daniel@makrotopia.org>
+ <572c7d91f8eb97bd72584018f9b5941dbfb2e46e.1768438019.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3QZY+H69MhpiO3O4"
-Content-Disposition: inline
-In-Reply-To: <20260112142009.1006236-19-herve.codina@bootlin.com>
-
-
---3QZY+H69MhpiO3O4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <572c7d91f8eb97bd72584018f9b5941dbfb2e46e.1768438019.git.daniel@makrotopia.org>
 
-On Mon, Jan 12, 2026 at 03:19:08PM +0100, Herve Codina wrote:
-> In the dts parser grammar, a nodedef is defined by
->   '{' proplist subnodes '}' ';'
-> with both proplist and subnodes that can be empty lists.
->=20
-> Soon a new list will be added in the nodedef related to export symbol
-> list.
->=20
-> Having all those lists with support for empty lists will lead to some
-> Bison warnings:
->   warning: 4 shift/reduce conflicts [-Wconflicts-sr]
->   warning: 1 reduce/reduce conflict [-Wconflicts-rr]
->=20
-> The simpler way to remove those warning and thus have a robust parsing
-> is to avoid those empty lists.
->=20
-> Update the proplist definition and nodedef definition to avoid those
-> multiple empty lists. Instead of allowing a proplist to be an empty
-> list, force the list to be a non empty one and update the nodedef to
-> handle explicitly the absence of the proplist to support the case where
-> no properties are available, i.e. the case of a node composed only of
-> sub-nodes.
->=20
-> This doesn't change the functional behavior.
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-
-I think it makes sense to apply this on its own before the rest of the
-series, but the commit message will want rewording for that context.
-
+On Thu, Jan 15, 2026 at 12:57:07AM +0000, Daniel Golle wrote:
+> The Lantiq GSWIP and MaxLinear GSW1xx drivers are currently relying on a
+> hard-coded mapping of MII ports to their respective MII_CFG and MII_PCDU
+> registers and only allow applying an offset to the port index.
+> 
+> While this is sufficient for the currently supported hardware, the very
+> similar Intel GSW150 (aka. Lantiq PEB7084) cannot be described using
+> this arrangement.
+> 
+> Introduce two arrays to specify the MII_CFG and MII_PCDU registers for
+> each port, replacing the current bitmap used to safeguard MII ports as
+> well as the port index offset.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
->  dtc-parser.y | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
->=20
-> diff --git a/dtc-parser.y b/dtc-parser.y
-> index d8914d2..2e152b0 100644
-> --- a/dtc-parser.y
-> +++ b/dtc-parser.y
-> @@ -272,12 +272,16 @@ nodedef:
->  		{
->  			$$ =3D build_node($2, $3, &@$);
->  		}
-> +	| '{' subnodes '}' ';'
-> +		{
-> +			$$ =3D build_node(NULL, $2, &@$);
-> +		}
->  	;
-> =20
->  proplist:
-> -	  /* empty */
-> +	  propdef
->  		{
-> -			$$ =3D NULL;
-> +			$$ =3D chain_property($1, NULL);
->  		}
->  	| proplist propdef
->  		{
-> --=20
-> 2.52.0
->=20
->=20
+> v2:
+>  * introduce GSWIP_MAX_PORTS macro
+> 
+>  drivers/net/dsa/lantiq/lantiq_gswip.c        | 30 ++++++++++++++++----
+>  drivers/net/dsa/lantiq/lantiq_gswip.h        |  6 ++--
+>  drivers/net/dsa/lantiq/lantiq_gswip_common.c | 27 +++---------------
+>  drivers/net/dsa/lantiq/mxl-gsw1xx.c          | 30 ++++++++++++++++----
+>  4 files changed, 56 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/net/dsa/lantiq/lantiq_gswip.c b/drivers/net/dsa/lantiq/lantiq_gswip.c
+> index b094001a7c805..4a1be6a1df6fe 100644
+> --- a/drivers/net/dsa/lantiq/lantiq_gswip.c
+> +++ b/drivers/net/dsa/lantiq/lantiq_gswip.c
+> @@ -463,10 +463,20 @@ static void gswip_shutdown(struct platform_device *pdev)
+>  }
+>  
+>  static const struct gswip_hw_info gswip_xrx200 = {
+> -	.max_ports = 7,
+> +	.max_ports = GSWIP_MAX_PORTS,
+>  	.allowed_cpu_ports = BIT(6),
+> -	.mii_ports = BIT(0) | BIT(1) | BIT(5),
+> -	.mii_port_reg_offset = 0,
+> +	.mii_cfg = {
+> +		[0 ... GSWIP_MAX_PORTS - 1] = -1,
+> +		[0] = GSWIP_MII_CFGp(0),
+> +		[1] = GSWIP_MII_CFGp(1),
+> +		[5] = GSWIP_MII_CFGp(5),
+> +	},
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+Kernel CI trips with
+warning: initialized field overwritten [-Woverride-init]
 
---3QZY+H69MhpiO3O4
-Content-Type: application/pgp-signature; name=signature.asc
+Would it be ok to enclose the gswip_hw_info initializers with
+__diag_push();
+__diag_ignore_all("-Woverride-init",
+		  "logic to initialize all and then override some is OK");
 
------BEGIN PGP SIGNATURE-----
+like it is done in drivers/net/ethernet/renesas/sh_eth.c?
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloRBoACgkQzQJF27ox
-2Gd4JBAAgAIzlV/ggBtlSdHGn3PxECYpJUqGJNlb47ISIL0ebOUqBqV0/81DcatR
-rV6TTBirPJdGntpeWcMMKZvPo7pBMOH8bwi5Os5N/F32vA5KiT3Ozp/s1EnoDJI5
-SD7LbQ2/vSpVvWEaPYCoe8nO7km0HBcozVuqy1fzhcmNgKN4Qp3CljD6eWMzamjJ
-3z5su+B34UrFF3MC2yN3Arm3ekCFyBB0nANSAGKJR3Ige8TTdWNFYGn41yU/YMZH
-aPA8mFmCbxRMZEO3nm4GreO9hf+WBeZAtpmvaFerdMol6Za1aBjWoxKu399jsjpj
-yh0hM/UXvy/cxtI7JpO6in1Jpg9zC/TPMzR4HWpNcMYWAAW3A+Go2BIsAiSxEIP+
-KmjDNpxA2iO/ire45kFHtRni3egiCA9IfZtRUUKaqJ4FSvzcfApn9qSNuXCeQ4DR
-QvlhXxQP3cuUxQ/szsTHzgSl67/vFkL3RJjZNVcPdJYdsJqskUNmb1osRwcJb929
-4ql4kcZEHJJ2OfaKnB3qmiSeyQkz2FfXlDeqLHqf22zG8orYRqOzBItXVR/UkrUe
-FLMllpbxtZEVo5JVpaPm3Wl2MD00O/3iZNBWdVrOvjN59DTxAmtjNYr/qSHAyn7V
-ty2mQNJ7T1QHRImvxtKdkwVho0107nzCG1dNfENN2/GtbPI/n5g=
-=Dz7q
------END PGP SIGNATURE-----
-
---3QZY+H69MhpiO3O4--
+Or should I rather keep the .mii_ports bitmap in addition to the array
+to indicate the indexes with valid values?
 
