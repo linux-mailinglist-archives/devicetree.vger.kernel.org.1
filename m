@@ -1,162 +1,168 @@
-Return-Path: <devicetree+bounces-255752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8A5D27F98
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:15:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68267D28052
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 20792300E168
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:13:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 267B030BD0CF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB473A9017;
-	Thu, 15 Jan 2026 19:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEB12F0C71;
+	Thu, 15 Jan 2026 19:18:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NsvKt4sd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jhYhAwbv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55EA2E11DC;
-	Thu, 15 Jan 2026 19:13:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8559221FAC
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 19:18:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768504403; cv=none; b=bVXlADu8DIg2kYuDxPfV06LaBkFctsZsKAPFKY/p7ClgzO7h0vbywrXee8+uVXZ+WO3Cr98d7j6Ku2pTBGJYjt3epY7WNmgd5TReFDSEQnc0muWTkoAVQnNN2UyIfGKbYqsdL825Sr5Jy+KNbyngtydse4zetsDtVp3OskIEdg0=
+	t=1768504684; cv=none; b=ciAWvjkIG8QJ6b6toobww34r2n9KArrUOAkwrsz6fGEJSySx+mPD8XMFluGOUAQFLcBc6aIsQLUHYUF46VrdrgAeGEVf+StuqCxmFKhQlEj3+BoZWaaAU6voWMgEVajH/kMi58vFGoWStkjcEYQdLAUGi+qjUX17alGQjgTmRmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768504403; c=relaxed/simple;
-	bh=6ERhtSOK4Q4fZaqgucSIqkZPcyHf8nMO3hzMy9j2wWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QuwB7Ltn1mny6R0B4khpgRR4mpdPBXoyfKPGXjZ+BtBx/Zn2YBIwhCKps8LZjGSkTBkX548QIbvTW5bjzzz+L6nR9QLGWQml7iAZdenI3SmNGGUxqeN55+asOfjzkum9UBVtgKlZzH/qKoRHfxj9CgHfTU8b4XL08s4fY536JUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NsvKt4sd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 590A7C116D0;
-	Thu, 15 Jan 2026 19:13:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768504403;
-	bh=6ERhtSOK4Q4fZaqgucSIqkZPcyHf8nMO3hzMy9j2wWo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NsvKt4sd05QKOUaPz2q6BkE1QSNszgX8p8G6nz1F55VMcfHQpEdOWVCIHKu/GKeeR
-	 3M3YkKAadYREkVOiMlmwcBYalZdwftWcycDbHUR2TBfHY2kWE/Bnm2RE1dzyVTgJL0
-	 tZ6LzUVFDZagq8YZFCDk0UhW9XDgOIciRVlpG4p10ycqwJueivh8NbDjqHSmv9R1E2
-	 XMmgAM2ucb8XKGfEevA5Pf3ImuXQXpPr9esn9U/b7jnn9ANaIZyRJNS+1UCRL1FQU/
-	 KXMesoIe2rQ5d5Kl1vwXkPLBoMDwOG/JbqXKUDNh5Sjiyj7iKUtsJEGxZ/xf6RPrfu
-	 JrHci5Xp+FyKQ==
-Date: Thu, 15 Jan 2026 19:13:17 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>, Yixun Lan <dlan@gentoo.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Junhui Liu <junhui.liu@pigmoral.tech>, linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v2 0/4] riscv: dts: Add "b" ISA extension to existing
- devicetrees
-Message-ID: <20260115-phonics-reversal-80541ca1f2df@spud>
-References: <20260115-adding-b-dtsi-v2-0-254dd61cf947@riscstar.com>
+	s=arc-20240116; t=1768504684; c=relaxed/simple;
+	bh=jS4s4+CeEp3p8wbUjI2uvC+K83JDVMWMsUADgn9dTsE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Gp10HCnlzJe9a2iCWBq5tm5vRwkhhDWUizOUDTOyJzGW4mbSzxSPEJRkxsohT/q1wB4DCqbAy2FK25s7G9u1oPGb93Q5YKIPKI1h6XU2N8kChgl7SSmsQs5sItDwXEoizbUs7d2JAc7knHe/fYSUp8mwxtIZonTAVgnjJXFG1D4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jhYhAwbv; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42fed090e5fso678890f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 11:18:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768504681; x=1769109481; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6awU7mxwuWsmRADvbQlSH8CHRST4+YAD1gEKj5q/Fv8=;
+        b=jhYhAwbvns+IZSHKCfQvB0La+dKf6os5aADte0XJ+Fi2GQAxhsnFZpaXafh+tAsQsP
+         KqYaS+46rkKaq49Htb1cqKwCBQ2ByRh8HQVE/NZ0TCnajIn06hE+mG7W3V8o5HvldLmg
+         x1rB5GAjMFL22c1Xp0A4BTbidD23nAjyJtRoCkURoEhvq/02DW+BmoyxYKuKdYVEN13H
+         Ca+SGHeHCXxyIHdRQB/fcQuZ8SYgNiAGV6wqnSie5qfCwcdG6rH3Eb4VYpsL6BAHRoTj
+         hS+Ja+LMV7rzxB0WewX2bAVf5AprNSKqiHlyBSnYqWy82NEsSxfp9o53p8oa+cnl9tiJ
+         FZEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768504681; x=1769109481;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6awU7mxwuWsmRADvbQlSH8CHRST4+YAD1gEKj5q/Fv8=;
+        b=ZnOF9fCRLOuUkYLlctvvimh8aZNbSLHe9N5geWw8X5b62K3vx9hAnbPkCTI3k4x9Za
+         uQuHmz77MOEZEQ/6qNNevBYf2ehg9/WbAwh2p35VRdpguaNwLu8muQ/Dagi5B4hrQoDn
+         PiwqYsWGRoaFzI0pYDmaOHgQxPZSR/A+ehHjOi1Ya7lOdWB1nuzY4PvtkQioihuSVifM
+         O3h2NaCI+x5ZOBRPsJlPzI/7g21MdNynTEzD6P+ULMFRATUakNT25l2blXY1Lne8rDwX
+         Xy0brNukBVUUJM+2IDMQA8B8vdp60r1UmUOnso963P172Ili90pk39io/jubAR52rMmc
+         ZsmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWrdGeXX5zCpDFR0xcnj8mcHUXeZT3/nSRGaWsoYjmfJ7BCvzkIC2sLs5nPH2O0gFUxdOuKNLF87MW/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOl66f+E4EpRG9OzSPNUWjL7IQziDfCBX/qRCSdU6ulk4+o/GF
+	NIqWDq3fx1Nf/ClN7EzgSRtJvV2LVn2q7085bhKUGvyKd5aWgNijhikc
+X-Gm-Gg: AY/fxX5xc9GXxwKws2ZSxhaMhZysYMe8VW3N76C9Nby4VDbS0yzD1+DrKgBHJRUu7gP
+	gaPHP2QDmjZD8fzPPJYtT5Z1oNRwmrHtxCjX6EorfC/q2gElQAV6i4V32UJn7U4g8slGAccb1DF
+	j5vLrVqQw2qsIKox4OJxDeSy8tTnoqqXDJ8T+fo6VI/wvIKjRXHqGkGkwoITvc53pH35HBrtscW
+	gyphXMRyETjU5XWeyx67awQVUnkao3H6wtOzsVPS5Fk7xXZ3LaB5RuyAf6XtRbh/Fh5nf95ETYt
+	ValStEtiVz2SDv7RoDhHbZoq7mnIbEN8Zy8l78DtabsN0ns/nHIJgmKeRxPdTvgUC20pIaNvVS7
+	pTmEgFGMAOPDnvVUcVHul1WjF+JsjBPCuNTvIknbHkBhH99sn1Ymkr9jFmgYyG7ItWJq1Sc2YIX
+	2QL8iohLbOsLHJITeBPsNJFM6MyvD8mSPs0lxfrBJEBvRQ
+X-Received: by 2002:a5d:64e6:0:b0:431:307:2200 with SMTP id ffacd0b85a97d-43569979c5dmr533542f8f.9.1768504680718;
+        Thu, 15 Jan 2026 11:18:00 -0800 (PST)
+Received: from [127.0.1.1] (bba-94-59-215-181.alshamil.net.ae. [94.59.215.181])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43569921dedsm692734f8f.9.2026.01.15.11.17.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jan 2026 11:18:00 -0800 (PST)
+From: "Anton D. Stavinskii" <stavinsky@gmail.com>
+Subject: [PATCH 0/8] ASoC: sophgo: add CV1800 AIAO mux and I2S support
+Date: Thu, 15 Jan 2026 23:17:37 +0400
+Message-Id: <20260115-cv1800b-i2s-driver-v1-0-e8b22b8578ab@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sP0KQQHEFQVHHdeO"
-Content-Disposition: inline
-In-Reply-To: <20260115-adding-b-dtsi-v2-0-254dd61cf947@riscstar.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFE9aWkC/x3MMQqAMAxA0atIZgNN1SpeRRy0jZpFJYUiFO9uc
+ XzD/xkiq3CEscqgnCTKdRZQXYE/lnNnlFAM1lhniDr0iQZjVhQbMagkVmw36ofGBfadgxLeyps
+ 8/3Sa3/cDpTyugmQAAAA=
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Inochi Amaoto <inochiama@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, 
+ "Anton D. Stavinskii" <stavinsky@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768504677; l=3006;
+ i=stavinsky@gmail.com; s=20260115; h=from:subject:message-id;
+ bh=jS4s4+CeEp3p8wbUjI2uvC+K83JDVMWMsUADgn9dTsE=;
+ b=KoUoMJjnND33ukztFTj5DwgkDIFIQgsCTyq59umMHCLOC7ss9JO8beohsaIR97SJgVvS0ET3o
+ I/MuwDTqc1pCTNweLsYrs6LgSKQwHGsgTIgoam1u2NAaRavYctncy8V
+X-Developer-Key: i=stavinsky@gmail.com; a=ed25519;
+ pk=2WxGZ1zd1vQwSPFCSks6zrADqUDBUdtq39lElk4ZE7Q=
 
+This patch series adds basic audio support for Sophgo CV1800B, 
+as used on boards such as the Milk-V Duo. 
+The series introduces an AIAO audio mux driver, 
+an I2S controller driver, corresponding DT bindings, 
+and DTS updates to wire the components together.
 
---sP0KQQHEFQVHHdeO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The implementation is based on vendor documentation 
+and testing on real hardware.  This series relies on 
+recent fixes in the DesignWare AXI DMA support; 
+in particular, correct operation depends on 
+the DMA changes discussed at:
+https://lore.kernel.org/all/20251214224601.598358-1-inochiama@gmail.com/ 
+The current driver implementation supports a fixed audio configuration 
+of 48 kHz sample rate.  The series has been tested on the 
+Milk-V Duo 256M board using the Sophgo SG2002 SoC. 
+The implementation is expected to also work on Milk-V Duo and Milk-V Module 
+boards based on the SG2000 SoC, as the audio 
+and DMA blocks are closely related.
 
-On Thu, Jan 15, 2026 at 07:18:56AM +0800, Guodong Xu wrote:
-> The RISC-V "b" (Bit-manipulation) extension was ratified in April 2024,
-> much later than its component extensions zba/zbb/zbs (June 2021). Recent
-> updates to the device tree bindings [2] enforce that when all three
-> component extensions are present, "b" must also be specified. Related
-> discussion can also be found in [1].
->=20
-> Patch 1 clarifies the ISA spec version for canonical ordering in uabi.rst.
-> It is a trivial update, but can help readers reference the correct
-> document version. Acked-by Paul Walmsley in v1.
->=20
-> Patch 2, 3 and 4 adds "b" after "c" in 3 different device tree files
-> respectivly, anlogic, sophgo and spacemit, fixing the related dtbs_check
-> warnings.
->=20
-> This patchset is based on top of linux-next, tag: next-20260109, and
-> depends on [2].
->=20
-> Link: https://lore.kernel.org/all/20251230-imprison-sleet-6b5a1e26d34b@sp=
-ud/ [1]
-> Link: https://lore.kernel.org/all/20260110-k3-basic-dt-v4-0-d492f3a30ffa@=
-riscstar.com/ [2]
->=20
-> Changes in v2:
-> - Patch 1: Add Acked-by from Paul Walmsley.
-> - Patch 2/3/4: These are splits from the v1 Patch 2. Split into three
->     different patches for each SoC.
-> - Link to v1: https://lore.kernel.org/r/20260113-adding-b-dtsi-v1-0-22d6e=
-55d19df@riscstar.com
->=20
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> ---
-> Guodong Xu (4):
->       Documentation: riscv: uabi: Clarify ISA spec version for canonical =
-order
->       riscv: dts: anlogic: dr1v90: Add "b" ISA extension
->       riscv: dts: sophgo: sg2044: Add "b" ISA extension
->       riscv: dts: spacemit: k1: Add "b" ISA extension
->=20
->  Documentation/arch/riscv/uabi.rst           |   4 +-
->  arch/riscv/boot/dts/anlogic/dr1v90.dtsi     |   5 +-
->  arch/riscv/boot/dts/sophgo/sg2044-cpus.dtsi | 256 ++++++++++++++--------=
-------
->  arch/riscv/boot/dts/spacemit/k1.dtsi        |  32 ++--
->  4 files changed, 150 insertions(+), 147 deletions(-)
-> ---
-> base-commit: 31d167f54de93f14fa8e4bc6cbc4adaf7019fd94
-> change-id: 20260113-adding-b-dtsi-148714533f07
-> prerequisite-message-id: <20260110-k3-basic-dt-v4-0-d492f3a30ffa@riscstar=
-=2Ecom>
-> prerequisite-patch-id: 0c859b4d131b3360875c795c6148c6176b55fb91
-> prerequisite-patch-id: 2ed98dc1ab0f5ed923cc252415c345dc8caf6f17
-> prerequisite-patch-id: 1be1a031763fac029076a768f012af31e455be66
-> prerequisite-patch-id: 21bb8387c946e050910440e7a7622305d46d946d
-> prerequisite-patch-id: f3bdc2c74b230663710086bd770a755d56cb8b9c
-> prerequisite-patch-id: 1f162c02f8bdb5bbc8ce52ead4fcb76258f5c2b9
-> prerequisite-patch-id: 76e1ff26c2f1fe4019cfa574942b568000e6ca1f
-> prerequisite-patch-id: 77ddc9e5dc85495adc803cdc605bdda2ddc7fa47
-> prerequisite-patch-id: a75c798383b46a14d40436357c769c3671184768
-> prerequisite-patch-id: 781fc10dcae2c38c84c25bee887ef7474786dd36
-> prerequisite-patch-id: 5be5d3e62aa73024bf9e1de6aad155be6d618f40
+Known hardware limitation:
+On CV1800B / SG2002, the I2S2 output pins cannot be enabled via pinctrl alone.
+Due to SoC design constraints, the output path becomes functional only after 
+additional vendor-specific register programming. 
+This series makes the limitation explicit and does not attempt to work around 
+it implicitly via pinctrl or undocumented behavior.
 
-FWIW, this kind of prereq-patch-id stuff isn't really helpful, because I
-don't think there's actually any dependencies on that work. It actually
-trips up some parts of b4 that think they're needed.
+Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
+---
+Anton D. Stavinskii (8):
+      dt-bindings: sound: sophgo: add CV1800B I2S/TDM controller binding
+      ASoC: sophgo: add CV1800B I2S/TDM controller driver
+      dt-bindings: sound: sophgo: add CV1800B internal ADC codec
+      ASoC: sophgo: add CV1800B internal ADC codec driver
+      dt-bindings: sound: sophgo: add CV1800B internal DAC codec
+      ASoC: sophgo: add CV1800B internal DAC codec driver
+      riscv: dts: sophgo: dts nodes for i2s tdm modules
+      riscv: dts: sophgo: add Milk-V Duo 256M board dts
 
-I applied the Anlogic patch.
+ .../bindings/sound/sophgo,cv1800b-i2s.yaml         |  75 +++
+ .../bindings/sound/sophgo,cv1800b-sound-adc.yaml   |  43 ++
+ .../bindings/sound/sophgo,cv1800b-sound-dac.yaml   |  43 ++
+ arch/riscv/boot/dts/sophgo/Makefile                |   1 +
+ arch/riscv/boot/dts/sophgo/cv180x-dmamux.h         |  57 ++
+ arch/riscv/boot/dts/sophgo/cv180x.dtsi             |  49 ++
+ .../boot/dts/sophgo/sg2002-milkv-duo-256m.dts      | 231 +++++++
+ sound/soc/Kconfig                                  |   1 +
+ sound/soc/Makefile                                 |   1 +
+ sound/soc/sophgo/Kconfig                           |  41 ++
+ sound/soc/sophgo/Makefile                          |   5 +
+ sound/soc/sophgo/cv1800b-sound-adc.c               | 322 ++++++++++
+ sound/soc/sophgo/cv1800b-sound-dac.c               | 204 ++++++
+ sound/soc/sophgo/cv1800b-tdm.c                     | 714 +++++++++++++++++++++
+ 14 files changed, 1787 insertions(+)
+---
+base-commit: 7a52965b6976c936f413eebeee3f78c6faf09012
+change-id: 20260115-cv1800b-i2s-driver-4f17836dec56
 
-Thanks,
-Conor.
+Best regards,
+-- 
+Anton D. Stavinskii <stavinsky@gmail.com>
 
---sP0KQQHEFQVHHdeO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaWk8TAAKCRB4tDGHoIJi
-0qJXAP9BAi/JL4BUX4v3frtYl233RdCgXONa5Aa6sLWiDuldrAD+LoenY5vTUJMs
-2yqbA1IH2zP1CkI5ysicbD/YYaQMtww=
-=HTet
------END PGP SIGNATURE-----
-
---sP0KQQHEFQVHHdeO--
 
