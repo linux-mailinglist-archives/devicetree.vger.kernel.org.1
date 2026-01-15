@@ -1,169 +1,109 @@
-Return-Path: <devicetree+bounces-255320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25B9D22286
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 03:40:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9DAD222EC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 03:47:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 074E0300B9D9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 02:40:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 867623013993
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 02:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1449325A62E;
-	Thu, 15 Jan 2026 02:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A7127703A;
+	Thu, 15 Jan 2026 02:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="gXIjaapZ";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="eogl11+j"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Mt5MVZ8r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6DF27874F;
-	Thu, 15 Jan 2026 02:40:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C05D11CAF;
+	Thu, 15 Jan 2026 02:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768444834; cv=none; b=NAEn3SewhQtyg0vNbqPt2nynmXjCOkXwBBmRgmOPy+vruMRTCsCbcpcYZTq6ZZhFptQR8omhB0ER2WZvDsoWyoRE+MPjGaIH0H1b4sc1rvcIYd05SeKKR0CfWCVtUPLFABiX6+Ki1814mCQ8SJ4nOvaNIxhc8+EIxjjspMiI/vI=
+	t=1768445266; cv=none; b=iSuyrsZ3hkFRfSyZdgaMbR1IWfSlMzZPcn6h6JEGX/K6/rk7Txjhm98ZUWJXIWGGGxlqIps5zqp8gBWbO4e9wA5g3S2a+tHeHbTINpikGxqUpb2FMtb30JFMUQtqdmZX1IoPXreo4PJh5Y04BlMhdwLg+oOSdGf0FGBtsY5sO6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768444834; c=relaxed/simple;
-	bh=QnV8Yv0kMb0TY2gN4LyrMZJ3HDiu6ZIHvabwx2pVyOg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Qrs306DtYYb7kGRs7ae6IQsnSbwrlxijRNK/Vxo2F236wwOqRU4h1QhDalcFDeHbM86Hh5kaOB8DkqDzCuSPH9uHQUKsJfsd255OP+aAHyrHLIE782R7J9hHCfIRSLCN3cubv73xJRmQVq7hT+8f35IdGLYvefgv2hNbIO28LP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=gXIjaapZ; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=eogl11+j; arc=none smtp.client-ip=80.241.56.172
+	s=arc-20240116; t=1768445266; c=relaxed/simple;
+	bh=HpWGQ7KxmgI6u330vIsF6o1hSqFz0/VdjdpLHAUSvO4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S79yc26j3EvTY+ZgchwuMzBYjfVUC2cG8iwKWyvgXUv7Y+voIEbvFFBXDvWbt3J56tKi2KzBVehals7PL7NWMuMA+LIfN144XuYOR3KP+aJf5H2qLmmyPwd3zVWUTJolWuq63a9MhRoJE17rckFSIzDnfO3XKtoWcKrqFVEa1iI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Mt5MVZ8r; arc=none smtp.client-ip=80.241.56.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4ds6fF14rsz9stg;
-	Thu, 15 Jan 2026 03:40:21 +0100 (CET)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ds6ph1n1qz9tR9;
+	Thu, 15 Jan 2026 03:47:40 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768444821;
+	t=1768445260;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=FkHREHGllR+zq9sdCj0J1g/8JPa9LNvGnTgMplXjf5w=;
-	b=gXIjaapZsC/RjoGyk+OTk+Js6Qic2EFCxaLyan1yYZwjnFAW2Ti5CqS0y8VIVvq+4ebrAO
-	94QKfj7riG1B/sWmRKicGAejCz2Ek6zUILRcc7RZ2EiNVB4T3IDsVe+/3vKDVHRysE9Hp+
-	7D7tZ7GQaolymTvqxi6gVTDLRvMDSr9UZJsEh7PZH2qIZbv/E5a36oYIObdmKP8oli9uO6
-	EzdjecWeRTZ1WXIgbhr0FXE35e4aerNvCSlKnAj7rz90ZIZqdp1rSXf76q05D9XcDNYw34
-	Ib24/+i7KhMu+Yj2iL15QMAvCzPCpY1BwpbYcvLauuEcfetvwV6ZfsLK+y6KXg==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=eogl11+j;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768444819;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FkHREHGllR+zq9sdCj0J1g/8JPa9LNvGnTgMplXjf5w=;
-	b=eogl11+j4GIKnhtBZgaBT4LjPDDSXEQlG8rLMpPSgpUPmJuDzoXwgpGr0yOLLZq2MZ/KXN
-	lfUPPtOIiZlqnpFP2Sg/DjUIb305AxlahrKdeMG2YaLGv7lrhQIzI3vElb8NUZl7IAh84v
-	r0oUqU/pBhEbTOQ5G3A5KYbUkBlYMCzvXRuXRFMkQKFKHrGHkmo5yKpQopzuDJ++Zbr4Si
-	5o/1S+E+Qxcc7aq7/8WofMerP8lL7Mcrdqiwzpw2MbyANfGdwtd3vrA+n/+jvTyeOSTW3y
-	5nz5js8Qdkn4XhgYSnP2qgFPk635yJy9PtE+KqWgFPLoxP6GLnBBJnUEg3L7hw==
-To: dri-devel@lists.freedesktop.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Joseph Guo <qijian.guo@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2 2/2] drm/bridge: waveshare-dsi: Add support for 1..4 DSI data lanes
-Date: Thu, 15 Jan 2026 03:39:43 +0100
-Message-ID: <20260115024004.660986-2-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260115024004.660986-1-marek.vasut+renesas@mailbox.org>
-References: <20260115024004.660986-1-marek.vasut+renesas@mailbox.org>
+	bh=80JGlExrtvjtNMYhQZr3+IVGfbgWQXnBe/kFnPwN3mY=;
+	b=Mt5MVZ8rffif9xZf8CPJK1n5PgSiCMnxyofEvQIJtavtvNL/vFeotEO7xX55HmFD+B52VQ
+	S7YOAX26FFWcHKNeKny2O+uqn7sJBNbUVIjyNADlA9rWMGOVkhHMEy1GdMBDC5k5fu/SBr
+	CaSgjE11wKl3I3ZmppxvXfybDhwd9img7m2TED4KaLP8cLLCpzJ3X/QIB4WnFcVk9jN7tw
+	M2UT+pvk1RiOIxtfW/SBdj2xJ/oXQ2knoISjvmrvcvmMrjXne1NNmxdhKiBo4RgHNBKDi7
+	a2fcGW5Geva/k+NFyZ8G33MeM7KtsXESs9Gakm4oTcYN2LW/aTgSl2qD+lMErQ==
+Message-ID: <0b029410-d960-42a8-9d2a-e731234598fe@mailbox.org>
+Date: Thu, 15 Jan 2026 03:47:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: ecmhbyoz1h9jeeytdzdwgkmhybige8hb
-X-MBO-RS-ID: 5cf9be8d469c703e0f9
-X-Rspamd-Queue-Id: 4ds6fF14rsz9stg
+Subject: Re: [PATCH 2/2] drm/bridge: waveshare-dsi: Add support for 1..4 DSI
+ data lanes
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Joseph Guo <qijian.guo@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20260112234834.226128-1-marek.vasut+renesas@mailbox.org>
+ <20260112234834.226128-2-marek.vasut+renesas@mailbox.org>
+ <CAMuHMdUJBKnqU_HtF1KpZY-75iTWjZwedLbFSYLpgDfVHGsW1g@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdUJBKnqU_HtF1KpZY-75iTWjZwedLbFSYLpgDfVHGsW1g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: sgar6do66mkip7ahr4a67x6pamtme99x
+X-MBO-RS-ID: af6e9444839cb156e47
 
-Parse the data lane count out of DT. Limit the supported data lanes
-to 1..4 which is the maximum available DSI pairs on the connector of
-any known panels which may use this bridge. Internally, this bridge
-is an ChipOne ICN6211 which loads its register configuration from a
-dedicated storage and its I2C does not seem to be accessible. The
-ICN6211 also supports up to 4 DSI lanes, so this is a hard limit.
+On 1/14/26 10:32 AM, Geert Uytterhoeven wrote:
 
-To avoid any breakage on old DTs where the parsing of data lanes from
-DT may fail, fall back to the original hard-coded value of 2 lanes and
-warn user.
+Hello Geert,
 
-The lane configuration is preconfigured in the bridge for each of the
-WaveShare panels. The 13.3" DSI panel works with 4-lane configuration,
-others seem to use 2-lane configuration. This is a hardware property,
-so the actual count should come from DT.
+>> +++ b/drivers/gpu/drm/bridge/waveshare-dsi.c
+>> @@ -66,7 +66,11 @@ static int ws_bridge_attach_dsi(struct ws_bridge *ws)
+>>          dsi->mode_flags = MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_MODE_VIDEO |
+>>                            MIPI_DSI_CLOCK_NON_CONTINUOUS;
+>>          dsi->format = MIPI_DSI_FMT_RGB888;
+>> -       dsi->lanes = 2;
+>> +       dsi->lanes = drm_of_get_data_lanes_count_ep(dev->of_node, 0, 0, 1, 4);
+>> +       if (dsi->lanes < 0) {
+>> +               dev_warn(dev, "Invalid DSI lane count %d, falling back to 2 lanes\n", dsi->lanes);
+> 
+> "Invalid or missing"?
 
-Reviewed-by: Joseph Guo <qijian.guo@nxp.com>
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Joseph Guo <qijian.guo@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: - Add RB from Joseph
-    - Update the error print to "Invalid{ +or missing+}"
----
- drivers/gpu/drm/bridge/waveshare-dsi.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Fixed in V2
 
-diff --git a/drivers/gpu/drm/bridge/waveshare-dsi.c b/drivers/gpu/drm/bridge/waveshare-dsi.c
-index 9254446f54958..0497c7ecbc7a5 100644
---- a/drivers/gpu/drm/bridge/waveshare-dsi.c
-+++ b/drivers/gpu/drm/bridge/waveshare-dsi.c
-@@ -66,7 +66,12 @@ static int ws_bridge_attach_dsi(struct ws_bridge *ws)
- 	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_MODE_VIDEO |
- 			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
- 	dsi->format = MIPI_DSI_FMT_RGB888;
--	dsi->lanes = 2;
-+	dsi->lanes = drm_of_get_data_lanes_count_ep(dev->of_node, 0, 0, 1, 4);
-+	if (dsi->lanes < 0) {
-+		dev_warn(dev, "Invalid or missing DSI lane count %d, falling back to 2 lanes\n",
-+			 dsi->lanes);
-+		dsi->lanes = 2;	/* Old DT backward compatibility */
-+	}
- 
- 	ret = devm_mipi_dsi_attach(dev, dsi);
- 	if (ret < 0)
--- 
-2.51.0
+> BTW, I doubt the kerneldoc for drm_of_get_data_lanes_count_ep()
+> is correct:
+Nice find, fixed in
 
+[PATCH] drm: of: Fix drm_of_get_data_lanes_count_ep() return value 
+documentation
+
+Thanks !
 
