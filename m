@@ -1,970 +1,179 @@
-Return-Path: <devicetree+bounces-255285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB349D21D9F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:28:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61BB9D21E68
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:51:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 39BBC3009233
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:28:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48EC3302533E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C8D18D658;
-	Thu, 15 Jan 2026 00:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45361D90DD;
+	Thu, 15 Jan 2026 00:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QMVVOPN4"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="JTHyh1ci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f47.google.com (mail-dl1-f47.google.com [74.125.82.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A75B14A4F0
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 00:28:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C40155C87;
+	Thu, 15 Jan 2026 00:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768436904; cv=none; b=OnKlqIMp1Cq/RwBfr+lN8YpaShfJ0KkOypWM8LATfNiFSSPX+ZG5gm6Wk/nrCBrr6aCFbTApE4FtdF8MrFx4lTgLpA1XeywMQupyf6H6uYWeI/kK7JzcZhQU1ktcKRzBpzjCfzhR92KxGZqHXWgg3khAtAx/QgHWtV3wIphvby0=
+	t=1768438269; cv=none; b=SfV5RwMCBUrCJTeOaHQoiDqmmvW04+t4MpYARswB+IhkR9f/Ma0MjFhDPGL55o8xaMXoxhh8V6A5FwiCDA3/FCEMQNO/WlfwcjB23LuOwzJyc/9h/UiMrOHZcRVARbbBT+BOB7RLxUHhJFX/etMEH7be3GBofy87yOaCN+dkOos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768436904; c=relaxed/simple;
-	bh=bfsjpqMvqqHjwrulwSWMwsQNyudp4jbk6bKszGUDRnU=;
+	s=arc-20240116; t=1768438269; c=relaxed/simple;
+	bh=+k66OeL/wK0FhxrWulQRJj6qlzmfc+G81FPDe++2pLg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OTpToLXJtQ+3LRgJQioAMG49V+wFbjB7O25jlAgmCCRvDWd7RZ/1KzkVsjpJOOb/8dV2TKu+OZebLn4D6ld8X/RCgWrQls7ONX8I77kYE9BkHUtfgVscg2bD9Ix4IBtotxdqucZY8S4M4lmNxY08mHYvtrR5tRygfz/g/lywDh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QMVVOPN4; arc=none smtp.client-ip=74.125.82.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f47.google.com with SMTP id a92af1059eb24-12336c0a8b6so697357c88.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 16:28:21 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mq7GbZ45clB4OPUAWch7PO6Cm4QBOppfgC8OT67/xYyRb3bbRmhF67yiY2PmetQnMY15fX6wa3nxSiCEBQPFGoi2HTCNmXR6u8BM5We8KsBMiZKpIdbNI4ELL6L0yc+V/CMcFnhV2AX9cEMy81/grcmy9lDbYCBWOPWYj5LvSW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=JTHyh1ci; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768436900; x=1769041700; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=URN8+ZC1AFNXe0LdXxPcdTT+rD36xODGehUphyn7S/0=;
-        b=QMVVOPN4Xmib8WmO7CHHsqu0sbYjS+nBuHPMcJ2i2mxvB5MXnZ3dQgKi7T3WIpWnFj
-         AUiU7T+5FurcBuv+eQnDimroz9UyXSEhVY/JpPyEm2/BUJF6nmmxBOOsw4q4gRyFp7Ah
-         dNJR/xa0+Ii3Xm3iikW0qq2ums6DgfH/EiSCFUImNjHqnswMS1ML/MO9Anr+MtyRYYIW
-         LY5cjGdbtxVEtgUTQzTXn+/z2sVlLlQwsM6KYFstTevZF6KnRyHL4vyDyz+VBN7ZJons
-         ObHKJ1d1VpWApfQ7hQW5a5Mle53MWJp/Liy6B7SafP9/gNH6ENnhknPj0FmJ+G99+8nP
-         oYCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768436900; x=1769041700;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=URN8+ZC1AFNXe0LdXxPcdTT+rD36xODGehUphyn7S/0=;
-        b=lx37qjehguro6sqpPF/VrLvpIslVk0l/V1/mQFC2+wq0JymRNPFPRQtc1f9IVteWD6
-         Jq9Wuo+nAA4axD6YW0nh5FTrmLle4iW/RdSgolmK5dGLyfAOnVnBhOw5EYsQwz6i1DGi
-         wmcMTSJ+TMHHOqbuPgzAr94mqiUdaGWaxy18gLf4U9agedcr26SMe5kNQKV1To8Er5fz
-         AEElznAvcCCeE1YCLhZLn5UQetnxIBE4f3Tm/kh/7d6KfnF/85cTUjd2Iiy1fHoGxb7h
-         3gR2DFXufXhlonYzbWHtnaLDyzvHmNBRklc+fP6pDi5Mzuif7d+WsFrlOMvcrxIieg06
-         YUtg==
-X-Forwarded-Encrypted: i=1; AJvYcCUNkhWRo9LSfK1CI/oXV/Y1+a2UfOaUCZBs5CdEusQsVKuU9sKUJ0ewASxEygAe7wv3yyTAze/IoUYN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8ugVjNcH2qSCZNaDTnIoS5cZl4zmxoIBk0dNZvGuPT1pbkwDZ
-	80MOvGhE27/Z1L6IRJdOMHT3GPcehd7QVumP1RTJM5lijCk5TN5u8U96
-X-Gm-Gg: AY/fxX4t+pMLpyp2fglmnP1hdPyZh8A0iKy+AUT1MLQEhfAbn5vhM116NSwNkjGeS6q
-	K3a0AQiXESxIlg9oDCyLWCq061wBtRVgfot+h4MrBvV6btI55kyv04CoZX26/2HPKOsp2rL1beh
-	3cJ8RI7hhK0e+jN34BIXtMv3nfOwXiGyRu/ekWy6GwAMY+qWWT6NIBTlKG+zVV3vKcY+8cmKxa4
-	nlbM7R1+bGTGLYjpySyauyjWwx2bBLdOQWyQ1sHtZGhKWy9aWWJI+Q2xLsEWppEKHraKDcdA9rN
-	puDtyHs9wE0vo/H0iWQMDNVm/TdsjjrOuP5LD5RZjezFpnThqlEvhoZgZmTkQnEuyV7PqfPo2DI
-	Lk2wzxi8CNE4f4wkUvEIj0UhovHtpBt0290d1nVYmhbQr+nnfS8XEJQ4GMA2/SkA1VO8Hc+9A1l
-	ErjQaY/XQvkA==
-X-Received: by 2002:a05:701b:2504:b0:11b:ca88:c503 with SMTP id a92af1059eb24-12336a33f69mr4080770c88.3.1768436900049;
-        Wed, 14 Jan 2026 16:28:20 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-121f248c246sm32527342c88.11.2026.01.14.16.28.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 16:28:19 -0800 (PST)
-Date: Thu, 15 Jan 2026 08:28:15 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Guodong Xu <guodong@riscstar.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Conor Dooley <conor.dooley@microchip.com>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Yixun Lan <dlan@gentoo.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Junhui Liu <junhui.liu@pigmoral.tech>, linux-doc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, spacemit@lists.linux.dev
-Subject: Re: [PATCH v2 3/4] riscv: dts: sophgo: sg2044: Add "b" ISA extension
-Message-ID: <aWg0XmwwBRZzOZ5U@inochi.infowork>
-References: <20260115-adding-b-dtsi-v2-0-254dd61cf947@riscstar.com>
- <20260115-adding-b-dtsi-v2-3-254dd61cf947@riscstar.com>
+	d=gibson.dropbear.id.au; s=202512; t=1768438265;
+	bh=1RTo+OjW3tKsFG8ed9hY300rzhMALTnRdleSzjxIidU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JTHyh1ciFVq7hKOELkjGASnqk8L4+5p6Zv9txD9Vu7beFPPToMzZ3a7ejK/Lr1iDH
+	 iuC9/UMbK1Qve6rMoBAKHMUdGAHCjb3LFKx9xbsGUK9z3Z8wuAGMYNTnBsnlXEPFXC
+	 PwVzT4l79kDGdrPADN8TY2swPChYbuufl7c9VAx5bjBGCjmegFPyEkI8KDUtFczUuY
+	 D6SzEtn3A9w5juDxYpd6FCghJoVFt2ydFA7IeqYfRaErvUruMwfM7l13drv4xntlxi
+	 M3brrNm+0RE31XEQ9Z7oYbbkwm4wDFAF1mzVLSe9Sg18YSG/zIf7YzF73eRrMLdYMz
+	 i9zMRjoSRL81Q==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4ds4D95vjSz4wGs; Thu, 15 Jan 2026 11:51:05 +1100 (AEDT)
+Date: Thu, 15 Jan 2026 11:28:45 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Herve Codina <herve.codina@bootlin.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	Hui Pu <hui.pu@gehealthcare.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 05/77] fdtdump: Change FDT_PROP prob handling to ease
+ future addition
+Message-ID: <aWg0va98pwR6KhQA@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <20260112142009.1006236-6-herve.codina@bootlin.com>
+ <ceaa0a9a-8d72-44c0-943d-dc212f1aa5db@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lxHh1gslvIch6C9O"
+Content-Disposition: inline
+In-Reply-To: <ceaa0a9a-8d72-44c0-943d-dc212f1aa5db@beagleboard.org>
+
+
+--lxHh1gslvIch6C9O
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260115-adding-b-dtsi-v2-3-254dd61cf947@riscstar.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 15, 2026 at 07:18:59AM +0800, Guodong Xu wrote:
-> "b" is ratified (Apr/2024) much later than its components zba/zbb/zbs
-> (Jun/2021). With "b" added into riscv/extensions.yaml, a dependency
-> checking rule is now enforced, which requires that when zba, zbb, and zbs
-> are all specified, "b" must be added as well. Failing to do this will
-> cause dtbs_check schema check warnings.
-> 
-> According to uabi.rst, as a single-letter extension, "b" should be added
-> after "c" in canonical order.
-> 
-> Update sg2044-cpus.dtsi to conform to this rule.
-> 
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> ---
-> v2: New patch, a split from the Patch 2 in v1. This patch is for
->     Sophgo sg2044.
-> ---
->  arch/riscv/boot/dts/sophgo/sg2044-cpus.dtsi | 256 ++++++++++++++--------------
->  1 file changed, 128 insertions(+), 128 deletions(-)
-> 
+On Mon, Jan 12, 2026 at 09:11:52PM +0530, Ayush Singh wrote:
+> On 1/12/26 7:48 PM, Herve Codina wrote:
+>=20
+> > In order to ease future tags addition, perform operation related to
+> > FDT_PROP when the tag is explicitly FDT_PROP instead of relying to a
+> > kind of default value case.
+> >=20
+> > Handle the FDT_PROP tag exactly in the same way as it is done for
+> > other tags.
+> >=20
+> > No functional modification.
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >   fdtdump.c | 34 ++++++++++++++++++----------------
+> >   1 file changed, 18 insertions(+), 16 deletions(-)
+> >=20
+> > diff --git a/fdtdump.c b/fdtdump.c
+> > index ec25edf..95a2274 100644
+> > --- a/fdtdump.c
+> > +++ b/fdtdump.c
+> > @@ -129,23 +129,25 @@ static void dump_blob(void *blob, bool debug)
+> >   			continue;
+> >   		}
+> > -		if (tag !=3D FDT_PROP) {
+> > -			fprintf(stderr, "%*s ** Unknown tag 0x%08"PRIx32"\n", depth * shift=
+, "", tag);
+> > -			break;
+> > +		if (tag =3D=3D FDT_PROP) {
+> > +			sz =3D fdt32_to_cpu(GET_CELL(p));
+> > +			s =3D p_strings + fdt32_to_cpu(GET_CELL(p));
+> > +			if (version < 16 && sz >=3D 8)
+> > +				p =3D PALIGN(p, 8);
+> > +			t =3D p;
+> > +
+> > +			p =3D PALIGN(p + sz, 4);
+> > +
+> > +			dumpf("%04"PRIxPTR": string: %s\n", (uintptr_t)s - blob_off, s);
+> > +			dumpf("%04"PRIxPTR": value\n", (uintptr_t)t - blob_off);
+> > +			printf("%*s%s", depth * shift, "", s);
+> > +			utilfdt_print_data(t, sz);
+> > +			printf(";\n");
+> > +			continue;
+> >   		}
+> > -		sz =3D fdt32_to_cpu(GET_CELL(p));
+> > -		s =3D p_strings + fdt32_to_cpu(GET_CELL(p));
+> > -		if (version < 16 && sz >=3D 8)
+> > -			p =3D PALIGN(p, 8);
+> > -		t =3D p;
+> > -
+> > -		p =3D PALIGN(p + sz, 4);
+> > -
+> > -		dumpf("%04"PRIxPTR": string: %s\n", (uintptr_t)s - blob_off, s);
+> > -		dumpf("%04"PRIxPTR": value\n", (uintptr_t)t - blob_off);
+> > -		printf("%*s%s", depth * shift, "", s);
+> > -		utilfdt_print_data(t, sz);
+> > -		printf(";\n");
+> > +
+> > +		fprintf(stderr, "%*s ** Unknown tag 0x%08"PRIx32"\n", depth * shift,=
+ "", tag);
+> > +		break;
+> >   	}
+> >   }
+>=20
+>=20
+> This seems reasonable refactor independently from the rest of the patch
+> series.
 
+Agreed.  Merged.
 
-LGTM, I will queue this patch for the next rc.
+> Reviewed-by: Ayush Singh <ayush@beagleboard.org>
 
-Reviewed-by: Inochi Amaoto <inochiama@gmail.com>
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
 
+--lxHh1gslvIch6C9O
+Content-Type: application/pgp-signature; name=signature.asc
 
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2044-cpus.dtsi b/arch/riscv/boot/dts/sophgo/sg2044-cpus.dtsi
-> index 523799a1a8b8..3135409c2149 100644
-> --- a/arch/riscv/boot/dts/sophgo/sg2044-cpus.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/sg2044-cpus.dtsi
-> @@ -24,10 +24,10 @@ cpu0: cpu@0 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache0>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -60,10 +60,10 @@ cpu1: cpu@1 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache0>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -96,10 +96,10 @@ cpu2: cpu@2 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache0>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -132,10 +132,10 @@ cpu3: cpu@3 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache0>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -168,10 +168,10 @@ cpu4: cpu@4 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache1>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -204,10 +204,10 @@ cpu5: cpu@5 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache1>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -240,10 +240,10 @@ cpu6: cpu@6 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache1>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -276,10 +276,10 @@ cpu7: cpu@7 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache1>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -312,10 +312,10 @@ cpu8: cpu@8 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache2>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -348,10 +348,10 @@ cpu9: cpu@9 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache2>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -384,10 +384,10 @@ cpu10: cpu@10 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache2>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -420,10 +420,10 @@ cpu11: cpu@11 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache2>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -456,10 +456,10 @@ cpu12: cpu@12 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache3>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -492,10 +492,10 @@ cpu13: cpu@13 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache3>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -528,10 +528,10 @@ cpu14: cpu@14 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache3>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -564,10 +564,10 @@ cpu15: cpu@15 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache3>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -600,10 +600,10 @@ cpu16: cpu@16 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache4>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -636,10 +636,10 @@ cpu17: cpu@17 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache4>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -672,10 +672,10 @@ cpu18: cpu@18 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache4>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -708,10 +708,10 @@ cpu19: cpu@19 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache4>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -744,10 +744,10 @@ cpu20: cpu@20 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache5>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -780,10 +780,10 @@ cpu21: cpu@21 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache5>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -816,10 +816,10 @@ cpu22: cpu@22 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache5>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -852,10 +852,10 @@ cpu23: cpu@23 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache5>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -888,10 +888,10 @@ cpu24: cpu@24 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache6>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -924,10 +924,10 @@ cpu25: cpu@25 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache6>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -960,10 +960,10 @@ cpu26: cpu@26 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache6>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -996,10 +996,10 @@ cpu27: cpu@27 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache6>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1032,10 +1032,10 @@ cpu28: cpu@28 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache7>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1068,10 +1068,10 @@ cpu29: cpu@29 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache7>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1104,10 +1104,10 @@ cpu30: cpu@30 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache7>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1140,10 +1140,10 @@ cpu31: cpu@31 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache7>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1176,10 +1176,10 @@ cpu32: cpu@32 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache8>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1212,10 +1212,10 @@ cpu33: cpu@33 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache8>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1248,10 +1248,10 @@ cpu34: cpu@34 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache8>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1284,10 +1284,10 @@ cpu35: cpu@35 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache8>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1320,10 +1320,10 @@ cpu36: cpu@36 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache9>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1356,10 +1356,10 @@ cpu37: cpu@37 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache9>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1392,10 +1392,10 @@ cpu38: cpu@38 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache9>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1428,10 +1428,10 @@ cpu39: cpu@39 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache9>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1464,10 +1464,10 @@ cpu40: cpu@40 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache10>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1500,10 +1500,10 @@ cpu41: cpu@41 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache10>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1536,10 +1536,10 @@ cpu42: cpu@42 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache10>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1572,10 +1572,10 @@ cpu43: cpu@43 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache10>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1608,10 +1608,10 @@ cpu44: cpu@44 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache11>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1644,10 +1644,10 @@ cpu45: cpu@45 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache11>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1680,10 +1680,10 @@ cpu46: cpu@46 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache11>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1716,10 +1716,10 @@ cpu47: cpu@47 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache11>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1752,10 +1752,10 @@ cpu48: cpu@48 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache12>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1788,10 +1788,10 @@ cpu49: cpu@49 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache12>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1824,10 +1824,10 @@ cpu50: cpu@50 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache12>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1860,10 +1860,10 @@ cpu51: cpu@51 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache12>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1896,10 +1896,10 @@ cpu52: cpu@52 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache13>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1932,10 +1932,10 @@ cpu53: cpu@53 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache13>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -1968,10 +1968,10 @@ cpu54: cpu@54 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache13>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2004,10 +2004,10 @@ cpu55: cpu@55 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache13>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2040,10 +2040,10 @@ cpu56: cpu@56 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache14>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2076,10 +2076,10 @@ cpu57: cpu@57 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache14>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2112,10 +2112,10 @@ cpu58: cpu@58 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache14>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2148,10 +2148,10 @@ cpu59: cpu@59 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache14>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2184,10 +2184,10 @@ cpu60: cpu@60 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache15>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2220,10 +2220,10 @@ cpu61: cpu@61 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache15>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2256,10 +2256,10 @@ cpu62: cpu@62 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache15>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> @@ -2292,10 +2292,10 @@ cpu63: cpu@63 {
->  			device_type = "cpu";
->  			mmu-type = "riscv,sv48";
->  			next-level-cache = <&l2_cache15>;
-> -			riscv,isa = "rv64imafdcv";
-> +			riscv,isa = "rv64imafdcbv";
->  			riscv,isa-base = "rv64i";
->  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
-> -					       "v", "sscofpmf", "sstc",
-> +					       "b", "v", "sscofpmf", "sstc",
->  					       "svinval", "svnapot", "svpbmt",
->  					       "zawrs", "zba", "zbb", "zbc",
->  					       "zbs", "zca", "zcb", "zcd",
-> 
-> -- 
-> 2.43.0
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloNLwACgkQzQJF27ox
+2GesXg/6A2u9+eXXCLzcoh7BsHhdoVXMNcMOQN2Je+xCd7wPdGeF1ZKpRJg6MgRY
+y6x/fdT/qbtjKhAefuIrLy4pmaEeka6XjXBRg4HHKQz6xXuI9UYvdVsc3ILnaiRd
+oi7kE+pJhLpEmnQManA1Sr258MJmVjmFk/ZiJSQn/dF+Kzcgv8v7X2WHuLmClOhf
+KTPltv8BADmSLxYoCCUwKQRRoNl3LOEGvKglb6zr9NfTABaGcyikokbn59A2MVkQ
+2dl3Po6LJ/BusLph+xPVCU/2T2ZLhUkB/Iqz1CQXk5CxvaB9fLwj09S8pM5GucK9
+g/hD7kSQdMIKB5wVzD2FwtbRpM4PjNwc4ajRMgFPC4Kg0fkY/EKjSTirQxmQJcBK
+u4B8xAVby/oMdrOMNYGrpk0GZfz7w3Kuh74Gee8DwzboQ0oZdrj5noBawc7zxo+d
+xQLkiXTNlVTmTI7l8p8oDy58LCQYpPmQJa7k9xACVpTENFC1Ry8wsbv0C7UE7Y9N
+QYklYw6AZ3MpxLYgq3KNfyH3Z2XYS+RnmztFmvfo1ass/rrtAheDEYcjyAqfHq8/
+14Y6DQ77KjijKtrWaCdU4h8vgpiPVJJj10mzmJk1wky99OTFZjcL2Gj3SMfrU8mz
+lTP/+YaWW0C72rq9walTMGAtclgiZMaQTiAnqDjhEXLfJwnwzoc=
+=l+2V
+-----END PGP SIGNATURE-----
+
+--lxHh1gslvIch6C9O--
 
