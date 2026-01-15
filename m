@@ -1,175 +1,122 @@
-Return-Path: <devicetree+bounces-255292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1999DD21E5F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:51:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4A9D21DDE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:35:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 15B413023D36
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:51:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C1D953024252
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19061E3DED;
-	Thu, 15 Jan 2026 00:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8904C14A4F0;
+	Thu, 15 Jan 2026 00:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="uh0UhWLe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AwkEfNoP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EDFF17DE36;
-	Thu, 15 Jan 2026 00:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0319819E839
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 00:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768438269; cv=none; b=FJTlrEE943FVsqqdGJC4b6Is9vsJbJW7Zxt3sXHlMsHxIhQA4iWYg5k/VaIfotIUVXFl2Ud76/CuK3oBI/PjW7zKbwZTbJ/jemhMTRQ5Gszj9uHuYBvAuGX3072t0S9Gjlc2ch6oVe0HZoQ6dRm2SWjsA6PMvIxPxYVrxTpFBts=
+	t=1768437356; cv=none; b=EbZPnddT26mhM5YnKr+myD+z0hTippGMtLm5jmPm6yeNUmoewMB23jcAlTtATkSAykNlJFUXOBIQDXV0DpC+PJk+qzCdHongeGmzU+vMknvynM9RhS2VlUgv6UVxE4SUn05j62A+m7cDy9irxpTp4gjEGNSBJJXYXtaXyJrdK/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768438269; c=relaxed/simple;
-	bh=hWPlWUn6jij57g+2ICHsKoY4s+6hMmh4lKsxhONqRm4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gnZQbnPvMkIP37A0FKDT/Jj6pC/ca3CzaKM3GA1ODC9A612g2YJJA9Z5pcj+nTNeO4gU7nxTck+vLVyC8zM1e4dbXAERu9sZ9I24d/JsG9ZMueF1z4lXaxwcS3URKs9hHJWgQcydUQhI6/bY70AeYm1cY/PkP0TXAhRhxghFT3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=uh0UhWLe; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+	s=arc-20240116; t=1768437356; c=relaxed/simple;
+	bh=gfyaNAM9bwProfj39nq33cNVyJr2j0VCJfRnp2ikqrM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Zk+lzR+EVjIdkc8yJ0L9X13F72fE7GFLs+5Zr+sW2ym4NkGq4+pbiwiS0enPKqyu5s7aO1bSYcBLJKaDbRlCKSRi+Hh0P0Pjt4iHFfYpD5qly7EhDjgCRX6LXaJGFhHnqW98rQIH8zeyF94oUt7D35rqPm5a7FCECAwdPShFPDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AwkEfNoP; arc=none smtp.client-ip=74.125.82.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-11f1fb91996so852611c88.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 16:35:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768438265;
-	bh=jmvYnyEg69HjBGT0U2VvARzXt+NP/KuYJiIYL4sVMAE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uh0UhWLerWP+CxaxW299i6seequfsBgTyc6PBYbDHbWUgQ03H4hzsdFqHAHrd+4fp
-	 zsU5RhQWEPenk7Pui7kQDr4fWyAXOljpXSHaxEW0ehNuFf+sux9Oji/206UQkrem0Q
-	 GGAZL3YusDxJypO9czHW5YZu7olfPo/OeS1QiOGWSC6qoBEE1Zu4AqViU5O6mNtjiC
-	 5UEKt0VyBa0TmBknbuA73BD5C7SsgCfwApPWMmFz+VgvW69WSg2mHnrj+CxgdPxlF+
-	 gANARcQdqprSudFSwdMaJ5BHemtn3rSYdemgb4znkGkZrsXiaiMYI3q9euekK5EY/i
-	 T2fdsU3wARiPg==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4ds4D963Z7z4wGT; Thu, 15 Jan 2026 11:51:05 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 11:34:44 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Rob Herring <robh@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 06/77] Add support for FDT_REF_LOCAL dtb tag
-Message-ID: <aWg2JJstA0F-h9hi@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-7-herve.codina@bootlin.com>
- <CAL_Jsq+EDvrEqqwsFjs0sGxYfKgQuSFqCiqQs-1b3TnbG+gATQ@mail.gmail.com>
+        d=gmail.com; s=20230601; t=1768437354; x=1769042154; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=czNa2HPASxcpsdkABFpBkldVnBnMqWd7/qbtKUpfVF4=;
+        b=AwkEfNoPz9EGcvKSVulYMn/x+YO/m6lImODnP2Z1PdnXLQwkbS428RAnePOH1NpPOm
+         5mSo0ET/AOkQBL5+SsH9tSGjUgPwD9RBTinboceNbc+OSJyb4QaQwMr1jONHVHWXIQ5S
+         dsfaLw5mf9WN5ORb0D7WY9EL4Nm9Bqt4fgEXy88a3B/ZnDDKqANxQs15iXcYDcNLA4Tw
+         DpaK+1fOpnX/XVsUjWFNYh3Y6BNVp6akkwfh7Ngb1ZtsuZLAPf0X880XQfb9LO8hm6nJ
+         2tjy2n/NFa3OK+7HdlZZVDyZguzolj4WE9g5NoC/pHLt77VwqTDHw7PAIMR0FTJ7Rr1b
+         S3Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768437354; x=1769042154;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=czNa2HPASxcpsdkABFpBkldVnBnMqWd7/qbtKUpfVF4=;
+        b=Ay0f2v2wZaBXuzKvh1CqxPOf6b7niVz2sc5OjTJm3sV7EskNWyOoLkgQua+AC9ommq
+         KyfZgybmWu0S4ylrUCgSOZ7/mMy/PDyWAUIM+/0qjT3I/6+8l8U774cc2Ch/ekcPkNPR
+         vIkgEKbZOk/teUie2DiaEVMhVF6CpVoSg0f1ArwZeHbls/IZ3P2Vv+C8S8sIcy9UoHkJ
+         oYHvLpp6UEgXTQmCzsm53A/xaqBRhd2CJAovdQuDLoL1zl7LJo/Lue5CeLpasbA2oN18
+         K5MPpmEbTGHHvjwgF7vpV1Dc1gDESSxneiwpXf7g9iY24jkjGk6XVYZzT3LQuQAyfvr9
+         5ACQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUzP6bNMqagG3jV6EUdYQM2iL0cpkSx6pPe4ApnIaLiBhJ+Pt/fGWJyV+JzrClfQhR4mMvX0r1dXKSK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDtZgKNXiexYbV/V/zi6gxercJaaJ+PPJRiG2nbJmqev2zN3h3
+	H3yw3cfhTRF4NN4WlH4Te+wGMyindEOInrAw/EMXV30w256Ek0Hijo2P
+X-Gm-Gg: AY/fxX4GLOgoGWtwvISlXhLKXWOgfFw6rqKDgry0yOZPCNvcOD3TpxbzM/FWiwpwomM
+	7+eO4xlA3aATNiEwCKPD5nIelpMcYe0RWmGLDaZSA+GSa0dgG2EzqkT3v8R97fukEx/b6NV0Q+w
+	Y/CTMedMHbGPeAoz//3DVsAOYUuTarExtqnCiz4GOl5Md1EqkzF/XqOCl10zFymc2KR2yybuHZk
+	q3WDWGXAwNs9UzlQLjkzeMJc3c4R9hCAsXbOIbgxMwbcaeHq1Gcptj/J5Xi13AjfeJ0p4Jx+0YM
+	Eyoe+V97n25ucG44T9PyCOHpNROkTWkAk8uyOEIKwqjPRr4huPU+ddoy7uVw0ghP8gYOfW8tw8s
+	pdX8V1N2XXiglcnMRtJnGF/A9ZPtfYl6SS5Mnx5EGJkQ1LVKjvxY+q2VEiS+GY4MxxfQXSWPUN8
+	9lv5e+xkXWDQ==
+X-Received: by 2002:a05:7023:906:b0:11a:4ffb:9825 with SMTP id a92af1059eb24-12336a47f3cmr5379565c88.6.1768437353929;
+        Wed, 14 Jan 2026 16:35:53 -0800 (PST)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-121f248bb6esm32655086c88.12.2026.01.14.16.35.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 16:35:53 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: unicorn_wang@outlook.com,
+	Michael Orlitzky <michael@orlitzky.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/1] Enable hardware clock (RTC) on the Milk-V Pioneer
+Date: Thu, 15 Jan 2026 08:35:48 +0800
+Message-ID: <176843728514.411490.2857554435791517315.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260107112922.20013-1-michael@orlitzky.com>
+References: <20260107112922.20013-1-michael@orlitzky.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VIu+acwi3SCrnEAR"
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+EDvrEqqwsFjs0sGxYfKgQuSFqCiqQs-1b3TnbG+gATQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Wed, 07 Jan 2026 06:29:21 -0500, Michael Orlitzky wrote:
+> Add the DTS entries needed for the hardware clock on the Milk-V
+> Pioneer. I was able to get this working with an earlier (6.1.x) vendor
+> kernel, but it is disabled in the upstream DTS.
+> 
+> Changes in v2:
+>   - Trim extraneous information from the commit message
+>   - Link to v1: https://lore.kernel.org/sophgo/20260105120129.58895-1-michael@orlitzky.com
+> 
+> [...]
 
---VIu+acwi3SCrnEAR
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to dt/riscv, thanks!
 
-On Tue, Jan 13, 2026 at 01:22:08PM -0600, Rob Herring wrote:
-> On Mon, Jan 12, 2026 at 8:20=E2=80=AFAM Herve Codina <herve.codina@bootli=
-n.com> wrote:
-> >
-> > FDT_REF_LOCAL dtb tag is a meta-data tag attached to a property.
-> >
-> > It indicates that the property defined before this tag (FDT_PROP) uses a
-> > phandle value and the node related to this phandle value is local (i.e.
-> > the node is present in the device-tree blob).
-> >
-> > It is followed by one value:
-> >  - offset (32bit):
-> >      Offset in the property data where the phandle is available.
-> >
-> > Example:
-> >   FDT_PROP 0x00000008 xxxxxxxx 0xca 0xfe 0xde 0xca 0x01 0x02 0x03 0x04
-> >   FDT_REF_LOCAL 0x00000004
-> >
-> >   This means that at the offset 4 of the property data, the value
-> >   (0x01020304) is a phandle and the related node is available in the
-> >   dtb.
-> >
-> >   This is what is encoded in the dtb when the related dts has a property
-> >   with the value set to <0xcafedeca &foo> with 'foo' a reference to an
-> >   existing node where the phandle value is 0x01020304.
-> >
-> > If several local phandles are used in the property data, several
-> > FDT_REF_LOCAL are present after the FDT_PROP tag. Each of them points
-> > with its offset value to the position of one phandle.
-> >
-> > For instance, if a first property with 8 bytes of data has a phandle
-> > value at offset 4 and a second property with 16 bytes of data has
-> > phandle values at offset 0 and 8, the following tags sequence is
-> > present:
-> >   FDT_PROP 0x00000008 xxxxxxxx <data bytes>
-> >   FDT_REF_LOCAL 0x00000004
-> >   FDT_PROP 0x00000010 xxxxxxxx <data bytes>
-> >   FDT_REF_LOCAL 0x00000000
-> >   FDT_REF_LOCAL 0x00000008
->=20
-> To follow up on my desire to both be easily extended and have more
-> type info, I have something like this in mind:
->=20
-> FDT_TYPE_INFO 0x10 FDT_REF_LOCAL 0x0 FDT_TYPE_U32 0x4 FDT_REF_LOCAL
-> 0x8 FDT_TYPE_U32 0xc
+[1/1] riscv: dts: sophgo: enable hardware clock (RTC) on the Milk-V Pioneer
+      https://github.com/sophgo/linux/commit/9e81c522680db5998c872fb91ff7877cf3d8ff42
 
-I think general type info should be out of scope for this:
- * This series is already enormous and complicated without that
- * phandles aren't just another type, they have structural relevance
-   which makes them a special case
+Thanks,
+Inochi
 
-Plus, I'm actually pretty dubious about adding type information to
-dtbs in the first place.  It gives the impression that dt property
-values are self-describing, but they're not.  If you want a
-self-describing format, I think you'd be better off dropping the
-OF-related past entirely, and using json or one of the various other
-modern self-describing structure data formats.
-
-> Length is 16 because I would do u16 for the types and lengths. I'm not
-> sure what the max property length is. In theory 2^32, but I suspect
-> we'd run into other issues (e.g. libfdt offsets are 32-bit on 32-bit
-> systems). We could also do 8 bits for type and 24 bits for offset.
-> Offset could also be relative to the prior offset.
-
-Structurally dtbs are limited to 2^32 bytes, by policy they're limited
-to 2^31 bytes (so we can safely store an offset in a signed 32-bit
-int).
-
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
-
---VIu+acwi3SCrnEAR
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloNiMACgkQzQJF27ox
-2Ge3KA/+LDBCMvY4FzOyrr+MrSML2gpUkgmvrDO+aprY2TR2VzLOWLJ4ID5j10oy
-8ya9oNcTIYJkNcjQVVxmZKXuslXmvqIXCPXDne0fCUzGnOJZ4JymsbGkW2Vv2gOV
-z43spxgekqBxVYi0l7rXc+Yao5xbmNTzJ4vpdiePSkhxUYpmWFaFBqwRPqFXPL+n
-pP8FLN91+iFaNFP6gV3tV+l0bzAii+QqUjmNjFge8mLtms6ZDdTr0ZPs2/7/fOG3
-K6wYu6u5kyeblG1FrPu+efKMKP1hFe0gqVP8yuIsNgYSee1HeqNCOeA4zYn7zNmo
-v45PrxXkV9M2T1E2hpjIE95yLiumzEsGvqWVMuleiGRA0L/NataQz4z2sllR6b8P
-lwTU5/M3RwE6Wqp/oJ2UQQ9i8AGs5TxCcDOaPeDBum17fwHaiBWnD8ph/FzMdgi8
-VkD4IHkpspRS4LO6u/Ah0e9YpmT/wZCpieYfzNi5vgzbDORuoUR0Yzui7lo83oTI
-JdBnIP1eJyYRqFzMQDmLqFSDobrxlZ9ALk2iZJHvP+CqiA47MaN1cZzfSEfs9t0h
-WlAz91ooJWbHVxetiVj3Ql0+yHVq7XVAVMaThHu5OIH3susmw03T6MdpWomKfMiV
-o8dh2xEJYpCPdp4WEHRUNMu8j8TX9kSPYfmB4TNcykHT2ru4PrI=
-=Zvzb
------END PGP SIGNATURE-----
-
---VIu+acwi3SCrnEAR--
 
