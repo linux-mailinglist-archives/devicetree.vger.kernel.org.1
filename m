@@ -1,101 +1,161 @@
-Return-Path: <devicetree+bounces-255731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20E2D277E2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:27:37 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F07CD27A93
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:38:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1BEB5320D995
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:08:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D06DD3039DDA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C83393DA7FA;
-	Thu, 15 Jan 2026 17:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B543BFE36;
+	Thu, 15 Jan 2026 18:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bG1i4O1+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rLXb5/tc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53B13D349F;
-	Thu, 15 Jan 2026 17:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BFE92D3733;
+	Thu, 15 Jan 2026 18:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768499972; cv=none; b=T4R6zZfoR6/K7KNbFKiSnWXD7ORfukdr5K2RzMQmc3hsiL9ikXOYxKOQMnu3gniKEGfgvR4cYFqVMke7LQ35+nCGxdOJZZsh2Q0xnaM3hHR3hf+3J6Wpz75j68WezYWVi27kZ/lE9iM5sEMPVeQYMPkxVDMNK4sXYrBthzfwmuw=
+	t=1768501577; cv=none; b=V6WjaVBg6gsMWIZ7CoC02PNULXY9BZgRVmwYz+DStb30yMYCUoUghhb8IMnAoB+kwel/I5bmTrKgPrMZoCf60TxON+O9zq3Zfu3eQRkL4irCwLHXxjGu+VwPw6pesGKC/mCR9jYJ9S27DFyrBVqr8+1kqZQHznHJXwNCdw3ux/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768499972; c=relaxed/simple;
-	bh=k4nv3LNd06xUvMB9BLcG7D7UT7+uRA8LQwwCBmUw9b8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LdtJ1nrG/NdakwGZ8gHxwCA4QTBAZh6HA6lLJYzrWQ3fA+rCUhfkC4Pf0bp5fFkCJSHp32d+NdNvk2FoO+xuzQ/93P/o3JwuX556VLqde+pxufAQQVz9bgafl3GAn+Zw+J9cIFr8rGamf2hOerEAojhZI7Aww/J6N3goY724BLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bG1i4O1+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60F1CC116D0;
-	Thu, 15 Jan 2026 17:59:28 +0000 (UTC)
+	s=arc-20240116; t=1768501577; c=relaxed/simple;
+	bh=TMv/2GMeJt7lNR4P7wDPkUHC6oexE2lmn2DPQBekD/o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=L7Hs9qtQ0f/8DVOntoMIt68UWYEP0k+8DcxNdCQfT/WDCzK9EtBnvhUaRVTa94jfNPRe3r1SDEZsTLR4zaYKEWtDyl1u9u8Wxg2luoviisPyuSvDcmIKt7xKEjmjOy1wrVgtfK1RLYNonI/qg7l6yzJDqKpuXut1AB9oJEaMpTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rLXb5/tc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CF741C116D0;
+	Thu, 15 Jan 2026 18:26:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768499972;
-	bh=k4nv3LNd06xUvMB9BLcG7D7UT7+uRA8LQwwCBmUw9b8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bG1i4O1+W2z7yWUtJI1p/k45SGqFHEUeCXPRng04/jkQsWUyjPvq3mHb5AciPxV/C
-	 UukaXnh3Yj+ph19La4HWe8yH9NzKH/gw3gbimVogSubKyLiGhmzyF5u9Gym/B22Z2J
-	 rb4/ZcqhkCesFC7O3e2GcmvMY2mUJ3LtFcZbyUopScOin/CYRKn+S3iQUMpDgX33OQ
-	 2zDSdShciJprta6Vl9mZk/jP8OgxzS9ugcb/N80LOgq/fqICk0I3EG53CPXPbxJBPm
-	 K4XHnOueqew3hL2YV5evGkeOZjzJkbP2l0I77g56YrBAZKq1xsDtcG0M3TAiJV664u
-	 JzpLo5rXebRHw==
-Date: Thu, 15 Jan 2026 17:59:25 +0000
-From: Mark Brown <broonie@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Eugen Hristev <eugen.hristev@linaro.org>, krzk+dt@kernel.org,
-	conor+dt@kernel.org, tudor.ambarus@linaro.org, pratyush@kernel.org,
-	mwalle@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
-	vigneshr@ti.com, lgirdwood@gmail.com, matthias.bgg@gmail.com,
-	julien.massot@collabora.com, jiaxin.yu@mediatek.com,
-	shane.chien@mediatek.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	robh@kernel.org
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: mt8192-afe-pcm: Fix clocks and
- clock-names
-Message-ID: <246e84a5-18f9-464c-926d-3f1f305283c1@sirena.org.uk>
-References: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
- <20260115125624.73598-3-angelogioacchino.delregno@collabora.com>
- <e1ed2a68-683c-4235-890b-9b2c5ad93e38@linaro.org>
- <9bb24b4a-248d-4a97-a9fc-a00b5237f548@collabora.com>
+	s=k20201202; t=1768501576;
+	bh=TMv/2GMeJt7lNR4P7wDPkUHC6oexE2lmn2DPQBekD/o=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=rLXb5/tcQilVNU6so/oL38Xg9sfM/z6vztpPineB35xipUc53EDFlGYR5I+O+wyx1
+	 M1k0/nP+aDppwLAu6UsjgRtnSegz4+zqRmZjFFcDhQqrMMEHYm4NeuYF2SS7yat7VL
+	 lWj4vhL92XL+XdAu0PqDIIJqoSLKtKSTky7eiOWDaFcrmXUOYAJHcfSi3VYnWBdsYD
+	 4LOUOIMGgQTF5xpxGP745cObWqzIF3sVzG02CCoV7HwhpcUT6avDLqge055960m3Rj
+	 CiaqIhhoDhoVtzLdv5QIDN9M67lQtF/hhBzLj2c4H9YGdUlwbf3MToRgNWeGPGG+RU
+	 tpcpU5awg4Y2w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC137D46604;
+	Thu, 15 Jan 2026 18:26:16 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH v4 0/3] media: rockchip: add driver for the rockchip mipi
+ csi-2 receiver
+Date: Thu, 15 Jan 2026 19:26:06 +0100
+Message-Id: <20251114-rockchip-mipi-receiver-v4-0-a9c86fecd052@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KyHCmqwLxjNYg8pj"
-Content-Disposition: inline
-In-Reply-To: <9bb24b4a-248d-4a97-a9fc-a00b5237f548@collabora.com>
-X-Cookie: Are you sure the back door is locked?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAD4xaWkC/43OTW7CMBAF4Ksgr+vKf5CEVe+BurAnEzJqiKNxs
+ YpQ7s7AskKC5XvSfG+uqiATFrXfXBVjpUJ5lhA+NgrGOB9RUy9ZOeO21tqgOcMPjLToEy2kGQG
+ pImuT4uBCgA5aVHKcYkGdOM4wyvl8niYpF8aB/h5rh2/JI5XfzJfHeLX39uVOtdro3nrT7rC1p
+ u+/IE9TTJnjJ+STurPVvUc5oTB1KXjfNAOEZ5R/j/JCWfnIx9gMvtv+p9Z1vQF9hzI1awEAAA=
+ =
+To: Michael Riesch <michael.riesch@collabora.com>, 
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+ Kever Yang <kever.yang@rock-chips.com>, Frank Li <Frank.li@nxp.com>, 
+ Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Hans Verkuil <hverkuil@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Michael Riesch <michael.riesch@collabora.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768501575; l=2749;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=TMv/2GMeJt7lNR4P7wDPkUHC6oexE2lmn2DPQBekD/o=;
+ b=wmch28e0Zrxj/on33s1llwpel66Pa1hYRFRrdet1fz0xaiL1YM4wVrkV7w3GZKt9oDvXKj07L
+ T6ucjWHAyFDBz2VJbtSpCGMbYTusQp8JPXL2264+4aAogz+OIZq9FE5
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
+
+Habidere,
+
+This series adds support for the Rockchip MIPI CSI-2 Receiver that is
+integrated into recent Rockchip SoCs, such as the RK3568 and the RK3588.
+
+According to Rockchip, this core is NOT the Synopsys MIPI CSI-2 Host, but
+it features a compatible register layout (thanks Chaoyi for the
+clarification).
+
+As pointed out by Frank, we should thus rename the driver and place it
+under drivers/media/platform/synopsys to facilitate re-use of this code
+for similar IP cores.
+
+As has been discussed in [0], it would be beneficial to add support 
+for the split mode (a feature of the Rockchip CSI-2 DPHY) before
+integrating the MIPI CSI-2 Receiver into the respective SoC device tree
+includes. However, we can readily add the DT binding and the driver
+as I am positive they will not need to be changed significantly when this
+feature is introduced.
+
+This constitutes a small step towards mainline video capture and camera
+support on the Rockchip RK3588.
+
+Looking forward to your comments!
+
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+
+[0] https://lore.kernel.org/r/20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com
+
+---
+Changes in v4:
+- moved driver to drivers/media/platform/synopsys and renamed it (Frank)
+- addresse review comments by Sakari
+- Link to v3: https://lore.kernel.org/r/20251114-rockchip-mipi-receiver-v3-0-16e83aa7f395@collabora.com
+
+Changes in v3:
+- rebased onto v6.19/recent media-committers/next
+- Link to v2: https://lore.kernel.org/r/20251114-rockchip-mipi-receiver-v2-0-eb9b43377fc4@collabora.com
+
+Changes in v2:
+- dropped one R-b by Bryan, as there were two of them on the same patch
+  (Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20251114-rockchip-mipi-receiver-v1-0-d13086e810dd@collabora.com
+
+---
+Michael Riesch (3):
+      media: dt-bindings: add rockchip mipi csi-2 receiver
+      media: synopsys: add driver for the designware mipi csi-2 receiver
+      arm64: defconfig: enable designware mipi csi-2 receiver
+
+ .../bindings/media/rockchip,rk3568-mipi-csi2.yaml  | 141 ++++
+ MAINTAINERS                                        |   7 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/media/platform/synopsys/Kconfig            |   1 +
+ drivers/media/platform/synopsys/Makefile           |   1 +
+ .../media/platform/synopsys/dw-mipi-csi2/Kconfig   |  17 +
+ .../media/platform/synopsys/dw-mipi-csi2/Makefile  |   2 +
+ .../platform/synopsys/dw-mipi-csi2/dw-mipi-csi2.c  | 735 +++++++++++++++++++++
+ 8 files changed, 905 insertions(+)
+---
+base-commit: dc6c52205bdaddf1dc259497a958402b35c01fe2
+change-id: 20251114-rockchip-mipi-receiver-0baf244c9c8e
+
+Best regards,
+-- 
+Michael Riesch <michael.riesch@collabora.com>
 
 
---KyHCmqwLxjNYg8pj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, Jan 15, 2026 at 03:46:18PM +0100, AngeloGioacchino Del Regno wrote:
-
-> I wonder if the Fixes tag can be added while applying.
-
-Yeah, b4 will DTRT by default there.
-
---KyHCmqwLxjNYg8pj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlpKvwACgkQJNaLcl1U
-h9C6GQf/YxMHx6TFHxRD11tVNCK7jX3h2fjjKf1TF9IusHOSp+9QdQzpXJWWi83w
-hDYIsC5WX4jgAZ+IFLo3qaDsFtsPBfPvBvbSdbncbCDuqPYcdGr9EQK7gC2tugyT
-107X+LJwJ73+cM/zlGxgv3qpvdhd+RrRqXiKNOPv+a/DXfip360bRzKWvEkfiNSD
-HX/tEKhncVVHePdGClv71P+fZ2F6jP7jRcG6ExPE4KLj0YRa/NZ8iOUMg1dtIYBx
-pL/vDRD5Sq6eXq4az9H/xgCH1/+J/GmGe4ZislsRksNFRmcVoh2WGXGA3ZEg3TY/
-7AO+EqXRxfl97vJBipSqR2HUGChvlQ==
-=lO8H
------END PGP SIGNATURE-----
-
---KyHCmqwLxjNYg8pj--
 
