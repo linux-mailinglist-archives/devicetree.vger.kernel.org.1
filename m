@@ -1,146 +1,110 @@
-Return-Path: <devicetree+bounces-255613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 405C8D24BA8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:29:13 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB738D24BCC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:31:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6EB3B305BA7A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:29:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4B87C300EBB7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93983A0B0B;
-	Thu, 15 Jan 2026 13:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1FCD3A0EBD;
+	Thu, 15 Jan 2026 13:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QR33SHzm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XKi267M9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3700393DE6;
-	Thu, 15 Jan 2026 13:29:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8564720C00C;
+	Thu, 15 Jan 2026 13:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768483743; cv=none; b=uMM7KQqf0BebtHdIEeNCwDGXIEDmXN2G42K5Cmwe9e2HVv/qZsCc8CDENOwugPV57kDgx0qgwGo+3o175deHXhFgiA05FMyRlB6Eszb0rqkrixQlgRshY8oF6Uy+Fp5Dkj3/bzvvwviDWXgCKs+4S4SMP7KJCfU9JEGdJZRjrVU=
+	t=1768483906; cv=none; b=FZBnRf9cdWDg1gDfAPwt5I53eIY+UERi86zKxQAc9fsQAXl2tkHFKo1aBrjmrALs/MSCmWYhM6Sst7pb5GSwf1SKr9Jr8yRdhanvgSdZAuFpEvmszBtJ1EdGLev5gQ8zS50S2P3mih6yBAXKE3rMaDbVeo7267+ucp1AJfRHXtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768483743; c=relaxed/simple;
-	bh=QOXBWbkjoSpnu+ZLRfl6NoXgt9CjWwZy/+mvtRCDjew=;
+	s=arc-20240116; t=1768483906; c=relaxed/simple;
+	bh=j1wiepT+hzeg7Y1djEHsSLAONuKihZ6Pn/rPYeqsOWY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PxLgN/ENI3iTYdxIDAOm7zO6uO35VkzIlbdiGMGZQTppGo5ygTPhyG6P0CzqqIH0SOXzwjtyv4pACMRx5Aur8lOpTLvvcb6tZiaKBhAY+AaG4iWpoQWGzBq1iGeVauP8uNzP1XrGUUfUUnOjvg/a92s5OlmVOrF/DXzRmoUTMYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QR33SHzm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F198C16AAE;
-	Thu, 15 Jan 2026 13:29:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768483743;
-	bh=QOXBWbkjoSpnu+ZLRfl6NoXgt9CjWwZy/+mvtRCDjew=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QR33SHzmY7npV6+EgHAYfyIJT6QBRTf91Ci+1x7lH9yDmwUXqOgO3uBAAEpK+veve
-	 mQ+/6JDXXIN76X0/2QE4v/pGyfPo++ZdtobeiL+ruet53GjFGS0EHgCiNpieXnExpI
-	 B+OOUYNLuwdmi+kwlq6qP9s4hRR1qo1ehJKs3iN8wXAHnTnOj7tdu0v/LgUFalA6we
-	 3ZI2fwh4XpIaMRdFZl0M8b1+GWJ3CNi3E3aI9CadjjvNzDV/aAb7e13mhTOEYfRJB7
-	 uqTgJzMhrtzZgW8GxzvQB3fzNn2kKWak0oVjRtCPUF4zZXylvfftzjzzaqNnABUfsm
-	 rkxTsoQpc9uow==
-Date: Thu, 15 Jan 2026 14:29:01 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prathamesh Shete <pshete@nvidia.com>
-Cc: linusw@kernel.org, brgl@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com, robh@kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: gpio: Add Tegra264 support
-Message-ID: <20260115-tactful-porcupine-of-felicity-ead58d@quoll>
-References: <20260114103846.687338-1-pshete@nvidia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WxzTtvpMzyDl51b7ETOJiRPmbvbTi3OXZmNpaDmfT3d2ea7j9NajRXEml4Uj8iuHI1iFFv401imVXGWLJsUFCjGRbi/kouUl9tEe4OZUevsVHzQkt1IcbCtwYl5L5xcr37ulkpzwxwn1fW5TWRbY2xX8PhFZpp0WvrBhEUqyIq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XKi267M9; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768483906; x=1800019906;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=j1wiepT+hzeg7Y1djEHsSLAONuKihZ6Pn/rPYeqsOWY=;
+  b=XKi267M95143E6R08qqIp0AZJqA+dAWQmaNJDRfKYOJY+fVcYBNNro+T
+   i2Hd7+PsO8XuyKgd7w7fYnY6zPhQRkTg+mVDC9YbDrtbXAjx1WDsRLa/v
+   KU3YjJgOx/Kg14KY5BqWALcJGlcF+TZ+IBaqGfWHw3oZ/DVPGz0j3dU0Z
+   s2ggVysdS8tqfKbq/7j+Wk0j8rMClaWxC9djpKTgzIBNW/SzOvB7jtfXD
+   JMD53yAWIqF0E2Zn2ouqMGWDr8m+USGyMHySyFGQOawjTl54X4jtSimy0
+   9D+jw7DULnmHeUFfsXahzu18xb6OcdBLde6fjGqyYh69FpyY9vuclkK13
+   Q==;
+X-CSE-ConnectionGUID: bPdnycq+TFaV1t4G5ZqoXQ==
+X-CSE-MsgGUID: NTWHF++eRBuPKDUUGKLZAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="69767855"
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
+   d="scan'208";a="69767855"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 05:31:45 -0800
+X-CSE-ConnectionGUID: utDa7AUNQoGjbUFx+TyNLg==
+X-CSE-MsgGUID: fKEOryDMTvq7e9/QkkTjKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
+   d="scan'208";a="205233698"
+Received: from black.igk.intel.com ([10.91.253.5])
+  by fmviesa008.fm.intel.com with ESMTP; 15 Jan 2026 05:31:43 -0800
+Received: by black.igk.intel.com (Postfix, from userid 1003)
+	id 9EF4F98; Thu, 15 Jan 2026 14:31:41 +0100 (CET)
+Date: Thu, 15 Jan 2026 14:31:41 +0100
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jon Hunter <jonathanh@nvidia.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: rt5640: Fix duplicate clock properties in DT
+ binding
+Message-ID: <aWjsPfGO75DzjWhb@black.igk.intel.com>
+References: <20260114-asoc-fix-rt5640-dt-clocks-v1-1-421d438673c2@kernel.org>
+ <176848231789.253446.13860422269412592694.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260114103846.687338-1-pshete@nvidia.com>
+In-Reply-To: <176848231789.253446.13860422269412592694.b4-ty@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Jan 14, 2026 at 10:38:44AM +0000, Prathamesh Shete wrote:
-> Extend the existing Tegra186 GPIO controller device tree bindings with
-> support for the GPIO controller found on Tegra264. The number of pins
-> is slightly different, but the programming model remains the same.
+On Thu, Jan 15, 2026 at 01:05:17PM +0000, Mark Brown wrote:
+> On Wed, 14 Jan 2026 22:08:35 +0000, Mark Brown wrote:
+> > Not quite overlapping changes to the rt5640 binding resulted in duplicate
+> > definitions of the clocks and clock-names properties. Delete one of them,
+> > preferring the simpler one.
+> > 
 > 
-> Add a new header, include/dt-bindings/gpio/tegra264-gpio.h,
-> that defines port IDs as well as the TEGRA264_MAIN_GPIO() helper,
-> both of which are used in conjunction to create a unique specifier
-> for each pin.
+> Applied to
 > 
-> Document nvidia,pmc property referencing the PMC node providing the
-> parent interrupt domain. GPIO driver uses this to select the correct
-
-Why do you need to reference parent interrupt not via interrupts but
-custom phandle?
-
-> PMC,falling back to compatible-based lookup only if the phandle is
-> absent.
+>    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 > 
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-> ---
->  .../bindings/gpio/nvidia,tegra186-gpio.yaml   | 10 +++
->  include/dt-bindings/gpio/tegra264-gpio.h      | 61 +++++++++++++++++++
->  2 files changed, 71 insertions(+)
->  create mode 100644 include/dt-bindings/gpio/tegra264-gpio.h
+> Thanks!
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml b/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
-> index 2bd620a1099b..93150504c03c 100644
-> --- a/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
-> @@ -86,6 +86,9 @@ properties:
->        - nvidia,tegra234-gpio
->        - nvidia,tegra234-gpio-aon
->        - nvidia,tegra256-gpio
-> +      - nvidia,tegra264-gpio
-> +      - nvidia,tegra264-gpio-uphy
-> +      - nvidia,tegra264-gpio-aon
->  
->    reg-names:
->      items:
-> @@ -110,6 +113,10 @@ properties:
->        ports, in the order the HW manual describes them. The number of entries
->        required varies depending on compatible value.
->  
-> +  nvidia,pmc:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to the PMC node providing the parent interrupt domain.
+> [1/1] ASoC: rt5640: Fix duplicate clock properties in DT binding
+>       commit: be5a39e7994ec9f003c8569b670c794a4e5d1551
 
-You should require it for the new devices/compatibles.
+Note, in the repository the change has duplicate SoB tag. IIRC Linux Next validation
+complains (used to complain?) about inconsistencies or this kind of issues with tags.
 
-> +
->    gpio-controller: true
->  
->    gpio-ranges:
-> @@ -157,6 +164,8 @@ allOf:
->                - nvidia,tegra194-gpio
->                - nvidia,tegra234-gpio
->                - nvidia,tegra256-gpio
-> +              - nvidia,tegra264-gpio
-> +              - nvidia,tegra264-gpio-uphy
->      then:
->        properties:
->          interrupts:
-> @@ -171,6 +180,7 @@ allOf:
->                - nvidia,tegra186-gpio-aon
->                - nvidia,tegra194-gpio-aon
->                - nvidia,tegra234-gpio-aon
-> +              - nvidia,tegra264-gpio-aon
->      then:
->        properties:
->          interrupts:
-> diff --git a/include/dt-bindings/gpio/tegra264-gpio.h b/include/dt-bindings/gpio/tegra264-gpio.h
-> new file mode 100644
-> index 000000000000..d7baceace474
-> --- /dev/null
-> +++ b/include/dt-bindings/gpio/tegra264-gpio.h
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Use filenames matching compatible or bindings file.
-nvidia,tegra264-gpio.h
-
-
-Best regards,
-Krzysztof
 
 
