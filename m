@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-255723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 371E3D26B81
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:47:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB8F8D26D28
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:50:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 393F230B9359
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:37:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B3A5D3153246
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754FD3BBA0F;
-	Thu, 15 Jan 2026 17:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE802D7DED;
+	Thu, 15 Jan 2026 17:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVP+2yrR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O3PF5a3e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B79427A462;
-	Thu, 15 Jan 2026 17:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180F82D595B;
+	Thu, 15 Jan 2026 17:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768498649; cv=none; b=GLsEJehFz/AfOcB3XP2M6UDsoo5HLQmbt6hR57QzjEwGuzeybZvbaNW6ljroqJBHqlfXcayJvA6bQLTHNpFPK8SBH2NL1iPMZSkgIuiboh1I1fdbs6rg43NDX99M6/RhuzvBY5Ww9B4orKqdchJOLzYmJ/IBR3GQtDPi2X7QcBw=
+	t=1768498849; cv=none; b=amb7XfchM095qfazEWg1LtMD2wPguNcyo1QriQEGVwPtlZ7C5LBCWq0prA3NBEH8SEW7l8y3BQoUtdQQh1OXJELt5eewcKswt70t9yMqiNlxnVW+RaFib9+TZLaRZ6QHLjcs/Z6BEPG/T+QiZ2Fz52Yn+359lGKUuckWaAA4iB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768498649; c=relaxed/simple;
-	bh=lENH+BbL89v1sioGWhjfNOfFQN1i3RM4np9biV2JDn8=;
+	s=arc-20240116; t=1768498849; c=relaxed/simple;
+	bh=vdsPn0752ZUNlaPfpcfVirjmE9to0sS9ZCmiPv19dTc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qy0BeFFPBWUtgBQr/oM3Sa8XqXaJOp89tdfOL0bWJYbXNdmSr3ABbAg+1j4V9igDldA4dlWIcxALdXqEg06bKgQr6syZMq5zazak4/gz3yYWkGrGPxhIP96M/2CxYPCcYBez/iZ4ctGNsRp6a2gwhEs2fFluJyAtKGQ1RpbyjNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVP+2yrR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FC06C116D0;
-	Thu, 15 Jan 2026 17:37:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fgrJnJwlB6yvZni6FMElhViNEFwKMbhV36sGk0lqkChSfiRQGUMVi0o5VlZdwYlm3TPo7T2T5dz6AsXNLFf4lL0RunUV4ORreGMMsaKcfoGSWDhRQkKQsYMBknThIt50Zad4Ae1sXcYG6Bu5SfopTT5Tcw97aPZbHdH3bDgd9Uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O3PF5a3e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5B0AC116D0;
+	Thu, 15 Jan 2026 17:40:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768498649;
-	bh=lENH+BbL89v1sioGWhjfNOfFQN1i3RM4np9biV2JDn8=;
+	s=k20201202; t=1768498848;
+	bh=vdsPn0752ZUNlaPfpcfVirjmE9to0sS9ZCmiPv19dTc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NVP+2yrRwM+4sci7INnjMuKYVOcM0Ftbo4IgTRzEAc6Opxu6kzQY6Gh9ahHMgpMbW
-	 K2bH0Fo3ufATO5PsaquOD6nQ0ZbDr/UhRJ0b1S5fILJnKFUYASyrk/YyKwjYfsOUYa
-	 jUEA4UClUsiuo8B54A0CE/yAusfYATAFZ/zYyRrpcQOnySpAR1BsYlyQE9UBuZCs/S
-	 ctnLljH5lrfAkrtooNql/TxOJe5DCufnEokgWo9eKe7EBRvf6YxOC5ZMaxDdKFs3gg
-	 W9rShNcqhNtdTy9rtcc4artHTAShVnaghr5vxDqjJ/M5txHN2fBQjM6JOZJPDYUlyd
-	 DuxnfG3U+QvJg==
-Date: Thu, 15 Jan 2026 11:37:28 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
-Cc: "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-	phone-devel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
-	Kees Cook <kees@kernel.org>, devicetree@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
+	b=O3PF5a3eshlsBXUXlqRZeJ0irz0rLqZR3slSBrlLLEkXsssx6Iz9BwRG+XJZkSBU5
+	 pBE3zDZ8+U6SQcJuJvEada1Z5oTKZvq2x3LS+HaB4JELw6BZYmMT8BEdRyvdCad5Vf
+	 CSCBdyAKWvHg6GnbYGFuOf+Sub9mRnsfVj53sHjB6t9fYoHKYv8Heesr6P3n3dBaTi
+	 2dkHQX5aYbsaGwrtgH2cS/b0W7LuBRN4AaGnGNGs/TTs42fWeOg6EdaGGYpzfv8OWP
+	 v67nLdMMwcdBoym4l29C2gnT1PeTHK0U4yQr5wV1BeEeFT0JEad4JwfJtFSJRO7edG
+	 kfzeEwoQV6bPg==
+Date: Thu, 15 Jan 2026 11:40:47 -0600
+From: Rob Herring <robh@kernel.org>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Biswapriyo Nath <nathbappai@gmail.com>,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	linux@mainlining.org, ~postmarketos/upstreaming@lists.sr.ht,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	Tony Luck <tony.luck@intel.com>,
-	Gabriel Gonzales <semfault@disroot.org>
-Subject: Re: [PATCH 5/6] dt-bindings: arm: qcom: Add Xiaomi Redmi Note 8T
-Message-ID: <176849864771.930572.3499774593785972153.robh@kernel.org>
-References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
- <20260112-xiaomi-willow-v1-5-8e4476897638@mainlining.org>
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Sam Ravnborg <sam@ravnborg.org>, Simona Vetter <simona@ffwll.ch>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Fork Waveshare panels
+ into separate document
+Message-ID: <20260115174047.GA930768-robh@kernel.org>
+References: <20260113000715.231238-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260112-xiaomi-willow-v1-5-8e4476897638@mainlining.org>
+In-Reply-To: <20260113000715.231238-1-marek.vasut+renesas@mailbox.org>
 
+On Tue, Jan 13, 2026 at 01:05:30AM +0100, Marek Vasut wrote:
+> Move the Waveshare panels description into separate document, so they
+> can be properly described with compatible = "waveshare,...", "panel-dpi"
+> and attached to "waveshare,dsi2dpi" bridge.
 
-On Mon, 12 Jan 2026 21:13:28 +0100, Barnabás Czémán wrote:
-> Document the Xiaomi Redmi Note 8 (willow).
-> 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+But why do we need "panel-dpi"? Adding that requires changing a DT. 
+Can't you make the kernel handle these compatible strings as a 
+"panel-dpi" without the compatible?
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Rob
 
