@@ -1,144 +1,91 @@
-Return-Path: <devicetree+bounces-255461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E8F8D235DB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:12:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F9C3D23605
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:13:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A33F9300F8A5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:08:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 903CC30A32E5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4165733B6CE;
-	Thu, 15 Jan 2026 09:08:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB51344024;
+	Thu, 15 Jan 2026 09:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ddRfQ/rj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+5YXG2Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CBFE32D0DC;
-	Thu, 15 Jan 2026 09:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A022C029D;
+	Thu, 15 Jan 2026 09:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768468080; cv=none; b=cYe59gJP8t3yqd9HbbaTzgyBhEdQtDkoEVq8mnpproQc93rwPkbvEGIrrVpJMaS9lvOF1Z5M4WzdFK/mY/dguLqcYshumTNiA2sNeT+PDC+D3U2AA2BRQd5hHJvYTsnYuf/rCsEaUWbenP0KWmfRcy/s9LMXoRcDtXgPVuA7SH4=
+	t=1768468159; cv=none; b=rP/bTKrJWeCT+sLZ9F0pZGiwvAUU4ViCF7X9ISDIKN2tITuRDLfD8uPvliZj8W7w/iC+37+WvZSAw/WjroWHqux51BYL5ebIf6V4ntV3pTHejxCtfknFs8fDeQGdfyF+DarNVUG7JyPXDoZPfWqOYA6O16TgNdbZxdba9sm3Dzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768468080; c=relaxed/simple;
-	bh=N42SD1ABqhzU0innJEqJrDbsZ2gSL7z14ABovwt38ew=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dh4ABDGBD/0Fr643AFwCyfP8/lT5k4plOlwQkwEc9XRkb/CWcc6W7pqdlpPZKKcYOOAWMXWmd3H3Dul6o4dMhyQ5QGNw4YuMXyUSQO5GrcQvudeGAeVP/62pI8+FAhfygeWIc/JI4+CJ8u1S2YV8hxW+0oN7GEUebGwPnp36E+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ddRfQ/rj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9597C116D0;
-	Thu, 15 Jan 2026 09:07:55 +0000 (UTC)
+	s=arc-20240116; t=1768468159; c=relaxed/simple;
+	bh=j2FfIGKRfnEPYzvSe7Oho7jWLI9ZgGOALELDlonxVyY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dreu132q0k0l9n0Ji8sXyat2yJJ/WyTMhbiDu2M0zb/LbTzsjdONTlJNRv7tJMcaBVAXsHfPLcULnDQ1Lx3a+s1KrH9n3vHx7wJlkibkxRRPXtsQuhMuAQvyLl06rvFO4H1sQc7QLV2Vd8ZvGREKyx+w4IRZKFvKP2FqjzwoDUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+5YXG2Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAD16C116D0;
+	Thu, 15 Jan 2026 09:09:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768468079;
-	bh=N42SD1ABqhzU0innJEqJrDbsZ2gSL7z14ABovwt38ew=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ddRfQ/rj7dfC7ztz4VHAjgoa+yVt7ft1PylX15Wm8PwYmsBPhtjgZmWepaK1rT4R6
-	 B40M3Un/+9Ibdu7n/anYTAJUdLyG5NVEcRmpszH4c2HL8hilC025uHCXOtIPVBFCyk
-	 8T+QZWLTkCw9zGSuC6b0av7munsQ2P4E4ri5MeodWalEs/4SbjjIC80KNTRDgAyzJx
-	 wmniTviUQ6lwhhyL8LQC3OPlCGQme2ncgE67b92MAnHNTrH6x6uEXR0N/b8+5yaR20
-	 Lcv3mg7t9Xjb9kb7bJApYQMFHlg0tu4I+wjlN1JWYtSBOk1RqXxrM0VDN3GIEbUj7b
-	 hWgshIYleMdzw==
-Message-ID: <eadcc6da-ffff-4f3c-91db-b70998b50f6d@kernel.org>
-Date: Thu, 15 Jan 2026 10:07:53 +0100
+	s=k20201202; t=1768468159;
+	bh=j2FfIGKRfnEPYzvSe7Oho7jWLI9ZgGOALELDlonxVyY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U+5YXG2YD4lO08H9gCgLRvr7CTvfb303LA3UgJgfwWWP2hsDddULO/+2c85T8vuBE
+	 3HxubtMNXf+y8MTMYBrMhP3ln5PADGPq+WSVHmaB89/ZngJG/edD3JBeFiHXePoVJK
+	 Ak56Bna8aV+EYuttkD+KPZ5ncgOlQMZXfioWmxR8Zo4zJl8caeFe5zh0eDpkrTUv5R
+	 8FOjEzY/gy6+dr5wSdq2YqEyMsQl3FKB1nH7r3nOmhqzB4kFi5DRD0u7ARZHxedFjH
+	 QRm947rQCPqhFHPkoOSKHqSeHWeyk5AV/dBrHxvJDA4SGgUaU3Vmt03cEbQy/bRIml
+	 sMi8qWC5JDdzA==
+Date: Thu, 15 Jan 2026 10:09:16 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, linux-can@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 3/4] dt-bindings: can: renesas,rcar-canfd: Document
+ RZ/T2H and RZ/N2H SoCs
+Message-ID: <20260115-premium-piquant-coua-2f7b4e@quoll>
+References: <20260114154525.3169992-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260114154525.3169992-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: PCI: fsl,imx6q-pcie: Remove the
- deprecated "reset-gpio-active-high" property
-To: Sherry Sun <sherry.sun@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- festevam@gmail.com, kwilczynski@kernel.org, mani@kernel.org,
- andriy.shevchenko@linux.intel.com, bhelgaas@google.com,
- hongxing.zhu@nxp.com, frank.li@nxp.com, l.stach@pengutronix.de,
- lpieralisi@kernel.org
-Cc: kernel@pengutronix.de, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260115071816.115798-1-sherry.sun@nxp.com>
- <20260115071816.115798-4-sherry.sun@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260115071816.115798-4-sherry.sun@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260114154525.3169992-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 15/01/2026 08:18, Sherry Sun wrote:
-> Commit 2e81122d681c ("PCI: imx6: Convert to use agnostic GPIO API")
-> deleted the support of "reset-gpio-active-high" property in imx6 PCIe
-> driver. This deprecated preoperty is no longer used in any DTS file,
-> let's also remove this in dt-binding.
+On Wed, Jan 14, 2026 at 03:45:24PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> Document the CAN-FD controller used on the RZ/T2H and RZ/N2H SoCs. The
+> CAN-FD IP is largely compatible with the R-Car Gen4 block, but differs
+> in that AFLPN and CFTML are different, there is no reset line for the IP,
+> and it only supports two channels.
+> 
+> Sync the resets and reset-names schema handling with other CAN-FD SoCs so
+> DT validation stays consistent and maintainable.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 6 ------
->  1 file changed, 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> index 12a01f7a5744..6b18264afecf 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> @@ -63,12 +63,6 @@ properties:
->        reset signal. It's not polarity aware and defaults to active-low reset
->        sequence (L=reset state, H=operation state) (optional required).
->  
-> -  reset-gpio-active-high:
-> -    description: If present then the reset sequence using the GPIO
-> -      specified in the "reset-gpio" property is reversed (H=reset state,
-> -      L=operation state) (optional required).
+> v3->v4:
+> - Dropped Reviewed-by from Geert due to below changes.
+> - Updated commit message.
+> - Moved single compatible entries into an enum and to below oneOf.
+> - Synced the resets/reset-names handling with other similar SoCs.
 
-You had one command to run before preparing such patch:
-
-git grep reset-gpio-active-high
-
-so now you made this ABI undocumented.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
+
 
