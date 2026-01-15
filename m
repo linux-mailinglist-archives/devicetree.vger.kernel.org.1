@@ -1,137 +1,112 @@
-Return-Path: <devicetree+bounces-255442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF82D23005
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:06:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59409D23035
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:09:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0216B300CCF1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:06:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 749F4300F655
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF9F32E134;
-	Thu, 15 Jan 2026 08:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E235332E69F;
+	Thu, 15 Jan 2026 08:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V9jiEIr5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LirNzOIb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97A22DC781
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 08:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F3627B32C;
+	Thu, 15 Jan 2026 08:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768464383; cv=none; b=rdHEIhLDpy6iLoNnBGbM7oo76GcCR5WXgwb5wC2VMJigBHofJVn2FobF9o6PA5pb4KyH1/I5mhId4laoV5dPHyckiBlD0rlJfTm4sf44eQ5QQleoFYcWnam+CUFdZogcQTEARnlcqBSKlxHN149XGAhoNYjk1nyonrlanfavjEI=
+	t=1768464536; cv=none; b=TYrBMMG03/EwNxwAOtl5KH88zWSWezBP+TK3j9bBveBEaieSDwCtx4SvTWzOP1itvm0O4lmA0/l9c7tQ1wJxlDo20FbZ4ifVADGf49DbdA7RdrouSHWfMSWxmnH0KXvMU1XLpdT+K7W6VWVZn1GBNT2Fx/yLV8S8ver+I67P0dQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768464383; c=relaxed/simple;
-	bh=qJzQ61JRHErcMhLPWr6rvvyP8/2JSG8mzInHAX+kXqc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=AeOhb6+KFtd42sVc1vzGBZrK5Y7P1rrtFnwRhgNEkTPoDwmqvCIm72F73/xQfrrnrIwxZrr4710gYjft9HiJHSKT5HFWmE3Oji0TCQZHR0l/8WK39G77F4dD0f4mq81ukUKuxIaiJr05dVRACAg4B8Ubc3m6HCdEDNixbfp79Y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V9jiEIr5; arc=none smtp.client-ip=209.85.128.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so7653195e9.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 00:06:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768464380; x=1769069180; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5whZZY0NFTuaVPJTKC+j24tM3a2qyIAuO69Q21m6x8s=;
-        b=V9jiEIr5GVsbBqufhzDn2yB+iNBWIcJD1OKLphupB5tGNZz8S21yPTmpgCbcReH8Np
-         yQa/9IIBGo3OseEyfGkJ0Go9CTPWlJlwgTf2BuU6Bb7AKMYXn0BKAfGNEsoxttSTmee+
-         45pR9JMDOb4Eix5oo0a2kGe8TIJYnjn2jNiaXLGfazSV2XB+KhMs8im0rNp8ic6AZW6q
-         xwX/4MhnHqJbONSl+eS5LMj+jABFBObltULr9bu5n+p4bu67x8qlXeMdYU0Lu7J3GsqK
-         vSeEgi1kpt31j+vNhf8GTLw1BGb63AzhsG4k75fUmmGXPdCZ85XcdMLhZ6obp0RC0dQz
-         T4ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768464380; x=1769069180;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=5whZZY0NFTuaVPJTKC+j24tM3a2qyIAuO69Q21m6x8s=;
-        b=ENOOpkU508VPcffV6r7dQlmLw3A1x7NZLfw1bArUrKm0VBD75Oovb2Dh7oizBzo8rS
-         8XM2tw4vS/6ov8d2CMmXM6gBpVRn1ti9V7GFBTrlUGCpLSRgJBboSx1xdk6Q++Q2V32+
-         oNZKwqAlPproz8Cnvwss/laoII/ooy3mqOkDEE7MoM/XGIZLUOub+rAqYeGVh8hDynvA
-         OMKb2d1X3YyYG1Vr1sYvsDfQGDpJ+H+FRZ7JQmx16alyM3j3kC/kkkBZLtOE3KoHOdaw
-         5wvBnoN4iergJwfRkecHP5H3rDhIhy9orqH4FlSNfK/+aqK43nbuBdgiKlsJM305/K7e
-         0LZQ==
-X-Gm-Message-State: AOJu0YxdAPQrvpa8NMRaEFYNSo2KQE/yoa1fbjexnNgcbUw9DUdR6MIp
-	4qjosD+U8k2M4j/4cSw8NUYik366izc3UL4hSspxdzCZ2Q0e0zxTMHLxbV6ahMgiPb4=
-X-Gm-Gg: AY/fxX6Up4QgFWcArlBBnJG7BVzXTrnS9XW8XUtxW6vb0RURteR6qvER89DVDNokXnG
-	B48usmpGLGzxbpKEzcvgr005PFqpm55W3SKPe2ZTmC674S68ottD0KkwVhadK4ukk6NNJwuK7m8
-	MNjama7CNDvAl37uCMbPIHS3M5v9iWWLBE2/YSrGhE/nz3LHOr7HTFuwtvroBBGaN3WsnkfLswa
-	mLg0A5dkvUvnFQf+5+HgpwTyiQHfe8ateA4LoxCGnVz9Jlrt6hMdWR9h/qagRqT1xyxJqd87Uw3
-	dMJ22iFtc5YNcCbVvKkMeZEUFhy1Iu9Bd76d+7We+VdsffUcxMydqM9jpxvg0/zLLYO0KSRXrr0
-	2dLp5Vmq8yDTPxo+gEaxB9McveTQspvC9Sg2qfTFGld++62WWJc7P/hxl2yrQraalugatZr8L2D
-	Ml3m6FIYlm09i9LPTmNi1ZWFnoAtHa8D/2zmvyWgs5IQ==
-X-Received: by 2002:a05:600c:314f:b0:477:7991:5d1e with SMTP id 5b1f17b1804b1-47ee335fb15mr57018655e9.25.1768464380292;
-        Thu, 15 Jan 2026 00:06:20 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f4289b789sm32875245e9.1.2026.01.15.00.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jan 2026 00:06:19 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Ricardo Pardini <ricardo@pardini.net>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
-References: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
-Subject: Re: [PATCH 0/2] NPU and i2c3 + FUSB302 addition for Radxa Zero 2
-Message-Id: <176846437964.1204537.11505642254935473121.b4-ty@linaro.org>
-Date: Thu, 15 Jan 2026 09:06:19 +0100
+	s=arc-20240116; t=1768464536; c=relaxed/simple;
+	bh=4J1FcG4dxmkP5PoBZ0hZyfoKYhf61kzQ7mIPLm/KVhs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JKeY8WH6W85QlXRVl2XH9JOQ0czdPYLVmx7WCgtse1guPxFGRAu98nBkPdZV4phXgjyS1AOwCQzdCli7oiudDQUKSphj0WlqqpKz6ZCz8Ma9k19+tiIQdTn2mPbfjR+mR12B0wQHDzFfxtwmSFvURExw6PErcBovuUOei7SSiTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LirNzOIb; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768464535; x=1800000535;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4J1FcG4dxmkP5PoBZ0hZyfoKYhf61kzQ7mIPLm/KVhs=;
+  b=LirNzOIb9joWxlIb/T5wTtFyfWl1tQnlL57twzYGhOfyGWj7osyWmeT5
+   HnLSN2hXrPaQFQR0E17r/Ka3Rg5kfczpyN3ogjVlyrL8KHsIv1JtqAGPu
+   IL7URSXk1cL8Vez5jQQ2oVzdQwsjILf5gVU4x9oe8JgvyrlLsop8+QTYz
+   mCSafo+qX9gjB32kByW5NGH35FPRabc9+yXtm/jPtZnR8fmv8TeXk5Whb
+   uT2LZbM1V/xa2XTQmnkqKiHCZ6AoURf5V/bG9xeB3wBnVOuqoGbKbBl5Q
+   lyCDQEx7IKfvMkeFUVlXLP91tD9Kyj+YH7GpyzTfBgg86OZ+2XyZ7GWrl
+   Q==;
+X-CSE-ConnectionGUID: fOeKZbqOQimKS6ckiH+JwQ==
+X-CSE-MsgGUID: NbqxVr53QxuXFOoAH2/3Hw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="92437284"
+X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; 
+   d="scan'208";a="92437284"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 00:08:55 -0800
+X-CSE-ConnectionGUID: J6vCKZaCRcK0EcN3RPBO2g==
+X-CSE-MsgGUID: hlrtToK9QmO45010/8J97Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,226,1763452800"; 
+   d="scan'208";a="204103732"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.216])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 00:08:50 -0800
+Date: Thu, 15 Jan 2026 10:08:47 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Sherry Sun <sherry.sun@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	festevam@gmail.com, kwilczynski@kernel.org, mani@kernel.org,
+	bhelgaas@google.com, hongxing.zhu@nxp.com, frank.li@nxp.com,
+	l.stach@pengutronix.de, lpieralisi@kernel.org,
+	kernel@pengutronix.de, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] fsl,imx6q-pcie: Remove the deprecated
+ "reset-gpio-active-high" property
+Message-ID: <aWigj011i0pGgTRi@smile.fi.intel.com>
+References: <20260115071816.115798-1-sherry.sun@nxp.com>
+ <20260115073418.GA4366@francesco-nb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260115073418.GA4366@francesco-nb>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi,
+On Thu, Jan 15, 2026 at 08:34:18AM +0100, Francesco Dolcini wrote:
+> On Thu, Jan 15, 2026 at 03:18:13PM +0800, Sherry Sun wrote:
 
-On Wed, 14 Jan 2026 23:48:35 +0100, Ricardo Pardini wrote:
-> This series adds a few things missing from the Radxa Zero 2:
-> 
-> 1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
-> 2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22
-> 
-> 
+...
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.20/arm64-dt)
+> And , the property is still handled, see commit b8b80348c57b
+> ("gpiolib: of: add polarity quirk for Freescale PCIe controller"), the
+> DT compatibility was not broken as you seem to imply in this series.
 
-[1/2] arm64: dts: amlogic: Enable the npu node on Radxa Zero 2
-      https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
-[2/2] arm64: dts: amlogic: add the type-c controller on Radxa Zero 2
-      https://git.kernel.org/amlogic/c/8f5aa8d444d1d200715c36a8f072054a49bfb410
+This is a quirk and not a 1st class support. There must be no such property
+in new DTs, it's only present for the backward compatibility.
 
-These changes has been applied on the intermediate git tree [1].
+For the old ones, indeed the property is needed. The problem of reuse of Linux
+DTs somewhere else is orthogonal to the Linux kernel. If this is a real problem
+the DTs should have been maintained outside of Linux kernel and, if needed, be
+synchronised from time to time.
 
-The v6.20/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+TL;DR: we must discourage people to use deprecated and (historically) wrong
+properties.
 
 -- 
-Neil
+With Best Regards,
+Andy Shevchenko
+
 
 
