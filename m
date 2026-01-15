@@ -1,122 +1,87 @@
-Return-Path: <devicetree+bounces-255286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD4A9D21DDE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:35:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22B8CD21DF3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:39:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C1D953024252
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:35:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C5BAA300AFDB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8904C14A4F0;
-	Thu, 15 Jan 2026 00:35:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AwkEfNoP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9F4199252;
+	Thu, 15 Jan 2026 00:39:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0319819E839
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 00:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8CC1917F1;
+	Thu, 15 Jan 2026 00:39:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768437356; cv=none; b=EbZPnddT26mhM5YnKr+myD+z0hTippGMtLm5jmPm6yeNUmoewMB23jcAlTtATkSAykNlJFUXOBIQDXV0DpC+PJk+qzCdHongeGmzU+vMknvynM9RhS2VlUgv6UVxE4SUn05j62A+m7cDy9irxpTp4gjEGNSBJJXYXtaXyJrdK/o=
+	t=1768437577; cv=none; b=OyNHLiDicBiVHYEuA00e+QRDXByZrp+9ysl4L7781HTSHn6T+kgoTfV9AQnYXP53zCop47kHq5S2qX9Azf3fHsUzGB5FMEdizwG9mug6pfLmB9gZSxNQcdwKdsMx414e0fbW36FbCI+bzHHZECNmK0y3A89KYlCaOKYKQ2nKGwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768437356; c=relaxed/simple;
-	bh=gfyaNAM9bwProfj39nq33cNVyJr2j0VCJfRnp2ikqrM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Zk+lzR+EVjIdkc8yJ0L9X13F72fE7GFLs+5Zr+sW2ym4NkGq4+pbiwiS0enPKqyu5s7aO1bSYcBLJKaDbRlCKSRi+Hh0P0Pjt4iHFfYpD5qly7EhDjgCRX6LXaJGFhHnqW98rQIH8zeyF94oUt7D35rqPm5a7FCECAwdPShFPDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AwkEfNoP; arc=none smtp.client-ip=74.125.82.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-11f1fb91996so852611c88.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 16:35:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768437354; x=1769042154; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=czNa2HPASxcpsdkABFpBkldVnBnMqWd7/qbtKUpfVF4=;
-        b=AwkEfNoPz9EGcvKSVulYMn/x+YO/m6lImODnP2Z1PdnXLQwkbS428RAnePOH1NpPOm
-         5mSo0ET/AOkQBL5+SsH9tSGjUgPwD9RBTinboceNbc+OSJyb4QaQwMr1jONHVHWXIQ5S
-         dsfaLw5mf9WN5ORb0D7WY9EL4Nm9Bqt4fgEXy88a3B/ZnDDKqANxQs15iXcYDcNLA4Tw
-         DpaK+1fOpnX/XVsUjWFNYh3Y6BNVp6akkwfh7Ngb1ZtsuZLAPf0X880XQfb9LO8hm6nJ
-         2tjy2n/NFa3OK+7HdlZZVDyZguzolj4WE9g5NoC/pHLt77VwqTDHw7PAIMR0FTJ7Rr1b
-         S3Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768437354; x=1769042154;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=czNa2HPASxcpsdkABFpBkldVnBnMqWd7/qbtKUpfVF4=;
-        b=Ay0f2v2wZaBXuzKvh1CqxPOf6b7niVz2sc5OjTJm3sV7EskNWyOoLkgQua+AC9ommq
-         KyfZgybmWu0S4ylrUCgSOZ7/mMy/PDyWAUIM+/0qjT3I/6+8l8U774cc2Ch/ekcPkNPR
-         vIkgEKbZOk/teUie2DiaEVMhVF6CpVoSg0f1ArwZeHbls/IZ3P2Vv+C8S8sIcy9UoHkJ
-         oYHvLpp6UEgXTQmCzsm53A/xaqBRhd2CJAovdQuDLoL1zl7LJo/Lue5CeLpasbA2oN18
-         K5MPpmEbTGHHvjwgF7vpV1Dc1gDESSxneiwpXf7g9iY24jkjGk6XVYZzT3LQuQAyfvr9
-         5ACQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUzP6bNMqagG3jV6EUdYQM2iL0cpkSx6pPe4ApnIaLiBhJ+Pt/fGWJyV+JzrClfQhR4mMvX0r1dXKSK@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDtZgKNXiexYbV/V/zi6gxercJaaJ+PPJRiG2nbJmqev2zN3h3
-	H3yw3cfhTRF4NN4WlH4Te+wGMyindEOInrAw/EMXV30w256Ek0Hijo2P
-X-Gm-Gg: AY/fxX4GLOgoGWtwvISlXhLKXWOgfFw6rqKDgry0yOZPCNvcOD3TpxbzM/FWiwpwomM
-	7+eO4xlA3aATNiEwCKPD5nIelpMcYe0RWmGLDaZSA+GSa0dgG2EzqkT3v8R97fukEx/b6NV0Q+w
-	Y/CTMedMHbGPeAoz//3DVsAOYUuTarExtqnCiz4GOl5Md1EqkzF/XqOCl10zFymc2KR2yybuHZk
-	q3WDWGXAwNs9UzlQLjkzeMJc3c4R9hCAsXbOIbgxMwbcaeHq1Gcptj/J5Xi13AjfeJ0p4Jx+0YM
-	Eyoe+V97n25ucG44T9PyCOHpNROkTWkAk8uyOEIKwqjPRr4huPU+ddoy7uVw0ghP8gYOfW8tw8s
-	pdX8V1N2XXiglcnMRtJnGF/A9ZPtfYl6SS5Mnx5EGJkQ1LVKjvxY+q2VEiS+GY4MxxfQXSWPUN8
-	9lv5e+xkXWDQ==
-X-Received: by 2002:a05:7023:906:b0:11a:4ffb:9825 with SMTP id a92af1059eb24-12336a47f3cmr5379565c88.6.1768437353929;
-        Wed, 14 Jan 2026 16:35:53 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-121f248bb6esm32655086c88.12.2026.01.14.16.35.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 16:35:53 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: unicorn_wang@outlook.com,
-	Michael Orlitzky <michael@orlitzky.com>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 0/1] Enable hardware clock (RTC) on the Milk-V Pioneer
-Date: Thu, 15 Jan 2026 08:35:48 +0800
-Message-ID: <176843728514.411490.2857554435791517315.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260107112922.20013-1-michael@orlitzky.com>
-References: <20260107112922.20013-1-michael@orlitzky.com>
+	s=arc-20240116; t=1768437577; c=relaxed/simple;
+	bh=NK6H6hJtfATaruOaMMeAo/X/tsh1ZpMFyB+26JRS3EU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ntefvVAwpBif832y40BUm0tMvc/wmNw9d+J8RFW2zPePaWDy4q/Q05jm44KrYJwOH/PpcF3KgAJxGHY4XVu6fotTVzYh8DWhKTzt8aFk0Z4Cv+MqhTUBK0h8B+Jag2O/EL2uiUYhJy7iT2mzY7fvW+n3dd9uSIYxQB5f7UA2NvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 36B89340FC6;
+	Thu, 15 Jan 2026 00:39:32 +0000 (UTC)
+Date: Thu, 15 Jan 2026 08:39:29 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Junhui Liu <junhui.liu@pigmoral.tech>, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v2 4/4] riscv: dts: spacemit: k1: Add "b" ISA extension
+Message-ID: <20260115003929-GYA33650@gentoo.org>
+References: <20260115-adding-b-dtsi-v2-0-254dd61cf947@riscstar.com>
+ <20260115-adding-b-dtsi-v2-4-254dd61cf947@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260115-adding-b-dtsi-v2-4-254dd61cf947@riscstar.com>
 
-On Wed, 07 Jan 2026 06:29:21 -0500, Michael Orlitzky wrote:
-> Add the DTS entries needed for the hardware clock on the Milk-V
-> Pioneer. I was able to get this working with an earlier (6.1.x) vendor
-> kernel, but it is disabled in the upstream DTS.
+Hi Guodong,
+
+On 07:19 Thu 15 Jan     , Guodong Xu wrote:
+> "b" is ratified (Apr/2024) much later than its components zba/zbb/zbs
+> (Jun/2021). With "b" added into riscv/extensions.yaml, a dependency
+> checking rule is now enforced, which requires that when zba, zbb, and zbs
+> are all specified, "b" must be added as well. Failing to do this will
+> cause dtbs_check schema check warnings.
 > 
-> Changes in v2:
->   - Trim extraneous information from the commit message
->   - Link to v1: https://lore.kernel.org/sophgo/20260105120129.58895-1-michael@orlitzky.com
+> According to uabi.rst, as a single-letter extension, "b" should be added
+> after "c" in canonical order.
 > 
-> [...]
+> Update k1.dtsi to conform to this rule.
+> 
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
 
-Applied to dt/riscv, thanks!
+Reviewed-by: Yixun Lan <dlan@gentoo.org>
 
-[1/1] riscv: dts: sophgo: enable hardware clock (RTC) on the Milk-V Pioneer
-      https://github.com/sophgo/linux/commit/9e81c522680db5998c872fb91ff7877cf3d8ff42
-
-Thanks,
-Inochi
-
+-- 
+Yixun Lan (dlan)
 
