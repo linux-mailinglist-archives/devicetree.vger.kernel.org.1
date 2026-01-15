@@ -1,193 +1,157 @@
-Return-Path: <devicetree+bounces-255295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E260D21E80
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:52:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0FDCD21E47
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:49:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2CC213044BA6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:51:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42F193024D6D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:49:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E781E20C00A;
-	Thu, 15 Jan 2026 00:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 706FE7080E;
+	Thu, 15 Jan 2026 00:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="BgAQQbnx"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="taqLXqw4";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="KSHFcQHL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5645918FDBD;
-	Thu, 15 Jan 2026 00:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC84D4400;
+	Thu, 15 Jan 2026 00:49:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768438270; cv=none; b=g9VQGGigkFWcDIXc6bxxRDwRtAmMLv711osmigxTJvio0g5bGEvBq9WdnoPZooAhvSOS6iyVUnAFAUM7UZiVkFR+XX1AQkn+vLeducC+oPERQtJRtnh6rkFvQ1c/JviQdkNaufYn7loG1BDpm1FHWUV8L6PxIo0uD0LhMybxUJI=
+	t=1768438179; cv=none; b=AnoZy2QkOQcPyeLA1e3yB7dRvvONm3abZqg1+DC5QQ4NWysVrR6b4Lb6Q/O8KXO6z77meQ2LwBoNuMZdfSSK2y004g/t0Wqnh9YuNiZA3MCdKqMjK7VPKbmwycMJzYGHq5TAbq1iq3VF8MsToyj/0IuBFbTX/EqMLGFL2s41iiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768438270; c=relaxed/simple;
-	bh=Z+xX9T6/nsRQxX5aZ7j37Igm+lYKZ360hQEtgznnjyk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AXSB6x9RJuRgJEbVd0DMoy/E6z1Y6Yi0FVY+IpAXUcHmfzzdZ72e5Vjk3mGN6ByY4XBRBDt9HltBV3iQwz849eafmyTKH2wm5CgbDf98grhgwIyMckOSHtahS8nX/DKW4cWamU6d0YZZ0VIJHEZJffNGc7ggn4QvQFIf0ZGfQ40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=BgAQQbnx; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768438265;
-	bh=tT7zXdj1Rhj05vPP9k96QCyAQJe+1nNTZX/ZoUUUvHc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BgAQQbnxfJ/8prHAUEYuic3XeHWwx0Y4rHWGYG+4BSNYiyekkYlcvzmVfJD+rdeIA
-	 n3ejI0n6NcOE+x49Kuy3/NZCbxK5A4cvs598I6UpoJucCp8bby43Q1SHRmk3wsMpqA
-	 g/PpQm3/z4ff07tI7vdFOA+lDQMJFdafEQ5aA4e7YNpMm+m6VZN4FLIhSQaHlAo4xp
-	 TGykEQVkL25QgE5xSw/Q+X/+/JTZ9cebyjVHK6SHyP5ZbaMj+I8YaF+KmvkhOMAjwN
-	 +S3rRhrRBjMGwn8LQpJlnhoERfzYpUmLDvjrXz/P2xpFyELXvxAuhhy0sjxYz3Fi0T
-	 XkUApnzBUnVDw==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4ds4D96NSpz4wM0; Thu, 15 Jan 2026 11:51:05 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 11:48:44 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1768438179; c=relaxed/simple;
+	bh=A6SUHQbdaI9gDYxKqXxSly8GUj0jMgB7kTwfSXEMNDc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uQPJNr4lrp48fxPfKsufRxb5t8Y0Ldnj5NO12a0fkI7+F+ebeABII+GKJcNyPY3ma2pgDBdFD9faa/O+4pk265vKlNwXBb32cDAx9CeKkuYEcq1c9pzgG2d84OfL2Z3+ZxbufwGtE9x0JyAkVx4qL+hDXANeLVBEci5JDgvcbKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=taqLXqw4; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=KSHFcQHL; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4ds4BK2FpTz9t6b;
+	Thu, 15 Jan 2026 01:49:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768438169;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VgtwkFnLHLGeFiWQok6lp+mGBG+8RAMBY4LEJIBqATQ=;
+	b=taqLXqw4blf2geW+5SFAgncMx+ULvPFhCxOwoAxzFJl49yXFNZERBwEvqhL47I7l4fw6iD
+	qLCyzFjD4x+I7FdQH6HM7GwSbEeiFwSJRjvyvDXHSjTuKwlF3B5NAkZEAgzvceuP/mxlc6
+	MsvMRXA+0Q3YgqDsiIApfzzWByPdvmr1vtdorZffitlDduBBnxkz0GDMnJKYGol1VUx4TU
+	zeZftX5tM/8jHnc3XpYeevkUnzXOtb6iE/5FyeGpTk3TflykGyOd+6WK09mbrohXjOGwU7
+	BzNVJugLZLCA0+jfiuotvktdSkHn735QUg84YJTpfV1Nri0S6RNneTg7G078Bw==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=KSHFcQHL;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768438167;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VgtwkFnLHLGeFiWQok6lp+mGBG+8RAMBY4LEJIBqATQ=;
+	b=KSHFcQHLGPFGYoHiCKIIEDQ733nW2zdEoK2WTiBf3D/KUxLktnYA1Aq4Wq/vfTCVbYMOXM
+	5v5ou+oHmErvp518WdhNk3YClFsTqzDvTxZSxkK8LNhjHgUnJ14vAzjtkQSzHsfrPtu6qR
+	BsRrX/Zp9F7nZQswKEu5jiqsA0SP7kl/Jqwkm5+vr/ei2pliPfVEbHLs0inFTnBeYZjbLM
+	8zA3Eftk9RlIfBYoW8YXTfs8qQ6n7xIIBKx8vaC7QBE6sNn7BK5YB4ojKrSOiiW+CCuoEv
+	+wL4yUGrNig1u/cgyE1/DTORPiDatcL8QKjcVL80DMjc6hy7ruQveNu1WUOycA==
+To: arm-scmi@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 09/77] dtc: Introduce mark_local_phandles()
-Message-ID: <aWg5bD4zWYAQOYai@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-10-herve.codina@bootlin.com>
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: firmware: arm,scmi: Document arm,no-completion-irq property
+Date: Thu, 15 Jan 2026 01:48:56 +0100
+Message-ID: <20260115004921.548282-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5uIVwKk1wawCmcqf"
-Content-Disposition: inline
-In-Reply-To: <20260112142009.1006236-10-herve.codina@bootlin.com>
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 4s5t3ptatd9debkizza3rmmcj79dtxan
+X-MBO-RS-ID: 8336ff34b2745b0d966
+X-Rspamd-Queue-Id: 4ds4BK2FpTz9t6b
 
+Document new property arm,no-completion-irq, which sets all SCMI
+operation into poll mode. This is meant to work around uncooperative
+SCP implementations, which do not generate completion interrupts.
+This applies primarily on mbox shmem based implementations.
 
---5uIVwKk1wawCmcqf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+With this property set, such implementations which do not generate
+interrupts can be interacted with, until they are fixed to generate
+interrupts properly.
 
-On Mon, Jan 12, 2026 at 03:18:59PM +0100, Herve Codina wrote:
-> In order to have the new FDT_REF_LOCAL tag present in a dtb, the phandle
-> reference needs to be identify as a local reference.
->=20
-> This is the purpose of mark_local_phandles().
->=20
-> It identifies a phandle reference as a local reference when this
-> reference points to a local node.
->=20
-> With that node, the related FDT_REF_LOCAL tag is set in the dtb.
+Note that, because the original base protocol exchange also requires
+some sort of completion mechanism, it is not possible to query SCMI
+itself for this property and it must be described in DT. While this
+does look a bit like policy, the SCMI provider is part of the
+hardware, hence DT.
 
-I dislike caching redundant information (whether the ref is local) -
-it's an opportunity for them to get out of sync and cause bugs.  Is
-there a strong case that you can't just determine whether it's local
-only when you actually go to use it?
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: arm-scmi@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+V2: s@mean@&t and limit poll transport to mailbox/shmem only
+V3: - Reformat the commit message, expand property description to
+      explicitly spell out this is hardware description.
+    - Rename property from arm,poll-transport to arm,no-completion-irq
+---
+ .../devicetree/bindings/firmware/arm,scmi.yaml        | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  dtc.c      |  1 +
->  dtc.h      |  1 +
->  livetree.c | 26 ++++++++++++++++++++++++++
->  3 files changed, 28 insertions(+)
->=20
-> diff --git a/dtc.c b/dtc.c
-> index 88f03ff..d0b4de3 100644
-> --- a/dtc.c
-> +++ b/dtc.c
-> @@ -334,6 +334,7 @@ int main(int argc, char *argv[])
->  	}
-> =20
->  	update_phandles_ref(dti);
-> +	mark_local_phandles(dti);
-> =20
->  	process_checks(force, dti);
-> =20
-> diff --git a/dtc.h b/dtc.h
-> index 351fe41..08c9f07 100644
-> --- a/dtc.h
-> +++ b/dtc.h
-> @@ -346,6 +346,7 @@ void generate_fixups_tree(struct dt_info *dti, const =
-char *name);
->  void generate_local_fixups_tree(struct dt_info *dti, const char *name);
-> =20
->  void update_phandles_ref(struct dt_info *dti);
-> +void mark_local_phandles(struct dt_info *dti);
-> =20
->  /* Checks */
-> =20
-> diff --git a/livetree.c b/livetree.c
-> index 9e30a63..2a0a7ed 100644
-> --- a/livetree.c
-> +++ b/livetree.c
-> @@ -1196,3 +1196,29 @@ void update_phandles_ref(struct dt_info *dti)
->  {
->  	update_phandles_ref_internal(dti, dti->dt);
->  }
-> +
-> +static void mark_local_phandles_internal(struct dt_info *dti,
-> +					 struct node *node)
-> +{
-> +	struct node *c;
-> +	struct property *prop;
-> +	struct marker *m;
-> +	struct node *refnode;
-> +
-> +	for_each_property(node, prop) {
-> +		m =3D prop->val.markers;
-> +		for_each_marker_of_type(m, REF_PHANDLE) {
-> +			refnode =3D get_node_by_ref(dti->dt, m->ref);
-> +			if (refnode)
-> +				m->is_local =3D true;
-> +		}
-> +	}
-> +
-> +	for_each_child(node, c)
-> +		mark_local_phandles_internal(dti, c);
-> +}
-> +
-> +void mark_local_phandles(struct dt_info *dti)
-> +{
-> +	mark_local_phandles_internal(dti, dti->dt);
-> +}
-> --=20
-> 2.52.0
->=20
->=20
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index be817fd9cc34b..46d9a0a9a0e58 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -146,6 +146,14 @@ properties:
+       this platform. If set, the value should be non-zero.
+     minimum: 1
+ 
++  arm,no-completion-irq:
++    type: boolean
++    description:
++      An optional property which unconditionally forces polling in all transports,
++      meant for hardware which does not generate completion interrupts. This is
++      mainly meant to work around uncooperative SCP or SCP firmware, which does
++      not generate completion interrupts.
++
+   arm,smc-id:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+@@ -379,6 +387,9 @@ then:
+     - shmem
+ 
+ else:
++  properties:
++    arm,no-completion-irq: false
++
+   if:
+     properties:
+       compatible:
+-- 
+2.51.0
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
-
---5uIVwKk1wawCmcqf
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloOWsACgkQzQJF27ox
-2GcFfw/+Nsn3pI1ST2XQbBW2xgzUYTiG/z9E2JHPz0AF+6DZyXT1UobX5vFZmwL+
-s+ZBDqGJJFTdMC9H7ezKUYDPHDZX9b17YBfvuVZRKSB4M3Yb8bU9ql0W/fRh58Uw
-V1t5aoXsAaYP4Mximc2a6k/cmApHVRFlUR1HXZl4aYYtUCHiSQQaRWfoR5rg0RvM
-RnN3ab9cCtQz+lpG1Gny/vJblajJGquOursa08k/RcYyrhb3wwzU4RZPsFKO9Mep
-SGD3CtYY5VBIGxOSYSYKxf0I31iE6Oj3BGjkEnxYIkBDWaGLTUA0JSdIkqFg6Clo
-ORM5YuKmxVDkm5Tn1ZEeL0e58QKafV+ojwBYSI/aif3PnlfNopyaiPukqfROQUB3
-TyH2bJrhTe8uzqT7G6gnNA+24GJLNGd5gY8d2K14HuE4Sua+7PneR0ZcZHYC4N91
-pDrF82RpdfnGotL25PpLRW9hc6Nc0vjnyraiZ/XYUq3fuo7kQNwUS800WXZyKC2V
-yGptRoW3hg/89qM6XT2QPHM67XRw4QfED6albURo9uNyP4vq8DUjjWa4f/AJv7as
-U0aZE3zJ2mLgLB9haj23gP4YuzCnsSES2WvwUK2yG71M50n889CYL5FIA80JzHko
-DNjodMVHVwItNg63wxKgo3Na33vTVyEMJIAup+QOZ2D1sVsXBlI=
-=G1sL
------END PGP SIGNATURE-----
-
---5uIVwKk1wawCmcqf--
 
