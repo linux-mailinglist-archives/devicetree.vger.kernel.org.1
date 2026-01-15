@@ -1,53 +1,55 @@
-Return-Path: <devicetree+bounces-255469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E16CD237E3
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:27:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA51D238D6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:32:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 12CC5302E5AC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:25:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 598B130BFDE7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10C1356A10;
-	Thu, 15 Jan 2026 09:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5190535CB8F;
+	Thu, 15 Jan 2026 09:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="akI8CD3R"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IXdRpb3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0D2347FD8
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 09:25:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3633035A93E
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 09:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768469137; cv=none; b=AkkWSUTE5bqICV3L9Bv//OpUjfEMcuUjUl2k17VVUxnEaiePoSvngYYpiK0LonVXYkaoZD0uHaWqn/dDFTOBpjHkxtCmIOf1Lf3AfPe4Mzc9N6WFza9YdWjlelyU5GK0vXrqHFOEPFCRvhoy2ShlGQYPxjOFlGMxIi467eWRfu8=
+	t=1768469143; cv=none; b=kKWupzFo/+zY71i/m+/GRKr0cgeOT3A9lsTFAfH0RxWjrnr04cHL7cLcmdPximsYJih0uxagWTQoMJTqxj1XUcutLbnBFavD20NdO8Dncu/iuplnN/wiBIClqYE1gw9RS+bK7tVONjrcgZ5WWxWumjLoLvHJ8uCE3+kGiPNszh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768469137; c=relaxed/simple;
-	bh=/gd41pN+2oJIM9vptIsbXw8vPsTvmjAJ4LLt3mcWAEI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aAlJFg1eSI9Pq32v1zJG7w2cgC2Dq/K42jRKuupgiZjaiV20xU9du2UFf5pDbyB4lY66hS4aLp6mKYM0z3QyaCg51j9fFfp23Td9umsp7/zDlE2U9/vBsno3dkvWclrBPujHpg3VfKpPSuxlU7dSlqgOTYa5/y/CYFbG4yHUt3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=akI8CD3R; arc=none smtp.client-ip=185.246.84.56
+	s=arc-20240116; t=1768469143; c=relaxed/simple;
+	bh=p5NslQCxTSi9APH6Nu9G2/rRRMoxXVza/nVtRoQsCXI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ERP1jVBSNeE2isUbtnTsBfiNqt1AMqRF3ShUeTSkQIaBn43a3GXycSCLvbLwt8OwbGOYF7XKrsEjCmzB0LmwLZubiImnho+8woDatvEVgWbUpYVK4YCH9AgVSs31An1MCY3d9v2FcYWd5umjaxHl92pJ5XZ1Dow6IoC3/xpitT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IXdRpb3h; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 789AC1A2857;
-	Thu, 15 Jan 2026 09:25:32 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id AD0EF4E420FD;
+	Thu, 15 Jan 2026 09:25:34 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 45027606B6;
-	Thu, 15 Jan 2026 09:25:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AB45910B68454;
-	Thu, 15 Jan 2026 10:25:27 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8225D606B6;
+	Thu, 15 Jan 2026 09:25:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7526310B6851D;
+	Thu, 15 Jan 2026 10:25:31 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768469131; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=K1qbl7S2rlm9JCoeIkodciVRDJ3Iedcf5ILamFg+cZg=;
-	b=akI8CD3RJmrxk8tvBidwHPjmgLY26oOmJnPJCIDjAGoaBTuLLD9nIELbBll4eGRD15fCJa
-	ZJXm3JzUvYQOpAfZdnAz/eL+sbiWCLxIiJAk6GSOfwsjqSH1Bn9OdZVUYioOTmTyHDvUoI
-	KP/jn11nU95HrIz+P/fOHdFpUbO4ufM7NFSmMzblD5Q0hqrgQWyl5bnpgwDs6J7nYjzcIh
-	lvABoG7up2UVpPJna220IY/EJOBnm4XHQfIYpm8nFUTbXzuyCtWUOBgHhLYN3vXjbMxDpS
-	XVPuivGafNm48T3tnkLj+eAjTRtXrbTTQz+A9T2fjbxfg3Q2CiDV2mv/dD+yzw==
+	t=1768469133; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=OeTAsflrIMlCORoJPATDkdX8lDo51A/BHMo9XZjAk1U=;
+	b=IXdRpb3hDLNw/03VPINe9l2q4kqECYaG2N/C/x/1CpylaEm+5AUGjZsPo9HlCRKGjk2vqj
+	dZUublrHIKYvkisLzSGaCoxL5ldVWxAlkP4n+53I99MUxrCLv6+zr7yLHY4X3oW9cf0+S7
+	mRuJJsGA2EBhvNEFIcl6zD8n2iw8c9LoAyaYq+TxYfBepKaswBh4Si8VV3AuG44wz+qkVd
+	E71dIG4+U0JCJiXVRLv58iYFWVUPm2pI5nkCNZcJ8TZuEhc/nrTmlXGQiIWIZQqzCA+eTc
+	UdgYm0bMx5vtRZ9f4wNB+1RYxhB6CFaERpUlg+SI8S0lvrphD4hQbegUptXZgg==
 From: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 00/13] spi: cadence-qspi: Add Renesas RZ/N1 support
-Date: Thu, 15 Jan 2026 10:24:51 +0100
-Message-Id: <20260115-schneider-6-19-rc1-qspi-v2-0-7e6a06e1e17b@bootlin.com>
+Date: Thu, 15 Jan 2026 10:24:52 +0100
+Subject: [PATCH v2 01/13] spi: dt-bindings: cdns,qspi-nor: Add Renesas
+ RZ/N1D400 to the list
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,12 +57,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4XNQQ6CMBAF0KuQWTuGKRSUlfcwLGo7yCTaYkuIh
- nB3Kxdw+X7y/18hcRRO0BUrRF4kSfAZ6lCAHY2/M4rLBlUqTYrOmOzoWRxHbDAzWsJXmgRbWzH
- pujVD4yC3p8iDvPfla589SppD/OxHC/3S/5sLYYkn43Spqa24ri+3EOaH+KMNT+i3bfsCYG8BO
- cAAAAA=
-X-Change-ID: 20251219-schneider-6-19-rc1-qspi-7c3e1547af6d
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260115-schneider-6-19-rc1-qspi-v2-1-7e6a06e1e17b@bootlin.com>
+References: <20260115-schneider-6-19-rc1-qspi-v2-0-7e6a06e1e17b@bootlin.com>
+In-Reply-To: <20260115-schneider-6-19-rc1-qspi-v2-0-7e6a06e1e17b@bootlin.com>
 To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -78,66 +78,36 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 
-Hello,
+Add support for the Renesas RZ/N1D400 QSPI controller.
 
-This series adds support for the QSPI controller available on Renesas
-RZ/N1S and RZ/N1D SoC. It has been tested with a custom board (see last
-SPI patch for details).
-
-Adding support for this SoC required a few adaptations in the Cadence
-QSPI driver. The bulk of the work is in the few last patches. Everything
-else is just misc style fixes and improvements which bothered me while I
-was wandering.
-
-In order to support all constraints, I sometimes used a new quirk (for
-the write protection feature and the "no indirect mode"), and sometimes
-used the compatible directly. The ones I thought might not be RZ/N1
-specific have been implemented under the form of a quirk, in order to
-ease their reuse. The other adaptations, which I believe are more
-Renesas specific, have been handled using the compatible. This is all
-very arbitrary, and can be discussed.
-
-Thanks,
-Miquèl
+This SoC is identified in the bindings with its other name: r9a06g032.
+It is part of the RZ/N1 family, which contains a "D" and a "S"
+variant. IPs in this SoC are typically described using 3
+compatibles (the SoC specific compatible, the family compatible, and the
+original Cadence IP compatible), follow this convention.
 
 Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
 ---
-Changes in v2:
-- Fix commit log of DT binding patch, following Krzysztof's comment.
-- Fix properties order in DTSI.
-- Rebase on top of spi/for-next and fix all conflicts.
-- Simplify even further the code in the cleanup patches following
-  Pratyush's advices.
-- Link to v1: https://lore.kernel.org/r/20251219-schneider-6-19-rc1-qspi-v1-0-8ad505173e44@bootlin.com
+ Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
----
-Miquel Raynal (1):
-      spi: cadence-qspi: Make sure we filter out unsupported ops
+diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+index 53a52fb8b819..62948990defb 100644
+--- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+@@ -80,6 +80,10 @@ properties:
+           # controllers are meant to be used with flashes of all kinds,
+           # ie. also NAND flashes, not only NOR flashes.
+           - const: cdns,qspi-nor
++      - items:
++          - const: renesas,r9a06g032-qspi
++          - const: renesas,rzn1-qspi
++          - const: cdns,qspi-nor
+       - const: cdns,qspi-nor
+         deprecated: true
+ 
 
-Miquel Raynal (Schneider Electric) (12):
-      spi: dt-bindings: cdns,qspi-nor: Add Renesas RZ/N1D400 to the list
-      spi: cadence-qspi: Align definitions
-      spi: cadence-qspi: Fix style and improve readability
-      spi: cadence-qspi: Fix ORing style and alignments
-      spi: cadence-qspi: Remove an useless operation
-      spi: cadence-qspi: Fix probe error path and remove
-      spi: cadence-qspi: Try hard to disable the clocks
-      spi: cadence-qspi: Kill cqspi_jh7110_clk_init
-      spi: cadence-qspi: Add a flag for controllers without indirect access support
-      spi: cadence-qspi: Make sure write protection is disabled
-      spi: cadence-qspi: Add support for the Renesas RZ/N1 controller
-      ARM: dts: r9a06g032: Describe the QSPI controller
-
- .../devicetree/bindings/spi/cdns,qspi-nor.yaml     |   4 +
- arch/arm/boot/dts/renesas/r9a06g032.dtsi           |  14 ++
- drivers/spi/spi-cadence-quadspi.c                  | 260 ++++++++++-----------
- 3 files changed, 144 insertions(+), 134 deletions(-)
----
-base-commit: 0afb3ab76ffb521700af678ea931d31192f93260
-change-id: 20251219-schneider-6-19-rc1-qspi-7c3e1547af6d
-
-Best regards,
 -- 
-Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
+2.51.1
 
 
