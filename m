@@ -1,361 +1,150 @@
-Return-Path: <devicetree+bounces-255371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F85D22907
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B183ED228D1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:27:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF0AC304791D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:31:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D241301B4A9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:27:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4972741DF;
-	Thu, 15 Jan 2026 06:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B340422A4D8;
+	Thu, 15 Jan 2026 06:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="ZRCRDmOa"
+	dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b="dQZMiUQB";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WsM5v/ue"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from fout-b3-smtp.messagingengine.com (fout-b3-smtp.messagingengine.com [202.12.124.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549B410785;
-	Thu, 15 Jan 2026 06:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58407381C4;
+	Thu, 15 Jan 2026 06:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768458693; cv=none; b=NbRTnVIUYd160BPHjWph9zrIEf/vIAQ38l8Tdz5khVaDrWFelIRhLkmrPWXEcN1rX152eg8JgqhNhB96sRO9gJOtevDc0Qnl24EDj+Lj2jlHLZTZmggz+JcH0j5isjBteKCvYndTLkkTZR7fcdPT7PYzNYw0nrkvCmz2BKNQFI4=
+	t=1768458475; cv=none; b=Rx8ZODvtv98CubIfNTH68SW5PVMyXYQfjJT97eTwVEJNR13zjz/4zUfnTZuymtCNUbQrXXruFgH+TYz1GNxZQ6dYSZxuqQuWu8lnvVRIfdTy7O02hW0bGqE5Bw9xTckRONO/EBEP7E2LURAuVrgnZsoZPT/G4EE1l3m8+deQr7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768458693; c=relaxed/simple;
-	bh=clSgQJ3FoznqZMZK7+Ht/JfBznBVTG4xYcXR1r04+i8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SY+Rg0Z10X1c+SVeOO9wl0XQv/nfPxmm5b4qcPFpWe6erjeaqkOqJvo3sjZZI72OnHaY25k4ajW4StH4u/Kh/n7hahN7eFLXuVspXEDpr213WKCZQmJv6QGxnKxugkhEcvb56ExTTUjfYbuHn6vm/szbxc1S3FTAURVFOMRjChA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=ZRCRDmOa; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768458687;
-	bh=bAc/OM+xTMhatxegfi/Ylvlxfdj9vSuVvt3EClBDXNE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZRCRDmOa/8O7dG45+dIwQxIybo5h2EUYMA0B8F6U5Kb0TVOMMkuWjVsoEWXi9KFXz
-	 d1ZVq93J6OZEulMteHW6flkWFZJmWwhRAEJh+YXr1xMy1q43Bz4vZ6CIwoCcHaU6ps
-	 NOUGeK6KOgBrxDUIDM6/QgAd3mvJCktM4pKjZ6Jg31N9F2WotMkEYY+xVgcxgPdt/p
-	 ZhfeqJnie2O1XkL7ELo++OUzqou0WGYwbAk4velcyPH3M4lGn0CuywuCVkXrYxcHQP
-	 U0LRv6T2oJ7QVNAVYAbPkxQyZH3zCc2okA0cjPr9D4nFHZQH0vV/tMt9l1wb7/kJPu
-	 uc8fpor4M3tVQ==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4dsCmv5rf1z4wDG; Thu, 15 Jan 2026 17:31:27 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 17:25:58 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 29/77] Add support for FDT_EXPORT_SYM_REF dtb tag
-Message-ID: <aWiIdpH0oG7H4fMZ@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-30-herve.codina@bootlin.com>
+	s=arc-20240116; t=1768458475; c=relaxed/simple;
+	bh=S087UL4u+aARVy3r+45/NCQpjQ0CxAgkIwQszbbl3uU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oaIvA8+kYccduryGXlSZmVLM3n3iKNucmq7SBLdXrUmu7vCoh24UBxz2Nxfc4ZeNsqFEs+n4FMW/EODo2GUZusVzf08R0H9LfbEP2pbBo3v7q7GsDLOk1fDYJW/UKOQbxZdZIdS3tANG8w93om2HGLrFogSTWP0EpwFaES3PGpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au; spf=pass smtp.mailfrom=traverse.com.au; dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b=dQZMiUQB; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WsM5v/ue; arc=none smtp.client-ip=202.12.124.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=traverse.com.au
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+	by mailfout.stl.internal (Postfix) with ESMTP id 68DCB1D000A1;
+	Thu, 15 Jan 2026 01:27:51 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-06.internal (MEProxy); Thu, 15 Jan 2026 01:27:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:message-id:mime-version
+	:reply-to:subject:subject:to:to; s=fm1; t=1768458471; x=
+	1768544871; bh=xK1im2sAlmRNN7BXrq1rFYNPvIT8yHRpRMOS6x3iiAw=; b=d
+	QZMiUQB72rOpw4P0wuCfbiTUISnC7zjLiGpu0rg7SFn1+nQtkUK019KTlX9afIOv
+	7vhiFez/H7BFhUxwBJyqaGkBkQeXhcc4XZvmOqW3Ej7KZyhposQOcSbfgJtcH9Pp
+	WBEtEAepKMv2d3b1jhbCk5LJzO78lNiKfV35UnF71ndjIr+ezfrhFG6oyXZadc53
+	KrqSoSwlr3ds6yl2nIO9cYms8txIbtkemWwK0R2RF02AayVQAIl23UshaW3ofhoQ
+	AIvj726ifA0F7HX9/kSPseHP7RPKAOf9B1oMR+vKmY5hJqpYhblvEkq4k7SMwxa7
+	6kChsB+wvnYR6N5pLqvXQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1768458471; x=1768544871; bh=xK1im2sAlmRNN7BXrq1rFYNPvIT8
+	yHRpRMOS6x3iiAw=; b=WsM5v/ue1Xa09XrenWe2gklMuCDQgplG6byA6A6Tjtbl
+	vfX0N3ggVAq/2v550B7TajVf+0SJRkm3Zp1qUTUMsI9tzH9ATiy5GwY2mPamDpBx
+	hG+6jLfdIPA1LT5+uFir7vrqC+qbm+RLWp9ryXdZSSvcGlU/OHoSUlCAHlyRMk5w
+	yeNR5dcQ1oY6ElbB8J5M50o7WcM0bpLds4Q+UUQa45457dEDxXekrUlgh4kbDSmC
+	2D+QEz5s1Hyjym04vZrPrwnmdeD/Y+pX0hufiGEYn+pbP8vyPnhsEJDXIn3FCfLJ
+	DflLEtvrFCV0uDc7EwYEUWOJWv++4bHpPWqKWYg8HA==
+X-ME-Sender: <xms:5ohoaUwfEa4OJHXTZw3d7DLs18hOFQdOjdvQQb5EP_QmSGLJwkjvdQ>
+    <xme:5ohoaa17LHSoEPc1Z15k1TXDWKllX22QV-gKIWnzlg5eQ2yeFipsh_zzcfrbdeDXs
+    AdhC62-UXp6sMAr8sBGaHWRVnncnK0-UwHD3SwJzrpWHrSlEj-PdHU>
+X-ME-Received: <xmr:5ohoaZ_rp_72k1X71NehmIIUzzyO7suYsUJU6jnCkETea_rxRXyCUPkWG7yaPOikCPUh3vCP_xaIOFLbdMu2_AG1CFib7Hh8z7APviqEaPoBEIFWrGhQqb0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduvdehfeegucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephffufffkgggtgffvvefosehtjeertdertdejnecuhfhrohhmpeforghthhgvficu
+    ofgtuehrihguvgcuoehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruheqnecuggftrf
+    grthhtvghrnhepvdekueefuedvueevfffhueeufedtveeludeguefgtedvheffieefleef
+    udeuleetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epmhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghupdhnsggprhgtphhtthhopeekpdhm
+    ohguvgepshhmthhpohhuthdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdroh
+    hrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthht
+    ohepshhhrgifnhhguhhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvg
+    htrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgr
+    rhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtth
+    hopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphht
+    thhopehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruhdprhgtphhtthhopehrohgshh
+    eskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:5ohoaSriUHHcmCZSFhrvMTKIkmwyfdvo2u-R_PKZKoGyRbEQSifmjw>
+    <xmx:54hoabQ32lYHr5Wtp-BDc3SQDphzySuLDRj3x7Z0luCGB4vXOak0VA>
+    <xmx:54hoadMlh4z4NogII4Ybw0tctdJN5CZ3E69KD5mRHl41xCz9VnNu6g>
+    <xmx:54hoaRipEeP_GYXRVEXeQeBWWbfeMCt_eeCoD_p1VV9z2SDTzLzjsA>
+    <xmx:54hoaWmTi1kQD-fBGTK-XTgbHN15Xc0tmU-CjtURPyxi72eNiR7XtoqP>
+Feedback-ID: i426947f3:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 15 Jan 2026 01:27:48 -0500 (EST)
+From: Mathew McBride <matt@traverse.com.au>
+Subject: [PATCH 0/3] arm64: dts: ten64: updates for hwmon/thermal, mmc and
+ gpio
+Date: Thu, 15 Jan 2026 17:26:42 +1100
+Message-Id: <20260115-ten64-dts-updates-2025-12-v1-0-a56380bbb2ac@traverse.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dTvBvcpWzv8FBtwh"
-Content-Disposition: inline
-In-Reply-To: <20260112142009.1006236-30-herve.codina@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKKIaGkC/x2MwQ6CMBAFf4Xs2U26i3LwVwyHQp+6l0q6xZAQ/
+ p3qcTKZ2clRDE73bqeCr7l9cgO5dDS/Y36BLTUmDXoTDT1X5OHKqTqvS4oVzj/FojzFPgxQmQO
+ EWr8UPG37vx/jcZxjHW99awAAAA==
+X-Change-ID: 20251203-ten64-dts-updates-2025-12-ba306e21c0e1
+To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Mathew McBride <matt@traverse.com.au>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768458468; l=1169;
+ i=matt@traverse.com.au; s=20260115; h=from:subject:message-id;
+ bh=S087UL4u+aARVy3r+45/NCQpjQ0CxAgkIwQszbbl3uU=;
+ b=1oLD8Vpod1gC+ZjMx1rM8aBe/T9YODB/JdWUPwwt1iQaoLuH97KvOjPln8TrS4Nn8bHeU4VNJ
+ MLE9fgW/roLD75W3jLTQno6yO5bCUCYhaOlXMnOEy2tkl8U6mYwocOV
+X-Developer-Key: i=matt@traverse.com.au; a=ed25519;
+ pk=SM+aGm9Y2fPJ2prfH/b5lab73fTBrKL5UsJwdzv7Pbg=
 
+This series implements some changes to the Ten64 DTS:
+1. Add a thermal setpoints for the fan connected to the
+emc2301 fan controller.
+The values described here are intended for users of the Ten64
+desktop enclosure and are rather conservative, it is expected
+some facility to override them (e.g via device tree overlays)
+will be provided in the firmware.
 
---dTvBvcpWzv8FBtwh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+2. Reduce the maximum SD/MMC bus speed to improve stability
+with some microSD cards
 
-On Mon, Jan 12, 2026 at 03:19:19PM +0100, Herve Codina wrote:
-> The FDT_EXPORT_SYM_REF dtb tag is similar to the FDT_EXPORT_SYM tag
-> except that it identifies a reference to an external phandle. The node
-> referenced by the phandle is not present in the device-tree blob.
->=20
-> The FDT_EXPORT_SYM_REF dtb tag is a meta-data tag defining an exported
-> symbol. It can be present in a node bloc meaning that a symbol is
-> exported at this node level. The node pointed to by this symbol is not a
-> local node (i.e. the node is not present in the device-tree blob.). This
-> tag can be available only in overlay or addon device-tree blobs. The
-> symbol has to be resolved when the device-tree blob is applied on top of
-> a base device-tree.
->=20
-> It is followed by three values and a possible alignment padding:
->   - name (string including \0)
->       The export symbol name. I.e. the name used to reference this
->       exported symbol.
->   - padding:
->       Padding (0x00) added to have the next value aligned on 32bit.
->   - phandle (32bit)
->       A placeholder for a phandle value.
->       This placeholder can be used during some dtb manipulation to store
->       a temporary phandle value.
+3. Add gpio-line-names for all GPIOs that have defined purposes
+(both for system purposes and those routed to the expansion header)
 
-Yuck.
+Signed-off-by: Mathew McBride <matt@traverse.com.au>
+---
+Mathew McBride (3):
+      arm64: dts: ten64: add emc2301 fan controller and thermal set points
+      arm64: dts: ten64: reduce maximum SD card speed
+      arm64: dts: ten64: provide gpio-line-names for all system gpios
 
->       In terms of FDT_EXPORT_SYM_REF definition, it has no meaningful
->       signification and will be probably set to 0xffffffff, the
->       unresolved phandle value.
->   - label (string including \0):
->       The label to use to resolve this symbol. This label is the
->       reference to the external phandle.
->   - padding:
->       Padding (0x00) added to have the next value aligned on 32bit.
->=20
-> Example:
->   FDT_EXPORT_SYM_REF 'foo1' 0x00 0x00 0x00 0xffffffff 'foo_a' 0x00 0x00
->=20
->   This means that 'foo1' is an exported symbol and the node referenced
->   by this symbol is external to the dtb (unresolved symbol). This
->   external node is referenced by the "foo_a" label.
->=20
->   This is what is encoded in the dtb when the related dts has the
->   following exported symbol defined:
->     /export/ foo1: &foo_a;
->   with 'foo_a' a reference to a non local node.
->=20
-> If several non local symbols are exported at a given node level, several
-> FDT_EXPORT_SYM_REF are present. Each of them defining one symbol.
->=20
-> For instance, exporting 'foo1' pointing the node referenced by 'foo_a'
-> and exporting 'bar1' pointing to the node referenced by 'bar_b' leads to
-> the following sequence:
->   FDT_EXPORT_SYM_REF 'foo1' 0x00 0x00 0x00 'foo_a' 0x00 0x00
->   FDT_EXPORT_SYM_REF 'bar1' 0x00 0x00 0x00 'bar_b' 0x00 0x00
->=20
-> Add support for this new dtb tag.
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  fdtdump.c    | 12 ++++++++++++
->  flattree.c   | 40 ++++++++++++++++++++++++++++++++++++++++
->  libfdt/fdt.c | 24 ++++++++++++++++++++++++
->  libfdt/fdt.h |  2 ++
->  4 files changed, 78 insertions(+)
->=20
-> diff --git a/fdtdump.c b/fdtdump.c
-> index d1af5b6..8baadc4 100644
-> --- a/fdtdump.c
-> +++ b/fdtdump.c
-> @@ -186,6 +186,18 @@ static void dump_blob(void *blob, bool debug)
->  			continue;
->  		}
-> =20
-> +		if (tag =3D=3D FDT_EXPORT_SYM_REF) {
-> +			s =3D p;
-> +			p =3D PALIGN(p + strlen(s) + 1, 4);
-> +			val32 =3D fdt32_to_cpu(GET_CELL(p));
-> +			t =3D p;
-> +			p =3D PALIGN(p + strlen(t) + 1, 4);
-> +
-> +			printf("%*s// [FDT_EXPORT_SYM_REF] '%s' -> '%s'\n", depth * shift, "",
-> +				s, t);
-> +			continue;
-> +		}
-> +
->  		fprintf(stderr, "%*s ** Unknown tag 0x%08"PRIx32"\n", depth * shift, "=
-", tag);
->  		break;
->  	}
-> diff --git a/flattree.c b/flattree.c
-> index bd52e81..d970259 100644
-> --- a/flattree.c
-> +++ b/flattree.c
-> @@ -49,6 +49,7 @@ struct emitter {
->  	void (*ref_local)(void *);
->  	void (*ref_phandle)(void *);
->  	void (*export_sym)(void *);
-> +	void (*export_sym_ref)(void *);
->  };
-> =20
->  static void bin_emit_cell(void *e, cell_t val)
-> @@ -113,6 +114,11 @@ static void bin_emit_export_sym(void *e)
->  	bin_emit_cell(e, FDT_EXPORT_SYM);
->  }
-> =20
-> +static void bin_emit_export_sym_ref(void *e)
-> +{
-> +	bin_emit_cell(e, FDT_EXPORT_SYM_REF);
-> +}
-> +
->  static struct emitter bin_emitter =3D {
->  	.cell =3D bin_emit_cell,
->  	.string =3D bin_emit_string,
-> @@ -124,6 +130,7 @@ static struct emitter bin_emitter =3D {
->  	.ref_local =3D bin_emit_ref_local,
->  	.ref_phandle =3D bin_emit_ref_phandle,
->  	.export_sym =3D bin_emit_export_sym,
-> +	.export_sym_ref =3D bin_emit_export_sym_ref,
->  };
-> =20
->  static void emit_label(FILE *f, const char *prefix, const char *label)
-> @@ -259,6 +266,14 @@ static void asm_emit_export_sym(void *e)
->  	asm_emit_cell(e, FDT_EXPORT_SYM);
->  }
-> =20
-> +static void asm_emit_export_sym_ref(void *e)
-> +{
-> +	FILE *f =3D e;
-> +
-> +	fprintf(f, "\t/* FDT_EXPORT_SYM_REF */\n");
-> +	asm_emit_cell(e, FDT_EXPORT_SYM_REF);
-> +}
-> +
->  static struct emitter asm_emitter =3D {
->  	.cell =3D asm_emit_cell,
->  	.string =3D asm_emit_string,
-> @@ -270,6 +285,7 @@ static struct emitter asm_emitter =3D {
->  	.ref_local =3D asm_emit_ref_local,
->  	.ref_phandle =3D asm_emit_ref_phandle,
->  	.export_sym =3D asm_emit_export_sym,
-> +	.export_sym =3D asm_emit_export_sym_ref,
->  };
-> =20
->  static int stringtable_insert(struct data *d, const char *str)
-> @@ -369,6 +385,18 @@ static void flatten_tree(struct node *tree, struct e=
-mitter *emit,
->  				emit->cell(etarget, exportsym->phandle);
->  				continue;
->  			}
-> +
-> +			if (exportsym->ref[0] =3D=3D '/')
-> +				die("Export symbol uses a non local reference by path (%s)\n",
-> +				    m->ref);
-> +
-> +			emit->export_sym_ref(etarget);
-> +			emit->string(etarget, exportsym->name, 0);
-> +			emit->align(etarget, sizeof(cell_t));
-> +			/* Placeholder for the phandle */
-> +			emit->cell(etarget, exportsym->phandle);
-> +			emit->string(etarget, exportsym->ref, 0);
-> +			emit->align(etarget, sizeof(cell_t));
->  		}
->  	}
-> =20
-> @@ -838,6 +866,7 @@ static struct node *unflatten_tree(struct inbuf *dtbu=
-f,
->  	uint32_t val;
->  	uint32_t offset;
->  	const char *str;
-> +	const char *str2;
-> =20
->  	node =3D build_node(NULL, NULL, NULL, NULL);
-> =20
-> @@ -919,6 +948,17 @@ static struct node *unflatten_tree(struct inbuf *dtb=
-uf,
->  			add_symbol(&node->exportsymlist, exportsym);
->  			break;
-> =20
-> +		case FDT_EXPORT_SYM_REF:
-> +			if (!(flags & FTF_EXPORT_IMPORT_SYM))
-> +				die("FDT_EXPORT_SYM_REF tag found in flat tree"
-> +					" version <18\n");
-> +			str =3D flat_read_string(dtbuf); /* Name */
-> +			phandle =3D flat_read_word(dtbuf); /* Phandle */
-> +			str2 =3D flat_read_string(dtbuf); /* Ref */
-> +			exportsym =3D build_exportsym(str, str2, phandle, NULL);
-> +			add_symbol(&node->exportsymlist, exportsym);
-> +			break;
-> +
->  		default:
->  			die("Invalid opcode word %08x in device tree blob\n",
->  			    val);
-> diff --git a/libfdt/fdt.c b/libfdt/fdt.c
-> index 44d7399..febfa71 100644
-> --- a/libfdt/fdt.c
-> +++ b/libfdt/fdt.c
-> @@ -248,6 +248,29 @@ uint32_t fdt_next_tag_full(const void *fdt, int star=
-toffset, int *nextoffset)
->  		offset +=3D sizeof(fdt32_t);
->  		break;
-> =20
-> +	case FDT_EXPORT_SYM_REF:
-> +		/* Skip name */
-> +		do {
-> +			p =3D fdt_offset_ptr(fdt, offset++, 1);
-> +		} while (p && (*p !=3D '\0'));
-> +		if (!can_assume(VALID_DTB) && !p)
-> +			return FDT_END; /* premature end */
-> +		offset =3D FDT_CELLALIGN(offset);
-> +
-> +		/* Skip phandle */
-> +		tmp32p =3D fdt_offset_ptr(fdt, offset, sizeof(*tmp32p));
-> +		if (!can_assume(VALID_DTB) && !tmp32p)
-> +			return FDT_END; /* premature end */
-> +		offset +=3D sizeof(fdt32_t);
-> +
-> +		/* Skip external name */
-> +		do {
-> +			p =3D fdt_offset_ptr(fdt, offset++, 1);
-> +		} while (p && (*p !=3D '\0'));
-> +		if (!can_assume(VALID_DTB) && !p)
-> +			return FDT_END; /* premature end */
-> +		break;
-> +
->  	default:
->  		return FDT_END;
->  	}
-> @@ -290,6 +313,7 @@ uint32_t fdt_next_tag(const void *fdt, int startoffse=
-t, int *nextoffset)
->  		case FDT_REF_LOCAL:
->  		case FDT_REF_PHANDLE:
->  		case FDT_EXPORT_SYM:
-> +		case FDT_EXPORT_SYM_REF:
->  			/*
->  			 * Next tag is a meta-data tag present in the middle
->  			 * of the structure -> Skip it and look at next one
-> diff --git a/libfdt/fdt.h b/libfdt/fdt.h
-> index e85bc07..c23723b 100644
-> --- a/libfdt/fdt.h
-> +++ b/libfdt/fdt.h
-> @@ -65,6 +65,8 @@ struct fdt_property {
->  					   external label */
->  #define FDT_END		0x9
->  #define FDT_EXPORT_SYM	0xa		/* export symbol: name, phandle value */
-> +#define FDT_EXPORT_SYM_REF 0xb		/* export symbol: name, phandle value (m=
-aybe
-> +					   unresolved), external label */
-> =20
->  #define FDT_V1_SIZE	(7*sizeof(fdt32_t))
->  #define FDT_V2_SIZE	(FDT_V1_SIZE + sizeof(fdt32_t))
-> --=20
-> 2.52.0
->=20
->=20
+ .../arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts | 111 +++++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+---
+base-commit: 944aacb68baf7624ab8d277d0ebf07f025ca137c
+change-id: 20251203-ten64-dts-updates-2025-12-ba306e21c0e1
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+Best regards,
+-- 
+Mathew McBride <matt@traverse.com.au>
 
---dTvBvcpWzv8FBtwh
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloiHUACgkQzQJF27ox
-2GcV9RAAoHnVkrkm0N0g5W4WmSZ2MH6QOG9dwEjvIiCdiy2C5B9jO6WHcoYr5WyM
-NW7ZFX/cEktpLD7WdwWPir1+Lv4UtYpJbj2ir3LDdf5ur7uqq8sm4OBWzh5jqEiG
-jxslPUgPaCFFaeZEvFj25SxgygqfpkuD+MD+Kr2B2vCuxrDM3s+66v8Ve0KTvQM0
-Ka3+BhJZOagpIeom53KoZpXqRFuoIKOCRErwGjlZQ8XcxyaXsQeXqxAi0oslGanR
-hIwdH+kf84fBry8Q2AuwsuMI6O3Zl2ljH/BSq1ZkhUJokR8j3DOSVjMZ5FFfiD9v
-sBuSgUdjUIlBAr8FMrz1KQp9U0ZebgHAZSXM5Ko4O+SPt1k0eK9bejxVKBm0SaP9
-tFrMSvbGg7XenQ/JIyZfKc07QwpSdqTmdcef1RYFkX74gOztn1NAvoaMCmFRaa6D
-8KK4X/4O7Tqi3p7SDCSafQalXMPuUiMTsE8t4BW5pt99zjOC/n6z9jFde28frBqU
-DKhzONNs01PN6e75DQZKmxtQH4tQOt+ipHVy8OI0L8hYgkYU2DmgQd4SXyil4tpP
-cftNjyOSp9yisyfKCaMmxpuOI2b6PRN/yLdfYZi+OnVVcEso0H6Tb5haPlq7KUy+
-k+K+M1yykn5oG0hT2+IiW6Qf7mY7f8KAo3fMhHwMs8a5gAEBYrU=
-=spLn
------END PGP SIGNATURE-----
-
---dTvBvcpWzv8FBtwh--
 
