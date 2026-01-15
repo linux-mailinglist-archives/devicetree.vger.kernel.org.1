@@ -1,165 +1,339 @@
-Return-Path: <devicetree+bounces-255308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0863D22065
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 02:28:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE4CD22092
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 02:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 43623300558B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:28:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AED973015869
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:35:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899172629D;
-	Thu, 15 Jan 2026 01:28:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EA31258CE5;
+	Thu, 15 Jan 2026 01:35:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OvSE8xBW";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BQDOM8KU"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="OTSh3Zo6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06AA1C5D72
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 01:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABAC2745C;
+	Thu, 15 Jan 2026 01:35:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768440493; cv=none; b=MskR9cJiuaK2vrbvllE/ij+OXmsk55AcMCT+Ta4O0nWqXCp/ooeZpIOQ/Fh8/hbBYhulBp1s8Gu2WVHpi0Z8btW6iiOnb7s2Y4gOfHKHpwYz0FxOteoo4hQcHh7AychQYbOr27vhtWbBIx5mPiivMEKYagFc3xWni540tAK/GXw=
+	t=1768440908; cv=none; b=sEnKXXhb8kY++cZhduXAPlz0yEbgA8/cIGK1xQgnXYUShnnfDdEVppp/M2NDGsBWHDU2T+C/4BsDfDft5P+Bi7u3/aRkKx7yU9Di6wSMPO5gLZKzjr8SzyTdc8FhPtQto2iFvkyqREygmsgvyFR/yhTGkdUjdONcLJ/jW1TQ/xU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768440493; c=relaxed/simple;
-	bh=dmxjC6qlcqgndCP/W0JARXpty94tqr1V6XgBTKPx9d8=;
+	s=arc-20240116; t=1768440908; c=relaxed/simple;
+	bh=+DJg1jcATNVA8kLsWlEzfr/bGOQK9GB+/cqWZycCsXU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cUG1TcDVGoFax431MhZRbBS+tLNaCDTSTcGMlfezPPECW+pNTaXSKNdlxs8GSODn5H/KYWB8kfbomeNEoFGYaXk6PePjDI5QMZSWYpXzoz9gVdb7vB3KCQ3nWl/bTThwNgGVLq0qE4/TDr4g6ay6Ml5ZWGkhSfPlI1FlO+eBvQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OvSE8xBW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BQDOM8KU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60EMsopj2736164
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 01:28:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=DrWaDhU0InJcA00y4PTYOHbm
-	RnzReH2ikq6bd2yjO1g=; b=OvSE8xBWEVJUOcbM7jzdlSvZmHp9DJYcY5ncoL0A
-	q4wNSAvChxKPqluOMkDgnWm+lvVKXSPi6HWL8KT4UC7Fqfz/psV/LYaLu9OGeQqB
-	IhHJ+JHng0PUQxm/38FCuT3EX896b7HCkyvbDzJPPMeX7oKwJrUYjkbLOfTuKSCb
-	HRbeyT+1vp/cqN17nL0k7aS4sYy3Mskt8oTvmnNHWvcc+bx+/NyOkKLGvFS5k4d1
-	NHWO0N2ZRIeHOHE/RUyu68G+y/mOlEplR1qWlfIrHfb9e31ooTb22yjlJJzD+Uh3
-	cXozjdIkpdC27e5fmzotxK4eXP50mKRYdB6fxiJ1TYBheg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bpbj5j5bx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 01:28:10 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c52bb3ac7bso69143685a.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 17:28:10 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=H4F8SREsINKg6/mP0UpkiSMYXZtFnqyY6+UqSJsS5OWAKN1KjWe8xMySAnVQGn0reIQGuetwV/TrMrFf8qN7PDJEW7aWg1KCxqWl+mhtDf1v9KKnroe2yQMwm4uHwur6jwGhe4Xf8syGiWspvaa3cQ4voGOvongUrKlifdmmdnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=OTSh3Zo6; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768440490; x=1769045290; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DrWaDhU0InJcA00y4PTYOHbmRnzReH2ikq6bd2yjO1g=;
-        b=BQDOM8KUoeTdjOMr7s/Qa6536WdTlodhx0G18gfEUFdVOh6FLUWzvxhJZtJBz4o3I7
-         O+HZ5ScjJ/SfcTnGlENUqPt+4SzFu5R0OqexU5pFgbeq8HBkPPJzuyh8xAtGaTVtvAPu
-         sQ3CpI2nnukI4Pxr/AyoSRV83TGY/fHW686Pz+rVzceBRZ2tuefp4QcumK8RI2U06aZn
-         ClR9Y/jTQeRTtkl4rQ8G415L5tglz5yNRfMz3nEtblcXrxTtT66fQqV/ASWi5YjGuhcS
-         BlAD2AHfWqds3yXjUzn2dDuBZO63CeLTX91Slge/V/edMD/rXt9Yb1XloWTzO957B592
-         dvfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768440490; x=1769045290;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DrWaDhU0InJcA00y4PTYOHbmRnzReH2ikq6bd2yjO1g=;
-        b=uX/gXMJgU8quua0g/7rs4Vo4Wnw4/kVgjErs7rWdlry23QIl2VA1uM1lkIs/quotpd
-         3hzQPH5iFIe4Y0HnYslTm1Y6b9cMC6BzNvYsM3t+aglhJ7uldHaNy6joQPv/X/LEX08+
-         qE3y3L2zyhZCnuXndlgzU1z4vR5nLo/qW5sQMhp1d4n60YBAQRS7iQRC6tOBLPpBVBiY
-         WUCdDFh2wulRHwaccFVw+IY5iStXNWikMDt/iuHi2zU5scWGp+N4fVf7u5pPfZwLDHzr
-         qXepOUJNuFMvBuFVmXK/Yu09cwFiWo+5IRs88Ag1CyrFK7wnwqRzmYzDmZ+jLh1LU0k3
-         JX3w==
-X-Forwarded-Encrypted: i=1; AJvYcCWC0tFjDs4oQG97Xv0xPoRQKVNF879RwSzRDQUQPew/qhtYxzoyopNW5USZphuWiXXho9EohhjddT25@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDF/d7ye0kUAI95TBwPqtFDICYBxH78hfY8GIcwqkCg1xoaXW2
-	StWeI8ZK5lLPvJpMFrDCH4yVHE3Zf11altD7DTVWBHzjDCkgz3icx/t5QO2zGa2dA0OZwLolMDz
-	Rv2piEJ8gbfAO/lm308gvSoRjL2WGx1/cwevXxmfsn1JSiVftWWuthiIho7kubeu9
-X-Gm-Gg: AY/fxX7sVCMu+3Vz0ATM3P57aChFmCr3+gYoXGW/bWV2pmZ4QQTziKang6JyaUKi3k4
-	Zxx1SYR+vIsc3TqvWbVy0qXdf2yZ4s0x6waIGtZX7NDQdqM0aStNCuHVjLkgEHtddVpMZ5tQf/a
-	ovwuesmG7bpG0odMlFxhTCxtcNW5Uz+bhFmRaKzHkcwM1/+kLw6pPeKcAELdNBhI42y+U+UgoCF
-	dqvmjD02Dyzx491Te1sFMIB1TOF6b+CTSae/Yi7oGpto1KQE87FvK5PzcUYP5hCPCnNPX0h5k1T
-	NuoalDLwQ4URo/62ZPgSskhdCNNR50NUhXWFxgMrc1A6HUgWwZ5CyRWpDXTSvTqnt9upeCeKhUS
-	TXzfaVuAE7ESY8M3Nk60/FFOBnRz1IqiXvDOX62F0FpzHqNlz9kiBIWWGfykIJcYlD0A3MUey+l
-	b63vnZypFS63Bx07vRwBOAQXc=
-X-Received: by 2002:a05:620a:1a83:b0:891:bcdf:83dc with SMTP id af79cd13be357-8c52fb43699mr694795885a.34.1768440490174;
-        Wed, 14 Jan 2026 17:28:10 -0800 (PST)
-X-Received: by 2002:a05:620a:1a83:b0:891:bcdf:83dc with SMTP id af79cd13be357-8c52fb43699mr694794285a.34.1768440489703;
-        Wed, 14 Jan 2026 17:28:09 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59ba1049c79sm1189710e87.91.2026.01.14.17.28.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 17:28:08 -0800 (PST)
-Date: Thu, 15 Jan 2026 03:28:05 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC] arm64: dts: qcom: qcs6490-rb3gen2: power on onboard
- uPD720201 controller
-Message-ID: <mrby2lcn6y2igm4qljzv47vbc4xxuxyqc2kyrzvxjtxbwapf64@ulmbbxi7kudg>
-References: <20260109-rb3gen2-upd720201-v1-1-50d9b22dbc2a@oss.qualcomm.com>
- <1fcb607d-f3dc-4dcb-b640-452eae750952@oss.qualcomm.com>
+	d=gibson.dropbear.id.au; s=202512; t=1768440903;
+	bh=eBNYcLyNRCY5pJXL78Xd2S1UNmWkAFXwuYItmxc3rZs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OTSh3Zo6EOJM9fyBq9w2SfHfRcB1J6ro/OCGKQVyei6x7rAgEvyH7y64HZPhNuZJR
+	 uB59nPOmdIPboGFYTxduBrTHwmT5/MQh6tOsco7G31Qo3/USs8S6gHANKzTzyNAtjy
+	 vFebzKy3GgnpvpXVp6jS+WlJ/MMGN3azASlGlUBKPc4wRJw+FEozDqC9UEadoPhRhV
+	 57aDxWWytItfiitCBVejF2BMbiBd2SZkfDaVXiq794KZvakM7C4jNQSYG59cbl43cj
+	 KSdJ7RlADqY5ckAxTXSxD9T5xs8NKxGffePz2t9X7rTv/ElZ1KmNUxHcYUWJ4MFNAS
+	 uWGyXId+Ib7dw==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4ds5Bv2Mymz4wCJ; Thu, 15 Jan 2026 12:35:03 +1100 (AEDT)
+Date: Thu, 15 Jan 2026 12:29:33 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	Hui Pu <hui.pu@gehealthcare.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 13/77] Introduce dt_flags field in dtb header
+Message-ID: <aWhC_ZDT6KpYfADC@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <20260112142009.1006236-14-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="DV7zaRGLtZjjFuhi"
+Content-Disposition: inline
+In-Reply-To: <20260112142009.1006236-14-herve.codina@bootlin.com>
+
+
+--DV7zaRGLtZjjFuhi
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1fcb607d-f3dc-4dcb-b640-452eae750952@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE1MDAwNCBTYWx0ZWRfX7SGs4/+sLlqy
- wkSzWbCDgiQUPI2KVmR650ligDHslzx2LTwJmkIwNRfQT4MjNSXCgx0gXYdvadw/yojz6RWcDKe
- vVNd49UT2Wb0OyrRj01d/SL11vQmSPbsQQf2Atyfntv5S2Cm1KPJ+j+aQl5SfDdug2MV7Bz1lSH
- wmgqfRXaZQV9RvsTGJimm9Imqg/dZGc5WP8XQ5+GYfjUen0IHgCXJsYA1VtHWXwG2BgtZJP4Qk8
- 7jNQpXGNk9MUv2YE4WGtlf/Q7HJjyQuWWWCNpEKJ9+w0KRO+0VvDgLtk3F8iyGipBqDVC+5hsyL
- ll8aRR2ip1DH032jIUdDwJod2RtY5cT+8QtYCArgvUvrWnVtawPZHQ/xnrt4uuQC1si+I6nzmDa
- JX/sme2qhscxA40MZ7jyB31TZXo07a2/v7dgFiTV3Th1LuQ36lAnVJFOaDm1J0cB3TLxGj/4ZFV
- ySHtZO6P5tRyBXz1v7A==
-X-Proofpoint-ORIG-GUID: lJzaZcXRhNDphghoCIgH7nh6YeSAfJZ0
-X-Proofpoint-GUID: lJzaZcXRhNDphghoCIgH7nh6YeSAfJZ0
-X-Authority-Analysis: v=2.4 cv=aapsXBot c=1 sm=1 tr=0 ts=696842aa cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=8HRmNHPmt-sJrXeETnoA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-14_07,2026-01-14_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 impostorscore=0 bulkscore=0 phishscore=0 adultscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601150004
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 13, 2026 at 04:00:02PM +0100, Konrad Dybcio wrote:
-> On 1/9/26 4:30 PM, Dmitry Baryshkov wrote:
-> > One of ports of the TC9563 bridge is connected to the PCIe Renesas host
-> > controller. Specify the voltage regulator, powering on the USB host
-> > controller.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > ---
-> > Note, with these changes I can't get the onboard hub / ASIX controller
-> > to work. Most likely those need to be powered on separately, but my
-> > quick attempts to do it failed up to now.
-> > ---
-> 
-> I assume it's connected to the switch?
-> 
-> Does it show up on the bus? What if if you rescan the bus manually?
+On Mon, Jan 12, 2026 at 03:19:03PM +0100, Herve Codina wrote:
+> There is no simple way to identify a kind of dtb.
+>=20
+> A dtb can be a "standard" device-tree blob but with the future support
+> for addon dtb, a dtb could be an addon dtb.
+>=20
+> Whereas, looking at node structures and name, we can identify if a
+> "standard" dtb is a pure base device-tree or an overlay device-tree,
+> this will be no more possible with addons. Indeed, specific node such as
+> __local_fixups__ and/or __fixups__ present in overlays will be no more
+> present in addons.
+>=20
+> In order to avoid any complex and error prone searches in the dtb
+> structure to identify whether or not a dtb is an addon, encode this
+> information directly in the dtb itself.
+>=20
+> This is the purpose of the dt_flags field.
+>=20
+> Prepare the support for 'addon' flag introducing the dt_flags field
+> in the dtb header.
 
-I probably wasn't clear enough. The Renesas PCIe xHCI (placed on the
-interposer) works with this patch, but I can not the USB hub and the
-ASIX net controller (both a part of the main board) to show up on the
-USB bus.
+Do you have any more flags in mind?
 
--- 
-With best wishes
-Dmitry
+If this is just for identifying addons, I'd suggest using a different
+magic number, instead.
+
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  fdtdump.c               |  4 ++++
+>  flattree.c              | 17 +++++++++++++----
+>  libfdt/fdt.h            |  5 ++++-
+>  libfdt/fdt_rw.c         |  4 ++++
+>  libfdt/libfdt.h         |  1 +
+>  tests/pylibfdt_tests.py |  6 +++---
+>  tests/testutils.c       |  2 +-
+>  tests/trees.S           |  1 +
+>  8 files changed, 31 insertions(+), 9 deletions(-)
+>=20
+> diff --git a/fdtdump.c b/fdtdump.c
+> index 7300280..5c78559 100644
+> --- a/fdtdump.c
+> +++ b/fdtdump.c
+> @@ -87,6 +87,10 @@ static void dump_blob(void *blob, bool debug)
+>  	if (version >=3D 17)
+>  		printf("// size_dt_struct:\t0x%"PRIx32"\n",
+>  		       fdt32_to_cpu(bph->size_dt_struct));
+> +	if (version >=3D 18) {
+> +		printf("// dt_flags:\t\t0x%"PRIx32"\n",
+> +		       fdt32_to_cpu(bph->dt_flags));
+> +	}
+>  	printf("\n");
+> =20
+>  	for (i =3D 0; ; i++) {
+> diff --git a/flattree.c b/flattree.c
+> index 07f7545..2e2ffcb 100644
+> --- a/flattree.c
+> +++ b/flattree.c
+> @@ -14,6 +14,7 @@
+>  #define FTF_STRUCTSIZE	0x20
+>  #define FTF_NOPS	0x40
+>  #define FTF_REF_XXX	0x80
+> +#define FTF_DTFLAGS	0x100
+> =20
+>  static struct version_info {
+>  	int version;
+> @@ -32,7 +33,8 @@ static struct version_info {
+>  	{17, 16, FDT_V17_SIZE,
+>  	 FTF_BOOTCPUID|FTF_STRTABSIZE|FTF_STRUCTSIZE|FTF_NOPS},
+>  	{18, 18, FDT_V18_SIZE,
+> -	 FTF_BOOTCPUID|FTF_STRTABSIZE|FTF_STRUCTSIZE|FTF_NOPS|FTF_REF_XXX},
+> +	 FTF_BOOTCPUID|FTF_STRTABSIZE|FTF_STRUCTSIZE|FTF_NOPS|FTF_REF_XXX|
+> +	 FTF_DTFLAGS},
+>  };
+> =20
+>  struct emitter {
+> @@ -370,7 +372,7 @@ static struct data flatten_reserve_list(struct reserv=
+e_info *reservelist,
+>  static void make_fdt_header(struct fdt_header *fdt,
+>  			    struct version_info *vi,
+>  			    int reservesize, int dtsize, int strsize,
+> -			    int boot_cpuid_phys)
+> +			    int boot_cpuid_phys, uint32_t dt_flags)
+>  {
+>  	int reserve_off;
+> =20
+> @@ -397,6 +399,8 @@ static void make_fdt_header(struct fdt_header *fdt,
+>  		fdt->size_dt_strings =3D cpu_to_fdt32(strsize);
+>  	if (vi->flags & FTF_STRUCTSIZE)
+>  		fdt->size_dt_struct =3D cpu_to_fdt32(dtsize);
+> +	if (vi->flags & FTF_DTFLAGS)
+> +		fdt->dt_flags =3D cpu_to_fdt32(dt_flags);
+>  }
+> =20
+>  void dt_to_blob(FILE *f, struct dt_info *dti, int version)
+> @@ -424,7 +428,7 @@ void dt_to_blob(FILE *f, struct dt_info *dti, int ver=
+sion)
+> =20
+>  	/* Make header */
+>  	make_fdt_header(&fdt, vi, reservebuf.len, dtbuf.len, strbuf.len,
+> -			dti->boot_cpuid_phys);
+> +			dti->boot_cpuid_phys, 0);
+> =20
+>  	/*
+>  	 * If the user asked for more space than is used, adjust the totalsize.
+> @@ -555,6 +559,11 @@ void dt_to_asm(FILE *f, struct dt_info *dti, int ver=
+sion)
+>  			symprefix, symprefix);
+>  	}
+> =20
+> +	if (vi->flags & FTF_DTFLAGS) {
+> +		fprintf(f, "\t/* dt_flags */\n");
+> +		asm_emit_cell(f, 0);
+> +	}
+> +
+>  	/*
+>  	 * Reserve map entries.
+>  	 * Align the reserve map to a doubleword boundary.
+> @@ -980,7 +989,7 @@ struct dt_info *dt_from_blob(const char *fname)
+>  	}
+> =20
+>  	if (version >=3D 18)
+> -		flags |=3D FTF_REF_XXX;
+> +		flags |=3D FTF_REF_XXX | FTF_DTFLAGS;
+> =20
+>  	inbuf_init(&memresvbuf,
+>  		   blob + off_mem_rsvmap, blob + totalsize);
+> diff --git a/libfdt/fdt.h b/libfdt/fdt.h
+> index 530d2e5..128e7bc 100644
+> --- a/libfdt/fdt.h
+> +++ b/libfdt/fdt.h
+> @@ -26,6 +26,9 @@ struct fdt_header {
+> =20
+>  	/* version 17 fields below */
+>  	fdt32_t size_dt_struct;		 /* size of the structure block */
+> +
+> +	/* version 18 fields below */
+> +	fdt32_t dt_flags;		/* Ored value of FDT_FLAG_XXXX */
+>  };
+> =20
+>  struct fdt_reserve_entry {
+> @@ -65,6 +68,6 @@ struct fdt_property {
+>  #define FDT_V3_SIZE	(FDT_V2_SIZE + sizeof(fdt32_t))
+>  #define FDT_V16_SIZE	FDT_V3_SIZE
+>  #define FDT_V17_SIZE	(FDT_V16_SIZE + sizeof(fdt32_t))
+> -#define FDT_V18_SIZE	FDT_V17_SIZE
+> +#define FDT_V18_SIZE	(FDT_V17_SIZE + sizeof(fdt32_t))
+> =20
+>  #endif /* FDT_H */
+> diff --git a/libfdt/fdt_rw.c b/libfdt/fdt_rw.c
+> index 00e32bb..1528b33 100644
+> --- a/libfdt/fdt_rw.c
+> +++ b/libfdt/fdt_rw.c
+> @@ -457,6 +457,8 @@ int fdt_open_into(const void *fdt, void *buf, int buf=
+size)
+>  			return err;
+>  		fdt_set_version(buf, 18);
+>  		fdt_set_last_comp_version(buf, 18);
+> +		if (can_assume(LATEST) || fdt_version(fdt) < 18)
+> +			fdt_set_dt_flags(buf, 0);
+>  		fdt_set_size_dt_struct(buf, struct_size);
+>  		fdt_set_totalsize(buf, bufsize);
+>  		return 0;
+> @@ -487,6 +489,8 @@ int fdt_open_into(const void *fdt, void *buf, int buf=
+size)
+>  	fdt_set_totalsize(buf, bufsize);
+>  	fdt_set_version(buf, 18);
+>  	fdt_set_last_comp_version(buf, 18);
+> +	if (can_assume(LATEST) || fdt_version(fdt) < 18)
+> +		fdt_set_dt_flags(buf, 0);
+>  	fdt_set_boot_cpuid_phys(buf, fdt_boot_cpuid_phys(fdt));
+> =20
+>  	return 0;
+> diff --git a/libfdt/libfdt.h b/libfdt/libfdt.h
+> index d1a9cd5..9777f32 100644
+> --- a/libfdt/libfdt.h
+> +++ b/libfdt/libfdt.h
+> @@ -319,6 +319,7 @@ fdt_set_hdr_(last_comp_version)
+>  fdt_set_hdr_(boot_cpuid_phys)
+>  fdt_set_hdr_(size_dt_strings)
+>  fdt_set_hdr_(size_dt_struct)
+> +fdt_set_hdr_(dt_flags)
+>  #undef fdt_set_hdr_
+> =20
+>  /**
+> diff --git a/tests/pylibfdt_tests.py b/tests/pylibfdt_tests.py
+> index 373e11a..7d5ab0b 100644
+> --- a/tests/pylibfdt_tests.py
+> +++ b/tests/pylibfdt_tests.py
+> @@ -285,9 +285,9 @@ class PyLibfdtBasicTests(unittest.TestCase):
+>          """Test that we can access the header values"""
+>          self.assertEqual(self.fdt.magic(), 0xd00dfeed)
+>          self.assertEqual(self.fdt.totalsize(), len(self.fdt._fdt))
+> -        self.assertEqual(self.fdt.off_dt_struct(), 88)
+> -        self.assertEqual(self.fdt.off_dt_strings(), 652)
+> -        self.assertEqual(self.fdt.off_mem_rsvmap(), 40)
+> +        self.assertEqual(self.fdt.off_dt_struct(), 96)
+> +        self.assertEqual(self.fdt.off_dt_strings(), 660)
+> +        self.assertEqual(self.fdt.off_mem_rsvmap(), 48)
+>          self.assertEqual(self.fdt.version(), 18)
+>          self.assertEqual(self.fdt.last_comp_version(), 16)
+>          self.assertEqual(self.fdt.boot_cpuid_phys(), 0)
+> diff --git a/tests/testutils.c b/tests/testutils.c
+> index 54da2e4..2d5cfb3 100644
+> --- a/tests/testutils.c
+> +++ b/tests/testutils.c
+> @@ -344,7 +344,7 @@ void *open_blob_rw(const void *blob)
+>  {
+>  	int err;
+>  	void *buf;
+> -	int newsize =3D fdt_totalsize(blob) + 8;
+> +	int newsize =3D fdt_totalsize(blob) + 8 + 4;
+
+Kind of pre-existing, but a comment explaining where the 8 and the 4
+come from would be nice.
+
+>  	buf =3D xmalloc(newsize);
+>  	err =3D fdt_open_into(blob, buf, newsize);
+> diff --git a/tests/trees.S b/tests/trees.S
+> index ecd43bc..56c1002 100644
+> --- a/tests/trees.S
+> +++ b/tests/trees.S
+> @@ -22,6 +22,7 @@
+>  	fdtlong	0
+>  	fdtlong	(\tree\()_strings_end - \tree\()_strings)
+>  	fdtlong	(\tree\()_struct_end - \tree\()_struct)
+> +	fdtlong	0
+>  	.endm
+> =20
+>  	.macro	rsvmape	addrh, addrl, lenh, lenl
+> --=20
+> 2.52.0
+>=20
+>=20
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--DV7zaRGLtZjjFuhi
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloQvwACgkQzQJF27ox
+2GczKA/+NJtAT86IPukuSV0yU8c0EqKuJ+ZZJrhkxOd+Kg4LtmXd4iBO6F+eEAQN
+n8b+Jx/tApSs/CP2huDvhDAjHdBoEVhc9oUSgB5Zn9PRGZ36mNDGeW4nI2mEIIRm
+5W2KWwIsCudytZKuczUTaRhejAHvJyBYcU5LcJmxMHtoyeP0JJqEV3SmkCOR7pFY
+x2AiUZd4qLNzIw5xRgSyC+n5sh8QHAJTKi2IgcuGBZB2pEQapqNcI15pXAMm1hv8
+6WtOoteU9oZRDWgP5wtyDAtB81Pm42v93hD52qJcBa+f6yUIgUHFQdu7Kv+pBANn
+dtm4GLwOhg/eJulTTD9Y0kKHiFIskATTkaB4ypn6sH2wBULMLTMNrnfWTzFOKuFq
+TbhnICwUEkFhUZsX/VOudV4BPVku+NT9oDSOxE3V8bYUH4ouflawDqJoAcXY3dbX
+eZJMt+LAATSPpKym9V9lmZaEr1VN235t08Oi3lWEsm+jZIkpT/9vHYLUEq5lE4vS
+28Rvb6JU4ByIKVNQROCsyvS1QAFtu3q+HBae513F8PXzLaeVKYTyJxJ4DWYeILQa
+1a/KyY9slkEAxuo2SGi14DeSWKicTAPGEdYaRFIZ0BHpvmAjjiDDvOZ+la0T8MLD
+Ol9QnxMNf67dnPPLSy66qmpNP5d/CrQJm7XQumieTWdwyx4aOwk=
+=rInC
+-----END PGP SIGNATURE-----
+
+--DV7zaRGLtZjjFuhi--
 
