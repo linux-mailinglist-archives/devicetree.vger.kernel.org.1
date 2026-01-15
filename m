@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-255410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB9BD22B4B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:05:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA186D22B75
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:07:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3558C3054293
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:05:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D4B2330ACE7C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF803271FD;
-	Thu, 15 Jan 2026 07:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFCC1326D43;
+	Thu, 15 Jan 2026 07:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="rZ9QJDKa"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="hqU730V6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40BF630BB89;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B1E235045;
 	Thu, 15 Jan 2026 07:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768460721; cv=none; b=EMmQLUt0V5KTpnlAn7VP2rCRiXN1dhkgHNtDY/RsechZcnV7StkjYdipvcZ0HQervZVXpFprau0By4s6fCnZIEeY6zz2r7meSDEJ30TPIEZ99RQFeBFFtuEuy/hJtpR4uimUylWizRtbYT96doVPkcd9oIcmU0+zqLAlPob8GhE=
+	t=1768460720; cv=none; b=Cu7Xm0QgJARD2d34soQfNT8XYU9BvmTkli/zGl4SB/2I8ZtBRVDaUXGJrSKWxExVvPWqaB1ORf0h8mvBb7Ei2k1EjWcRhLJ5R2bPhzTIoCimKI0eyhLWNcnp7pahV4glYLpcjpFTMGQUWr86ODGhJyvGh85Fh5GhFjgts/ktt2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768460721; c=relaxed/simple;
-	bh=vRwWkjEzRu0D7otig+iqbEyTgouL0zw1fFbfbsT0DBg=;
+	s=arc-20240116; t=1768460720; c=relaxed/simple;
+	bh=AjKxxCfQ2TLGKkG0LDN0zaUxPCyjtT4dxhzfosQcbgM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EqUQWNujIpHnPyO3mSI93JRNsvvrzSPHF247PIRkYtbbfPN4SrvZSeKScinHKKxIY1e0q7jzAi9OCGQpAI+/o9ECP2uryKARpLbd9iV8GdDCts2meiYPNiBx+s3xWumOtiLTTIhnvA9rhVV+k6gQiabZNlkcSlKhJXSMfQ5Z6I8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=rZ9QJDKa; arc=none smtp.client-ip=150.107.74.76
+	 Content-Type:Content-Disposition:In-Reply-To; b=D7k5Sd5v7pnjojBeiQf9O5LiAEVoxHUOhZbsLGxz6yPkUpKTl/bIF6nzJWc8lS7hK/0q9qsB5DwQdbbQaDh7nyrB+Exf+YD/QUmLERBjtACmAq/IlCJ3Ma7ebnOES6frOVWOEWuOB7J+C4oTC2GHCx6Ra2rOq5II3BEY5wNrP+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=hqU730V6; arc=none smtp.client-ip=150.107.74.76
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gibson.dropbear.id.au; s=202512; t=1768460715;
-	bh=yaxDK6uVVjm0pIcBAPLYdP58x6Cgk2a2c6TzZntHE+8=;
+	bh=//0bBJ4V+clOBFTXS5/SKtKHQYt6Er7MpfnQym3XZ1o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rZ9QJDKan3ZZSN2kLfEniUDUTDGhgB6PBpjkPUWWV9J7mLlhrlKicqDky7J04kEjN
-	 bIO4oCebcZfMGjdCVlf6c3tVboqek9P1EVTGjirxYReTv7lZ+WnrxHpCkjfUDEL4/k
-	 nrQULS9Y5RfxcrQhCC9d67jw9p6crzdmpju6js9pDeZVjNLgSzhJWO6AdgaqwXUlom
-	 p4VrKlCL2oADBND3tSQpIlUsOiz0e82UFaKnjz2aO2SWJLly6njJXZWUS2ZgRG9hxd
-	 PgEotrzQleaJy/aV/mdnTcodUN7aUq+/asef2xQcN86pRydioEeKd3kekZWKpynfo4
-	 UYq1gQW2jkeCA==
+	b=hqU730V6YXw5zkx0lRTloPivNO9mc4NNAkEAyeqamFxaaqEfBceIxWjT1NVnRzOmX
+	 zhrcfK1kLilXpIJ73W+W1X/Zr9Z/BoLZLVKGmocwSJiOtIDH7Qa7xFtX4o7kRHY+sR
+	 I2wQ3jZYsx2fN6J7BXu2WMUoOFsvdRoN95+/PAJd5qnfgFfV/bnMXSkfJOEgtZCIqF
+	 iZN5mHS6Qw50vWo/BivgrtAPkyJCNRXdPxFL9vrUgEhulM3Ox+46AEkNrXeWdWdguU
+	 UfcuwtpjAzD50Vfqk8+BLffLwZcKg2QxF/2/8okETsB9n+n9hSYePL6oZFTeDBqpnt
+	 AoI7k31bIjWhQ==
 Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4dsDWv5lKFz4wDk; Thu, 15 Jan 2026 18:05:15 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 17:47:29 +1100
+	id 4dsDWv5xQBz4w0L; Thu, 15 Jan 2026 18:05:15 +1100 (AEDT)
+Date: Thu, 15 Jan 2026 17:51:30 +1100
 From: David Gibson <david@gibson.dropbear.id.au>
 To: Herve Codina <herve.codina@bootlin.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
@@ -54,10 +54,10 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
 	Ian Ray <ian.ray@gehealthcare.com>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 40/77] dtc: Introduce dti_get_node_by_path()
-Message-ID: <aWiNgZZ02-4jRc5l@zatzit>
+Subject: Re: [RFC PATCH 46/77] dtc: Introduce dti_get_marker_label()
+Message-ID: <aWiOcrj-1EB4cfO-@zatzit>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-41-herve.codina@bootlin.com>
+ <20260112142009.1006236-47-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,117 +65,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3bNS40IYXR/fHOTO"
+	protocol="application/pgp-signature"; boundary="tulP9S0b7FYUSioz"
 Content-Disposition: inline
-In-Reply-To: <20260112142009.1006236-41-herve.codina@bootlin.com>
+In-Reply-To: <20260112142009.1006236-47-herve.codina@bootlin.com>
 
 
---3bNS40IYXR/fHOTO
+--tulP9S0b7FYUSioz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 12, 2026 at 03:19:30PM +0100, Herve Codina wrote:
+On Mon, Jan 12, 2026 at 03:19:36PM +0100, Herve Codina wrote:
 > The future introduction of orphan nodes for addons device-tree will lead
 > to more than one tree in the addons data. Those trees will be:
 >   - the classical root tree starting at the root node
 >   - trees related to orphan nodes
-
-This doesn't make sense to me.  The new function still just takes a
-single path, nothing to specify which tree that path is looked up in.
-
-You can probably guarantee that labels and phandles are unique across
-all the trees.  Not paths, though.
-
 >=20
 > Also, an addon device-tree can have only trees based on orphan nodes. In
 > other words an addon device-tree is valid without having the classical
 > 'root' tree.
 >=20
-> To prepare this change, introduce and use dti_get_node_by_path().
+> To prepare this change, introduce and use dti_get_marker_label().
 >=20
-> dti_get_node_by_path() retrieves a node by its path like
-> get_node_by_path() but it works at the struct dt_info level.
+> dti_get_marker_label() retrieves a marker and its related node and
+> property based on the label value. It behaves in the same way as
+> get_marker_label() but it works at the struct dt_info level.
 >=20
 > It handles the case where a 'root' device-tree is not present and will
 > handle orphan nodes trees as soon as they will be introduced.
 >=20
 > This introduction doesn't lead to any functional changes.
+
+For all of these functions, if the new one is basically replacing the
+old one, don't change the name, just change the signature.
+
 >=20
 > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
->  checks.c   |  2 +-
->  dtc.h      |  3 ++-
->  livetree.c | 15 ++++++++++++++-
->  3 files changed, 17 insertions(+), 3 deletions(-)
+>  checks.c   |  5 ++---
+>  dtc.h      |  4 ++--
+>  livetree.c | 18 +++++++++++++++++-
+>  3 files changed, 21 insertions(+), 6 deletions(-)
 >=20
 > diff --git a/checks.c b/checks.c
-> index 9744431..b2b1bf7 100644
+> index 75040c0..0a855f9 100644
 > --- a/checks.c
 > +++ b/checks.c
-> @@ -740,7 +740,7 @@ static void check_alias_paths(struct check *c, struct=
- dt_info *dti,
+> @@ -439,7 +439,6 @@ static void check_duplicate_label(struct check *c, st=
+ruct dt_info *dti,
+>  				  const char *label, struct node *node,
+>  				  struct property *prop, struct marker *mark)
+>  {
+> -	struct node *dt =3D dti->dt;
+>  	struct node *othernode =3D NULL;
+>  	struct property *otherprop =3D NULL;
+>  	struct marker *othermark =3D NULL;
+> @@ -449,8 +448,8 @@ static void check_duplicate_label(struct check *c, st=
+ruct dt_info *dti,
+>  	if (!othernode)
+>  		otherprop =3D dti_get_property_by_label(dti, label, &othernode);
+>  	if (!othernode)
+> -		othermark =3D get_marker_label(dt, label, &othernode,
+> -					       &otherprop);
+> +		othermark =3D dti_get_marker_label(dti, label, &othernode,
+> +						 &otherprop);
 > =20
->  		/* This check does not work for overlays nor addons with external path=
-s */
->  		if (!(dti->dtsflags & (DTSF_PLUGIN | DTSF_ADDON)) &&
-> -		    (!prop->val.val || !get_node_by_path(dti->dt, prop->val.val))) {
-> +		    (!prop->val.val || !dti_get_node_by_path(dti, prop->val.val))) {
->  			FAIL_PROP(c, dti, node, prop, "aliases property is not a valid node (=
-%s)",
->  				  prop->val.val);
->  			continue;
+>  	if (!othernode)
+>  		return;
 > diff --git a/dtc.h b/dtc.h
-> index 4ebe576..8ba093f 100644
+> index 399e7fa..d45a84c 100644
 > --- a/dtc.h
 > +++ b/dtc.h
-> @@ -323,7 +323,6 @@ struct property *get_property_by_label(struct node *t=
-ree, const char *label,
->  struct marker *get_marker_label(struct node *tree, const char *label,
->  				struct node **node, struct property **prop);
+> @@ -318,8 +318,6 @@ const char *get_unitname(struct node *node);
+>  struct property *get_property(struct node *node, const char *propname);
+>  cell_t propval_cell(struct property *prop);
+>  cell_t propval_cell_n(struct property *prop, unsigned int n);
+> -struct marker *get_marker_label(struct node *tree, const char *label,
+> -				struct node **node, struct property **prop);
 >  struct node *get_subnode(struct node *node, const char *nodename);
-> -struct node *get_node_by_path(struct node *tree, const char *path);
->  struct node *get_node_by_label(struct node *tree, const char *label);
->  struct node *get_node_by_phandle(struct node *tree, cell_t phandle);
->  struct node *get_node_by_ref(struct node *tree, const char *ref);
-> @@ -357,6 +356,8 @@ struct dt_info {
->  	const char *outname;		/* filename being written to, "-" for stdout */
->  };
 > =20
-> +struct node *dti_get_node_by_path(struct dt_info *dti, const char *path);
-> +
+>  uint32_t guess_boot_cpuid(struct node *tree);
+> @@ -358,6 +356,8 @@ cell_t dti_get_node_phandle(struct dt_info *dti, stru=
+ct node *node);
+>  struct property *dti_get_property_by_label(struct dt_info *dti,
+>  					   const char *label,
+>  					   struct node **node);
+> +struct marker *dti_get_marker_label(struct dt_info *dti, const char *lab=
+el,
+> +				    struct node **node, struct property **prop);
+> =20
 >  /* DTS version flags definitions */
 >  #define DTSF_V1		0x0001	/* /dts-v1/ */
->  #define DTSF_PLUGIN	0x0002	/* /plugin/ */
 > diff --git a/livetree.c b/livetree.c
-> index 285f6e1..23ba957 100644
+> index d023075..79f7b55 100644
 > --- a/livetree.c
 > +++ b/livetree.c
-> @@ -659,7 +659,7 @@ struct node *get_subnode(struct node *node, const cha=
-r *nodename)
+> @@ -620,7 +620,7 @@ static struct property *get_property_by_label(struct =
+node *tree, const char *lab
 >  	return NULL;
 >  }
 > =20
-> -struct node *get_node_by_path(struct node *tree, const char *path)
-> +static struct node *get_node_by_path(struct node *tree, const char *path)
+> -struct marker *get_marker_label(struct node *tree, const char *label,
+> +static struct marker *get_marker_label(struct node *tree, const char *la=
+bel,
+>  				struct node **node, struct property **prop)
 >  {
->  	const char *p;
->  	struct node *child;
-> @@ -785,6 +785,19 @@ struct node *get_node_by_ref(struct node *tree, cons=
-t char *ref)
->  	return target;
+>  	struct marker *m;
+> @@ -853,6 +853,22 @@ struct property *dti_get_property_by_label(struct dt=
+_info *dti,
+>  	return NULL;
 >  }
 > =20
-> +struct node *dti_get_node_by_path(struct dt_info *dti, const char *path)
+> +struct marker *dti_get_marker_label(struct dt_info *dti, const char *lab=
+el,
+> +				    struct node **node, struct property **prop)
 > +{
-> +	struct node *node;
+> +	struct marker *marker;
 > +
 > +	if (dti->dt) {
-> +		node =3D get_node_by_path(dti->dt, path);
-> +		if (node)
-> +			return node;
+> +		marker =3D get_marker_label(dti->dt, label, node, prop);
+> +		if (marker)
+> +			return marker;
 > +	}
 > +
+> +	*prop =3D NULL;
+> +	*node =3D NULL;
 > +	return NULL;
 > +}
 > +
@@ -193,25 +207,25 @@ david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
 				| around.
 http://www.ozlabs.org/~dgibson
 
---3bNS40IYXR/fHOTO
+--tulP9S0b7FYUSioz
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmlojYAACgkQzQJF27ox
-2GeK2Q/+OiGCHpAc79fjmJEW/PFi9z5/B4HKa3iXVV430YHC1F/6z1oAXdKy1pLf
-G9L+dH2/a7LFhJku5G/bslavarf0jNzRLUaZiIHRqBm1GNcJqCRXQmsTVpP20N0M
-ZIQ5kiMwbZFKzO6vc/7tG+7XI53fJVQh9uY80JLtmq2MPoCQfv6WXveCdUpYCBfM
-RxHYEtIdsemDYSA2QN+Umt13VHlDxLjukor7alFtkEX3EF0Oy+T2K2LzlLeoODjJ
-bUIZYWOGLWY45QXC/6Hu3A+aoP9YCecN0bOv3oBH/XE8mt9/rSscMm3bHSzQxN3L
-xSE/kZdrqXpPuRm/IrowOnTirC80Rqbs/1WwKvzF8HQ6WEqDlLf3ydiKZDkKzWbD
-jUJPJPJRrm4h7XyEXxSKmxSsCzABSV5tVXXaTW/kRnneto8jB4Sx4iBRwWjL32bQ
-Ppm8x4Vf+LLX2cO0y5GraMYD1eWAzr/EF/sRZ9EK5FpSVVNCnOIxE+FGiLHm13at
-hsmXLJ47RLpje4X+Lgt+esUl/yP74+1M/hcEX7Tej3SAIH/ng4CzaYg/ak4K/YdD
-g0zfn8JrWgfXD/yhwcucBfQmiVaZ0Yf0PEgl4r3pJgLy0kJ0Lg9T6FxD7cebpBkA
-6ezHjS0NPYnWB6m9JMse7jBi75MYCGLR2rCt3cwOcrUN/g5AcnM=
-=C0WH
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmlojnEACgkQzQJF27ox
+2GfufA/7BXKqS2I2f1YeCZAelj2RY340mHR/KQ/blcqlwf9ip/CajXewC9bjoWh1
+eBq7BOHECNREkjPUdkBvchI37FuEuuz3lmwMw8aEoog/GWevLjtlzyppFJaZmQXE
+F9g6UbsMfjTwwluHfJbezU7sj+m9Nr4QgP/ZjrTbrvhc5tj03/XuiZcJT4wwqG0i
+mhuwi2gORlCrylWYP0J4RfhJtTDvJuc7+DBOqKMJA4FlcxWx0NDENSPAfdhmbDKc
+T7t+oSiloqJUqKT71BJdb+yWd7gdKOUR/y2IiZkjWvAwf5NrtZUd5IWoawim1+aJ
+jW64o15K/JuBkTqSEqUsk0nBFAIZjJYCbA2NTG3qtlIf1lAoAj1lBYe8rgiLM5+M
+RU+hQMLvCwlvIZm4b9fKX6rhEq4LCAuZniDFoz7qIAMmshSWiBnv0umeOjwPyswy
+QWKjhgAWGoEHTL7OtOz376qLXm+vbuzyJKxQVRfkI3JBOMgo4GGwENciZAsoFv7s
+vh1DJbMvRTew97iQP+9MoqtVZCxPACnZGQqZQscmXopzoxMXL2HeC4Bl6J91ZNe9
+3EaJBnJeQIWtKFOhDnyDRW1DPuF7iQFPAZ8gKWPvfIISJ59EU3G2LJe1/VzvuU9T
+i6viZlGtgRenAtteoo3bou4S4JIOiVOGxNKpKNZfrmkfrQk2vqY=
+=R7ul
 -----END PGP SIGNATURE-----
 
---3bNS40IYXR/fHOTO--
+--tulP9S0b7FYUSioz--
 
