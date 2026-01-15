@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-255455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92A71D23358
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:41:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E4F9D2336D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:42:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E0520305D8A3
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:41:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F1CA3301FD2A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C51F033A9D6;
-	Thu, 15 Jan 2026 08:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE2633B6EF;
+	Thu, 15 Jan 2026 08:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SZ/XHSeO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GKvh7Nwz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
+Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560C733A9E2
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 08:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC7D33A9D6
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 08:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768466484; cv=none; b=rWYopzPy82fDQabFvneD35xgpmNCGqy4ByoQwo49NyaxTDQNizo9m5l6mZ4DZ2ZLE4rHbE7PATU0LqOwl0gL4jfZRcu3Vd9vYABv0PKlcyOpK+1swIU01JGhsiRjl6O1xjFjDDndmK/QA4EJyRb++P3aJ+Fzhd5zvwljzRPpFtQ=
+	t=1768466560; cv=none; b=cmX3sTOeV5Lzg6h3eCFEnZKhU1Xq69NS/6hTQvmrhULujT0a6H70hNvb/rN8faFtrEXXdm+oJiY+yqYQGjv7M9Qod9KG4aVc1uHhrsfn/dTxiQ7aX4r8hIDJ/3Cbm7RQRuoSarOl2Kglev5u0hGVsPW8R7tvUB36CdzJMHj/rcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768466484; c=relaxed/simple;
-	bh=pebBiil2ei/oib7mZd9mepzUxVShBPvTNogkSnHrW1U=;
+	s=arc-20240116; t=1768466560; c=relaxed/simple;
+	bh=VUL6Odvz2BGJmEiErMIp7g1YPSC3jt6JjrwwVLc52zk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YFdxladeq4Ns+tUzNIDskuQzm46ExdwD0RJR/y6uvC4a+/Xds5Ro5ipn8mWuOxTrOmuSqJFufESIk9eT8+SMG+92xI8voXbfE6vgtYI9XafxIijlczSrdwCfrxfpeJgNPjsWK/UOfOzm2z2oNbI6YjumYaz2+C26GC7PrmY67bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SZ/XHSeO; arc=none smtp.client-ip=74.125.82.46
+	 To:Cc:Content-Type; b=IaZvLDSDl9h3pHEoeN0QtZztvBSRfGV9e1WhoCF2BWVPpAyRjSCBdboncRibEf8qiLr/dD+js+1E9cArDEqZUA8/+eEHarR/5tGUl0l9BQHQPTFULBUYVjKQJ4N+gCx4ADTMc5eGXhKW0rGy2plMjOrjSUK5BxZyFBcZJtEX+1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GKvh7Nwz; arc=none smtp.client-ip=74.125.82.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f46.google.com with SMTP id a92af1059eb24-11f42e97229so1477098c88.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 00:41:23 -0800 (PST)
+Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-121bf277922so852383c88.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 00:42:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768466482; x=1769071282; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768466558; x=1769071358; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pebBiil2ei/oib7mZd9mepzUxVShBPvTNogkSnHrW1U=;
-        b=SZ/XHSeO08Mn34xmfcutAj310xtfInQlFp0pit8oillBo1fBFke1FV7Y5hhdePw+Ap
-         qcLz/5iMAYoUos6lXJka0fp7vLHquAeLcPXf0gYfCee6oMIQiSNExFBDd7ALU/D8gzKo
-         Zs4eFXhZZF5mL5hHUIIQX3Yc2xLHn0d52xQExBlODtIvuCL/GG2l83oZ+9pQuW28lwuM
-         zRHtef2iqZ31pKcNOG5rZixfdUEpBrZBko3flJ3DQvGTsbrvB+quY9gXE0ONlexr30m3
-         S3G87qZRb/uOS4fWUKyrlhVA91/zIYBlstTIymiQlDcCya1DX8QNjrGFehVRNEfA82XI
-         h1EQ==
+        bh=VUL6Odvz2BGJmEiErMIp7g1YPSC3jt6JjrwwVLc52zk=;
+        b=GKvh7NwzgBdYiYlE70l/lFxzOru3vkQxO3vU9KGfnxWaOxLqzTn9Zn2GO4RY6H0JV/
+         WTV7Sh3IzL+e22TIARy0575ItvU4RgCjw2o/Erlc4zEtnIR/Y34YNNO8XCmq9PZzbH7V
+         ylIqiJRfKoxzu3ENdeI1jCpfgxF5PjL/ULj+i+96S7aK1q4OnLrOBuy7xwsxo+heoHXP
+         +7IRr50rR19/FxGeGVxtzdgtzsXWrlu9KgBX70D/ZICQONTZ4qNtK/Kh0OhWv+FVV/Yr
+         MnRKMYN5uyTvDKlbdw/JV7ZNemiY0enSUF+l1TLAfbuIeKdi9fLECNp9JK/Pk8Ll6vfR
+         t/7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768466482; x=1769071282;
+        d=1e100.net; s=20230601; t=1768466558; x=1769071358;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=pebBiil2ei/oib7mZd9mepzUxVShBPvTNogkSnHrW1U=;
-        b=fEkH8JYJyYyaN0t1nJ4hoa1hxSHxf/LbumGl0FBACa/rcapdKYCJon57f3vROqeYJX
-         KitSfk3HxslG92gcgY9N8gakgtgLUkWHBOG+2eZouiZ7eBOEY+gBQrF2BNN1PlIpBpKW
-         0BDDS6jdde3+QNQkBgoXPPcfbagWAYJpm8M9MPa1dY6jjwZbZ8oso9nKehzNMIKgOtFa
-         M0PVQ1MOB6imFdJ6ScglQdbrduqlY/y1ryZdKAmduthT9EayO7qEWsDY5V+5ea3CuzG+
-         lnSUYYql7d6EdVv+UavMUA7YgogVoFFe/Q+B+f40GifoJJmS8PpLMlxwlavL9AjBeUdW
-         rIIA==
-X-Forwarded-Encrypted: i=1; AJvYcCWgFqObmbvpm+tm8pl8GaWb/R8fqYidnBaYyxjd9dktUHZ2TdAO/+c+yFdrwe/l1WwRWST3gIOh2p4T@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyPxQ3JaTNTSZHPhTQm5eHmPtt8CwRWK0mktRJ6bDfcE6NSvmq
-	c1kXhQjJY6L8+hZpmOrzKjae7GuC/E6jJXr3u/14FAG66/0nroRmMdzG85Lzn69xZW8YnIPrZFR
-	rFfpcAqr09LG3TCzHwIBxQxwV0El4qn4=
-X-Gm-Gg: AY/fxX4YVwnZTC+O6jMFwjsqewRgPhtRo8ftGCq9XZoK18HBIyMydWMjADhWIdc4rvz
-	kqCZVfxJt50U9iyjkM0kwLiqhb7RKLu/n/2HvlQ0O684xdF4xrRCLJVjsDauzP7tKrNCO6OnU4K
-	AZV8pXzjPbU3mdlWPgBf/gUe/ZcBKuKXfZB1xKLcqGuRKNakDa7/jigrlrWFsGoAEf+muKE5swI
-	fjFu943ldPa61iYXWEltdItBMBhOke7zR7CukxLB+OsvzI7/GFovJv9z2bl0swhGCrAH1acAQN7
-	JDLXRzCwOww/pb3vrJBRf1HlDeE7iuZwAY0iw0uWlH9RXa3ij0fTR4XTQiUlXsieqJIu8sfUjFE
-	HbMlKT2tSOg==
-X-Received: by 2002:a05:7022:2392:b0:11b:9386:a3bf with SMTP id
- a92af1059eb24-12336adc557mr5402464c88.42.1768466482362; Thu, 15 Jan 2026
- 00:41:22 -0800 (PST)
+        bh=VUL6Odvz2BGJmEiErMIp7g1YPSC3jt6JjrwwVLc52zk=;
+        b=rTKkrHbuSBx8cZPltFjLVbE6RHcSf4fYTd241FqQDBVeR1nWzH9MOgYgn9i4JHQBb+
+         CfCmTchi6jyOIJig6BwKBFOR992dBElPnNBHkQul+RqPtpGzyt2k/pnFIfzJds2KbQHw
+         AaJKDH48GiAJImIB7PhqiAhZMF2N4OAqX5vYOfmxqwe5wNr5FNQAclT39LsXPy/UdkVB
+         2N+YbAoaSX2AW9e2g30GDhVteN+Rt5LJbEmmY0eONnc2TtPF+ZH4TSr4MtF8Wdg/zrS4
+         9I1FGXsvCQ8AngwWZyNS1+4m8GwVrLi9UN7/hzgZyX91RFETTVS+jnnv7QXD7+tTcvX3
+         qixA==
+X-Forwarded-Encrypted: i=1; AJvYcCXXt8G5gnicJn8exz9BVz6P33yHLHVMepkEP5PiCTMbSFpCMCBm86FN7CX4hTyITxkEnDkjH6D9AbrM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzD8kuJFNIF5fI1a3e+xC+6hfbewZspDlzpVOOIECuhJHDm3I1W
+	uXc6re3VQ1v35ssirtv1dzFlntio/bOnBjgiau5uZtZU5ZQre1SvJAXQVuBm31j32970pwnA3Ap
+	6yLU5xQ3GSpP+M6CwPBqyoUMeZYZfIVE=
+X-Gm-Gg: AY/fxX5QkbSo+ZD2s77+ue8abhp/CQNuZLC5eGnFslkTPntTIPDX3yIZXcqLsZVBmN1
+	lUAVZGatPkp+EySzzxXsJsp3BKPm70mDw78voKa6OYx2VATnbpW/iNCZ6gN+3hmYsbmjP6OuhIm
+	RGTT790pwq6k/g5ebNFOaeL6MKOQ7hVfI1+YK3zjh5q5jvxRArIeyfNs8CvEq/f2DeyGFhcFIaV
+	XxdsGGkZLPre7ICldYmwxzqzll3LnY2Myva+BJ6TLV6k+oV7NJ1HFPILGcfKWNk+6j1TSLCLUb7
+	S3+iPnDjaw/n6XnbYIB2nfSJFX5OBTX4QcsQVYf5pHoJfRMk+hRcyFtcmw+qUKyJ/a+WKCJgZSi
+	7B2DH+UU4O0uC5jnFN2Ru
+X-Received: by 2002:a05:701b:231a:b0:11d:f440:b757 with SMTP id
+ a92af1059eb24-12336a8ac7cmr5154017c88.26.1768466557874; Thu, 15 Jan 2026
+ 00:42:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260114-mxsdma-module-v1-0-9b2a9eaa4226@nxp.com> <20260114-mxsdma-module-v1-1-9b2a9eaa4226@nxp.com>
-In-Reply-To: <20260114-mxsdma-module-v1-1-9b2a9eaa4226@nxp.com>
+References: <20260114-mxsdma-module-v1-0-9b2a9eaa4226@nxp.com> <20260114-mxsdma-module-v1-3-9b2a9eaa4226@nxp.com>
+In-Reply-To: <20260114-mxsdma-module-v1-3-9b2a9eaa4226@nxp.com>
 From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Thu, 15 Jan 2026 10:44:04 +0200
-X-Gm-Features: AZwV_QgLOj1RDdzVccL_41XskfEEs9aTrYg8yhWQDuDVwvWQC6YUiA6AbKgDm9g
-Message-ID: <CAEnQRZBkxugbzhNk+HE_t=2z_-1OZ_mgON=8=5Q6wV0zJcNHbA@mail.gmail.com>
-Subject: Re: [PATCH 01/13] dmaengine: of_dma: Add devm_of_dma_controller_register()
+Date: Thu, 15 Jan 2026 10:45:18 +0200
+X-Gm-Features: AZwV_Qi-TQ7lJMIQ3JWU_HIrOBnLtQtdsWIBSjxYFap9Y2nvd_jWRPWPx5vtGmI
+Message-ID: <CAEnQRZBe5Q2Ejbf_-+Mo8zTc=mSDgpXuXbh3NVHcwjooggD0Ow@mail.gmail.com>
+Subject: Re: [PATCH 03/13] dmaengine: mxs-dma: Fix missing return value from of_dma_controller_register()
 To: Frank Li <Frank.Li@nxp.com>
 Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Vinod Koul <vkoul@kernel.org>, 
 	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
@@ -92,15 +92,13 @@ Content-Transfer-Encoding: quoted-printable
 
 On Thu, Jan 15, 2026 at 12:34=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
 >
-> Add a managed API, devm_of_dma_controller_register(), to simplify DMA
-> engine controller registration by automatically handling resource
-> cleanup.
+> Propagate the return value of of_dma_controller_register() in probe()
+> instead of ignoring it.
+>
+> Fixes: a580b8c5429a6 ("dmaengine: mxs-dma: add dma support for i.MX23/28"=
+)
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-<snip>
-
-> +static inline
-> +devm_of_dma_controller_register(struct device *dev, struct device_node *=
-np,
-
-static inline int?
+I think you can send this as an independent patch or at least put it
+first in the series as it is a bugfix.
 
