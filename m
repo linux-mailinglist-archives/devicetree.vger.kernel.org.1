@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-255499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B541BD239A6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:37:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9045BD23A7B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:43:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9C1C730616CB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:31:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F09BF307C5C0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:32:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7495335E526;
-	Thu, 15 Jan 2026 09:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E040235BDDB;
+	Thu, 15 Jan 2026 09:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TklhVvSk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gtL0NWYA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6FA33A03A;
-	Thu, 15 Jan 2026 09:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD2E340DB2;
+	Thu, 15 Jan 2026 09:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768469438; cv=none; b=sH9kLwtxcwFhQt7vJ2vjxvlT4C3Y4hsJ/4F6gi0Hub9UFT9tnKm+y4hyEMjHm2LGX3od/SsOcHi2SsJMv+ETexBDhoF5/NIBQj0EdYdrca6M9ng6gcS3v9TmpsxeF8j00gxDHkwIfaVhs3m/Sax+OMMF3sJN9D1gar1GJISjIWw=
+	t=1768469491; cv=none; b=uN2y9JFaFYt5MbHKebq0Z35ob+OFtgIX9MJhF6HplP0rrdQ2hDPH28hxrCnDz+OzXSMPXGbkTke0Z3Rp2Y1X4SIaDt4PEiptv7iikqbR/FX2atJz44gkIZU1MKaHBzA1dDObZ5ZLgnElDt1ESF7PuiLgEi6gdJfLkaGbf/ukReA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768469438; c=relaxed/simple;
-	bh=7po4v3HVQ6qqRQj1ceHcb4Fh/5z5S/1L/zsYqfwO5Vc=;
+	s=arc-20240116; t=1768469491; c=relaxed/simple;
+	bh=85nyOC+PMKZbrfcZTOloKjnNCK91/LgSl873eJtc56A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PTbDEK8GjvPNuRYxdAWbnuFTzcq4JVQ+43AT4Kxhp9rsk9ggnSW8vnZPftV1KT7vGFAMstr8hBCZrffefE3d8OLrosdD0rjUGqLluboJRJrWud7q3OMbNAkz16jR74eIno3GE3SJdypE2wYCOyO0YqaEv4UYPukLpVbp9ckrQTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TklhVvSk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5177BC116D0;
-	Thu, 15 Jan 2026 09:30:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MaeKstxfZrjZEvTzb/v8EabNw88SZbR8x1w6E7GSyW7NAd/nfxBKdhJEOB/PPBregF2I1PrgOI22Tnii6wTYujIBI75B1ekXjA4+uCw5K4c0EoWxckJs9GrhK0E5rbozum0Uti19W2Q9XAhMMbtaAniV2zmeEu0aSI3sTaZ40Lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gtL0NWYA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCC86C116D0;
+	Thu, 15 Jan 2026 09:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768469437;
-	bh=7po4v3HVQ6qqRQj1ceHcb4Fh/5z5S/1L/zsYqfwO5Vc=;
+	s=k20201202; t=1768469491;
+	bh=85nyOC+PMKZbrfcZTOloKjnNCK91/LgSl873eJtc56A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TklhVvSkZNO9i5yCfjRQ2FYD9Sogt7P/3QNv+Z0OH+riH3u2GCCmAtTBxnsGmmgWc
-	 jiz1g8hRAsvr0AiRjinjqlrh04Q2cSFWlkLMD1Fn55bZu5bF1H7KnP1ta/5VE/PDoq
-	 yrXNCVuDnI44m6Hq5HiVjXUXYlV0jR8Hotd4WaHpbzyKlB71Lqh+7RK48Pt0Ra+8RJ
-	 x5I8853uHlUJ8sc/IldcgOpDU7O1/sEWUa/PPQMLXb9Lq93VQHL3ezj0gMr8YS0C40
-	 xbkX+hrdRy6c3XvcYq0ISZE7Ur+UF5GveHV010K2X+ZgPKCZRhWGZ89wgkf9F/FCRp
-	 XBWNOGxHGrZvg==
-Date: Thu, 15 Jan 2026 10:30:35 +0100
+	b=gtL0NWYAgAXZbK5lFwixXX0MO/YpqDjJ+/bfPQw0sDA6oMZige7nuoYm4nLJjB0qf
+	 oo80zJz6qa3Wbx8jADkcFvLZjhAlxS+QQdEwkNa1dAPJY+uQjFupj/HQ8ojQYaYCyj
+	 aAIiYIvzUVcqNIIkdE7TYLVSm0gMhxU5k93mJeNhTXiCiU/E+6m1xN+BJS//FKfSnW
+	 zhFWiKiLQ6UCWWF69mEeOyqk9pfypMf9OEJ9VKjFnmWo+LFKQjlDBsUAHdQ9Aeu7RJ
+	 Xpz/zjOLZbSIPO0xZg92xaiZhUn6BrB3+QMnwODhe2orEKkReKkqVwwoqbR+dxC50N
+	 V+k4Ois4vMipg==
+Date: Thu, 15 Jan 2026 10:31:29 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-Cc: conor@kernel.org, robh@kernel.org, krzk+dt@kernel.org, pjw@kernel.org, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, cyy@cyyself.name, 
-	dlemoal@kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, gaohan@iscas.ac.cn
-Subject: Re: [PATCH v3 1/2] dt-bindings: riscv: canaan: add 100ask K230
- boards compatible strings
-Message-ID: <20260115-muscular-oxpecker-of-typhoon-bbe46f@quoll>
-References: <20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn>
- <20260115060801.16819-2-jiayu.riscv@isrc.iscas.ac.cn>
+To: Yedaya Katsman <yedaya.ka@gmail.com>
+Cc: SzczurekYT <szczurek@szczurek.yt>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Kamil =?utf-8?B?R2/FgmRh?= <kamil.golda@protonmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: input: touchscreen: edt-ft5x06: Add
+ FocalTech FT3518
+Message-ID: <20260115-sceptical-crafty-ammonite-8a09ae@quoll>
+References: <20260114-touchscreen-patches-v2-0-4215f94c8aba@gmail.com>
+ <20260114-touchscreen-patches-v2-1-4215f94c8aba@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,36 +61,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260115060801.16819-2-jiayu.riscv@isrc.iscas.ac.cn>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260114-touchscreen-patches-v2-1-4215f94c8aba@gmail.com>
 
-On Thu, Jan 15, 2026 at 02:08:00PM +0800, Jiayu Du wrote:
-> K230 CANMV DSHANPI is a development board produced by 100ASK.
-> 
-> Add compatible string for the board and its SoM.
-> 
-> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+On Wed, Jan 14, 2026 at 11:31:06AM +0200, Yedaya Katsman wrote:
+> Document FocalTech FT3518 support by adding the compatible.
+>=20
+> Co-developed-by: Kamil Go=C5=82da <kamil.golda@protonmail.com>
+> Signed-off-by: Kamil Go=C5=82da <kamil.golda@protonmail.com>
+> Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
 > ---
->
+>  Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-<form letter>
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here. However, there's no
-need to repost patches *only* to add the tags. The upstream maintainer
-will do that for tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
