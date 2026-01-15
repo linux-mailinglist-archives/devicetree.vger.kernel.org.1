@@ -1,217 +1,224 @@
-Return-Path: <devicetree+bounces-255368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59748D228D7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:28:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4767CD228FB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:31:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D72D3302B50D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:28:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB37130255A8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:31:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781C4246798;
-	Thu, 15 Jan 2026 06:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21113216E24;
+	Thu, 15 Jan 2026 06:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b="m2DO218I";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="qymqlchi"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="CbSf+18g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b3-smtp.messagingengine.com (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFEAA238C0D;
-	Thu, 15 Jan 2026 06:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610C252F88;
+	Thu, 15 Jan 2026 06:31:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768458485; cv=none; b=QCTNad1OW2jSUOdb10I5HHnHL5GBb2dsxIEs3WB8JK15aJYzyeFhqJbhKCVCBiUNul/9akfyzdL6rJ2xcV0A5fwaZxBiqegPRjHAyvE7wwt+XyT0lg0a0pP/INv/Y2ha06vdgL9IECLBwJT+Hv3LfA2f4ZpUZTnFypmwMbVp0wU=
+	t=1768458692; cv=none; b=O+RDc4II30t5cSNfCoRrWaQPIdBMdbtJJAors3jB8L/ckumwRQGZuqJTn1vGB2npuMDMuESgqXSgILMkxqQY2AMayKRBnIzPLL4gW5ZqhPVpT2CSG3USkVx3HI+vAu5/vqKm5c2wgLUTIQB2eGoPDaJ8T0AAAB0jjSZNRogliVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768458485; c=relaxed/simple;
-	bh=uo7g936uAZ4vCtliz4JoQ9pKjqlkd8DK31ts+X/i5y4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rz5M6MDotAnAYVlNZg6Jf1CPo6/XIm8gfTybDYip7AkJw6ocKY+gJfqjyhgt5VDMFLGBXNxBtnVRbRdgoQXY0gPhDIbHMLsT64KGg6GhmCRnY4b/uqW4VpIgxP7sDoXU6z3f012mU3i/RSqYZSFSdwhgNxocREzF5ZBuiPCpjuw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au; spf=pass smtp.mailfrom=traverse.com.au; dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b=m2DO218I; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=qymqlchi; arc=none smtp.client-ip=202.12.124.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=traverse.com.au
-Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 02B2D7A00F7;
-	Thu, 15 Jan 2026 01:28:00 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-06.internal (MEProxy); Thu, 15 Jan 2026 01:28:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1768458480; x=1768544880; bh=iUe9xaCu/BxL8CnPbA+ZqFBfunp7fWJW
-	if/Sui7jr1c=; b=m2DO218IewUiA7nW660qSl1AJa6G2gDclTfeCDoIZSDPOAh+
-	5yk7SQ+QUlSwBDowDxr0tCw3rNgb8f0c3Bn1Ze7si/EJn2qs9wAdxECbNufFHwmu
-	BAruzNP3xJhZT9dLismS3B+kyF2rXGv+bNvEFoPz2F+k0VE5gDnbQjQBSOK+Mle5
-	1687bELiaz0DVZu2SihNhCJCG/nZZVFwSBWO8P7nnmKI7q2fyou60/iWXO/IdENa
-	qE7pUQjCxmZZguhVnGKmW9G/xWu2EzYA8/bn5bh0TyMbUwtv0H+WxyevVkh+Feue
-	lIXq2uqGqm71jMNekDhokPOUexKTEwjFb1LAKQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1768458480; x=
-	1768544880; bh=iUe9xaCu/BxL8CnPbA+ZqFBfunp7fWJWif/Sui7jr1c=; b=q
-	ymqlchigQom2EQFZ78kW16lzteC/fBERO7SZL1pLHhJDkJfAZfmJoXkZ28ia7y6t
-	r8sXm15dUDFPv0wuCfRHd+vEdDWl4A0eu590TLaq+spkM+kkwb/4q1MgwzvR4ksL
-	0JE8LBX9I3C7lAED4+IMSrS2+9E41Artq/HWBBrJVgXyzJZA25Cd9n4f8sByoPwu
-	dM2aJcPM9tZD5+4StTkmg+o1r0fq7146eSp6KEEU1ZFVrW++RnpApu4lKAxCmzlh
-	FA9bLS208BrP/GgNNJShMvk5qU3xJ+JhUF1XA25IOoZ+QWd6+arq0Z7bQvwC46Jt
-	W7+bjDZCObNXieZg4rDXA==
-X-ME-Sender: <xms:8IhoaYCUzAdPiiTl-TY5l-Zo4UoBiqIbGm8U4MxYk0iAysxRIYRnIg>
-    <xme:8IhoadEaOjiIuxHDCDBwTjyaAQNw1jSEIx1gOEfJnhRc6WTt5vHP_zpMO-tgSjvAF
-    uFpvLrEIHeRPUX-I68JzwulgERNpf6e5-g5jDcTHpjMNCsqv51TVR8>
-X-ME-Received: <xmr:8IhoafMFn6J3vvjNPWggBjPifcbEgEGp6uTdxi41l9-zigJFAlwPsRjXAFg-mom5ts1Q4K0XfwRGyR8G9163SYLNWv7fJd9oxgkTe03gyg9gFcIA69GMKE0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduvdehfeegucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeforghthhgv
-    ficuofgtuehrihguvgcuoehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruheqnecugg
-    ftrfgrthhtvghrnhepiedtheeivdfhiedvffdttefhffeltdelfeejgeekvdeikedtffdu
-    keeffffhteegnecuffhomhgrihhnpehtrhgrvhgvrhhsvgdrtghomhdrrghunecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrthhtsehtrhgr
-    vhgvrhhsvgdrtghomhdrrghupdhnsggprhgtphhtthhopeekpdhmohguvgepshhmthhpoh
-    huthdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthho
-    pegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhhrgifnhhguh
-    hosehkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghr
-    rdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlh
-    eslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdhk
-    vghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrghtthesth
-    hrrghvvghrshgvrdgtohhmrdgruhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdho
-    rhhg
-X-ME-Proxy: <xmx:8Ihoae6PnmC7v2ug0o08l-DhDMtZTp0PNDe4kRkJlzV8WdJzgtx7pg>
-    <xmx:8IhoaShMuy1U6Jl5LqpZl8kFXMyRyuJX4GrBWda6twOept6nFUFI2Q>
-    <xmx:8IhoaTcTrbW_I9twZKyaUjl8yohz_1UzTdx-ARHJLZKQhy-wK-yJ7A>
-    <xmx:8IhoaayUrwufuYLPptkPMef-uT7_-OsALu6jqv8GD51DTNI_v9i0hA>
-    <xmx:8IhoaQcK572p6IBTE7-7OgH8n4qUlj9THOAug79ScUu5UskgtX5oAvg0>
-Feedback-ID: i426947f3:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 15 Jan 2026 01:27:58 -0500 (EST)
-From: Mathew McBride <matt@traverse.com.au>
-Date: Thu, 15 Jan 2026 17:26:45 +1100
-Subject: [PATCH 3/3] arm64: dts: ten64: provide gpio-line-names for all
- system gpios
+	s=arc-20240116; t=1768458692; c=relaxed/simple;
+	bh=ceUxetXiTurLKkUxemEQlUbs/dabOA01twWLWr98Otw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ty6f+qoBSZPdxXDYNEHvK+dsWmZ3uM4tw8jTDjDXoNmX/Sco/Il+LqhANRsbWIK/yd5FyJwkQGumxoc6dmwtRduqm16WKfZ+kJ7gh2HcUzvMxct3ArhERiwbBrPsfWetZUGRmsATnT64H+cgTKBwqpJ6ICBryHO6CuDRXv2/s0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=CbSf+18g; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202512; t=1768458687;
+	bh=MgfLKjYtbYxPY6Z5qQCL8xm6L93d+xbg15oG4xUEG80=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CbSf+18g/fPK4j1E/NlUD0u46gOguWURGgdZs2DY4TVOSAlrfmijHo+IOW2HgkEqT
+	 RVvBENMxlEODCbd5xcepUtXgptA6ZxQJqIlkfszwZ5N6CweYNvLdYJnaHUePb+jRok
+	 2XtRTZcua/SIyD2XdPQZb563BSKW64gvzImvtiU37riqkJFkEiJdbqXr2k76DwUyVZ
+	 vyt+6suZwkiyVZCg5BG2i5912tpLEDYGxK0dsKOV9WXftbesPxim41xs1RP5+EQJKE
+	 s5Igvd3gfdQK8jLVtGE48uyc16TWlEeDCByUkg/cjNCWlrcTTGW5EyXziEpMmsU7Ou
+	 8ZV2QRKKmds9w==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4dsCmv64slz4wM0; Thu, 15 Jan 2026 17:31:27 +1100 (AEDT)
+Date: Thu, 15 Jan 2026 17:31:24 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	Hui Pu <hui.pu@gehealthcare.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 32/77] dtc-parser: Introduce last_header_flags
+Message-ID: <aWiJvEEgjl44h6vd@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <20260112142009.1006236-33-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260115-ten64-dts-updates-2025-12-v1-3-a56380bbb2ac@traverse.com.au>
-References: <20260115-ten64-dts-updates-2025-12-v1-0-a56380bbb2ac@traverse.com.au>
-In-Reply-To: <20260115-ten64-dts-updates-2025-12-v1-0-a56380bbb2ac@traverse.com.au>
-To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Mathew McBride <matt@traverse.com.au>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768458468; l=2513;
- i=matt@traverse.com.au; s=20260115; h=from:subject:message-id;
- bh=uo7g936uAZ4vCtliz4JoQ9pKjqlkd8DK31ts+X/i5y4=;
- b=pWAFfjEMuAwB19pyqBQGuZkGx/meLMQG2sS82HiPQs2/OlsMvc+sEhhMbG8K3toMTzcRn2jls
- f/MJVoJKqhoAHo/CpmTklq0Pdk5unXVSoOFxh8YR14zay+P7/Sl8gPp
-X-Developer-Key: i=matt@traverse.com.au; a=ed25519;
- pk=SM+aGm9Y2fPJ2prfH/b5lab73fTBrKL5UsJwdzv7Pbg=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qK889M/ljeeqkpAy"
+Content-Disposition: inline
+In-Reply-To: <20260112142009.1006236-33-herve.codina@bootlin.com>
 
-There are GPIOs on the Ten64 board which are intended to be
-user controlled, as well as some that are used for system functions
-(such as SFP control lines and associated LEDs).
 
-Providing the gpio-line-names will be useful to users of the board,
-for example, in the /sys/kernel/debug/gpio listing.
+--qK889M/ljeeqkpAy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The master GPIO list for the board can be viewed here:
-https://ten64doc.traverse.com.au/hardware/gpio/
+On Mon, Jan 12, 2026 at 03:19:22PM +0100, Herve Codina wrote:
+> The parser needs to get header flags value in different places.
+>=20
+> It relies on the fact that the rule used to parse the dts file is always
+>   headers memreserves devicetree
+>=20
+> With that only rule to parse the file, it uses '$<flags>-1' construct to
+> get the flags value.
+>=20
+> With the future introduction of import symbols parsing, this rule will
+> change and the parser couldn't rely anymore on '$<flags>-1' to get flags
+> value. Indeed, import symbols parsing will add a new optional symbol in
+> this rule leading to two possible rules (with and without the new
+> symbol) to parse the source file.
+>=20
+> Introduce the last_header_flags variable to explicitly keep track of
+> flags while also being agnostic of the rule structure and use this new
+> variable instead of '$<flags>-1'.
 
-Signed-off-by: Mathew McBride <matt@traverse.com.au>
----
- .../arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts | 60 ++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+I'm not sure this approach is safe: I'm not sure bison guarantees that
+semantic rules will always be executed in the same order, so using
+global variables is risky.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-index 0a460eebd636..f35889b80fe2 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-@@ -264,6 +264,48 @@ &esdhc {
- 	max-frequency = <25000000>;
- };
- 
-+&gpio1 {
-+	/* Only GPIO 17 is utilised on this controller */
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"",
-+		"EXT_PWR_DWN",
-+		"", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio2 {
-+	/* Only GPIO 27,28,29 are utilised on this controller */
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "",
-+		"P6_GPIO_A",
-+		"P6_GPIO_B",
-+		"P6_GPIO_C",
-+		"", "";
-+};
-+
-+&gpio3 {
-+	/* Only GPIO4-9, 11-13 are utilised on this controller */
-+	gpio-line-names =
-+		"", "", "", "",
-+		"P6_GPIO_D",
-+		"P6_GPIO_E",
-+		"P6_GPIO_F",
-+		"P6_GPIO_G",
-+		"P6_GPIO_H_ADMIN_BTN",
-+		"",
-+		"TCA9539_INT",
-+		"SFP_XG0_ACT_LED",
-+		"SFP_XG1_ACT_LED",
-+		"SIM_SD_TRAY_STATUS",
-+		"", "", "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
-@@ -273,6 +315,24 @@ sfpgpio: gpio@76 {
- 		#gpio-cells = <2>;
- 		gpio-controller;
- 
-+		gpio-line-names =
-+			"XG1_TX_FAULT", /* Upper SFP+ signals */
-+			"XG1_TX_DISABLE",
-+			"XG1_PRESENT",
-+			"XG1_LOS",
-+			"XG0_TX_FAULT", /* Lower SFP+ signals */
-+			"XG0_TX_DISABLE",
-+			"XG0_PRESENT",
-+			"XG0_LOS",
-+			"CELLULAR_RESET",
-+			"CELLULAR_POWER_OFF",
-+			"CELLULAR_DISABLE",
-+			"CELLULAR_GNSS_DISABLE",
-+			"ADMIN_LED_P",
-+			"ADMIN_LED_N",
-+			"USER_SWITCH",
-+			"ATX_HD_ACT_LED";
-+
- 		admin-led-lower-hog {
- 			gpio-hog;
- 			gpios = <13 GPIO_ACTIVE_HIGH>;
+>=20
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  dtc-parser.y | 28 +++++++++-------------------
+>  1 file changed, 9 insertions(+), 19 deletions(-)
+>=20
+> diff --git a/dtc-parser.y b/dtc-parser.y
+> index 4e46e9d..48c40e8 100644
+> --- a/dtc-parser.y
+> +++ b/dtc-parser.y
+> @@ -24,6 +24,8 @@ extern void yyerror(char const *s);
+>  extern struct dt_info *parser_output;
+>  extern bool treesource_error;
+> =20
+> +unsigned int last_header_flags;
+> +
+>  static bool is_ref_relative(const char *ref)
+>  {
+>  	return ref[0] !=3D '/' && strchr(&ref[1], '/');
+> @@ -122,14 +124,17 @@ header:
+>  	  DT_V1 ';'
+>  		{
+>  			$$ =3D DTSF_V1;
+> +			last_header_flags =3D $$;
+>  		}
+>  	| DT_V1 ';' DT_PLUGIN ';'
+>  		{
+>  			$$ =3D DTSF_V1 | DTSF_PLUGIN;
+> +			last_header_flags =3D $$;
+>  		}
+>  	| DT_V1 ';' DT_ADDON ';'
+>  		{
+>  			$$ =3D DTSF_V1 | DTSF_ADDON;
+> +			last_header_flags =3D $$;
+>  		}
+>  	;
+> =20
+> @@ -179,12 +184,7 @@ devicetree:
+>  		}
+>  	| dt_ref nodedef
+>  		{
+> -			/*
+> -			 * We rely on the rule being always:
+> -			 *   versioninfo plugindecl memreserves devicetree
+> -			 * so $-1 is what we want (plugindecl)
+> -			 */
+> -			if (!($<flags>-1 & DTSF_PLUGIN))
+> +			if (!(last_header_flags & DTSF_PLUGIN))
+>  				ERROR(&@2, "Label or path %s not found", $1);
+>  			else if (is_ref_relative($1))
+>  				ERROR(&@2, "Label-relative reference %s not supported in plugin", $1=
+);
+> @@ -197,7 +197,7 @@ devicetree:
+>  		{
+>  			struct node *target =3D get_node_by_ref($1, $3);
+> =20
+> -			if (($<flags>-1 & DTSF_PLUGIN) && is_ref_relative($3))
+> +			if ((last_header_flags & DTSF_PLUGIN) && is_ref_relative($3))
+>  				ERROR(&@2, "Label-relative reference %s not supported in plugin", $3=
+);
+> =20
+>  			if (target) {
+> @@ -209,12 +209,7 @@ devicetree:
+>  		}
+>  	| devicetree DT_PATH_REF nodedef
+>  		{
+> -			/*
+> -			 * We rely on the rule being always:
+> -			 *   versioninfo plugindecl memreserves devicetree
+> -			 * so $-1 is what we want (plugindecl)
+> -			 */
+> -			if ($<flags>-1 & DTSF_PLUGIN) {
+> +			if (last_header_flags & DTSF_PLUGIN) {
+>  				if (is_ref_relative($2))
+>  					ERROR(&@2, "Label-relative reference %s not supported in plugin", $=
+2);
+>  				add_orphan_node($1, $3, $2);
+> @@ -235,12 +230,7 @@ devicetree:
+>  			if (target) {
+>  				merge_nodes(target, $3);
+>  			} else {
+> -				/*
+> -				 * We rely on the rule being always:
+> -				 *   versioninfo plugindecl memreserves devicetree
+> -				 * so $-1 is what we want (plugindecl)
+> -				 */
+> -				if ($<flags>-1 & DTSF_PLUGIN)
+> +				if (last_header_flags & DTSF_PLUGIN)
+>  					add_orphan_node($1, $3, $2);
+>  				else
+>  					ERROR(&@2, "Label or path %s not found", $2);
+> --=20
+> 2.52.0
+>=20
+>=20
 
--- 
-2.51.2
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
 
+--qK889M/ljeeqkpAy
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloibsACgkQzQJF27ox
+2GctTxAArIaYcAx5BfzErPm2b3uAnq05+14OaemloPupBOCsIIkR8y50t4lu68S/
+LVKUI4lXfa29dixnh7nHiM1YN/EZYvsu4EbuERaxXSMYbYdzJ6NFAvgPYQ5vDLFS
+rcVjOHB8RIW46VXX/IkdFAgbEk+Z9oIl+D0bDGe37v7EGRdHycHKf/aP11iXr+qK
+YJ+DX0ijqBKtBPm3/LgRiLTjKAjMLQph1YwJEc2K79YhiUz5slRJV9rIBJ0397n+
+3LRi+ToWvze5HRMXCcxLPqE/v7pv3ONLldkDI109rZpFoNECzLvHFLS+9yiX0Rg7
+Oan8JrELq4E7ylrmqmDP3EwG2k/Y4wVJ1BtQaOtuuse3hd1VM9ibl5pz5MKXPj5N
+lMJv12od9rDuQU8TZctPELVkkPx5vqgDid+jezNEoudQQNhajMw2ARSps/2yjNKk
+tVlBzIAPpEom/rCe3oT82e5lm59wG7y90LTgJsyqiNKweIflDPsKoHaGntwsXTLD
+QnZzZ4pRD/cjVmhUBC9QBwW28K6Mozryv5lBamnmNKn8aQn52kb9huzguvEujCpl
+fhCmNZgXcfbca1LzDpg0D3rCmnw1vijzs272mYXSFYYRv98fEAJIVRKju8M8wMx5
+/XIawOht6ZLmgqFIyDkldNi06jonW8Pi6WPGkRnopwCeYpmw5LU=
+=r0Kz
+-----END PGP SIGNATURE-----
+
+--qK889M/ljeeqkpAy--
 
