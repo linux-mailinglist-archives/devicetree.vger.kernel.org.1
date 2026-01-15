@@ -1,65 +1,59 @@
-Return-Path: <devicetree+bounces-255773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D8FD28474
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 21:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA5BD2848F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 21:03:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3AF3F300CECD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:01:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 04682300D826
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984F8319605;
-	Thu, 15 Jan 2026 20:01:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2A82E8B66;
+	Thu, 15 Jan 2026 20:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WsGPH3Iv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TrTC0jBH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A632DF12F;
-	Thu, 15 Jan 2026 20:01:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA97D1D61BC;
+	Thu, 15 Jan 2026 20:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768507309; cv=none; b=bVJDwhoeGG3fHAsS/4jVCiiej9GIATKnG70spF/E1KDcb3bqY3phq8NBTtAxpUlW/dKu0XQcqRbgB1hMNExrwkhtWrpiqvczyYiV0RG9C5CJPszJFE7nzbKGLf5anIpKbBrht1KDyVdEa3xJXF5GwIpAv3UJfKmKh4C3KJl4dik=
+	t=1768507419; cv=none; b=Y20cIIes5v0jpZ7395Ei8tWl42ujOhHoY421sSs6JV8/4EDtVBWMZ3J0PBCHPn3czEO4LqX/NeBE3bO85ofbHngvdMX4f2FMb7yXt9MzgohQPpvG7A4ADdQ/cojoL9v1kmYCkHTTidGSQAU5ky0IR2z15i6rVwoamJtgRt3PQdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768507309; c=relaxed/simple;
-	bh=zJzmID6LrfZsolTF0bdsRqEDmsoqKjjDc5djAfmj4l4=;
+	s=arc-20240116; t=1768507419; c=relaxed/simple;
+	bh=j0KMSJRPUjr0OGr37u5/m98sK59dQ45lZHv+bXjm7mU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a1kY7eAygMAzvPKY+Hlkt0AW6vD3I6r9V3YGx8FbwRPyEnkdy+BpuL7dVmIYTIBkCX2DxFPTx4Ul4Ag3YUl8yHe7gZUJx++iBNgByXXMu/N3GgTzSMmrQg9DiMj66JV/LDBXnZlV9birJDJEVAe7D+WoY5H67y6QI5FLaMMrMfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WsGPH3Iv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F28C116D0;
-	Thu, 15 Jan 2026 20:01:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XQ2IeEzSy55AuZJGsh6FtC57CqyQhynGXo5U/ZzuyCcFlPqjtV0iO/NqIExjTKLsSMPdqFC1u2JMEmqxtMFjN+P8Yd1qIQxLpzwlIlnyqwFO/IpwU0TQWO0DRiEARv9nbBZDOrU07qT/W2jVEVTMxKAm6YyuwsGIogP+KAQ7OFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TrTC0jBH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 172D2C116D0;
+	Thu, 15 Jan 2026 20:03:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768507309;
-	bh=zJzmID6LrfZsolTF0bdsRqEDmsoqKjjDc5djAfmj4l4=;
+	s=k20201202; t=1768507419;
+	bh=j0KMSJRPUjr0OGr37u5/m98sK59dQ45lZHv+bXjm7mU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WsGPH3IvDTZpkDAdmrFSsSJksFXsXDEIwUf4brF9zOSpK1BU4Srqp4VD5TgeQmjXf
-	 Gk2JGO/kSrV4sve6e1VR60Aj8rYmr/zOpdf0ZhbOO1IqT/KHxcJLwmyz00qSWt+43i
-	 WP8aadjzpLk4qIULQLKbLiMhKDTxrY1SIb2I4WQ8ldhfxI8BJzqnnErUgzFJg4CLub
-	 MtbHW6kLsSvEgr3BqOLmdTsI/9WQjn4EiaB64CwcEUiBJsSxni7vb3V4E4z5cRE/J6
-	 0HtwBcJpau83MI5acbqCgFRZ5vyUjNJ3vvbBZscBd1Rj9Obh4bUdBn/iaAh2nTRLds
-	 FOtRqet6YQP3w==
-Date: Thu, 15 Jan 2026 14:01:47 -0600
+	b=TrTC0jBHSmn8QGKzqMX8HTO4kXIUNriQQwBPluePdsYnmgqz2sotFCffJGTzS+xcZ
+	 mrj1zD7uV9XIDRVGtq1CXXlTtKz0zu4H+YDfiDCxp8AQWbS6fQY3B+MKnQvv+lS1hi
+	 4HRBMAt3fPwlMOSxY4J8dqXTgNyX8cQCPFUAdiZS/jPdle+sx9Sp3GUnZCFi9UsWV5
+	 rEKhpfwuNywvLmfEEXl4kb1d9XRhfCXlNujxVJ7kbLu1IL1J/uGjpUW9C0XtNMPaD2
+	 vRIU2977NPMb48Ct3kGIyHEVwlq17Wy9Ipg4ZqpEuk/qnNIrz3KzpVQC84+ABHY86a
+	 G9B6KF4lKkOog==
+Date: Thu, 15 Jan 2026 14:03:37 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: Maxime Ripard <mripard@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
-	Simona Vetter <simona@ffwll.ch>, devicetree@vger.kernel.org,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Joseph Guo <qijian.guo@nxp.com>, linux-renesas-soc@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Robert Foss <rfoss@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: waveshare,dsi2dpi:
- Document 1..4 DSI lane support
-Message-ID: <176850730712.1093165.15441480948491259694.robh@kernel.org>
-References: <20260115024004.660986-1-marek.vasut+renesas@mailbox.org>
+To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Cc: devicetree@vger.kernel.org, vkoul@kernel.org, TroyMitchell988@gmail.com,
+	linux-usb@vger.kernel.org, conor@kernel.org, kingxukai@zohomail.com,
+	linux-riscv@lists.infradead.org, alex@ghiti.fr, pjw@kernel.org,
+	linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
+	gaohan@iscas.ac.cn, cyy@cyyself.name, gregkh@linuxfoundation.org,
+	linux-phy@lists.infradead.org, aou@eecs.berkeley.edu,
+	neil.armstrong@linaro.org, conor+dt@kernel.org, palmer@dabbelt.com,
+	18771902331@163.com
+Subject: Re: [PATCH v2 1/4] dt-bindings: phy: Add Canaan K230 USB PHY
+Message-ID: <176850741658.1095207.11658679131593700073.robh@kernel.org>
+References: <20260115064223.21926-1-jiayu.riscv@isrc.iscas.ac.cn>
+ <20260115064223.21926-2-jiayu.riscv@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,43 +62,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260115024004.660986-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260115064223.21926-2-jiayu.riscv@isrc.iscas.ac.cn>
 
 
-On Thu, 15 Jan 2026 03:39:42 +0100, Marek Vasut wrote:
-> Describe 1..4 DSI lanes as supported. Internally, this bridge is
-> an ChipOne ICN6211 which loads its register configuration from a
-> dedicated storage and its I2C does not seem to be accessible. The
-> ICN6211 supports up to 4 DSI lanes, so this is a hard limit for
-> this bridge. The lane configuration is preconfigured in the bridge
-> for each of the WaveShare panels.
+On Thu, 15 Jan 2026 14:42:19 +0800, Jiayu Du wrote:
+> K230 SoC USB PHY requires configuring registers for control and
+> configuration. Add USB phy bindings for K230 SoC.
 > 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
 > ---
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Joseph Guo <qijian.guo@nxp.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> V2: No change
-> ---
->  .../devicetree/bindings/display/bridge/waveshare,dsi2dpi.yaml  | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/phy/canaan,k230-usb-phy.yaml     | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
