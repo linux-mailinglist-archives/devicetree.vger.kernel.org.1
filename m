@@ -1,101 +1,123 @@
-Return-Path: <devicetree+bounces-255617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F8FCD24C05
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:35:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31B5BD24C20
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:36:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2CE61302E86D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:35:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AD3663002526
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:36:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768F9395D85;
-	Thu, 15 Jan 2026 13:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CA93A0E85;
+	Thu, 15 Jan 2026 13:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+ysnnhw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UvNex5q2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5364B20C029;
-	Thu, 15 Jan 2026 13:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3107620C029;
+	Thu, 15 Jan 2026 13:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768484123; cv=none; b=jX/jQwqplNkT0R5/uLi1tKSm5aS4LVNpl4ddGU0GOOaNAGYW7d4ouSICNtDF0RKLK0kiDAnzTMgETg9Hl3OFwEn/MNdihPPRTinHGc2KRkG8m0x+HBkRz+vGe/4+lBjs7fR89h/jBHKEt544kExer1J90VJLK0fdrWvcxPu9qEU=
+	t=1768484164; cv=none; b=PxQMmPJ/X2mWDo9FgESV2NQMp9H+fP1ob8z6j8dI5PYX5CLG1MumlP9suISagt91gu5ZkQumsMia/5c3uSwUoBWLoTGAbLfNaOeVoYqCbEoTfDsKihuvp4vCujeryjPBjx4Yo6XTGpZEiC3Sx5DkzM5yRFhbAwOk01LfvsticBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768484123; c=relaxed/simple;
-	bh=a3SlvvjrKSfBG+irl29R81Hq//pY03hNYixJWCTAFm0=;
+	s=arc-20240116; t=1768484164; c=relaxed/simple;
+	bh=0W6V9fyTShLK7ULIIxW8FNo5OfRF3NXJTodFVN9ZRdM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r6F1wBw7/n94MfLMXGJYhPKWcnsKwigqQcqqFSZK+Hck+WGqv0lIbt32AgS/nEtPARJ/RQARiSOZOnl/aIPjb9Y6g3Ky1ZC7xAMOQStR+b9XdrpWVkzRzDjNmforchFAkjOvh0WV6YwUBlegLg4URnuu9oB5GMhyNKMgkky35PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+ysnnhw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7E01C116D0;
-	Thu, 15 Jan 2026 13:35:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=m68tbWH5xihp89EP9EW2eQjPoYO7LyAJFhu6jzEd+vRFaB20HTJAHhMp68wuqQB0FtH8erTb11sNI1uQH22qITu/hs8ojkJgWXYB2UpQm8hyPzqh/cEQp2S3kJpJAP5lpebpGGVGGc5Z6+LbVBt0VZQdRsIakxgZAktSroIaNJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UvNex5q2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FC40C16AAE;
+	Thu, 15 Jan 2026 13:36:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768484122;
-	bh=a3SlvvjrKSfBG+irl29R81Hq//pY03hNYixJWCTAFm0=;
+	s=k20201202; t=1768484163;
+	bh=0W6V9fyTShLK7ULIIxW8FNo5OfRF3NXJTodFVN9ZRdM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O+ysnnhwsjFg0arGOMFOhGlEqq9GuJ7rzhbGky+oeZsOVi7wELVrBVxcOpuHkkGtQ
-	 qOLaDXNkqXvWJcKEVAKBc0FqvtUyN5b+tB7NHbguZ5NuBwPM7k5PcMG1/hypLtkHKR
-	 xQX9MQ9pKBCsIhgP6MJEWrwlQtUDzcbh2Rcl0qucEWcyG/YwCdeLwpWFb/V0qA5szc
-	 jzK6bCb8/dGpqCnBFIW3v0TeD9x41kI+C34pKfFKQdyYvrfI/oQCvCt0/UtJKJLI+K
-	 u5Pxd7n8LhSU4comyqdmRbA1QaKzwVeCNTZBWjTTNJWJqrxru74cd/CO4zwhqzbzNj
-	 HOFsLgYsCmxSQ==
-Date: Thu, 15 Jan 2026 13:35:18 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jon Hunter <jonathanh@nvidia.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: rt5640: Fix duplicate clock properties in DT
- binding
-Message-ID: <1199975e-cfd8-4a97-b7c6-0e0b9e7abef2@sirena.org.uk>
-References: <20260114-asoc-fix-rt5640-dt-clocks-v1-1-421d438673c2@kernel.org>
- <176848231789.253446.13860422269412592694.b4-ty@kernel.org>
- <aWjsPfGO75DzjWhb@black.igk.intel.com>
+	b=UvNex5q2V6dpcWncjXAuZswFgvOfUKB9y8VJ+T9KyiTvWPfqGe20p26fqk/KPKdCy
+	 fC2w61TTrdGLFSrazUHLDWG8EIQf2mYn5yZfbB8r93Ln8Fxp3SwJE8NiFPHReq8BWZ
+	 HuKz33cfCWzSTQLUjcBZW90t3pL5F1DXCVoka3Hwei35ATDkkqP6WnCLur1V6F+wnX
+	 gEgU/xfdqJTaX/u9Tba9WHGjKOvHk32N3c2VEGD+OrwZHN5QV2hMhnQAuvzciZXDk8
+	 9v3lzyqXTA4/OKcWVkYmldl+k7Ndb+ApMLf0hzt4zLmrvsgDjM7obnvfZgS9qVbLYx
+	 Gpp78xR32pXiA==
+Date: Thu, 15 Jan 2026 14:36:01 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, 
+	Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+	willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Subject: Re: [PATCH 3/8] dt-bindings: mfd: Add Google GS101 TMU Syscon
+Message-ID: <20260115-slim-denim-potoo-cad9cb@quoll>
+References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
+ <20260114-acpm-tmu-v1-3-cfe56d93e90f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JEYIukm5XNCHAKG2"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aWjsPfGO75DzjWhb@black.igk.intel.com>
-X-Cookie: Are you sure the back door is locked?
+In-Reply-To: <20260114-acpm-tmu-v1-3-cfe56d93e90f@linaro.org>
 
+On Wed, Jan 14, 2026 at 02:16:31PM +0000, Tudor Ambarus wrote:
+> Document the bindings for the Thermal Management Unit (TMU) System
+> Controller found on Google GS101 SoCs.
+> 
+> This memory-mapped block exposes the registers required for reading
+> thermal interrupt status bits. It functions as a syscon provider,
 
---JEYIukm5XNCHAKG2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I don't think this is syscon, but the actual TMU. Syscon is various,
+unrelated system configuration registers.
 
-On Thu, Jan 15, 2026 at 02:31:41PM +0100, Andy Shevchenko wrote:
-> On Thu, Jan 15, 2026 at 01:05:17PM +0000, Mark Brown wrote:
+> allowing the main thermal driver to access these registers while
+> the firmware manages the core thermal logic.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+>  .../bindings/mfd/google,gs101-tmu-syscon.yaml      | 37 ++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..6a11e43abeaa23ee473be2153478436856277714
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
 
-> > [1/1] ASoC: rt5640: Fix duplicate clock properties in DT binding
-> >       commit: be5a39e7994ec9f003c8569b670c794a4e5d1551
+Not MFD either, but soc.
 
-> Note, in the repository the change has duplicate SoB tag. IIRC Linux Next validation
-> complains (used to complain?) about inconsistencies or this kind of issues with tags.
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/google,gs101-tmu-syscon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google GS101 TMU System Controller
+> +
+> +maintainers:
+> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
+> +
+> +description: |
 
-I'll be sure to tell me if it turns out to be a problem :)
+Drop |
 
---JEYIukm5XNCHAKG2
-Content-Type: application/pgp-signature; name="signature.asc"
+> +  The TMU System Controller provides a memory-mapped interface for
+> +  accessing the interrupt status registers of the Thermal Management
+> +  Unit. It is used as a syscon provider for the main TMU driver.
 
------BEGIN PGP SIGNATURE-----
+No, it is not a syscon provider. Entire last sentence is incorrect. You
+must describe here hardware and this hardware does not provide any sort
+of syscon to any sort of driver.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlo7RUACgkQJNaLcl1U
-h9DaDQf+KUN7uP8md260mrSiZFwJUGS+S+Jv8/OaNXTDfwvPCMvHM11iZstPxyBN
-JtHsVny6vckxkKKwTTmeD1vE59wFnvAiWsLSaCm7BLKugD1wzpaVo7qk8eJAFQ7h
-azPrrN4EyHcEucgrz2f2aY6d6r1dIEopQHpiLMFn7gZ5P6mrNP7Tcu8BYIOKlUS2
-+NiRDlunm2DNubvxlvnQ0Wfcj0ONlR9QCj9Tjnw1X2vtQR/xlXG6noeUnzp9AN7C
-WxvdEbKFxWIyvrXu7x8SN/H7McxQeClqvdzRsisgF6RwDetIivjw0Vaw5KIvonuP
-/7/yT0iUymWwvSufVl87iv09zNeNDw==
-=LaVi
------END PGP SIGNATURE-----
+Best regards,
+Krzysztof
 
---JEYIukm5XNCHAKG2--
 
