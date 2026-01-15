@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-255748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27EC4D280E0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:25:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CC99D27EC6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 15EE430261A8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:56:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0C0503007E62
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36783C1994;
-	Thu, 15 Jan 2026 18:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1060F2BEFED;
+	Thu, 15 Jan 2026 19:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RVD1cCd4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cwln90jq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5713B530D;
-	Thu, 15 Jan 2026 18:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E6729BDB1;
+	Thu, 15 Jan 2026 19:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768503386; cv=none; b=CB5TDN/aHkbDJSWmm2mZjR3vKr6T4+A7BeBnPj/vAWAEn55bZpWEVa2rMBG+0JTXmKEl+gvq2Nt12qPTPOCaaEfxPE+mmAOtlJV9+NWp9g66mdS9dyfEjC5D2s5dUPIZcGoWlrXW9zez5+yg1wcufTwH+PVOvE7WGxBj1Z+9IeM=
+	t=1768503909; cv=none; b=G/+qd62ZHWKFykJvhRkj4z5XJsqt88VcHDmJjtUJQy/9zmKjzKj0M7R8Cf3zaRzoqavwcwx5JOG7i2hN1MxijyXEy5obPJrnCVKAohCbY0HFU5wuwVV4J3yHmaj+j80ddkHK3ieUjRKB9Cd2RF4TycTR+/DGA/hU0wkpDp/brRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768503386; c=relaxed/simple;
-	bh=vBf0JsV6SssEAFVKDfTmL6XYzcy1PrASWotaLv5u8JU=;
+	s=arc-20240116; t=1768503909; c=relaxed/simple;
+	bh=XGxk5XqmTMXOuSSsKOdhgAHvgmaYT8PkS0TUquQx3Kc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B+cfR4LjcIkrDdKp3ZKcs8u+H6dSK4RjKyTfM7sbFtdTQv3MfzHmy38mSGBO4AhhWe1NrrXCrFHCM/Qsys2ls95xB9dJRXq7DxnajkvGWvvP5eIHbAptTGH7hSp8ULMkIXvb19bvCogyH1sW0D8eiJm7nalybpHa6mHsrCp/giA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RVD1cCd4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF0BBC116D0;
-	Thu, 15 Jan 2026 18:56:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZUWPnn9yX7B1vHkO650e4Jen0ABPINZR5yZ9UgUt81gO8FCj1AL34N6cP6JiEd2RkvQQqD4yL/twCYIGn3umdmCkKrujk2kyQxHp8CAF0YdhV7jOGZv5tkCIxPmmsyZQIl40q7ZV8PwuPxAp8jcwOuKi9yqbexBM0TLQKfpeHDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cwln90jq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B515C116D0;
+	Thu, 15 Jan 2026 19:05:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768503386;
-	bh=vBf0JsV6SssEAFVKDfTmL6XYzcy1PrASWotaLv5u8JU=;
+	s=k20201202; t=1768503909;
+	bh=XGxk5XqmTMXOuSSsKOdhgAHvgmaYT8PkS0TUquQx3Kc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RVD1cCd4U03YZGWql2QzFw7wQITcAlUGQYPQxiJUOCCXSaNln+3BpkftguUH5A9Yd
-	 jEe5gdmkMa1fjADwlJ9hkYZtqNKlrvDY4gKkjGoa1wh0C5Jefd4W8UGZX8BorINaGo
-	 3Y34sO6Uc8IXQg371drJhHzZUFow9/0P7tH8NXuk5bl8UWYKGuFQPGIGPGHDSelTtR
-	 aOeZRHSuz+l3pKvtVJiXcdNwCcONOAghse2cVJdwM2R6KLxEQ8NEQLuyFgBJKQYkAx
-	 Uu1Om4/T6GH2xNjYotMIjgW/POHT8jxKyX2TDRgoj6EPYdbZ38PE9cULqXvtGrx7M+
-	 i5PpYXgHoLCvQ==
-Date: Thu, 15 Jan 2026 12:56:25 -0600
+	b=cwln90jqVWwSRdAOYxtgSZO0omEPgP8ktrPfGmotvNNPVIcYxhHjdgRRMcFkpwUSB
+	 ZqGC6WhFUPSdqaGrsjTlxfrX1oY52fUkiw3Kyk9YEpJub9jtJW8y9kMDGgkYb6OyNl
+	 ZbOivC8lgXJpP1M0wjVOku/8Uv2pJrbmjmPq1b7XEikmHJAynvnxRyOSWdm7nJ2kB9
+	 QZqGPu9q3XGBQq/OEMzFJyJK0nZ5EQiE+HXAoYaUKsdlAboi42SfEKoEHxvwxn3z9D
+	 BvLiPI17UUsNxB7VP1SV6l+N64QQwB4JKHer229ntugF0sE2ezFuglptl1PmrvT30a
+	 1mY8YCTVMND1Q==
+Date: Thu, 15 Jan 2026 13:04:36 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Tianping Fang <tianping.fang@mediatek.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Bjorn Andersson <andersson@kernel.org>, linux-media@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Fix I2C bus node names in examples
-Message-ID: <176850338451.1006318.4420022691055686967.robh@kernel.org>
-References: <20260114081322.53411-2-krzysztof.kozlowski@oss.qualcomm.com>
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: linux-gpio@vger.kernel.org,
+	=?iso-8859-1?Q?Cl=E9ment?= Le Goffic <legoffic.clement@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	linux-arm-kernel@lists.infradead.org, Leo Yan <leo.yan@linux.dev>,
+	coresight@lists.linaro.org, linux-kernel@vger.kernel.org,
+	James Clark <james.clark@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	jens.wiklander@linaro.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Mike Leach <mike.leach@linaro.org>
+Subject: Re: [PATCH v2 01/11] dt-bindings: document access-controllers
+ property for coresight peripherals
+Message-ID: <176850387192.1025633.5139708031708243841.robh@kernel.org>
+References: <20260114-debug_bus-v2-0-5475c7841569@foss.st.com>
+ <20260114-debug_bus-v2-1-5475c7841569@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,33 +70,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260114081322.53411-2-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260114-debug_bus-v2-1-5475c7841569@foss.st.com>
 
 
-On Wed, 14 Jan 2026 09:13:23 +0100, Krzysztof Kozlowski wrote:
-> I2C bus node names are expected to be just "i2c", if there is just one
-> such node in given example.  Replace remaining bad examples with
-> scripted:
+On Wed, 14 Jan 2026 11:29:15 +0100, Gatien Chevallier wrote:
+> Document the access-controllers for coresight peripherals in case some
+> access checks need to be performed to use them.
 > 
->   git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/i2c[0-9] {/i2c {/'
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
 > ---
-> 
-> Like Rob's commit 20a72af11f41 ("dt-bindings: Fix SPI and I2C bus node
-> names in examples"). I checked also for SPI.
-> 
-> Rebased on Rob's tree - can you pick it up directly? Applies also on
-> linux-next, so I do not expect conflicts.
-> ---
->  .../bindings/embedded-controller/lenovo,yoga-c630-ec.yaml       | 2 +-
->  Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml   | 2 +-
->  Documentation/devicetree/bindings/usb/ite,it5205.yaml           | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml           | 3 +++
+>  .../devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml          | 3 +++
+>  Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml           | 3 +++
+>  Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml           | 3 +++
+>  Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml           | 3 +++
+>  Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml          | 3 +++
+>  6 files changed, 18 insertions(+)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
