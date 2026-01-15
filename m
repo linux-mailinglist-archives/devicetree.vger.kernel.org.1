@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-255744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904BBD27E94
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:03:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F522D27EBF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:05:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AE52F310B51B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:51:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BCBB30A425D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D3A639A805;
-	Thu, 15 Jan 2026 18:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5D03A63F1;
+	Thu, 15 Jan 2026 18:53:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bVH/RzFR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AUCiggqZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF422D9488;
-	Thu, 15 Jan 2026 18:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA5DF2DFA54
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 18:53:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768503082; cv=none; b=pFHp0qfcU3TJdd7PUBifFfDm/lUWErpTmp0L81720uxeMasawFY/tmYicgd34DTlT0+S6fKkRfHDxCD3pzusAfTBYhZH/ZVuLIm44hbqKHKcC+AqZCeXeYxi6eHSYBLl0hYVMG5tEwtwXCRvq1lnUYl6boIhQJ0LjeYpj+9gMA0=
+	t=1768503232; cv=none; b=ddXM6UvrDfDZc2GWiX3iJ2b7VzHL7f45EdJLvKV6UnqYwa/YgC4rwbsCTEHhOr3me568FSDnSlWGyXdSRVKjsDl9H5repUw3aGcMHwsphzkB83MEpv0KAG0fNCumsalf6Y3kdm9+U+DLKBQ6IS2mLDtNikgvZjX9ukDLzjALBGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768503082; c=relaxed/simple;
-	bh=3IRRuMLcwmSQPo2/U6GNGdpGU5CpG4IMSKqJ5xKFAgA=;
+	s=arc-20240116; t=1768503232; c=relaxed/simple;
+	bh=+yRgRWrxixszXJdLBEgxSxkhwkZTH7s4cXfyBhhd6zY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rUMmJQGa8OWGRn1jnrO6Ons/J7CCX31tmCNqgnPTg5cuiWnpqtno8o8fHJbojhg6jKcEiBArvRPvWVy+vGoBBQONKNJzWzSTkA0HCkmmCxF19ZOc68a9tKv+yQCO2XHshTuJSzKh6dYH6G5+l/AK8fpxMS1Xz37djACGxU+xISU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bVH/RzFR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60978C116D0;
-	Thu, 15 Jan 2026 18:51:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=THhGQG4yw7SOWHrP6ymIA9BxwbHzy3tnREkipavQN2yj/BCre6smbI5kidTCnwWFQYjgHPPKC0ZajA907b0MQ42Mf+JTHSUGA8VmTSGLpn6SaFCygDna307eF7nKUeFkW27pvUM7CjNvnNB8la5+3yStImeMYKSppphSnjiBnNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AUCiggqZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38E54C16AAE;
+	Thu, 15 Jan 2026 18:53:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768503081;
-	bh=3IRRuMLcwmSQPo2/U6GNGdpGU5CpG4IMSKqJ5xKFAgA=;
+	s=k20201202; t=1768503232;
+	bh=+yRgRWrxixszXJdLBEgxSxkhwkZTH7s4cXfyBhhd6zY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bVH/RzFRqIJleuYmCNX4D1CBJYCcTYyWkKcBeQyGBgEDuwRUqcew7B+IKHCmGAYCO
-	 T6KrUHx8bZjw185ibpOy3wrRj3UJEtilOf0lyKLZqaZrQhUD3P4BsQJs4oiJa9YKCQ
-	 FBGW87NduOf84+1f2hpLLQcBgqXk78m1YGyLrItCf2JdzpCLraVnRkxfyvZB9umc5Y
-	 5LITT5I656q3xd7+B0HtOemMyu0hUNG6A97lHHbqTDpPjqmfJVuEZ3/BtZqSz1dr+O
-	 TkXKd/do+s1Xv9sMryLB4jCFdPPIG0/0OVato9nJaIm/OkAz4Zkra1Vgw+hIyp7Vix
-	 HXFf5S5ZT6wpA==
-Date: Thu, 15 Jan 2026 12:51:20 -0600
+	b=AUCiggqZpfdI1tudPHsbFKr6s686vUb/DOUAVuO08NxXYlA4lO5ha1c5Ih0Nkd5L0
+	 qeyF1GYAs71hBcNBw34SXu9ACVi/671Uy7D1Tpd7CPpislVN6wCq4/EDGvQyu59dk2
+	 UGMCjT/ad2mN49ixcwFD4ujyD2H8wYSN1SgBIISG9nPbcNWlemr8BTw9Js22rrINcT
+	 iniQqZYV3ffnL+KAyaiTghLs3E/c2fEZOJdUN62/iKv1ms6XPscdbUJEbgpAOPPV4A
+	 nGUPKKL4AqeGo8Rv6ZpvASqe1IPRdOT/DD0+aDXx3ZOYiSI0UD2xuNQYhqxzuWFB9n
+	 putFSQG6ZAsjw==
+Date: Thu, 15 Jan 2026 12:53:51 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: Re: [PATCH RFT 1/3] dt-bindings: usb: qcom,dwc3: Allow high-speed
- interrupt on Glymur, Hamoa and Milos
-Message-ID: <176850308003.1000412.4463724450003565860.robh@kernel.org>
-References: <20260113-dts-qcom-glymur-add-usb-support-v1-0-98d6d387df01@oss.qualcomm.com>
- <20260113-dts-qcom-glymur-add-usb-support-v1-1-98d6d387df01@oss.qualcomm.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, mripard@kernel.org,
+	dri-devel@lists.freedesktop.org, airlied@gmail.com,
+	conor+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>,
+	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+	neil.armstrong@linaro.org, devicetree@vger.kernel.org,
+	jagan@edgeble.ai, krzk+dt@kernel.org, aweinzerl13@yahoo.com,
+	heiko@sntech.de, simona@ffwll.ch, jesszhan0024@gmail.com,
+	dmitry.torokhov@gmail.com
+Subject: Re: [PATCH 2/6] dt-bindings: display: panel: Add compatible for
+ Anbernic RG-DS
+Message-ID: <176850323085.1003166.1760055043978437225.robh@kernel.org>
+References: <20260113195721.151205-1-macroalpha82@gmail.com>
+ <20260113195721.151205-3-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,19 +63,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260113-dts-qcom-glymur-add-usb-support-v1-1-98d6d387df01@oss.qualcomm.com>
+In-Reply-To: <20260113195721.151205-3-macroalpha82@gmail.com>
 
 
-On Tue, 13 Jan 2026 14:33:04 +0200, Abel Vesa wrote:
-> Some of the controllers found of these platforms can be tied up to a
-> single high-speed PHY, basically rendering them as USB 2.0 controllers.
-> So in this case, the interrupt to the Synopsys DesignWare Core is coming
-> from the high-speed PHY, so allow the interrupt to reflect that.
+On Tue, 13 Jan 2026 13:57:17 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> The Anbernic RG-DS uses two (mostly) identical panels as a top
+> and bottom panel which appear to use the same controller as the
+> Jadard JD9365DA-H3. The panels differ with a parameter defined
+> differently in the init sequence.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml   | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
