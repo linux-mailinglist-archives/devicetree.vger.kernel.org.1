@@ -1,214 +1,295 @@
-Return-Path: <devicetree+bounces-255790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A0B5D28FD9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 23:22:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B5AED28FE9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 23:22:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6429E3038987
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 22:22:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0FBAC301AD0A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 22:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 625CD3168EB;
-	Thu, 15 Jan 2026 22:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE3D327BEC;
+	Thu, 15 Jan 2026 22:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fx2Vcy0T"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EwS9dfMf";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MGEcp/h1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83142FFDFC;
-	Thu, 15 Jan 2026 22:22:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768515744; cv=none; b=gQZklsJdEhTudiUickCxiLXrb+UG5fpeJ8JSKt2QMp3c6Q9obyhR26Xl3uWZpn5bxmuTkOu4dySgofxcnsk5O24yfzHDrGHnQRFWL66z9DwD2KpWoavdZw6Fx71NlepCuxtIlsjH5xBNv0vtor0KC5zJ/04lHh72Q1cUx6frZoI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768515744; c=relaxed/simple;
-	bh=GlSRthmmIe146YTP1TyKrEKATP5VoHXNP14ZSFLxRDI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lpJD0qotW9MofmTICvP+2vCybPkNxqRBZAnm8X52UvVxOy7BBBHgMc4AJ+dsHKKeFlFSVjbiz9UQ0M6i40+xA2Ezqee/b+Td1w0dyOAlijazYa2HFzOz0s2E6tD94EMc3uQU/+EPwUMUDq6qhXAbW0i2ChuN5UXd5pnoXxVPtOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fx2Vcy0T; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768515742; x=1800051742;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GlSRthmmIe146YTP1TyKrEKATP5VoHXNP14ZSFLxRDI=;
-  b=fx2Vcy0TIZBDzJY6xVgWEGSI59MmI5w1b3ANookFtLMVHJ1XTgWVaCpf
-   D/9SEJBS4r97dPwLlWHs7Nt5pyFFpdcy3Prs8Mrk7I8eZXNbDjn29h3b4
-   nILDnN3KiQJVmXJyB8/OfwK/+rmyrehcabaQ4jxczHoVFuFChpCQckrr7
-   Z0Ych4yiSJPxyT7jTiyHcqRtl+k2TXi26Hy7y7aaZxaGOrz6umXlqQGXu
-   ZRHrKDM19QMvzgCAb9s4CvjANuyzGk/SczSpJ1uxDIi73tyZ1tAKiDkjL
-   mxJvDm+4o+xXVXbkEpbW/d2Wl1O73wqXhn5BuuVd3qhnHP7q+0ydXfd0R
-   Q==;
-X-CSE-ConnectionGUID: 6EHe/W4tSSSGr9i0yqxL2w==
-X-CSE-MsgGUID: k8OjGt72RkCU6NjqRHh4Qg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="73683709"
-X-IronPort-AV: E=Sophos;i="6.21,229,1763452800"; 
-   d="scan'208";a="73683709"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 14:22:21 -0800
-X-CSE-ConnectionGUID: JKJfZTyAT8SvyZZ64I1AXg==
-X-CSE-MsgGUID: S39XQe80ROehLb43Zu6oZg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,229,1763452800"; 
-   d="scan'208";a="228127414"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 15 Jan 2026 14:22:18 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vgVjM-00000000K3s-0tal;
-	Thu, 15 Jan 2026 22:22:16 +0000
-Date: Fri, 16 Jan 2026 06:22:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tzu-Hao Wei <twei@axiado.com>, SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	Tzu-Hao Wei <twei@axiado.com>
-Subject: Re: [PATCH 2/4] phy: axiado: add Axiado eMMC PHY driver
-Message-ID: <202601160610.y8FbB5x1-lkp@intel.com>
-References: <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-2-dd43459dbfea@axiado.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B197226F291
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 22:22:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.180.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768515775; cv=pass; b=m9zqayVZ4cmcSvkZt7wk7/nfrocmAB33Tqgziot7RJ8VbNPH4gyU7hvJ7XBO9qLjxOJqCH+m3FfSmLEFrxXlTMhjNHCCRk6TzNZpjwmzwaL6r2+vc4FtdFYxy2PUJfzKcEENl9YMoK+ILUqedTZag96yZuKDJasKnIJABb6lj7A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768515775; c=relaxed/simple;
+	bh=QOSpTZtZzRWh6tMwZ43PxOAFHYO4aoU0A1v2+rA1+hU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oij6n3t1CRb+JNi1BtDcC1DOhz2GGCHPzBTxY375le00EGVmMvxpYcfHHulkjGqnr0P8IVNZNwSGi0+cpKgvcVb+KPmsq7u71Bo5JSGSdLysB4MLF94KGn4+xLmRTegrajgvdlavf47CES5LTnPAEXetDhxvGQ909dDrStpNnks=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EwS9dfMf; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MGEcp/h1; arc=pass smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60FMIJk93028264
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 22:22:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:to; s=
+	qcppdkim1; bh=++9T+ZreIDbyL3ecbXA9o3o1CuOYwWv1qVO5IQ0Q36g=; b=Ew
+	S9dfMfmURuxOliARPU123y2Oyz1MjThNR2Kd6AKCDc39J2yNb+FhZkBJ5jUvjJf9
+	HnbwzzdTmIgflGY3834KzvcX7gTb3EXAkVAc4znFywLaF+WBRGo+7e2WJJlcExkU
+	eV1z9QPPQlfw4E883NK8mZBOw0D/9hPE+aiiEtgVKAMUz1WkDGo9mR2QtwShIdcU
+	h+DE6B9GhUVuFWnFpxo+4FJKY+SzpJKJKA1ICCjZWuQHAbpGqbyXBJ8ZXyPDqo34
+	1PbinfbGMRoejGcuL/Lk3nz01mcfKyv6c8hWJ6d0YRtJOGCeP6yOaLskCWuCp4e2
+	B00wzVc60FTS4YvYT7Hg==
+Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com [209.85.210.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq1xh9dwj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 22:22:52 +0000 (GMT)
+Received: by mail-ot1-f72.google.com with SMTP id 46e09a7af769-7cfd3cbaeedso4284891a34.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 14:22:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768515772; cv=none;
+        d=google.com; s=arc-20240605;
+        b=eLzGXI6ppQHoXPBktFt18T6MBuoJxTH0iuD/D/PeoETUPD5tK2aRQtRJl/e2W1222+
+         ViF9u9EN0OU3qOI8p9MUEiXMnlc0OhLodLOiB3fCm9UwjZtKUP5Ipgghr7Y0w+Z/LeaR
+         pcGASMHiYqchzttpN8VtkFNLrsT+AadKr9yZW0nKHwKyRN+4KhfUVr1LiQnXFb/YBc6J
+         Q4uoqI1a5OxJ31cabGzPY83kJKYnhudLkV/9imauZmA6QZL7fqRFCCTvAOntl2E70Yls
+         1NyN3nLXMzphd/ArosMD5Hf+1Lmd/Ql/hbrdYxq7ZS3ViGVqP8e/5XGS0ZowdhaaB1CY
+         Wq1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:dkim-signature;
+        bh=++9T+ZreIDbyL3ecbXA9o3o1CuOYwWv1qVO5IQ0Q36g=;
+        fh=Id3rVOGZDAZqkNXEHdx3BGkfNH4tvX4+wnMsGf9dNdw=;
+        b=Aj1HxvIOdTncSv5m0CRpx3fDUnQAAAgHYEKn9RC4yZ5SAAuuqKOoFQZ2mZ7G22Eo3C
+         l6HoxYE6kEz/REEcT3kNAfhFoNlDFXHwcslPtL+qUrRhQVX849DLq/68X3B8MZXRnsMk
+         6pJM4JUA1dvb3rMps8KAcDuMxqPrR6natYgaFsgrDyuo1Aiofx63p3LmDpDuhxWobMm0
+         qKoJAMHZrvpmF8mymVPbXej65ICtI/OaT1GGazYcVwN1LwBfd6q/Fa5aW3W//hOv8E98
+         +Sph3D9zfPoy4LalT85D8AoLLqschP6gO1gbTfHdsZIqSyDNiaXy2gPUh9/x8pUm2ytO
+         8xwA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768515772; x=1769120572; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=++9T+ZreIDbyL3ecbXA9o3o1CuOYwWv1qVO5IQ0Q36g=;
+        b=MGEcp/h19ZorkwpQVUxH0/UFOcQFxfyjtdKrAkJ5wgvjM3u4W99lIPP8iUVJVadP60
+         lmQ4sS3IBw67u48VlP3tfSaA02OubUSxy1gd/J4tVlO7cVqYVq7SXdFzzEzfLqn6UBrK
+         IYVQTfBh0J4AYawySR7On/NsP00SdBh2w4LP7lBXD++p2gKaUJiZC4yjw+a2sBHs1xPF
+         hU2WLR+kCZEEqt6yQrC4mAFKl7SYu8oLJ/U/cDn6HwrTLC0cJ59Y7ht5Z/l5gL6/6ryt
+         //4Yiqu7C2BjnLnwF6WF4yS2xnuK0EzzMg21clo3i4I1DscKXDF5lDsJziGQ5nQu69VG
+         G19A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768515772; x=1769120572;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=++9T+ZreIDbyL3ecbXA9o3o1CuOYwWv1qVO5IQ0Q36g=;
+        b=TlW7oiRxWyxERAv8JaqXc4BRLJbomsXUZXsGjhXAg/n1k9g0vPVVtA7l3UxZEJBicg
+         GyYSHn/NHYYGsfEVIBya2GfNj/9WL/Fve2QurckaNf0ZXdTv9BRKgdh+y+S3gNzmPpjr
+         gQFKCKeDoNmaACePlc8rHzdB6ksT+W9LoVCwufHSea9M+ZeYo0IKPlWOBiu0GbxH5G04
+         yOzXV/CvuzOTUNB5WFK+5Qo4r/8EQ/JW1ZgVqtJ6JuLDLCWOb0+CgJI357riNmGt39bN
+         9HkbMN0DsJqSp17CM/GSJppeVFw397d6sfoOVe5JTMZDjjN0HiCZSa3MQn1rkty05BG0
+         XXqw==
+X-Forwarded-Encrypted: i=1; AJvYcCXDEyL3si2/f8ZCEl4txNTMG1L0At3ODgTI1ZswmuIBwC0p1CRcRPHP6ABcjMSsi2CSgvypJHx0/s0/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwA+hUiM8cJzA/n2yeg2ti/o6jCshSh2NJ4cQXdnYlJuTtP5JqV
+	woeYaCpNNcfWh20uQoClyInd768r8FPpX0okaQBRrL+tyEzVHaPU5aJ5cSK++idyHHfwyEe8NRA
+	ToHwYHKQLmgDZG4/BeWZDDH941CRBx40ZAF3pFiO/1M2Cc6fHBSblplD4qA6NC4HbHAnDyyyqZ0
+	TwHQfr/wXH6q4UxswDWHnWf9dfFlW9t6NQySrFitI=
+X-Gm-Gg: AY/fxX5/i3SlwkNoOQX/WJ2t98eocIvyOu3+j97D3+BFg5SSN8SuE+tiwYiLp+yRCFv
+	quUtDS87u5xrbKBL/10O0tL2NMDA7jnzfmVmaiauzd5jn9C5U3NBkhbMnwGJQdZKBpxklge7BsX
+	TvrVjMUFKUqacP/uHIFEkGPp2DUoqXwS5ZrE8A5vHwRvJfWTQcV87DeMlbjBreUZsFAw==
+X-Received: by 2002:a05:6808:1a01:b0:45c:832a:cf43 with SMTP id 5614622812f47-45c9be84eb5mr563336b6e.14.1768515771722;
+        Thu, 15 Jan 2026 14:22:51 -0800 (PST)
+X-Received: by 2002:a05:6808:1a01:b0:45c:832a:cf43 with SMTP id
+ 5614622812f47-45c9be84eb5mr563321b6e.14.1768515771312; Thu, 15 Jan 2026
+ 14:22:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-2-dd43459dbfea@axiado.com>
+References: <20251231-qcs615-spin-2-v6-0-da87debf6883@oss.qualcomm.com>
+In-Reply-To: <20251231-qcs615-spin-2-v6-0-da87debf6883@oss.qualcomm.com>
+Reply-To: rob.clark@oss.qualcomm.com
+From: Rob Clark <rob.clark@oss.qualcomm.com>
+Date: Thu, 15 Jan 2026 14:22:40 -0800
+X-Gm-Features: AZwV_QgUato_Mye3KIAfma_metaK0S7kEx5joU_nnqK9vXWwCVlcPa3slMjygkk
+Message-ID: <CACSVV0006wVK-JWweuNYAfu-a9rtn=zp93sey1srPieGEaJWRg@mail.gmail.com>
+Subject: Re: [PATCH v6 0/8] Support for Adreno 612 GPU - Respin
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Cc: Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
+        Dan Carpenter <dan.carpenter@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Zhang <jie.zhang@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Qingqing Zhou <quic_qqzhou@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Jie Zhang <quic_jiezh@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-ORIG-GUID: FhdDjXSo45o6ehw8MCU7KuKnOpxJuQWC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE1MDE3NSBTYWx0ZWRfX2Eyz9CyvjI9j
+ z5cmZaKdSaWiuE9lr2RXkyZ8RIOEvuY2G1+xs6Kgcn4jy5CY41afsU9M1jZiYvpeO7MGS0UIBPB
+ +8yt44Qi1ChoQlVDpObLvYyLV+MxCjuwuDqbh+agpjxRgI4mGmJhR6kRBaFujoiBgnpwU/lrTSp
+ RVDD5+xgy5X8eMJp3mr+BC3I6vw0ekDY+jD1On/GuOZ6knORiWwtR+dfw5JtBk4vCJS4etDpzOv
+ Ji00s1g6pK9OesdagaVbZiT2cenWO/QCYFKlboiW5CVFrGSQVNREXB4cj68sjIL47oezB4o7zw1
+ pJFKCv/OC2y8mtPM2yrLlowM1iksIBo36qZWrZ+uFn9RPtB0yrBLIWUIl3yA1H2aeT1QFioxWap
+ v1mgzBmhYZ/5dU3q6B+Uj9SX/lJgGe1wsPBn07VUzlGeYOkMAntKRY1u1XZEiNbyYQcScLy3cKp
+ zElv4PVYLHsbScKdzEg==
+X-Authority-Analysis: v=2.4 cv=TdWbdBQh c=1 sm=1 tr=0 ts=696968bc cx=c_pps
+ a=+3WqYijBVYhDct2f5Fivkw==:117 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=mvrZoGBVeotMckK10bAA:9 a=QEXdDO2ut3YA:10
+ a=eYe2g0i6gJ5uXG_o6N4q:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: FhdDjXSo45o6ehw8MCU7KuKnOpxJuQWC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-15_06,2026-01-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 lowpriorityscore=0 impostorscore=0 malwarescore=0
+ bulkscore=0 priorityscore=1501 adultscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601150175
 
-Hi Tzu-Hao,
+On Wed, Dec 31, 2025 at 12:45=E2=80=AFAM Akhil P Oommen
+<akhilpo@oss.qualcomm.com> wrote:
+>
+> This is a respin of an old series [1] that aimed to add support for
+> Adreno 612 GPU found in SM6150/QCS615 chipsets. In this version, we
+> have consolidated the previously separate series for DT and driver
+> support, along with some significant rework.
+>
+> Regarding A612 GPU, it falls under ADRENO_6XX_GEN1 family and is a cut
+> down version of A615 GPU. A612 has a new IP called Reduced Graphics
+> Management Unit or RGMU, a small state machine which helps to toggle
+> GX GDSC (connected to CX rail) to implement the IFPC feature. Unlike a
+> full-fledged GMU, the RGMU does not support features such as clock
+> control, resource voting via RPMh, HFI etc. Therefore, we require linux
+> clock driver support similar to gmu-wrapper implementations to control
+> gpu core clock and GX GDSC.
+>
+> In this series, the description of RGMU hardware in devicetree is more
+> complete than in previous version. However, the RGMU core is not
+> initialized from the driver as there is currently no need for it. We do
+> perform a dummy load of RGMU firmware (now available in linux-firmware)
+> to ensure that enabling RGMU core in the future won't break backward
+> compatibility for users.
+>
+> Due to significant changes compared to the old series, all R-b tags have
+> been dropped. Please review with fresh eyes.
+>
+> Last 3 patches are for Bjorn and the rest are for Rob Clark for pick up.
 
-kernel test robot noticed the following build errors:
+I guess you meant the last 4 patches are for Bjorn?
 
-[auto build test ERROR on f0b9d8eb98dfee8d00419aa07543bdc2c1a44fb1]
+BR,
+-R
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tzu-Hao-Wei/dt-bindings-phy-axiado-ax3000-emmc-phy-add-Axiado-eMMC-PHY/20260109-174938
-base:   f0b9d8eb98dfee8d00419aa07543bdc2c1a44fb1
-patch link:    https://lore.kernel.org/r/20260109-axiado-ax3000-add-emmc-phy-driver-support-v1-2-dd43459dbfea%40axiado.com
-patch subject: [PATCH 2/4] phy: axiado: add Axiado eMMC PHY driver
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20260116/202601160610.y8FbB5x1-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260116/202601160610.y8FbB5x1-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601160610.y8FbB5x1-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/swab.h:5,
-                    from include/uapi/linux/byteorder/big_endian.h:14,
-                    from include/linux/byteorder/big_endian.h:5,
-                    from arch/m68k/include/uapi/asm/byteorder.h:5,
-                    from include/asm-generic/bitops/le.h:6,
-                    from arch/m68k/include/asm/bitops.h:569,
-                    from include/linux/bitops.h:67,
-                    from include/linux/thread_info.h:27,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/m68k/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from arch/m68k/include/asm/processor.h:11,
-                    from include/linux/sched.h:13,
-                    from include/linux/delay.h:13,
-                    from drivers/phy/axiado/phy-axiado-emmc.c:11:
-   drivers/phy/axiado/phy-axiado-emmc.c: In function 'axiado_emmc_phy_power_on':
->> drivers/phy/axiado/phy-axiado-emmc.c:69:34: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-      69 | #define OTAP_SEL(x)             (FIELD_PREP(OTAP_SEL_MASK, x) | OTAPDLY_EN)
-         |                                  ^~~~~~~~~~
-   include/uapi/linux/swab.h:118:38: note: in definition of macro '__swab32'
-     118 |         (__u32)(__builtin_constant_p(x) ?       \
-         |                                      ^
-   include/linux/byteorder/generic.h:88:21: note: in expansion of macro '__cpu_to_le32'
-      88 | #define cpu_to_le32 __cpu_to_le32
-         |                     ^~~~~~~~~~~~~
-   arch/m68k/include/asm/io_mm.h:373:26: note: in expansion of macro 'out_le32'
-     373 | #define writel(val,addr) out_le32((addr),(val))
-         |                          ^~~~~~~~
-   drivers/phy/axiado/phy-axiado-emmc.c:147:9: note: in expansion of macro 'writel'
-     147 |         writel(val | OTAP_SEL(OTAP_DLY), ax_phy->reg_base + PHY_CTRL_2);
-         |         ^~~~~~
-   drivers/phy/axiado/phy-axiado-emmc.c:147:22: note: in expansion of macro 'OTAP_SEL'
-     147 |         writel(val | OTAP_SEL(OTAP_DLY), ax_phy->reg_base + PHY_CTRL_2);
-         |                      ^~~~~~~~
-
-
-vim +/FIELD_PREP +69 drivers/phy/axiado/phy-axiado-emmc.c
-
-  > 11	#include <linux/delay.h>
-    12	#include <linux/io.h>
-    13	#include <linux/iopoll.h>
-    14	#include <linux/module.h>
-    15	#include <linux/of.h>
-    16	#include <linux/phy/phy.h>
-    17	#include <linux/platform_device.h>
-    18	
-    19	/* Arasan eMMC 5.1 - PHY configuration registers */
-    20	#define CAP_REG_IN_S1_LSB		0x00
-    21	#define CAP_REG_IN_S1_MSB		0x04
-    22	#define PHY_CTRL_1			0x38
-    23	#define PHY_CTRL_2			0x3C
-    24	#define PHY_CTRL_3			0x40
-    25	#define STATUS				0x50
-    26	
-    27	#define DLL_ENBL	BIT(26)
-    28	#define RTRIM_EN	BIT(21)
-    29	#define PDB_ENBL	BIT(23)
-    30	#define RETB_ENBL	BIT(1)
-    31	
-    32	#define REN_STRB	BIT(27)
-    33	#define REN_CMD		BIT(12)
-    34	#define REN_DAT0	BIT(13)
-    35	#define REN_DAT1	BIT(14)
-    36	#define REN_DAT2	BIT(15)
-    37	#define REN_DAT3	BIT(16)
-    38	#define REN_DAT4	BIT(17)
-    39	#define REN_DAT5	BIT(18)
-    40	#define REN_DAT6	BIT(19)
-    41	#define REN_DAT7	BIT(20)
-    42	#define REN_CMD_EN	(REN_CMD | REN_DAT0 | REN_DAT1 | REN_DAT2 | \
-    43			REN_DAT3 | REN_DAT4 | REN_DAT5 | REN_DAT6 | REN_DAT7)
-    44	
-    45	/* Pull-UP Enable on CMD Line */
-    46	#define PU_CMD		BIT(3)
-    47	#define PU_DAT0		BIT(4)
-    48	#define PU_DAT1		BIT(5)
-    49	#define PU_DAT2		BIT(6)
-    50	#define PU_DAT3		BIT(7)
-    51	#define PU_DAT4		BIT(8)
-    52	#define PU_DAT5		BIT(9)
-    53	#define PU_DAT6		BIT(10)
-    54	#define PU_DAT7		BIT(11)
-    55	#define PU_CMD_EN (PU_CMD | PU_DAT0 | PU_DAT1 | PU_DAT2 | PU_DAT3 | \
-    56			PU_DAT4 | PU_DAT5 | PU_DAT6 | PU_DAT7)
-    57	
-    58	/* Selection value for the optimum delay from 1-32 output tap lines */
-    59	#define OTAP_DLY	0x02
-    60	/* DLL charge pump current trim default [1000] */
-    61	#define DLL_TRM_ICP	0x08
-    62	/* Select the frequency range of DLL Operation */
-    63	#define FRQ_SEL	0x01
-    64	
-    65	#define OTAP_SEL_MASK		GENMASK(10, 7)
-    66	#define DLL_TRM_MASK		GENMASK(25, 22)
-    67	#define DLL_FRQSEL_MASK		GENMASK(27, 25)
-    68	
-  > 69	#define OTAP_SEL(x)		(FIELD_PREP(OTAP_SEL_MASK, x) | OTAPDLY_EN)
-    70	#define DLL_TRM(x)		(FIELD_PREP(DLL_TRM_MASK, x) | DLL_ENBL)
-    71	#define DLL_FRQSEL(x)	FIELD_PREP(DLL_FRQSEL_MASK, x)
-    72	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+> [1] Driver: https://lore.kernel.org/lkml/20241213-a612-gpu-support-v3-1-0=
+e9b25570a69@quicinc.com/
+>     Devicetree: https://lore.kernel.org/lkml/fu4rayftf3i4arf6l6bzqyzsctom=
+glhpiniljkeuj74ftvzlpo@vklca2giwjlw/
+>
+> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> ---
+> Changes in v6:
+> - Move the rgmu register range update from patch#8 to patch#6.
+> - Capture trailers
+> - Link to v5: https://lore.kernel.org/r/20251226-qcs615-spin-2-v5-0-354d8=
+6460ccb@oss.qualcomm.com
+>
+> Changes in v5:
+> - Rebase on v6.19-rc2
+> - Make the reg list in A612 GPU's binding doc stricter (Krzysztof)
+> - Link to v4: https://lore.kernel.org/r/20251204-qcs615-spin-2-v4-0-f5a00=
+c5b663f@oss.qualcomm.com
+>
+> Changes in v4:
+> - Rebased on top of next-20251204 tag
+> - Added a new patch to simplify gpu dt schema (Krzysztof)
+> - Added a new patch for GPU cooling support (Gaurav)
+> - Updated the gpu/gmu register range in DT to be more accurate
+> - Remove 290Mhz corner for GPU as that is not present in downstream
+> - Link to v3: https://lore.kernel.org/r/20251122-qcs615-spin-2-v3-0-9f4d4=
+c87f51d@oss.qualcomm.com
+>
+> Changes in v3:
+> - Rebased on top of next-20251121 tag
+> - Drop a612 driver support patch as it got picked up
+> - Rename rgmu.yaml -> qcom,adreno-rgmu.yaml (Krzysztof)
+> - Remove reg-names property for rgmu node (Krzysztof)
+> - Use 'gmu' instead of 'rgmu' as node name (Krzysztof)
+> - Describe cx_mem and cx_dgc register ranges (Krzysztof)
+> - A new patch to retrieve gmu core reg resource by id
+> - Link to v2: https://lore.kernel.org/r/20251107-qcs615-spin-2-v2-0-a2d7c=
+4fbf6e6@oss.qualcomm.com
+>
+> Changes in v2:
+> - Rebased on next-20251105
+> - Fix hwcg configuration (Dan)
+> - Reuse a few gmu-wrapper routines (Konrad)
+> - Split out rgmu dt schema (Krzysztof/Dmitry)
+> - Fixes for GPU dt binding doc (Krzysztof)
+> - Removed VDD_CX from rgmu dt node. Will post a separate series to
+> address the gpucc changes (Konrad)
+> - Fix the reg range size for adreno smmu node and reorder the properties =
+(Konrad)
+> - Link to v1: https://lore.kernel.org/r/20251017-qcs615-spin-2-v1-0-0baa4=
+4f80905@oss.qualcomm.com
+>
+> ---
+> Akhil P Oommen (3):
+>       drm/msm/a6xx: Retrieve gmu core range by index
+>       dt-bindings: display/msm: gpu: Simplify conditional schema logic
+>       dt-bindings: display/msm: gpu: Document A612 GPU
+>
+> Gaurav Kohli (1):
+>       arm64: dts: qcom: talos: Add GPU cooling
+>
+> Jie Zhang (3):
+>       dt-bindings: display/msm/rgmu: Document A612 RGMU
+>       arm64: dts: qcom: talos: Add gpu and rgmu nodes
+>       arm64: dts: qcom: qcs615-ride: Enable Adreno 612 GPU
+>
+> Qingqing Zhou (1):
+>       arm64: dts: qcom: talos: add the GPU SMMU node
+>
+>  .../devicetree/bindings/display/msm/gpu.yaml       |  89 +++++++++---
+>  .../bindings/display/msm/qcom,adreno-rgmu.yaml     | 126 +++++++++++++++=
+++
+>  MAINTAINERS                                        |   1 +
+>  arch/arm64/boot/dts/qcom/qcs615-ride.dts           |   8 ++
+>  arch/arm64/boot/dts/qcom/talos.dtsi                | 149 +++++++++++++++=
+++++++
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c              |  14 +-
+>  6 files changed, 357 insertions(+), 30 deletions(-)
+> ---
+> base-commit: 2408853dde584f01950a0f976b743739cce30eca
+> change-id: 20251015-qcs615-spin-2-ed45b0deb998
+>
+> Best regards,
+> --
+> Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>
 
