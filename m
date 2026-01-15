@@ -1,106 +1,197 @@
-Return-Path: <devicetree+bounces-255316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2A4DD221DB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 03:26:09 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96416D2221D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 03:35:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 87549300F9F6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 02:26:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1F525300C34B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 02:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0740921256C;
-	Thu, 15 Jan 2026 02:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B8032517B9;
+	Thu, 15 Jan 2026 02:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="Xa1+brfs"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="MNC3zM8u";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="tH6Ndhcs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF1F618EFD1;
-	Thu, 15 Jan 2026 02:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768443967; cv=pass; b=UD+J+MyW3zDcnO1dFSa1TZBwV2HJmbQjKEu4WaG4U+m8/gcX0e3O/oWm4fbD4VJWXuyoDOA5YPDkY7JQ6Rx3eOePKULhsRbR20nqrkTGsaBv2rOMEFok7wdoV/3DVsFipkF8IfGYzcKsRVqpu9cLFlPZDy76XSMBkD94GJucOjE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768443967; c=relaxed/simple;
-	bh=KjWm5wOna2WpOISnzqb2AoOrQZWydDdpwEHC+FBfdSA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=GoJwMQX9M0dPFOT6h9EzCqjApseKHk040Us8qfNJxZJYHYlZbkA2zTMQR5Dd+TRW4scPO9kLoE0eTwYn69/iVs9Vp9F1ZGUh4XC4hXMbpxGqyd4VME7E9bX2cHlPJlOA/txtg55gg3tDEizMd+Eul3dmepcI3IGKuWpODRj2syU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=Xa1+brfs; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1768443924; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=SdLcgS0AKYw1OM2EI9pNozj2r+kFAtlgo6Uqeb5bGJak3M13Xbjtt9GAIv8taXGsvwD9hqRZCQtrJn/kD9n2rLrqUe12OgbcWutH1etf4THXoQyKyh8uLqCDFaqFsRHkEPDjuRfjuZB/uXDXVFMdznjgStlfuEFhlXysJuqFgAc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1768443924; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=KjWm5wOna2WpOISnzqb2AoOrQZWydDdpwEHC+FBfdSA=; 
-	b=nZRh5JKIGp26Qewfw2ZYTcghWJC1miR80JyBZepVkCLnG+QRvpLmiWLzTik0FxagH7+1O1KUhs6lBVtz2aMdBtwhkCrfwnI+wIx2MYuuPH/zk530wSzSKYNkAn8jT0YiMZk/9NqyVWoZ7ibRmMNwDMYr3Ke120MuabO06E/b+hQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768443924;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Subject:Subject:From:From:To:To:Cc:Cc:References:In-Reply-To:Reply-To;
-	bh=KjWm5wOna2WpOISnzqb2AoOrQZWydDdpwEHC+FBfdSA=;
-	b=Xa1+brfskQG59Bvab67yVX4GtVvPUI0BEyPcgTJ4qigru7KoXIDh5HNrGjnzwZpA
-	O5KGuVymC/ztAQgtajaoGgLs3D+qQiN7PkoiKYuoGZczMbwWmMMwlp5qfmM9MtryEyF
-	/NQdagYfzoJLhUNrTY43Irjd02Q6/ErceX1uUuto=
-Received: by mx.zohomail.com with SMTPS id 1768443921940306.07558282338914;
-	Wed, 14 Jan 2026 18:25:21 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BA146BF;
+	Thu, 15 Jan 2026 02:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768444541; cv=none; b=pVHjSvWoOY8Atc1JuuTHTq+SosUaAKJpRdM/t5PObn+MjE/rWOBil7duOjztRGQdi7LiXfVb+UzEEtJqC+jNn+TdMKmvwCK3DzFr86Gx6u/STaH69kLjAWj6tvN2Dc9sexf4YKG2XNIgbc87AC2fFXbK0HSU8MV/gmXAHfHvhjk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768444541; c=relaxed/simple;
+	bh=EepzTtwSOLxFYUvRhOByAf4NX8UUW2eXLxlZ52P6DM8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MqYUvMICqqOR6u6bo3llVtf92BN2426aWQFj9xmsShN+1mRIMDXOr6aNd/dsLvndnIy2UodlWa6vxcu5ir4aM5aqtS3k4MS7ps2WymLm/BT5eKnBDC+zZddohlgJrmfy/zsUdyIBljKsAyyg4qyDp7UAbKTb3bi5UwdY47S2eTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=MNC3zM8u; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=tH6Ndhcs; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4ds6Xp0hrJz9t32;
+	Thu, 15 Jan 2026 03:35:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768444538;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=/IFVEHud5UojcTZcWh0XzlQzDkXoFLoKiXehoDpPkCA=;
+	b=MNC3zM8u2r5vnl1RHTK0MFBjXMH+bXTsznt9HnsjUmx3b33lNrUrIaCee0jw+oHd6lbiLo
+	8ti4Ys2fNBZm9qRLdUg/ZHMZjffvpgDPvFqZGxp2MyOKVFqh4nELplpVVXp5klf1WfG2kd
+	f2CsN85yslFv0OLyssYqxy2F5Bl/+NQdiwqlORFM2UrSmqB9nqvRLKz0qfQ37HtwVy6/jT
+	Zns1ULJ2g4nG5yw6qtbUoAHvjytipVyN86BZuPqDq+adfJaDA4eudJVr37Bkh6eEbeirQJ
+	U5gCbY2MIJE5GPFUVzPm6EBm7otAAlksexkBMOFX+Cm2AAfm4NnTDXiPFmQyWw==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=tH6Ndhcs;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768444535;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=/IFVEHud5UojcTZcWh0XzlQzDkXoFLoKiXehoDpPkCA=;
+	b=tH6NdhcsKB+nELk0Y7E+NK6s65xCF0Zxfok0kANBsvZ0wdEEpx0Njs4eELa1PN5e5lQpep
+	+wY/384jBwG0FPqacVd+DkBoLKlLemeeEuxUXv9wyKv7tMa9od0icmLZT5APnCPWGOZOo/
+	LBF6ZLIOSGwByledK0PgtK/XpdjwU1JOhgTKuHdA+5RyicZuVkvPyWDuVbzYuZZRK1F160
+	+ud5y6/htCcZdzP21r+i2Xm6ZBaCad50tzJ4w1G2EZU158O1W5d9vtsvDicaJiz1EVAlQs
+	+gltHr1sKtnBplr4QCpcwxsBzb6BY4ewiieFtQamrHDdrMmXBTj+L41Pr7DQgQ==
+To: linux-input@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Job Noorman <job@noorman.info>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: touchscreen: trivial-touch: Drop 'interrupts' requirement for old Ilitek
+Date: Thu, 15 Jan 2026 03:34:58 +0100
+Message-ID: <20260115023530.656645-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 15 Jan 2026 10:25:09 +0800
-Message-Id: <DFOT1OLHTY6Q.1TKU3R1DDM5SR@pigmoral.tech>
-Subject: Re: [PATCH v2 2/4] riscv: dts: anlogic: dr1v90: Add "b" ISA
- extension
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Guodong Xu" <guodong@riscstar.com>, "Jonathan Corbet" <corbet@lwn.net>,
- "Paul Walmsley" <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>,
- "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>,
- "Conor Dooley" <conor.dooley@microchip.com>, "Conor Dooley"
- <conor@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Chen Wang" <unicorn_wang@outlook.com>, "Inochi
- Amaoto" <inochiama@gmail.com>, "Yixun Lan" <dlan@gentoo.org>, "Conor
- Dooley" <conor+dt@kernel.org>
-Cc: "Junhui Liu" <junhui.liu@pigmoral.tech>, <linux-doc@vger.kernel.org>,
- <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <sophgo@lists.linux.dev>,
- <spacemit@lists.linux.dev>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260115-adding-b-dtsi-v2-0-254dd61cf947@riscstar.com>
- <20260115-adding-b-dtsi-v2-2-254dd61cf947@riscstar.com>
-In-Reply-To: <20260115-adding-b-dtsi-v2-2-254dd61cf947@riscstar.com>
-X-ZohoMailClient: External
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 189e044311892561c91
+X-MBO-RS-META: 4jbezsu546g5sa3mmwmnruqyrdjs77gz
+X-Rspamd-Queue-Id: 4ds6Xp0hrJz9t32
 
-Hi Guodong,
+The old Ilitek touch controllers V3 and V6 can operate without
+interrupt line, in polling mode. Drop the 'interrupts' property
+requirement for those four controllers. To avoid overloading the
+trivial-touch, fork the old Ilitek V3/V6 touch controller binding
+into separate document.
 
-On Thu Jan 15, 2026 at 7:18 AM CST, Guodong Xu wrote:
-> "b" is ratified (Apr/2024) much later than its components zba/zbb/zbs
-> (Jun/2021). With "b" added into riscv/extensions.yaml, a dependency
-> checking rule is now enforced, which requires that when zba, zbb, and zbs
-> are all specified, "b" must be added as well. Failing to do this will
-> cause dtbs_check schema check warnings.
->
-> According to uabi.rst, as a single-letter extension, "b" should be added
-> after "c" in canonical order.
->
-> Update dr1v90.dtsi to conform to this rule. Line balancing is performed
-> to improve readability.
->
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Job Noorman <job@noorman.info>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-input@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+V2: Fork the Ilitek V3/V6 bindings into separate document
+---
+ .../input/touchscreen/ilitek,ili210x.yaml     | 51 +++++++++++++++++++
+ .../input/touchscreen/trivial-touch.yaml      |  4 --
+ 2 files changed, 51 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek,ili210x.yaml
 
-Reviewed-by: Junhui Liu <junhui.liu@pigmoral.tech>
-
---=20
-Best regards,
-Junhui Liu
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ilitek,ili210x.yaml b/Documentation/devicetree/bindings/input/touchscreen/ilitek,ili210x.yaml
+new file mode 100644
+index 0000000000000..1d02aaba64f97
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/ilitek,ili210x.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/ilitek,ili210x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ilitek ILI21xx/ILI251x V3/V6 touch screen controller with i2c interface
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++  - Marek Vasut <marek.vasut+renesas@mailbox.org>
++
++properties:
++  compatible:
++    enum:
++      - ilitek,ili210x
++      - ilitek,ili2117
++      - ilitek,ili2120
++      - ilitek,ili251x
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  wakeup-source: true
++
++allOf:
++  - $ref: touchscreen.yaml
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        touchscreen@41 {
++            compatible = "ilitek,ili2120";
++            reg = <0x41>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+index fa27c6754ca4e..6441d21223caf 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
+@@ -23,9 +23,6 @@ properties:
+       # Hynitron cstxxx series touchscreen controller
+       - hynitron,cst340
+       # Ilitek I2C Touchscreen Controller
+-      - ilitek,ili210x
+-      - ilitek,ili2117
+-      - ilitek,ili2120
+       - ilitek,ili2130
+       - ilitek,ili2131
+       - ilitek,ili2132
+@@ -33,7 +30,6 @@ properties:
+       - ilitek,ili2322
+       - ilitek,ili2323
+       - ilitek,ili2326
+-      - ilitek,ili251x
+       - ilitek,ili2520
+       - ilitek,ili2521
+       # MAXI MAX11801 Resistive touch screen controller with i2c interface
+-- 
+2.51.0
 
 
