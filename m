@@ -1,53 +1,65 @@
-Return-Path: <devicetree+bounces-255714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8594D269AD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:40:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC6AD26F66
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:57:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2AC963015F4D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:25:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3B14E310B665
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F293BFE4E;
-	Thu, 15 Jan 2026 17:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022D03D1CB7;
+	Thu, 15 Jan 2026 17:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5NEArbr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OiNZPDv0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F803BFE46;
-	Thu, 15 Jan 2026 17:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38DA3C197D;
+	Thu, 15 Jan 2026 17:26:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768497911; cv=none; b=n3yargCxnR0E/6FF55vV2GykYk53+4YnuYqeJ61sYI3Df68nvmcQbMfxAgXPaFtnRPSB/HV1ooYe9S3IBoXk7VYpSGwSiJTehYIkIEN2W1QWimxo05z0Ac8iCtFicSqirO+vTrBgqiOOwZDWEhBAzeY58Cgs+Rz/C6TgtJSST1U=
+	t=1768498017; cv=none; b=oUeOqs5T5NZbyIxn0XTuKUJTPuLchYJK5N+xvneJWnGyaspKghk9zScsuyPmMhPrJ2hKAvfWrT6iVIGbbLv3H1G+CT+qHHTQVRwHqRQfhXk4TfYB1uJ/aJ2so2Hfk6he09o0g44Ke/gaZ5PKF3+vcYZBHgjq35k7iGv5XR1/dr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768497911; c=relaxed/simple;
-	bh=F301zU1vCBsJJwhbHsinIGYvb2uYINoBUeXNJkJ9o9Y=;
+	s=arc-20240116; t=1768498017; c=relaxed/simple;
+	bh=rxtUsKJLIbTkjOuK4B8HWZ1hvRnwTbMEmg8MB28cTn8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GCNM3BEQuAMd9c1y6AEzs3XR4TnTqo0OqIB6Fsne+Y89lTkJIiD0tB2lfmp0qILpQMR5fqhyDuqusTXAsxIRorfBkwdWkrStsK1/oVMqMJeJg6UAy5OM4a+IpykCT26vG6GMPfgRli9vpXsiquzMBRaAK82mvqZv4iN3Z2Z8OhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5NEArbr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C42AC19422;
-	Thu, 15 Jan 2026 17:25:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YQbSZVP6UboecJ+UHHYKcfQLvA71kY95lwBD918cznfAOsTZ1qURXlShAhPX/FgWmwgQT76bsHDPu745PjTETYMMYSLt0GbXEi91VwMwiilmO/sIXNwNWoCmnRve3xDcXPR5/nVl/xCXgNPd4UZgHPrJFZIi4z1BnScEncPjAd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OiNZPDv0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77F35C16AAE;
+	Thu, 15 Jan 2026 17:26:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768497911;
-	bh=F301zU1vCBsJJwhbHsinIGYvb2uYINoBUeXNJkJ9o9Y=;
+	s=k20201202; t=1768498017;
+	bh=rxtUsKJLIbTkjOuK4B8HWZ1hvRnwTbMEmg8MB28cTn8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W5NEArbrEFalAlEMGWfQYfz8F8ozBniK0/E+j/Xcyee57fhbtiuM3A5wqwTQo/kSE
-	 5Qmt0iocmyAhTCgyChCXJHqcPxZ2m/M8LIP/x4OGtPexlhrD+cKG9YZ81e1S9grPMa
-	 03Kj7oFRSssmrzo4j/PSnDusZ4YuSXnTf8aVYLYiP9FRqMxnGTYwcXjkYNfn+qBzA+
-	 bKZxNUG3l2JYlly1CP4LjTMQ3MXaudRSab6U/F748Yy3RIdHnGOB3DoenjNOqZet0M
-	 qU3Pl/vFg/SnxGqhCWJS9o9SNnRhpsudlk/IDY6Ss0GvRL78wVOPVCOC3xIXd3lqBi
-	 6XGHYJhCcz6Iw==
-Date: Thu, 15 Jan 2026 11:25:10 -0600
+	b=OiNZPDv08Wo2MHuqzRQxIOzTh/YJHkmwfmg5fzLuEql2snf+kRxZ2IzmjtGWloF9e
+	 UmL1j5uSRatEjGHhYEWBgF4HCixlAu3SDZ623gVAza6X9F9Hz4ocO29Qu+C0DhVXA8
+	 Q1aoxsywIfB8gsU9b9TS0AXEUlBhZQCDWGNvGAOfjSbE4hFrkLIoR06hqnTDupyuMx
+	 a0EmXuT5x7495meaaNJGeOYyX1GeJ7IXRA8Os7N3KLH+iPIx3immaXhrAtFXyTzoKg
+	 7JfQcdazBC9oY/CU0RsXDP2G0C4E6xL54Rkm7TCcpGlrcPjR2hqxnz/9uRgMlWE65v
+	 Afe/ednTHX82A==
+Date: Thu, 15 Jan 2026 11:26:56 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Francesco Valla <francesco@valla.it>
-Cc: linux-kernel@vger.kernel.org, Saravana Kannan <saravanak@kernel.org>,
-	linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] of: property: fw_devlink: Add support for "mmc-pwrseq"
-Message-ID: <176849790816.916369.13545562565648281883.robh@kernel.org>
-References: <20260110-mmc-pwrseq-v1-1-73de9d6456f4@valla.it>
+To: Val Packett <val@packett.cool>
+Cc: Maxime Ripard <mripard@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	linux-kernel@vger.kernel.org,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 2/5] dt-bindings: display: bridge: simple: document the
+ Algoltek AG6311 DP-to-HDMI bridge
+Message-ID: <176849801599.918454.4274355104031576041.robh@kernel.org>
+References: <20260111085726.634091-2-val@packett.cool>
+ <20260111085726.634091-4-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,51 +68,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260110-mmc-pwrseq-v1-1-73de9d6456f4@valla.it>
+In-Reply-To: <20260111085726.634091-4-val@packett.cool>
 
 
-On Sat, 10 Jan 2026 16:27:59 +0100, Francesco Valla wrote:
-> Add support for parsing MMC power sequencing (pwrseq) binding so that
-> fw_devlink can enforce the dependency.
+On Sun, 11 Jan 2026 05:35:10 -0300, Val Packett wrote:
+> The Algoltek AG6311 is a transparent DisplayPort to HDMI bridge.
 > 
-> Signed-off-by: Francesco Valla <francesco@valla.it>
+> Signed-off-by: Val Packett <val@packett.cool>
 > ---
-> Resending this patch as it slipped through the cracks (of my attention,
-> at least).
-> 
-> Original submission is at [0]; there it appears as a v2 because it was
-> the first time I used b4. It was also part of [1], which wasn't really
-> a patchset but a follow-up to the boot time SIG meeting.
-> 
-> I added Ulf and CC'd the mmc list, hoping they can (more
-> authoritatively than me) reply to Saravan's question:
-> 
-> """
-> I took a quick look at the documentation. It's not clear to me that
-> mmc-pwrseq always points to a supplier. Can someone with more
-> experience on this confirm that is what it's supposed to point at?
-> 
-> Meaning if A lists B as pwrseq, is it always the case that B needs to
-> be powered on? The binding documentation doesn't say anything about B
-> needs to be powered on first. It's just saying A and B have an
-> ordering requirement.
-> 
-> If the meaning of the binding is _ALWAYS_ B needs to be powered on
-> first, then yes, this patch is correct and I can give a reviewed-by.
-> """
-> 
-> [0] https://lore.kernel.org/all/20250930-mmc_pwrseq-v2-1-80a8c6be0fb0@valla.it/
-> [1] https://lore.kernel.org/linux-embedded/20251126-beagleplay-probes-v1-0-c833defd4c9b@valla.it/T/
-> 
-> Thank you!
-> 
-> Regards,
-> Francesco
-> ---
->  drivers/of/property.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/display/bridge/simple-bridge.yaml        | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
