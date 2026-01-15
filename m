@@ -1,269 +1,329 @@
-Return-Path: <devicetree+bounces-255633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01FB6D250D6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:50:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE5F0D250D9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:50:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CC19530B602F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:45:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ADA6630AEB83
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B8834A3AB;
-	Thu, 15 Jan 2026 14:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 574E63A7DEB;
+	Thu, 15 Jan 2026 14:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HVjNUCX8"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iyvHDksd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51B4230F54B;
-	Thu, 15 Jan 2026 14:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32529395D8F;
+	Thu, 15 Jan 2026 14:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768488343; cv=none; b=Tat/yjZum3PBSxBv3D0tsuvSeQxe6RNatS/LrEsKNRlq5OVKKlXE4BNdHLWEp37t6DjJSCdXbuDy79Ek11GX5JMIsQgj9Asfupk4qrVBwULGyY29LhrvPrm61nPGrjj6+Okm+0owGn/p1jfWEmF0cIXww0BQ8R3HoYgt3knkTCE=
+	t=1768488384; cv=none; b=ZlazgoQ0GvWMdVH5CX+B/SQfKuOvxAgfwuCvJ3c55I/RbIJEBxjOcCI6dmIqG7V834EATLiM0i2htrVGHvb0fm5h/9SW6msP41W/7PR6n7CnC/XFb636bHt42CMJlfxrUrWnJPeUh4U1RRtW+lfX/ZRrF4tIBnlK8wfx63Zgpt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768488343; c=relaxed/simple;
-	bh=bX7wmqvyGYUmOEMhTluVx8dgsDRcrHRxzrlHZPO2fCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D0z8WmDfOb613NBX2JO3Cm9VKPU41ZYC3hjRYyQOVzR6+oPM5K3AyzvPc3fjrws7n8Xo2Ta2xwuHheWMCd5RlTxnOYzcWcXP6tEUE7MoaGQTCM8KcZgaGAk2rkVi5w7xYwDd9WtEIrvUeDgy5thgSskoFNCHWebiLvSG9qHBz18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HVjNUCX8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7AD2C116D0;
-	Thu, 15 Jan 2026 14:45:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768488342;
-	bh=bX7wmqvyGYUmOEMhTluVx8dgsDRcrHRxzrlHZPO2fCs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HVjNUCX8O+ZGnwH0jsxQugK+Z1NHvtES2Q1fqipC9F5G/Bx4OiWD252xr/yBexFM5
-	 kiu++zFBd6Esl5zi5uHElkaRpFsABUsVmen6BZBBT9V8MmZcphlu9DjL/ijiXH7fu7
-	 B4trwxw65Tz1L7INGPRBnpHSPPmK34Fn+wYWMkuCveM7C4hNhubqX0hoOBoIMu+5bc
-	 rQCT0Mlr0PteqpphOZkZ5LSs2jOHcL5ymB6KdN9V/dbdk0hFBk1+sOdUt7Et3F+vis
-	 tdTsbvWIVXcoY9D1lCPR+FijQdC8NPMsLWMfRyW0fI9VXiO4QrK9GjFfiBCzr3PovK
-	 yxGMsv1OEDbZA==
-Date: Thu, 15 Jan 2026 08:45:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: ti,phy-usb3: convert to DT
- schema
-Message-ID: <20260115144541.GA3319937-robh@kernel.org>
-References: <20260107-ti-phy-v2-0-a1ec27401fff@gmail.com>
- <20260107-ti-phy-v2-1-a1ec27401fff@gmail.com>
+	s=arc-20240116; t=1768488384; c=relaxed/simple;
+	bh=jj97+Ps1LFlcOetqgPF2yqCP0vAX9DGF0PsamF0O6ys=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m8RgVFZc530I5zxUtag4SMmwN1ZWicT79WI7jDMgcXXomNRH4sf/+PgdWAhOLyMEkPjgStBearsibtXZ9Mjq6UD/187SEkFawaX/NVTZkF8Pm2gMcj5hayS98ZSbQnle0eG3iyw1tBAT+upwOQcdBfF0j2K7+mAZZq2E4QEMW1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iyvHDksd; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768488380;
+	bh=jj97+Ps1LFlcOetqgPF2yqCP0vAX9DGF0PsamF0O6ys=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iyvHDksdgHMVpY0GgTUbNVDq1NnY/xck9IKdaWo6Ag1YX6SFMrbZ2RRG7BLt83Uwy
+	 4xJdC3geHTdhzfMndGNVFtgsycJfY71AMjnzVJX+6kgZ9AjOZv1aVJL8LH0mhyK7+r
+	 xn1oh+h93TqSg86bp9LU3QNunqM8IoKwEtRExGIP07tb19NlZQr+qY9eDAVc8NKy8S
+	 pBGeO8fsYdWnhXDMr63YtIcESRU6LwCvsDam5RfQtiIaShHj+k7Tv0jAkNWe6bMFP3
+	 5VDLiWgKJJTIJ9zVNMQ63rhO2MrjI2AkGxFy5oLDwcK4diJiR3dM5ICDbUqjcblucf
+	 mzPYrzcE6Ia7w==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8CCDD17E0CB0;
+	Thu, 15 Jan 2026 15:46:19 +0100 (CET)
+Message-ID: <9bb24b4a-248d-4a97-a9fc-a00b5237f548@collabora.com>
+Date: Thu, 15 Jan 2026 15:46:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107-ti-phy-v2-1-a1ec27401fff@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] ASoC: dt-bindings: mt8192-afe-pcm: Fix clocks and
+ clock-names
+To: Eugen Hristev <eugen.hristev@linaro.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, tudor.ambarus@linaro.org,
+ pratyush@kernel.org, mwalle@kernel.org, miquel.raynal@bootlin.com,
+ richard@nod.at, vigneshr@ti.com, lgirdwood@gmail.com, broonie@kernel.org,
+ matthias.bgg@gmail.com, julien.massot@collabora.com, jiaxin.yu@mediatek.com,
+ shane.chien@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, kernel@collabora.com, robh@kernel.org
+References: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
+ <20260115125624.73598-3-angelogioacchino.delregno@collabora.com>
+ <e1ed2a68-683c-4235-890b-9b2c5ad93e38@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <e1ed2a68-683c-4235-890b-9b2c5ad93e38@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 07, 2026 at 04:11:15PM +0000, Charan Pedumuru wrote:
-> Convert TI PIPE3 PHY binding to DT schema.
-> Changes during conversion:
-> - Define a new pattern 'pciephy' to match nodes defined in DT.
-> - Drop obsolete "id" property from the schema.
+Il 15/01/26 14:28, Eugen Hristev ha scritto:
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
->  .../devicetree/bindings/phy/ti,phy-usb3.yaml       | 127 +++++++++++++++++++++
->  1 file changed, 127 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml b/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml
-> new file mode 100644
-> index 000000000000..41b3828723ae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/ti,phy-usb3.yaml
-> @@ -0,0 +1,127 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/ti,phy-usb3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI PIPE3 PHY Module
-> +
-> +maintainers:
-> +  - Kishon Vijay Abraham I <kishon@ti.com>
-> +
-> +description:
-> +  The TI PIPE3 PHY is a high-speed SerDes (Serializer/Deserializer)
-> +  transceiver integrated in OMAP5, DRA7xx/AM57xx, and similar SoCs.
-> +  It supports multiple protocols (USB3, SATA, PCIe) using the PIPE3
-> +  interface standard, which defines a common physical layer for
-> +  high-speed serial interfaces.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^(pciephy|usb3phy|phy)(@[0-9a-f]+)?$"
-
-Again, don't define your own patterns. Either update the .dts files to 
-use the established patterns (pcie-phy, usb3-phy, phy) or leave it 
-undefined here.
-
-Plus the unit-address is not optional as 'reg' is not optional...
-
-> +
-> +  compatible:
-> +    enum:
-> +      - ti,phy-usb3
-> +      - ti,phy-pipe3-sata
-> +      - ti,phy-pipe3-pcie
-> +      - ti,omap-usb3
-
-Alphabetical order please.
-
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    maxItems: 3
-> +    items:
-> +      enum:
-> +        - phy_rx
-> +        - phy_tx
-> +        - pll_ctrl
-
-Do this really need to be any order? Looks to me like this works for all 
-users in tree:
-
-minItems: 2
-items:
-  - const: phy_rx
-  - const: phy_tx
-  - const: pll_ctrl
-
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 7
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    maxItems: 7
-> +    items:
-> +      enum: [wkupclk, sysclk, refclk, dpll_ref,
-> +             dpll_ref_m2, phy-div, div-clk]
-> +
-> +  syscon-phy-power:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Phandle/offset pair to system control module register for PHY
-> +      power on/off.
-
-Needs constrants on the size:
-
-items:
-  - items:
-      - description: phandle to ...
-      - description: offset of ...
-
-> +
-> +  syscon-pllreset:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Phandle/offset pair to CTRL_CORE_SMA_SW_0 register containing
-> +      SATA_PLL_SOFT_RESET bit (SATA PHY only).
-
-Same here.
-
-> +
-> +  syscon-pcs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Phandle/offset pair to system control module for writing PCS delay value.
-
-Same here.
-
-> +
-> +  ctrl-module:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle of control module for PHY power on.
-> +    deprecated: true
-> +
-> +dependencies:
-> +  syscon-pllreset:
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          const: ti,phy-pipe3-sata
-
-Usually we express this the other way around:
-
-if:
-  properties:
-    compatible:
-      contains:
-        const: ti,phy-pipe3-sata
-then:
-  required:
-    - syscon-pllreset
-else:
-  properties:
-    syscon-pllreset: false
-
-But that's slightly different as syscon-pllreset is optional for 
-ti,phy-pipe3-sata in your case. Seems like it should be required if 
-ti,phy-pipe3-sata?
-
-
-> +
-> +required:
-> +  - reg
-> +  - compatible
-> +  - reg-names
-> +  - "#phy-cells"
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    /* TI PIPE3 USB3 PHY */
-> +    usb3phy@4a084400 {
-> +        compatible = "ti,phy-usb3";
-> +        reg = <0x4a084400 0x80>,
-> +              <0x4a084800 0x64>,
-> +              <0x4a084c00 0x40>;
-> +        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
-> +        #phy-cells = <0>;
-> +        clocks = <&usb_phy_cm_clk32k>,
-> +                 <&sys_clkin>,
-> +                 <&usb_otg_ss_refclk960m>;
-> +        clock-names = "wkupclk", "sysclk", "refclk";
-> +        ctrl-module = <&omap_control_usb>;
-> +    };
-> +
-> +  - |
-> +    /* TI PIPE3 SATA PHY */
-> +    phy@4a096000 {
-> +        compatible = "ti,phy-pipe3-sata";
-> +        reg = <0x4A096000 0x80>,  /* phy_rx */
-> +              <0x4A096400 0x64>,  /* phy_tx */
-> +              <0x4A096800 0x40>;  /* pll_ctrl */
-> +        reg-names = "phy_rx", "phy_tx", "pll_ctrl";
-> +        clocks = <&sys_clkin1>, <&sata_ref_clk>;
-> +        clock-names = "sysclk", "refclk";
-> +        syscon-pllreset = <&scm_conf 0x3fc>;
-> +        #phy-cells = <0>;
-> +    };
-> +...
+> On 1/15/26 14:56, AngeloGioacchino Del Regno wrote:
+>> Both clocks and clock-names are missing (a lot of) entries: add
+>> all the used audio clocks and their description and also fix the
+>> example node.
 > 
-> -- 
-> 2.52.0
+> Hi Angelo,
 > 
+> This does not really look like a fix, if it was a fix I would expect a
+> Fixes tag, otherwise, it looks like you are adding a lot of clocks which
+> were not defined before
+> 
+> Eugen
+
+Hey. Yes, right, that makes sense.
+
+I wonder if the Fixes tag can be added while applying.
+
+In case...
+
+
+Fixes: c861af7861aa ("ASoC: dt-bindings: mediatek: mt8192: re-add audio afe document")
+
+Cheers,
+Angelo
+
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../bindings/sound/mt8192-afe-pcm.yaml        | 176 ++++++++++++++++--
+>>   1 file changed, 162 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+>> index 8ddf49b0040d..16ae3328f70d 100644
+>> --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+>> @@ -47,16 +47,118 @@ properties:
+>>         - description: AFE clock
+>>         - description: ADDA DAC clock
+>>         - description: ADDA DAC pre-distortion clock
+>> -      - description: audio infra sys clock
+>> -      - description: audio infra 26M clock
+>> +      - description: ADDA ADC clock
+>> +      - description: ADDA6 ADC clock
+>> +      - description: Audio low-jitter 22.5792m clock
+>> +      - description: Audio low-jitter 24.576m clock
+>> +      - description: Audio PLL1 tuner clock
+>> +      - description: Audio PLL2 tuner clock
+>> +      - description: Audio Time-Division Multiplexing interface clock
+>> +      - description: ADDA ADC Sine Generator clock
+>> +      - description: audio Non-LE clock
+>> +      - description: Audio DAC High-Resolution clock
+>> +      - description: Audio High-Resolution ADC clock
+>> +      - description: Audio High-Resolution ADC SineGen clock
+>> +      - description: Audio ADDA6 High-Resolution ADC clock
+>> +      - description: Tertiary ADDA DAC clock
+>> +      - description: Tertiary ADDA DAC pre-distortion clock
+>> +      - description: Tertiary ADDA DAC Sine Generator clock
+>> +      - description: Tertiary ADDA DAC High-Resolution clock
+>> +      - description: Audio infra sys clock
+>> +      - description: Audio infra 26M clock
+>> +      - description: Mux for audio clock
+>> +      - description: Mux for audio internal bus clock
+>> +      - description: Mux main divider by 4
+>> +      - description: Primary audio mux
+>> +      - description: Primary audio PLL
+>> +      - description: Secondary audio mux
+>> +      - description: Secondary audio PLL
+>> +      - description: Primary audio en-generator clock
+>> +      - description: Primary PLL divider by 4 for IEC
+>> +      - description: Secondary audio en-generator clock
+>> +      - description: Secondary PLL divider by 4 for IEC
+>> +      - description: Mux selector for I2S port 0
+>> +      - description: Mux selector for I2S port 1
+>> +      - description: Mux selector for I2S port 2
+>> +      - description: Mux selector for I2S port 3
+>> +      - description: Mux selector for I2S port 4
+>> +      - description: Mux selector for I2S port 5
+>> +      - description: Mux selector for I2S port 6
+>> +      - description: Mux selector for I2S port 7
+>> +      - description: Mux selector for I2S port 8
+>> +      - description: Mux selector for I2S port 9
+>> +      - description: APLL1 and APLL2 divider for I2S port 0
+>> +      - description: APLL1 and APLL2 divider for I2S port 1
+>> +      - description: APLL1 and APLL2 divider for I2S port 2
+>> +      - description: APLL1 and APLL2 divider for I2S port 3
+>> +      - description: APLL1 and APLL2 divider for I2S port 4
+>> +      - description: APLL1 and APLL2 divider for IEC
+>> +      - description: APLL1 and APLL2 divider for I2S port 5
+>> +      - description: APLL1 and APLL2 divider for I2S port 6
+>> +      - description: APLL1 and APLL2 divider for I2S port 7
+>> +      - description: APLL1 and APLL2 divider for I2S port 8
+>> +      - description: APLL1 and APLL2 divider for I2S port 9
+>> +      - description: Top mux for audio subsystem
+>> +      - description: 26MHz clock for audio subsystem
+>>   
+>>     clock-names:
+>>       items:
+>>         - const: aud_afe_clk
+>>         - const: aud_dac_clk
+>>         - const: aud_dac_predis_clk
+>> +      - const: aud_adc_clk
+>> +      - const: aud_adda6_adc_clk
+>> +      - const: aud_apll22m_clk
+>> +      - const: aud_apll24m_clk
+>> +      - const: aud_apll1_tuner_clk
+>> +      - const: aud_apll2_tuner_clk
+>> +      - const: aud_tdm_clk
+>> +      - const: aud_tml_clk
+>> +      - const: aud_nle
+>> +      - const: aud_dac_hires_clk
+>> +      - const: aud_adc_hires_clk
+>> +      - const: aud_adc_hires_tml
+>> +      - const: aud_adda6_adc_hires_clk
+>> +      - const: aud_3rd_dac_clk
+>> +      - const: aud_3rd_dac_predis_clk
+>> +      - const: aud_3rd_dac_tml
+>> +      - const: aud_3rd_dac_hires_clk
+>>         - const: aud_infra_clk
+>>         - const: aud_infra_26m_clk
+>> +      - const: top_mux_audio
+>> +      - const: top_mux_audio_int
+>> +      - const: top_mainpll_d4_d4
+>> +      - const: top_mux_aud_1
+>> +      - const: top_apll1_ck
+>> +      - const: top_mux_aud_2
+>> +      - const: top_apll2_ck
+>> +      - const: top_mux_aud_eng1
+>> +      - const: top_apll1_d4
+>> +      - const: top_mux_aud_eng2
+>> +      - const: top_apll2_d4
+>> +      - const: top_i2s0_m_sel
+>> +      - const: top_i2s1_m_sel
+>> +      - const: top_i2s2_m_sel
+>> +      - const: top_i2s3_m_sel
+>> +      - const: top_i2s4_m_sel
+>> +      - const: top_i2s5_m_sel
+>> +      - const: top_i2s6_m_sel
+>> +      - const: top_i2s7_m_sel
+>> +      - const: top_i2s8_m_sel
+>> +      - const: top_i2s9_m_sel
+>> +      - const: top_apll12_div0
+>> +      - const: top_apll12_div1
+>> +      - const: top_apll12_div2
+>> +      - const: top_apll12_div3
+>> +      - const: top_apll12_div4
+>> +      - const: top_apll12_divb
+>> +      - const: top_apll12_div5
+>> +      - const: top_apll12_div6
+>> +      - const: top_apll12_div7
+>> +      - const: top_apll12_div8
+>> +      - const: top_apll12_div9
+>> +      - const: top_mux_audio_h
+>> +      - const: top_clk26m_clk
+>>   
+>>   required:
+>>     - compatible
+>> @@ -83,23 +185,69 @@ examples:
+>>       afe: mt8192-afe-pcm {
+>>           compatible = "mediatek,mt8192-audio";
+>>           interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>;
+>> +        clocks = <&audsys CLK_AUD_AFE>, <&audsys CLK_AUD_DAC>,
+>> +                 <&audsys CLK_AUD_DAC_PREDIS>, <&audsys CLK_AUD_ADC>,
+>> +                 <&audsys CLK_AUD_ADDA6_ADC>, <&audsys CLK_AUD_22M>,
+>> +                 <&audsys CLK_AUD_24M>, <&audsys CLK_AUD_APLL_TUNER>,
+>> +                 <&audsys CLK_AUD_APLL2_TUNER>, <&audsys CLK_AUD_TDM>,
+>> +                 <&audsys CLK_AUD_TML>, <&audsys CLK_AUD_NLE>,
+>> +                 <&audsys CLK_AUD_DAC_HIRES>, <&audsys CLK_AUD_ADC_HIRES>,
+>> +                 <&audsys CLK_AUD_ADC_HIRES_TML>, <&audsys CLK_AUD_ADDA6_ADC_HIRES>,
+>> +                 <&audsys CLK_AUD_3RD_DAC>, <&audsys CLK_AUD_3RD_DAC_PREDIS>,
+>> +                 <&audsys CLK_AUD_3RD_DAC_TML>, <&audsys CLK_AUD_3RD_DAC_HIRES>,
+>> +                 <&infracfg CLK_INFRA_AUDIO>, <&infracfg CLK_INFRA_AUDIO_26M_B>,
+>> +                 <&topckgen CLK_TOP_AUDIO_SEL>, <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
+>> +                 <&topckgen CLK_TOP_MAINPLL_D4_D4>, <&topckgen CLK_TOP_AUD_1_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL1>, <&topckgen CLK_TOP_AUD_2_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL2>, <&topckgen CLK_TOP_AUD_ENGEN1_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL1_D4>, <&topckgen CLK_TOP_AUD_ENGEN2_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL2_D4>, <&topckgen CLK_TOP_APLL_I2S0_M_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL_I2S1_M_SEL>, <&topckgen CLK_TOP_APLL_I2S2_M_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL_I2S3_M_SEL>, <&topckgen CLK_TOP_APLL_I2S4_M_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL_I2S5_M_SEL>, <&topckgen CLK_TOP_APLL_I2S6_M_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL_I2S7_M_SEL>, <&topckgen CLK_TOP_APLL_I2S8_M_SEL>,
+>> +                 <&topckgen CLK_TOP_APLL_I2S9_M_SEL>, <&topckgen CLK_TOP_APLL12_DIV0>,
+>> +                 <&topckgen CLK_TOP_APLL12_DIV1>, <&topckgen CLK_TOP_APLL12_DIV2>,
+>> +                 <&topckgen CLK_TOP_APLL12_DIV3>, <&topckgen CLK_TOP_APLL12_DIV4>,
+>> +                 <&topckgen CLK_TOP_APLL12_DIVB>, <&topckgen CLK_TOP_APLL12_DIV5>,
+>> +                 <&topckgen CLK_TOP_APLL12_DIV6>, <&topckgen CLK_TOP_APLL12_DIV7>,
+>> +                 <&topckgen CLK_TOP_APLL12_DIV8>, <&topckgen CLK_TOP_APLL12_DIV9>,
+>> +                 <&topckgen CLK_TOP_AUDIO_H_SEL>, <&clk26m>;
+>> +        clock-names = "aud_afe_clk", "aud_dac_clk",
+>> +                      "aud_dac_predis_clk", "aud_adc_clk",
+>> +                      "aud_adda6_adc_clk", "aud_apll22m_clk",
+>> +                      "aud_apll24m_clk", "aud_apll1_tuner_clk",
+>> +                      "aud_apll2_tuner_clk", "aud_tdm_clk",
+>> +                      "aud_tml_clk", "aud_nle",
+>> +                      "aud_dac_hires_clk", "aud_adc_hires_clk",
+>> +                      "aud_adc_hires_tml", "aud_adda6_adc_hires_clk",
+>> +                      "aud_3rd_dac_clk", "aud_3rd_dac_predis_clk",
+>> +                      "aud_3rd_dac_tml", "aud_3rd_dac_hires_clk",
+>> +                      "aud_infra_clk", "aud_infra_26m_clk",
+>> +                      "top_mux_audio", "top_mux_audio_int",
+>> +                      "top_mainpll_d4_d4", "top_mux_aud_1",
+>> +                      "top_apll1_ck", "top_mux_aud_2",
+>> +                      "top_apll2_ck", "top_mux_aud_eng1",
+>> +                      "top_apll1_d4", "top_mux_aud_eng2",
+>> +                      "top_apll2_d4", "top_i2s0_m_sel",
+>> +                      "top_i2s1_m_sel", "top_i2s2_m_sel",
+>> +                      "top_i2s3_m_sel", "top_i2s4_m_sel",
+>> +                      "top_i2s5_m_sel", "top_i2s6_m_sel",
+>> +                      "top_i2s7_m_sel", "top_i2s8_m_sel",
+>> +                      "top_i2s9_m_sel", "top_apll12_div0",
+>> +                      "top_apll12_div1", "top_apll12_div2",
+>> +                      "top_apll12_div3", "top_apll12_div4",
+>> +                      "top_apll12_divb", "top_apll12_div5",
+>> +                      "top_apll12_div6", "top_apll12_div7",
+>> +                      "top_apll12_div8", "top_apll12_div9",
+>> +                      "top_mux_audio_h", "top_clk26m_clk";
+>> +        memory-region = <&afe_dma_mem>;
+>> +        power-domains = <&scpsys MT8192_POWER_DOMAIN_AUDIO>;
+>>           resets = <&watchdog MT8192_TOPRGU_AUDIO_SW_RST>;
+>>           reset-names = "audiosys";
+>>           mediatek,apmixedsys = <&apmixedsys>;
+>>           mediatek,infracfg = <&infracfg>;
+>>           mediatek,topckgen = <&topckgen>;
+>> -        power-domains = <&scpsys MT8192_POWER_DOMAIN_AUDIO>;
+>> -        clocks = <&audsys CLK_AUD_AFE>,
+>> -                 <&audsys CLK_AUD_DAC>,
+>> -                 <&audsys CLK_AUD_DAC_PREDIS>,
+>> -                 <&infracfg CLK_INFRA_AUDIO>,
+>> -                 <&infracfg CLK_INFRA_AUDIO_26M_B>;
+>> -        clock-names = "aud_afe_clk",
+>> -                      "aud_dac_clk",
+>> -                      "aud_dac_predis_clk",
+>> -                      "aud_infra_clk",
+>> -                      "aud_infra_26m_clk";
+>> -        memory-region = <&afe_dma_mem>;
+>>       };
+>>   
+>>   ...
+> 
+
+
+-- 
+AngeloGioacchino Del Regno
+Senior Software Engineer
+
+Collabora Ltd.
+Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
+Registered in England & Wales, no. 5513718
 
