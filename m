@@ -1,132 +1,143 @@
-Return-Path: <devicetree+bounces-255468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523ABD2389A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:30:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E16CD237E3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:27:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E0AB130B1900
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:24:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 12CC5302E5AC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2706347FD8;
-	Thu, 15 Jan 2026 09:24:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10C1356A10;
+	Thu, 15 Jan 2026 09:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6P7tytG"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="akI8CD3R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2C8333752;
-	Thu, 15 Jan 2026 09:24:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0D2347FD8
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 09:25:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768469062; cv=none; b=ru7wnCdnW4Jz+7hj/hM1UZTnQdOiuYdUkr5Q2n1NVdHctP95M7h5mBqgpzy5SftAzkQ502BjHsngdGt/xyBfI5uD5sZgvnB1fI+/AFNJvWOz6VYRLRhzXA3eUI0DrDsEQrRL2rsfBhzVvKzlN2FK7UJ9kCfZUprPF82/enpGshQ=
+	t=1768469137; cv=none; b=AkkWSUTE5bqICV3L9Bv//OpUjfEMcuUjUl2k17VVUxnEaiePoSvngYYpiK0LonVXYkaoZD0uHaWqn/dDFTOBpjHkxtCmIOf1Lf3AfPe4Mzc9N6WFza9YdWjlelyU5GK0vXrqHFOEPFCRvhoy2ShlGQYPxjOFlGMxIi467eWRfu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768469062; c=relaxed/simple;
-	bh=Ll4toEAyxkraVZbt7M57AAYngEDQRW96+rpc5KZiqWg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TNZu8gGaDvy5uJI7W28cMe8/2/8Y/Ge6KiJ8Bmd+NhA21pKYpyYYi/+PaNOntroHVaDTL6UpdD3kCUhcrDIUIHkBFJ15b9ZXZEw8lfv1Milji46Ma+WSqq4Xw8wsztw8gN68SqEmcjPyqoNw0D6bnDZik42HrttA9WuQKxf9u/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H6P7tytG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABC9FC116D0;
-	Thu, 15 Jan 2026 09:24:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768469062;
-	bh=Ll4toEAyxkraVZbt7M57AAYngEDQRW96+rpc5KZiqWg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H6P7tytGK6M0sLLtLjwMJRKzZbLiUPoUewB6z6tm4dBciOYv67y64NMAGMFtbD2Op
-	 zCjHSSLH/5qPFUamHxnmafbH9Y3H1st6hO5vM6PjKBcwCzjclVKGWCpR3NZbDxtB4o
-	 E5OoXVrMrCfWysAr898V/2qd4vcfk41xjzkp7pLW9U8M7/jYJaSXczEBtGYFv6JPz1
-	 Qi7nlxLWDHRJzVhqH2mjSshKrETXz6XS7OasiTTkFgxOr/e/HfjGsvjaSij+Usg31+
-	 YQDmLf+fRRcSmpEzQ8/z1PLWHlfwZ8OXm7gdCMTKW8PgaQtn2b225XrGr5oWjY0Svw
-	 B46bfNkRnEZfQ==
-Date: Thu, 15 Jan 2026 10:24:19 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Janani Sunil <janani.sunil@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	jan.sun97@gmail.com, gastmaier@gmail.com
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: Add max22007
-Message-ID: <20260115-elegant-hopping-kangaroo-6cd32b@quoll>
-References: <20260114-max22007-patch-v3-0-769298f50b8a@analog.com>
- <20260114-max22007-patch-v3-1-769298f50b8a@analog.com>
+	s=arc-20240116; t=1768469137; c=relaxed/simple;
+	bh=/gd41pN+2oJIM9vptIsbXw8vPsTvmjAJ4LLt3mcWAEI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aAlJFg1eSI9Pq32v1zJG7w2cgC2Dq/K42jRKuupgiZjaiV20xU9du2UFf5pDbyB4lY66hS4aLp6mKYM0z3QyaCg51j9fFfp23Td9umsp7/zDlE2U9/vBsno3dkvWclrBPujHpg3VfKpPSuxlU7dSlqgOTYa5/y/CYFbG4yHUt3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=akI8CD3R; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 789AC1A2857;
+	Thu, 15 Jan 2026 09:25:32 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 45027606B6;
+	Thu, 15 Jan 2026 09:25:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AB45910B68454;
+	Thu, 15 Jan 2026 10:25:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768469131; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=K1qbl7S2rlm9JCoeIkodciVRDJ3Iedcf5ILamFg+cZg=;
+	b=akI8CD3RJmrxk8tvBidwHPjmgLY26oOmJnPJCIDjAGoaBTuLLD9nIELbBll4eGRD15fCJa
+	ZJXm3JzUvYQOpAfZdnAz/eL+sbiWCLxIiJAk6GSOfwsjqSH1Bn9OdZVUYioOTmTyHDvUoI
+	KP/jn11nU95HrIz+P/fOHdFpUbO4ufM7NFSmMzblD5Q0hqrgQWyl5bnpgwDs6J7nYjzcIh
+	lvABoG7up2UVpPJna220IY/EJOBnm4XHQfIYpm8nFUTbXzuyCtWUOBgHhLYN3vXjbMxDpS
+	XVPuivGafNm48T3tnkLj+eAjTRtXrbTTQz+A9T2fjbxfg3Q2CiDV2mv/dD+yzw==
+From: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
+Subject: [PATCH v2 00/13] spi: cadence-qspi: Add Renesas RZ/N1 support
+Date: Thu, 15 Jan 2026 10:24:51 +0100
+Message-Id: <20260115-schneider-6-19-rc1-qspi-v2-0-7e6a06e1e17b@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260114-max22007-patch-v3-1-769298f50b8a@analog.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4XNQQ6CMBAF0KuQWTuGKRSUlfcwLGo7yCTaYkuIh
+ nB3Kxdw+X7y/18hcRRO0BUrRF4kSfAZ6lCAHY2/M4rLBlUqTYrOmOzoWRxHbDAzWsJXmgRbWzH
+ pujVD4yC3p8iDvPfla589SppD/OxHC/3S/5sLYYkn43Spqa24ri+3EOaH+KMNT+i3bfsCYG8BO
+ cAAAAA=
+X-Change-ID: 20251219-schneider-6-19-rc1-qspi-7c3e1547af6d
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Vaishnav Achath <vaishnav.a@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Santhosh Kumar K <s-k6@ti.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, 
+ Pascal Eberhard <pascal.eberhard@se.com>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, 
+ "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Jan 14, 2026 at 05:17:01PM +0100, Janani Sunil wrote:
-> Devicetree bindings for MAX22007 4-channel
-> 12-bit DAC that drives a voltage or current
-> output on each channel
+Hello,
 
-What is happening with this patchset - why are you making somehow
-unrelated, different, unexpected and incorrect changes like ones above?
+This series adds support for the QSPI controller available on Renesas
+RZ/N1S and RZ/N1D SoC. It has been tested with a custom board (see last
+SPI patch for details).
 
-You are supposed to work with Git e.g. on dedicated branch, so you
-clearly see what you did. Why doing such changes?
+Adding support for this SoC required a few adaptations in the Cadence
+QSPI driver. The bulk of the work is in the few last patches. Everything
+else is just misc style fixes and improvements which bothered me while I
+was wandering.
 
+In order to support all constraints, I sometimes used a new quirk (for
+the write protection feature and the "no indirect mode"), and sometimes
+used the compatible directly. The ones I thought might not be RZ/N1
+specific have been implemented under the form of a quirk, in order to
+ease their reuse. The other adaptations, which I believe are more
+Renesas specific, have been handled using the compatible. This is all
+very arbitrary, and can be discussed.
 
-> 
-> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,max22007.yaml  | 116 +++++++++++++++++++++
->  MAINTAINERS                                        |  15 +++
->  2 files changed, 131 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml b/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
-> new file mode 100644
-> index 000000000000..c2f65d9e42d4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/adi,max22007.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices MAX22007 DAC device driver
+Thanks,
+Miquèl
 
-Why did you changed this? What else changed?
+Signed-off-by: Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
+---
+Changes in v2:
+- Fix commit log of DT binding patch, following Krzysztof's comment.
+- Fix properties order in DTSI.
+- Rebase on top of spi/for-next and fix all conflicts.
+- Simplify even further the code in the cleanup patches following
+  Pratyush's advices.
+- Link to v1: https://lore.kernel.org/r/20251219-schneider-6-19-rc1-qspi-v1-0-8ad505173e44@bootlin.com
 
-Nothing about this was mentioned in the changelog.
+---
+Miquel Raynal (1):
+      spi: cadence-qspi: Make sure we filter out unsupported ops
 
-I finished the review here. Please be concious what you are
-changing, do not introduce random changes and then write correct
-changelogs describing what you did.
+Miquel Raynal (Schneider Electric) (12):
+      spi: dt-bindings: cdns,qspi-nor: Add Renesas RZ/N1D400 to the list
+      spi: cadence-qspi: Align definitions
+      spi: cadence-qspi: Fix style and improve readability
+      spi: cadence-qspi: Fix ORing style and alignments
+      spi: cadence-qspi: Remove an useless operation
+      spi: cadence-qspi: Fix probe error path and remove
+      spi: cadence-qspi: Try hard to disable the clocks
+      spi: cadence-qspi: Kill cqspi_jh7110_clk_init
+      spi: cadence-qspi: Add a flag for controllers without indirect access support
+      spi: cadence-qspi: Make sure write protection is disabled
+      spi: cadence-qspi: Add support for the Renesas RZ/N1 controller
+      ARM: dts: r9a06g032: Describe the QSPI controller
 
-You already received review which you SILENTLY ignored. That is not
-acceptable, either. You MUST provide reasons!
+ .../devicetree/bindings/spi/cdns,qspi-nor.yaml     |   4 +
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi           |  14 ++
+ drivers/spi/spi-cadence-quadspi.c                  | 260 ++++++++++-----------
+ 3 files changed, 144 insertions(+), 134 deletions(-)
+---
+base-commit: 0afb3ab76ffb521700af678ea931d31192f93260
+change-id: 20251219-schneider-6-19-rc1-qspi-7c3e1547af6d
 
-Now, that review is invalidated anyway.
+Best regards,
+-- 
+Miquel Raynal (Schneider Electric) <miquel.raynal@bootlin.com>
 
-
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5b11839cba9d..c378d4b8f5ae 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1594,6 +1594,21 @@ W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/iio/dac/adi,ad9739a.yaml
->  F:	drivers/iio/dac/ad9739a.c
->  
-> +ANALOG DEVICES INC AD8460 DRIVER
-> +M:	Mariel Tinaco <Mariel.Tinaco@analog.com>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Supported
-> +W:	https://ez.analog.com/linux-software-drivers
-> +F:	Documentation/devicetree/bindings/iio/dac/adi,ad8460.yaml
-> +F:	drivers/iio/dac/ad8460.c
-
-
-What?
-
-NAK
 
