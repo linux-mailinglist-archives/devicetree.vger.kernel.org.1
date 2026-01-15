@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-255637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E08D25193
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:56:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C02ACD2519C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:56:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2084C30B2920
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4D8E730B3A79
 	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B060D3793D7;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0EB9395D83;
 	Thu, 15 Jan 2026 14:53:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1385F3A0B2A
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 14:53:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B6534FF78
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 14:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768488797; cv=none; b=E25SSF0K2XWnca//DcOC6YREpkOGid9AgBhBXr+oZO3uzi+yXwf64lY7oh9qhOn0CCw4E+qMShJ/nZn9zQrSI9vBaNBmfMeoFkarGvvXvWoVwJ22dxQ9J0Dq8k1lGoMRxfP3hd8bXPdfeuo84a6rIZNrXkEVOotnDjLgCuCWUL8=
+	t=1768488797; cv=none; b=VTxey4pfNkPpZB41njUsXZ3wFN6K69JtLQqFN6hJynsus5v/A7Bn4wPjj4ed89Ol2mZYg2hJQnzM1csLr3G6lLxslw5RQGAkmJAIwMQKENYNTqFQlBBs2DZ3/c/VWAm0Bh2UN1aj/C9PGCoCJAoZc6wUVNJo7wKTmUDuY5BxmwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768488797; c=relaxed/simple;
-	bh=5Qc8oGuiDO8ImGQamjCXgHbyoIQK6gCoEzuGy7f//Qo=;
+	bh=EHQO37uBxePxsq+DZQ19kFSwOMfkUw8FZ5sp1eiEeAY=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=quIPkJh5ACKXdwSL0+yYiy9Qu1nILa40bWRnBWRltc7SusNIpf65Ve4MBaunNoQ3ZbtcZ2E/TxI9hnx7XHG8UAu8ZszhSLYE9C2aw+Dwjt44I4hn7nxumdEJGPdzixjbSDLEO+SCoTxsSkmvXHdsq7hdTkYpArKsoJiWDhoaCdg=
+	 MIME-Version:Content-Type; b=gVmeyS7+GgkJ03uWOlKXSOEsKmktTgCq4WgxGsEPISRRntfpsMg5iu5U8lBjE+c+GRAasPaQjwan+3jQfGVMtTvw/07a8KyNwanUcvm79bP2pnQfIHqwQeaIaVjvNPzUZDI9yco6yOhEz70hx9rJTLK+HrHfLMaqLI71EO6s12M=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
 Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 60FEqoH5039422
+	by Atcsqr.andestech.com with ESMTPS id 60FEqqxa039423
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 15 Jan 2026 22:52:50 +0800 (+08)
+	Thu, 15 Jan 2026 22:52:52 +0800 (+08)
 	(envelope-from ben717@andestech.com)
 Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS31.andestech.com
  (10.0.1.89) with Microsoft SMTP Server id 14.3.498.0; Thu, 15 Jan 2026
- 22:52:50 +0800
+ 22:52:51 +0800
 From: Ben Zong-You Xie <ben717@andestech.com>
 To:
 CC: <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
@@ -44,9 +44,9 @@ CC: <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
         <alex@ghiti.fr>, <linux-riscv@lists.infradead.org>,
         Ben Zong-You Xie
 	<ben717@andestech.com>
-Subject: [PATCH 3/4] MAINTAINERS: add an entry for Andes I2C driver
-Date: Thu, 15 Jan 2026 22:52:43 +0800
-Message-ID: <20260115145244.435890-4-ben717@andestech.com>
+Subject: [PATCH 4/4] riscv: dts: andes: qilai: add I2C controller
+Date: Thu, 15 Jan 2026 22:52:44 +0800
+Message-ID: <20260115145244.435890-5-ben717@andestech.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260115145244.435890-1-ben717@andestech.com>
 References: <20260115145244.435890-1-ben717@andestech.com>
@@ -56,37 +56,36 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
 X-DNSRBL: 
 X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 60FEqoH5039422
+X-MAIL:Atcsqr.andestech.com 60FEqqxa039423
 
-Add an entry for the Andes I2C driver in the MAINTAINERS file.
+Add the I2C node to QiLai DTS.
 
 Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 ---
- MAINTAINERS | 6 ++++++
+ arch/riscv/boot/dts/andes/qilai.dtsi | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dc731d37c8fe..3b05039ef497 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1817,6 +1817,12 @@ S:	Supported
- F:	drivers/clk/analogbits/*
- F:	include/linux/clk/analogbits*
- 
-+ANDES I2C DRIVER
-+M:	Ben Zong-You Xie <ben717@andestech.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/i2c/andestech,atciic100.yaml
-+F:	drivers/i2c/busses/i2c-atciic100.c
+diff --git a/arch/riscv/boot/dts/andes/qilai.dtsi b/arch/riscv/boot/dts/andes/qilai.dtsi
+index de3de32f8c39..aef641f02a53 100644
+--- a/arch/riscv/boot/dts/andes/qilai.dtsi
++++ b/arch/riscv/boot/dts/andes/qilai.dtsi
+@@ -182,5 +182,11 @@ uart0: serial@30300000 {
+ 			reg-io-width = <4>;
+ 			no-loopback-test;
+ 		};
 +
- ANDROID DRIVERS
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- M:	Arve Hjønnevåg <arve@android.com>
++		i2c: i2c@30800000 {
++			compatible = "andestech,qilai-i2c","andestech,atciic100";
++			reg = <0x0 0x30800000 0x0 0x100000>;
++			interrupts = <6 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ };
 -- 
 2.34.1
 
