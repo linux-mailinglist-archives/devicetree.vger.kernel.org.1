@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-255747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E67B1D27ED1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:05:49 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27EC4D280E0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:25:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 87E16303E66B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:55:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 15EE430261A8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:56:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E37983D1CC0;
-	Thu, 15 Jan 2026 18:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36783C1994;
+	Thu, 15 Jan 2026 18:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GiXGOy6g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RVD1cCd4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51B313D1CA2
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 18:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5713B530D;
+	Thu, 15 Jan 2026 18:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768503349; cv=none; b=pv1rjJk2FADgIabA5776wOTHHinic4PoRFZG4+p6T30pGZsdMrD7Q4pwDxHb8kPKDMdBOeSJMd2DGyOZIKruuU+bo+NF5DizhR/yvMctVOhUOzL+sr7T7aVo3p3eAQyqfVWIxMvgPT+99a0Bc+/FlCTTCAiVBt5hdfKnXeuf6uI=
+	t=1768503386; cv=none; b=CB5TDN/aHkbDJSWmm2mZjR3vKr6T4+A7BeBnPj/vAWAEn55bZpWEVa2rMBG+0JTXmKEl+gvq2Nt12qPTPOCaaEfxPE+mmAOtlJV9+NWp9g66mdS9dyfEjC5D2s5dUPIZcGoWlrXW9zez5+yg1wcufTwH+PVOvE7WGxBj1Z+9IeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768503349; c=relaxed/simple;
-	bh=aOSRDFakGh+5h+6qiUYQmK78wJEtBDPIU2CeS3D2/Hw=;
+	s=arc-20240116; t=1768503386; c=relaxed/simple;
+	bh=vBf0JsV6SssEAFVKDfTmL6XYzcy1PrASWotaLv5u8JU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sJSx7EyrEJDBKt8IH3ddZ6FwkzVzOH/4HEEuBCQsHljqdva3M7jsGrCWmepSjQ+GU3cNyjUEW8T37cViqxXTJK+lHDKalcYmR3Twn0NbSVQmgcensOcOCpzvnfWief7ZYXgsJDCgpqnzmS0gk3f9dQDZG7O8bkm5G3OJWyzaZk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GiXGOy6g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 418C6C116D0;
-	Thu, 15 Jan 2026 18:55:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B+cfR4LjcIkrDdKp3ZKcs8u+H6dSK4RjKyTfM7sbFtdTQv3MfzHmy38mSGBO4AhhWe1NrrXCrFHCM/Qsys2ls95xB9dJRXq7DxnajkvGWvvP5eIHbAptTGH7hSp8ULMkIXvb19bvCogyH1sW0D8eiJm7nalybpHa6mHsrCp/giA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RVD1cCd4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF0BBC116D0;
+	Thu, 15 Jan 2026 18:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768503347;
-	bh=aOSRDFakGh+5h+6qiUYQmK78wJEtBDPIU2CeS3D2/Hw=;
+	s=k20201202; t=1768503386;
+	bh=vBf0JsV6SssEAFVKDfTmL6XYzcy1PrASWotaLv5u8JU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GiXGOy6gJPPQnsMPZ/eN1qB+60jvhhAqMO1MJwulQ3DQBHzw2ohwTnahpaU+EWDKA
-	 agSfrzZ8pMUOV7GV8RhyJKFeJW6xK15bHvRxhgvo5y9tNSSvGCgQsK6qi5pjeGKBu6
-	 3V2Cv52gYQECGMj+J/5jm0V1otwjUXzqmR8bSZdFdv516fx6uladLQ4YcPPhZMBahj
-	 39Y4DodP3tSpbDVflF6/TlPAprOU4X78s+6gEo8tfIc1XZtflLi0eVNp5sW47IEgk3
-	 pIz0ai+FnZpmx+BdP/UY3sIENZrm+yJG6isnz6I5F+XEbDb5FwUIZcTNSFil2LaGPW
-	 fhEVX9xI4rXfA==
-Date: Thu, 15 Jan 2026 12:55:46 -0600
+	b=RVD1cCd4U03YZGWql2QzFw7wQITcAlUGQYPQxiJUOCCXSaNln+3BpkftguUH5A9Yd
+	 jEe5gdmkMa1fjADwlJ9hkYZtqNKlrvDY4gKkjGoa1wh0C5Jefd4W8UGZX8BorINaGo
+	 3Y34sO6Uc8IXQg371drJhHzZUFow9/0P7tH8NXuk5bl8UWYKGuFQPGIGPGHDSelTtR
+	 aOeZRHSuz+l3pKvtVJiXcdNwCcONOAghse2cVJdwM2R6KLxEQ8NEQLuyFgBJKQYkAx
+	 Uu1Om4/T6GH2xNjYotMIjgW/POHT8jxKyX2TDRgoj6EPYdbZ38PE9cULqXvtGrx7M+
+	 i5PpYXgHoLCvQ==
+Date: Thu, 15 Jan 2026 12:56:25 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: krzk+dt@kernel.org, simona@ffwll.ch, airlied@gmail.com,
-	Chris Morgan <macromorgan@hotmail.com>, tzimmermann@suse.de,
-	jagan@edgeble.ai, linux-rockchip@lists.infradead.org,
-	dmitry.torokhov@gmail.com, conor+dt@kernel.org, heiko@sntech.de,
-	jesszhan0024@gmail.com, mripard@kernel.org,
-	neil.armstrong@linaro.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, aweinzerl13@yahoo.com,
-	maarten.lankhorst@linux.intel.com
-Subject: Re: [PATCH 5/6] dt-bindings: input: touchscreen: goodix: Add "panel"
- property
-Message-ID: <176850334606.1005378.10711190670525490537.robh@kernel.org>
-References: <20260113195721.151205-1-macroalpha82@gmail.com>
- <20260113195721.151205-6-macroalpha82@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Tianping Fang <tianping.fang@mediatek.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Andersson <andersson@kernel.org>, linux-media@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: Fix I2C bus node names in examples
+Message-ID: <176850338451.1006318.4420022691055686967.robh@kernel.org>
+References: <20260114081322.53411-2-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +62,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260113195721.151205-6-macroalpha82@gmail.com>
+In-Reply-To: <20260114081322.53411-2-krzysztof.kozlowski@oss.qualcomm.com>
 
 
-On Tue, 13 Jan 2026 13:57:20 -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, 14 Jan 2026 09:13:23 +0100, Krzysztof Kozlowski wrote:
+> I2C bus node names are expected to be just "i2c", if there is just one
+> such node in given example.  Replace remaining bad examples with
+> scripted:
 > 
-> Add a "panel" property to define a relationship between a touchscreen
-> and an associated panel when more than one of each exist in a device.
+>   git grep -l '\si2c[0-9] {' Documentation/devicetree/ | xargs sed -i -e 's/i2c[0-9] {/i2c {/'
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
 > ---
->  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> 
+> Like Rob's commit 20a72af11f41 ("dt-bindings: Fix SPI and I2C bus node
+> names in examples"). I checked also for SPI.
+> 
+> Rebased on Rob's tree - can you pick it up directly? Applies also on
+> linux-next, so I do not expect conflicts.
+> ---
+>  .../bindings/embedded-controller/lenovo,yoga-c630-ec.yaml       | 2 +-
+>  Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml   | 2 +-
+>  Documentation/devicetree/bindings/usb/ite,it5205.yaml           | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
