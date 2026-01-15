@@ -1,127 +1,128 @@
-Return-Path: <devicetree+bounces-255477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF596D239CA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:38:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 768D3D238DC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:32:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F3FBF312EC9C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:26:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 630873070D1D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:28:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EE73612F8;
-	Thu, 15 Jan 2026 09:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3130A35EDB3;
+	Thu, 15 Jan 2026 09:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kK7oShpm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r/DRmCLc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281603612EB;
-	Thu, 15 Jan 2026 09:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F001E35CB9E
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 09:27:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768469150; cv=none; b=IfmrO4gMBcoN4tKZxgS/S1rVGeS+pxuoD5BDgOogZYUybXiKxbpxYXH/qIQzHVbL2P0dU14aUdLpyxVJAJuvvMndlDh6LSIn10uQ3UxLlLEtJWi6wnHWzwu0qxfKEPO+PrhIb8hELRApvNe26WuB6zCZyn28/RhAJO0mXrewFqE=
+	t=1768469253; cv=none; b=ndPMvpDXYV6pk8kEAk93MCpwA8YO2CMfawQLEtWoaFzaUVcrZ5LoWFP39ctTCyYnd/VF4CeFAYfBHTPZHOtWLfHWIAOGG+lJuiHR2Jx6QFiuvs88tIx4J0bLjD9z5lNUjvtVZmeiWlHNSIg90p2ILO8111sT9bx1bYR46FX0x/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768469150; c=relaxed/simple;
-	bh=hA/IbYkFGTkK3mco86nyCvo07MZGnrfgEylhp3P6CY8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ne4mw2BX4iMRjRLPKnt+n4ur6Eurv+fo72P8fMA8hMnh0M4yoN/1PpLernrn6J+mDf6KCJmq1yl7O41XCwUiWpX+tjIQanPlyFnw9pgRQ2mYj6oUV+MTFvebTei/dEmkhsH+N6DxZyUohG+u/En1JkIM2ObrzuNpg4yGwJ0qB4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kK7oShpm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 172C7C19424;
-	Thu, 15 Jan 2026 09:25:46 +0000 (UTC)
+	s=arc-20240116; t=1768469253; c=relaxed/simple;
+	bh=IHOMnj/BJN95A/4L9YqNfuIpnb+bAMt2NrBpXun8idA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YIQ2bKNFcCDgGRYWf8yyrnQ7JTpYjksJQSgbGa7P1t8j9k3U1BuwY6YqeYQB3Gx6Ntz8OWW639sMScXjjJ1ndlJypgy0naeGnYKOYQ5At5w2/K3JzMYh2acVOe7V62EMp/ycm5nMWiZFEV3vzimYfR3j+sVXYUa0D/bEKQyqUUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r/DRmCLc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB8DBC4AF0B
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 09:27:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768469150;
-	bh=hA/IbYkFGTkK3mco86nyCvo07MZGnrfgEylhp3P6CY8=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=kK7oShpmJ+MkbNOfg+8yHnjQSJMp2vOdHkEcDRxGtpsxysZ3RNLHnFP8zVeAeaB1M
-	 HR1dgmvANWZ9IIJLpb00Ba05lydkJwscRC68PGkdv3arZC+kJnmHj0lgom8r7pZXCE
-	 rndDp7ibl3ihnC4LK/WdEqBeoLUcfcQRD3Q4mGb1D4nBvgAcSrweowL36CIo7lz9T4
-	 dLvMu4vU3xB9jNB02vthRjQjrzZk/5TwqBX1fV1fj6x1ovPsUAGn1Wl1hYMRYsrrQk
-	 iWyranC43e+1dkvhxKFWNNGIZDWuYQ0HihjUKBM0dybb3VSCdI67LMN7TeJly6p6ql
-	 E4q6J0al9fTbg==
-Message-ID: <19de4d61-5479-4cb0-802d-9071c247821b@kernel.org>
-Date: Thu, 15 Jan 2026 10:25:45 +0100
+	s=k20201202; t=1768469252;
+	bh=IHOMnj/BJN95A/4L9YqNfuIpnb+bAMt2NrBpXun8idA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=r/DRmCLcWBcGmsGBpCfKZ81eYL6mEmOJhUwUBjLAGTiXqLzKf5MOiWyC+unPiAMar
+	 AnZaY6pDQeiiYkIiN6SqeL0E9Ysaq/H4dgykcNr+06ETWvL+xyFoWE9FnpVIgHCeY5
+	 8OrtnbK6erAwgimfNgdCzmdzHevvFULdVolpVjgCLsOONOxFP8zcUd0unJsN3rFac6
+	 RanFHKwwwCYzZalbJyn2ctBVQeGEbu12U25gWwtPuE2qfLzAN8827+qMAQXEctJg7F
+	 rNn2LlZeyS66cqRGWIODCMwzcduXpzV91hQ+SRpZAHop9VygH9k3qgNecUrXy/NnGG
+	 Dyt2V3xpLmvBw==
+Received: by mail-yx1-f46.google.com with SMTP id 956f58d0204a3-64476c85854so531784d50.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 01:27:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU/kb+wGpZaU4ZDveE/SWxzGrWeRBP/YSBhby6OUhNN3dhqXSv4EK62XQhiIc7odBFo+j+E6xEnvX9r@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbCm6UHh4+1Wv4zfA9tZ2+g/BbuE5268K1j+Xtl7rNrz6aMu6x
+	z3X3aPGtfdCV4skqLvPR50+6L5Okh2UzbtguCdddQKmolc21LRkA1ZDwUGVwqeamSlfAymThvxu
+	3tHV+gKbJbGp6zEHiy8kRtyNLCr7m2vE=
+X-Received: by 2002:a05:690c:45c6:b0:786:5afa:375c with SMTP id
+ 00721157ae682-793a1dc2311mr98450177b3.67.1768469252018; Thu, 15 Jan 2026
+ 01:27:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: Add max22007
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Janani Sunil <janani.sunil@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- jan.sun97@gmail.com, gastmaier@gmail.com
-References: <20260114-max22007-patch-v3-0-769298f50b8a@analog.com>
- <20260114-max22007-patch-v3-1-769298f50b8a@analog.com>
- <20260115-elegant-hopping-kangaroo-6cd32b@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260115-elegant-hopping-kangaroo-6cd32b@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260114141352.103425-1-jie.i.li@nokia.com>
+In-Reply-To: <20260114141352.103425-1-jie.i.li@nokia.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 15 Jan 2026 10:27:21 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkyTMXAE_M2JFF5jzzLZ2Z-CV89uEGh4xHopWrGoYncbA@mail.gmail.com>
+X-Gm-Features: AZwV_QgP9FTs53wCT-dFujSFa3UD-wgIUQGUY8O48v_mJXwT8i6vdX8Cb_ApmNg
+Message-ID: <CAD++jLkyTMXAE_M2JFF5jzzLZ2Z-CV89uEGh4xHopWrGoYncbA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] i2c: add support for forced SDA recovery
+To: Jie Li <lj29312931@gmail.com>
+Cc: wsa@kernel.org, linux-i2c@vger.kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	linus.walleij@linaro.org, linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <brgl@kernel.org>, Linux pin control <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 15/01/2026 10:24, Krzysztof Kozlowski wrote:
-> On Wed, Jan 14, 2026 at 05:17:01PM +0100, Janani Sunil wrote:
->> Devicetree bindings for MAX22007 4-channel
->> 12-bit DAC that drives a voltage or current
->> output on each channel
-> 
-> What is happening with this patchset - why are you making somehow
-> unrelated, different, unexpected and incorrect changes like ones above?
+Hi Jie,
 
-Heh, I already told you that at v1, so you basically ignored my entire
-feedback from v1 and all the changes at v2.
+thanks for your patch!
 
-Best regards,
-Krzysztof
+On Wed, Jan 14, 2026 at 3:13=E2=80=AFPM Jie Li <lj29312931@gmail.com> wrote=
+:
+
+> This series addresses a limitation in the I2C bus recovery mechanism when
+> dealing with certain open-drain GPIO configurations where the direction
+> cannot be automatically detected.
+
+I'm sorry but I don't understand the premise. How can we even get here?
+
+So the mechanism is about I2C that is using a regular I2C block, and
+the pins get re-muxed to GPIO to drive recovery using the I2C
+core GPIO-mode recovery mechanism with bridge->sda_gpiod
+which is retrieved in the core from "sda" which in DT is
+sda-gpios =3D <....>; (calong with similarly named SCL) for
+GPIO-mode recovery.
+
+So if that is set in an input mode, such as during devm_gpiod_get()
+reading the initial direction of the line,
+so gpiod_get_direction(bri->sda_gpiod) =3D=3D 1.
+this patch set will go and write output values to the line
+*anyway* because "it works".
+
+This is how I understand the patch set.
+
+In which scenario do you have a device tree where you can add
+"force-set-sda" to a DT node, but you *can't* just fix up the
+SCL/SDA flags like this:
+
+#include <dt-bindings/gpio/gpio.h>
+
+sda-gpios =3D <&gpio0 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+scl-gpios =3D <&gpio0 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
+
+?
+
+We should possibly also enforce it from the I2C recovery core,
+for SDA we are currently doing:
+
+gpiod =3D devm_gpiod_get(dev, "sda", GPIOD_IN);
+
+what happens if you patch i2c-core-base.c to simply do:
+
+gpiod =3D devm_gpiod_get(dev, "sda", GPIOD_OUT_HIGH_OPEN_DRAIN);
+
+(Based on SDA resting polarity being high.)
+I'm more uncertain about that one because I don't know exactly
+how hardware behaves in response to this, but can you test this
+first if you have to hack around in the core?
+
+Yours,
+Linus Walleij
 
