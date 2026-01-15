@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-255618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31B5BD24C20
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:36:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D413CD24CD1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:49:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AD3663002526
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:36:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D3A9F3011ABC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CA93A0E85;
-	Thu, 15 Jan 2026 13:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CCF1395D97;
+	Thu, 15 Jan 2026 13:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UvNex5q2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mvinfmyR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3107620C029;
-	Thu, 15 Jan 2026 13:36:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBC53361DD1;
+	Thu, 15 Jan 2026 13:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768484164; cv=none; b=PxQMmPJ/X2mWDo9FgESV2NQMp9H+fP1ob8z6j8dI5PYX5CLG1MumlP9suISagt91gu5ZkQumsMia/5c3uSwUoBWLoTGAbLfNaOeVoYqCbEoTfDsKihuvp4vCujeryjPBjx4Yo6XTGpZEiC3Sx5DkzM5yRFhbAwOk01LfvsticBU=
+	t=1768484940; cv=none; b=dKcpipfKDO7H9+O5uRmMYRDZD6xFZKNACxz2MOlKvr+rgHCLZor7tQ13xnlYqP7pExman6wxwrz65d4XX+1/Zdxfpomm85P8aaIR0WxV9yb8EIkswWyRuDMwXbtlguuBltuPhoCniYuDurXL6/V0/lOkN5kV4C6HhQBIsAJPhLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768484164; c=relaxed/simple;
-	bh=0W6V9fyTShLK7ULIIxW8FNo5OfRF3NXJTodFVN9ZRdM=;
+	s=arc-20240116; t=1768484940; c=relaxed/simple;
+	bh=FWCj01EER32/5ZyQsKacN6nLKsoC3Xai8qLFf8R1U0s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m68tbWH5xihp89EP9EW2eQjPoYO7LyAJFhu6jzEd+vRFaB20HTJAHhMp68wuqQB0FtH8erTb11sNI1uQH22qITu/hs8ojkJgWXYB2UpQm8hyPzqh/cEQp2S3kJpJAP5lpebpGGVGGc5Z6+LbVBt0VZQdRsIakxgZAktSroIaNJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UvNex5q2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FC40C16AAE;
-	Thu, 15 Jan 2026 13:36:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HioW0cFW4s6mGe9P60sE1Lp5zXzZQzwELCMji6jdynJ2F+WEA2G22MSBl+wR8oL+jerqo4Z3Bo4mp+srQOGYgbeLIE5Cv6Eei+juS/uq9hVQFFz/AV9yATJ3pdR+YiK4gQKeIqxCXku8ExVpFt4y+ebsy2mfYVUh/uLjiiYcDCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mvinfmyR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C04A3C16AAE;
+	Thu, 15 Jan 2026 13:48:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768484163;
-	bh=0W6V9fyTShLK7ULIIxW8FNo5OfRF3NXJTodFVN9ZRdM=;
+	s=k20201202; t=1768484939;
+	bh=FWCj01EER32/5ZyQsKacN6nLKsoC3Xai8qLFf8R1U0s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UvNex5q2V6dpcWncjXAuZswFgvOfUKB9y8VJ+T9KyiTvWPfqGe20p26fqk/KPKdCy
-	 fC2w61TTrdGLFSrazUHLDWG8EIQf2mYn5yZfbB8r93Ln8Fxp3SwJE8NiFPHReq8BWZ
-	 HuKz33cfCWzSTQLUjcBZW90t3pL5F1DXCVoka3Hwei35ATDkkqP6WnCLur1V6F+wnX
-	 gEgU/xfdqJTaX/u9Tba9WHGjKOvHk32N3c2VEGD+OrwZHN5QV2hMhnQAuvzciZXDk8
-	 9v3lzyqXTA4/OKcWVkYmldl+k7Ndb+ApMLf0hzt4zLmrvsgDjM7obnvfZgS9qVbLYx
-	 Gpp78xR32pXiA==
-Date: Thu, 15 Jan 2026 14:36:01 +0100
+	b=mvinfmyRwlyGAdQJjmbpqL+Nx1PDjRzxRj/igzyEleLHHc7oqDhz9MK2B8XHYet9F
+	 4Hf6sYVcMV4C4huBPyDGz1XjA3exjyvUOnEbSIkwcNCwJyvBXQw34J1QHJr0c+gCeH
+	 1wCz9TFS3EKI1VgXpAxnNzlAIxqwAfEetl/dvAfOaOJbleLF6eHbCctrU+M6Pw2KUy
+	 wfLtpCk9llB3hlXuxBdawdXaPqIKnowf1x1G1cuwJc/xNXexaGzmFGxz+JW7i9LxGr
+	 4fbN8jytwpatfFnIPJYycNgXRw7Ad1xhBJk/eo5MmOqT4hrEgpwLMrSRi7dUVVAhNw
+	 vI7b0h4XaW+Kw==
+Date: Thu, 15 Jan 2026 14:48:56 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, 
-	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, 
-	Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
-	willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-hardening@vger.kernel.org
-Subject: Re: [PATCH 3/8] dt-bindings: mfd: Add Google GS101 TMU Syscon
-Message-ID: <20260115-slim-denim-potoo-cad9cb@quoll>
-References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
- <20260114-acpm-tmu-v1-3-cfe56d93e90f@linaro.org>
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be, krzk+dt@kernel.org, 
+	robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
+Subject: Re: [PATCH 05/16] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
+ Document RZ/G3E SoC
+Message-ID: <20260115-beautiful-ambitious-swine-c26a0d@quoll>
+References: <20260114153337.46765-1-john.madieu.xa@bp.renesas.com>
+ <20260114153337.46765-6-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,57 +60,295 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260114-acpm-tmu-v1-3-cfe56d93e90f@linaro.org>
+In-Reply-To: <20260114153337.46765-6-john.madieu.xa@bp.renesas.com>
 
-On Wed, Jan 14, 2026 at 02:16:31PM +0000, Tudor Ambarus wrote:
-> Document the bindings for the Thermal Management Unit (TMU) System
-> Controller found on Google GS101 SoCs.
+On Wed, Jan 14, 2026 at 04:33:26PM +0100, John Madieu wrote:
+> Extend the existing device tree bindings for Renesas RZ/G3S PCIe
+> controller to include support for the RZ/G3E (renesas,r9a09g047e57-pcie) PCIe
+> controller. The RZ/G3E PCIe controller is similar to RZ/G3S but has some key
+> differences:
 > 
-> This memory-mapped block exposes the registers required for reading
-> thermal interrupt status bits. It functions as a syscon provider,
-
-I don't think this is syscon, but the actual TMU. Syscon is various,
-unrelated system configuration registers.
-
-> allowing the main thermal driver to access these registers while
-> the firmware manages the core thermal logic.
+>  - Uses a different device ID
+>  - Supports PCIe Gen3 (8.0 GT/s) link speeds
+>  - Uses a different clock naming (clkpmu vs clkl1pm)
+>  - Has a different set of interrupts, interrupt ordering, and reset signals
 > 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Add device tree bindings for renesas,r9a09g047e57-pcie compatible IPs.
+> 
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 > ---
->  .../bindings/mfd/google,gs101-tmu-syscon.yaml      | 37 ++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
+>  .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 243 +++++++++++++-----
+>  1 file changed, 172 insertions(+), 71 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..6a11e43abeaa23ee473be2153478436856277714
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/google,gs101-tmu-syscon.yaml
+> diff --git a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+> index d668782546a2..c68bc76af35d 100644
+> --- a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+> @@ -10,85 +10,34 @@ maintainers:
+>    - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>  
+>  description:
+> -  Renesas RZ/G3S PCIe host controller complies with PCIe Base Specification
+> -  4.0 and supports up to 5 GT/s (Gen2).
+> +  Renesas RZ/G3{E,S} PCIe host controllers comply with PCIe
+> +  Base Specification 4.0 and support up to 5 GT/s (Gen2) for RZ/G3S and
+> +  up to 8 GT/s (Gen3) for RZ/G3E.
+>  
+>  properties:
+>    compatible:
+> -    const: renesas,r9a08g045-pcie # RZ/G3S
+> +    enum:
+> +      - renesas,r9a08g045-pcie # RZ/G3S
+> +      - renesas,r9a09g047-pcie # RZ/G3E
+>  
+>    reg:
+>      maxItems: 1
+>  
+> -  interrupts:
+> -    items:
 
-Not MFD either, but soc.
+Same review as already in the past for Renesas. Broadest constraints
+always stay here and list should share items.
 
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/google,gs101-tmu-syscon.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> -      - description: System error interrupt
+> -      - description: System error on correctable error interrupt
+> -      - description: System error on non-fatal error interrupt
+> -      - description: System error on fatal error interrupt
+> -      - description: AXI error interrupt
+> -      - description: INTA interrupt
+> -      - description: INTB interrupt
+> -      - description: INTC interrupt
+> -      - description: INTD interrupt
+> -      - description: MSI interrupt
+> -      - description: Link bandwidth interrupt
+> -      - description: PME interrupt
+> -      - description: DMA interrupt
+> -      - description: PCIe event interrupt
+> -      - description: Message interrupt
+> -      - description: All interrupts
+> -
+> -  interrupt-names:
+> -    items:
+> -      - description: serr
+> -      - description: ser_cor
+> -      - description: serr_nonfatal
+> -      - description: serr_fatal
+> -      - description: axi_err
+> -      - description: inta
+> -      - description: intb
+> -      - description: intc
+> -      - description: intd
+> -      - description: msi
+> -      - description: link_bandwidth
+> -      - description: pm_pme
+> -      - description: dma
+> -      - description: pcie_evt
+> -      - description: msg
+> -      - description: all
+> +  interrupts: true
 > +
-> +title: Google GS101 TMU System Controller
+> +  interrupt-names: true
+>  
+>    interrupt-controller: true
+>  
+>    clocks:
+> -    items:
+> -      - description: System clock
+> -      - description: PM control clock
+> +    maxItems: 2
+>  
+>    clock-names:
+> -    items:
+> -      - description: aclk
+> -      - description: pm
+> -
+> -  resets:
+> -    items:
+> -      - description: AXI2PCIe Bridge reset
+> -      - description: Data link layer/transaction layer reset
+> -      - description: Transaction layer (ACLK domain) reset
+> -      - description: Transaction layer (PCLK domain) reset
+> -      - description: Physical layer reset
+> -      - description: Configuration register reset
+> -      - description: Configuration register reset
+> -
+> -  reset-names:
+> -    items:
+> -      - description: aresetn
+> -      - description: rst_b
+> -      - description: rst_gp_b
+> -      - description: rst_ps_b
+> -      - description: rst_rsm_b
+> -      - description: rst_cfg_b
+> -      - description: rst_load_b
+> +    maxItems: 2
 > +
-> +maintainers:
-> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
+> +  resets: true
 > +
-> +description: |
+> +  reset-names: true
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -128,11 +77,12 @@ patternProperties:
+>          const: 0x1912
+>  
+>        device-id:
+> -        const: 0x0033
+> +        enum:
+> +          - 0x0033
+> +          - 0x0039
+>  
+>        clocks:
+> -        items:
+> -          - description: Reference clock
+> +        maxItems: 1
+>  
+>        clock-names:
+>          items:
+> @@ -142,8 +92,6 @@ patternProperties:
+>        - device_type
+>        - vendor-id
+>        - device-id
+> -      - clocks
+> -      - clock-names
+>  
+>      unevaluatedProperties: false
+>  
+> @@ -167,6 +115,159 @@ required:
+>  
+>  allOf:
+>    - $ref: /schemas/pci/pci-host-bridge.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a08g045-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: System error interrupt
+> +            - description: System error on correctable error interrupt
+> +            - description: System error on non-fatal error interrupt
+> +            - description: System error on fatal error interrupt
+> +            - description: AXI error interrupt
+> +            - description: INTA interrupt
+> +            - description: INTB interrupt
+> +            - description: INTC interrupt
+> +            - description: INTD interrupt
+> +            - description: MSI interrupt
+> +            - description: Link bandwidth interrupt
+> +            - description: PME interrupt
+> +            - description: DMA interrupt
+> +            - description: PCIe event interrupt
+> +            - description: Message interrupt
+> +            - description: All interrupts
+> +        interrupt-names:
+> +          items:
+> +            - const: serr
 
-Drop |
+So serr is first...
 
-> +  The TMU System Controller provides a memory-mapped interface for
-> +  accessing the interrupt status registers of the Thermal Management
-> +  Unit. It is used as a syscon provider for the main TMU driver.
+> +            - const: serr_cor
+> +            - const: serr_nonfatal
+> +            - const: serr_fatal
+> +            - const: axi_err
+> +            - const: inta
+> +            - const: intb
+> +            - const: intc
+> +            - const: intd
+> +            - const: msi
+> +            - const: link_bandwidth
+> +            - const: pm_pme
+> +            - const: dma
+> +            - const: pcie_evt
+> +            - const: msg
+> +            - const: all
+> +        clocks:
+> +          items:
+> +            - description: System clock
+> +            - description: PM control clock
+> +        clock-names:
+> +          items:
+> +            - const: aclk
+> +            - const: pm
+> +        resets:
+> +          items:
+> +            - description: AXI2PCIe Bridge reset
+> +            - description: Data link layer/transaction layer reset
+> +            - description: Transaction layer (ACLK domain) reset
+> +            - description: Transaction layer (PCLK domain) reset
+> +            - description: Physical layer reset
+> +            - description: Configuration register reset
+> +            - description: Configuration register reset
+> +        reset-names:
+> +          items:
+> +            - const: aresetn
+> +            - const: rst_b
+> +            - const: rst_gp_b
+> +            - const: rst_ps_b
+> +            - const: rst_rsm_b
+> +            - const: rst_cfg_b
+> +            - const: rst_load_b
+> +      patternProperties:
+> +        "^pcie@0,[0-0]$":
+> +          properties:
+> +            device-id:
+> +              const: 0x0033
+> +          required:
+> +            - clocks
+> +            - clock-names
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g047-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: All interrupts
+> +            - description: INTA interrupt
+> +            - description: INTB interrupt
+> +            - description: INTC interrupt
+> +            - description: INTD interrupt
+> +            - description: MSI interrupt
+> +            - description: Link bandwidth interrupt
+> +            - description: Link equalization request interrupt
+> +            - description: PME interrupt
+> +            - description: System error interrupt
+> +            - description: System error on correctable error interrupt
+> +            - description: System error on non-fatal error interrupt
+> +            - description: System error on fatal error interrupt
+> +            - description: DMA interrupt
+> +            - description: PCIe event interrupt
+> +            - description: AXI error interrupt
+> +            - description: Message interrupt
+> +            - description: Turn off event interrupt
+> +            - description: PMU power off interrupt
+> +            - description: D3 event function 0 interrupt
+> +            - description: D3 event function 1 interrupt
+> +            - description: Configuration PMCSR write clear function 0 interrupt
+> +            - description: Configuration PMCSR write clear function 1 interrupt
+> +        interrupt-names:
+> +          items:
+> +            - const: all
+> +            - const: inta
+> +            - const: intb
+> +            - const: intc
+> +            - const: intd
+> +            - const: msi
+> +            - const: link_bandwidth
+> +            - const: link_equalization_request
+> +            - const: pm_pme
+> +            - const: serr
 
-No, it is not a syscon provider. Entire last sentence is incorrect. You
-must describe here hardware and this hardware does not provide any sort
-of syscon to any sort of driver.
+And middle? What sort of mess is this?
+
+Please learn from existing review, organize internal knowledge so we
+won't be repeating the same.
+
+I am not reviewing the rest.
 
 Best regards,
 Krzysztof
