@@ -1,58 +1,65 @@
-Return-Path: <devicetree+bounces-255643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEBD3D251BA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:57:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4DED2524A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 16:04:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4E9303019483
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:54:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6D5DF301411A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:56:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E523A1A4E;
-	Thu, 15 Jan 2026 14:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD19379981;
+	Thu, 15 Jan 2026 14:56:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nVP99+sV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pn8Wmsp3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E6A3A0E9A;
-	Thu, 15 Jan 2026 14:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996D434E75D;
+	Thu, 15 Jan 2026 14:56:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768488854; cv=none; b=tQoaKHw8GLQt9b3Qp5DQ3J8/FteOx010gccJmHeSMdVlKI0sUGLr9I4U3CA2eei4M8s7UQcj23p/116uXR7n6Sx43QJfr/VCaNZie+Q0piSDfDVikbl8zJb0tZ45hE+h/puCY502K4c+pHgb9LnMvmJOuDiGa8+UaP/Fxe+HteI=
+	t=1768489012; cv=none; b=LrxZ2c8IRFYzDlb4jvKFF61Mi0d8+1nq8D7epRMRiBYZIrbuS7sCjwcKPS04skjMEeV1MzpLL9AJYixmA2DkSdxgf467auhJFN0+8/TaeIo9IIy0fJLnZqL1sYglltdQr86POwvgeqWKPjP35bm46u6AN2SDGxvKVl9LYdP6aR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768488854; c=relaxed/simple;
-	bh=yJ9GqM1gOFD0ndQugmXUKz0yy2pEJJfQ0+pAcG+HjUo=;
+	s=arc-20240116; t=1768489012; c=relaxed/simple;
+	bh=pomdXiTLxr/2XtCrCaKVDuxPsXlBYLkeUhFF6+dFURk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t3h2v/mbV/ZuZOGuUUFuSUq55KfnVJzM5/M4Na2IWMKvcvGqIKm3wZsBVl38uNVsqX7Bc3dJd0UzhtfbGmT2PBjGwCHW8Y7uCJJseY7BexTFJ0l82qphmJLA4WJn9BqtqHEArYc1o2LAKe0Az6sp0ox4mL2J1dDMJ0dtrfdgQGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVP99+sV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 884E9C116D0;
-	Thu, 15 Jan 2026 14:54:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BpRzqEReZ1vTedw8Gy4f3DLY/c3oAi+udQ6GYnorPj0bPICYz/8EnTVgLLLzP1mTBlaK8vZ4Qobnu+xSlPUGEdBs1IjoCgb6XWWBnOONSHzb2QLML39PsIU6IH1U87Fe48b6NsRuoH6XBlTRlx1xJVk/AQQvtoEaJzwioNwj92I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pn8Wmsp3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E586C16AAE;
+	Thu, 15 Jan 2026 14:56:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768488853;
-	bh=yJ9GqM1gOFD0ndQugmXUKz0yy2pEJJfQ0+pAcG+HjUo=;
+	s=k20201202; t=1768489012;
+	bh=pomdXiTLxr/2XtCrCaKVDuxPsXlBYLkeUhFF6+dFURk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nVP99+sVpVRfPr6kBrKkoKCwr3XeuE7I+EUQ/95geaFsvnoZcOM1HABIoOIsTCPOt
-	 oD2XyDILOoBGmT76LRBkfcS4xADkAl8PTXkkDIU66a4cArsrtXfV509ADZEKRmwxTz
-	 eQq+MqTT0H+RXdpFnGKRlO1hSuvwg7LGp3oE8p+9PwUxX1+vT3dSwLTIjR35+RqP8N
-	 FqTV7+YzeDhoL7tHDpATJHKJev34gpyWyolzAEf5eqsiJzMlX6E2+aY8V53vVP8u+0
-	 OSMkbTpVej3FPSjEEu7Eqye8SOJPlN4NlXfKtKHrrQDrarUaE/eq6P590Ct5r72np1
-	 915GD8GhHqboA==
-Date: Thu, 15 Jan 2026 08:54:12 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+	b=Pn8Wmsp3qVeFKqxCX7WF6/ajJkpXAkXD9YotsRGfQPpRnaw6pPqdBqDdIkNNU0XB0
+	 PFv/mfXYIRCir3udnL7Qe7iHFrey2kLqxZdmCT5WHpbQYSjRUsCnajC8yRcBcYN2Eb
+	 Wmksr0LnFlQdUaDQ978WT7DMewbQFO9bbGnGAxKJoszt7x8BOnwCpPk3ENYbU015Ka
+	 n/6E3tw/UxtCNdmkBEwBzctfnaCkRxPN4eXXp5PNzNj7GhN+n60PexcQqHotlNnASS
+	 v047wEdFVHFF5y3kKtBzFN8Y6TPNeCYxLRNJg/071ZK5G/g/sObCeDqbCL45HQypBr
+	 heLsXkE95UwwQ==
+Date: Thu, 15 Jan 2026 08:56:51 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Marek Vasut <marex@nabladev.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Srinivas Kandagatla <srini@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add STM32 TAMP NVRAM
-Message-ID: <20260115145412.GA621905-robh@kernel.org>
-References: <20260107194541.1843999-1-dario.binacchi@amarulasolutions.com>
+	Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+	devicetree@vger.kernel.org,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	dri-devel@lists.freedesktop.org,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Andrey Gusakov <andrey.gusakov@cogentembedded.com>
+Subject: Re: [PATCH] dt-bindings: display: bridge: tc358867: mark port 0 and
+ 1 configuration as valid
+Message-ID: <176848900568.627313.556775837566927230.robh@kernel.org>
+References: <20260107213546.505137-1-marex@nabladev.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,94 +68,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260107194541.1843999-1-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20260107213546.505137-1-marex@nabladev.com>
 
-On Wed, Jan 07, 2026 at 08:45:32PM +0100, Dario Binacchi wrote:
-> Add devicetree bindings for TAMP backup registers. These 32-bit
-> registers are retained in all low-power modes and in VBAT mode. As a
-> result, they can also be used to store sensitive data because their
-> content is protected by a tamper detection circuit.
+
+On Wed, 07 Jan 2026 22:35:21 +0100, Marek Vasut wrote:
+> Current binding document enforces presence of either port@0 (DSI in) or
+> port@1 (DPI IN/OUT), with port@2 (DP out) being optional. This bridge is
+> capable of DSI->DP, DPI->DP and DPI->DP, it is therefore perfectly valid
+> to have both port@0 and port@1 described in the DT, because this is fairy
+> standard DPI->DP configuration of this bridge. Replace oneOf with anyOf
+> to cover this configuration.
 > 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Signed-off-by: Marek Vasut <marex@nabladev.com>
 > ---
+> Cc: Andrey Gusakov <andrey.gusakov@cogentembedded.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+>  .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml    | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->  .../bindings/nvmem/st,stm32-tamp-nvram.yaml   | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/st,stm32-tamp-nvram.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/st,stm32-tamp-nvram.yaml b/Documentation/devicetree/bindings/nvmem/st,stm32-tamp-nvram.yaml
-> new file mode 100644
-> index 000000000000..e03469fbe436
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/st,stm32-tamp-nvram.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/st,stm32-tamp-nvram.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32 TAMP's NVRAM
-> +
-> +description: |
 
-Don't need '|' if no formatting.
+Applied, thanks!
 
-> +  The TAMP peripheral integrates, amongst others, Non Volatile RAM
-
-What others? Are you saying this binding is incomplete?
-
-> +  (NVRAM) with 32/128 32-bit backup registers which can be used by
-> +  software to store information or communicate with a boot loader.
-
-Wrap lines at 80 char.
-
-> +
-> +maintainers:
-> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> +
-> +allOf:
-> +  - $ref: nvmem.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,stm32mp15-tamp-nvram
-> +      - st,stm32mp25-tamp-nvram
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    nvram: nvram@46010100 {
-> +        compatible = "st,stm32mp25-tamp-nvram";
-> +        reg = <0x46010100 0x200>;
-> +
-> +        nvmem-layout {
-> +            compatible = "fixed-layout";
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +
-> +            fwu_info: tamp-bkp@c0 {
-> +                reg = <0xc0 0x4>;
-> +            };
-> +
-> +            boot_mode: tamp-bkp@180 {
-> +                reg = <0x180 0x4>;
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.43.0
-> 
-> base-commit: f0b9d8eb98dfee8d00419aa07543bdc2c1a44fb1
-> branch: stm32-tamp-nvram
 
