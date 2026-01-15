@@ -1,103 +1,143 @@
-Return-Path: <devicetree+bounces-255334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2A51D22481
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 04:20:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20255D22422
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 04:12:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E19523065DE2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 03:19:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 43989302E312
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 03:12:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712BA25228D;
-	Thu, 15 Jan 2026 03:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2404C2874FA;
+	Thu, 15 Jan 2026 03:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="om0hxgjw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eMpEibgL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97632749DF;
-	Thu, 15 Jan 2026 03:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB07E27FD43;
+	Thu, 15 Jan 2026 03:12:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768447168; cv=none; b=JGSAyWX0nQp7rF1UF1dXXyokHxnuc+yUyKJf7JE3hLkq/sdrvfkrRKfDJ/HxjNQ5JPhPhS+/dE574Kleb3nOlArvTOId7sXBSamXm+H0d+2TsURizhL2uZEVKA/TNM1Mi/i4Tt7nbvxrmEcYhoyDd1wesh1UQBIl+dIlejA9YRA=
+	t=1768446721; cv=none; b=ksOL9mXpOxBtgqLAHg9WpmjgIV5rNQXOPWpi6JEAkjsPX42Rw+tm7kloe9oodNpdbwqwgCk7oVST0hrpq+MQqcIuGRveZpY8rXJBNLv/tf10jU8qWCdPDachADLhqmbo7YUbqbqcTgPMmf+S677LssfzwRm+6NT94bY6Qx53zq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768447168; c=relaxed/simple;
-	bh=2w/5744YaaL1ZUrWHm7tntX/sJVxtLdiF3I3w1EQA+g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r4p4ShJk41DppLLotKBmW4djckb1I+TPY6qifKpR441oXuDFdm29Peukdb2+Q9ENt1eDh1jOOF8e4+8hv+eA2es9zXOuLUEXDBGEjk8C/0geP290gyVaG+QhBYxH094lMvE3eBYYoIEWmfo8rATMrALZvDm89xYRhG8328FUHNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=om0hxgjw; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4ds7WF0BBXz9t00;
-	Thu, 15 Jan 2026 04:19:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768447161;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Z34tEk3YZuvzKYmi0keZWcGpKoAkaFFV5vB3a+hk6hk=;
-	b=om0hxgjwAXe692H1WOLO939wX7TiDBDv3c+TGRTT86uG72Qt0IeKtBsUTzl+C2J/+REi1z
-	WgEMGamBrV8kF+ftBhgJxibWF1pmQ3vWdM6AqSHyusAJxmGTOLmvUqLou6JWobSrOWpYTq
-	FKDmyj7W7fRmH7jZjuAJ9ycWECLVB67jNfgWXIHDm+HBNuX21dg9yBELBhcC9Nure7T7uJ
-	XZxDgW8I/UszjjffT86Ij1AzOfNosmp78D7LjHbunmwga0g9exJM2wvv8LmLZPEse8d8GE
-	2tGz15ItI/KIj9zhm4sosaZVIOHi2A+1RmZaBppES+83Etayk3unHs4/cm5hZA==
-Message-ID: <de8a4c1f-8c60-4e3c-bba1-d9808468c8b1@mailbox.org>
-Date: Thu, 15 Jan 2026 03:10:28 +0100
+	s=arc-20240116; t=1768446721; c=relaxed/simple;
+	bh=Gk/osH7DfvUyCVOdPI7ZwI4Yhgby74VLmpmAMH87lg4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=c3fXmuQTWJyBFtYaj1PKx67W2Q3A0rFFLRkky7pbND9fbKo9cI+ySx2iM0Pt6GkM+pJ07MCb+W3iVgRPF+h5WQiz3L+tQKn+JHWa6Vp7YXJDOq4oUE69ybSwCrKSw3gAgIyHDMAQ9pQnWnzuaZfcYQWi+cb8Pm0CU/H7ACJTOSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eMpEibgL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2C37C4CEF7;
+	Thu, 15 Jan 2026 03:11:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768446720;
+	bh=Gk/osH7DfvUyCVOdPI7ZwI4Yhgby74VLmpmAMH87lg4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=eMpEibgLnCCoCpngPx1LjqAwoqkiMOK1O4Pv6xFoiICf5Rumtl6OjcBtchzbPzV4f
+	 fOrU3PDXtnHoFLULkmJ/EZqFFePw0CC8HldneMcrfYufeIQNp0HY07Vp5aHrp9IHkd
+	 nq3R60jTiiN+shKdZGDZMryPH7AwCtKRTq/4XKMRhdBkC2k5bVNToMndvjt7czfLar
+	 x/fNxwwiNZk1fqNCF6QXd4rCKWEMN/I5M7C9Cj3EXWXZgtlkLHJyt49efPTSWgzc7A
+	 eZ765DSqUt+KUoiHEilrTQ4oXDTqCKP0wfcjXMwg2eLnQOGC//VRCZKowDLG0/42aI
+	 VeqGUU4KYI+uA==
+Date: Wed, 14 Jan 2026 20:11:56 -0700 (MST)
+From: Paul Walmsley <pjw@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, 
+    Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
+    x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>, 
+    Andrew Morton <akpm@linux-foundation.org>, 
+    "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+    Vlastimil Babka <vbabka@suse.cz>, 
+    Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+    Paul Walmsley <paul.walmsley@sifive.com>, 
+    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+    Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+    Christian Brauner <brauner@kernel.org>, 
+    Peter Zijlstra <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>, 
+    Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+    Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
+    Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+    linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+    linux-mm@kvack.org, linux-riscv@lists.infradead.org, 
+    devicetree@vger.kernel.org, linux-arch@vger.kernel.org, 
+    linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+    alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com, 
+    andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com, 
+    atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
+    alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
+    rick.p.edgecombe@intel.com
+Subject: Re: [PATCH v9 02/26] dt-bindings: riscv: zicfilp and zicfiss in
+ dt-bindings (extensions.yaml)
+In-Reply-To: <20250204-v5_user_cfi_series-v9-2-b37a49c5205c@rivosinc.com>
+Message-ID: <9b663e94-696c-4678-829a-6471e7022895@kernel.org>
+References: <20250204-v5_user_cfi_series-v9-0-b37a49c5205c@rivosinc.com> <20250204-v5_user_cfi_series-v9-2-b37a49c5205c@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] Input: ili210x - add support for polling mode
-To: Frank Li <Frank.li@nxp.com>
-Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Job Noorman <job@noorman.info>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20260112234534.225954-1-marek.vasut+renesas@mailbox.org>
- <20260112234534.225954-2-marek.vasut+renesas@mailbox.org>
- <aWZ1pG5RRWlDSCwC@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aWZ1pG5RRWlDSCwC@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 21645f2a8f1881500ac
-X-MBO-RS-META: 71fek8zu7aruzgquc5whqxfxuwy4w36h
+Content-Type: text/plain; charset=US-ASCII
 
-On 1/13/26 5:41 PM, Frank Li wrote:
+On Tue, 4 Feb 2025, Deepak Gupta wrote:
 
-[...]
+> Make an entry for cfi extensions in extensions.yaml.
+> 
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
->> @@ -1003,12 +1027,24 @@ static int ili210x_i2c_probe(struct i2c_client *client)
->>   		return error;
->>   	}
->>
->> -	error = devm_request_threaded_irq(dev, client->irq, NULL, ili210x_irq,
->> -					  IRQF_ONESHOT, client->name, priv);
->> -	if (error) {
->> -		dev_err(dev, "Unable to request touchscreen IRQ, err: %d\n",
->> -			error);
->> -		return error;
->> +	input_set_drvdata(input, priv);
->> +
->> +	if (client->irq) {
-> 
-> 0 is validated irq number
-> 
-> https://elixir.bootlin.com/linux/v6.19-rc4/source/drivers/base/platform.c#L284
-> 
-> if (irq < 0)
-> 
-> But it is strange that touch don't connect irq line althougth it works,
-> touch generally is wakeup source of system.
-Raspi is like that, they poll the touch controllers. It is unfortunate.
+Here's what I'm planning to queue; please let me know if you want to 
+change anything.
+
+
+- Paul
+
+
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Wed, 19 Nov 2025 09:55:05 -0700
+
+dt-bindings: riscv: document zicfilp and zicfiss in extensions.yaml
+
+Make an entry for cfi extensions in extensions.yaml.
+
+Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Tested-by: Andreas Korb <andreas.korb@aisec.fraunhofer.de> # QEMU, custom CVA6
+Tested-by: Valentin Haudiquet <valentin.haudiquet@canonical.com>
+Link: https://patch.msgid.link/20251112-v5_user_cfi_series-v23-2-b55691eacf4f@rivosinc.com
+[pjw@kernel.org: updated subject]
+Signed-off-by: Paul Walmsley <pjw@kernel.org>
+---
+ .../devicetree/bindings/riscv/extensions.yaml      | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+index 5bab356addc8..1aeff17c7f24 100644
+--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
++++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+@@ -469,6 +469,20 @@ properties:
+             The standard Zicboz extension for cache-block zeroing as ratified
+             in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
+ 
++        - const: zicfilp
++          description: |
++            The standard Zicfilp extension for enforcing forward edge
++            control-flow integrity as ratified in commit 3f8e450 ("merge
++            pull request #227 from ved-rivos/0709") of riscv-cfi
++            github repo.
++
++        - const: zicfiss
++          description: |
++            The standard Zicfiss extension for enforcing backward edge
++            control-flow integrity as ratified in commit 3f8e450 ("merge
++            pull request #227 from ved-rivos/0709") of riscv-cfi
++            github repo.
++
+         - const: zicntr
+           description:
+             The standard Zicntr extension for base counters and timers, as
+-- 
+2.51.0
+
 
