@@ -1,244 +1,268 @@
-Return-Path: <devicetree+bounces-255349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1837D226FD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:31:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE94D22733
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:41:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 51FF9301C5FC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 05:31:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 15FCA30249F7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 05:41:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD7B1CAA79;
-	Thu, 15 Jan 2026 05:31:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A558723C51D;
+	Thu, 15 Jan 2026 05:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="csHk99/f"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XYf0aAdo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012052.outbound.protection.outlook.com [52.101.43.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7151B2C21D9
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 05:31:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768455101; cv=none; b=Qf5pH2mrwnguP8eYrZSGFpPaoVIuoaqYppD0NIoTRaKpUsGLQQXMgegb0M3LeMiWVFJ3Wc0QuCTMUk6OAlz8zfH0Ei04n+xHPii0cYQIQaAGq5lhWSqEQ3toMCpvLXRObLd17gzYxqIMEuhIptLDMKta2zghzE1QxIdhSLTaAgc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768455101; c=relaxed/simple;
-	bh=6TyzvlDEgGMykzcg6Z4CBW7MDDYADNaJPKfgiva2mnI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kE685naoAbincSQ9Cax90Mu0eFjAPxXICkKaGeDswhFDBt8qRSKyaLxjNeE8/4uNjKOCIdI4DqdSuTUGTeHPznf6M74ltkuWd9areyufKNhwW1+liHu78XioFP28Kk9AVtan95ImVnofB2v+CcjQ2vxQnbokowYKgYyFT0txPPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=csHk99/f; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-792815157f3so4968307b3.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 21:31:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768455094; x=1769059894; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q/7mz0mXjXA2DXkjO4TEuV+xqnNTQ2wbsC+8nrLSQPI=;
-        b=csHk99/fT2L3UIj9K2xrlM/xzJMp8D8h75jqzvSzwxiu4rdv5+dgcsPqHB3aiMXqYj
-         i/yDPszLtSZFtQtnplUUcTuvWw2CPQPM14B7294CqIwLDUT+d4Tvwwf66q6O8m4yIw+G
-         gNfbhyhpNdDpmbu1sBLZmf9KwhTRwy9zmqwFYq018yG6TOPA/5cDOFZoLDR4mANTK/w5
-         CZ24kqgigrTg2rb+M0xHvZzYnqGOhvPiEBWiqdldTav0NqUWR3icw9Ha7NMtNGaXo/WC
-         bfGmxxcS/QsBdXh3WrX3lTPnTxgQK9O81qZwy1x82Vq9NWJoJ6LVSNQX691RHyXYzheq
-         CqJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768455094; x=1769059894;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Q/7mz0mXjXA2DXkjO4TEuV+xqnNTQ2wbsC+8nrLSQPI=;
-        b=G5IR7NKjztsAMB/2x3H5CPnVZ7OqoTAWEnh1IoFTKA80R28lg26apAL93ncedzKgX8
-         knu3xlHjLo0NyRJyS2K7kQyg9H65yLm1Rn2AEMI3r37hyviQU1z+hKguSusoJU/KeFWU
-         Q0hzxZPHPzvl4IO0PKonmcJfli/HN6jI+N/ay8/sQgAA5HlrhOPk/myBLnHV1ov+W3r7
-         Vf7lc38eOFh52u2pmref47UT5pME5KCGRU8kKEcUkQUI1R2zXlmJexneu2mGDp3aJqNr
-         GVQglPezBcVE1bZvrIm9jopkjNI+PZEQX3IPrGBCAeyHMO8VQHvPTCJNUN+OBMpDZi+U
-         FyRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW9wWUuAggv0GAw1S0BKONYdUMVsHESsdarLggIw4jz3n2C3thMsv0ljzrtZyee5/32OrjoKJoXCw1l@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcE579/zB1alj5eonPRFemsNCaT1OHl6xwTHHbV0mn8MVWwkgw
-	OOLiwvsLt1vzkxco8m0GDOvMQu3J5fRtEoQsvcYwYGtiSSm7qY+8/0AL
-X-Gm-Gg: AY/fxX5My+Fk/t62uccoPhKSetyudd2SYMRM57CQbLMeRdGRCiYt3laS1mJ70ew2jol
-	a0kVZnjnPD1k/b6miWFnyIE1wAu/M5+z/71WVRKcwpD+OSU7ABVsY/8QJhfzFHDtB6uS20ipIFc
-	d3a+ayj657rRVpfzY6qOZRb9bj4vxuJogKhp+ak6eCG1zVArJDQ7G9bUSiLf9vOFPbmSa9tJwpS
-	f2pJZg9mAPOZ367z1kKIxPfRwnwmlQxL56UqVdbSBQjLnk3ez/fd14n5VklU3LfYGwdDa4ZE/H/
-	HD+Fze693ML1q6xhGfeFTyYfcOUATu8sj3P04zYaokgL2gry6m8Rl3K4xRZu8WX3g6p//OTfs9z
-	8yWNZgM6CyInbrSEzuQWPtPzB0pbplQ+Hc9KfhjXlj/4k/CZv9kGL74xZasyLWQxf8IM/a/P+Eq
-	zMK0TD
-X-Received: by 2002:a05:690e:1341:b0:645:5cb9:dbd2 with SMTP id 956f58d0204a3-64901b0fa1emr3887933d50.67.1768455094381;
-        Wed, 14 Jan 2026 21:31:34 -0800 (PST)
-Received: from [192.168.2.165] ([2600:1700:220:59e0::914])
-        by smtp.googlemail.com with ESMTPSA id 00721157ae682-790aa553172sm99259437b3.11.2026.01.14.21.31.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jan 2026 21:31:33 -0800 (PST)
-From: Anirudh Srinivasan <anirudhsriniv@gmail.com>
-Date: Wed, 14 Jan 2026 23:31:08 -0600
-Subject: [PATCH v2 2/2] ARM: dts: aspeed: Add Asus Kommando IPMI card
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB5F24B28;
+	Thu, 15 Jan 2026 05:41:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768455697; cv=fail; b=GRc/ZewSMWWX8HawNpWejTCom8iuP2eNIty2TKOaAxTI9Azl3H6hx0es5wt4qjId3hChyxRh0wIOmEy4/v1NodA3tOKv3o7HpXpy4NATgZJVF550rQqNH6SnXkuJgUqPeyfLqbp2KOVATvHhI2nPHrl3p2s9tgUC3MfmFOpEkxs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768455697; c=relaxed/simple;
+	bh=usX8zPfRmX0mGNc8BQriXZaUR8BIplrY2EWdYYm/3SA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GF2PkHsqv8yBjnVORUQXwLgnJCDBIcU412/SEawIUTF/f+CT08v7QVKCSmX/OB/xqHYbeiHaroJ/jPCUv9+BjdeEUi6Tye1qSs9u8mrmxAhYvuKoSImB6Id8ljH52KOXC0rq0S+Ydx2Dt36EPJjIE4ChNqefe8heT2bnePB05Kw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XYf0aAdo; arc=fail smtp.client-ip=52.101.43.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oxeHAtNICYGAxMgu1dt36E+pYgO9ZpC/gLtIu3UprqmcSc5++ejdOhn3ZxGKzhvgA/7TPbrSbX4GERKB4KuwvkZuh/waFNF1uzVXfiUJlWMCnfU+FWxexC/3wam8t8WmRE3zq99vdNdJcphjiQge/uV78ws44q8gpWqvdAM2K7QBZ6ECYjZozT5n9GsmGssympXizAKFOw3DlWpdRfUM8x4fcEN6p7avpeVm+5brUg0HkHsUpi2kYjQ5IGCEI3ZEg4iHeaBR5SPedbVOqODnZnbMRGH09ik/JwVMMrPkNjsQU/suGlXnKs70/TMTpEKy+wpI2LedRdwTmuvXzne1Eg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7+KvXyMZ7MX4yVwQdhJX48FGctzaMMZ62AQvRiP4+qM=;
+ b=hFbe928MH9M6p9yDej0+zfAJGGmNV2dBKuFhAjUC1d0NOcATKPDuM1cYMCp7Q+/gaBp3yJWK8XPqFREQGuhqc49Z3TIQAfb3aHxwNAFxrcjGiKlNGwNcPBx97aJmM5mhElGQDecCLQys73HIo/vNSqQAXuJ5ixQ9qsZwU9cn99HZFTyttxYrECEs5DL8tPqZkMyTo9j2WWUfoICHMcca0QbKg9XYeALpn0qJXG8KBfv1stmrsmWkv3sMayvvCIBX3quGLtCBBALOpvRsUa8Z131Jjrxu/Kcehvlj0/kimtsMyXEhVsiF5Utrn+EcD/5L3oH0mp34eKWVFBR5yWD0Jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7+KvXyMZ7MX4yVwQdhJX48FGctzaMMZ62AQvRiP4+qM=;
+ b=XYf0aAdoRaoVUlGcCzjmT0fcwk1CVEBKuJjac41zRrbJZ9CYCrPKF2eIfqHy9kJ4EmjZegNWRgmKZkroiZUX6kZXQOpQVr8tEreQWttxw+HqY/Gb6Zr3AgfaEEn21sIyoETFTgoFofCj4h+aRzdFm52ghULQJrPKbk3fADZUOqU=
+Received: from BN9PR03CA0087.namprd03.prod.outlook.com (2603:10b6:408:fc::32)
+ by CO1PR10MB4497.namprd10.prod.outlook.com (2603:10b6:303:9d::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Thu, 15 Jan
+ 2026 05:41:33 +0000
+Received: from BN2PEPF000055DB.namprd21.prod.outlook.com
+ (2603:10b6:408:fc:cafe::51) by BN9PR03CA0087.outlook.office365.com
+ (2603:10b6:408:fc::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.7 via Frontend Transport; Thu,
+ 15 Jan 2026 05:41:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ BN2PEPF000055DB.mail.protection.outlook.com (10.167.245.5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.0 via Frontend Transport; Thu, 15 Jan 2026 05:41:32 +0000
+Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
+ 2026 23:41:32 -0600
+Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
+ 2026 23:41:31 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 14 Jan 2026 23:41:31 -0600
+Received: from [10.249.130.12] ([10.249.130.12])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60F5fQqW894764;
+	Wed, 14 Jan 2026 23:41:27 -0600
+Message-ID: <3a62d6f7-ff88-4f5a-8dfd-ded3e5ff1c86@ti.com>
+Date: Thu, 15 Jan 2026 11:11:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260114-asus-ipmi-expansion-card-v2-2-12b72d20a9b9@gmail.com>
-References: <20260114-asus-ipmi-expansion-card-v2-0-12b72d20a9b9@gmail.com>
-In-Reply-To: <20260114-asus-ipmi-expansion-card-v2-0-12b72d20a9b9@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, Anirudh Srinivasan <anirudhsriniv@gmail.com>
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-am62p-j722s-common-main: Add
+ HSM M4F node
+To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <afd@ti.com>, <hnagalla@ti.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20260114173551.2545088-1-b-padhi@ti.com>
+ <20260114173551.2545088-3-b-padhi@ti.com>
+ <f4319457-6c2e-42b6-a57e-6f326c93fdcd@ti.com>
+Content-Language: en-US
+From: "Padhi, Beleswar" <b-padhi@ti.com>
+In-Reply-To: <f4319457-6c2e-42b6-a57e-6f326c93fdcd@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055DB:EE_|CO1PR10MB4497:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2cfe81ca-3087-4a04-9964-08de53f8bd72
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|34020700016|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?c204WUZyemJENlluNXYrZi8yUHRmdVo0WitKbVdrQmRZbG5yMnVmd0FhZnRa?=
+ =?utf-8?B?Tzl3a1k4eTR3cFZkeU9icDJLeG45QUxyRDFmWkQrU1pVZXdMaVBqYkwxb25p?=
+ =?utf-8?B?cTAzcWQ5SmgyUkluOHY2N3ErN3QzUzQ0SkV2OEdzMVJvVXVSdE0zNkxOUmY2?=
+ =?utf-8?B?WmE1c1BCcW1ScFp1YUl1bFBHYTh5b1JycHNPTFBrNklobXJXZ0Q5NFF4UUdt?=
+ =?utf-8?B?SUUyanNWUnVxQm1jT1FpcGVIN3pVWVJ5bkowTjM3ZmNSQkE4RHJSR0Q2RjEy?=
+ =?utf-8?B?dnl1NVdTSGJ4d2RhbWZZZW93anNPUldzOUd6RUlCTnlpT28wQmN4N3hXVGQy?=
+ =?utf-8?B?YjVocldVcUgyU0hyLzUxNzVCTmJXRjdVMTJVVDJlMW9LNlJzaEpmeUJSV09l?=
+ =?utf-8?B?SnlUKzJabldjRlhLZEZiWCtGR1prL0xHR1U1UXpQN211VWpVWC9LVUFpZGc3?=
+ =?utf-8?B?bzdQVWppa3lEYXFCTnlUdTZZRStGMFRUT0JuLzZoRk1lLzQ0K3p6dEFNaCt2?=
+ =?utf-8?B?UUFJSi9BVVZMcDNDS3AyUGFHUW9ma0VVZjJsU0U1QkdkQzhxNkZIM21ka3pN?=
+ =?utf-8?B?YU9xVUxWS2hRanFyby9jcExqS20wTDJzcUlDSnh5VlRQTGpPblAyQWRacjVV?=
+ =?utf-8?B?dU9tQW1HZGoya2R2alo0VFBnQkpqNldaQUEvR044SzJxMUU3dlMycHU4VStj?=
+ =?utf-8?B?SExRbnJHRk5WdHQyVW9aYkRqc2pDZTFCWitHeFErRm5LcjRvQ0M5RDFXamI5?=
+ =?utf-8?B?RlVwQmVxQU1RcDVjRmpxZTlKdWtXY3BHVXJwRHVPbmZlOUpyenB3VlR3Mm42?=
+ =?utf-8?B?ZnpzaGwyRnV1eFRVN2FRaGk2Z0ZTTktvYjcrZzdOQTNLcHBBbituY3dzNndS?=
+ =?utf-8?B?RVlyaHpvYlhHcDRMaXdSeU8yZjUzaTRJZTNwWExiTDh2S1lOSG1lQjBkL0F3?=
+ =?utf-8?B?YWFQazA3Q2JKL2NGeDhpR2EvVGtaamtPYUdjeGJnNEViUzhwQW9wdlpXMFJq?=
+ =?utf-8?B?UktIYWZxbWU5M1BDNnhCeklSOGNPRE5DcHdNWUtFclJDaHU1NnhHYU0zMDZQ?=
+ =?utf-8?B?akhHTEZUMC8wQytGMk9QRDM5Q1ZYQWpuOUlBODJLNFkwazdiT1poNVhyR2Vq?=
+ =?utf-8?B?TVN6cGtTeS9XcnFtTUV1OEd4ci9kZ1M2Y25yeDZhWjlrQzFaSUhEVjVGeGhl?=
+ =?utf-8?B?WjJ5c2lHdHVyUy9DbkJ3bEQzTWNNRVlaakpaNmN0azRzZzFmQUIxNTV1Z0xo?=
+ =?utf-8?B?T09sMVdES2ZsR1NUeGFDdEVTTkRvVHliMmQwTFdLa3BZdkw5TEZPdmlYQ1hD?=
+ =?utf-8?B?U083OTcvWHdTeXJuKzhIbWFhSlVHcDl4YkpGOE1xbVlzdUV2Ykp2NVJ5YnhP?=
+ =?utf-8?B?OE9rMUl5d1F3Nml1RWxCK3ZLUjhHczQ0YVJJQlJSZ0NxYS82aXZ4UmZGZHBv?=
+ =?utf-8?B?OEJQV3RaSHBzYWw0VkVJV25ocmZ5bkVXQWJ2anNWWVFCNXhXZ1E4R2Y4amk4?=
+ =?utf-8?B?MFdzblVsZW4xMWJtSnJ2UnIvMzdUNW1DQ3VtcE5WUk1YUXV2WmtrOUNneE44?=
+ =?utf-8?B?czBFdjJMWWprQThHbjVURFl0MzlRQSs2cGJ3QzAwQmRZZWtHYUN6Y0J5N2hq?=
+ =?utf-8?B?SExVc2djdWdCYU5DVWdUcGxKTFVlNDV6K2hibmFiTWV5TVZZZ1JkL3RvM3lr?=
+ =?utf-8?B?OU9FRmtQejdvSlhqSmxpRmFqZEltOFk1UU9yTEw0aTJvMlVJU05wSEt4QWVL?=
+ =?utf-8?B?aEMwK1ZJcWM1eWtBcC9SdVpUMVpIdERha1l2MG41Q2JJZXMyeStNdU4rOVcx?=
+ =?utf-8?B?Qlh4bElOR1RtQUVvNEExLzh6N3I4eE1Ecy90ajdGTjJHVlorbG9VZGJBVGV3?=
+ =?utf-8?B?SkUzVDEyTE1tVVMvaElrUUhnVnNxaWhJcDkxOUlYcllyU0NWeG53dklMWFhF?=
+ =?utf-8?B?VEZlTDdJRmlPZGIxZUJpYUZuajkwZDhLNVZYMDB1Y2pHRWZoL20xT2lTaUpD?=
+ =?utf-8?B?RXRVRFM1eHQwd1p1ZzRCZnZoU0hPd0k3VmZKaEIvY3NIY3psd0dOWGRiVHJu?=
+ =?utf-8?B?TTRnZi9SNGk3V1FpQnZZRWU3U0k2eVJ1RHpLQ0pQQUVBektuNlgzMGhtVUtJ?=
+ =?utf-8?B?VEZ1NWszSnZTMEx5S0hXTnZFbzVIT2V1VUFsMUNxOGpYRnBUYWtJeDViamlY?=
+ =?utf-8?B?RTIzU05YZFp6SUFFQzF3MjlPMVdNeERzRHBVZXNSZzFVd1JuaXN5eDNweGdv?=
+ =?utf-8?Q?SoxfnZKOLR5V1HMejBMutjF6RFcf7oyWI3CDwO+Wfc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(34020700016)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 05:41:32.7434
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cfe81ca-3087-4a04-9964-08de53f8bd72
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF000055DB.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR10MB4497
 
-Add device tree for Asus Kommando IPMI Expansion card, an AST2600 based
-PCIe BMC card.
+Hi Udit,
 
-Signed-off-by: Anirudh Srinivasan <anirudhsriniv@gmail.com>
----
- arch/arm/boot/dts/aspeed/Makefile                  |   1 +
- .../aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts  | 117 +++++++++++++++++++++
- 2 files changed, 118 insertions(+)
+On 1/15/2026 10:06 AM, Kumar, Udit wrote:
+> Hi Beleswar,
+>
+> On 1/14/2026 11:05 PM, Beleswar Padhi wrote:
+>> The TI K3 AM62P and J722S SoCs have a HSM (High Security Module) M4F
+>> core in the MAIN Voltage Domain which could be used to run secure
+>> services like Authentication. Add Device Tree Node definitions for the
+>> HSM core in the respective SoC common main dtsi file.
+>>
+>> The HSM node is reserved to be loaded and booted by the early-stage
+>> bootloader. The firmware-name property is defined at the SoC level
+>> since the HSM is not a general-purpose remote core and boards are
+>> unlikely to use separate firmware. If needed in exceptional cases,
+>> board-specific device trees can override this property.
+>>
+>> The corresponding reg ranges of HSM node has also been added to its
+>> parent node's (cbass_main bus) ranges property.
+>>
+>> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+>> ---
+>> v3: Changelog:
+>> [Nishanth]:
+>>   1. Use generic node name 'remoteproc'
+>>   2. Use label 'hsm' instead of 'hsm_m4fss'
+>>   3. Add a comment for separate SRAMs
+>>   4. Update firmware-name property to match existing naming conventions
+>>   5. Change status to 'reserved' and add a commment
+>>   6. Re-order bootph-pre-ram property before vendor properties
+>>   7. Update commit msg adding rationale for firmware-name in SoC.dtsi
+>>
+>> Link to v2:
+>> https://lore.kernel.org/all/20260106104755.948086-4-b-padhi@ti.com/
+>>
+>> v2: Changelog:
+>> 1. None
+>>
+>> Link to v1:
+>> https://lore.kernel.org/all/20251231165102.950644-4-b-padhi@ti.com/
+>>
+>>   .../boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 17 +++++++++++++++++
+>>   arch/arm64/boot/dts/ti/k3-am62p.dtsi            |  1 +
+>>   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi       |  5 +++++
+>>   arch/arm64/boot/dts/ti/k3-j722s.dtsi            |  1 +
+>>   4 files changed, 24 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> index 3cf7c2b3ce2dd..0e1af2a69ca2e 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> @@ -1117,4 +1117,21 @@ vpu: video-codec@30210000 {
+>>           clocks = <&k3_clks 204 2>;
+>>           power-domains = <&k3_pds 204 TI_SCI_PD_EXCLUSIVE>;
+>>       };
+>> +
+>> +    hsm: remoteproc@43c00000 {
+>> +        compatible = "ti,hsm-m4fss";
+>> +        /* contiguous regions but instantiated separately in HW */
+>> +        reg = <0x00 0x43c00000 0x00 0x20000>,
+>> +              <0x00 0x43c20000 0x00 0x10000>,
+>> +              <0x00 0x43c30000 0x00 0x10000>;
+>> +        reg-names = "sram0_0", "sram0_1", "sram1";
+>> +        resets = <&k3_reset 225 1>;
+>> +        firmware-name = "am62p-hsm-m4f-fw";
+>
+> you don't need clock and power-domain for this ?
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 9adf9278dc94f84653775296c93150e61cc99328..f599a3e61dd1ae69a133f2b9ea3a90da699f2f18 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -14,6 +14,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-asrock-romed8hm3.dtb \
- 	aspeed-bmc-asrock-spc621d8hm3.dtb \
- 	aspeed-bmc-asrock-x570d4u.dtb \
-+	aspeed-bmc-asus-kommando-ipmi-card.dtb \
- 	aspeed-bmc-asus-x4tf.dtb \
- 	aspeed-bmc-bytedance-g220a.dtb \
- 	aspeed-bmc-delta-ahe50dc.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..ab7ad320067c1ddc0fea9ac386fd488c8ef28184
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-kommando-ipmi-card.dts
-@@ -0,0 +1,117 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2025 Anirudh Srinivasan
-+
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include "aspeed-g6-pinctrl.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+
-+/ {
-+	model = "Asus Kommando IPMI Expansion Card";
-+	compatible = "asus,ast2600-kommando-ipmi-card", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial4:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-fault {
-+			gpios = <&gpio1 ASPEED_GPIO(C, 5) GPIO_ACTIVE_HIGH>;
-+			label = "panic_amber";
-+			panic-indicator;
-+			default-state = "off";
-+		};
-+
-+		led-heartbeat {
-+			gpios = <&gpio0 ASPEED_GPIO(A, 7) GPIO_ACTIVE_LOW>;
-+			label = "heartbeat_green";
-+			linux,default-trigger = "timer";
-+		};
-+
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		video_engine_memory: video {
-+			size = <0x04000000>;
-+			alignment = <0x01000000>;
-+			compatible = "shared-dma-pool";
-+			reusable;
-+		};
-+	};
-+};
-+
-+&fmc {
-+	status = "okay";
-+
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-64.dtsi"
-+	};
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+	/*A0 0*/	"", "", "", "", "", "", "", "BMC_HBLED",
-+	/*B0 8*/	"", "", "", "", "", "", "", "",
-+	/*C0 16*/	"", "", "", "", "", "", "", "",
-+	/*D0 24*/	"", "", "", "", "", "", "", "",
-+	/*E0 32*/	"", "", "", "", "", "", "", "",
-+	/*F0 40*/	"", "", "", "", "", "", "", "",
-+	/*G0 48*/	"", "", "", "", "", "", "", "",
-+	/*H0 56*/	"", "", "", "", "", "", "", "",
-+	/*I0 64*/	"", "", "", "BMC_RSTBTN", "", "", "", "",
-+	/*J0 72*/	"", "", "", "", "", "", "", "",
-+	/*K0 80*/	"", "", "", "", "", "", "", "",
-+	/*L0 88*/	"", "", "", "", "", "", "", "",
-+	/*M0 96*/	"", "", "", "", "", "", "", "",
-+	/*N0 104*/	"", "", "", "", "", "", "", "",
-+	/*O0 112*/	"", "", "", "", "", "", "", "",
-+	/*P0 120*/	"", "", "", "", "", "", "", "",
-+	/*Q0 128*/	"", "", "", "", "", "", "", "",
-+	/*R0 136*/	"", "", "", "", "", "", "", "",
-+	/*S0 144*/	"", "", "", "", "", "", "", "",
-+	/*T0 152*/	"", "", "", "", "", "", "", "",
-+	/*U0 160*/	"", "", "", "", "", "", "", "",
-+	/*V0 168*/	"", "", "", "", "BMC_PWRBTN", "", "MB_S0_DETECT", "",
-+	/*W0 176*/	"", "", "", "", "", "", "", "",
-+	/*X0 184*/	"", "", "", "", "", "", "", "",
-+	/*Y0 192*/	"", "", "", "", "", "", "", "",
-+	/*Z0 200*/	"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+	/*18A0 0*/  "","","","","","","","",
-+	/*18B0 8*/  "","","","","","","","",
-+	/*18C0 16*/ "","","","","","BMC_MLED","","",
-+	/*18D0 24*/ "","","","","","","","",
-+	/*18E0 32*/ "","","","","","","","";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
-+
-+&video {
-+	status = "okay";
-+	memory-region = <&video_engine_memory>;
-+};
 
--- 
-2.52.0
+That info is abstracted out via ti-sci calls. ti_sci_cmd_get_device()
+takes care of setting clocks and power domains for us.
 
+Same for other rprocs:
+https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi#L178
+
+Thanks,
+Beleswar
+
+>
+>
+>> +        bootph-pre-ram;
+>> +        ti,sci = <&dmsc>;
+>> +        ti,sci-dev-id = <225>;
+>> +        ti,sci-proc-ids = <0x80 0xff>;
+>> +        /* reserved for early-stage bootloader */
+>> +        status = "reserved";
+>> +    };
+>>   };
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
+>> index e2c01328eb298..9d6266d6ddb82 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
+>> @@ -96,6 +96,7 @@ cbass_main: bus@f0000 {
+>>                <0x00 0x31100000 0x00 0x31100000 0x00 0x00050000>, /* 
+>> USB1 DWC3 Core window */
+>>                <0x00 0x40900000 0x00 0x40900000 0x00 0x00030000>, /* 
+>> SA3UL */
+>> [..]
 
