@@ -1,131 +1,180 @@
-Return-Path: <devicetree+bounces-255572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 938FDD24575
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:58:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11AAED245F3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:03:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7268C30039F6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:57:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D7A2309D065
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C213793AF;
-	Thu, 15 Jan 2026 11:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864523939DE;
+	Thu, 15 Jan 2026 12:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="isQK8rJo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1844D3570AF;
-	Thu, 15 Jan 2026 11:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE27437C110
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 12:02:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768478264; cv=none; b=P7N+0JnffrZAlIvzDYj8VB0HcrCPaG79shLkC+ZQaH8wJ7ZGdyi4H2anNPLsGGckXiCXYc5x5ueplLsLfd+EEVjb/LhZd+4cFeJw1h7u5T9qRtX+WgVyGXKXqEzkU+TpVIbbpsrvk/Jza4Lvg35oruYj10585PZh6gNf7Nc4vp4=
+	t=1768478525; cv=none; b=l0VaJhnr5npKilnoiZIDACciofmVVqV9aKYFrcSaxu/Blo7lDS91Lak/Zf1vegaEtQ1RzwVAMVWZ2CbgavpkjLx0gU2rPSp+6vdDKhxWqY0QUouhTx+/FMlZh1La2PpOiI0h2DURWpu1b17YwucOGAqJFGnqc6NIfQPp+W+s0ZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768478264; c=relaxed/simple;
-	bh=I1TQmKi0aaoXQSeP6gDVQYQTUur5X3IXmANr2CC4U5Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E9m+taNbRW0cegvUdwWn833uEglZjYexxCo3y0zZ0mAgVwu7N39SnU5BHRJt7V9Lk/o7KOTi+sLgqM/w6a+j6i7q9Ky1hdLokFa7XD+4uwU6wFdFkXW8TB2blBogmW0nt3nzSgacyJKixR4K/BcLW2myjYGTlSuBOeIJxFTVOFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F6D8FEC;
-	Thu, 15 Jan 2026 03:57:29 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.197.51])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BDCFD3F632;
-	Thu, 15 Jan 2026 03:57:34 -0800 (PST)
-Date: Thu, 15 Jan 2026 11:57:32 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: firmware: arm,scmi: Document
- arm,no-completion-irq property
-Message-ID: <aWjWLFi6xUIn3_GQ@bogus>
-References: <20260115004921.548282-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1768478525; c=relaxed/simple;
+	bh=RgSCItvIzITjg76iDqAPErZBX5BArJAS6aQlRSuCTf8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=m1noNyLEw2AyVeIO32MJUY8+qs+/2Tp+jG7UW4+sIwVFiJ1hVMWeMJXQ6vx5WgzZxuWBtPR1pSYejZviiQmy2UNBRErCVok3KxAsz3FfWwn381zRCk4s4eaNB2iTTXXmKFsr21pl1uo8HTvV0ldHeygyQUCmydepjjuUeapZkoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=isQK8rJo; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1768478520;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4t6OWwNa16OqY64IWC39VX/QLXVgOz/FT6ehthBksPk=;
+	b=isQK8rJo3JNTh583vehT32QrNPwJahqQMxoh60Q6cHXdehCsjkKDKo3wVx7jrDI6ws5B1u
+	T2gwkLU9StzZ0budq/Sg8wNN1w28T7dLUGF0dV9gtpfvq8bi/Hdf87DeVxGa+R1vi7wxsU
+	NlCXqAAhcm488pDm8J1HsOTdTIF6bJ8=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-255-uI448jlmOA-U__5D4zdMPg-1; Thu,
+ 15 Jan 2026 07:01:56 -0500
+X-MC-Unique: uI448jlmOA-U__5D4zdMPg-1
+X-Mimecast-MFC-AGG-ID: uI448jlmOA-U__5D4zdMPg_1768478513
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 3E6D319560B2;
+	Thu, 15 Jan 2026 12:01:52 +0000 (UTC)
+Received: from [10.44.32.221] (unknown [10.44.32.221])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 38B0618001D5;
+	Thu, 15 Jan 2026 12:01:44 +0000 (UTC)
+Message-ID: <92bfc390-d706-4988-b98d-841a50f10834@redhat.com>
+Date: Thu, 15 Jan 2026 13:01:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260115004921.548282-1-marek.vasut+renesas@mailbox.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 01/12] dt-bindings: dpll: add common
+ dpll-pin-consumer schema
+From: Ivan Vecera <ivecera@redhat.com>
+To: netdev@vger.kernel.org
+Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
+ Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Alexander Lobakin <aleksander.lobakin@intel.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>,
+ Grzegorz Nitka <grzegorz.nitka@intel.com>
+References: <20260108182318.20935-1-ivecera@redhat.com>
+ <20260108182318.20935-2-ivecera@redhat.com>
+Content-Language: en-US
+In-Reply-To: <20260108182318.20935-2-ivecera@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
 
-On Thu, Jan 15, 2026 at 01:48:56AM +0100, Marek Vasut wrote:
-> Document new property arm,no-completion-irq, which sets all SCMI
-> operation into poll mode. This is meant to work around uncooperative
-> SCP implementations, which do not generate completion interrupts.
-> This applies primarily on mbox shmem based implementations.
+On 1/8/26 7:23 PM, Ivan Vecera wrote:
+> Introduce a common schema for DPLL pin consumers. Devices such as Ethernet
+> controllers and PHYs may require connections to DPLL pins for Synchronous
+> Ethernet (SyncE) or other frequency synchronization tasks.
 > 
-> With this property set, such implementations which do not generate
-> interrupts can be interacted with, until they are fixed to generate
-> interrupts properly.
+> Defining these properties in a shared schema ensures consistency across
+> different device types that consume DPLL resources.
 > 
-> Note that, because the original base protocol exchange also requires
-> some sort of completion mechanism, it is not possible to query SCMI
-> itself for this property and it must be described in DT. While this
-> does look a bit like policy, the SCMI provider is part of the
-> hardware, hence DT.
-> 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
 > ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Cristian Marussi <cristian.marussi@arm.com>
-> Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sudeep Holla <sudeep.holla@arm.com>
-> Cc: arm-scmi@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> V2: s@mean@&t and limit poll transport to mailbox/shmem only
-> V3: - Reformat the commit message, expand property description to
->       explicitly spell out this is hardware description.
->     - Rename property from arm,poll-transport to arm,no-completion-irq
-> ---
->  .../devicetree/bindings/firmware/arm,scmi.yaml        | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>   .../bindings/dpll/dpll-pin-consumer.yaml      | 30 +++++++++++++++++++
+>   MAINTAINERS                                   |  1 +
+>   2 files changed, 31 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index be817fd9cc34b..46d9a0a9a0e58 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -146,6 +146,14 @@ properties:
->        this platform. If set, the value should be non-zero.
->      minimum: 1
->  
-> +  arm,no-completion-irq:
-> +    type: boolean
-> +    description:
-> +      An optional property which unconditionally forces polling in all transports,
-> +      meant for hardware which does not generate completion interrupts. This is
-> +      mainly meant to work around uncooperative SCP or SCP firmware, which does
-> +      not generate completion interrupts.
+> diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+> new file mode 100644
+> index 0000000000000..60c184c18318a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+> @@ -0,0 +1,30 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dpll/dpll-pin-consumer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
+> +title: DPLL Pin Consumer
+> +
+> +maintainers:
+> +  - Ivan Vecera <ivecera@redhat.com>
+> +
+> +description: |
+> +  Common properties for devices that require connection to DPLL (Digital Phase
+> +  Locked Loop) pins for frequency synchronization (e.g. SyncE).
+> +
+> +properties:
+> +  dpll-pins:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      List of phandles to the DPLL pin nodes connected to this device.
+> +
+> +  dpll-pin-names:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description:
+> +      Names for the DPLL pins defined in 'dpll-pins', in the same order.
+> +
+> +dependencies:
+> +  dpll-pin-names: [ dpll-pins ]
+> +
+> +additionalProperties: true
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 765ad2daa2183..f6f58dfb20931 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7648,6 +7648,7 @@ M:	Jiri Pirko <jiri@resnulli.us>
+>   L:	netdev@vger.kernel.org
+>   S:	Supported
+>   F:	Documentation/devicetree/bindings/dpll/dpll-device.yaml
+> +F:	Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+>   F:	Documentation/devicetree/bindings/dpll/dpll-pin.yaml
+>   F:	Documentation/driver-api/dpll.rst
+>   F:	drivers/dpll/
 
-I would swap the order of the above two points.
+Based on private discussion with Andrew Lunn (thanks a lot), this is
+wrong approach. Referencing directly dpll-pin nodes and using their
+phandles in consumers is at least unusual.
 
-“This optional property is intended for hardware that does not generate
-completion interrupts and can be used to unconditionally enable forced polling
-mode of operation.”
+The right approach should be referencing dpll-device and use cells
+to specify the dpll pin that is used.
 
-You need to update the commit message accordingly. We do not want to indicate
-how this property should be used, as that is left to the implementation. The
-emphasis should be on what this property indicates to its users.
+Also Krzysztof mentioned there are missing update of supplier_bindings
+in drivers/of/property.c to ensure that proper dev_links between
+producer and consumer are created.
 
-Please update only if DT maintainers are also in agreement. I have just
-expressed my opinion. IIUC, it is aligned to standard DT binding rules but
-I may be wrong.
+I will send a v2 of this patch-set with addressed another issues found
+by patchwork bot and including the DT schema (this patch) to review
+if it is ok.
 
--- 
-Regards,
-Sudeep
+Thanks,
+Ivan
+
 
