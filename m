@@ -1,104 +1,205 @@
-Return-Path: <devicetree+bounces-255456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4F9D2336D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:42:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFF4BD234DF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 09:56:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F1CA3301FD2A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:42:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E21C3016733
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE2633B6EF;
-	Thu, 15 Jan 2026 08:42:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4C133EB10;
+	Thu, 15 Jan 2026 08:53:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GKvh7Nwz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cTgGlXxd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC7D33A9D6
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 08:42:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB81522A4EB;
+	Thu, 15 Jan 2026 08:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768466560; cv=none; b=cmX3sTOeV5Lzg6h3eCFEnZKhU1Xq69NS/6hTQvmrhULujT0a6H70hNvb/rN8faFtrEXXdm+oJiY+yqYQGjv7M9Qod9KG4aVc1uHhrsfn/dTxiQ7aX4r8hIDJ/3Cbm7RQRuoSarOl2Kglev5u0hGVsPW8R7tvUB36CdzJMHj/rcI=
+	t=1768467204; cv=none; b=hbpmS6KQ/MNdJ5itghMsmIfCzdr6BDnKZL8ft3e9fCA99A+C1vYwLoR9Y34RK+jr6o/l/OjhgNbBgaI2JB/v9swcWkUn7Nx27eKqQ8JhXxgwyoMB6JcGNXeu/90a+4gbe+iq/Q/kbBONof1qXcX/NwsDuwYTjoZPbDkXFFHdyRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768466560; c=relaxed/simple;
-	bh=VUL6Odvz2BGJmEiErMIp7g1YPSC3jt6JjrwwVLc52zk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IaZvLDSDl9h3pHEoeN0QtZztvBSRfGV9e1WhoCF2BWVPpAyRjSCBdboncRibEf8qiLr/dD+js+1E9cArDEqZUA8/+eEHarR/5tGUl0l9BQHQPTFULBUYVjKQJ4N+gCx4ADTMc5eGXhKW0rGy2plMjOrjSUK5BxZyFBcZJtEX+1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GKvh7Nwz; arc=none smtp.client-ip=74.125.82.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-121bf277922so852383c88.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 00:42:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768466558; x=1769071358; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VUL6Odvz2BGJmEiErMIp7g1YPSC3jt6JjrwwVLc52zk=;
-        b=GKvh7NwzgBdYiYlE70l/lFxzOru3vkQxO3vU9KGfnxWaOxLqzTn9Zn2GO4RY6H0JV/
-         WTV7Sh3IzL+e22TIARy0575ItvU4RgCjw2o/Erlc4zEtnIR/Y34YNNO8XCmq9PZzbH7V
-         ylIqiJRfKoxzu3ENdeI1jCpfgxF5PjL/ULj+i+96S7aK1q4OnLrOBuy7xwsxo+heoHXP
-         +7IRr50rR19/FxGeGVxtzdgtzsXWrlu9KgBX70D/ZICQONTZ4qNtK/Kh0OhWv+FVV/Yr
-         MnRKMYN5uyTvDKlbdw/JV7ZNemiY0enSUF+l1TLAfbuIeKdi9fLECNp9JK/Pk8Ll6vfR
-         t/7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768466558; x=1769071358;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=VUL6Odvz2BGJmEiErMIp7g1YPSC3jt6JjrwwVLc52zk=;
-        b=rTKkrHbuSBx8cZPltFjLVbE6RHcSf4fYTd241FqQDBVeR1nWzH9MOgYgn9i4JHQBb+
-         CfCmTchi6jyOIJig6BwKBFOR992dBElPnNBHkQul+RqPtpGzyt2k/pnFIfzJds2KbQHw
-         AaJKDH48GiAJImIB7PhqiAhZMF2N4OAqX5vYOfmxqwe5wNr5FNQAclT39LsXPy/UdkVB
-         2N+YbAoaSX2AW9e2g30GDhVteN+Rt5LJbEmmY0eONnc2TtPF+ZH4TSr4MtF8Wdg/zrS4
-         9I1FGXsvCQ8AngwWZyNS1+4m8GwVrLi9UN7/hzgZyX91RFETTVS+jnnv7QXD7+tTcvX3
-         qixA==
-X-Forwarded-Encrypted: i=1; AJvYcCXXt8G5gnicJn8exz9BVz6P33yHLHVMepkEP5PiCTMbSFpCMCBm86FN7CX4hTyITxkEnDkjH6D9AbrM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzD8kuJFNIF5fI1a3e+xC+6hfbewZspDlzpVOOIECuhJHDm3I1W
-	uXc6re3VQ1v35ssirtv1dzFlntio/bOnBjgiau5uZtZU5ZQre1SvJAXQVuBm31j32970pwnA3Ap
-	6yLU5xQ3GSpP+M6CwPBqyoUMeZYZfIVE=
-X-Gm-Gg: AY/fxX5QkbSo+ZD2s77+ue8abhp/CQNuZLC5eGnFslkTPntTIPDX3yIZXcqLsZVBmN1
-	lUAVZGatPkp+EySzzxXsJsp3BKPm70mDw78voKa6OYx2VATnbpW/iNCZ6gN+3hmYsbmjP6OuhIm
-	RGTT790pwq6k/g5ebNFOaeL6MKOQ7hVfI1+YK3zjh5q5jvxRArIeyfNs8CvEq/f2DeyGFhcFIaV
-	XxdsGGkZLPre7ICldYmwxzqzll3LnY2Myva+BJ6TLV6k+oV7NJ1HFPILGcfKWNk+6j1TSLCLUb7
-	S3+iPnDjaw/n6XnbYIB2nfSJFX5OBTX4QcsQVYf5pHoJfRMk+hRcyFtcmw+qUKyJ/a+WKCJgZSi
-	7B2DH+UU4O0uC5jnFN2Ru
-X-Received: by 2002:a05:701b:231a:b0:11d:f440:b757 with SMTP id
- a92af1059eb24-12336a8ac7cmr5154017c88.26.1768466557874; Thu, 15 Jan 2026
- 00:42:37 -0800 (PST)
+	s=arc-20240116; t=1768467204; c=relaxed/simple;
+	bh=u4r7k4v/QLQr7iis7zl29Bdym9mmUE102gG7EboGlzA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JQrYS9ajm6TMbAidc4zJFDymK94uBUzxu491REpavIc7UAeJPFGA+8Zo5lovIYQLYLFminIGrPPPGksYHboVeNAPFckfEtxGmO+QpRag4vluQjy9NW8N9fi5ZvxAaZqMht0JaN0InDDUsaErvL20tz3+NUAwp+DgKCwfOS+ecuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cTgGlXxd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC1A3C116D0;
+	Thu, 15 Jan 2026 08:53:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768467204;
+	bh=u4r7k4v/QLQr7iis7zl29Bdym9mmUE102gG7EboGlzA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cTgGlXxdv5orzbDwpbqvnVWNc7KaYKVJLUWBAfSQ9NAMjKg2evRemjSSB6p1mxlSR
+	 ovE+lTvbSgcuj2dBoAdOd8ruld2ri65X9DMD0CyR2PiL24qiWg2G/Ms+XLas4/rzeQ
+	 D2jodQaSnm5mgCXyIPk66t4PCwLfct346gOIErK2o9sH9bp+5dHOWdFemWQuEbIZFF
+	 ZxEz93I5g3O3nHnEIylH/8KygzsPv7s555CnoMSt+urHtgsSASqWIKQvTGIZB2KWsR
+	 0++eKV40HMwyjEP96Xpz9fOW0VPHKUjgJwXLi9FQEMsVFo+GWowxVc1Mvw1uaTCdzT
+	 DvPDUx3H+tlGw==
+Message-ID: <ae5d7b54-bc05-434a-b4a1-8cad1899462c@kernel.org>
+Date: Thu, 15 Jan 2026 09:53:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260114-mxsdma-module-v1-0-9b2a9eaa4226@nxp.com> <20260114-mxsdma-module-v1-3-9b2a9eaa4226@nxp.com>
-In-Reply-To: <20260114-mxsdma-module-v1-3-9b2a9eaa4226@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Thu, 15 Jan 2026 10:45:18 +0200
-X-Gm-Features: AZwV_Qi-TQ7lJMIQ3JWU_HIrOBnLtQtdsWIBSjxYFap9Y2nvd_jWRPWPx5vtGmI
-Message-ID: <CAEnQRZBe5Q2Ejbf_-+Mo8zTc=mSDgpXuXbh3NVHcwjooggD0Ow@mail.gmail.com>
-Subject: Re: [PATCH 03/13] dmaengine: mxs-dma: Fix missing return value from of_dma_controller_register()
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Vinod Koul <vkoul@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Shawn Guo <shawn.guo@freescale.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] hwmon: (tmp108) Add support for P3T1035 and
+ P3T2030
+To: Mayank Mahajan <mayankmahajan.x@nxp.com>, linux@roeck-us.net,
+ corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: priyanka.jain@nxp.com, vikash.bansal@nxp.com
+References: <20260115065757.35-1-mayankmahajan.x@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260115065757.35-1-mayankmahajan.x@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 15, 2026 at 12:34=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
->
-> Propagate the return value of of_dma_controller_register() in probe()
-> instead of ignoring it.
->
-> Fixes: a580b8c5429a6 ("dmaengine: mxs-dma: add dma support for i.MX23/28"=
-)
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On 15/01/2026 07:57, Mayank Mahajan wrote:
 
-I think you can send this as an independent patch or at least put it
-first in the series as it is a bugfix.
+> @@ -369,7 +486,7 @@ static int tmp108_common_probe(struct device *dev, struct regmap *regmap, char *
+> 
+>  	err = devm_add_action_or_reset(dev, tmp108_restore_config, tmp108);
+>  	if (err) {
+> -		dev_err(dev, "add action or reset failed: %d", err);
+> +		dev_err_probe(dev, err, "Add action or reset failed");
+
+How is this relevant to new device? Do not mix independent changes into
+one commit. Please carefully read submitting patches, although this is
+generic programming practice and nothing specific to kernel.
+
+>  		return err;
+>  	}
+> 
+> @@ -384,17 +501,34 @@ static int tmp108_probe(struct i2c_client *client)
+>  {
+>  	struct device *dev = &client->dev;
+>  	struct regmap *regmap;
+> +	enum tmp108_hw_id hw_id;
+> +	const void *of_data;
+> 
+>  	if (!i2c_check_functionality(client->adapter,
+> -				     I2C_FUNC_SMBUS_WORD_DATA))
+> -		return dev_err_probe(dev, -ENODEV,
+> +				     I2C_FUNC_SMBUS_BYTE_DATA | I2C_FUNC_SMBUS_WORD_DATA))
+> +		return dev_err_probe(dev, -EOPNOTSUPP,
+>  				     "adapter doesn't support SMBus word transactions\n");
+
+I do not see how changing error code is related/relevant to new device
+support...
+
+> 
+> -	regmap = devm_regmap_init_i2c(client, &tmp108_regmap_config);
+> +	regmap = devm_regmap_init(dev, &tmp108_i2c_regmap_bus, client, &tmp108_regmap_config);
+>  	if (IS_ERR(regmap))
+>  		return dev_err_probe(dev, PTR_ERR(regmap), "regmap init failed");
+> 
+> -	return tmp108_common_probe(dev, regmap, client->name);
+> +	/* Prefer OF match data (DT-first systems) */
+> +	of_data = device_get_match_data(&client->dev);
+> +	if (of_data) {
+> +		hw_id = (enum tmp108_hw_id)(uintptr_t)of_data;
+
+Completely mixed up cases. First, do not use uintptr_t. Second, last
+enum cast is not needed. You only need cast via unsigned long.
+
+> +	} else {
+> +		/* Fall back to legacy I2C ID table */
+> +		const struct i2c_device_id *id = i2c_client_get_device_id(client);
+> +
+> +		if (!id) {
+> +			dev_err_probe(dev, -ENODEV, "No matching device ID for i2c device\n");
+> +			return -ENODEV;
+
+Syntax is return dev_err_probe. Look above - just few lines above you
+have it right, so you are you introducing different syntax?
+
+> +		}
+> +		hw_id = (enum tmp108_hw_id)id->driver_data;
+
+And this should cause build warnings on W=1.
+
+Are you sure you build tested it with different compilers, with W=1, for
+32 and 64 bit platforms?
+
+> +	}
+> +
+> +	return tmp108_common_probe(dev, regmap, client->name, hw_id);
+>  }
+> 
+
+
+> 
+>  static const struct of_device_id tmp108_of_ids[] = {
+> -	{ .compatible = "nxp,p3t1085", },
+> -	{ .compatible = "ti,tmp108", },
+> -	{}
+> +	{ .compatible = "nxp,p3t1035", .data = (void *)(uintptr_t)P3T1035_ID },
+> +	{ .compatible = "nxp,p3t1085", .data = (void *)(uintptr_t)P3T1085_ID },
+> +	{ .compatible = "nxp,p3t2030", .data = (void *)(uintptr_t)P3T1035_ID },
+
+So devices are compatible? If so, drop this and express it in the bindings.
+
+> +	{ .compatible = "ti,tmp108", .data = (void *)(uintptr_t)TMP108_ID },
+> +	{ /* sentinel */ },
+
+Please organize the patch documenting the compatible (DT bindings)
+before the patch using that compatible.
+See also:
+https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+
+
+
+Best regards,
+Krzysztof
 
