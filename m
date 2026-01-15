@@ -1,110 +1,156 @@
-Return-Path: <devicetree+bounces-255615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB738D24BCC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:31:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17FCFD24C41
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:39:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4B87C300EBB7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:31:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8080C30802B8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:32:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1FCD3A0EBD;
-	Thu, 15 Jan 2026 13:31:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B6C3A1A2A;
+	Thu, 15 Jan 2026 13:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XKi267M9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YUVFT4Pv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8564720C00C;
-	Thu, 15 Jan 2026 13:31:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0EE1395D8F;
+	Thu, 15 Jan 2026 13:32:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768483906; cv=none; b=FZBnRf9cdWDg1gDfAPwt5I53eIY+UERi86zKxQAc9fsQAXl2tkHFKo1aBrjmrALs/MSCmWYhM6Sst7pb5GSwf1SKr9Jr8yRdhanvgSdZAuFpEvmszBtJ1EdGLev5gQ8zS50S2P3mih6yBAXKE3rMaDbVeo7267+ucp1AJfRHXtk=
+	t=1768483959; cv=none; b=Kkdck1gxT75GdwBxac8OPIwXYG3rFEEH0BNBb3QMGBJXnkT/rrwxNySTrpwjDVpubirhtG1IEgNM8zsYU6LcLm1ai7LeaJXtslKAfOd61NuIkLLCm5yLR02APHZRjefprLEfrxWOZrX4xosGbnG6QERYasIlya2UJ+pcPWFJfn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768483906; c=relaxed/simple;
-	bh=j1wiepT+hzeg7Y1djEHsSLAONuKihZ6Pn/rPYeqsOWY=;
+	s=arc-20240116; t=1768483959; c=relaxed/simple;
+	bh=VHYL1nkOzjGIBxU6anuNNYGVykvMwehpUoJm26Swras=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WxzTtvpMzyDl51b7ETOJiRPmbvbTi3OXZmNpaDmfT3d2ea7j9NajRXEml4Uj8iuHI1iFFv401imVXGWLJsUFCjGRbi/kouUl9tEe4OZUevsVHzQkt1IcbCtwYl5L5xcr37ulkpzwxwn1fW5TWRbY2xX8PhFZpp0WvrBhEUqyIq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XKi267M9; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768483906; x=1800019906;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=j1wiepT+hzeg7Y1djEHsSLAONuKihZ6Pn/rPYeqsOWY=;
-  b=XKi267M95143E6R08qqIp0AZJqA+dAWQmaNJDRfKYOJY+fVcYBNNro+T
-   i2Hd7+PsO8XuyKgd7w7fYnY6zPhQRkTg+mVDC9YbDrtbXAjx1WDsRLa/v
-   KU3YjJgOx/Kg14KY5BqWALcJGlcF+TZ+IBaqGfWHw3oZ/DVPGz0j3dU0Z
-   s2ggVysdS8tqfKbq/7j+Wk0j8rMClaWxC9djpKTgzIBNW/SzOvB7jtfXD
-   JMD53yAWIqF0E2Zn2ouqMGWDr8m+USGyMHySyFGQOawjTl54X4jtSimy0
-   9D+jw7DULnmHeUFfsXahzu18xb6OcdBLde6fjGqyYh69FpyY9vuclkK13
-   Q==;
-X-CSE-ConnectionGUID: bPdnycq+TFaV1t4G5ZqoXQ==
-X-CSE-MsgGUID: NTWHF++eRBuPKDUUGKLZAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="69767855"
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
-   d="scan'208";a="69767855"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 05:31:45 -0800
-X-CSE-ConnectionGUID: utDa7AUNQoGjbUFx+TyNLg==
-X-CSE-MsgGUID: fKEOryDMTvq7e9/QkkTjKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
-   d="scan'208";a="205233698"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by fmviesa008.fm.intel.com with ESMTP; 15 Jan 2026 05:31:43 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1003)
-	id 9EF4F98; Thu, 15 Jan 2026 14:31:41 +0100 (CET)
-Date: Thu, 15 Jan 2026 14:31:41 +0100
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jon Hunter <jonathanh@nvidia.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: rt5640: Fix duplicate clock properties in DT
- binding
-Message-ID: <aWjsPfGO75DzjWhb@black.igk.intel.com>
-References: <20260114-asoc-fix-rt5640-dt-clocks-v1-1-421d438673c2@kernel.org>
- <176848231789.253446.13860422269412592694.b4-ty@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SQYZhxpOX/cGMeq5LhIzm55gS8noWreXSRnJKk/rHSObBaaxh6xnWTPh7bgIsvmzaHl/9ipg67BAgRiipb76zOApZ5EPOYcVfWDlRp8XEdc2q22g4cUO0OL9MBFT19bGgxnx+PBsfozCJFcsOhVHM0FHtPzmULeHMtk3D974Fqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YUVFT4Pv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F833C116D0;
+	Thu, 15 Jan 2026 13:32:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768483958;
+	bh=VHYL1nkOzjGIBxU6anuNNYGVykvMwehpUoJm26Swras=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YUVFT4Pv+GbNch5ybevpHXCZtTqQsFPxF/zCQoI92R853eUEEkPraTqmDBf8PFues
+	 PBAT0N7DIFFZI+2V38qolM+jE95dcVW1dtt8Zi3RufdjUNm4249uwuoVAvPOWT32om
+	 ElCvSXlvlCunrL+UGjScZyA3Kqyh1whgxN6RBVdU9sUR6ZiRAsG4UZyIWUJRtmiq9r
+	 sSG6SiKXsem7/4gozdb/ihcZC9ZXMk8jxgOhwZMcpArGmXAP6ZMNycnSGaPFVbLV5o
+	 pfl8Sk7Zd0mWyAJI8Od3SCrrgYTQ9thn096k7gyAkwE4Ixfhtq8T2zWSgps3bA/1/3
+	 dt5tNSV+5L8iQ==
+Date: Thu, 15 Jan 2026 14:32:36 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, 
+	Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+	willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Subject: Re: [PATCH 1/8] dt-bindings: thermal: Add Google GS101 TMU
+Message-ID: <20260115-ultramarine-wildebeest-of-completion-ea1bc0@quoll>
+References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
+ <20260114-acpm-tmu-v1-1-cfe56d93e90f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <176848231789.253446.13860422269412592694.b4-ty@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20260114-acpm-tmu-v1-1-cfe56d93e90f@linaro.org>
 
-On Thu, Jan 15, 2026 at 01:05:17PM +0000, Mark Brown wrote:
-> On Wed, 14 Jan 2026 22:08:35 +0000, Mark Brown wrote:
-> > Not quite overlapping changes to the rt5640 binding resulted in duplicate
-> > definitions of the clocks and clock-names properties. Delete one of them,
-> > preferring the simpler one.
-> > 
+On Wed, Jan 14, 2026 at 02:16:29PM +0000, Tudor Ambarus wrote:
+> Add device tree bindings for the Google GS101 Thermal Management Unit
+> (TMU).
 > 
-> Applied to
+> The GS101 TMU is a hybrid thermal solution:
+> 1. Configuration (thresholds, hysteresis) is handled via the Alive
+>    Clock and Power Manager (ACPM) firmware protocol.
+> 2. Interrupt handling is handled by the kernel via direct register
+>    access.
 > 
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> This binding documents the required resources, including the APB clock
+> for register access and the phandle to the associated syscon node.
 > 
-> Thanks!
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+>  .../bindings/thermal/google,gs101-tmu-top.yaml     | 64 ++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
 > 
-> [1/1] ASoC: rt5640: Fix duplicate clock properties in DT binding
->       commit: be5a39e7994ec9f003c8569b670c794a4e5d1551
+> diff --git a/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml b/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ecf4a315ecf1ea0649c4e96a207d531c696282f4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/google,gs101-tmu-top.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google GS101 Thermal Management Unit (TMU)
+> +
+> +maintainers:
+> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
+> +
+> +description: |
+> +  The Google GS101 TMU is a thermal sensor block managed via the ACPM
+> +  (Active Core Power Management) firmware. While the firmware handles
+> +  the thermal algorithm and thresholds, the kernel requires direct
+> +  access to the interrupt pending registers via a syscon interface to
+> +  acknowledge and clear thermal interrupts.
+> +
+> +properties:
+> +  compatible:
+> +    const: google,gs101-tmu-top
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: |
+> +      Phandle to the APB peripheral clock (PCLK) required to access
+> +      the TMU registers.
 
-Note, in the repository the change has duplicate SoB tag. IIRC Linux Next validation
-complains (used to complain?) about inconsistencies or this kind of issues with tags.
+Drop all the redundancies, so:
+items:
+ - description: APB peripheral clock (PCLK) for TMU register access
 
--- 
-With Best Regards,
-Andy Shevchenko
 
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: |
+> +      The combined thermal interrupt signal (Level High).
+
+Drop description
+
+> +
+> +  syscon:
+
+I feel like suddenly you sent something completely different than what
+have you been working for the past 4 years.
+
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      Phandle to the device node representing the TMU System Controller
+> +      (compatible with "google,gs101-tmu-syscon"). This node provides the
+> +      regmap for INTPEND and INTCLEAR registers.
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+
+No supply?
+
+Best regards,
+Krzysztof
 
 
