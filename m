@@ -1,62 +1,66 @@
-Return-Path: <devicetree+bounces-255712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BACCD26977
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:39:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 554A6D26682
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:29:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2BE7D3264351
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:18:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F15523046B4C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:22:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AC22C3268;
-	Thu, 15 Jan 2026 17:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E343A7E07;
+	Thu, 15 Jan 2026 17:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVtLmSXj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fiXm5fxW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE01E2C08AC;
-	Thu, 15 Jan 2026 17:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1FA21CC5A;
+	Thu, 15 Jan 2026 17:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768497486; cv=none; b=pJif22nBpkivKOkhfcDgQwWvMzPBScBFgb+3F2W1a/BjCoK30K24V1IAU0r+L0aNkwXNoypj6a7rU8dH5/iCghTDbjgphWLWKixOkLXARbdgoRYc7yIuUyqSnVOM2HS5hDZsqVHT8h8CEQgc2+5PyIPY/COhP04DpyTQJRF2h1s=
+	t=1768497771; cv=none; b=OCNQ+L+6N66eAKoWkBlTmFdVVkwPBW2sLZRNwcFznl5ZmCUvjutVzsIVUol34x8cHVKIoHBtbin/3ZnbVneznZr3BRQ6cSZsfzyAT4DpaEc/esipyk0z92KxBMFgm7JjOke0wt+cQP/f6rnhzq/DIn+lifERHgjxeXWd4+AcdMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768497486; c=relaxed/simple;
-	bh=tlBpdMlQBYBLhVmEgUbSIOIS5UI2VXeT9ZB6zSWIxfM=;
+	s=arc-20240116; t=1768497771; c=relaxed/simple;
+	bh=iZwBmxuFmyj5yd/MrkiJeSxiq8n2lmnresw5RhxA2iE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VHQB3E9TQfn0wcDBk3KEp8sPmPL4/4qL9ZoPLfjNkLXjfAXakuH50sJiPfgYKIlVzTiROCq/PKaRgoyF+Sr7rEXd0a9uEiM/R4HF9hdqEuRzefw6xWpgQAChRjX1Wr3x/V1L8uiIR+LQbZNnf1ennJrBevZJmCLwxot7vZofVew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVtLmSXj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59700C116D0;
-	Thu, 15 Jan 2026 17:18:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hsVPeSnfp9kMn148jLdfnSikcxIEhYT98LXtZrH0g5Szzwv1ATKYOvY0QOVI9qtdwFziY2WgEH9BiHGwy483e0DR5FOw8KvQSG4LRluF2REnhq1u/LrmxVCf/y+PBIL/bJMr5DbyGxLutTw/eV78mlrqPxJcM1ipZUenD7imwoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiXm5fxW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AC0FC116D0;
+	Thu, 15 Jan 2026 17:22:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768497486;
-	bh=tlBpdMlQBYBLhVmEgUbSIOIS5UI2VXeT9ZB6zSWIxfM=;
+	s=k20201202; t=1768497771;
+	bh=iZwBmxuFmyj5yd/MrkiJeSxiq8n2lmnresw5RhxA2iE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qVtLmSXjo6FvIftTAePkjMMLYNqnHXAPCPRIa7DqU14V+8o3w+FBwz+BiGQnqr0/2
-	 UGqn/mQNnRRVeh2KonGBrK9BEtHlocbBpBsHSksMlFKqnTDIJuVPrzbUwkBrSNdlJV
-	 4dcJ8bcNjnXbpFPGzs4XWvfIPjxYcrZWo61PllT94t8xxvcutq6myX3Bj++3oKRGGU
-	 8KY7fBXvOliTtwAn9Z7S5zVXgjzCpfUX4D9NtgpxnlPMqGGH7FdV0o5LvmpEXQ6xji
-	 h7My1VZziSebUI/weJ0pgoX77FjOCHsTuz5jLlveDNby9+xU1TnktE3QU/bJpqRN3t
-	 jxH+XHvLWF+Gg==
-Date: Thu, 15 Jan 2026 11:18:05 -0600
-From: Rob Herring <robh@kernel.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Andy Yan <andyshrk@163.com>, heiko@sntech.de,
-	dmitry.baryshkov@oss.qualcomm.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, cristian.ciocaltea@collabora.com,
-	Laurent.pinchart@ideasonboard.com, mripard@kernel.org,
-	hjc@rock-chips.com, tzimmermann@suse.de, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 1/5] dt-bindings: display: rockchip: Add rk3576
- DisplayPort
-Message-ID: <20260115171805.GA907039-robh@kernel.org>
-References: <20260109080054.228671-1-andyshrk@163.com>
- <20260109080054.228671-2-andyshrk@163.com>
- <aWa5i52PTNQ_QTQ7@venus>
+	b=fiXm5fxWUQPJgn7Cj+1ATSMBKYuXOHIJGsoL3bcW9HQioIxLdk/wlMwP2O6QnN/qs
+	 rTE/toiqVL1EHXqK+biWlzyUHt1U+aVbJiCXQsrlIGc5CnyJm4D8qjOQbgjkBpWeHP
+	 8h+ezAGL/Tu/mLnDTeEcySyOMlEfqVCReI6JLg4R2RWmyLIHS6RFmsg40CsCJ8ixh6
+	 YEe5w2Bd23BuoDzvuUL05lH7Ix00nPvHzcv396yZtXgY8TGY9MnRUzmhMcFrw8DlBs
+	 IknuMGYkcFy/2nIZ2sV1xb3vtRSsCdJBdsATB0O+8Y2UKREpoNGgRBWHUz+PE4uzBy
+	 v6b9IJw6cneJg==
+Date: Thu, 15 Jan 2026 11:22:50 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Eric Dumazet <edumazet@google.com>, linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: pcs:
+ renesas,rzn1-miic: Add renesas,miic-phylink-active-low property
+Message-ID: <176849776989.913679.4064770470334805366.robh@kernel.org>
+References: <20260109142250.3313448-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260109142250.3313448-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,85 +69,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aWa5i52PTNQ_QTQ7@venus>
+In-Reply-To: <20260109142250.3313448-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, Jan 13, 2026 at 10:33:52PM +0100, Sebastian Reichel wrote:
-> Hi,
+
+On Fri, 09 Jan 2026 14:22:49 +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> On Fri, Jan 09, 2026 at 04:00:44PM +0800, Andy Yan wrote:
-> > From: Andy Yan <andy.yan@rock-chips.com>
-> > 
-> > The DisplayPort found on RK3576 is very similar to that of RK3588,
-> > but work in dual pixel mode. And itself does not depend on the I2S
-> > clock or the SPDIF clock when transmit audio.
-> > 
-> > Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> > 
-> > ---
-> > 
-> >  .../display/rockchip/rockchip,dw-dp.yaml      | 29 +++++++++++++++++--
-> >  1 file changed, 26 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-> > index 6345f0132d43..1bfe1bd6404a 100644
-> > --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-> > +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
-> > @@ -27,13 +27,11 @@ description: |
-> >    * Pixel clock up to 594MHz
-> >    * I2S, SPDIF audio interface
-> >  
-> > -allOf:
-> > -  - $ref: /schemas/sound/dai-common.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> >      enum:
-> >        - rockchip,rk3588-dp
-> > +      - rockchip,rk3576-dp
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -42,6 +40,7 @@ properties:
-> >      maxItems: 1
-> >  
-> >    clocks:
-> > +    minItems: 3
-> >      items:
-> >        - description: Peripheral/APB bus clock
-> >        - description: DisplayPort AUX clock
-> > @@ -50,6 +49,7 @@ properties:
-> >        - description: SPDIF interfce clock
-> >  
-> >    clock-names:
-> > +    minItems: 3
-> >      items:
-> >        - const: apb
-> >        - const: aux
-> > @@ -95,6 +95,29 @@ required:
-> >    - ports
-> >    - resets
-> >  
-> > +allOf:
-> > +  - $ref: /schemas/sound/dai-common.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - rockchip,rk3588-dp
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 5
-> > +          maxItems: 5
-> > +        clock-names:
-> > +          minItems: 5
-> > +          maxItems: 5
+> Add the renesas,miic-phylink-active-low property to allow configuring the
+> active level of PHY link status signals provided by the MIIC block.
 > 
-> I think maxItems is not needed, since 6 items would not work for the
-> specified items list anyways. Otherwise:
+> EtherPHY link-up and link-down status is required as a hardware feature
+> independent of whether GMAC or ETHSW is used. With GMAC, link status is
+> obtained via MDC/MDIO and handled in software. In contrast, ETHSW exposes
+> dedicated PHY link pins that provide this information directly in
+> hardware.
+> 
+> These PHY link signals are required not only for host-controlled traffic
+> but also for switch-only forwarding paths where frames are exchanged
+> between external nodes without CPU involvement. This is particularly
+> important for redundancy protocols such as DLR (Device Level Ring),
+> which depend on fast detection of link-down events caused by cable or
+> port failures. Handling such events purely in software introduces
+> latency, which is why ETHSW provides dedicated hardware link pins.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2:
+> - Updated commit message to elaborate the necessity of PHY link signals.
+> ---
+>  .../devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml     | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-Correct.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
