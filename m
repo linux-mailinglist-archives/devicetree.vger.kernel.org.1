@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-255596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17FD2D24A05
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:57:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F74D24A1A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:58:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DF70A301F7F7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:57:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE1C030A21AB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CA139B4A5;
-	Thu, 15 Jan 2026 12:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE44539C62E;
+	Thu, 15 Jan 2026 12:57:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nnEAsli0"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JZhEIDgY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66EAE39B480;
-	Thu, 15 Jan 2026 12:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C9739A81F;
+	Thu, 15 Jan 2026 12:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768481820; cv=none; b=eGuS8aR2vDgh7xJMAL7IDleItfbi6UwO0cVQhXbazJeCGZ350Hzi0eT4XsmMvGOe9GoeTuGnZxGlvfTFOyPa8nAzCCQRnp7WdOFhMXnwiW44WKW5TbjaKwG19SeHM1na1BNVjn7U01qAYoa48qTR/vwlQYbZTm4nXf3VJE8BKPU=
+	t=1768481824; cv=none; b=Igsd2EhM8pqNUItGophg5fmWeYO2ZjBnS7X0FK+++Fi9Dj3X6gXGUN9FW827tCEVIf+1YdfFYnCgqjIOrKAXRb3ASRHinaQNkmtlTiWvFrCWfui2hmBL8CX5bAHSGxzthhLzFv9o1F2sX5jpt2vxBjBvAYq5Vt7IdU5YxCGAVYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768481820; c=relaxed/simple;
-	bh=Q1TWR+L5EJCk8ltk3+o6+5a+NLRELXyTxRSjaigjumg=;
+	s=arc-20240116; t=1768481824; c=relaxed/simple;
+	bh=5c73jSB5V916CT35L36ZsmgrVWA8Vvvy6jaycwwPDQU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AyZ0BSISYoDl9DkfGIdDNvZCJEeCFDrfLiR9BQZ3uPlds/E2bZ2V3WLieutWQlAE8szZR3k2XtvN3CjwhxdV98S4WIrawrQhLeDkQFNEd+LaDURvdrLclbHpxGW3LWPAJr6Ir/1XdL/dcQedH2+VRadCFkhiYLgugRec8+qJrms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nnEAsli0; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version; b=F8e3sJXEV9mn1MJgAeMkTA1tkfvXANEl+GUEJJ/EcgEEZlL/0w3JgToVAXywr79fZZ2xrXRuxoiThsulqxvcfxTOkXywuo6YR3UVYA6pyT745PUWqpIi5vmwMU+ZQOEDWpO6QIXYdkM9UI533Mvuf2av5qbcjbkhTFUjvl1LbyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JZhEIDgY; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1768481810;
-	bh=Q1TWR+L5EJCk8ltk3+o6+5a+NLRELXyTxRSjaigjumg=;
+	s=mail; t=1768481811;
+	bh=5c73jSB5V916CT35L36ZsmgrVWA8Vvvy6jaycwwPDQU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=nnEAsli0VXjwyu3dIi44q2cjh+ozeXVJXSovtksTn371xTbIBk8+o3sZXukA9tMNS
-	 k98XLQhCWDGvFDhEAJ5VkbC0zAFOA39NkNIX/+01xwH+Tym4ZxneDvqFjOV4byTb1M
-	 oac8gQnrepoDrDCiC48Xh6xTfBkF+0RtZ7/7rpwtA8VgibuTUlX3Y96IeZvWWRBZjh
-	 CWiVt2g/xKXhkdYaeiQraUaZbJ9b3GAhonCeDtmb/l9Vu6bsgqLEXIPI9bxuYSIunm
-	 OT8zDV4C3axJGIMNuLCjbUk5faXkJuSVXtVwwxG+KPswpiYbSzG8A5dhgzz4vNQ8ay
-	 OZ5DKMLTiDX/g==
+	b=JZhEIDgYj+2dJ+8Z6AaGGwdgiGAncfG9P2Xmzf5svHPgghSEuJPkGFH5elw7IlPsj
+	 muU/qnYPTm4Hh9mdj6J5OusJyq+W8ijj5/WNgbfV+CTzzB+fjkO64H9KXrzF5JzTg/
+	 fpnGdYyLvrueNp+46fsxBduHSQZkhR1S+hyNJtVJgB5cJRgVNKTrmkA+1ZlsOijZqp
+	 nF5am7vlnuY+ILx/dm+m30Aw7bvKHYviokJMaX+yPUHawgBsrMi6ZeALFR9TbzU7Bn
+	 BqVjexWJ+YSP6x2TRA+Je5x7CTpjGJgc+FW2PfR5PPGyTnpnQqhR62DVRmPj2iz6TK
+	 XPNoA6ClZoR5w==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 907AB17E13D3;
-	Thu, 15 Jan 2026 13:56:49 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9907A17E1406;
+	Thu, 15 Jan 2026 13:56:50 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: robh@kernel.org
 Cc: krzk+dt@kernel.org,
@@ -71,9 +71,9 @@ Cc: krzk+dt@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	kernel@collabora.com
-Subject: [PATCH 3/4] dt-bindings: arm: mediatek: audsys: Support mt8192-audsys variant
-Date: Thu, 15 Jan 2026 13:56:23 +0100
-Message-ID: <20260115125624.73598-4-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 4/4] arm64: dts: mediatek: mt8192: Rename mt8192-afe-pcm to audio-controller
+Date: Thu, 15 Jan 2026 13:56:24 +0100
+Message-ID: <20260115125624.73598-5-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
 References: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
@@ -85,74 +85,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add support for the mediatek,mt8192-audsys compatible, which uses
-a different audio controller (mt8192-afe-pcm) compared to mt8183
-and mt2701.
+Device tree nodes should have generic names, and this one doesn't.
+Rename the mt8192-afe-pcm subnode of audsys to `audio-controller`.
 
-This resolves a dtbs_check warning on all MT8192 devicetrees.
+This commit brings no functional changes, but resolves dtbs_check
+warnings.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- .../arm/mediatek/mediatek,audsys.yaml         | 46 +++++++++++++------
- 1 file changed, 33 insertions(+), 13 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
-index f3a761cbd0fd..09a6c16e7e82 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml
-@@ -48,19 +48,39 @@ required:
-   - compatible
-   - '#clock-cells'
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index 47dea10dd3b8..9f8f115edd4c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -973,7 +973,7 @@ audsys: syscon@11210000 {
+ 			reg = <0 0x11210000 0 0x2000>;
+ 			#clock-cells = <1>;
  
--if:
--  properties:
--    compatible:
--      contains:
--        const: mediatek,mt8183-audiosys
--then:
--  properties:
--    audio-controller:
--      $ref: /schemas/sound/mediatek,mt8183-audio.yaml#
--else:
--  properties:
--    audio-controller:
--      $ref: /schemas/sound/mediatek,mt2701-audio.yaml#
-+allOf:
-+ - if:
-+     properties:
-+       compatible:
-+         contains:
-+           enum:
-+             - mediatek,mt2701-audsys
-+             - mediatek,mt7622-audsys
-+   then:
-+     properties:
-+       audio-controller:
-+         $ref: /schemas/sound/mediatek,mt2701-audio.yaml#
-+
-+ - if:
-+     properties:
-+       compatible:
-+         contains:
-+           const: mediatek,mt8183-audiosys
-+   then:
-+     properties:
-+       audio-controller:
-+         $ref: /schemas/sound/mediatek,mt8183-audio.yaml#
-+
-+ - if:
-+     properties:
-+       compatible:
-+         contains:
-+           const: mediatek,mt8192-audsys
-+   then:
-+     properties:
-+       audio-controller:
-+         $ref: /schemas/sound/mt8192-afe-pcm.yaml#
-+
- 
- additionalProperties: false
- 
+-			afe: mt8192-afe-pcm {
++			afe: audio-controller {
+ 				compatible = "mediatek,mt8192-audio";
+ 				interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH 0>;
+ 				resets = <&watchdog 17>;
 -- 
 2.52.0
 
