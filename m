@@ -1,92 +1,107 @@
-Return-Path: <devicetree+bounces-255608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28114D24B44
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:18:28 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A374D24B38
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C380D3090A55
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:14:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 72C7F30049D6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E97039E6F6;
-	Thu, 15 Jan 2026 13:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460FF34E770;
+	Thu, 15 Jan 2026 13:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jo9TPi4W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NTNrOMeD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C31527BF7D;
-	Thu, 15 Jan 2026 13:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 226B9339A8;
+	Thu, 15 Jan 2026 13:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768482885; cv=none; b=WAiYowkUzCLcBqG4ZeFhcM1N6EDmRGXGPZNjZ7MtbRbdW2l1/6+PcF5AZJc8xCyNgbwIiTj6RD4S5LrIjAB4eks0GBY04Q+9ABazIzGPIYyz/wDUhtmEljY0jDoSUfnP637MF2Y4ORCWSYw/OGuSf6joMLdB4LHsHQzZcAskV4U=
+	t=1768483019; cv=none; b=IjZhIa1WfsZo07keqeg1XJoPOjVux1OGipbdoCMDEMSVDvn56J94pMrdwXeWoJ6reZvVXZXd4QqgolLw+slOLUP4Q1cmUZaSGTiDQT9gBl3VnXHYz/HdVfPCoEE9lvuh/uesKTdiTgoLWjgecyiofZfjU6llbFffAqie+Q+oQco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768482885; c=relaxed/simple;
-	bh=mLTcptWXyr1/Db9RrQ1ia4qI5zICdIrZwyP7oNHoRcI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LTh2wCUdDj4Cisnse96fjQDu8bA37T+jMfxi6va2Q6+7OGkV/hFjie8RfklqBh0tpRsehZTqNfYsI5ObwzF/GmpJYNVX6Thl6RPRkh/bpO8xWXKCgR/MaW87OkwnvlnAGuco9n5UhbgBpsTwASSRaswbqoNencaqaPCbEVu5yWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jo9TPi4W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9968C19422;
-	Thu, 15 Jan 2026 13:14:42 +0000 (UTC)
+	s=arc-20240116; t=1768483019; c=relaxed/simple;
+	bh=NEHndrv/GFLkXIcpeLx+QdTY9TQn1VHLAJq60OQCti0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Yh7lsAfwDwf03ublFqos8TgF9AuMRb62WjluwbPsvsWlE8CsuOfHyjjVV7VIoW6/qe66C+EIJSxt3bBMai0I5eisGzOMw7xbLa7zLQJD6O8qi7LkT6QfiDzI2lTnjD70kRBBF6xX2OIcs9szV4HhD0bdHCUY/82LluljOTOlye4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NTNrOMeD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0634BC116D0;
+	Thu, 15 Jan 2026 13:16:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768482885;
-	bh=mLTcptWXyr1/Db9RrQ1ia4qI5zICdIrZwyP7oNHoRcI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jo9TPi4WqX+41PKyn1MoEr2r5hTEPkfbNbg6GxFK7MIZUW5ODvKazfrPdp+B7fbNn
-	 lesPiZrdPd2uaeke9RKMoGThCSEyTUUA4HYaGmr9u1KXh7Mr8ADJ/k2tvy/9RjfJjY
-	 YcWjPyaXF1RNwKM+pk5H1olRHJY1r2A4MFxTLaHpK6cZsgmV4iS+KSXrdwd5am22yc
-	 sv4Wg34gS1pdrgGAoBGNSvW4DZwZe1UghAwH/SSGHrmay84LbxFOZbmQFEh5evFiSK
-	 QEqcX5ssmyB99jP4bVxXJvA0tBtvPNazaaEFOY4FteSAmTyRJxHI044EOhRpgeKX3y
-	 zZ/MFio5IeFDg==
-From: Michael Walle <mwalle@kernel.org>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Udit Kumar <u-kumar1@ti.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Michael Walle <mwalle@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: ti: sa67: fix SD card regulator
-Date: Thu, 15 Jan 2026 14:14:19 +0100
-Message-ID: <20260115131431.1521102-3-mwalle@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260115131431.1521102-1-mwalle@kernel.org>
-References: <20260115131431.1521102-1-mwalle@kernel.org>
+	s=k20201202; t=1768483018;
+	bh=NEHndrv/GFLkXIcpeLx+QdTY9TQn1VHLAJq60OQCti0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=NTNrOMeDrEwZPo0YuwydGexojvyGkalxYJsGJuevjCwnIuZyq7chxL69MRA1sxONM
+	 iqkmkPjX1P5gPB8knUCiRkNirOCBmtiZuFWKQdVreqOcZrncGESC9hY5gzUT0BDF9Y
+	 OJ70HjfDAtGrcOu4tXbtxCgV+j0Im8Rsnr0VgPAJypz+dzEOk+MIax888XnRWFKhl1
+	 6ub7q9aDNDNJD2DEvH6O5j7AfkvKGt7m7qKjfmTwRMnbzGMFBR7HMvFoJVCbrNJ6bo
+	 41TmKxXa3Q+stIjrAo4N+YevgIs3h/eeR62Rj9KqUDGoZnWI5jJhTNQTbNhrosIC8g
+	 W08/SSRR5Yshw==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org,  krzk+dt@kernel.org,  conor+dt@kernel.org,
+  tudor.ambarus@linaro.org,  pratyush@kernel.org,  mwalle@kernel.org,
+  miquel.raynal@bootlin.com,  richard@nod.at,  vigneshr@ti.com,
+  lgirdwood@gmail.com,  broonie@kernel.org,  matthias.bgg@gmail.com,
+  julien.massot@collabora.com,  eugen.hristev@linaro.org,
+  jiaxin.yu@mediatek.com,  shane.chien@mediatek.com,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-mtd@lists.infradead.org,  linux-sound@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,
+  linux-mediatek@lists.infradead.org,  kernel@collabora.com
+Subject: Re: [PATCH 1/4] dt-bindings: mtd: jedec,spi-nor: Add Winbond
+ W25Q(32/64/128/256)JWM
+In-Reply-To: <20260115125624.73598-2-angelogioacchino.delregno@collabora.com>
+	(AngeloGioacchino Del Regno's message of "Thu, 15 Jan 2026 13:56:21
+	+0100")
+References: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
+	<20260115125624.73598-2-angelogioacchino.delregno@collabora.com>
+Date: Thu, 15 Jan 2026 13:16:53 +0000
+Message-ID: <2vxz5x93818a.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-The property "enable-active-high" was missing, as the default is
-active-low. Add it.
+On Thu, Jan 15 2026, AngeloGioacchino Del Regno wrote:
 
-Fixes: 1c3c4df06f9d ("arm64: dts: ti: Add support for Kontron SMARC-sAM67")
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts | 1 +
- 1 file changed, 1 insertion(+)
+> Add Winbond W25Q32JWM, W25Q64JWM, W25Q128JWM, W25Q256JWM to the
+> allowed compatible strings pattern.
+>
+> This also resolves a dtbs_check warning happening on all of the
+> MediaTek MT8192 Chromebooks devicetrees (for winbond,w25q64jwm).
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts b/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts
-index db59ec4e4106..ffc95bb32551 100644
---- a/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts
-@@ -173,6 +173,7 @@ vcc_3p3_sd_vio_s0: regulator-6 {
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc_3p3_s0>;
- 		regulator-boot-on;
-+		enable-active-high;
- 		enable-gpios = <&main_gpio0 7 GPIO_ACTIVE_HIGH>;
- 		gpios = <&main_gpio0 8 GPIO_ACTIVE_HIGH>;
- 		states = <3300000 0x0>,
+We normally don't allow adding any more device-specific compatibles.
+This list here is only for legacy DTS. You should be using
+"jedec,spi-nor" in your device trees.
+
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index 587af4968255..2db446c9ca9b 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -29,7 +29,7 @@ properties:
+>                (sst,)?sst26wf016b|\
+>                (sst,)?sst25wf(040b|080)|\
+>                winbond,w25x(80|32)|\
+> -              (winbond,)?w25q(16|32(w|dw)?|64(dw)?|80bl|128(fw)?|256))$"
+> +              (winbond,)?w25q(16|32(w|dw)?|64(dw|jwm)?|80bl|128(fw|jwm)?|256(jwm)?))$"
+>            - const: jedec,spi-nor
+>        - items:
+>            - enum:
+
 -- 
-2.47.3
-
+Regards,
+Pratyush Yadav
 
