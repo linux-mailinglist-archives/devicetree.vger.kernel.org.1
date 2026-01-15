@@ -1,188 +1,176 @@
-Return-Path: <devicetree+bounces-255729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCD7D273DA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:13:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F25D27754
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:25:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 37B0330383A7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:01:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A966F31E2E65
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:04:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C7A73D4113;
-	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3EEC3D666A;
+	Thu, 15 Jan 2026 17:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c5mVqqOA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fybKxJu/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 574EE3C1FF2;
-	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4F13D6667;
+	Thu, 15 Jan 2026 17:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768499571; cv=none; b=r4iDIa/CY7n5Kn80BlkQq/Ln/PEiFicKOmu9GG/YbBAJmoszMGHnC87F+FXBQtZTi50/9dAk1IzLt+0sPM8zxmecXtp5cofH+OHyDoVtaZJx0PqTyNDVk5WAT7GJpJiR542N5OZ0kMzU7ElPFgvzNGDpKxdAr9UDHGiaVrKp8Nc=
+	t=1768499761; cv=none; b=E7rFuRYhmEuK4kx/U31g8u00Vs8n41VjudD0Nj6tRtvetqVfiLa4Z/GBRU+b018BaTtqhrXKi9RSQPAzMrpbxwGvEaEgdEbjePUdyPO9tlFpsOL0n8hQaZp7AwNuqeorf51YqfeVTKgiH7Ov6vCtbl8Kh89mjx25nm4e7jFvAqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768499571; c=relaxed/simple;
-	bh=SbiGDK7jyygOqLt6KSZkwL24dXZAECNwCnh0R9ahBI8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AWE4uEiqk8Df887SPmgPg76dw8JjE6WK/0ECgUwMhrCLqRCEOL8whDnLgD/x5VHFJ7h9AryHoz22ryWRndlyvs0YHv3MDMjyVQIm55EKuxwG2HJpqOiKX7jk30l/sjO1bWy4mdhasu8AApFlEdHOTCCyV+psxELk5FggNKOwzXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c5mVqqOA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 37891C16AAE;
-	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
+	s=arc-20240116; t=1768499761; c=relaxed/simple;
+	bh=IvYoltmC+bI3hqLQd+e9UfhKIkh3JKTy2Fff9C7sJgU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tN4PHrgUzuKma/OZ6VnyZKFIhsI83ItffUz0sXKLyUsUbTt/t0diZyu5GMy4n3BBFzeVuK3ldW7qFbD48RCUGRClOSjYI8Oao551WpWCGy7h08vER5W2YV/aWyVD8iMHfVxbeiC9OOmAo/obq+7rh9hLm+S2KGghooqTOsKYwxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fybKxJu/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4315C116D0;
+	Thu, 15 Jan 2026 17:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768499571;
-	bh=SbiGDK7jyygOqLt6KSZkwL24dXZAECNwCnh0R9ahBI8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=c5mVqqOATHWZPi2fWp2GWMHCEMldRrSgIIQqgNRq3vzDIA6wObuWGHgSMXgeC2gTZ
-	 uCalfRXvdAuLZnaEcUxrempp6a4m8qkyA+FI1SZ+rdRJ4yzkf98pdJgaUt0EtVbe+z
-	 tisT0HP/7NQF/ZZpBGKdNfXbz16ewWGiusx0B247JVobd8DgCz/9C2DIhPOZWERLsU
-	 iwCKZjJ3mVUbYCKgkMStsh6etdFTc8EnOf+o1sOsLOD6fI3crICA/uTG3iKQGN/nDJ
-	 uFpmAwTUmLvEyQ/vNZ2aSbqv0df2q89P2qT70CANS9IhZVeVkR3rtSxWgwGPISpB8V
-	 DxWrjQLNsxpow==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 296CED46608;
-	Thu, 15 Jan 2026 17:52:51 +0000 (UTC)
-From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Date: Thu, 15 Jan 2026 18:52:46 +0100
-Subject: [PATCH v2] arm64: dts: amlogic: add the type-c controller on Radxa
- Zero 2
+	s=k20201202; t=1768499761;
+	bh=IvYoltmC+bI3hqLQd+e9UfhKIkh3JKTy2Fff9C7sJgU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fybKxJu/o1kIocFapw712vol7Q2wh4EGQk1nxS7SmROCWa6AJnlmSJrjkMv8nvR49
+	 3d+wV8qiojNkkJ55SIbrW8hslv94pEzcRMJ/Vgx0AQlmgQdJDyEFX8F7hE26Tzk5Hb
+	 KfsL3/zuXdMPj9D3RUEzvs+rzvJCjbEmOYCzWE6TClPzolTSgyV/8hr/LzI9ZfH2Bg
+	 FuMrafRBUNunjTarWTfRfAo60T7/qPDt0ll9P4aZPcGNAQB1wFTz5EPDPgRgUeC6FG
+	 WxGglwEiIl42VPvygw04SKINNJljo7VmU618CW+QeL8dsiUZfBBINZAQkzCINvrgeQ
+	 uXPLX7pV6XIvg==
+Date: Thu, 15 Jan 2026 17:55:57 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linusw@kernel.org>
+Cc: linus.walleij@linaro.org, Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com
+Subject: Re: [RFC v2 3/5] pinctrl: add polarfire soc mssio pinctrl driver
+Message-ID: <20260115-wired-botanical-042f7cda4449@spud>
+References: <20251127-bogged-gauze-74aed9fdac0e@spud>
+ <20251127-capped-prewar-99fd94faea24@spud>
+ <CAD++jLkxLJRZocHenBASLzoUAbw=oPpMajNF6a5z-Lzds+5Ecw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260115-arm64-dts-amlogic-radxa-zero2-additions-v2-1-948bb0479a45@pardini.net>
-X-B4-Tracking: v=1; b=H4sIAG0paWkC/5WNSw6DIBQAr9Kw7msAP9Gueo/GBfoe+pIKBoixN
- d691Bt0ObOY2UWkwBTF/bKLQCtH9i6Dvl7EMBk3EjBmFlrqWipVgglzXQKmCGZ++ZEHCAY3Ax8
- KXoNB5JQTEVpZVWVre8KCRK4tgSxv5+nZZZ44Jh/e53hVP/v/Y1UgoemrAW2hG4v0WExAdnxzl
- ER3HMcX81QDj+AAAAA=
-X-Change-ID: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Ricardo Pardini <ricardo@pardini.net>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3379;
- i=ricardo@pardini.net; h=from:subject:message-id;
- bh=o6AdblgGh5ZdlDwrmpT3OM+dmaO8Ys6WxijQzUk1YWc=;
- b=owEBbQGS/pANAwAIATteP+Oex+3pAcsmYgBpaSlypZjIsZFbEWdFKZ7C9I9qk7XcIl/qzQUBa
- S+t3dWpDrOJATMEAAEIAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCaWkpcgAKCRA7Xj/jnsft
- 6ZGUCACHpy7luG8T/fuQ+ektuogyYcMdc9EJcgK8F2Yw6FKSqqUEOADHTiEY0VBQhhl5FXdmqEt
- ME1F0D1GKoQ/XfjtKNGwSZi9t2pstp4LkLIiLEcjBWjRFAkUcjN17AYOVuZr69Wnjj9M4bdKjT5
- rrkbFhXbzjIws3ayW2eZYVZxqSTRelFe3qdYDA4UBfbEn1w0XfRtG1WVKqmS81YzA4kPHvlTw6S
- gJfRZjREETuGIRtZXmPoQK7qsyEy4ZEK6UJOeCFdApVUyJ2DrLAdfBit08qghdDpGKLVf9aPr+t
- lIqJivTfrQGUU/klUmFoW820L0AWnNuNzE9MSzs0cBUeSgid
-X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
- fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
-X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
- auth_id=588
-X-Original-From: Ricardo Pardini <ricardo@pardini.net>
-Reply-To: ricardo@pardini.net
-
-From: Ricardo Pardini <ricardo@pardini.net>
-
-The Radxa Zero2 has an FUSB302 controller on i2c3 at address 0x22 and
-INT# wired to GPIOA-13; include a minimal connector.
-
-Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
----
-This series adds a few things missing from the Radxa Zero 2:
-
-1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
-   (dropped as was already picked up in [1])
-2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22.
-   Describes it minimally, adding no functionality, but reserving the 0x22
-   address since i2c3 is also exposed on user-accessible 40-pin header.
-
-Krzysztof: v1 followed the node name I had found used in amlogic; I've
-           looked around more broadly and found 'fusb0: typec-portc@22'
-           to be quite popular, so went with this. Hope it is acceptable.
-
-Neil: I've fixed the interrupts pin, and described the required connector
-      even more minimally than you suggested, as to avoid including pd.h.
-      It is also done this way in a few other boards, hope it's correct.
-      I've rebased your/Christian's full-enablement patches on top of this,
-      tested with an r8152 which then works both ways, it's available at [2]
-
-[1] https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
-[2] https://github.com/rpardini/linux/tree/radxa-zero2-fusb302-minimal-plus-full-impl-rebase
----
-Changes in v2:
-- npu: dropped NPU enablement patch as it was already picked up by Neil
-- fusb302: dropped 'status = "okay"'
-- fusb302: declare as 'fusb0: typec-portc@22' instead of 'fusb302@22'
-- fusb302: use correct pin (74 -> gpioA13) for interrupts
-- fusb302: add a (very minimal) connector so dtbs_check passes
-- Link to v1: https://lore.kernel.org/r/20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net
----
- .../boot/dts/amlogic/meson-g12b-radxa-zero2.dts    | 34 ++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-index 1e5c6f9849456..5d32c04de938e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dts
-@@ -364,12 +364,46 @@ hdmi_tx_tmds_out: endpoint {
- 	};
- };
- 
-+/* Also exposed on the 40-pin header: SDA pin 3, SCL pin 5 */
-+&i2c3 {
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	fusb0: typec-portc@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+
-+		pinctrl-0 = <&fusb302_irq_pins>;
-+		pinctrl-names = "default";
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <74 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vbus-supply = <&ao_5v>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+		};
-+	};
-+};
-+
- &ir {
- 	status = "disabled";
- 	pinctrl-0 = <&remote_input_ao_pins>;
- 	pinctrl-names = "default";
- };
- 
-+&periphs_pinctrl {
-+	fusb302_irq_pins: fusb302-irq {
-+		mux {
-+			groups = "GPIOA_13";
-+			function = "gpio_periphs";
-+			bias-pull-up;
-+			output-disable;
-+		};
-+	};
-+};
-+
- &pwm_ab {
- 	pinctrl-0 = <&pwm_a_e_pins>;
- 	pinctrl-names = "default";
-
----
-base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
-change-id: 20260114-arm64-dts-amlogic-radxa-zero2-additions-905549fbed3e
-
-Best regards,
--- 
-Ricardo Pardini <ricardo@pardini.net>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8PiXYbBVoAfJA0rn"
+Content-Disposition: inline
+In-Reply-To: <CAD++jLkxLJRZocHenBASLzoUAbw=oPpMajNF6a5z-Lzds+5Ecw@mail.gmail.com>
 
 
+--8PiXYbBVoAfJA0rn
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Dec 26, 2025 at 10:40:07AM +0100, Linus Walleij wrote:
+> On Thu, Nov 27, 2025 at 11:58=E2=80=AFAM Conor Dooley <conor@kernel.org> =
+wrote:
+>=20
+> >  drivers/pinctrl/Kconfig              |   7 +-
+> >  drivers/pinctrl/Makefile             |   1 +
+> >  drivers/pinctrl/pinctrl-mpfs-mssio.c | 750 +++++++++++++++++++++++++++
+>=20
+> Time to move the drivers to drivers/pinctrl/microchip
+> before it becomes an overpopulation problem?
+
+Sure, no problem.
+
+>=20
+> (The previous drivers can be moved in a separate patch.)
+>=20
+>=20
+> > +       select GENERIC_PINCTRL_GROUPS
+> > +       select GENERIC_PINMUX_FUNCTIONS
+> > +       select GENERIC_PINCTRL_BELLS_AND_WHISTLES
+>=20
+> Just the bottom select will bring it all in, right?
+
+I'll make it do that if it's not already. Just didn't know if you were a
+"select everything you use" kinda guy or didn't mind selects selecting.
+
+> > +static int mpfs_pinctrl_pin_to_iocfg_reg(unsigned int pin)
+> > +{
+> > +       u32 reg =3D MPFS_PINCTRL_IOCFG01_REG;
+> > +
+> > +       if (pin >=3D MPFS_PINCTRL_BANK2_START)
+> > +               reg +=3D MPFS_PINCTRL_INTER_BANK_GAP;
+> > +
+> > +       // 2 pins per 32-bit register
+> > +       reg +=3D (pin / 2) * 0x4;
+>=20
+> It's helpful with these nice comments that ease the reading of the code
+> quite a bit.
+
+Eh, I feel like sometimes a comment like this is just better than trying
+to insert silly defines to unmagic the numbers.
+
+>=20
+> > +static int mpfs_pinctrl_set_mux(struct pinctrl_dev *pctrl_dev, unsigne=
+d int fsel,
+> > +                               unsigned int gsel)
+> > +{
+> > +       struct mpfs_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctrl_de=
+v);
+> > +       const struct group_desc *group;
+> > +       const char **functions;
+> > +
+> > +       group =3D pinctrl_generic_get_group(pctrl_dev, gsel);
+> > +       if (!group)
+> > +               return -EINVAL;
+> > +
+> > +       functions =3D group->data;
+> > +
+> > +       for (int i =3D 0; i < group->grp.npins; i++) {
+> > +               u32 function;
+> > +
+> > +               //TODO @Linus my new function being actually generic me=
+ans that
+> > +               // the mapping of function string to something the hard=
+ware
+> > +               // understands only happens at this point.
+> > +               // I think this is fine, because dt validation would wh=
+inge
+> > +               // about something invalid, but it's the "catch" with m=
+y approach.
+> > +               // The other option I considered was to provide a mappi=
+ng
+> > +               // function pointer that the driver can populate, but I=
+ think
+> > +               // that's overkill.
+> > +               function =3D mpfs_pinctrl_function_map(functions[i]);
+> > +               if (function < 0) {
+> > +                       dev_err(pctrl->dev, "invalid function %s\n", fu=
+nctions[i]);
+> > +                       return function;
+> > +               }
+>=20
+> This is fine with me.
+>=20
+> Ideally I would like code that does a lot of string stacking and comparing
+> to be using Rust, but we cannot yet use that in core code so that is for
+> another day.
+
+Yeah, would be nice. My problem with it was more about the point in time
+where this happens rather than doing it in the first place though.
+
+
+--8PiXYbBVoAfJA0rn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaWkqLQAKCRB4tDGHoIJi
+0p4kAQDz/vdrHeuN+fcuJHTqhEElz2W9rqbpW43B00tJ8jEPWQD+MQgReOM8TesV
+x1/4wrjnkb7Vu0QZNjZQv5m3ik0zHgU=
+=YGyr
+-----END PGP SIGNATURE-----
+
+--8PiXYbBVoAfJA0rn--
 
