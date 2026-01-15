@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-255634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE5F0D250D9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:50:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D33D251A5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:56:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ADA6630AEB83
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:47:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8AEA9305C969
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 574E63A7DEB;
-	Thu, 15 Jan 2026 14:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDCF734FF78;
+	Thu, 15 Jan 2026 14:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iyvHDksd"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oY7LcciR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32529395D8F;
-	Thu, 15 Jan 2026 14:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B16350A1F;
+	Thu, 15 Jan 2026 14:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768488384; cv=none; b=ZlazgoQ0GvWMdVH5CX+B/SQfKuOvxAgfwuCvJ3c55I/RbIJEBxjOcCI6dmIqG7V834EATLiM0i2htrVGHvb0fm5h/9SW6msP41W/7PR6n7CnC/XFb636bHt42CMJlfxrUrWnJPeUh4U1RRtW+lfX/ZRrF4tIBnlK8wfx63Zgpt0=
+	t=1768488664; cv=none; b=S9I/nDYJLqTm/jAmQQzkfYGACYgVx7Pw2BsT1DuRKWInipIYZtHk9FzkjgxJHRoyU5O0XW9BwAbAQxzTWVN3uaqdCepq95/2yMoHVtKn8B1UmNwugIIsC9wi6kZWousera0lnu4kak6KZaOaaNKpEfCEQuOcx8c2J/bLb9gP0ps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768488384; c=relaxed/simple;
-	bh=jj97+Ps1LFlcOetqgPF2yqCP0vAX9DGF0PsamF0O6ys=;
+	s=arc-20240116; t=1768488664; c=relaxed/simple;
+	bh=BRGsOfOVfXBLkhozhMEHPG5fQHPNHu2lNFxYGy94qGk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m8RgVFZc530I5zxUtag4SMmwN1ZWicT79WI7jDMgcXXomNRH4sf/+PgdWAhOLyMEkPjgStBearsibtXZ9Mjq6UD/187SEkFawaX/NVTZkF8Pm2gMcj5hayS98ZSbQnle0eG3iyw1tBAT+upwOQcdBfF0j2K7+mAZZq2E4QEMW1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iyvHDksd; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=S8PyMBUv2o8kveJ/TpdgQ/Gvzko1FajtcU7bR6rqoO1y3hAqH+YvewBnj2DKp4J8Q27Y3INAcgFwVhgBHW2kAS+rYDQXE+dwXMf1Wxx0j0rZIJgN7sPh+6lJFxSC3RRCVw/OoZNY8KEiSrM+6VDvuMcOUyzjSI1mrBdIskxlSx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oY7LcciR; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1768488380;
-	bh=jj97+Ps1LFlcOetqgPF2yqCP0vAX9DGF0PsamF0O6ys=;
+	s=mail; t=1768488661;
+	bh=BRGsOfOVfXBLkhozhMEHPG5fQHPNHu2lNFxYGy94qGk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iyvHDksdgHMVpY0GgTUbNVDq1NnY/xck9IKdaWo6Ag1YX6SFMrbZ2RRG7BLt83Uwy
-	 4xJdC3geHTdhzfMndGNVFtgsycJfY71AMjnzVJX+6kgZ9AjOZv1aVJL8LH0mhyK7+r
-	 xn1oh+h93TqSg86bp9LU3QNunqM8IoKwEtRExGIP07tb19NlZQr+qY9eDAVc8NKy8S
-	 pBGeO8fsYdWnhXDMr63YtIcESRU6LwCvsDam5RfQtiIaShHj+k7Tv0jAkNWe6bMFP3
-	 5VDLiWgKJJTIJ9zVNMQ63rhO2MrjI2AkGxFy5oLDwcK4diJiR3dM5ICDbUqjcblucf
-	 mzPYrzcE6Ia7w==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	b=oY7LcciRQYo38+nmrMdl7O9KkL0YsviEmUF9HoC9dnsYWB9N3IU/e736OW3qtYvv7
+	 7cX6v72M0iy3UtjkHDbXFgz73Z2UTg8aaI7Gw6ybiUabdefpoY3cJ+csVlecvD0gAA
+	 fqRwnRBH4CZ+Qpt7WQoG3pJHnIL2EBTmD5Ilc2p9RBt/M+jQTOWXj5BWSrMRNQPaH8
+	 51lyCKS2jBT+cttg0BsaBHS2qgXiap1d/zbK8eDR+4NJBPZ6jj4DUbaOGbGSuujisw
+	 1957Xhz0Us1fKU4E6/+MXAKRGqc6Eq73VsTV6L4EI7+IwDziyPwBQoT5740s4ZtSir
+	 PJp9Qq+Pw5OdQ==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8CCDD17E0CB0;
-	Thu, 15 Jan 2026 15:46:19 +0100 (CET)
-Message-ID: <9bb24b4a-248d-4a97-a9fc-a00b5237f548@collabora.com>
-Date: Thu, 15 Jan 2026 15:46:18 +0100
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 516DF17E12E5;
+	Thu, 15 Jan 2026 15:51:00 +0100 (CET)
+Message-ID: <fc15b8e5-c7ae-4e0e-b3b7-7ce5b5139455@collabora.com>
+Date: Thu, 15 Jan 2026 15:50:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,275 +55,743 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: mt8192-afe-pcm: Fix clocks and
- clock-names
-To: Eugen Hristev <eugen.hristev@linaro.org>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, tudor.ambarus@linaro.org,
- pratyush@kernel.org, mwalle@kernel.org, miquel.raynal@bootlin.com,
- richard@nod.at, vigneshr@ti.com, lgirdwood@gmail.com, broonie@kernel.org,
- matthias.bgg@gmail.com, julien.massot@collabora.com, jiaxin.yu@mediatek.com,
- shane.chien@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, kernel@collabora.com, robh@kernel.org
-References: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
- <20260115125624.73598-3-angelogioacchino.delregno@collabora.com>
- <e1ed2a68-683c-4235-890b-9b2c5ad93e38@linaro.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 2/3] media: rockchip: add driver for the rockchip mipi
+ csi-2 receiver
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans Verkuil <hverkuil@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251114-rockchip-mipi-receiver-v3-0-16e83aa7f395@collabora.com>
+ <20251114-rockchip-mipi-receiver-v3-2-16e83aa7f395@collabora.com>
+ <aWdjGuhk9g1iaJuN@kekkonen.localdomain>
 Content-Language: en-US
-In-Reply-To: <e1ed2a68-683c-4235-890b-9b2c5ad93e38@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <aWdjGuhk9g1iaJuN@kekkonen.localdomain>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 15/01/26 14:28, Eugen Hristev ha scritto:
+Hi Sakari,
+
+On 1/14/26 10:34, Sakari Ailus wrote:
+> Hi Michael,
 > 
+> Thanks for the set.
+
+Thanks for the review :-)
+
+>> [...]
+>> diff --git a/drivers/media/platform/rockchip/rkcsi/rkcsi.c b/drivers/media/platform/rockchip/rkcsi/rkcsi.c
+>> new file mode 100644
+>> index 000000000000..03597f03f08f
+>> --- /dev/null
+>> +++ b/drivers/media/platform/rockchip/rkcsi/rkcsi.c
+>> @@ -0,0 +1,742 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Rockchip MIPI CSI-2 Receiver Driver
+>> + *
+>> + * Copyright (C) 2019 Rockchip Electronics Co., Ltd.
+>> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
+>> + * Copyright (C) 2026 Collabora, Ltd.
+>> + */
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/io.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_graph.h>
+>> +#include <linux/of_platform.h>
 > 
-> On 1/15/26 14:56, AngeloGioacchino Del Regno wrote:
->> Both clocks and clock-names are missing (a lot of) entries: add
->> all the used audio clocks and their description and also fix the
->> example node.
+> Are the above two needed?
+
+They are not, apparently. I'll remove them.
+
 > 
-> Hi Angelo,
+>> +#include <linux/phy/phy.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/pm_runtime.h>
 > 
-> This does not really look like a fix, if it was a fix I would expect a
-> Fixes tag, otherwise, it looks like you are adding a lot of clocks which
-> were not defined before
+> #include <linux/property.h>
+
+Ack.
+
+>> +#include <linux/reset.h>
+>> [...]
+>> +
+>> +static const struct rkcsi_format *
+>> +rkcsi_find_format(struct rkcsi_device *csi_dev, u32 mbus_code)
+>> +{
+>> +	const struct rkcsi_format *format;
 > 
-> Eugen
+> This can be declared within the loop.
 
-Hey. Yes, right, that makes sense.
+Ack.
 
-I wonder if the Fixes tag can be added while applying.
+> 
+>> +
+>> +	WARN_ON(csi_dev->formats_num == 0);
+>> +
+>> +	for (int i = 0; i < csi_dev->formats_num; i++) {
+> 
+> unsigned int?
 
-In case...
+Ack.
 
+> 
+>> +		format = &csi_dev->formats[i];
+>> +		if (format->code == mbus_code)
+>> +			return format;
+>> +	}
+>> +
+>> +	return NULL;
+>> +}
+>> +
+>> +static int rkcsi_start(struct rkcsi_device *csi_dev)
+>> +{
+>> +	struct media_pad *source_pad =
+>> +		&csi_dev->source_sd->entity.pads[csi_dev->source_pad];
+>> +	enum v4l2_mbus_type bus_type = csi_dev->vep.bus_type;
+>> +	union phy_configure_opts opts;
+>> +	s64 link_freq;
+>> +	u32 lanes = csi_dev->vep.bus.mipi_csi2.num_data_lanes;
+>> +	u32 control = 0;
+>> +	int ret;
+>> +
+>> +	if (lanes < 1 || lanes > 4)
+>> +		return -EINVAL;
+>> +
+>> +	/* set mult and div to 0, thus completely rely on V4L2_CID_LINK_FREQ */
+>> +	link_freq = v4l2_get_link_freq(source_pad, 0, 0);
+>> +	if (link_freq <= 0)
+>> +		return -EINVAL;
+> 
+> Could you return link_freq here?
 
-Fixes: c861af7861aa ("ASoC: dt-bindings: mediatek: mt8192: re-add audio afe document")
+Ack.
 
-Cheers,
-Angelo
+> 
+>> +
+>> +	if (bus_type == V4L2_MBUS_CSI2_DPHY) {
+>> +		struct phy_configure_opts_mipi_dphy *cfg = &opts.mipi_dphy;
+>> +
+>> +		ret = phy_mipi_dphy_get_default_config_for_hsclk(link_freq * 2,
+>> +								 lanes, cfg);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		ret = phy_set_mode(csi_dev->phy, PHY_MODE_MIPI_DPHY);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		ret = phy_configure(csi_dev->phy, &opts);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		control |= SW_CPHY_EN(0);
+>> +
+>> +	} else if (bus_type == V4L2_MBUS_CSI2_CPHY) {
+>> +		/* TODO: implement CPHY configuration */
+>> +		return -EOPNOTSUPP;
+> 
+> How about a switch()?
 
+Ok!
+
+> 
+>> +	} else {
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	control |= SW_DATATYPE_FS(0x00) | SW_DATATYPE_FE(0x01) |
+>> +		   SW_DATATYPE_LS(0x02) | SW_DATATYPE_LE(0x03);
+>> +
+>> +	rkcsi_write(csi_dev, CSI2HOST_N_LANES, lanes - 1);
+>> +	rkcsi_write(csi_dev, CSI2HOST_CONTROL, control);
+>> +	rkcsi_write(csi_dev, CSI2HOST_CSI2_RESETN, 1);
+>> +
+>> +	ret = phy_power_on(csi_dev->phy);
+> 
+> 	return ...;
+
+Ack.
+
+> 
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void rkcsi_stop(struct rkcsi_device *csi_dev)
+>> +{
+>> +	phy_power_off(csi_dev->phy);
+>> +
+>> +	rkcsi_write(csi_dev, CSI2HOST_CSI2_RESETN, 0);
+>> +	rkcsi_write(csi_dev, CSI2HOST_MSK1, ~0);
+>> +	rkcsi_write(csi_dev, CSI2HOST_MSK2, ~0);
+>> +}
+>> +
+>> +static const struct media_entity_operations rkcsi_media_ops = {
+>> +	.link_validate = v4l2_subdev_link_validate,
+>> +};
+>> +
+>> +static int rkcsi_enum_mbus_code(struct v4l2_subdev *sd,
+>> +				struct v4l2_subdev_state *sd_state,
+>> +				struct v4l2_subdev_mbus_code_enum *code)
+>> +{
+>> +	struct rkcsi_device *csi_dev = to_rkcsi(sd);
+>> +
+>> +	if (code->pad == RKCSI_PAD_SRC) {
+>> +		const struct v4l2_mbus_framefmt *sink_fmt;
+>> +
+>> +		if (code->index)
+>> +			return -EINVAL;
+>> +
+>> +		sink_fmt = v4l2_subdev_state_get_format(sd_state,
+>> +							RKCSI_PAD_SINK);
+>> +		code->code = sink_fmt->code;
+>> +
+>> +		return 0;
+>> +	} else if (code->pad == RKCSI_PAD_SINK) {
+> 
+> switch() would be nice here.
+
+Ack.
+
+> 
+>> +		if (code->index > csi_dev->formats_num)
+>> +			return -EINVAL;
+>> +
+>> +		code->code = csi_dev->formats[code->index].code;
+>> +		return 0;
+>> +	}
+>> +
+>> +	return -EINVAL;
+>> +}
+>> +
+>> +static int rkcsi_set_fmt(struct v4l2_subdev *sd,
+>> +			 struct v4l2_subdev_state *state,
+>> +			 struct v4l2_subdev_format *format)
+>> +{
+>> +	struct rkcsi_device *csi_dev = to_rkcsi(sd);
+>> +	const struct rkcsi_format *fmt;
+>> +	struct v4l2_mbus_framefmt *sink, *src;
+>> +
+>> +	/* the format on the source pad always matches the sink pad */
+>> +	if (format->pad == RKCSI_PAD_SRC)
+>> +		return v4l2_subdev_get_fmt(sd, state, format);
+>> +
+>> +	sink = v4l2_subdev_state_get_format(state, format->pad, format->stream);
+>> +	if (!sink)
+>> +		return -EINVAL;
+>> +
+>> +	fmt = rkcsi_find_format(csi_dev, format->format.code);
+>> +	if (!fmt)
+>> +		format->format = default_format;
+>> +
+>> +	*sink = format->format;
+>> +
+>> +	/* propagate the format to the source pad */
+>> +	src = v4l2_subdev_state_get_opposite_stream_format(state, format->pad,
+>> +							   format->stream);
+>> +	if (!src)
+>> +		return -EINVAL;
+>> +
+>> +	*src = *sink;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int rkcsi_set_routing(struct v4l2_subdev *sd,
+>> +			     struct v4l2_subdev_state *state,
+>> +			     enum v4l2_subdev_format_whence which,
+>> +			     struct v4l2_subdev_krouting *routing)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = v4l2_subdev_routing_validate(sd, routing,
+>> +					   V4L2_SUBDEV_ROUTING_ONLY_1_TO_1);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = v4l2_subdev_set_routing_with_fmt(sd, state, routing,
+>> +					       &default_format);
+> 
+> 	return ...;
+
+Ack.
+
+> 
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int rkcsi_enable_streams(struct v4l2_subdev *sd,
+>> +				struct v4l2_subdev_state *state, u32 pad,
+>> +				u64 streams_mask)
+>> +{
+>> +	struct rkcsi_device *csi_dev = to_rkcsi(sd);
+>> +	struct v4l2_subdev *remote_sd;
+>> +	struct media_pad *sink_pad, *remote_pad;
+>> +	struct device *dev = csi_dev->dev;
+>> +	u64 mask;
+>> +	int ret;
+>> +
+>> +	sink_pad = &sd->entity.pads[RKCSI_PAD_SINK];
+>> +	remote_pad = media_pad_remote_pad_first(sink_pad);
+>> +	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
+>> +
+>> +	mask = v4l2_subdev_state_xlate_streams(state, RKCSI_PAD_SINK,
+>> +					       RKCSI_PAD_SRC, &streams_mask);
+>> +
+>> +	ret = pm_runtime_resume_and_get(dev);
+>> +	if (ret)
+>> +		goto err;
+>> +
+>> +	ret = rkcsi_start(csi_dev);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable CSI hardware\n");
+>> +		goto err_pm_runtime_put;
+>> +	}
+>> +
+>> +	ret = v4l2_subdev_enable_streams(remote_sd, remote_pad->index, mask);
+>> +	if (ret)
+>> +		goto err_csi_stop;
+>> +
+>> +	return 0;
+>> +
+>> +err_csi_stop:
+>> +	rkcsi_stop(csi_dev);
+>> +err_pm_runtime_put:
+>> +	pm_runtime_put_sync(dev);
+>> +err:
+>> +	return ret;
+>> +}
+>> +
+>> +static int rkcsi_disable_streams(struct v4l2_subdev *sd,
+>> +				 struct v4l2_subdev_state *state, u32 pad,
+>> +				 u64 streams_mask)
+>> +{
+>> +	struct rkcsi_device *csi_dev = to_rkcsi(sd);
+>> +	struct v4l2_subdev *remote_sd;
+>> +	struct media_pad *sink_pad, *remote_pad;
+>> +	struct device *dev = csi_dev->dev;
+>> +	u64 mask;
+>> +	int ret;
+>> +
+>> +	sink_pad = &sd->entity.pads[RKCSI_PAD_SINK];
+>> +	remote_pad = media_pad_remote_pad_first(sink_pad);
+>> +	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
+>> +
+>> +	mask = v4l2_subdev_state_xlate_streams(state, RKCSI_PAD_SINK,
+>> +					       RKCSI_PAD_SRC, &streams_mask);
+>> +
+>> +	ret = v4l2_subdev_disable_streams(remote_sd, remote_pad->index, mask);
+>> +
+>> +	rkcsi_stop(csi_dev);
+>> +
+>> +	pm_runtime_mark_last_busy(dev);
+> 
+> Redundant, please drop.
+
+Ack.
+
+> 
+>> +	pm_runtime_put_autosuspend(dev);
+> 
+> The driver doesn't enable autosuspend so the autosuspend variant isn't
+> useful. Maybe just switch to pm_runtime_put(), as resume probably takes
+> very little time?
+
+Ack.
+
+> 
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct v4l2_subdev_pad_ops rkcsi_pad_ops = {
+>> +	.enum_mbus_code = rkcsi_enum_mbus_code,
+>> +	.get_fmt = v4l2_subdev_get_fmt,
+>> +	.set_fmt = rkcsi_set_fmt,
+>> +	.set_routing = rkcsi_set_routing,
+>> +	.enable_streams = rkcsi_enable_streams,
+>> +	.disable_streams = rkcsi_disable_streams,
+>> +};
+>> +
+>> +static const struct v4l2_subdev_ops rkcsi_ops = {
+>> +	.pad = &rkcsi_pad_ops,
+>> +};
+>> +
+>> +static int rkcsi_init_state(struct v4l2_subdev *sd,
+>> +			    struct v4l2_subdev_state *state)
+>> +{
+>> +	struct v4l2_subdev_route routes[] = {
+>> +		{
+>> +			.sink_pad = RKCSI_PAD_SINK,
+>> +			.sink_stream = 0,
+>> +			.source_pad = RKCSI_PAD_SRC,
+>> +			.source_stream = 0,
+>> +			.flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE,
+>> +		},
+>> +	};
+>> +	struct v4l2_subdev_krouting routing = {
+>> +		.len_routes = ARRAY_SIZE(routes),
+>> +		.num_routes = ARRAY_SIZE(routes),
+>> +		.routes = routes,
+>> +	};
+>> +	int ret;
+>> +
+>> +	ret = v4l2_subdev_set_routing_with_fmt(sd, state, &routing,
+>> +					       &default_format);
+> 
+> 	return ...;
+
+Ack.
+
+> 
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct v4l2_subdev_internal_ops rkcsi_internal_ops = {
+>> +	.init_state = rkcsi_init_state,
+>> +};
+>> +
+>> +static int rkcsi_notifier_bound(struct v4l2_async_notifier *notifier,
+>> +				struct v4l2_subdev *sd,
+>> +				struct v4l2_async_connection *asd)
+>> +{
+>> +	struct rkcsi_device *csi_dev =
+>> +		container_of(notifier, struct rkcsi_device, notifier);
+>> +	int source_pad;
+>> +
+>> +	source_pad = media_entity_get_fwnode_pad(&sd->entity, sd->fwnode,
+>> +						 MEDIA_PAD_FL_SOURCE);
+> 
+> Could you use v4l2_create_fwnode_links_to_pad()?
+
+Ack.
+
+> 
+>> +	if (source_pad < 0) {
+>> +		dev_err(csi_dev->dev, "failed to find source pad for %s\n",
+>> +			sd->name);
+>> +		return source_pad;
+>> +	}
+>> +
+>> +	csi_dev->source_sd = sd;
+> 
+> I'd just use media_pad_remote_pad_unique() to obtain the remote pad when
+> needed.
+
+Ack.
+
+> 
+>> +	csi_dev->source_pad = source_pad;
+>> +
+>> +	return media_create_pad_link(&sd->entity, source_pad,
+>> +				     &csi_dev->sd.entity, RKCSI_PAD_SINK,
+>> +				     MEDIA_LNK_FL_ENABLED);
+>> +}
+>> +
+>> +static const struct v4l2_async_notifier_operations rkcsi_notifier_ops = {
+>> +	.bound = rkcsi_notifier_bound,
+>> +};
+>> +
+>> +static int rkcsi_register_notifier(struct rkcsi_device *csi_dev)
+>> +{
+>> +	struct v4l2_async_connection *asd;
+>> +	struct v4l2_async_notifier *ntf = &csi_dev->notifier;
+>> +	struct v4l2_fwnode_endpoint *vep = &csi_dev->vep;
+>> +	struct v4l2_subdev *sd = &csi_dev->sd;
+>> +	struct device *dev = csi_dev->dev;
+>> +	struct fwnode_handle *ep;
+>> +	int ret = 0;
+> 
+> Redundant initialisation.
+
+Ack.
+
+> 
+>> +
+>> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0, 0);
+>> +	if (!ep)
+>> +		return dev_err_probe(dev, -ENODEV, "failed to get endpoint\n");
+>> +
+>> +	vep->bus_type = V4L2_MBUS_UNKNOWN;
+> 
+> If you only need the number of lanes and PHY type, I'd store them to the
+> driver's own context struct. struct v4l2_fwnode_endpoint isn't tiny.
+
+Ack.
+
+> 
+>> +	ret = v4l2_fwnode_endpoint_parse(ep, vep);
+>> +	if (ret) {
+>> +		ret = dev_err_probe(dev, ret, "failed to parse endpoint\n");
+>> +		goto out;
+>> +	}
+>> +
+>> +	if (vep->bus_type != V4L2_MBUS_CSI2_DPHY &&
+>> +	    vep->bus_type != V4L2_MBUS_CSI2_CPHY) {
+>> +		ret = dev_err_probe(dev, -EINVAL,
+>> +				    "invalid bus type of endpoint\n");
+>> +		goto out;
+>> +	}
+>> +
+>> +	v4l2_async_subdev_nf_init(ntf, sd);
+>> +	ntf->ops = &rkcsi_notifier_ops;
+>> +
+>> +	asd = v4l2_async_nf_add_fwnode_remote(ntf, ep,
+>> +					      struct v4l2_async_connection);
+>> +	if (IS_ERR(asd)) {
+>> +		ret = PTR_ERR(asd);
+>> +		goto err_nf_cleanup;
+>> +	}
+>> +
+>> +	ret = v4l2_async_nf_register(ntf);
+>> +	if (ret) {
+>> +		ret = dev_err_probe(dev, ret, "failed to register notifier\n");
+>> +		goto err_nf_cleanup;
+>> +	}
+>> +
+>> +	goto out;
+>> +
+>> +err_nf_cleanup:
+>> +	v4l2_async_nf_cleanup(ntf);
+>> +out:
+>> +	fwnode_handle_put(ep);
+>> +	return ret;
+>> +}
+>> +
+>> +static int rkcsi_register(struct rkcsi_device *csi_dev)
+>> +{
+>> +	struct media_pad *pads = csi_dev->pads;
+>> +	struct v4l2_subdev *sd = &csi_dev->sd;
+>> +	int ret;
+>> +
+>> +	ret = rkcsi_register_notifier(csi_dev);
+>> +	if (ret)
+>> +		goto err;
+>> +
+>> +	v4l2_subdev_init(sd, &rkcsi_ops);
+>> +	sd->dev = csi_dev->dev;
+>> +	sd->entity.ops = &rkcsi_media_ops;
+>> +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
+>> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_STREAMS;
+>> +	sd->internal_ops = &rkcsi_internal_ops;
+>> +	sd->owner = THIS_MODULE;
+>> +	snprintf(sd->name, sizeof(sd->name), "rockchip-mipi-csi %s",
+>> +		 dev_name(csi_dev->dev));
+> 
+> Do you need to give it an explicit name? (v4l2_i2c_subdev_init() already
+> does that.)
+
+I do, actually. I don't call the _i2c_ variant. This is a platform device.
+
+> 
+>> +
+>> +	pads[RKCSI_PAD_SINK].flags = MEDIA_PAD_FL_SINK |
+>> +				     MEDIA_PAD_FL_MUST_CONNECT;
+>> +	pads[RKCSI_PAD_SRC].flags = MEDIA_PAD_FL_SOURCE;
+>> +	ret = media_entity_pads_init(&sd->entity, RKCSI_PAD_MAX, pads);
+>> +	if (ret)
+>> +		goto err_notifier_unregister;
+>> +
+>> +	ret = v4l2_subdev_init_finalize(sd);
+>> +	if (ret)
+>> +		goto err_entity_cleanup;
+>> +
+>> +	ret = v4l2_async_register_subdev(sd);
+>> +	if (ret) {
+>> +		dev_err(sd->dev, "failed to register CSI subdev\n");
+>> +		goto err_subdev_cleanup;
+>> +	}
+>> +
+>> +	return 0;
+>> +
+>> +err_subdev_cleanup:
+>> +	v4l2_subdev_cleanup(sd);
+>> +err_entity_cleanup:
+>> +	media_entity_cleanup(&sd->entity);
+>> +err_notifier_unregister:
+>> +	v4l2_async_nf_unregister(&csi_dev->notifier);
+>> +	v4l2_async_nf_cleanup(&csi_dev->notifier);
+>> +err:
+>> +	return ret;
+>> +}
+>> +
+>> +static void rkcsi_unregister(struct rkcsi_device *csi_dev)
+>> +{
+>> +	struct v4l2_subdev *sd = &csi_dev->sd;
+>> +
+>> +	v4l2_async_unregister_subdev(sd);
+>> +	v4l2_subdev_cleanup(sd);
+>> +	media_entity_cleanup(&sd->entity);
+>> +	v4l2_async_nf_unregister(&csi_dev->notifier);
+>> +	v4l2_async_nf_cleanup(&csi_dev->notifier);
+>> +}
+>> +
+>> +static const struct of_device_id rkcsi_of_match[] = {
+>> +	{
+>> +		.compatible = "rockchip,rk3568-mipi-csi",
+>> +	},
+>> +	{}
+>> +};
+>> +MODULE_DEVICE_TABLE(of, rkcsi_of_match);
+>> +
+>> +static int rkcsi_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct rkcsi_device *csi_dev;
+>> +	int ret;
+>> +
+>> +	csi_dev = devm_kzalloc(dev, sizeof(*csi_dev), GFP_KERNEL);
+>> +	if (!csi_dev)
+>> +		return -ENOMEM;
+>> +	csi_dev->dev = dev;
+>> +	dev_set_drvdata(dev, csi_dev);
+>> +
+>> +	csi_dev->base_addr = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(csi_dev->base_addr))
+>> +		return PTR_ERR(csi_dev->base_addr);
+>> +
+>> +	ret = devm_clk_bulk_get_all(dev, &csi_dev->clks);
+>> +	if (ret != RKCSI_CLKS_MAX)
+>> +		return dev_err_probe(dev, -ENODEV, "failed to get clocks\n");
+>> +	csi_dev->clks_num = ret;
+>> +
+>> +	csi_dev->phy = devm_phy_get(dev, NULL);
+>> +	if (IS_ERR(csi_dev->phy))
+>> +		return dev_err_probe(dev, PTR_ERR(csi_dev->phy),
+>> +				     "failed to get MIPI CSI PHY\n");
+>> +
+>> +	csi_dev->reset = devm_reset_control_get_exclusive(dev, NULL);
+>> +	if (IS_ERR(csi_dev->reset))
+>> +		return dev_err_probe(dev, PTR_ERR(csi_dev->reset),
+>> +				     "failed to get reset\n");
+>> +
+>> +	csi_dev->formats = formats;
+>> +	csi_dev->formats_num = ARRAY_SIZE(formats);
+>> +
+>> +	pm_runtime_enable(dev);
+> 
+> You're not resuming the device in probe(). I guess you depend on CONFIG_PM?
+
+I do depend on CONFIG_PM.
+
+I don't think there is need to resume in probe -> resume in
+_enable_streams should do the trick, right?
+
+> 
+>> +
+>> +	ret = phy_init(csi_dev->phy);
+>> +	if (ret) {
+>> +		ret = dev_err_probe(dev, ret,
+>> +				    "failed to initialize MIPI CSI PHY\n");
+>> +		goto err_pm_runtime_disable;
+>> +	}
+>> +
+>> +	ret = rkcsi_register(csi_dev);
+>> +	if (ret)
+>> +		goto err_phy_exit;
+>> +
+>> +	return 0;
+>> +
+>> +err_phy_exit:
+>> +	phy_exit(csi_dev->phy);
+>> +err_pm_runtime_disable:
+>> +	pm_runtime_disable(dev);
+> 
+> A newline would be nice here.
+
+Ack.
+
+> 
+>> +	return ret;
+>> +}
+>> +
+>> +static void rkcsi_remove(struct platform_device *pdev)
+>> +{
+>> +	struct rkcsi_device *csi_dev = platform_get_drvdata(pdev);
+>> +	struct device *dev = &pdev->dev;
+>> +
+>> +	rkcsi_unregister(csi_dev);
+>> +	phy_exit(csi_dev->phy);
+>> +	pm_runtime_disable(dev);
+>> +}
+>> +
+>> +static int rkcsi_runtime_suspend(struct device *dev)
+>> +{
+>> +	struct rkcsi_device *csi_dev = dev_get_drvdata(dev);
+>> +
+>> +	clk_bulk_disable_unprepare(csi_dev->clks_num, csi_dev->clks);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int rkcsi_runtime_resume(struct device *dev)
+>> +{
+>> +	struct rkcsi_device *csi_dev = dev_get_drvdata(dev);
+>> +	int ret;
+>> +
+>> +	reset_control_assert(csi_dev->reset);
+>> +	udelay(5);
+>> +	reset_control_deassert(csi_dev->reset);
+>> +
+>> +	ret = clk_bulk_prepare_enable(csi_dev->clks_num, csi_dev->clks);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable clocks\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct dev_pm_ops rkcsi_pm_ops = {
+>> +	.runtime_suspend = rkcsi_runtime_suspend,
+>> +	.runtime_resume = rkcsi_runtime_resume,
+>> +};
+> 
+> Could you use DEFINE_RUNTIME_DEV_PM_OPS() (add static in front)?
+
+Ack.
+
+v4 coming up soon!
+
+Best regards,
+Michael
+
+> 
+>> +
+>> +static struct platform_driver rkcsi_drv = {
+>> +	.driver = {
+>> +		   .name = "rockchip-mipi-csi",
+>> +		   .of_match_table = rkcsi_of_match,
+>> +		   .pm = &rkcsi_pm_ops,
+>> +	},
+>> +	.probe = rkcsi_probe,
+>> +	.remove = rkcsi_remove,
+>> +};
+>> +module_platform_driver(rkcsi_drv);
+>> +
+>> +MODULE_DESCRIPTION("Rockchip MIPI CSI-2 Receiver platform driver");
+>> +MODULE_LICENSE("GPL");
 >>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../bindings/sound/mt8192-afe-pcm.yaml        | 176 ++++++++++++++++--
->>   1 file changed, 162 insertions(+), 14 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
->> index 8ddf49b0040d..16ae3328f70d 100644
->> --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
->> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
->> @@ -47,16 +47,118 @@ properties:
->>         - description: AFE clock
->>         - description: ADDA DAC clock
->>         - description: ADDA DAC pre-distortion clock
->> -      - description: audio infra sys clock
->> -      - description: audio infra 26M clock
->> +      - description: ADDA ADC clock
->> +      - description: ADDA6 ADC clock
->> +      - description: Audio low-jitter 22.5792m clock
->> +      - description: Audio low-jitter 24.576m clock
->> +      - description: Audio PLL1 tuner clock
->> +      - description: Audio PLL2 tuner clock
->> +      - description: Audio Time-Division Multiplexing interface clock
->> +      - description: ADDA ADC Sine Generator clock
->> +      - description: audio Non-LE clock
->> +      - description: Audio DAC High-Resolution clock
->> +      - description: Audio High-Resolution ADC clock
->> +      - description: Audio High-Resolution ADC SineGen clock
->> +      - description: Audio ADDA6 High-Resolution ADC clock
->> +      - description: Tertiary ADDA DAC clock
->> +      - description: Tertiary ADDA DAC pre-distortion clock
->> +      - description: Tertiary ADDA DAC Sine Generator clock
->> +      - description: Tertiary ADDA DAC High-Resolution clock
->> +      - description: Audio infra sys clock
->> +      - description: Audio infra 26M clock
->> +      - description: Mux for audio clock
->> +      - description: Mux for audio internal bus clock
->> +      - description: Mux main divider by 4
->> +      - description: Primary audio mux
->> +      - description: Primary audio PLL
->> +      - description: Secondary audio mux
->> +      - description: Secondary audio PLL
->> +      - description: Primary audio en-generator clock
->> +      - description: Primary PLL divider by 4 for IEC
->> +      - description: Secondary audio en-generator clock
->> +      - description: Secondary PLL divider by 4 for IEC
->> +      - description: Mux selector for I2S port 0
->> +      - description: Mux selector for I2S port 1
->> +      - description: Mux selector for I2S port 2
->> +      - description: Mux selector for I2S port 3
->> +      - description: Mux selector for I2S port 4
->> +      - description: Mux selector for I2S port 5
->> +      - description: Mux selector for I2S port 6
->> +      - description: Mux selector for I2S port 7
->> +      - description: Mux selector for I2S port 8
->> +      - description: Mux selector for I2S port 9
->> +      - description: APLL1 and APLL2 divider for I2S port 0
->> +      - description: APLL1 and APLL2 divider for I2S port 1
->> +      - description: APLL1 and APLL2 divider for I2S port 2
->> +      - description: APLL1 and APLL2 divider for I2S port 3
->> +      - description: APLL1 and APLL2 divider for I2S port 4
->> +      - description: APLL1 and APLL2 divider for IEC
->> +      - description: APLL1 and APLL2 divider for I2S port 5
->> +      - description: APLL1 and APLL2 divider for I2S port 6
->> +      - description: APLL1 and APLL2 divider for I2S port 7
->> +      - description: APLL1 and APLL2 divider for I2S port 8
->> +      - description: APLL1 and APLL2 divider for I2S port 9
->> +      - description: Top mux for audio subsystem
->> +      - description: 26MHz clock for audio subsystem
->>   
->>     clock-names:
->>       items:
->>         - const: aud_afe_clk
->>         - const: aud_dac_clk
->>         - const: aud_dac_predis_clk
->> +      - const: aud_adc_clk
->> +      - const: aud_adda6_adc_clk
->> +      - const: aud_apll22m_clk
->> +      - const: aud_apll24m_clk
->> +      - const: aud_apll1_tuner_clk
->> +      - const: aud_apll2_tuner_clk
->> +      - const: aud_tdm_clk
->> +      - const: aud_tml_clk
->> +      - const: aud_nle
->> +      - const: aud_dac_hires_clk
->> +      - const: aud_adc_hires_clk
->> +      - const: aud_adc_hires_tml
->> +      - const: aud_adda6_adc_hires_clk
->> +      - const: aud_3rd_dac_clk
->> +      - const: aud_3rd_dac_predis_clk
->> +      - const: aud_3rd_dac_tml
->> +      - const: aud_3rd_dac_hires_clk
->>         - const: aud_infra_clk
->>         - const: aud_infra_26m_clk
->> +      - const: top_mux_audio
->> +      - const: top_mux_audio_int
->> +      - const: top_mainpll_d4_d4
->> +      - const: top_mux_aud_1
->> +      - const: top_apll1_ck
->> +      - const: top_mux_aud_2
->> +      - const: top_apll2_ck
->> +      - const: top_mux_aud_eng1
->> +      - const: top_apll1_d4
->> +      - const: top_mux_aud_eng2
->> +      - const: top_apll2_d4
->> +      - const: top_i2s0_m_sel
->> +      - const: top_i2s1_m_sel
->> +      - const: top_i2s2_m_sel
->> +      - const: top_i2s3_m_sel
->> +      - const: top_i2s4_m_sel
->> +      - const: top_i2s5_m_sel
->> +      - const: top_i2s6_m_sel
->> +      - const: top_i2s7_m_sel
->> +      - const: top_i2s8_m_sel
->> +      - const: top_i2s9_m_sel
->> +      - const: top_apll12_div0
->> +      - const: top_apll12_div1
->> +      - const: top_apll12_div2
->> +      - const: top_apll12_div3
->> +      - const: top_apll12_div4
->> +      - const: top_apll12_divb
->> +      - const: top_apll12_div5
->> +      - const: top_apll12_div6
->> +      - const: top_apll12_div7
->> +      - const: top_apll12_div8
->> +      - const: top_apll12_div9
->> +      - const: top_mux_audio_h
->> +      - const: top_clk26m_clk
->>   
->>   required:
->>     - compatible
->> @@ -83,23 +185,69 @@ examples:
->>       afe: mt8192-afe-pcm {
->>           compatible = "mediatek,mt8192-audio";
->>           interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>;
->> +        clocks = <&audsys CLK_AUD_AFE>, <&audsys CLK_AUD_DAC>,
->> +                 <&audsys CLK_AUD_DAC_PREDIS>, <&audsys CLK_AUD_ADC>,
->> +                 <&audsys CLK_AUD_ADDA6_ADC>, <&audsys CLK_AUD_22M>,
->> +                 <&audsys CLK_AUD_24M>, <&audsys CLK_AUD_APLL_TUNER>,
->> +                 <&audsys CLK_AUD_APLL2_TUNER>, <&audsys CLK_AUD_TDM>,
->> +                 <&audsys CLK_AUD_TML>, <&audsys CLK_AUD_NLE>,
->> +                 <&audsys CLK_AUD_DAC_HIRES>, <&audsys CLK_AUD_ADC_HIRES>,
->> +                 <&audsys CLK_AUD_ADC_HIRES_TML>, <&audsys CLK_AUD_ADDA6_ADC_HIRES>,
->> +                 <&audsys CLK_AUD_3RD_DAC>, <&audsys CLK_AUD_3RD_DAC_PREDIS>,
->> +                 <&audsys CLK_AUD_3RD_DAC_TML>, <&audsys CLK_AUD_3RD_DAC_HIRES>,
->> +                 <&infracfg CLK_INFRA_AUDIO>, <&infracfg CLK_INFRA_AUDIO_26M_B>,
->> +                 <&topckgen CLK_TOP_AUDIO_SEL>, <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
->> +                 <&topckgen CLK_TOP_MAINPLL_D4_D4>, <&topckgen CLK_TOP_AUD_1_SEL>,
->> +                 <&topckgen CLK_TOP_APLL1>, <&topckgen CLK_TOP_AUD_2_SEL>,
->> +                 <&topckgen CLK_TOP_APLL2>, <&topckgen CLK_TOP_AUD_ENGEN1_SEL>,
->> +                 <&topckgen CLK_TOP_APLL1_D4>, <&topckgen CLK_TOP_AUD_ENGEN2_SEL>,
->> +                 <&topckgen CLK_TOP_APLL2_D4>, <&topckgen CLK_TOP_APLL_I2S0_M_SEL>,
->> +                 <&topckgen CLK_TOP_APLL_I2S1_M_SEL>, <&topckgen CLK_TOP_APLL_I2S2_M_SEL>,
->> +                 <&topckgen CLK_TOP_APLL_I2S3_M_SEL>, <&topckgen CLK_TOP_APLL_I2S4_M_SEL>,
->> +                 <&topckgen CLK_TOP_APLL_I2S5_M_SEL>, <&topckgen CLK_TOP_APLL_I2S6_M_SEL>,
->> +                 <&topckgen CLK_TOP_APLL_I2S7_M_SEL>, <&topckgen CLK_TOP_APLL_I2S8_M_SEL>,
->> +                 <&topckgen CLK_TOP_APLL_I2S9_M_SEL>, <&topckgen CLK_TOP_APLL12_DIV0>,
->> +                 <&topckgen CLK_TOP_APLL12_DIV1>, <&topckgen CLK_TOP_APLL12_DIV2>,
->> +                 <&topckgen CLK_TOP_APLL12_DIV3>, <&topckgen CLK_TOP_APLL12_DIV4>,
->> +                 <&topckgen CLK_TOP_APLL12_DIVB>, <&topckgen CLK_TOP_APLL12_DIV5>,
->> +                 <&topckgen CLK_TOP_APLL12_DIV6>, <&topckgen CLK_TOP_APLL12_DIV7>,
->> +                 <&topckgen CLK_TOP_APLL12_DIV8>, <&topckgen CLK_TOP_APLL12_DIV9>,
->> +                 <&topckgen CLK_TOP_AUDIO_H_SEL>, <&clk26m>;
->> +        clock-names = "aud_afe_clk", "aud_dac_clk",
->> +                      "aud_dac_predis_clk", "aud_adc_clk",
->> +                      "aud_adda6_adc_clk", "aud_apll22m_clk",
->> +                      "aud_apll24m_clk", "aud_apll1_tuner_clk",
->> +                      "aud_apll2_tuner_clk", "aud_tdm_clk",
->> +                      "aud_tml_clk", "aud_nle",
->> +                      "aud_dac_hires_clk", "aud_adc_hires_clk",
->> +                      "aud_adc_hires_tml", "aud_adda6_adc_hires_clk",
->> +                      "aud_3rd_dac_clk", "aud_3rd_dac_predis_clk",
->> +                      "aud_3rd_dac_tml", "aud_3rd_dac_hires_clk",
->> +                      "aud_infra_clk", "aud_infra_26m_clk",
->> +                      "top_mux_audio", "top_mux_audio_int",
->> +                      "top_mainpll_d4_d4", "top_mux_aud_1",
->> +                      "top_apll1_ck", "top_mux_aud_2",
->> +                      "top_apll2_ck", "top_mux_aud_eng1",
->> +                      "top_apll1_d4", "top_mux_aud_eng2",
->> +                      "top_apll2_d4", "top_i2s0_m_sel",
->> +                      "top_i2s1_m_sel", "top_i2s2_m_sel",
->> +                      "top_i2s3_m_sel", "top_i2s4_m_sel",
->> +                      "top_i2s5_m_sel", "top_i2s6_m_sel",
->> +                      "top_i2s7_m_sel", "top_i2s8_m_sel",
->> +                      "top_i2s9_m_sel", "top_apll12_div0",
->> +                      "top_apll12_div1", "top_apll12_div2",
->> +                      "top_apll12_div3", "top_apll12_div4",
->> +                      "top_apll12_divb", "top_apll12_div5",
->> +                      "top_apll12_div6", "top_apll12_div7",
->> +                      "top_apll12_div8", "top_apll12_div9",
->> +                      "top_mux_audio_h", "top_clk26m_clk";
->> +        memory-region = <&afe_dma_mem>;
->> +        power-domains = <&scpsys MT8192_POWER_DOMAIN_AUDIO>;
->>           resets = <&watchdog MT8192_TOPRGU_AUDIO_SW_RST>;
->>           reset-names = "audiosys";
->>           mediatek,apmixedsys = <&apmixedsys>;
->>           mediatek,infracfg = <&infracfg>;
->>           mediatek,topckgen = <&topckgen>;
->> -        power-domains = <&scpsys MT8192_POWER_DOMAIN_AUDIO>;
->> -        clocks = <&audsys CLK_AUD_AFE>,
->> -                 <&audsys CLK_AUD_DAC>,
->> -                 <&audsys CLK_AUD_DAC_PREDIS>,
->> -                 <&infracfg CLK_INFRA_AUDIO>,
->> -                 <&infracfg CLK_INFRA_AUDIO_26M_B>;
->> -        clock-names = "aud_afe_clk",
->> -                      "aud_dac_clk",
->> -                      "aud_dac_predis_clk",
->> -                      "aud_infra_clk",
->> -                      "aud_infra_26m_clk";
->> -        memory-region = <&afe_dma_mem>;
->>       };
->>   
->>   ...
 > 
 
-
--- 
-AngeloGioacchino Del Regno
-Senior Software Engineer
-
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
-Registered in England & Wales, no. 5513718
 
