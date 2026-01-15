@@ -1,797 +1,305 @@
-Return-Path: <devicetree+bounces-255635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D33D251A5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:56:46 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 495E2D25121
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 15:52:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8AEA9305C969
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:51:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 863AE30277DB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDCF734FF78;
-	Thu, 15 Jan 2026 14:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9DE3563FA;
+	Thu, 15 Jan 2026 14:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oY7LcciR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HGft4Q6O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B16350A1F;
-	Thu, 15 Jan 2026 14:51:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BCA34F259;
+	Thu, 15 Jan 2026 14:51:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768488664; cv=none; b=S9I/nDYJLqTm/jAmQQzkfYGACYgVx7Pw2BsT1DuRKWInipIYZtHk9FzkjgxJHRoyU5O0XW9BwAbAQxzTWVN3uaqdCepq95/2yMoHVtKn8B1UmNwugIIsC9wi6kZWousera0lnu4kak6KZaOaaNKpEfCEQuOcx8c2J/bLb9gP0ps=
+	t=1768488698; cv=none; b=Z1gouuD4oIvWqL+0Oei5Y4iHgTApTekV8wizx1C219ls61UHtSbMjWPm5zzyMnOi5z/Z8WvO4GzkyvKbPF9QlZYmvkgLcC4wDg3SKjot/nnyn48gHwHD19BvL1hzjhP1EZEVoonWSDNaHPoiTcYH9smfHicsLIYWBDtW4tTJNrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768488664; c=relaxed/simple;
-	bh=BRGsOfOVfXBLkhozhMEHPG5fQHPNHu2lNFxYGy94qGk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S8PyMBUv2o8kveJ/TpdgQ/Gvzko1FajtcU7bR6rqoO1y3hAqH+YvewBnj2DKp4J8Q27Y3INAcgFwVhgBHW2kAS+rYDQXE+dwXMf1Wxx0j0rZIJgN7sPh+6lJFxSC3RRCVw/OoZNY8KEiSrM+6VDvuMcOUyzjSI1mrBdIskxlSx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oY7LcciR; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1768488661;
-	bh=BRGsOfOVfXBLkhozhMEHPG5fQHPNHu2lNFxYGy94qGk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oY7LcciRQYo38+nmrMdl7O9KkL0YsviEmUF9HoC9dnsYWB9N3IU/e736OW3qtYvv7
-	 7cX6v72M0iy3UtjkHDbXFgz73Z2UTg8aaI7Gw6ybiUabdefpoY3cJ+csVlecvD0gAA
-	 fqRwnRBH4CZ+Qpt7WQoG3pJHnIL2EBTmD5Ilc2p9RBt/M+jQTOWXj5BWSrMRNQPaH8
-	 51lyCKS2jBT+cttg0BsaBHS2qgXiap1d/zbK8eDR+4NJBPZ6jj4DUbaOGbGSuujisw
-	 1957Xhz0Us1fKU4E6/+MXAKRGqc6Eq73VsTV6L4EI7+IwDziyPwBQoT5740s4ZtSir
-	 PJp9Qq+Pw5OdQ==
-Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 516DF17E12E5;
-	Thu, 15 Jan 2026 15:51:00 +0100 (CET)
-Message-ID: <fc15b8e5-c7ae-4e0e-b3b7-7ce5b5139455@collabora.com>
-Date: Thu, 15 Jan 2026 15:50:59 +0100
+	s=arc-20240116; t=1768488698; c=relaxed/simple;
+	bh=TWF81yy1xgtmRFWocZ1eiYr0ym2w1ajgLPheFFGHTeM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LPWnQHN4VP9oBRt1o0UDjx9DVVzdEvWXCgXwFC2AUBdr2EofK2WwsOKgbplOuSyNEmjdnJsVQEujtMs1l1pRX1erHW/Doq64PXUMOyH+H3S+gbd0lCQ4OSVc3zq20gaJDVsZP1iZjMCuWswjSvxlDnHPZp6ODhRBv0LqRDJh7WM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HGft4Q6O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4559C116D0;
+	Thu, 15 Jan 2026 14:51:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768488698;
+	bh=TWF81yy1xgtmRFWocZ1eiYr0ym2w1ajgLPheFFGHTeM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HGft4Q6OGiARgXQn7TPJrqI8Lt/ixWBKU8hcxsXkJkb6f1NxrUWug+5r5Ch9aYll+
+	 BrR0fglPrvU8GMI3aGjD209ZLxFvrOOAhNGFu/AiSrd98oixFMVO9ZbcBpGpfE8iRK
+	 xPKvfnZdx94Jqk3INsJhNOLEUnEfNj+dQ2iDhXJwsbw8w9c/3REPSmuRpAJt8KaS1r
+	 k1vquYea3uhZeZre+iZiNEfkJSMp5g9Ni+U/19RWWLNUGzrKiqCqm1hNiVHHmpA4aZ
+	 ZbHjYlbksMFhhZWbqW6SF6I2Yj7Mfo1fHulwCPu3m2fK0PIMzQN+XGHQhXWYQhpY6K
+	 0xGO6Pu/GU6Bg==
+Date: Thu, 15 Jan 2026 08:51:37 -0600
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: phy: ti,control-phy-otghs: convert
+ to DT schema
+Message-ID: <20260115145137.GB3319937-robh@kernel.org>
+References: <20260107-ti-phy-v2-0-a1ec27401fff@gmail.com>
+ <20260107-ti-phy-v2-2-a1ec27401fff@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] media: rockchip: add driver for the rockchip mipi
- csi-2 receiver
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hans Verkuil <hverkuil@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251114-rockchip-mipi-receiver-v3-0-16e83aa7f395@collabora.com>
- <20251114-rockchip-mipi-receiver-v3-2-16e83aa7f395@collabora.com>
- <aWdjGuhk9g1iaJuN@kekkonen.localdomain>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <aWdjGuhk9g1iaJuN@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260107-ti-phy-v2-2-a1ec27401fff@gmail.com>
 
-Hi Sakari,
-
-On 1/14/26 10:34, Sakari Ailus wrote:
-> Hi Michael,
+On Wed, Jan 07, 2026 at 04:11:16PM +0000, Charan Pedumuru wrote:
+> Convert TI OMAP Control PHY binding to DT schema.
+> Changes during conversion:
+> - Define a new pattern 'control-phy' to match nodes defined in DT.
 > 
-> Thanks for the set.
-
-Thanks for the review :-)
-
->> [...]
->> diff --git a/drivers/media/platform/rockchip/rkcsi/rkcsi.c b/drivers/media/platform/rockchip/rkcsi/rkcsi.c
->> new file mode 100644
->> index 000000000000..03597f03f08f
->> --- /dev/null
->> +++ b/drivers/media/platform/rockchip/rkcsi/rkcsi.c
->> @@ -0,0 +1,742 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Rockchip MIPI CSI-2 Receiver Driver
->> + *
->> + * Copyright (C) 2019 Rockchip Electronics Co., Ltd.
->> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
->> + * Copyright (C) 2026 Collabora, Ltd.
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/io.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_graph.h>
->> +#include <linux/of_platform.h>
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+>  .../bindings/phy/ti,control-phy-otghs.yaml         | 94 +++++++++++++++++++++
+>  Documentation/devicetree/bindings/phy/ti-phy.txt   | 98 ----------------------
+>  2 files changed, 94 insertions(+), 98 deletions(-)
 > 
-> Are the above two needed?
+> diff --git a/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml b/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml
+> new file mode 100644
+> index 000000000000..2c91609cac35
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/ti,control-phy-otghs.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/ti,control-phy-otghs.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI OMAP Control PHY Module
+> +
+> +maintainers:
+> +  - Kishon Vijay Abraham I <kishon@ti.com>
+> +
+> +description:
+> +  The TI OMAP Control PHY module is a hardware block within the system
+> +  control module (SCM) of Texas Instruments OMAP SoCs. It provides
+> +  centralized control over power, configuration, and auxiliary features
+> +  for multiple on-chip PHYs. This module is essential for proper PHY
+> +  operation in power-constrained embedded systems.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^control-phy(@[0-9a-f]+)?$"
 
-They are not, apparently. I'll remove them.
+Drop. Non-standard.
 
+> +
+> +  compatible:
+> +    enum:
+> +      - ti,control-phy-otghs
+> +      - ti,control-phy-usb2
+> +      - ti,control-phy-pipe3
+> +      - ti,control-phy-pcie
+> +      - ti,control-phy-usb2-dra7
+> +      - ti,control-phy-usb2-am437
+
+Alphabetical order
+
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 4
+
+With the constraints below, there is no case that allows 4 entries.
+
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    maxItems: 4
+> +    items:
+> +      enum: [otghs_control, power, pcie_pcs, control_sma]
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,control-phy-otghs
+> +    then:
+> +      properties:
+> +        reg-names:
+> +          const: otghs_control
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,control-phy-pcie
+
+There's no .dts with this compatible. Do you really need this 
+compatible or can drop it?
+
+> +    then:
+> +      properties:
+> +        reg-names:
+> +          items:
+> +            - enum: [power, pcie_pcs, control_sma]
+
+It's really 1 entry of 3 possible names?
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,control-phy-usb2
+> +              - ti,control-phy-usb2-dra7
+> +              - ti,control-phy-usb2-am437
+> +              - ti,control-phy-pipe3
+> +    then:
+> +      properties:
+> +        reg-names:
+> +          const: power
+> +
+> +required:
+> +  - reg
+> +  - compatible
+> +  - reg-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    control-phy@4a00233c {
+
+phy@...
+
+> +        compatible = "ti,control-phy-otghs";
+> +        reg = <0x4a00233c 0x4>;
+> +        reg-names = "otghs_control";
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/phy/ti-phy.txt b/Documentation/devicetree/bindings/phy/ti-phy.txt
+> deleted file mode 100644
+> index 7c7936b89f2c..000000000000
+> --- a/Documentation/devicetree/bindings/phy/ti-phy.txt
+> +++ /dev/null
+> @@ -1,98 +0,0 @@
+> -TI PHY: DT DOCUMENTATION FOR PHYs in TI PLATFORMs
+> -
+> -OMAP CONTROL PHY
+> -
+> -Required properties:
+> - - compatible: Should be one of
+> - "ti,control-phy-otghs" - if it has otghs_control mailbox register as on OMAP4.
+> - "ti,control-phy-usb2" - if it has Power down bit in control_dev_conf register
+> -                        e.g. USB2_PHY on OMAP5.
+> - "ti,control-phy-pipe3" - if it has DPLL and individual Rx & Tx power control
+> -                        e.g. USB3 PHY and SATA PHY on OMAP5.
+> - "ti,control-phy-pcie" - for pcie to support external clock for pcie and to
+> -			set PCS delay value.
+> -			e.g. PCIE PHY in DRA7x
+> - "ti,control-phy-usb2-dra7" - if it has power down register like USB2 PHY on
+> -                        DRA7 platform.
+> - "ti,control-phy-usb2-am437" - if it has power down register like USB2 PHY on
+> -                        AM437 platform.
+> - - reg : register ranges as listed in the reg-names property
+> - - reg-names: "otghs_control" for control-phy-otghs
+> -	      "power", "pcie_pcs" and "control_sma" for control-phy-pcie
+> -	      "power" for all other types
+> -
+> -omap_control_usb: omap-control-usb@4a002300 {
+> -        compatible = "ti,control-phy-otghs";
+> -        reg = <0x4a00233c 0x4>;
+> -        reg-names = "otghs_control";
+> -};
+> -
+> -TI PIPE3 PHY
+> -
+> -Required properties:
+> - - compatible: Should be "ti,phy-usb3", "ti,phy-pipe3-sata" or
+> -   "ti,phy-pipe3-pcie. "ti,omap-usb3" is deprecated.
+> - - reg : Address and length of the register set for the device.
+> - - reg-names: The names of the register addresses corresponding to the registers
+> -   filled in "reg".
+> - - #phy-cells: determine the number of cells that should be given in the
+> -   phandle while referencing this phy.
+> - - clocks: a list of phandles and clock-specifier pairs, one for each entry in
+> -   clock-names.
+> - - clock-names: should include:
+> -   * "wkupclk" - wakeup clock.
+> -   * "sysclk" - system clock.
+> -   * "refclk" - reference clock.
+> -   * "dpll_ref" - external dpll ref clk
+> -   * "dpll_ref_m2" - external dpll ref clk
+> -   * "phy-div" - divider for apll
+> -   * "div-clk" - apll clock
+> -
+> -Optional properties:
+> - - id: If there are multiple instance of the same type, in order to
+> -   differentiate between each instance "id" can be used (e.g., multi-lane PCIe
+> -   PHY). If "id" is not provided, it is set to default value of '1'.
+> - - syscon-pllreset: Handle to system control region that contains the
+> -   CTRL_CORE_SMA_SW_0 register and register offset to the CTRL_CORE_SMA_SW_0
+> -   register that contains the SATA_PLL_SOFT_RESET bit. Only valid for sata_phy.
+> - - syscon-pcs : phandle/offset pair. Phandle to the system control module and the
+> -   register offset to write the PCS delay value.
+> -
+> -Deprecated properties:
+> - - ctrl-module : phandle of the control module used by PHY driver to power on
+> -   the PHY.
+> -
+> -Recommended properties:
+> - - syscon-phy-power : phandle/offset pair. Phandle to the system control
+> -   module and the register offset to power on/off the PHY.
+> -
+> -This is usually a subnode of ocp2scp to which it is connected.
+> -
+> -usb3phy@4a084400 {
+> -	compatible = "ti,phy-usb3";
+> -	reg = <0x4a084400 0x80>,
+> -	      <0x4a084800 0x64>,
+> -	      <0x4a084c00 0x40>;
+> -	reg-names = "phy_rx", "phy_tx", "pll_ctrl";
+> -	ctrl-module = <&omap_control_usb>;
+> -	#phy-cells = <0>;
+> -	clocks = <&usb_phy_cm_clk32k>,
+> -		 <&sys_clkin>,
+> -		 <&usb_otg_ss_refclk960m>;
+> -	clock-names =	"wkupclk",
+> -			"sysclk",
+> -			"refclk";
+> -};
+> -
+> -sata_phy: phy@4a096000 {
+> -	compatible = "ti,phy-pipe3-sata";
+> -	reg = <0x4A096000 0x80>, /* phy_rx */
+> -	      <0x4A096400 0x64>, /* phy_tx */
+> -	      <0x4A096800 0x40>; /* pll_ctrl */
+> -	reg-names = "phy_rx", "phy_tx", "pll_ctrl";
+> -	ctrl-module = <&omap_control_sata>;
+> -	clocks = <&sys_clkin1>, <&sata_ref_clk>;
+> -	clock-names = "sysclk", "refclk";
+> -	syscon-pllreset = <&scm_conf 0x3fc>;
+> -	#phy-cells = <0>;
+> -};
 > 
->> +#include <linux/phy/phy.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pm_runtime.h>
+> -- 
+> 2.52.0
 > 
-> #include <linux/property.h>
-
-Ack.
-
->> +#include <linux/reset.h>
->> [...]
->> +
->> +static const struct rkcsi_format *
->> +rkcsi_find_format(struct rkcsi_device *csi_dev, u32 mbus_code)
->> +{
->> +	const struct rkcsi_format *format;
-> 
-> This can be declared within the loop.
-
-Ack.
-
-> 
->> +
->> +	WARN_ON(csi_dev->formats_num == 0);
->> +
->> +	for (int i = 0; i < csi_dev->formats_num; i++) {
-> 
-> unsigned int?
-
-Ack.
-
-> 
->> +		format = &csi_dev->formats[i];
->> +		if (format->code == mbus_code)
->> +			return format;
->> +	}
->> +
->> +	return NULL;
->> +}
->> +
->> +static int rkcsi_start(struct rkcsi_device *csi_dev)
->> +{
->> +	struct media_pad *source_pad =
->> +		&csi_dev->source_sd->entity.pads[csi_dev->source_pad];
->> +	enum v4l2_mbus_type bus_type = csi_dev->vep.bus_type;
->> +	union phy_configure_opts opts;
->> +	s64 link_freq;
->> +	u32 lanes = csi_dev->vep.bus.mipi_csi2.num_data_lanes;
->> +	u32 control = 0;
->> +	int ret;
->> +
->> +	if (lanes < 1 || lanes > 4)
->> +		return -EINVAL;
->> +
->> +	/* set mult and div to 0, thus completely rely on V4L2_CID_LINK_FREQ */
->> +	link_freq = v4l2_get_link_freq(source_pad, 0, 0);
->> +	if (link_freq <= 0)
->> +		return -EINVAL;
-> 
-> Could you return link_freq here?
-
-Ack.
-
-> 
->> +
->> +	if (bus_type == V4L2_MBUS_CSI2_DPHY) {
->> +		struct phy_configure_opts_mipi_dphy *cfg = &opts.mipi_dphy;
->> +
->> +		ret = phy_mipi_dphy_get_default_config_for_hsclk(link_freq * 2,
->> +								 lanes, cfg);
->> +		if (ret)
->> +			return ret;
->> +
->> +		ret = phy_set_mode(csi_dev->phy, PHY_MODE_MIPI_DPHY);
->> +		if (ret)
->> +			return ret;
->> +
->> +		ret = phy_configure(csi_dev->phy, &opts);
->> +		if (ret)
->> +			return ret;
->> +
->> +		control |= SW_CPHY_EN(0);
->> +
->> +	} else if (bus_type == V4L2_MBUS_CSI2_CPHY) {
->> +		/* TODO: implement CPHY configuration */
->> +		return -EOPNOTSUPP;
-> 
-> How about a switch()?
-
-Ok!
-
-> 
->> +	} else {
->> +		return -EINVAL;
->> +	}
->> +
->> +	control |= SW_DATATYPE_FS(0x00) | SW_DATATYPE_FE(0x01) |
->> +		   SW_DATATYPE_LS(0x02) | SW_DATATYPE_LE(0x03);
->> +
->> +	rkcsi_write(csi_dev, CSI2HOST_N_LANES, lanes - 1);
->> +	rkcsi_write(csi_dev, CSI2HOST_CONTROL, control);
->> +	rkcsi_write(csi_dev, CSI2HOST_CSI2_RESETN, 1);
->> +
->> +	ret = phy_power_on(csi_dev->phy);
-> 
-> 	return ...;
-
-Ack.
-
-> 
->> +	if (ret)
->> +		return ret;
->> +
->> +	return 0;
->> +}
->> +
->> +static void rkcsi_stop(struct rkcsi_device *csi_dev)
->> +{
->> +	phy_power_off(csi_dev->phy);
->> +
->> +	rkcsi_write(csi_dev, CSI2HOST_CSI2_RESETN, 0);
->> +	rkcsi_write(csi_dev, CSI2HOST_MSK1, ~0);
->> +	rkcsi_write(csi_dev, CSI2HOST_MSK2, ~0);
->> +}
->> +
->> +static const struct media_entity_operations rkcsi_media_ops = {
->> +	.link_validate = v4l2_subdev_link_validate,
->> +};
->> +
->> +static int rkcsi_enum_mbus_code(struct v4l2_subdev *sd,
->> +				struct v4l2_subdev_state *sd_state,
->> +				struct v4l2_subdev_mbus_code_enum *code)
->> +{
->> +	struct rkcsi_device *csi_dev = to_rkcsi(sd);
->> +
->> +	if (code->pad == RKCSI_PAD_SRC) {
->> +		const struct v4l2_mbus_framefmt *sink_fmt;
->> +
->> +		if (code->index)
->> +			return -EINVAL;
->> +
->> +		sink_fmt = v4l2_subdev_state_get_format(sd_state,
->> +							RKCSI_PAD_SINK);
->> +		code->code = sink_fmt->code;
->> +
->> +		return 0;
->> +	} else if (code->pad == RKCSI_PAD_SINK) {
-> 
-> switch() would be nice here.
-
-Ack.
-
-> 
->> +		if (code->index > csi_dev->formats_num)
->> +			return -EINVAL;
->> +
->> +		code->code = csi_dev->formats[code->index].code;
->> +		return 0;
->> +	}
->> +
->> +	return -EINVAL;
->> +}
->> +
->> +static int rkcsi_set_fmt(struct v4l2_subdev *sd,
->> +			 struct v4l2_subdev_state *state,
->> +			 struct v4l2_subdev_format *format)
->> +{
->> +	struct rkcsi_device *csi_dev = to_rkcsi(sd);
->> +	const struct rkcsi_format *fmt;
->> +	struct v4l2_mbus_framefmt *sink, *src;
->> +
->> +	/* the format on the source pad always matches the sink pad */
->> +	if (format->pad == RKCSI_PAD_SRC)
->> +		return v4l2_subdev_get_fmt(sd, state, format);
->> +
->> +	sink = v4l2_subdev_state_get_format(state, format->pad, format->stream);
->> +	if (!sink)
->> +		return -EINVAL;
->> +
->> +	fmt = rkcsi_find_format(csi_dev, format->format.code);
->> +	if (!fmt)
->> +		format->format = default_format;
->> +
->> +	*sink = format->format;
->> +
->> +	/* propagate the format to the source pad */
->> +	src = v4l2_subdev_state_get_opposite_stream_format(state, format->pad,
->> +							   format->stream);
->> +	if (!src)
->> +		return -EINVAL;
->> +
->> +	*src = *sink;
->> +
->> +	return 0;
->> +}
->> +
->> +static int rkcsi_set_routing(struct v4l2_subdev *sd,
->> +			     struct v4l2_subdev_state *state,
->> +			     enum v4l2_subdev_format_whence which,
->> +			     struct v4l2_subdev_krouting *routing)
->> +{
->> +	int ret;
->> +
->> +	ret = v4l2_subdev_routing_validate(sd, routing,
->> +					   V4L2_SUBDEV_ROUTING_ONLY_1_TO_1);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = v4l2_subdev_set_routing_with_fmt(sd, state, routing,
->> +					       &default_format);
-> 
-> 	return ...;
-
-Ack.
-
-> 
->> +	if (ret)
->> +		return ret;
->> +
->> +	return 0;
->> +}
->> +
->> +static int rkcsi_enable_streams(struct v4l2_subdev *sd,
->> +				struct v4l2_subdev_state *state, u32 pad,
->> +				u64 streams_mask)
->> +{
->> +	struct rkcsi_device *csi_dev = to_rkcsi(sd);
->> +	struct v4l2_subdev *remote_sd;
->> +	struct media_pad *sink_pad, *remote_pad;
->> +	struct device *dev = csi_dev->dev;
->> +	u64 mask;
->> +	int ret;
->> +
->> +	sink_pad = &sd->entity.pads[RKCSI_PAD_SINK];
->> +	remote_pad = media_pad_remote_pad_first(sink_pad);
->> +	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
->> +
->> +	mask = v4l2_subdev_state_xlate_streams(state, RKCSI_PAD_SINK,
->> +					       RKCSI_PAD_SRC, &streams_mask);
->> +
->> +	ret = pm_runtime_resume_and_get(dev);
->> +	if (ret)
->> +		goto err;
->> +
->> +	ret = rkcsi_start(csi_dev);
->> +	if (ret) {
->> +		dev_err(dev, "failed to enable CSI hardware\n");
->> +		goto err_pm_runtime_put;
->> +	}
->> +
->> +	ret = v4l2_subdev_enable_streams(remote_sd, remote_pad->index, mask);
->> +	if (ret)
->> +		goto err_csi_stop;
->> +
->> +	return 0;
->> +
->> +err_csi_stop:
->> +	rkcsi_stop(csi_dev);
->> +err_pm_runtime_put:
->> +	pm_runtime_put_sync(dev);
->> +err:
->> +	return ret;
->> +}
->> +
->> +static int rkcsi_disable_streams(struct v4l2_subdev *sd,
->> +				 struct v4l2_subdev_state *state, u32 pad,
->> +				 u64 streams_mask)
->> +{
->> +	struct rkcsi_device *csi_dev = to_rkcsi(sd);
->> +	struct v4l2_subdev *remote_sd;
->> +	struct media_pad *sink_pad, *remote_pad;
->> +	struct device *dev = csi_dev->dev;
->> +	u64 mask;
->> +	int ret;
->> +
->> +	sink_pad = &sd->entity.pads[RKCSI_PAD_SINK];
->> +	remote_pad = media_pad_remote_pad_first(sink_pad);
->> +	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
->> +
->> +	mask = v4l2_subdev_state_xlate_streams(state, RKCSI_PAD_SINK,
->> +					       RKCSI_PAD_SRC, &streams_mask);
->> +
->> +	ret = v4l2_subdev_disable_streams(remote_sd, remote_pad->index, mask);
->> +
->> +	rkcsi_stop(csi_dev);
->> +
->> +	pm_runtime_mark_last_busy(dev);
-> 
-> Redundant, please drop.
-
-Ack.
-
-> 
->> +	pm_runtime_put_autosuspend(dev);
-> 
-> The driver doesn't enable autosuspend so the autosuspend variant isn't
-> useful. Maybe just switch to pm_runtime_put(), as resume probably takes
-> very little time?
-
-Ack.
-
-> 
->> +
->> +	return ret;
->> +}
->> +
->> +static const struct v4l2_subdev_pad_ops rkcsi_pad_ops = {
->> +	.enum_mbus_code = rkcsi_enum_mbus_code,
->> +	.get_fmt = v4l2_subdev_get_fmt,
->> +	.set_fmt = rkcsi_set_fmt,
->> +	.set_routing = rkcsi_set_routing,
->> +	.enable_streams = rkcsi_enable_streams,
->> +	.disable_streams = rkcsi_disable_streams,
->> +};
->> +
->> +static const struct v4l2_subdev_ops rkcsi_ops = {
->> +	.pad = &rkcsi_pad_ops,
->> +};
->> +
->> +static int rkcsi_init_state(struct v4l2_subdev *sd,
->> +			    struct v4l2_subdev_state *state)
->> +{
->> +	struct v4l2_subdev_route routes[] = {
->> +		{
->> +			.sink_pad = RKCSI_PAD_SINK,
->> +			.sink_stream = 0,
->> +			.source_pad = RKCSI_PAD_SRC,
->> +			.source_stream = 0,
->> +			.flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE,
->> +		},
->> +	};
->> +	struct v4l2_subdev_krouting routing = {
->> +		.len_routes = ARRAY_SIZE(routes),
->> +		.num_routes = ARRAY_SIZE(routes),
->> +		.routes = routes,
->> +	};
->> +	int ret;
->> +
->> +	ret = v4l2_subdev_set_routing_with_fmt(sd, state, &routing,
->> +					       &default_format);
-> 
-> 	return ...;
-
-Ack.
-
-> 
->> +
->> +	return ret;
->> +}
->> +
->> +static const struct v4l2_subdev_internal_ops rkcsi_internal_ops = {
->> +	.init_state = rkcsi_init_state,
->> +};
->> +
->> +static int rkcsi_notifier_bound(struct v4l2_async_notifier *notifier,
->> +				struct v4l2_subdev *sd,
->> +				struct v4l2_async_connection *asd)
->> +{
->> +	struct rkcsi_device *csi_dev =
->> +		container_of(notifier, struct rkcsi_device, notifier);
->> +	int source_pad;
->> +
->> +	source_pad = media_entity_get_fwnode_pad(&sd->entity, sd->fwnode,
->> +						 MEDIA_PAD_FL_SOURCE);
-> 
-> Could you use v4l2_create_fwnode_links_to_pad()?
-
-Ack.
-
-> 
->> +	if (source_pad < 0) {
->> +		dev_err(csi_dev->dev, "failed to find source pad for %s\n",
->> +			sd->name);
->> +		return source_pad;
->> +	}
->> +
->> +	csi_dev->source_sd = sd;
-> 
-> I'd just use media_pad_remote_pad_unique() to obtain the remote pad when
-> needed.
-
-Ack.
-
-> 
->> +	csi_dev->source_pad = source_pad;
->> +
->> +	return media_create_pad_link(&sd->entity, source_pad,
->> +				     &csi_dev->sd.entity, RKCSI_PAD_SINK,
->> +				     MEDIA_LNK_FL_ENABLED);
->> +}
->> +
->> +static const struct v4l2_async_notifier_operations rkcsi_notifier_ops = {
->> +	.bound = rkcsi_notifier_bound,
->> +};
->> +
->> +static int rkcsi_register_notifier(struct rkcsi_device *csi_dev)
->> +{
->> +	struct v4l2_async_connection *asd;
->> +	struct v4l2_async_notifier *ntf = &csi_dev->notifier;
->> +	struct v4l2_fwnode_endpoint *vep = &csi_dev->vep;
->> +	struct v4l2_subdev *sd = &csi_dev->sd;
->> +	struct device *dev = csi_dev->dev;
->> +	struct fwnode_handle *ep;
->> +	int ret = 0;
-> 
-> Redundant initialisation.
-
-Ack.
-
-> 
->> +
->> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0, 0);
->> +	if (!ep)
->> +		return dev_err_probe(dev, -ENODEV, "failed to get endpoint\n");
->> +
->> +	vep->bus_type = V4L2_MBUS_UNKNOWN;
-> 
-> If you only need the number of lanes and PHY type, I'd store them to the
-> driver's own context struct. struct v4l2_fwnode_endpoint isn't tiny.
-
-Ack.
-
-> 
->> +	ret = v4l2_fwnode_endpoint_parse(ep, vep);
->> +	if (ret) {
->> +		ret = dev_err_probe(dev, ret, "failed to parse endpoint\n");
->> +		goto out;
->> +	}
->> +
->> +	if (vep->bus_type != V4L2_MBUS_CSI2_DPHY &&
->> +	    vep->bus_type != V4L2_MBUS_CSI2_CPHY) {
->> +		ret = dev_err_probe(dev, -EINVAL,
->> +				    "invalid bus type of endpoint\n");
->> +		goto out;
->> +	}
->> +
->> +	v4l2_async_subdev_nf_init(ntf, sd);
->> +	ntf->ops = &rkcsi_notifier_ops;
->> +
->> +	asd = v4l2_async_nf_add_fwnode_remote(ntf, ep,
->> +					      struct v4l2_async_connection);
->> +	if (IS_ERR(asd)) {
->> +		ret = PTR_ERR(asd);
->> +		goto err_nf_cleanup;
->> +	}
->> +
->> +	ret = v4l2_async_nf_register(ntf);
->> +	if (ret) {
->> +		ret = dev_err_probe(dev, ret, "failed to register notifier\n");
->> +		goto err_nf_cleanup;
->> +	}
->> +
->> +	goto out;
->> +
->> +err_nf_cleanup:
->> +	v4l2_async_nf_cleanup(ntf);
->> +out:
->> +	fwnode_handle_put(ep);
->> +	return ret;
->> +}
->> +
->> +static int rkcsi_register(struct rkcsi_device *csi_dev)
->> +{
->> +	struct media_pad *pads = csi_dev->pads;
->> +	struct v4l2_subdev *sd = &csi_dev->sd;
->> +	int ret;
->> +
->> +	ret = rkcsi_register_notifier(csi_dev);
->> +	if (ret)
->> +		goto err;
->> +
->> +	v4l2_subdev_init(sd, &rkcsi_ops);
->> +	sd->dev = csi_dev->dev;
->> +	sd->entity.ops = &rkcsi_media_ops;
->> +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
->> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_STREAMS;
->> +	sd->internal_ops = &rkcsi_internal_ops;
->> +	sd->owner = THIS_MODULE;
->> +	snprintf(sd->name, sizeof(sd->name), "rockchip-mipi-csi %s",
->> +		 dev_name(csi_dev->dev));
-> 
-> Do you need to give it an explicit name? (v4l2_i2c_subdev_init() already
-> does that.)
-
-I do, actually. I don't call the _i2c_ variant. This is a platform device.
-
-> 
->> +
->> +	pads[RKCSI_PAD_SINK].flags = MEDIA_PAD_FL_SINK |
->> +				     MEDIA_PAD_FL_MUST_CONNECT;
->> +	pads[RKCSI_PAD_SRC].flags = MEDIA_PAD_FL_SOURCE;
->> +	ret = media_entity_pads_init(&sd->entity, RKCSI_PAD_MAX, pads);
->> +	if (ret)
->> +		goto err_notifier_unregister;
->> +
->> +	ret = v4l2_subdev_init_finalize(sd);
->> +	if (ret)
->> +		goto err_entity_cleanup;
->> +
->> +	ret = v4l2_async_register_subdev(sd);
->> +	if (ret) {
->> +		dev_err(sd->dev, "failed to register CSI subdev\n");
->> +		goto err_subdev_cleanup;
->> +	}
->> +
->> +	return 0;
->> +
->> +err_subdev_cleanup:
->> +	v4l2_subdev_cleanup(sd);
->> +err_entity_cleanup:
->> +	media_entity_cleanup(&sd->entity);
->> +err_notifier_unregister:
->> +	v4l2_async_nf_unregister(&csi_dev->notifier);
->> +	v4l2_async_nf_cleanup(&csi_dev->notifier);
->> +err:
->> +	return ret;
->> +}
->> +
->> +static void rkcsi_unregister(struct rkcsi_device *csi_dev)
->> +{
->> +	struct v4l2_subdev *sd = &csi_dev->sd;
->> +
->> +	v4l2_async_unregister_subdev(sd);
->> +	v4l2_subdev_cleanup(sd);
->> +	media_entity_cleanup(&sd->entity);
->> +	v4l2_async_nf_unregister(&csi_dev->notifier);
->> +	v4l2_async_nf_cleanup(&csi_dev->notifier);
->> +}
->> +
->> +static const struct of_device_id rkcsi_of_match[] = {
->> +	{
->> +		.compatible = "rockchip,rk3568-mipi-csi",
->> +	},
->> +	{}
->> +};
->> +MODULE_DEVICE_TABLE(of, rkcsi_of_match);
->> +
->> +static int rkcsi_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct rkcsi_device *csi_dev;
->> +	int ret;
->> +
->> +	csi_dev = devm_kzalloc(dev, sizeof(*csi_dev), GFP_KERNEL);
->> +	if (!csi_dev)
->> +		return -ENOMEM;
->> +	csi_dev->dev = dev;
->> +	dev_set_drvdata(dev, csi_dev);
->> +
->> +	csi_dev->base_addr = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(csi_dev->base_addr))
->> +		return PTR_ERR(csi_dev->base_addr);
->> +
->> +	ret = devm_clk_bulk_get_all(dev, &csi_dev->clks);
->> +	if (ret != RKCSI_CLKS_MAX)
->> +		return dev_err_probe(dev, -ENODEV, "failed to get clocks\n");
->> +	csi_dev->clks_num = ret;
->> +
->> +	csi_dev->phy = devm_phy_get(dev, NULL);
->> +	if (IS_ERR(csi_dev->phy))
->> +		return dev_err_probe(dev, PTR_ERR(csi_dev->phy),
->> +				     "failed to get MIPI CSI PHY\n");
->> +
->> +	csi_dev->reset = devm_reset_control_get_exclusive(dev, NULL);
->> +	if (IS_ERR(csi_dev->reset))
->> +		return dev_err_probe(dev, PTR_ERR(csi_dev->reset),
->> +				     "failed to get reset\n");
->> +
->> +	csi_dev->formats = formats;
->> +	csi_dev->formats_num = ARRAY_SIZE(formats);
->> +
->> +	pm_runtime_enable(dev);
-> 
-> You're not resuming the device in probe(). I guess you depend on CONFIG_PM?
-
-I do depend on CONFIG_PM.
-
-I don't think there is need to resume in probe -> resume in
-_enable_streams should do the trick, right?
-
-> 
->> +
->> +	ret = phy_init(csi_dev->phy);
->> +	if (ret) {
->> +		ret = dev_err_probe(dev, ret,
->> +				    "failed to initialize MIPI CSI PHY\n");
->> +		goto err_pm_runtime_disable;
->> +	}
->> +
->> +	ret = rkcsi_register(csi_dev);
->> +	if (ret)
->> +		goto err_phy_exit;
->> +
->> +	return 0;
->> +
->> +err_phy_exit:
->> +	phy_exit(csi_dev->phy);
->> +err_pm_runtime_disable:
->> +	pm_runtime_disable(dev);
-> 
-> A newline would be nice here.
-
-Ack.
-
-> 
->> +	return ret;
->> +}
->> +
->> +static void rkcsi_remove(struct platform_device *pdev)
->> +{
->> +	struct rkcsi_device *csi_dev = platform_get_drvdata(pdev);
->> +	struct device *dev = &pdev->dev;
->> +
->> +	rkcsi_unregister(csi_dev);
->> +	phy_exit(csi_dev->phy);
->> +	pm_runtime_disable(dev);
->> +}
->> +
->> +static int rkcsi_runtime_suspend(struct device *dev)
->> +{
->> +	struct rkcsi_device *csi_dev = dev_get_drvdata(dev);
->> +
->> +	clk_bulk_disable_unprepare(csi_dev->clks_num, csi_dev->clks);
->> +
->> +	return 0;
->> +}
->> +
->> +static int rkcsi_runtime_resume(struct device *dev)
->> +{
->> +	struct rkcsi_device *csi_dev = dev_get_drvdata(dev);
->> +	int ret;
->> +
->> +	reset_control_assert(csi_dev->reset);
->> +	udelay(5);
->> +	reset_control_deassert(csi_dev->reset);
->> +
->> +	ret = clk_bulk_prepare_enable(csi_dev->clks_num, csi_dev->clks);
->> +	if (ret) {
->> +		dev_err(dev, "failed to enable clocks\n");
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct dev_pm_ops rkcsi_pm_ops = {
->> +	.runtime_suspend = rkcsi_runtime_suspend,
->> +	.runtime_resume = rkcsi_runtime_resume,
->> +};
-> 
-> Could you use DEFINE_RUNTIME_DEV_PM_OPS() (add static in front)?
-
-Ack.
-
-v4 coming up soon!
-
-Best regards,
-Michael
-
-> 
->> +
->> +static struct platform_driver rkcsi_drv = {
->> +	.driver = {
->> +		   .name = "rockchip-mipi-csi",
->> +		   .of_match_table = rkcsi_of_match,
->> +		   .pm = &rkcsi_pm_ops,
->> +	},
->> +	.probe = rkcsi_probe,
->> +	.remove = rkcsi_remove,
->> +};
->> +module_platform_driver(rkcsi_drv);
->> +
->> +MODULE_DESCRIPTION("Rockchip MIPI CSI-2 Receiver platform driver");
->> +MODULE_LICENSE("GPL");
->>
-> 
-
 
