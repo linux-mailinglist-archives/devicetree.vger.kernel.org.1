@@ -1,368 +1,191 @@
-Return-Path: <devicetree+bounces-255296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E922D21E71
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:51:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC9CD21E92
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 01:55:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 99E30302CDDE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:51:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DAB6F3033702
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 00:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 410771E1DE5;
-	Thu, 15 Jan 2026 00:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9157A1B0437;
+	Thu, 15 Jan 2026 00:51:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="O5hoeUhs"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="jxGSJV+k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19010015.outbound.protection.outlook.com [52.103.68.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBBD212549;
-	Thu, 15 Jan 2026 00:51:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768438282; cv=none; b=DhKtd5kjRX95RlHr2FpAaiaomjcjgs814w4NV7JPf96Xs7TaIFTwKJR659FPVeFLRS45YOeGYupQn3R/ILbgwGcdcFLKS/xVW9ZY84SrPPLIs1x6DZwUc+FB8NzYZqt9G1aRsRqcXAfDTamkF3BOoiSwn/4b29SWamvtGrExqQM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768438282; c=relaxed/simple;
-	bh=yLbR24Ea5/P8Fklj4jco7YlHtY/5DSDaTRSzYl07+JU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OqfdyR5JL3ZsAP8XIHTkaQUfohJm8YesnaTMqea9xwexQIWLleXrhLsWwoCgh2Hzze6NrkvJO5WYFA2RT6/C7Ils99xmgSoodmovMrsx61xh55PAr/KQuTMapulj5gNzCzh2R118iZXMZa4BqNRtVFjiO2BpY0GYmh6OrlIIj6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=O5hoeUhs; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768438265;
-	bh=ANxdCvKCkJzprHY76xRK/X4wIiS6f8RVRiIUkcXDqPI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O5hoeUhsprXTZlKN38/O8b+nH6cYQ0EUtpTUAT65+aV7jYDXzCc+8FcKcPA1k1YDf
-	 GZHw4SxZD373XPuN/t82SUL7GHJy4pHMHHIlY2YwL6qrUT7EP8Wmx6KXd7VofFP2fd
-	 NQCQZ3g5T58IKPZbPUyWOYwiwY6sy6SPV8MD/xy138VN2QJbYff1NB1iqYD/e1vnd/
-	 XpV4Wdv1vj6q8wBO7osH7N+0wGZ1739izFxPMrcmOk5Pi4KCFvIcPPtgMWBAj0iDFF
-	 mUtJ1r0TMscX0SrGzwlE9UFXG67NBFPTwOGsl5zumsLTai3iRfYnvdVeIcWCZ7XSzp
-	 h7pVXotuBRpNg==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4ds4D96ZrYz4wM1; Thu, 15 Jan 2026 11:51:05 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 11:50:56 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 10/77] tests: Add basic metadata tests
-Message-ID: <aWg58Gfb1KnMvQoG@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-11-herve.codina@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5F11D90DD;
+	Thu, 15 Jan 2026 00:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768438306; cv=fail; b=A3dXTvGFGWJYphUqGE8CDcxGgzhYCGbzU1ZCSd1uRX/66b1ZdauF4R1ccxBUPZe3kjHEzmxlG82bHZ8wUE28TCHy18yE8/Zgwo4mRJtK/wqAzrHfgEaSIxpL9M0wILXugm08F0OXSVE/9UUKNgDsvwZeMOM21yVbT3eJKj/1ie4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768438306; c=relaxed/simple;
+	bh=+79ELl0uM45iQB7lp5apo2BbIlHxSNKoaAnnKTv9cEw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=gM8nMft4r/wWnSjyBGlMojWY6ShgZnMQbVC85ajndqNki3ACIXzZcLKABS2pe7cxe4CIbCqIddz7ydYZcX3Awhtm2mwK4BuL7hhQpyvnmbp5aaYUJHXOdvARHzMjbXuCqUFOUnECMMwprZEDOH0EnWs5QF/VJ2U9YDE+/2yUtrM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=jxGSJV+k; arc=fail smtp.client-ip=52.103.68.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pHGDKH2wJdpxXAh9vZ/oep9KdB0C6mqF7/HRDUAreqjB6R1/h+8X4eiKyR4h8UP+0VQxhZjrUrTwZ2+xcu38n/lZXb9WtD6KtoJXKSgiU3qq2fiH/E8ZFX2npu92xYrLQgPdoq2BvNf2urdBVm056NuNuBCM9vc00oU4kIC/SWo3hj+gULzqVcpqen/c9KyF80w3P0FgfpV2UFL/6mXjs4A/zZ2CprkoACzMwWW2dif2A/d3L3Wg8zkmvrAn6GYxlpaHYaIEW7eAORoP38QFIlbvM7xIZC5xAmsd/SX7FsvmAkpjjekHCD+NBCe/VZz1FGhUqDZLT7q1PGg0hs0fMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8AYdycqPfiYXV3HW+4pnzFLfFfGxshA855rH9cGpMAc=;
+ b=rZUlDADn35HW892jrAYfMV5BqrotXrM2ZheIv66K4rwc80wHaEKFBOmkwWxngaxWLhk+u7+A0ZzRWm+Fz40djhN5fClt4NLKn+LU3urshDAob9qyHSSRPQB/pxkSKraikxE3usUUXO+2eCSq+HFARhQdgBEuO59UXNpGUOhjgyXAkjC+Ce/LkAeX5xrdSw+fdQP3yJQi4PuCPtTAt8IAolM9cSQButpyu+KC6U6uPy7A3+HDU+HbTD8wKGkfyCMDQDNq0T1FsLoqzwPglNKo7DWdg7LAGxmyAlWe8jqiF6C6xMOGRRb7+iy5S/3+XvG9rrtJDSiiLCyLhtjMxcZpIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8AYdycqPfiYXV3HW+4pnzFLfFfGxshA855rH9cGpMAc=;
+ b=jxGSJV+kR81AIim/y8jgC0lna+kQvS5U1al2cntLQQsBXUzGKwxd/d2eereNHaogPIbw/fYcDhA+H3KFizsdWlWQ73l0mSCi1sU4KIK1AXAWvbQq8qPUq0lOXbf/CwAsPnhesPt8ArHmbZUQwwS+byY/eOZq1PiPB/LOf0nIFIEKNWdXrSBSUMo8/W9tKt24h88t4+XfGr77PmPOTkTHFHnxPGvKqQfx/+CuKuv+2fpxT3N7LD/rcbs91V1R2u6BJH3vf8J8XiRXApDV8bgmDI+GiqWByq1f0W07uj2p0h7FGRaSl8oDYpIIOilpcePi0ZWuHCZpRt2e+8rEYS/+7w==
+Received: from MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1e9::18) by PN1PPF74CDA26B3.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c04:1::312) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Thu, 15 Jan
+ 2026 00:51:36 +0000
+Received: from MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8a6b:3853:1bc:67e4]) by MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8a6b:3853:1bc:67e4%6]) with mapi id 15.20.9520.005; Thu, 15 Jan 2026
+ 00:51:36 +0000
+Message-ID:
+ <MA5PR01MB125005D473397164E4C3735E9FE8CA@MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM>
+Date: Thu, 15 Jan 2026 08:51:30 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] riscv: dts: sophgo: fix the node order of SG2042
+ peripheral
+To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Han Gao <rabenda.cn@gmail.com>,
+ Nutty Liu <liujingqi@lanxincomputing.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Zixian Zeng <sycamoremoon376@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+References: <20260113023828.790136-1-inochiama@gmail.com>
+ <20260113023828.790136-2-inochiama@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20260113023828.790136-2-inochiama@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: TP0P295CA0021.TWNP295.PROD.OUTLOOK.COM
+ (2603:1096:910:5::12) To MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1e9::18)
+X-Microsoft-Original-Message-ID:
+ <1d55e60f-f0e8-4ac4-b200-96d8c820d30a@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VLVyao8YEEq7JtgW"
-Content-Disposition: inline
-In-Reply-To: <20260112142009.1006236-11-herve.codina@bootlin.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA5PR01MB12500:EE_|PN1PPF74CDA26B3:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8c432765-7000-4fa9-51d5-08de53d03c4f
+X-MS-Exchange-SLBlob-MailProps:
+	dx7TrgQSB6d5vbofsfC/jnGJ+j4hG4ECHlPJk2Gov1qIsVJqkLYf9HbRtiPeCz/76mYf3EorSOKsrWLL4TgWyzDRzsN9mZaLN1RxtIKVu8Q10BnsWdfxIFsI2LkY/Cdi9hrUdWboCw75ZQlkABt/G79yOPPzz0HgrS2+XDpyKmuNP0F5UuMoGeS9h/veQjrVLfJFjH9cgqB+aPVJb+jlU3clF8ZVKPQs3PTzuYrpLJejtrMKPvfAkrRME/hPS9e6qq/LaBCZfi//QhK34J5FgGK/fytXPLq4/lzL0ymAAulxfZ4PFw/b1V4FaXVh0hGvHm+yJ43P4hrCIcRYx7wRWFjn4ERPsIJFzz9BlwZNsFpj8IXRRS7CCSJnHk8JJseM32FFFQjTLRDOP/4tY5/Vmhaqwj2HmuC+HW3kNLAQTyQ8Ob6eCy2irN/wW5TwJm/0eU/Cwujbc5GXbblp036nQj+4qJI4IBm1D4HMRoZ0VhsSJ5WcYjow+6mNRMnSDqJBhGA96IYRL+c/BeU3FnrzhZEKjO+JuyufTwTu3o4Oj5+dsgHFvj8qQkyz/O6xsfAfO+PmNRenS5NMjX77t3mmLrGCL9z84ObBhfljnpKjAHHsazjlh4KisAab+g3qUDU6yllG1Wzai3ps36U0Y/5sJQzEB4nmZJpApf8YeMdE3HFGmDOx3YQuLQwZJ7VoKvlDe6LyREq5G53NoRL+bY+3O2W9ms8wi9HPVfwJvwgnerjgZV9Ea6CWeMYp7Qv5t1ukhSwBfEa8iKk=
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|15080799012|41001999006|461199028|19110799012|6090799003|8060799015|5072599009|23021999003|3412199025|440099028|52005399003|40105399003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Q0Y0VkNDNXVlS1BIKysyTWhoajFVS3NPZTZqZW8rTDlCQ3htRXRaUFZTNGt4?=
+ =?utf-8?B?V0dOeWNOdzhDbVVnSUtOY2FPb1JxYVdpbDZWblduSjByb0EyU2gxRUxjVm9H?=
+ =?utf-8?B?U00xU1NyaUNCU0tTeCs0a0k2V3p3VmtodUJDRmtHWktSbnlUTlg3WmtGSTQz?=
+ =?utf-8?B?WWt4OFJpMWxWYzkremdzc0VNN0ZVRys1d2JzVERIcHd6aFpQOTZxTHVIKzlv?=
+ =?utf-8?B?ekJVQmVxZlM2UW56amR6UEV1MFpqR2FoclZvY0RMbTRzUXRnbFZmTDFycklk?=
+ =?utf-8?B?aUVPQW9qRHhMRjUzYktEWlFOeTFXak5XTWNhcmo5bFdoem1kcWdROGxjbWUy?=
+ =?utf-8?B?dUJSekVDVlhHZU8rL1g4bWcxV0c4cGxoMWdkdFp2VlF1RGJxODdhMXRQemFX?=
+ =?utf-8?B?anRIcmxIdCswU2hxU3hPSE04ZzBBdkJtdDl5VlZsRDFDWnVjWWVDS05INWFX?=
+ =?utf-8?B?ckcvdWpkQldSU0RmQUh4UmE2ZFN1R1VvYzJCY0l2RUxFVmVneG5IWHBCWk9Q?=
+ =?utf-8?B?cnBEdlpBVnhVYzB0Y3ZOblhsbkxrNXRnZUdxVjJkeG1RQkxDdmFsSXlWMjNu?=
+ =?utf-8?B?eE9JMlJmM1NTeWlGRUE1clJNUUVDTGhTRXR0OHNOcjV6ZEtpOHRiYUVKMTlk?=
+ =?utf-8?B?THJwRjBxSFpnMVpzL2UxandLNkpydTJ4WkVSZlJhWFFMTk8wNGlWbkxtb3BT?=
+ =?utf-8?B?c3pUYUJuWWJjcnFIcklZYktsUzF6YVN0aVlCaDdQMUhnRXU1OTJ1MXZONWh1?=
+ =?utf-8?B?S1dpZk9Sa3FrNTluMXdtaVlFWExMMGhzZ0NMQXIzR0pDSVp1QnE4Snd0RVo1?=
+ =?utf-8?B?UVZVNEdveE5xV3RzOUw3ZHJHWGFoODBOVWJ3VVFyZVdHdEp0RlozS0cydGN0?=
+ =?utf-8?B?MHkvMmUxZDk5cm96dUhvWkU0dk9XQk1zN3hCcC9QSlY5RDJubTFWL1BPb091?=
+ =?utf-8?B?V1hqTmhiV1RCRlZibkRvWloyVDNNYi9NVnU4SWhUUzVXV0JxOUlscVY3TFRX?=
+ =?utf-8?B?OWdQVWVESEpvU3J1MWJvM2dOcjEyU21Cd2FkRHRIZDk4Yk90eUV0dWtITVV6?=
+ =?utf-8?B?WWpiMmZ3U2J3OHhBN05PZzVSNTRLTjVLakQwL0R6VThqbW1BejhVU3BKRjJm?=
+ =?utf-8?B?Z0UvUy9BWVRVRVU4TWtUMmIvcCtxdWFxQVdMU00ySHpkUTgzNk8zZnNVUkd4?=
+ =?utf-8?B?cEJ5cWkwaWp2cGg3RGdoajU4YjFiRVl2NDFjaTc5OEZHbGVkSE5WVE5ScW5U?=
+ =?utf-8?B?eGZqbEZSTnBHQjBVYUJ6N3gyNW92QWhNVGFUMHhWM2JYMnhSdDRWbGhNYzhD?=
+ =?utf-8?B?dUhkdVBjNHV2UjdhWHIvclNmODZabzRyb0UvZmRibUF5RjhoMWgyRm5WNVJV?=
+ =?utf-8?B?TmpkNlhtNVJIZ25ONnhnRzF4VzZmRVplamVKSm0xN3hXMmllaDZKYzBnUTJY?=
+ =?utf-8?B?czYwdTBLRk9tRWJwMzl6enJnSmVEeHNUMlRVM1JYU05QUTdZUy9ETnpweXkw?=
+ =?utf-8?B?OW1FRXJ3TzF1c1dISjZZYzFsZ1I5dlJ0Nm9WNTZQSXhjSmh4TFpkVFpDNkRZ?=
+ =?utf-8?B?dysxQU1nbGtWOTZRSW1qSXYyWkZoK1hPTVB4SytqT25Ld2ErVG5hcGJZZ3Q4?=
+ =?utf-8?Q?oGjxrxX+/6SM7yOufED9tB5hsbFTTjgXYzsHP9ZJc4Uk=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Y3Z3NlJzM2t6b1JmUWZsUC9XQS9SYXp2RjJTNkw5VWxsZjUzdnVoY25GU0JC?=
+ =?utf-8?B?UFV2Q3RpQndDc2R6L1dqYkpPQWVvOHg0U1M3WHdrWGsySzkvNDhJQjFmUEl0?=
+ =?utf-8?B?RjA4L3UzRVdVSHllRlNTQ2x4M0RTSDBOUDU1ZVhNYkZ5ZVM4MTduYTI2TUZv?=
+ =?utf-8?B?QVlRUGl1ZHIzQ1ptYmhXKy8vdHdHZFdXUG5ZeWV3bUIzeGl0RzNibXhIV2dx?=
+ =?utf-8?B?dWtLc1F2MG42M3dvWmRxS1gzTlZ2UFYvdmFBc01CQU1JU0JaVlhIVEV4SnhD?=
+ =?utf-8?B?Qmt6K3llNlNwYzNNYVhOaGcra0FCM0Y4ekx5Wm1qUGI2dFlXdE5wT3hER1Uw?=
+ =?utf-8?B?SzRrUG5CQ0x4Tzk1TktER213VDB3MEdqb0EwOEd3V1puZHRlZHM2clRzV1gz?=
+ =?utf-8?B?NytFeWV3YXNlcHM2S2pwV3V2NkdnQXBUVzNCdWhPQmJTSTcySUpnODRmSm40?=
+ =?utf-8?B?R0k3S3ZyZUZkTm02bFNDRkxCdG9iZDc3SUJJOGVMZ0dBNDYvU3doM0NEbUI5?=
+ =?utf-8?B?UlRSTytvcFhOTFBMK2tBZlJMVFlpQlgrSTJFRXdyMjM2UHN5UTNlbjQrRmJH?=
+ =?utf-8?B?RTI5T2E4QlNBTEpMVHJwWFMwdndmRmZwZDY5UjNwaitjYmpNdnVZakdFbk52?=
+ =?utf-8?B?eGY2Q3ByN1VlR1BlKys4R1E3UTRaeThOeWNEOE9rOTBwY3pBd2hOcW9kdENQ?=
+ =?utf-8?B?bFM0aThVeW5LNkduS2lWaGxlOGdjTERMU3Z5aktvaXh5Tk5ocjRQekpQOGho?=
+ =?utf-8?B?d28vT0FyVThPVE0vUEMxQnBXU09WZVd1YU1NdDlnNklyekFDMlVkejRORXBC?=
+ =?utf-8?B?aTU1Z2lYZFkvTGR4aTB6ZGZGanZQM0ZKWHB3d09CdEdVNkR2VmIrV0xBeUI3?=
+ =?utf-8?B?aC9tcHJrd1FObXllVG9zcStvV1F2UGRCWEFLamo2eUVaOEhxYzJNc0E3cGFv?=
+ =?utf-8?B?Z2tMVHpBcDdxbmtpMkZDWVNGWDhaZ2dGZ1NwakFFcUlFNkVwOGRuMXNHMHBR?=
+ =?utf-8?B?eHhpaWtXV3hQa3ZqWTZSZE1Ma0tuZWVIU1RuUXdlclFsY2FxbkFoT1FKbnZC?=
+ =?utf-8?B?eU1FVi8xMCtaV3pLNjVCSFZwc2lFM2lnM0NuSDYxaE5oWkx2MWRyZUt2bk9h?=
+ =?utf-8?B?ZktjTVFzWkJ0Ui9FS3YrYXlOcGljMFl2VSswczF3bVVQTGZnYS9tM1JYZjA3?=
+ =?utf-8?B?SS93aWFzcDBLNXplMTVZNkFwRFZMNmVrSDZGdVhZaUNxTlA5RGk0cnV3UW9G?=
+ =?utf-8?B?MS81T1J6RVhXdUprN0liMjZXUnEyN1JKM1cyVW9GeDN5YmpDcXgrRS9LVFpI?=
+ =?utf-8?B?WmpxV0gvVDZGTlkrS1dlNzVtWXB5aDNtVGtBY3lKNC9hYWd3ajB4QTgvT2NL?=
+ =?utf-8?B?ajZvYURab1ViclVQcDc3Qmw5K2dEUlZFUno1WmMyUVh1Z0YvOVY4NkU5Z0tJ?=
+ =?utf-8?B?UHBISERrNmNEa0VXU0NHY3QwcE1IOHo0N2tCQUs5UUVIdEtqRjQwOER5b3px?=
+ =?utf-8?B?LzZRbjRJOVdtaTEzWitRS1k0V1ZWbnRBejNIdDZQb3RydWdsZGRCbS9IUTJO?=
+ =?utf-8?B?Y21nWUxibXNwTGMyTFRWWlVCMnBETXN6TWRnY2R4TGZRUUNJZjNLVlM2L3BO?=
+ =?utf-8?B?Q2prSlJRbGl4M1VqUWozTkJ4TnA4bHluSnpvanJaWFc2Q2F2NEFiMGI1Q3Fn?=
+ =?utf-8?B?VjFDTE5uUjQ5QkNxQnhpRVl3b0k3UmZWbWxLK0xYTTB4azlqNVJFOFFFTEdZ?=
+ =?utf-8?B?QThDK2hyK25scVUvekhLWm5nT25US29EYnQ3eXlFMEcxYXBNVzZPYjVSQVFr?=
+ =?utf-8?B?enVmVXp3RGlpYXdxSXJqMHJWZmJIa0NpQUZlVkVlTXQ3aHZxd2RoV1U4TzVs?=
+ =?utf-8?B?MTIrZ3Mwb1RrYS9RNk1DYWdzb0JLRldsd3NaZnB4Mm1oMFhBVzcxa2d6SDdw?=
+ =?utf-8?Q?17KtJhmwl6g9nGlWSE/eALpxuYAUUZg0?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c432765-7000-4fa9-51d5-08de53d03c4f
+X-MS-Exchange-CrossTenant-AuthSource: MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2026 00:51:36.5486
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1PPF74CDA26B3
 
 
---VLVyao8YEEq7JtgW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jan 12, 2026 at 03:19:00PM +0100, Herve Codina wrote:
-> This first test is related to local phandle references (FDT_REF_LOCAL
-> dtb tag).
->=20
-> The test pattern used is
->   - Generate a dts (xxx.dts.dts) from an input dts
->   - Check this generated dts against expected contents
->   - Generate a dtb (xxx.dtb) from the same input dts
->   - Check this generated dtb against expected contents
->   - Generate a dts (xxx.dtb.dts) from the generated dtb
->   - Check this generated dts against expected contents
->   - Generate a dtb (xxx.dtb.dts.dtb) from the generated dts
->   - Check this generated dtb, expect the same contents as for xxx.dtb
->=20
-> Even if only one meta-data feature is currently tested in this tests
-> introduction, use a loop in order to ease future addition consisting in
-> adding new input dts as soon as new meta-data feature are supported.
-
-As a rule of tumb, I prefer tests to be introduced in the same patch
-that introduces the feature tested.  Usually, I don't care that much,
-but in a giant series like this, it would really help review (the
-tests help to document the feature being added without switching
-between patches).
-
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+On 1/13/2026 10:38 AM, Inochi Amaoto wrote:
+> In sg2042.dtsi, some peripheral device node does not follow the
+> address order. Reorder them in ascending order by address.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 > ---
->  tests/meson.build                      |  3 +-
->  tests/metadata_reflocal.dtb.dts.expect | 23 ++++++++++
->  tests/metadata_reflocal.dtb.expect     | 20 +++++++++
->  tests/metadata_reflocal.dts            | 27 ++++++++++++
->  tests/metadata_reflocal.dts.dts.expect | 23 ++++++++++
->  tests/run_tests.sh                     | 58 +++++++++++++++++++++++++-
->  6 files changed, 152 insertions(+), 2 deletions(-)
->  create mode 100644 tests/metadata_reflocal.dtb.dts.expect
->  create mode 100644 tests/metadata_reflocal.dtb.expect
->  create mode 100644 tests/metadata_reflocal.dts
->  create mode 100644 tests/metadata_reflocal.dts.dts.expect
->=20
-> diff --git a/tests/meson.build b/tests/meson.build
-> index 37bfd47..e81a2e1 100644
-> --- a/tests/meson.build
-> +++ b/tests/meson.build
-> @@ -140,7 +140,8 @@ run_test_types =3D [
->    'fdtget',
->    'fdtput',
->    'fdtdump',
-> -  'fdtoverlay'
-> +  'fdtoverlay',
-> +  'metadata'
->  ]
->  run_test_deps =3D [
->    dtc_tools, dumptrees_dtb, tests_exe
-> diff --git a/tests/metadata_reflocal.dtb.dts.expect b/tests/metadata_refl=
-ocal.dtb.dts.expect
-> new file mode 100644
-> index 0000000..076c17a
-> --- /dev/null
-> +++ b/tests/metadata_reflocal.dtb.dts.expect
-> @@ -0,0 +1,23 @@
-> +/dts-v1/;
-> +
-> +/ {
-> +
-> +	node-a {
-> +
-> +		subnode-a {
-> +			phandle =3D <0x01>;
-> +		};
-> +	};
-> +
-> +	node-b {
-> +		phandle =3D <0x02>;
-> +	};
-> +
-> +	node-c {
-> +	};
-> +
-> +	node-d {
-> +		ref-subnode-a =3D <&{/node-a/subnode-a}>;
-> +		ref-node-b =3D <0x123 0x456 &{/node-b} 0x789>;
-> +	};
-> +};
-> diff --git a/tests/metadata_reflocal.dtb.expect b/tests/metadata_reflocal=
-=2Edtb.expect
-> new file mode 100644
-> index 0000000..33b3896
-> --- /dev/null
-> +++ b/tests/metadata_reflocal.dtb.expect
-> @@ -0,0 +1,20 @@
-> +/dts-v1/;
-> +
-> +/ {
-> +    node-a {
-> +        subnode-a {
-> +            phandle =3D <0x00000001>;
-> +        };
-> +    };
-> +    node-b {
-> +        phandle =3D <0x00000002>;
-> +    };
-> +    node-c {
-> +    };
-> +    node-d {
-> +        ref-subnode-a =3D <0x00000001>;
-> +        // [FDT_REF_LOCAL] ref-subnode-a[0]
-> +        ref-node-b =3D <0x00000123 0x00000456 0x00000002 0x00000789>;
-> +        // [FDT_REF_LOCAL] ref-node-b[8]
-> +    };
-> +};
-> diff --git a/tests/metadata_reflocal.dts b/tests/metadata_reflocal.dts
-> new file mode 100644
-> index 0000000..f04d24f
-> --- /dev/null
-> +++ b/tests/metadata_reflocal.dts
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-> +/*
-> + * Copyright (C) 2026 Bootlin
-> + */
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> +	node-a {
-> +		subnode_a: subnode-a {
-> +		};
-> +	};
-> +
-> +	node_b: node-b {
-> +	};
-> +
-> +	node-c {
-> +	};
-> +
-> +	node_d: node-d {
-> +		ref-subnode-a =3D <&subnode_a>;
-> +	};
-> +};
-> +
-> +&node_d {
-> +	ref-node-b =3D <0x123 0x456 &node_b 0x789>;
-> +};
-> diff --git a/tests/metadata_reflocal.dts.dts.expect b/tests/metadata_refl=
-ocal.dts.dts.expect
-> new file mode 100644
-> index 0000000..b72b545
-> --- /dev/null
-> +++ b/tests/metadata_reflocal.dts.dts.expect
-> @@ -0,0 +1,23 @@
-> +/dts-v1/;
-> +
-> +/ {
-> +
-> +	node-a {
-> +
-> +		subnode_a: subnode-a {
-> +			phandle =3D <0x01>;
-> +		};
-> +	};
-> +
-> +	node_b: node-b {
-> +		phandle =3D <0x02>;
-> +	};
-> +
-> +	node-c {
-> +	};
-> +
-> +	node_d: node-d {
-> +		ref-subnode-a =3D <&subnode_a>;
-> +		ref-node-b =3D <0x123 0x456 &node_b 0x789>;
-> +	};
-> +};
-> diff --git a/tests/run_tests.sh b/tests/run_tests.sh
-> index f07092b..7a8bdbc 100755
-> --- a/tests/run_tests.sh
-> +++ b/tests/run_tests.sh
-> @@ -1090,6 +1090,59 @@ fdtoverlay_tests() {
->      run_wrap_test test "$bd" =3D "$pd"
->  }
-> =20
-> +# $1: f1 file
-> +# $2: f2 file
-> +check_diff () {
-> +    printf "diff $1 $2:	"
-> +    local f1=3D"$1"
-> +    local f2=3D"$2"
-> +    (
-> +        if diff $f1 $f2 >/dev/null; then
-> +            PASS
-> +        else
-> +            if [ -z "$QUIET_TEST" ]; then
-> +                echo "DIFF :-:"
-> +                diff -u $f1 $f2
-> +            fi
-> +            FAIL "Results differ from expected"
-> +        fi
-> +    )
-> +}
-> +
-> +# $1: dtb file
-> +# $2: out file
-> +wrap_fdtdump () {
-> +    printf "wrap_fdtdump $1:	"
-> +    local dtb=3D"$1"
-> +    local out=3D"$2"
-> +    (
-> +        if $FDTDUMP ${dtb} 2>/dev/null >${out}; then
-> +            PASS
-> +        else
-> +            FAIL
-> +        fi
-> +    )
-> +}
-> +
-> +metadata_tests() {
-> +	for dt in metadata_reflocal; do
-> +		run_dtc_test -I dts -O dts -o $dt.dts.dts "$SRCDIR/$dt.dts"
-> +		base_run_test check_diff $dt.dts.dts "$SRCDIR/$dt.dts.dts.expect"
-> +		run_dtc_test -I dts -O dtb -o $dt.dtb "$SRCDIR/$dt.dts"
-> +		base_run_test wrap_fdtdump $dt.dtb $dt.dtb.out
-> +		# Remove unneeded comments
-> +		sed -i '/^\/\/ /d' $dt.dtb.out
-> +		base_run_test check_diff $dt.dtb.out "$SRCDIR/$dt.dtb.expect"
-> +		run_dtc_test -I dtb -O dts -o $dt.dtb.dts $dt.dtb
-> +		base_run_test check_diff $dt.dtb.dts "$SRCDIR/$dt.dtb.dts.expect"
-> +		run_dtc_test -I dts -O dtb -o $dt.dtb.dts.dtb $dt.dtb.dts
-> +		base_run_test wrap_fdtdump $dt.dtb.dts.dtb $dt.dtb.dts.dtb.out
-> +		# Remove unneeded comments
-> +		sed -i '/^\/\/ /d' $dt.dtb.dts.dtb.out
-> +		base_run_test check_diff $dt.dtb.dts.dtb.out "$SRCDIR/$dt.dtb.expect"
-> +	done
-> +}
-> +
->  pylibfdt_tests () {
->      run_dtc_test -I dts -O dtb -o test_props.dtb "$SRCDIR/test_props.dts"
->      TMP=3D/tmp/tests.stderr.$$
-> @@ -1129,7 +1182,7 @@ while getopts "vt:me" ARG ; do
->  done
-> =20
->  if [ -z "$TESTSETS" ]; then
-> -    TESTSETS=3D"libfdt utilfdt dtc dtbs_equal fdtget fdtput fdtdump fdto=
-verlay"
-> +    TESTSETS=3D"libfdt utilfdt dtc dtbs_equal fdtget fdtput fdtdump fdto=
-verlay metadata"
-> =20
->      # Test pylibfdt if the libfdt Python module is available.
->      if ! $no_python; then
-> @@ -1169,6 +1222,9 @@ for set in $TESTSETS; do
->          "fdtoverlay")
->  	    fdtoverlay_tests
->  	    ;;
-> +	"metadata")
-> +	    metadata_tests
-> +	    ;;
->      esac
->  done
-> =20
-> --=20
-> 2.52.0
->=20
->=20
+>   arch/riscv/boot/dts/sophgo/sg2042.dtsi | 176 ++++++++++++-------------
+>   1 file changed, 88 insertions(+), 88 deletions(-)
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
 
---VLVyao8YEEq7JtgW
-Content-Type: application/pgp-signature; name=signature.asc
+Thanks,
 
------BEGIN PGP SIGNATURE-----
+Chen
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloOfAACgkQzQJF27ox
-2Gf2OQ//ZTOjDLhZIQO0GaiTtOp272xTblJkW0aR9nd2oSCgI8etDPZN6tVoy/J3
-vaYBMB3saelj0gdWwxNwo5u0srTcVWqsRDMnKSrQX6sfzx6EcriCLWxLbwzZ7ZMz
-2n+j7kOxRmF+9rh8FP+VjpMQz2WE5qAQcnyjQlMNvlcfQFlUyyS37iDhTjvsytPm
-3RQu0+S2Q2q2J76cFNrIj/fLckzfImikdbcQL4dbuz/i4HOHEtrpNavTfYwiVUWR
-iPbasJrBDFAhOqbrr5Ffr2GyY0daHzkmNBKEUj0PC4gfGQzi0f6O27CxSUrNy9QJ
-59xDyIzqeA/mnbIKR0PvRFjnVAmPVyoaeons/tP9u2T9Y5o8DHbbKMkiDoJ2MBHA
-zcEe3xdgrXaxTYp9tLeys3XWgVzh1SoRemMEqmLCKCFHfX9Trge9vp68J4OwZS0n
-mYVPbJdDVKtI1HzH9YdiZIebZpwndbqho3AJS90+Rm6A1LF+r75EQR08g4+Q1XuF
-Y3nXsjZtGA5cYFhwkNY/19BejknpUPItU6v+gvgUiQh1rwMwAp2msvk5EdAlKvZq
-87TRua7E0/m0chiAiQXuphX38JeC5QFPrLoGHKa6G/3cHah0/Lnu3EfGLASS4Oma
-/nn3MLWImHAd4rte/g7I2KDxROhH43Ysfb+xkomn2OUaBqT8bkA=
-=VrX/
------END PGP SIGNATURE-----
+[......]
 
---VLVyao8YEEq7JtgW--
+
 
