@@ -1,134 +1,111 @@
-Return-Path: <devicetree+bounces-255554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1F2D242EE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:30:46 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C99CD2434B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:36:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 781BB303CF68
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:30:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 24577300C347
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD7C379960;
-	Thu, 15 Jan 2026 11:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5FD3612F7;
+	Thu, 15 Jan 2026 11:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QuS7t6XS"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YH/+Oh2S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE793793C1;
-	Thu, 15 Jan 2026 11:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFDF35E523;
+	Thu, 15 Jan 2026 11:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768476607; cv=none; b=fJ07QUeOxq7Ztbo4TiFqsv5DvBuYU5BsOt+P+wzBCu8ugL5VXn7ghbEYP0T6rqxkusVPDu6OKzTIxb63DOidOlIk1jU4jGHZHndxAXU2H18pMjbDkgQmnKkUArV67PPLnIHgcDmXUqlDDauWq16NURiNwuTbq5muapDUwZCoDX0=
+	t=1768476976; cv=none; b=NaPILQtQzdb9KkEmJZ8vZzmD+WqXpdH6WFmCDo1VsY9+0zqJtbAQMniOWeXEw3WS+xKXKxGeg6lqPztyoc7aBZujAj2lrVpouLDxe5z+ScrkTs649+RkjWLW0KgJiG8uipzLpulRa0PWZkrwvUbFrBtf+l2RKWmhwYS1NYAI7UI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768476607; c=relaxed/simple;
-	bh=sPpPbvhryAMe1NmcPn+z0LM6XHiUVy15HOBXB0+Othg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KEr6OHZKpHxDtETXVbxvP2GlYpUW5WB5SgmkLxxSpkIA0PL0ql+qvoBgKN62dVyqshyzvzrZszjLJtihJURyN1+F8i5ds3Dz9ncdr7wKopUpRwqbxoc/QxA1z5og0pFP8gfu3meDs4Xr90tGXDVICP/MKt8wvMaQdfZDO6lDcWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QuS7t6XS; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768476605; x=1800012605;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sPpPbvhryAMe1NmcPn+z0LM6XHiUVy15HOBXB0+Othg=;
-  b=QuS7t6XSFUNZVTyrjEGyBS43jCb/q+ZZqRUha4q1+k0u+uKL0bqKvvrM
-   K1YFw36DZ2v0yKHHzi9u/uxL4qije3q+wQ9d3US/dqU13UVEv6utPVKT4
-   gk9IfZ9QVRXj5kJhBfYuxepmW9Izfg8mfkErOCN08o4W9IzycvXgbmkjT
-   gd0xj7qONYlP+Xx1bkt5K9RdhFY72vLELdoJcKoi94ZyrDQHA2qDzW2Ll
-   ax4+hsrB9qh4Hv8al4MZZWQnIp7G5tJMWtE4MJesI4lsoNzwu9hyFez3n
-   rH6aE8mtvfUqGbUTIFLU9d/ifE5ZCv8xZz11MA+3sA4FyE6nZzoLBaXK+
-   g==;
-X-CSE-ConnectionGUID: Y0cIYDnaTNmjFqgFS6C/tQ==
-X-CSE-MsgGUID: ivlD26D8QZOwVpy7Wc4JIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="72365563"
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
-   d="scan'208";a="72365563"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 03:30:04 -0800
-X-CSE-ConnectionGUID: wowK3yctQJ6kdZmJLCRrOg==
-X-CSE-MsgGUID: I0F7nP7lR+Wm+3bfXfMI7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
-   d="scan'208";a="235643729"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 15 Jan 2026 03:30:01 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vgLY6-00000000Hsy-0Utw;
-	Thu, 15 Jan 2026 11:29:58 +0000
-Date: Thu, 15 Jan 2026 19:29:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH 01/13] dmaengine: of_dma: Add
- devm_of_dma_controller_register()
-Message-ID: <202601151942.cEs9s8Tj-lkp@intel.com>
-References: <20260114-mxsdma-module-v1-1-9b2a9eaa4226@nxp.com>
+	s=arc-20240116; t=1768476976; c=relaxed/simple;
+	bh=2838NbiS+1I9aTZDaFkizTzSaYb5pk5Dt6Y8NWiwHvs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XNaXaawEhGMqOzPAAexj0+o8Boy/NfqyY2Wqv2PClTaeTowcltnBD7A4PNrrS/xovnvHXFD3HEOuT4Q1BTk8WqgWdwaYdvmPfi9LWWQ+CAjycmcYYJVUd/OSu3PlluB7poqyDB8XTA+MB/abiGmG3R7NWlD4NAi/TRAPiph2cYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=YH/+Oh2S; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768476973;
+	bh=2838NbiS+1I9aTZDaFkizTzSaYb5pk5Dt6Y8NWiwHvs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=YH/+Oh2Sn6E8FX9gjDRLpQxpEiu4eghAuxWK4GQUOjPW39tWQ+OyjPq38gSq1ofMB
+	 XCFO9JZeEA/girDwkQfCPaUZcdzAkikPemTM1X5kS9x2AcNwLLcF3gT8rPOhS95Nuc
+	 1p4trT55hIO2OepyiRJ6qaOpfQfuWanKI4Wle+YItrfbU0DHFkkOwOpQ5tbq25XuBL
+	 nEc6yU7NSEGFzhH3z5yFQ78YpAPlRJaUCS5e685rCmQlw7/y84eLCct0X09U5bLlxz
+	 3K+2sniULZLkZOgqR47ylgaJECTNDwQ3zPpM2S//ZwrsztZGRdMmsRAsJA5Px1v1/e
+	 qlDl+eOx2A+/w==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6B8A317E01E7;
+	Thu, 15 Jan 2026 12:36:13 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: linux-mediatek@lists.infradead.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH] arm64: dts: mediatek: mt8186-evb: Add vproc fixed regulator
+Date: Thu, 15 Jan 2026 12:36:08 +0100
+Message-ID: <20260115113608.64817-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260114-mxsdma-module-v1-1-9b2a9eaa4226@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Frank,
+This board at the moment has no support for PMIC regulators, but
+the CCI requires a vproc regulator in order to both stop giving
+dtbs_check warnings and to actually probe.
 
-kernel test robot noticed the following build errors:
+Since vproc is a system-critical regulator and the bootloader
+enables it at max voltage, model it (at least temporarily) as
+a regulator-fixed and assign it to CCI.
 
-[auto build test ERROR on 8f0b4cce4481fb22653697cced8d0d04027cb1e8]
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8186-evb.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/dmaengine-of_dma-Add-devm_of_dma_controller_register/20260115-063955
-base:   8f0b4cce4481fb22653697cced8d0d04027cb1e8
-patch link:    https://lore.kernel.org/r/20260114-mxsdma-module-v1-1-9b2a9eaa4226%40nxp.com
-patch subject: [PATCH 01/13] dmaengine: of_dma: Add devm_of_dma_controller_register()
-config: x86_64-randconfig-r071-20260115 (https://download.01.org/0day-ci/archive/20260115/202601151942.cEs9s8Tj-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.4.0-5) 12.4.0
-smatch version: v0.5.0-8985-g2614ff1a
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260115/202601151942.cEs9s8Tj-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601151942.cEs9s8Tj-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/tty/serial/fsl_lpuart.c:22:
->> include/linux/of_dma.h:88:1: error: return type defaults to 'int' [-Werror=implicit-int]
-      88 | devm_of_dma_controller_register(struct device *dev, struct device_node *np,
-         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/int +88 include/linux/of_dma.h
-
-    86	
-    87	static inline
-  > 88	devm_of_dma_controller_register(struct device *dev, struct device_node *np,
-    89					struct dma_chan *(*of_dma_xlate)
-    90					(struct of_phandle_args *, struct of_dma *),
-    91					void *data)
-    92	{
-    93		return -ENODEV;
-    94	}
-    95	
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+index 2667a7424200..a941a931a07c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+@@ -22,6 +22,19 @@ memory@40000000 {
+ 		device_type = "memory";
+ 		reg = <0 0x40000000 0 0x80000000>;
+ 	};
++
++	vproc: regulator-vproc12 {
++		compatible = "regulator-fixed";
++		regulator-name = "vproc12";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++	};
++};
++
++&cci {
++	proc-supply = <&vproc>;
+ };
+ 
+ &i2c0 {
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.52.0
+
 
