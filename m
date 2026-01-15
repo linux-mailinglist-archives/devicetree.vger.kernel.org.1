@@ -1,60 +1,70 @@
-Return-Path: <devicetree+bounces-255549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F8FD241A2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:15:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA5CD241E8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:18:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 149F2301B89C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:14:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5EDB8300B90C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9542C29ACC6;
-	Thu, 15 Jan 2026 11:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE8972FFF9D;
+	Thu, 15 Jan 2026 11:16:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gTE6zypq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B51378D80;
-	Thu, 15 Jan 2026 11:14:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 674F123EA80;
+	Thu, 15 Jan 2026 11:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768475671; cv=none; b=HKaA7QrjRnN3Qp9DUXH1UF3VLfN11envVCQcRQEeiSa47/3MkRN0Gyu/UuFOgHczBFA3DZXCMUw2LSqLnPKCmF9wmT/3PAH3grMcytDmAz/k9QMEfas1adxnO2chhon1nqk60u48NjLiZiwBFUimzAWzhLJGMJXANHb2iPXNA40=
+	t=1768475813; cv=none; b=ft0Siqbex35KPsET//TdZSgXRPz9oT/F5WdIyxcLlL37rqFVNgdfdq/QEohrDaDjBh6Ksb18z2AZRGPbeRHqXen7GDtpVI/yhRf2QCArpDFtHJCA+BTZaeFOkUcMgVbfrY06cpeVieKq1WQOy7ePw7WY+czBRn+go7VD8t5Yo+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768475671; c=relaxed/simple;
-	bh=uoQWg+LoHYYFWgEa0ZOuKZx6HhY9Wn3rTFBHRCXA4TY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=b95a3OqPlhQWABV7hVAKdiv/c5TMuzCVaUpYm2tHIfW0+8Sdg58DvMpvyRGYG/O2T0gIGJeZMBwVnK7qjx78ibRwcn9bHr+Y8tk+iXFPhkuDaT0UG+myW2ivGKAbFfZaoFIpVZUvBF//lP+13f+zwQAGJ7PYwhRLrXrX+YNIT74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DFC0E1A069B;
-	Thu, 15 Jan 2026 12:14:27 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A99F51A068F;
-	Thu, 15 Jan 2026 12:14:27 +0100 (CET)
-Received: from NXL37714.wbi.nxp.com (nxl37714.wbi.nxp.com [10.31.156.112])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id E07C71800082;
-	Thu, 15 Jan 2026 19:14:25 +0800 (+08)
-From: Mayank Mahajan <mayankmahajan.x@nxp.com>
-To: linux@roeck-us.net,
-	corbet@lwn.net,
+	s=arc-20240116; t=1768475813; c=relaxed/simple;
+	bh=gDZnxx6q0qOAWO0hBNhp6yUK/DLiEBqTd5LIFfrJ1sQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=X/7L0r67DwjV7gQKmWbpNEXay6nL2jDHIdQBPOAS2vk18uk3LdHJ+5qy96Lkjs2qwHy2LoRKu3xGFSbql7XPtYNoh7cvqwDeKBD5EvJIXoiBE6+2ket+d5GSJQSQ12w8Ub7ERabgHXvohv+2znoj5w9dESMWak6gAFje6MUVa/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gTE6zypq; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768475810;
+	bh=gDZnxx6q0qOAWO0hBNhp6yUK/DLiEBqTd5LIFfrJ1sQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=gTE6zypqItfbmjm4GsreCssgWqf+84qPC4TokgTWJNKpwq5RYs5tHiEH3uJn/m99u
+	 AH8FwNMvh1YyfIWI/e2MusG9Djm3r6VBt/kXeR6jfYjiSWu+F0gYX2M20ZicFEK680
+	 0u0w4kedPWkziui13uMLqPQWmBJOIDj3whkJRnySwQvPozQ5pQh4O8G+2ABsWhZE3y
+	 cxukh4oKq8JUJxKdQPzTM6LvMKqT5JEdYZUj4MmNjiW3YRsH1RYzZc/sLCMWXnXibJ
+	 ymJ35HYNQasnzrxYo96OvH82COZ8Hs4YMvhpFGZFOhrmDPriEA6S/FHmj1DplKK1n8
+	 Ef25U81+5sVXA==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E019717E10C8;
+	Thu, 15 Jan 2026 12:16:49 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: devicetree@vger.kernel.org
+Cc: andersson@kernel.org,
+	mathieu.poirier@linaro.org,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: priyanka.jain@nxp.com,
-	vikash.bansal@nxp.com,
-	Mayank Mahajan <mayankmahajan.x@nxp.com>
-Subject: [PATCH v3 3/3] hwmon: (tmp108) Add P3T1035 and P3T2030 support
-Date: Thu, 15 Jan 2026 16:44:18 +0530
-Message-ID: <20260115111418.1851-3-mayankmahajan.x@nxp.com>
-X-Mailer: git-send-email 2.47.1.windows.1
-In-Reply-To: <20260115111418.1851-1-mayankmahajan.x@nxp.com>
-References: <20260115111418.1851-1-mayankmahajan.x@nxp.com>
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	tinghan.shen@mediatek.com,
+	olivia.wen@mediatek.com,
+	linux-remoteproc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH v2] dt-bindings: remoteproc: mediatek: Remove l1tcm MMIO from MT8188 dual
+Date: Thu, 15 Jan 2026 12:16:45 +0100
+Message-ID: <20260115111645.63295-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,55 +72,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
 
-Update the hwmon driver documentation for sensors: P3T1035 and P3T2030.
+Even though the MT8188 SoC's Dual-Core SCP IP is practically the
+same as the one found on MT8195, it doesn't have a dedicated L1
+TCM and relies only on SRAM.
 
-Signed-off-by: Mayank Mahajan <mayankmahajan.x@nxp.com>
+Set reg/reg-names minItems to 1 globally and override it in all of
+the conditionals for the SoCs that require more, and then split
+the mt8195/8188 conditionals to allow specifying only the cfg MMIO
+on MT8188.
+
+Fixes: 91e0d560b9fd ("dt-bindings: remoteproc: mediatek: Support MT8188 dual-core SCP")
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
-V1 -> V2:
-- No changes in v2.
-V2 -> V3:
-- No changes in v3.
 
- Documentation/hwmon/tmp108.rst | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Changes in v2:
+ - Fix dtc warnings and validate again
 
-diff --git a/Documentation/hwmon/tmp108.rst b/Documentation/hwmon/tmp108.rst
-index bc4941d98268..c218ea333dd6 100644
---- a/Documentation/hwmon/tmp108.rst
-+++ b/Documentation/hwmon/tmp108.rst
-@@ -3,6 +3,15 @@ Kernel driver tmp108
+  CHKDT   ./Documentation/devicetree/bindings
+  LINT    ./Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/remoteproc/mtk,scp.example.dts
+  DTC [C] Documentation/devicetree/bindings/remoteproc/mtk,scp.example.dtb
+Done.
 
- Supported chips:
+ .../bindings/remoteproc/mtk,scp.yaml          | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
 
-+  * NXP P3T1035
-+
-+    Prefix: 'p3t1035'
-+
-+    Addresses scanned: none
-+
-+    Datasheet: https://www.nxp.com/docs/en/data-sheet/P3T1035XUK_P3T2030XUK.pdf
-+
-+
-   * NXP P3T1085
+diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+index 179c98b33b4d..f0cae3e4bc78 100644
+--- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+@@ -28,11 +28,11 @@ properties:
+     description:
+       Should contain the address ranges for memory regions SRAM, CFG, and,
+       on some platforms, L1TCM.
+-    minItems: 2
++    minItems: 1
+     maxItems: 3
+ 
+   reg-names:
+-    minItems: 2
++    minItems: 1
+     maxItems: 3
+ 
+   clocks:
+@@ -185,7 +185,7 @@ allOf:
+     then:
+       properties:
+         reg:
+-          maxItems: 3
++          minItems: 3
+         reg-names:
+           items:
+             - const: sram
+@@ -196,11 +196,22 @@ allOf:
+         compatible:
+           enum:
+             - mediatek,mt8188-scp-dual
++    then:
++      properties:
++        reg:
++          maxItems: 1
++        reg-names:
++          items:
++            - const: cfg
++  - if:
++      properties:
++        compatible:
++          enum:
+             - mediatek,mt8195-scp-dual
+     then:
+       properties:
+         reg:
+-          maxItems: 2
++          minItems: 2
+         reg-names:
+           items:
+             - const: cfg
+-- 
+2.52.0
 
-     Prefix: 'p3t1085'
-@@ -11,6 +20,14 @@ Supported chips:
-
-     Datasheet: https://www.nxp.com/docs/en/data-sheet/P3T1085UK.pdf
-
-+  * NXP P3T2030
-+
-+    Prefix: 'p3t2030'
-+
-+    Addresses scanned: none
-+
-+    Datasheet: https://www.nxp.com/docs/en/data-sheet/P3T1035XUK_P3T2030XUK.pdf
-+
-   * Texas Instruments TMP108
-
-     Prefix: 'tmp108'
---
-2.34.1
 
