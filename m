@@ -1,79 +1,53 @@
-Return-Path: <devicetree+bounces-255622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E60BD24D54
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:55:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35395D24D5D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 14:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 137953001FE4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:55:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 30CD930150E8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:55:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B6D21C17D;
-	Thu, 15 Jan 2026 13:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF683A0E89;
+	Thu, 15 Jan 2026 13:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="J+6zIyAL"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Xg24JJpP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B127D3A0E89
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 13:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FFE3A0B16;
+	Thu, 15 Jan 2026 13:55:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768485329; cv=none; b=H6HEIXZDFlCooF27Q9pmjhdi+Fe2xhlxKCYzu12/X4w/7qhnobArbSG6x78AQyh4uOQRti1WiKedbX4OdVERVg1pL2C6r5/MjT6gJQw7rt15Cd6uTpiUAgr03rLYSQRPCAX6L0ncAyPjH1pwhsDyDWDvM+7vk2a54grO/tEJf3Y=
+	t=1768485346; cv=none; b=qf9jj2YLtswNGDp2jGxzYm/2Z5T1k2mXEKAyyqSwqhyfRAv8xRqibvZClotYnFiAtWC8hOeX/3rz/RgPVISPCXqxNC6C3+j2y1DLbmKXL0gFLlLqZX/KXOdkC5vKlAAxiUUxkyAM6Le0WvcVEuieEW4AM4F3aI28jRjlLHNapSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768485329; c=relaxed/simple;
-	bh=rTcmnpef70Bd17FfMNPWpzLu6hWiJcl5FrvjG1iQ7kM=;
+	s=arc-20240116; t=1768485346; c=relaxed/simple;
+	bh=eRwBxsCfbUvrq6+iEFeXt1XljTAEoWXuaPhjITIfx6Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MdSMwUtp1dJC42z7QAjKsST2//LdSjTht7gumIZhGCf11AyFzG+dG6suNAzefN4kKucYC/FHhrHUEdPokXA2QQg5O98yTN/E3RU+GRvZQ/4/OTpbPCzNHjZqFOMSAtrhUJvHihVnpYUU74819ev3w4YKvJEBpUMnsQuXWUNFPIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=J+6zIyAL; arc=none smtp.client-ip=209.85.218.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b870732cce2so150512566b.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 05:55:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1768485326; x=1769090126; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QrZ5+jQy92uNw0r2S0THSakmu7K1eDt7PKdDPiL1BxI=;
-        b=J+6zIyALzvkmmvHLhMbqdi5qXkwtAN+VC1tpHA0tEs+1bLX7ofpseQsFp3j1aZn/0Y
-         Kr8/6pSdIqSFRtq6dOCNTKNUW34pzyO11qlJkW5klukx7C24o3UZPn/a0QB38lbilq/5
-         6Zv1mAxaFszr5mQFlP6cXCc74pH9fDjTB1N9rF97cgEJMi2w/4RC+zelGesUPk0tQvQ0
-         lGHYm2HAvVHohvEU5POGQAznYFBVXlF1nkpfCmovGHWnA8W0LTn4jT5pmYnLODu6mMBL
-         dqkIuaFJsJST7e3se4wTS5NcuscSofSbaTZaNiAcDwMYpqzAAsVmf5sLf4UnKCd0VjfF
-         tzyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768485326; x=1769090126;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QrZ5+jQy92uNw0r2S0THSakmu7K1eDt7PKdDPiL1BxI=;
-        b=xFLTsAwjnHTvVVGW3ZBxVtpjfpTmT2iS24F+XRM78jxYGamAsbvwl4zdFpxhl/+8wq
-         hgwkQB6aojSHy18pPKhDPjDZXFmgF2OyfYzWiC3Jpnk2AYVvmHIIa6sdC4FviOPUayxa
-         FXB/m7KmAoqo535D5JG45fqZf2lyTlz5N0CrcvnlZHkFab5+iikMn2YSSZc5ugMMxs5N
-         Ola7yl+grtLrDO1x5C70cIvL9Mm9zsPS8N9GC2ik8KMxK0LeXlo/mZPP1D1QaxaLJmvI
-         5lfmdqZQQbuqKoyScAoXuUWVRpnBhhofSrAB5eUxT6duG81dLfvD7Foups7PigvCHPlM
-         5e9A==
-X-Forwarded-Encrypted: i=1; AJvYcCU5mlSnjpX2DolIK7+sqfyltfP5sc5QqsLsyZ/UphNMFbtM5/DeSPUiSBoEMs5ez9K7mcS0iDpSUw7I@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmnV4VfU3hMNKgL/EDovTIb1IX3DAT8IrRqSWFs3RmU6q+ZEYJ
-	gT70bwwt5Jw2NaMsWpZaxOwuNRLmBtuRRQRwFF0jmMY3bW6m67npgRoS+tCiz4ecMd0=
-X-Gm-Gg: AY/fxX6sT/3pCttEI9lTYk1hx9oqhwhiUxmsthn/NaYzK0XzNG9J+n7lnSJQ7cW5RRk
-	qPwpThd/i6xWgCCddOZZGczeB1KYs2Ce+RGLIJHn8gzYHy+IY49d6/ShoBeIeLAFboE9rHtn/UM
-	pFD14IuGY0HNDSTuIJa1L1DFi+TcK3h4noDGZK9K/p5mjo3IQkflPX/dsg/8P1Qkxq13qDQNQuj
-	2nMjnGzVanDGNvrLgu4eZ8cCzXHTBSP/8eAWkhRomASBsEsqmqm4vqog4HElI8kHuUt1TpA3Qd5
-	orEOClw5E9/OETSV7dKYrNL+AE6njNtknQjSBNbx3E2IVgo22zRkIe73aQQ3/Y6g1nq2xsqMQRt
-	qzPryMl37XCC0nDQLOg0Yl1TZrrzApja6TqXnl87w9C+dIG/E9788IHj0K1MW4ejphkusAPk81O
-	x1Jzaw/kuS8r33sTx+Hn4=
-X-Received: by 2002:a17:907:3d42:b0:b76:f090:7779 with SMTP id a640c23a62f3a-b876113a251mr548317366b.33.1768485325766;
-        Thu, 15 Jan 2026 05:55:25 -0800 (PST)
-Received: from [10.78.104.246] ([46.97.176.64])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b87705a24f6sm365632466b.70.2026.01.15.05.55.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jan 2026 05:55:24 -0800 (PST)
-Message-ID: <6c87673a-32a7-490b-a365-096f3ae63c6f@tuxon.dev>
-Date: Thu, 15 Jan 2026 15:55:19 +0200
+	 In-Reply-To:Content-Type; b=vD0qlcqlxS7NFx0tTwL7UrgV2JnWojDciPmlwT4lFuPb/Cg3srDyar78XuJ6ty7M6jT0RW9jkUZNfm8Un/KAc7SLM2fqMrk7XGhC8c3+W60Myr2IzX+5fCXVZrYD5pKK6j6gtM+0MW32Qj1OEwjGbezthhAmjOG7oPWVcR3WQns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Xg24JJpP; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768485343;
+	bh=eRwBxsCfbUvrq6+iEFeXt1XljTAEoWXuaPhjITIfx6Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Xg24JJpPFG5FrlZTiysZ0Z46F3ud+UNUX/sRKL3uN1krMVulN+N47XfehTpuEewAr
+	 Q1apP6Ai1uLSVvga3AklmeQ079aUzTLkfqgKZ2tx9MYvRKOWDFw1VfWqNHdzhTmJGY
+	 JLetjsVsSiw+jRIGut6I4VXBkrHDgPGufZNjK3naQhLqUjn38b/ksbV9IHSKJ99lzL
+	 6sAUH/5uMO5/M5Oy49Fq50A/TWAKd9SfaFC9p9fZ7Hrx+atzoR3J49abmlo/daK8r2
+	 UIQJtz5hZlYbcgdfs/e0zwTMoqyCPBYkVLJZWGYfX1GQ90ikBHnK5C1KKYP9Y408dq
+	 CqN2rYLuWrwxQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6128F17E0CF3;
+	Thu, 15 Jan 2026 14:55:42 +0100 (CET)
+Message-ID: <60bb622a-f88a-46ce-b835-bbefe47509bc@collabora.com>
+Date: Thu, 15 Jan 2026 14:55:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,178 +55,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/16] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
- Document RZ/G3E SoC
-To: John Madieu <john.madieu.xa@bp.renesas.com>,
- claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org,
- kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be,
- krzk+dt@kernel.org
-Cc: robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
- magnus.damm@gmail.com, biju.das.jz@bp.renesas.com,
- linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
-References: <20260114153337.46765-1-john.madieu.xa@bp.renesas.com>
- <20260114153337.46765-6-john.madieu.xa@bp.renesas.com>
+Subject: Re: [PATCH 1/4] dt-bindings: mtd: jedec,spi-nor: Add Winbond
+ W25Q(32/64/128/256)JWM
+To: Pratyush Yadav <pratyush@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tudor.ambarus@linaro.org, mwalle@kernel.org, miquel.raynal@bootlin.com,
+ richard@nod.at, vigneshr@ti.com, lgirdwood@gmail.com, broonie@kernel.org,
+ matthias.bgg@gmail.com, julien.massot@collabora.com,
+ eugen.hristev@linaro.org, jiaxin.yu@mediatek.com, shane.chien@mediatek.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
+ <20260115125624.73598-2-angelogioacchino.delregno@collabora.com>
+ <2vxz5x93818a.fsf@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260114153337.46765-6-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <2vxz5x93818a.fsf@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi, John,
-
-On 1/14/26 17:33, John Madieu wrote:
-> Extend the existing device tree bindings for Renesas RZ/G3S PCIe
-> controller to include support for the RZ/G3E (renesas,r9a09g047e57-pcie) PCIe
-> controller. The RZ/G3E PCIe controller is similar to RZ/G3S but has some key
-> differences:
+Il 15/01/26 14:16, Pratyush Yadav ha scritto:
+> On Thu, Jan 15 2026, AngeloGioacchino Del Regno wrote:
 > 
->   - Uses a different device ID
->   - Supports PCIe Gen3 (8.0 GT/s) link speeds
->   - Uses a different clock naming (clkpmu vs clkl1pm)
->   - Has a different set of interrupts, interrupt ordering, and reset signals
+>> Add Winbond W25Q32JWM, W25Q64JWM, W25Q128JWM, W25Q256JWM to the
+>> allowed compatible strings pattern.
+>>
+>> This also resolves a dtbs_check warning happening on all of the
+>> MediaTek MT8192 Chromebooks devicetrees (for winbond,w25q64jwm).
 > 
-> Add device tree bindings for renesas,r9a09g047e57-pcie compatible IPs.
+> We normally don't allow adding any more device-specific compatibles.
+> This list here is only for legacy DTS. You should be using
+> "jedec,spi-nor" in your device trees.
 > 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
->   .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 243 +++++++++++++-----
->   1 file changed, 172 insertions(+), 71 deletions(-)
+
+Ah, okay, didn't know that.
+
+That's actually making things easier for me honestly as removing the
+model string is a 10 seconds change, so I'm totally happy with that.
+
+Ignore this commit then.
+
+Thanks!
+Angelo
+
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>> index 587af4968255..2db446c9ca9b 100644
+>> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>> @@ -29,7 +29,7 @@ properties:
+>>                 (sst,)?sst26wf016b|\
+>>                 (sst,)?sst25wf(040b|080)|\
+>>                 winbond,w25x(80|32)|\
+>> -              (winbond,)?w25q(16|32(w|dw)?|64(dw)?|80bl|128(fw)?|256))$"
+>> +              (winbond,)?w25q(16|32(w|dw)?|64(dw|jwm)?|80bl|128(fw|jwm)?|256(jwm)?))$"
+>>             - const: jedec,spi-nor
+>>         - items:
+>>             - enum:
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> index d668782546a2..c68bc76af35d 100644
-> --- a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> @@ -10,85 +10,34 @@ maintainers:
->     - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->   
->   description:
-> -  Renesas RZ/G3S PCIe host controller complies with PCIe Base Specification
-> -  4.0 and supports up to 5 GT/s (Gen2).
-> +  Renesas RZ/G3{E,S} PCIe host controllers comply with PCIe
-> +  Base Specification 4.0 and support up to 5 GT/s (Gen2) for RZ/G3S and
-> +  up to 8 GT/s (Gen3) for RZ/G3E.
->   
->   properties:
->     compatible:
-> -    const: renesas,r9a08g045-pcie # RZ/G3S
-> +    enum:
-> +      - renesas,r9a08g045-pcie # RZ/G3S
-> +      - renesas,r9a09g047-pcie # RZ/G3E
->   
->     reg:
->       maxItems: 1
->   
-> -  interrupts:
-> -    items:
-> -      - description: System error interrupt
-> -      - description: System error on correctable error interrupt
-> -      - description: System error on non-fatal error interrupt
-> -      - description: System error on fatal error interrupt
-> -      - description: AXI error interrupt
-> -      - description: INTA interrupt
-> -      - description: INTB interrupt
-> -      - description: INTC interrupt
-> -      - description: INTD interrupt
-> -      - description: MSI interrupt
-> -      - description: Link bandwidth interrupt
-> -      - description: PME interrupt
-> -      - description: DMA interrupt
-> -      - description: PCIe event interrupt
-> -      - description: Message interrupt
-> -      - description: All interrupts
-> -
-> -  interrupt-names:
-> -    items:
-> -      - description: serr
-> -      - description: ser_cor
-> -      - description: serr_nonfatal
-> -      - description: serr_fatal
-> -      - description: axi_err
-> -      - description: inta
-> -      - description: intb
-> -      - description: intc
-> -      - description: intd
-> -      - description: msi
-> -      - description: link_bandwidth
-> -      - description: pm_pme
-> -      - description: dma
-> -      - description: pcie_evt
-> -      - description: msg
-> -      - description: all
-> +  interrupts: true
-> +
-> +  interrupt-names: true
->   
->     interrupt-controller: true
->   
->     clocks:
-> -    items:
-> -      - description: System clock
-> -      - description: PM control clock
-> +    maxItems: 2
->   
->     clock-names:
-> -    items:
-> -      - description: aclk
-> -      - description: pm
-> -
-> -  resets:
-> -    items:
-> -      - description: AXI2PCIe Bridge reset
-> -      - description: Data link layer/transaction layer reset
-> -      - description: Transaction layer (ACLK domain) reset
-> -      - description: Transaction layer (PCLK domain) reset
-> -      - description: Physical layer reset
-> -      - description: Configuration register reset
-> -      - description: Configuration register reset
-> -
-> -  reset-names:
-> -    items:
-> -      - description: aresetn
-> -      - description: rst_b
-> -      - description: rst_gp_b
-> -      - description: rst_ps_b
-> -      - description: rst_rsm_b
-> -      - description: rst_cfg_b
-> -      - description: rst_load_b
-> +    maxItems: 2
-> +
-> +  resets: true
-> +
-> +  reset-names: true
->   
->     power-domains:
->       maxItems: 1
-> @@ -128,11 +77,12 @@ patternProperties:
->           const: 0x1912
->   
->         device-id:
-> -        const: 0x0033
-> +        enum:
-> +          - 0x0033
-> +          - 0x0039
->   
->         clocks:
-> -        items:
-> -          - description: Reference clock
-> +        maxItems: 1
 
-Can't this stay as is?
 
->   
->         clock-names:
->           items:
-> @@ -142,8 +92,6 @@ patternProperties:
->         - device_type
->         - vendor-id
->         - device-id
-> -      - clocks
-> -      - clock-names
-
-Any reason this was dropped here? I see in patch 14/16 you are still using 
-clocks, clock-names for the PCIe port.
-
-Thank you,
-Claudiu
 
