@@ -1,60 +1,66 @@
-Return-Path: <devicetree+bounces-255745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F522D27EBF
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:05:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2FE6D27E5F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:01:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7BCBB30A425D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:53:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 032993009878
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:01:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5D03A63F1;
-	Thu, 15 Jan 2026 18:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BAA2299AAB;
+	Thu, 15 Jan 2026 19:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AUCiggqZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SzQdeiOR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA5DF2DFA54
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 18:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B112E1799F;
+	Thu, 15 Jan 2026 19:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768503232; cv=none; b=ddXM6UvrDfDZc2GWiX3iJ2b7VzHL7f45EdJLvKV6UnqYwa/YgC4rwbsCTEHhOr3me568FSDnSlWGyXdSRVKjsDl9H5repUw3aGcMHwsphzkB83MEpv0KAG0fNCumsalf6Y3kdm9+U+DLKBQ6IS2mLDtNikgvZjX9ukDLzjALBGo=
+	t=1768503673; cv=none; b=Avz/gGRQUIcJ8Zx//PDpQshwKWWh0VE3rihuz9VnHXLBiAzY8Cqh6W6ec2IkENrwtFCHDce0ISXLLb2U9+9q2EIDpAR0Kx4Uo9Jg1OImmzvApgxr3k6rdVUNtTpxPA2rfqbAoZHKqU2+xFC9VIpUczljiTNGziqw9fHFYpqxqwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768503232; c=relaxed/simple;
-	bh=+yRgRWrxixszXJdLBEgxSxkhwkZTH7s4cXfyBhhd6zY=;
+	s=arc-20240116; t=1768503673; c=relaxed/simple;
+	bh=kbDE4I87P0BVWxV+dNPffz+z+PAooAzag8YpvFHu/SE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=THhGQG4yw7SOWHrP6ymIA9BxwbHzy3tnREkipavQN2yj/BCre6smbI5kidTCnwWFQYjgHPPKC0ZajA907b0MQ42Mf+JTHSUGA8VmTSGLpn6SaFCygDna307eF7nKUeFkW27pvUM7CjNvnNB8la5+3yStImeMYKSppphSnjiBnNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AUCiggqZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38E54C16AAE;
-	Thu, 15 Jan 2026 18:53:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AHDXLw45+cm57RDtjGDBcjdznW3vqj/ijTWvFWOk34b+BMboPxwSbRM2qMfGIXsoz03Ol4m/F+R8H/E71I+Qcaji/rPQ7nmL3xjoKI1VtjwdMqHAcyLZLl7l7GQ1k3AucAxgPuocy3AZFHt5how8Jv9bT1/5WIhdVxqvo/tbD+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SzQdeiOR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AD8AC116D0;
+	Thu, 15 Jan 2026 19:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768503232;
-	bh=+yRgRWrxixszXJdLBEgxSxkhwkZTH7s4cXfyBhhd6zY=;
+	s=k20201202; t=1768503673;
+	bh=kbDE4I87P0BVWxV+dNPffz+z+PAooAzag8YpvFHu/SE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AUCiggqZpfdI1tudPHsbFKr6s686vUb/DOUAVuO08NxXYlA4lO5ha1c5Ih0Nkd5L0
-	 qeyF1GYAs71hBcNBw34SXu9ACVi/671Uy7D1Tpd7CPpislVN6wCq4/EDGvQyu59dk2
-	 UGMCjT/ad2mN49ixcwFD4ujyD2H8wYSN1SgBIISG9nPbcNWlemr8BTw9Js22rrINcT
-	 iniQqZYV3ffnL+KAyaiTghLs3E/c2fEZOJdUN62/iKv1ms6XPscdbUJEbgpAOPPV4A
-	 nGUPKKL4AqeGo8Rv6ZpvASqe1IPRdOT/DD0+aDXx3ZOYiSI0UD2xuNQYhqxzuWFB9n
-	 putFSQG6ZAsjw==
-Date: Thu, 15 Jan 2026 12:53:51 -0600
+	b=SzQdeiORsmFVr3W2xywsEeCDLaLp7l83NC37XK+pawV9POmYfLWH7j3bTeU0/Foav
+	 vh3KegliIHHQqPQC4/HVSBz9oh44YoXok+Zq8VSDfurZS/7WO/zx/S/I1GSiUUctIO
+	 6flNjhHYBt2Fb1Z5VBbO3NHHw7hWix2ub+kbz85TC1pU9NwMAMj3c0bB9hzwGVMtLD
+	 Ql2MWpIaeLI0OfoVyaGtefaA1v6Z7yBh2QUZKJiDVJ5aJuHVV5ySbhy5v6F/3ren1G
+	 tXmVmDAkFmN1ucJGeMP611PUCSSQbtOiFLkca+AlQmh1q4SqNzELMGaW799fr/2ik+
+	 NgIMAR8w1heHA==
+Date: Thu, 15 Jan 2026 13:01:12 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, mripard@kernel.org,
-	dri-devel@lists.freedesktop.org, airlied@gmail.com,
-	conor+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>,
-	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
-	neil.armstrong@linaro.org, devicetree@vger.kernel.org,
-	jagan@edgeble.ai, krzk+dt@kernel.org, aweinzerl13@yahoo.com,
-	heiko@sntech.de, simona@ffwll.ch, jesszhan0024@gmail.com,
-	dmitry.torokhov@gmail.com
-Subject: Re: [PATCH 2/6] dt-bindings: display: panel: Add compatible for
- Anbernic RG-DS
-Message-ID: <176850323085.1003166.1760055043978437225.robh@kernel.org>
-References: <20260113195721.151205-1-macroalpha82@gmail.com>
- <20260113195721.151205-3-macroalpha82@gmail.com>
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: jens.wiklander@linaro.org, linux-stm32@st-md-mailman.stormreply.com,
+	Linus Walleij <linusw@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Leo Yan <leo.yan@linux.dev>,
+	=?iso-8859-1?Q?Cl=E9ment?= Le Goffic <legoffic.clement@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	coresight@lists.linaro.org, Conor Dooley <conor+dt@kernel.org>,
+	James Clark <james.clark@linaro.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-gpio@vger.kernel.org, Mike Leach <mike.leach@linaro.org>
+Subject: Re: [PATCH v2 02/11] dt-bindings: pinctrl: document
+ access-controllers property for stm32 HDP
+Message-ID: <176850367158.1015177.14103390194697312038.robh@kernel.org>
+References: <20260114-debug_bus-v2-0-5475c7841569@foss.st.com>
+ <20260114-debug_bus-v2-2-5475c7841569@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +69,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260113195721.151205-3-macroalpha82@gmail.com>
+In-Reply-To: <20260114-debug_bus-v2-2-5475c7841569@foss.st.com>
 
 
-On Tue, 13 Jan 2026 13:57:17 -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, 14 Jan 2026 11:29:16 +0100, Gatien Chevallier wrote:
+> HDP being functional depends on the debug configuration on the platform
+> that can be checked using the access-controllers property, document it.
 > 
-> The Anbernic RG-DS uses two (mostly) identical panels as a top
-> and bottom panel which appear to use the same controller as the
-> Jadard JD9365DA-H3. The panels differ with a parameter defined
-> differently in the init sequence.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
 > ---
->  .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/pinctrl/st,stm32-hdp.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
