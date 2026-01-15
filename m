@@ -1,224 +1,147 @@
-Return-Path: <devicetree+bounces-255369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4767CD228FB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:31:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF5DD2293D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:37:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DB37130255A8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:31:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 99AE2301317A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21113216E24;
-	Thu, 15 Jan 2026 06:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCFE28D84F;
+	Thu, 15 Jan 2026 06:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="CbSf+18g"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="f7OS1GDz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610C252F88;
-	Thu, 15 Jan 2026 06:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A338D86250;
+	Thu, 15 Jan 2026 06:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768458692; cv=none; b=O+RDc4II30t5cSNfCoRrWaQPIdBMdbtJJAors3jB8L/ckumwRQGZuqJTn1vGB2npuMDMuESgqXSgILMkxqQY2AMayKRBnIzPLL4gW5ZqhPVpT2CSG3USkVx3HI+vAu5/vqKm5c2wgLUTIQB2eGoPDaJ8T0AAAB0jjSZNRogliVY=
+	t=1768459013; cv=none; b=nqF/Sf0qVZhrc7n8P8Dmt9/KQ3iuVdvWIH+SsDZpCYYj9SUGB+jNhUYs227h12/atjgj7WRRRIe1x4l5P76ORYVd8+E+tbJuGFQ5KKR9yRY8npmkbchDhpIULLUJeu9i50fsnpKI4W/m0zEXOrdPA8GnxH7PUQD0RplzbW4HtAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768458692; c=relaxed/simple;
-	bh=ceUxetXiTurLKkUxemEQlUbs/dabOA01twWLWr98Otw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ty6f+qoBSZPdxXDYNEHvK+dsWmZ3uM4tw8jTDjDXoNmX/Sco/Il+LqhANRsbWIK/yd5FyJwkQGumxoc6dmwtRduqm16WKfZ+kJ7gh2HcUzvMxct3ArhERiwbBrPsfWetZUGRmsATnT64H+cgTKBwqpJ6ICBryHO6CuDRXv2/s0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=CbSf+18g; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768458687;
-	bh=MgfLKjYtbYxPY6Z5qQCL8xm6L93d+xbg15oG4xUEG80=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CbSf+18g/fPK4j1E/NlUD0u46gOguWURGgdZs2DY4TVOSAlrfmijHo+IOW2HgkEqT
-	 RVvBENMxlEODCbd5xcepUtXgptA6ZxQJqIlkfszwZ5N6CweYNvLdYJnaHUePb+jRok
-	 2XtRTZcua/SIyD2XdPQZb563BSKW64gvzImvtiU37riqkJFkEiJdbqXr2k76DwUyVZ
-	 vyt+6suZwkiyVZCg5BG2i5912tpLEDYGxK0dsKOV9WXftbesPxim41xs1RP5+EQJKE
-	 s5Igvd3gfdQK8jLVtGE48uyc16TWlEeDCByUkg/cjNCWlrcTTGW5EyXziEpMmsU7Ou
-	 8ZV2QRKKmds9w==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4dsCmv64slz4wM0; Thu, 15 Jan 2026 17:31:27 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 17:31:24 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 32/77] dtc-parser: Introduce last_header_flags
-Message-ID: <aWiJvEEgjl44h6vd@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-33-herve.codina@bootlin.com>
+	s=arc-20240116; t=1768459013; c=relaxed/simple;
+	bh=xVcBRqEBOF+2w5uCGKFR3PmPPf/ALxrXuAO/HZn5MJU=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=h/JI9EpcW48ZkDFcHoLZpk0cO9quZig/pQQ4JIRFclRli2IxcTQrPV633ARBf+UzLAs6xMivUL2vYSk7QfGNHXipw8utoKkM5DJEWyi3+AgCbm2X24ZEIeEl6Y+O8aYQdLRZtDDdcjAa9tGbYR2nuzaV5wYZJZjgAdfJmXytobM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=f7OS1GDz; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c31:76ee:df3c:dc54:9316:8c06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3FC754E1;
+	Thu, 15 Jan 2026 07:36:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768458975;
+	bh=xVcBRqEBOF+2w5uCGKFR3PmPPf/ALxrXuAO/HZn5MJU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=f7OS1GDzRQn9si5P+u02yXEVrWA2z/B6BVMwXOVsKAeGgVV7QEQP+GjnrnCVBhdw0
+	 Ic8kNEEOedGORN250yt7t2MC5KrTitFIqQPo2//w7eCa26aeYgeUGYDh5VsLPaQ2Cv
+	 xaRVtbG0oRlYD6v01uwmaYsh6uPdvMUnc3dx9dFM=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qK889M/ljeeqkpAy"
-Content-Disposition: inline
-In-Reply-To: <20260112142009.1006236-33-herve.codina@bootlin.com>
-
-
---qK889M/ljeeqkpAy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ee8152c0-daf5-48dd-a2d1-2fafcfeca797@ideasonboard.com>
+References: <20251230083220.2405247-1-r-donadkar@ti.com> <20251230083220.2405247-7-r-donadkar@ti.com> <ee8152c0-daf5-48dd-a2d1-2fafcfeca797@ideasonboard.com>
+Subject: Re: [PATCH v9 06/19] media: ti: j721e-csi2rx: add a subdev for the core device
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, jai.luthra@linux.dev, mripard@kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Sakari Ailus <sakari.ailus@linux.intel.com>
+Date: Thu, 15 Jan 2026 12:06:38 +0530
+Message-ID: <176845899846.9154.18009615769864845946@freya>
+User-Agent: alot/0.12.dev62+gb9d6144a6
 
-On Mon, Jan 12, 2026 at 03:19:22PM +0100, Herve Codina wrote:
-> The parser needs to get header flags value in different places.
->=20
-> It relies on the fact that the rule used to parse the dts file is always
->   headers memreserves devicetree
->=20
-> With that only rule to parse the file, it uses '$<flags>-1' construct to
-> get the flags value.
->=20
-> With the future introduction of import symbols parsing, this rule will
-> change and the parser couldn't rely anymore on '$<flags>-1' to get flags
-> value. Indeed, import symbols parsing will add a new optional symbol in
-> this rule leading to two possible rules (with and without the new
-> symbol) to parse the source file.
->=20
-> Introduce the last_header_flags variable to explicitly keep track of
-> flags while also being agnostic of the rule structure and use this new
-> variable instead of '$<flags>-1'.
+Hi Tomi,
 
-I'm not sure this approach is safe: I'm not sure bison guarantees that
-semantic rules will always be executed in the same order, so using
-global variables is risky.
++Sakari, Laurent
+
+Quoting Tomi Valkeinen (2026-01-14 20:51:49)
+> Hi,
+>=20
+> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+> > From: Jai Luthra <j-luthra@ti.com>
+> >=20
+> > With single stream capture, it was simpler to use the video device as
+> > the media entity representing the main TI CSI2RX device. Now with multi
+> > stream capture coming into the picture, the model has shifted to each
+> > video device having a link to the main device's subdev. The routing
+> > would then be set on this subdev.
+> >=20
+> > Add this subdev, link each context to this subdev's entity and link the
+> > subdev's entity to the source. Also add an array of media pads. It will
+> > have one sink pad and source pads equal to the number of contexts.
+> >=20
+> > Support the new enable_stream()/disable_stream() APIs in the subdev
+> > instead of s_stream() hook.
+> >=20
+> > Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> > Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> > Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > ---
+
+[...]
+
+> > @@ -981,48 +1138,52 @@ static int ti_csi2rx_link_validate(struct media_=
+link *link)
+> >       struct ti_csi2rx_ctx *ctx =3D container_of(vdev, struct ti_csi2rx=
+_ctx, vdev);
+> >       struct ti_csi2rx_dev *csi =3D ctx->csi;
+> >       struct v4l2_pix_format *csi_fmt =3D &ctx->v_fmt.fmt.pix;
+> > -     struct v4l2_subdev_format source_fmt =3D {
+> > -             .which  =3D V4L2_SUBDEV_FORMAT_ACTIVE,
+> > -             .pad    =3D link->source->index,
+> > -     };
+> > +     struct v4l2_mbus_framefmt *format;
+> > +     struct v4l2_subdev_state *state;
+> >       const struct ti_csi2rx_fmt *ti_fmt;
+> > -     int ret;
+> > =20
+> > -     ret =3D v4l2_subdev_call_state_active(csi->source, pad,
+> > -                                         get_fmt, &source_fmt);
+> > -     if (ret)
+> > -             return ret;
+> > +     state =3D v4l2_subdev_lock_and_get_active_state(&csi->subdev);
+> > +     format =3D v4l2_subdev_state_get_format(state, link->source->inde=
+x, 0);
+> > +     v4l2_subdev_unlock_state(state);
+> > =20
+> > -     if (source_fmt.format.width !=3D csi_fmt->width) {
+> > +     if (!format) {
+> > +             dev_dbg(csi->dev,
+> > +                     "Skipping validation as no format present on \"%s=
+\":%u:0\n",
+> > +                     link->source->entity->name, link->source->index);
+> > +             return 0;
+>=20
+> Isn't this an error?
+
+Well, the j7 shim subdev introduced here has immutable and active links to
+all the video nodes, for each DMA channel (taken from DT), many of which
+may be unused for certain setups, and thus there might not be any valid
+format on the subdev source pad corresponding to an unused video node.
+
+Jacopo had a similar comment on v2, see this discussion (grep for Mali):
+https://lore.kernel.org/linux-media/4mnlnsj4co3agvln4qsasmgvgwiyoo7yu2h5wyh=
+4rmzzafhm5u@avhnbw7iknms/
+
+I know other drivers use a different approach with mutable links, so it
+would be good if you/Laurent/Sakari can give your opinions on if only one
+of these two approaches should be taken for multi-stream pipelines.
 
 >=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  dtc-parser.y | 28 +++++++++-------------------
->  1 file changed, 9 insertions(+), 19 deletions(-)
->=20
-> diff --git a/dtc-parser.y b/dtc-parser.y
-> index 4e46e9d..48c40e8 100644
-> --- a/dtc-parser.y
-> +++ b/dtc-parser.y
-> @@ -24,6 +24,8 @@ extern void yyerror(char const *s);
->  extern struct dt_info *parser_output;
->  extern bool treesource_error;
-> =20
-> +unsigned int last_header_flags;
-> +
->  static bool is_ref_relative(const char *ref)
->  {
->  	return ref[0] !=3D '/' && strchr(&ref[1], '/');
-> @@ -122,14 +124,17 @@ header:
->  	  DT_V1 ';'
->  		{
->  			$$ =3D DTSF_V1;
-> +			last_header_flags =3D $$;
->  		}
->  	| DT_V1 ';' DT_PLUGIN ';'
->  		{
->  			$$ =3D DTSF_V1 | DTSF_PLUGIN;
-> +			last_header_flags =3D $$;
->  		}
->  	| DT_V1 ';' DT_ADDON ';'
->  		{
->  			$$ =3D DTSF_V1 | DTSF_ADDON;
-> +			last_header_flags =3D $$;
->  		}
->  	;
-> =20
-> @@ -179,12 +184,7 @@ devicetree:
->  		}
->  	| dt_ref nodedef
->  		{
-> -			/*
-> -			 * We rely on the rule being always:
-> -			 *   versioninfo plugindecl memreserves devicetree
-> -			 * so $-1 is what we want (plugindecl)
-> -			 */
-> -			if (!($<flags>-1 & DTSF_PLUGIN))
-> +			if (!(last_header_flags & DTSF_PLUGIN))
->  				ERROR(&@2, "Label or path %s not found", $1);
->  			else if (is_ref_relative($1))
->  				ERROR(&@2, "Label-relative reference %s not supported in plugin", $1=
-);
-> @@ -197,7 +197,7 @@ devicetree:
->  		{
->  			struct node *target =3D get_node_by_ref($1, $3);
-> =20
-> -			if (($<flags>-1 & DTSF_PLUGIN) && is_ref_relative($3))
-> +			if ((last_header_flags & DTSF_PLUGIN) && is_ref_relative($3))
->  				ERROR(&@2, "Label-relative reference %s not supported in plugin", $3=
-);
-> =20
->  			if (target) {
-> @@ -209,12 +209,7 @@ devicetree:
->  		}
->  	| devicetree DT_PATH_REF nodedef
->  		{
-> -			/*
-> -			 * We rely on the rule being always:
-> -			 *   versioninfo plugindecl memreserves devicetree
-> -			 * so $-1 is what we want (plugindecl)
-> -			 */
-> -			if ($<flags>-1 & DTSF_PLUGIN) {
-> +			if (last_header_flags & DTSF_PLUGIN) {
->  				if (is_ref_relative($2))
->  					ERROR(&@2, "Label-relative reference %s not supported in plugin", $=
-2);
->  				add_orphan_node($1, $3, $2);
-> @@ -235,12 +230,7 @@ devicetree:
->  			if (target) {
->  				merge_nodes(target, $3);
->  			} else {
-> -				/*
-> -				 * We rely on the rule being always:
-> -				 *   versioninfo plugindecl memreserves devicetree
-> -				 * so $-1 is what we want (plugindecl)
-> -				 */
-> -				if ($<flags>-1 & DTSF_PLUGIN)
-> +				if (last_header_flags & DTSF_PLUGIN)
->  					add_orphan_node($1, $3, $2);
->  				else
->  					ERROR(&@2, "Label or path %s not found", $2);
-> --=20
-> 2.52.0
->=20
+>  Tomi
 >=20
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+Thanks,
+    Jai
 
---qK889M/ljeeqkpAy
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmloibsACgkQzQJF27ox
-2GctTxAArIaYcAx5BfzErPm2b3uAnq05+14OaemloPupBOCsIIkR8y50t4lu68S/
-LVKUI4lXfa29dixnh7nHiM1YN/EZYvsu4EbuERaxXSMYbYdzJ6NFAvgPYQ5vDLFS
-rcVjOHB8RIW46VXX/IkdFAgbEk+Z9oIl+D0bDGe37v7EGRdHycHKf/aP11iXr+qK
-YJ+DX0ijqBKtBPm3/LgRiLTjKAjMLQph1YwJEc2K79YhiUz5slRJV9rIBJ0397n+
-3LRi+ToWvze5HRMXCcxLPqE/v7pv3ONLldkDI109rZpFoNECzLvHFLS+9yiX0Rg7
-Oan8JrELq4E7ylrmqmDP3EwG2k/Y4wVJ1BtQaOtuuse3hd1VM9ibl5pz5MKXPj5N
-lMJv12od9rDuQU8TZctPELVkkPx5vqgDid+jezNEoudQQNhajMw2ARSps/2yjNKk
-tVlBzIAPpEom/rCe3oT82e5lm59wG7y90LTgJsyqiNKweIflDPsKoHaGntwsXTLD
-QnZzZ4pRD/cjVmhUBC9QBwW28K6Mozryv5lBamnmNKn8aQn52kb9huzguvEujCpl
-fhCmNZgXcfbca1LzDpg0D3rCmnw1vijzs272mYXSFYYRv98fEAJIVRKju8M8wMx5
-/XIawOht6ZLmgqFIyDkldNi06jonW8Pi6WPGkRnopwCeYpmw5LU=
-=r0Kz
------END PGP SIGNATURE-----
-
---qK889M/ljeeqkpAy--
+[...]
 
