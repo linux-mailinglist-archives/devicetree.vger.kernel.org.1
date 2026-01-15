@@ -1,56 +1,62 @@
-Return-Path: <devicetree+bounces-255711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8590FD2664A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:28:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BACCD26977
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:39:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9A622304AE64
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:16:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2BE7D3264351
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96173BF2F7;
-	Thu, 15 Jan 2026 17:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AC22C3268;
+	Thu, 15 Jan 2026 17:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KlESdXIR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVtLmSXj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962F43BF2E7;
-	Thu, 15 Jan 2026 17:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE01E2C08AC;
+	Thu, 15 Jan 2026 17:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768497392; cv=none; b=t5Oivzv/UtIkzt7qWo5anuRegABHlLLOVabneiwbg1hOJax0vmkzhTYBw5vyBEIKpy76CKRbHI0VIIhRI6MID5Yfx2+fXSeM/T8wCtyhT18sUZXhyefoBKF4DM/u2ve9xKdRGUohZ4Ri7MCjEezcUvw0GWeB3xA9SNGcKmpm0S8=
+	t=1768497486; cv=none; b=pJif22nBpkivKOkhfcDgQwWvMzPBScBFgb+3F2W1a/BjCoK30K24V1IAU0r+L0aNkwXNoypj6a7rU8dH5/iCghTDbjgphWLWKixOkLXARbdgoRYc7yIuUyqSnVOM2HS5hDZsqVHT8h8CEQgc2+5PyIPY/COhP04DpyTQJRF2h1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768497392; c=relaxed/simple;
-	bh=EoDuHPKYADtTQ3CbH8ajn3cz4Fwrwq6IKHjrNnSNqVA=;
+	s=arc-20240116; t=1768497486; c=relaxed/simple;
+	bh=tlBpdMlQBYBLhVmEgUbSIOIS5UI2VXeT9ZB6zSWIxfM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NICkUQj/2M2ROwpZo758se5iVzxOPOSuGHwnOTOHVgXQtD3m/DrVDTVIyjZDzRO3h85vZCwsJRlewOcAdkoPtFDOZmPJpIBt+s8ML6ouegdZPT4MOHWGMy8mxhTvmI/lPajBEXWtP5wiyBoWyLs8EgsW66ezuIVMtwJ/c0R2DFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KlESdXIR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E66C116D0;
-	Thu, 15 Jan 2026 17:16:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VHQB3E9TQfn0wcDBk3KEp8sPmPL4/4qL9ZoPLfjNkLXjfAXakuH50sJiPfgYKIlVzTiROCq/PKaRgoyF+Sr7rEXd0a9uEiM/R4HF9hdqEuRzefw6xWpgQAChRjX1Wr3x/V1L8uiIR+LQbZNnf1ennJrBevZJmCLwxot7vZofVew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVtLmSXj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59700C116D0;
+	Thu, 15 Jan 2026 17:18:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768497392;
-	bh=EoDuHPKYADtTQ3CbH8ajn3cz4Fwrwq6IKHjrNnSNqVA=;
+	s=k20201202; t=1768497486;
+	bh=tlBpdMlQBYBLhVmEgUbSIOIS5UI2VXeT9ZB6zSWIxfM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KlESdXIRDi4LaDQt/CNKvfnKjJ7Y6Snc9KH+I3n6uqvXVDaiD4jZonAkz0RnY/GL4
-	 GArii35s6IZn9a/VYHwwlHrTzMC3vtBQ3r7Ytdvly+/ZbnHNqztKL/2BdT/FpIX642
-	 pXqXb8QllzIwqfiOB3DMMA+jIvzb/MPRjHqx9o5KgjbLEp+bDjg4MBGAUHkyvsfGkL
-	 YAiO6lSUymNqEMVRqCF8UlmBAu5tURwePPF/G1aNsiGLYTLamyrpQmYvHf8k+ISQnT
-	 9NVBQ/Paj2Z6XSTvkKb5IWXSVGtGudZO50YkPbINj2jsI9QIjJrNz5/9Vm5igbRy1Z
-	 Hp9f4ilsveKnQ==
-Date: Thu, 15 Jan 2026 11:16:31 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
-	Andrew Jeffery <andrew@aj.id.au>, Joel Stanley <joel@jms.id.au>,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mfd: Document smp-memram subnode for
- aspeed,ast2x00-scu
-Message-ID: <176849739064.906870.7559981756194987059.robh@kernel.org>
-References: <20260109-dev-dt-warnings-mfd-v1-1-1aabe37e9a14@codeconstruct.com.au>
+	b=qVtLmSXjo6FvIftTAePkjMMLYNqnHXAPCPRIa7DqU14V+8o3w+FBwz+BiGQnqr0/2
+	 UGqn/mQNnRRVeh2KonGBrK9BEtHlocbBpBsHSksMlFKqnTDIJuVPrzbUwkBrSNdlJV
+	 4dcJ8bcNjnXbpFPGzs4XWvfIPjxYcrZWo61PllT94t8xxvcutq6myX3Bj++3oKRGGU
+	 8KY7fBXvOliTtwAn9Z7S5zVXgjzCpfUX4D9NtgpxnlPMqGGH7FdV0o5LvmpEXQ6xji
+	 h7My1VZziSebUI/weJ0pgoX77FjOCHsTuz5jLlveDNby9+xU1TnktE3QU/bJpqRN3t
+	 jxH+XHvLWF+Gg==
+Date: Thu, 15 Jan 2026 11:18:05 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Andy Yan <andyshrk@163.com>, heiko@sntech.de,
+	dmitry.baryshkov@oss.qualcomm.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, cristian.ciocaltea@collabora.com,
+	Laurent.pinchart@ideasonboard.com, mripard@kernel.org,
+	hjc@rock-chips.com, tzimmermann@suse.de, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 1/5] dt-bindings: display: rockchip: Add rk3576
+ DisplayPort
+Message-ID: <20260115171805.GA907039-robh@kernel.org>
+References: <20260109080054.228671-1-andyshrk@163.com>
+ <20260109080054.228671-2-andyshrk@163.com>
+ <aWa5i52PTNQ_QTQ7@venus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,36 +65,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260109-dev-dt-warnings-mfd-v1-1-1aabe37e9a14@codeconstruct.com.au>
+In-Reply-To: <aWa5i52PTNQ_QTQ7@venus>
 
+On Tue, Jan 13, 2026 at 10:33:52PM +0100, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Fri, Jan 09, 2026 at 04:00:44PM +0800, Andy Yan wrote:
+> > From: Andy Yan <andy.yan@rock-chips.com>
+> > 
+> > The DisplayPort found on RK3576 is very similar to that of RK3588,
+> > but work in dual pixel mode. And itself does not depend on the I2S
+> > clock or the SPDIF clock when transmit audio.
+> > 
+> > Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> > 
+> > ---
+> > 
+> >  .../display/rockchip/rockchip,dw-dp.yaml      | 29 +++++++++++++++++--
+> >  1 file changed, 26 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
+> > index 6345f0132d43..1bfe1bd6404a 100644
+> > --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
+> > +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-dp.yaml
+> > @@ -27,13 +27,11 @@ description: |
+> >    * Pixel clock up to 594MHz
+> >    * I2S, SPDIF audio interface
+> >  
+> > -allOf:
+> > -  - $ref: /schemas/sound/dai-common.yaml#
+> > -
+> >  properties:
+> >    compatible:
+> >      enum:
+> >        - rockchip,rk3588-dp
+> > +      - rockchip,rk3576-dp
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -42,6 +40,7 @@ properties:
+> >      maxItems: 1
+> >  
+> >    clocks:
+> > +    minItems: 3
+> >      items:
+> >        - description: Peripheral/APB bus clock
+> >        - description: DisplayPort AUX clock
+> > @@ -50,6 +49,7 @@ properties:
+> >        - description: SPDIF interfce clock
+> >  
+> >    clock-names:
+> > +    minItems: 3
+> >      items:
+> >        - const: apb
+> >        - const: aux
+> > @@ -95,6 +95,29 @@ required:
+> >    - ports
+> >    - resets
+> >  
+> > +allOf:
+> > +  - $ref: /schemas/sound/dai-common.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - rockchip,rk3588-dp
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 5
+> > +          maxItems: 5
+> > +        clock-names:
+> > +          minItems: 5
+> > +          maxItems: 5
+> 
+> I think maxItems is not needed, since 6 items would not work for the
+> specified items list anyways. Otherwise:
 
-On Fri, 09 Jan 2026 17:05:18 +1030, Andrew Jeffery wrote:
-> The platform initialisation code for the AST2600 implements the custom
-> SMP bringup protocol, and searches for the relevant compatible. As a
-> consequence, define the requisite node and the compatible string, which
-> in-turn tidies up the dtb check results.
-> 
-> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> ---
-> Hello,
-> 
-> This change was original part of an RFC series tidying up the AST2600
-> EVB devicetree at [1]. Many of those ended up being merged directly, so
-> I'm splitting out what remains into separate, smaller series.
-> 
-> Please review.
-> 
-> Changes since RFC:
-> - Address the warning from Rob's bot
-> - Tidy a description line that was dropped unnecessarily
-> - Remove RFC label
-> 
-> Link: https://lore.kernel.org/all/20251211-dev-dt-warnings-all-v1-16-21b18b9ada77@codeconstruct.com.au/ [1]
-> ---
->  .../devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml     | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
+Correct.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+Rob
 
