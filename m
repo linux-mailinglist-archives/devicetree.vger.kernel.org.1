@@ -1,223 +1,377 @@
-Return-Path: <devicetree+bounces-255587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DF30D248E2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:37:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2671DD24945
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 13:42:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DAB4C30312ED
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:35:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6C03630062EF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 12:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10289399A51;
-	Thu, 15 Jan 2026 12:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B67C039903F;
+	Thu, 15 Jan 2026 12:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HM2wWo3B"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iVw+BDK4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC68433B6C7;
-	Thu, 15 Jan 2026 12:35:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6818939903B;
+	Thu, 15 Jan 2026 12:37:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768480509; cv=none; b=sN6wXhoiV1AuKbbv5Whm7FO7t4hJJHR7W3nZ7ZwmPDIb5DtTLysTaByCQMYcuC4986jOpefa6KbIRw9A9EIhX/Rxl1aU2m/x99FTuzZ1w49i6SbmqMhYmmQMz1ucW8/PbBF6ekAN4JVZ1P0+ig7ruif2EPUl4huxbJSPxE6a0hw=
+	t=1768480636; cv=none; b=OexMY5gqavPTTnNs5D51VnjWG8feU0xDWh1bZOo+jfzwKWUKFD6wzsfaJUId3G3Bn1XSYfP2SEdlfUSaOWedLJ4EHyEdKJXkHmllrEapIjeLVcY8RAEN/PDkpRxvBEV8Z/kSp7ZTzxHkBBaieQThI8i91Lgqqu0trDH9SUapTc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768480509; c=relaxed/simple;
-	bh=iQDh81qHTocbmheSpRuQOg5hT7ISRsk+bLONrdXNclI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pUtzpvvQWUy5yRV72ouOYU0Xz+IC1ZttA1fg7V5TRXQ0+Y2OLiWhp8kwVGeckzI/yPit52wXURYCbLegxiU8ARhng2yGzCj8AFZXvb6cfFx6Wi6Bk4K+YPBUOoARhyOl1XEwmajJoFSuZkQFKR0hF5sPaQ1CWRuTlHjFSsfvOM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HM2wWo3B; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768480507; x=1800016507;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iQDh81qHTocbmheSpRuQOg5hT7ISRsk+bLONrdXNclI=;
-  b=HM2wWo3BdtGz9edrAQljoRyvch9ILrpwwOk2dN3dmZ4RpqYnj/K9Yt5F
-   ypVLRmDB3n/o7W66S3q3zgaEUspdROB2lqpp98csq1kfrMZEKrLxqm8OG
-   guO4Es86EyPvgk14Lioc51zL53Tpg2r1BegBnwiwZQc5C5LQslzdzVQqY
-   /y+zRBCtCICX0ensuYeCHhe36X05Yum3G5rgd6cvbGmRA+VUmN4wzzHFt
-   5DueupgppoqTeyOsAW5WLgkNWe3iw2e18AvKtvMmrIEHgDA+3HLkcU2i3
-   BcsUDxzimSQeE1hsVY0aWAEmlMPBlXBjdCuAd8Qo3PstcGtn6KyH65+KX
-   g==;
-X-CSE-ConnectionGUID: j0ZplWN8SISqkrVpX6lZYQ==
-X-CSE-MsgGUID: m73AfHGTR3OMofxB+8KL3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="69692180"
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
-   d="scan'208";a="69692180"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2026 04:35:06 -0800
-X-CSE-ConnectionGUID: y7SbJBrSS8yjmqLFuIAqrg==
-X-CSE-MsgGUID: BABOIsT/S0iCAjHcMcObrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,228,1763452800"; 
-   d="scan'208";a="209805656"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 15 Jan 2026 04:35:03 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vgMZ2-00000000HxI-314J;
-	Thu, 15 Jan 2026 12:35:00 +0000
-Date: Thu, 15 Jan 2026 20:34:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mayank Mahajan <mayankmahajan.x@nxp.com>, linux@roeck-us.net,
-	corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, priyanka.jain@nxp.com,
-	vikash.bansal@nxp.com, Mayank Mahajan <mayankmahajan.x@nxp.com>
-Subject: Re: [PATCH v2 1/3] hwmon: (tmp108) Add support for P3T1035 and
- P3T2030
-Message-ID: <202601152046.9FkRF3Hu-lkp@intel.com>
-References: <20260115065757.35-1-mayankmahajan.x@nxp.com>
+	s=arc-20240116; t=1768480636; c=relaxed/simple;
+	bh=6xPfpXvJhH2TRtXEVsiIPJGKGy4CH9rSfsUBRehNNqU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XHvIEB4CVduno3ecVWDXTXcAk7iT3dpVaFQnNous1dnRtQmbM7wbYaFgUD3+1H017lOhKFMTcO27pqZ/8Dz64f7aDzmyohdwjvIP7K8G1z9o18w33SvrhmtSnq6FHTXtesbONzHyOa5+zTglWhN6SKmnXturNADjq4aaoZ9PVeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iVw+BDK4; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9F11224A;
+	Thu, 15 Jan 2026 13:36:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768480603;
+	bh=6xPfpXvJhH2TRtXEVsiIPJGKGy4CH9rSfsUBRehNNqU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iVw+BDK47nQvsz44sOw57NbxjVfC3AvrCskd0SNWnu7Fvv6M07hQhuiT/+GCZiuIr
+	 vCd/vyI7M3chE/ohiEzPMtNkDKeP1blBJu0GDeTkbUtPgbunioxAQF3CZaa6PkrC03
+	 ucULWydlxu+Wmtk/nBDOyq/eFh0Ed3rg9xCYP6xI=
+Message-ID: <fbae9c01-6a2c-46ee-963a-8e5230b860b4@ideasonboard.com>
+Date: Thu, 15 Jan 2026 14:37:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260115065757.35-1-mayankmahajan.x@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 15/19] media: ti: j721e-csi2rx: Change the drain
+ architecture for multistream
+To: Rishikesh Donadkar <r-donadkar@ti.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+ vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
+ changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+ sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, jai.luthra@linux.dev,
+ laurent.pinchart@ideasonboard.com, mripard@kernel.org
+References: <20251230083220.2405247-1-r-donadkar@ti.com>
+ <20251230083220.2405247-16-r-donadkar@ti.com>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251230083220.2405247-16-r-donadkar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Mayank,
+Hi,
 
-kernel test robot noticed the following build errors:
+On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+> On buffer starvation the DMA is marked IDLE, and the stale data in the
+> internal FIFOs gets drained only on the next VIDIOC_QBUF call from the
+> userspace. This approach works fine for a single stream case.
+> 
+> But in multistream scenarios, buffer starvation for one stream i.e. one
+> virtual channel, can block the shared HW FIFO of the CSI2RX IP. This can
+> stall the pipeline for all other virtual channels, even if buffers are
+> available for them.
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linus/master v6.19-rc5 next-20260115]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+One stream is filtered based on VC & DT, but the above only mentions VC.
+And then later uses VC when referring to the stream. I think you can
+drop the VC parts, and just talk about streams.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mayank-Mahajan/dt-bindings-hwmon-ti-tmp108-Add-P3T1035-P3T2030/20260115-145945
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20260115065757.35-1-mayankmahajan.x%40nxp.com
-patch subject: [PATCH v2 1/3] hwmon: (tmp108) Add support for P3T1035 and P3T2030
-config: arm-randconfig-r072-20260115 (https://download.01.org/0day-ci/archive/20260115/202601152046.9FkRF3Hu-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 11.5.0
-smatch version: v0.5.0-8985-g2614ff1a
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260115/202601152046.9FkRF3Hu-lkp@intel.com/reproduce)
+> This patch introduces a new architecture, that continuously drains data
+> from the shared HW FIFO into a small (32KiB) buffer if no buffers are made
+> available to the driver from the userspace. This ensures independence
+> between different streams, where a slower downstream element for one
+> camera does not block streaming for other cameras.
+> 
+> Additionally, after a drain is done for a VC, the next frame will be a
+> partial frame, as a portion of its data will have already been drained
+> before a valid buffer is queued by user space to the driver.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601152046.9FkRF3Hu-lkp@intel.com/
+This makes it sounds we drain a single 32KB piece. But won't we continue
+draining that stream until the stream is stopped or the user provides a
+buffer?
 
-All error/warnings (new ones prefixed by >>):
+Also, does the DMA not offer us ways to drain a full frame? There's no
+way to e.g. set the DMA TX increment to 0, so that it would just write
+to a single location in memory? Or just set the target to void.
 
-   drivers/hwmon/tmp108.c: In function 'tmp108_common_probe':
->> drivers/hwmon/tmp108.c:457:52: error: macro "memcpy" passed 6 arguments, but takes just 3
-     457 |                        sizeof(tmp108->sample_times));
-         |                                                    ^
-   In file included from include/linux/string.h:386,
-                    from include/linux/bitmap.h:13,
-                    from include/linux/cpumask.h:11,
-                    from include/linux/smp.h:13,
-                    from include/linux/lockdep.h:14,
-                    from include/linux/spinlock.h:63,
-                    from include/linux/sched.h:37,
-                    from include/linux/delay.h:13,
-                    from drivers/hwmon/tmp108.c:7:
-   include/linux/fortify-string.h:690: note: macro "memcpy" defined here
-     690 | #define memcpy(p, q, s)  __fortify_memcpy_chk(p, q, s,                  \
-         | 
->> drivers/hwmon/tmp108.c:456:17: warning: statement with no effect [-Wunused-value]
-     456 |                 memcpy(tmp108->sample_times, (unsigned int[]){ 125, 250, 1000, 4000 },
-         |                 ^~~~~~
-   drivers/hwmon/tmp108.c:460:52: error: macro "memcpy" passed 6 arguments, but takes just 3
-     460 |                        sizeof(tmp108->sample_times));
-         |                                                    ^
-   In file included from include/linux/string.h:386,
-                    from include/linux/bitmap.h:13,
-                    from include/linux/cpumask.h:11,
-                    from include/linux/smp.h:13,
-                    from include/linux/lockdep.h:14,
-                    from include/linux/spinlock.h:63,
-                    from include/linux/sched.h:37,
-                    from include/linux/delay.h:13,
-                    from drivers/hwmon/tmp108.c:7:
-   include/linux/fortify-string.h:690: note: macro "memcpy" defined here
-     690 | #define memcpy(p, q, s)  __fortify_memcpy_chk(p, q, s,                  \
-         | 
-   drivers/hwmon/tmp108.c:459:17: warning: statement with no effect [-Wunused-value]
-     459 |                 memcpy(tmp108->sample_times, (unsigned int[]){ 63, 250, 1000, 4000 },
-         |                 ^~~~~~
+ Tomi
 
+> Use wait for completion barrier to make sure the shared hardware FIFO
+> is cleared of the data at the end of stream after the source has stopped
+> sending data.
+> 
+> Reviewed-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 112 ++++++++----------
+>  1 file changed, 50 insertions(+), 62 deletions(-)
+> 
+> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> index fa6152464d4b6..e713293696eb1 100644
+> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> @@ -82,7 +82,6 @@ struct ti_csi2rx_buffer {
+>  
+>  enum ti_csi2rx_dma_state {
+>  	TI_CSI2RX_DMA_STOPPED,	/* Streaming not started yet. */
+> -	TI_CSI2RX_DMA_IDLE,	/* Streaming but no pending DMA operation. */
+>  	TI_CSI2RX_DMA_ACTIVE,	/* Streaming and pending DMA operation. */
+>  };
+>  
+> @@ -109,6 +108,7 @@ struct ti_csi2rx_ctx {
+>  	struct v4l2_format		v_fmt;
+>  	struct ti_csi2rx_dma		dma;
+>  	struct media_pad		pad;
+> +	struct completion		drain_complete;
+>  	u32				sequence;
+>  	u32				idx;
+>  	u32				vc;
+> @@ -251,6 +251,10 @@ static const struct ti_csi2rx_fmt ti_csi2rx_formats[] = {
+>  static int ti_csi2rx_start_dma(struct ti_csi2rx_ctx *ctx,
+>  			       struct ti_csi2rx_buffer *buf);
+>  
+> +/* Forward declarations needed by ti_csi2rx_drain_callback. */
+> +static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx);
+> +static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx);
+> +
+>  static const struct ti_csi2rx_fmt *find_format_by_fourcc(u32 pixelformat)
+>  {
+>  	unsigned int i;
+> @@ -617,9 +621,32 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
+>  
+>  static void ti_csi2rx_drain_callback(void *param)
+>  {
+> -	struct completion *drain_complete = param;
+> +	struct ti_csi2rx_ctx *ctx = param;
+> +	struct ti_csi2rx_dma *dma = &ctx->dma;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&dma->lock, flags);
+> +
+> +	if (dma->state == TI_CSI2RX_DMA_STOPPED) {
+> +		complete(&ctx->drain_complete);
+> +		spin_unlock_irqrestore(&dma->lock, flags);
+> +		return;
+> +	}
+>  
+> -	complete(drain_complete);
+> +	/*
+> +	 * If dma->queue is empty, it indicates that no buffer has been
+> +	 * provided by user space. In this case, initiate a transactions
+> +	 * to drain the DMA. Since one drain of size DRAIN_BUFFER_SIZE
+> +	 * will be done here, the subsequent frame will be a
+> +	 * partial frame, with a size of frame_size - DRAIN_BUFFER_SIZE
+> +	 */
+> +	if (list_empty(&dma->queue)) {
+> +		if (ti_csi2rx_drain_dma(ctx))
+> +			dev_warn(ctx->csi->dev, "DMA drain failed\n");
+> +	} else {
+> +		ti_csi2rx_dma_submit_pending(ctx);
+> +	}
+> +	spin_unlock_irqrestore(&dma->lock, flags);
+>  }
+>  
+>  /*
+> @@ -637,12 +664,9 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
+>  {
+>  	struct ti_csi2rx_dev *csi = ctx->csi;
+>  	struct dma_async_tx_descriptor *desc;
+> -	struct completion drain_complete;
+>  	dma_cookie_t cookie;
+>  	int ret;
+>  
+> -	init_completion(&drain_complete);
+> -
+>  	desc = dmaengine_prep_slave_single(ctx->dma.chan, csi->drain.paddr,
+>  					   csi->drain.len, DMA_DEV_TO_MEM,
+>  					   DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
+> @@ -652,7 +676,7 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
+>  	}
+>  
+>  	desc->callback = ti_csi2rx_drain_callback;
+> -	desc->callback_param = &drain_complete;
+> +	desc->callback_param = ctx;
+>  
+>  	cookie = dmaengine_submit(desc);
+>  	ret = dma_submit_error(cookie);
+> @@ -661,13 +685,6 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
+>  
+>  	dma_async_issue_pending(ctx->dma.chan);
+>  
+> -	if (!wait_for_completion_timeout(&drain_complete,
+> -					 msecs_to_jiffies(DRAIN_TIMEOUT_MS))) {
+> -		dmaengine_terminate_sync(ctx->dma.chan);
+> -		dev_dbg(csi->dev, "DMA transfer timed out for drain buffer\n");
+> -		ret = -ETIMEDOUT;
+> -		goto out;
+> -	}
+>  out:
+>  	return ret;
+>  }
+> @@ -716,9 +733,11 @@ static void ti_csi2rx_dma_callback(void *param)
+>  
+>  	ti_csi2rx_dma_submit_pending(ctx);
+>  
+> -	if (list_empty(&dma->submitted))
+> -		dma->state = TI_CSI2RX_DMA_IDLE;
+> -
+> +	if (list_empty(&dma->submitted)) {
+> +		if (ti_csi2rx_drain_dma(ctx))
+> +			dev_warn(ctx->csi->dev,
+> +				 "DMA drain failed on one of the transactions\n");
+> +	}
+>  	spin_unlock_irqrestore(&dma->lock, flags);
+>  }
+>  
+> @@ -754,6 +773,7 @@ static int ti_csi2rx_start_dma(struct ti_csi2rx_ctx *ctx,
+>  static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
+>  {
+>  	struct ti_csi2rx_dma *dma = &ctx->dma;
+> +	struct ti_csi2rx_dev *csi = ctx->csi;
+>  	enum ti_csi2rx_dma_state state;
+>  	unsigned long flags;
+>  	int ret;
+> @@ -763,6 +783,8 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
+>  	dma->state = TI_CSI2RX_DMA_STOPPED;
+>  	spin_unlock_irqrestore(&dma->lock, flags);
+>  
+> +	init_completion(&ctx->drain_complete);
+> +
+>  	if (state != TI_CSI2RX_DMA_STOPPED) {
+>  		/*
+>  		 * Normal DMA termination does not clean up pending data on
+> @@ -771,11 +793,20 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
+>  		 * enforced before terminating DMA.
+>  		 */
+>  		ret = ti_csi2rx_drain_dma(ctx);
+> -		if (ret && ret != -ETIMEDOUT)
+> +		if (ret)
+>  			dev_warn(ctx->csi->dev,
+>  				 "Failed to drain DMA. Next frame might be bogus\n");
+>  	}
+>  
+> +	/* We wait for the drain to complete so that the stream stops
+> +	 * cleanly, making sure the shared hardware FIFO is cleared of
+> +	 * data from the current stream. No more data will be coming from
+> +	 * the source after this.
+> +	 */
+> +	if (!wait_for_completion_timeout(&ctx->drain_complete,
+> +					 msecs_to_jiffies(DRAIN_TIMEOUT_MS)))
+> +		dev_dbg(csi->dev, "DMA transfer timed out for drain buffer\n");
+> +
+>  	ret = dmaengine_terminate_sync(ctx->dma.chan);
+>  	if (ret)
+>  		dev_err(ctx->csi->dev, "Failed to stop DMA: %d\n", ret);
+> @@ -838,57 +869,14 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
+>  	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vb->vb2_queue);
+>  	struct ti_csi2rx_buffer *buf;
+>  	struct ti_csi2rx_dma *dma = &ctx->dma;
+> -	bool restart_dma = false;
+>  	unsigned long flags = 0;
+> -	int ret;
+>  
+>  	buf = container_of(vb, struct ti_csi2rx_buffer, vb.vb2_buf);
+>  	buf->ctx = ctx;
+>  
+>  	spin_lock_irqsave(&dma->lock, flags);
+> -	/*
+> -	 * Usually the DMA callback takes care of queueing the pending buffers.
+> -	 * But if DMA has stalled due to lack of buffers, restart it now.
+> -	 */
+> -	if (dma->state == TI_CSI2RX_DMA_IDLE) {
+> -		/*
+> -		 * Do not restart DMA with the lock held because
+> -		 * ti_csi2rx_drain_dma() might block for completion.
+> -		 * There won't be a race on queueing DMA anyway since the
+> -		 * callback is not being fired.
+> -		 */
+> -		restart_dma = true;
+> -		dma->state = TI_CSI2RX_DMA_ACTIVE;
+> -	} else {
+> -		list_add_tail(&buf->list, &dma->queue);
+> -	}
+> +	list_add_tail(&buf->list, &dma->queue);
+>  	spin_unlock_irqrestore(&dma->lock, flags);
+> -
+> -	if (restart_dma) {
+> -		/*
+> -		 * Once frames start dropping, some data gets stuck in the DMA
+> -		 * pipeline somewhere. So the first DMA transfer after frame
+> -		 * drops gives a partial frame. This is obviously not useful to
+> -		 * the application and will only confuse it. Issue a DMA
+> -		 * transaction to drain that up.
+> -		 */
+> -		ret = ti_csi2rx_drain_dma(ctx);
+> -		if (ret && ret != -ETIMEDOUT)
+> -			dev_warn(ctx->csi->dev,
+> -				 "Failed to drain DMA. Next frame might be bogus\n");
+> -
+> -		spin_lock_irqsave(&dma->lock, flags);
+> -		ret = ti_csi2rx_start_dma(ctx, buf);
+> -		if (ret) {
+> -			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
+> -			dma->state = TI_CSI2RX_DMA_IDLE;
+> -			spin_unlock_irqrestore(&dma->lock, flags);
+> -			dev_err(ctx->csi->dev, "Failed to start DMA: %d\n", ret);
+> -		} else {
+> -			list_add_tail(&buf->list, &dma->submitted);
+> -			spin_unlock_irqrestore(&dma->lock, flags);
+> -		}
+> -	}
+>  }
+>  
+>  static int ti_csi2rx_get_stream(struct ti_csi2rx_ctx *ctx)
 
-vim +/memcpy +457 drivers/hwmon/tmp108.c
-
-   434	
-   435	static int tmp108_common_probe(struct device *dev, struct regmap *regmap, char *name,
-   436				       enum tmp108_hw_id hw_id)
-   437	{
-   438		struct device *hwmon_dev;
-   439		struct tmp108 *tmp108;
-   440		u32 config;
-   441		int err;
-   442	
-   443		err = devm_regulator_get_enable(dev, "vcc");
-   444		if (err)
-   445			return dev_err_probe(dev, err, "Failed to enable regulator\n");
-   446	
-   447		tmp108 = devm_kzalloc(dev, sizeof(*tmp108), GFP_KERNEL);
-   448		if (!tmp108)
-   449			return -ENOMEM;
-   450	
-   451		dev_set_drvdata(dev, tmp108);
-   452		tmp108->regmap = regmap;
-   453		tmp108->hw_id = hw_id;
-   454		tmp108->config_reg_16bits = (hw_id == P3T1035_ID) ? false : true;
-   455		if (hw_id == P3T1035_ID)
- > 456			memcpy(tmp108->sample_times, (unsigned int[]){ 125, 250, 1000, 4000 },
- > 457			       sizeof(tmp108->sample_times));
-   458		else
-   459			memcpy(tmp108->sample_times, (unsigned int[]){ 63, 250, 1000, 4000 },
-   460			       sizeof(tmp108->sample_times));
-   461	
-   462		err = regmap_read(tmp108->regmap, TMP108_REG_CONF, &config);
-   463		if (err < 0) {
-   464			dev_err_probe(dev, err, "Error reading config register");
-   465			return err;
-   466		}
-   467		tmp108->orig_config = config;
-   468	
-   469		/* Only continuous mode is supported. */
-   470		config &= ~TMP108_CONF_MODE_MASK;
-   471		config |= TMP108_MODE_CONTINUOUS;
-   472		/* Only comparator mode is supported. */
-   473		config &= ~TMP108_CONF_TM;
-   474	
-   475		err = regmap_write(tmp108->regmap, TMP108_REG_CONF, config);
-   476		if (err < 0) {
-   477			dev_err_probe(dev, err, "Error writing config register");
-   478			return err;
-   479		}
-   480	
-   481		tmp108->ready_time = jiffies;
-   482		if ((tmp108->orig_config & TMP108_CONF_MODE_MASK) ==
-   483		    TMP108_MODE_SHUTDOWN)
-   484			tmp108->ready_time +=
-   485				msecs_to_jiffies(TMP108_CONVERSION_TIME_MS);
-   486	
-   487		err = devm_add_action_or_reset(dev, tmp108_restore_config, tmp108);
-   488		if (err) {
-   489			dev_err_probe(dev, err, "Add action or reset failed");
-   490			return err;
-   491		}
-   492	
-   493		hwmon_dev = devm_hwmon_device_register_with_info(dev, name,
-   494								 tmp108,
-   495								 &tmp108_chip_info,
-   496								 NULL);
-   497		return PTR_ERR_OR_ZERO(hwmon_dev);
-   498	}
-   499	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
