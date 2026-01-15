@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-255732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F07CD27A93
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:38:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF16FD27A27
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 19:37:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D06DD3039DDA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:26:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CD475303B73C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B543BFE36;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CD33BFE45;
 	Thu, 15 Jan 2026 18:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rLXb5/tc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JZzYhs2q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BFE92D3733;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C05F2D7D30;
 	Thu, 15 Jan 2026 18:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768501577; cv=none; b=V6WjaVBg6gsMWIZ7CoC02PNULXY9BZgRVmwYz+DStb30yMYCUoUghhb8IMnAoB+kwel/I5bmTrKgPrMZoCf60TxON+O9zq3Zfu3eQRkL4irCwLHXxjGu+VwPw6pesGKC/mCR9jYJ9S27DFyrBVqr8+1kqZQHznHJXwNCdw3ux/U=
+	t=1768501577; cv=none; b=DlXHps9MLnoJ/TDvzvw3e/rdwemplt7GOwfM4OTO5ep92LFqrPkUU/zOdBc/ZVcClv7RR+kAdNqVt13yMrXSkVswQBGvmOsrFFW7DlLf36ngOUAkoxH7izXOEAC4LLW06v3sfdhsvl8/mr0zKBB88rMy2uDKJXFGu+X5+L/XMJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768501577; c=relaxed/simple;
-	bh=TMv/2GMeJt7lNR4P7wDPkUHC6oexE2lmn2DPQBekD/o=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=L7Hs9qtQ0f/8DVOntoMIt68UWYEP0k+8DcxNdCQfT/WDCzK9EtBnvhUaRVTa94jfNPRe3r1SDEZsTLR4zaYKEWtDyl1u9u8Wxg2luoviisPyuSvDcmIKt7xKEjmjOy1wrVgtfK1RLYNonI/qg7l6yzJDqKpuXut1AB9oJEaMpTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rLXb5/tc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CF741C116D0;
+	bh=0aoMxZYUJjVl2CKjgL/PIl3zUQkNfKK1M3nJW2OMsqg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=QpOH7uzQW8+QVP7hxBZPwGuwVm8hieYleT7hPb0qpDLBmEXCNmudcMkuZYoQpfwBvHHFQCCDolJTxH+cPQ+OYnJncR81cmeZ5mCShqNJKy1Yf+sHa/dTaY7duSYOil3dpm3Ie+5zj76woMfOfLRTKCZlUTq+ZanLRyYbPtN9uL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JZzYhs2q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DB60BC16AAE;
 	Thu, 15 Jan 2026 18:26:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1768501576;
-	bh=TMv/2GMeJt7lNR4P7wDPkUHC6oexE2lmn2DPQBekD/o=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=rLXb5/tcQilVNU6so/oL38Xg9sfM/z6vztpPineB35xipUc53EDFlGYR5I+O+wyx1
-	 M1k0/nP+aDppwLAu6UsjgRtnSegz4+zqRmZjFFcDhQqrMMEHYm4NeuYF2SS7yat7VL
-	 lWj4vhL92XL+XdAu0PqDIIJqoSLKtKSTky7eiOWDaFcrmXUOYAJHcfSi3VYnWBdsYD
-	 4LOUOIMGgQTF5xpxGP745cObWqzIF3sVzG02CCoV7HwhpcUT6avDLqge055960m3Rj
-	 CiaqIhhoDhoVtzLdv5QIDN9M67lQtF/hhBzLj2c4H9YGdUlwbf3MToRgNWeGPGG+RU
-	 tpcpU5awg4Y2w==
+	bh=0aoMxZYUJjVl2CKjgL/PIl3zUQkNfKK1M3nJW2OMsqg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=JZzYhs2q9Ph2sWm/6KhwB4XY+ur5Dvhks3L9jY5RELzUCHTiL6ZopUF51/kWOE7z3
+	 zQW7HelW1pcaAJSn25YqjEdeGeO1uE2RISSgpVSRzIXnRg8M21A+DlmC6eQqN6vgTg
+	 gxXBg/IpmKwbboRkdR0YXad3jscWVs4VkwbJrnJ8gxglnfkwq1qFbt0dUxKXm1bKj0
+	 t1obv8ESlbiSPkq8xuZSlmCSDER9q+jp/d2IriDcCTbwcHApQ0kOANK4+obZEgQt9J
+	 G6KQARXrhUiW0yd3bgQ+blCjAuCuRzM1iQtCQIiHhnGi5evk+IiS1nxM2EpRlNLaTY
+	 DAqDvdLXu66eA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC137D46604;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD48BD4660B;
 	Thu, 15 Jan 2026 18:26:16 +0000 (UTC)
 From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Subject: [PATCH v4 0/3] media: rockchip: add driver for the rockchip mipi
- csi-2 receiver
-Date: Thu, 15 Jan 2026 19:26:06 +0100
-Message-Id: <20251114-rockchip-mipi-receiver-v4-0-a9c86fecd052@collabora.com>
+Date: Thu, 15 Jan 2026 19:26:07 +0100
+Subject: [PATCH v4 1/3] media: dt-bindings: add rockchip mipi csi-2
+ receiver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,11 +54,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAD4xaWkC/43OTW7CMBAF4Ksgr+vKf5CEVe+BurAnEzJqiKNxs
- YpQ7s7AskKC5XvSfG+uqiATFrXfXBVjpUJ5lhA+NgrGOB9RUy9ZOeO21tqgOcMPjLToEy2kGQG
- pImuT4uBCgA5aVHKcYkGdOM4wyvl8niYpF8aB/h5rh2/JI5XfzJfHeLX39uVOtdro3nrT7rC1p
- u+/IE9TTJnjJ+STurPVvUc5oTB1KXjfNAOEZ5R/j/JCWfnIx9gMvtv+p9Z1vQF9hzI1awEAAA=
- =
+Message-Id: <20251114-rockchip-mipi-receiver-v4-1-a9c86fecd052@collabora.com>
+References: <20251114-rockchip-mipi-receiver-v4-0-a9c86fecd052@collabora.com>
+In-Reply-To: <20251114-rockchip-mipi-receiver-v4-0-a9c86fecd052@collabora.com>
 To: Michael Riesch <michael.riesch@collabora.com>, 
  Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
  Kever Yang <kever.yang@rock-chips.com>, Frank Li <Frank.li@nxp.com>, 
@@ -78,11 +76,11 @@ Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Michael Riesch <michael.riesch@collabora.com>
 X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768501575; l=2749;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768501575; l=5087;
  i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=TMv/2GMeJt7lNR4P7wDPkUHC6oexE2lmn2DPQBekD/o=;
- b=wmch28e0Zrxj/on33s1llwpel66Pa1hYRFRrdet1fz0xaiL1YM4wVrkV7w3GZKt9oDvXKj07L
- T6ucjWHAyFDBz2VJbtSpCGMbYTusQp8JPXL2264+4aAogz+OIZq9FE5
+ bh=wmdltrQo1WcBf2SoyAzHJ7pw6SXPjdp25GEfcZq2Ur8=;
+ b=e2NH8bH/H/geblFyQHm36Awpzb2HykgrUx+PNBmWjxKswiaPpsfhhQUCN+WaMLXXAqGRasVf3
+ CwL5gAhgrDLBKdYizIoo9GLoEBfKW5tQ/r+QbeXxLByCPTOl+MHwSSw
 X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
  pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
 X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
@@ -90,72 +88,184 @@ X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
 X-Original-From: Michael Riesch <michael.riesch@collabora.com>
 Reply-To: michael.riesch@collabora.com
 
-Habidere,
+From: Michael Riesch <michael.riesch@collabora.com>
 
-This series adds support for the Rockchip MIPI CSI-2 Receiver that is
-integrated into recent Rockchip SoCs, such as the RK3568 and the RK3588.
+Add documentation for the Rockchip MIPI CSI-2 Receiver.
 
-According to Rockchip, this core is NOT the Synopsys MIPI CSI-2 Host, but
-it features a compatible register layout (thanks Chaoyi for the
-clarification).
-
-As pointed out by Frank, we should thus rename the driver and place it
-under drivers/media/platform/synopsys to facilitate re-use of this code
-for similar IP cores.
-
-As has been discussed in [0], it would be beneficial to add support 
-for the split mode (a feature of the Rockchip CSI-2 DPHY) before
-integrating the MIPI CSI-2 Receiver into the respective SoC device tree
-includes. However, we can readily add the DT binding and the driver
-as I am positive they will not need to be changed significantly when this
-feature is introduced.
-
-This constitutes a small step towards mainline video capture and camera
-support on the Rockchip RK3588.
-
-Looking forward to your comments!
-
+Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
 Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-
-[0] https://lore.kernel.org/r/20240220-rk3568-vicap-v14-0-b38b6da0fc80@collabora.com
-
 ---
-Changes in v4:
-- moved driver to drivers/media/platform/synopsys and renamed it (Frank)
-- addresse review comments by Sakari
-- Link to v3: https://lore.kernel.org/r/20251114-rockchip-mipi-receiver-v3-0-16e83aa7f395@collabora.com
+ .../bindings/media/rockchip,rk3568-mipi-csi2.yaml  | 141 +++++++++++++++++++++
+ MAINTAINERS                                        |   6 +
+ 2 files changed, 147 insertions(+)
 
-Changes in v3:
-- rebased onto v6.19/recent media-committers/next
-- Link to v2: https://lore.kernel.org/r/20251114-rockchip-mipi-receiver-v2-0-eb9b43377fc4@collabora.com
+diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
+new file mode 100644
+index 000000000000..2c2bd87582eb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
+@@ -0,0 +1,141 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip MIPI CSI-2 Receiver
++
++maintainers:
++  - Michael Riesch <michael.riesch@collabora.com>
++
++description:
++  The Rockchip MIPI CSI-2 Receiver is a CSI-2 bridge with one input port and
++  one output port. It receives the data with the help of an external MIPI PHY
++  (C-PHY or D-PHY) and passes it to the Rockchip Video Capture (VICAP) block.
++
++properties:
++  compatible:
++    enum:
++      - rockchip,rk3568-mipi-csi2
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: Interrupt that signals changes in CSI2HOST_ERR1.
++      - description: Interrupt that signals changes in CSI2HOST_ERR2.
++
++  interrupt-names:
++    items:
++      - const: err1
++      - const: err2
++
++  clocks:
++    maxItems: 1
++
++  phys:
++    maxItems: 1
++    description: MIPI C-PHY or D-PHY.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              bus-type:
++                enum:
++                  - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
++                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - bus-type
++              - data-lanes
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Output port connected to a Rockchip VICAP port.
++
++    required:
++      - port@0
++      - port@1
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - phys
++  - ports
++  - power-domains
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3568-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/media/video-interfaces.h>
++    #include <dt-bindings/power/rk3568-power.h>
++
++    soc {
++        interrupt-parent = <&gic>;
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        csi: csi@fdfb0000 {
++            compatible = "rockchip,rk3568-mipi-csi2";
++            reg = <0x0 0xfdfb0000 0x0 0x10000>;
++            interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "err1", "err2";
++            clocks = <&cru PCLK_CSI2HOST1>;
++            phys = <&csi_dphy>;
++            power-domains = <&power RK3568_PD_VI>;
++            resets = <&cru SRST_P_CSI2HOST1>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                csi_in: port@0 {
++                    reg = <0>;
++
++                    csi_input: endpoint {
++                        bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
++                        data-lanes = <1 2 3 4>;
++                        remote-endpoint = <&imx415_output>;
++                    };
++                };
++
++                csi_out: port@1 {
++                    reg = <1>;
++
++                    csi_output: endpoint {
++                        remote-endpoint = <&vicap_mipi_input>;
++                    };
++                };
++            };
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index fc68ee0c68c0..965132e0933a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -25364,6 +25364,12 @@ S:	Maintained
+ F:	drivers/i2c/busses/i2c-designware-amdisp.c
+ F:	include/linux/soc/amd/isp4_misc.h
+ 
++SYNOPSYS DESIGNWARE MIPI CSI-2 RECEIVER DRIVER
++M:	Michael Riesch <michael.riesch@collabora.com>
++L:	linux-media@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
++
+ SYNOPSYS DESIGNWARE MMC/SD/SDIO DRIVER
+ M:	Jaehoon Chung <jh80.chung@samsung.com>
+ M:	Shawn Lin <shawn.lin@rock-chips.com>
 
-Changes in v2:
-- dropped one R-b by Bryan, as there were two of them on the same patch
-  (Krzysztof)
-- Link to v1: https://lore.kernel.org/r/20251114-rockchip-mipi-receiver-v1-0-d13086e810dd@collabora.com
-
----
-Michael Riesch (3):
-      media: dt-bindings: add rockchip mipi csi-2 receiver
-      media: synopsys: add driver for the designware mipi csi-2 receiver
-      arm64: defconfig: enable designware mipi csi-2 receiver
-
- .../bindings/media/rockchip,rk3568-mipi-csi2.yaml  | 141 ++++
- MAINTAINERS                                        |   7 +
- arch/arm64/configs/defconfig                       |   1 +
- drivers/media/platform/synopsys/Kconfig            |   1 +
- drivers/media/platform/synopsys/Makefile           |   1 +
- .../media/platform/synopsys/dw-mipi-csi2/Kconfig   |  17 +
- .../media/platform/synopsys/dw-mipi-csi2/Makefile  |   2 +
- .../platform/synopsys/dw-mipi-csi2/dw-mipi-csi2.c  | 735 +++++++++++++++++++++
- 8 files changed, 905 insertions(+)
----
-base-commit: dc6c52205bdaddf1dc259497a958402b35c01fe2
-change-id: 20251114-rockchip-mipi-receiver-0baf244c9c8e
-
-Best regards,
 -- 
-Michael Riesch <michael.riesch@collabora.com>
+2.39.5
 
 
 
