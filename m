@@ -1,158 +1,228 @@
-Return-Path: <devicetree+bounces-255437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82DDD22EE2
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:50:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C0CD22F5D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 08:55:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9FEBA304A12A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:49:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D27CE30ACE17
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:51:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D36832BF22;
-	Thu, 15 Jan 2026 07:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC9E5329C6F;
+	Thu, 15 Jan 2026 07:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gl6CBYMT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IK1Unwrt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B852DECA8
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 07:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70FC327797;
+	Thu, 15 Jan 2026 07:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768463360; cv=none; b=Rfo4J516x5oi9ffap7+p2fUli0d9zPiuHk2nYM7h83NC8yyiYMlgkUbrmfPPpvrnbXqJt7+nHEEP0kSwT1yFQSXoLldTPwGEynYisaCh5eXMkbc2BEpzTnvAcm820yusUBJJpxIWa6OeXYENl3ihxmHNP0efIc7N0o7fH76zFrM=
+	t=1768463507; cv=none; b=TSGIFbVnM6i3a/HWD1YFGo11hfFeyYWdQtwa7aVnb0ZK34YcXelBSAEkKYaEfqJVaz2hLAJMWLb5tHpepz/dCU76jZeyDPhKa2CUJSc8lFHIvUGlB5orW6UB0+LW6FEGqoZ79nxBo/kqt7z5l2yU3nurDsjLrdaacIJU8CdonOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768463360; c=relaxed/simple;
-	bh=hd2VPdvp8ufnz+pdMsSef2AaJOW+FtodIDjMjm5/IIo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o94wDbv/HIqCjCn1F9WeR+LdRoCfCQOcnccYYg3qsFqLR/4/lk7q4Z52FaF5TLRmBaoK2/9xkKz6HfSl6XFvVYRrvYgbRl0iGl4r2mmjrajx8Hlh+eTfN4z4nb3DISajgXviDvOkV4DaSur5sLRBNAtnxqptCWa67RIOxai+VUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gl6CBYMT; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-42fb5810d39so386461f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 23:49:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768463357; x=1769068157; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GtxAoaTpJU6r++xlIpmAaAG/bZOXfH9n2gzVC3kL6Pc=;
-        b=gl6CBYMThWlrGXrBHxb6WypqpxguzhCqzgyIzVnlZJgA6szY65qhsBNCDDXxInjbjM
-         VdQaXk297mclLMv4QCGucjiYsxKfT4jx9ivQLEvUcY+UAcgb3NHzVOfj6EBSWOEtQiMA
-         WAzT//jdZ4+fdgpnVSG05P2vEXhZYWTiqtXjxh5NwmlAgBB7/Hbc+ShTsDII5H/0QA1B
-         N7Kwit/JHlMPdpcB2KNLuQusF8mya4mkAMtWcE+P8IHSgKFZC0AbWoameqm2wWXtOOZr
-         ctzBItgDCyRjiaIXFGQxUz6Jbt2c7vnNmoOT8EccvIpAv6yp+iP8RocmAThw+hp98vEC
-         JCEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768463357; x=1769068157;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=GtxAoaTpJU6r++xlIpmAaAG/bZOXfH9n2gzVC3kL6Pc=;
-        b=FlradQTetD/m/h9wh8B2H2b/pBGUzQa33oxqDKLqtKS8Xj+w2tMdikLjBulVxGkHFH
-         gqDtKALRWTmTTI0dJkN4Ot2MS8W1ywpyXxECz0FakOPgdZYcG5ejPvXeVqseVAze4G3Z
-         DMozbgpT6d2Ec4l6FZpiBnPEh4alYEBoMzci6+EOCcOJUufK6UlsKiF0Dha0aemZT3WX
-         mjeqxvrL50uJgTWahOl6r0d5N3OVkXYIQUHyS/nAHWhOIaP/GhJwgedhpwT9VtYML7Ab
-         hD/5SMejRS3cSaJVahC7ypM1CZBfaLH5REKbQYUVpPmUh4F2Lj8HPmnszHBAbH2M5Jt0
-         x7vg==
-X-Forwarded-Encrypted: i=1; AJvYcCW/rMEe7viV9HQHSC14HC0221TMLksfzNZdCVE48DeKWIaB5evAsK1mlncVURR3DNnHH/zpGKkOW/8h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxr/BhcmMUZCE8LRi7b+l36Tx4yScdHTh5lwrEH767K+ivtIN0e
-	Eja6DaLjM/x2FkZTg9FlQssvXM9wSdTUuLK9TgUojBYt6iONURqRiprajSTOcfwZJN92nwrYbY+
-	Lk9nSMHf/VSDadL8pwiJCIDdnpP8uipU=
-X-Gm-Gg: AY/fxX4MeUBlOIX4IuOihDwrEg7io+Dzsk547ll+vhwpLPm7hDPkjvkdoF/ygrgiVaJ
-	tGBZerjD4rq1aPzht6N+NetozzR8vz/4ZcYt31uNpGKNN+sL32ENEEJOg5qCk7Nw4njKGT4ESIC
-	Ap5JF3RpotT3hvVbSZYgLm/7avsEJdEhCLXzfoJNjhCKmAuY9+fXiglzJn5xGm3HeoZzfoZ9GV0
-	DpknerfqksnBitXR7KnnSNWN/E7x1Ryl0S6lCsgdm8FZhOAFc4NBltQ3nDRoQvWibe4ioNh
-X-Received: by 2002:a5d:5d86:0:b0:432:8504:b8a9 with SMTP id
- ffacd0b85a97d-4342c571e43mr6373650f8f.62.1768463356624; Wed, 14 Jan 2026
- 23:49:16 -0800 (PST)
+	s=arc-20240116; t=1768463507; c=relaxed/simple;
+	bh=QJknIWev9hn5uMIZrP3LvyLoAxltyr3UodNAV8Q/8Pw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BpeXM2ByKG7CEY0yf3S6FG3BqodO3WUi/ENdBAdW+YQdTY9VZmVqMxYzkOaiF3iK4rqmfnUYNDZ7uhgWKkK4wLnajKvskNIUW17bXV8ySbHh5MtBf3zvn560ri+GXbCnXtQAkYVSJfQPSt5Oz2pDZSXGmL+ScJyGZ/qVOEtCva4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IK1Unwrt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E22B2C116D0;
+	Thu, 15 Jan 2026 07:51:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768463507;
+	bh=QJknIWev9hn5uMIZrP3LvyLoAxltyr3UodNAV8Q/8Pw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IK1Unwrtld06zEh/pXUGKqsFzAcnijFQLITYgDRnAnj5wAAXEcidzd5+M9PX/pvOn
+	 5+kx9nIzR0hJAdIbK0uGTQSelu5O/jk6GkQYvfFmXPKUyldYScVcz7pIYv6NbKknHK
+	 lDYNO9TLTlGDkvAHWu5QUq7E7JT8aK/GSJ+BhEAaIIWGqTN8Jw8iWyQ/bHcWKn+3pp
+	 Z57+lBS1X7DBGw/cgAK4DcaiK1tRu3EGuxqXYYjdA+lCIDduEFMxun3BRd0JOngAwQ
+	 VuezMS8NSoyh148a4GdZdOsSZoaTuu6wxqvjOISkBa+DH13nd0so7ewIRCoG+g1VFe
+	 VuQFnwiNqMvAg==
+Message-ID: <5a4e4b31-ca1b-4aae-b175-ee4ed692ea48@kernel.org>
+Date: Thu, 15 Jan 2026 08:51:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251204061703.5579-1-clamor95@gmail.com> <20251204061703.5579-3-clamor95@gmail.com>
- <7012249.lOV4Wx5bFT@senjougahara>
-In-Reply-To: <7012249.lOV4Wx5bFT@senjougahara>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 15 Jan 2026 09:49:05 +0200
-X-Gm-Features: AZwV_Qi0zcbXk0tsiK_qJ_9rRb1cx2nEQ98pWwmRVMmkpOG8O8-PqPUPy2GYvG0
-Message-ID: <CAPVz0n3JEHtUOq4qaZbqPu97NXdYxx_=5im4rxoEWi8EbKmKEw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4 RESEND] gpu/drm: tegra: dsi: move prepare function
- to the top of encoder enable
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/4] arm64: dts: qcom: Introduce Glymur base dtsi
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+ Maulik Shah <maulik.shah@oss.qualcomm.com>,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+ Taniya Das <taniya.das@oss.qualcomm.com>,
+ Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+ Qiang Yu <qiang.yu@oss.qualcomm.com>,
+ Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
+ Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+ Abel Vesa <abelvesa@kernel.org>
+References: <20260112-upstream_v3_glymur_introduction-v4-0-8a0366210e02@oss.qualcomm.com>
+ <20260112-upstream_v3_glymur_introduction-v4-3-8a0366210e02@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260112-upstream_v3_glymur_introduction-v4-3-8a0366210e02@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-=D1=87=D1=82, 15 =D1=81=D1=96=D1=87. 2026=E2=80=AF=D1=80. =D0=BE 07:54 Mikk=
-o Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Thursday, December 4, 2025 3:17=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > The tegra_dsi_prepare function performs hardware setup and should be
-> > called before any register readings or there will be a risk of device
-> > hangup on register access. To avoid this situation, tegra_dsi_prepare m=
-ust
-> > be called at the beginning of tegra_dsi_encoder_enable.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  drivers/gpu/drm/tegra/dsi.c | 12 ++++++------
-> >  1 file changed, 6 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
-> > index 278bf2c85524..8e80c7efe8b4 100644
-> > --- a/drivers/gpu/drm/tegra/dsi.c
-> > +++ b/drivers/gpu/drm/tegra/dsi.c
-> > @@ -914,6 +914,12 @@ static void tegra_dsi_encoder_enable(struct drm_en=
-coder *encoder)
-> >       u32 value;
-> >       int err;
-> >
-> > +     err =3D tegra_dsi_prepare(dsi);
-> > +     if (err < 0) {
-> > +             dev_err(dsi->dev, "failed to prepare: %d\n", err);
-> > +             return;
-> > +     }
-> > +
-> >       /* If the bootloader enabled DSI it needs to be disabled
-> >        * in order for the panel initialization commands to be
-> >        * properly sent.
-> > @@ -923,12 +929,6 @@ static void tegra_dsi_encoder_enable(struct drm_en=
-coder *encoder)
-> >       if (value & DSI_POWER_CONTROL_ENABLE)
-> >               tegra_dsi_disable(dsi);
-> >
-> > -     err =3D tegra_dsi_prepare(dsi);
-> > -     if (err < 0) {
-> > -             dev_err(dsi->dev, "failed to prepare: %d\n", err);
-> > -             return;
-> > -     }
-> > -
-> >       state =3D tegra_dsi_get_state(dsi);
-> >
-> >       tegra_dsi_set_timeout(dsi, state->bclk, state->vrefresh);
-> >
->
-> The section of code before the tegra_dsi_prepare call was removed in 'Rev=
-ert "drm/tegra: dsi: Clear enable register if powered by bootloader"', so t=
-his patch should no longer be necessary.
->
-> Mikko
->
+On 12/01/2026 13:22, Pankaj Patil wrote:
+> Introduce the base device tree support for Glymur – Qualcomm's
+> next-generation compute SoC. The new glymur.dtsi describes the core SoC
+> components, including:
+> 
+> - CPUs and CPU topology
+> - Interrupt controller and TLMM
+> - GCC,DISPCC and RPMHCC clock controllers
+> - Reserved memory and interconnects
+> - APPS and PCIe SMMU and firmware SCM
+> - Watchdog, RPMHPD, APPS RSC and SRAM
+> - PSCI and PMU nodes
+> - QUPv3 serial engines
+> - CPU power domains and idle states, plus SCMI/ SRAM pieces for CPU DVFS
+> - PDP0 mailbox, IPCC and AOSS
+> - Display clock controller
+> - SPMI PMIC arbiter with SPMI0/1/2 buses
+> - SMP2P nodes
+> - TSENS and thermal zones (8 instances, 92 sensors)
+> 
+> Add dtsi files for PMH0101, PMK8850, PMCX0102, SMB2370, PMH0104,
+> PMH0110 along with temp-alarm and GPIO nodes needed on Glymur
+> 
+> Enabled PCIe controllers and associated PHY to support boot to
+> shell with nvme storage,
+> List of PCIe instances enabled:
+> 
+> - PCIe3b
+> - PCIe4
+> - PCIe5
+> - PCIe6
+> 
+> Co-developed-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> Co-developed-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Co-developed-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Co-developed-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+> Co-developed-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/glymur.dtsi         | 5919 ++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/pmcx0102.dtsi       |  107 +
+>  arch/arm64/boot/dts/qcom/pmh0101.dtsi        |   45 +
+>  arch/arm64/boot/dts/qcom/pmh0104-glymur.dtsi |   83 +
+>  arch/arm64/boot/dts/qcom/pmh0110-glymur.dtsi |   83 +
+>  arch/arm64/boot/dts/qcom/pmk8850.dtsi        |   70 +
+>  arch/arm64/boot/dts/qcom/smb2370.dtsi        |   45 +
+>  7 files changed, 6352 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> new file mode 100644
+> index 000000000000..91e577bd152f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> @@ -0,0 +1,5919 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#include <dt-bindings/clock/qcom,glymur-dispcc.h>
+> +#include <dt-bindings/clock/qcom,glymur-gcc.h>
+> +#include <dt-bindings/clock/qcom,glymur-tcsr.h>
+> +#include <dt-bindings/clock/qcom,rpmh.h>
+> +#include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interconnect/qcom,icc.h>
+> +#include <dt-bindings/interconnect/qcom,glymur-rpmh.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/mailbox/qcom-ipcc.h>
+> +#include <dt-bindings/phy/phy-qcom-qmp.h>
+> +#include <dt-bindings/power/qcom,rpmhpd.h>
+> +#include <dt-bindings/power/qcom-rpmpd.h>
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +#include "glymur-ipcc.h"
+> +
+> +/ {
+> +	interrupt-parent = <&intc>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,oryon";
 
-You are correct. I have found this when rebasing onto v6.18 which was
-much later then this series was resent. Obviously, this patch would be
-dropped on the next resend/v3. Sorry for inconvenience.
+Just to remind, this is not the correct compatible which we already
+pointed out in the past. I am going to mark it as deprecated, so please
+do not use it in the new code.
 
->
->
+Best regards,
+Krzysztof
 
