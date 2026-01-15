@@ -1,112 +1,81 @@
-Return-Path: <devicetree+bounces-255722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DA00D26B42
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:46:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 371E3D26B81
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 18:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0451D3044C52
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:37:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 393F230B9359
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 17:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69633BBA0F;
-	Thu, 15 Jan 2026 17:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754FD3BBA0F;
+	Thu, 15 Jan 2026 17:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N6QHl9dh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVP+2yrR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81AE72D9ECB;
-	Thu, 15 Jan 2026 17:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B79427A462;
+	Thu, 15 Jan 2026 17:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768498593; cv=none; b=LYtUOLcb0jXVMujgyBHq5ohlSbXp8VWgKTdMG70N6c7tRxceokj/W3pwxV9bBk23T7RtROES8osQ8ttICKaJ4HXSOVtTWIrTdJLUM/GRCkjg6Ra2rW+JNWtVYi7D/hc+96+rUX16y5I9TaNBrwmomuZ3dmrPw0M/c4J1RVfFk1Y=
+	t=1768498649; cv=none; b=GLsEJehFz/AfOcB3XP2M6UDsoo5HLQmbt6hR57QzjEwGuzeybZvbaNW6ljroqJBHqlfXcayJvA6bQLTHNpFPK8SBH2NL1iPMZSkgIuiboh1I1fdbs6rg43NDX99M6/RhuzvBY5Ww9B4orKqdchJOLzYmJ/IBR3GQtDPi2X7QcBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768498593; c=relaxed/simple;
-	bh=VxVOkwPjSB73QjCmCUVQz2P5mMxY6iL0Y/MKyV9xB3o=;
+	s=arc-20240116; t=1768498649; c=relaxed/simple;
+	bh=lENH+BbL89v1sioGWhjfNOfFQN1i3RM4np9biV2JDn8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MqHQevRkhbhScdC8CJfOgxqOSsAOM3qz6c4aUscP1M5fK0coKEFPKdlb6+t9FbRGB6L8VRTChXBQyp4eN7d7kL3rEsUr7VjXmmPk3OspjWgvnhS7/YAVAyscSvVmoHfg4qtv70nhRH7MfxRzgokvUxkALCZximvH30T3okrQ+d4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N6QHl9dh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35273C116D0;
-	Thu, 15 Jan 2026 17:36:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qy0BeFFPBWUtgBQr/oM3Sa8XqXaJOp89tdfOL0bWJYbXNdmSr3ABbAg+1j4V9igDldA4dlWIcxALdXqEg06bKgQr6syZMq5zazak4/gz3yYWkGrGPxhIP96M/2CxYPCcYBez/iZ4ctGNsRp6a2gwhEs2fFluJyAtKGQ1RpbyjNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVP+2yrR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FC06C116D0;
+	Thu, 15 Jan 2026 17:37:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768498593;
-	bh=VxVOkwPjSB73QjCmCUVQz2P5mMxY6iL0Y/MKyV9xB3o=;
+	s=k20201202; t=1768498649;
+	bh=lENH+BbL89v1sioGWhjfNOfFQN1i3RM4np9biV2JDn8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N6QHl9dhbvozxSAa4XnJxX/KfWwRlN6KV9+7VSye2Skj9AOF4ynxvG0isA6PYGb1R
-	 GGJK46jVMtXpOyzZzKpxV78XddsOrOAUjSUoKHc2DvdCzqlk+s5gq32zrY9jgAHYiH
-	 8z4iqldFJuCnhMjdF2G5/mQTAifGS8l+FHVcjwt/qJWUCkicTRXSe5dI/y9/pduon9
-	 hG2EISrSD0EDvrkwrvrFR5SupmQWd8oK7KAI5/aPNz6Lja8K0LlJVlR2N3A+WK2vDR
-	 2TrJmklDl/xfr2yNhTbIGYlBeKv3finQGaKrLF+O0kzY9OGEd3luSxGXGQ632gon3j
-	 tasxnaMPSCuUg==
-Date: Thu, 15 Jan 2026 11:36:32 -0600
+	b=NVP+2yrRwM+4sci7INnjMuKYVOcM0Ftbo4IgTRzEAc6Opxu6kzQY6Gh9ahHMgpMbW
+	 K2bH0Fo3ufATO5PsaquOD6nQ0ZbDr/UhRJ0b1S5fILJnKFUYASyrk/YyKwjYfsOUYa
+	 jUEA4UClUsiuo8B54A0CE/yAusfYATAFZ/zYyRrpcQOnySpAR1BsYlyQE9UBuZCs/S
+	 ctnLljH5lrfAkrtooNql/TxOJe5DCufnEokgWo9eKe7EBRvf6YxOC5ZMaxDdKFs3gg
+	 W9rShNcqhNtdTy9rtcc4artHTAShVnaghr5vxDqjJ/M5txHN2fBQjM6JOZJPDYUlyd
+	 DuxnfG3U+QvJg==
+Date: Thu, 15 Jan 2026 11:37:28 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	Heiner Kallweit <hkallweit1@gmail.com>,
+To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
+Cc: "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	phone-devel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
+	Kees Cook <kees@kernel.org>, devicetree@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Eric Dumazet <edumazet@google.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-	linux-kernel@vger.kernel.org,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: pcs:
- renesas,rzn1-miic: Add phy_link property
-Message-ID: <176849859188.929140.12375075368934726420.robh@kernel.org>
-References: <20260112173555.1166714-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260112173555.1166714-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Biswapriyo Nath <nathbappai@gmail.com>,
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+	linux@mainlining.org, ~postmarketos/upstreaming@lists.sr.ht,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	Tony Luck <tony.luck@intel.com>,
+	Gabriel Gonzales <semfault@disroot.org>
+Subject: Re: [PATCH 5/6] dt-bindings: arm: qcom: Add Xiaomi Redmi Note 8T
+Message-ID: <176849864771.930572.3499774593785972153.robh@kernel.org>
+References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
+ <20260112-xiaomi-willow-v1-5-8e4476897638@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260112173555.1166714-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260112-xiaomi-willow-v1-5-8e4476897638@mainlining.org>
 
 
-On Mon, 12 Jan 2026 17:35:54 +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, 12 Jan 2026 21:13:28 +0100, Barnabás Czémán wrote:
+> Document the Xiaomi Redmi Note 8 (willow).
 > 
-> Add the renesas,miic-phy-link-active-low property to allow configuring
-> the active level of phy_link status signals provided by the MIIC block.
-> 
-> EtherPHY link-up and link-down status is required as a hardware IP
-> feature independent of whether GMAC or ETHSW is used. With GMAC, link
-> state is retrieved via MDC/MDIO and handled in software. In contrast,
-> ETHSW exposes dedicated PHY_LINK pins that provide this information
-> directly in hardware.
-> 
-> These PHY_LINK signals are required not only for host-controlled traffic
-> but also for switch-only forwarding paths where frames are exchanged
-> between external nodes without CPU involvement. This is particularly
-> important for redundancy protocols such as DLR (Device Level Ring),
-> which depend on fast detection of link-down events caused by cable or
-> port failures. Handling such events purely in software introduces
-> latency, which is why ETHSW provides dedicated hardware PHY_LINK pins.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 > ---
-> v2->v3:
-> - Updated commit message
-> - Renamed DT property from renesas,miic-phylink-active-low to
->   renesas,miic-phy-link-active-low.
-> 
-> v1->v2:
-> - Updated commit message to elaborate the necessity of PHY link signals.
-> ---
->  .../devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml     | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
