@@ -1,189 +1,114 @@
-Return-Path: <devicetree+bounces-255358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C66C7D227F8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:11:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FCA7D227D7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:09:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 55C163007530
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:11:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 537D83027A5C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:08:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5912D8372;
-	Thu, 15 Jan 2026 06:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="ScpOFGSr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C496A2D59E8;
+	Thu, 15 Jan 2026 06:08:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A04E2C3257;
-	Thu, 15 Jan 2026 06:11:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0164F27A916;
+	Thu, 15 Jan 2026 06:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768457468; cv=none; b=BK14Fc0T1gub87tHaOCdyKVHiRt+QnetZJ76owk67bo+ftPAEZ8I4SN/wCXmFvCYBXwNy0dVMdhzPSFA6YYkxtBriCcgvVatUvOPgPnHfkX+jqp9aG6Mg7wejbBRjDaj3z1LCy1AAUQ8xjSE0IUgSiIu6Ku6FC6voVY1t37Rl0A=
+	t=1768457310; cv=none; b=BXfFeBmThQVGs75T7JsU1Nt9q+Sz2q1OlR4IICSUDnqS2VDW7ErczAcqxelYO0WBsUjsOnn939mhD18eKAdCXvwqRjboGtXZABJosAoIhoWQeDiZR9RyuhtxiJ75R0sqFIYlNcgERpRmHPqc/9jSIbni2B3p50PC96H4FfX2vEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768457468; c=relaxed/simple;
-	bh=glcMICtqt+B7cdJfS+E+vP9Pa4YCi/31JxpYj4kq44w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bVyPEOKavIL5JebRXOfyFVfV5sNj936WyltrFDq0URlNleFw05aQD2yyw/kigJHzXBPS42T9WFHCw2F+/qsoXjRUaUiYHWXJSb+2xJwCzdtPuVWMeHayZkjhNMPbFJkrTWR+8cHnv0sfH/UVUr5LW9QOUec1oj++ron2ChVIfEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=ScpOFGSr; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768457464;
-	bh=L0wwIxKRszoDqYhPs4eFpNpFIjyCkS8wJOTj34HWTvU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ScpOFGSr73K2gt/+/7diUhDSWNmI2UVq6OtphCBDU/lIPkC75NLuxGAIDMsois3wd
-	 Laa2dlygf4FIt4TKS7EbNIeaSJnYVdrmbnFNrQKQl63da++8l0rNzp/s3koDfyjyFZ
-	 RO0cO2lg1sUyfqgyMwxBb6MJ981mOaS4fVxO3bBjMEjOP80/EHF5f7IJUG8hrTWxB6
-	 csuSb8gfnUx5Qyvfhp+vNKuIAhkljlVYuK+MUdKKpPIGENNhFZ7DayexE4+7NJ7hCx
-	 orNd9NNG29J1bBpZulBMHdtCUGaljxt0e7tLIvpFLbzy9oQvFwynVVOtpbZT79THm6
-	 gld1ywEzZtMuw==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4dsCKN5F0nz4wGT; Thu, 15 Jan 2026 17:11:04 +1100 (AEDT)
-Date: Thu, 15 Jan 2026 17:01:51 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 23/77] dtc: Introduce mark_local_exports()
-Message-ID: <aWiCz7yZyAvJwPNU@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-24-herve.codina@bootlin.com>
+	s=arc-20240116; t=1768457310; c=relaxed/simple;
+	bh=VMJMp9GD9yBNRrRclYe5La4PWwmgwchcwSvrWAxXjmI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nHM5YYf6bNYfNxEkMdStYjPkApe2hi//8c3LewqtHcLCJmrMAZ++yP2G5u/D1947OwJMGw16HaB732LrDaQpJQrlcWRScfaOVselNFfl/+JVnWGEO+n9VswOXV4+K9XbMoQe5e9f01xOmvRbCqzcyYUwKUgD8CqwcZCgIwok/f0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [223.160.207.69])
+	by APP-01 (Coremail) with SMTP id qwCowABH7mlMhGhpXOHCBA--.37756S2;
+	Thu, 15 Jan 2026 14:08:14 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: conor@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	jiayu.riscv@isrc.iscas.ac.cn,
+	cyy@cyyself.name,
+	dlemoal@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	gaohan@iscas.ac.cn
+Subject: [PATCH v3 0/2] Initial support for 100ask CanMV-K230 DshanPi
+Date: Thu, 15 Jan 2026 14:07:59 +0800
+Message-ID: <20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="SuuU+yuO6h96zu8L"
-Content-Disposition: inline
-In-Reply-To: <20260112142009.1006236-24-herve.codina@bootlin.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qwCowABH7mlMhGhpXOHCBA--.37756S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Zw4ftFy8JF4kJr1xtr4ruFg_yoW8XF4kp3
+	y7uFsxGrZrKr1I9F4S9w48Wr15Zwn5Jr1rWw13X3srArWYvry8Crnagw45X34UXr17Cw10
+	va15Kry0grWjyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 
+This series adds initial support for the 100ask CanMV-K230 DshanPi
+board based on Canaan K230 RISC-V SoC. There is a module on this
+development board.
 
---SuuU+yuO6h96zu8L
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The board and module are documented, the basic board/module devicetrees
+are added.
 
-On Mon, Jan 12, 2026 at 03:19:13PM +0100, Herve Codina wrote:
-> In order to have correct tags set in dtb, an export symbol has to
-> be identified as a "local" export symbol when it references a local
-> node.
->=20
-> This is done for phandles used by properties in mark_local_phandles().
->=20
-> The same operation is needed for export symbols. This is the purpose of
-> mark_local_exports().
+This series is based on the K230 clock series[1] and the patch 3 of the
+k230 pinctrl series[2].
 
-Again, I don't like caching this information.  Can you determine this
-just at the time you specifically use it?
+Link:  https://lore.kernel.org/all/20251127-b4-k230-clk-v9-0-3aa09e17faf5@zohomail.com/ [1]
+Link:  https://lore.kernel.org/all/20240926-k230-pinctrl-v2-3-a9a36fba4b34@163.com/ [2]
 
->=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  dtc.c      |  2 ++
->  dtc.h      |  2 ++
->  livetree.c | 23 +++++++++++++++++++++++
->  3 files changed, 27 insertions(+)
->=20
-> diff --git a/dtc.c b/dtc.c
-> index fe8e8e4..030bfa2 100644
-> --- a/dtc.c
-> +++ b/dtc.c
-> @@ -336,6 +336,8 @@ int main(int argc, char *argv[])
->  	update_phandles_ref(dti);
->  	mark_local_phandles(dti);
-> =20
-> +	mark_local_exports(dti);
-> +
->  	/*
->  	 * With FDT_REF_PHANDLE added in dtbs, we need to identified
->  	 * if some unresolved phandle references are allowed in the dtb
-> diff --git a/dtc.h b/dtc.h
-> index 0bf5ba5..ea073c2 100644
-> --- a/dtc.h
-> +++ b/dtc.h
-> @@ -368,6 +368,8 @@ void generate_local_fixups_tree(struct dt_info *dti, =
-const char *name);
->  void update_phandles_ref(struct dt_info *dti);
->  void mark_local_phandles(struct dt_info *dti);
-> =20
-> +void mark_local_exports(struct dt_info *dti);
-> +
->  /* Checks */
-> =20
->  void parse_checks_option(bool warn, bool error, const char *arg);
-> diff --git a/livetree.c b/livetree.c
-> index 4458437..0e756b8 100644
-> --- a/livetree.c
-> +++ b/livetree.c
-> @@ -1303,3 +1303,26 @@ void mark_local_phandles(struct dt_info *dti)
->  {
->  	mark_local_phandles_internal(dti, dti->dt);
->  }
-> +
-> +static void mark_local_exports_internal(struct dt_info *dti,
-> +					struct node *node)
-> +{
-> +	struct node *c;
-> +	struct symbol *exportsym;
-> +	struct node *refnode;
-> +
-> +	for_each_symbol(node->exportsymlist, exportsym) {
-> +		refnode =3D get_node_by_ref(dti->dt, exportsym->ref);
-> +		if (refnode)
-> +			exportsym->is_local =3D true;
-> +	}
-> +
-> +	for_each_child(node, c)
-> +		mark_local_exports_internal(dti, c);
-> +}
-> +
-> +void mark_local_exports(struct dt_info *dti)
-> +{
-> +	mark_local_exports_internal(dti, dti->dt);
-> +
-> +}
-> --=20
-> 2.52.0
->=20
->=20
+Changes in v3:
+- Delet the model and compatible of the root node in the dtsi file.
+- Use clock-50000000 as the node name.
+- Link to v2: https://lore.kernel.org/all/20260104070911.219588-1-jiayu.riscv@isrc.iscas.ac.cn/
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+Changes in v2:
+- Add a minus sign before items.
+- Link to v1: https://lore.kernel.org/all/20251229061318.16756-1-jiayu.riscv@isrc.iscas.ac.cn/
 
---SuuU+yuO6h96zu8L
-Content-Type: application/pgp-signature; name=signature.asc
+Jiayu Du (2):
+  dt-bindings: riscv: canaan: add 100ask K230 boards compatible strings
+  riscv: dts: canaan: Add initial dshanpi board DT files
 
------BEGIN PGP SIGNATURE-----
+ .../devicetree/bindings/riscv/canaan.yaml     |  5 ++
+ arch/riscv/boot/dts/canaan/Makefile           |  1 +
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 82 +++++++++++++++++++
+ .../dts/canaan/k230-canmv-module-dshanpi.dtsi | 26 ++++++
+ 4 files changed, 114 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv-module-dshanpi.dtsi
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmlogs4ACgkQzQJF27ox
-2Ge3cw/7BWqeTby3qpFeRWudt/kMXwyPjsntxT8XIrH+hogk5z4IqWNCtEKN6vnR
-QCwb28M40qIntLxxDafH4U2C8rgdXuOQMudLdv/9lTpGsAIco1k9OQ+j2ARbHoMY
-ugigo2jNUENWvnhUs5/vvZsNVHYCWOHzwSSlKWgyDLbzJuBq8s9vNMZSLj6E+ZCc
-cJ/EjP/2jiNibFhH9Lf7u3hMi5jaiSJVwEt8HfrYMhSct7GUsizGyShOK1DNre2U
-vPNnCDNufjXBRgDOBnbGngmlxlxGdHSmT1xbpX7SoPtEjbUMm5N8WB8SUdoptfKI
-lu6GiX6t3e7D8Br6HoN5kFVwlITYl0bXy6vIMLC+OI8uZoBP9epttn1suDbSq+Fq
-FCke4Q8vQD6YmQAKjnAAXchRSbYFUiuPUPhW8iFeJk4nFuTIIGX5ylmWn3OLgg1d
-QNEShKgB1pBHsy17onuVbYdKcIZld4/wHl9whzXzLSOnFHHbnp/ctW4SKdcSY6xV
-AgGS3jKmm5G+TQPq5OLe28MDbHCsPRs66Cl+NqGlr42R7toCvBcApMOQFG0yNcyr
-AObvbAF3z79Uik+v17HwbSN66Q4AJlXE9pKXCZ2wKAn9Za4GGZkh6mjv2e00j/oN
-es/n5DEXr1Pxt39myjULQxIFdTIxSzyQARt9W5EAj3JZNWg0L0w=
-=758D
------END PGP SIGNATURE-----
+-- 
+2.52.0
 
---SuuU+yuO6h96zu8L--
 
