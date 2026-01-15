@@ -1,171 +1,201 @@
-Return-Path: <devicetree+bounces-255381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D08ABD229F1
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:48:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E31D22973
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 07:43:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F1B9C309A5CC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:43:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A69C03082D16
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 06:43:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF2F2E1EF8;
-	Thu, 15 Jan 2026 06:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF532DE6F1;
+	Thu, 15 Jan 2026 06:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dYEweG3V";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WqYmvxiQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8BE246798;
-	Thu, 15 Jan 2026 06:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DBF2DC333
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 06:43:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768459429; cv=none; b=YiNRa6gvo4Fku122UjQsrIk//tQgTX3u83Ie+zMXZ9eVYAnDboubdiWrP69j6LRxDERgU1mIthcznUeAFwc0GaXzhUWSzAlI+zyXBnWrqPihEIy676scx0fEOCevLdx5I/qVKFqNS1+vODLsXu5ypUI7PxbmNUx1jbMlU9kCjKU=
+	t=1768459388; cv=none; b=ScN+b/34uEPYCcrHddkL2OQc3t3Pjrq6ABShcDbumznd6AnJyMeAjDjjzAkty3/b961sFnH5Z2Zyl88tyBnK2pXthWa2qc75mk0Ag+SELzi3/fzTw/5vk4twKv+S+AXvkAmkM173KVtTYn9aSMcczqFdWgiYf5JC/H8QvRbn/Tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768459429; c=relaxed/simple;
-	bh=8/WH8O7wukAw8VXt3i+oTo+Ql5h3pBg67X3wOlCMvgA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X22PmZDS7fe39+Ya4ItE363Bttzgk86nCWEB+mzDt3E5dg/llTWf1e0ZW9HnDGVNNE7w7KTf4arzfDvH6LlJcZ2dDKNLyL1H2aL+YL1aBt3cgpAImx+KFeyxGvHs5MdFjDAZeVohVvCFblRmct73600qkhbAhqgy2BX0VJyTRj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [223.160.207.69])
-	by APP-01 (Coremail) with SMTP id qwCowAAn0GtWjGhpw5fDBA--.30809S6;
-	Thu, 15 Jan 2026 14:43:06 +0800 (CST)
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: conor@kernel.org
-Cc: vkoul@kernel.org,
-	neil.armstrong@linaro.org,
-	gregkh@linuxfoundation.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	jiayu.riscv@isrc.iscas.ac.cn,
-	18771902331@163.com,
-	cyy@cyyself.name,
-	TroyMitchell988@gmail.com,
-	kingxukai@zohomail.com,
-	linux-phy@lists.infradead.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	gaohan@iscas.ac.cn
-Subject: [PATCH v2 4/4] riscv: dts: canaan: Add syscon and USB nodes for K230
-Date: Thu, 15 Jan 2026 14:42:22 +0800
-Message-ID: <20260115064223.21926-5-jiayu.riscv@isrc.iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260115064223.21926-1-jiayu.riscv@isrc.iscas.ac.cn>
-References: <20260115064223.21926-1-jiayu.riscv@isrc.iscas.ac.cn>
+	s=arc-20240116; t=1768459388; c=relaxed/simple;
+	bh=+aFW6EH9TJ0AOZQTB+GWz9NqX5sXiGDNwhsnV/Xf3jk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i5rurxWmpQZ1PnxU/qhpCeM5NCzFjrWtg9Qv/y74DCb+N4iwWk4T+/k0NkvSbMmHkJ6bgm8sMM9IZ2sl6veGtdCPsQ+SG13HQ7oHqVZOyyIGxE8m61Xv+ZwPgmy0W17snEMmXrcykAv3SQouCYD+Dta9SqfIS5Iwn+jD9kI24FA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dYEweG3V; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WqYmvxiQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60F6fm3h1744898
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 06:43:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=MrtIlupneZwT0y08AelsrV
+	YE3mbEdWwQW/NPCjWwFkA=; b=dYEweG3Vb5ShsFhmAVh+82W5UK1TFT+bJumgfk
+	7LKi7VW/viA1xHXgOH9z9iJq1HICK1cl4UU9mjJUoyom2YtGVkzHcmfR12ncomSW
+	w5GcoJisy5tOZ7+URr5UPzWZAbupXzYJ9iE/bcpQudUFkYHWPGCghajsvZ5EJONZ
+	ole8GYnftHZ2zxpNpbRcyMsxteBKjldJP+L2X9lqDyg3BDL6xWo1f00oMeiwd2BJ
+	m2mOf3tOKPqp4C4RmDv/13KcEo7mp18Mt1YIL46URYMC9BxZyrJuz8MGGmkg1lTL
+	JAs/wB4RKWeFCjeP7tZQCIqi4R70jdRbHbimYD6/kurTb//A==
+Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bptu2g1w2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 06:43:06 +0000 (GMT)
+Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-2b47ce772e4so2789726eec.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Jan 2026 22:43:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768459385; x=1769064185; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MrtIlupneZwT0y08AelsrVYE3mbEdWwQW/NPCjWwFkA=;
+        b=WqYmvxiQH6Wy1u946iYl2nkdWrAMnqvgT4MCzabQWmQf3PZQyBlw8utlleBHtrA3J4
+         CLtdA77wzbcXs9kUFnxFlgPCU7B5uofllGpJMnWmTgHl7pHnqnKoFGQ2ZHTjYH4K7Hvv
+         T4qdfWr2cinXXqt4QU5mH5rl80iFIYijA1LJTyLu/06/ZSoXTzw8ltXZyQiA8NnwIcCH
+         Aw3EWxBtuv7aeCEFvdSPYuqfOaiCTIeatBzl1FFoc4kl3pdvFozidmCCXy2nc+0PXXkn
+         NzEgFMM1lqWKs4tih5KcMzPwsyIkgdobwN1I9BZWSlzp6ew9SvfkRTycoGa/APjo7WJN
+         kusA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768459385; x=1769064185;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MrtIlupneZwT0y08AelsrVYE3mbEdWwQW/NPCjWwFkA=;
+        b=YNa9XAfEeZHaCru/5QYDYwRbDjVFqPE5d1oToIky3Ahu1/zjUMVqJeB0sVZ732JeKE
+         DuOpBzzsDfkx1cXMgXfwLaxFWPJDt2D8SbD7IJ1D3WpVOunef2jHokVNh0tueECsx7ka
+         ZI0XaUorCDNjVs7geVHpWT36Me4RsGxETAfaGMwyYkk1GvKwadEMqvIPLGfMThhx91n7
+         iXmRLzFVCIJf2T1PrcH8yA/WWVDx7ksL5q8xMOlNq01efgQbogjMjDCHF98Nloy7piD1
+         0q6cFyCS7+jRcLreYurfUwl1Q4dAbcCBCDd3OqvP21Od1L5DE22moAmwqoK1WzHXhQ8k
+         6AVg==
+X-Forwarded-Encrypted: i=1; AJvYcCWCPmnuuxvgig1nvI5+gdsWW2E/oJI7O+uunhILisDky6k+8VSLwQa6tXceKK0j6kEIb3HR5PNJH2hE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMA83j5dkBLy+dvRdaC7xBf4QBGFKTmlBETIEUvDCeJIQJnN9l
+	tqqLTP4kcFnCL0mlCz9/rHOxb/R6RjfszNF9lySe8HWBLHFfkd9RXtDhQsleVuA7763tbHMnQGs
+	fMxtPelU8e7aWupW0jb6zAZ2iadCSAPKx40HJ/gwMFZfdR31142nvMG3OOcYBUMFD
+X-Gm-Gg: AY/fxX4OZgXnhMXfmmNi8sC9gjDWnN8+CpcFySy/nmpwjxw16UKX9PCAJEge7t4MEtv
+	FyiQSmsyzv8f+pnO/sbJJ5qDDarvUABu5MY0DbTOBlYH9ee15+gashk685rcxf8lAAwfA1vPEqe
+	ONaDz2aiVawqTHo6gPdIyC4/ti01Sbits3eH9jkzbtxwBn3XIQI22MYGb2pF6Sf6zNO1wqmER+b
+	lt4mO7G1OZz47z0bcawS/kD8BN+picLeLMjOiTunb4de8W5jFlVlFluTGMZEUBDu46dsYXV5U3N
+	QhWWLVdsTOoVUKX2sB2rqxB3WJJ85l/Vp/OjOt3AgHMCx4cC1sRuMJGqbapr0EvFmOtvuHgnBi1
+	5TA0a7ByyI+vkEIDRCNIgsBrO3KBb8NONU7dKSjtddSRpZhsxaMtTXoUADoWi
+X-Received: by 2002:a05:7301:6589:b0:2b0:3d03:37d4 with SMTP id 5a478bee46e88-2b486b7592bmr6935089eec.3.1768459385148;
+        Wed, 14 Jan 2026 22:43:05 -0800 (PST)
+X-Received: by 2002:a05:7301:6589:b0:2b0:3d03:37d4 with SMTP id 5a478bee46e88-2b486b7592bmr6935051eec.3.1768459384593;
+        Wed, 14 Jan 2026 22:43:04 -0800 (PST)
+Received: from hu-jingyw-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b1775fe27dsm18986471eec.29.2026.01.14.22.43.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jan 2026 22:43:04 -0800 (PST)
+From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Subject: [PATCH v4 0/2] Add ADSP and CDSP support for Kaanapali SoC
+Date: Wed, 14 Jan 2026 22:42:54 -0800
+Message-Id: <20260114-knp-remoteproc-v4-0-fcf0b04d01af@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowAAn0GtWjGhpw5fDBA--.30809S6
-X-Coremail-Antispam: 1UD129KBjvJXoW7tF1xZr1fCrykZF47JFy5Jwb_yoW8tw4xp3
-	srCFZ8G3sagr4S93Wak34vgF1fGF4kGFyfWrn8AryUGr4UZas09w1fJ34fXFyUXw47J3y2
-	9F9YqryxKF4jyw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmv14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-	4UJwA2z4x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_
-	Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6x
-	IIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_
-	Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8c
-	xan2IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCj
-	c4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4
-	CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4U
-	MIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_Cr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-	WUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUv
-	cSsGvfC2KfnxnUUI43ZEXa7sRRjg43UUUUU==
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG6MaGkC/22OywrCMBBFf0WyNiUPUxpX/oe4mKRTG7RNTWpQS
+ v/dtC4E6Wbgwr3nzEQiBoeRHHcTCZhcdL7P4bDfEdtCf0Xq6pyJYEJxISS99QMN2PkRh+AtbUo
+ DkhkAVtYkj4aAjXutwPMlZwMRqQnQ23bBcMH1UmtdHH14r9rEl/LXwIT+NyRBGS1txbWWRgmEk
+ 4+xeDzhbn3XFfmQRZTkj7LxZ5KZogzTVaWsUqA2KPM8fwDDlJwMEAEAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-3d134
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768459382; l=2092;
+ i=jingyi.wang@oss.qualcomm.com; s=20250911; h=from:subject:message-id;
+ bh=+aFW6EH9TJ0AOZQTB+GWz9NqX5sXiGDNwhsnV/Xf3jk=;
+ b=rfZlxL+eGHQOPkyW984bYJlowSGdXedygxgCnbFIxoXxjQfH+MuD/fHxey50XhXASw3OW4dpc
+ 7lGvovuJhgyBs149Vhgt5ANe1tnZcsXlqkYvUfjoJlrKW5VE9/MiScK
+X-Developer-Key: i=jingyi.wang@oss.qualcomm.com; a=ed25519;
+ pk=PSoHZ6KbUss3IW8FPRVMHMK0Jkkr/jV347mBYJO3iLo=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE1MDA0MiBTYWx0ZWRfX0F2ApC4GSyHh
+ UtAG0ikmB3BnV3tJDCFicw1wZvrb4oqart4cmwLHBTtaDYl25Y+RYAxQ0pAUJzdTfYeunEYLz0F
+ R5KjPtz7OvDwIfhQJoCqBiH4P+eMo7Xf3HHdMg7sME0FehZYnfsGDjVK5LwhnvrBt8y/bozxvyQ
+ 2v3tsEQppq6pPmCyXXQQNPg35abtEQTiRu+Qhl8wn1sMy4YD/vTWSezPEPpGLLzAsFpkn2meAFE
+ Iig+3e0oI2JiCqOmmZ0jKd/cIKW6Vn4YtFI8ZiSOCe2R40COCyMiPqxUcoSoO72nqC6ULc4fLiq
+ RPC+yGuUJVdQ+aNdiirkzAZMTdjKA/Ee4/UATCw24R965B4XzgRwxyDXzIy2nRWasfKTW/3Bbgt
+ BUDhxatDZ84fHvOkp78Zv4CXSQhQ1wtUYxWZnNtJvtZ9ag9E+L9Mzlt952SP3srNyAaZsg5YTrn
+ naRsDKWpT1qn4VOXQCQ==
+X-Proofpoint-ORIG-GUID: j4tStThzg8eqx6THrnT0CKotcQIJmV-M
+X-Authority-Analysis: v=2.4 cv=W6Y1lBWk c=1 sm=1 tr=0 ts=69688c7a cx=c_pps
+ a=Uww141gWH0fZj/3QKPojxA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=wiK5Jlmr689xq3VXDD8A:9 a=QEXdDO2ut3YA:10 a=PxkB5W3o20Ba91AHUih5:22
+X-Proofpoint-GUID: j4tStThzg8eqx6THrnT0CKotcQIJmV-M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-15_02,2026-01-14_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ lowpriorityscore=0 spamscore=0 impostorscore=0 malwarescore=0 clxscore=1015
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2601150042
 
-Add top syscon and USB PHY subdevice nodes, USB0/USB1 dwc2 controller
-to K230 DTSI, and enable UART0 and USB0/USB1 in DshanPI DT.
+Add initial support for remoteprocs including ADSP and CDSP on Qualcomm
+Kaanapali platform which are compatible with ealier Platforms with minor
+difference.
 
-Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 ---
- .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 17 +++++++++
- arch/riscv/boot/dts/canaan/k230.dtsi          | 35 +++++++++++++++++++
- 2 files changed, 52 insertions(+)
+Changes in v4:
+- separate adsp/cdsp and soccp, pick adsp/cdsp in this series to unblock other feature
+- fix node order
+- add reviewed-by tag
+- Link to v3: https://lore.kernel.org/r/20251223-knp-remoteproc-v3-0-5b09885c55a5@oss.qualcomm.com
 
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-index 4f95b534ee87..55197cfc25b4 100644
---- a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-@@ -80,3 +80,20 @@ &uart0 {
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&usb0 {
-+	vusb_d-supply = <&vdd_3v3>;
-+	vusb_a-supply = <&vdd_1v8>;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	vusb_d-supply = <&vdd_3v3>;
-+	vusb_a-supply = <&vdd_1v8>;
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index b815a65e02b9..6dcb086f7046 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -148,5 +148,40 @@ uart4: serial@91404000 {
- 			reg-shift = <2>;
- 			status = "disabled";
- 		};
-+
-+		usb0: usb@91500000 {
-+			compatible = "canaan,k230-usb", "snps,dwc2";
-+			reg = <0x0 0x91500000 0x0 0x40000>;
-+			interrupts = <173 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysclk K230_HS_USB0_AHB_GATE>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+			phys = <&usbphy 0>;
-+			phy-names = "usb2-phy";
-+			status = "disabled";
-+		};
-+
-+		usb1: usb@91540000 {
-+			compatible = "canaan,k230-usb", "snps,dwc2";
-+			reg = <0x0 0x91540000 0x0 0x40000>;
-+			interrupts = <174 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysclk K230_HS_USB1_AHB_GATE>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+			phys = <&usbphy 1>;
-+			phy-names = "usb2-phy";
-+			status = "disabled";
-+		};
-+
-+		usbphy: usb-phy@91585000 {
-+			compatible = "canaan,k230-usb-phy";
-+			reg = <0x0 0x91585000 0x0 0x400>;
-+			#phy-cells = <1>;
-+			status = "disabled";
-+		};
- 	};
- };
+Changes in v3:
+- Drop Glymur ADSP/CDSP binding 
+- Extend the "interrupts" and "interrupt-names" properties in the pas-common
+- add missing IPCC_MPROC_SOCCP definition
+- fix complie err caused by qcom_q6v5_wcss.c
+- code clean up for late attach feature
+- call rproc_report_crash() instead of set RPROC_CRASHED state
+- fix q6v5.running and q6v5.handover_issued state handling
+- if wait_for_completion_timeout return 0, set RPROC_OFFLINE for PAS loader
+- Only ping the subsystem if ready_state is set
+- Link to v2: https://lore.kernel.org/r/20251029-knp-remoteproc-v2-0-6c81993b52ea@oss.qualcomm.com
+
+Changes in v2:
+- Drop MPSS change
+- pick Glymur changes from https://lore.kernel.org/linux-arm-msm/20250924183726.509202-1-sibi.sankar@oss.qualcomm.com
+- Drop redundant adsp bindings - Dmitry
+- Clarify Kaanapali CDSP compatible in commit msg - Krzysztof
+- include pas-common.yaml in soccp yaml and extend the common part - Krzysztof
+- Clear early_boot flag in the adsp stop callback - Dmitry
+- Use .mbn in soccp driver node - Konrad
+- Link to v1: https://lore.kernel.org/r/20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com
+
+---
+Jingyi Wang (2):
+      dt-bindings: remoteproc: qcom,sm8550-pas: Add Kaanapali ADSP
+      dt-bindings: remoteproc: qcom,sm8550-pas: Add Kaanapali CDSP
+
+ .../devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml        | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+---
+base-commit: cc3aa43b44bdb43dfbac0fcb51c56594a11338a8
+change-id: 20251223-knp-remoteproc-f6ba30baa06d
+
+Best regards,
 -- 
-2.52.0
+Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 
 
