@@ -1,224 +1,186 @@
-Return-Path: <devicetree+bounces-255544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EECF0D2405C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:52:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63826D24081
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 11:56:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 740B1307E99A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:51:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70DDA301B824
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 10:55:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB1536D4F8;
-	Thu, 15 Jan 2026 10:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0847F36AB68;
+	Thu, 15 Jan 2026 10:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O7oQnYUM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8842336CE06
-	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 10:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FA8362130
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 10:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768474296; cv=none; b=nIQTomUzCKGkZWAwJ9w6Bn9elfG3TwrDW/FIWDaGBurBeCJQc55wkpqdoE2XtrmuYu0tY7wQM+ae6uGv/jrctF1idIwLyUJ8Z3mV7yzVvq5MHywNqCrFVo+e6EzF8RnpyfqJVNIFFJNE4+HkpgKKuXV11x4QSgI/t8V05QtmWxE=
+	t=1768474525; cv=none; b=tiqYL74zVx3xa5fVR8z9I1jD9JqyVToctYtCgBHNUFLqwiRt0DqoYqQ/GLCgusNssv96aRtSRVZWPzCWuFsc/6vaMdenTET9OC40/QbBQ6YQw7M8ob0IWevPpMc6tSzstaVAwbPHjvUEeHnVSDEI9E/zt+SA5bLguqgJkphMPvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768474296; c=relaxed/simple;
-	bh=P1FD/wr7+afVlqV25iSV2nfWgm/XY0tGUT3/RQg7DuU=;
+	s=arc-20240116; t=1768474525; c=relaxed/simple;
+	bh=TiYyby4EphfsmZeh1KnhoPjaXGTK9Ii1c5MLQ3mIk3g=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qby2X7Qvad0UgTer0d+3QBcEzHJP0jZsz0EeDskmtsfOTzZXKG8vJDg+KUKR6dunK3kxmZykIIiBNvbs1JydLZgCEuj8dWt/7bntBw1Sbg2h6iIauQnOoizo7ph+DUp63ntDImItRUhFAcKFyQguvfELhVL6PDwFOWBYM6VGGLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56378a18ba4so266980e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 02:51:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768474294; x=1769079094;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ki7PmTjePRuEfFjGffE5fBihup/8aCNWyf/0N1CI9Sw=;
-        b=BZ+bLSqmvz65dD1qV5wlyF4OBlglWnzH14pIJIfgyBNpdGBI1xAkzdo7pKoiPqxnd5
-         72xUwCl8zDVG3A3XLRbDv+GmXijO/hW0mbH2zZqdtzENU/FMU1oY4Htgiy0KMm4fnpAs
-         vc+vbExTXVmxYstMZVms3t1JZQCviFdZ5MO9pd10b12eKbxX9Zw3vD//Ow5O+E6s0TvE
-         EO9L8B9p8NGjzLTvLQUaYj0mvq7l2a21BCl8wKBLVA9wlqjjMbIO5x6UB86t/p4d+RP3
-         fWzL64LhrHOSHif0yx8LCBrePZABuPDy4Mzfosl9rKBsWKoKKwXC51zTZdJU7sXATbTf
-         csdg==
-X-Forwarded-Encrypted: i=1; AJvYcCVQOV/xUhsbr7OTfD2axLTVQ9rd/VSwzD3e2r4yKBxnUhzgdFev17bUg2Xx/LOcqVIa/pld2au9MKXt@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIj68npQYDHI5IoYjuJkUEcGkzrKny/rd+m0bgsPPr3zot09cv
-	x24QovJxgfXZYABw3mtPo5uC6jAqb+zR4ysV8gJkdwBjN5CVmj0n7Wa2UYE2aCVeOx8=
-X-Gm-Gg: AY/fxX6zRGfIlXaliC2Dy/y8kj0k0JD1QYwa0t9UUKMYxi30Jis1aQ91dIIgUbbn22l
-	mnBdLd+0fGBEP206E0sfuOMMbmU2RwOy+Y/khbgE8rVcr0+/He3FX72QwiHNM4HsTCuBag2pi1g
-	nspRm9Bn7ErmeSKIvEENSHH6SWlXgGl2dqHoAS9fcjVNb1eS8DH43gWe4mOEDeYpdHbSfjRxLT2
-	10MPurz1T7n7XshtpOKuaLdUhY9fdjMPzWDeCBD1czsOUwMgTiu0QRdjHkFmN2vxQebm3TFLz26
-	DfUpZWyJO6iRpZZbmycIHkAiNtsSQBmp4nBsh/uc208yV3I53iVga1ctnefAzjl80yLGZHueZVc
-	0ZR8EnyWEPU0MF6gxmWClnEprnq3G8ZWSIuy/rRWxjJJsXrgw0XrwD9Dui/zart3UZK2qO7ettv
-	btGKp3NhqQ99FTLe7sG3ZkeXAExtFEq0Zm/ENXBgPLdCbXTkwcDNYi
-X-Received: by 2002:a05:6122:4591:b0:559:3b8a:70ce with SMTP id 71dfb90a1353d-563a0940f8bmr2143806e0c.7.1768474294336;
-        Thu, 15 Jan 2026 02:51:34 -0800 (PST)
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5635bd72c7esm20502253e0c.12.2026.01.15.02.51.32
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jan 2026 02:51:33 -0800 (PST)
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-563641b24b9so264904e0c.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 02:51:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWvLz3s2hckfZdEkYFL/SKkOdfRas+a3/TdSuKOa+VmoeoflCzL9qg0ioOIaPZuTTQe2Jubin94Ghar@vger.kernel.org
-X-Received: by 2002:a05:6102:6887:b0:5db:e851:9389 with SMTP id
- ada2fe7eead31-5f17f3f875bmr2192851137.3.1768474292003; Thu, 15 Jan 2026
- 02:51:32 -0800 (PST)
+	 To:Cc:Content-Type; b=HjyMgxf70raj3E7sL4hY3pAZEDTnzmk2nTgOPDWYfBldgtDz3zWpdtsn12X7BsK3jn0OoW1EGI7weF8ck3iDu3/hATjTLNyEFZg9nSjudvcQ4a7YSVEQcGUvS1ptTQdXJeArTCichIhlOdwiq9RlrDISP7LPaeBHRXTHjF7yCrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O7oQnYUM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B966C16AAE
+	for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 10:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768474525;
+	bh=TiYyby4EphfsmZeh1KnhoPjaXGTK9Ii1c5MLQ3mIk3g=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=O7oQnYUMdmaWGdS7b+YqPyPKkvCBIQirYzYG3knmxHWTW7J5wQOV9nUTyOJFbzaBg
+	 Ehfitsd7n3mlkFEky90GPC/eYT9uCgH7dqzIe/V97NQD0hpuP7arqq2AbQqx6NBr4v
+	 4w3gypoaLSPsmj4AQ3sQzt1fIZA+IDe64jiuF7m78MF2ksAbVpelS93aeNlYJipSMQ
+	 sWI3fCOu1Pa6EBDiQReCTveB2rSCsznnkW/4A0hFm6NkP5CaNGmGkVtxP+/4szU9tL
+	 LmoaH+6R0WOHLWQxf9i1GIekUWpM1Sa2Qzw83o7haO3GAAxuH3PWuBc0ddLbgvbzk/
+	 PbPoW1old0XwA==
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b876b691fbcso157517966b.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 02:55:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWXwQnoKX3j0kHJMKXf53oKjlRspeemnMZdC9xnZVmvJaT2MoafVTvDjtIqT2I0jKPCmG2mYIuP+gFO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJWW4AVbge/eey+D0L29wdWCY/MywvPz5QMrI8miBa6bTqMjur
+	MGktswkwaJtwqobmhNlC7e9cVo9A7/a7wu03hiUR+7xMt8n7D6DFjAhPsyuP+D3CABDc1BnjKGw
+	eMvzu7VTnkkgXFlznuRQR1tFdwYUJTh0=
+X-Received: by 2002:a17:906:6a02:b0:b87:117f:b6f1 with SMTP id
+ a640c23a62f3a-b8760fdc234mr481904466b.2.1768474524197; Thu, 15 Jan 2026
+ 02:55:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
- <fcfc4fc5123c2351d96ac102aa5081bd99c8a40e.1764165783.git.tommaso.merciai.xr@bp.renesas.com>
- <20251203-shrew-of-original-tempering-8a8cfc@quoll> <aTA-Hj6DvjN4zeK6@tom-desktop>
- <CAMuHMdW=UkZxhf-pbtp6OBFd_3jPcjUaKFmH4piuc+P=kgxzGA@mail.gmail.com>
- <TY3PR01MB11346DF85F8F7EA9ADDED16EB868CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdUhke83ZVXxDQE_Dt1HRwyGeoMq1pYmEP47WOgR_vYNtA@mail.gmail.com>
- <TY3PR01MB113463EE3F22A0E0E6C97DC40868CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdVP4M6mS6itgN13QG_w7rxUo6wUbA2cbWU38=vPA0XLhw@mail.gmail.com> <TY3PR01MB11346DB362955A62D2A2E828A868CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346DB362955A62D2A2E828A868CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 15 Jan 2026 11:51:20 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXmzxO1A-7OBdcEmkOY3XNZ9hh=13wfcOrh+A8+Au0kGw@mail.gmail.com>
-X-Gm-Features: AZwV_QhxPxYEyoRCedfJ4RqRUDbD--3dA-NRn1itW-sJznM5g4jpJVdKBvOoCkI
-Message-ID: <CAMuHMdXmzxO1A-7OBdcEmkOY3XNZ9hh=13wfcOrh+A8+Au0kGw@mail.gmail.com>
-Subject: Re: [PATCH 10/22] dt-bindings: display: renesas,rzg2l-du: Add support
- for RZ/G3E SoC
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "laurent.pinchart" <laurent.pinchart@ideasonboard.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Tommaso Merciai <tomm.merciai@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+References: <cover.1767505859.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1767505859.git.zhoubinbin@loongson.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Thu, 15 Jan 2026 18:55:16 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H5_H6+nuX90WH5BBOvNayHQU-dC_SLFb9mvBGjrVqZLFA@mail.gmail.com>
+X-Gm-Features: AZwV_Qjdf3FqF97HaSGbh0maD6L0HHk4mZdMA3W0D0iK6bM6DbCMn8VEH39RDGM
+Message-ID: <CAAhV-H5_H6+nuX90WH5BBOvNayHQU-dC_SLFb9mvBGjrVqZLFA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] LoongArch: DTS: Fix dtbs_check warnings
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Yao Zi <me@ziyao.cc>, Binbin Zhou <zhoubb.aaron@gmail.com>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	"magnus.damm" <magnus.damm@gmail.com>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Biju,
+Applied the last 5 patches, thanks.
 
-On Thu, 15 Jan 2026 at 11:34, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > On Thu, 15 Jan 2026 at 11:10, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Thu, 15 Jan 2026
-> > > > at 08:48, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Wed, 3 Dec
-> > > > > > 2025 at 14:42, Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com> wrote:
-> > > > > > > On Wed, Dec 03, 2025 at 09:23:53AM +0100, Krzysztof Kozlowski wrote:
-> > > > > > > > On Wed, Nov 26, 2025 at 03:07:22PM +0100, Tommaso Merciai wrote:
-> > > > > > > > > The RZ/G3E Soc has 2 LCD controller (LCDC), contain a
-> > > > > > > > > Frame Compression Processor (FCPVD), a Video Signal
-> > > > > > > > > Processor (VSPD), Video Signal Processor (VSPD), and Display Unit (DU).
-> > > > > > > > >
-> > > > > > > > >  - LCDC0 supports DSI and LVDS (single or dual-channel) outputs.
-> > > > > > > > >  - LCDC1 supports DSI, LVDS (single-channel), and RGB outputs.
-> > > > > > > > >
-> > > > > > > > > Add then two new SoC-specific compatible strings 'renesas,r9a09g047-du0'
-> > > > > > > > > and 'renesas,r9a09g047-du1'.
-> > > > > > > >
-> > > > > > > > LCDC0/1 but compatibles du0/du1...
-> > > > > > > >
-> > > > > > > > What are the differences between DU0 and DU1? Just different
-> > > > > > > > outputs? Is the programming model the same?
-> > > > > > >
-> > > > > > > The hardware configurations are different: these are two distinct hardware blocks.
-> > > > > > >
-> > > > > > > Based on the block diagrams shown in Figures 9.4-2 (LCDC1) and
-> > > > > > > 9.4-1 (LCDC0), the only difference concerns the output, but
-> > > > > > > this variation is internal to the hardware blocks themselves.
-> > > > > > > Therefore, LCDC0 and LCDC1 are not identical blocks, and their
-> > > > > > > programming models differ as a result.
-> > > > > > >
-> > > > > > > In summary, although most of the internal functions are the
-> > > > > > > same, the two blocks have output signals connected to different components within the SoC.
-> > > > > > > This requires different hardware configurations and inevitably
-> > > > > > > leads to different programming models for LCDC0 and LCDC1.
-> > > > > >
-> > > > > > Isn't that merely an SoC integration issue?
-> > > > > > Are there any differences in programming LCDC0 or LCDC1 for the
-> > > > > > common output types supported by both (single channel LVDS and 4-lane MIPI-DSI)?
-> > > > >
-> > > > > Dual LVDS case, dot clock from LCDC0 is used in both LCDC's.
-> > > >
-> > > > For the single dual-channel LVDS output on LCDC0, or for using two
-> > > > independent LVDS outputs on both instances? How is this handled?
-> > >
-> > > Dual-channel LVDS output on LCDC0, we use the data from LCDC0.
-> >
-> > That's the "dual-link" case below? But that case doesn't use LCDC1 at all, so how can "dot clock from
-> > LCDC0 is used in both LCDC's" be true?
+Huacai
+
+On Sun, Jan 4, 2026 at 2:41=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn>=
+ wrote:
 >
-> That is a typo. Sorry for that.
-
-Np.
-
-> > What am I missing?
+> Hi all:
 >
-> Dual-link case, LVDS_TOP_CLK_CH0, LVDS_TOP_CLK_DOT_CH0 used to drive both the LVDS channels.
-> In this case, the clks LVDS_TOP_CLK_CH1, LVDS_TOP_CLK_DOT_CH1 are not used.
-
-These are clock inputs to the LVDS module, hence do not matter for
-programming the LCDC?
-
-> > > We have the following use cases:
-> > >
-> > > Single-link(ch0 only):
-> > >   This mode outputs the image data of LCDC0 to LVDS (ch0). In this mode,
-> > >   LVDS (ch1) is not used.
-> > >
-> > > Single-link(ch1 only):
-> > >   This mode outputs the image data of LCDC1 to LVDS (ch1).
-> > >   In this mode, LVDS (ch0) is not used.
-> > >
-> > > Single-link(2ch):
-> > >   In this mode, the image data of LCDC0 is output to LVDS (ch0) and the
-> > >   image data of LCDC1 is output to LVDS (ch1).
-> > >   Since LVDS (ch0) and LVDS (ch1) are not synchronously related, they
-> > >   can be output in different image formats and can be operated asynchronously.
-> > >
-> > > Single-link(Multi)
-> > >   In this mode, the image data of LCDC0 is output to both LVDS (ch0) and
-> > >   LVDS (ch1). LVDS (ch0) and LVDS (ch1) operate synchronously.
-> > >
-> > > Dual-link:
-> > >   In this mode, the input image data from LCDC0 is separated into Even pixels and
-> > >   Odd pixels, and the output is distributed to LVDS ch0 and ch1.
-> > >
-> > >
-> > > > Don't you need a companion property to link them together?
-> > >
-> > > Yes, We use companion property for Dual channel LVDS(Dual-Link) use case.
-> > > >
-> > > > Is this similar to dual-channel LVDS on R-Car E3 and RZ/G2E?
-> > >
-> > > Yes.
-> >
-> > OK, "companion" is in the renesas,lvds bindings, which are not yet updated for RZ/G3E? Do you need it
-> > in "renesas,rzg2l-du", too?
+> As Krzysztof pointed out in the OSS talk, LoongArch only has three DTS,
+> but has a bunch of warnings. The patchset attempts to fix them.
 >
-> Not required. Without that it works like RZ/G2E.
-
-Hence the two LCDC instances are identical and independent, thus can
-use the same compatible value?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> Patch-1 and patch-5 are taken from Yao[1],thanks a lot!
+>
+> [1]: https://lore.kernel.org/all/20251209140006.54821-1-me@ziyao.cc/
+>
+> Test environment and results:
+>
+> Package                   Version
+> ------------------------- -----------
+> attrs                     25.4.0
+> dtschema                  2025.12
+> jsonschema                4.25.1
+> jsonschema-specifications 2025.9.1
+> pip                       25.3
+> pylibfdt                  1.7.2.post1
+> referencing               0.37.0
+> rfc3987                   1.3.8
+> rpds-py                   0.30.0
+> ruamel.yaml               0.18.16
+> ruamel.yaml.clib          0.2.15
+> typing_extensions         4.15.0
+>
+> ---------
+> make dtbs_check W=3D1
+>
+>   SYNC    include/config/auto.conf
+>   UPD     include/config/kernel.release
+>   DTC [C] arch/loongarch/boot/dts/loongson-2k0500-ref.dtb
+>   DTC [C] arch/loongarch/boot/dts/loongson-2k1000-ref.dtb
+>   DTC [C] arch/loongarch/boot/dts/loongson-2k2000-ref.dtb
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D
+> V3:
+> patch (2/9)(3/9):
+>  - New patches, document `#address-cells` property;
+>
+> patch (4/9):
+>  - Rewrite commit title and message;
+>  - Remove unneeded changes, leaving only the `#address-cells`
+>    value set.
+>
+> patch (6/9):
+>  - Set `#address-cells =3D <0>` to liointc node;
+>
+> patch (8/9):
+>  - Set `#address-cells =3D <0>` to liointc and eiointc node;
+>
+> Link to V2:
+> https://lore.kernel.org/all/cover.1766037997.git.zhoubinbin@loongson.cn/
+>
+>
+> V2:
+> patch(1/7)(3/7):
+>  - Add myself s-o-b;
+>
+> patch(2/7):
+>  - Define the value of #address-cells to 0;
+>
+> patch(5/7):
+>  - Set `#address-cells =3D <0>` to liointc0 node;
+>
+> patch(7/7):
+>  - Fix commit msg about `i2c@address`;
+>  - Add Reviewed-by tag form Krzysztof, thanks.
+>
+> Link to V1:
+> https://lore.kernel.org/all/cover.1765778124.git.zhoubinbin@loongson.cn/
+>
+> Binbin Zhou (7):
+>   dt-bindings: interrupt-controller: loongson,eiointc: Document
+>     address-cells
+>   dt-bindings: interrupt-controller: loongson,liointc: Document
+>     address-cells
+>   dt-bindings: interrupt-controller: loongson,pch-pic: Document
+>     address-cells
+>   LoongArch: dts: loongson-2k0500: Add default interrupt controller
+>     address cells
+>   LoongArch: dts: loongson-2k1000: Add default Local I/O interrupt
+>     controller address cells
+>   LoongArch: dts: loongson-2k2000: Add default interrupt controller
+>     address cells
+>   LoongArch: dts: loongson-2k1000: Fix i2c-gpio node names
+>
+> Yao Zi (2):
+>   dt-bindings: PCI: loongson: Document msi-parent property
+>   LoongArch: dts: Describe PCI sideband IRQ through interrupt-extended
+>
+>  .../loongson,eiointc.yaml                     |  3 ++
+>  .../loongson,liointc.yaml                     |  3 ++
+>  .../loongson,pch-pic.yaml                     |  3 ++
+>  .../devicetree/bindings/pci/loongson.yaml     |  2 ++
+>  arch/loongarch/boot/dts/loongson-2k0500.dtsi  |  3 ++
+>  arch/loongarch/boot/dts/loongson-2k1000.dtsi  | 31 +++++++---------
+>  arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 35 ++++++++-----------
+>  7 files changed, 42 insertions(+), 38 deletions(-)
+>
+>
+> base-commit: e8a259e82c7c3ee53e933bb238366ec2ba0bc892
+> --
+> 2.47.3
+>
+>
 
