@@ -1,60 +1,52 @@
-Return-Path: <devicetree+bounces-255776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D8DD2859D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 21:15:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7485D2860E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 21:21:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3E89C30E37E5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:13:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B42D3300A36F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jan 2026 20:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE96322A29;
-	Thu, 15 Jan 2026 20:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F222A31ED83;
+	Thu, 15 Jan 2026 20:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LGqqIZDj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jvsGHI66"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8905322C7F;
-	Thu, 15 Jan 2026 20:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED7FEACD;
+	Thu, 15 Jan 2026 20:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768508006; cv=none; b=OTk+lFzXBxb7VmFEk1ttIrvXi3hUfYv8exoObs37pgZX9Gfw3p1pSbcgx4qLfc0e7hitbSH8o0yODhoi/Oi3uxIYRzYUL+6d6bT1Y3g5zJMSgLy5DTiqjv4NCzn/nyCYxyhDXddCCpNn41YRCa4DJCeDfqD6fZEkq4cSNHOxlhE=
+	t=1768508475; cv=none; b=UH5klqxOnZb97nGkGJh0by9aYvTWzlW8q8tygLHIovDUWrP+N6amCfWvKjMxLiVrezqMHPRmhf1CtUVJNenLhq888xQx9qHjB+i50P1xpiNdVAEyLN+uWM91Z/hzmNochoCO/e12zbGr+0KeyBGUykQPLZcLeIrjqyo8mRy9oNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768508006; c=relaxed/simple;
-	bh=jr1ilPMwkKVPl5pCqJ+dK2J5Y6Fat4nqVFc+IPPKXho=;
+	s=arc-20240116; t=1768508475; c=relaxed/simple;
+	bh=61MhA5iuhycBMiXYKJv8f3EeRlGr8JVFRfa9NW9FdnU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jt9Z1Ub+zsHq6VJMMydatCdiYGKogWM/A7JxoiSJHoArbzZkGuMpox9oARjeb7yfiHi+9xMYfkH5afMxK/o1d1aoHyABDFyBfX4FrDa0mdCU87sLg+Q5B37ZUnB20q6zxPqvUGyp7eEZMQIGkkxe+af/OhVAR5r5zp3rgS83OPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LGqqIZDj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69F62C116D0;
-	Thu, 15 Jan 2026 20:13:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=d6zR/OmoIvG+ovfCvaF6eX5dxxT0H9QXiJhIRkhoj7/v6jtclfu4N+qenQ5NEuauQNSm5Um1yFY/l3srMZFvajbvB2HqphiZv6Ty+rfBRuxciSOcYjNUpcnyNFavm+obzDR8zACTBiFWEAXqmGW/zfJtiFFEDymL/ECYtcF4jaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jvsGHI66; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02CA4C116D0;
+	Thu, 15 Jan 2026 20:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768508002;
-	bh=jr1ilPMwkKVPl5pCqJ+dK2J5Y6Fat4nqVFc+IPPKXho=;
+	s=k20201202; t=1768508475;
+	bh=61MhA5iuhycBMiXYKJv8f3EeRlGr8JVFRfa9NW9FdnU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LGqqIZDjoVPQtR/3wDlYFN+igzv6lrRttYgjEEaG7qVZ8lxeL5t3uvciHYzrgPMkZ
-	 /HsZyMZo5eDNW4ELBFcrY5S65A9WVUF9rt8+r1QblQnGG1bqLv5jtjClmTO8FTbEPa
-	 1KnivTllcA3pe2nLuFAem5cDhaoK/uh8bgNEUIAdsQy6r9y2fBYGVfVMel8s2Q3Lxq
-	 fKOPkVHcvikDMRP9F/02LE0pYiH46/4S2hWARlkdGuuOCbGHmF98wqzeZ2/7V2ztm8
-	 Wvz17wU+k8B2X2MN9rAU1AHN/ZRpCmWWY2pODee6inJcVRtciIVf7KZ+yTDjLwmioW
-	 6CSSre2cpKSkg==
-Date: Thu, 15 Jan 2026 14:13:21 -0600
-From: Rob Herring <robh@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: cpus: Deprecate Qualcomm generic
- compatibles
-Message-ID: <20260115201321.GA1101678-robh@kernel.org>
-References: <20260115083503.43796-2-krzysztof.kozlowski@oss.qualcomm.com>
- <59ae6b16-7866-413a-a1d2-4a735024c108@oss.qualcomm.com>
+	b=jvsGHI6600UsS+AEKxzRYHN7iKZKshgpEse071SQuWmNx9H0417gg+nuSSCl6DX9m
+	 ThBBEPoBXReUMNt5+E/0MNx8+oje5wr4dX4vVNLXhC44+y+fcwLb6SZxpYLD55XiaU
+	 py9Hy1KuJBvjj5UPzVLhMuLp0RD+pM8iGPm42rnorc1qE63EgwKYWtyvJFqZDj+nJ5
+	 N5H9XloJQez5uwAUy1dKNx5kVPegd7ZAT+d76wcePkvAL5YXcvhQ2APPdYPJ5qaaNR
+	 iI9RQqBtjyUm6A3OKjUyUFPYZWg82ZrKzFOZ1jz673/sE4y/zFDgQJ2CF4/N7PtRq2
+	 HKxzib6SxOvqg==
+Date: Thu, 15 Jan 2026 14:21:14 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Saravana Kannan <saravanak@kernel.org>
+Subject: Re: [PATCH] of: guard pointers to key OF nodes with an #ifdef
+Message-ID: <176850847300.1117426.16555405652845405929.robh@kernel.org>
+References: <20260115091839.8206-1-bartosz.golaszewski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,51 +55,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <59ae6b16-7866-413a-a1d2-4a735024c108@oss.qualcomm.com>
+In-Reply-To: <20260115091839.8206-1-bartosz.golaszewski@oss.qualcomm.com>
 
-On Thu, Jan 15, 2026 at 11:19:47AM +0100, Konrad Dybcio wrote:
-> On 1/15/26 9:35 AM, Krzysztof Kozlowski wrote:
-> > Move four compatibles for Qualcomm Krait, Kryo, Oryon and Scorpion
-> > custom CPU cores out of the enum into separate one with deprecated: true
-> > annotation, because these are too generic names.
-> > 
-> > These are names of the families and there are significant differences
-> > within individual processors, e.g. Kryo6xx can based on architectures
-> > from Cortex-X2, A710, A510 to A78 and probably more.
-> > 
-> > Just like other vendor processors are differentiated, also Qualcomm CPUs
-> > should come with specific compatibles.
-> > 
-> > Cc: Bjorn Andersson <andersson@kernel.org>
-> > Cc: Konrad Dybcio <konradybcio@kernel.org>
-> > Cc: linux-arm-msm@vger.kernel.org
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> > ---
-> 
-> [...]
-> 
-> > -      - arm,armv8 # Only for s/w models
-> 
-> I'm still bitter about this one existing
-> 
-> $ rg '"arm,armv8"' arch -l | sort
-> 
-> arch/arm64/boot/dts/arm/foundation-v8.dtsi
-> 
-> This makes some sense (see [1])
-> 
-> arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
-> 
-> These seem to be spawned with a specific virtualized Cortex type
 
-No, these are "generic" cores where arch features can be turned on/off 
-and configured.
-
+On Thu, 15 Jan 2026 10:18:39 +0100, Bartosz Golaszewski wrote:
+> We declare the pointers to some key OF-nodes unconditionally in
+> linux/of.h but only export them with CONFIG_OF=y. If anyone uses them in
+> code built without devicetree support enabled, the problem will only come
+> to light at link-time. Add an #ifdef guard to catch it at compile-time.
 > 
-> arch/arm64/boot/dts/nvidia/tegra264.dtsi
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> ---
+>  include/linux/of.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-It's hard to keep new ones from sneaking in...
+Applied, thanks!
 
-Rob
 
