@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-255914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFA71D2E154
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:34:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B03DD2E15E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2EA84302559D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 08:34:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 03A0E3002534
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 08:34:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554853043CE;
-	Fri, 16 Jan 2026 08:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A83238D22;
+	Fri, 16 Jan 2026 08:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ek7hQtLW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDl0TbRQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A353019D9;
-	Fri, 16 Jan 2026 08:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7592248AF;
+	Fri, 16 Jan 2026 08:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768552467; cv=none; b=LkIuJl1Mmbb37nOUbucBd/ICTPxX5r5C2CwyUf7Jkk8NTaeIAAT9+hWlckFqHDD8SskMuaub6Xq9omu7EXZY+zLdeexxa7anG2F4QJfaVXO9cMCo0cwYGk1gWQc6nmMlZVrvB5LMh0WiUIflGTsNowUrbJZO/MuY0/cAUy2bEVo=
+	t=1768552484; cv=none; b=LA7nF0swDeMPqu69yRw7aGyAsAHVVx5ISOthUSXG107YbRBWVNTEQKNF4dplPq8FG/e84iqDuFOlAxlLA8rCEyxaX+ZcUDTukBN1cj7GTmiwRtD9Twbszv81qetYBdCUbyL4G1ulZt4+ZayhXkcGAQniCmmgGKt/A2y5RC5gZEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768552467; c=relaxed/simple;
-	bh=a9tjrZw2TcFjoDfFV+ERPOr3LmyNFX/P9bnXZTro2bI=;
+	s=arc-20240116; t=1768552484; c=relaxed/simple;
+	bh=YHjImKjyPNOt60v1k6jeqT8LXz8HEK8W3b1vG+mJdCI=;
 	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PzZydgziUVNUyv770NpqCBd6uPMLXBO6BNcJtWFtckcvmnCKqdcP5ESdXDD7jThDaABR/C4gPPH1c+cvbraFAePcZVHlHDp/swdUPo3rWKob1Ha0w8uwy4mxjVvfdazVM1voZ/e1mVOXR3RgVDZrExqv+0JNz7DTbSlwyn9uzmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ek7hQtLW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57F8EC116C6;
-	Fri, 16 Jan 2026 08:34:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Z5j1SYZWiO5KILmHYl6L7PSxAwEqWH1nlMxP/M1u2RB3nmFYUvQ2UREEA+Z9bmM8hXLvYCs2Fm1fbiZHVqaV5scLe+0dA4bJtxXFpkI02kFSo5Ry8GdhGcxlFAAurAxheimkjrV8JSmm5MTKLoTIZcCroXPfoaTIAHVT9AJqFzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oDl0TbRQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1ADFC19421;
+	Fri, 16 Jan 2026 08:34:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768552466;
-	bh=a9tjrZw2TcFjoDfFV+ERPOr3LmyNFX/P9bnXZTro2bI=;
+	s=k20201202; t=1768552484;
+	bh=YHjImKjyPNOt60v1k6jeqT8LXz8HEK8W3b1vG+mJdCI=;
 	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=ek7hQtLWk2LH8rttxYykyZVLHVfXaAFY9rplEfn/ctOGxfaJpbRG4KMclPqdSeON6
-	 G8PsCQqygZbgerqtLjDLlh0iKvt6ymZQ166mjEgBgbOJdTqV/u5S01ZVYFGmCFeY7G
-	 RHZOfKg7NmtEyRd6foXhfhlWr+wd4vobNoxTFrdPa58vI1vUrbTOJKimu2CgY13+CU
-	 Kry4x1etbFUH6+Epfa34dbuWjZ59JAMdwqzIqGv8lnZiucdsPHmO3RmdqUQIc3Mn4s
-	 ComVcNHTwZ8YjD352+A5AcKarUa7vi0qMaYmWGBU7jAAvkVspP5+IX/ViC60bKL32n
-	 HypHshQEzJeIA==
-Message-ID: <1e65bcd0-54c1-41ff-8552-6ed5c56c1f70@kernel.org>
-Date: Fri, 16 Jan 2026 09:34:22 +0100
+	b=oDl0TbRQGO3FcRJpXcZ0QMt5RvUwqKuzK0No6nLe8uHN/h/QTY2Dty0HQAGDOjL0V
+	 L4fVvUc8DvQudDW43smknNrltADfcYOuEDKn5gKs5GuBxTMSMIv6r4rr6NCr2DXmaw
+	 M+P2FbwYzTkXSKAUWtFF8oRPJzqt9IVvLSCR5hD0StH//oKMRbqAzZ96nZNtlcHnd+
+	 4v1cPq+Ry9l8PeMLPWVpkfDV8Nv5bE4UfLWZWHJVcRbwPq9lmgv+s6lVOTLXGo/LWg
+	 yn9/Hwlqk1KL+pI1VABLi4pmHHpB69Z9anavABBWm9NmMkfMupSWNzXyPCKYhlFut3
+	 HPrx5sGqWNY7w==
+Message-ID: <29f9b3e2-11d9-42a4-add2-64ec73f69e39@kernel.org>
+Date: Fri, 16 Jan 2026 09:34:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,8 +48,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] dt-bindings: mux: gpio-mux: add adi,adg2404
- support
+Subject: Re: [PATCH v3 4/4] mux: gpio-mux: add adi,adg2404 support
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Antoniu Miclaus <antoniu.miclaus@analog.com>
 Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
@@ -57,11 +56,12 @@ Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
  <conor+dt@kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
  Johan Hovold <johan+linaro@kernel.org>,
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
  David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20260115121943.23715-1-antoniu.miclaus@analog.com>
- <20260115121943.23715-4-antoniu.miclaus@analog.com>
- <20260116-invaluable-ambitious-piculet-dade13@quoll>
+ <20260115121943.23715-5-antoniu.miclaus@analog.com>
+ <20260116-lurking-beetle-of-imagination-2a05e6@quoll>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -106,47 +106,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260116-invaluable-ambitious-piculet-dade13@quoll>
+In-Reply-To: <20260116-lurking-beetle-of-imagination-2a05e6@quoll>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2026 09:29, Krzysztof Kozlowski wrote:
-> On Thu, Jan 15, 2026 at 02:18:21PM +0200, Antoniu Miclaus wrote:
->> Add adi,adg2404 as a compatible string. The ADG2404 is a 4:1 analog
->> multiplexer that uses the enable-gpios feature.
+On 16/01/2026 09:32, Krzysztof Kozlowski wrote:
+> On Thu, Jan 15, 2026 at 02:18:22PM +0200, Antoniu Miclaus wrote:
+>> Add adi,adg2404 to the compatible list. The ADG2404 is a 4:1 analog
+>> multiplexer that benefits from the enable GPIO support to prevent
+>> glitches during channel transitions.
 >>
 >> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 >> ---
 >> changes in v3:
->>  * integrate with gpio-mux bindings instead of separate adi,adg2404.yaml
+>>  * integrate with gpio-mux driver instead of standalone adg2404 driver
 >> ---
->>  .../devicetree/bindings/mux/gpio-mux.yaml     | 19 ++++++++++++++++++-
->>  1 file changed, 18 insertions(+), 1 deletion(-)
+>>  drivers/mux/gpio.c | 1 +
+>>  1 file changed, 1 insertion(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/mux/gpio-mux.yaml b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
->> index 199792d42323..f5866b9f46dd 100644
->> --- a/Documentation/devicetree/bindings/mux/gpio-mux.yaml
->> +++ b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
->> @@ -19,7 +19,9 @@ description: |+
+>> diff --git a/drivers/mux/gpio.c b/drivers/mux/gpio.c
+>> index 93487483e81f..bd8f0c617dd6 100644
+>> --- a/drivers/mux/gpio.c
+>> +++ b/drivers/mux/gpio.c
+>> @@ -59,6 +59,7 @@ static const struct mux_control_ops mux_gpio_ops = {
 >>  
->>  properties:
->>    compatible:
->> -    const: gpio-mux
->> +    enum:
->> +      - gpio-mux
->> +      - adi,adg2404
+>>  static const struct of_device_id mux_gpio_dt_ids[] = {
+>>  	{ .compatible = "gpio-mux", },
+>> +	{ .compatible = "adi,adg2404", },
 > 
-> I do not understand why this was placed in gpio-mux. You have a strictly
-> defined hardware, with known muxes, not a flexible semi-software
-> binding.
+> Why do you need the compatible? I do not understand this patchset. You
+> are saying you integrate it into gpio-mux, but what you did is to
+> duplicate the compatible and binding.
 > 
-> Otherwise please explain: why do you have both 0 and 1 cells?
-> 
-> This is supposed to be in its own binding.
+> Half of your patches are not necessary, you only needed to add
+> enable-gpios to gpio-mux with argument that ADG2404 can use such binding
+> (in complete/full/proper way).
 
-After reading further patches - this patch does not make sense, but it
-should not be its own binding. Rob at v2 gave you advice what should be
-done.
+... and Rob at v2 asked already that...
 
 Best regards,
 Krzysztof
