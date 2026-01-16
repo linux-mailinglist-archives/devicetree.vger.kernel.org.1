@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-256177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C29D33652
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:08:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B485FD33634
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:06:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 860083009C2A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:04:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1E3AF3001FFB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:06:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98EE633CE88;
-	Fri, 16 Jan 2026 16:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D39033D6D5;
+	Fri, 16 Jan 2026 16:06:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hVAzZ7pp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Po8l0oDk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C4333A03F;
-	Fri, 16 Jan 2026 16:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF5333ADA8;
+	Fri, 16 Jan 2026 16:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768579475; cv=none; b=mTCNqZbRsAEf9V4Ao1doT73e0jvi4lMdn41LL5bSg14LB8xL+88Y/9Wvaf/Vda/TRX6uVRVkBo9FaagOjUG66GlpZD/zIa7QlSdLeRo4SEH5ON4wFpnIgn7/tlEd2kc2tbPCIxKAuUmpMSoCBomnYGU+8zB2olyTcYFP4LS7wjc=
+	t=1768579573; cv=none; b=npmDYwN3rsMMB17O0JnE7tqcAoiyI/xTuv6JDjiGyC5jpbqDbL6shdRJ5KPYXzIjPrN5VNYpo7fiWVUdN6iTdb7pinI+JB9PXguHE3EUQb72Bk4p1DUEE7EEVmaLxHJ2PVLtwtNz1OEqy/9FsPoV6aHxVfdIF0HuO1wa6kuboSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768579475; c=relaxed/simple;
-	bh=ttcLGoy6Pppi8jgSrT1nrrQBOZdRJct+QTPqLSs7aZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Ujhbg1OiF71lovL1pCgRLai37Lm43aeWZEw4jOp4dcrO2Vy+w8rEsA1ydBmpEdB3Tgl6qKqNgTM1mCZRWOaf9ohzMkOHRtCV3ZUppfw+8Ct+BQQakDF8f+e92JjFF+2RR0FYwyvaMGDfmTS9liDo0aq42FNNVJXXRNRGLSoKS4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVAzZ7pp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD988C116C6;
-	Fri, 16 Jan 2026 16:04:32 +0000 (UTC)
+	s=arc-20240116; t=1768579573; c=relaxed/simple;
+	bh=zWvlUIp0ON5GX+O8f9HjXb1O1MSlgCVuSR5ZfrNc6i8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VDgxVL9DnyBM7kE7noLhxXmqXUlAYJR13mznKUoUQH3b5Yt1m805DEE4BNA1F/+bkBqlLrqeF1IS9qh8DUzE8FxNXjOuHQ7mkQGhZgUl0Yevg0x/8P4qFUqgDSvtQX3nkVX0yAH4A7Bfy7oVUfJF7MkzKUDJdxAMEwOWn/P/cDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Po8l0oDk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46052C116C6;
+	Fri, 16 Jan 2026 16:06:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768579475;
-	bh=ttcLGoy6Pppi8jgSrT1nrrQBOZdRJct+QTPqLSs7aZE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=hVAzZ7ppDsycKD9sHJN/9YxvsA6LIMwTDUhBpDZzJilUScNa1XkriDYWarNtPs46P
-	 Dcr1AufWh8Vc/qASLh2UBz9ANSIKf7WRXhyXEc6Ter/znpKaLiYwbN+SghijXS+UIZ
-	 UpoaG0FsbxEEJTkmdovrBEo3q53/RKwLE/9TXX1Ds6FAFUYAdnzx5QzhAm++PKzMNk
-	 Mk4+uw/SDAE1D8A4CkR5nzQmu3/AH6LkgZgHBvSF0UVXSe97Ny80Ip5AYE1R4mzDVc
-	 3B+OzQ660mC/zW31ImKiJQUpHG1L97OazgJwx3ZO3g0J+hdgvulyvLgsE0ttYI5PDd
-	 i2qVll86a3Eww==
-Message-ID: <a5645b54-7e12-4a42-aac6-9fa517c45ecc@kernel.org>
-Date: Fri, 16 Jan 2026 17:04:31 +0100
+	s=k20201202; t=1768579572;
+	bh=zWvlUIp0ON5GX+O8f9HjXb1O1MSlgCVuSR5ZfrNc6i8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Po8l0oDkTo1mzgGvO/4eIECl/5zq7YrgTudQx5U7KQu8xUvpAHUkNOXj+NDgZ4qx8
+	 OWZHduQsCrmjWln/yXFVdCVCsJWJCa+KdqwRVugXn8QLXJg3Xd1qXF9QAROmeKKzO3
+	 YOyt9ei4pdun99tydiZUfRK1NaWsyRtXcFYazWi8UFKW1M2khlPAE6ys+ZdcLoUMJ+
+	 qtn/wzmAKi+aOCZIVh/igqpTdh/BpmhVPM1JHPAgYhgthyVZu+mCxARsKEVi9SPfPL
+	 GTb1ndsQGDNyt7gotkQOREu9tDjwL9Y6ve/rf0c5DSf2dciSTBsZFT0aoClr4y0bCr
+	 QEfotOSrkl5ag==
+Message-ID: <17a9dd9f-d744-4f87-a732-3f4eaf8cadbf@kernel.org>
+Date: Fri, 16 Jan 2026 17:06:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,17 +48,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: mux: gpio-mux: add enable-gpios
- support
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 0/4] mux: gpio-mux: add enable GPIO support and ADG2404
+To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
+ Johan Hovold <johan@kernel.org>
+Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, David Lechner
- <dlechner@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260116152621.75205-1-antoniu.miclaus@analog.com>
- <20260116152621.75205-2-antoniu.miclaus@analog.com>
+ Johan Hovold <johan+linaro@kernel.org>, David Lechner
+ <dlechner@baylibre.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20260115121943.23715-1-antoniu.miclaus@analog.com>
+ <20260116-jumping-premium-crow-693a1c@quoll>
+ <aWn-R7O_wZkpC1NC@hovoldconsulting.com>
+ <CY4PR03MB3399D140FF51521F67AEF8599B8DA@CY4PR03MB3399.namprd03.prod.outlook.com>
+ <ace6ef5e-d636-4886-8f8b-c318a81522aa@kernel.org>
+ <CY4PR03MB3399926330D164F88A7A1F339B8DA@CY4PR03MB3399.namprd03.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,76 +109,115 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260116152621.75205-2-antoniu.miclaus@analog.com>
+In-Reply-To: <CY4PR03MB3399926330D164F88A7A1F339B8DA@CY4PR03MB3399.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/01/2026 16:26, Antoniu Miclaus wrote:
-> Add support for an optional enable GPIO that allows the multiplexer
-> to be disabled before changing address lines and re-enabled after,
-> preventing glitches during channel transitions.
+On 16/01/2026 16:26, Miclaus, Antoniu wrote:
 > 
-> This is useful for devices like the Analog Devices ADG2404 (4:1 mux)
-> that benefit from enable control to ensure clean channel switching.
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> Changes in v4:
->  * Add ADG2404 to binding description for discoverability
->  * Add dedicated ADG2404 example showing enable-gpios usage
->  * Update commit message to reference ADG2404 as use case
+> --
+> Antoniu Miclăuş
 > 
-> ---
->  .../devicetree/bindings/mux/gpio-mux.yaml     | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Friday, January 16, 2026 12:32 PM
+>> To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>; Johan Hovold
+>> <johan@kernel.org>
+>> Cc: Peter Rosin <peda@axentia.se>; Rob Herring <robh@kernel.org>; Krzysztof
+>> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+>> Srinivas Kandagatla <srini@kernel.org>; Johan Hovold
+>> <johan+linaro@kernel.org>; David Lechner <dlechner@baylibre.com>;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH v3 0/4] mux: gpio-mux: add enable GPIO support and
+>> ADG2404
+>>
+>> [External]
+>>
+>> On 16/01/2026 10:39, Miclaus, Antoniu wrote:
+>>>> -----Original Message-----
+>>>> From: Johan Hovold <johan@kernel.org>
+>>>> Sent: Friday, January 16, 2026 11:01 AM
+>>>> To: Krzysztof Kozlowski <krzk@kernel.org>
+>>>> Cc: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>; Peter Rosin
+>>>> <peda@axentia.se>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+>>>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Srinivas
+>>>> Kandagatla <srini@kernel.org>; Johan Hovold <johan+linaro@kernel.org>;
+>>>> David Lechner <dlechner@baylibre.com>; devicetree@vger.kernel.org;
+>> linux-
+>>>> kernel@vger.kernel.org
+>>>> Subject: Re: [PATCH v3 0/4] mux: gpio-mux: add enable GPIO support and
+>>>> ADG2404
+>>>>
+>>>> [External]
+>>>>
+>>>> On Fri, Jan 16, 2026 at 09:37:36AM +0100, Krzysztof Kozlowski wrote:
+>>>>> On Thu, Jan 15, 2026 at 02:18:18PM +0200, Antoniu Miclaus wrote:
+>>>>>> This series extends the gpio-mux driver with optional enable GPIO
+>> support
+>>>>>> to prevent glitches during channel transitions, then adds support for the
+>>>>>> Analog Devices ADG2404 multiplexer as the first user of this feature.
+>>>>>>
+>>>>>> The enable GPIO allows the multiplexer to be disabled before changing
+>>>>>> address lines and re-enabled after, preventing brief activation of
+>>>>>> unintended channels during transitions. This is particularly important
+>>>>>> for precision analog applications.
+>>>>>>
+>>>>>> The ADG2404 is a 4:1 analog multiplexer with low 0.62Ω on-resistance
+>>>>>> that requires this enable GPIO functionality for glitch-free operation.
+>>>>>>
+>>>>>> Changes in v3:
+>>>>>>  * Extend gpio-mux driver instead of creating standalone adg2404 driver
+>>>>>>  * Make enable GPIO optional for backward compatibility
+>>>>>>  * Add MUX_IDLE_DISCONNECT support via enable GPIO
+>>>>>
+>>>>> You are developing on some old kernel. You got stale Cc list of at least
+>>>>> three people! How could you for example get "johan+linaro@kernel.org" -
+>>>>> from which maintainer entry - but that at least is not bouncing like two
+>>>>> others.
+>>>>
+>>>> Probably from using get_maintainer.pl --git:
+>>>>
+>>>> 	$ scripts/get_maintainer.pl --git drivers/mux/gpio.c
+>>>> 	Peter Rosin <peda@axentia.se> (maintainer:MULTIPLEXER
+>>>> SUBSYSTEM)
+>>>> 	Srinivas Kandagatla <srini@kernel.org>
+>>>> (commit_signer:1/2=50%,authored:1/2=50%,added_lines:5/6=83%)
+>>>> 	Krzysztof Kozlowski <krzk@kernel.org> (commit_signer:1/2=50%)
+>>>> 	Bartosz Golaszewski <brgl@kernel.org> (commit_signer:1/2=50%)
+>>>> 	David Lechner <dlechner@baylibre.com>
+>>>>
+>> (commit_signer:1/2=50%,authored:1/2=50%,added_lines:1/6=17%,removed
+>>>> _lines:3/3=100%)
+>>>> 	Johan Hovold <johan+linaro@kernel.org> (commit_signer:1/2=50%)
+>>>> 	linux-kernel@vger.kernel.org (open list)
+>>>> 	MULTIPLEXER SUBSYSTEM status: Odd Fixes
+>>>>
+>>>> A recent mailmap is indeed needed to remap Bartosz's old address,
+>>>> though.
+>>>>
+>>>
+>>> Yes, I've used "--to-cmd='./scripts/get_maintainer.pl --norolestats" when
+>> sending the patches.
+>>
+>> Then how did you get non-working Bartosz and Linus' emails?
 > 
-> diff --git a/Documentation/devicetree/bindings/mux/gpio-mux.yaml b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
-> index ef7e33ec85d4..2d9f32012127 100644
-> --- a/Documentation/devicetree/bindings/mux/gpio-mux.yaml
-> +++ b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
-> @@ -17,6 +17,9 @@ description: |+
->    multiplexer GPIO pins, where the first pin is the least significant
->    bit. An active pin is a binary 1, an inactive pin is a binary 0.
->  
-> +  This binding supports GPIO-controlled multiplexers such as the Analog
-> +  Devices ADG2404 (4:1 mux with enable control).
-> +
->  properties:
->    compatible:
->      const: gpio-mux
-> @@ -25,6 +28,13 @@ properties:
->      description:
->        List of gpios used to control the multiplexer, least significant bit first.
->  
-> +  enable-gpios:
-> +    description:
-> +      Optional GPIO to enable the multiplexer. When present, the mux will be
-> +      disabled before changing address lines and re-enabled after to prevent
-> +      glitches. Required for MUX_IDLE_DISCONNECT idle-state.
-> +    maxItems: 1
-> +
->    mux-supply:
->      description:
->        Regulator to power on the multiplexer.
-> @@ -100,4 +110,19 @@ examples:
->              };
->          };
->      };
-> +
-> +  - |
-> +    /* Analog Devices ADG2404 4:1 multiplexer with enable control */
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    mux-controller {
+> I am on torvalds/linux latest master branch now. Here is the output of ./scripts/get_maintainer.pl --norolestats: 
+> Peter Rosin <peda@axentia.se>
+> Rob Herring <robh@kernel.org>
+> Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Conor Dooley <conor+dt@kernel.org>
+> Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Srinivas Kandagatla <srini@kernel.org>
+> Bartosz Golaszewski <brgl@kernel.org>
 
-I did not ask for this. I asked for upstreamed DTS. DTS is a format and
-a file - see arch/*/boot/dts/. When I say - upstream DTS - it means you
-should make your or any board using this hardware accepted by respective
-maintainer. We do not add new examples per every new property, so just
-add enable-gpios into existing example.
+Exactly. So why did you send it to:
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+and
+Linus Walleij <linus.walleij@linaro.org>
 
-
-
+I mean, this is the third time I am asking but you keep deflecting the
+question with some sort of other data...
 Best regards,
 Krzysztof
 
