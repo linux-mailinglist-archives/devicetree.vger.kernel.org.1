@@ -1,167 +1,303 @@
-Return-Path: <devicetree+bounces-256030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD18FD3030E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:14:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F230BD3022B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:10:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 35EBF3098BCD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:07:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 75549302F2D2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC49C369992;
-	Fri, 16 Jan 2026 11:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DEC36214A;
+	Fri, 16 Jan 2026 11:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="B8+VwbhH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="c4Of1yM/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azhn15012028.outbound.protection.outlook.com [52.102.149.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFF8274FE3;
-	Fri, 16 Jan 2026 11:07:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768561669; cv=none; b=gyV7hQePw7KtAGXu9HOnXQv3aoF4YCCyBDbMtE2cO1cSwZHJ3msndzHoAagDI7FiQEyjMnf4jCLAcjIvyQ5EN3R1UrBdhOUtY0coAqFkH0lkUX9s5TBL7zhOj4VOcALrDXypq0alxj7kCPIPjZ93QbmS4v5biNOlWaKVrqqRcgs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768561669; c=relaxed/simple;
-	bh=whg9/SgnRXJSe6Nqm3QSG2N8JXAeg6aAaaOHiRkCxHk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lHPLUp0huYyZIqZegQ83g1OEcJf0Lz5JOvI4gNzMuADY81KSMvnn4+OaPiOWf+/TT0glcVCgKDp0CWRWfs/lVc2JWg7XZRUFnZk2YcM80Jmo9wgVqcXdJvdw3hmViHp2u0Y2owBf9cPiF8aZb3VIaxYAIfUoteyeqGUyKMnHWI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=B8+VwbhH; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=dzSr+vK27hutzJjP42tJFaeLCI9FsTxETKHO6P3r+0c=; b=B8+VwbhHy4P6pCRNKtlLFwEdMp
-	lhd0dxCpyuWrkYSuFEtmsiURAqSkvL/WinKpjy116YeztW7MJT+o53mT7hYGinbXb5rz0fm+m9zJB
-	lpJIK6pM6ETLCiX9v0Ye98LU9ruBQ2DKWyE434g2tIDq9H3jryobySsbYWr/2GIoRxH1Abn+g8hZT
-	r5idEIyofm7OiqISbU3v7vIeP2AYgduIoNS5Wda1NnflUaC+71XIa06q52eiFHb6AQo+F6BTZxa4J
-	ycJZXdXCjQe4yMpDNmnHmpGfL6QSHpA2JnpU4S3oUhc7a9WJGOTUixQKFBC9CE6mEqdKJuj/qRLPh
-	BubXjh/g==;
-Received: from i53875a97.versanet.de ([83.135.90.151] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vghfn-002cBj-LC; Fri, 16 Jan 2026 12:07:24 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: michael.riesch@collabora.com, Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
- Kever Yang <kever.yang@rock-chips.com>, Frank Li <Frank.li@nxp.com>,
- Mehdi Djait <mehdi.djait@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hans Verkuil <hverkuil@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v4 1/3] media: dt-bindings: add rockchip mipi csi-2 receiver
-Date: Fri, 16 Jan 2026 12:07:22 +0100
-Message-ID: <5173450.iZASKD2KPV@diego>
-In-Reply-To: <aWoOzn_d7ixgbzj4@kekkonen.localdomain>
-References:
- <20251114-rockchip-mipi-receiver-v4-0-a9c86fecd052@collabora.com>
- <20251114-rockchip-mipi-receiver-v4-1-a9c86fecd052@collabora.com>
- <aWoOzn_d7ixgbzj4@kekkonen.localdomain>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75943363C64;
+	Fri, 16 Jan 2026 11:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.149.28
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768561815; cv=fail; b=tu3kgiAF4oLFu+XHNaPWF8aEdH2YDmyIzGgPoHA8LaU9srgpOC9YWhU7JDQ+lL2L+Z67E7K4b8VHMy4rUn27bmkFueSy4ZW/qKlqoeUTQL+UQVcXdNDVLiWb9iiKgWtoMTB6y4Y05brg4CUHw8K4uWmoBzVGfXMG8U8zOX3eHMs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768561815; c=relaxed/simple;
+	bh=NjR/we3H6Sh+xIBY+akifvEvzm2o/F+t2ALwMgzJaZA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XcH76818PiOd029eQ64fQIFuE5u6Kl3h1NiioZyBfSrWEs2QnoNzR+jySg3bgzkWSHAf/HfWj7HMN19dvUQ2aOPZ77olZll/sAf6yb84Gs8i+SbEq9dLSSTLjqWv1oXtsZh06Bp15vob+PNZhCUZ+2Xpz+LBjn4THdppMWPkQUA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=c4Of1yM/; arc=fail smtp.client-ip=52.102.149.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cgyOPTtQEWXMZwIXdg+9YsHQ57/UBopGw75ToTo4xBNRz2KY/8X23Xypd6oSO7JtZ0DhFtMoJNtM4Hd5Q+VzERCFYC6mLqlr4albC1Hl1EMK02pc08CJ+X252nh3XYWcgdW48R9LGxLL7GL6lZfo1UCuHndR0I164hfwKtuXEYcaXAZrMY+r44raYcc3mMuuOe1knjLDAbl/kN2Q3cfeMkVdkGtA2IBTuPONbOA9tK4EWDb/LHhEnFgL5dH1KsZbVlzFuUKzooufqn9t2VVKS7od+0WYJfDVpboDNmb9JtxmZuh1wJjKSsYWLiX7gtA+rzzB/niLPriD/6Y6oCPrGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7aK5TgZ5WSjyOxblFFPSix1E2znRUMaWhmDhiMm8f+o=;
+ b=n4Vq1mLHMSvKB46nGfnB6Cr7rm3+SqMQoRn6VMpT2LoE6YQv1Gs4nxlsq79tSYc+5EnIEGKzBT39kiMsfAOMTpaRji2xe5EyzlPRVfJqNX80eqJrZZMjiwYw6V6T+o2nxMc1Vk3ZupBPSSmRalbKcF6fTnVGNEWlSJ3yJwYfXqESqqQOJyVsYwes808oOYkTUwzBbUOeKO/7DtookgS2g5s4vOIfFi61z5F/e1+p860zg69BuYPG9ZOvenJBdfTG7nKGacCWKbBm2vxwISimB7qfzL3JbSyoxr9hFGfma3zjVBk9nwdT1Ykzi2jqF7e9U5jfQ5MlUqb2CISyYd7KCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7aK5TgZ5WSjyOxblFFPSix1E2znRUMaWhmDhiMm8f+o=;
+ b=c4Of1yM/oRPM6F3BqkpOEiZoOuWhuCfjFxRpVasM7e5vgehVHgUp60KvJ1bxDIad3S9iPupI9yzXCHkw1OuSycRSZPCg/O7vtaBx+oAh89lf0xf7TddnFcEWId8kZJvwf7SetMDdLZizCSQ2VqkQHvwEXlro/XXWVPDrilX3RYc=
+Received: from BN0PR04CA0112.namprd04.prod.outlook.com (2603:10b6:408:ec::27)
+ by DS0PR10MB6726.namprd10.prod.outlook.com (2603:10b6:8:139::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
+ 2026 11:10:00 +0000
+Received: from BN2PEPF000055DF.namprd21.prod.outlook.com
+ (2603:10b6:408:ec:cafe::8) by BN0PR04CA0112.outlook.office365.com
+ (2603:10b6:408:ec::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.7 via Frontend Transport; Fri,
+ 16 Jan 2026 11:09:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ BN2PEPF000055DF.mail.protection.outlook.com (10.167.245.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.0 via Frontend Transport; Fri, 16 Jan 2026 11:09:59 +0000
+Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
+ 2026 05:09:59 -0600
+Received: from DLEE211.ent.ti.com (157.170.170.113) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
+ 2026 05:09:59 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 16 Jan 2026 05:09:59 -0600
+Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60GB9pWB3048911;
+	Fri, 16 Jan 2026 05:09:52 -0600
+Message-ID: <1cc5e036-12b6-4b0d-9393-21bbb0dd3f48@ti.com>
+Date: Fri, 16 Jan 2026 16:39:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: display: ti,am65x-dss: Add am62p dss
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>, <jyri.sarha@iki.fi>,
+	<tomi.valkeinen@ideasonboard.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <aradhya.bhatia@linux.dev>, <mwalle@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <praneeth@ti.com>,
+	<u-kumar1@ti.com>
+References: <20260116095406.2544565-1-s-jain1@ti.com>
+ <20260116095406.2544565-2-s-jain1@ti.com>
+ <34759368-6b0f-421f-81dd-20006ee19a1b@kernel.org>
+Content-Language: en-US
+From: Swamil Jain <s-jain1@ti.com>
+In-Reply-To: <34759368-6b0f-421f-81dd-20006ee19a1b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055DF:EE_|DS0PR10MB6726:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0c2c2eea-1b20-47ef-cc7d-08de54efca42
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|36860700013|82310400026|34020700016|921020|12100799066;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?YytUWjVneHppRjFJMjNIMmdNTXBCWnh5RGUzRm4xMVVrWGdjTnVTM043VG1H?=
+ =?utf-8?B?TlhkSFZxUDE1VWdKaHhGY1VucWZnWk8rYVVkRGhabS83QWRSdit2eS9xZU8w?=
+ =?utf-8?B?WTJCcVJoUUM5Mm4yTlBJcFhPcVRuaklDZGpQQkg5RWJKd1ZucU1CZ3hXMUdk?=
+ =?utf-8?B?MmFueDVWSkdxVFc4VExEc0Ira1JFUjdZeTZPM3lKRnI3cEZNcys5OEpBelZ2?=
+ =?utf-8?B?bEw5amtOZXkyTlRIdzNKblp6YjdJNzgzRUI5T2tFanQvTG1YTmFPN3V3cmVB?=
+ =?utf-8?B?WnI1ZHJhTldXUTRGS2I2MVNYQ2hqUGZtNVZYOUsyclNDMGNFcjM4bExnQVJp?=
+ =?utf-8?B?Ny8zWmJHeU9uUy9FNks5bUpSRWlrdEhldlhVMU00WFRlVloxU1pYRFJocjBi?=
+ =?utf-8?B?eWExMHFSemk4QXNpRTlCYWgzTDFMR2NGNktaY2R4K3h1TFhGQXdzMDhSYnA3?=
+ =?utf-8?B?Sm1wZXp6U1VTdXg1NDJPUG92OWN2Z3ErQStXOEVkZWxUdHdNdGdNa0dJdnpp?=
+ =?utf-8?B?dHNoN2lsa1BpTE1qSDAzSHFkTnBXczltTXBuNHdnOUk4enBTcVo0TG45YWhy?=
+ =?utf-8?B?K0hGS0o2MC9ZM2lUc2o4UmR3Z0xNeVVIVCtIWEs0OS9nZ1ZaRjVpOFdRRGlT?=
+ =?utf-8?B?Y1NRZ0x5QjNPSGd0L2ZkWkdDeTFKNTc1N3FwMGNHZ3d1ekxrWEptRjVkZGVl?=
+ =?utf-8?B?aUpoZWYyNEVHN2t0cFpxcHcwcE1IK0dHakhKWFhNNXNjRXVDZDA3NlBUdURO?=
+ =?utf-8?B?YUhnalJkWkcrSURjZUYzb1hab3Y0NGVSV0N3dGRvUmd4QjhEeUM5UTNmTy9k?=
+ =?utf-8?B?dkdOUG4wTmJmVTYvVkxVUkZQRDA5MXBtUmdXdUhZM2R3VmUrZ3phbktBZjJG?=
+ =?utf-8?B?bDgwc0g2RFMwUGNsVy9zTnpuS1hMaTMrd3JYYTM0QjZvNjN1UDlRYk9IejZC?=
+ =?utf-8?B?US9xUFV5eFB3S3NiV1g0YlVWZG5ZeW42ckpPcXFoN09jbWdnOHlYbXg0cmNH?=
+ =?utf-8?B?aGJkejZiQ3c2WmFsRmpvTlBpSU04KzhjSkk4YWxYZ3dJWTdDOU9vanFYM2gx?=
+ =?utf-8?B?dmtyYjdOS1RBNEp0MVNIaGltMlUyTWk3SDNSZkxJMzErcWE5Q0RzSlZWaC84?=
+ =?utf-8?B?TjhSRmVwWDdTcXR3eS8xTUF5enIrVm0rQi9tS2owSE4wa3JJZWh1VWNpREhD?=
+ =?utf-8?B?akErUzJXenExdlJTY3JWcExCVC8rR05ZWEFpWFZqbno3Y2JUZTRUOG8xeFJR?=
+ =?utf-8?B?dlhIQkdrVFlaRTB1RjBRSjhpQ21lUHcxblBYK21FR08xekFDSHJ5aUhWa0w5?=
+ =?utf-8?B?MVNJZmVPcWZCZ0pmWEhZNkJBaUJKV3FrTWlvZWRnTHhrZjlicjQ1eTNKSzZH?=
+ =?utf-8?B?WThXd2JpbFlDSG5ZVUsrcVJYRWhLZEpQSVNXQkx4T2duamRWWjNsNXZEdDR4?=
+ =?utf-8?B?dXRwNTFaNlhUcmNHbzI3OG1BWmZUQWh4TCszRFZrdzJhcE9uZURSUlpnOXFI?=
+ =?utf-8?B?UXVheWRVblhRZjREb3V1NWMyWTdXbjB2TGhwRTUweVZPWXcyNEttenNVQzM4?=
+ =?utf-8?B?azNCQjg1Q2FnK0lBakhsQXNxTmc3RXVOVGZ2UkxySXRvYmM2U2NNaFVtWkxJ?=
+ =?utf-8?B?bFJ5bG04VXZxWnNlZGJ5TFJiYU94VGdvajJ3TCs3ZzlDbVVvVjh3Vm5kYTFi?=
+ =?utf-8?B?bk5OUnlWUkJ1SlpGK2NhS2kzZmtpZTBQb28yeFNqTVNPZzUxclJEc1B3akVa?=
+ =?utf-8?B?TnJaUFNuWFF4NGZnYUhPYW5UazF3TXdKYkRaOVJMWEZhcWkrRXFvZU5tWktZ?=
+ =?utf-8?B?UU9DTU9xeHQ4MGNQNHo3OVBpSlR3L0MydE9oOFQwTUFFUmQxY2ZzZlRHRklj?=
+ =?utf-8?B?VE4zYlppalpTOTlZdDdKYlNJRHNOQlU5bVhzUmV6b3Q3QVJ4TVMwTXNZSDls?=
+ =?utf-8?B?ekJTNGxaK3o4SjMweExkU3lGaDR3TEZZVjRIeGZYbVF4ZFhpR2RVMWY4blNq?=
+ =?utf-8?B?ZzQwUXRJcmovYVRvN2NEMWFJN2hQRTcxS0RDOHlBbDNWYnh4M293K3ZJYml6?=
+ =?utf-8?B?RVMvcEJLbUZra3hKUmdPb05ZbmpmOXhBU0phMFNVVC8xeTJ3T21sRkdNZnB6?=
+ =?utf-8?B?ZjZ2clgzVEJvQVlscHM5aGJ3NDFnYkVBOHE3UVVHYUxQNFZjWGRPbWt5aXZK?=
+ =?utf-8?B?Ni9yUGJWUEpVWG1TRkRwSWpLczVkYllTVVViclZMZDZMV201V3ZPa2FrTjBm?=
+ =?utf-8?B?YmFDbDBMZFM0TDhWNDBxRzJ6dGFBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(36860700013)(82310400026)(34020700016)(921020)(12100799066);DIR:OUT;SFP:1501;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 11:09:59.9232
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c2c2eea-1b20-47ef-cc7d-08de54efca42
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF000055DF.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB6726
 
-Am Freitag, 16. Januar 2026, 11:11:26 Mitteleurop=C3=A4ische Normalzeit sch=
-rieb Sakari Ailus:
-> Hi Michael,
->=20
-> On Thu, Jan 15, 2026 at 07:26:07PM +0100, Michael Riesch via B4 Relay wro=
-te:
-> > From: Michael Riesch <michael.riesch@collabora.com>
-> >=20
-> > Add documentation for the Rockchip MIPI CSI-2 Receiver.
-> >=20
-> > Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> > Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> > ---
-> >  .../bindings/media/rockchip,rk3568-mipi-csi2.yaml  | 141 +++++++++++++=
-++++++++
-> >  MAINTAINERS                                        |   6 +
-> >  2 files changed, 147 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mi=
-pi-csi2.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi=
-=2Dcsi2.yaml
-> > new file mode 100644
-> > index 000000000000..2c2bd87582eb
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2=
-=2Eyaml
->=20
-> I'd add a compatible string for the base IP block and name it accordingly.
+Hi Krzysztof,
 
-personally, I wouldn't do that.
+On 1/16/26 15:57, Krzysztof Kozlowski wrote:
+> On 16/01/2026 10:54, Swamil Jain wrote:
+>> TI's AM62P SoC contains two instances of the TI Keystone Display
+>> SubSystem (DSS), each with two video ports and two video planes. These
+>> instances support up to three independent video streams through OLDI,
+>> DPI, and DSI interfaces. The OLDI interfaces utilizes two OLDI
+>> transmitters OLDI0 and OLDI1.
+>>
+>> DSS0 (first instance) supports:
+>>   - With respect to OLDI Tx interfaces, DSS0 instance can either drive
+>>     both OLDI0 Tx and OLDI1 Tx together (e.g. dual link mode or clone
+>>     mode) or can only drive OLDI0 Tx in single link mode with OLDI1 being
+>>     utilized by DSS1 or left unused.
+>>   - DPI output from video port 2.
+>>
+>> DSS1 (second instance) supports:
+>>   - With respect to OLDI Tx interfaces, DSS1 instance can only drive
+>>     OLDI1 Tx given DSS0 is not utilizing that as described above.
+>>   - DSI controller output from video port 2.
+>>
+>> The two OLDI transmitters can be configured in clone mode to drive a
+>> pair of identical OLDI single-link displays. DPI outputs from
+>> DSS0 VP2, DSS1 VP1, and DSS1 VP2 are multiplexed, allowing only one
+>> DPI output at a time.
+>>
+>> Add the compatible string "ti,am62p-dss" and update related
+>> description accordingly.
+>>
+>> AM62P has different power domains for DSS and OLDI compared to other
+>> Keystone SoCs. DSS0 can have up to 3 power-domains for DSS0, OLDI0 and
+>> OLDI1, and DSS1 can have up to 2 power-domains for DSS1 and OLDI1.
+>>
+>> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+>> ---
+>>   .../bindings/display/ti/ti,am65x-dss.yaml     | 37 ++++++++++++++++++-
+>>   1 file changed, 35 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> index 38fcee91211e..b1cec5383160 100644
+>> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> @@ -24,6 +24,19 @@ description: |
+>>     DPI signals are also routed internally to DSI Tx controller present within the
+>>     SoC. Due to clocking limitations only one of the interface i.e. either DSI or
+>>     DPI can be used at once.
+>> +  The AM62P has two instances of TI Keystone Display SubSystem, each with two
+>> +  video ports and two video planes. These instances can support up to 3
+>> +  independent video streams through OLDI, DPI, and DSI interfaces.
+>> +  DSS0 (first instance) supports:
+>> +    - Two OLDI TXes on video port 1, configurable in dual-link or
+>> +      single link clone mode
+>> +    - DPI output on video port 2
+>> +  DSS1 (second instance) supports:
+>> +    - One OLDI TX on video port 1 (single-link mode only)
+>> +    - DSI controller output on video port 2
+>> +  The two OLDI TXes can be configured in clone mode to drive a pair of
+>> +  identical OLDI single-link displays. DPI outputs from DSS0 VP2, DSS1 VP1,
+>> +  and DSS1 VP2 are muxed, allowing only one DPI output at a time.
+>>   
+>>   properties:
+>>     compatible:
+>> @@ -31,6 +44,7 @@ properties:
+>>         - ti,am625-dss
+>>         - ti,am62a7-dss
+>>         - ti,am62l-dss
+>> +      - ti,am62p-dss
+>>         - ti,am65x-dss
+>>   
+>>     reg:
+>> @@ -81,8 +95,13 @@ properties:
+>>       maxItems: 1
+>>   
+>>     power-domains:
+>> -    maxItems: 1
+>> -    description: phandle to the associated power domain
+>> +    minItems: 1
+>> +    description:
+>> +      phandle to the associated power domain(s).
+>> +    items:
+>> +      - description: DSS controller power domain
+>> +      - description: OLDI0 power domain
+>> +      - description: OLDI1 power domain
+> 
+> No, I already rejected this.
 
-While the RK3568-variant is a somewhat smooth integration ... the now
-(temporarily) omitted RK3588 variant of a similar block is not.
+Isn't it better to add items to the top level and have a min/max
+constraint for different compatibles? For newer compatibles we will
+have to again add items description if we go with your approach?
 
-I.e. the RK3588 has quite a number of those CSI hosts, with a bunch of
-resource routing bits and bops between those CSI hosts sitting in the
-Rockchip "Gernal Register Files" (dumping ground for random bits and bops).
+> 
+> 
+> This is not how review works. Look:
+> 
+> 1. You wrote patch on 7th Jan.
+> 2. I replied ONE DAY LATER.
+> 3. You waited one week to give reply.
+> 4. Then two days later you send new version not waiting for my reply.
+> 
+> If you have one week to reply, then so do I.
+> 
+> NAK, go to v3 and implement comments.
 
-So you then get a syscon accessing per-soc registers and bits.
+Sorry, we weren't aligned then.
 
-So while it is (compatible to) some Synopsis IP block, the integration to
-make that thing actually do something is highly soc-specific.
+Regards,
+Swamil.
 
-That's also why the for example the dw-hdmi/dsi IPs don't use a common
-compatible [0] [1] [2] [3] [4]
-
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/display/allwinner,sun8i-a83t-dw-hdmi.yaml
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/display/hisilicon/dw-dsi.txt
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-[4] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-mipi-dsi.ya=
-ml
-
-
-> > +    soc {
-> > +        interrupt-parent =3D <&gic>;
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
-> > +
-> > +        csi: csi@fdfb0000 {
-> > +            compatible =3D "rockchip,rk3568-mipi-csi2";
->=20
-> This would become e.g.
->=20
->             compatible =3D "rockchip,rk3568-mipi-csi2", "snps,dw-mipi-csi=
-2rx";
->=20
-> See my comments on the driver patch as well.
-
-In the PCIe area, we have  rockchip,rk3568-pcie and rockchip,rk3568-pcie-ep
-for a similar combo.
-
-=46or CSI the receiver is the vastly more common thing to do. So if anythin=
-g,
-I'd go with "foo-csi2" vs. "foo-csi2-device", if somebody really develops a
-"camera" SoC, with a fully featured DT-based OS in the future ;-) .
-
-Heiko
-
-
+> 
+>>   
+>>     dma-coherent: true
+>>   
+>> @@ -196,6 +215,20 @@ allOf:
+>>                 properties:
+>>                   endpoint@1: false
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: ti,am62p-dss
+>> +    then:
+>> +      properties:
+>> +        power-domains:
+>> +          maxItems: 3
+> 
+> That's pointless. It's already 3.
+> 
+> Best regards,
+> Krzysztof
 
 
