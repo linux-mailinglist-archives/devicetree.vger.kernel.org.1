@@ -1,201 +1,153 @@
-Return-Path: <devicetree+bounces-256099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00177D31FD5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:41:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B813D3207E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:44:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E8AAB3053792
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:38:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F05FF315C899
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C8FA238D52;
-	Fri, 16 Jan 2026 13:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65205284B3E;
+	Fri, 16 Jan 2026 13:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="WKZ3eRka"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="xnLQe1an"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 493F8EACD;
-	Fri, 16 Jan 2026 13:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 579A0252904
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768570729; cv=none; b=IkiWdUDnbgBOvej5ZplZBLt+9ngKeF1MkUacY7l/GvF6ogqnKxqnAjBvRrO5oKaf97jo/r2/pv78GrPp3Qmp/IriK7okOXxKruaY1pmPYsw1G+2EeMhr4VrSmg+MKjJ76WczeEvdCm9H6tD/w4I8AqFnpko7pEVfUWE/xRNvIaY=
+	t=1768570743; cv=none; b=JTS7tpeMdCTzDmp8xb5RRH8pXM/hFn/Ka0Fim4jK7uLNo1k0jmxv/IgiSBaUcPnHdMBzR83zgGqN6sEVi1mw/HUlRkxRZJBELpTJe0pKuzzEw1J13+VUEXpVoh3A0swqoX3r23wkxTEpehO9GevLXEesxMO9nSzRvELSWoqf2Z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768570729; c=relaxed/simple;
-	bh=2+1W6+CW0tWCh6axgpSWXv9LLDRUDSK+R7yWzX8qL4Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QCeNxmcC7/pE4H/2kn8tRD4ivHvILmHF1eX7enmGCGK9mZ+LgsDPNuFTqxdhXCMZ8UGmz9NC0kOKNk/0uQVWXoh8rLcOsuwVuhso8DxSo8pScMc+0DzWkXyS9WlirvUHGiOCrkaBkE615XbnENPtYLCdKPRJcmpnfLjHUJBZo6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=WKZ3eRka; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1768570725; x=1769175525; i=frank-w@public-files.de;
-	bh=nkxj4CnhfibyYIaplRq8z8HcxuXlDBpkzGct6lz15Eg=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Reply-To:Subject:
-	 To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=WKZ3eRka21miv4+FoPlXLrnVxlj7IZ8WsQwcMXH/2X6BvRUQPwqMIEGaZs/9eu5e
-	 hk6WkfQyxD2DuuaZ6W5YQ4llHtAh+9cnwyJ/SEf0v/mg7LDvZvK8zhts3TvDy+Iwx
-	 +gYp/qAGRmm8DzXGZvZu+rvHN2GBNHI6/2rspPJ1Yy0Ty0O80unm3z3hKLqNNj0Rm
-	 INMicBUKwLgpulxEoKO4BdhFXtZghSs/FBP1SxxPch2fmUGtG7W7BuC5jO6Ej4GRX
-	 r/VrKSEFvYZbHxbgDcLYQuDDuZ4OjmnOtE4UlV9pKsxEIKGXs2zGGrYWhjJ0x7mWJ
-	 0kO+aT4J8pmBr3OfrQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.0.21] ([80.245.79.4]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mof9P-1w9gvk1V5F-00in95; Fri, 16
- Jan 2026 14:38:45 +0100
-Message-ID: <1665fa1f-67da-4688-89db-d864b5bb0509@public-files.de>
-Date: Fri, 16 Jan 2026 14:38:44 +0100
+	s=arc-20240116; t=1768570743; c=relaxed/simple;
+	bh=vsB3iMV+9fUeGQu62KaTOVPfdptcCf+K+X8N9tzPOGw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Nd2apAzE4zDkxsx33pDlv4fKGHLFqoIfyBIMbToHHp9Zvhk+5euLbXhHaAchXkvaWeFwWPPLWRrsuKb70MJJttKlzgPW3pjZElUj+JQQKjcEklFMcYbrc8/vkNbKB/D7F2W5JJtarp/mxgCDlW2cL3S/V7JWevmqcE5BDdbYHMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=xnLQe1an; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-64b83949fdaso3177456a12.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:39:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1768570740; x=1769175540; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0U2+jzP6CDDUjkiod/PKOvsjawQoDL6waWdd/pZu0PQ=;
+        b=xnLQe1ant3l9SZi28ySzLGJm6v/PKRtbGgESeIzZPELRgwS2TPpls46gT1G/00LG4n
+         PUGrXwsm4kMt9AIN4XzHKFkpGHVhVWJaRCzj6Y7/l7vx6asUdTlALDycki+rP6J9xT4f
+         qQp00xJVhO1lh5ZiPXXyegbC/tBQDla9RbqEKjEaYqbNGp/aoTi6d4asMTmaQbHHfCxJ
+         CTD6emvFw4xiRQ/Bjum7e8r2FVudlmclgf6MNH/DBl7E9ddFtT+FPkx0O0FL7cS9MFFF
+         MDwBW6k8UkTs3igeRLNzhYYnt5t4rnClQ9g/mhZDfi79awBl5ycf24B8Qqq09kaMHvs8
+         5Jgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768570740; x=1769175540;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0U2+jzP6CDDUjkiod/PKOvsjawQoDL6waWdd/pZu0PQ=;
+        b=gSvvy0++9DcnkkFQA1Ru5WDniar+YNPIrrE4B4YqJyTW5sXeUkwtB5A2REss0GkNOu
+         59xK/gG+h5VIksx+/4ryiS1pIwRQQquCbslc6V3IxuvIpLKcawylrP448X0+rIodboSL
+         AU25f9J7BqcvYtvJyax4LjRJI8/y99YJe0Oe21pYz0/xBeyWOFjzFcd8N5igDMxtb3La
+         WfCxWqCa1E9kIK2aAr2qquoVvqZTwmMUt6XZpINhJ5JzPDsBMSWZ+7kRBXE782LcP0+Z
+         OpLh7id8jaME7/1GyPgLIhpbNg7I2igeixZP3SqpMuUeeUG+Pz7ULq/DHVXHocDAjMOQ
+         U7Xg==
+X-Forwarded-Encrypted: i=1; AJvYcCVvEj+xRcsbn1QP7DQky7p9S4Zee4divdKaIQ1RjJwtezEb5A8oRrTGiBs8QGmEKukszUUe3MwyfQ0Q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz91fXXW1W3fafpGKAWqII3TQGFjPMzg5zF/7CGzHI7Oejb9de+
+	WwY/9Gsbzpo6ycGXdPno7e6uTonON8nEh6BGKl4QwY7L0IAdHLsACC/2K7ojluc4YIg=
+X-Gm-Gg: AY/fxX7zzBQfG+TB1tA/ozgl2OSXIffXoxYYBGEXh1SNszC2tQc9xACQMuj5pjB/RA7
+	dT40tJISqKraoTh1feSb6WAFa2pYs5g587nIoXlozKc5L07wBVaPW+SP3X0Qixpie++334W2LRM
+	G19Zqm8luKJ/cG7m/z5obsCAdqWwgEiV+weSofmGHYfS0qIXrOwIqb9fRrHY6oY0k53guUJwi06
+	7k3UBCiSNGI9PIaCACEr4OTQFel1xPYtVbv8Lv9zagOpkJVkRPjYMghWYQEhNBpfjVS2exMNBal
+	qVas+kI6udUXVkmWgv3/ZNB2tnDf5/OvFvkc31kkPR1v2UHCl0kgnGyjK69/i+OylUpgXb9kz0j
+	49ujtnCx8Vtq1ivGSQSOvGX4bZzflRujO6qKsyumnCjCgsXnt8FplrGH/cNYjm1dyfPQWGMUMi4
+	aK5frStj9c56uFVBkAfz2JjAIphkpeVUZYejUSHNcfUj8nwVJkuwqts3sNxuUsQKAQ
+X-Received: by 2002:a05:6402:2804:b0:64b:6a7b:5996 with SMTP id 4fb4d7f45d1cf-65452cd951bmr2448309a12.30.1768570739730;
+        Fri, 16 Jan 2026 05:38:59 -0800 (PST)
+Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-654534c8b7fsm2495528a12.27.2026.01.16.05.38.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 05:38:59 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/4] Add CCI support for Milos, enable on Fairphone (Gen.
+ 6)
+Date: Fri, 16 Jan 2026 14:38:54 +0100
+Message-Id: <20260116-milos-cci-v1-0-28e01128da9c@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Reply-To: frank-w@public-files.de
-Subject: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4pro: fix model string
-To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20251215074609.4100-1-linux@fw-web.de>
-Content-Language: en-US
-From: Frank Wunderlich <frank-w@public-files.de>
-In-Reply-To: <20251215074609.4100-1-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:diTDF+fdPJ8g2eQfP9/aS4XjFntW/VDmKb7YPaU06ywmi9yMjtA
- Lh18+lF0rfQFK5HY+45hjHkjbq8P9gGyhOHe/KYlTyN+mzBMhRE8piBnaKIapd3dCSDaYBy
- GNMWTK+dhyqoOxibw/FxGRyGe2Y73ZFvGVdicpzeG1snBtJo099mIlLMTIbkBrf3W+6URXL
- kNoKkv73yIJNuvEo9u4Jg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:+c25jWzXG8A=;+BZykk5bSNPATxq/0BDAQ+6c1YM
- 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
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/z2NQQqDMBBFrxJm3QHHioZcpbjQZNIONNomKoJ49
+ wYtLmbxPn/e3yBxFE5g1AaRF0kyDhnopsC+uuHJKC4zlEVZF1TUGOQ9JrRW0De+clqXxLqB3P9
+ E9rIerkd7cuTvnJXTGULfJUY7hiCTUQOvE/61x/+1Z9QZ07XWBWtR8rmKeuf9ndhrsxC0+/4DF
+ rAbmMMAAAA=
+X-Change-ID: 20260106-milos-cci-f7f4d8821e87
+To: Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, 
+ Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768570739; l=2024;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=vsB3iMV+9fUeGQu62KaTOVPfdptcCf+K+X8N9tzPOGw=;
+ b=jnLHxzy0FYbwtafB7PRM9AC9uGpEoNZJfuMcbB439ob1GKP+fonMo6eQtInrwGDpvG6BcUC0e
+ egB1s7v5wyiDWZgq4PEh/deFSSlKnwSb59RUZlrLlHfMofOvhxT7A93
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-Hi,
+Add the compatible strings for the CCI busses on Milos, and the EEPROMs
+found on the Fairphone (Gen. 6) camera modules, and add them to the
+milos dtsi and device dts.
 
-just a gentle ping
+This series soft-depends on https://lore.kernel.org/linux-arm-msm/20260116-milos-camcc-icc-v1-0-400b7fcd156a@fairphone.com/T/
 
-regards Frank
+The patches can be applied without the dependency, but the final dts
+patches should probably only land once the other series has been fully
+applied, otherwise the CCI busses cannot actually be used (unless some
+other component turns on the mmss_noc) and you get a kernel warning like
+the following:
 
-Am 15.12.25 um 08:46 schrieb Frank Wunderlich:
-> From: Frank Wunderlich <frank-w@public-files.de>
->
-> Fix incorrect model string in Devicetree for BPI-R4-Pro.
->
-> Fixes: f397471a6a8c ("arm64: dts: mediatek: mt7988: Add devicetree for B=
-ananaPi R4 Pro")
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->   arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts | 2 +-
->   arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e=
-.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
-> index c7ea6e88c4f4..621d01e3cd89 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
-> @@ -9,7 +9,7 @@
->   #include "mt7988a-bananapi-bpi-r4-pro.dtsi"
->  =20
->   / {
-> -	model =3D "Bananapi BPI-R4";
-> +	model =3D "Bananapi BPI-R4 Pro 4E";
->   	compatible =3D "bananapi,bpi-r4-pro-4e",
->   		     "bananapi,bpi-r4-pro",
->   		     "mediatek,mt7988a";
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x=
-.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
-> index c9a0e69e9dd5..bb15bfa5e6ae 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
-> @@ -9,7 +9,7 @@
->   #include "mt7988a-bananapi-bpi-r4-pro.dtsi"
->  =20
->   / {
-> -	model =3D "Bananapi BPI-R4";
-> +	model =3D "Bananapi BPI-R4 Pro 8X";
->   	compatible =3D "bananapi,bpi-r4-pro-8x",
->   		     "bananapi,bpi-r4-pro",
->   		     "mediatek,mt7988a";
+[  291.055839] ------------[ cut here ]------------
+[  291.055860] cam_cc_camss_top_gdsc status stuck at 'off'
+[  291.055878] WARNING: drivers/clk/qcom/gdsc.c:178 at gdsc_toggle_logic+0x138/0x144, CPU#4: hexdump/1995
+
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (4):
+      dt-bindings: eeprom: at24: Add compatible for Puya P24C128F
+      dt-bindings: i2c: qcom-cci: Document Milos compatible
+      arm64: dts: qcom: milos: Add CCI busses
+      arm64: dts: qcom: milos-fairphone-fp6: Add camera EEPROMs on CCI busses
+
+ Documentation/devicetree/bindings/eeprom/at24.yaml |   1 +
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      |  18 ++
+ arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts   |  50 ++++++
+ arch/arm64/boot/dts/qcom/milos.dtsi                | 194 +++++++++++++++++++++
+ 4 files changed, 263 insertions(+)
+---
+base-commit: ef1c7b875741bef0ff37ae8ab8a9aaf407dc141c
+change-id: 20260106-milos-cci-f7f4d8821e87
+prerequisite-change-id: 20260116-milos-camcc-icc-d41bdff31ef8:v1
+prerequisite-patch-id: fc79344d381fea48318bbf62ce7c16b5687df074
+prerequisite-patch-id: 323271b304b98b6ac0e98032f355de26c8e4fa6b
+prerequisite-patch-id: ba8a70f210c54a14c69a60c26eea22d384b0397f
+prerequisite-patch-id: de6e7d9f90ce4d8b37342e5198f042edee4b81a4
+prerequisite-patch-id: aa3dc6c12366d6574b7e85808fcb107deddb8435
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
 
