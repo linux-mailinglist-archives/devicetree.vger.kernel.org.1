@@ -1,125 +1,211 @@
-Return-Path: <devicetree+bounces-256117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E2ED32716
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:16:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2182D32792
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:19:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9DD6930EE2D3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:14:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D90D230139A0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:19:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628182DF151;
-	Fri, 16 Jan 2026 14:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D8E3329E58;
+	Fri, 16 Jan 2026 14:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rC73nsgs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OxL4pcBU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668F12DE6FA;
-	Fri, 16 Jan 2026 14:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277D332939B
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 14:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768572853; cv=none; b=AEqPmxnkdWplq8ZCLR5jkHK8PsX8tEz9uKGviQnOPaI8NZC+Ri1e39te+uxrMKOF3k448hSjaMpB1tOY3YAWcE+9vuV2O0kLHFy8cJlujKZv9vDrFWZCDmWH81PJWN6yom+9aCWDJEaLfW7Oz6UfWLLeHf2aheZ+I0c4GhXCREw=
+	t=1768573162; cv=none; b=nuXGaKVAAyMy2v34W3kvbg2zTNYVVh9/HQ20qEaJfqoJUjNLaNoJqxvQxkUNL3cNzE02RsJU/pTISh4g1nhNdB/vdG0ZMa29oAYdiM3H2iaiSJ1hYZwo4xikUdADtziw1BCJvpmlZLn533NaKezlChU/OoiJ/zv3eZrtiPSg2n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768572853; c=relaxed/simple;
-	bh=9RVhOerKifI8Xmk0WzVhzFAwaWoSF+pmadCw8yVxJYM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BvUbCboVhqViFgiWrehCe0mzw76uubRpCfpDGDsaDb/vIMJV2aYp4m35x1Mncbibs9QvocmUQOClZdYKK+fW6WpTkd3NV31SOGGiR76FG9uDBy89M/Olp2EHPoF/29FPgvk1vMZHmXcI9UbhQMTXYrwSfLRJfC6nC6bLabf7HAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rC73nsgs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD7B9C116C6;
-	Fri, 16 Jan 2026 14:14:08 +0000 (UTC)
+	s=arc-20240116; t=1768573162; c=relaxed/simple;
+	bh=JghXPm6HOBFNktLIBiI8eyfuN76nwomk97JpiXS3QS0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ChtOy5OUvJxBwrnlGdsZFI8Weo0zWavNepE0Og06lyd16dlwz/RfXoOLebZNh9b7OUj8vGh1zQNNsMzkrZSUIbKDCcR2IeknGSzPSyEO6Y9N66qz2dv7tjub07tt+6H3fZWef+Gqpsq+ZBlaI0rjgnod3Q4OiiMbmjMaoyRnqi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OxL4pcBU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77E9CC2BCB5
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 14:19:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768572850;
-	bh=9RVhOerKifI8Xmk0WzVhzFAwaWoSF+pmadCw8yVxJYM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rC73nsgsvWQr2fK46654KgSwqfb/5GN6Shqo1oUD1QWrsDxVE5v+EmnPQwiuDraW/
-	 IRCoaWb48f6hMAEi5SDYQiIFk0uKIk++6J42Q8gigY4wP7l2UslF34EcMvO8Bb4Eat
-	 ZYE1cV1aracMNrNyrTA+eAFIDMwBCNzuaCOlu3qM38fKY1PRRMtFkoeYICYc0emqQD
-	 jwapxTUdq4x/kqa/PwvG3eNM0tLIoQJrbVNp5/WxahS5Nefk5HwNk5SeVmtJv5ODtN
-	 /jHc/qNO1QlJ9+G9HnZIcuplTE0JG35p7CwA0lAcHEWdb0WWcO/gxzQmeKuZ78SKpN
-	 +D/pbEoYM6tcw==
-Message-ID: <06b1a681-4190-4552-a092-22dbdecf561c@kernel.org>
-Date: Fri, 16 Jan 2026 15:14:06 +0100
+	s=k20201202; t=1768573161;
+	bh=JghXPm6HOBFNktLIBiI8eyfuN76nwomk97JpiXS3QS0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=OxL4pcBU9qQTdx9n8ylW4+63JJn3jJQq1mb+5GohfdbIkucdwgCLkyjualU8mlIyy
+	 KxP0DkLB/NyJewlJloc2Fr0VoT54B2cMfGhElk2oGuLk/HATJ2d9MzlmU+xlLNVKLi
+	 UdxOLCIiz/MBK4oMCLlstwC4mmVWzFqsjfE2WAPVfZ98PBKaU/gylwOIuMy3iBVnSS
+	 FI2bcwrjfnZ0xPfq38Jr5byWaPhIJFGWpXgFYfrCyyrVBEfGaUwReAp4jwJLCZoWvb
+	 O/8HwT//akwL51JCMSdMN8En3448ykrd3BUbpmXuYrUeQLGPvkOUu7Q9lJY0SGmlRm
+	 GUEfyx4z/vcsQ==
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b872cf905d3so346050566b.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 06:19:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXaLyddmGh72ppoR4wzXWiuYkoffJu5rMiqIdvRiVZw1lVxp52QFaBI67Lhb2zQYvPpPgKW0LiG7lP/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy19G0qVE+j4MUVq8/NxgBx0KHKboQYd3J7b0wDqoDYNwB2sGlg
+	yrdIH3Dn1fSNmpMt3XI+jNKXIxDK6YOGnrJJxAArMnlmV0kGhi4ZRCvw0g+s9jMPM/ro+fc9uD/
+	RhfCNC4YbGL7A2YKBnNvCrEATQsGsGQ==
+X-Received: by 2002:a17:907:d03:b0:b87:892:f43f with SMTP id
+ a640c23a62f3a-b87969386d0mr231202266b.29.1768573159725; Fri, 16 Jan 2026
+ 06:19:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] dt-bindings: i2c: add force-set-sda property
-To: Jie Li <lj29312931@gmail.com>, wsa@kernel.org
-Cc: linux-i2c@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, linus.walleij@linaro.org,
- linux-kernel@vger.kernel.org, Jie Li <jie.i.li@nokia.com>
-References: <20260114141352.103425-1-jie.i.li@nokia.com>
- <20260114141352.103425-3-jie.i.li@nokia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260114141352.103425-3-jie.i.li@nokia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
+ <20260112-pci-m2-e-v4-5-eff84d2c6d26@oss.qualcomm.com> <20260113171424.GA3925312-robh@kernel.org>
+ <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
+ <CAL_JsqJxBNm0y6T7vji6MXgsO65iDJ-tdUEo0cOxkw7EuMKpkg@mail.gmail.com> <gcmm23ji4fkcqeshcyiehuyega7kdbtvmofp4usmol2icwn6gy@i46icelwwqh5>
+In-Reply-To: <gcmm23ji4fkcqeshcyiehuyega7kdbtvmofp4usmol2icwn6gy@i46icelwwqh5>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 16 Jan 2026 08:19:07 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKKBjurY7ZrScayvkTijR-F6GWBofry48xoPFBFi55u4w@mail.gmail.com>
+X-Gm-Features: AZwV_QhaVXIgz8bq4CqPsm9NXLoIfFaoT-4jNhJ-ZskY8n0WuXohQmqAGOhuiUQ
+Message-ID: <CAL_JsqKKBjurY7ZrScayvkTijR-F6GWBofry48xoPFBFi55u4w@mail.gmail.com>
+Subject: Re: [PATCH v4 5/9] dt-bindings: connector: Add PCIe M.2 Mechanical
+ Key E connector
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14/01/2026 15:13, Jie Li wrote:
-> Document the new "force-set-sda" optional property.
-> This property is used for hardware where the SDA line is open-drain
-> but the standard driver-level check (like gpiod_get_direction) might
-> not correctly reflect the ability to drive the line for bus recovery.
+On Thu, Jan 15, 2026 at 4:42=E2=80=AFAM Manivannan Sadhasivam <mani@kernel.=
+org> wrote:
+>
+> On Wed, Jan 14, 2026 at 11:45:42AM -0600, Rob Herring wrote:
+> > On Wed, Jan 14, 2026 at 10:14=E2=80=AFAM Manivannan Sadhasivam <mani@ke=
+rnel.org> wrote:
+> > >
+> > > On Tue, Jan 13, 2026 at 11:14:24AM -0600, Rob Herring wrote:
+> > > > On Mon, Jan 12, 2026 at 09:56:04PM +0530, Manivannan Sadhasivam wro=
+te:
+> > > > > Add the devicetree binding for PCIe M.2 Mechanical Key E connecto=
+r defined
+> > > > > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This conne=
+ctor
+> > > > > provides interfaces like PCIe or SDIO to attach the WiFi devices =
+to the
+> > > > > host machine, USB or UART+PCM interfaces to attach the Bluetooth =
+(BT)
+> > > > > devices. Spec also provides an optional interface to connect the =
+UIM card,
+> > > > > but that is not covered in this binding.
+> > > > >
+> > > > > The connector provides a primary power supply of 3.3v, along with=
+ an
+> > > > > optional 1.8v VIO supply for the Adapter I/O buffer circuitry ope=
+rating at
+> > > > > 1.8v sideband signaling.
+> > > > >
+> > > > > The connector also supplies optional signals in the form of GPIOs=
+ for fine
+> > > > > grained power management.
+> > > > >
+> > > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.q=
+ualcomm.com>
+> > > > > ---
+> > > > >  .../bindings/connector/pcie-m2-e-connector.yaml    | 154 +++++++=
+++++++++++++++
+> > > > >  MAINTAINERS                                        |   1 +
+> > > > >  2 files changed, 155 insertions(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-=
+e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-co=
+nnector.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..b65b39ddfd19
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-conne=
+ctor.yaml
+> > > > > @@ -0,0 +1,154 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-connector=
+.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: PCIe M.2 Mechanical Key E Connector
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.co=
+m>
+> > > > > +
+> > > > > +description:
+> > > > > +  A PCIe M.2 E connector node represents a physical PCIe M.2 Mec=
+hanical Key E
+> > > > > +  connector. Mechanical Key E connectors are used to connect Wir=
+eless
+> > > > > +  Connectivity devices including combinations of Wi-Fi, BT, NFC =
+to the host
+> > > > > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and I2C.
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: pcie-m2-e-connector
+> > > > > +
+> > > > > +  vpcie3v3-supply:
+> > > > > +    description: A phandle to the regulator for 3.3v supply.
+> > > > > +
+> > > > > +  vpcie1v8-supply:
+> > > > > +    description: A phandle to the regulator for VIO 1.8v supply.
+> > > >
+> > > > I don't see any 1.8V supply on the connector. There are 1.8V IOs an=
+d you
+> > > > may need something in DT to ensure those are powered. However, ther=
+e's
+> > > > no guarantee that it's a single supply.
+> > > >
+> > >
+> > > 1.8v VIO supply is an optional supply and is only required if the pla=
+tform
+> > > supports 1.8v for sideband signals such as PERST#, WAKE#... I can inc=
+lude it in
+> > > the example for completeness.
+> >
+> > My point is that PERST# and WAKE# supplies could be 2 different 1.8V
+> > supplies and those supply the I/O pads of the GPIO pins (and possibly
+> > external pull-ups) that drive them. The 1.8V supply doesn't supply
+> > 1.8V to the slot, so making it a slot/connector property is wrong.
+> >
+>
+> Ok, I get your point that VIO 1.8v supply is just limited to the I/O logi=
+c and
+> not the whole card/adapter. But I don't get your multiple supplies concer=
+n. Spec
+> says, "A 1.8 V supply pin called VIO 1.8 V is used to supply the on-Adapt=
+er I/O
+> buffer circuitry operating at 1.8 V." So it implies that either the singl=
+e
+> supply available to the card through VIO might be used to power the whole=
+ I/O
+> circuit logic or the card can derive its own 1.8v supply from 3.3v supply=
+.
+>
+> So how come the card can have 2 different 1.8v supplies powering the I/O
+> circuitry?
 
-I think Linus explained well why this does not fit DT, so also formally
-responding here - use proper GPIO flags, when SDA is open-drain.
+Is there a pin on the connector for 1.8V supply? I don't have the
+spec, but the pinout I found[1] didn't show one. If there's a pin,
+then I have no concern.
 
-> 
-> Signed-off-by: Jie Li <jie.i.li@nokia.com>
+Rob
 
-This does not match From address. You need to always check your patches
-with checkpatch.
-
-
-Best regards,
-Krzysztof
+[1] https://pinoutguide.com/HD/M.2_NGFF_connector_pinout.shtml
 
