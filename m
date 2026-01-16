@@ -1,199 +1,125 @@
-Return-Path: <devicetree+bounces-256228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9ED3D33B9B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:12:07 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 426FED33BE7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:16:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 799A3304D349
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:05:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 559DD30259EE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739183A63E7;
-	Fri, 16 Jan 2026 17:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B638333C19C;
+	Fri, 16 Jan 2026 17:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SpF4N0bB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WE07dgYP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2E339A7F7
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92ACE3112BA
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768583046; cv=none; b=EkLnYK2AQ9eZcPN5z0sKZRaKEZC+65p0FAQPex+V7YNJx3DdD6Tis22L8e4adbUXy+GnXFudsZv76g3EyV3HUIBb5KkeOKzCj7poBlOpotzZfFAmCYhDIT23K+pJRIhuxyg+1amGeJwlC8CxW5rzuY07uJ5yWfRB5H+NL+OkvQY=
+	t=1768583602; cv=none; b=jTiLuPuc29p8CXRZv0+D/wZliOFK0iDdohK4rV0bdPfx6fiy4yCtqiv8pPGKQ4RxiEC4jTMgjMRVC8AVnj/eC060JBjy8SVEGDdyAM22uySikL61RffgdBh6sAAI/D7mGHCnwXBF6Ays9s/g7tkuEHuVZ6MfPggzBd5MGKJti/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768583046; c=relaxed/simple;
-	bh=Qs9lT5XeX2uwxu5pzH8HZjGceoTBvbZBllxvaSR3RSE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iZ2CjNTgJZSfmNLiwldHJtCj7cAQgSP52gSMCryHKIOjrEqX5RBDSsG1SeNTbMdkrh/OAvrMljRVo4NNOkFUYI8CkKVBQ87ET+dX1TDz9s3Vo/0AZKbfRyDpVHqq66iiHQnN3I4WHiGSb8sklnRpCSKQZdDoDfZc42BlgAIXr4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SpF4N0bB; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 9E81E4E42112;
-	Fri, 16 Jan 2026 17:04:03 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 70AC6606F9;
-	Fri, 16 Jan 2026 17:04:03 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0CDBC10B68CC8;
-	Fri, 16 Jan 2026 18:03:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768583042; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=17sg1MEtS3JEHC+aKMPbN0je70cbqKxiScHC7KFqQ6I=;
-	b=SpF4N0bBcN3OLgzywqK54Yy0Qcqn5lCD2SZbtl/jWePDWxYtRlku8fEtsCcs375eOccqgf
-	4FteQFLpdF25i0rFkRoNZtWBldDt34rVGuJeb5bfJPrF6/f5CTdw9i5cgdyJuX4+ZYm0zT
-	cltRWJVdbq6LgTagfdf4qqCx0eujHZaMwyPnNlzLmZYaZU9wfo6xBNSvvzVTL/Owte9AoI
-	QyjHqZ+1xhmtRyUlrnsiqe0QBWPtJwc7rfFQ3evM5ArTXRy2wgiy0YIej7ePUCbQ42196E
-	FpeNeyKKr9t77af3zWahZWEWLQoQMh2hKePv5I3PQnASOgQzsrIRipmEmEe4PA==
-From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Date: Fri, 16 Jan 2026 18:02:25 +0100
-Subject: [PATCH v4 25/25] rm/tilcdc: Add support for
- DRM_BRIDGE_ATTACH_NO_CONNECTOR
+	s=arc-20240116; t=1768583602; c=relaxed/simple;
+	bh=eRYqR0sCNl0Tu2qKem4b18hzc+OZmtQiAcQb2U4ROYY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RXvZ/h4Xb9Tuf9vfP2WMsIcOrmTv4zpHlWjT6EYkW1IXiHK59fsbQtlYgnC2EsMcxf6YWR5Fum2aEpNt2C9Cu6Ji+Ia8WoMJRT65ZEPJLovtcUliFYXeq2Yk4NZpGm45ltOXdBRKCU4p0+D/1K3dhd8n38at2bYqO5k0uJuMveA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WE07dgYP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B772C2BCB1
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:13:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768583602;
+	bh=eRYqR0sCNl0Tu2qKem4b18hzc+OZmtQiAcQb2U4ROYY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=WE07dgYPtMh+iEmPUqJIwpwlx16Y309VZaWMmXXZ6uz2AOQ6uSR8nzMYFdEO1SHze
+	 FGONKkBnkcPKDwEPw6wJgFbVrN38Y4d6J/N0syN8YRegLZ4wH4KJqOyzSjTOymexst
+	 95XKxOPhWxBScbeqeE8lSQCxGThlEb7EoUifQfTxxm18M8zTuZlMT6IFZ8goHQdZsa
+	 0C3xH5jK4rNNwW196Bt32nhLO0D1InBTeouRPTg438lCJ/NMh7X7dlEUuqfZ9uZz6w
+	 H+Sad/72XWg7S5Ihy1NISXfX1waRnX7HIlt1sIPg/wJ+7+uJ5wMgfc+34WgEIMj4o5
+	 AxletjXRB0nNA==
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b8765b80a52so361245266b.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:13:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUBaHnCUtEjmhb54993Or51M1mXQ3ydqGsYw2v65sHHyl5iM2sjhgqrb+eXofMXS4vvOzutrgotMlfE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyP7YD0gzITri4g7GP96oRpAhdtn+IW2NybUp2TalLysRCx5OFh
+	LxGXAZ99faJbP6OzujI3bG+Hm0ttSbY+bN4Mo/qBI9QHKc7mi1qQHeXMwgMXR+DA38LStboiewq
+	GaxH/M7OXptMgFuqfWHiZL6MED2ZNoQ==
+X-Received: by 2002:a17:907:972a:b0:b87:51d6:22fd with SMTP id
+ a640c23a62f3a-b8792d27530mr333887066b.4.1768583600748; Fri, 16 Jan 2026
+ 09:13:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260116-feature_tilcdc-v4-25-2c1c22143087@bootlin.com>
-References: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
-In-Reply-To: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
-To: Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Markus Schneider-Pargmann <msp@baylibre.com>, 
- Bajjuri Praneeth <praneeth@ti.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Miguel Gazquez <miguel.gazquez@bootlin.com>, 
- Herve Codina <herve.codina@bootlin.com>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, 
- "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20251031-knp-ipcc-v3-0-62ffb4168dff@oss.qualcomm.com>
+ <20251031-knp-ipcc-v3-1-62ffb4168dff@oss.qualcomm.com> <20260116162057.GA1681736-robh@kernel.org>
+ <af235d3c-cbf0-4cb9-af3b-37c1600d421c@kernel.org>
+In-Reply-To: <af235d3c-cbf0-4cb9-af3b-37c1600d421c@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 16 Jan 2026 11:13:09 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJyRa-U03XvPNchpoyYNmSJQacrYs30yd=a_s-6PnppSw@mail.gmail.com>
+X-Gm-Features: AZwV_QhpPDY5TdWqp-uUJoWm9FnhebFCSWh0tBr4jy39I3ojMHC23o9gZuyCiC4
+Message-ID: <CAL_JsqJyRa-U03XvPNchpoyYNmSJQacrYs30yd=a_s-6PnppSw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: qcom: Add IPCC support for
+ Kaanapali and Glymur Platforms
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com, 
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
+	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert the driver to use the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag when
-attaching bridges. This modernizes the driver by delegating connector
-creation to the bridge subsystem through drm_bridge_connector_init()
-instead of manually searching for connectors created by the bridge.
+On Fri, Jan 16, 2026 at 10:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 16/01/2026 17:20, Rob Herring wrote:
+> > On Fri, Oct 31, 2025 at 12:41:44AM -0700, Jingyi Wang wrote:
+> >> Document the Inter-Processor Communication Controller on the Qualcomm
+> >> Kaanapali and Glymur Platforms, which will be used to route interrupts
+> >> across various subsystems found on the SoC.
+> >>
+> >> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> >> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> >> ---
+> >>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 2 ++
+> >>  1 file changed, 2 insertions(+)
+> >
+> > I guess no one is going to apply this, so I did.
+> >
+> > If your patches don't get applied, please chase the maintainers (Jassi)
+> > to apply them.
+>
+>
+> This or it is an effect of known problem with mailbox and interconnect
+> subsystems - maintainers never send notifications of applied patches
+> (neither publicly nor privately like Greg does), so you will never know
+> if anything gets applied.
+>
+> This as well could be in the next silently (wasn't in 15th Jan, though).
 
-The custom tilcdc_encoder_find_connector() function is removed and
-replaced with the standard drm_bridge_connector infrastructure, which
-simplifies the code and aligns with current DRM bridge best practices.
+Further investigation finds Jassi did apply this and 3 other patches.
+Stephen reported a conflict on 1/6 with another Qcom patch
+(conflicting with Bjorn's tree). No reply to Stephen, but *all* the
+mbox binding patches were dropped.
 
-This change is safe as there are now no in-tree devicetrees that
-connect tilcdc to bridges which do not support the
-DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
+Here's what was dropped:
 
-Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
----
+f8f632c18c32 dt-bindings: mbox: add pic64gx mailbox compatibility to
+mpfs mailbox
+945dc11a38a0 dt-bindings: mailbox: qcom: Add CPUCP mailbox controller
+bindings for Kaanapali
+66b6e5daa915 dt-bindings: mailbox: qcom: Add IPCC support for
+Kaanapali and Glymur Platforms
+9a92e22740e6 dt-bindings: mailbox: mediatek,mt8196-vcp-mbox: add mtk
+vcp-mbox document
 
-Changes in v4:
-- Select missing DRM_BRIDGE_CONNECTOR and DRM_DISPLAY_HELPER config
-  dependency in Kconfig
----
- drivers/gpu/drm/tilcdc/Kconfig          |  2 ++
- drivers/gpu/drm/tilcdc/tilcdc_encoder.c | 37 ++++++++++++++-------------------
- 2 files changed, 18 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/gpu/drm/tilcdc/Kconfig b/drivers/gpu/drm/tilcdc/Kconfig
-index a36e809f984cd..80f53bdd0ace0 100644
---- a/drivers/gpu/drm/tilcdc/Kconfig
-+++ b/drivers/gpu/drm/tilcdc/Kconfig
-@@ -6,9 +6,11 @@ config DRM_TILCDC
- 	select DRM_KMS_HELPER
- 	select DRM_GEM_DMA_HELPER
- 	select DRM_BRIDGE
-+	select DRM_BRIDGE_CONNECTOR
- 	select DRM_PANEL_BRIDGE
- 	select VIDEOMODE_HELPERS
- 	select BACKLIGHT_CLASS_DEVICE
-+	select DRM_DISPLAY_HELPER
- 	help
- 	  Choose this option if you have an TI SoC with LCDC display
- 	  controller, for example AM33xx in beagle-bone, DA8xx, or
-diff --git a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-index 546fe7e6ee815..680a2ac6ab594 100644
---- a/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-+++ b/drivers/gpu/drm/tilcdc/tilcdc_encoder.c
-@@ -8,45 +8,40 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
- #include <drm/drm_of.h>
- #include <drm/drm_simple_kms_helper.h>
- 
- #include "tilcdc_drv.h"
- #include "tilcdc_encoder.h"
- 
--static
--struct drm_connector *tilcdc_encoder_find_connector(struct drm_device *ddev,
--						    struct drm_encoder *encoder)
--{
--	struct drm_connector *connector;
--
--	list_for_each_entry(connector, &ddev->mode_config.connector_list, head) {
--		if (drm_connector_has_possible_encoder(connector, encoder))
--			return connector;
--	}
--
--	drm_err(ddev, "No connector found for %s encoder (id %d)\n",
--		encoder->name, encoder->base.id);
--
--	return NULL;
--}
--
- static
- int tilcdc_attach_bridge(struct drm_device *ddev, struct drm_bridge *bridge)
- {
- 	struct tilcdc_drm_private *priv = ddev_to_tilcdc_priv(ddev);
-+	struct drm_connector *connector;
- 	int ret;
- 
- 	priv->encoder->base.possible_crtcs = BIT(0);
- 
--	ret = drm_bridge_attach(&priv->encoder->base, bridge, NULL, 0);
-+	ret = drm_bridge_attach(&priv->encoder->base, bridge, NULL,
-+				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
- 	if (ret)
- 		return ret;
- 
--	priv->connector = tilcdc_encoder_find_connector(ddev, &priv->encoder->base);
--	if (!priv->connector)
--		return -ENODEV;
-+	connector = drm_bridge_connector_init(ddev, &priv->encoder->base);
-+	if (IS_ERR(connector)) {
-+		drm_err(ddev, "bridge_connector create failed\n");
-+		return PTR_ERR(connector);
-+	}
-+
-+	ret = drm_connector_attach_encoder(connector, &priv->encoder->base);
-+	if (ret) {
-+		drm_err(ddev, "attaching encoder to connector failed\n");
-+		return ret;
-+	}
- 
-+	priv->connector = connector;
- 	return 0;
- }
- 
-
--- 
-2.43.0
-
+Rob
 
