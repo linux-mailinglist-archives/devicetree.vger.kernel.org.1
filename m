@@ -1,133 +1,123 @@
-Return-Path: <devicetree+bounces-256286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F356AD38967
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 23:43:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E31D6D38981
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 23:55:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ADA22304DB5D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 22:43:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C1633302B115
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 22:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3E13148B1;
-	Fri, 16 Jan 2026 22:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD5E2EFD8C;
+	Fri, 16 Jan 2026 22:55:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="c9vZc2Fh"
+	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="Vf486Z7q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 066DA270540
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 22:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D34C314D03
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 22:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768603399; cv=none; b=FBRTH6VC6z3ca7RTRGjv0ImbWDSA7HeQ7zMx22fdxfyc4qHXq/JrYhrnC1sLKcKnMl6cmodC80mpWQ0DCkkEPX3AoX+wJ64FeyGOigPQJesNALa1mDI6Tlc0ofvLmH65vgjvTh93Fl5UZXNIVx+II9Mnb2xv1lmqG8MAq/Uc2sU=
+	t=1768604132; cv=none; b=LEX15Q5LhmdwjuwC9tg/eXHXUFJ+0mbgF+4ihaXVaE5hUGABHpiwUAjRwwqeN/9Y5DTkKAZkGGXlJHpc1l5lu6MI2u1ygZkFrGEaRH8f0c5N27yX2UH6WBHL7ufvlAI5xT2ojFdwFOaBwLQS8Jqe44AUxeZeFb8oVnqYh2tXqnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768603399; c=relaxed/simple;
-	bh=uOdRd7+uMwmMYF4d076SdRnju1u6c6H+tWshE6YoqhM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZjX/Regc4t4jvQTUcDll7OM70ZVqE25a20IEJWhtZZjsGN5Bth28CNS2hLMgnvRyhZloGkRLuq0+ORvCxYXHkJT8NJyD4VaMAO4YGzwtiyTBLbfy28fHopLCW2ROKlbhjOHiPxrdsix3FQCtG3W6nFlfFZAvNTDbHc152iafEAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=c9vZc2Fh; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-7cfd57f0bf7so1545838a34.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 14:43:15 -0800 (PST)
+	s=arc-20240116; t=1768604132; c=relaxed/simple;
+	bh=llmfTPp0WelKz7jhVXMsw5K4Hl8MVjxqniwEWa7ji2g=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=saXRgUwCdme6QRs6FSyRb+G3Umphmm8jmXG/r0MxdlzOLkNKJyAQR3yrZX/+6l2FqMKUE65iicu5PvhYkLcd3SDk+2NWl8p3kahSilNStuOMhF+ufCO8GvRtpUJOOku7nLSLETa/Gfd5YcgHtCvQ95kQ3s5V7DdiEdCQh2wj/Vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=Vf486Z7q; arc=none smtp.client-ip=209.85.222.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-8c52c1d2a7bso392901485a.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 14:55:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768603395; x=1769208195; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C2PF8i3QyhCqQGmWWjUESbM/JH/zeGGQE1WnPk6IZFo=;
-        b=c9vZc2Fhh6eidNdOD+u+hMhA2f9ka7IIzy8LbDHMIkBRCapPL/gmtNDsv2HEcuBMm/
-         4KcCBTkXpjltsH9OlIHqn9tzd9YMT7kYSflHZ9bkNFve1MEy/rGPH0Ygxc19EoDcVVKs
-         bh40tkHgWTURCBD0pRahxqV+SFkDCpGyec+yTLdeJ2sXIWx45TPeBUDBK5fIs08KuSnf
-         vFaAc+850SpIR7d3GFInOHhYaMs0ovpo1h8YqbYpcsBXpKdO7yAI+dnTu2rSYuqGGQec
-         3IvMwRqhe+NzfW/b5ebllklmYgdg1AcypETCvlW87OPYnGo7x3Fohi+chLcyFq+/eplR
-         bLWQ==
+        d=marek.ca; s=google; t=1768604128; x=1769208928; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kaMQBLQZL4oC9WJAEgtAsMP8QqOYOo5TRnK/me2K3Oc=;
+        b=Vf486Z7qBN3f/OiF7l6OqCyLfzQnOkm9QXPHBSwnnrEwB+siGkUMs3/4gacYoshRKH
+         0QVo0cMAqi8uHWknnL8cvXnAZscCG2NQUncQJLWaXrtboR2DIPm3bvIAJfCLyAuZXAyi
+         cIc7zFCGzUoZkSMczNhIVr8DX4YiWCrDAsBxVsbdPGmmexOB5No1t3EBTzTg/WPUHDJ6
+         z75VL/S7ViNFvmWdqcicyrLYsUkxBQ6hbBScmsCZgiovFhppLEbvkF3Ee3B98LBhNJ2r
+         OtfRcjPWBsqbG2Or6Gk9mC9Nr0BfCpgP5HE1SF1sM7bsk+aQ2fbowYmMzXkDTH7znG6x
+         jf8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768603395; x=1769208195;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C2PF8i3QyhCqQGmWWjUESbM/JH/zeGGQE1WnPk6IZFo=;
-        b=wyrfnAaA5axrMQS5Sc03T/+JHsqj99I+zgNdQ30RZt+9+PmQcvpUO7kEHhIAuxxrIe
-         tQUU6CG2X+CtKU5LOMuyL98T9sYTC576h9dfjzdSzt1CVJ+92SabP8NJrsQL65MG5wgw
-         1tgl1rOoS47cVzG/owqVv0MnOlBAqy3PgL4ePqdWVDKEJpRxMPYUEMzZd4VRtA5xo0E7
-         /MA3Lcoxq+UYlbHOEvI8PoWiWNZAXVLu1QrQfl0YydIEOPY4JfMw5sK/XRvtvydgIbeO
-         iRgn8Ef9YQZ/qZxZq0ofwZZ+GXLqkgwMw9iQtAPBjWUkehKnfI8iUc4eaNaNVUiXCAZD
-         IWDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUpXb/k1nxZRO8AzFQlZGVzuJKkuE3aK5u/kwSqWwAavOtB37/fzQ7mb7ZV7P59iUD5O+iL40dj+jUy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqRVwecfTRR9AP59K3Vq8ct2MYkLXn7TXylK/ynPagMf0wgmKO
-	EGm/Zwl4+xRAqGH+m95OqOCaYrWIKtCFvNIsJl7uSeSsCIN3mnAimS40pPq0aviFVSw=
-X-Gm-Gg: AY/fxX77nahcah6Puh76nupq1nFNe2H2bg6RaJdj/9K30kNNYzrawT6cb2ZPzruVCqu
-	KMLExgdg+uZ43FDOsI2t0KHj146nb7R3i1hFk/Dcl4Rg0axuoWytS59BwCDcduj1dnzpB+i3uAL
-	TRrOiyKNn9jYGFw1f38CS5KW9js7sW9UmEz0FJalXr+7ozEsYjxJaqNtJ5EHUB8n1ASL1yDpDt+
-	ZYDIQn2i/9yD/QZmW1RssbC1cJ9S3e1La4i5KAVX++r93tfeLRRN477PcRtpcp3r3xduO0I4b6+
-	Cqzv+dxX2U92rjk8rw6xr9shOKIFID+Hn9nNpOZcH//Mdrssnfw5rmSsikyIjLBsALsmNX1RQgT
-	40LuEklb+IcORBuzQ4bRm5CkYBYdwz7QNioSze3mrMmzi2xSfnsjJCgBDrTocIRK112QYI3oLgo
-	pyA4cohrJNRT0RyEQo8UmQ1ZYshnIdiaGO3a+s2GQ+D9qNLy586UiMrQ5k23Sp
-X-Received: by 2002:a05:6830:6507:b0:7cf:d9bb:639d with SMTP id 46e09a7af769-7cfded1f1cemr2245481a34.1.1768603395110;
-        Fri, 16 Jan 2026 14:43:15 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:bd39:740e:f70f:5f7d? ([2600:8803:e7e4:500:bd39:740e:f70f:5f7d])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7cfdf2b57e2sm2440834a34.27.2026.01.16.14.43.14
+        d=1e100.net; s=20230601; t=1768604128; x=1769208928;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kaMQBLQZL4oC9WJAEgtAsMP8QqOYOo5TRnK/me2K3Oc=;
+        b=tZD0zsgBC7TrFjMV0ribd8FKXwGFYbGyu+oAUiRH4fyhFaxv3qg+luUkC33yWIO9Ro
+         EAgEJbwxJ1uBJHGBl+exaeA8nCBD2pNq1QkSLiBAgGyexjJTRFNf0KWdceCYcOJ9QUsf
+         xLdUWqqEEk7QueI86wLFei5LmzABFTL+LnZDMlQvh47PNTPE+99yaedUM5kxXdwrEBP0
+         Kgq5r+vZdOaW+kWFWjHbpI54oUUbeNkY6x7dPm5fT9WHi9/d8lGMyx7CvCX+gmn+ATt5
+         qO9u1vkF8fVzft5l9flJLem22OFhJjE6RAu8QlqcutRDXajVjUn7CN1sa/7cLWrl0IYE
+         NViw==
+X-Forwarded-Encrypted: i=1; AJvYcCVzJv99MSno0QQsgNrbJpDelcTYHPjFXFj25j8qKXZV6x51Zt3WTvr4Kp7u9mSpdXHX+JWLnOPpFEkr@vger.kernel.org
+X-Gm-Message-State: AOJu0YygsdN0rEwx8Em0oSjZ517mw/ONakn4hWeeSfzXb8d00XTk6eP5
+	S4d2D8ZNRbMI2OzDcIlal2J3DQFV+2/MWFBR8sPmq1a3JA7RVV8rXO6aFv3pkip6LVg=
+X-Gm-Gg: AY/fxX6TbMJQ32Fa9OiJx8GHn9q8F78yW3oEFGuInriMXmSePD3WEhjwgiXkyRstV+1
+	o94HiixBRPaer7TSFZJ50dN/m1XKPB5KVhv8LA3UHGa6ySVwmkbnfLJ5JX5N+VwzLo9TrO8tNTd
+	vLv6LcZlMbGhtc7sBR6i17ffhibuewiZubeUXToFWqZP4aR+4fxd8fE3k4/OfuRG+qs1GDGhCW1
+	8WKagJ1uJ7SebKwDYjHV83RmemAZjRssDhVctC3L3m2DZnDTQoJ5a1IVNBxJCJ30ZzgyxZUboJs
+	aetVIcVIYVMGE2Dvjn00uS1xSo8DXIV/V7h8WR3Qn3HrsIDHZnvSYnDUvBXYujVNh1n2mlGNf8H
+	nh0R3EoEbFsMQnO/9NJilSwfEz7ntbz2eXl/0bA5ChZIovpe+/JQmf+lIVSnlXnQ67dXgqYSEGw
+	xZS18SN0H8lcNttzVBErQm/YtiyvJ9Cq/iGgMHOB+ZqsHiQP9XO5NeaOKHrQ==
+X-Received: by 2002:a05:620a:298a:b0:8a6:1a5d:7ae8 with SMTP id af79cd13be357-8c6a64eb2ebmr839278485a.28.1768604128544;
+        Fri, 16 Jan 2026 14:55:28 -0800 (PST)
+Received: from [192.168.0.189] (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c6a724ec87sm337089085a.30.2026.01.16.14.55.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jan 2026 14:43:14 -0800 (PST)
-Message-ID: <ce9e2b46-58c9-4346-9e87-d5fbedd13826@baylibre.com>
-Date: Fri, 16 Jan 2026 16:43:13 -0600
+        Fri, 16 Jan 2026 14:55:27 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
+To: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>
+References: <20251127212943.24480-1-jonathan@marek.ca>
+ <176859948742.425550.1764024067188709567.b4-ty@kernel.org>
+From: Jonathan Marek <jonathan@marek.ca>
+Message-ID: <79b3e8ae-134c-df6d-396d-9b7f766ef666@marek.ca>
+Date: Fri, 16 Jan 2026 17:53:59 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 7/9] spi: axi-spi-engine: support
- SPI_MULTI_LANE_MODE_STRIPE
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Sean Anderson <sean.anderson@linux.dev>,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-References: <20260112-spi-add-multi-bus-support-v5-0-295f4f09f6ba@baylibre.com>
- <20260112-spi-add-multi-bus-support-v5-7-295f4f09f6ba@baylibre.com>
- <20260114091617.170a9757@jic23-huawei>
+In-Reply-To: <176859948742.425550.1764024067188709567.b4-ty@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260114091617.170a9757@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 1/14/26 3:16 AM, Jonathan Cameron wrote:
-> On Mon, 12 Jan 2026 11:45:25 -0600
-> David Lechner <dlechner@baylibre.com> wrote:
+It turns out this change will make things worse for the (unfortunately 
+common) EL1+64GB+brokenfirmware case.
+
+Because of that I think the Fixes: tag and "(fix 64GB models)" should be 
+dropped from the commit message. (I can also send a v2 with extra info 
+in the commit message if needed)
+
+On 1/16/26 4:39 PM, Bjorn Andersson wrote:
 > 
->> Add support for SPI_MULTI_LANE_MODE_STRIPE to the AXI SPI engine driver.
+> On Thu, 27 Nov 2025 16:29:42 -0500, Jonathan Marek wrote:
+>> Unlike the phone SoCs this was copied from, x1e has a 40-bit physical bus.
+>> The upper address space is used to support more than 32GB of memory.
 >>
->> The v2.0.0 version of the AXI SPI Engine IP core supports multiple
->> lanes. This can be used with SPI_MULTI_LANE_MODE_STRIPE to support
->> reading from simultaneous sampling ADCs that have a separate SDO line
->> for each analog channel. This allows reading all channels at the same
->> time to increase throughput.
+>> This fixes issues when DMA buffers are allocated outside the 36-bit range.
 >>
->> Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> Hi David,
+>>
 > 
-> I kind of hope ADI make their versions backwards compatible (or at
-> least try to) so the version check might be a bit over the top.
-
-FWIW, I was the one that actually pushed for the FPGA IP block major
-version change. There wasn't a default value for the new bit fields
-that worked in every case, so there wasn't a way to make it fully
-backwards compatible with older drivers that don't set those bits.
-
+> Applied, thanks!
 > 
-> Anyhow, not my problem and the code is nice and clean.
+> [1/1] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
+>        commit: b38dd256e11a4c8bd5a893e11fc42d493939c907
 > 
-> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
-
+> Best regards,
+> 
 
