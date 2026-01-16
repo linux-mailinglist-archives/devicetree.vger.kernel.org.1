@@ -1,157 +1,358 @@
-Return-Path: <devicetree+bounces-255821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1170D299A5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:27:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 825DCD29E04
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:05:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 49739301D50D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 01:27:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3F4663006A63
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:05:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37DB333453;
-	Fri, 16 Jan 2026 01:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67881D6DB5;
+	Fri, 16 Jan 2026 02:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B06C8vwl";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iz8HgTXc"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="g/Plv7a7";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZeUzeTfJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C11633342C
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 01:26:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55ED322F386
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 02:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768526816; cv=none; b=cs2YcB0aHKZJ4uu1MDFXj+X4aQCjL+Q5TEc/Q2w2XLcn+M5JgMF0p37I01JdF//HB4rp+/51lT3SlyIPHjEjojbUtJm85O7H4QIpXC7QjCDFaVaWesiiQLsWVnYHU3CEuJCtnWOYGEeFEH0qZLvTHyTao0jiuJ15RGa3SUPBmAU=
+	t=1768529146; cv=none; b=Lkt/3yEX6kS4dLLd8xCi2Z2baJCAA2XkTfj3cLSgTnFvI/89rBuj134f7nFGT/LiUStm1PvH8gvYO8IXPdquzvyK2j0k4r7lmn+E3OgTFa2e8csvdNbfWJ/3VlbGScUHhIixoI4fV+heBSVYvp98TUCy68SaJczzqQhKy1iHs6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768526816; c=relaxed/simple;
-	bh=tkKapXJAv3P3u+XCyncrWRqWj5pzhnVqLBlDhYSg+xo=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=tUbIqd7NpjqQqST6rgPIg+vb89ULn8s553OV5IAl6roz21RyXiauUWj4Boi2DWOoq0p4aaCEfDqiNqla++T8GUZjIY1qMBeoZpI3bVSTEXTQF+XF3RhP0OKVyQLg9vNzQcoH/ODU1nl1FPZyE1C01AVWkzf2sYKCq0GccFSKgjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B06C8vwl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iz8HgTXc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60FMbdkj3596641
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 01:26:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KHvpl0cOsSAPRSO1Igx8dlMLkSJkUG1m7ej0v0eL2VY=; b=B06C8vwl0TA2dTwL
-	79HMs24/72z8faPrGXX3/3rhxK9IxI/5GQYbJ6SJ/at3nRbXj/0hHenCvaeh2Kqh
-	uFUZBs29zeACJslZ7G5Z0MM1Ho6BPoMfUwP+DKQtaKCUkFJKBBnbJ3ITXcMBkTRJ
-	DhCuigNc7yEhG46B+H8m+YsjV+GmVHxA2tTkThbyioP0xoaQSFQklha3rLSqGs+a
-	rHWEL+x8RiYlE+9KaHBb+nYVYNUGafttnI/qEmEK5MVtZPR8szvt8m8hF95LmMV9
-	ldAbA5CY8owqem9Rmc6sUCWN9t1JGAZbxiPCM20ffjbHmP+BdU3DARh2/yAydKep
-	AoiWOA==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq96rrb6a-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 01:26:47 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2b6b9c1249fso209104eec.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 17:26:47 -0800 (PST)
+	s=arc-20240116; t=1768529146; c=relaxed/simple;
+	bh=j3DZ3MLheBzPZCcXceHMdl1oFCSl1YqhTX1+xmDy62c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ksW7S04VLbJ++nCF5t88WRvIqSaZnCLw2HoPMbuVYxF8HvzdstRmiBh6jvCkz+lAtiRDChxNdzFgaYrSXKO+DYu1mbW0CimGvlJMSRL19LMlwc3Miu4M2NKSTTM5aDxV9B5Iemswxs9gGEXmIQj5iIpiWHcDNHfmHWi/32StAgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=g/Plv7a7; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZeUzeTfJ; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1768529142;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gG1D0fzVJ1vGqbm/rZq2UIHNeWOawXntGG6W46KCvjs=;
+	b=g/Plv7a7Js2SDQ4nhkM/TFiYoqvA6zAzJxguBC3bpwGqx0lcULT9sHQb3PyrGWa90sB09L
+	u/ks0+GqE8NVrTx5vMpPnF9ZYPMzWq/B8cn2TlDm5S4PJl1XA7MrJ3ek1pLG+NOeibQxjp
+	cfOPeZJUM5O1tT66q4Ws5OiftcQM+SA=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-589-uOfbzKDUPY-OP5p1ZGOKwA-1; Thu, 15 Jan 2026 21:05:41 -0500
+X-MC-Unique: uOfbzKDUPY-OP5p1ZGOKwA-1
+X-Mimecast-MFC-AGG-ID: uOfbzKDUPY-OP5p1ZGOKwA_1768529140
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c5311864d9so350237485a.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 18:05:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768526806; x=1769131606; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KHvpl0cOsSAPRSO1Igx8dlMLkSJkUG1m7ej0v0eL2VY=;
-        b=iz8HgTXcPVV/dm9bIMVBU9ryUOFweMJDu8ntOcevGCVxgUVIJdUbs47Q1tX2Cz5hgn
-         Zvnwo2sy5NY54s5XO3w5wU0WEGeWXEKhCC8hYPn/ygDPhrzodDnbei1uoWVIR4auS8/A
-         q3So4oJKq26sw4eBeTiCP1sxfvaFydPn5b0dMqicKT7DAEeRWMgdDVcV16c715ypx2fC
-         LSH1QJ7e2RpLu8lkj3/yUwP3vlfscvnrx/uHUCyXWdalALx5CTS1v8mm4puyN1AjUQ07
-         /YdIcLAddRFhqBibqY3yvjyHBH4B39EoJ+FMij9PRSumMVszT6BaPlnjI5gulrX4kqxw
-         RXvA==
+        d=redhat.com; s=google; t=1768529140; x=1769133940; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gG1D0fzVJ1vGqbm/rZq2UIHNeWOawXntGG6W46KCvjs=;
+        b=ZeUzeTfJnduLKXZ+66a/Umpgo/pX+qVr7uRlx8+Pg3oGU8uzLFiuTRPuIEQRoIZznt
+         MZmSbBNCgjeiwI8qne+x7N9XyFOSA08zgrSIKgbC7EfqNIIA1mHbBGKxXmwUysTuJ0KF
+         2L045HnE7+ibdFN8gYyVZGCAtSPvTdnaGyUmwhV+MjlyZVYcOOLL3JrjsMc0d+yWJtQq
+         3LZu/qrjesbBD7dirsOjnlwbaf8FDnTOGQmlD/6RMRysT8WN6uiW2ONKT2vi0RNkJjAG
+         txXGQZW6KaycSlPAad779zaWxBL1+MnwnURHXJN6eKQe46pODKS5DYcM1KeOZLgtmk+M
+         bDhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768526806; x=1769131606;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KHvpl0cOsSAPRSO1Igx8dlMLkSJkUG1m7ej0v0eL2VY=;
-        b=O6pTI2VWCOqOmQDXXK0FvxMZXWj+NQLTC1ZxWfRhJPpdgSIl8dPEP+no4WHDwuK0kC
-         qKKerTaL0KFqKr0U84TnAdocZAzpyBsjAqHea+1xUc6cIgCJ5mtaV7Kjlu7buJoxzQK5
-         HhNdjvXwJ0ZZuZeEyqu6zG2PIJ/XZIiACyzsyty/EYfLtAV4kAsQbruQVKnpnW3Lc+7L
-         cxJb8A9yxMWLhh+PrPFky3oW0p03Iqph9/JUwaz3BHtnyffNJsm1QIKbvnfSmD/fw6yG
-         PRxxx0HhdLW7IuIN4aDyrb5ofGeu+eqI4ihMwLYAZ6ombEkDE39WCvoSpGYHohpxTP2v
-         V/Qw==
-X-Forwarded-Encrypted: i=1; AJvYcCVkhvPPZSc/up4XOcpGmEnSTRJefSXbTM4lvbyylBSRYY6+huBy98+H3GufKigT+Mciz5DNVG5gRI8h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8gtnNFh65kMRFL62exBfjdHiBtajiMESW9HjuJ8uMviizlceL
-	1e089/sgYAhSQG2dL74A5EbGX+VmTluX/9hDg7f5m2dO3FBTOpdlUEUrWxmIkE1ZuV1YmGhBYwh
-	OUvs48OJA9t9y8kkVfqqXv1jfgoV6e6LOBFPuQHz1xNwC/OIBiz7y/RSe3Z3Ryse6
-X-Gm-Gg: AY/fxX5xhFoc4qK/aNNPaiukxgKnBTLveODXLqmHQMOyoII9ZoME817RnnidFWVIyYc
-	NguQ4eBhEL90637t7dfzinHgKV56XTAqXLOqH6IQPl9f0hGk8XV1M4QiBABrmLvse1jc+/SXt5+
-	GDDl5eaY5FE7ACKJp270VSQFSnkzu89Tc4lDA51gk4+ZzU6PVioomDVFEVwVoFr+J0xTJfcDZ0K
-	6Qp1YNZEF9w5DTIXZqqRd1ifvsoJkmHlf1fAQ8pc9FKhbKe6rlIRMEqZzwD/gDQA/qp9uk3pUrJ
-	mjCejMr/Pk2eJoUWCwZml6Xjdse+ir7DpUQgs2GEuiKK3URVKeKpTm4qOhyHJIOoaEBh9GQ9gan
-	6/t5ctcP19TrLiTrUIMvWPUgUE6nztOpvLXWgTc8gHQPrFvUmGC7scfXJvU1x1YHA
-X-Received: by 2002:a05:7300:6d1f:b0:2ae:5cb2:cc11 with SMTP id 5a478bee46e88-2b6b46d33b4mr1526114eec.6.1768526806334;
-        Thu, 15 Jan 2026 17:26:46 -0800 (PST)
-X-Received: by 2002:a05:7300:6d1f:b0:2ae:5cb2:cc11 with SMTP id 5a478bee46e88-2b6b46d33b4mr1526086eec.6.1768526805328;
-        Thu, 15 Jan 2026 17:26:45 -0800 (PST)
-Received: from hu-jjohnson-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b3502c91sm884104eec.9.2026.01.15.17.26.44
+        d=1e100.net; s=20230601; t=1768529140; x=1769133940;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=gG1D0fzVJ1vGqbm/rZq2UIHNeWOawXntGG6W46KCvjs=;
+        b=cExfUYfXDGCQtFTvzsoKhkXwwJTbtneX0fv+psxnfgEyv7JhmtuEOBTGrdETzR4xLH
+         TzqFg41oBuyFStsOachd8InBwIICMTbHYmcSbZ+WvY8vqYJy6fjBaLDHpOsY70Qc/fbt
+         4RDsvN1MReYKH6SntZwf8ia2HSoVPost25U0WjIGhEhOj2zmBLmdph0yo4QSWDcGu9Hn
+         PVQQ6O61eBqqx+KgZ2uUeO0pP53BGC3PhthHxCpy/LMNHcsOpZEYXOlz7WqXynWHo89/
+         JWB1URghQmFws5YsZ/8K/KcB51S1SOMcWq2w1ELk5rzgAeFk0cUjJHOnXCHrlvNm2Sr7
+         Nmvw==
+X-Forwarded-Encrypted: i=1; AJvYcCUzCANZo0dd0I2dVOl1nk6yYjV8Guc/LVpb7Bne2LZAPISmuKuiHvYwl3IMaWnPY6kyYei5DkGO+6lN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjytOjFNj0Tm9d7TtQDbhdCM40vX6XPZakR0ciHcUcQr+G1RJG
+	6J/yE584ZQbx//+Jc8jaFyt3KnMquR6lNwGmPDnGETvNNQXiTmj2H7Lfdm0eo/MvVbID3nV5z/C
+	fXhw2vsaHJr1PbaSHFTRsE9usbZhT6WtnWqCr8YCf9idG03sjX9PgfqSuVLvjboQ=
+X-Gm-Gg: AY/fxX73J78TylLZxudHaokRZPSRIVQSqryaJgyYwhGoeQup+h4/KjBA8pP5ynUeP4m
+	wVAv2qe13p/IyI8fcq0ybk4ff+D+0yFMXZM4bKz3hnvaTUKBKzLhcMIv83eFBjdPRrVdGUv/iCl
+	Arrki4gp4Ln48exMppX98OoZqmERjdU+4Sk9DXiRFINPSyqZICim6gzFlvaBm2sKc+fA05ZtVTf
+	sILzyRZkbu2OBPTDjvJY9jbPWTy365ggh0Bg/UmTsEw35cjIkDP2J3kveJXCyLLo7ibHJp7bnXz
+	otapIKHs+krD4l0mqZ7Old6HLn1CUT8lTgPKFLkxDPD0QSDUNjCK2TwE+WKjW+pWriGDqDAWK0p
+	fMgydi10l1eNCUdgUIbDmw+jioxJKJQ0/FGlsGRYGLCcq
+X-Received: by 2002:a05:620a:710c:b0:89e:b0bd:ced9 with SMTP id af79cd13be357-8c6a6770539mr238138085a.43.1768529140449;
+        Thu, 15 Jan 2026 18:05:40 -0800 (PST)
+X-Received: by 2002:a05:620a:710c:b0:89e:b0bd:ced9 with SMTP id af79cd13be357-8c6a6770539mr238134985a.43.1768529139939;
+        Thu, 15 Jan 2026 18:05:39 -0800 (PST)
+Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c6a71c06e5sm106501685a.16.2026.01.15.18.05.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jan 2026 17:26:44 -0800 (PST)
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-To: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        ath11k@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20251230114835.52504-2-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20251230114835.52504-2-krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH] dt-bindings: net: wireless: ath11k: Combine two
- if:then: clauses
-Message-Id: <176852680474.1143034.17152758892782135246.b4-ty@oss.qualcomm.com>
-Date: Thu, 15 Jan 2026 17:26:44 -0800
+        Thu, 15 Jan 2026 18:05:39 -0800 (PST)
+Date: Thu, 15 Jan 2026 21:05:35 -0500
+From: Brian Masney <bmasney@redhat.com>
+To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>,
+	Joel Stanley <jms@oss.tenstorrent.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	joel@jms.id.au, fustini@kernel.org, mpe@kernel.org,
+	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com,
+	agross@kernel.org, agross@oss.tenstorrent.com
+Subject: Re: [PATCH 3/8] clk: tenstorrent: Add Atlantis clock controller
+ driver
+Message-ID: <aWmc73irBAM8DZwF@redhat.com>
+References: <20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com>
+ <20260115-atlantis-clocks-v1-3-7356e671f28b@oss.tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDAxMCBTYWx0ZWRfX18Iw0Uzz2k3/
- dOM15PFkFd8+fW2PK3hcebpkf/IfW/f6EVgP5fzyCFtgjRyFdN6f56tCsGtaV4PCCI6tDmWDEI9
- dLY/p5Ve4CYgDzRnffCrsYuoVCTK4R/yZjJB7Om5pmgKbctobMgNtQcdSRps1Ltn7Ny0FnnNCRh
- lMzKEcm4+TDtVAPV2+ViqVrConbTXCKnbVFRlA6wE01jxfaZH/cqcWa0J6Qr7TTeTQ6oI/DIP8O
- nWf8EP9nZ7YtkKj9Ov/xUWCpF6zn6CMzqY6YSdFaXKGkIdETPms1QRHqM7RI9br+wLURcHseM1n
- 0Ja7sMGfK5WOlvvXMwjPlymT01Sew01ZBu+eGeE2PKCIdSF7pEK/DBqivGFZpeFSxoqDYpVKy6M
- dKIiDgn2nqW5p8yua2Z5/33qrk4DZO7lp30EritjGVjG0xBs9Kf/EgmxgUavRexYC+5UgNf+N8z
- gkw++q2+19Dfe2cP6Sg==
-X-Proofpoint-ORIG-GUID: 7OuLLz4QihZcy4vgjcdnrFnBX9sL9qxu
-X-Proofpoint-GUID: 7OuLLz4QihZcy4vgjcdnrFnBX9sL9qxu
-X-Authority-Analysis: v=2.4 cv=TsTrRTXh c=1 sm=1 tr=0 ts=696993d7 cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=YCnGg3YljQHaMnv7sjoA:9
- a=QEXdDO2ut3YA:10 a=6Ab_bkdmUrQuMsNx7PHu:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-16_01,2026-01-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 impostorscore=0 malwarescore=0 phishscore=0
- priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0 spamscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2601160010
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260115-atlantis-clocks-v1-3-7356e671f28b@oss.tenstorrent.com>
+User-Agent: Mutt/2.2.14 (2025-02-20)
 
+Hi Anirudh,
 
-On Tue, 30 Dec 2025 12:48:36 +0100, Krzysztof Kozlowski wrote:
-> Simplify the binding by combining two if:then: clauses which have
-> exactly the same conditional part.
+Thanks for the patch!
+
+On Thu, Jan 15, 2026 at 05:42:02PM -0600, Anirudh Srinivasan wrote:
+> Add driver for syscon block in Tenstorrent Atlantis SoC. This version of
+> the driver coves clocks from RCPU syscon.
 > 
+> 5 types of clocks generated by this controller: PLLs (PLLs
+> with bypass functionality and an additional Gate clk at output), Shared
+> Gates (Multiple Gate clks that share an enable bit), standard Muxes,
+> Dividers and Gates. All clocks are derived from a 24 Mhz oscillator.
 > 
+> Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+> ---
+> diff --git a/drivers/clk/tenstorrent/atlantis-ccu.c b/drivers/clk/tenstorrent/atlantis-ccu.c
+> new file mode 100644
+> index 000000000000..f3a2ea49a82e
+> --- /dev/null
+> +++ b/drivers/clk/tenstorrent/atlantis-ccu.c
+> @@ -0,0 +1,932 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2026 Tenstorrent
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/delay.h>
+> +#include <linux/idr.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/minmax.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#include <soc/tenstorrent/atlantis-syscon.h>
+> +
+> +#include <dt-bindings/clock/tenstorrent,atlantis-syscon.h>
+> +#include <linux/regmap.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/math.h>
+> +#include <linux/bitfield.h>
 
-Applied, thanks!
+Please sort the headers. clk-provider.h is listed twice. Remove the
+unnecessary newlines.
 
-[1/1] dt-bindings: net: wireless: ath11k: Combine two if:then: clauses
-      commit: 2125381d60c572684cc4ca61a2b1cf44c7eab059
+> +static void atlantis_ccu_lock(void *_lock)
+> +{
+> +	spinlock_t *lock = _lock;
+> +
+> +	spin_lock(lock);
+> +}
+> +
+> +static void atlantis_ccu_unlock(void *_lock)
+> +{
+> +	spinlock_t *lock = _lock;
+> +
+> +	spin_unlock(lock);
+> +}
 
-Best regards,
--- 
-Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Are these abstractions really needed? Why not just call spin_lock/unlock
+directly?
+
+> +static int atlantis_ccu_clocks_register(struct device *dev,
+> +					struct atlantis_ccu *ccu,
+> +					const struct atlantis_ccu_data *data)
+> +{
+> +	struct regmap *regmap = ccu->regmap;
+> +	struct clk_hw_onecell_data *clk_data;
+> +	int i, ret;
+> +	size_t num_clks = data->num;
+> +
+> +	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, data->num),
+> +				GFP_KERNEL);
+> +	if (!clk_data)
+> +		return -ENOMEM;
+> +
+> +	ccu->clk_data = clk_data;
+> +
+> +	for (i = 0; i < data->num; i++) {
+> +		struct clk_hw *hw = data->hws[i];
+> +		const char *name = hw->init->name;
+> +		struct atlantis_clk_common *common =
+> +			hw_to_atlantis_clk_common(hw);
+> +		common->regmap = regmap;
+> +
+> +		/* Fixup missing handle to parent for gates/muxes/dividers */
+> +		if (hw->init->parent_hws && hw->init->num_parents == 1) {
+> +			const struct atlantis_clk_common *parent =
+> +				hw_to_atlantis_clk_common(
+> +					hw->init->parent_hws[0]);
+> +			hw->init->parent_hws[0] = clk_data->hws[parent->clkid];
+> +		}
+> +
+> +		switch (common->clk_type) {
+> +		case ATLANTIS_CLK_MUX:
+> +			struct atlantis_clk_mux *mux =
+> +				hw_to_atlantis_clk_mux(hw);
+> +
+> +			hw = devm_clk_hw_register_mux_parent_data_table(
+> +				ccu->dev, name, hw->init->parent_data,
+> +				hw->init->num_parents, hw->init->flags,
+> +				ccu->base + mux->config.reg_offset,
+> +				mux->config.shift, mux->config.width, 0, NULL,
+> +				&lock);
+> +
+> +			if (IS_ERR(hw)) {
+> +				dev_err(dev, "Cannot register clock %d - %s\n",
+> +					i, name);
+> +				return ret;
+
+return PTR_ERR(hw);
+
+> +			}
+> +
+> +			if (data == &atlantis_ccu_rcpu_data) {
+> +				switch (common->clkid) {
+> +				case CLK_RCPU_ROOT:
+> +					ret = clk_hw_set_parent(
+> +						hw,
+> +						clk_data->hws[CLK_RCPU_PLL]);
+
+Should the parent be defined in device tree instead of statically in the
+driver? devm_of_clk_add_hw_provider() is called below, and it calls
+of_clk_set_defaults(), which will allow the use of the
+assigned-clock-parents and assigned-clocks properties.
+
+> +					if (ret)
+> +						dev_err(ccu->dev,
+> +							"Failed to set RCPU ROOT MUX parent: %d\n",
+> +							ret);
+> +					break;
+> +				case CLK_NOCC_CLK:
+> +					ret = clk_hw_set_parent(
+> +						hw, clk_data->hws[CLK_NOC_PLL]);
+> +					if (ret)
+> +						dev_err(ccu->dev,
+> +							"Failed to set NOCC Mux parent: %d\n",
+> +							ret);
+> +					break;
+> +				}
+> +			}
+> +			break;
+> +		case ATLANTIS_CLK_DIVIDER:
+> +			struct atlantis_clk_divider *div =
+> +				hw_to_atlantis_clk_divider(hw);
+> +
+> +			hw = devm_clk_hw_register_divider_parent_hw(
+> +				ccu->dev, name, common->hw.init->parent_hws[0],
+> +				div->common.hw.init->flags,
+> +				ccu->base + div->config.reg_offset,
+> +				div->config.shift, div->config.width,
+> +				div->config.flags, &lock);
+> +
+> +			if (IS_ERR(hw)) {
+> +				dev_err(dev, "Cannot register clock %d - %s\n",
+> +					i, name);
+> +				return ret;
+> +			}
+> +
+> +			break;
+> +		case ATLANTIS_CLK_GATE:
+> +			struct atlantis_clk_gate *gate =
+> +				hw_to_atlantis_clk_gate(hw);
+> +
+> +			hw = devm_clk_hw_register_gate_parent_hw(
+> +				ccu->dev, name, common->hw.init->parent_hws[0],
+> +				hw->init->flags,
+> +				ccu->base + gate->config.reg_offset,
+> +				ffs(gate->config.enable) - 1, 0, &lock);
+> +
+> +			if (IS_ERR(hw)) {
+> +				dev_err(dev, "Cannot register clock %d - %s\n",
+> +					i, name);
+> +				return ret;
+
+return PTR_ERR(hw);
+
+> +			}
+> +
+> +			break;
+> +		case ATLANTIS_CLK_FIXED_FACTOR:
+> +			struct atlantis_clk_fixed_factor *factor =
+> +				hw_to_atlantis_clk_fixed_factor(hw);
+> +
+> +			if (hw->init->parent_data) {
+> +				hw = devm_clk_hw_register_fixed_factor_index(
+> +					dev, name,
+> +					hw->init->parent_data[0].index,
+> +					hw->init->flags, factor->config.mult,
+> +					factor->config.div);
+> +			} else {
+> +				hw = devm_clk_hw_register_fixed_factor_parent_hw(
+> +					dev, name, hw->init->parent_hws[0],
+> +					hw->init->flags, factor->config.mult,
+> +					factor->config.div);
+> +			}
+> +			if (IS_ERR(hw)) {
+> +				dev_err(dev, "Cannot register clock %d - %s\n",
+> +					i, name);
+> +				return ret;
+
+return PTR_ERR(hw);
+
+> +			}
+> +			break;
+> +		case ATLANTIS_CLK_GATE_SHARED:
+> +			struct atlantis_clk_gate_shared *gate_shared =
+> +				hw_to_atlantis_clk_gate_shared(hw);
+> +			gate_shared->config.refcount_lock = &refcount_lock;
+> +
+> +			ret = devm_clk_hw_register(dev, hw);
+> +
+
+Unnecessary newline
+
+> +			if (ret) {
+> +				dev_err(dev, "Cannot register clock %d - %s\n",
+> +					i, name);
+> +				return ret;
+> +			}
+> +
+> +			break;
+> +		default:
+> +
+> +			ret = devm_clk_hw_register(dev, hw);
+> +
+
+Unnecessary newline
+
+Brian
 
 
