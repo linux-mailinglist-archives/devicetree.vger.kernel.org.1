@@ -1,79 +1,46 @@
-Return-Path: <devicetree+bounces-255952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D106D2EA96
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:21:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D134ED2EAE5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:23:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54DCB30EB6E2
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:18:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C375301B48A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCCE3451D9;
-	Fri, 16 Jan 2026 09:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B62734C981;
+	Fri, 16 Jan 2026 09:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pPaj2LfF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QuO+vis6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA19734214A
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6240534A774;
+	Fri, 16 Jan 2026 09:19:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768555109; cv=none; b=BvQGpNsTZkhGOYpkOYjHK5rgl+Yz8+ZHmm+o02ZOLwu8BtmLNifxuf4psX7+9sitV6+nvOXImFgE25LNSfL7vYWpoDcFZhPQOz6PIN6VzjouhhS87URmByWEs65BIAOaI+7fQzmVYKNkPs8zgm0VrFavRSApdSplvcV81RQnplI=
+	t=1768555175; cv=none; b=A+/uw9Kdp2qNKHX++RiDg14sC4t7fIYuCJLCF3ri4cWIw+ZbnRfSdQpktoL113Ba/9ZAF8cf2RcuXxBe9vNJ+08blxQdQuzdCinnxzkvNIX8UBlC0s1SbigqG+A4KCCzrtGKuyJedaBspdmzGi4GZ60w+bZQTeq3t+V8yGdqfwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768555109; c=relaxed/simple;
-	bh=AghABfkarHqDZQKCjjyiZmDcR7FwtgnGUdqMcOQ//v0=;
+	s=arc-20240116; t=1768555175; c=relaxed/simple;
+	bh=nbqYEwOFH/CNWY515SS06cHxOSHnobg0rVqVqnAYQ3A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LsA9RF8QHXjg9BdZ2EfoR/sY9su1pMAj8BLAaMRvifnXR1R7D4CdtjiA//bce64N9XZm3Fad7i4QmD6ZQAMcnbc0nLmPVfqSwpv/pJBnR7XAlh2Xg11OViVWnBDQy91aLjxJNrg7JVJ8ydk329Uk800tFCILFuii4ft7Rkt2Vu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pPaj2LfF; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47ee974e230so15959175e9.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 01:18:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768555106; x=1769159906; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z+AGXRtrMXkyrXKzRmoE9z026WTEqpV4D7gQD8MxXK4=;
-        b=pPaj2LfFQNsV88/GHrQq8j7NyFSfU/ZTDN+4B8nBIYcZJrzTPueWLPTs/Q0d1gyv/c
-         HgdMyYHx8FLjkpzE2hY7VFzLJSKVDHDMSNa42+8Y919PDLXNcAJOOW8jrU9NM0z0c5o4
-         FvXWiuzEtD6EjoYC+U1BUyQPd2te4/iiWI43aai+IbYvMOYO+ii4DcpPGFqhWUo0fx9J
-         DnAqW2ZeVyRho43aCwDPZrtXkPsUdcW9XHNnm1R00tYWW5jJmTzPJCvJa72QG84mYyvV
-         424yZJ8tX3V5N/hjMCH0pRxE0qZ9m/edSu5OLEXRJ7UNVcViOY4YPedEMQW7eEoyWAG9
-         2mkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768555106; x=1769159906;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z+AGXRtrMXkyrXKzRmoE9z026WTEqpV4D7gQD8MxXK4=;
-        b=baIkc/6RGmOjW4tkTfrv38sOc3igo6AtDwqUkiJXWCqScmVllAn4iQqPw1yYry72ji
-         VaNm/Js8txdnw6s7/ux8Ml35MKZPirC2lcRSXw9lm5/oDjmgJXHI8UBl7WbvWRWDys3B
-         kt+oFfGFbcQZLk53qyFCJnbxaMufEFOTHLcoqr54FRAKdmWq3I85H3kc+oQJRHVdHbJL
-         zJGg0i1Oq7GFB+PxDZujZFz7eFntkhYfMj6y8q34IXbIiFE+Td2TPcXTHulx9KOTmefu
-         3G8Wo8LWm3XkHXB6poj4iKopCdl5N3by29MfUgeohaccccmQ8pDAP2qgv0J1+smn3v8Z
-         sVgA==
-X-Forwarded-Encrypted: i=1; AJvYcCVcuM2tOteU6t49I13sBgVdp6upyIM09hc13f6jO6TU0HqwzsK9ABUG2DJO2aGsKVQvkaTJugucuUT0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8ZMcQzHgbgq7eeDyRBnpengBPvYKybBIsEMwQpoBPaDEuDa2i
-	HyFC49zznHk/dZEcGjJWATx0EKUw3nEz51NStg/jLvYRekaXqbOr5tEdl1b/xo7r1qI=
-X-Gm-Gg: AY/fxX4YGGLe3YMSEVvgEJZvPAcqSWhfgr9dNP8KfmuvWEV/EG9edT6Ums9gfmpyhCw
-	4s4TQ/MW+J6WWdA5NUvHQGXZNfvwovj5r182Db0szcuysLxmfyIWPSZxDTy6J1YkRkKNchB/44x
-	BMnP/lCeJg2vjYVtzjewSF4ffuaijqM8IWqvsj0+a7WsU4IE8JZp71Ks9BRXyVVq0JEMq2106bh
-	ebWm02n+IpKVYfuDCGdpfkTO/zmrLCFmmGu3iN7v8oUoghC4q0q/h0f7jJNypaGfRasr3uZSlAh
-	bxCg+fmlXsq4p8ZTRdNv8a8extlbjIcV5M8PK3Y7mBKduOw/aHFZC1dBRRjUv0zpJEzmgRj4HCM
-	1SzcDdGaDOzk3qOBkrwbhhj7Anzx/AMZurrUfNI7FhJlkKdUj7hsPbVN2GAeZY2x5nfHhR5K/z+
-	HXWAi4XzX7r3wM4KT1Eg==
-X-Received: by 2002:a05:600c:6209:b0:477:641a:1402 with SMTP id 5b1f17b1804b1-48023ea2fc7mr6725565e9.4.1768555105706;
-        Fri, 16 Jan 2026 01:18:25 -0800 (PST)
-Received: from [10.11.12.107] ([86.127.43.8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f429071besm87551575e9.10.2026.01.16.01.18.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jan 2026 01:18:25 -0800 (PST)
-Message-ID: <d3dedf5e-ada3-4d33-b1a5-7556ba80ffb1@linaro.org>
-Date: Fri, 16 Jan 2026 11:18:22 +0200
+	 In-Reply-To:Content-Type; b=QGAFB54zSNpFS01pQyL54onNDdi6uTMcuOrArZ5/Otj4UabA/nsuqgTBegS5uVFGceo5kMUWI5MxG+8NBYHhFtlm6Wq9QuVlgm0jqA5Vs0PyRv4kBDEZ2daHQn0P7C8mBku0Yeo4tBMlljmBNFjoTZlTfIja7U8fEF4l4wqTacE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QuO+vis6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEA71C116C6;
+	Fri, 16 Jan 2026 09:19:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768555175;
+	bh=nbqYEwOFH/CNWY515SS06cHxOSHnobg0rVqVqnAYQ3A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QuO+vis6dGujj7BEcrYm6RDDzfzangbrVY1TMUUeDY3VrT+W2rF3nqHvPxz4nepO1
+	 zNH2sofTQEil8WLKDuWJfRx3qluXBkBlmKo8DAL+v9a4Wd7J6FoSMmcHsVThr7GHDE
+	 ZgMuw4xDmzPqTo7WIc8cV1qWkCoDpE3FgzAAFWveAZ3cXSZX3tKniOE/0pb8IlhAtl
+	 iLQXbVIM/f7oBrEzjhUq1ySs3obQvkSVpagZ6p9X9Si+4MIDBQ9oVhWa5ZD76BYy9B
+	 UhHKdEr16LmsS0DsjdH14cbZtGfU2F68z9Q11S9ybF8yp+adQ1kUNeFy3CECn8G5ky
+	 5Mr516aavFC1Q==
+Message-ID: <bafd22ce-2916-4d22-8bba-1b7c3052f087@kernel.org>
+Date: Fri, 16 Jan 2026 10:19:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,64 +48,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] dt-bindings: mfd: Add Google GS101 TMU Syscon
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, willmcvicker@google.com,
- jyescas@google.com, shin.son@samsung.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
- <20260114-acpm-tmu-v1-3-cfe56d93e90f@linaro.org>
- <20260115-slim-denim-potoo-cad9cb@quoll>
- <200d34bf-150e-4f8a-b400-2f54863502ac@linaro.org>
- <e2f028d6-774f-4773-889f-7d56b833067e@kernel.org>
- <fcc5405e-189d-4195-8db0-3acf35bbc0a9@linaro.org>
- <26d86470-aaa2-46e3-9940-010a903df4fd@linaro.org>
- <0176a63a-6b04-4e30-b718-847133882050@kernel.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: hwmon: add STEF48H28
+To: Charles Hsu <hsu.yungteng@gmail.com>, linux@roeck-us.net,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20260116085802.696661-1-hsu.yungteng@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <0176a63a-6b04-4e30-b718-847133882050@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260116085802.696661-1-hsu.yungteng@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+On 16/01/2026 09:58, Charles Hsu wrote:
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,stef48h28
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
 
+This must be additionalProperties instead, see speeches/presentations
+material or very explicit rule in writing bindings.
 
-On 1/16/26 11:14 AM, Krzysztof Kozlowski wrote:
-> On 16/01/2026 09:50, Tudor Ambarus wrote:
->>
->> Because of the hybrid approach I'm arguing the ACPM child node does not
->> fully describe the hardware, and it's just a firmware abstraction.
->> So option 2/ would be to have just the TMU IP block described with a
->> phandle to the ACPM IPC:
->>
->> soc: soc@0 {
->>     tmu@100a0000 {
->>         compatible = "google,gs101-tmu-top";
->>         reg = <0x100a0000 0x800>;
->>         clocks = <&cmu_misc CLK_GOUT_MISC_TMU_TOP_PCLK>;
->>         interrupts = <GIC_SPI 769 IRQ_TYPE_LEVEL_HIGH 0>;
->>         
->>         /* The "Firmware Phandle" approach */
->>         samsung,acpm-ipc = <&acpm_ipc>;
->>         
->>         #thermal-sensor-cells = <1>;
-> 
-> Yes, this one, I think it's the best representation.
+OTOH, this is so trivial now, that you could just add it to
+trivial-devices schema.
 
-I was leaning towards this as well. Thank you! I'll start reworking the
-patches.
-
-Cheers,
-ta
-
+Best regards,
+Krzysztof
 
