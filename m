@@ -1,163 +1,169 @@
-Return-Path: <devicetree+bounces-255993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 505A5D2F751
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48A8FD2F7FA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:23:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0E4613046F84
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:17:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 051A6300956B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C6C35F8BF;
-	Fri, 16 Jan 2026 10:17:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 789B923BCF3;
+	Fri, 16 Jan 2026 10:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MjdfdSq/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ensECWlL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B26A0357A55
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 10:17:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555B3221726;
+	Fri, 16 Jan 2026 10:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768558631; cv=none; b=SMbYnvbhtcQjXy0OX/6pfrLUbbQobitKnZ7YLZ958HAQDXulEIxzjXrDX5skRX0wMHCJF3uxHo7gKma2IR3EfYTumA45y55Q4kTDs1EOeMiDMcppnvXAZ6h5bAKBQDqTzW+ntQoBl4UApa4GCfTg30mnNbRODxu5r7Yy/zHMoO8=
+	t=1768558835; cv=none; b=Ha4DHqtsf3LVNfdO13AMxR2ERtco4k0OQQLf1m5F9/XUd5TrIyixYDvFGSKmHVsKE+3k8RBIp8+xXkz7EU8oIY+NCg/vVktAExGAL+FMM8ogqpKttSfWTBMgDZxyi4WlxCN4+WUYUim3EiZr0vxqZeclqqfGiyxOyjhtS3sicZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768558631; c=relaxed/simple;
-	bh=xVhTfp97pDXAaRzlsPRIep1s9lhfB+E1MxRtuaZon80=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t30oZrn6gP1bKag602FGLLiHBEwDNdjdoMDZWewRmBYvR2SKS+82/4UoI19wP7xc2KMA3JulqEBu7F0uhrZhmbuXQJtLdtN0/u7UCUpUmf3mW8JqGqY1593Nb2rn7sgwLJ4e4HBtPyiWb/5uQfXzJtn1OlmgzaT3XPVZV4OVF5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MjdfdSq/; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 582B24E420F3;
-	Fri, 16 Jan 2026 10:17:08 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2D4DC60732;
-	Fri, 16 Jan 2026 10:17:08 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1290110B689B4;
-	Fri, 16 Jan 2026 11:17:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768558627; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=h6ZcSdzqinE3TmWerFxTItmJ+1uErU+4DNdOPnfMLxY=;
-	b=MjdfdSq/9Nf06aH/gE/rTZHEHqMUVMq8Pg9VuYA7sMdCBShtVBv+aAkP6hzL1J9k73H8lc
-	H6TAp0JM9Lwd9udwljgmgRcu/njIiVwoQlAyYvp/5L7N1G64/QKKewsLgpumGgs8voGdpw
-	5UDs7YbA/oeSoVGv21L0lBjFN+cqMPLHp3BmTpviqzRN1Cfu49rrA3MCEA4720tqXZbfsM
-	dClHC+AhVf2lPDDRNoqtVBYHLfbHmoU0ASB0pKqBCeNR5H/W+EiOvkDoMJr1FXT2ZGG8zn
-	ew4IWWkW3gbgf5McyO/QHnlFpoyySBeytnzCFDIQNgOYoKuLl4GGBswgL+MoYg==
-Date: Fri, 16 Jan 2026 11:17:05 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: David Gibson <david@gibson.dropbear.id.au>, Krzysztof Kozlowski
- <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ayush Singh
- <ayush@beagleboard.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 06/77] Add support for FDT_REF_LOCAL dtb tag
-Message-ID: <20260116111705.69bc914c@bootlin.com>
-In-Reply-To: <20260116111616.3a6c9ffc@bootlin.com>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-7-herve.codina@bootlin.com>
-	<CAL_Jsq+EDvrEqqwsFjs0sGxYfKgQuSFqCiqQs-1b3TnbG+gATQ@mail.gmail.com>
-	<aWg2JJstA0F-h9hi@zatzit>
-	<CAL_JsqLx-NWM=gFdQfQ1Nw10ii2n5gX93WgH+zTcbHRt=Ze_vA@mail.gmail.com>
-	<20260116111616.3a6c9ffc@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768558835; c=relaxed/simple;
+	bh=1JZLMS1HVsbd6aWEx+GimXeEmDseHFvWx560rTN8Xww=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G3vOEPQLHgSGsbBX1ZrliXtkff6Z5zN1Bhx7YOPVaSOhL0f6OYcBs9CCcxbmP5384k08Ts0JuTKTFibKWRFT9eLy5D+PkPrSFdv3qlYeNJH35HvDIR89xc1K23vnvrWMS4wU5NiUaSeDRYADPvTcPxHo4VWBCNg0eMQKIIrG+vM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ensECWlL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA4D2C116C6;
+	Fri, 16 Jan 2026 10:20:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768558835;
+	bh=1JZLMS1HVsbd6aWEx+GimXeEmDseHFvWx560rTN8Xww=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ensECWlLD29cMvgjZm38/hPpVFtsmbJMXILx0Yqwpbfj6HPK6Fit3bcD4dSr0M+D1
+	 qWfg1/ZUqaSFWbWmwx5gJV6qHCTYrmKct3GvuoV+CjWoY5eT/fMiLlWWOPLEhg3IkB
+	 l4FfKaakjdSiQ5CKrXG9UmlkKUq9I5o/SdeXxZMPuGjn/nko7hpNsNVObkClete8AX
+	 +ajcUjEPaNhohL73gub37pmu/gH4VPr2scgaPS64ZkMiTy1kz4Ox9mxrEIkIa421tl
+	 gAMAqzimBonxCmxl1W+mVcO7vmlPbETgQMfmGAaSFtSZLZRpLDs0LlE/6cM5hhVqEa
+	 opMEKMZpubsog==
+Message-ID: <8ba68d9c-5cd1-4616-998e-2ff5d3440984@kernel.org>
+Date: Fri, 16 Jan 2026 11:20:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: rockchip-dw-mshc: add
+ rockchip,disable-runtime-pm
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Marco Schirrmeister <mschirrmeister@gmail.com>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-rockchip@lists.infradead.org,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260110010715.1610159-1-mschirrmeister@gmail.com>
+ <20260111-melodic-chestnut-coua-73e6ec@quoll>
+ <CAGJh8eAWNe0JzC7BdA2Rw5etCYgGq3O5Zdgk9zSzsLNv18k=ag@mail.gmail.com>
+ <1791168.izSxrag8PF@diego>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1791168.izSxrag8PF@diego>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, 16 Jan 2026 11:16:16 +0100
-Herve Codina <herve.codina@bootlin.com> wrote:
+On 16/01/2026 10:43, Heiko Stübner wrote:
+> Hi Marco,
+> 
+> Am Montag, 12. Januar 2026, 00:51:24 Mitteleuropäische Normalzeit schrieb Marco Schirrmeister:
+>> On Sun, Jan 11, 2026 at 10:41 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>> +  rockchip,disable-runtime-pm:
+>>>> +    type: boolean
+>>>> +    description:
+>>>> +      Inhibit runtime power management. This is required for boards
+>>>
+>>> What is runtime power management? Like Linux PM? If anything phrased
+>>> like that is it is a clear no go. Bindings describe hardware.
+>>
+>> You are right. This refers to the Linux PM subsystem and describes
+>> software behavior.
+>>
+>>>> +      where the bus timing becomes unstable if the controller is
+>>>> +      runtime-suspended.
+>>>
+>>> You described the desired Linux feature or behavior, not the actual
+>>> hardware. The bindings are about the latter, so instead you need to
+>>> rephrase the property and its description to match actual hardware
+>>> capabilities/features/configuration etc.
+>>
+>> On this board, the bus timing becomes unstable when waking up from
+>> a low-power state. This causes a constant retraining loop.
+> 
+> As you describe it here, it does sound like a real hardware quirk (which
+> would be a dt-thing) ... it's just that the previous wording describes it
+> in a non-hardware way - as Krzysztof pointed out in his reply.
 
-> Hi Rob, David,
-> 
-> On Thu, 15 Jan 2026 09:54:22 -0600
-> Rob Herring <robh@kernel.org> wrote:
-> 
-> > On Wed, Jan 14, 2026 at 6:51 PM David Gibson
-> > <david@gibson.dropbear.id.au> wrote:  
-> > >
-> > > On Tue, Jan 13, 2026 at 01:22:08PM -0600, Rob Herring wrote:    
-> > > > On Mon, Jan 12, 2026 at 8:20 AM Herve Codina <herve.codina@bootlin.com> wrote:    
-> > > > >
-> > > > > FDT_REF_LOCAL dtb tag is a meta-data tag attached to a property.
-> > > > >
-> > > > > It indicates that the property defined before this tag (FDT_PROP) uses a
-> > > > > phandle value and the node related to this phandle value is local (i.e.
-> > > > > the node is present in the device-tree blob).
-> > > > >
-> > > > > It is followed by one value:
-> > > > >  - offset (32bit):
-> > > > >      Offset in the property data where the phandle is available.
-> > > > >
-> > > > > Example:
-> > > > >   FDT_PROP 0x00000008 xxxxxxxx 0xca 0xfe 0xde 0xca 0x01 0x02 0x03 0x04
-> > > > >   FDT_REF_LOCAL 0x00000004
-> > > > >
-> > > > >   This means that at the offset 4 of the property data, the value
-> > > > >   (0x01020304) is a phandle and the related node is available in the
-> > > > >   dtb.
-> > > > >
-> > > > >   This is what is encoded in the dtb when the related dts has a property
-> > > > >   with the value set to <0xcafedeca &foo> with 'foo' a reference to an
-> > > > >   existing node where the phandle value is 0x01020304.
-> > > > >
-> > > > > If several local phandles are used in the property data, several
-> > > > > FDT_REF_LOCAL are present after the FDT_PROP tag. Each of them points
-> > > > > with its offset value to the position of one phandle.
-> > > > >
-> > > > > For instance, if a first property with 8 bytes of data has a phandle
-> > > > > value at offset 4 and a second property with 16 bytes of data has
-> > > > > phandle values at offset 0 and 8, the following tags sequence is
-> > > > > present:
-> > > > >   FDT_PROP 0x00000008 xxxxxxxx <data bytes>
-> > > > >   FDT_REF_LOCAL 0x00000004
-> > > > >   FDT_PROP 0x00000010 xxxxxxxx <data bytes>
-> > > > >   FDT_REF_LOCAL 0x00000000
-> > > > >   FDT_REF_LOCAL 0x00000008    
-> > > >
-> > > > To follow up on my desire to both be easily extended and have more
-> > > > type info, I have something like this in mind:
-> > > >
-> > > > FDT_TYPE_INFO 0x10 FDT_REF_LOCAL 0x0 FDT_TYPE_U32 0x4 FDT_REF_LOCAL
-> > > > 0x8 FDT_TYPE_U32 0xc    
-> > >
-> > > I think general type info should be out of scope for this:
-> > >  * This series is already enormous and complicated without that    
-> > 
-> > It is enormous, but I don't think the intention was to finalize and
-> > merge it all at once. I certainly don't intend to review it all now.
-> > The final result looks sane to me and with that we have a good idea
-> > what information needs to go in the DTB. I think the first step is to
-> > define the new metadata tags and what DTB format changes are needed.  
-> 
-> Indeed, the goal of this RFC is to give the big picture and open
-> discussions.
-> 
-> FDT_TYPE_INFO tag is a container. It just groups other tags together.
-> 
-> I don't use the term TYPE in the proposal related to generic tag values [1].
-> I use FDT_INFO_PROPERTY which is more generic.
-> 
-> Best regards,
-> Hervé
+I can also imagine that you miss some register programming, clocks or
+regulator voltage, so "unstable" has to be actually analyzed.
 
-[1] https://lore.kernel.org/all/20260114171822.2a44d2a5@bootlin.com/
+You should not really disable a Linux driver feature just because your
+hardware has issues. And even then it's more likely some MMC core part,
+not entire runtime PM, is problematic here.
 
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 
+> 
+>> I will move this logic into the driver and handle it as a board specific
+>> quirk using of_machine_is_compatible("friendlyarm,nanopi-r76s")
+>> instead. I will send a v2.
+> 
+> This won't fly I think. We can't really have a (possibly long) list of
+> 
+> If (boardA) foo();
+> if (boardB) bar();
+> if (boardC) bas();
+> 
+> That really is not sustainable and most likely won't get accepted.
+
+Yep
+
+
+Best regards,
+Krzysztof
 
