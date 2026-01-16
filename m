@@ -1,86 +1,52 @@
-Return-Path: <devicetree+bounces-256031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F230BD3022B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:10:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C9E1D304FC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:23:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 75549302F2D2
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:10:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4ECEE30184F4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DEC36214A;
-	Fri, 16 Jan 2026 11:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FD1E36D51F;
+	Fri, 16 Jan 2026 11:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="c4Of1yM/"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="cmNUu0lB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azhn15012028.outbound.protection.outlook.com [52.102.149.28])
+Received: from ixit.cz (ixit.cz [185.100.197.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75943363C64;
-	Fri, 16 Jan 2026 11:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.149.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768561815; cv=fail; b=tu3kgiAF4oLFu+XHNaPWF8aEdH2YDmyIzGgPoHA8LaU9srgpOC9YWhU7JDQ+lL2L+Z67E7K4b8VHMy4rUn27bmkFueSy4ZW/qKlqoeUTQL+UQVcXdNDVLiWb9iiKgWtoMTB6y4Y05brg4CUHw8K4uWmoBzVGfXMG8U8zOX3eHMs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768561815; c=relaxed/simple;
-	bh=NjR/we3H6Sh+xIBY+akifvEvzm2o/F+t2ALwMgzJaZA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XcH76818PiOd029eQ64fQIFuE5u6Kl3h1NiioZyBfSrWEs2QnoNzR+jySg3bgzkWSHAf/HfWj7HMN19dvUQ2aOPZ77olZll/sAf6yb84Gs8i+SbEq9dLSSTLjqWv1oXtsZh06Bp15vob+PNZhCUZ+2Xpz+LBjn4THdppMWPkQUA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=c4Of1yM/; arc=fail smtp.client-ip=52.102.149.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cgyOPTtQEWXMZwIXdg+9YsHQ57/UBopGw75ToTo4xBNRz2KY/8X23Xypd6oSO7JtZ0DhFtMoJNtM4Hd5Q+VzERCFYC6mLqlr4albC1Hl1EMK02pc08CJ+X252nh3XYWcgdW48R9LGxLL7GL6lZfo1UCuHndR0I164hfwKtuXEYcaXAZrMY+r44raYcc3mMuuOe1knjLDAbl/kN2Q3cfeMkVdkGtA2IBTuPONbOA9tK4EWDb/LHhEnFgL5dH1KsZbVlzFuUKzooufqn9t2VVKS7od+0WYJfDVpboDNmb9JtxmZuh1wJjKSsYWLiX7gtA+rzzB/niLPriD/6Y6oCPrGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7aK5TgZ5WSjyOxblFFPSix1E2znRUMaWhmDhiMm8f+o=;
- b=n4Vq1mLHMSvKB46nGfnB6Cr7rm3+SqMQoRn6VMpT2LoE6YQv1Gs4nxlsq79tSYc+5EnIEGKzBT39kiMsfAOMTpaRji2xe5EyzlPRVfJqNX80eqJrZZMjiwYw6V6T+o2nxMc1Vk3ZupBPSSmRalbKcF6fTnVGNEWlSJ3yJwYfXqESqqQOJyVsYwes808oOYkTUwzBbUOeKO/7DtookgS2g5s4vOIfFi61z5F/e1+p860zg69BuYPG9ZOvenJBdfTG7nKGacCWKbBm2vxwISimB7qfzL3JbSyoxr9hFGfma3zjVBk9nwdT1Ykzi2jqF7e9U5jfQ5MlUqb2CISyYd7KCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7aK5TgZ5WSjyOxblFFPSix1E2znRUMaWhmDhiMm8f+o=;
- b=c4Of1yM/oRPM6F3BqkpOEiZoOuWhuCfjFxRpVasM7e5vgehVHgUp60KvJ1bxDIad3S9iPupI9yzXCHkw1OuSycRSZPCg/O7vtaBx+oAh89lf0xf7TddnFcEWId8kZJvwf7SetMDdLZizCSQ2VqkQHvwEXlro/XXWVPDrilX3RYc=
-Received: from BN0PR04CA0112.namprd04.prod.outlook.com (2603:10b6:408:ec::27)
- by DS0PR10MB6726.namprd10.prod.outlook.com (2603:10b6:8:139::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
- 2026 11:10:00 +0000
-Received: from BN2PEPF000055DF.namprd21.prod.outlook.com
- (2603:10b6:408:ec:cafe::8) by BN0PR04CA0112.outlook.office365.com
- (2603:10b6:408:ec::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.7 via Frontend Transport; Fri,
- 16 Jan 2026 11:09:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BN2PEPF000055DF.mail.protection.outlook.com (10.167.245.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.0 via Frontend Transport; Fri, 16 Jan 2026 11:09:59 +0000
-Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 05:09:59 -0600
-Received: from DLEE211.ent.ti.com (157.170.170.113) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 05:09:59 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE211.ent.ti.com
- (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 16 Jan 2026 05:09:59 -0600
-Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60GB9pWB3048911;
-	Fri, 16 Jan 2026 05:09:52 -0600
-Message-ID: <1cc5e036-12b6-4b0d-9393-21bbb0dd3f48@ti.com>
-Date: Fri, 16 Jan 2026 16:39:51 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2A7322B84;
+	Fri, 16 Jan 2026 11:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768562482; cv=none; b=nAuhSNzX0x5wvYS4g7t/hjhOspbMUsCgNAPZI9F68LBld1HJB7T8NL8UGrea0hewu4l22pT+d7mDNtFOH3R8Z4EtJ4q0E37hxBw/dAeZLzphwZcAnlVgCLarQaZXxhj4KBZF8gnN/jSzvvMQxc834pDQEa27mh2+PCkin6J8pH4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768562482; c=relaxed/simple;
+	bh=XB418OZiWZ0sl8+2mtmr5ooZZpqJ6VnSv+B+J0IB6XU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TGZdttCPIRC7Uh8uWfa+2dR/7H9a7A6PEJpYGfNpOl5RYaB30jZIQVgtnWhB7T1xLGaSY05qJSMg9pW31tE9fffvpLQyn+A0wFcarle1zOlk6GM4JbUuj+xqokOvDUZBiYfJ51zDig1tV7Jy74v0bnML0yQBXhFEeXCw58MAh5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=cmNUu0lB; arc=none smtp.client-ip=185.100.197.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [IPV6:2a02:f000:10bd:e301::f31] (unknown [IPv6:2a02:f000:10bd:e301::f31])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 66B98534263B;
+	Fri, 16 Jan 2026 12:21:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1768562466;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=5lZnwkdLH3b+TOYAqiIuiKx22CIpLMS9Txseti9DIow=;
+	b=cmNUu0lBdHh4dvC9Y1Hi1C0lgvMH9W4qvlVC20wVlrpJ0snslQaqM+eae6AbY891OPpX/z
+	FIMt/NCFBcx/0jNNQkzWZS2EixpfXBvbjpF/FwU1Gn+W9jnZf7ESk8UYhai4/DTc2Z88d4
+	BP7cPwjiMhIzRaOzkyy2o9sVjEq0Ma4=
+Message-ID: <d90872ae-968f-4340-8348-aa83de92a3de@ixit.cz>
+Date: Fri, 16 Jan 2026 12:21:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,216 +54,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: ti,am65x-dss: Add am62p dss
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>, <jyri.sarha@iki.fi>,
-	<tomi.valkeinen@ideasonboard.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <aradhya.bhatia@linux.dev>, <mwalle@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <praneeth@ti.com>,
-	<u-kumar1@ti.com>
-References: <20260116095406.2544565-1-s-jain1@ti.com>
- <20260116095406.2544565-2-s-jain1@ti.com>
- <34759368-6b0f-421f-81dd-20006ee19a1b@kernel.org>
+Subject: Re: [PATCH 2/6] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct
+ reserved memory ranges
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Gabriel Gonzales <semfault@disroot.org>,
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+ Biswapriyo Nath <nathbappai@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org
+References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
+ <20260112-xiaomi-willow-v1-2-8e4476897638@mainlining.org>
+ <723357fc-a785-45d6-8d49-4c00dd4f340c@ixit.cz>
+ <ff4d697c-2007-4b2a-b66b-dc86053a20a6@oss.qualcomm.com>
+ <0da3c96e-4f20-4bd0-836e-73d20581954f@ixit.cz>
+ <e0f33ac2-331f-4ab4-a960-6bd8bcac7306@oss.qualcomm.com>
 Content-Language: en-US
-From: Swamil Jain <s-jain1@ti.com>
-In-Reply-To: <34759368-6b0f-421f-81dd-20006ee19a1b@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055DF:EE_|DS0PR10MB6726:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0c2c2eea-1b20-47ef-cc7d-08de54efca42
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|1800799024|36860700013|82310400026|34020700016|921020|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?YytUWjVneHppRjFJMjNIMmdNTXBCWnh5RGUzRm4xMVVrWGdjTnVTM043VG1H?=
- =?utf-8?B?TlhkSFZxUDE1VWdKaHhGY1VucWZnWk8rYVVkRGhabS83QWRSdit2eS9xZU8w?=
- =?utf-8?B?WTJCcVJoUUM5Mm4yTlBJcFhPcVRuaklDZGpQQkg5RWJKd1ZucU1CZ3hXMUdk?=
- =?utf-8?B?MmFueDVWSkdxVFc4VExEc0Ira1JFUjdZeTZPM3lKRnI3cEZNcys5OEpBelZ2?=
- =?utf-8?B?bEw5amtOZXkyTlRIdzNKblp6YjdJNzgzRUI5T2tFanQvTG1YTmFPN3V3cmVB?=
- =?utf-8?B?WnI1ZHJhTldXUTRGS2I2MVNYQ2hqUGZtNVZYOUsyclNDMGNFcjM4bExnQVJp?=
- =?utf-8?B?Ny8zWmJHeU9uUy9FNks5bUpSRWlrdEhldlhVMU00WFRlVloxU1pYRFJocjBi?=
- =?utf-8?B?eWExMHFSemk4QXNpRTlCYWgzTDFMR2NGNktaY2R4K3h1TFhGQXdzMDhSYnA3?=
- =?utf-8?B?Sm1wZXp6U1VTdXg1NDJPUG92OWN2Z3ErQStXOEVkZWxUdHdNdGdNa0dJdnpp?=
- =?utf-8?B?dHNoN2lsa1BpTE1qSDAzSHFkTnBXczltTXBuNHdnOUk4enBTcVo0TG45YWhy?=
- =?utf-8?B?K0hGS0o2MC9ZM2lUc2o4UmR3Z0xNeVVIVCtIWEs0OS9nZ1ZaRjVpOFdRRGlT?=
- =?utf-8?B?Y1NRZ0x5QjNPSGd0L2ZkWkdDeTFKNTc1N3FwMGNHZ3d1ekxrWEptRjVkZGVl?=
- =?utf-8?B?aUpoZWYyNEVHN2t0cFpxcHcwcE1IK0dHakhKWFhNNXNjRXVDZDA3NlBUdURO?=
- =?utf-8?B?YUhnalJkWkcrSURjZUYzb1hab3Y0NGVSV0N3dGRvUmd4QjhEeUM5UTNmTy9k?=
- =?utf-8?B?dkdOUG4wTmJmVTYvVkxVUkZQRDA5MXBtUmdXdUhZM2R3VmUrZ3phbktBZjJG?=
- =?utf-8?B?bDgwc0g2RFMwUGNsVy9zTnpuS1hMaTMrd3JYYTM0QjZvNjN1UDlRYk9IejZC?=
- =?utf-8?B?US9xUFV5eFB3S3NiV1g0YlVWZG5ZeW42ckpPcXFoN09jbWdnOHlYbXg0cmNH?=
- =?utf-8?B?aGJkejZiQ3c2WmFsRmpvTlBpSU04KzhjSkk4YWxYZ3dJWTdDOU9vanFYM2gx?=
- =?utf-8?B?dmtyYjdOS1RBNEp0MVNIaGltMlUyTWk3SDNSZkxJMzErcWE5Q0RzSlZWaC84?=
- =?utf-8?B?TjhSRmVwWDdTcXR3eS8xTUF5enIrVm0rQi9tS2owSE4wa3JJZWh1VWNpREhD?=
- =?utf-8?B?akErUzJXenExdlJTY3JWcExCVC8rR05ZWEFpWFZqbno3Y2JUZTRUOG8xeFJR?=
- =?utf-8?B?dlhIQkdrVFlaRTB1RjBRSjhpQ21lUHcxblBYK21FR08xekFDSHJ5aUhWa0w5?=
- =?utf-8?B?MVNJZmVPcWZCZ0pmWEhZNkJBaUJKV3FrTWlvZWRnTHhrZjlicjQ1eTNKSzZH?=
- =?utf-8?B?WThXd2JpbFlDSG5ZVUsrcVJYRWhLZEpQSVNXQkx4T2duamRWWjNsNXZEdDR4?=
- =?utf-8?B?dXRwNTFaNlhUcmNHbzI3OG1BWmZUQWh4TCszRFZrdzJhcE9uZURSUlpnOXFI?=
- =?utf-8?B?UXVheWRVblhRZjREb3V1NWMyWTdXbjB2TGhwRTUweVZPWXcyNEttenNVQzM4?=
- =?utf-8?B?azNCQjg1Q2FnK0lBakhsQXNxTmc3RXVOVGZ2UkxySXRvYmM2U2NNaFVtWkxJ?=
- =?utf-8?B?bFJ5bG04VXZxWnNlZGJ5TFJiYU94VGdvajJ3TCs3ZzlDbVVvVjh3Vm5kYTFi?=
- =?utf-8?B?bk5OUnlWUkJ1SlpGK2NhS2kzZmtpZTBQb28yeFNqTVNPZzUxclJEc1B3akVa?=
- =?utf-8?B?TnJaUFNuWFF4NGZnYUhPYW5UazF3TXdKYkRaOVJMWEZhcWkrRXFvZU5tWktZ?=
- =?utf-8?B?UU9DTU9xeHQ4MGNQNHo3OVBpSlR3L0MydE9oOFQwTUFFUmQxY2ZzZlRHRklj?=
- =?utf-8?B?VE4zYlppalpTOTlZdDdKYlNJRHNOQlU5bVhzUmV6b3Q3QVJ4TVMwTXNZSDls?=
- =?utf-8?B?ekJTNGxaK3o4SjMweExkU3lGaDR3TEZZVjRIeGZYbVF4ZFhpR2RVMWY4blNq?=
- =?utf-8?B?ZzQwUXRJcmovYVRvN2NEMWFJN2hQRTcxS0RDOHlBbDNWYnh4M293K3ZJYml6?=
- =?utf-8?B?RVMvcEJLbUZra3hKUmdPb05ZbmpmOXhBU0phMFNVVC8xeTJ3T21sRkdNZnB6?=
- =?utf-8?B?ZjZ2clgzVEJvQVlscHM5aGJ3NDFnYkVBOHE3UVVHYUxQNFZjWGRPbWt5aXZK?=
- =?utf-8?B?Ni9yUGJWUEpVWG1TRkRwSWpLczVkYllTVVViclZMZDZMV201V3ZPa2FrTjBm?=
- =?utf-8?B?YmFDbDBMZFM0TDhWNDBxRzJ6dGFBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(36860700013)(82310400026)(34020700016)(921020)(12100799066);DIR:OUT;SFP:1501;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 11:09:59.9232
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c2c2eea-1b20-47ef-cc7d-08de54efca42
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF000055DF.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB6726
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <e0f33ac2-331f-4ab4-a960-6bd8bcac7306@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
-
-On 1/16/26 15:57, Krzysztof Kozlowski wrote:
-> On 16/01/2026 10:54, Swamil Jain wrote:
->> TI's AM62P SoC contains two instances of the TI Keystone Display
->> SubSystem (DSS), each with two video ports and two video planes. These
->> instances support up to three independent video streams through OLDI,
->> DPI, and DSI interfaces. The OLDI interfaces utilizes two OLDI
->> transmitters OLDI0 and OLDI1.
+On 16/01/2026 10:52, Konrad Dybcio wrote:
+> On 1/14/26 10:55 PM, David Heidelberg wrote:
+>> On 14/01/2026 11:28, Konrad Dybcio wrote:
+>>> On 1/14/26 11:15 AM, David Heidelberg wrote:
+>>>> On 12/01/2026 21:13, BarnabÃ¡s CzÃ©mÃ¡n wrote:
+>>>>> The device was crashing on high memory load because the reserved memory
+>>>>> ranges was wrongly defined. Correct the ranges for avoid the crashes.
+>>>>> Change the ramoops memory range to match with the values from the recovery
+>>>>> to be able to get the results from the device.
+>>>>>
+>>>>> Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for xiaomi-ginkgo")
+>>>>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>>>>> ---
+>>>
+>>> [...]
+>>>
+>>>> Hello!
+>>>>
+>>>> I suggest one more nice to have improvement:
+>>>>
+>>>> you could label framebuffer cont_splash_mem since you already touching the node and testing the series.
+>>>>
+>>>> Then in additional commit, you can replace manually defined `reg` in chosen > framebuffer node with
+>>>>
+>>>> memory-region = <&cont_splash_mem>;
+>>>>
+>>>> For example you can look at sdm845-oneplus-common.dtsi
+>>>>
+>>>> Tell me what u think
+>>>
+>>> If you wanna do that, please call it framebuffer_mem, "cont_splash" is a
+>>> Qualcomm-specific name for (roughly) flicker-free bootup
 >>
->> DSS0 (first instance) supports:
->>   - With respect to OLDI Tx interfaces, DSS0 instance can either drive
->>     both OLDI0 Tx and OLDI1 Tx together (e.g. dual link mode or clone
->>     mode) or can only drive OLDI0 Tx in single link mode with OLDI1 being
->>     utilized by DSS1 or left unused.
->>   - DPI output from video port 2.
+>> I have feeling someone recommended me to stick with cont_splash_mem.
 >>
->> DSS1 (second instance) supports:
->>   - With respect to OLDI Tx interfaces, DSS1 instance can only drive
->>     OLDI1 Tx given DSS0 is not utilizing that as described above.
->>   - DSI controller output from video port 2.
->>
->> The two OLDI transmitters can be configured in clone mode to drive a
->> pair of identical OLDI single-link displays. DPI outputs from
->> DSS0 VP2, DSS1 VP1, and DSS1 VP2 are multiplexed, allowing only one
->> DPI output at a time.
->>
->> Add the compatible string "ti,am62p-dss" and update related
->> description accordingly.
->>
->> AM62P has different power domains for DSS and OLDI compared to other
->> Keystone SoCs. DSS0 can have up to 3 power-domains for DSS0, OLDI0 and
->> OLDI1, and DSS1 can have up to 2 power-domains for DSS1 and OLDI1.
->>
->> Signed-off-by: Swamil Jain <s-jain1@ti.com>
->> ---
->>   .../bindings/display/ti/ti,am65x-dss.yaml     | 37 ++++++++++++++++++-
->>   1 file changed, 35 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> index 38fcee91211e..b1cec5383160 100644
->> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->> @@ -24,6 +24,19 @@ description: |
->>     DPI signals are also routed internally to DSI Tx controller present within the
->>     SoC. Due to clocking limitations only one of the interface i.e. either DSI or
->>     DPI can be used at once.
->> +  The AM62P has two instances of TI Keystone Display SubSystem, each with two
->> +  video ports and two video planes. These instances can support up to 3
->> +  independent video streams through OLDI, DPI, and DSI interfaces.
->> +  DSS0 (first instance) supports:
->> +    - Two OLDI TXes on video port 1, configurable in dual-link or
->> +      single link clone mode
->> +    - DPI output on video port 2
->> +  DSS1 (second instance) supports:
->> +    - One OLDI TX on video port 1 (single-link mode only)
->> +    - DSI controller output on video port 2
->> +  The two OLDI TXes can be configured in clone mode to drive a pair of
->> +  identical OLDI single-link displays. DPI outputs from DSS0 VP2, DSS1 VP1,
->> +  and DSS1 VP2 are muxed, allowing only one DPI output at a time.
->>   
->>   properties:
->>     compatible:
->> @@ -31,6 +44,7 @@ properties:
->>         - ti,am625-dss
->>         - ti,am62a7-dss
->>         - ti,am62l-dss
->> +      - ti,am62p-dss
->>         - ti,am65x-dss
->>   
->>     reg:
->> @@ -81,8 +95,13 @@ properties:
->>       maxItems: 1
->>   
->>     power-domains:
->> -    maxItems: 1
->> -    description: phandle to the associated power domain
->> +    minItems: 1
->> +    description:
->> +      phandle to the associated power domain(s).
->> +    items:
->> +      - description: DSS controller power domain
->> +      - description: OLDI0 power domain
->> +      - description: OLDI1 power domain
+>> I think, since we'll be doing the mdss reset anyway in sdm845 (which I used as an example), I can do the rename in our sdm845 too then without any harm? (no it's not flicker-free takeover :D )
 > 
-> No, I already rejected this.
+> It's not flicker-free because the OS must cooperate in that process,
+> whereas we currently reset and re-initialize the entire display subsystem
 
-Isn't it better to add items to the top level and have a min/max
-constraint for different compatibles? For newer compatibles we will
-have to again add items description if we go with your approach?
+Sure.
+
+Previously I was thinking, that after doing proper panel driver with 
+proper initialization sequences etc. etc., we could have device-tree 
+property such as "linux,takeover-from-bootloader", where we could skip 
+mdss reset, panel reset and just continue from the point what bootloader 
+set (for devices where bootloader does the right job).
+
+David
+
 
 > 
-> 
-> This is not how review works. Look:
-> 
-> 1. You wrote patch on 7th Jan.
-> 2. I replied ONE DAY LATER.
-> 3. You waited one week to give reply.
-> 4. Then two days later you send new version not waiting for my reply.
-> 
-> If you have one week to reply, then so do I.
-> 
-> NAK, go to v3 and implement comments.
+> Konrad
 
-Sorry, we weren't aligned then.
-
-Regards,
-Swamil.
-
-> 
->>   
->>     dma-coherent: true
->>   
->> @@ -196,6 +215,20 @@ allOf:
->>                 properties:
->>                   endpoint@1: false
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: ti,am62p-dss
->> +    then:
->> +      properties:
->> +        power-domains:
->> +          maxItems: 3
-> 
-> That's pointless. It's already 3.
-> 
-> Best regards,
-> Krzysztof
+-- 
+David Heidelberg
 
 
