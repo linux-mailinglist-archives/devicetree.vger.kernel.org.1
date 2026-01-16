@@ -1,384 +1,135 @@
-Return-Path: <devicetree+bounces-255820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7F2D298F6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:19:41 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 268B1D29855
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:11:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D31EB301738C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 01:19:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2A44C30146FB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 01:11:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3150332B9AE;
-	Fri, 16 Jan 2026 01:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D08322C97;
+	Fri, 16 Jan 2026 01:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SsB0GT7z"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="RpNt6cpl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49248.qiye.163.com (mail-m49248.qiye.163.com [45.254.49.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF12B32AADE
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 01:19:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD6031985E;
+	Fri, 16 Jan 2026 01:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768526377; cv=none; b=oV+RnNtaGKwu5pHRJtF4rm9OAGo2KFtsnIOeMBcHm/dhKcQIO4rkY8pH5z/RbYhvebCNBt4wcPkTx4EF54DUa3anX4lb7D8EDazfx/CdlvaCkeMsbqkgP1gR0OvsHvtgTCBZCmg6KIkeQvQWesXU7vdE1U8bL6dK3YEnbH1FbQY=
+	t=1768525881; cv=none; b=Ov0cyi/rRYTEYsrjadBnhzmrFdjr0VqLyEtdmnh4iBfOhaTzW7oNZdi1MvS7Tj3xeBSfTjJrMCxCX4AccONfAJ7Rs4ms3yg5TKNEuyjBvoda6eZDOHavjP+3lArgyMo3Fb7hFudpaX3X0cqOa1xwApluayVPliJODIe5JNPc0rE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768526377; c=relaxed/simple;
-	bh=kH8r3tneBhWddDkW5vJnfMdoCvpPIOUYi/m0/Q0lvgY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W9L5wH1DnXSpc7WFIDLyWZc8IBtLI2WddweAROQxBhMBPGNxC0K/ZabPIsDlj99lBlCiTufdwDp55WqkTIglUo9DZWau03F1nvuqBkat9UYuh1t7Gm6vb9cHzitdqusAQDpRybxAGkneBgLQCrEipSHVbuWgiVVSjt42/+OEyVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SsB0GT7z; arc=none smtp.client-ip=209.85.222.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-8c52e25e636so234083185a.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 17:19:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768526371; x=1769131171; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=K1PuIc2lRMstuB52aa6xr0OJ5o8vdZJx7Gp6DDwvECc=;
-        b=SsB0GT7z7zqsJdXvF6Qnlie8VHfArpcnSWAZ5iBfFqH3R/hK9mIzpeJk/wJOfW0b9j
-         AqoWWE75VXh4dLO4B/hTbtU+m+vzsU6/Syxj7NWrCQpmKwhNdGNzbkvsLz+6IHP/c1jY
-         /PTOTiAMw0QMoa4nLG1KK0LQzpdwm+ic4e9mxUP+1svtBjrd5/sDtaoJGpaAYyYgXm5x
-         iqCxwruBVfKQKdqZDdx8qNH4LD2bXliIPb5H05e8+L/AqvtGj2Bx3HVu6z9wmfyYbryr
-         a7H0uQKUT7zibrtSaqihnab+lyyB/Mv+7miw2bDGXq7h8ICPdcpaej+N4p4aezSI2QPn
-         uHwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768526371; x=1769131171;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K1PuIc2lRMstuB52aa6xr0OJ5o8vdZJx7Gp6DDwvECc=;
-        b=DJZI3B9stKppnfU62JxcMWjjkQA7nIv7trKPYCcN7G28KdmxRyiZD063PNt7g9tbEy
-         AQ91K6xPmJe//76SEJtrRJ9e9HMV/6Mhz/mPj5Acfw9kO7+On3PUgzpPCqQyz//1P8P2
-         CqUcDuZL15NTT67WWR35yDvr3mSqSHFkt0oXZ2Q7gIhrpTAbIx8FyeeuI0WBv/7JLLl6
-         iIbyKhu8sRViaUWdG4S6PVY6z7kHhy/mi/mC+i/1f3I/maHl71EagDKkcWqz6uU/1Pvp
-         ERGnSqLts01tkozSmGUy/rhgCjtNDPQ1RX6TsfSqXWJ26W7wsG/B67HsKjFM4MaFjvGB
-         T7VQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUNsxtIzVOwVB1Q/DGhBFCXok0TicsmhiWJH5oDQ43d2iJLzxaXIemxeXlj2tJcJKB5ts7VHam/L5Ih@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeIYW/3/gK3IXj7upEBkvEslvgyrenII1ClXPI7+TYOZxjQu4c
-	JcsAViZ5y9U+wbVoaTNpC0N/2S8PgY/m3Z3HF7ekyCQFCdN3KZlWJLeeEE/dHg9p88c=
-X-Gm-Gg: AY/fxX5hDWe+FI+lLQLYKhbetOh86LNzE3qRQkKJAR5iUa9xPUjnyD/6sI0CFu3cylt
-	YLABrL+55mE+C7NfY6aGlo/w63MT/9U54ZfPkItGPbB/7Y1BlBHSBR+Sookjy7DqPU/e82NsYy/
-	EA/HbjVt154yv6fdcMeX4wCvtPNeYr+0O4jR6QqXt3CuTf/bOX4L23QGl/gr2Fbo5MiyaXfs3dF
-	ve2F/fRVa/Fgzntq6r7s4ienhbqe2oOzOXzH1ZhrzkYACA8MQA7B3yp8DQBQOGHVCOgqENR6MvW
-	ANzrnBEVlxSCoLxorNqKFa79EIUOEMCaYymgoliK4yHZkLRzpItxG9cpfZLkvWInt64Qz0/MaEY
-	kjoL81V5P0MimFwMpXIdFjkPFB98LzFOlzYhBP0vA11cWlodsfBmRqZwdJIunydTKK7HQLohkAC
-	Iw++yznL7/9A==
-X-Received: by 2002:a05:7301:fa0d:b0:2ae:5076:b6a with SMTP id 5a478bee46e88-2b6b48115f4mr1246860eec.19.1768520118610;
-        Thu, 15 Jan 2026 15:35:18 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b3651f39sm728550eec.24.2026.01.15.15.35.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jan 2026 15:35:18 -0800 (PST)
-Date: Fri, 16 Jan 2026 07:35:13 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: "Anton D. Stavinskii" <stavinsky@gmail.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 8/8] riscv: dts: sophgo: add Milk-V Duo 256M board dts
-Message-ID: <aWl5fZKayAHmoES4@inochi.infowork>
-References: <20260115-cv1800b-i2s-driver-v1-0-e8b22b8578ab@gmail.com>
- <20260115-cv1800b-i2s-driver-v1-8-e8b22b8578ab@gmail.com>
+	s=arc-20240116; t=1768525881; c=relaxed/simple;
+	bh=wdhCYNerUT5x76FPQQYhTof1wRylgDxTq3K0Gs/qeQo=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=hf0rNyHBaupo55/6WPZCQ/6yO7sbS66rPizybLq5RhO+VxB1wrJd/VPM6qncWwzlKTJX+UbsBfmWUL45UsohwVNEVcFs/RIXcElJjGUL6/4WE346EkQqInui+4nREHVepS8mYTFdg05G15/7bTDmhSJ+FhdCzlKwaArF+GyfAwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=RpNt6cpl; arc=none smtp.client-ip=45.254.49.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 30d5a768d;
+	Fri, 16 Jan 2026 08:55:43 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Cc: linux-rockchip@lists.infradead.org,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Marco Schirrmeister <mschirrmeister@gmail.com>,
+	John Clark <inindev@gmail.com>,
+	Tianling Shen <cnsztl@gmail.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v4 0/5] Fix sd card support for RK3576 platform
+Date: Fri, 16 Jan 2026 08:55:27 +0800
+Message-Id: <1768524932-163929-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+X-HM-Tid: 0a9bc44d0ff109cckunm67a197c8691b6e
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQx8ZTFZKSkhJT0tCT0NJGBpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	tVSktLVUtZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=RpNt6cpls4sQKPLRsFD5RNbnQn+fmwg8Nb3IyAn6sxjbGG4D9uRgDvmAssf1sf1x6hoxJa9Lhnob/1hylagLNoG2syzsVpbkSPkD47di6a/tR6rrO5GcpkCKz4RM4C6WRUR5V3rjXcu4gyqYF6qKfVQC68OPtlhzY+GdavQi92g=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=uoK5EkOo3ZU7QkVzkaMiSPAUrQMKeBC87ZTj6FI/yvE=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260115-cv1800b-i2s-driver-v1-8-e8b22b8578ab@gmail.com>
-
-On Thu, Jan 15, 2026 at 11:17:45PM +0400, Anton D. Stavinskii wrote:
-> Example of usage internal dac/adc and external I2S mic
-> The example shows how to use the card and
-> will actually work other boards.
-> Fixed clocks needed to make simple card make
-> initial .set_sysclk with proper clock rates.
-> Same for DAC. I2S3 has to be started not only
-> for DAC but for the ADC also because it
-> provides mclk for both.
-> 
-> dai-link@2 will only work if registers
-> are set according to this issue
-> https://github.com/sophgo/sophgo-doc/issues/174#event-21395297524
-> in other case i2s2 will not output clocks and data.
-> Those changes are not connected to the driver itself,
-> but for another subsystem which is not yet ipmlemented.
-> The following config properly works for MilkV Duo/256Mm, Module.
-> Basically everything with sg2000/sg2002 but on some boards
-> i2s2 output pins are soldered to Ethernet module.
-> In Milk 256M they are free to use as external DAC/ADC.
-> 
-> Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
-> ---
->  arch/riscv/boot/dts/sophgo/Makefile                |   1 +
->  .../boot/dts/sophgo/sg2002-milkv-duo-256m.dts      | 231 +++++++++++++++++++++
->  2 files changed, 232 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-> index 6f65526d4193..c8901ff680cb 100644
-> --- a/arch/riscv/boot/dts/sophgo/Makefile
-> +++ b/arch/riscv/boot/dts/sophgo/Makefile
-> @@ -6,3 +6,4 @@ dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
->  dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v1.dtb
->  dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v2.dtb
->  dtb-$(CONFIG_ARCH_SOPHGO) += sg2044-sophgo-srd3-10.dtb
-> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-milkv-duo-256m.dtb
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo-256m.dts b/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo-256m.dts
-> new file mode 100644
-> index 000000000000..cc33c4355969
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo-256m.dts
-> @@ -0,0 +1,231 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2024 Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sg2002.dtsi"
-> +
-> +/ {
-> +	model = "Milk-V duo 256M";
-> +	compatible = "milkv,duo-256m",
-> +	"sipeed,licheerv-nano",
-> +	"sophgo,sg2002";
-> +
-> +	aliases {
-> +		gpio0 = &gpio0;
-> +		gpio1 = &gpio1;
-> +		gpio2 = &gpio2;
-> +		gpio3 = &gpio3;
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +		serial3 = &uart3;
-> +		serial4 = &uart4;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&osc {
-> +	clock-frequency = <25000000>;
-> +};
-> +
-> +&pinctrl {
-> +	uart0_cfg: uart0-cfg {
-> +		uart0-pins {
-> +			pinmux = <PINMUX(PIN_UART0_TX, 0)>,
-> +			<PINMUX(PIN_UART0_RX, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <10800>;
-> +			power-source = <3300>;
-> +		};
-> +	};
-> +
-> +	sdhci0_cfg: sdhci0-cfg {
-> +		sdhci0-clk-pins {
-> +			pinmux = <PINMUX(PIN_SD0_CLK, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <16100>;
-> +			power-source = <3300>;
-> +		};
-> +
-> +		sdhci0-cmd-pins {
-> +			pinmux = <PINMUX(PIN_SD0_CMD, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <10800>;
-> +			power-source = <3300>;
-> +		};
-> +
-> +		sdhci0-data-pins {
-> +			pinmux = <PINMUX(PIN_SD0_D0, 0)>,
-> +			<PINMUX(PIN_SD0_D1, 0)>,
-> +			<PINMUX(PIN_SD0_D2, 0)>,
-> +			<PINMUX(PIN_SD0_D3, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <10800>;
-> +			power-source = <3300>;
-> +		};
-> +
-> +		sdhci0-cd-pins {
-> +			pinmux = <PINMUX(PIN_SD0_CD, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <10800>;
-> +			power-source = <3300>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhci0 {
-> +	pinctrl-0 = <&sdhci0_cfg>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +	bus-width = <4>;
-> +	no-1-8-v;
-> +	no-mmc;
-> +	no-sdio;
-> +	disable-wp;
-> +};
-> +
-> +&usb {
-> +	dr_mode = "peripheral";
-> +	status = "okay";
-> +	g-rx-fifo-size = <1536>;
-> +	g-tx-fifo-size = <128 128 64 64 64 64 32 32>;
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-0 = <&uart0_cfg>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&dmac {
-> +	status = "okay";
-> +};
-> +
-> +&dmamux {
-> +	status = "okay";
-> +};
-> +
-> +&pinctrl {
-> +	i2s2_cfg: i2s2-cfg {
-> +		i2s2-out-pins {
-> +			pinmux = <PINMUX(PIN_ETH_TXM, 7)>,
-> +			<PINMUX(PIN_ETH_RXP,  7)>,
-> +			<PINMUX(PIN_ETH_RXM,  7)>;
-> +
-> +			drive-strength-microamp = <15700>;
-> +			power-source = <1800>;
-> +		};
-> +
-> +		i2s2-in-pins {
-> +			pinmux = <PINMUX(PIN_ETH_TXP, 7)>;
-> +			power-source = <1800>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2s0 {
-> +	#sound-dai-cells = <0>;
-> +	status = "okay";
-> +};
-> +
-> +&i2s2 {
-> +	pinctrl-0 = <&i2s2_cfg>;
-> +	pinctrl-names = "default";
-> +	#sound-dai-cells = <0>;
-> +	status = "okay";
-> +};
-> +
-> +&i2s3 {
-> +	#sound-dai-cells = <0>;
-> +	status = "okay";
-> +};
-> +
-> +/ {
-
-> +	int_adc: codec@300a100 {
-> +		compatible = "sophgo,cv1800b-sound-adc";
-> +		#sound-dai-cells = <0>;
-> +		reg = <0x300a100 0x100>;
-> +	};
-> +
-> +	int_dac: codec@300a000 {
-> +		compatible = "sophgo,cv1800b-sound-dac";
-> +		#sound-dai-cells = <0>;
-> +		reg = <0x300a000 0x100>;
-> +	};
-> +
-
-Move these two nodes into cv180x.dtsi, others are not allowed
-in this patch series, use a separate patch instead.
-
-Regards,
-Inochi
 
 
-> +	ext_adc: my-ext-adc {
-> +		compatible = "invensense,ics43432";
-> +		#sound-dai-cells = <0>;
-> +	};
-> +
-> +	sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "cv1800b card";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		simple-audio-card,dai-link@0 {
-> +			reg = <0>;
-> +			format = "i2s";
-> +			bitclock-master = <&clock_master0>;
-> +			frame-master = <&clock_master0>;
-> +
-> +			codec {
-> +				sound-dai = <&int_dac>;
-> +			};
-> +
-> +			clock_master0: cpu {
-> +				system-clock-frequency = <12288000>;
-> +				system-clock-fixed;
-> +				system-clock-direction-out;
-> +				mclk-fs = <256>;
-> +				sound-dai = <&i2s3>;
-> +			};
-> +		};
-> +
-> +		simple-audio-card,dai-link@1 {
-> +			reg = <1>;
-> +			format = "i2s";
-> +			bitclock-master = <&clock_master1>;
-> +			frame-master = <&clock_master1>;
-> +
-> +			clock_master1: codec {
-> +				mclk-fs = <256>;
-> +				system-clock-frequency = <12288000>;
-> +				system-clock-fixed;
-> +				sound-dai = <&int_adc>;
-> +			};
-> +
-> +			cpu {
-> +				mclk-fs = <256>;
-> +				system-clock-frequency = <12288000>;
-> +				system-clock-fixed;
-> +				sound-dai = <&i2s0>;
-> +			};
-> +		};
-> +
-> +		simple-audio-card,dai-link@2 {
-> +			reg = <2>;
-> +			format = "i2s";
-> +			bitclock-master = <&clock_master2>;
-> +			frame-master = <&clock_master2>;
-> +
-> +			codec {
-> +				sound-dai = <&ext_adc>;
-> +			};
-> +
-> +			clock_master2: cpu {
-> +				mclk-fs = <256>;
-> +				system-clock-frequency = <12288000>;
-> +				system-clock-fixed;
-> +				sound-dai = <&i2s2>;
-> +			};
-> +		};
-> +	};
-> +};
-> 
-> -- 
-> 2.43.0
-> 
+Marco reported a problem[1] for his FriendlyElec NanoPi R76S board. The problem
+is becuase after runtime suspend, the associated power domain is powered off, which
+resets the registers including power control bit, card detection logic and internal
+phase registers. This leads to three problems need to be solved.
+
+1. hot-plug broken:
+
+SD card hot-plug support for RK3576 boards is broken, because sd slot should try to
+use slot-gpio(cd-gpios) instead of function IO for supporting runtime PM. In order
+to support slot-gpio detection method, we should disable jtag switching for RK3576.
+
+But the rockchip_grf_init fails to handle this because it couldn't handle
+multiple grf nodes. In this case, iocgrf is in behind of sysgrf, so only
+sysgrf is handled. We should scan all possible nodes.
+
+Moreover, the offset is wrong as well. Per the TRM, the address of
+TOP_IOC_IOC_MISC_CON is 0x260440F0, which means the offset if 0x40F0
+instead of 0x040F.
+
+2. cards lost power:
+
+When powering off the power domain during runtime suspend, the controller fails to
+maintain the power control status as all the registers is cleared. This results in
+power lost for cards during runtime suspend and have to reset the card each time
+exiting from runtime supended state. Should use gpio-based regulator for vmmc-suppy
+for the boards.
+
+3. controller lost internal phases/mem-clock settings
+
+As the same reason mentioned above, should invent rockchip specific runtime PM
+callbacks to save and restore internal phase related settings.
+
+Note: An examination of the RK3576 related dts files suggests that several other boards
+may also not function correctly, because I noticed signs of copy-pasting, but I don't have
+the schematics to confirm it, I've cc'ed the users of these boards. I hope they can verify
+their own boards and submit separate patches if fixes are needed.
+
+Please help review and test.
+
+[1] https://lore.kernel.org/all/20260110010715.1610159-1-mschirrmeister@gmail.com/T/#t
+
+
+Changes in v4
+- add fix patches for RK3576 EVB1 and NanoPi R76S
+
+Changes in v3:
+- remove of_node_put() (Heiko)
+
+Changes in v2:
+- use for_each_matching_node_and_match(Heiko)
+
+Shawn Lin (5):
+  soc: rockchip: grf: Fix wrong RK3576_IOCGRF_MISC_CON definition
+  soc: rockchip: grf: Support multiple grf to be handled
+  mmc: dw_mmc-rockchip: Fix runtime PM support for internal phase
+    support
+  arm64: dts: rockchip: Fix SD card support for RK3576 EVB1
+  arm64: dts: rockchip: Fix SD card support for RK3576 Nanopi R76s
+
+ arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts   | 22 +++++++++
+ .../arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts | 23 ++++++++-
+ drivers/mmc/host/dw_mmc-rockchip.c                 | 38 ++++++++++++++-
+ drivers/soc/rockchip/grf.c                         | 57 +++++++++++-----------
+ 4 files changed, 109 insertions(+), 31 deletions(-)
+
+-- 
+2.7.4
+
 
