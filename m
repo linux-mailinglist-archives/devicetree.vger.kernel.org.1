@@ -1,197 +1,152 @@
-Return-Path: <devicetree+bounces-256063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301B1D313D7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:42:21 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1DE1D31435
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:44:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A49BD3008981
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:42:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B909C3008CA6
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F045217705;
-	Fri, 16 Jan 2026 12:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED74B2253AB;
+	Fri, 16 Jan 2026 12:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="kpevwV+w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kYVHhPOK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC13021576E
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 12:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.97.179.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1A921FF35
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 12:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768567339; cv=none; b=AdHgcn+TSQZcWH0LmkNRVVQOrFQQw2mmTe6MVVMVqMga14jAgELQ5wg+yawV2cItUF3GbSCCzrpzVHS5Mq5CO8RYVnVOMamGUHK9TgituiUBSWePj5vTzdAMsn1rLfrps289Q9A9nDGq5pXaa0zY8ccO2tTEJtVecYsdLqnRiBU=
+	t=1768567449; cv=none; b=FApKSjj+faofSaM9Mjh9k4qgcrm44wSly9jYzQO431QmeVjWl1Dqd8+F3kIBYhDAu8wymc2J1cM2NS3lFy8PZ80sx/auQJ/BP7KRmVXZV7xkJnZMYTqGUrnnNk1wOzMlEurmd7sU9EC2+n5bS4Sa4QfLU1u53nWH+tEloSKiN4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768567339; c=relaxed/simple;
-	bh=eufgpLzAUxfdeCtRkbdk8nLYn35BkjNRB/KlO857nCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rwDFQgCPk2uGFLHWEqwuVU3CI8uOk58WFuDCccCvNL/fwbnDIJuHO5+ET6G6FadRTjf7t3kAD2B3qqwgdtUvKMdplsC9uQAOQ42hmQSiIonEQqqbrx3XMmUQX5y88RCzRkgZGTub8HNNYreWxAfGtNLG9oqOiXsdwY6HFxq5eR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=kpevwV+w; arc=none smtp.client-ip=213.97.179.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vH+PgOENTDXlzsxRREXIcCkNdXY313g9kTQGZXo/8ws=; b=kpevwV+wqObPrgd3tM98X8L2yC
-	wMp2fOCeL4BSoevbskuu/MIdLXKwSmaccpQA1EkHWuv0w44WDEv7aR6jDV+2Yy7T6yTaTnqEoOK5s
-	WKFDaBM9PyDiPc2eDTt0nSE8hvi5UY01nXY7Pna7NH2Vn6Au+ocGhnvNDNnaKp7hoaVoyqD2P8EOC
-	Pj2Kr6iR5erFAANuSMdxELq9peHOM6fPxQaWjEIQYSR2KruYdxiv8MLEY5ZJbfRmrRKtwxykadKnh
-	38dPKNcpPWUIzGmG/sXZsjl0Sh/ZJH+FnoumSQPWf8czruT2q+w0f8rKlQl9gfOKK30W2juabcIYJ
-	XO+3TcZw==;
-Received: from [187.36.210.68] (helo=[192.168.1.103])
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
-	id 1vgj9R-0069gt-66; Fri, 16 Jan 2026 13:42:05 +0100
-Message-ID: <5188e604-7952-495b-98e1-a01b8afd87d7@igalia.com>
-Date: Fri, 16 Jan 2026 09:41:59 -0300
+	s=arc-20240116; t=1768567449; c=relaxed/simple;
+	bh=b+D73NJzR5tkQbyHArcS0qpplRGo9n9mhRHkUIUu64E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bAfhvRKzZa3yMckojVG7rVCLQjSHV3zhJm5zkj8GD0O+Qs+8G1fHMPNHklBm80tDEUzZWePyZWm2h6zWueQD18/6pjWg67+CyZpzOgz3aA8ysDiiEGg0RGcKwxMk9HqttQgl6bgq8he8iUJfKyZFv/4f1NBWeORGEtmABnFJn6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kYVHhPOK; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47fedb7c68dso13601255e9.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 04:44:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768567445; x=1769172245; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3ZCf9q4Eq3f7Zk60HL0G320nGRoPqD1TASM4Kn6lCNs=;
+        b=kYVHhPOKNpoMRPMgRXtPOiU/QprX21tHlx0cjalDns9a8fRHVZ7cO6He+X3EE0FmPx
+         Ar53jGonXTVn/JSo55tIhu7OWjBZwhPMRnjRqZWi6+ueDnuiSt+u3aR127a/tAhFLJww
+         XYOiwZc+kT+un4yOUf5XRzjCiB2BmeiUwu/X4lajFfQScEejTW3n1fOHhINkQYz6dXqZ
+         Vv1bUAlJvlmAhWn62mxMtVM6iO2g7cpeEQRY0JJ8QoBr+WXr1FH3v/3R6hNoqj0+UxLh
+         Z9XR1sfbTQmlEbam5M2cxt42wOLeUcxw6VMSmYzfT9o6+4hJPFBAxLchiP+v3pS4y5Ka
+         wPkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768567445; x=1769172245;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3ZCf9q4Eq3f7Zk60HL0G320nGRoPqD1TASM4Kn6lCNs=;
+        b=oH8xalawdIDntFnJpyeGFdsMnEdqgvRzgEZ4496+htvZqu8IIz61UeJBmVioQuGYeK
+         JG+YduKhq57sOycSpj9a8Z0/Ms/HcMJ2bhaZADi2eneG1etlXLjRjnsPjKNrpaI4Nh/h
+         XUGh2QyQJeMUF1QfldNn0zHbzxMzkvzs8xa0Fv5N9aXheOG+gSBX+QqcxSGXPCryjwCd
+         1FWhyYK54bA2BEz+Zf9vP+UHE+qWWQA3v5rIapo7f6/MchjkKSGZNBjMfayFEfwHIy3a
+         j+wA5JR+11I/dUaiNt+aRQvEbOJgtpa64+/AwWzoXv2GGh7JwJUwq15dBdBIJAruyY7L
+         a/1A==
+X-Forwarded-Encrypted: i=1; AJvYcCWnzmhVXSCbSx3kd2ohfD8OjGXujFPPIYuEXzGM2dSQkZAuEqIppUxluEN6ls1trOaPdI4dRxMrCtuq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtZBQ6aYqoQgNLPhOaSSUaQnRlT6o3BU5kSMoCOaJvQwATBceV
+	YaKb0IDz0lM7Y4X/HbJXvTMsDJQZgY1ruYOOcpsUDdKMovJ3Om7mnEHo
+X-Gm-Gg: AY/fxX7ryBegYvwI/vgjw/ulfvVeuzpf5pZfjiwC1WUIHHWfDPFqUMty2OOifNwl7/1
+	Os8MgzCCSzOfYNeH7//WRmxpKrFZS6fNdSCmzP+ngPRgj5p7xpvTAp8xIBq43+3lz5WIbypVQk8
+	jirvyLIHr6DlZljoXBFccxyVUT7uknK8Fwoork8w0cgM0ibDso1jzQxyHjsssIRq5r1ykrj33im
+	IVKOWKhTR4FgLMNW7i85Mh2bzgtGLDvnlH91HO4EQQ0ZQfwsOp+XdQGB19PaX6+pKKvIdsVQ/+z
+	VWh/J/6iYimurcXONIOuRF0hdfAFilYKNQMgEeiPe/uKgidvQyM2BnjYhCQUuDtKLYalidFXRti
+	dXCvEF5qyY5h1TQwEKUOoBhEfb7uC7RT+Y1XLinZAyTStkjC5tlWg2Rmtq04EQeSIKBpECg6wsy
+	1BZLicuhBGtUTcYwGC0QssxnvKL1iBolBYKPXoJhwg6GhgbWPqnSlwCkIj7aVhjLHBpLo4cdzol
+	Q==
+X-Received: by 2002:a05:600c:8b56:b0:477:79f8:daa8 with SMTP id 5b1f17b1804b1-4801e34307emr39892975e9.17.1768567445526;
+        Fri, 16 Jan 2026 04:44:05 -0800 (PST)
+Received: from orome (p200300e41f0ffa00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:fa00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e886834sm42518255e9.7.2026.01.16.04.44.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 04:44:04 -0800 (PST)
+Date: Fri, 16 Jan 2026 13:44:02 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Ashish Mhetre <amhetre@nvidia.com>
+Cc: will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nicolinc@nvidia.com, 
+	jonathanh@nvidia.com, vdumpa@nvidia.com, jgg@ziepe.ca, 
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH V8 3/4] dt-bindings: iommu: Add NVIDIA Tegra CMDQV support
+Message-ID: <aWoyh0e2ncSsNW9y@orome>
+References: <20260113054935.1945785-1-amhetre@nvidia.com>
+ <20260113054935.1945785-4-amhetre@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: broadcom: bcm2712: Add V3D device node
-To: Peter Robinson <pbrobinson@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Stefan Wahren <wahrenst@gmx.net>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, kernel-dev@igalia.com
-References: <20260114120610.82531-1-mcanal@igalia.com>
- <121ede67-dbfc-4b79-8076-04693e9d3d53@gmail.com>
- <59cdede3-7757-4fe1-bb94-e7a93eea7611@igalia.com>
- <CALeDE9PGzTe4LXnDJcyhh_ietWkrf8Sp7xX=X6pZvdCWLx2huw@mail.gmail.com>
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Content-Language: en-US
-In-Reply-To: <CALeDE9PGzTe4LXnDJcyhh_ietWkrf8Sp7xX=X6pZvdCWLx2huw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uf7gopu5xawojzkn"
+Content-Disposition: inline
+In-Reply-To: <20260113054935.1945785-4-amhetre@nvidia.com>
 
-Hi Peter,
 
-On 16/01/26 07:56, Peter Robinson wrote:
-> On Fri, 16 Jan 2026 at 10:15, Maíra Canal <mcanal@igalia.com> wrote:
->>
->> Hi Peter,
->>
->> On 16/01/26 00:53, Peter Robinson wrote:
->>> Hi Maira,
->>>
->>> On 14/01/2026 12:04, Maíra Canal wrote:
->>>> Commits 0ad5bc1ce463 ("drm/v3d: fix up register addresses for V3D 7.x")
->>>> and 6fd9487147c4 ("drm/v3d: add brcm,2712-v3d as a compatible V3D
->>>> device")
->>>> added driver support for V3D on BCM2712, but the corresponding device
->>>> tree node is still missing.
->>>>
->>>> Add the V3D device tree node to the BCM2712 DTS.
->>>>
->>>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->>>>
->>>> ---
->>>> v1 -> v2:
->>>>
->>>> - Rebased on top of linux-next (Stefan Wahren)
->>>> - Fixed node's address (2000000 -> 1002000000) (Stefan Wahren)
->>>> - Link to v1: https://lore.kernel.org/linux-
->>>> devicetree/20260113192902.48046-2-mcanal@igalia.com/
->>>> ---
->>>>    .../boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi    |  4 ++++
->>>>    arch/arm64/boot/dts/broadcom/bcm2712.dtsi          | 14 ++++++++++++++
->>>>    2 files changed, 18 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi b/
->>>> arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
->>>> index 7d4742ebe247..97522c6803c5 100644
->>>> --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
->>>> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
->>>> @@ -247,3 +247,7 @@ &pcie1 {
->>>>    &pcie2 {
->>>>        status = "okay";
->>>>    };
->>>> +
->>>> +&v3d {
->>>> +    clocks = <&firmware_clocks 5>;
->>>
->>> Looking at the upstream DT [1] I think this also needs a clock-names entry.
->>
->> Differently from the `hvs` node [1] you sent (which specifies clock-
->> names), the `v3d` binding [2] doesn't have a clock-names property.
->> Therefore, it is not needed.
-> 
-> There's a name in the clk driver [1] so maybe the bindings should be updated?
+--uf7gopu5xawojzkn
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH V8 3/4] dt-bindings: iommu: Add NVIDIA Tegra CMDQV support
+MIME-Version: 1.0
 
-Those are two separate concepts. In the DT, clock-names is used by vc4
-to distinguish between multiple clock inputs [1]. In contrast, the v3d
-driver has a single clock input [2], and does not rely on named clock
-lookups.
+On Tue, Jan 13, 2026 at 05:49:34AM +0000, Ashish Mhetre wrote:
+> The Command Queue Virtualization (CMDQV) hardware is part of the
+> SMMUv3 implementation on NVIDIA Tegra SoCs. It assists in
+> virtualizing the command queue for the SMMU.
+>=20
+> Add a new device tree binding document for nvidia,tegra264-cmdqv.
+>=20
+> Also update the arm,smmu-v3 binding to include an optional nvidia,cmdqv
+> property. This property is a phandle to the CMDQV device node, allowing
+> the SMMU driver to associate with its corresponding CMDQV instance.
+> Restrict this property usage to Nvidia Tegra264 only.
+>=20
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Acked-by: Nicolin Chen <nicolinc@nvidia.com>
+> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
+> ---
+>  .../bindings/iommu/arm,smmu-v3.yaml           | 27 +++++++++++-
+>  .../bindings/iommu/nvidia,tegra264-cmdqv.yaml | 42 +++++++++++++++++++
+>  2 files changed, 68 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/nvidia,tegra2=
+64-cmdqv.yaml
 
-Given that, I believe there is no need for a clock-names property in the
-v3d binding, and updating the binding to mandate it would not provide
-any functional benefit at this point.
+Applied, thanks.
 
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/vc4/vc4_hvs.c#n1679 
+Thierry
 
-[2] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/v3d/v3d_drv.c#n363
+--uf7gopu5xawojzkn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-- Maíra
+-----BEGIN PGP SIGNATURE-----
 
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/bcm/clk-raspberrypi.c#n26
-> 
->> [1]
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml
->> [2]
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>
->> Best regards,
->> - Maíra
->>
->>>
->>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
->>> tree/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi#n233
->>>
->>>> +};
->>>> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/
->>>> boot/dts/broadcom/bcm2712.dtsi
->>>> index 330a121ebfcb..661668ef7419 100644
->>>> --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
->>>> +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
->>>> @@ -1,5 +1,6 @@
->>>>    // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>>>    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>> +#include <dt-bindings/soc/bcm2835-pm.h>
->>>>    / {
->>>>        compatible = "brcm,bcm2712";
->>>> @@ -642,6 +643,19 @@ mip1: msi-controller@1000131000 {
->>>>                msi-ranges = <&gicv2 GIC_SPI 247 IRQ_TYPE_EDGE_RISING 8>;
->>>>                brcm,msi-offset = <8>;
->>>>            };
->>>> +
->>>> +        v3d: gpu@1002000000 {
->>>> +            compatible = "brcm,2712-v3d";
->>>> +            reg = <0x10 0x02000000 0x00 0x4000>,
->>>> +                  <0x10 0x02008000 0x00 0x6000>,
->>>> +                  <0x10 0x02030800 0x00 0x0700>;
->>>> +            reg-names = "hub", "core0", "sms";
->>>> +
->>>> +            power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
->>>> +            resets = <&pm BCM2835_RESET_V3D>;
->>>> +            interrupts = <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
->>>> +                     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>;
->>>> +        };
->>>>        };
->>>>        vc4: gpu {
->>
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmlqMpIACgkQ3SOs138+
+s6F4CRAAs/LaZnTRigpuhM/Lhm5MOiVhksuu5bLPcQ++2uSJQtflBIADQkopKC3r
+xfOY31m01LUKx75CeQGi7ekB6+wgtvMbIpX1Hr1caTIH3MLxrkgOumZJHKyclrYZ
+vl3Ztc2CdmzUwSOXvNxtH/HwIzTXPOfMme+eBDZjT2iV2BxNMJc2KPuFI0HruduH
+B/QqVO8FLcmIvPGqtneO8oaXtF/xrxiUojjxPdJmVNxUvdl/EIDf+VvQcEnhR+P0
+YYFgMfEk493Vhi/XMhXAg9zKwm+1yhoC7vXdklGW8IMezknR79HxrzjXx/Z9DUK6
+YFhItt0501jfhq+dqNWl7NaYDQtm/b2GxXHQ//cN2N+jEUSJDxbEec8YRPFJVlTL
++dlwu3GYvSatPHYP9tRzGuq13EK8EXtH9y5XYxl7+K314jo1kfv1YE/Acjva2hwu
+kycXUDVl3ryPFeJuZX41H5jDGtbkh+cWdfm2hDdhwR93xBl4gMfQ96krMNwmfCJn
+g1aIIQJDGg91F+17Bc4TkCIEscdp9026BmBJ8XzismHOM/uFw0hB+K4+dAX1TpvL
+7uNCBSgP8MoXEN1i0tCaSq8N9zXvzp59DoCM99F8tpg8JLHR/oD3nYfqNS7rNwQn
+JI9Gam81/Bg1MWrwgwqtKlN+oi3k0OvZfFyIEzEyavI45jDBk4k=
+=ntP8
+-----END PGP SIGNATURE-----
 
+--uf7gopu5xawojzkn--
 
