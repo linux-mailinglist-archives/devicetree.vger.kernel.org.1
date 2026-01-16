@@ -1,136 +1,222 @@
-Return-Path: <devicetree+bounces-256252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E0BD3851A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:59:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03762D38528
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:01:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9BCAA30096B8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:59:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EF282303D904
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59FD396D0E;
-	Fri, 16 Jan 2026 18:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FB434DCE3;
+	Fri, 16 Jan 2026 19:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dlUCJCIT"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="PCBK9RuU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B8B33C50D
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 18:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A375F3A1D0B
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 19:00:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768589978; cv=none; b=be6i+v+FXP1kZYcABsx4vMxJZhmdS28KAuc46whRGzIsbOs4y9yZl+C4dXjxpGcqsw5XPPmOMRgPhwmRuf/emXewCI0Jl8eKGotrMdmBxIlFm5TEzfqrZDKfMYD/0EG8s9YqfolQteJkyzvg5ztcErI007x+GlwBLkNHzrPqD0M=
+	t=1768590059; cv=none; b=CMchJYzRDwLCWAcOoNEi05NpO7X0C1+ATojZwvCiyTSv77xjqhz/dDdAclLToTejHwG3ZEkQDhXWyQcklM/xVnyofKPMyK6yPMB4l2nVaH8VibK77MsgSoIV52LDfhJUfVbHR6QwlM3qA/VSPwJISnjElKdrXxwQNoiOCl7fukg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768589978; c=relaxed/simple;
-	bh=TzSo+tlzxFxHwZ9wkSBmczjkeQhikq+vs+l7Oy23ORw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aSDTUdc77a27pcO84huJHLC65N1wlSkf7AYm2nud7EIKiIlnQsuPZ+igUp7FZqOW6ACh6V8daxHIGiNg381AHAJ8MNSDBZ94P3QdYWYdgjRu4uCjtw6TYb7vmDLTqD8/4s6BhKVMpqSrI4yS9/VCmWTECVuDs2fsk6XTumlFz/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dlUCJCIT; arc=none smtp.client-ip=74.125.82.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-12332910300so812774c88.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 10:59:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768589976; x=1769194776; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OsdpmGsyOkVZsi/y+GsHdikzRvoYJyk6QlblSikl37w=;
-        b=dlUCJCITWmOW4mqAG7Xbkgj7NRmaG6VLpoK2ZrOwa9PzqpvHtGbpNt5DdfpbMfI6f8
-         MBGic3fBcQxkFvtOjk955jVpueQA5L71DVScE8srthwcmmWi6tvUIoZqdNi2YffNpGmk
-         nqVy3jRkPUWNZnptHQNu2KRgIOL7hsgUSXO1eWclnZgNriW3n4x8V9A0JN1Rz/eg+0fz
-         I5uYs8QjYI8lqZOB6xDQN9pNTWgLwmbwOgRq3tRDln7ik7iB7ngax4onYVoAZIby/bP0
-         gdQh79wASr6VolTux/EhIL5Mm+IT6ZYbr2SZABz4upgyfMN2j/1vF4xkRiVh0oXGcBrP
-         GlHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768589976; x=1769194776;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=OsdpmGsyOkVZsi/y+GsHdikzRvoYJyk6QlblSikl37w=;
-        b=iw/6po00ueNCBBm+qIQ47DLtoiZI4zHpH7mC8GVJEYIdieuSGVv2ASlqx7pruOkiUH
-         /WKWi7Q03oC6pcM9ULm1gSyNqYmq73NrgPOmD25i/4kJGDHiNAXFd732dN85qHEW+fVe
-         RL4pAiI2HCWkCxKZ286frCt22QbW/hqAvgPqkhzOA+L684sOCNvp4tOx6Oek0BwwbiZc
-         S2YGK8jx8JchTWnUG+HSYU7PPfc/G1Tpo7btHUL9R7Vuf0RBpqukTQQDw+JwGV5XoI8t
-         QMfafiwQmU83wTDCXviSfvC2sESODF6nyyMkBSb3/aQnc6AK+omqjQJi9aXCTHpaP561
-         VAXA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJud4OVK7/oIbX7nFfB2RldRrb40VycyG8KFvAQU4YgwzmAl59U2qEgngehCFBUnkC70UXkL3Em6Nw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzR0AE8sI0Y0Pd5HHn4TVXbYzyI8PgygnGM/WTOjW/Bduu3G+a
-	C3TrZYKNBkotC8P0UzA/85kEgYDk0I+GCsT0BMxbb+vCzUtm/ysFDCxg
-X-Gm-Gg: AY/fxX4szmU0/BRGcCjoiST5kDL0uEX/1OrAVvFjvmJ3WN9lOwUUFjYWNKHnfQ3lRjt
-	lzsouGIC9sCLMIOaPuCz6OZWYt1TTvjLnjUhEsFZDUdjmqoaZ/a3rulSY1SPOaFjFLVcCF4RlDF
-	pswArVjiWJIXYuyaIpB0Spc9ymIW19jFEiHOtdr6p8Nq7WgjcktIZqLMSzlglhdSVY7znUek5bo
-	ggfx8/QQr0jyf5fXPd4ioyPMqChk//rpyirN9MwpWN3foGar5tonhAqd5rvX6027Bp5pcQ3DDTh
-	q6KM4BxODsXVoSOct7mhVcK4+CR0nkyPKiyYr8efUVBKRtPvOotPgc221vfwUvkQ/M6Vf6lwYdH
-	szgUhSWtHmL+JorYMHsEIB7/SOaN7dZobMaxh8bg9jEzig8fiDinTZlD9Vc+iMNZjVC5uOMmBXE
-	RiUGIcLZ6b3HRRxpcWF0T1d0nOeGvVM9dVehF4XWF8SqG8avrcwIDrw/8UiB82QrtKrGZWXIinB
-	zUTanU=
-X-Received: by 2002:a05:7022:2397:b0:11b:88a7:e1b0 with SMTP id a92af1059eb24-1244a75f051mr3682555c88.26.1768589976312;
-        Fri, 16 Jan 2026 10:59:36 -0800 (PST)
-Received: from localhost (p200300e41f0ffa00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:fa00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244ac57fd0sm3522534c88.3.2026.01.16.10.59.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 10:59:35 -0800 (PST)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	"Sheetal ." <sheetal@nvidia.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>,
-	Sameer Pujar <spujar@nvidia.com>,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sound@vger.kernel.org
-Subject: Re: (subset) [PATCH V2 0/4] Add tegra264 audio device tree support
-Date: Fri, 16 Jan 2026 19:59:27 +0100
-Message-ID: <176858995889.167465.8638060731154515673.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20250929105930.1767294-1-sheetal@nvidia.com>
-References: <20250929105930.1767294-1-sheetal@nvidia.com>
+	s=arc-20240116; t=1768590059; c=relaxed/simple;
+	bh=ec8BG3uPjmj6HNdtlHVwDLQzuBDjAVQYbhktAGpeyf4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V94Cmgl6cilYHA8ldp5mrRKkv92zJ+Ya9y7+tMBD7Gswuphs4Bb7VOLUET1+lUeuN2hRmjV2MtQu+oxY1FQdrcr3QAGaQli5EKWMiOgd7RV2RzNUO8vFmQOAcvZqdbHuaNuKI6vdNAASSSAfBWkf/ZdJL1BowZobDQZCNKLShaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=PCBK9RuU; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1768590049;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BLhI/uZb968JB+vZozYHlwFHB+Vejkcx6tDdzQrlE+M=;
+	b=PCBK9RuUeNRIxF53kOewgSsszaCtPOh7qqQnm23hapdKupTMjPPSuCS3IPj7ZRhQyue/Qu
+	BXOKlgIR/UCNBh/cqR/RiTxWzhcw7G+BRG7dDIXc252T8I+wkwqQijaT0lbryrQ3JXye+X
+	b03bKyR/NrWcLnAp0jsDhAHFyKAt2Ps=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-511-JBsZQsEJOCCxzO_vRyp7Dg-1; Fri,
+ 16 Jan 2026 14:00:45 -0500
+X-MC-Unique: JBsZQsEJOCCxzO_vRyp7Dg-1
+X-Mimecast-MFC-AGG-ID: JBsZQsEJOCCxzO_vRyp7Dg_1768590042
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 8CA731800350;
+	Fri, 16 Jan 2026 19:00:41 +0000 (UTC)
+Received: from [10.44.34.71] (unknown [10.44.34.71])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 28F8B1800665;
+	Fri, 16 Jan 2026 19:00:33 +0000 (UTC)
+Message-ID: <a5dad0f9-001c-468f-99bc-e24c23bc9b36@redhat.com>
+Date: Fri, 16 Jan 2026 20:00:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 01/12] dt-bindings: dpll: add common
+ dpll-pin-consumer schema
+To: Rob Herring <robh@kernel.org>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Prathosh Satish <Prathosh.Satish@microchip.com>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
+ Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>,
+ Jonathan Lemon <jonathan.lemon@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Alexander Lobakin <aleksander.lobakin@intel.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org,
+ Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>,
+ Grzegorz Nitka <grzegorz.nitka@intel.com>
+References: <20260108182318.20935-1-ivecera@redhat.com>
+ <20260108182318.20935-2-ivecera@redhat.com>
+ <92bfc390-d706-4988-b98d-841a50f10834@redhat.com>
+ <CAL_Jsq+m7-wop-AU-7R-=2JsUqb+2LsVTXCbZw==1XuAAQ4Tkg@mail.gmail.com>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <CAL_Jsq+m7-wop-AU-7R-=2JsUqb+2LsVTXCbZw==1XuAAQ4Tkg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-From: Thierry Reding <treding@nvidia.com>
-
-
-On Mon, 29 Sep 2025 16:29:26 +0530, Sheetal . wrote:
-> From: sheetal <sheetal@nvidia.com>
+On 1/16/26 4:23 PM, Rob Herring wrote:
+> On Thu, Jan 15, 2026 at 6:02 AM Ivan Vecera <ivecera@redhat.com> wrote:
+>>
+>> On 1/8/26 7:23 PM, Ivan Vecera wrote:
+>>> Introduce a common schema for DPLL pin consumers. Devices such as Ethernet
+>>> controllers and PHYs may require connections to DPLL pins for Synchronous
+>>> Ethernet (SyncE) or other frequency synchronization tasks.
+>>>
+>>> Defining these properties in a shared schema ensures consistency across
+>>> different device types that consume DPLL resources.
+>>>
+>>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+>>> ---
+>>>    .../bindings/dpll/dpll-pin-consumer.yaml      | 30 +++++++++++++++++++
+>>>    MAINTAINERS                                   |  1 +
+>>>    2 files changed, 31 insertions(+)
+>>>    create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+>>> new file mode 100644
+>>> index 0000000000000..60c184c18318a
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+>>> @@ -0,0 +1,30 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/dpll/dpll-pin-consumer.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: DPLL Pin Consumer
+>>> +
+>>> +maintainers:
+>>> +  - Ivan Vecera <ivecera@redhat.com>
+>>> +
+>>> +description: |
+>>> +  Common properties for devices that require connection to DPLL (Digital Phase
+>>> +  Locked Loop) pins for frequency synchronization (e.g. SyncE).
+>>> +
+>>> +properties:
+>>> +  dpll-pins:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    description:
+>>> +      List of phandles to the DPLL pin nodes connected to this device.
+>>> +
+>>> +  dpll-pin-names:
+>>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>>> +    description:
+>>> +      Names for the DPLL pins defined in 'dpll-pins', in the same order.
+>>> +
+>>> +dependencies:
+>>> +  dpll-pin-names: [ dpll-pins ]
+>>> +
+>>> +additionalProperties: true
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 765ad2daa2183..f6f58dfb20931 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -7648,6 +7648,7 @@ M:      Jiri Pirko <jiri@resnulli.us>
+>>>    L:  netdev@vger.kernel.org
+>>>    S:  Supported
+>>>    F:  Documentation/devicetree/bindings/dpll/dpll-device.yaml
+>>> +F:   Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
+>>>    F:  Documentation/devicetree/bindings/dpll/dpll-pin.yaml
+>>>    F:  Documentation/driver-api/dpll.rst
+>>>    F:  drivers/dpll/
+>>
+>> Based on private discussion with Andrew Lunn (thanks a lot), this is
+>> wrong approach. Referencing directly dpll-pin nodes and using their
+>> phandles in consumers is at least unusual.
+>>
+>> The right approach should be referencing dpll-device and use cells
+>> to specify the dpll pin that is used.
 > 
-> Add device tree support for tegra264 audio subsystem including:
-> - Binding update for
->   - 64-channel ADMA controller
->   - 32 RX/TX ADMAIF channels
->   - tegra264-agic binding for arm,gic
-> - Add device tree nodes for
->   - APE subsystem (ACONNECT, AGIC, ADMA, AHUB and children (ADMAIF, I2S,
->     DMIC, DSPK, MVC, SFC, ASRC, AMX, ADX, OPE and Mixer) nodes
->   - HDA controller
->   - sound
+> You only need a cells property if you expect the number of cells to
+> vary by provider.
 > 
-> [...]
+> However, the DPLL device just appears to be a clock provider and
+> consumer, so why not just use the clock binding here? Also, there is
+> no rule that using foo binding means you have to use foo subsystem in
+> the kernel.
 
-Applied, thanks!
+Hmm, do you mean something like this example?
 
-[1/4] dt-bindings: dma: Update ADMA bindings for tegra264
-      commit: 919f6cd469c605f1de2269d46d04ebf80a1af568
+&dpll0 {
+     ...
+     #clock-cells = <2>; /* 1st pin index, 2nd pin type (input/output) */
 
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+     input-pins {
+         pin@2 {
+             reg = <2>;
+             ...
+         };
+         pin@4 {
+             reg = <4>;
+             ...
+         };
+     };
+     output-pins {
+         pin@3 {
+             reg = <3>;
+         };
+     };
+};
+&phy0 {
+     ...
+     clock-names = "rclk0", "rclk1", "synce_ref";
+     clocks = <&dpll0 2 DPLL_INPUT>,
+              <&dpll0 4 DPLL_INPUT>,
+              <&dpll0 3 DPLL_OUTPUT>;
+     ...
+};
+
+And in this case the helpers in the patch 3 would use 'clock-names' &
+'clocks' properties?
+
+If so... Excuse, I submitted v2 of this patch-set prior to seeing your
+email. Please be assured I did not intend to ignore your feedback.
+
+Thanks,
+Ivan
+
 
