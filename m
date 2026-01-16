@@ -1,34 +1,35 @@
-Return-Path: <devicetree+bounces-255860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D61F4D2B7E3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:39:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 347F7D2B7CB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:38:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 46A513049E02
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:38:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2C0A8303833B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1B1346AE5;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB3C346766;
 	Fri, 16 Jan 2026 04:38:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9B7308F28;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAC6342C9D;
 	Fri, 16 Jan 2026 04:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768538324; cv=none; b=Mc7SukIpRQo54FKWf3One1hR/wr2X3OkhxJ/bHsJQaCy4dsU5wSx2tqgHn9ZVLnl5rKfsiEm9nbZ+apNpfs98k9354d5P+8ezOYpiIIuGtAnC2NT8EfMhX6Rlhu6SqVv0HSFSHP+PNpWRKF+SdVgvJ1tnuiukrCxHqrjDccXfzo=
+	t=1768538324; cv=none; b=lXiYjRDSCiruo5oSuybizjCIsfFqp81np0ywxKzgCjo718/ZQNqn8qtRDdiVvn+PsXXTF8O/ANXngsAJQwIO5GSRyD8JSYHh2UuojqYFqKVN2kCZd9KiPdxyMTaQkU36O4SzFG4WOsMfr9qTBZ8IGwXg/BsMTS+mk3DYddicdH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768538324; c=relaxed/simple;
-	bh=3EyX1nucJHCzmyD2doRUYTsHzv3CN3xf11ewEja/B2U=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tnqDyL16vcp/eP8buGKCzhTe3Qcb5brd511rRXveCQFzJgNsXqa6jZXEPEFSdsDr4dpXrKtBBzGKWiXCoeMfsjcFg95m5bDhUTVHB8MHhUZK0Yt+BHv/6S31TRLX8VKAGQJ0ozLIJF4a7GPYRN3XRdS3LHCSJyvB+XR4p5XoPkI=
+	bh=TwcgJf1vEmYOnqQjyNXZ1aWwaxlavVQbI9d46hsfeF8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=AAnhwbfaUb2Lg/NGtq6jCpK/0T9JRqGK0mrKxtzx6rjqCHVfcs8EUSDr2ajyGeJbQYFAZK97nVrbJf1GqeB80Y0wUH0KWOkPtW9uHTyQDfduaiUB6kRxsAsb+QeqDspgeUwcff3YoidVA96O3tY+UJuJhPYGMBJfhB6t5W9vrU4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
 Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.83])
-	by APP-01 (Coremail) with SMTP id qwCowADXfWmwwGlp9QjYBA--.45984S2;
-	Fri, 16 Jan 2026 12:38:10 +0800 (CST)
+	by APP-01 (Coremail) with SMTP id qwCowADXfWmwwGlp9QjYBA--.45984S3;
+	Fri, 16 Jan 2026 12:38:13 +0800 (CST)
 From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -59,10 +60,12 @@ Cc: Philipp Zabel <p.zabel@pengutronix.de>,
 	linux-riscv@lists.infradead.org,
 	Icenowy Zheng <uwu@icenowy.me>,
 	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH v5 0/9] Verisilicon DC8200 driver (and adaption to TH1520)
-Date: Fri, 16 Jan 2026 12:37:37 +0800
-Message-ID: <20260116043746.336328-1-zhengxingda@iscas.ac.cn>
+Subject: [PATCH v5 1/9] dt-bindings: vendor-prefixes: add verisilicon
+Date: Fri, 16 Jan 2026 12:37:38 +0800
+Message-ID: <20260116043746.336328-2-zhengxingda@iscas.ac.cn>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260116043746.336328-1-zhengxingda@iscas.ac.cn>
+References: <20260116043746.336328-1-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,124 +73,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowADXfWmwwGlp9QjYBA--.45984S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3Aw18Cw1UArykGr1fGF1Dtrb_yoW7ZFWUpF
-	42yFWFyFyDAa1aqrZ7tF10gFW3Aas7XFWfWr47XwnxZwsFyFy5Zr98AFy5JFWDJr17AryI
-	vFsYkr42kr12yF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9014x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
-	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
-	67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
-	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
-	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
-	VFxhVjvjDU0xZFpf9x0pRl_MsUUUUU=
+X-CM-TRANSID:qwCowADXfWmwwGlp9QjYBA--.45984S3
+X-Coremail-Antispam: 1UD129KBjvdXoW7GF47WFWrGrW8GrW5tryxZrb_yoWkuwb_WF
+	s7Cr1Dur45tF1Fvw4jyFs3GryUCw1akr48C3Z0qFWqka4xG39xGF92q3y5Zw17WF4fuas5
+	ArnaqrZrXF1xKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbkkFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUGwA2048vs2IY02
+	0Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+	wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l84
+	ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0DM2AI
+	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
+	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
+	v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
+	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
+	AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
+	2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0x
+	vEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVj
+	vjDU0xZFpf9x0pRlJPiUUUUU=
 X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 
-This patchset tries to add a driver for Verisilicon DC8200 driver, and
-demonstrates the driver on T-Head TH1520 with its HDMI output.
+From: Icenowy Zheng <uwu@icenowy.me>
 
-This display controller IP is used on StarFive JH7110 too, but as the
-HDMI controller used there isn't as common as the DesignWare one, I
-choose to use TH1520 in this patchset.
+VeriSilicon is a Silicon IP vendor, which is the current owner of
+Vivante series video-related IPs and Hantro series video codec IPs.
 
-The DC driver is written with other DC-series (mainly DC8000, which is
-known to be used on Eswin EIC7700 SoC) display controllers in mind, and
-uses the identification registers available on all Vivante branded IPs.
-A known exception is DCNano display controller, which is unlikely to be
-supported by this driver because of totally different register map and
-no known identification registers. (P.S. the in-tree loongson DRM driver
-seems to be for some DCNano instances based on the register map.)
+Add a vendor prefix for this company.
 
-The HDMI controller seems to come with some common PHY by Synopsys, the
-DesignWare HDMI TX 2.0 PHY. By searching a few register names from the
-BSP driver of that PHY, that PHY seems to be used by a in-tree dw-hdmi
-glue, rcar_dw_hdmi -- an updated downstream version of rcar_dw_hdmi
-contains all 6 registers set here in the th1520-dw-hdmi driver. Some
-more suprising thing is that RK3288 uses the same PHY too, but the
-in-tree dw_hdmi-rockchip driver writes the configuration data array in a
-weird way to reuse the HDMI 3D TX PHY configuring function. It might be
-valuable to add common configuring function and configuration data
-definition for this HDMI 2.0 PHY too, but the current driver in this
-patchset simply duplicated most configuration logic from rcar_dw_hdmi
-driver (but with 3 extra configuration registers configured, which is
-done by their downstream kernel).
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
+No changes since v4.
 
-Another point to discuss about the dw-hdmi glue is the placement of the
-driver file -- because of the display controller being generic, the glue
-driver is currently directly placed into drivers/gpu/drm/bridge/ .
+Changes in v3:
+- Add Rob's ACK.
 
-Icenowy Zheng (9):
-  dt-bindings: vendor-prefixes: add verisilicon
-  dt-bindings: display: add verisilicon,dc
-  drm: verisilicon: add a driver for Verisilicon display controllers
-  dt-bindings: display/bridge: add binding for TH1520 HDMI controller
-  drm/bridge: add a driver for T-Head TH1520 HDMI controller
-  riscv: dts: thead: add DPU and HDMI device tree nodes
-  riscv: dts: thead: lichee-pi-4a: enable HDMI
-  MAINTAINERS: assign myself as maintainer for verisilicon DC driver
-  mailmap: map all Icenowy Zheng's mail addresses
+No changes in v2.
 
- .mailmap                                      |   4 +
- .../display/bridge/thead,th1520-dw-hdmi.yaml  | 120 +++++++
- .../bindings/display/verisilicon,dc.yaml      | 122 +++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- MAINTAINERS                                   |   8 +
- .../boot/dts/thead/th1520-lichee-pi-4a.dts    |  25 ++
- arch/riscv/boot/dts/thead/th1520.dtsi         |  66 ++++
- drivers/gpu/drm/Kconfig                       |   2 +
- drivers/gpu/drm/Makefile                      |   1 +
- drivers/gpu/drm/bridge/Kconfig                |  10 +
- drivers/gpu/drm/bridge/Makefile               |   1 +
- drivers/gpu/drm/bridge/th1520-dw-hdmi.c       | 173 +++++++++
- drivers/gpu/drm/verisilicon/Kconfig           |  15 +
- drivers/gpu/drm/verisilicon/Makefile          |   5 +
- drivers/gpu/drm/verisilicon/vs_bridge.c       | 336 ++++++++++++++++++
- drivers/gpu/drm/verisilicon/vs_bridge.h       |  39 ++
- drivers/gpu/drm/verisilicon/vs_bridge_regs.h  |  54 +++
- drivers/gpu/drm/verisilicon/vs_crtc.c         | 217 +++++++++++
- drivers/gpu/drm/verisilicon/vs_crtc.h         |  29 ++
- drivers/gpu/drm/verisilicon/vs_crtc_regs.h    |  60 ++++
- drivers/gpu/drm/verisilicon/vs_dc.c           | 204 +++++++++++
- drivers/gpu/drm/verisilicon/vs_dc.h           |  38 ++
- drivers/gpu/drm/verisilicon/vs_dc_top_regs.h  |  27 ++
- drivers/gpu/drm/verisilicon/vs_drm.c          | 177 +++++++++
- drivers/gpu/drm/verisilicon/vs_drm.h          |  29 ++
- drivers/gpu/drm/verisilicon/vs_hwdb.c         | 150 ++++++++
- drivers/gpu/drm/verisilicon/vs_hwdb.h         |  29 ++
- drivers/gpu/drm/verisilicon/vs_plane.c        | 102 ++++++
- drivers/gpu/drm/verisilicon/vs_plane.h        |  68 ++++
- .../gpu/drm/verisilicon/vs_primary_plane.c    | 157 ++++++++
- .../drm/verisilicon/vs_primary_plane_regs.h   |  53 +++
- 31 files changed, 2323 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/thead,th1520-dw-hdmi.yaml
- create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
- create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
- create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
- create mode 100644 drivers/gpu/drm/verisilicon/Makefile
- create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge_regs.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc_regs.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
- create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane_regs.h
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index c7591b2aec2a7..18f931f369198 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1745,6 +1745,8 @@ patternProperties:
+     description: Variscite Ltd.
+   "^vdl,.*":
+     description: Van der Laan b.v.
++  "^verisilicon,.*":
++    description: VeriSilicon Microelectronics (Shanghai) Co., Ltd.
+   "^vertexcom,.*":
+     description: Vertexcom Technologies, Inc.
+   "^via,.*":
 -- 
 2.52.0
 
