@@ -1,230 +1,150 @@
-Return-Path: <devicetree+bounces-256300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D1E8D38A53
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:40:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A381D38A63
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:47:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4A8153014AC5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 23:39:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 27D8B3008790
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 23:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E18E2D7810;
-	Fri, 16 Jan 2026 23:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3D030EF6A;
+	Fri, 16 Jan 2026 23:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPr7Dtsn"
+	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="K7RnfShy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49F883009C1
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 23:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9367E13D891
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 23:47:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768606788; cv=none; b=eRG5ARrwv4VtSCPW3Xgd9EHYc//IgUt2Y/3tbcawra3FJc8Io6PI7xQqQf2j71Pd3tGOdnKPHTcT7/NzDN6l3toOPlAUItark9GjAPUJ4Ga6HYJHAboVn4OS8Qd+oqRMh/vGA4VxrP+Jtrs9kl9AR0rbeeD6RW4CRBH1YChM3Ig=
+	t=1768607246; cv=none; b=S7A8G+PygeTAz+RpRuJAUyKmodY7sOol3WdFnHym8rI3No+5G0psUHeby12ntAzhGYhGlSdB/pI5LSpmv/KjVzdXRMVNJ8UEsXf21UHO5FZEO3EHgw7I1xYj5p/cT8qQVKWEHlSlh3KlfPpYPi29eUpEdxtO1RJlv+G0kkcFqwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768606788; c=relaxed/simple;
-	bh=1L4Z10EN3fStlLWrOTv25Pq3Qk48HrL3c61DmZOsz6s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e9nj3gEVuK7EurziTcz59h8EY72V7ZbQHeZLK6mq01lCBztjRDKqNox+YsHoEEpAgOQ3uwZQRy0C+BRL6HtMAHnmWFYLS9RIqXmPM6dS6Xx+WUuzLPNnjrWhF5SJ/Y19FdQCkq4wClj22oEksFZLxL0Wgnw8WTLW4qqCTytro+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPr7Dtsn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04112C2BCAF
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 23:39:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768606788;
-	bh=1L4Z10EN3fStlLWrOTv25Pq3Qk48HrL3c61DmZOsz6s=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=CPr7Dtsnm5xqqjXRoF4zmWwxIcvihEIqjlYx3ZOjBpFWmdO+6X/jWujdQK9oaw2gp
-	 khc5ZIXwQLm32zCcGPWx58h/7b6Ar2SeZjjylFefDa0SyPZIeuCm6XPVxTVyqNILYc
-	 cGsBKMlC8DlhJQBl8v1ITDHAkqoEFnW9nnuMOmPQB8eW5+CjcfMo1mLhzsZUDYPFUe
-	 9v4fwygvZqHklVK8cdq+xo90aLrH+KhrA+JxOZ/C3EeM4rPHAzNTB3gjfXlwpPsg/y
-	 Q8Q8RCBh7QIaWDcGjgqE6LFQa5rq0PmGvEBeOg/QC57ckm0PJ4lqje94zowytehp0k
-	 N2SK0WfBEUNyw==
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6505d3adc3aso4065071a12.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 15:39:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWOYl4FsXoA1G2waX2xQsU5BWnWqByoHcFFSnUH874WccwwdL4D1PmXAA0VBz3s3A/jUA8JHwsqxutn@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywnh/MINK5qokxHKDk1Y3mhh8g0Xcx9be311zDHU5edgRBgvbEz
-	CgE+qboEpWfKnQbDhBJZdcc09r9BKlWNWcDS5enJrOaB3btu5Sw96ohWEXWRHLixkvwPmVl8O2u
-	hjSF0X5R3LcZd5a5mXiozvrd73q6ZtQ==
-X-Received: by 2002:a05:6402:3547:b0:653:10be:c89b with SMTP id
- 4fb4d7f45d1cf-654bb70fa92mr3102930a12.34.1768606786546; Fri, 16 Jan 2026
- 15:39:46 -0800 (PST)
+	s=arc-20240116; t=1768607246; c=relaxed/simple;
+	bh=YCnOrVHDXhWdzQMwWovwcpqiz8uUp4sj1VBz21E2ms4=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=hVtbqcXrXAFIlIr8LbQMDMLmQs3ehZvifrJXrQjUll6YtjbYcKKNCMFLbAwRuswMTtPgg9Y/vTECnGarbXwizk8dT+8ixTyIkBFztDJRVM2pM6LztPlw2HzqRwPCxpLrPJObgnTDgQy/wYQ6wOuKgq9qxrI2ikL3iscDWIuabuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=K7RnfShy; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-8c5386f1c9fso408883285a.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 15:47:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek.ca; s=google; t=1768607243; x=1769212043; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=shfPp2KoeQSvAsE+lzy86eQNZOUQOmOwfsSErLe5hXk=;
+        b=K7RnfShykN/sP6cAjw0avQrmeFcPZ1nsq6m7Lf56G36KkxqT9HfDAEmFnyAop85t00
+         /nB724VZ9OTdVZeXO8clT4AUZZalMpsMiNiZGfKcSpGc7WOqIYpZbACf8TJNvMblOrYj
+         SUHCTLgJht3Vj7MKnirMHokMnBg657CRaXIWBea5bMvkrERfBLH6ymrXjHEdo8x7wjUU
+         erZ80J2xpg6pqilNwAYu9vWpqYcU36FyNdvqSw9xCjNK8xcIOsl6ll8BHvJc7fx5AQjM
+         CcCA+syRI5FlOO6iEclAXe4D6ejXTjfLtUZxcU13dcFibqDrxGMwq1s/ybYJmNPoBr6B
+         LCVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768607243; x=1769212043;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=shfPp2KoeQSvAsE+lzy86eQNZOUQOmOwfsSErLe5hXk=;
+        b=AX1mAaYq2o47FctCemHsJLj8Oku4pkBD+BHvats8SAU9STsjkWWmCzQgeCtw/w8eyv
+         d6t6zrE4Y3+HKuFe1ALJu1BesyKlHjaHAzG688BuGRucRbDqzGxJVRn+W7pc9tJDHlaK
+         GojpPqLYdE5S+h/brcONCIKelEdpAQO2tIDJLPhKYoMLbsBd0kDQ42iJ5tqboF+uCQGA
+         pGRE5NYQ8gKtCkAn6VK/Gyz8Uj39MDzMAkdmz7qgRpb1AUiOKe1qxWWSkXx9D7jdvGwa
+         FR4hQzi1do4AkvKcP+bwNj90diYC9hqg0cNAJexMDo+Hy2u6TBIo3NnhkWj/82Nrs6cv
+         FELg==
+X-Forwarded-Encrypted: i=1; AJvYcCVWu6anmcr8ok4LQfPR31tLhvuTykHRBN7/DNrtwNKqWbe1oHLd43PfzAHOw4QmrMfNt93N0B3pzVxx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0bZOjd8VIRVRH6VKYGC9StLyzzkdeBSxxOCFR8xi+IJ7V9Tuu
+	De5OqrrpLoapNmSXyNOqpbveghkxI1IYFaSZlN+QaAJoOxl46vQI3xY/F+r5k9OKaLA=
+X-Gm-Gg: AY/fxX7lWaFLhI0i0uqQMsKK27ZB6m2WK3UY9PWOEYyzlWou8Q2uZtlZGWhxY/qW+T3
+	QoravSOPC+R4pTdb0YJwjCMKDdy7O9AAvNEbIMi63EJthwLTkxdX+4yDdqIpKUmw/EoufYlfLU7
+	gNl6eoTffC/y46dGhjWqLoJXNCrqcpnzGXtLpn9XrPE0efSSX3uevor3VqkZe8TpPl3NnVU1h8i
+	JS8vZMYk6bZrfteYCuakOe8tEIPAM04vAoeKHwZBw2XxhroFzUmFq4B2ArKx2pe1f2AN/6+iPt4
+	zJcf1rSr2j5o88/PfK+p8JNjATd5rvQN5kWIUSXYN+NS9me4YMjAdSHenppQZyz4u8uNqZy7Bxj
+	WGHQHMFL8LQv84G8JlN03395/9PFu7Dyd/w/GNnuM6nswujnzycCvkpIAE2bWfLv67gfpuhxn4G
+	87rsD4UGoUL6E1oM4MlrT4yHREpYwk3kR1eE1HFqJGoHl9KgKOVP1fQKrLQw==
+X-Received: by 2002:a05:620a:1729:b0:8a2:4d02:eeb3 with SMTP id af79cd13be357-8c6a68ed2b2mr616124385a.11.1768607243488;
+        Fri, 16 Jan 2026 15:47:23 -0800 (PST)
+Received: from [192.168.0.189] (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8942e6d6366sm39414796d6.51.2026.01.16.15.47.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jan 2026 15:47:23 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>
+References: <20251127212943.24480-1-jonathan@marek.ca>
+ <176859948742.425550.1764024067188709567.b4-ty@kernel.org>
+ <79b3e8ae-134c-df6d-396d-9b7f766ef666@marek.ca>
+ <ycygvgw4uwm6bb7i4fbuxmzb5a42zmn6atwwdznicvili3jh2h@eaa4ddtkwc5z>
+From: Jonathan Marek <jonathan@marek.ca>
+Message-ID: <e6b0aedb-955a-5883-524c-f602ca619681@marek.ca>
+Date: Fri, 16 Jan 2026 18:45:54 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260108182318.20935-1-ivecera@redhat.com> <20260108182318.20935-2-ivecera@redhat.com>
- <92bfc390-d706-4988-b98d-841a50f10834@redhat.com> <CAL_Jsq+m7-wop-AU-7R-=2JsUqb+2LsVTXCbZw==1XuAAQ4Tkg@mail.gmail.com>
- <a5dad0f9-001c-468f-99bc-e24c23bc9b36@redhat.com>
-In-Reply-To: <a5dad0f9-001c-468f-99bc-e24c23bc9b36@redhat.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 16 Jan 2026 17:39:35 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJhqp-cgj604eEgxD47gJci0d3CFYf1wC_t1c00OptTiQ@mail.gmail.com>
-X-Gm-Features: AZwV_Qgghn897CtG_q8P6welgr6_MD-NJlyOmC0cWTEkTMdvGwzWh8_gNK8Dfu8
-Message-ID: <CAL_JsqJhqp-cgj604eEgxD47gJci0d3CFYf1wC_t1c00OptTiQ@mail.gmail.com>
-Subject: Re: [PATCH net-next 01/12] dt-bindings: dpll: add common
- dpll-pin-consumer schema
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, Tony Nguyen <anthony.l.nguyen@intel.com>, 
-	Przemek Kitszel <przemyslaw.kitszel@intel.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Saeed Mahameed <saeedm@nvidia.com>, 
-	Leon Romanovsky <leon@kernel.org>, Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>, 
-	Jonathan Lemon <jonathan.lemon@gmail.com>, Richard Cochran <richardcochran@gmail.com>, 
-	Alexander Lobakin <aleksander.lobakin@intel.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, intel-wired-lan@lists.osuosl.org, 
-	linux-rdma@vger.kernel.org, Michal Schmidt <mschmidt@redhat.com>, 
-	Petr Oros <poros@redhat.com>, Grzegorz Nitka <grzegorz.nitka@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ycygvgw4uwm6bb7i4fbuxmzb5a42zmn6atwwdznicvili3jh2h@eaa4ddtkwc5z>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jan 16, 2026 at 1:00=E2=80=AFPM Ivan Vecera <ivecera@redhat.com> wr=
-ote:
->
-> On 1/16/26 4:23 PM, Rob Herring wrote:
-> > On Thu, Jan 15, 2026 at 6:02=E2=80=AFAM Ivan Vecera <ivecera@redhat.com=
-> wrote:
-> >>
-> >> On 1/8/26 7:23 PM, Ivan Vecera wrote:
-> >>> Introduce a common schema for DPLL pin consumers. Devices such as Eth=
-ernet
-> >>> controllers and PHYs may require connections to DPLL pins for Synchro=
-nous
-> >>> Ethernet (SyncE) or other frequency synchronization tasks.
-> >>>
-> >>> Defining these properties in a shared schema ensures consistency acro=
-ss
-> >>> different device types that consume DPLL resources.
-> >>>
-> >>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> >>> ---
-> >>>    .../bindings/dpll/dpll-pin-consumer.yaml      | 30 +++++++++++++++=
-++++
-> >>>    MAINTAINERS                                   |  1 +
-> >>>    2 files changed, 31 insertions(+)
-> >>>    create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin=
--consumer.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin-consumer=
-.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
-> >>> new file mode 100644
-> >>> index 0000000000000..60c184c18318a
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
-> >>> @@ -0,0 +1,30 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/dpll/dpll-pin-consumer.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: DPLL Pin Consumer
-> >>> +
-> >>> +maintainers:
-> >>> +  - Ivan Vecera <ivecera@redhat.com>
-> >>> +
-> >>> +description: |
-> >>> +  Common properties for devices that require connection to DPLL (Dig=
-ital Phase
-> >>> +  Locked Loop) pins for frequency synchronization (e.g. SyncE).
-> >>> +
-> >>> +properties:
-> >>> +  dpll-pins:
-> >>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> >>> +    description:
-> >>> +      List of phandles to the DPLL pin nodes connected to this devic=
-e.
-> >>> +
-> >>> +  dpll-pin-names:
-> >>> +    $ref: /schemas/types.yaml#/definitions/string-array
-> >>> +    description:
-> >>> +      Names for the DPLL pins defined in 'dpll-pins', in the same or=
-der.
-> >>> +
-> >>> +dependencies:
-> >>> +  dpll-pin-names: [ dpll-pins ]
-> >>> +
-> >>> +additionalProperties: true
-> >>> diff --git a/MAINTAINERS b/MAINTAINERS
-> >>> index 765ad2daa2183..f6f58dfb20931 100644
-> >>> --- a/MAINTAINERS
-> >>> +++ b/MAINTAINERS
-> >>> @@ -7648,6 +7648,7 @@ M:      Jiri Pirko <jiri@resnulli.us>
-> >>>    L:  netdev@vger.kernel.org
-> >>>    S:  Supported
-> >>>    F:  Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> >>> +F:   Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
-> >>>    F:  Documentation/devicetree/bindings/dpll/dpll-pin.yaml
-> >>>    F:  Documentation/driver-api/dpll.rst
-> >>>    F:  drivers/dpll/
-> >>
-> >> Based on private discussion with Andrew Lunn (thanks a lot), this is
-> >> wrong approach. Referencing directly dpll-pin nodes and using their
-> >> phandles in consumers is at least unusual.
-> >>
-> >> The right approach should be referencing dpll-device and use cells
-> >> to specify the dpll pin that is used.
-> >
-> > You only need a cells property if you expect the number of cells to
-> > vary by provider.
-> >
-> > However, the DPLL device just appears to be a clock provider and
-> > consumer, so why not just use the clock binding here? Also, there is
-> > no rule that using foo binding means you have to use foo subsystem in
-> > the kernel.
->
-> Hmm, do you mean something like this example?
->
-> &dpll0 {
->      ...
->      #clock-cells =3D <2>; /* 1st pin index, 2nd pin type (input/output) =
-*/
->
->      input-pins {
->          pin@2 {
->              reg =3D <2>;
->              ...
->          };
->          pin@4 {
->              reg =3D <4>;
->              ...
->          };
->      };
->      output-pins {
->          pin@3 {
->              reg =3D <3>;
->          };
->      };
-> };
-> &phy0 {
->      ...
->      clock-names =3D "rclk0", "rclk1", "synce_ref";
->      clocks =3D <&dpll0 2 DPLL_INPUT>,
->               <&dpll0 4 DPLL_INPUT>,
->               <&dpll0 3 DPLL_OUTPUT>;
->      ...
-> };
+On 1/16/26 6:19 PM, Bjorn Andersson wrote:
+> On Fri, Jan 16, 2026 at 05:53:59PM -0500, Jonathan Marek wrote:
+>> It turns out this change will make things worse for the (unfortunately
+>> common) EL1+64GB+brokenfirmware case.
+>>
+>> Because of that I think the Fixes: tag and "(fix 64GB models)" should be
+>> dropped from the commit message. (I can also send a v2 with extra info in
+>> the commit message if needed)
+>>
+> 
+> It seems to me that neither of these to actions will affect the impact
+> of the patch. What does "make things worse" imply?
+> 
 
-No, clock providers are always the clock outputs, and clock consumers
-are the clock inputs. So something like this:
+ From what Stephan wrote [1]: Without this change, devices that use 
+SMMUv3 (PCIe) use bounce buffers for memory outside the 36-bit range. 
+With this change they won't use SWIOTLB and it will crash instead. (it 
+would still crash for other reasons without this change)
 
-&dpll0 {
-     ...
-     #clock-cells =3D <1>; /* 1st pin index */
+[1] https://patchwork.kernel.org/comment/26681014/
 
-     // clocks index corresponds to input pins on dpll0 */
-     clocks =3D <&phy0 0>, <&phy0 1>, <&phy1 0>, <&phy1 1>
-};
-&phy0 {
-     ...
-     #clock-cells =3D <1>;
-     clocks =3D <&dpll0 3>;
-     ...
-};
+> Are we better off dropping this patch?
 
-Rob
+This patch gets EL2+64GB (and presumably EL1 as well if OEM provides 
+updated EL2 firmware) working without crashes. That's better than having 
+all 64GB cases be broken.
+
+> 
+> Regards,
+> Bjorn
+> 
+>> On 1/16/26 4:39 PM, Bjorn Andersson wrote:
+>>>
+>>> On Thu, 27 Nov 2025 16:29:42 -0500, Jonathan Marek wrote:
+>>>> Unlike the phone SoCs this was copied from, x1e has a 40-bit physical bus.
+>>>> The upper address space is used to support more than 32GB of memory.
+>>>>
+>>>> This fixes issues when DMA buffers are allocated outside the 36-bit range.
+>>>>
+>>>>
+>>>
+>>> Applied, thanks!
+>>>
+>>> [1/1] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
+>>>         commit: b38dd256e11a4c8bd5a893e11fc42d493939c907
+>>>
+>>> Best regards,
+>>>
 
