@@ -1,136 +1,180 @@
-Return-Path: <devicetree+bounces-256135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D65D32C9F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C4CD32F8D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:58:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2121B30E37C0
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:38:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2610C314C058
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:44:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F613933E8;
-	Fri, 16 Jan 2026 14:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B4039900D;
+	Fri, 16 Jan 2026 14:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ma2qg64p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZK8eH7fb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF0E2D77FF;
-	Fri, 16 Jan 2026 14:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785DD283C82;
+	Fri, 16 Jan 2026 14:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768574291; cv=none; b=S2uip4rzEBU+cERo10zVg5AanMqHj/ybDPwHG2tuGtPG+gvofOA9y1z168ogx+2arDLPxdibZKspFyauLq/O7MIJcGMzwoLepFc4s7d8i5hS0RFR3sDHSHp3QNh1qDBHn2/Yzqkrr2NiuQUlkwh74y5ptr3fQ8cTiRlruDeaa9s=
+	t=1768574594; cv=none; b=o9AAJcv9AcVtYFRV+DUq9C9aVxhf2SP/gPXC+0V+ydbioW5lCOU7SRKa6jASrlmmRR2MnLnk2AsHngc7Xib8HJv0nlxALNEbmNa2yzuJoi50lhO0KAPd0boOuP0JvA4C6IVTEXv8FPEYzTnO/5eVBzoYQY2HDQzCE+FuIhvsrQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768574291; c=relaxed/simple;
-	bh=eaubboqRrOt4wiQ7dNDQSYRVvwj9pKBmaAE6JATQbdk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g/eOqscKvYYcQ3ci7WEfTUBnV3L9Qz4YrKXd+I76LE8mWXyzDj6CS7r9uAlH0DWUELDmQc5gnjUfQImaxeLLZGYx6t6GX4wjzXVIXXSs9MDFD7VOzc3sABnWVwGXZeRd6339GagQJ09HX8QngAwsJkXiJBeQcsZu6n4Q2kU7svY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ma2qg64p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4556C2BC86;
-	Fri, 16 Jan 2026 14:38:08 +0000 (UTC)
+	s=arc-20240116; t=1768574594; c=relaxed/simple;
+	bh=VeHWIHkcQ9AFfItzbMmyl8YOQqITLehdpmsz1R9lqlE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WWWtgixHCsmwB/ronJhw+Ve8W34WvkXY8Tz5j4BvAf25DWJtzJSURvMTCZuKcQhROYRJlG7TYXQk0jhViEtUHCNiRy3ve/MpOu9mIB48nehM6g4PcmVASNmtEA2GKF9tRHq1ZD3Vm0Sz8RVOKDMZUxvfVWIZ26YaxFMr0KdbuI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZK8eH7fb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073C6C116C6;
+	Fri, 16 Jan 2026 14:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768574291;
-	bh=eaubboqRrOt4wiQ7dNDQSYRVvwj9pKBmaAE6JATQbdk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ma2qg64p6yDllE44OJeg4SCt/XSz6wXdMSMlrSzaO8jMCXTC9586fMY4TJBgdUWxl
-	 mpVEwof9SEu4wCoHJ/63T7L4nQBjBLcOkgaak85Ugo7GJXmNMcL721atKtcD10KbAG
-	 eKdYZ5OVb4DM0X9nxEiTGnX3qC15zey48uyl8Prrzz/HZkB+i35OqDhFnTdE1ZbBNO
-	 adp6FyCsxX+zWUQ2/1jyEFS5qGshwUBeZDi2mrXXJOSr40s5xNKfovUjWG3j7VEpKI
-	 O08daJoJX+pPAlcCNBlijE+D2giRpArnGZZ0iCQXkVO5QN5Dz9s9oiPRq8bMKCgA3D
-	 Y5oVREMKyo5xA==
-Message-ID: <0e4c18b6-134e-4c66-ad19-1704fd51c92a@kernel.org>
-Date: Fri, 16 Jan 2026 15:38:07 +0100
+	s=k20201202; t=1768574594;
+	bh=VeHWIHkcQ9AFfItzbMmyl8YOQqITLehdpmsz1R9lqlE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZK8eH7fbVAJuu0G1Uo5qVMd3dtfbdYEGhZ6/BokuiAV/wPZ9vdI5GE1eIy+P1AMQV
+	 TiGmHkll7ns/mv3/iMCJcUJBHkkOtD9wHC5Zzi+wvSskxpz39/DrvPo4sw35IkicJm
+	 1n/q2Lmx8F5arkGNSAjC2UPdzq4t3Nn/7/EgGRwdS4YML52Sim0snfzJ9k3mhknutM
+	 s9c0stY2Nu9tI6uqIshvgbH7zus7jYGZqvv4b2g+l38vn8yR4Ee2HlnkZX5JkLLOuU
+	 2fyyOFYN/w5/E4247VfpoHnnbmiEjOiIAjvxehJu+m5vRJgPNqKem9bNykLInrPE0N
+	 xNcfmyFHAJ35w==
+Date: Fri, 16 Jan 2026 20:12:57 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v4 5/9] dt-bindings: connector: Add PCIe M.2 Mechanical
+ Key E connector
+Message-ID: <ysfkemsf4w7r3eoahfpjdr3z3buec5kvw4qol2njhxrz5tsdpo@4scz632uaj5i>
+References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
+ <20260112-pci-m2-e-v4-5-eff84d2c6d26@oss.qualcomm.com>
+ <20260113171424.GA3925312-robh@kernel.org>
+ <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
+ <CAL_JsqJxBNm0y6T7vji6MXgsO65iDJ-tdUEo0cOxkw7EuMKpkg@mail.gmail.com>
+ <gcmm23ji4fkcqeshcyiehuyega7kdbtvmofp4usmol2icwn6gy@i46icelwwqh5>
+ <CAL_JsqKKBjurY7ZrScayvkTijR-F6GWBofry48xoPFBFi55u4w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: ti,tmp108: Add P3T1035,P3T2030
-To: Mayank Mahajan <mayankmahajan.x@nxp.com>, linux@roeck-us.net,
- corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: priyanka.jain@nxp.com, vikash.bansal@nxp.com
-References: <20260116113554.986-1-mayankmahajan.x@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260116113554.986-1-mayankmahajan.x@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKKBjurY7ZrScayvkTijR-F6GWBofry48xoPFBFi55u4w@mail.gmail.com>
 
-On 16/01/2026 12:35, Mayank Mahajan wrote:
-> Document the NXP P3T1035 and P3T2030 compatibles in TMP108.
+On Fri, Jan 16, 2026 at 08:19:07AM -0600, Rob Herring wrote:
+> On Thu, Jan 15, 2026 at 4:42 AM Manivannan Sadhasivam <mani@kernel.org> wrote:
+> >
+> > On Wed, Jan 14, 2026 at 11:45:42AM -0600, Rob Herring wrote:
+> > > On Wed, Jan 14, 2026 at 10:14 AM Manivannan Sadhasivam <mani@kernel.org> wrote:
+> > > >
+> > > > On Tue, Jan 13, 2026 at 11:14:24AM -0600, Rob Herring wrote:
+> > > > > On Mon, Jan 12, 2026 at 09:56:04PM +0530, Manivannan Sadhasivam wrote:
+> > > > > > Add the devicetree binding for PCIe M.2 Mechanical Key E connector defined
+> > > > > > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This connector
+> > > > > > provides interfaces like PCIe or SDIO to attach the WiFi devices to the
+> > > > > > host machine, USB or UART+PCM interfaces to attach the Bluetooth (BT)
+> > > > > > devices. Spec also provides an optional interface to connect the UIM card,
+> > > > > > but that is not covered in this binding.
+> > > > > >
+> > > > > > The connector provides a primary power supply of 3.3v, along with an
+> > > > > > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
+> > > > > > 1.8v sideband signaling.
+> > > > > >
+> > > > > > The connector also supplies optional signals in the form of GPIOs for fine
+> > > > > > grained power management.
+> > > > > >
+> > > > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > > > > > ---
+> > > > > >  .../bindings/connector/pcie-m2-e-connector.yaml    | 154 +++++++++++++++++++++
+> > > > > >  MAINTAINERS                                        |   1 +
+> > > > > >  2 files changed, 155 insertions(+)
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..b65b39ddfd19
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
+> > > > > > @@ -0,0 +1,154 @@
+> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-connector.yaml#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: PCIe M.2 Mechanical Key E Connector
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > > > > > +
+> > > > > > +description:
+> > > > > > +  A PCIe M.2 E connector node represents a physical PCIe M.2 Mechanical Key E
+> > > > > > +  connector. Mechanical Key E connectors are used to connect Wireless
+> > > > > > +  Connectivity devices including combinations of Wi-Fi, BT, NFC to the host
+> > > > > > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and I2C.
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    const: pcie-m2-e-connector
+> > > > > > +
+> > > > > > +  vpcie3v3-supply:
+> > > > > > +    description: A phandle to the regulator for 3.3v supply.
+> > > > > > +
+> > > > > > +  vpcie1v8-supply:
+> > > > > > +    description: A phandle to the regulator for VIO 1.8v supply.
+> > > > >
+> > > > > I don't see any 1.8V supply on the connector. There are 1.8V IOs and you
+> > > > > may need something in DT to ensure those are powered. However, there's
+> > > > > no guarantee that it's a single supply.
+> > > > >
+> > > >
+> > > > 1.8v VIO supply is an optional supply and is only required if the platform
+> > > > supports 1.8v for sideband signals such as PERST#, WAKE#... I can include it in
+> > > > the example for completeness.
+> > >
+> > > My point is that PERST# and WAKE# supplies could be 2 different 1.8V
+> > > supplies and those supply the I/O pads of the GPIO pins (and possibly
+> > > external pull-ups) that drive them. The 1.8V supply doesn't supply
+> > > 1.8V to the slot, so making it a slot/connector property is wrong.
+> > >
+> >
+> > Ok, I get your point that VIO 1.8v supply is just limited to the I/O logic and
+> > not the whole card/adapter. But I don't get your multiple supplies concern. Spec
+> > says, "A 1.8 V supply pin called VIO 1.8 V is used to supply the on-Adapter I/O
+> > buffer circuitry operating at 1.8 V." So it implies that either the single
+> > supply available to the card through VIO might be used to power the whole I/O
+> > circuit logic or the card can derive its own 1.8v supply from 3.3v supply.
+> >
+> > So how come the card can have 2 different 1.8v supplies powering the I/O
+> > circuitry?
 > 
-> Signed-off-by: Mayank Mahajan <mayankmahajan.x@nxp.com>
+> Is there a pin on the connector for 1.8V supply? I don't have the
+> spec, but the pinout I found[1] didn't show one. If there's a pin,
+> then I have no concern.
+> 
 
-Read carefully replies you receive.
+Oh yes, there is a single VIO pin defined in the spec for multiple Keys. Since
+it is optional, it could've been omitted in the design you referenced.
 
-<form letter>
-This is a friendly reminder during the review process.
+So should I name it as vio1v8-supply or vpcie1v8-supply? I don't see any other
+1.8v supplies other than the VIO supply though.
 
-It looks like you received a tag and forgot to add it.
+- Mani
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
-
-Best regards,
-Krzysztof
+-- 
+மணிவண்ணன் சதாசிவம்
 
