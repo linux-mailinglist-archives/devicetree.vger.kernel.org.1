@@ -1,122 +1,265 @@
-Return-Path: <devicetree+bounces-256269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83C9D388D5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 22:47:50 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6079AD38886
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 22:39:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4E5E930299C6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 21:34:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 40CDF3010BCD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 21:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A0FA2EDD57;
-	Fri, 16 Jan 2026 21:34:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 692293081B8;
+	Fri, 16 Jan 2026 21:37:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="VlCbJixH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cOgIKhsF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com [74.125.224.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766E62248AF
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 21:34:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A87C1E51EE;
+	Fri, 16 Jan 2026 21:37:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768599264; cv=none; b=YPYkDdBR937cHx+o9dha7Km0ApgKLFayinDQf6RcguulwtQQE4jQzZ0sPRyNQFLXknycNsaYAQT8HedbjJCLeAqWdoh393fA0E2eGaETEoBcW5fCskqyeCQIQfxQlhKd263lSSL6dQ0Fww+IJTIfGOHJO36/d+mY4OneW8LJ2XY=
+	t=1768599448; cv=none; b=t+0ixVo50Jo9f4FeolWtnvIK7EpaPenEyRleEmTADT4ZvwEc1iwZlJZf/Z/0vJrHnY08+bxqU20rLw3DW1skATNcvAQ93hAXi9lwT1sSckfoKSR+hBfCSmACbzddhahvQa8N+LnpJnd3d6JBl7NqPOh2wxXVYKPz5lMbplLkQEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768599264; c=relaxed/simple;
-	bh=YluS4VvGiisnpPBIbnWwZ0yy7fsXjBMmbe0uAp7E52Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sAVrG5aHN4yMijeJJsRhzY9fIFjaH++vUVAuQevvnKhWOst41vbovvMyaKH11tmnuvoYH9qVZzX4MDRJeenY7gQ1h8LsHE15SQCTh0hu18ql0cVKE1ERdLPHW3s7M0EQbQUyGErEnDER1rFi6x6Q7khI/GZaTZGKR/ohZXfiyLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=VlCbJixH; arc=none smtp.client-ip=74.125.224.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-yx1-f41.google.com with SMTP id 956f58d0204a3-6455a60c12bso2222031d50.3
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:34:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1768599261; x=1769204061; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YluS4VvGiisnpPBIbnWwZ0yy7fsXjBMmbe0uAp7E52Q=;
-        b=VlCbJixHtEZfAFltUKGRBKQMYHMiZqamHprujnqpMMMzAYQRqn2951IdIlb2f8NjXe
-         jrCyMZOiqMHejn6UCXvxw+dvtHBhEKC3UVEGp8SXa4ydpxdDp8SRc7ST9FHWxgHPGA80
-         lY4hAexbjlksvb3yCyp1KBlfJrZZI8pEOc2cPoa3vqdmGuOw9/CWCzj8o6qqneEZNz9W
-         H9cxvLvMbHCHfUfrhl9F63FmRs0JuuR6bTtQxGpeWvhx0ZD5ZkL3mmdInCXOWMlhk37D
-         IbiuSDdwDzp9FQ+6CRGV1aPPLBihZoaJfXlJ1su4x1acPXbz6uWLoGt0YDusfVRXxaDO
-         wNXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768599261; x=1769204061;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=YluS4VvGiisnpPBIbnWwZ0yy7fsXjBMmbe0uAp7E52Q=;
-        b=Iw47aAqzhv2MB2pFT5ioMBDrP8y8vw7Rd3L3zUM2JlMzlriPcAdun2NbKx2bQBtTnk
-         4UkgeDZARpXG/iU9873JnusQk9edC/FUgvd/ckE9eW5UYQ4YTezwDyXsGS2PaEAchNVs
-         azRY1nLLRRPpD4fUftx8kH/DWHIoNUuhA7jaFwXBw2L/THLsnlOaHnq1sRZFq6AcTNUc
-         l1b3V8Cf89Yq4nKNtyPD0e1IlSFiSMW+SDDooJBMCogw/2J1wuaQ6tg608uVO1ES5ZE/
-         NF7Mv63XH+oFTQlgtJqIvcBoC2s9W3nYSUVI8PzgRBUKiprutSFAbs9cLWgt2OuQQhmc
-         ZH0A==
-X-Forwarded-Encrypted: i=1; AJvYcCVwD+K9eIjoGbm2X1tOeEFrD9QdQhfmFjvDD8Y3wifcA1bssLiDC3jqsh0YMslDH0kGMFNjfVpInWiG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSsVsGDpQfRryOWIYPnZH7OXKDdDfKtDWwlxDWTlocjIhpcHrR
-	uHZGTXH/haeZH5oI6+Qk7EaSFouNXRT7f8tgKmfk2e9qc9vhoSM1j9b7AVhUWEVcm6qX5nSuTeD
-	sPJ8w1uAnBRyjRIVlW8zzV/6zKqeGDDikQIXR+v67vA==
-X-Gm-Gg: AY/fxX7KttMOEa88mrikEOy4QXQ9ES6yguIHc4zh/Djbf7rJXpZ2koqMhdr50GJybzg
-	95AI1XoM7veUjvGRQMTBf/BfNz+FMgvvZIqYLnEjn6dCk4/aUiQCm7GYzWLE0XNnqTZvg8/4F+i
-	xjeaOJ7yICran51ceF/+c/5NVk0SM95dmyiG0qaDycXTgT1iLZqhoxXQQqF/fh1qkNMko41zCyN
-	n4Au7RKwIUgGqvvGyf47P6i317qQnMKyWieNdSK2Z0eLLs+POygQl4FzoQpyZnAfrDZj+v1tQH6
-	6PY7BZzyhkadmMvfX8VHe0lPASJLhal6mqvnpsz7X96QQLnexw8fHXN5Ua0W
-X-Received: by 2002:a05:690e:4087:b0:640:c9c1:a347 with SMTP id
- 956f58d0204a3-649176f1f15mr3163766d50.7.1768599261541; Fri, 16 Jan 2026
- 13:34:21 -0800 (PST)
+	s=arc-20240116; t=1768599448; c=relaxed/simple;
+	bh=euHakU3Cm3tzvjW7BAytl4uh1jyOgYlbifHaTarnt5I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I8dW0NJrHYql3fkQXH2yt6iJdA1hBOTK6sfq1O/TZhJh1pwRd5SkfirUHqtx7mm+03Mbbw2TC1KycCYGpfM6Pu8SqXDmkFdzqfE/zLwC/rmxU400eiHrLzbbqz7em0B1Meit6Wz2v9+awQBtHh7j8Ofa5vliZxQ4Zf6Cwkrf0uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cOgIKhsF; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768599447; x=1800135447;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=euHakU3Cm3tzvjW7BAytl4uh1jyOgYlbifHaTarnt5I=;
+  b=cOgIKhsFGIbY75rBAhMLo68AfECXs32Ezf7V2XPZmyJISOfBaDTJ0ye2
+   uLzI7qXuZ73VwTdMAb+qrwRtWf0sQuvwgN9Eoj7d4PafAbJp/K1vavvUX
+   T2uDto/KQuKL79tJj91PPw55w0QIeMfTCbKwUARrl/U6BpIhezRAnObc9
+   uwU8b6dXxr0zMRPGDDtq8euM6aC9XaWVV3N51CNHA/yV9pcWr2XPDEvXP
+   q0brF3GmkhykZvHBM+/uJvobR8160dStWSsC4jELP4lj7cA/ZhXVgYExB
+   8KKg0gAysCcNP18TKMcb+sac9X/oKql3G7Gohe8QdN84UagJFjB+NUvZm
+   g==;
+X-CSE-ConnectionGUID: FiukX5ZOQLej8tZv9sbBsQ==
+X-CSE-MsgGUID: qBOQvsIvSHaz2O7ZQ5M18g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="92583843"
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; 
+   d="scan'208";a="92583843"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2026 13:37:25 -0800
+X-CSE-ConnectionGUID: XSVjO9CwTziruvACI+9evQ==
+X-CSE-MsgGUID: bjY3thmeRmSmMYbPzk1y/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,232,1763452800"; 
+   d="scan'208";a="205401657"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 16 Jan 2026 13:37:21 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vgrVO-00000000LGW-3A9T;
+	Fri, 16 Jan 2026 21:37:18 +0000
+Date: Sat, 17 Jan 2026 05:37:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mayank Mahajan <mayankmahajan.x@nxp.com>, linux@roeck-us.net,
+	corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	priyanka.jain@nxp.com, vikash.bansal@nxp.com,
+	Mayank Mahajan <mayankmahajan.x@nxp.com>
+Subject: Re: [PATCH v4 2/3] hwmon: (tmp108) Add support for P3T1035 and
+ P3T2030
+Message-ID: <202601170516.uQw9DKHB-lkp@intel.com>
+References: <20260116113554.986-2-mayankmahajan.x@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com>
- <20260115-atlantis-clocks-v1-2-7356e671f28b@oss.tenstorrent.com> <20260116-debonair-tangible-reindeer-debcee@quoll>
-In-Reply-To: <20260116-debonair-tangible-reindeer-debcee@quoll>
-From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Date: Fri, 16 Jan 2026 15:34:10 -0600
-X-Gm-Features: AZwV_QgvIVsYMJGT1-ENcxm0LkH6MNSbRl3fGJNIA3UmwlJBoY9B1QGuQ1fIBc0
-Message-ID: <CAEev2e-iAN+br0wa8dXSyjTgh=vNCyqwxo42EaksCjXOdzeFWw@mail.gmail.com>
-Subject: Re: [PATCH 2/8] soc: tenstorrent: Add header with Atlantis syscon
- register offsets
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, mpe@kernel.org, 
-	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, agross@kernel.org, 
-	agross@oss.tenstorrent.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260116113554.986-2-mayankmahajan.x@nxp.com>
 
-Hi Krzysztof,
+Hi Mayank,
 
-On Fri, Jan 16, 2026 at 3:06=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
->
-> There is no user of this. Split your work in logical patches. Adding
-> unused header is not a meaningful logical split because it is unused.
+kernel test robot noticed the following build errors:
 
-Understood
+[auto build test ERROR on 983d014aafb14ee5e4915465bf8948e8f3a723b5]
 
->
-> Completely unreadable: missing any sort of reasonable indent between
-> values.
+url:    https://github.com/intel-lab-lkp/linux/commits/Mayank-Mahajan/hwmon-tmp108-Add-support-for-P3T1035-and-P3T2030/20260116-193800
+base:   983d014aafb14ee5e4915465bf8948e8f3a723b5
+patch link:    https://lore.kernel.org/r/20260116113554.986-2-mayankmahajan.x%40nxp.com
+patch subject: [PATCH v4 2/3] hwmon: (tmp108) Add support for P3T1035 and P3T2030
+config: i386-buildonly-randconfig-004-20260117 (https://download.01.org/0day-ci/archive/20260117/202601170516.uQw9DKHB-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260117/202601170516.uQw9DKHB-lkp@intel.com/reproduce)
 
-I had formatted these with clang-format, but it doesn't look good. I
-can make it a bit better.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601170516.uQw9DKHB-lkp@intel.com/
 
->
-> Why do you need to doicument register values and provide them to all
-> kernel drivers?
+All errors (new ones prefixed by >>):
 
-(Including the subsequent commits), these registers documented in this
-file are shared across the clock and reset controller, so they're
-added here (soc/tenstorrent).
+>> drivers/hwmon/tmp108.c:123:33: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     123 |                         *temp = tmp108->sample_times[FIELD_GET(TMP108_CONF_CONVRATE_FLD, regval)];
+         |                                                      ^
+>> drivers/hwmon/tmp108.c:210:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     210 |                                                   FIELD_PREP(TMP108_CONF_CONVRATE_FLD, index));
+         |                                                   ^
+   2 errors generated.
+
+
+vim +/FIELD_GET +123 drivers/hwmon/tmp108.c
+
+   109	
+   110	static int tmp108_read(struct device *dev, enum hwmon_sensor_types type,
+   111			       u32 attr, int channel, long *temp)
+   112	{
+   113		struct tmp108 *tmp108 = dev_get_drvdata(dev);
+   114		unsigned int regval;
+   115		int err, hyst;
+   116	
+   117		if (type == hwmon_chip) {
+   118			if (attr == hwmon_chip_update_interval) {
+   119				err = regmap_read(tmp108->regmap, TMP108_REG_CONF,
+   120						  &regval);
+   121				if (err < 0)
+   122					return err;
+ > 123				*temp = tmp108->sample_times[FIELD_GET(TMP108_CONF_CONVRATE_FLD, regval)];
+   124				return 0;
+   125			}
+   126			return -EOPNOTSUPP;
+   127		}
+   128	
+   129		switch (attr) {
+   130		case hwmon_temp_input:
+   131			/* Is it too early to return a conversion ? */
+   132			if (time_before(jiffies, tmp108->ready_time)) {
+   133				dev_dbg(dev, "%s: Conversion not ready yet..\n",
+   134					__func__);
+   135				return -EAGAIN;
+   136			}
+   137			err = regmap_read(tmp108->regmap, TMP108_REG_TEMP, &regval);
+   138			if (err < 0)
+   139				return err;
+   140			*temp = tmp108_temp_reg_to_mC(regval);
+   141			break;
+   142		case hwmon_temp_min:
+   143		case hwmon_temp_max:
+   144			err = regmap_read(tmp108->regmap, attr == hwmon_temp_min ?
+   145					  TMP108_REG_TLOW : TMP108_REG_THIGH, &regval);
+   146			if (err < 0)
+   147				return err;
+   148			*temp = tmp108_temp_reg_to_mC(regval);
+   149			break;
+   150		case hwmon_temp_min_alarm:
+   151		case hwmon_temp_max_alarm:
+   152			err = regmap_read(tmp108->regmap, TMP108_REG_CONF, &regval);
+   153			if (err < 0)
+   154				return err;
+   155			*temp = !!(regval & (attr == hwmon_temp_min_alarm ?
+   156					     TMP108_CONF_FL : TMP108_CONF_FH));
+   157			break;
+   158		case hwmon_temp_min_hyst:
+   159		case hwmon_temp_max_hyst:
+   160			err = regmap_read(tmp108->regmap, TMP108_REG_CONF, &regval);
+   161			if (err < 0)
+   162				return err;
+   163			switch (regval & TMP108_CONF_HYSTERESIS_MASK) {
+   164			case TMP108_HYSTERESIS_0C:
+   165			default:
+   166				hyst = 0;
+   167				break;
+   168			case TMP108_HYSTERESIS_1C:
+   169				hyst = 1000;
+   170				break;
+   171			case TMP108_HYSTERESIS_2C:
+   172				hyst = 2000;
+   173				break;
+   174			case TMP108_HYSTERESIS_4C:
+   175				hyst = 4000;
+   176				break;
+   177			}
+   178			err = regmap_read(tmp108->regmap, attr == hwmon_temp_min_hyst ?
+   179					  TMP108_REG_TLOW : TMP108_REG_THIGH, &regval);
+   180			if (err < 0)
+   181				return err;
+   182			*temp = tmp108_temp_reg_to_mC(regval);
+   183			if (attr == hwmon_temp_min_hyst)
+   184				*temp += hyst;
+   185			else
+   186				*temp -= hyst;
+   187			break;
+   188		default:
+   189			return -EOPNOTSUPP;
+   190		}
+   191	
+   192		return 0;
+   193	}
+   194	
+   195	static int tmp108_write(struct device *dev, enum hwmon_sensor_types type,
+   196				u32 attr, int channel, long temp)
+   197	{
+   198		struct tmp108 *tmp108 = dev_get_drvdata(dev);
+   199		u32 regval, mask;
+   200		u8 index;
+   201		int err;
+   202	
+   203		if (type == hwmon_chip) {
+   204			if (attr == hwmon_chip_update_interval) {
+   205				index = find_closest_descending(temp, tmp108->sample_times,
+   206								tmp108->n_sample_times);
+   207				return regmap_update_bits(tmp108->regmap,
+   208							  TMP108_REG_CONF,
+   209							  TMP108_CONF_CONVRATE_MASK,
+ > 210							  FIELD_PREP(TMP108_CONF_CONVRATE_FLD, index));
+   211			}
+   212			return -EOPNOTSUPP;
+   213		}
+   214	
+   215		switch (attr) {
+   216		case hwmon_temp_min:
+   217		case hwmon_temp_max:
+   218			temp = clamp_val(temp, TMP108_TEMP_MIN_MC, TMP108_TEMP_MAX_MC);
+   219			return regmap_write(tmp108->regmap,
+   220					    attr == hwmon_temp_min ?
+   221						TMP108_REG_TLOW : TMP108_REG_THIGH,
+   222					    tmp108_mC_to_temp_reg(temp));
+   223		case hwmon_temp_min_hyst:
+   224		case hwmon_temp_max_hyst:
+   225			temp = clamp_val(temp, TMP108_TEMP_MIN_MC, TMP108_TEMP_MAX_MC);
+   226			err = regmap_read(tmp108->regmap,
+   227					  attr == hwmon_temp_min_hyst ?
+   228						TMP108_REG_TLOW : TMP108_REG_THIGH,
+   229					  &regval);
+   230			if (err < 0)
+   231				return err;
+   232			if (attr == hwmon_temp_min_hyst)
+   233				temp -= tmp108_temp_reg_to_mC(regval);
+   234			else
+   235				temp = tmp108_temp_reg_to_mC(regval) - temp;
+   236			if (temp < 500)
+   237				mask = TMP108_HYSTERESIS_0C;
+   238			else if (temp < 1500)
+   239				mask = TMP108_HYSTERESIS_1C;
+   240			else if (temp < 3000)
+   241				mask = TMP108_HYSTERESIS_2C;
+   242			else
+   243				mask = TMP108_HYSTERESIS_4C;
+   244			return regmap_update_bits(tmp108->regmap, TMP108_REG_CONF,
+   245						  TMP108_CONF_HYSTERESIS_MASK, mask);
+   246		default:
+   247			return -EOPNOTSUPP;
+   248		}
+   249	}
+   250	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
