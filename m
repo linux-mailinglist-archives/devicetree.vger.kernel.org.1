@@ -1,106 +1,92 @@
-Return-Path: <devicetree+bounces-255843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10A9D2AA21
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:18:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 593ACD2AA67
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:20:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2D2F3300B9DD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:18:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B69443020357
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA7C26056C;
-	Fri, 16 Jan 2026 03:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0954312832;
+	Fri, 16 Jan 2026 03:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k3O824Y6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UfPpHK9Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F4718FC86;
-	Fri, 16 Jan 2026 03:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3B2277CAF;
+	Fri, 16 Jan 2026 03:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768533512; cv=none; b=Co7T5dZ1IuIU+sSh8I7CyWAYQT3BpnPOcWLJXErCC1nLrm9bL19C5V2rhZUCc9Y+/pKU7A0HNtseNliPOxlIn1oTvv7HKhIkACDRI7rDgaJxUaEO6HMYZ0NmGfDY2w/kYayjZrWMkC2jVb//+EtjdOgjHMw5gXxUqCc6rGjLmr8=
+	t=1768533565; cv=none; b=A/pX7NXOKPYlnFq9VEzuw3Uo1EVbkPFWlyFt3qfvzTuUoHiJD4v8JJzxv8wdRe/Jkr3nNb34dLDrNz3ulBlvqeULY2Lo1SUraV1l1Rl+TWG06bujbYCkfR0JW6xapFzV81tl5Kdg6MquLp3u56IIGVLFmojStD3UdxCm1Cixdi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768533512; c=relaxed/simple;
-	bh=Xm+2ll6ivXVZctHPRIrQeLW8sIpBDbueJK+DuxLa5rk=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=iISI/Nd7UptvkC2gzuaWSPvURad+kb/83A4QR8+Gn+WwaDzkwiDNizitfaoPzhdYOEj4kcCqim+UM6+40OCORrcHyFxu1DM/hWX2F4sxRqA3klvEkl3V5qXojcMfkgSsj7Rswko2+ZC+dPK4S3ftwp90/t1huxoyi7QqMn5CW9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k3O824Y6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4582EC116D0;
-	Fri, 16 Jan 2026 03:18:31 +0000 (UTC)
+	s=arc-20240116; t=1768533565; c=relaxed/simple;
+	bh=VdJdZpUrMYbP48ze7XiWYcrijQ8cjRhSAViY06JrWns=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ibsqJgdKT/NsbJftwb8J1c2XnkgJNK2Hpx/+P8o9CLnvSB5zRbtBFu0GlBMyrV+OptjJux1TQFlsoX9lmYizXMS5XQ8x2BSed0B6ACzaH4Eb890FzpHsBSRPOHsO7U2NnmqnjFeVocxY95XcYxymR0IzfQswcM/lbkEOaKo4vH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UfPpHK9Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B3CAC116D0;
+	Fri, 16 Jan 2026 03:19:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768533511;
-	bh=Xm+2ll6ivXVZctHPRIrQeLW8sIpBDbueJK+DuxLa5rk=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=k3O824Y60vtT5R9anTKnp9bw+151BBSUSj3Sxc819MJHmZ6s52txAlPa//g/3pLMr
-	 iYAiwhBafq3AvKJ/rtlljLfzqt2vpzyHLfv9ehGYfcf8EQ3kIsao+Zpo8axxH8uSNt
-	 kzYbNm873D8NiGj+ZdwFpC69AWjB75NkrfgOuIHcPmqSonxvcrEl4ordp3BpQihohm
-	 SQpiiM26WcrTZYpho6fzFoSfR9qqdMpKyvZ7NbiO12xOgRTrW12IvJ4kwwhmCozAMk
-	 BaPuOg1nZW74wWc0bgW0UsBIry2ROQKvpPK6QZ4KJM/eUMa7f402nFNNX4Pu3k4vHv
-	 8ThnmyeDkwrjg==
-Date: Thu, 15 Jan 2026 21:18:30 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1768533565;
+	bh=VdJdZpUrMYbP48ze7XiWYcrijQ8cjRhSAViY06JrWns=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=UfPpHK9Zs+U0XolvtAoWyNifcaJ7gKJDEZDRjcx/qG9hP6oEaFsIVpncLAsQsSBf5
+	 I0nd2pkfwH18qaqAe1BCUhxezG4bx7ZlzYhI9sWtDNwKQumt3mLXq5qimita/HMBUP
+	 QW40JDSebPhYGO3ngLZ2OW9vCAL/McNkDv+hiUPbBvUBSmw6YAjQZsGszx0BBcL8mN
+	 dvgURzsb55zeC0ZJTbDPPaYyJtr9psUVbcOvQmY2MibBL+UFaZR8/OHov8OaUrCJOe
+	 ojvDq4ltLZcX0v9x5yq/XgSFPad7wGsm478xvrSuF0bF3qtinApwa6v8/VenDmGqsX
+	 iRL+468HGOQGw==
+Date: Thu, 15 Jan 2026 19:19:23 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Paolo Abeni <pabeni@redhat.com>, =?UTF-8?B?QmrDuHJu?= Mork
+ <bjorn@mork.no>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>, Heiner
+ Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Eric
+ Woudstra <ericwouds@gmail.com>, Marek =?UTF-8?B?QmVow7pu?=
+ <kabel@kernel.org>, Lee Jones <lee@kernel.org>, Patrice Chotard
+ <patrice.chotard@foss.st.com>, Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH v3 net-next 05/10] phy: add phy_get_rx_polarity() and
+ phy_get_tx_polarity()
+Message-ID: <20260115191923.640ea49d@kernel.org>
+In-Reply-To: <20260115093928.hdqlxkt6bd5w4xud@skbuf>
+References: <20260111093940.975359-1-vladimir.oltean@nxp.com>
+	<20260111093940.975359-6-vladimir.oltean@nxp.com>
+	<87o6n04b84.fsf@miraculix.mork.no>
+	<20260111141549.xtl5bpjtru6rv6ys@skbuf>
+	<aWeV1CEaEMvImS-9@vaman>
+	<33ff22b4-ead6-4703-8ded-1be5b5d0ead0@redhat.com>
+	<173d1032-386c-4188-933c-ca91ce36468f@redhat.com>
+	<20260115093928.hdqlxkt6bd5w4xud@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, mpe@oss.tenstorrent.com, 
- linux-clk@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>, 
- mpe@kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- Drew Fustini <dfustini@oss.tenstorrent.com>, linux-kernel@vger.kernel.org, 
- agross@kernel.org, npiggin@oss.tenstorrent.com, agross@oss.tenstorrent.com, 
- joel@jms.id.au, fustini@kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Joel Stanley <jms@oss.tenstorrent.com>
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-In-Reply-To: <20260115-atlantis-clocks-v1-1-7356e671f28b@oss.tenstorrent.com>
-References: <20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com>
- <20260115-atlantis-clocks-v1-1-7356e671f28b@oss.tenstorrent.com>
-Message-Id: <176853351040.1182938.10653081903273010930.robh@kernel.org>
-Subject: Re: [PATCH 1/8] dt-bindings: soc: tenstorrent: Add
- tenstorrent,atlantis-syscon
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Thu, 15 Jan 2026 11:39:28 +0200 Vladimir Oltean wrote:
+> > > Could you please share a stable branch/tag, so that we can pull patches
+> > > 1-5 into the net-next tree from there?  
+> > 
+> > Vladimir, could you please re-post patches 1-5 after that Vinod shares
+> > the above? So that we don't keep in PW the dangling (current) series.
+> >  
+> Vinod did share the PR:
+> https://lore.kernel.org/netdev/aWeXvFcGNK5T6As9@vaman/
 
-On Thu, 15 Jan 2026 17:42:00 -0600, Anirudh Srinivasan wrote:
-> Document bindings for Tenstorrent Atlantis syscon that manages clocks
-> and resets. This syscon block is instantiated 4 times in the SoC.
-> This commit documents the clocks from the RCPU syscon block.
-> 
-> Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-> ---
->  .../tenstorrent/tenstorrent,atlantis-syscon.yaml   | 58 +++++++++++++++++++
->  MAINTAINERS                                        |  2 +
->  .../clock/tenstorrent,atlantis-syscon.h            | 67 ++++++++++++++++++++++
->  3 files changed, 127 insertions(+)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/soc/tenstorrent/tenstorrent,atlantis-syscon.example.dtb: /example-0/system-controller@a8000000: failed to match any schema with compatible: ['tenstorrent,atlantis-sycon-rcpu']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260115-atlantis-clocks-v1-1-7356e671f28b@oss.tenstorrent.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+IIUC Paolo did not pull Vinod's PR, so pulled now, you can repost.
 
