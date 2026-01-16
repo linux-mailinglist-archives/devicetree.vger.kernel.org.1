@@ -1,190 +1,637 @@
-Return-Path: <devicetree+bounces-255874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B97D2C5AF
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 07:11:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8903DD2C5CF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 07:11:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A5089300ACBE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 06:11:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8C130302B503
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 06:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F9934CFD1;
-	Fri, 16 Jan 2026 06:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092BD34D4C4;
+	Fri, 16 Jan 2026 06:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R7vhwqp5";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RZqTzERI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="inqdw1Eg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31BB346A0D
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 06:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6361F25EF9C
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 06:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768543859; cv=none; b=SODz0DEf1nm5Jo55ah9wiXw1t0aGvopY4IirEvFlijzE6meW2fZp2sbMoFUVXUZsI4gmhiFm0TEv7UXMyUMLdPpMKpW1RGPuQpRtCuD6IDT2eRky6ySL+e16JGFHYrvk1M5JHwBwLFc9bOw8/EDyTQ2mVPJlhSY5FcbB4Pb7sv8=
+	t=1768543897; cv=none; b=pIaZUX6WNN5pesQ4J9P8pFAJszWmuybpIbYvrh34mjzxO2MTzjpDYiGIwkMvfwwqCR5sEhiAdLeTOpe8vra5TjEUyLkiYcuT0lVCipUE8S2OUjBUjhEgFzdugTYCVWrbQ/fS+9R/VC1DizhW/vTaUQMo/eeQvdjJEGww5Zl0vb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768543859; c=relaxed/simple;
-	bh=UWRZdYdbVOS0Qf0SoV1GOlwURlJyQ9EwbQ0x+ZZu2Pw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eU5Yn17TEntT2aJ0MROFGe//N8Y187wdBDnLrsmK3K7mBFRoEkqfoQjCcLLQvf0EPJz2Vfwyk5w91JnRH66DgjJTtkbFYMB+s55tQ8Ks/Nz3atFBvmRMR3WXMF6fA2Q5aehVdSu7e92ek9miOV1EIcyayHtY/S0x22MZCEljt9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R7vhwqp5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RZqTzERI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60FMd2UC4101603
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 06:10:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=8dvGPLqwrrYLb/jUyaHbTl0R
-	INjXWSRLqYqkLp0HioU=; b=R7vhwqp5cDUhV0nwb9FqfTFX0WA2X7STq1Li3Twu
-	u/C2rqetf0G99ZRCUdfoXSC9z7puk2b7idtC1gCPijNtDviUTtBSKUuXYUlyS6pD
-	ZcDIKo8KhvODP8JI4M2kXPAbzJMch4M+2SNu2JlwYdwPUow+wfuHY0l3kK/89166
-	UKUBtp948E5vf5n2FMgFp68SqCN6UBcYeSjX2vdvHeoicGQaQqBE3MRlkpYYxxLb
-	ER61lGuN8b+WGxAOdWcku2Ix4AUiZGULhrjX9RAAJm1Gk1KsPHyJO0U4fgTnCrJB
-	7xHC6kKaBHp2BVHK1L06RkTda0gsf7+fFbv7SYidLQ360Q==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq97510sj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 06:10:57 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c53919fbfcso432266185a.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 22:10:57 -0800 (PST)
+	s=arc-20240116; t=1768543897; c=relaxed/simple;
+	bh=/m68g0Qt1I0hspMAjjIrQAxpoGB6n+7PhwjcrPoEjXU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eRNLojcnLVwUCAGKEXtiM9Tcrvr9AqcfU2l3EF/QrSrh6jYaCBnMw0Ctzi+8HpcYsmhrGQh8oK95JDHovM3lcaIRXQsXGXPfCsL2sSdhy4fL27HnSGRcDWhoowPSqqs939Mp76zcGYlD63JShHyUp1m/bEpilgmyjsnC+P39XzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=inqdw1Eg; arc=none smtp.client-ip=74.125.82.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f53.google.com with SMTP id a92af1059eb24-12448c4d404so813383c88.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 22:11:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768543857; x=1769148657; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8dvGPLqwrrYLb/jUyaHbTl0RINjXWSRLqYqkLp0HioU=;
-        b=RZqTzERIyxHJ/eU3i5PRik8HMzxyG/w1lqC8a95Lm2ClAo4wQt29/HE4kpsAF19OB8
-         0M02yY/WfxViChRWiftv4SqRlSOabY878ragw5a30HYIOkmEb2wo0sEEWE3uOZABazmH
-         yrdaTce0cISeOKajq3SkA6pA8Eed4VooIQsDK6ymbQ+qzp8HP/wRCZPA+4EukqZdInac
-         STYOpKR59RAgKYyA18bsGTs62kBjFdpmyUVpTjdW6SAun9VnEjDWfKLurUkpbQa43uHw
-         9Np4hcVgat/D7y5b5GEUcL34Has7+i5pefALwgTsiMi+JLIfab78oD0u0UlBpopzvlGx
-         pBgQ==
+        d=gmail.com; s=20230601; t=1768543893; x=1769148693; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=hSQuOmMnvMPFRPSX6BFyMxcWf9xgMR05MF64h510eQ8=;
+        b=inqdw1EgB5xK6ZKYJLZLB9KVTdadaBwUapn60jzhjuWlGq8pqDZlC4d5SE+C3ngOpB
+         bDhYTHIn8PlCY40T2TxhIrpzyGi4AyWmMmra8wZpWLcrU1l7CNDUGrYHZdHvrmvlT8w4
+         C2KP/SOwmm2bb/RimIr/7mnKO/16KouH8eljL061x33vailEnTLcDXE1mG4LcBvYj18/
+         CVlR/3E2d2zi3dVYbJ7PZXIndsDW2/Cbdr0LwyKLyC6+bduWoBzoV+f+PdJQ8VCr4nM1
+         rNXncXlWB6Va15jrE1OAA5zKAbLWIb/z6fVBv1IR93ER5mmCw1wGqdDVPowzJOj3ek4Y
+         y2pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768543857; x=1769148657;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1768543893; x=1769148693;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8dvGPLqwrrYLb/jUyaHbTl0RINjXWSRLqYqkLp0HioU=;
-        b=QAotC5Pzq1ZvjYU1lh+U5iAOkv8IbYruUSsIJQegfim280n6/pJhmY1kSrEKGWd0I6
-         YxRVwUkO4mOgGaYCyZB+HRZ8DzgwgZeqv/SEp3Ak3cttPJ8Dlz9IZPIOQd02XbZG0w87
-         b56hvuzgTJt3TNZtCW1jbAqcbw/KtALKqmlcm9p0ehhbY3rQAXbbuiEqu4/lx0pF0BuG
-         HcsOVhvZWVlbDRs2AwPjoNHDl5faAcAWHXHXNvd6kF3ssFU6WWYusNBi8lZliCLp2D87
-         nnuCcYydinyxi65aCW6KtzrTKXfsvbsOmvnSuaT2dfmpcwzTW7ga6GY2gD5jCk12B2mp
-         ztHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQioQDs8fCCgthHQSniKV8WmYziU4W3qtNIs4bnkQYFkiyfe11y9/it2wZaJfGbvJM9+CjvFBpye5i@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUsdwOrw9YHBTMhXlyM0IhYYciMCoF/T75KbYJcD7Stg8MOIvK
-	R17CrCfB+wJdbOw/MaGNX9qi1JiuqL89WYT/pXQmV4/jI3QVsR0vXBgXrojTwZcByBdkC2UNawu
-	u+4TCYTw9RKIKksLiiBcXsjfePYNk1+wisvIeWw0X3+8bSD67I1CQ/5QivIaXmyG+
-X-Gm-Gg: AY/fxX7QL5Bdt2DlPY4oLLWdzVZPxgxfqHqbTtE0my9SkyL8vNHHq72Ks30Vdwa6Q+o
-	r9oYTOmJLOSrAfB161DMxIxDuWZgQQLLMSQZAtZtdggUXqorCpacsH4i0od9+rD9DKOioB6cS35
-	5HG8aZM2AwP60AwryttZyp7X/foy9Z0X7JkU0MxiMgAUmw6pN9c/ja2lQxub7lE4sM7cuObwE27
-	XVK/EYsZlwgaFP4wuet5/naEfwkKkxQCGb8uw7GCB9tCooCN353+KuoebNBavP/3k7qOyqEx+zi
-	l8NqzTEuPaZ1RZpG5LPrkkN5TOtUuZ/u9YSEln7iIFCf+ua3DHpWz0AZmi8DeCgM0EQZ00DCW+r
-	qZAHLcKANjkiflOkH1mBAQLur9Q+SyDMNq7WS0cbC199lOTHgl7jtdRjD+YJ+03Wiy9WlW7YyoF
-	L0tX8o2VZlBrmV/rI0/drCaaw=
-X-Received: by 2002:a05:620a:1a86:b0:8b2:4a1b:b80a with SMTP id af79cd13be357-8c6a66e4ec2mr297781985a.25.1768543856751;
-        Thu, 15 Jan 2026 22:10:56 -0800 (PST)
-X-Received: by 2002:a05:620a:1a86:b0:8b2:4a1b:b80a with SMTP id af79cd13be357-8c6a66e4ec2mr297778685a.25.1768543856296;
-        Thu, 15 Jan 2026 22:10:56 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59baf34d572sm457592e87.24.2026.01.15.22.10.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jan 2026 22:10:54 -0800 (PST)
-Date: Fri, 16 Jan 2026 08:10:52 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] soc: qcom: ubwc: Add configuration Glymur platform
-Message-ID: <s5eu5xqoh7zs762dciup426fxed7kcnk3offyguv2qhqsnaomt@drou2clinmly>
-References: <20251027-glymur-display-v3-0-aa13055818ac@linaro.org>
- <20251027-glymur-display-v3-7-aa13055818ac@linaro.org>
+        bh=hSQuOmMnvMPFRPSX6BFyMxcWf9xgMR05MF64h510eQ8=;
+        b=FomaJ4Ffh763Bwa8QDWCGI/vzIOhGmyemR1FdOqvhuIbgsqgQJhJgKP1Gj0oTSdsYl
+         2sL2KIR0es8rudzpV/wwQp3pFATVXC8i+bsIvvg5nOEkbvkbE0xZ9/apCF1x8jYTGFKT
+         GHXWIZZWArLP0CUcO7ipyMr8xrpPE7D8wSFpgskkUIewSoPINiTwMoDMx1Oqb1r9V0hz
+         xgV8QgIc7LFkv01cPTf+b9MCqB/VjWneu5zjoie9xEYIcBdNlM+hELj3Gxw6FLIqJJ6l
+         RiuCGZ3u2RgVw4diGcLR7TdMqzgtfFu0X6JvSu3RH06v2FXD8Tt+h+yB+zOYaMEywUcA
+         1UFw==
+X-Forwarded-Encrypted: i=1; AJvYcCUnItdIxs5wr0zqKWYT+RLbKyOg81GYgsHeFTCoLpSFqXsCgIADXe9xukcjdlJXujFJLvUGZ1G/tBno@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY8YnnUlEEefTLBveujG9krxLHVRIIGYqW+jaWj+WjTsT/cTvK
+	bLzPfs4mBUZnU+UStAwU3DYW9IhDAOrfpWYCFNbEu10jKdxsVk737e9h
+X-Gm-Gg: AY/fxX6OllCiHOrHaoFnBRrzbBtR11c2Ii2ptTydpe9fnuUSPYYqEk4sSDVyDLj7PNy
+	c3dAkXP6XVEbzgiYMW9ObgLHxnddD6xSwWNWps21dytQMWHwpjZIKDVXGkQotzPXC2Hs6+4tHMk
+	hNhKTV421FFBkJD+ryjvb6X60nu+pk80xKFOvqgKaAIw+jX//E/ufhEXA5tlS6d4o4BaSO0+S2a
+	O7+nk8bvJOmT/5+zBR2dYAgulSozQtGQvS++KBwX4Bvo19Ya/L0yEfvpeP3LWC5w+tO9on/nJc9
+	khEii4zVSNk3gh6HvJo8D81iuK27hVQumuLsHzL9nppH9VT5juszqiWcZL16gR8h4Zpy3eHl9Pw
+	4mHBJDDDSDxjgA4qlIxvF5AfkNO2S3iq/tzcPQhUUhyHOi3bFCCjp/KGjRAo8lYNfGvskJvDr2F
+	08t1S/OhigU9Qf7bMtwT36LOJ6DD8kzABiUk4uA62mgHGu07TiufXzBf58slDY
+X-Received: by 2002:a05:7022:6286:b0:11b:9386:a38c with SMTP id a92af1059eb24-1244a7a43e0mr1711534c88.47.1768543893232;
+        Thu, 15 Jan 2026 22:11:33 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244af10736sm1636478c88.14.2026.01.15.22.11.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jan 2026 22:11:32 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <c5459b90-d157-4393-a5e5-dca76c2decf1@roeck-us.net>
+Date: Thu, 15 Jan 2026 22:11:30 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251027-glymur-display-v3-7-aa13055818ac@linaro.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDA0OCBTYWx0ZWRfX9kTQp9U60bka
- aPN81fuYlKrkl51CGZuOLqHxDzMW9TLAKoAxrHP5iYIkpg4qS4Lni8qP8vOTbtatjWQlypU+POA
- qfcLxrk4GE2MNsswDcfOi94dU8Uz1miLkTLiVaYze/d8uGtTs48ecx+RD3AunDGEeqvXmyjMI4W
- VIO3pwLQx7ndtnNUkdQIYxtwk8W0nLirA0eegYNuWK4OmnH0f8p+Ws0JI4hHO1Tl14kYZ5alWK0
- Erv8e00kRzqWF9AbJaG/lmI3Xd8LGzw/7+j9MS6uuG5EMZm6Tc0c5BUXpR5CLTm8cgJmOzjrTAd
- +w0oqxx8pg35r1ZF3kgqutislFjREdSGXBQZ0egIv5xQBjX1482aNlRejAetttvy3Vnlbv2A8WI
- gUfRNeYYCaXXUXVV9LCulNNWUhoqLk5sQ4ptNCrEIXLGZMnY+WRZZGr1g6yWRmtLv9zbEM7mxYD
- 1R8pOXNvtQlWuzJid+w==
-X-Authority-Analysis: v=2.4 cv=Sv6dKfO0 c=1 sm=1 tr=0 ts=6969d671 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=qHQHcOLFhFkQKvqmysIA:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: e8KG3uEz87BRL9QaOZfLRDLzEqBDjZjB
-X-Proofpoint-ORIG-GUID: e8KG3uEz87BRL9QaOZfLRDLzEqBDjZjB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-16_02,2026-01-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 impostorscore=0 bulkscore=0 adultscore=0
- phishscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601160048
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] hwmon: (tmp108) Add support for P3T1035 and
+ P3T2030
+To: Mayank Mahajan <mayankmahajan.x@nxp.com>, corbet@lwn.net,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: priyanka.jain@nxp.com, vikash.bansal@nxp.com
+References: <20260115111418.1851-1-mayankmahajan.x@nxp.com>
+ <20260115111418.1851-2-mayankmahajan.x@nxp.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260115111418.1851-2-mayankmahajan.x@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 27, 2025 at 04:59:24PM +0200, Abel Vesa wrote:
-> Describe the Universal Bandwidth Compression (UBWC) configuration
-> for the new Glymur platform.
+On 1/15/26 03:14, Mayank Mahajan wrote:
+> Add support for the P3T1035 & P3T2030 temperature sensor. While mostly
+> compatible with the TMP108, P3T1035 uses an 8-bit configuration register
+> instead of the 16-bit layout used by TMP108. Updated driver to handle
+> this difference during configuration read/write.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Mayank Mahajan <mayankmahajan.x@nxp.com>
 > ---
->  drivers/soc/qcom/ubwc_config.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> V1 -> V2:
+> - Disabled hysteresis in is_visible function for P3T1035.
+> - Added tables for conversion rate similar to the LM75 driver.
+> - Implemented different bus access depending on the chip being used.
+>    - Removed regmap for 8 bits; now we are using one regmap as before.
+>    - Added read and write functions for i2c and i3c for use with regmap.
+>    - Mapped the 8-bit configuration register to a 16 bit value for P3T1035.
+> V2 -> V3:
+> - Remove changes not relevant to adding a new device in the driver.
+> - Address warnings due to incorrect usage of casting operations.
+> - Remove the usage of P3T2030 as it's functionally identical to P3T1035.
 > 
-> diff --git a/drivers/soc/qcom/ubwc_config.c b/drivers/soc/qcom/ubwc_config.c
-> index 15d373bff231d770e00fe0aee1b5a95c7b8a6305..7cca2afb68e3e9d33f3066f1deb3b9fcc01641a1 100644
-> --- a/drivers/soc/qcom/ubwc_config.c
-> +++ b/drivers/soc/qcom/ubwc_config.c
-> @@ -218,11 +218,23 @@ static const struct qcom_ubwc_cfg_data x1e80100_data = {
->  	.macrotile_mode = true,
->  };
->  
-> +static const struct qcom_ubwc_cfg_data glymur_data = {
-> +	.ubwc_enc_version = UBWC_5_0,
-> +	.ubwc_dec_version = UBWC_5_0,
-> +	.ubwc_swizzle = UBWC_SWIZZLE_ENABLE_LVL2 |
-> +			UBWC_SWIZZLE_ENABLE_LVL3,
-> +	.ubwc_bank_spread = true,
-> +	/* TODO: highest_bank_bit = 15 for LP_DDR4 */
-> +	.highest_bank_bit = 16,
-
-As I started reviewing UBWC bits and pieces... Could you please check,
-according to the document I'm looking at this configuration is not
-correct.
-
-> +	.macrotile_mode = true,
+>   drivers/hwmon/Kconfig  |   2 +-
+>   drivers/hwmon/tmp108.c | 227 +++++++++++++++++++++++++++++++++--------
+>   2 files changed, 186 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 157678b821fc..31969bddc812 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -2398,7 +2398,7 @@ config SENSORS_TMP108
+>   	select REGMAP_I3C if I3C
+>   	help
+>   	  If you say yes here you get support for Texas Instruments TMP108
+> -	  sensor chips and NXP P3T1085.
+> +	  sensor chips, NXP temperature sensors P3T1035, P3T1085 and P3T2030.
+> 
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called tmp108.
+> diff --git a/drivers/hwmon/tmp108.c b/drivers/hwmon/tmp108.c
+> index 60a237cbedbc..38a2203c3bd9 100644
+> --- a/drivers/hwmon/tmp108.c
+> +++ b/drivers/hwmon/tmp108.c
+> @@ -17,9 +17,16 @@
+>   #include <linux/regmap.h>
+>   #include <linux/regulator/consumer.h>
+>   #include <linux/slab.h>
+> +#include <linux/util_macros.h>
+> 
+>   #define	DRIVER_NAME "tmp108"
+> 
+> +enum tmp108_hw_id {
+> +	P3T1035_ID,		/* For sensors p3t1035 and p3t2030 */
+> +	P3T1085_ID,
+> +	TMP108_ID,
 > +};
 > +
+>   #define	TMP108_REG_TEMP		0x00
+>   #define	TMP108_REG_CONF		0x01
+>   #define	TMP108_REG_TLOW		0x02
+> @@ -61,6 +68,7 @@
+>   #define TMP108_CONVRATE_1HZ		TMP108_CONF_CR0		/* Default */
+>   #define TMP108_CONVRATE_4HZ		TMP108_CONF_CR1
+>   #define TMP108_CONVRATE_16HZ		(TMP108_CONF_CR0|TMP108_CONF_CR1)
+> +#define TMP108_CONVRATE_SHIFT		13
+> 
+>   #define TMP108_CONF_HYSTERESIS_MASK	(TMP108_CONF_HYS0|TMP108_CONF_HYS1)
+>   #define TMP108_HYSTERESIS_0C		0x0000
+> @@ -71,11 +79,21 @@
+>   #define TMP108_CONVERSION_TIME_MS	30	/* in milli-seconds */
+> 
+>   struct tmp108 {
+> -	struct regmap *regmap;
+> -	u16 orig_config;
+> -	unsigned long ready_time;
+> +	struct regmap		*regmap;
+> +	u16			orig_config;
+> +	unsigned long		ready_time;
+> +	enum tmp108_hw_id	hw_id;
+> +	bool			config_reg_16bits;
+> +	u8			reg_buf[1];
+> +	u8			val_buf[3];
+> +	unsigned int		sample_times[4];
+>   };
+> 
+> +static const u16 tmp108_sample_set_masks[] = { 3 << TMP108_CONVRATE_SHIFT,
+> +					       2 << TMP108_CONVRATE_SHIFT,
+> +					       1 << TMP108_CONVRATE_SHIFT,
+> +					       0 << TMP108_CONVRATE_SHIFT };
+> +
 
--- 
-With best wishes
-Dmitry
+Unnecessary. See below.
+
+>   /* convert 12-bit TMP108 register value to milliCelsius */
+>   static inline int tmp108_temp_reg_to_mC(s16 val)
+>   {
+> @@ -94,6 +112,8 @@ static int tmp108_read(struct device *dev, enum hwmon_sensor_types type,
+>   	struct tmp108 *tmp108 = dev_get_drvdata(dev);
+>   	unsigned int regval;
+>   	int err, hyst;
+> +	u16 conv_rate;
+> +	u8 index;
+> 
+>   	if (type == hwmon_chip) {
+>   		if (attr == hwmon_chip_update_interval) {
+> @@ -101,21 +121,10 @@ static int tmp108_read(struct device *dev, enum hwmon_sensor_types type,
+>   					  &regval);
+>   			if (err < 0)
+>   				return err;
+> -			switch (regval & TMP108_CONF_CONVRATE_MASK) {
+> -			case TMP108_CONVRATE_0P25HZ:
+> -			default:
+> -				*temp = 4000;
+> -				break;
+> -			case TMP108_CONVRATE_1HZ:
+> -				*temp = 1000;
+> -				break;
+> -			case TMP108_CONVRATE_4HZ:
+> -				*temp = 250;
+> -				break;
+> -			case TMP108_CONVRATE_16HZ:
+> -				*temp = 63;
+> -				break;
+> -			}
+> +			conv_rate = regval & TMP108_CONF_CONVRATE_MASK;
+> +			index = find_closest_descending(conv_rate, tmp108_sample_set_masks,
+> +							(int)ARRAY_SIZE(tmp108_sample_set_masks));
+> +			*temp = tmp108->sample_times[index];
+
+(regval & TMP108_CONF_CONVRATE_MASK) >> TMP108_CONVRATE_SHIFT, or alternatively
+FIELD_GET(TMP108_CONF_CONVRATE_MASK, regval), yields 0..3. With a sample_times
+array of { 4000, 1000, 250, 63 } or { 4000, 1000, 250, 125 }, the code above
+could simply be
+			*temp = tmp108->sample_times[FIELD_GET(TMP108_CONF_CONVRATE_MASK, regval)];
+which would both be easier to understand and much simpler.
+
+>   			return 0;
+>   		}
+>   		return -EOPNOTSUPP;
+> @@ -192,22 +201,17 @@ static int tmp108_write(struct device *dev, enum hwmon_sensor_types type,
+>   {
+>   	struct tmp108 *tmp108 = dev_get_drvdata(dev);
+>   	u32 regval, mask;
+> +	u8 index;
+>   	int err;
+> 
+>   	if (type == hwmon_chip) {
+>   		if (attr == hwmon_chip_update_interval) {
+> -			if (temp < 156)
+> -				mask = TMP108_CONVRATE_16HZ;
+> -			else if (temp < 625)
+> -				mask = TMP108_CONVRATE_4HZ;
+> -			else if (temp < 2500)
+> -				mask = TMP108_CONVRATE_1HZ;
+> -			else
+> -				mask = TMP108_CONVRATE_0P25HZ;
+> +			index = find_closest(temp, tmp108->sample_times,
+> +					     (int)ARRAY_SIZE(tmp108->sample_times));
+
+I don't see why the type cast would be needed. Other users of find_closest()
+don't need it either.
+
+>   			return regmap_update_bits(tmp108->regmap,
+>   						  TMP108_REG_CONF,
+>   						  TMP108_CONF_CONVRATE_MASK,
+> -						  mask);
+> +						  tmp108_sample_set_masks[index]);
+
+Use GENMASK().
+
+>   		}
+>   		return -EOPNOTSUPP;
+>   	}
+> @@ -251,6 +255,8 @@ static int tmp108_write(struct device *dev, enum hwmon_sensor_types type,
+>   static umode_t tmp108_is_visible(const void *data, enum hwmon_sensor_types type,
+>   				 u32 attr, int channel)
+>   {
+> +	const struct tmp108 *tmp108 = data;
+> +
+>   	if (type == hwmon_chip && attr == hwmon_chip_update_interval)
+>   		return 0644;
+> 
+> @@ -264,8 +270,11 @@ static umode_t tmp108_is_visible(const void *data, enum hwmon_sensor_types type,
+>   		return 0444;
+>   	case hwmon_temp_min:
+>   	case hwmon_temp_max:
+> +		return 0644;
+>   	case hwmon_temp_min_hyst:
+>   	case hwmon_temp_max_hyst:
+> +		if (tmp108->hw_id == P3T1035_ID)
+> +			return 0;
+>   		return 0644;
+>   	default:
+>   		return 0;
+> @@ -311,6 +320,105 @@ static bool tmp108_is_volatile_reg(struct device *dev, unsigned int reg)
+>   	return reg == TMP108_REG_TEMP || reg == TMP108_REG_CONF;
+>   }
+> 
+> +static int tmp108_i2c_reg_read(void *context, unsigned int reg, unsigned int *val)
+> +{
+> +	struct i2c_client *client = context;
+> +	struct tmp108 *tmp108 = i2c_get_clientdata(client);
+> +	int ret;
+> +
+> +	if (reg == TMP108_REG_CONF && !tmp108->config_reg_16bits)
+> +		ret = i2c_smbus_read_byte_data(client, TMP108_REG_CONF);
+> +	else
+> +		ret = i2c_smbus_read_word_swapped(client, reg);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (reg == TMP108_REG_CONF && !tmp108->config_reg_16bits)
+> +		*val = ret << 8;
+> +	else
+> +		*val = ret;
+
+This evaluates reg and tmp108->config_reg_16bits twice. Try
+
+	if (reg == TMP108_REG_CONF && !tmp108->config_reg_16bits) {
+		ret = i2c_smbus_read_byte_data(client, TMP108_REG_CONF);
+		if (ret < 0)
+			return ret;
+		*val = ret << 8;
+		return 0;
+	}
+	ret = i2c_smbus_read_word_swapped(client, reg);
+	if (ret < 0)
+		return ret;
+	*val = ret;
+	return 0;
+
+instead to reduce runtime overhead.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int tmp108_i2c_reg_write(void *context, unsigned int reg, unsigned int val)
+> +{
+> +	struct i2c_client *client = context;
+> +	struct tmp108 *tmp108 = i2c_get_clientdata(client);
+> +
+> +	if (reg == TMP108_REG_CONF && !tmp108->config_reg_16bits)
+> +		return i2c_smbus_write_byte_data(client, reg, val >> 8);
+> +	return i2c_smbus_write_word_swapped(client, reg, val);
+> +}
+> +
+> +static const struct regmap_bus tmp108_i2c_regmap_bus = {
+> +	.reg_read = tmp108_i2c_reg_read,
+> +	.reg_write = tmp108_i2c_reg_write,
+> +};
+> +
+> +static int tmp108_i3c_reg_read(void *context, unsigned int reg, unsigned int *val)
+> +{
+> +	struct i3c_device *i3cdev = context;
+> +	struct tmp108 *tmp108 = i3cdev_get_drvdata(i3cdev);
+> +	struct i3c_xfer xfers[] = {
+> +		{
+> +			.rnw = false,
+> +			.len = 1,
+> +			.data.out = tmp108->reg_buf,
+> +		},
+> +		{
+> +			.rnw = true,
+> +			.len = 2,
+> +			.data.in = tmp108->val_buf,
+
+What is the point of having reg_buf and val_buf allocated instead
+of just using local variables/arrays ?
+
+> +		},
+> +	};
+> +	int ret;
+> +
+> +	tmp108->reg_buf[0] = reg;
+> +
+> +	if (reg == TMP108_REG_CONF && !tmp108->config_reg_16bits)
+> +		xfers[1].len--;
+> +
+> +	ret = i3c_device_do_xfers(i3cdev, xfers, 2, I3C_SDR);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*val = tmp108->val_buf[0] << 8;
+> +	if (!(reg == TMP108_REG_CONF && !tmp108->config_reg_16bits))
+
+Please refrain from using double negations.
+	if (reg != TMP108_REG_CONF || tmp108->config_reg_16bits)
+is much easier to understand.
+
+> +		*val |= tmp108->val_buf[1];
+> +
+> +	return 0;
+> +}
+> +
+> +static int tmp108_i3c_reg_write(void *context, unsigned int reg, unsigned int val)
+> +{
+> +	struct i3c_device *i3cdev = context;
+> +	struct tmp108 *tmp108 = i3cdev_get_drvdata(i3cdev);
+> +	struct i3c_xfer xfers[] = {
+> +		{
+> +			.rnw = false,
+> +			.len = 3,
+> +			.data.out = tmp108->val_buf,
+> +		},
+> +	};
+> +
+> +	tmp108->val_buf[0] = reg;
+> +	tmp108->val_buf[1] = (val >> 8) & 0xff;
+> +
+> +	if (reg == TMP108_REG_CONF && !tmp108->config_reg_16bits)
+> +		xfers[0].len--;
+> +	else
+> +		tmp108->val_buf[2] = val & 0xff;
+> +
+> +	return i3c_device_do_xfers(i3cdev, xfers, 1, I3C_SDR);
+> +}
+> +
+> +static const struct regmap_bus tmp108_i3c_regmap_bus = {
+> +	.reg_read = tmp108_i3c_reg_read,
+> +	.reg_write = tmp108_i3c_reg_write,
+> +};
+> +
+>   static const struct regmap_config tmp108_regmap_config = {
+>   	.reg_bits = 8,
+>   	.val_bits = 16,
+> @@ -323,7 +431,8 @@ static const struct regmap_config tmp108_regmap_config = {
+>   	.use_single_write = true,
+>   };
+> 
+> -static int tmp108_common_probe(struct device *dev, struct regmap *regmap, char *name)
+> +static int tmp108_common_probe(struct device *dev, struct regmap *regmap, char *name,
+> +			       enum tmp108_hw_id hw_id)
+>   {
+>   	struct device *hwmon_dev;
+>   	struct tmp108 *tmp108;
+> @@ -340,6 +449,14 @@ static int tmp108_common_probe(struct device *dev, struct regmap *regmap, char *
+> 
+>   	dev_set_drvdata(dev, tmp108);
+>   	tmp108->regmap = regmap;
+> +	tmp108->hw_id = hw_id;
+> +	tmp108->config_reg_16bits = (hw_id == P3T1035_ID) ? false : true;
+> +	if (hw_id == P3T1035_ID)
+> +		memcpy(tmp108->sample_times, (unsigned int[]){ 125, 250, 1000, 4000 },
+> +		       sizeof(tmp108->sample_times));
+> +	else
+> +		memcpy(tmp108->sample_times, (unsigned int[]){ 63, 250, 1000, 4000 },
+> +		       sizeof(tmp108->sample_times));
+
+You'd think that the repeated 0-day complaints have an effect.
+Just make tmp108->sample_times a pointer and create two ushort arrays where the values
+match the index values.
+
+	struct tmp108 {
+		ushort *sample_times;
+	};
+
+	ushort p3t_1035_sample_times[] = {4000, 1000, 250, 125};
+	ushort tmp108_sample_times[] = {4000, 1000, 250, 125};
+
+	if (hw_id == P3T1035_ID)
+		tmp108->sample_times = p3t_1035_sample_times;
+	else
+		tmp108->sample_times = tmp108_sample_times;
+
+Something like
+	tmp108->sample_times = (ushort []) {4000, 1000, 250, 125};
+might work as well, but I did not test it.
+		
+The memcpy is really unnecessary here.
+
+> 
+>   	err = regmap_read(tmp108->regmap, TMP108_REG_CONF, &config);
+>   	if (err < 0) {
+> @@ -351,7 +468,6 @@ static int tmp108_common_probe(struct device *dev, struct regmap *regmap, char *
+>   	/* Only continuous mode is supported. */
+>   	config &= ~TMP108_CONF_MODE_MASK;
+>   	config |= TMP108_MODE_CONTINUOUS;
+> -
+>   	/* Only comparator mode is supported. */
+>   	config &= ~TMP108_CONF_TM;
+> 
+> @@ -384,17 +500,33 @@ static int tmp108_probe(struct i2c_client *client)
+>   {
+>   	struct device *dev = &client->dev;
+>   	struct regmap *regmap;
+> +	enum tmp108_hw_id hw_id;
+> +	const void *of_data;
+> 
+>   	if (!i2c_check_functionality(client->adapter,
+> -				     I2C_FUNC_SMBUS_WORD_DATA))
+> +				     I2C_FUNC_SMBUS_BYTE_DATA | I2C_FUNC_SMBUS_WORD_DATA))
+>   		return dev_err_probe(dev, -ENODEV,
+>   				     "adapter doesn't support SMBus word transactions\n");
+> 
+> -	regmap = devm_regmap_init_i2c(client, &tmp108_regmap_config);
+> +	regmap = devm_regmap_init(dev, &tmp108_i2c_regmap_bus, client, &tmp108_regmap_config);
+>   	if (IS_ERR(regmap))
+>   		return dev_err_probe(dev, PTR_ERR(regmap), "regmap init failed");
+> 
+> -	return tmp108_common_probe(dev, regmap, client->name);
+> +	/* Prefer OF match data (DT-first systems) */
+> +	of_data = device_get_match_data(&client->dev);
+> +	if (of_data) {
+> +		hw_id = (unsigned long)of_data;
+> +	} else {
+> +		/* Fall back to legacy I2C ID table */
+> +		const struct i2c_device_id *id = i2c_client_get_device_id(client);
+> +
+> +		if (!id) {
+> +			return dev_err_probe(dev, -ENODEV, "No matching device ID for i2c device\n");
+> +		}
+> +		hw_id = (unsigned long)id->driver_data;
+> +	}
+
+That complexity is unnecessary. Just use i2c_get_match_data().
+
+> +
+> +	return tmp108_common_probe(dev, regmap, client->name, hw_id);
+>   }
+> 
+>   static int tmp108_suspend(struct device *dev)
+> @@ -420,16 +552,18 @@ static int tmp108_resume(struct device *dev)
+>   static DEFINE_SIMPLE_DEV_PM_OPS(tmp108_dev_pm_ops, tmp108_suspend, tmp108_resume);
+> 
+>   static const struct i2c_device_id tmp108_i2c_ids[] = {
+> -	{ "p3t1085" },
+> -	{ "tmp108" },
+> -	{ }
+> +	{ "p3t1035", P3T1035_ID },
+> +	{ "p3t1085", P3T1085_ID },
+> +	{ "tmp108", TMP108_ID },
+> +	{ /* sentinel */ },
+>   };
+>   MODULE_DEVICE_TABLE(i2c, tmp108_i2c_ids);
+> 
+>   static const struct of_device_id tmp108_of_ids[] = {
+> -	{ .compatible = "nxp,p3t1085", },
+> -	{ .compatible = "ti,tmp108", },
+> -	{}
+> +	{ .compatible = "nxp,p3t1035", .data = (void *)(uintptr_t)P3T1035_ID },
+> +	{ .compatible = "nxp,p3t1085", .data = (void *)(uintptr_t)P3T1085_ID },
+> +	{ .compatible = "ti,tmp108", .data = (void *)(uintptr_t)TMP108_ID },
+> +	{ /* sentinel */ },
+>   };
+>   MODULE_DEVICE_TABLE(of, tmp108_of_ids);
+> 
+> @@ -444,8 +578,9 @@ static struct i2c_driver tmp108_driver = {
+>   };
+> 
+>   static const struct i3c_device_id p3t1085_i3c_ids[] = {
+> -	I3C_DEVICE(0x011b, 0x1529, NULL),
+> -	{}
+> +	I3C_DEVICE(0x011B, 0x1529, (void *)P3T1085_ID),
+> +	I3C_DEVICE(0x011B, 0x152B, (void *)P3T1035_ID),
+> +	{ /* sentinel */ },
+
+I know that some people like that comment, and I accept it for new drivers.
+I do _not_ accept it being changed in existing drivers.
+
+>   };
+>   MODULE_DEVICE_TABLE(i3c, p3t1085_i3c_ids);
+> 
+> @@ -453,13 +588,21 @@ static int p3t1085_i3c_probe(struct i3c_device *i3cdev)
+>   {
+>   	struct device *dev = i3cdev_to_dev(i3cdev);
+>   	struct regmap *regmap;
+> +	const struct i3c_device_id *id;
+> +	enum tmp108_hw_id hw_id;
+> 
+> -	regmap = devm_regmap_init_i3c(i3cdev, &tmp108_regmap_config);
+> +	regmap = devm_regmap_init(dev, &tmp108_i3c_regmap_bus, i3cdev, &tmp108_regmap_config);
+>   	if (IS_ERR(regmap))
+>   		return dev_err_probe(dev, PTR_ERR(regmap),
+>   				     "Failed to register i3c regmap\n");
+> 
+> -	return tmp108_common_probe(dev, regmap, "p3t1085_i3c");
+> +	id = i3c_device_match_id(i3cdev, p3t1085_i3c_ids);
+> +	if (!id) {
+> +		return dev_err_probe(dev, -ENODEV, "No matching device ID for i3c device\n");
+> +	}
+
+Unnecessary error check since the id already matches or the function would not
+have been called.
+
+> +	hw_id = (enum tmp108_hw_id)(uintptr_t)id->data;
+> +
+> +	return tmp108_common_probe(dev, regmap, "p3t1085_i3c", hw_id);
+>   }
+> 
+>   static struct i3c_driver p3t1085_driver = {
+> --
+> 2.34.1
+> 
+
 
