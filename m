@@ -1,99 +1,86 @@
-Return-Path: <devicetree+bounces-256028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F908D30107
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:05:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7938ED30142
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:07:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C690B302E32A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:03:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C0D6930559D6
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:04:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A60337B97;
-	Fri, 16 Jan 2026 11:03:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 879CF347BC5;
+	Fri, 16 Jan 2026 11:04:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TBkpSpO2";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Hsb/E/Gs"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jV+TTjyz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010041.outbound.protection.outlook.com [40.93.198.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1E0363C64
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 11:03:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768561414; cv=none; b=LlKG5kDpF22LvjgdFVtZwnmUI8UKphxLtyiucyWxYEjsCUeCvfIdXitWNHRgwZwswP3tFfpw5VclrBM+dvtAFtw9kHPMS7immxk5x1Ke3lrLKhmlSSLfuFMMJlktwvuO0rMSz6fX0sdieA5zJeapv6GHI+UAafoWlv2sUD/0qHs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768561414; c=relaxed/simple;
-	bh=wkttBCxXM8dTQdQm3j+z6AowSIu29ht81aasYp8uVgc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YUYQzdxnnFWMbhv9j5JJJ64yrRKOovHWSyGlE8faUCYqBPE1zOCuVq0eviJqEHPQZa0bX+rVYP/BI5cs/1bL09LbRTrFRTyTtPQL8VO9IBf4kQQ4engdfsxikW59Ygi6mhNceUNiJNRqidL1Uezym5ZIz36aji7Is3n0GQJ/G5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TBkpSpO2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Hsb/E/Gs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60G7rYT73582785
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 11:03:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wkttBCxXM8dTQdQm3j+z6AowSIu29ht81aasYp8uVgc=; b=TBkpSpO2DkrbGZ14
-	K5ts32Hoq95Zc6Uki0n5ai5uo0q9aLC5j4DinRI/mEEs8Ib/hYC49jG4g+fUFjoS
-	ySbIwPAGZ5sFYs4JBZW/udn4YZHashOZXRqqyuxFt0aE6RAeZJFCdo9jdiYBHshM
-	Qh7RNRKI0t4/kIf3EKVFATRluxuYPqRqekQhN0Cm6xE2r7+sdfBLXrbQ5bxa1pm7
-	swRLxffrYl06hK8Bg3llf2WkysWFHLzZBCYLs9BL0RtCFYdjZN98JmoSIQqLxA8W
-	NBerynusykHi6M2FAtVmY0liLhm7RLnwZC9ONEr9aL2R2uyYtxKEsDQKnqOiS7Ae
-	I+hlhA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq9aysw9c-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 11:03:30 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c532029e50so63125485a.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 03:03:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768561410; x=1769166210; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wkttBCxXM8dTQdQm3j+z6AowSIu29ht81aasYp8uVgc=;
-        b=Hsb/E/GsqxKOHUkXqGomyNMMfs13632LqB/iHkR5mrK8l+HhFOnkRUeWOzMkT9p8/3
-         ATgQeI/u5sEGeHHLftXKuXb4J1ErSO3DpxoMHCNFTF5Z6aRlSfAaAHXQY00Uzvc0X6xi
-         dSRQlej1BF8pSRXGfvr5cT3ZJ3QtvedRM6p+aZXUkwrSWXjzTQgBoK53xdbU3GOvhhNX
-         viSttIOvzCiqkuxQHwgYNGuVh+UUjDtaOevET890+htRDaou5CQ8NnW1rIQPKcruDuNO
-         pKKJCvJDjnR6r4uJXh3/th8zTsiIbzRftIlYxfU2L2YcRbojQabbSA3Bjd9wjMB1l3/y
-         ++tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768561410; x=1769166210;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wkttBCxXM8dTQdQm3j+z6AowSIu29ht81aasYp8uVgc=;
-        b=rTE/n1/8HOPFUZ/9bM2ofUECoeuBvm2xsxUeGL0S2b/Wd4a+OJ2T/cB8ToYEqSeNFf
-         EGUEjwzUtomWO1W5hmhbYYjuYuwAmaJ8+xeLPveP2Xa0gwUlftXzvL3fQxCWokagMA5G
-         fJodbj1hWdEWKJOT35KwKG8FWJMo+o0AhgwIGui+ksWbLIsxHKKpS08eZ7j8kqDPB0GW
-         H75jjijEPSOFhWvFrH7laULy3428KsM+/kJP08zkZulTuYyGAWrflFT1Qyk1GJO4lbkX
-         R4Fi9J39EAd2P61+zWumM1d7vq56FK58rIB3UbEipW6MGEn+3Uqy2a+MeFU+kfRwmWp4
-         DQhw==
-X-Forwarded-Encrypted: i=1; AJvYcCW6OuHMzuR1R5LGwKHUNCr44MQW/DkMobjscDcSq1tc7Ei97myPHer/ZYB9yEhr3OQACj9rljKvUwDf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcMPdE7t38xFlcRmGpwN6DI5rv74CmxF8iZZl3iMl4CG17oWMi
-	NDSXW2dj6aF8PG3FlxN43p3yt8halB/PLwTbu6PSNF5Jh3CFeZ2qKHvq2Y3dbYOL2js4sWbHBsw
-	bLpUN0OOyD2ZhTum9UpXxxdIPn/+EPKOetAJ8rJgF8I6htcF3u6imyuZv+jmhp1Dk
-X-Gm-Gg: AY/fxX5kiw9P87DxLX8a+5r8+PVsz0nuLrpM+LUmKiU7fjuvhrQIQQX8V2C452qo2sF
-	N0kKYX0v/j6670wiRYQDpY7ri/byezDzy0wwz4eYgAABql7Kbw9wcFvvVE6bbp0tWBNDGCRw6wR
-	PzvHu3lCknKGml0OKvG9A5/+CuXJaqoAIMkIXl37UWIOSXbxN0Nin/tY4C8a2mJ/GXp1ExcuhE2
-	VxCyRl8ve9knsyt7AooyRiafYmqN1uxkSUKEzN81iRX7N9JudJyepFoAiihA0CXl6n6kFuO4qJ8
-	qS+EbuHn+/H/ycTYNVOUagZ7z2W+HtvRaecOrmxufuzgQIGKbP6onW+Be6UPId11eieyDTYhDlM
-	F2CHsGECMdeaau0/3KABzVdtURRJBVWGX9rWUqbjAMi7iixubiONp8oE2j2RXv1txYEY=
-X-Received: by 2002:a05:620a:448e:b0:8b2:ea2d:a5 with SMTP id af79cd13be357-8c6a6787653mr248884585a.7.1768561409840;
-        Fri, 16 Jan 2026 03:03:29 -0800 (PST)
-X-Received: by 2002:a05:620a:448e:b0:8b2:ea2d:a5 with SMTP id af79cd13be357-8c6a6787653mr248879385a.7.1768561409279;
-        Fri, 16 Jan 2026 03:03:29 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795a214e8sm204861366b.60.2026.01.16.03.03.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jan 2026 03:03:28 -0800 (PST)
-Message-ID: <8751c6ff-93db-41cf-919b-8486ed06eb72@oss.qualcomm.com>
-Date: Fri, 16 Jan 2026 12:03:25 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A77347FCD;
+	Fri, 16 Jan 2026 11:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768561469; cv=fail; b=ej7uG9OaSkwxj/KrQKVlep87BaN0xy9UuXvd7w0dYfhpFDAKO4kRJW111wTFVMhAk987nFA6NIw1sSBpF3m8Z3kOJTazoOz7Og+61DBpAQEprmRlEFga1jT/YclT9Z1jQUkVMf5TFuWZvZpbRvxZlIJE3+rB7/xVDpKo0HKCHpQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768561469; c=relaxed/simple;
+	bh=lkGPi7yya0W5t+rIgGFLxkkKkVdHF9zDMVpTFGezWUI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GK8nwqVwNvtHc4rq4XghzZPwGfZuizGuOvfHFxLL3+vdubhkBW3PTuMTXgxbXWonHZMMzEfwNfx3NzfM4j0i6StIFP5Cubvz+GiUTtajrz29hu+IBQCsAXPrGkfij4zPmgtZu3Es4KPtRLsE+2QIpm6Ce3zZ7alSkR1iR86LRx4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jV+TTjyz; arc=fail smtp.client-ip=40.93.198.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ElF5nC78yrtAUMMJ06l/wu/Ziv6fCv/0nnBjgfP5GVLwSBEi2wI51C2ZZ9GNqaup0db38u5E8rIjN6tq1ZKLSs1ZgVxwj0adSzwIaF2Ihl/aXSTiA4e3TLc0llzNB7UcjGqg1P0qYF7WHnEOHSeHl8oSLsF47HI5uoOzxcU5UGz68fCj3ISuBZGOBKDRbk5KklYYEOYVjhvNDOfnfgArzyzuJAH9WPSmGWgg4sWTBhdtYg6b3p5FRgIfVZ4Yg6k4hY8wJOUwKUKy67mBSO5xvGY8b3eAghHAWgEPZf04065iWXR8IE32gjnmPe4Xl+mok6wVvU+HA/zMVr04IV9OGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ztT6rM+UYy7htOKJXQVYrbfG/SKJAWx5GC0NDvLTmUU=;
+ b=DvnGVy/jyphYFRRGcfGnLLBhqRsrgAT/OXCM1ZVqKiBHIRiGcqI5TuoDgvwWFaICLKUYk0GH4YPBzqTtFL7alvcJ557wCb8A7KNO4LTD2KaOp3qmlKgE2hzRI2+HunGOuItWO3n+tLhJh4PKcz7b3aKoPJRAutBbXgUUERnlWKrmNiVTba8D5isMDwWAXDUGJkciS7p/JaFLINN/h0enCMRQOhdaonwKou59aFVsIaWyVSmGZyEDtgNotCwkvhNeEeC/AyuMuS3BniVlgUrNiVW8cjNTZ4F9q3wufqDrzgfjvCiH8JaiRu8DOqN3PQGg38OngcMAw19fCGSWQuSsZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ztT6rM+UYy7htOKJXQVYrbfG/SKJAWx5GC0NDvLTmUU=;
+ b=jV+TTjyzR9Jn2FNb1kD9vi5p+StHOivaq61tmehHKDc8WUre7xXATHCDQkYdQIbVsacaKCLPARAYecKstTN7vZg3gDs808C5Vmg/usHUIuYJU3hWUzRVtS2+b7rBGO3qZufNDavipsfCsfijz8Q66k9v/ssTjHPyfiaVz9EoFd0=
+Received: from PH8P221CA0002.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:2d8::27)
+ by PH7PR10MB5855.namprd10.prod.outlook.com (2603:10b6:510:13f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.6; Fri, 16 Jan
+ 2026 11:04:21 +0000
+Received: from CY4PEPF0000FCBE.namprd03.prod.outlook.com
+ (2603:10b6:510:2d8:cafe::61) by PH8P221CA0002.outlook.office365.com
+ (2603:10b6:510:2d8::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.7 via Frontend Transport; Fri,
+ 16 Jan 2026 11:04:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CY4PEPF0000FCBE.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 11:04:20 +0000
+Received: from DLEE207.ent.ti.com (157.170.170.95) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
+ 2026 05:04:20 -0600
+Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE207.ent.ti.com
+ (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
+ 2026 05:04:20 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 16 Jan 2026 05:04:20 -0600
+Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60GB4Cb43043184;
+	Fri, 16 Jan 2026 05:04:13 -0600
+Message-ID: <f6242795-d8d4-44a9-8ab8-cdaa3dc0eeff@ti.com>
+Date: Fri, 16 Jan 2026 16:34:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,95 +88,228 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: Add Redmi Note 8T
-To: barnabas.czeman@mainlining.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Gabriel Gonzales <semfault@disroot.org>, Kees Cook <kees@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        Biswapriyo Nath <nathbappai@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
-References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
- <20260112-xiaomi-willow-v1-6-8e4476897638@mainlining.org>
- <ff8fbdb9-dd03-4811-b9cc-4ec0dabf9353@oss.qualcomm.com>
- <4cb609391559a88a4a6f1e2f550f8450@mainlining.org>
- <253d0cbf-f65a-4f60-b874-4191e552c191@oss.qualcomm.com>
- <f2188ad4346e31a679fb6a082c9d32fb@mainlining.org>
+Subject: Re: [PATCH v9 12/19] media: cadence: csi2rx: add multistream support
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <s-jain1@ti.com>,
+	<vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
+	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
+	<jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
+	<jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
+	<dan.carpenter@linaro.org>, <hverkuil+cisco@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <jai.luthra@linux.dev>,
+	<laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
+References: <20251230083220.2405247-1-r-donadkar@ti.com>
+ <20251230083220.2405247-13-r-donadkar@ti.com>
+ <1029b7b3-44cf-4ed5-b90a-a476d39da5a8@ideasonboard.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <f2188ad4346e31a679fb6a082c9d32fb@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: xD_iH27pXFf5D4fxdPoJrzrRjuCFjE17
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDA4MCBTYWx0ZWRfX8NUl7zHjjQ/r
- /n+rIJOiphGkO3yZUZmnCPp/v7LuOQHFughHgkZpxPxz2j+HBrhOiqwGC5yZM/lBlKbbZXP/u/S
- 18XUcceUtQvEx7+xy0cOxpMSeVRaLKpWJayVouU3hpp8BjOiOU2Nrkk0Q1TlJuTDEHSO3yWKCZ+
- wV83uEZsEIzdepcboUvGiToN2TwnLNBkbcfjUGxpmM+wcnuyB9uDFLPVcy+q9WAnsPGZVqF+nF3
- n3ZTkVS1qN04QSPNqk496c4jKN+MW8a8BftDu7b24kpJeePcJW3jEzStG1vhpmnmACJLoipsol1
- sPh9qGDje99nRkPBfMRpqHJ6Xf7Osy/dNreQv9rTl5ZFh/aOHHJ+CMFy7yqYfsqo8fEQAiD00UG
- 4Vr7zqZI0ZS/DFeCSvymaIImv0O3hxcBYXI3Tme7AVp/Mr4HmxvHGanK+MEr5M9LJwBb3/bM6fs
- KU6zQNITiwVyLSlXXtw==
-X-Proofpoint-GUID: xD_iH27pXFf5D4fxdPoJrzrRjuCFjE17
-X-Authority-Analysis: v=2.4 cv=NfDrFmD4 c=1 sm=1 tr=0 ts=696a1b02 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=OuZLqq7tAAAA:8 a=LpNgXrTXAAAA:8
- a=6jRqbQYc-3tA15-qs5wA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=AKGiAy9iJ-JzxKVHQNES:22 a=LqOpv0_-CX5VL_7kjZO3:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-16_03,2026-01-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 impostorscore=0 suspectscore=0 spamscore=0
- phishscore=0 clxscore=1015 priorityscore=1501 lowpriorityscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601160080
+From: Rishikesh Donadkar <r-donadkar@ti.com>
+In-Reply-To: <1029b7b3-44cf-4ed5-b90a-a476d39da5a8@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBE:EE_|PH7PR10MB5855:EE_
+X-MS-Office365-Filtering-Correlation-Id: 327326ba-65e5-4b83-ca4c-08de54ef0032
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|376014|7416014|34020700016|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZWNJL25sYjM1d3dHLzVDblpYdWJEUU1ydjJXWGFEanNCNGVOY2JpcFV5WThZ?=
+ =?utf-8?B?RWFpaEtVVlZudzBLcGN3bkZCWVFLL3I5ci9wLzJmNmh6NU9sekRRR1pkN3Q5?=
+ =?utf-8?B?ejNaVmxKVGk4dWJDcGZyTU14V3pOM0JybkZsTjFNV2Jjd2xlcUNmRTE1NWw0?=
+ =?utf-8?B?ZE45RlMvamtjM3UvTlQ5RVJkRFZaZnU5cXpTY3N6cjhPcVdXd05PcDAwM3BW?=
+ =?utf-8?B?aG8zUElFT01Jb2NwbDkxRngzMnZpRjYvdXpEcmthbXh1YXpCMDBCU2taNDI3?=
+ =?utf-8?B?VWcrTldyQmZWbTdxTXNUTHBwLzZlRUtGSzZyS0RZc01PQWRZZDZUSjRMbWhz?=
+ =?utf-8?B?d3ZxbnpaUjhGTlh2TFVFeWQrdFRIWldNSzFhdzM0WFRrdURWbUI2YWxmdVNV?=
+ =?utf-8?B?VFFyK04rREh0SzNTZlpqbGFYM0ZJZDRxL05xV2xKMjlVTTR3Mmt4QWJrdlVE?=
+ =?utf-8?B?TnpYZVArZm1HZnk0c2Q4TEV3QldaT2Iwek01dGFUTzNnL3dVMlFZcEpiYStW?=
+ =?utf-8?B?Yy9CQ0l2Mk9oTUFXTFFHeFQvZmF6K1NHNTMrNC81NUR6T1kxcFNTaHl0bFFZ?=
+ =?utf-8?B?dXVKMDVqLzRQMlhGQlo2c254WHhhTTFSdHlieEJyYkpZOUVVWG1JTHR4UGdm?=
+ =?utf-8?B?TEo3OTk0dW5tamxoem40V2pTTC9Jd1JJL2lUd3ZENWlmYjJyVlpVVVVoUzZp?=
+ =?utf-8?B?SjY3QmQ3TEZYWWMyRE1RUzZYemZDbUF1OGU5ZDFwdFhCYmU5ZDF3ZCt0WTNJ?=
+ =?utf-8?B?ejA1WUZZMmR0b3ZKU1U5NysvUnhpYTlHcVpnRmJ3OEUvM0VhQ01rWWlORThI?=
+ =?utf-8?B?U21wbmpJVFdiTGhDMllFRHFwUUdvaFpVWVMwaHFiMXpHRDFGUWE1dWxjL2tr?=
+ =?utf-8?B?cWlkTGozaXdkamZaUmtxL21yQnl5eEhNa0lwRERzRS84NjFaQ1ZHUHY5MFpJ?=
+ =?utf-8?B?TWgrTCtQdlZCVit4QkoxeE5sRGNwa05xWGh4RHlEczBSUmZicERjU1NpNWVE?=
+ =?utf-8?B?Uk5qZG9rQ1VIOEhwSGlqODVGWVlmVVZ4TWxaUENEQUEwZG52V3NtaWJVa1Iz?=
+ =?utf-8?B?SWd6ZkdoZDJEaTViL0pVRUVsd1RUdmg0ZWVUc2wwUDI1aHVZclhoVmkyTUE1?=
+ =?utf-8?B?TnRXSUplL3M3MFV6YmJNby9RYUp5ZkEyS3dybStYUXF6YWxmdENHRlphZ2x5?=
+ =?utf-8?B?Yk1ZS3NlRFJlR2VwenROdmpVRHQ2L1dNZ3VLcEFrWUpaSm9yQ0ROYm9nb1VH?=
+ =?utf-8?B?S1YraTF3VGIxdEFsRFBJYWU1LzFhQjNpN0hXYzZjTnBCaHFrcWw2R1J0UHM0?=
+ =?utf-8?B?eUFsWWRQRWNUN2xMd3U3U044Z0ZpQjBsUkpoM3dzZ0QyYXV4ZEJTYlVWcmNK?=
+ =?utf-8?B?Zm5tTVNlRTR4cHdZblJ2cVdTMUJDUUE3aGV0ZG41bG1BMFNRekVNYURkVURF?=
+ =?utf-8?B?UzNwZzNNQndmc3h6bVVpZk9VbXVhdWhhR2NCcjFpdkpIT2wySStqWDBEelJa?=
+ =?utf-8?B?dWFXdURKcEw2d2tUVkVYZEgwcGRXbUpaN0dyWTUzelZvZVN0NzBFUGlPZG9u?=
+ =?utf-8?B?QnpGVDkzNXdTUEdPSGhXVVI0eGV3UXkvK0JyWm10K3hmMm5ZOEhWYmhXcW83?=
+ =?utf-8?B?WFZyZGJ5VmNMZkxrRFpKa20yQzBUNkh5Z0syYkFrRSs1RUM0VXpEYlRLelJ5?=
+ =?utf-8?B?aUhONGNiejZGT1NWK3prZDQ2TW1nWmt0OUdqOG51VXFZclVKblNoZW9CYTdk?=
+ =?utf-8?B?Wkd3TzVvbi9KWmRaVkE5UTNpZHQ1NjJXb29jT1VvU1U1VEJWcFBiWDVXQnNN?=
+ =?utf-8?B?T1NQY0hMVXVtSVU2b2pvVTJvNzdiei9EYWllRklWN2M2TkVjNVZ5QzI4eU9z?=
+ =?utf-8?B?aXBEMFZmVUFjNXIvb3VXTXJVd0hvR3RNYnN4U3FlYjVKZDhDNzZTL1JQS0Zw?=
+ =?utf-8?B?eFZzSEFWNDA3WXZQYmFqM2NKL1R4V1lhNHdxTDY4MjNtS2RIOUt0Rm9STVpa?=
+ =?utf-8?B?YVUwM0txTFl0UkZ5Y25WTDUvcmRMOXZNdXZCV1orbVJ6SFdGQ1pOTWE0MlRD?=
+ =?utf-8?B?dGlwaXNvS200U3pOWnpGR2NQUFlIU0pPRk85dDhYSE9TdEVmQTljSkNiNTda?=
+ =?utf-8?B?ekJBV3lZTWtOWnBGcmhSQW1HVzA4NXEyaVNNblk0MktBRFBmQ0RrUFJRZmt6?=
+ =?utf-8?B?SFFjN2puejB5L1hTSUhQK1k5aUJpWURFdnYvbzlWNG95NjVubGVpeC9ZVnpH?=
+ =?utf-8?B?WlF1RDRLTVdkRjhBdzBSZzNxajBRPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(7416014)(34020700016)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 11:04:20.9505
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 327326ba-65e5-4b83-ca4c-08de54ef0032
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000FCBE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB5855
 
-On 1/16/26 11:51 AM, barnabas.czeman@mainlining.org wrote:
-> On 2026-01-16 10:53, Konrad Dybcio wrote:
->> On 1/16/26 7:53 AM, barnabas.czeman@mainlining.org wrote:
->>> On 2026-01-13 10:04, Konrad Dybcio wrote:
->>>> On 1/12/26 9:13 PM, Barnabás Czémán wrote:
->>>>> Redmi Note 8T (willow) is very similar to Redmi Note 8 (ginkgo)
->>>>> the only difference is willow have NFC.
->>>>> Make a common base from ginkgo devicetree for both device.
->>>>>
->>>>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->>>>> ---
->>>>
->>>> [...]
->>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->>>>> index 163ecdc7fd6c..70be19357d11 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->>>>> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->>>>> @@ -1,304 +1,12 @@
->>>>>  // SPDX-License-Identifier: BSD-3-Clause
->>>>>  /*
->>>>> - * Copyright (c) 2025, Gabriel Gonzales <semfault@disroot.org>
->>>>> + * Copyright (c) 2026, Barnabas Czeman
->>>>
->>>> Is there a reason for you to remove Gabriel's copyright from the 5 LoC
->>>> that remain in this file?
->>> The original file was renamed to sm6125-xiaomi-ginkgo-common.dtsi.
->>> I have not removed it, it is a new file with the old file name but
->>> i can add Gabriel's copyright here also, would that be fine?
+
+On 15/01/26 17:31, Tomi Valkeinen wrote:
+> Hi,
+
+Hi Tomi,
+
+Thank you for the review !
+
+>
+> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+>> From: Jai Luthra <j-luthra@ti.com>
 >>
->> Well you certainly don't seem to have contributed anything additionally
->> in this specific patch, other than splitting a source file into two
->> source files, so the rule of the land is to generally keep the copyrights
->> as-is
-> I have kept the Copyright in the original file. The question is should I add it here also?
+>> Cadence CSI-2 bridge IP supports capturing multiple virtual "streams"
+>> of data over the same physical interface using MIPI Virtual Channels.
+>>
+>> While the hardware IP supports usecases where streams coming in the sink
+>> pad can be broadcasted to multiple source pads, the driver will need
+>> significant re-architecture to make that possible. The two users of this
+>> IP in mainline linux are TI Shim and StarFive JH7110 CAMSS, and both
+>> have only integrated the first source pad i.e stream0 of this IP. So for
+>> now keep it simple and only allow 1-to-1 mapping of streams from sink to
+>> source, without any broadcasting.
+>>
+>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+>> Reviewed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>> Co-developed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> ---
+>>   drivers/media/platform/cadence/cdns-csi2rx.c | 248 +++++++++++++++----
+>>   1 file changed, 201 insertions(+), 47 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+>> index 65c6acb02f85b..5c16a2e509136 100644
+>> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+>> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+>> @@ -135,6 +135,7 @@ struct csi2rx_priv {
+>>   	struct phy			*dphy;
+>>   
+>>   	u8				num_pixels[CSI2RX_STREAMS_MAX];
+>> +	u32				vc_select[CSI2RX_STREAMS_MAX];
+>>   	u8				lanes[CSI2RX_LANES_MAX];
+>>   	u8				num_lanes;
+>>   	u8				max_lanes;
+>> @@ -273,30 +274,43 @@ static void csi2rx_reset(struct csi2rx_priv *csi2rx)
+>>   
+>>   static int csi2rx_configure_ext_dphy(struct csi2rx_priv *csi2rx)
+>>   {
+>> -	struct media_pad *src_pad =
+>> -		&csi2rx->source_subdev->entity.pads[csi2rx->source_pad];
+>>   	union phy_configure_opts opts = { };
+>>   	struct phy_configure_opts_mipi_dphy *cfg = &opts.mipi_dphy;
+>> -	struct v4l2_subdev_state *state;
+>>   	struct v4l2_mbus_framefmt *framefmt;
+>> +	struct v4l2_subdev_state *state;
+>>   	const struct csi2rx_fmt *fmt;
+>> +	int source_pad = csi2rx->source_pad;
+>> +	struct media_pad *pad = &csi2rx->source_subdev->entity.pads[source_pad];
+>>   	s64 link_freq;
+>>   	int ret;
+>> +	u32 bpp;
+>>   
+>>   	state = v4l2_subdev_get_locked_active_state(&csi2rx->subdev);
+>>   
+>> -	framefmt = v4l2_subdev_state_get_format(state, CSI2RX_PAD_SINK, 0);
+>> -	if (!framefmt) {
+>> -		dev_err(csi2rx->dev, "Did not find active sink format\n");
+>> -		return -EINVAL;
+>> -	}
+>> +	/*
+>> +	 * For multi-stream transmitters there is no single pixel rate.
+>> +	 *
+>> +	 * In multistream usecase pass bpp as 0 so that v4l2_get_link_freq()
+>> +	 * returns an error if it falls back to V4L2_CID_PIXEL_RATE.
+>> +	 */
+>> +	if (state->routing.num_routes > 1) {
+>> +		bpp = 0;
+>> +	} else {
+>> +		framefmt = v4l2_subdev_state_get_format(state, CSI2RX_PAD_SINK, 0);
+>> +		if (!framefmt) {
+>> +			dev_err(csi2rx->dev, "Did not find active sink format\n");
+>> +			return -EINVAL;
+>> +		}
+>>   
+>> -	fmt = csi2rx_get_fmt_by_code(framefmt->code);
+>> +		fmt = csi2rx_get_fmt_by_code(framefmt->code);
+>> +		bpp = fmt->bpp;
+>> +	}
+>>   
+>> -	link_freq = v4l2_get_link_freq(src_pad,
+>> -				       fmt->bpp, 2 * csi2rx->num_lanes);
+>> -	if (link_freq < 0)
+>> +	link_freq = v4l2_get_link_freq(pad, bpp, 2 * csi2rx->num_lanes);
+>> +	if (link_freq < 0) {
+>> +		dev_err(csi2rx->dev, "Unable to calculate link frequency\n");
+>>   		return link_freq;
+>> +	}
+>>   
+>>   	ret = phy_mipi_dphy_get_default_config_for_hsclk(link_freq,
+>>   							 csi2rx->num_lanes, cfg);
+>> @@ -394,11 +408,7 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   					  csi2rx->num_pixels[i]),
+>>   		       csi2rx->base + CSI2RX_STREAM_CFG_REG(i));
+>>   
+>> -		/*
+>> -		 * Enable one virtual channel. When multiple virtual channels
+>> -		 * are supported this will have to be changed.
+>> -		 */
+>> -		writel(CSI2RX_STREAM_DATA_CFG_VC_SELECT(0),
+>> +		writel(csi2rx->vc_select[i],
+>>   		       csi2rx->base + CSI2RX_STREAM_DATA_CFG_REG(i));
+>>   
+>>   		writel(CSI2RX_STREAM_CTRL_START,
+>> @@ -486,18 +496,59 @@ static int csi2rx_log_status(struct v4l2_subdev *sd)
+>>   	return 0;
+>>   }
+>>   
+>> +static void csi2rx_update_vc_select(struct csi2rx_priv *csi2rx,
+>> +				    struct v4l2_subdev_state *state)
+>> +{
+>> +	struct v4l2_mbus_frame_desc fd = {0};
+>> +	struct v4l2_subdev_route *route;
+>> +	unsigned int i;
+>> +	int ret;
+>> +
+>> +	/* Capture VC=0 by default */
+>> +	for (i = 0; i < CSI2RX_STREAMS_MAX; i++)
+>> +		csi2rx->vc_select[i] = CSI2RX_STREAM_DATA_CFG_VC_SELECT(0);
+> This should be inside the if-block below, as in the other code path you
+> just memset the whole vc_select.
 
-This new file that you created is nothing new (i.e. it's still *really* the
-original author's work), so I would expect you keep the copyright of the
-old file too (as your change isn't copyrightable).
+Will do
 
-Konrad
+Rishikesh
+
+>
+> With that fixed:
+>
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>
+>   Tomi
+>
 
