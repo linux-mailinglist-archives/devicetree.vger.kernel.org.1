@@ -1,103 +1,137 @@
-Return-Path: <devicetree+bounces-255921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D4FED2E3BB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:47:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D11DD2E446
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:50:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7368A3004EE3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 08:47:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 345AE301C5D9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 08:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AEDC30DEB0;
-	Fri, 16 Jan 2026 08:47:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="smMTk41d"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7592749D5;
+	Fri, 16 Jan 2026 08:50:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D8F3064AA;
-	Fri, 16 Jan 2026 08:47:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.175.55.52])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60E812741DF;
+	Fri, 16 Jan 2026 08:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.175.55.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768553260; cv=none; b=TbXBfuWzW43VnYZerHOg8Xvn4TZOy4j1Q/3ZOnIZvEfhYeoKASNlVCqWKi+GjbJfK0UWssN4DBDj8fcQonZiMmOl1eR+ZTSskLXi0BSHtCeyy5JDQLlR+WJjQdsyag69zb3FlzIxq3ou28rSmt4mHLUhaM72cVOB0lxOFbZKmfo=
+	t=1768553437; cv=none; b=DttcP89bPvjqX4m2h+42/XTfiN75ySRJWQ9enFIsf374b1e2oHzQN9CGK2oOYVOUlffHCx9zw0eBrPm9GoKowdQagR/QzGkWWRRpQ+y5AdO35FeJuCQEhxCP+RXitXd5B52pDmOte3YofTviZKOhbnFhceStuGhfLp9rbXTloF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768553260; c=relaxed/simple;
-	bh=yEJTVW9xDZyccQ+8ZfLVCfXsSgPCkHTxGKn4vjT3CAk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IHvinhrit4+KYd5bffChpylpRGzkROCAtEL/7wNa7FwgB0Vn4n6w0uwfQT+ib5Nhn7tyxhJOz5HCv01wPeW29LdRZW4kyw7qPoFZ/Ey/sWxWjFgE98fws5CEimSnV3OObhWUmJaaIMhe1tQi1YHfKpll+XfBhYqv/T6pgIM4EeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=smMTk41d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26771C116C6;
-	Fri, 16 Jan 2026 08:47:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768553259;
-	bh=yEJTVW9xDZyccQ+8ZfLVCfXsSgPCkHTxGKn4vjT3CAk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=smMTk41dT8zjNf9LSBbNdWQstxLT1X3FLmYJ1XEMjwP7O8hLmTRlugA7ARZP3ylS6
-	 sPuxRjPacSi2CEZ0SgPC1/ZewZTqMxNMGKub6o5fHXLPG7n++iwDs9dagsicHk7Z80
-	 g25Kh8hiViedBYe9tth63MVs37oX5kaf+NvbPnR7MyYuOp+1Xwf33+A2U3g6GUEfSY
-	 ODtCMHO3RWbDSWFWvqrmfmsuTUSJJzN6zzxxLAFmOHIQ/JrZRtytBsd4KoMGbK7xdw
-	 SOmLZJtFc37K27lRv+XjQjJF4yiPyafmjGgftCpMpd0rfwp3C/0GgZ3Nb4hrCh/nAQ
-	 C4/Om1OPNMuUg==
-Date: Fri, 16 Jan 2026 09:47:37 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sumit Garg <sumit.garg@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, akhilpo@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com, 
-	dikshita.agarwal@oss.qualcomm.com, robin.clark@oss.qualcomm.com, lumag@kernel.org, 
-	loic.poulain@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com, linux-kernel@vger.kernel.org, 
-	Sumit Garg <sumit.garg@oss.qualcomm.com>
-Subject: Re: [PATCH v2 2/3] media: dt-bindings: venus: Fix iommus property
-Message-ID: <20260116-burrowing-weightless-sawfly-53dc98@quoll>
-References: <20260116062004.237356-1-sumit.garg@kernel.org>
- <20260116062004.237356-3-sumit.garg@kernel.org>
+	s=arc-20240116; t=1768553437; c=relaxed/simple;
+	bh=N4UD0is+V40WhGf1j76ydkl1TPsu9X+PLgNq6niSkxs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=s0N9NU4ZNZgM/rb0KixHUmfxGHz93rjrYTAp/6Typ5Hv5Pq+fRB2wXTOTryCCvj0fhozVDe2WHK8gwV5pQSdfcLTa52umjZN1zsOqwoW6bDPqu50z8r1+jGZDvg6yM1wHBfFa11TDWVpoR5KxbS9LN5NJ17verV7/likzDZREuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.175.55.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from luyulin$eswincomputing.com ( [10.12.96.77] ) by
+ ajax-webmail-app2 (Coremail) ; Fri, 16 Jan 2026 16:50:11 +0800 (GMT+08:00)
+Date: Fri, 16 Jan 2026 16:50:11 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Yulin Lu" <luyulin@eswincomputing.com>
+To: "Vinod Koul" <vkoul@kernel.org>
+Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, p.zabel@pengutronix.de,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
+	zhengyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com, fenglin@eswincomputing.com,
+	lianghujun@eswincomputing.com
+Subject: Re: Re: [PATCH v7 2/2] phy: eswin: Create eswin directory and add
+ EIC7700 SATA PHY driver
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <aWeH5fn8nGOzjDpP@vaman>
+References: <20260106062944.1529-1-luyulin@eswincomputing.com>
+ <20260106063309.241-1-luyulin@eswincomputing.com> <aWeH5fn8nGOzjDpP@vaman>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260116062004.237356-3-sumit.garg@kernel.org>
+Message-ID: <133c22d5.2674.19bc5ff735f.Coremail.luyulin@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgCH+y3D+2lpxd8BAA--.482W
+X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/1tbiAQEJA2lpFosaogAA
+	sv
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
-On Fri, Jan 16, 2026 at 11:50:03AM +0530, Sumit Garg wrote:
-> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> 
-> Fix IOMMU DT propety for venus via dropping SMMU stream IDs which
-> relates to secure context bank. Assigning Linux kernel (HLOS) VMID
-> to secure context bank stream IDs is incorrect.
-> 
-> The min value is added for iommus property to ensure in future when
-
-You do not add min value (that would be "minimum") but change the list.
-
-> secure context bank stream IDs are properly supported then the iommus
-> property is extensible.
-> 
-> These DT bindings changes should be backwards compatible.
-> 
-> Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/media/qcom,qcm2290-venus.yaml       | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
-> index 3f3ee82fc878..ae6bc0d0bea6 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
-> @@ -42,6 +42,7 @@ properties:
->        - const: vcodec0_bus
->  
->    iommus:
-> +    minItems: 2
-
-Same problem.
-
->      maxItems: 5
-
-Best regards,
-Krzysztof
-
+PiA+ICtzdGF0aWMgaW50IGVpYzc3MDBfc2F0YV9waHlfaW5pdChzdHJ1Y3QgcGh5ICpwaHkpCj4g
+PiArewo+ID4gKwlzdHJ1Y3QgZWljNzcwMF9zYXRhX3BoeSAqc2F0YV9waHkgPSBwaHlfZ2V0X2Ry
+dmRhdGEocGh5KTsKPiA+ICsJdTMyIHZhbDsKPiA+ICsJaW50IHJldDsKPiA+ICsKPiA+ICsJcmV0
+ID0gY2xrX3ByZXBhcmVfZW5hYmxlKHNhdGFfcGh5LT5jbGspOwo+ID4gKwlpZiAocmV0KQo+ID4g
+KwkJcmV0dXJuIHJldDsKPiA+ICsKPiA+ICsJcmVnbWFwX3dyaXRlKHNhdGFfcGh5LT5yZWdtYXAs
+IFNBVEFfUkVGX0NUUkwxLCBTQVRBX0NMS19SU1RfU09VUkNFX1BIWSk7Cj4gPiArCj4gPiArCXZh
+bCA9IEZJRUxEX1BSRVAoU0FUQV9QMF9QSFlfVFhfQU1QTElUVURFX0dFTjFfTUFTSywgMHg0Mikg
+fAo+ID4gKwkgICAgICBGSUVMRF9QUkVQKFNBVEFfUDBfUEhZX1RYX0FNUExJVFVERV9HRU4yX01B
+U0ssIDB4NDYpIHwKPiA+ICsJICAgICAgRklFTERfUFJFUChTQVRBX1AwX1BIWV9UWF9BTVBMSVRV
+REVfR0VOM19NQVNLLCAweDczKTsKPiA+ICsJcmVnbWFwX3dyaXRlKHNhdGFfcGh5LT5yZWdtYXAs
+IFNBVEFfUEhZX0NUUkwwLCB2YWwpOwo+ID4gKwo+ID4gKwl2YWwgPSBGSUVMRF9QUkVQKFNBVEFf
+UDBfUEhZX1RYX1BSRUVNUEhfR0VOMV9NQVNLLCAweDUpIHwKPiA+ICsJICAgICAgRklFTERfUFJF
+UChTQVRBX1AwX1BIWV9UWF9QUkVFTVBIX0dFTjJfTUFTSywgMHg1KSB8Cj4gPiArCSAgICAgIEZJ
+RUxEX1BSRVAoU0FUQV9QMF9QSFlfVFhfUFJFRU1QSF9HRU4zX01BU0ssIDB4OCk7Cj4gCj4gV2hl
+cmUgYXJlIHRoZSBtYWdpYyB2YWx1ZXMgeW91IGFyZSB3cml0aW5nIGNvbWluZyBmcm9tLi4/Cj4g
+CgpIaSBWaW5vZCwKClRoZXNlIHZhbHVlcyBzZXQgdGhlIFRYIHByZWVtcGhhc2lzIGFuZCBhbXBs
+aXR1ZGUgcGFyYW1ldGVycyBmb3IgdGhlIFNBVEEgUEhZLgpUaGUgYWN0dWFsIG51bWJlcnMgY29t
+ZSBmcm9tIGV5ZeKAkWRpYWdyYW0gdHVuaW5nIHJlc3VsdHMgb24gZGlmZmVyZW50IGhhcmR3YXJl
+CmRldmVsb3BtZW50IGJvYXJkcy4KVGhlIGN1cnJlbnQgY29kZSByZWZsZWN0cyB0aGUgc2V0dGlu
+Z3MgZm9yIHRoZSBTaWZpdmUgSGlGaXZlIFByZW1pZXIgUDU1MCBib2FyZC4KSW4gdGhlIG5leHQg
+cGF0Y2ggSSBwbGFuIHRvIG1vdmUgdGhlc2UgaW50byB0aGUgZGV2aWNldHJlZSAoRFRTKS4KV291
+bGQgdGhhdCBiZSBhY2NlcHRhYmxlPwoKPiA+ICsJcmVnbWFwX3dyaXRlKHNhdGFfcGh5LT5yZWdt
+YXAsIFNBVEFfUEhZX0NUUkwxLCB2YWwpOwo+ID4gKwo+ID4gKwl2YWwgPSBGSUVMRF9QUkVQKFNB
+VEFfTE9TX0xFVkVMX01BU0ssIDB4OSkgfAo+ID4gKwkgICAgICBGSUVMRF9QUkVQKFNBVEFfTE9T
+X0JJQVNfTUFTSywgMHgyKTsKPiA+ICsJcmVnbWFwX3dyaXRlKHNhdGFfcGh5LT5yZWdtYXAsIFNB
+VEFfTE9TX0lERU4sIHZhbCk7Cj4gPiArCj4gPiArCXZhbCA9IFNBVEFfTV9DU1lTUkVRIHwgU0FU
+QV9TX0NTWVNSRVE7Cj4gPiArCXJlZ21hcF93cml0ZShzYXRhX3BoeS0+cmVnbWFwLCBTQVRBX0FY
+SV9MUF9DVFJMLCB2YWwpOwo+ID4gKwo+ID4gKwl2YWwgPSBTQVRBX1JFRl9SRVBFQVRDTEtfRU4g
+fCBTQVRBX1JFRl9VU0VfUEFEOwo+ID4gKwlyZWdtYXBfd3JpdGUoc2F0YV9waHktPnJlZ21hcCwg
+U0FUQV9SRUZfQ1RSTCwgdmFsKTsKPiA+ICsKPiA+ICsJdmFsID0gRklFTERfUFJFUChTQVRBX01Q
+TExfTVVMVElQTElFUl9NQVNLLCAweDNjKTsKPiA+ICsJcmVnbWFwX3dyaXRlKHNhdGFfcGh5LT5y
+ZWdtYXAsIFNBVEFfTVBMTF9DVFJMLCB2YWwpOwo+ID4gKwo+ID4gKwl1c2xlZXBfcmFuZ2UoMTUs
+IDIwKTsKPiA+ICsKPiA+ICsJcmV0ID0gcmVzZXRfY29udHJvbF9kZWFzc2VydChzYXRhX3BoeS0+
+cnN0KTsKPiA+ICsJaWYgKHJldCkKPiA+ICsJCWdvdG8gZGlzYWJsZV9jbGs7Cj4gPiArCj4gPiAr
+CXJldCA9IHdhaXRfZm9yX3BoeV9yZWFkeShzYXRhX3BoeS0+cmVnbWFwLCBTQVRBX1AwX1BIWV9T
+VEFULAo+ID4gKwkJCQkgU0FUQV9QMF9QSFlfUkVBRFksIDEpOwo+ID4gKwlpZiAocmV0IDwgMCkg
+ewo+ID4gKwkJZGV2X2Vycigmc2F0YV9waHktPnBoeS0+ZGV2LCAiUEhZIFJFQURZIGNoZWNrIGZh
+aWxlZFxuIik7Cj4gPiArCQlnb3RvIGRpc2FibGVfY2xrOwo+ID4gKwl9Cj4gPiArCj4gPiArCXJl
+dHVybiAwOwo+ID4gKwo+ID4gK2Rpc2FibGVfY2xrOgo+ID4gKwljbGtfZGlzYWJsZV91bnByZXBh
+cmUoc2F0YV9waHktPmNsayk7Cj4gPiArCXJldHVybiByZXQ7Cj4gPiArfQo+ID4gKwo+ID4gK3N0
+YXRpYyBpbnQgZWljNzcwMF9zYXRhX3BoeV9leGl0KHN0cnVjdCBwaHkgKnBoeSkKPiA+ICt7Cj4g
+PiArCXN0cnVjdCBlaWM3NzAwX3NhdGFfcGh5ICpzYXRhX3BoeSA9IHBoeV9nZXRfZHJ2ZGF0YShw
+aHkpOwo+ID4gKwlpbnQgcmV0Owo+ID4gKwo+ID4gKwlyZXQgPSByZXNldF9jb250cm9sX2Fzc2Vy
+dChzYXRhX3BoeS0+cnN0KTsKPiA+ICsJaWYgKHJldCkKPiA+ICsJCXJldHVybiByZXQ7Cj4gPiAr
+Cj4gPiArCWNsa19kaXNhYmxlX3VucHJlcGFyZShzYXRhX3BoeS0+Y2xrKTsKPiA+ICsKPiA+ICsJ
+cmV0dXJuIDA7Cj4gPiArfQo+ID4gKwo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgcGh5X29wcyBl
+aWM3NzAwX3NhdGFfcGh5X29wcyA9IHsKPiA+ICsJLmluaXQJCT0gZWljNzcwMF9zYXRhX3BoeV9p
+bml0LAo+ID4gKwkuZXhpdAkJPSBlaWM3NzAwX3NhdGFfcGh5X2V4aXQsCj4gPiArCS5vd25lcgkJ
+PSBUSElTX01PRFVMRSwKPiA+ICt9Owo+ID4gKwo+ID4gK3N0YXRpYyBpbnQgZWljNzcwMF9zYXRh
+X3BoeV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQo+ID4gK3sKPiA+ICsJc3Ry
+dWN0IGVpYzc3MDBfc2F0YV9waHkgKnNhdGFfcGh5Owo+ID4gKwlzdHJ1Y3QgcGh5X3Byb3ZpZGVy
+ICpwaHlfcHJvdmlkZXI7Cj4gPiArCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7Cj4g
+PiArCXN0cnVjdCByZXNvdXJjZSAqcmVzOwo+ID4gKwl2b2lkIF9faW9tZW0gKnJlZ3M7Cj4gPiAr
+Cj4gPiArCXNhdGFfcGh5ID0gZGV2bV9remFsbG9jKGRldiwgc2l6ZW9mKCpzYXRhX3BoeSksIEdG
+UF9LRVJORUwpOwo+ID4gKwlpZiAoIXNhdGFfcGh5KQo+ID4gKwkJcmV0dXJuIC1FTk9NRU07Cj4g
+PiArCj4gPiArCXJlcyA9IHBsYXRmb3JtX2dldF9yZXNvdXJjZShwZGV2LCBJT1JFU09VUkNFX01F
+TSwgMCk7Cj4gPiArCWlmICghcmVzKQo+ID4gKwkJcmV0dXJuIC1FTk9FTlQ7Cj4gPiArCj4gPiAr
+CXJlZ3MgPSBkZXZtX2lvcmVtYXAoZGV2LCByZXMtPnN0YXJ0LCByZXNvdXJjZV9zaXplKHJlcykp
+Owo+ID4gKwlpZiAoSVNfRVJSKHJlZ3MpKQo+ID4gKwkJcmV0dXJuIFBUUl9FUlIocmVncyk7Cj4g
+Cj4gZGV2bV9wbGF0Zm9ybV9nZXRfYW5kX2lvcmVtYXBfcmVzb3VyY2UoKSBwbGVhc2UKPiAKCkFz
+IGV4cGxhaW5lZCBpbiBteSDigJx2NiDihpIgdjXigJ0gY2hhbmdlcyBpbiB0aGUgY292ZXLigJFs
+ZXR0ZXI6CuKAnE1hcCB0aGUgSS9PIHJlc291cmNlIHdpdGggcGxhdGZvcm1fZ2V0X3Jlc291cmNl
+IGFuZCBkZXZtX2lvcmVtYXAKaW5zdGVhZCBvZiB0aGUgZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jl
+c291cmNlIEFQSSwKYmVjYXVzZSB0aGUgYWRkcmVzcyByZWdpb24gb2YgdGhlIFNBVEHigJFQSFkg
+ZmFsbHMgaW50byB0aGUgcmVnaW9uIG9mCnRoZSBIU1AgY2xvY2sgJiByZXNldCB0aGF0IGhhcyBh
+bHJlYWR5IGJlZW4gb2J0YWluZWQgYnkgdGhlIEhTUApjbG9ja+KAkWFuZOKAkXJlc2V0IGRyaXZl
+ci7igJ0KVGhlIEhTUCBjbG9jay1hbmQtcmVzZXQgZHJpdmVyIHVzZXPCoGRldm1fcGxhdGZvcm1f
+Z2V0X2FuZF9pb3JlbWFwX3Jlc291cmNlKCksCm1lYW5pbmcgdGhpcyByZWdpb24gaGFzIGFscmVh
+ZHkgYmVlbiByZXF1ZXN0ZWQuClRoZSBIU1AgY2xvY2stYW5kLXJlc2V0IGRyaXZlciBpcyBhbHNv
+IGN1cnJlbnRseSBiZWluZyB1cHN0cmVhbWVkLgoKQmVzdCByZWdhcmRzLApZdWxpbiBMdQoK
 
