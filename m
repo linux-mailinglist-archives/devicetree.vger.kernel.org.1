@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-255847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF3FD2AC29
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:31:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C684D2AE80
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:43:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3AA6C301D58F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:29:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DBE1A300ACB5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D355341057;
-	Fri, 16 Jan 2026 03:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B358930C342;
+	Fri, 16 Jan 2026 03:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="giYEMuhu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4a2Xx8w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442D729A1;
-	Fri, 16 Jan 2026 03:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFC723EA83;
+	Fri, 16 Jan 2026 03:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768534186; cv=none; b=S6dpLkZjfFhMVicQ5Z30Qjene0lVra2pYD+ZaeAmgHk80gjq+VvitoMahtPxetbwnvmRwLIbRBlWjymSHnTbKl+FXi7NaJmORsukKacgYycfWK/5bTTEaJFD/nbkdC/Sza+Wc+rnD+MsE3RM/WVahwZmx2UGqDx+ZbvoyjyiEOk=
+	t=1768535029; cv=none; b=o/qgaLiO2Q/yZQMGhlKSgN0ax5xRCo14KdPr+7P+Pb/gM3SL1SaTxVuKElplZB1mhLNxgI4nX7pFvo8WFBuu/91SRrRWrrsDDbcQJJ25WOSpn0n3WwDoBl146ZommUjcuiLT3Z2Gi03XitI7dmOQ1Yy+eZAiv5RldYYeI+lJIeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768534186; c=relaxed/simple;
-	bh=4dA1HwbtooHbxCCBYUMCVZeLwwqYEoSUTEHkOTzXLcE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qLaip8aTWJ9aljGF9NqIz5FbuzsqXRFgPnyJ3B8zgtW1XKMDSpWeEqXmFCfRBtR7xAlYRXVfRQ8jndqo1X0Usvf4S2oxRdEb2K540tmf0RLK4TagQDjbfYNvhL3kHP7vSFCyOUtIEL7Vq639jHjc16fekhbbnTCg2+iI4LFWTUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=giYEMuhu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 855B8C116D0;
-	Fri, 16 Jan 2026 03:29:44 +0000 (UTC)
+	s=arc-20240116; t=1768535029; c=relaxed/simple;
+	bh=iGyd8B4dPB7zPK3GnQ0VdReoWMgzw5H0mfAFCAnTYxc=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=R7fxGwpqnwat3y0O7tGSF0LLC2xzCZKEXJfoVCZd8kznnWZzRxFDfKNk5qpYc8UMSQEbG7tIQgES+XvO5pWmg7jCQEvSbyjiEpM4mKEFkvm4InMh9QunBqUK9TPvbObJpGYDZ5yVSeO3Wi7kwg9eBOpRnZYyrqhukLXs9XcCpnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4a2Xx8w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24BC3C116D0;
+	Fri, 16 Jan 2026 03:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768534185;
-	bh=4dA1HwbtooHbxCCBYUMCVZeLwwqYEoSUTEHkOTzXLcE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=giYEMuhuofNhVlWRY2ftZfuFBeK60CFoTKlm6Z8qJ5SJn9PKo14nB5YzIoFxd7lGz
-	 LmFheYQkBV/rTphRUqdjJPPItd7iStwQXftUTxFXkgdCDckCOsUo5qcMtghwi7shN/
-	 5MKQ4+s4AdEKUqO/dV4KhVQVg3P0iBEeYaekUw3F1PkWsjrhejECE8kadf8vrDPu8l
-	 hsmPYMoX3L7LfN9HeX7iiSdQK6qar8FxF+n0rBeSpqz6Ih3KKtf0vk3P5AV8PG0xBB
-	 DYsKv7v4PIzRr679AGsiidCxIHeDujZ2pSt59DdZ30yNXLcwyixojSsyWjoAceWA4A
-	 LWHatAJrywzRw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v10 00/14] Peripheral Image Loader support for Qualcomm SoCs running Linux host at EL2
-Date: Thu, 15 Jan 2026 21:29:42 -0600
-Message-ID: <176853407255.304792.18323741500490233525.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260105-kvmrprocv10-v10-0-022e96815380@oss.qualcomm.com>
-References: <20260105-kvmrprocv10-v10-0-022e96815380@oss.qualcomm.com>
+	s=k20201202; t=1768535029;
+	bh=iGyd8B4dPB7zPK3GnQ0VdReoWMgzw5H0mfAFCAnTYxc=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=D4a2Xx8wlNkjEyHh2u62pluDZKBuM6zxiAfp2vBYaz5w5nAN3CSAxDRWbhKzqQfdJ
+	 ZkeSlmxZvPEs8QEMfgnYDr/H4aV8aDUb8xxqKrlIYOT0dI1BG5A/K+OiA9B6kRRC/m
+	 KR5vNGtXVcYteDWgseoiDC4bJfRyxAPHFpGAEGhKjaZF2orgu8kKI5Xc9slsfU3o0K
+	 vdRNC/EqH+XFWlnTImzMagfEPaJuzyx+ptIFO1FSXeJ6jII3LhHQLC0LPZhzzSdRb7
+	 KgJrG40KBjbELmwH7ISVI+iX9EodOdlzk9w2muKv3jkp2YbVnmM4NJSdmS5lZOhMUL
+	 ofXqwEP9FVrGQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 3BBE2380AA4B;
+	Fri, 16 Jan 2026 03:40:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 0/2] net: phy: adin: enable configuration of the LP
+ Termination Register
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176853482104.70930.5256956372119132801.git-patchwork-notify@kernel.org>
+Date: Fri, 16 Jan 2026 03:40:21 +0000
+References: <20260107221913.1334157-1-osose.itua@savoirfairelinux.com>
+In-Reply-To: <20260107221913.1334157-1-osose.itua@savoirfairelinux.com>
+To: Osose Itua <osose.itua@savoirfairelinux.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, michael.hennerich@analog.com,
+ jerome.oufella@savoirfairelinux.com
 
+Hello:
 
-On Mon, 05 Jan 2026 18:52:48 +0530, Mukesh Ojha wrote:
-> In May 2025, we discussed the challenges at Linaro Connect 2025 [1]
-> related to Secure PAS remoteproc enablement when Linux is running at EL2
-> for Qualcomm SoCs.
-> 
-> [1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
-> 
-> Below, is the summary of the discussion.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Wed,  7 Jan 2026 17:16:51 -0500 you wrote:
+> Changes in v3:
+> - put bindings patch first in the patchset
+> - update commit message of the bindings patch and improve the bindings
+>   description to better explain why the added property is needed (as
+>   suggested by Nuno Sá and Andrew Lunn)
+> - rework bit clearing to use phy_clear_bits_mmd() instead of
+>   phy_write_mmd() since only a single bit needs to be cleared (as noted
+>   by Subbaraya Sundeep)
+> - remove redundant phy_read_mmd() and error checking (as suggested by
+>   Nuno Sá)
+> - remove unnecessary C++ <cerrno> include that was causing build issues
 > 
 > [...]
 
-Applied, thanks!
+Here is the summary with links:
+  - [v3,1/2] dt-bindings: net: adi,adin: document LP Termination property
+    https://git.kernel.org/netdev/net-next/c/7376ba2db168
+  - [v3,2/2] net: phy: adin: enable configuration of the LP Termination Register
+    https://git.kernel.org/netdev/net-next/c/a6733836527d
 
-Not sure why b4 doesn't notice that I picked up the other 13 patches as well.
-
-[14/14] arm64: dts: qcom: Add EL2 overlay for Lemans
-        commit: d27267558fd25acb07d7ff28a7ff44eacf799eaf
-
-
-That said, overall, this adds another 10 DTB validation warnings, because the
-PMU and Bluetooth nodes are lacking supplies. I applied this, as it's
-"unrelated", but please have the team prioritize fixing this!
-
-Best regards,
+You are awesome, thank you!
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
