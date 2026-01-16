@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-256003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BEDED2F805
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:24:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C52B4D2F840
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:25:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 727BC308569B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:22:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 60CB230082CB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D41E35EDDD;
-	Fri, 16 Jan 2026 10:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5CA630BBBF;
+	Fri, 16 Jan 2026 10:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zfjv324m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hTpUqfoK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1877C32AACE;
-	Fri, 16 Jan 2026 10:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1CB92701BB;
+	Fri, 16 Jan 2026 10:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768558956; cv=none; b=nTptwZ/4C0GakjeL8Wo1YnZXg3cvXmlOpE9woEOPoM8WfVLaCCl4fDpkJAhklQZGpDs9KqgVLiWURMBb3WOJZUKCg2z2RU2q0USGqVtI8uipaZi82/n4Oo+/phZANeOh8KZmzIQm54JjEs02zcK1fzjF3Cw0kWIpisFvI+ZeyTo=
+	t=1768559132; cv=none; b=f/y6AZpxgOqz9YX3sycoHDLPFPWZKWBGx17+VhWnDFP5SDnLXYj0bglPxP9C3VpgAJfh4oxo+rtMc7q0JM/kTCevKFtboitbVFLq6o4xfhbkf8kb7S18dojN6kID7d/Tjf+RXzeB5sIHBxJ/r5a0Am85XG3vd1coepK5k54IbtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768558956; c=relaxed/simple;
-	bh=+vPhDvZ85VgbWMwlgSugQmEoSbYXcWf7ERHmdSGGnF0=;
+	s=arc-20240116; t=1768559132; c=relaxed/simple;
+	bh=qNRQSnylamTdom5/VYji4B2UsiJId3ypF33MMuCLRg4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aD1BP9Xc+Yzs4fD1YSYALRVVe1N4OI9ZjZ1wh+KNrUq6lLJ/UD7nShZmSqoj+2LKckWNskZs0JQf+8cWQAK+deKlKekKvSoU9GyI6ENzwmbmPG9wM8xdbhMgATCAGYHytfvFqEZVaLGLCyz3c8WEK69p5eE5yGQVrtNCMxju6hA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zfjv324m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D259C116C6;
-	Fri, 16 Jan 2026 10:22:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Br4an96sqpUJBWUekJ/VyEUvL/YP5nZaUdTOmK2Jvnfd1JgaN6aGw16m09PBdco0v3ouiI1tIiZKlRNfy2Q5r3Jb2RwZ7rMiiWGbWEjBgz0msnyKe5Pv/PCwdPAathNSm4SQ7ujauzW8qtamn2F3t8PU9Dl67iQwcA/Xm8kaDMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hTpUqfoK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ACE3C116C6;
+	Fri, 16 Jan 2026 10:25:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768558955;
-	bh=+vPhDvZ85VgbWMwlgSugQmEoSbYXcWf7ERHmdSGGnF0=;
+	s=k20201202; t=1768559132;
+	bh=qNRQSnylamTdom5/VYji4B2UsiJId3ypF33MMuCLRg4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zfjv324mfVRpFx/qkDfNfd4U1CNxl91porxDwVXAE/HDn7IiLb7IW7DgudolN81OV
-	 tqnb71/cGg0bXttx4iXg+y0VvGPUIgP4+tz/612moek3eeCnJdblP7EogpHD1SMvlf
-	 GL9AxLIOonhGnfD81BdE4Jy350pzcfN0wkLOsfADHAaH0o0SA1S2g1iqdx/szrUdgn
-	 RzdLc4yrYhvDdQ81Rg8FKdpAyqrnMkFKJSFz6puX5nsBDrdQZXKk5QUVZJALHx/YGU
-	 YamQ+dqHdciYMZpS8s07T5UuKZ1gXvZ5Dfp+4r5v0C5zc4wcjaxAOiPsFhn31GauVu
-	 LpAo6EV4i0Opg==
-Message-ID: <f5b8ab93-0d09-479f-9790-1072716a5de7@kernel.org>
-Date: Fri, 16 Jan 2026 11:22:30 +0100
+	b=hTpUqfoKHU3CS89JbhItgORUpHf/ubuaLF1w/CAhs8kk64liD2j+DKXP6t/bo6gT7
+	 klILxqsRa2BfjJbgaTvpstpXqJQ5dH7jKrgwfqjeYGvjl6qga3tAVXXGSQEjtPmXjB
+	 MkQK99xFXpXQc1RN8wvrg9/GUghC53MjOVGTVsO3CPwSCfR3b3Gg4SkdLVYZh0rgsI
+	 XqKj1SBrF+lh2orz0nfI8xVatnWw5ROm+nKwhHoPMTLJ3eq6egSuBtoGbVdH4MFlxL
+	 WnFV+Ehkw7b2Y1uYDTFs28NgffwTISAuuzUBlfGy+VwIgLmvmu1DVEx1ialH5LtWDA
+	 bMkBIMebSkhcA==
+Message-ID: <d895d42a-f027-4afd-bf62-2dde984e7f73@kernel.org>
+Date: Fri, 16 Jan 2026 11:25:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,20 +48,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] cpufreq: dt-platdev: Add ti,am62l3 to blocklist
-To: Dhruva Gole <d-gole@ti.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kendall Willis <k-willis@ti.com>,
- Sebin Francis <sebin.francis@ti.com>, Bryan Brattlof <bb@ti.com>,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20260116-am62l-cpufreq-v1-0-63d062317ae9@ti.com>
- <20260116-am62l-cpufreq-v1-1-63d062317ae9@ti.com>
- <d479060c-6b47-456c-abb6-9c5139bbd36d@kernel.org>
- <20260116100614.k2loytoywr4vqihu@lcpd911>
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: ti,am65x-dss: Add am62p dss
+ compatible
+To: Swamil Jain <s-jain1@ti.com>
+Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com,
+ simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, aradhya.bhatia@linux.dev,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devarsht@ti.com, praneeth@ti.com,
+ h-shenoy@ti.com, u-kumar1@ti.com
+References: <20260107174525.1702585-1-s-jain1@ti.com>
+ <20260107174525.1702585-2-s-jain1@ti.com>
+ <20260108-expert-whippet-of-downpour-ba277f@quoll>
+ <b8e3d087-271a-476d-986f-ad3f08231136@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,43 +107,144 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260116100614.k2loytoywr4vqihu@lcpd911>
+In-Reply-To: <b8e3d087-271a-476d-986f-ad3f08231136@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2026 11:06, Dhruva Gole wrote:
-> On Jan 16, 2026 at 10:16:08 +0100, Krzysztof Kozlowski wrote:
->> On 16/01/2026 10:01, Dhruva Gole wrote:
->>> Add AM62L3 SoC to the dt-platdev blocklist to ensure proper handling
->>> of CPUFreq functionality. The AM62L3 will use its native TI CPUFreq
->>> driver implementation instead of the generic dt-platdev driver.
->>>
->>> This follows the same pattern as other TI SoCs like AM62A7, AM62D2,
->>> and AM62P5 which have been previously added to this blocklist.
->>>
->>> Signed-off-by: Dhruva Gole <d-gole@ti.com>
->>> ---
->>>  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
->>> index 1708179b2610bca6035d10f0f4766eee6f73912e..29122bac2e22f6e7a8e8294cc01923c8a13d53c1 100644
->>> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
->>> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
->>> @@ -194,6 +194,7 @@ static const struct of_device_id blocklist[] __initconst = {
->>>  	{ .compatible = "ti,am62a7", },
->>>  	{ .compatible = "ti,am62d2", },
->>>  	{ .compatible = "ti,am62p5", },
->>> +	{ .compatible = "ti,am62l3", },
->>
->> p > l
+On 15/01/2026 17:54, Swamil Jain wrote:
+> Hi Krzysztof,
 > 
-> Fair point, I thought more from a "latest SOC" point of view but the
-> standard here is alphabetical, will re-spin.
+> On 1/8/26 14:21, Krzysztof Kozlowski wrote:
+>> On Wed, Jan 07, 2026 at 11:15:23PM +0530, Swamil Jain wrote:
+>>> TI's AM62P SoC contains two instances of the TI Keystone Display
+>>> SubSystem (DSS), each with two video ports and two video planes. These
+>>> instances support up to three independent video streams through OLDI,
+>>> DPI, and DSI interfaces.
+>>>
+>>> DSS0 (first instance) supports:
+>>>   - Two OLDI transmitters on video port 1, configurable in dual-link or
+>>>     single-link mode.
+>>>   - DPI output on video port 2.
+>>>
+>>> DSS1 (second instance) supports:
+>>>   - One OLDI transmitter on video port 1 (single-link mode only).
+>>>   - DSI controller output on video port 2.
+>>>
+>>> The two OLDI transmitters can be configured in clone mode to drive a
+>>> pair of identical OLDI single-link displays. DPI outputs from
+>>> DSS0 VP2, DSS1 VP1, and DSS1 VP2 are multiplexed, allowing only one
+>>> DPI output at a time.
+>>>
+>>> Add the compatible string "ti,am62p-dss" and update related
+>>> description accordingly.
+>>>
+>>> AM62P has different power domains for DSS and OLDI compared to other
+>>> Keystone SoCs. Therefore, add 'minItems' and set to 1 and 'maxItems'
+>>> field in the power-domains property to 3 for the "ti,am62p-dss"
+>>> compatible entry to reflect this hardware difference.
+>>
+>> Last sentence is redundant. You are again explain repeating the diff
+>> which is pointless, but did not explain WHY you think 2 power domains is
+>> correct.
+>>
+> 
+> Will explain properly in the commit message why 2 power domains are 
+> correct in v4.
+> 
+>>>
+>>> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+>>> ---
+>>>   .../bindings/display/ti/ti,am65x-dss.yaml     | 33 ++++++++++++++++++-
+>>>   1 file changed, 32 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>> index 38fcee91211e..e74e710934fc 100644
+>>> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>>> @@ -24,6 +24,19 @@ description: |
+>>>     DPI signals are also routed internally to DSI Tx controller present within the
+>>>     SoC. Due to clocking limitations only one of the interface i.e. either DSI or
+>>>     DPI can be used at once.
+>>> +  The AM62P has two instances of TI Keystone Display SubSystem, each with two
+>>> +  video ports and two video planes. These instances can support up to 3
+>>> +  independent video streams through OLDI, DPI, and DSI interfaces.
+>>> +  DSS0 (first instance) supports:
+>>> +    - Two OLDI TXes on video port 1, configurable in dual-link or
+>>> +      single link clone mode
+>>> +    - DPI output on video port 2
+>>> +  DSS1 (second instance) supports:
+>>> +    - One OLDI TX on video port 1 (single-link mode only)
+>>> +    - DSI controller output on video port 2
+>>> +  The two OLDI TXes can be configured in clone mode to drive a pair of
+>>> +  identical OLDI single-link displays. DPI outputs from DSS0 VP2, DSS1 VP1,
+>>> +  and DSS1 VP2 are muxed, allowing only one DPI output at a time.
+>>>   
+>>>   properties:
+>>>     compatible:
+>>> @@ -31,6 +44,7 @@ properties:
+>>>         - ti,am625-dss
+>>>         - ti,am62a7-dss
+>>>         - ti,am62l-dss
+>>> +      - ti,am62p-dss
+>>>         - ti,am65x-dss
+>>>   
+>>>     reg:
+>>> @@ -81,7 +95,8 @@ properties:
+>>>       maxItems: 1
+>>>   
+>>>     power-domains:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    maxItems: 3
+>>>       description: phandle to the associated power domain
+>>>   
+>>>     dma-coherent: true
+>>> @@ -196,6 +211,22 @@ allOf:
+>>>                 properties:
+>>>                   endpoint@1: false
+>>>   
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            const: ti,am62p-dss
+>>> +    then:
+>>> +      properties:
+>>> +        power-domains:
+>>> +          minItems: 1
+>>> +          maxItems: 3
+>>
+>> This is still not constrained enough. You need to define the items
+>> instead. I still do not understand why number of power domains is
+>> flexible.
+> 
+> Planning to add:
+> ```
+> power-domains:
+>    minItems: 1
+>    description:
+>      phandle to the associated power domain(s).
+>    items:
+>      - description: DSS controller power domain
+>      - description: OLDI0 power domain
+>      - description: OLDI1 power domain
+> ```
+> 
+> There can be up to 3 power-domains in a DSS instance on AM62P SoC.
+> Please check the Technical Reference Manual for AM62P SoC[0].
+> On page 542 it is mentioned LPSC_main_dss0 has a partial dependence
+> on LPSC_main_oldi0 and LPSC_main_oldi1, and, similarly for
+> LPSC_main_dss1 there is a partial dependence on LPSC_main_oldi1.
+> This mean if you are only enabling DSS0 Video port 1 for HDMI output
+> only you need not mention other power-domains and similarly for DSS1
+> if you need OLDI1 output you need to use DSS1 and OLDI1 power-domains.
+> So, we can use up to 3 power-domains depending on the use-case.
 
-This is not a TI-specific list, but all SoCs, so it is not sorted by
-latest SoC. Neither sunxi nor Samsung are sorted that (I believe same
-applies to others, but did not verify).
+Still wrong. The block is still part of three power domains. They are
+always there even if other connectors are disconnected.
+
+And if some other than HDMI things are disconnected, then the outputs
+remain off thus driver will turn off also the power domains.
 
 Best regards,
 Krzysztof
