@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-255910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A42EED2E064
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:29:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E895AD2E0B8
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:31:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6072D30A27C9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 08:28:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCC5E3040641
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 08:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9C730100D;
-	Fri, 16 Jan 2026 08:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 616CA2EC081;
+	Fri, 16 Jan 2026 08:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MXCcI5WM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XocVInbz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DE192FFF9C;
-	Fri, 16 Jan 2026 08:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0682BE02A;
+	Fri, 16 Jan 2026 08:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768552099; cv=none; b=L7Vj9oU/90cdbc5tbY8xQe3MVn613VcqhMH01fEgjo+jRZZwgx2zPzlVJxhEuwO/3uW8HgRgiJlG5gfDy5MKeF3uifRsLygMMT2fzEubOV4NXRXVLYWr2O9k9a8YIcrY9u6QLjgGPU4OsdL7nLdFai31yJY3gVAPzp9DJiSLZQg=
+	t=1768552190; cv=none; b=eB5ILb2CFd07jsrjyr4mSUmJwu2wqg+g7JLoPQufw4/iPLxOOfz4HzJdMh7TiMwGW6+LbcOPqT/orCQgNkGGVdlcFsLafQmkt3in1csCHZ4t4Gc4eR7aCNL7jrPC7ZTGOi81c8fsBK74MuUFn3gf90Ov2PhGYQeRS2i3bcLoikk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768552099; c=relaxed/simple;
-	bh=nYv5A7M2Uly0VFTiKqPRXMw+9d7IYZ3TOjRkq75m5F4=;
+	s=arc-20240116; t=1768552190; c=relaxed/simple;
+	bh=Al3kFcaB7akn7z3aiSKGU7xXbFyv/buj8pvUdwLKR+s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SPTLdG2qjMHggLHfutWw73/REFtuHIGhPYXM2gN9t+pscCesHhEH/nDevHc4qL6DeSQNt/7twBBbbdYU/sDvsK+kkwBpLkxr/FGikCkX+g5rHUOgVgfjgGy+fQ6QWb6g568BhJf+GZX3wV6+AUkR7R4h9NduyWjsMZQqCCIHmX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MXCcI5WM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26957C19421;
-	Fri, 16 Jan 2026 08:28:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HmizSYUh0viHdtIPSvFVrAgFajE8mYTOQy+BvZFJBsqtrxmZlA4P3Otwhs/Qn75kIFf1RIFUjyrl5Pi8f4BOL7aFEVemXZX/4hqqdjtiSHcTlQrzNSmZWngNTJCgWiepI7q/pCj/YOfnFm4I9NEws9jmj5oNzY8sXfBcNMTiLxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XocVInbz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52D25C116C6;
+	Fri, 16 Jan 2026 08:29:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768552098;
-	bh=nYv5A7M2Uly0VFTiKqPRXMw+9d7IYZ3TOjRkq75m5F4=;
+	s=k20201202; t=1768552189;
+	bh=Al3kFcaB7akn7z3aiSKGU7xXbFyv/buj8pvUdwLKR+s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MXCcI5WMomZGKd4w/V6CWonoZbqSfNmJOZh+3s4xc+/2T0zvEkdEQVpDcqHmlpwG3
-	 Wi8NwamaSQE5oKtUMdmHwGv2KYB5SQSRArCO0g3N173jrq0+F29JyI3K2CXqaWsGL4
-	 yf6cNkD46RQE+Kp70A05DFFSYBL6gBOGxYUIa/3CQBRgLcHFz7G88zowL0v3v+6uL+
-	 4bdWHRSjLw+Mm9cKhofaBlIm11TJeJGQWj1rFTsRJxfsYr7S9Rl++fAAhUHUwXYkXA
-	 O5si3HEs+rqQnWO9tTu2ltdtrNPpKC4ZXeqceQTcmIiIKKUDlK79rYJObyELCuv3RN
-	 qtHljKX16JWSg==
-Date: Fri, 16 Jan 2026 09:28:16 +0100
+	b=XocVInbz2p03kKy8b5KdS72+S5ZeKy8D4uqX+QmYwGCXzaPYdtAuUXMJ6YyAAQ8Af
+	 KHzm4hPwJ4CLJziirgcWWAaeuDrcWX5+xC5sfxd9EHMdViRJyx4vkFEb0rI5Vu96A/
+	 f9UG3I6ykQP8j7gdK+flEW1FW7m6kja7KJ194dXhwfkvya5xS0tCJbCp25tjhWyAe6
+	 D0qmijuRhU5aXLro+0jMY27rTI1zAFqf/V4fB92iDPWsqDG8t1i3Rflzl5PvDfrjc1
+	 riw8M2iO8MG6msZwe6vPUtTXnISp/SVLjqcXX5GqKH9FAaSKIVGgFTSFJOyIA6fADq
+	 wIy3cSpzZ72dQ==
+Date: Fri, 16 Jan 2026 09:29:47 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-i2c@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/5] dt-bindings: i2c: qcom-cci: Document sm6150
- compatible
-Message-ID: <20260116-malachite-spaniel-of-refinement-af22ae@quoll>
-References: <20260115-sm6150_evk-v3-0-81526dd15543@oss.qualcomm.com>
- <20260115-sm6150_evk-v3-2-81526dd15543@oss.qualcomm.com>
+	Srinivas Kandagatla <srini@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, David Lechner <dlechner@baylibre.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] dt-bindings: mux: gpio-mux: add adi,adg2404
+ support
+Message-ID: <20260116-invaluable-ambitious-piculet-dade13@quoll>
+References: <20260115121943.23715-1-antoniu.miclaus@analog.com>
+ <20260115121943.23715-4-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,61 +60,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260115-sm6150_evk-v3-2-81526dd15543@oss.qualcomm.com>
+In-Reply-To: <20260115121943.23715-4-antoniu.miclaus@analog.com>
 
-On Thu, Jan 15, 2026 at 06:12:38PM +0800, Wenmeng Liu wrote:
-> Add the sm6150 CCI device string compatible.
+On Thu, Jan 15, 2026 at 02:18:21PM +0200, Antoniu Miclaus wrote:
+> Add adi,adg2404 as a compatible string. The ADG2404 is a 4:1 analog
+> multiplexer that uses the enable-gpios feature.
 > 
-> SM6150 include three clock:
-> bus: Bus clock responsible for data transfer.
-> iface: Interface clock responsible for register read and write.
-> cci: Clock for CCI core operations.
-> 
-> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  .../devicetree/bindings/i2c/qcom,i2c-cci.yaml          | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> changes in v3:
+>  * integrate with gpio-mux bindings instead of separate adi,adg2404.yaml
+> ---
+>  .../devicetree/bindings/mux/gpio-mux.yaml     | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> index a3fe1eea6aece9685674feaa5ec53765c1ce23d8..3472670fdc908ef8f3b3afc68ff437c0435b69a7 100644
-> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> @@ -33,6 +33,7 @@ properties:
->                - qcom,sc8280xp-cci
->                - qcom,sdm670-cci
->                - qcom,sdm845-cci
-> +              - qcom,sm6150-cci
->                - qcom,sm6350-cci
->                - qcom,sm8250-cci
->                - qcom,sm8450-cci
-> @@ -263,6 +264,23 @@ allOf:
->              - const: cpas_ahb
->              - const: cci
+> diff --git a/Documentation/devicetree/bindings/mux/gpio-mux.yaml b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+> index 199792d42323..f5866b9f46dd 100644
+> --- a/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+> +++ b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+> @@ -19,7 +19,9 @@ description: |+
 >  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm6150-cci
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 3
-> +          maxItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: bus
-> +            - const: iface
-> +            - const: cci
+>  properties:
+>    compatible:
+> -    const: gpio-mux
+> +    enum:
+> +      - gpio-mux
+> +      - adi,adg2404
 
-So basically the same as camnoc_axi+cpas_ahb+cci, so just put it into
-existing enum with qcom,sm8550-cci.
+I do not understand why this was placed in gpio-mux. You have a strictly
+defined hardware, with known muxes, not a flexible semi-software
+binding.
 
-I asked for this at v1.
-https://lore.kernel.org/all/43efa6fd-53c3-4680-8aca-7b37089ca295@kernel.org/
+Otherwise please explain: why do you have both 0 and 1 cells?
 
+This is supposed to be in its own binding.
 
 Best regards,
 Krzysztof
