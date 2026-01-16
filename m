@@ -1,222 +1,142 @@
-Return-Path: <devicetree+bounces-256253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03762D38528
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:01:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1694D3852E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:01:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EF282303D904
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:01:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 520FC3012AA9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FB434DCE3;
-	Fri, 16 Jan 2026 19:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D3836165B;
+	Fri, 16 Jan 2026 19:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="PCBK9RuU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i8/IOx3X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A375F3A1D0B
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 19:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30B8348479;
+	Fri, 16 Jan 2026 19:01:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768590059; cv=none; b=CMchJYzRDwLCWAcOoNEi05NpO7X0C1+ATojZwvCiyTSv77xjqhz/dDdAclLToTejHwG3ZEkQDhXWyQcklM/xVnyofKPMyK6yPMB4l2nVaH8VibK77MsgSoIV52LDfhJUfVbHR6QwlM3qA/VSPwJISnjElKdrXxwQNoiOCl7fukg=
+	t=1768590073; cv=none; b=L0iS/2XJ90vYPF95WcSsfRFaNq79L+HRosCmkN2r/fXh+k58af/MCqsS8RpyH62eBUW6zK6EdgDun6X3P7hKWwh3nkkiUNB3XErdxNGXGlf2c35PocLfEzFOgixb9MqUDwQGGcq088mLXjoZ7EXf2o/BDUmK86d6AMjmSqiBAh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768590059; c=relaxed/simple;
-	bh=ec8BG3uPjmj6HNdtlHVwDLQzuBDjAVQYbhktAGpeyf4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V94Cmgl6cilYHA8ldp5mrRKkv92zJ+Ya9y7+tMBD7Gswuphs4Bb7VOLUET1+lUeuN2hRmjV2MtQu+oxY1FQdrcr3QAGaQli5EKWMiOgd7RV2RzNUO8vFmQOAcvZqdbHuaNuKI6vdNAASSSAfBWkf/ZdJL1BowZobDQZCNKLShaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=PCBK9RuU; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1768590049;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BLhI/uZb968JB+vZozYHlwFHB+Vejkcx6tDdzQrlE+M=;
-	b=PCBK9RuUeNRIxF53kOewgSsszaCtPOh7qqQnm23hapdKupTMjPPSuCS3IPj7ZRhQyue/Qu
-	BXOKlgIR/UCNBh/cqR/RiTxWzhcw7G+BRG7dDIXc252T8I+wkwqQijaT0lbryrQ3JXye+X
-	b03bKyR/NrWcLnAp0jsDhAHFyKAt2Ps=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-511-JBsZQsEJOCCxzO_vRyp7Dg-1; Fri,
- 16 Jan 2026 14:00:45 -0500
-X-MC-Unique: JBsZQsEJOCCxzO_vRyp7Dg-1
-X-Mimecast-MFC-AGG-ID: JBsZQsEJOCCxzO_vRyp7Dg_1768590042
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 8CA731800350;
-	Fri, 16 Jan 2026 19:00:41 +0000 (UTC)
-Received: from [10.44.34.71] (unknown [10.44.34.71])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 28F8B1800665;
-	Fri, 16 Jan 2026 19:00:33 +0000 (UTC)
-Message-ID: <a5dad0f9-001c-468f-99bc-e24c23bc9b36@redhat.com>
-Date: Fri, 16 Jan 2026 20:00:32 +0100
+	s=arc-20240116; t=1768590073; c=relaxed/simple;
+	bh=BGypM29OFRA9X1JSsv3JMYLxhZfLOCLx+WtXO1e3QAg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=i7iNOEf+lDU8H8jCbhIcvv8cMIehwIzPAAYtc91+hs13bSG3cjcmA+Dfu3FQRF1cYvHa5rl5uSbMxcFEqTeOVbUoq3dPZQQ4Tkddc0EdiMI0urmi4B29wdgT49e+R8o2aM0H8/iE6XUOUA4JB85rMzz7ReWPGxkx74SYQg/gdnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i8/IOx3X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E23DC19424;
+	Fri, 16 Jan 2026 19:01:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768590073;
+	bh=BGypM29OFRA9X1JSsv3JMYLxhZfLOCLx+WtXO1e3QAg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=i8/IOx3XYq6t5phSAHp53oPdi1invuCo7R7bNn4v5rcwQodjHCQX8is5O9BerJGTO
+	 rU7ZZWuIOyjzoc8yyBJsHkd1ZQYHlfSalRZDP69eMh0z+Iaa2iJDZjfSqMKT1Rg0Kd
+	 ETLY/n6Fc3D8dsMdx3YZZcZq3ACWKIgDlEs3qXpCXPDZbGfSw9ZiBuaSVYv+PZuY17
+	 Jfo71pduDfkIJ4dDsm0QbuKcQEZP1UIDOg/Z+AVoz6nNWr4QkkmTwx/UMmCVvbsvZ1
+	 1Q6Kyfa7jYtX2iPBJQof1Q4nJ8SK84eYpPvafP9no9xJtSZEkSqxAcfpij1nJXwIUi
+	 d6qKa2SQhkhwQ==
+Date: Fri, 16 Jan 2026 19:01:02 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: rodrigo.alencar@analog.com, Andi Shyti <andi.shyti@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, David Lechner
+ <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v4 2/7] units: Add HZ_PER_GHZ definition
+Message-ID: <20260116190102.50908d50@jic23-huawei>
+In-Reply-To: <aWpYwJUp7Wl0s_Qe@smile.fi.intel.com>
+References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
+	<20260116-adf41513-iio-driver-v4-2-dbb7d6782217@analog.com>
+	<aWpYwJUp7Wl0s_Qe@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 01/12] dt-bindings: dpll: add common
- dpll-pin-consumer schema
-To: Rob Herring <robh@kernel.org>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Alexander Lobakin <aleksander.lobakin@intel.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>,
- Grzegorz Nitka <grzegorz.nitka@intel.com>
-References: <20260108182318.20935-1-ivecera@redhat.com>
- <20260108182318.20935-2-ivecera@redhat.com>
- <92bfc390-d706-4988-b98d-841a50f10834@redhat.com>
- <CAL_Jsq+m7-wop-AU-7R-=2JsUqb+2LsVTXCbZw==1XuAAQ4Tkg@mail.gmail.com>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <CAL_Jsq+m7-wop-AU-7R-=2JsUqb+2LsVTXCbZw==1XuAAQ4Tkg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 1/16/26 4:23 PM, Rob Herring wrote:
-> On Thu, Jan 15, 2026 at 6:02 AM Ivan Vecera <ivecera@redhat.com> wrote:
->>
->> On 1/8/26 7:23 PM, Ivan Vecera wrote:
->>> Introduce a common schema for DPLL pin consumers. Devices such as Ethernet
->>> controllers and PHYs may require connections to DPLL pins for Synchronous
->>> Ethernet (SyncE) or other frequency synchronization tasks.
->>>
->>> Defining these properties in a shared schema ensures consistency across
->>> different device types that consume DPLL resources.
->>>
->>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
->>> ---
->>>    .../bindings/dpll/dpll-pin-consumer.yaml      | 30 +++++++++++++++++++
->>>    MAINTAINERS                                   |  1 +
->>>    2 files changed, 31 insertions(+)
->>>    create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
->>> new file mode 100644
->>> index 0000000000000..60c184c18318a
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
->>> @@ -0,0 +1,30 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/dpll/dpll-pin-consumer.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: DPLL Pin Consumer
->>> +
->>> +maintainers:
->>> +  - Ivan Vecera <ivecera@redhat.com>
->>> +
->>> +description: |
->>> +  Common properties for devices that require connection to DPLL (Digital Phase
->>> +  Locked Loop) pins for frequency synchronization (e.g. SyncE).
->>> +
->>> +properties:
->>> +  dpll-pins:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    description:
->>> +      List of phandles to the DPLL pin nodes connected to this device.
->>> +
->>> +  dpll-pin-names:
->>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>> +    description:
->>> +      Names for the DPLL pins defined in 'dpll-pins', in the same order.
->>> +
->>> +dependencies:
->>> +  dpll-pin-names: [ dpll-pins ]
->>> +
->>> +additionalProperties: true
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 765ad2daa2183..f6f58dfb20931 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -7648,6 +7648,7 @@ M:      Jiri Pirko <jiri@resnulli.us>
->>>    L:  netdev@vger.kernel.org
->>>    S:  Supported
->>>    F:  Documentation/devicetree/bindings/dpll/dpll-device.yaml
->>> +F:   Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
->>>    F:  Documentation/devicetree/bindings/dpll/dpll-pin.yaml
->>>    F:  Documentation/driver-api/dpll.rst
->>>    F:  drivers/dpll/
->>
->> Based on private discussion with Andrew Lunn (thanks a lot), this is
->> wrong approach. Referencing directly dpll-pin nodes and using their
->> phandles in consumers is at least unusual.
->>
->> The right approach should be referencing dpll-device and use cells
->> to specify the dpll pin that is used.
-> 
-> You only need a cells property if you expect the number of cells to
-> vary by provider.
-> 
-> However, the DPLL device just appears to be a clock provider and
-> consumer, so why not just use the clock binding here? Also, there is
-> no rule that using foo binding means you have to use foo subsystem in
-> the kernel.
+On Fri, 16 Jan 2026 17:26:56 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-Hmm, do you mean something like this example?
+> +Cc: Andi
+>=20
+> On Fri, Jan 16, 2026 at 02:32:21PM +0000, Rodrigo Alencar via B4 Relay wr=
+ote:
+> >=20
+> > New PLL IIO driver supports output frequency of several GHz.
+> > The new define helps to constraint DT properties and frequency
+> > calculation parameters. =20
+>=20
+> There is already pending patch to add this in I=C2=B2C host controller su=
+bsystem.
+> On one hand the conflict, if any, is easy to resolve (the other patch adds
+> a couple of comments). On the other we are at almost rc6 and it seems DT =
+people
+> are not happy about something, which would mean that the series most like=
+ly
+> will miss next merge window.
 
-&dpll0 {
-     ...
-     #clock-cells = <2>; /* 1st pin index, 2nd pin type (input/output) */
+Linus is planning an rc8 so this 'might' merge this cycle.
 
-     input-pins {
-         pin@2 {
-             reg = <2>;
-             ...
-         };
-         pin@4 {
-             reg = <4>;
-             ...
-         };
-     };
-     output-pins {
-         pin@3 {
-             reg = <3>;
-         };
-     };
-};
-&phy0 {
-     ...
-     clock-names = "rclk0", "rclk1", "synce_ref";
-     clocks = <&dpll0 2 DPLL_INPUT>,
-              <&dpll0 4 DPLL_INPUT>,
-              <&dpll0 3 DPLL_OUTPUT>;
-     ...
-};
+https://lore.kernel.org/all/CAHk-=3Dwib+MG0grZgub=3DSkCpPnNXPFE1nHsDpFQz1sB=
+wOsrV_VQ@mail.gmail.com/
 
-And in this case the helpers in the patch 3 would use 'clock-names' &
-'clocks' properties?
+>=20
+> So, the solutions are:
+> - do nothing and resolve conflicts, if any
+> - define this constant locally in the respective IIO driver and drop it a=
+fter merge
 
-If so... Excuse, I submitted v2 of this patch-set prior to seeing your
-email. Please be assured I did not intend to ignore your feedback.
+Do that and shout about it in the patch description.  If I merge this next
+cycle I can clean up.
 
-Thanks,
-Ivan
+> - postpone this series to the next cycle (effectively drop this patch)
+> - ask Andi to provide an immutable branch / tag with I=C2=B2C host patches
+> - ask Andi to provide the only that patch in immutable tag / branch, but =
+it
+>   will require him to rebase his tree
+>=20
+> I'm skeptical about last two options on the grounds on how the IIO works =
+and
+> possible rebase requirement (which is not good to have).
+
+Not worth it for a single define.  I do have a request out for an i3c fix
+that effectively the same request, but that's for breakage that otherwise
+requires ifdef magic to work around (which I'll still do if no progress
+in a few days).=20
+
+Thanks for highlighting this Andy. Whilst I saw the i2c series, I've
+slept since then so might well have forgotten that!
+
+Jonathan
+
+
+>=20
+> I leave it to you and the respective maintainers to make a final decision.
+>=20
+> > diff --git a/include/linux/units.h b/include/linux/units.h
+> > index 00e15de33eca..06870e9e90b8 100644
+> > --- a/include/linux/units.h
+> > +++ b/include/linux/units.h
+> > @@ -27,6 +27,7 @@
+> > =20
+> >  #define HZ_PER_KHZ		1000UL
+> >  #define HZ_PER_MHZ		1000000UL
+> > +#define HZ_PER_GHZ		1000000000UL
+> > =20
+> >  #define KHZ_PER_MHZ		1000UL
+> >  #define KHZ_PER_GHZ		1000000UL =20
+>=20
 
 
