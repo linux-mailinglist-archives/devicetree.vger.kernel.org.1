@@ -1,180 +1,129 @@
-Return-Path: <devicetree+bounces-256136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C4CD32F8D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:58:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D2FD32FF7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:01:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2610C314C058
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:44:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4EB6D3091BEE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B4039900D;
-	Fri, 16 Jan 2026 14:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B923933E3;
+	Fri, 16 Jan 2026 14:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZK8eH7fb"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="w2JZmbVG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785DD283C82;
-	Fri, 16 Jan 2026 14:43:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A99762BDC13
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 14:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768574594; cv=none; b=o9AAJcv9AcVtYFRV+DUq9C9aVxhf2SP/gPXC+0V+ydbioW5lCOU7SRKa6jASrlmmRR2MnLnk2AsHngc7Xib8HJv0nlxALNEbmNa2yzuJoi50lhO0KAPd0boOuP0JvA4C6IVTEXv8FPEYzTnO/5eVBzoYQY2HDQzCE+FuIhvsrQA=
+	t=1768575053; cv=none; b=tQIdxjEFRVySIABu3vJrL9Oa7hdF/5GbbAqbzOEe127Y1NSmaX5Os+q7MiClu7D+mkEhce3ftA3DQ70pQy64HrBD6PK600xFGAFSPamly2IL4CR/rtorlCGvnUywTVi+0p9c1d//EpXb28nnW507U80lwkCgQRQD0t4PAlr94yA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768574594; c=relaxed/simple;
-	bh=VeHWIHkcQ9AFfItzbMmyl8YOQqITLehdpmsz1R9lqlE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WWWtgixHCsmwB/ronJhw+Ve8W34WvkXY8Tz5j4BvAf25DWJtzJSURvMTCZuKcQhROYRJlG7TYXQk0jhViEtUHCNiRy3ve/MpOu9mIB48nehM6g4PcmVASNmtEA2GKF9tRHq1ZD3Vm0Sz8RVOKDMZUxvfVWIZ26YaxFMr0KdbuI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZK8eH7fb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073C6C116C6;
-	Fri, 16 Jan 2026 14:43:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768574594;
-	bh=VeHWIHkcQ9AFfItzbMmyl8YOQqITLehdpmsz1R9lqlE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZK8eH7fbVAJuu0G1Uo5qVMd3dtfbdYEGhZ6/BokuiAV/wPZ9vdI5GE1eIy+P1AMQV
-	 TiGmHkll7ns/mv3/iMCJcUJBHkkOtD9wHC5Zzi+wvSskxpz39/DrvPo4sw35IkicJm
-	 1n/q2Lmx8F5arkGNSAjC2UPdzq4t3Nn/7/EgGRwdS4YML52Sim0snfzJ9k3mhknutM
-	 s9c0stY2Nu9tI6uqIshvgbH7zus7jYGZqvv4b2g+l38vn8yR4Ee2HlnkZX5JkLLOuU
-	 2fyyOFYN/w5/E4247VfpoHnnbmiEjOiIAjvxehJu+m5vRJgPNqKem9bNykLInrPE0N
-	 xNcfmyFHAJ35w==
-Date: Fri, 16 Jan 2026 20:12:57 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
-	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v4 5/9] dt-bindings: connector: Add PCIe M.2 Mechanical
- Key E connector
-Message-ID: <ysfkemsf4w7r3eoahfpjdr3z3buec5kvw4qol2njhxrz5tsdpo@4scz632uaj5i>
-References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
- <20260112-pci-m2-e-v4-5-eff84d2c6d26@oss.qualcomm.com>
- <20260113171424.GA3925312-robh@kernel.org>
- <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
- <CAL_JsqJxBNm0y6T7vji6MXgsO65iDJ-tdUEo0cOxkw7EuMKpkg@mail.gmail.com>
- <gcmm23ji4fkcqeshcyiehuyega7kdbtvmofp4usmol2icwn6gy@i46icelwwqh5>
- <CAL_JsqKKBjurY7ZrScayvkTijR-F6GWBofry48xoPFBFi55u4w@mail.gmail.com>
+	s=arc-20240116; t=1768575053; c=relaxed/simple;
+	bh=j19KBQWDe/Rz5gK6EWY1R/yqcx2IUC6jLDUJGShA1/I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aKIJPApzkuVQUQpsI+Q1vqs2EFaB2ltoapx+ARPgackCfV5J9IWWlDth0JXQuOFoycxS7DUgNXAPyFPq1a5Dl9GWshpEwmjU/xG9pgjxGCqAVn+w6uJAzar4yID8bBssZ/s8IbYQ/ZpbvwYsOK+Jg4jfm2OX6ooen8oo+1HFWeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=w2JZmbVG; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b86f69bbe60so313848966b.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 06:50:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1768575050; x=1769179850; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=feX7GdONyC17SNSxDLiUHEZ1aiMyDYeRnXfn0/KIoIs=;
+        b=w2JZmbVG6ZbCo8A3VLlu6J+8qAOS/tLBsOTRsutkZ9hykPSRWDOHvcTGw6JV0CyglS
+         1ugZsc1jjV3F3dnavDoBX7f2l40GsTfLslTvWLokNjNADgmkloEzeYJI7hcqjAu/fOGp
+         yiRPi/mZ43byAPefUAWO5fC4MQ06SiWPY7KpEzakco0izeQkutTaWFzEzlwO5pXufg+m
+         s8pLvM1pUPg9qaAR7vF7LqUTrCyPcPy7vuMBSlyghVQxitTjSJ5B3FyeKg26D9m+7q46
+         VEPc7Mej3HjjCC9TGMwVbiJ0ztU60h8xHrJyQjPoDZTRi4i3X6e7f7sz3UwxFrgkoByQ
+         sJcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768575050; x=1769179850;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=feX7GdONyC17SNSxDLiUHEZ1aiMyDYeRnXfn0/KIoIs=;
+        b=nOcndU+IQR+r0uBOlgFfI5AWec6QD4BFcJL6Zi6CX4vWLkAZG9b62oFBo2uIpSTakY
+         qNl904CQBPBDotW3+UWPTa8RLP6n7OMm8DHB/VCJ+KLv1GpMkOv/88xnjQLSAKz9dQzt
+         t6F6rFC/Bzed4o1eKRteSVJQETFa4zwxlnxkuiWdsr76FJbj1fw7WbfctaqL/6qV9Ew9
+         Kj/0/vrBXYfgiMc0UaQPyrk4dq+jz/6JxHtkzmFDfvIoXp0zYQhr0/h4RrPBGfHaQseu
+         jm/el1lV+u7RJRyt5N9RqtC+P5F/ttrFh5Hk6W2keRWusjKz+ADkhxSifTO2Xuv1fbkt
+         hFXA==
+X-Forwarded-Encrypted: i=1; AJvYcCXR2LGUO671+rTII6ItGgSTnxpTfKxG73S15MFZMa4A+cyQL1ZFTTv7SGgmsTizhIeeJ3/48Z45Fk3q@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHZNvdAWSnttK2+OEL+ITiDvFLuX91AbQgCQjrOAy6ErLSjUBn
+	jHuS84dx+dDniAqDx0SV/2MH4kN2mVlb/pnwcQ56m1V5ZecgbQ3mrkLWj1m04I4lOLQ=
+X-Gm-Gg: AY/fxX6J65aOKaqP+FGfcNykBEXyM2fxBvbzngbgX6+Szjs0q0gag+gMS1jPRsmEZjs
+	zC/Y54jly1seDlJEDsUy14yuNRj3rT3ZeAj5gJb0rP5oUDR4aL8I1wct8Mf5loF1XgLNaKI8w9A
+	UfZX/IGpvV1Mv1vumBgL05Dtykrf1ZqRIaYi37rwgTol4mXV/WTawzEf2I+mL6VRWbjAK18VPs4
+	MLpdLWDlA8/6fTrVnCRu+3HQ9up4+uchOFWFCCd9VqXA3khMRj/gX3lfwH8/VBSs7+lRgG8Inun
+	FDxvteWFyGd1EBOSetDtCgR3hwqsWWwgUty3cq1Et+v3eu7d6uexZZTLmFoSqKC+iD4j7wEBm81
+	sutsGSKjtJou20WiuSiX+NHl6wazzodWu/5GUXffQMQA+ip6O8VzVW8Gq/Z4s8HU0BAY0uFGJiT
+	i0Fq/Tz6CFXb4NYNW1z8RmGcTSTw1JZSUfWlFpT1uafFOB0BnSMwsApkq/7VoUQe0KV/1iYltzw
+	rE=
+X-Received: by 2002:a17:907:a01:b0:b86:ff83:9e98 with SMTP id a640c23a62f3a-b8796945c59mr235945466b.28.1768575049974;
+        Fri, 16 Jan 2026 06:50:49 -0800 (PST)
+Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65452cdab55sm2699427a12.10.2026.01.16.06.50.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 06:50:49 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/5] Enable Bluetooth and WiFi on Fairphone (Gen. 6)
+Date: Fri, 16 Jan 2026 15:50:46 +0100
+Message-Id: <20260116-milos-fp6-bt-wifi-v1-0-27b4fbb77e9c@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqKKBjurY7ZrScayvkTijR-F6GWBofry48xoPFBFi55u4w@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXM0QoCIRCF4VeRuW5AhdzYV4m9UBtrIHVTq4Vl3
+ z3Jy//A+XaoVJgqzGKHQh+unFMPdRLgHzbdCfnWG7TURiplMPIzVwyrQdfwy4FR62Dt5NSZLh7
+ 6by0UePub12V0ode7022M4Gwl9DlGbrNItDUcvJxgOY4fJlT6rZQAAAA=
+X-Change-ID: 20260116-milos-fp6-bt-wifi-22faa7b15e8c
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alexander Koskovich <AKoskovich@pm.me>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768575048; l=902;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=j19KBQWDe/Rz5gK6EWY1R/yqcx2IUC6jLDUJGShA1/I=;
+ b=AaVq59tmNLE1rKJlRmbsER++FqM7Y6AAPQgnHYFl1DVIC3/IMl2TgqHdcIDHspoyDIDl3oNwY
+ ATgvA2UOkwnBzhuODE17gjMxFY+W7ZD6UxV3MaEc4mglUN0mRTiNtuA
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-On Fri, Jan 16, 2026 at 08:19:07AM -0600, Rob Herring wrote:
-> On Thu, Jan 15, 2026 at 4:42 AM Manivannan Sadhasivam <mani@kernel.org> wrote:
-> >
-> > On Wed, Jan 14, 2026 at 11:45:42AM -0600, Rob Herring wrote:
-> > > On Wed, Jan 14, 2026 at 10:14 AM Manivannan Sadhasivam <mani@kernel.org> wrote:
-> > > >
-> > > > On Tue, Jan 13, 2026 at 11:14:24AM -0600, Rob Herring wrote:
-> > > > > On Mon, Jan 12, 2026 at 09:56:04PM +0530, Manivannan Sadhasivam wrote:
-> > > > > > Add the devicetree binding for PCIe M.2 Mechanical Key E connector defined
-> > > > > > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This connector
-> > > > > > provides interfaces like PCIe or SDIO to attach the WiFi devices to the
-> > > > > > host machine, USB or UART+PCM interfaces to attach the Bluetooth (BT)
-> > > > > > devices. Spec also provides an optional interface to connect the UIM card,
-> > > > > > but that is not covered in this binding.
-> > > > > >
-> > > > > > The connector provides a primary power supply of 3.3v, along with an
-> > > > > > optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
-> > > > > > 1.8v sideband signaling.
-> > > > > >
-> > > > > > The connector also supplies optional signals in the form of GPIOs for fine
-> > > > > > grained power management.
-> > > > > >
-> > > > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > > > > > ---
-> > > > > >  .../bindings/connector/pcie-m2-e-connector.yaml    | 154 +++++++++++++++++++++
-> > > > > >  MAINTAINERS                                        |   1 +
-> > > > > >  2 files changed, 155 insertions(+)
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..b65b39ddfd19
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-connector.yaml
-> > > > > > @@ -0,0 +1,154 @@
-> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > +%YAML 1.2
-> > > > > > +---
-> > > > > > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-connector.yaml#
-> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > +
-> > > > > > +title: PCIe M.2 Mechanical Key E Connector
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > > > > > +
-> > > > > > +description:
-> > > > > > +  A PCIe M.2 E connector node represents a physical PCIe M.2 Mechanical Key E
-> > > > > > +  connector. Mechanical Key E connectors are used to connect Wireless
-> > > > > > +  Connectivity devices including combinations of Wi-Fi, BT, NFC to the host
-> > > > > > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and I2C.
-> > > > > > +
-> > > > > > +properties:
-> > > > > > +  compatible:
-> > > > > > +    const: pcie-m2-e-connector
-> > > > > > +
-> > > > > > +  vpcie3v3-supply:
-> > > > > > +    description: A phandle to the regulator for 3.3v supply.
-> > > > > > +
-> > > > > > +  vpcie1v8-supply:
-> > > > > > +    description: A phandle to the regulator for VIO 1.8v supply.
-> > > > >
-> > > > > I don't see any 1.8V supply on the connector. There are 1.8V IOs and you
-> > > > > may need something in DT to ensure those are powered. However, there's
-> > > > > no guarantee that it's a single supply.
-> > > > >
-> > > >
-> > > > 1.8v VIO supply is an optional supply and is only required if the platform
-> > > > supports 1.8v for sideband signals such as PERST#, WAKE#... I can include it in
-> > > > the example for completeness.
-> > >
-> > > My point is that PERST# and WAKE# supplies could be 2 different 1.8V
-> > > supplies and those supply the I/O pads of the GPIO pins (and possibly
-> > > external pull-ups) that drive them. The 1.8V supply doesn't supply
-> > > 1.8V to the slot, so making it a slot/connector property is wrong.
-> > >
-> >
-> > Ok, I get your point that VIO 1.8v supply is just limited to the I/O logic and
-> > not the whole card/adapter. But I don't get your multiple supplies concern. Spec
-> > says, "A 1.8 V supply pin called VIO 1.8 V is used to supply the on-Adapter I/O
-> > buffer circuitry operating at 1.8 V." So it implies that either the single
-> > supply available to the card through VIO might be used to power the whole I/O
-> > circuit logic or the card can derive its own 1.8v supply from 3.3v supply.
-> >
-> > So how come the card can have 2 different 1.8v supplies powering the I/O
-> > circuitry?
-> 
-> Is there a pin on the connector for 1.8V supply? I don't have the
-> spec, but the pinout I found[1] didn't show one. If there's a pin,
-> then I have no concern.
-> 
+Add the required bits to enable Bluetooth and WiFi on the Milos
+SoC-based Fairphone (Gen. 6) smartphone.
 
-Oh yes, there is a single VIO pin defined in the spec for multiple Keys. Since
-it is optional, it could've been omitted in the design you referenced.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (5):
+      soc: qcom: pd-mapper: Add Milos compatible
+      arm64: dts: qcom: milos: Split up uart11 pinctrl
+      arm64: dts: qcom: milos: Add WCN6750 WiFi node
+      arm64: dts: qcom: milos-fairphone-fp6: Enable Bluetooth
+      arm64: dts: qcom: milos-fairphone-fp6: Enable WiFi
 
-So should I name it as vio1v8-supply or vpcie1v8-supply? I don't see any other
-1.8v supplies other than the VIO supply though.
+ arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 191 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/milos.dtsi              |  72 +++++++--
+ drivers/soc/qcom/qcom_pd_mapper.c                |   1 +
+ 3 files changed, 253 insertions(+), 11 deletions(-)
+---
+base-commit: ef1c7b875741bef0ff37ae8ab8a9aaf407dc141c
+change-id: 20260116-milos-fp6-bt-wifi-22faa7b15e8c
 
-- Mani
-
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Luca Weiss <luca.weiss@fairphone.com>
+
 
