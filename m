@@ -1,157 +1,214 @@
-Return-Path: <devicetree+bounces-255947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D342AD2E89A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:11:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53CAAD2E8EA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:12:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D4603302E3F6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:10:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6355E309E466
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD9931D730;
-	Fri, 16 Jan 2026 09:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3148331D74B;
+	Fri, 16 Jan 2026 09:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VKmdBb+x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pi8JlhvX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CFD31B824;
-	Fri, 16 Jan 2026 09:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 236A431BC84
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768554658; cv=none; b=LbK4QlEGUZKPiYw/pXJz83AtX7yj0fyhwFoYEb4gSHLtvQ5VB3vJdiL9dsH+R425i8x4ji1V57G0Qm3Q/0sf8GNjauXp2ZNU9ypt+tDLFBaSq28NuoiSl86Y7Q2HXUbhPijrTBYnbNvEvv1KB9bJuxaFUDZdOju+XDfRNf+9En8=
+	t=1768554736; cv=none; b=CnrMuIokZxJMX8IhKaj5LdT2Wnp/UICyQ3f5ct+w5I/m9r75JaqAO/yGf98Bf21PKOdZl6Al7rzpL8lQAUi95mnHnpKp5gcj0/YyCfpJAEDcmhPT5iALj1KGA+wtYeW6Z8q2DM77x1GAfWalzC31g0mxEdMH84QQw/fMqUPsmMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768554658; c=relaxed/simple;
-	bh=stl7/CP6JCG8jmbUK6mwEvwFy7pTD9LimJyd3DE5WK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YhJ3TpzsOxsDufpPU6HK7c1ry8g1FnwJdNbU54JVy0oYTnB7E4Xmc8d/raXe2IXdSajIQobFmGp5eNEMqUBshI1T0TKedZP1Wrocn97SwDlfUlkSwYplUlOK4xqbrq+lx6itSYBcCAV8gkluCC74qR/IaMH86JRX1a3Xr5jH57A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VKmdBb+x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A132AC116C6;
-	Fri, 16 Jan 2026 09:10:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768554658;
-	bh=stl7/CP6JCG8jmbUK6mwEvwFy7pTD9LimJyd3DE5WK4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VKmdBb+xW2DBTd1gCyEX7u7xUcH5iyamHBGpxfFcrRWccPBBsfy034lA7Flp4bBOb
-	 wDSVYwcAyyFxuFPj45/yQNZst5ASyYLQL+SKXvt1NWn0LV/GROec4Fj/t6tEZnJFBK
-	 0CEfZJJmYCavgDaQ/bNZGXNKsL6u4oW80rq6XXHLfJcZwgvT2m2zDg93RG65h5p/1L
-	 ELBSm1zkXf0C9opNnVV28BrPrIALB9WVR6YsJ0eXBLBCf88euyRXFa1l70tvbr6d9i
-	 pNPwqjTI67n5FIO36k3dlW9AfvHIC6u4JIMnvgMKJ3EZFPSxCadIJdw+6svPBKjE0v
-	 KNPEeQ1DNHaKQ==
-Date: Fri, 16 Jan 2026 10:10:55 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
- EN7581-7996 support
-Message-ID: <aWoAnwF4JhMshN1H@lore-desk>
-References: <69676b6c.050a0220.5afb9.88e4@mx.google.com>
- <e2d2c011-e041-4cf7-9ff5-7d042cd9005f@kernel.org>
- <69677256.5d0a0220.2dc5a5.fad0@mx.google.com>
- <76bbffa8-e830-4d02-a676-b494616568a2@lunn.ch>
- <6967c46a.5d0a0220.1ba90b.393c@mx.google.com>
- <9340a82a-bae8-4ef6-9484-3d2842cf34aa@lunn.ch>
- <aWfdY53PQPcqTpYv@lore-desk>
- <e8b48d9e-f5ba-400b-8e4a-66ea7608c9ae@lunn.ch>
- <aWgaHqXylN2eyS5R@lore-desk>
- <13947d52-b50d-425e-b06d-772242c75153@lunn.ch>
+	s=arc-20240116; t=1768554736; c=relaxed/simple;
+	bh=/HeROcY+wue/RnfDCzGh5TkygmGivHiZHG7v8KNDXNQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WpI3ItRp/IJ3zvV/Wst9k2Q4s1WYKzFRzyTED37KZczu0a9qtF9RTcB2gkrwb80elcBhQKMRsZiQtScXJLHy0scw6APbArqA619UgEjYXD1fPdRqOG49+ooeHx7tncoA6MmeI89Jn5qMBCJ8N10ZY0httTweqU31F2MatgVaOrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pi8JlhvX; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-382fb1e257bso2512951fa.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 01:12:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768554729; x=1769159529; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pqAbJs5DEIYF5QCBGJfgcurtZvGAMM7ELYVo8ENiu9M=;
+        b=pi8JlhvXn++3rJEQ8Wv+3wopz/ouDG0V6LlCBdNEckYz7gLn9hS4zOS8yFN4JVTuj6
+         eUgVu2KVJlxZnSzR1uD6lqWeK/wEaVuWDmndR/TxKCBm3gBH8soWuXOFCsxpVKgYkChl
+         C87Vmhym4AvFaMuTl4VvwU5NZdS2rqiEFvMLu9QLy/Hd7lSLu+k+DifphE13QGO4pXMT
+         hT2wgq7+snBL3wFBYhoYhLF5Gd9x3v+/aSKD7VtkDI+uCMG/Ovi36zSTCmvrEQZFslzN
+         nOIqU6sxfdpeFhC/OFi15iANK6tfQir0yJkV8T8oevHvKGLwTZOASigK+1rtO1j/o5pn
+         skww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768554729; x=1769159529;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pqAbJs5DEIYF5QCBGJfgcurtZvGAMM7ELYVo8ENiu9M=;
+        b=VgIW+ShkTI1J2A9DS8y8jgFkdkWg318OMh+EC2EZ+bGwXO9X/Ck2KZPLLuileP5Twv
+         kG/s4T0iDXlsfh8FcvrJ1XdeZ3TTzu2wVAw0yFnagpdrase9w2yS6cX3FFD+hoCsf2AG
+         Tg3/MOwRmq/u7lJKhm3QXT8ttAXNnwfE/FRFHHG3ak+ueISUGBU8A/KDn9jC/iASe9FM
+         wuMORe0+GwYRH4mPAX1okaHGsFfOrVhZaikowVCu6QYKFm5CqIulE+BZzFbX2f2aw7q7
+         6FJygTlXQ6DYwEwKeZGplio0lAG4jj8rw1zV1Uz/gOV6/DlgBDTZ5CGZhlmGodx+vzXK
+         urJA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6Rz6Ntq2nDvXfx60wIGh/QA7YdgLyOeZ16po2L30ogG948KImPK/7xhZs2lgkp3CDKkycsgh/1WPk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSv41hcEBG1e2qvByRA8heRpQoYaMX5LjCnzZ573fNfTET7eME
+	bkEKWMegsy96IxRFAtY3NdQLtCz2lx5BpoOPabrP0f+kapuSORayHNqBAFNoVdh7y/M=
+X-Gm-Gg: AY/fxX7Bg7sWL4qmAYuSCtMgUJpd3U9HqV0h/V4XljGp8M/uSBk0ekw7ipVRbVfhaNc
+	w6fDcC9YVVw0a11V81mN0jlg7CQY4RGlUpl0acQQbnIsW1CCnLh92ld40N1oJELyhT8qQj6E6WI
+	t6QbcAy8V2hQx/tWjBh1CrENduyVKPTVWxkTYiGeXd9WLVScFIrJY80fIZwttXfxMovGWbpSAxI
+	iypWLueNyQacCc9otj5LcU4tR5SkzKT5FUQrsARLTqrw/isbIV7S/Qw1gPzaYT0h3ztFl2CxrFI
+	d7LgzxOwT88scBJbI9SAcJAF3blhZrB4c6a6a3IlqrdxvzNbRMQvorr3l12IqfOuk91A1OCVB0c
+	9neQr0dSK+cUhifHWoJazYeb5Oj2J8evfBmp2/TdUaN3pm08flVy3cNfhz/dIXpSJPFuCPOpr7W
+	6TK3HWAPSB/BuoWwdi6bbOA7jJ2svSSDFt+omf+R0A2uyLqp/snSmO3IShTYTGXDvg7A==
+X-Received: by 2002:a05:651c:991:b0:380:a1c:7039 with SMTP id 38308e7fff4ca-38383fe5fbemr4683611fa.0.1768554729185;
+        Fri, 16 Jan 2026 01:12:09 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38384d8e0e5sm5608701fa.17.2026.01.16.01.12.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jan 2026 01:12:08 -0800 (PST)
+Message-ID: <3b16ffa2-1580-426c-aa9c-f377d913d49c@linaro.org>
+Date: Fri, 16 Jan 2026 11:12:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GrcIY/mecD2UcAwp"
-Content-Disposition: inline
-In-Reply-To: <13947d52-b50d-425e-b06d-772242c75153@lunn.ch>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: talos-evk-camera: Add DT overlay
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20260115-sm6150_evk-v3-0-81526dd15543@oss.qualcomm.com>
+ <20260115-sm6150_evk-v3-5-81526dd15543@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20260115-sm6150_evk-v3-5-81526dd15543@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 1/15/26 12:12, Wenmeng Liu wrote:
+> Enable IMX577 via CCI on Taloss EVK Core Kit.
+> 
+> The Talos EVK board does not include a camera sensor
+> by default, this DTSO has enabled the Arducam 12.3MP
+> IMX577 Mini Camera Module on the CSI-1 interface.
+> 
+> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+> ---
+>   arch/arm64/boot/dts/qcom/Makefile                  |  3 ++
+>   .../boot/dts/qcom/talos-evk-camera-imx577.dtso     | 63 ++++++++++++++++++++++
+>   2 files changed, 66 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 00652614e73582fa9bd5fbeff4836b9496721d2d..be9aeff2cd1555bc436e1b8eb78d8e1c9b84f9c4 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -339,8 +339,11 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-mtp.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-qrd.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk.dtb
+> +dtbo-$(CONFIG_ARCH_QCOM)	+= talos-evk-camera-imx577.dtbo
 
---GrcIY/mecD2UcAwp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please remind me, what does dtbo-y Makefile target serve for?
 
-> On Wed, Jan 14, 2026 at 11:35:10PM +0100, Lorenzo Bianconi wrote:
-> > > > In the current codebase the NPU driver does not need to access the =
-WiFi PCIe
-> > > > slot (or any other external device) since the offloading (wired and=
- wireless)
-> > > > is fully managed by the NPU chip (hw + firmware binaries).
-> > >=20
-> > > Are you saying the NPU itself enumerates the PCI busses and finds the
-> > > WiFi device?  If it can do that, why not ask it which PCI device it is
-> > > using?
-> >=20
-> > nope, we do not need any PCI enumeration in the NPU driver at the moment
-> > (please see below).
-> >=20
-> > >=20
-> > > Or this the PCI slot to use somehow embedded within the firmware?
-> >=20
-> > in the current implementation the NPU driver does not need any referenc=
-e to
-> > WiFi or Ethernet devices. The NPU exports offloading APIs to consumer d=
-evices
-> > (e.g. WiFi or Ethernet devices). In particular,
-> > 1- during NPU module probe, the NPU driver configures NPU hw registers =
-and
-> >    loads the NPU firmware binaries.
-> > 2- NPU consumers (ethernet and/or wifi devices) get a reference to the =
-NPU
-> >    device via device-tree in order to consume NPU APIs for offloading.
-> > 3- netfilter flowtable offloads traffic to the selected ethernet and/or=
- WiFi
-> >    device that runs the NPU APIs accessible via the NPU reference obtai=
-ned via
-> >    dts.
-> >=20
-> > The issue here is the NPU firmware binaries for EN7581, loaded by the N=
-PU
-> > driver during NPU probe and used for offloading, depend on the WiFi chi=
-pset
-> > (e.g. MT7996 or MT7992) available on the EN7581 board (we have two diff=
-erent
-> > NPU binaries for MT7996 offloading and for MT7992 offloading).
->=20
-> Maybe i'm getting the NPU wrong, but i assumed it was directly talking
-> to the Ethernet and WiFi device on the PCIe bus, bypassing the host?
+> +talos-evk-camera-imx577-dtbs	:= talos-evk.dtb talos-evk-camera-imx577.dtbo
+>   talos-evk-lvds-auo,g133han01-dtbs	:= \
+>   	talos-evk.dtb talos-evk-lvds-auo,g133han01.dtbo
+> +dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk-camera-imx577.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk-lvds-auo,g133han01.dtb
+>   x1e001de-devkit-el2-dtbs	:= x1e001de-devkit.dtb x1-el2.dtbo
+>   dtb-$(CONFIG_ARCH_QCOM)	+= x1e001de-devkit.dtb x1e001de-devkit-el2.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/talos-evk-camera-imx577.dtso b/arch/arm64/boot/dts/qcom/talos-evk-camera-imx577.dtso
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..53006a861878f9112673b9a0ad954bed7a5fdca5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/talos-evk-camera-imx577.dtso
+> @@ -0,0 +1,63 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/clock/qcom,qcs615-camcc.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +&camss {
+> +	vdd-csiphy-1p2-supply = <&vreg_l11a>;
+> +	vdd-csiphy-1p8-supply = <&vreg_l12a>;
+> +
+> +	status = "okay";
+> +
+> +	ports {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		port@1 {
+> +			reg = <1>;
+> +
+> +			csiphy1_ep: endpoint {
+> +				data-lanes = <0 1 2 3>;
+> +				remote-endpoint = <&imx577_ep1>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&cci {
+> +	status = "okay";
+> +};
+> +
+> +&cci_i2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	camera@1a {
+> +		compatible = "sony,imx577";
+> +		reg = <0x1a>;
+> +
+> +		reset-gpios = <&tlmm 29 GPIO_ACTIVE_LOW>;
+> +		pinctrl-0 = <&cam2_default>;
+> +		pinctrl-names = "default";
+> +
+> +		clocks = <&camcc CAM_CC_MCLK2_CLK>;
+> +		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
+> +		assigned-clock-rates = <24000000>;
+> +
+> +		avdd-supply = <&vreg_s4a>;
+> +
+> +		port {
+> +			imx577_ep1: endpoint {
+> +				link-frequencies = /bits/ 64 <600000000>;
+> +				data-lanes = <1 2 3 4>;
+> +				remote-endpoint = <&csiphy1_ep>;
+> +			};
+> +		};
+> +	};
+> +};
+> 
 
-correct
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-> If so, it most somehow know what PCIe slots these devices use?
-
-I have low visibility on the NPU hw internals but I do not think there are
-any registers in NPU mmio memory where we can read this info, but I will
-confirm it (please remember the fw binaries are not load yet).
-
-Regards,
-Lorenzo
-
->=20
->    Andrew
-
---GrcIY/mecD2UcAwp
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaWoAnwAKCRA6cBh0uS2t
-rAv4AQDILUAs5QRGF9kT+2W49Tk8wLiz1kdJI3O1IJdVlVFzPAEAuUAKHZtMDk/P
-Gu6U2I5rbMpy7HAsiTWVDUCCX5uN3wQ=
-=UTz0
------END PGP SIGNATURE-----
-
---GrcIY/mecD2UcAwp--
+-- 
+Best wishes,
+Vladimir
 
