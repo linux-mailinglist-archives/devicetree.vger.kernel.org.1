@@ -1,96 +1,110 @@
-Return-Path: <devicetree+bounces-255845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACF1CD2AACA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:22:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F1DD2AB78
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:26:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BBF453074A76
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:21:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E2F63036C93
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9434E341AB0;
-	Fri, 16 Jan 2026 03:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF2B3341057;
+	Fri, 16 Jan 2026 03:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EhJmV9qF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IMN+Vh2r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6003B32ED21
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 03:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFA9335084
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 03:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768533708; cv=none; b=RpQof4IFccKhQ+IF6iCr1fPG8qI0RNu9m+YuxAzpeK2Soq519IrhXgJExcmudbI9NumiEbiQ08DGPQyLpq/mB2Tn1VycCNRWFT1/q28o66R8zkRvM5mExFIZzpM2KjtZfYLou8NrYlbD/rZHYvgpi7n5MrrSvlxf6OotC0OsNNs=
+	t=1768534015; cv=none; b=oC/MJFPa4A6uSut0+doYEUN7VX5GH9+fkKZnq2xYkFtmI9l0S+hbF5mnNlYrtuhBX8Zy+DjHKS4FG+KprCWiOloIafAbDA0irP6YPkRrB+z5neeu5XXD6jFtyE/S0OjuC67FpwUG5gXy1SieAyxz3DnpooaSzAOFth45VNz7zP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768533708; c=relaxed/simple;
-	bh=q6Pftx5ygIg+A3STViDGOQndW9Ae1+sfpovBAOpYdhA=;
+	s=arc-20240116; t=1768534015; c=relaxed/simple;
+	bh=fL5JEUdugUywOgfF3xS/1Yv5nBNWIwQ+xgwU4aZe6jw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Q6c+5o/5l5SOZQ1IQjwUc6MZwXnB2seXlDucI/JEUOboVnWjt9CDhejjn6DKtI8mytdMykAFo8T9D9BYU3gzEiAitd6z2WBP7AZJmc2qYwXNaSLGeZw26PuMFSCbYiYdHD+hRyYJ+jWVJQYSQxOIeRNG0C7avOVqTrP8FTXCGOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EhJmV9qF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C125C19421
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 03:21:46 +0000 (UTC)
+	 To:Cc:Content-Type; b=bs/9jFa/8l5znHuiuJs9leaUputsRBJZs0WqOn+SpxR7125uw04r6nUXA0VGmWba26wmm6cyz7exVkPLxSX/aR0zZuUyGAHfkyerjYqMAXh3qm0c7YcG7sJyHybplvzypUCgmmPwwlfhNvLEnYqP6awW6S0kgeFtC23hlnsWlPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IMN+Vh2r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 928ABC2BCB2
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 03:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768533706;
-	bh=q6Pftx5ygIg+A3STViDGOQndW9Ae1+sfpovBAOpYdhA=;
+	s=k20201202; t=1768534015;
+	bh=fL5JEUdugUywOgfF3xS/1Yv5nBNWIwQ+xgwU4aZe6jw=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=EhJmV9qF2PIdvYYgK7VVcSN3IHyPC1Of2NVGU6pC7g8w9wjg5jkkYELoxHjTBUtwx
-	 wsM83/6C5tHpBCtD+l6eRINvQg4amNcfUZDrq4/cOIGKlFySS3aRCmLS2my2P93nqk
-	 p2XkmnejuTISTWTYfLNb0STtpITklpsLk4bSjyzZQobIIrXChn6bjw6fIf7CQizRub
-	 7XJ6TDQuQigLNLxNXCBWEzkgpRFPwBHguE6oTgeyg+In5O0jTtgXnZygm34lB+2Jq0
-	 e8F1dEFyU+s7iMi5zNJfKpKzcW/Jj4zs8HBweuqzHf+qv5comWKXEJvMT60DXDqGCG
-	 /uazLuLaqED1Q==
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b8719aeebc8so288993566b.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 19:21:45 -0800 (PST)
-X-Gm-Message-State: AOJu0YwvXIMP4pc5tLCqDfo+9heTzVa0igE3XohAPI/ANEYnFUpy+rwO
-	nqs9eDot3JYHoTozdCpR8wUtCuC3xUZA1mhtj87mB2LkoqAkOfysSht2Mp8yds5AUlylHcFhuOx
-	sRcdX3dbttY6ke1DD4OnXCLl/zI2tHw==
-X-Received: by 2002:a17:907:70c:b0:b87:1ca0:4a12 with SMTP id
- a640c23a62f3a-b8793029236mr133540266b.64.1768533704629; Thu, 15 Jan 2026
- 19:21:44 -0800 (PST)
+	b=IMN+Vh2rcuaRuzVSTA/fpzdCaDamxcHLJsq2vUF1GBizZflEBpSxLusCzExokoxLB
+	 N3uGszAg1JvlIQPhxmv5aKNlx7FPly+tGJleQjRABIu+1TETR5otFEugenRNkQ5K3Q
+	 sxcwh4HlomHuV85WZaBREVI2JtT/29DBrc6lM++RdyOJIwoVG0D/S2ANGPR2x/AdL+
+	 8P6Ij27fveW2b2NRpDVUjRq7u1nb9Y71V1YoSB6KtsAV2Y22nmo57mBPlwOOwdwIxM
+	 /jiH+9a3OjtuQIpWK8wBPPlSZ8mE0gpjv9u6SCEV5lDpSaIoI/XCGLDhonIVnEYquy
+	 TRayhdVDfrxNg==
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-6505d141d02so2630406a12.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 19:26:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX2XPH3IkxxPNkQVeBd8xTLSsFw3xFCLDEqz/2MRzdEAjp4Qe38s9gW6eViEqU1ihLmlwACvxdKOioi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzuw9urc+Td3Hd052gEaxg2pYV4fp0SD7kr+oQAhmOJJe9leB1h
+	SShXBECBTegyS9TKCnQdcbt2RGzcgJ1p/7Y3Z9onIDJm8J3WoFF3C/maVlXVoiFJJGLhCn2t7wf
+	348gZ6NtAPTKTXTiQq8L6y/VSL/rLtg==
+X-Received: by 2002:a05:6402:358b:b0:64d:1762:9ba2 with SMTP id
+ 4fb4d7f45d1cf-654526c8fdemr1205981a12.13.1768534014112; Thu, 15 Jan 2026
+ 19:26:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260115091839.8206-1-bartosz.golaszewski@oss.qualcomm.com> <176850847300.1117426.16555405652845405929.robh@kernel.org>
-In-Reply-To: <176850847300.1117426.16555405652845405929.robh@kernel.org>
+References: <20260113000715.231238-1-marek.vasut+renesas@mailbox.org>
+ <20260115174047.GA930768-robh@kernel.org> <85ff0eb2-d942-4f85-8f1d-c5982bd31bec@mailbox.org>
+In-Reply-To: <85ff0eb2-d942-4f85-8f1d-c5982bd31bec@mailbox.org>
 From: Rob Herring <robh@kernel.org>
-Date: Thu, 15 Jan 2026 21:21:33 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLcRQiV=2g7VdudKheD_12+m_5VcGQX_s5r9_z=7+cBaA@mail.gmail.com>
-X-Gm-Features: AZwV_QjR9l7rciyV6crbYnm0kIN1TaflIWRLX5Lc8EqKkwsMPpt8d2CxFR1mQGQ
-Message-ID: <CAL_JsqLcRQiV=2g7VdudKheD_12+m_5VcGQX_s5r9_z=7+cBaA@mail.gmail.com>
-Subject: Re: [PATCH] of: guard pointers to key OF nodes with an #ifdef
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Saravana Kannan <saravanak@kernel.org>
+Date: Thu, 15 Jan 2026 21:26:42 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+ELqDhPHeSL=Hybaihmj3QbXt3VmrJ2tC8iXvdoVFNfQ@mail.gmail.com>
+X-Gm-Features: AZwV_QgG6kq5B06g-etlYhXpjQuBrn8cB9pNEEXLMMNB0ZA-HxranZ5k8pyuI0Y
+Message-ID: <CAL_Jsq+ELqDhPHeSL=Hybaihmj3QbXt3VmrJ2tC8iXvdoVFNfQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Fork Waveshare panels
+ into separate document
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Jessica Zhang <jesszhan0024@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Maxime Ripard <mripard@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, Simona Vetter <simona@ffwll.ch>, 
+	Thierry Reding <thierry.reding@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 15, 2026 at 2:21=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
+On Thu, Jan 15, 2026 at 1:20=E2=80=AFPM Marek Vasut <marek.vasut@mailbox.or=
+g> wrote:
 >
->
-> On Thu, 15 Jan 2026 10:18:39 +0100, Bartosz Golaszewski wrote:
-> > We declare the pointers to some key OF-nodes unconditionally in
-> > linux/of.h but only export them with CONFIG_OF=3Dy. If anyone uses them=
- in
-> > code built without devicetree support enabled, the problem will only co=
-me
-> > to light at link-time. Add an #ifdef guard to catch it at compile-time.
+> On 1/15/26 6:40 PM, Rob Herring wrote:
+> > On Tue, Jan 13, 2026 at 01:05:30AM +0100, Marek Vasut wrote:
+> >> Move the Waveshare panels description into separate document, so they
+> >> can be properly described with compatible =3D "waveshare,...", "panel-=
+dpi"
+> >> and attached to "waveshare,dsi2dpi" bridge.
 > >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.co=
-m>
-> > ---
-> >  include/linux/of.h | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
+> > But why do we need "panel-dpi"? Adding that requires changing a DT.
+> > Can't you make the kernel handle these compatible strings as a
+> > "panel-dpi" without the compatible?
+> I can, but wouldn't we then miss the more specific compatible strings in
+> the DT ?
 >
-> Applied, thanks!
+> compatible =3D "waveshare,13.3inch-panel", "panel-dpi";
+>               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+>               this ... would be removed. Do we want that ?
 
-Err, and dropped.
+No, drop "panel-dpi". Or really, don't add it.
 
-BTW, my ideal fix for this is to eliminate any users of these variables.
+>
+> The other option would be to add the timings into panel-simple driver,
+> then we wouldn't have to change the bindings at all. Maybe that would be
+> preferable ?
+
+Why can't the "panel-dpi" driver match to"waveshare,13.3inch-panel"?
 
 Rob
 
