@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-255972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEE88D2F17B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:54:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF2DD2F1A0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:54:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6BA523027810
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:54:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 49D4630619E4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A763735C1BA;
-	Fri, 16 Jan 2026 09:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAB3235CB9D;
+	Fri, 16 Jan 2026 09:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cGW/y1xI"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="g2IP/2ZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazhn15010016.outbound.protection.outlook.com [52.102.128.16])
+Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azhn15011001.outbound.protection.outlook.com [52.102.149.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3427359FA1;
-	Fri, 16 Jan 2026 09:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.128.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0783635CBC4;
+	Fri, 16 Jan 2026 09:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.149.1
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768557258; cv=fail; b=J/1krktpMOY+tcqcfzhGQ5caU0gF2jzF6eFKjC7CF4Dodkqxu0yjNxM/30nfCP22rgI1CbUoq5GyzK66C5c28c3S+4OxHdK8moMNQWLdqGYuzqIXwHcu8RUiD2/IuBt6g7Ot7plM2PjSyJTsWsLEFaAQwxSSCnT5DrbTewRc6Tc=
+	t=1768557263; cv=fail; b=EHAFL5JXpij71K86xvlMyiQDvWU06ciAI2U+Z98+USg98BL2SkGnyrw6BfdYVgqXX9ZnrSqbmbB6wyYG1GW/jhoUsdJQaFje3OGghP4LuZ+WYYqwznHIPf9w/gC/uprbpWpHNZSqhKTx0D5qdiFtQ8HTiVtsbKC53BF8Qt/JELk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768557258; c=relaxed/simple;
-	bh=BQB6VWk9c8uWwgFhrvsR5kAmOxupEmJWU7VEZqLT4Zk=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=arg/OO7Lb/WLDE6AU2ElS9SUh7tn1nhKgrQ5hmjvbKAiWr2rIQwRTWluOss+OUZBRT48MH+VLG5+SDuauFnWkw87Z+ozaXUHYZeablBKf3wpk432DiHPE/4s3eza2MFf1e2cGHOFUmLcWvOoQ7i5N6l2+kULtoKsDyBM6G2vsz4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cGW/y1xI; arc=fail smtp.client-ip=52.102.128.16
+	s=arc-20240116; t=1768557263; c=relaxed/simple;
+	bh=KqXF5WQvCe/gpeqNW2CgDxJ3e2kFzUey6eUoHE595BY=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TJamHwMwYEeRHuY6eO2nWVz80bkRGRorI++rviIbiZRkZj/C10nG4Aa/Zfl8TdejzwOh4f4kVq0gMLPkBjM5E9NRxJ1h67tXiPbTTEm1iOs7ZpJdwdkB/jTyHKhoI+KrHtizomwK3W50LaBXcMfjYHoCwhgsU6XYvzGKsqG1SzE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=g2IP/2ZZ; arc=fail smtp.client-ip=52.102.149.1
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qpGSeIWCiO4R6uVwyO53U7VGOVTMoOchTPY1GuqRBrVO4TAhA6BQtMiyxdid9Pq7VmgMiGnkdu9byDoKzvDKn1SsbUbnuGd79O0RF9MYeuFh7Vwk2aFsY/5xIikKeKLonUr96Gn6R5SMIMEuvAOjIwtM412F7+AbM3tJDNj4TJDfcMHhV+9szlcCL2xzklW4KZuo+satAfKcAtmw562OyDvEr2afnbtexKunTpqvkuL/iqNk2xnARmrNBwsxjHRAkoRY6n6tNDbgX8y+XBOITV9o6a9HQFmk1JjgCmNDRwJ96ptztqvOsNP9F4ypgTzAHBDoNuzUjUsemuBViBedQg==
+ b=GI38j+3kqCiiuM8aegvw2QDmEdAvMGaUD4+Q/pQLiez+8JbMJr//rX7Mg0K4pbVD1efrfDGmWTk1yxkS8AIkoZrbnGmfLWmHNKrFngkQWW+GIdn3g7rhgKMIr//9AniXYs/yWgyLgkwMBOK1u4kU26oFbuvhI6lVZoxj5g35zYjQZS6QTj16ZVJlw/6FZBo0bnhavkZF9mX4382i+6iT99P1v0vkRMa65SqmKiatVY6g1n2bgyPoYlYw5e9AY6251BmLPfVZCqbV1ZjFnsUy8PA1zQR+0ni/BP41+gZZUHtqT7I1r0+Ui5rf64M7RQqiF9nvAO7knjkBs6oIFmth7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZxKsNYyppTV2lSuFj9BY5Ny4idLS0mOmwECCp6pYlr4=;
- b=x/ZbAD8ksrjsNENpLWh+5pJkkFnFbbaGsNlfezdjx8DT2j0vuv2Ij4nvlp0osvud6KG/MlzPE7QEaUwaWlL+2R4tSIQHK6+X/HKvPmKvBBixAggL1M/COgJzjYClanBYrMrzyRDyF5MEK4o8qe5gVZV7345CKMlHIHMnxlR6rXSC5oMk6g95uCAIz8FoUArpOsnyIgN+XxayeLyUWmgboih1sxp9o/y6k4bNNmWTJ0KNSS+umFxt7ULkyrzkAQsEzQ5jGbKE9jRJzdM66m6bMB6q409Bd6rJTAaxOFk3vCRrQkUVDgpcDWw1Z4T6XPMI+zuy60Pcs2L0l+Zpalmixw==
+ bh=iVvVSiFrfAAmEsUxuwxRcanO2orX1Z94MHewCgwr1Xo=;
+ b=BuI8K5V+iIMd97W4bwRaOYF5LYaWcFza3e/bRlRwuEg410bHJH/z5fmMfSZNGfoHhkJ7XrTYDUXlK5Vm5pfbPjS9xRjtUQgwTetJpRAjgxapXEitykJ05lP2ZZBn0UVIe+Ga6DmgwbuRfg7Ko8rmGcYbkAMYNxU2ZnOexGimg90kB+AjTDd7NmBCRDQ8bVbkGOvU1jhuqul22sqVCoGjd/YPlbcvFnbiC0TWq/iARFvbW2ALvKwXjt1R051E9qPWJjMyKo5yWDEbrB9erF+g9nSHL4HhGsBboFHH03VXmTgWXh+xxm1B4tZC+wh/FwWUGg7FBPxqZfPB5siQAnBFmw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZxKsNYyppTV2lSuFj9BY5Ny4idLS0mOmwECCp6pYlr4=;
- b=cGW/y1xIvE8MbLqlpp2PUP2GVG49KoCiXx11gp4v+eRD4LIm/u31H43fLE9xEnuRUUtRyJeH+278X9Jvw4dtvwv5wuC4nfEt/UYUjqlB3HrsHjuy8/9rmvh/VXx0ihfb1HGNLRi3eCcWTnzJCFbapFfn7mIO5rtK5PMLXhbE8mc=
-Received: from BL0PR02CA0063.namprd02.prod.outlook.com (2603:10b6:207:3d::40)
- by CY5PR10MB6045.namprd10.prod.outlook.com (2603:10b6:930:3e::20) with
+ bh=iVvVSiFrfAAmEsUxuwxRcanO2orX1Z94MHewCgwr1Xo=;
+ b=g2IP/2ZZK8M/JANDyi0au257/sqDTbRa31ITe63CJJokFMhAZA0OtQ5ypsZi5T61PBY7Fn+e4+FY7pF/zkKpZCJ2Ig7J0mj3HiFwifPAccyir9cXxELTuZM1ye6r//I5U/iOl28XNcvS7Wx8GBXdJMYn0YQWZ4SKZmvqcuySRdQ=
+Received: from BL1PR13CA0448.namprd13.prod.outlook.com (2603:10b6:208:2c3::33)
+ by SJ0PR10MB4767.namprd10.prod.outlook.com (2603:10b6:a03:2d1::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Fri, 16 Jan
- 2026 09:54:14 +0000
-Received: from BL6PEPF0002256F.namprd02.prod.outlook.com
- (2603:10b6:207:3d:cafe::80) by BL0PR02CA0063.outlook.office365.com
- (2603:10b6:207:3d::40) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.7 via Frontend Transport; Fri,
- 16 Jan 2026 09:54:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.6; Fri, 16 Jan
+ 2026 09:54:20 +0000
+Received: from BL6PEPF00022570.namprd02.prod.outlook.com
+ (2603:10b6:208:2c3:cafe::21) by BL1PR13CA0448.outlook.office365.com
+ (2603:10b6:208:2c3::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.2 via Frontend Transport; Fri,
+ 16 Jan 2026 09:54:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -60,24 +61,24 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.23.194 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
 Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- BL6PEPF0002256F.mail.protection.outlook.com (10.167.249.37) with Microsoft
+ BL6PEPF00022570.mail.protection.outlook.com (10.167.249.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 09:54:14 +0000
-Received: from DLEE201.ent.ti.com (157.170.170.76) by lewvzet200.ext.ti.com
+ 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 09:54:19 +0000
+Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet200.ext.ti.com
  (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 03:54:13 -0600
-Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 03:54:19 -0600
+Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 03:54:13 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 03:54:19 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 16 Jan 2026 03:54:13 -0600
+ Transport; Fri, 16 Jan 2026 03:54:19 -0600
 Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60G9s6ST2958972;
-	Fri, 16 Jan 2026 03:54:07 -0600
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60G9s6SU2958972;
+	Fri, 16 Jan 2026 03:54:13 -0600
 From: Swamil Jain <s-jain1@ti.com>
 To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
 	<airlied@gmail.com>, <simona@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
@@ -87,10 +88,12 @@ To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
 CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <praneeth@ti.com>,
 	<u-kumar1@ti.com>, <s-jain1@ti.com>
-Subject: [PATCH v4 0/3] Add Display support for AM62P SoC
-Date: Fri, 16 Jan 2026 15:24:03 +0530
-Message-ID: <20260116095406.2544565-1-s-jain1@ti.com>
+Subject: [PATCH v4 1/3] dt-bindings: display: ti,am65x-dss: Add am62p dss compatible
+Date: Fri, 16 Jan 2026 15:24:04 +0530
+Message-ID: <20260116095406.2544565-2-s-jain1@ti.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260116095406.2544565-1-s-jain1@ti.com>
+References: <20260116095406.2544565-1-s-jain1@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,122 +105,158 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0002256F:EE_|CY5PR10MB6045:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c50e2d3-90b1-46e8-8749-08de54e534ae
+X-MS-TrafficTypeDiagnostic: BL6PEPF00022570:EE_|SJ0PR10MB4767:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4fa4bc70-ae6a-4cd4-c245-08de54e5382f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|36860700013|34020700016|82310400026|921020|12100799066;
+	BCL:0;ARA:13230040|376014|82310400026|7416014|34020700016|36860700013|1800799024|921020|12100799066;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Gor+ux1IGv6t9Dk36pnZVWTpooFel/gs3AxHs7DV4tMogJ6o5rT3a5cM36Vu?=
- =?us-ascii?Q?hkiQH7NkmrTkrwubZxPPovbH/yoicAm9mUvcZmcOSnOvhGQ+Gj0SpXEmUrV5?=
- =?us-ascii?Q?jldhnsWBrrlkSNCrG/VaCBsSmxcK/8sp8ZUN2PnZ31Uaxirke5OdqJcSfX2+?=
- =?us-ascii?Q?wn02Gs/1LBUdhxQQPWT03X42FIYJDSYFRCsM2UPIJ+FEzjFQTT+HNsI4Gold?=
- =?us-ascii?Q?e2uiW/2KzRPg7n6uMxnhB0bqgTiVlF/oCgdUlCXM0Kc/YX1QIgzqQAWN9h9x?=
- =?us-ascii?Q?MDqOD2E/2WDy+0q+9yOAgA4Yg0QcGDfLEzA6YtItH49/H2ybILsZpQ8PE+IW?=
- =?us-ascii?Q?yEYpg7PhDRbyrLE1TEcpkwyvX6Y/9iAFpqUPUj6WLYg5KyxV07zcsytQktT+?=
- =?us-ascii?Q?GBxndP7gP31SLkQvmpOwSNvhBHQdNy5SAbObAfnlylI6DLj52sSXWmwkOSrN?=
- =?us-ascii?Q?3v0YlwnkAN674XHLNUt0Qd9NHOvnBEN24HVWVFMw3SdL9DdmSamO9FtbO56h?=
- =?us-ascii?Q?xO1n0Yd/8xmjiyhnAPhQFKK0FdwPnr7T9NGfshX9EEAESKfDeqJos7RwGfbN?=
- =?us-ascii?Q?J1jUUgbUSXVPRjhbeLTLTAwItl73BE12oDDWTHcsO6xYpy4v73Pqsv6pHsNh?=
- =?us-ascii?Q?KUqWEfL7wYo/COV/75EY8bUx+l0xd4mWj+ClTbxZXqvsNj2AGGv8StJlFmjX?=
- =?us-ascii?Q?BYl+BrgWBSnNIqwTRGbLCfGuUbMYtP/fjCKeeZxLx6n+AR9Fj7+xqRn2k4F0?=
- =?us-ascii?Q?HA1h7vySzMyx7stMDQult244ARLNbuTzvBMp+e/qqK8x0QodNjfUlMiGEGGK?=
- =?us-ascii?Q?cwoQXBZACzK1wZtlgjNaZWin+oZxr5lZwuSH1Yhiu9+j9AQ6/TIGfIm9ry1m?=
- =?us-ascii?Q?gYLOWNSWvVDB6ihJyw9+bm3ijSodGtrhpNRxYTQyRD+SIms9RvmJkL6GFRZy?=
- =?us-ascii?Q?bgEL8THupvgnTecbzdoEdnn+eZxW9nT9kdDy4vIjb2PmF1jNDZaYmUZSPy7R?=
- =?us-ascii?Q?jg1yxxqLco3nDo1MR2qE2upxWjkUdm5tfoBvjSYGKqRUQBnSBppx/5arREPv?=
- =?us-ascii?Q?1GXUsH/wqVw06tQBZAriLG2jdlJQibMAPcbWDR47sySY61Z3g37hmvFdQAhj?=
- =?us-ascii?Q?tipeAmnIVn+BeI1V+aGJuxQGXHmWasSoWPCpT/+/xAv9xVf4yryzQarkk9rp?=
- =?us-ascii?Q?gBJTYu9vnRHSGBgb1ctmldelSSvH/cyL5f+Du/3iV590uTWWQy0EFB/MblGA?=
- =?us-ascii?Q?zeaH646MDI1E1EzI3TkgC5weKxfv/QlXrphrL0f+ubaUoqq23rfnirHG9lEA?=
- =?us-ascii?Q?EdJwfRUx0wNkqHpWBsnn5AMrCdXI0BOMBTHDD8kp72bc6g23lnYXZ5+J1pIV?=
- =?us-ascii?Q?Yy+zWnpo1nFMZQjKui8YHJhMhEmUXg9bGd8NHoTzkhwTQy3VwJgj/mwSupe7?=
- =?us-ascii?Q?085dt5pOSRC5TUfbmT8PkJXuEXlfVd4pmu8W+GYL1mwxeO8yGFWWpQCANjiT?=
- =?us-ascii?Q?nYvDxruv9TUosgvfbQvH0+sAaJLX/FUw1vhY89S8fWVD5CUADg5zcaH6etp3?=
- =?us-ascii?Q?Cyi0Xo4yUq4nxWiQj5tYnl5Gcg59KMxQE54+hFwB+QbIz2HaRaejiZsvLI6T?=
- =?us-ascii?Q?1kwKWeGrqWtYn92kW95m0NZ6x6A5t7s2HqrbK9WqwS0uWhnHIlpj+p/n0s1L?=
- =?us-ascii?Q?Mhkz24hdzKuAivXk8ScmJUGMDk4=3D?=
+	=?us-ascii?Q?pfJZgHNmm3sMND2eCFRiaR1E2KQPD1YQT6TBA+k3o8XSqH7LB9006L1nF4VB?=
+ =?us-ascii?Q?vqBJOsKLJ0eMtgpchtEpPIXvDibErXikAgxhLsrzr69o68b4MOJtyYs1ncF5?=
+ =?us-ascii?Q?ZvkEy/C7Ca4E+eXc7SWa5pyuYOGrV22YFW+4swa4e0qTjj7ru2Z8+dzxm+kV?=
+ =?us-ascii?Q?RXFiOvBL9DRJs54I0zooQ6tpamUASTP+hr+KAmGCyYSl1QoEoKplF88R82cd?=
+ =?us-ascii?Q?/So2+ijO65ZjJBSgnEqK5hir4kJptX94DG9hhan8SzHb4xCVStaDrNT+s/kf?=
+ =?us-ascii?Q?+nJ7bE5tEZxEpiqLyBrzvZf5AL1iLqgFGmDD429/WrwluKPnLo/56xi+Tb2w?=
+ =?us-ascii?Q?gFWA/UsGP139UtvRKUBLTQsiQNi7TJipCKD0NWwdLLxp8FlAwoOfDkRD4WHE?=
+ =?us-ascii?Q?jd+EjI77Bi6vDh9CLyY78LKdNhqNuenWg0OVXP/cFdhUEgmOkCeU3D2eLaOn?=
+ =?us-ascii?Q?xNKriAHRIPO8kVilZvyWcOshgDQXaZeB8LuhbPQwF19hl+CdAEUnY0XBbOSC?=
+ =?us-ascii?Q?+mTfcHN4iOkD5fvde4JWpP+MCrlORTG/Y6egOIEcvlKNADgOv0k3KizWiyWD?=
+ =?us-ascii?Q?3BMTqv4a7zINFXvAlFQsfuS/o2r2an8YRRt9rDPAT6NhjcIrDGeB4FZr+MyO?=
+ =?us-ascii?Q?NlzVcXNplA/FfhIFU2Rw8GO8SXsPWzj9cXZOJt6AS693qfIHuMGQSfBiUI22?=
+ =?us-ascii?Q?Nem7EtapFZ8pT+NLnvDDmiaevfidfaVOO1Ky8Fr0eTO2mXuteXZydZwv+llJ?=
+ =?us-ascii?Q?N6156ncAoBeS3E9YVBCUHmwQntXtS2aA2nV82MICn5mNgMYp5z+D85mF5YZT?=
+ =?us-ascii?Q?85X1VSraoWumt5ve6Wig5azooCpF167SmSGVE6ow+t/HVkYG3Oy0MP6lnpgf?=
+ =?us-ascii?Q?Ox2vv6Q/otvCRvU/Zh/8AzvLGqvqTS4l9PbhiQEmgpuZE54icrhCAn89eytD?=
+ =?us-ascii?Q?OvisfYy9CoyHT72QaVGtSF4RBlzil6DIj4nry6IpM6/LbSHXhUqIvxtMrQqm?=
+ =?us-ascii?Q?bfug6uyuefyZPmm7CoZqkIj0S4G4cnNyERSTG7zaMJ2ycxAWkrJ8b801YsRw?=
+ =?us-ascii?Q?1rKf8N2KUKOEAP1HBAl7BgzUH0Zu9PheOBgLgXi2VFCclqBFrrSL0eK8ViGA?=
+ =?us-ascii?Q?AvyY65b9U161xZACqRzEmkQ+q0Z/c4QsPyk/A8j+AI3FwgsBpsZ1pILbxEG3?=
+ =?us-ascii?Q?3gQF9IbsN3T22WeGFhwxVGYZ7hVk/+eamBrr4NXkyqiEjVTUb7Bwht5juKtm?=
+ =?us-ascii?Q?bM0QmqMisHtN3nrw7ulhJQEIfcRKOPAgsYHIPBxkhjE9xKnpToxvkIwCKeLb?=
+ =?us-ascii?Q?8blmOQXN+VKjPTZMEgpa8T9B4Yf8EYvJTv0isCi+KDWi23xXRDJu1iYNQHhX?=
+ =?us-ascii?Q?c0t4mK4yS/r6+1IJHcJPFxaj2gcygSFs43T3L/mp9z2HeMGxx9QgLDlOgTCl?=
+ =?us-ascii?Q?tZhqJ4kpDSqaxylW0t6JR43Hlqgv4WypHtClS8lTuD2ZZNE+8Fnkrd34Zq7S?=
+ =?us-ascii?Q?t+5CktFHKbe/R0Z1zWJgPr3LZ6LFdU7lDNEBpVsHZDZ/Pep0W+cxH/C0rP7G?=
+ =?us-ascii?Q?KmwJ1L/F2TRqUk+7chwTiKCkvS98f0N2Ecj9wryHmTfXWzkfIDh4A4wgSAnM?=
+ =?us-ascii?Q?ewECVK58WM97zkwCS862ZzRkFraS7Smbp2tv266ta7fJBu0L/AnVe0XgUSV0?=
+ =?us-ascii?Q?x7Fw+w=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(36860700013)(34020700016)(82310400026)(921020)(12100799066);DIR:OUT;SFP:1501;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(7416014)(34020700016)(36860700013)(1800799024)(921020)(12100799066);DIR:OUT;SFP:1501;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 09:54:14.0124
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 09:54:19.8807
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c50e2d3-90b1-46e8-8749-08de54e534ae
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fa4bc70-ae6a-4cd4-c245-08de54e5382f
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF0002256F.namprd02.prod.outlook.com
+	BL6PEPF00022570.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR10MB6045
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4767
 
-Display Controller Overview:
-TI's AM62P[1] SoC has two instances of TI's Display Subsystem (DSS).
-Each instance contains two video ports. Combined, both instances support
-up to three independent video streams: OLDI, DPI, and DSI.
+TI's AM62P SoC contains two instances of the TI Keystone Display
+SubSystem (DSS), each with two video ports and two video planes. These
+instances support up to three independent video streams through OLDI,
+DPI, and DSI interfaces. The OLDI interfaces utilizes two OLDI
+transmitters OLDI0 and OLDI1.
 
-This series:
-  1. Updates bindings (PATCH 1/3)
-    - Adds "ti,am62p-dss" compatible string
-    - Modifies power-domain requirements
-  2. Updates driver (PATCH 2/3 and 3/3)
-    - Adds power management for attached PM domains
-    - Enables AM62P DSS support by adding compatible to the driver
+DSS0 (first instance) supports:
+ - With respect to OLDI Tx interfaces, DSS0 instance can either drive
+   both OLDI0 Tx and OLDI1 Tx together (e.g. dual link mode or clone
+   mode) or can only drive OLDI0 Tx in single link mode with OLDI1 being
+   utilized by DSS1 or left unused.
+ - DPI output from video port 2.
 
-Note:
-  - Device-tree changes will be submitted after this series is merged.  
-  - The device-tree patches are available here[2]
+DSS1 (second instance) supports:
+ - With respect to OLDI Tx interfaces, DSS1 instance can only drive
+   OLDI1 Tx given DSS0 is not utilizing that as described above.
+ - DSI controller output from video port 2.
 
-[1]: https://www.ti.com/product/AM62P
-[2]: https://github.com/swamiljain/linux-next/tree/AM62P_J722S_DSS_v1
+The two OLDI transmitters can be configured in clone mode to drive a
+pair of identical OLDI single-link displays. DPI outputs from
+DSS0 VP2, DSS1 VP1, and DSS1 VP2 are multiplexed, allowing only one
+DPI output at a time.
+
+Add the compatible string "ti,am62p-dss" and update related
+description accordingly.
+
+AM62P has different power domains for DSS and OLDI compared to other
+Keystone SoCs. DSS0 can have up to 3 power-domains for DSS0, OLDI0 and
+OLDI1, and DSS1 can have up to 2 power-domains for DSS1 and OLDI1.
+
+Signed-off-by: Swamil Jain <s-jain1@ti.com>
 ---
-Changelog:
-v3->v4:
-  - PATCH 1/3 - Cosmetic changes in commit message
-              - Explain why 2 power-domains can be used in am62p-dss
-              - Remove redundant explanation
-              - Add item description for power-domains property
-              - Define constraints properly by removing min/maxItems
-  - PATCH 2/3 - Remove err_oldi_deinit if tidss_oldi_init() fails
-              - Pick up T-By tag
-  - PATCH 3/3 - No change
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 37 ++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 2 deletions(-)
 
-Link to v3: 
-https://lore.kernel.org/all/20260107174525.1702585-1-s-jain1@ti.com/
-
-v2->v3:
-  - PATCH 1/3 - Add a broader range for top-level constraints in the 
-                bindings to resolve dt_biniding_check conflicts
-  - PATCH 2/3 - Remove and modify some comments
-              - Use IS_ERR_OR_NULL() instead od checking for both NULL
-                and IS_ERR()
-              - Changes in error handling paths
-  - PATCH 3/3 - Pick R-by tag
-
-Link to v2:
-https://lore.kernel.org/all/20251125165942.2586341-1-s-jain1@ti.com/
-
-v1->v2:
-  - PATCH 1/3: - Remove unnecessary example
-               - Use "am62p-dss" compatible check for multiple
-                 power-domains
-  - PATCH 2/3:   Add Signed-off-by tag
-
-Link to v1:
-https://lore.kernel.org/all/20251114064336.3683731-1-s-jain1@ti.com/
----
-
-Devarsh Thakkar (1):
-  drm/tidss: Power up attached PM domains on probe
-
-Swamil Jain (2):
-  dt-bindings: display: ti,am65x-dss: Add am62p dss compatible
-  drm: tidss: tidss_drv: Add support for AM62P display subsystem
-
- .../bindings/display/ti/ti,am65x-dss.yaml     | 37 ++++++++-
- drivers/gpu/drm/tidss/tidss_drv.c             | 83 ++++++++++++++++++-
- drivers/gpu/drm/tidss/tidss_drv.h             |  4 +
- 3 files changed, 118 insertions(+), 6 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+index 38fcee91211e..b1cec5383160 100644
+--- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
++++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+@@ -24,6 +24,19 @@ description: |
+   DPI signals are also routed internally to DSI Tx controller present within the
+   SoC. Due to clocking limitations only one of the interface i.e. either DSI or
+   DPI can be used at once.
++  The AM62P has two instances of TI Keystone Display SubSystem, each with two
++  video ports and two video planes. These instances can support up to 3
++  independent video streams through OLDI, DPI, and DSI interfaces.
++  DSS0 (first instance) supports:
++    - Two OLDI TXes on video port 1, configurable in dual-link or
++      single link clone mode
++    - DPI output on video port 2
++  DSS1 (second instance) supports:
++    - One OLDI TX on video port 1 (single-link mode only)
++    - DSI controller output on video port 2
++  The two OLDI TXes can be configured in clone mode to drive a pair of
++  identical OLDI single-link displays. DPI outputs from DSS0 VP2, DSS1 VP1,
++  and DSS1 VP2 are muxed, allowing only one DPI output at a time.
+ 
+ properties:
+   compatible:
+@@ -31,6 +44,7 @@ properties:
+       - ti,am625-dss
+       - ti,am62a7-dss
+       - ti,am62l-dss
++      - ti,am62p-dss
+       - ti,am65x-dss
+ 
+   reg:
+@@ -81,8 +95,13 @@ properties:
+     maxItems: 1
+ 
+   power-domains:
+-    maxItems: 1
+-    description: phandle to the associated power domain
++    minItems: 1
++    description:
++      phandle to the associated power domain(s).
++    items:
++      - description: DSS controller power domain
++      - description: OLDI0 power domain
++      - description: OLDI1 power domain
+ 
+   dma-coherent: true
+ 
+@@ -196,6 +215,20 @@ allOf:
+               properties:
+                 endpoint@1: false
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ti,am62p-dss
++    then:
++      properties:
++        power-domains:
++          maxItems: 3
++    else:
++      properties:
++        power-domains:
++          maxItems: 1
++
+ required:
+   - compatible
+   - reg
 
