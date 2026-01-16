@@ -1,137 +1,154 @@
-Return-Path: <devicetree+bounces-256148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F366FD3320E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:18:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F53BD331FC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:17:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AF6233018E95
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:13:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 45A70300B9E7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D312C225791;
-	Fri, 16 Jan 2026 15:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0B8334C30;
+	Fri, 16 Jan 2026 15:17:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VPPwwjZ/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2q8B82Us"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6818D283FEA
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 15:13:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91FF338936;
+	Fri, 16 Jan 2026 15:17:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768576381; cv=none; b=E2vqI8bvnr5p40ubZYtfU1A1IudgLam7A/d1JHzk4EggJYTphM3bVvdbiFfK+6f0exHY/5TZwaxXcNhjsY59rULKHRoU2Wd48JJvM37G58bXaKC+sqbU4z72npHZZ+6DvKYl12hhTJ1GVItQ/m4Bv1XZ3kN7TaoLpJ8KZ4gzmJE=
+	t=1768576659; cv=none; b=q9j6ySprQZaT0uBjb5+lfbKXWr6HTt61iE/uMMOFoqS1ofNld7Q4QzPTeJX05ubpSKV3iZHX3dMLcQS1KU4CXvQGUxq/EGhvwiSXdEjd4kHL/sWMko5KxIh4E5MPpPF2031Ut1xlVIRD4B3uOZpMsNboQeVoCCIm08LjmPJHGiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768576381; c=relaxed/simple;
-	bh=W8Du2oDRoyUgx81DMi6zQRmYVixmkTdP39Df8Cp6QtI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KNswTX1IxrgJzfodgLij+i7oIDwvs/Z7u7O8xM7OWW9rs7izg5fwSwF2/XFr4uD3daiWLCIMDtvLlN11worVxPSwHZg+LWvO4PLcIu6c39tRL+YAhNRgU47CBuLvsVMo1CnOA8e/T7XFgPasureso1GCgIbanqF/+7x4jAXWfOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VPPwwjZ/; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-81e8a9d521dso1318891b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 07:13:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768576379; x=1769181179; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lRiEbJrzkH/I22ILSwaqJapqGZa7fvSUC1WPmu8Y6zQ=;
-        b=VPPwwjZ/tbNtCPKYw3kN5z4QJIAHvuw0vzhlLzLo74l2HxYleVJo25duy0mRZkVwvO
-         DYvj4vLn4OG5GvDIDkvYG0+BqTAg6lB3+PDT4+smrpPBkRxryuEbhnTlCIkuGEy0WpWQ
-         T8EKu5enPohJKHYLmiy18b2v1PooBguqhgJ+OXQLPu3hXsh+1O6bwc4z9Mm9bPdi7dMs
-         H/Vb3NnHzs35xKT3EdEtHyHa9tVCe8xalG675D0w4C6YNzBQIX7gxV9BQGXQKTcbkH5Y
-         jFvEvVar3t5NjCOImzziRs88Eb9aLV+KUXoS0HFquUJtnd0ZzmnEx6qMiJEVyGAXxbjC
-         /vvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768576379; x=1769181179;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lRiEbJrzkH/I22ILSwaqJapqGZa7fvSUC1WPmu8Y6zQ=;
-        b=EgTiQCzfDHmgGXd2vl3BbWg91Ld0YfcBZXvrAScQJYGE2Rj1tqbeqHPXyXObzBA4KX
-         GknonVj7PeEqyk8sKCFo94w6xW9LlubFE28iWZ2k/4wxi4HfxJMLsErZMsJyAGgluTS3
-         QX/mCicxe8I+AQXxFN2cy4caIZLgiYfLlm3qLqufgE3Bi2C/X0q4/QNnhWV3F2wwVj8G
-         98Yec6tH/RCLQkoilouRCCRaEjvldLfGK6sTz+zudwOVXKXOZ20Lg9Er92odjv2Oia6/
-         4kGZzReoXM2TXMHAgFJnzlPXVyKjzJng9jRgbNLFELRlwSmCL1fxcqsVKx7ou34hKUQ/
-         v7LQ==
-X-Gm-Message-State: AOJu0YzjN+l5YfErFMqPSTDZY9DcSwKXHgdleO9E0gFOEKV8cjGyUAkt
-	eQaNU8XVxb5iMMyxEA3RwqfjNRxxe5fubMk8wUllgj8Efnykp7XKUn9tqndkM+DV8rM=
-X-Gm-Gg: AY/fxX5HvO1r7i6yORVkNOFMqwg/Bn+pcQsjKBUn9diI1EENMDg7fRtp3ViPtN3E/4G
-	f3VGzyVc8MLJ1b41NojnRcOugkn95LnugPf+hglHThGivW8rKDSbAB65ibkaz4go8NahXvg+Oij
-	19B5QtlXSMPP8XoSicvX+6T+Tceb/YODGme29pdSezTGd/z7ICXfIa31F/dnNHEfBcnLjCYUYRb
-	XmX7c3KtygqugNPMGmPnRBcyI8Pa6HU/CY2KH0Yi7j5Bthhckl8R4znudtBpvj7ez8AF0fXz3E8
-	EoSWks3h7PkDRKR9pAKKtopT54OyyqMf3sCFxvYNVXVrDgzFtRR6V3rOufxfGPy3/Vn794nESYb
-	M5TPvEC8MdGuO7Mh/2oK2Qh2moKfMPO9StrTPPxNX5kSGiivadhsxg3CZwllrP0cTxQcCQOsINd
-	AKICohhkZvt82qXnWNgj8=
-X-Received: by 2002:a05:6a00:3c8b:b0:81f:82b2:ecf8 with SMTP id d2e1a72fcca58-81fa1890ca1mr2604735b3a.63.1768576379447;
-        Fri, 16 Jan 2026 07:12:59 -0800 (PST)
-Received: from arch.localdomain ([2409:8a28:a65:fc91::1001])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa12b51fcsm2345072b3a.68.2026.01.16.07.12.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 07:12:59 -0800 (PST)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	pbrobinson@gmail.com,
-	dsimic@manjaro.org,
-	didi.debian@cknow.org,
-	conor+dt@kernel.org,
-	Jun Yan <jerrysteve1101@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: Do not enable hdmi_sound node on Pinebook Pro
-Date: Fri, 16 Jan 2026 23:12:53 +0800
-Message-ID: <20260116151253.9223-1-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1768576659; c=relaxed/simple;
+	bh=d8ibYRhXbYz1u1gx+ZYfdgs1LIb9Yz+sIuix7rp+jDo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ilBS5rZZoIx9VS7wFaqnGT/uGU0sbNbGihqpEbYjHrBBES9bSmDAZ695DCQhcjnstVnT2Iymp1qEc58aorSLTSs4GkiUIr64acRcDjOsStVbSZHepwZOt5N1ohXX024yXS5dD0zTyoHOsODXG5LCfsC+rYpu54smiYnBpAFuBlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2q8B82Us; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 205681A28BD;
+	Fri, 16 Jan 2026 15:17:35 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D31A560732;
+	Fri, 16 Jan 2026 15:17:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2C0D710B68805;
+	Fri, 16 Jan 2026 16:17:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768576653; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=dfVob1RBqEgBNMF28NVVnEsg3TwRdSyxpplex3+Q4lA=;
+	b=2q8B82UsQP/Mz68CZs5LdOl+D6vE4d35ilFUuFt9Ypyma2NG7AbO2K3qL8nfh5obWTzEyN
+	hgzA71ro3uEE4gfEyvcrFH+w+wGDNHuI4dOvkmtTEriQO87STJOTBpcAQ1BwZWsGWj3zXk
+	+XU5S+XxvEAZ40G1qusYgi+Zwdns4ccI2YKX7hsLxs8q8DNpuda3/pS+cPBAVFDNsWNBo6
+	+ayDZoweqnsx6LouspzL9cgPp7yYmYEuwyKlea2l6pg7ezh6JMzwsAxWmLLNTmmJp3ZBdX
+	rRarMJzA3+4I7L5iChhWJYIw0fYLqzHLtBgge9NrpZENHDqlWi8uh1mYsybrnw==
+Date: Fri, 16 Jan 2026 16:17:27 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 11/77] Add support for FDT_REF_PHANDLE dtb tag
+Message-ID: <20260116161727.7fe14658@bootlin.com>
+In-Reply-To: <aWhB4fYnXCD2f6Uq@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-12-herve.codina@bootlin.com>
+	<aWhB4fYnXCD2f6Uq@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Remove the redundant enabling of the hdmi_sound node in the Pinebook Pro
-board dts file, because the HDMI output is unused on this device. [1][2]
+Hi David,
 
-This change also eliminates the following kernel log warning, which is
-caused by the unenabled dependent node of hdmi_sound that ultimately
-results in the node's probe failure:
+On Thu, 15 Jan 2026 12:24:49 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
 
-  platform hdmi-sound: deferred probe pending: asoc-simple-card: parse error
+> On Mon, Jan 12, 2026 at 03:19:01PM +0100, Herve Codina wrote:
+> > The FDT_REF_PHANDLE dtb tag is similar to the FDT_REF_LOCAL tag except
+> > that it identifies a reference to an external phandle. The node
+> > referenced by the phandle is not present in the device-tree blob.  
+> 
+> The names FDT_REF_PHANDLE and FDT_REF_LOCAL are perhaps a little
+> misleading - both are marking a phandle, the difference is in the form
+> of reference.  That's quite difference from the distinction between
+> the REF_PHANDLE and REF_PATH marker types, where the difference is in
+> what the reference expands to in the property.
 
-[1] https://files.pine64.org/doc/PinebookPro/pinebookpro_v2.1_mainboard_schematic.pdf
-[2] https://files.pine64.org/doc/PinebookPro/pinebookpro_schematic_v21a_20220419.pdf
+I am agree.
 
-Cc: stable@vger.kernel.org
-Fixes: 5a65505a69884 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
-Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+FDT_PHANDLE: A local phandle with the value known.
+FDT_PHANDLE_REF: An external phandle, its value need to be resolved ?
 
----
+This is aligned with FDT_EXPORT_SYM / FDT_EXPORT_SYM_REF.
 
-Changes in v2:
-- Rewrite the description of change
-- Link to v1: https://lore.kernel.org/linux-rockchip/20260112141300.332996-1-jerrysteve1101@gmail.com/
----
- arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 4 ----
- 1 file changed, 4 deletions(-)
+Or maybe:
+FDT_TYPE_PHANDLE
+FDT_TYPE_PHANDLE_REF
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index 810ab6ff4e67..753d51344954 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -421,10 +421,6 @@ &gpu {
- 	status = "okay";
- };
- 
--&hdmi_sound {
--	status = "okay";
--};
--
- &i2c0 {
- 	clock-frequency = <400000>;
- 	i2c-scl-falling-time-ns = <4>;
--- 
-2.52.0
+"TYPE" has been mentioned by Rob in the "FDT_TYPE_U32" context.
 
+Any other ideas are welcome.
+
+> 
+> > The FDT_REF_PHANDLE dtb tag is a meta-data tag attached to a property.
+> > 
+> > It indicates that the property defined before this tag (FDT_PROP) uses a
+> > phandle value and the node related to this phandle value is not local
+> > node (i.e. the node is not present in the device-tree blob). This tag
+> > can be available only in overlay or addon device-tree blobs. The phandle
+> > value used in the property has to be resolved when the device-tree blob
+> > is applied on top of a base device-tree.  
+> 
+> This is kind of looking ahead, but does that imply that this tag is
+> only valid in addon dtbs?
+
+addon dtbs for sure but also overlay (plugin) dtbs.
+
+> 
+> > It is followed by two values and a possible alignment padding:
+> >  - offset (32bit):
+> >      Offset in the property data where the phandle is available.
+> >  - label (string including \0):
+> >      The label to use to resolve the phandle value.  
+> 
+> I expect it will become apparent later in the series, but it would be
+> helpful to clarify what the scope of that label is.  A single node?
+> The whole tree?  Across a tree and all its possible addons?
+
+This label is the unresolved reference. Its scope is the dtb.
+
+For instance, "prop = < 0 1 &foo>;" in a dts with the node referenced by
+&foo not present in this dts (possible for addons and plugins) will lead
+to 'FDT_REF_PHANDLE 8 "foo"'
+
+The way "foo" is used when the dtb is applied is covered later in the
+series.
+
+It will be resolved with import/export mechanism (when the addon is
+applied).
+
+Also it can be a namespace label reference (see patch 66 for the definition
+of namespace label reference) and here also it will be resolved thanks to
+import/export mechanism. Namespace label references can only be present in
+addons.
+
+Best regards,
+Hervé
 
