@@ -1,211 +1,104 @@
-Return-Path: <devicetree+bounces-255831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AEA1D2A3AC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:39:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFFB4D2A64A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:54:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9BD5D301A4BE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:39:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D2BAB301A73B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 371DA308F39;
-	Fri, 16 Jan 2026 02:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7891B3396E0;
+	Fri, 16 Jan 2026 02:53:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022114.outbound.protection.outlook.com [52.101.126.114])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6FA01F192E;
-	Fri, 16 Jan 2026 02:39:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.114
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768531161; cv=fail; b=gJYcrAOD4ScexmJ2IsxuX41JVG7M6FbpXk9wSPA1AXg50hTIPCZjbDWT9+pXpP9z1P5FfJGN6uewQClqyxqR1seeFRx27ESqsQVU2/MN1JG+BXxj4JPUOay72RKspVmgXPch9LBs8sXtqh6VFC/6D6IGSCVWICXrRG7j86crvis=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768531161; c=relaxed/simple;
-	bh=0/6DQOIoUwqLDbyLH4mHx/H/QRhnoxfmf3kyjGKalEA=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=HXPCMSoCNIcFl1cNuDXNicxS56kPeLVxKXpiRM06eYO3mfGKd2gTJZZeZTUF6wgciHeQLGzX7+kBh2wDF8+qJlfZUJA4V4LMM1U6Y8o7yF+A63UqHp/jdICTphCcm7ozjbcdkih/RTkHctbbBrQSQtaAFvf/6t+W5LgtBzMK/is=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=khadas.com; spf=pass smtp.mailfrom=khadas.com; arc=fail smtp.client-ip=52.101.126.114
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=khadas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=khadas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oDiwt7WyrepK6BH06UrlYoYf6wFzPKtQyQsfl5SJLHGfNSqAI7lH1wLHl1MEFDDqxo//JfOlO1DKln5A9M9QkhAcGyJgp+ptHGKejvItbJspLZB4bnBgHUTWe+f3E2SX9Ai78febmaJ3ax4UVJ5OiO9zdylTpNEA5/Q7wuGSHrUzRVDiPM/IPkEzSKYHdZVFpPjteloIseVF+PQslR6Eb3bF60LwrRUbrVTCinBsnhMtKcr6CrrLiXPItfD5X2vtA8WHgYxbC/KzDGD78CEyXV/ApXl9Y7fdGKTxdm1XiceD16xzN3hpyFY58UihpjivSy4Yj5Oc7rMoFb27axvJsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8m9V0xIJ/LIwxUU1rjhYjoCxe+NVfPAs7E2ZCOp2ENg=;
- b=x8gzB8WUfELUWHZJTQ4hJ22av2ZnLQr0QEOacc4BlocNRmcIinkOi9wp88f4UqqVMpk+idc7U2qAG8ccTXA5BSEzKigWkDicT/rPjt25QAV1McDWfEHMh06sJgu8n3iw+Dh8m2kVbslpUjrkLeihU/Yd4cJt6L1KU+XkfOvzR0Vx+SCwHu0+Suk2Bb2T/SAg9J777MeMD26rG7v7up263FWgxyiAtpsOSwBK4o2UyFtEafbJqQYxwCbWx8zb+8P8aPtPxojo4wj+qXppu7cOmB9Xb/6x+XROvN6rM+Ngwytgq5zpR5YNvpLdP1GPyzqNBZieCyVq5U3YcF2KLW3sWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=khadas.com; dmarc=pass action=none header.from=khadas.com;
- dkim=pass header.d=khadas.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=khadas.com;
-Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com (2603:1096:308::2da)
- by KUZPR03MB9414.apcprd03.prod.outlook.com (2603:1096:d10:46::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
- 2026 02:39:16 +0000
-Received: from PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- ([fe80::af44:7e78:1133:adec]) by PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- ([fe80::af44:7e78:1133:adec%8]) with mapi id 15.20.9520.005; Fri, 16 Jan 2026
- 02:39:16 +0000
-From: Nick Xie <nick@khadas.com>
-To: neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	xieqinick@gmail.com,
-	Nick Xie <nick@khadas.com>
-Subject: [PATCH v1] arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: enable SDIO interface
-Date: Fri, 16 Jan 2026 10:39:00 +0800
-Message-Id: <20260116023900.2036657-1-nick@khadas.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR01CA0054.apcprd01.prod.exchangelabs.com
- (2603:1096:4:193::22) To PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
- (2603:1096:308::2da)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CABB3358CB;
+	Fri, 16 Jan 2026 02:53:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768532009; cv=none; b=VU0+vv8V5EBkHdf7AmkCx6ZIIa5ZtJsOwKZTpW0hlpAxct00Jy0bCU9dtVOBloMGB/0rM4Rye0G0BFKUuS4bTkbqWpF7S9O9m/KohX2Ef377j/3OKXae1OklYf3zguAaxAH2AhksMUQwtY6prcZqoTfazsLmiI1o4jPQG9bG8XA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768532009; c=relaxed/simple;
+	bh=skzeJJpNld7RftFrKl/uW1Nm9mq66q5prekuES1h6y0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=RZ5T8JXYJsAwY9a7D6gGcQlMGVXmYyA8ACIb8AE4/fEYXtKnmfMIrH9gjqpX8oVVNpEOpJR2F8Qjc7suImdkUw9on7IXafTgfwxkhR6ev4A5kSud9KpGLEpRTsBWwBDxiCwhkZJKqfHcjcAa2hOKmSeQiEV9fMPYN4qVnnDRHek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 16 Jan
+ 2026 10:53:26 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 16 Jan 2026 10:53:25 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: [PATCH v2 0/3] Add AST2700 USB3.2 PHY driver
+Date: Fri, 16 Jan 2026 10:53:23 +0800
+Message-ID: <20260116-upstream_usb3phy-v2-0-0b0c9f3eb6f4@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PS1PPF62EEA9B1D:EE_|KUZPR03MB9414:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4508ed44-43f0-44c8-6b12-08de54a870f5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?535BW0j3LuCSoJ3LozgKcgEcVzaywnEgoLxjPXfGsbOftkRKrW2Laye3kDGt?=
- =?us-ascii?Q?iW8K6kfbB0NMrU+gUEJ2S9enQvnk1qsRvXhZauYkdmAXCL/Jj/eeqbVW2FnY?=
- =?us-ascii?Q?e8wjJILTvRhLaCqQQkMIK42FNNrPiPEuk/VUNcvad6LPKhO8dnBxaCrfxu7B?=
- =?us-ascii?Q?+f7+pz440zMfdxvroKXF+8zuIDRFgMVEZpkEh8YwGEI4hfW4KhAIgZ2nmytu?=
- =?us-ascii?Q?AefODxSHzYVxDcPEnMy25XAAGOZo5KNSgJPzh6fHG4dYmXBZ+Xgvxvz8tI+6?=
- =?us-ascii?Q?1JfZp3KYO2vBBJrNRoEuRtag0dnc5Dx0ggBauxSYtzx3JxDA9xzh2B4+KI/e?=
- =?us-ascii?Q?+gm7lb65zwMa8s5mjJbmT2OK4XU+sM/UmvVQ4EtTRkBbOtkvPS4Lj/okCRZU?=
- =?us-ascii?Q?7dQTkmS+E013fZTctl0QJqSorVfvA9zG4CDRaCdTWiku33JJBC9qvMEqfK7s?=
- =?us-ascii?Q?1+m/wBTTZtP8GAWUui0EY30Uw7xBp21yRCWMXrozp0DNHG5xhdi8cm2xq7wl?=
- =?us-ascii?Q?e7ndmgWnvNkdm0cHSxWeSqUR1hb3ziNJA13/SS44JH+2hYkbjxhzeB3c7eIQ?=
- =?us-ascii?Q?Zgt07wR9R04pn0bX5HKJEP1x6wXpIo0jBEah1f831Z+isd0KeaQFPuDngWYd?=
- =?us-ascii?Q?argEb6lzx8JJDcm76fue0vP27t2/CJoeYJTk78qnJzsiZfIoEm1cTYEBmmhJ?=
- =?us-ascii?Q?KZQCFer4MLa1WqkGdPP5UP+0BOjjONVCkANCud8CFjeHXsp2yqIQ4jvHZTF/?=
- =?us-ascii?Q?QAi7gI7QEK6YstwmrLRvNDjlnVrMygdwBbfUu23xb+RjiuRMBcuDV2sOJf1k?=
- =?us-ascii?Q?nfUcNC54i36DQkksyIJZzJpT2WXWgX3XrqYgioamKGAU7iG9UHFILj6WX3Z2?=
- =?us-ascii?Q?/IZFLMi+0b6VUvFMAvReGtYGGt0SRxt6/GRXAFoOPbKhEZFadzn9sP3+nSKl?=
- =?us-ascii?Q?CwiR4m/RbKejVoqVBGnbO5+Zf6OEErPOU0aAf5CDHrBn7g+J/3wLSs69QBAm?=
- =?us-ascii?Q?cL3TiysVqm6v+M4mgrCuyxR7hoSYy+NvPlXJiyTuOMP7on3+amWd3tda3c45?=
- =?us-ascii?Q?CWipgM4scY/sOEEUBAwRtfjlnovNAV98vT+g/UZ84RRWtozAO3S+KlkKkHZd?=
- =?us-ascii?Q?pVdb9H5Ei4QAqUBP2v8vvFUezM6VkmPifdNzRpVjW9plqGTqyFoWuFBxaDaO?=
- =?us-ascii?Q?moKw6JBa6xWm5hgaKwW13UQZGRHXbQEfvyjouomAhtHrdqlGUSJsXKO0g94Q?=
- =?us-ascii?Q?Kd/qo8+34ciNU6O13dypsEUQHiviS8lMWQQWjEqhdlV41pc1Uhx3msolerOT?=
- =?us-ascii?Q?uw4nX8fbZNZ00PRV74ATjUZNzTzQS4TRf3VkuJo5WiR98xXHp0mTtC5YfyTW?=
- =?us-ascii?Q?az373s7tMJ6LlwHJFxAAhdQaljVMARUKJdU7DblY8emgMsty3MrWIj1/lZi7?=
- =?us-ascii?Q?Ear1Fnma0nSb3RjeCpL8t6Mf0jbTiKSg2iW+Kuvjc2ndfY/rzN/L/jTFZXOz?=
- =?us-ascii?Q?VzfioS6s1J+HLPljXMpboPfU4Yo0pyCgau9sse1yJYIqj8bVaTDpas1GAF1q?=
- =?us-ascii?Q?pw2g8+fKxgJdM7wdibYxoj739pacKQ4dPF3ZJpdCvzvosT29+uf7FcruaCJG?=
- =?us-ascii?Q?q46IwK8Pr9wX7dFu4ti1xpc=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS1PPF62EEA9B1D.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(52116014)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?aSQhjETmMoHivT66m8Xz6H/T7WvvqIlAyMwDUd3EhuSkbRc/LU8e3Us1oXrb?=
- =?us-ascii?Q?Eo55SGiZgjdnJ+SjpcQQXM9sfOaqmly5XmvJjnfjksALMI23fErado/INuxD?=
- =?us-ascii?Q?gnGe7484KasuYljPzhEjZCEuNnh9Fk3ZAzRNtScHeOydjdsehrYgmBSWfJCW?=
- =?us-ascii?Q?m67jdyCUV5NSbx4qVOZDUoCghUeqJQtJP/RrdW6iF9qu9kXZvIRouCKPk4MZ?=
- =?us-ascii?Q?QGYYouxDn0MwefK2S+Xcowv7fNfTnaSFfhYSF+cDtjJmsx2ReeKHnA1wphPQ?=
- =?us-ascii?Q?Bcheu9bqmmcFBJ7j+xGD2tmRC8JigrpWX4nT94rtvoZmfN/1Hp7KkgRjBhSN?=
- =?us-ascii?Q?xUSi26jOvmejFaoeyTMl1LKC5qvRe12YxkV6K4+aC6gnSfhfeVQz5Gh6TdB9?=
- =?us-ascii?Q?An2CGlCRhnGAQYchGSlBR5v6ktIkI8hlfenWjpZ56dfxx4sWXyTqff/MMHmG?=
- =?us-ascii?Q?7EkS1nhw8aza7tYHPdMO6AiTZSv7spVgR1oK4cj7E1Em1asFrfRFlu+gBwmw?=
- =?us-ascii?Q?sRjy0kv+KEOA7Cvw/JrELzmVAx61hn9ZLXS7sUzsf4aBNtekESkvL0dteoY3?=
- =?us-ascii?Q?Wuvny1qtkEZDdOoK7b77Swzb5llawQd8/GcXaiVSdfAv/6C8cgWOgK1SJi1E?=
- =?us-ascii?Q?BNVzAL/dCab+ZkW7dlkRZNSrN1pQTfzUoKHnsWa6rW49ISwz5i6MEXhYnFK9?=
- =?us-ascii?Q?lrlKxm6XhmWQICrdMnEwuP5S5pNAJmU8bFWUdXMb+uGMZGf60J80JV2PFUw0?=
- =?us-ascii?Q?JjW1qZ2moW/D37G/3oiNFtZa3vJnt898vBJmu4ZHNzfsh8fEDFSJHIzPDpeH?=
- =?us-ascii?Q?jp7mwq812HCrzSQsVQYsDMDHYXrM1lW01iSh72OqqUwlvLbI3MaB30LAH+Gf?=
- =?us-ascii?Q?FUXsfW6VlJ8akpEtgwbujkbCQkVbUvgUn8CGyXGli+AH1f+TZSU9Gx9n2oYx?=
- =?us-ascii?Q?+5KqrLyZcpQQjvsXOivq0nj1rPfc5VotN7hIV1d67/nSWYeNtdfZyw/TCh+X?=
- =?us-ascii?Q?xEVI9aG3R5fJxUC0wjDlNsSOAXOt9/g037VBGAtzPOtwHjXS5uqG+08tBjXc?=
- =?us-ascii?Q?HvBWl5QoHHW0pDiaaJOrC+AddP56wNNqPMQOpScNzqjg0E+ar0m9WZm8AdVE?=
- =?us-ascii?Q?0DTWaXb+gNZkUKYcap0lvoXzDfbSe+mJxgiqlSMiLuRicQrzBcgPKAr+AD8q?=
- =?us-ascii?Q?gNNQcg2kUXDJwEvS4Ddxx9jRDKxADzCodsihb6ML/A5yHignnqdHgEj8V3aG?=
- =?us-ascii?Q?K23GoJPgjjxIRZjIK7nVGoCkx2bPXlMIAP98jvN6pyzqhinaI5di5nXE2DtY?=
- =?us-ascii?Q?uESpnJgLv2qq6DBXzNhuUwnj/hhumYfPGKIwp4PIVUicNIALsz5i0hhNnyja?=
- =?us-ascii?Q?kvTPzaX5J2I1NVpKCV0Hwb607GvNtY4eBKFEeoEGpi9RkXe2Hg5J8EFJUOiZ?=
- =?us-ascii?Q?Sv2S5vlVCtYz4M8OhO/p5TjNZd75qNySHzyBiEjCEeEuye19TdUX1gNhk0wm?=
- =?us-ascii?Q?BajzpGf/eJe/pDwY/rQhB3x6E7rZXhIzHOqvemhA9afydKEPj2Tg/iNz47Kk?=
- =?us-ascii?Q?xt91woAGuOlcXNDd7XXTuye8+oJvLKh7wxfXpvK9ha8FjILOYw/43IJC0V0c?=
- =?us-ascii?Q?opXPxMw+PrVaXMtxQyJ1rpqbfaQbDyX2b0C26NwWR1DxLUp4HmvFXjFH20Op?=
- =?us-ascii?Q?UcaMv/aPDnegg7f/alrjxryz2qq8NPwYw3t6++O3d94qMaIf?=
-X-OriginatorOrg: khadas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4508ed44-43f0-44c8-6b12-08de54a870f5
-X-MS-Exchange-CrossTenant-AuthSource: PS1PPF62EEA9B1D.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 02:39:16.1445
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sTpLvEIianaoMKzfBKjUYGwxgPmQcjxEGENgncEOOjmqOVICY1C1ZlPbeNWJUcrp
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUZPR03MB9414
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACOoaWkC/2WNwQ6CMBAFf4Xs2Zq2ChVO/ochBuhie4A2XWgkp
+ P9uJfHkcSZ583YgDBYJmmKHgNGSdXMGeSpgMN38QmZ1ZpBcVlwIyVZPS8Bueq7UX7zZmBKiGm9
+ 6RKVqyDMfcLTvI/loMxtLiwvb8RDF1/5i1/9YFIwziWVd1rxHqdW9I4+oFxzMeXATtCmlD4Yzd
+ Ea1AAAA
+X-Change-ID: 20260112-upstream_usb3phy-7116f8dfe779
+To: Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, "Andrew
+ Jeffery" <andrew@codeconstruct.com.au>, Philipp Zabel
+	<p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, Ryan Chen <ryan_chen@aspeedtech.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768532005; l=1184;
+ i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
+ bh=skzeJJpNld7RftFrKl/uW1Nm9mq66q5prekuES1h6y0=;
+ b=ZzNEGJC7S2ExCx1ucmhgJ/IaHbV9SFe7rxJCCD51oPhRXQLVkf+lUDG03WfXhwcplV/XRpzF6
+ Y9nEy1qscYmAZjW4izS0qaAz9Dum99NrQm3UmW7MONiJiVKZKmpS40O
+X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
+ pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
 
-Enable the SDIO controller interface connected to the on-board
-AP6256 WiFi/BT module.
+Add AST2700 USB3.2 PHY support.
+ - Supports Super Speed Plus Gen2x1 (10 Gbps), Super Speed (5 Gbps),
+   High Speed (480 Mbps), Full Speed (12Mbps), and Low Speed (1.5 Mbps).
 
-Signed-off-by: Nick Xie <nick@khadas.com>
+Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 ---
- .../amlogic/meson-s4-s905y4-khadas-vim1s.dts  | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+Changes in v2:
+- aspeed,ast2700-usb3-phy.yaml
+ - Drop clocks, resets descripton.
+- Kconfig
+ - add COMPILE_TEST, remove default n
+- Link to v1: https://lore.kernel.org/r/20260114-upstream_usb3phy-v1-0-2e59590be2d7@aspeedtech.com
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
-index 4a66c1bec965e..74ef02c713207 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts
-@@ -220,6 +220,35 @@ &sd {
- 	vqmmc-supply = <&vddio_sd>;
- };
- 
-+&sdio {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	max-frequency = <50000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	amlogic,dram-access-quirk;
-+
-+	no-sd;
-+	no-mmc;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_ao1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
- &spicc0 {
- 	status = "okay";
- 	pinctrl-names = "default";
+---
+Ryan Chen (3):
+      dt-bindings: phy: aspeed: Document AST2700 USB3.0 PHY
+      phy: add AST2700 usb3.2 phy driver
+      MAINTAINERS: Add ASPEED USB3 PHY driver
+
+ .../bindings/phy/aspeed,ast2700-usb3-phy.yaml      |  48 +++++
+ MAINTAINERS                                        |   8 +
+ drivers/phy/aspeed/Kconfig                         |  12 ++
+ drivers/phy/aspeed/Makefile                        |   2 +
+ drivers/phy/aspeed/phy-aspeed-usb3.c               | 236 +++++++++++++++++++++
+ 5 files changed, 306 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20260112-upstream_usb3phy-7116f8dfe779
+
+Best regards,
 -- 
-2.34.1
+Ryan Chen <ryan_chen@aspeedtech.com>
 
 
