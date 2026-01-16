@@ -1,154 +1,166 @@
-Return-Path: <devicetree+bounces-256280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22049D388DA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 22:48:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43746D388E0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 22:49:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E89A3048EF1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 21:48:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 336AC300B81F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 21:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E6D301004;
-	Fri, 16 Jan 2026 21:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E24301004;
+	Fri, 16 Jan 2026 21:49:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="ZRbpPk/E"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="UAP51eNm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
+Received: from mail-ot1-f97.google.com (mail-ot1-f97.google.com [209.85.210.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFFFB2F5306
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 21:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29B673C17
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 21:49:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.97
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768600129; cv=none; b=B5l47dOK9Kg+p3ZDwykprvKjT6Q2k/dZj1tkKRAZ3wqqYJ32N44p8oWKcezzNWJ1+TGSXH6VhroikNI3yA9j1jXdpItQzyDMhlyLfSoTDsp726z+9Ck87D23xnl54OOHHtlgub+kue0zaqHN7yiBGshRtsebsU0rf4YCN/dIN8o=
+	t=1768600170; cv=none; b=QkJ5f9Z1NwSdgAqi5wYPYtXmczSYilwplE1M9FCUuOSJktIZ4wNqYZGs+bE+ilu48vBRSsL1VLx2/JhUn6vESN1/8ychTcKKczQfqurTRgcXjmtdStEsqalsqm8hLBB/zF7D5FaTtwvOEvVSG5zB12Zu9onyU8MqTF1mhKP+8Mg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768600129; c=relaxed/simple;
-	bh=YUlJc7Sr3zDM3jr9HxQY7NThbaP+oqVN9MaKS4Seviw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u9CCkevbW0/BssVG6hOy3YxhOEAK2x0vhm3LW/rdQ3U7zIsSj7b9KKPSl3BBZqDhqjkp9ax4WoR4WtS4Um5oX2l1IQpiF5wS18K0eBWBjBivgZ362bIcFt8jeKHFxMV1GPx6A/qWQxgPeuKejm5k8V1BKiCiB8BA3bfrGGXAXHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=ZRbpPk/E; arc=none smtp.client-ip=74.125.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-64472ea7d18so2091153d50.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:48:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1768600126; x=1769204926; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mY05kIgIMl2dh4w/PgKOxyQ2I8chWiVdB03iWdA4Tog=;
-        b=ZRbpPk/E7FRnJ7BMYHtVIliZZqZnvfJtHgkTCmWXbbat7JE2BTe5eKVdYVOyoAAYq1
-         VYM1NLpdyxVQKz6jR+d37CWqpSdWuuyAbShxVH+jGA5hEc4S//i1gV0B8DfWAElCHBN5
-         /NAFr6oSsfWbZmz8EDiBUHznXH1Eipv2483tDLYtNPoB+mM7I3i/Gs9kJDdbwKDNQsoI
-         7hO8QgfKWx6IAJvQSp21coL+RQtofqb8u8gTR5figsZSHhnoR7uNiCnz0Hv+0d0B/mPm
-         NiO8sVpcQOoKROgzRw0zal7XV6LnfMFbuYEhCx7GBOSRtYfej38OwlphZftRnAMMfhd4
-         Xgsg==
+	s=arc-20240116; t=1768600170; c=relaxed/simple;
+	bh=LPW6ztCxKZlYfl07zB6rlwTPKYF6claQTbHWokalpbU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MKuROOrHLywgrG8mtkCt9x+8mlbO/ut3gbUrBzeADBdbQEJ5kgmCvriBdOFltjfN0bWPhBUpYeImodzJ8NXoy2BA/2EK56hIqWmL7yonBR0657VJP74lY4VrHfQqu8uylBred4siUZDndJRRz8galWWVKrXAeCKw5Tx9m5hhmn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=UAP51eNm; arc=none smtp.client-ip=209.85.210.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-ot1-f97.google.com with SMTP id 46e09a7af769-7cfd10887d5so1060433a34.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:49:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768600126; x=1769204926;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=mY05kIgIMl2dh4w/PgKOxyQ2I8chWiVdB03iWdA4Tog=;
-        b=NlJOwSTtoNw679zDBI+Z8Di73kKrOHIQIPKSQvHAJHnzBzKRkcynCEKX9UawaOe/uC
-         qW/YPWKZZKFCwJuFg2+x4l53SNgY1el2usUp5aeXxIwHgI9HLQJ2SNvHOfImXoEhjjDM
-         rdf7bWgtdIJDLK54UtUMej12Z6l05zKCFBMQyTiAyTwZi8LlGCmqCB0P3F1I46hb/1jE
-         PCf2gMj2ZkTososi1zxSDq/lZ9IxEd5j/Csg2s4ejh8AlttlZY0+DFbfj2e9O8FnS7tN
-         bjgx7oH3Uy1bqWHyXjroneP/O78YCFvvqDTSj+qg7nMJdUDRUBvy4Z7gpLSugIOr7lSe
-         P/kQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWYGXvaZ7HYDTvDbG3QXmGD420JJ3oK+vp5EnIwBSibtu2aWzVW3RVYIuMzMlztglNlfWdsSP3GYDF9@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywd3mH98X6WLBnHqeyM68uQOmtKKxewDbh1Feza4BwMalMD7YeJ
-	dOGUelSVN7YpnEUQa8kRwiwELv5JRDxLwxnmR7TTaaTgwWp5hy1+6SYIFlUd/CBSdXQEMxgpJYi
-	VQEixmPDNq9pGTHoEc0Gmw+hcH80rucwO1He9S7G5DA==
-X-Gm-Gg: AY/fxX7NCmPU0gic4Dhapk8nis+F1suUg1r7Gy9pT3bHHmRmessD6pK5c1+pqAytpq8
-	erKvxEYM5rLiWtAiE9cvERShSrPys0bDQBjUk9VhtcbikzqQBBY/RO2x62zpnkUX44GbJalRcEZ
-	DzCe8Qm1XZEUIlJch6Ipf3bagRIh4JL2nGtQYhI5bYyL/+ZfPWZZFIIPWNcOvfJcEUCbXmZKlrr
-	yBb+lNsEJmyPbS0tON24kewYUaNWUVrZesr5QPKoKITXwPpUwCNJ7tCi7kbK7rpDOT8SVKs/Ekv
-	PLLrNqutxIk+FiphFFjbXcKdvtwy0UDdVHx5+GU6P1cJvcfN+dJgcRP9F8kR
-X-Received: by 2002:a05:690e:4191:b0:63f:ab00:1a07 with SMTP id
- 956f58d0204a3-649164f2191mr3364006d50.49.1768600125896; Fri, 16 Jan 2026
- 13:48:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768600168; x=1769204968;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:dkim-signature:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bZPxsf3cKGg5r/sDoaWbUA8YBIi5b4KFRVaME9GKXIs=;
+        b=piEBoeedu3jMpPGqnOIZrcW2Q7NDRs8Prc5EQLp6KeI5aKtmYOLcnCgBMVz/opKDK1
+         oKrv7yR6iYJUSe/ElWddJI2Og1mTrZUe8VM2dwe2W9oW6DuByIqVngCQ1qX1VE78Q4Zk
+         s3fHhqE0ebtrHB2mRSVEcAP9M77rTPVO+/HKTLFq9hutb95X1HSLzrdm9vdd29UsSyuk
+         ZF4xFPEvwl4vf9pCbhbz3/EIWk+jwRyCx3EsTgI07a5iEDLrt2BgY3Zm5m1P6rlmiw+G
+         YvAJd+PEEdhI068PK9htNVqjpKkrXkDQrlokt9A2VrHUF2UJb1jLXzrvekwnGy4c039Q
+         U3iA==
+X-Forwarded-Encrypted: i=1; AJvYcCUra1OGGceNn6Yv2ccS/zbmQujhCYQMihc9rRGfCiHOg03wlusp1qlDTSy42162vNWishxwoCFqlHrv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlG8FNLP/TythdZ3yW9E1HqL0mY0AW/TqsZ4NBXcalmL78SWAd
+	w3NGitcGIfB2bT4yVVvziNWgyOdHJ7IveKAeBAbRvEw9vMrxDMqgEkFHp1cXwjqLtTG81cHPXYX
+	T2Lcpxi6w3Wb7fRuqAykQi6TdMu2MS2NhF9e5dgGGTLpP0UMAXzOyNTgvaWG4F9PlYQtMYKkkD7
+	RhAx8jtJYTxS25ZRyIY3jPI8JOIL4cAN4YgbSCTAgTE5O+irItmiqrH2BIzG1eVRjI7hxebsy4j
+	WOMpZ2etjZUd91/ceJCWg==
+X-Gm-Gg: AY/fxX6IPo1aRjjmgpshsZDfv7Nr2tLPQZRG0rvjOv3ZWcn+YaOscBNkOA0URYsS3eL
+	CPJbEciYp7/AsK6Ul4ElvrYalCvXOBfkeljFlrK4lmK3awd+0cHRBrkQrNWaWjkILj6jT/Y9op7
+	ra3nIi97gdlpKDNcnIBsuwx8XkZf2miiV8vaUk5ZN7l9XHehnDPl+8qUZ30nXQ429gT1ZpLW+7p
+	7FTrlUenPZvshCz0Dg7zvMi3QYj486lbYevfIeg3qf6INr1yi5sooF4FENvTny2ThZjOJJTAoED
+	C5yIYWNm985yLlip0wGrtPCrcV7KH8wlEggYdlwzl9Ufm8aOG/MrqsO7Gl4XdgVI10/yHVx9HKx
+	bkAuzhAd+RDoL/YocB5d9uxZcQvnGAPI0frsr/6mDcXVxqzn9LolR07O8NZFNcJW+cSwRHFFnLZ
+	JbrSDG0IuSCqupmAUhU4gGCwR5KVSncyQ9psvq5y6PDpV+vyE=
+X-Received: by 2002:a05:6830:314a:b0:7ca:c7e4:955a with SMTP id 46e09a7af769-7cfe0272e22mr1958007a34.33.1768600167903;
+        Fri, 16 Jan 2026 13:49:27 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-2.dlp.protect.broadcom.com. [144.49.247.2])
+        by smtp-relay.gmail.com with ESMTPS id 46e09a7af769-7cfe3e9154esm297187a34.5.2026.01.16.13.49.27
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 16 Jan 2026 13:49:27 -0800 (PST)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-501473ee94fso103939741cf.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:49:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1768600167; x=1769204967; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=bZPxsf3cKGg5r/sDoaWbUA8YBIi5b4KFRVaME9GKXIs=;
+        b=UAP51eNmDU/qFMnEY/RRf9QGYSKWDGkqy1htLLfqSVeoBxjHeImNDoVtI2Q+sYfLPy
+         M0wYKEqwR8eWNoZA5vN6FmxnmcPaftYN2JewUFotdst6lCvxkcvY55besdyn5SzGrUtX
+         S2OqEFw8Mqbz8gVTfZezvtlfi09a7z1RCrwyw=
+X-Forwarded-Encrypted: i=1; AJvYcCUhru7Lmj81bIZhfqNbBmRFW5h5VUWIPcuiDQyLCwI0b0ga1KN+mNU8HGPVRRfsOg1yYhSctgHZkc8L@vger.kernel.org
+X-Received: by 2002:ac8:5949:0:b0:502:9b1f:ca3f with SMTP id d75a77b69052e-502a1f838camr62604251cf.56.1768600167115;
+        Fri, 16 Jan 2026 13:49:27 -0800 (PST)
+X-Received: by 2002:ac8:5949:0:b0:502:9b1f:ca3f with SMTP id d75a77b69052e-502a1f838camr62603981cf.56.1768600166662;
+        Fri, 16 Jan 2026 13:49:26 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-502a1ed1de6sm29437481cf.17.2026.01.16.13.49.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jan 2026 13:49:25 -0800 (PST)
+Message-ID: <bcb25d4c-1ce1-4b91-8950-66b3ef69deeb@broadcom.com>
+Date: Fri, 16 Jan 2026 13:49:23 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com>
- <20260115-atlantis-clocks-v1-1-7356e671f28b@oss.tenstorrent.com> <20260116040329.GA1375823-robh@kernel.org>
-In-Reply-To: <20260116040329.GA1375823-robh@kernel.org>
-From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Date: Fri, 16 Jan 2026 15:48:34 -0600
-X-Gm-Features: AZwV_QioGa-4X2KzI3YnQR765ca18KetbCGwv9R3-erpeNxDeN2zkJbwLVpqjgI
-Message-ID: <CAEev2e8dRFD4FVyoNs6Eo-Qrvp4oKAQ96YTOyN5HUWVKVDUjuA@mail.gmail.com>
-Subject: Re: [PATCH 1/8] dt-bindings: soc: tenstorrent: Add tenstorrent,atlantis-syscon
-To: Rob Herring <robh@kernel.org>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, mpe@kernel.org, 
-	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, agross@kernel.org, 
-	agross@oss.tenstorrent.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/13] arm64: dts: broadcom: bcm2712: Move non simple-bus
+ nodes to root level
+To: bcm-kernel-feedback-list@broadcom.com, "Rob Herring (Arm)"
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260106-dt-dtbs-broadcom-fixes-v1-0-ba45874e4553@kernel.org>
+ <20260106-dt-dtbs-broadcom-fixes-v1-3-ba45874e4553@kernel.org>
+ <20260108173330.3784137-1-florian.fainelli@broadcom.com>
+Content-Language: en-US, fr-FR
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20260108173330.3784137-1-florian.fainelli@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 
-Hi Rob,
+On 1/8/26 09:33, Florian Fainelli wrote:
+> From: Florian Fainelli <f.fainelli@gmail.com>
+> 
+> On Tue, 06 Jan 2026 20:09:42 -0600, "Rob Herring (Arm)" <robh@kernel.org> wrote:
+>> The 'gpu' and 'firmware' nodes are not MMIO devices, so they should not be
+>> under a 'simple-bus'.
+>>
+>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>> ---
+> 
+> Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+> --
+> Florian
 
-On Thu, Jan 15, 2026 at 10:03=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
-
-Seems like there was a small typo in the example (sycon instead of
-syscon) and your bot caught that. I'll fix that.
-
-> >  .../tenstorrent/tenstorrent,atlantis-syscon.yaml   | 58 ++++++++++++++=
-+++++
->
-> Filename should match compatible.
->
-> If "RCPU" is what the h/w block is called and sufficient to identify it,
-> then drop the "syscon-" part.
-
-This hw block has control registers for clock and reset for the SoC.
-This block is instantiated multiple times, with each instantiation
-controlling clocks/resets from a different subsystem. I originally
-planned to add these later on, so you'd have 4 different compatibles
-like "tenstorrent,atlantis-syscon-{rcpu,hsio,pcie,mm}".
-
-Instead, I guess I should add all 4 in right now (the clock driver
-patches don't support all currently).
-
-Is the current file name okay for that
-(tenstorrent,atlantis-syscon.h)? I based this off the spacemit-k1
-clock/reset controller [1], so it would look very similar to that.
-
-> > +  "#clock-cells":
-> > +    const: 1
-> > +    description:
-> > +      See <dt-bindings/clock/tenstorrent,atlantis-syscon.h> for valid =
-indices.
->
-> Be consistent with the compatible string for the file name.
-
-I will squash down the dt-bindings patches in this series into one
-that adds both the clock-cells and reset-cells to this entry. For the
-clock/reset indices, should I just use a single file (say
-dt-bindings/soc/tenstorrent,atlantis-syscon.h) or separate files for
-clock and reset?
-
-> > +    clocks {
-> > +      osc_24m: clock-24m {
-> > +        compatible =3D "fixed-clock";
-> > +        clock-frequency =3D <24000000>;
-> > +        clock-output-names =3D "osc_24m";
-> > +        #clock-cells =3D <0>;
-> > +      };
-> > +    };
->
-> Drop this node. Not relevant to the example.
-
-Understood
-
-[1] https://elixir.bootlin.com/linux/v6.18.2/source/Documentation/devicetre=
-e/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+Also dropped.
+-- 
+Florian
 
