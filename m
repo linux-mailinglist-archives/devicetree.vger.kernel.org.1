@@ -1,125 +1,137 @@
-Return-Path: <devicetree+bounces-256229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426FED33BE7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:16:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56471D379F7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:26:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 559DD30259EE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:13:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 674783021E41
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B638333C19C;
-	Fri, 16 Jan 2026 17:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFEB0342144;
+	Fri, 16 Jan 2026 17:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WE07dgYP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZTLXafyk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92ACE3112BA
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:13:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8C733A6F1
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:25:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768583602; cv=none; b=jTiLuPuc29p8CXRZv0+D/wZliOFK0iDdohK4rV0bdPfx6fiy4yCtqiv8pPGKQ4RxiEC4jTMgjMRVC8AVnj/eC060JBjy8SVEGDdyAM22uySikL61RffgdBh6sAAI/D7mGHCnwXBF6Ays9s/g7tkuEHuVZ6MfPggzBd5MGKJti/c=
+	t=1768584359; cv=none; b=mRb9RLDQ/6zGMu9Rw/RdYmkrs4TPZ9m9pGB5981FWNQLoF9xKQkrosn/KQ4xunWsB/plICkPaTQra3p24lwtM71QdLwhlMp0T2vY8NlpSw+4Gu5KdnCViNWmzWVfH1CVVBR/FTmD2EQtFripm9gx4ALMc2su+uz/iFeEenNRTuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768583602; c=relaxed/simple;
-	bh=eRYqR0sCNl0Tu2qKem4b18hzc+OZmtQiAcQb2U4ROYY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RXvZ/h4Xb9Tuf9vfP2WMsIcOrmTv4zpHlWjT6EYkW1IXiHK59fsbQtlYgnC2EsMcxf6YWR5Fum2aEpNt2C9Cu6Ji+Ia8WoMJRT65ZEPJLovtcUliFYXeq2Yk4NZpGm45ltOXdBRKCU4p0+D/1K3dhd8n38at2bYqO5k0uJuMveA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WE07dgYP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B772C2BCB1
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:13:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768583602;
-	bh=eRYqR0sCNl0Tu2qKem4b18hzc+OZmtQiAcQb2U4ROYY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WE07dgYPtMh+iEmPUqJIwpwlx16Y309VZaWMmXXZ6uz2AOQ6uSR8nzMYFdEO1SHze
-	 FGONKkBnkcPKDwEPw6wJgFbVrN38Y4d6J/N0syN8YRegLZ4wH4KJqOyzSjTOymexst
-	 95XKxOPhWxBScbeqeE8lSQCxGThlEb7EoUifQfTxxm18M8zTuZlMT6IFZ8goHQdZsa
-	 0C3xH5jK4rNNwW196Bt32nhLO0D1InBTeouRPTg438lCJ/NMh7X7dlEUuqfZ9uZz6w
-	 H+Sad/72XWg7S5Ihy1NISXfX1waRnX7HIlt1sIPg/wJ+7+uJ5wMgfc+34WgEIMj4o5
-	 AxletjXRB0nNA==
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b8765b80a52so361245266b.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:13:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUBaHnCUtEjmhb54993Or51M1mXQ3ydqGsYw2v65sHHyl5iM2sjhgqrb+eXofMXS4vvOzutrgotMlfE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyP7YD0gzITri4g7GP96oRpAhdtn+IW2NybUp2TalLysRCx5OFh
-	LxGXAZ99faJbP6OzujI3bG+Hm0ttSbY+bN4Mo/qBI9QHKc7mi1qQHeXMwgMXR+DA38LStboiewq
-	GaxH/M7OXptMgFuqfWHiZL6MED2ZNoQ==
-X-Received: by 2002:a17:907:972a:b0:b87:51d6:22fd with SMTP id
- a640c23a62f3a-b8792d27530mr333887066b.4.1768583600748; Fri, 16 Jan 2026
- 09:13:20 -0800 (PST)
+	s=arc-20240116; t=1768584359; c=relaxed/simple;
+	bh=YdviBTA8jRw1D2gT88VYxUJR+OiJuzgjG+E0JzrSNxk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=skLXneQJD1NELsK0yd7O8YbFT3X9RTSVWXQDO/aBl9wq7peYDebUg1mXlBDs18MGDx0N0FHy34pn4PE3v38qSQaLOD0Y7fOnfQ7MevtA7jvWNtDJAEPjJOnDT4WYADT01VL4QncsJepA96Bv9hxTqH4xTdT4nh6QiwoPfKicXbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZTLXafyk; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-432755545fcso1368307f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:25:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768584356; x=1769189156; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=guLdPSMspTYOQSTOoD0vgqQiAA/YDtF0X8jjlbY9les=;
+        b=ZTLXafykwOWeH2jSFBA9oCl5fInL88gaM1UOVuOiqisXzYS2AIkYkkpx4c2KawaIcN
+         MNZDlaeBPHeHalbcvtMOtYBbm+L7dY23vUF8B0uTvFvAHPtRbTUNwVjvWfKmn1CNCGD2
+         VCfdBOJRgYZcp0ZAnd4hyYz9GDaJyKzVa50Cp0Xu16eB2VOz0vePVuCTJnkUkanzLo9Z
+         nJoZrfwfD/6T41sqZfGQ03QuwQ2FpDRu4uqupvltxREoIloEFjgacx2QpXhDDTsjx0zl
+         tp4k0QgKdPUPxWuM1hhM7BV7dQNoF+ZjIpRQE1m1sgW9lAnIcgr+mF+BucFOr234QA2s
+         fakg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768584356; x=1769189156;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=guLdPSMspTYOQSTOoD0vgqQiAA/YDtF0X8jjlbY9les=;
+        b=umEgHxyyokUnJ7P8Akych7t8cVQ3iK4rNWj23z5UZR2wgYgMddOx9jf129RFJkBa9j
+         4APuX1WBv5jta0vhuglk/IUGbhNFq2txM4a6CR6d+lZodE1ffkg3mphAEhgii3LLmHOV
+         z6HZ7HCJcGFh+5E1Cewkx8Qnumb1NU87agdHxCA9ITYImIPcH3ooEbBuw6dOWYLmXk7B
+         g41apyUsmAeYr4eHZziWzsKiQsvqivmVBvD+fNKhTwJQoCmu62mimjyIAs2jgj2ixVqe
+         bBe2n5sF5NS0J3f1cqhQQf37JtT8oBPCeQaSLuzv8RQZpGE+lBZIHsze1Obclr82CwQM
+         Kv4w==
+X-Forwarded-Encrypted: i=1; AJvYcCXX1lwamkDIGvyyuKf140QNNTytzUU7mOPoX2vNW1zW1te+74SBFztgf2RwSb35dBiokk2di+Z6hIRY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxisSCQSWZxoNNjIAKF8Ng5Hx3huYFZgisrA34gm9uWim28YjKK
+	oIcP4o1djih+Fk+fd021daL4GeWLE/AfipFhrikeO/EbltDAZyD0dxmc
+X-Gm-Gg: AY/fxX4d87dQ/S9teSMk4R1Rzoe1Hv6ktylOIotwGXTZ2vkIEeORasdqGJEljvjMPdA
+	0kHXN3+BgiDTqJGulkbswNTVK1rojIKS7xx21pX9rkHAWaHfMdgqY33mD5SqEGc0GX+lZvo8EDi
+	YD0aa4zEE7uTAo//CY0bmVl3LF6lbKjZ+LrS5TEVtFW86WNSvCx1XchtAawWzct7B1ZONggQiLN
+	22EsUYSi/OnOWu5KN0iUnVu1550/0PXeSzauuDYUStb+wA6YQAVR0IDA+uyk7nEEw6Hz2gA0zAo
+	JeIY/QCR5AlsKsC4TgXtJOpCLH5VAPJYpfYkFtoLHIiJ7LtbSklw84pOPa7zTZ4lp3PuWmitVs+
+	xuUtQLiRkfUxvOgldbPS2CEHsL2f6t75PVGpIcDml8SenNY77xj0FFokkZ2ycNFu+qqzQJ2ZRVL
+	6u+Q8sNTEK+77aIUo7ogb10+5nEXY+6hyd++tFaSwzpgvbb9I9qJLfMsY=
+X-Received: by 2002:a05:6000:3105:b0:430:f622:8cca with SMTP id ffacd0b85a97d-43569bd2aa3mr4952607f8f.56.1768584356323;
+        Fri, 16 Jan 2026 09:25:56 -0800 (PST)
+Received: from anton.local (bba-94-59-215-181.alshamil.net.ae. [94.59.215.181])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43569998240sm6098837f8f.43.2026.01.16.09.25.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 09:25:56 -0800 (PST)
+Date: Fri, 16 Jan 2026 21:25:51 +0400
+From: "Anton D. Stavinskii" <stavinsky@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 0/8] ASoC: sophgo: add CV1800 AIAO mux and I2S support
+Message-ID: <aWpyLQ6FR8_RsD1n@anton.local>
+Mail-Followup-To: Inochi Amaoto <inochiama@gmail.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+References: <20260115-cv1800b-i2s-driver-v1-0-e8b22b8578ab@gmail.com>
+ <aWl4fvKsUZDg9dwj@inochi.infowork>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251031-knp-ipcc-v3-0-62ffb4168dff@oss.qualcomm.com>
- <20251031-knp-ipcc-v3-1-62ffb4168dff@oss.qualcomm.com> <20260116162057.GA1681736-robh@kernel.org>
- <af235d3c-cbf0-4cb9-af3b-37c1600d421c@kernel.org>
-In-Reply-To: <af235d3c-cbf0-4cb9-af3b-37c1600d421c@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 16 Jan 2026 11:13:09 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJyRa-U03XvPNchpoyYNmSJQacrYs30yd=a_s-6PnppSw@mail.gmail.com>
-X-Gm-Features: AZwV_QhpPDY5TdWqp-uUJoWm9FnhebFCSWh0tBr4jy39I3ojMHC23o9gZuyCiC4
-Message-ID: <CAL_JsqJyRa-U03XvPNchpoyYNmSJQacrYs30yd=a_s-6PnppSw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: qcom: Add IPCC support for
- Kaanapali and Glymur Platforms
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com, 
-	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
-	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aWl4fvKsUZDg9dwj@inochi.infowork>
 
-On Fri, Jan 16, 2026 at 10:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 16/01/2026 17:20, Rob Herring wrote:
-> > On Fri, Oct 31, 2025 at 12:41:44AM -0700, Jingyi Wang wrote:
-> >> Document the Inter-Processor Communication Controller on the Qualcomm
-> >> Kaanapali and Glymur Platforms, which will be used to route interrupts
-> >> across various subsystems found on the SoC.
-> >>
-> >> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-> >> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-> >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 2 ++
-> >>  1 file changed, 2 insertions(+)
-> >
-> > I guess no one is going to apply this, so I did.
-> >
-> > If your patches don't get applied, please chase the maintainers (Jassi)
-> > to apply them.
->
->
-> This or it is an effect of known problem with mailbox and interconnect
-> subsystems - maintainers never send notifications of applied patches
-> (neither publicly nor privately like Greg does), so you will never know
-> if anything gets applied.
->
-> This as well could be in the next silently (wasn't in 15th Jan, though).
+> On Thu, Jan 15, 2026 at 11:17:37PM +0400, Anton D. Stavinskii wrote:
+> > This patch series adds basic audio support for Sophgo CV1800B, 
+> > as used on boards such as the Milk-V Duo. 
+> > The series introduces an AIAO audio mux driver, 
+> > an I2S controller driver, corresponding DT bindings, 
+> > and DTS updates to wire the components together.
+> > 
+> 
+> I haven't see your mux driver, is it missed?
 
-Further investigation finds Jassi did apply this and 3 other patches.
-Stephen reported a conflict on 1/6 with another Qcom patch
-(conflicting with Bjorn's tree). No reply to Stephen, but *all* the
-mbox binding patches were dropped.
+That was bad copy paste from original version. 
+Thanks for noticing this. Will update the cover letter.
+I want to not overcomplicate already big patch series.
+So multiplexing will be done later. 
+> 
 
-Here's what was dropped:
+> Thanks for your patch, for all the patchs, I hope you write a
+> meaningful comment for the patch, at least for now I found it
+> is nothing in your comment.
 
-f8f632c18c32 dt-bindings: mbox: add pic64gx mailbox compatibility to
-mpfs mailbox
-945dc11a38a0 dt-bindings: mailbox: qcom: Add CPUCP mailbox controller
-bindings for Kaanapali
-66b6e5daa915 dt-bindings: mailbox: qcom: Add IPCC support for
-Kaanapali and Glymur Platforms
-9a92e22740e6 dt-bindings: mailbox: mediatek,mt8196-vcp-mbox: add mtk
-vcp-mbox document
+Thank you for a great help with that series. Do you mean
+I need to add more meaningful comments for each commit or the 
+cover letter is not describing everything clear enough? 
+Anyway will do my best in the second version. 
+> 
+> Also, the patch 8 should not in this patch and should be a
+> separate patch.
 
-Rob
+Yes I've missed this thing. I will remove the last commit 
+and move codecs nodes to the base dtsi file. 
+
 
