@@ -1,286 +1,130 @@
-Return-Path: <devicetree+bounces-256082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C2AD31984
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:12:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6560CD319AA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:13:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 705CD307DBD5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:11:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E0A6230617C0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10BA8227E82;
-	Fri, 16 Jan 2026 13:11:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E75519C566;
+	Fri, 16 Jan 2026 13:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="drWml+Qv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T7YuqriS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011008.outbound.protection.outlook.com [52.101.52.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B93230274;
-	Fri, 16 Jan 2026 13:11:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768569087; cv=fail; b=TBCYag19LMoB1/RYh7rbCOQu8CbLfkRXv5LnsNGuK84y9g229WQ/MiGuOFVzuqXcUU8WQkusIJ0ADL/6xuq+oFe/vgjk2BnJfD1HMpx57swGcSfVG/WCzCKQ4x/QJ5Q91y1lWoBzobothRWM6uXx5cUQXXi6y0903uJ9LoSJIKw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768569087; c=relaxed/simple;
-	bh=tOUR7mgqTzdieorsXwqZa4x3GYvmgWvu7uGuC8CwAPg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=BI6Jn0pbtHx3uxZOfLpob1N0rPRaETVAYjPP1K6lFG7QTpGWax+0XpEqaBKOBeFzGZEjQ2scXuTsQspbdzH2NoxBMQXlxKvu74o3F36JiNgrACi1HY78OrBZvb+q5Bdyds+glm7DQzMFhkrv4Vu0R05Aa4cI09KH4jsN24PMDCc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=drWml+Qv; arc=fail smtp.client-ip=52.101.52.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e/sH3gqKWeen7cBvkYc5DHg41clZ5lNPL9n6qrrBSpTZ2LTnH3IlePwa8yu4Ld69RFmDjQEejZE/JF16S61kzAKqNNL638p3yy6+hvcmaSbOtVIn+35LAANEjpDzWrfgJ8NIVeRRzveqQh6VRTfxX8Q42xYci9Z5fSGy6UohovAuZXebRPp65Vf9nBC7MNuc+GjWCdUZ4owJquT8cThT4gjNIWd1X6KPHNpzm17bWREF2B7OY49XpoQmtgByU8SWpvaLeBBEjt1S8StxS6sWB6sAstArqXxV4bPPjNTj/ffLe8DZBvlq3f6EYqYl5kShAEx6yzzDzo5vPcFuuhIFSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0XXUdDl56XWwHf025a/0Qu9VsfN6W/tz6PoWHWTL3u4=;
- b=seIxclNUW+tz2e87a53c/SSY3mjfROWOL8dFyr8XFqYlvUYFjCRU2OoGM7NSZL3GZHkxrxb2/unNFDrBOkr6M7L8bC1A9CnQOvcYaOEr8C7Y6Wyvn6RRp+EgBhE+IkTrYPN8QmaRkKWpI4H9wbk95JGrJXREjAMew79erP4NO7D090818XI3DHfeqZ5vohxCfW7W2RwaOo6h1SSxTG1rf1UxdtA66r00eBPjLr3JrMy8q0fPQ97uXcIADm2rYd8ho5aMfmhVwshxy+1ym6JOeXsVM6ykcY+W4L9PTldywuGpkep4p0gmK+ObV4NTBIt/rgX6bhvOVgdqCodjeGBGVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0XXUdDl56XWwHf025a/0Qu9VsfN6W/tz6PoWHWTL3u4=;
- b=drWml+QvdRjmjY5Pz3pIOQL2Yho5iPmbzMcXZTC83wiyR9JX+tWy5PafK745lQ8uL4SvIpuNpJ0IAqAz8YjN17B48V/x9Adz6uvUZGUkkyNFAkCzskY54WI9KmJdi4Vh9aFsPORvOYtL2HbTmzH7C5fb6ivDq1Mf+Pgg1BvOVj0=
-Received: from DS7PR05CA0042.namprd05.prod.outlook.com (2603:10b6:8:2f::29) by
- CO6PR10MB5555.namprd10.prod.outlook.com (2603:10b6:303:142::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.5; Fri, 16 Jan 2026 13:11:18 +0000
-Received: from DS1PEPF00017090.namprd03.prod.outlook.com
- (2603:10b6:8:2f:cafe::6) by DS7PR05CA0042.outlook.office365.com
- (2603:10b6:8:2f::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.2 via Frontend Transport; Fri,
- 16 Jan 2026 13:11:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- DS1PEPF00017090.mail.protection.outlook.com (10.167.17.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 13:11:18 +0000
-Received: from DLEE201.ent.ti.com (157.170.170.76) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 07:11:18 -0600
-Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 07:11:17 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 16 Jan 2026 07:11:17 -0600
-Received: from psdkl-workstation0.dhcp.ti.com (psdkl-workstation0.dhcp.ti.com [172.24.234.127])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60GDB0HH3181044;
-	Fri, 16 Jan 2026 07:11:12 -0600
-From: Aniket Limaye <a-limaye@ti.com>
-Date: Fri, 16 Jan 2026 18:38:42 +0530
-Subject: [PATCH 2/2] drivers: irqchip: irq-ti-sci-intr: Allow parsing
- interrupt-types per-line
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FBB202F65
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768568992; cv=none; b=YJy4cWUrN1iQUvyZYsrtNKV7+skc+588rJXHfyb7h5mm1B2Ah8cNeRxRSAnsN0ksJWKhlatjnRiPe2kpg7Mbb9w35bzE/ndnywt7R3sdtsfmsXfkqFVTru4DxMVnspa3U3o4Fje6SKzGfGY4OXikm7AIxSDfPMo4eYwwTb1lBFY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768568992; c=relaxed/simple;
+	bh=enVmKv93Aa48ECVdTDUXHkCfELiHNaDJSHi+HQvX7+U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T2na3AxCyKSdgKzTdoL0w2cHBU1r36OnjQr1vwdFZKeG4O91X4Fp9/3yxHR/+6Efg85WIsn9cjb6AY4asKiQMgmrY8nc4anr+7SKn2n0B9JZUmVboPoy6mCxeB6ZiY7DX3flTvifGKupTKi08I7VR1N+j42kPGQfCLo39z/Uh0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T7YuqriS; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-430f9ffd4e8so1439210f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:09:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768568990; x=1769173790; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qJu4OIdI60cVjJK45I6VunybR6THP9/15aqu50JDBTI=;
+        b=T7YuqriSUHygXQV6w70mTZicCpUyinhRmO12UintChts2YLbv4uLUuZljAeGl0TsNl
+         Z4Mg4rLx2l7Yhwwqbj/bOQjq/FxE3hA6JLaAVvTSfT6+CUGZ29Yc6CJtlNyU5Ivf+oBk
+         Ytr+iWQ7Q8KP++vYoZgtczimr8OXrWD5aQloy7B5K0IiJI7xs+e5VXuxTBsMWy2IXIZ7
+         eRjLBE4dcfbM11IX3DIyzc8k1C0UG7D1DMCtamnUXr1XoRl0Uj7PKd/EEKkpxnBk2oDZ
+         o8CB6HZiGxtJBMJnfe2q7MwO06GXHD9TleY6YdiElDsIevQPS4avYEQEr634S408mqW6
+         4OZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768568990; x=1769173790;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qJu4OIdI60cVjJK45I6VunybR6THP9/15aqu50JDBTI=;
+        b=EXqDmToSaOnsvh34eyNKzh/a6+dwVwAKtvpLlTGynEpk0ZL0YAQ0acKrzxurkUjWP6
+         T/xWaCxN6H6kxJFscYP7EwKwGtz6oQHQlvr1FthsABTy8RvLbfpWv9KfP8sU+YtkJ4Vs
+         3nmjGMbPUJM/7+HFnQjjzhYc5OKPhC+AwdV4QT/5PYv5MyYpwdHPmN1GTF1gCz9O5x0J
+         oLpZFX5KK0LBau8Ipbe9x962zGQmLia66vP7aPV6+Eb42WjhDS+vkH9iq94Py+m1Wa3n
+         h/W+uKqmgIlJ0BhnrTm51KL5tIlXJeGxGk6NZm4BJkz1pxVQ6r5pE3PKeWpOgrcNMRvT
+         v5Mg==
+X-Forwarded-Encrypted: i=1; AJvYcCXIWCrbfbWGvzzf+le7X+wATYQ2mzGey5m2+xeodN818J6ePcOi05ovnqBfTPuIo6AMMQZlRSIUz3BQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvDBbfNJN2/geKFL3SBZpNERM7+2+nimagHmeoa7+xoB8NIKEp
+	D2fMizLKL5TzAovMqW+YHdo/bV6vhsfzmdFwtYfdF+cmczAxQFlhpiXB
+X-Gm-Gg: AY/fxX63eBQ/htR6Nt7+o5h7py5JDIatLmr93NA+1pl0tGNdK363zevjSxuK8rfsk/i
+	MrRvWYNeqpdk3l8IdA3Gsbh1EeIrlKiG8l0WZHgLshx3l/5HEbW4Z4jgQE0rjebfMe0zR0HvuUV
+	sZRUU2kPu/+SJhfcltLgIxT+TwmxbPZdoZ90eCYxLsV7BcujDYFDvhXlhXAO5rtaDyGJOV4YAaJ
+	2ZCQk+tozNaZWf2EujOLSMmZwAg2gKAPLTVFV9E4ShEsLII+VMfQrEgPsIxdqiGMq4E8U7jQwIN
+	SUUlHQEFHPxFGETZ3l+9JMfVTS4egHQSUvOjzgBabj5Z1HQJvPGhYZ615S/MjcH651sf68oRTlE
+	AM0YUSgHKoLandtQhwl3RA9lGBEQWSJNgTqNQGsH8UZ/zm0JoxLGHYX290DZrUhQug/rq0e91mh
+	vA2rAzZ7rX803FECHx
+X-Received: by 2002:a05:6000:250e:b0:431:1c7:f967 with SMTP id ffacd0b85a97d-4356955eef8mr4063803f8f.17.1768568989962;
+        Fri, 16 Jan 2026 05:09:49 -0800 (PST)
+Received: from eichest-laptop.lan ([2a02:168:af72:0:7818:c5f2:e870:3d67])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435699272a0sm5172610f8f.17.2026.01.16.05.09.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 05:09:49 -0800 (PST)
+From: Stefan Eichenberger <eichest@gmail.com>
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	eichest@gmail.com
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Convert the Micrel bindings to DT schema
+Date: Fri, 16 Jan 2026 14:09:10 +0100
+Message-ID: <20260116130948.79558-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20260116-ul-driver-i2c-j722s-v1-2-c28e8ba38a9e@ti.com>
-References: <20260116-ul-driver-i2c-j722s-v1-0-c28e8ba38a9e@ti.com>
-In-Reply-To: <20260116-ul-driver-i2c-j722s-v1-0-c28e8ba38a9e@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, <u-kumar1@ti.com>, Nishanth Menon
-	<nm@ti.com>, Tero Kristo <kristo@kernel.org>, Santosh Shilimkar
-	<ssantosh@kernel.org>, Thomas Gleixner <tglx@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Lokesh Vutla <lokeshvutla@ti.com>
-CC: <j-mcarthur@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Aniket Limaye
-	<a-limaye@ti.com>
-X-Mailer: b4 0.14.3
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017090:EE_|CO6PR10MB5555:EE_
-X-MS-Office365-Filtering-Correlation-Id: fe2582da-7537-4f03-bb0f-08de5500bcb8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|34020700016|36860700013|1800799024|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RkgzcUhadWM5YW1MdENsL1h3L3Z6R3lVL0ZuZElzTXNYdmNsSmxZRE1Id3Mv?=
- =?utf-8?B?dDRXY2l4czVjdGxDREVWTURlWUJiV05mc3lOcGdnQkVFSU95TE1vVWpiWGJT?=
- =?utf-8?B?VXE5cHNZdGhaMEpuKy9YTWhDdlRUeHRja1cxUktUU09LOVd1Y3JWcW1SWmtO?=
- =?utf-8?B?a1A0Sld4Z1N6UzlTV1RzcnRrQnNsVTBjR2NsN0pQMDVrVDBRWHVDVFRvRHA3?=
- =?utf-8?B?SlNLV21pd1QvT0Uwcjl0dXgxbmUxQVpvTTVDY3psVE5GekZBMGJ2SlJlVkZB?=
- =?utf-8?B?dlhWWlBOZjRSdFd5ZUF1anpiSHBJYU0zSWpMdlhBYVNCZ1IyVm5kRlhvYWhm?=
- =?utf-8?B?UGZram9Dd1dxbTFTQ2VOQWUySGxqcEJFb2IyTzNtdGhMbU91Zno5MXB0MHJv?=
- =?utf-8?B?b2xvT3VjVlRkM3dWeWhPTXBkUU50eDRobzZXZUNIMDF1NyszY2RJR2ZrNXpV?=
- =?utf-8?B?TGZIc0t2eEIzMENaWEZ0M0QxM1dzbE1Fdi9MYkE1d1VvMGh4cWowSTVyamJw?=
- =?utf-8?B?RW9WRXpXbmZVVVQ0a05URzR0eEtRVXdCeDR1RzA2aXoxSXN4N0JKa2RrR04v?=
- =?utf-8?B?MmRyL3llanVWUWF5RzFWSENKVE5UNDVwK2VrL2ZuSjZLU1NZeFRYSy9HL1c4?=
- =?utf-8?B?UWFIZFgrdEJkMEhTMENNenRmMk0zYXRNblhCMTU5MjNTSnoyUEdVRGtOSlhU?=
- =?utf-8?B?Tkc0K3hwWWJEc2RjRWwvblBGSkI1SXNSQk9odm1Zb2pkZG8wVzJydU4yRkdC?=
- =?utf-8?B?MGNKb0h3L2gyTWduNkNWaVJ2WFhydSsyZWxFNU9IMWFTQUlqWmJ6VzMreC8y?=
- =?utf-8?B?Ym1hMklQMDAyQ044RVZxbkUrM3liSDhvY3Z0L0V5VUVyQi9RM3B5b3lkNUdi?=
- =?utf-8?B?VE9MaVNJV215WHFVYjIvblhISkpGUVBTNmk0MTlJOHhTbStYb3hidG00T2ph?=
- =?utf-8?B?TU50TElxMlUrR29FaFJmVlhwU1pXQ28zSUF5QjYzR1Z6bHUySjFCeEZ6dE03?=
- =?utf-8?B?Sit3OFEvc2xQWldhVFJEQ3RvUncrWTdJMVVSbXVBV3lBZ3pWWWtnc3orQVVs?=
- =?utf-8?B?SmdKeUoyMW1xdUZpQkhhQ3d2MFpVVmFjTWRYbzh6N0VibXpEVE1BVVNWTHls?=
- =?utf-8?B?YUc5ZW9mbnJrQ09qZUJiZVJWYzloek9oZTVXamxZcC9GdlQrb2FoSzBNMDk2?=
- =?utf-8?B?bHdyTE91UFFSQzA0NkxVUlNFZVF5OEpYVFNZNU40U0x4cjIxV3dwOUVlYjNY?=
- =?utf-8?B?blYycTlmUnlxU3IwRXhjK3RvRGFodnpWS1BxR3gzcTNHYThzL2VKWFdGbW5C?=
- =?utf-8?B?WkJQRjRTWHZUV1U5MkVhQU9RYkZkd2VHVVc4QW01dmV3ZWN1SlF2QVMra1p2?=
- =?utf-8?B?dkIrVU9Zc29YT1Q3MkR1RFZGMWJoY1dMdmVEUXdJRFRvdU9DOGxHZXdsL2xa?=
- =?utf-8?B?eWNQMWZUU01vcEhxL0J6ampIRXNqNXZCK21DMU5WUVFLM08xWDNvKzZIbmlH?=
- =?utf-8?B?aGVMUUpSVTZEV0FXTGs5bzh4MVdMV2NWcGRyWFFGV1ZWYk5PYi9DY2JwMTY4?=
- =?utf-8?B?U0tEV3JGeFZFNkhjV2xFaEYzTlAzNUJYUDBjOERvTTlQV1VCRDFvVXdyUEEx?=
- =?utf-8?B?ZDEvRHFPMFpvZEE4dGM2Y2wvOHExcGMxNFVuYVdPcXNxZG8rcFJGbXVETm9H?=
- =?utf-8?B?MzRoQmNDb0JsYmpiL2VVSmdjSDdpUm82NzZ5bTl4V2VXcnB6SVpKMnM5cDhk?=
- =?utf-8?B?VHlnMDBZUlkvRlc2S1hCWGY1OENsby9xeUpzcGxCbGF0UmpXQ3dHQWgrSGFM?=
- =?utf-8?B?SjMySjE3ZTlxWXlqQVJlNmtQbnJhRmJhSjFtK0FxazB5WU9HMXpRRjRqdkFn?=
- =?utf-8?B?Tmk1UHpjMmI3Zkd1NEp0NjZiQTJ6QVlHM2NTWTVScHIyMjVhU05OMWVyOFYy?=
- =?utf-8?B?YWJCajJXOHNkNnprdDk0TnZSR08wTVNac1hackVFYkQwT0M3elpnRmxhYmxD?=
- =?utf-8?B?b0hadzJvL1pQL0laK1plNm8xMHhxbm41dDc0OVpmZy8xSC90a09vZFp5NU9Q?=
- =?utf-8?B?WVkwVFc5ZmxpS1NFbjZPRUVDaUZ1TllkTTRDZWZtby9FbzUrSWpqVTVzMkcx?=
- =?utf-8?B?YzdwL3lvK1lXMC9YbjBNMEJZWnRQTnVxOGM1emVwelA4SDhrME5DNTdrNFlS?=
- =?utf-8?B?b0Z0aTZENitsWitsaWlkSExzeVFTK2k1UmdpaFN6cUxydWhRK1BYTFM4UzBZ?=
- =?utf-8?B?dE9TLzVtU0lSTXM5ZEhjaFB1dUFBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(34020700016)(36860700013)(1800799024)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 13:11:18.6860
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe2582da-7537-4f03-bb0f-08de5500bcb8
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF00017090.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR10MB5555
+Content-Transfer-Encoding: 8bit
 
-Some INTR router instances act as simple passthroughs that preserve the
-source interrupt type unchanged at the output line, rather than converting
-all interrupts to a fixed type.
+Convert the device tree bindings for the Micrel PHYs and switches to DT
+schema.
 
-When interrupt sources are not homogeneous with respect to trigger type,
-the driver needs to read each source's interrupt type from DT and pass it
-unchanged to its interrupt parent
+Changes since v2:
+ - Remove maxItems from clock-names (Rob)
+ - Add Reviewd-by tag (Rob)
+ - Kept the micrel,rmii-referenc-clock-select-25-mhz property in if/then
+   schema to make validator happy (discussed with Rob)
 
-Previously, the interrupt type for all output lines was set globally using
-the "ti,intr-trigger-type" property (values 1 or 4).
+Changes since v1:
+ - Change ethernet to mdio node in examples (Andrew)
+ - Add table with skew values instead of a description (Andrew)
+ - Remove - where preserve formatting is not needed (Rob)
+ - Add blank lines (Rob)
+ - Drop line "supported clocks" (Rob)
 
-Add support for "ti,intr-trigger-type" = 15 (IRQ_TYPE_DEFAULT) to indicate
-passthrough mode:
-- When set to 15: Parse interrupt type per-line from DT
-- When set to 1 or 4: Use global setting (maintains backward compatibility)
+Stefan Eichenberger (2):
+  dt-bindings: net: micrel: Convert to DT schema
+  dt-bindings: net: micrel: Convert micrel-ksz90x1.txt to DT schema
 
-Signed-off-by: Aniket Limaye <a-limaye@ti.com>
----
- drivers/irqchip/irq-ti-sci-intr.c | 50 ++++++++++++++++++++++++++++++---------
- 1 file changed, 39 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/irqchip/irq-ti-sci-intr.c b/drivers/irqchip/irq-ti-sci-intr.c
-index 354613e74ad0..56028a33a41e 100644
---- a/drivers/irqchip/irq-ti-sci-intr.c
-+++ b/drivers/irqchip/irq-ti-sci-intr.c
-@@ -61,11 +61,22 @@ static int ti_sci_intr_irq_domain_translate(struct irq_domain *domain,
- {
- 	struct ti_sci_intr_irq_domain *intr = domain->host_data;
- 
--	if (fwspec->param_count != 1)
--		return -EINVAL;
- 
--	*hwirq = fwspec->param[0];
--	*type = intr->type;
-+	if (intr->type != IRQ_TYPE_DEFAULT) {
-+		/* Global interrupt-type */
-+		if (fwspec->param_count != 1)
-+			return -EINVAL;
-+
-+		*hwirq = fwspec->param[0];
-+		*type = intr->type;
-+	} else {
-+		/* Per-Line interrupt-type */
-+		if (fwspec->param_count != 2)
-+			return -EINVAL;
-+
-+		*hwirq = fwspec->param[0];
-+		*type = fwspec->param[1];
-+	}
- 
- 	return 0;
- }
-@@ -128,11 +139,12 @@ static void ti_sci_intr_irq_domain_free(struct irq_domain *domain,
-  * @domain:	Pointer to the interrupt router IRQ domain
-  * @virq:	Corresponding Linux virtual IRQ number
-  * @hwirq:	Corresponding hwirq for the IRQ within this IRQ domain
-+ * @hwirq_type:	Corresponding hwirq trigger type for the IRQ within this IRQ domain
-  *
-  * Returns intr output irq if all went well else appropriate error pointer.
-  */
- static int ti_sci_intr_alloc_parent_irq(struct irq_domain *domain,
--					unsigned int virq, u32 hwirq)
-+					unsigned int virq, u32 hwirq, u32 hwirq_type)
- {
- 	struct ti_sci_intr_irq_domain *intr = domain->host_data;
- 	struct device_node *parent_node;
-@@ -156,11 +168,27 @@ static int ti_sci_intr_alloc_parent_irq(struct irq_domain *domain,
- 		fwspec.param_count = 3;
- 		fwspec.param[0] = 0;	/* SPI */
- 		fwspec.param[1] = p_hwirq - 32; /* SPI offset */
--		fwspec.param[2] = intr->type;
-+		fwspec.param[2] = hwirq_type;
- 	} else {
- 		/* Parent is Interrupt Router */
--		fwspec.param_count = 1;
--		fwspec.param[0] = p_hwirq;
-+		u32 parent_trigger_type;
-+
-+		err = of_property_read_u32(parent_node,
-+					  "ti,intr-trigger-type",
-+					  &parent_trigger_type);
-+		if (err)
-+			goto err_irqs;
-+
-+		if (parent_trigger_type != IRQ_TYPE_DEFAULT) {
-+			/* Parent has global trigger type */
-+			fwspec.param_count = 1;
-+			fwspec.param[0] = p_hwirq;
-+		} else {
-+			/* Parent supports per-line trigger types */
-+			fwspec.param_count = 2;
-+			fwspec.param[0] = p_hwirq;
-+			fwspec.param[1] = hwirq_type;
-+		}
- 	}
- 
- 	err = irq_domain_alloc_irqs_parent(domain, virq, 1, &fwspec);
-@@ -197,14 +225,14 @@ static int ti_sci_intr_irq_domain_alloc(struct irq_domain *domain,
- {
- 	struct irq_fwspec *fwspec = data;
- 	unsigned long hwirq;
--	unsigned int flags;
-+	unsigned int hwirq_type;
- 	int err, out_irq;
- 
--	err = ti_sci_intr_irq_domain_translate(domain, fwspec, &hwirq, &flags);
-+	err = ti_sci_intr_irq_domain_translate(domain, fwspec, &hwirq, &hwirq_type);
- 	if (err)
- 		return err;
- 
--	out_irq = ti_sci_intr_alloc_parent_irq(domain, virq, hwirq);
-+	out_irq = ti_sci_intr_alloc_parent_irq(domain, virq, hwirq, hwirq_type);
- 	if (out_irq < 0)
- 		return out_irq;
- 
+ .../bindings/net/micrel,gigabit.yaml          | 253 ++++++++++++++++++
+ .../bindings/net/micrel-ksz90x1.txt           | 228 ----------------
+ .../devicetree/bindings/net/micrel.txt        |  57 ----
+ .../devicetree/bindings/net/micrel.yaml       | 131 +++++++++
+ 4 files changed, 384 insertions(+), 285 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/micrel,gigabit.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/micrel-ksz90x1.txt
+ delete mode 100644 Documentation/devicetree/bindings/net/micrel.txt
+ create mode 100644 Documentation/devicetree/bindings/net/micrel.yaml
 
 -- 
-2.52.0
+2.51.0
 
 
