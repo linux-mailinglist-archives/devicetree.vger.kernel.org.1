@@ -1,284 +1,163 @@
-Return-Path: <devicetree+bounces-255997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB03D2F6C1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:18:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 505A5D2F751
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:20:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 743033047194
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:17:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0E4613046F84
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:17:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2FC30C617;
-	Fri, 16 Jan 2026 10:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C6C35F8BF;
+	Fri, 16 Jan 2026 10:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GG8hspaP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MjdfdSq/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011049.outbound.protection.outlook.com [52.101.65.49])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4926C31CA46;
-	Fri, 16 Jan 2026 10:17:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768558667; cv=fail; b=kFNTFJkppSim19LhAPdUvt1sQ4kSDn8aynzjM4HprHSSDKm7BAW5juDOFPCegi/A6QCWwQ+kef9pqrnJYWvAd8FWG+ozlmKud6e6mYmW2lKeBoT0jPG841wr18dy1IoL/ltnct/SxTsn1TcGpEQ5pxPmBmE3Gkx7ODFMr+9qKso=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768558667; c=relaxed/simple;
-	bh=SugAKkVZkYOVoYjdUTYKUBloD3d1c3/Rd1eXBkx/O/s=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nHX6CRIOhW0YhWCiPOY4bJ3XX1PikcWrNd9YZ747V15XAt5GX8+2YoDEc7p9DViagsmRT8rdDjgA/n7zfTQsY3LDCdwA/oFNfeVCtqXKjDD9n/NO7FTxW+4gIL1PbFwxFONFyPA3oKlyrheU6lEy5AFwEKH94mZ2CEhi2O+0BL4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GG8hspaP; arc=fail smtp.client-ip=52.101.65.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NHRkW0dAERXpCq9x+AUkJ945Lck8I7QbI8dQc6iYtkmbebeIsJ1QJ6H+v9gA6Xt0afIDrCNZqG6C2zBsCR85cY1pnXDowKeqzI1vCopBqVd5TP4nP4xrBa41kqxz+KUfKCgv0YcU1BwKZeEhf2zqFYSzTGRXidWtsr73Iwcm/J8s0yDxkouceUXVcrBScAKP+wZoH7BtZL+IErGTANBuWfx6kzK2hzJ6q89k1346WNNJjgjhB33VpCD0fPazvPjD2+MYywtEFEwnfkZXD8fTDluO+QNEtrSXNBqNjlFEWSvA1JkBh/JQzWEvqsae0d+eOjSoD1IBEvMCyAHpIpFuoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KFgaZ4yguYceSjxDyQ3VwA46I/JV+3w5+HcrmGSRvrw=;
- b=rfwUk8Y8Fwhaa+t+8bG+iFc4Ru2JLJ22QSlBh7I5Crd+YCtAoGUHuuWNqJ2IcLOpxU5zKnsxPphVJ1oXVHuZN7RN6nswBVjmigrnNLcSuqCvWV4fM+x7AhQeH43mHLqAJEDoXEQXH21GEd0aZNODbAC6/cD26UDXdy5GWfvk0vGEeN+mxNAKqLQs2nIXHGLt7ACI0Uir9xceRa8UdWnWRegJae4zkNbHCJ7QaIpeL8NtdESXhuuapn0AZOrEZA9DCaXE1jkJXgk4iRriqmDJsw32BmIpJqFG/hHuz1JNvgL9qlUzx6GwAVoBwxj2RlwJj99ObI+tNt6NxfwqN/5LjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KFgaZ4yguYceSjxDyQ3VwA46I/JV+3w5+HcrmGSRvrw=;
- b=GG8hspaPlaXXTzLjAZQ2vieOHqfZLS7GS9QN04cetnMI9Yylr+uS5f1RPs6+Vau6K+e4ossqhT5LE+KQMKAClMyX+Sh6jF66GTqTD5OCuXX8PEnYOUBInXZd5/MXmo6NbY24sHMajyizYk9izQMannCu1B4HxaaWQApBVWVgfyJhyLzsoEeTsH28Lu4+mL8LGsAYqhQsWPl7JJFuvMHJ7EKbH2rKPtD7EkPl46Tl2e7V1wuGnBHxWWngq44dVeVrWarlHgBnuzrIU+yt2YoJ8NFnVyxupxYfED6jdJRip/FOOYLvDPabzwTQf+pNc27AgjHmbEFjlSDn0i+5UML6hw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
- by DB9PR04MB11598.eurprd04.prod.outlook.com (2603:10a6:10:60f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
- 2026 10:17:31 +0000
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b]) by AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b%7]) with mapi id 15.20.9520.005; Fri, 16 Jan 2026
- 10:17:30 +0000
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	festevam@gmail.com,
-	nicoleotsuka@gmail.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linux-sound@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] ASoC: fsl_audmix: Add support for i.MX952 platform
-Date: Fri, 16 Jan 2026 18:16:48 +0800
-Message-Id: <20260116101648.377952-3-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20260116101648.377952-1-shengjiu.wang@nxp.com>
-References: <20260116101648.377952-1-shengjiu.wang@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SGXP274CA0024.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::36)
- To AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B26A0357A55
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 10:17:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768558631; cv=none; b=SMbYnvbhtcQjXy0OX/6pfrLUbbQobitKnZ7YLZ958HAQDXulEIxzjXrDX5skRX0wMHCJF3uxHo7gKma2IR3EfYTumA45y55Q4kTDs1EOeMiDMcppnvXAZ6h5bAKBQDqTzW+ntQoBl4UApa4GCfTg30mnNbRODxu5r7Yy/zHMoO8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768558631; c=relaxed/simple;
+	bh=xVhTfp97pDXAaRzlsPRIep1s9lhfB+E1MxRtuaZon80=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t30oZrn6gP1bKag602FGLLiHBEwDNdjdoMDZWewRmBYvR2SKS+82/4UoI19wP7xc2KMA3JulqEBu7F0uhrZhmbuXQJtLdtN0/u7UCUpUmf3mW8JqGqY1593Nb2rn7sgwLJ4e4HBtPyiWb/5uQfXzJtn1OlmgzaT3XPVZV4OVF5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MjdfdSq/; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 582B24E420F3;
+	Fri, 16 Jan 2026 10:17:08 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2D4DC60732;
+	Fri, 16 Jan 2026 10:17:08 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1290110B689B4;
+	Fri, 16 Jan 2026 11:17:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768558627; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=h6ZcSdzqinE3TmWerFxTItmJ+1uErU+4DNdOPnfMLxY=;
+	b=MjdfdSq/9Nf06aH/gE/rTZHEHqMUVMq8Pg9VuYA7sMdCBShtVBv+aAkP6hzL1J9k73H8lc
+	H6TAp0JM9Lwd9udwljgmgRcu/njIiVwoQlAyYvp/5L7N1G64/QKKewsLgpumGgs8voGdpw
+	5UDs7YbA/oeSoVGv21L0lBjFN+cqMPLHp3BmTpviqzRN1Cfu49rrA3MCEA4720tqXZbfsM
+	dClHC+AhVf2lPDDRNoqtVBYHLfbHmoU0ASB0pKqBCeNR5H/W+EiOvkDoMJr1FXT2ZGG8zn
+	ew4IWWkW3gbgf5McyO/QHnlFpoyySBeytnzCFDIQNgOYoKuLl4GGBswgL+MoYg==
+Date: Fri, 16 Jan 2026 11:17:05 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ayush Singh
+ <ayush@beagleboard.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 06/77] Add support for FDT_REF_LOCAL dtb tag
+Message-ID: <20260116111705.69bc914c@bootlin.com>
+In-Reply-To: <20260116111616.3a6c9ffc@bootlin.com>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-7-herve.codina@bootlin.com>
+	<CAL_Jsq+EDvrEqqwsFjs0sGxYfKgQuSFqCiqQs-1b3TnbG+gATQ@mail.gmail.com>
+	<aWg2JJstA0F-h9hi@zatzit>
+	<CAL_JsqLx-NWM=gFdQfQ1Nw10ii2n5gX93WgH+zTcbHRt=Ze_vA@mail.gmail.com>
+	<20260116111616.3a6c9ffc@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|DB9PR04MB11598:EE_
-X-MS-Office365-Filtering-Correlation-Id: d9adbfcb-8a27-4a57-2138-08de54e8750e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|376014|7416014|52116014|1800799024|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?OSdw/dsspqZtwWe47/+e1RUGQbUrFxgWsiwNyOoBlJFCJOEoHr5zn3RDyyUG?=
- =?us-ascii?Q?6IUhApl0Vj0E8V7tnZj7ULmXKt9Uuz1eHiGsQeWVSXjTGMrIvqQeI3Dnj3Zg?=
- =?us-ascii?Q?tj0DXNgBKwb2DRNpw1NhO9kAY/l3FLmbRTHHEGAYAY2b0dJqA6GAl2hd06m0?=
- =?us-ascii?Q?NfEAcBTU1/JgGQEsbKO3FEmpTFJuAq8a24M+6qsGyRAjhUUvRDstjJSMgA5Y?=
- =?us-ascii?Q?h1VqEnSMjW/iJPrhOinryFMcBfDLTh/acN93SnOurn5fEmhoQbo4shCTrMWb?=
- =?us-ascii?Q?JCnRPso5KDX4Eg3vnTBrfzFeLtnscqsruzldRJVWJzwuSPYZeT7WD+qBBoKr?=
- =?us-ascii?Q?4s80KTfjEzyYmRRtwRGx7LzdbUkxHcvWYWdXE5ZqIVzaterU8ceVoOcUp7pt?=
- =?us-ascii?Q?A8qgwQ4/C37Bul5u7IMu5BOh029ay/mfLZyuXBWnR8FG5U0G58xLYXxwFod0?=
- =?us-ascii?Q?oIpdeNUndppKVoLzsePmTC3YPUSgqR3YWYZ81XMqd5llISYyJG8YAm/3Wfqr?=
- =?us-ascii?Q?qM1ZK3S9DOK3tJXm1turcegvOjlUw+2bt2d3Ag8EQcc78bsACyeP1K9C9vwO?=
- =?us-ascii?Q?tbKtcgtbawrtiCQS2qxR0eL2LA0hEWfcFVU/3iign00DjVYODq5SBtwnMejc?=
- =?us-ascii?Q?ZRw9+vtalwAeEkGSjT6ehM6O8YGpYsZRdk0zBFbR3Z6fk0z07JnW6mnvgDWr?=
- =?us-ascii?Q?8qoGqql8fr47pSvFFAUVjD29eObIubTJL7qoLAZRbZF8ldbV7j0OnQvmo0tz?=
- =?us-ascii?Q?cIGHK6jeSdwx/j+S6kLu01I6yY0dvUIbdvPTv6R/+18JKh32QVnlwCRoWl28?=
- =?us-ascii?Q?yG8aaPQoU3Ye9aB1+rkCFBblpz7iMCQBCzXBV0/oV9VD66g/u4rVGR/ccHQe?=
- =?us-ascii?Q?GK51RwsDTfuE5zu3viyFnkvnVec1xDg9SUGudybQ3Om79+PuKmALgdqm7DRt?=
- =?us-ascii?Q?b+SVvmIzd4O71pYnvo0RX5KNDUZZ11hXiff7LFrX8uIDc9C3LELqreyHgbtb?=
- =?us-ascii?Q?spqZyAYGZVPJvvCX74IemhSL+hiaVpmBMDZed+sdhc4NZsHOLPWb+5seFM2U?=
- =?us-ascii?Q?KsLnC5uodiiNuSNq5iVU7jhnxvL1imFnByVGtuCnfWQbFXG1MadvqISkKQ0s?=
- =?us-ascii?Q?BMzJGwZgsCdTdoUy3m+sw3UBuM6ZzOQwx3I3BS7ppJtpFXgYK5M7Y4OMNikz?=
- =?us-ascii?Q?YX4vOlkL+R4g94kDhUqh5DT19Nue8QYxfYrNUKz2V33ZD94E2Ndjy8Q/rMNz?=
- =?us-ascii?Q?XWgikM44Leg0NYLaF+nXVOlNb0qkZJmyg8ZDMcxyxZecmWI7SmkssJSxS2r5?=
- =?us-ascii?Q?T8pAU4uYohWqNntexk+DW858I8lKH8pItNhDdRmUxNz+tMkf0VtvglDzRW8b?=
- =?us-ascii?Q?r8GgBZLpxmpINyZRQl7JwRJnlo4LQ5sYxsS+mELBnfv014Uq8IyK7jOloz9t?=
- =?us-ascii?Q?YpkxAwe6wyj20uWX2BuEYGh1I/adTnPZLGVxTpQAiLQV1SQftW/wPFm4OVNi?=
- =?us-ascii?Q?EHygVu1TkH7YIgFCbap+7oSDoFYXsvV7QQeJemt5M7GIQ4pv2GAivZ/Umvi6?=
- =?us-ascii?Q?525RWX2mZqV8wtx/APzOri/XtzEpOqqtZcz53jfkTE+2TpPbJwzWFeVC5tkI?=
- =?us-ascii?Q?f/atGVz5zr3QIsiH9UMxtimKUrWriq4Hoz0wygZurxga?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(376014)(7416014)(52116014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?jSDlwQD9/9CDupMMx2NW4lIbsYyMO7W35kjmxoY9fbaqsP1tQYpRrHe17aMK?=
- =?us-ascii?Q?fRJ2g9/jFcm6sBKpDufZnBzRy502XHQJfC+72mDzxPN9fyu5uZMqrOtOxsAF?=
- =?us-ascii?Q?FcAMrJgUe6d/QFhxIN6vN92dxOW5vKN/zZJv9HgQ3LJqc3mco20y7CyQ6Sfz?=
- =?us-ascii?Q?cT6CV27rGLJBHoih13QKYL52j1e6vtYZ3SqKZceIycHPcispKbCsnTD0h3J4?=
- =?us-ascii?Q?1swYkhm8n3uEI31x4oWxg9Qf+6AMwHiefnhRWjxzifx6IkGxcXOTA0LKqsyG?=
- =?us-ascii?Q?vDiL1zyjHDF50yN/nn3QRdZ148Otfcgci183rZghWm6ybtU2bQTArf/57262?=
- =?us-ascii?Q?oX9jX4rQnxAUt4JRNzuABm0oLIrgrIJn68PA8Zw16E82pCb08PaELfdBloH6?=
- =?us-ascii?Q?4wQBk/aAKiu23c+cdwTrlrH2bj8p5XBIbUT247z9DXukIKfLUXLRMxenA+P+?=
- =?us-ascii?Q?2jBV/q0BKeiAqMEp/LHIKJ9eVkYczehi8D4BdFNW/lMcUHIIYLE4+qnvMtmq?=
- =?us-ascii?Q?lStfGKr7Tga1uMBi76bKhfRX9YbrDS7X26TLIikpJk0RCdeG3g03ks0+AKB2?=
- =?us-ascii?Q?BIFOCHs6bfQAgI2A/AgAs9rufFgrMWjKMZS6w074Ixjl5g+xsQG/IF8Mr6dA?=
- =?us-ascii?Q?A3jjgENxy9A14t36gq8yC75sL7iA7I8eyCRgnrgqsecnwg+kQL4ceqFKhLG3?=
- =?us-ascii?Q?XAFVdRWmA65Y/RPPm83ZM1WwbN0usDzYD6sjmTBlLYkVRVgZjriKu2o6eiYE?=
- =?us-ascii?Q?Pln88PKq4J1BRqyMHtU71AfPmL76KLlkR5UCiK5u8gjs6KsKZ9H9IPmd3DSO?=
- =?us-ascii?Q?3zijLGFELUVym3ZPa/zloXW6gKysehzuZLScneutQS4bD+7HjlKB0pU8dQNT?=
- =?us-ascii?Q?liUFG28NCrh8d8NnEKmfeE0CcPLkSBupSngfiX3foIR0Sx9uFII8vE1DpFpv?=
- =?us-ascii?Q?y+JZi/IrjNW6VIokA6GHuZtwvFinFu8kFVpNsGIWUXa7fC/DvY86UB5QxJR4?=
- =?us-ascii?Q?FkOTNuS/YECQk3yxkBGNnA7Rl0wllCl10X2GhuGgfhIx/OA86nYVAckrZ6Oq?=
- =?us-ascii?Q?rdbB24h/rdQcqjGcMKbNK3iJAFkMj5fq01dedQ8E9Tf/brknB6XvmtKNbf67?=
- =?us-ascii?Q?p7u/6SBxLXmnrIl9IhK6kzv/xIWbdrNqeElMgj+LzK+etgHwdYXOh3XY4l06?=
- =?us-ascii?Q?5+lj+HyD62aSArPC03h0wL8cv9PZazpHT3ImuB3mHZI7kCBoaEW6JfCIahMl?=
- =?us-ascii?Q?xH87jP6/4HYrrbi7PK9//O01ZY9lS8AITxtHcBbl+vqq3Ht0T3Z0euv/BQbJ?=
- =?us-ascii?Q?WY0qJeQJXxC9i+CiJzkpJHB7KxrOdVZQ6W5OyEOyfLjuKaX4ohp6+qtNNLod?=
- =?us-ascii?Q?b/XRMvgM3UOhJGINzfjYbDZ5tYwq00IzjPrifZHEydkQPnMKTgx2pOyYlhCs?=
- =?us-ascii?Q?JaBR9biECwpGsMAH/sIHsm5pOsSJL6R02265tOnn6jLJt4xOkTCJRqmUImna?=
- =?us-ascii?Q?TO8Z/08/e8ktAi2WQCtoE1GK8NvtkSKQ02CwkQh4/WodpeXaatccA32+RJtp?=
- =?us-ascii?Q?USrodQlEyqqlad/a3e7HJzaD43sH5uwpmc6tG0QjCGsi/ksUSSt8tsSdvQxB?=
- =?us-ascii?Q?Cif7z213pJAvihs+1O3yjUWRhg4H/giN3vc4Vdn6b9S6GgX0Vbxf6thmD+Qu?=
- =?us-ascii?Q?Q+XYjrQiTkKo7l+6xW0e4Y18dQ7vL1UH4Ri7k9b/eVHv/iKIcipeArsqAm7y?=
- =?us-ascii?Q?YQHwbp5SeA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9adbfcb-8a27-4a57-2138-08de54e8750e
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 10:17:30.8423
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 82nh5ONGdaZYIbobZDtMf+bjGkPniMVhVa+1R5yeRfTLO3Zhb1mDGP75PrQ6sopvkyuGDHNdeeZJdcCnYyrDxA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB11598
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add compatible string to support AUDMIX on i.MX952
+On Fri, 16 Jan 2026 11:16:16 +0100
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-The audmix module can be bypassed so that SAI signals go directly to
-external pin, which makes the SAI function independent with AUDMIX.
-Add struct fsl_audmix_soc_data for this soc difference.
+> Hi Rob, David,
+> 
+> On Thu, 15 Jan 2026 09:54:22 -0600
+> Rob Herring <robh@kernel.org> wrote:
+> 
+> > On Wed, Jan 14, 2026 at 6:51 PM David Gibson
+> > <david@gibson.dropbear.id.au> wrote:  
+> > >
+> > > On Tue, Jan 13, 2026 at 01:22:08PM -0600, Rob Herring wrote:    
+> > > > On Mon, Jan 12, 2026 at 8:20 AM Herve Codina <herve.codina@bootlin.com> wrote:    
+> > > > >
+> > > > > FDT_REF_LOCAL dtb tag is a meta-data tag attached to a property.
+> > > > >
+> > > > > It indicates that the property defined before this tag (FDT_PROP) uses a
+> > > > > phandle value and the node related to this phandle value is local (i.e.
+> > > > > the node is present in the device-tree blob).
+> > > > >
+> > > > > It is followed by one value:
+> > > > >  - offset (32bit):
+> > > > >      Offset in the property data where the phandle is available.
+> > > > >
+> > > > > Example:
+> > > > >   FDT_PROP 0x00000008 xxxxxxxx 0xca 0xfe 0xde 0xca 0x01 0x02 0x03 0x04
+> > > > >   FDT_REF_LOCAL 0x00000004
+> > > > >
+> > > > >   This means that at the offset 4 of the property data, the value
+> > > > >   (0x01020304) is a phandle and the related node is available in the
+> > > > >   dtb.
+> > > > >
+> > > > >   This is what is encoded in the dtb when the related dts has a property
+> > > > >   with the value set to <0xcafedeca &foo> with 'foo' a reference to an
+> > > > >   existing node where the phandle value is 0x01020304.
+> > > > >
+> > > > > If several local phandles are used in the property data, several
+> > > > > FDT_REF_LOCAL are present after the FDT_PROP tag. Each of them points
+> > > > > with its offset value to the position of one phandle.
+> > > > >
+> > > > > For instance, if a first property with 8 bytes of data has a phandle
+> > > > > value at offset 4 and a second property with 16 bytes of data has
+> > > > > phandle values at offset 0 and 8, the following tags sequence is
+> > > > > present:
+> > > > >   FDT_PROP 0x00000008 xxxxxxxx <data bytes>
+> > > > >   FDT_REF_LOCAL 0x00000004
+> > > > >   FDT_PROP 0x00000010 xxxxxxxx <data bytes>
+> > > > >   FDT_REF_LOCAL 0x00000000
+> > > > >   FDT_REF_LOCAL 0x00000008    
+> > > >
+> > > > To follow up on my desire to both be easily extended and have more
+> > > > type info, I have something like this in mind:
+> > > >
+> > > > FDT_TYPE_INFO 0x10 FDT_REF_LOCAL 0x0 FDT_TYPE_U32 0x4 FDT_REF_LOCAL
+> > > > 0x8 FDT_TYPE_U32 0xc    
+> > >
+> > > I think general type info should be out of scope for this:
+> > >  * This series is already enormous and complicated without that    
+> > 
+> > It is enormous, but I don't think the intention was to finalize and
+> > merge it all at once. I certainly don't intend to review it all now.
+> > The final result looks sane to me and with that we have a good idea
+> > what information needs to go in the DTB. I think the first step is to
+> > define the new metadata tags and what DTB format changes are needed.  
+> 
+> Indeed, the goal of this RFC is to give the big picture and open
+> discussions.
+> 
+> FDT_TYPE_INFO tag is a container. It just groups other tags together.
+> 
+> I don't use the term TYPE in the proposal related to generic tag values [1].
+> I use FDT_INFO_PROPERTY which is more generic.
+> 
+> Best regards,
+> Hervé
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- include/linux/firmware/imx/sm.h |  2 ++
- sound/soc/fsl/fsl_audmix.c      | 28 ++++++++++++++++++++++++++++
- sound/soc/fsl/fsl_audmix.h      |  5 +++++
- 3 files changed, 35 insertions(+)
+[1] https://lore.kernel.org/all/20260114171822.2a44d2a5@bootlin.com/
 
-diff --git a/include/linux/firmware/imx/sm.h b/include/linux/firmware/imx/sm.h
-index a33b45027356..1e3e0fb1ef81 100644
---- a/include/linux/firmware/imx/sm.h
-+++ b/include/linux/firmware/imx/sm.h
-@@ -26,6 +26,8 @@
- #define SCMI_IMX94_CTRL_SAI3_MCLK	5U	/*!< WAKE SAI3 MCLK */
- #define SCMI_IMX94_CTRL_SAI4_MCLK	6U	/*!< WAKE SAI4 MCLK */
- 
-+#define SCMI_IMX952_CTRL_BYPASS_AUDMIX	8U	/* WAKE AUDMIX */
-+
- #if IS_ENABLED(CONFIG_IMX_SCMI_MISC_DRV)
- int scmi_imx_misc_ctrl_get(u32 id, u32 *num, u32 *val);
- int scmi_imx_misc_ctrl_set(u32 id, u32 val);
-diff --git a/sound/soc/fsl/fsl_audmix.c b/sound/soc/fsl/fsl_audmix.c
-index 7981d598ba13..f2187b45eeec 100644
---- a/sound/soc/fsl/fsl_audmix.c
-+++ b/sound/soc/fsl/fsl_audmix.c
-@@ -6,6 +6,7 @@
-  */
- 
- #include <linux/clk.h>
-+#include <linux/firmware/imx/sm.h>
- #include <linux/module.h>
- #include <linux/of_platform.h>
- #include <linux/pm_runtime.h>
-@@ -440,9 +441,22 @@ static const struct regmap_config fsl_audmix_regmap_config = {
- 	.cache_type = REGCACHE_FLAT,
- };
- 
-+static const struct fsl_audmix_soc_data fsl_audmix_imx8qm_data = {
-+	.bypass_index = -1,
-+};
-+
-+static const struct fsl_audmix_soc_data fsl_audmix_imx952_data = {
-+	.bypass_index = SCMI_IMX952_CTRL_BYPASS_AUDMIX,
-+};
-+
- static const struct of_device_id fsl_audmix_ids[] = {
- 	{
- 		.compatible = "fsl,imx8qm-audmix",
-+		.data = &fsl_audmix_imx8qm_data,
-+	},
-+	{
-+		.compatible = "fsl,imx952-audmix",
-+		.data = &fsl_audmix_imx952_data,
- 	},
- 	{ /* sentinel */ }
- };
-@@ -450,6 +464,7 @@ MODULE_DEVICE_TABLE(of, fsl_audmix_ids);
- 
- static int fsl_audmix_probe(struct platform_device *pdev)
- {
-+	const struct fsl_audmix_soc_data *soc_data;
- 	struct device *dev = &pdev->dev;
- 	struct fsl_audmix *priv;
- 	void __iomem *regs;
-@@ -501,6 +516,19 @@ static int fsl_audmix_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	soc_data = of_device_get_match_data(dev);
-+	if (!soc_data) {
-+		dev_err(dev, "failed to match device\n");
-+		goto err_disable_pm;
-+	}
-+
-+	if (of_property_read_bool(pdev->dev.of_node, "fsl,amix-bypass") &&
-+	    soc_data->bypass_index > 0) {
-+		ret = scmi_imx_misc_ctrl_set(soc_data->bypass_index, 0);
-+		if (ret)
-+			goto err_disable_pm;
-+	}
-+
- 	return 0;
- 
- err_disable_pm:
-diff --git a/sound/soc/fsl/fsl_audmix.h b/sound/soc/fsl/fsl_audmix.h
-index 479f05695d53..ad40a959873b 100644
---- a/sound/soc/fsl/fsl_audmix.h
-+++ b/sound/soc/fsl/fsl_audmix.h
-@@ -92,6 +92,11 @@
- #define FSL_AUDMIX_ATSTP_STPCTR_MASK	0x3FFFF
- 
- #define FSL_AUDMIX_MAX_DAIS		2
-+
-+struct fsl_audmix_soc_data {
-+	int bypass_index;
-+};
-+
- struct fsl_audmix {
- 	struct platform_device *pdev;
- 	struct regmap *regmap;
 -- 
-2.34.1
-
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
