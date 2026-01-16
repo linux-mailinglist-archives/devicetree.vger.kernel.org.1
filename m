@@ -1,116 +1,527 @@
-Return-Path: <devicetree+bounces-256034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22983D30702
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:33:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F1F6D30749
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:34:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E62AD312B7D7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:27:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9E9843132CEB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029AF37418A;
-	Fri, 16 Jan 2026 11:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D06376BD1;
+	Fri, 16 Jan 2026 11:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="DxVUHhQv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NZaRYIbF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B74D376BFB
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 11:26:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6697374199
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 11:27:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768562823; cv=none; b=hwWfViycO2vrq+K8Sd7CfpLJUif5SysHRi/6jvTeEYfBhW6NcxC6PYtMh2VazFy/XsyVqm3pbvIm8HVcv2lDGi/2xIhWOO+78IdsrHhcTXmCeavPE/bIoNl9/alN+42hsWTz+3bA9+8KYyXDy3B0Fg6U329wa7/GukmI3FUeLUk=
+	t=1768562848; cv=none; b=suLpyk7tv4FBLnjV/stcFnWs0yndcHlKW7XhxIzAQ7AMAJPFog7BXDtMcd7rksI1/sd74Wyy6Oko88bFERR8ITSDFijXBJ0jpWqgHnnum4F7CfUwK7c3BaklnwJ14GrjcD2KwFsdbFs6GvVbsn3Hg25PHLKPdLZPhgktqeHUyVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768562823; c=relaxed/simple;
-	bh=UD5nhW/byvJ+BqnsUq5Zxgn9awz6cxrGdcE03QAcfN4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r5cTSwpnAUTGL1uBc55JzEoukLvSzG537WhKLI97f29LqbXQy6sJ5KaAx7IDpvB7D5cAgPHRdcq4O0XLSXnBMJKe4G3uIwpx8qctzZJDR1oa7RQphgnYxGxT/FeaUyDDhz/qKKQkVHniJY1ljynFXQN+H3h0eQsFqCtY2b25yBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=DxVUHhQv; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=UD5n
-	hW/byvJ+BqnsUq5Zxgn9awz6cxrGdcE03QAcfN4=; b=DxVUHhQvCY9EWZScBCxP
-	im5RRclNw0qZpqdiR+YAkCJzgp+8TX2yAUPTlR7CWCPwQ5hwWxh8ewm4vUlqolSg
-	x+B8rpY/m7RgmU796AAJiPHQpfuKNzrftgojWjwNeX3SU2o/Q9HUit65iwOCtHj4
-	WhticAUIsUzjt4nZgvTya8gShR8KCnaKsrG18q0ueFQZQA9WvsYzrAUdlsa5SRrk
-	HgXaqGr8ULuokaCkmfLdc46Sxoin/7SPqhzgwKW0T7yorniAEHAD5LouOLlDNmVX
-	TGqHfSU2pmCftQ+octncdTpE3jbzFXbbGN+yLe4bfyKJf0WK1P0vKPbcIxt7IcaX
-	qA==
-Received: (qmail 2892996 invoked from network); 16 Jan 2026 12:26:51 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Jan 2026 12:26:51 +0100
-X-UD-Smtp-Session: l3s3148p1@EeImnn9IVqIujnua
-Date: Fri, 16 Jan 2026 12:26:51 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Miquel Raynal (Schneider Electric)" <miquel.raynal@bootlin.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?utf-8?B?SGVydsOp?= Codina <herve.codina@bootlin.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Santhosh Kumar K <s-k6@ti.com>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Pascal Eberhard <pascal.eberhard@se.com>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 00/13] spi: cadence-qspi: Add Renesas RZ/N1 support
-Message-ID: <aWoge3-IkPqVxmf4@ninjato>
-References: <20260115-schneider-6-19-rc1-qspi-v2-0-7e6a06e1e17b@bootlin.com>
+	s=arc-20240116; t=1768562848; c=relaxed/simple;
+	bh=CbVPsVNf2q1H45vV3dHMREJWHw3M6ijzJmCXsc6k7d8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eeDi2jXK7Ul7jDDGYfDnpUsHVs5y338uSija4pZHaUdUJa5VBO8TVpqImIQkjDiynacSPNSRPY3NUQANzdKpUnKl12uRWPyDx5OUyeZLqPUXNPa4YA0wPVvm7ctDJ/gtrGoSNsRGUR22l2MCvGjpGDy+TMc9nPLy4cCpxsAKN7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NZaRYIbF; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-81ed3e6b8e3so929099b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 03:27:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768562840; x=1769167640; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BZGfsfipZ9p+7mXmx/sNmNBBg224KcQKOBa655l0HJc=;
+        b=NZaRYIbFKYGFOL/4dnThE5w4eFEmET+SuHxtQkrIZFJ+4fFdEHVEsSLJqQURDcyxHk
+         BcnJOCgLrAyKad7wZGH+3MMO/tRTkvmkE+gF0BSJnLOfwpHVZCp2hqFEqTw+lAJdTEC3
+         DBMneG69lDBUAdpVSRIRIJw0osQlbD6x04T+XLZxDfJkirmztUFoqs7hWzP3VuZBjjnG
+         /z1Y4vs0fB3ezu9l9EkzbxbixFjprPB6wMCSejPrke8daTqfoGzu2qrputkG7FKe1WqW
+         iQmXsUP6AT480V9pGytYwDexrSdOHShBNWw52KotGbSHYGjkofYeG9fHSo16iygO4pDT
+         qdIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768562840; x=1769167640;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BZGfsfipZ9p+7mXmx/sNmNBBg224KcQKOBa655l0HJc=;
+        b=vD7yxW6VWTa8ha24qRStSt3Z32QYtuoI1O78Hhy2PgPpz7MIlh9qxvONKQcy062I/p
+         WLcrJsoIi2L7b/3c+aNU7n1I4jQa5Kjet3zVhcr8mZJRBRqfoqhOkEj9hqB5E4ili8BO
+         ZV2gjp1oe5GctO+C6Ccd3LPtzlo0GgfdfVm2VTMobv4lMjVif5Bn7n8wmf9h1gTTgSB5
+         jkufc4S9BW5gbLKwGiHW9/PFA+AHELJgSmwkt5DyaDmFRumolRd8Kp4e2hxyj+119EMN
+         0KWD2puMEUzitoo+2KbaL1m09qT1QljgSGd6PB09p2GE0enJM5he88JOGF0tjQMSOoa9
+         QsXw==
+X-Forwarded-Encrypted: i=1; AJvYcCVrch2/btVgEjXGFgn7YCW+XM9NsCQX1xgpp/BpwmmQ+B53UQIaK58cOKoKfL+mU1lg7ohKvdYs8otb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHoa050hO6AEmkMa7r6omd5BtnEm4Pok6G/TUBsS1r8dZXCh7I
+	oUnV6wPZQdJMDkHpkE5DLk3Za/zcPnfTAUTo1qrp/jg2NySqa1sxA1ez
+X-Gm-Gg: AY/fxX4uYtQPPuJPw0u8EADYUutcheojTreliHITSSisyzRYas34DVQi9HRmvryLOzh
+	P6lbkk37CKZCNVRQxu0FMGaXyC9BPk+43UkxptYRCchU7/+RMsZHBWDcXmWPbGbmjpeR8t+o7v2
+	5ij8MW/IlaLGKKsGm/6J0s1JGMYGBMFys6ZJxVm90WAGpAN1+swK5Qie9O1SnOhhIm8n5d3J8LW
+	utyGGvzXSJr6IYIahzBClKhHP/1B+S0GxVxQkb4Q1FyqcxGqtCEfhJ+SGnO8TC2lV0Z6kyNmIom
+	QtQUtR/sBNPs7EecwV6oXUUkWEypFaa4XLITH7ztarXIM/AeMuJRedMIW2xNGnWA6647CNfXU4q
+	ESgjK1T2AZt0VPnF2h5hDo1sgRAapPaGHB0DFswlcqsTdiJg7kAiqCdubGBi499TYEzyw07w5zu
+	EDy38EP+avDAFIpx3ifSl5Y2oqAd6vw6CCrA==
+X-Received: by 2002:a05:6a00:2e1e:b0:81f:5238:5560 with SMTP id d2e1a72fcca58-81fa1780c03mr2236351b3a.13.1768562839554;
+        Fri, 16 Jan 2026 03:27:19 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.253.21])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-81fa129199dsm1861074b3a.51.2026.01.16.03.27.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jan 2026 03:27:19 -0800 (PST)
+Message-ID: <3eba04f8-fd1e-46f7-a674-510ed6f48ed2@gmail.com>
+Date: Fri, 16 Jan 2026 16:57:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tYBdv2s2XUNiSNx0"
-Content-Disposition: inline
-In-Reply-To: <20260115-schneider-6-19-rc1-qspi-v2-0-7e6a06e1e17b@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 4/4] arm64: dts: qcom: talos-evk: Add support for
+ QCS615 talos evk board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Qian Zhang <qian.zhang@oss.qualcomm.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260109095221.2847067-1-tessolveupstream@gmail.com>
+ <20260109095221.2847067-5-tessolveupstream@gmail.com>
+ <3a4e0513-5b2d-4890-a4df-5306a694cf50@oss.qualcomm.com>
+ <530e2a7b-52e4-4119-ad54-8ff9e1d4fec0@gmail.com>
+ <ei3zvx47jubvgrz25pemfeu6zt5be6dduqpllp5qyhbhqblvnp@c2tqv7hyicii>
+Content-Language: en-US
+From: tessolveupstream@gmail.com
+In-Reply-To: <ei3zvx47jubvgrz25pemfeu6zt5be6dduqpllp5qyhbhqblvnp@c2tqv7hyicii>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
---tYBdv2s2XUNiSNx0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Thu, Jan 15, 2026 at 10:24:51AM +0100, Miquel Raynal (Schneider Electric) wrote:
+On 16-01-2026 13:26, Dmitry Baryshkov wrote:
+> On Fri, Jan 16, 2026 at 12:28:22PM +0530, tessolveupstream@gmail.com wrote:
+>>
+>>
+>> On 15-01-2026 18:47, Qian Zhang wrote:
+>>>
+>>>
+>>> On 1/9/2026 5:52 PM, Sudarshan Shetty wrote:
+>>>> Add the device tree for the QCS615-based Talos EVK platform. The
+>>>> platform is composed of a System-on-Module following the SMARC
+>>>> standard, and a Carrier Board.
+>>>>
+>>>> The Carrier Board supports several display configurations, HDMI and
+>>>> LVDS. Both configurations use the same base hardware, with the display
+>>>> selection controlled by a DIP switch.
+>>>>
+>>>> Use a DTBO file, talos-evk-lvds-auo,g133han01.dtso, which defines an
+>>>> overlay that disables HDMI and adds LVDS. The DTs file talos-evk
+>>>> can describe the HDMI display configurations.
+>>>>
+>>>> The initial device tree includes support for:
+>>>> - CPU and memory
+>>>> - UART
+>>>> - GPIOs
+>>>> - Regulators
+>>>> - PMIC
+>>>> - Early console
+>>>> - AT24MAC602 EEPROM
+>>>> - MCP2515 SPI to CAN
+>>>> - ADV7535 DSI-to-HDMI bridge
+>>>> - DisplayPort interface
+>>>> - SN65DSI84ZXHR DSI-to-LVDS bridge
+>>>> - Wi-Fi/BT
+>>>>
+>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/qcom/Makefile             |   4 +
+>>>>   .../qcom/talos-evk-lvds-auo,g133han01.dtso    | 126 ++++
+>>>>   arch/arm64/boot/dts/qcom/talos-evk-som.dtsi   | 616 ++++++++++++++++++
+>>>>   arch/arm64/boot/dts/qcom/talos-evk.dts        | 139 ++++
+>>>>   4 files changed, 885 insertions(+)
+>>>>   create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
+>>>>   create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
+>>>>   create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>>> index 76cf0115a00a..289b651ef0c5 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>>> @@ -324,6 +324,10 @@ dtb-$(CONFIG_ARCH_QCOM)    += sm8650-mtp.dtb
+>>>>   dtb-$(CONFIG_ARCH_QCOM)    += sm8650-qrd.dtb
+>>>>   dtb-$(CONFIG_ARCH_QCOM)    += sm8750-mtp.dtb
+>>>>   dtb-$(CONFIG_ARCH_QCOM)    += sm8750-qrd.dtb
+>>>> +dtb-$(CONFIG_ARCH_QCOM)    += talos-evk.dtb
+>>>> +talos-evk-lvds-auo,g133han01-dtbs    := \
+>>>> +    talos-evk.dtb talos-evk-lvds-auo,g133han01.dtbo
+>>>> +dtb-$(CONFIG_ARCH_QCOM)    += talos-evk-lvds-auo,g133han01.dtb
+>>>>   x1e001de-devkit-el2-dtbs    := x1e001de-devkit.dtb x1-el2.dtbo
+>>>>   dtb-$(CONFIG_ARCH_QCOM)    += x1e001de-devkit.dtb x1e001de-devkit-el2.dtb
+>>>>   x1e78100-lenovo-thinkpad-t14s-el2-dtbs    := x1e78100-lenovo-thinkpad-t14s.dtb x1-el2.dtbo
+>>>> diff --git a/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
+>>>> new file mode 100644
+>>>> index 000000000000..ad058cf4cd93
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
+>>>> @@ -0,0 +1,126 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>>>> + */
+>>>> +/dts-v1/;
+>>>> +/plugin/;
+>>>> +
+>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>> +
+>>>> +&{/} {
+>>>> +    backlight: backlight {
+>>>> +        compatible = "gpio-backlight";
+>>>> +        gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>,
+>>>> +            <&tlmm 115 GPIO_ACTIVE_HIGH>;
+>>>> +        default-on;
+>>>> +    };
+>>>> +
+>>>> +    panel-lvds {
+>>>> +        compatible = "auo,g133han01";
+>>>> +
+>>>> +        ports {
+>>>> +            #address-cells = <1>;
+>>>> +            #size-cells = <0>;
+>>>> +
+>>>> +            /* LVDS A (Odd pixels) */
+>>>> +            port@0 {
+>>>> +                reg = <0>;
+>>>> +                dual-lvds-odd-pixels;
+>>>> +
+>>>> +                lvds_panel_out_a: endpoint {
+>>>> +                    remote-endpoint = <&sn65dsi84_out_a>;
+>>>> +                };
+>>>> +            };
+>>>> +
+>>>> +            /* LVDS B (Even pixels) */
+>>>> +            port@1 {
+>>>> +                reg = <1>;
+>>>> +                dual-lvds-even-pixels;
+>>>> +
+>>>> +                lvds_panel_out_b: endpoint {
+>>>> +                    remote-endpoint = <&sn65dsi84_out_b>;
+>>>> +                };
+>>>> +            };
+>>>> +        };
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&hdmi_connector {
+>>>> +    status = "disabled";
+>>>> +};
+>>>> +
+>>>> +&i2c1 {
+>>>> +    clock-frequency = <400000>;
+>>>> +
+>>>> +    status = "okay";
+>>>> +
+>>>> +    hdmi_bridge: bridge@3d {
+>>>> +        status = "disabled";
+>>>> +    };
+>>>> +
+>>>> +    lvds_bridge: bridge@2c {
+>>>> +        compatible = "ti,sn65dsi84";
+>>>> +        reg = <0x2c>;
+>>>> +        enable-gpios = <&tlmm 42 GPIO_ACTIVE_HIGH>;
+>>>> +        ti,dsi-lanes = <4>;
+>>>> +        ti,lvds-format = "jeida-24";
+>>>> +        ti,lvds-bpp = <24>;
+>>>> +
+>>>> +        ports {
+>>>> +            #address-cells = <1>;
+>>>> +            #size-cells = <0>;
+>>>> +
+>>>> +            port@0 {
+>>>> +                reg = <0>;
+>>>> +
+>>>> +                sn65dsi84_in: endpoint {
+>>>> +                    data-lanes = <1 2 3 4>;
+>>>> +                    remote-endpoint = <&mdss_dsi0_out>;
+>>>> +                };
+>>>> +            };
+>>>> +
+>>>> +            port@2 {
+>>>> +                reg = <2>;
+>>>> +
+>>>> +                sn65dsi84_out_a: endpoint {
+>>>> +                    data-lanes = <1 2 3 4>;
+>>>> +                    remote-endpoint = <&lvds_panel_out_a>;
+>>>> +                };
+>>>> +            };
+>>>> +
+>>>> +            port@3 {
+>>>> +                reg = <3>;
+>>>> +
+>>>> +                sn65dsi84_out_b: endpoint {
+>>>> +                    data-lanes = <1 2 3 4>;
+>>>> +                    remote-endpoint = <&lvds_panel_out_b>;
+>>>> +                };
+>>>> +            };
+>>>> +        };
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&mdss_dsi0 {
+>>>> +    vdda-supply = <&vreg_l11a>;
+>>>> +
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>> +&mdss_dsi0_out {
+>>>> +    remote-endpoint = <&sn65dsi84_in>;
+>>>> +    data-lanes = <0 1 2 3>;
+>>>> +};
+>>>> +
+>>>> +&tlmm {
+>>>> +    lcd_bklt_en: lcd-bklt-en-state {
+>>>> +        pins = "gpio115";
+>>>> +        function = "gpio";
+>>>> +        bias-disable;
+>>>> +    };
+>>>> +
+>>>> +    lcd_bklt_pwm: lcd-bklt-pwm-state {
+>>>> +        pins = "gpio59";
+>>>> +        function = "gpio";
+>>>> +        bias-disable;
+>>>> +    };
+>>>> +};
+>>>> diff --git a/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi b/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
+>>>> new file mode 100644
+>>>> index 000000000000..95ed335bcb08
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
+>>>> @@ -0,0 +1,616 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>>>> + */
+>>>> +/dts-v1/;
+>>>> +
+>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>>> +#include "talos.dtsi"
+>>>> +#include "pm8150.dtsi"
+>>>> +/ {
+>>>> +    aliases {
+>>>> +        mmc0 = &sdhc_1;
+>>>> +        serial0 = &uart0;
+>>>> +        serial1 = &uart7;
+>>>> +    };
+>>>> +
+>>>> +    chosen {
+>>>> +        stdout-path = "serial0:115200n8";
+>>>> +    };
+>>>> +
+>>>> +    clocks {
+>>>> +        can_osc: can-oscillator {
+>>>> +            compatible = "fixed-clock";
+>>>> +            clock-frequency = <20000000>;
+>>>> +            #clock-cells = <0>;
+>>>> +        };
+>>>> +
+>>>> +        sleep_clk: sleep-clk {
+>>>> +            compatible = "fixed-clock";
+>>>> +            clock-frequency = <32764>;
+>>>> +            #clock-cells = <0>;
+>>>> +        };
+>>>> +
+>>>> +        xo_board_clk: xo-board-clk {
+>>>> +            compatible = "fixed-clock";
+>>>> +            clock-frequency = <38400000>;
+>>>> +            #clock-cells = <0>;
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>> +    regulator-usb2-vbus {
+>>>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "USB2_VBUS";
+>>>> +        gpio = <&pm8150_gpios 10 GPIO_ACTIVE_HIGH>;
+>>>> +        pinctrl-0 = <&usb2_en>;
+>>>> +        pinctrl-names = "default";
+>>>> +        enable-active-high;
+>>>> +        regulator-always-on;
+>>>> +    };
+>>>> +
+>>>> +    vreg_conn_1p8: regulator-conn-1p8 {
+>>>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "vreg_conn_1p8";
+>>>> +        startup-delay-us = <4000>;
+>>>> +        enable-active-high;
+>>>> +        gpio = <&pm8150_gpios 1 GPIO_ACTIVE_HIGH>;
+>>>> +    };
+>>>> +
+>>>> +    vreg_conn_pa: regulator-conn-pa {
+>>>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "vreg_conn_pa";
+>>>> +        startup-delay-us = <4000>;
+>>>> +        enable-active-high;
+>>>> +        gpio = <&pm8150_gpios 6 GPIO_ACTIVE_HIGH>;
+>>>> +    };
+>>>> +
+>>>> +    vreg_v3p3_can: regulator-v3p3-can {
+>>>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "vreg-v3p3-can";
+>>>> +        regulator-min-microvolt = <3300000>;
+>>>> +        regulator-max-microvolt = <3300000>;
+>>>> +        regulator-boot-on;
+>>>> +        regulator-always-on;
+>>>> +    };
+>>>> +
+>>>> +    vreg_v5p0_can: regulator-v5p0-can {
+>>>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "vreg-v5p0-can";
+>>>> +        regulator-min-microvolt = <5000000>;
+>>>> +        regulator-max-microvolt = <5000000>;
+>>>> +        regulator-boot-on;
+>>>> +        regulator-always-on;
+>>>> +    };
+>>>> +
+>>>> +    wcn6855-pmu {
+>>>> +        compatible = "qcom,wcn6855-pmu";
+>>>> +
+>>>> +        pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
+>>>> +        pinctrl-names = "default";
+>>>> +
+>>>> +        bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
+>>>> +        wlan-enable-gpios = <&tlmm 84 GPIO_ACTIVE_HIGH>;
+>>>> +
+>>>> +        vddio-supply = <&vreg_conn_pa>;
+>>>> +        vddaon-supply = <&vreg_s5a>;
+>>>> +        vddpmu-supply = <&vreg_conn_1p8>;
+>>>> +        vddpmumx-supply = <&vreg_conn_1p8>;
+>>>> +        vddpmucx-supply = <&vreg_conn_pa>;
+>>>> +        vddrfa0p95-supply = <&vreg_s5a>;
+>>>> +        vddrfa1p3-supply = <&vreg_s6a>;
+>>>> +        vddrfa1p9-supply = <&vreg_l15a>;
+>>>> +        vddpcie1p3-supply = <&vreg_s6a>;
+>>>> +        vddpcie1p9-supply = <&vreg_l15a>;
+>>>> +
+>>>> +        regulators {
+>>>> +            vreg_pmu_rfa_cmn: ldo0 {
+>>>> +                regulator-name = "vreg_pmu_rfa_cmn";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_aon_0p59: ldo1 {
+>>>> +                regulator-name = "vreg_pmu_aon_0p59";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_wlcx_0p8: ldo2 {
+>>>> +                regulator-name = "vreg_pmu_wlcx_0p8";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_wlmx_0p85: ldo3 {
+>>>> +                regulator-name = "vreg_pmu_wlmx_0p85";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_btcmx_0p85: ldo4 {
+>>>> +                regulator-name = "vreg_pmu_btcmx_0p85";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_rfa_0p8: ldo5 {
+>>>> +                regulator-name = "vreg_pmu_rfa_0p8";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_rfa_1p2: ldo6 {
+>>>> +                regulator-name = "vreg_pmu_rfa_1p2";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_rfa_1p7: ldo7 {
+>>>> +                regulator-name = "vreg_pmu_rfa_1p7";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_pcie_0p9: ldo8 {
+>>>> +                regulator-name = "vreg_pmu_pcie_0p9";
+>>>> +            };
+>>>> +
+>>>> +            vreg_pmu_pcie_1p8: ldo9 {
+>>>> +                regulator-name = "vreg_pmu_pcie_1p8";
+>>>> +            };
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>> +    wifi_1p8v: regulator-wifi-1p8v {
+>>>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "wifi_1p8v";
+>>>> +        regulator-min-microvolt = <1800000>;
+>>>> +        regulator-max-microvolt = <1800000>;
+>>>> +        gpio = <&tlmm 91 GPIO_ACTIVE_HIGH>;
+>>> Please check this pin number
+>>>> +        enable-active-high;
+>>>> +        pinctrl-0 = <&wifi_reg_en_pins_state>;
+>>>> +        pinctrl-names = "default";
+>>>> +        regulator-boot-on;
+>>>> +        regulator-always-on;
+>>>> +    };
+>>>> +
+>>>> +    wifi_3p85v: regulator-wifi-3p85v {
+>>>> +        compatible = "regulator-fixed";
+>>>> +        regulator-name = "wifi_3p85v";
+>>>> +        regulator-min-microvolt = <3850000>;
+>>>> +        regulator-max-microvolt = <3850000>;
+>>>> +        gpio = <&tlmm 91 GPIO_ACTIVE_HIGH>;
+>>> Please check this pin number
+>>>> +        enable-active-high;
+>>>> +        pinctrl-0 = <&wifi_reg_en_pins_state>;
+>>>> +        pinctrl-names = "default";
+>>>> +        regulator-boot-on;
+>>>> +        regulator-always-on;
+>>>> +    };
+>>>> +};
+>>>
+>>> Are these two node necessary?
+>>>
+>>
+>> On this board, GPIO91 is wired as a common enable for both WiFi 
+>> power rails: WiFi 1.8V and WiFi 3.85V.
+>> I currently modeled them as two regulator-fixed nodes because these 
+>> are two distinct rails.
+>> Would you prefer modelling a single regulator node that controls the 
+>> shared GPIO as below:
+>>
+>> wifi_en: regulator-wifi-en {
+>>     compatible = "regulator-fixed";
+>>     regulator-name = "wifi_en";
+>>     gpio = <&tlmm 91 GPIO_ACTIVE_HIGH>;
+>>     enable-active-high;
+>>     pinctrl-0 = <&wifi_reg_en_pins_state>;
+>>     pinctrl-names = "default";
+>>     regulator-boot-on;
+>>     regulator-always-on;
+>> };
+> 
+> What is the voltage of this regulator? What does it represent? What
+> should be represented in the DT?
+> 
+> BTW: what is powered on by those regulators? I don't see them being
+> wired to the PMU.
+> 
 
-> This series adds support for the QSPI controller available on Renesas
-> RZ/N1S and RZ/N1D SoC. It has been tested with a custom board (see last
-> SPI patch for details).
+There are two separate TPS62130RGTR regulator ICs on the board:
+One provides 1.8V and Another provides 3.85V.
 
-I can access the SPI-NOR on the Renesas Eval board
-(r9a06g032-rzn1d400-db.dts) just fine with it. So, for all patches:
+Both regulators use the same enable signal (SOC_GPIO_91_S4A_1P8 - 
+GPIO91), which connects to their EN pins. 
+When GPIO91 goes high, both regulators switch on at the same 
+time.
 
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+I described them as two separate regulator-fixed nodes since they 
+are different chips with different voltages.
 
-I'll send the board DTS addition as RFC in a minute.
+As an alternative, I suggested representing them as a single node 
+(based on the review comment from Qian Zhang) if you only want to 
+show the shared GPIO enable control instead of the individual 
+voltage rails.
 
+In AF68E module, 3.85V regulator powers VDD_PA_5G and 1.8V regulator
+powers VDD_PA_2G.
 
---tYBdv2s2XUNiSNx0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmlqIHMACgkQFA3kzBSg
-KbYHHA//c8oRrN42MUJUoNq6ioR19Cgx/RKcbbcfUCqLeg+RXkn0RD2jzEJdj4Py
-ra8hrHjZtlRCjZKwlJXGtTGjVMvKP+4fE/QeCKzjaQZZivtza3Whkr24dDSL1vRH
-PSD5tuMUja8l+8q3dSdy8AcCYA01JzP2Bgn/O2BsWsYa0YIHpfQuPjH0ECSyFjVb
-6RPGxruFPj+Zc31B05NRKC+uPZLYUQIxOp76ooSIx0wiEanvokk1JUqo7IEWNEyl
-nab18iw5oz+2nRlwiKZOMgjnzIoocqmPAN6r8V9y6yTHARKkpoQHGXpJv7/YCd/P
-GsnZdCw2toSq+TQBsawxDPkAWTDFv50RhI/+o+zpAvVWnVdC0Iay+n2bFSpyUwB2
-SWsOPwrclpmhf/nKx7mMAOVYbK5AXQFnNT/WnIZ97CSO9hgbT7boWMcR1x7e42WU
-C6bENfRhb91fk8tazlRTFvPWTWYgCTjJtrP0FKbIYkKCw/JUPMLkRdMaD5lXZ1t1
-YPW52wKrZcGBrLXXxK5bujwtw8tMREl+KbxQ085ogf546Jq9DOPOnf3bIW0JYkkB
-WCvjycwBGyGygIEU0zTqCdIrstT8XZ2yDMgXhJAeKMr3IxAxugnU6hfbjuqciKtQ
-1vAS7WDulcl5QBQ0miw4K2ww/Rpro/Ozzhcx7aeLvSKkItooAX8=
-=cuJn
------END PGP SIGNATURE-----
-
---tYBdv2s2XUNiSNx0--
 
