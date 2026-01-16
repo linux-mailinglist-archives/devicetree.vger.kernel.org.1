@@ -1,142 +1,127 @@
-Return-Path: <devicetree+bounces-256190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A30D337AF
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:26:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80DA7D33806
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:30:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 137F23001558
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:25:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 436A5301E92B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324733939AD;
-	Fri, 16 Jan 2026 16:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D4A39448B;
+	Fri, 16 Jan 2026 16:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tD3qol0K"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="oKfAPcOa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C0C3933F4;
-	Fri, 16 Jan 2026 16:25:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054D9394481;
+	Fri, 16 Jan 2026 16:27:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768580715; cv=none; b=MYPYqr9etGCyJDGUGsVweCnYUbZpQy/eG0ZTzm1pHAcL2TON1eYfNgiHnHPsA13b6zN4Oeir6ezlnz6yC+GSrYxxp7S0X9+4sE7AIN1bY5ZCjTUcGKiueRD07z3nNHMg7i0lS4IuW7NdyB7/2XRZoZZEvvQe9UFy+8qQm/4XnK8=
+	t=1768580864; cv=none; b=gTODJ4E6jCSXpkCRieAHcM1ZAYQLDn1Mbh96d6ug/H+wSogyeIa8y/msoSTwN3hsZ0wUv0uYKP1UpF8X/VzPWRYTrJERlMvEgJ5ueYjHsJ7RZe7rH0BEkTY1vpLYMoxIZGUgnbqcDpPnjRJsihS+MqZhZi07yt4keT6YPs69MXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768580715; c=relaxed/simple;
-	bh=x6m7FLQCNeJJJzswTOXHOgtcVZ3nPaJ7F0xm8bh0Fkw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E1+aqSrdMtRHWRRPCVWpQDcYU9nNfY5bN3MlbpNJxZsimJD8TAxUiNqedV/ZPExR43hixZdW8NfPVhatQvJfyJqsrC5hLsAHevjG59DnHL4fZApy9vtmNkl1SfYKsScSr2XMfyV0dNRWNsFj/HohzWIVXQWIMbEvTsMY0Y3Z1pM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tD3qol0K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF8ABC116C6;
-	Fri, 16 Jan 2026 16:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768580714;
-	bh=x6m7FLQCNeJJJzswTOXHOgtcVZ3nPaJ7F0xm8bh0Fkw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tD3qol0KIfsTq7lNqfiGqXRupy+S1Ixlp7z5N4+d5cKkHY3tZZSvo/H+MaGrJSLih
-	 TjeMT2eQo5JO15nURqfzJf5/6eCz/epJdsfhv+pe6mn2SF8McqHFj8oPxeHu96+6jg
-	 NhD+rLJRBD1mNCskf1SRXHleCvRPGu1P7SKxpYGAWu55hB2gvqZPAa7Ao1gkoNA99X
-	 wWOG07oTbKMEAp9h/o9YPRqvF62V0gH/qk7A5MlEQycgKTS9FAsDVOl94PW+W8rAXB
-	 dpEYPrl8ymvgYsDlxFL447kR5vMaJaoUdc21MWfNDW9Ow5euvlLysMl+uDUfQiAwbR
-	 RrFxAZL7+JnZA==
-Message-ID: <af235d3c-cbf0-4cb9-af3b-37c1600d421c@kernel.org>
-Date: Fri, 16 Jan 2026 17:25:09 +0100
+	s=arc-20240116; t=1768580864; c=relaxed/simple;
+	bh=KPPHebms/O0zkV8byqjKx5N8f3ZIp0R83063ViJX6+I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WF6phswpYJKUUCwpZUuN1jezSE2dja+7AAeObZA15cc/dBPJ2PNvREOAaCULbVbv0Tqqr27oFrCYn68BLHEdO6WiZS0T1gaL659hYiO8AMJ/F/6xAjlIBLocOUEhn5MTBHSzgiECDsZeO1R2VnwQhPmOGG3qfqIsug9kRygNomQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=oKfAPcOa; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 8DB03C1F1FC;
+	Fri, 16 Jan 2026 16:27:13 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 5FF23606F9;
+	Fri, 16 Jan 2026 16:27:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B594210B68C50;
+	Fri, 16 Jan 2026 17:27:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768580859; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=aaUK7nMVbgbCiPmttPyv2r5M2YeeZp2WCrBUDgQRPac=;
+	b=oKfAPcOaR8Y9oYXTElMuRlNgJe5ajyRceXDCVwT8Vk2pRIRjAvwffUvfV8RiAbsgdOlzvy
+	2R5gjgSKWWzKexnTm26/TGkHy1kRM71TIz6pwRNfGMAXSTsE62kRi95thk95ik9O2ghE5/
+	eeNQLYbUd5P03x2asPVsHi8eKOjAzgmwb79wHnhaw7BADoVV8DWV8OjD5WL1QTpdHFPLCh
+	H9+DNIm66l8P/gAYUhLAjpPyL40AgRD02aH3c6bVj0etwTtBUWR386uNjbpDpESziwqpem
+	jlU4GZeNQ74vVfMNhBCZr69HjUnX2OweIj2waJ/SlU4+xtDVs/kFUlM8c8+Hkg==
+Date: Fri, 16 Jan 2026 17:27:35 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 19/77] dtc: Introduce export symbols
+Message-ID: <20260116172735.757c1872@bootlin.com>
+In-Reply-To: <aWiAmjfMiKpC4sdp@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-20-herve.codina@bootlin.com>
+	<aWiAmjfMiKpC4sdp@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: qcom: Add IPCC support for
- Kaanapali and Glymur Platforms
-To: Rob Herring <robh@kernel.org>, Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
- Jassi Brar <jassisinghbrar@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com,
- tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-References: <20251031-knp-ipcc-v3-0-62ffb4168dff@oss.qualcomm.com>
- <20251031-knp-ipcc-v3-1-62ffb4168dff@oss.qualcomm.com>
- <20260116162057.GA1681736-robh@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260116162057.GA1681736-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 16/01/2026 17:20, Rob Herring wrote:
-> On Fri, Oct 31, 2025 at 12:41:44AM -0700, Jingyi Wang wrote:
->> Document the Inter-Processor Communication Controller on the Qualcomm
->> Kaanapali and Glymur Platforms, which will be used to route interrupts
->> across various subsystems found on the SoC.
->>
->> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->> ---
->>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
+Hi David,
+
+On Thu, 15 Jan 2026 16:52:26 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
+
+> On Mon, Jan 12, 2026 at 03:19:09PM +0100, Herve Codina wrote:
+> > Export symbols allow to define a list of symbols exported at a given
+> > node level. Those exported symbols can be used by an addon when the
+> > addon is applied on the node exporting the symbols.  
 > 
-> I guess no one is going to apply this, so I did.
+> This seems to imply an addon always applies at a single node location.
+> I'm not sure that's a good design choice, since I don't see how it
+> covers the case of something that connects to several connectors.
+
+Apply the addon on a node that knows about those connectors.
+
 > 
-> If your patches don't get applied, please chase the maintainers (Jassi) 
-> to apply them.
+> > In order to perform
+> > its symbol resolution. Any unresolved phandle value will be resolved
+> > using those exported symbols.
+> > 
+> > The feature is similar to __symbols__ involved with overlay but while
+> > all symbols are visible with __symbols__, only specific symbols
+> > (exported symbols) are visible with export symbols.  
+> 
+> This paragraph doesn't make sense to me.  What's a "symbol" if it's
+> not something in __symbols__ or export symbols?
 
+An imported symbols ?
 
-This or it is an effect of known problem with mailbox and interconnect
-subsystems - maintainers never send notifications of applied patches
-(neither publicly nor privately like Greg does), so you will never know
-if anything gets applied.
+/import/ foo "blabla";
 
-This as well could be in the next silently (wasn't in 15th Jan, though).
+from the addon point of view where this /import/ is present, 'foo' is a
+symbol.
+
+> 
+> > Also an exported symbol has a specific name and this name has to
+> > used for symbol resolution. Having this specific name allows to:
+> > 
+> >   - Have several nodes providing the same exported symbols
+> >     name but each of them pointing to different nodes.  
+> 
+> That's not a property of having a specific name, that's a property of
+> being local to a node.
+
+Yes, exactly. I will reword.
 
 Best regards,
-Krzysztof
+Hervé
 
