@@ -1,86 +1,89 @@
-Return-Path: <devicetree+bounces-256053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FCBCD30C33
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:58:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4A9AD30C73
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:59:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D94673013389
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:57:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 76AAA304792D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C95537E316;
-	Fri, 16 Jan 2026 11:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D86137F755;
+	Fri, 16 Jan 2026 11:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="REBy+/5G"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CwyC97XU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C3932C92B;
-	Fri, 16 Jan 2026 11:57:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54AAB37F0FE
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 11:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768564625; cv=none; b=goAgwTd23bHdX861y1Qyn29lXpz5DWCH3i+wKK/KCYV9SCtltTY44/Ebc6jLMhNYvkBAFvUdtNuEeEyZLBozbP5sFPBn0dyd1wPR1CIFHQlcQ0sJnY/2s1rGJcr84JzCVMPrpUrtrAM6oqf9tvsBKT2bpjV34CSFMYzTm4gfJcc=
+	t=1768564675; cv=none; b=sOSuAX0duM9cMz5FlvikaKcRz7ddpmdzjCckNAPlSwFMqIG/eKQk1jElEgNletNBumWo/15mkexX/6qU2SPlYtn2kmfqykQPc/9hjUD34B2O+EZqbu8Tg0SYAd/wBr0BYA26fzRoW/fEV+VllqaMZvZmEyxEScjjMNUKEQWZunw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768564625; c=relaxed/simple;
-	bh=1GlgSbn/pQ5C9Qm6aV11sSWl3mVMardfOsZ+NnSUPVo=;
+	s=arc-20240116; t=1768564675; c=relaxed/simple;
+	bh=CJcRQ6qpRlbEwNeooGCOn8NZAbTq75N/DGbAxcKLerQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oFDe4Qf9Qli3HSuMCpr2NUkJgiEEardog6xKaLhg5d82mszMpKEnteI9bnVKx80s6rxdaqPC4msCYSLbP+NCXn5gUlYsxBksc1rQAQXFYpGT72mQOVs5LxnSWRKZWb+FBy2gdeRV0J99vs/KphW5SOTS6CJwZthLg87AteKklVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=REBy+/5G; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768564622; x=1800100622;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1GlgSbn/pQ5C9Qm6aV11sSWl3mVMardfOsZ+NnSUPVo=;
-  b=REBy+/5GN43EzFgXh00kVuTPczDxDJJFO/Qte1xGQqz6i2A+Clz5ugQS
-   yteQLk0X4QqOFzuWL2AQ6ff9BhAEGvlZ8jONBgaMjDIL1n1GeLtzCnDnP
-   76DU3yPJ9oPmsVwuD8aKZKVyv53da7SAHjRJnwq4cSlzl2oCbRjCvKNik
-   Xy/sXZ0Rr32vuBLVP3Ny5BnI+xOK/9NBjTAeAs3bGN49sknCIfCVgd0dW
-   pvUY+ySoWepdDZC9x3WHHzgs6BjMdBXR7VqNl1sOQjEdl1vt5GLa3DFo/
-   PDYiFk1KJ37j0BHnpvjZKx3k/oHwpRM0xcLjwWo1QPhFE024lvWCjRB+q
-   g==;
-X-CSE-ConnectionGUID: lfW5MgXaRoWfP6dkVNfDOg==
-X-CSE-MsgGUID: SCZKPXB8TnuYKwwu18zihw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11672"; a="80182886"
-X-IronPort-AV: E=Sophos;i="6.21,231,1763452800"; 
-   d="scan'208";a="80182886"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2026 03:57:01 -0800
-X-CSE-ConnectionGUID: vw4YWlMnRGO/n9dWQLrVig==
-X-CSE-MsgGUID: grzFcJIMQfWluXvmgN3lkg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,231,1763452800"; 
-   d="scan'208";a="236487248"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 16 Jan 2026 03:56:57 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vgiRi-00000000Kns-3yzE;
-	Fri, 16 Jan 2026 11:56:54 +0000
-Date: Fri, 16 Jan 2026 19:56:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
-	Drew Fustini <dfustini@oss.tenstorrent.com>,
-	Joel Stanley <jms@oss.tenstorrent.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jfIJbBeB+Y0KPioHZcc3FVqXJS/HhqxrQJCX2cV6qEkc7Tzedg1lv2HmtZLDsSensi01VcLU3zW3YAG7BcAfI7GVEk141N74g1Het8WO4xoIE0sTlAvA0is+KkBLhWQtj/rqiPn4+oFyxrNsfiSEtldNC6N3XTHagpFq+5n4tbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CwyC97XU; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47f5c2283b6so12415745e9.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 03:57:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768564672; x=1769169472; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7TH1DyzktZLeiUPOq5ZKj+YO/qKoUqjJHy9gcNCJHOY=;
+        b=CwyC97XUF5hgJM1FtRVFu8rSc0XP33/jy6kv6HKWi4QkbCcka0qpcS96gBYbrOHbTq
+         cc2xZYQvTFvVbYxeWJXScdOxfR2OKkma+tbV3Xs1O5oKpFoyNI06A32ftBnZLVulvnrx
+         DgxZG8V5qBCQRcjRwhmROufX5RREJTH6Ysa+ZjV/xtSrLdQRTym9ISoRrGA2xuh20AiM
+         3Xk5JVirszyOgonu5/aL2/AvOiyKfQ0Yh9EzJctFKQkDvmDin8BbxLH1UYwj1IbrgwzG
+         VQY1/OsYsYIpJEOP7t5+HxEmyyTy2rPwHSKxeZ8KqSiVCLX7UTsbwSDT4S/SVBPk5rmf
+         00VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768564672; x=1769169472;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7TH1DyzktZLeiUPOq5ZKj+YO/qKoUqjJHy9gcNCJHOY=;
+        b=doIpkz6mBGsO9imPpoygsM9f05t7yxwU2BxoIol21y5NPu+YfSRlknVC+qG8tlt4i/
+         oG9Zt7Zq6dfWTM2oveFEM/6oLLm3DQ3q8UKl4RwdHb/Bpdp5uCP1BFhK+mV121yqo9r2
+         ra40iwfMUYXgnVvLjKuMO8PDY6TMTy7cXrQSu3gI2oG8/M0gXw4jyl0r6fI8y/FErQqj
+         +yXGhJ495OU3/mhleP4dFYz861a4Vmf8BsDi5Hx4UbP+qxmpvyu4ik1wHZln32XzA+ZQ
+         G279XEO2uBJivUoFNFlOT+09sQQgr+8zQUenxMsxdK1U5oe9la/L3es0K20gfpki480f
+         eUPA==
+X-Forwarded-Encrypted: i=1; AJvYcCWs6//34+bV54z7zDhxsl3bJ+eHCWQdAwvWe96rzoAGviUy30OFQHh3NRxeUfZ41PMicMuu/WSuHMJC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXBPFnd169oYqE5HwjqC4KTEpyy0nfgP+nSYP+PJQbg4BKNqUU
+	lUzo0DEEt0F+UYvfSvahtVXMfBbOCdhdaLOWquhx6aAwWZ4nVw2nzpgRheHfKA==
+X-Gm-Gg: AY/fxX4JeLUWTt30VJFBl16piuJ0OIj5+kLbnEtSjkZoqy0MXC8yc0EHjfisqM6M5M5
+	7o4W2Z8J8Z5bf4arvnmxj4FcVlGt+gFTfOXEQ0RS08bC+aAIqV5AOZz7/qV1ZLZGGiOsWt2krUN
+	7L7gRC39TBg6Kh3UBJ/jG+u7pA+VMw2awEf3FwqcsrBIkcFdoJraUBdTMIIoJHNktlNK6FUyz/w
+	/nRTEha6amOT9Jh5W0QGTbiXV9KFIfsFoVf5cvmTn/KJugyqEZbc2fCeH0kH5teITp9HkkuPoqN
+	pFXpbbcUGQ5vdpq+gLAo+/4oTLzPGAE/NXdStGSYfjWcE1Nih7I4M1Ji8/7u7PQpMLDJiLiIStI
+	XqBR1oefTUUPCElbCpZVl5htCIaUqxwf+xmLw3IDyMJwRJeSSZJAL2ZlQxf4KSQYUMWci9+wSaO
+	uYV9XH17KlV0scFQX785Zsyg/zYfh3FgmhBjMLprbVLT6CLUlMr2kHVvoAeMDSP/cd
+X-Received: by 2002:a05:600c:4ed3:b0:47e:e91d:73c0 with SMTP id 5b1f17b1804b1-4801e3397d6mr33933615e9.19.1768564671640;
+        Fri, 16 Jan 2026 03:57:51 -0800 (PST)
+Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e86c00esm39684835e9.2.2026.01.16.03.57.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 03:57:50 -0800 (PST)
+Date: Fri, 16 Jan 2026 11:57:50 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	devicetree <devicetree@vger.kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org,
-	mpe@kernel.org, mpe@oss.tenstorrent.com,
-	npiggin@oss.tenstorrent.com, agross@kernel.org,
-	agross@oss.tenstorrent.com
-Subject: Re: [PATCH 3/8] clk: tenstorrent: Add Atlantis clock controller
- driver
-Message-ID: <202601161951.u4TyUnmn-lkp@intel.com>
-References: <20260115-atlantis-clocks-v1-3-7356e671f28b@oss.tenstorrent.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: (subset) [PATCH v6 0/6] OpenRISC de0 nano single and multicore
+ boards
+Message-ID: <aWonvu4xgqIGBGmI@antec>
+References: <20260115151014.3956805-1-shorne@gmail.com>
+ <176849165027.29734.708711779514578942.b4-ty@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,219 +92,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260115-atlantis-clocks-v1-3-7356e671f28b@oss.tenstorrent.com>
+In-Reply-To: <176849165027.29734.708711779514578942.b4-ty@oss.qualcomm.com>
 
-Hi Anirudh,
+On Thu, Jan 15, 2026 at 04:40:53PM +0100, Bartosz Golaszewski wrote:
+> 
+> On Thu, 15 Jan 2026 15:09:56 +0000, Stafford Horne wrote:
+> > Since v5:
+> >  - Adjust dt-binding patch based on suggestions from Geert and Krzysztof.
+> >  - Add reviewed-by's on the dt-binding patch.
+> > Since v4:
+> >  - Rebased the series on linux-next to allow patches to be incremental.
+> >  - Rewrote the dt-bindings patch as an incremental patch, Due to this I
+> >    dropped reviewed-by's.
+> >  - Added acked-by to the IPI fix patch.
+> > Since v3:
+> >  - Switch order of gpio-mmio driver and bindings patches to patch binding
+> >    first before driver.  Suggested by Krzysztof.
+> >  - Removed example form binding suggested by Krzysztof.
+> >  - Added Reviewed-by's from Geert and Linus W.
+> > Since v2:
+> >  - Fixup (replace) gpio-mmio patch to update driver compatible list and just add
+> >    opencores,gpio to mmio-gpio bindings.  Discussed with Geert and Linus W
+> >    because the 8-bit opencores,gpio is not the same as the 32-bit broadcom
+> >    chip. [1].
+> >  - Update new device trees to use proper ordering, remove debug options, remove
+> >    unneeded "status" properties.  Suggested by Geert.
+> > Since v1:
+> >  - Use proper schema in gpio-mmio suggsted by Conor Dooley
+> >  - Remove 0 clock-frequency definitions in dtsi file
+> > 
+> > [...]
+> 
+> Applied, thanks!
+> 
+> [1/6] dt-bindings: gpio-mmio: Correct opencores GPIO
+>       commit: b2b8d247ad8ee1abe860598cae70e2dbe8a09128
+> [2/6] gpio: mmio: Add compatible for opencores GPIO
+>       commit: 3a6a36a3fc4e18e202eaf6c258553b5a17b91677
 
-kernel test robot noticed the following build errors:
+Thanks, now that these commits are on gpio-next I would like to apply the rest
+of the patches to my openrisc/for-next branch.  Since the other patches depend
+on the GPIO patches for system functionality, do you think it would be safe for
+me to merge the gpio-next branch into my branch?
 
-[auto build test ERROR on 9448598b22c50c8a5bb77a9103e2d49f134c9578]
+It seems a bit messy, Maybe I should just wait for the next cycle.  But if you
+have any suggestions of experience with this any comments would be appreciated.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Anirudh-Srinivasan/dt-bindings-soc-tenstorrent-Add-tenstorrent-atlantis-syscon/20260116-074618
-base:   9448598b22c50c8a5bb77a9103e2d49f134c9578
-patch link:    https://lore.kernel.org/r/20260115-atlantis-clocks-v1-3-7356e671f28b%40oss.tenstorrent.com
-patch subject: [PATCH 3/8] clk: tenstorrent: Add Atlantis clock controller driver
-config: s390-randconfig-r132-20260116 (https://download.01.org/0day-ci/archive/20260116/202601161951.u4TyUnmn-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 10.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260116/202601161951.u4TyUnmn-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601161951.u4TyUnmn-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/clk/tenstorrent/atlantis-ccu.c: In function 'atlantis_ccu_clocks_register':
->> drivers/clk/tenstorrent/atlantis-ccu.c:744:4: error: a label can only be part of a statement and a declaration is not a statement
-     744 |    struct atlantis_clk_mux *mux =
-         |    ^~~~~~
-   drivers/clk/tenstorrent/atlantis-ccu.c:783:4: error: a label can only be part of a statement and a declaration is not a statement
-     783 |    struct atlantis_clk_divider *div =
-         |    ^~~~~~
-   drivers/clk/tenstorrent/atlantis-ccu.c:801:4: error: a label can only be part of a statement and a declaration is not a statement
-     801 |    struct atlantis_clk_gate *gate =
-         |    ^~~~~~
-   drivers/clk/tenstorrent/atlantis-ccu.c:818:4: error: a label can only be part of a statement and a declaration is not a statement
-     818 |    struct atlantis_clk_fixed_factor *factor =
-         |    ^~~~~~
-   drivers/clk/tenstorrent/atlantis-ccu.c:840:4: error: a label can only be part of a statement and a declaration is not a statement
-     840 |    struct atlantis_clk_gate_shared *gate_shared =
-         |    ^~~~~~
-
-
-vim +744 drivers/clk/tenstorrent/atlantis-ccu.c
-
-   710	
-   711	static int atlantis_ccu_clocks_register(struct device *dev,
-   712						struct atlantis_ccu *ccu,
-   713						const struct atlantis_ccu_data *data)
-   714	{
-   715		struct regmap *regmap = ccu->regmap;
-   716		struct clk_hw_onecell_data *clk_data;
-   717		int i, ret;
-   718		size_t num_clks = data->num;
-   719	
-   720		clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, data->num),
-   721					GFP_KERNEL);
-   722		if (!clk_data)
-   723			return -ENOMEM;
-   724	
-   725		ccu->clk_data = clk_data;
-   726	
-   727		for (i = 0; i < data->num; i++) {
-   728			struct clk_hw *hw = data->hws[i];
-   729			const char *name = hw->init->name;
-   730			struct atlantis_clk_common *common =
-   731				hw_to_atlantis_clk_common(hw);
-   732			common->regmap = regmap;
-   733	
-   734			/* Fixup missing handle to parent for gates/muxes/dividers */
-   735			if (hw->init->parent_hws && hw->init->num_parents == 1) {
-   736				const struct atlantis_clk_common *parent =
-   737					hw_to_atlantis_clk_common(
-   738						hw->init->parent_hws[0]);
-   739				hw->init->parent_hws[0] = clk_data->hws[parent->clkid];
-   740			}
-   741	
-   742			switch (common->clk_type) {
-   743			case ATLANTIS_CLK_MUX:
- > 744				struct atlantis_clk_mux *mux =
-   745					hw_to_atlantis_clk_mux(hw);
-   746	
-   747				hw = devm_clk_hw_register_mux_parent_data_table(
-   748					ccu->dev, name, hw->init->parent_data,
-   749					hw->init->num_parents, hw->init->flags,
-   750					ccu->base + mux->config.reg_offset,
-   751					mux->config.shift, mux->config.width, 0, NULL,
-   752					&lock);
-   753	
-   754				if (IS_ERR(hw)) {
-   755					dev_err(dev, "Cannot register clock %d - %s\n",
-   756						i, name);
-   757					return ret;
-   758				}
-   759	
-   760				if (data == &atlantis_ccu_rcpu_data) {
-   761					switch (common->clkid) {
-   762					case CLK_RCPU_ROOT:
-   763						ret = clk_hw_set_parent(
-   764							hw,
-   765							clk_data->hws[CLK_RCPU_PLL]);
-   766						if (ret)
-   767							dev_err(ccu->dev,
-   768								"Failed to set RCPU ROOT MUX parent: %d\n",
-   769								ret);
-   770						break;
-   771					case CLK_NOCC_CLK:
-   772						ret = clk_hw_set_parent(
-   773							hw, clk_data->hws[CLK_NOC_PLL]);
-   774						if (ret)
-   775							dev_err(ccu->dev,
-   776								"Failed to set NOCC Mux parent: %d\n",
-   777								ret);
-   778						break;
-   779					}
-   780				}
-   781				break;
-   782			case ATLANTIS_CLK_DIVIDER:
-   783				struct atlantis_clk_divider *div =
-   784					hw_to_atlantis_clk_divider(hw);
-   785	
-   786				hw = devm_clk_hw_register_divider_parent_hw(
-   787					ccu->dev, name, common->hw.init->parent_hws[0],
-   788					div->common.hw.init->flags,
-   789					ccu->base + div->config.reg_offset,
-   790					div->config.shift, div->config.width,
-   791					div->config.flags, &lock);
-   792	
-   793				if (IS_ERR(hw)) {
-   794					dev_err(dev, "Cannot register clock %d - %s\n",
-   795						i, name);
-   796					return ret;
-   797				}
-   798	
-   799				break;
-   800			case ATLANTIS_CLK_GATE:
-   801				struct atlantis_clk_gate *gate =
-   802					hw_to_atlantis_clk_gate(hw);
-   803	
-   804				hw = devm_clk_hw_register_gate_parent_hw(
-   805					ccu->dev, name, common->hw.init->parent_hws[0],
-   806					hw->init->flags,
-   807					ccu->base + gate->config.reg_offset,
-   808					ffs(gate->config.enable) - 1, 0, &lock);
-   809	
-   810				if (IS_ERR(hw)) {
-   811					dev_err(dev, "Cannot register clock %d - %s\n",
-   812						i, name);
-   813					return ret;
-   814				}
-   815	
-   816				break;
-   817			case ATLANTIS_CLK_FIXED_FACTOR:
-   818				struct atlantis_clk_fixed_factor *factor =
-   819					hw_to_atlantis_clk_fixed_factor(hw);
-   820	
-   821				if (hw->init->parent_data) {
-   822					hw = devm_clk_hw_register_fixed_factor_index(
-   823						dev, name,
-   824						hw->init->parent_data[0].index,
-   825						hw->init->flags, factor->config.mult,
-   826						factor->config.div);
-   827				} else {
-   828					hw = devm_clk_hw_register_fixed_factor_parent_hw(
-   829						dev, name, hw->init->parent_hws[0],
-   830						hw->init->flags, factor->config.mult,
-   831						factor->config.div);
-   832				}
-   833				if (IS_ERR(hw)) {
-   834					dev_err(dev, "Cannot register clock %d - %s\n",
-   835						i, name);
-   836					return ret;
-   837				}
-   838				break;
-   839			case ATLANTIS_CLK_GATE_SHARED:
-   840				struct atlantis_clk_gate_shared *gate_shared =
-   841					hw_to_atlantis_clk_gate_shared(hw);
-   842				gate_shared->config.refcount_lock = &refcount_lock;
-   843	
-   844				ret = devm_clk_hw_register(dev, hw);
-   845	
-   846				if (ret) {
-   847					dev_err(dev, "Cannot register clock %d - %s\n",
-   848						i, name);
-   849					return ret;
-   850				}
-   851	
-   852				break;
-   853			default:
-   854	
-   855				ret = devm_clk_hw_register(dev, hw);
-   856	
-   857				if (ret) {
-   858					dev_err(dev, "Cannot register clock %d - %s\n",
-   859						i, name);
-   860					return ret;
-   861				}
-   862	
-   863				break;
-   864			}
-   865			clk_data->hws[common->clkid] = hw;
-   866		}
-   867	
-   868		clk_data->num = num_clks;
-   869	
-   870		ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
-   871		if (ret)
-   872			dev_err(dev, "failed to add clock hardware provider (%d)\n",
-   873				ret);
-   874	
-   875		return ret;
-   876	}
-   877	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-Stafford
 
