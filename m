@@ -1,111 +1,107 @@
-Return-Path: <devicetree+bounces-256235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309DFD37B14
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:03:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F379ED37AFB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:59:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E3105308B361
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:57:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 28B6F301D50A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 702F7399A43;
-	Fri, 16 Jan 2026 17:57:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71F3399A43;
+	Fri, 16 Jan 2026 17:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ca/v6IWm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OMDtoj38"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E482396B66;
-	Fri, 16 Jan 2026 17:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C338533A6F1;
+	Fri, 16 Jan 2026 17:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768586235; cv=none; b=eGNqiBqdKlgY1YjblVtkaWmvFpUyq/ydQYSDzSxfSGSgYkGw8QayE1Toob3Ji/qe7I4slJdGHcte+rHwDNbrzQ1Oe1Pe9HrEpGy/thL2TbIPtyJqihb936SxEmKzAhi8jg3sE14ADSoRVn3xRjd0PnUvrWYX+mSGIaCfbBFYy60=
+	t=1768586274; cv=none; b=ko0lgCY6B9e5Vf6MDEiYfALyDIxG/sa5GrvgAwJqv3NbylHvziBlWzdKFKdNhe3WFEM0YINbctD3QWKSh3pLDDTJHqu2ITtsweg0O2UOq5J/rBL1ZrZS0G6DjhZgCRLeN9DFtPrjEdsMgd0J+M0fyby4kMQ3xltv7hIlGo8Wzf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768586235; c=relaxed/simple;
-	bh=T8eZiFJ/5yVjaFj6/LiudB7PdaI+HTyLS7R7wYWynDU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=updtXlHnnTNw4TsxZhNWO0dcTfFlSVF+jZnI6WwM7lPvHk/kIqkOCN8Jah2VRKgjyH2HHDaHIJXnmdgb32kZQxCTNy+j74+PZHoNkUN1tDeFTdXYPKpZpVw0G/bKIJVVibvEcXJKDSwZyXIJcCN3IY/RfbCjfKbD7csrS8v0kpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ca/v6IWm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E6FBC116C6;
-	Fri, 16 Jan 2026 17:57:14 +0000 (UTC)
+	s=arc-20240116; t=1768586274; c=relaxed/simple;
+	bh=XqunudCl9Yvc1DeKM9bABVhHXft+ilsELM6HcW+FYRo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=te11EEXGyuxDYdRiPfjwA0Jgssr9yhMlxdSKMTsQDUIY6alx7aW+ZLuqPONRwOVShc+UrVfjySwMJSTNPIp+N3Lkt5+giXgqpxl39s9gaVQ64xwGVoGBr/xgo1jQYjUwAQ7c+DCLvGxIjmrqrDiwOPJ7xR7MqJp7FPQbVdBUZhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OMDtoj38; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC4DDC116C6;
+	Fri, 16 Jan 2026 17:57:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768586234;
-	bh=T8eZiFJ/5yVjaFj6/LiudB7PdaI+HTyLS7R7wYWynDU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ca/v6IWmr5qB3qeHHkWjIOHZbQzZLtUxZp0NRcaL0qqvsMnVVIBk60au5GAlSmuua
-	 RvihOmjy8lCTF2eBT0qHHtUGSK7SFUKjHpiUKJpy6qo3aG87/7cJJA+RoGUioJLE5a
-	 608O4ACO2vyvVCNRX9AKMqMSIgEuUvDZtSczNsqNkbBEtSIWZ5mu2C6jrgMcC2wlup
-	 voITTEH1uck0lJLKQy2VXk0HTkVyfI8Fx0p1kXVQVuwtquJP6czfj1nQwFjbaAiHct
-	 lDhOYXXAv0TsUubMiR8uOX7xEarsuf51OQJRSUvPrB1I4FpJQR3qm+qUELbpt78Lmj
-	 RliY3SOnV0nXA==
-Date: Fri, 16 Jan 2026 11:57:13 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Jan Petrous <jan.petrous@oss.nxp.com>, Frank Li <Frank.li@nxp.com>,
-	s32@nxp.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linaro-s32@linaro.org, imx@lists.linux.dev
-Subject: Re: [PATCH v3 2/3] dt-bindings: net: nxp,s32-dwmac: Use the GPR
- syscon
-Message-ID: <20260116175713.GA1801161-robh@kernel.org>
-References: <cover.1768311583.git.dan.carpenter@linaro.org>
- <7662931f7cbafe29fc94c132afce07ba44b09116.1768311583.git.dan.carpenter@linaro.org>
+	s=k20201202; t=1768586274;
+	bh=XqunudCl9Yvc1DeKM9bABVhHXft+ilsELM6HcW+FYRo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=OMDtoj38avTpgt2NJnW6re8HrxRt5tl5JYgaQTCAh4NcPmF5GPHQ3hRQtns4n+c+9
+	 k84GI7ahZGSWVEYCFxM+4L5uncB5e6zxm+ex47TEqouJY2BxbeRaaBeVv5WGViyD8X
+	 6BGS8oHokdK7rghMkspeK/qYI6IwI18mOlpUKuF/KhMx0sTopNvIJkHzmt85eAOIdX
+	 O7iTNHpEa70nEKKGFzqSXajgRRWMwbAE5KBQXnwp8M21KWaKGhDM/uQkrfiU5PDEqv
+	 +4t2/BgL+/iyuW4IBk77Jx5ttf+fyNKUccOQLRiCQtwbsYLydczIMCUN1KI1O31dIK
+	 uKyBb0DotdMhA==
+Date: Fri, 16 Jan 2026 17:57:43 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
+ rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v3 4/6] iio: frequency: adf41513: features on frequency
+ change
+Message-ID: <20260116175743.169eb595@jic23-huawei>
+In-Reply-To: <aWTS-npPY6yPARZH@smile.fi.intel.com>
+References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+	<20260108-adf41513-iio-driver-v3-4-23d1371aef48@analog.com>
+	<aWFR2wTSWLydGN5O@smile.fi.intel.com>
+	<ptyn5x7qkmbakkompmijo6xeego2xrhjoeyomkgrytwgwcsaid@heiq3ilnx5ky>
+	<aWTS-npPY6yPARZH@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7662931f7cbafe29fc94c132afce07ba44b09116.1768311583.git.dan.carpenter@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 13, 2026 at 05:13:32PM +0300, Dan Carpenter wrote:
-> The S32 chipsets have a GPR region which has a miscellaneous registers
-> including the GMAC_0_CTRL_STS register.  Originally, this code accessed
-> that register in a sort of ad-hoc way, but it's cleaner to use a
-> syscon interface to access these registers.
+On Mon, 12 Jan 2026 12:54:50 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+
+> On Mon, Jan 12, 2026 at 09:45:49AM +0000, Rodrigo Alencar wrote:
+> > On 26/01/09 09:07PM, Andy Shevchenko wrote:  
+> > > On Thu, Jan 08, 2026 at 12:14:53PM +0000, Rodrigo Alencar via B4 Relay wrote:  
 > 
-> We still need to maintain the old method of accessing the GMAC register
-> but using a syscon will let us access other registers more cleanly.
+> First of all, remove the things you are agree with.
 > 
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
-> ---
-> v3: Better documentation about what GMAC_0_CTRL_STS register does.
-> v2: Add the vendor prefix to the phandle
->     Fix the documentation
+> ...
 > 
->  .../devicetree/bindings/net/nxp,s32-dwmac.yaml       | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> A side note: based on this discussion one may want to add a clarification
+> on how to use the unit-based multipliers to the documentation (top comment
+> on units.h also will work).
 > 
-> diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> index 2b8b74c5feec..cc0dd3941715 100644
-> --- a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> @@ -32,6 +32,17 @@ properties:
->        - description: Main GMAC registers
->        - description: GMAC PHY mode control register
->  
-> +  nxp,phy-sel:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - description: phandle to the GPR syscon node
-> +      - description: offset of PHY selection register
+> ...
+> 
+> > > > +	bleed_value = div64_u64(st->settings.pfd_frequency_uhz * bleed_value,
+> > > > +				1600ULL * HZ_PER_MHZ * MICROHZ_PER_HZ);  
+> 
+> You multiply Hz * Hz. One of them should be simply SI multiplier.
+> To me it sounds like one of
+> 
+> 				1600ULL * MEGA * MICROHZ_PER_HZ);
+> 				1600ULL * HZ_PER_MHZ * MICRO);
+> 
+> will be the correct one (and I lean towards the first one as you want units
+> to match).
 
-It should be:
+I don't really care, but... They are Hz * Hz / Hz * Hz / Hz = HZ
+if we assume the first number is in Hz.  The others are all ratios.
+ 
+So original is fine as far as I can tell.
 
-items:
-  - items:
-      - description: ...
-      - description: ...
-
-Because it is 1 phandle+args entry of 2 cells.
-
-Rob
+Jonathan
 
