@@ -1,190 +1,190 @@
-Return-Path: <devicetree+bounces-255872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B3BD2C39C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 06:57:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E78DD2C3FA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 06:59:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 609DA3032962
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:57:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9BA433038F44
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA77346A13;
-	Fri, 16 Jan 2026 05:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6643C349B12;
+	Fri, 16 Jan 2026 05:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q9iCOQm8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="D0FR+YFc";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZEdH648+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE9933A03A;
-	Fri, 16 Jan 2026 05:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B936347FD0
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768543039; cv=none; b=PWZVvj5lEAlEUsaMOnChJ6pxXOWuuHG+b3m70e4vXAKn5qNR+IWACRwptJjz0LKAIkZd0xskmr5Cbuk3WUrqyT1Y3WoqMqrMQPNXVdkyulaMbT1ZO4q1CZJcbUllFFqigL14Wi4zU0b/o/9tCbvu23A0IzZtbeDYPHqcPwNrhqU=
+	t=1768543156; cv=none; b=TSRzwojmpQD57cz9xl/UZn2/fi9ymHCdnKG/kvJboWnrqvnQRTQa8k0Dp+YRAKc6BgdaQmz6iE1XhKFfaV7xnqra8HS89pfjAxS5IIlZLb7C05wBy4haJQS9MbtjeFqhdKlTjz+jtCb7IAgudvDQ3gU/Gfy0qoMOfqOvlSYjT3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768543039; c=relaxed/simple;
-	bh=tdTm5h85kuImW7HEYxS2VNH5d0DM2pD9181VKz7CDts=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nN+zva9tzB6yQPnk8zYz2v2T19Z0scaCRme3wAJIQFGSDdRgsddQpyQ6ho8uVrqixE76XqL/Jt16TpqQCZMuVEdpen5fwYnlJ8k7OJ7kfONFVfkLAMUc4ngk/4sEqJBm7quJFsIWl7kFR2hba3vEFZptP8hCKryjNCEvdfWWjBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q9iCOQm8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23E71C19421;
-	Fri, 16 Jan 2026 05:57:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768543039;
-	bh=tdTm5h85kuImW7HEYxS2VNH5d0DM2pD9181VKz7CDts=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Q9iCOQm8XmgUiV79NCUN1zfxltsn07pOfqjsAL11YC1LH8S2X9UkrsQhN5huSchYa
-	 zxlFiLJK+fwJBqOeJH+a2YPxS/MHH2SJu15jII8adU7n7l9Re/d/JZGciBX5sP6I4J
-	 t9i1/LlIXFZI2zt+o9Z1iiXZkm/xnHg/kNVxvfn5giW0Oodeswb/HjWcXZmB4MXwqj
-	 duMhOswA5vx9p41nvZBpopzNkHLPvRpTk6OTvPwYy7JdzGl/fM5FkGv19GBo1+BFkv
-	 g208BrrN27iLpSlH19pVJ0NNZyU5EjnySyc9Awc/bGeCpUj/VJUUW7JxEZHlE8fUJA
-	 llp1Z9OM/nZFQ==
-From: William Breathitt Gray <wbg@kernel.org>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: William Breathitt Gray <wbg@kernel.org>,
-	Frank.li@nxp.com,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	s32@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] counter: Add STM based counter
-Date: Fri, 16 Jan 2026 14:57:06 +0900
-Message-ID: <20260116055708.428641-1-wbg@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260113165220.1599038-4-daniel.lezcano@linaro.org>
-References: <20260113165220.1599038-4-daniel.lezcano@linaro.org>
+	s=arc-20240116; t=1768543156; c=relaxed/simple;
+	bh=iasMJ3+z9y0C5JSvUPL8dpwrTYQTImmk19TxYiQUITc=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=sI95HzA48PlJvYnJkjClq3pDCG/F4lvnNNW1nLWNMq6CS9drozVdkaLthCZgRDNJVPNnPP6Ba9dnDw3+yJ36/tsXLWNi8MPoUCGrasRGWuyMCKULaQ+s+hnxwsWe9FSWHcJIyorQUp6yJmF9vrQYSjqAQEm3dqFWAoJQvWJ0HaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=D0FR+YFc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZEdH648+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60FMfjxP3074959
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:59:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	R0clKylXHNFdxX6QHJyndTClU4t9+CvQcFZTqi/fbos=; b=D0FR+YFcB5YuxabK
+	Do61k+L22Ka9KpLbQxLWAju2urmB0DWYNQDh6CEx0ZKi5fajwOQJTfAEeQVwoSp4
+	2SccKcB0EjQVEdhpRZJ0mQLolNcX80TwDOMFUeG0xjF8WTUo5F4A47IvkpW9qRvW
+	hVFTjVXvW9ZQGNuj9ohh3FCGB+nj4D4vapbzfEW3ZoQWbNw2NSd4yoq1ETi5Cvm4
+	WJUpAPitpAWnuYb6Cjqdk6TE2VSyiVB+ValjWB3t12l9+Rj4FxL1TaMtmdHzDtM5
+	oZf6diZXU/kv060mDDwM1EqL+mGz1VKyad2oGWeVvwZ0DIovIn9D3xcPHjBUvUvm
+	45W4pA==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq98js0as-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:59:13 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-34c37b8dc4fso3178167a91.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 21:59:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768543153; x=1769147953; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R0clKylXHNFdxX6QHJyndTClU4t9+CvQcFZTqi/fbos=;
+        b=ZEdH648+54v/zNNxS+NIIVVcWQwGtsSQ3/cC8bvCVvhQJH0PVtc3rIZX0WU2CLbLvg
+         zV9qfoxc8GA+4tXK5O58wqxZkV7Ll94snsFirk7uREg+/xrcSS6PjI6UjC3E9TRO+NgR
+         /1IWDjLsiAwF93PnQBsXLckQANBoby6obcQFMrPrCKkCFJlzixxxAdDg1WBWvTe2Sp6/
+         HPbI0zSQY26tRK2aCwvvgKczn4N9qMqOaF7Mdsst4lMiUOLXqS4e/xEbJwrSq3UyXwmU
+         /hXtjQLONrAFeuL2Mx6E+OS1+z4dmV8fZxHqnzVZbku8nCPaLUfisxu5N1yKZpa2lnJJ
+         Xjeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768543153; x=1769147953;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R0clKylXHNFdxX6QHJyndTClU4t9+CvQcFZTqi/fbos=;
+        b=DKNifhIWO1Yttku+9H4t9ZXYYKka7dWvIIQVLB9/p4ajQrDqmrHRS9nllZ6WRO6bh5
+         dyTHyy3yDCP8ou2FTEVdKxVAJcbAc0lAZxeq9Bp5/A9XEDlfw/PmRkdQl1W4R0GkOvPC
+         Csa+P1QPQVjp/uCSpcXxyqrzwZPANhxLM12dgKakLcEEwOQzbIbpUZaXAYGisYIb+QC+
+         cHbqIkXkmwBoCl1S/HQgDxssAztJSIxHFYQOk3zh6nNy2UbncG9pPWg/v8Dm4dtdiywk
+         b1wJsRs+EZUnVAhAXJx+ItBsxiE2jhB1jXU4bidfPJnQuNH0KsSUEEdpK7L5+IMNFmhy
+         Tgtg==
+X-Forwarded-Encrypted: i=1; AJvYcCW9XR7xDVqJwH/Dv2IB7e9fiZrlqM+IHDQG5Od0LFqBTcjtPb0IKsNerHE+6GUj9pqoLYTuEUmtJldq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsJAdQlJpdu17ipgymqX0kL6I0l4CJclAZvkdWRkdfkJw4t0TV
+	21wrBKGTkNTnq+SsehBYNSuWMCZSausiubxAQAApRhrWSjAZf9C6F3wJuqbZ0RrlEXzwZTZHY7l
+	raXkr41rAS5U6/TCvPTl83QD4OTMzxwHIQ/SRSQ4i7J9JzndN/4HB9zlexSzyR+La
+X-Gm-Gg: AY/fxX4gvOvCMMY+ciPG/9dXQopinasXs1Us3l+Yzw1ju3OZf2syjUihK+kOnqXhOZJ
+	Vrl6a9UAfDeekexnPW2vwoMc3DuyEGWIYh7JDh1E2hCSNZtezIqt2iCMGewWkz1UJ3kf4z9Cquu
+	qVsTpB004JKoyPwSK89GvCL0NR38VAf3MVVmtAftOTo7tgC+R6v1P/gA1L0NXMcW6xGpd3WU7vf
+	DPtnaR8M62W6TDo4DnkFZL+1yvsJV/QILuy2y63FKKnwsqbs19t532IiUuNTkg4RZht86YmJ/b7
+	VK+D2jIOcjhAxoWKQNuhu/lh8lJIaJHmU4BoAtRnLHsgfy2oa02PNvhqkS/3H3E3Qh9oj5v38al
+	Eijk3Jrs59bTN0m4nJYQQ7WsFB9fXGz1pUK13w0g=
+X-Received: by 2002:a17:90b:1ccd:b0:340:f009:ca89 with SMTP id 98e67ed59e1d1-352732551aamr1379336a91.22.1768543152827;
+        Thu, 15 Jan 2026 21:59:12 -0800 (PST)
+X-Received: by 2002:a17:90b:1ccd:b0:340:f009:ca89 with SMTP id 98e67ed59e1d1-352732551aamr1379322a91.22.1768543152365;
+        Thu, 15 Jan 2026 21:59:12 -0800 (PST)
+Received: from [10.217.223.154] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c5edf249fcbsm1037082a12.12.2026.01.15.21.59.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jan 2026 21:59:12 -0800 (PST)
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: kodiak: enable the inline crypto
+ engine for SDHC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
+ <20260114094848.3790487-3-neeraj.soni@oss.qualcomm.com>
+ <20260115-versatile-bustard-of-bliss-059e5a@quoll>
+From: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Message-ID: <e10f846c-e81b-1d5b-1be2-8c41ca61b8b0@oss.qualcomm.com>
+Date: Fri, 16 Jan 2026 11:29:07 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5000; i=wbg@kernel.org; h=from:subject; bh=tdTm5h85kuImW7HEYxS2VNH5d0DM2pD9181VKz7CDts=; b=owGbwMvMwCW21SPs1D4hZW3G02pJDJmZl95Kf5xlUhWq6Wa/29DwtGlx5aN5FyYvMD70y6QrN kLiyD3jjlIWBjEuBlkxRZZe87N3H1xS1fjxYv42mDmsTCBDGLg4BWAimpYM/9S2fdpd6nVvXtvy wqvHVzCozPtTKO7Z+fXBdp+2bbpzUg4wMjztuFXZK7tJY5WJ9f6qbRzX9pzt52E031I761Rk16E 3XxkA
-X-Developer-Key: i=wbg@kernel.org; a=openpgp; fpr=8D37CDDDE0D22528F8E89FB6B54856CABE12232B
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260115-versatile-bustard-of-bliss-059e5a@quoll>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=asW/yCZV c=1 sm=1 tr=0 ts=6969d3b1 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=SWxB8Vgrg67oVZcRXj0A:9
+ a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: SODJ_UDDxVc4zdmWLxc6s8UEa5ZkM8El
+X-Proofpoint-GUID: SODJ_UDDxVc4zdmWLxc6s8UEa5ZkM8El
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDA0NiBTYWx0ZWRfX9pXHIW36N1+N
+ 5gITZnnsMYUgCbE0kSu0EUHGr4Stn/xZn0mKXAk9JV7QNCR6xpRRb8ux29/t3eT7O+5xyY9fJFR
+ DV9cIlSIkjHdbbyOovDwlSWvStLStrRTA77YjcuUM17aj25y5WSUFWFRyM2747tUKRJn80N+Azo
+ HPDoYJkF57g0eEncadLRKQKvpt2fOBeKBWpAmbpUGHF2CZgZovNTQoVKLngrGnzl2qIIATsuIqK
+ q9jKb+TU5t1T6q7bRZesbduIFQYbLQ2kZF3eVdbRULDdQzuL20AyBK9uNEhB1j0gBKo6yNSg6/i
+ ByKAqmF45Jch1QGlFUl9yWcgeRFbJnGPrmhg72yKW+e65Ymoe9czWh2w8lhWNvzNpz0snGYR4z0
+ G/lSX6upZiTsW4qcUPCGCUb6OHNBcviGaZiwQ0ePDlOK9LaSjOgl4eX4iP8wu09SgL0quKeElGf
+ ZH2jgGKwisjc2EIQKmw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-16_01,2026-01-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 impostorscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ adultscore=0 malwarescore=0 priorityscore=1501 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601160046
 
-On Tue, Jan 13, 2026 at 05:52:20PM +0100, Daniel Lezcano wrote:
-> The NXP S32G2 automotive platform integrates four Cortex-A53 cores and
-> three Cortex-M7 cores, along with a large number of timers and
-> counters. These hardware blocks can be used as clocksources or
-> clockevents, or as timestamp counters shared across the various
-> subsystems running alongside the Linux kernel, such as firmware
-> components. Their actual usage depends on the overall platform
-> software design.
+Hi,
+
+On 1/15/2026 2:35 PM, Krzysztof Kozlowski wrote:
+> On Wed, Jan 14, 2026 at 03:18:48PM +0530, Neeraj Soni wrote:
+>> Add an ICE node to kodiak SoC description and enable it by adding a
+>> phandle to the SDHC node.
+>>
+>> Signed-off-by: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/kodiak.dtsi | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+>> index c2ccbb67f800..fb2a9c0ea0f5 100644
+>> --- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+>> @@ -1045,6 +1045,8 @@ sdhc_1: mmc@7c4000 {
+>>  			qcom,dll-config = <0x0007642c>;
+>>  			qcom,ddr-config = <0x80040868>;
+>>  
+>> +			qcom,ice = <&sdhc_ice>;
+>> +
+>>  			mmc-ddr-1_8v;
+>>  			mmc-hs200-1_8v;
+>>  			mmc-hs400-1_8v;
+>> @@ -1071,6 +1073,13 @@ opp-384000000 {
+>>  			};
+>>  		};
+>>  
+>> +		sdhc_ice: crypto@7C8000 {
 > 
-> In a Linux-based system, the kernel controls the counter, which is a
-> read-only shared resource for the other subsystems. One of its primary
-> purposes is to act as a common timestamp source for messages or
-> traces, allowing correlation of events occurring in different
-> operating system contexts.
+> Why this became uppercase?
+Thnaks for pointing out. I will fix this next patch.
 > 
-> These changes introduce a basic counter driver that can start, stop,
-> and reset the counter. It also handles overflow accounting and
-> configures the prescaler value.
+>> +			compatible = "qcom,sc7280-inline-crypto-engine",
+>> +				     "qcom,inline-crypto-engine";
+>> +			reg = <0x0 0x007C8000 0x0 0x18000>;
 > 
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-
-Hi Daniel,
-
-A few of the features in this driver are implemented using somewhat of
-anti-patterns in the Generic Counter paradigm. In particular, I believe
-the overflow and accumulation features would be best implemented using
-the Counter events and watches idioms rather than in the Counter
-attributes. I'll explain further inline below.
-
-> +static void nxp_stm_cnt_cfg_overflow(struct nxp_stm_cnt *stm_cnt)
-> +{
-> +	/*
-> +	 * The STM does not have a dedicated interrupt when the
-> +	 * counter wraps. We need to use the comparator to check if it
-> +	 * wrapped or not.
-> +	 */
-> +	writel(0, STM_CMP0(stm_cnt->base));
-> +}
-
-So to implement overflows, you're currently setting up a compare against
-0 to fire off interrupts.
-
-The problem, besides the added complexity in your driver, is that users
-now lose control over the comparator for other threshold checks. A
-better approach is to define a COUNTER_COMP_COMPARE() attribute for this
-comparator which users can set to the value they desire, and push
-COUNTER_EVENT_THRESHOLD on the interrupts. Userspace can then watch for
-these COUNTER_EVENT_THRESHOLD events and use them to detect overflows,
-or for any other general purpose now that they can control the
-particular threshold value.
-
-> +static irqreturn_t nxp_stm_cnt_irq(int irq, void *dev_id)
-> +{
-> +	struct counter_device *counter = dev_id;
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-> +
-> +	nxp_stm_cnt_irq_ack(stm_cnt);
-> +
-> +	atomic_inc(&stm_cnt->nr_wraps);
-> +
-> +	counter_push_event(counter, COUNTER_EVENT_OVERFLOW, 0);
-
-Remove nr_wraps and push COUNTER_EVENT_THRESHOLD here instead if you
-implement the comparator design I suggested above.
-
-> +static struct counter_comp stm_cnt_count_ext[] = {
-> +	COUNTER_COMP_COUNT_U8("prescaler", nxp_stm_cnt_prescaler_read, nxp_stm_cnt_prescaler_write),
-> +	COUNTER_COMP_ENABLE(nxp_stm_cnt_count_enable_read, nxp_stm_cnt_count_enable_write),
-
-Add COUNTER_COMP_COMPARE() here for your Counter's comparator.
-
-> +static int nxp_stm_cnt_count_read(struct counter_device *dev,
-> +				  struct counter_count *count, u64 *val)
-> +{
-> +	struct nxp_stm_cnt *stm_cnt = counter_priv(dev);
-> +	u32 w1, w2, cnt;
-> +
-> +	do {
-> +		w1 = atomic_read(&stm_cnt->nr_wraps);
-> +		cnt = nxp_stm_cnt_get_counter(stm_cnt);
-> +		w2 = atomic_read(&stm_cnt->nr_wraps);
-> +	} while (w1 != w2);
-> +
-> +	*val = ((u64)w1 << 32) | cnt;
-
-Just report the raw counter value back directly. If a user wants to
-count wraparounds and accumulate the counter, they can do so by setting
-a Counter watch in userspace for the COUNTER_EVENT_THRESHOLD event.
-Userspace can then keep track of the nr_wraps and perform the
-accumulation calculation with the current count value.
-
-> +static int nxp_stm_cnt_watch_validate(struct counter_device *counter,
-> +				      const struct counter_watch *watch)
-> +{
-> +	switch (watch->event) {
-> +	case COUNTER_EVENT_OVERFLOW:
-
-This becomes COUNTER_EVENT_THRESHOLD.
-
-> +static const struct counter_ops nxp_stm_cnt_counter_ops = {
-> +	.action_read = nxp_stm_cnt_action_read,
-> +	.count_read  = nxp_stm_cnt_count_read,
-> +	.count_write = nxp_stm_cnt_count_write,
-> +	.function_read = nxp_stm_cnt_function_read,
-> +	.watch_validate = nxp_stm_cnt_watch_validate,
-> +};
-> +
-> +static struct counter_signal nxp_stm_cnt_signals[] = {
-> +	{
-> +		.id = 0,
-> +		.name = "Counter wrap signal",
-
-Surely this can't be how the signal is described in the datasheet (is
-it?). Although you do not have to match the datasheet exactly, the
-description should make it obvious which Signal is the source trigger
-for the Count state changes. I haven't read the manual for this device,
-but I suspect to this signal is named after some sort of clock
-oscillator if it's for a timer module; this could be named "System Timer
-Module Clock" if the signal is identified simply as that in the manual.
-
-William Breathitt Gray
+> And this? there is no uppercase at all, so maybye you copied it from
+> downstream, but that's not right approach - do not use downstream code.
+> 
+Yes it was copied but i missed to align with upstream. Thanks for pointing out. This will be fixed in next patch.
+> Best regards,
+> Krzysztof
+> 
+Regards
+Neeraj
 
