@@ -1,192 +1,160 @@
-Return-Path: <devicetree+bounces-255813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93C0D29618
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 01:09:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 880FDD29777
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 01:56:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 37BD3306EC31
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 00:08:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 863C630376A1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 00:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3EC72622;
-	Fri, 16 Jan 2026 00:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7457305976;
+	Fri, 16 Jan 2026 00:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="D4kpb85q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mail-m19731102.qiye.163.com (mail-m19731102.qiye.163.com [220.197.31.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B01F3BB4A;
-	Fri, 16 Jan 2026 00:08:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C471D6AA;
+	Fri, 16 Jan 2026 00:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768522089; cv=none; b=TqO3sjls8qjG0TLHDsoeK+IEjYW0qgMRBECcsjBGgzNaB/C1KVna7S7HW386b3I4YGP0MsyBMNSVhCqoDHLimg350u1wcQqVy07BOPT6iPi5Yrv7zfLHIr9NmH3bLhIS+cfJiEnCjr5g4wdv5YfvJFppQ9dq88Yr/G9jbLpnhiE=
+	t=1768524966; cv=none; b=lm3jbicF7M2g+UaODXskBt/87bQJnVImLQmkyYY0twWXL2iHz2NGLohLCLL//wybpBRMp0ZfQzolccoC3CFHXyur7bZftLsmDYriaW/+t+Y2BiHyckzFE2lG775rQWXjV6UWwCTW0L76p+AsrJFgIfa+f7wRvTu7KTdL3NBBnCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768522089; c=relaxed/simple;
-	bh=he2o5intyrOjV+NrjU2oHE/I+EjiYieX2DwVVB3MErM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mNSTVFJCNHKPDqUS57Kbd8DDKwFX6wn5jcfDuegTah7sysGHqXimTrk5HKM70Vwk2iOLdYKUQIshGoC4UaeWEkSptRFApkEQZNW0ya6EWs5aZFIA8bdf8LKQu53y1qK5BjgdixtwV2WWSASa355dmh1H3AultFnDtRkHIX0zDus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vgXNj-000000007Zh-472j;
-	Fri, 16 Jan 2026 00:08:04 +0000
-Date: Fri, 16 Jan 2026 00:08:01 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Chen Minqiang <ptpt52@gmail.com>, Xinfa Deng <xinfa.deng@gl-inet.com>
-Subject: [PATCH net-next v3 6/6] net: dsa: mxl-gsw1xx: add support for Intel
- GSW150
-Message-ID: <72ec93c733c3c23320b7b04be935e8fa236af74d.1768519376.git.daniel@makrotopia.org>
-References: <cover.1768519376.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1768524966; c=relaxed/simple;
+	bh=9PLwdFCUAvqhT1zUrchVxoO7QsP/kCtIKtoni/Hk3sM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=JnQyKSMT30bizHu+YsdLAdab39wXLrENSBQIDhlhd2oT1PaEiApbny4w1w4rvXjT4Tu34bBDTUye/M7O1KAYF51A5pn5eAgDIhHWkDLUqkCK/VXSfZiMC0oLHzfROctlUX+sF5hcHWVTvpi/IF3uTp2vWJ+QmjsPlJU84rYVvl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=D4kpb85q; arc=none smtp.client-ip=220.197.31.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 30d5a769d;
+	Fri, 16 Jan 2026 08:55:51 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Cc: linux-rockchip@lists.infradead.org,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Marco Schirrmeister <mschirrmeister@gmail.com>,
+	John Clark <inindev@gmail.com>,
+	Tianling Shen <cnsztl@gmail.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v4 2/5] soc: rockchip: grf: Support multiple grf to be handled
+Date: Fri, 16 Jan 2026 08:55:29 +0800
+Message-Id: <1768524932-163929-3-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1768524932-163929-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1768524932-163929-1-git-send-email-shawn.lin@rock-chips.com>
+X-HM-Tid: 0a9bc44d2e2309cckunm67a197c8691bad
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUtLGVZLGB1LGEwdTBpLSR5WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=D4kpb85qC2GrPpUTo4Nwi0DuT/hVkd2gHl0a1do9BUbM6W8IWVMuZuxD4YNnnsiAeOlzg9PNzaIw/5vcTupCkfnFq9GHpdtkqx3YifyRP3XEj35LO37jzdcFrV37Uq8SILLANMxGIeaJPIbXpBSR3yTncpcZXOnCJYMRB9h5EgU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=7ONJa0WvvLpdHxmR7sI4inADE7R0rUhqKbxvZUom8Rw=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1768519376.git.daniel@makrotopia.org>
 
-Add support for the Intel GSW150 (aka. Lantiq PEB7084) switch IC to
-the mxl-gsw1xx driver. This switch comes with 5 Gigabit Ethernet
-copper ports (Intel XWAY PHY11G (xRX v1.2 integrated) PHYs) as well as
-one GMII/RGMII and one RGMII port.
+Currently, only the first matched node will be handled. This leads
+to jtag switching broken for RK3576, as rk3576-sys-grf is found before
+rk3576-ioc-grf. Change the code to scan all the possible node to fix
+the problem.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+Fixes: e1aaecacfa13 ("soc: rockchip: grf: Add rk3576 default GRF values")
+Cc: Detlev Casanova <detlev.casanova@collabora.com>
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+Tested-by: Marco Schirrmeister <mschirrmeister@gmail.com>
 ---
-v3: enclose the gswip_hw_info initializers in compiler diag exception
-    to prevent triggering -Woverride-init
 
-v2: clean-up phylink_get_caps
+Changes in v4:
+- none
 
- drivers/net/dsa/lantiq/mxl-gsw1xx.c | 61 ++++++++++++++++++++++++++---
- drivers/net/dsa/lantiq/mxl-gsw1xx.h |  2 +
- 2 files changed, 58 insertions(+), 5 deletions(-)
+Changes in v3:
+- remove of_node_put() (Heiko)
 
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.c b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-index 54cf7aab3bfe4..0d18b79647064 100644
---- a/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.c
-@@ -503,6 +503,14 @@ static const struct phylink_pcs_ops gsw1xx_pcs_ops = {
- 	.pcs_link_up = gsw1xx_pcs_link_up,
- };
+Changes in v2:
+- use for_each_matching_node_and_match(Heiko)
+
+ drivers/soc/rockchip/grf.c | 55 +++++++++++++++++++++++-----------------------
+ 1 file changed, 27 insertions(+), 28 deletions(-)
+
+diff --git a/drivers/soc/rockchip/grf.c b/drivers/soc/rockchip/grf.c
+index 8974d1c..04937c4 100644
+--- a/drivers/soc/rockchip/grf.c
++++ b/drivers/soc/rockchip/grf.c
+@@ -217,34 +217,33 @@ static int __init rockchip_grf_init(void)
+ 	struct regmap *grf;
+ 	int ret, i;
  
-+static void gsw1xx_phylink_get_lpi_caps(struct phylink_config *config)
-+{
-+	config->lpi_capabilities = MAC_100FD | MAC_1000FD;
-+	config->lpi_timer_default = 20;
-+	memcpy(config->lpi_interfaces, config->supported_interfaces,
-+	       sizeof(config->lpi_interfaces));
-+}
+-	np = of_find_matching_node_and_match(NULL, rockchip_grf_dt_match,
+-					     &match);
+-	if (!np)
+-		return -ENODEV;
+-	if (!match || !match->data) {
+-		pr_err("%s: missing grf data\n", __func__);
+-		of_node_put(np);
+-		return -EINVAL;
+-	}
+-
+-	grf_info = match->data;
+-
+-	grf = syscon_node_to_regmap(np);
+-	of_node_put(np);
+-	if (IS_ERR(grf)) {
+-		pr_err("%s: could not get grf syscon\n", __func__);
+-		return PTR_ERR(grf);
+-	}
+-
+-	for (i = 0; i < grf_info->num_values; i++) {
+-		const struct rockchip_grf_value *val = &grf_info->values[i];
+-
+-		pr_debug("%s: adjusting %s in %#6x to %#10x\n", __func__,
+-			val->desc, val->reg, val->val);
+-		ret = regmap_write(grf, val->reg, val->val);
+-		if (ret < 0)
+-			pr_err("%s: write to %#6x failed with %d\n",
+-			       __func__, val->reg, ret);
++	for_each_matching_node_and_match(np, rockchip_grf_dt_match, &match) {
++		if (!of_device_is_available(np))
++			continue;
++		if (!match || !match->data) {
++			pr_err("%s: missing grf data\n", __func__);
++			of_node_put(np);
++			return -EINVAL;
++		}
 +
- static void gsw1xx_phylink_get_caps(struct dsa_switch *ds, int port,
- 				    struct phylink_config *config)
- {
-@@ -536,10 +544,32 @@ static void gsw1xx_phylink_get_caps(struct dsa_switch *ds, int port,
- 		break;
++		grf_info = match->data;
++
++		grf = syscon_node_to_regmap(np);
++		if (IS_ERR(grf)) {
++			pr_err("%s: could not get grf syscon\n", __func__);
++			return PTR_ERR(grf);
++		}
++
++		for (i = 0; i < grf_info->num_values; i++) {
++			const struct rockchip_grf_value *val = &grf_info->values[i];
++
++			pr_debug("%s: adjusting %s in %#6x to %#10x\n", __func__,
++				val->desc, val->reg, val->val);
++			ret = regmap_write(grf, val->reg, val->val);
++			if (ret < 0)
++				pr_err("%s: write to %#6x failed with %d\n",
++					__func__, val->reg, ret);
++		}
  	}
  
--	config->lpi_capabilities = MAC_100FD | MAC_1000FD;
--	config->lpi_timer_default = 20;
--	memcpy(config->lpi_interfaces, config->supported_interfaces,
--	       sizeof(config->lpi_interfaces));
-+	gsw1xx_phylink_get_lpi_caps(config);
-+}
-+
-+static void gsw150_phylink_get_caps(struct dsa_switch *ds, int port,
-+				    struct phylink_config *config)
-+{
-+	config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-+				   MAC_10 | MAC_100 | MAC_1000;
-+
-+	switch (port) {
-+	case 0 ... 4: /* built-in PHYs */
-+		__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-+			  config->supported_interfaces);
-+		break;
-+
-+	case 5: /* GMII or RGMII */
-+		__set_bit(PHY_INTERFACE_MODE_GMII,
-+			  config->supported_interfaces);
-+		fallthrough;
-+
-+	case 6: /* RGMII */
-+		phy_interface_set_rgmii(config->supported_interfaces);
-+		break;
-+	}
-+
-+	gsw1xx_phylink_get_lpi_caps(config);
- }
- 
- static struct phylink_pcs *gsw1xx_phylink_mac_select_pcs(struct phylink_config *config,
-@@ -768,6 +798,25 @@ static const struct gswip_hw_info gsw141_data = {
- 	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
- };
- 
-+static const struct gswip_hw_info gsw150_data = {
-+	.max_ports		= GSW150_PORTS,
-+	.allowed_cpu_ports	= BIT(5) | BIT(6),
-+	.mii_cfg = {
-+		[0 ... GSWIP_MAX_PORTS - 1] = -1,
-+		[5] = 0,
-+		[6] = 10,
-+	},
-+	.mii_pcdu = {
-+		[0 ... GSWIP_MAX_PORTS - 1] = -1,
-+		[5] = 1,
-+		[6] = 11,
-+	},
-+	.phylink_get_caps	= gsw150_phylink_get_caps,
-+	.pce_microcode		= &gsw1xx_pce_microcode,
-+	.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
-+	.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
-+};
-+
- __diag_pop();
- 
- /*
-@@ -775,6 +824,8 @@ __diag_pop();
-  * GSW145 is the industrial temperature version of GSW140.
-  */
- static const struct of_device_id gsw1xx_of_match[] = {
-+	{ .compatible = "intel,gsw150", .data = &gsw150_data },
-+	{ .compatible = "lantiq,peb7084", .data = &gsw150_data },
- 	{ .compatible = "maxlinear,gsw120", .data = &gsw12x_data },
- 	{ .compatible = "maxlinear,gsw125", .data = &gsw12x_data },
- 	{ .compatible = "maxlinear,gsw140", .data = &gsw140_data },
-@@ -798,5 +849,5 @@ static struct mdio_driver gsw1xx_driver = {
- mdio_module_driver(gsw1xx_driver);
- 
- MODULE_AUTHOR("Daniel Golle <daniel@makrotopia.org>");
--MODULE_DESCRIPTION("Driver for MaxLinear GSW1xx ethernet switch");
-+MODULE_DESCRIPTION("Driver for Intel/MaxLinear GSW1xx Ethernet switch");
- MODULE_LICENSE("GPL");
-diff --git a/drivers/net/dsa/lantiq/mxl-gsw1xx.h b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-index 38e03c048a26c..087587f62e5e1 100644
---- a/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-+++ b/drivers/net/dsa/lantiq/mxl-gsw1xx.h
-@@ -10,6 +10,8 @@
- #include <linux/bitfield.h>
- 
- #define GSW1XX_PORTS				6
-+#define GSW150_PORTS				7
-+
- /* Port used for RGMII or optional RMII */
- #define GSW1XX_MII_PORT				5
- /* Port used for SGMII */
+ 	return 0;
 -- 
-2.52.0
+2.7.4
+
 
