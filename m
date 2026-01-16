@@ -1,95 +1,142 @@
-Return-Path: <devicetree+bounces-256189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21AC4D33770
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:22:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A30D337AF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 93FF9302BF6E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:22:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 137F23001558
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35ACB34403E;
-	Fri, 16 Jan 2026 16:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324733939AD;
+	Fri, 16 Jan 2026 16:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="itHa9A2Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tD3qol0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B429F189BB6
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:22:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C0C3933F4;
+	Fri, 16 Jan 2026 16:25:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768580542; cv=none; b=DXBCxVOCnB38ooqiBJtv5PXt/OnVsL9iqzXrkfCG2mHiJ7JmPw5O63Taqqq4S7LQffnICg9OjNSpiDF3ByThCFEzo1rIT+XiI3LTmo6O6ze3Xtpfpbz4m3IawNhmyC2476t0I2GpIrfJ+qB6hU2dHKF2L4/2aRuYpdEw/Dl7kIk=
+	t=1768580715; cv=none; b=MYPYqr9etGCyJDGUGsVweCnYUbZpQy/eG0ZTzm1pHAcL2TON1eYfNgiHnHPsA13b6zN4Oeir6ezlnz6yC+GSrYxxp7S0X9+4sE7AIN1bY5ZCjTUcGKiueRD07z3nNHMg7i0lS4IuW7NdyB7/2XRZoZZEvvQe9UFy+8qQm/4XnK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768580542; c=relaxed/simple;
-	bh=S+mUIA1lGIO9jDEh8LKBbnwFtjaSLNqZN0j+RsLAtmA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=quANUWBKeMzEmMPbzAokg+lBXMdwyzqcxfD5KmJWNelub19qfqH+nsaipk7VOUa1WlVnM3dHrtWqlIkPZGoRfgbvgifSiu8OByL1a1dL9Q4LejHhpiHJkSdA10I5e6fntS8x14228rIBf1AYsBWG8zJIhcAbv+/rz8PCYLX7ZYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=itHa9A2Z; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 429144E42109;
-	Fri, 16 Jan 2026 16:22:18 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id ECD21606F9;
-	Fri, 16 Jan 2026 16:22:17 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C4EFF10B68C2D;
-	Fri, 16 Jan 2026 17:22:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768580537; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=8rG4nCVgnD6kuNMUKbQR/uZ6kGwE2W5W6cqCnY2AlPA=;
-	b=itHa9A2ZiXydeMqkMXo+E63AeoIfZ/JkqyGMdqHMmZApHW4bmHHB9qyUncE7BEfZxcyRtB
-	j0k53GkWouCLZN6PTwx+J0ljcA6J6XyjdFffxTgfceyOl4/ChcHBr1rlHndYbqVVsRPfTn
-	GS4XrX15Y1RoN452W8nhgHKwQLvyDnuzqYPKFtRCvoPOqyQgxQzwQ9roB4kU/3SSwoU8J0
-	9+eaGbD6weOFhsSfxLbV7abmP6YFRwzBfJ8nq7Xozm4qrw/m0C4Au3exVkOHVCe8LFnAEo
-	uW/OwSGjc2Oa/FNT4hCCePTk6SM/1ZG/zRDNAJ8KlPLcaqZ8ko5A3qOjp+bjxQ==
-Date: Fri, 16 Jan 2026 17:22:10 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 18/77] dtc-parser.y: Avoid an empty proplist
-Message-ID: <20260116172210.007b9fe8@bootlin.com>
-In-Reply-To: <aWhEG0GQp04wjcLs@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-19-herve.codina@bootlin.com>
-	<aWhEG0GQp04wjcLs@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768580715; c=relaxed/simple;
+	bh=x6m7FLQCNeJJJzswTOXHOgtcVZ3nPaJ7F0xm8bh0Fkw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E1+aqSrdMtRHWRRPCVWpQDcYU9nNfY5bN3MlbpNJxZsimJD8TAxUiNqedV/ZPExR43hixZdW8NfPVhatQvJfyJqsrC5hLsAHevjG59DnHL4fZApy9vtmNkl1SfYKsScSr2XMfyV0dNRWNsFj/HohzWIVXQWIMbEvTsMY0Y3Z1pM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tD3qol0K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF8ABC116C6;
+	Fri, 16 Jan 2026 16:25:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768580714;
+	bh=x6m7FLQCNeJJJzswTOXHOgtcVZ3nPaJ7F0xm8bh0Fkw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tD3qol0KIfsTq7lNqfiGqXRupy+S1Ixlp7z5N4+d5cKkHY3tZZSvo/H+MaGrJSLih
+	 TjeMT2eQo5JO15nURqfzJf5/6eCz/epJdsfhv+pe6mn2SF8McqHFj8oPxeHu96+6jg
+	 NhD+rLJRBD1mNCskf1SRXHleCvRPGu1P7SKxpYGAWu55hB2gvqZPAa7Ao1gkoNA99X
+	 wWOG07oTbKMEAp9h/o9YPRqvF62V0gH/qk7A5MlEQycgKTS9FAsDVOl94PW+W8rAXB
+	 dpEYPrl8ymvgYsDlxFL447kR5vMaJaoUdc21MWfNDW9Ow5euvlLysMl+uDUfQiAwbR
+	 RrFxAZL7+JnZA==
+Message-ID: <af235d3c-cbf0-4cb9-af3b-37c1600d421c@kernel.org>
+Date: Fri, 16 Jan 2026 17:25:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: qcom: Add IPCC support for
+ Kaanapali and Glymur Platforms
+To: Rob Herring <robh@kernel.org>, Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+ Jassi Brar <jassisinghbrar@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+References: <20251031-knp-ipcc-v3-0-62ffb4168dff@oss.qualcomm.com>
+ <20251031-knp-ipcc-v3-1-62ffb4168dff@oss.qualcomm.com>
+ <20260116162057.GA1681736-robh@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260116162057.GA1681736-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
 
-Hi David,
-
-On Thu, 15 Jan 2026 12:34:19 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
-
-...
-
+On 16/01/2026 17:20, Rob Herring wrote:
+> On Fri, Oct 31, 2025 at 12:41:44AM -0700, Jingyi Wang wrote:
+>> Document the Inter-Processor Communication Controller on the Qualcomm
+>> Kaanapali and Glymur Platforms, which will be used to route interrupts
+>> across various subsystems found on the SoC.
+>>
+>> Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>> ---
+>>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
 > 
-> I think it makes sense to apply this on its own before the rest of the
-> series, but the commit message will want rewording for that context.
+> I guess no one is going to apply this, so I did.
 > 
+> If your patches don't get applied, please chase the maintainers (Jassi) 
+> to apply them.
 
-I will do this rewording and I will move the patch at the begining of the
-series in the next iteration.
+
+This or it is an effect of known problem with mailbox and interconnect
+subsystems - maintainers never send notifications of applied patches
+(neither publicly nor privately like Greg does), so you will never know
+if anything gets applied.
+
+This as well could be in the next silently (wasn't in 15th Jan, though).
 
 Best regards,
-Hervé
+Krzysztof
 
