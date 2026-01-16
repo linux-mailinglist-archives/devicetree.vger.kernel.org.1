@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-255824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8456FD29FFE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:16:49 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91861D29F72
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:14:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BEC9D306EC10
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:11:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0C7CE300C9B9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B921E338F20;
-	Fri, 16 Jan 2026 02:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F5A33891D;
+	Fri, 16 Jan 2026 02:10:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="qTeURj0i"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="mNIXGAlb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com [209.85.216.66])
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A2730FC0F
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 02:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB5CA3385B8
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 02:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768529460; cv=none; b=Hc7RgtoIX8lbFYx9CHw/Bkz9+EB3PRfnxUDbAfSlegftqAW7D6L8KI/sVAjJjQ0W98i19F6Gvf3rNdmGctqjVzU+EDpFyAb250pk6XuuzSEf3zo51c5Pa/U2coty6k4W39dWjIQJU54xrkLY5ezL/xUESbFRR96slYNpJkp/1CQ=
+	t=1768529459; cv=none; b=lF2TH0QFS1m2m7kZ45m3UXP1s0fkKmWyXFz0+fsmEadRltuhv6I47ZW80Anqlba5G1GtD39imF9mNVIyyHA4rUY7YENtSbD244zqwzd7WacgSzrwHFBIFu5Ngl5tw7sa9zwXZ3UEWYmZcIr27g7cpG1vBRAScVJVsQRqUPJ3t58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768529460; c=relaxed/simple;
-	bh=4CHXRiB0exQslABri/9R9mVthVDCinCaggbtBCLqnzM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UrP4JEadtuk1MShKG7SzfUl0kBLMbEyjsZINgbEYqN6bc23/EDmXUhY404d+jjwI2qWiae/a0e+xaXmy663wU3walbSDkGK9NACiDHdtnT75b4dpcZ6ZwVl2fIxTPxTptsWhxizWY4uPK1YpUTWIk474InXja03lpccUOvcy4iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=qTeURj0i; arc=none smtp.client-ip=209.85.216.66
+	s=arc-20240116; t=1768529459; c=relaxed/simple;
+	bh=N8syuPJHM/RDgseVkBo3sE15yFV/OMCXP+RAlXifSjU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Mxdzu6+iR1QXkC5pHjBt5/CgoL8rpaBpDdnXmSATxVfRBe7foDvNeVje5mDUrOniADNE7/68tmPaLnNeBTShA5jpN7yIz3Db3E5wyRx6pa4ddH1lJ/7SaKZNGhH6+YGnup+rJz9o2grs+/b7dL35btt5E6IYAsc2cuw05JVBapo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=mNIXGAlb; arc=none smtp.client-ip=209.85.215.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-pj1-f66.google.com with SMTP id 98e67ed59e1d1-34e90f7b49cso806223a91.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 18:10:52 -0800 (PST)
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-bbf2c3eccc9so1039875a12.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 18:10:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768529452; x=1769134252; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=d0RqvDSTLRy5sun+KFOAz+29pO93gB9/JlJnbr30Zhk=;
-        b=qTeURj0iTFMSfzbsMzpoMdjIzPdpSElloxCH/HX3LSG0WCIPP3NB06qjSMVmvkHcqE
-         O8F36dX910PHoug0lpxSh9/ujZNm7Q6YcBwqwLBh74kiF8Zj6K+bMHj5m2IxMBpLK3T4
-         Qwb7wrWYamI5382BXEqHXGSW8kbqTX0/Ok6siPGo6PAHafGKP2llD3dsjxGamyYClsrb
-         eqQ+IUJW+oy55iqdz1Um+ZSqIvNWS7t15L90RaFFlHhlf5LHZ8IYc8PmGJgYMtUzgKSX
-         oxGj6fz9lt+ZypqOQnkQEwv/t17QNuDQL23qvCs0ponkwOtQosjHvV+T/gXPqar/jVNN
-         5DbA==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768529457; x=1769134257; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3qBoetBmeJm3JJ7+522wExgCek3WhGfFdkGVZeCPvt8=;
+        b=mNIXGAlbWn6ek9ZItxk1eNHXQ6AhLoiQKWV3bSEKMqG5njQqFnbRrSHHjiq5uubehq
+         E6/UNBuF6YyUk/gShSa/Zt5g0XVD6XjYC9ZKEDXxE0y/72WglTdGd4iUZa8ak+h9LaSD
+         M4sL2gV2bD8iG7SHRx4AQDBXNTbN7r/yqmaEJqfZ7l/JLV05mChw//YnwD+MXyxcQF0Q
+         fVC38N5i9pzJzwfWz3rYcK9/QM3wcnvYb9isOT8ovZF+igeMJoKPH19SeaQiCgdvi5fG
+         CzvR2QE9aqhMAGwjFG09DhO7wfIkHECtOZyPZYGpakWGPSgR3ZgXPWxA0Xh10Jjg2+yS
+         hvNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768529452; x=1769134252;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d0RqvDSTLRy5sun+KFOAz+29pO93gB9/JlJnbr30Zhk=;
-        b=OdKnWm3450KQDDvx4li89/OAy8wQ+VFFm3gkj/WJthte2VV2spvUAe35S6pkHEyIOJ
-         ifmUz1YCiOtQWSW1yPwILowWpDtpw2nMf2vz0M4CN5NgGwnP20xLWCW+0zqOHaAYD06R
-         PfrJm+RW5Bc558bCQ6cUyjJmhsgDgoG21J3ettoQqX/w5mB2J/C/rfn3GLh8FAKDHd2H
-         zwRNWq32fmK86+Q3Von/1qyIAU3SPe3cm/vOUQcuCuaUMRMgVMJdUhXqzrSMvMspoBWJ
-         pcxZRDF+QJlPeLU8UZmUzB8C9Ly6pIVRodHqqNe8L/lunOxUSghho+2gsknui7y8Rl9F
-         p30g==
-X-Forwarded-Encrypted: i=1; AJvYcCU85h2SSyv2AmOeuCfkJrdvbXNW2msomrHZ3iIqp9WSRsV2ibMn7P1YinTGwH+kMi7Mjcg2M7LVGiFH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9KQEDX0qeceWSsVHaJ9VxdhmXD1OmxYN6kWIwKwpFaBZ/SF+6
-	btG4C75fv1QUwswkkrmc0t0ykfEJZdRFB/XtdUGSorLHfMlPNDx3wdU0XYyuaHIvsTc=
-X-Gm-Gg: AY/fxX4AUadvZsFaCoxpMRaaSxX6lWpC88LQ96DoYMdmAWQ1SyaVtnI5uvMAFzYxQpz
-	CftmMJzYUfPRnc36RldCcYPMYmWDHnGjwLc1pFoZbsHHSnsEQiLBMIql0TPI/tgWwN+G7s603lb
-	pMHrwZqiz92sKJa54gU/sECjwVjZWodkuIgvg4ODIllQnAXi/HrZnhdNYZsaecjUYugbLbnV/cP
-	PxtoROO3WKIMljt2pzgrVt4q6ELl5p1/kIzP50N/aR1gDoQ19894L+1jx8fW8e+GBYeXHWnFrFk
-	pI1x7Y2ZghDsEVmmOIvim9YeavnSloSwfd4fhJTzEQA6+al1ERc6S6n1O0fBQm/Bta2CqtD0f9x
-	bwjSoHqk4qV7w+YbGRHyV9lwH6y4UGk3mGamSfzRqZzfPGDVMhgPA5+ssZzZ7H4+B1a6I+NisF6
-	VHqCuq0DshskJ9Sxh8xLV+xWjAxKG7uz0tTrB97fPVFfDT4KVVFc6oQKaSED3JUn4m
-X-Received: by 2002:a17:90b:570f:b0:330:bca5:13d9 with SMTP id 98e67ed59e1d1-352732775a8mr1013354a91.32.1768529452084;
-        Thu, 15 Jan 2026 18:10:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1768529457; x=1769134257;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3qBoetBmeJm3JJ7+522wExgCek3WhGfFdkGVZeCPvt8=;
+        b=otgqS5NZhAmAoxKt2FPG1AurpITZMIX/Hbkb6fu6ST5d8rXUGsYSEa9/8lZSkQrNtm
+         z4Pk2EeKILO1dmtmf9a+R+FpTfNWy3ojFmmMSbxpSLQcuVe2St1uj+iB0cQxMqM6pkio
+         3eaFFsqMfco86FdNHjG8ZbxZblq/eE3HYObjmeVQN2sC47X8IOdhVM91suPY+EsV7+KW
+         cNpNx02Xkj77d8oOKVFGtO9ASyBkZkphHE3cEKzzWKtKDgWxX+IIUtCaAVcpzHZAysen
+         yMmKBYhtEtlzFAZcvDi/+yC2S+Izv9RwXLX9CzUjv+5Vg7imqIzuSe6crVzwMRa0FNpz
+         CBtg==
+X-Forwarded-Encrypted: i=1; AJvYcCV96Lmp3blURPpgpjVsLwpoB2CWGPWJCkWMmY+P3IXtDbJXsZ/AyEECFtTWTx5LMA2/FpQIeq93u7wL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz89bA8h1aEJoCV4clGEENxsS07n5C4BSfPpWdHruDoa5YKygzq
+	SV0+R43GfPTIgP2IFZrO6+yEPD9+VRGIKlg9PPMiK5cwuwAJMi4/YQmyAPsRjLgwrLk=
+X-Gm-Gg: AY/fxX5Z4mztT+OeK6s8UZCBUmobGcgeHiafPEhOSbAxjOi2O41/Yw7dDcsVoDU8Av+
+	JA/PDUBUPjAFwBukocPbmX4/wF8t3nZw1Z7VlTj7gGjFUzW5addP8h8mlg9RNbMhEy3LEufiRRJ
+	WDD0tHY+bQXjP9AcUq+Oo6jhOXvg3LyPf7HRMtng6ASloageetuwPyAep2n/MiPtubjH69tgi8t
+	rCVcY4TMocnhRzU3JPrLGtsjNB1Poxtl0dJxQ33q0R+eVWPu2nI4+Xza1Dc78eeStgIumRQtSzv
+	iVVNqxoK21UVIRjNNAs+L8fSACdEhwd+Fx2HfBfsAoMNg0se6frajHZ8fkzaJmcxyP6eDaxHB1c
+	OUNtgVeNP1c5bjerxvCjpa4lHJJsEtqF9uhqqTxb0iQ/aISdcHBBDm2euaDe8ONVg6YCxzwYIYl
+	o4rS9SIf3MEBxmjikFtZPEkj80Zf5M+JTYviASxcFso5Rk2xBjV1BNdg==
+X-Received: by 2002:a17:90b:58ec:b0:340:8d99:49d4 with SMTP id 98e67ed59e1d1-352677ed61bmr4296095a91.1.1768529457188;
+        Thu, 15 Jan 2026 18:10:57 -0800 (PST)
 Received: from [127.0.1.1] ([45.8.220.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35273298968sm364317a91.0.2026.01.15.18.10.47
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35273298968sm364317a91.0.2026.01.15.18.10.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jan 2026 18:10:51 -0800 (PST)
+        Thu, 15 Jan 2026 18:10:56 -0800 (PST)
 From: Guodong Xu <guodong@riscstar.com>
-Subject: [PATCH 0/3] riscv: cpufeature: Add Supm extension id and
- validation
-Date: Fri, 16 Jan 2026 10:10:30 +0800
-Message-Id: <20260116-supm-ext-id-v1-0-5fcf778ba4a6@riscstar.com>
+Date: Fri, 16 Jan 2026 10:10:31 +0800
+Subject: [PATCH 1/3] dt-bindings: riscv: Add Supm extension description
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,10 +82,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIABeeaWkC/y3MQQqDMBCF4auEWTdgggbxKsVFjGM7i0SbiSKId
- +9Uu/wfvO8AxkzI0KkDMm7ENCcJ81AQ3j69UNMoDbayrjLGaV6XqHEvsuvWOmxHX4d6aEAeS8a
- J9kt79ndn/KyClnuEwTPqMMdIpVPpx/zhBvrz/AKCG7PUjgAAAA==
-X-Change-ID: 20260116-supm-ext-id-826e8da4c4b5
+Message-Id: <20260116-supm-ext-id-v1-1-5fcf778ba4a6@riscstar.com>
+References: <20260116-supm-ext-id-v1-0-5fcf778ba4a6@riscstar.com>
+In-Reply-To: <20260116-supm-ext-id-v1-0-5fcf778ba4a6@riscstar.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Samuel Holland <samuel.holland@sifive.com>, 
@@ -99,44 +98,47 @@ Cc: Paul Walmsley <paul.walmsley@sifive.com>,
  Guodong Xu <guodong@riscstar.com>
 X-Mailer: b4 0.14.3
 
-Supm as an extension indicates pointer-masking support for user mode
-(U-mode). It relies on Ssnpm or Smnpm for the underlying hardware
-implementation.
+Add description for the Supm extension. Supm indicates support for pointer
+masking in user mode. Supm is mandatory for RVA23S64.
 
-As a ratified feature, define a dedicated RISCV_ISA_EXT_ id for Supm.
-However, since Supm is targeting U-mode, it should not be added into
-devicetrees that describe hardware running privileged system softwares.
-
-Supm is implied by Ssnpm (S-mode) or Smnpm (M-mode). Add parsing logic
-and validation to ensure this dependency.
-
-When CONFIG_RISCV_ISA_SUPM is disabled, Supm validation will fail
-regardless of whether Ssnpm or Smnpm exist. This patchset doesn't change
-this behavior.
-
-Prior discussions about how Supm should be handled can be found in Links
-[1] and [2].
-
-Link: https://lore.kernel.org/lkml/20260101-legume-engraved-0fae8282cfbe@spud/#r [1]
-Link: https://lore.kernel.org/all/4ebbe14b-2579-4ba6-808d-d50c24641d04@sifive.com/#r [2]
+The Supm extension is ratified in commit d70011dde6c2 ("Update to ratified
+state") of riscv-j-extension.
 
 Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
-Guodong Xu (3):
-      dt-bindings: riscv: Add Supm extension description
-      riscv: cpufeature: Add ISA extension parsing for Supm
-      riscv: cpufeature: Clarify ISA spec version for canonical order
+ Documentation/devicetree/bindings/riscv/extensions.yaml | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
- .../devicetree/bindings/riscv/extensions.yaml      | 17 ++++++++++
- arch/riscv/include/asm/hwcap.h                     |  3 +-
- arch/riscv/kernel/cpufeature.c                     | 38 ++++++++++++++++++++--
- 3 files changed, 53 insertions(+), 5 deletions(-)
----
-base-commit: ef41e6187f77b52e4b17ab9637be8f878e1f7a5b
-change-id: 20260116-supm-ext-id-826e8da4c4b5
+diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+index 4ffd61926505..1922dff03787 100644
+--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
++++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+@@ -262,6 +262,23 @@ properties:
+             ratified in RISC-V Profiles Version 1.0, with commit b1d806605f87
+             ("Updated to ratified state.")
+ 
++        - const: supm
++          description: |
++            The standard Supm extension for pointer masking support in user
++            mode (U-mode) as ratified at commit d70011dde6c2 ("Update to
++            ratified state") of riscv-j-extension.
++
++            Supm represents a combination of underlying hardware capability
++            (Smnpm or Ssnpm), U-mode consumer privilege level, and M/S-mode
++            software configuration that enables pointer masking for U-mode.
++
++            DO NOT include this property in device trees targeting privileged
++            system software (S-mode or M-mode).
++
++            This property is only appropriate in device trees provided to
++            U-mode software where the next-higher-privilege-mode supports
++            Smnpm or Ssnpm and enables it for U-mode.
++
+         - const: svade
+           description: |
+             The standard Svade supervisor-level extension for SW-managed PTE A/D
 
-Best regards,
 -- 
-Guodong Xu <guodong@riscstar.com>
+2.43.0
 
 
