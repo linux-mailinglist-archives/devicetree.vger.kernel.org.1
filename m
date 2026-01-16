@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-256201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5D1D3397D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:56:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C8AD339B1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:58:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5963230C0ABE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:54:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 312C230F66B5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E8F39A7EA;
-	Fri, 16 Jan 2026 16:54:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A50331960D;
+	Fri, 16 Jan 2026 16:56:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lkvZ9Zet"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZBaxsw7F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BB233C536;
-	Fri, 16 Jan 2026 16:54:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D929D340D8C;
+	Fri, 16 Jan 2026 16:56:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768582496; cv=none; b=QFpzXK5rCzFWJATA8NB3HoXKVrrBHVOUViPNR1/YkkqzYRXvOsU143sbPgEc0zGH+s4VpOlT8B1XbMZG5UFUsZ6UeZXV4AoYhY2hvggPuvqJWZm/Cck56i36DaMZSoKXwYNo9AtU99YFrq5h44hGIkOL+BUy45pSAfOMGRV9ceU=
+	t=1768582611; cv=none; b=L74+WddjTVLAvgBFjda+cGAwkBOaGteCMORiinAltpvtDWNyXikdCYJWyht2K+dpAo8C7OHiqhZCdRG5kz4XIqBit9S+pHJtYvH+CjwrpCwiYi9/Aj/2X+K7DjMLi8v1lVTI+oK3jUigHC+1Flg8IgpY3MIMcwwLmOG5l6DIbpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768582496; c=relaxed/simple;
-	bh=IPqF9mLGxFBU6ew7eLTudLY5YG8jLHJteYNyW2fDmV4=;
+	s=arc-20240116; t=1768582611; c=relaxed/simple;
+	bh=T5Fbr7AYPGBTy7Ar/+mu/KuikytstoyPsFl1sQFKJXc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NTAhekHL9D+4qUZkT3vZYjgEjcCpqWBXGCKEELD6f9h4cS59J0QwWWxi9ONCbqau8Kt2rxJRSc/pHcLZKCy3MHf4K99SR2O3BK0sD/8kT2k0zhiPE5lMekXkPaZO1EwQ+iF4qPkx9JlbSEB7Eejm5Ufz4qGolDCZBB893YvficM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lkvZ9Zet; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 118F3C116C6;
-	Fri, 16 Jan 2026 16:54:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jS/o/a0Bwr6N48uJDK+BkLA74wEP1bbvSNwpWjNQX7tLQo8hHbldIkOUb2C7PwJVNIXEIMRJDVsqs+MKm9UAbhNBcCLZuAwfnasU/BIPaew40XaFUovEFbxjil1i3WBhrmYcugn6BjtKtOmzhJrLMU2jZXOVmQ6zzxasIMlcCYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZBaxsw7F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF145C116C6;
+	Fri, 16 Jan 2026 16:56:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768582496;
-	bh=IPqF9mLGxFBU6ew7eLTudLY5YG8jLHJteYNyW2fDmV4=;
+	s=k20201202; t=1768582611;
+	bh=T5Fbr7AYPGBTy7Ar/+mu/KuikytstoyPsFl1sQFKJXc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lkvZ9ZetlE9XYOgDgucywDbvOGHGjQvx2CGzkEzLqZo59R+aQOvQPJNLYNbnYUFK9
-	 kOO5uVcLFxDRRkMzyw2Gn/7hblF8MtFKq5PQ8uG4JhVgnNv7SC8Z4gx5gNaO+VDadG
-	 FA3T1qOJKsArSTHNyfIa+gnoomMfKrvbe5e92wwT5wI7m2dr2Z1OCaCtT0bCvau+qn
-	 Gqobhqp5sUaBUZoCwKSzcXLZn5yJ84hb8nlZVY3sRvLhrX1Gh9jPl4KYAOJUN9utC2
-	 Txl1buEHUdf7Szk+athD6EIMC31lDc2S893TKT1clhmCZ4MUzBJKV/xXpoHHr34CD2
-	 a7bFZ0uiOSRuA==
-Message-ID: <2956f2bb-7db4-4d66-aa71-2017c9a4a057@kernel.org>
-Date: Fri, 16 Jan 2026 17:54:52 +0100
+	b=ZBaxsw7F4CMztiX8K7me98H29yUlLl275y3T977qzvlzfNaZvcbvu2w60u8L5eXLz
+	 0VscokRuOvtgqZ+P7OcPdpokfSBHZQWtB9jyJqNoTmoNoJxJ9U3zVh9wKi1BS2t2kE
+	 k97cPr8uHLAk3ArzbzBfYxl18aN3QaYgPkWZhvt5dEgqMJk46obfSNigxxzPfJyuyA
+	 HmjkRMQ65P6tmLoFTfK7DtRclPY2aA1JtPtcdkfc6ggTnWQAKLKK4lvMpYYHLHOHxT
+	 1XwGN+nTCSuF/LyE8lBPJeRXOOHJMTqGki0eCrnH3FOn4ZqmbgonDDOL0TKqSX05JS
+	 L4LRSAoeJ3Y9Q==
+Message-ID: <bf433ef2-0705-4a21-b84b-321d9f68d805@kernel.org>
+Date: Fri, 16 Jan 2026 17:56:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,13 +48,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] Enable Inline crypto engine for kodiak
-To: Rob Herring <robh@kernel.org>, Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Cc: linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- krzk+dt@kernel.org, ulf.hansson@linaro.org, devicetree@vger.kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org
-References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
- <176840729246.2734238.959231359705262987.robh@kernel.org>
+Subject: Re: [PATCH 0/2] NPU and i2c3 + FUSB302 addition for Radxa Zero 2
+To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ricardo Pardini <ricardo@pardini.net>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260114-arm64-dts-amlogic-radxa-zero2-additions-v1-0-8b5cdf328fde@pardini.net>
+ <176846437964.1204537.11505642254935473121.b4-ty@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,33 +104,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <176840729246.2734238.959231359705262987.robh@kernel.org>
+In-Reply-To: <176846437964.1204537.11505642254935473121.b4-ty@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/01/2026 17:18, Rob Herring wrote:
+On 15/01/2026 09:06, Neil Armstrong wrote:
+> Hi,
 > 
-> On Wed, 14 Jan 2026 15:18:46 +0530, Neeraj Soni wrote:
->> Document Inline Crypto Engine (ICE) handle for SDHC and add its device-tree
->> node to enable it for kodiak.
+> On Wed, 14 Jan 2026 23:48:35 +0100, Ricardo Pardini wrote:
+>> This series adds a few things missing from the Radxa Zero 2:
 >>
->> How this patch was tested:
->> - export ARCH=arm64
->> - export CROSS_COMPILE=aarch64-linux-gnu-
->> - make menuconfig
->> - make defconifg
->> - make DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/sdhci-msm.yaml dt_binding_check
->> - make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CHECK_DTBS=y dtbs
+>> 1) NPU (etnaviv), just enable the node, similar to what was done for VIM3
+>> 2) i2c3 (also exposed on the 40-pin header) and the FUSB302 at 0x22
 >>
->> ---
->> Changes in v2:
->> - Removed the "if: required:" description for "qcom,ice" dt-binding
->>   as the ICE node is optional.
->> - Corrected the ICE dt node entry according to the dt-binding description.
->> - Added test details.
 >>
+> 
+> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.20/arm64-dt)
+> 
+> [1/2] arm64: dts: amlogic: Enable the npu node on Radxa Zero 2
+>       https://git.kernel.org/amlogic/c/29deec49146162d06b17739c627d062191e03814
+> [2/2] arm64: dts: amlogic: add the type-c controller on Radxa Zero 2
+>       https://git.kernel.org/amlogic/c/8f5aa8d444d1d200715c36a8f072054a49bfb410
 
-Is this another report being ignored by the author? I'll start the list.
+
+You went quite fast, but this has warnings. See also Rob's bot response.
 
 Best regards,
 Krzysztof
