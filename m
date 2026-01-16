@@ -1,174 +1,252 @@
-Return-Path: <devicetree+bounces-255853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B4AD2B089
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:55:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0232BD2B1E1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:03:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6498930938CC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:53:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EC53F3038346
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1601343203;
-	Fri, 16 Jan 2026 03:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DCC30FC39;
+	Fri, 16 Jan 2026 04:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BqA4yAsW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TE7SYle5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5577B29A1
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 03:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76285381C4;
+	Fri, 16 Jan 2026 04:03:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768535630; cv=none; b=ZZBf8jFoLeANSpHpebt8+wftAJBHR3wILBQJjKtO0v9KSHkm7wfyco9pnl4JyWTq/P071vjZp751NOwLiKSXEkRiEX7qmY+rO35INz4LDGbpwGNOUVlsVrXaMzTx/nUFOmnpQX+T5LLkB77+UiHgkryMkJX7hIPzapDEh8wvf5M=
+	t=1768536210; cv=none; b=U7A6QTuo1Q6ofrtODf4E8Pw1lhZVHWBgd5Qg/5WzpamW2xwpX3BP5EwQoESCc3Ka+fPNYt/4KOdoBOiHOjNhkREsex4CELUp18zfixX21ZoufcB/87q0X+HP+9bXOwwRQVpFFqy/o1EZU4fJj1dbU9NIDixNY396GzjcbNS6x58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768535630; c=relaxed/simple;
-	bh=bWnplJrEDoeh80qHYp3tqdriSKQOKKZKCgLMKp4JLAg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZuSAtH7zPATNdn5HiGvMt2Ihn1Or82G1RMF1N8XKhOdsYrTR9prPGx3g8Z4luuicqhPL+MOEkDm6ex2SiG0ENx2bBwASbziCRzmRuEdJO25y2VIvRhuIefqNPQ9BZ3+ZqsyHZI4y5l7AX02gYmFQ3/gIK3SxaEx8QLoRqttHmtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BqA4yAsW; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-c5e051a47ddso1025529a12.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 19:53:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768535629; x=1769140429; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DgeXhAk6KNlbJlhP3Z45ZVXFzRmMcBeJhfIQXTAsmxw=;
-        b=BqA4yAsWb1cRBof6xq6IensYLBuofumTbz/N/NF27P9v8I9oPxaS3mtM+Zv1jE2IBP
-         mQDaiJb/JCvpRBZx8O7cKDN6FSS9/aSsNR4V6X8k+IHUyt4oeNc1n6kn4/yIIWltdoAG
-         e2qYnGs4PGEzfI3+M+xJqhY/mbNUFSRtqqJ9E6FAUo33UEha9Dm9kKwZeFF/f24P2FF1
-         CWheDamuCFrQvQ06BJisbSyPVei5oVb3I/3mYiT13jBhB7vPuCrJsl6j3EUBq0gaWmjm
-         3zQs7BFjYqAp9dVK1qEAod8gcbPnRttkQb012pIfKsSMvkAgkgP/mdsPFMP7ngs/tMAF
-         gJqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768535629; x=1769140429;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DgeXhAk6KNlbJlhP3Z45ZVXFzRmMcBeJhfIQXTAsmxw=;
-        b=MN1MkSmL9FxFzeFu0nYGiOM8DtlwkH2QT9XUu1HO9jBxwPFlQ+aCwwRFoLrpiETYvJ
-         P5I+OHpLDluILIcwa53QU+Tt01x51J/XUIb3rdfPDj09SGrxnxt6KSpGclOCWDxZm6vJ
-         rLYzKlCblbhk5rQ0z47GFT2LtbXa3MKLBlROAVnlDcKlOhkJz9RTiPlfUgyFSCtkPQAj
-         Fp4/k7u4vbZ+Qw90c2K21dPek0UDfMUVnoaJfGxiif/+nZHPbSIXPwz8P/C+O7yFk11G
-         dBOaUA7m0eVXj+mDSU7i0kghlxWinwE7NtdRTt2Wrxwf5H25IdwmcOgjtLZpxXh3uHfo
-         zz0A==
-X-Forwarded-Encrypted: i=1; AJvYcCXqYlrLY01ODV7Du8N6XmjeyRWGwJTQiHwBMO3mcYg3WZoUjdupYoUb0tvIkKyEsgiqtVZc2eYuUKlg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjWW7kDJRfjHKm+CZC5ji/EjHTPpTube4xo2u+Uyu3bFfzjbmq
-	2XaIfu8BhWKCau8X8rmtrkeR9PohrgN0iuogh19mBelwCSxhlez/yc94xHKXLA==
-X-Gm-Gg: AY/fxX4FFg2a1/DzhCaHImLWigA0c9o252JOyVXsyc0OkhzrP0UvZu+h7Es7DBabNLj
-	CrlO9RVZKUxdTO60Ayx7QqOUmV5QkfXcgLmSRseWU21zUJfgiSjFSVRA1wchqCg2XBMf3jxRKR/
-	522wkNf7ZyJPMX/udHmC88gO9RJnoO2sWZUfdIOqIc7e+KVW234OfEoVwoUuhHbkj6OQ6EmUnvA
-	3Q9PamTfzTUKKQkGITHYcTQAWx2XQgbv26l1dfVZl+JRF6g3COZA120oUj9vGHnfBRuMLa3VBGD
-	iIRS/UucOmGcTK32bnRxAFvurGK82MoNS6pfPzn6ty5qGv4WWioxlpYcg/UajEharz3Wv6S9Y58
-	4MbnLbkMa3uwyW33LSGoxNhpIkT/QKQDaUmw86I2h8vArm4ZKM7+eHaWfG+WLMMbPpsPvEFVkj8
-	Vxtp/d20bOiQJVRKWAKO76LQ69JAu/sxY8bwkyyzwdElwCxH+BhzOogko7swaR8Wz+KGq4PVTEQ
-	uA5NR9IZSNr2Xy0ZS+PI+3561dGuklN6g6gAztzb8SqIgo/PGEckhdMl2tGPLmUWjwjKjE=
-X-Received: by 2002:a17:90b:4ec3:b0:335:2eef:4ca8 with SMTP id 98e67ed59e1d1-35273296f05mr1371287a91.33.1768535628572;
-        Thu, 15 Jan 2026 19:53:48 -0800 (PST)
-Received: from [192.168.1.110] ([125.253.50.76])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3527305490fsm751473a91.1.2026.01.15.19.53.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jan 2026 19:53:48 -0800 (PST)
-Message-ID: <121ede67-dbfc-4b79-8076-04693e9d3d53@gmail.com>
-Date: Fri, 16 Jan 2026 03:53:40 +0000
+	s=arc-20240116; t=1768536210; c=relaxed/simple;
+	bh=MvrK9/uXo8OFSpEzQ6EcGyw/fKZ3gWpMYC2KQfolEyo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nK9stBoMim4Trz5aW/PyQTzE0EsK0Oqk640w0aZJDSzvi8jTS1Jj7EcCCGcVSssZTu+XVpz5RXgqS3kRdPPmT+/mHE8jsqTKNzcvo1s7A0mRcAlavBrJhLnIM6T3PvMqKSld5oU4GE+MiSDusnfDDmaRGsttmDvnvkdTB4X0Prg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TE7SYle5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C623AC116C6;
+	Fri, 16 Jan 2026 04:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768536209;
+	bh=MvrK9/uXo8OFSpEzQ6EcGyw/fKZ3gWpMYC2KQfolEyo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TE7SYle5eb62VsC6/7OpRUdRsmALY5NTQpe1m9JEtX4JXMSob+UeCBYSUqdxnUTU4
+	 q9vSVFSoW9HQ2C5AUNdQue+z3YA14GuR0gS9eutRd0lADwDry9Jn2vALJqsQWR5V+3
+	 78KWaldyz5rfGDtSUoqVFAbzMHeLpZZqj3u7+FbDj1lF1WknbgqDX6dDJ/PD/7FyLX
+	 jM+1d2NHVGyhae6A0Xf2xXH1dJR2QsGRPpcR3y9ngBa8LGwJ2bt0tnq/sHe2FQet/2
+	 iGlYibLWBa9/JtPVtyRoYL65IjqSLvzqcLg0OTmoXn61D7s1F2ZHSJSsrtRiKo0vFk
+	 ydPqeRy3lIkgw==
+Date: Thu, 15 Jan 2026 22:03:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>,
+	Joel Stanley <jms@oss.tenstorrent.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	joel@jms.id.au, fustini@kernel.org, mpe@kernel.org,
+	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com,
+	agross@kernel.org, agross@oss.tenstorrent.com
+Subject: Re: [PATCH 1/8] dt-bindings: soc: tenstorrent: Add
+ tenstorrent,atlantis-syscon
+Message-ID: <20260116040329.GA1375823-robh@kernel.org>
+References: <20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com>
+ <20260115-atlantis-clocks-v1-1-7356e671f28b@oss.tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: broadcom: bcm2712: Add V3D device node
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Stefan Wahren <wahrenst@gmx.net>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- kernel-dev@igalia.com
-References: <20260114120610.82531-1-mcanal@igalia.com>
-Content-Language: en-US
-From: Peter Robinson <pbrobinson@gmail.com>
-In-Reply-To: <20260114120610.82531-1-mcanal@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260115-atlantis-clocks-v1-1-7356e671f28b@oss.tenstorrent.com>
 
-Hi Maira,
-
-On 14/01/2026 12:04, Maíra Canal wrote:
-> Commits 0ad5bc1ce463 ("drm/v3d: fix up register addresses for V3D 7.x")
-> and 6fd9487147c4 ("drm/v3d: add brcm,2712-v3d as a compatible V3D device")
-> added driver support for V3D on BCM2712, but the corresponding device
-> tree node is still missing.
->
-> Add the V3D device tree node to the BCM2712 DTS.
->
-> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->
+On Thu, Jan 15, 2026 at 05:42:00PM -0600, Anirudh Srinivasan wrote:
+> Document bindings for Tenstorrent Atlantis syscon that manages clocks
+> and resets. This syscon block is instantiated 4 times in the SoC.
+> This commit documents the clocks from the RCPU syscon block.
+> 
+> Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
 > ---
-> v1 -> v2:
->
-> - Rebased on top of linux-next (Stefan Wahren)
-> - Fixed node's address (2000000 -> 1002000000) (Stefan Wahren)
-> - Link to v1: https://lore.kernel.org/linux-devicetree/20260113192902.48046-2-mcanal@igalia.com/
-> ---
->   .../boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi    |  4 ++++
->   arch/arm64/boot/dts/broadcom/bcm2712.dtsi          | 14 ++++++++++++++
->   2 files changed, 18 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-> index 7d4742ebe247..97522c6803c5 100644
-> --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-> @@ -247,3 +247,7 @@ &pcie1 {
->   &pcie2 {
->   	status = "okay";
->   };
-> +
-> +&v3d {
-> +	clocks = <&firmware_clocks 5>;
+>  .../tenstorrent/tenstorrent,atlantis-syscon.yaml   | 58 +++++++++++++++++++
 
-Looking at the upstream DT [1] I think this also needs a clock-names entry.
+Filename should match compatible.
 
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi#n233
+>  MAINTAINERS                                        |  2 +
+>  .../clock/tenstorrent,atlantis-syscon.h            | 67 ++++++++++++++++++++++
+>  3 files changed, 127 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/tenstorrent/tenstorrent,atlantis-syscon.yaml b/Documentation/devicetree/bindings/soc/tenstorrent/tenstorrent,atlantis-syscon.yaml
+> new file mode 100644
+> index 000000000000..3915d78dfeda
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/tenstorrent/tenstorrent,atlantis-syscon.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/tenstorrent/tenstorrent,atlantis-syscon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tenstorrent Atlantis SoC System Controller
+> +
+> +maintainers:
+> +  - Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+> +
+> +description:
+> +  System controller found in Tenstorrent Atlantis SoC, which is capable of
+> +  clock and reset functions.
+> +
+> +  RCPU syscon controls clocks and resets for low speed IO interfaces on chip
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - tenstorrent,atlantis-syscon-rcpu
 
-> +};
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> index 330a121ebfcb..661668ef7419 100644
-> --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> @@ -1,5 +1,6 @@
->   // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/bcm2835-pm.h>
->   
->   / {
->   	compatible = "brcm,bcm2712";
-> @@ -642,6 +643,19 @@ mip1: msi-controller@1000131000 {
->   			msi-ranges = <&gicv2 GIC_SPI 247 IRQ_TYPE_EDGE_RISING 8>;
->   			brcm,msi-offset = <8>;
->   		};
+If "RCPU" is what the h/w block is called and sufficient to identify it, 
+then drop the "syscon-" part.
+
 > +
-> +		v3d: gpu@1002000000 {
-> +			compatible = "brcm,2712-v3d";
-> +			reg = <0x10 0x02000000 0x00 0x4000>,
-> +			      <0x10 0x02008000 0x00 0x6000>,
-> +			      <0x10 0x02030800 0x00 0x0700>;
-> +			reg-names = "hub", "core0", "sms";
+> +  reg:
+> +    maxItems: 1
 > +
-> +			power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
-> +			resets = <&pm BCM2835_RESET_V3D>;
-> +			interrupts = <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
->   	};
->   
->   	vc4: gpu {
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/clock/tenstorrent,atlantis-syscon.h> for valid indices.
+
+Be consistent with the compatible string for the file name.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clocks {
+> +      osc_24m: clock-24m {
+> +        compatible = "fixed-clock";
+> +        clock-frequency = <24000000>;
+> +        clock-output-names = "osc_24m";
+> +        #clock-cells = <0>;
+> +      };
+> +    };
+
+Drop this node. Not relevant to the example.
+
+> +
+> +    syscon_rcpu: system-controller@a8000000 {
+> +      compatible = "tenstorrent,atlantis-sycon-rcpu";
+> +      reg = <0x0 0xa8000000 0x0 0x10000>;
+> +      clocks = <&osc_24m>;
+> +      #clock-cells = <1>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index dc731d37c8fe..19a98b1fa456 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22535,7 +22535,9 @@ L:	linux-riscv@lists.infradead.org
+>  S:	Maintained
+>  T:	git https://github.com/tenstorrent/linux.git
+>  F:	Documentation/devicetree/bindings/riscv/tenstorrent.yaml
+> +F:	Documentation/devicetree/bindings/soc/tenstorrent/tenstorrent,atlantis-syscon.yaml
+>  F:	arch/riscv/boot/dts/tenstorrent/
+> +F:	include/dt-bindings/clock/tenstorrent,atlantis-syscon.h
+>  
+>  RISC-V THEAD SoC SUPPORT
+>  M:	Drew Fustini <fustini@kernel.org>
+> diff --git a/include/dt-bindings/clock/tenstorrent,atlantis-syscon.h b/include/dt-bindings/clock/tenstorrent,atlantis-syscon.h
+> new file mode 100644
+> index 000000000000..a8518319642a
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/tenstorrent,atlantis-syscon.h
+> @@ -0,0 +1,67 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2026 Tenstorrent
+> + */
+> +
+> +#ifndef _DT_BINDINGS_ATLANTIS_SYSCON_H
+> +#define _DT_BINDINGS_ATLANTIS_SYSCON_H
+> +
+> +/*
+> + * RCPU Domain Clock IDs
+> + */
+> +#define CLK_RCPU_PLL 0
+> +#define CLK_RCPU_ROOT 1
+> +#define CLK_RCPU_DIV2 2
+> +#define CLK_RCPU_DIV4 3
+> +#define CLK_RCPU_RTC 4
+> +#define CLK_SMNDMA0_ACLK 5
+> +#define CLK_SMNDMA1_ACLK 6
+> +#define CLK_WDT0_PCLK 7
+> +#define CLK_WDT1_PCLK 8
+> +#define CLK_TIMER_PCLK 9
+> +#define CLK_PVTC_PCLK 10
+> +#define CLK_PMU_PCLK 11
+> +#define CLK_MAILBOX_HCLK 12
+> +#define CLK_SEC_SPACC_HCLK 13
+> +#define CLK_SEC_OTP_HCLK 14
+> +#define CLK_TRNG_PCLK 15
+> +#define CLK_SEC_CRC_HCLK 16
+> +#define CLK_SMN_HCLK 17
+> +#define CLK_AHB0_HCLK 18
+> +#define CLK_SMN_PCLK 19
+> +#define CLK_SMN_CLK 20
+> +#define CLK_SCRATCHPAD_CLK 21
+> +#define CLK_RCPU_CORE_CLK 22
+> +#define CLK_RCPU_ROM_CLK 23
+> +#define CLK_OTP_LOAD_CLK 24
+> +#define CLK_NOC_PLL 25
+> +#define CLK_NOCC_CLK 26
+> +#define CLK_NOCC_DIV2 27
+> +#define CLK_NOCC_DIV4 28
+> +#define CLK_NOCC_RTC 29
+> +#define CLK_NOCC_CAN 30
+> +#define CLK_QSPI_SCLK 31
+> +#define CLK_QSPI_HCLK 32
+> +#define CLK_I2C0_PCLK 33
+> +#define CLK_I2C1_PCLK 34
+> +#define CLK_I2C2_PCLK 35
+> +#define CLK_I2C3_PCLK 36
+> +#define CLK_I2C4_PCLK 37
+> +#define CLK_UART0_PCLK 38
+> +#define CLK_UART1_PCLK 39
+> +#define CLK_UART2_PCLK 40
+> +#define CLK_UART3_PCLK 41
+> +#define CLK_UART4_PCLK 42
+> +#define CLK_SPI0_PCLK 43
+> +#define CLK_SPI1_PCLK 44
+> +#define CLK_SPI2_PCLK 45
+> +#define CLK_SPI3_PCLK 46
+> +#define CLK_GPIO_PCLK 47
+> +#define CLK_CAN0_HCLK 48
+> +#define CLK_CAN0_CLK 49
+> +#define CLK_CAN1_HCLK 50
+> +#define CLK_CAN1_CLK 51
+> +#define CLK_CAN0_TIMER_CLK 52
+> +#define CLK_CAN1_TIMER_CLK 53
+> +
+> +#endif /* _DT_BINDINGS_ATLANTIS_SYSCON_H */
+> 
+> -- 
+> 2.43.0
+> 
 
