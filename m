@@ -1,154 +1,189 @@
-Return-Path: <devicetree+bounces-256149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F53BD331FC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:17:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FF5ED33256
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:22:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 45A70300B9E7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:17:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 860E83022319
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:19:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0B8334C30;
-	Fri, 16 Jan 2026 15:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9874C31AAA7;
+	Fri, 16 Jan 2026 15:18:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2q8B82Us"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cVJjBioS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gRwka4On"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91FF338936;
-	Fri, 16 Jan 2026 15:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C660158535
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 15:18:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768576659; cv=none; b=q9j6ySprQZaT0uBjb5+lfbKXWr6HTt61iE/uMMOFoqS1ofNld7Q4QzPTeJX05ubpSKV3iZHX3dMLcQS1KU4CXvQGUxq/EGhvwiSXdEjd4kHL/sWMko5KxIh4E5MPpPF2031Ut1xlVIRD4B3uOZpMsNboQeVoCCIm08LjmPJHGiA=
+	t=1768576736; cv=none; b=Mb0cvkzA1pgeMV4TihcVr7ZRemiwSNda1qMnTU8ayIpIc18hq+Ts95MK+4pOH913LbaVbZi6NPZ0SGKMCF172LpzZJ2P10e/e34cdzLJ06udAhTb3OvnasyGeOahjDZSd8TPmf1+dUZoyPJh0fa9GE6L/9ED39NxDJz1AefS/a4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768576659; c=relaxed/simple;
-	bh=d8ibYRhXbYz1u1gx+ZYfdgs1LIb9Yz+sIuix7rp+jDo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ilBS5rZZoIx9VS7wFaqnGT/uGU0sbNbGihqpEbYjHrBBES9bSmDAZ695DCQhcjnstVnT2Iymp1qEc58aorSLTSs4GkiUIr64acRcDjOsStVbSZHepwZOt5N1ohXX024yXS5dD0zTyoHOsODXG5LCfsC+rYpu54smiYnBpAFuBlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2q8B82Us; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 205681A28BD;
-	Fri, 16 Jan 2026 15:17:35 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D31A560732;
-	Fri, 16 Jan 2026 15:17:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2C0D710B68805;
-	Fri, 16 Jan 2026 16:17:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768576653; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=dfVob1RBqEgBNMF28NVVnEsg3TwRdSyxpplex3+Q4lA=;
-	b=2q8B82UsQP/Mz68CZs5LdOl+D6vE4d35ilFUuFt9Ypyma2NG7AbO2K3qL8nfh5obWTzEyN
-	hgzA71ro3uEE4gfEyvcrFH+w+wGDNHuI4dOvkmtTEriQO87STJOTBpcAQ1BwZWsGWj3zXk
-	+XU5S+XxvEAZ40G1qusYgi+Zwdns4ccI2YKX7hsLxs8q8DNpuda3/pS+cPBAVFDNsWNBo6
-	+ayDZoweqnsx6LouspzL9cgPp7yYmYEuwyKlea2l6pg7ezh6JMzwsAxWmLLNTmmJp3ZBdX
-	rRarMJzA3+4I7L5iChhWJYIw0fYLqzHLtBgge9NrpZENHDqlWi8uh1mYsybrnw==
-Date: Fri, 16 Jan 2026 16:17:27 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 11/77] Add support for FDT_REF_PHANDLE dtb tag
-Message-ID: <20260116161727.7fe14658@bootlin.com>
-In-Reply-To: <aWhB4fYnXCD2f6Uq@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-12-herve.codina@bootlin.com>
-	<aWhB4fYnXCD2f6Uq@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768576736; c=relaxed/simple;
+	bh=q/2i4QMctXHF+dDhlqSpXa8ULXx0wN8PBam97iLzyx4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NcRmVZVwcJIh0xrlTcKB7lkToRNroTgEGNimudtSRqBMaoMRchkqS3JL3bqEIhU6qMBDt1dxCpwQcC5MTUudvAyfPXfN7o8q1MJZwNCnArXX4MxGGk57b3EWKjdo5wN+3b9AmDeoHVa4t6fGrVQPymHMaMXCNTlfvV8qtuZDbLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cVJjBioS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gRwka4On; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60G9iIAG006930
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 15:18:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XRcRwBypFQShmuN0jEyzBJtIwf6t2aDrIBCTyHNhTLs=; b=cVJjBioSxB1YM+YY
+	RD/27+OD87cRm4c4XZ/ogHSNFlOO8viEL7BYEuV7xyqP8RUVuydBEEiazoWosaUe
+	9Abv8bYRdOhVrWCtF2SAgUfncEMV50B+RqA/TYTk7TPa2nncozkQjPgWi8bsgHWK
+	GA/kB4+nGUz9VhuXS5IMarQHEA9f122rrrTy15vq4f/B1+/bF4zzDmwil/je60Gq
+	Y2+HNvObXdlUfEpGAE3gA/TMANX1D/GWoQZ3pc5xOXrBgtUID1NGIp5GmV8CjGrE
+	XvjYFnBZikD5fE4uSa11axV1i05KIGI6xwQCtNXpddTFis2V4APEtLy+qNe0opXt
+	1+j1oA==
+Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bqjy9rwe1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 15:18:53 +0000 (GMT)
+Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-2b21d136010so3492377eec.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 07:18:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768576733; x=1769181533; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XRcRwBypFQShmuN0jEyzBJtIwf6t2aDrIBCTyHNhTLs=;
+        b=gRwka4OnfqkmCqwHfOo322XVwx4GjXUdUVOU5HggIn4ohOLEDj7kRQNwZDEOEnCBcu
+         OcXOsnBMCHyAhbiODgMJhrl4wFdJmBaJwStfV/74t7k+nfSkeXUZIhXteDFloqR9P6wR
+         +WMQCpLxdvarlKqWW0Ol7Nerg9cYdkrQSMgDpmel77XpJsFRY5iulYHg+UrHS3TojyyR
+         clPwkqzb+Hf5euA/H9dNGv3CfhytMbi+pFTKEHdL1M6IwyD+ybL0hWpB08t3e3gUy4I9
+         9JkydzcTBirXZiEDRJKfeCyMH6H9GulHlgTEreTiJYRwDUxBSfAzxiqagONyBeTSl74S
+         otQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768576733; x=1769181533;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XRcRwBypFQShmuN0jEyzBJtIwf6t2aDrIBCTyHNhTLs=;
+        b=IvFGHb4rrs65lH8j6nDX7xSvAi9karmWxDvWrcIKNMWxw2JZRr+Ev3zBKhGsbPwfO+
+         i21pkUERv6TIt0T7tsM9x894oVjcNfdkJW8FdFwiJr+BLhpoHkcHRBgBd0TpMBu50eeM
+         rA9aBgY2zjcvfpy0OK9OlNhN8Pbq9bvyjMKl1gsgBrVhcXLJ1VpXp0dUHSXctzUgwrt+
+         mPb+7IFVO1rcpZ+uvhUQz+4O9j46XhRLTEzmUwWaDkGwJKKQ4VRcm1nTSIF1p+jPGaIn
+         YEvxsC/7STsfuALOsf3mbVa4btP64fXh8GZ2xMWLS+aFW9nT2jqUrzTJ4aru14Xk2wMW
+         nYVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXHrDVDUQ4Q28fv+GDPAT1JAKBdX7OBc9+v0sgU6hXjUcEQcMhDG39/F2e6lx+YTkNLPlzGd9o3pnAh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7eKY0YyOCP8z4onadeKz6v+xsknBkXyqE1G+xxJTk9SI6hvLp
+	BDrpzFsDFXtfOCHALy/RlaGLw4E0nWqC9dU8ewR91dm9763F0VeLWkkOU5DOwduF7vpyvkOCB5s
+	J5eRR+K3u8RLhspOwgb3eF2h8KSpxmeyFgogS6NXLiKJpmk3sodAEkWEEv027XdJ/
+X-Gm-Gg: AY/fxX7EW1JE+yggN1Jt1ZIpMovVWlpUi+bHkSj2OXzNMNQwQeMkzVezLq8zk3qYn5u
+	IumlDUbDE8WTyuUXazbw32l1AetBF5euFYUEmyjIL8wqO7l93kuaBcTnRH1J/ZIkLMZaVcepLIa
+	82Byf0hefdhKdxQg7Lb8vy1mtB3eXf6v11B9nU3Lq0zq9WT5ZF3D39RK2hGqaPsO2BhT4rzuE8o
+	FLdxlxnZRQIy0PTOcAp86ePeXNYz3jW2uMTdt/GQtgd+ILDfSRSfOLveJ+ceK6lIkEGAu1t+gQf
+	zTNDR+VmPqkIG7pQlyl2z6uz84jf7H3zqK19D5dl6Zn0993S7S6OPOCKcN7y50PMHALsFqYbtWT
+	YtueKJV/68qeHwbbaOv9iIzApdyBP5o/Nqr/jiOMXD9LzcYgis/Dv4us+i7p0qUuulun7jwd4VO
+	w+
+X-Received: by 2002:a05:7022:4185:b0:119:e56b:98a4 with SMTP id a92af1059eb24-1244a6e070amr2977276c88.11.1768576732810;
+        Fri, 16 Jan 2026 07:18:52 -0800 (PST)
+X-Received: by 2002:a05:7022:4185:b0:119:e56b:98a4 with SMTP id a92af1059eb24-1244a6e070amr2977248c88.11.1768576732230;
+        Fri, 16 Jan 2026 07:18:52 -0800 (PST)
+Received: from [192.168.1.3] (c-24-130-122-79.hsd1.ca.comcast.net. [24.130.122.79])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244ac5842csm2773177c88.1.2026.01.16.07.18.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jan 2026 07:18:51 -0800 (PST)
+Message-ID: <132c34db-07c6-491b-bfda-f3c51462a184@oss.qualcomm.com>
+Date: Fri, 16 Jan 2026 07:18:50 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 04/14] wifi: ath10k: snoc: support powering on the
+ device via pwrseq
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+        linux-pm@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+References: <20260106-wcn3990-pwrctl-v2-0-0386204328be@oss.qualcomm.com>
+ <20260106-wcn3990-pwrctl-v2-4-0386204328be@oss.qualcomm.com>
+ <52b2b799-09e6-40a4-bea8-c7e8bf21cf51@oss.qualcomm.com>
+ <15470b51-d398-449d-9017-304df5ad7cef@kernel.org>
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <15470b51-d398-449d-9017-304df5ad7cef@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: PCJH5-5lifwXkruTbB-bZCM3hoUzwhNS
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDEwOSBTYWx0ZWRfX7zHDheqFM7++
+ 0t2SnlsSE+3UISFq0ZjJBVGYqdOkc39suh7SI4Z8aihwL/HXkG1G7FJFOYIsT91sLotmsh9NVIW
+ OixKCDntpz0Z3x+gzGDkZB1nH/OIHw2/dZmqtCW02AnplnZCWaQtCq9zHy91FAZnJWfcPQh+mi0
+ Ouh+4qWb31Yyx7BbLQ+ccmWatUjyRgaXuqhPCDcOB3PBVRRVxzssM2O6030RXU9fZJ0HcGgNvkn
+ T6355+XdZcin6Xw0VZuq0KsdGJRa/uj7r+Hts4hRqKHxZr5SoEvfMl53SKYPzcal7zCD7xi6G6W
+ jPk5sBgmzTTwMR94rOSDLJ425P+75LYPmaAuFY1c1eXVMwuDA7rriUAtocuqOfKT658G9OWAMkR
+ AQc9LRqCmZXQxi7QjVdUeOwcZuyinDB19JbSPIFbnqOG5h/66BWlFeU5uUZgowmJeIDa7heiRb8
+ CinJgvIv4SnXBDLBg8g==
+X-Authority-Analysis: v=2.4 cv=OJIqHCaB c=1 sm=1 tr=0 ts=696a56dd cx=c_pps
+ a=cFYjgdjTJScbgFmBucgdfQ==:117 a=Tg7Z00WN3eLgNEO9NLUKUQ==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=fl7gpmSGIpyIZsR_3woA:9
+ a=QEXdDO2ut3YA:10 a=scEy_gLbYbu1JhEsrz4S:22
+X-Proofpoint-ORIG-GUID: PCJH5-5lifwXkruTbB-bZCM3hoUzwhNS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-16_06,2026-01-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 bulkscore=0 priorityscore=1501 malwarescore=0 spamscore=0
+ suspectscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601160109
 
-Hi David,
-
-On Thu, 15 Jan 2026 12:24:49 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
-
-> On Mon, Jan 12, 2026 at 03:19:01PM +0100, Herve Codina wrote:
-> > The FDT_REF_PHANDLE dtb tag is similar to the FDT_REF_LOCAL tag except
-> > that it identifies a reference to an external phandle. The node
-> > referenced by the phandle is not present in the device-tree blob.  
+On 1/15/2026 11:48 PM, Krzysztof Kozlowski wrote:
+> On 15/01/2026 23:30, Jeff Johnson wrote:
+>> On 1/5/2026 5:01 PM, Dmitry Baryshkov wrote:
+>>> The WCN39xx family of WiFi/BT chips incorporates a simple PMU, spreading
+>>> voltages over internal rails. Implement support for using powersequencer
+>>> for this family of ATH10k devices in addition to using regulators.
+>>>
+>>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>> ---
+>>>  drivers/net/wireless/ath/ath10k/snoc.c | 54 ++++++++++++++++++++++++++++++++--
+>>>  drivers/net/wireless/ath/ath10k/snoc.h |  2 ++
+>>
+>> My automation flagged:
+>> * drivers/net/wireless/ath/ath10k/snoc.c has no QTI copyright
+>> * drivers/net/wireless/ath/ath10k/snoc.h has no QTI copyright
+>> * 2 copyright issues
+>>
+>> I'll add these manually in my 'pending' branch
+>>
 > 
-> The names FDT_REF_PHANDLE and FDT_REF_LOCAL are perhaps a little
-> misleading - both are marking a phandle, the difference is in the form
-> of reference.  That's quite difference from the distinction between
-> the REF_PHANDLE and REF_PATH marker types, where the difference is in
-> what the reference expands to in the property.
+> And why is this a problem? You are not here to impose Qualcomm rules, bu
+> care about Linux kernel. You cannot add copyrights based on what exactly?
 
-I am agree.
+I am a maintainer that is paid by Qualcomm to perform that role, and hence I
+have a duty to enforce the legal guidance from Qualcomm when it comes to
+contributions from other Qualcomm employees.
 
-FDT_PHANDLE: A local phandle with the value known.
-FDT_PHANDLE_REF: An external phandle, its value need to be resolved ?
-
-This is aligned with FDT_EXPORT_SYM / FDT_EXPORT_SYM_REF.
-
-Or maybe:
-FDT_TYPE_PHANDLE
-FDT_TYPE_PHANDLE_REF
-
-"TYPE" has been mentioned by Rob in the "FDT_TYPE_U32" context.
-
-Any other ideas are welcome.
-
-> 
-> > The FDT_REF_PHANDLE dtb tag is a meta-data tag attached to a property.
-> > 
-> > It indicates that the property defined before this tag (FDT_PROP) uses a
-> > phandle value and the node related to this phandle value is not local
-> > node (i.e. the node is not present in the device-tree blob). This tag
-> > can be available only in overlay or addon device-tree blobs. The phandle
-> > value used in the property has to be resolved when the device-tree blob
-> > is applied on top of a base device-tree.  
-> 
-> This is kind of looking ahead, but does that imply that this tag is
-> only valid in addon dtbs?
-
-addon dtbs for sure but also overlay (plugin) dtbs.
-
-> 
-> > It is followed by two values and a possible alignment padding:
-> >  - offset (32bit):
-> >      Offset in the property data where the phandle is available.
-> >  - label (string including \0):
-> >      The label to use to resolve the phandle value.  
-> 
-> I expect it will become apparent later in the series, but it would be
-> helpful to clarify what the scope of that label is.  A single node?
-> The whole tree?  Across a tree and all its possible addons?
-
-This label is the unresolved reference. Its scope is the dtb.
-
-For instance, "prop = < 0 1 &foo>;" in a dts with the node referenced by
-&foo not present in this dts (possible for addons and plugins) will lead
-to 'FDT_REF_PHANDLE 8 "foo"'
-
-The way "foo" is used when the dtb is applied is covered later in the
-series.
-
-It will be resolved with import/export mechanism (when the addon is
-applied).
-
-Also it can be a namespace label reference (see patch 66 for the definition
-of namespace label reference) and here also it will be resolved thanks to
-import/export mechanism. Namespace label references can only be present in
-addons.
-
-Best regards,
-Hervé
+/jeff
 
