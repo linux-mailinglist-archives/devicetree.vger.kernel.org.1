@@ -1,180 +1,156 @@
-Return-Path: <devicetree+bounces-256085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B49D31A86
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:17:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180CCD31A0A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:14:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42ECD30B4527
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:15:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C0D130CCC66
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1588F2405E7;
-	Fri, 16 Jan 2026 13:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3372D23BD06;
+	Fri, 16 Jan 2026 13:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uTK8Sny2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jXl8HWna"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE39C23D7F7;
-	Fri, 16 Jan 2026 13:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768569307; cv=none; b=EL7F78oP/7iy3KRNN4KFASkmnYZEYbp+KNLBxBgdRQ7pMrviUrQTf1Zxm2+h50lzHos0INyMEVINxXvPmAlnfBMPo8pIRu4VtTxhjo3HlXxxK0hIJAcK1yHxTc5XQhT4XgQ1MvE6mWtHT078DhMGw3F3N//XLoeNeHaZ9qlwGTY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768569307; c=relaxed/simple;
-	bh=lemSNLJq0q0WrTxFXNntL4UfBhjsMGUXFL6M5acURZk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DV9EduNZN5AqQskgMeDPNNfipsbJ/BemvG3x/Dc7cCy9q3AclRhCr4xryZcnAz92KWcPmEcHn3eL/PRM6gQlaCTmJpMXslcs/ylOe4vrAUWAOtppM4lQvWve9aq5eoXXIezm2Gw7YfrXBGAOc+4fPqeZ3Y/DM3AvhEGF/1cRdNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uTK8Sny2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE166C116C6;
-	Fri, 16 Jan 2026 13:15:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768569307;
-	bh=lemSNLJq0q0WrTxFXNntL4UfBhjsMGUXFL6M5acURZk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uTK8Sny2Wcgu0sn3rdx+j4aXaEB7fGQJ0hCKXJbqP445lqeCvgPULWQpekynMtPtb
-	 /TH0ulz62fxkK4W07otBoLAdMO9LJe3d7UtAqX4rCQzh+iRhrVB5EKYd31jJx017YI
-	 UKMPkISyat0utnxRlV1FAWHbQD/lCgm4C5I3uhGA1IBytg0EvU9K6adroeeY3k7poQ
-	 dRNcsvVFgFSNemylJk18AibhfxY7b7altypjFPA79OyHeoMhMvzxwPmA8+Fn4IR+wT
-	 I7cWXbuhm9ody+s3E2KraDj/0s3kKU18WNv7Mcyxebilb4nRdGklgE3ZfhL/NHNhXp
-	 TQDWkRrP2PQRA==
-Message-ID: <6020af2a-5baa-4594-8cbc-bf7241f0128e@kernel.org>
-Date: Fri, 16 Jan 2026 14:15:02 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A1C225A38
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768569175; cv=pass; b=WdsP2FbrIuGVGTGMs8oiSgmRv0TVNoVLrqJRVAq2Y3YY1cJi5+CAeeY/FgCFEZOSNcJUKXELNj3kwUj4r0ucxE7B9Zigg52p3VMPV0taO9RJocfxbZvXGvGd9N+FGUeDIT1dZSObQ3R0fl9wZvSX1BAjwVhbX6MkCo9VHmsYI70=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768569175; c=relaxed/simple;
+	bh=5QKkZmeT7DXJGFJhrM4fZXkVbNqAw/WPTCXP1ArbBe0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XzW/lrzN2G0yaC/YjiueBN00XHoXIqwInpaoe9n5pnMf3ze9SQFMWWdqdkxVrpDG/1G3HcNjHoJE80UF7Q1WKNPON5Z187pz+Yp76xUMN7JFsrljTSrlZSAsp4Mc/2BUjPXApAvoC6rvX6rUr5vEHeTnOEkwhnY2rLTUC6J6JmA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jXl8HWna; arc=pass smtp.client-ip=74.125.82.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f44.google.com with SMTP id a92af1059eb24-11f3a10dcbbso1945053c88.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:12:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768569172; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NP19FBHbTTJREgg/BXWbIX024Qn3ADlnpcOXBPpQtU9uoFkOUZRH3XS7gKE3cd10RX
+         GcIpzxve1hTixUrq2nskpIH3VWyhQUL/mEe22oAlFtTJAg4FkFTjJyCaNE0Bbcu93jxR
+         jC0n0gsjP9pZDGrRJ/AdEuZ37ESgnCSFYGHvWJw6v1ltgGu4/ztJ+iURdRRrDw9OkK2L
+         C79J0lprDNcgLnS93rOaumjLhCC7nXyEFZ7k7foDQacv4XL063CvbWEV33FRjVOm9r0L
+         jz7pKPBkybct1ToDAhnAa+KrIewYQoqNiJE5uivWf3lyFvA8z0Uc8YMiaKXR1l0rq1HZ
+         fXFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=03j7E/5lSgdBFIcHFHyLJRuwczvGgB4tG0icSZxNhK4=;
+        fh=ozOjsa+cCAxQYWlvwSyY6b5oMT87eqYHqPCFBx1rFPA=;
+        b=R+1gfdaSVDMxBgaiFEMVKNEoGtS2g/LQy+WhGozSmd2teUn9jVb/gaJfQu9Af0fWeh
+         S9s3O5smcrK2QQC7ogQiAm49+8C+hdgVLT7SLMYx+gc7J4oHS2TVTp7jYkoE8Q5I5EoE
+         PFGLFibuP1Iu3ooBFbYp/zu5RUiA4dCMOviV8isop5v5v0IWzpNX+l77zeZt4Od7PgC0
+         UokrAuHAIZDmOLCybPPYJWH5de2cqwXS4/EGrzK6HfDPxmNjYdvLv4r3JOxHYwDmFzAP
+         JxdyWLr0tCoC/HhcV5izdK2mXyzFnqTMn1ewG+Fr8P3HZmU5fZF05uyFimmgDH1AmMgM
+         foZA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768569172; x=1769173972; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=03j7E/5lSgdBFIcHFHyLJRuwczvGgB4tG0icSZxNhK4=;
+        b=jXl8HWnaZmlT6qWW+ksvr68866H+6EzuGWRhFuVHNUt6WbF78y18IXtIOvV4hfLDeF
+         kesI0Mqvgwktq4SdHb8tqlc3BuLrm69ocFFlc6yZI9XMZA+8iBiqHziC/xKgmtH8STN/
+         wXJga0+7GrDdPtn0njnVglpKp5/F1PQywk2/kPHvTu7BxWM64Q8QUtxgN3oNwoCs4JaM
+         8toXcdTvd3EkcLYH6sS9eTexLiJmgkJ8AstVxVbYq4rXKY/moqX6yJ3UzCuTFll7MQeJ
+         e3R1zdR1FUnaQlwlubXIIdsuohibnbXp6UsU9HtwlSgLiH9oWS5W3DLDE4ENCPXsZZyf
+         WBfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768569172; x=1769173972;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=03j7E/5lSgdBFIcHFHyLJRuwczvGgB4tG0icSZxNhK4=;
+        b=M/BDon4PbBZHNNxlJGxEUoq9e7dFKqdAGQg7cRR5R1Guh9O0RWMpgVmAQse5/1iybq
+         sTveJQfEoIb1/7mg2swImnTSUZquoGqLyaJmMCDLC+bvTxZaqh/RWnkKcWJx7Au1Nc6/
+         YaRXu3CCU3288qD4z/p33PebkMswQl0NUqBMPhlLtZBKXVQZOUiwK7Nf4qIm7W84KcFU
+         jEruw1iGhLTk8ovcuH9IZWSt0y6KlVdol8ad/UvNpA4Ynt/h6aqWwBrWZqXG7F9UBaSr
+         pnr56Z8AttU+MkCN8cyPdwcsdOI5ZVbgXWJ7kOp9Qbdxjr8EzYB8c743F5Xgv5wZS2G2
+         JGPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV97Yuq1QVskcYoi6Hmt7USnINCGymJEmV2IwDvOvQcnPvqK1FtZ9Rhj1xs/28WmNpJ1hZ73CTtdgFs@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYY4pG7jEqS/Ph7kPsPVVkEujR9LOu20UVt4kTlIm7vwuq4oCB
+	dgIccndAg5QZ2g/Y3G7xndNgxClXSVmz3OVooedGutyikXfyIwFS5dFEPUyajVcVorpBTtdqTv1
+	o0fuu+UzLhFjIk5BGwS0rJPKvbjg5+r0=
+X-Gm-Gg: AY/fxX5TJl8lxbxsKrrMMJs9m5FVIiREi5Zz175temgptyTRqP9cAlwWt/+1RKt5j++
+	Up0zG6WYIx+m2mIrjy0269mQP/PSvxMhfY6csivM+cmssQMiBem0bWZB8PemREcpyYKVjBnli8s
+	J8nZYAaNlSl69lESa0QTlhQobv2Na8IX/9llbSETKNfBoGImNwCwa7ut0umWbPH8mTVl6rIKbqw
+	fSWU01+RZZWA4AX4eiP1CGJe5DFkrAxMhK7qRGUxUHjzRw7xAOPIP88mPJt2yvWw40ZnSalz1wz
+	jpYbe40dSXYuPYQA+RFiV9h8JfBNz4R082NbiWhuj7OEFJ5TD9vKU+72I/7koh01Wlbyk7UXhjS
+	TnoLdfGKSjA==
+X-Received: by 2002:a05:7022:618d:b0:11b:9386:826a with SMTP id
+ a92af1059eb24-1244b37be53mr2062623c88.47.1768569171566; Fri, 16 Jan 2026
+ 05:12:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: msm: qcm2290-mdss: Fix
- iommus property
-To: Sumit Garg <sumit.garg@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, akhilpo@oss.qualcomm.com,
- vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
- robin.clark@oss.qualcomm.com, lumag@kernel.org,
- loic.poulain@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com,
- linux-kernel@vger.kernel.org, Sumit Garg <sumit.garg@oss.qualcomm.com>
-References: <20260116062004.237356-1-sumit.garg@kernel.org>
- <20260116062004.237356-2-sumit.garg@kernel.org>
- <20260116-transparent-dexterous-nightingale-c029cb@quoll>
- <aWo0t1EoVhStmOj7@sumit-xelite>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aWo0t1EoVhStmOj7@sumit-xelite>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260115-imx91_fix-v1-1-9351c3fac76a@valla.it>
+ <CAEnQRZD2CvQLO2hBDbX2H8PeeNkzQmLoK6jzeF6HKw8HHa8ukg@mail.gmail.com> <aWo3PZni1Pb9T6FI@bywater>
+In-Reply-To: <aWo3PZni1Pb9T6FI@bywater>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Fri, 16 Jan 2026 15:15:32 +0200
+X-Gm-Features: AZwV_Qhavkf8CkCe2llxYLM2ksgSNEeosl9zOuFKwiRZDMiSYX1oM1egYm13IpQ
+Message-ID: <CAEnQRZC4QVV-AmMAdQHujTtJu2Lk8MQ=J3NRAFLQ1tZAPE6tOA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx91-11x11-frdm: fix CAN transceiver gpio
+To: Francesco Valla <francesco@valla.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 16/01/2026 13:53, Sumit Garg wrote:
-> On Fri, Jan 16, 2026 at 09:46:54AM +0100, Krzysztof Kozlowski wrote:
->> On Fri, Jan 16, 2026 at 11:50:02AM +0530, Sumit Garg wrote:
->>> From: Sumit Garg <sumit.garg@oss.qualcomm.com>
->>>
->>> Fix IOMMU DT propety for display via dropping SMMU stream IDs which
->>> relates to secure context bank. Assigning Linux kernel (HLOS) VMID
->>> to secure context bank stream IDs is incorrect.
->>>
->>> The min value is added for iommus property to ensure in future when
->>> secure context bank stream IDs are properly supported then the iommus
->>> property is extensible.
->>>
->>> These DT bindings changes should be backwards compatible.
->>>
->>> Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
->>> ---
->>>  .../devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml   | 5 ++---
->>>  1 file changed, 2 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
->>> index f0cdb5422688..5c888f07bc0b 100644
->>> --- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
->>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
->>> @@ -33,6 +33,7 @@ properties:
->>>        - const: core
->>>  
->>>    iommus:
->>> +    minItems: 1
->>
->> Same comment as other changes like that, which I already gave guideline
->> - you need to list the items (minItems stay), because you now claim the
->> order matters and is strictly defined.
-> 
-> Not sure if I claimed that order matters now but rather the secure bank
-> stream IDs were incorrectly represented earlier in the DT.
+On Fri, Jan 16, 2026 at 3:04=E2=80=AFPM Francesco Valla <francesco@valla.it=
+> wrote:
+>
+> Hi Daniel,
+>
+> On Fri, Jan 16, 2026 at 01:40:11PM +0200, Daniel Baluta wrote:
+> > On Thu, Jan 15, 2026 at 8:25=E2=80=AFPM Francesco Valla <francesco@vall=
+a.it> wrote:
+> > >
+> > > According to the HW schematic, the CAN transceiver does not have an
+> > > enable pin but a silent one. Fix the GPIO property name and polarity.
+> > >
+> > > Fixes: b4bf5e55899e ("arm64: dts: freescale: Add FRDM-IMX91 basic sup=
+port")
+> >
+> > Just for clarification GPIO 23 is connected to a pin named CAN_STBY.
+> > So I wonder if it isn't
+> > better to use standby-gpios instead of silent-gpios?
+> >
+> > I am looking at FRDM-IMX91 schematic file SPF-94610_A1.pdf.
+> >
+> > But on the other hand we have
+> >
+> > static const struct can_transceiver_data tja1051_drvdata =3D {
+> > =C2=BB       .flags =3D CAN_TRANSCEIVER_SILENT_PRESENT | CAN_TRANSCEIVE=
+R_EN_PRESENT,
+> > };
+> >
+> > So TJA1051 is not advertised as having a stdby flag.
+>
+> Regardless of the name of the net, the functionality of a standby vs a
+> silent pin is very different. In this case, since the TJA1051 is
+> including a silent pin (pin S in he datasheet [0]), I think it's better
+> to declare it that way.
+>
+> In case someone adds the support for a phy-oriented listen-only mode
+> (which is something I am thinking), this wouldn't break the integartion.
 
-The code claims this by saying that one specific entry is allowed, so
-that entry is somehow distinctive, special, different than the other entry.
+Makes sense.
 
-> 
-> There has been ongoing disscusion related to how stream ID associated
-> with different translation context can be represented in DT here [1].
-> With that only the secure bank stream IDs can be properly represented.
-> 
-> Here I just followed the approach taken by Adreno GPU bindings for the
-> iommus property [2].
-> 
-> [2] Documentation/devicetree/bindings/display/msm/gpu.yaml +82
-
-Such justifications are pointless. What about commit msg which explains
-why this was added? What about entire public discussion happening with
-this patch? What about all previous revisions of that patch and
-discussions leading to this piece of code? So you just found few lines
-of code, ignored entire background and any other arguments, and copied
-it here.
-
-That's the approach - I found a piece of some buggy code, so I can do
-the same.
-
-Again, we discussed it 2-3 months ago for the same patch and I gave
-exactly same reason why this patch is incomplete.
-
-
-Best regards,
-Krzysztof
+Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
 
