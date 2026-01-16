@@ -1,186 +1,223 @@
-Return-Path: <devicetree+bounces-255971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90312D2F14A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:53:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE88D2F17B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:54:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id ACDC8300FD7A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:53:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6BA523027810
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 09:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F78135C1BE;
-	Fri, 16 Jan 2026 09:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A763735C1BA;
+	Fri, 16 Jan 2026 09:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="A5jf/a/I";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eENforfE"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cGW/y1xI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazhn15010016.outbound.protection.outlook.com [52.102.128.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2349135CBD3
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768557212; cv=none; b=LK4fiK6kZvk7R5acwM3Sf2xM0d8xT/y2GC/lkpSo8zb/6ZeZMSCkfqNX65RH8lghhiKodqiWSSMEuWvA7/apVphkvDwT5Qc0FeVU0hHQ2zQxmoj2IUe8+CnMOY0N85OIV/q9d9kuQlsUxLJM3yFlpAzKEUAD/c7r90W2VcIhxI8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768557212; c=relaxed/simple;
-	bh=ge6ghaPRiNit0+4pAgxtBDe6NbdialyVuuknLaBpZBA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oaPTUDp+B/ibC8PkxE4ibEHE9GO0J+8B3u6Lsgg57QEfAVCfZhzhzAME3ZAYvK4jn8vGjr0fZeeTOupAzEzAcmfQvtzlsvJZ3Yk6vGPukpv8sjWBlhOFN/OJy2uWcWlkj3o3fkzu+IvOX7e6/ixPM1QTZgplYDmasqoWO+KWQ/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=A5jf/a/I; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eENforfE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60G7nuAU4016355
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:53:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ge6ghaPRiNit0+4pAgxtBDe6NbdialyVuuknLaBpZBA=; b=A5jf/a/I2XLuaGCe
-	bFCOwQBJZnToyShg+U/cuxvuk9dgwGjSeYf8fnqr0P1w2A/gB0bSRwCyOdB4GI+h
-	wOAMzhB4V39F3/FYpidkFqlCzgtYmS+O+lru7OKBa1EzTdwOepYVh/MNQo1WTqgY
-	2Io1NgPKC5kjJJRf70UYt5r828hTmOTaGjZI+mmtxrNTgN74n7DUwEt9mwq36+ha
-	wswOuwd1WyM44DI0elJuAJNt29XP18KzJ+G320GFBlumR4U+L95HyfljYIV69sur
-	6R8r/n5h9aMogbqX5D7vua0tD8zzofL1JC+qQ0IWJm02VV7dcBwYuJ4AbRnW1TjM
-	6P5rZQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq98y9nun-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:53:29 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-5014549e7d6so6150261cf.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 01:53:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768557208; x=1769162008; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ge6ghaPRiNit0+4pAgxtBDe6NbdialyVuuknLaBpZBA=;
-        b=eENforfEAgCmTD2cBL44PxuFbo4v2DbVWM2a32Lwg3PHKcLqalpj+Bhr0Rpa6D2FUd
-         k3SkejC9YJ7FLYvd5l5Hsb1S59kc2WMwALLAHY5uJzyh/q1P0IVP21K6g/qdISCSAVEE
-         jH8lSWHOgLFXaE+ktK5zEmKGsWG0JBAO2OMPzs7y/8dZz19EUUJELydNOVoslbJXHAEJ
-         NoGiSXwkJATus+7/FTbLTRWMtdF/jhNVczSNXurKfhFtdZ5NySzmjf26YIEXx7tkeZjL
-         /2XaHh5dvhpqWLpB68sc3pMlPq/MojBFrorvMQuBJHlvDBRwE9nYFxFOUkWO0LHYrpeX
-         fSzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768557208; x=1769162008;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ge6ghaPRiNit0+4pAgxtBDe6NbdialyVuuknLaBpZBA=;
-        b=VdChJUgMwFIr+0qsS1BLEd/Slg0KEDwBoju6KZq6I9OLkAZzW/j9iVXKkZfsMzDE3k
-         CNQcShlbPrFcjt6WN12V3tfUm6BY1V9eHy12fuckQ/LoKikZYfC4Zud+vqfQWCfTVfPq
-         17He+ANnAW3p+PyqN4HWQUOOGd24gqDx8/8TSb56dckDUZLedNQsoZyyvXkUyMhJS/7x
-         Q2qGTv2a3UqOaN1OxkKeiRxgqPrRn5lBOW7rP6f57d1Rx6uAju8KlLw59YNWfUSVYrjW
-         V1lPmDoOoY1SecTGqI13EdbcUKFzk7zoXpHM2cFyDjb9wT7hLgk96xshwPH6G4c2nK0W
-         JEJg==
-X-Forwarded-Encrypted: i=1; AJvYcCW0GpPqM3ND006WIYwT3g0YWUh5+RnCidYWIFAq/BN2OLhvaB5VgGPfmjG4wT3neQfJbjxynHKg5zlw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHviHRaGI29pnyupCBTV6fk+eKHQasDOQmHi2hwa0jclzNSGcv
-	h2K7EEu0Zq1hZgVzj91g3COUMf6Qmj0ZmYp9C8+6W/o4QFEjhzGQtuts2ybHO1lgBia791dghTX
-	GYAbA2SpXlAmFx4hpvALYvTNUadY1BV2Ep/YCD81I+eSjPsAggFdQ1OAu0ENDy2py
-X-Gm-Gg: AY/fxX5z/oGB5D0mHaJSnzAD+sQOzNblido6Xg6TiMPmp1IBi+jENrohBamhesce3un
-	PYzwohZyg01FOZkOaD1jVWKSj9T56kcR0gyrk8Ro6ArKmvIijoFY33WJ/GQxpSKUcPYNs7WXiHo
-	tzobw91a2ydDv3lOuLKknaB8HGLPDhnuGJ3Wzv0h+IYMPh3PHOdZ/GhHGa3V4r6F7rgX5juh7oW
-	QhQLi9LL4RR81dv0wuEHwswtjuqGZxl96yTZfdgiOBZvsrie1GU5+fJodlK9qNYp1SO9Jc6JnLK
-	GMum/ay1EGqF3Ve1+aBBR7kG446ZSPKMp9i9INgcvyBSGe3TnFeFAh/uiiE3bUFrSFw17FmRHKx
-	Nfi43CtcOUD3an0AfAFe9KyCPq8BA2tYOUiHvrbezs6SniLhUMSMmWK8Pw/BDopOnkd4=
-X-Received: by 2002:a05:622a:610:b0:4fc:989e:f776 with SMTP id d75a77b69052e-502a161627cmr25289301cf.4.1768557208444;
-        Fri, 16 Jan 2026 01:53:28 -0800 (PST)
-X-Received: by 2002:a05:622a:610:b0:4fc:989e:f776 with SMTP id d75a77b69052e-502a161627cmr25289201cf.4.1768557208059;
-        Fri, 16 Jan 2026 01:53:28 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-654535c49f4sm1933290a12.31.2026.01.16.01.53.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jan 2026 01:53:27 -0800 (PST)
-Message-ID: <253d0cbf-f65a-4f60-b874-4191e552c191@oss.qualcomm.com>
-Date: Fri, 16 Jan 2026 10:53:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3427359FA1;
+	Fri, 16 Jan 2026 09:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.128.16
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768557258; cv=fail; b=J/1krktpMOY+tcqcfzhGQ5caU0gF2jzF6eFKjC7CF4Dodkqxu0yjNxM/30nfCP22rgI1CbUoq5GyzK66C5c28c3S+4OxHdK8moMNQWLdqGYuzqIXwHcu8RUiD2/IuBt6g7Ot7plM2PjSyJTsWsLEFaAQwxSSCnT5DrbTewRc6Tc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768557258; c=relaxed/simple;
+	bh=BQB6VWk9c8uWwgFhrvsR5kAmOxupEmJWU7VEZqLT4Zk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=arg/OO7Lb/WLDE6AU2ElS9SUh7tn1nhKgrQ5hmjvbKAiWr2rIQwRTWluOss+OUZBRT48MH+VLG5+SDuauFnWkw87Z+ozaXUHYZeablBKf3wpk432DiHPE/4s3eza2MFf1e2cGHOFUmLcWvOoQ7i5N6l2+kULtoKsDyBM6G2vsz4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cGW/y1xI; arc=fail smtp.client-ip=52.102.128.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qpGSeIWCiO4R6uVwyO53U7VGOVTMoOchTPY1GuqRBrVO4TAhA6BQtMiyxdid9Pq7VmgMiGnkdu9byDoKzvDKn1SsbUbnuGd79O0RF9MYeuFh7Vwk2aFsY/5xIikKeKLonUr96Gn6R5SMIMEuvAOjIwtM412F7+AbM3tJDNj4TJDfcMHhV+9szlcCL2xzklW4KZuo+satAfKcAtmw562OyDvEr2afnbtexKunTpqvkuL/iqNk2xnARmrNBwsxjHRAkoRY6n6tNDbgX8y+XBOITV9o6a9HQFmk1JjgCmNDRwJ96ptztqvOsNP9F4ypgTzAHBDoNuzUjUsemuBViBedQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZxKsNYyppTV2lSuFj9BY5Ny4idLS0mOmwECCp6pYlr4=;
+ b=x/ZbAD8ksrjsNENpLWh+5pJkkFnFbbaGsNlfezdjx8DT2j0vuv2Ij4nvlp0osvud6KG/MlzPE7QEaUwaWlL+2R4tSIQHK6+X/HKvPmKvBBixAggL1M/COgJzjYClanBYrMrzyRDyF5MEK4o8qe5gVZV7345CKMlHIHMnxlR6rXSC5oMk6g95uCAIz8FoUArpOsnyIgN+XxayeLyUWmgboih1sxp9o/y6k4bNNmWTJ0KNSS+umFxt7ULkyrzkAQsEzQ5jGbKE9jRJzdM66m6bMB6q409Bd6rJTAaxOFk3vCRrQkUVDgpcDWw1Z4T6XPMI+zuy60Pcs2L0l+Zpalmixw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZxKsNYyppTV2lSuFj9BY5Ny4idLS0mOmwECCp6pYlr4=;
+ b=cGW/y1xIvE8MbLqlpp2PUP2GVG49KoCiXx11gp4v+eRD4LIm/u31H43fLE9xEnuRUUtRyJeH+278X9Jvw4dtvwv5wuC4nfEt/UYUjqlB3HrsHjuy8/9rmvh/VXx0ihfb1HGNLRi3eCcWTnzJCFbapFfn7mIO5rtK5PMLXhbE8mc=
+Received: from BL0PR02CA0063.namprd02.prod.outlook.com (2603:10b6:207:3d::40)
+ by CY5PR10MB6045.namprd10.prod.outlook.com (2603:10b6:930:3e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Fri, 16 Jan
+ 2026 09:54:14 +0000
+Received: from BL6PEPF0002256F.namprd02.prod.outlook.com
+ (2603:10b6:207:3d:cafe::80) by BL0PR02CA0063.outlook.office365.com
+ (2603:10b6:207:3d::40) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.7 via Frontend Transport; Fri,
+ 16 Jan 2026 09:54:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ BL6PEPF0002256F.mail.protection.outlook.com (10.167.249.37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 09:54:14 +0000
+Received: from DLEE201.ent.ti.com (157.170.170.76) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
+ 2026 03:54:13 -0600
+Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
+ 2026 03:54:13 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE210.ent.ti.com
+ (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 16 Jan 2026 03:54:13 -0600
+Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60G9s6ST2958972;
+	Fri, 16 Jan 2026 03:54:07 -0600
+From: Swamil Jain <s-jain1@ti.com>
+To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+	<airlied@gmail.com>, <simona@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aradhya.bhatia@linux.dev>,
+	<mwalle@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <praneeth@ti.com>,
+	<u-kumar1@ti.com>, <s-jain1@ti.com>
+Subject: [PATCH v4 0/3] Add Display support for AM62P SoC
+Date: Fri, 16 Jan 2026 15:24:03 +0530
+Message-ID: <20260116095406.2544565-1-s-jain1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: Add Redmi Note 8T
-To: barnabas.czeman@mainlining.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Gabriel Gonzales <semfault@disroot.org>, Kees Cook <kees@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        Biswapriyo Nath <nathbappai@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
-References: <20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org>
- <20260112-xiaomi-willow-v1-6-8e4476897638@mainlining.org>
- <ff8fbdb9-dd03-4811-b9cc-4ec0dabf9353@oss.qualcomm.com>
- <4cb609391559a88a4a6f1e2f550f8450@mainlining.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <4cb609391559a88a4a6f1e2f550f8450@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=FscIPmrq c=1 sm=1 tr=0 ts=696a0a99 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=OuZLqq7tAAAA:8 a=LpNgXrTXAAAA:8
- a=OOYZNU6-2sxu1PXP_N0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=AKGiAy9iJ-JzxKVHQNES:22 a=LqOpv0_-CX5VL_7kjZO3:22
-X-Proofpoint-ORIG-GUID: dilDKKMIYgew91ZRc8Jg2DOWIPBqoG-h
-X-Proofpoint-GUID: dilDKKMIYgew91ZRc8Jg2DOWIPBqoG-h
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDA3MyBTYWx0ZWRfX1Wg20ptM/w5M
- 9IKLmfdVteLkURXUjZxr1nDg0C/L1MbQnVemtFHkX7nDhl0EmAh2VB4a/0MZR44fufMhVCer65P
- x7KzsHIqe4lhoUCOT22uQ3LJ+Bg2Ar/2Mao1GNFgj6+k5bWlfhHfVAACExBUzkEEe7dAz9ODGv7
- ZKwq0eRB7jCzOhS5eVuk6NH6YlKaPSmM0NKHKqKYr4D+/T8Mx6hlNPF7W7p4+YqINq6cscaHA+t
- TJZGTZ+fRh5M7mOFByowXXhcG/9A2S0s/p5xVUM8g9nEEXtWbfJpD66C/mouqjPXPQCZwaFK0nr
- Vp67RCgZWV/lpwub1piY9IWFHc1Dm1N2Fwi/DHpgJU4grNuVo2gs82mchkzhzeg7yg2KzY18Kxe
- S3nuCPKlKSGlnl0felI2zNpKzStkXTyS7iu1kBzrNFHIX3KAWKRsnmJc1jf8Kc56vzboUNh+DVs
- XFGDWrItkL+VT55qiPA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-16_03,2026-01-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 impostorscore=0 suspectscore=0 bulkscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601160073
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0002256F:EE_|CY5PR10MB6045:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c50e2d3-90b1-46e8-8749-08de54e534ae
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|36860700013|34020700016|82310400026|921020|12100799066;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Gor+ux1IGv6t9Dk36pnZVWTpooFel/gs3AxHs7DV4tMogJ6o5rT3a5cM36Vu?=
+ =?us-ascii?Q?hkiQH7NkmrTkrwubZxPPovbH/yoicAm9mUvcZmcOSnOvhGQ+Gj0SpXEmUrV5?=
+ =?us-ascii?Q?jldhnsWBrrlkSNCrG/VaCBsSmxcK/8sp8ZUN2PnZ31Uaxirke5OdqJcSfX2+?=
+ =?us-ascii?Q?wn02Gs/1LBUdhxQQPWT03X42FIYJDSYFRCsM2UPIJ+FEzjFQTT+HNsI4Gold?=
+ =?us-ascii?Q?e2uiW/2KzRPg7n6uMxnhB0bqgTiVlF/oCgdUlCXM0Kc/YX1QIgzqQAWN9h9x?=
+ =?us-ascii?Q?MDqOD2E/2WDy+0q+9yOAgA4Yg0QcGDfLEzA6YtItH49/H2ybILsZpQ8PE+IW?=
+ =?us-ascii?Q?yEYpg7PhDRbyrLE1TEcpkwyvX6Y/9iAFpqUPUj6WLYg5KyxV07zcsytQktT+?=
+ =?us-ascii?Q?GBxndP7gP31SLkQvmpOwSNvhBHQdNy5SAbObAfnlylI6DLj52sSXWmwkOSrN?=
+ =?us-ascii?Q?3v0YlwnkAN674XHLNUt0Qd9NHOvnBEN24HVWVFMw3SdL9DdmSamO9FtbO56h?=
+ =?us-ascii?Q?xO1n0Yd/8xmjiyhnAPhQFKK0FdwPnr7T9NGfshX9EEAESKfDeqJos7RwGfbN?=
+ =?us-ascii?Q?J1jUUgbUSXVPRjhbeLTLTAwItl73BE12oDDWTHcsO6xYpy4v73Pqsv6pHsNh?=
+ =?us-ascii?Q?KUqWEfL7wYo/COV/75EY8bUx+l0xd4mWj+ClTbxZXqvsNj2AGGv8StJlFmjX?=
+ =?us-ascii?Q?BYl+BrgWBSnNIqwTRGbLCfGuUbMYtP/fjCKeeZxLx6n+AR9Fj7+xqRn2k4F0?=
+ =?us-ascii?Q?HA1h7vySzMyx7stMDQult244ARLNbuTzvBMp+e/qqK8x0QodNjfUlMiGEGGK?=
+ =?us-ascii?Q?cwoQXBZACzK1wZtlgjNaZWin+oZxr5lZwuSH1Yhiu9+j9AQ6/TIGfIm9ry1m?=
+ =?us-ascii?Q?gYLOWNSWvVDB6ihJyw9+bm3ijSodGtrhpNRxYTQyRD+SIms9RvmJkL6GFRZy?=
+ =?us-ascii?Q?bgEL8THupvgnTecbzdoEdnn+eZxW9nT9kdDy4vIjb2PmF1jNDZaYmUZSPy7R?=
+ =?us-ascii?Q?jg1yxxqLco3nDo1MR2qE2upxWjkUdm5tfoBvjSYGKqRUQBnSBppx/5arREPv?=
+ =?us-ascii?Q?1GXUsH/wqVw06tQBZAriLG2jdlJQibMAPcbWDR47sySY61Z3g37hmvFdQAhj?=
+ =?us-ascii?Q?tipeAmnIVn+BeI1V+aGJuxQGXHmWasSoWPCpT/+/xAv9xVf4yryzQarkk9rp?=
+ =?us-ascii?Q?gBJTYu9vnRHSGBgb1ctmldelSSvH/cyL5f+Du/3iV590uTWWQy0EFB/MblGA?=
+ =?us-ascii?Q?zeaH646MDI1E1EzI3TkgC5weKxfv/QlXrphrL0f+ubaUoqq23rfnirHG9lEA?=
+ =?us-ascii?Q?EdJwfRUx0wNkqHpWBsnn5AMrCdXI0BOMBTHDD8kp72bc6g23lnYXZ5+J1pIV?=
+ =?us-ascii?Q?Yy+zWnpo1nFMZQjKui8YHJhMhEmUXg9bGd8NHoTzkhwTQy3VwJgj/mwSupe7?=
+ =?us-ascii?Q?085dt5pOSRC5TUfbmT8PkJXuEXlfVd4pmu8W+GYL1mwxeO8yGFWWpQCANjiT?=
+ =?us-ascii?Q?nYvDxruv9TUosgvfbQvH0+sAaJLX/FUw1vhY89S8fWVD5CUADg5zcaH6etp3?=
+ =?us-ascii?Q?Cyi0Xo4yUq4nxWiQj5tYnl5Gcg59KMxQE54+hFwB+QbIz2HaRaejiZsvLI6T?=
+ =?us-ascii?Q?1kwKWeGrqWtYn92kW95m0NZ6x6A5t7s2HqrbK9WqwS0uWhnHIlpj+p/n0s1L?=
+ =?us-ascii?Q?Mhkz24hdzKuAivXk8ScmJUGMDk4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(36860700013)(34020700016)(82310400026)(921020)(12100799066);DIR:OUT;SFP:1501;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 09:54:14.0124
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c50e2d3-90b1-46e8-8749-08de54e534ae
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0002256F.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR10MB6045
 
-On 1/16/26 7:53 AM, barnabas.czeman@mainlining.org wrote:
-> On 2026-01-13 10:04, Konrad Dybcio wrote:
->> On 1/12/26 9:13 PM, Barnabás Czémán wrote:
->>> Redmi Note 8T (willow) is very similar to Redmi Note 8 (ginkgo)
->>> the only difference is willow have NFC.
->>> Make a common base from ginkgo devicetree for both device.
->>>
->>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->>> ---
->>
->> [...]
->>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->>> index 163ecdc7fd6c..70be19357d11 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->>> @@ -1,304 +1,12 @@
->>>  // SPDX-License-Identifier: BSD-3-Clause
->>>  /*
->>> - * Copyright (c) 2025, Gabriel Gonzales <semfault@disroot.org>
->>> + * Copyright (c) 2026, Barnabas Czeman
->>
->> Is there a reason for you to remove Gabriel's copyright from the 5 LoC
->> that remain in this file?
-> The original file was renamed to sm6125-xiaomi-ginkgo-common.dtsi.
-> I have not removed it, it is a new file with the old file name but
-> i can add Gabriel's copyright here also, would that be fine?
+Display Controller Overview:
+TI's AM62P[1] SoC has two instances of TI's Display Subsystem (DSS).
+Each instance contains two video ports. Combined, both instances support
+up to three independent video streams: OLDI, DPI, and DSI.
 
-Well you certainly don't seem to have contributed anything additionally
-in this specific patch, other than splitting a source file into two
-source files, so the rule of the land is to generally keep the copyrights
-as-is
+This series:
+  1. Updates bindings (PATCH 1/3)
+    - Adds "ti,am62p-dss" compatible string
+    - Modifies power-domain requirements
+  2. Updates driver (PATCH 2/3 and 3/3)
+    - Adds power management for attached PM domains
+    - Enables AM62P DSS support by adding compatible to the driver
 
-Konrad
+Note:
+  - Device-tree changes will be submitted after this series is merged.  
+  - The device-tree patches are available here[2]
+
+[1]: https://www.ti.com/product/AM62P
+[2]: https://github.com/swamiljain/linux-next/tree/AM62P_J722S_DSS_v1
+---
+Changelog:
+v3->v4:
+  - PATCH 1/3 - Cosmetic changes in commit message
+              - Explain why 2 power-domains can be used in am62p-dss
+              - Remove redundant explanation
+              - Add item description for power-domains property
+              - Define constraints properly by removing min/maxItems
+  - PATCH 2/3 - Remove err_oldi_deinit if tidss_oldi_init() fails
+              - Pick up T-By tag
+  - PATCH 3/3 - No change
+
+Link to v3: 
+https://lore.kernel.org/all/20260107174525.1702585-1-s-jain1@ti.com/
+
+v2->v3:
+  - PATCH 1/3 - Add a broader range for top-level constraints in the 
+                bindings to resolve dt_biniding_check conflicts
+  - PATCH 2/3 - Remove and modify some comments
+              - Use IS_ERR_OR_NULL() instead od checking for both NULL
+                and IS_ERR()
+              - Changes in error handling paths
+  - PATCH 3/3 - Pick R-by tag
+
+Link to v2:
+https://lore.kernel.org/all/20251125165942.2586341-1-s-jain1@ti.com/
+
+v1->v2:
+  - PATCH 1/3: - Remove unnecessary example
+               - Use "am62p-dss" compatible check for multiple
+                 power-domains
+  - PATCH 2/3:   Add Signed-off-by tag
+
+Link to v1:
+https://lore.kernel.org/all/20251114064336.3683731-1-s-jain1@ti.com/
+---
+
+Devarsh Thakkar (1):
+  drm/tidss: Power up attached PM domains on probe
+
+Swamil Jain (2):
+  dt-bindings: display: ti,am65x-dss: Add am62p dss compatible
+  drm: tidss: tidss_drv: Add support for AM62P display subsystem
+
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 37 ++++++++-
+ drivers/gpu/drm/tidss/tidss_drv.c             | 83 ++++++++++++++++++-
+ drivers/gpu/drm/tidss/tidss_drv.h             |  4 +
+ 3 files changed, 118 insertions(+), 6 deletions(-)
+
 
