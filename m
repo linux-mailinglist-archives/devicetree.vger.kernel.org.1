@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-256200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6870DD33947
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:51:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B5D1D3397D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:56:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6EFC3099FB1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:47:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5963230C0ABE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777D234321C;
-	Fri, 16 Jan 2026 16:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E8F39A7EA;
+	Fri, 16 Jan 2026 16:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g2KJoYv9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lkvZ9Zet"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C903112BA;
-	Fri, 16 Jan 2026 16:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BB233C536;
+	Fri, 16 Jan 2026 16:54:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768582044; cv=none; b=CpHH+1zZJllEib0iDg220BrLmgi5HwyAMqDH8nbP1uq/CA+bf4OVkPSpq8oI29IWrUnu7d9txabHbV3LKnRCE2V5m3ncyTEle5Qt+ZhNOv4UUwY8/LDpvJwZu01je+QTno2RXsUPYyA9xT20dbyi83Z9i0aDap6lGGeH7hCmIss=
+	t=1768582496; cv=none; b=QFpzXK5rCzFWJATA8NB3HoXKVrrBHVOUViPNR1/YkkqzYRXvOsU143sbPgEc0zGH+s4VpOlT8B1XbMZG5UFUsZ6UeZXV4AoYhY2hvggPuvqJWZm/Cck56i36DaMZSoKXwYNo9AtU99YFrq5h44hGIkOL+BUy45pSAfOMGRV9ceU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768582044; c=relaxed/simple;
-	bh=e8xHnIXHD8OCRmeLMtgO2Zm2XUqO+KGzAms+Oa6YeZ8=;
+	s=arc-20240116; t=1768582496; c=relaxed/simple;
+	bh=IPqF9mLGxFBU6ew7eLTudLY5YG8jLHJteYNyW2fDmV4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aI3B2LZc0/uda21sbA+vYnH+VfSbK4eGCM/LKwG5KDEWTdvXfpAOHaEPRN2CULmzmRAG/wCZmN3Z4W2TlzCU1Q9KH7O9HcDyFTtnODBTWlMxoLHnHKxnDSwmcwKy/37tLe/X6IkBc0ttYhYQxtzus+s2QaaaiHmt6aWEAfE03Ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g2KJoYv9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC468C19424;
-	Fri, 16 Jan 2026 16:47:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NTAhekHL9D+4qUZkT3vZYjgEjcCpqWBXGCKEELD6f9h4cS59J0QwWWxi9ONCbqau8Kt2rxJRSc/pHcLZKCy3MHf4K99SR2O3BK0sD/8kT2k0zhiPE5lMekXkPaZO1EwQ+iF4qPkx9JlbSEB7Eejm5Ufz4qGolDCZBB893YvficM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lkvZ9Zet; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 118F3C116C6;
+	Fri, 16 Jan 2026 16:54:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768582043;
-	bh=e8xHnIXHD8OCRmeLMtgO2Zm2XUqO+KGzAms+Oa6YeZ8=;
+	s=k20201202; t=1768582496;
+	bh=IPqF9mLGxFBU6ew7eLTudLY5YG8jLHJteYNyW2fDmV4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g2KJoYv9gXTPMov8oaRJTyCyHpsgN9woWts91t4oGjXAjXWIvgRIFSUtKnlRO4Tjr
-	 PPJn91TM3LUzK6DDBaOqbF6LvFpknezv0o/8/dxHY7yxC8R82dPcm9IMPgBm7s1MZp
-	 ns7GHV4BiBM6IJPItVpwxaiBSj2gEvJKddeK56D6jHgiLc9lvLZ57c/7INzY6RRR2S
-	 1Cd+Mo2Juwb9B1IcARkGZrfmiJuBAlUcl17jqDdKKfedWNcmUSmVTFt7vl0ouViLei
-	 dnlqF63eOUoPaNY4wrrPawY3q/Y2Vw1+GLCjFulN2qyaWVSSCtQ9I5vH1NVuAW0xTW
-	 Ebsx6lq+ZzHew==
-Message-ID: <f7c93dbb-9633-4dc5-983e-2f0df13989ce@kernel.org>
-Date: Fri, 16 Jan 2026 17:47:16 +0100
+	b=lkvZ9ZetlE9XYOgDgucywDbvOGHGjQvx2CGzkEzLqZo59R+aQOvQPJNLYNbnYUFK9
+	 kOO5uVcLFxDRRkMzyw2Gn/7hblF8MtFKq5PQ8uG4JhVgnNv7SC8Z4gx5gNaO+VDadG
+	 FA3T1qOJKsArSTHNyfIa+gnoomMfKrvbe5e92wwT5wI7m2dr2Z1OCaCtT0bCvau+qn
+	 Gqobhqp5sUaBUZoCwKSzcXLZn5yJ84hb8nlZVY3sRvLhrX1Gh9jPl4KYAOJUN9utC2
+	 Txl1buEHUdf7Szk+athD6EIMC31lDc2S893TKT1clhmCZ4MUzBJKV/xXpoHHr34CD2
+	 a7bFZ0uiOSRuA==
+Message-ID: <2956f2bb-7db4-4d66-aa71-2017c9a4a057@kernel.org>
+Date: Fri, 16 Jan 2026 17:54:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,31 +48,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/14] wifi: ath10k: snoc: support powering on the
- device via pwrseq
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
- Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
- Matthias Kaehlcke <mka@chromium.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-bluetooth@vger.kernel.org, linux-wireless@vger.kernel.org,
- ath10k@lists.infradead.org, linux-pm@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-References: <20260106-wcn3990-pwrctl-v2-0-0386204328be@oss.qualcomm.com>
- <20260106-wcn3990-pwrctl-v2-4-0386204328be@oss.qualcomm.com>
- <52b2b799-09e6-40a4-bea8-c7e8bf21cf51@oss.qualcomm.com>
- <15470b51-d398-449d-9017-304df5ad7cef@kernel.org>
- <132c34db-07c6-491b-bfda-f3c51462a184@oss.qualcomm.com>
- <f35b1380-b7d4-45e7-94ad-9f76973d3289@kernel.org>
- <d4ttsbhlw4c2fvgpfwgnc5mdh2egc6nwluj5pmkst2sunpn6m7@7b6by2eboob4>
+Subject: Re: [PATCH v2 0/2] Enable Inline crypto engine for kodiak
+To: Rob Herring <robh@kernel.org>, Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Cc: linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ krzk+dt@kernel.org, ulf.hansson@linaro.org, devicetree@vger.kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, conor+dt@kernel.org
+References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
+ <176840729246.2734238.959231359705262987.robh@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,57 +100,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <d4ttsbhlw4c2fvgpfwgnc5mdh2egc6nwluj5pmkst2sunpn6m7@7b6by2eboob4>
+In-Reply-To: <176840729246.2734238.959231359705262987.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2026 17:41, Dmitry Baryshkov wrote:
-> On Fri, Jan 16, 2026 at 05:08:58PM +0100, Krzysztof Kozlowski wrote:
->> On 16/01/2026 16:18, Jeff Johnson wrote:
->>> On 1/15/2026 11:48 PM, Krzysztof Kozlowski wrote:
->>>> On 15/01/2026 23:30, Jeff Johnson wrote:
->>>>> On 1/5/2026 5:01 PM, Dmitry Baryshkov wrote:
->>>>>> The WCN39xx family of WiFi/BT chips incorporates a simple PMU, spreading
->>>>>> voltages over internal rails. Implement support for using powersequencer
->>>>>> for this family of ATH10k devices in addition to using regulators.
->>>>>>
->>>>>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
->>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>>>>> ---
->>>>>>  drivers/net/wireless/ath/ath10k/snoc.c | 54 ++++++++++++++++++++++++++++++++--
->>>>>>  drivers/net/wireless/ath/ath10k/snoc.h |  2 ++
->>>>>
->>>>> My automation flagged:
->>>>> * drivers/net/wireless/ath/ath10k/snoc.c has no QTI copyright
->>>>> * drivers/net/wireless/ath/ath10k/snoc.h has no QTI copyright
->>>>> * 2 copyright issues
->>>>>
->>>>> I'll add these manually in my 'pending' branch
->>>>>
->>>>
->>>> And why is this a problem? You are not here to impose Qualcomm rules, bu
->>>> care about Linux kernel. You cannot add copyrights based on what exactly?
->>>
->>> I am a maintainer that is paid by Qualcomm to perform that role, and hence I
->>> have a duty to enforce the legal guidance from Qualcomm when it comes to
->>> contributions from other Qualcomm employees.
->>
->> No, it's not your duty to enforce rules from some other departments or
->> business units. Especially not without agreement of that person. You
->> cannot just add copyrights to other people's commits just because you
->> think that such copyrights should be there. Only the copyright owner -
->> which you did not identify here and email address of contributor does
->> not imply that (you don't even know what work contract a person has) -
->> can add such copyrights.
+On 14/01/2026 17:18, Rob Herring wrote:
 > 
-> In this particular usecase Jeff has enough knowledge about me and my
-> working place. I will have to resend the series anyway, but otherwise it
-> was perfectly fine for him to correct the copyright.
+> On Wed, 14 Jan 2026 15:18:46 +0530, Neeraj Soni wrote:
+>> Document Inline Crypto Engine (ICE) handle for SDHC and add its device-tree
+>> node to enable it for kodiak.
+>>
+>> How this patch was tested:
+>> - export ARCH=arm64
+>> - export CROSS_COMPILE=aarch64-linux-gnu-
+>> - make menuconfig
+>> - make defconifg
+>> - make DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/sdhci-msm.yaml dt_binding_check
+>> - make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CHECK_DTBS=y dtbs
+>>
+>> ---
+>> Changes in v2:
+>> - Removed the "if: required:" description for "qcom,ice" dt-binding
+>>   as the ICE node is optional.
+>> - Corrected the ICE dt node entry according to the dt-binding description.
+>> - Added test details.
+>>
 
-Fine, but please do not add copyrights yourself to any of my code. It's
-fine to point is a reviewing comment and expect clarifications on my
-side, I don't find changing people's code and adding there copyrights as
-right way.
+Is this another report being ignored by the author? I'll start the list.
 
 Best regards,
 Krzysztof
