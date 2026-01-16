@@ -1,79 +1,61 @@
-Return-Path: <devicetree+bounces-256091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449FFD31AD9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:18:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47253D31C34
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:24:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D2447301CB55
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:17:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0FA4230ABCE7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:22:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09BA27A103;
-	Fri, 16 Jan 2026 13:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C3E2638BA;
+	Fri, 16 Jan 2026 13:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="be3WEBYL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MkQxmtjS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D0A2550A4
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:17:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60AD261B71;
+	Fri, 16 Jan 2026 13:22:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768569454; cv=none; b=OKVG8FDvnM+AWSrmKh401VwB5+BX7iqtNDoL4BZMGoAKwnK67WMvYPJsDZR7s0q4JTfOx4SSt/SMdbC2fZV5CjBNniXHEjBNEf83WJFc7dv0X/OLMhJYmVk+h6UWoPf5nf6EYpQYEodV7Rh/oCedyPnZMKu8IsQ/gHFbVzjbm/w=
+	t=1768569752; cv=none; b=OvnG/k36DEwqKIoYAaJyayPQejf5oVBtNr3babJyVDZy0w3LSendS5T6YgPQs4dBExcmo+BWkviAE1nrTS/t5ev3qIDtEDkz8Lwfvz4vo+uIIUtkw4dApj0MMt1EV63WfKEkY7WZEGSnFzL3UYqxWQEP7U0bUbSnWuqmrkRQe4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768569454; c=relaxed/simple;
-	bh=v3yWlx3GbotL3G9AhcSN50C5SpvFDf2A//QxTjb64Xs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Fna8gZgRUrWimbu3P51cVRHyHJsgRmEuMRw904G2bW6seKm45E5MKdKvPwJmFcLZjIVprmNkV5ziNyXBgCcrFEd1GCD8wwbzsoQqyeila6rl5dKZ+hDVjYBqpAuK+rMCDK8YdLMzpPEY48VEtw9mDsTiJgvCmGiTjF9aPyTx7So=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=be3WEBYL; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b872cf905d3so335608966b.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:17:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1768569448; x=1769174248; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gJgg01NaZF2IVCPUnfeyk7TRyWFsft/f+OKB8cHgBK8=;
-        b=be3WEBYLr9CQ8Uqbqh/EA5zPkEV/7hU5Jz3ypwBG0e9aSBTlqKJGbZ4u4eWPet+gdh
-         shzQnn5Q5FFynUD5mizZ7QvHkgU5ruktjLctez4uCwUsh4lE5xMadbBfH348kl9chRI3
-         kx6GZ7w9ubrHP+JQU7yTFZn6QZt3+7vYNiNzqyXt5op3rQ/mREwzSfZscPSCw7B916i/
-         OljF6Tp8xDVIkbB3rWb6joPQ8Zv++tBZnhHVYc4xvzqCX5yO0fhZW0UYEVdu8YQyJg1z
-         y8AzmtxG59iorijbkrEQYsppYqhv0InXGN8vJ1W4JJ+eIdcNCxULdk+LCSGs4KVugme/
-         Pr9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768569448; x=1769174248;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gJgg01NaZF2IVCPUnfeyk7TRyWFsft/f+OKB8cHgBK8=;
-        b=pVFUJN0Wv8zpHQiKREBiV8f/9EZDCPiEDdzZDWn4w+85c8WkrPwxWK8ysHt3DXT6TB
-         n33EyXLIr6ho1RGegiEichXAm0Vr4Q/fVeA/tE1CYaoQIiExvhaqb4vyqVT7gRPl+1oY
-         6UX1/J9i/c7DOO8HfYbnnF9CBQwnK1tv2OqXZKc3i33ZjRni4gTRd2aI3pHobCY0pO9L
-         nshHa2usNWP8N7HmisTlmrHzzcsH81jsGuhiRdJIO9hug6QmioIVJXw8fm2i6dnm8L6k
-         gHMtO2vUkRbTHjBPWlIMaxW0tP4/p4mjG++UfnjIGs9f3FW8fFoi7eciRhFP10BWIMLJ
-         P8nA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjb+xrrGO2bj0/iandOpEieiCwjF0jW3Z2htp8JlrRf48ZbbJjHf658qEdb/nkTOFhynwWQqSq3+7H@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbG15+ayzUuGlLppY9VoUEWDW1yvQoSoHoiw7cznwq8nDgM0px
-	HKUSfimupsXexlOe5MtA3jOla7v7sUiynsLdvX7XAysF1K3M/LyRCLkAi76dr3KCTdM=
-X-Gm-Gg: AY/fxX6rh3UqCKzgmSemVv5YrGoCEZPkYXr4rqffMv/PODRDyVIMFU3F6pIYiG11Y++
-	E6UYE8rN4vcZujx/hM9cmatnf8/M4XCiruvDe81oP3/026t1WrAkl6WT1PpgRYng1xRowXHYAnV
-	zjgcJC31mcoDoWiH4Tm9VG+q/nmB9jzWI0qVQj3X3KIloFQmciARsOjR9O9696WkU0p2Ir+yuik
-	U6DyNBzlaGXkends//oTK8ReBEnX0BRRUMHEYlWOatOm+77ZmHm3Uv8EAkT8ZKv60bDDJtRJfm6
-	CYuI8EXsGnobO3z36KufA6z9xSC90TI0SWxSEz4/775KlIOanP+xNeXZJBvb0+acqgnzYYlOlny
-	iLTY3ygFow0jCk9fDxRQ5H3l+a9oLbYZpsXYALf6fX1ZhsWRNDlU7N+SakZA1j4fcbgT2uNDoYw
-	U6dhMZCBIoA6NNsrOsqZkGOBlSwIKvy0E6FQ+SNURZ8LadnYjPLxnwD1soSmhFnupB
-X-Received: by 2002:a17:907:940d:b0:b87:2d0f:d42c with SMTP id a640c23a62f3a-b8796bf55e7mr207695866b.63.1768569448338;
-        Fri, 16 Jan 2026 05:17:28 -0800 (PST)
-Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795a350dbsm235507366b.69.2026.01.16.05.17.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 05:17:27 -0800 (PST)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 16 Jan 2026 14:17:24 +0100
-Subject: [PATCH 5/5] arm64: dts: qcom: milos: Add interconnects to camcc
+	s=arc-20240116; t=1768569752; c=relaxed/simple;
+	bh=2VEdYo29uWhDiLRP2fq9J98xnEkof/Pep3fKzqyIui4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=jqFILh6d6rDl/4SCg1dHHmPBEULUesJgn6vMVeC9xwnOuvB0ekf4AR1oFwzH4H6oDjaXJyOEmZ1ui8TiwBPSVb4jo7/3hf/uQaV06xw3GkCbZY1Q/+ABehqFnu+hiooRSoHA/lv2mDhLRRVhMoHqqV3eXrxl/t3bMM87hJszfq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MkQxmtjS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A21AC116C6;
+	Fri, 16 Jan 2026 13:22:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768569751;
+	bh=2VEdYo29uWhDiLRP2fq9J98xnEkof/Pep3fKzqyIui4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=MkQxmtjSLAsRu38Ok5ugheI+luIhbZtgYVTZxIS662au2cdG/G9XcEvn84fHnVa13
+	 B+2NL3xg0PZytmkATpKmzSIzsQwbXZjM6tvl5y5pStCLZq6SKH8sGKwe2uAz2cLSE1
+	 dS4EMm69bYvYHTTJqKnNVpD3aJLO4xiZC6VgNlk08Tgb0YSOViBXvak44NuqFr1zyO
+	 lojMSVY/y3gXI/Kczfm9+vkRvwFkepm4ZZGwFRUo+qsQ1rZIgcUdQ84s9LAnZ31lI5
+	 IYvyPZEMZ7vWirvpsGWy3zid0tyhnITI6wDeUiB6FcDwcUmTlX8ZD242S4o+6ayuLS
+	 L4euapTRhHURA==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, tudor.ambarus@linaro.org, 
+ pratyush@kernel.org, mwalle@kernel.org, miquel.raynal@bootlin.com, 
+ richard@nod.at, vigneshr@ti.com, lgirdwood@gmail.com, 
+ matthias.bgg@gmail.com, julien.massot@collabora.com, 
+ eugen.hristev@linaro.org, jiaxin.yu@mediatek.com, shane.chien@mediatek.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-mtd@lists.infradead.org, linux-sound@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ kernel@collabora.com
+In-Reply-To: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
+References: <20260115125624.73598-1-angelogioacchino.delregno@collabora.com>
+Subject: Re: (subset) [PATCH 0/4] MediaTek MT8192 dtbs_check fixes
+Message-Id: <176856974724.65310.2260409999915258318.b4-ty@kernel.org>
+Date: Fri, 16 Jan 2026 13:22:27 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,55 +64,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260116-milos-camcc-icc-v1-5-400b7fcd156a@fairphone.com>
-References: <20260116-milos-camcc-icc-v1-0-400b7fcd156a@fairphone.com>
-In-Reply-To: <20260116-milos-camcc-icc-v1-0-400b7fcd156a@fairphone.com>
-To: Georgi Djakov <djakov@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768569443; l=934;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=v3yWlx3GbotL3G9AhcSN50C5SpvFDf2A//QxTjb64Xs=;
- b=7wylF7yqR/1GoCG7yFRPMLqJokhikSOBv5u57rvVqHFkqjHgqmzQMvlpMhfx0Dl0hM+wLd8sL
- nNihUzL6AQiDwGvEwHERwtwD5doSABLP66k8esCiKpq1FwIUTJhh9H+
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+X-Mailer: b4 0.15-dev-47773
 
-The CAMSS_TOP_GDSC inside camcc requires an interconnect path to be
-enabled, otherwise the GDSC will be stuck on 'off' and can't be enabled.
+On Thu, 15 Jan 2026 13:56:20 +0100, AngeloGioacchino Del Regno wrote:
+> This series addresses most of the MediaTek MT8192 dtbs_check warnings
+> by adding a missing SPI NOR flash compatible string and fixing both
+> the audsys binding and devicetree node name.
+> 
+> AngeloGioacchino Del Regno (4):
+>   dt-bindings: mtd: jedec,spi-nor: Add Winbond W25Q(32/64/128/256)JWM
+>   ASoC: dt-bindings: mt8192-afe-pcm: Fix clocks and clock-names
+>   dt-bindings: arm: mediatek: audsys: Support mt8192-audsys variant
+>   arm64: dts: mediatek: mt8192: Rename mt8192-afe-pcm to
+>     audio-controller
+> 
+> [...]
 
-Add the interconnect path so that this requirement can be satisfied by
-the kernel.
+Applied to
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/milos.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
-index 0f69deabb60c..58b4c2966df1 100644
---- a/arch/arm64/boot/dts/qcom/milos.dtsi
-+++ b/arch/arm64/boot/dts/qcom/milos.dtsi
-@@ -1660,6 +1660,9 @@ camcc: clock-controller@adb0000 {
- 				 <&sleep_clk>,
- 				 <&gcc GCC_CAMERA_AHB_CLK>;
- 
-+			interconnects = <&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
-+					 &mmss_noc SLAVE_MNOC_HF_MEM_NOC QCOM_ICC_TAG_ALWAYS>;
-+
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
+Thanks!
 
--- 
-2.52.0
+[2/4] ASoC: dt-bindings: mt8192-afe-pcm: Fix clocks and clock-names
+      commit: 60e8451be1f7af4b51540f2cfd65c9c85af752e9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
