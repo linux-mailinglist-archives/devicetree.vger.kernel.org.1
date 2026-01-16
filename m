@@ -1,139 +1,201 @@
-Return-Path: <devicetree+bounces-256098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E2FAD31FE3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:41:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00177D31FD5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8C76330F49EC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:36:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E8AAB3053792
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C609276058;
-	Fri, 16 Jan 2026 13:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C8FA238D52;
+	Fri, 16 Jan 2026 13:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KyHedZvx"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="WKZ3eRka"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42891C8626;
-	Fri, 16 Jan 2026 13:36:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 493F8EACD;
+	Fri, 16 Jan 2026 13:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768570571; cv=none; b=VweRA/iJFrmMC/g90aprSzvOBhDFn+F0qla3/m3v3OQr0G3AHuvpjQTuuQSI/RSveGps2soDwD1E/u9L76IaxSgKP8aHYEA1yCbqO+2lcPpPRPPqSOH8DckpME+VvRLJcbugH0utGIeJPHlrcVL6nO1ArUuhcmW7KoCG87xI5mM=
+	t=1768570729; cv=none; b=IkiWdUDnbgBOvej5ZplZBLt+9ngKeF1MkUacY7l/GvF6ogqnKxqnAjBvRrO5oKaf97jo/r2/pv78GrPp3Qmp/IriK7okOXxKruaY1pmPYsw1G+2EeMhr4VrSmg+MKjJ76WczeEvdCm9H6tD/w4I8AqFnpko7pEVfUWE/xRNvIaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768570571; c=relaxed/simple;
-	bh=SqaE28L+BIfKar/T+pLOn5aZOKr5wXy2kDvgIFUSX7w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c/oaPxd7z36MnZGH2Z6IlraYvTBL0432iwv3lqr2CsnQP3OYasFxE8HjNOZ8VVk5d5mtLB1jMYKjyy9J83YgB5oAMwdOooUQMxcmC8wAsEQetcNLrPPpipdzov20YhpEu8i4J+5m0jDAStiqwIkKW/QlJ011GsdgSpXkBW88XKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KyHedZvx; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 2EA07C1F1FA;
-	Fri, 16 Jan 2026 13:35:40 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C8C7660732;
-	Fri, 16 Jan 2026 13:36:06 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E056710B68A96;
-	Fri, 16 Jan 2026 14:36:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768570566; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=3fdOsjcVVBmzDRNcI+ru+Uu3VzOKUdDXyPGaxdnDz10=;
-	b=KyHedZvx7rtmHe/cnnbNoKHaQS22Or4qHnCC4b4eQ0jNJH7x4QBldH0/UUPUXfMsNjhDTx
-	OGeVUTOd/P6x1mUovZLDDscxP5ZbVZSU5zLvOL5LXdM0LqdMBKJGhEylyJH+aCuGJWGjZK
-	w83tVr6JpRwvBD46qZ9Id7CPrlPRVC0EKBB4AtWpbNSbGZ3sobEatTH7RqgXUBd10ZBxES
-	IVI+zb0ctXXO25GxCG3rU8WOkDadzRtJnATmVFU9IngqF3f951IHjsGU5wyBH1ssBV+0jr
-	WmwS/kfIkpBkmWtEb3dJVsFsb4Cg/Mg/0vfQ3A3EMiR7GDRAYAnnieKir1k0xw==
-Date: Fri, 16 Jan 2026 14:36:00 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 10/77] tests: Add basic metadata tests
-Message-ID: <20260116143600.5aacf12b@bootlin.com>
-In-Reply-To: <aWg58Gfb1KnMvQoG@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-11-herve.codina@bootlin.com>
-	<aWg58Gfb1KnMvQoG@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768570729; c=relaxed/simple;
+	bh=2+1W6+CW0tWCh6axgpSWXv9LLDRUDSK+R7yWzX8qL4Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QCeNxmcC7/pE4H/2kn8tRD4ivHvILmHF1eX7enmGCGK9mZ+LgsDPNuFTqxdhXCMZ8UGmz9NC0kOKNk/0uQVWXoh8rLcOsuwVuhso8DxSo8pScMc+0DzWkXyS9WlirvUHGiOCrkaBkE615XbnENPtYLCdKPRJcmpnfLjHUJBZo6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=WKZ3eRka; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1768570725; x=1769175525; i=frank-w@public-files.de;
+	bh=nkxj4CnhfibyYIaplRq8z8HcxuXlDBpkzGct6lz15Eg=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Reply-To:Subject:
+	 To:Cc:References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=WKZ3eRka21miv4+FoPlXLrnVxlj7IZ8WsQwcMXH/2X6BvRUQPwqMIEGaZs/9eu5e
+	 hk6WkfQyxD2DuuaZ6W5YQ4llHtAh+9cnwyJ/SEf0v/mg7LDvZvK8zhts3TvDy+Iwx
+	 +gYp/qAGRmm8DzXGZvZu+rvHN2GBNHI6/2rspPJ1Yy0Ty0O80unm3z3hKLqNNj0Rm
+	 INMicBUKwLgpulxEoKO4BdhFXtZghSs/FBP1SxxPch2fmUGtG7W7BuC5jO6Ej4GRX
+	 r/VrKSEFvYZbHxbgDcLYQuDDuZ4OjmnOtE4UlV9pKsxEIKGXs2zGGrYWhjJ0x7mWJ
+	 0kO+aT4J8pmBr3OfrQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.0.21] ([80.245.79.4]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mof9P-1w9gvk1V5F-00in95; Fri, 16
+ Jan 2026 14:38:45 +0100
+Message-ID: <1665fa1f-67da-4688-89db-d864b5bb0509@public-files.de>
+Date: Fri, 16 Jan 2026 14:38:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Reply-To: frank-w@public-files.de
+Subject: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4pro: fix model string
+To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20251215074609.4100-1-linux@fw-web.de>
+Content-Language: en-US
+From: Frank Wunderlich <frank-w@public-files.de>
+In-Reply-To: <20251215074609.4100-1-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:diTDF+fdPJ8g2eQfP9/aS4XjFntW/VDmKb7YPaU06ywmi9yMjtA
+ Lh18+lF0rfQFK5HY+45hjHkjbq8P9gGyhOHe/KYlTyN+mzBMhRE8piBnaKIapd3dCSDaYBy
+ GNMWTK+dhyqoOxibw/FxGRyGe2Y73ZFvGVdicpzeG1snBtJo099mIlLMTIbkBrf3W+6URXL
+ kNoKkv73yIJNuvEo9u4Jg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:+c25jWzXG8A=;+BZykk5bSNPATxq/0BDAQ+6c1YM
+ fpeWbAK/zKFNddUsyS/dO8gWKirV2SThETLfVPH0HLh51hBdKwbPLYEVZi5Bk+9Nu5yMsAnso
+ OV9IiWiaJY17iNELCakF3x4bc22iTiv9q9hhtiUtQtrGSJSD81kyJOqGVIE95xmwJddnat55A
+ YoteBHUoWB1AccjB5AmQ6dNyVo70oB2wYRGuW2xA7jWNpchYHHf+J6kFCvnHkAau7owqLlTOH
+ eTlmnBlb4xqxMf6ufUHDAFEm3ZhNvnXUvA//CK5cIpx5lXUvF1vCvuYkzIG+o6tt2XQ6aIlNJ
+ b07LwrIhvO5QC9g6oPLLP96YB5Wu6vnY9gKTuOdnimULwsPLa0BGgjMQiEbrA9iSW7ei89tuQ
+ wEJBcREJlqgPLxR1qXiOpyH2ozVKtr82fdK80guk8RLwX+6HUQjXS38zMGbxPd2RMnC/+Hzy3
+ enoNsNzexZdLVgZwfEjbToyq5lzsWjtCLQK7rM+Cy9i5+G/cMJQ6NCVRSniwaqLAASWNTlmJw
+ RcB9wqFjTCwU/2ssgthZkBuSQGv+9mF5HmWahHBddB/FLWwCBu0DESeyxYHVQnsrj7pSeWPev
+ 9KewKGk4DDBd1JQVp8CwCD/odttbS4P2K2xRWGLKNpHXXMDCiMndq6KvNiEDTiuaGTqHV0TDq
+ ZuoPdafIG/r7In1AJbXqQnzRszzinQyl3yAB1MxtpUoTBmyqf9Toa0Rg/5ghstuaE4NQiHw7R
+ lW7YsezYEUEYRvJMCjTV0noxb4V4Oh5R4u4tIcgX8xcqseJUqTgABLJ7ubZ3lGWZLYaVbFHCK
+ 6C88gtbLOu5E632P/lGne32n7rVPqhl2zvf56qOG7aEIcDLEFOF1E9/aW5mbr7pJ/JWObJNfk
+ 2CrSiw6yuEG7XLF4LAfaOr39XyoxVevpmaU9upYi4DVtKC1D8weVGo/GYFUZayWbzOWrDlQ93
+ 190pWMS4QY26tsYdyZ0wVSeVOUL1YD/I37iUvgKyLF9PIK5QcmNv1urb5jT4eSLsCTiKjNV7g
+ 2du10Qr6os4XxqeeRILeNZ6HSl7AnNyGWNG2a63TzzAgaqY63C4ozjfAgXFMhtiSV7XoMKmId
+ R8kHmo+IyRQ2lwC3zt4VS0Jdbp5l0hwBEtTxJRyObsVboF51Gci3XmMNA8k4AcZL+7H2gSEVI
+ glFW284blH7KTVKPV0HmXzlTF/bG0RwzabffRfOxGEV7N+yoJvAd5kp+JHnykoRIBzaIUiiXh
+ CWSuMeUoNtEwCfwIAvBVEcf88aT2D0f/S+syydjZ7iLAT3YpnDTqX2E/GEnZiQwjGigpGBupL
+ BKjXKpwqDHPS5UYrbeqX9M/hB+bOaN9oTYGO13K+Zkj1d9T+xCd2aRBwRGQyBRuu9LWTTx4ur
+ B3fs/AoVrNxjwrG6XVttLOq/9MO158AB2NeBsls5BRxZhIj+guo+tKd0udAT1/0k7hg6BqUjx
+ juq40P65Koza3/DeRHHEJC5U/NIx2Yos8ZaJ6kTsAqlJl47Q1s0o3TDgx9VArxZGFr0KnhkRR
+ GB8JBcBs1lx53wg1+lwYo1fQ+VKCtCOpV9cQPq8AllA389L/eqhaD+4DrvVw0q4hRUO/B6B9j
+ jtAFHWsRj/byQwZC9JV7qSfVdcEmu+V+A/l4eJulfVN2WkBpfgDwTGwGdnhEusA6WI1ferehB
+ +aeZfsfwRESyoqvHcHob2/6lo/MqKPOLa30CR2nAHeXijPBpGAu0FFDOMp0HzydihfJeUwvxr
+ p6PzCtyd3/qwyngX7GTdTSS4VWNqmg/lWlyglUJlyY4HH4EKZ5Q/4+sXkSBr37ADobcvd9dlp
+ vh0gsiYZ1V1DZlzExeNLmwdCI8Ob1XCxx4fieLJEvTu6/S9+dN6m8NLRbNKGPwSoJQ2HhVos+
+ P3fxHSwP0yPIZtC3HFewwESFL+fVFWbYp4WjYcifWmpLshI6cJkJOmPZIfjxQynAUwGRVQG69
+ yl6e21A2+sAH7eNDGYV+iEn5vkSR2NKWLR7bDW3GSxUv1ItctjybTlMMoKVPsjZIsyo1ats2N
+ DuAVjP93JXfKB6UzMSEi9QV2jTS+qT8Sfm7ajC63BoFMCFZ9NvFwa0Si7YhLN8WNSU8HxzVnT
+ aZ0Af6akRqqyW18lAI82+XrA86y8Yu9B1SYd/e9QhydxpTEGFcx8Dd66f4mgBd4lZNUQNZmVT
+ XhgEMY+HewkNvP701hJU3bNc6naMkSBqS/hyGBCoWwKtiT1zh/XaosvZ/GBPnqg5jvA7CxVTB
+ DPa/9koCzwQsuPUJpzE4no/3LKj9JV0R0Vj+ytjbgCZ8R1yUg4gJG6hJ+CeT3dSJJHYP3nZ9Q
+ AeS/X0qKIc6fIeYF000onYAeQBsUrByK7FB1a8xU1EQzW+6r307y8M65xSv8C4086jdEOHseF
+ vvXiHDNQV+h9+X9bkiMsj2O08bvLGhJiCRMY6ckiaLjc3nJaLXLLTxCsztlzmoqZaD7qxiPZR
+ GD6bPUhyl81BfjXd640qZOPYXycXfafiytzaBdBOob3Svxs/rpFf4812ZQYz6NeWEymqqV+5R
+ 5wLLgJR1XrSJpyhgDKqiM24er8Y4Iq+OnO7coL+czXGY4Ad3+oiXhcRzBOIizmBuXieRpiOux
+ tyGWgWxouRUefIQOAgpdQOuWP5XCQdb1oyAEj21PGGiaR4JUyDPojvJc8kCX/nY/5pU/l1MQt
+ y9cdibX6QvP1S1TdS0+V7gfuG3eHH74wUvqumIBXX4j2J4WY8D1BHWmW0+YFXx/cClmbs912x
+ +lo47MzsiV5DlRPMsEbY4hIOx3KpSV301vjU06+nJhQaq7s0ItXhzZgPH1ambyWYJ+Z/gf2bG
+ YWnHn/IKViSsqBW+ppZrmp4R6O/UJ6gpz2V9ASOFeRaVJO6ecHk/5nmqJPkEt3RPjeFGpiBeC
+ lCoJVrQMLvHDbNEi3LI2tUJlJLnk5YhnQ2vfABEOkt4EruVoXN/OzxpC6HTbX+yfXB1ewf7Vf
+ LwH4kOczdXeSqvdB0zu5OHcYquGIYTQPpMZfAsOrUv+TVnWl88uInF1O705xQ2ZP9hpf3KETc
+ Jsmk9eBzUM3LmwJMhK6TlKzjH6fC+iyKyAH+EAsB7+j/udLFaaoFsoPWotCb9NJ5yOqXX1wI6
+ 5+ljm0YQqC41fEocYhU6VVb24DRojnR0a/2UWqoqOdEoDksW70YKcMIFEt2+mggPlt3eYlufu
+ 7O3GcHmz7FnpqO/VigSCn4r1t+S+tv+yS1FY84E2vnC48vSNHflQwWKmvMRkwzn0uCaUGtt0L
+ YkxYSawWQ4k4AuvbGO0kbVhohknFncsbJ9ruTrqa4Fp8Q10oKdSd6jL3vjPgp/B4FiZgFQdke
+ LjbFnK0cYvK/5a363JAxPEG2ScBSrG9lwvArg6mAA6EDI/4oqjoIN2q5kS67OGWhxacpEED6N
+ Zr3y7t9M3U1cOIlxNF7FKoRYUtpb1pFQFe+WZALro3fbt+P/JGd5fL9FXbnxpcmUNJREtPnwu
+ tmRT+0zPsLTfhYjcbQx3wAroBpj0t3+rF1Ad5cPgcbSJ2ROk0IibNUOEWbAFt4eLDJKDGwN8R
+ nd/XnpgisGWrcSYBsBUc5qu550r78bEBTxE4OrCpdfNC7e3rN6Qi/qb+c3eDzZcFWJEseoCm0
+ wTNXWXl5VcPrRq4HFF0Gtoaaq7CmAGL/PCjlHYxIBMX+lfloTNLpebICVpeLk2iD9vC1/7cGf
+ TqntBDN7Y8WWOcBC47aCqPXK4IHu1rUH3PyBvJC9UwOAPnfwLfaqmJDVtLop0Ny4QtyPpG+qF
+ j7+1qaSFuRdujwlnDatiPfpqWygcKiEfGowZg+jNAUbxQHombmWyY63JjdsSSq2KVtnBZNwqg
+ 0YxYHBdPP4+02o6/omBtR2SfXuADw66Bnp5Xw5mwE+e9hUgisVpHe9/GqrFaa+kQg0YBq8w34
+ rHxS9MM1r5dZwBjWNPfqaMfmZYOeTQ7qqOxc46tJhlKutVGmzrsAOw5C3UNTzpx0oj+gVmV6r
+ ebTzilpI4EFVWOX6j5+JIEcBZThl4J23uTsbZPr+5ZKsM3R93UsrxCluLmuNWYRqnmvyeOy0A
+ RVwX/amComvZAuYfJN3jwhvG7IJDVRhQqmTBqID+d7zJlve4y2PImXzHJ/wFy2uKtZfFfcWxv
+ lrqA87NM9wpZeomw8LiksMouu4r9SC41tEJHE7WGF8eKAUOpigIBXov9fydL7JibkuCF9ex9e
+ 14Br6cgoz8PdJPuly5za1LBCCAmYA/fOSGTK0ixp5i3r9CuN58fxbSM30SOPRGUYz4jq5XrbO
+ kjiOWpsiWCgdmXLdVj1MpP5I6qh67QLMN8Nc3gAgejXQ9O+w3ZfAVVQ/QVa1tysVC/JUU9dwH
+ 8PdUT9hjoyYgeRpzH//2FryuQ/upMiVzBTeKNF43/PtC4jNw9F6R2lIhKJesiJgPTxKlkNlGk
+ hFbf6fwLxiIrobGE97VJRkgtV8nLhFx5VVI592fXiGleasdLpVo5VOilQfWlKZp80nmIn44AY
+ y4cwXFBv2Kc5QhWZvkjjvP6ohNyc2SbTWiSHGZRV/sEB1VGUv1cixMrsKQ4RLikAP/sgCVu57
+ +m7IZ22/A4EIS169caSKfqI2vH/VvVLYtKihdFzvLaL7MIGjkjdpEv2KPUU7VUURgBzNO1LED
+ 32aycrUzeN7AFpWhH/JffRHIUu+fd1maM7YA0qh4vw+7+NpL4scH9nAop3mwWScv7bfLwZ+Gk
+ g3eiGy2jShsgNXLpFUuIR4UEZW7sf6NC/XiuXByORZG9zJzjdy///aom1Guk2DHNQlqvmDmcI
+ Fz6NnPHZXjM5YMMFAti67wbF806BHiNOE7h3tZ78VOpbH4a40uLAqzuU7WjR2vTMAlS1jHIM9
+ EQiTxpLe4sNlYyeGyvE+MuwMkTod7LnXu+UyDgiRAah4+cfgKf+0dIimCKHq8QiN5g9y2HFJ/
+ yChufmJrW5dvAMGhHEz57MZjX3O4ZlKg8ugNRkhqnfnPLFHqEr8SkYR8yYi5Fck9rlosuSpxs
+ l30691ABBieRyjphYRu8AEzl1UyVdQFHwaLrXvooIqEs8pzts0rgrp+MRb7ugCA8GgOYJn0hi
+ tnuBDzWZ5/bOoY+kK+b9vJdlGADlzKC/mQxk9BTAK2omaLIPee32A9dwH1T19E+TEtD6ck8IT
+ d8VmW/f3p9jVk97td70Qtc6YkWnKRLWEtkgPZL8bCx18xdjPLFTDRFEO5FN1R6/e+D4h3nrVf
+ p2duG1IbSJrayhWUNGopxRLg3GfgHcY66NQJBWUzJaT2tZIp6vlXtL5SsmPXeu5A3KjcgEAI=
 
-On Thu, 15 Jan 2026 11:50:56 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
+Hi,
 
-> On Mon, Jan 12, 2026 at 03:19:00PM +0100, Herve Codina wrote:
-> > This first test is related to local phandle references (FDT_REF_LOCAL
-> > dtb tag).
-> > 
-> > The test pattern used is
-> >   - Generate a dts (xxx.dts.dts) from an input dts
-> >   - Check this generated dts against expected contents
-> >   - Generate a dtb (xxx.dtb) from the same input dts
-> >   - Check this generated dtb against expected contents
-> >   - Generate a dts (xxx.dtb.dts) from the generated dtb
-> >   - Check this generated dts against expected contents
-> >   - Generate a dtb (xxx.dtb.dts.dtb) from the generated dts
-> >   - Check this generated dtb, expect the same contents as for xxx.dtb
-> > 
-> > Even if only one meta-data feature is currently tested in this tests
-> > introduction, use a loop in order to ease future addition consisting in
-> > adding new input dts as soon as new meta-data feature are supported.  
-> 
-> As a rule of tumb, I prefer tests to be introduced in the same patch
-> that introduces the feature tested.  Usually, I don't care that much,
-> but in a giant series like this, it would really help review (the
-> tests help to document the feature being added without switching
-> between patches).
+just a gentle ping
 
-Hum ok but it is worth noting that a feature needs several patches to be
-fully supported.
+regards Frank
 
-In order to ease the review (maybe I was wrong), I chose to have distinct
-patches for modification related to new dts keywords and for modification
-related to new dtb tag and tried to have patches as small as possible.
+Am 15.12.25 um 08:46 schrieb Frank Wunderlich:
+> From: Frank Wunderlich <frank-w@public-files.de>
+>
+> Fix incorrect model string in Devicetree for BPI-R4-Pro.
+>
+> Fixes: f397471a6a8c ("arm64: dts: mediatek: mt7988: Add devicetree for B=
+ananaPi R4 Pro")
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts | 2 +-
+>   arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e=
+.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+> index c7ea6e88c4f4..621d01e3cd89 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+> @@ -9,7 +9,7 @@
+>   #include "mt7988a-bananapi-bpi-r4-pro.dtsi"
+>  =20
+>   / {
+> -	model =3D "Bananapi BPI-R4";
+> +	model =3D "Bananapi BPI-R4 Pro 4E";
+>   	compatible =3D "bananapi,bpi-r4-pro-4e",
+>   		     "bananapi,bpi-r4-pro",
+>   		     "mediatek,mt7988a";
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x=
+.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+> index c9a0e69e9dd5..bb15bfa5e6ae 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+> @@ -9,7 +9,7 @@
+>   #include "mt7988a-bananapi-bpi-r4-pro.dtsi"
+>  =20
+>   / {
+> -	model =3D "Bananapi BPI-R4";
+> +	model =3D "Bananapi BPI-R4 Pro 8X";
+>   	compatible =3D "bananapi,bpi-r4-pro-8x",
+>   		     "bananapi,bpi-r4-pro",
+>   		     "mediatek,mt7988a";
 
-The last patch of a new feature was a patch adding test.
-
-I am open to remove patches that just add tests. In that case tests will be
-added in the last patch related to a new feature. You still need to switch
-between patches in that case.
-
-Further more, during iteration, the last patch of a new feature could be
-modified just because the test part is present in this patch even if other
-part of the patch itself is not impacted.
-
-I mean:
-  - patch 1: related to dts keyword
-  - patch 2: related to dtb + test
-
-Update patch 1 will imply an update to patch 2.
-I am not sure that this will ease the review.
-
-
-To avoid that, I can merge all patches related to feature into only one
-patch. This patch can be quite huge and I am not sure that it will be easy
-to review it.
-
-Once again, I am open to merging patches. Let me know what do you prefer
-in terms of patch granularity.
-
-Best regards,
-Hervé
 
