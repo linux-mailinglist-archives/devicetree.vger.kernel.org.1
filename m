@@ -1,547 +1,190 @@
-Return-Path: <devicetree+bounces-255871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3C72D2C34D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 06:55:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26B3BD2C39C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 06:57:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3C182300B88B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:55:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 609DA3032962
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B852C346A13;
-	Fri, 16 Jan 2026 05:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA77346A13;
+	Fri, 16 Jan 2026 05:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vfzck4nd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q9iCOQm8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B86342530
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE9933A03A;
+	Fri, 16 Jan 2026 05:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768542929; cv=none; b=tBz6nDI0TSE07PJpiuTThB+kE/bKm5ZyX0aM3cep3CL/rJKPrpe+Bc3xwVufuv2l7bnjLZTOCqM3d+A/2zurLxrsqyspI+twfoC/maC+nsixUFPedp1TFHdQ1a1WWnRDQEW5L/R2ot+yc0jOXavrl9iMNlj2DFnpsqYAeYneCHM=
+	t=1768543039; cv=none; b=PWZVvj5lEAlEUsaMOnChJ6pxXOWuuHG+b3m70e4vXAKn5qNR+IWACRwptJjz0LKAIkZd0xskmr5Cbuk3WUrqyT1Y3WoqMqrMQPNXVdkyulaMbT1ZO4q1CZJcbUllFFqigL14Wi4zU0b/o/9tCbvu23A0IzZtbeDYPHqcPwNrhqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768542929; c=relaxed/simple;
-	bh=jHo02rn0rPiv+92FrPcW46TxeasL/oSbRgum0sOukSg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gXJuCdMYyeb0FD1hgPnRSwccD1OySqV1pGKEroffmkdmc3ky+5NDJV9O0rs9O/SwuJFBzf5CVUZIDIoNQgwHBP0YBSj6mrr+g0iGjKFVRXR0PrVyA9ZL1Ze/HmmM+Bpk3xWiAh+xaj4coMJywAGvmm0v2nyPOCBRV/Nex8PPtmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vfzck4nd; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a0d06ffa2aso11451385ad.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 21:55:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768542927; x=1769147727; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UwxbboL3a+6mLPyu4g4mGW9LBE4j/iCmSSiNFLy9KRs=;
-        b=Vfzck4ndCade19KbllBb0J5zvfM2j4I+hc7GObhq3Oa52XyEs9EfUqdRDxS0Ll4pSy
-         0dwQC/PL9vi3568cUTquTfwMGzzSxIdsfnUNDWbrtdC8Ny/Hpb6S7wEYVoO5c0+kEMFi
-         wWRXGuSkaqvvglA6q8Vc6QZKmdOJfrEoQuIGWmchgURecC4ubptQhtJU7xznUrRLC8TM
-         VqVtlLm/SJZJSMIFnKq6c8sOT6Xl1yvRCrpO1IqOtsn+sOpsbKb6OZvFZs0e2WbQYd7N
-         Qr3qW7LsKHmNn9Ra8BQzsBiYBrjJLnDUK0o4dQM5HKNARklzOlrQr+h0EP624z+JKdvp
-         DVhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768542927; x=1769147727;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UwxbboL3a+6mLPyu4g4mGW9LBE4j/iCmSSiNFLy9KRs=;
-        b=FtfyvfQ/BHp22B93T6SX4llACKAc/0ifMaev5V+6JGhzpAjGhexVnP+iaEFh2QBVv+
-         6Mt0zpt8RE8T5ckgp7xW4f4p6YAV40RlKiibqbKFaxLNsAuJihwuhxEskESmFInA/4FW
-         MVDT+NfLf3J+VIaCe2Ir+K7I3fzRZhA3zS10Rfm5+SmM7Ls6gf8Pig1IMTGbddPAA/5E
-         duwz4BDb3socHGXyq/RqsdDQDDpAhz4WNiJMUhdUoq+A0pFHR9yYsa8It+oQw3D9WRQk
-         tYqZl2WOADil/sK+dw5ActVd9SR4cSmPfp+rGR/3ueK9DU9ZOUgkwciq2ovff3FIp83d
-         aeOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXSTusQWG38YKtBDjSZ5eHJPbBJKMYtAIyPRQJYFlp7xwdPL59Q6yd99artl29+FjmVO9uTiJwUGT90@vger.kernel.org
-X-Gm-Message-State: AOJu0YxExeLph29t+lCLOQGLEzXYOo0EWd2lan+3A7mbaEtTp7HKVzFD
-	k3pMIXec4QtDLp0zFJ6CwZhkbnStZVP66qSjzTK0zlNxURTjtsYUDhJx
-X-Gm-Gg: AY/fxX7PJcwd0S8FTqR4BMQXBdKZlfenxZebsgPputlIsfN7oIJuiDORAVF+tyYVpEK
-	fKLgXcH/oESiZqEE0SN+qrTXXQ0fQRSFl+13MH7Q+2a+gAdJH2oK0bX/dO4YaBtBBAQJzBCgeq4
-	qhQHVJTDkDHevBizD5eWxtCiiLefllqjP5AiJn/DJjzgRb98Kj7bOC5ORFzHxZZMnyY721gfxMG
-	ZiiOIesqPQDYwa6zHMCqSskMVtqI7QSBHyj3Mo92kjkztdr07ne3zFekqxURqIYkBVVRhDrC/ZG
-	IJOOT+jAESokDNe0YQXBT/EEfxJqBCU81eDq8EXoc5HVBKc/qF0tQegtW6vBSZlx97WwSDq5sVd
-	E0TwRSBUxZ/uDojTl8UvtC8OOzi0vANuCDFsmsdGiJNELyMv8TE8BPdQdQst69CQ2liZBlldz0Q
-	/V9CF7iDPGDZ9fn/pF4LCxczPbHIDyL+PbkA==
-X-Received: by 2002:a17:903:41c7:b0:295:9e4e:4092 with SMTP id d9443c01a7336-2a7177e69demr18871925ad.56.1768542927178;
-        Thu, 15 Jan 2026 21:55:27 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.253.21])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190eeefasm9855255ad.43.2026.01.15.21.55.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Jan 2026 21:55:26 -0800 (PST)
-Message-ID: <128a5f86-dd3f-4e5e-a55f-3c8b5993779b@gmail.com>
-Date: Fri, 16 Jan 2026 11:25:50 +0530
+	s=arc-20240116; t=1768543039; c=relaxed/simple;
+	bh=tdTm5h85kuImW7HEYxS2VNH5d0DM2pD9181VKz7CDts=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=nN+zva9tzB6yQPnk8zYz2v2T19Z0scaCRme3wAJIQFGSDdRgsddQpyQ6ho8uVrqixE76XqL/Jt16TpqQCZMuVEdpen5fwYnlJ8k7OJ7kfONFVfkLAMUc4ngk/4sEqJBm7quJFsIWl7kFR2hba3vEFZptP8hCKryjNCEvdfWWjBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q9iCOQm8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23E71C19421;
+	Fri, 16 Jan 2026 05:57:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768543039;
+	bh=tdTm5h85kuImW7HEYxS2VNH5d0DM2pD9181VKz7CDts=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Q9iCOQm8XmgUiV79NCUN1zfxltsn07pOfqjsAL11YC1LH8S2X9UkrsQhN5huSchYa
+	 zxlFiLJK+fwJBqOeJH+a2YPxS/MHH2SJu15jII8adU7n7l9Re/d/JZGciBX5sP6I4J
+	 t9i1/LlIXFZI2zt+o9Z1iiXZkm/xnHg/kNVxvfn5giW0Oodeswb/HjWcXZmB4MXwqj
+	 duMhOswA5vx9p41nvZBpopzNkHLPvRpTk6OTvPwYy7JdzGl/fM5FkGv19GBo1+BFkv
+	 g208BrrN27iLpSlH19pVJ0NNZyU5EjnySyc9Awc/bGeCpUj/VJUUW7JxEZHlE8fUJA
+	 llp1Z9OM/nZFQ==
+From: William Breathitt Gray <wbg@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: William Breathitt Gray <wbg@kernel.org>,
+	Frank.li@nxp.com,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	s32@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] counter: Add STM based counter
+Date: Fri, 16 Jan 2026 14:57:06 +0900
+Message-ID: <20260116055708.428641-1-wbg@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260113165220.1599038-4-daniel.lezcano@linaro.org>
+References: <20260113165220.1599038-4-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 3/3] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Jie Gan <jie.gan@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260114100043.1310164-1-tessolveupstream@gmail.com>
- <20260114100043.1310164-4-tessolveupstream@gmail.com>
- <5102252a-0f50-4ee9-97b4-a90859a33b2b@oss.qualcomm.com>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <5102252a-0f50-4ee9-97b4-a90859a33b2b@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5000; i=wbg@kernel.org; h=from:subject; bh=tdTm5h85kuImW7HEYxS2VNH5d0DM2pD9181VKz7CDts=; b=owGbwMvMwCW21SPs1D4hZW3G02pJDJmZl95Kf5xlUhWq6Wa/29DwtGlx5aN5FyYvMD70y6QrN kLiyD3jjlIWBjEuBlkxRZZe87N3H1xS1fjxYv42mDmsTCBDGLg4BWAimpYM/9S2fdpd6nVvXtvy wqvHVzCozPtTKO7Z+fXBdp+2bbpzUg4wMjztuFXZK7tJY5WJ9f6qbRzX9pzt52E031I761Rk16E 3XxkA
+X-Developer-Key: i=wbg@kernel.org; a=openpgp; fpr=8D37CDDDE0D22528F8E89FB6B54856CABE12232B
 Content-Transfer-Encoding: 8bit
 
+On Tue, Jan 13, 2026 at 05:52:20PM +0100, Daniel Lezcano wrote:
+> The NXP S32G2 automotive platform integrates four Cortex-A53 cores and
+> three Cortex-M7 cores, along with a large number of timers and
+> counters. These hardware blocks can be used as clocksources or
+> clockevents, or as timestamp counters shared across the various
+> subsystems running alongside the Linux kernel, such as firmware
+> components. Their actual usage depends on the overall platform
+> software design.
+> 
+> In a Linux-based system, the kernel controls the counter, which is a
+> read-only shared resource for the other subsystems. One of its primary
+> purposes is to act as a common timestamp source for messages or
+> traces, allowing correlation of events occurring in different
+> operating system contexts.
+> 
+> These changes introduce a basic counter driver that can start, stop,
+> and reset the counter. It also handles overflow accounting and
+> configures the prescaler value.
+> 
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
+Hi Daniel,
 
-On 15-01-2026 07:54, Jie Gan wrote:
-> 
-> 
-> On 1/14/2026 6:00 PM, Sudarshan Shetty wrote:
->> Add the device tree for the QCS615-based Talos EVK platform. The
->> platform is composed of a System-on-Module following the SMARC
->> standard, and a Carrier Board.
->>
->> The Carrier Board supports several display configurations, HDMI and
->> LVDS. Both configurations use the same base hardware, with the display
->> selection controlled by a DIP switch.
->>
->> Use a DTBO file, talos-evk-lvds-auo,g133han01.dtso, which defines an
->> overlay that disables HDMI and adds LVDS. The DTs file talos-evk
->> can describe the HDMI display configurations.
->>
->> The initial device tree includes support for:
->> - CPU and memory
->> - UART
->> - GPIOs
->> - Regulators
->> - PMIC
->> - Early console
->> - AT24MAC602 EEPROM
->> - MCP2515 SPI to CAN
->> - ADV7535 DSI-to-HDMI bridge
->> - DisplayPort interface
->> - SN65DSI84ZXHR DSI-to-LVDS bridge
->> - Wi-Fi/BT
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile             |   4 +
->>   .../qcom/talos-evk-lvds-auo,g133han01.dtso    | 131 ++++
->>   arch/arm64/boot/dts/qcom/talos-evk-som.dtsi   | 616 ++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/talos-evk.dts        | 139 ++++
->>   4 files changed, 890 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
->>   create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
->>   create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 76cf0115a00a..289b651ef0c5 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -324,6 +324,10 @@ dtb-$(CONFIG_ARCH_QCOM)    += sm8650-mtp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8650-qrd.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8750-mtp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8750-qrd.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)    += talos-evk.dtb
->> +talos-evk-lvds-auo,g133han01-dtbs    := \
->> +    talos-evk.dtb talos-evk-lvds-auo,g133han01.dtbo
->> +dtb-$(CONFIG_ARCH_QCOM)    += talos-evk-lvds-auo,g133han01.dtb
->>   x1e001de-devkit-el2-dtbs    := x1e001de-devkit.dtb x1-el2.dtbo
->>   dtb-$(CONFIG_ARCH_QCOM)    += x1e001de-devkit.dtb x1e001de-devkit-el2.dtb
->>   x1e78100-lenovo-thinkpad-t14s-el2-dtbs    := x1e78100-lenovo-thinkpad-t14s.dtb x1-el2.dtbo
->> diff --git a/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
->> new file mode 100644
->> index 000000000000..884df2d4f4e1
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
->> @@ -0,0 +1,131 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->> + */
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +
->> +&{/} {
->> +    backlight: backlight {
->> +        compatible = "gpio-backlight";
->> +        gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>,
->> +            <&tlmm 115 GPIO_ACTIVE_HIGH>;
->> +        default-on;
->> +    };
->> +
->> +    panel-lvds {
->> +        compatible = "auo,g133han01";
->> +        power-supply = <&vreg_v3p3>;
->> +
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            /* LVDS A (Odd pixels) */
->> +            port@0 {
->> +                reg = <0>;
->> +                dual-lvds-odd-pixels;
->> +
->> +                lvds_panel_out_a: endpoint {
->> +                    remote-endpoint = <&sn65dsi84_out_a>;
->> +                };
->> +            };
->> +
->> +            /* LVDS B (Even pixels) */
->> +            port@1 {
->> +                reg = <1>;
->> +                dual-lvds-even-pixels;
->> +
->> +                lvds_panel_out_b: endpoint {
->> +                    remote-endpoint = <&sn65dsi84_out_b>;
->> +                };
->> +            };
->> +        };
->> +    };
->> +
->> +    vreg_v3p3: regulator-v3p3 {
->> +        compatible = "regulator-fixed";
->> +        regulator-name = "vdd-3v3";
->> +        regulator-min-microvolt = <3300000>;
->> +        regulator-max-microvolt = <3300000>;
->> +    };
->> +};
->> +
->> +&hdmi_connector {
->> +    status = "disabled";
->> +};
->> +
->> +&i2c1 {
->> +    clock-frequency = <400000>;
->> +
->> +    status = "okay";
->> +
->> +    hdmi_bridge: bridge@3d {
->> +        status = "disabled";
->> +    };
->> +
->> +    lvds_bridge: bridge@2c {
->> +        compatible = "ti,sn65dsi84";
->> +        reg = <0x2c>;
->> +        enable-gpios = <&tlmm 42 GPIO_ACTIVE_HIGH>;
->> +
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            port@0 {
->> +                reg = <0>;
->> +
->> +                sn65dsi84_in: endpoint {
->> +                    data-lanes = <1 2 3 4>;
->> +                    remote-endpoint = <&mdss_dsi0_out>;
->> +                };
->> +            };
->> +
->> +            port@2 {
->> +                reg = <2>;
->> +
->> +                sn65dsi84_out_a: endpoint {
->> +                    data-lanes = <1 2 3 4>;
->> +                    remote-endpoint = <&lvds_panel_out_a>;
->> +                };
->> +            };
->> +
->> +            port@3 {
->> +                reg = <3>;
->> +
->> +                sn65dsi84_out_b: endpoint {
->> +                    data-lanes = <1 2 3 4>;
->> +                    remote-endpoint = <&lvds_panel_out_b>;
->> +                };
->> +            };
->> +        };
->> +    };
->> +};
->> +
->> +&mdss_dsi0 {
->> +    vdda-supply = <&vreg_l11a>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&mdss_dsi0_out {
->> +    remote-endpoint = <&sn65dsi84_in>;
->> +    data-lanes = <0 1 2 3>;
->> +};
->> +
->> +&tlmm {
->> +    lcd_bklt_en: lcd-bklt-en-state {
->> +        pins = "gpio115";
->> +        function = "gpio";
->> +        bias-disable;
->> +    };
->> +
->> +    lcd_bklt_pwm: lcd-bklt-pwm-state {
->> +        pins = "gpio59";
->> +        function = "gpio";
->> +        bias-disable;
->> +    };
->> +};
->> diff --git a/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi b/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
->> new file mode 100644
->> index 000000000000..95ed335bcb08
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
->> @@ -0,0 +1,616 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->> + */
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->> +#include "talos.dtsi"
->> +#include "pm8150.dtsi"
-> 
-> <...>
-> 
->> +
->> +&usb_1 {
->> +    status = "okay";
->> +};
->> +
->> +&usb_1_dwc3 {
->> +    dr_mode = "host";
->> +};
->> +
->> +&usb_hsphy_1 {
->> +    vdd-supply = <&vreg_l5a>;
->> +    vdda-pll-supply = <&vreg_l12a>;
->> +    vdda-phy-dpdm-supply = <&vreg_l13a>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&usb_2 {
->> +    status = "okay";
->> +};
->> +
->> +&usb_2_dwc3 {
->> +    dr_mode = "host";
->> +};
-> 
-> Both usb devices have been configured to host mode, do we need adb?
-> The adb only work with usb peripheral mode.
-> 
+A few of the features in this driver are implemented using somewhat of
+anti-patterns in the Generic Counter paradigm. In particular, I believe
+the overflow and accumulation features would be best implemented using
+the Counter events and watches idioms rather than in the Counter
+attributes. I'll explain further inline below.
 
-This topic was discussed previously, and the fix was implemented 
-based on that discussion.
-For reference, I’m sharing the earlier communication in the 
-links below.
+> +static void nxp_stm_cnt_cfg_overflow(struct nxp_stm_cnt *stm_cnt)
+> +{
+> +	/*
+> +	 * The STM does not have a dedicated interrupt when the
+> +	 * counter wraps. We need to use the comparator to check if it
+> +	 * wrapped or not.
+> +	 */
+> +	writel(0, STM_CMP0(stm_cnt->base));
+> +}
 
-https://lore.kernel.org/all/qq4aak33bn3mqxd2edu6zgkkshby63mmitg7zqkly2rj4c2lh7@4s7sndb7e2jr/T/#meaa464a4e6992b36b5d8d41ddc691ee4ea36b1ce
+So to implement overflows, you're currently setting up a compare against
+0 to fire off interrupts.
 
-https://lore.kernel.org/all/20251014120223.1914790-1-tessolveupstream@gmail.com/T/#t
+The problem, besides the added complexity in your driver, is that users
+now lose control over the comparator for other threshold checks. A
+better approach is to define a COUNTER_COMP_COMPARE() attribute for this
+comparator which users can set to the value they desire, and push
+COUNTER_EVENT_THRESHOLD on the interrupts. Userspace can then watch for
+these COUNTER_EVENT_THRESHOLD events and use them to detect overflows,
+or for any other general purpose now that they can control the
+particular threshold value.
 
-> Thanks,
-> Jie
-> 
->> +
->> +&usb_hsphy_2 {
->> +    vdd-supply = <&vreg_l5a>;
->> +    vdda-pll-supply = <&vreg_l12a>;
->> +    vdda-phy-dpdm-supply = <&vreg_l13a>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&usb_qmpphy {
->> +    vdda-phy-supply = <&vreg_l5a>;
->> +    vdda-pll-supply = <&vreg_l12a>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&usb_qmpphy_2 {
->> +    vdda-phy-supply = <&vreg_l11a>;
->> +    vdda-pll-supply = <&vreg_l5a>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&ufs_mem_hc {
->> +    reset-gpios = <&tlmm 123 GPIO_ACTIVE_LOW>;
->> +    vcc-supply = <&vreg_l17a>;
->> +    vcc-max-microamp = <600000>;
->> +    vccq2-supply = <&vreg_s4a>;
->> +    vccq2-max-microamp = <600000>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&ufs_mem_phy {
->> +    vdda-phy-supply = <&vreg_l5a>;
->> +    vdda-pll-supply = <&vreg_l12a>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&venus {
->> +    status = "okay";
->> +};
->> diff --git a/arch/arm64/boot/dts/qcom/talos-evk.dts b/arch/arm64/boot/dts/qcom/talos-evk.dts
->> new file mode 100644
->> index 000000000000..af100e22beee
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/talos-evk.dts
->> @@ -0,0 +1,139 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->> + */
->> +/dts-v1/;
->> +
->> +#include "talos-evk-som.dtsi"
->> +
->> +/ {
->> +    model = "Qualcomm QCS615 IQ 615 EVK";
->> +    compatible = "qcom,talos-evk", "qcom,qcs615", "qcom,sm6150";
->> +    chassis-type = "embedded";
->> +
->> +    aliases {
->> +        mmc1 = &sdhc_2;
->> +    };
->> +
->> +    dp0-connector {
->> +        compatible = "dp-connector";
->> +        label = "DP0";
->> +        type = "full-size";
->> +
->> +        hpd-gpios = <&tlmm 104 GPIO_ACTIVE_HIGH>;
->> +
->> +        port {
->> +            dp0_connector_in: endpoint {
->> +                remote-endpoint = <&mdss_dp0_out>;
->> +            };
->> +        };
->> +    };
->> +
->> +    hdmi_connector: hdmi-out {
->> +        compatible = "hdmi-connector";
->> +        type = "d";
->> +
->> +        port {
->> +            hdmi_con_out: endpoint {
->> +            remote-endpoint = <&adv7535_out>;
->> +            };
->> +        };
->> +    };
->> +
->> +    vreg_v1p8_out: regulator-v1p8-out {
->> +        compatible = "regulator-fixed";
->> +        regulator-name = "vreg-v1p8-out";
->> +        regulator-min-microvolt = <1800000>;
->> +        regulator-max-microvolt = <1800000>;
->> +        vin-supply = <&vreg_v5p0_out>;
->> +        regulator-boot-on;
->> +        regulator-always-on;
->> +    };
->> +
->> +    vreg_v3p3_out: regulator-v3p3-out {
->> +        compatible = "regulator-fixed";
->> +        regulator-name = "vreg-v3p3-out";
->> +        regulator-min-microvolt = <3300000>;
->> +        regulator-max-microvolt = <3300000>;
->> +        vin-supply = <&vreg_v5p0_out>;
->> +        regulator-boot-on;
->> +        regulator-always-on;
->> +    };
->> +
->> +    vreg_v5p0_out: regulator-v5p0-out {
->> +        compatible = "regulator-fixed";
->> +        regulator-name = "vreg-v5p0-out";
->> +        regulator-min-microvolt = <5000000>;
->> +        regulator-max-microvolt = <5000000>;
->> +        regulator-boot-on;
->> +        regulator-always-on;
->> +        /* Powered by system 20V rail (USBC_VBUS_IN) */
->> +    };
->> +};
->> +
->> +&i2c1 {
->> +    clock-frequency = <400000>;
->> +    status = "okay";
->> +
->> +    hdmi_bridge: bridge@3d {
->> +        compatible = "adi,adv7535";
->> +        reg = <0x3d>;
->> +        avdd-supply = <&vreg_v1p8_out>;
->> +        dvdd-supply = <&vreg_v1p8_out>;
->> +        pvdd-supply = <&vreg_v1p8_out>;
->> +        a2vdd-supply = <&vreg_v1p8_out>;
->> +        v3p3-supply = <&vreg_v3p3_out>;
->> +        interrupts-extended = <&tlmm 26 IRQ_TYPE_LEVEL_LOW>;
->> +        adi,dsi-lanes = <4>;
->> +
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            port@0 {
->> +                reg = <0>;
->> +
->> +                adv7535_in: endpoint {
->> +                    remote-endpoint = <&mdss_dsi0_out>;
->> +                };
->> +            };
->> +
->> +            port@1 {
->> +                reg = <1>;
->> +
->> +                adv7535_out: endpoint {
->> +                    remote-endpoint = <&hdmi_con_out>;
->> +                };
->> +            };
->> +        };
->> +    };
->> +};
->> +
->> +&mdss_dsi0_out {
->> +    remote-endpoint = <&adv7535_in>;
->> +    data-lanes = <0 1 2 3>;
->> +};
->> +
->> +&pon_pwrkey {
->> +    status = "okay";
->> +};
->> +
->> +&pon_resin {
->> +    linux,code = <KEY_VOLUMEDOWN>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&sdhc_2 {
->> +    pinctrl-0 = <&sdc2_state_on>;
->> +    pinctrl-1 = <&sdc2_state_off>;
->> +    pinctrl-names = "default", "sleep";
->> +
->> +    bus-width = <4>;
->> +    cd-gpios = <&tlmm 99 GPIO_ACTIVE_LOW>;
->> +
->> +    vmmc-supply = <&vreg_l10a>;
->> +    vqmmc-supply = <&vreg_s4a>;
->> +
->> +    status = "okay";
->> +};
-> 
+> +static irqreturn_t nxp_stm_cnt_irq(int irq, void *dev_id)
+> +{
+> +	struct counter_device *counter = dev_id;
+> +	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
+> +
+> +	nxp_stm_cnt_irq_ack(stm_cnt);
+> +
+> +	atomic_inc(&stm_cnt->nr_wraps);
+> +
+> +	counter_push_event(counter, COUNTER_EVENT_OVERFLOW, 0);
 
+Remove nr_wraps and push COUNTER_EVENT_THRESHOLD here instead if you
+implement the comparator design I suggested above.
+
+> +static struct counter_comp stm_cnt_count_ext[] = {
+> +	COUNTER_COMP_COUNT_U8("prescaler", nxp_stm_cnt_prescaler_read, nxp_stm_cnt_prescaler_write),
+> +	COUNTER_COMP_ENABLE(nxp_stm_cnt_count_enable_read, nxp_stm_cnt_count_enable_write),
+
+Add COUNTER_COMP_COMPARE() here for your Counter's comparator.
+
+> +static int nxp_stm_cnt_count_read(struct counter_device *dev,
+> +				  struct counter_count *count, u64 *val)
+> +{
+> +	struct nxp_stm_cnt *stm_cnt = counter_priv(dev);
+> +	u32 w1, w2, cnt;
+> +
+> +	do {
+> +		w1 = atomic_read(&stm_cnt->nr_wraps);
+> +		cnt = nxp_stm_cnt_get_counter(stm_cnt);
+> +		w2 = atomic_read(&stm_cnt->nr_wraps);
+> +	} while (w1 != w2);
+> +
+> +	*val = ((u64)w1 << 32) | cnt;
+
+Just report the raw counter value back directly. If a user wants to
+count wraparounds and accumulate the counter, they can do so by setting
+a Counter watch in userspace for the COUNTER_EVENT_THRESHOLD event.
+Userspace can then keep track of the nr_wraps and perform the
+accumulation calculation with the current count value.
+
+> +static int nxp_stm_cnt_watch_validate(struct counter_device *counter,
+> +				      const struct counter_watch *watch)
+> +{
+> +	switch (watch->event) {
+> +	case COUNTER_EVENT_OVERFLOW:
+
+This becomes COUNTER_EVENT_THRESHOLD.
+
+> +static const struct counter_ops nxp_stm_cnt_counter_ops = {
+> +	.action_read = nxp_stm_cnt_action_read,
+> +	.count_read  = nxp_stm_cnt_count_read,
+> +	.count_write = nxp_stm_cnt_count_write,
+> +	.function_read = nxp_stm_cnt_function_read,
+> +	.watch_validate = nxp_stm_cnt_watch_validate,
+> +};
+> +
+> +static struct counter_signal nxp_stm_cnt_signals[] = {
+> +	{
+> +		.id = 0,
+> +		.name = "Counter wrap signal",
+
+Surely this can't be how the signal is described in the datasheet (is
+it?). Although you do not have to match the datasheet exactly, the
+description should make it obvious which Signal is the source trigger
+for the Count state changes. I haven't read the manual for this device,
+but I suspect to this signal is named after some sort of clock
+oscillator if it's for a timer module; this could be named "System Timer
+Module Clock" if the signal is identified simply as that in the manual.
+
+William Breathitt Gray
 
