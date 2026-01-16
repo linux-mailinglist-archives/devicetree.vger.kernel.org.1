@@ -1,165 +1,157 @@
-Return-Path: <devicetree+bounces-256121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E805D32992
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:28:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC83D32A67
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:32:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5C4463015121
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:28:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2716C3008727
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 854A43358CF;
-	Fri, 16 Jan 2026 14:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088713933E7;
+	Fri, 16 Jan 2026 14:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VVRWz0O7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ukahvETz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6110E1F239B;
-	Fri, 16 Jan 2026 14:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50D7392C3A;
+	Fri, 16 Jan 2026 14:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768573718; cv=none; b=XfeIq6kHL0Lotr+BUNd4OjLrCDJBaU8TtS403My5MPThG4tL8Tfxod9OmuBCZUvz65g0ktR9g151JcH57BDyY0wN2HFiR9XAGnhONPkHtF6ysPfRhX9uYm5HnXPvQJIE+ZU+nkDEn6ZJpo1iL7Zbo1ULQG2a3+516jeYgOvOhEA=
+	t=1768573958; cv=none; b=NaVlQEapoZBg12eKSmDoOgeYjLOuk06OgLgKHTS+9Xhh9IeB6QqGcMyP8F0/rXllaaeoMoZF4FDJSAFDeUZgkBQUbxw1VmQg++hqoSg3GEjupgv8ZjOdAf826JGmBxxbgcdeigQkIVhG4wfejePjItFEw4ZqAdgjCvXbm/DMr/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768573718; c=relaxed/simple;
-	bh=+OsmBgHNI7Oz1hVZA4HuwAipKv/OvOKHauxS2k1pc5s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ElNuq6TBv2wANHZ/dqobP5irXqf5etQOI6uHDeaIrsGTXYpge3WBSTmTtg1ePTHHtvCi2X/SWRwq+QbMFU07q5i4u5PD4FhJWs6oXQHV2qMRAFh8jah/PLCuc2WfsESQYx9cziq6KZIczTm6pqo80RYM13iyvH5n22zvlXrxKEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VVRWz0O7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD37C116C6;
-	Fri, 16 Jan 2026 14:28:34 +0000 (UTC)
+	s=arc-20240116; t=1768573958; c=relaxed/simple;
+	bh=W1PCOuxQA9A2tP9QuthJCHiDAoHE0mj5IZ5fHnrMt8Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mBcwufdu/C5S7volD6LoeH3tusM4lG8opfNKoRfQJI8SyVXWVmqh1y4xZoRibMdaXNbO/LlUu1FgR1D1BWWvX13igePPvRYpE7zd2gakdTJJ85WJXyfwpYgWTTAxnJlU1uMuOmUfzfmQoZ85vz/YRNxplY7XFv0V3+dBRCM11II=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ukahvETz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 77B2CC116C6;
+	Fri, 16 Jan 2026 14:32:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768573717;
-	bh=+OsmBgHNI7Oz1hVZA4HuwAipKv/OvOKHauxS2k1pc5s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VVRWz0O7JYNLyTrNftTazoizuA3k4F9FLqX+ROqRbcfUj9c1fQiTcOKi0bwHtU/Po
-	 TrX7z5KlbFZNDon5KWKcOkLJ7sodTLIA7colg5Z9/4twuDulLgz3nG98PBqL9svakF
-	 SyDM6LAAu/pYVZ/Kfg3HRcbjne0x0eIP9Vl9AS3MyDxUGE7ErVLoKbDCDPpbcobMaT
-	 SBNNJZMkg/3nqjbOlGeznapx7wC/OUS11dtYKuUbAJU73aflr/HxmXMC6Sq+4/+SmM
-	 ncHENgotvjZWKXhS1woMbHKvghkp2lCpMR/qRRamypLJWB9M3ttV6/XfQpYPymNUK6
-	 udufR4wVQGEPg==
-Message-ID: <9c1b12fb-2c30-4610-8262-5c615e1ac982@kernel.org>
-Date: Fri, 16 Jan 2026 15:28:33 +0100
+	s=k20201202; t=1768573958;
+	bh=W1PCOuxQA9A2tP9QuthJCHiDAoHE0mj5IZ5fHnrMt8Q=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ukahvETznrJOUVlhjWKJAsZEv/yhPm8BtzsV19AmG7zCS0I2Rx1MHxU+DCPHO+Xax
+	 OIWGRhy578Nnmgp786Qqnc7ivoY9NRkVl4buc1gEoqavrwBCwbBVIE6sScpRfhrYpr
+	 5u0Lw/735hnAxoxr6yPlA6sO19QiYBqjpMn/dAPpcyOyO11NmEkK/3PLDzwp2Ph2Tv
+	 TvZ0MFG+kKYuEWopyNJ4MFNLAYf3sun+KHNRbcg2xhLgxjJjQ3Nh5H8WQ1Vo9fRlFF
+	 lB0BiM4weZmyJ+hamjUTl9OzvvvW+OCyEzd9bvipN+5LlfGXVopJOZEifBdPC/Eyot
+	 GmfSQJoHmhtZg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69A21C79FBF;
+	Fri, 16 Jan 2026 14:32:38 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH v4 0/7] ADF41513/ADF41510 PLL frequency synthesizers
+Date: Fri, 16 Jan 2026 14:32:19 +0000
+Message-Id: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas,r9a09g077: Document pin
- configuration properties
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
- Conor Dooley <conor@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20251014191121.368475-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251014191121.368475-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251016-dimmed-affidavit-90bae7e162aa@spud>
- <CA+V-a8un1cF=acNjG=79_v7oaR8gzBQ+3z1As8AqrJnOnk-OUw@mail.gmail.com>
- <CA+V-a8vq2EvTb_hXxRzW_Rbp+BPLSaLsEVkvaTjc1zRin-RV=Q@mail.gmail.com>
- <20251208-headgear-header-e17e162f0f52@spud>
- <CA+V-a8s0gPbe2ffmN1G_7ibVL4+=FKUEQZu3_CwQL=U0T3--DQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CA+V-a8s0gPbe2ffmN1G_7ibVL4+=FKUEQZu3_CwQL=U0T3--DQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPNLamkC/33OzQrCMAzA8VcZPVtp2n10nnwP8RDX1AV0lU6KI
+ nt3u4GIKB7/gfyShxgpMo1iUzxEpMQjhyFHuSpE1+NwJMkut9BKVwCgJDpfQgVGMgfpIieKErF
+ Di423ypLIm5dInm+Lutvn7nm8hnhfjiSYp/+9BFJJ7bw9kPKuq2mLA57Ccd2Fs5jBpN+IhvY3o
+ jNyIN2iNa5qWvOFmBdSK1D2N2LmT4wD0wCSL+0HMk3TE4fQ9YVBAQAA
+X-Change-ID: 20251110-adf41513-iio-driver-aaca8a7f808e
+To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768573956; l=3158;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=W1PCOuxQA9A2tP9QuthJCHiDAoHE0mj5IZ5fHnrMt8Q=;
+ b=GNLIGcVH6An//1BSFYh5sTuZY1j5u0Zfqs06uG4U5di+kCt+9JDzCuJ+6HBCWRrD4P74za+G6
+ 5qLKlritDkfCwDcx28Xa2I+K4sc6q68ryAaB71Xk0jXQpsDxhqPhHcJ
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 
-On 14/01/2026 21:53, Lad, Prabhakar wrote:
->>>>> What are the meanings of "0" and "1" for slew rate? Why isn't this given
->>>> I'll add a description for it (0 = slow, 1 = fast) and the same values
->>>> are programmed in the register to configure the slew rate.
->>>>
->>>>> as the actual rates? The docs surely give more detail than just "slow"
->>>>> and "fast".
->>>> You mean to represent slew-rate in some sort of a unit?
->>>>
->>> Based on the comments from the HW team, there is no numerical
->>> definition to represent slow/fast It only defines a relative
->>> relationship.
->>>>>
->>>>>> +      renesas,drive-strength:
->>>>>> +        description:
->>>>>> +          Drive strength configuration value. Valid values are 0 to 3, representing
->>>>>> +          increasing drive strength from low, medium, high and ultra high.
->>>>>
-> I got the feedback from the HW team "The RZ/T2H drive strength
-> (driving ability) is expressed using abstract levels such as Low,
-> Middle, and High. These values do not correspond directly to specific
+This patch series adds support for the Analog Devices ADF41513 and ADF41510
+ultralow noise PLL frequency synthesizers. These devices are designed for
+implementing local oscillators (LOs) in high-frequency applications.
+The ADF41513 covers frequencies from 1 GHz to 26.5 GHz, while the ADF41510
+operates from 1 GHz to 10 GHz.
 
-Hold my beer and let me design PCB... I will use high voltage power
-supply, then small resistor and small capacitor. Ah, and that regulator
-here should operate on medium/middle voltage. Looks about right, all
-ready to send to fab!
+Key features supported by this driver:
+- Integer-N and fractional-N operation modes
+- High maximum PFD frequency (250 MHz integer-N, 125 MHz fractional-N)
+- 25-bit fixed modulus or 49-bit variable modulus fractional modes
+- Digital lock detect functionality
+- Phase resync capability for consistent output phase
+- Load Enable vs Reference signal syncronization
 
-> mA units. To determine how much current the pin can actually drive,
-> the engineer must refer to the electrical characteristics table.
-> Therefore, the drive strength in RZ/T2H is a parameter that switches
-> the internal output transistor mode rather than directly representing
-> a physical drive current.
-> Consequently, expressing RZ/T2H drive strength in milli- or
-> micro-amps, as suggested by the reviewer, is inappropriate. To
-> accurately reflect the SoC's hardware specification, introducing a
-> custom property is essential."
+The series includes:
+1. PLL driver implementation
+2. Device tree bindings documentation
+3. IIO ABI documentation
 
-So the hardware team tells you how you should model DT - "introducing a
-custom property is essential".
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Changes in v4:
+- Proper usage of units.h macros
+- Simplifications to DT property parsing
+- Adjustments to return value handling
+- Drop of simple DT property node example
+- Link to v3: https://lore.kernel.org/r/20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com
 
-That's pretty bold statement and very poor language construct. It is not
-hardware team which decides how DT should be written.
+Changes in v3:
+- Use FIELD_MODIFY macro in driver implementation
+- Drop refin_frequency iio attribute
+- Drop muxout-select property from dt-bindings (and rename logic-level property)
+- Use -mhz suffix in power-up frequency property
+- Address documentation issues
+- Link to v2: https://lore.kernel.org/r/20251219-adf41513-iio-driver-v2-0-be29a83d5793@analog.com
 
+Changes in v2:
+- separate driver implementation from extra features and improve commit messages
+- use macros from units.h
+- explanation of custom parse function: adf41513_parse_uhz
+- reorganize driver data structures
+- drop clock framework support for now
+- reorganize documentation
+- Link to v1: https://lore.kernel.org/r/20251110-adf41513-iio-driver-v1-0-2df8be0fdc6e@analog.com
+
+---
+Rodrigo Alencar (7):
+      dt-bindings: iio: frequency: add adf41513
+      units: Add HZ_PER_GHZ definition
+      iio: frequency: adf41513: driver implementation
+      iio: frequency: adf41513: handle LE synchronization feature
+      iio: frequency: adf41513: features on frequency change
+      docs: iio: add documentation for adf41513 driver
+      Documentation: ABI: testing: add common ABI file for iio/frequency
+
+ Documentation/ABI/testing/sysfs-bus-iio-frequency  |   11 +
+ .../bindings/iio/frequency/adi,adf41513.yaml       |  212 ++++
+ Documentation/iio/adf41513.rst                     |  199 +++
+ Documentation/iio/index.rst                        |    1 +
+ MAINTAINERS                                        |   10 +
+ drivers/iio/frequency/Kconfig                      |   10 +
+ drivers/iio/frequency/Makefile                     |    1 +
+ drivers/iio/frequency/adf41513.c                   | 1295 ++++++++++++++++++++
+ include/linux/units.h                              |    1 +
+ 9 files changed, 1740 insertions(+)
+---
+base-commit: b82f3047dae4aba38cb26c55c28444db4d77f521
+change-id: 20251110-adf41513-iio-driver-aaca8a7f808e
 
 Best regards,
-Krzysztof
+-- 
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
+
 
