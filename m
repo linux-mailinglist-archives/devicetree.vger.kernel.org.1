@@ -1,192 +1,231 @@
-Return-Path: <devicetree+bounces-256231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F92DD37A12
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:29:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1280BD37A1F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:31:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C7F4300854A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:29:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 88DA7300B9D1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:31:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6614E3469FE;
-	Fri, 16 Jan 2026 17:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1BA395D9B;
+	Fri, 16 Jan 2026 17:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cilUP49i";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KhYW2a5A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JtQG7N6v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8CFD2E719B
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:29:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4634D392C41
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:31:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768584569; cv=none; b=QocJWKO+pYgFgy/pozI6WXKCZLGhjJvEHKTVtZ6TDQqnDVL8h6LSvcCl1FabBzTFxFEaUW5s4Mm4wRBkVBIdejW0i1zyad6vs7GmoO6NsHJ8k/bD4UIaqss8WvN9C+g8PIqHVIHemApQmzFfVB+YTHNV4QomfBY1ItTK3nXZqzI=
+	t=1768584671; cv=none; b=rP7BdehtzWGmV3CW/XMBEjSh3q7+NK0ozn2BpIOu5EmlNDO4AgUGAtfDcqA1mR9hJ0IJOhAGxmchpLxkQ6d4ppSO2ioNHxAUTMbismx6OMMLux8/GQ7MCqQqghboXMEXd07H8/7yQYJtA47OJz0d0cx71fWwfZVvp4HguMeCy7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768584569; c=relaxed/simple;
-	bh=w5wYmYJ0Q4EcWsM7qxhCEMwCYB+GI1JfCsWL2CMYrtQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ueox+HfImZPirCStX6PM9MpegZkCpfLCMeaoiqqQzT0yAJt/BY+f7NpLcv0fI1cayW6yD2uF5TdlXERVxWtTMi71l8/0hPjmVrklBlFhUWw64GyxPHmRrP0uf1zMv4l0kBoufHi2Cr203vZHIei/mCI76bb+ZFYrkzDJ92mIpP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cilUP49i; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KhYW2a5A; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60GGCdR53192258
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:29:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=RienFMECRu2vQ3cFASNeEvCpTFY7hGKAL5Z
-	iocRuErw=; b=cilUP49ixDv+tPMVcQ1cL2pJqlIuiPMvJl1GmcSUZ89HzuIBjm9
-	Won7lB+tupT57JUEFkrqi+33q6tY9IxvaI7exFtJz1+62T/s1O3aQ2Zcedmy6cUx
-	pri4ryWJtEJSNzdufu/ll9BGQf+61+geviftn7InS6L1URSvoRsVLlGGVHTug3O5
-	w1AbXTh1Ud+NpHhHgFo4CGHTRG6wQyu+5m3siOyNgCrWLgc6aw7dGhER6hXQl8Yw
-	Lmfwh+xEHOVWxXe7TfIo0U7TLapOxS4S/FGAW4X9oKUUhoY1PO+S2JTI3LSkUIZu
-	tPjWurf2+R8/2IzDK8ik/J1gr9gWi5LKchQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq968k2ay-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:29:27 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c6a87029b6so220744885a.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:29:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768584566; x=1769189366; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RienFMECRu2vQ3cFASNeEvCpTFY7hGKAL5ZiocRuErw=;
-        b=KhYW2a5AVXoRnHyahapPgOFnAZqYv9dSx7NaFJy9SqRY1GjkoZ/dG6mEA0cXSCT73L
-         baPn58yx2s43JOAIrdz4BnhKqARe8202m2GKer15VLoI9sOqtx9Dsl/rjr1JrNhEZlbt
-         gCTGH3m8UFirxF5gGUyQJtqtIYo5bz5DXnZKUQNNtB0ldKZt/Xt77qSr7Mw0iFjDJUif
-         Nj5Zuji3YfS2uTAUj5bX11qkkuQgQqyQMUiYuY3eEyiPPeCmMAPyaZSanK92GQH+heKP
-         kYesJYXjp5pB0ktAvEs7WkePY8BamE7E8XE7muBEaCKeB5aJFu84WQy/EU2HdXDXgT19
-         e8Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768584566; x=1769189366;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RienFMECRu2vQ3cFASNeEvCpTFY7hGKAL5ZiocRuErw=;
-        b=eJxdX+uDkr5xqWZQjh9CIuBt671P6mfzSgM31MMIRqxJUgyIjWeolKjQp88rA1L0P0
-         BvrvEeYoITQsiXMVTTF3KirdSS4aycliNDAXHZsULj0wN1Mi0ibkmOZtLv+N78iKwE4v
-         ixjkgYVvGhOnek0/t8CtjLf8mv4VKAW2grT6MTJcQnccf+wW34GJ/eATk6Ey1eLwpzcM
-         WgeR4fg/HDYZTrzoqJOzVEVEsxYbso8vwPNoOzX4xtQRvqm/V2lQ/G6s4AveIIQmJMjb
-         3VQN0yU/YBBNpgxQbAWL4ukxWEGN0d5HkwfXi/uCc74ZTVO3ZVwaIhNJBWhM7B9a/m/l
-         DwOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuyrMLaLTiIyrOAyAb+dnIDYAMYpCtCRYdBpxnQfwWqFyVCzg/f6Z8vZTa/LsjuUVYoaAbDr2pLiWX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiDTbQOdT9BodIO7RbUH7EcpxlOO3IYJgHm3qacTMG7X8KeWBO
-	R8P+Kka4tsSgjEUDrJGmkigddvGm5Lld/k0rN+0FOZAAWaqrtx6XuP0nRiTPQlW0nTYBXszg/dW
-	FgX/HLP5agyn2/PEFTq2wP/1pk/HIh4zhkz/JoDrbzl6ZybaW/vi2N5+ac3GflTaa
-X-Gm-Gg: AY/fxX5h9yrm6q0rwUimN8LjGCJs/AUgL1gLk5/uPqByMwcVCsIz3bfRmjVkRrmotoj
-	qBFgQ69Vutsl+8sVWo2pbMELOluTv2HEjf+/jlqdb27DWI0+fMNUHXT6Hm0grwaKKGKwLO/ho/G
-	3jySs0u3uz9j+a0xWvL2LUk96ZCZBOSyDf2IwTXfL46BzZHLLwKGxekuoaHTv//Gi57tG4XNgMz
-	kJ7E1j2p2AC25kvvTw2mprnaGOT8GxDAQkVjUBYtzDDOEcd10Kgu8LxV06VgKZkXT+lDBzIO8DG
-	khAFlgC1CshUcMIHCgQ6ZGB0fc5vXwuPnrBBlGrPT/BcM+OBg+u9H3qoVKhE864s7sYQSnJ51pt
-	tqrpJ/v6rLKtY1Hll/TUlUxQVnw==
-X-Received: by 2002:a05:620a:461f:b0:8bb:78dd:1df with SMTP id af79cd13be357-8c6a67c30d7mr517345385a.76.1768584566271;
-        Fri, 16 Jan 2026 09:29:26 -0800 (PST)
-X-Received: by 2002:a05:620a:461f:b0:8bb:78dd:1df with SMTP id af79cd13be357-8c6a67c30d7mr517341685a.76.1768584565814;
-        Fri, 16 Jan 2026 09:29:25 -0800 (PST)
-Received: from quoll ([178.197.218.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e8795f1sm52916095e9.6.2026.01.16.09.29.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 09:29:25 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-remoteproc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH] dt-bindings: mediatek: Replace Tinghan Shen in maintainers
-Date: Fri, 16 Jan 2026 18:29:16 +0100
-Message-ID: <20260116172915.99811-2-krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1768584671; c=relaxed/simple;
+	bh=dacZLFUsrFNSw+mnrOAiyarQ8iNk57zLC4mQM+1G4ms=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jrTvKvaWvYeOqQbgTilQPWONLY6VhdvMSHxZgEgXORRiBFN1ZcLDt5zMStdY3rIxE9cZNFPWd1QvWALpYH4CCz2vW0qYHZifhrOzk3/KDFfN8vkwIoq3MksoFLa9zRwvztBqc0S61GRVV90tsUyPNRnDbefRF+pRmoCXkqDhBj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JtQG7N6v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05A7FC2BCB0
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:31:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768584671;
+	bh=dacZLFUsrFNSw+mnrOAiyarQ8iNk57zLC4mQM+1G4ms=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=JtQG7N6vfiQR5tfWyJO8gf2Os9eILW6cKv3KPjcdAhjtOOTD6aHiU2Zbov22aOIYo
+	 ESlXepbgAgo123/gFPgte+73sh09Jzt0FaspTpVy8x9ovhVBGE5E58/tWu/fijVZlU
+	 o9Szgta063uO2t1OSeCrlp6JCQctUcMtMkAUHKzY5jH+e2OFqNZllVGbXMY205jgIm
+	 Ikto6YFN/WQRo08HOY1JlT8rEQ3I1IjNJtAw3bqCWqMSVx0JXwhVgn7mEx/2gTIoPK
+	 O+JpPLHqYQoh0cKlEBowcOIU3VF3XGM1lUF9zMDSmbnPXSTSM4RO7DDIRAsOuicV6N
+	 Z4w0+RlC4MJwA==
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-64b608ffca7so3551057a12.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 09:31:10 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW7gCTZrk87SL8qUarHIJ0wLdkexMNR1jUoXnkroZSiRLmYVigxDA0GmDP9E78KR3vg1FOcYYNb3viH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0RCPpVFNdPkdqeJhXgL4kF9t+qHOFG8RNmoeBcDLafA6mqEr1
+	Vf1pBKH7jfFIXVnmz/GuwfJiOu2AFr6vxhRNmtJm4DW2vRQwghrKolQhUBU8txJLR4TrwQSPCez
+	ytK4Vzfnv/ut3hmZ+f02NiBrZK0LlTw==
+X-Received: by 2002:a05:6402:3547:b0:64c:9e19:9831 with SMTP id
+ 4fb4d7f45d1cf-654ba1c92e9mr2632146a12.12.1768584669199; Fri, 16 Jan 2026
+ 09:31:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1790; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=w5wYmYJ0Q4EcWsM7qxhCEMwCYB+GI1JfCsWL2CMYrtQ=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpanVr7vSCa78OJVltP3F1F8lnT/0QOtvNVJH6A
- WdgmAkrbZuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaWp1awAKCRDBN2bmhouD
- 16EED/9Bt3RCNfZFEV/xizSMt9bKxX+UDTt78BnE/An3TSm7nTS7v35PifUWDhS/k2HgrHRGumo
- u8ECFg1GN8Z9hKsm+3v3MN4IH3jQQL9Bahtj1tOOXN4qnRVE9rGXnBCX8/HRJUxeYsLu9NmkuzX
- PjVPED2R/ZTs2CsPEiLYXGdyMneDZH5tu8KMysCxLPaSLcNFuzzbm0rpEZu5J0X6aWfpebuBhWa
- rF0CA1SbDW/jLt6X4kVfhzSdbsWKAefcrjroQ95gqYGuO/8eZNhFhSr8Xmk1OG7tQlnp/12VLdF
- PNXXbtrvlnKMdH+zAQGeatY9r4qwiMY5TpsKlvLt0XF4wue4ImVqMNFhVr0rVrBMtfiy2EKWYne
- 6bd0ekQ2uIVrqKaU9VtdpSogakNxpoFgLog886FAOuUCTuw4NXtT3nkqdv3YQPhsrUckMksJtz7
- jcPvxzie+JPuOIQWKTcZZblw9ia7frXnOQ/QEHhhtGkfQCt4jRkp+QoQQIWjB9hznN5gpWEDWDO
- rJYYsObfoLOkxHEDvuZJo7krFzXSpGishb6HxU+5o1PXq604+qUTAYQcDlNKgC0707KkTUq69Mw
- pLJTLhyPFBVO1SO1WxYSDDuJ6j0P4i/5TSwiDlGBUNTCOarF9y5FiTOeWiywHFHzzgmhI/dqTtm asdA2zlU1VrINYA==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=JNg2csKb c=1 sm=1 tr=0 ts=696a7577 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=gEfo2CItAAAA:8 a=mpaa-ttXAAAA:8 a=EUspDBNiAAAA:8 a=QX4gbG5DAAAA:8
- a=lNgBRxWjdUaVFYStBmQA:9 a=NFOGd7dJGGMPyQGDc5-O:22 a=sptkURWiP4Gy88Gu7hUp:22
- a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-ORIG-GUID: YEN4Mrq3_0_J-_GqABUpWCuwWFYF6SXp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDEyNyBTYWx0ZWRfX9cyOKEneprDS
- GSd1qggK1VRnrbCnD7MQGw6c6VFmyFv40Ap+ajcRnj87sMYblBHx5nkJoYel6LcG7x26Nez0Ew0
- r0bxm3GCa4Lg0o7F+A3bFP4s3KciY0aHn5tbk7JG7HKU6mxrxLgeZ127TzQCF1iDELrhbI4Vwqx
- zNubGWsFtP76iHF7C7ETWvnjUHndxNoADh9q8kKHPsqC8dRbiaqOU2Oao3Lrn6D1IZ04zBkzq5p
- wuIFfqe6elM5JIqVuOLxMjHpmWZwbIskD0BSLnTKDwZ4+ji9omLcHOXdu63cuqMq9sMjvLpYmlp
- Eu/F1rQ5Ds3V4p6E3gXCDc56PWO8cZqICYejaJbmIWMyjW7voM5U9+BghcMe5csTTGfRWSkFc1m
- 5w3VweIKKK2X6JS1Qd0F4ZGi77a8BgLGs8Br/G+Uvz9Zak/dSNqp6QqX6s3rWh6eETh4V/yJrCR
- v+eItKSwloc3Ne4pVOg==
-X-Proofpoint-GUID: YEN4Mrq3_0_J-_GqABUpWCuwWFYF6SXp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-16_06,2026-01-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 malwarescore=0 adultscore=0 suspectscore=0 priorityscore=1501
- bulkscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601160127
+References: <20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com>
+ <20260112-pci-m2-e-v4-5-eff84d2c6d26@oss.qualcomm.com> <20260113171424.GA3925312-robh@kernel.org>
+ <xyttom64ht5hrrp5hecjqehnyfgsv4mfl2t36e2sveu44ccpjl@lkzquse2kqsx>
+ <CAL_JsqJxBNm0y6T7vji6MXgsO65iDJ-tdUEo0cOxkw7EuMKpkg@mail.gmail.com>
+ <gcmm23ji4fkcqeshcyiehuyega7kdbtvmofp4usmol2icwn6gy@i46icelwwqh5>
+ <CAL_JsqKKBjurY7ZrScayvkTijR-F6GWBofry48xoPFBFi55u4w@mail.gmail.com> <ysfkemsf4w7r3eoahfpjdr3z3buec5kvw4qol2njhxrz5tsdpo@4scz632uaj5i>
+In-Reply-To: <ysfkemsf4w7r3eoahfpjdr3z3buec5kvw4qol2njhxrz5tsdpo@4scz632uaj5i>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 16 Jan 2026 11:30:57 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLJhLgDj846Xm3xh6iTpqKcGgAc0JarsAw4gJbOOih-eA@mail.gmail.com>
+X-Gm-Features: AZwV_Qgl_qLSqXPnKjpXjk329SOPF0xVaDGWoAyGNkj_0sZsVv7qP7OLwVi399U
+Message-ID: <CAL_JsqLJhLgDj846Xm3xh6iTpqKcGgAc0JarsAw4gJbOOih-eA@mail.gmail.com>
+Subject: Re: [PATCH v4 5/9] dt-bindings: connector: Add PCIe M.2 Mechanical
+ Key E connector
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-serial@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Emails to Tinghan Shen bounce permanently with "550 Relaying mail to
-tinghan.shen@mediatek.com is not allowed (in reply to RCPT TO command)",
-so switch to AngeloGioacchino Del Regno - Mediatek SoC platform
-maintainer.
+On Fri, Jan 16, 2026 at 8:43=E2=80=AFAM Manivannan Sadhasivam <mani@kernel.=
+org> wrote:
+>
+> On Fri, Jan 16, 2026 at 08:19:07AM -0600, Rob Herring wrote:
+> > On Thu, Jan 15, 2026 at 4:42=E2=80=AFAM Manivannan Sadhasivam <mani@ker=
+nel.org> wrote:
+> > >
+> > > On Wed, Jan 14, 2026 at 11:45:42AM -0600, Rob Herring wrote:
+> > > > On Wed, Jan 14, 2026 at 10:14=E2=80=AFAM Manivannan Sadhasivam <man=
+i@kernel.org> wrote:
+> > > > >
+> > > > > On Tue, Jan 13, 2026 at 11:14:24AM -0600, Rob Herring wrote:
+> > > > > > On Mon, Jan 12, 2026 at 09:56:04PM +0530, Manivannan Sadhasivam=
+ wrote:
+> > > > > > > Add the devicetree binding for PCIe M.2 Mechanical Key E conn=
+ector defined
+> > > > > > > in the PCI Express M.2 Specification, r4.0, sec 5.1.2. This c=
+onnector
+> > > > > > > provides interfaces like PCIe or SDIO to attach the WiFi devi=
+ces to the
+> > > > > > > host machine, USB or UART+PCM interfaces to attach the Blueto=
+oth (BT)
+> > > > > > > devices. Spec also provides an optional interface to connect =
+the UIM card,
+> > > > > > > but that is not covered in this binding.
+> > > > > > >
+> > > > > > > The connector provides a primary power supply of 3.3v, along =
+with an
+> > > > > > > optional 1.8v VIO supply for the Adapter I/O buffer circuitry=
+ operating at
+> > > > > > > 1.8v sideband signaling.
+> > > > > > >
+> > > > > > > The connector also supplies optional signals in the form of G=
+PIOs for fine
+> > > > > > > grained power management.
+> > > > > > >
+> > > > > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@o=
+ss.qualcomm.com>
+> > > > > > > ---
+> > > > > > >  .../bindings/connector/pcie-m2-e-connector.yaml    | 154 +++=
+++++++++++++++++++
+> > > > > > >  MAINTAINERS                                        |   1 +
+> > > > > > >  2 files changed, 155 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/connector/pcie=
+-m2-e-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-=
+e-connector.yaml
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..b65b39ddfd19
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/Documentation/devicetree/bindings/connector/pcie-m2-e-c=
+onnector.yaml
+> > > > > > > @@ -0,0 +1,154 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id: http://devicetree.org/schemas/connector/pcie-m2-e-conne=
+ctor.yaml#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: PCIe M.2 Mechanical Key E Connector
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcom=
+m.com>
+> > > > > > > +
+> > > > > > > +description:
+> > > > > > > +  A PCIe M.2 E connector node represents a physical PCIe M.2=
+ Mechanical Key E
+> > > > > > > +  connector. Mechanical Key E connectors are used to connect=
+ Wireless
+> > > > > > > +  Connectivity devices including combinations of Wi-Fi, BT, =
+NFC to the host
+> > > > > > > +  machine over interfaces like PCIe/SDIO, USB/UART+PCM, and =
+I2C.
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    const: pcie-m2-e-connector
+> > > > > > > +
+> > > > > > > +  vpcie3v3-supply:
+> > > > > > > +    description: A phandle to the regulator for 3.3v supply.
+> > > > > > > +
+> > > > > > > +  vpcie1v8-supply:
+> > > > > > > +    description: A phandle to the regulator for VIO 1.8v sup=
+ply.
+> > > > > >
+> > > > > > I don't see any 1.8V supply on the connector. There are 1.8V IO=
+s and you
+> > > > > > may need something in DT to ensure those are powered. However, =
+there's
+> > > > > > no guarantee that it's a single supply.
+> > > > > >
+> > > > >
+> > > > > 1.8v VIO supply is an optional supply and is only required if the=
+ platform
+> > > > > supports 1.8v for sideband signals such as PERST#, WAKE#... I can=
+ include it in
+> > > > > the example for completeness.
+> > > >
+> > > > My point is that PERST# and WAKE# supplies could be 2 different 1.8=
+V
+> > > > supplies and those supply the I/O pads of the GPIO pins (and possib=
+ly
+> > > > external pull-ups) that drive them. The 1.8V supply doesn't supply
+> > > > 1.8V to the slot, so making it a slot/connector property is wrong.
+> > > >
+> > >
+> > > Ok, I get your point that VIO 1.8v supply is just limited to the I/O =
+logic and
+> > > not the whole card/adapter. But I don't get your multiple supplies co=
+ncern. Spec
+> > > says, "A 1.8 V supply pin called VIO 1.8 V is used to supply the on-A=
+dapter I/O
+> > > buffer circuitry operating at 1.8 V." So it implies that either the s=
+ingle
+> > > supply available to the card through VIO might be used to power the w=
+hole I/O
+> > > circuit logic or the card can derive its own 1.8v supply from 3.3v su=
+pply.
+> > >
+> > > So how come the card can have 2 different 1.8v supplies powering the =
+I/O
+> > > circuitry?
+> >
+> > Is there a pin on the connector for 1.8V supply? I don't have the
+> > spec, but the pinout I found[1] didn't show one. If there's a pin,
+> > then I have no concern.
+> >
+>
+> Oh yes, there is a single VIO pin defined in the spec for multiple Keys. =
+Since
+> it is optional, it could've been omitted in the design you referenced.
+>
+> So should I name it as vio1v8-supply or vpcie1v8-supply? I don't see any =
+other
+> 1.8v supplies other than the VIO supply though.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml | 2 +-
- Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml      | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+vpcie1v8 is fine.
 
-diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml b/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
-index 88575da1e6d5..508b8c2f13a2 100644
---- a/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
-+++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: MediaTek mt8186 DSP core
- 
- maintainers:
--  - Tinghan Shen <tinghan.shen@mediatek.com>
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
- 
- description: |
-   MediaTek mt8186 SoC contains a DSP core used for
-diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-index 179c98b33b4d..bdbb12118da4 100644
---- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Mediatek SCP
- 
- maintainers:
--  - Tinghan Shen <tinghan.shen@mediatek.com>
-+  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
- 
- description:
-   This binding provides support for ARM Cortex M4 Co-processor found on some
--- 
-2.51.0
-
+Rob
 
