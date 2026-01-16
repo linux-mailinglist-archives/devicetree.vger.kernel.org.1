@@ -1,181 +1,238 @@
-Return-Path: <devicetree+bounces-256009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6917ED2F976
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:32:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7EBAD2FB3E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:41:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EE299305FC5A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:32:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0A71D300A9C4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 10:41:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81AEF357729;
-	Fri, 16 Jan 2026 10:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5890135C1BC;
+	Fri, 16 Jan 2026 10:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ozfZ9QvU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XfmiVc80";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IYiGgbis"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9E630DEDC;
-	Fri, 16 Jan 2026 10:32:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0893612FF
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 10:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768559523; cv=none; b=QYO8Gr1PSeNc3IYmBPYOvW0w/y7d73Os/6oY/PxTdA2EKAY7LTFa58O4jKBl1PjUISOTc5kfQKlxgmwRLqZWQiUpyX4bPbIpHOLvDGMg6oDFkMR9b4a+m5rjYU5k033ucJoidLcsHznqul4KGyVgksMEvl2lRoyTMa17tLBm/Gg=
+	t=1768560102; cv=none; b=I2Rw9JQqmJ5iCZCSp8rkF0zvS30rA8nRrv1Z2ZDqx6DylEU1x2pIoiqzxDtiCpZkcv1DqeNzJJPHOYosz5qTajBCIl+G/yUBXz+cKlNKtRbF+81fAOFE1AGNd9fGo0Xha7z71oPaGV6cydWgVOSBwRyBsMdbmofdTb6t5Sxureg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768559523; c=relaxed/simple;
-	bh=bT3wcsE9VqbHGX9mVdkMyqaE9M3Ql7vrC1TMUNFasO4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VlBbwel+HElb1k+VP1EcspF4M86PMxoJofAHYm/7BS5y4l8CiRJ7ZA45tV1F4FgNfmC8/QzIva8hFgxVCA82+WtY5ZeBHu9tx/dSt6JwKocQtgQ/dEXLuj8ckltWoi3PDhh3/JN6MgEBkZgZdQQecAuE+co4DPzdYIh6HGsOQw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ozfZ9QvU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92A5DC116C6;
-	Fri, 16 Jan 2026 10:32:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768559522;
-	bh=bT3wcsE9VqbHGX9mVdkMyqaE9M3Ql7vrC1TMUNFasO4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ozfZ9QvU2AC9uB3W2WFbQHu9rVMqOob+oRGq2jjxYMdwcgh9l8FFO4ra9cYz7q5c0
-	 IwNzLS2Au9cCuy47zQ6g7BqNQroKHX8h9VdYWqXpG6ARlRr05XwRfhShjQD4eHIDVj
-	 6Orr1yuD/GwxzpSfqUnYZ1WrZLabciSz5KZgAWZQH5jdYxPlh1Xu3mMm6Ws9iDgVV6
-	 Pzq/zaZHUklxDtdrNPQI+MCBBqkxWxsYNtEOpc46gZ5RGm8wYnaVerNwCqPWh2W2aW
-	 PM/nOd6LWDdox5tigrb7bNkk3+/cZ3pURXnfEo4NI8Y4JGdnePQ0CE5T9ZHuaZKatq
-	 jM6Qgy/nqDS5g==
-Message-ID: <ace6ef5e-d636-4886-8f8b-c318a81522aa@kernel.org>
-Date: Fri, 16 Jan 2026 11:31:58 +0100
+	s=arc-20240116; t=1768560102; c=relaxed/simple;
+	bh=kNFY4y3BJgBAIb/8HajuqovArpbmQ7msBXNVYmgfD7Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Pdb4X70tvDARpOAsbzjKMpWVDTGB8uCIDkMILGsW5zKPC09O1C0q2veGukLcLQXZV3ES9tQXgdk6p+UX86918He2jY0AOS6n1bk3fZ37dambx60oiJuU9L5yatnnFDksjgFA1cKugTCXXQH7nhGdtCcb5j2hnI2ptFAaRsroXj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XfmiVc80; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IYiGgbis; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60G8S9hV3892663
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 10:41:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=nX5FGzCE6dK8Wb+oarVcRa
+	JxjrO5dtPhfxYccNa3LAs=; b=XfmiVc80OiJ8S2fiDhTu1fswSViNlYMYkNgjQ1
+	fblOavII5ZsZPuxyFIfDOdgsNWCVik7XUwYSAXet5dHEmNsgO8NXEbHjkPXZt0An
+	k+m/xlQ2n4evtsIfStD3i+0peLchGXdhBIWjGkDdjNotGe9PzTTLl29gq0yfnXGU
+	OtW07pMmAnVhkoc5emNozeqamkoHUW6i/q6XYOgStI3tDOqqX6e6VtRkyQ5rHtaU
+	nNiuctMP3TaVzXcIiq/cMSo5h6KLqRgkQiRW1oxdk5+Jsf5fIhcMmjzNgLxMNs6a
+	6E6hYQ0gry0Y3iZDpcZo7zRtX7SGyt9DZ/Hz4sAeYiIpdo8w==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq9b09tqx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 10:41:37 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-29f8e6a5de4so18651295ad.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 02:41:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768560096; x=1769164896; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nX5FGzCE6dK8Wb+oarVcRaJxjrO5dtPhfxYccNa3LAs=;
+        b=IYiGgbisaBtJIB/Ar42roDZVKS1u8YJsAgZW9Purm84V0AjPK4q6Mcdzp8m7+MisKv
+         2h1plqgriobdU/k5SStN6DVeU7ck9uxQZ1OnXhroqJmK12Vo4kX/p1HMtKr6oGGU8dcr
+         t/UdYXgy5DK0kyvsyjrWap+/z2GtpD4x+u9Yai2djz2Pt9olw3Vfdc54cWKILVQJrWPy
+         8MsDDDvgXX95TR70hIKSbGobW2jyff6oVo4LHsK+I892/2Z45VMKrgua7Jv+Djbfp0FB
+         HGWClspYbduZLbAcJbHkHGjxqkjngBU2HHNOZ18uGOrqU4SgeRhH+dNxMGNKP7Wri3GU
+         k+ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768560096; x=1769164896;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nX5FGzCE6dK8Wb+oarVcRaJxjrO5dtPhfxYccNa3LAs=;
+        b=wkz8hxSISjn1RGr9Nm1bjiV0CXcffsGyitlDDIx1y/o15Vdl/NiPJZtjh7ghFFT6oP
+         DS3U9aGfnti6PYw/tNL6iEbvsWuQmsVNICHzEq3ZdZ63nr8FfKlrSLEB2lDeWiTDnJRP
+         13K4keqiL5c8doxPtZqnVWw9/7w2l1yDu8+/+HnwtEB8lrPK+7kzru0z8iUzaL6jeuTw
+         g2wD1FJ18yRmO8r2Me78oACGSRCcP08+cEMEkvxDzSq/PLrDy58qlWX/aKiSEeF+ObHa
+         7EbnUu8IUelEYvkqbFGoBPfs8E2KcMQIoSEBeEGKGC8LWRP/0Ish7EgOt52PRJk4sRbL
+         0XPg==
+X-Forwarded-Encrypted: i=1; AJvYcCX/L7r0ZPx91+6o2Bt4aCd+giT3jSSbkpQa94NzqkdWB4c+jdfP17Jt5yW+SJHcdpQQFrQPxfSR3iXU@vger.kernel.org
+X-Gm-Message-State: AOJu0YytjYS+cAO+QjZvImvpORscLS/uNVn0ZCIaDBc2kV0rErlMrANO
+	51Coo6+x20E4wxz45RPV+zCKExOfKFMtJddqostZ0/P91tXqS/yc3IPLQ0AgLUbLjKhDw0KgXbA
+	wpQEyPj73XI0fvQMQAJgA1WaocMHi0V0wC1HJ/LBJ4/Hn6L9YbV7SzTE/zncHrztG
+X-Gm-Gg: AY/fxX7aOaMB6AngHzbLJhym6YC2kuY6skjGdcvnSGsZK4URr7eWXNtI3flx73BO6eT
+	dgBlXp9M7jFN/0aHUKJ8chCZIFE9YN/rhtFNQImycfQKAoqGAUxY07ofFKT3909RTkuTFShbEnT
+	PxfPKrRyF00oaNktG/yTaMYO6SOZ0fpLyoZEFOcr8pF17DPrsa/AMXoruYep4zuwUIZKiTcVXbr
+	IhBNWr5HvJaVqfbyZEfvddnyIErDRwJ1hONxoH/MP8Y0VdA4hQ96B/cq2VFTslSFuQdAvco2fQr
+	hZkzZuxpNn/S1Ul/UOR0vCyD62XaucbIUm/0M7Et8bATsRA2TWPn708AfGSKOxiV2SbBbuLENQw
+	MrrbSRW+mwf/G4vHfHSJRA+cQ9snTYmrf9lHMyCKqt2Dj9A+2JGnhgBk0f6C3KS7uvaL+D0QqPs
+	o=
+X-Received: by 2002:a17:903:144f:b0:2a1:388d:8ef5 with SMTP id d9443c01a7336-2a717545072mr23645025ad.19.1768560096501;
+        Fri, 16 Jan 2026 02:41:36 -0800 (PST)
+X-Received: by 2002:a17:903:144f:b0:2a1:388d:8ef5 with SMTP id d9443c01a7336-2a717545072mr23644795ad.19.1768560096010;
+        Fri, 16 Jan 2026 02:41:36 -0800 (PST)
+Received: from yijiyang-gv.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190aa340sm18009215ad.3.2026.01.16.02.41.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 02:41:35 -0800 (PST)
+From: YijieYang <yijie.yang@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, yijie.yang@oss.qualcomm.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v4 0/4] Initial patch set for PURWA-IOT-EVK
+Date: Fri, 16 Jan 2026 18:41:26 +0800
+Message-Id: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] mux: gpio-mux: add enable GPIO support and ADG2404
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
- Johan Hovold <johan@kernel.org>
-Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
- Johan Hovold <johan+linaro@kernel.org>, David Lechner
- <dlechner@baylibre.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20260115121943.23715-1-antoniu.miclaus@analog.com>
- <20260116-jumping-premium-crow-693a1c@quoll>
- <aWn-R7O_wZkpC1NC@hovoldconsulting.com>
- <CY4PR03MB3399D140FF51521F67AEF8599B8DA@CY4PR03MB3399.namprd03.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CY4PR03MB3399D140FF51521F67AEF8599B8DA@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20251113-purwa-907ec75b4959
+X-Mailer: b4 0.15-dev-56183
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768559617; l=3521; i=yijie.yang@oss.qualcomm.com; s=20240408; h=from:subject:message-id; bh=kC2UTIKqYA2ekUH5dbD8qQExiPGzqcCyqASk4qiVtXA=; b=5VE3EvBgz33tevroEFQNPcCBsfnyNV1o6WLb2SD1mnYUh7PMT5BYprhHRhppXJpbYXG+87/JG bAQdwvwr8JwC/egQMi+WzkCKxbU193/uptM6DOB9yyUTc9oc+39EmAz
+X-Developer-Key: i=yijie.yang@oss.qualcomm.com; a=ed25519; pk=XvMv0rxjrXLYFdBXoFjTdOdAwDT5SPbQ5uAKGESDihk=
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: 59EHUKQRjgDr0f6kMkWxI8g1-B8Kgzoo
+X-Proofpoint-ORIG-GUID: 59EHUKQRjgDr0f6kMkWxI8g1-B8Kgzoo
+X-Authority-Analysis: v=2.4 cv=TcmbdBQh c=1 sm=1 tr=0 ts=696a15e1 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
+ a=fQR9YXze8387tbXS17IA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDA3OSBTYWx0ZWRfX6irDY5bNzfan
+ RJLGIGhM53E2fhfWcvG87Abuytp7J9gV7RMis93txLg1BZMwvkD4uOdAc5y/PO1n3yFC/TXZ4dE
+ EVL/g7k1uZ72d16Zsome3wbqFGv6opVIXoz5QAOucEMNjZRuICxyx/t963NXLwnxRFdK0WXXosD
+ R3z3riKZuZ5JX6EEti8bUuZRyyAPMsMlNbMSvwZB8zZ5kIZ3z88aGTv8B+14A7uXz9nUA0KYyRI
+ E7tfUxTyGP4WzTUMPcHmvOZ7y7IVRcuM7aj1LrlBLEGyjHz7jXKfBtQELr1vHegUZAiIw9Qyaqh
+ k92B7OtfHHnyTrZ4EsztLan+yPVmQlgqhx6sI3RVCm5IfL0hpJvJrbh6Ypzhc04lE/+cSfcvVr7
+ dNhSatNg68zifaF/zDjFNph0rwZrDT+yUs5YAuGmFZhfkrBZzwQEx1libNP1lrd9teBcEZteNsG
+ BXi0Ezg+aBteZ4Tk1DA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-16_03,2026-01-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ adultscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601160079
 
-On 16/01/2026 10:39, Miclaus, Antoniu wrote:
->> -----Original Message-----
->> From: Johan Hovold <johan@kernel.org>
->> Sent: Friday, January 16, 2026 11:01 AM
->> To: Krzysztof Kozlowski <krzk@kernel.org>
->> Cc: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>; Peter Rosin
->> <peda@axentia.se>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
->> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Srinivas
->> Kandagatla <srini@kernel.org>; Johan Hovold <johan+linaro@kernel.org>;
->> David Lechner <dlechner@baylibre.com>; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org
->> Subject: Re: [PATCH v3 0/4] mux: gpio-mux: add enable GPIO support and
->> ADG2404
->>
->> [External]
->>
->> On Fri, Jan 16, 2026 at 09:37:36AM +0100, Krzysztof Kozlowski wrote:
->>> On Thu, Jan 15, 2026 at 02:18:18PM +0200, Antoniu Miclaus wrote:
->>>> This series extends the gpio-mux driver with optional enable GPIO support
->>>> to prevent glitches during channel transitions, then adds support for the
->>>> Analog Devices ADG2404 multiplexer as the first user of this feature.
->>>>
->>>> The enable GPIO allows the multiplexer to be disabled before changing
->>>> address lines and re-enabled after, preventing brief activation of
->>>> unintended channels during transitions. This is particularly important
->>>> for precision analog applications.
->>>>
->>>> The ADG2404 is a 4:1 analog multiplexer with low 0.62Ω on-resistance
->>>> that requires this enable GPIO functionality for glitch-free operation.
->>>>
->>>> Changes in v3:
->>>>  * Extend gpio-mux driver instead of creating standalone adg2404 driver
->>>>  * Make enable GPIO optional for backward compatibility
->>>>  * Add MUX_IDLE_DISCONNECT support via enable GPIO
->>>
->>> You are developing on some old kernel. You got stale Cc list of at least
->>> three people! How could you for example get "johan+linaro@kernel.org" -
->>> from which maintainer entry - but that at least is not bouncing like two
->>> others.
->>
->> Probably from using get_maintainer.pl --git:
->>
->> 	$ scripts/get_maintainer.pl --git drivers/mux/gpio.c
->> 	Peter Rosin <peda@axentia.se> (maintainer:MULTIPLEXER
->> SUBSYSTEM)
->> 	Srinivas Kandagatla <srini@kernel.org>
->> (commit_signer:1/2=50%,authored:1/2=50%,added_lines:5/6=83%)
->> 	Krzysztof Kozlowski <krzk@kernel.org> (commit_signer:1/2=50%)
->> 	Bartosz Golaszewski <brgl@kernel.org> (commit_signer:1/2=50%)
->> 	David Lechner <dlechner@baylibre.com>
->> (commit_signer:1/2=50%,authored:1/2=50%,added_lines:1/6=17%,removed
->> _lines:3/3=100%)
->> 	Johan Hovold <johan+linaro@kernel.org> (commit_signer:1/2=50%)
->> 	linux-kernel@vger.kernel.org (open list)
->> 	MULTIPLEXER SUBSYSTEM status: Odd Fixes
->>
->> A recent mailmap is indeed needed to remap Bartosz's old address,
->> though.
->>
->  
-> Yes, I've used "--to-cmd='./scripts/get_maintainer.pl --norolestats" when sending the patches.
+From: Yijie Yang <yijie.yang@oss.qualcomm.com>
 
-Then how did you get non-working Bartosz and Linus' emails?
+Introduce the device tree, DT bindings, and driver updates required to enable
+the bring-up of the PURWA-IOT-EVK evaluation board. Focus is on two key
+hardware components:
 
+PURWA-IOT-SOM — A compact System-on-Module integrating the SoC, GPIOs, and
+PMICs. Designed for modularity, it can pair with various carrier boards to
+support diverse use cases.
+
+PURWA-IOT-EVK — A carrier board tailored for IoT scenarios, providing
+essential peripherals such as UART, on-board PMICs, and USB components.
+
+Together, these components form a flexible and scalable platform. Initial
+functionality is achieved through proper device tree configuration and driver
+support.
+
+The PURWA-IOT-EVK/SOM shares most of its hardware design with
+HAMOA-IOT-EVK/SOM, differing primarily in the BOM. Consequently, the DTS files
+are largely similar. Both platforms belong to Qualcomm’s IQ-X family. For more
+details on the IQ-X series, see:
+https://www.qualcomm.com/internet-of-things/products/iq-x-series
+
+Hardware differences between HAMOA-IOT and PURWA-IOT:
+- Display — PURWA uses a different number of clocks and frequency compared to
+  HAMOA.
+- GPU — PURWA integrates a different GPU.
+- USB0 — PURWA uses a PS8833 retimer, while HAMOA employs an FSUSB42 as the
+  SBU switch.
+
+Features added and enabled:
+- UART
+- On-board regulators
+- Regulators on the SOM
+- PMIC GLINK
+- USB0 through USB6 and their PHYs
+- Embedded USB (eUSB) repeaters
+- USB Type-C mux
+- PCIe3, PCIe4, PCIe5, PCIe6a
+- Reserved memory regions
+- Pinctrl
+- NVMe
+- ADSP, CDSP
+- WLAN, Bluetooth (M.2 interface)
+- USB DisplayPort and eDP
+- Graphics
+- Audio
+- TPM
+
+Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+---
+Changes in v4:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v3: https://lore.kernel.org/r/20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com
+
+Changes in v2:
+- Update the GPU firmware path.
+- Update the description in the cover letter.
+- Reorder the patches.
+- Use separate DTS files for Purwa and Hamoa.
+- Update base commit.
+- Link to v1: https://lore.kernel.org/all/20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com/
+
+Changes in v3:
+- Delete unused PMIC and thermal nodes.
+- Add WiFi node.
+- Add display backlight node.
+- Add connectors and VBUS regulators for USB3 and USB6.
+- Enable PCIe3 and PCIe5; add PCIe ports along with reset and wake-up GPIOs.
+- Link to v2: https://lore.kernel.org/r/20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com
+
+Changes in v4:
+- Enable TPM.
+- Update the descriptions for video and the USB OF graph.
+- Link to v3: https://lore.kernel.org/all/20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com/
+
+---
+Yijie Yang (4):
+      dt-bindings: arm: qcom: Document PURWA-IOT-EVK board
+      firmware: qcom: scm: Allow QSEECOM on PURWA-IOT-EVK
+      arm64: dts: qcom: Add PURWA-IOT-SOM platform
+      arm64: dts: qcom: Add base PURWA-IOT-EVK board
+
+ Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+ arch/arm64/boot/dts/qcom/Makefile               |    1 +
+ arch/arm64/boot/dts/qcom/purwa-iot-evk.dts      | 1549 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi     |  685 ++++++++++
+ drivers/firmware/qcom/qcom_scm.c                |    1 +
+ 5 files changed, 2242 insertions(+)
+---
+base-commit: 377054868ffa544991cc491ecc4016589fc58565
+change-id: 20251113-purwa-907ec75b4959
 
 Best regards,
-Krzysztof
+--  
+Yijie Yang <yijie.yang@oss.qualcomm.com>
+
 
