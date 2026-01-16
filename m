@@ -1,142 +1,116 @@
-Return-Path: <devicetree+bounces-256254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1694D3852E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:01:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEDCED38540
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:03:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 520FC3012AA9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:01:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 64084301AFE8
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D3836165B;
-	Fri, 16 Jan 2026 19:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9E63A0B1D;
+	Fri, 16 Jan 2026 19:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i8/IOx3X"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=quihel.net header.i=@quihel.net header.b="UU7HpzdS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outbound.st.icloud.com (p-east2-cluster3-host7-snip4-1.eps.apple.com [57.103.77.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30B8348479;
-	Fri, 16 Jan 2026 19:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2541B306B02
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 19:02:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.103.77.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768590073; cv=none; b=L0iS/2XJ90vYPF95WcSsfRFaNq79L+HRosCmkN2r/fXh+k58af/MCqsS8RpyH62eBUW6zK6EdgDun6X3P7hKWwh3nkkiUNB3XErdxNGXGlf2c35PocLfEzFOgixb9MqUDwQGGcq088mLXjoZ7EXf2o/BDUmK86d6AMjmSqiBAh4=
+	t=1768590174; cv=none; b=LTI9qu08jpiXQNR+MV61UMW+9xkzoKzKagsnYhNOT3UrbNSZkWYf0tN16J0PKtBet6o9LUxSIA95BS6j/wX3RgNSOL0OVOJXh8zxKZ7Wk3YbC0z2cXfdMYzlOixrzNhgfd0py4UyymBa0+dodBu9XWgb3tgGIds3lNU7tpsCskc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768590073; c=relaxed/simple;
-	bh=BGypM29OFRA9X1JSsv3JMYLxhZfLOCLx+WtXO1e3QAg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i7iNOEf+lDU8H8jCbhIcvv8cMIehwIzPAAYtc91+hs13bSG3cjcmA+Dfu3FQRF1cYvHa5rl5uSbMxcFEqTeOVbUoq3dPZQQ4Tkddc0EdiMI0urmi4B29wdgT49e+R8o2aM0H8/iE6XUOUA4JB85rMzz7ReWPGxkx74SYQg/gdnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i8/IOx3X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E23DC19424;
-	Fri, 16 Jan 2026 19:01:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768590073;
-	bh=BGypM29OFRA9X1JSsv3JMYLxhZfLOCLx+WtXO1e3QAg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=i8/IOx3XYq6t5phSAHp53oPdi1invuCo7R7bNn4v5rcwQodjHCQX8is5O9BerJGTO
-	 rU7ZZWuIOyjzoc8yyBJsHkd1ZQYHlfSalRZDP69eMh0z+Iaa2iJDZjfSqMKT1Rg0Kd
-	 ETLY/n6Fc3D8dsMdx3YZZcZq3ACWKIgDlEs3qXpCXPDZbGfSw9ZiBuaSVYv+PZuY17
-	 Jfo71pduDfkIJ4dDsm0QbuKcQEZP1UIDOg/Z+AVoz6nNWr4QkkmTwx/UMmCVvbsvZ1
-	 1Q6Kyfa7jYtX2iPBJQof1Q4nJ8SK84eYpPvafP9no9xJtSZEkSqxAcfpij1nJXwIUi
-	 d6qKa2SQhkhwQ==
-Date: Fri, 16 Jan 2026 19:01:02 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: rodrigo.alencar@analog.com, Andi Shyti <andi.shyti@kernel.org>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, David Lechner
- <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v4 2/7] units: Add HZ_PER_GHZ definition
-Message-ID: <20260116190102.50908d50@jic23-huawei>
-In-Reply-To: <aWpYwJUp7Wl0s_Qe@smile.fi.intel.com>
-References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
-	<20260116-adf41513-iio-driver-v4-2-dbb7d6782217@analog.com>
-	<aWpYwJUp7Wl0s_Qe@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1768590174; c=relaxed/simple;
+	bh=BgK+Bjim/DlpHgAXpzUxBL4NzTEndCMOdo2mCKyxBTQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=paVa73dg6mv8s5FFeX5uXhI+Q0t30Dvf9XsX1O7NuhUMKXG0ylmyHx3IRnQ1riqUUWjmadDRM3ibpaCEShSHQxtap2cpiGGKC8TpIVAoVsBuqonzHqc5RWvRDhxzGPyzUgRQ7YRyETV1VrpYm3H83rH4RWcG2GXw8JHcyJNvXJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quihel.net; spf=pass smtp.mailfrom=quihel.net; dkim=fail (0-bit key) header.d=quihel.net header.i=@quihel.net header.b=UU7HpzdS reason="key not found in DNS"; arc=none smtp.client-ip=57.103.77.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quihel.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quihel.net
+Received: from outbound.st.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-east-1a-100-percent-15 (Postfix) with ESMTPS id 2875018001BE;
+	Fri, 16 Jan 2026 19:02:50 +0000 (UTC)
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quihel.net; s=sig1; t=1768590172; x=1771182172; bh=vu9C0yVhsYlWDwNyOkhSaq5/oS935jwtYVgPT8F2cUo=; h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme; b=UU7HpzdSF01BheOYhddXCIrj74mu9/m3x3sTUvf0fpa7V/wCvB9+fVGM33XVqJRHL/uMVzbps8zcoh306kvAhfn/K2YDBsXK/gcTBrRajqyiOn8UyXYUjYVbGdwr1D2iTTBfvRqNE+YgXo7VSyddfHw0KNF0xrpmcBBks98z6uKhSTLB1dkBXiGv1AiIyyPQbwbWD3ilUY/azp4eHya7weXxvuw/DzzGNYPOG1iOaN2rlRqrpi10aztUXbGEwI4C5ASM55LEbU65KOMENaxbW50Agn6TGpyEexBB7eKRPR54TaALqsJI/gCH47nqDWUTXYkooyLe7BWIOZzPw3GGlg==
+mail-alias-created-date: 1318565135000
+Received: from thinkbook16.fritz.box (unknown [17.42.251.67])
+	by p00-icloudmta-asmtp-us-east-1a-100-percent-15 (Postfix) with ESMTPSA id 261C01800181;
+	Fri, 16 Jan 2026 19:02:49 +0000 (UTC)
+From: Alejandro Quintanar <alejandro@quihel.net>
+To: linux-arm-msm@vger.kernel.org
+Cc: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	Alejandro Quintanar <alejandro@quihel.net>
+Subject: [PATCH] arm64: dts: qcom: hamoa: Add 1443 MHz OPP to iris video codec
+Date: Fri, 16 Jan 2026 20:02:25 +0100
+Message-ID: <20260116190225.25320-1-alejandro@quihel.net>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: 2mR8Qmd8UvGt1nIGc41yZcaEXWdU3X2y
+X-Proofpoint-GUID: 2mR8Qmd8UvGt1nIGc41yZcaEXWdU3X2y
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDE0MSBTYWx0ZWRfXwiW3tfWlovZd
+ 9sh+aqfsb0Hl4NTU40MQ0b27kqujyvugjgEwp2JYozawrj2+5jhvByORvaPwdmquVjPxXv51ga5
+ 7edGpQPiAkXW21QoGySff77rl0eKjMzjj5xBoMjYrghBfQKuod0A/qnMUXcDooUQND76FCm5kLh
+ uKBiVBJDRSVanjiMw5hMZe40iIg6E5HVVbRdfZfo3+X315++SNuH6RVfBJMqvbmMpQOhHen+dAU
+ 71D3UcdxSntisaGRoaNhBGveTuaESioC1uyQVTXyJzNYJNLu+wa4wILr9D8mpIjofgXMWwG7W1I
+ 6NESSHMP76Gew0iQE6M
+X-Authority-Info: v=2.4 cv=TNZIilla c=1 sm=1 tr=0 ts=696a8b5b
+ cx=c_apl:c_apl_out:c_pps a=YrL12D//S6tul8v/L+6tKg==:117
+ a=YrL12D//S6tul8v/L+6tKg==:17 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=CIKbnwSMAAAA:8 a=Svh9S__hznb6zt4YfpoA:9 a=WAq3Gk0LTMTrdeoBeQ09:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-16_07,2026-01-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1030
+ spamscore=0 suspectscore=0 malwarescore=0 adultscore=0 phishscore=0
+ mlxlogscore=840 mlxscore=0 bulkscore=0 classifier=spam authscore=0 adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2601160141
+X-JNJ: AAAAAAABMJwocT34ZyD6lJHXfUGSVc7cYb6GNuO2xD4PneY4pK/39TChSyObOz2BIjxogmDL6t+ceuGpZB1/S0bMC4BQhnfYHs9Hi4jxRazNx0XeunjgP20w0wrgSusEthsxd91+NJf7DHJf1wn4rTk0jKs0TtZU6sHePC/buQvR8rDuYBPLADnzihogXrsl2T2ahVq0UbZ+JIEz32kmBlRdN5YYvgaJiDWm8Fcz9A07dRWKB6H32kZAusK/7g4fCgelOo/wDEj0ZSybyC4faWkFv1A3ki4p+5LXkjjVuagrH4T6Ht0rhwc1T39gEX1YWVsamUxVSdnO9CCdPuzrDrYrgPJhQ60N8OIWrAENN3YP2ox0+HD3DUEsnXpWe87ds7njnG/yCLrqKeFDr0ckkkXaDIzTQzpdGk26+o81ow+a0YwJRkdbcPFZN3BECHLjcXB9WZhXV/7rktNgykCLD23TuOyA9EjpZty7hUqs81siHDjpbQ6LJ0ci5BP/jo7XpkgepwwKJ6yaCI3Iqw+ZPX0+nNyU/zA/qtuuqH3vaGiqdmvh25xPN+HLXl4SKXGhRVmT/MfAmPDeAehhh2Q4cIzJ0j9ouQ0mceb4N02KjCz4NxtEqUoM7FeZ+Aq1DNhsfI++MDw2KXioyg==
 
-On Fri, 16 Jan 2026 17:26:56 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+Add the missing 1443 MHz operating point to the iris video codec OPP
+table. The qcom-iris driver requests this frequency but fails with:
 
-> +Cc: Andi
->=20
-> On Fri, Jan 16, 2026 at 02:32:21PM +0000, Rodrigo Alencar via B4 Relay wr=
-ote:
-> >=20
-> > New PLL IIO driver supports output frequency of several GHz.
-> > The new define helps to constraint DT properties and frequency
-> > calculation parameters. =20
->=20
-> There is already pending patch to add this in I=C2=B2C host controller su=
-bsystem.
-> On one hand the conflict, if any, is easy to resolve (the other patch adds
-> a couple of comments). On the other we are at almost rc6 and it seems DT =
-people
-> are not happy about something, which would mean that the series most like=
-ly
-> will miss next merge window.
+  qcom-iris aa00000.video-codec: dev_pm_opp_set_rate: failed to find OPP for freq 1443000000 (-34)
+  qcom-iris aa00000.video-codec: power on failed
+  qcom-iris aa00000.video-codec: core init failed
 
-Linus is planning an rc8 so this 'might' merge this cycle.
+The iris driver uses the sm8550 compatible fallback and expects higher
+frequencies for turbo modes. Without this OPP, hardware video encoding
+and decoding fails on x1e80100-based devices.
 
-https://lore.kernel.org/all/CAHk-=3Dwib+MG0grZgub=3DSkCpPnNXPFE1nHsDpFQz1sB=
-wOsrV_VQ@mail.gmail.com/
+Signed-off-by: Alejandro Quintanar <alejandro@quihel.net>
+---
+ arch/arm64/boot/dts/qcom/hamoa.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
->=20
-> So, the solutions are:
-> - do nothing and resolve conflicts, if any
-> - define this constant locally in the respective IIO driver and drop it a=
-fter merge
-
-Do that and shout about it in the patch description.  If I merge this next
-cycle I can clean up.
-
-> - postpone this series to the next cycle (effectively drop this patch)
-> - ask Andi to provide an immutable branch / tag with I=C2=B2C host patches
-> - ask Andi to provide the only that patch in immutable tag / branch, but =
-it
->   will require him to rebase his tree
->=20
-> I'm skeptical about last two options on the grounds on how the IIO works =
-and
-> possible rebase requirement (which is not good to have).
-
-Not worth it for a single define.  I do have a request out for an i3c fix
-that effectively the same request, but that's for breakage that otherwise
-requires ifdef magic to work around (which I'll still do if no progress
-in a few days).=20
-
-Thanks for highlighting this Andy. Whilst I saw the i2c series, I've
-slept since then so might well have forgotten that!
-
-Jonathan
-
-
->=20
-> I leave it to you and the respective maintainers to make a final decision.
->=20
-> > diff --git a/include/linux/units.h b/include/linux/units.h
-> > index 00e15de33eca..06870e9e90b8 100644
-> > --- a/include/linux/units.h
-> > +++ b/include/linux/units.h
-> > @@ -27,6 +27,7 @@
-> > =20
-> >  #define HZ_PER_KHZ		1000UL
-> >  #define HZ_PER_MHZ		1000000UL
-> > +#define HZ_PER_GHZ		1000000000UL
-> > =20
-> >  #define KHZ_PER_MHZ		1000UL
-> >  #define KHZ_PER_GHZ		1000000UL =20
->=20
+diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+index a17900eac..e737ec907 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
++++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+@@ -5397,6 +5397,12 @@ opp-481000000 {
+ 					required-opps = <&rpmhpd_opp_turbo>,
+ 							<&rpmhpd_opp_turbo>;
+ 				};
++
++				opp-1443000000 {
++					opp-hz = /bits/ 64 <1443000000>;
++					required-opps = <&rpmhpd_opp_turbo_l1>,
++							<&rpmhpd_opp_turbo_l1>;
++				};
+ 			};
+ 		};
+ 
+-- 
+2.51.0
 
 
