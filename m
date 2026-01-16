@@ -1,112 +1,92 @@
-Return-Path: <devicetree+bounces-256196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BB1D33896
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:39:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D247AD338A2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:40:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D885130BE132
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:34:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8AF453013EA2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38E433ADA7;
-	Fri, 16 Jan 2026 16:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B640034A3CD;
+	Fri, 16 Jan 2026 16:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="l5oB5sKA";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BQ8dWcvj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U2I2ZWEG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15BBD394478
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:34:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7D7279DB4
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768581290; cv=none; b=KvACx2qiZtOkwri34JTabTtCTLUGl6/V1zgfq5NL0MIjjKYDiw3DXezfGn/YQCNeMvykXdBOFsoT+UHar4q8iGwdqz6IXUGcAy6KazfkJvRPFm5RsRsH4XT4rrsPNssXTXMdxRF5FiZbdOfbcSMGJ+/0TWTvaa4DyGa6DIx+9AA=
+	t=1768581422; cv=none; b=VN+7nofQY79why3xufUZ3Z3VyW4GcL2Hp2Y+hBgZPrBy/2fjcoh6sVstO+h7dzG+rG3AMum9HbRsfk7xOIJEX5rF2UUQXHaQZ5Y4H0qA69Ck135FSHfXKM99fc/QeDBDFVhEiCBxSfWTOmJp0IEqBG2Oreou5cVFG6UbX/1Sgoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768581290; c=relaxed/simple;
-	bh=e8E2A+eo/KQwzZm9O+K51Cg+TzQHkK+jR1VYjq3CkS0=;
+	s=arc-20240116; t=1768581422; c=relaxed/simple;
+	bh=QWBkRfwB8Hr5ZYz5LgytniStVTiOIbPJUP3+7CjjuN8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EkmQOXiM1Dq4f9K49cGSBLOBVAcVlmsYYeqZwA7EgX1WWpUVlYUbvPtsmS4hC25MIrtVWuhfcjAQ5yFzEL8P/W/69/nJiB1xF6z+4dkNn5nJCOXZomh5tKN1eUuEUGyKOBlbVIvv91N+O9AAHHRrsukIudCkglev8Yq8ZYQJ9n4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=l5oB5sKA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BQ8dWcvj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60GGLLqQ4100795
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:34:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=fCYKQXs+T1JIIa5G6WnDladc
-	SFMG2v8SiIjUv68q0Fk=; b=l5oB5sKAR9ZIhK+VnnPwy86114P0A5VGO2r83cll
-	lBZKV+vb+UvyJ5Hm6AIWylcUc5oeLj8ZRg99D8LLmOXqXOZN7KV82Nks4fy8g6t4
-	3uNVPzXWlKlctOfT8gyEweBuhf/ji1TYedMlH6j7Zu8Iu1hIrGfZmV7nUeN1axbY
-	WAO7yBkoAtwCge+Kxfeu4gv+GzOIQ+0e8JSRVLBGH3Xqcfn2rua5pGbJs2dN9hm5
-	Y4ZfgEpovlfGLrsRpz4NBtNu2GVSMztuN8ba3QllXqFxnBN2SXnUqM6cV9LTUmyW
-	37CNu602zI0hQK7jL4yxtcqYMA2nNZtilJiTYnSEjYI64Q==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bq9752unf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:34:47 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c6a0ec2496so390697485a.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 08:34:47 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B2kgFQtqTeFq3E7wilLZ/WVXCkzVWLECe67DsfvzVnGBSNutco8ePA+wMoR9s8FlNMgDvK6f3rsLBGNGYp8CPGaJ8rgnLYYEAt33lJPtaWMxwgtTpHFUdabla51Ukt8VUhc1MR/iiq1ByLVtqzrl7ecPYJMJsxHss9C9A+No9AI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U2I2ZWEG; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4801d1daf53so12881345e9.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 08:37:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768581286; x=1769186086; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768581419; x=1769186219; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fCYKQXs+T1JIIa5G6WnDladcSFMG2v8SiIjUv68q0Fk=;
-        b=BQ8dWcvjcBd8DrNp2VbiErZL7WQSngBGF20hnHv1Mxth8DyTBegz8r//0GB+0CTqZX
-         pyoSQnWKtFkumvLWczVsqLYTTCQIeavx0PHfvxjQzGAi6YlqkXg//LtCoOhPM2BCBzyu
-         CYZDkZQc/Kddp9J9szZlxObx+zSh0ZcGKIktzmwyastURvtdvv6gJqzk/Wo1mdgMcAty
-         DhVixioWyGZYGfWmm7b6eFInJ+NnPnCsaePRDodZ2Y+6OpxEh5UL8J+9WIU2WCamPYsf
-         oCGR+WfBv+XYnNFA54ByEnthjouhzOJ/GGyYazb7sXrvGzCsrcEE/o8izChm9uv8ckqw
-         HslA==
+        bh=48KuNuVL+hUtBLNGVEMj2Qm1+3zVCGJSobWiMMU5h1w=;
+        b=U2I2ZWEGvTO1/AKWq0DkIemaD80Y9kL63MjsBrQiuKHDplZ5wO+/bJGlyod4XpnG6J
+         nOjs2wrJ845TX5MXxpWK1AqNG92cKbgHqoxJphrX7cXUiUa62/ppI2PK/oFLuyrpV6yQ
+         h4swJ/ueYhMizQfxpmFENS0K2Gfh6nNhUdhUSsnaLqPnUSzK0h6smDZITfcFwi1Q2eoJ
+         KsuRq7GYATtZfFx87ahVPjJg1VbWuQxM+F7PS6scM0JDmRf8IWUGPr3nwARtvczEb4pZ
+         6tr/Mqf/NgU4ZciULUnC2kSgnJBs4vzREX+99/KhibbpyD8/Lhx6r46kEHllUdKNKntf
+         viVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768581286; x=1769186086;
+        d=1e100.net; s=20230601; t=1768581419; x=1769186219;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fCYKQXs+T1JIIa5G6WnDladcSFMG2v8SiIjUv68q0Fk=;
-        b=f57ZCixvOAezoseoD3ZwyZ7sd0bzU6QT/Qu63xcRjiJB2FqdsWE5g2ExCgW9EH/4LN
-         /1EL2e2ddr3H/a/Y/kNA+sfDJLA5KS1hIBUZ74ppA4KYD+CBUTy5s/0V50t0L6iGkFs2
-         T0OeUyzF1ig2chJ57cfxGNWTYJSJh0HIVOJ1Fq/1As3KaSez4/ilheJD12TUFWVr61Mf
-         hS0qcvegl7+OyVG0UkX0yyQRYORVFA+qtn8JON0r991wWmsdiU/VvgIQVNLRrAK4i5yi
-         UHEUL87Yr7IZpLTINLmUJqlNsIcOWEfWN9+1g6eZCkxKqPzxvfYJIYiOm7kI/kGk+hKa
-         tfqw==
-X-Forwarded-Encrypted: i=1; AJvYcCWsDpSVbvPt63yGld/YseKRRSJkDB2fhcBzOAhXTm96/avkf6hRtRmBMYRkVSwcB1pfvHnaW1v5NwOX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yygi4M9CWB5AkKXQGwORyfxgalBuTulrVeX6L7l6s5jI9zz7C9X
-	qLEMC45nf8RM3lnmZQ4/RTh/4qW6ujn7abapN8FlgZTOakDWkFcw2V+Wt4IxePjgqLvBhKa9RFr
-	pSnFlVpjrFCUOeHS2yowvc3BvyQJUpPH0FFwCfvyWsfef5GLTCDBIj7QnCkwjs+g/
-X-Gm-Gg: AY/fxX6t52hJ4rKc5RebWPtJ5NtwxYXunyaAFQCMlIzw5LJydkB0GrP3vIzEsa/4eKw
-	dSPQTg2hYzFkt3Ub3weOgPsYcVWZIqafmcwAo0dw7ydbrzk5n6KURvMetNhjoM5qWIHWo41pwXS
-	qozHS7e6V5uNLWgR8v9iwddFGEN4A97JoZ9Rfb0NJZ4SbdrpGYUYEcH70hZbXmmsrrcm3kp7Yqg
-	Flh/VGzyAxjgraktyyj5eIirCoTfovovW2HtB0xVjktfWrIlvrxFK4JIdvoVLjSn8CwCxFEeBBo
-	4Px7KhzsSiSH30TFzeAVfseWWEhs2RvTdbpLO6+O3oU+hkx6LrTqXsGWlNDcGr1jgP+EXcWRSd6
-	m7uh+wQrXAYjUwVTzlm7yK5jfvrw9cVmRjH4Risv2Q3lijMAiVNtmY8seUgjLnJb0zx5oGOk+H1
-	yelWN1pjsmTyxVgOdAxTU2994=
-X-Received: by 2002:a05:620a:4801:b0:89e:67a9:fced with SMTP id af79cd13be357-8c6a6789e6bmr501565485a.66.1768581286239;
-        Fri, 16 Jan 2026 08:34:46 -0800 (PST)
-X-Received: by 2002:a05:620a:4801:b0:89e:67a9:fced with SMTP id af79cd13be357-8c6a6789e6bmr501559485a.66.1768581285613;
-        Fri, 16 Jan 2026 08:34:45 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59baf33ef74sm897580e87.17.2026.01.16.08.34.44
+        bh=48KuNuVL+hUtBLNGVEMj2Qm1+3zVCGJSobWiMMU5h1w=;
+        b=gmTZ3mpD5EwuJmHR3FW2C0SJB+FzOBABopYCIvbg2syg/GD2q/A79C+cXXUWCmCPSY
+         7ru+pgBqt9aGdgGserewrBvIs63W7j89YiFsJn4B5Mct5uXtrRufw0tHG09HEes96KhM
+         wFKW8BUyiEl/KuwshFd2PJvPxSBaEn0DOVOsYJMyHOR9uxq/lHgfhGg25IHMOq+FBlgt
+         OzbMtW4AWzFzGbPe6I3uKr36mSAQ0nVAjo5q0LJ0l4sWJ/bV0hMlVQpIKEVeSYYHKtlb
+         BmF7NgtPLWcJ4MJH2KUGFrjtul/+sngY0FoOjAw1T4NcWgBdVKnWyfccsP95KhQbesiW
+         MEpw==
+X-Forwarded-Encrypted: i=1; AJvYcCVuFAeh9bcTU1y8pU5+QAZBY5rP6GBzrc5NRkmY9HIpCeDiVcAyFYEh43s1ypXWleLP4q/xL0HydkOq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxF8lAuz02fFDuID28MPYmzNzUVzBipoyXYwjIwMarYXRLxwtnU
+	0IoV601/YHdEg20faVzmqAUFmEKlF6j0BlKuo+sVPdO5XAdB591FHXeytFt2nQ==
+X-Gm-Gg: AY/fxX7oWZWJ3+xftN6KO4mP6tKkEQpa+YTzjhPIerqIQeGvNVO0cj4mDIWW8fqgs6x
+	VuSCYC/+npiIzE+EycCuf7Kjo4DcLLHR5FxNc3ccJq5hIbaOql7+WSQZvIt36Tx0HH+XDojFmd1
+	q+OoWu7o+EYIXwHTZLfmR85IFiyWulq9Akjt4n0G7fTA8HEjG4dWgX02hz2cgeGxGt5Uq14yXYd
+	gChDqbpY/TtYyIXG7SBC495pTw6bYrjDZrqA9Wk54/SroKURUq/RoATY/IkukLdN8tJPZF9LvWa
+	0uSKOxgK++D8NNOGBTOhBvgHQVQhMTMwoaoA9a2gK6A7JlZFqbKeuxRvmofnqISPnbSgv5I/J1M
+	wcF2bLfcqhnUtB6vE2xvV0SQD47LvSVMcBvoyJvCRrG3zRzlENCz04yUbQTCHyHkj4OEEE1Z6t1
+	QyZS8HQYzfHRNLamQVp20Pk+5B1ljOjUu7Bzke35liTZW24H26vXBCFdpY0Vx90z60
+X-Received: by 2002:a05:600c:3f18:b0:46e:35a0:3587 with SMTP id 5b1f17b1804b1-48022aa9f8amr29851285e9.27.1768581419332;
+        Fri, 16 Jan 2026 08:36:59 -0800 (PST)
+Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f428acd0csm105991455e9.6.2026.01.16.08.36.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 08:34:44 -0800 (PST)
-Date: Fri, 16 Jan 2026 18:34:43 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: milos: Add interconnects to camcc
-Message-ID: <272itffci5xkelvykfijviarm6np22fvcofj4m4tud7l3fn7c5@n6p77vfid36u>
-References: <20260116-milos-camcc-icc-v1-0-400b7fcd156a@fairphone.com>
- <20260116-milos-camcc-icc-v1-5-400b7fcd156a@fairphone.com>
+        Fri, 16 Jan 2026 08:36:58 -0800 (PST)
+Date: Fri, 16 Jan 2026 16:36:57 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: (subset) [PATCH v6 0/6] OpenRISC de0 nano single and multicore
+ boards
+Message-ID: <aWppKQRWATsSuDeX@antec>
+References: <20260115151014.3956805-1-shorne@gmail.com>
+ <176849165027.29734.708711779514578942.b4-ty@oss.qualcomm.com>
+ <aWonvu4xgqIGBGmI@antec>
+ <56e0c7bf-8f51-47b4-9ec7-edcf1b815c06@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,48 +95,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260116-milos-camcc-icc-v1-5-400b7fcd156a@fairphone.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDEyMCBTYWx0ZWRfXx2Io3tSJ4S9S
- +Qs7w7mPVisqDdhDYMM3ZFHQfJprM6bt6UfJFV/XrYmjctOwhAKMiCnq5G9feamw2ZS+xGRIChi
- A4x7zZsgLNjH05Tq/WXFCuRlwgT4i/WIiMrTNLnLgtgtZrdC/cZ4LaOrJKiICj0qGabKhCn6Dr6
- I0hVim2MBPEaNY3EHnyD/2BmzI+eeVt/o8wb5UVmAxWzAwdfPGtLFBOD1KoHqueM4Lb5HIzJY2I
- 8+YB9ub9OviXYj9PagTtVWfFp8Hmu87h1kZoK5WWF2Hj3W6lfUqE/WK3gFaHwKmghr14mBAkkYB
- ZgZ2hHe4FsdZbqxh+Kl6Hue++mK7r+HAIS8aFa73VaFtmd856kC8XMj6eAI+jfytFLMfMsqPXKQ
- nrIe1TbLrvmaMB81nhki8t/bUeqg5wcUTb7jplnC/vUZHfPXzLreaWVORPIsY4fJaH/qqXxrAQp
- Rbt2Pz/keL3/zdj7vvg==
-X-Authority-Analysis: v=2.4 cv=Sv6dKfO0 c=1 sm=1 tr=0 ts=696a68a7 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=jeBussX95TUAqHeP4CEA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-GUID: RXtcGpPXPrejvIDiOXA58mLPNef3cKZA
-X-Proofpoint-ORIG-GUID: RXtcGpPXPrejvIDiOXA58mLPNef3cKZA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-16_06,2026-01-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 impostorscore=0 bulkscore=0 adultscore=0
- phishscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2601160120
+In-Reply-To: <56e0c7bf-8f51-47b4-9ec7-edcf1b815c06@kernel.org>
 
-On Fri, Jan 16, 2026 at 02:17:24PM +0100, Luca Weiss wrote:
-> The CAMSS_TOP_GDSC inside camcc requires an interconnect path to be
-> enabled, otherwise the GDSC will be stuck on 'off' and can't be enabled.
+On Fri, Jan 16, 2026 at 01:02:15PM +0100, Krzysztof Kozlowski wrote:
+> On 16/01/2026 12:57, Stafford Horne wrote:
+> > On Thu, Jan 15, 2026 at 04:40:53PM +0100, Bartosz Golaszewski wrote:
+> >>
+> >> On Thu, 15 Jan 2026 15:09:56 +0000, Stafford Horne wrote:
+> >>> Since v5:
+> >>>  - Adjust dt-binding patch based on suggestions from Geert and Krzysztof.
+> >>>  - Add reviewed-by's on the dt-binding patch.
+> >>> Since v4:
+> >>>  - Rebased the series on linux-next to allow patches to be incremental.
+> >>>  - Rewrote the dt-bindings patch as an incremental patch, Due to this I
+> >>>    dropped reviewed-by's.
+> >>>  - Added acked-by to the IPI fix patch.
+> >>> Since v3:
+> >>>  - Switch order of gpio-mmio driver and bindings patches to patch binding
+> >>>    first before driver.  Suggested by Krzysztof.
+> >>>  - Removed example form binding suggested by Krzysztof.
+> >>>  - Added Reviewed-by's from Geert and Linus W.
+> >>> Since v2:
+> >>>  - Fixup (replace) gpio-mmio patch to update driver compatible list and just add
+> >>>    opencores,gpio to mmio-gpio bindings.  Discussed with Geert and Linus W
+> >>>    because the 8-bit opencores,gpio is not the same as the 32-bit broadcom
+> >>>    chip. [1].
+> >>>  - Update new device trees to use proper ordering, remove debug options, remove
+> >>>    unneeded "status" properties.  Suggested by Geert.
+> >>> Since v1:
+> >>>  - Use proper schema in gpio-mmio suggsted by Conor Dooley
+> >>>  - Remove 0 clock-frequency definitions in dtsi file
+> >>>
+> >>> [...]
+> >>
+> >> Applied, thanks!
+> >>
+> >> [1/6] dt-bindings: gpio-mmio: Correct opencores GPIO
+> >>       commit: b2b8d247ad8ee1abe860598cae70e2dbe8a09128
+> >> [2/6] gpio: mmio: Add compatible for opencores GPIO
+> >>       commit: 3a6a36a3fc4e18e202eaf6c258553b5a17b91677
+> > 
+> > Thanks, now that these commits are on gpio-next I would like to apply the rest
+> > of the patches to my openrisc/for-next branch.  Since the other patches depend
+> > on the GPIO patches for system functionality, do you think it would be safe for
+> > me to merge the gpio-next branch into my branch?
 > 
-> Add the interconnect path so that this requirement can be satisfied by
-> the kernel.
+> They do not depend, unless I missed something. DTS cannot depend on
+> drivers because it is an independent (huh, so circular logic) hardware
+> description. It's also more explained in maintainer-soc-profile and DT
+> submitting patches document.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/milos.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
+> There is no single dependency here and you should never pull gpio-next
+> or any other subsystem driver into your DTS branches.
+>
+> > 
+> > It seems a bit messy, Maybe I should just wait for the next cycle.  But if you
 > 
+> There is no mess, you do not have to wait for anything. Please follow
+> standard rules like we follow for all other SoC-based architectures
+> (arm, arm64, riscv).
+> 
+> What happens when you apply *independently* DTS? What is broken, which
+> was not broken so far? What features stop working? What existing DTS is
+> affected? What existing code is doing worse than before?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Hi Krzysztof,
 
+You are right, there is no build time dependency here only a dependency at
+runtime.  Also the dtbs_check will warn about missing "opencores,gpio" bindings
+for the new soc devicestrees on my branch.  Now, I understand that is no issue.
 
--- 
-With best wishes
-Dmitry
+I was overthinking this, I will just apply the remaining bits to the OpenRISC
+queue as per the maintainer-soc-profile.  Thanks for pointing that out.
+
+Thanks,
+
+-Stafford
+
+> > have any suggestions of experience with this any comments would be appreciated.
+> > 
+> > -Stafford
+> 
+> 
+> Best regards,
+> Krzysztof
 
