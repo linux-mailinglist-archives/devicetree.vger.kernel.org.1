@@ -1,134 +1,179 @@
-Return-Path: <devicetree+bounces-256033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB48D30538
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:24:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D42CDD30758
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 12:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6894A300BF9F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:24:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CA94C3015E3B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 11:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB28B37418D;
-	Fri, 16 Jan 2026 11:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB1635FF5F;
+	Fri, 16 Jan 2026 11:35:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ckRoyuiM"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="B4DUDlxW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5649726A0D5;
-	Fri, 16 Jan 2026 11:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9559322B72
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 11:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768562660; cv=none; b=kmUWu3aUCqDEk3Gh9bSiKSOUnYOomCE2yMuEa7NlnfpF9xds5myjdTwHUsO/0+24Wa4bZ6/4Byf9Keh+434YPBcIyOaWm1CCb6a7XIlVRqS+Kpr3sJ0IppQbz/ACo77AH2q+oQWRapyhQm0M4mf9yL3Q/B5yzJyOmIorVyTD5Xw=
+	t=1768563306; cv=none; b=KcCJtkR5m8YmC3OGjLNjie7vs9WIO1JuCi9mbU1EOdr1xpTVjcU3HM1KrMxkdbmp1NsFi0eBOKtroBLDITC8lFmSNZP5Ni9+WGgA69OqIFXdmLbNoWEiyvIFbyLhPyDoDWjTFJv5EVPWCNjtKLixJc+V2iwQbUk6NEZLt/LAtig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768562660; c=relaxed/simple;
-	bh=FKqdUp9nkjEGF+fcwCTYoB6ilSguMHi250L8N4z1gRM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cHQ5IaaJo/fhXfWd8yzoNq0mlSqWBuHSF/PYvi0NmziVug/SonL/zLMTFIj61AUtxnk/72Yac9hRBXrzFp6IHbUJWFkxLtGdyZ5SBZ3jMipmW9Y772edErAnxNRiUAcxPluaEszzj+zISkIicvsQoxLyPlD9rOkdfO8E1rEcbn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ckRoyuiM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D867BC16AAE;
-	Fri, 16 Jan 2026 11:24:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768562659;
-	bh=FKqdUp9nkjEGF+fcwCTYoB6ilSguMHi250L8N4z1gRM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ckRoyuiMYfXO5dc7cxkQUAuq4d2nccQtDGQDpi225M7yH32YKmDPuHfzeUjnpwv1x
-	 eg6WJgHRlKah6OCXcRufUqB8XCr4NdbqGQWQ6gkMXJ5aclaNkixNAWsaUgH1rT6teS
-	 37imKRSWDVl11FhfnM0ZyKHtQJe3yR2b7f3kfsXDWsW7w1kdrg3sYwlCNCxyRGXeB6
-	 l39XXFjVrlOtT+QvIBXUdv+d0/kh+1EOs5vQandjL44q9Hu2jPWEA9Gz5f2XoEWKTD
-	 UVxynuJ2qiMkK1g089TmNjuyBXU+L9uBQMYH0QmVC2PASR2hLaQvCMdcwhru6gSl5G
-	 +ponofx7Oa2Ag==
-Message-ID: <3c8203d0-499f-42be-9cc7-c205b03e76b3@kernel.org>
-Date: Fri, 16 Jan 2026 12:24:14 +0100
+	s=arc-20240116; t=1768563306; c=relaxed/simple;
+	bh=q1a0jWygf67uuKBhzxE4d/OzBJCQJDfp0DZUT9io/w0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eIRSt8erjIsKrSDQTNXMsSRo7UgU/CqKx+46yUPbCwmt22I9xr/NhIWe0Qk/HQdExDE/qX4DI7G8iIq906DuG2RhgvDbiCP46uRkMt8VyJXBXBAZLG7j+lL2kz/TF6WIF0xu+Q+NBv0TtiH98a5NuiTolCxltWwxAbUpEAj11MU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=B4DUDlxW; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 7E19D4E42118;
+	Fri, 16 Jan 2026 11:26:38 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 517B560732;
+	Fri, 16 Jan 2026 11:26:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 32F5010B68A33;
+	Fri, 16 Jan 2026 12:26:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768562796; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=gzj+iLxUVkSB/1vcKsefs/Rah5lOv7eiinp3NYF7gEw=;
+	b=B4DUDlxWmz8ALH/x/vmdT2ZlLvnQ4K+RLqxc1KN7TslzXr5m4yMxzdfOO/dgWeAgKduaeU
+	MKk/e1EMe3uRziW3iHYJnLmL8npEYkWzh7hToUjKxTHI+AXBoj/apks5cdUTJKtckfeU++
+	NRF8WJfzzovLgMLEecKkRnAo4D1XmC6tV2lQQ7Mu2utIafzz9i8SmOpyfif18naxQHiF2m
+	pEj0kAoGYeeRmg+8lj3m1zUL63Yu5Gsfia6swk0MBAoR4Td01dDxrsNvMEcnD+mEURUquG
+	iz8f7hsfI80fIipInD86k+Z8fzubv43EPanVKTS9iGi1SA/nIucwXRpEFPK7FQ==
+Date: Fri, 16 Jan 2026 12:26:30 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 08/77] dtc: Introduce update_phandles_ref()
+Message-ID: <20260116122630.35d4fba3@bootlin.com>
+In-Reply-To: <aWg4_KIBbUMOdP9C@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-9-herve.codina@bootlin.com>
+	<aWg4_KIBbUMOdP9C@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: ti,am65x-dss: Add am62p dss
- compatible
-To: Swamil Jain <s-jain1@ti.com>, jyri.sarha@iki.fi,
- tomi.valkeinen@ideasonboard.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- aradhya.bhatia@linux.dev, mwalle@kernel.org
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devarsht@ti.com, praneeth@ti.com,
- u-kumar1@ti.com
-References: <20260116095406.2544565-1-s-jain1@ti.com>
- <20260116095406.2544565-2-s-jain1@ti.com>
- <34759368-6b0f-421f-81dd-20006ee19a1b@kernel.org>
- <1cc5e036-12b6-4b0d-9393-21bbb0dd3f48@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <1cc5e036-12b6-4b0d-9393-21bbb0dd3f48@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 16/01/2026 12:09, Swamil Jain wrote:
->>
->>
->> This is not how review works. Look:
->>
->> 1. You wrote patch on 7th Jan.
->> 2. I replied ONE DAY LATER.
->> 3. You waited one week to give reply.
->> 4. Then two days later you send new version not waiting for my reply.
->>
->> If you have one week to reply, then so do I.
->>
->> NAK, go to v3 and implement comments.
+On Thu, 15 Jan 2026 11:46:52 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
+
+> On Mon, Jan 12, 2026 at 03:18:58PM +0100, Herve Codina wrote:
+> > With the introduction of FDT_REF_LOCAL dtb tag, a local phandle used
+> > by a property is identify when a dtb is parsed.
+> > 
+> > In order to have consistent internal data, the reference related to this
+> > phandle usage needs to be updated based on the phandle value.
+> > 
+> > This is done by update_phandles_ref().
+> > 
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  dtc.c      |  2 ++
+> >  dtc.h      |  2 ++
+> >  livetree.c | 38 ++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 42 insertions(+)
+> > 
+> > diff --git a/dtc.c b/dtc.c
+> > index b3445b7..88f03ff 100644
+> > --- a/dtc.c
+> > +++ b/dtc.c
+> > @@ -333,6 +333,8 @@ int main(int argc, char *argv[])
+> >  		generate_fixups = 1;
+> >  	}
+> >  
+> > +	update_phandles_ref(dti);
+> > +
+> >  	process_checks(force, dti);
+> >  
+> >  	if (auto_label_aliases)
+> > diff --git a/dtc.h b/dtc.h
+> > index 965321c..351fe41 100644
+> > --- a/dtc.h
+> > +++ b/dtc.h
+> > @@ -345,6 +345,8 @@ void generate_label_tree(struct dt_info *dti, const char *name, bool allocph);
+> >  void generate_fixups_tree(struct dt_info *dti, const char *name);
+> >  void generate_local_fixups_tree(struct dt_info *dti, const char *name);
+> >  
+> > +void update_phandles_ref(struct dt_info *dti);
+> > +
+> >  /* Checks */
+> >  
+> >  void parse_checks_option(bool warn, bool error, const char *arg);
+> > diff --git a/livetree.c b/livetree.c
+> > index 9b67934..9e30a63 100644
+> > --- a/livetree.c
+> > +++ b/livetree.c
+> > @@ -1158,3 +1158,41 @@ void generate_local_fixups_tree(struct dt_info *dti, const char *name)
+> >  			"Warning: Preexisting data in %s malformed, some content could not be added.\n",
+> >  			name);
+> >  }
+> > +
+> > +static void update_phandles_ref_internal(struct dt_info *dti, struct node *node)
+> > +{
+> > +	struct node *c;
+> > +	struct property *prop;
+> > +	struct marker *m;
+> > +	struct node *refnode;
+> > +	cell_t phandle;
+> > +
+> > +	for_each_property(node, prop) {
+> > +		m = prop->val.markers;
+> > +		for_each_marker_of_type(m, REF_PHANDLE) {
+> > +			if (m->ref)
+> > +				continue;  
 > 
-> Sorry, we weren't aligned then.
+> IIUC this means that REF_PHANDLE markers can be missing their ref.
 
-Aligned on what? Did I respond? No. How much time you gave me to respond?
+Yes, no ref are present in dtb for phandle pointing to local node, only
+the phandle value is present. We need at some point to set the ref from
+this phandle value.
+
+> Allowing the markers to be in an incomplete state is a footgun.  If
+> possible it would be better to fully generate the markers when we
+> create them.  If not, we should use a different marker type when it's
+> introduced, and convert it later.
+> 
+> I think what's going on here is one type is saying "you have a
+> reference, fill in the phandle", the other is saying "you have a
+> phandle, fill in the reference".  Those seem like they should be
+> different types to me, even if they can be converted once all the
+> fixups are applied.
+
+Right, I can introduce
+- REF_PHANDLE_FILL_PHANDLE: "you have a phandle, fill in the reference"
+
+- REF_PHANDLE_FILL_REF: "you have a reference, fill the phandle"
+  Well, fill the phandle or not... Indeed, this reference can be external and
+  so this can be an unresolved symbol.
+
+But anyway those new marker types will exist only between the parsing step and
+the step where we convert them to REF_PHANDLE markers.
+
+Will see what I can propose in the next series iteration.
 
 Best regards,
-Krzysztof
+Hervé
+
+
 
