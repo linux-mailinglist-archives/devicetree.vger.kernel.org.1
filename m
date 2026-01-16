@@ -1,116 +1,173 @@
-Return-Path: <devicetree+bounces-256255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEDCED38540
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:03:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E27E7D3857F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:09:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 64084301AFE8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:02:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 24E313064018
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9E63A0B1D;
-	Fri, 16 Jan 2026 19:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2764D25EF9C;
+	Fri, 16 Jan 2026 19:09:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=quihel.net header.i=@quihel.net header.b="UU7HpzdS"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ZmLicNzP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound.st.icloud.com (p-east2-cluster3-host7-snip4-1.eps.apple.com [57.103.77.232])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2541B306B02
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 19:02:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.103.77.232
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E550B33B6C4
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 19:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768590174; cv=none; b=LTI9qu08jpiXQNR+MV61UMW+9xkzoKzKagsnYhNOT3UrbNSZkWYf0tN16J0PKtBet6o9LUxSIA95BS6j/wX3RgNSOL0OVOJXh8zxKZ7Wk3YbC0z2cXfdMYzlOixrzNhgfd0py4UyymBa0+dodBu9XWgb3tgGIds3lNU7tpsCskc=
+	t=1768590582; cv=none; b=Y2JPnLQaP5GUmEjhWbRwJLmvviDPVIih+qzrAuLZO3ipCN7D+OlKSDrGnRZo8BEksG+bR/OuOzocLcJ1E0FyeCLSFx+SGPgh7QOuVdTGexbMmzgYyDHZsOUEaaw89kCleWZoAXXDDBRF3Rxz8t7RwhP/aDljhncYg7SPDmSPGk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768590174; c=relaxed/simple;
-	bh=BgK+Bjim/DlpHgAXpzUxBL4NzTEndCMOdo2mCKyxBTQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=paVa73dg6mv8s5FFeX5uXhI+Q0t30Dvf9XsX1O7NuhUMKXG0ylmyHx3IRnQ1riqUUWjmadDRM3ibpaCEShSHQxtap2cpiGGKC8TpIVAoVsBuqonzHqc5RWvRDhxzGPyzUgRQ7YRyETV1VrpYm3H83rH4RWcG2GXw8JHcyJNvXJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quihel.net; spf=pass smtp.mailfrom=quihel.net; dkim=fail (0-bit key) header.d=quihel.net header.i=@quihel.net header.b=UU7HpzdS reason="key not found in DNS"; arc=none smtp.client-ip=57.103.77.232
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quihel.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quihel.net
-Received: from outbound.st.icloud.com (unknown [127.0.0.2])
-	by p00-icloudmta-asmtp-us-east-1a-100-percent-15 (Postfix) with ESMTPS id 2875018001BE;
-	Fri, 16 Jan 2026 19:02:50 +0000 (UTC)
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quihel.net; s=sig1; t=1768590172; x=1771182172; bh=vu9C0yVhsYlWDwNyOkhSaq5/oS935jwtYVgPT8F2cUo=; h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme; b=UU7HpzdSF01BheOYhddXCIrj74mu9/m3x3sTUvf0fpa7V/wCvB9+fVGM33XVqJRHL/uMVzbps8zcoh306kvAhfn/K2YDBsXK/gcTBrRajqyiOn8UyXYUjYVbGdwr1D2iTTBfvRqNE+YgXo7VSyddfHw0KNF0xrpmcBBks98z6uKhSTLB1dkBXiGv1AiIyyPQbwbWD3ilUY/azp4eHya7weXxvuw/DzzGNYPOG1iOaN2rlRqrpi10aztUXbGEwI4C5ASM55LEbU65KOMENaxbW50Agn6TGpyEexBB7eKRPR54TaALqsJI/gCH47nqDWUTXYkooyLe7BWIOZzPw3GGlg==
-mail-alias-created-date: 1318565135000
-Received: from thinkbook16.fritz.box (unknown [17.42.251.67])
-	by p00-icloudmta-asmtp-us-east-1a-100-percent-15 (Postfix) with ESMTPSA id 261C01800181;
-	Fri, 16 Jan 2026 19:02:49 +0000 (UTC)
-From: Alejandro Quintanar <alejandro@quihel.net>
-To: linux-arm-msm@vger.kernel.org
-Cc: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Alejandro Quintanar <alejandro@quihel.net>
-Subject: [PATCH] arm64: dts: qcom: hamoa: Add 1443 MHz OPP to iris video codec
-Date: Fri, 16 Jan 2026 20:02:25 +0100
-Message-ID: <20260116190225.25320-1-alejandro@quihel.net>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1768590582; c=relaxed/simple;
+	bh=QOIsIzI7WiDlq65gAQN/Rp2PT4RYKGrXr3biwu9dKdk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HmvlA95eEPW2rcete5fAzwkxEVsdy1xo79nc6ZcUZlCBg2BUH/M1lkRIQWiTHDoyD2al0YQe68R6Pfx/uoCkbAloiaU4c5hvrpdL469c5uzsjKE3YhF7/w9jOFaw9Cy6iNblIG/23PTI33iKUawZ0oZehIoi8O78hcD272xni30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=ZmLicNzP; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1768590566; x=1769195366; i=wahrenst@gmx.net;
+	bh=QOIsIzI7WiDlq65gAQN/Rp2PT4RYKGrXr3biwu9dKdk=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=ZmLicNzPpp9Zq+xMcgTa3fzvl/oHsZFC/lbxTl8SeJsQclBjpXW2dTAiRMeGQxPo
+	 fYOufzXysxdKcyayRcb7sf3rxyup3CaiT61Xcs+vl0rX1ZeGGCFLJkSnp1g6w77p2
+	 L1/uJ20Td72wAkCQxzqY/UPadfvhv6C+loW/o4zEMxnEB5nkwTcwc75pMclBoXCaj
+	 8VSJx2Ip+wE2ovmqwX+o+jOtS7BY6wWX7pgQhLNwGFGAcc2IBpPm+rL0koFi1LIwP
+	 EVwQ6ilJgrt6/PqppQsrKTeMFF1DmI9zoyMbDfgo1fxdy1RQ3JeI6GzzYUn1T0pvV
+	 LSp/7azxGkMWHnXyVw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.156] ([91.41.209.202]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MHoRA-1vd1ZQ1nAE-00BcpJ; Fri, 16
+ Jan 2026 20:09:26 +0100
+Message-ID: <f70c95cf-e048-47b6-aa6d-e65bf47fee47@gmx.net>
+Date: Fri, 16 Jan 2026 20:09:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 2mR8Qmd8UvGt1nIGc41yZcaEXWdU3X2y
-X-Proofpoint-GUID: 2mR8Qmd8UvGt1nIGc41yZcaEXWdU3X2y
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE2MDE0MSBTYWx0ZWRfXwiW3tfWlovZd
- 9sh+aqfsb0Hl4NTU40MQ0b27kqujyvugjgEwp2JYozawrj2+5jhvByORvaPwdmquVjPxXv51ga5
- 7edGpQPiAkXW21QoGySff77rl0eKjMzjj5xBoMjYrghBfQKuod0A/qnMUXcDooUQND76FCm5kLh
- uKBiVBJDRSVanjiMw5hMZe40iIg6E5HVVbRdfZfo3+X315++SNuH6RVfBJMqvbmMpQOhHen+dAU
- 71D3UcdxSntisaGRoaNhBGveTuaESioC1uyQVTXyJzNYJNLu+wa4wILr9D8mpIjofgXMWwG7W1I
- 6NESSHMP76Gew0iQE6M
-X-Authority-Info: v=2.4 cv=TNZIilla c=1 sm=1 tr=0 ts=696a8b5b
- cx=c_apl:c_apl_out:c_pps a=YrL12D//S6tul8v/L+6tKg==:117
- a=YrL12D//S6tul8v/L+6tKg==:17 a=vUbySO9Y5rIA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=CIKbnwSMAAAA:8 a=Svh9S__hznb6zt4YfpoA:9 a=WAq3Gk0LTMTrdeoBeQ09:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-16_07,2026-01-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1030
- spamscore=0 suspectscore=0 malwarescore=0 adultscore=0 phishscore=0
- mlxlogscore=840 mlxscore=0 bulkscore=0 classifier=spam authscore=0 adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2601160141
-X-JNJ: AAAAAAABMJwocT34ZyD6lJHXfUGSVc7cYb6GNuO2xD4PneY4pK/39TChSyObOz2BIjxogmDL6t+ceuGpZB1/S0bMC4BQhnfYHs9Hi4jxRazNx0XeunjgP20w0wrgSusEthsxd91+NJf7DHJf1wn4rTk0jKs0TtZU6sHePC/buQvR8rDuYBPLADnzihogXrsl2T2ahVq0UbZ+JIEz32kmBlRdN5YYvgaJiDWm8Fcz9A07dRWKB6H32kZAusK/7g4fCgelOo/wDEj0ZSybyC4faWkFv1A3ki4p+5LXkjjVuagrH4T6Ht0rhwc1T39gEX1YWVsamUxVSdnO9CCdPuzrDrYrgPJhQ60N8OIWrAENN3YP2ox0+HD3DUEsnXpWe87ds7njnG/yCLrqKeFDr0ckkkXaDIzTQzpdGk26+o81ow+a0YwJRkdbcPFZN3BECHLjcXB9WZhXV/7rktNgykCLD23TuOyA9EjpZty7hUqs81siHDjpbQ6LJ0ci5BP/jo7XpkgepwwKJ6yaCI3Iqw+ZPX0+nNyU/zA/qtuuqH3vaGiqdmvh25xPN+HLXl4SKXGhRVmT/MfAmPDeAehhh2Q4cIzJ0j9ouQ0mceb4N02KjCz4NxtEqUoM7FeZ+Aq1DNhsfI++MDw2KXioyg==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: broadcom: bcm2712: Add V3D device node
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ kernel-dev@igalia.com
+References: <20260114120610.82531-1-mcanal@igalia.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20260114120610.82531-1-mcanal@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:xVERlNxr39ZJa1OQNlLPowmVSOzZxVIBCwvnSaP0eJVd3KTDm4R
+ Yw+ftRybwirOq18wiBFVwOZaouYMdsL+chLL0JyV8JJukA1GHsXA6Oxuu2Sewe8ZhBCO0aB
+ mxrr0Kn9R7ejc80AQmQktZMcwNusB7p8EBzoPB7E+3SY0rr3F/k3yBFMf/C4X0SqWOMKJ11
+ IMubcEZ0xPYpl/hRyIMwA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ERruxhv27NQ=;sJ6zhfgSEtO+5BZXPWwNYS/+FT7
+ 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
 
-Add the missing 1443 MHz operating point to the iris video codec OPP
-table. The qcom-iris driver requests this frequency but fails with:
-
-  qcom-iris aa00000.video-codec: dev_pm_opp_set_rate: failed to find OPP for freq 1443000000 (-34)
-  qcom-iris aa00000.video-codec: power on failed
-  qcom-iris aa00000.video-codec: core init failed
-
-The iris driver uses the sm8550 compatible fallback and expects higher
-frequencies for turbo modes. Without this OPP, hardware video encoding
-and decoding fails on x1e80100-based devices.
-
-Signed-off-by: Alejandro Quintanar <alejandro@quihel.net>
----
- arch/arm64/boot/dts/qcom/hamoa.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-index a17900eac..e737ec907 100644
---- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-+++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-@@ -5397,6 +5397,12 @@ opp-481000000 {
- 					required-opps = <&rpmhpd_opp_turbo>,
- 							<&rpmhpd_opp_turbo>;
- 				};
-+
-+				opp-1443000000 {
-+					opp-hz = /bits/ 64 <1443000000>;
-+					required-opps = <&rpmhpd_opp_turbo_l1>,
-+							<&rpmhpd_opp_turbo_l1>;
-+				};
- 			};
- 		};
- 
--- 
-2.51.0
-
+Am 14.01.26 um 13:04 schrieb Ma=C3=ADra Canal:
+> Commits 0ad5bc1ce463 ("drm/v3d: fix up register addresses for V3D 7.x")
+> and 6fd9487147c4 ("drm/v3d: add brcm,2712-v3d as a compatible V3D device=
+")
+> added driver support for V3D on BCM2712, but the corresponding device
+> tree node is still missing.
+>
+> Add the V3D device tree node to the BCM2712 DTS.
+>
+> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
