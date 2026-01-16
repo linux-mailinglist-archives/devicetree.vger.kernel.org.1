@@ -1,210 +1,165 @@
-Return-Path: <devicetree+bounces-256105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FC16D320E6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:46:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E71D321DA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:51:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B1BB13033D70
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:40:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 563E930731FF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27CAC2580CF;
-	Fri, 16 Jan 2026 13:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EAC1274B5C;
+	Fri, 16 Jan 2026 13:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="kgTCFU+r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3WslThW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383A920FAAB;
-	Fri, 16 Jan 2026 13:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768570837; cv=none; b=XKZhFnlPMN5pM0kHiUaCbCcbGy2ZeQUcMZNvsczKQPjRbmk9w0eSPOcU+k8RDeGr/NGJz47+9vuBT0Gtph2BF4SYbLRaeCPdw4Q1iINkrRv6y289wHbYw/yQ/2s5RygFn0VE01dWKt2FV8EguissKCOD+EcpGwIjmLQh3yzhkQs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768570837; c=relaxed/simple;
-	bh=wRsPfK3Hgs7TocoZMTphfOdzcGwXquz81kzI/A5RpTw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kmw+90TVZ1/am9ekzSDt98rZIIiBl+sH9Zc1Y7pe7bj39INPajBU0B7j1s2BjQkFmgqdR2/6aXgdBn4NQKz1RfVe+zVLSEJ1AVXkr9mm9AdhTrKkoo3R80HzxTkRLWXiA93yQgyi6pOVJqi7pXJo5j7w+pJ9ebcg7MkrZ4aAFZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=kgTCFU+r; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1768570833; x=1769175633; i=frank-w@public-files.de;
-	bh=q/rqm81BnB9keHnD0B29jzFFavFXBqCbpg3qmxdknVU=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Reply-To:Subject:
-	 To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=kgTCFU+rPO9tgnPmEYNGtNb0Ltx6wUGz+g8chW6CGxLOz+mEtzOl0+X/bNYDHte0
-	 53ufqfN06g5PDTRawKk6L1byyFa/pkvlq9eBVwLTgUAvMFgU4dSDgH/O6edO9u3g4
-	 ZZ2Zjg27ZUGwGx7p9ask1ZbZHtIGNRrybhxAxPCMCgoe8yof9SfXFjx0BEr7AubrO
-	 vJHhponCUKH0BXfKYawoIs2oY37d13xAMbEFG5S3RvJsbXDlnYNi6Bw798t1boMea
-	 FzMWA8JzHLwkXSssvBLCSTdIxbw8J2HWEtYnrWDQT2YnEBj2Z/+pxl4XfAue5ROTA
-	 w0lrgMD+IU4EXNXeXg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.0.21] ([80.245.79.4]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MSKyI-1vEAZN0C52-00Vu9s; Fri, 16
- Jan 2026 14:40:33 +0100
-Message-ID: <4d428d8b-4660-422f-af36-808704091dc3@public-files.de>
-Date: Fri, 16 Jan 2026 14:40:31 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B97228851E
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768571467; cv=pass; b=XBojXcORfJQg20X1/PPy855a2r80QNV09+KCmejxRrn0wCpF+nmy4nmnYGc3HRnx9VgEm80jrNmFEZ/4JGsLRiusuQQ82Xmo1T1xGIyrM+IaCuDZC3+S6IdSdFV+aUud02hHjMvTY+rJi9sIk970WOcwWH+JRY+Pm7Ht/6LMOkU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768571467; c=relaxed/simple;
+	bh=0imWy1cM2Yh3ijKRNIflaY8vhnL/+2L4VY5uCrifH/k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DGlar3ceHQ8rs5ahntBzul7ea0NCz/44gIyQAdr5+lm6myCGz4CT/R37pgaqL5RPeAazWYsyQgtDj0JDgwEE+knu4sImYcMDmO8NPg5hFGUcLNK1vHNzyJr+l4gBbJq/6TJgehHRMNCbUY5KHopMlIYvwSVBfc+fA0gYndaWm5I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i3WslThW; arc=pass smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b8010b8f078so342643466b.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:51:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768571464; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UFByoFnCdll1nSCNftq3KV1jKcNTIJs+ffuxzv2QC+SrOxGdp5thhXVL6MvGIiTP0h
+         hw1XXiKB0x+weDjgyFXQuc0okkszy+41esvrEYKWrb73Mr1lgYXx3emG14rGvEqZXVsj
+         JygLlqadCxjZpUxnzf3HAH1UWSLzuXe0blu0cxjxwhH94FXoI2k1km4PgvGWAWaMB/tj
+         lZBmRe6jTBAPYqSX9whMbZERvvPc0dSCvrF7lkr9NB2Vg8ewiMr9lrWIb9dzE0Yr1cXJ
+         fakbcbi6cdZYLN29ZdF5mt0wazF+jHdXl3r5FajWjxhnAZ0GW74+MQcHprM0YY9V0HRl
+         y4Ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=vP98g39yyougRsxlmtaspRwBSt2K8dov2JxcZQzReas=;
+        fh=g94WY3dU4qMfyIPBUoHZTMrpLaE2n9eX79hiBIBhkaw=;
+        b=TdKd2VwBNG8f7Kk5z+NMgDFAt9bttY/d6lp+tkgAs9m3A4VgavDrD48ExCDg4JtEHn
+         xTSJ3GHo0FfueaB3RzwRNdwgVd9iMyNPcyMOGIhEu5pqru19knxTD0ZEatF8ouIJC0Wk
+         s+rEpy81dAZ2IFLMX2VF+T0fgOUK5l645yPCch/AoavDgDHl4rsD7spaj0h6Vhx5XdSS
+         FkftMXd7tUqKVU8UXTQdDLjSDKJ5eX9QjDZ84zmhIcrdmoDaaPKCwp4X+YZIoM3D54Dx
+         dWfTAHa1cRvuHb0XX6oG+FhurgMkH966YMvyJA4cV3NYmN3rl9imnpXInbj8KT54lEZT
+         SysQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768571464; x=1769176264; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vP98g39yyougRsxlmtaspRwBSt2K8dov2JxcZQzReas=;
+        b=i3WslThWc1Xd+/crfe/XdxS+0Nsp58RaMSbabGhjGVY0L4gL07QRI8Mfn8Dqoz59Ll
+         ZXOMW/ekCsToVc57Lc3ryRXxw67yjHXtS27iCkxHAs/5SSxEMRkTIYVCjA5keU+HDXJh
+         c0z1Sc6EJmf6LVp1j8a+PrYLAlIzh6hthujW67yci8qW60cEBd1fXU/sspn82dpeWNm6
+         mD32OJgg/yDjIbKmcG4ZgsqG0YuOR+l/9t2hRzfz/Qb/DLm2c1w/QaeCzg0z23w2iXJb
+         EhEUwyKbcs+HNF/4xQDmhnU+cDfKlSo7dWONZHX4X4eJ4WBwdEnJ+kWijmiHp5LJUEQ7
+         l5gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768571464; x=1769176264;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=vP98g39yyougRsxlmtaspRwBSt2K8dov2JxcZQzReas=;
+        b=gKlkm2qn7zfVhbcvcUGSRdmBcJ5exFF60TgQ3FCop5ni1U0qjP9FS6ykJM7oTLy71z
+         v8A0rVjhqgQF0h++91ycSE5ZYj1wjViKje1YNW4a64AGtc7MKEnLmKv5utdP+OJZi9WZ
+         fGNqpEWBC2rXp9Vm9EbTh/qpXlk1HN1p64YtIf35W0iYpgm0RkLs4MuwH7FM4jglgQ2z
+         69HcDXRBYHCa9DebOoBX/ptNDWkBEoj/x6ypPMZAu9BxAZ6fVadLKwQ2Zb+Hw3xu7ocn
+         HRdphWTYwSA2PObBgaXKHQ5jKSCL6BOVi/61RVv9lCwU0Wb1mFR8LVgGzDXid/cdFWEO
+         CCJA==
+X-Forwarded-Encrypted: i=1; AJvYcCWlynqcc6qwru5QkwafqwGy6tJW9Y5jZIDfH2qxn/rJLfeJKa21MsKyT2AkkCSgYMSUrNDpoD0Xk3t7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxII6H6lTP1kZQPz4RFuKqSb66IalY52wNwYvWzg+KioDA345mi
+	lmyrtyDh+AXAPhglL2u8vyNP7B4piwwY95hoOZxKqdrBuNoO4dOcsElNi5tagaxoGX7I4N3m9it
+	QTjMW5jCqxgnuYRM0Sf9qN4XQcQYFDdM=
+X-Gm-Gg: AY/fxX53PMC0a1cuI+l5cow7BJWqjo8eQFTUL2yfunD7+KyA87y/CrlmLW9fXiBw3Hf
+	rAE56BKfo4FqD2UPsOkJlMZHd83mjpocnGiy6EFGZC9h1HZ5mkON6WW4DlvnhOjjahYmpBG4LF9
+	rWqocqW1+9G/OfiT/FuLlV06H8Oft1XutrrbZCsRzd0hSMl/XOpxebUv+KubvawjEjSKztUnR31
+	qsZGGJN1CzRgkoJgtbTI1BH72RGk5rrx4lBC/KUSIfdcuGNNo1txgaGWkG0SR46BEyDzQKQ7QhG
+	Ky0KDe4BEaLNjchKXDHgLPCd9v9a3+GtHyAaKpRynAE9AceFRYvrQip9cSM3WuUH7Rqb9gs=
+X-Received: by 2002:a17:907:1c10:b0:b87:1b64:a63 with SMTP id
+ a640c23a62f3a-b87968a9716mr191242366b.6.1768571463652; Fri, 16 Jan 2026
+ 05:51:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Reply-To: frank-w@public-files.de
-Subject: Re: [PATCH v2 1/2] dt-bindings: thermal: mediatek: Add LVTS thermal
- controller definition for MT7987
-To: Frank Wunderlich <linux@fw-web.de>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Mason Chang <mason-cw.chang@mediatek.com>, Balsam CHIHI
- <bchihi@baylibre.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20251223175710.25850-1-linux@fw-web.de>
- <20251223175710.25850-2-linux@fw-web.de>
-Content-Language: en-US
-From: Frank Wunderlich <frank-w@public-files.de>
-In-Reply-To: <20251223175710.25850-2-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+ <20260108-adf41513-iio-driver-v3-2-23d1371aef48@analog.com>
+ <aWFPEa9HI4wmYLpn@smile.fi.intel.com> <6hcqrcy3meskddrklb3jtlpca2snrs4upwms56lhq7mkes7krm@vdiaqkfc6lgg>
+ <aWTTs1n_N0dVjpbV@smile.fi.intel.com> <lwqhf3pm5xewtx4hhq7ei2yil4skmtkstqfifif74u4e5jmtzh@wedhpibvjepw>
+ <zgz6g7pvzijrt77lwdi6q23lgkscm33imcdfbnu7mxvzarygst@ve3wi5l6dv3d>
+In-Reply-To: <zgz6g7pvzijrt77lwdi6q23lgkscm33imcdfbnu7mxvzarygst@ve3wi5l6dv3d>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 16 Jan 2026 15:50:27 +0200
+X-Gm-Features: AZwV_QgMV3VtbpdpsZAd3s2CqQZWxMYfJmVw_nvg5Cuzp2P6oYGHfb6siqtNym8
+Message-ID: <CAHp75VccDF6QfkZ729qCTQcd5bbnTO2SX+FG8QNPRSC9=LneMg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] iio: frequency: adf41513: driver implementation
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, rodrigo.alencar@analog.com, 
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:JAZEMmry8fBh48XvkBwat+o55XMk6tYvS4dtXPXHFDHzrOonORG
- pyUAZvwgSEKynDJh+Vb2HwsnYCVAy/dnNkfpLFeye/nkQCeKDu2/aDw94E7mDtchficMbUW
- 9Yl1FdAGt+y9iheE4RomisZnq7VWabrBpcelT1vWvKsemaU/q9RqLQJ6EUjLN7oln9Ehbzs
- nr7/QF97SfJu5NNa0GfrA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:/nVPw0Ou9F8=;IL1A7dlL0ZDytElwt8dzMXgt95b
- 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
 
-Hi,
+On Fri, Jan 16, 2026 at 1:32=E2=80=AFPM Rodrigo Alencar
+<455.rodrigo.alencar@gmail.com> wrote:
+> On 26/01/13 09:32AM, Rodrigo Alencar wrote:
+> > On 26/01/12 12:57PM, Andy Shevchenko wrote:
+> > > On Mon, Jan 12, 2026 at 09:56:25AM +0000, Rodrigo Alencar wrote:
+> > > > On 26/01/09 08:55PM, Andy Shevchenko wrote:
+> > > > > On Thu, Jan 08, 2026 at 12:14:51PM +0000, Rodrigo Alencar via B4 =
+Relay wrote:
 
-just a friendly reminder for this series
+...
 
-regards Frank
-
-Am 23.12.25 um 18:56 schrieb Frank Wunderlich:
-> From: Frank Wunderlich <frank-w@public-files.de>
+> > > > > > +#define ADF41513_MAX_PHASE_MICRORAD          6283185UL
+> > > > >
+> > > > > Basically I'm replying to this just for this line. 180=C2=B0 is P=
+I radians, which is
+> > > > > something like 31415926... Can we use here (2 * 314...) where PI =
+is provided in
+> > > > > one of the used form? This will help to grep and replace in case =
+we will have a
+> > > > > common PI constant defined in the kernel (units.h).
+> > >
+> > > Any comment on this?
+> >
+> > will adjust as suggested.
 >
-> Add thermal controller definition for MT7987.
->
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->   .../devicetree/bindings/thermal/mediatek,lvts-thermal.yaml     | 1 +
->   include/dt-bindings/thermal/mediatek,lvts-thermal.h            | 3 +++
->   2 files changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-the=
-rmal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-therma=
-l.yaml
-> index 0259cd3ce9c5..a9befb523fd4 100644
-> --- a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.ya=
-ml
-> @@ -18,6 +18,7 @@ description: |
->   properties:
->     compatible:
->       enum:
-> +      - mediatek,mt7987-lvts-ap
->         - mediatek,mt7988-lvts-ap
->         - mediatek,mt8186-lvts
->         - mediatek,mt8188-lvts-ap
-> diff --git a/include/dt-bindings/thermal/mediatek,lvts-thermal.h b/inclu=
-de/dt-bindings/thermal/mediatek,lvts-thermal.h
-> index ddc7302a510a..e9780edcd26c 100644
-> --- a/include/dt-bindings/thermal/mediatek,lvts-thermal.h
-> +++ b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
-> @@ -7,6 +7,9 @@
->   #ifndef __MEDIATEK_LVTS_DT_H
->   #define __MEDIATEK_LVTS_DT_H
->  =20
-> +#define MT7987_CPU		0
-> +#define MT7987_ETH2P5G		1
-> +
->   #define MT7988_CPU_0		0
->   #define MT7988_CPU_1		1
->   #define MT7988_ETH2P5G_0	2
+> I am finishing putting the V4 together and I decided to leave as is.
+> doing (2 * 314...) might lose precision, by not much (maybe negligible)
+> but it does, as (2 * 3141592) !=3D 6283185.
+> And that it is part of the reasons why PI is already multiplied by a
+> power of 10. I suppose there would be multiple constants defined:
+> - pi in micro radians and nano radians
+> - 2*pi in micro radians and nano radians
 
+The problem is that we will have off-by-one errors in plenty of
+drivers. Depending on the driver the PI may be floor()ed or ceil()ed.
+That's why I think it is best to use 2*PI with the precision you like.
+In this case it can be as simple as
+
+((2 * 31415926) / 10)
+But you might actually want to have the maximum 32-bit PI, as
+314159265 for the same reason.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
