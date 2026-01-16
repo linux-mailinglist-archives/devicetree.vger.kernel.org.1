@@ -1,358 +1,142 @@
-Return-Path: <devicetree+bounces-255822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825DCD29E04
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:05:48 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8456FD29FFE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 03:16:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3F4663006A63
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:05:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BEC9D306EC10
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 02:11:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67881D6DB5;
-	Fri, 16 Jan 2026 02:05:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B921E338F20;
+	Fri, 16 Jan 2026 02:11:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="g/Plv7a7";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZeUzeTfJ"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="qTeURj0i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com [209.85.216.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55ED322F386
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 02:05:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A2730FC0F
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 02:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768529146; cv=none; b=Lkt/3yEX6kS4dLLd8xCi2Z2baJCAA2XkTfj3cLSgTnFvI/89rBuj134f7nFGT/LiUStm1PvH8gvYO8IXPdquzvyK2j0k4r7lmn+E3OgTFa2e8csvdNbfWJ/3VlbGScUHhIixoI4fV+heBSVYvp98TUCy68SaJczzqQhKy1iHs6o=
+	t=1768529460; cv=none; b=Hc7RgtoIX8lbFYx9CHw/Bkz9+EB3PRfnxUDbAfSlegftqAW7D6L8KI/sVAjJjQ0W98i19F6Gvf3rNdmGctqjVzU+EDpFyAb250pk6XuuzSEf3zo51c5Pa/U2coty6k4W39dWjIQJU54xrkLY5ezL/xUESbFRR96slYNpJkp/1CQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768529146; c=relaxed/simple;
-	bh=j3DZ3MLheBzPZCcXceHMdl1oFCSl1YqhTX1+xmDy62c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ksW7S04VLbJ++nCF5t88WRvIqSaZnCLw2HoPMbuVYxF8HvzdstRmiBh6jvCkz+lAtiRDChxNdzFgaYrSXKO+DYu1mbW0CimGvlJMSRL19LMlwc3Miu4M2NKSTTM5aDxV9B5Iemswxs9gGEXmIQj5iIpiWHcDNHfmHWi/32StAgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=g/Plv7a7; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZeUzeTfJ; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1768529142;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=gG1D0fzVJ1vGqbm/rZq2UIHNeWOawXntGG6W46KCvjs=;
-	b=g/Plv7a7Js2SDQ4nhkM/TFiYoqvA6zAzJxguBC3bpwGqx0lcULT9sHQb3PyrGWa90sB09L
-	u/ks0+GqE8NVrTx5vMpPnF9ZYPMzWq/B8cn2TlDm5S4PJl1XA7MrJ3ek1pLG+NOeibQxjp
-	cfOPeZJUM5O1tT66q4Ws5OiftcQM+SA=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-589-uOfbzKDUPY-OP5p1ZGOKwA-1; Thu, 15 Jan 2026 21:05:41 -0500
-X-MC-Unique: uOfbzKDUPY-OP5p1ZGOKwA-1
-X-Mimecast-MFC-AGG-ID: uOfbzKDUPY-OP5p1ZGOKwA_1768529140
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c5311864d9so350237485a.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 18:05:40 -0800 (PST)
+	s=arc-20240116; t=1768529460; c=relaxed/simple;
+	bh=4CHXRiB0exQslABri/9R9mVthVDCinCaggbtBCLqnzM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UrP4JEadtuk1MShKG7SzfUl0kBLMbEyjsZINgbEYqN6bc23/EDmXUhY404d+jjwI2qWiae/a0e+xaXmy663wU3walbSDkGK9NACiDHdtnT75b4dpcZ6ZwVl2fIxTPxTptsWhxizWY4uPK1YpUTWIk474InXja03lpccUOvcy4iM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=qTeURj0i; arc=none smtp.client-ip=209.85.216.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pj1-f66.google.com with SMTP id 98e67ed59e1d1-34e90f7b49cso806223a91.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 18:10:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1768529140; x=1769133940; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gG1D0fzVJ1vGqbm/rZq2UIHNeWOawXntGG6W46KCvjs=;
-        b=ZeUzeTfJnduLKXZ+66a/Umpgo/pX+qVr7uRlx8+Pg3oGU8uzLFiuTRPuIEQRoIZznt
-         MZmSbBNCgjeiwI8qne+x7N9XyFOSA08zgrSIKgbC7EfqNIIA1mHbBGKxXmwUysTuJ0KF
-         2L045HnE7+ibdFN8gYyVZGCAtSPvTdnaGyUmwhV+MjlyZVYcOOLL3JrjsMc0d+yWJtQq
-         3LZu/qrjesbBD7dirsOjnlwbaf8FDnTOGQmlD/6RMRysT8WN6uiW2ONKT2vi0RNkJjAG
-         txXGQZW6KaycSlPAad779zaWxBL1+MnwnURHXJN6eKQe46pODKS5DYcM1KeOZLgtmk+M
-         bDhw==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768529452; x=1769134252; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d0RqvDSTLRy5sun+KFOAz+29pO93gB9/JlJnbr30Zhk=;
+        b=qTeURj0iTFMSfzbsMzpoMdjIzPdpSElloxCH/HX3LSG0WCIPP3NB06qjSMVmvkHcqE
+         O8F36dX910PHoug0lpxSh9/ujZNm7Q6YcBwqwLBh74kiF8Zj6K+bMHj5m2IxMBpLK3T4
+         Qwb7wrWYamI5382BXEqHXGSW8kbqTX0/Ok6siPGo6PAHafGKP2llD3dsjxGamyYClsrb
+         eqQ+IUJW+oy55iqdz1Um+ZSqIvNWS7t15L90RaFFlHhlf5LHZ8IYc8PmGJgYMtUzgKSX
+         oxGj6fz9lt+ZypqOQnkQEwv/t17QNuDQL23qvCs0ponkwOtQosjHvV+T/gXPqar/jVNN
+         5DbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768529140; x=1769133940;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gG1D0fzVJ1vGqbm/rZq2UIHNeWOawXntGG6W46KCvjs=;
-        b=cExfUYfXDGCQtFTvzsoKhkXwwJTbtneX0fv+psxnfgEyv7JhmtuEOBTGrdETzR4xLH
-         TzqFg41oBuyFStsOachd8InBwIICMTbHYmcSbZ+WvY8vqYJy6fjBaLDHpOsY70Qc/fbt
-         4RDsvN1MReYKH6SntZwf8ia2HSoVPost25U0WjIGhEhOj2zmBLmdph0yo4QSWDcGu9Hn
-         PVQQ6O61eBqqx+KgZ2uUeO0pP53BGC3PhthHxCpy/LMNHcsOpZEYXOlz7WqXynWHo89/
-         JWB1URghQmFws5YsZ/8K/KcB51S1SOMcWq2w1ELk5rzgAeFk0cUjJHOnXCHrlvNm2Sr7
-         Nmvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUzCANZo0dd0I2dVOl1nk6yYjV8Guc/LVpb7Bne2LZAPISmuKuiHvYwl3IMaWnPY6kyYei5DkGO+6lN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjytOjFNj0Tm9d7TtQDbhdCM40vX6XPZakR0ciHcUcQr+G1RJG
-	6J/yE584ZQbx//+Jc8jaFyt3KnMquR6lNwGmPDnGETvNNQXiTmj2H7Lfdm0eo/MvVbID3nV5z/C
-	fXhw2vsaHJr1PbaSHFTRsE9usbZhT6WtnWqCr8YCf9idG03sjX9PgfqSuVLvjboQ=
-X-Gm-Gg: AY/fxX73J78TylLZxudHaokRZPSRIVQSqryaJgyYwhGoeQup+h4/KjBA8pP5ynUeP4m
-	wVAv2qe13p/IyI8fcq0ybk4ff+D+0yFMXZM4bKz3hnvaTUKBKzLhcMIv83eFBjdPRrVdGUv/iCl
-	Arrki4gp4Ln48exMppX98OoZqmERjdU+4Sk9DXiRFINPSyqZICim6gzFlvaBm2sKc+fA05ZtVTf
-	sILzyRZkbu2OBPTDjvJY9jbPWTy365ggh0Bg/UmTsEw35cjIkDP2J3kveJXCyLLo7ibHJp7bnXz
-	otapIKHs+krD4l0mqZ7Old6HLn1CUT8lTgPKFLkxDPD0QSDUNjCK2TwE+WKjW+pWriGDqDAWK0p
-	fMgydi10l1eNCUdgUIbDmw+jioxJKJQ0/FGlsGRYGLCcq
-X-Received: by 2002:a05:620a:710c:b0:89e:b0bd:ced9 with SMTP id af79cd13be357-8c6a6770539mr238138085a.43.1768529140449;
-        Thu, 15 Jan 2026 18:05:40 -0800 (PST)
-X-Received: by 2002:a05:620a:710c:b0:89e:b0bd:ced9 with SMTP id af79cd13be357-8c6a6770539mr238134985a.43.1768529139939;
-        Thu, 15 Jan 2026 18:05:39 -0800 (PST)
-Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c6a71c06e5sm106501685a.16.2026.01.15.18.05.36
+        d=1e100.net; s=20230601; t=1768529452; x=1769134252;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d0RqvDSTLRy5sun+KFOAz+29pO93gB9/JlJnbr30Zhk=;
+        b=OdKnWm3450KQDDvx4li89/OAy8wQ+VFFm3gkj/WJthte2VV2spvUAe35S6pkHEyIOJ
+         ifmUz1YCiOtQWSW1yPwILowWpDtpw2nMf2vz0M4CN5NgGwnP20xLWCW+0zqOHaAYD06R
+         PfrJm+RW5Bc558bCQ6cUyjJmhsgDgoG21J3ettoQqX/w5mB2J/C/rfn3GLh8FAKDHd2H
+         zwRNWq32fmK86+Q3Von/1qyIAU3SPe3cm/vOUQcuCuaUMRMgVMJdUhXqzrSMvMspoBWJ
+         pcxZRDF+QJlPeLU8UZmUzB8C9Ly6pIVRodHqqNe8L/lunOxUSghho+2gsknui7y8Rl9F
+         p30g==
+X-Forwarded-Encrypted: i=1; AJvYcCU85h2SSyv2AmOeuCfkJrdvbXNW2msomrHZ3iIqp9WSRsV2ibMn7P1YinTGwH+kMi7Mjcg2M7LVGiFH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9KQEDX0qeceWSsVHaJ9VxdhmXD1OmxYN6kWIwKwpFaBZ/SF+6
+	btG4C75fv1QUwswkkrmc0t0ykfEJZdRFB/XtdUGSorLHfMlPNDx3wdU0XYyuaHIvsTc=
+X-Gm-Gg: AY/fxX4AUadvZsFaCoxpMRaaSxX6lWpC88LQ96DoYMdmAWQ1SyaVtnI5uvMAFzYxQpz
+	CftmMJzYUfPRnc36RldCcYPMYmWDHnGjwLc1pFoZbsHHSnsEQiLBMIql0TPI/tgWwN+G7s603lb
+	pMHrwZqiz92sKJa54gU/sECjwVjZWodkuIgvg4ODIllQnAXi/HrZnhdNYZsaecjUYugbLbnV/cP
+	PxtoROO3WKIMljt2pzgrVt4q6ELl5p1/kIzP50N/aR1gDoQ19894L+1jx8fW8e+GBYeXHWnFrFk
+	pI1x7Y2ZghDsEVmmOIvim9YeavnSloSwfd4fhJTzEQA6+al1ERc6S6n1O0fBQm/Bta2CqtD0f9x
+	bwjSoHqk4qV7w+YbGRHyV9lwH6y4UGk3mGamSfzRqZzfPGDVMhgPA5+ssZzZ7H4+B1a6I+NisF6
+	VHqCuq0DshskJ9Sxh8xLV+xWjAxKG7uz0tTrB97fPVFfDT4KVVFc6oQKaSED3JUn4m
+X-Received: by 2002:a17:90b:570f:b0:330:bca5:13d9 with SMTP id 98e67ed59e1d1-352732775a8mr1013354a91.32.1768529452084;
+        Thu, 15 Jan 2026 18:10:52 -0800 (PST)
+Received: from [127.0.1.1] ([45.8.220.151])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35273298968sm364317a91.0.2026.01.15.18.10.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jan 2026 18:05:39 -0800 (PST)
-Date: Thu, 15 Jan 2026 21:05:35 -0500
-From: Brian Masney <bmasney@redhat.com>
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>,
-	Joel Stanley <jms@oss.tenstorrent.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	joel@jms.id.au, fustini@kernel.org, mpe@kernel.org,
-	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com,
-	agross@kernel.org, agross@oss.tenstorrent.com
-Subject: Re: [PATCH 3/8] clk: tenstorrent: Add Atlantis clock controller
- driver
-Message-ID: <aWmc73irBAM8DZwF@redhat.com>
-References: <20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com>
- <20260115-atlantis-clocks-v1-3-7356e671f28b@oss.tenstorrent.com>
+        Thu, 15 Jan 2026 18:10:51 -0800 (PST)
+From: Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH 0/3] riscv: cpufeature: Add Supm extension id and
+ validation
+Date: Fri, 16 Jan 2026 10:10:30 +0800
+Message-Id: <20260116-supm-ext-id-v1-0-5fcf778ba4a6@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260115-atlantis-clocks-v1-3-7356e671f28b@oss.tenstorrent.com>
-User-Agent: Mutt/2.2.14 (2025-02-20)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABeeaWkC/y3MQQqDMBCF4auEWTdgggbxKsVFjGM7i0SbiSKId
+ +9Uu/wfvO8AxkzI0KkDMm7ENCcJ81AQ3j69UNMoDbayrjLGaV6XqHEvsuvWOmxHX4d6aEAeS8a
+ J9kt79ndn/KyClnuEwTPqMMdIpVPpx/zhBvrz/AKCG7PUjgAAAA==
+X-Change-ID: 20260116-supm-ext-id-826e8da4c4b5
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+ Evan Green <evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
+ Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Guodong Xu <guodong@riscstar.com>
+X-Mailer: b4 0.14.3
 
-Hi Anirudh,
+Supm as an extension indicates pointer-masking support for user mode
+(U-mode). It relies on Ssnpm or Smnpm for the underlying hardware
+implementation.
 
-Thanks for the patch!
+As a ratified feature, define a dedicated RISCV_ISA_EXT_ id for Supm.
+However, since Supm is targeting U-mode, it should not be added into
+devicetrees that describe hardware running privileged system softwares.
 
-On Thu, Jan 15, 2026 at 05:42:02PM -0600, Anirudh Srinivasan wrote:
-> Add driver for syscon block in Tenstorrent Atlantis SoC. This version of
-> the driver coves clocks from RCPU syscon.
-> 
-> 5 types of clocks generated by this controller: PLLs (PLLs
-> with bypass functionality and an additional Gate clk at output), Shared
-> Gates (Multiple Gate clks that share an enable bit), standard Muxes,
-> Dividers and Gates. All clocks are derived from a 24 Mhz oscillator.
-> 
-> Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-> ---
-> diff --git a/drivers/clk/tenstorrent/atlantis-ccu.c b/drivers/clk/tenstorrent/atlantis-ccu.c
-> new file mode 100644
-> index 000000000000..f3a2ea49a82e
-> --- /dev/null
-> +++ b/drivers/clk/tenstorrent/atlantis-ccu.c
-> @@ -0,0 +1,932 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2026 Tenstorrent
-> + */
-> +
-> +#include <linux/array_size.h>
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/delay.h>
-> +#include <linux/idr.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/minmax.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#include <soc/tenstorrent/atlantis-syscon.h>
-> +
-> +#include <dt-bindings/clock/tenstorrent,atlantis-syscon.h>
-> +#include <linux/regmap.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/math.h>
-> +#include <linux/bitfield.h>
+Supm is implied by Ssnpm (S-mode) or Smnpm (M-mode). Add parsing logic
+and validation to ensure this dependency.
 
-Please sort the headers. clk-provider.h is listed twice. Remove the
-unnecessary newlines.
+When CONFIG_RISCV_ISA_SUPM is disabled, Supm validation will fail
+regardless of whether Ssnpm or Smnpm exist. This patchset doesn't change
+this behavior.
 
-> +static void atlantis_ccu_lock(void *_lock)
-> +{
-> +	spinlock_t *lock = _lock;
-> +
-> +	spin_lock(lock);
-> +}
-> +
-> +static void atlantis_ccu_unlock(void *_lock)
-> +{
-> +	spinlock_t *lock = _lock;
-> +
-> +	spin_unlock(lock);
-> +}
+Prior discussions about how Supm should be handled can be found in Links
+[1] and [2].
 
-Are these abstractions really needed? Why not just call spin_lock/unlock
-directly?
+Link: https://lore.kernel.org/lkml/20260101-legume-engraved-0fae8282cfbe@spud/#r [1]
+Link: https://lore.kernel.org/all/4ebbe14b-2579-4ba6-808d-d50c24641d04@sifive.com/#r [2]
 
-> +static int atlantis_ccu_clocks_register(struct device *dev,
-> +					struct atlantis_ccu *ccu,
-> +					const struct atlantis_ccu_data *data)
-> +{
-> +	struct regmap *regmap = ccu->regmap;
-> +	struct clk_hw_onecell_data *clk_data;
-> +	int i, ret;
-> +	size_t num_clks = data->num;
-> +
-> +	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, data->num),
-> +				GFP_KERNEL);
-> +	if (!clk_data)
-> +		return -ENOMEM;
-> +
-> +	ccu->clk_data = clk_data;
-> +
-> +	for (i = 0; i < data->num; i++) {
-> +		struct clk_hw *hw = data->hws[i];
-> +		const char *name = hw->init->name;
-> +		struct atlantis_clk_common *common =
-> +			hw_to_atlantis_clk_common(hw);
-> +		common->regmap = regmap;
-> +
-> +		/* Fixup missing handle to parent for gates/muxes/dividers */
-> +		if (hw->init->parent_hws && hw->init->num_parents == 1) {
-> +			const struct atlantis_clk_common *parent =
-> +				hw_to_atlantis_clk_common(
-> +					hw->init->parent_hws[0]);
-> +			hw->init->parent_hws[0] = clk_data->hws[parent->clkid];
-> +		}
-> +
-> +		switch (common->clk_type) {
-> +		case ATLANTIS_CLK_MUX:
-> +			struct atlantis_clk_mux *mux =
-> +				hw_to_atlantis_clk_mux(hw);
-> +
-> +			hw = devm_clk_hw_register_mux_parent_data_table(
-> +				ccu->dev, name, hw->init->parent_data,
-> +				hw->init->num_parents, hw->init->flags,
-> +				ccu->base + mux->config.reg_offset,
-> +				mux->config.shift, mux->config.width, 0, NULL,
-> +				&lock);
-> +
-> +			if (IS_ERR(hw)) {
-> +				dev_err(dev, "Cannot register clock %d - %s\n",
-> +					i, name);
-> +				return ret;
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
+---
+Guodong Xu (3):
+      dt-bindings: riscv: Add Supm extension description
+      riscv: cpufeature: Add ISA extension parsing for Supm
+      riscv: cpufeature: Clarify ISA spec version for canonical order
 
-return PTR_ERR(hw);
+ .../devicetree/bindings/riscv/extensions.yaml      | 17 ++++++++++
+ arch/riscv/include/asm/hwcap.h                     |  3 +-
+ arch/riscv/kernel/cpufeature.c                     | 38 ++++++++++++++++++++--
+ 3 files changed, 53 insertions(+), 5 deletions(-)
+---
+base-commit: ef41e6187f77b52e4b17ab9637be8f878e1f7a5b
+change-id: 20260116-supm-ext-id-826e8da4c4b5
 
-> +			}
-> +
-> +			if (data == &atlantis_ccu_rcpu_data) {
-> +				switch (common->clkid) {
-> +				case CLK_RCPU_ROOT:
-> +					ret = clk_hw_set_parent(
-> +						hw,
-> +						clk_data->hws[CLK_RCPU_PLL]);
-
-Should the parent be defined in device tree instead of statically in the
-driver? devm_of_clk_add_hw_provider() is called below, and it calls
-of_clk_set_defaults(), which will allow the use of the
-assigned-clock-parents and assigned-clocks properties.
-
-> +					if (ret)
-> +						dev_err(ccu->dev,
-> +							"Failed to set RCPU ROOT MUX parent: %d\n",
-> +							ret);
-> +					break;
-> +				case CLK_NOCC_CLK:
-> +					ret = clk_hw_set_parent(
-> +						hw, clk_data->hws[CLK_NOC_PLL]);
-> +					if (ret)
-> +						dev_err(ccu->dev,
-> +							"Failed to set NOCC Mux parent: %d\n",
-> +							ret);
-> +					break;
-> +				}
-> +			}
-> +			break;
-> +		case ATLANTIS_CLK_DIVIDER:
-> +			struct atlantis_clk_divider *div =
-> +				hw_to_atlantis_clk_divider(hw);
-> +
-> +			hw = devm_clk_hw_register_divider_parent_hw(
-> +				ccu->dev, name, common->hw.init->parent_hws[0],
-> +				div->common.hw.init->flags,
-> +				ccu->base + div->config.reg_offset,
-> +				div->config.shift, div->config.width,
-> +				div->config.flags, &lock);
-> +
-> +			if (IS_ERR(hw)) {
-> +				dev_err(dev, "Cannot register clock %d - %s\n",
-> +					i, name);
-> +				return ret;
-> +			}
-> +
-> +			break;
-> +		case ATLANTIS_CLK_GATE:
-> +			struct atlantis_clk_gate *gate =
-> +				hw_to_atlantis_clk_gate(hw);
-> +
-> +			hw = devm_clk_hw_register_gate_parent_hw(
-> +				ccu->dev, name, common->hw.init->parent_hws[0],
-> +				hw->init->flags,
-> +				ccu->base + gate->config.reg_offset,
-> +				ffs(gate->config.enable) - 1, 0, &lock);
-> +
-> +			if (IS_ERR(hw)) {
-> +				dev_err(dev, "Cannot register clock %d - %s\n",
-> +					i, name);
-> +				return ret;
-
-return PTR_ERR(hw);
-
-> +			}
-> +
-> +			break;
-> +		case ATLANTIS_CLK_FIXED_FACTOR:
-> +			struct atlantis_clk_fixed_factor *factor =
-> +				hw_to_atlantis_clk_fixed_factor(hw);
-> +
-> +			if (hw->init->parent_data) {
-> +				hw = devm_clk_hw_register_fixed_factor_index(
-> +					dev, name,
-> +					hw->init->parent_data[0].index,
-> +					hw->init->flags, factor->config.mult,
-> +					factor->config.div);
-> +			} else {
-> +				hw = devm_clk_hw_register_fixed_factor_parent_hw(
-> +					dev, name, hw->init->parent_hws[0],
-> +					hw->init->flags, factor->config.mult,
-> +					factor->config.div);
-> +			}
-> +			if (IS_ERR(hw)) {
-> +				dev_err(dev, "Cannot register clock %d - %s\n",
-> +					i, name);
-> +				return ret;
-
-return PTR_ERR(hw);
-
-> +			}
-> +			break;
-> +		case ATLANTIS_CLK_GATE_SHARED:
-> +			struct atlantis_clk_gate_shared *gate_shared =
-> +				hw_to_atlantis_clk_gate_shared(hw);
-> +			gate_shared->config.refcount_lock = &refcount_lock;
-> +
-> +			ret = devm_clk_hw_register(dev, hw);
-> +
-
-Unnecessary newline
-
-> +			if (ret) {
-> +				dev_err(dev, "Cannot register clock %d - %s\n",
-> +					i, name);
-> +				return ret;
-> +			}
-> +
-> +			break;
-> +		default:
-> +
-> +			ret = devm_clk_hw_register(dev, hw);
-> +
-
-Unnecessary newline
-
-Brian
+Best regards,
+-- 
+Guodong Xu <guodong@riscstar.com>
 
 
