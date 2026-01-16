@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-256086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514D7D31A92
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 516ECD31AA0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:17:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 14FB6300920C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:17:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E116C301279C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA1525B1DA;
-	Fri, 16 Jan 2026 13:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A2526158B;
+	Fri, 16 Jan 2026 13:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="bXxtbdvj"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="QTM7us57"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5C923B63E
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7191923FC54
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:17:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768569448; cv=none; b=KS63GnVINpJj0pX0MZG8hC0FtcN5UuxxaQQaGCcTRl0WulAA5iTnnzewpbipBWbrT9VQqh33i3kPrrAomwD+ZDAHeYYDDSNxl8o8goMq2PfqxgFAE6LCOHteJvN2WCK8lrABz3HUDb+0d6hXqAEVGwFUa9uL1q8giWILjzhfSU4=
+	t=1768569448; cv=none; b=UEKNryX6ELbHpCSsvNE9UCDoZpf7qxRAuyoMXWVd/Ij/oeEYvAn5c+gzYQJwKE9Mp47gbjnGyX+20kUqzanmDA2tU7LrYkAPtb56mVwaQfCr/3k/+CbSujwnivfFylIoH+JeC1In1MYlKE0uYGITfEPhsxzb3Z6MXgPfJaBIzhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768569448; c=relaxed/simple;
-	bh=0IcwqQH5YyvspgnfvtfN3G6ejhtG8SMMlKk+P1Z9ZNY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tRAJv+JTeEKSS7UasrYfJBUJzSg9YtLGGKt3C3dOW+kU1jaeAsDlcOUouCNPbMVvlI49ozHy3eJCWBgJoOS1i94wBotCb06QWqCUaXdqda0QL1jt21F8kbwk+y+P+nz1y9xI76epPgaIBjM5In0GnvMx57Lvm91Dpn8nhrQ5HJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=bXxtbdvj; arc=none smtp.client-ip=209.85.218.46
+	bh=bCuXidJmykHrH5/xvuIi+xpUlM7CPaWZgEz+0RvmlPc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=mjU5L5xzqG3pB/W62kJb2rRCzciyGNTrt2ogtJKbaq4Sof7wcUjrAIxAB7O78DHlz/sbXQYC92NkjbboG6ClDnuTfVBg1h+KsTeghTlEAk4X1iup/53kWTGO/YxuLLJToK1RkWx/R1PpYdPPQjgwuxN6B2CRr9EkRw9rjfZfnbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=QTM7us57; arc=none smtp.client-ip=209.85.218.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b872de50c91so314137266b.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:17:25 -0800 (PST)
+Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b8719aeebc8so377073266b.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 05:17:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1768569444; x=1769174244; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LeO3PxpMi+3RzgWBsyhtH2vzdSGJNBJ2My5HKc/4nPs=;
-        b=bXxtbdvjNWxN8CPYrzUOVoTVIk8UCAj4YMnI73pV+i3SUZNY0BkEBaOvxKjvOisM19
-         z4GLiV/jFAmjXHmKVkjtZbkhRx5XPaZE7OsgLwvsK3/7/Zt3AV5KGfQUb/jS+uXX/sl6
-         +TdgE8dOKuZC/0zxlgqXHl2pFOID1kEFo897MHioVKQAKETgAJm5aV6rpiiZzmy1SyIy
-         SQ3KMho/ferVejQqTJx3uo8ft+IUfmYP+pe8XQdjsgezHrNPIyv8298abTsBr0mH5VzJ
-         kfhr3gsp+Wu3qS7WMaoHa6kHNc8N5IynhFA6dP5n+GRjNjkQHP999M0FBfH1TspCeHJ1
-         wyPQ==
+        d=fairphone.com; s=fair; t=1768569445; x=1769174245; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dr1dBlLLfYPYJFN+bHMPl6dVd/Smnn8ihazbVyoDL5M=;
+        b=QTM7us572usDv7AeGtPhpASxDmrX5F1AwqpHR7EV525CzknOU59DMIueJ8/VjToFvg
+         cmEbT08FyE+QFpO1L9Pvc7OO3NSk18sq6LSW7yd8Nf3Qj74DrdbTeS9uwghxelNNCYj0
+         LERiEbgHdZYprYoKOvRSCBPRRWqDqk7SxWe7ek7yrWQibjUTKH4JbxkEzBSYQPgCJR4O
+         hSko0JfMSbPqjMGtbQMmLTHXw5ji3D6rbmqiUg8GN6bFi+RSe5NxppaLXgyEIit8+M3/
+         Fz3LKIeuKHYXCi5e7rFp+NsStST4khP6gAaawa3qImFMxQgMtNl4cY7g4h47GulLih//
+         n+1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768569444; x=1769174244;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LeO3PxpMi+3RzgWBsyhtH2vzdSGJNBJ2My5HKc/4nPs=;
-        b=D1cvOE3qfsTIkNf3L+pRRWLSg+Ya1bWYNJRMwZLJBID0PqgAytgy0uNBJ4eR+vAROV
-         9sAS+wQKdl5WtX1RY4MQM4LYqB39RKWaYDYDtgb7iZQknahr75racDNiXrJR0n8MgLxp
-         +2DqV3jLLm0g/9ClN4/tXGbUeUZEI1AIp1UbQBm7YQd3Nvgc7uH8dBhXB4TExsgp6Mfq
-         BP2etZBJro+O4WiY7HmY/hi6DDO490nraydzllSIsPsikrRYj8qqwmpUZughxDWEqVFD
-         CT9I35vsm5rewaQsxJzCDdW6GvtLHFxJAQfnsIhiVxlhBwMSGGzTDZoYUbAZnjSx9oKc
-         rxzw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7QjBlXbRn93GMm7hHZAECKaFOxCG8w1AXaPMTpNQQ9tfYkHD1oKs/iKd45vXPJrTyrZ3LhChClkS+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxg4cmUupK6rIkuxyCSgGagXwin5hvg6hdPTjBfC1P8Fd1m0+Dz
-	kpP5IbdReqLz13ZlwOtr1IJPyTakkGQY7GdirKXgbwXwCHbeIC3SASOh0ZFLOureFPw=
-X-Gm-Gg: AY/fxX5za5aHvn6YdInbjEfs2T7otbeOrjHVHdb2avBwgMhK6lffIPhImRR7rpGgsrt
-	6DL99Fxtrs6vrmFqW29bMNqpUb9OKahsgtj88Un32fY2NK31sGeZnvvQZPIgjeNkS/nWvqt557a
-	M3qjzgLNF3H+e67hFkPFLHpp68ckK8Kh2s2NqyP/S+a8IflFTwSLvGPl/xvG0gPpKk2sqZ3jybL
-	mpMsv8Beca7ksrd0aLL1G3ROtBJhRJp1/xC/vKjRMNCgGTZrUVp2QXHJPIsKjKmqVsvSLykTZb5
-	gEG/dVQJxcJXBACoKSqBKd89wFiiQCqEePuTKKvg6lr5nNp+qcTFxPk1Xvv55MUThdu6Vs1Nvyc
-	yEFJPREFwzDLJRfJRWcqMcQa7CInY3JWjhrUMBHa2wihbfbFoD7bFvSMAsPFPiwo1PDpPGSk1vA
-	lD/Sb6gMgjTlZFEzqgjlnYzFULwW6G7qrcCVgXU8bMwja/UaoLbuLIL1okTc9T2eZo
-X-Received: by 2002:a17:907:7201:b0:b87:281b:1453 with SMTP id a640c23a62f3a-b879324d5bbmr279364666b.59.1768569444136;
+        d=1e100.net; s=20230601; t=1768569445; x=1769174245;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dr1dBlLLfYPYJFN+bHMPl6dVd/Smnn8ihazbVyoDL5M=;
+        b=Ok/fWH+KL5vqsFRNcTIB4rqonDe0Q6rEoeGtjfXI5OWNW83oGcc0smURcHPPaZ3lQ6
+         5xGDvEqKu6l5+75Y2G34btgBWiODU+D2uhWe9/oLOLDwnLTlkoM2XYzW4EY1I1jXW/qY
+         J7PdI0e+MrRky8wVlvbic3EiiviWsuXQ9UtqDd+MAP0C21KuV5IY4UlovhdkYkSynAO7
+         cJf2foaLBafZm95twE0VzkpnI8HizFsUeOzaOuQXzqyVNXZdO063OuloIxC8QamtTcik
+         fi+O6UvKfktfj+DJykOJca6Rq9fZpz4dtvVfQ/izTrnn5EmnRtNll3HpGa+L+5STGg/l
+         d8Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCUSuoO7zz/hd46Mr7lJ3hhLOngqxEI4Q0ElANFrmY8dFD5S5bVlIu1T4B9TKZBCK0TDLGr17lWvXeGQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9qR+4BukvVX2vbsptAZgC+gv8cZRB/MptIy+0YTw7JgfsiX/Z
+	BAnbWi5msnw/qi+BJAn5zNEs79f/dQ07Mc2niwH5NCwB76138WMlxEOU0lH/5v5Df38=
+X-Gm-Gg: AY/fxX4NwQxTmTTkYssOdHjNWf+u43gUaFT1ZRM4DOz2iLGh+ayLwJGgFm2pvWirqal
+	VPgfqRTVqrgxO75YAsuiFHM/WSzHeJhllAPSokMpj/vEM9fSS9fEXSL2MjACSd70aKGkbjQnmxv
+	CTXDxWme1605gBBbQ715G+ZYxWGGHVFcoFJpfnfvKaj9UIwySDDX8EpnU9JXJ/UlHdxDd8g0iFb
+	86b4NE2Hy+8cz3sKT8R5K5YZYATE/25BQLr5IhUDuqNXa46M3FLlJbQWG3JDEHOXJ2gnOK4NiY0
+	1Wiv9K7WScHdED5OQ1OkeJ37qF2gyHee/WtR1Eh71mQvyhbuEBLMFAmlyFAQsHcGAaP5+L+a5PQ
+	341MjUM5vawiKWSzYCSiikvxGTG4fqYc9M+1ApiMQsDLuKOs1CDjR3nP4A/Qu6zJ3lzDC3TtHjJ
+	WJhSbk4X3JsZQSHBM4Wzx1kQtQ8nIdKSAu3r3saYptIFOf0pGFv32T57XfdmjngU7H
+X-Received: by 2002:a17:907:1c09:b0:b83:f538:c2a6 with SMTP id a640c23a62f3a-b8792d273femr262706366b.6.1768569444776;
         Fri, 16 Jan 2026 05:17:24 -0800 (PST)
 Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795a350dbsm235507366b.69.2026.01.16.05.17.23
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795a350dbsm235507366b.69.2026.01.16.05.17.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 05:17:23 -0800 (PST)
+        Fri, 16 Jan 2026 05:17:24 -0800 (PST)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Subject: [PATCH 0/5] Support enabling interconnect path for GDSC for fixing
- Milos camcc
-Date: Fri, 16 Jan 2026 14:17:19 +0100
-Message-Id: <20260116-milos-camcc-icc-v1-0-400b7fcd156a@fairphone.com>
+Date: Fri, 16 Jan 2026 14:17:20 +0100
+Subject: [PATCH 1/5] interconnect: Add devm_of_icc_get_by_index() as
+ exported API for users
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,10 +83,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MuwqAMAwAf0UyGzAqRfwVcdA20YAvGhCh+O8Wh
- xtuuEtgHJUN+iJB5FtNzyMLlQX4dToWRg3Zoa5qVxE53HU7Df20e4+aCS3NQaQhlg5ydUUWff7
- jML7vB5s+w8FhAAAA
-X-Change-ID: 20260116-milos-camcc-icc-d41bdff31ef8
+Message-Id: <20260116-milos-camcc-icc-v1-1-400b7fcd156a@fairphone.com>
+References: <20260116-milos-camcc-icc-v1-0-400b7fcd156a@fairphone.com>
+In-Reply-To: <20260116-milos-camcc-icc-v1-0-400b7fcd156a@fairphone.com>
 To: Georgi Djakov <djakov@kernel.org>, 
  Bjorn Andersson <andersson@kernel.org>, 
  Michael Turquette <mturquette@baylibre.com>, 
@@ -97,47 +97,80 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
  devicetree@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768569443; l=1538;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768569443; l=2212;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=0IcwqQH5YyvspgnfvtfN3G6ejhtG8SMMlKk+P1Z9ZNY=;
- b=BF0Kn3KVXUmmI5VyWZ3MMLd9Dx/ED72uHOpJt+C3M/p0HmU+c2cc0GJqaqF2EZhm29Kh8nBAS
- h+npu+bFF5wAFmKECrIX1NdAbRXBeh55KJ0NEtbwkro+ohqY4bJsVIm
+ bh=bCuXidJmykHrH5/xvuIi+xpUlM7CPaWZgEz+0RvmlPc=;
+ b=gWnOVQzJkci4lXcmtXJVm6rHU7f4/LCiwxPAkRBMrt9HO3Y81FpwwOdbP5nuH44jBz3Bhr6mu
+ g+++h/05vt9DCDUphmho3T0LS2WKvANznToIrzPt/SpmQ9c1vKStIai
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-Some power domains like CAMSS_TOP_GDSC requires the enablement of the
-multimedia NoC on newer SoCs like Milos.
-
-Add support for getting an interconnect path as specified in the SoC
-clock driver, and enabling/disabling that interconnect path when the
-GDSC is being enabled/disabled.
-
-Then specify that dependency in the camcc-milos driver and add it to the
-dt-bindings and milos.dtsi.
+Users can use devm version of of_icc_get_by_index() to benefit from
+automatic resource release.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
-Luca Weiss (5):
-      interconnect: Add devm_of_icc_get_by_index() as exported API for users
-      dt-bindings: clock: qcom,milos-camcc: Document interconnect path
-      clk: qcom: gdsc: Support enabling interconnect path for power domain
-      clk: qcom: camcc-milos: Declare icc path dependency for CAMSS_TOP_GDSC
-      arm64: dts: qcom: milos: Add interconnects to camcc
+ drivers/interconnect/core.c  | 20 ++++++++++++++++++++
+ include/linux/interconnect.h |  6 ++++++
+ 2 files changed, 26 insertions(+)
 
- .../devicetree/bindings/clock/qcom,milos-camcc.yaml  |  8 ++++++++
- arch/arm64/boot/dts/qcom/milos.dtsi                  |  3 +++
- drivers/clk/qcom/camcc-milos.c                       |  7 +++++++
- drivers/clk/qcom/gdsc.c                              | 19 +++++++++++++++++++
- drivers/clk/qcom/gdsc.h                              |  5 +++++
- drivers/interconnect/core.c                          | 20 ++++++++++++++++++++
- include/linux/interconnect.h                         |  6 ++++++
- 7 files changed, 68 insertions(+)
----
-base-commit: 48746fac3857845ce7ed4aeb56df58735208ffda
-change-id: 20260116-milos-camcc-icc-d41bdff31ef8
+diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
+index 6cc979b26151..2242554525df 100644
+--- a/drivers/interconnect/core.c
++++ b/drivers/interconnect/core.c
+@@ -443,6 +443,26 @@ struct icc_path *devm_of_icc_get(struct device *dev, const char *name)
+ }
+ EXPORT_SYMBOL_GPL(devm_of_icc_get);
+ 
++struct icc_path *devm_of_icc_get_by_index(struct device *dev, int idx)
++{
++	struct icc_path **ptr, *path;
++
++	ptr = devres_alloc(devm_icc_release, sizeof(*ptr), GFP_KERNEL);
++	if (!ptr)
++		return ERR_PTR(-ENOMEM);
++
++	path = of_icc_get_by_index(dev, idx);
++	if (!IS_ERR(path)) {
++		*ptr = path;
++		devres_add(dev, ptr);
++	} else {
++		devres_free(ptr);
++	}
++
++	return path;
++}
++EXPORT_SYMBOL_GPL(devm_of_icc_get_by_index);
++
+ /**
+  * of_icc_get_by_index() - get a path handle from a DT node based on index
+  * @dev: device pointer for the consumer device
+diff --git a/include/linux/interconnect.h b/include/linux/interconnect.h
+index 4b12821528a6..75a32ad0482e 100644
+--- a/include/linux/interconnect.h
++++ b/include/linux/interconnect.h
+@@ -47,6 +47,7 @@ struct icc_path *of_icc_get(struct device *dev, const char *name);
+ struct icc_path *devm_of_icc_get(struct device *dev, const char *name);
+ int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths);
+ struct icc_path *of_icc_get_by_index(struct device *dev, int idx);
++struct icc_path *devm_of_icc_get_by_index(struct device *dev, int idx);
+ void icc_put(struct icc_path *path);
+ int icc_enable(struct icc_path *path);
+ int icc_disable(struct icc_path *path);
+@@ -79,6 +80,11 @@ static inline struct icc_path *of_icc_get_by_index(struct device *dev, int idx)
+ 	return NULL;
+ }
+ 
++static inline struct icc_path *devm_of_icc_get_by_index(struct device *dev, int idx)
++{
++	return NULL;
++}
++
+ static inline void icc_put(struct icc_path *path)
+ {
+ }
 
-Best regards,
 -- 
-Luca Weiss <luca.weiss@fairphone.com>
+2.52.0
 
 
