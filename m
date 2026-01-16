@@ -1,46 +1,79 @@
-Return-Path: <devicetree+bounces-255899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52344D2D126
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 08:19:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12825D2D1F3
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 08:24:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EC7D5300C9A7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 07:19:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 281C83086023
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 07:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB4F30AD13;
-	Fri, 16 Jan 2026 07:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FCEB3491F5;
+	Fri, 16 Jan 2026 07:22:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HsEryaSj"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="DOz03dJJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1192F619D;
-	Fri, 16 Jan 2026 07:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 724212DF13F
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 07:22:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768547990; cv=none; b=QJ2jEW7+sNwVR8Sp1khv5R5Mz4+Uh6omBqW///VHYX4ojmOD/qjiP43VKmgdsYGln1hMU0oZe5mMlm9uy1X7ILIQXQG8puVXDxFkT+r29qXRd1t+JOTcC1T3v2Zr5Fm+fWHONkQMV2m/zG1yEvmnnnmCrllA5L8sKHDpz0hD3Xg=
+	t=1768548145; cv=none; b=ojVtJsOuQIJYg+1RxGokd0M9QE8JdS6QK5sphvHciIjKFzR+vrivMw5X1jyn3uatwrrad+YX9UdeLPhpxJNCwnasamqbb44zY2E4thRXHxXs5g4uZxcanIs4AEr/wMVQVkaKBsMczDYO6sZjRgtpCeIKFRkwJ0Ksm14WZBrXy0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768547990; c=relaxed/simple;
-	bh=reOtgTsgainSPvlftSf44T+RETRioCaQA9eGb1UnSPE=;
+	s=arc-20240116; t=1768548145; c=relaxed/simple;
+	bh=ZoZCxIZIxuNG7iiq7ouEpN8AOaGaswIYZVOM5BEKY0g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ni5nd8AJf9WbAspdhacJ1K/WXM8sdNzaEQhhOJiXxVPqlSE18I4XL6rcGqONcwSbH+gJm5flNIxIB6UCNlGnL5zCgXIfpDBuHbUd0jrXX7KJeUd6UvVvHjhV23IdZXF2BIUjLxB9uo6DVHyIXpraA7Tt4B2LC/4686ViFd8Auj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HsEryaSj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE8B8C116C6;
-	Fri, 16 Jan 2026 07:19:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768547990;
-	bh=reOtgTsgainSPvlftSf44T+RETRioCaQA9eGb1UnSPE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HsEryaSjhIHWusmM9JxycvcgzbZVkybqjC5lT0vpfclY45sSWQhyH5PdOMhTB01PN
-	 MbXvHVhzScQTyvZAZDhpOhr0mUzB3VNvHFmWFqh2RtgCa91XGoJRIGHPySYA/DE4Qy
-	 lygEJ7cg6oEmXQ9u8C7Mlsb9VN/TuXFTrqPEhxAFQ1A+WCG9fubdq+UfY9+mib3Gf2
-	 XxS946WOoTCGLOougV3nv/+HrdHeEtJYWIzh0t6FZHrbYXTq1Eqp9/v8vnwfJN8i1S
-	 SPpOP51RO/1GfNfPOL4c6W/JsvmZInvdQRDl9P9rXEqd/F0W7VxJPqcCl/cT93tasc
-	 xtDGgrIhouOmQ==
-Message-ID: <0f1afc5e-d5f4-444e-819c-594f0b1e125b@kernel.org>
-Date: Fri, 16 Jan 2026 08:19:46 +0100
+	 In-Reply-To:Content-Type; b=jGQ5b8rp9pYLxxiEE1+dYjIlbIk3qB1Gp+qt/0gQxomob2RCNxENep8WgwxuJgOCXW0duhbAIhpW00HRL+dpfaHBix3GpshseLVj0KVx38XZnr/Wl03PC6PYlRmL0z3NLxoYwQsvMG4cXOETj7H9VkWrbhLS+REAYYW769zcCLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=DOz03dJJ; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-432755545fcso1010960f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 15 Jan 2026 23:22:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1768548141; x=1769152941; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W95GN1V+oZI3tCyhJrWoqvfYp2X9bfUg8CvoDb5FSAs=;
+        b=DOz03dJJJrHhANTzRWfRIwG4CLx0lVlmsIjqaVXIAMhwfUkQMzxluDIvnt6G5tZvZr
+         4c0dlJQT35H7vKeQ2kACS7kFyjHOCBRMDhEqHMGjvAHO3J/KXmEMGQKVzcuA8Tkh5u4v
+         iSdLnjY0HoFbhIx7+jU9y4jcsGD5y9+L4A9Rbbfwe9Oajkr9Uy/QAO6wftMa4FTKMWiv
+         Xr2onvXDgcKQNOVRRMi3T/uSAL+HyazSQJuk5cqWgDP+C85At8mPoVxlZUnJY2INJNn6
+         NZOLFZwP31nUoRTSEM/hLvbT2rEi9re57qBnGAEmHczkC9DApHPsTcrZS0p+KjQiDy4r
+         ffNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768548141; x=1769152941;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W95GN1V+oZI3tCyhJrWoqvfYp2X9bfUg8CvoDb5FSAs=;
+        b=JgsLMMyCJzsbZzTwSgIvrRcvI6ozdLZ6kJSpGgtLzPGnvu1rYNgcIQcNlAbRE57qbD
+         0GI6I/1u1sH5b8m/afLUyVoE4D/hdM8K8jGPZooWu3Iwey2DjhKVeC9DE3pzlISg1nvv
+         GqvuJwBl+PRxHNLcAOaK9wh6MvgH/osdTW1U7gH+0PJul2O/EOO+wHJtP8USUm6QYCUe
+         VJVBcWTFfpzGBtdgEVBfMfilscNzz4o5jY/FIONh2NvRuxKPhHMrof/L/P7A6/mRNNXR
+         6NQckkUKZZpZjmB/yOcDqXCGtLJot9/lay79v/en4WBdGWUMBfU8DkGjxozRNlYx/7Kh
+         Clqg==
+X-Forwarded-Encrypted: i=1; AJvYcCXFM6zKKbxznPzb3jsXTFJdPJK/uGKl8eAveP8ORzuWEiJkN8NSDWrauCEOhNNI+2QVeHdkE5uR+X14@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkaFWYTtaCrYDcWf1TOxHXcKol9S3MsGVOG0ArIYo2R2+NWQwF
+	TsvBzKD9SDW+c2mzaXNHgIBFTRIW0GTd+U1VaYdZEdjN1kFwcDnUigiY1C7Y1hez1Sk=
+X-Gm-Gg: AY/fxX6BdJvghx/M3xGYuNPXE56eIbD+0r9qyTfADfy/peHloOwUVIk42OdWovxT45P
+	c/EeypV97/1YZJTQhXC9K1Jv9eUJCbKHpH/N9HDxz+L6g+SxrYJ4gTF4z5hbdZph5eQda4cnJIH
+	lM8662ijcdKt47wLb4c8c3WsVVkhhGA3e2k9+aZAjDUfluDdSrl9qpO0vgWci1i3J7Pb47tHCFT
+	A70ZIDRA8Meh34HlBgtfss3zXKxL0r2Vz6LX4AhS77CELt06XOU0HlyMZkgm6cRdSOtbnIkSzLH
+	/S70SnYtPIWfL1kT8Sz+LKYPMjj83whmSwFJZQ1taEvx/2uDuvJ476R8Udyfcloxas5ZAXcWRSC
+	+2bSEQeg6e890KuUhRIbi90PpNRjVUze1btEdU6IyG8p//Oo4vRy5udS62K+lEPt+pdZ/cUCJRI
+	e40gdQfvspVng75bxlZw==
+X-Received: by 2002:a5d:5d81:0:b0:431:752:672b with SMTP id ffacd0b85a97d-4356998a823mr1864994f8f.14.1768548140696;
+        Thu, 15 Jan 2026 23:22:20 -0800 (PST)
+Received: from [10.31.13.216] ([82.77.28.160])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435699982aasm3496749f8f.42.2026.01.15.23.22.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jan 2026 23:22:20 -0800 (PST)
+Message-ID: <40b636b3-b1d3-4c67-bbfd-6f41a5b0b290@tuxon.dev>
+Date: Fri, 16 Jan 2026 09:22:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,82 +81,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: kodiak: enable the inline crypto
- engine for SDHC
-To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
- <20260114094848.3790487-3-neeraj.soni@oss.qualcomm.com>
- <20260115-versatile-bustard-of-bliss-059e5a@quoll>
- <e10f846c-e81b-1d5b-1be2-8c41ca61b8b0@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 07/11] arm64: dts: microchip: add LAN969x clock header
+ file
+To: Robert Marko <robert.marko@sartura.hr>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, herbert@gondor.apana.org.au,
+ davem@davemloft.net, lee@kernel.org, andrew+netdev@lunn.ch,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ Steen.Hegelund@microchip.com, daniel.machon@microchip.com,
+ UNGLinuxDriver@microchip.com, linusw@kernel.org, olivia@selenic.com,
+ richard.genoud@bootlin.com, radu_nicolae.pirea@upb.ro,
+ gregkh@linuxfoundation.org, richardcochran@gmail.com,
+ horatiu.vultur@microchip.com, Ryan.Wanner@microchip.com,
+ tudor.ambarus@linaro.org, kavyasree.kotagiri@microchip.com,
+ lars.povlsen@microchip.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, netdev@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-serial@vger.kernel.org
+Cc: luka.perkov@sartura.hr
+References: <20260115114021.111324-1-robert.marko@sartura.hr>
+ <20260115114021.111324-8-robert.marko@sartura.hr>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e10f846c-e81b-1d5b-1be2-8c41ca61b8b0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20260115114021.111324-8-robert.marko@sartura.hr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2026 06:59, Neeraj Soni wrote:
->> Why this became uppercase?
-> Thnaks for pointing out. I will fix this next patch.
->>
->>> +			compatible = "qcom,sc7280-inline-crypto-engine",
->>> +				     "qcom,inline-crypto-engine";
->>> +			reg = <0x0 0x007C8000 0x0 0x18000>;
->>
->> And this? there is no uppercase at all, so maybye you copied it from
->> downstream, but that's not right approach - do not use downstream code.
->>
-> Yes it was copied but i missed to align with upstream. Thanks for pointing out. This will be fixed in next patch.
 
-And that's the problem. You must NEVER COPY downstream DTS. We repeat it
-and repeat it...
 
-Best regards,
-Krzysztof
+On 1/15/26 13:37, Robert Marko wrote:
+> LAN969x uses hardware clock indexes, so document theses in a header to make
+> them humanly readable.
+> 
+> Signed-off-by: Robert Marko<robert.marko@sartura.hr>
+
+Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+
 
