@@ -1,137 +1,160 @@
-Return-Path: <devicetree+bounces-256069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848CDD317AD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:03:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C863DD317CF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:04:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 04B21300A910
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:03:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4B1543008742
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4143A242D84;
-	Fri, 16 Jan 2026 13:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15EFC219301;
+	Fri, 16 Jan 2026 13:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d9ccm9ah"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b="YiixPQG4";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=valla.it header.i=@valla.it header.b="P9H/Nd9m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from delivery.antispam.mailspamprotection.com (delivery.antispam.mailspamprotection.com [185.56.87.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E56C2417D9
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 13:02:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768568576; cv=none; b=E7idpLXEOAHrlYo9lH7q4SrVUcchfUATQpFmhIR0G32S/kT8IbNtNdJ18+Aax8xqyOBsT/GZPUxLquKLSQJKyLYW7e6tI0US8meHxxe6bOJvZKfag9lGbLOyk7DnejRxwlHW1qQAZ2C+8ihFnXN1nAtmeJQPSosonwEpPGUN48w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768568576; c=relaxed/simple;
-	bh=hs23aGA9nPZgg3NP9F7KC1TEBZJku4a9mF8gKyV8IDw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GfcbuTXEyMIMOfmTaj5TggTNozNkwg/3sGZL3iJkrOHRn6qzS/FIj66yNpOragaO7om3g3Oe1beDwwxljDaqg5azu+qIBoNPcJHEJSE5Sk26zMZcBGAYoc/McWnCVDJGtn1SsgGfQ1AzV7jRnRJ0CXGjER6ACEi+Z2gLs0I/2PY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d9ccm9ah; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4F24C16AAE;
-	Fri, 16 Jan 2026 13:02:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768568575;
-	bh=hs23aGA9nPZgg3NP9F7KC1TEBZJku4a9mF8gKyV8IDw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d9ccm9ahnHfhGsnCiUYRt6BlFDVEDEegtOEWAQ8QicmbZM9XLbhnTm5Z2dA1LRC/v
-	 MrUEaPobAPWN7GGwVH/KlvaArm0KK6FOpWapOxpbHhMX/o7cZz/rdSBcd9DEzSqIpU
-	 FiPDoAouDZ4ik7ugZtCkYWy9d4RwH1OHZvrfp6zbqM5hqy2aEkwB0DwvXImMRVSAf9
-	 aYy4MvgfBkH8DD0LQ1azQyZWOaZtzIlskaQkWm0lsA9WbaV+NVemZRNe10YFu21nI0
-	 ep9eTqh+jCEy6bsBMbM8zCGcd5hI4rSUbpJ/kTn+2C/VRR8nYRMmnRIDyYF0Tt2p9e
-	 rh4tTs06Ayydw==
-Message-ID: <5341693c-12fd-428f-b742-ff24d3c1a0cc@kernel.org>
-Date: Fri, 16 Jan 2026 14:02:50 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FF522045AD;
+	Fri, 16 Jan 2026 13:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.56.87.1
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768568657; cv=pass; b=RBr+rgaVR2DvzGyFPFb85ciKUx42RIVipGAd1GollMd2Qxsnd/ES0vkMeQTyQVMqLkEJgjitTxRyl6rzajY27IVAfqIwyvOIDWnREzySmFTuQPNWtCNlKMz8lvlAI5gin3XIqBHAnMx5/uqw4EIjh+/WU1Pid6eS5L8WoaGpPRQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768568657; c=relaxed/simple;
+	bh=XSE9gGYLw8PadLVndxcVP/TcpVS4AVlOUv4UXdPej8w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nIopTJP2/KTUWqVw9707ypXCkFFWUWg9zqVVZJs+8+5IZIVLVDSGr1SHz0IQ0Af1xO5T/otjaL6DzjFv5Y8H2JOUBfhd6ZjJRFKKzA+1OFo2gyg9HHCRdmi4V3ZA3rt7IJivLSLbOvjsNtAGUCW6/s5/wrGUbK54Mazgcq33bdY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it; spf=pass smtp.mailfrom=valla.it; dkim=pass (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b=YiixPQG4; dkim=pass (1024-bit key) header.d=valla.it header.i=@valla.it header.b=P9H/Nd9m; arc=pass smtp.client-ip=185.56.87.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=valla.it
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-l5rn.prod.antispam.mailspamprotection.com; s=arckey; t=1768568655;
+	 b=2zCtvW/SpoijHELt0IOoMSl3gLbTyFFV7phB8TggCWZM0V4qxVUeo8+9IUv5axzNp7VbRHBheD
+	  Ww+CdAZTofLug20uOIVU5v6VUB0B1oTg9JnPjw8ru8GevUs7UIyrEA1zRLAwybI9R8s18pGjbJ
+	  IuIAicMhCVJDxx3GJ4OJmd3t1FEFzLPp7MMhu6UVn3Aaew+s1IVYxhboYokuOCHsAZhE5WyMIr
+	  va8DqZNtmJs25O7JeTOt/hO5HZYPfPPfhvcz6wBdEgHBQFAu36NDigiv2tUP66s5qTal+uvCSx
+	  Ldfpu3odCP+eDESg71zJnZG5MmFKGa6oLiFJzgVg0wp0Lg==;
+ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-l5rn.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-l5rn.prod.antispam.mailspamprotection.com; s=arckey; t=1768568655;
+	bh=XSE9gGYLw8PadLVndxcVP/TcpVS4AVlOUv4UXdPej8w=;
+	h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+	  Message-ID:Subject:Cc:To:From:Date:DKIM-Signature:DKIM-Signature;
+	b=2MIV3yoahue8SheXmdUheBbtGR7zcvAKLFwOlCykma5AkH+IAkKKDbX7i7/Sgp84fTVI7bsRbQ
+	  LyLZ5lzxyqvJr4lLwahHdC7BKcDVzrVxQpxEpnRPF6GAMqsHwT3Hz9qdASjD/Rh/X6P4Uf2lK4
+	  0dGeKz14NGTTVj7XcZPf42xD5vmcnqVFBCgmlj85i7BOZ7DwFSHJfE1lBAzTCst7jyWQgtDpoW
+	  JZJNhx8OQ8E8psPaV6F9p4Clqirc3qmj3WIj5wKN7y4suxytrdT1aYRmlUXp4PGjA6Z7VATQGg
+	  bWPu7UHzW0IlKCN6q4YopGtgHj2LQzkozg2zTb05EK+pVQ==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:Cc:To
+	:From:Date:Reply-To:List-Unsubscribe;
+	bh=xkK1Ejw0KxmIMEk93SickPJJ21Kj8+bMSYnsUDhPGNk=; b=YiixPQG4G3rGRqCrm+THLSx7JN
+	S4EciL+0xzi0U6sDXtGlBnLDMjD6tmoX/UUw7IOdw+kyO7r8VHyPGqx8S54/oCByyV39tbE79v142
+	fBRtYh5oa2MC+bLvUlqWzyPs/2CtZzlSH2AH30kQsP7uiW2ayG3veKI0yJPvsrDy17x8=;
+Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
+	by instance-europe-west4-l5rn.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <francesco@valla.it>)
+	id 1vgjUj-00000001br1-1OTR;
+	Fri, 16 Jan 2026 13:04:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
+	s=default; h=Subject:Cc:To:From:Date:list-help:list-unsubscribe:
+	list-subscribe:list-post:list-owner:list-archive;
+	bh=xkK1Ejw0KxmIMEk93SickPJJ21Kj8+bMSYnsUDhPGNk=; b=P9H/Nd9meIDed7qu/cwVrC+SAf
+	H5B+l1TOcHF68tQvca42uE+EHuoM987Rq7Xu9rl1ZwHLEiK8M+VUs0dKW8y8yGIyTl3ie6IMU4UKh
+	YVStldrpw4Qp+67x9HRFZ6jHr7lRObEXorWIXr7JrzFSHSJSk6k4drDjCvVA6MeGoKgQ=;
+Received: from [95.248.141.113] (port=60003 helo=bywater)
+	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.1)
+	(envelope-from <francesco@valla.it>)
+	id 1vgjUd-00000000M5y-1XmV;
+	Fri, 16 Jan 2026 13:03:59 +0000
+Date: Fri, 16 Jan 2026 14:03:57 +0100
+From: Francesco Valla <francesco@valla.it>
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx91-11x11-frdm: fix CAN transceiver gpio
+Message-ID: <aWo3PZni1Pb9T6FI@bywater>
+References: <20260115-imx91_fix-v1-1-9351c3fac76a@valla.it>
+ <CAEnQRZD2CvQLO2hBDbX2H8PeeNkzQmLoK6jzeF6HKw8HHa8ukg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: broadcom: bcm2712: Add V3D device node
-To: Peter Robinson <pbrobinson@gmail.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Stefan Wahren <wahrenst@gmx.net>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, kernel-dev@igalia.com
-References: <20260114120610.82531-1-mcanal@igalia.com>
- <121ede67-dbfc-4b79-8076-04693e9d3d53@gmail.com>
- <59cdede3-7757-4fe1-bb94-e7a93eea7611@igalia.com>
- <CALeDE9PGzTe4LXnDJcyhh_ietWkrf8Sp7xX=X6pZvdCWLx2huw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALeDE9PGzTe4LXnDJcyhh_ietWkrf8Sp7xX=X6pZvdCWLx2huw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAEnQRZD2CvQLO2hBDbX2H8PeeNkzQmLoK6jzeF6HKw8HHa8ukg@mail.gmail.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - esm19.siteground.biz
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - valla.it
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-SGantispam-id: 6a24f6a303db1600773d4a81a1927982
+AntiSpam-DLS: false
+AntiSpam-DLSP: 
+AntiSpam-DLSRS: 
+AntiSpam-TS: 1.0
+CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
+CFBL-Feedback-ID: 1vgjUj-00000001br1-1OTR-feedback@antispam.mailspamprotection.com
+Authentication-Results: outgoing.instance-europe-west4-l5rn.prod.antispam.mailspamprotection.com;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
 
-On 16/01/2026 11:56, Peter Robinson wrote:
->>>> +
->>>> +&v3d {
->>>> +    clocks = <&firmware_clocks 5>;
->>>
->>> Looking at the upstream DT [1] I think this also needs a clock-names entry.
->>
->> Differently from the `hvs` node [1] you sent (which specifies clock-
->> names), the `v3d` binding [2] doesn't have a clock-names property.
->> Therefore, it is not needed.
+Hi Daniel,
+
+On Fri, Jan 16, 2026 at 01:40:11PM +0200, Daniel Baluta wrote:
+> On Thu, Jan 15, 2026 at 8:25 PM Francesco Valla <francesco@valla.it> wrote:
+> >
+> > According to the HW schematic, the CAN transceiver does not have an
+> > enable pin but a silent one. Fix the GPIO property name and polarity.
+> >
+> > Fixes: b4bf5e55899e ("arm64: dts: freescale: Add FRDM-IMX91 basic support")
 > 
-> There's a name in the clk driver [1] so maybe the bindings should be updated?
-
-That's a clock provider, not consumer.
-
+> Just for clarification GPIO 23 is connected to a pin named CAN_STBY.
+> So I wonder if it isn't
+> better to use standby-gpios instead of silent-gpios?
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/bcm/clk-raspberrypi.c#n26
+> I am looking at FRDM-IMX91 schematic file SPF-94610_A1.pdf.
+> 
+> But on the other hand we have
+> 
+> static const struct can_transceiver_data tja1051_drvdata = {
+> »       .flags = CAN_TRANSCEIVER_SILENT_PRESENT | CAN_TRANSCEIVER_EN_PRESENT,
+> };
+> 
+> So TJA1051 is not advertised as having a stdby flag.
 
+Regardless of the name of the net, the functionality of a standby vs a
+silent pin is very different. In this case, since the TJA1051 is
+including a silent pin (pin S in he datasheet [0]), I think it's better
+to declare it that way.
 
+In case someone adds the support for a phy-oriented listen-only mode
+(which is something I am thinking), this wouldn't break the integartion.
 
-Best regards,
-Krzysztof
+Regards,
+Francesco
+
+[0] https://www.nxp.com/docs/en/data-sheet/TJA1051.pdf
+
 
