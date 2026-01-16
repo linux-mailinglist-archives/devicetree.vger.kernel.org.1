@@ -1,251 +1,157 @@
-Return-Path: <devicetree+bounces-256257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14208D385E8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:30:47 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0EAD38796
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 21:32:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 053C630336C5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 19:29:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A54DF300CB4A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 20:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954433A1CE7;
-	Fri, 16 Jan 2026 19:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E5C2EA16A;
+	Fri, 16 Jan 2026 20:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S76gOrZ5"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="MhAfWHae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f49.google.com (mail-yx1-f49.google.com [74.125.224.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A95436A036;
-	Fri, 16 Jan 2026 19:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768591766; cv=none; b=kNS/Zgd7GqlTlmOru2I9WBHmz7DrJfw+yjG0Q7mRp7q7k/JsnKPTbEMTTrTpZ0c4beqUmRci0evPf6xJXUNxH/cOgMd9hsRiTWJcDvAFXlCHxnEqRCS1hzDia4EdG849/YNxmiheJg5cf+6hbDC9gHPbk9iybqEEXza+e+QBF90=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768591766; c=relaxed/simple;
-	bh=JUdVGwrQBP70IPOM3GRt0sUXKorpEx+rLp6QE6NzE0Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A2T8woGvBBpqa1lGMzYA7dPRcr5DNywcYT1ZbVhO2zAItJOAa5ox2FnfdAHPDh/MAR7YhUutp6hG0EcJe4yUuCue9FTDcaBsbaImqeOetdBkvu4NXW5xs8H1rquV+QGT4Oex813u2Qd9eIAS+La/v5iKcUlWqJKkS5jOn/yakIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S76gOrZ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3529FC19422;
-	Fri, 16 Jan 2026 19:29:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768591765;
-	bh=JUdVGwrQBP70IPOM3GRt0sUXKorpEx+rLp6QE6NzE0Y=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=S76gOrZ5hRzdjbsaj/rvorPXATOW+BM9dLJz9vkYDwlnKlsIUZTF163fDPknrQkkM
-	 BJgP5T9qLqnhUsDkMsPg/xOcAqopqP3hOwuHa8VDcU+kKZkKvvJlVbSh+SPMmEkizh
-	 QMUCouPloCLUShqDiUndslKl3toYsYv6eBOYmR9oG62gPI5Lin9hrtCYyBBui1OiMp
-	 XOK1MI8J5hSG+t9dKMiT3L2HWJHGZM9icRnsJOJ3sqzEDxELvU8wLfEtHaCveRzbsQ
-	 he/HEa+shUU0Av4hVXDsWUuktOu53wlDGjCT215BaJz/di/SQ3mBQzLiLXM1LUyhcL
-	 a/bI36/1y5/TQ==
-Date: Fri, 16 Jan 2026 19:29:16 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
-Message-ID: <20260116192916.436d24c9@jic23-huawei>
-In-Reply-To: <20260116-adf41513-iio-driver-v4-3-dbb7d6782217@analog.com>
-References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
-	<20260116-adf41513-iio-driver-v4-3-dbb7d6782217@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F642857CD
+	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 20:32:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768595555; cv=pass; b=Rjb74Rn1MmXLfcH67cp0H/vzqP7qR8cZBK8cJLIA9WK77tJk5B68lnZGXHeiJpla//lq4l4Pk4ATtzAKl3T7VTTKmoHhnrhiJk3chUvzGajMc5ZlTJixP66WGz85aSY5RJZBLlaJ2zOP1Snj+2B0r9WaKSylXrmXO6WKCZXfQfI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768595555; c=relaxed/simple;
+	bh=PpmlZ4hHWamCBSa4D0DoiFTzgcXHGWRBgeeQ73UEY7c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LF+eb2/wr18b8UpoZIO97qNFki0ebASIpV5UCwiwDa3i/n81FIlFkILiN9+mcvjqJk8cdeTG61Ua60i17m7OqlamsYaGv13WgdUqNIEAI2N7XvyU7TgF1hF45gxXOgGCLO92TZxyTFm4JHP+H29y5SgqWKaNeMFFebgcsVWXi0A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=MhAfWHae; arc=pass smtp.client-ip=74.125.224.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-yx1-f49.google.com with SMTP id 956f58d0204a3-646b8d2431dso2143658d50.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 12:32:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768595552; cv=none;
+        d=google.com; s=arc-20240605;
+        b=EIagWZB/WyarttSXW+tmkbb65haQpBERm9Ge76fvaeYCbdBVh6JZ2MBP1C6sDt1033
+         uGlR7ZIMJGwH9ECtMFoszWcB6B3rQERrkeB87er+H2q6yPYw5+tn9K/1Q0+/t0mUSEJ/
+         lPMKXVYWZzJArTBIEi/5Vq0tagH7kMN7WuR5qrP2BXr+OrJanl0pSQVY4N+8MdT4Yc5f
+         ucKu042g8LWE4XPqmXW9XkHcaROgskzq3vHexFGM0/4D76o/G5NFjz/pVoEhsudVHRjx
+         5bYDrQnwvA5MK+k8Uj3zFNOzd+tDNf3dh0PSjpnOh+Lvn7xNReWTOer1L9CJAuO9+laT
+         jpXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=PpmlZ4hHWamCBSa4D0DoiFTzgcXHGWRBgeeQ73UEY7c=;
+        fh=F1fDEPLqC5c9TxpKvuMbhTz26SBgSwL6m9iGDEvAGo8=;
+        b=Wa19kGgZAcbeNo+m2PI2+IIzngzkLfAD9nSwmCfK8omRt/GHO54ynukLlrKzsxamty
+         sPuMfyL0ASCJr2yqheILtCTb7H0myOZm4p7MojVcPu/WUYAI9lAVML6Qv0ro1LU/QeiF
+         9kjtKHROOeVUpRxH+BeiRmIIJ3hd9nRKHMElwTZgBvoU/izk0Qv+iZ3g6kxV5lXaCOBm
+         WJPsOWijEwfubAZ4duN/843t5PaJZJAp+kv2XK82porfB52txocf4DWzCwN/HdZouBEi
+         vqL1w2CXzbeaqY18zV3dxf924daFz/06DqpxZPCFLwPEljk7GTM/4vLt6jH31B6eYKxS
+         1Szg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tenstorrent.com; s=google; t=1768595552; x=1769200352; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PpmlZ4hHWamCBSa4D0DoiFTzgcXHGWRBgeeQ73UEY7c=;
+        b=MhAfWHae0c6U0rDpHFh9KVXvb/BigS6oJJkoDAUWYeUeU2Y83b2VG+S8VYJ5aQTVgP
+         qINDRXVOOANtocyrxE1OyVbwNTUZfgxv4SEbMzAacd13/vxkp9maV5wcR3nUyKAaZRfT
+         ygOG+nbEXXbiRz5J/9lz6QH5wqsVrj/oxU/NvFvMtMaA66WT3H0IyW8zmWGqI0HZ4mT7
+         kGYhn9A8kjxPVcOt4fyJ8ic76oJS2aDlmBna2ePhZMlyLDdUTDrAcOuU8riIx/VgiuOy
+         18lZHonGInGZ7bQkG3jfQu5LJ5eRRBaWj0PkydObB4KE1hR1FF2JysPPMDtbWvrD/vk3
+         r0cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768595552; x=1769200352;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=PpmlZ4hHWamCBSa4D0DoiFTzgcXHGWRBgeeQ73UEY7c=;
+        b=i7/NDMAwcZ06L24mpuqH3JLV4wlt4QIFnbM1sOFXWos4glBw6J6PtPGqdXAGlt9oI6
+         UpwTEWIXSokiYwsJ9B5dCrQ2GiQzq7iYW18k0XzMFhdM0MhoVq4aflDcm5xacuAdvLzg
+         +e7RDxUBtgTxtjbemkK/u05lTqH45gv3GPmcaDuEdDelRf/9utGicanKSJfClqBu8R8B
+         lKQ+84iIe4Ni5hKo0VRLqkuHtMpjdIMojJE/87COGAyBq18Im1WL6217iy/n9Lyg2Y3L
+         mqL8m+BSDhVASMdr4PrDu/kVvd55BnUoLTuINDZfINybAGGVT6MbAlk7XeXLIonyTE4J
+         uMlw==
+X-Forwarded-Encrypted: i=1; AJvYcCV0bfw/VnPRJkz/ySiazpKQpSSy8IjMBrCdUZ2sUSpbXOk2oxzAhLDheeAKuG4BSAUR7DAGv1/bH0M4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtXCHAR4Fn9Yip9TgvWB0PGSRAyqhWmVfk7p3morVu88iLiAqJ
+	vgq2Ipxdx4QJRoW6HO+tlZ/P7NX5HcVds/rRmgY8EKLzKB8pAU6pm246Vb/rAi9xThM4S+NGWhX
+	5Z17CZKRwzHeLB97EttMU02nS/2uGPpUOreeDbQ6Ddw==
+X-Gm-Gg: AY/fxX69LWnteadERq/kS9LbNRw+g1bnuZDBFmZXkDbqwxUejBNpJrLN2Ka0AV8N8Mh
+	7u4+2Gm2K/iyQhI4ZOOeNvNRW6uQOMNduXJd8LBMQTKNpopbCPPWFRoQBr6Kv3QVtzdk8pmNJGs
+	5BZw9pvk12Z2RR0KixKGFQxyrVsqi5sB5APCm+FDDUFoWPoUfwPBmvdp7BuT2vrC2R0h+5Xde7W
+	RMeYucSLWHCHh9exm0Uo//VDAQzxgkjO8vj8ISg/ogLasSzwYlPDewSz7L7U+bCMSil6szOKU8D
+	uotTl7TGy7o9/JyK788TpnLgO1CJ1RjTp29xI5wErgZmTqawUz+u6Cy4+sUP
+X-Received: by 2002:a05:690e:4008:b0:644:4f94:c534 with SMTP id
+ 956f58d0204a3-649177115d0mr2857181d50.53.1768595552016; Fri, 16 Jan 2026
+ 12:32:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com>
+ <20260115-atlantis-clocks-v1-3-7356e671f28b@oss.tenstorrent.com>
+ <aWmc73irBAM8DZwF@redhat.com> <20260116-frisky-heavenly-pig-953fa4@quoll>
+In-Reply-To: <20260116-frisky-heavenly-pig-953fa4@quoll>
+From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Date: Fri, 16 Jan 2026 14:32:21 -0600
+X-Gm-Features: AZwV_QjleAtHG0gb6HDBCsnDqxotEfpJ-YdV_J7Ve07OakGedKmM_eqvYI7Qzqg
+Message-ID: <CAEev2e_4RfHChkyvj=X8XFXC8-Tk_=SLJsMCR1M+v6sC+urxsQ@mail.gmail.com>
+Subject: Re: [PATCH 3/8] clk: tenstorrent: Add Atlantis clock controller driver
+To: Krzysztof Kozlowski <krzk@kernel.org>, Brian Masney <bmasney@redhat.com>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, mpe@kernel.org, 
+	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, agross@kernel.org, 
+	agross@oss.tenstorrent.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 16 Jan 2026 14:32:22 +0000
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org=
-> wrote:
+Hello Brian and Krzysztof,
 
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
->=20
-> The driver is based on existing PLL drivers in the IIO subsystem and
-> implements the following key features:
->=20
-> - Integer-N and fractional-N (fixed/variable modulus) synthesis modes
-> - High-resolution frequency calculations using microhertz (=C2=B5Hz) prec=
-ision
->   to handle sub-Hz resolution across multi-GHz frequency ranges
-> - IIO debugfs interface for direct register access
-> - FW property parsing from devicetree including charge pump settings,
->   reference path configuration and muxout options
-> - Power management support with suspend/resume callbacks
-> - Lock detect GPIO monitoring
->=20
-> The driver uses 64-bit microhertz values throughout PLL calculations to
-> maintain precision when working with frequencies that exceed 32-bit Hz
-> representation while requiring fractional Hz resolution.
->=20
-> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-Hi Rodrigo,
+On Fri, Jan 16, 2026 at 3:00=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Thu, Jan 15, 2026 at 09:05:35PM -0500, Brian Masney wrote:
+> >
+> > Are these abstractions really needed? Why not just call spin_lock/unloc=
+k
+> > directly?
+>
+> They are actually harmful - make code less readable and introduce very
+> poor (lose) API accepting whatever pointer... This is exactly code which
+> should notbe here.
 
-A couple of additional comments for this version.
+Some of the clocks use a regmap for register accesses, while the
+others use the devm_clk_hw_register_xxx functions which require a
+pointer to the control register and a lock. My above implementation
+sets the regmap's lock and ensures that the same lock is used across
+both types of clocks.
 
-Thanks,
+I tried setting the regmap_lock/unlock functions to
+spin_lock/spin_unlock like you suggested Brian, but that throws a
+compile time error
 
-Jonathan
+error: initialization of 'void (*)(void *)' from incompatible pointer
+type 'void (*)(spinlock_t *)' {aka 'void (*)(struct spinlock *)'}
+[-Wincompatible-pointer-types]
 
-> diff --git a/drivers/iio/frequency/adf41513.c b/drivers/iio/frequency/adf=
-41513.c
-> new file mode 100644
-> index 000000000000..9068c427d8e9
-> --- /dev/null
-> +++ b/drivers/iio/frequency/adf41513.c
+This pattern is used by other drivers when they want to override the
+regmap's lock [1] [2] [3]. Should I be doing this in a different
+manner? Please let me know.
 
-
-
-> +
-> +static int adf41513_write_raw(struct iio_dev *indio_dev,
-> +			      struct iio_chan_spec const *chan,
-> +			      int val, int val2, long info)
-> +{
-> +	struct adf41513_state *st =3D iio_priv(indio_dev);
-> +	u64 phase_urad;
-> +	u16 phase_val;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_PHASE:
-> +		phase_urad =3D (u64)val * MICRO + val2;
-> +		if (val < 0 || val2 < 0 || phase_urad >=3D ADF41513_MAX_PHASE_MICRORAD)
-
-Check val and val2 before setting phase_urad.  Whilst it's not a bug it
-is a lot less readable to perform checks on inputs after you've already used
-them to compute something.
-		if (val < 0 || val2 < 0)
-			return -EINVAL;
-
-		phase_urad =3D ...
-		if (phase_urad >=3D ...)
-			return -EINVAL;
-
-> +			return -EINVAL;
-> +
-> +		phase_val =3D DIV_U64_ROUND_CLOSEST(phase_urad << 12,
-> +						  ADF41513_MAX_PHASE_MICRORAD);
-> +		phase_val =3D min(phase_val, ADF41513_MAX_PHASE_VAL);
-> +		st->regs[ADF41513_REG2] |=3D ADF41513_REG2_PHASE_ADJ_MSK;
-> +		FIELD_MODIFY(ADF41513_REG2_PHASE_VAL_MSK,
-> +			     &st->regs[ADF41513_REG2], phase_val);
-> +		return adf41513_sync_config(st, ADF41513_SYNC_REG0);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-> +
-> +static int adf41513_parse_fw(struct adf41513_state *st)
-> +{
-> +	struct device *dev =3D &st->spi->dev;
-> +	int ret;
-> +	u32 tmp, cp_resistance, cp_current;
-> +
-> +	/* power-up frequency */
-> +	st->data.power_up_frequency_hz =3D ADF41510_MAX_RF_FREQ_HZ;
-> +	ret =3D device_property_read_u32(dev, "adi,power-up-frequency-mhz", &tm=
-p);
-> +	if (!ret) {
-Can easily do the same as below here  No precision issue given definition of
-the _MAX_RF_FREQ_HZ value includes a larger power 10 multiplier.
-=09
-	tmp =3D ADF41510_MAX_RF_FREQ_HZ / HZ_PER_MHZ;
-	device_property_read_u32(dev, "adi,power-up-frequency-mhz", &tmp;
-	st->data.power_up_frequency_hz =3D (u64)tmp * HZ_PER_MHZ;
-	if (st...
-
-or use a local u64 for a temporary you only assign to power_up_frequency_hz
-after checks. That would be more consistent with the code that follows.
-
-> +		st->data.power_up_frequency_hz =3D (u64)tmp * HZ_PER_MHZ;
-> +		if (st->data.power_up_frequency_hz < ADF41513_MIN_RF_FREQ_HZ ||
-> +		    st->data.power_up_frequency_hz > ADF41513_MAX_RF_FREQ_HZ)
-> +			return dev_err_probe(dev, -ERANGE,
-> +					     "power-up frequency %llu Hz out of range\n",
-> +					     st->data.power_up_frequency_hz);
-> +	}
-> +
-> +	tmp =3D ADF41513_MIN_R_CNT;
-> +	device_property_read_u32(dev, "adi,reference-div-factor", &tmp);
-> +	if (tmp < ADF41513_MIN_R_CNT || tmp > ADF41513_MAX_R_CNT)
-> +		return dev_err_probe(dev, -ERANGE,
-> +				     "invalid reference div factor %u\n", tmp);
-> +	st->data.ref_div_factor =3D tmp;
-> +
-> +	st->data.ref_doubler_en =3D device_property_read_bool(dev, "adi,referen=
-ce-doubler-enable");
-> +	st->data.ref_div2_en =3D device_property_read_bool(dev, "adi,reference-=
-div2-enable");
-> +
-> +	cp_resistance =3D ADF41513_DEFAULT_R_SET;
-> +	device_property_read_u32(dev, "adi,charge-pump-resistor-ohms", &cp_resi=
-stance);
-> +	if (cp_resistance < ADF41513_MIN_R_SET || cp_resistance > ADF41513_MAX_=
-R_SET)
-> +		return dev_err_probe(dev, -ERANGE, "R_SET %u Ohms out of range\n", cp_=
-resistance);
-> +
-> +	st->data.charge_pump_voltage_mv =3D ADF41513_DEFAULT_CP_VOLTAGE_mV;
-
-This leaves some odd corner cases.
-If DT defines cp_resistance but not cp_current then we ignore the cp_resita=
-nce.
-If you want to insist it is either both or nothing, that needs enforcing in=
- the dt-binding.
-I think I slightly prefer this option..
-
-Alternative is define a default current such that the maths works to give t=
-he DEFAULT_CP_VOLTAGE_mV
-if both properties use defaults and use that here + document in the dt-bind=
-ing as the default
-for this property.   That may mean if only one property is set we reject th=
-e pair and fail
-to probe.  You have comment about valid combinations in the dt-binding so t=
-hat's fine.
-=20
-> +	ret =3D device_property_read_u32(dev, "adi,charge-pump-current-microamp=
-", &cp_current);
-> +	if (!ret) {
-> +		tmp =3D DIV_ROUND_CLOSEST(cp_current * cp_resistance, MILLI); /* conve=
-rt to mV */
-> +		if (tmp < ADF41513_MIN_CP_VOLTAGE_mV || tmp > ADF41513_MAX_CP_VOLTAGE_=
-mV)
-> +			return dev_err_probe(dev, -ERANGE, "I_CP %u uA (%u Ohms) out of range=
-\n",
-> +					     cp_current, cp_resistance);
-> +		st->data.charge_pump_voltage_mv =3D tmp;
-> +	}
-> +
-> +	st->data.phase_detector_polarity =3D
-> +		device_property_read_bool(dev, "adi,phase-detector-polarity-positive-e=
-nable");
-> +
-> +	st->data.logic_lvl_1v8_en =3D device_property_read_bool(dev, "adi,logic=
--level-1v8-enable");
-> +
-> +	tmp =3D ADF41513_LD_COUNT_MIN;
-> +	device_property_read_u32(dev, "adi,lock-detector-count", &tmp);
-> +	if (tmp < ADF41513_LD_COUNT_FAST_MIN || tmp > ADF41513_LD_COUNT_MAX ||
-> +	    !is_power_of_2(tmp))
-> +		return dev_err_probe(dev, -ERANGE,
-> +				     "invalid lock detect count: %u\n", tmp);
-> +	st->data.lock_detect_count =3D tmp;
-> +
-> +	st->data.freq_resolution_uhz =3D MICROHZ_PER_HZ;
-> +
-> +	return 0;
-> +}
-
+[1] https://elixir.bootlin.com/linux/v6.18.5/source/drivers/soc/sunxi/sunxi=
+_sram.c#L338
+[2] https://elixir.bootlin.com/linux/v6.18.5/source/drivers/mfd/atc260x-cor=
+e.c#L47
+[3] https://elixir.bootlin.com/linux/v6.18.5/source/drivers/net/ethernet/mi=
+crochip/encx24j600-regmap.c#L46
 
