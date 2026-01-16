@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-256203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6AD5D33A1B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:02:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A1CD33A35
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 18:03:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1D7E23008D47
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:02:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 11C653042FCB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 17:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05E0337BB6;
-	Fri, 16 Jan 2026 17:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F154D3451BA;
+	Fri, 16 Jan 2026 17:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="a/mfLc4O"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OP64Dgzt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59DE32F691D
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E49D339B39;
+	Fri, 16 Jan 2026 17:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768582958; cv=none; b=UX8MRzmu59gf0m+wkX/6P9G/s9Ps6GqcvUGsCpz2k6cuqKVkcPXEwpxZFKQQRY5Sk5uz5WbGzLDyWnM7tecIbNllwk1KVNzlY/o3NmS0xRD7Z5OKXM0Suzyc7wGqoUcptKsgmeLWah7i4lpyJh7R6a16ekaB5TFOl/qBDSLoAKk=
+	t=1768582960; cv=none; b=By9vM9vxfpzZUvj9XAjrxHiB27RioY1ug+XDqFUzWg4H3VcHOkqlicMqEvNDmD4vemiLzK5Yf7Z5/7XlWcVapt0QeifdXInijEd1l4KV37Dpdd05ltL9ZqXv4lC2QmC3t1WZ3NHuv53a/RHfH5H33qFL7JwsWQb4Vzf6tyvcLhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768582958; c=relaxed/simple;
-	bh=XkCk3fnK9WW7ID9KvS8IzvS5mjDeOvHvLQ4GmLKzMxg=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=epqnGU4Mq1drlTuUNH2Z2dmbCvJYMJY/9IWIFMTxbVdOQHRww62bp8Df9z8CzzAb7mM4iwZifdu5vHLGRdGJ91oqTDL0vGiR/y9BJWqckO8V4KFZyTVLnDYzr/xlkRkMOKVES+smj5D5FP8HWB7lI3S8jfMkjuMoGhHmbieLT4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=a/mfLc4O; arc=none smtp.client-ip=185.246.85.4
+	s=arc-20240116; t=1768582960; c=relaxed/simple;
+	bh=0zIFnLQkrNv1RDeV/OGwROGYLBJyPuLw2Z2up66C6SY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=UrU8CbXdLaE1SVDjJznsLGMzAbyAca77rPWhu+w5JsnDCc8F1YbuOLUU6pJSlDI6e6z+jXg3oaAqGPb9Aq+JP05IhIcMirfsgY+UesWjgRXg82iJDaDqZiiwDyBJU9pdQ7jvkNLiYbyQJIkd2J8V4sRDm/Rhr2UhB8Z0ep5PdYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OP64Dgzt; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id BAA044E42112;
-	Fri, 16 Jan 2026 17:02:34 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id D19381A28CD;
+	Fri, 16 Jan 2026 17:02:37 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7FC7E606F9;
-	Fri, 16 Jan 2026 17:02:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D0C8610B68C84;
-	Fri, 16 Jan 2026 18:02:24 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A2601606F9;
+	Fri, 16 Jan 2026 17:02:37 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2FE7410B68CA3;
+	Fri, 16 Jan 2026 18:02:33 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768582952; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=Mlrkt2Cy4qV+9kwAUK6c/QgVVoDWCENjPhDBijpvPxM=;
-	b=a/mfLc4OEHY3xgw9VM0zD2WVgbQshIuD30TJK1roQBoDb6kMOfzTnqmvKtMCvXBZ1T6W/9
-	Wmxqw+Et88L82ZK3VmsI11zCjEPC0AQphtTPpB/ZOzXYoimuUwBr7/Hh8EZP2kknNO4K2a
-	64oeqOpHd2janyen4xUEokaVJAnK0XcPeCgTDljMLRZ7+ggBpprMuy+bsJNquSxr0/zWi1
-	rN/FIAbUSZRITUEBWg0IcKIgaqHL5HtCtPhqzqYGLKsg4ljYjt7zVEsM47dSmLVz49UzOH
-	3/pzWuUkp14tJgJBrMq6UMBvtaFzLrkcbTTCouL9TztQ0xmY5QVvdhwMOBeUTQ==
+	t=1768582956; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=O0e7oK0+DtrdeS2mjGJxW+Ios+Q8mp3j2SQs5EO70xg=;
+	b=OP64DgztMG0GOvqPwm4qmDxKp7nnr2ieoQEFGJ2mlvQ5g4bLQC+JQlqa23ORyyUqnArxQx
+	NXALwXg/7ciZrFAW5WZhCXMwigkTqjH5+YSM2xrQFfFgoqkc9Np2jasoaeD61hBlDMj0Kn
+	Bmjn5MsDVhKNnVp9n4+pYh/qfxby40C/pU5myzPDmfFbMeqaiFePA5ujRxfMB2fGlGA8p/
+	BvbClLQNEYMNc5b8f5lO5khzQ3LHOZfTac3tOh3oBsDCCzj23OM1Lg34sWNQn48P2S7Sbs
+	xz/n7OFv3ruDT0/ds0k6oY1be0U1pi0s42nYdm3Qh4ZaCbJkFYlVM7M6MT8v1w==
 From: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>
-Subject: [PATCH v4 00/25] Clean and update tilcdc driver to support
- DRM_BRIDGE_ATTACH_NO_CONNECTOR
-Date: Fri, 16 Jan 2026 18:02:00 +0100
-Message-Id: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
+Date: Fri, 16 Jan 2026 18:02:01 +0100
+Subject: [PATCH v4 01/25] dt-bindings: display: tilcdc: Convert to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,12 +57,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAhvamkC/2XOTQrCMBCG4auUrI1kktgaV95DRPIzsQFtJK1FK
- b27aUVEu3w/mIcZSIspYEt2xUAS9qENsckhVwWxtW7OSIPLTTjjG2AgqUfd3ROeunCxztJKWSc
- VlpXxiuSjW0IfHjN4OOauQ9vF9Jz9Hqb1TQEv/6keKKNSGYWeo9Ca7U2M3SU0axuvZMJ6/gU4w
- ALgGfBya7QV1gmBS0B8gJIBW34gMqCMdsxXkkMpf4FxHF+uY0lBMAEAAA==
-X-Change-ID: 20251014-feature_tilcdc-79cd49e67bf9
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260116-feature_tilcdc-v4-1-2c1c22143087@bootlin.com>
+References: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
+In-Reply-To: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
 To: Jyri Sarha <jyri.sarha@iki.fi>, 
  Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -88,136 +87,216 @@ Cc: Markus Schneider-Pargmann <msp@baylibre.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 
-The starting point for this work was adding support for the HDMI cape:
-https://www.seeedstudio.com/Seeed-Studio-BeagleBone-Green-HDMI-Cape.html
-This will be sent in a later series.
+Convert the device tree binding documentation for tilcdc
+from plain text to DT binding schema.
 
-Initially, Miguel proposed modifying the ite-it66121 bridge to support
-the legacy behavior without the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag:
-https://lore.kernel.org/lkml/20250909-it66121-fix-v1-1-bc79ca83df17@bootlin.com/
-This patch was NAK'd as we don't want to add more legacy code. Maxime
-requested that the tilcdc driver be updated to use
-DRM_BRIDGE_ATTACH_NO_CONNECTOR instead.
-
-While working on this update, I discovered that the tilcdc driver
-contained significant amounts of legacy code that needed cleaning.
-Since this driver was developed alongside the tda998x driver for
-several AM335x boards, the tda998x driver also required cleanup and
-support for the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
-
-A new tilcdc_panel_legacy driver replaces the old tilcdc_panel driver.
-It modifies the devicetree at boot time to properly bind the tilcdc driver
-with the standard panel-simple driver.
-
-This series is based on the tilcdc fix sent to mainline:
-https://lore.kernel.org/lkml/20251125090546.137193-1-kory.maincent@bootlin.com/
-
-This series has been tested on:
-- BeagleBone Black (tilcdc + tda998x bridge)
-- BeagleBone Black with LCD cape (tilcdc + ti,tilcdc,panel binding)
-- BeagleBone Green Eco with HDMI cape (tilcdc + it66121 bridge)
-
-The following mainline devicetrees still use ti,tilcdc,panel binding.
-I believe this series maintains compatibility, but I cannot test without
-hardware:
-- da850-evm.dts
-- am335x-guardian.dts
-- am335x-pdu001.dts
-- am335x-pepper.dts
-- am335x-sbc-t335.dts
-- am335x-sl50.dts
-
-Patches 1-2: Convert tilcdc binding to YAML and set the ti,tilcdc,panel
-	     sub-binding as legacy.
-Patches 3-6: Replace tilcdc_panel driver to the new tilcdc_panel_legacy
-	     driver which is tweaking the devicetree at boot time.
-Patches 7-20: Clean up tilcdc driver.
-Patches 21-23: Clean up tda998x driver.
-Patch 24: Add DRM_BRIDGE_ATTACH_NO_CONNECTOR support for tda998x driver.
-Patch 25: Add DRM_BRIDGE_ATTACH_NO_CONNECTOR support for tilcdc driver.
-
-Changes in v4:
-- Use device_get_match_data instead of of_match_node.
-- Convert the driver to use DRM managed resources to avoid lifetime
-  resources issue.
-- Add a patch to convert to drm_device-based logging helpers.
-- Replace drm_of_find_panel_or_bridge() with the newer
-  devm_drm_of_get_bridge() helper.
-- Link to v3: https://lore.kernel.org/r/20260106-feature_tilcdc-v3-0-9bad0f742164@bootlin.com
-
-Changes in v3:
-- Split patch 13 and patch 14 into two for better readability and git
-  history clarity.
-- Update patch 5 to use OF changeset and __free() macro. Made also few
-  small improvements as requested by Luca.
-- Rename binding file to ti,am33xx-tilcdc.yaml, use generic node name and
-  drop unused label.
-- Link to v2: https://lore.kernel.org/r/20251211-feature_tilcdc-v2-0-f48bac3cd33e@bootlin.com
-
-Changes in v2:
-- Remove patch 2 that add fifo-threshold property. Use FIFO threshold
-  value from SoC id instead.
-- Remove the part that breaks DTB compatibility.
-- Add tilcdc_panel_legacy to modify the devicetree at boot time to properly
-  bind the tilcdc driver with the standard panel-simple driver.
-- Link to v1: https://lore.kernel.org/r/20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
 ---
-Kory Maincent (TI.com) (25):
-      dt-bindings: display: tilcdc: Convert to DT schema
-      dt-bindings: display: tilcdc: Mark panel binding as deprecated
-      drm/tilcdc: Remove simulate_vesa_sync flag
-      drm/tilcdc: Add support for DRM bus flags and simplify panel config
-      drm/tilcdc: Convert legacy panel binding via DT overlay at boot time
-      drm/tilcdc: Remove tilcdc panel driver
-      drm/tilcdc: Remove component framework support
-      drm/tilcdc: Remove tilcdc_panel_info structure
-      drm/tilcdc: Remove redundant #endif/#ifdef in debugfs code
-      drm/tilcdc: Remove unused encoder and connector tracking arrays
-      drm/tilcdc: Rename external_encoder and external_connector to encoder and connector
-      drm/tilcdc: Rename tilcdc_external to tilcdc_encoder
-      drm/tilcdc: Remove the useless module list support
-      drm/tilcdc: Use drm_module_platform_driver() helper
-      drm/tilcdc: Move tilcdc_init/fini closer to probe/remove
-      drm/tilcdc: Modernize driver initialization and cleanup paths
-      drm/tilcdc: Remove the use of drm_device private_data
-      drm/tilcdc: Convert to DRM managed resources
-      drm/tilcdc: Convert to drm_device-based logging helpers
-      drm/tilcdc: Use devm_drm_of_get_bridge() helper
-      drm/bridge: tda998x: Remove component support
-      drm/bridge: tda998x: Move tda998x_create/destroy into probe and remove
-      drm/bridge: tda998x: Remove useless tda998x_connector_destroy wrapper
-      drm/bridge: tda998x: Add support for DRM_BRIDGE_ATTACH_NO_CONNECTOR
-      rm/tilcdc: Add support for DRM_BRIDGE_ATTACH_NO_CONNECTOR
-
- .../devicetree/bindings/display/tilcdc/panel.txt   |   1 +
- .../bindings/display/tilcdc/ti,am33xx-tilcdc.yaml  | 100 +++++
- .../devicetree/bindings/display/tilcdc/tilcdc.txt  |  82 ----
- drivers/gpu/drm/bridge/tda998x_drv.c               | 251 +++++------
- drivers/gpu/drm/tilcdc/Kconfig                     |  18 +
- drivers/gpu/drm/tilcdc/Makefile                    |   5 +-
- drivers/gpu/drm/tilcdc/tilcdc_crtc.c               | 189 +++-----
- drivers/gpu/drm/tilcdc/tilcdc_drv.c                | 486 ++++++++-------------
- drivers/gpu/drm/tilcdc/tilcdc_drv.h                |  99 +----
- drivers/gpu/drm/tilcdc/tilcdc_encoder.c            |  69 +++
- .../tilcdc/{tilcdc_external.h => tilcdc_encoder.h} |   5 +-
- drivers/gpu/drm/tilcdc/tilcdc_external.c           | 179 --------
- drivers/gpu/drm/tilcdc/tilcdc_panel.c              | 408 -----------------
- drivers/gpu/drm/tilcdc/tilcdc_panel.h              |  15 -
- drivers/gpu/drm/tilcdc/tilcdc_panel_legacy.c       | 185 ++++++++
- drivers/gpu/drm/tilcdc/tilcdc_panel_legacy.dtso    |  29 ++
- drivers/gpu/drm/tilcdc/tilcdc_plane.c              |  37 +-
- drivers/gpu/drm/tilcdc/tilcdc_regs.h               |   8 +-
- 18 files changed, 811 insertions(+), 1355 deletions(-)
+Change in v3:
+- Rename binding file to ti,am33xx-tilcdc.yaml.
+- Use generic node name and drop unused label.
 ---
-base-commit: e10a789098f56fe8e1c1c320fe25d739f836eeaf
-change-id: 20251014-feature_tilcdc-79cd49e67bf9
+ .../bindings/display/tilcdc/ti,am33xx-tilcdc.yaml  | 100 +++++++++++++++++++++
+ .../devicetree/bindings/display/tilcdc/tilcdc.txt  |  82 -----------------
+ 2 files changed, 100 insertions(+), 82 deletions(-)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/display/tilcdc/ti,am33xx-tilcdc.yaml b/Documentation/devicetree/bindings/display/tilcdc/ti,am33xx-tilcdc.yaml
+new file mode 100644
+index 0000000000000..eb0ebb678fa87
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/tilcdc/ti,am33xx-tilcdc.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2025 Bootlin
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/tilcdc/ti,am33xx-tilcdc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI LCD Controller, found on AM335x, DA850, AM18x and OMAP-L138
++
++maintainers:
++  - Kory Maincent <kory.maincent@bootlin.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,am33xx-tilcdc
++      - ti,da850-tilcdc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Name of the hwmod associated to the LCDC
++
++  max-bandwidth:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The maximum pixels per second that the memory interface / lcd
++      controller combination can sustain
++    # maximum: 2048*2048*60
++    maximum: 251658240
++
++  max-width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The maximum horizontal pixel width supported by the lcd controller.
++    maximum: 2048
++
++  max-pixelclock:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The maximum pixel clock that can be supported by the lcd controller
++      in KHz.
++
++  blue-and-red-wiring:
++    enum: [straight, crossed]
++    description:
++      This property deals with the LCDC revision 2 (found on AM335x)
++      color errata [1].
++       - "straight" indicates normal wiring that supports RGB565,
++         BGR888, and XBGR8888 color formats.
++       - "crossed" indicates wiring that has blue and red wires
++         crossed. This setup supports BGR565, RGB888 and XRGB8888
++         formats.
++       - If the property is not present or its value is not recognized
++         the legacy mode is assumed. This configuration supports RGB565,
++         RGB888 and XRGB8888 formats. However, depending on wiring, the red
++         and blue colors are swapped in either 16 or 24-bit color modes.
++
++       [1] There is an errata about AM335x color wiring. For 16-bit color
++       mode the wires work as they should (LCD_DATA[0:4] is for Blue[3:7]),
++       but for 24 bit color modes the wiring of blue and red components is
++       crossed and LCD_DATA[0:4] is for Red[3:7] and LCD_DATA[11:15] is
++       for Blue[3-7]. For more details see section 3.1.1 in AM335x
++       Silicon Errata
++       https://www.ti.com/general/docs/lit/getliterature.tsp?baseLiteratureNumber=sprz360
++
++required:
++  - compatible
++  - interrupts
++  - reg
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    display-controller@4830e000 {
++        compatible = "ti,am33xx-tilcdc";
++        reg = <0x4830e000 0x1000>;
++        interrupt-parent = <&intc>;
++        interrupts = <36>;
++        ti,hwmods = "lcdc";
++
++        blue-and-red-wiring = "crossed";
++
++        port {
++            endpoint {
++                remote-endpoint = <&hdmi_0>;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
+deleted file mode 100644
+index 3b3d0bbfcfff4..0000000000000
+--- a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
++++ /dev/null
+@@ -1,82 +0,0 @@
+-Device-Tree bindings for tilcdc DRM driver
+-
+-Required properties:
+- - compatible: value should be one of the following:
+-    - "ti,am33xx-tilcdc" for AM335x based boards
+-    - "ti,da850-tilcdc" for DA850/AM18x/OMAP-L138 based boards
+- - interrupts: the interrupt number
+- - reg: base address and size of the LCDC device
+-
+-Recommended properties:
+- - ti,hwmods: Name of the hwmod associated to the LCDC
+-
+-Optional properties:
+- - max-bandwidth: The maximum pixels per second that the memory
+-   interface / lcd controller combination can sustain
+- - max-width: The maximum horizontal pixel width supported by
+-   the lcd controller.
+- - max-pixelclock: The maximum pixel clock that can be supported
+-   by the lcd controller in KHz.
+- - blue-and-red-wiring: Recognized values "straight" or "crossed".
+-   This property deals with the LCDC revision 2 (found on AM335x)
+-   color errata [1].
+-    - "straight" indicates normal wiring that supports RGB565,
+-      BGR888, and XBGR8888 color formats.
+-    - "crossed" indicates wiring that has blue and red wires
+-      crossed. This setup supports BGR565, RGB888 and XRGB8888
+-      formats.
+-    - If the property is not present or its value is not recognized
+-      the legacy mode is assumed. This configuration supports RGB565,
+-      RGB888 and XRGB8888 formats. However, depending on wiring, the red
+-      and blue colors are swapped in either 16 or 24-bit color modes.
+-
+-Optional nodes:
+-
+- - port/ports: to describe a connection to an external encoder. The
+-   binding follows Documentation/devicetree/bindings/graph.txt and
+-   supports a single port with a single endpoint.
+-
+- - See also Documentation/devicetree/bindings/display/tilcdc/panel.txt and
+-   Documentation/devicetree/bindings/display/bridge/ti,tfp410.yaml for connecting
+-   tfp410 DVI encoder or lcd panel to lcdc
+-
+-[1] There is an errata about AM335x color wiring. For 16-bit color mode
+-    the wires work as they should (LCD_DATA[0:4] is for Blue[3:7]),
+-    but for 24 bit color modes the wiring of blue and red components is
+-    crossed and LCD_DATA[0:4] is for Red[3:7] and LCD_DATA[11:15] is
+-    for Blue[3-7]. For more details see section 3.1.1 in AM335x
+-    Silicon Errata:
+-    https://www.ti.com/general/docs/lit/getliterature.tsp?baseLiteratureNumber=sprz360
+-
+-Example:
+-
+-	fb: fb@4830e000 {
+-		compatible = "ti,am33xx-tilcdc", "ti,da850-tilcdc";
+-		reg = <0x4830e000 0x1000>;
+-		interrupt-parent = <&intc>;
+-		interrupts = <36>;
+-		ti,hwmods = "lcdc";
+-
+-		blue-and-red-wiring = "crossed";
+-
+-		port {
+-			lcdc_0: endpoint {
+-				remote-endpoint = <&hdmi_0>;
+-			};
+-		};
+-	};
+-
+-	tda19988: tda19988 {
+-		compatible = "nxp,tda998x";
+-		reg = <0x70>;
+-
+-		pinctrl-names = "default", "off";
+-		pinctrl-0 = <&nxp_hdmi_bonelt_pins>;
+-		pinctrl-1 = <&nxp_hdmi_bonelt_off_pins>;
+-
+-		port {
+-			hdmi_0: endpoint {
+-				remote-endpoint = <&lcdc_0>;
+-			};
+-		};
+-	};
+
 -- 
-Köry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+2.43.0
 
 
