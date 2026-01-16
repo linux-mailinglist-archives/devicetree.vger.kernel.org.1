@@ -1,35 +1,35 @@
-Return-Path: <devicetree+bounces-255859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-255861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347F7D2B7CB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:38:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 472A0D2B7F1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 05:39:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C0A8303833B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:38:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C97FF304EDB9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 04:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB3C346766;
-	Fri, 16 Jan 2026 04:38:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 234E4346E67;
+	Fri, 16 Jan 2026 04:38:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAC6342C9D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7D9327C05;
 	Fri, 16 Jan 2026 04:38:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768538324; cv=none; b=lXiYjRDSCiruo5oSuybizjCIsfFqp81np0ywxKzgCjo718/ZQNqn8qtRDdiVvn+PsXXTF8O/ANXngsAJQwIO5GSRyD8JSYHh2UuojqYFqKVN2kCZd9KiPdxyMTaQkU36O4SzFG4WOsMfr9qTBZ8IGwXg/BsMTS+mk3DYddicdH0=
+	t=1768538324; cv=none; b=hSjrQJ3NnfDuASHS4rb9K5qRoVsA1mNPjLvb1RUf7YqhhUTKwd1DvFsK6tP7gPXBQgrPC+c9a8/qheKU2h2b9h4LWHH6EhjRrF9bFTngNOwNI2s2yhdtLd1FsZp1NLvMs1J2mj3ujSAMQDPJAES/BOG1psgwlOvAUc0g5b5qXN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768538324; c=relaxed/simple;
-	bh=TwcgJf1vEmYOnqQjyNXZ1aWwaxlavVQbI9d46hsfeF8=;
+	bh=K4zNEKfvsUCe/jL33Qw4l5BaYvWT5AEVSYkne+4sWnc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AAnhwbfaUb2Lg/NGtq6jCpK/0T9JRqGK0mrKxtzx6rjqCHVfcs8EUSDr2ajyGeJbQYFAZK97nVrbJf1GqeB80Y0wUH0KWOkPtW9uHTyQDfduaiUB6kRxsAsb+QeqDspgeUwcff3YoidVA96O3tY+UJuJhPYGMBJfhB6t5W9vrU4=
+	 MIME-Version; b=BZsjOsGuvkbKUvYI24S5++zCoWaW/in8qaj9zR8Wd/k6WMxJv0CgYd+6JCnQLejn7E5coq8M92yuwct6y3YxVqbPZrzBGUpPip02zPPJve1sFqykDwdGe1kbWdfCqK80PFRauVY+v7HtRCpd7f6eqJM7KRtibIYHl5RFZoUFH8Y=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
 Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.83])
-	by APP-01 (Coremail) with SMTP id qwCowADXfWmwwGlp9QjYBA--.45984S3;
-	Fri, 16 Jan 2026 12:38:13 +0800 (CST)
+	by APP-01 (Coremail) with SMTP id qwCowADXfWmwwGlp9QjYBA--.45984S4;
+	Fri, 16 Jan 2026 12:38:16 +0800 (CST)
 From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -60,9 +60,9 @@ Cc: Philipp Zabel <p.zabel@pengutronix.de>,
 	linux-riscv@lists.infradead.org,
 	Icenowy Zheng <uwu@icenowy.me>,
 	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH v5 1/9] dt-bindings: vendor-prefixes: add verisilicon
-Date: Fri, 16 Jan 2026 12:37:38 +0800
-Message-ID: <20260116043746.336328-2-zhengxingda@iscas.ac.cn>
+Subject: [PATCH v5 2/9] dt-bindings: display: add verisilicon,dc
+Date: Fri, 16 Jan 2026 12:37:39 +0800
+Message-ID: <20260116043746.336328-3-zhengxingda@iscas.ac.cn>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260116043746.336328-1-zhengxingda@iscas.ac.cn>
 References: <20260116043746.336328-1-zhengxingda@iscas.ac.cn>
@@ -73,60 +73,191 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowADXfWmwwGlp9QjYBA--.45984S3
-X-Coremail-Antispam: 1UD129KBjvdXoW7GF47WFWrGrW8GrW5tryxZrb_yoWkuwb_WF
-	s7Cr1Dur45tF1Fvw4jyFs3GryUCw1akr48C3Z0qFWqka4xG39xGF92q3y5Zw17WF4fuas5
-	ArnaqrZrXF1xKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbkkFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUGwA2048vs2IY02
-	0Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-	wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l84
-	ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0DM2AI
-	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
-	v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
-	AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
-	2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0x
-	vEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVj
-	vjDU0xZFpf9x0pRlJPiUUUUU=
+X-CM-TRANSID:qwCowADXfWmwwGlp9QjYBA--.45984S4
+X-Coremail-Antispam: 1UD129KBjvJXoWxur17uw4fuw47tF1fArWkWFg_yoWrZF45pa
+	n3AFWxtF4ktF13Xws3JFyIgw4rtan5Ar10gryxXw1jyan0gFy0qw4akr98ZasrGF97Zay7
+	WFWj9r4Ikw1IyaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUmY14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_Jryl82xGYIkIc2
+	x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
+	Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UM2
+	8EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oVCq3wAS
+	0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
+	IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
+	Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2kIc2
+	xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWU
+	JVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67
+	kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY
+	6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42
+	IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIev
+	Ja73UjIFyTuYvjTRNiSHDUUUU
 X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 
 From: Icenowy Zheng <uwu@icenowy.me>
 
-VeriSilicon is a Silicon IP vendor, which is the current owner of
-Vivante series video-related IPs and Hantro series video codec IPs.
+Verisilicon has a series of display controllers prefixed with DC and
+with self-identification facility like their GC series GPUs.
 
-Add a vendor prefix for this company.
+Add a device tree binding for it.
+
+Depends on the specific DC model, it can have either one or two display
+outputs, and each display output could be set to DPI signal or "DP"
+signal (which seems to be some plain parallel bus to HDMI controllers).
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
 ---
-No changes since v4.
+Changes in v5:
+- Dropped the requirement of port@0.
+- Dropped the if clause for TH1520, which seems to be not needed because
+  of implicit DT binding rules.
+
+Changes in v4:
+- Added a comment for "verisilicon,dc" that says the ID/revision is
+  discoverable via registers.
+- Removed clock minItems constraint w/o specific compatible strings.
 
 Changes in v3:
-- Add Rob's ACK.
+- Added SoC-specific compatible string, and arm the binding with clock /
+  port checking for the specific SoC (with a 2-output DC).
 
-No changes in v2.
+Changes in v2:
+- Fixed misspelt "versilicon" in title.
+- Moved minItems in clock properties to be earlier than items.
+- Re-aligned multi-line clocks and resets in example.
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/display/verisilicon,dc.yaml      | 122 ++++++++++++++++++
+ 1 file changed, 122 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index c7591b2aec2a7..18f931f369198 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1745,6 +1745,8 @@ patternProperties:
-     description: Variscite Ltd.
-   "^vdl,.*":
-     description: Van der Laan b.v.
-+  "^verisilicon,.*":
-+    description: VeriSilicon Microelectronics (Shanghai) Co., Ltd.
-   "^vertexcom,.*":
-     description: Vertexcom Technologies, Inc.
-   "^via,.*":
+diff --git a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+new file mode 100644
+index 0000000000000..9dc35ab973f20
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+@@ -0,0 +1,122 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/verisilicon,dc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Verisilicon DC-series display controllers
++
++maintainers:
++  - Icenowy Zheng <uwu@icenowy.me>
++
++properties:
++  $nodename:
++    pattern: "^display@[0-9a-f]+$"
++
++  compatible:
++    items:
++      - enum:
++          - thead,th1520-dc8200
++      - const: verisilicon,dc # DC IPs have discoverable ID/revision registers
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: DC Core clock
++      - description: DMA AXI bus clock
++      - description: Configuration AHB bus clock
++      - description: Pixel clock of output 0
++      - description: Pixel clock of output 1
++
++  clock-names:
++    items:
++      - const: core
++      - const: axi
++      - const: ahb
++      - const: pix0
++      - const: pix1
++
++  resets:
++    items:
++      - description: DC Core reset
++      - description: DMA AXI bus reset
++      - description: Configuration AHB bus reset
++
++  reset-names:
++    items:
++      - const: core
++      - const: axi
++      - const: ahb
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: The first output channel , endpoint 0 should be
++          used for DPI format output and endpoint 1 should be used
++          for DP format output.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: The second output channel if the DC variant
++          supports. Follow the same endpoint addressing rule with
++          the first port.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/clock/thead,th1520-clk-ap.h>
++    #include <dt-bindings/reset/thead,th1520-reset.h>
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      display@ffef600000 {
++        compatible = "thead,th1520-dc8200", "verisilicon,dc";
++        reg = <0xff 0xef600000 0x0 0x100000>;
++        interrupts = <93 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clk_vo CLK_DPU_CCLK>,
++                 <&clk_vo CLK_DPU_ACLK>,
++                 <&clk_vo CLK_DPU_HCLK>,
++                 <&clk_vo CLK_DPU_PIXELCLK0>,
++                 <&clk_vo CLK_DPU_PIXELCLK1>;
++        clock-names = "core", "axi", "ahb", "pix0", "pix1";
++        resets = <&rst TH1520_RESET_ID_DPU_CORE>,
++                 <&rst TH1520_RESET_ID_DPU_AXI>,
++                 <&rst TH1520_RESET_ID_DPU_AHB>;
++        reset-names = "core", "axi", "ahb";
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@1 {
++            reg = <1>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            dpu_out_dp1: endpoint@1 {
++              reg = <1>;
++              remote-endpoint = <&hdmi_in>;
++            };
++          };
++        };
++      };
++    };
 -- 
 2.52.0
 
