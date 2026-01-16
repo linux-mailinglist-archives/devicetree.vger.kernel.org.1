@@ -1,194 +1,196 @@
-Return-Path: <devicetree+bounces-256161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F9BD333B3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:38:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC52DD334A1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 16:46:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9B9C63022016
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:36:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3624E300EA12
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 15:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E154833AD97;
-	Fri, 16 Jan 2026 15:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D1033986E;
+	Fri, 16 Jan 2026 15:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LfnztrdS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CIgvdVvV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38FAA32AAA2;
-	Fri, 16 Jan 2026 15:36:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63CAE224AF7;
+	Fri, 16 Jan 2026 15:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768577770; cv=none; b=POEeQuHGP8zEDrnMJUyInx6MsftJvWwDckemwDFwgEywphALEYmBLaahooO+bGKX9U37awkwNaMNWs77zdarxiIpgpnXLoODzM9vCm/OqpvlRfaGKIXg+TMnn4bBlAHs41/4xFNBSbD10TbzwE8L4zWU5QGWUGfO7oRNJS0w/GM=
+	t=1768578058; cv=none; b=lg9IAcGGlEb3EzoMpXxTkwlltw+WdkKPQ44+/dqNRFt+8AkVFqI8Zg51yHw+aO233ZRMKwmPUWSE0mxccBPod7k36KR0Y2jsg5ghi9IthKlKHK9SLO1T4KeZUkl7dl+VyIdwNCh17B15dV/4i0popcHY7c1REXmOwVGQrCdSFk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768577770; c=relaxed/simple;
-	bh=GJwdW800GznqW1CUb1bMuwCBh1lbTvD+02usxtCCeF8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DhbMe4WWeLKw8qHJPGHRlb6p7oNQ7KPWn7lagTFeVFG/i8Asu/KDz40WiI5mBdecWGt+WnCAKGtc84de0PSZ/YbxRzFChLFokQffLW47WimUL+5OYSWMgU+Ghu5xiY4IDysqEaWXLpQXunG/j31Ck9YnZjINjNoKtE7/fviIDTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LfnztrdS; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768577769; x=1800113769;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=GJwdW800GznqW1CUb1bMuwCBh1lbTvD+02usxtCCeF8=;
-  b=LfnztrdSEtn0AaeG5MhsF/VMvTl784dnvGr3T9+Pfwpgqp72drvThr1x
-   SoAhOj15ArCPd/t2qL1aGbcnvRClG+Eu58LYanDZFUwmmKT+xUvPtNQLe
-   JnxVbWVDl6M9YCyhgzjQFnbzMUcgbAzUFGlIvXjwPJNcRQIf3JZM6xdWV
-   16wdXLx3LTlCwiQxjcGnQQZEBN/Do+WmO+FxqNwgX7tug86gFKgmIC6ey
-   kdshmRTrAnjQ/tstIXFHr50wXi3vM/S4mDzVgwsl4xJ7fh4KqwqLt3Qbl
-   P0riEf0R68KlA+aoLTD/iB2j2/uJEBHv/VjOp8PtdAcvKKnYl88Agb1Gs
-   w==;
-X-CSE-ConnectionGUID: Xp4qSWq9SvGBxZ0HjJsaZg==
-X-CSE-MsgGUID: V6tDDQlDRP+hbGhMUw5x8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="69094578"
-X-IronPort-AV: E=Sophos;i="6.21,231,1763452800"; 
-   d="scan'208";a="69094578"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2026 07:36:08 -0800
-X-CSE-ConnectionGUID: cmP8qWClS2SXzZEAZ2tDJA==
-X-CSE-MsgGUID: q+gQDhUuS1u0U19Of09mjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,231,1763452800"; 
-   d="scan'208";a="242809246"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.99])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2026 07:36:05 -0800
-Date: Fri, 16 Jan 2026 17:36:01 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v4 5/7] iio: frequency: adf41513: features on frequency
- change
-Message-ID: <aWpa4XbFVsz9qQ9U@smile.fi.intel.com>
-References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
- <20260116-adf41513-iio-driver-v4-5-dbb7d6782217@analog.com>
+	s=arc-20240116; t=1768578058; c=relaxed/simple;
+	bh=WtIs3FcDmyrxk0DOGlKSJzS9A/nULl2iHqMvxL6q5Cg=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=oZARwzCJ13yddk2ktjSXicyvVsFcZY58a7E4E0U5LdHNNfIs8zKjbL3uUlQsiZ5a4Rq98oXFN+MiwKey4R89I1ILbMNaYUDcm07a5GuEsFbGtRBg27akArMk8G04FqGh13EDMdolLfbzx8OxF5TakJqZ/2dFIgcBq3ZJSpt956g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CIgvdVvV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB741C116C6;
+	Fri, 16 Jan 2026 15:40:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768578057;
+	bh=WtIs3FcDmyrxk0DOGlKSJzS9A/nULl2iHqMvxL6q5Cg=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=CIgvdVvVTIFRO8yQMlIIPqPl5gO4lrzXnpBreoSiYPb+pArFKoFmjVM8TYeL3ppmV
+	 zYv+InmeyT3i6As0Q2JDDdN0kD20hykWnNxU/wHphDF7BZZzIKfG2Nb6shSmrEtlfA
+	 OirZKs8IsWVdt64DCDReOKrm4CRaFkhap4bLV0QQIPsc5o8d9gMXsvqG2/Xj5rjfdq
+	 /lUIW4e0fTC/roCYntzD6a6o8aSjw5MIOJ76Ia6mlVxVm9D4lq5nxqYPrDWyStQAgZ
+	 1VvBjYiXZKCICmduPZ3NqATGX0+PAog0BeApCZt4NIG5D8fm97Njz7dCgwqfNI4WPB
+	 lo54qrEBTPHCg==
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 16 Jan 2026 09:40:57 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260116-adf41513-iio-driver-v4-5-dbb7d6782217@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Cc: devicetree@vger.kernel.org, konradybcio@kernel.org, 
+ linux-kernel@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ andersson@kernel.org, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org
+To: YijieYang <yijie.yang@oss.qualcomm.com>
+In-Reply-To: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
+References: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
+Message-Id: <176857775469.1631885.16133311938753588148.robh@kernel.org>
+Subject: Re: [PATCH v4 0/4] Initial patch set for PURWA-IOT-EVK
 
-On Fri, Jan 16, 2026 at 02:32:24PM +0000, Rodrigo Alencar via B4 Relay wrote:
 
-> Set Bleed current when PFD frequency changes (bleed enabled when in
-> fractional mode). Set lock detector window size, handling bias and
-> precision. Add phase resync support, setting clock dividers when
-> PFD frequency changes.
+On Fri, 16 Jan 2026 18:41:26 +0800, YijieYang wrote:
+> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> 
+> Introduce the device tree, DT bindings, and driver updates required to enable
+> the bring-up of the PURWA-IOT-EVK evaluation board. Focus is on two key
+> hardware components:
+> 
+> PURWA-IOT-SOM — A compact System-on-Module integrating the SoC, GPIOs, and
+> PMICs. Designed for modularity, it can pair with various carrier boards to
+> support diverse use cases.
+> 
+> PURWA-IOT-EVK — A carrier board tailored for IoT scenarios, providing
+> essential peripherals such as UART, on-board PMICs, and USB components.
+> 
+> Together, these components form a flexible and scalable platform. Initial
+> functionality is achieved through proper device tree configuration and driver
+> support.
+> 
+> The PURWA-IOT-EVK/SOM shares most of its hardware design with
+> HAMOA-IOT-EVK/SOM, differing primarily in the BOM. Consequently, the DTS files
+> are largely similar. Both platforms belong to Qualcomm’s IQ-X family. For more
+> details on the IQ-X series, see:
+> https://www.qualcomm.com/internet-of-things/products/iq-x-series
+> 
+> Hardware differences between HAMOA-IOT and PURWA-IOT:
+> - Display — PURWA uses a different number of clocks and frequency compared to
+>   HAMOA.
+> - GPU — PURWA integrates a different GPU.
+> - USB0 — PURWA uses a PS8833 retimer, while HAMOA employs an FSUSB42 as the
+>   SBU switch.
+> 
+> Features added and enabled:
+> - UART
+> - On-board regulators
+> - Regulators on the SOM
+> - PMIC GLINK
+> - USB0 through USB6 and their PHYs
+> - Embedded USB (eUSB) repeaters
+> - USB Type-C mux
+> - PCIe3, PCIe4, PCIe5, PCIe6a
+> - Reserved memory regions
+> - Pinctrl
+> - NVMe
+> - ADSP, CDSP
+> - WLAN, Bluetooth (M.2 interface)
+> - USB DisplayPort and eDP
+> - Graphics
+> - Audio
+> - TPM
+> 
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> ---
+> Changes in v4:
+> - EDITME: describe what is new in this series revision.
+> - EDITME: use bulletpoints and terse descriptions.
+> - Link to v3: https://lore.kernel.org/r/20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com
+> 
+> Changes in v2:
+> - Update the GPU firmware path.
+> - Update the description in the cover letter.
+> - Reorder the patches.
+> - Use separate DTS files for Purwa and Hamoa.
+> - Update base commit.
+> - Link to v1: https://lore.kernel.org/all/20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com/
+> 
+> Changes in v3:
+> - Delete unused PMIC and thermal nodes.
+> - Add WiFi node.
+> - Add display backlight node.
+> - Add connectors and VBUS regulators for USB3 and USB6.
+> - Enable PCIe3 and PCIe5; add PCIe ports along with reset and wake-up GPIOs.
+> - Link to v2: https://lore.kernel.org/r/20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com
+> 
+> Changes in v4:
+> - Enable TPM.
+> - Update the descriptions for video and the USB OF graph.
+> - Link to v3: https://lore.kernel.org/all/20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com/
+> 
+> ---
+> Yijie Yang (4):
+>       dt-bindings: arm: qcom: Document PURWA-IOT-EVK board
+>       firmware: qcom: scm: Allow QSEECOM on PURWA-IOT-EVK
+>       arm64: dts: qcom: Add PURWA-IOT-SOM platform
+>       arm64: dts: qcom: Add base PURWA-IOT-EVK board
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+>  arch/arm64/boot/dts/qcom/Makefile               |    1 +
+>  arch/arm64/boot/dts/qcom/purwa-iot-evk.dts      | 1549 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi     |  685 ++++++++++
+>  drivers/firmware/qcom/qcom_scm.c                |    1 +
+>  5 files changed, 2242 insertions(+)
+> ---
+> base-commit: 377054868ffa544991cc491ecc4016589fc58565
+> change-id: 20251113-purwa-907ec75b4959
+> 
+> Best regards,
+> --
+> Yijie Yang <yijie.yang@oss.qualcomm.com>
+> 
+> 
+> 
 
-...
 
-> +static void adf41513_set_bleed_val(struct adf41513_state *st)
-> +{
-> +	u32 bleed_value;
-> +
-> +	if (st->data.phase_detector_polarity)
-> +		bleed_value = 90;
-> +	else
-> +		bleed_value = 144;
-> +
-> +	bleed_value *= 1 + FIELD_GET(ADF41513_REG5_CP_CURRENT_MSK,
-> +				     st->regs[ADF41513_REG5]);
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-I think it's better to have yet another temporary variable for this multiplier...
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-> +	bleed_value = div64_u64(st->settings.pfd_frequency_uhz * bleed_value,
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-...and here three operands instead.
+  pip3 install dtschema --upgrade
 
-	bleed_value = div64_u64(st->settings.pfd_frequency_uhz * curr * bleed_value,
 
-> +				1600ULL * MEGA * MICROHZ_PER_HZ);
-> +
-> +	FIELD_MODIFY(ADF41513_REG6_BLEED_CURRENT_MSK, &st->regs[ADF41513_REG6],
-> +		     bleed_value);
-> +}
-> +
-> +static void adf41513_set_ld_window(struct adf41513_state *st)
-> +{
-> +	/*
-> +	 * The ideal lock detector window size is halfway between the max
-> +	 * window, set by the phase comparison period t_PFD = (1 / f_PFD),
-> +	 * and the minimum is set by (I_BLEED/I_CP) � t_PFD
-> +	 */
-> +	u16 ld_window_10x_ns = div64_u64(10ULL * NSEC_PER_SEC * MICROHZ_PER_HZ,
-> +					 st->settings.pfd_frequency_uhz << 1);
+This patch series was applied (using b4) to base:
+ Base: 377054868ffa544991cc491ecc4016589fc58565 (use --merge-base to override)
 
-Okay, if we go this direction...
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
 
-> +	u8 ld_idx, ldp, ld_bias;
-> +
-> +	if (st->settings.mode != ADF41513_MODE_INTEGER_N) {
-> +		/* account for bleed current (deduced from eq.6 and eq.7) */
-> +		if (st->data.phase_detector_polarity)
-> +			ld_window_10x_ns += 4;
-> +		else
-> +			ld_window_10x_ns += 6;
-> +	}
-> +
-> +	ld_idx = find_closest(ld_window_10x_ns, adf41513_ld_window_x10_ns,
-> +			      ARRAY_SIZE(adf41513_ld_window_x10_ns));
-> +	ldp = (adf41513_ldp_bias[ld_idx] >> 2) & 0x3;
-> +	ld_bias = adf41513_ldp_bias[ld_idx] & 0x3;
-> +
-> +	FIELD_MODIFY(ADF41513_REG6_LDP_MSK, &st->regs[ADF41513_REG6], ldp);
-> +	FIELD_MODIFY(ADF41513_REG9_LD_BIAS_MSK, &st->regs[ADF41513_REG9], ld_bias);
-> +}
-> +
-> +static void adf41513_set_phase_resync(struct adf41513_state *st)
-> +{
-> +	u32 total_div, clk1_div, clk2_div;
-> +
-> +	if (!st->data.phase_resync_period_ns)
-> +		return;
-> +
-> +	/* assuming both clock dividers hold similar values */
-> +	total_div = mul_u64_u64_div_u64(st->settings.pfd_frequency_uhz,
-> +					st->data.phase_resync_period_ns,
-> +					1ULL * MICRO * NANO);
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com:
 
-...for the consistency we may also use the same approach here
+arch/arm64/boot/dts/qcom/purwa-iot-evk.dtb: phy@1bd4000 (qcom,x1p42100-qmp-gen4x4-pcie-phy): 'qcom,4ln-config-sel' is a required property
+	from schema $id: http://devicetree.org/schemas/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
 
-					1ULL * MICROHZ_PER_HZ * NSEC_PER_SEC);
 
-At least it will be consistent with the annihilated units.
 
-> +	clk1_div = clamp(int_sqrt(total_div), 1,
-> +			 ADF41513_MAX_CLK_DIVIDER);
-> +	clk2_div = clamp(DIV_ROUND_CLOSEST(total_div, clk1_div), 1,
-> +			 ADF41513_MAX_CLK_DIVIDER);
-> +
-> +	FIELD_MODIFY(ADF41513_REG5_CLK1_DIV_MSK, &st->regs[ADF41513_REG5],
-> +		     clk1_div);
-> +	FIELD_MODIFY(ADF41513_REG7_CLK2_DIV_MSK, &st->regs[ADF41513_REG7],
-> +		     clk2_div);
-> +
-> +	/* enable phase resync */
-> +	st->regs[ADF41513_REG7] |= ADF41513_REG7_CLK_DIV_MODE_MSK;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
 
 
 
