@@ -1,87 +1,88 @@
-Return-Path: <devicetree+bounces-256081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457E8D319A3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:13:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17396D31992
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 14:12:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D74CA300814A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:11:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E40130D7317
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 13:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7795222FDE6;
-	Fri, 16 Jan 2026 13:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C62E23C503;
+	Fri, 16 Jan 2026 13:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HRaJPzKE"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Dy1TBqxE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012065.outbound.protection.outlook.com [52.101.48.65])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011051.outbound.protection.outlook.com [52.101.62.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB6021ABC9;
-	Fri, 16 Jan 2026 13:11:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EF1822FDE6;
+	Fri, 16 Jan 2026 13:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768569076; cv=fail; b=LyafZ7C7FvpFmVqExNMyHOCqqONywJ6Hf7KWJojdmz4CMXZp2ITvnNuMI76W/4XRDPFhG/7Dntcs+EzUK4bHdjwhqQc9VKIwmoCCiOi9gHTtOhWXlPvLpLxOp6YxuonBvUDoXC29XoMEMaRWgFZGTr/l2iAgFXHzFaHYi+xnlLY=
+	t=1768569087; cv=fail; b=i0chTt+ffiToOoNVDabhhau2p7MjcPZxrHbnx3iew+jTXbixV7PW0M2mfiJa6aaiZ5yK8iW0FOALLhlu5QK6FFgrCmeDdCNrBtsf3cWm6OcL3KJOQ7bYvLo23K7h8M/qofid+XbvKDJLkPaHd6ZmneGL/0SDlwp8UIa7o5M+HbU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768569076; c=relaxed/simple;
-	bh=3je+RJG+5348b+dMf8q0fpkL012yg/KkiMYwPlQQxak=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=VHaYjCHRFqOMluUKJgFTsQUXhNDOLUOw2Q9N7YpSAl/QBajHzWHQm7umbZzr/yN1IhK6jWUkzWqyGTHNsHu7l5Td4/xQJG9MBoOjPDe4rq7c5Ijl8rBQNB31SnvJ7jVa7GxGCvx7bh5FqJcuqiPzuymsj3BRTBdrNv+VHwf0F84=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HRaJPzKE; arc=fail smtp.client-ip=52.101.48.65
+	s=arc-20240116; t=1768569087; c=relaxed/simple;
+	bh=M7WuY9/OdIM0ee4mcawoIsxAHskRdnvel3KOVkgOVqk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=lgMQta9envm2BBzdvVCY+rQQbU5qduN1qJUNsSnW0dVQDulmLDkRwbQKsgp+sEjEhtn6F3yrfF+xQJKe58ztNha33yqENHFc2/4jf6swZ9V6bf8POKOEhr+p55lmw5ms8BPmQA0CmyDDX1jZHZhW04xMFbt6OHvp5G+coYVmlDo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Dy1TBqxE; arc=fail smtp.client-ip=52.101.62.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P4nCgbojFL702Yl/yCQ1nHHQxylFSuEO5RAgx4i7D9IOYc+LmdktXexXMyYhUgH/OpKO0XXwVOXQSp3JmfPp8/skW8gr8a2wjF8iGs6D6/qTNKOz2h01lxNv7KJWqUiTB6KIop5On5+hyO3D2d1y58wsLzeDA0mr6zoTj+B+RvkYeeqRkrmY6/+uoICxOu5lXjE4hPMsNvnIGB8OSK5+/cfXq2JTjGkhqHaYb1ZbjXWYX3xLPfRhbafC8ajYsflbBcSUY3jk2mlIYy9ER+d0lKOfrXqfhhPEWdvmyUpszRh8f+ztAVMRkWUieYWRHEBXhH4euf1QaydKcOSFph4nMg==
+ b=CUwLz14EEvMj9X97AyP9N59AXuPvL9UabrI00mqLbsGP6sTt52YGre56YNvmtJo0jP6Kl81pne58GRt4Ntnb4zLxYQkf6gq0ZQPXtTAdSrzp3UIbiHqo9FWt8EjGPhBKqeo9Gq66fJyuc5alKjYb6Q99fqMgZzp5kdOT6plXqJsFS+vlVjWdrR9Avo3ZmlgMa3UGSKdTZZsDCAoXvqKwBh8vya/yK45G5lVDuG1c0Mxu4TRykF7VyFV9EzyCq13kezyQc8N1Ep85B69TcUIjKRoX3bKAjkMNE1126MYIVbcZAXTSmuZr8FPG0GQsZuJ1JVVb3EVoQWGwd25f8PWgbA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T6aGvj8XUcgpJs+f++jE/E9QnmUUhj6Md2eb1e6FvkY=;
- b=TnDQoUMsGR7wCxY7MqfSnfjce9OGSMPQOnEosulwV8t9bgnWD5GoUpMJoj/ihI4uRcq8gX9O0nqgpIUDXQFWN+TWWv3wi9Gu1a7S+D7xqD32vZMY33FoANmcMvCX4unYIwegTdMSiVIUf8GUlB6ioNY3WugnHLysY6nIYY8dP0iE8FpzBwbwMc8xG9rxXoq5WgtI3Iww1CWnRp/OXVCLOKFJS6f1QrSy+PwsNaLNEIw6x/dsDHWOosgZtbO9G8x4SzzcQnKaI9zsRbZjE503EYNCthh32ornKA622JZV0RRjK/JVJALunq/K6UauD7muGGTKu7UQ+bMDltL23tIsuQ==
+ bh=eqWSRxEo1PMrKiGT4i1yXUBYM7aRqrafRjPy59IfNMA=;
+ b=otaGbgnGYbX50a/VCngIap0T7Po+edCtwqWjdr9KZyp8+t+/aNc+Whx5ZQ4lmCRLpsobFWN/iUH62mz+sXMDoZrTYFmJoGEEvUynTh95Q1D3YgBsk779pT3Kflhzw0oiYD+2TXJpSfG8MhpflMy8nWqwJy3G59iy1HbR5Wdvhiivdeibyz3eA6Km7GOF7k3Fddck1d2UrwAEpas9JTPZ5V16eFFg/MgLIAbJXaQ4n5gfd+EKLywPD7MzUnl8nhKRiGdCoOmCmzXmEpa7/DaPWjQerzl4yFQM7NVlWCbk5aIRFM0iUeqZu16nTIPDQRuYLeJve6sr+pPehtC+qg4iDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T6aGvj8XUcgpJs+f++jE/E9QnmUUhj6Md2eb1e6FvkY=;
- b=HRaJPzKEtxVr52H3pBcMeBswqhcnASwlDMiS28gTtbGVgUFYzCqYxfhHw5OzWIcIgXBxg13fUe7UbBUCds78g7Peby7nOhYpPioGfMDA/Z7vrPotBXpm92FeiZUq4WuJfqa9HQPsY7WnwmD/pmrxOPP/hfMWSoqOPspaBMz0EVs=
-Received: from DS7PR05CA0042.namprd05.prod.outlook.com (2603:10b6:8:2f::29) by
- MW5PR10MB5852.namprd10.prod.outlook.com (2603:10b6:303:19c::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.5; Fri, 16 Jan 2026 13:11:11 +0000
-Received: from DS1PEPF00017090.namprd03.prod.outlook.com
- (2603:10b6:8:2f:cafe::6) by DS7PR05CA0042.outlook.office365.com
- (2603:10b6:8:2f::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.2 via Frontend Transport; Fri,
- 16 Jan 2026 13:11:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ bh=eqWSRxEo1PMrKiGT4i1yXUBYM7aRqrafRjPy59IfNMA=;
+ b=Dy1TBqxEl7uV8+s6wQD9JwTQz80xgu7klRJDoo+I+4d7adkD80RktshK6i1OJ1D0HRwsE+n2UgRaGBimyv85ET50pADesrkjnfRzlxA+jT8bQgUvdZQ9Pqs+VcpGW8n4Mc7gJeKateId1Dft+KCV45o4G7zmA/QACfM2kWZKnBk=
+Received: from CH0PR03CA0080.namprd03.prod.outlook.com (2603:10b6:610:cc::25)
+ by SA1PR10MB6565.namprd10.prod.outlook.com (2603:10b6:806:2bd::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
+ 2026 13:11:18 +0000
+Received: from CH1PEPF0000A347.namprd04.prod.outlook.com
+ (2603:10b6:610:cc:cafe::f7) by CH0PR03CA0080.outlook.office365.com
+ (2603:10b6:610:cc::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.8 via Frontend Transport; Fri,
+ 16 Jan 2026 13:11:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- DS1PEPF00017090.mail.protection.outlook.com (10.167.17.132) with Microsoft
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CH1PEPF0000A347.mail.protection.outlook.com (10.167.244.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 13:11:09 +0000
-Received: from DLEE200.ent.ti.com (157.170.170.75) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 13:11:17 +0000
+Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 07:11:07 -0600
-Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 07:11:12 -0600
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 07:11:06 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 07:11:11 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 16 Jan 2026 07:11:06 -0600
+ Transport; Fri, 16 Jan 2026 07:11:11 -0600
 Received: from psdkl-workstation0.dhcp.ti.com (psdkl-workstation0.dhcp.ti.com [172.24.234.127])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60GDB0HF3181044;
-	Fri, 16 Jan 2026 07:11:01 -0600
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60GDB0HG3181044;
+	Fri, 16 Jan 2026 07:11:06 -0600
 From: Aniket Limaye <a-limaye@ti.com>
-Subject: [PATCH 0/2] ti-sci-intr: Support level+pulse interrupt sources
- together
-Date: Fri, 16 Jan 2026 18:38:40 +0530
-Message-ID: <20260116-ul-driver-i2c-j722s-v1-0-c28e8ba38a9e@ti.com>
+Date: Fri, 16 Jan 2026 18:38:41 +0530
+Subject: [PATCH 1/2] dt-bindings: interrupt-controller: ti,sci-intr:
+ Per-line interrupt-types
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,10 +91,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAFg4amkC/x3M3QpAQBBA4VfZ5tqUHfL3KnKBHYy0NBspeXeby
- +/inAcCq3CAxjygfEmQ3UfYxMC49H5mFBcNlFKRWlvguaFTuVhRaMS1JAqYVxNRVtW1GxzE8lC
- e5P6vbfe+HzkmfL9lAAAA
-X-Change-ID: 20260116-ul-driver-i2c-j722s-48f223899dbd
+Message-ID: <20260116-ul-driver-i2c-j722s-v1-1-c28e8ba38a9e@ti.com>
+References: <20260116-ul-driver-i2c-j722s-v1-0-c28e8ba38a9e@ti.com>
+In-Reply-To: <20260116-ul-driver-i2c-j722s-v1-0-c28e8ba38a9e@ti.com>
 To: Vignesh Raghavendra <vigneshr@ti.com>, <u-kumar1@ti.com>, Nishanth Menon
 	<nm@ti.com>, Tero Kristo <kristo@kernel.org>, Santosh Shilimkar
 	<ssantosh@kernel.org>, Thomas Gleixner <tglx@kernel.org>, Rob Herring
@@ -106,105 +106,170 @@ X-Mailer: b4 0.14.3
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017090:EE_|MW5PR10MB5852:EE_
-X-MS-Office365-Filtering-Correlation-Id: c87b1604-cd0b-4dd1-0455-08de5500b74f
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000A347:EE_|SA1PR10MB6565:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ade1d57-82ee-4bb7-e841-08de5500bbe3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|34020700016|36860700013|1800799024|376014|921020;
+	BCL:0;ARA:13230040|376014|36860700013|82310400026|34020700016|1800799024|921020;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dzVDeW9nZ2VVQXZLZDNZZjBYZGZ4aTkvMk1pZ3J2QzVhNHR6YUZjK3ptcTBj?=
- =?utf-8?B?ZkVzeG5NQ3BUQnhnYmhQeVU1Sk42ZkJoWi9xekM5S3dVZGpFVC9WdE03TXZT?=
- =?utf-8?B?K3NzZjBmcGF0cGV2VEsrcU5pdGpmZ29IU1p6VDhJWjd6Nmt0WWNuNVBTOHF6?=
- =?utf-8?B?emQ2dXJFYzZsWG9LMXFIbWdKYzhLS2g2a1dYZFZiS1FOSFVzU0dWK1h5MjFN?=
- =?utf-8?B?L2dqMS9YOGtOK2FueXlUK0J3N0RMNkhOV1VoTW52L1d3cFJpOUVVckhWeXlr?=
- =?utf-8?B?OXdBa0U4RFc1TFllejJzcWZ5amhCQnM2dGlUSDFQVkJnQmtZek90WWFZZ2tB?=
- =?utf-8?B?NGd6MStma0VQRHUxK1ZNZTJTZU9ac011V1ZlbVMvRFBoVUdPaXUrMDZIaU5G?=
- =?utf-8?B?WWhwNDJHdGZSdDNMYXlzcUU1V0dmMDUxRmtrejJXSmdPdEd0Tm83d013d3d6?=
- =?utf-8?B?WWZBNGdVWEExajZIeUVySE85di9xR0FZUm92VW82MTlCUy9wSUtwRUdsRURD?=
- =?utf-8?B?RHM4Y0krcFB6ZmtXLzhUdlk4b2dLeTBoalNRMDZGZ0dRR201YnJZMS9wbHJw?=
- =?utf-8?B?bTV2VVpKVGQ4WG1Nd3RldE1CcDhyUUd6bVlZOGRxd0RlNjJmRStYNEsva0FN?=
- =?utf-8?B?a21Ld2RmamM1Z3FKOGpTM2hMM1AvL3JqVkY3cjkyU1RURjFOWFBOYzdDQm5F?=
- =?utf-8?B?Sm9uUVFvb2laeHllTXp6V1I5dHlmYXRTVGtlSGtoS0VhV1oyWk0xL0c1ZWVo?=
- =?utf-8?B?S210NUxJYzZveWdXcXdmc1NiUUlWWUFkMzM2bGhvUlVGTUFTeHV3aHU3Q0Ux?=
- =?utf-8?B?MkF0NHdnTEFIek5JM1l0WEtvUnZYdnRNRFBpYWU1UHFCWnlGeURjZXZUQmUy?=
- =?utf-8?B?LytmRUFyOFNzVXVOc25GUFJDQlJ6ckRnSTU5RHR5TnU1SFpSeS9wSUw4Q0FB?=
- =?utf-8?B?VC9yd20xN3JTVjdyS3B5RUZQOUYxQmd3NTFhcGE5bE9EbENQTDlMVUw5MGJw?=
- =?utf-8?B?dEVYYkJmbUw2SWE3RExxVlg4Y3k1Yi9abG5HMlIxTWFHZ1BsNFZvNGlwWEZh?=
- =?utf-8?B?bXdhVmp6L21oZnJkSi9uOTRTTE1XQjdCeDkwbm54R2VjNGlEb3JObnJMampT?=
- =?utf-8?B?Ry9LamtxSDZDWWM1MEhISk5lUE5kMXZHUFhpV25WMS80MUJCcWNSb3dERWJ6?=
- =?utf-8?B?MTJVRnFPa3N4RFRpMVNOVjZSNnVrMFhCdkN3Mmxia0VzYWphR2g0Tjd2MW5z?=
- =?utf-8?B?NFRoSnE4V3paUDVzaE5QcWxsdTBaSWhLRERUcDMzN0FUaU1uT1VvUFkyYkxU?=
- =?utf-8?B?MVhNcCtDVW9rMHJhclZ5YXRkcytzMUYyQWE4NTR1TzR4S3hjVDB1RmtZeGQr?=
- =?utf-8?B?NytFTHRkSlRoVHc0ek1leVZSbFJpcHhUR2Y3QThmZ1BvUzNHVnlXOUZma0dM?=
- =?utf-8?B?KytGZGRGN3YvM3dJSGpoYVRqMWkwVk9HR3ZyK2Z6Qnp2bDVEK04xUE13WVU2?=
- =?utf-8?B?aHZKelllc01sanFqL2tsa2trMnZ3dUlIYTVwWDFBcW01eWJ2T1o4OUc0cTVl?=
- =?utf-8?B?YkhxdW5TMEduV040VERNSW1uNnZVLzBXVk03dlNSM2NCenNFK0pwTXozY1NY?=
- =?utf-8?B?YmlEOEdMZTdQUGhFWUUyUkhGR2dGOXBzenpuVnVrQmlqWUo0MWR1Uzl6NmtU?=
- =?utf-8?B?SW5vN0pWdzUySWVCOTNmMnhPSjJoTzdUUzdSMG1na1JxS1hEbSsvMUN0SkM5?=
- =?utf-8?B?bWs3aTMzR0llSWdYNXFUU3pIdXVSaHhncHl4Rng2UjVDZUcwbXhIbGRvN2xT?=
- =?utf-8?B?L1NnMklnNWNOalp5UEJsNXBFWDlKcDRxWVgzTnQ4MDZJWkVXUjI5cFM3N0F3?=
- =?utf-8?B?MXF2RXc5SUxYa241YlVzVWdsYyt2YW03SWt1R2dpa1ROSE5oNmhVakw4YVQx?=
- =?utf-8?B?cWlMcFRTRkpWU2hKMTNWUGhCa3Jlakx6Q2svL3ZZUFZ3YUJrMEFlM1lhdzdI?=
- =?utf-8?B?aElTTWJNc00yaktHRUhyVjVrZVZhc24wSlI3Y25vZWd4QXRueTdid090N1J1?=
- =?utf-8?B?Ti9wU2ZEM2tJRmp3eTFDSlh6SkxaMjdnekowMTlSK2hCVUd6U1dIQlR6OUFw?=
- =?utf-8?B?eUVZNG00Z09CVFZGMEpVQkV5ZWJhd2dRRmN1a1hCbGt4SWpWSkpvVlhuK3Vh?=
- =?utf-8?Q?DO1xBq/Z63RxmBXF9Ne906j02Uaod066mkEy9swuB8Eg?=
+	=?utf-8?B?bUtTYU81MDNZNDJ3OURHbHBheDF6bXFHYzNjTTVaa3I2Zi9NMFdoWXpvSEFO?=
+ =?utf-8?B?Y2Y2bk5NVmJVaFRUUndQVlhmU0ZneDJlZEJvNjZrN2Jrb0sxTy9rZ3pveDV3?=
+ =?utf-8?B?OG5ZalhHelBzczRQTXRaT1A2QU5MSGRsbzNRcDFQek9PWW9XWWtZdWhMWVRS?=
+ =?utf-8?B?NUtXYTA2NWdXUTNTRlNVQWlSVEVKMnpMMmtqV0JaOFAyem41Yy9ac0tKaTZ5?=
+ =?utf-8?B?OTZQZjhjYklKc0dzWTYrR0ttU09sQklITkhhUlNoaE8zcmdwbDZPMXNDTmNl?=
+ =?utf-8?B?SXlURWpGbm13UHhKZ3Z5ZHNMb2U1RmptbXNmcXRlWnAraCt5cGovWWhHaVNR?=
+ =?utf-8?B?V2tBU2RmYmlmZGJFemhaNGNWaEpzVytXOGl3c1l3cWFaQmpSZEtGUWMxVE9X?=
+ =?utf-8?B?aFFEY3g5VlRWYXgwSXpXRGY1ZThVTEFud3pnSWR6cFYvcWFJdTdHakpWZ0Q5?=
+ =?utf-8?B?YVBOU2V6MTUxWFFuWkkzNmx0TzZJdEhQZXJBQmlpOWJqeTBIdklxV2lrY2w5?=
+ =?utf-8?B?U1NTVlRqcXJ6RFZwWXF2d1gzNWxRc00yMlJqYVVlN1BPTXNuRDZZZE5TRjdp?=
+ =?utf-8?B?KzNKbmZqSy9HekpsR2d5RXcvZTNqWmFqcDY4S1phY012NHN4Z2p6ZkVkS1Fv?=
+ =?utf-8?B?TmFUNjNyOEd0VTE2L0ZRQ2E4VkE0NXBLdHNBZkt2TXVRZ1RGaHpkQlNrd0FM?=
+ =?utf-8?B?blk3SS9yaGlRN2d5QTlCb0Joei9aM3hMdzVRVjFJTi8wOEZrclQxSm1DTzJF?=
+ =?utf-8?B?N0dJam1XZE0yWDhvakhyMld1cUpHV0haTEVET2ZHOGhvcVhqaUNMK3VtMUE1?=
+ =?utf-8?B?eFhJbzE2S0JVdmZYeE9jUzU0S1h2ODZSaTROL04wMEMvSTVYdjdxUkNIMlhH?=
+ =?utf-8?B?eURkNkdXdFpJcFZlU2JuZHNiVWN2OVBqQmJRSnFxZnUveDB1YVBoTzdiZm1r?=
+ =?utf-8?B?Qmd4WmZvWWpoWExyOHFNRXBYa1ZGWkRvdncxbEpITmJJR1hQS3NnMTdlSHVU?=
+ =?utf-8?B?ZkpoVVhYK2UzcFEvSzVLckF5NjFSTjRGS25Jc3JYaFJTeEtYSWFjRG8way9J?=
+ =?utf-8?B?TDdxTkZHMVJxN2xucU8yK0V2Q0ZxMGVMUFVCcjc0ak1wTmQwNXJaNW5EcUJo?=
+ =?utf-8?B?R3lYWXVBQmVmdDdJcVlsKzRPdzZVWUpSK2YyRk1BbU8zY3k1MHZHOXoxaDlH?=
+ =?utf-8?B?Wlg5eUJhTndlT3lpTm13N0ZjUS9oTExweGMvbnJCRGtxakN0dGE0blJaRTFh?=
+ =?utf-8?B?UjgxNGZGQ1dJMlZlM0V4VUN4NnljZjVobjBFMUFwZ21LaGVPOHZIYzVQWkkx?=
+ =?utf-8?B?bmo4dFBnMUpVNWJUSmoxN1RjNjRxeVNpREN1emJuaUJpcWRmSUxVdHM4R00w?=
+ =?utf-8?B?UjRQRTdEdHltYUhMVXcrKzVzYjFxbDlqc0Rsd2xNNURDejE5Q3FVN0NkZDUr?=
+ =?utf-8?B?VmpxTjVEU280cytEZlZMK3JuVGM4anh5L0NoNTJIMys3eWIzZmwwUUdNVDZv?=
+ =?utf-8?B?TkVTUzljL292OWlhdElVYnA0V2VRVjhCZDlqUkJtM0lobGhJM1NNSzhaMU0z?=
+ =?utf-8?B?QXN1djhxdWVuSHgzWkNidVlJMDNwS0lsdjNzQVlPR3dzTk55RTVQRXQzK3li?=
+ =?utf-8?B?U0dmd3lwNFhhMDZqM1VDWG5iMXBxWWg4TGF0MnFFTmJXTDd3QmVtb0JpVDdQ?=
+ =?utf-8?B?MHJ1MVJBSncyaGVtMEJwaXFGdlgvQVUyeFNkaUUwZDRaM3lNVzdxMC9XdllT?=
+ =?utf-8?B?bDZkeGxoOWpNdFBneWxFNDlaVFVWTnRPWTdzdDRzeEh3TFBtcW42RjY3TFlw?=
+ =?utf-8?B?Vjdld1BLZlZsZjNDcWlRVjdMWi9LVWpZR1RZeXk3ZnM0ck0raGF6TzJhVVQ1?=
+ =?utf-8?B?RDIrVmVtNk1RTFROZUtRZVlWQnJveVBBZkxubmFkM09uYkZSekJEVkZ4THI4?=
+ =?utf-8?B?eXNpMWJnMlp3ZkswR3R0cVZ2K3NwS0RuRTlTRHcyR1djT3p2UzdYZDA4eEZa?=
+ =?utf-8?B?YlB6U1dsK3kwbzk4VjdpVjI3OCtZS29iK3FDTVNWbFBUSzZ3djZIRnFlK09h?=
+ =?utf-8?B?YiszeUNuQmFacHB5ejd4eDJCYW03ZXZvdzlzWEZyWnhIR1RuNlZNbGlzekZk?=
+ =?utf-8?B?RVJSbkErTnMvQUFuZzd2aDBhQXdKVmZNcjMvandJaEpmdFlQamd1RDZKSDlW?=
+ =?utf-8?B?aW1nUTVFNm5nZVROb1pndkZNbFk0MENiazBCUUFNZCs5ckVidjc4RE9aL3A0?=
+ =?utf-8?B?THN2aFI0RUE4bW5GaG91TmExVElRPT0=?=
 X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(34020700016)(36860700013)(1800799024)(376014)(921020);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(34020700016)(1800799024)(921020);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 13:11:09.5929
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 13:11:17.2860
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c87b1604-cd0b-4dd1-0455-08de5500b74f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ade1d57-82ee-4bb7-e841-08de5500bbe3
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF00017090.namprd03.prod.outlook.com
+	CH1PEPF0000A347.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR10MB5852
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB6565
 
-The interrupt router does not support interrupt type conversion and
-forwards both level and pulse interrupts to the parent (GIC) unchanged.
+Update the bindings to allow setting per-line interrupt-types.
 
-Hence update the INTR bindings and driver such that
-1. If "ti,intr-trigger-type" is equal to IRQ_TYPE_DEFAULT, parse the
-   interrupt-type declared by the source, per-line, and use that to
-   allocate interrupt from its interrupt-parent.
-2. Else, the global setting specified for the property is used for all
-   output lines. This maintains compatibility with existing platform
-   DTs with no changes.
+Some Interrupt Router instances can only work with a specific trigger
+type (edge or level), while others act as simple passthroughs that
+preserve the source interrupt type unchanged.
 
-This change is needed because:
-main_i2c4 on J722S is a level type interrupt source while the rest of
-the interrupt sources for Main GPIOMUX INTR router are pulse interrupts.
-main_i2c4 on J722S is not present in it's dts yet and will be added
-through another patch series after this one gets merged.
+Previously this binding enforced setting the interrupt type globally via
+the mandatory "ti,intr-trigger-type" property with values 1 (edge) or 4
+(level), meaning all interrupt sources for that router instance had to
+be homogeneous -- All edge or all level type interrupts.
 
-Testing:
-- Enable I2C4 (additional DT patch) on j722s-evm and run i2cdetect [0].
-- Add testcode to ignore the NACK interrupt, which results in an irq
-  storm -> showing that GIC is actually receiving level interrupt from
-  the INTR [1].
-
-[0]: https://gist.github.com/aniket-l/01d4e943b7b6db54b38eb7e99ed5e2b9#file-j722s-evm-i2c4-logs-working-txt
-[1]: https://gist.github.com/aniket-l/01d4e943b7b6db54b38eb7e99ed5e2b9#file-j722s-evm-i2c4-logs-nack-storm-txt
+Add a third enum value 15 (IRQ_TYPE_DEFAULT) to indicate the router acts
+as a passthrough. When set to 15, #interrupt-cells becomes 2 to allow
+each interrupt source to specify its trigger type per-line.
 
 Signed-off-by: Aniket Limaye <a-limaye@ti.com>
 ---
-Aniket Limaye (2):
-      dt-bindings: interrupt-controller: ti,sci-intr: Per-line interrupt-types
-      drivers: irqchip: irq-ti-sci-intr: Allow parsing interrupt-types per-line
+ .../bindings/interrupt-controller/ti,sci-intr.yaml | 42 +++++++++++++++++++---
+ 1 file changed, 37 insertions(+), 5 deletions(-)
 
- .../bindings/interrupt-controller/ti,sci-intr.yaml | 42 +++++++++++++++---
- drivers/irqchip/irq-ti-sci-intr.c                  | 50 +++++++++++++++++-----
- 2 files changed, 76 insertions(+), 16 deletions(-)
----
-base-commit: b71e635feefc852405b14620a7fc58c4c80c0f73
-change-id: 20260116-ul-driver-i2c-j722s-48f223899dbd
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
+index c99cc7323c71..59c01f327f3b 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
+@@ -15,8 +15,7 @@ allOf:
+ description: |
+   The Interrupt Router (INTR) module provides a mechanism to mux M
+   interrupt inputs to N interrupt outputs, where all M inputs are selectable
+-  to be driven per N output. An Interrupt Router can either handle edge
+-  triggered or level triggered interrupts and that is fixed in hardware.
++  to be driven per N output.
+ 
+                                    Interrupt Router
+                                +----------------------+
+@@ -52,11 +51,12 @@ properties:
+ 
+   ti,intr-trigger-type:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    enum: [1, 4]
++    enum: [1, 4, 15]
+     description: |
+       Should be one of the following.
+         1 = If intr supports edge triggered interrupts.
+         4 = If intr supports level triggered interrupts.
++        15 = If intr preserves the source interrupt type.
+ 
+   reg:
+     maxItems: 1
+@@ -64,9 +64,14 @@ properties:
+   interrupt-controller: true
+ 
+   '#interrupt-cells':
+-    const: 1
++    enum: [1, 2]
+     description: |
+-      The 1st cell should contain interrupt router input hw number.
++      Number of cells in interrupt specifier. Depends on ti,intr-trigger-type:
++      - If ti,intr-trigger-type is 1 or 4: must be 1
++        The 1st cell should contain interrupt router input hw number.
++      - If ti,intr-trigger-type is 15: must be 2
++        The 1st cell should contain interrupt router input hw number.
++        The 2nd cell should contain interrupt trigger type (preserved by router).
+ 
+   ti,interrupt-ranges:
+     $ref: /schemas/types.yaml#/definitions/uint32-matrix
+@@ -82,6 +87,21 @@ properties:
+         - description: |
+             "limit" specifies the limit for translation
+ 
++if:
++  properties:
++    ti,intr-trigger-type:
++      enum: [1, 4]
++then:
++  properties:
++    '#interrupt-cells':
++      const: 1
++      description: Interrupt ID only. Interrupt type is specified globally
++else:
++  properties:
++    '#interrupt-cells':
++      const: 2
++      description: Interrupt ID and corresponding interrupt type
++
+ required:
+   - compatible
+   - ti,intr-trigger-type
+@@ -105,3 +125,15 @@ examples:
+         ti,sci-dev-id = <131>;
+         ti,interrupt-ranges = <0 360 32>;
+     };
++
++  - |
++    main_gpio_intr1: interrupt-controller1 {
++        compatible = "ti,sci-intr";
++        ti,intr-trigger-type = <15>;
++        interrupt-controller;
++        interrupt-parent = <&gic500>;
++        #interrupt-cells = <2>;
++        ti,sci = <&dmsc>;
++        ti,sci-dev-id = <131>;
++        ti,interrupt-ranges = <0 360 32>;
++    };
 
-Best regards,
 -- 
-Aniket Limaye <a-limaye@ti.com>
+2.52.0
 
 
