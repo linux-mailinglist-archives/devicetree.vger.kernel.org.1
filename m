@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-256371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 891EBD38DDD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:50:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36804D38DE7
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:52:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 251F7300A78C
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 10:50:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B33E301897B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 10:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A00DD3033E4;
-	Sat, 17 Jan 2026 10:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD23830E851;
+	Sat, 17 Jan 2026 10:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t84eFbMH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FZsyPC20"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDCD2DE703;
-	Sat, 17 Jan 2026 10:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F242C032C;
+	Sat, 17 Jan 2026 10:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768647053; cv=none; b=FezyJbyenTFATiBngRkFpsryc7HZFXOIcK980MAluc0A9wSvQR3C+F7I2kw1uWFYlEu8HVbaf1jIElIp/mO7MRS62za9hK5mOQNV8VU9XPw+RPaMAasvjiLjXMW0Aj4Ql8pthZIxOAfknZMoLWTIBu1W8QVRR2WYEzYmXowSpRk=
+	t=1768647151; cv=none; b=OPPV0L2WNs2nkKKF+NVjH4fFrx7kDetV+fofUij8K59t+oKMGZge1eBP3t3q/Mh4ITZ/HRMQtXP3zBo1k+Tj7cmjWhP4G5pYzugzFDeZDpV3YTmcFIPjl1fWqipfBRpCX+FMoW2eaqp14pKyEt4QgXvNwV3L2U0V5cPkuQDMgKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768647053; c=relaxed/simple;
-	bh=LMrV5uJq4E3Sp1sfqsXqWIGgun1SVSry3nZMyxNxbR0=;
+	s=arc-20240116; t=1768647151; c=relaxed/simple;
+	bh=D8rJ8RkHTEhL7rsO2/lejXlsHMvngtEGWU8Zg3Qg2/Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jXUUaOCCfqC8AHrWeuhYatyD3aQOpIDsNv1BGp3IHxzEyRKGFTDed3gZH9Yhoq9kGGKyiRlAqmhWv3pq6TlIaVBuMt1tl6zU7Mv42M/5daJXSyAyUKAEVFHMyqq9RyNwFSFVhEFzhDKKarffOoixGa9TTpuHGKH2cgOMex1+g3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t84eFbMH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1372AC4CEF7;
-	Sat, 17 Jan 2026 10:50:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ms4hTapdg5B7g7nTO0LsJ8vfxaTpQS7yFEFGVQ4vS75DWBPvFvI6eZS0ghedTkLqEmDBD58cLVH+InRGJaOi0psLZ7Wovq7Sg/sHO4eC71vcxjmXYrsoD4BTuVyKGZlTjA7iQ5XoxEIkSziJX9/nN0+oq6ntLigHnwxWRLuuhss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FZsyPC20; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8D5CC4CEF7;
+	Sat, 17 Jan 2026 10:52:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768647053;
-	bh=LMrV5uJq4E3Sp1sfqsXqWIGgun1SVSry3nZMyxNxbR0=;
+	s=k20201202; t=1768647151;
+	bh=D8rJ8RkHTEhL7rsO2/lejXlsHMvngtEGWU8Zg3Qg2/Q=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t84eFbMHiKLSC9OTH7EQMp3vfX1v//d7gmU/3lKUuaQhFFzUEcvVARCnmH1KKbRGx
-	 5502FZmdP4EVv+rDSF812iRaNpcCUWZhm2kmIqAZkCRa7RJ875L6MzXNCa+UQ48RDL
-	 mYMk27sMtOArr7F2P2/dtvtaTdyLKBmy+tlxAz3qRKVaOQm0lKkSFzxyQu1lnJGqOo
-	 kh+LRfJLUGzgxtDG1ANcmOiijBFb8MsLTkThp+ddj2JYUz7vmC9MVGB/2DZ7TF9fui
-	 scKObzkjueLtiJ8L0ZLXuJLE6gifQz89/DOdIXPEnFjCPYMcvs8PDWZBpPZ/c7TCO6
-	 ImXnbyUjl701Q==
-Message-ID: <1aede324-67d7-4fd0-8d16-19e889ef650d@kernel.org>
-Date: Sat, 17 Jan 2026 11:50:47 +0100
+	b=FZsyPC20zx2++nHAXSOh5VxuAjLNKRGgtd3kvcfFeax0+uoT/zWHfV6uh7ad+L6hK
+	 jh2iHoKK8w3tSzNZ5FgMi4ki4NL1JJICylX3bVycryrWSPU05w65ve/Gq1N54c6iz8
+	 CeI4NvCQADkoe6QMArCAct2b5KDRgsU3ZCy1aBYf8JwQk09l4XacFzaO0eWekCH4M/
+	 oud+ajL465jxcd+BYj0Xk9kOQJhmKZ4clwrzCEVCMl1k0JW5GQi3xgqj47Lx0AN6I0
+	 QPxwo9BL1J5XbLiT9zzs78w2dpRomY0qBkAu9zJW8URF0rYebT2UNt6RncyqK/ioZe
+	 ep6LP7iehPRsA==
+Message-ID: <a3571017-c127-44a4-a096-48dd1557d5fa@kernel.org>
+Date: Sat, 17 Jan 2026 11:52:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,22 +48,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] dt-bindings: soc: tenstorrent: Add atlantis resets
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>,
- Joel Stanley <jms@oss.tenstorrent.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v7 1/5] dt-bindings: media: i2c: Add Sony IMX355
+To: Richard Acayan <mailingradian@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au,
- fustini@kernel.org, mpe@kernel.org, mpe@oss.tenstorrent.com,
- npiggin@oss.tenstorrent.com, agross@kernel.org, agross@oss.tenstorrent.com
-References: <20260115-atlantis-clocks-v1-0-7356e671f28b@oss.tenstorrent.com>
- <20260115-atlantis-clocks-v1-4-7356e671f28b@oss.tenstorrent.com>
- <20260116-unique-devious-elephant-e9de6d@quoll>
- <1ef5317a-93d0-4357-bfc3-ce780002734d@kernel.org>
- <CAEev2e8i_4Dud-OdghjN+1Sp7n_9yNThwgDbirkREBJHChwscw@mail.gmail.com>
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+References: <20260117040657.27043-1-mailingradian@gmail.com>
+ <20260117040657.27043-2-mailingradian@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,29 +108,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAEev2e8i_4Dud-OdghjN+1Sp7n_9yNThwgDbirkREBJHChwscw@mail.gmail.com>
+In-Reply-To: <20260117040657.27043-2-mailingradian@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/01/2026 22:25, Anirudh Srinivasan wrote:
-> Hi Krzysztof,
+On 17/01/2026 05:06, Richard Acayan wrote:
+> The IMX355 camera sensor is a camera sensor that can be found as the
+> front camera in some smartphones, such as the Pixel 3, Pixel 3 XL, Pixel
+> 3a, and Pixel 3a XL. It already has a driver, but needs support for
+> device tree. Document the IMX355 to support defining it in device tree.
 > 
-> On Fri, Jan 16, 2026 at 3:03 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 16/01/2026 10:02, Krzysztof Kozlowski wrote:
->> Ah, because you just added it in other patch. Then obviously this must
->> be squashed. Why would you post an incomplete patch and fix it up
->> immediately?
->>
->> Please read writing bindings document - it covers this case.
->> Why aren't you posting COMPLETE bindings on first posting? This is now
->> ABI break for no good reasons - you knew your device has resets.
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  .../bindings/media/i2c/sony,imx355.yaml       | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
 > 
-> I will squash down the commits so that there is just one commit with bindings.
 
-I completely miss what is the context here. What did I reply to? With 50
-replies per day I am not tracking what is what here. Provide reasonable
-amount of context.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
