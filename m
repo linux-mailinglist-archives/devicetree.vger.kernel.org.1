@@ -1,57 +1,55 @@
-Return-Path: <devicetree+bounces-256384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B4FFD38E47
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:39:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 675BCD38E49
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:41:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 12C2B3016713
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:39:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2C07C301F02D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:41:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38DC0335BA1;
-	Sat, 17 Jan 2026 11:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD13B3033E4;
+	Sat, 17 Jan 2026 11:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oJ8HAX/Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvUx9qF3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1589830E0F3;
-	Sat, 17 Jan 2026 11:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A79271457;
+	Sat, 17 Jan 2026 11:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768649961; cv=none; b=FhxguCWQlwgljrbkSBog4kXP7M0ay00PB5jOXc6Li0sEVs/IyZX6WfnN1VecKrG2eJIJeCkuENWPpbeq+nXoHvgLHNka6jlM4nnGbdmaRG8c13PMQHDlilGfRBtMoAfklRxzrQGt93aEETPKZ3IY1TLWN1J7H1Bm8DGQzmwh+BI=
+	t=1768650096; cv=none; b=REBqS/3cIsBa3dtWhzNA67ejn/pRYOzdagHU3O4JnYH7SYz/TC6m/01jJIl+nX+5J2auxHwEmLDQ9uPj7zP5DkTA0VqVpaejCX4LLZ1NIbi+nkP4KXkbAJLdGmHiAnZ0nMVngmITUTJw1mkJ4LtTXhOjyHuKMws/WOmewwcLg80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768649961; c=relaxed/simple;
-	bh=HxngOV78ddxxS+00WSbR1QEVp3Lc0xr806x171VNQxw=;
+	s=arc-20240116; t=1768650096; c=relaxed/simple;
+	bh=EN4w6fHkkzoF8VBfe/UUIVNrkadCi2VHk54LmzRusYk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MSmNvw3IOQZJEP+wbQWuqCOnXAZxB2UipkD2yh5M83r/6TYyAmg+eSmn61PB6cllZaEQgxxQUyuaIrgeHgYBbgsxTmea7xbQHeeGdIn0tKmFmAheTHBSQRNIX4EBQ9tQ9dE3dbHZEwLwxTVeCsLyXrRKuYIBgQdd84a10Cy0cqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oJ8HAX/Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BC81C4CEF7;
-	Sat, 17 Jan 2026 11:39:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dt/ar1DUr/BknUB9gfpSrjuMQ0I6efjFNYaiIomtsvFQ8Mjv0/tqx0GAwCYVcWuGyu8us7fD6U83MFmgwjmQFFO0sMmUWba4qLDCBOo8PeSgqYMAJQk/HeidQOkykSTLgX34iu0Hc9HQk0A9KYg/xoo8mCHd6N0RQNtq6NyJZwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvUx9qF3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B106AC4CEF7;
+	Sat, 17 Jan 2026 11:41:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768649960;
-	bh=HxngOV78ddxxS+00WSbR1QEVp3Lc0xr806x171VNQxw=;
+	s=k20201202; t=1768650096;
+	bh=EN4w6fHkkzoF8VBfe/UUIVNrkadCi2VHk54LmzRusYk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oJ8HAX/YpNzNTwAtFM3OH/HM47H9ljIlYTcwhUap2KmrIUI2+U2GWOl0cXALo5vTd
-	 w6lJ3/DbWdEVDxxvi2TnJzL4eu9Vj5yeiTjDWF3pbEq2aFG2YraUZY16u6+6+3OJo2
-	 JC3YK4U4e1M0s4aWVHXhFQ90tgSUFi1lB+tQgk43490I/7y7LxrqO44Cq7lV1QVTwx
-	 CMDenP+bK9205CUUmAs7NEd1075a1Dl+/y9FfILPaBc6Nu0HEiPuD818K4bd7P4Tar
-	 Qdl/6GLsJlrBMiVnWV7eErYqAc5KPazbmocd64Yr6yHhXp++YDVI0ILJF+4T5LpKiV
-	 wUfYB+3pd9a6w==
-Date: Sat, 17 Jan 2026 12:39:18 +0100
+	b=fvUx9qF3hvnb3/Q/mfpJM59biZ7WYrRxHlItmeM8adSbMfxNjwKfQH0Z9OmyX8k9i
+	 tFDqAEeJRZANJD3LqIE9PRvwJcewc+ebK+uvXJt+xRD6Q8af1dsZHxg85oDSqB7wbC
+	 8l/dMevV3LrzEtjE/VTnvHAmCG0Kwnw0rz+fuPH4As4bdKl+yCjGEd1I68n/OaEgeP
+	 +tEQOrg71A9AXaF4GjTdyhJguKIrdnOtz0TFlAAKQgG7vIThJY9Ld3Xhtcz5vJTQSR
+	 JZOWKDOQD810chHMstzwskLLBmKrZZ3MkrAqTivKUrR0MYCSyaJ79xpqkU0TablI1N
+	 Uh5qFKXP4+b1A==
+Date: Sat, 17 Jan 2026 12:41:33 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Maciej Strozek <mstrozek@opensource.cirrus.com>
-Cc: Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
-	Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Bard Liao <yung-chuan.liao@linux.intel.com>, 
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: cirrus,cs42l43: Add CS42L43B
- variant
-Message-ID: <20260117-infrared-partridge-of-improvement-dd292c@quoll>
-References: <20260116152054.85990-1-mstrozek@opensource.cirrus.com>
- <20260116152054.85990-3-mstrozek@opensource.cirrus.com>
+To: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Cc: Mark Brown <broonie@kernel.org>, Michal Simek <michal.simek@amd.com>, 
+	Andrew Lunn <andrew@lunn.ch>, linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] spi: dt-bindings: xilinx: make interrupts optional
+Message-ID: <20260117-polar-rat-of-current-adce4f@quoll>
+References: <20260117012136.265220-1-abdurrahman@nexthop.ai>
+ <20260117012136.265220-4-abdurrahman@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +58,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260116152054.85990-3-mstrozek@opensource.cirrus.com>
+In-Reply-To: <20260117012136.265220-4-abdurrahman@nexthop.ai>
 
-On Fri, Jan 16, 2026 at 03:20:41PM +0000, Maciej Strozek wrote:
-> CS42L43B variant adds dedicated PDM interface, SoundWire Clock Gearing
-> support and more decimators to ISRCs.
-> 
-> Signed-off-by: Maciej Strozek <mstrozek@opensource.cirrus.com>
-> ---
->  Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+On Sat, Jan 17, 2026 at 01:21:36AM +0000, Abdurrahman Hussain wrote:
+> This makes the driver work on platforms where interrupts are either not
+> provided or broken.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Please slow down with your patchset. One patchset per 24h so you will
+actually give people chance to review them. I just posted comments for
+your v1.
+
+Also one more note (please address v1 comments first):
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
 
 Best regards,
 Krzysztof
