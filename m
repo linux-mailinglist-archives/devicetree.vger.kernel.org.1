@@ -1,136 +1,181 @@
-Return-Path: <devicetree+bounces-256319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D529D38AD4
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:37:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 654ACD38AE0
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:50:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D55AE3024247
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:37:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 130CE3020C62
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A3915CD7E;
-	Sat, 17 Jan 2026 00:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3AA487BE;
+	Sat, 17 Jan 2026 00:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m2scSSDI"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ZiV6WWac";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="wPLPHo8B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9146A33B
-	for <devicetree@vger.kernel.org>; Sat, 17 Jan 2026 00:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF472C86D;
+	Sat, 17 Jan 2026 00:50:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768610274; cv=none; b=d6cABSFIVIxpXE+yUtOtyniy140iAFe9Ho8IJxljwwza5HT8yLEMwYj91/Gi5cZ9s57YdhOHQt+7AI9hjFgI4Ia5sEVX5q/v+2cXpWNFDaECb/u0UGGhvE3qSr3cCOjjyYHaUyOlU9WDZtAz1SIjnzFFzj8sTBoQB7FPGBEZkXs=
+	t=1768611043; cv=none; b=DBwV9mkAxNTYAHuImiATEh8WBH1IA9E/HNm7GtMS7daObfZTGOXJHLqxTQ/o+iEZynW4RQEqxd9haV/yjxw9wsqV4HR8IF0t99r1RFYATaq4HHLfty8W+sJElCNiDpYrT4nHaVxcG5FE94F6TPcKVhbJKIGdBk1cstJfzhCj9h8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768610274; c=relaxed/simple;
-	bh=znyQ+dZG4FmrCdaja/PAQUFVQieYDJ5NvjiGGHTkMq4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZC3HYCivLB2R3dopJ+CIdKhWCnJPCXfl3NFALFz6l67zlW/s5SX2PN+NWAAgdB8VBd7ZaiRiGLHG8Owvm4r7/amAPBJZJiJgniz5GzCzAtrH2wY62KxBLZPEkNNhCbHI1ZTEb4GFYQxN4/drlP5sib/3t744Ju2mqXxmJ1+XuZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m2scSSDI; arc=none smtp.client-ip=74.125.82.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f49.google.com with SMTP id a92af1059eb24-12331482b8fso1222753c88.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:37:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768610272; x=1769215072; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=QwUvDT/SlBc0Eqpr7nL2iXfaEJNSim3jrEuKQhva72I=;
-        b=m2scSSDIftPj5VzDc1Cy+GBYCo3WMFP7TswOJLmngNqmOKhw6aAxwtTmrUFSxX21MD
-         b7B+FIl9Htu1Vq43EL9MaJB7OgG2IYh4moPZWH/AhchYMkBAS7KowCe0C298zEhWZwvQ
-         W93gcf+eUhetVmH6I33dTwX1dvgEsc3ulT2Dfyx1xDBSZn4N437OGrzeHkRoIQa3YNtx
-         GrTpQAmnoOcLgA5oxF9o3NgexeyMN0Gr9IumAjluEDzysgTDVSNljH+Ib99EZbmPezBG
-         iTcZDvhZpCTUUe2PdTEY01D8vegBSqB20AXuF0qPSLV5dDKfY/dJI3pMs9NPfnYJrw+H
-         14lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768610272; x=1769215072;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QwUvDT/SlBc0Eqpr7nL2iXfaEJNSim3jrEuKQhva72I=;
-        b=HoEWCF5qfG/XH0pHTNAvq7cj730IRsuP+bk/af3RErAu2aqL9rRHnOn67EZQQ5KWyV
-         KSyRh3cgZ2uXtOXPmjet3kS4k8EK5K0Lix8UaJgKO/vEfvNPN1nw/g01ZdDbk0ZeekEv
-         so4J3GElKyjwlNsgRdu+cyqmvcE+txoHfeGgm3/57nk1BfVaeMskQZWl3lEXHJQJf1yf
-         cfSBwT1OQOkMMgthQ79hbzudNJZ/UKE/AMu5k2I+yUSfaTJ8fS/P/Abi0uAEHxkX6Ej6
-         6D7KOkyoKUIEeqjPzh23cC9F11J+mSRb+mOPZefq+922xuxWm1pPMmug62KcnkxLv8ij
-         9qtA==
-X-Gm-Message-State: AOJu0YxDglDarJrdki+ONBZZjP+xyvnG5W7rdpGH36ZZxTyVmjCciM2v
-	Bh1F+NLzVLlTivWVvsA1YKxiY9EtDb/pBCq+Oj1Sc7/S8epPN4GAyyva
-X-Gm-Gg: AY/fxX53X+cW/jMs8OO2Q4wJ7d8CdBGI//30rMjfW05m8ose5U4sHoeNKsEOOvtBQsO
-	M5eB1TvKac54nSWViwcTaCu3Jr9WYFEHK5LyQjA1BDe5iEadjRZ6OU5DMlVDLtHetLEvkgRmm/X
-	jv8J4QWxkXroSp96g0n+Cfeldq0+mmp5y4Ddf8qA56npIpfYfZvASAHnhBexmWDSJZiqWqHEDX+
-	kcQo4MoEGmkX29oTwXx7+ge1HHEKgppnYF16St7s8VSZZFIV3PY+alI/vx7FEFDCQdrjTdEirCI
-	VNIS8cXEZQm9HLf0WLgz+43MTejWOQSRmcdMZhYGhQlD/T0M/xKJhbLuZdGO9qrlmZAHCzUG020
-	B7K3FRL2n2iKV3sUdPwvT62HjbmnkpdPGjg1ChALgSRMaZ6jJQNdoe/I2DJfW2539Aya2+Taznx
-	HlWBb6pC0LTg==
-X-Received: by 2002:a05:7301:650c:b0:2ae:57be:86ef with SMTP id 5a478bee46e88-2b6b3eee816mr3461799eec.4.1768610271891;
-        Fri, 16 Jan 2026 16:37:51 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b3619a7bsm3954639eec.19.2026.01.16.16.37.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 16:37:51 -0800 (PST)
-Date: Sat, 17 Jan 2026 08:37:45 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Han Gao <rabenda.cn@gmail.com>, 
-	Nutty Liu <liujingqi@lanxincomputing.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	Zixian Zeng <sycamoremoon376@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, 
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH 1/2] riscv: dts: sophgo: Move PLIC and CLINT node into
- CPU dtsi
-Message-ID: <aWrZpoMOwTnFqlGN@inochi.infowork>
-References: <20260113023828.790136-1-inochiama@gmail.com>
- <MA5PR01MB1250082D757C8DEFE005EE71AFE8CA@MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1768611043; c=relaxed/simple;
+	bh=oUlt4JSUzkPBTFoWR08bBbVwrYlQcUETlWQ9lkRbAYY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nso4jb1GBzYmSYPtwMwQf6E1JTkpZLq3EjVgy6y47gACxEJQ/TvAyVP1RGJj3L1wGmcpPlm3KqPfVIBRK0EMDAl0b/itCzpLnJAc4fNZ61fsrBgojYbSkywzeKa0peicswi8PfCZzYaqFTu1it4e450EjT41fq6c9yMOLSXreE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ZiV6WWac; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=wPLPHo8B; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dtJ6l2WjGz9sd0;
+	Sat, 17 Jan 2026 01:50:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768611039;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=vMEzItdsAbE2liSXjdq4NBlkXExC27cQwbIFLcmYzOE=;
+	b=ZiV6WWackpoamqYgyKEFPZTHSXAYvATKikVa0xzUIvXBk8N3IziE+DCDJleT8BQj3ABMzY
+	+VsRKLdmNmPxsstORV5pD2ESlTJ99KxYX/IiMJAl2ZkGvJJDS87PypdtggAEfHDinuqgYz
+	DNwp8Nm8eXKiuN8ABn0KHh1BJIvAbiI5kcyHdwYTQzkkgJ46mlZ+jmXA6QmDahCuDmZQfp
+	VmKuzfKCa7Io3zOsROsjSkR4igSE5N1y9yvzRUl5Isr7zYB7RS94eb3tSrJUtDWBIy5rWN
+	6d0F24V4mAqirJ+pxCH/+xWIP7JLnKaUdjYEaEikikiww9xmei+3mvXlX3t7jw==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768611037;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=vMEzItdsAbE2liSXjdq4NBlkXExC27cQwbIFLcmYzOE=;
+	b=wPLPHo8BWJFARuopooxE+0h4vU3HV54wfOK3vooCLU61mrZ8UXXDNTX7K2ExEmCpFZtUde
+	llEOz/wYRBeFF4xljFQ1Z1XyD4mTIF0bSbQCGgM5eIbiCiIMdeKHfu5MvZyoCgabyrzXH1
+	fA85qG1+h8LBDCkyyI+hu12FxEw93CJ47j0iunQgoU+o9JXioRJONS4TXsEFwgVxML0AJn
+	k5O/JUqC+Y+mW+nuxpweuImcbOL/DsTBqRFQrpSSMAQ2FzI/NCw73LRSB6wKAv/HLZxYUj
+	TAQLLMvc+Yc2YKgaQNRH4ANATScXlrLU4m0gIjj8/a0gko4ggTdH7hlFjAfx0A==
+To: dri-devel@lists.freedesktop.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 1/2] drm/panel: simple: Add Waveshare 13.3" panel support
+Date: Sat, 17 Jan 2026 01:49:48 +0100
+Message-ID: <20260117005028.126361-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MA5PR01MB1250082D757C8DEFE005EE71AFE8CA@MA5PR01MB12500.INDPRD01.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: p9htipo4gu7ygoez4pjyw6mrx1ynd83w
+X-MBO-RS-ID: ed634f5f0ea607bcdd5
 
-On Thu, Jan 15, 2026 at 08:49:54AM +0800, Chen Wang wrote:
-> 
-> On 1/13/2026 10:38 AM, Inochi Amaoto wrote:
-> > As we have a separate CPU dtsi file, move the PLIC and CLINT
-> > node to the CPU dtsi file. This will make the sg2042.dtsi force
-> > peripheral devices, and make the CPU dtsi force CPU related
-> > devices.
-> LGTM, except for the word "force" in the commit message; it seems a bit odd.
-> Perhaps it would be better to write: "This will make all peripheral devices
-> are defined in the sg2042.dtsi
-> 
-> and all CPU-related are defined in the CPU dtsi."
-> 
-> Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
-> 
+Add WaveShare 13.3inch 1920x1080 DSI Capacitive Touch Display support.
 
-Thanks, it should be "focus on", I wrote a wrong word, If it is
-OK, I will fix this mistake when merging.
+While the panel is described as DPI panel, it is part of a larger unit
+in non-removable metal casing, so the actual internal configuration is
+not known. The panel is attached to "waveshare,dsi2dpi" bridge via DT.
+It is likely that internally, this panel is an LVDS panel, connected to
+ICN6211 DSI-to-DPI bridge and then another unknown DPI-to-LVDS bridge.
 
-Regards,
-Inochi
+Current device link is at https://www.waveshare.com/13.3inch-dsi-lcd.htm
 
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >   arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi | 305 ++++++++++++++++++++
-> >   arch/riscv/boot/dts/sophgo/sg2042.dtsi      | 303 -------------------
-> >   2 files changed, 305 insertions(+), 303 deletions(-)
-> > 
-> > diff --git a/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi b/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
-> > index 94a4b71acad3..509488eee432 100644
-> > --- a/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
-> 
-> [......]
-> 
-> 
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Jessica Zhang <jesszhan0024@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+V3: New patch. Note that the compatible string is already part of
+    Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+---
+ drivers/gpu/drm/panel/panel-simple.c | 30 ++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 91ab280869bac..40a73c32b0b17 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -4998,6 +4998,33 @@ static const struct panel_desc vl050_8048nt_c01 = {
+ 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
+ };
+ 
++static const struct drm_display_mode waveshare_133inch_mode = {
++	.clock = 148500,
++	.hdisplay = 1920,
++	.hsync_start = 1920 + 88,
++	.hsync_end = 1920 + 88 + 44,
++	.htotal = 1920 + 88 + 44 + 148,
++	.vdisplay = 1080,
++	.vsync_start = 1080 + 4,
++	.vsync_end = 1080 + 4 + 5,
++	.vtotal = 1080 + 4 + 5 + 36,
++	.flags = DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_PHSYNC,
++};
++
++static const struct panel_desc waveshare_133inch = {
++	.modes = &waveshare_133inch_mode,
++	.num_modes = 1,
++	.bpc = 8,
++	.size = {
++		.width = 293,
++		.height = 163,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
++	.connector_type = DRM_MODE_CONNECTOR_DPI,
++	.bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE |
++		     DRM_BUS_FLAG_SYNC_SAMPLE_POSEDGE,
++};
++
+ static const struct drm_display_mode winstar_wf35ltiacd_mode = {
+ 	.clock = 6410,
+ 	.hdisplay = 320,
+@@ -5598,6 +5625,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "vxt,vl050-8048nt-c01",
+ 		.data = &vl050_8048nt_c01,
++	}, {
++		.compatible = "waveshare,13.3inch-panel",
++		.data = &waveshare_133inch,
+ 	}, {
+ 		.compatible = "winstar,wf35ltiacd",
+ 		.data = &winstar_wf35ltiacd,
+-- 
+2.51.0
+
 
