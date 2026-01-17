@@ -1,62 +1,46 @@
-Return-Path: <devicetree+bounces-256399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EFBFD39058
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 19:22:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CCF9D39060
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 19:34:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF565301D593
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 18:22:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E470E3014DCB
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 18:34:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73BC42D595D;
-	Sat, 17 Jan 2026 18:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C312D7DD5;
+	Sat, 17 Jan 2026 18:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="i4H4/Euf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d+PCBowm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05AEF2D4816
-	for <devicetree@vger.kernel.org>; Sat, 17 Jan 2026 18:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC0C1286413;
+	Sat, 17 Jan 2026 18:34:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768674129; cv=none; b=V1Gqk5eNA5LYTraA+4EF1N/1WgLULzNdLHCMzGZBNM2LJyTCCen3dMP5Ar2+GRyH9PvYV6qfb1KtDm4CJWORDp+HHYHR1db6PrI4fw4+KNuWCPy0IKxVW51RZPKDFSTb6BQ4fHCkk6g9bQ2lDrI+CP7FRA8orWL5SjUHYReJta0=
+	t=1768674847; cv=none; b=Yg4aevJCuRyiMeNkF2JQ6G5w8/MPI74q/rM+GfB3NuHXOjnamJHJ35RsHt7tafy1mteL3ZPDc7r1W7+5uX3UelawrE5WFLCO2xw1ONyjpiQK+ua44yN+A9VXerI6xgOJ13K4loYkdP7n14Czdtb3Gm/Q2JNwW5SXOcVC5Fpn9WA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768674129; c=relaxed/simple;
-	bh=JnM8CbNRefHft1AycEX+JI6KttGYEDyvHeicK3qvoOs=;
+	s=arc-20240116; t=1768674847; c=relaxed/simple;
+	bh=NZQXJixVRA6ullkBbOjDyZZhg7Yv6nK5LSznuxvcHr0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sR7Q97j1wp5BnMKV6fbYWpudEQLgLwKNZhy90M4SaGz3kiZYhGTQ7ufgpzRBRRIutgGPYkI2IOygMRNNIaRsDaqWolP48FwnEbhDhH94l313u54umNrMkTHa3KhLppp8Lcbocrl8M5AAksjWdtEKP6bSOVidnUdaFjXnTQVyuNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=i4H4/Euf; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1768674125;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=h1XwfyBOA2rxjy0dGHmw0NBN5mZlkaFY9bVx7FsHrVU=;
-	b=i4H4/Euff8APNJUzYmex79Pa2CpFE4CHHPMM59ZMlk4g0q9t29MFF88Fc4FauaUDm2Jv6q
-	fDvYftVZ44wrKZBeK5lTuUm4f9HVRC4IUO1zoj8/2qBnNY6PWS5QylX70CbNk1DRWbL/T4
-	t21hj/8W6Tu3RtfTcqouBvUasQDIksA=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-496-hgAFbccKNUaAQkdMGGmumA-1; Sat,
- 17 Jan 2026 13:22:02 -0500
-X-MC-Unique: hgAFbccKNUaAQkdMGGmumA-1
-X-Mimecast-MFC-AGG-ID: hgAFbccKNUaAQkdMGGmumA_1768674118
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 029F21956094;
-	Sat, 17 Jan 2026 18:21:58 +0000 (UTC)
-Received: from [10.44.32.32] (unknown [10.44.32.32])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 48F9518001D5;
-	Sat, 17 Jan 2026 18:21:50 +0000 (UTC)
-Message-ID: <45be7c3e-bd87-4448-aff1-d91794099391@redhat.com>
-Date: Sat, 17 Jan 2026 19:21:48 +0100
+	 In-Reply-To:Content-Type; b=XDkYzNNWMmH0riNJ2zJS+I2qAMkQE3J9MXY2SteTO6ihv2kn1AqHjoqk9rZNGhfM0+09W860dgVrbIM3U0ki53aUzP2u6htkrAemDwTDqVQB5jBZSzWlB7oHNhPFxRK4lRGGIabJKGJyVQKEd2+YsKdqtoBK4RcDPMzzGlQcfRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d+PCBowm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC66FC4CEF7;
+	Sat, 17 Jan 2026 18:34:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768674847;
+	bh=NZQXJixVRA6ullkBbOjDyZZhg7Yv6nK5LSznuxvcHr0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d+PCBowmyj0SYldpBn2Is+2wKYHfcuaf/bWLU/L91kdP5TBJHoLf2RLtyfyoOMy3a
+	 Er8PVZpILwU+zJ1eJjdy2Dli1RD06dhvI2QpruJyH+ZidZyB0f308/lbUDtENjvljN
+	 MCk9gF2oEUHhUHqzPozUxaRu1jsyT0XQE4OeVKwUO404/NE1BZuQojfpA19n22pEoR
+	 a2kJcxIUGDhyWuxnUzU/hCEP+JPc50QtKvQtv37+SGvZY4biLGp1QSIDmdCdP+jCnK
+	 FPYf90wB5lyTX7hNinZ4bbOxPWJzLwmmdeEESCKRL7yd2h4vxZDju1M0pkAINa2zdU
+	 gTkiy899STEgQ==
+Message-ID: <578745f0-0865-4195-9237-6d41c7fd55f2@kernel.org>
+Date: Sat, 17 Jan 2026 19:34:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,177 +48,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 01/12] dt-bindings: dpll: add common
- dpll-pin-consumer schema
-To: Rob Herring <robh@kernel.org>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Subject: Re: [PATCH v4 1/3] dt-bindings: touchscreen: trivial-touch: Drop
+ 'interrupts' requirement for old Ilitek
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-input@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
  Conor Dooley <conor+dt@kernel.org>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Alexander Lobakin <aleksander.lobakin@intel.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Job Noorman <job@noorman.info>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org,
- Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>,
- Grzegorz Nitka <grzegorz.nitka@intel.com>
-References: <20260108182318.20935-1-ivecera@redhat.com>
- <20260108182318.20935-2-ivecera@redhat.com>
- <92bfc390-d706-4988-b98d-841a50f10834@redhat.com>
- <CAL_Jsq+m7-wop-AU-7R-=2JsUqb+2LsVTXCbZw==1XuAAQ4Tkg@mail.gmail.com>
- <a5dad0f9-001c-468f-99bc-e24c23bc9b36@redhat.com>
- <CAL_JsqJhqp-cgj604eEgxD47gJci0d3CFYf1wC_t1c00OptTiQ@mail.gmail.com>
+ linux-renesas-soc@vger.kernel.org
+References: <20260117001215.59272-1-marek.vasut+renesas@mailbox.org>
+ <20260117-grinning-heavy-crab-11f245@quoll>
+ <38a146cf-8eee-4fbb-8783-231108a01b54@mailbox.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <CAL_JsqJhqp-cgj604eEgxD47gJci0d3CFYf1wC_t1c00OptTiQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <38a146cf-8eee-4fbb-8783-231108a01b54@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 1/17/26 12:39 AM, Rob Herring wrote:
-> On Fri, Jan 16, 2026 at 1:00 PM Ivan Vecera <ivecera@redhat.com> wrote:
+On 17/01/2026 16:33, Marek Vasut wrote:
+> On 1/17/26 12:22 PM, Krzysztof Kozlowski wrote:
+>> On Sat, Jan 17, 2026 at 01:12:02AM +0100, Marek Vasut wrote:
+>>> The old Ilitek touch controllers V3 and V6 can operate without
+>>> interrupt line, in polling mode. Drop the 'interrupts' property
+>>> requirement for those four controllers. To avoid overloading the
+>>> trivial-touch, fork the old Ilitek V3/V6 touch controller binding
+>>> into separate document.
 >>
->> On 1/16/26 4:23 PM, Rob Herring wrote:
->>> On Thu, Jan 15, 2026 at 6:02 AM Ivan Vecera <ivecera@redhat.com> wrote:
->>>>
->>>> On 1/8/26 7:23 PM, Ivan Vecera wrote:
->>>>> Introduce a common schema for DPLL pin consumers. Devices such as Ethernet
->>>>> controllers and PHYs may require connections to DPLL pins for Synchronous
->>>>> Ethernet (SyncE) or other frequency synchronization tasks.
->>>>>
->>>>> Defining these properties in a shared schema ensures consistency across
->>>>> different device types that consume DPLL resources.
->>>>>
->>>>> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
->>>>> ---
->>>>>     .../bindings/dpll/dpll-pin-consumer.yaml      | 30 +++++++++++++++++++
->>>>>     MAINTAINERS                                   |  1 +
->>>>>     2 files changed, 31 insertions(+)
->>>>>     create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
->>>>> new file mode 100644
->>>>> index 0000000000000..60c184c18318a
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
->>>>> @@ -0,0 +1,30 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/dpll/dpll-pin-consumer.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: DPLL Pin Consumer
->>>>> +
->>>>> +maintainers:
->>>>> +  - Ivan Vecera <ivecera@redhat.com>
->>>>> +
->>>>> +description: |
->>>>> +  Common properties for devices that require connection to DPLL (Digital Phase
->>>>> +  Locked Loop) pins for frequency synchronization (e.g. SyncE).
->>>>> +
->>>>> +properties:
->>>>> +  dpll-pins:
->>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>>>> +    description:
->>>>> +      List of phandles to the DPLL pin nodes connected to this device.
->>>>> +
->>>>> +  dpll-pin-names:
->>>>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>>>> +    description:
->>>>> +      Names for the DPLL pins defined in 'dpll-pins', in the same order.
->>>>> +
->>>>> +dependencies:
->>>>> +  dpll-pin-names: [ dpll-pins ]
->>>>> +
->>>>> +additionalProperties: true
->>>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>>> index 765ad2daa2183..f6f58dfb20931 100644
->>>>> --- a/MAINTAINERS
->>>>> +++ b/MAINTAINERS
->>>>> @@ -7648,6 +7648,7 @@ M:      Jiri Pirko <jiri@resnulli.us>
->>>>>     L:  netdev@vger.kernel.org
->>>>>     S:  Supported
->>>>>     F:  Documentation/devicetree/bindings/dpll/dpll-device.yaml
->>>>> +F:   Documentation/devicetree/bindings/dpll/dpll-pin-consumer.yaml
->>>>>     F:  Documentation/devicetree/bindings/dpll/dpll-pin.yaml
->>>>>     F:  Documentation/driver-api/dpll.rst
->>>>>     F:  drivers/dpll/
->>>>
->>>> Based on private discussion with Andrew Lunn (thanks a lot), this is
->>>> wrong approach. Referencing directly dpll-pin nodes and using their
->>>> phandles in consumers is at least unusual.
->>>>
->>>> The right approach should be referencing dpll-device and use cells
->>>> to specify the dpll pin that is used.
->>>
->>> You only need a cells property if you expect the number of cells to
->>> vary by provider.
->>>
->>> However, the DPLL device just appears to be a clock provider and
->>> consumer, so why not just use the clock binding here? Also, there is
->>> no rule that using foo binding means you have to use foo subsystem in
->>> the kernel.
->>
->> Hmm, do you mean something like this example?
->>
->> &dpll0 {
->>       ...
->>       #clock-cells = <2>; /* 1st pin index, 2nd pin type (input/output) */
->>
->>       input-pins {
->>           pin@2 {
->>               reg = <2>;
->>               ...
->>           };
->>           pin@4 {
->>               reg = <4>;
->>               ...
->>           };
->>       };
->>       output-pins {
->>           pin@3 {
->>               reg = <3>;
->>           };
->>       };
->> };
->> &phy0 {
->>       ...
->>       clock-names = "rclk0", "rclk1", "synce_ref";
->>       clocks = <&dpll0 2 DPLL_INPUT>,
->>                <&dpll0 4 DPLL_INPUT>,
->>                <&dpll0 3 DPLL_OUTPUT>;
->>       ...
->> };
-> 
-> No, clock providers are always the clock outputs, and clock consumers
-> are the clock inputs. So something like this:
-> 
-> &dpll0 {
->       ...
->       #clock-cells = <1>; /* 1st pin index */
-> 
->       // clocks index corresponds to input pins on dpll0 */
->       clocks = <&phy0 0>, <&phy0 1>, <&phy1 0>, <&phy1 1>
-> };
-> &phy0 {
->       ...
->       #clock-cells = <1>;
->       clocks = <&dpll0 3>;
->       ...
-> };
+>> One if: block is fine, so IMO, this should stay in original binding
+>> especially that more devices like some azoteq or semtech might have same
+>> rule of not requiring interrupt line. Anyway, no big deal.
+> I am not sure about the other non-ilitek devices, but the fruitboards do 
+> use at least goodix and etm/edt touch controllers without interrupt line 
+> too, those I have on my desk (those two have separate, more extensive, 
+> binding document). I also suspect we will see more of those touch 
+> controllers with optional interrupt line, so if we do, I think we can 
+> re-combine the binding documents again ?
 
-Fully understand now... will modify the patch-set accordingly.
-Thanks for the advises.
+Yes.
 
-Ivan
-
+Best regards,
+Krzysztof
 
