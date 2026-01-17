@@ -1,90 +1,94 @@
-Return-Path: <devicetree+bounces-256313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A53BD38AB5
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:29:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C281D38AB9
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:31:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 743093016ACD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:29:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42F97306D533
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:31:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF93919D07E;
-	Sat, 17 Jan 2026 00:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D651F13AD26;
+	Sat, 17 Jan 2026 00:31:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TNEnnQI6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L/qkuCRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F86415B0EC
-	for <devicetree@vger.kernel.org>; Sat, 17 Jan 2026 00:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C902D7BF
+	for <devicetree@vger.kernel.org>; Sat, 17 Jan 2026 00:31:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768609754; cv=none; b=HpafJC1Ch6WrxHkN+3w933lNI7s/TV/qm+wggVkwYq8vjvesq8eVq4l0hGUFli0rjlTa2mwiOZ/O1d4M6tvfnwT0/Mt8sZ8aDU9yemucSS0UyAB12/QSbajYbk90QcPQ0lsJxYZcfIDhGL5ofVK9LCgMQomB3iMnIxv3VJeLPaA=
+	t=1768609865; cv=none; b=gSHZWn9wHkqWb9TDn92qapP5Oa+LvFC0VGUJ3aRIjKy19IEk+B5lKfT3oTXgqkZHDkMPzr33LPr/EepioKsnxTSaqRyrQ/FZlS0gzWNFohBG9mwMDQKhVL8JceXeCx9iKf878kLMyKJXSwQsXP8TC8yaDnZ1uoS3gjnLFsR2Rts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768609754; c=relaxed/simple;
-	bh=1zm9T7CaI8B5xZXNRoBq9Dn2BczVK6uVcN3FJffFlDo=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CVmeDjaQ2Bkam8SmXFkvZralh3t8XR0wFtkZBMoGZuGRjznwnP2zZdpOcipflJ6YEyziWqDmYpttYbQMCvqtRwkfD8E4rjG368AvWsM4BzGvtsgqD4Z6bb+VUytDZnKg7rQOFYcEeLXC6H0Z6raCHZaHlrG8+Qt08Kw1lPWciWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TNEnnQI6; arc=none smtp.client-ip=74.125.82.45
+	s=arc-20240116; t=1768609865; c=relaxed/simple;
+	bh=xtCiJPz16IqeiDeaS2jZcY9Mb9ZGX+uLSmlEP9iSmoU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PVepZiM7Mx2Qops+IpVBHbcCaLENOvJdNH52FGsjjL0suGcBJvGJATTjveEhYv/wSe0yn8gubg/6qbISHtJCN+2riXIpFCefZOc7Sej7u4MKtg64B/OUPEjfAUAPsofSI4Xz/B2dpYEDlM/SuXtmM2M+WRqKN8xtw9yHapq/zMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L/qkuCRj; arc=none smtp.client-ip=74.125.82.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-1233b172f02so3229928c88.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:29:13 -0800 (PST)
+Received: by mail-dl1-f52.google.com with SMTP id a92af1059eb24-1232d9f25e9so4897700c88.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:31:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768609752; x=1769214552; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768609863; x=1769214663; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mGO1cK4mQ9XzEnYxq1fxs9vwo2P1CEDeSbovMGFFZdo=;
-        b=TNEnnQI6bFcVQLxCbJ/UByzVd75R4ftFaXqX7+rHX/BK3pNbQ4IEPqLhOjhnxT3PDU
-         K358zQxewchMNcFawdY0VtENnFNnvCWjp3XHGrm9EeD+FdWZuz9aXvwcj2YcvxRfe3bZ
-         Do3H44htCMSOQX8E6CcCtg3q7DzJHaZyp7pf0mhjNMMdIQXhJd1S5wGrcAAYGKbkxV4H
-         jwgQaOT4IQSlTvfWMaZEX4h+Oo852RPXbGuFpGQB6UjVsEbtQIKNbmBKpiql6bFM7ZRx
-         SSfk+TdKylrs5rLgsyf4/wq15wrHQVltvpbSvn3wx56FdXhzjTZ9WVasuv1jSf7Jze9c
-         vMtg==
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y5JNJOduP9VrN/mhp5Hk2Svxk9TX1DeMUnmLosBKrvU=;
+        b=L/qkuCRj1RQD6TKTNSpaDOrmCbk326TBhw4G/rmnnwG8ddFBJxUc0VtZueD6Yr+9gQ
+         Zk6oU4RWeRJ97orL8hBALfPKxMHo16XJrNpS3EkC5AgrilbxT+5vYI2PdMB3keBRzwbx
+         ALfyluXLw36+HdplnFtOHTXgLRCPpyLyku8BZZKypDSIMc4DRIqhDJveviUEg92YcXYN
+         V+XApcnWtjT+Zr8zzMPmNaL9KKyE3dSB0UOfgncB06c+mUB+q0HHA5H2QECyV8pArROe
+         IyGTkSaQSeC5dECFYV4rzi6ONMu8R4V9NAHaIAfDgha9pyrBBPo2EVrxrB1JLCG9laJ7
+         1uDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768609752; x=1769214552;
+        d=1e100.net; s=20230601; t=1768609863; x=1769214663;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=mGO1cK4mQ9XzEnYxq1fxs9vwo2P1CEDeSbovMGFFZdo=;
-        b=t/urhbjiXkmYclp4oEvtSC/IxOh0BBTDWqkHwt6qeyibA3A0RnQjQOonaKnRVcWFRW
-         FT21m5obe3EqJwlpati8Vv9G+X7fpta/tlQvmHaVkj7e0GcULIGbPqiMRLc8Kb+DQZsK
-         ubhAFVjhqbNWffm0blAbJixZ8VIrznqnkShTgVybRIvQyjBbgaoIGk+rDFNXWPX87XCw
-         tfiByhQSjX8X7fdlJoADuu83VH/r6f41GNycWxXm3qKsXE/2ikReyJS3wtpRb0ffL1LQ
-         YurbSbwwgWLVHt2iYQu6DOQds09/yYke71dZ9iJlNdsu2chxrUiyZ8H65oIb0pXbEWjt
-         njig==
-X-Forwarded-Encrypted: i=1; AJvYcCUdpWhpLKghP8m6qXfL7RhigLfQG7ASi6xoxf+l+2mbTKtufsD/Wffi2brIIaRXZ8qd+JCyufOP08ie@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZFFKWpynF+RDVlHTJsS62VnMXcNdt4Wtk9nIbKl5GBrK+VGsb
-	KW1ZJ653Gfd3h6zvMKgJuBS5JUMmLMmdY8WmSWJ56OeLQDFu38WzwcoS
-X-Gm-Gg: AY/fxX6iJ7z41JnMZne7t0djkY8p3QzYIk0bD5UFf525B/unt5cJQqt2teAL94ys7cs
-	YpP1Zv3JZ8gRfzY7s5ibfWlnnVweNzeYRzdfTM6e67CHS6hVMuTeyYEacy6XUFLjFpqwQh5jLvx
-	GDlrmJHTuB6dAVIJOGYkZ3OXQFIwB7B+0s9hJUxUj766XfnLBer6nscPOUD2R7iprRbnYoxBYIv
-	AXyHhpOcSP1p6C9K/miligqMjcLTu8FrJvgC1vF1HpRu1Ma5j3n81cj6itXukRbdT8tumbWgwp0
-	p04qef7s5PHuJUVIVWgLWgpYZgrqCRf/hGxASGwifc95rU2hqnp1DFtBbVNrUfCS5mwyqXl6Bdh
-	DUg9kuzmvKO+hPqCTVrtdG6sddmnlPYrzzjFAOAZTc3rb1asE8/Z+//teHrQWM+LeYZB70lVkP4
-	MgHMeXTLakpg==
-X-Received: by 2002:a05:7022:4181:b0:11b:2138:4758 with SMTP id a92af1059eb24-1244a6f4633mr4974776c88.21.1768609752297;
-        Fri, 16 Jan 2026 16:29:12 -0800 (PST)
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y5JNJOduP9VrN/mhp5Hk2Svxk9TX1DeMUnmLosBKrvU=;
+        b=bLwSXGKbvSGD6zfBzddOPgynuI+baIpLUu0+Y5M+/9epA/LUAzrJ3JWpsNlRBmyLKe
+         tiEUy1PT04LG9UI69O6zs9JtQyvKpSldo7M6YuFesinArCIE9ZePzc52YFycbQDXMdWa
+         3NreLlPZCI6fu2Ak5g26Zh9LrkInsR2nQ6SRZcoBYsRV4kA37i0DBA7p0/ebYgHKRP/U
+         PsB8qgyCBt8JcUqT4srt4nLWBbZWxuYk8yhLXwt8b+ZvpsQeVpFyiYTTDBdPNKmmCNKe
+         YsaooixEWT6DuX3VATksw8EQA03Hbh80kk+b+GX2u6/JgmnpEcoPRfMJ9vx8QZ/NIC3r
+         x0JA==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ9rdzbAdVwuPNuRggnphHmKh3b8YkC3YqF3YU7A3ba/qG339/mpOpWCluZ7Vt0EqAtki2EHEXaxpW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz398GAutdabsFFoUWlLJ2yHNxw3aw8avHjOMYcTNNSozLfnJbm
+	rZaSSnZlJhwu7y5K8fz0+LqWX5Q/bDmyE4RBD+u5zXt4fwQJ/HhH+vy4
+X-Gm-Gg: AY/fxX4Vx1/fNr2nUnimqTB5MBDI0r2mjQ4VzhE3SH9O4xE+v4E3f/TSV6cBMI5Psra
+	asQS0uAOjkO2tapsCVxRdJXQ5gLIkpeEaBKQZTvmsmKPD3VXxpvNF0YMjrYTPyvBrJKFqmX2jYi
+	dh4pqkVwoBu4ORIq8CRrvAcfkJU4LlLvKXCLrzHAhGZv30SBHFLFmPe6/WWT3vGcDbnZiTJFnc4
+	bbOBlJHQYGiM5Jkb3zIzgNoJJtKS8SNZdy8Aeah6Mi2g/4TCaVN0OC57Aa6x3+pnG+B802igdVn
+	P2BqwWoE97eBYm2F1z5A2CSyOy/9PAOeDNk1s9PTPEJBogTQQ35sY4+qmge3spzaQBLX6OxPHtO
+	I72+yUT+rvXVj4XNiuK0ycSyAWtMkBIanGParOugUBJZRZjcmCoXAFH3OWLiWiUAx9F9u+ler3I
+	9MiHWcwMxNyg==
+X-Received: by 2002:a05:7300:ed0f:b0:2ae:5245:d4f6 with SMTP id 5a478bee46e88-2b6b3f1c8f1mr4513348eec.16.1768609863057;
+        Fri, 16 Jan 2026 16:31:03 -0800 (PST)
 Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244ac58140sm4235676c88.4.2026.01.16.16.29.11
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b3619a7bsm3938806eec.19.2026.01.16.16.31.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 16:29:11 -0800 (PST)
-Date: Sat, 17 Jan 2026 08:29:06 +0800
+        Fri, 16 Jan 2026 16:31:02 -0800 (PST)
+Date: Sat, 17 Jan 2026 08:30:57 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Frank Li <Frank.li@nxp.com>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, 
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
 	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 0/8] ASoC: sophgo: add CV1800 AIAO mux and I2S support
-Message-ID: <aWrXr1aXB3YUPisg@inochi.infowork>
-References: <20260115-cv1800b-i2s-driver-v1-0-e8b22b8578ab@gmail.com>
- <aWl4fvKsUZDg9dwj@inochi.infowork>
- <aWpyLQ6FR8_RsD1n@anton.local>
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Chen Wang <unicorn_wang@outlook.com>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	Longbin Li <looong.bin@gmail.com>, Ze Huang <huangze@whut.edu.cn>, 
+	"Anton D . Stavinskii" <stavinsky@gmail.com>, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, 
+	Yixun Lan <dlan@gentoo.org>
+Subject: Re: [PATCH v2 2/3] dmaengine: dw-axi-dmac: Add support for CV1800B
+ DMA
+Message-ID: <aWrYMHdpSs4_kRCs@inochi.infowork>
+References: <20251214224601.598358-1-inochiama@gmail.com>
+ <20251214224601.598358-3-inochiama@gmail.com>
+ <aWpdEKVBjbq7Lrqv@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,44 +97,115 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aWpyLQ6FR8_RsD1n@anton.local>
+In-Reply-To: <aWpdEKVBjbq7Lrqv@lizhi-Precision-Tower-5810>
 
-On Fri, Jan 16, 2026 at 09:25:51PM +0400, Anton D. Stavinskii wrote:
-> > On Thu, Jan 15, 2026 at 11:17:37PM +0400, Anton D. Stavinskii wrote:
-> > > This patch series adds basic audio support for Sophgo CV1800B, 
-> > > as used on boards such as the Milk-V Duo. 
-> > > The series introduces an AIAO audio mux driver, 
-> > > an I2S controller driver, corresponding DT bindings, 
-> > > and DTS updates to wire the components together.
-> > > 
-> > 
-> > I haven't see your mux driver, is it missed?
+On Fri, Jan 16, 2026 at 10:45:20AM -0500, Frank Li wrote:
+> On Mon, Dec 15, 2025 at 06:45:59AM +0800, Inochi Amaoto wrote:
+> > As the DMA controller on Sophgo CV1800 series SoC only has 8 channels,
+> > the SoC provides a dma multiplexer to reuse the DMA channel. However,
+> > the dma multiplexer also controls the DMA interrupt multiplexer, which
+> > means that the dma multiplexer needs to know the channel number.
+> >
+> > Allow the driver to use DMA phandle args as the channel number, so the
+> > DMA multiplexer can route the DMA interrupt correctly.
+> >
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 26 ++++++++++++++++---
+> >  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
+> >  2 files changed, 23 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > index b23536645ff7..829aa6c05b5c 100644
+> > --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > @@ -7,6 +7,7 @@
+> >   * Author: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> >   */
+> >
+> > +#include "linux/stddef.h"
+> >  #include <linux/bitops.h>
+> >  #include <linux/delay.h>
+> >  #include <linux/device.h>
+> > @@ -50,6 +51,7 @@
+> >  #define AXI_DMA_FLAG_HAS_APB_REGS	BIT(0)
+> >  #define AXI_DMA_FLAG_HAS_RESETS		BIT(1)
+> >  #define AXI_DMA_FLAG_USE_CFG2		BIT(2)
+> > +#define AXI_DMA_FLAG_HANDSHAKE_AS_CHAN	BIT(3)
 > 
-> That was bad copy paste from original version. 
-> Thanks for noticing this. Will update the cover letter.
-> I want to not overcomplicate already big patch series.
-> So multiplexing will be done later. 
-> > 
+> Look like ARG0_AS_CHAN is easy understand
 > 
-> > Thanks for your patch, for all the patchs, I hope you write a
-> > meaningful comment for the patch, at least for now I found it
-> > is nothing in your comment.
-> 
-> Thank you for a great help with that series. Do you mean
-> I need to add more meaningful comments for each commit or the 
-> cover letter is not describing everything clear enough? 
-> Anyway will do my best in the second version. 
 
-For each commit, the cover letter is OK.
+Good name!
 
-Regards,
-Inochi
-
-> > 
-> > Also, the patch 8 should not in this patch and should be a
-> > separate patch.
-> 
-> Yes I've missed this thing. I will remove the last commit 
-> and move codecs nodes to the base dtsi file. 
-> 
+> Frank
+> >
+> >  static inline void
+> >  axi_dma_iowrite32(struct axi_dma_chip *chip, u32 reg, u32 val)
+> > @@ -1360,16 +1362,27 @@ static int __maybe_unused axi_dma_runtime_resume(struct device *dev)
+> >  static struct dma_chan *dw_axi_dma_of_xlate(struct of_phandle_args *dma_spec,
+> >  					    struct of_dma *ofdma)
+> >  {
+> > +	unsigned int handshake = dma_spec->args[0];
+> >  	struct dw_axi_dma *dw = ofdma->of_dma_data;
+> > -	struct axi_dma_chan *chan;
+> > +	struct axi_dma_chan *chan = NULL;
+> >  	struct dma_chan *dchan;
+> >
+> > -	dchan = dma_get_any_slave_channel(&dw->dma);
+> > +	if (dw->hdata->use_handshake_as_channel_number) {
+> > +		if (handshake >= dw->hdata->nr_channels)
+> > +			return NULL;
+> > +
+> > +		chan = &dw->chan[handshake];
+> > +		dchan = dma_get_slave_channel(&chan->vc.chan);
+> > +	} else {
+> > +		dchan = dma_get_any_slave_channel(&dw->dma);
+> > +	}
+> > +
+> >  	if (!dchan)
+> >  		return NULL;
+> >
+> > -	chan = dchan_to_axi_dma_chan(dchan);
+> > -	chan->hw_handshake_num = dma_spec->args[0];
+> > +	if (!chan)
+> > +		chan = dchan_to_axi_dma_chan(dchan);
+> > +	chan->hw_handshake_num = handshake;
+> >  	return dchan;
+> >  }
+> >
+> > @@ -1508,6 +1521,8 @@ static int dw_probe(struct platform_device *pdev)
+> >  			return ret;
+> >  	}
+> >
+> > +	chip->dw->hdata->use_handshake_as_channel_number = !!(flags & AXI_DMA_FLAG_HANDSHAKE_AS_CHAN);
+> > +
+> >  	chip->dw->hdata->use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);
+> >
+> >  	chip->core_clk = devm_clk_get(chip->dev, "core-clk");
+> > @@ -1663,6 +1678,9 @@ static const struct of_device_id dw_dma_of_id_table[] = {
+> >  	}, {
+> >  		.compatible = "intel,kmb-axi-dma",
+> >  		.data = (void *)AXI_DMA_FLAG_HAS_APB_REGS,
+> > +	}, {
+> > +		.compatible = "sophgo,cv1800b-axi-dma",
+> > +		.data = (void *)AXI_DMA_FLAG_HANDSHAKE_AS_CHAN,
+> >  	}, {
+> >  		.compatible = "starfive,jh7110-axi-dma",
+> >  		.data = (void *)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2),
+> > diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> > index b842e6a8d90d..67cc199e24d1 100644
+> > --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> > +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> > @@ -34,6 +34,7 @@ struct dw_axi_dma_hcfg {
+> >  	bool	reg_map_8_channels;
+> >  	bool	restrict_axi_burst_len;
+> >  	bool	use_cfg2;
+> > +	bool	use_handshake_as_channel_number;
+> >  };
+> >
+> >  struct axi_dma_chan {
+> > --
+> > 2.52.0
+> >
 
