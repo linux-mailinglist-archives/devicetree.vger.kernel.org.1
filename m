@@ -1,55 +1,59 @@
-Return-Path: <devicetree+bounces-256381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC7FD38E2E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:22:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BDF0D38E41
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:36:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A02B7301DE05
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:22:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E775C301E6D9
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC58329E7D;
-	Sat, 17 Jan 2026 11:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D267C313536;
+	Sat, 17 Jan 2026 11:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tt/MKc5q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SYiMndyq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C1C30B535;
-	Sat, 17 Jan 2026 11:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC402580E1;
+	Sat, 17 Jan 2026 11:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768648972; cv=none; b=HakSQafsLRrPm/i0Dwz1RSxuOEWKvtskonP2KZWibLpyZJn+qJR2eyYxFamsI1+ilGQrMAAcOqKsDRhD54wdwnn7NLbHanZPEfDtYsnLxzacCZO20OgqyZ7N10EZjSrH/UwQ9b+2ZVdJ8amNWZgt9cDjL9qpni/CVO2nB+64Vuk=
+	t=1768649813; cv=none; b=C8eN0KlAIg2ssMArD4CNj+D3P9ENprqkw5Y4i+oztFwUAdJ4YtqZd4mxoFH8gFteWqH5ERBXVaJ4nwvAITpvWLb1jXY7fDjj8YoCjRyrevAYSV/OvjH1JIVjhli1eOQTkUjwzcv/TwRvqb9Yb2KTRkstTP2B/YyapPSG2+kbEjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768648972; c=relaxed/simple;
-	bh=47+LO3HeHNrNN2XQTEfeD8WbyZHoVpGvL8YogN6GiuU=;
+	s=arc-20240116; t=1768649813; c=relaxed/simple;
+	bh=VjBbKNdlkHKK1MnHdgUeE1D0je5Fkp2iTmuGlL2vdLA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LLr4PgpuB7NYYS27s2sFplPNxCfreSNMjTXfqQKuS9U1Xtx2ZZuj8Zgy7AhO6rgAfnDm9UTgpxRBC4fxwo2IHD3UMlQjG/TpddcgagTSiqpP4KJh2lUQK+hLW+0YomKgMy2t4Q3C5b5V3/s4OrzDK4w4e35plytAxsU2yqRLr/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tt/MKc5q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01344C19421;
-	Sat, 17 Jan 2026 11:22:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rh7CSkcUIsqx/CnrAKn3J/6NpFgrcL7kV0fb554gMelXyQn4X+6aMGXoEemk+AAer899WSMXZExKa62yxopWNJTrNJa7a2IZ5tGvfi8QeRnbmqJ09dpjd1xz8UTh4skFTwcay7Tu4U+BUeWyvcWSU5e7nfc45KE5uizXutsIxJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SYiMndyq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5CF3C4CEF7;
+	Sat, 17 Jan 2026 11:36:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768648972;
-	bh=47+LO3HeHNrNN2XQTEfeD8WbyZHoVpGvL8YogN6GiuU=;
+	s=k20201202; t=1768649813;
+	bh=VjBbKNdlkHKK1MnHdgUeE1D0je5Fkp2iTmuGlL2vdLA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tt/MKc5q5H2JsgFauyq4o1HE6Y6sWYFpXTHg6jdSDi+I19GU2eIW+EE9DoE6XZkBn
-	 wMUBZNoxsCQuttozmXYba9K/2yfWGuVc4XX+aAXWUBWaXSgOqgOOeLGy9NDsItG20r
-	 7mYAWr3Nk4m/JYt+FGimyM3aCPcAeJtoGBEsmFN5lcnNW4mVC8/Ro4prtjpsfvults
-	 IAhtSdJa3VDA0haKyRTcGcgKPF4mxh0bxAubQswTNH6vZnRSUVWACxG398nnRmFrNO
-	 ji1F6C8+Nn9ctjXKFc3HvO+MJqBV5PmogadBysHAJzzqV9PWSdJMh+2kfosIREyZwm
-	 QcipIDF1EmZHQ==
-Date: Sat, 17 Jan 2026 12:22:50 +0100
+	b=SYiMndyqIfA/OktJ1PPVNuhwTFOhCW8rSIm8U+lav+C4kxhnDEiD9AwXIdWAPK3/N
+	 lh/H6tbEHrQ4Szq5AIonVaRzgZ2uJF0gilurEF4Uy++dCdKASdCngPMUpiHoBlWChn
+	 ZNZZZiIoL8vjZwI4bA0+NARIc1wrMYkEmTG4BUcCCwXUPEgzxkvMkczaJVK2LxQgPu
+	 j4ZMnyfTGsQKk/tDNpkM4hZ1Nk7ynwV0JaXbIE5OyyoG1QVzX2GiY36kfIzm8ZtzNa
+	 /Uwej7sBnsposL86z35WWxlVpYpmlp7lHbZobnykyTHvoa7ucMUOGZJuNk8ryRKYGF
+	 mjbPOPtuETWEg==
+Date: Sat, 17 Jan 2026 12:36:50 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Frank Li <Frank.Li@nxp.com>, Job Noorman <job@noorman.info>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] Input: ili210x - convert to dev_err_probe()
-Message-ID: <20260117-careful-nice-jackrabbit-cc417f@quoll>
-References: <20260117001215.59272-1-marek.vasut+renesas@mailbox.org>
- <20260117001215.59272-2-marek.vasut+renesas@mailbox.org>
+To: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Changhuang Liang <changhuang.liang@starfivetech.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Rishikesh Donadkar <r-donadkar@ti.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Drop starfive,jh7110-camss
+ from staging
+Message-ID: <20260117-bulky-speedy-kagu-faee94@quoll>
+References: <20260116-drop-starfive-camss-v2-0-34df57025921@ideasonboard.com>
+ <20260116-drop-starfive-camss-v2-1-34df57025921@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,16 +62,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260117001215.59272-2-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20260116-drop-starfive-camss-v2-1-34df57025921@ideasonboard.com>
 
-On Sat, Jan 17, 2026 at 01:12:03AM +0100, Marek Vasut wrote:
-> Simplify error return handling, use dev_err_probe() where possible.
-> No functional change.
+On Fri, Jan 16, 2026 at 12:36:58PM +0530, Jai Luthra wrote:
+> The starfive-camss driver is no longer being worked upon for destaging,
+> and will be dropped in a subsequent commit, so drop the DT bindings.
+
+That's a moderately new SoC and commit was added ~2 years ago. Why is
+this being dropped exactly?
+
 > 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> ---
+> Link: https://lore.kernel.org/all/ZQ0PR01MB13024A92926C415C187D2C18F29F2@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn/
+> Acked-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reverting/dropping changes is always in reverse of introducing them, so
+this must be second commit. Otherwise your change is non-bisectable and
+you have now warnings of undocumented ABI.
 
 Best regards,
 Krzysztof
