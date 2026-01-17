@@ -1,146 +1,79 @@
-Return-Path: <devicetree+bounces-256383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F75D38E44
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:38:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B4FFD38E47
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:39:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4F2783008745
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:38:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 12C2B3016713
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC98335577;
-	Sat, 17 Jan 2026 11:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38DC0335BA1;
+	Sat, 17 Jan 2026 11:39:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PsDmpo8d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oJ8HAX/Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA6E271457;
-	Sat, 17 Jan 2026 11:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1589830E0F3;
+	Sat, 17 Jan 2026 11:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768649906; cv=none; b=PLZSd2oJFBDrx0GHh/oqkuoTLwTYZHVUt55D1l82LgAjPnlmB0qyfBbZuz42pxeDy9/B4ulebh/qv0w4HnLFAPA6XUKT7TWCHniM6d6xrhtR/hHQqmmcc0/MfS3RAa8OrnA2/zsUndBy70tnBZPmx4D0LT4qTNN6Tnauv36H4lQ=
+	t=1768649961; cv=none; b=FhxguCWQlwgljrbkSBog4kXP7M0ay00PB5jOXc6Li0sEVs/IyZX6WfnN1VecKrG2eJIJeCkuENWPpbeq+nXoHvgLHNka6jlM4nnGbdmaRG8c13PMQHDlilGfRBtMoAfklRxzrQGt93aEETPKZ3IY1TLWN1J7H1Bm8DGQzmwh+BI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768649906; c=relaxed/simple;
-	bh=CvsnoBom1x4rpA9MyWZRSdKvQFCipBxErv2giRLjzYw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Y/7knyeWHqh6Se422CD/2LCpHxYbZsJ58E2WyQFzqcJbg0mbnYLGviQjIdTri07hQHxKLZ5AlGdL5ithzYX76acgWnr9ouBYzD/wjyQ3TCtC4w3l+OobqaQgWgPkrGw1NRDkibz94sO5YQFFZ2eRVvb7TWjM/6KTbtBHbkW9ugk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PsDmpo8d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 575C3C4CEF7;
-	Sat, 17 Jan 2026 11:38:23 +0000 (UTC)
+	s=arc-20240116; t=1768649961; c=relaxed/simple;
+	bh=HxngOV78ddxxS+00WSbR1QEVp3Lc0xr806x171VNQxw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MSmNvw3IOQZJEP+wbQWuqCOnXAZxB2UipkD2yh5M83r/6TYyAmg+eSmn61PB6cllZaEQgxxQUyuaIrgeHgYBbgsxTmea7xbQHeeGdIn0tKmFmAheTHBSQRNIX4EBQ9tQ9dE3dbHZEwLwxTVeCsLyXrRKuYIBgQdd84a10Cy0cqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oJ8HAX/Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BC81C4CEF7;
+	Sat, 17 Jan 2026 11:39:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768649906;
-	bh=CvsnoBom1x4rpA9MyWZRSdKvQFCipBxErv2giRLjzYw=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=PsDmpo8dUmnj8lxig+97mKNUZh1tvUhUtWPT6De0CNBmxRKrIWBAVyDaP44H0aqV4
-	 PhzXBrfeFJSK/DcSSG/S4y1o5stRCfUHYesNPUuQbcklcBJdDIgDD9fppC3mlemxVt
-	 3wZP/id/2HPo3fnT2WFEm4NIh8b5vM/1pmAk+ADKmcnoNgjlWtJt/x6+uNQ6d3+EfK
-	 dixEbHkK7CiDW0Waz6g3AOriYrYabEgerBVylJlwMMFVA3XKwpPeBeDI03sokr+btZ
-	 LATiU54SuIO0qH3O3XH+gFKbhzjikac4Z3HfIJ8G6D2qFazf4DYIWuV3KvEs6pQAbr
-	 pzOdtuNENyo0w==
-Message-ID: <8881acaf-3233-44a3-aa55-bb1236a7cc91@kernel.org>
-Date: Sat, 17 Jan 2026 12:38:21 +0100
+	s=k20201202; t=1768649960;
+	bh=HxngOV78ddxxS+00WSbR1QEVp3Lc0xr806x171VNQxw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oJ8HAX/YpNzNTwAtFM3OH/HM47H9ljIlYTcwhUap2KmrIUI2+U2GWOl0cXALo5vTd
+	 w6lJ3/DbWdEVDxxvi2TnJzL4eu9Vj5yeiTjDWF3pbEq2aFG2YraUZY16u6+6+3OJo2
+	 JC3YK4U4e1M0s4aWVHXhFQ90tgSUFi1lB+tQgk43490I/7y7LxrqO44Cq7lV1QVTwx
+	 CMDenP+bK9205CUUmAs7NEd1075a1Dl+/y9FfILPaBc6Nu0HEiPuD818K4bd7P4Tar
+	 Qdl/6GLsJlrBMiVnWV7eErYqAc5KPazbmocd64Yr6yHhXp++YDVI0ILJF+4T5LpKiV
+	 wUfYB+3pd9a6w==
+Date: Sat, 17 Jan 2026 12:39:18 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Maciej Strozek <mstrozek@opensource.cirrus.com>
+Cc: Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+	Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Bard Liao <yung-chuan.liao@linux.intel.com>, 
+	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: cirrus,cs42l43: Add CS42L43B
+ variant
+Message-ID: <20260117-infrared-partridge-of-improvement-dd292c@quoll>
+References: <20260116152054.85990-1-mstrozek@opensource.cirrus.com>
+ <20260116152054.85990-3-mstrozek@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Drop starfive,jh7110-camss
- from staging
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Changhuang Liang <changhuang.liang@starfivetech.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Rishikesh Donadkar <r-donadkar@ti.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-staging@lists.linux.dev
-References: <20260116-drop-starfive-camss-v2-0-34df57025921@ideasonboard.com>
- <20260116-drop-starfive-camss-v2-1-34df57025921@ideasonboard.com>
- <20260117-bulky-speedy-kagu-faee94@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260117-bulky-speedy-kagu-faee94@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260116152054.85990-3-mstrozek@opensource.cirrus.com>
 
-On 17/01/2026 12:36, Krzysztof Kozlowski wrote:
-> On Fri, Jan 16, 2026 at 12:36:58PM +0530, Jai Luthra wrote:
->> The starfive-camss driver is no longer being worked upon for destaging,
->> and will be dropped in a subsequent commit, so drop the DT bindings.
+On Fri, Jan 16, 2026 at 03:20:41PM +0000, Maciej Strozek wrote:
+> CS42L43B variant adds dedicated PDM interface, SoundWire Clock Gearing
+> support and more decimators to ISRCs.
 > 
-> That's a moderately new SoC and commit was added ~2 years ago. Why is
-> this being dropped exactly?
+> Signed-off-by: Maciej Strozek <mstrozek@opensource.cirrus.com>
+> ---
+>  Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-OK, the link below gives some answer but isn't this better just to mark
-it orphan and keep for some time? Is the driver working/useful? Maybe
-someone will volunteer for it?
-
-> 
->>
->> Link: https://lore.kernel.org/all/ZQ0PR01MB13024A92926C415C187D2C18F29F2@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn/
->> Acked-by: Changhuang Liang <changhuang.liang@starfivetech.com>
->> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> 
-> Reverting/dropping changes is always in reverse of introducing them, so
-> this must be second commit. Otherwise your change is non-bisectable and
-> you have now warnings of undocumented ABI.
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
+
 
