@@ -1,55 +1,58 @@
-Return-Path: <devicetree+bounces-256385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 675BCD38E49
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:41:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6AC9D38E4C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:44:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2C07C301F02D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:41:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BEDE53009D40
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:44:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD13B3033E4;
-	Sat, 17 Jan 2026 11:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394E2332917;
+	Sat, 17 Jan 2026 11:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvUx9qF3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUrkHI3T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A79271457;
-	Sat, 17 Jan 2026 11:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137362AE77;
+	Sat, 17 Jan 2026 11:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768650096; cv=none; b=REBqS/3cIsBa3dtWhzNA67ejn/pRYOzdagHU3O4JnYH7SYz/TC6m/01jJIl+nX+5J2auxHwEmLDQ9uPj7zP5DkTA0VqVpaejCX4LLZ1NIbi+nkP4KXkbAJLdGmHiAnZ0nMVngmITUTJw1mkJ4LtTXhOjyHuKMws/WOmewwcLg80=
+	t=1768650250; cv=none; b=NKoc0S+bR/GsJSuOwTyrmqozPKbn/CQThXzCWt0W4YC255jrZAMIEyuaB0WEaDSlWOQLm54czd8ULZloxM8HL5d06kM24VgiNuF1PAMpLtqLB+sqivBJaLB8gzSRzE1AlxnYeBN4eU7nFKE4NCyxkfAgh1xzgS6qFIupK8QNOow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768650096; c=relaxed/simple;
-	bh=EN4w6fHkkzoF8VBfe/UUIVNrkadCi2VHk54LmzRusYk=;
+	s=arc-20240116; t=1768650250; c=relaxed/simple;
+	bh=7lknc6FIsN8kTaQ3hRHqL8L6jIldGI7xwi+wz3k2pVU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dt/ar1DUr/BknUB9gfpSrjuMQ0I6efjFNYaiIomtsvFQ8Mjv0/tqx0GAwCYVcWuGyu8us7fD6U83MFmgwjmQFFO0sMmUWba4qLDCBOo8PeSgqYMAJQk/HeidQOkykSTLgX34iu0Hc9HQk0A9KYg/xoo8mCHd6N0RQNtq6NyJZwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvUx9qF3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B106AC4CEF7;
-	Sat, 17 Jan 2026 11:41:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G3rm0PzdgAf3SSCvbJreahj2Yo+AmIMaNIq5CKI4k/fMTIwJkllEz2+mSko6uUtWvqN0IMyoiij6BBuKQm/NctQull8+n4xcLfpsF/3VritIeL/rxCKhSXDEw6raO9i5O6LVrSueILIp2zJnT1GLXRh0ofwrCMjEmVz89SCByUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUrkHI3T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B1EEC4CEF7;
+	Sat, 17 Jan 2026 11:44:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768650096;
-	bh=EN4w6fHkkzoF8VBfe/UUIVNrkadCi2VHk54LmzRusYk=;
+	s=k20201202; t=1768650249;
+	bh=7lknc6FIsN8kTaQ3hRHqL8L6jIldGI7xwi+wz3k2pVU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fvUx9qF3hvnb3/Q/mfpJM59biZ7WYrRxHlItmeM8adSbMfxNjwKfQH0Z9OmyX8k9i
-	 tFDqAEeJRZANJD3LqIE9PRvwJcewc+ebK+uvXJt+xRD6Q8af1dsZHxg85oDSqB7wbC
-	 8l/dMevV3LrzEtjE/VTnvHAmCG0Kwnw0rz+fuPH4As4bdKl+yCjGEd1I68n/OaEgeP
-	 +tEQOrg71A9AXaF4GjTdyhJguKIrdnOtz0TFlAAKQgG7vIThJY9Ld3Xhtcz5vJTQSR
-	 JZOWKDOQD810chHMstzwskLLBmKrZZ3MkrAqTivKUrR0MYCSyaJ79xpqkU0TablI1N
-	 Uh5qFKXP4+b1A==
-Date: Sat, 17 Jan 2026 12:41:33 +0100
+	b=cUrkHI3TVz80ah/2V2OAa3YVWKUKlfBKTjrVaFB4AvpYJLenjYw9sIIbogSR970f8
+	 cvGB31uAzYakxyaHsj1BFcCz55w8Mz/hymC0nr0RrfpvsMeLZdfb5ZxTU2A9814g5j
+	 t1loXK3qayAfqBwBD4uwBn/HIh14LsGlngm/Wwm7DzHcqI8DGBM3giqP1+TjCTwFEX
+	 SqlVmei7xQ2O9BMJZFQXZQ75mvE1uaGLhMEdvvTUHmRXhSM7CovoKwl/Hi4f4WaWEO
+	 MGLT1KHJBv3T7Wk0UQgD5CBJ84TbxroJ9OcVHNYDcH4QkIx2XPUzMCWo0FHWVuIaQQ
+	 wK0e+49RC5ceA==
+Date: Sat, 17 Jan 2026 12:44:07 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-Cc: Mark Brown <broonie@kernel.org>, Michal Simek <michal.simek@amd.com>, 
-	Andrew Lunn <andrew@lunn.ch>, linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] spi: dt-bindings: xilinx: make interrupts optional
-Message-ID: <20260117-polar-rat-of-current-adce4f@quoll>
-References: <20260117012136.265220-1-abdurrahman@nexthop.ai>
- <20260117012136.265220-4-abdurrahman@nexthop.ai>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
+	nicoleotsuka@gmail.com, lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, 
+	tiwai@suse.com, linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl,audmix: Add support for
+ i.MX952 platform
+Message-ID: <20260117-versed-proficient-pigeon-bd0b2a@quoll>
+References: <20260116101648.377952-1-shengjiu.wang@nxp.com>
+ <20260116101648.377952-2-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,20 +61,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260117012136.265220-4-abdurrahman@nexthop.ai>
+In-Reply-To: <20260116101648.377952-2-shengjiu.wang@nxp.com>
 
-On Sat, Jan 17, 2026 at 01:21:36AM +0000, Abdurrahman Hussain wrote:
-> This makes the driver work on platforms where interrupts are either not
-> provided or broken.
+On Fri, Jan 16, 2026 at 06:16:47PM +0800, Shengjiu Wang wrote:
+> The specific feature for AUDMIX on i.MX952 is that it can be bypassed,
+> so add fsl,amix-bypass property for this feature, besides this there is
+> no power domain defined on i.MX952, so make power-domains to be
+> dedicated to i.MX8QM.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  .../devicetree/bindings/sound/fsl,audmix.yaml | 35 +++++++++++++++++--
+>  1 file changed, 33 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,audmix.yaml b/Documentation/devicetree/bindings/sound/fsl,audmix.yaml
+> index 3ad197b3c82c..50fb08460b4f 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,audmix.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,audmix.yaml
+> @@ -34,7 +34,9 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    const: fsl,imx8qm-audmix
+> +    enum:
+> +      - fsl,imx8qm-audmix
+> +      - fsl,imx952-audmix
+>  
+>    reg:
+>      maxItems: 1
+> @@ -75,12 +77,41 @@ properties:
+>          unevaluatedProperties: false
+>          description: Output port to SAI RX
+>  
+> +  fsl,amix-bypass:
+> +    type: boolean
+> +    description:
+> +      The audmix module is bypassed from hardware.
 
-Please slow down with your patchset. One patchset per 24h so you will
-actually give people chance to review them. I just posted comments for
-your v1.
+I don't understand why device AUDMIX would have property saying AUDMIX
+(so itself) can by bypassed. If you bypass the device itself, what do
+you configure here?
 
-Also one more note (please address v1 comments first):
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
+
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - clocks
+>    - clock-names
+> -  - power-domains
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8qm-audmix
+> +    then:
+> +      required:
+> +        - power-domains
+> +      not:
+> +        required:
+> +          - fsl,amix-bypass
+
+fsl,amix-bypass: false
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx952-audmix
+> +    then:
+> +      not:
+> +        required:
+> +          - power-domains
+
+Not sure what you want to say here, but disallowing properties is shown
+in example-schema (:false).
 
 Best regards,
 Krzysztof
