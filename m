@@ -1,150 +1,114 @@
-Return-Path: <devicetree+bounces-256301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A381D38A63
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:47:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E424D38A8B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:15:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 27D8B3008790
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jan 2026 23:47:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C006304F88A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3D030EF6A;
-	Fri, 16 Jan 2026 23:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5232B153598;
+	Sat, 17 Jan 2026 00:15:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="K7RnfShy"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="SlseDU4b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9367E13D891
-	for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 23:47:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790071548C;
+	Sat, 17 Jan 2026 00:15:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768607246; cv=none; b=S7A8G+PygeTAz+RpRuJAUyKmodY7sOol3WdFnHym8rI3No+5G0psUHeby12ntAzhGYhGlSdB/pI5LSpmv/KjVzdXRMVNJ8UEsXf21UHO5FZEO3EHgw7I1xYj5p/cT8qQVKWEHlSlh3KlfPpYPi29eUpEdxtO1RJlv+G0kkcFqwQ=
+	t=1768608916; cv=none; b=mXJU3QjfqANRYgyk1LbCb9ruDJn1bWcrnURmZU2AGpAIB/XSqpxbf5An4Udj0JiweAEglEx7KZLIIhdfJ/onY6H3goTsl/rlr6fzB6HaXebixou0OkjwDacwiVQqRzq5pxYyl8K3sQHQxqs4CI1zvSnAe1550Q9A6Xw1scX/+EQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768607246; c=relaxed/simple;
-	bh=YCnOrVHDXhWdzQMwWovwcpqiz8uUp4sj1VBz21E2ms4=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=hVtbqcXrXAFIlIr8LbQMDMLmQs3ehZvifrJXrQjUll6YtjbYcKKNCMFLbAwRuswMTtPgg9Y/vTECnGarbXwizk8dT+8ixTyIkBFztDJRVM2pM6LztPlw2HzqRwPCxpLrPJObgnTDgQy/wYQ6wOuKgq9qxrI2ikL3iscDWIuabuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=K7RnfShy; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-8c5386f1c9fso408883285a.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 15:47:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek.ca; s=google; t=1768607243; x=1769212043; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=shfPp2KoeQSvAsE+lzy86eQNZOUQOmOwfsSErLe5hXk=;
-        b=K7RnfShykN/sP6cAjw0avQrmeFcPZ1nsq6m7Lf56G36KkxqT9HfDAEmFnyAop85t00
-         /nB724VZ9OTdVZeXO8clT4AUZZalMpsMiNiZGfKcSpGc7WOqIYpZbACf8TJNvMblOrYj
-         SUHCTLgJht3Vj7MKnirMHokMnBg657CRaXIWBea5bMvkrERfBLH6ymrXjHEdo8x7wjUU
-         erZ80J2xpg6pqilNwAYu9vWpqYcU36FyNdvqSw9xCjNK8xcIOsl6ll8BHvJc7fx5AQjM
-         CcCA+syRI5FlOO6iEclAXe4D6ejXTjfLtUZxcU13dcFibqDrxGMwq1s/ybYJmNPoBr6B
-         LCVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768607243; x=1769212043;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=shfPp2KoeQSvAsE+lzy86eQNZOUQOmOwfsSErLe5hXk=;
-        b=AX1mAaYq2o47FctCemHsJLj8Oku4pkBD+BHvats8SAU9STsjkWWmCzQgeCtw/w8eyv
-         d6t6zrE4Y3+HKuFe1ALJu1BesyKlHjaHAzG688BuGRucRbDqzGxJVRn+W7pc9tJDHlaK
-         GojpPqLYdE5S+h/brcONCIKelEdpAQO2tIDJLPhKYoMLbsBd0kDQ42iJ5tqboF+uCQGA
-         pGRE5NYQ8gKtCkAn6VK/Gyz8Uj39MDzMAkdmz7qgRpb1AUiOKe1qxWWSkXx9D7jdvGwa
-         FR4hQzi1do4AkvKcP+bwNj90diYC9hqg0cNAJexMDo+Hy2u6TBIo3NnhkWj/82Nrs6cv
-         FELg==
-X-Forwarded-Encrypted: i=1; AJvYcCVWu6anmcr8ok4LQfPR31tLhvuTykHRBN7/DNrtwNKqWbe1oHLd43PfzAHOw4QmrMfNt93N0B3pzVxx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0bZOjd8VIRVRH6VKYGC9StLyzzkdeBSxxOCFR8xi+IJ7V9Tuu
-	De5OqrrpLoapNmSXyNOqpbveghkxI1IYFaSZlN+QaAJoOxl46vQI3xY/F+r5k9OKaLA=
-X-Gm-Gg: AY/fxX7lWaFLhI0i0uqQMsKK27ZB6m2WK3UY9PWOEYyzlWou8Q2uZtlZGWhxY/qW+T3
-	QoravSOPC+R4pTdb0YJwjCMKDdy7O9AAvNEbIMi63EJthwLTkxdX+4yDdqIpKUmw/EoufYlfLU7
-	gNl6eoTffC/y46dGhjWqLoJXNCrqcpnzGXtLpn9XrPE0efSSX3uevor3VqkZe8TpPl3NnVU1h8i
-	JS8vZMYk6bZrfteYCuakOe8tEIPAM04vAoeKHwZBw2XxhroFzUmFq4B2ArKx2pe1f2AN/6+iPt4
-	zJcf1rSr2j5o88/PfK+p8JNjATd5rvQN5kWIUSXYN+NS9me4YMjAdSHenppQZyz4u8uNqZy7Bxj
-	WGHQHMFL8LQv84G8JlN03395/9PFu7Dyd/w/GNnuM6nswujnzycCvkpIAE2bWfLv67gfpuhxn4G
-	87rsD4UGoUL6E1oM4MlrT4yHREpYwk3kR1eE1HFqJGoHl9KgKOVP1fQKrLQw==
-X-Received: by 2002:a05:620a:1729:b0:8a2:4d02:eeb3 with SMTP id af79cd13be357-8c6a68ed2b2mr616124385a.11.1768607243488;
-        Fri, 16 Jan 2026 15:47:23 -0800 (PST)
-Received: from [192.168.0.189] (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8942e6d6366sm39414796d6.51.2026.01.16.15.47.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jan 2026 15:47:23 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
- Rajendra Nayak <quic_rjendra@quicinc.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>
-References: <20251127212943.24480-1-jonathan@marek.ca>
- <176859948742.425550.1764024067188709567.b4-ty@kernel.org>
- <79b3e8ae-134c-df6d-396d-9b7f766ef666@marek.ca>
- <ycygvgw4uwm6bb7i4fbuxmzb5a42zmn6atwwdznicvili3jh2h@eaa4ddtkwc5z>
-From: Jonathan Marek <jonathan@marek.ca>
-Message-ID: <e6b0aedb-955a-5883-524c-f602ca619681@marek.ca>
-Date: Fri, 16 Jan 2026 18:45:54 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+	s=arc-20240116; t=1768608916; c=relaxed/simple;
+	bh=UBrEWpU3wE9Qp8IwcuyIpngZVwzcRikJyzYK3PFZDN8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pZIGHyw0hY164c9O8UmzfeztRFsLkUxqAY7MKXB9FcXzpNs1WRqumjWoKonmJgMAFREQlgb/PFCNScedFOYE6j6mu3itlnI16QmOXmfIG3005AerTkmeKZPbf3Mep0lXepO5HydV6og2XMCUgnk5drd86FzdkrzyzvgKyj3yVAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=SlseDU4b; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dtH6d2WbNz9vC5;
+	Sat, 17 Jan 2026 01:05:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768608329;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vKRa8QawqDzIvt7NlwnnBTWgzNog8p4CKpjNhH/1PZU=;
+	b=SlseDU4bBi5Mixp/2CUPctSORnoqKjW7G6NTe8NUczv47/TLpZJ3wSLsb0RXNXdcvCe8ho
+	W80dT5gSyPaLPdDCwH5/e1dUQ8LPZt8/epqox+nvOUXgzuGP5E/W8w9KOfS86dOgbDcM4M
+	oCOl11muFj5GcQ+9rhQnVEbH69iboRxSKq7Z0ZJXHVdL2wSwBCxIvnVjNbLdkjcEmoxXpA
+	ja5AaeZV4y9tXQQszI3jY270IVI6ijnsXBOwd4njHFSfShLrRb6o1WAvJrWUI/30YxsN+a
+	iE327eJwfjgLsVG+qaGImQz+UqnwHApRCW1VPvWaxBkniPZPyE9E/ClljNBLFg==
+Message-ID: <7d2554e2-bc69-48c3-89c7-deb701d8a12b@mailbox.org>
+Date: Sat, 17 Jan 2026 01:05:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <ycygvgw4uwm6bb7i4fbuxmzb5a42zmn6atwwdznicvili3jh2h@eaa4ddtkwc5z>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Fork Waveshare panels
+ into separate document
+To: Rob Herring <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>,
+ Simona Vetter <simona@ffwll.ch>, Thierry Reding <thierry.reding@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20260113000715.231238-1-marek.vasut+renesas@mailbox.org>
+ <20260115174047.GA930768-robh@kernel.org>
+ <85ff0eb2-d942-4f85-8f1d-c5982bd31bec@mailbox.org>
+ <CAL_Jsq+ELqDhPHeSL=Hybaihmj3QbXt3VmrJ2tC8iXvdoVFNfQ@mail.gmail.com>
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAL_Jsq+ELqDhPHeSL=Hybaihmj3QbXt3VmrJ2tC8iXvdoVFNfQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: edcd393bf97bbd689c1
+X-MBO-RS-META: r6q7zznwwkxqqc151rrxyqkmbmiaaqgw
 
-On 1/16/26 6:19 PM, Bjorn Andersson wrote:
-> On Fri, Jan 16, 2026 at 05:53:59PM -0500, Jonathan Marek wrote:
->> It turns out this change will make things worse for the (unfortunately
->> common) EL1+64GB+brokenfirmware case.
+On 1/16/26 4:26 AM, Rob Herring wrote:
+> On Thu, Jan 15, 2026 at 1:20 PM Marek Vasut <marek.vasut@mailbox.org> wrote:
 >>
->> Because of that I think the Fixes: tag and "(fix 64GB models)" should be
->> dropped from the commit message. (I can also send a v2 with extra info in
->> the commit message if needed)
+>> On 1/15/26 6:40 PM, Rob Herring wrote:
+>>> On Tue, Jan 13, 2026 at 01:05:30AM +0100, Marek Vasut wrote:
+>>>> Move the Waveshare panels description into separate document, so they
+>>>> can be properly described with compatible = "waveshare,...", "panel-dpi"
+>>>> and attached to "waveshare,dsi2dpi" bridge.
+>>>
+>>> But why do we need "panel-dpi"? Adding that requires changing a DT.
+>>> Can't you make the kernel handle these compatible strings as a
+>>> "panel-dpi" without the compatible?
+>> I can, but wouldn't we then miss the more specific compatible strings in
+>> the DT ?
 >>
+>> compatible = "waveshare,13.3inch-panel", "panel-dpi";
+>>                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+>>                this ... would be removed. Do we want that ?
 > 
-> It seems to me that neither of these to actions will affect the impact
-> of the patch. What does "make things worse" imply?
+> No, drop "panel-dpi". Or really, don't add it.
 > 
-
- From what Stephan wrote [1]: Without this change, devices that use 
-SMMUv3 (PCIe) use bounce buffers for memory outside the 36-bit range. 
-With this change they won't use SWIOTLB and it will crash instead. (it 
-would still crash for other reasons without this change)
-
-[1] https://patchwork.kernel.org/comment/26681014/
-
-> Are we better off dropping this patch?
-
-This patch gets EL2+64GB (and presumably EL1 as well if OEM provides 
-updated EL2 firmware) working without crashes. That's better than having 
-all 64GB cases be broken.
-
+>>
+>> The other option would be to add the timings into panel-simple driver,
+>> then we wouldn't have to change the bindings at all. Maybe that would be
+>> preferable ?
 > 
-> Regards,
-> Bjorn
-> 
->> On 1/16/26 4:39 PM, Bjorn Andersson wrote:
->>>
->>> On Thu, 27 Nov 2025 16:29:42 -0500, Jonathan Marek wrote:
->>>> Unlike the phone SoCs this was copied from, x1e has a 40-bit physical bus.
->>>> The upper address space is used to support more than 32GB of memory.
->>>>
->>>> This fixes issues when DMA buffers are allocated outside the 36-bit range.
->>>>
->>>>
->>>
->>> Applied, thanks!
->>>
->>> [1/1] arm64: dts: qcom: x1e: bus is 40-bits (fix 64GB models)
->>>         commit: b38dd256e11a4c8bd5a893e11fc42d493939c907
->>>
->>> Best regards,
->>>
+> Why can't the "panel-dpi" driver match to"waveshare,13.3inch-panel"?
+It could, but then, if I am already patching that panel-simple driver, I 
+can also simply include the timings in it, just like many other panels do.
 
