@@ -1,167 +1,234 @@
-Return-Path: <devicetree+bounces-256341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D39D38B89
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 03:20:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5503D38B8C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 03:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 55515302D8A2
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 02:20:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E639301F8C7
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 02:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3E12F39B8;
-	Sat, 17 Jan 2026 02:20:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ly19mmnz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9561302742;
+	Sat, 17 Jan 2026 02:23:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C571DED4C;
-	Sat, 17 Jan 2026 02:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C892D47F1;
+	Sat, 17 Jan 2026 02:23:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768616454; cv=none; b=QpnZzfSNE4odnv41dswQOdEljkUlE3HayJnIFH8xuvvozUhKTAllY19e5ZQc3WayqAhTU8CbZA7ZwjxwUxLy/cfpQIRWCdkchRiS5YPruNc/PKuxo86QdZHCcx5UsaqITBrSVOnNXptQ3ivFE993DFnLKe/vupIfUszkq0Jm0wc=
+	t=1768616598; cv=none; b=KgRrxsRySCWnrZ+uqLFEvUSslBc7TZxbSeXmBt2aDbUXJT29v7dJSBqgKQc42zuos+Vu3jRAfWhezw38Qvmfq6vgjS1NOyOauKz25SaUfLRsJXRh/Q1hwZxzZiBwTmm3KBlq4p0fN7Ey1mOJGS41l5HLlK+iyqPSASyTOOy3qgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768616454; c=relaxed/simple;
-	bh=INs+6hwwqSyR6Q/SwGX7iuQFBsJkkf6pJ1jUIyZQ6iw=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=slo4ZApyZulzOPw/5QbxYq6l5UORMKikPqz3bHICMb7G8nWL9s1ZhuJxQjHc8ry1eE0RiefPWAT5i2jvSwlQDmfZpVVvxrq/u5BHZNK6PJRNuNKYV6NEwMSllr60+2QQgNkfmkhGeouKO8hWWXU9hXm/9Bvze6rsp4g2v5ZygjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ly19mmnz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BB6DC116C6;
-	Sat, 17 Jan 2026 02:20:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768616453;
-	bh=INs+6hwwqSyR6Q/SwGX7iuQFBsJkkf6pJ1jUIyZQ6iw=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=Ly19mmnzSKl5PrNFIkOUwNJwbNc5gOxdZhJ95MGtchDMfarRg+N9NsbHKT8pKcRUF
-	 bbnqUt6eGXwJHhsFwQi2eTavB2oK7SDSrVLIFP5jtilvBrIX1zFLQx63daovDsvcv9
-	 xp1xYqCbCA0zU+HrKqZUurtCJ9sGH8yuslG38KPgKTzg+BisdwMcpZgQJiA/2Gtg42
-	 a+6LarLDL40yUOe59X+AK6DG3wYl7PBXcMlvfTRQN+eZJQMwM79Nusk2ppnArkv9uM
-	 DTe4shc831UISeo7tnJuN3dRkF+AKYKM33UL8oTBy6HV+feZnPRuoyQRTEg1wh0AV8
-	 bAlG7TeVrZeSQ==
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 16 Jan 2026 20:20:52 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1768616598; c=relaxed/simple;
+	bh=/UAhLa/7ss/kYvWOVngFLYeYmnzD83synF/GHKAN2GI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=UZx8J+WVflZ7b1AUOr4jxveaT7Ii6KSAwsUuevoqGkAE1hYl21n4cBsgipZIIDE+aeg2ni65ripUanCcmuwvmv/VCjqx+j5YDXmMuzAth1bFZhRdnH7nqN8TwZEwEpbrnJO0EMYLr03eayCC/FUOmRvwoh8JWbGZwSfMEsbulUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vgvy0-000000005TO-1jX2;
+	Sat, 17 Jan 2026 02:23:08 +0000
+Date: Sat, 17 Jan 2026 02:22:59 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: [PATCH net-next v6 0/4] net: dsa: initial support for MaxLinear
+ MxL862xx switches
+Message-ID: <cover.1768615235.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: phone-devel@vger.kernel.org, Tony Luck <tony.luck@intel.com>, 
- devicetree@vger.kernel.org, Kees Cook <kees@kernel.org>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Gabriel Gonzales <semfault@disroot.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux@mainlining.org, Konrad Dybcio <konradybcio@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-hardening@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Biswapriyo Nath <nathbappai@gmail.com>
-To: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-In-Reply-To: <20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org>
-References: <20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org>
-Message-Id: <176861636288.2528721.260536635040675678.robh@kernel.org>
-Subject: Re: [PATCH v2 0/7] Initial Redmi Note 8T support and more
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+This series adds very basic DSA support for the MaxLinear MxL86252
+(5 PHY ports) and MxL86282 (8 PHY ports) switches.
+
+MxL862xx integrates a firmware running on an embedded processor (Zephyr
+RTOS). Host interaction uses a simple API transported over MDIO/MMD.
+This series includes only what's needed to pass traffic between user
+ports and the CPU port: relayed MDIO to internal PHYs, basic port
+enable/disable, and CPU-port special tagging.
+
+Follow up series will bring bridge, VLAN, ... offloading, and support
+for using a 802.1Q-based special tag instead of the proprietary 8-byte
+tag.
+---
+basic DSA selftests were run, results:
+ * no_forwarding.sh: all tests PASS
+ * bridge_vlan_unaware.sh: all tests PASS
+ * bridge_vlan_mcast.sh: all tests PASS
+ * bridge_vlan_aware.sh: all tests PASS
+ * local_termination.sh: all tests PASS or XFAIL, except for
+TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address   [FAIL]
+        reception succeeded, but should have failed
+TEST: VLAN over vlan_filtering=1 bridged port: Unicast IPv4 to unknown MAC address, allmulti   [FAIL]
+        reception succeeded, but should have failed
+
+As obviously this is mostly testing the Linux software bridge at this point
+I didn't bother to run any of the FDB or MDB related tests.
 
 
-On Fri, 16 Jan 2026 16:54:42 +0100, Barnabás Czémán wrote:
-> Redmi Note 8 and 8T are sibling devices the only difference
-> is Redmi Note 8T have NFC.
-> This patch series is commonizing Redmi Note 8 devicetree
-> for a base for both devices.
-> 
-> The patch series also contains some fixes for Redmi Note 8:
-> - Fix reserved memory ranges, they were wrongly defined.
-> - Remove board-id, board-id is not neccessary for the bootloader.
-> - Fix reserved-gpio-ranges the reserved ranges was wrongly
-> defined what caused the device crash on the boot.
-> - Remove unnecessary usb-extcon, gpio102 is related to DisplayPort
-> what is not supported by these devices.
-> - Use memory-region property for framebuffer.
-> 
-> Depends on:
-> [1] https://lore.kernel.org/all/20251229142806.241088-2-krzysztof.kozlowski@oss.qualcomm.com/
-> 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
-> ---
-> Changes in v2:
-> - Fix copyright in sm6125-xiaomi-ginkgo.dts as requested.
-> - Use memory-region property for the framebuffer.
-> - Add comment about the NFC.
-> - Remove msm-id change in favor of [1].
-> - Link to v1: https://lore.kernel.org/r/20260112-xiaomi-willow-v1-0-8e4476897638@mainlining.org
-> 
-> ---
-> Barnabás Czémán (7):
->       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Remove board-id
->       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct reserved memory ranges
->       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Set memory-region for framebuffer
->       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Remove extcon
->       arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix reserved gpio ranges
->       dt-bindings: arm: qcom: Add Xiaomi Redmi Note 8T
->       arm64: dts: qcom: Add Redmi Note 8T
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
->  arch/arm64/boot/dts/qcom/Makefile                  |   3 +-
->  .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi | 301 +++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts  | 285 +------------------
->  arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dts  |  15 +
->  5 files changed, 320 insertions(+), 285 deletions(-)
-> ---
-> base-commit: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda
-> change-id: 20260111-xiaomi-willow-448552f02762
-> prerequisite-message-id: <20251229142806.241088-2-krzysztof.kozlowski@oss.qualcomm.com>
-> prerequisite-patch-id: 1bc49c0e2bec1a47667df776e1ab265b0699ea35
-> 
-> Best regards,
-> --
-> Barnabás Czémán <barnabas.czeman@mainlining.org>
-> 
-> 
-> 
+Changes since RFC v5
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+
+2/4 net: dsa: add tag format for MxL862xx switches
+ * remove unnecessary check for skb != NULL
+ * merge consecutively printed warnings into single dev_warn_ratelimited
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * no changes
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * include bridge and bridgeport API needed to isolate ports
+ * remove warning in .setup as ports are now isolated
+ * make ready-after-reset check more robust by adding delay
+ * sort structs in order of struct definitions
+ * best effort to sort functions without introducing additional prototypes
+ * always use enums with kerneldoc comments in mxl862xx-api.h
+ * remove bogus .phy_read and .phy_write DSA ops as the driver anyway registers
+   a user MDIO bus with Clause-22 and Clause-45 operations
+ * various small style fixes
+
+Changes since RFC v4
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * no changes
+
+2/4 net: dsa: add tag format for MxL862xx switches
+ * drop unused precompiler macros
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * fix indentation
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * output warning in .setup regarding unknown pre-configuration
+ * add comment explaining why CFGGET is used in reset function
 
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Changes since RFC v3
+1/4 dt-bindings: net: dsa: add MaxLinear MxL862xx
+ * remove labels from example
+ * remove 'bindings for' from commit title
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+2/4 net: dsa: add tag format for MxL862xx switches
+ * describe fields and variables with comments
+ * sub-interface is only 5 bits
+ * harmonize Kconfig symbol name
+ * maintain alphabetic order in Kconfig
+ * fix typo s/beginnig/beginning/
+ * fix typo s/swtiches/switches/
+ * arrange local variables in reverse xmas tree order
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * unchanged
 
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Deps: looking for dependencies matching 1 patch-ids
- Deps: Applying prerequisite patch: [PATCH RFT] arm64: dts: qcom: sm6125-ginkgo: Fix missing msm-id subtype
- Base: f417b7ffcbef7d76b0d8860518f50dae0e7e5eda (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-Warnings in base: 266
-Warnings after series: 272
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org:
-
-arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dtb: geniqup@4ac0000 (qcom,geni-se-qup): #address-cells: 2 was expected
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
-arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dtb: geniqup@4ac0000 (qcom,geni-se-qup): #size-cells: 2 was expected
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
-arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dtb: geniqup@4cc0000 (qcom,geni-se-qup): #address-cells: 2 was expected
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
-arch/arm64/boot/dts/qcom/sm6125-xiaomi-willow.dtb: geniqup@4cc0000 (qcom,geni-se-qup): #size-cells: 2 was expected
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * poll switch readiness after reset
+ * implement driver shutdown
+ * added port_fast_aging API call and driver op
+ * unified port setup in new .port_setup op
+ * improve comment explaining special handlign for unaligned API read
+ * various typos and formatting improvements
 
 
+Changes since RFC v2
+1/4, 2/4, 3/4: unchanged
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix return value being uninitialized on error in mxl862xx_api_wrap()
+ * add missing description in kerneldoc comment of
+   struct mxl862xx_ss_sp_tag
 
 
+Changes since initial RFC
 
+1/4 dt-bindings: net: dsa: add bindings for MaxLinear MxL862xx
+ * better description in dt-bindings doc
+
+2/4 net: dsa: add tag formats for MxL862xx switches
+ * make sure all tag fields are initialized
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * new patch
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * make use of struct mdio_device
+ * add phylink_mac_ops stubs
+ * drop leftover nonsense from mxl862xx_phylink_get_caps()
+ * fix endian conversions
+ * use __le32 instead of enum types in over-the-wire structs
+ * use existing MDIO_* macros whenever possible
+ * simplify API constants to be more readable
+ * use readx_poll_timeout instead of open-coding poll timeout loop
+ * add mxl862xx_reg_read() and mxl862xx_reg_write() helpers
+ * demystify error codes returned by the firmware
+ * add #defines for mxl862xx_ss_sp_tag member values
+ * move reset to dedicated function, clarify magic number being the
+   reset command ID
+
+Daniel Golle (4):
+  dt-bindings: net: dsa: add MaxLinear MxL862xx
+  net: dsa: add tag format for MxL862xx switches
+  net: mdio: add unlocked mdiodev C45 bus accessors
+  net: dsa: add basic initial driver for MxL862xx switches
+
+ .../bindings/net/dsa/maxlinear,mxl862xx.yaml  | 154 ++++++
+ MAINTAINERS                                   |   8 +
+ drivers/net/dsa/Kconfig                       |   2 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/mxl862xx/Kconfig              |  12 +
+ drivers/net/dsa/mxl862xx/Makefile             |   3 +
+ drivers/net/dsa/mxl862xx/mxl862xx-api.h       | 469 +++++++++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-cmd.h       |  44 ++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.c      | 230 ++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.h      |   5 +
+ drivers/net/dsa/mxl862xx/mxl862xx.c           | 498 ++++++++++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx.h           |  25 +
+ include/linux/mdio.h                          |  13 +
+ include/net/dsa.h                             |   2 +
+ net/dsa/Kconfig                               |   7 +
+ net/dsa/Makefile                              |   1 +
+ net/dsa/tag_mxl862xx.c                        | 112 ++++
+ 17 files changed, 1586 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/maxlinear,mxl862xx.yaml
+ create mode 100644 drivers/net/dsa/mxl862xx/Kconfig
+ create mode 100644 drivers/net/dsa/mxl862xx/Makefile
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-api.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.h
+ create mode 100644 net/dsa/tag_mxl862xx.c
+
+-- 
+2.52.0
 
