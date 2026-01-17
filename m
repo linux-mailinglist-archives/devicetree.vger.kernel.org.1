@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-256360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C20DD38CAA
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 06:35:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B701D38CBD
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 06:42:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B5D3730022CC
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 05:35:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DE9A0303AAE4
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 05:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21805327BF4;
-	Sat, 17 Jan 2026 05:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800C0329386;
+	Sat, 17 Jan 2026 05:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GjcOSWVI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rTGYgQvI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F3B32694D;
-	Sat, 17 Jan 2026 05:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595F0328B77;
+	Sat, 17 Jan 2026 05:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768628117; cv=none; b=RPjuXwD9NLatWFoJg9RY7mOkSN88bCM8X5LkZnNVR63s2is/LHS8/9u1PS7GIqciqnJE43h522t8hcJnWafSqMsiRSMix/eMgAX172xPXvQkAY7loenxf6qa+KnyB8GctB2w5xyG2sC8C53LKbmCIWFcZkYiZeOQW75Pj8GSMvk=
+	t=1768628544; cv=none; b=UhsJOKRN2lPD1Cqr1qLgRoIhhWareck0Pkk7hZOI0a1SxxKt5GQwxPCrOQbhyhULew+oyto2v7cFquadpeB3aanuba1WBGVCXxW6zE//Ni0YIFRDwMYS9qhveUI9T3/nI1gVy2H6nrxIY/uL7GnHk3cDB8QPCViiMTotySm405g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768628117; c=relaxed/simple;
-	bh=ceJeR19228xDyeAf7C6ytS7EXYJ6ms0mb5AIMVr7rVU=;
+	s=arc-20240116; t=1768628544; c=relaxed/simple;
+	bh=bwlkfXsLFvt1yMomv6AquM31sE55b0EH0gvYr8WZzms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nX1grPcnJjqGMzr/FwJuaHZIeJLUNL6Bsn0R6/asxlnKgsVKJ+jL99GeCWZ0y2DEKamydZNtMUJegisTf2SXUjbGTo9Z6URJBcnc6ijTxy+nKNFRA5+S1emc5QNf8XzyZbsTVqb6doYr8toij53H0y5/p3y3jBOuHgGBVcl2EeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GjcOSWVI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F4074C4CEF7;
-	Sat, 17 Jan 2026 05:35:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MDoyoI1gvVUiexRTyIJTeukHsT+IxZW0zYQAAh/4mnQNb4jWo84S2gQgRE5FanguL34A1cFPQNbQGjMXlX26IUUt/DFPhVahc8pC85dhYU+2mvJcZ/joVuNzeenPrpfommZ6Mm71bWZpk09b5Hbpq4RCOG9oNIxmBiz6V+ziidM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rTGYgQvI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F3D1C4CEF7;
+	Sat, 17 Jan 2026 05:42:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768628116;
-	bh=ceJeR19228xDyeAf7C6ytS7EXYJ6ms0mb5AIMVr7rVU=;
+	s=k20201202; t=1768628543;
+	bh=bwlkfXsLFvt1yMomv6AquM31sE55b0EH0gvYr8WZzms=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GjcOSWVIRQ1clNcdTf12UnxA2dLkPUV6bd8jHSggg3bYjltwQY6EgMzkO/wo7ofv3
-	 Mc7+T4A/1R6lMhetZrejlNY2J5oVUsaSKaQKvGlCb7z/SUqCGPUbXAHDTMEBfYfVZt
-	 e/sebQmpYqjhrfvxuRPPZua0O8LyDAoHV7RUqn5oduU0FIO5yS/GHf/Lr7rDcoXbij
-	 BQhp+u2kwv4xfMBYIoP2OSa5t0qbumXrsILxU7LudZqp14zwwUTf9UnDjXmyUdoNIv
-	 +I1FXS9aKFRmQ5Zk5WTHhHXSkxChrS6WqAcAFZBFbyXyJXqtyIYCrBUivJtuEJ/0Lp
-	 q7ifkYnt7O0PA==
-Date: Sat, 17 Jan 2026 13:35:09 +0800
+	b=rTGYgQvIkJWzeGmn4+Li1EgCuHH5sDjQ+TCKichzFVNRD9DHexoXGZctijM5n6aYy
+	 E12la7VKZhswF73Y4TAVO0w6YITesx7mQlehrWGvtTtzZTFxbjW/skXJyxINVrXfGa
+	 fmZS85gcfzVNPLJMoDMLBob8wS/Deiw0qozb7Z7djI5GXQt+eKVyonAK9FfY6cfJTZ
+	 02DtGKJtxtNrpPp9xfG4729ffZPSRbeap3egfkVQIKeLPodm7UDpAKFLCaHBzbNFx8
+	 zZ01i+iwPtrT8O+k4OFsEkphFvaT/JK6iESKgMD6sZY/rDaL8AGMiFr7YulpIg5g5H
+	 osKBQlrfpQu4A==
+Date: Sat, 17 Jan 2026 13:42:16 +0800
 From: Shawn Guo <shawnguo@kernel.org>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.li@nxp.com>,
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rain Yang <jiyu.yang@oss.nxp.com>, Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
-Message-ID: <aWsfjTMz04r07bEU@dragon>
-References: <20251129143220.14834-1-marek.vasut@mailbox.org>
+	Fabio Estevam <festevam@gmail.com>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	Frank Li <frank.li@nxp.com>
+Subject: Re: [PATCH v23 0/7] firmware: imx: driver for NXP secure-enclave
+Message-ID: <aWshOMxbdqOI9KA9@dragon>
+References: <20251219-imx-se-if-v23-0-5c6773d00318@nxp.com>
+ <AM9PR04MB860402EC5CB2FB8FC1A34287958FA@AM9PR04MB8604.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +66,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251129143220.14834-1-marek.vasut@mailbox.org>
+In-Reply-To: <AM9PR04MB860402EC5CB2FB8FC1A34287958FA@AM9PR04MB8604.eurprd04.prod.outlook.com>
 
-On Sat, Nov 29, 2025 at 03:31:30PM +0100, Marek Vasut wrote:
-> The i.MX95 imx-sm introduced new GPU_CGC clock since imx-sm commit
-> ca5e078833fa ("SM-128: Add clock management via CCM LPCG direct control")
-> which are downstream clock of GPU clock. These new GPU_CGC clock
-> gate the existing GPU clock. Currently, without clk_ignore_unused
-> on kernel command line, those new GPU_CGC clock are unused and the
-> kernel will disable them. This has no impact on i.MX95 A0/A1, but
-> does prevent GPU register access from working at all on i.MX95 B0.
-> The GPU_CGC clock are present on both i.MX95 A0/A1/B0, therefore
-> update the DT such, that the GPU core clock are the GPU_CGC clock.
-> When the panthor driver enables the GPU core clock, it enables both
-> the GPU_CGC as well as its parent GPU clock.
+On Wed, Jan 14, 2026 at 08:38:44AM +0000, Pankaj Gupta wrote:
+> Hi Shawn,
 > 
-> Fixes: 67934f248e64 ("arm64: dts: imx95: Describe Mali G310 GPU")
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+> If there are no new comments.
+> Requesting to consider this patch-set to be merged to mainline.
 
-Applied, thanks!
+Hmm, it seems that kernel test robot has complaints on patch 3/7?
+
+Shawn
 
