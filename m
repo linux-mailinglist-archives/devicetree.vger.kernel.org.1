@@ -1,134 +1,186 @@
-Return-Path: <devicetree+bounces-256372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36804D38DE7
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:52:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6380FD38E0B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 12:17:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7B33E301897B
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 10:52:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A939D3014BDD
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 11:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD23830E851;
-	Sat, 17 Jan 2026 10:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5706F30C601;
+	Sat, 17 Jan 2026 11:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FZsyPC20"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MIWV31P1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F242C032C;
-	Sat, 17 Jan 2026 10:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F022F2040B6;
+	Sat, 17 Jan 2026 11:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768647151; cv=none; b=OPPV0L2WNs2nkKKF+NVjH4fFrx7kDetV+fofUij8K59t+oKMGZge1eBP3t3q/Mh4ITZ/HRMQtXP3zBo1k+Tj7cmjWhP4G5pYzugzFDeZDpV3YTmcFIPjl1fWqipfBRpCX+FMoW2eaqp14pKyEt4QgXvNwV3L2U0V5cPkuQDMgKk=
+	t=1768648620; cv=none; b=Qy+XDIO5YpDCw51Ofp9BvL7t+QFQt3wTmVz9Q3F0psjW7Mixhim/oOGhjF1d3oVdEX3eSGAVXPNNZnja+3vN4U87vwFH0rhwD/TF1jd3C6WBCCoHAsERf5M898QtVV68o7yPT6C2SVpPQKB4Ii8lSgvmyYB2a0tO1Ov0fpYzPvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768647151; c=relaxed/simple;
-	bh=D8rJ8RkHTEhL7rsO2/lejXlsHMvngtEGWU8Zg3Qg2/Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ms4hTapdg5B7g7nTO0LsJ8vfxaTpQS7yFEFGVQ4vS75DWBPvFvI6eZS0ghedTkLqEmDBD58cLVH+InRGJaOi0psLZ7Wovq7Sg/sHO4eC71vcxjmXYrsoD4BTuVyKGZlTjA7iQ5XoxEIkSziJX9/nN0+oq6ntLigHnwxWRLuuhss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FZsyPC20; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8D5CC4CEF7;
-	Sat, 17 Jan 2026 10:52:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768647151;
-	bh=D8rJ8RkHTEhL7rsO2/lejXlsHMvngtEGWU8Zg3Qg2/Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FZsyPC20zx2++nHAXSOh5VxuAjLNKRGgtd3kvcfFeax0+uoT/zWHfV6uh7ad+L6hK
-	 jh2iHoKK8w3tSzNZ5FgMi4ki4NL1JJICylX3bVycryrWSPU05w65ve/Gq1N54c6iz8
-	 CeI4NvCQADkoe6QMArCAct2b5KDRgsU3ZCy1aBYf8JwQk09l4XacFzaO0eWekCH4M/
-	 oud+ajL465jxcd+BYj0Xk9kOQJhmKZ4clwrzCEVCMl1k0JW5GQi3xgqj47Lx0AN6I0
-	 QPxwo9BL1J5XbLiT9zzs78w2dpRomY0qBkAu9zJW8URF0rYebT2UNt6RncyqK/ioZe
-	 ep6LP7iehPRsA==
-Message-ID: <a3571017-c127-44a4-a096-48dd1557d5fa@kernel.org>
-Date: Sat, 17 Jan 2026 11:52:24 +0100
+	s=arc-20240116; t=1768648620; c=relaxed/simple;
+	bh=vG3VbTxQ0ezcKDCJQGrIOXOv+kGGPwQY7ihkAARSdBk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KO2JSUNFTFMV85Bou7pldHTA+fYL7DZLFCTaPbFGpUzQsqJkI7+ysnL7z70PdRopxCkjTTfR0CKupjYp6HsBZs0tyielr5I0IYZS1PDpYNKAkeB7t1nwmXcw6pIm0ISEIPBgXU7sosZyqnBkN6aFxT9xAf31oSex+z8XWUPncfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MIWV31P1; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768648618; x=1800184618;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vG3VbTxQ0ezcKDCJQGrIOXOv+kGGPwQY7ihkAARSdBk=;
+  b=MIWV31P1HXNKlIK7soOHXiMd7l4oUho4CJdmyhHR/nu38bOFd3opFGvF
+   /LC8Up/bdTT5J/OmOjEI9XLyNYZiROw6n48miWNpxRA/p1K7l+NXYsFeF
+   MTnvEsl8+7bkwu7inMOHlHxh8fqSZ9oyBFi6HfVwcWDRouCAGOcDN6bx1
+   nexWbk/4CNtSSxm+2Rqc9xaF3hG0fisxNTUGJiAVaOcDQ/TGPUdhlAV9y
+   hyhTPqM5p4CONowKHLf8XZ7Zi638cF4eTH5X1XRWd2ud5kOMFMM6jDkkL
+   n87e76lA74JylGFq2k6BJGMMyjxAe/Y5CqxUWLt6kDovbLgMFFEE9+zdV
+   g==;
+X-CSE-ConnectionGUID: ekT//rodTi+rl39ovKxTeQ==
+X-CSE-MsgGUID: iW76IBhqQeWpWGq4RkKz4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11673"; a="73574098"
+X-IronPort-AV: E=Sophos;i="6.21,233,1763452800"; 
+   d="scan'208";a="73574098"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2026 03:16:57 -0800
+X-CSE-ConnectionGUID: 8I64+JI3TPGuBWDcQKRiyQ==
+X-CSE-MsgGUID: 4aTy5/cXTzmvMWyl8MNMCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,233,1763452800"; 
+   d="scan'208";a="205066079"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 17 Jan 2026 03:16:53 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vh4IU-00000000LnQ-34V8;
+	Sat, 17 Jan 2026 11:16:50 +0000
+Date: Sat, 17 Jan 2026 19:15:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniel Golle <daniel@makrotopia.org>, Hauke Mehrtens <hauke@hauke-m.de>,
+	Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	netdev@vger.kernel.org, Chen Minqiang <ptpt52@gmail.com>,
+	Xinfa Deng <xinfa.deng@gl-inet.com>
+Subject: Re: [PATCH net-next v4 3/6] net: dsa: lantiq: allow arbitrary MII
+ registers
+Message-ID: <202601171803.vxrrhXdF-lkp@intel.com>
+References: <d5cbb8c5917197d44b62d39c9799212d1b3fe390.1768612113.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/5] dt-bindings: media: i2c: Add Sony IMX355
-To: Richard Acayan <mailingradian@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc: Robert Mader <robert.mader@collabora.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
-References: <20260117040657.27043-1-mailingradian@gmail.com>
- <20260117040657.27043-2-mailingradian@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260117040657.27043-2-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d5cbb8c5917197d44b62d39c9799212d1b3fe390.1768612113.git.daniel@makrotopia.org>
 
-On 17/01/2026 05:06, Richard Acayan wrote:
-> The IMX355 camera sensor is a camera sensor that can be found as the
-> front camera in some smartphones, such as the Pixel 3, Pixel 3 XL, Pixel
-> 3a, and Pixel 3a XL. It already has a driver, but needs support for
-> device tree. Document the IMX355 to support defining it in device tree.
-> 
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  .../bindings/media/i2c/sony,imx355.yaml       | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
-> 
+Hi Daniel,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on net-next/main]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Golle/dt-bindings-net-dsa-lantiq-gswip-use-correct-node-name/20260117-092406
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/d5cbb8c5917197d44b62d39c9799212d1b3fe390.1768612113.git.daniel%40makrotopia.org
+patch subject: [PATCH net-next v4 3/6] net: dsa: lantiq: allow arbitrary MII registers
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20260117/202601171803.vxrrhXdF-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260117/202601171803.vxrrhXdF-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601171803.vxrrhXdF-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/net/dsa/lantiq/mxl-gsw1xx.c:708:28: error: array designator index (7) exceeds array bounds (7)
+     708 |                 [GSW1XX_MII_PORT + 1 ... GSWIP_MAX_PORTS] = -1,
+         |                                          ^~~~~~~~~~~~~~~
+   drivers/net/dsa/lantiq/lantiq_gswip.h:246:26: note: expanded from macro 'GSWIP_MAX_PORTS'
+     246 | #define GSWIP_MAX_PORTS         7
+         |                                 ^
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:713:28: error: array designator index (7) exceeds array bounds (7)
+     713 |                 [GSW1XX_MII_PORT + 1 ... GSWIP_MAX_PORTS] = -1,
+         |                                          ^~~~~~~~~~~~~~~
+   drivers/net/dsa/lantiq/lantiq_gswip.h:246:26: note: expanded from macro 'GSWIP_MAX_PORTS'
+     246 | #define GSWIP_MAX_PORTS         7
+         |                                 ^
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:749:23: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
+     749 |                 [GSW1XX_MII_PORT] = GSWIP_MII_CFGp(0),
+         |                                     ^~~~~~~~~~~~~~~~~
+   drivers/net/dsa/lantiq/lantiq_gswip.h:60:28: note: expanded from macro 'GSWIP_MII_CFGp'
+      60 | #define GSWIP_MII_CFGp(p)               (0x2 * (p))
+         |                                         ^~~~~~~~~~~
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:748:33: note: previous initialization is here
+     748 |                 [0 ... GSWIP_MAX_PORTS - 1] = -1,
+         |                                               ^~
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:750:51: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
+     750 |                 [GSW1XX_MII_PORT + 1 ... GSWIP_MAX_PORTS - 1] = -1,
+         |                                                                 ^~
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:748:33: note: previous initialization is here
+     748 |                 [0 ... GSWIP_MAX_PORTS - 1] = -1,
+         |                                               ^~
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:754:23: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
+     754 |                 [GSW1XX_MII_PORT] = GSWIP_MII_PCDU0,
+         |                                     ^~~~~~~~~~~~~~~
+   drivers/net/dsa/lantiq/lantiq_gswip.h:80:27: note: expanded from macro 'GSWIP_MII_PCDU0'
+      80 | #define GSWIP_MII_PCDU0                 0x01
+         |                                         ^~~~
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:753:33: note: previous initialization is here
+     753 |                 [0 ... GSWIP_MAX_PORTS - 1] = -1,
+         |                                               ^~
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:755:51: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
+     755 |                 [GSW1XX_MII_PORT + 1 ... GSWIP_MAX_PORTS - 1] = -1,
+         |                                                                 ^~
+   drivers/net/dsa/lantiq/mxl-gsw1xx.c:753:33: note: previous initialization is here
+     753 |                 [0 ... GSWIP_MAX_PORTS - 1] = -1,
+         |                                               ^~
+   4 warnings and 2 errors generated.
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+vim +708 drivers/net/dsa/lantiq/mxl-gsw1xx.c
 
-Best regards,
-Krzysztof
+   701	
+   702	static const struct gswip_hw_info gsw12x_data = {
+   703		.max_ports		= GSW1XX_PORTS,
+   704		.allowed_cpu_ports	= BIT(GSW1XX_MII_PORT) | BIT(GSW1XX_SGMII_PORT),
+   705		.mii_cfg = {
+   706			[0 ... GSW1XX_MII_PORT - 1] = -1,
+   707			[GSW1XX_MII_PORT] = GSWIP_MII_CFGp(0),
+ > 708			[GSW1XX_MII_PORT + 1 ... GSWIP_MAX_PORTS] = -1,
+   709		},
+   710		.mii_pcdu = {
+   711			[0 ... GSW1XX_MII_PORT - 1] = -1,
+   712			[GSW1XX_MII_PORT] = GSWIP_MII_PCDU0,
+   713			[GSW1XX_MII_PORT + 1 ... GSWIP_MAX_PORTS] = -1,
+   714		},
+   715		.mac_select_pcs		= gsw1xx_phylink_mac_select_pcs,
+   716		.phylink_get_caps	= &gsw1xx_phylink_get_caps,
+   717		.supports_2500m		= true,
+   718		.pce_microcode		= &gsw1xx_pce_microcode,
+   719		.pce_microcode_size	= ARRAY_SIZE(gsw1xx_pce_microcode),
+   720		.tag_protocol		= DSA_TAG_PROTO_MXL_GSW1XX,
+   721	};
+   722	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
