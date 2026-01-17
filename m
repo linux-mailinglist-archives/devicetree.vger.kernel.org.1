@@ -1,123 +1,85 @@
-Return-Path: <devicetree+bounces-256337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76EF0D38B41
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 02:22:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6E43D38B49
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 02:24:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 49E973014E9E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:22:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6329F302A12E
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C205292918;
-	Sat, 17 Jan 2026 01:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E8C2BE62E;
+	Sat, 17 Jan 2026 01:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b="X0McLSz5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AHZWO9Eu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB4BC277029
-	for <devicetree@vger.kernel.org>; Sat, 17 Jan 2026 01:22:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9317286891;
+	Sat, 17 Jan 2026 01:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768612932; cv=none; b=tJVVExdQlpJlWSVZR+vRFr5amHQL8zatFt0Tb/amCLzHaQ6LQZh4xwwo2cpaR4jb3pjftfSxtX96dfoIOcRY9paX/mcJHo/j4BpF0CZ4bEcjJwbz++3M84PdCLpSx83Re0W93/RZSmMN/+gxUO3eq2qRukNDdIlO2kC8nEBJM8U=
+	t=1768613093; cv=none; b=PrK5KtqWjJdwA4O446JLvuHBjRjEqqcGz04D5qaJPDLz7/9752TQE52cpjkxw5rqCh/qLdNNs8vDMQA6skHSuLYx5tFgaKaUz30UAMzo90+dYBY6OAdPI0PzozMFkoeeRsWZ2S6RL+vGkrq1RgC9I6ZowWWZCufFnOEmy7DoA9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768612932; c=relaxed/simple;
-	bh=B+/+PTm75bB4jcTridEbaDWAIvys2S5q2IqRCz6uDz0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=c4Bf1Aa6z9NTimRSmjoLo4WDb02daSrF2WGfw5zTrIOxTbQ+GRf2P7ZOoHKjzloK5Ku5tHCfDf/cXVrx8zPJW7RUAAXYYOlQgRhc9WpGjq0ZJB6UNOkHrtj7i/O1VVZZ+1EK3CnSgdjc+NO2im5hbiV8lhYgEroTgEzx6mprnm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=X0McLSz5; arc=none smtp.client-ip=74.125.82.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nexthop.ai
-Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-12448c4d404so1735043c88.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 17:22:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexthop.ai; s=google; t=1768612924; x=1769217724; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gUAaJXmI/F/1af7Net/YmbJOyQv7O+4kkKkCTpHdDNs=;
-        b=X0McLSz5H9iIwu//4xcfWNmAHjA20f097q+4KrRG/YZ0TxHKpwZreTrOEABWFdz5wu
-         r0F9UjVzf058OfGDeGQhp0N7cl6+DCPu8Ksy1i9ThqBSTGDwmnjch3qo56XUNIwB2isl
-         uevVv7/h/OsGVnMgrq96dvRzyJDPTSnupqVWfxX1utbZLmag3DICQy73NfqMdyK+3VIj
-         LRLgwDQqg41F1FwWmd+Do7WncdTf0ko3XwEOP35kA+8H+V+pnwQPuBV6FlHPz7IWcD9G
-         aZMTXrzsS0qiae7yBzxTayj+o3Y1trFpDeqNXCAPeF9XttaPEM5sxpckm5aLOf2cQhtZ
-         6onQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768612924; x=1769217724;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gUAaJXmI/F/1af7Net/YmbJOyQv7O+4kkKkCTpHdDNs=;
-        b=hckRM8fKyH3yg+vWLEDSMTE11bAcyy/E5nutq2XWGll2FXTLOOTozp1+duvHNpv434
-         PNNKG7hfb1Ndncefa05JwnuAT9gWsdHR8oxiGC9H1rkchRJmuoQ1dl1klZ1kuMZhII4E
-         ryF55KaoEYKx/1cgS897klwYnItqmf5DiOLXsMLrpP769rXet9kZ+pW+FFYHSMNoGP4g
-         t7YrshMQj8q/uuh2jvvoMN9w4lOs0fTZLfKWua/4zW03rMPKtL0SuIwKFDjiLmuHnyT4
-         8qLLXsqlaRGkUr4wwZiP3Mgk/RxcB/kV3kEKivEjEyBPnK6ooRreSEAKeaUoIi0Rxxcs
-         rx+A==
-X-Forwarded-Encrypted: i=1; AJvYcCVNM8jqiQsJGecZjiMwnN6qaxPewXUIMP1ysrFDCzZadc5JpGwYdaILc6L1H4VVPNjDr6uQH5O0fNGq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxETgLlzwRhi5Zbv0son7/r17AKtB42yzme+hd4/Ock7IsIwjnD
-	kHnM1NA/5nRLkywwo12fvld5QvTzod8u7bu9I1WxKSF5rudU23ge9nXlpJ0c5Hnhu+w=
-X-Gm-Gg: AY/fxX4JQTS660X7mZrAYca+FTdlkDPDDPAc8ZQJSwboy+UIOal1A6YBV2FYS3agTm6
-	Qs3oR3jiIw4TtVfiwLaJV4Jg+uZsUzNNz5aAEPpXI6vMyTBaRk6q8W/CtMzKy/AKP6WfSsvvRMH
-	BakIn20jBDH4f9lnCly7Ov7uAhD0KMQ5C0eopn/evvO1ihiHo7mvHBSJrnuzQr1s9YtFJZHTVcq
-	OWE8E25pn3KEsvji/7CPrHWvm9gKfr2+Hi1WY9pTlMwCLQiMAz6uTy9YGSXfYXnRjRyRvANcsf7
-	hGXW1B5ymJoT6q6qpOQrCFOAmP3ym/9y/LG7oi7HGc1wExYE34VDGfXuWXbbUSk3MI+/djcQF0S
-	jVA2kqeZ8UpOnx0ZD+DdrlD54C92BhXm7PkK6tHub0BrLi3IzcgNzgO0L7PCkFFZZXKq/nd1rZH
-	TX0YFCdt3eGyM=
-X-Received: by 2002:a05:7022:6988:b0:11b:a514:b64f with SMTP id a92af1059eb24-1244a72ae90mr3884422c88.13.1768612924273;
-        Fri, 16 Jan 2026 17:22:04 -0800 (PST)
-Received: from localhost ([50.145.100.178])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244ac58140sm4388151c88.4.2026.01.16.17.22.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jan 2026 17:22:03 -0800 (PST)
-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-To: Mark Brown <broonie@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Cc: linux-spi@vger.kernel.org,
+	s=arc-20240116; t=1768613093; c=relaxed/simple;
+	bh=+/nCIgRUvPlsiKTpAeKa3/TVmwZi8Ea2lEh1s9Lq5fM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TZ81Zwy08w9/jwsuEHGcFtTazU9u5qcCys/8HjcAJESc+S95ZaB+YCOz4T0fJsm+eawOkq3GzCk3e9Mz7DX+LSHdjS2DiEoPKHjqKAYFUvnvdAVg5kQPekrCw49Bf816cC4Pd7FdcyM99Nv5wh6xRPVtvHTPzODsmjuyWnybsZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AHZWO9Eu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E498FC116C6;
+	Sat, 17 Jan 2026 01:24:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768613093;
+	bh=+/nCIgRUvPlsiKTpAeKa3/TVmwZi8Ea2lEh1s9Lq5fM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AHZWO9Euy1ms1PqJiF5griw+xUiA/79k/DFTwa0Ew1Pp9Xn2PW2UxwdfuA6G7jkU/
+	 d3d3xqSIZKijc41DlUXLMdLZaFoUAQAY2IB8yArUTFaW6bzQzMsUNFRUyerxjjdQlY
+	 NWcuCf0nLkFufGI8yngHpfpEfWo1YLL7MtlcUzzwW13fD/dOif/4+N2Ox5d2k+3ME3
+	 dFKymoIz4Nx6PWwCYVSSgMwxJg4JLaIjpKTTVDs2zNZ5D4qihMIGtpjVKlDlYiJgty
+	 PU46N4Ii9uBe3n8yc1ufLKMv6a1eHQ7FF2NrIXyFERohT8/mkNEaXPvg7mmLYgx0SY
+	 Zqd/yIPyljb8w==
+Date: Fri, 16 Jan 2026 19:24:52 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-mediatek@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Abdurrahman Hussain <abdurrahman@nexthop.ai>
-Subject: [PATCH v2 3/3] spi: dt-bindings: xilinx: make interrupts optional
-Date: Sat, 17 Jan 2026 01:21:36 +0000
-Message-ID: <20260117012136.265220-4-abdurrahman@nexthop.ai>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260117012136.265220-1-abdurrahman@nexthop.ai>
-References: <20260117012136.265220-1-abdurrahman@nexthop.ai>
+	Bjorn Andersson <andersson@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-kernel@vger.kernel.org,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mediatek: Replace Tinghan Shen in
+ maintainers
+Message-ID: <176861309133.2330594.16947587442978287595.robh@kernel.org>
+References: <20260116172915.99811-2-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260116172915.99811-2-krzysztof.kozlowski@oss.qualcomm.com>
 
-This makes the driver work on platforms where interrupts are either not
-provided or broken.
 
-Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
----
- Documentation/devicetree/bindings/spi/spi-xilinx.yaml | 1 -
- 1 file changed, 1 deletion(-)
+On Fri, 16 Jan 2026 18:29:16 +0100, Krzysztof Kozlowski wrote:
+> Emails to Tinghan Shen bounce permanently with "550 Relaying mail to
+> tinghan.shen@mediatek.com is not allowed (in reply to RCPT TO command)",
+> so switch to AngeloGioacchino Del Regno - Mediatek SoC platform
+> maintainer.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml | 2 +-
+>  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml      | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-xilinx.yaml b/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
-index 4beb3af0416d..24e62530d432 100644
---- a/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
-@@ -38,7 +38,6 @@ properties:
- required:
-   - compatible
-   - reg
--  - interrupts
- 
- unevaluatedProperties: false
- 
--- 
-2.52.0
+Applied, thanks!
 
 
