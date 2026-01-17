@@ -1,257 +1,145 @@
-Return-Path: <devicetree+bounces-256304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533E4D38A87
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:13:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B13CFD38A93
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 01:19:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DECC630B8E38
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:12:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 32EB2300898B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 00:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA44381AF;
-	Sat, 17 Jan 2026 00:12:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD00B14A4F9;
+	Sat, 17 Jan 2026 00:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Gf68cN0S";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="wVhl31DP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nGEUtYeI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A56500944;
-	Sat, 17 Jan 2026 00:12:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C9113A258
+	for <devicetree@vger.kernel.org>; Sat, 17 Jan 2026 00:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768608758; cv=none; b=dj7npjvU7XjKiwxmK7QOobCEv5w1jqfO2V1tNjKBR5KG7ul/yHgtedZzcK3cC1a6BDXNEceqtOOg3y7Lx2Y5Uunt5P/EPsoWgeiadJU/Eex/2qR9J0SM+7XFEXddXHtQVuAH893Jpcm905Ybd2TBgPsKqFoAQ4tOqWSvn1SPVWM=
+	t=1768609185; cv=none; b=RcGYjGn5wDOwWI1j1bXq6ue5b1tRRR6BEnQiVivx3TtbllrQTXkth5EodqGYWPiITo9sGuLzfOHtX3hi5y1OQlXgFl9/EZ7zUDQSujRmWeK8lzGyUT8u1f2nS61ktw/5HD6kQFaE8wdWim4o6ibRFRfToFnDYa8TvAiJHG22Vok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768608758; c=relaxed/simple;
-	bh=R4s4slxdwJENWgVa2tSLPLS0AEIaqtewzCylfp1L8qg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ejmfvM9Jp3nnPFA5eYkHmRhfwpVvCD24hIgsUqEap6y2fo6oDdWPqtVG83SaBNptWQoprpCgkOyO6WNA9ngi8P2KfSqJxaOwDNg+gh49ShDeh7PUJcrGQzL9A2RD/NcbRp17Atg4xvalGkrOZ71Cr/OpDvHtJ43XzTVAHLYcL2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Gf68cN0S; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=wVhl31DP; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dtHGg69Vkz9t0P;
-	Sat, 17 Jan 2026 01:12:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768608747;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=t1ibJdgfNAmHJ/goAhlBo6+AS9PXOdDzmC9nb2CHrmo=;
-	b=Gf68cN0SL1pU0aOUdsnVbGjxPkIEoiGtrHumj6hW6vODG25lTX7/YrIqjpgxZnzaqsUtH+
-	FeE5YW+Qk9LC86ROat1VxQsBZ9B4fqsn0HWy1uXRqCGDvUw4iddXAP6hbIzVOt/c7iuR+U
-	mj3mwpUPboYbGhbdJXcbiB9DBlIUwXOkr/6/1npukUOJF5u77G/PEB/yV+rMwlmb8JjNL0
-	WE3srmHAloPvPZxZEizp6HiE/W+RcRFNkng4eJOyw1MYbIUeotxM60sRLbNuFhZHjRglk4
-	Fi4N1DvWPkXml1oCTa+IHVogMSEZhoH1rKP4mUOLUneGCNdI7bgcobuqpvCNMQ==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=wVhl31DP;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768608745;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=t1ibJdgfNAmHJ/goAhlBo6+AS9PXOdDzmC9nb2CHrmo=;
-	b=wVhl31DPROGWQmkvbzXm0oNCkALpFMJlrO27TXjiALDGIm7W8rqI/eeUNZ38hc82eSWCd1
-	NPB+tgRPj8dMIHK+yDwbjaKxpoggO8HULPQgGnD3kcZ4PVncrNP5wwJstiuGNGht8krkbj
-	jKJxOOoxb1U3ztepxAXOIGBKDEWTIl9X2Yibs4s0xsyUxQ4z8EBC1i7PbVZlijToFdIS9q
-	ykMfyE4PoSKmViZ+h0n1PsmYDJR5k7s48nPQYEcYoU4/f891KPry4N0crS4Kq6FzfCws1m
-	vpBs+8HqjyYObvlcmL55OMdRF/upDjf96I3oD4KKIBx1qoj3Et0AX4raB+YKcQ==
-To: linux-input@vger.kernel.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Job Noorman <job@noorman.info>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 3/3] Input: ili210x - add support for polling mode
-Date: Sat, 17 Jan 2026 01:12:04 +0100
-Message-ID: <20260117001215.59272-3-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260117001215.59272-1-marek.vasut+renesas@mailbox.org>
-References: <20260117001215.59272-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1768609185; c=relaxed/simple;
+	bh=WddixO14B+NrKX3RH6X9bhZ895fa1HGCFdVzPGvd3eA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f5GJTTdwff382Ep58VFNpRs1R9BjU90JA/ZZq3sepA/Xsi59s86GxaGooHd+Q745S2Fmf+Sp/qt6C7ttO7rKBKGKVBYVDrMUxAkncma653Q+KW0H5ZjwWaYXz/BY8Wz1TYQn5s9hyhGdcyJQPVy+Y3i4miBjCugh9g9kkVEQ6is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nGEUtYeI; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47ee0291921so17259465e9.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Jan 2026 16:19:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768609182; x=1769213982; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qr4dd4sRl6alXbR76AfI/u+BBUeNx88I+aVBJKJ/FKc=;
+        b=nGEUtYeIPv8M7G1sWCyWOVHK8AE9lRN2HlWUBQUbeTUFn9OiRwOHtc7EmYoaRiaeot
+         XRj3mat8ttFSrr9KJ8s0PsCz7BcCirNR8E/OU4KCbXpYlr2T64RbsoqTvUkfnBEPO+q7
+         jEj8iaOXZn1r5Ms/sYccEzrA5jVI04r7NRLR7zNnx5lJVUFe2hy33N8UzNHhfs87YGcQ
+         r/ohaf19Gx4zs4uxqlh2WTId1f+bAVUowZCxtqt1wmKtsGskBmvNOfSgs0QG6scHomJJ
+         upgsTU/JE5HW+jUKkIiUZWTxjWVQkPVlXrMEqVrFQgoAokV1On7BB//qnOcyPo0PhSf9
+         17iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768609182; x=1769213982;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Qr4dd4sRl6alXbR76AfI/u+BBUeNx88I+aVBJKJ/FKc=;
+        b=WQsjzL+GvcBXmbujOvc+cgwDSMQEffi8bE36thmBw6J2ewlFWiZYQg5koqAW+RgY5z
+         ZZfJWf5rfuhSNbh0ADyIuETziBBRRVgv9wwtAIZN/UtbZYbWed2wrHFCb9gOiZV008rX
+         rLzAPXT/I0oiTkyIS4PKCyLluxcyzhxdOpi8nje3j70YQde3MCQRHVX/iYByduBMNqb5
+         dGxLSATl1B79K2wgl7rEg3wn8mVhR0SnuCN5gkarOZCaOLmwP9g+zDibNXJVLcq16/t0
+         X++PJAmi8BQOrVd5haejO/Kz+wV5gHgXOJQxJPuH9+Dm68jUBCQcOWrruDc18t3MV6Sy
+         he2g==
+X-Forwarded-Encrypted: i=1; AJvYcCWpWd3cY52TwM3DhHCjvAEiMEk++YeSOREISMAXW5iCP8mKQspy+xcuSAiQKp9qhtRmg/76qv9O1JgM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxy7c5kaFuH50H23lbDZKLzEklfaK/beCBZEUkdfgaI4SAP7EoC
+	W1hOuUDBymaOuzEotTuDUHbRPdqyX6PW8wjGFltANqizsNm8iUlF2OAJ
+X-Gm-Gg: AY/fxX4jlUUFXp7qi/3iKML0F0JdqwpGA4n5HlXhClLXHyQRgGIduZTNMS3q0T8+9zB
+	3d/n/j1d0xWZIzdGFNKRrsdZJmbJ5WZtERvaPKsmt+SuYtofhGvML1CnpUEnYyePzX88oxfeQHk
+	KOp3QbR5jOxqFZKllf31BJEL1fOQ+uMetExR9kpT2dQLwXlZiLWxAnu2MqD9F5fQbslnvFAYKKV
+	LudR5Z9yGjSrN95KX79xBkNmctENwpSvlxEWA2qdtdmB8QcTev1tPNt6sJJoeAbXDlZahy1ijFK
+	wIjr9vf8Ami6VJYY1IR/8dbcdgL6aT010Muc2l+/S+906DAGfgBVQwxzOXOuQshn4IGqW7KKcpb
+	IVyD26XWU+0UTJwQF1wEvhogCMbewGwPRQzPTKc0UFH+BoxQiQGLE5EemQuTU+Lot7aYPMp/QlV
+	H4RHijRi40rxobufV01Vj2hNQDQH2oauDlXWnSQFjNWmgfz/X5L8LF5P8xf6483k1EiYsd6L6/y
+	Q==
+X-Received: by 2002:a05:600c:6091:b0:480:1a9a:e571 with SMTP id 5b1f17b1804b1-4801eb04160mr48471585e9.22.1768609182440;
+        Fri, 16 Jan 2026 16:19:42 -0800 (PST)
+Received: from orome (p200300e41f0ffa00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:fa00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f4289b7aasm124804445e9.2.2026.01.16.16.19.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 16:19:40 -0800 (PST)
+Date: Sat, 17 Jan 2026 01:19:38 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 4/4 RESEND] ARM: tegra: adjust DSI nodes for
+ Tegra20/Tegra30
+Message-ID: <aWrVjkNzmowjPr0i@orome>
+References: <20251204061703.5579-1-clamor95@gmail.com>
+ <20251204061703.5579-5-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: c208e9887e151f7b990
-X-MBO-RS-META: 7p36rc8nnihumwgoqq71bgch6kojnoy8
-X-Rspamd-Queue-Id: 4dtHGg69Vkz9t0P
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3ps3p3ummquvspuh"
+Content-Disposition: inline
+In-Reply-To: <20251204061703.5579-5-clamor95@gmail.com>
 
-There are designs incorporating Ilitek ILI2xxx touch controller that
-do not connect interrupt pin, for example Waveshare 13.3" DSI display.
-To support such systems use polling mode for the input device when I2C
-client does not have interrupt assigned to it.
 
-Factor out ili210x_firmware_update_noirq() to allow conditional scoped
-guard around this code. The scoped guard has to be applied only in case
-the IRQ line is connected, and not applied otherwise.
+--3ps3p3ummquvspuh
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 4/4 RESEND] ARM: tegra: adjust DSI nodes for
+ Tegra20/Tegra30
+MIME-Version: 1.0
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>
-Cc: Job Noorman <job@noorman.info>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-input@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: Test client->irq > 0 for IRQ presence
-V3: - Rebase on dev_err_probe() conversion
-    - Fix if (client->irq > 0) in ili210x_firmware_update_store()
-V4: No change
----
- drivers/input/touchscreen/ili210x.c | 76 +++++++++++++++++++++--------
- 1 file changed, 56 insertions(+), 20 deletions(-)
+On Thu, Dec 04, 2025 at 08:17:03AM +0200, Svyatoslav Ryhel wrote:
+> Add missing nvidia,mipi-calibrate and cells properties to DSI nodes.
+>=20
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  arch/arm/boot/dts/nvidia/tegra20.dtsi | 4 ++++
+>  arch/arm/boot/dts/nvidia/tegra30.dtsi | 8 ++++++++
+>  2 files changed, 12 insertions(+)
 
-diff --git a/drivers/input/touchscreen/ili210x.c b/drivers/input/touchscreen/ili210x.c
-index 264eee3e61d0a..22917a5825778 100644
---- a/drivers/input/touchscreen/ili210x.c
-+++ b/drivers/input/touchscreen/ili210x.c
-@@ -327,9 +327,8 @@ static bool ili210x_report_events(struct ili210x *priv, u8 *touchdata)
- 	return contact;
- }
- 
--static irqreturn_t ili210x_irq(int irq, void *irq_data)
-+static void ili210x_process_events(struct ili210x *priv)
- {
--	struct ili210x *priv = irq_data;
- 	struct i2c_client *client = priv->client;
- 	const struct ili2xxx_chip *chip = priv->chip;
- 	u8 touchdata[ILI210X_DATA_SIZE] = { 0 };
-@@ -356,8 +355,22 @@ static irqreturn_t ili210x_irq(int irq, void *irq_data)
- 				usleep_range(time_delta, time_delta + 1000);
- 		}
- 	} while (!priv->stop && keep_polling);
-+}
-+
-+static irqreturn_t ili210x_irq(int irq, void *irq_data)
-+{
-+	struct ili210x *priv = irq_data;
-+
-+	ili210x_process_events(priv);
- 
- 	return IRQ_HANDLED;
-+};
-+
-+static void ili210x_work_i2c_poll(struct input_dev *input)
-+{
-+	struct ili210x *priv = input_get_drvdata(input);
-+
-+	ili210x_process_events(priv);
- }
- 
- static int ili251x_firmware_update_resolution(struct device *dev)
-@@ -829,12 +842,32 @@ static int ili210x_do_firmware_update(struct ili210x *priv,
- 	return 0;
- }
- 
-+static ssize_t ili210x_firmware_update_noirq(struct device *dev,
-+					     const u8 *fwbuf, u16 ac_end, u16 df_end)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct ili210x *priv = i2c_get_clientdata(client);
-+	const char *fwname = ILI251X_FW_FILENAME;
-+	int error;
-+
-+	dev_dbg(dev, "Firmware update started, firmware=%s\n", fwname);
-+
-+	ili210x_hardware_reset(priv->reset_gpio);
-+
-+	error = ili210x_do_firmware_update(priv, fwbuf, ac_end, df_end);
-+
-+	ili210x_hardware_reset(priv->reset_gpio);
-+
-+	dev_dbg(dev, "Firmware update ended, error=%i\n", error);
-+
-+	return error;
-+}
-+
- static ssize_t ili210x_firmware_update_store(struct device *dev,
- 					     struct device_attribute *attr,
- 					     const char *buf, size_t count)
- {
- 	struct i2c_client *client = to_i2c_client(dev);
--	struct ili210x *priv = i2c_get_clientdata(client);
- 	const char *fwname = ILI251X_FW_FILENAME;
- 	u16 ac_end, df_end;
- 	int error;
-@@ -860,16 +893,12 @@ static ssize_t ili210x_firmware_update_store(struct device *dev,
- 	 * the touch controller to disable the IRQs during update, so we have
- 	 * to do it this way here.
- 	 */
--	scoped_guard(disable_irq, &client->irq) {
--		dev_dbg(dev, "Firmware update started, firmware=%s\n", fwname);
--
--		ili210x_hardware_reset(priv->reset_gpio);
--
--		error = ili210x_do_firmware_update(priv, fwbuf, ac_end, df_end);
--
--		ili210x_hardware_reset(priv->reset_gpio);
--
--		dev_dbg(dev, "Firmware update ended, error=%i\n", error);
-+	if (client->irq > 0) {
-+		scoped_guard(disable_irq, &client->irq) {
-+			error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
-+		}
-+	} else {
-+		error = ili210x_firmware_update_noirq(dev, fwbuf, ac_end, df_end);
- 	}
- 
- 	return error ?: count;
-@@ -945,9 +974,6 @@ static int ili210x_i2c_probe(struct i2c_client *client)
- 	if (!chip)
- 		return dev_err_probe(&client->dev, -ENODEV, "unknown device model\n");
- 
--	if (client->irq <= 0)
--		return dev_err_probe(dev, -EINVAL, "No IRQ!\n");
--
- 	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
- 	if (IS_ERR(reset_gpio))
- 		return PTR_ERR(reset_gpio);
-@@ -997,10 +1023,20 @@ static int ili210x_i2c_probe(struct i2c_client *client)
- 	if (error)
- 		return dev_err_probe(dev, error, "Unable to set up slots\n");
- 
--	error = devm_request_threaded_irq(dev, client->irq, NULL, ili210x_irq,
--					  IRQF_ONESHOT, client->name, priv);
--	if (error)
--		return dev_err_probe(dev, error, "Unable to request touchscreen IRQ\n");
-+	input_set_drvdata(input, priv);
-+
-+	if (client->irq > 0) {
-+		error = devm_request_threaded_irq(dev, client->irq, NULL, ili210x_irq,
-+						  IRQF_ONESHOT, client->name, priv);
-+		if (error)
-+			return dev_err_probe(dev, error, "Unable to request touchscreen IRQ\n");
-+	} else {
-+		error = input_setup_polling(input, ili210x_work_i2c_poll);
-+		if (error)
-+			return dev_err_probe(dev, error, "Could not set up polling mode\n");
-+
-+		input_set_poll_interval(input, ILI2XXX_POLL_PERIOD);
-+	}
- 
- 	error = devm_add_action_or_reset(dev, ili210x_stop, priv);
- 	if (error)
--- 
-2.51.0
+Applied, thanks.
 
+Thierry
+
+--3ps3p3ummquvspuh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmlq1ZoACgkQ3SOs138+
+s6FU/Q/+JnHz4z3iaM5N3GbdNqivjMvosUv7yPpTe+rH1fd0qedCwH/Ozg5mOBAA
+fj89b6CFl8jNcxU26br2W7ePbJCqnz9+SENaMtlKZbUMXOd5rDzcdie2PMSclLxH
+vC2ycq79lAOsKcUWCClkQb5vqR2Dny0w+Ph3Z94DhdxCpW0/NWWswmT8NePMsiNK
+dgFtnWfsbzDYLzuNi6tSfngA4sHR68lmmoywqje+s4L1LEgCjVQlbJLDt7ztniOt
+zp9kkVMbF03fOeyjk0L6iw+0MEHHGpCWWBqg5A0YG54vwot0kkb8E97tdJUBQJ9K
+2vgxQ5hrsAYcJVh0h9SSiAsVXKJq5gu+0grEiFClSZbHMbFb5+J003t8Stk+2CwP
+vKtIurLRZ65Dn3eQt2p7trRJzjfdQcSmATMUeoEqV0ledh40y2b/ACm8OgtE0HTq
+hEJYyaOjbKUHxy5Asmp9Ioe7iDaXlOlK0L2w+ZAP0Hxaaem1Zfr9RRkA1wZIdhsy
+/8ao0kVBfZCC0l8vN8/wEQm+3+P6QS45JpqCe4xj8OgJozy8qZU53UJVr1T9cc+l
+BUuegRtXLa3Lv3vnxfHkQvNJ1CiwyrOEzFwOsoC5fjvToYWY0zQ5WSF/jW6+8yeH
+yjb9+tfoli6Gml1zk63cL3Srqflb5bX2FxXT4dxCAvU3V1ErZtY=
+=KaHS
+-----END PGP SIGNATURE-----
+
+--3ps3p3ummquvspuh--
 
