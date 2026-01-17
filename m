@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-256361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B701D38CBD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 06:42:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C329D38CD2
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 07:03:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DE9A0303AAE4
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 05:42:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A7DAA3008F7F
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jan 2026 06:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800C0329386;
-	Sat, 17 Jan 2026 05:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF6132AABC;
+	Sat, 17 Jan 2026 06:03:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rTGYgQvI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TTzQ5OCK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595F0328B77;
-	Sat, 17 Jan 2026 05:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C33A29B216;
+	Sat, 17 Jan 2026 06:03:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768628544; cv=none; b=UhsJOKRN2lPD1Cqr1qLgRoIhhWareck0Pkk7hZOI0a1SxxKt5GQwxPCrOQbhyhULew+oyto2v7cFquadpeB3aanuba1WBGVCXxW6zE//Ni0YIFRDwMYS9qhveUI9T3/nI1gVy2H6nrxIY/uL7GnHk3cDB8QPCViiMTotySm405g=
+	t=1768629833; cv=none; b=DPNnqzw9/0xMTWtv7D5tNkIM/UvF8vOcZ3boif8r8AhZjeUdFFG9iqlWeKxQ7PrtbKVYHOdSsmzxRG4zDUlZzKG6pfug8da6zhQKXBnUzG0CHrMc4vhUwh4M6ba27Jj418HJVgI32HE3bWM77kSQAteX6D3kBhV1sOZX23owcYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768628544; c=relaxed/simple;
-	bh=bwlkfXsLFvt1yMomv6AquM31sE55b0EH0gvYr8WZzms=;
+	s=arc-20240116; t=1768629833; c=relaxed/simple;
+	bh=6ddEruK33tCOrSpo624USqxMRpdHroIeTURI2A/1r6M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MDoyoI1gvVUiexRTyIJTeukHsT+IxZW0zYQAAh/4mnQNb4jWo84S2gQgRE5FanguL34A1cFPQNbQGjMXlX26IUUt/DFPhVahc8pC85dhYU+2mvJcZ/joVuNzeenPrpfommZ6Mm71bWZpk09b5Hbpq4RCOG9oNIxmBiz6V+ziidM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rTGYgQvI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F3D1C4CEF7;
-	Sat, 17 Jan 2026 05:42:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dpiOweMcS5tkiJEL3reyM1pIEPd8j4ccEJljWo0Nc6OBSp2/KRYlcuEoY7NOeG0Xkqo71o655VNjm5yL+zis2mJywH9LZmNs6oW7KNepYtTcLYV7oztHQqlh4J8jiHdwwL3szjlRLijBcTfmyYFwbDSWOU/rFNsOZlsxkh3L0hI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TTzQ5OCK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 621E0C4CEF7;
+	Sat, 17 Jan 2026 06:03:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768628543;
-	bh=bwlkfXsLFvt1yMomv6AquM31sE55b0EH0gvYr8WZzms=;
+	s=k20201202; t=1768629833;
+	bh=6ddEruK33tCOrSpo624USqxMRpdHroIeTURI2A/1r6M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rTGYgQvIkJWzeGmn4+Li1EgCuHH5sDjQ+TCKichzFVNRD9DHexoXGZctijM5n6aYy
-	 E12la7VKZhswF73Y4TAVO0w6YITesx7mQlehrWGvtTtzZTFxbjW/skXJyxINVrXfGa
-	 fmZS85gcfzVNPLJMoDMLBob8wS/Deiw0qozb7Z7djI5GXQt+eKVyonAK9FfY6cfJTZ
-	 02DtGKJtxtNrpPp9xfG4729ffZPSRbeap3egfkVQIKeLPodm7UDpAKFLCaHBzbNFx8
-	 zZ01i+iwPtrT8O+k4OFsEkphFvaT/JK6iESKgMD6sZY/rDaL8AGMiFr7YulpIg5g5H
-	 osKBQlrfpQu4A==
-Date: Sat, 17 Jan 2026 13:42:16 +0800
+	b=TTzQ5OCK1lmTwJ5IWsEbSVwWH/NvKtCHbdwXWFIx77jQszzEp+1kaaxNXjUP3SYk8
+	 CosM7jZez1GA87Ndx52YFs/vK0kHdwv64FqYhInBKShIUnlJxYJhEcsZtuJ2Me5ow9
+	 VTi0wtx4+3RKbzdwirsS3Ll6mGN9nUhl80+ZQd9FUoKfZiZGWqjRBL2lAn+oC5TGQW
+	 aCnyUhIGSr4aFezsp0FPvTMnnofUehUKl7Up3PstIPlxQhm+Z0fEJPL7ZIzfRy6w75
+	 s6LAssFl7PnA0fsxjhvDTJf/P65S78Z4Ey2otkzwePsCrcCnvHE7tJdrFt7s0Kkhkd
+	 887rYqOv7lvfQ==
+Date: Sat, 17 Jan 2026 14:03:48 +0800
 From: Shawn Guo <shawnguo@kernel.org>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Frank Li <frank.li@nxp.com>
-Subject: Re: [PATCH v23 0/7] firmware: imx: driver for NXP secure-enclave
-Message-ID: <aWshOMxbdqOI9KA9@dragon>
-References: <20251219-imx-se-if-v23-0-5c6773d00318@nxp.com>
- <AM9PR04MB860402EC5CB2FB8FC1A34287958FA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 0/7] arm64: dts: imx952: Enable various node for
+ i.MX952-EVK
+Message-ID: <aWsmRNvuebqNeQQS@dragon>
+References: <20260105-imx952-dts-v1-0-68b5a4d69710@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,15 +61,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AM9PR04MB860402EC5CB2FB8FC1A34287958FA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+In-Reply-To: <20260105-imx952-dts-v1-0-68b5a4d69710@nxp.com>
 
-On Wed, Jan 14, 2026 at 08:38:44AM +0000, Pankaj Gupta wrote:
-> Hi Shawn,
-> 
-> If there are no new comments.
-> Requesting to consider this patch-set to be merged to mainline.
+On Mon, Jan 05, 2026 at 07:48:39PM +0800, Peng Fan (OSS) wrote:
+> Peng Fan (7):
+>       arm64: dts: imx952: Add idle-states node
+>       arm64: dts: imx952-evk: Enable I2C[2,3,4,6,7] bus
+>       arm64: dts: imx952-evk: Enable UART5
+>       arm64: dts: imx952-evk: Enable SPI7
+>       arm64: dts: imx952-evk: Enable USB[1,2]
+>       arm64: dts: imx952-evk: Enable wdog3
+>       arm64: dts: imx952-evk: Add nxp,ctrl-ids for scmi misc
 
-Hmm, it seems that kernel test robot has complaints on patch 3/7?
-
-Shawn
+Applied all, thanks!
 
