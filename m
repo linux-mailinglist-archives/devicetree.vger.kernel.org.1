@@ -1,118 +1,130 @@
-Return-Path: <devicetree+bounces-256541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D600D3970D
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 15:20:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD41CD3971B
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 15:26:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5074030A27B4
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 14:05:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4BAA23002A41
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 14:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340C7337BA6;
-	Sun, 18 Jan 2026 14:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2554337689;
+	Sun, 18 Jan 2026 14:26:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="AU1u6WOt"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="PnRa8N6j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D465D332ED1
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 14:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768744996; cv=none; b=qXatoVi+a2J3v9I5KdeTgwKo+qO5brjxGur2Ito50NjKjwAtjIuIluTfs0iztC1EEnAVoTD0UIx1gsxip5JGMOra8BhPnpcbiG3OxpVrfOjMBinJTXKX1S6YpE7AHpsb4kkFEU6Di/4vLaXZRInsxgYhd37suBvJ0/lk37qJWlg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768744996; c=relaxed/simple;
-	bh=/GsF+Uwls1Cn2yinM71Z8W+ioXcZeW9vpkl4szRkNjI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rCr+PFVmVTXdP6iNVRwfmo+6v8uYtOQeWqLCxJirTyfWHoOLmglZTdsO4tf4QPJGVela79cFt8wkGqiCQQbGSwsF7f2a+GJS1i4kt+OVChTVrmQmeyozmza7Wa2F1CKewQKNWtnn2klvgwuvBcChkpUP+b1JNGJzTUK9+nRkeSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=AU1u6WOt; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47ff94b46afso22473005e9.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 06:03:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1768744991; x=1769349791; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IMK1YqKVaUf0IoyRsQOMCKJ4gS01F7A0JEX5JckEMXs=;
-        b=AU1u6WOtLoi8xhtxE3eZH2de7tMEOJBbWbxjQ3yhiZkjPT2U+TxzYsQSeFKocZiPFp
-         AfUR8WeygLNHXiE9Viiw1RtzFAsj1KyVxaWitGd2d8N3ANyj+Y7kO43+hm5JZhbBq+Lb
-         lPvGKm4ZddOA32TKUnbLjuE3F06FWBpu3jNeWG8PxL6W7eEJcdrnLaI8SrtPWsd/V4W6
-         +EAvlq2BKqQ/VvftFp9V9f78dx1EN5wahowO2gdSHzutwK6Z8mTGZRreowFvAg6oCWZ7
-         I8ZU60NADPdABqce0/chNtZRxbKpG3J3sqT37gvVSYI6RT6C+EjRstJOaUfYQFkChaEz
-         m0SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768744991; x=1769349791;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IMK1YqKVaUf0IoyRsQOMCKJ4gS01F7A0JEX5JckEMXs=;
-        b=wrbKM7hhjXiOTgSpAtY8euNFcFiXr5N8lJwmjN0B5gaLtsLAnF4oAGpWZADAvV82p+
-         Db065RK2mBTqMtgu454nJ3ScgjBbTkNmn3AIAqLJk8VJuIxZlR6InqZS25B3jYIOLajq
-         xwkgpdJRHeQ6KjaYIVKlJfhipdW50GYEBDlL32F+uTOML7UVU2C15mhCSJT+a2tPGAtw
-         faxv24PkYCQJqgX8brrqlFjEbnXl6SHGi43crWk7YEyzruyMQOyMJu9eB1YDmAU9h7Ph
-         oS+TkT/r4WL7zICuxBzGwQn2MThGGMyic0qYFrYf8gtYq6tw1RaXZMse1O5WB7b9Aqz2
-         OuqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXStNsFfIAHkYA60Du7zTRmXhgPf649LnapdxygVCBsSbiQtsrED54nCf4ly3abVtEwDYa+khiMEgYR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYX1RMpagSyS5ijzzQ81cW6v4y5eyWq86jcVVN6vjWBIok1MXm
-	Ex7ovGEkqKeY5v7cPP9IXoZNEf4pLvXqd9BKF7fTfxTSo0YWdZ1YFcSnYRUyHNFCtNc=
-X-Gm-Gg: AY/fxX6Wrdv17G+U5054BVONb6wDjV2HB3LIz8KyyAdjOTFbarWWm73ufyXhAF8IjQy
-	5XmWQRYKRoQjQ3q/eUTxs2cMS+r8n6Zddq4uV6pH0OhLZeynTVN8TDO2rnDHsoAXQ20C6BGtkiN
-	akCF7BHzR0qcfn74s2btpT3bisOpLbN/5moWnYDG0ihunwNhC9+KzmwGDO5vi+SXlThp+JtObWx
-	/kGoclO/FOQCwJvQtj7oVaFrp25XzpSIRpCOiRHuBxrBW2UReGP0O0YdUvr1sPk5vQbiY6AxRS5
-	tOWLy3hKjkmGeR5WlrAbfDLsH+C6D+3uLdoPY1UZOECdpx87CJuE/EE/OFt98svYcTGeN66ELEe
-	reZQwgDbRDEXzK6r3cEvGsE0lRAIHfIpH5GxIZZQMiOPejE55pfmhIg8WDnK3juS/rWwd0olyPu
-	gAhF5hnSKX5c76GCwTcQ==
-X-Received: by 2002:a05:600c:4da3:b0:47d:7004:f488 with SMTP id 5b1f17b1804b1-47f428f5e9amr84049025e9.10.1768744990847;
-        Sun, 18 Jan 2026 06:03:10 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43569921df9sm17725892f8f.3.2026.01.18.06.03.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jan 2026 06:03:10 -0800 (PST)
-Message-ID: <9c34b805-8c6f-4711-9718-6c39a141d451@tuxon.dev>
-Date: Sun, 18 Jan 2026 16:03:07 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B4A731ED71;
+	Sun, 18 Jan 2026 14:26:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768746392; cv=pass; b=dshy9lxGl5TA0ypAq22Kk0bzCf8gjKjhZLRW1z+s1FDXdFcPwv6t11A38AfGgzAIsdRvj/tH8lI6tjjBTnryuR0lNmIEDw8COc9or676XyfNYokbPW364CS2TIuHoGSu3n8Y8ccy8KXTKFDTIgrTXiaQcEBs5N2rXAsTKpPHBi8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768746392; c=relaxed/simple;
+	bh=BvWaQkUJBvXg9RkiY/LFSvINZsVIPdXwcgP3Ppmyk8w=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=T10AZtr8LDC+k96FrjlGZitYlLfW/8dC3+szJedvLekgvxuvxQxVYbcNcZB8clbQpkcY9FB5lFGHrKPebsmC2JL0WOf+WsAVHPMNxVGREYZKcBRBdm2sCW4brS2/tn3RH7dneKyoxgYEkmoBFqpWMRX4dGINzzEesrVuhzG2w8k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=PnRa8N6j; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1768746364; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=SH/mBlnE9Q83qr6IqlYb4lUWXDGSgxADDTA3VtIxpy3UXKjrysJ3QQBW1UnQ32iamZMRNy2NXPQkBpRHf/3k2X9IzPFz35LQugjKYCrFLC+k8bZGTZJuOy0L3GLI2uG1aw53JjPHdri/OwtiuZgLMrPVmL0Auz58qwNyBk5x3i0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1768746364; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=cIbPtT78mcjstGf1Y3m9nRtHPOd+0Pk3EGb62HGCGxc=; 
+	b=lMYTLm2DpgR8YGJUx8ucI5+tfX1aRxEaNCkLX4aphK0jeD1t8szCFHk+9tZnaE++1xQCoiezpyVZUAl6G73QskeQp549yJKviJQ8XGmohG00lAvsydeW5Bme1vTo7V+2jFiAzfmxBGdy9VqugSmI1zwbVcORGJQ45Lg/ne51Q/4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768746363;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:To:To:Cc:Cc:Reply-To;
+	bh=cIbPtT78mcjstGf1Y3m9nRtHPOd+0Pk3EGb62HGCGxc=;
+	b=PnRa8N6jIwImc77Ho/PSQk4Pdu9Gvhzh839L234118mnZKxDpQb6g000ViV9b/s7
+	bF2bP5HiE0Bb9rrfmTQD78pSLq/Yb68/AsdM3MsfYFVgl9rz6bI314sRlhrASObu3g9
+	nBaPp2wURV1UaAR6ctlHjwi+XMTFUZ/pVR/PlJ9w=
+Received: by mx.zohomail.com with SMTPS id 1768746360351543.6650268721444;
+	Sun, 18 Jan 2026 06:26:00 -0800 (PST)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Date: Sun, 18 Jan 2026 22:25:07 +0800
+Subject: [PATCH] riscv: dts: canaan: k230: Add "b" ISA extension
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 11/11] arm64: dts: microchip: add EV23X71A board
-To: Robert Marko <robert.marko@sartura.hr>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, herbert@gondor.apana.org.au,
- davem@davemloft.net, lee@kernel.org, andrew+netdev@lunn.ch,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- Steen.Hegelund@microchip.com, daniel.machon@microchip.com,
- UNGLinuxDriver@microchip.com, linusw@kernel.org, olivia@selenic.com,
- richard.genoud@bootlin.com, radu_nicolae.pirea@upb.ro,
- gregkh@linuxfoundation.org, richardcochran@gmail.com,
- horatiu.vultur@microchip.com, Ryan.Wanner@microchip.com,
- tudor.ambarus@linaro.org, kavyasree.kotagiri@microchip.com,
- lars.povlsen@microchip.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org, netdev@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-serial@vger.kernel.org
-Cc: luka.perkov@sartura.hr
-References: <20260115114021.111324-1-robert.marko@sartura.hr>
- <20260115114021.111324-12-robert.marko@sartura.hr>
-Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260115114021.111324-12-robert.marko@sartura.hr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20260118-k230-ext-b-v1-1-6a63616b11cc@pigmoral.tech>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQ0ML3WwjYwPd1IoS3SRdgxTzVPNkc/NkY4s0JaCGgqLUtMwKsGHRsbW
+ 1AH1Y7XZcAAAA
+X-Change-ID: 20260118-k230-ext-b-0d7e7c77c38f
+To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768746344; l=1939;
+ i=junhui.liu@pigmoral.tech; s=20251228; h=from:subject:message-id;
+ bh=BvWaQkUJBvXg9RkiY/LFSvINZsVIPdXwcgP3Ppmyk8w=;
+ b=IaCH2tmViS4CQfeksoNrNF8X5ZolFJl8pCbzGa8e3HsTadaJpgRxclYLdJgnnYmhhNIwn9QwH
+ wePvvUWzNciBZ/b3lmo9ZvgQvXIvszNjnpkzeNHo9kSJ7fWqrEvk24B
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=3vU0qIPJAH8blXmLyqBhKx+nLOjcLwwYhZXelEpw7h4=
+X-ZohoMailClient: External
 
+"b" is ratified (Apr/2024) much later than its components zba/zbb/zbs
+(Jun/2021). With "b" added into riscv/extensions.yaml, a dependency
+checking rule is now enforced, which requires that when zba, zbb, and zbs
+are all specified, "b" must be added as well. Failing to do this will
+cause dtbs_check schema check warnings.
 
+According to uabi.rst, as a single-letter extension, "b" should be added
+after "c" in canonical order.
 
-On 1/15/26 13:37, Robert Marko wrote:
-> Microchip EV23X71A is an LAN9696 based evaluation board.
-> 
-> Signed-off-by: Robert Marko<robert.marko@sartura.hr>
+Update k230.dtsi to conform to this rule. Also synchronize "riscv,isa"
+with "riscv,isa-extensions".
 
-Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+---
+Based on Conor's k230-basic branch and rebased to riscv-dt-for-next.
+
+The commit message and implementation are adapted from Guodong's patch
+for adding the "b" ISA extension to multiple dtsi files.
+---
+ arch/riscv/boot/dts/canaan/k230.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
+index 5a1bf8a15abe..041c9947a8fa 100644
+--- a/arch/riscv/boot/dts/canaan/k230.dtsi
++++ b/arch/riscv/boot/dts/canaan/k230.dtsi
+@@ -21,9 +21,9 @@ cpu@0 {
+ 			compatible = "thead,c908", "riscv";
+ 			device_type = "cpu";
+ 			reg = <0>;
+-			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zfh_zba_zbb_zbc_zbs_zvfh_svpbmt";
++			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicsr_zifencei_zihpm_zfh_zba_zbb_zbc_zbs_zvfh_svpbmt";
+ 			riscv,isa-base = "rv64i";
+-			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
++			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
+ 					       "zicbop", "zicboz", "zicntr", "zicsr", "zifencei",
+ 					       "zihpm", "zfh", "zba", "zbb", "zbc", "zbs", "zvfh",
+ 					       "svpbmt";
+
+---
+base-commit: 99a8c0e33dbf0117710b7f0c5cd1cb39638235ab
+change-id: 20260118-k230-ext-b-0d7e7c77c38f
+
+Best regards,
+-- 
+Junhui Liu <junhui.liu@pigmoral.tech>
+
 
