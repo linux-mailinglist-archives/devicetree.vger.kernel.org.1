@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-256594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A93D39A11
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33BECD39A10
 	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 22:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BBBCC3001FED
+	by sin.lore.kernel.org (Postfix) with ESMTP id 19C4830019F5
 	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:52:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528E929AB00;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5287C29994B;
 	Sun, 18 Jan 2026 21:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="m0m5r80W"
+	dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="uhfsA91T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-108-mta219.mxroute.com (mail-108-mta219.mxroute.com [136.175.108.219])
+Received: from mail-108-mta69.mxroute.com (mail-108-mta69.mxroute.com [136.175.108.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D24190664
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E90D279DCD
 	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 21:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.219
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.69
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768773120; cv=none; b=OV95W3W3cO4q2/IAz4b7rmeVTUypr+fQrP/BGH/jjtpJZ2ycgciRb26IJCu+tXT6XgamkQ6tVYt+HqeKm9y6ALm+XgfjmftiTmVT/rOiVSovNKPrqCp9c3VS3d7lW5A8qUzCWqVtXISL2hsE9ihuOBjzW44YqoioWhCcrX0BVzk=
+	t=1768773120; cv=none; b=gwJzvKDwacKGTto+pBipt6waWPh6AatKH1f+8Z1aMMfLxpiu28iUX3k4emHiM0/662uo4rjGRX8esbl+iD1RzgJgqF1sIfTHhxFjH2UuwC65I1C2oOktnc01ANdq9KtpkNbdFEdw6VrBGn+7xekfAquUqWMzIYEx8gVkRNOsf7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1768773120; c=relaxed/simple;
-	bh=uA4UKopBfX+OvnpydrjlXZaAB7gpQG6UqIb4LK8VQ4k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rdyKQsNrVa89+WRVwzGcSEmmIJgwxCitwFDc0hra2J13EsBOqt7ElvP2RQ1JvvIGzxnQADwZsdkL1j4/rNr3dCT8/N+sY5pSh15S0zYp4hl4kj68Q4OYmAJh6MBvxrpscZ/XhMefBSf7+pemP+FMifddHBYGXB7BKvyPjrhRcX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=m0m5r80W; arc=none smtp.client-ip=136.175.108.219
+	bh=vt6TxecKrslnjhjqbdS0s6Iy7CUPgn8ISkgGGBCg+/M=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=TzwxtT0ABJ0cuqUIIYbWgesJOjdKPNiMvUEfCY/XlnPbdT7O7QFfB8I59DHlopn1pvow/k8AJTEAHLLOM7LsHvcSsfANCCiSRpxOZvpTBC+09bqu5q+rFEqYQouYBo1+Kck4o0wj3FbmwlQijoI0TstG9bDtviSj83II3vhk73s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=uhfsA91T; arc=none smtp.client-ip=136.175.108.69
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
 Received: from filter006.mxroute.com ([136.175.111.3] filter006.mxroute.com)
  (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta219.mxroute.com (ZoneMTA) with ESMTPSA id 19bd31322a30009140.005
+ by mail-108-mta69.mxroute.com (ZoneMTA) with ESMTPSA id 19bd31326640009140.005
  for <devicetree@vger.kernel.org>
  (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Sun, 18 Jan 2026 21:46:45 +0000
-X-Zone-Loop: 65bfdf2aa75060d083d64d321485a11c0de65dcc9a2e
+ Sun, 18 Jan 2026 21:46:46 +0000
+X-Zone-Loop: 1de8c995f7ae498b10e97036d23ded223eef1cbea36f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luigi311.com; s=x; h=Content-Transfer-Encoding:MIME-Version:Date:Subject:Cc
-	:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References; bh=qH+U+xKJhw7xryI6veBTOa8U279TGynYsRUuACCMLPY=; b=m0
-	m5r80W9xJ2C75mW3h+wGqSTKCFwvg+dgNDar7fFzmVT99XhxCqOcLRLjn5UJDn47ktqEgCg35E2VY
-	zl8SCg3r2PUMEhLbIHbX2ojpnAw1bnHbh6lLhzSSibE/nFUYIRYJ/yFynJYnKRDzKgL7CeKUN9o37
-	VIaFSn/b5hj96T5RsPzech5KZA/m9TIXwAs7CcDrJkwQrzV6zlDPDwsNpqe+TgHvbkEPifPw3P3fX
-	VSPqau0sRP4jSwXQziIBWPK9AkLNxvx2K9Xw1yB2omcp0jLazYSOQNkJNatGQbKUh9wvAFACCKZe4
-	bowdRNmK+6SFITNnUvatERy5v3Cne//A==;
+	d=luigi311.com; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+	In-Reply-To:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID; bh=gZU1jtVtFJTK/4HZ7m9UqvrG5eW6sMN+A91lkyu629Y=; b=uhfsA9
+	1TzkNBb42KDAcZbV2+wbMPfLojTi6Xuyyr+3Nz6Sm891RP9bz9Q1dXSmMbGkb39IA+LxtT8//6uaj
+	EfvHubv9eGhlK29ooa7dUtnmtBU6+VNjLQMZpjrJh1/A/f9igwIy11IW5GcpLUhMcF30JaLZ4h1VK
+	mAbA2mEbNyjsQlidPkncxsI5JfG+FWPu8nylraVIETsrh3/DS5TwA9rOU7Fj59zTrN1++RcbGEjSk
+	5x20UY4Uj4/fSDbD4LepeiO7o8pNQIOycBJfTUC+esXNko0wQXjv9N3fkfDRLAmm7AJLyDM480SaE
+	L4+Y0rbWVcfXuM+SFZqKWIAbRE3w==;
 From: Luis Garcia <git@luigi311.com>
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: devicetree@vger.kernel.org,
@@ -53,9 +54,11 @@ Cc: devicetree@vger.kernel.org,
 	Olivier Benjamin <olivier.benjamin@bootlin.com>,
 	megi@xff.cz,
 	Luis Garcia <git@luigi311.com>
-Subject: [PATCH 0/1] Fix imx258 variant on pinephone pro
-Date: Sun, 18 Jan 2026 14:46:19 -0700
-Message-ID: <20260118214620.3319040-1-git@luigi311.com>
+Subject: [PATCH 1/1] arm64: dts: rockchip: Fix imx258 variant on pinephone pro
+Date: Sun, 18 Jan 2026 14:46:20 -0700
+Message-ID: <20260118214620.3319040-2-git@luigi311.com>
+In-Reply-To: <20260118214620.3319040-1-git@luigi311.com>
+References: <20260118214620.3319040-1-git@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,18 +68,26 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Authenticated-Id: git@luigi311.com
 
-imx258 had the driver updated a while back and it introduced
-two variants, the imx258 and imx258-pdaf. The pinephone pro
-is using the pdaf variant so this switches it to the correct
-variant and eliminates the pdaf pixels from the sensor output
-resulting in a much cleaner image.
+Fix the variant of the imx258 camera sensor on the pinephone pro
 
-Luis Garcia (1):
-  arm64: dts: rockchip: Fix imx258 variant on pinephone pro
-
+Signed-off-by: Luis Garcia <git@luigi311.com>
+---
  arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index 2dca1dca20b8..fd6facf1da2b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -451,7 +451,7 @@ &i2c1 {
+ 	status = "okay";
+ 
+ 	wcam: camera@1a {
+-		compatible = "sony,imx258";
++		compatible = "sony,imx258-pdaf";
+ 		reg = <0x1a>;
+ 		clocks = <&cru SCLK_CIF_OUT>; /* MIPI_MCLK0, derived from CIF_CLKO */
+ 		lens-focus = <&wcam_lens>;
 -- 
 2.50.1
 
