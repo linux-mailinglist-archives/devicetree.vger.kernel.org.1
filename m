@@ -1,29 +1,29 @@
-Return-Path: <devicetree+bounces-256567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F4BBD39866
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 18:22:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B209ED39873
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 18:26:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D0F63007C6F
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 17:22:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8E44F3002B9B
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 17:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF65A23373D;
-	Sun, 18 Jan 2026 17:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A25204C36;
+	Sun, 18 Jan 2026 17:25:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE9F16A33B
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 17:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22C52561A7
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 17:25:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768756939; cv=none; b=JoUeZMI5CyWDGrP0VC0G5peco2Dmj8b3IGFfHbrARteB4Q94eJ4kI9Si3UWoXUwexxLPTIz7k1fuxv5k96szwwZHFH3FjLCBxRZH+7CMLGvilP4/TceM/ivtc0spVNmXfLjiXfLVrIE+BwlfEPwW+WhtlFTX5/8KTYk/8LUFCKc=
+	t=1768757155; cv=none; b=REsOB9YcPwmEKpYRpqYz64lC56F6j60sFSaVV8qMR4VWtLTUBZpGJaY759nuEs8J7Bu7WPGR6uzf97XuhzwgKRPlHID/gad2sp+cIKw+irWs/VqwBuQ6cPu1da10vFEksFtcKiVpufIooUhb9PwskIlTmJQV3C7/rZ9rLVXd2+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768756939; c=relaxed/simple;
-	bh=Cm8BRtjbI4KRypVsHvIczetlMnt9Vf7bDBtTbkhGxoQ=;
+	s=arc-20240116; t=1768757155; c=relaxed/simple;
+	bh=d1IvpdbIcX1/iRdM2LeXcfEiCIWjO5kopbkDxI12ef8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ht554ID9w5jlCrIh/htAGkgcB3VcBmpKxTMdzTThyZpTdD8l8xB6FTBGzy5uvURk9cKIsgPOnXoT9sz7c51b31N6MJlVUM/U6yMZbjryUJ2tjVJSA3akdP0xsTjXdxqP5IWP/J/w7RSaJnpMXVrvbGd21A6SWd/ww+tp8D1PfIk=
+	 Content-Type:Content-Disposition:In-Reply-To; b=cYG5vhcf0hvIE6c/F8F9hDBwWIA4mE1VdFACuZdCzIcwIRrq1d6MstoMCl0EN1JQ+DV4uZrG8yipZ3lSSrWdbdqmvLTIzJ3A/kpjax9yky+aorSSZF+qk7YtgvbbmxMkURoDHdXV9AzIDT6ry7zksVyv7eOxys5UwUdL+elipBQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -31,18 +31,18 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <mfe@pengutronix.de>)
-	id 1vhWTY-00067t-Pj; Sun, 18 Jan 2026 18:22:08 +0100
+	id 1vhWX1-0007Bl-QV; Sun, 18 Jan 2026 18:25:43 +0100
 Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <mfe@pengutronix.de>)
-	id 1vhWTY-001HIk-3C;
-	Sun, 18 Jan 2026 18:22:08 +0100
+	id 1vhWX1-001HJA-39;
+	Sun, 18 Jan 2026 18:25:43 +0100
 Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
 	(envelope-from <mfe@pengutronix.de>)
-	id 1vhWTY-001bBb-0b;
-	Sun, 18 Jan 2026 18:22:08 +0100
-Date: Sun, 18 Jan 2026 18:22:08 +0100
+	id 1vhWX1-001bCU-0Z;
+	Sun, 18 Jan 2026 18:25:43 +0100
+Date: Sun, 18 Jan 2026 18:25:43 +0100
 From: Marco Felsch <m.felsch@pengutronix.de>
 To: Frank Li <Frank.Li@nxp.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -52,13 +52,13 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Fabio Estevam <festevam@gmail.com>,
 	Nathan Chancellor <nathan@kernel.org>,
 	Nicolas Schier <nsc@kernel.org>, devicetree@vger.kernel.org,
-	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Li Jun <jun.li@nxp.com>
-Subject: Re: [PATCH v2 4/9] arm64: dts: imx8mm: add wakeup-source for usb phy
-Message-ID: <20260118172208.h7yts2yuf2lkhd4n@pengutronix.de>
+	Fugang Duan <fugang.duan@nxp.com>, linux-kbuild@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 5/9] arm64: dts: imx8mm-evk: add uart3 port
+Message-ID: <20260118172543.gmx6p7ae43nge7vq@pengutronix.de>
 References: <20260117-misc_dts-v2-0-0f319c7e9b55@nxp.com>
- <20260117-misc_dts-v2-4-0f319c7e9b55@nxp.com>
+ <20260117-misc_dts-v2-5-0f319c7e9b55@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,22 +67,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260117-misc_dts-v2-4-0f319c7e9b55@nxp.com>
+In-Reply-To: <20260117-misc_dts-v2-5-0f319c7e9b55@nxp.com>
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
 X-SA-Exim-Mail-From: mfe@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 On 26-01-17, Frank Li wrote:
-> From: Li Jun <jun.li@nxp.com>
+> From: Fugang Duan <fugang.duan@nxp.com>
 > 
-> USB phy can be wakeup source to support wakeup system from USB.
+> Add uart3 port.
 
-Was USB wakeup tested? That beeing said, marking the device as
-wakeup-src is fine.
+Would be nice to know why the port is needed? If it's just a UART on the
+pin header I would rather keep it un-muxed to keep it easy to adapt the
+EVK to dev needs.
 
-> Signed-off-by: Li Jun <jun.li@nxp.com>
+Regards,
+  Marco
+
+
+> Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index 30b13b4d630f8b8b0531fad531081d4ee32849f9..8be44eaf4e1e0adc2921db8cc5f2dc69586b68cf 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -627,6 +627,15 @@ &uart2 { /* console */
+>  	status = "okay";
+>  };
+>  
+> +&uart3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart3>;
+> +	assigned-clocks = <&clk IMX8MM_CLK_UART3>;
+> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_80M>;
+> +	uart-has-rtscts;
+> +	status = "okay";
+> +};
+> +
+>  &usbphynop1 {
+>  	wakeup-source;
+>  };
+> @@ -819,6 +828,15 @@ MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX	0x140
+>  		>;
+>  	};
+>  
+> +	pinctrl_uart3: uart3grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_ECSPI1_SCLK_UART3_DCE_RX		0x140
+> +			MX8MM_IOMUXC_ECSPI1_MOSI_UART3_DCE_TX		0x140
+> +			MX8MM_IOMUXC_ECSPI1_SS0_UART3_DCE_RTS_B		0x140
+> +			MX8MM_IOMUXC_ECSPI1_MISO_UART3_DCE_CTS_B	0x140
+> +		>;
+> +	};
+> +
+>  	pinctrl_usdhc2_gpio: usdhc2grpgpiogrp {
+>  		fsl,pins = <
+>  			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x1c4
+> 
+> -- 
+> 2.34.1
+> 
+> 
+> 
 
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
