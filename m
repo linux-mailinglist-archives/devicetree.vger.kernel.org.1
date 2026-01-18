@@ -1,254 +1,150 @@
-Return-Path: <devicetree+bounces-256590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A96D399B7
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:30:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B585D399D7
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:52:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B340830022C7
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 20:30:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4A0E230012F8
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 20:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F903043D5;
-	Sun, 18 Jan 2026 20:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4280E30146C;
+	Sun, 18 Jan 2026 20:52:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eMpn89t8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="No/IjQ7l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC37B3033DE;
-	Sun, 18 Jan 2026 20:30:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66D027E05A
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 20:52:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768768203; cv=none; b=tbKaasFHdcWmJ+f4BOlVVwgPMBgOS9zyrq9NwQBMcHBk8iNS7kLNm+Bf+0Atl9LClysSGZN5kxd2x2Iwazeo62bFRl0iVwYyFUDOOZGm9l+iLJRvMb0jfWyXHc1USsIfNCJyDTubHshZRqJw2t9LyrrKMzsNp4uK50Imj10Im0w=
+	t=1768769548; cv=none; b=LgS2uEsE2kJvtVPDX2UAEH15qhHCXhuV7XNcZk3Cu4lU7cta8Wq376MWbW+dfqj3fWX4NhMxe8jXhw/qB5zbXpewaZGw0dXPaCTsOYwc0ssGw+9gyb6cUAmECLs9bsJ1hzZQTvh73oQbWB3jZG9MmsIaA/ON328JOcbQD4n27jM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768768203; c=relaxed/simple;
-	bh=wqTCy35EmRsmBM6MSmDrCfl73aVgiBL7QYd15KURbps=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ONUlX8gjFwXF17+Yv9mGy+QF/UC7wKNfy7CfZWMfFG1pzkZb2Ge7tNbHD+bOHTnZ0PfGmJ4W841ppQx0dIK1JSBueWsNm1hmL/SVnvp9PFzE0Tl6+aF0vlfxcjWSDTzoOGFyPwpKhR399LPsPEM2wfR0HmtpJcDtAPecMOTAOtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eMpn89t8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6F9A3C2BC9E;
-	Sun, 18 Jan 2026 20:30:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768768203;
-	bh=wqTCy35EmRsmBM6MSmDrCfl73aVgiBL7QYd15KURbps=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=eMpn89t8riybL6gs02BJ3pjN8nXArZtCfjx4mFK6smqn0gMIa9r+PAkesCS9ZYYCs
-	 ZwGg/wlQWsGEmSFl3cPS7L8oHCUhDyjpbfFhnrs+ApqFudCD7q9hEwugFqBGHO6QlH
-	 7DTFSgewiQV7X2fTN+eh+UKk2Di2jJyEf4Ltl4hTpRaaRCXGwKNWme0wXISQL48Nk+
-	 oJ1pxfWhZSTn9c6kJSFAGIwTN0fL7bS2ZH5PidPCPxsTzh5eatHPp8Z/XcQdyBeBZ+
-	 pj6Syok1zN70h8YEcuDNE5/AZAgNX7KIA+AWoZCUEh+MUYfkuIXiFC5ip1xARl5fM/
-	 BUZEZy32pE8YA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E5AACA5FE5;
-	Sun, 18 Jan 2026 20:30:03 +0000 (UTC)
-From: Yedaya Katsman via B4 Relay <devnull+yedaya.ka.gmail.com@kernel.org>
-Date: Sun, 18 Jan 2026 22:29:42 +0200
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Add
- Focaltech FT3518 touchscreen
+	s=arc-20240116; t=1768769548; c=relaxed/simple;
+	bh=oHUZejdHLFK35oLUjNmx8sVpI8yt5XnVUeWZ0XAaSBw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o1iZ+eIbnKceam8sChRpcSVCDtECSc0a4OQ/6fldCseS15Y8X0FCRil79G37lcIV9ou2d0D80FN8YGhrNAUBRu7aS8zF5W4Bs4lrKaMAtUkU+cbu5NFvqrqliulE95wKZ029BtN6dD2d84ytTEY4JpDB14/dc1HDpwSaOIAcCtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=No/IjQ7l; arc=none smtp.client-ip=209.85.167.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-45c7f3a9676so2091923b6e.1
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 12:52:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768769546; x=1769374346; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EajIiJxhEkxKB0h9nWZKAup7MbRjLr6FFm1MZS4wGdU=;
+        b=No/IjQ7lC4kjWLiSC/jhmfcL9VraecQS5kagoMwtlTLTahU6g4WkEwv09BsHgJA/24
+         pJMYGAvCjexQ7LRLdKZF9DGuR/B5svL6RkgokgesB0f9O+a10uSBNfvCaA9okfu/70p8
+         iFP86iQEq1H1g4C0TLLBr+lVFYWpQkHs6naoLJnWfxfgyr8nqPrzvWQVORPQkFo2LKwn
+         MBvUbBqOpRT/TKZ6c9wqFiQukTeRaxA3VztdE7wX03ev+j7xX1qVN0UsA8ui2unTT5cf
+         Yyg6xXJZvP6dtk+u2ICFq0+xvrzDt5Ejx7En947CqfzZjFU9xbj++/Qiw6HTl0bIa4Of
+         KC6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768769546; x=1769374346;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=EajIiJxhEkxKB0h9nWZKAup7MbRjLr6FFm1MZS4wGdU=;
+        b=HMTRvRb/Q2TBud7aEJM5kGg7HlRHRYLf43lVaSJyK4rST9plK5z5yXXszBfVHF19gL
+         uIb1EWCs2RU/Wy2gfkWUL/IG+h2pQqaUeDy4hUnLEIvFKyB5hNB6RCwgmDl7BaOFrP0s
+         FeztC6Bk9AQHC/SJyJN6czNuGH1nJHDqstHDpdCn8B65QmBxwzk+rXM119ZI3tfjeKiD
+         n8+JRvr0dSlCzWXpCYQMdd9lWP78S7ujFNBFmTn0H9RZDpD/j+SsacpCLiskUok6LdLU
+         o27TH429rgPT7Msltn5PtZv/qv9teENOjSbTrxUY6ZscHsVAHwEzW2pXmOsRERcqIUnJ
+         SR/w==
+X-Forwarded-Encrypted: i=1; AJvYcCX+4N4wWe5RISSNG3tuTiLO9HjepeJjpU+/7inMwVEQk6eTxB5PUeKh4YhWBp/lIiPzJoaIKIG4ILNW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpJT8pbY4q/A1YGjj6wRelZeBkyPoLcNHpmWSvL9huoDJeBAsV
+	tPdqrb71kDT2TsYDnS234r7Vd0VnDqotrneLMd293ae/mMCv2ViPoYEyExr2UOlttW+6yNPawp2
+	WZhiZ4myzMjKzTlAL6+fvochAuL4WXCQ=
+X-Gm-Gg: AY/fxX6jbfh4ngdv/PcXWfJW4+suCoRPvgBpLE012s7VDZEE4mDEZA4WQlgFcwsD2Z4
+	kJ4T7OgZHrQg09yoJgRrReLsz9DfvTl0dgLX+MRpEmxVCEQoAUbNZlek8y7NwoPv4omTqrLzsI7
+	L++dqwRWao7G1DVl6EOeZ6lAuPjpHPLr1SwmOCSXDOyBPbG8DGZAkurQOL46dQYweYPgQ+SNU5H
+	z9FNqeeSPyonYfvBGHwOCmtqFROSHNtqxk3UNWrZD3QfbHT4mhUUsL7l/mCjYB+fo0Elrda
+X-Received: by 2002:a05:6808:10d6:b0:45c:85fa:5a3e with SMTP id
+ 5614622812f47-45c8814b233mr6088865b6e.25.1768769545677; Sun, 18 Jan 2026
+ 12:52:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260118-touchscreen-patches-v3-3-1c6a729c5eb4@gmail.com>
-References: <20260118-touchscreen-patches-v3-0-1c6a729c5eb4@gmail.com>
-In-Reply-To: <20260118-touchscreen-patches-v3-0-1c6a729c5eb4@gmail.com>
-To: =?utf-8?q?Kamil_Go=C5=82da?= <kamil.golda@protonmail.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Yedaya Katsman <yedaya.ka@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768768201; l=3979;
- i=yedaya.ka@gmail.com; s=20260113; h=from:subject:message-id;
- bh=gc0uiHv+Kr2394WFOHhQSa//UoZdP1/ciZ1jZkUwa0E=;
- b=cSROccKeZFVWmSgQUYE5KsGt/3EsRqvOweoKWRwOueObEAs7gZRtAmM9lS6Of5R7naU2o8QE3
- k4JLpMG7w8cCGO3ZC1H3yHkXI+VW4LyfOz6VfJD2zieZB3meiAsHFYs
-X-Developer-Key: i=yedaya.ka@gmail.com; a=ed25519;
- pk=CgNmxD3tYSws5dZfpmJfc6re/bV/f47veVijddHLytk=
-X-Endpoint-Received: by B4 Relay for yedaya.ka@gmail.com/20260113 with
- auth_id=601
-X-Original-From: Yedaya Katsman <yedaya.ka@gmail.com>
-Reply-To: yedaya.ka@gmail.com
+References: <20260109062259.1769305-1-harini.t@amd.com>
+In-Reply-To: <20260109062259.1769305-1-harini.t@amd.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sun, 18 Jan 2026 14:52:14 -0600
+X-Gm-Features: AZwV_QgjuMn_ufy7aRDqt1tKlvaYB4bfqPXnr_PsBemUcXovpa5jbfh10tMtGeY
+Message-ID: <CABb+yY2sW57piKnUxMXjo9QStuLBe+v4jL4vB=_3Ygdf_e1o_w@mail.gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: mailbox: xlnx,zynqmp-ipi-mailbox:
+ Document msg region requirement
+To: Harini T <harini.t@amd.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	michal.simek@amd.com, shubhrajyoti.datta@amd.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, git@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Yedaya Katsman <yedaya.ka@gmail.com>
-
-Add device tree node for the Focaltech FT3518 touchscreen on
-Xiaomi Mi A3 (laurel-sprout).
-
-Add pmx_ts_* gpio configurations and reference them in the touchscreen
-node.
-Note that gpio pin 83 for the regulator isn't documented downstream
-except in the touchscreen node so it's not defined in the tlmm.
-
-Enable qupv3_id_0 and i2c2 bus that the touchscreen is on.
-
-Downstream references:
-Link: https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/laurel-r-oss/arch/arm64/boot/dts/qcom/trinket-pinctrl.dtsi
-Link: https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/laurel-r-oss/arch/arm64/boot/dts/qcom/laurel_sprout-qrd.dtsi
-
-Co-developed-by: Kamil Gołda <kamil.golda@protonmail.com>
-Signed-off-by: Kamil Gołda <kamil.golda@protonmail.com>
-Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
----
- .../boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 113 +++++++++++++++++++++
- 1 file changed, 113 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-index 994fb0412fcbdf5466f87a325c48b697a37b514b..5e55acacee9585f34eead20661268103f0b7889c 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
-@@ -82,6 +82,18 @@ key-volume-up {
- 		};
- 	};
- 
-+	ts_vdd_supply: regulator-ts-vdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ts_vdd_supply";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 83 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		startup-delay-us = <70000>;
-+	};
-+
- 	thermal-zones {
- 		rf-pa0-thermal {
- 			thermal-sensors = <&pm6125_adc_tm 0>;
-@@ -128,6 +140,28 @@ &hsusb_phy1 {
- 	status = "okay";
- };
- 
-+&i2c2 {
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "focaltech,ft3518";
-+		reg = <0x38>;
-+		interrupts-extended = <&tlmm 88 IRQ_TYPE_EDGE_FALLING>;
-+
-+		vcc-supply = <&ts_vdd_supply>;
-+
-+		pinctrl-names = "pmx_ts_active","pmx_ts_suspend","pmx_ts_release";
-+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
-+		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
-+		pinctrl-2 = <&ts_release>;
-+
-+		reset-gpios = <&tlmm 87 GPIO_ACTIVE_LOW>;
-+
-+		touchscreen-size-x = <720>;
-+		touchscreen-size-y = <1560>;
-+	};
-+};
-+
- &pm6125_adc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&camera_flash_therm &emmc_ufs_therm>;
-@@ -220,6 +254,10 @@ &pon_resin {
- 	status = "okay";
- };
- 
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
- &rpm_requests {
- 	regulators-0 {
- 		compatible = "qcom,rpm-pm6125-regulators";
-@@ -387,6 +425,81 @@ &sdhc_2 {
- 
- &tlmm {
- 	gpio-reserved-ranges = <22 2>, <28 6>;
-+
-+	pmx_ts_reset_active {
-+		ts_reset_active: ts_reset_active {
-+			mux {
-+				pins = "gpio87";
-+				function = "gpio";
-+			};
-+
-+			config {
-+				pins = "gpio87";
-+				drive-strength = <8>;
-+				bias-pull-up;
-+			};
-+		};
-+	};
-+
-+	pmx_ts_reset_suspend {
-+		ts_reset_suspend: ts_reset_suspend {
-+			mux {
-+				pins = "gpio87";
-+				function = "gpio";
-+			};
-+
-+			config {
-+				pins = "gpio87";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+		};
-+	};
-+
-+	pmx_ts_int_active {
-+		ts_int_active: ts_int_active {
-+			mux {
-+				pins = "gpio88";
-+				function = "gpio";
-+			};
-+
-+			config {
-+				pins = "gpio88";
-+				drive-strength = <8>;
-+				bias-pull-up;
-+			};
-+		};
-+	};
-+
-+	pmx_ts_int_suspend {
-+		ts_int_suspend: ts_int_suspend {
-+			mux {
-+				pins = "gpio88";
-+				function = "gpio";
-+			};
-+
-+			config {
-+				pins = "gpio88";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+		};
-+	};
-+
-+	pmx_ts_release {
-+		ts_release: ts_release {
-+			mux {
-+				pins = "gpio87", "gpio88";
-+				function = "gpio";
-+			};
-+
-+			config {
-+				pins = "gpio87", "gpio88";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+		};
-+	};
- };
- 
- &ufs_mem_hc {
-
--- 
-2.52.0
-
-
+On Fri, Jan 9, 2026 at 12:23=E2=80=AFAM Harini T <harini.t@amd.com> wrote:
+>
+> Add description clarifying that for Versal IPI mailboxes, both host and
+> remote agents must have the "msg" register region defined for successful
+> message passing. Without both, only notification-based communication
+> works.
+>
+> Signed-off-by: Harini T <harini.t@amd.com>
+> ---
+> Changes in V2:
+> - The description regarding the "msg" register region requirement for Ver=
+sal IPI
+> mailboxes was moved from the conditional schema section to the main descr=
+iption
+> block at the top of the YAML file.
+>
+> V1 link: https://lore.kernel.org/all/20251222044653.1757886-1-harini.t@am=
+d.com/
+> ---
+>  .../bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml     | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-ma=
+ilbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mail=
+box.yaml
+> index 04d6473d666f..a5205ee5ad0f 100644
+> --- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.y=
+aml
+> +++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.y=
+aml
+> @@ -11,6 +11,17 @@ description: |
+>    messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each I=
+PI
+>    agent owns registers used for notification and buffers for message.
+>
+> +  For Versal devices, there are two types of IPI channels:
+> +    - Buffered channels: Support message passing and require the "msg"
+> +    register region to be present on both the host and remote IPI agents=
+.
+> +    - Buffer-less channels: Support notification only and do not require=
+ the
+> +    "msg" register region. For these channels, the "msg" region should b=
+e
+> +    omitted.
+> +
+> +  For message passing, both the host and remote IPI agents must define t=
+he "msg"
+> +  register region. If either agent omits the "msg" region, only notifica=
+tion
+> +  based communication is possible.
+> +
+>                 +-------------------------------------+
+>                 | Xilinx ZynqMP IPI Controller        |
+>                 +-------------------------------------+
+> --
+> 2.43.0
+>
+Applied to mailbox/for-next.
+Thanks.
 
