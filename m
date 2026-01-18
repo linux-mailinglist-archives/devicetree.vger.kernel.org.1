@@ -1,145 +1,176 @@
-Return-Path: <devicetree+bounces-256592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E36AD399E9
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 22:05:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 754C1D399F3
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 22:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B093330012E7
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:05:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 229DD300818C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF12307AC2;
-	Sun, 18 Jan 2026 21:05:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6ED21019E;
+	Sun, 18 Jan 2026 21:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hY0aIa+E"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="HtILRw2X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDFAF22F77E;
-	Sun, 18 Jan 2026 21:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DBC3190664;
+	Sun, 18 Jan 2026 21:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768770328; cv=none; b=UXUWDvaRNVDdTrZwX/AWZUysk9AwzyuSrJTAnFmA8H1yK0uKJYwZgmQ55tE6EN89d6oxPBUW9p1ZFNV1twnekT3lH491s8q+O444bsdVW2sqOLL5b0+Wm3Eyh4wCHJoCv4sUtm9OGDp5JhnEnRGouDnjU9I9PRofwzov7cGpXd4=
+	t=1768771156; cv=none; b=Kl0ttCTP7YXINaFtKZOy+Hg9GH8xNHxE17aKG23ry9k9o5WeZVxFhZhqcEKt7HZkf90a8H4JHGZQWlApgSd/XRTy4SaBTzWF7E+2ayz5UUIU4/ay7MxQ4xN2GA9ATnzeq+3qOw/bHJUR88Z+HvFXaVdxBAlWNWIJSeNlWhjhmI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768770328; c=relaxed/simple;
-	bh=GM3uKCMiilBcgyBVXN4FIzqknsc8oriYI5QHYaoewVg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RB6fU7UuUJ4oS6wfPDwePB0fP6j/sjaMtKvvjJ7pdhG/mSVIi301oSsrENPThqcfdPiM7LJ9nbYfwjSZok8iSjVUUZ3K7tYV4tNmYjMEY/Su6OB5t5uLpiIlv0UWsaoqxTQnK9HJw44noftmle/PBmWmNQzrCZt4bEvpA+Ranxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hY0aIa+E; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768770326; x=1800306326;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GM3uKCMiilBcgyBVXN4FIzqknsc8oriYI5QHYaoewVg=;
-  b=hY0aIa+EM70DTOH7myfQG6zMtDknZ6QQGrLVIbSMwzjSbh7Li7Nm9ZgM
-   /WGbIappRfaOryLqvTo8YJCIu/LcpzXxioZDvLyjS5ticpt5rluTlGXm6
-   jqrrxfm/zdkB3wNG/QAGE3PwLoc43dJ9EyyX+c/95IbDYlmQ2Zi5jr5zW
-   tr8fo0egL9btAA58OFmgFJ0itoRe/vHh2iyTJtFyryEdBKU208oua2ykP
-   jExnp3eOWq+GImucTpzqPmkuvGqk0Mwy3cN3YptTI6wNzN73bp/70RTeo
-   q365SSB8wNazkmm80QAzvzmdWzHNZnT0XofonBQJRwKFdM6Ahq92XkRiu
-   w==;
-X-CSE-ConnectionGUID: fB7Bd4GoRBS49gOnO4Qy7A==
-X-CSE-MsgGUID: Hru0QHeqTEy3wtF/puTMYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="69892316"
-X-IronPort-AV: E=Sophos;i="6.21,236,1763452800"; 
-   d="scan'208";a="69892316"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2026 13:05:26 -0800
-X-CSE-ConnectionGUID: oYYZtdB8TAScbc8sN6SrZw==
-X-CSE-MsgGUID: WYIuxMH6Tr+DshwILx+2Ew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,236,1763452800"; 
-   d="scan'208";a="206131331"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 18 Jan 2026 13:05:21 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vhZxX-00000000NDs-3azH;
-	Sun, 18 Jan 2026 21:05:19 +0000
-Date: Mon, 19 Jan 2026 05:04:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>,
-	robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
-	robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-	konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
-	bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-	prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com
-Cc: oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	vijayanand.jitta@oss.qualcomm.com
-Subject: Re: [PATCH v5 3/3] of: Respect #{iommu,msi}-cells in maps
-Message-ID: <202601190432.C5Aya7rJ-lkp@intel.com>
-References: <20260118181125.1436036-4-vijayanand.jitta@oss.qualcomm.com>
+	s=arc-20240116; t=1768771156; c=relaxed/simple;
+	bh=sZaN1oHwYtgJvHl/lPTrjlptxFSRmz2iSZBP4z3RVMI=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=JHuN6hvoI8MScLUY+EK5jY2Tmhw09mZWNkTTProsuNAY6pAY90pG2KRg48KiCLHGbnB1iIzM9vulOq/j+SVc20ri41utQtgUhDrSn7Uxt3T8440+/KF7sbS58omO14Dw4uGg0wYq0X+/iqctPyYG6j+Spj3HSHF0FdFHUGxRQek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=HtILRw2X; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1768771152; x=1769375952; i=frank-w@public-files.de;
+	bh=sZaN1oHwYtgJvHl/lPTrjlptxFSRmz2iSZBP4z3RVMI=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=HtILRw2XVwOALYR4Lp/Slww2WacEdJ75XgAsTWx9rWGzyeYZ7w09YaXdZogwn4SH
+	 i/cbDObZFo13jcc2eST2q4K/9GHn44DDS3np/YsCBqxcXDsRzXWFCjcVKaZJiocf0
+	 Bii5f2a0sPUZmAYJr6qDIIMF+NWb3jWRNZsfoElyXVV+bOaSurqTzOjf8L+aFBk2v
+	 VbKBhSF/bUqoxc9BP0V+Rk6UX3rwu90un71JKO8dIPXdouIcCEsoc1wNTSZFwXK+T
+	 q3a7tHfBS88LzxhnwkPXXNDTpS9u/sk1uHrDpATEnMB/npoaDenFyy5MrQ4Jugc8w
+	 j1qiZLsvxXWGM0VnHQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from ehlo.thunderbird.net ([194.15.86.3]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MZTqW-1vL0go21Ic-00TBBf; Sun, 18
+ Jan 2026 22:19:12 +0100
+Date: Sun, 18 Jan 2026 22:19:12 +0100
+From: Frank Wunderlich <frank-w@public-files.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-mediatek@lists.infradead.org
+CC: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2=5D_arm64=3A_dts=3A_mediatek=3A_mt7?=
+ =?US-ASCII?Q?988a=3A_Fix_PCI-Express_T-PHY_node_address?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <20260115131035.75574-1-angelogioacchino.delregno@collabora.com>
+References: <20260115131035.75574-1-angelogioacchino.delregno@collabora.com>
+Message-ID: <B5FE3278-9188-42AB-9218-BDD4126931F7@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260118181125.1436036-4-vijayanand.jitta@oss.qualcomm.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:YiIRAb3ApyTUxW0oJNwcgTy77JFsxp0VK7ZglymXCqOJ+9r3/TJ
+ b/urROz7vG6FElsK+9N4X9FvnukRW4nBnoWVg6w+NbK6eKTmhFSxM1xEED/B0YsmTRoJPCN
+ HzP0X2OK7H3HiBF0o49DtUiNNFxAqIa57ZkHSfY6PjWMEkxeOJeD4/C9yXpabS/E9BBIWN1
+ 8PUHTl47EfideOPv0QiTg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:y+cPne1xd+Y=;lXwVp7IvfOaEFxrCD+3b2/x1kyM
+ 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
+ mLqu3x5bKc2A2+/62kvXMH5zJ5335
 
-Hi Vijayanand,
+Hi,
 
-kernel test robot noticed the following build errors:
+Thanks for fixing this=2E
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on pci/next pci/for-linus xen-tip/linux-next linus/master v6.19-rc5 next-20260116]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Am 15=2E Januar 2026 14:10:35 MEZ schrieb AngeloGioacchino Del Regno <ange=
+logioacchino=2Edelregno@collabora=2Ecom>:
+>The PCIe and USB TPHYs are under the soc bus, which provides MMIO,
+>and all nodes under that must use the bus, otherwise those would
+>clearly be out of place=2E
+>
+>Add ranges to both the tphy(s) and assign the address to the main
+>node to silence a dtbs_check warning, and fix the children to
+>use the MMIO range of t-phy=2E
+>
+>Fixes: ("f693e6ba55ae arm64: dts: mediatek: mt7988: Add t-phy for ssusb1"=
+)
+>Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino=2Edelregno@co=
+llabora=2Ecom>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vijayanand-Jitta/of-Add-convenience-wrappers-for-of_map_id/20260119-021706
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20260118181125.1436036-4-vijayanand.jitta%40oss.qualcomm.com
-patch subject: [PATCH v5 3/3] of: Respect #{iommu,msi}-cells in maps
-config: i386-allnoconfig (https://download.01.org/0day-ci/archive/20260119/202601190432.C5Aya7rJ-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260119/202601190432.C5Aya7rJ-lkp@intel.com/reproduce)
+Tested-by: Frank Wunderlich <frank-w@public-files=2Ede>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601190432.C5Aya7rJ-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   In file included from include/linux/cpufreq.h:17,
-                    from kernel/sched/sched.h:31,
-                    from kernel/sched/rq-offsets.c:5:
->> include/linux/of.h:937:1: error: expected identifier or '(' before '{' token
-     937 | {
-         | ^
->> include/linux/of.h:934:19: warning: 'of_map_id' used but never defined
-     934 | static inline int of_map_id(const struct device_node *np, u32 id, const char *map_name,
-         |                   ^~~~~~~~~
-   make[3]: *** [scripts/Makefile.build:182: kernel/sched/rq-offsets.s] Error 1
-   make[3]: Target 'prepare' not remade because of errors.
-   make[2]: *** [Makefile:1314: prepare0] Error 2
-   make[2]: Target 'prepare' not remade because of errors.
-   make[1]: *** [Makefile:248: __sub-make] Error 2
-   make[1]: Target 'prepare' not remade because of errors.
-   make: *** [Makefile:248: __sub-make] Error 2
-   make: Target 'prepare' not remade because of errors.
-
-
-vim +937 include/linux/of.h
-
-0384e8c6c6fa49 Pantelis Antoniou 2015-01-21  933  
-eb8f695e71ec36 Robin Murphy      2026-01-18 @934  static inline int of_map_id(const struct device_node *np, u32 id, const char *map_name,
-eb8f695e71ec36 Robin Murphy      2026-01-18  935  			    const char *cells_name, const char *map_mask_name,
-eb8f695e71ec36 Robin Murphy      2026-01-18  936  			    struct of_map_id_arg *arg);
-2a6db719c92dbf Nipun Gupta       2018-09-10 @937  {
-2a6db719c92dbf Nipun Gupta       2018-09-10  938  	return -EINVAL;
-2a6db719c92dbf Nipun Gupta       2018-09-10  939  }
-2a6db719c92dbf Nipun Gupta       2018-09-10  940  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+regards Frank
 
