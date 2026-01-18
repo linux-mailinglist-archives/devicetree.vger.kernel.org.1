@@ -1,1584 +1,221 @@
-Return-Path: <devicetree+bounces-256445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD33D3929E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 04:46:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64DADD392EC
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 06:32:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6D5AC30049CF
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 03:46:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 130BC3011EEC
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 05:32:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BED93112BC;
-	Sun, 18 Jan 2026 03:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595DD18A6DB;
+	Sun, 18 Jan 2026 05:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Y+dZwZsC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013044.outbound.protection.outlook.com [52.101.72.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E68D30FF29;
-	Sun, 18 Jan 2026 03:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768707992; cv=none; b=IOUrQIvm/qA6n5uM6sKGRr4XZsEdM2vY7hDpoF6Pfcb3cBnNgeQxt7GmfWXBQcPyoWzeeTxmbgy8aIpFtprDOBtXRg3F5LYClvtftlALOSDY5VqeQEA95M/ZQOUJkistGxxeDsxyrmTGge0+YUaGp/yG6AFsF6tQImIfCIVBEgI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768707992; c=relaxed/simple;
-	bh=yHHpCiECivkx0IyQOHLzFWj5doQIwlsNYjVJE8Rje2s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XBPIrcaA/dZfRLjnzRrfmsV9OwV4kS/DWF1wJFP2CDhiM6pF8AsA4b2ogMlRZITwrnkzQi+Thu96IzjU8Qt61Ch9VyM5qPVhfnNREYWErN0e7UWcNp2VcxbvH9Mk74+fHAeVy5qNWGUOfw3ZUJSHW9ylVJn08s2nUAc0gKCFy7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vhJk0-000000000kz-0sHo;
-	Sun, 18 Jan 2026 03:46:16 +0000
-Date: Sun, 18 Jan 2026 03:46:07 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: [PATCH v7 net-next 4/4] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <15b0adf5074c601e033fd2338fb27fb666b5d16b.1768707226.git.daniel@makrotopia.org>
-References: <cover.1768707226.git.daniel@makrotopia.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DDEC500962;
+	Sun, 18 Jan 2026 05:32:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768714322; cv=fail; b=VsuCHjcND55Vsxsu18zWgUHurn9qj9/ztNTzF8ohCxaw7cGkYrRBIHdR8bO2mITOsUQR9jO8hhXiHuOC+TewkCdhENiOJXBl+pyDzLIomtbNaKKFQlpYnXeiHjji7zgTY0kB5OaP3nO/OG4q3bKHINkyTwn/MUSRj43LFuHCiFc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768714322; c=relaxed/simple;
+	bh=sSzjLV5UWH9OPIwd6p4OvQ63NpgivdLhIKNYaluo88c=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=byl0r2fDgzQLDYSB+mXEzpI0IKmLK29N94qqufFDwQirHo/V0YfeGx8q6tBfVn2ow7hG0Q3wEjbZJbs7AQmwnA24s6etXheuurojjo6ilBBKiCGg3znV98+hXdIaNFdQjVyWrMpxQ3ZSbvMgR2Uh93Xb/iVdorFzxEop3I8t3YM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Y+dZwZsC; arc=fail smtp.client-ip=52.101.72.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XiJ1hFnCH7Y9D/Wa0hIxEPXTdXvp3GjElbvk/zdJGvPWSeCW16gsJ6VWRXHOnd2RHUELGM9WFRUD4FzaJpVkMqC9CsVethEBu7zPbTjdj430xJ25knCVsvRDv3tAed6bCPecLVJ77M3uqe+Q86W1r1gPWkOEy0ohL/JMm260RKxtNMD4FPzP2PZ7mgpdjwbo5AQkHibm2+sREUN5xxZv787ywVKu/ueGboCj5JeSVy7lyiyD6mLkoI1YEfvkGqWlQMEInNYVN9cd8zlGaozWBvoxqfTx3fQLyiofEEcTyQuUv/KyT+hgWui302XE1vra8yqCjclO80AbyiZTM5tycg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sSzjLV5UWH9OPIwd6p4OvQ63NpgivdLhIKNYaluo88c=;
+ b=uFySE9Gg5YEOx3P7sZR46ZUbMrUYNXzN7FiFGrKqvR+n6o5CLuT25VbdYvcAdhBn7d6pd27gdGy4ceRID8VTDwsc17R69RtTMwR1JFl15pdcWVkxZ27AmV2rfWAnXl82+wZmwpq9PsfAah+ZjT0yeBXNWTbnqjnA3KvyUS5+d3cAUt46MisjZJB+X3Ex5IzF9MVLuAt/bb3f0oG47GiM+s1a5g85hPyHkVSeUb3CuH9U4jmOBDngjMVgKnSEZltWkMwS8Zjvdy/UmIcqKBuNiXGhqbdJfsqFVs51PzMXXTLqV3bt7Mr5EXQ9IvuLI+IobTwJomINkpWW2BwF0EDFaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sSzjLV5UWH9OPIwd6p4OvQ63NpgivdLhIKNYaluo88c=;
+ b=Y+dZwZsC4oJRtmYUWbzH8+TWNGHvRYqILdVK8/LjFZNAhdQZzLrIslbRTyqMmI126kyoUHcbVXbtd6tDy48x6gnoAxOyNM2QkCRTwbyh3R3p9ZmXH6UZOSQmpJlFyw2MFp+nHQ61D05NsrxizRSD2w26b8WZm+s9gHTEd1xLWMzgjwJNcpY57KhBCM/rFbbj0tzhJ8c7xXGO99qgVmJ+/nkJlL9ak4Wkh2WP5+igLPdczGAAFNgmBa8Whj3RUTWup+G9YbLd88NOTlIPC1RyEqISrLEyMD2iP1PsrKUfY+I39sxFvlyC+pJNPp/eVXv6lKFWE2q1gCG6wjcek9tKfg==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by GV1PR04MB11016.eurprd04.prod.outlook.com
+ (2603:10a6:150:206::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Sun, 18 Jan
+ 2026 05:31:57 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::2943:c36f:6a8c:81f7]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::2943:c36f:6a8c:81f7%5]) with mapi id 15.20.9520.009; Sun, 18 Jan 2026
+ 05:31:57 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: Frank Li <frank.li@nxp.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nsc@kernel.org>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-kbuild@vger.kernel.org"
+	<linux-kbuild@vger.kernel.org>
+Subject: RE: [PATCH v2 9/9] arm64: dts: imx8mp-evk: add bluetooth dts node
+Thread-Topic: [PATCH v2 9/9] arm64: dts: imx8mp-evk: add bluetooth dts node
+Thread-Index: AQHciCvxBHElkKxbsUiJ1x8o38o8RrVXZq+A
+Date: Sun, 18 Jan 2026 05:31:56 +0000
+Message-ID:
+ <VI0PR04MB12114F2A4527362C31CA0B094928BA@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References: <20260117-misc_dts-v2-0-0f319c7e9b55@nxp.com>
+ <20260117-misc_dts-v2-9-0f319c7e9b55@nxp.com>
+In-Reply-To: <20260117-misc_dts-v2-9-0f319c7e9b55@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|GV1PR04MB11016:EE_
+x-ms-office365-filtering-correlation-id: 2ec96186-7edf-422b-86a0-08de5652e56e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|19092799006|1800799024|921020|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?Ti96WGltTVB3bTFWWTlkN1Z4SEI4YlFYd0hHRWFub1N6K0k1VWxZbU1lTVJB?=
+ =?utf-8?B?R3FEdVNDbzd2MHF3V0RlcXZ1OTZrbUhSa01DT01jSk9qRkdSUUs3d3VvNTlO?=
+ =?utf-8?B?VUkwZ2txVkZaZnAyYVE3YVplZ0lySjE1MG9ranpzbVpONXF3allKOVRoaUlC?=
+ =?utf-8?B?bVRoNjUwT0kzYmI4eHg2UGRZa3JsMlBNWHJkZVh2R0VJdzR3WStYdlU0Zm0w?=
+ =?utf-8?B?U0hjZ080bFE4b0NLWkhmR2N4N2ZQQzRjaXJsRHVveDh5UnA2dEV2Y0dXTEEv?=
+ =?utf-8?B?RGdabUN2UkF4QVQvU1ZxUndaQlovbVA4T05tWk5mTDU1dEQ5dVp0amZ3eTc1?=
+ =?utf-8?B?NUhoN1B6U01oQ2xGYWVsd083YVp3L3k4anloSmdYajFSL0x4cy9LZ1BiM21q?=
+ =?utf-8?B?M1duc01Ucm9KWTVOY09vWW9LR2V4bGMwekZZK2hNcG1DelFoK3RoNDQ4QjFy?=
+ =?utf-8?B?a3huZ2pxclBSN3FrQU1sTVluU1FNbE53d1Y0RUlLc1JpUXdGSVZYMzJwZ3V4?=
+ =?utf-8?B?bElDVHJsaE82YnRncjNXNWkxU28rdXJQVDBIM2NRQTJmTWIwc0VhTVpZTlI2?=
+ =?utf-8?B?aHpBMVhDc3FMZUppQmVGS1pFU0hxemtjSkUxZ0lXejU1Y0tTcmp1MkpPSnJt?=
+ =?utf-8?B?VmZEYzFUVHRDR05KcmVhTDZnN2xLUFB6WUp3QzVDWTBmTDA2KzdiSG5TYVpF?=
+ =?utf-8?B?Ykw2VDAreVFuaE9uT2NOVzYzSk41dTFRSTI4QXU3RzhPNnFFUU81cEtuWnRB?=
+ =?utf-8?B?N2NLTnJ6SEJJVFdXaThNaXc5TTh6bEdoZkRoZTN0K01SWENLb0trYU95eVQv?=
+ =?utf-8?B?SzJPSFRBaGtiaWgwcW1zUlVWK1lKeGxDekU3dkVBUlhBdkc3NDlZdk93dzFn?=
+ =?utf-8?B?TlgyWjQycEhHMXlpQ2ZuN1RYVVluY2Nyc0l6cWNYN0hvN3FXeVNUUWJhOWY2?=
+ =?utf-8?B?enVYQkhkRzNhSFE0bExmbE1QcEFMM1h4RHFON1dNQVhoY0o0dWF4blB5cWwy?=
+ =?utf-8?B?NXQ1eHZ1enpFa2xiNGdLbE00OUc4TVZpL1NydE42NVNuKzZHN1AwWDdaTTVw?=
+ =?utf-8?B?cHhDMDZ5bDNVbTZXdERQdDlqL3BNZGx3STQ4VW4wQktXV1Z0Wkl0T21qVkEy?=
+ =?utf-8?B?bUZEUTNpTHpySmZWZGY2M0QvdUs0OTlSTkk4QWkrVUdUbEJhaERjVVZ1OVVM?=
+ =?utf-8?B?RVFCdndKcDN4VlBMZm82YklXZzc3OTMwemp3OW02MzFhTVNUMDlJOFQxWUhV?=
+ =?utf-8?B?cDR1akttZW9LYm1QdWE3R1pRV2UyZURyRTVabEhmVlVJSzJtYlQvTG50aUZN?=
+ =?utf-8?B?c1c4ZG1nd3J1MEZFUmZOcnRRRmlXc0p2UDB5R2RVSUVZeFpYc2w5Q01LMkY3?=
+ =?utf-8?B?UGdibE0rRlBiMzVlVFAyYUhvYWxoSllISU5BZkpxV3MrVUFIcHFWM08vU2dp?=
+ =?utf-8?B?dDJJSVhLbEZPdmZWUGQ2RXdrMmQvYUxRcDdRdE9jaHZXZzZnamxUSjUxVURy?=
+ =?utf-8?B?UVFkbmFFK3FmY09kdTd5Vzd2anhXY2VFQnNpUEk4c3dscUUyODIwVUhTQnZR?=
+ =?utf-8?B?SXU3OERLRVJiSU9JK2lNSWk5TklCV1RiZE9XTm5TYWFNVHdHYmk3OUpReUMx?=
+ =?utf-8?B?MDhYTWE3dFAyUG5VbWIrMC9iM0FoSWVmalJFNHJGRWdXWnNnRGZkdVoxVmFN?=
+ =?utf-8?B?Ynk1RXBWbUlBeHBkNXpCZlByZnQ5bm5qaW9sVnY0bzkzdTQwN1IzUTEyK0JE?=
+ =?utf-8?B?K3dwUURETytIbGFKcnM2NjBrZnNDS3NBQ3RUWDdHYTJWN3dVRFBkaXNQYjk1?=
+ =?utf-8?B?bXo1S0VuSFhxeUFuSmcwL2JoWTNjcDRlWkR6SXdQdlFwMWhlY3JOU2lWbW5z?=
+ =?utf-8?B?Y0tkaEI4MmUrWWpSRllJblJxTWYvUVNockdEak8zS2VCaTN1QUJ3bGZkY1p3?=
+ =?utf-8?B?UlJ3S1ZuM0RUaTFwc0xoMDY4NDM5bXcwbnZOYytETWR2M3BQY21SVVltWEhy?=
+ =?utf-8?B?RlF2Slo3VkFqWSsrbldac1llQy9hb1k1VzhqME8vcEU0Z2ZPczJCWTd2OGVL?=
+ =?utf-8?B?VVM0Z1JUSEJYZ2c0cGhDeVdKb05vS0dZTW9nTW5EY1RKZmtWUXNNWWZzazFj?=
+ =?utf-8?B?UFcwTlRyOUoyaWl5QWRNdTBmY1RISFJOZ1E3Y0ZSR25FVEdFMzlGYTNvUEpu?=
+ =?utf-8?Q?T2HTaeFo1WvdZf9A/www5y9NkDugtfinwW+6VKjeWc59?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(19092799006)(1800799024)(921020)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?WnVDSEhXRjVJMnQ3VU8wNmJFUngrWFZvVkxkL2xNNXVMbU41VWdhSDdkaVJL?=
+ =?utf-8?B?YVlMbzFhWEw5eGhUajFKQWU5VmhCTUVFTHFRaXV0b0w3cnJXQmNiODczdmFa?=
+ =?utf-8?B?WHFOYStsVnZ0VDBGQVN1MDJxVDJBNms2cFJ4ME1USjdmZWwyZGQ2N2IwUW5N?=
+ =?utf-8?B?dFFWakw3cVdhM3FFRTJXcWorR2NaK0pJVTZhWlU0dmtqZUFPU2gvTnVORVZ4?=
+ =?utf-8?B?S29JM2FLMytyMldZL01nekJaVUd0TkdPTlZic0QxOEp2NGVMS2dUekNrUENN?=
+ =?utf-8?B?TVRtaEVFOVl4SHJETTlsSSs5em5EelpkWGtyL1NWNDU1N0hsRkVydTl2bjdH?=
+ =?utf-8?B?YjFTRlJyUXJweDQzNnJYOTJwVnlha3EzUjgydlY5REwzWnE4MGxwZjAxeFdK?=
+ =?utf-8?B?bVBXSmtiL1NwR0h5bnVzUy9ySGowUEFrZ04zTTEyU3pOWUU5czFWY0FWOWZj?=
+ =?utf-8?B?ODhoSDFIcEVRVmM2SFJhU3liRmlNWVVsbVBjbHdEc25MdFMwQ0dNd2RLWnhU?=
+ =?utf-8?B?QlBGQSsyZy83N21acE1VU3RqRndCQ1R5TzFDaTZoQ09tbG1QejZzVkM4bkNX?=
+ =?utf-8?B?Q09GdDdBMUhLblhKOTVsQkJTUEkwbndXNDFJT3h1dmxVVDZOWkFycXIxb0Vr?=
+ =?utf-8?B?ZzBVbnNTRC9PY2dvSENjcFJxeElwQ1pkTm9ocENQZUhhSk1meXhqNGY3bjZ0?=
+ =?utf-8?B?WElRVDJhVEgyS0xKdFFvbWk1Q2dxZFNIMHQvbWdoYVQyVEptWlBrazFrTDdO?=
+ =?utf-8?B?dithbnRNeXZDNlk5TU9EYVdudTErdmlnREFpdzlKZlkxMUlUWGJDcWZ5YnNX?=
+ =?utf-8?B?VzNKUHkrQnh3ZnpIMTdKZmF0Vkc3MzAydW5FcG1xOC90dGZIbmtKemJhUk9n?=
+ =?utf-8?B?ZnlUQjdRSmxROU84d1ZRU2s5bkZnN1I1bU1sSVdSOW5VNzRXYjZ5bjFPTDUx?=
+ =?utf-8?B?Z1FTUW81U0NtaS9CR3hNek5wZE1WdVFYQ1ZKME1ERXBNNElNcUhUOUlJUDMv?=
+ =?utf-8?B?ejVKQVI3YUx5T3NwMDVhL0svN1ZtYkZQOFdHQUJ2Y3QreHAvWjRFSVF5ZTdM?=
+ =?utf-8?B?ZytIcG1JZnJEb05oNTQxSTJheXhDcFRaODh0MGFuQmF4bVZBNitYKy9YNTNY?=
+ =?utf-8?B?bWNFaHNJeWc5bnViR21nakpZei9LOUR0YkQrVGptRzNyY0s0cFZLb2FrUDB0?=
+ =?utf-8?B?WElqeW1Jc3Z1SkZKeFhXWTJjT1REMTdBUnhOSmZoNS96ZHBuNkYzbVhnZkg2?=
+ =?utf-8?B?bytVU2MwTzVkbFIySWxnQm9iaDI5OHVZNXVMK2RDWSs5ZmYzOEp5dzBWMU5j?=
+ =?utf-8?B?SFQ4MER6QStPMmRzSEFQQWNob0pHeHk1NEgvY0hqQldjdHROVC9xQTRQKzBz?=
+ =?utf-8?B?OW9jbGxWYVZpT3RSUThxNnlmNG1wdWROZyszbjBZT0o4bDE5K0NzTmJiNXNM?=
+ =?utf-8?B?ZVNOaTMyc0c0a2NoV2xnS2xHN1lZOFBPL2hYR0RIdUJlL2JLSCtYMnNwUjhM?=
+ =?utf-8?B?UHI4eVg3TmRJRFY3MXYwU0F5MWxKOHhOQzZ4SWVWWTZVZS9yR2lqdGdHL1dS?=
+ =?utf-8?B?cE1lMmhLRFNJOUI5SWE1ZjMvNThNNGxhME9hWEM0U0FJdFdCRXI5Z3VFb3Zq?=
+ =?utf-8?B?eU8xUTZySHUyUFN0UjhQT1p5eVBLaXVENFF3Y0NGcXBMQVhadmpDWW9JL0Vh?=
+ =?utf-8?B?aDJJUk9IZnAweFBucVV5UUMzdlVRcGVtanVjN3ZZdHpVK2w0NTREREgzNjVG?=
+ =?utf-8?B?elJ2a2VEQ1MyLzEzQWhNdXJLWkYyVmhFeC9zc25qVjg4WmdpSXYrTkV4M2J1?=
+ =?utf-8?B?WlZwSlBTUGFMUnVXTW1zRGptWFRtZEJ0R24raWpmUHQrWmVhNTl0OGFETEh5?=
+ =?utf-8?B?TnJWdFhDblJGQW5KdjJYbkhQK1FIR2d3RUFpMTRLdHArVVNtSDlUa1hUMk5C?=
+ =?utf-8?B?c0RkUzdsbmxxOGhDOWhna2tZeEtobUk4YkZoOUVhcy9wWGpwa2ZNR0s2aDM0?=
+ =?utf-8?B?TkNOYmp6Rml5TXU2U1lyVTFybXpBODF4aDExZEFPU0MvMTRPVlJ2czVCSUw4?=
+ =?utf-8?B?UUZXc2l4TEJnVTJDWUVMaG9waGhpMnBTRTQrd0JYTUFIVW81YkJsdFpuUSt0?=
+ =?utf-8?B?encrK2RXYWZ3OW0rMCtOK0ZJRUVTWDlLd2VwVkJQZjFFMUpiRDZjay8vTUxX?=
+ =?utf-8?B?MnhqT0FaQWVjOVNKTkZBWWZ6VUZFaVBzdkdZNlhCMTJBcmVXVUVIcDdVcnFV?=
+ =?utf-8?B?UGg0L0xmUGFwb1dCM3IxZU9zem1PTEhnUFJqcmtzWTNlbFBUMXREckhheUI2?=
+ =?utf-8?Q?Uf06BAmhkKK+lI3jIJ?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1768707226.git.daniel@makrotopia.org>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ec96186-7edf-422b-86a0-08de5652e56e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jan 2026 05:31:56.9559
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VH64QQf4VOF2dcDdUL9tsPxUsdNUdL7tylwm9hyZZifuCzIHpFffd+w5ENGTiOBSjwlUHHcRUNmezaMrqPZSag==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11016
 
-Add very basic DSA driver for MaxLinear's MxL862xx switches.
-
-In contrast to previous MaxLinear switches the MxL862xx has a built-in
-processor that runs a sophisticated firmware based on Zephyr RTOS.
-Interaction between the host and the switch hence is organized using a
-software API of that firmware rather than accessing hardware registers
-directly.
-
-Add descriptions of the most basic firmware API calls to access the
-built-in MDIO bus hosting the 2.5GE PHYs, basic port control as well as
-setting up the CPU port.
-
-Implement a very basic DSA driver using that API which is sufficient to
-get packets flowing between the user ports and the CPU port.
-
-The firmware offers all features one would expect from a modern switch
-hardware, they will be added one by one in follow-up patch series.
-
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
-v7:
- * fix kerneldoc style
-
-v6:
- * include bridge and bridgeport API needed to isolate ports
- * remove warning in .setup as ports are now isolated
- * make ready-after-reset check more robust by adding delay
- * sort structs in order of struct definitions
- * best effort to sort functions without introducing additional prototypes
- * always use enums with kerneldoc comments in mxl862xx-api.h
- * remove bogus .phy_read and .phy_write DSA ops as the driver anyway registers
-   a user MDIO bus with Clause-22 and Clause-45 operations
- * various small style fixes
-
-v5:
- * output warning in .setup regarding unknown pre-configuration
- * add comment explaining why CFGGET is used in reset function
-
-RFC v4:
- * poll switch readiness after reset
- * implement driver shutdown
- * added port_fast_aging API call and driver op
- * unified port setup in new .port_setup op
- * improve comment explaining special handlign for unaligned API read
- * various typos
-
-RFC v3:
- * fix return value being uninitialized on error in mxl862xx_api_wrap()
- * add missing descrition in kerneldoc comment of
-   struct mxl862xx_ss_sp_tag
-
-RFC v2:
- * make use of struct mdio_device
- * add phylink_mac_ops stubs
- * drop leftover nonsense from mxl862xx_phylink_get_caps()
- * use __le32 instead of enum types in over-the-wire structs
- * use existing MDIO_* macros whenever possible
- * simplify API constants to be more readable
- * use readx_poll_timeout instead of open-coding poll timeout loop
- * add mxl862xx_reg_read() and mxl862xx_reg_write() helpers
- * demystify error codes returned by the firmware
- * add #defines for mxl862xx_ss_sp_tag member values
- * move reset to dedicated function, clarify magic number being the
-   reset command ID
----
- MAINTAINERS                              |   1 +
- drivers/net/dsa/Kconfig                  |   2 +
- drivers/net/dsa/Makefile                 |   1 +
- drivers/net/dsa/mxl862xx/Kconfig         |  12 +
- drivers/net/dsa/mxl862xx/Makefile        |   3 +
- drivers/net/dsa/mxl862xx/mxl862xx-api.h  | 521 +++++++++++++++++++++++
- drivers/net/dsa/mxl862xx/mxl862xx-cmd.h  |  44 ++
- drivers/net/dsa/mxl862xx/mxl862xx-host.c | 230 ++++++++++
- drivers/net/dsa/mxl862xx/mxl862xx-host.h |   5 +
- drivers/net/dsa/mxl862xx/mxl862xx.c      | 498 ++++++++++++++++++++++
- drivers/net/dsa/mxl862xx/mxl862xx.h      |  25 ++
- 11 files changed, 1342 insertions(+)
- create mode 100644 drivers/net/dsa/mxl862xx/Kconfig
- create mode 100644 drivers/net/dsa/mxl862xx/Makefile
- create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-api.h
- create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
- create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.c
- create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.h
- create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.c
- create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.h
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e7f87b1677146..e9ca1c3980dd1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15627,6 +15627,7 @@ M:	Daniel Golle <daniel@makrotopia.org>
- L:	netdev@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/net/dsa/maxlinear,mxl862xx.yaml
-+F:	drivers/net/dsa/mxl862xx/
- F:	net/dsa/tag_mxl862xx.c
- 
- MCAN DEVICE DRIVER
-diff --git a/drivers/net/dsa/Kconfig b/drivers/net/dsa/Kconfig
-index 7eb301fd987d1..18f6e8b7f4cb2 100644
---- a/drivers/net/dsa/Kconfig
-+++ b/drivers/net/dsa/Kconfig
-@@ -74,6 +74,8 @@ source "drivers/net/dsa/microchip/Kconfig"
- 
- source "drivers/net/dsa/mv88e6xxx/Kconfig"
- 
-+source "drivers/net/dsa/mxl862xx/Kconfig"
-+
- source "drivers/net/dsa/ocelot/Kconfig"
- 
- source "drivers/net/dsa/qca/Kconfig"
-diff --git a/drivers/net/dsa/Makefile b/drivers/net/dsa/Makefile
-index 16de4ba3fa388..f5a463b87ec25 100644
---- a/drivers/net/dsa/Makefile
-+++ b/drivers/net/dsa/Makefile
-@@ -20,6 +20,7 @@ obj-y				+= hirschmann/
- obj-y				+= lantiq/
- obj-y				+= microchip/
- obj-y				+= mv88e6xxx/
-+obj-y				+= mxl862xx/
- obj-y				+= ocelot/
- obj-y				+= qca/
- obj-y				+= realtek/
-diff --git a/drivers/net/dsa/mxl862xx/Kconfig b/drivers/net/dsa/mxl862xx/Kconfig
-new file mode 100644
-index 0000000000000..3722260da7d82
---- /dev/null
-+++ b/drivers/net/dsa/mxl862xx/Kconfig
-@@ -0,0 +1,12 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config NET_DSA_MXL862
-+	tristate "MaxLinear MxL862xx"
-+	depends on NET_DSA
-+	select MAXLINEAR_GPHY
-+	select NET_DSA_TAG_MXL_862XX
-+	help
-+	  This enables support for the MaxLinear MxL862xx switch family.
-+	  These switches have two 10GE SerDes interfaces, one typically
-+	  used as CPU port.
-+	   MxL86282 has eight 2.5 Gigabit PHYs
-+	   MxL86252 has five 2.5 Gigabit PHYs
-diff --git a/drivers/net/dsa/mxl862xx/Makefile b/drivers/net/dsa/mxl862xx/Makefile
-new file mode 100644
-index 0000000000000..d23dd3cd511d4
---- /dev/null
-+++ b/drivers/net/dsa/mxl862xx/Makefile
-@@ -0,0 +1,3 @@
-+# SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_NET_DSA_MXL862) += mxl862xx_dsa.o
-+mxl862xx_dsa-y := mxl862xx.o mxl862xx-host.o
-diff --git a/drivers/net/dsa/mxl862xx/mxl862xx-api.h b/drivers/net/dsa/mxl862xx/mxl862xx-api.h
-new file mode 100644
-index 0000000000000..8c6be1af32724
---- /dev/null
-+++ b/drivers/net/dsa/mxl862xx/mxl862xx-api.h
-@@ -0,0 +1,521 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
-+#include <linux/if_ether.h>
-+
-+/**
-+ * struct mdio_relay_data - relayed access to the switch internal MDIO bus
-+ * @data: data to be read or written
-+ * @phy: PHY index
-+ * @mmd: MMD device
-+ * @reg: register index
-+ */
-+struct mdio_relay_data {
-+	__le16 data;
-+	u8 phy;
-+	u8 mmd;
-+	__le16 reg;
-+} __packed;
-+
-+/* Register access parameter to directly modify internal registers */
-+struct mxl862xx_register_mod {
-+	__le16 addr;
-+	__le16 data;
-+	__le16 mask;
-+} __packed;
-+
-+/**
-+ * enum mxl862xx_mac_clear_type - MAC table clear type
-+ * @MXL862XX_MAC_CLEAR_PHY_PORT: clear dynamic entries based on port_id
-+ * @MXL862XX_MAC_CLEAR_DYNAMIC: clear all dynamic entries
-+ */
-+enum mxl862xx_mac_clear_type {
-+	MXL862XX_MAC_CLEAR_PHY_PORT = 0,
-+	MXL862XX_MAC_CLEAR_DYNAMIC,
-+};
-+
-+/**
-+ * struct mxl862xx_mac_table_clear - MAC table clear
-+ * @type: see &enum mxl862xx_mac_clear_type
-+ * @port_id: physical port id
-+ */
-+struct mxl862xx_mac_table_clear {
-+	u8 type;
-+	u8 port_id;
-+} __packed;
-+
-+/**
-+ * enum mxl862xx_age_timer - Aging Timer Value.
-+ * @MXL862XX_AGETIMER_1_SEC: 1 second aging time
-+ * @MXL862XX_AGETIMER_10_SEC: 10 seconds aging time
-+ * @MXL862XX_AGETIMER_300_SEC: 300 seconds aging time
-+ * @MXL862XX_AGETIMER_1_HOUR: 1 hour aging time
-+ * @MXL862XX_AGETIMER_1_DAY: 24 hours aging time
-+ * @MXL862XX_AGETIMER_CUSTOM: Custom aging time in seconds
-+ */
-+enum mxl862xx_age_timer {
-+	MXL862XX_AGETIMER_1_SEC = 1,
-+	MXL862XX_AGETIMER_10_SEC,
-+	MXL862XX_AGETIMER_300_SEC,
-+	MXL862XX_AGETIMER_1_HOUR,
-+	MXL862XX_AGETIMER_1_DAY,
-+	MXL862XX_AGETIMER_CUSTOM,
-+};
-+
-+/**
-+ * struct mxl862xx_bridge_alloc - Bridge Allocation
-+ * @bridge_id: the ID assigned to the new bridge
-+ *
-+ * Used by MXL862XX_BRIDGE_ALLOC and MXL862XX_BRIDGE_FREE.
-+ */
-+struct mxl862xx_bridge_alloc {
-+	__le16 bridge_id;
-+} __packed;
-+
-+/**
-+ * enum mxl862xx_bridge_config_mask - Bridge configuration mask
-+ * @MXL862XX_BRIDGE_CONFIG_MASK_MAC_LEARNING_LIMIT: Mask for mac_learning_limit_enable and
-+ *                                                  mac_learning_limit.
-+ * @MXL862XX_BRIDGE_CONFIG_MASK_MAC_LEARNED_COUNT: Mask for mac_learning_count
-+ * @MXL862XX_BRIDGE_CONFIG_MASK_MAC_DISCARD_COUNT: Mask for learning_discard_event
-+ * @MXL862XX_BRIDGE_CONFIG_MASK_SUB_METER: Mask for sub_metering_enable and traffic_sub_meter_id
-+ * @MXL862XX_BRIDGE_CONFIG_MASK_FORWARDING_MODE: Mask for forward_broadcast,
-+ *                                               forward_unknown_multicast_ip,
-+ *                                               forward_unknown_multicast_non_ip and
-+ *                                               forward_unknown_unicast.
-+ * @MXL862XX_BRIDGE_CONFIG_MASK_ALL: Enable all
-+ * @MXL862XX_BRIDGE_CONFIG_MASK_FORCE: Bypass any check for debug purpose
-+ */
-+enum mxl862xx_bridge_config_mask {
-+	MXL862XX_BRIDGE_CONFIG_MASK_MAC_LEARNING_LIMIT = BIT(0),
-+	MXL862XX_BRIDGE_CONFIG_MASK_MAC_LEARNED_COUNT = BIT(1),
-+	MXL862XX_BRIDGE_CONFIG_MASK_MAC_DISCARD_COUNT = BIT(2),
-+	MXL862XX_BRIDGE_CONFIG_MASK_SUB_METER = BIT(3),
-+	MXL862XX_BRIDGE_CONFIG_MASK_FORWARDING_MODE = BIT(4),
-+	MXL862XX_BRIDGE_CONFIG_MASK_ALL = 0x7FFFFFFF,
-+	MXL862XX_BRIDGE_CONFIG_MASK_FORCE = BIT(31)
-+};
-+
-+/**
-+ * enum mxl862xx_bridge_port_egress_meter - Meters for various egress traffic type
-+ * @MXL862XX_BRIDGE_PORT_EGRESS_METER_BROADCAST: Index of broadcast traffic meter
-+ * @MXL862XX_BRIDGE_PORT_EGRESS_METER_MULTICAST: Index of known multicast traffic meter
-+ * @MXL862XX_BRIDGE_PORT_EGRESS_METER_UNKNOWN_MC_IP: Index of unknown multicast IP traffic meter
-+ * @MXL862XX_BRIDGE_PORT_EGRESS_METER_UNKNOWN_MC_NON_IP: Index of unknown multicast non-IP traffic
-+ *                                                       meter
-+ * @MXL862XX_BRIDGE_PORT_EGRESS_METER_UNKNOWN_UC: Index of unknown unicast traffic meter
-+ * @MXL862XX_BRIDGE_PORT_EGRESS_METER_OTHERS: Index of traffic meter for other types
-+ * @MXL862XX_BRIDGE_PORT_EGRESS_METER_MAX: Number of index
-+ */
-+enum mxl862xx_bridge_port_egress_meter {
-+	MXL862XX_BRIDGE_PORT_EGRESS_METER_BROADCAST = 0,
-+	MXL862XX_BRIDGE_PORT_EGRESS_METER_MULTICAST,
-+	MXL862XX_BRIDGE_PORT_EGRESS_METER_UNKNOWN_MC_IP,
-+	MXL862XX_BRIDGE_PORT_EGRESS_METER_UNKNOWN_MC_NON_IP,
-+	MXL862XX_BRIDGE_PORT_EGRESS_METER_UNKNOWN_UC,
-+	MXL862XX_BRIDGE_PORT_EGRESS_METER_OTHERS,
-+	MXL862XX_BRIDGE_PORT_EGRESS_METER_MAX,
-+};
-+
-+/**
-+ * enum mxl862xx_bridge_forward_mode - Bridge forwarding type of packet
-+ * @MXL862XX_BRIDGE_FORWARD_FLOOD: Packet is flooded to port members of ingress bridge port
-+ * @MXL862XX_BRIDGE_FORWARD_DISCARD: Packet is dscarded
-+ * @MXL862XX_BRIDGE_FORWARD_CPU: Packet is forwarded to logical port 0 CTP port 0 bridge port 0
-+ */
-+enum mxl862xx_bridge_forward_mode {
-+	MXL862XX_BRIDGE_FORWARD_FLOOD = 0,
-+	MXL862XX_BRIDGE_FORWARD_DISCARD,
-+	MXL862XX_BRIDGE_FORWARD_CPU,
-+};
-+
-+/**
-+ * struct mxl862xx_bridge_config - Bridge Configuration
-+ * @bridge_id: Bridge ID (FID)
-+ * @mask: See &enum mxl862xx_bridge_config_mask
-+ * @mac_learning_limit_enable: Enable MAC learning limitation.
-+ * @mac_learning_limit: Max number of MAC can be learned in this bridge (all bridge ports)
-+ * @mac_learning_count: Get number of MAC address learned from this bridge port
-+ * @learning_discard_event: Number of learning discard event due to hardware resource not available
-+ * @sub_metering_enable: Traffic metering on type of traffic
-+ * @traffic_sub_meter_id: Meter for bridge process with specific type
-+ * @forward_broadcast: See &enum mxl862xx_bridge_forward_mode
-+ * @forward_unknown_multicast_ip: See &enum mxl862xx_bridge_forward_mode
-+ * @forward_unknown_multicast_non_ip: See &enum mxl862xx_bridge_forward_mode
-+ * @forward_unknown_unicast: See &enum mxl862xx_bridge_forward_mode
-+ */
-+struct mxl862xx_bridge_config {
-+	__le16 bridge_id;
-+	__le32 mask; /* enum mxl862xx_bridge_config_mask */
-+	u8 mac_learning_limit_enable;
-+	__le16 mac_learning_limit;
-+	__le16 mac_learning_count;
-+	__le32 learning_discard_event;
-+	u8 sub_metering_enable[MXL862XX_BRIDGE_PORT_EGRESS_METER_MAX];
-+	__le16 traffic_sub_meter_id[MXL862XX_BRIDGE_PORT_EGRESS_METER_MAX];
-+	__le32 forward_broadcast; /* enum mxl862xx_bridge_forward_mode */
-+	__le32 forward_unknown_multicast_ip; /* enum mxl862xx_bridge_forward_mode */
-+	__le32 forward_unknown_multicast_non_ip; /* enum mxl862xx_bridge_forward_mode */
-+	__le32 forward_unknown_unicast; /* enum mxl862xx_bridge_forward_mode */
-+} __packed;
-+
-+/**
-+ * struct mxl862xx_bridge_port_alloc - Bridge Port Allocation.
-+ * @bridge_port_id: If the bridge port allocation is successful, a valid ID will be
-+ *		  returned in this field. Otherwise, INVALID_HANDLE is returned.
-+ *		  For bridge port free, this field should contain a valid ID
-+ *		  returned by the bridge port allocation. ID 0 is special for
-+ *		  the CPU port in PRX300, mapping to CTP 0 (Logical Port 0 with
-+ *		  Sub-interface ID 0), and is pre-allocated during initialization.
-+ *
-+ * Used by MXL862XX_BRIDGE_PORT_ALLOC and MXL862XX_BRIDGE_PORT_FREE.
-+ */
-+struct mxl862xx_bridge_port_alloc {
-+	__le16 bridge_port_id;
-+};
-+
-+/**
-+ * enum mxl862xx_bridge_port_config_mask - Bridge Port configuration mask
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_ID: Mask for bridge_id
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_INGRESS_VLAN: Mask for ingress_extended_vlan_enable,
-+ *                                                 ingress_extended_vlan_block_id and
-+ *                                                 ingress_extended_vlan_block_size
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_VLAN: Mask for egress_extended_vlan_enable,
-+ *                                                egress_extended_vlan_block_id and
-+ *                                                egress_extended_vlan_block_size
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_INGRESS_MARKING: Mask for ingress_marking_mode
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_REMARKING: Mask for egress_remarking_mode
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_INGRESS_METER: Mask for ingress_metering_enable and
-+ *                                                  ingress_traffic_meter_id
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_SUB_METER: Mask for egress_sub_metering_enable and
-+ *                                                     egress_traffic_sub_meter_id
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_CTP_MAPPING: Mask for dest_logical_port_id,
-+ *                                                       pmapper_enable, dest_sub_if_id_group,
-+ *                                                       pmapper_mapping_mode, pmapper_id_valid and
-+ *                                                       pmapper
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_PORT_MAP: Mask for bridge_port_map
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_DEST_IP_LOOKUP: Mask for mc_dest_ip_lookup_disable
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_IP_LOOKUP: Mask for mc_src_ip_lookup_enable
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_DEST_MAC_LOOKUP: Mask for dest_mac_lookup_disable
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_MAC_LEARNING: Mask for src_mac_learning_disable
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_MAC_SPOOFING: Mask for mac_spoofing_detect_enable
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_PORT_LOCK: Mask for port_lock_enable
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_MAC_LEARNING_LIMIT: Mask for mac_learning_limit_enable and
-+ *                                                       mac_learning_limit
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_MAC_LEARNED_COUNT: Mask for mac_learning_count
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_INGRESS_VLAN_FILTER: Mask for ingress_vlan_filter_enable,
-+ *                                                        ingress_vlan_filter_block_id and
-+ *                                                        ingress_vlan_filter_block_size
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_VLAN_FILTER1: Mask for bypass_egress_vlan_filter1,
-+ *                                                        egress_vlan_filter1enable,
-+ *                                                        egress_vlan_filter1block_id and
-+ *                                                        egress_vlan_filter1block_size
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_VLAN_FILTER2: Mask for egress_vlan_filter2enable,
-+ *                                                        egress_vlan_filter2block_id and
-+ *                                                        egress_vlan_filter2block_size
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MAC_LEARNING: Mask for vlan_tag_selection,
-+ *                                                            vlan_src_mac_priority_enable,
-+ *                                                            vlan_src_mac_dei_enable,
-+ *                                                            vlan_src_mac_vid_enable,
-+ *                                                            vlan_dst_mac_priority_enable,
-+ *                                                            vlan_dst_mac_dei_enable and
-+ *                                                            vlan_dst_mac_vid_enable
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MULTICAST_LOOKUP: Mask for
-+ *                                                                vlan_multicast_priority_enable,
-+ *                                                                vlan_multicast_dei_enable and
-+ *                                                                vlan_multicast_vid_enable
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_LOOP_VIOLATION_COUNTER: Mask for loop_violation_count
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_ALL: Enable all
-+ * @MXL862XX_BRIDGE_PORT_CONFIG_MASK_FORCE: Bypass any check for debug purpose
-+ */
-+enum mxl862xx_bridge_port_config_mask {
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_ID = BIT(0),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_INGRESS_VLAN = BIT(1),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_VLAN = BIT(2),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_INGRESS_MARKING = BIT(3),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_REMARKING = BIT(4),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_INGRESS_METER = BIT(5),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_SUB_METER = BIT(6),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_CTP_MAPPING = BIT(7),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_PORT_MAP = BIT(8),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_DEST_IP_LOOKUP = BIT(9),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_IP_LOOKUP = BIT(10),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_DEST_MAC_LOOKUP = BIT(11),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_MAC_LEARNING = BIT(12),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_MAC_SPOOFING = BIT(13),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_PORT_LOCK = BIT(14),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_MAC_LEARNING_LIMIT = BIT(15),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_MAC_LEARNED_COUNT = BIT(16),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_INGRESS_VLAN_FILTER = BIT(17),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_VLAN_FILTER1 = BIT(18),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_EGRESS_VLAN_FILTER2 = BIT(19),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MAC_LEARNING = BIT(20),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MULTICAST_LOOKUP = BIT(21),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_LOOP_VIOLATION_COUNTER = BIT(22),
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_ALL = 0x7FFFFFFF,
-+	MXL862XX_BRIDGE_PORT_CONFIG_MASK_FORCE = BIT(31)
-+};
-+
-+/**
-+ * enum mxl862xx_color_marking_mode - Color Marking Mode
-+ * @MXL862XX_MARKING_ALL_GREEN: mark packets (except critical) to green
-+ * @MXL862XX_MARKING_INTERNAL_MARKING: do not change color and priority
-+ * @MXL862XX_MARKING_DEI: DEI mark mode
-+ * @MXL862XX_MARKING_PCP_8P0D: PCP 8P0D mark mode
-+ * @MXL862XX_MARKING_PCP_7P1D: PCP 7P1D mark mode
-+ * @MXL862XX_MARKING_PCP_6P2D: PCP 6P2D mark mode
-+ * @MXL862XX_MARKING_PCP_5P3D: PCP 5P3D mark mode
-+ * @MXL862XX_MARKING_DSCP_AF: DSCP AF class
-+ */
-+enum mxl862xx_color_marking_mode {
-+	MXL862XX_MARKING_ALL_GREEN = 0,
-+	MXL862XX_MARKING_INTERNAL_MARKING,
-+	MXL862XX_MARKING_DEI,
-+	MXL862XX_MARKING_PCP_8P0D,
-+	MXL862XX_MARKING_PCP_7P1D,
-+	MXL862XX_MARKING_PCP_6P2D,
-+	MXL862XX_MARKING_PCP_5P3D,
-+	MXL862XX_MARKING_DSCP_AF,
-+};
-+
-+/**
-+ * enum mxl862xx_color_remarking_mode - Color Remarking Mode
-+ * @MXL862XX_REMARKING_NONE: values from last process stage
-+ * @MXL862XX_REMARKING_DEI: DEI mark mode
-+ * @MXL862XX_REMARKING_PCP_8P0D: PCP 8P0D mark mode
-+ * @MXL862XX_REMARKING_PCP_7P1D: PCP 7P1D mark mode
-+ * @MXL862XX_REMARKING_PCP_6P2D: PCP 6P2D mark mode
-+ * @MXL862XX_REMARKING_PCP_5P3D: PCP 5P3D mark mode
-+ * @MXL862XX_REMARKING_DSCP_AF: DSCP AF class
-+ */
-+enum mxl862xx_color_remarking_mode {
-+	MXL862XX_REMARKING_NONE = 0,
-+	MXL862XX_REMARKING_DEI = 2,
-+	MXL862XX_REMARKING_PCP_8P0D,
-+	MXL862XX_REMARKING_PCP_7P1D,
-+	MXL862XX_REMARKING_PCP_6P2D,
-+	MXL862XX_REMARKING_PCP_5P3D,
-+	MXL862XX_REMARKING_DSCP_AF,
-+};
-+
-+/**
-+ * enum mxl862xx_pmapper_mapping_mode - P-mapper Mapping Mode
-+ * @MXL862XX_PMAPPER_MAPPING_PCP: Use PCP for VLAN tagged packets to derive sub interface ID group
-+ * @MXL862XX_PMAPPER_MAPPING_LAG: Use LAG Index for Pmapper access regardless of IP and VLAN packet
-+ * @MXL862XX_PMAPPER_MAPPING_DSCP: Use DSCP for VLAN tagged IP packets to derive sub interface ID
-+ *                                  group
-+ */
-+enum mxl862xx_pmapper_mapping_mode {
-+	MXL862XX_PMAPPER_MAPPING_PCP = 0,
-+	MXL862XX_PMAPPER_MAPPING_LAG,
-+	MXL862XX_PMAPPER_MAPPING_DSCP,
-+};
-+
-+/**
-+ * struct mxl862xx_pmapper - P-mapper Configuration
-+ * @pmapper_id: Index of P-mapper <0-31>
-+ * @dest_sub_if_id_group: Sub interface ID group
-+ */
-+struct mxl862xx_pmapper {
-+	__le16 pmapper_id;
-+	u8 dest_sub_if_id_group[73];
-+} __packed;
-+
-+struct mxl862xx_bridge_port_config {
-+	__le16 bridge_port_id;
-+	__le32 mask; /* enum mxl862xx_bridge_port_config_mask  */
-+	__le16 bridge_id;
-+	u8 ingress_extended_vlan_enable;
-+	__le16 ingress_extended_vlan_block_id;
-+	__le16 ingress_extended_vlan_block_size;
-+	u8 egress_extended_vlan_enable;
-+	__le16 egress_extended_vlan_block_id;
-+	__le16 egress_extended_vlan_block_size;
-+	__le32 ingress_marking_mode; /* enum mxl862xx_color_marking_mode */
-+	__le32 egress_remarking_mode; /* enum mxl862xx_color_remarking_mode */
-+	u8 ingress_metering_enable;
-+	__le16 ingress_traffic_meter_id;
-+	u8 egress_sub_metering_enable[MXL862XX_BRIDGE_PORT_EGRESS_METER_MAX];
-+	__le16 egress_traffic_sub_meter_id[MXL862XX_BRIDGE_PORT_EGRESS_METER_MAX];
-+	u8 dest_logical_port_id;
-+	u8 pmapper_enable;
-+	__le16 dest_sub_if_id_group;
-+	__le32 pmapper_mapping_mode; /* enum mxl862xx_pmapper_mapping_mode */
-+	u8 pmapper_id_valid;
-+	struct mxl862xx_pmapper pmapper;
-+	__le16 bridge_port_map[8];
-+	u8 mc_dest_ip_lookup_disable;
-+	u8 mc_src_ip_lookup_enable;
-+	u8 dest_mac_lookup_disable;
-+	u8 src_mac_learning_disable;
-+	u8 mac_spoofing_detect_enable;
-+	u8 port_lock_enable;
-+	u8 mac_learning_limit_enable;
-+	__le16 mac_learning_limit;
-+	__le16 loop_violation_count;
-+	__le16 mac_learning_count;
-+	u8 ingress_vlan_filter_enable;
-+	__le16 ingress_vlan_filter_block_id;
-+	__le16 ingress_vlan_filter_block_size;
-+	u8 bypass_egress_vlan_filter1;
-+	u8 egress_vlan_filter1enable;
-+	__le16 egress_vlan_filter1block_id;
-+	__le16 egress_vlan_filter1block_size;
-+	u8 egress_vlan_filter2enable;
-+	__le16 egress_vlan_filter2block_id;
-+	__le16 egress_vlan_filter2block_size;
-+	u8 vlan_tag_selection;
-+	u8 vlan_src_mac_priority_enable;
-+	u8 vlan_src_mac_dei_enable;
-+	u8 vlan_src_mac_vid_enable;
-+	u8 vlan_dst_mac_priority_enable;
-+	u8 vlan_dst_mac_dei_enable;
-+	u8 vlan_dst_mac_vid_enable;
-+	u8 vlan_multicast_priority_enable;
-+	u8 vlan_multicast_dei_enable;
-+	u8 vlan_multicast_vid_enable;
-+} __packed;
-+
-+/**
-+ * struct mxl862xx_cfg -  Global Switch configuration Attributes
-+ * @mac_table_age_timer: See &enum mxl862xx_age_timer
-+ * @age_timer: Custom MAC table aging timer in seconds
-+ * @max_packet_len: Maximum Ethernet packet length.
-+ * @learning_limit_action: Automatic MAC address table learning limitation consecutive action
-+ * @mac_locking_action: Accept or discard MAC port locking violation packets
-+ * @mac_spoofing_action: Accept or discard MAC spoofing and port MAC locking violation packets
-+ * @pause_mac_mode_src: Pause frame MAC source address mode
-+ * @pause_mac_src: Pause frame MAC source address
-+ */
-+struct mxl862xx_cfg {
-+	__le32 mac_table_age_timer; /* enum mxl862xx_age_timer */
-+	__le32 age_timer;
-+	__le16 max_packet_len;
-+	u8 learning_limit_action;
-+	u8 mac_locking_action;
-+	u8 mac_spoofing_action;
-+	u8 pause_mac_mode_src;
-+	u8 pause_mac_src[ETH_ALEN];
-+} __packed;
-+
-+/**
-+ * enum mxl862xx_ss_sp_tag_mask - Special tag valid field indicator bits
-+ * @MXL862XX_SS_SP_TAG_MASK_RX: valid RX special tag mode
-+ * @MXL862XX_SS_SP_TAG_MASK_TX: valid TX special tag mode
-+ * @MXL862XX_SS_SP_TAG_MASK_RX_PEN: valid RX special tag info over preamble
-+ * @MXL862XX_SS_SP_TAG_MASK_TX_PEN: valid TX special tag info over preamble
-+ */
-+enum mxl862xx_ss_sp_tag_mask {
-+	MXL862XX_SS_SP_TAG_MASK_RX = BIT(0),
-+	MXL862XX_SS_SP_TAG_MASK_TX = BIT(1),
-+	MXL862XX_SS_SP_TAG_MASK_RX_PEN = BIT(2),
-+	MXL862XX_SS_SP_TAG_MASK_TX_PEN = BIT(3),
-+};
-+
-+/**
-+ * enum mxl862xx_ss_sp_tag_rx - RX special tag mode
-+ * @MXL862XX_SS_SP_TAG_RX_NO_TAG_NO_INSERT: packet does NOT have special tag and special tag is NOT
-+ *                                          inserted
-+ * @MXL862XX_SS_SP_TAG_RX_NO_TAG_INSERT: packet does NOT have special tag and special tag is
-+ *                                       inserted
-+ * @MXL862XX_SS_SP_TAG_RX_TAG_NO_INSERT: packet has special tag and special tag is NOT inserted
-+ */
-+enum mxl862xx_ss_sp_tag_rx {
-+	MXL862XX_SS_SP_TAG_RX_NO_TAG_NO_INSERT = 0,
-+	MXL862XX_SS_SP_TAG_RX_NO_TAG_INSERT = 1,
-+	MXL862XX_SS_SP_TAG_RX_TAG_NO_INSERT = 2,
-+};
-+
-+/**
-+ * enum mxl862xx_ss_sp_tag_tx - TX special tag mode
-+ * @MXL862XX_SS_SP_TAG_TX_NO_TAG_NO_REMOVE: packet does NOT have special tag and special tag is NOT
-+ *                                          removed
-+ * @MXL862XX_SS_SP_TAG_TX_TAG_REPLACE: packet has special tag and special tag is replaced
-+ * @MXL862XX_SS_SP_TAG_TX_TAG_NO_REMOVE: packet has special tag and special tag is NOT removed
-+ * @MXL862XX_SS_SP_TAG_TX_TAG_REMOVE: packet has special tag and special tag is removed
-+ */
-+enum mxl862xx_ss_sp_tag_tx {
-+	MXL862XX_SS_SP_TAG_TX_NO_TAG_NO_REMOVE = 0,
-+	MXL862XX_SS_SP_TAG_TX_TAG_REPLACE = 1,
-+	MXL862XX_SS_SP_TAG_TX_TAG_NO_REMOVE = 2,
-+	MXL862XX_SS_SP_TAG_TX_TAG_REMOVE = 3,
-+};
-+
-+/**
-+ * enum mxl862xx_ss_sp_tag_rx_pen - RX special tag info over preamble
-+ * @MXL862XX_SS_SP_TAG_RX_PEN_ALL_0: special tag info inserted from byte 2 to 7 are all 0
-+ * @MXL862XX_SS_SP_TAG_RX_PEN_BYTE_5_IS_16: special tag byte 5 is 16, other bytes from 2 to 7 are 0
-+ * @MXL862XX_SS_SP_TAG_RX_PEN_BYTE_5_FROM_PREAMBLE: special tag byte 5 is from preamble field,
-+ *                                                  others are 0
-+ * @MXL862XX_SS_SP_TAG_RX_PEN_BYTE_2_TO_7_FROM_PREAMBLE: special tag byte 2 to 7 are from preamble
-+ *                                                       field
-+ */
-+enum mxl862xx_ss_sp_tag_rx_pen {
-+	MXL862XX_SS_SP_TAG_RX_PEN_ALL_0 = 0,
-+	MXL862XX_SS_SP_TAG_RX_PEN_BYTE_5_IS_16 = 1,
-+	MXL862XX_SS_SP_TAG_RX_PEN_BYTE_5_FROM_PREAMBLE = 2,
-+	MXL862XX_SS_SP_TAG_RX_PEN_BYTE_2_TO_7_FROM_PREAMBLE = 3,
-+};
-+
-+/**
-+ * struct mxl862xx_ss_sp_tag - Special tag port settings
-+ * @pid: port ID (1~16)
-+ * @mask: See &enum mxl862xx_ss_sp_tag_mask
-+ * @rx: See &enum mxl862xx_ss_sp_tag_rx
-+ * @tx: See &enum mxl862xx_ss_sp_tag_tx
-+ * @rx_pen: See &enum mxl862xx_ss_sp_tag_rx_pen
-+ * @tx_pen: TX special tag info over preamble
-+ *	0 - disabled
-+ *	1 - enabled
-+ */
-+struct mxl862xx_ss_sp_tag {
-+	u8 pid;
-+	u8 mask; /* enum mxl862xx_ss_sp_tag_mask */
-+	u8 rx; /* enum mxl862xx_ss_sp_tag_rx */
-+	u8 tx; /* enum mxl862xx_ss_sp_tag_tx */
-+	u8 rx_pen; /* enum mxl862xx_ss_sp_tag_rx_pen */
-+	u8 tx_pen; /* boolean */
-+} __packed;
-+
-+/**
-+ * enum mxl862xx_logical_port_mode - Logical port mode
-+ * @MXL862XX_LOGICAL_PORT_8BIT_WLAN: WLAN with 8-bit station ID
-+ * @MXL862XX_LOGICAL_PORT_9BIT_WLAN: WLAN with 9-bit station ID
-+ * @MXL862XX_LOGICAL_PORT_ETHERNET: Ethernet port
-+ * @MXL862XX_LOGICAL_PORT_OTHER: Others
-+ */
-+enum mxl862xx_logical_port_mode {
-+	MXL862XX_LOGICAL_PORT_8BIT_WLAN = 0,
-+	MXL862XX_LOGICAL_PORT_9BIT_WLAN,
-+	MXL862XX_LOGICAL_PORT_ETHERNET,
-+	MXL862XX_LOGICAL_PORT_OTHER = 0xFF,
-+};
-+
-+/**
-+ * struct mxl862xx_ctp_port_assignment - CTP Port Assignment/association with logical port
-+ * @logical_port_id: Logical Port Id. The valid range is hardware dependent
-+ * @first_ctp_port_id: First CTP Port ID mapped to above logical port ID
-+ * @number_of_ctp_port: Total number of CTP Ports mapped above logical port ID
-+ * @mode: See &enum mxl862xx_logical_port_mode
-+ * @bridge_port_id: Bridge ID (FID)
-+ */
-+struct mxl862xx_ctp_port_assignment {
-+	u8 logical_port_id;
-+	__le16 first_ctp_port_id;
-+	__le16 number_of_ctp_port;
-+	__le32 mode; /* enum mxl862xx_logical_port_mode */
-+	__le16 bridge_port_id;
-+} __packed;
-+
-+/**
-+ * struct mxl862xx_sys_fw_image_version - Firmware version information
-+ * @iv_major: firmware major version
-+ * @iv_minor: firmware minor version
-+ * @iv_revision: firmware revision
-+ * @iv_build_num: firmware build number
-+ */
-+struct mxl862xx_sys_fw_image_version {
-+	u8 iv_major;
-+	u8 iv_minor;
-+	__le16 iv_revision;
-+	__le32 iv_build_num;
-+} __packed;
-diff --git a/drivers/net/dsa/mxl862xx/mxl862xx-cmd.h b/drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
-new file mode 100644
-index 0000000000000..eeee9a01554f8
---- /dev/null
-+++ b/drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
-@@ -0,0 +1,44 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
-+#define MXL862XX_MMD_DEV		30
-+#define MXL862XX_MMD_REG_CTRL		0
-+#define MXL862XX_MMD_REG_LEN_RET	1
-+#define MXL862XX_MMD_REG_DATA_FIRST	2
-+#define MXL862XX_MMD_REG_DATA_LAST	95
-+#define MXL862XX_MMD_REG_DATA_MAX_SIZE \
-+	(MXL862XX_MMD_REG_DATA_LAST - MXL862XX_MMD_REG_DATA_FIRST + 1)
-+
-+#define MXL862XX_COMMON_MAGIC		0x100
-+#define MXL862XX_BRDG_MAGIC		0x300
-+#define MXL862XX_BRDGPORT_MAGIC		0x400
-+#define MXL862XX_CTP_MAGIC		0x500
-+#define MXL862XX_SWMAC_MAGIC		0xa00
-+#define MXL862XX_SS_MAGIC		0x1600
-+#define GPY_GPY2XX_MAGIC		0x1800
-+#define SYS_MISC_MAGIC			0x1900
-+
-+#define MXL862XX_COMMON_CFGGET		(MXL862XX_COMMON_MAGIC + 0x9)
-+#define MXL862XX_COMMON_REGISTERMOD	(MXL862XX_COMMON_MAGIC + 0x11)
-+
-+#define MXL862XX_BRIDGE_ALLOC		(MXL862XX_BRDG_MAGIC + 0x1)
-+#define MXL862XX_BRIDGE_CONFIGSET	(MXL862XX_BRDG_MAGIC + 0x2)
-+#define MXL862XX_BRIDGE_CONFIGGET	(MXL862XX_BRDG_MAGIC + 0x3)
-+#define MXL862XX_BRIDGE_FREE		(MXL862XX_BRDG_MAGIC + 0x4)
-+
-+#define MXL862XX_BRIDGEPORT_ALLOC	(MXL862XX_BRDGPORT_MAGIC + 0x1)
-+#define MXL862XX_BRIDGEPORT_CONFIGSET	(MXL862XX_BRDGPORT_MAGIC + 0x2)
-+#define MXL862XX_BRIDGEPORT_CONFIGGET	(MXL862XX_BRDGPORT_MAGIC + 0x3)
-+#define MXL862XX_BRIDGEPORT_FREE	(MXL862XX_BRDGPORT_MAGIC + 0x4)
-+
-+#define MXL862XX_CTP_PORTASSIGNMENTSET	(MXL862XX_CTP_MAGIC + 0x3)
-+
-+#define MXL862XX_MAC_TABLECLEARCOND	(MXL862XX_SWMAC_MAGIC + 0x8)
-+
-+#define MXL862XX_SS_SPTAG_SET		(MXL862XX_SS_MAGIC + 0x02)
-+
-+#define INT_GPHY_READ			(GPY_GPY2XX_MAGIC + 0x01)
-+#define INT_GPHY_WRITE			(GPY_GPY2XX_MAGIC + 0x02)
-+
-+#define SYS_MISC_FW_VERSION		(SYS_MISC_MAGIC + 0x02)
-+
-+#define MMD_API_MAXIMUM_ID		0x7fff
-diff --git a/drivers/net/dsa/mxl862xx/mxl862xx-host.c b/drivers/net/dsa/mxl862xx/mxl862xx-host.c
-new file mode 100644
-index 0000000000000..73334a8c9d867
---- /dev/null
-+++ b/drivers/net/dsa/mxl862xx/mxl862xx-host.c
-@@ -0,0 +1,230 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Based upon the Maxlinear SDK driver
-+ *
-+ * Copyright (C) 2025 Daniel Golle <daniel@makrotopia.org>
-+ * Copyright (C) 2025 John Crispin <john@phrozen.org>
-+ * Copyright (C) 2024 MaxLinear Inc.
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/iopoll.h>
-+#include <net/dsa.h>
-+#include "mxl862xx.h"
-+#include "mxl862xx-host.h"
-+
-+#define CTRL_BUSY_MASK			BIT(15)
-+
-+#define MXL862XX_MMD_REG_CTRL		0
-+#define MXL862XX_MMD_REG_LEN_RET	1
-+#define MXL862XX_MMD_REG_DATA_FIRST	2
-+#define MXL862XX_MMD_REG_DATA_LAST	95
-+#define MXL862XX_MMD_REG_DATA_MAX_SIZE \
-+		(MXL862XX_MMD_REG_DATA_LAST - MXL862XX_MMD_REG_DATA_FIRST + 1)
-+
-+#define MMD_API_SET_DATA_0		2
-+#define MMD_API_GET_DATA_0		5
-+#define MMD_API_RST_DATA		8
-+
-+#define MXL862XX_SWITCH_RESET 0x9907
-+
-+static int mxl862xx_reg_read(struct mxl862xx_priv *priv, u32 addr)
-+{
-+	return __mdiodev_c45_read(priv->mdiodev, MDIO_MMD_VEND1, addr);
-+}
-+
-+static int mxl862xx_reg_write(struct mxl862xx_priv *priv, u32 addr, u16 data)
-+{
-+	return __mdiodev_c45_write(priv->mdiodev, MDIO_MMD_VEND1, addr, data);
-+}
-+
-+static int mxl862xx_ctrl_read(struct mxl862xx_priv *priv)
-+{
-+	return mxl862xx_reg_read(priv, MXL862XX_MMD_REG_CTRL);
-+}
-+
-+static int mxl862xx_busy_wait(struct mxl862xx_priv *priv)
-+{
-+	int val;
-+
-+	return readx_poll_timeout(mxl862xx_ctrl_read, priv, val,
-+				  !(val & CTRL_BUSY_MASK), 15, 10000);
-+}
-+
-+static int mxl862xx_set_data(struct mxl862xx_priv *priv, u16 words)
-+{
-+	int ret;
-+	u16 cmd;
-+
-+	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_LEN_RET,
-+				 MXL862XX_MMD_REG_DATA_MAX_SIZE * sizeof(u16));
-+	if (ret < 0)
-+		return ret;
-+
-+	cmd = words / MXL862XX_MMD_REG_DATA_MAX_SIZE - 1;
-+	if (!(cmd < 2))
-+		return -EINVAL;
-+
-+	cmd += MMD_API_SET_DATA_0;
-+	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_CTRL,
-+				 cmd | CTRL_BUSY_MASK);
-+	if (ret < 0)
-+		return ret;
-+
-+	return mxl862xx_busy_wait(priv);
-+}
-+
-+static int mxl862xx_get_data(struct mxl862xx_priv *priv, u16 words)
-+{
-+	int ret;
-+	u16 cmd;
-+
-+	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_LEN_RET,
-+				 MXL862XX_MMD_REG_DATA_MAX_SIZE * sizeof(u16));
-+	if (ret < 0)
-+		return ret;
-+
-+	cmd = words / MXL862XX_MMD_REG_DATA_MAX_SIZE;
-+	if (!(cmd > 0 && cmd < 3))
-+		return -EINVAL;
-+
-+	cmd += MMD_API_GET_DATA_0;
-+	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_CTRL,
-+				 cmd | CTRL_BUSY_MASK);
-+	if (ret < 0)
-+		return ret;
-+
-+	return mxl862xx_busy_wait(priv);
-+}
-+
-+static int mxl862xx_send_cmd(struct mxl862xx_priv *priv, u16 cmd, u16 size,
-+			     bool quiet)
-+{
-+	int ret;
-+
-+	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_LEN_RET, size);
-+	if (ret)
-+		return ret;
-+
-+	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_CTRL,
-+				 cmd | CTRL_BUSY_MASK);
-+	if (ret)
-+		return ret;
-+
-+	ret = mxl862xx_busy_wait(priv);
-+	if (ret)
-+		return ret;
-+
-+	ret = mxl862xx_reg_read(priv, MXL862XX_MMD_REG_LEN_RET);
-+	/* handle errors returned by the firmware as -EIO
-+	 * The firmware is based on Zephyr OS and uses the errors as
-+	 * defined in errno.h of Zephyr OS. See
-+	 * https://github.com/zephyrproject-rtos/zephyr/blob/v3.7.0/lib/libc/minimal/include/errno.h
-+	 */
-+	if ((s16)ret < 0) {
-+		if (!quiet)
-+			dev_err(&priv->mdiodev->dev,
-+				"CMD %04x returned error %d\n", cmd, (s16)ret);
-+		return -EIO;
-+	}
-+
-+	return ret;
-+}
-+
-+int mxl862xx_api_wrap(struct mxl862xx_priv *priv, u16 cmd, void *_data,
-+		      u16 size, bool read, bool quiet)
-+{
-+	__le16 *data = _data;
-+	u16 max, i;
-+	int ret, cmd_ret;
-+
-+	dev_dbg(&priv->mdiodev->dev, "CMD %04x DATA %*ph\n", cmd, size, data);
-+
-+	mutex_lock_nested(&priv->mdiodev->bus->mdio_lock, MDIO_MUTEX_NESTED);
-+
-+	max = (size + 1) / 2;
-+
-+	ret = mxl862xx_busy_wait(priv);
-+	if (ret < 0)
-+		goto out;
-+
-+	for (i = 0; i < max; i++) {
-+		u16 off = i % MXL862XX_MMD_REG_DATA_MAX_SIZE;
-+
-+		if (i && off == 0) {
-+			/* Send command to set data when every
-+			 * MXL862XX_MMD_REG_DATA_MAX_SIZE of WORDs are written.
-+			 */
-+			ret = mxl862xx_set_data(priv, i);
-+			if (ret < 0)
-+				goto out;
-+		}
-+
-+		ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_DATA_FIRST + off,
-+					 le16_to_cpu(data[i]));
-+		if (ret < 0)
-+			goto out;
-+	}
-+
-+	ret = mxl862xx_send_cmd(priv, cmd, size, quiet);
-+	if (ret < 0 || !read)
-+		goto out;
-+
-+	/* store result of mxl862xx_send_cmd() */
-+	cmd_ret = ret;
-+
-+	for (i = 0; i < max; i++) {
-+		u16 off = i % MXL862XX_MMD_REG_DATA_MAX_SIZE;
-+
-+		if (i && off == 0) {
-+			/* Send command to fetch next batch of data when every
-+			 * MXL862XX_MMD_REG_DATA_MAX_SIZE of WORDs are read.
-+			 */
-+			ret = mxl862xx_get_data(priv, i);
-+			if (ret < 0)
-+				goto out;
-+		}
-+
-+		ret = mxl862xx_reg_read(priv, MXL862XX_MMD_REG_DATA_FIRST + off);
-+		if (ret < 0)
-+			goto out;
-+
-+		if ((i * 2 + 1) == size) {
-+			/* Special handling for last BYTE if it's not WORD
-+			 * aligned to avoid writing beyond the allocated data
-+			 * structure.
-+			 */
-+			*(uint8_t *)&data[i] = ret & 0xff;
-+		} else {
-+			data[i] = cpu_to_le16((u16)ret);
-+		}
-+	}
-+
-+	/* on success return the result of the mxl862xx_send_cmd() */
-+	ret = cmd_ret;
-+
-+	dev_dbg(&priv->mdiodev->dev, "RET %d DATA %*ph\n", ret, size, data);
-+
-+out:
-+	mutex_unlock(&priv->mdiodev->bus->mdio_lock);
-+
-+	return ret;
-+}
-+
-+int mxl862xx_reset(struct mxl862xx_priv *priv)
-+{
-+	int ret;
-+
-+	mutex_lock_nested(&priv->mdiodev->bus->mdio_lock, MDIO_MUTEX_NESTED);
-+
-+	/* Software reset */
-+	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_LEN_RET, 0);
-+	if (ret)
-+		goto out;
-+
-+	ret = mxl862xx_reg_write(priv, MXL862XX_MMD_REG_CTRL, MXL862XX_SWITCH_RESET);
-+out:
-+	mutex_unlock(&priv->mdiodev->bus->mdio_lock);
-+
-+	return ret;
-+}
-diff --git a/drivers/net/dsa/mxl862xx/mxl862xx-host.h b/drivers/net/dsa/mxl862xx/mxl862xx-host.h
-new file mode 100644
-index 0000000000000..0f558193d9d48
---- /dev/null
-+++ b/drivers/net/dsa/mxl862xx/mxl862xx-host.h
-@@ -0,0 +1,5 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
-+int mxl862xx_api_wrap(struct mxl862xx_priv *priv, u16 cmd, void *data, u16 size,
-+		      bool read, bool quiet);
-+int mxl862xx_reset(struct mxl862xx_priv *priv);
-diff --git a/drivers/net/dsa/mxl862xx/mxl862xx.c b/drivers/net/dsa/mxl862xx/mxl862xx.c
-new file mode 100644
-index 0000000000000..af94eed80124c
---- /dev/null
-+++ b/drivers/net/dsa/mxl862xx/mxl862xx.c
-@@ -0,0 +1,498 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Driver for MaxLinear MxL862xx switch family
-+ *
-+ * Copyright (C) 2024 MaxLinear Inc.
-+ * Copyright (C) 2025 John Crispin <john@phrozen.org>
-+ * Copyright (C) 2025 Daniel Golle <daniel@makrotopia.org>
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/delay.h>
-+#include <linux/of_device.h>
-+#include <linux/of_mdio.h>
-+#include <linux/phy.h>
-+#include <linux/phylink.h>
-+#include <net/dsa.h>
-+
-+#include "mxl862xx.h"
-+#include "mxl862xx-api.h"
-+#include "mxl862xx-cmd.h"
-+#include "mxl862xx-host.h"
-+
-+#define MXL862XX_API_WRITE(dev, cmd, data) \
-+	mxl862xx_api_wrap(dev, cmd, &(data), sizeof((data)), false, false)
-+#define MXL862XX_API_READ(dev, cmd, data) \
-+	mxl862xx_api_wrap(dev, cmd, &(data), sizeof((data)), true, false)
-+#define MXL862XX_API_READ_QUIET(dev, cmd, data) \
-+	mxl862xx_api_wrap(dev, cmd, &(data), sizeof((data)), true, true)
-+
-+#define DSA_MXL_PORT(port)		((port) + 1)
-+#define DSA_MXL_CPU_PORTS(ds)		(dsa_cpu_ports(ds) << 1)
-+
-+#define MXL862XX_SDMA_PCTRLP(p)		(0xbc0 + ((p) * 0x6))
-+#define MXL862XX_SDMA_PCTRL_EN		BIT(0)
-+
-+#define MXL862XX_FDMA_PCTRLP(p)		(0xa80 + ((p) * 0x6))
-+#define MXL862XX_FDMA_PCTRL_EN		BIT(0)
-+
-+#define MXL862XX_READY_TIMEOUT_MS	10000
-+#define MXL862XX_READY_POLL_MS		100
-+
-+static enum dsa_tag_protocol mxl862xx_get_tag_protocol(struct dsa_switch *ds,
-+						       int port,
-+						       enum dsa_tag_protocol m)
-+{
-+	return DSA_TAG_PROTO_MXL862;
-+}
-+
-+/* PHY access via firmware relay */
-+static int mxl862xx_phy_read_mmd(struct mxl862xx_priv *priv, int port,
-+				 int devadd, int reg)
-+{
-+	struct mdio_relay_data param = {
-+		.phy = port,
-+		.mmd = devadd,
-+		.reg = cpu_to_le16(reg),
-+	};
-+	int ret;
-+
-+	ret = MXL862XX_API_READ(priv, INT_GPHY_READ, param);
-+	if (ret)
-+		return ret;
-+
-+	return le16_to_cpu(param.data);
-+}
-+
-+static int mxl862xx_phy_write_mmd(struct mxl862xx_priv *priv, int port,
-+				  int devadd, int reg, u16 data)
-+{
-+	struct mdio_relay_data param = {
-+		.phy = port,
-+		.mmd = devadd,
-+		.reg = cpu_to_le16(reg),
-+		.data = cpu_to_le16(data),
-+	};
-+
-+	return MXL862XX_API_WRITE(priv, INT_GPHY_WRITE, param);
-+}
-+
-+static int mxl862xx_phy_read_mii_bus(struct mii_bus *bus, int port, int regnum)
-+{
-+	return mxl862xx_phy_read_mmd(bus->priv, port, 0, regnum);
-+}
-+
-+static int mxl862xx_phy_write_mii_bus(struct mii_bus *bus, int port,
-+				      int regnum, u16 val)
-+{
-+	return mxl862xx_phy_write_mmd(bus->priv, port, 0, regnum, val);
-+}
-+
-+static int mxl862xx_phy_read_c45_mii_bus(struct mii_bus *bus, int port,
-+					 int devadd, int regnum)
-+{
-+	return mxl862xx_phy_read_mmd(bus->priv, port, devadd, regnum);
-+}
-+
-+static int mxl862xx_phy_write_c45_mii_bus(struct mii_bus *bus, int port,
-+					  int devadd, int regnum, u16 val)
-+{
-+	return mxl862xx_phy_write_mmd(bus->priv, port, devadd, regnum, val);
-+}
-+
-+static int mxl862xx_configure_tag_proto(struct dsa_switch *ds, int port, bool enable)
-+{
-+	struct mxl862xx_ctp_port_assignment assign = {
-+		.number_of_ctp_port = cpu_to_le16(enable ? (32 - DSA_MXL_PORT(port)) : 1),
-+		.logical_port_id = DSA_MXL_PORT(port),
-+		.first_ctp_port_id = cpu_to_le16(DSA_MXL_PORT(port)),
-+		.mode = cpu_to_le32(MXL862XX_LOGICAL_PORT_ETHERNET),
-+	};
-+	struct mxl862xx_ss_sp_tag tag = {
-+		.pid = DSA_MXL_PORT(port),
-+		.mask = MXL862XX_SS_SP_TAG_MASK_RX | MXL862XX_SS_SP_TAG_MASK_TX,
-+		.rx = enable ? MXL862XX_SS_SP_TAG_RX_TAG_NO_INSERT :
-+			       MXL862XX_SS_SP_TAG_RX_NO_TAG_INSERT,
-+		.tx = enable ? MXL862XX_SS_SP_TAG_TX_TAG_NO_REMOVE :
-+			       MXL862XX_SS_SP_TAG_TX_TAG_REMOVE,
-+	};
-+	int ret;
-+
-+	ret = MXL862XX_API_WRITE(ds->priv, MXL862XX_SS_SPTAG_SET, tag);
-+	if (ret)
-+		return ret;
-+
-+	return MXL862XX_API_WRITE(ds->priv, MXL862XX_CTP_PORTASSIGNMENTSET, assign);
-+}
-+
-+static int mxl862xx_port_state(struct dsa_switch *ds, int port, bool enable)
-+{
-+	struct mxl862xx_register_mod sdma = {
-+		.addr = cpu_to_le16(MXL862XX_SDMA_PCTRLP(DSA_MXL_PORT(port))),
-+		.data = cpu_to_le16(enable ? MXL862XX_SDMA_PCTRL_EN : 0),
-+		.mask = cpu_to_le16(MXL862XX_SDMA_PCTRL_EN),
-+	};
-+	struct mxl862xx_register_mod fdma = {
-+		.addr = cpu_to_le16(MXL862XX_FDMA_PCTRLP(DSA_MXL_PORT(port))),
-+		.data = cpu_to_le16(enable ? MXL862XX_FDMA_PCTRL_EN : 0),
-+		.mask = cpu_to_le16(MXL862XX_FDMA_PCTRL_EN),
-+	};
-+	int ret;
-+
-+	ret = MXL862XX_API_WRITE(ds->priv, MXL862XX_COMMON_REGISTERMOD, sdma);
-+	if (ret)
-+		return ret;
-+
-+	return MXL862XX_API_WRITE(ds->priv, MXL862XX_COMMON_REGISTERMOD, fdma);
-+}
-+
-+static int mxl862xx_port_enable(struct dsa_switch *ds, int port,
-+				struct phy_device *phydev)
-+{
-+	return mxl862xx_port_state(ds, port, true);
-+}
-+
-+static void mxl862xx_port_disable(struct dsa_switch *ds, int port)
-+{
-+	mxl862xx_port_state(ds, port, false);
-+}
-+
-+static void mxl862xx_port_fast_age(struct dsa_switch *ds, int port)
-+{
-+	struct mxl862xx_mac_table_clear param = {
-+		.type = MXL862XX_MAC_CLEAR_PHY_PORT,
-+		.port_id = DSA_MXL_PORT(port),
-+	};
-+
-+	if (MXL862XX_API_WRITE(ds->priv, MXL862XX_MAC_TABLECLEARCOND, param))
-+		dev_err(ds->dev, "failed to clear fdb on port %d\n", port);
-+}
-+
-+static int mxl862xx_isolate_port(struct dsa_switch *ds, int port)
-+{
-+	struct mxl862xx_bridge_port_config br_port_cfg = {};
-+	struct mxl862xx_bridge_alloc br_alloc = {};
-+	int ret;
-+
-+	ret = MXL862XX_API_READ(ds->priv, MXL862XX_BRIDGE_ALLOC, br_alloc);
-+	if (ret) {
-+		dev_err(ds->dev, "failed to allocate a bridge for port %d\n", port);
-+		return ret;
-+	}
-+
-+	br_port_cfg.bridge_id = br_alloc.bridge_id;
-+	br_port_cfg.bridge_port_id = DSA_MXL_PORT(port);
-+	br_port_cfg.mask = MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_ID |
-+			   MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_PORT_MAP |
-+			   MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_MAC_LEARNING |
-+			   MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MAC_LEARNING;
-+	br_port_cfg.src_mac_learning_disable = true;
-+	br_port_cfg.vlan_src_mac_vid_enable = false;
-+	br_port_cfg.vlan_dst_mac_vid_enable = false;
-+	br_port_cfg.bridge_port_map[0] = DSA_MXL_CPU_PORTS(ds);
-+
-+	return MXL862XX_API_WRITE(ds->priv, MXL862XX_BRIDGEPORT_CONFIGSET, br_port_cfg);
-+}
-+
-+static int mxl862xx_setup_mdio(struct dsa_switch *ds)
-+{
-+	struct mxl862xx_priv *priv = ds->priv;
-+	struct device *dev = ds->dev;
-+	struct device_node *mdio_np;
-+	struct mii_bus *bus;
-+	static int idx;
-+	int ret;
-+
-+	bus = devm_mdiobus_alloc(dev);
-+	if (!bus)
-+		return -ENOMEM;
-+
-+	bus->priv = priv;
-+	ds->user_mii_bus = bus;
-+	bus->name = KBUILD_MODNAME "-mii";
-+	snprintf(bus->id, MII_BUS_ID_SIZE, KBUILD_MODNAME "-%d", idx++);
-+	bus->read_c45 = mxl862xx_phy_read_c45_mii_bus;
-+	bus->write_c45 = mxl862xx_phy_write_c45_mii_bus;
-+	bus->read = mxl862xx_phy_read_mii_bus;
-+	bus->write = mxl862xx_phy_write_mii_bus;
-+	bus->parent = dev;
-+	bus->phy_mask = ~ds->phys_mii_mask;
-+
-+	mdio_np = of_get_child_by_name(dev->of_node, "mdio");
-+	if (!mdio_np)
-+		return -ENODEV;
-+
-+	ret = devm_of_mdiobus_register(dev, bus, mdio_np);
-+	of_node_put(mdio_np);
-+
-+	return ret;
-+}
-+
-+static int mxl862xx_wait_ready(struct dsa_switch *ds)
-+{
-+	struct mxl862xx_sys_fw_image_version ver = {};
-+	unsigned long start = jiffies, timeout;
-+	struct mxl862xx_priv *priv = ds->priv;
-+	struct mxl862xx_cfg cfg = {};
-+	int ret;
-+
-+	timeout = start + msecs_to_jiffies(MXL862XX_READY_TIMEOUT_MS);
-+	msleep(2000); /* it always takes at least 2 seconds */
-+	do {
-+		ret = MXL862XX_API_READ_QUIET(priv, SYS_MISC_FW_VERSION, ver);
-+		if (ret || !ver.iv_major)
-+			goto not_ready_yet;
-+
-+		/* being able to perform CFGGET indicates that
-+		 * the firmware is ready
-+		 */
-+		ret = MXL862XX_API_READ_QUIET(priv,
-+					      MXL862XX_COMMON_CFGGET,
-+					      cfg);
-+		if (ret)
-+			goto not_ready_yet;
-+
-+		dev_info(ds->dev, "switch ready after %ums, firmware %u.%u.%u (build %u)\n",
-+			 jiffies_to_msecs(jiffies - start),
-+			 ver.iv_major, ver.iv_minor,
-+			 le16_to_cpu(ver.iv_revision),
-+			 le32_to_cpu(ver.iv_build_num));
-+		return 0;
-+
-+not_ready_yet:
-+		msleep(MXL862XX_READY_POLL_MS);
-+	} while (time_before(jiffies, timeout));
-+
-+	dev_err(ds->dev, "switch not responding after reset\n");
-+	return -ETIMEDOUT;
-+}
-+
-+static int mxl862xx_setup(struct dsa_switch *ds)
-+{
-+	struct mxl862xx_bridge_port_config br_port_cfg = {};
-+	struct mxl862xx_priv *priv = ds->priv;
-+	struct dsa_port *dp;
-+	int cpu_port = -1;
-+	int ret;
-+
-+	dsa_switch_for_each_cpu_port(dp, ds) {
-+		/* Only a single CPU port is supported by now */
-+		if (cpu_port != -1)
-+			return -EINVAL;
-+
-+		cpu_port = dp->index;
-+	}
-+
-+	ret = mxl862xx_reset(priv);
-+	if (ret)
-+		return ret;
-+
-+	ret = mxl862xx_wait_ready(ds);
-+	if (ret)
-+		return ret;
-+
-+	/* CPU port bridge setup */
-+	br_port_cfg.mask = MXL862XX_BRIDGE_PORT_CONFIG_MASK_BRIDGE_PORT_MAP |
-+			   MXL862XX_BRIDGE_PORT_CONFIG_MASK_MC_SRC_MAC_LEARNING |
-+			   MXL862XX_BRIDGE_PORT_CONFIG_MASK_VLAN_BASED_MAC_LEARNING;
-+
-+	br_port_cfg.bridge_port_id = DSA_MXL_PORT(cpu_port);
-+	br_port_cfg.src_mac_learning_disable = false;
-+	br_port_cfg.vlan_src_mac_vid_enable = true;
-+	br_port_cfg.vlan_dst_mac_vid_enable = true;
-+
-+	/* include all non-CPU ports in the CPU portmap */
-+	dsa_switch_for_each_available_port(dp, ds) {
-+		if (dsa_port_is_cpu(dp))
-+			continue;
-+
-+		br_port_cfg.bridge_port_map[0] |= BIT(DSA_MXL_PORT(dp->index));
-+	}
-+
-+	br_port_cfg.bridge_port_id = DSA_MXL_PORT(cpu_port);
-+	ret = MXL862XX_API_WRITE(priv, MXL862XX_BRIDGEPORT_CONFIGSET,
-+				 br_port_cfg);
-+	if (ret) {
-+		dev_err(ds->dev, "failed to set the CPU portmap\n");
-+		return ret;
-+	}
-+	mxl862xx_port_fast_age(ds, cpu_port);
-+
-+	ret = mxl862xx_setup_mdio(ds);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int mxl862xx_port_setup(struct dsa_switch *ds, int port)
-+{
-+	bool is_cpu_port = dsa_is_cpu_port(ds, port);
-+	int ret;
-+
-+	ret = mxl862xx_configure_tag_proto(ds, port, is_cpu_port);
-+	if (ret)
-+		return ret;
-+
-+	mxl862xx_port_fast_age(ds, port);
-+
-+	if (!is_cpu_port) {
-+		ret = mxl862xx_isolate_port(ds, port);
-+		if (ret)
-+			return ret;
-+		mxl862xx_port_fast_age(ds, port);
-+	}
-+
-+	ret = mxl862xx_port_state(ds, port, is_cpu_port);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void mxl862xx_phylink_get_caps(struct dsa_switch *ds, int port,
-+				      struct phylink_config *config)
-+{
-+	config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE | MAC_10 |
-+				   MAC_100 | MAC_1000 | MAC_2500FD;
-+
-+	__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-+		  config->supported_interfaces);
-+}
-+
-+static const struct dsa_switch_ops mxl862xx_switch_ops = {
-+	.get_tag_protocol = mxl862xx_get_tag_protocol,
-+	.setup = mxl862xx_setup,
-+	.port_setup = mxl862xx_port_setup,
-+	.phylink_get_caps = mxl862xx_phylink_get_caps,
-+	.port_enable = mxl862xx_port_enable,
-+	.port_disable = mxl862xx_port_disable,
-+	.port_fast_age = mxl862xx_port_fast_age,
-+};
-+
-+static void mxl862xx_phylink_mac_config(struct phylink_config *config,
-+					unsigned int mode,
-+					const struct phylink_link_state *state)
-+{
-+}
-+
-+static void mxl862xx_phylink_mac_link_down(struct phylink_config *config,
-+					   unsigned int mode,
-+					   phy_interface_t interface)
-+{
-+}
-+
-+static void mxl862xx_phylink_mac_link_up(struct phylink_config *config,
-+					 struct phy_device *phydev,
-+					 unsigned int mode,
-+					 phy_interface_t interface,
-+					 int speed, int duplex,
-+					 bool tx_pause, bool rx_pause)
-+{
-+}
-+
-+static struct phylink_pcs *
-+mxl862xx_phylink_mac_select_pcs(struct phylink_config *config,
-+				phy_interface_t interface)
-+{
-+	return NULL;
-+}
-+
-+static const struct phylink_mac_ops mxl862xx_phylink_mac_ops = {
-+	.mac_config = mxl862xx_phylink_mac_config,
-+	.mac_link_down = mxl862xx_phylink_mac_link_down,
-+	.mac_link_up = mxl862xx_phylink_mac_link_up,
-+	.mac_select_pcs = mxl862xx_phylink_mac_select_pcs,
-+};
-+
-+static int mxl862xx_probe(struct mdio_device *mdiodev)
-+{
-+	struct device *dev = &mdiodev->dev;
-+	struct mxl862xx_priv *priv;
-+	struct dsa_switch *ds;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->mdiodev = mdiodev;
-+	priv->hw_info = of_device_get_match_data(dev);
-+	if (!priv->hw_info)
-+		return -EINVAL;
-+
-+	ds = devm_kzalloc(dev, sizeof(*ds), GFP_KERNEL);
-+	if (!ds)
-+		return -ENOMEM;
-+
-+	priv->ds = ds;
-+	ds->dev = dev;
-+	ds->priv = priv;
-+	ds->ops = &mxl862xx_switch_ops;
-+	ds->phylink_mac_ops = &mxl862xx_phylink_mac_ops;
-+	ds->num_ports = priv->hw_info->max_ports;
-+
-+	dev_set_drvdata(dev, ds);
-+
-+	ret = dsa_register_switch(ds);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void mxl862xx_remove(struct mdio_device *mdiodev)
-+{
-+	struct dsa_switch *ds = dev_get_drvdata(&mdiodev->dev);
-+
-+	if (!ds)
-+		return;
-+
-+	dsa_unregister_switch(ds);
-+}
-+
-+static void mxl862xx_shutdown(struct mdio_device *mdiodev)
-+{
-+	struct dsa_switch *ds = dev_get_drvdata(&mdiodev->dev);
-+
-+	if (!ds)
-+		return;
-+
-+	dsa_switch_shutdown(ds);
-+
-+	dev_set_drvdata(&mdiodev->dev, NULL);
-+}
-+
-+static const struct mxl862xx_hw_info mxl86282_data = {
-+	.max_ports = MXL862XX_MAX_PORT_NUM,
-+	.phy_ports = MXL86282_PHY_PORT_NUM,
-+	.ext_ports = MXL862XX_EXT_PORT_NUM,
-+};
-+
-+static const struct mxl862xx_hw_info mxl86252_data = {
-+	.max_ports = MXL862XX_MAX_PORT_NUM,
-+	.phy_ports = MXL86252_PHY_PORT_NUM,
-+	.ext_ports = MXL862XX_EXT_PORT_NUM,
-+};
-+
-+static const struct of_device_id mxl862xx_of_match[] = {
-+	{ .compatible = "maxlinear,mxl86282", .data = &mxl86282_data },
-+	{ .compatible = "maxlinear,mxl86252", .data = &mxl86252_data },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mxl862xx_of_match);
-+
-+static struct mdio_driver mxl862xx_driver = {
-+	.probe  = mxl862xx_probe,
-+	.remove = mxl862xx_remove,
-+	.shutdown = mxl862xx_shutdown,
-+	.mdiodrv.driver = {
-+		.name = "mxl862xx",
-+		.of_match_table = mxl862xx_of_match,
-+	},
-+};
-+
-+mdio_module_driver(mxl862xx_driver);
-+
-+MODULE_DESCRIPTION("Driver for MaxLinear MxL862xx switch family");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/net/dsa/mxl862xx/mxl862xx.h b/drivers/net/dsa/mxl862xx/mxl862xx.h
-new file mode 100644
-index 0000000000000..7d8ec4c0b58e2
---- /dev/null
-+++ b/drivers/net/dsa/mxl862xx/mxl862xx.h
-@@ -0,0 +1,25 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+
-+#define MXL862XX_MAX_PHY_PORT_NUM	8
-+#define MXL862XX_MAX_EXT_PORT_NUM	7
-+#define MXL862XX_MAX_PORT_NUM		(MXL862XX_MAX_PHY_PORT_NUM + \
-+					 MXL862XX_MAX_EXT_PORT_NUM)
-+
-+#define MXL86252_PHY_PORT_NUM		5
-+#define MXL86282_PHY_PORT_NUM		8
-+
-+#define MXL862XX_EXT_PORT_NUM		2
-+
-+#define MXL862XX_MAX_BRIDGES		17
-+
-+struct mxl862xx_hw_info {
-+	u8 max_ports;
-+	u8 phy_ports;
-+	u8 ext_ports;
-+};
-+
-+struct mxl862xx_priv {
-+	struct dsa_switch *ds;
-+	struct mdio_device *mdiodev;
-+	const struct mxl862xx_hw_info *hw_info;
-+};
--- 
-2.52.0
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRnJhbmsgTGkgPGZyYW5r
+LmxpQG54cC5jb20+DQo+IFNlbnQ6IFN1bmRheSwgSmFudWFyeSAxOCwgMjAyNiAxMTozOCBBTQ0K
+PiBUbzogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz47IEtyenlzenRvZiBLb3psb3dza2kN
+Cj4gPGtyemsrZHRAa2VybmVsLm9yZz47IENvbm9yIERvb2xleSA8Y29ub3IrZHRAa2VybmVsLm9y
+Zz47IFNoYXduIEd1bw0KPiA8c2hhd25ndW9Aa2VybmVsLm9yZz47IFNhc2NoYSBIYXVlciA8cy5o
+YXVlckBwZW5ndXRyb25peC5kZT47DQo+IFBlbmd1dHJvbml4IEtlcm5lbCBUZWFtIDxrZXJuZWxA
+cGVuZ3V0cm9uaXguZGU+OyBGYWJpbyBFc3RldmFtDQo+IDxmZXN0ZXZhbUBnbWFpbC5jb20+OyBO
+YXRoYW4gQ2hhbmNlbGxvciA8bmF0aGFuQGtlcm5lbC5vcmc+OyBOaWNvbGFzDQo+IFNjaGllciA8
+bnNjQGtlcm5lbC5vcmc+DQo+IENjOiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgaW14QGxp
+c3RzLmxpbnV4LmRldjsgbGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsg
+bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgtDQo+IGtidWlsZEB2Z2VyLmtlcm5l
+bC5vcmc7IEZyYW5rIExpIDxmcmFuay5saUBueHAuY29tPjsgU2hlcnJ5IFN1bg0KPiA8c2hlcnJ5
+LnN1bkBueHAuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0ggdjIgOS85XSBhcm02NDogZHRzOiBpbXg4
+bXAtZXZrOiBhZGQgYmx1ZXRvb3RoIGR0cyBub2RlDQo+IA0KPiBGcm9tOiBTaGVycnkgU3VuIDxz
+aGVycnkuc3VuQG54cC5jb20+DQo+IA0KPiBBZGQgYmx1ZXRvb3RoIGR0cyBub2RlLg0KPiANCj4g
+U2lnbmVkLW9mZi1ieTogU2hlcnJ5IFN1biA8c2hlcnJ5LnN1bkBueHAuY29tPg0KPiBTaWduZWQt
+b2ZmLWJ5OiBGcmFuayBMaSA8RnJhbmsuTGlAbnhwLmNvbT4NCj4gLS0tDQo+ICBhcmNoL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtZXZrLmR0cyB8IDQgKysrKw0KPiAgMSBmaWxlIGNo
+YW5nZWQsIDQgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9v
+dC9kdHMvZnJlZXNjYWxlL2lteDhtcC1ldmsuZHRzDQo+IGIvYXJjaC9hcm02NC9ib290L2R0cy9m
+cmVlc2NhbGUvaW14OG1wLWV2ay5kdHMNCj4gaW5kZXgNCj4gMDUzYzVlOTFmNWFhM2FhZDk0MTgy
+MDA3MWZlNzA4M2U1YzE4NDQ3ZS4uZWE4YTMwNTBmY2NiYmY4ZmRmYTliZDdiMQ0KPiAzMDM2MTQ2
+MmU5ZGUwMDggMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lt
+eDhtcC1ldmsuZHRzDQo+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDht
+cC1ldmsuZHRzDQo+IEBAIC04MjUsNiArODI1LDEwIEBAICZ1YXJ0MSB7IC8qIEJUICovDQo+ICAJ
+YXNzaWduZWQtY2xvY2stcGFyZW50cyA9IDwmY2xrIElNWDhNUF9TWVNfUExMMV84ME0+Ow0KPiAg
+CXVhcnQtaGFzLXJ0c2N0czsNCj4gIAlzdGF0dXMgPSAib2theSI7DQo+ICsNCj4gKwlibHVldG9v
+dGggew0KPiArCQljb21wYXRpYmxlID0gIm54cCw4OHc4OTk3LWJ0IjsNCg0KSGkgRnJhbmssDQpO
+b3cgaW14OG1wLWV2ayBzd2l0Y2ggdG8gc3VwcG9ydCBJVzYxMiB3aWZpLCB3aGljaCBzaG91bGQg
+dXNlICJueHAsODh3ODk4Ny1idCIgY29tcGF0aWJsZS4NCg0KQmVzdCBSZWdhcmRzDQpTaGVycnkN
+Cg0KPiArCX07DQo+ICB9Ow0KPiANCj4gICZ1YXJ0MiB7DQo+IA0KPiAtLQ0KPiAyLjM0LjENCg0K
 
