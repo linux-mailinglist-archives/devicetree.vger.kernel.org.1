@@ -1,200 +1,157 @@
-Return-Path: <devicetree+bounces-256488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D1E9D39553
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 14:36:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D03F7D39577
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 14:51:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 84BF830021E6
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 13:36:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86B063007FEF
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 13:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E7532B998;
-	Sun, 18 Jan 2026 13:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0862B32B9B9;
+	Sun, 18 Jan 2026 13:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OmJvJjvi"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="LG/UH7x7";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="wx9SJXwH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E0731E531;
-	Sun, 18 Jan 2026 13:36:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 213A11A256E;
+	Sun, 18 Jan 2026 13:51:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768743367; cv=none; b=spnQs7LwWV7SAdDHfcoQqfVxjxgnAokRbtpi1sMkI/dBhupBN/UDtdKr2At3/wq3GIft4YTs+zD6e5XR0EpkLNb1iJuQwlz0UCkI3dLPf1RL8GGXVfG3xt2EF/P5asQ0P8921F4ryE34eDRl2g4zwH/843SOPBXijVTRhl5iJKc=
+	t=1768744278; cv=none; b=E90B8Ki/GsD5YTt+oyjptIkR9ZJvTdBhmWx1cVUVuUbz5oripPK62EySThE4mLHqRl6tH1Oj+1ItDQGV11hhsG64SxZVdByDRqALluwe4B92tJ4dAuqH6QkiOhtkLJg/BSlPjOa10ndIkXO4fMzF40toOgSgMMPmnAhJMOxV14Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768743367; c=relaxed/simple;
-	bh=ja+dnipH53AlTtKs9+FniT/yNEbDZimoOF27PN0Mxv8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A1qwkl5DzjSDm1cAxpBofo6wW6Q3too4gVmgVJIAq6ciD0x5ZoqcZj/MUAYuiJzCgNoEeyRo3oDP1gj0LAlvaPWHNCpHpPkIOQVQo09/TwSL3lCMFjqrCm4xQ0oUmrJU6/gxqszxR6cX3q5Yu8r+EVzulvYoNV5B0OQtR6VoZkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OmJvJjvi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86D90C116D0;
-	Sun, 18 Jan 2026 13:36:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768743366;
-	bh=ja+dnipH53AlTtKs9+FniT/yNEbDZimoOF27PN0Mxv8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OmJvJjviCcHUxI0hiBl15KkI9QG4ZzSOomWHuka+smSgPcKxhoy1rkdpNPeK+PIaD
-	 3KX6C92rJ8lMu88e71gSJielOoICyzqA2FOjBs7SFE5HM38jxayDjzGoDy31OAY3tN
-	 BPE0d7L71R9SD2t38X/OP4QcpUfoDKQuQ1ThoGyozDVi/lffbrAtLA5RrBRY1i7OI4
-	 /SLI0gcMbTYIGhh8F2mSv0MUGNUewfBf4sq8XnINXUjfxnuymR6ZRLWgOzuuzjazl+
-	 eKXRLPmrB69ZakQ6ED0PIU46v30BcM3FiLzYpm8F69miQ5vOkk/3x3yyLW05sqsX+J
-	 RMnCuWJpv3T5A==
-Date: Sun, 18 Jan 2026 19:06:03 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Yulin Lu <luyulin@eswincomputing.com>
-Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	zhengyu@eswincomputing.com, linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com, fenglin@eswincomputing.com,
-	lianghujun@eswincomputing.com
-Subject: Re: Re: [PATCH v7 2/2] phy: eswin: Create eswin directory and add
- EIC7700 SATA PHY driver
-Message-ID: <aWzhw65QEoLj2XE7@vaman>
-References: <20260106062944.1529-1-luyulin@eswincomputing.com>
- <20260106063309.241-1-luyulin@eswincomputing.com>
- <aWeH5fn8nGOzjDpP@vaman>
- <133c22d5.2674.19bc5ff735f.Coremail.luyulin@eswincomputing.com>
+	s=arc-20240116; t=1768744278; c=relaxed/simple;
+	bh=x3DsOWWJy6edg1F/10BJa5xm9IiiAiyPLGSU06E7uFs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TqrW5PfZZ9hUk74i9KcW3obECJk8rZ98nNSJyHPKzokbGAPpjoL+WKqbHDu2j2g5wOYxx7YkxDrPQtAIRFK45VzczMOF+v6jHQmVmZObW0BsPNv3nMXHm0wlMRA8uy9BO2VCGCyIeRO/BhbOW9+Pqw3vgcQJwooaWBzcwdnlvjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=LG/UH7x7; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=wx9SJXwH; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dvFNx6R4xz9thH;
+	Sun, 18 Jan 2026 14:51:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768744273;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jtJ0JHkBONXN8QFPUokfERKmqgzusHvWZDDChLmbMm8=;
+	b=LG/UH7x7IzsqbvD5MbwNTy1O/ghryF3obqHx1GvSzllD43dOamqzVxEkU35cqW2MJYgY0H
+	IfVj6oBjWfViXgAJITuzM574P/q+Odq1rzrlKLhiQI1XeYC0u0ZdGiJAjjYHNXewuW3+3J
+	XXYw39pGvec5e1ty6ldEPivJV0LL2ik6lVAVwHH2oHTwX7umRCA1LzDK1TrLvK60gbzBqN
+	MHn4+CjIicFcvrFru0IOi6R0rEcaPAPweX1HgivcJ54TbOlCrYJA1RsRGDOMQnx/s5+Se8
+	qPxZPIONwaWRRvwSyNAt5ECKz/xI/PGzd/ctOPKGIiJFgfuEad0yWIap5ix1XA==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=wx9SJXwH;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768744271;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=jtJ0JHkBONXN8QFPUokfERKmqgzusHvWZDDChLmbMm8=;
+	b=wx9SJXwHPUrYm7huy1+FQ3XdlH3yeE2gGXkdsgEtDUgda8Sior5juch57dY65xrPo0lufG
+	7/YZ45pQy8PmOBVo2btZpV4dFPYBCgeBG1Hke4TyBMfDVnAf80rA7rDiTdws5+KplERruv
+	QD3/upfIwzYc93ay4VOpz0kuefVHxYHzDPEtRfE+sNjU642AOZn3+WqJIXmQo1gqvZyEHz
+	fIniWPVcSLHvq1RXPq4yldDmBOCLSHGdyrZYGFayxM0rSfTspH91sq1JWAB1nu+RwffxHe
+	aHfIOgd3f0eO5vmXCCh6JBshuxonxUBEv4OoIxxMd8tYUneJJLN7jpo0tSM3Qw==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 0/9] Describe PCIe/USB3.0 clock generator on R-Car Gen3
+Date: Sun, 18 Jan 2026 14:49:48 +0100
+Message-ID: <20260118135038.8033-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <133c22d5.2674.19bc5ff735f.Coremail.luyulin@eswincomputing.com>
+X-MBO-RS-ID: aeaf430141668aae5a9
+X-MBO-RS-META: z7y9zyqpix9wcqxp6nkri4jzedid9w9z
+X-Rspamd-Queue-Id: 4dvFNx6R4xz9thH
 
-On 16-01-26, 16:50, Yulin Lu wrote:
-> > > +static int eic7700_sata_phy_init(struct phy *phy)
-> > > +{
-> > > +	struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
-> > > +	u32 val;
-> > > +	int ret;
-> > > +
-> > > +	ret = clk_prepare_enable(sata_phy->clk);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	regmap_write(sata_phy->regmap, SATA_REF_CTRL1, SATA_CLK_RST_SOURCE_PHY);
-> > > +
-> > > +	val = FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN1_MASK, 0x42) |
-> > > +	      FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN2_MASK, 0x46) |
-> > > +	      FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN3_MASK, 0x73);
-> > > +	regmap_write(sata_phy->regmap, SATA_PHY_CTRL0, val);
-> > > +
-> > > +	val = FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN1_MASK, 0x5) |
-> > > +	      FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN2_MASK, 0x5) |
-> > > +	      FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN3_MASK, 0x8);
-> > 
-> > Where are the magic values you are writing coming from..?
-> > 
-> 
-> Hi Vinod,
-> 
-> These values set the TX preemphasis and amplitude parameters for the SATA PHY.
-> The actual numbers come from eye‑diagram tuning results on different hardware
-> development boards.
-> The current code reflects the settings for the Sifive HiFive Premier P550 board.
-> In the next patch I plan to move these into the devicetree (DTS).
-> Would that be acceptable?
+Describe the 9FGV0841 PCIe and USB3.0 clock generator present on
+various R-Car Gen3 boards. The clock generator supplies 100 MHz
+differential clock for PCIe ports, USB 3.0 PHY and SATA.
 
-So this would change wrt each board the device is...? Maybe DT should be
-better choice. Please check with DT folks on the approach
+The series effectively has three parts. The first part is description
+of PCIe root ports on R-Car Gen3 SoCs where applicable, in this case
+that is H3/M3W/M3N/E3. The root port is used with PCIe port power
+control to also control the PCIe port clock. This is needed on Gen3
+boards, because they often use separate clock output from the PCIe
+clock generator 9FGV0841 to supply clock to the controller and to the
+PCIe port.
 
-> 
-> > > +	regmap_write(sata_phy->regmap, SATA_PHY_CTRL1, val);
-> > > +
-> > > +	val = FIELD_PREP(SATA_LOS_LEVEL_MASK, 0x9) |
-> > > +	      FIELD_PREP(SATA_LOS_BIAS_MASK, 0x2);
-> > > +	regmap_write(sata_phy->regmap, SATA_LOS_IDEN, val);
-> > > +
-> > > +	val = SATA_M_CSYSREQ | SATA_S_CSYSREQ;
-> > > +	regmap_write(sata_phy->regmap, SATA_AXI_LP_CTRL, val);
-> > > +
-> > > +	val = SATA_REF_REPEATCLK_EN | SATA_REF_USE_PAD;
-> > > +	regmap_write(sata_phy->regmap, SATA_REF_CTRL, val);
-> > > +
-> > > +	val = FIELD_PREP(SATA_MPLL_MULTIPLIER_MASK, 0x3c);
-> > > +	regmap_write(sata_phy->regmap, SATA_MPLL_CTRL, val);
-> > > +
-> > > +	usleep_range(15, 20);
-> > > +
-> > > +	ret = reset_control_deassert(sata_phy->rst);
-> > > +	if (ret)
-> > > +		goto disable_clk;
-> > > +
-> > > +	ret = wait_for_phy_ready(sata_phy->regmap, SATA_P0_PHY_STAT,
-> > > +				 SATA_P0_PHY_READY, 1);
-> > > +	if (ret < 0) {
-> > > +		dev_err(&sata_phy->phy->dev, "PHY READY check failed\n");
-> > > +		goto disable_clk;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +
-> > > +disable_clk:
-> > > +	clk_disable_unprepare(sata_phy->clk);
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int eic7700_sata_phy_exit(struct phy *phy)
-> > > +{
-> > > +	struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
-> > > +	int ret;
-> > > +
-> > > +	ret = reset_control_assert(sata_phy->rst);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	clk_disable_unprepare(sata_phy->clk);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct phy_ops eic7700_sata_phy_ops = {
-> > > +	.init		= eic7700_sata_phy_init,
-> > > +	.exit		= eic7700_sata_phy_exit,
-> > > +	.owner		= THIS_MODULE,
-> > > +};
-> > > +
-> > > +static int eic7700_sata_phy_probe(struct platform_device *pdev)
-> > > +{
-> > > +	struct eic7700_sata_phy *sata_phy;
-> > > +	struct phy_provider *phy_provider;
-> > > +	struct device *dev = &pdev->dev;
-> > > +	struct resource *res;
-> > > +	void __iomem *regs;
-> > > +
-> > > +	sata_phy = devm_kzalloc(dev, sizeof(*sata_phy), GFP_KERNEL);
-> > > +	if (!sata_phy)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > > +	if (!res)
-> > > +		return -ENOENT;
-> > > +
-> > > +	regs = devm_ioremap(dev, res->start, resource_size(res));
-> > > +	if (IS_ERR(regs))
-> > > +		return PTR_ERR(regs);
-> > 
-> > devm_platform_get_and_ioremap_resource() please
-> > 
-> 
-> As explained in my “v6 → v5” changes in the cover‑letter:
-> “Map the I/O resource with platform_get_resource and devm_ioremap
-> instead of the devm_platform_ioremap_resource API,
-> because the address region of the SATA‑PHY falls into the region of
-> the HSP clock & reset that has already been obtained by the HSP
-> clock‑and‑reset driver.”
-> The HSP clock-and-reset driver uses devm_platform_get_and_ioremap_resource(),
-> meaning this region has already been requested.
-> The HSP clock-and-reset driver is also currently being upstreamed.
+The second part is a single patch, which fills in the missing USB 3.0
+PHY on R-Car E3 as usb-nop-xceiv, thus aligning the R-Car E3 USB 3.0
+support with the rest of the Gen3 SoCs.
 
-Worth adding a comment here for that
+The third part is enablement of the 9FGV0841 PCIe clock controller on
+the R-Car Salvator-X/XS, ULCB and Ebisu boards. The boards use the
+PCIe clock controller outputs in a slightly different manner, all use
+the outputs to supply PCIe controllers and slots, as well as USB 3.0
+SuperSpeed PHY. The ULCB board also uses the 9FGV0841 to supply SATA
+IP, but this is not yet described in DT, therefore it is also not part
+of this series.
+
+DEPENDS: https://lore.kernel.org/linux-clk/20260118025756.96377-1-marek.vasut+renesas@mailbox.org/
+
+Marek Vasut (9):
+  arm64: dts: renesas: r8a77951: Describe PCIe root ports
+  arm64: dts: renesas: r8a77960: Describe PCIe root ports
+  arm64: dts: renesas: r8a77961: Describe PCIe root ports
+  arm64: dts: renesas: r8a77965: Describe PCIe root ports
+  arm64: dts: renesas: r8a77990: Describe PCIe root port
+  arm64: dts: renesas: r8a77990: Add USB 3.0 PHY and USB3S0 clock nodes
+  arm64: dts: renesas: salvator-common: Describe PCIe/USB3.0 clock
+    generator
+  arm64: dts: renesas: ulcb: ulcb-kf: Describe PCIe/USB3.0 clock
+    generator
+  arm64: dts: renesas: ebisu: Describe PCIe/USB3.0 clock generator
+
+ arch/arm64/boot/dts/renesas/ebisu.dtsi        | 43 +++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77951.dtsi     | 20 +++++++++
+ arch/arm64/boot/dts/renesas/r8a77960.dtsi     | 20 +++++++++
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi     | 20 +++++++++
+ arch/arm64/boot/dts/renesas/r8a77965.dtsi     | 20 +++++++++
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi     | 27 ++++++++++++
+ .../boot/dts/renesas/salvator-common.dtsi     | 26 +++++++++++
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi      | 21 +++++++++
+ arch/arm64/boot/dts/renesas/ulcb.dtsi         | 13 ++++++
+ 9 files changed, 210 insertions(+)
+
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
+Cc: linux-renesas-soc@vger.kernel.org
 
 -- 
-~Vinod
+2.51.0
+
 
