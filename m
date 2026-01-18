@@ -1,221 +1,171 @@
-Return-Path: <devicetree+bounces-256556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B05C5D39804
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 17:33:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB2ABD39817
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 17:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D445305D98E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 16:29:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AB1783008FBE
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 16:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F31E623C4FF;
-	Sun, 18 Jan 2026 16:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA562253A1;
+	Sun, 18 Jan 2026 16:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MIATXMDr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZmroWXG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010029.outbound.protection.outlook.com [52.101.84.29])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74949230BDB;
-	Sun, 18 Jan 2026 16:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.29
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768753762; cv=fail; b=Y3ub2AhbAL/YNFtSk0zipclMCW28lHykjJumSeZ+itKqTpw8rt4LtNyqF8JBJT7hc1YAUmWXOYlqfsAZ4XpEDuVkIP3mJ4HiHJE+5/63loqsZlJGhAMz1YzCPM2uQveMnlD5ZkudWv9VWQOA8LQ5NhwSwmAHNEcNVWFH4K/mmNM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768753762; c=relaxed/simple;
-	bh=iIrxS7z3jzkfPylJR4lkOK44Tb/yYhbCUvQkqNSUY8c=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=iPajnoHbtBv3FTzp5XsluamO4D2r2YPKI0tuv0r7hGXSED9NxcerLp6L5kMUJT/XATI7THezHrhnf9nxbFdyG8rqpGZ+/QbRlC0u65i4fIDz7538uwqun+OzQNZNM7XGJHjGBtpWEIjWx74sv1TIVvHhbF8Qtyshwbxmcv0NdWw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MIATXMDr; arc=fail smtp.client-ip=52.101.84.29
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qQqZfQIxLk9KPisofhg0ZnmfukaoQvSHVnc6NHLbUxNhgTQ/Yli7z04WKRQL3KAsgI86EMLKnfbWDRBCqvByzhh9312uQjdFnm9NDRFJnIb+sbCMxDBA5PKE8Za+hhek5urgfbUNJmGV51TzGC6YTFqRpHi+tnZuO4FxUmJXTa3j34/LnqHJKsndv1/R0m6WI6yda+dJy85PeWr/APZBRDhyHOnFEHAvbEEpSVTp5lo5vpLrvliEkLZO6tIPHITnWJ2HbitsdlVF3/vsjCslDSdu5e8eYHRrNGrn3nB2Qwa3HUOqdfqEjpVjBDXe5kSzxGk892kPWFvZTOFPwrg2hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zMFNtBSYXTplYmf4GRBvTx7SsY0HwmebVfzBNKjVS38=;
- b=NY12JFE1mFBiI0eXf5uhyMUyc6n9krX5MdLS+pKa0BZZNljb+oKeBPIfZLBlXT4U7Ag8NY0GYElDVeq1MZ05TP7LjLkCEZFEQNHd65b5dEf5tNvuo+5lNIdGSpPTO8ZpxS6nNrdABYBmLH/U6bEWKJBOkGZUibHAo4hUVe3ckqw4o8D/RANRX0w8tZmaeyeG5FCLrAus3/CqwfytT4cYisBCI4fa/SeIs9x9cyDxOHrMYiJHt5URjcastJtAUjLgHXHWVlEY/IGFQjm2dWS+g6O3dJzxWf3totmIL8hPY6z5s2xvlqtB3Ni3/pIJa9euaAw0Ak9ZUXE8mku3nYjZ+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zMFNtBSYXTplYmf4GRBvTx7SsY0HwmebVfzBNKjVS38=;
- b=MIATXMDrfH74imKTLyi40Ope0OzV6GQHAk3T1ZBrCxPEIN0SKiowO0GEG6y7p0CC/m9fKltpMiehkGfbiLB+S7Ff4xBDhsTmpgVCLVdGanfNjMQ5qrkuzfqOX145tnbIO0dlVVP/QNR0ers9HKU170F04kS1/eS0KQxe9uLt1Z+ZhXWZyogZnzIuQ/mSG98sVY0yfU2TDWmUFL95XCjXOHnnvH/hhZEVpkW7sC1TqeAmlQ593NMVDWHMiTf5k0JHWuPzZPVGpssryRw+Y8sUf49hGyvcaB/pPJFtjmFKQ2EdTXW2VGfREySvWmnDq8HjK8JGJ7VqJD5q4jmzp2WIMg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
- by AS5PR04MB11348.eurprd04.prod.outlook.com (2603:10a6:20b:6ca::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.11; Sun, 18 Jan
- 2026 16:28:55 +0000
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9520.006; Sun, 18 Jan 2026
- 16:28:55 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Sun, 18 Jan 2026 11:28:06 -0500
-Subject: [PATCH v3 9/9] arm64: dts: imx8mp-evk: add bluetooth dts node
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260118-misc_dts-v3-9-d3564716cbf6@nxp.com>
-References: <20260118-misc_dts-v3-0-d3564716cbf6@nxp.com>
-In-Reply-To: <20260118-misc_dts-v3-0-d3564716cbf6@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Nathan Chancellor <nathan@kernel.org>, 
- Nicolas Schier <nsc@kernel.org>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-kbuild@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
- Sherry Sun <sherry.sun@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768753702; l=752;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=5b34/7/43scQ2hB5QNkNQEIbdnOfdqT0CBCbY7aotgA=;
- b=CAMmUcsoHxOfFcN8bpFeDn7D5hPW/OWao7bmbPzdEnRR3XtPLvaW8D6S+O7BJbXeBc/APbQRw
- Hsm+qmIQrqoDvLCtw0VqzBIC5QT4N9k8ZmqJ1PZywYs47TldxCeNDQV
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: PH7P220CA0158.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:33b::34) To DU2PR04MB8951.eurprd04.prod.outlook.com
- (2603:10a6:10:2e2::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8260221FB6
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 16:48:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768754894; cv=none; b=RmKu4Jn+4o5SolxxWGAExIsIX1UZVdSA2z8BbZbGHNziMNhA8RSSkodKQ44MFWRJdq0cIdLtIthVeL1iREftsjrijy3Ezvug/TRu6KwCspJfiMkLuxUmjg9JYaXkGZgccmg7X/Iau6JYcO7wJz+2h0cvBozKxV86cjZdcOVTdc4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768754894; c=relaxed/simple;
+	bh=ObBNgYmI7km2QNXCjpehnGoXCANLUlsMEgFWywznUhs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M8gPOBqoWOMyVgrjCuuQw3W6U7OOxRjy9d8XPjB+xOkthY38OHHZlNhdz1bySR/AL68H1jr3uVIME1VdfHsQgQlL+b7ETNoSPdP+ukUsDHUPqudUy6YqMYoONxVdVTnzmeNtSKGmVdOGh7FqDnEmZvsPfZ4lOeU34luRngr/47E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZmroWXG; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2a0f3f74587so22509965ad.2
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 08:48:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768754893; x=1769359693; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X0twtbtNGNQIp4HwkKCyjxkTPom6wsw2QrSPQrsy5co=;
+        b=QZmroWXGE2ruM9WWPVMd5Mce81h1MzxLNb1GU2Y88ANcqBMiCbfAvudkzw5F6thdSA
+         vTpwCuadlDcbqtWRwRws1YPx8LEChH0aSro75GGoOrdZGv6IgERwWpt327lE99aPAKnb
+         VbEshIC/mA3s9Wih+XOrIitoKa8xUL19DBZhJFE06S6Av0lxu5Gr6NzXtc6l5UkcV4Fm
+         YmenxwTZ09K1BfQktlGa4wcCibAv8oBNKOk1OxIhchOsN+bFQvQxXjVvcC2nyY5CJFVW
+         rT61hvktJ6wuyGTNZRFff/1bdHhbtkT24b/1DV8ptMuqvhTt1KgD3jgIxM+J8cVIEEoB
+         b1bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768754893; x=1769359693;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X0twtbtNGNQIp4HwkKCyjxkTPom6wsw2QrSPQrsy5co=;
+        b=FKmjwKvWW04UgnA35foBe3NH7EClkTxa9/hHKMTlNjHk/nAGCbU4Xx6Ma/a9MCo851
+         HAWGq2Jxw3tFpEvEn5WB+XfVWIjlM2IFv/CvmIFF/V6/X6T9nHUE2AgY5iscG4GIo9jA
+         rOHo2s4vG3tMQSK2POOfuelml93rLcwk7O4MApN7zPnYny7fNqRyJsyX9wNiZ2DjnExy
+         XhNKHGnT1sZ7gy/Thz/gf9GOljef7zN1whySwXBEi7Jy30B5QQ7TFZP8I8IAkklYajrl
+         f5Gqo176oB4VkhxinhCxvzHztLHSF8xdQ9dLQE8H/xpoYI61Um+FZGgTla1tVpASnpeZ
+         lHnw==
+X-Forwarded-Encrypted: i=1; AJvYcCXCSRrD+PIV1oLrzjA+ksrMQdNmQQMRW+H8qMUOO7i1S1uoec3ZUoqxTEPN5eVVSEAIFjm4ZOQCgf4i@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFf333PGN9/7GIis9h4tsrZd5aSlNcTmIjALcvDWFULuJdAR7k
+	r6TtAResUPLWqiI4ZwpyDoZnAuBSfZm3jociAHnOge6CuiZ1cI8U+38rxaxQnw==
+X-Gm-Gg: AY/fxX7c6M3obEyOdd9zdle0atWexfmFfuttMkYf0atdTDrhqKLKmp00c8dUkibO0aE
+	+gh4wJSDeavsw+Dy/PHZsCZRTupv+++CdFKVI+gnS6PQnckwSQA2UhTLpd6gUq2FsJsB4TTMhqo
+	Ri+pwfrUVuMwq+g6ZGnH2lQkGLEtrAgOxCYrlaFo3vL/8lwCFG8lV9k2+9hnQYYgadfGBh3sJFh
+	gpM4QOgsPQabEcbndW3mAV52v5Ts0BttGqFwPa7hHLYDczQEIZIKiYek5op3fDOdudzVxv3fuOS
+	mcQ6LEZRI5S9GqAIAY/y4jYOzCHwFpgQ6t1Y7ypF0zLG6Ym15m3Szh5hEFkEtgR0kBeOc+e8tRz
+	ZccALlq6b6qS1CWQ5Ni1SAFLlhwOmZUFLVPiyIpgokl1aU4PfBWCTqJyjVBv0JPJH4AkJIGf/yA
+	qInhxTVe9hYxgImzsd6aW3LtBax2mmATrqXcM=
+X-Received: by 2002:a17:903:124d:b0:29e:76b8:41e5 with SMTP id d9443c01a7336-2a7175be718mr92063215ad.30.1768754892810;
+        Sun, 18 Jan 2026 08:48:12 -0800 (PST)
+Received: from [192.168.31.239] ([167.103.54.94])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7193dbbf5sm70904105ad.47.2026.01.18.08.48.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Jan 2026 08:48:12 -0800 (PST)
+Message-ID: <95a49665-f379-48a7-a2b5-d288cdfdc0a8@gmail.com>
+Date: Sun, 18 Jan 2026 22:18:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|AS5PR04MB11348:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8db4a97a-904b-4a7d-9860-08de56aeac22
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|7416014|19092799006|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?b2dndE9BbWV6MldyZ3FUU2VYUTFwQjVBN1d4bDA1VThJREM1MVNBbzM0Y1JT?=
- =?utf-8?B?UTNKdWp5RFU1RmV0bHgrYjU4aXpLN01vLzdGRFpvRDBHbTluandpa3Rmczk1?=
- =?utf-8?B?UTc1ODNaS0Y3KzllN0VkbU5QVlRBa1pBbU5mNndBM1hpWFJYL2R5UU54b2lF?=
- =?utf-8?B?V1RLeVpZZWpwRjd0eHUvakNIQ0p3RXVKeUwweTRpZDJrZWtTNVlhOU5LS1VR?=
- =?utf-8?B?T1I5Y3A2Y3pUY3lwemtSelFGcEF3bFFOcHErd0xoRi9pYVlQaGhPc0RNaVlw?=
- =?utf-8?B?OTVmeE5EN1hNQUl4cHRRVVg1Q2NwZHJ0dnVVY0kxNFhpRm1kalNhNGorQzV6?=
- =?utf-8?B?bWxxNllmdENObUxQU000QnJsOVFub0k3dDFnbDV2K3NrRTk2czVwTC9uVSs0?=
- =?utf-8?B?U0p5QzR2NGVjK3hLaSs0M1loaSt1MlE1OWY0L3hrNklFa2E5cnNla3VrYlJH?=
- =?utf-8?B?cC9VdUEyNW45NUdkczNtK1k3VWZyYi9VSXdtaUsvdDAxMWxOOWF6cFQ0Rjhm?=
- =?utf-8?B?blZBcjY2ZzN1emllaFpSZnp3eDBwWm1hcmNvT2l3ZWZvYllWU0ZBMnNiZTd3?=
- =?utf-8?B?eXZUUUVhVUJBRjFpOXo0eHBXN2p2YlN5Ty9mdlNCK0o5Sk9aR1RzOFRQVS9v?=
- =?utf-8?B?dzRmWUJ1blBzbXVCTzdPZnZDU3BINEgyekI1WjFWekcwSno5VkdwNExZRHFj?=
- =?utf-8?B?KzN6cnNOTzNQVm5yVkhmbmlXN3ZSOW8wcjhBMVg4NzlhN1ZXa1JXd0pZU2ln?=
- =?utf-8?B?OWRZcm5BSFZ0ODRJVDBJSHQzZzlwRW9uTS8xSGNkOHlJd05ldThTNU9ZcSsx?=
- =?utf-8?B?R0VIYXFKK2oxUGd4ajNSbjBseWtkUGJvN1JmQmVMMUZCOTBMSjYvT0xScVJE?=
- =?utf-8?B?WitZNTk3RlFscklCZnIwWTZURDdaNXVKOGp1TE5Fc2NtbnZtNkdPa0Z2MU5y?=
- =?utf-8?B?WWFkMko1b3UwN1N2cXl2YUZHVHBzNit4OG1JdW5HY1FaNjlaaG84OUxVZDMw?=
- =?utf-8?B?ZXpjN3F4UVFiSzdIZVdDTkVEV2FmaGdTaS82bVBUVFhsVWYzdVVxdnI5SVo5?=
- =?utf-8?B?UEkyMzVJRUlBYm9iM0pIRmJ1ZU0xVnJEUU5JNGYrVGdKSE5mQXhRVmtjYVVr?=
- =?utf-8?B?S2JvTWtJR0I2Q3dPRXgrWVZFTmt2V3BoRXRaU0ZmZENQU2lRT0VPUHhNVkxk?=
- =?utf-8?B?V3JhbnBDekFmeTBZMkhGSWhoM0UxZzdKeTkwS2pCeVNhQ3JaK2d3eSt4WXVV?=
- =?utf-8?B?RGt3K1NGZTVTd3VmdXpsZzRadEtUZHBWVlgxR0pLSGoram5nNVIwVDdwS3Zu?=
- =?utf-8?B?OVZEWHgwa1JrQmovOWtMV1dXdFMrQ0VJSDN5NENIQzB3T2c2a2s2UzhTVWRG?=
- =?utf-8?B?cEU1MU4zUWdlQ3BYSEYwOXZEVUtUR3QwMXFEdXNCay92OWxsMGdqdFZHT3Yw?=
- =?utf-8?B?QXFCaVFhSGVnN3dWcEFrOW45ZVBpa3hIOE96QlpCRWM3bUxoeDFIcEZCc0Jp?=
- =?utf-8?B?WDk5cFNMQWo2TUFHVllZRVFUcGY1d3ZKZDBESmNFamp3MXZlUVVhaHFvU1Zz?=
- =?utf-8?B?eDZTUkppbklucjJnQ0FKT2RCNzcrRUdGU1VwMXUzQTBXRFM1K2VaWEdwMGFY?=
- =?utf-8?B?eFpLWG9xQTlILzNYV0JVditPVTZpTHdKNndlRnFFQ0U4MTRUZGYzMnRSVlFR?=
- =?utf-8?B?NGtsdlgzSnlDUTV2ditqbGMrNXZ0dERTN3RLcnlUWU10NFAyYi9jbjFzMmNo?=
- =?utf-8?B?dEd0THI1QVJFS0VwdVg0bzY2aXhsVVBWTUdCY3RXZU9QN3NlK3A4U05yVW9s?=
- =?utf-8?B?N1dZUnZoek1pV3B5cHBwcGR2UU9STmphNjZCcTFjVnZkT2x6SWJNQzVSSWZL?=
- =?utf-8?B?VzVUYlg4TUhJQ3JLVVF5aERFME14dVJRdlp3dEdUakV5SjhpeGsyVEJaKy8r?=
- =?utf-8?B?NGVneVlpQ2k1YkxGYlcyaWpDb2szR2VHc1hIckJiQWF4Q2dvNUx1Uk4xNm00?=
- =?utf-8?B?eGlpMXpqMHBLVWorWkhYQy9TcU1QYUZOQ1VlRjFYMVFCN3NYNnZ1WnNhZi95?=
- =?utf-8?B?RG44V2d2UVBvL2VNOGlPUDZmeldBb2NVZW9nZlBZL0lIK3poNXpOZUZjQlpY?=
- =?utf-8?B?RVBSSTNma2IrdXdDSm80cGR3Z0xtMFY5ckZvT1ZXVjN4bi9WcTBkVjBPYlJj?=
- =?utf-8?Q?enAMhB6ohUDZ/o/Oq/Frmog=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(19092799006)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?V1J0Nnp3bDhkL29WUFIwL3d6cDhyYXhDeDczYm1lU0NxdFpvODZBbUxJTGdw?=
- =?utf-8?B?ek9TYndWWWVjeWkrVDJUaThWMHFmUlR1TXZxY3FuSnNVSnlXUzkwMEJWRTlN?=
- =?utf-8?B?UjBLMm9HalhSQ3RsTDJUOGZtZXNtZzZ4Z0hiRXIxcllaMkprdDlOTWxOR0xL?=
- =?utf-8?B?a2gvekJjaThwYWlWYUFKa0tkSmhURk5ZVGdXUkwrQnI0eEJnclRBQ2FCYXVP?=
- =?utf-8?B?YnNEYWlLWjcwNzJWclBYNW42MWZwd3pBcWdGaU9qVEhTWXg5ZE5DcGk4NVpR?=
- =?utf-8?B?K2lLVEhha2I3ajhSOGYyTC9YVVhDRzZSNVlkWTF6YlIxeTd2cVhuWS9RVjJ5?=
- =?utf-8?B?MkJGbXVSSGtmTWFhQkpjbXBLYVhpajdZMXBNdFd6TldUZ2htS1VKcm05ZkU0?=
- =?utf-8?B?N25XU3FiVkJLRHo0UTl2TFQrU3FjUnlFMHo0aTNsT0hMWXoydzdxR2hTUlFj?=
- =?utf-8?B?QW9vaFZpcitOS2Z2cDJxTm5aOFBCMmJEQXp1N2tPNXZQbGgvWjZiZEd2R0s0?=
- =?utf-8?B?RmxOandMWGpvbG9ZNURKeGJoSTJyS21Zam1xZENWa0NMWGNEVU1ZME9SQVFP?=
- =?utf-8?B?Z0pIb1JBNHpxS0VLa0lERnZOY3U5M0U0T29SU3hIcUV3RUFuUExabUVNbHVs?=
- =?utf-8?B?R012ZkQySFI2NnpEQWxialNDK09Vdk9PN2w3Z3BDQkFOTTdqRVJQY2VNdEx3?=
- =?utf-8?B?Ry9tQzNnQlh1NXhPTnVZd1BmR24ycmI0UFJZamJxOU5XUkFYOHF0dU5RYVBF?=
- =?utf-8?B?UlpwOUROazlqbkVoU2tXT0JGY0JiTmVmNFV4dHY1WFRUZlFVNUk5K05lVVAy?=
- =?utf-8?B?VGNSMmY0d1owTytGeU41L0J1TENEWEZhQStXaE9ibXRnY1lhbk1jdGRjZDlF?=
- =?utf-8?B?TVJMallvTGNYbk0wKzc5bkVXOUdHRGJHclZjZFZkRnJPOEFDaW1RaTh4Tkdq?=
- =?utf-8?B?Z3ZHVVoxNG53YnFoQTBza1pkZXd1R0ZmSnBLbERVc1luZDFITGx3MzJOdDhP?=
- =?utf-8?B?TldqRWhYUmZVRGhMWTIrZnVoMlQzZ0hyOWxSNXBjbytiZnkxMXBkUjBZSXFL?=
- =?utf-8?B?OTkrajVES1kzVlNjdk04cWVxKytDYzEwZXdkYTBVenRtaWliYTRvUCtXRm5x?=
- =?utf-8?B?aFhaWG52dWVkZGV5WlJYaG9WaUNTMmR2d0I1YTgxMnNtYkxGN2pyeWNoaU42?=
- =?utf-8?B?b3pzckhwNlVqZjhWcVpRNE1SbFlEaDM5MTFFWjFPdVZjSlYva1YzZXZOZTA1?=
- =?utf-8?B?ZnQvM0twb2Z5eGVaMmZZa2oxRTEwSmZYNHpua0dpRy9SdVJ4OThCc1F0aWZr?=
- =?utf-8?B?aWx3aGF2M2hqOW9DbGROSW5hU3lCbjNXU3l1SGlkYS9CNDh0VzR2Q3ZDZ3ky?=
- =?utf-8?B?eEZjL1RPZEFWOUtPN2Y0MS8xVkgrWk0raG5ZYjExYnlWR01QQlZ4TTRMeTd6?=
- =?utf-8?B?Q1VKemtVcjF3R2RVMUJrejN5UDIxdHFDRGJySG02ejI2d2FXeVBFQTFhZ2sv?=
- =?utf-8?B?U2lSZ2hydE5jK1lWK2UzaFFHK1NxZDBpOU93R3M5R0RGYmhGY013Y1FpODJ2?=
- =?utf-8?B?N2NDMUg5YXI3MktEQUViTTJVVXp6aFFQdzIzdVFLREdaMmErY2pXWXZiYjEw?=
- =?utf-8?B?bmZpbFhWRWpCK0doTkZxUU5wTDZiUnNveWZyY09aN1dIU3luUGhldVZzUXFk?=
- =?utf-8?B?Q3hVdVFvMVhkSGhUY0Y2OGVwM0tPeXJlTlEwOVN1RmVIY1BESEJ2eHV5blEx?=
- =?utf-8?B?UGdpRlpjR0crVUcwK3dUTEF4TGdpOHl4emNyU1NVN0R4RHNlTGQxeFhhQ2g5?=
- =?utf-8?B?WFFyRVNpK2Q0YWk0Y2lVak92QVJWVzZHSVh0dFZwNHNtUndPL2wxb3FRSGRG?=
- =?utf-8?B?Z2JBMERWbXRqTGlXcjhyU01Ka1R0SWF3Z1VoYkZJUEsvNHZ4b08zOCtRN3Yz?=
- =?utf-8?B?R05zTHlvTThKM202akdUNHdaUldLdDZta2RJaUV2T1ZWTWpJSi9JVGZGM2Zu?=
- =?utf-8?B?L0trY1NnRExJSWZ6U3hlTENxd09BQTlndVF3RFJ0cVhDNHdmUUx3VTJSa214?=
- =?utf-8?B?ZDFWbENIUVFBbDdHK1l0ZjdLZmJSZ3N1ZjlkeWZLeXVpcitIRXo0ekZZRDVQ?=
- =?utf-8?B?VzJxZStmNFNMWjQ0VDhpM0VNNk9PYlpqd3RHL2gydGdQQW1FOGw0VUsrbGhJ?=
- =?utf-8?B?dVJoYWo4bHBUTlhHbkUrSHlVcTJwcDB6bk1GK2dGbGY5di9WcTJpaXpSaGFs?=
- =?utf-8?B?YzNKSjNublFnQjVyZ3Q2cnBwaEVnUm5qZU1RQWo2djRQRTF2SVJXa055YUR5?=
- =?utf-8?Q?XnsFpWuXP4/soaeWo8?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8db4a97a-904b-4a7d-9860-08de56aeac22
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2026 16:28:55.3138
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5/pkISpdWd2aw+cgHflTNdvygUH30t1i3GkJ9wNNVy3dtd3JccdYTKnNuf10iVxWnjG+ZNxUm1d31uL2PNaAOw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB11348
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: backlight: gpio-backlight: allow
+ multiple GPIOs
+To: Daniel Thompson <daniel@riscstar.com>
+Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
+ pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260105085120.230862-1-tessolveupstream@gmail.com>
+ <20260105085120.230862-2-tessolveupstream@gmail.com>
+ <aVuKdAyXfWLs-WJI@aspen.lan> <c182df66-8503-49cf-8d1d-7da17214b843@gmail.com>
+ <aWe7_hFpmO0E2sJe@aspen.lan>
+Content-Language: en-US
+From: tessolveupstream@gmail.com
+In-Reply-To: <aWe7_hFpmO0E2sJe@aspen.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Sherry Sun <sherry.sun@nxp.com>
 
-Add bluetooth dts node.
 
-Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+On 14-01-2026 21:23, Daniel Thompson wrote:
+> On Tue, Jan 13, 2026 at 10:15:53AM +0530, tessolveupstream@gmail.com wrote:
+>>
+>>
+>> On 05-01-2026 15:25, Daniel Thompson wrote:
+>>> On Mon, Jan 05, 2026 at 02:21:19PM +0530, Sudarshan Shetty wrote:
+>>>> Update the gpio-backlight binding to support configurations that require
+>>>> more than one GPIO for enabling/disabling the backlight.
+>>>>
+>>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>>>> ---
+>>>>  .../bindings/leds/backlight/gpio-backlight.yaml      | 12 +++++++++++-
+>>>>  1 file changed, 11 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>>>> index 584030b6b0b9..1483ce4a3480 100644
+>>>> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>>>> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+>>>> @@ -17,7 +17,8 @@ properties:
+>>>>
+>>>>    gpios:
+>>>>      description: The gpio that is used for enabling/disabling the backlight.
+>>>> -    maxItems: 1
+>>>> +    minItems: 1
+>>>> +    maxItems: 2
+>>>
+>>> Why 2?
+>>>
+>>
+>> In the current design, the LVDS panel has a single backlight that
+>> is controlled by two GPIOs. Initially, It described as two separate
+>> backlight devices using the same gpio-backlight driver, since the
+>> existing driver supports only one GPIO per instance.
+>>
+>> So the maintainer suggested to extend the gpio-backlight driver
+>> and bindings to support multiple GPIOs.
+>> https://lore.kernel.org/all/q63bdon55app4gb2il5e7skyc6z2amcnaiqbqlhen7arkxphtb@3jejbelji2ti/
+> 
+> Right. So, once we support multiple GPIOs then why limit it to 2?
+> 
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 053c5e91f5aa3aad941820071fe7083e5c18447e..33e7094d0e10d7dca26f5078e032c05a69f3f581 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -825,6 +825,10 @@ &uart1 { /* BT */
- 	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
- 	uart-has-rtscts;
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "nxp,88w8987-bt";
-+	};
- };
- 
- &uart2 {
+Okay, got the point. I'm removing the maxItems constraint entirely 
+to allow any number of GPIOs as below:
 
--- 
-2.34.1
+diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+index 1483ce4a3480..82698519daff 100644
+--- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
++++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+@@ -16,9 +16,11 @@ properties:
+     const: gpio-backlight
+
+   gpios:
+-    description: The gpio that is used for enabling/disabling the backlight.
++    description: |
++      The gpio that is used for enabling/disabling the backlight.
++      Multiple GPIOs can be specified for panels that require several
++      enable signals.
+     minItems: 1
+-    maxItems: 2
+
+   default-on:
+     description: enable the backlight at boot.
+
+Does this approach work for you?
+> 
+> Daniel.
 
 
