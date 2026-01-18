@@ -1,135 +1,105 @@
-Return-Path: <devicetree+bounces-256599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9C1D39B17
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 00:12:19 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F991D39B23
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 00:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11A883004222
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 23:12:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9BE9B30011A5
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 23:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69833126A9;
-	Sun, 18 Jan 2026 23:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C523191C0;
+	Sun, 18 Jan 2026 23:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XLxSjRft"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOb5XTCI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82BCA30B529
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 23:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DB827D786
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 23:19:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768777937; cv=none; b=pfjXeFIfphtlPURTvXUX558y8sEq/m7DDXvIg/k8pQuRs4G7+VfX4uv6b/DOjsvpOdrflHBMr/YQEzXn/0NAaP5e4IsQILiYSLp895VqYjsX63d0qxOfwLqqfBLskfPPdZNa5wn912WbfQqWfC684B3CsMcDHQv2+Yl1dZUVThs=
+	t=1768778350; cv=none; b=rtG0RYZXrSY68PgwIOa6lUJ0VhhuBp8+cn5IU6yxlDA9cHXMG5CM9eWJKBEuvOq0V/pZZKnVWc3qSadqIOkUou77KkmLCyxEdXV0EwKFM0rouHrH9/oLnBVcj8wnOyC9fWeGTOR5TqCjSJc81cLmEVwIyE1BuNWgERh4DGG1NxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768777937; c=relaxed/simple;
-	bh=645y+k1+EbNBg85ixPThkC5ORCws+1oNMdif98ljAm8=;
+	s=arc-20240116; t=1768778350; c=relaxed/simple;
+	bh=ZHXfaC3noysTmx6rjQUJs/6Qvr/oXW0pXeAZCZb8zog=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=C0hiLNvhlDAAKV1ZEUqVRMaUNxh7V1wxpUl0yNa+xm7ygg3//bVi+N+QQ8f8O4GjVHfDfy702d6JgF/T2V572qC0ttU9dRGbTMWgfjk/X+AZzAWqCnd/DYgpzpBSUW5mOyHlW8zSyBn+jQlRAgMqNZ4aZK4UhnjAwvjm3hHl/SA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XLxSjRft; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59A7CC19425
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 23:12:17 +0000 (UTC)
+	 To:Cc:Content-Type; b=uipzPz0/FtWhS69Sx+hqTKTvqNlwMl0PFD5oUyVQlxgYbUkO47UA65TgSZ+QOrERdIgpXfmWbT6Udhw1MB3vce+C2fMVjM0sm3gIfsEnKCHbXQYTeGgviItD4YtAf6HfRsupP/lee4ihQhuQnBRpXqmSwA3GYWhGFLgti77QyPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOb5XTCI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5172C2BC86
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 23:19:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768777937;
-	bh=645y+k1+EbNBg85ixPThkC5ORCws+1oNMdif98ljAm8=;
+	s=k20201202; t=1768778349;
+	bh=ZHXfaC3noysTmx6rjQUJs/6Qvr/oXW0pXeAZCZb8zog=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=XLxSjRftmKFWYyl//lRw1vGcJvL9uDuYOAHuYw2GIwxcqkjt/rtQgtBwI6DCGiDKT
-	 3Cdschm2yPFyhPd8ef4KVvinVPHi07zcuS6ggk5Kt0/6U7znRlbJkELD2EK8vDcQGk
-	 oU/7zHvXtt6SGhMFjorLYLHCdttRWclKdT5b+N0964QWdCqo5xjnqosgYFkNLGQwn2
-	 C18BWzYImITZg1iSN/PqGJENIp0xIgkuZxS7pPsnV/bWj6csYHN4+t6XPvw/BUnWhj
-	 tsoT7FP5ypWYxKCbrliB/BUeDkf6oUYgxrgeTws5UT4ZUIG4xVxiTs2Cx9eF6rYyQu
-	 oyIut7k0ly0Lg==
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-7939e7b648aso36100517b3.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 15:12:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXJdKqjmu8x0+Xxhap0jlOD0UEpIAI6Ojze/o218QalO08RmG8p+kynRvPc1RRUJt9LF7gkP2Kxrrxe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/JghybMkdN7xOoJNhL0WjF2xAMtz488awCd/w9go0b0Pr4Acq
-	36GQFPLKwQkI2i3vdAgNKoEEEPpIt0k8psdseDNv6esa/pNNS8uR7zJ987xfTAlahpei77vDbYl
-	aZGRO9whaHukPjoAJLvhGiXGJIGTxi+U=
-X-Received: by 2002:a05:690c:892:b0:793:c81a:203 with SMTP id
- 00721157ae682-793c81a0c7emr64354877b3.33.1768777936727; Sun, 18 Jan 2026
- 15:12:16 -0800 (PST)
+	b=MOb5XTCIB4sh3H8j6Y35gFihpjjTLFeiMn+6yU7J50Wl3/25TGGN86cL1Eiw3xFTb
+	 k8rbk6cM3nBjc8jem7mY//VqzsU/r8DxBYf2VWV8hfqrrbgEc2eRLuV1bv2GnG8Bmy
+	 mt5hNAq0dJL0J70hijLmJqmvlrg+L3114RTLhuXuOTcqIUfz1h9tCgQpIdNil8/e+f
+	 k3fkuYouHbcCeM45tmKVtdmDBjejMI5J0rPaANvAJYN+Fl0XKTUEhBKCMxjdvaskoK
+	 YfOGi0vEtmDWeLxY/j2bfdmIEXItKaoTM9XOHhVY0f8kNPPF1sAH1FPVw7i/926daI
+	 n0We2ZOGfjXpw==
+Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-649278a69c5so655463d50.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 15:19:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXGDLtFzy0md5t7WpP7sCayCfnWJVnM+WMnvfb3yf/5VczKkMypFJFgFNrZz9CblcnIDGiufDM0JSq7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPDH7a93lk9AUVEur2Ok+eEJGY3CjprS56qouICRlbm1fBZSHq
+	Juianlf6QH1z2il9D2sjZQ7AcqLfbWPJE68LOPUhgY0FIRt/F0SLootULH10h5FYD4o2yzEumZT
+	uPPlVtPva0IaYzDibpY2gB5RgFi+QIT0=
+X-Received: by 2002:a53:e1f5:0:b0:646:bb17:1515 with SMTP id
+ 956f58d0204a3-6491648c52bmr6418667d50.19.1768778349063; Sun, 18 Jan 2026
+ 15:19:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260113-mcp23s17-multiple-addr-names-v1-0-f14b60f92c82@yoseli.org>
- <20260113-mcp23s17-multiple-addr-names-v1-2-f14b60f92c82@yoseli.org>
- <CAD++jLmP13oeiZJx9_Y4oOCvFbJ=TaU_exHu9qqZjnCR9DGAbA@mail.gmail.com> <1987899.tdWV9SEqCh@jeanmichel-ms7b89>
-In-Reply-To: <1987899.tdWV9SEqCh@jeanmichel-ms7b89>
+References: <20260116152621.75205-1-antoniu.miclaus@analog.com>
+In-Reply-To: <20260116152621.75205-1-antoniu.miclaus@analog.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 19 Jan 2026 00:12:05 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmBegkZyKoo2cgtgJt0-8Pn-H2XaAoqipgPp0hTmro+sQ@mail.gmail.com>
-X-Gm-Features: AZwV_QhTwB1NZbZr_OKVyQG9DuV8p8qmlXlAJzV2GNwcfvN8PituiBY5wN99ecA
-Message-ID: <CAD++jLmBegkZyKoo2cgtgJt0-8Pn-H2XaAoqipgPp0hTmro+sQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mcp23s08: Add multi-chip example
-To: Jean-Michel Hautbois <jeanmichel.hautbois@yoseli.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
+Date: Mon, 19 Jan 2026 00:18:58 +0100
+X-Gmail-Original-Message-ID: <CAD++jLnTM2u0pD3EddbfpmAHY_SDb-cm+5kfEWWEF9o0i5LSmw@mail.gmail.com>
+X-Gm-Features: AZwV_Qg7Q52eub8qlUhJtJGR7evLR2ll2yLZsHlSOuR_gj0jgX76Cik-87EOvbA
+Message-ID: <CAD++jLnTM2u0pD3EddbfpmAHY_SDb-cm+5kfEWWEF9o0i5LSmw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] mux: gpio-mux: add enable GPIO support
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Srinivas Kandagatla <srini@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 14, 2026 at 6:29=E2=80=AFPM Jean-Michel Hautbois
-<jeanmichel.hautbois@yoseli.org> wrote:
+Hi Antoniu,
 
-> > Make some fancy - if: clauses to decide the maxItems from the compatibl=
-e.
-> > Don't hesitate to ask for help if this gets complicated, I get a panic
-> > every time I have to deal with it because of the whitespacing business.
+thanks for your patch!
+
+On Fri, Jan 16, 2026 at 4:38=E2=80=AFPM Antoniu Miclaus
+<antoniu.miclaus@analog.com> wrote:
+
+> This series adds optional enable GPIO support to the gpio-mux driver.
+> The enable GPIO allows the multiplexer to be disabled before changing
+> address lines and re-enabled after, preventing glitches that could
+> briefly activate unintended channels during transitions.
 >
-> Indeed, I was probably a bit optimistic :-).
-> What about this:
->  allOf:
->    - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,mcp23s08
-> +              - microchip,mcp23008
-> +    then:
-> +      properties:
-> +        gpio-line-names:
-> +          maxItems: 32
-> +        pinmux:
-> +          properties:
-> +            pins:
-> +              maxItems: 32
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,mcp23s17
-> +              - microchip,mcp23s18
-> +              - microchip,mcp23017
-> +              - microchip,mcp23018
-> +    then:
-> +      properties:
-> +        gpio-line-names:
-> +          maxItems: 128
-> +        pinmux:
-> +          properties:
-> +            pins:
-> +              maxItems: 128
-> +
->
-> This would allow up to 4 chips to be on the same CS.
+> This feature is useful for devices like the Analog Devices ADG2404
+> (4:1 mux) that require enable control for glitch-free operation. The
+> binding documentation now includes ADG2404 as a supported device with
+> a dedicated example.
 
-Hm I don't get it why everything is multiplied by 4 here?
+Overall the idea is sound!
 
-Doesn't each chip have its own instance? And the instance is
-limited to 8 or 16 lines/pins?
+I don't know if "enable" is a good name for this GPIO though,
+because as I understand it the signal passes through the mux even
+if it is "disabled"?
 
-> But in the
-> microchip,mcp23s17 datasheet, it says:
-> "Three Hardware Address Pins to Allow Up to Eight Devices On the Bus"
+I would call it "hold" and make it active low if it holds the mux
+state when this signal is low.
 
-Doesn't each device have its own entry?
+hold-gpios =3D <&gpio 0 GPIO_ACTIVE_LOW>;
+
+this will have the intended semantic.
 
 Yours,
 Linus Walleij
