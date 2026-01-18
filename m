@@ -1,133 +1,148 @@
-Return-Path: <devicetree+bounces-256584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1777ED399AC
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:11:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AAF9D399B0
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:23:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5119D3013E80
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 20:10:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C543A3001FC0
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 20:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200DE2798E8;
-	Sun, 18 Jan 2026 20:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777F4301000;
+	Sun, 18 Jan 2026 20:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EUOTa+62"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h7GvZW0o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965DF27BF93
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 20:10:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768767044; cv=none; b=d7UgzqZZnKYp+G/uVY9vaO5JOhnyBz10VV6CUghjodAdX/2/8ji6tt4YcK2oXx/WeFFXZOI5KzVVvpqTIAYyxrL5ns9/ISGgTq8x9thmP3JJtP1tFg/AwYU0lOkrbGt/fgZudHo3dXSA9L40nYcDQsKmhGnQ4qg3h/SSWfcx6aI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768767044; c=relaxed/simple;
-	bh=YQdSzYe4OIwvD0F5vTl7jLd58TIUeSmXsWT963KqLEg=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05FF527055D
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 20:22:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768767779; cv=pass; b=dE7Oh3petCViE7snZ203yUGFhYZdi71j3S8i32mU7t2OHF+gemYZ2Zjqpbf3t1VHG6GlW6oVo2Jc405ode/+6yd9MsqHZ8ZpAC6FDo4ZNhx4RC9TQMBls6NFzbuSzFq6J12vZECM7hKdMgSvlNc5Jmx6+mkjETqyLv0wd6xtmIU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768767779; c=relaxed/simple;
+	bh=Xs4ESlb7Zdq9CXFXCc6KRL0lwZPoCS1UgCVuCslzQ2o=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FnD5x7ZpwfM5NBt2P40Ddcsktnlbc6IUB07rJvQBxcgDkuSVl1MYRBby9Bd6brWhJzcruP0JkfVpZoIUPUa/WgBn/0pA3tgGaRgAM4lA4DQzmo+OZ9DigfRU711KGSUBAlWUXZNcQbwniWQP72POlgyf1KHXZXcVuk7ZWTqCb6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EUOTa+62; arc=none smtp.client-ip=209.85.167.182
+	 To:Cc:Content-Type; b=b+l4z+6hWC5ErY+Tw8gcmrlfwTJ14qHz43WI0fMl1IrXg2f3a4STOGlrrc4Mb5JsQiN2aemcivm3y4PRexNiV25zK5lyW8pddnmDtpBjBonFsIJwWhy/RMGiCbSwYyWizf0QLJC9eB6Sgyb2/wvlpZVEJIqdHmZUrpkWGss3bNg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h7GvZW0o; arc=pass smtp.client-ip=209.85.167.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-45c78da5936so2524758b6e.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 12:10:39 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-45ca0d06eddso1490639b6e.2
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 12:22:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768767777; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RHkQZdPensX+OyCMGmb8UvUw0atIq+Avj998AcoBvUsldTfbgBJK80uMRCL7NkmLlB
+         IDgLRXVom/20ae0CrotBjFGlLRy+OahMpGOoYW/3YxXSCsbOUaElU1ugy/3aG/NnhMW6
+         su0IesXB1+nQQHAthQWkG+knxqQOKpokJNDbIFslvSjuz+Svbs1X93eROsFLMKR13/nq
+         bH+o2mt7wqOyB8kja1177Nfblrc3Qk4Uewo2eQSQYJivIBAgLCzcjU1SvAg2s2lDqy0J
+         EMLt6wjaHFae0BqQe5FFM0sH1GbL57B6kLig5rvFLLBJCTmhbhrQfI95+jBxFTLWbRTa
+         s+0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=fXHlbS4DlpUMvr0r6REpatsLJ8Rf1gJh1GmrVBDqQ+g=;
+        fh=sU6cmfZ73O+BmGJ7lQLx9w9UE4+VZXao0Nh6cazHtkA=;
+        b=Uosw4k38JltDt6TPhdzyB1C94Trr+kuFHxph/H0dw0akLhKoYoim37DQPm7iJvzZ/8
+         VfWzSvvS22hKaUg8HB4/5GkqtqFf3MafGuhyMD+uFl1q9tr9rlc/4TvaAiPP8Au778By
+         5EKCYQYxLUDJke8J7Pgb5rgIZgMQaUuUphG52s+fERNs4uz7H2/AmytnDQXfkM51/tKT
+         kyzf8N6a1dDRz6g0S7lanZ7uziYtzuzHVdQxjYecj/uk4YHtqOZA3rylFoU8+VuylhJZ
+         30RQ1fy8CsVvyiDNJWBD20UwhU8p7n23qmgsaY9K7z1d5ZhTZlJufVTCYPQB3KH57YnF
+         uy2Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768767038; x=1769371838; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768767777; x=1769372577; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AGoxtBWa7Hges9TlON6JW/74fTOpKQVhj45ottMY/WE=;
-        b=EUOTa+62YVm/qMzamzBBDlhsBPO9JitHm3X/gubIy0odbo0x1kYvgPgYtR5Dalllzd
-         ZDw7+sX6ZbPkF0ybJ0sc6QxDrGPf6pvoelu/j65W1oGfV1f1K5e7B8Buze1iLQ9xrX4U
-         1nbFVEHX8yA5zQJiX30d7hpGnEBZHILVJV6GWR1XkWMEiPINzERtyrKw6KSaQMPfG7xd
-         +WAFFUhAsF8JwNUxjhA1YtbI1XKMzQOjiO3wgYqIoCDDuCzmQavo1Q1LoK3kOowa+rQ4
-         3WSqC2p3gOBL2xm+F1GfOUMbnPOo/26e4c4VdMFqNJFmMwLyCRVuvpRITFtfBFrlrd+8
-         SNFA==
+        bh=fXHlbS4DlpUMvr0r6REpatsLJ8Rf1gJh1GmrVBDqQ+g=;
+        b=h7GvZW0oM9SAQEzSDA4pGufMjuLTv99cCv03PdvworXhBuY19aKrwDHdCeBH6qngQ3
+         Ii+YtgzksJTS5PkpL8HNyzXTb3Tp0/nlQN64G0BYfejCoVavNPC8ajxks+cEbQvrH+Q+
+         Jv/R9UPaPfjZVL8ubtDLvY1CUWCrISLxEZISqaVN4xGFKnROMas0UeAT8Rg0uCblxjm9
+         uc3frZsS2KuxTzTAl7/w57GM3GZ/bXO2rm4UXv2SC5jCuZa/JzXLw8yu+XdGBsJeqweS
+         oC7/2Xdx1iq8LFemacIrulxpVRWeOT01EjJsTWdnGuC5M0HcltqjHbesaQupN1mgvp56
+         rpyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768767038; x=1769371838;
+        d=1e100.net; s=20230601; t=1768767777; x=1769372577;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=AGoxtBWa7Hges9TlON6JW/74fTOpKQVhj45ottMY/WE=;
-        b=v7f5ZLNDd++8jgHRHYAVoJY5ozAAB20NmCflcze26LWe5h6tUmPFx7hdWTAtt6GC5A
-         LnkoFdsTCgV4WV/Q+x+ZnfL14Z48gA1OlbCpgu3DKpRgg/KxxUrupaIws1r5jtSaazrJ
-         84J4uze2RmhlDEtlBy+BEIIsATDnnu+TiwmFzdl/UQS2GFX4fyRm07EwdL6a1oTlj+QL
-         f3iHqgaeAMy5JMPm7GxVGb8N32inxVQC9bBQkfdgRCT8t3Lz50AmE86iJb3pqZ1pMsG+
-         AZZOJZasxJk98isolfHZsFtIZfO6dLETa+V91HxQ4dC2NCTXeYHqzDSuex7cuqUXvwd+
-         JkpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVOIS5fssyOvSx/35gJTmcg0/G01Ad1/RppYWcKNJtJa7aMWJjcDEfTLxDlip4qsQq/m6vUyr56qtdU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjwOgyc80G18bdWP2Nv6I9cMvDCeq+PPUlvXwBdMpvwp0ddE76
-	KKjuUOT42wyvJSsoFCbZwT2B0yjNI1pIRR/S5NX1BifHev0gwduZFcc9TOc2e0ZXkdKnx8ZF9ZL
-	/wzmfsW8YRxyj07HKHNmntXoHWJWcyfo=
-X-Gm-Gg: AY/fxX4qj/jkqrmPIQcoSIQbF4VLo7e9lySbwkUynDW12LM15kCM3wHuh09ZEvYf87M
-	xfB2/y8GfNhSoESrPdZCa7oIkw4hS0xtKlQY1AIJ8T4mWAWRql6iackhy81UJbEhJpwaG7OfOVm
-	OwLbtPWyPbsIEJK3yO0cU9WFialBBa6silL+iv0gtbNZjt5pv1UtQmyZ5NwLcfNTFpv2TT0g9Jn
-	B27sqrnO/nGr3p8fw4bbPvPFhiwhi7b2Lt5rJqKXIUga3FWb2gLJIFmPsBwDbgMzFVuF6Ib
-X-Received: by 2002:a05:6808:80b3:b0:450:89ee:922b with SMTP id
- 5614622812f47-45c9c88dcd6mr5123911b6e.22.1768767038493; Sun, 18 Jan 2026
- 12:10:38 -0800 (PST)
+        bh=fXHlbS4DlpUMvr0r6REpatsLJ8Rf1gJh1GmrVBDqQ+g=;
+        b=VcsdnzzQt/XCIu6fShGaNN4qT0AD464JRztEeg41rlJaChQ8rT4sFsiDrm2+zqtOMa
+         sOtWwm+/rzMYOIKWvzQyPpNl7Nzah3GVouatmBgC4NycXtS3oDLi/XDGKbDyT5ibXVCQ
+         35fQrXfgQsQiouliJbHRQou7l8mCX4BCCqqeqjfHw5DPSX9d+u826WKKBiQiGjcgmHKu
+         X1h/uC8HZkDu/Qv4s4VgBnmbdaXwiXhk1J1GjJ+0wwjA3q5LI8QM8evs8Jhco1rAzGUs
+         t8F9Qm3cUBiuCERW3K/2J+xLrWmc7Za9WGxqCM935IOPQ4OQWciGJmT2iH/cDaJWNb62
+         /kzw==
+X-Forwarded-Encrypted: i=1; AJvYcCWazBSp39JWSy4UK3h6ZZikf+kQZb9UYeagRYe3lPioni6aXMdoBPyLfelfuzBlIcAMApsxjIaalzY8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMngJVktFMLCabhhH8ZurEH4va/LJx0AY4Z6X7TvfxL7VaGHSj
+	5aaz77FKtdL27iQQ28GE1vSYTkUyjMfbk4c8EVQPqgvuzRbyCOglo5WqwA+E7K1qUHiu4FanGbW
+	pFcKxvF00JnKJB0+1sjNnuQpPz07CpEw=
+X-Gm-Gg: AY/fxX4aKchxbsKzdVAYufeCm2t7EO44R1M1tuTkjub3hvIhVzNjgQU1seCndMyHmFJ
+	e2+AmcZGEzyAhLlUmSnQJ006Hr6xHbs6w6LbRrKeK6mTDlNsBtVNiCaIVdExBG2IG3TEpieBnKz
+	LJjFOaRmU59xuEoaj1OmawaALO29KPlXuzweAhJLEzmx2U+N1F631X4VqOw/mURSv9Nac5CjvtN
+	kDcxP8mC3zt1PVlxN8roP6nKqTn1TBUqCKklQIUZw3L/qoO7x9t/7hoRQtQCn9sgUAbGugE
+X-Received: by 2002:a05:6808:318c:b0:45c:9a62:91fc with SMTP id
+ 5614622812f47-45c9c1d5d5emr4670382b6e.67.1768767776953; Sun, 18 Jan 2026
+ 12:22:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251031155838.1650833-1-jason-jh.lin@mediatek.com> <e6c2c86d-71bd-453c-847c-1eff2be88be7@collabora.com>
-In-Reply-To: <e6c2c86d-71bd-453c-847c-1eff2be88be7@collabora.com>
+References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
+ <87ldkvsl1k.wl-kuninori.morimoto.gx@renesas.com> <CAL_Jsq+sJrFcAu3AZ7jhL9kUMTBOWOfeirVRdbTcgELtZDus0A@mail.gmail.com>
+ <87eco3aa7x.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87eco3aa7x.wl-kuninori.morimoto.gx@renesas.com>
 From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Sun, 18 Jan 2026 14:10:26 -0600
-X-Gm-Features: AZwV_Qh1K-r-Z8NlKIiE7Ar8yunvRZXy4lr5rzaBilBfhNZa6yCxoqTzBHyaliM
-Message-ID: <CABb+yY3ioZ4KCG0tp-r7Xj7hJZFf57xeA_mByUEZBXRaBQQ35w@mail.gmail.com>
-Subject: Re: [PATCH 0/9] Add GCE support for MT8196 (series 1/4)
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Jason-JH Lin <jason-jh.lin@mediatek.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Nicolas Dufresne <nicolas@ndufresne.ca>, Nancy Lin <nancy.lin@mediatek.com>, 
-	Singo Chang <singo.chang@mediatek.com>, Paul-PL Chen <paul-pl.chen@mediatek.com>, 
-	Moudy Ho <moudy.ho@mediatek.com>, Xiandong Wang <xiandong.wang@mediatek.com>, 
-	Sirius Wang <sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>, 
-	Chen-yu Tsai <wenst@chromium.org>, Project_Global_Chrome_Upstream_Group@mediatek.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
-	Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Date: Sun, 18 Jan 2026 14:22:45 -0600
+X-Gm-Features: AZwV_QgokVPvWwIb5AzILNY7C27rOJPona5om7G6qvlydKkJ31lGUPbnmB4ycJs
+Message-ID: <CABb+yY22iNJZBrFOHNxKtEOvt31B-DYZmyn-6-FOync6yOQV5g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] mailbox: renesas: Support MFIS mailbox driver
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, Linux-DT <devicetree@vger.kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Conor Dooley <conor+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 8, 2026 at 3:37=E2=80=AFAM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Mon, Jan 5, 2026 at 5:52=E2=80=AFPM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
 >
-> Il 31/10/25 16:56, Jason-JH Lin ha scritto:
-> > From: Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
-> >
-> > This series adds initial support for the MediaTek MT8196 GCE in the CMD=
-Q
-> > driver, including related API changes for new hardware requirements.
-> >
-> > Series application order:
-> >    1. [Fixes] Refine DMA address handling for the command buffer
-> >    - https://lore.kernel.org/all/20251022171847.379470-1-jason-jh.lin@m=
-ediatek.com/
-> >    2. [Series 1/4] Add GCE support for MT8196 and update CMDQ APIs (thi=
-s series)
-> >    3. [Series 2/4] Migrate subsystems to new CMDQ APIs
-> >    4. [Series 3/4] Remove shift_pa from CMDQ jump functions
-> >    5. [Series 4/4] Remove deprecated CMDQ APIs
-> >
-> > Please apply this series after the DMA address handling Fixes patch[1],
-> > and before the following series.
-> >
 >
-> Jassi, since this is touching both mailbox and soc/mediatek, can we avoid=
- to create
-> immutable branches to pick this entire thing?
+> Hi Rob, Jassi, Wolfram
 >
-> If you wish, I'm fine with you picking the soc/mediatek commits as well a=
-s the
-> mailbox ones, or I can pick the mailbox ones instead if you're okay with =
-that.
+> > > Add Renesas MFIS mailbox driver for R8A78000 (X5H)
+> > >
+> > > Signed-off-by: Masashi Ozaki <masashi.ozaki.te@renesas.com>
+> > > Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
+> > > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > > ---
+> > >  drivers/mailbox/Kconfig             |   9 ++
+> > >  drivers/mailbox/Makefile            |   2 +
+> > >  drivers/mailbox/rcar-mfis-mailbox.c | 168 ++++++++++++++++++++++++++=
+++
+> > >  3 files changed, 179 insertions(+)
+> > >  create mode 100644 drivers/mailbox/rcar-mfis-mailbox.c
+> >
+> > Seems this was applied even though there were review comments on the
+> > driver and binding (affecting the driver)? And the binding was not
+> > applied, so now there's a new undocumented compatible.
 >
-Yes, I am fine with this going via mediatek tree.
-Acked-by: Jassi Brar <jassisinghbrar@gmail.com>
+> Thank you for pointing this.
+> I have also thought that v2 patch-set was ignored/rejected because it got
+> many reviews...
+>
+> After posting v2, I have talked with Renesas member and now we are thinki=
+ng
+> that this driver style should be changed/updated to based on MFD driver.
+> Wolfram is developping it now.
+> So I will post new version/style of it.
+>
+Ok, dropped from the mailbox tree.
+thanks
 
