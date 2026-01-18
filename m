@@ -1,189 +1,218 @@
-Return-Path: <devicetree+bounces-256544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEA52D39783
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 16:39:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09151D397AE
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 16:57:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B05C73001BE1
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 15:39:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E76A300B929
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 15:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAD11DE887;
-	Sun, 18 Jan 2026 15:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2E7218E91;
+	Sun, 18 Jan 2026 15:57:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I9dAZ4xG"
+	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="iqxRD7qW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB1733B945
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 15:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D9B1D798E
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 15:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768750785; cv=none; b=nFnt390ow46bwt8LBOgAoOakrIzmynr2P1CgG9mIn5w4Xkz5i+0iRQp7YJw41wxlGzBub70sVe0ENYcQiwojRFRnjGLAz5LY173RWrorB2XCANL3tEnox4UkvnkEQ2kgNoigHLHWPi+2OmrCuho/fu0IOhnHH9adZKJ1LKHrf1k=
+	t=1768751821; cv=none; b=YpG5cPZRxRBhwbkTEEux6fkWxY76swYWSfD3QQjDpchSxWypBleL0g5z25lHzt/SM/Z0VYyREwzdHQUYwYTvsph80fGq0fDM9XxG5y/b3w1sj00c8anA/mJzy5o+o1HavgsRcWGSVjjNbjT8MsXg/Hq2zatGHxeKG4DjzdI+B7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768750785; c=relaxed/simple;
-	bh=DBS++QDL+B+NseCzl6YSwSygv9kwrnZ3R5BSGohfMPk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X5KDfotPhMy0d9xvhLq3OpSXfrFAIgoUfRA8Grm3kHX/xmZxXwGOYny2ZGwqY08vqR+aFhEMX2apwQ5STM9QVJj/lfBo4hmN1u3qxoPoyJ8r+ha+g+vE064wCrgfDGhAJbtoplXA12k7aJikdyxgEDjiHEcrsP4Pc4MvmRc4L3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I9dAZ4xG; arc=none smtp.client-ip=74.125.82.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-1233b953bebso1863598c88.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 07:39:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768750781; x=1769355581; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=7TVCWCMwz6Bo6NsAIpXiCjLfKU1CCVo44/MCCQya+N8=;
-        b=I9dAZ4xG06GH5m1rw4P4DFIbTRPK0SEmBdceRcKRo7zMtQHk+RLBdrrnJDEVwOeGNT
-         CVDeBwQ+1lP4TS5ia2URQVu9eT3oh7NRpC3vHEbIxWg8Sv7IfZ1hhQ/EKi8y5Qp64uq/
-         NsQC09vsd8fP8m/b7s4kqx+peujraY56vAlt2Sd16Cb2WROxQ48Q72EsgZXVKyttKjSs
-         nzmGCwa9qcVz8/HdCQkdj4JK8moUWmw7Yq/mpHtOtBfueguQf8zEYaq3SPSMXRwnSj2Y
-         zh1+rldcIleU/5/qjFed9jcdjsB4K99hwS8yS5LvQJqFwxkiOMncY7ghevRVCDKFdtaH
-         Xmkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768750781; x=1769355581;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7TVCWCMwz6Bo6NsAIpXiCjLfKU1CCVo44/MCCQya+N8=;
-        b=VjXSYaA0rtwDOHfoOObZmSZlbassM4wRB3AtYwuWq0fEkhMzeVh0UE7wkiG3ql34KZ
-         SW8BUUIBafN+Fc2TBNEhOvLqoEAHeAgi7C+4IaVEakwB8SCjWXK7c/NJB30l9D7YIOdb
-         E5y1BpVojrehhUNMvXs/CxBMJ8QsyzMdiTeKt3uJl7Efqxj7Pi1WfrC19z2KaXsPkLcm
-         /ECn1bEnp6aS3bVVJkhyHnZELvI5P69WtaH24POJvL+YLqQuCBZjpmFV445QeaJEMLN6
-         Tyd3ULU9tyJrGJhaRdVA9+StXPvkWbO74uADWJa0D1EFnqUZgooEKphKGzC+zsT6GGrj
-         IWvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXwtoSUX4I7rEOyjh2Km+rjUd1tPDJRR+cPSsYj6hMnvsd69fXv7dzdZ/fG1ApGlG1XEZqBugjwSo0t@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0sngmx94Q4QRy/WIBZFBG5sinYsOs29eZqBrXRIRFcsceg+ij
-	85bSV5vRs0JG/bHU6P5T3qqZ3HCOlreJ6NEvfkqTKV0htfD+z82TZyIJ
-X-Gm-Gg: AY/fxX7/NMQ4wAzSX3mEFPMkAVp+PyK01UuxgBrAufLFEB6+Ot3gOV+1O1YXJ/vefaK
-	iLHJgc29TfNb1BXJu4opA6G9xM7+AbFlbv0xh2hzYRWr6dym9ATxRNCoXDbECEV4fQdTjgMFCWK
-	hZ6h3sZ/tvLE7+rHSPZnbQExkqY7/D7YDYn4Pk0EXmQXgRWKEbt0EQEL/O3f3TF2arY3ofCafOU
-	asM5S5BhYBnMmGFGY92lWF67zBGWEWb9iRCjc06IweQ0GqXSbA8ZzjmhZRhaY7iuc1ZDdpxC1Vp
-	c0j/8Y83x4NLEx/SlSHG+4GUI4gbqm62AcWw37FpgZAUevELbDLHp4KoozDE4fvuc+18E05mZWB
-	DtRIIoWSlGa7el+5b433Llri6jqyKDyTzo1hwAS3bvlfwVp2vZcg4pGTDJZyEA5UySCLfc4KJ6X
-	6Jrgypwoan5i7aCfqmdk/FcQWoHSXOFnweiC+6GTxYkqPVYMfm102xhDRYSa9j
-X-Received: by 2002:a05:7022:128e:b0:11d:c86c:652e with SMTP id a92af1059eb24-1244a6d7640mr7436950c88.5.1768750781210;
-        Sun, 18 Jan 2026 07:39:41 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1244ac585a9sm10460653c88.2.2026.01.18.07.39.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jan 2026 07:39:40 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <16d28468-5863-4e1c-9dc9-5721e009b24d@roeck-us.net>
-Date: Sun, 18 Jan 2026 07:39:38 -0800
+	s=arc-20240116; t=1768751821; c=relaxed/simple;
+	bh=DJOBU6rOWWSo4xYKU7nMBHAijuGXD1m4lRBW3wOS7HA=;
+	h=Content-Type:Date:Message-Id:Cc:Subject:From:To:Mime-Version:
+	 References:In-Reply-To; b=GOZdWUw/Bfu3fV6mYhlZLhahDvdNaUX1CRA8nns80IGEkW5JrJJitlO1zj5RS5/GplwpKEuFTa6gX9s7qAomuU3bSf+qTFMat69BnSngyPhyJLlpaDjfPs+xipmCq8zeZeBKq+0LBM+28kvH9VGtIHTWFvYRDcG5T4eNcgT6KkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=iqxRD7qW; arc=none smtp.client-ip=91.218.175.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+Content-Type: text/plain; charset=UTF-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1768751806;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ABgVdweYWnojo/0/vbQ5PCIHpjC4QGW/+p3bJL9oPSA=;
+	b=iqxRD7qWNwPe7m7/GzbPYD8LR3NtXFoCDtrZ1qn/pUoFqWLTqW0FELymu7uDUZRfMQWqDN
+	o0rXB2+dC0e+Eb8+EVGNi+iS8S59J3XLUoS+R+yH7hxxH9g6M8dp5siyNnPSU6dFJSM/N6
+	T5rPLP4Q2Qh1QXjNs01xzldCDHfo+sQPe8GiLsUBfl5pjaZPcfkYum86moLNJ6U4cYlOg/
+	Ds+ruNaxXbHv5HUl2SY6IxUFwwjvH2BpbFzHoSfF/D35pHFexjrKmRA22VgvFDa+oLCnLL
+	zFFtn5M/eJabNgDtbbaP5SU7yAH9Wz+ZsiStE5SnxH02KylwzoT79i207CSX/w==
+Date: Sun, 18 Jan 2026 16:56:41 +0100
+Message-Id: <DFRU6ODDM71P.3NQGLRK8IVDUY@cknow-tech.com>
+Cc: =?utf-8?q?Olivier_Cr=C3=AAte?= <olivier.crete@collabora.com>, "Ezequiel
+ Garcia" <ezequiel@vanguardiasur.com.ar>, "Diederik de Haas"
+ <diederik@cknow-tech.com>, "Dmitry Osipenko"
+ <dmitry.osipenko@collabora.com>, "Thomas Gleixner" <tglx@linutronix.de>,
+ "Dragan Simic" <dsimic@manjaro.org>, "Chukun Pan" <amadeus@jmu.edu.cn>,
+ "Andy Yan" <andyshrk@163.com>, <linux-media@vger.kernel.org>,
+ <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/3] media: rockchip: rkvdec: add support for the
+ VDPU346 variant
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "Christian Hewitt" <christianshewitt@gmail.com>, "Detlev Casanova"
+ <detlev.casanova@collabora.com>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Heiko Stuebner" <heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/3] hwmon: Add support for the LTC4283 Hot Swap
- Controller
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
- linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, "Rob Herring (Arm)" <robh@kernel.org>,
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
-References: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
- <0ae2d448-06e3-41f6-89aa-8aa3f939d64f@roeck-us.net>
- <91c052abe2f88be12ef9f557120d540373471d67.camel@gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <91c052abe2f88be12ef9f557120d540373471d67.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+References: <20260110053727.2295260-1-christianshewitt@gmail.com>
+In-Reply-To: <20260110053727.2295260-1-christianshewitt@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-On 1/18/26 02:12, Nuno Sá wrote:
-> On Sat, 2026-01-17 at 16:27 -0800, Guenter Roeck wrote:
->> Hi Nuno,
->>
->> On 12/23/25 04:21, Nuno Sá via B4 Relay wrote:
->>> This is v3 for the LTC4283 how swap controller. Main change is that I'm
->>> now using the auxiliary bus for adding the GPIO device (done depending
->>> on FW properties).
->>>
->>> Similar to the LTC4282 device, we're clearing some fault logs in the
->>> reset_history attributes.
->>>
->>> Guenter, in [1] you can find some replies for some questions you had in
->>> v2 that likely you don't remember anymore. Regarding the regmap story I
->>> ended up adding a secong regmap for the 16 bit wide registers which
->>> seems like a clean solution (if I'm not missing nothing).
->>>
->>
->> Sorry for the long delay.
->>
->> Actually I prefer the solution used in the lm75 driver: Map all registers
->> to 16-bit registers using a regmap bus. Would that be possible ?
-> 
-> I do like the current approach as we get the proper i2c functionality checks from
-> regmap and it actually maps the device register layout. But no strong feeling so
-> obvioulsy I'll try the lm75 way. However looking at code, something come to mind.
-> Won't the below break on big endian machines (assuming big endian device)?
-> 
-> https://elixir.bootlin.com/linux/v6.19-rc4/source/drivers/hwmon/lm75.c#L594
-> 
-> Sunday morning for me so I might be missing something :). FWIW, if I'ḿ right about
-> the above, then regmap i2c has the same issue (tough the issue seems to be on the i2c
-> API - at first glance).
-> 
+Hi Christian,
 
-Technically possible, but the driver used i2c_smbus_{read,write}_word_swapped
-since 2011 (even in pre-regmap times). Before that it used essentially the
-same code (i2c_smbus_read_word_data followed by swab16), only it was hand-coded.
-I would assume that someone would have noticed that problem in all that time.
+On Sat Jan 10, 2026 at 6:37 AM CET, Christian Hewitt wrote:
+> This series depends upon Detlev Casanova's current v8 series for VDPU381 =
+and
+> VDPU383 support [0]. It adds support for the VDPU346 IP block used for H2=
+64,
+> HEVC and (in active work) VP9 on the RK356X boards. VDPU346 appears to be=
+ a
+> close relation to VDPU381 used with RK3588, except with a single core, ou=
+tput
+> limited to 4K, and minor feature differences, e.g. HEVC level 5.1 on VDPU=
+346
+> vs 6.1 on VDPU381. To handle differences we declare a new compatible.
+> ...
+> NB: Testing with the v1 series showed lower mbps bitrate performance. Thi=
+s
+> appears to be resolved though it's unclear to me whether this results fro=
+m
+> kernel changes or the ongoing reworking of ffmpeg v4l2_request support [2=
+].
+> However with my current Linux 6.19-rc4 test branch [3] I'm now able to pl=
+ay
+> Jellyfish H264 and HEVC test media over 100mbps.
 
-Guenter
+I've now done quite a bit of testing on 3 separate devices: TL;DR:
+
+Tested-by: Diederik de Haas <diederik@cknow-tech.com>  # PineTab2, Quartz64=
+-A, NanoPi R5S
+
+My main test setup was with Sway and mpv, which was based on a
+self-compiled ffmpeg from [2] (commit: ea34873176, [4]) and mpv PR 14690
+[5] (commit: 307d2a8 [6]).
+That all ran on a Debian Forky system with my own 6.19-rc5 kernel ([7]).
+Detlev's v8 series made things quite a bit better vs previous versions.
+
+I also did a quick test with that same mpv and kernel, but then on KDE
+Plasma and only on the PineTab2.
+
+Finally, I did some tests with custom LibreELEC builds [8], which also
+uses the code from this patch set.
+
+While using the ``--vo=3Ddmabuf-wayland`` parameter with mpv wasn't needed
+on Rock 5B (RK3588) with most of my test files, it was absolutely needed
+for all my test files on RK3566/RK3568.
+
+Playing 1080p (or lower) media was either perfect or quite good, meaning
+sometimes little artifacts were visible. This was on the PineTab2's
+(RK3566) own screen or on my 1080p monitor with the Q64-A (RK3566) or
+the NanoPi R5S (RK3568). Using the 'i'/'I' keyboard shortcut to display
+an overlay with display statistics or enabling subtitles was generally a
+'way' to get more artifacts. With 'i'/'I' you'd then also see the frame
+drop count rise.
+This was the case with both H264 and HEVC files, where I got the
+'feeling' that HEVC worked (just) a bit better. Dunno if that's because
+of the codec or that the video bitrate is lower with HEVC. Quite a few
+of my test files are in both H264 as HEVC.
+
+Testing with the 'Jellyfin' files was generally perfect. The maximum
+bitrate I have is 30M though. There were some artifacts visible on the
+PineTab2 though. With Jellyfin's HEVC files, but not my own HEVC files,
+I did see the following warnings in dmesg:
+
+  rkvdec_hevc_run: 291 callbacks suppressed
+  rkvdec fdf80200.video-codec: Long an short term RPS not set
+
+But I think that's expected? (given Detlev's remark on v8 cover page)
+
+Playing 4K media on a 1080p (or lower) screen resulted in severe audio
+sync issues. It seems the video rendering actually works, but in 'slow
+motion'. Hearing 2 secs of audio for 1 sec of video was not uncommon.
+Even with 4K media files, the CPU utilization was still around 15-25% on
+all cores.
+
+When testing on KDE Plasma, the display results were quite a bit worse.
+I primarily mention this as I suspect that the 'display pipeline'
+(possibly not the correct technical term), plays an (important) factor.
+CPU utilization often around 40% on all cores.
+
+I then connected the Q64-A or NanoPi R5S to my 4K TV. Displaying 1080
+media was generally 'reasonable', meaning artifacts were visible several
+times during playback. 4K media files still had severe 'audio sync'
+issues.
+
+I then went on to try LibreELEC's builds. The artifacts I (sometimes)
+saw, were gone :-D OTOH, I did get several major issues 'in return',
+like rk_iommu Page fault resulting in a black screen and the only way to
+'recover' from it, was a reboot. I also got a kernel oops.
+Some dmesg logs available at [9].
+
+Then I tried something ... for 'shits and giggles'.
+I recently learned about a Costa Rica 'test video' in 4K HDR (YT ID:
+``LXb3EKWsInQ``) and I converted that to H264 and HEVC. The H264 version
+was identified by MediaInfo as 'High 10@L6' and the HEVC version as
+'Main 10@L5.1@Main'.
+I tried to play that on the Q64-A (RK3566) ... and saw my TV show a
+'popup' indicating it recognized it as HDR :-O And it actually played
+them. It seems it couldn't completely keep up as it seems too slow at
+some points and then appear to make a 'jump' to the then current time
+spot. I think it worked a bit better with the HEVC version then the H264
+one. But proper viewing/testing was always interrupted by a rk_iommu
+Page fault and thus a black screen.
+It worked even better on the NanoPi R5S (RK3568) and may even have
+played it correctly; otherwise it came *really* close. But here too, the
+fun was interrrupted by a black screen at some point.
+
+So it seems it may be able to play video files/formats which, according
+to the TRM, it isn't supposed to be able to play?
+Too early to tell, but seeing the 'HDR popup' was a really cool surprise.
+
+So, it's not perfect and I suspect various elements in the 'display
+pipeline' can/should/need to be improved. I have no idea which though.
+But the current state is good enough for me to give my Tested-by tag.
+
+HTH,
+  Diederik
+
+> [0] https://patchwork.kernel.org/project/linux-rockchip/list/?series=3D10=
+40540
+> [1] https://github.com/rockchip-linux/kernel/blob/develop-6.6/arch/arm64/=
+boot/dts/rockchip/rk356x.dtsi#L1539
+> [2] https://code.ffmpeg.org/Kwiboo/FFmpeg/commits/branch/v4l2request-v3
+> [3] https://github.com/chewitt/linux/commits/rockchip-6.19.y
+
+[4] https://salsa.debian.org/diederik/ffmpeg/-/tree/v4l2request-v3-n8.1
+[5] https://github.com/mpv-player/mpv/pull/14690
+[6] https://salsa.debian.org/diederik/mpv/-/tree/v4l2request-support
+[7] https://salsa.debian.org/diederik/linux/-/tree/cknow/master-next
+[8] https://chewitt.libreelec.tv/testing/
+[9] https://paste.sr.ht/~diederik/1d9468cbc52c49ec210b4b29754486608a9efea2
+    https://paste.sr.ht/~diederik/214eb00f6ac634d16f54f25b2ec578ca27dc5134
+    https://paste.sr.ht/~diederik/669c3731a108f650f9e0bdc03df848a69355d56f
+
+> Christian Hewitt (3):
+>   media: dt-bindings: rockchip: Add RK3568 Video Decoder bindings
+>   media: rkvdec: Add support for the VDPU346 variant
+>   arm64: dts: rockchip: Add the vdpu346 Video Decoders on RK356X
+>
+>  .../bindings/media/rockchip,vdec.yaml         |   2 +
+>  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi |  49 +++++++++
+>  .../media/platform/rockchip/rkvdec/rkvdec.c   | 103 ++++++++++++++++++
+>  3 files changed, 154 insertions(+)
 
 
