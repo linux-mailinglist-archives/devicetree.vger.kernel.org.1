@@ -1,130 +1,121 @@
-Return-Path: <devicetree+bounces-256542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD41CD3971B
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 15:26:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D01CD3975D
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 16:15:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4BAA23002A41
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 14:26:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A92F93007953
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 15:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2554337689;
-	Sun, 18 Jan 2026 14:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02ACE33A71D;
+	Sun, 18 Jan 2026 15:15:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="PnRa8N6j"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fgvaO/25"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B4A731ED71;
-	Sun, 18 Jan 2026 14:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768746392; cv=pass; b=dshy9lxGl5TA0ypAq22Kk0bzCf8gjKjhZLRW1z+s1FDXdFcPwv6t11A38AfGgzAIsdRvj/tH8lI6tjjBTnryuR0lNmIEDw8COc9or676XyfNYokbPW364CS2TIuHoGSu3n8Y8ccy8KXTKFDTIgrTXiaQcEBs5N2rXAsTKpPHBi8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768746392; c=relaxed/simple;
-	bh=BvWaQkUJBvXg9RkiY/LFSvINZsVIPdXwcgP3Ppmyk8w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=T10AZtr8LDC+k96FrjlGZitYlLfW/8dC3+szJedvLekgvxuvxQxVYbcNcZB8clbQpkcY9FB5lFGHrKPebsmC2JL0WOf+WsAVHPMNxVGREYZKcBRBdm2sCW4brS2/tn3RH7dneKyoxgYEkmoBFqpWMRX4dGINzzEesrVuhzG2w8k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=PnRa8N6j; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1768746364; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=SH/mBlnE9Q83qr6IqlYb4lUWXDGSgxADDTA3VtIxpy3UXKjrysJ3QQBW1UnQ32iamZMRNy2NXPQkBpRHf/3k2X9IzPFz35LQugjKYCrFLC+k8bZGTZJuOy0L3GLI2uG1aw53JjPHdri/OwtiuZgLMrPVmL0Auz58qwNyBk5x3i0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1768746364; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=cIbPtT78mcjstGf1Y3m9nRtHPOd+0Pk3EGb62HGCGxc=; 
-	b=lMYTLm2DpgR8YGJUx8ucI5+tfX1aRxEaNCkLX4aphK0jeD1t8szCFHk+9tZnaE++1xQCoiezpyVZUAl6G73QskeQp549yJKviJQ8XGmohG00lAvsydeW5Bme1vTo7V+2jFiAzfmxBGdy9VqugSmI1zwbVcORGJQ45Lg/ne51Q/4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768746363;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:To:To:Cc:Cc:Reply-To;
-	bh=cIbPtT78mcjstGf1Y3m9nRtHPOd+0Pk3EGb62HGCGxc=;
-	b=PnRa8N6jIwImc77Ho/PSQk4Pdu9Gvhzh839L234118mnZKxDpQb6g000ViV9b/s7
-	bF2bP5HiE0Bb9rrfmTQD78pSLq/Yb68/AsdM3MsfYFVgl9rz6bI314sRlhrASObu3g9
-	nBaPp2wURV1UaAR6ctlHjwi+XMTFUZ/pVR/PlJ9w=
-Received: by mx.zohomail.com with SMTPS id 1768746360351543.6650268721444;
-	Sun, 18 Jan 2026 06:26:00 -0800 (PST)
-From: Junhui Liu <junhui.liu@pigmoral.tech>
-Date: Sun, 18 Jan 2026 22:25:07 +0800
-Subject: [PATCH] riscv: dts: canaan: k230: Add "b" ISA extension
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABE63396E0;
+	Sun, 18 Jan 2026 15:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768749303; cv=none; b=k+w+KDCzV1xcd6GCCDzx7s3L4CNwkfLjZLbzrWMF4w//54I3Lo1UAxzGO9SJ6RSrFuqBuhv6+NUFtqA/7WOXcJEBHCtK0Eg69Fi5B9VdumX/oXdN0ioLNQl+VMLGpVFuPg4HnQojX4nBKSE83pqDO3aPNsHo4wi9LD1lqHmZBC0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768749303; c=relaxed/simple;
+	bh=wd0hxPRgTFjESBflv8yPBw6SVFbTZYXiBUpxr4B3BTs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dUEtADp2DW+Qz/gEN4rATTer8zIZvBDCtfS8V2/ZeWrTsxeUqHH6tIk4FRFcZnOx7gqChRVL9RRlSuHpm5iqESE3s9ToCXj2BmSmcr4K1aroVxuP7NmX3YhPfh5Ra/3Lg/n9h+hAdl/QIBjYVbQ+FHUbS47iWVk1la0B5x0prGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fgvaO/25; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768749303; x=1800285303;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wd0hxPRgTFjESBflv8yPBw6SVFbTZYXiBUpxr4B3BTs=;
+  b=fgvaO/25bF28Gf1slDX6xf0Kbkgqlzvl8k2BnA5h03POl0ODtomN3gwS
+   kmGAFOO8uU0iray6QQKt6yOk2xjMpM3ysXmj4JzZTgdIAffIBvYtBJlfs
+   MFFlGvhBV78pGtL/YLG0N82TdlgE0txLch6GV5ygpD4Hy64ot6RkScXwd
+   0dxYmZw3wFkDzFtL2m5Q2MNgpFViw+xY7cUfPIZcJvzFLm5GqLwsNRT7P
+   tN/8qg2k96GA6MJS1jSjGimmaLhKwuWW0oagQFMYCC8oLof/cJkATfQhq
+   FnqSqFv5H+OmMShc+yswvqdyPgqJNdVLrflbU14j9lqNp12qis0Mxu8+Q
+   g==;
+X-CSE-ConnectionGUID: T/idH8STQ0GA937Z0fEH8w==
+X-CSE-MsgGUID: 9X4i9tPWTK+CE0ON2I+daw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="81425918"
+X-IronPort-AV: E=Sophos;i="6.21,236,1763452800"; 
+   d="scan'208";a="81425918"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2026 07:15:02 -0800
+X-CSE-ConnectionGUID: Jv9U4AjLSb+BqYTyvHnzSw==
+X-CSE-MsgGUID: z9icjzhyTjes6I3HWeq40Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,236,1763452800"; 
+   d="scan'208";a="205270596"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 18 Jan 2026 07:14:57 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vhUUQ-00000000N24-3wfI;
+	Sun, 18 Jan 2026 15:14:54 +0000
+Date: Sun, 18 Jan 2026 23:14:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Anton D. Stavinskii" <stavinsky@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	"Anton D. Stavinskii" <stavinsky@gmail.com>
+Subject: Re: [PATCH v2 4/7] ASoC: sophgo: add CV1800B internal ADC codec
+ driver
+Message-ID: <202601182222.84y7fGks-lkp@intel.com>
+References: <20260118-cv1800b-i2s-driver-v2-4-d10055f68368@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260118-k230-ext-b-v1-1-6a63616b11cc@pigmoral.tech>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDQ0ML3WwjYwPd1IoS3SRdgxTzVPNkc/NkY4s0JaCGgqLUtMwKsGHRsbW
- 1AH1Y7XZcAAAA
-X-Change-ID: 20260118-k230-ext-b-0d7e7c77c38f
-To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768746344; l=1939;
- i=junhui.liu@pigmoral.tech; s=20251228; h=from:subject:message-id;
- bh=BvWaQkUJBvXg9RkiY/LFSvINZsVIPdXwcgP3Ppmyk8w=;
- b=IaCH2tmViS4CQfeksoNrNF8X5ZolFJl8pCbzGa8e3HsTadaJpgRxclYLdJgnnYmhhNIwn9QwH
- wePvvUWzNciBZ/b3lmo9ZvgQvXIvszNjnpkzeNHo9kSJ7fWqrEvk24B
-X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
- pk=3vU0qIPJAH8blXmLyqBhKx+nLOjcLwwYhZXelEpw7h4=
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260118-cv1800b-i2s-driver-v2-4-d10055f68368@gmail.com>
 
-"b" is ratified (Apr/2024) much later than its components zba/zbb/zbs
-(Jun/2021). With "b" added into riscv/extensions.yaml, a dependency
-checking rule is now enforced, which requires that when zba, zbb, and zbs
-are all specified, "b" must be added as well. Failing to do this will
-cause dtbs_check schema check warnings.
+Hi Anton,
 
-According to uabi.rst, as a single-letter extension, "b" should be added
-after "c" in canonical order.
+kernel test robot noticed the following build errors:
 
-Update k230.dtsi to conform to this rule. Also synchronize "riscv,isa"
-with "riscv,isa-extensions".
+[auto build test ERROR on 7a52965b6976c936f413eebeee3f78c6faf09012]
 
-Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
----
-Based on Conor's k230-basic branch and rebased to riscv-dt-for-next.
+url:    https://github.com/intel-lab-lkp/linux/commits/Anton-D-Stavinskii/dt-bindings-sound-sophgo-add-CV1800B-I2S-TDM-controller-binding/20260118-042514
+base:   7a52965b6976c936f413eebeee3f78c6faf09012
+patch link:    https://lore.kernel.org/r/20260118-cv1800b-i2s-driver-v2-4-d10055f68368%40gmail.com
+patch subject: [PATCH v2 4/7] ASoC: sophgo: add CV1800B internal ADC codec driver
+config: nios2-allmodconfig (https://download.01.org/0day-ci/archive/20260118/202601182222.84y7fGks-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 11.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260118/202601182222.84y7fGks-lkp@intel.com/reproduce)
 
-The commit message and implementation are adapted from Guodong's patch
-for adding the "b" ISA extension to multiple dtsi files.
----
- arch/riscv/boot/dts/canaan/k230.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601182222.84y7fGks-lkp@intel.com/
 
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 5a1bf8a15abe..041c9947a8fa 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -21,9 +21,9 @@ cpu@0 {
- 			compatible = "thead,c908", "riscv";
- 			device_type = "cpu";
- 			reg = <0>;
--			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zfh_zba_zbb_zbc_zbs_zvfh_svpbmt";
-+			riscv,isa = "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicsr_zifencei_zihpm_zfh_zba_zbb_zbc_zbs_zvfh_svpbmt";
- 			riscv,isa-base = "rv64i";
--			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "zicbom",
- 					       "zicbop", "zicboz", "zicntr", "zicsr", "zifencei",
- 					       "zihpm", "zfh", "zba", "zbb", "zbc", "zbs", "zvfh",
- 					       "svpbmt";
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
----
-base-commit: 99a8c0e33dbf0117710b7f0c5cd1cb39638235ab
-change-id: 20260118-k230-ext-b-0d7e7c77c38f
+ERROR: modpost: "__udivdi3" [sound/soc/sophgo/cv1800b-tdm.ko] undefined!
+>> ERROR: modpost: "__udivdi3" [sound/soc/sophgo/cv1800b-sound-adc.ko] undefined!
+>> ERROR: modpost: "__divdi3" [sound/soc/sophgo/cv1800b-sound-adc.ko] undefined!
 
-Best regards,
 -- 
-Junhui Liu <junhui.liu@pigmoral.tech>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
