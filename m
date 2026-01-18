@@ -1,116 +1,87 @@
-Return-Path: <devicetree+bounces-256453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7ABAD3936E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 09:59:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69D55D3938B
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 10:41:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B2FDA300E172
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 08:59:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 117CE3009FBC
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 09:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D98A284665;
-	Sun, 18 Jan 2026 08:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D7C2D29B7;
+	Sun, 18 Jan 2026 09:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="aNEhv4wk"
+	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="1oHg8FZw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AF7242D67
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 08:59:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+Received: from mail.8bytes.org (mail.8bytes.org [85.214.250.239])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB9202BCF5D;
+	Sun, 18 Jan 2026 09:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.250.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768726752; cv=none; b=ePHuAyqGZDA2mpA6r4vLEgallhKP2HeaTbwoQJT2rPnlaLvNzb0oRKZmrdNWnfP/DjHiE1XAAGl+dGRwZ1ZhDm31C9Iy7Iq5lswux8g/L1AVMLGdx24mz7BV8j5Y2Ebum9M5ir50tjVxN/S9N6+V59+Sw5Eeuf6NIUiGdKncRB8=
+	t=1768729271; cv=none; b=uiJAJIuaJ5ZUFZ/U0F9zBTXxXk/74f3aLdjtNwFhIJUHVp8FNy75X2QsdjIV0VoogyETDml2LgW6ZwG5h1TilnnnLoY+CrnH20zTVWSw6qqhjHyEnehOICSzCHcXeYj6Vs3jrDzrI5tfP0+hJBpqm4ybfkZt2U4/bJNr2h7rKkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768726752; c=relaxed/simple;
-	bh=2wt4FXitjx7He11KhFEMJjihW+3VNXLwrK+DkNf2WDI=;
+	s=arc-20240116; t=1768729271; c=relaxed/simple;
+	bh=meUwEYrMdweubvTIm5FwW/U0eowupvfI3Lql8NwUJtM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J94sb2Qs5CsnKQh4lvuBkhiwhL1+sQjF44RxmvYal/qg7CS3OjNqJGqvJORIcnjBNFFJi28F0JoQmJi1lq4wbKDxMrEj7R36sZATLVqKvpVqtShbvNVFM/CEBlCUrFXK+8NPGeLS9q3NhmC5NXih5HY+QvIlNyehS+K26FTKun8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=aNEhv4wk; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=fanY
-	txmRuuzXQJ2K5eQ0PcI2YHGrm1FfDB1ug+eYXF8=; b=aNEhv4wkxZm/KQTFbLjJ
-	vIQB4JvMZCwqcxYMzOiJ/0/P0zCMoUZxo8NfXTv0WD0DtyX0XZZpPoP5JkD3Og43
-	K3d8sN92HzqFQhXUsapi3z17Dw3wXGpUW23ZYRMpLHcoF96l/ssolDetvpnPweza
-	blLpOqnQ7ycaqgJ9KvuyTd0W9Xb47Odah5YZOd7FRCLyXymS5bGNynqu8wzFbADz
-	dA4ZWb9tP6ldrDGugVmUhWskAIHOQ7O1eM8iu2TnWkjynCFWoQFLKATAQI+eNk1E
-	TnTM759vIjCMw3xSR67OWkPyPoga9nU6KCD9kD1eC/zrZWm0gzBu2jYJFZk52Q6h
-	MA==
-Received: (qmail 3539292 invoked from network); 18 Jan 2026 09:59:00 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Jan 2026 09:59:00 +0100
-X-UD-Smtp-Session: l3s3148p1@WZsKyaVIZIQujnst
-Date: Sun, 18 Jan 2026 09:58:59 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-db: add QSPI
- node including NOR flash
-Message-ID: <aWyg0wP89BCaN1tN@shikoro>
-References: <20260116114852.52948-2-wsa+renesas@sang-engineering.com>
- <874ioltu94.fsf@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QbBHpjt+T5dGxhnVKd0DyMo4KDO3Ayu6hHwHgNByX8TwKOD+A4Z69W/9nlnkZWp/aT0VV23O5ONKdgRfRA2wVZAOxp9s9xP8UINZPdHym1gr+o63vXS6UgIBsM/tqI2XK8oCzlcj8V1Lth5D/UG8RPQAhrtLvSI/cRzonVNQkvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org; spf=pass smtp.mailfrom=8bytes.org; dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b=1oHg8FZw; arc=none smtp.client-ip=85.214.250.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8bytes.org
+Received: from 8bytes.org (p200300f6af1d960047d77347aeef488f.dip0.t-ipconnect.de [IPv6:2003:f6:af1d:9600:47d7:7347:aeef:488f])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.8bytes.org (Postfix) with ESMTPSA id 3781A5FABE;
+	Sun, 18 Jan 2026 10:41:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+	s=default; t=1768729263;
+	bh=meUwEYrMdweubvTIm5FwW/U0eowupvfI3Lql8NwUJtM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=1oHg8FZw2wv7vH7qbbyBuDnThAsavGNrks5gc3Jq2wMNdke5i1Q5X8PMji2guRWGE
+	 tISEaDxmMcUZo0WZMg8LHkcxlA9ZTht/1K+ceKUNl3/sSMC6EHZtv7YBtB+RqDjpA4
+	 Szz4quSLI8HQ18qzVX6o6IpZb1AS5OWjc7ahvV2RpkSYoK/wdI9T/EpxfA4QMngOoj
+	 k7luaysT03vqWQIqtBWe8Xh0ZdCw6GyGgV2NQu8+BD1Qr2xxfxqhVz/a60NaIag9ZI
+	 Tq2fFY7KNW/hXIYXvo5W+0hnDbTA7rhJpwyu9TlRVdmPBxZNLwm6XHCXJzG5hhEmDn
+	 emj3VYKPzjczw==
+Date: Sun, 18 Jan 2026 10:41:02 +0100
+From: =?utf-8?B?SsO2cmcgUsO2ZGVs?= <joro@8bytes.org>
+To: Will Deacon <will@kernel.org>
+Cc: Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	heiko@sntech.de, nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, 
+	mchehab@kernel.org, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
+Message-ID: <eqv7yfdagt2axkj5xbtmrtkaakhq63ywf2q5tjo33exumhfrc5@7ghelrz6yt2d>
+References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
+ <20260107101005.84039-4-benjamin.gaignard@collabora.com>
+ <aWZui-rn5RDPwpEO@willie-the-truck>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="g9immr4DKGlvpLxW"
-Content-Disposition: inline
-In-Reply-To: <874ioltu94.fsf@bootlin.com>
-
-
---g9immr4DKGlvpLxW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <aWZui-rn5RDPwpEO@willie-the-truck>
+
+Benjamin,
+
+On Tue, Jan 13, 2026 at 04:10:51PM +0000, Will Deacon wrote:
+> I took another look at this to see whether it had changed significantly
+> from v6 when compared to the rockchip driver. Sadly, they still look
+> very similar to me and I continue to suspect that the hardware is a
+> derivative. I really don't understand why having a shared implementation
+> of the default domain ops is difficult or controversial. Have you tried
+> to write it?
+
+When updating for v12, can you please put an explanatory comment at the top of
+the file explaining the relationship of the IP this driver is for to the
+RockChip IOMMU and the rationale for having it as a separate driver? I want
+this part of the discussion documented in the code in case it comes up again.
 
 
-> > The tuning values used came from Miquel and work here as well. An
-> > interested party may try to tune this further but I will go the safe
-> > route here.
->=20
-> In case you feel adventurous, this paragraph made me remember that I had
-> noted down some slightly more aggressive values related to the DB board
-> (which I don't have) in some of my notes. A bit of digging resurrected
-> the following:
->=20
->      tshsl-ns =3D <30>;
->      tsd2d-ns =3D <3>;
->      tchsh-ns =3D <3>;
->      tslch-ns =3D <3>;
-
-Yes, these values can be found in the BSP and could be deduced from the
-SPI-NOR datasheet, too. However, I got -ETIMEDOUT with these. Didn't
-investigate further (and no time to do so).
-
-
---g9immr4DKGlvpLxW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmlsoM8ACgkQFA3kzBSg
-KbZtTw//aq9SAageg8A9YN/ePHvDnnWqA3UMyvR4lu+uV2ZD2g9Hdd8dRlsGZiV1
-sf98povhfW6oMYV7u0liJgPEEE9wdda4bkr6+VTtHSxrQ7koODHrzt1U3HGXisdY
-0p7AdjJ9eBmi7jUYGYDBVvv7I3Dsnrvg5BiXHCuN/mrLSDkb/k2yytUJbvV3WiBP
-rBHEgnrB5r0c37GSvCHuYFhDbntLMAtod7FkeAZLrO1L9oXsiRpfpWcyM0AD2DhW
-VMsCNk4AqKY/FentUzSJ4A4lrcldYUvWP6EXP9+3Wpw8GjVDhhNdeevhKreK1M6n
-T/jBWO8URIh7gsRkLAOKj5WLb/G/zBKXh600i5n8IOZaE9swwWkwAXkfoK9XpnYk
-CtMTvFaZtp46nJfN9AS6UIj6J/XHqMJJyDMFuRPzIiMzx7OZzLOi8usHHh3tPg9z
-qdAmImCcpOqAi+ZNBPKnKKfj467nviXYoN4cG/EWEQa4gnHwzzoDMhzdoM4J6rvn
-6Ujsawk58ZpA7YXflBntSZfXLhHxZZNGm14vD2uKn29LgmtNfIIg3xjncW2f51Jp
-QV8G7BHpQ9DFdmcmHUAXdx7j0fHSRmQ6XlmxXRf8x+iEAlBS5i1TR/G4xSNvc0yV
-X8w20rfXYjHZs4x4UWANU6Lg1Ahpdra2thKAq1+nGwpomEPzeHE=
-=CZuo
------END PGP SIGNATURE-----
-
---g9immr4DKGlvpLxW--
+-Joerg
 
