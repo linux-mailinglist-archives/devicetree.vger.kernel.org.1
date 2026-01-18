@@ -1,332 +1,424 @@
-Return-Path: <devicetree+bounces-256560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEDFDD39822
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 17:51:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE65D39839
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 18:03:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 08D07300FF8A
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 16:50:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BB8983009837
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 17:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EF023EAB2;
-	Sun, 18 Jan 2026 16:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3914E239E9B;
+	Sun, 18 Jan 2026 17:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="X413uDZ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013064.outbound.protection.outlook.com [40.107.159.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD551A01C6;
-	Sun, 18 Jan 2026 16:50:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768755047; cv=none; b=klA4ftuRSPZqQloRRoK+XRWD5zmCgkbFh/bcfF9LCbrlcQ41bv71rNa9TaAD5NQOEld19jWiH2k/GfVGH1jYkn6MfmuobD6EDtSkJLudTtEfxeb9SuSKazNPzyTouwZY2+89/ApG+e3fK7DwfPyc3cGz6W6gQOn3k7cM+VmB83s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768755047; c=relaxed/simple;
-	bh=oS08Ctmgkf81BXUOk6PIyAqNgpwXX5Fmvq9G4A4f+Qc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VCfy/4cLtd5rkszPMFeKqU6noEHA7MaW8pqeVCXcrUlp07Hdg0qUW3X/UGsjhleJF6p5kGYOaaMLr72SeUaSZW2ck10kEPfPeZoYmyy+3WkpCsiU363fkBKrik1jsuc8fRW7RI4/2cZj86KinnQzxHmEMV3Rk14sOPrZ8tiN/sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dvKN22Wk3z9tnv;
-	Sun, 18 Jan 2026 17:50:42 +0100 (CET)
-From: Lukas Timmermann <linux@timmermann.space>
-To: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@timmermann.space
-Subject: [PATCH v14 2/2] leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
-Date: Sun, 18 Jan 2026 17:50:10 +0100
-Message-ID: <20260118165010.902086-3-linux@timmermann.space>
-In-Reply-To: <20260118165010.902086-1-linux@timmermann.space>
-References: <20260118165010.902086-1-linux@timmermann.space>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419DD1D798E;
+	Sun, 18 Jan 2026 17:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768755819; cv=fail; b=tlAJ4iTWbEmq7mt/rEDfmaglRBjnrQjCnKbJfrTp75udhOYZ1O0CECxWhdbFdC/8JtJWXmiEcVR+mb+0FMfPym8DmhtJL+WcrFlsUzTbWSOPA2EhDu+aRV84+80XlZhimrVZCjfMFGzHmUtAlz57DcEJkuIP8FVo6d3r7+mUGR0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768755819; c=relaxed/simple;
+	bh=LfrX0kbEE7UCSIhWWZwkkGqUWOOetZfWVOb1TqX3pAI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=h5v7DwV217ij+FxDEVX23QvBYleO6hC+sTMPnwTMDFB8ej1PnG7whXUv3i+qNvva5vFhukWg1TXwCYB3RFzoi0GDsA9XBD3f1SM3NN4Cp3DCok8MaHsiFCLY16Bgy8ddo9w0WlBU2OBPhg49gnCBq4Mjv31OJa2pb71pqOjXvSI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=X413uDZ0; arc=fail smtp.client-ip=40.107.159.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QR4OLI/GYHh9OtACP0Jv1ogJ6RwT/FilM3k42qauRm4bC/XHiN137hyTwwL/ce+56UEh5eUOQF6ez/DbI1Gi7K1cg3SDulbIKED873lXEc1bhedMOFs2SQ99vBmrjS2zz8mkfMpzVDg0fcDfmPsHsVh+H99ILNDsQjaDtsHxp3Zc2O+x3Kc2UelzkZrtlGE7Iw6fm8/Txwrd7V/POLeIIXA6nbaf7tgGGrGvyEjYDp6j8LHHCy/oP5zl8yxK2Zm+lS3pzO1CxtulxnKI+5F+b+4GXo/Kn0tOt1p9wbV+kkJx4LNFOaY6rjHSgxm0BLjzMRMCtv5ZHIWmrYiMDm1Opw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=60Nd0P530Bopr5WwBuNPczqtZ6QkXRVOkTXm6BPzZPE=;
+ b=a1uyhE+Wx1OajaEWcBb/momu8M3XbXO3v98EF/6VJhY7yTr+L1um8qJZKiq33EPpI2e6QqLBLV78hl4M4jxJzF7PJS5IZXRolw0YwpyQRRVMAxtRm9LpftYxX3olBgHcp9Z1GmSei7zfiRnEHTEzqlpxrgexHW1nVUeDIBSgl19RxWf1m/mRWWGssIQlmV2Lx6gPxst00ubrk5GFnYqMoqfPCyaIwi6shFUoHuV6s1OWsFJ6+kMWig0ZqQF8iemf2kCmmj2MdWi+X6DpjPq3bu3eqvuuY/HwaAX3mBKz7idRjBlASOXm2P1a5NoFxo7m9htNSqcZNonxNBkneH5trw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=60Nd0P530Bopr5WwBuNPczqtZ6QkXRVOkTXm6BPzZPE=;
+ b=X413uDZ0J77fitRfhlGn+7yyBYpRYpFdHVUyZEfSGbUYmreGiJ9QIB5psuaFNnbb9JSf71LgoghwkQKIO31c5K0aCtUgnkflOArE4nSKpmfRO4DQjzCtkl5hgKYjCOnodF4eGWTicAgNib7JJ0h8/kDsdopGMFXArQkyDMyDkXcwNQbkDBFSaTOkmyECNIM22rMzefOg27+miebV68vb92AEI7Us37WU1nlla8E15lhvGFnDeA5ELw7vm9qLemiMDLuFNrGAygBFJ2KA8a5e89PMi5WJ8/SejiSrvKaknMv063sa4boyZG9tru3a1HOoTwtvGPbCMw9FMnbABp65DQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
+ by PR3PR04MB7291.eurprd04.prod.outlook.com (2603:10a6:102:8c::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.11; Sun, 18 Jan
+ 2026 17:03:33 +0000
+Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
+ ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9520.006; Sun, 18 Jan 2026
+ 17:03:33 +0000
+Date: Sun, 18 Jan 2026 12:03:19 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Koichiro Den <den@valinux.co.jp>
+Cc: dave.jiang@intel.com, cassel@kernel.org, mani@kernel.org,
+	kwilczynski@kernel.org, kishon@kernel.org, bhelgaas@google.com,
+	geert+renesas@glider.be, robh@kernel.org, vkoul@kernel.org,
+	jdmason@kudzu.us, allenbh@gmail.com, jingoohan1@gmail.com,
+	lpieralisi@kernel.org, linux-pci@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, iommu@lists.linux.dev,
+	ntb@lists.linux.dev, netdev@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, arnd@arndb.de,
+	gregkh@linuxfoundation.org, joro@8bytes.org, will@kernel.org,
+	robin.murphy@arm.com, magnus.damm@gmail.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, corbet@lwn.net, skhan@linuxfoundation.org,
+	andriy.shevchenko@linux.intel.com, jbrunet@baylibre.com,
+	utkarsh02t@gmail.com
+Subject: Re: [RFC PATCH v4 02/38] dmaengine: dw-edma: Add per-channel
+ interrupt routing control
+Message-ID: <aW0SVx11WCxfTHoY@lizhi-Precision-Tower-5810>
+References: <20260118135440.1958279-1-den@valinux.co.jp>
+ <20260118135440.1958279-3-den@valinux.co.jp>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260118135440.1958279-3-den@valinux.co.jp>
+X-ClientProxiedBy: BYAPR05CA0055.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::32) To DU2PR04MB8951.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e2::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|PR3PR04MB7291:EE_
+X-MS-Office365-Filtering-Correlation-Id: e3dcc034-73a7-4800-7044-08de56b382e6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|19092799006|7416014|52116014|366016|1800799024|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?HDyaE3Qagca0Lq0+6gSqxG76KWhvac6AYEWU5dmNIFmPAUExzPnHrVJZXaWN?=
+ =?us-ascii?Q?h7GHsSq1h5vXd+JWOKukj2t4vUyYfOiLA5ZF3qIP13h95ABQL3++TYK6Jv50?=
+ =?us-ascii?Q?D358kwuDwj7hq69DQUt3Z9e6ihj1znH35LlJdqHm77q3N7k1HZdX9Ftgedxc?=
+ =?us-ascii?Q?HeUbnAvn9Xx3jYNOqVov6d4LX4khPV7OS7nOLXrE0xa9IwrPXplGDHqjI/EU?=
+ =?us-ascii?Q?rLz43yfwnytZxsDCf1/d4ebvG+e59LDTjQYB0xm2YEQlGtmvU4NtGzYIgDmL?=
+ =?us-ascii?Q?bH7F1YOZ+wXoI5t3y2baAdVxJ+PVTrezJlOgc3aiMqo9xgF7ZzGPFiy3ftCT?=
+ =?us-ascii?Q?U3d/kqKYv7P9hf/yS3cnF8dGDezJyhyGZ1d1J9vNHWrXSqDC6LzDAjrAw688?=
+ =?us-ascii?Q?osYDiyjHOA/b2i42mGaBp1a9pmASCs6N+F162RIbQBbAdGs7Nicy92v1SliD?=
+ =?us-ascii?Q?qdvKbpayIDqFG3iDa0RQc9JfQkjBaVLRq2+XZvgr4BRkHbkq6H4cO8xO2o78?=
+ =?us-ascii?Q?aFzy573bnoXOwrqixhRgq+s9xwWCmUpN7uOEANVMvjxeZn1Msf8Ma8GXe2bs?=
+ =?us-ascii?Q?HdV4gfrFR8/E9A9atFDVkQYGSpB5akqFw6cv7TRayLR0JAXqRcv5veEr/cuV?=
+ =?us-ascii?Q?MIxWshkFqeuO7BdVYkswdXijGi1ANLS21Ia1I6Yh3dIxaXKD24CfJCvRNc9U?=
+ =?us-ascii?Q?1hvkZVFkjdd1jDaR2cyVj3kA1Q7q69BPIBNYOnNZl9jt8WGlW5EArSKERHkO?=
+ =?us-ascii?Q?QLoVKbRktQJ8dKTNwu+QR+d7aFAC4fv1D9sDOn+AWzQFV9Lc61Rr1AHpjmK6?=
+ =?us-ascii?Q?Fja7bqWOjheqG4h3xigFmUI5VT9WhJA0sjUtloeII2d0CKKyFjjJdzAMARoA?=
+ =?us-ascii?Q?QTqjSfatm/3kbB9ex7v4AIU4spZ9S0ceaXKCwC3TFBrdQ3fcCnmS72UtizZQ?=
+ =?us-ascii?Q?ryuzPEY7SzXqrBh+Mke+BI2klQwcm6nvvzC6u3fNNIBwuInw5CDtDl+tryBp?=
+ =?us-ascii?Q?sSKSIimu1WOtxuXPNUZMlBvzbx6E6wRBEeRpj3UAVzlpuaXMfYFb8AhbyUPo?=
+ =?us-ascii?Q?xKHyndaMzTCLpewN5h9J8htXKufJfYX1BNo6pP8PFbBM/ij4w1jRnp+PHAbc?=
+ =?us-ascii?Q?04+fbakgqGyVJffGx4DbNN0veoifu5sDKzfnZ5pSv79m7WU45QpWTL8RFhf1?=
+ =?us-ascii?Q?z/wYrrBh6UdDALEX6sBxE9tQmck1wMbJnCyy2xuNaS0hebZzlwznvxiYoGlj?=
+ =?us-ascii?Q?c4is1trEAywnXR1NTYLqdEgIZcJgYdzKhjnnu1aZoFLskMn52xjpH62efjYA?=
+ =?us-ascii?Q?MZvVyo2lPydxzjpgTa7pENfh9Re0PhLK/stf3Uv4zC6dqedLyU0afDaPx2if?=
+ =?us-ascii?Q?/hCGxL1g3FiVSqxsduHVpkjuctmeox+iRr8CyARKBrQlXTqkBYE70EpC/LZS?=
+ =?us-ascii?Q?4mjOCDRqoJIykXyMcIVE/UdsTQhT3T7G6NoDwwL5b3flPyINXZWZQMiMLxr4?=
+ =?us-ascii?Q?4ETihz9hWYJ2v0mSI6k49BK2P2rZoIJHSZPwkWpYld3g0HdiDYc5xPEUdYRG?=
+ =?us-ascii?Q?G91TRwDNK1Ok8kfLTWAAn3kHmeN6udQrd5YQiQXC9seDBFOPqMbhVHywb34b?=
+ =?us-ascii?Q?nm0I1DR8zeIOowdrZ5Nq8Yo=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(7416014)(52116014)(366016)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?xQGb6yzWy4Jr70hM7a7HpB8ixW/2d5869YK3eMnjh2OG1i6ah7FdBs3PtMEz?=
+ =?us-ascii?Q?BtG3YyMQP31M6JJba3P9dxZdoNAj1tj0/yzlzXY9+aiCMsxq7h7FWKbeatEM?=
+ =?us-ascii?Q?dIdOv1CmvTZEv0v7c81hUB+ta3gbDCVhn1rL1mYWhe+F0V7DbYAAY5sipjo3?=
+ =?us-ascii?Q?ons2nJ2ZVDXZ6fw1PC1vC7S9aKImQlbQdVpC56A9N6Mf/bNT+Tt6G4DZmMqb?=
+ =?us-ascii?Q?B3z/xfctIrBVOqYrwXK3Q8K+d2O2InQol83z/6Ivj2xbaku3mdW3MSL9/zuN?=
+ =?us-ascii?Q?hipjcALk+A69rQYhtJ6fVAAQ7hWp8fJsdfGUVNwQGGnnAtwcChLbCXKcwfKQ?=
+ =?us-ascii?Q?vpzYVnpG6sAlmkAP9rjyq2ZY4h0A0yqoIZNMO2VyuLv8FXtIzZ1/NE1GcYQc?=
+ =?us-ascii?Q?tpElU3HidvciLJBm7HGN2TNtYzmkG9UNY1Q80zW93P9zBOdqWCsH8kaMVwGQ?=
+ =?us-ascii?Q?IQo/0mL4VdpNya9CTEopUKDHIIWCeN8XSG/c6PHxS2jbELrtAtNw3JiJLfyc?=
+ =?us-ascii?Q?isrtbEa3L2d3uGmMkvvN7lRQuOurPoAw6koedXuAu9zHZSl9JONgWMEtRbHe?=
+ =?us-ascii?Q?4aIkpE75FHTjBT8tqD6NwM1ItFADOI4PchjwG2/baqEbgko2cMHsWTe4fL1x?=
+ =?us-ascii?Q?BLrf7Wf8ZQO7o2c8d2cILQ39JXfX4UxdmEciV24emrMJRTE3zaWVlYPthN4H?=
+ =?us-ascii?Q?ToC8n+4AuoLG03QJS+p/10eALqN/YK1PSMeXGg8xaD/f7MpU8nOay497ZDOz?=
+ =?us-ascii?Q?/fRTq+r1V7ZRv3IIMQFo5jPhskqHj3xNxwleRTVosLmGARhB9vRAtFv2nJmz?=
+ =?us-ascii?Q?4nhhv8xlIZjhIALCTaW9R5fmiDhdcoYpHyaeGP3VImhLiwKGE/1fgv9Dr2/P?=
+ =?us-ascii?Q?fc6D5v6i/ZaEf21qVy2i4/uJPzYU4nOCVFHenLdxJ6olKKAvwwQtAVSVgOej?=
+ =?us-ascii?Q?B8x/L7qA+H07G6Fo2pgIlpUiUKtKMUq2K508IeiK/H/X+nn46MkjbjuA5u54?=
+ =?us-ascii?Q?3zmIQ3KNO9Dn7pA6ELy1jx8bOw56fo5RfERMXlbNPcUgG8IYNdrPmEjZ/OYI?=
+ =?us-ascii?Q?9uxILG0hdMjeKsfF7IHfzxMd2Koib5RfxTXJ9QK7EPWUegUiG5XOWq2oQud8?=
+ =?us-ascii?Q?GCfZJvL54V0NCa+r3Nnr1fQiPeApLa87O2rJh4efPvyS60AkY6+mzu5AOE5d?=
+ =?us-ascii?Q?dyJaZPAoU9w+CHxPlcEvQPnUMeBQJb6lx3rT7sR3bG8LBLSBiPAe6GMPnmoB?=
+ =?us-ascii?Q?6mtn9udF+FnCxKXC52JwLvFCktAtMbXk51amWG7ntUcCvh+B/0EETfwmJFlb?=
+ =?us-ascii?Q?tUDYTHT3/U5F48aSe2XCLkqrvcdfT+ZQ/B5cAwEnKjOxeeUu/va3QsvDyQjq?=
+ =?us-ascii?Q?1GvN4WSrWy2+OUytq+rUOU357IOxKC82YlO8qD3e/IQFQnxdgui1NeNpByrH?=
+ =?us-ascii?Q?Q7BgmOJZ6viHBtalLjbCwp6LR9kSMwNDPcuUIoXCeiUPD2btp02y6nOUk0i6?=
+ =?us-ascii?Q?DiTcpJsaPJoc7NN3Rp+j6KfIzqt/Zq1a8DLzzOYRZpYqUzOGtZJWFBsV6agR?=
+ =?us-ascii?Q?jmEtOt5WJLsOoC36ih8aDbqAP5Jo9hkJ7lUk3OOSg/BVuc/ag6yV+RXb2EGO?=
+ =?us-ascii?Q?BG+W1EmFUKSi7gTWem/Dp9O4ODjn0DoyWCkNLALsszX7YAUUeuemom7J1bq9?=
+ =?us-ascii?Q?wzcIwQFBLlHrVM7Zm9mgna2tvfrx0iia4BseELCofKgQ9riXduBnk3xFedrV?=
+ =?us-ascii?Q?aS7dKRb+MQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3dcc034-73a7-4800-7044-08de56b382e6
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2026 17:03:33.1654
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: g/j+S8bYxn6mseNJRGAdwBHkOzz2557HFqMjftvp5pBlQu+JARC0CJcA/qlrQSGM3GUTaiV6XDqVJvT1OeCvvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7291
 
-Since there were no existing drivers for the AS3668 or related devices,
-a new driver was introduced in a separate file. Similar devices were
-reviewed, but none shared enough characteristics to justify code reuse.
-As a result, this driver is written specifically for the AS3668.
+On Sun, Jan 18, 2026 at 10:54:04PM +0900, Koichiro Den wrote:
+> DesignWare EP eDMA can generate interrupts both locally and remotely
+> (LIE/RIE). Remote eDMA users need to decide, per channel, whether
+> completions should be handled locally, remotely, or both. Unless
+> carefully configured, the endpoint and host would race to ack the
+> interrupt.
+>
+> Introduce a per-channel interrupt routing mode and export small APIs to
+> configure and query it. Update v0 programming so that RIE and local
+> done/abort interrupt masking follow the selected mode. The default mode
+> keeps the original behavior, so unless the new APIs are explicitly used,
+> no functional changes.
+>
+> Signed-off-by: Koichiro Den <den@valinux.co.jp>
+> ---
+>  drivers/dma/dw-edma/dw-edma-core.c    | 52 +++++++++++++++++++++++++++
+>  drivers/dma/dw-edma/dw-edma-core.h    |  2 ++
+>  drivers/dma/dw-edma/dw-edma-v0-core.c | 26 +++++++++-----
+>  include/linux/dma/edma.h              | 44 +++++++++++++++++++++++
+>  4 files changed, 116 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/dma/dw-edma/dw-edma-core.c b/drivers/dma/dw-edma/dw-edma-core.c
+> index b9d59c3c0cb4..059b3996d383 100644
+> --- a/drivers/dma/dw-edma/dw-edma-core.c
+> +++ b/drivers/dma/dw-edma/dw-edma-core.c
+> @@ -768,6 +768,7 @@ static int dw_edma_channel_setup(struct dw_edma *dw, u32 wr_alloc, u32 rd_alloc)
+>  		chan->configured = false;
+>  		chan->request = EDMA_REQ_NONE;
+>  		chan->status = EDMA_ST_IDLE;
+> +		chan->irq_mode = DW_EDMA_CH_IRQ_DEFAULT;
+>
+>  		if (chan->dir == EDMA_DIR_WRITE)
+>  			chan->ll_max = (chip->ll_region_wr[chan->id].sz / EDMA_LL_SZ);
+> @@ -1062,6 +1063,57 @@ int dw_edma_remove(struct dw_edma_chip *chip)
+>  }
+>  EXPORT_SYMBOL_GPL(dw_edma_remove);
+>
+> +int dw_edma_chan_irq_config(struct dma_chan *dchan,
+> +			    enum dw_edma_ch_irq_mode mode)
+> +{
+> +	struct dw_edma_chan *chan;
+> +
+> +	switch (mode) {
+> +	case DW_EDMA_CH_IRQ_DEFAULT:
+> +	case DW_EDMA_CH_IRQ_LOCAL:
+> +	case DW_EDMA_CH_IRQ_REMOTE:
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!dchan || !dchan->device)
+> +		return -ENODEV;
+> +
+> +	chan = dchan2dw_edma_chan(dchan);
+> +	if (!chan)
+> +		return -ENODEV;
+> +
+> +	chan->irq_mode = mode;
+> +
+> +	dev_vdbg(chan->dw->chip->dev, "Channel: %s[%u] set irq_mode=%u\n",
+> +		 str_write_read(chan->dir == EDMA_DIR_WRITE),
+> +		 chan->id, mode);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(dw_edma_chan_irq_config);
+> +
+> +bool dw_edma_chan_ignore_irq(struct dma_chan *dchan)
+> +{
+> +	struct dw_edma_chan *chan;
+> +	struct dw_edma *dw;
+> +
+> +	if (!dchan || !dchan->device)
+> +		return false;
+> +
+> +	chan = dchan2dw_edma_chan(dchan);
+> +	if (!chan)
+> +		return false;
+> +
+> +	dw = chan->dw;
+> +	if (dw->chip->flags & DW_EDMA_CHIP_LOCAL)
+> +		return chan->irq_mode == DW_EDMA_CH_IRQ_REMOTE;
+> +	else
+> +		return chan->irq_mode == DW_EDMA_CH_IRQ_LOCAL;
+> +}
+> +EXPORT_SYMBOL_GPL(dw_edma_chan_ignore_irq);
+> +
+>  MODULE_LICENSE("GPL v2");
+>  MODULE_DESCRIPTION("Synopsys DesignWare eDMA controller core driver");
+>  MODULE_AUTHOR("Gustavo Pimentel <gustavo.pimentel@synopsys.com>");
+> diff --git a/drivers/dma/dw-edma/dw-edma-core.h b/drivers/dma/dw-edma/dw-edma-core.h
+> index 71894b9e0b15..8458d676551a 100644
+> --- a/drivers/dma/dw-edma/dw-edma-core.h
+> +++ b/drivers/dma/dw-edma/dw-edma-core.h
+> @@ -81,6 +81,8 @@ struct dw_edma_chan {
+>
+>  	struct msi_msg			msi;
+>
+> +	enum dw_edma_ch_irq_mode	irq_mode;
+> +
+>  	enum dw_edma_request		request;
+>  	enum dw_edma_status		status;
+>  	u8				configured;
+> diff --git a/drivers/dma/dw-edma/dw-edma-v0-core.c b/drivers/dma/dw-edma/dw-edma-v0-core.c
+> index 2850a9df80f5..80472148c335 100644
+> --- a/drivers/dma/dw-edma/dw-edma-v0-core.c
+> +++ b/drivers/dma/dw-edma/dw-edma-v0-core.c
+> @@ -256,8 +256,10 @@ dw_edma_v0_core_handle_int(struct dw_edma_irq *dw_irq, enum dw_edma_dir dir,
+>  	for_each_set_bit(pos, &val, total) {
+>  		chan = &dw->chan[pos + off];
+>
+> -		dw_edma_v0_core_clear_done_int(chan);
+> -		done(chan);
+> +		if (!dw_edma_chan_ignore_irq(&chan->vc.chan)) {
+> +			dw_edma_v0_core_clear_done_int(chan);
+> +			done(chan);
+> +		}
+>
+>  		ret = IRQ_HANDLED;
+>  	}
+> @@ -267,8 +269,10 @@ dw_edma_v0_core_handle_int(struct dw_edma_irq *dw_irq, enum dw_edma_dir dir,
+>  	for_each_set_bit(pos, &val, total) {
+>  		chan = &dw->chan[pos + off];
+>
+> -		dw_edma_v0_core_clear_abort_int(chan);
+> -		abort(chan);
+> +		if (!dw_edma_chan_ignore_irq(&chan->vc.chan)) {
+> +			dw_edma_v0_core_clear_abort_int(chan);
+> +			abort(chan);
+> +		}
+>
+>  		ret = IRQ_HANDLED;
+>  	}
+> @@ -331,7 +335,8 @@ static void dw_edma_v0_core_write_chunk(struct dw_edma_chunk *chunk)
+>  		j--;
+>  		if (!j) {
+>  			control |= DW_EDMA_V0_LIE;
+> -			if (!(chan->dw->chip->flags & DW_EDMA_CHIP_LOCAL))
+> +			if (!(chan->dw->chip->flags & DW_EDMA_CHIP_LOCAL) &&
+> +			    chan->irq_mode != DW_EDMA_CH_IRQ_LOCAL)
+>  				control |= DW_EDMA_V0_RIE;
+>  		}
+>
+> @@ -408,12 +413,17 @@ static void dw_edma_v0_core_start(struct dw_edma_chunk *chunk, bool first)
+>  				break;
+>  			}
+>  		}
+> -		/* Interrupt unmask - done, abort */
+> +		/* Interrupt mask/unmask - done, abort */
+>  		raw_spin_lock_irqsave(&dw->lock, flags);
+>
+>  		tmp = GET_RW_32(dw, chan->dir, int_mask);
+> -		tmp &= ~FIELD_PREP(EDMA_V0_DONE_INT_MASK, BIT(chan->id));
+> -		tmp &= ~FIELD_PREP(EDMA_V0_ABORT_INT_MASK, BIT(chan->id));
+> +		if (chan->irq_mode == DW_EDMA_CH_IRQ_REMOTE) {
+> +			tmp |= FIELD_PREP(EDMA_V0_DONE_INT_MASK, BIT(chan->id));
+> +			tmp |= FIELD_PREP(EDMA_V0_ABORT_INT_MASK, BIT(chan->id));
+> +		} else {
+> +			tmp &= ~FIELD_PREP(EDMA_V0_DONE_INT_MASK, BIT(chan->id));
+> +			tmp &= ~FIELD_PREP(EDMA_V0_ABORT_INT_MASK, BIT(chan->id));
+> +		}
+>  		SET_RW_32(dw, chan->dir, int_mask, tmp);
+>  		/* Linked list error */
+>  		tmp = GET_RW_32(dw, chan->dir, linked_list_err_en);
+> diff --git a/include/linux/dma/edma.h b/include/linux/dma/edma.h
+> index ffad10ff2cd6..6f50165ac084 100644
+> --- a/include/linux/dma/edma.h
+> +++ b/include/linux/dma/edma.h
+> @@ -60,6 +60,23 @@ enum dw_edma_chip_flags {
+>  	DW_EDMA_CHIP_LOCAL	= BIT(0),
+>  };
+>
+> +/*
+> + * enum dw_edma_ch_irq_mode - per-channel interrupt routing control
+> + * @DW_EDMA_CH_IRQ_DEFAULT:   LIE=1/RIE=1, local interrupt unmasked
+> + * @DW_EDMA_CH_IRQ_LOCAL:     LIE=1/RIE=0
+> + * @DW_EDMA_CH_IRQ_REMOTE:    LIE=1/RIE=1, local interrupt masked
+> + *
+> + * Some implementations require using LIE=1/RIE=1 with the local interrupt
+> + * masked to generate a remote-only interrupt (rather than LIE=0/RIE=1).
+> + * See the DesignWare endpoint databook 5.40, "Hint" below "Figure 8-22
+> + * Write Interrupt Generation".
+> + */
+> +enum dw_edma_ch_irq_mode {
+> +	DW_EDMA_CH_IRQ_DEFAULT	= 0,
+> +	DW_EDMA_CH_IRQ_LOCAL,
+> +	DW_EDMA_CH_IRQ_REMOTE,
+> +};
+> +
+>  /**
+>   * struct dw_edma_chip - representation of DesignWare eDMA controller hardware
+>   * @dev:		 struct device of the eDMA controller
+> @@ -105,6 +122,22 @@ struct dw_edma_chip {
+>  #if IS_REACHABLE(CONFIG_DW_EDMA)
+>  int dw_edma_probe(struct dw_edma_chip *chip);
+>  int dw_edma_remove(struct dw_edma_chip *chip);
+> +/**
+> + * dw_edma_chan_irq_config - configure per-channel interrupt routing
+> + * @chan: DMA channel obtained from dma_request_channel()
+> + * @mode: interrupt routing mode
+> + *
+> + * Returns 0 on success, -EINVAL for invalid @mode, or -ENODEV if @chan does
+> + * not belong to the DesignWare eDMA driver.
+> + */
+> +int dw_edma_chan_irq_config(struct dma_chan *chan,
+> +			    enum dw_edma_ch_irq_mode mode);
+> +
+> +/**
+> + * dw_edma_chan_ignore_irq - tell whether local IRQ handling should be ignored
+> + * @chan: DMA channel obtained from dma_request_channel()
+> + */
+> +bool dw_edma_chan_ignore_irq(struct dma_chan *chan);
+>  #else
+>  static inline int dw_edma_probe(struct dw_edma_chip *chip)
+>  {
+> @@ -115,6 +148,17 @@ static inline int dw_edma_remove(struct dw_edma_chip *chip)
+>  {
+>  	return 0;
+>  }
+> +
+> +static inline int dw_edma_chan_irq_config(struct dma_chan *chan,
+> +					  enum dw_edma_ch_irq_mode mode)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+> +static inline bool dw_edma_chan_ignore_irq(struct dma_chan *chan)
+> +{
+> +	return false;
+> +}
 
-Signed-off-by: Lukas Timmermann <linux@timmermann.space>
----
- MAINTAINERS                |   1 +
- drivers/leds/Kconfig       |  13 +++
- drivers/leds/Makefile      |   1 +
- drivers/leds/leds-as3668.c | 202 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 217 insertions(+)
- create mode 100644 drivers/leds/leds-as3668.c
+I think it'd better go thought
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 091206c54c63..945d78fef380 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3511,6 +3511,7 @@ M:	Lukas Timmermann <linux@timmermann.space>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/leds/ams,as3668.yaml
-+F:	drivers/leds/leds-as3668.c
- 
- ASAHI KASEI AK7375 LENS VOICE COIL DRIVER
- M:	Tianshu Qiu <tian.shu.qiu@intel.com>
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index a104cbb0a001..ec37d55ac14e 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -100,6 +100,19 @@ config LEDS_ARIEL
- 
- 	  Say Y to if your machine is a Dell Wyse 3020 thin client.
- 
-+config LEDS_OSRAM_AMS_AS3668
-+	tristate "LED support for Osram AMS AS3668"
-+	depends on LEDS_CLASS
-+	depends on I2C
-+	help
-+	  This option enables support for the Osram AMS AS3668 LED controller.
-+	  The AS3668 provides up to four LED channels and is controlled via
-+	  the I2C bus. This driver offers basic brightness control for each
-+	  channel, without support for blinking or other advanced features.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-as3668.
-+
- config LEDS_AW200XX
- 	tristate "LED support for Awinic AW20036/AW20054/AW20072/AW20108"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 2f170d69dcbf..983811384fec 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_LEDS_ADP5520)		+= leds-adp5520.o
- obj-$(CONFIG_LEDS_AN30259A)		+= leds-an30259a.o
- obj-$(CONFIG_LEDS_APU)			+= leds-apu.o
- obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
-+obj-$(CONFIG_LEDS_AS3668)		+= leds-as3668.o
- obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
- obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
- obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
-diff --git a/drivers/leds/leds-as3668.c b/drivers/leds/leds-as3668.c
-new file mode 100644
-index 000000000000..b2794492370e
---- /dev/null
-+++ b/drivers/leds/leds-as3668.c
-@@ -0,0 +1,202 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ *  Osram AMS AS3668 LED Driver IC
-+ *
-+ *  Copyright (C) 2025 Lukas Timmermann <linux@timmermann.space>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/i2c.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/uleds.h>
-+
-+#define AS3668_MAX_LEDS			4
-+
-+/* Chip Ident */
-+
-+#define AS3668_CHIP_ID1_REG		0x3e
-+#define AS3668_CHIP_ID			0xa5
-+
-+/* Current Control */
-+
-+#define AS3668_CURR_MODE_REG		0x01
-+#define AS3668_CURR_MODE_OFF		0x0
-+#define AS3668_CURR_MODE_ON		0x1
-+#define AS3668_CURR1_MODE_MASK		GENMASK(1, 0)
-+#define AS3668_CURR2_MODE_MASK		GENMASK(3, 2)
-+#define AS3668_CURR3_MODE_MASK		GENMASK(5, 4)
-+#define AS3668_CURR4_MODE_MASK		GENMASK(7, 6)
-+#define AS3668_CURR1_REG		0x02
-+#define AS3668_CURR2_REG		0x03
-+#define AS3668_CURR3_REG		0x04
-+#define AS3668_CURR4_REG		0x05
-+
-+#define AS3668_CURR_MODE_PACK(mode)	(((mode) << 0) | \
-+					((mode) << 2) | \
-+					((mode) << 4) | \
-+					((mode) << 6))
-+
-+struct as3668_led {
-+	struct led_classdev cdev;
-+	struct as3668 *chip;
-+	struct fwnode_handle *fwnode;
-+	u8 mode_mask;
-+	u8 current_reg;
-+};
-+
-+struct as3668 {
-+	struct i2c_client *client;
-+	struct as3668_led leds[AS3668_MAX_LEDS];
-+};
-+
-+static int as3668_channel_mode_set(struct as3668_led *led, u8 mode)
-+{
-+	int ret;
-+	u8 channel_modes;
-+
-+	ret = i2c_smbus_read_byte_data(led->chip->client, AS3668_CURR_MODE_REG);
-+	if (ret < 0) {
-+		dev_err(led->cdev.dev, "failed to read channel modes\n");
-+		return ret;
-+	}
-+	channel_modes = (u8)ret;
-+
-+	channel_modes &= ~led->mode_mask;
-+	channel_modes |= led->mode_mask & (AS3668_CURR_MODE_PACK(mode));
-+
-+	return i2c_smbus_write_byte_data(led->chip->client, AS3668_CURR_MODE_REG, channel_modes);
-+}
-+
-+static enum led_brightness as3668_brightness_get(struct led_classdev *cdev)
-+{
-+	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-+
-+	return i2c_smbus_read_byte_data(led->chip->client, led->current_reg);
-+}
-+
-+static void as3668_brightness_set(struct led_classdev *cdev, enum led_brightness brightness)
-+{
-+	struct as3668_led *led = container_of(cdev, struct as3668_led, cdev);
-+	int err;
-+
-+	err = as3668_channel_mode_set(led, !!brightness);
-+	if (err)
-+		dev_err(cdev->dev, "failed to set channel mode: %d\n", err);
-+
-+	err = i2c_smbus_write_byte_data(led->chip->client, led->current_reg, brightness);
-+	if (err)
-+		dev_err(cdev->dev, "failed to set brightness: %d\n", err);
-+}
-+
-+static int as3668_dt_init(struct as3668 *as3668)
-+{
-+	struct device *dev = &as3668->client->dev;
-+	struct as3668_led *led;
-+	struct led_init_data init_data = {};
-+	int err;
-+	u32 reg;
-+
-+	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
-+		err = of_property_read_u32(child, "reg", &reg);
-+		if (err)
-+			return dev_err_probe(dev, err, "failed to read 'reg' property");
-+
-+		if (reg < 0 || reg >= AS3668_MAX_LEDS)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "unsupported LED: %d\n", reg);
-+
-+		led = &as3668->leds[reg];
-+		led->fwnode = of_fwnode_handle(child);
-+
-+		led->current_reg = reg + AS3668_CURR1_REG;
-+		led->mode_mask = AS3668_CURR1_MODE_MASK << (reg * 2);
-+		led->chip = as3668;
-+
-+		led->cdev.max_brightness = U8_MAX;
-+		led->cdev.brightness_get = as3668_brightness_get;
-+		led->cdev.brightness_set = as3668_brightness_set;
-+
-+		init_data.fwnode = led->fwnode;
-+		init_data.default_label = ":";
-+
-+		err = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
-+		if (err)
-+			return dev_err_probe(dev, err, "failed to register LED %d\n", reg);
-+	}
-+
-+	return 0;
-+}
-+
-+static int as3668_probe(struct i2c_client *client)
-+{
-+	struct as3668 *as3668;
-+	int err;
-+	u8 chip_id;
-+
-+	chip_id = i2c_smbus_read_byte_data(client, AS3668_CHIP_ID1_REG);
-+	if (chip_id != AS3668_CHIP_ID)
-+		return dev_err_probe(&client->dev, -ENODEV,
-+				     "expected chip ID 0x%02x, got 0x%02x\n",
-+				     AS3668_CHIP_ID, chip_id);
-+
-+	as3668 = devm_kzalloc(&client->dev, sizeof(*as3668), GFP_KERNEL);
-+	if (!as3668)
-+		return -ENOMEM;
-+
-+	as3668->client = client;
-+
-+	err = as3668_dt_init(as3668);
-+	if (err)
-+		return err;
-+
-+	/* Set all four channel modes to 'off' */
-+	err = i2c_smbus_write_byte_data(client, AS3668_CURR_MODE_REG,
-+					FIELD_PREP(AS3668_CURR1_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR2_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR3_MODE_MASK, AS3668_CURR_MODE_OFF) |
-+					FIELD_PREP(AS3668_CURR4_MODE_MASK, AS3668_CURR_MODE_OFF));
-+
-+	/* Set initial currents to 0mA */
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR1_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR2_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR3_REG, 0);
-+	err |= i2c_smbus_write_byte_data(client, AS3668_CURR4_REG, 0);
-+
-+	if (err)
-+		return dev_err_probe(&client->dev, -EIO, "failed to set zero initial current levels\n");
-+
-+	return 0;
-+}
-+
-+static void as3668_remove(struct i2c_client *client)
-+{
-+	i2c_smbus_write_byte_data(client, AS3668_CURR_MODE_REG, 0);
-+}
-+
-+static const struct i2c_device_id as3668_idtable[] = {
-+	{ "as3668" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, as3668_idtable);
-+
-+static const struct of_device_id as3668_match_table[] = {
-+	{ .compatible = "ams,as3668" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, as3668_match_table);
-+
-+static struct i2c_driver as3668_driver = {
-+	.driver = {
-+		.name = "leds_as3668",
-+		.of_match_table = as3668_match_table,
-+	},
-+	.probe = as3668_probe,
-+	.remove = as3668_remove,
-+	.id_table = as3668_idtable,
-+};
-+module_i2c_driver(as3668_driver);
-+
-+MODULE_AUTHOR("Lukas Timmermann <linux@timmermann.space>");
-+MODULE_DESCRIPTION("AS3668 LED driver");
-+MODULE_LICENSE("GPL");
--- 
-2.52.0
+struct dma_slave_config {
+	...
+        void *peripheral_config;
+	size_t peripheral_size;
 
+};
+
+So DMA consumer can use standard DMAengine API, dmaengine_slave_config().
+
+Frank
+>  #endif /* CONFIG_DW_EDMA */
+>
+>  struct pci_epc;
+> --
+> 2.51.0
+>
 
