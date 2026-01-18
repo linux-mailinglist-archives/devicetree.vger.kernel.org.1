@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-256474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77428D394E6
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 13:19:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A09CD394EE
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 13:27:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BB463004F7A
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 12:19:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B1A55300956C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 12:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA95B29DB6C;
-	Sun, 18 Jan 2026 12:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24BE322DB7;
+	Sun, 18 Jan 2026 12:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TYBJaL/d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Me22rE0h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D17D5B5AB
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 12:18:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC812AD0C
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 12:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768738740; cv=none; b=Fyg6Q4iLvYDzCBdKNPyWr3W1rGFwnPgp3uIf0L34jlSLfUQBTFCLbU4ODGFeFqMTB04mHO/6AQIRV/tTCcClbAkVMfCEOmRRL7N6YJmTEmUpGmN82eX8Qn3o/eviSKGMtTOeVYuoNgYW1dks4VkHvyy+VDgtCgwBY6tXhqLPYh8=
+	t=1768739265; cv=none; b=uLjvBntDTBe5Xoh18MlO1hT45aaMUyzYghjLfiHRPy8YujA5F2o6jSspqkmyG1IjAkb3MtguC1gBMBikfIIyQc1+FULmGs2HQxWhqVLH86ChfAqzU4oVEpoeCTvv301VSBKE5bjg8xHa3se3O/YXZDIu7p3jlLilaYluhxItBp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768738740; c=relaxed/simple;
-	bh=AM7nm1BS1hlDTXwcdh1EHXiQu1Si/CyAPg2Ikrwu8lU=;
+	s=arc-20240116; t=1768739265; c=relaxed/simple;
+	bh=t9SwgwzAvB+Xaplm+rrS1u4zYy/Ei5IFgZD1D3gvqAw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GfWweW3oiTvPCHTY/ZAsGRzZzBLbXuk6CLTeFNQpPGjmcItpuPJY/fokIW7xCliS2LvqWnnDzSc6mUxbFSMKlfQ8q5CXaEUiAx34ZIO4qjoXq6E5olRc94ftv10N1XXklCQNjhshrPS4cnLFUCoJSfleVKKl7DEGoIGcYCauNkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TYBJaL/d; arc=none smtp.client-ip=209.85.221.52
+	 Content-Type:Content-Disposition:In-Reply-To; b=O+UDPHqXtYPTGNkt9q2+iH1wZyl/nB9GfKF3GhC8rsc1lgpO4A8dk8t9wJx2bA8QtSkGpzb0ImPZBEi7hozphKBz7la7Wd1w2nMHmAaCZ38L7/PxnYi+DjXkcBPEP81dH6bxU+9gurXmeqjqwPkpcrPwXLs/iusxS2lMY1KPx7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Me22rE0h; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-432d256c2e6so2872522f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 04:18:58 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47edffe5540so31006695e9.0
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 04:27:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768738737; x=1769343537; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1768739263; x=1769344063; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references
          :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=WD1wzEbaoKZKhuZNexa3nkG79kI0GKZ4I1GLpFTxDis=;
-        b=TYBJaL/di8WU5YLbMXPuj3t/bq2sjQn3XGh4LzfGIgOyIzQeDVfskSLU7D8wXu2wdH
-         4tP2ziZ/a+h8g1h27PnTc/Biv5A24eSyrru22JrS4AvIiQuR6+L+D3wjlDiLrDuY6wCY
-         zic2s+PRBpxbV2r6n9j27Y2XTNMoDwMCfwe+0BxHtEc6bBxJuMp6OoPFgnk6M3bQRl1n
-         VfbVl8B0ACNZ4osZYPe/TAQUUva0dmXIlzLtCocxgsjc2fOvKTvs1Ep5MWMiWWxQuFpD
-         BxRqyhEsvRJPET60NpiRwumQ+OMhAeVg6Yk+tTeNi+tSFdqLJiFxvqaNVYYz9q/DC9I6
-         jrBw==
+        bh=t9h5PT98oehXGGTuTpwmqI77fU/XEwWQyJVUHxiP7aU=;
+        b=Me22rE0hBo/PIreMzqsweUWNAReVDaHfYlcDWa21Q6PIN218F60SgZ6MayvwbfAQ4Q
+         twBYdvbPEMMiTGUHbAHz27QH1ZNNngYNgSug2A2iN+qYezrv1pUukL+lc2fGnck9i3SF
+         PjBJKAAjpSFFf8fP2YOuvEP5MqCoousp3gV8iGEn0X4BUUtyI1fWM4mZyfg+ZUBBfEWA
+         tcdvIhlm9eHboX080xbH/GlSkoAqNDBR5zsYrbAIbMh1vlyjOK1/srfh42KEycsIaGzO
+         /lgHjh21HQt817lIoadvgBzxtCyOQRvO2OMjgkq40Z9S8lJNaljezaBUOILAS78VuX/t
+         l2/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768738737; x=1769343537;
+        d=1e100.net; s=20230601; t=1768739263; x=1769344063;
         h=in-reply-to:content-disposition:mime-version:references
          :mail-followup-to:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WD1wzEbaoKZKhuZNexa3nkG79kI0GKZ4I1GLpFTxDis=;
-        b=chML6BRnMNiGqtZie9+QbLID5TFSY/dxUBNKLykXW+OHyNMS8B5+UYWmmv/1aBLgZm
-         K2WNi2F9Gu6OcoblDo88ejJCz/zomSk7Qu3J7ie8EymEfrHNAYE9ACBy5AgczjnAQq1n
-         llRz7fYN2CuN2xWAU1IBFxge8uPBe/Sk7Mk0pApwEW0Tul0V+spWeoi03XMeDLbyKHL7
-         0H9r3QHEkYRIx3Q32AG+24kFiE1E6viDTF6nmtPTbBfYySBzhOkYVEa0czQYbG//jItQ
-         QrvXbgwVytSE96pW+DP+LcMYDgpwmEyigjEbs8FBc9A4trSJ9Xt33mQsNUrcs3Z8v2Hx
-         NA1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWBO+U25rbUN2qbtKV4vze/Tdz42JEAOE3ixRqfaMqnZkJEkmU3LV+3GQnzL4E/sSYYMJnudZj9Ozqn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwU0zq5IivQ+k0RGOMGmFsE5oJnCYnzp1c/Zw/LT2AFV2BvDzEE
-	NkQ0GKN6uZJz4wcOzbVbDskB8AE/6eqEcJzDShp1pj90w2ZJcZm3iE9o
-X-Gm-Gg: AY/fxX6DEX36tqG0QamNyT+fvhIxEuKA8b6cq2XezbtHX8R9qPbB36bti0w1Nh7PoB/
-	ZP+Tw1J28HTe5mU2QKY2gnaKwocMn/rL8J2WUGUTkNggy8BHbWf0Aa2611/Rqz6aqmXpizdyu0d
-	N02g0P3tLzCw+lp93FyTHR8mLlt8ImS7ZT+wCJYLGf+qedsMK//yBfeR+dSjZsPerE20g0Ndm1U
-	xUWYgfp8MVEIA9vokuOic/bkJwkMK3pP3LdoAn1ZNYJUMVBPhu14SgSTjTN+OFUDG9a+IF45PSL
-	1/R7ZWbElVA7Jt7ieDl2DsJY9+qRh8Dug03Whj5vouTL+AG7cvb1sA7n8X1XscJHHa9vu6lk+Rt
-	Pm6pHJg1lEm3UfeiFRsA7zqOKg+b9SrvnJiF5zKCL7DoSQioNZrqMhZ1lvPPRtEF+8gxnycsvWK
-	WD4jCSdD3B/F4yzDpIwY3CqCuUCygX9jDNmu1GoG6d3cM=
-X-Received: by 2002:a05:600c:8b33:b0:479:1b0f:dfff with SMTP id 5b1f17b1804b1-4801e30d72bmr97350495e9.10.1768738737157;
-        Sun, 18 Jan 2026 04:18:57 -0800 (PST)
+        bh=t9h5PT98oehXGGTuTpwmqI77fU/XEwWQyJVUHxiP7aU=;
+        b=iadEGohmAzLkc/OcYpsHRN3lzB8ahYXcB0LXFa4clyUd4UJAuLmAjZpOZQAqYRomgG
+         1k9JkIdQIjFnUuFrAhKtSlfmqu52Y/zqXFOl2jJziS04TVBUQ2M1F1KVaY3ikEVBkbi+
+         zU5iAov04fVz3YmaCwC5aEOY+IxVUqNCh40MDXPpLdYq7TULlN36cr3t0WQYgLjy3s/0
+         z/AQ3xEKsjFDFKYBeWmtMIhkeO/KAFc9z/MYUAZYgCisYyHq5egjFJyrnREWJzVahF+s
+         85JioB+9KdyWoDjLPLq7dHLpHeisSPOjWxbP9Y1Fmh/TntKIfhihU37dmYU6iAL5zKyS
+         BP3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXhn/CBRNYrHVBjsO6odYaLGVO62R72lDwWBAXXllLx3SeZ+CGkwcLCTZdaMsFvGj0iDIHfMTvILnoy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx77jV/Z+7nG5Nxm0nBBS2IlEdJNbvVnFv7hB/EDa5QlENduUDf
+	jwLMIpR6WJ4vI+1ru9n9trVdieJHcvB2uxgtVTfcH8MEpe6f9/CXw8cZ
+X-Gm-Gg: AY/fxX4yOSPQJzNhSq48NEN8J+zC9rsL2AtYIU+W8TUvIgUPd8ozRyS/s8EBQMDEfCW
+	Q4i1Tvntsdlr74y2o3MRcIz4f8Wxy0aUOhuB6MRLcanBsiY4c1rVttD401nshfRs/LiMWiyHB5y
+	kqIt+g+kemBmk0ZZ5xM1V7R+UNe8q0REGv9TgeF+kHmh8z10RMfL231gRRIC791iJz3ajgjVFAs
+	yTpwlEmLKNfuOWwrJu0SaLGvIRbqG3oZWqhla7tD00JZEIKk0qOQR8ugHO/RFOnBLqzr9BOAyJ5
+	k07gOJ7BsEf2cd3/u4A6g22IaJC11yRPGpEm0yGhax6n+7BjjYkwhRJWSQEn5kWldeU4lylWulK
+	yE7bKgWHoba6M4v5UzStUv7naCLESPCcqQEHF9kGIiKjGrD1QDy2XiVnX0IjlQq7x0XC+hcRwwE
+	tWrXOI/8qRy6YbO8RnvafwjGdcb+FMtXfdvWDELQzulo0=
+X-Received: by 2002:a05:600c:820d:b0:477:58:7cf4 with SMTP id 5b1f17b1804b1-4802a29f85bmr44396165e9.4.1768739262625;
+        Sun, 18 Jan 2026 04:27:42 -0800 (PST)
 Received: from anton.local (vps-58d0fbce.vps.ovh.net. [51.178.29.162])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f3b7a5f94sm207544765e9.0.2026.01.18.04.18.53
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e8c0475sm169474355e9.10.2026.01.18.04.27.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jan 2026 04:18:56 -0800 (PST)
-Date: Sun, 18 Jan 2026 16:18:51 +0400
+        Sun, 18 Jan 2026 04:27:42 -0800 (PST)
+Date: Sun, 18 Jan 2026 16:27:37 +0400
 From: "Anton D. Stavinskii" <stavinsky@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -82,9 +82,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, 
 	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
 	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/7] dt-bindings: sound: sophgo: add CV1800B I2S/TDM
- controller binding
-Message-ID: <aWzMvqzh-QXWRTWP@anton.local>
+Subject: Re: [PATCH v2 2/7] ASoC: sophgo: add CV1800B I2S/TDM controller
+ driver
+Message-ID: <aWzP-rRNKPHlWaWO@anton.local>
 Mail-Followup-To: Krzysztof Kozlowski <krzk@kernel.org>, 
 	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -94,8 +94,8 @@ Mail-Followup-To: Krzysztof Kozlowski <krzk@kernel.org>,
 	Alexandre Ghiti <alex@ghiti.fr>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
 	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 References: <20260118-cv1800b-i2s-driver-v2-0-d10055f68368@gmail.com>
- <20260118-cv1800b-i2s-driver-v2-1-d10055f68368@gmail.com>
- <20260118-famous-magnificent-peccary-474ba8@quoll>
+ <20260118-cv1800b-i2s-driver-v2-2-d10055f68368@gmail.com>
+ <20260118-pastoral-resourceful-mandrill-47bda6@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,190 +104,135 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260118-famous-magnificent-peccary-474ba8@quoll>
+In-Reply-To: <20260118-pastoral-resourceful-mandrill-47bda6@quoll>
 
-On Sun, Jan 18, 2026 at 11:14:34AM +0400, Krzysztof Kozlowski wrote:
-> On Sun, Jan 18, 2026 at 12:18:53AM +0400, Anton D. Stavinskii wrote:
-> > Purpose: introduce DT schema for the CPU driver
+> > +++ b/sound/soc/sophgo/Kconfig
+> > @@ -0,0 +1,20 @@
+> > +menu "Sophgo"
 > 
-> Bindings are for hardware, not drivers. Drop the purpose.
+> Missing SPDX. Did you run checkpatch?
 
-Noted. Will do in v3
-
-> 
-> > The driver uses dma to transfer data. The dma it self has 8 channels.
-> 
-> Describe the hardware.
-
-Will try to rephrase. Thanks.
+Actually I did. I will add SPDX and recheck again. 
+Also I will take a look why checkpatch missed this. 
 
 > 
-> 
-> > Each channel can be connected only to a specific i2s node. But each
-> > of dma channel can have multiple purposes so in order to save dma
-> > channels the configurations allows to use tx and rx, only rx, only tx
-> > or none channels. I2S controller without channels can be useful in
-> > configuration where I2S is used as clock source only and doesn't
-> > produce any data.
-> 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-I will do my best in V3. And will read provided links again. 
-
-> 
-> A nit, subject: drop second/last, redundant "binding". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
-> > 
-> > Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
-> > ---
-> >  .../bindings/sound/sophgo,cv1800b-i2s.yaml         | 75 ++++++++++++++++++++++
-> >  1 file changed, 75 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/sophgo,cv1800b-i2s.yaml b/Documentation/devicetree/bindings/sound/sophgo,cv1800b-i2s.yaml
-> > new file mode 100644
-> > index 000000000000..cf30880a62da
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/sophgo,cv1800b-i2s.yaml
-> > @@ -0,0 +1,75 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/sophgo,cv1800b-i2s.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +	depends on COMPILE_TEST || ARCH_SOPHGO
 > > +
-> > +title: Sophgo CV1800B I2S/TDM controller
+> > +config SND_SOC_CV1800B_TDM
+> > +	tristate "Sophgo CV1800B I2S/TDM support"
+> > +	depends on SND_SOC && OF
+> > +	select SND_SOC_GENERIC_DMAENGINE_PCM
+> > +	help
+> > +	  This option enables the I2S/TDM audio controller found in Sophgo
+> > +	  CV1800B / SG2002 SoCs. The controller supports standard I2S
+> > +	  audio modes for playback and capture.
 > > +
-> > +maintainers:
-> > +  - Anton D. Stavinskii <stavinsky@gmail.com>
+> > +	  The driver integrates with the ASoC framework and uses the DMA
+> > +	  engine for audio data transfer. It is intended to be configured
+> > +	  via Device Tree along with simple-audio-card module.
 > > +
-> > +description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-noted. will be fixed. 
-
-> 
-> > +  I2S/TDM controller found in CV1800B / Sophgo SG2002/SG2000 SoCs.
+> > +	  To compile the driver as a module, choose M here: the module will
+> > +	  be called cv1800b_tdm.
 > > +
 > 
-> Miss allOf with ref to dai-common.
+> ...
 > 
-> > +properties:
-> > +  compatible:
-> > +    const: sophgo,cv1800b-i2s
+> > +static const struct snd_soc_dai_ops cv1800b_i2s_dai_ops = {
+> > +	.probe = cv1800b_i2s_dai_probe,
+> > +	.startup = cv1800b_i2s_startup,
+> > +	.hw_params = cv1800b_i2s_hw_params,
+> > +	.trigger = cv1800b_i2s_trigger,
+> > +	.set_fmt = cv1800b_i2s_dai_set_fmt,
+> > +	.set_bclk_ratio = cv1800b_i2s_dai_set_bclk_ratio,
+> > +	.set_sysclk = cv1800b_i2s_dai_set_sysclk,
+> > +};
 > > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#sound-dai-cells":
-> > +    const: 0
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 2
+> > +static struct snd_soc_dai_driver cv1800b_i2s_dai_template = {
 > 
-> 1. Why is it flexible?
+> Missing const
+> 
+> > +	.name = "cv1800b-i2s",
+> > +	.playback = {
+> > +		.stream_name = "Playback",
+> > +		.channels_min = 1,
+> > +		.channels_max = 2,
+> > +		.rates = SNDRV_PCM_RATE_8000_192000,
+> > +		.formats = SNDRV_PCM_FMTBIT_S24_LE | SNDRV_PCM_FMTBIT_S16_LE,
+> > +	},
+> > +	.capture = {
+> > +		.stream_name = "Capture",
+> > +		.channels_min = 1,
+> > +		.channels_max = 2,
+> > +		.rates = SNDRV_PCM_RATE_8000_192000,
+> > +		.formats = SNDRV_PCM_FMTBIT_S24_LE | SNDRV_PCM_FMTBIT_S16_LE,
+> > +	},
+> > +	.ops = &cv1800b_i2s_dai_ops,
+> > +};
+> 
+> ....
+> 
+> > +static int cv1800b_i2s_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct cv1800b_i2s *i2s;
+> > +	struct resource *res;
+> > +	void __iomem *regs;
+> > +	struct snd_soc_dai_driver *dai;
+> > +	int ret;
+> > +
+> > +	i2s = devm_kzalloc(dev, sizeof(*i2s), GFP_KERNEL);
+> > +	if (!i2s)
+> > +		return -ENOMEM;
+> > +
+> > +	regs = devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(regs))
+> > +		return PTR_ERR(regs);
+> > +	i2s->dev = &pdev->dev;
+> > +	i2s->base = regs;
+> > +
+> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +	if (!res)
+> > +		return -ENODEV;
+> > +	cv1800b_setup_dma_struct(i2s, res->start);
+> > +
+> > +	i2s->clk = devm_clk_get_enabled(dev, "i2s");
+> > +	if (IS_ERR(i2s->clk))
+> > +		return dev_err_probe(dev, PTR_ERR(i2s->clk),
+> > +				     "failed to get+enable i2s\n");
+> > +	i2s->sysclk = devm_clk_get_enabled(dev, "mclk");
+> > +	if (IS_ERR(i2s->sysclk))
+> > +		return dev_err_probe(dev, PTR_ERR(i2s->sysclk),
+> > +				     "failed to get+enable mclk\n");
+> > +
+> > +	platform_set_drvdata(pdev, i2s);
+> > +	cv1800b_i2s_setup_tdm(i2s);
+> > +
+> > +	dai = devm_kmemdup(dev, &cv1800b_i2s_dai_template, sizeof(*dai),
+> > +			   GFP_KERNEL);
+> > +	if (!dai)
+> > +		return -ENOMEM;
+> > +
+> > +	ret = devm_snd_soc_register_component(dev, &cv1800b_i2s_component, dai,
+> > +					      1);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = devm_snd_dmaengine_pcm_register(dev, &cv1800b_i2s_pcm_config, 0);
+> > +	if (ret) {
+> > +		dev_err(dev, "dmaengine_pcm_register failed: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	dev_dbg(dev, "cv1800b I2S probed:\n");
+> 
+> Drop, drivers should be silent and probe success message does not
+> warrant even debug. What are you debugging - that you wrote correct DTS?
+> You can check in sysfs that device probed.
 
-It's my mistake. 
+Will do, thanks. 
 
-> 
-> 2. And then why names are not flexible. These should be synced in
-> constraints.
-> 
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: i2s
-> > +      - const: mclk
-> > +
-> > +  dmas:
-> > +    maxItems: 2
-> > +
-> > +  dma-names:
-> > +    description: |
-> > +      Names of DMA channels. May be omitted. If present, one entry
-> > +      selects a single direction, while two entries select RX and TX.
-
-Will drop.
-
-> 
-> Drop desription. Don't repeat constraints in free form text.
-> 
-> > +    minItems: 1
-> > +    maxItems: 2
-> 
-> Again, messed constraints.
-> 
-> > +    items:
-> > +      enum: [rx, tx]
-> 
-> No, it has to be a specific/fixed list.
-
-Here is the question. Can you please help to understand how to describe
-this properly. The idea is that TDM module is usable even without
-specified dmas. Each TDM can work as clock source, only rx only tx or
-both. I can force to use both channels but the user probably will want 
-to not consume all the channels for if it is not needed. DMA can provide
-channels for something else like SPI/I2C/UART etc. I'm asking because
-I'm afraid I will do some mess again here.
-> 
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> 
-> Why? Drop these.
-
-noted. Will remove. 
-
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - "#sound-dai-cells"
-> > +
-> > +additionalProperties: false
-> 
-> unevaluatedProperties instead
-
-Thanks. 
-
-> 
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/sophgo,cv1800.h>
-> > +
-> > +    i2s1: i2s@4110000 {
-> 
-> Drop unused label.
-
-will be fixed. Thanks
-
-> 
-> > +        compatible = "sophgo,cv1800b-i2s";
-> > +        reg = <0x04110000 0x10000>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> 
-> Drop useless properties.
 > 
 > Best regards,
 > Krzysztof
 > 
-
-Sorry for the mess. It is my first ever patch. Thank you for your
-review and your time. Will do my best to improve the patch series. 
-
 
