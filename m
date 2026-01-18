@@ -1,150 +1,145 @@
-Return-Path: <devicetree+bounces-256591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B585D399D7
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:52:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E36AD399E9
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 22:05:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4A0E230012F8
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 20:52:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B093330012E7
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 21:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4280E30146C;
-	Sun, 18 Jan 2026 20:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF12307AC2;
+	Sun, 18 Jan 2026 21:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="No/IjQ7l"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hY0aIa+E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66D027E05A
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 20:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDFAF22F77E;
+	Sun, 18 Jan 2026 21:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768769548; cv=none; b=LgS2uEsE2kJvtVPDX2UAEH15qhHCXhuV7XNcZk3Cu4lU7cta8Wq376MWbW+dfqj3fWX4NhMxe8jXhw/qB5zbXpewaZGw0dXPaCTsOYwc0ssGw+9gyb6cUAmECLs9bsJ1hzZQTvh73oQbWB3jZG9MmsIaA/ON328JOcbQD4n27jM=
+	t=1768770328; cv=none; b=UXUWDvaRNVDdTrZwX/AWZUysk9AwzyuSrJTAnFmA8H1yK0uKJYwZgmQ55tE6EN89d6oxPBUW9p1ZFNV1twnekT3lH491s8q+O444bsdVW2sqOLL5b0+Wm3Eyh4wCHJoCv4sUtm9OGDp5JhnEnRGouDnjU9I9PRofwzov7cGpXd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768769548; c=relaxed/simple;
-	bh=oHUZejdHLFK35oLUjNmx8sVpI8yt5XnVUeWZ0XAaSBw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o1iZ+eIbnKceam8sChRpcSVCDtECSc0a4OQ/6fldCseS15Y8X0FCRil79G37lcIV9ou2d0D80FN8YGhrNAUBRu7aS8zF5W4Bs4lrKaMAtUkU+cbu5NFvqrqliulE95wKZ029BtN6dD2d84ytTEY4JpDB14/dc1HDpwSaOIAcCtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=No/IjQ7l; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-45c7f3a9676so2091923b6e.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 12:52:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768769546; x=1769374346; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EajIiJxhEkxKB0h9nWZKAup7MbRjLr6FFm1MZS4wGdU=;
-        b=No/IjQ7lC4kjWLiSC/jhmfcL9VraecQS5kagoMwtlTLTahU6g4WkEwv09BsHgJA/24
-         pJMYGAvCjexQ7LRLdKZF9DGuR/B5svL6RkgokgesB0f9O+a10uSBNfvCaA9okfu/70p8
-         iFP86iQEq1H1g4C0TLLBr+lVFYWpQkHs6naoLJnWfxfgyr8nqPrzvWQVORPQkFo2LKwn
-         MBvUbBqOpRT/TKZ6c9wqFiQukTeRaxA3VztdE7wX03ev+j7xX1qVN0UsA8ui2unTT5cf
-         Yyg6xXJZvP6dtk+u2ICFq0+xvrzDt5Ejx7En947CqfzZjFU9xbj++/Qiw6HTl0bIa4Of
-         KC6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768769546; x=1769374346;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=EajIiJxhEkxKB0h9nWZKAup7MbRjLr6FFm1MZS4wGdU=;
-        b=HMTRvRb/Q2TBud7aEJM5kGg7HlRHRYLf43lVaSJyK4rST9plK5z5yXXszBfVHF19gL
-         uIb1EWCs2RU/Wy2gfkWUL/IG+h2pQqaUeDy4hUnLEIvFKyB5hNB6RCwgmDl7BaOFrP0s
-         FeztC6Bk9AQHC/SJyJN6czNuGH1nJHDqstHDpdCn8B65QmBxwzk+rXM119ZI3tfjeKiD
-         n8+JRvr0dSlCzWXpCYQMdd9lWP78S7ujFNBFmTn0H9RZDpD/j+SsacpCLiskUok6LdLU
-         o27TH429rgPT7Msltn5PtZv/qv9teENOjSbTrxUY6ZscHsVAHwEzW2pXmOsRERcqIUnJ
-         SR/w==
-X-Forwarded-Encrypted: i=1; AJvYcCX+4N4wWe5RISSNG3tuTiLO9HjepeJjpU+/7inMwVEQk6eTxB5PUeKh4YhWBp/lIiPzJoaIKIG4ILNW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpJT8pbY4q/A1YGjj6wRelZeBkyPoLcNHpmWSvL9huoDJeBAsV
-	tPdqrb71kDT2TsYDnS234r7Vd0VnDqotrneLMd293ae/mMCv2ViPoYEyExr2UOlttW+6yNPawp2
-	WZhiZ4myzMjKzTlAL6+fvochAuL4WXCQ=
-X-Gm-Gg: AY/fxX6jbfh4ngdv/PcXWfJW4+suCoRPvgBpLE012s7VDZEE4mDEZA4WQlgFcwsD2Z4
-	kJ4T7OgZHrQg09yoJgRrReLsz9DfvTl0dgLX+MRpEmxVCEQoAUbNZlek8y7NwoPv4omTqrLzsI7
-	L++dqwRWao7G1DVl6EOeZ6lAuPjpHPLr1SwmOCSXDOyBPbG8DGZAkurQOL46dQYweYPgQ+SNU5H
-	z9FNqeeSPyonYfvBGHwOCmtqFROSHNtqxk3UNWrZD3QfbHT4mhUUsL7l/mCjYB+fo0Elrda
-X-Received: by 2002:a05:6808:10d6:b0:45c:85fa:5a3e with SMTP id
- 5614622812f47-45c8814b233mr6088865b6e.25.1768769545677; Sun, 18 Jan 2026
- 12:52:25 -0800 (PST)
+	s=arc-20240116; t=1768770328; c=relaxed/simple;
+	bh=GM3uKCMiilBcgyBVXN4FIzqknsc8oriYI5QHYaoewVg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RB6fU7UuUJ4oS6wfPDwePB0fP6j/sjaMtKvvjJ7pdhG/mSVIi301oSsrENPThqcfdPiM7LJ9nbYfwjSZok8iSjVUUZ3K7tYV4tNmYjMEY/Su6OB5t5uLpiIlv0UWsaoqxTQnK9HJw44noftmle/PBmWmNQzrCZt4bEvpA+Ranxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hY0aIa+E; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768770326; x=1800306326;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GM3uKCMiilBcgyBVXN4FIzqknsc8oriYI5QHYaoewVg=;
+  b=hY0aIa+EM70DTOH7myfQG6zMtDknZ6QQGrLVIbSMwzjSbh7Li7Nm9ZgM
+   /WGbIappRfaOryLqvTo8YJCIu/LcpzXxioZDvLyjS5ticpt5rluTlGXm6
+   jqrrxfm/zdkB3wNG/QAGE3PwLoc43dJ9EyyX+c/95IbDYlmQ2Zi5jr5zW
+   tr8fo0egL9btAA58OFmgFJ0itoRe/vHh2iyTJtFyryEdBKU208oua2ykP
+   jExnp3eOWq+GImucTpzqPmkuvGqk0Mwy3cN3YptTI6wNzN73bp/70RTeo
+   q365SSB8wNazkmm80QAzvzmdWzHNZnT0XofonBQJRwKFdM6Ahq92XkRiu
+   w==;
+X-CSE-ConnectionGUID: fB7Bd4GoRBS49gOnO4Qy7A==
+X-CSE-MsgGUID: Hru0QHeqTEy3wtF/puTMYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="69892316"
+X-IronPort-AV: E=Sophos;i="6.21,236,1763452800"; 
+   d="scan'208";a="69892316"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2026 13:05:26 -0800
+X-CSE-ConnectionGUID: oYYZtdB8TAScbc8sN6SrZw==
+X-CSE-MsgGUID: WYIuxMH6Tr+DshwILx+2Ew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,236,1763452800"; 
+   d="scan'208";a="206131331"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 18 Jan 2026 13:05:21 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vhZxX-00000000NDs-3azH;
+	Sun, 18 Jan 2026 21:05:19 +0000
+Date: Mon, 19 Jan 2026 05:04:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>,
+	robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
+	robh@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+	konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
+	bod@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+	prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com
+Cc: oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	vijayanand.jitta@oss.qualcomm.com
+Subject: Re: [PATCH v5 3/3] of: Respect #{iommu,msi}-cells in maps
+Message-ID: <202601190432.C5Aya7rJ-lkp@intel.com>
+References: <20260118181125.1436036-4-vijayanand.jitta@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260109062259.1769305-1-harini.t@amd.com>
-In-Reply-To: <20260109062259.1769305-1-harini.t@amd.com>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Sun, 18 Jan 2026 14:52:14 -0600
-X-Gm-Features: AZwV_QgjuMn_ufy7aRDqt1tKlvaYB4bfqPXnr_PsBemUcXovpa5jbfh10tMtGeY
-Message-ID: <CABb+yY2sW57piKnUxMXjo9QStuLBe+v4jL4vB=_3Ygdf_e1o_w@mail.gmail.com>
-Subject: Re: [PATCH V2] dt-bindings: mailbox: xlnx,zynqmp-ipi-mailbox:
- Document msg region requirement
-To: Harini T <harini.t@amd.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	michal.simek@amd.com, shubhrajyoti.datta@amd.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, git@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260118181125.1436036-4-vijayanand.jitta@oss.qualcomm.com>
 
-On Fri, Jan 9, 2026 at 12:23=E2=80=AFAM Harini T <harini.t@amd.com> wrote:
->
-> Add description clarifying that for Versal IPI mailboxes, both host and
-> remote agents must have the "msg" register region defined for successful
-> message passing. Without both, only notification-based communication
-> works.
->
-> Signed-off-by: Harini T <harini.t@amd.com>
-> ---
-> Changes in V2:
-> - The description regarding the "msg" register region requirement for Ver=
-sal IPI
-> mailboxes was moved from the conditional schema section to the main descr=
-iption
-> block at the top of the YAML file.
->
-> V1 link: https://lore.kernel.org/all/20251222044653.1757886-1-harini.t@am=
-d.com/
-> ---
->  .../bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml     | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-ma=
-ilbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mail=
-box.yaml
-> index 04d6473d666f..a5205ee5ad0f 100644
-> --- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.y=
-aml
-> +++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.y=
-aml
-> @@ -11,6 +11,17 @@ description: |
->    messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each I=
-PI
->    agent owns registers used for notification and buffers for message.
->
-> +  For Versal devices, there are two types of IPI channels:
-> +    - Buffered channels: Support message passing and require the "msg"
-> +    register region to be present on both the host and remote IPI agents=
-.
-> +    - Buffer-less channels: Support notification only and do not require=
- the
-> +    "msg" register region. For these channels, the "msg" region should b=
-e
-> +    omitted.
-> +
-> +  For message passing, both the host and remote IPI agents must define t=
-he "msg"
-> +  register region. If either agent omits the "msg" region, only notifica=
-tion
-> +  based communication is possible.
-> +
->                 +-------------------------------------+
->                 | Xilinx ZynqMP IPI Controller        |
->                 +-------------------------------------+
-> --
-> 2.43.0
->
-Applied to mailbox/for-next.
-Thanks.
+Hi Vijayanand,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on pci/next pci/for-linus xen-tip/linux-next linus/master v6.19-rc5 next-20260116]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Vijayanand-Jitta/of-Add-convenience-wrappers-for-of_map_id/20260119-021706
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260118181125.1436036-4-vijayanand.jitta%40oss.qualcomm.com
+patch subject: [PATCH v5 3/3] of: Respect #{iommu,msi}-cells in maps
+config: i386-allnoconfig (https://download.01.org/0day-ci/archive/20260119/202601190432.C5Aya7rJ-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260119/202601190432.C5Aya7rJ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601190432.C5Aya7rJ-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from include/linux/cpufreq.h:17,
+                    from kernel/sched/sched.h:31,
+                    from kernel/sched/rq-offsets.c:5:
+>> include/linux/of.h:937:1: error: expected identifier or '(' before '{' token
+     937 | {
+         | ^
+>> include/linux/of.h:934:19: warning: 'of_map_id' used but never defined
+     934 | static inline int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+         |                   ^~~~~~~~~
+   make[3]: *** [scripts/Makefile.build:182: kernel/sched/rq-offsets.s] Error 1
+   make[3]: Target 'prepare' not remade because of errors.
+   make[2]: *** [Makefile:1314: prepare0] Error 2
+   make[2]: Target 'prepare' not remade because of errors.
+   make[1]: *** [Makefile:248: __sub-make] Error 2
+   make[1]: Target 'prepare' not remade because of errors.
+   make: *** [Makefile:248: __sub-make] Error 2
+   make: Target 'prepare' not remade because of errors.
+
+
+vim +937 include/linux/of.h
+
+0384e8c6c6fa49 Pantelis Antoniou 2015-01-21  933  
+eb8f695e71ec36 Robin Murphy      2026-01-18 @934  static inline int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+eb8f695e71ec36 Robin Murphy      2026-01-18  935  			    const char *cells_name, const char *map_mask_name,
+eb8f695e71ec36 Robin Murphy      2026-01-18  936  			    struct of_map_id_arg *arg);
+2a6db719c92dbf Nipun Gupta       2018-09-10 @937  {
+2a6db719c92dbf Nipun Gupta       2018-09-10  938  	return -EINVAL;
+2a6db719c92dbf Nipun Gupta       2018-09-10  939  }
+2a6db719c92dbf Nipun Gupta       2018-09-10  940  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
