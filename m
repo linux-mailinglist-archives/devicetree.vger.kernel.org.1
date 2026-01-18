@@ -1,244 +1,230 @@
-Return-Path: <devicetree+bounces-256417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C06D391CC
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 01:03:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6906AD391DD
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 01:27:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E25E53014A2C
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 00:02:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B46463004E12
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 00:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA487500954;
-	Sun, 18 Jan 2026 00:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9693E154BE2;
+	Sun, 18 Jan 2026 00:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=genexis.eu header.i=@genexis.eu header.b="tSxpNI8v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EJwAZOfj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11022104.outbound.protection.outlook.com [52.101.66.104])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0EC50094A;
-	Sun, 18 Jan 2026 00:02:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768694578; cv=fail; b=p3x5Nnn/bstS0NEFy63A2TIpA+daJvWYqKmQRjHx85574pLhHfoGfpIoEhTlHsHOdrAxoIt864bXO+KfNSimF8VVr5UcJDFgPbh5TrRiEqLSx+ea0i/+IFw/ZCvPaMsGupWTozB/JnqEl6CPv+P6rMc6ULKL9TeWw8HaWxRsG2c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768694578; c=relaxed/simple;
-	bh=bq9nbTKgcShfoN++JGIlLoUPXseTvGLC1jSm8puM1Xg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=PMIH41rPZA8Q/9lL9Knm2gFwxMZ8Tv6QyYeR8KTCbUADKioNarzzKTLBurHj1mGYREsbI0bmd9LW5WqcOcz8KUruFx9M1StzhdC9rxBniDhWrnN7Y96dPXDgMXZK/bDKjRxPNeyphe4D1LncOxk5vB7Pljf7VKjricAmDaRimcU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=genexis.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=genexis.eu header.i=@genexis.eu header.b=tSxpNI8v; arc=fail smtp.client-ip=52.101.66.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=genexis.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XgLNvuLtwKBX5rRWMFar7TBx4XVGXvcm24g5dZoM7x2jBUUpXIX3HvHRAFRj9hBW3U1rAeYLPwQIHLiSZ8kgMV8WOC3Q/1a9BK/MnAEMJKWul/A5RMJ9LU9Gaj9KvBvmiwBfJW43mv1EIPHDp4RMHhc6uA6VzlBwU70NhpFDGxYJhEJoIFKbogSyBHyh19aMm9OlUydHE0XbNR/GXSAUYQwk/KVzJz+VvZNoV2DqBYnzx8CoRZUclDImEbMHlkCSJjX+W5ckn6EwFAgfQnhbiHVxBo1M5+/iOwrqpcqkxA26A8eoJYvWQILJzbE4BenKlEfff15F/WzAiwnoJvjziw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BouxKwaxSb4T3MyV/f1RElwlpv2k85ijiKhtoVylmQE=;
- b=rLkiFoe57gxfAMKfaPcu7SAH5b1pyUqcouBxGGLWrAPKoTg7tzILCwPL7yWuMpw7mPvA2jmEkFu3h8LcVFYUiYmvg8xOUe5/lajXC2YvNPYkNQHoFyLjq7q4YdLIE2bw9rxFcmAsTfPhgqRp1ANuF7D6htfclBWiEWlhgXljzk5cv3BHmEgdCesLAcQfhQCaF7Cre+/+iqMl3Ha6uNlB7kQD0VTJSz6Wa7UlETpQ0nuvrqNsCdibZ4aP5AKdkEXsCHaWNMUK/98EE5rqPoXrFIgyirRK0ebrlUQpjZXzfFXDqVAIkBRBubH3nPcZPadftNlGU0SoFDdQk8tcGYYOzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=genexis.eu;
- dkim=pass header.d=genexis.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=genexis.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BouxKwaxSb4T3MyV/f1RElwlpv2k85ijiKhtoVylmQE=;
- b=tSxpNI8vB+vkmkZx59XqQchSk0kNkMLJZkucAzm+aijCEpQEcidhbH++/Ojs+HJimb+MIseLj3jnKfnRoEoaKY0jHRjpPK+vD16CB8yh9crvKISMrLs3SQ4vp8yzsP7sYmJHiHUdTaSBaTY79LBGbffXG6b0uuRJyqLZC8sgPYSbbZdPWm1njQcpn+aKpi1G7R+Tr/u2xIP3TchdLHBwLfe4PpDPH1pgxJDslrg7hdxnX0PDb0nyIZZkoYm7RasWbf1aw6u+wp6DfSaFDFsBUEEivaJdfrKptMQ3kSkCpxrxPhMmiRQ0dJXk/L/0E+CzPnAE4FejoIKGTH0IVK0rWQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=genexis.eu;
-Received: from VI0PR08MB11136.eurprd08.prod.outlook.com
- (2603:10a6:800:253::11) by AS2PR08MB9390.eurprd08.prod.outlook.com
- (2603:10a6:20b:596::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.10; Sun, 18 Jan
- 2026 00:02:54 +0000
-Received: from VI0PR08MB11136.eurprd08.prod.outlook.com
- ([fe80::e3bf:c615:2af2:3093]) by VI0PR08MB11136.eurprd08.prod.outlook.com
- ([fe80::e3bf:c615:2af2:3093%5]) with mapi id 15.20.9520.005; Sun, 18 Jan 2026
- 00:02:53 +0000
-Message-ID: <dfc4585f-f342-4900-8d20-6b149954f0ab@genexis.eu>
-Date: Sun, 18 Jan 2026 01:02:51 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
- EN7581-7996 support
-To: Andrew Lunn <andrew@lunn.ch>, Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <69677256.5d0a0220.2dc5a5.fad0@mx.google.com>
- <76bbffa8-e830-4d02-a676-b494616568a2@lunn.ch>
- <6967c46a.5d0a0220.1ba90b.393c@mx.google.com>
- <9340a82a-bae8-4ef6-9484-3d2842cf34aa@lunn.ch> <aWfdY53PQPcqTpYv@lore-desk>
- <e8b48d9e-f5ba-400b-8e4a-66ea7608c9ae@lunn.ch> <aWgaHqXylN2eyS5R@lore-desk>
- <13947d52-b50d-425e-b06d-772242c75153@lunn.ch> <aWoAnwF4JhMshN1H@lore-desk>
- <aWvMhXIy5Qpniv39@lore-desk> <30f44777-776f-49b1-b2f5-e1918e8052fd@lunn.ch>
-Content-Language: en-US
-From: Benjamin Larsson <benjamin.larsson@genexis.eu>
-In-Reply-To: <30f44777-776f-49b1-b2f5-e1918e8052fd@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV2PEPF0001A334.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:401::699) To VI0PR08MB11136.eurprd08.prod.outlook.com
- (2603:10a6:800:253::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE22A3398A
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 00:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768696061; cv=none; b=jR3f70zqrZXbPgFcnjucStPqblhAD6FX6P2sucaXEPJlM/j1Ysq91Z1gGgY/Dk0rJMIQxITh8cQJs6qQhfcJFaZr50ROft1WDWHYUt0dTMqyISPiXyhTm8OJ2aosd2oISraEcsAf0V7dJtpgnIXx/ZAqLt6t9BnJQsG3f7l32II=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768696061; c=relaxed/simple;
+	bh=UC18EEQnpo5KNQ1B8+0gPq/jSkfQsmAtHCiWzpfW+1M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OQpLywWi9jRg2V67lJeMuTfbLzuwcWU2VU842iy3BOiFzkP5zfQSMp55sc0hPQWC6K/2O52bGk+4u9UMGK6DBxaLVhCzFYe05Ffv54OVNnVU4T2NzU/BEWmAjAx58HW1mHMl1QHgk4L6iaYrDDaxYvMq5p6z5VhBeL+1WiOV9c8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EJwAZOfj; arc=none smtp.client-ip=74.125.82.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-1233bb90317so2570783c88.1
+        for <devicetree@vger.kernel.org>; Sat, 17 Jan 2026 16:27:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768696059; x=1769300859; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=bfyXBIPR2trIB5PXoGw7goBrIzOi0pwZk7JsXji+6PM=;
+        b=EJwAZOfjp8QoBsvbqulEdFR0WDRpazN1rLCJpQyeqn69QtcOqYu+M8RUcx7L0ZrIJW
+         6Q1Z2FFzfrOJnc//p7QQMGCiYQPPGxMXzLL1GRzWUAZK8IsUOY4TubdaOExKFjSqS//t
+         QPpT37vPOB4xqkoZRSc2j5hWsbXkLSs0S3GY+jQAUwcsZ/o7x32pOBzI6AIENt4hhVqH
+         ypaIaPS9zVN/Ku5O48nZiMrSnSYrAQqH95CBr3byV1cjYzH40EEgMdNZInoEuo3jhrZt
+         UxSiSt+YRIC63/u9CP9SF5TIiQFx0Xjt8SRJT04dOwYfZNLg7SfRVPxCasQiiK3k+Ggs
+         eb0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768696059; x=1769300859;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bfyXBIPR2trIB5PXoGw7goBrIzOi0pwZk7JsXji+6PM=;
+        b=q3hnI7RP4Tzi0gdHnniVgftkMps1mhCdm7SzGKsSD2AAxW6eCYcE+eL+xPUeDiaUQ/
+         8So/hM7m74d9Vs7dBGDkFYiOzuPFtq5NoFCwmYmP7fXE6OqqjIxa+cTVrkWAyCCkgeyc
+         rmz+OB+HwKzMQCoYzfmtNzRKez2uM3NV2Noq+tTgZpgme/TutQdQV0iCXFQascBwkn5D
+         /NmCzwlIvVChjmG+2tu7AunqGe+VzZYVgu0s/XWDsrTryqxUvjE090RwEdqUlfzj1I4z
+         yJbmMGIW3iTzGGXvhAQdgp3KRfLrxoVFfGL8ecNLDwt/8Hw8AC/qH7gqgsBnIzlnadov
+         5cqA==
+X-Forwarded-Encrypted: i=1; AJvYcCVyZLHWbtBhjq4l5W/gLlmF91WB/Qlr3NOStRy4b4YcQrefYtjnQxt203A1171Uj2ykALu3WX9sy5E1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJ7nEs3Yq8Ow/8ZAzwqgK/yf0h78q9DBhejOOZIinsVGEyM+c0
+	qX0KaXO8+wQ7Btt+KEeLRQwE635oyfljxLI2Z/EhnlU5kxbvO3yj+8fm
+X-Gm-Gg: AY/fxX7cXb37ulGuHwpWqE53WF9C+FdspB2jdAfxFnXBJF5TjTlRyiIc+RUq+eyc8QX
+	PIgCo7KdMHeNXeCdTcQgTTAkBNFXGo4CR7jYptE5fBn2jMs5egajpV1xu2HzpWuK6uPuExcPnB8
+	LZk3Q/yLe/ahukR0896MBFTvO5l7/4/HWoImd6UuGCET4YtiWbU2KwfnKyxagrgs7Gc6mEt0baH
+	e6m84QDPHDkUrycjq+prEXzxp6XCMrQfPXGEa8GfEmjMxhBik17SzPrrRlzJpnEx993FuOR2g6x
+	GkUy4fG4NJBR0GgiaFnonV5oayv8XYFzf3MaknpC93i2AHZsTjpTJCSt0QwoP8057skv4xMxoto
+	MjvE5QGLFy8wHtICrVY0HAlHud2Ea3roPkeAHFfMbQHvkrXf1puKVFyTMIv8Vlq1yik+HUTxaI6
+	kmneSVfK3fX6hLp8UvXTFIBJxrM4ssVnLOCbT6w8+vGI5DfxxovKL+hGc+32qG
+X-Received: by 2002:a05:7300:4347:b0:2a4:3593:ccad with SMTP id 5a478bee46e88-2b664300ff3mr9615863eec.10.1768696058870;
+        Sat, 17 Jan 2026 16:27:38 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b3502c65sm7335128eec.8.2026.01.17.16.27.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Jan 2026 16:27:38 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <0ae2d448-06e3-41f6-89aa-8aa3f939d64f@roeck-us.net>
+Date: Sat, 17 Jan 2026 16:27:36 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR08MB11136:EE_|AS2PR08MB9390:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7c15086f-d7b5-4825-b43a-08de5624ed31
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?M3dlY3M4bzhEUjlycEZseFo1RU1FYUpKKzlqcExmYWR0eUZKcEVWRWtmM2lE?=
- =?utf-8?B?RWVDY2pBeC92RlJYTmJsTFJUeHVlUURHem4yVDd1M0QzNFo2NitCR2E5cnBK?=
- =?utf-8?B?Qm9acmgySklxRjE0S2lvMXdDM3lGQ1FIVFpaOGp5R3R4dWtnWDNIdmlYbE0v?=
- =?utf-8?B?R0xwQjEvZ1pDK2ZxK24ycW8yZGdBeW9wYlhpRldDRHFXbHNndURaMDBaUk9V?=
- =?utf-8?B?SzBrR2lwL3lPOXUvaXNGTFBIeSs4V0ZxN0JiV1ZRVDZyNHpiQ3N5R200Q0Rn?=
- =?utf-8?B?N2xXMkNXM09IbnVsb3dodnE0bVIxczdPeDYwclFHVUc3NlFlalRTSGdVVmxJ?=
- =?utf-8?B?NVRWbXdGekxlUDZNdXgrZm10c1VIdklqZTBoMXhEUm8ydWpobG1mdDRFSlpJ?=
- =?utf-8?B?WGpTZGZUZVdvT1htNHB2eWFyWElmTmYzRXA3cnZPQmxxdXlmVUIzTEpuR2hm?=
- =?utf-8?B?M1N2d09HUzBCUmtwVWZ5UDVWT0hvZlRNYWFPNlNWcFhKNGlsckZuQXY2SS9k?=
- =?utf-8?B?TExoTHdLSGdtL2MwRDdUSXlYSDg4ak9lTlk2UTNNZER2UWVwSFdacmw0bDlY?=
- =?utf-8?B?WEZzQTMraUFYUGR5cW5ZT1JNMTFVMW1qZnlsZUd0Sm9yMzFpa0R0Q2JLQzlt?=
- =?utf-8?B?Z3c1bHFldnhUR2t5T04zWkYxTU5LUWtlMGpnMllGTUFaWEhha2xMNUxtWnBh?=
- =?utf-8?B?Qnd2eVRSaUZpTzRHTWQ0TDBYS3RZSVE5QkpNYkZVbTFWWUVKbHRqUVZVTVFB?=
- =?utf-8?B?Q2c0L1JPazVzMTIvTEpuQTFZOE9sRkYyVm5CSDNXNWFURDE4RnlIZklmNStu?=
- =?utf-8?B?L1RQcHRjcklwZlYxSEdvT2NYYWNiKzlJY2R0WG5DL1ptWHk0UkJCQWNuOFZ5?=
- =?utf-8?B?VlpUSlZKTnNyMS8yRi9xSEtTTmhyQXo5dDlpZ2JBT1VpRmlUcEtjUXdldnZ6?=
- =?utf-8?B?b1UyNGZJVHl3ejVPVlB2NWN3R1ZzdjkyZzExYktUdm50b3QwbHBNNm1ZQjJ3?=
- =?utf-8?B?M2ZheEtpQ1ZqdzRhRVhEVjdQUzlUc0hiSG1hZlltaTZzUER2K3BoRHRGYkZI?=
- =?utf-8?B?a05OY2pTTkxaRDF2WVNPSWpYWlU3SFhLZ3laMGJ6ODN5NjljYzc0Z0Q0TVBT?=
- =?utf-8?B?cVJoKzE0QWtSQTJ1WDlpdk4wbHAvQ2MxaWV3ejE0UExpa1JsVWtaYnlsSm5j?=
- =?utf-8?B?ZVJUeWdEdXRRQ0drNlZwTDZNUjQzUGtkOENEUm1XTGZtRVRlYnc3REZhdTVh?=
- =?utf-8?B?cWtzY0FaVUFZd1VUWm1zem9VWURxNFhPZnAwZE12c2gvTTVWKzNpU1hIcWZJ?=
- =?utf-8?B?dzcrQ0huTXlnZHMyVmVlUEEyVEF6WlNOU1N4QUxPVFF0REdFU1FlclR5TjIx?=
- =?utf-8?B?VFVZa3RDRFUweUc2VGp0b0pibmsydnRpSE1RVm9FR1dIRGJtUEFQSXhKbWFX?=
- =?utf-8?B?eDNzZmp0bTVOQWhDeGgvdzJ4SlJPUkltZnloZzdsNWlsaDJHbGxTTUo3elZp?=
- =?utf-8?B?dUM5WU9pZm1kVW5UTzVCNjU2ZnVSUlFkT2sxMmRpMUZPVkJDcTY1cXlYQzNh?=
- =?utf-8?B?Nm5oOWNWdHJtdEtheUlRQnR0b3dhUmVrbWdxUUpzVHdoaC9ER0NYbEEwUDd2?=
- =?utf-8?B?czZvbXlRcklzTWFyZjZtM2o1WXVEZlR6U2hKTVZqdHRLNkh1UEZNNkJNMllQ?=
- =?utf-8?B?Vi9qZkF4bHVRSlp4MFpSOURZYW1xL1c3QmhDM2FIUFd5d1ZCbFR6bXJ1Rity?=
- =?utf-8?B?VHhyVFRGV2RVM2JxN09JZ0dFdDdabkp5RVFrMUcrVFBKUlNQYjRQWUplMUZ6?=
- =?utf-8?B?dWdMc0F1K2NHenp4M0g4YnhzWVpmS3NSaURFMkpYdFdHazJZTEVLTXRCT2Ry?=
- =?utf-8?B?Vml3MXdjUkV1M2V2czVITytjVGU5YW53dTFPM0htN0RNV2htTzBTNnUvbUFN?=
- =?utf-8?B?bXE4RC9YbjUwZkRJenNlK3lDUThma1J6VHRod1EvSmlVQWRBQXhCNjBMcG5q?=
- =?utf-8?B?dEdXNWNTTERRNDM4c2dKbXVobFQycUtGYWdaOVh4b0wyeEhHYzlFeCs3VjBK?=
- =?utf-8?B?Slc0YmwxZ2wxWERLRkpTOGFNbzUzZTlUWjVKelZteTB3YjNUWTZqdFgxbkVy?=
- =?utf-8?Q?siDQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR08MB11136.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NGVtdW0vaEpXZHdmbEoxckE2NmZhMDZlTDlveHZkVU5yOHJkdVlLYzlWSFRM?=
- =?utf-8?B?ZWtBaHdIRStPWXZTOVlEOUwrbXA0aVAyRlZkNGVUd0hQRG95ZWQwWGZtRHE0?=
- =?utf-8?B?RVh5STI2RUU4V0tGTFNaaiszbndxdU9iQVl2N0E3U0o5NHFTL0t5N1JUa2da?=
- =?utf-8?B?TitoK3dNVjA5bWtuQlplUjQ1eWZjbEJHY09EdWphVUtTaVNQOC80VGVMUVRp?=
- =?utf-8?B?WFBZc0pqaExmL2dvTHRQdlVxd1RiS08yU2hvYVNEY2NRTENBTGVlNy9qSjRP?=
- =?utf-8?B?eFRnMlp4UkJqYUdobjEwQmMxNEVSVzhjazl2RGhTcTQ3bHk0OTBUc3N6bzVD?=
- =?utf-8?B?aTFFem0wVlQ5aXI5UU1VRjRUVlN4UDZQV0dRajhwazFnMGVDdkZXSXZ6TmpH?=
- =?utf-8?B?RExTYnhNeVpxRkdtK0o1WTJ2TlR0eklsNzNibmRwNHBMeHY0SUhIOWFNV1Rt?=
- =?utf-8?B?WHNnRlpwTWFmcURkRFVleUJjSEZvRkZ2c2pDTXcyVXVwTFdnOXJ1REdwU0U4?=
- =?utf-8?B?Z0dublY4TFlCS0w4cHZhdzJ6T08xOWJ4eGs3OWlKd1YzSEgyeEtNa2tJRU5D?=
- =?utf-8?B?aHJkaHhjbVZDazNmcERLN2ROYVZ1TlkwNXZuTWFWYkNpckVTd2h2SFJNWW9B?=
- =?utf-8?B?dUVBOFU3YzcrLzJ1ZVdjNHBxYkFVZndDQmlPNmhkK2ZmZTZSYTBUbHpQUHBD?=
- =?utf-8?B?d0xUL0hnQkhSRkpuR016c29xWmdVSUpBVXFCWEllWVZPcTFmM1VKSHFjN1ZL?=
- =?utf-8?B?Tkw3UDlmcEVBVnd1a3F1MnhyK1h2cjZnRkZjUWJac2gzWllMVFhSanFHV3JR?=
- =?utf-8?B?R25Bd0RLaVNFc0pXNlR0U0NiUG4wQkV5UVRFNE51KzdBM1gxcU9nMU5OYzBa?=
- =?utf-8?B?a3FiYTRmT3FwNzJsa3I2WEg0SHBKNURxLzU4VkEweEdKZWZDZkJhV2tyWTlq?=
- =?utf-8?B?UkNpbzFoOHJCUDRQRmVhRHBJT1AwSndyeFZMZy93dUVMUkZSWm5Xei9jM2U5?=
- =?utf-8?B?V1JySHVwWWZJbnU3dGEzcy9BZmFOMjAzbmVJeXl2NDU1OXBZdTFUZXluTkVO?=
- =?utf-8?B?VkVCdkx5OS84WVBRSjhpV0xqazNVbFRMZFB0Mi9kSUZvdVRDd29NWkt1c25i?=
- =?utf-8?B?eVlPL24vY1VlZS9Pck03VXVrUnlNVWJ5bGloRjVQeno0QW5RbkRBNWhxMzRX?=
- =?utf-8?B?eGdXNlJDY2oyaXVGWU9BZW56N0hiUlBIaVhja2xrRkdtUmlvd3hIak8zaXI0?=
- =?utf-8?B?ZElkYjdHYzc2ZEdmSCtDYnVtRnBxeUYzNkZMN0NScGZzSWcvT1Vhb0JrVHkw?=
- =?utf-8?B?Tzd0cStvOVZTNDhnc25vbXZkaGxmZWtSWFJlSE53YjArNjdwTjQ1MURxK2F1?=
- =?utf-8?B?eUdLd3l4ZlRVUkxjNWdaWVRrUDNxQkhQV3huWHhSZU9BZ2tDK0JDZ3FhUndW?=
- =?utf-8?B?d1liR0hhNGxWWTIyR01TUjNXNURkUTVNcDlMTnlSRk5PRmhOUW8yN3hvVC9z?=
- =?utf-8?B?eEoyUk1POWR0c3JDL3ZveUoxMVYrM1o2OXBZclRELzFHdGpTYmFyOUU0YWZw?=
- =?utf-8?B?K2xwVmJVcXRSaUxDSVBhNHJveEttSUtFeGVzaEJsVEZUTFpSRlNZUnJJMkpw?=
- =?utf-8?B?WnRmanpyWm4vdk96OFBhN1JHNHp2ZnNjRzV2RVM5WThTSHo4ZExqNll6RlJT?=
- =?utf-8?B?UWt3Q3lIMDd0TXovYlh1VVJDbUNUYityWTVXbnFjdml6NUpYTWsxeHh4bUpj?=
- =?utf-8?B?QzFrNUVualhKelBiK25yZ0RUMEMxa0JTU1ArbDhLY3IyaGlmcUM3MEVYSnBB?=
- =?utf-8?B?Nnp3ZzJQNzRkRWRDS0g0K3NpSVBhZmN5NkMxVmVqUnZrU3BsREdDQTZOQnBh?=
- =?utf-8?B?R3lxL0R1UXh2NExjUStaNFNoL1lzYXlaWWg5ZkZZMUY0Y1k0NEc3a1FsSXJl?=
- =?utf-8?B?TUQyQXJrNEpyTjJyNk5CV1JMMVRoc05uMGVxNVdaTWU0YjdXNXlhbUxZQUNV?=
- =?utf-8?B?MGdVWFAwdlpCaEI3QytRZmNmS3ZvNUZLejRVVG8ydUxINHZWWkI3eFYzTFU4?=
- =?utf-8?B?YzVWQmtTeC9JbzFrTGdhWWhzNGJQcTFUMEFkdmFvcmMyZnZKVWJQS0lNWDlx?=
- =?utf-8?B?U2d1b0lWcXlnNTIrMzBtbDRPUmNYMUZlSjE3ajhoVGovT2JJcmg3dkZGYlBR?=
- =?utf-8?B?V0ViVFpqaFlKOVJwQ1RoUWJPdmdTVkpmZkgyeVV0cnhzaTZzRi9TTm9mQjFy?=
- =?utf-8?B?aldFanpDVWNrZVdMUUt6Nnlmc09iaEl0Yjk2dDRHZEtCS2EvV2xneWxkVGpB?=
- =?utf-8?B?cHNGTVlubjhVTWs1c2VDcUtCT1RlY1VVQ3d1OUQ5OGFlU2xvR204bnUzMWNo?=
- =?utf-8?Q?Bvztfxa17djh5Jv4=3D?=
-X-OriginatorOrg: genexis.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c15086f-d7b5-4825-b43a-08de5624ed31
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR08MB11136.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2026 00:02:53.3567
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kAY7r9Kt7+4EQopXjcP6qKV0Fi8ZgiIxM2JQn33VCGAmjTlB9dFR6OrPFSjISFGP5XU24jXYG+YDT6VFZfME3++HuewM1Ws3ONYj3SpO7Es=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB9390
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/3] hwmon: Add support for the LTC4283 Hot Swap
+ Controller
+To: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, "Rob Herring (Arm)" <robh@kernel.org>,
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+References: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251223-ltc4283-support-v5-0-1152bff59a61@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi.
-On 17/01/2026 23:18, Andrew Lunn wrote:
->> Airoha folks reported the NPU hw can't provide the PCIe Vendor/Device ID info
->> of the connected WiFi chip.
->> I guess we have the following options here:
->> - Rely on the firmware-name property as proposed in v1
->> - Access the PCIe bus from the NPU driver during probe in order to enumerate
->>    the PCIe devices and verify WiFi chip PCIe Vendor/Device ID
->> - During mt76 probe trigger the NPU fw reload if required. This approach would
->>    require adding a new callback in airoha_npu ops struct (please note I have
->>    not tested this approach and I not sure this is really doable).
-> What i'm wondering about is if the PCIe slots are hard coded in the
-> firmware.  If somebody builds a board using different slots, they
-> would then have different firmware?
+Hi Nuno,
 
-You have to follow the reference design to get Airoha support. My guess 
-is that everyone is following the reference designs thus there will only 
-ever be one pcie configuration for each SoC to (Mediatek) Wifi-card pairing.
+On 12/23/25 04:21, Nuno Sá via B4 Relay wrote:
+> This is v3 for the LTC4283 how swap controller. Main change is that I'm
+> now using the auxiliary bus for adding the GPIO device (done depending
+> on FW properties).
+> 
+> Similar to the LTC4282 device, we're clearing some fault logs in the
+> reset_history attributes.
+> 
+> Guenter, in [1] you can find some replies for some questions you had in
+> v2 that likely you don't remember anymore. Regarding the regmap story I
+> ended up adding a secong regmap for the 16 bit wide registers which
+> seems like a clean solution (if I'm not missing nothing).
+> 
 
->   Or if they used the same slots,
-> but swapped around the Ethernet and the WiFi, would it need different
-> firmware?
+Sorry for the long delay.
 
-NPU acceleration should be able to freely route packets to any port 
-connected to the PSE. On the following link you can see an illustration 
-of my current understanding of the AN7581 SoC: 
-https://github.com/merbanan/air_tools
+Actually I prefer the solution used in the lm75 driver: Map all registers
+to 16-bit registers using a regmap bus. Would that be possible ?
 
->
-> So is the firmware name a property of the board?
->
-> If the PCIe slots are actually hard coded in the NPU silicon, cannot
-> be changed, then we might have a different solution, the firmware name
-> might be placed into a .dtsi file, or even hard coded in the driver?
->
->> What do you think? Which one do you prefer?
-> I prefer to try to extract more information for the Airoha folks. What
-> actually defines the firmware? Does the slots used matter? Does it
-> matter what device goes in what slots? Is it all hard coded in
-> silicon? Is there only one true hardware design and if you do anything
-> else your board design is FUBAR, never to be supported?
->
->       Andrew
->
-The NPU is a Risc-V cpu cluster. As such it should theoretically be 
-possible to support any kind of configuration but if there only ever is 
-one reference design my guess is that is the only officially supported one.
+Other than that, I ran the series through an AI review. This is what it told me:
 
-MvH
+   Identified Violations and Observations:
 
-Benjamin Larsson
+    * Alphabetical Order of Includes: In drivers/hwmon/ltc4283.c, the include files are not strictly in alphabetical order.
+        * #include <linux/hwmon.h> is listed before #include <linux/hwmon-sysfs.h>.
+
+-> Actually, linux/hwmon-sysfs.h> does not have to be included in the first place.
+
+        * According to strict ASCII sorting (e.g., LC_ALL=C sort), hwmon-sysfs.h should come first because the hyphen - (ASCII 45) precedes the dot . (ASCII 46).
+    * Documentation Discrepancy: The file Documentation/hwmon/ltc4283.rst includes a section for "Addresses scanned" listing I2C addresses 0x10-0x17 and 0x20-0x2E.
+        * Inaccuracy: The driver does not implement a .detect function, meaning no I2C address scanning is actually performed.
+        * Guideline Violation: The submitting-patches.rst guideline states that only specific I2C addresses (0x18-0x1f, 0x28-0x2f, etc.) shall be probed. The addresses listed in the documentation (specifically 0x10-0x17) are outside of this
+          approved range. While the driver doesn't probe, the documentation misleadingly suggests it does so on non-approved addresses.
+
+-> Please fix.
+
+Thanks,
+Guenter
+
+> [1]: https://lore.kernel.org/linux-hwmon/0765a0b89779331c62a3f136ef030f7f2f40ea47.camel@gmail.com/
+> [2]: https://lore.kernel.org/linux-iio/cover.1761588465.git.geert+renesas@glider.be/
+> 
+> ---
+> Changes in v5:
+> - Patch 2:
+>    * Added a secong regmap for the 16bit wide registers;
+>    * Add default value for rsense so that we can probe without FW
+>      properties;
+>    * Make sure to give the right file permissions to the reset_history
+>      attrs.
+> - Patch 3:
+>    * Make sure to get the right regmap (given that the device now has 2);
+>    * Add error handling for getting the regmap.
+> - Link to v4: https://lore.kernel.org/r/20251204-ltc4283-support-v4-0-db0197fd7984@analog.com
+> 
+> ---
+> Nuno Sá (3):
+>        dt-bindings: hwmon: Document the LTC4283 Swap Controller
+>        hwmon: ltc4283: Add support for the LTC4283 Swap Controller
+>        gpio: gpio-ltc4283: Add support for the LTC4283 Swap Controller
+> 
+>   .../devicetree/bindings/hwmon/adi,ltc4283.yaml     |  272 +++
+>   Documentation/hwmon/index.rst                      |    1 +
+>   Documentation/hwmon/ltc4283.rst                    |  266 +++
+>   MAINTAINERS                                        |    9 +
+>   drivers/gpio/Kconfig                               |   15 +
+>   drivers/gpio/Makefile                              |    1 +
+>   drivers/gpio/gpio-ltc4283.c                        |  218 +++
+>   drivers/hwmon/Kconfig                              |   12 +
+>   drivers/hwmon/Makefile                             |    1 +
+>   drivers/hwmon/ltc4283.c                            | 1766 ++++++++++++++++++++
+>   10 files changed, 2561 insertions(+)
+> ---
+> base-commit: bc04acf4aeca588496124a6cf54bfce3db327039
+> change-id: 20250812-ltc4283-support-27c8c4e69c6b
+> --
+> 
+> Thanks!
+> - Nuno Sá
+> 
+> 
+> 
 
 
