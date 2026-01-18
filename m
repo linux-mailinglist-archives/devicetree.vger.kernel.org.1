@@ -1,132 +1,116 @@
-Return-Path: <devicetree+bounces-256452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC60D3935E
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 09:29:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7ABAD3936E
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 09:59:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CFF483008D66
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 08:29:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B2FDA300E172
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 08:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C557F27FB1F;
-	Sun, 18 Jan 2026 08:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D98A284665;
+	Sun, 18 Jan 2026 08:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QL3OethW"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="aNEhv4wk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AC6C27FD75;
-	Sun, 18 Jan 2026 08:29:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AF7242D67
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 08:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768724992; cv=none; b=k7+8TfA/WQVGq3S23+qkFQMCsx7h0y7LAFnTNRAjgbqhELFKS94jIsOziP6GI/RU1vhP42EZcEMqJ0MaEAPWaj7ZQKHdcRy9ya9+wc+CQTnam+oGTWXWg1EbpElq1TFwb72ZbCZ3EZA+ovB4UEIHMPT8LM9TaujaGvst3ApLv0Y=
+	t=1768726752; cv=none; b=ePHuAyqGZDA2mpA6r4vLEgallhKP2HeaTbwoQJT2rPnlaLvNzb0oRKZmrdNWnfP/DjHiE1XAAGl+dGRwZ1ZhDm31C9Iy7Iq5lswux8g/L1AVMLGdx24mz7BV8j5Y2Ebum9M5ir50tjVxN/S9N6+V59+Sw5Eeuf6NIUiGdKncRB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768724992; c=relaxed/simple;
-	bh=fW3uY+SpcU3DDDjX7rKHmlXchpeeczq5hy4+z/bCzmE=;
+	s=arc-20240116; t=1768726752; c=relaxed/simple;
+	bh=2wt4FXitjx7He11KhFEMJjihW+3VNXLwrK+DkNf2WDI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sWYX50VAylpVNFMWczzVr5Pc3zONLgrJKiAgHVBJ9MKXJJWMr1ebo+ubiLPpea9zseGS4hHgwxiEjd0LcqsMHrTKTA5afnZuZSZJ0L6GsHFxmI/R0oeXmEhuntnKlEl54Z0dQ9cxDXrcZZT4nvxi7F4j+ss4kIV6HKmQ5T1QpQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QL3OethW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 7ED7546F;
-	Sun, 18 Jan 2026 09:29:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1768724958;
-	bh=fW3uY+SpcU3DDDjX7rKHmlXchpeeczq5hy4+z/bCzmE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QL3OethWl8ed+ZqtIAOZdjlIC+Hc5kPO+jFogQvXtkjLEOM6nfZtr1slXNZ0AEu3I
-	 HZjitx7BSqOhIKM3AHJhDghDac+YG8p8RTnRxXUCRE4/eJmqqgcyqLnmMAdq4wTxsN
-	 gCsiI/8E7UVcl34ezH6oUmZM+Q9QoKyNBhVzQH5E=
-Date: Sun, 18 Jan 2026 10:29:27 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=J94sb2Qs5CsnKQh4lvuBkhiwhL1+sQjF44RxmvYal/qg7CS3OjNqJGqvJORIcnjBNFFJi28F0JoQmJi1lq4wbKDxMrEj7R36sZATLVqKvpVqtShbvNVFM/CEBlCUrFXK+8NPGeLS9q3NhmC5NXih5HY+QvIlNyehS+K26FTKun8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=aNEhv4wk; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=fanY
+	txmRuuzXQJ2K5eQ0PcI2YHGrm1FfDB1ug+eYXF8=; b=aNEhv4wkxZm/KQTFbLjJ
+	vIQB4JvMZCwqcxYMzOiJ/0/P0zCMoUZxo8NfXTv0WD0DtyX0XZZpPoP5JkD3Og43
+	K3d8sN92HzqFQhXUsapi3z17Dw3wXGpUW23ZYRMpLHcoF96l/ssolDetvpnPweza
+	blLpOqnQ7ycaqgJ9KvuyTd0W9Xb47Odah5YZOd7FRCLyXymS5bGNynqu8wzFbADz
+	dA4ZWb9tP6ldrDGugVmUhWskAIHOQ7O1eM8iu2TnWkjynCFWoQFLKATAQI+eNk1E
+	TnTM759vIjCMw3xSR67OWkPyPoga9nU6KCD9kD1eC/zrZWm0gzBu2jYJFZk52Q6h
+	MA==
+Received: (qmail 3539292 invoked from network); 18 Jan 2026 09:59:00 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Jan 2026 09:59:00 +0100
+X-UD-Smtp-Session: l3s3148p1@WZsKyaVIZIQujnst
+Date: Sun, 18 Jan 2026 09:58:59 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Changhuang Liang <changhuang.liang@starfivetech.com>,
-	Rishikesh Donadkar <r-donadkar@ti.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 0/2] media: staging: Drop StarFive JH7110 Camera
- Subsystem
-Message-ID: <20260118082927.GB20659@pendragon.ideasonboard.com>
-References: <20260116-drop-starfive-camss-v2-0-34df57025921@ideasonboard.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-db: add QSPI
+ node including NOR flash
+Message-ID: <aWyg0wP89BCaN1tN@shikoro>
+References: <20260116114852.52948-2-wsa+renesas@sang-engineering.com>
+ <874ioltu94.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="g9immr4DKGlvpLxW"
 Content-Disposition: inline
-In-Reply-To: <20260116-drop-starfive-camss-v2-0-34df57025921@ideasonboard.com>
+In-Reply-To: <874ioltu94.fsf@bootlin.com>
 
-On Fri, Jan 16, 2026 at 12:36:57PM +0530, Jai Luthra wrote:
-> StarFive no longer plans to maintain or develop the JH7110 camera
-> subsystem for destaging, as discussed in below thread:
-> 
-> https://lore.kernel.org/all/ZQ0PR01MB13024A92926C415C187D2C18F29F2@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn/
-> 
-> So drop the driver and bindings from staging. This came up while adding
-> support for streams APIs in Cadence CSI2RX driver, which is used both by
-> StarFive and TI in their capture pipelines:
-> 
-> https://lore.kernel.org/all/20260114130522.GE25101@pendragon.ideasonboard.com/
-> 
-> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+--g9immr4DKGlvpLxW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Mauro, Hans, can you pick this up ? There's a comment from Krzysztof on
-patch 1/2 asking for the DT bindings removal to be applied on top of the
-driver removal (just swapping the order between patches 1/2 and 2/2).
 
-> ---
-> Changes in v2:
-> - Add Changhuang's Ack on PATCH 1
-> - Fix PATCH 2 to also drop reference to the starfive camss documentation
->   in v4l-drivers.rst
-> - Link to v1: https://lore.kernel.org/r/20260115-drop-starfive-camss-v1-0-27550e7a9815@ideasonboard.com
-> 
-> ---
-> Jai Luthra (2):
->       media: dt-bindings: Drop starfive,jh7110-camss from staging
->       media: staging: Drop starfive-camss from staging
-> 
->  Documentation/admin-guide/media/starfive_camss.rst |  72 ---
->  .../admin-guide/media/starfive_camss_graph.dot     |  12 -
->  Documentation/admin-guide/media/v4l-drivers.rst    |   1 -
->  .../bindings/media/starfive,jh7110-camss.yaml      | 180 ------
->  MAINTAINERS                                        |   9 -
->  drivers/staging/media/Kconfig                      |   2 -
->  drivers/staging/media/Makefile                     |   1 -
->  drivers/staging/media/starfive/Kconfig             |   5 -
->  drivers/staging/media/starfive/Makefile            |   2 -
->  drivers/staging/media/starfive/camss/Kconfig       |  18 -
->  drivers/staging/media/starfive/camss/Makefile      |  13 -
->  drivers/staging/media/starfive/camss/TODO.txt      |   4 -
->  drivers/staging/media/starfive/camss/stf-camss.c   | 438 ---------------
->  drivers/staging/media/starfive/camss/stf-camss.h   | 134 -----
->  drivers/staging/media/starfive/camss/stf-capture.c | 605 ---------------------
->  drivers/staging/media/starfive/camss/stf-capture.h |  86 ---
->  .../staging/media/starfive/camss/stf-isp-hw-ops.c  | 445 ---------------
->  drivers/staging/media/starfive/camss/stf-isp.c     | 379 -------------
->  drivers/staging/media/starfive/camss/stf-isp.h     | 428 ---------------
->  drivers/staging/media/starfive/camss/stf-video.c   | 570 -------------------
->  drivers/staging/media/starfive/camss/stf-video.h   | 100 ----
->  21 files changed, 3504 deletions(-)
-> ---
-> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
-> change-id: 20260115-drop-starfive-camss-2b9ff7cf3321
+> > The tuning values used came from Miquel and work here as well. An
+> > interested party may try to tune this further but I will go the safe
+> > route here.
+>=20
+> In case you feel adventurous, this paragraph made me remember that I had
+> noted down some slightly more aggressive values related to the DB board
+> (which I don't have) in some of my notes. A bit of digging resurrected
+> the following:
+>=20
+>      tshsl-ns =3D <30>;
+>      tsd2d-ns =3D <3>;
+>      tchsh-ns =3D <3>;
+>      tslch-ns =3D <3>;
 
--- 
-Regards,
+Yes, these values can be found in the BSP and could be deduced from the
+SPI-NOR datasheet, too. However, I got -ETIMEDOUT with these. Didn't
+investigate further (and no time to do so).
 
-Laurent Pinchart
+
+--g9immr4DKGlvpLxW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmlsoM8ACgkQFA3kzBSg
+KbZtTw//aq9SAageg8A9YN/ePHvDnnWqA3UMyvR4lu+uV2ZD2g9Hdd8dRlsGZiV1
+sf98povhfW6oMYV7u0liJgPEEE9wdda4bkr6+VTtHSxrQ7koODHrzt1U3HGXisdY
+0p7AdjJ9eBmi7jUYGYDBVvv7I3Dsnrvg5BiXHCuN/mrLSDkb/k2yytUJbvV3WiBP
+rBHEgnrB5r0c37GSvCHuYFhDbntLMAtod7FkeAZLrO1L9oXsiRpfpWcyM0AD2DhW
+VMsCNk4AqKY/FentUzSJ4A4lrcldYUvWP6EXP9+3Wpw8GjVDhhNdeevhKreK1M6n
+T/jBWO8URIh7gsRkLAOKj5WLb/G/zBKXh600i5n8IOZaE9swwWkwAXkfoK9XpnYk
+CtMTvFaZtp46nJfN9AS6UIj6J/XHqMJJyDMFuRPzIiMzx7OZzLOi8usHHh3tPg9z
+qdAmImCcpOqAi+ZNBPKnKKfj467nviXYoN4cG/EWEQa4gnHwzzoDMhzdoM4J6rvn
+6Ujsawk58ZpA7YXflBntSZfXLhHxZZNGm14vD2uKn29LgmtNfIIg3xjncW2f51Jp
+QV8G7BHpQ9DFdmcmHUAXdx7j0fHSRmQ6XlmxXRf8x+iEAlBS5i1TR/G4xSNvc0yV
+X8w20rfXYjHZs4x4UWANU6Lg1Ahpdra2thKAq1+nGwpomEPzeHE=
+=CZuo
+-----END PGP SIGNATURE-----
+
+--g9immr4DKGlvpLxW--
 
