@@ -1,182 +1,87 @@
-Return-Path: <devicetree+bounces-256597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADA4AD39A71
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 23:19:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5A9CD39A75
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 23:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 942013007EFD
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 22:19:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4D2AC300509E
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 22:19:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322722C21F6;
-	Sun, 18 Jan 2026 22:19:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A532D2C21F6;
+	Sun, 18 Jan 2026 22:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+PbVGY6"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="vWfPP1/S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F068274FD0
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 22:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EB72C0F79
+	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 22:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768774762; cv=none; b=mrbVGXTIZJkilPeWbLyXNXXqnNySTWOSGb30NVet9zELWMB5+QS6ZkO6q1DypraFxII3taKKalfnOJ0bnqcf80Zwlqor9A7YOg7f+6SoCQOM5bzSzKLwyeUUmPukY3z2zvaCAslcDwmU9Y3C2LVk8ymO7FX9kqoFCop7psPwrtM=
+	t=1768774778; cv=none; b=dg3QU979rWShkAJOpxfc5DSi/HTu8NK0ISktBxn9GXlI2zz/STfxQNu0fe1Woy9cigaLi9XTivH6AjfbODYdtl48rXXYPiEFJs5z6GcLDCx1z7fuOvp9B89a6xy5+e+PBiUQhHbxjbIX0+k05Eq7urpo++tuAS8Rg8SliSvLqGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768774762; c=relaxed/simple;
-	bh=GitHHN55bP3Z4V21wbsged0zJmuhu+nzwlOmja3RnZg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PTR6WPfxURZvCYmsfYWC2ePYzvtfuPzpcCRZhN0ThvPro5rynqJ4HxmDTLJAHHo8rxCXB7xXffdaMLKTbAlmpezM8l/Ci5cEiLQ7VWG6+EEfceRAABQ4Qkj3u2r5tfUFE1jrp+L0XAJZ096ATHyVzfCeGNd/Rid1W3cXbR6dw6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+PbVGY6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5213C19425
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 22:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768774761;
-	bh=GitHHN55bP3Z4V21wbsged0zJmuhu+nzwlOmja3RnZg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=P+PbVGY6wyQ+DXIVvI6TnoL2/Fg5DPML01L50fh/oVt62XxZyVY2bfGpVdJ0zZ7rH
-	 fSP8gd0yNjZ5OD9ile+eKD+e32roRN8JwXDZ25d0Bwr3YgVgS4YRwm4dcZQtH5S8E7
-	 fFwJ0maQDfFuuIYHnycbvfZKlQjqbkeZFnk20iozJy3Ce5U22yyv/chpdsT722NjsQ
-	 ScZKB/Kkyr52Y+2QLHaHvELf0iDvEISiE0xN2aiUpSL3fTAecYngTD5kIITB0uL0BB
-	 rkRuRncqJkbquctqy1qNh6BQy6X7/y5v+6gV8MKFYiwbanR1GZ6mQ0XgL8+uG4Cr6o
-	 dTp2ibrkvdxow==
-Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-6446704997cso3095769d50.2
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 14:19:21 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWhaXQ4rCEgDF+fjoj6QB+gPezlaG4f2wjVEp2V1ljvSNnTEeO1RrTTrwwCvRE7TsLuIYSoFhUwlC8e@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYAYNd4SgJX2a6l7R5rbwkiAsJHPGJIJJeFWSt07ycEtaSMxz4
-	1dtYH8wRUnldg9tPtEd1Hmf7hd1DlwqBah/duDoNsrEBnyxt/ywCyuZiKzrd5jQME/xqj8cSAyM
-	E52KLuf1UCaKxsNblUwyg2sruhqmwlJM=
-X-Received: by 2002:a05:690e:1349:b0:640:caa5:57be with SMTP id
- 956f58d0204a3-64916499c54mr7608440d50.28.1768774761075; Sun, 18 Jan 2026
- 14:19:21 -0800 (PST)
+	s=arc-20240116; t=1768774778; c=relaxed/simple;
+	bh=cblX9jkR3kK0JXIO//SSgI0CBfwe8fL4kkNcudepMJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ko1VcM5WDd/6SS3wpDRN/459OfNHnx5nOgtrJgs5+phtZT+MrbyiBFgSEpjKasJaxE0vIde5sMa13YoqWfox90jczf2IJRKgTJCdtNgCTI3THisibfj2qoyQdAPdyTefCZyIoF+EaE+xqazuNp4qqHHokLKxPfoNui+jIPWvmZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=vWfPP1/S; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1768774766; bh=cblX9jkR3kK0JXIO//SSgI0CBfwe8fL4kkNcudepMJ0=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=vWfPP1/SdkG+4FnYFWL3VHCXHf0WbRvFr0gkr4FmMYgTMMeYrV5DqPKla2B8NoyhX
+	 co7F8vLiA0d5+MnmNKNsMjxB+WCQfwrfg5LQ2F6TWKMb6qvq2iH2JZlEcOBDxXXSdQ
+	 OMfMiulyVYt/DMdAXF2GYVsphNhOlAN+IBakeXrw=
+Date: Sun, 18 Jan 2026 23:19:26 +0100
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: Luis Garcia <git@luigi311.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Olivier Benjamin <olivier.benjamin@bootlin.com>
+Subject: Re: [PATCH 0/1] Fix imx258 variant on pinephone pro
+Message-ID: <hu2f4zd3qx75h3lj5sjinnj7lwcacpy4ywzbrp53tuch2xe4fd@fzkbs2q3lpbq>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	Luis Garcia <git@luigi311.com>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Olivier Benjamin <olivier.benjamin@bootlin.com>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20260118214620.3319040-1-git@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260114-debug_bus-v2-0-5475c7841569@foss.st.com> <20260114-debug_bus-v2-11-5475c7841569@foss.st.com>
-In-Reply-To: <20260114-debug_bus-v2-11-5475c7841569@foss.st.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Sun, 18 Jan 2026 23:19:10 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmW5_xDnA9UtKynaSzdM8aC439sB_n6suFmLY1TJ0cYbg@mail.gmail.com>
-X-Gm-Features: AZwV_QgYRBdpelcux3ZwYKaetoDVqJ1ncGRc8cQV81PLPvRQ_gfit3YePhm3xx0
-Message-ID: <CAD++jLmW5_xDnA9UtKynaSzdM8aC439sB_n6suFmLY1TJ0cYbg@mail.gmail.com>
-Subject: Re: [PATCH v2 11/11] pinctrl: stm32: add firewall checks before
- probing the HDP driver
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@linaro.org>, 
-	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>, 
-	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	jens.wiklander@linaro.org, coresight@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260118214620.3319040-1-git@luigi311.com>
 
-Hi Gatien,
+Hi Luis,
 
-thanks for your patch!
+On Sun, Jan 18, 2026 at 02:46:19PM -0700, Luis Garcia wrote:
+> imx258 had the driver updated a while back and it introduced
+> two variants, the imx258 and imx258-pdaf. The pinephone pro
+> is using the pdaf variant so this switches it to the correct
+> variant and eliminates the pdaf pixels from the sensor output
+> resulting in a much cleaner image.
 
-On Wed, Jan 14, 2026 at 11:31=E2=80=AFAM Gatien Chevallier
-<gatien.chevallier@foss.st.com> wrote:
+You don't need a cover letter for a single patch. Also this
+description should be in the patch itself.
 
-> Because the HDP peripheral both depends on debug and firewall
-> configuration, when CONFIG_STM32_FIREWALL is present, use the
-> stm32 firewall framework to be able to check these configuration against
-> the relevant controllers.
->
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-(...)
-> +#include <linux/bus/stm32_firewall_device.h>
->  #include <linux/clk.h>
->  #include <linux/gpio/driver.h>
->  #include <linux/gpio/generic.h>
-> @@ -605,10 +606,50 @@ MODULE_DEVICE_TABLE(of, stm32_hdp_of_match);
->  static int stm32_hdp_probe(struct platform_device *pdev)
->  {
->         struct gpio_generic_chip_config config;
-> +       struct stm32_firewall *firewall =3D NULL;
->         struct device *dev =3D &pdev->dev;
->         struct stm32_hdp *hdp;
-> +       int nb_firewall;
->         u8 version;
->         int err;
-> +       int i;
-> +
-> +       nb_firewall =3D of_count_phandle_with_args(pdev->dev.of_node, "ac=
-cess-controllers",
-> +                                                "#access-controller-cell=
-s");
-> +       if (IS_ENABLED(CONFIG_STM32_FIREWALL) && nb_firewall !=3D -ENOENT=
-) {
-> +               if (nb_firewall <=3D 0)
-> +                       return -EINVAL;
-> +
-> +               firewall =3D devm_kcalloc(dev, nb_firewall, sizeof(*firew=
-all), GFP_KERNEL);
-> +               if (!firewall)
-> +                       return -ENOMEM;
-> +
-> +               /* Get stm32 firewall information */
-> +               err =3D stm32_firewall_get_firewall(dev->of_node, firewal=
-l, nb_firewall);
-> +               if (err)
-> +                       return dev_err_probe(dev, err, "Failed to get fir=
-ewall controller\n");
-> +
-> +               for (i =3D 0; i < nb_firewall; i++) {
-> +                       err =3D stm32_firewall_grant_access_by_id(firewal=
-l + i,
-> +                                                               firewall[=
-i].firewall_id);
-> +                       if (err) {
-> +                               while (i) {
-> +                                       u32 id;
-> +
-> +                                       i--;
-> +                                       id =3D firewall[i].firewall_id;
-> +                                       stm32_firewall_release_access_by_=
-id(firewall + i, id);
-> +                               }
-> +                               if (err =3D=3D -EACCES) {
-> +                                       dev_info(dev, "No firewall access=
-\n");
-> +                                       return -ENODEV;
-> +                               }
-> +
-> +                               return dev_err_probe(dev, err, "Error che=
-cking firewall access\n");
-> +                       }
-> +               }
-> +       }
+Thank you,
+	o.
 
-Doesn't this whole piece of code look very generic?
-
-Point out to me if something is pin control-specific about it?
-
-Can't we just add a helper function such as
-
-stm32_firewall_of_check_access(struct device *dev)
-{
-    struct stm32_firewall *firewall =3D NULL;
-    int nb_firewall;
-
-    nb_firewall =3D of_count_phandle_with_args(pdev->dev.of_node,
-"access-controllers",
-                                        "#access-controller-cells");
-(...)
-}
-
-Then place the prototype for this in <linux/bus/stm32_firewall_device.h>.
-
-I think this will be helpful for the next driver that needs to check
-firewall access
-before continuing.
-
-Yours,
-Linus Walleij
+> Luis Garcia (1):
+>   arm64: dts: rockchip: Fix imx258 variant on pinephone pro
+> 
+>  arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> -- 
+> 2.50.1
+> 
 
