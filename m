@@ -1,171 +1,169 @@
-Return-Path: <devicetree+bounces-256557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB2ABD39817
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 17:48:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B344D3981D
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 17:50:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB1783008FBE
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 16:48:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8305430052D7
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jan 2026 16:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA562253A1;
-	Sun, 18 Jan 2026 16:48:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZmroWXG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7FD1F8755;
+	Sun, 18 Jan 2026 16:50:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8260221FB6
-	for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 16:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711AB7260A;
+	Sun, 18 Jan 2026 16:50:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768754894; cv=none; b=RmKu4Jn+4o5SolxxWGAExIsIX1UZVdSA2z8BbZbGHNziMNhA8RSSkodKQ44MFWRJdq0cIdLtIthVeL1iREftsjrijy3Ezvug/TRu6KwCspJfiMkLuxUmjg9JYaXkGZgccmg7X/Iau6JYcO7wJz+2h0cvBozKxV86cjZdcOVTdc4=
+	t=1768755046; cv=none; b=CSruz3RB+0P9BGJWxemAnq+7P0BCx6ejnDUW4AW58KkiJCCe1Pcd+FbqvBf0DxSzsSEQMkdEe5gXwEfJjUpG820y16JFfYc3UVrxnwW9qLeWC7myGKIMO1mPISNbSrIHiSvE2uRMw2jL+hucHo44kp3TZzeG6Eerr0hFBfdfblM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768754894; c=relaxed/simple;
-	bh=ObBNgYmI7km2QNXCjpehnGoXCANLUlsMEgFWywznUhs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M8gPOBqoWOMyVgrjCuuQw3W6U7OOxRjy9d8XPjB+xOkthY38OHHZlNhdz1bySR/AL68H1jr3uVIME1VdfHsQgQlL+b7ETNoSPdP+ukUsDHUPqudUy6YqMYoONxVdVTnzmeNtSKGmVdOGh7FqDnEmZvsPfZ4lOeU34luRngr/47E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZmroWXG; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2a0f3f74587so22509965ad.2
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 08:48:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768754893; x=1769359693; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X0twtbtNGNQIp4HwkKCyjxkTPom6wsw2QrSPQrsy5co=;
-        b=QZmroWXGE2ruM9WWPVMd5Mce81h1MzxLNb1GU2Y88ANcqBMiCbfAvudkzw5F6thdSA
-         vTpwCuadlDcbqtWRwRws1YPx8LEChH0aSro75GGoOrdZGv6IgERwWpt327lE99aPAKnb
-         VbEshIC/mA3s9Wih+XOrIitoKa8xUL19DBZhJFE06S6Av0lxu5Gr6NzXtc6l5UkcV4Fm
-         YmenxwTZ09K1BfQktlGa4wcCibAv8oBNKOk1OxIhchOsN+bFQvQxXjVvcC2nyY5CJFVW
-         rT61hvktJ6wuyGTNZRFff/1bdHhbtkT24b/1DV8ptMuqvhTt1KgD3jgIxM+J8cVIEEoB
-         b1bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768754893; x=1769359693;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X0twtbtNGNQIp4HwkKCyjxkTPom6wsw2QrSPQrsy5co=;
-        b=FKmjwKvWW04UgnA35foBe3NH7EClkTxa9/hHKMTlNjHk/nAGCbU4Xx6Ma/a9MCo851
-         HAWGq2Jxw3tFpEvEn5WB+XfVWIjlM2IFv/CvmIFF/V6/X6T9nHUE2AgY5iscG4GIo9jA
-         rOHo2s4vG3tMQSK2POOfuelml93rLcwk7O4MApN7zPnYny7fNqRyJsyX9wNiZ2DjnExy
-         XhNKHGnT1sZ7gy/Thz/gf9GOljef7zN1whySwXBEi7Jy30B5QQ7TFZP8I8IAkklYajrl
-         f5Gqo176oB4VkhxinhCxvzHztLHSF8xdQ9dLQE8H/xpoYI61Um+FZGgTla1tVpASnpeZ
-         lHnw==
-X-Forwarded-Encrypted: i=1; AJvYcCXCSRrD+PIV1oLrzjA+ksrMQdNmQQMRW+H8qMUOO7i1S1uoec3ZUoqxTEPN5eVVSEAIFjm4ZOQCgf4i@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFf333PGN9/7GIis9h4tsrZd5aSlNcTmIjALcvDWFULuJdAR7k
-	r6TtAResUPLWqiI4ZwpyDoZnAuBSfZm3jociAHnOge6CuiZ1cI8U+38rxaxQnw==
-X-Gm-Gg: AY/fxX7c6M3obEyOdd9zdle0atWexfmFfuttMkYf0atdTDrhqKLKmp00c8dUkibO0aE
-	+gh4wJSDeavsw+Dy/PHZsCZRTupv+++CdFKVI+gnS6PQnckwSQA2UhTLpd6gUq2FsJsB4TTMhqo
-	Ri+pwfrUVuMwq+g6ZGnH2lQkGLEtrAgOxCYrlaFo3vL/8lwCFG8lV9k2+9hnQYYgadfGBh3sJFh
-	gpM4QOgsPQabEcbndW3mAV52v5Ts0BttGqFwPa7hHLYDczQEIZIKiYek5op3fDOdudzVxv3fuOS
-	mcQ6LEZRI5S9GqAIAY/y4jYOzCHwFpgQ6t1Y7ypF0zLG6Ym15m3Szh5hEFkEtgR0kBeOc+e8tRz
-	ZccALlq6b6qS1CWQ5Ni1SAFLlhwOmZUFLVPiyIpgokl1aU4PfBWCTqJyjVBv0JPJH4AkJIGf/yA
-	qInhxTVe9hYxgImzsd6aW3LtBax2mmATrqXcM=
-X-Received: by 2002:a17:903:124d:b0:29e:76b8:41e5 with SMTP id d9443c01a7336-2a7175be718mr92063215ad.30.1768754892810;
-        Sun, 18 Jan 2026 08:48:12 -0800 (PST)
-Received: from [192.168.31.239] ([167.103.54.94])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7193dbbf5sm70904105ad.47.2026.01.18.08.48.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jan 2026 08:48:12 -0800 (PST)
-Message-ID: <95a49665-f379-48a7-a2b5-d288cdfdc0a8@gmail.com>
-Date: Sun, 18 Jan 2026 22:18:32 +0530
+	s=arc-20240116; t=1768755046; c=relaxed/simple;
+	bh=mAvXqrqHoflS2f2r1qM9gWkmKOHE/zAy+CI12Mr9BxI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RaUBYQ0OILrLFr/1bIj7J4NDnrhaPsfFT/U7PKbs1GgDNC0aa1+iSMgFm+Tny0dMDDupw1Yst7Db2QxZQBZNfct8ScmpvmuAMteSPIxagQbv3aUARg306x2S8rNRVNJMRMnGuje6FRHjZEzF6FXztfroboS9B1VIKbRBu+6Yds8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dvKMy6qdtz9ty6;
+	Sun, 18 Jan 2026 17:50:38 +0100 (CET)
+From: Lukas Timmermann <linux@timmermann.space>
+To: lee@kernel.org,
+	pavel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@timmermann.space
+Subject: [PATCH v14 0/2] Support for Osram as3668 LED driver
+Date: Sun, 18 Jan 2026 17:50:08 +0100
+Message-ID: <20260118165010.902086-1-linux@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: backlight: gpio-backlight: allow
- multiple GPIOs
-To: Daniel Thompson <daniel@riscstar.com>
-Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
- pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260105085120.230862-1-tessolveupstream@gmail.com>
- <20260105085120.230862-2-tessolveupstream@gmail.com>
- <aVuKdAyXfWLs-WJI@aspen.lan> <c182df66-8503-49cf-8d1d-7da17214b843@gmail.com>
- <aWe7_hFpmO0E2sJe@aspen.lan>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <aWe7_hFpmO0E2sJe@aspen.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+This patch adds basic support for the as3668 driver IC via I2C interface. 
+The IC is capable of driving four individual LEDs up to 25.5mA per 
+channel. Hardware blinking would be theoretically possible, but this chip
+only supports a few set on/off-delays which makes using that feature 
+unfeasable, therefore my driver doesn't offer that capability. 
+It's intended applications is in mobile devices such as phones, 
+tablets and cameras. This driver was tested and is working on 
+a google-manta which is running postmarketOS with a near mainline kernel.
+Also there is a patch in the linux mailing list for that device:
+https://lore.kernel.org/all/20251120201958.1970828-1-linux@timmermann.space/
+The register names and values are taken from the official datasheet which
+can be found here:
+https://www.mouser.com/datasheet/2/588/AS3668_DS000196_1-00-1512816.pdf
 
+Please note: This is my first suggested patch to the kernel. 
+I've read the docs in regards to the led subsystem, 
+coding style and submission of patches, 
+but I'm still a bit unsure about the general workflow. 
 
-On 14-01-2026 21:23, Daniel Thompson wrote:
-> On Tue, Jan 13, 2026 at 10:15:53AM +0530, tessolveupstream@gmail.com wrote:
->>
->>
->> On 05-01-2026 15:25, Daniel Thompson wrote:
->>> On Mon, Jan 05, 2026 at 02:21:19PM +0530, Sudarshan Shetty wrote:
->>>> Update the gpio-backlight binding to support configurations that require
->>>> more than one GPIO for enabling/disabling the backlight.
->>>>
->>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
->>>> ---
->>>>  .../bindings/leds/backlight/gpio-backlight.yaml      | 12 +++++++++++-
->>>>  1 file changed, 11 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
->>>> index 584030b6b0b9..1483ce4a3480 100644
->>>> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
->>>> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
->>>> @@ -17,7 +17,8 @@ properties:
->>>>
->>>>    gpios:
->>>>      description: The gpio that is used for enabling/disabling the backlight.
->>>> -    maxItems: 1
->>>> +    minItems: 1
->>>> +    maxItems: 2
->>>
->>> Why 2?
->>>
->>
->> In the current design, the LVDS panel has a single backlight that
->> is controlled by two GPIOs. Initially, It described as two separate
->> backlight devices using the same gpio-backlight driver, since the
->> existing driver supports only one GPIO per instance.
->>
->> So the maintainer suggested to extend the gpio-backlight driver
->> and bindings to support multiple GPIOs.
->> https://lore.kernel.org/all/q63bdon55app4gb2il5e7skyc6z2amcnaiqbqlhen7arkxphtb@3jejbelji2ti/
-> 
-> Right. So, once we support multiple GPIOs then why limit it to 2?
-> 
+I will try my best.
 
-Okay, got the point. I'm removing the maxItems constraint entirely 
-to allow any number of GPIOs as below:
+Changes in v14:
+- Fixed style errors caused by VSCode swapping tabs for spaces. (@Lee)
+Changes in v13:
+- Fixed a syntax error in ..channel_mode_set().
+- Improved error handling in ..channel_mode_set().
+- Link to v12: https://lore.kernel.org/all/20251128175827.649481-1-linux@timmermann.space/
+Changes in v12:
+- Fixed error handling in ..channel_mode_set(). (@Lee)
+- Link to v11: https://lore.kernel.org/all/20251125114015.355487-1-linux@timmermann.space/
+Changes in v11:
+- Adding mask and register to struct instead of led_id. (@Lee)
+- Renaming reg variables to be more clear. (@Lee)
+- Simplified calling of ..channel_mode_set(). (@Lee)
+- Removed unnecessary pointer dereferencing. (@Lee)
+- Changed error type in ..probe() to -EINVAL. (@Lee)
+- Reworded some error messages to be more clear. (@Lee)
+- Removed error message when removing module. (@Lee)
+- Link to v10: https://lore.kernel.org/all/20251117020008.316648-1-linux@timmermann.space/
+Changes in v10:
+- Reworded some error messages to be more clear. (@Lee)
+- Removed newline. (@Lee)
+- Added enabling and disabling of channels during brightness set. (@Lee)
+- Rearranged and renamed constants.
+- Link to v9: https://lore.kernel.org/all/20251014152604.852487-1-linux@timmermann.space/
+Changes in v9:
+- Tabbed out values. (@Lee)
+- Removed newlines. (@Lee)
+- Renamed chip id constant and variables to be more clear. (@Lee)
+- Removed unnecessary comments. (@Lee)
+- Removed unnecessary debug message. (@Lee)
+- Separate declaration and assignment of err variable. (@Lee)
+- Link to v8: https://lore.kernel.org/all/20250808213143.146732-1-linux@timmermann.space/
+Changes in v8:
+- Rearranged constants.
+- Removed more newlines.
+- Changed error messages to be more clear.
+- Renamed variables.
+- Removed revision check.
+- Removed extra i2c read&write functions.
+- Made initalisation code more readable with bitmasks.
+- The code now wraps around before 100 chars instead of 80.
+- Link to v7: https://lore.kernel.org/all/20250708141114.134950-1-linux@timmermann.space/
+Changes in v7:
+- Simplified multiple error messages. They now use dev_err_probe().
+- Removed some newlines.
+- Link to v6: https://lore.kernel.org/all/20250611083151.22150-1-linux@timmermann.space/
+Changes in v6:
+- Fixed missing error handling during init
+- Fixed missing newline in error messages
+- Fixed size calculation for memory allocation
+- Fixed error handling for memory allocation
+- Link to v5: https://lore.kernel.org/lkml/20250608231854.75668-1-linux@timmermann.space/
+Changes in v5:
+- Fixed debug and error messages using wrong format specifiers.
+- Fixed missing include bitwise.h.
+- Changed commit message for dt file to fit expected style.
+- Link to v4: https://lore.kernel.org/lkml/20250607215049.29259-1-linux@timmermann.space/
+Changes in v4:
+- Fixed some mistakes made in the dt file pointed out in v3.
+- Swapped dt and driver in patch series. DT now comes first.
+- Fixed errors in Kconfig due to last minute changes.
+- Added dt file into MAINTAINERS file.
+- Link to v3: https://lore.kernel.org/lkml/20250604225838.102910-2-linux@timmermann.space/
+Changes in v3:
+- Fixed an extra whitespace in the dt bindings documentation.
+- Sent patch to all related lists and maintainers.
+- Link to v2: https://lore.kernel.org/lkml/20250531120715.302870-4-linux@timmermann.space/
+Changes in v2:
+- Fixed reading led subnodes in dt incorrectly, 
+  which caused wrong numbering and a segfault when removing the driver module
+- Fixed calling of_property_read_u8 with an int, causing a compiler error
+- Added more error checking during writes to the i2c bus
+- Link to v1: https://lore.kernel.org/linux-leds/20250530184219.78085-3-linux@timmermann.space/
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-index 1483ce4a3480..82698519daff 100644
---- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-+++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-@@ -16,9 +16,11 @@ properties:
-     const: gpio-backlight
+Signed-off-by: Lukas Timmermann <linux@timmermann.space>
 
-   gpios:
--    description: The gpio that is used for enabling/disabling the backlight.
-+    description: |
-+      The gpio that is used for enabling/disabling the backlight.
-+      Multiple GPIOs can be specified for panels that require several
-+      enable signals.
-     minItems: 1
--    maxItems: 2
+Lukas Timmermann (2):
+  dt-bindings: leds: Add new as3668 support
+  leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
 
-   default-on:
-     description: enable the backlight at boot.
+ .../devicetree/bindings/leds/ams,as3668.yaml  |  74 +++++++
+ MAINTAINERS                                   |   7 +
+ drivers/leds/Kconfig                          |  13 ++
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-as3668.c                    | 202 ++++++++++++++++++
+ 5 files changed, 297 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/ams,as3668.yaml
+ create mode 100644 drivers/leds/leds-as3668.c
 
-Does this approach work for you?
-> 
-> Daniel.
+-- 
+2.52.0
 
 
