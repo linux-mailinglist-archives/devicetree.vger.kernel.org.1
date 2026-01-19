@@ -1,117 +1,89 @@
-Return-Path: <devicetree+bounces-256667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40DA3D39E9E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:36:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68990D39EAB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:38:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9AA8C300C141
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:36:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F1310300924E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74EA26B76A;
-	Mon, 19 Jan 2026 06:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8732C275844;
+	Mon, 19 Jan 2026 06:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="M+du7hDn";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BD55g0GI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pC/bS7L2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500BF26E71F
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:36:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA20D26F2BD
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:37:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768804592; cv=none; b=tYIZ0hSviWYA9adWq4rhd8xevvvIhgzqh+h6a+H1SDfCR9HbdYVtOjTwiZMwIeUPYltA3WJdlfWK4H5DvX3lvA1GfXO4Gnh+tchgQ2DawzF2gqvtA99VlpSsvvGlpZxdF7C2/In1XMYrZW87ibzdWL6KWW0BTqVXLtiykiso37s=
+	t=1768804681; cv=none; b=tUn61LVXXMhvPjrMg/6rEDLmryJX+H9Y3fzrcl1lv3HW0i/EVX9+yTaD8ki0/1OqzN0ruga7/JqHqe7gZ5u18GR4qS0Rc49jjAUDmJ2kN6Tw43Wi6jdmG8THft1KS1aeZTGKTtdHmESm9N7oYOYjMYO8C8ycEqYvN+aDqU/p2mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768804592; c=relaxed/simple;
-	bh=yL4JxwiAYaS2zFZ51kyB7iARRAZuWSzfY9ooZK72zuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AriETsa+w4qA07nbJ8JE8q7huXO5rFGbGetO/sUJynYtr1VbA57kZjv077OwngvjXss/XsieTXwIU9sPtvim4IdlPTh7OQYUnmXoQCljeVeDMbtwQsgFnZIW6xc9rccty8gUdouCToKgeTnO61eO9tMu9ioDIDP8C3qtJMLE/1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=M+du7hDn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BD55g0GI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60ILo2mT3003473
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:36:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=tATD7wOoM3Z8pbmvBPDfQvzN
-	dL2yaPTze8xkJNTHRvA=; b=M+du7hDnJhAUq2JBMskNYy5zri+Du2kSKrGD1Img
-	py5Ljp//IITKwObyVru7l4Q/UzrJ/0ex64BlLGiwuQP8X3K9b05Y8bz0296ssp0y
-	IS+xXbM+ySI+boLokiSydkaGCNYtJ98kOW0dy+2whsjnglTJIRIHn7o1LD6/WMu3
-	JjdUzthDaH9zmwU/fwjvu+Y9oQQxRTg0zhHixPbeTbSV0s/hysHLBNCYU9o8+seJ
-	aouJvDb9zmjIiWB+mp0hDiXYAUQiHrtjFHnKBpYm0qi6nfrub69OgaKrUzLEccaI
-	lcB7tXgPjFjOKcESkk/AEBz4wzyoXTaSGG2d0g3LlwsZlA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4br20x424s-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:36:20 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c6a87029b6so671293085a.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 22:36:20 -0800 (PST)
+	s=arc-20240116; t=1768804681; c=relaxed/simple;
+	bh=VQIElQkHzSoB4CojSAcKrVgZGqKfDuF8onKxP7DS2/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=iOtQf54sSavsVwVzJgxTGmjqnwiu66h9W2ixKf8GLiMnHV+UWDF2ofVSCyGTmRfptWDVBBeGX2+Catgb/3i+k079nuuF0XMgABKrSorKbsue4g7VjLstZCXnk62KqMQE2szr3Sc17axGST1mkbm4o6zyO4FC61i2r7CQkYeaVf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pC/bS7L2; arc=none smtp.client-ip=209.85.128.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-47eddddcdcfso17754755e9.1
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 22:37:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768804580; x=1769409380; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tATD7wOoM3Z8pbmvBPDfQvzNdL2yaPTze8xkJNTHRvA=;
-        b=BD55g0GItjQ2Hf1YrUxfq1Ia6DJmzVJNnIBYI2r2aBUyq03SyWeCeaNnlE/0LkmZJ3
-         2PDxxdXg4V910tFmIc6ZrAUVuBKrk/yjlEaCSck/5F3Z527T5Z/rVhsxpVIh6muGA7DO
-         lMcK9sUs6bAD9kiM9UzdOK5xR2w5voxnFkRGLHZpPI19JuCFnpIR2W6KTmUqf2RTxwve
-         xghg/NOs4bxYg8pvxLEVKzic6N1nhX2FDvbDO6GoxTGpYg+HsmhJpl3m0ZJKxHkMBVBA
-         N6q0JQyt7UkN8ygqUK6XbLBNYP9ststFEiGZbRHGiTcNeX3tE8+qcakY/c89lMzXnwpJ
-         wnJA==
+        d=linaro.org; s=google; t=1768804677; x=1769409477; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CbWcz9mMKDIu3Eeo2pw/1X+znIUuGvzIKZFjWHoDt0Q=;
+        b=pC/bS7L2ShEgdfyMGCtfTaDGGcYqmD0natSAESwRryj/BlH+E+bPB22/oXMzdD9ddh
+         ZAzcAp9XawpJmHwPV9YiCZ0WY85rw6E4VqoOMixWBIFzpWMW7FAXsETfXUk5JFwBOMhG
+         6GOf5PzKU/5w3ZdgF02rdkVVXdyusSXvBL/VgCCrODRHuHoeoEulTirLvM+uJNPWGQoH
+         4La9Z8jf/WJEh7iByklZk8+cLKtClzw46mh+h2zUGrll1tnhIPmp8GQsQHI9QlraidII
+         YzMNNOjTd5yPJeOVjnyyl4veG3RuHrf1multtEwgxa0JZAyXjPkgmwADz83aw1lmZham
+         1LVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768804580; x=1769409380;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tATD7wOoM3Z8pbmvBPDfQvzNdL2yaPTze8xkJNTHRvA=;
-        b=i368qcFtiJMb5CJ1rw5uTPw0T8QkPafJ2IlVWWSd/JbBQBhB1uyGaQiRP1L6vtlTAw
-         BkQ5QId+voO3i4H+Mh7k9ryAmGColnSo5mPXZJKcTiM+WCJepNN/udTcHMGmYB1bPL9Q
-         eYxgQXsGZvCbTl/FiY1TDxLsMxqOWk9r1eGw4nGXFju1XaHGX2K5cdsfJjtpZg539cuJ
-         Vp6+fJiukluYS/zmphgzgAnh3s1ABTXOwKB6iAhK41Ut/dARipQkDz1UKti+XmDJPmnu
-         CQNC1ZI+OYUixEl/PyVSPYhybL+qU/niuvzxMO2qL1xl2cK8u4vzoUkN50v8J8oXfXmw
-         Q2Cg==
-X-Forwarded-Encrypted: i=1; AJvYcCWRQ1mhJN3+sJY8RbJUVCB1vCmYQocE0lnjbs8inxwV4dA4jnMa3dAwu1Ycg7OwnGbzEaCB9Mv5GDRu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+zzX+0HQJchJM/zn2VQ5Q/ywiSh2bYR5sUiglbex9ARsWjYkk
-	aeVyRT1HOiCmpavb8H5mwEbuojKJH96XKP14UhDbRYtfPH+uwONAKkB/ibsErcZXUgCqKd/HvBy
-	x2nKaWkIYQcFo0dhjbllMeFzyCjhpDh76Wk0uR15gxMolX2VoHDzVNaRntpXOZPOA
-X-Gm-Gg: AY/fxX4kRP2C9V7toCTrYOsOuFeC8K6lvqMSw8zxmLJEQ8Lp8Jt3Y29ynjK7OwfvzzQ
-	Wu/8MatJlzCj/Q8YcJ7iOFARqbC8GoYTrM3biW/r7Wx7RDFXS10c6LnW7ACkwG5G91wfhom0n9n
-	HxAOYZPBA0ni1wAZeAP5Mu18GFwKsHatEaYq+BCceGSaJfLyAPofeNytMH9iG7Ea1dBxDODmjvR
-	DPTdx0Jf0CH/Gt4naC5xyEJWFNGsxbiGHhyy6Dt77kVhWY+cKxkPcwwsN9sxjcSTiRFpffsBiD6
-	OQYYB3NuUmJtAOrU2aaCOfkJCKqQap6w+YbgHynQKR73I+6OVpZU1gpZDMGiZpksIRFsEcUdBf/
-	ERXGdIvRUlJr12jP1R/VC9304U7TADDv+FJphp/JFJBqrwkXX+wVV5aPqAStu2zFkhe+gFszKZ9
-	O5620XoU9iaEm/iFN4AKZyRgE=
-X-Received: by 2002:a05:620a:c4b:b0:8c6:a608:5abc with SMTP id af79cd13be357-8c6a670532dmr1413550985a.28.1768804580322;
-        Sun, 18 Jan 2026 22:36:20 -0800 (PST)
-X-Received: by 2002:a05:620a:c4b:b0:8c6:a608:5abc with SMTP id af79cd13be357-8c6a670532dmr1413548885a.28.1768804579771;
-        Sun, 18 Jan 2026 22:36:19 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59baf39c046sm3072685e87.71.2026.01.18.22.36.18
+        d=1e100.net; s=20230601; t=1768804677; x=1769409477;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CbWcz9mMKDIu3Eeo2pw/1X+znIUuGvzIKZFjWHoDt0Q=;
+        b=YNehuL4Vqz9Wg91R7ScV/mPJFQpCxYjwH3DkT8A+hTrL0HTLehQXFpDt5gaqbvcfy0
+         e+I1YAgpoid+YCeqi56P7sUy41D1oSesbG61Ba8PawrfkuQ2CPsuoZJtxibT7LyVx3+E
+         RqSe9eR0ZX4unjlv2Xl0dbxQNvoeWXA/QBX9mmG5BXObOSCWFVaJt8EI1+7Q7lBFc/hU
+         IlsLzCv+59GHZzRLG2ibCI+06B7p8itmIKHh0te2hiCGD55jQxlGND+EzTqE3TPSUWD6
+         U9lJrm/fStYO00oCcFaVsqqaXwowI25zNWpl2j0R1BkmDhmvFrFaC1NeuNy3VIMzo3KV
+         lp4g==
+X-Forwarded-Encrypted: i=1; AJvYcCWYepFhBrnXR2RK+cf6BAa/I0S8NaP7hmKyfTsIKmgTreMdOMJdVsVVaKVe11cNgrvSBvgBW4qZfEA5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP4hKqMwfZMejCtLR9yL/mijJ7N9TYuibBGCKadgbVJVyQPrzo
+	Bg5RBrLDMAS3sZiDghq3hVxm9xZQUW8lKGg13KQwBZhBoE4MBa9LGkHmfPQecPn9IZA=
+X-Gm-Gg: AY/fxX4XYpCnVs+6Zo+Gg0M90lkhpB4tcw/4M75CD5FejDODbsI+Nc7zGVylVEN5h06
+	mWVlGiIuqOrLhDlIw5oRMzAHeDmaG6Uj/lbHSixDjzlYK6ve+ib90iUXXQUMooY4E6Gh8enhL3U
+	kkVEQ16Z0M7FWDF/PmuJ3Wt0S95YSFogNv4la6sGatw+dcMNZRvpHrmjjgq5GZc5xQw1VGw7qzv
+	ttp6yog0O0+Qan2PmeHpAyFNfGAN8Ri3Li6ZvRjUzZe7hlge9+v46UkYGuEr/fgQQLKDFBSfADf
+	rveo9wA/MgBr7gMwUBoqUHgdU/ElJeyBEks9oywzNCaIbwannz5qCDvV64vRGtfmfqRzduOId93
+	Pyt3KJHZdGpL5Dg/LA01VGw9SNkUWzyOKzFEHFxM1IfaAj1pdn67/5ozQAHOJuM+vWABCu0rWBy
+	XAzDxfkjj8cuFbZh0E0wbvzLTCm/k=
+X-Received: by 2002:a05:600c:37c8:b0:47e:e87f:4bba with SMTP id 5b1f17b1804b1-4801eb0e1cfmr109058555e9.29.1768804677011;
+        Sun, 18 Jan 2026 22:37:57 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801fe6d9a7sm75156405e9.17.2026.01.18.22.37.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jan 2026 22:36:19 -0800 (PST)
-Date: Mon, 19 Jan 2026 08:36:17 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Val Packett <val@packett.cool>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: display: bridge: simple: document the
- Algoltek AG6311 DP-to-HDMI bridge
-Message-ID: <h2vft6wwp7765i7rxtsr2yddnx52a52nv5acfg3l2mm5vmjbz4@d3aossnwdkjf>
-References: <20260111085726.634091-2-val@packett.cool>
- <20260111085726.634091-4-val@packett.cool>
+        Sun, 18 Jan 2026 22:37:56 -0800 (PST)
+Date: Mon, 19 Jan 2026 09:37:53 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Shengjiu Wang <shengjiu.wang@nxp.com>,
+	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+	nicoleotsuka@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+	perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 2/2] ASoC: fsl_audmix: Add support for i.MX952 platform
+Message-ID: <202601170203.upPyGvI2-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -120,63 +92,112 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260111085726.634091-4-val@packett.cool>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDA1MiBTYWx0ZWRfXyZH4jGii53wx
- sXp9SfDuMMyN3rZBlHypBLcUIGT0YSnWuZCTBYipNuwxOsQerUWMgqTceJyjJPyWV7NiOYCs7oC
- wMhPQT5FQd6Ymg9ZqyeyyLSJZpwLGjLNNuW5ibvkueIE7Ft5VKsPudOXtJT0OIVANzulLLJXSrU
- rgCRZd77GtCIwd6NRTULVgfzTD9sL6XBAcOlqe2FtXMCnyPEVfAW/JKkzusfzmNYGMnKMD33Frx
- 2lYvIsWKER4ADeGjutQjCNu59TbqHXtud0ud+5XUmIncBs0BWxgBwInHRz4hmIw6Bf85rcuKS+4
- LWgHy4S/ImRwofuM+Zi0F1XJ4PRfmNnUKnXPzAZL0zy9X9EUbiEFgkmx3IU79mGXSVekA3TgYUX
- Fjlmp6JaOQShXti/Lfzbw0XYKnZNVnAFiiJ12waz2tKvwYhMnJ8dG6YhA/mXlq6fZ/vZ4gzCARl
- 7ZzYZ0uiRaD2flxAYyg==
-X-Proofpoint-ORIG-GUID: Hz-0Mmutqlo32oeeD6my9-_g4cYYQHK-
-X-Proofpoint-GUID: Hz-0Mmutqlo32oeeD6my9-_g4cYYQHK-
-X-Authority-Analysis: v=2.4 cv=abRsXBot c=1 sm=1 tr=0 ts=696dd0e4 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=pCw0iXYVZR7UqAz3H7UA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-19_01,2026-01-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190052
+In-Reply-To: <20260116101648.377952-3-shengjiu.wang@nxp.com>
 
-On Sun, Jan 11, 2026 at 05:35:10AM -0300, Val Packett wrote:
-> The Algoltek AG6311 is a transparent DisplayPort to HDMI bridge.
-> 
-> Signed-off-by: Val Packett <val@packett.cool>
-> ---
->  .../devicetree/bindings/display/bridge/simple-bridge.yaml        | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
-> index 20c7e0a77802..e6808419f625 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
-> @@ -27,6 +27,7 @@ properties:
->            - const: adi,adv7123
->        - enum:
->            - adi,adv7123
-> +          - algoltek,ag6311
+Hi Shengjiu,
 
-I tried to pick this up and got an immediate error from checkpatch:
+kernel test robot noticed the following build warnings:
 
--:22: WARNING:UNDOCUMENTED_DT_STRING: DT compatible string vendor "algoltek" appears un-documented -- check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
-#22: FILE: drivers/gpu/drm/bridge/simple-bridge.c:264:
-+               .compatible = "algoltek,ag6311",
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Shengjiu-Wang/ASoC-dt-bindings-fsl-audmix-Add-support-for-i-MX952-platform/20260116-182050
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20260116101648.377952-3-shengjiu.wang%40nxp.com
+patch subject: [PATCH 2/2] ASoC: fsl_audmix: Add support for i.MX952 platform
+config: s390-randconfig-r071-20260116 (https://download.01.org/0day-ci/archive/20260117/202601170203.upPyGvI2-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 8.5.0
+smatch version: v0.5.0-8985-g2614ff1a
 
->            - asl-tek,cs5263
->            - dumb-vga-dac
->            - parade,ps185hdm
-> -- 
-> 2.51.2
-> 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202601170203.upPyGvI2-lkp@intel.com/
+
+smatch warnings:
+sound/soc/fsl/fsl_audmix.c:522 fsl_audmix_probe() warn: missing error code 'ret'
+
+vim +/ret +522 sound/soc/fsl/fsl_audmix.c
+
+be1df61cf06efb Viorel Suman  2019-01-22  465  static int fsl_audmix_probe(struct platform_device *pdev)
+be1df61cf06efb Viorel Suman  2019-01-22  466  {
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  467  	const struct fsl_audmix_soc_data *soc_data;
+62be484f7ad844 Viorel Suman  2019-04-10  468  	struct device *dev = &pdev->dev;
+be1df61cf06efb Viorel Suman  2019-01-22  469  	struct fsl_audmix *priv;
+be1df61cf06efb Viorel Suman  2019-01-22  470  	void __iomem *regs;
+be1df61cf06efb Viorel Suman  2019-01-22  471  	int ret;
+f2a36a78423ee8 Viorel Suman  2019-04-10  472  
+62be484f7ad844 Viorel Suman  2019-04-10  473  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+be1df61cf06efb Viorel Suman  2019-01-22  474  	if (!priv)
+be1df61cf06efb Viorel Suman  2019-01-22  475  		return -ENOMEM;
+be1df61cf06efb Viorel Suman  2019-01-22  476  
+be1df61cf06efb Viorel Suman  2019-01-22  477  	/* Get the addresses */
+959bb6b54d7086 YueHaibing    2019-07-27  478  	regs = devm_platform_ioremap_resource(pdev, 0);
+be1df61cf06efb Viorel Suman  2019-01-22  479  	if (IS_ERR(regs))
+be1df61cf06efb Viorel Suman  2019-01-22  480  		return PTR_ERR(regs);
+be1df61cf06efb Viorel Suman  2019-01-22  481  
+3feaba79d8f701 Shengjiu Wang 2021-03-24  482  	priv->regmap = devm_regmap_init_mmio(dev, regs, &fsl_audmix_regmap_config);
+be1df61cf06efb Viorel Suman  2019-01-22  483  	if (IS_ERR(priv->regmap)) {
+62be484f7ad844 Viorel Suman  2019-04-10  484  		dev_err(dev, "failed to init regmap\n");
+be1df61cf06efb Viorel Suman  2019-01-22  485  		return PTR_ERR(priv->regmap);
+be1df61cf06efb Viorel Suman  2019-01-22  486  	}
+be1df61cf06efb Viorel Suman  2019-01-22  487  
+62be484f7ad844 Viorel Suman  2019-04-10  488  	priv->ipg_clk = devm_clk_get(dev, "ipg");
+be1df61cf06efb Viorel Suman  2019-01-22  489  	if (IS_ERR(priv->ipg_clk)) {
+62be484f7ad844 Viorel Suman  2019-04-10  490  		dev_err(dev, "failed to get ipg clock\n");
+be1df61cf06efb Viorel Suman  2019-01-22  491  		return PTR_ERR(priv->ipg_clk);
+be1df61cf06efb Viorel Suman  2019-01-22  492  	}
+be1df61cf06efb Viorel Suman  2019-01-22  493  
+fe965096c9495d Shengjiu Wang 2019-11-11  494  	spin_lock_init(&priv->lock);
+be1df61cf06efb Viorel Suman  2019-01-22  495  	platform_set_drvdata(pdev, priv);
+62be484f7ad844 Viorel Suman  2019-04-10  496  	pm_runtime_enable(dev);
+be1df61cf06efb Viorel Suman  2019-01-22  497  
+62be484f7ad844 Viorel Suman  2019-04-10  498  	ret = devm_snd_soc_register_component(dev, &fsl_audmix_component,
+be1df61cf06efb Viorel Suman  2019-01-22  499  					      fsl_audmix_dai,
+be1df61cf06efb Viorel Suman  2019-01-22  500  					      ARRAY_SIZE(fsl_audmix_dai));
+be1df61cf06efb Viorel Suman  2019-01-22  501  	if (ret) {
+62be484f7ad844 Viorel Suman  2019-04-10  502  		dev_err(dev, "failed to register ASoC DAI\n");
+77fffa742285f2 Chuhong Yuan  2019-12-03  503  		goto err_disable_pm;
+be1df61cf06efb Viorel Suman  2019-01-22  504  	}
+be1df61cf06efb Viorel Suman  2019-01-22  505  
+294a60e5e98300 Shengjiu Wang 2025-02-26  506  	/*
+294a60e5e98300 Shengjiu Wang 2025-02-26  507  	 * If dais property exist, then register the imx-audmix card driver.
+294a60e5e98300 Shengjiu Wang 2025-02-26  508  	 * otherwise, it should be linked by audio graph card.
+294a60e5e98300 Shengjiu Wang 2025-02-26  509  	 */
+294a60e5e98300 Shengjiu Wang 2025-02-26  510  	if (of_find_property(pdev->dev.of_node, "dais", NULL)) {
+5057d108d69a55 Fabio Estevam 2020-12-02  511  		priv->pdev = platform_device_register_data(dev, "imx-audmix", 0, NULL, 0);
+be1df61cf06efb Viorel Suman  2019-01-22  512  		if (IS_ERR(priv->pdev)) {
+be1df61cf06efb Viorel Suman  2019-01-22  513  			ret = PTR_ERR(priv->pdev);
+5057d108d69a55 Fabio Estevam 2020-12-02  514  			dev_err(dev, "failed to register platform: %d\n", ret);
+77fffa742285f2 Chuhong Yuan  2019-12-03  515  			goto err_disable_pm;
+be1df61cf06efb Viorel Suman  2019-01-22  516  		}
+294a60e5e98300 Shengjiu Wang 2025-02-26  517  	}
+be1df61cf06efb Viorel Suman  2019-01-22  518  
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  519  	soc_data = of_device_get_match_data(dev);
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  520  	if (!soc_data) {
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  521  		dev_err(dev, "failed to match device\n");
+0c44e9e9e61cde Shengjiu Wang 2026-01-16 @522  		goto err_disable_pm;
+
+missing error code.
+
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  523  	}
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  524  
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  525  	if (of_property_read_bool(pdev->dev.of_node, "fsl,amix-bypass") &&
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  526  	    soc_data->bypass_index > 0) {
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  527  		ret = scmi_imx_misc_ctrl_set(soc_data->bypass_index, 0);
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  528  		if (ret)
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  529  			goto err_disable_pm;
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  530  	}
+0c44e9e9e61cde Shengjiu Wang 2026-01-16  531  
+77fffa742285f2 Chuhong Yuan  2019-12-03  532  	return 0;
+77fffa742285f2 Chuhong Yuan  2019-12-03  533  
+77fffa742285f2 Chuhong Yuan  2019-12-03  534  err_disable_pm:
+77fffa742285f2 Chuhong Yuan  2019-12-03  535  	pm_runtime_disable(dev);
+be1df61cf06efb Viorel Suman  2019-01-22  536  	return ret;
+be1df61cf06efb Viorel Suman  2019-01-22  537  }
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
