@@ -1,243 +1,159 @@
-Return-Path: <devicetree+bounces-256957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E44FCD3AF98
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:51:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C90ADD3AF77
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:47:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 34306305CA1C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:50:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E170A307AFA8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B2C3803C2;
-	Mon, 19 Jan 2026 15:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4478521FF2A;
+	Mon, 19 Jan 2026 15:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="FxygLC43"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Gs2wIgAc";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gPdLtoyF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877EB35EDA5;
-	Mon, 19 Jan 2026 15:50:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA37421CC43
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 15:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768837803; cv=none; b=eM2Wrb8/6p38mdLpPZ71SnhVD8ti7r1rjMjpHFF3iBu/Jaqv+xV60GVyTcz07WM7sLHMQl2OlGHylH+RA4VFMNxorCiAy5WdECT6hMgjqXAhwSzCdJoTBGl9zMEw3zkcMPtPw5jpX0THcrREitq+yS/OnJpN0uxWObUUx6ELRCc=
+	t=1768837531; cv=none; b=ZYsCRUi4V+wwipnGZsEbhoXLJRIouhkImIzvNDfjUsfPwZlgh0PjipiotupbwN8KB34x3YS/jtqOj8ZSH2Pcnj6Pq5QcbosG1ErrjL2JDRHkvPHEOtYeVyYalrfhBCTq7Hy4d4iOl9qQ7lViOxhqDXV/cumMscmVcUNxkEFlL6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768837803; c=relaxed/simple;
-	bh=hScVRt3LHCaQojR2cZYFjzysfGbK5b/jLbP8CGtnSVs=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=gZmGodJOR5YT1oxLOv0cZx3trC+YpMIeKCd70kzaVepG54VdQ5K3YlxdmsOpdOqgQgSEmLWaD9IQwKhSeUKKBQ3i8c5O+9rK6/WBivMremj8R+7Lk6aWuhG6HqYiSxfvouiB0YogbugQ1d+NK1X412y8Ur0ZGnO6dM6YyDslt0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=FxygLC43; arc=none smtp.client-ip=23.155.224.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id D517C7790E6C;
-	Mon, 19 Jan 2026 09:41:03 -0600 (CST)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id KCfAvz0RJGah; Mon, 19 Jan 2026 09:41:02 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 3D4C97790EC0;
-	Mon, 19 Jan 2026 09:41:02 -0600 (CST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 3D4C97790EC0
+	s=arc-20240116; t=1768837531; c=relaxed/simple;
+	bh=ueatqlSRaZNQtdkbSIcVnGvg4lTbklxPzJQpdEFKQ7I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fBVvC475PJBUVwb6Pqi6KbP7C0U3ew6tIfnbTOaG/h5Bz28RaEXsMG0APbmRiOQ7koFwITkxS186n4O1mLKW140cKrSfRNvtJdKP68ERpe0/H4yw5H9Rkb/velkysBmj9cBFZ9m59vA15XMlvGUE/gKSUaMfyJrkvS2/caPcpu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Gs2wIgAc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gPdLtoyF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J90jrC227888
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 15:45:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OdDan9HGVtfj4FJo5UKWFffsTLKNtaQDs0FP5LiRLhs=; b=Gs2wIgAcZmWxyTDd
+	KeYVdDB8Gxa8ozC+wZyQ8fw97Su9GC5M6k0uqbUT6nK/uAAkATM7a7RHJ16ou/LI
+	C+8/C0ae7so73IFo+TUeCf3s9WshDkc+fMiOchKyJOwP/Aoi81xOni7EvYNaWCMa
+	2PuiSEWzDDvxgssAFrwVSuG9iMgP+N4ioVSGladcUPBMNAKLNiKtQ4C138Xm0AjN
+	MNchec/spjYXwWUWNQrp+p62tgOTYmfChxd12y1inYXsjzuYwJSYh0mT5O0lzoAs
+	97RvL5C7FB2ui6XM301aTlKKENW1TFEbBGlb1m1OrL/hfS+ECcxCXP8KVVLUDQFS
+	UQvRFQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsgfr9fp0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 15:45:28 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c533f07450so105018485a.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:45:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1768837262; bh=H6HlrlNTV6NB4MGM4UjY079DAoe0uhR38YlB4C2W5vk=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=FxygLC43MUViN2MSxTCJhBpf5RzILFFMJE0Ter1z8jeOvqO8NGI/qDuG8YgENpL8U
-	 QZObhnWeTWN9Dp5yzqgZP+oiUGKTSdFtTm2Q8zbau9+gZa8U385FiTK6aeb71W5U4t
-	 E7Ykn+tfTrbSSCPmhxCn0ooQubsARAb9WyVGjydU=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id vPUQDMmtp_9P; Mon, 19 Jan 2026 09:41:02 -0600 (CST)
-Received: from vali.starlink.edu (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 168A57790E6C;
-	Mon, 19 Jan 2026 09:41:02 -0600 (CST)
-Date: Mon, 19 Jan 2026 09:41:01 -0600 (CST)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Lee Jones <lee@kernel.org>, 
-	Georgy Yakovlev <Georgy.Yakovlev@sony.com>, 
-	Shawn Anastasio <sanastasio@raptorengineering.com>
-Message-ID: <1683797865.210858.1768837261953.JavaMail.zimbra@raptorengineeringinc.com>
-In-Reply-To: <CAL_JsqLxVpFRPsNy5gRb61HvSohzi=OS3KdacKF7VH_YW3e8_A@mail.gmail.com>
-References: <20260107002136.3121607-1-tpearson@raptorengineering.com> <20260107002136.3121607-2-tpearson@raptorengineering.com> <20260107-spotted-swan-of-sufficiency-1bfc03@quoll> <887779054.192722.1767805783381.JavaMail.zimbra@raptorengineeringinc.com> <24a1839d-5c5d-4e59-bc42-403dbc8134a4@kernel.org> <2068648185.192779.1767807665985.JavaMail.zimbra@raptorengineeringinc.com> <CAL_JsqLxVpFRPsNy5gRb61HvSohzi=OS3KdacKF7VH_YW3e8_A@mail.gmail.com>
-Subject: Re: [PATCH v6 1/4] dt-bindings: mfd: Add sony,cronos-smc
+        d=oss.qualcomm.com; s=google; t=1768837528; x=1769442328; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OdDan9HGVtfj4FJo5UKWFffsTLKNtaQDs0FP5LiRLhs=;
+        b=gPdLtoyFwg0rLaxyW6yx8umaY/9gMSbNpXPAyGC/clMVGfq8YqQEz+DlpTmOUkLckn
+         tUWiGMMxPpOymYxzxQ3LZnwxEcjgpzzuDDkn2X0LiphCa7F/hImJ7clHuTpybiwLmi2U
+         fRFwGWilX8xdQlrj0u017lIBsrvXvMgHaIT1i6GbP9AsBqJgXekotE0ZxGF4SBzbTCPT
+         w4fDdBd2NW/wJja4AEsfsn/jXlscaHREmcXFOtOCNnKn/MMttJAbdx5rekBJge9X+YkT
+         bbvYg8fXNSoRKWYjJl5AbaEQjo/ohd7YUtLRzvRegIrBJL63gg+MwfeN5ilGqIrSMZs6
+         Ce8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768837528; x=1769442328;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OdDan9HGVtfj4FJo5UKWFffsTLKNtaQDs0FP5LiRLhs=;
+        b=iYKhmK5G35ABaclkzk6eJTCys3RRVNCf/Az4vmuS84mqf/JKhAzr0dr6wIzFNBwDaL
+         dg6nSsjOl6UZVIyH0ZAfIUjglaK8GHwxFxRJPPK1nFqpl5duHIYJr3bv0YIbiQaLQnYl
+         Cz/N34zF7Qbal/QJuX6dlC4K8flEdj2oFaDid8yUEmvoHjsTs93qHWmcifO5P5PWUXBJ
+         JfxrzpIVP54MKjiT1h8T45BL6QzS+CZjaYBwre7ASZIZi8wHhOMy3Fp6Cl7IXmADX9eF
+         4I+yIcflf8wciZQ5z1mj2mjIqlUonj5uR42WI5fUa4UCXm7jYhOjYOoSdTJtuXY8Agv1
+         IKqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXoHViwbrT2xzxyPQakiagpGK4CwGqGgCiTLl4AgyhsojLEfNPVb5C4g/zvGJFpDfJ/sSmtK1iAo7EG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqT2eNOcaYwkTR3tdumptoviyvMhUDuLP+7NiZvjB6rRH49TG4
+	1ZQ09w0ZSh4lIRDHTTmEGIPnlnyHSeROIw/dyIjslAoZ+Jjemw/e0iDuXCykGJXBiF3xo1F5973
+	cDcVWohneZvJGN27NmBLTPLDSNnenUIq6rV0NkZe1Bxsdlg0DPpdOY8daFum1EVNI
+X-Gm-Gg: AY/fxX6RR/CdjhDTjzkDwiPEiBDetbZZzne1E/tU6G9HT/E0SiRtkDH3TBmNUqS2aYL
+	8Dp6M2YX/JMnUCDe7RrbQjCAiX2mQ912y2fless6qHR3KtRbixVXqy0oKEztF0vK0DgzDuNjseP
+	2jKu9qz51+COtLZ6B2wOAiLhxJRZxZwa8kgEdc+wkvlMn+8Ypsay7WKcR9/9lPTIoh5iLMAQjT8
+	ofXBHXOERnShR/Luc8QdaxAZ0dvSHKezq4Rb6hpbRHV/zMqf2igk7c8nWPF0RMads/eAF5XvwyQ
+	Hi6EKrKDzUQLpOO/yOCIlk286bArN2VaJxki7TRzBngp9QdQbaQgI7LTbqR9VmA1d587Ebb8cKn
+	SroxjGiU2cy0KJDhLjhx5Brwmf75rDL6GFusDAFOc6gsqNIXd9XkZ67bcOS4OJuf6UlU=
+X-Received: by 2002:a05:620a:7017:b0:89f:63e7:b085 with SMTP id af79cd13be357-8c6a67c651amr1276687485a.10.1768837527868;
+        Mon, 19 Jan 2026 07:45:27 -0800 (PST)
+X-Received: by 2002:a05:620a:7017:b0:89f:63e7:b085 with SMTP id af79cd13be357-8c6a67c651amr1276684185a.10.1768837527212;
+        Mon, 19 Jan 2026 07:45:27 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b87959fbefdsm1110425566b.55.2026.01.19.07.45.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jan 2026 07:45:26 -0800 (PST)
+Message-ID: <89f59f3c-8cdb-4190-acdd-d09136c7b67f@oss.qualcomm.com>
+Date: Mon, 19 Jan 2026 16:45:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC143 (Linux)/8.5.0_GA_3042)
-Thread-Topic: dt-bindings: mfd: Add sony,cronos-smc
-Thread-Index: 2lSRflh0+/GfB91rs1V3iwUNYv6wIA==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix volume up
+ button
+To: nathbappai@gmail.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260119-xiaomi-ginkgo-features-v1-0-3c8fae984bda@gmail.com>
+ <20260119-xiaomi-ginkgo-features-v1-1-3c8fae984bda@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260119-xiaomi-ginkgo-features-v1-1-3c8fae984bda@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: gr64wXR6VfRLoC5r8J56ZjoR49MSmjbc
+X-Proofpoint-GUID: gr64wXR6VfRLoC5r8J56ZjoR49MSmjbc
+X-Authority-Analysis: v=2.4 cv=c4OmgB9l c=1 sm=1 tr=0 ts=696e5198 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8
+ a=0z5cGoq-UR3Mgirp60AA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDEzMSBTYWx0ZWRfXyFdCBSUxaOHb
+ WQvlHfzbXAfd+4HZI1LEULF8fM312eHpJZPt0/KObKjNnG08P9Zd9QeR6J7haJGC3kTdDXF+Zqi
+ 04/Dou4/HsX/2nWhXahhRvqunXzAHsMQeD0sPqsKLtBrNNvW6vv0CmRPSZzwv/ioooWlFqni/Uo
+ rE09DYFWbl8HhbEKMt/lV7t9bvC/bWV6Mppn+l90h/l0eQrWe8t9dw5k3+F2Zb3c2GzVFwnXrXs
+ 5dpy1nFntWq/DZbigHTREcOQf3w5g2El/0IgJV9MPs3vf34+iOFsdXzq4q2zPWKXFs81ue/o+vh
+ 5Ud2lV+Iszhx6d7/0U+/SyloxwRKeep7RAjsTOqxvoQG7PnVq9sQ2U9DKm2KQGbonnN2YCbwIhs
+ rmYr9JXSGvfRiwk1yBNYH91j6HDZpA916cepKRBXlEH1tMCMqCLGKq6PMn/+6gcec22PIVNmAIN
+ IEh1Jqkaw8bp/aJG5vw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-19_03,2026-01-19_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
+ suspectscore=0 spamscore=0 bulkscore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190131
 
+On 1/19/26 4:13 PM, Biswapriyo Nath via B4 Relay wrote:
+> From: Biswapriyo Nath <nathbappai@gmail.com>
+> 
+> gpio6 in pm6125 is used for EMMC and UFS thermal monitoring. It is
+> changed to the correct gpio for volume up button.
+> 
+> Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for xiaomi-ginkgo")
+> 
 
+For future submissions, please remove the newline you kept before fixes
+and s-o-b, so that the "tags section" is contiguous
 
------ Original Message -----
-> From: "Rob Herring" <robh+dt@kernel.org>
-> To: "Timothy Pearson" <tpearson@raptorengineering.com>
-> Cc: "Krzysztof Kozlowski" <krzk@kernel.org>, "devicetree" <devicetree@vge=
-r.kernel.org>, "linux-kernel"
-> <linux-kernel@vger.kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kr=
-zysztof Kozlowski"
-> <krzysztof.kozlowski+dt@linaro.org>, "Lee Jones" <lee@kernel.org>, "Georg=
-y Yakovlev" <Georgy.Yakovlev@sony.com>, "Shawn
-> Anastasio" <sanastasio@raptorengineering.com>
-> Sent: Wednesday, January 7, 2026 6:20:25 PM
-> Subject: Re: [PATCH v6 1/4] dt-bindings: mfd: Add sony,cronos-smc
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> On Wed, Jan 7, 2026 at 11:41=E2=80=AFAM Timothy Pearson
-> <tpearson@raptorengineering.com> wrote:
->>
->>
->>
->> ----- Original Message -----
->> > From: "Krzysztof Kozlowski" <krzk@kernel.org>
->> > To: "Timothy Pearson" <tpearson@raptorengineering.com>
->> > Cc: "devicetree" <devicetree@vger.kernel.org>, "linux-kernel"
->> > <linux-kernel@vger.kernel.org>, "Rob Herring"
->> > <robh+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Krzysztof
->> > Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
->> > "Lee Jones" <lee@kernel.org>, "Georgy Yakovlev" <Georgy.Yakovlev@sony.=
-com>,
->> > "Shawn Anastasio"
->> > <sanastasio@raptorengineering.com>
->> > Sent: Wednesday, January 7, 2026 11:18:09 AM
->> > Subject: Re: [PATCH v6 1/4] dt-bindings: mfd: Add sony,cronos-smc
->>
->> > On 07/01/2026 18:09, Timothy Pearson wrote:
->> >>
->> >>
->> >> ----- Original Message -----
->> >>> From: "Krzysztof Kozlowski" <krzk@kernel.org>
->> >>> To: "Timothy Pearson" <tpearson@raptorengineering.com>
->> >>> Cc: "devicetree" <devicetree@vger.kernel.org>, "linux-kernel"
->> >>> <linux-kernel@vger.kernel.org>, "Rob Herring"
->> >>> <robh+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Krzyszt=
-of
->> >>> Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
->> >>> "Lee Jones" <lee@kernel.org>, "Georgy Yakovlev" <Georgy.Yakovlev@son=
-y.com>,
->> >>> "Shawn Anastasio"
->> >>> <sanastasio@raptorengineering.com>
->> >>> Sent: Wednesday, January 7, 2026 1:25:10 AM
->> >>> Subject: Re: [PATCH v6 1/4] dt-bindings: mfd: Add sony,cronos-smc
->> >>
->> >>> On Tue, Jan 06, 2026 at 06:21:33PM -0600, Timothy Pearson wrote:
->> >>>> From: Shawn Anastasio <sanastasio@raptorengineering.com>
->> >>>>
->> >>>> The Sony Cronos Platform Controller is a multi-purpose platform con=
-troller
->> >>>> that provides both a watchdog timer and an LED controller for the S=
-ony
->> >>>> Interactive Entertainment Cronos x86 server platform. As both funct=
-ions
->> >>>> are provided by the same CPLD, a multi-function device is exposed a=
-s the
->> >>>> parent of both functions.
->> >>>>
->> >>>> Add a DT binding for this device.
->> >>>>
->> >>>> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
->> >>>> Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
->> >>>> ---
->> >>>>  .../bindings/mfd/sony,cronos-smc.yaml         | 128 ++++++++++++++=
-++++
->> >>>
->> >>> How this can be a v6 with no changelog at all and still not tested?
->> >>>
->> >>> What happened with this patchset? Where is it explained?
->> >>
->> >> Changes have only been to fix issues identified in review and any pos=
-ted
->> >> autotest failures.
->> >
->> > And where is this explained? Please always provide detailed changelog =
-in
->> > the cover letter or individual patch.
->> >
->> >>
->> >> Please note that the tooling to check the DT bindings does NOT appear=
- work
->> >> properly, we've wasted a lot of time and effort attempting to get it =
-running
->> >> only to find that it's spitting out internal Python errors even for o=
-ther
->> >> drivers that are *already* in the kernel source tree.  This obviously=
- creates a
->> >> situation where it's difficult to pre-check the patch set for complia=
-nce; if
->> >> you want to see this first hand, spin up a Debian Sid VM (which has a=
- very
->> >> recent version of the DT tooling from late 2025) and try to check any=
- of the
->> >> in-tree MFD drivers using the documented methods.
->> >
->> > I am using DT schema on multiple distros, including Debian but not Sid
->> > but Trixie
->> > (https://krzk.eu/#/builders/91/builds/116/steps/13/logs/stdio). Works
->> > without problem...
->>
->> Good to know.  There is next to no documentation on the required softwar=
-e
->> versions to make this work, which complicates
->>
->> > On regular Debian based distro this is just few commands - pix install
->> > and them make dt_binding_check - so I am surprised you spent a lot of
->> > time on setting this up.
->> >
->> > What is the problem exactly?
->>
->> Good to know.  There is next to no documentation on the required softwar=
-e
->> versions to make this work, which complicates setup.
->=20
-> $latest
->=20
-> It's as simple as that. There is some checking of a minimum version,
-> but maybe we need to bump it more aggressively. I haven't because
-> older versions might work.
->=20
->>  Bookworm's DT package was
->> too old when it was tried pre-Trixie release, and at the time Sid didn't=
- work
->> either for some other reason.  The assumption was that the kernel needed=
- a very
->> recent version of the DT tooling, so Sid was tried again this year.  Wil=
-l try
->> Trixie before the next patch update.
->=20
-> Don't use the distro version. There's no one checking that it works.
->=20
-> One problem here (and for distro packaging) has been json-schema pkg
-> breaking us. So we were stuck on <4.18 for a long time and now require
->>=3D4.18.
->=20
-> Rob
+Konrad
 
-OK, so this came back up while preparing v7 of this patch series.  Set up t=
-he isolated machine etc., installed both dtschema and yamllint from PyPI as=
- recommended, and after rebasing on the latest kernel tree I get:
-
-make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/m=
-fd/sony,cronos-cpld.yaml
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  CHKDT   ./Documentation/devicetree/bindings
-  LINT    ./Documentation/devicetree/bindings
-usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-files] [=
--f {parsable,standard,colored,github,auto}] [-s] [--no-warnings] [-v] [FILE=
-_OR_DIR ...]
-yamllint: error: one of the arguments FILE_OR_DIR - is required
-
-Is there more magic $version / install method stuff needed?
-
-Appreciate the assistance in getting this going.
 
