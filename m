@@ -1,203 +1,289 @@
-Return-Path: <devicetree+bounces-256668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68990D39EAB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:38:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BA87D39F1B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:57:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F1310300924E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:38:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E0B4B3062CCB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8732C275844;
-	Mon, 19 Jan 2026 06:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AF728C5B1;
+	Mon, 19 Jan 2026 06:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pC/bS7L2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Jq+f7eTH";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="izGCIgx4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA20D26F2BD
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2312B28A72B
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768804681; cv=none; b=tUn61LVXXMhvPjrMg/6rEDLmryJX+H9Y3fzrcl1lv3HW0i/EVX9+yTaD8ki0/1OqzN0ruga7/JqHqe7gZ5u18GR4qS0Rc49jjAUDmJ2kN6Tw43Wi6jdmG8THft1KS1aeZTGKTtdHmESm9N7oYOYjMYO8C8ycEqYvN+aDqU/p2mI=
+	t=1768805654; cv=none; b=lie9gO+5EkaWeHk+AwIN29TB6vbhCpix8p1sSATQ0G+Urs1Ehko9i7te1o8w8+61sqMHmoZE7/loDpCcKRrnDDrE6iDbsxuanjxPbThYdaw5TZ34SvTS4YD0EnHyFI3Mk7LjFA9b7xtqFz8eQtt/9KASM6AuOe0vRzwukQS+Ehw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768804681; c=relaxed/simple;
-	bh=VQIElQkHzSoB4CojSAcKrVgZGqKfDuF8onKxP7DS2/c=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=iOtQf54sSavsVwVzJgxTGmjqnwiu66h9W2ixKf8GLiMnHV+UWDF2ofVSCyGTmRfptWDVBBeGX2+Catgb/3i+k079nuuF0XMgABKrSorKbsue4g7VjLstZCXnk62KqMQE2szr3Sc17axGST1mkbm4o6zyO4FC61i2r7CQkYeaVf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pC/bS7L2; arc=none smtp.client-ip=209.85.128.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-47eddddcdcfso17754755e9.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 22:37:58 -0800 (PST)
+	s=arc-20240116; t=1768805654; c=relaxed/simple;
+	bh=dB34Q/7ovZ0Uovcmu+jTPM3hWWSXCnht6Lw0tVCnuEU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zls3er5NfdxtynYPX7f58iSEFy30RncpL+Vqf7ATuLLWp+Zoy049hQeWIkkka6dfjpFcr4YAjWafJOkz9FTNO6V7fNa9ibuN9zv06lO4Gi3AVww4D0Qs6MdatRRkGKz7OCANUOH6WY0pTE8mokNg5nKNUv8J7/egyt8HHfCsKz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Jq+f7eTH; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=izGCIgx4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60INrnnn290327
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:54:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iF15pdOmlV9OjqMsRWy8S8UjqNMKUQm32GQpSrRGMa0=; b=Jq+f7eTH17FH1eYs
+	hDfPjNzFMGPC/0H1iwN66oPkiJ9cacZvJ7xGzUXPmPM6VDD2ZI19LUcOigM6qCnR
+	Tiv2igXvG8GuiThhHoWvGTr5WqByB4BN3jRh+GqKKYURLTvecamaqlscmRJWOR6R
+	D5QthHmUBWpwsjcOi4XDfhhq0wWBnvZY/rDUDwwXqnNFc0KC5KS73sC5gI8igign
+	ccQo6qp8ZpEYmYqSeb/aTCCuvWFj0ZWfhCtYW1Udi4q0jeoQQt0subohIVMJ8ib0
+	FNOv1mALcIp4pozXb0TCUM9DBeoyki0Ia/CfJv5e1lf3c0hKq9Wde+IcjY+FeVei
+	thKskw==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4br2gum2ah-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:54:11 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-34ea5074935so3934189a91.0
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 22:54:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768804677; x=1769409477; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CbWcz9mMKDIu3Eeo2pw/1X+znIUuGvzIKZFjWHoDt0Q=;
-        b=pC/bS7L2ShEgdfyMGCtfTaDGGcYqmD0natSAESwRryj/BlH+E+bPB22/oXMzdD9ddh
-         ZAzcAp9XawpJmHwPV9YiCZ0WY85rw6E4VqoOMixWBIFzpWMW7FAXsETfXUk5JFwBOMhG
-         6GOf5PzKU/5w3ZdgF02rdkVVXdyusSXvBL/VgCCrODRHuHoeoEulTirLvM+uJNPWGQoH
-         4La9Z8jf/WJEh7iByklZk8+cLKtClzw46mh+h2zUGrll1tnhIPmp8GQsQHI9QlraidII
-         YzMNNOjTd5yPJeOVjnyyl4veG3RuHrf1multtEwgxa0JZAyXjPkgmwADz83aw1lmZham
-         1LVQ==
+        d=oss.qualcomm.com; s=google; t=1768805651; x=1769410451; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iF15pdOmlV9OjqMsRWy8S8UjqNMKUQm32GQpSrRGMa0=;
+        b=izGCIgx4NWt6Q2DTAaXlEhg96T5mL0z2m/BfR5xSmSKDu3JEz7KPUIpjFs3+kwSGwE
+         LpCb5nVh2S9tXdn3n1lj39RckCxBFTtxYhzBg7rXgRj77yFkhUg4q6itxuaPicN7ckWg
+         jhM/cAr8FA3H1FpvQNe7IHRMszaWdPRSOaiEI1WapjCu7WKHzeJRt4RTBOWzEOjld36r
+         FpUcR1pJWjKUzlVBGUOrzctpd0lJLWYHpHQgYVTrUiYJc2uT0ot5BmhbKDcCCIHzwx03
+         VsQ7NKq3z8vMBmulzBIg5jytIKwVhX4IzzJioMqe7RuGHgzxt8UBU32QMgB0LcNJApI7
+         dv4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768804677; x=1769409477;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CbWcz9mMKDIu3Eeo2pw/1X+znIUuGvzIKZFjWHoDt0Q=;
-        b=YNehuL4Vqz9Wg91R7ScV/mPJFQpCxYjwH3DkT8A+hTrL0HTLehQXFpDt5gaqbvcfy0
-         e+I1YAgpoid+YCeqi56P7sUy41D1oSesbG61Ba8PawrfkuQ2CPsuoZJtxibT7LyVx3+E
-         RqSe9eR0ZX4unjlv2Xl0dbxQNvoeWXA/QBX9mmG5BXObOSCWFVaJt8EI1+7Q7lBFc/hU
-         IlsLzCv+59GHZzRLG2ibCI+06B7p8itmIKHh0te2hiCGD55jQxlGND+EzTqE3TPSUWD6
-         U9lJrm/fStYO00oCcFaVsqqaXwowI25zNWpl2j0R1BkmDhmvFrFaC1NeuNy3VIMzo3KV
-         lp4g==
-X-Forwarded-Encrypted: i=1; AJvYcCWYepFhBrnXR2RK+cf6BAa/I0S8NaP7hmKyfTsIKmgTreMdOMJdVsVVaKVe11cNgrvSBvgBW4qZfEA5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP4hKqMwfZMejCtLR9yL/mijJ7N9TYuibBGCKadgbVJVyQPrzo
-	Bg5RBrLDMAS3sZiDghq3hVxm9xZQUW8lKGg13KQwBZhBoE4MBa9LGkHmfPQecPn9IZA=
-X-Gm-Gg: AY/fxX4XYpCnVs+6Zo+Gg0M90lkhpB4tcw/4M75CD5FejDODbsI+Nc7zGVylVEN5h06
-	mWVlGiIuqOrLhDlIw5oRMzAHeDmaG6Uj/lbHSixDjzlYK6ve+ib90iUXXQUMooY4E6Gh8enhL3U
-	kkVEQ16Z0M7FWDF/PmuJ3Wt0S95YSFogNv4la6sGatw+dcMNZRvpHrmjjgq5GZc5xQw1VGw7qzv
-	ttp6yog0O0+Qan2PmeHpAyFNfGAN8Ri3Li6ZvRjUzZe7hlge9+v46UkYGuEr/fgQQLKDFBSfADf
-	rveo9wA/MgBr7gMwUBoqUHgdU/ElJeyBEks9oywzNCaIbwannz5qCDvV64vRGtfmfqRzduOId93
-	Pyt3KJHZdGpL5Dg/LA01VGw9SNkUWzyOKzFEHFxM1IfaAj1pdn67/5ozQAHOJuM+vWABCu0rWBy
-	XAzDxfkjj8cuFbZh0E0wbvzLTCm/k=
-X-Received: by 2002:a05:600c:37c8:b0:47e:e87f:4bba with SMTP id 5b1f17b1804b1-4801eb0e1cfmr109058555e9.29.1768804677011;
-        Sun, 18 Jan 2026 22:37:57 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801fe6d9a7sm75156405e9.17.2026.01.18.22.37.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jan 2026 22:37:56 -0800 (PST)
-Date: Mon, 19 Jan 2026 09:37:53 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Shengjiu Wang <shengjiu.wang@nxp.com>,
-	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-	nicoleotsuka@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-	perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/2] ASoC: fsl_audmix: Add support for i.MX952 platform
-Message-ID: <202601170203.upPyGvI2-lkp@intel.com>
+        d=1e100.net; s=20230601; t=1768805651; x=1769410451;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iF15pdOmlV9OjqMsRWy8S8UjqNMKUQm32GQpSrRGMa0=;
+        b=VnF56jn4ObVaYwuv/S8RFGAl9D5W9/Ny88ckReJ+AECC1xHrwriVDsDa+ROq0Ri7yG
+         Vedwj5ApB1bZpqkOxVZnudZ3uP0My3TI1+yZ2CZZtUOEhSs00bOaJLk5ds22CxaqESEd
+         IubOGzFqdT5ZXAc7DFCeacQkJPdvoExxh4X58Zk6kEv/k9RUQ6GuUvEHOINN6kM0Ljfr
+         WkrTbCHtSYAWrG4gTTf7gs+yAsnHgaILVMomwprE5XyuSLwdxWy8MaFKhpLHY01DNrxm
+         pjSteylnPVqc4AlC0JYO9K2tjAakUvjGv8HNM3IMGrzJsUFZOCTFzhi+vdUNxZ+UrWpf
+         n+yg==
+X-Forwarded-Encrypted: i=1; AJvYcCUbYQMsDAhja4e0681r3bbref9kt2xF8j8zWpqrynx/elGl8e8NrAxsRToNo20woleViSsjY0huh4mM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1/PpqNDo8QQG0tqOe8ZSP+iYlhcSsSuduHtLB3usap0B5JAB5
+	+qrqpwfmmt6e5pTaSyXwSjZaZtslUdE7BKtUFHxvOe9wHrL5Cxjyp3ic66NJyDZuU9xl27ns7Tm
+	XnDhsECcwOzqy9TcpYwz7FTFJ261fkBAohkJFuLZD4YGGRaQ4XP6PZXKpif1jPW0g
+X-Gm-Gg: AZuq6aIfWMekTS0vHBJOr827Y2gjT5LIGkf1/l6Y7O3VzV/5LyStXuAxsbuAxCNcgKi
+	8LhwikdsytUFXwTMAInmBi/1IcIZH3TlI/KzfJU0CLrHnV9l3wcyrZZUu2635KvshR60X1LyI6d
+	wvw5s69nIDIwY1kn4KWHGg5PdnMNdOUWG6nWkGIHrKDaE/gXcgfKdFd5uOMvbH+/fV0EWR0EOUZ
+	DsIADTwhDeM8st8VFGQDSv9W8AXfFDhLuVJM8ZxGfuISshqv9rBaxuwFz2w3JJIKL7DM6OnOf8z
+	6nNMg6VV2KM1Wb6qpm1hDsNxGQaaT5RnCXl+xY5fwrhXCpIGj64G8SpK34313GfeUm/tHFeOTMX
+	+9IkFnF2521QSl3gf9PuPuzq+9rTnnRevmA1eOj/cg1kUMf3Z4E3ExyQwJnBMC59McxCNtScs6G
+	gO1Ng=
+X-Received: by 2002:a17:90b:3e4b:b0:340:bc27:97b8 with SMTP id 98e67ed59e1d1-3527317961dmr8168605a91.10.1768805650797;
+        Sun, 18 Jan 2026 22:54:10 -0800 (PST)
+X-Received: by 2002:a17:90b:3e4b:b0:340:bc27:97b8 with SMTP id 98e67ed59e1d1-3527317961dmr8168576a91.10.1768805650199;
+        Sun, 18 Jan 2026 22:54:10 -0800 (PST)
+Received: from [10.133.33.126] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-352678af465sm10498378a91.11.2026.01.18.22.54.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Jan 2026 22:54:09 -0800 (PST)
+Message-ID: <e2dfb857-1fd1-4d29-b04b-6dec0b7563d5@oss.qualcomm.com>
+Date: Mon, 19 Jan 2026 14:54:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260116101648.377952-3-shengjiu.wang@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/4] Initial patch set for PURWA-IOT-EVK
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
+ <jeyj5wqu4uw7tnm4h5ryatoqupdrqpkjcynnydgbum6oj2d4jj@qvvbbifrvud3>
+ <ed49abf0-c2b6-4496-a3b0-ef040fd94615@oss.qualcomm.com>
+ <b3p5yhstng6nbrrdavx67vlv62hqqlnms7742txbimpeswqklv@eomkmkkearwp>
+Content-Language: en-US
+From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+In-Reply-To: <b3p5yhstng6nbrrdavx67vlv62hqqlnms7742txbimpeswqklv@eomkmkkearwp>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDA1NSBTYWx0ZWRfX8UVFrYYDhL9P
+ qsYoqVWIrUtgl3TinyXlG0wr6oBiYSdJPgpwJ4AwzHhQZ7XWWoUZCFDfbI9Ezk7Zh+F92UWzlfx
+ EWGRg634HCk5frYjrxMc/sbTrJfaWFyZZDvajKaE6tChga7hynuLXBUhrh6xnG8ZrVynL9aSYKw
+ hEFNClwFX/tH7X9zTCUcUQ53lFngrLUKqouQAoVaMMbWToP9jzW4V3Qh4itbN8Qn5+smS5jBNoo
+ 4HFpVkUNEVAI8WSAqwNQA1tLREYKkHWiIE0KoRffbTLYX1kcmPn9bmT2xPuhJaMMc9d8wfSnj6B
+ pgHCsYEuCka4Vkj7TKuOCQ1TuFAMBivh1eXpFmkc+PAmixhvx7HwqyLI37imP7C8t0MKbH87v52
+ vE2BccteoBeG9UgP9DxyITkj1qp7KAyhGVG/c5zfsVfWfJD0AuYt/3nxas5W7ouaNviuKzNO0TQ
+ LWDTbQiQL0GfUJB56Lg==
+X-Authority-Analysis: v=2.4 cv=Sev6t/Ru c=1 sm=1 tr=0 ts=696dd514 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
+ a=R7vQKasIsJkg2XgAIocA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-GUID: 0uRN168MkyOFMXdbjmN72FxX_KJMeEB0
+X-Proofpoint-ORIG-GUID: 0uRN168MkyOFMXdbjmN72FxX_KJMeEB0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-19_01,2026-01-19_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 impostorscore=0 spamscore=0 bulkscore=0
+ lowpriorityscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2601190055
 
-Hi Shengjiu,
 
-kernel test robot noticed the following build warnings:
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 1/19/2026 2:34 PM, Dmitry Baryshkov wrote:
+> On Mon, Jan 19, 2026 at 10:39:04AM +0800, Yijie Yang wrote:
+>>
+>>
+>> On 1/16/2026 7:31 PM, Dmitry Baryshkov wrote:
+>>> On Fri, Jan 16, 2026 at 06:41:26PM +0800, YijieYang wrote:
+>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>
+>>>> Introduce the device tree, DT bindings, and driver updates required to enable
+>>>> the bring-up of the PURWA-IOT-EVK evaluation board. Focus is on two key
+>>>> hardware components:
+>>>>
+>>>> PURWA-IOT-SOM — A compact System-on-Module integrating the SoC, GPIOs, and
+>>>> PMICs. Designed for modularity, it can pair with various carrier boards to
+>>>> support diverse use cases.
+>>>>
+>>>> PURWA-IOT-EVK — A carrier board tailored for IoT scenarios, providing
+>>>> essential peripherals such as UART, on-board PMICs, and USB components.
+>>>>
+>>>> Together, these components form a flexible and scalable platform. Initial
+>>>> functionality is achieved through proper device tree configuration and driver
+>>>> support.
+>>>>
+>>>> The PURWA-IOT-EVK/SOM shares most of its hardware design with
+>>>> HAMOA-IOT-EVK/SOM, differing primarily in the BOM. Consequently, the DTS files
+>>>> are largely similar. Both platforms belong to Qualcomm’s IQ-X family. For more
+>>>> details on the IQ-X series, see:
+>>>> https://www.qualcomm.com/internet-of-things/products/iq-x-series
+>>>>
+>>>> Hardware differences between HAMOA-IOT and PURWA-IOT:
+>>>> - Display — PURWA uses a different number of clocks and frequency compared to
+>>>>     HAMOA.
+>>>> - GPU — PURWA integrates a different GPU.
+>>>> - USB0 — PURWA uses a PS8833 retimer, while HAMOA employs an FSUSB42 as the
+>>>>     SBU switch.
+>>>>
+>>>> Features added and enabled:
+>>>> - UART
+>>>> - On-board regulators
+>>>> - Regulators on the SOM
+>>>> - PMIC GLINK
+>>>> - USB0 through USB6 and their PHYs
+>>>> - Embedded USB (eUSB) repeaters
+>>>> - USB Type-C mux
+>>>> - PCIe3, PCIe4, PCIe5, PCIe6a
+>>>> - Reserved memory regions
+>>>> - Pinctrl
+>>>> - NVMe
+>>>> - ADSP, CDSP
+>>>> - WLAN, Bluetooth (M.2 interface)
+>>>> - USB DisplayPort and eDP
+>>>> - Graphics
+>>>> - Audio
+>>>> - TPM
+>>>>
+>>>> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>> ---
+>>>> Changes in v4:
+>>>> - EDITME: describe what is new in this series revision.
+>>>> - EDITME: use bulletpoints and terse descriptions.
+>>>
+>>> Oh no. B4 probably even warned you about not sending it out.
+>>>
+>>>   From this changelog I can assume that nothing has changed. Is it
+>>> correct?
+>>
+>> This section was generated automatically by b4 and was not reviewed
+>> carefully. The actual list of changes is in the section below.
+> 
+> But why????? Why do you ignore what was done for you and write it on
+> your own, reversing the order, etc? And even if you decided to ignore it
+> for any reason, why didn't you delete it?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Shengjiu-Wang/ASoC-dt-bindings-fsl-audmix-Add-support-for-i-MX952-platform/20260116-182050
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20260116101648.377952-3-shengjiu.wang%40nxp.com
-patch subject: [PATCH 2/2] ASoC: fsl_audmix: Add support for i.MX952 platform
-config: s390-randconfig-r071-20260116 (https://download.01.org/0day-ci/archive/20260117/202601170203.upPyGvI2-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 8.5.0
-smatch version: v0.5.0-8985-g2614ff1a
+The confusion was caused by mixing b4 and git format-patch to handle 
+fine‑grained patch formatting. The Git configuration Konrad suggested 
+did not work for me. I ran b4 prep --manual-reroll <msg-id> to allow b4 
+to track the upstream thread, which caused this section to be generated 
+automatically. I did not notice this and mistakenly re‑wrote it myself.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202601170203.upPyGvI2-lkp@intel.com/
-
-smatch warnings:
-sound/soc/fsl/fsl_audmix.c:522 fsl_audmix_probe() warn: missing error code 'ret'
-
-vim +/ret +522 sound/soc/fsl/fsl_audmix.c
-
-be1df61cf06efb Viorel Suman  2019-01-22  465  static int fsl_audmix_probe(struct platform_device *pdev)
-be1df61cf06efb Viorel Suman  2019-01-22  466  {
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  467  	const struct fsl_audmix_soc_data *soc_data;
-62be484f7ad844 Viorel Suman  2019-04-10  468  	struct device *dev = &pdev->dev;
-be1df61cf06efb Viorel Suman  2019-01-22  469  	struct fsl_audmix *priv;
-be1df61cf06efb Viorel Suman  2019-01-22  470  	void __iomem *regs;
-be1df61cf06efb Viorel Suman  2019-01-22  471  	int ret;
-f2a36a78423ee8 Viorel Suman  2019-04-10  472  
-62be484f7ad844 Viorel Suman  2019-04-10  473  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-be1df61cf06efb Viorel Suman  2019-01-22  474  	if (!priv)
-be1df61cf06efb Viorel Suman  2019-01-22  475  		return -ENOMEM;
-be1df61cf06efb Viorel Suman  2019-01-22  476  
-be1df61cf06efb Viorel Suman  2019-01-22  477  	/* Get the addresses */
-959bb6b54d7086 YueHaibing    2019-07-27  478  	regs = devm_platform_ioremap_resource(pdev, 0);
-be1df61cf06efb Viorel Suman  2019-01-22  479  	if (IS_ERR(regs))
-be1df61cf06efb Viorel Suman  2019-01-22  480  		return PTR_ERR(regs);
-be1df61cf06efb Viorel Suman  2019-01-22  481  
-3feaba79d8f701 Shengjiu Wang 2021-03-24  482  	priv->regmap = devm_regmap_init_mmio(dev, regs, &fsl_audmix_regmap_config);
-be1df61cf06efb Viorel Suman  2019-01-22  483  	if (IS_ERR(priv->regmap)) {
-62be484f7ad844 Viorel Suman  2019-04-10  484  		dev_err(dev, "failed to init regmap\n");
-be1df61cf06efb Viorel Suman  2019-01-22  485  		return PTR_ERR(priv->regmap);
-be1df61cf06efb Viorel Suman  2019-01-22  486  	}
-be1df61cf06efb Viorel Suman  2019-01-22  487  
-62be484f7ad844 Viorel Suman  2019-04-10  488  	priv->ipg_clk = devm_clk_get(dev, "ipg");
-be1df61cf06efb Viorel Suman  2019-01-22  489  	if (IS_ERR(priv->ipg_clk)) {
-62be484f7ad844 Viorel Suman  2019-04-10  490  		dev_err(dev, "failed to get ipg clock\n");
-be1df61cf06efb Viorel Suman  2019-01-22  491  		return PTR_ERR(priv->ipg_clk);
-be1df61cf06efb Viorel Suman  2019-01-22  492  	}
-be1df61cf06efb Viorel Suman  2019-01-22  493  
-fe965096c9495d Shengjiu Wang 2019-11-11  494  	spin_lock_init(&priv->lock);
-be1df61cf06efb Viorel Suman  2019-01-22  495  	platform_set_drvdata(pdev, priv);
-62be484f7ad844 Viorel Suman  2019-04-10  496  	pm_runtime_enable(dev);
-be1df61cf06efb Viorel Suman  2019-01-22  497  
-62be484f7ad844 Viorel Suman  2019-04-10  498  	ret = devm_snd_soc_register_component(dev, &fsl_audmix_component,
-be1df61cf06efb Viorel Suman  2019-01-22  499  					      fsl_audmix_dai,
-be1df61cf06efb Viorel Suman  2019-01-22  500  					      ARRAY_SIZE(fsl_audmix_dai));
-be1df61cf06efb Viorel Suman  2019-01-22  501  	if (ret) {
-62be484f7ad844 Viorel Suman  2019-04-10  502  		dev_err(dev, "failed to register ASoC DAI\n");
-77fffa742285f2 Chuhong Yuan  2019-12-03  503  		goto err_disable_pm;
-be1df61cf06efb Viorel Suman  2019-01-22  504  	}
-be1df61cf06efb Viorel Suman  2019-01-22  505  
-294a60e5e98300 Shengjiu Wang 2025-02-26  506  	/*
-294a60e5e98300 Shengjiu Wang 2025-02-26  507  	 * If dais property exist, then register the imx-audmix card driver.
-294a60e5e98300 Shengjiu Wang 2025-02-26  508  	 * otherwise, it should be linked by audio graph card.
-294a60e5e98300 Shengjiu Wang 2025-02-26  509  	 */
-294a60e5e98300 Shengjiu Wang 2025-02-26  510  	if (of_find_property(pdev->dev.of_node, "dais", NULL)) {
-5057d108d69a55 Fabio Estevam 2020-12-02  511  		priv->pdev = platform_device_register_data(dev, "imx-audmix", 0, NULL, 0);
-be1df61cf06efb Viorel Suman  2019-01-22  512  		if (IS_ERR(priv->pdev)) {
-be1df61cf06efb Viorel Suman  2019-01-22  513  			ret = PTR_ERR(priv->pdev);
-5057d108d69a55 Fabio Estevam 2020-12-02  514  			dev_err(dev, "failed to register platform: %d\n", ret);
-77fffa742285f2 Chuhong Yuan  2019-12-03  515  			goto err_disable_pm;
-be1df61cf06efb Viorel Suman  2019-01-22  516  		}
-294a60e5e98300 Shengjiu Wang 2025-02-26  517  	}
-be1df61cf06efb Viorel Suman  2019-01-22  518  
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  519  	soc_data = of_device_get_match_data(dev);
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  520  	if (!soc_data) {
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  521  		dev_err(dev, "failed to match device\n");
-0c44e9e9e61cde Shengjiu Wang 2026-01-16 @522  		goto err_disable_pm;
-
-missing error code.
-
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  523  	}
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  524  
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  525  	if (of_property_read_bool(pdev->dev.of_node, "fsl,amix-bypass") &&
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  526  	    soc_data->bypass_index > 0) {
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  527  		ret = scmi_imx_misc_ctrl_set(soc_data->bypass_index, 0);
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  528  		if (ret)
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  529  			goto err_disable_pm;
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  530  	}
-0c44e9e9e61cde Shengjiu Wang 2026-01-16  531  
-77fffa742285f2 Chuhong Yuan  2019-12-03  532  	return 0;
-77fffa742285f2 Chuhong Yuan  2019-12-03  533  
-77fffa742285f2 Chuhong Yuan  2019-12-03  534  err_disable_pm:
-77fffa742285f2 Chuhong Yuan  2019-12-03  535  	pm_runtime_disable(dev);
-be1df61cf06efb Viorel Suman  2019-01-22  536  	return ret;
-be1df61cf06efb Viorel Suman  2019-01-22  537  }
+> 
+>>
+>>>
+>>>> - Link to v3: https://lore.kernel.org/r/20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com
+>>>>
+>>>> Changes in v2:
+>>>> - Update the GPU firmware path.
+>>>> - Update the description in the cover letter.
+>>>> - Reorder the patches.
+>>>> - Use separate DTS files for Purwa and Hamoa.
+>>>> - Update base commit.
+>>>> - Link to v1: https://lore.kernel.org/all/20251222-purwa-v1-0-14ab9316e5ff@oss.qualcomm.com/
+>>>>
+>>>> Changes in v3:
+>>>> - Delete unused PMIC and thermal nodes.
+>>>> - Add WiFi node.
+>>>> - Add display backlight node.
+>>>> - Add connectors and VBUS regulators for USB3 and USB6.
+>>>> - Enable PCIe3 and PCIe5; add PCIe ports along with reset and wake-up GPIOs.
+>>>> - Link to v2: https://lore.kernel.org/r/20260109-purwa-v2-0-f39ee10684cb@oss.qualcomm.com
+>>>>
+>>>> Changes in v4:
+>>>> - Enable TPM.
+>>>> - Update the descriptions for video and the USB OF graph.
+>>>> - Link to v3: https://lore.kernel.org/all/20260113-purwa-v3-0-16eefacbdce9@oss.qualcomm.com/
+>>
+>> Here.
+>>
+>>>>
+>>>> ---
+>>>> Yijie Yang (4):
+>>>>         dt-bindings: arm: qcom: Document PURWA-IOT-EVK board
+>>>>         firmware: qcom: scm: Allow QSEECOM on PURWA-IOT-EVK
+>>>>         arm64: dts: qcom: Add PURWA-IOT-SOM platform
+>>>>         arm64: dts: qcom: Add base PURWA-IOT-EVK board
+>>>>
+>>>>    Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+>>>>    arch/arm64/boot/dts/qcom/Makefile               |    1 +
+>>>>    arch/arm64/boot/dts/qcom/purwa-iot-evk.dts      | 1549 +++++++++++++++++++++++
+>>>>    arch/arm64/boot/dts/qcom/purwa-iot-som.dtsi     |  685 ++++++++++
+>>>>    drivers/firmware/qcom/qcom_scm.c                |    1 +
+>>>>    5 files changed, 2242 insertions(+)
+>>>> ---
+>>>> base-commit: 377054868ffa544991cc491ecc4016589fc58565
+>>>> change-id: 20251113-purwa-907ec75b4959
+>>>>
+>>>> Best regards,
+>>>> --
+>>>> Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>
+>>>
+>>
+>> -- 
+>> Best Regards,
+>> Yijie
+>>
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best Regards,
+Yijie
 
 
