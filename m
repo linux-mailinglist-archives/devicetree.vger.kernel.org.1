@@ -1,294 +1,206 @@
-Return-Path: <devicetree+bounces-256887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638A5D3AA90
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:42:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0723BD3AA96
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:43:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D6EF9300161B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:42:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D185030478D5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:43:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A9436B075;
-	Mon, 19 Jan 2026 13:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C11DA36BCD6;
+	Mon, 19 Jan 2026 13:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JoIHZxjH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MYWUkw90"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD6C36921C;
-	Mon, 19 Jan 2026 13:42:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25AC436BCD0
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768830163; cv=none; b=VFXcM1p1y3zmcQ3PGB5U++TU9y1jgeWmw7KxrdSqbIctVkcv2zOueXWzm96BTI3eFJY4YH2sKjhviWH78G/tYdv1KABT3ch/87S+YoNi+NnAmCvEIbPKO2JvVH/tIfLjxR4eroGuJOOeea9BZ60CZTd6Aqxx1P3v8zz+GZGbYTQ=
+	t=1768830200; cv=none; b=BJmF4JhUgUH2dlUYGsaktB4itOeqDP7qzFvQpm5nwwOYhD2VeNR0n1NKUxuyctwcoRgJBZYnjBNHoiaEomSZA0YFwVgI1A3j/49gDEgoFX/gLKpMRdmMOZgzDuivWwFdLzXkjplzTexEsH8sNAJE9tkVV+FbvBw5gucPKSsqBk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768830163; c=relaxed/simple;
-	bh=V4mQ3VlRjiqoBXAOdadem2FcWXV+zUSy7/OHRaRfC0k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OTQBkv9P/uA9OHx3EzIgWzA6GsMzjMSg3Y5ZFjbglBclsND9LVQvSBnZuUhCbWt19db5x3g8jxYsJw+e6iCIK/6EVxbA66SL86G4wWmdpA9Zpi6jjTTjNlblq5hZd/ynq8bCUgBXoedDfRrDN9TLg71yQZUaTQx6aW73Ylwp7LM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JoIHZxjH; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768830161; x=1800366161;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=V4mQ3VlRjiqoBXAOdadem2FcWXV+zUSy7/OHRaRfC0k=;
-  b=JoIHZxjHhKPFm+wxd23OaaW7eYSNqDqpa7jpZTKw59I+vVR4TcAxluxk
-   3qiDXGURiheufRb/iuKTy5/OXqDK3n7u+Gd6xJ928HNlwLPpvxKeB7rxv
-   23kePmvX4jAPqUdnKcb2GtVCaVTwsmtCLb1VuAhirln6rFfLKuYnsU8uq
-   TOBK5ZmZP+9U9ggovyYL8XGFg0HVsco2GmhjMf7BhLJ/fRvyj+1iXAEAc
-   ru0wAa8YPyyjvW3Y6IdOfdLrIM8kGD3ZvAasd4LQOxbiwNwTQs/PXCkKB
-   TItwk/LbcUcxTx83i3FE1ASikfSA/6vPr6UqtYR9QFeGFpjLnT5V97CZK
-   Q==;
-X-CSE-ConnectionGUID: OaK5iY4HSCeHAZcsjTN14A==
-X-CSE-MsgGUID: QJV8zTFkQA+xpy5kmaRxkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="73669714"
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
-   d="scan'208";a="73669714"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 05:42:40 -0800
-X-CSE-ConnectionGUID: MJrvk+3oSqiJnsTZfpnklA==
-X-CSE-MsgGUID: ytX4QqSJQNu+cjSfQBWJPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
-   d="scan'208";a="210372271"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.37])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 05:42:36 -0800
-Date: Mon, 19 Jan 2026 15:42:34 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
-Message-ID: <aW40ylvMwVhqNQMw@smile.fi.intel.com>
-References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
- <20260116-adf41513-iio-driver-v4-3-dbb7d6782217@analog.com>
- <aW3dxuelYDM67pqZ@smile.fi.intel.com>
- <texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
+	s=arc-20240116; t=1768830200; c=relaxed/simple;
+	bh=glVc+vYs2e48C7e6a42YdHrlwubv61v062vq1op02/k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Il7fbsZjyPP7vG5Aiq/9yWTm1iYBZBYdyspTgw1SMf2auIXZTXs3UocboFzwYRI/yGUvHOBkU1se2DuxYotgV5LWnFz9l5KhvKK13aYyvMV+YS5nS5TFJJsYbnzD0KMo/8Z2AYePchUyNZDrf4MiW9VPJysz/WWXfS07X4XlMAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MYWUkw90; arc=none smtp.client-ip=209.85.160.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-5014b7de222so43260391cf.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 05:43:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768830198; x=1769434998; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=chB5b0rt82JcysgedumeHVaiY8n8X+8y2Qmtz5rmwLo=;
+        b=MYWUkw90jR0MXmW9XWTRwA9nAUtxotOM931CR+9Ig6nP68+9k1vdcI/k/rGp7ePHE1
+         cA1fP5BWcWKy1a/lKXtdjaFK8vWfpeILzKqyHy6MJzuSThsvWUTjrWGLZMFdZO0Pf9ci
+         e2G7uuYAvQbj3zcWIAIJcJYyaL30t8XbIv+Vkwi/ZimJGNutT8tesNhXIAQAroeCipp2
+         LdpEAw5RtrPMwEVvAw28lYDHL00iFv/yqT6zEqbOkMYPis2M26lsj+kSUgFw4oP9TkxC
+         7p0PXJLDg4ESCbyhqYTuZSG+QgdcABsGHjwBbYcnQzPYksSvkrMlPYdplLg+L4BGuhQj
+         Ir0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768830198; x=1769434998;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=chB5b0rt82JcysgedumeHVaiY8n8X+8y2Qmtz5rmwLo=;
+        b=mj2vUn4nXu0/l2fE1nzHfHgCsy8w+pcer3tNZ/ShltxTLVuBIjgi1f4w/DUjiQnlC6
+         Qv/T/lH3Fk6xwEDP2PXaDnXaJvHmN8wx+80PgEJ6Q6Q1+Xbu/Gzp5RxtlrUbWgwzzHYA
+         D4b5z3Upi9wxhMxC+oN6RusgMLjW4gk1E600gDQTys83pG4ZxqCC8fp8VwGcJrM87aMS
+         z1fEtairoguk2lmCwo7d1IMhvFqBOS1iukziIP9hqsiF4AzsUnXKRmzmc6E6/A2x6VTW
+         FuKqmOEaw0kYVID7Wx/fFAjrxkHI9MiqaFPQLsuY6xCMra5mDGfQDDw+oVa9wXSYuf/C
+         9W5g==
+X-Forwarded-Encrypted: i=1; AJvYcCViTKsV9n2d+RpB4Lbaa0faPkdPOOzf4PDtHeL5dI+fajJNcaPK0U1gUai6xIWZGtVLa+tx5HGixVDQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YywraArrkF/Smfr6Zq5NFBmcHR+FT+ukZbEy8a48DfK36LGq338
+	dP6FJ1ZgDJT260bxC+xIOI4u2D6Yxyj1t85lq4Jp/1dg5i8X/Vshll0OzPXb8FKXry4xIoNxJng
+	ABwqMFoEmNUGqJtJ7TlqRnkkF2jMilJs=
+X-Gm-Gg: AY/fxX7abgVwciU7aIKqKFHGwK9XBZropFTRUDMSHAqz8ngF1wUn+trUYuzfkBy9vE/
+	aP7D+0b5p42v/aYL50W4WOLEEOlZ5h+lwCdOZcWONMauN7Wdd4QEvF/N0WUa7GJOVct88b4lhOd
+	Eq2kgPbvyoWcGU+hGuLrCk0lerHMrVrq8mowAwUDO8HTk26rgwyFRSzvvmCrQtIx8k7GzscMMlF
+	LQIFV9D+i2lxVVJ5mMqkDqnDlSAvofq5ZpvQrloLhtFGTDiEcW6wkfCyZIi8XWXIU9zZSRkgrBR
+	qTcwYnlKH6bkjX8556lrW0tL8wbkiYF4m+qKYA==
+X-Received: by 2002:ac8:5a93:0:b0:4ee:1f22:3613 with SMTP id
+ d75a77b69052e-502a179b7d7mr149743011cf.62.1768830197715; Mon, 19 Jan 2026
+ 05:43:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260119-ufs-rst-v1-1-c8e96493948c@gmail.com> <b0904cb5-3659-41cc-8395-79eec9e82f01@cherry.de>
+In-Reply-To: <b0904cb5-3659-41cc-8395-79eec9e82f01@cherry.de>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Mon, 19 Jan 2026 17:43:09 +0400
+X-Gm-Features: AZwV_Qg3fDBDn37sLa59WhlzNgabNqw_H45Z3ujw8yrw_76pBFKSvwfPEz_39iE
+Message-ID: <CABjd4YzJud4ZZQ_GrOOSnfEVG7wgHmPSf9w8oQhLVSx6WXgN5A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Explicitly request UFS reset pin on RK3576
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	"Martin K. Petersen" <martin.petersen@oracle.com>, Shawn Lin <shawn.lin@rock-chips.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 19, 2026 at 11:21:59AM +0000, Rodrigo Alencar wrote:
-> On 26/01/19 09:31AM, Andy Shevchenko wrote:
-> > On Fri, Jan 16, 2026 at 02:32:22PM +0000, Rodrigo Alencar via B4 Relay wrote:
+Hi Quentin,
 
-...
+On Mon, Jan 19, 2026 at 3:08=E2=80=AFPM Quentin Schulz <quentin.schulz@cher=
+ry.de> wrote:
+>
+> Hi Alexey,
+>
+> On 1/19/26 10:22 AM, Alexey Charkov wrote:
+> > Rockchip RK3576 UFS controller uses a dedicated pin to reset the connec=
+ted
+> > UFS device, which can operate either in a hardware controlled mode or a=
+s a
+> > GPIO pin.
+> >
+> > Power-on default is GPIO mode, but the boot ROM reconfigures it to a
+> > hardware controlled mode if it uses UFS to load the next boot stage.
+> >
+> > Given that existing bindings (and rk3576.dtsi) expect a GPIO-controlled
+> > device reset, request the required pin config explicitly.
+> >
+> > This doesn't appear to affect Linux, but it does affect U-boot:
+> >
+> > Before:
+> > =3D> md.l 0x2604b398
+> > 2604b398: 00000011 00000000 00000000 00000000  ................
+> > < ... snip ... >
+> > =3D> ufs init
+> > ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=3D[3, 3], lane[2, 2], pw=
+r[FASTAUTO_MODE, FASTAUTO_MODE], rate =3D 2
+> > =3D> md.l 0x2604b398
+> > 2604b398: 00000011 00000000 00000000 00000000  ................
+> >
+> > After:
+> > =3D> md.l 0x2604b398
+> > 2604b398: 00000011 00000000 00000000 00000000  ................
+> > < ... snip ...>
+> > =3D> ufs init
+> > ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=3D[3, 3], lane[2, 2], pw=
+r[FASTAUTO_MODE, FASTAUTO_MODE], rate =3D 2
+> > =3D> md.l 0x2604b398
+> > 2604b398: 00000010 00000000 00000000 00000000  ................
+> >
+> > (0x2604b398 is the respective pin mux register, with its BIT0 driving t=
+he
+> > mode of UFS_RST: unset =3D GPIO, set =3D hardware controlled UFS_RST)
+> >
+> > This helps ensure that GPIO-driven device reset actually fires when the
+> > system requests it, not when whatever black box magic inside the UFSHC
+> > decides to reset the flash chip.
+> >
+> > Cc: stable@vger.kernel.org
+> > Fixes: c75e5e010fef ("scsi: arm64: dts: rockchip: Add UFS support for R=
+K3576 SoC")
+> > Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> > This has originally surfaced during the review of UFS patches for U-boo=
+t
+> > at [1], where it was found that the UFS reset line is not requested to =
+be
+> > configured as GPIO but used as such. This leads in some cases to the UF=
+S
+> > driver appearing to control device resets, while in fact it is the
+> > internal controller logic that drives the reset line (perhaps in
+> > unexpected ways).
+> >
+> > Thanks Quentin Schulz for spotting this issue.
+> >
+> > [1] https://lore.kernel.org/u-boot/259fc358-f72b-4a24-9a71-ad90f2081335=
+@cherry.de/
+> > ---
+> >   arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi | 7 +++++++
+> >   arch/arm64/boot/dts/rockchip/rk3576.dtsi         | 2 +-
+> >   2 files changed, 8 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi b/arch/ar=
+m64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+> > index 0b0851a7e4ea..20cfd3393a75 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
+> > @@ -5228,6 +5228,13 @@ ufs_rst: ufs-rst {
+> >                               /* ufs_rstn */
+> >                               <4 RK_PD0 1 &pcfg_pull_none>;
+> >               };
+> > +
+> > +             /omit-if-no-ref/
+> > +             ufs_rst_gpio: ufs-rst-gpio {
+> > +                     rockchip,pins =3D
+> > +                             /* ufs_rstn */
+> > +                             <4 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
+>
+> The SoC default is pull-down according to the TRM. Can you check please?
+> For example, the Rock 4D doesn't seem to have a hardware pull-up or
+> pull-down on the line and the UFS module only seems to have a debouncer
+> (capacitor between the line and ground). So except if the chip itself
+> has a PU/PD, this may be an issue?
 
-> > > +struct adf41513_pll_settings {
-> > > +	enum adf41513_pll_mode mode;
-> > 
-> > Sounds to me like a room to improve the layout here,
-> 
-> I am targeting a 32-bit cpu, just moved in_value down:
-> would this be fine? (pahole output):
+The SoC default is indeed pull-down (as stated both in the TRM and in
+the reference schematic from RK3576 EVB1). Which I believe means that
+the attached device should be held in a reset state until the driver
+takes over the control of the GPIO line (which, in turn, is consistent
+with the observed behavior when reset handling is not enabled in the
+driver but the reset pin is in GPIO mode).
 
-Likely.
+Are you concerned that the chip might unintentionally go in or out of
+reset between the moment the pinctrl subsystem claims the pin and the
+moment the driver starts outputting a state it desires? This hasn't
+caused any observable issues in my testing, but I guess we could
+explicitly set it to &pcfg_pull_down for more predictable behavior in
+line with what's printed on the schematic.
 
-> struct adf41513_pll_settings {
->         enum adf41513_pll_mode     mode;                 /*     0     4 */
-
-Wondering if this can be shorter if moved down...
-
->         u8                         r_counter;            /*     4     1 */
->         u8                         ref_doubler;          /*     5     1 */
->         u8                         ref_div2;             /*     6     1 */
->         u8                         prescaler;            /*     7     1 */
->         u64                        target_frequency_uhz; /*     8     8 */
->         u64                        actual_frequency_uhz; /*    16     8 */
->         u64                        pfd_frequency_uhz;    /*    24     8 */
->         u32                        frac1;                /*    32     4 */
->         u32                        frac2;                /*    36     4 */
->         u32                        mod2;                 /*    40     4 */
->         u16                        int_value;            /*    44     2 */
-> 
->         /* size: 48, cachelines: 1, members: 12 */
->         /* padding: 2 */
->         /* last cacheline: 48 bytes */
-> };
-
-...at least I have had in mind that "mode" should be moved to be near
-to "int_value". But I think it will take 4 bytes still as we don't use
-short enums compile wise.
-
-> > > +	/* reference path parameters */
-> > > +	u8 r_counter;
-> > > +	u8 ref_doubler;
-> > > +	u8 ref_div2;
-> > > +	u8 prescaler;
-> > > +
-> > > +	/* frequency parameters */
-> > > +	u64 target_frequency_uhz;
-> > > +	u64 actual_frequency_uhz;
-> > > +	u64 pfd_frequency_uhz;
-> > > +
-> > > +	/* pll parameters */
-> > > +	u16 int_value;
-> > > +	u32 frac1;
-> > > +	u32 frac2;
-> > > +	u32 mod2;
-> > > +};
-
-...
-
-> > > +static int adf41513_parse_uhz(const char *str, u64 *freq_uhz)
-> > > +{
-> > > +	u64 uhz = 0;
-> > > +	int f_count = ADF41513_HZ_DECIMAL_PRECISION;
-> > > +	bool frac_part = false;
-> > > +
-> > > +	if (str[0] == '+')
-> > > +		str++;
-> > > +
-> > > +	while (*str && f_count > 0) {
-> > > +		if ('0' <= *str && *str <= '9') {
-> > > +			uhz = uhz * 10 + *str - '0';
-> > > +			if (frac_part)
-> > > +				f_count--;
-> > > +		} else if (*str == '\n') {
-> > > +			if (*(str + 1) == '\0')
-> > > +				break;
-> > > +			return -EINVAL;
-> > 
-> > > +		} else if (*str == '.' && !frac_part) {
-> > 
-> > This can be found by strchr() / strrchr() (depending on the expectations of
-> > the input).
-> > 
-> > > +			frac_part = true;
-> > > +		} else {
-> > > +			return -EINVAL;
-> > > +		}
-> > > +		str++;
-> > > +	}
-> > 
-> > With the above the rest becomes just a couple of simple_strtoull() calls with
-> > a couple of int_pow(10) calls (and some validation on top).
-> > 
-> > > +	for (; f_count > 0; f_count--)
-> > > +		uhz *= 10;
-> > 
-> > This is int_pow(10).
-> > 
-> > > +	*freq_uhz = uhz;
-> > > +
-> > > +	return 0;
-> > > +}
-> 
-> The current implementation is kind of a stripped version of
-> __iio_str_to_fixpoint(). Would you prefer something like this, then?:
-
-Do they have most of the parts in common? If so, why can't we use
-__iio_str_to_fixpoint() directly? Or why can't we slightly refactor
-that to give us the results we need here?
-
-> static int adf41513_parse_uhz(const char *str, u64 *freq_uhz)
-> {
-> 	u64 integer_part = 0, fractional_part = 0;
-> 	const char *decimal_point;
-> 	char *endptr;
-> 	int frac_digits;
-> 
-> 	if (str[0] == '+')
-> 	str++;
-> 
-> 	/* Find decimal point */
-> 	decimal_point = strchr(str, '.');
-> 	if (decimal_point) {
-
-> 		/* Parse integer part (if exists before decimal point) */
-> 		if (decimal_point > str) {
-
-I don't think you need this check, simple_strtoull() should return 0.
-
-Also check the ranges, perhaps you want in some cases simple_strtoul().
-
-> 			integer_part = simple_strtoull(str, &endptr, 10);
-> 			if (endptr != decimal_point)
-> 				return -EINVAL;
-> 		}
-> 
-> 		/* Parse fractional part */
-> 		fractional_part = simple_strtoull(decimal_point + 1, &endptr, 10);
-
-The idea of using the simple strtoull() (second "l") is to check for overflows,
-so if the number is > UINT_MAX we probably should return -ERANGE.
-
-We have somewhere already such a code in the kernel, maybe it's a time to have
-advanced version of simple_strtouint().
-
-drivers/crypto/intel/qat/qat_common/qat_uclo.c:206:     ae = simple_strtoull(str, &end, 10);
-drivers/crypto/intel/qat/qat_common/qat_uclo.c-207-     if (ae > UINT_MAX || str == end || (end - str) > 19)
-drivers/crypto/intel/qat/qat_common/qat_uclo.c-208-             return -EINVAL;
-
-> 		if (*endptr != '\0' && *endptr != '\n')
-> 			return -EINVAL;
-> 
-> 		/* Adjust for desired precision */
-
-> 		frac_digits = strcspn(decimal_point + 1, "\n");
-
-This is already precalculated: endptr - decimal_point (+ 1 ?).
-
-> 		if (frac_digits > ADF41513_HZ_DECIMAL_PRECISION)
-> 			fractional_part /= int_pow(10, frac_digits - ADF41513_HZ_DECIMAL_PRECISION);
-> 		else
-> 			fractional_part *= int_pow(10, ADF41513_HZ_DECIMAL_PRECISION - frac_digits);
-> 	} else {
-> 		/* No decimal point - just parse the integer */
-> 		ret = kstrtoull(str, 10, &integer_part);
-> 		if (ret)
-> 			return ret;
-> 	}
-> 
-> 	/* Combine integer and fractional parts */
-> 	*freq_uhz = integer_part * int_pow(10, ADF41513_HZ_DECIMAL_PRECISION) + fractional_part;
-> 
-> 	return 0;
-> }
-
-...
-
-> > > +static int adf41513_uhz_to_str(u64 freq_uhz, char *buf)
-> > > +{
-> > > +	u32 frac_part;
-> > > +	u64 int_part = div_u64_rem(freq_uhz, MICRO, &frac_part);
-> > 
-> > Perhaps MICROHZ_PER_HZ? This will be consistent with the int_value in
-> > _calc_*() below.
-> 
-> Here, the meaning is different. int_part is in Hz and frac_part in uHz.
-> Will add the suffixes to the variables.
-
-Yes, but here it's a constant divisor, and not a multiplier.
-Meaning that one divides µHz by µHz.
-
-> > > +	return sysfs_emit(buf, "%llu.%06u\n", int_part, frac_part);
-> > > +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Alexey
 
