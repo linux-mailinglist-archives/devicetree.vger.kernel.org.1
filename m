@@ -1,140 +1,116 @@
-Return-Path: <devicetree+bounces-257012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E17EED3B452
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:30:59 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2DE4D3B4A6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:41:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B0EE230848EF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:15:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 97644301CF32
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF2C7322B63;
-	Mon, 19 Jan 2026 17:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81512328B56;
+	Mon, 19 Jan 2026 17:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b="cP88G7fa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e9EE1uJf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD84320CB8
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 17:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CCF31A7E1;
+	Mon, 19 Jan 2026 17:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768842953; cv=none; b=U5IIWmnuOfQdfbxukswFZWY1RVK7Z982X9KSDQ8KbdxBBzwfMILzWBgH2H7zmOsNyT6BaJi7BS+7tkXooc9lQZ/HEf1xHf/+zLAX8srGJDwpkyJhpTB0fP9ViWM3k7k4i/zvGu/Rc1Z6J2s2At52rvTHnW2a76qp10ByQg928Vk=
+	t=1768843159; cv=none; b=dG1ssZUCtyP98pQq38z1IUvIfuR6X5ZoR2U73vRVMSqe6QbMY3SaGOBa3UxJdVLV59OlfYuwgWk5Fz2TD+FTKNbw1nT+pZ0M0iC9tvFzqJVPsLay5LNaq5nERAODzAlNt9lc8+Fr/94U5FkU3g+L9KTMKHyEas6vc7TWYDh3y2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768842953; c=relaxed/simple;
-	bh=ST6jN/346GRbnIVq/GL4DxT/AqAUaeF6umCAVbE0YxQ=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=KqeZEt/CSl79cRqxoN3yGjAhl1PKrrNvZAw1pFIpfarv87t6YyrUrt8Hb68Pq/AyKbZixUwoSbNlFTjaUbhAiZkrTVVBF0JiiZP5yqKYnr42OfjIOdA0p2adx2stl81lx0iw4FPP6NlfmIrciJJPH8cPyRs0WeTvUywTp+jbWH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=cP88G7fa; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nexthop.ai
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a3e89aa5d0so44744435ad.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:15:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexthop.ai; s=google; t=1768842952; x=1769447752; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dKh5VhKWJDfvZ+/kW792nGDNCXhsqOgN8MgniXfKmm4=;
-        b=cP88G7faiR50w/wFqq0HMGDzZ2Ho5paWqdd4Qc/aEkWIqp7BsRQWHSTCRGLs9VEa3E
-         svaErMXzjaB4lUtl6nfnDeviK6kOXL1gFzAwmG7yiMpuO3Cj0NWLiarXSQDdqPZ2FWDB
-         m6CmP4TjN0KPJVL6WJZfjz4eLZhxEbrVO6Qam071vMXoO4eBKbJPapZeCX4L9RR/dOod
-         j3nw4F6a68Vts/IBcx8gBl+YZn3ng3zAkG51XEmiCHwdYTVgeq91JcoRTEAx9ZPUDfeo
-         IkETVhL7pr6reX3h+ZXdNs6KB83aJPg1LiRhJqzrpg+f69x0hAWnwAxritDaeAKN9UFI
-         Rl2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768842952; x=1769447752;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dKh5VhKWJDfvZ+/kW792nGDNCXhsqOgN8MgniXfKmm4=;
-        b=mm9tZrHJDR7OeOXxUAjvbPmbrSZqHijRYEVys3RTo7wW+593zY2IDceKU/34UQI1M6
-         Gaehz9HCQW3gFCt1YbgS+qXaOKZJyuQdTezTvleUeWzXaX0cfugVkb8AFHZQrSxpB2Ad
-         o58f1XlqDCvX1XBvy5BWyHmGmARrcGeJ1JQO/8OZdHK0OwT/qfiNEPGvn4+KpWlRdthK
-         IVfxeWGr2U6X8jfQWW3c1dRM+2n24NZptzCI4V3BnAHG0DqxeS7oTJkovP2yt1mUH+Yf
-         NherUQtD3BvKzXGNYX1rXYldZ4aeMcscsKu7OmrR8k1W3TSvA/UXdZLP07/fjpt36aaQ
-         rGrA==
-X-Forwarded-Encrypted: i=1; AJvYcCXLCoJgFBeWwUR1C5eMTPn1ak0ieW+sLdQwJIaBpWqiwE3LDhUw16/dv5RYIS2lNzXkfE6o+YmuozCJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKLEdbQA8/7Cjxmtwhmdf+FVZZ/GWhgd4X+DAeGZLrU3Bi5vby
-	CryHe4+XChx6pCm86GaqWNwHqu3HNnQE4qlkgYOgUklidwYpzG/6P/ZJZaZzfXU+1Bk=
-X-Gm-Gg: AZuq6aJ0heiKDpwnWsWyqxBzB5+VAUJ2/4q/PiQmvPU5xk6kA5RiQSQMWW0ULh5cJXp
-	i+1hznBWEsWSOnbwq14Lfa7qnJQ/FVCbP18viTjNjyyWkdW+3xu/iyxFbCJr3y71wb+d7LpoPFl
-	SBaa8VY3KeLKt2OJPKzWEWzyKdXJjAM8vA1ibj8FykIM+DsPBH2W9aLHxyHfYP/6tbC0hgvSYVr
-	/7277ogTDr9hee/bDDPpfxm6PQYXXE8nQkoFXjaeohwN+sp/WIDg6lV+S6Xl/iaoJt8dnqERWrA
-	ZdSStAWlENhgT+fHu5ac2CZoVUUXpRnE+I/t9OJ9kUmIrRCKYuNtHdM7zGF2EN+8csFoZmd8pkw
-	Hf9ANFBbplxRUcPmGPg5OPDbyHd80wYU+TmDLpNtAr8jb3kPkI6iO8HyrjlloIoCfXFT2+CzLYk
-	KNvJYnRheEexpQOD1xmbD/aqn8PouWYw82rPCx+OCLkix1bzw152+hXsD5cVA9OaIX1ZeLbuM=
-X-Received: by 2002:a17:903:24e:b0:2a1:4c31:335 with SMTP id d9443c01a7336-2a71753513fmr115578615ad.26.1768842951841;
-        Mon, 19 Jan 2026 09:15:51 -0800 (PST)
-Received: from smtpclient.apple (c-24-16-26-157.hsd1.wa.comcast.net. [24.16.26.157])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190aa334sm46857445ad.5.2026.01.19.09.15.51
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 19 Jan 2026 09:15:51 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1768843159; c=relaxed/simple;
+	bh=VeK13ypBHOfjYHA6gWEHJp+oDUN8gaTIycXBoszv1bQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=k3FezAW0po+smVtYj7yKXCUKf6TDlfB3DQB4qQyb5bplyn+AkCeMin9XGVe83CDhg4K8Uktclyk4089+yOg1unEXuxaQFkkoor6cLssPalO/LaXzdwvOC69X2rQaPOJyeOkQAvdrH0UJ9FXV1insQJs1WfHajFJDv9gX9T+wh2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e9EE1uJf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CF730C116C6;
+	Mon, 19 Jan 2026 17:19:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768843158;
+	bh=VeK13ypBHOfjYHA6gWEHJp+oDUN8gaTIycXBoszv1bQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=e9EE1uJf9A2JAXo4qxgRBfkeWXy+MiOTzi9kHEvhixB7WQ+VOE0U/DbPo6GTBofF5
+	 7mqm/KiEzqDuTp3nqKiy2XS8vPlSpczXiIJvUvG6ZZfRH3Ix9qzESxs87UaIknEWzf
+	 DURhrdYeOsJdH4SKhQQ70Ss4KGEwbWJ35nQdCfouoVlvHUUB/3/1zKrA+5LGji1xvz
+	 n1qyHtnjZB0g82uRkJ0KgvCbH+BsZ/L+nEfUTCfj23IzJRjuFPqN00iQPmSPf6Nz+3
+	 IekcIsRzg2mU7bE3CyMD9xzOBJzm7f8zQ6GTYJmXYNNIYzbzjJoQJTIM0rt0rArNQC
+	 ZSVLcNc42xZPw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BE58DD29C32;
+	Mon, 19 Jan 2026 17:19:18 +0000 (UTC)
+From: Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org>
+Subject: [PATCH 0/3] iio: light: add AMS TCS3400 driver
+Date: Mon, 19 Jan 2026 18:19:05 +0100
+Message-Id: <20260119-tsc3400-v1-0-82a65c5417aa@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.300.41.1.7\))
-Subject: Re: [PATCH v3 3/3] spi: xilinx: use device property accessors.
-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-In-Reply-To: <9e559e33-4f2f-40d4-a15f-584548bd6057@sirena.org.uk>
-Date: Mon, 19 Jan 2026 09:15:40 -0800
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michal Simek <michal.simek@amd.com>,
- linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <05D2CC15-DD6B-40F0-BFF0-3264D4FF96ED@nexthop.ai>
-References: <20260119-spi-xilinx-v3-0-4566c33bac0d@nexthop.ai>
- <20260119-spi-xilinx-v3-3-4566c33bac0d@nexthop.ai>
- <8436e914-429f-40b9-8e6f-ec3b02702cad@sirena.org.uk>
- <69F83558-4675-4FC2-8656-BC6E3481AD65@nexthop.ai>
- <9e559e33-4f2f-40d4-a15f-584548bd6057@sirena.org.uk>
-To: Mark Brown <broonie@kernel.org>
-X-Mailer: Apple Mail (2.3864.300.41.1.7)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIlnbmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDQ0NL3ZLiZGMTAwNdM4tES8MUi2RDY1NTJaDqgqLUtMwKsEnRsbW1ANA
+ 32vFZAAAA
+X-Change-ID: 20260119-tsc3400-68a91d8c1355
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Petr Hodina <petr.hodina@protonmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768843157; l=1197;
+ i=petr.hodina@protonmail.com; s=20260107; h=from:subject:message-id;
+ bh=VeK13ypBHOfjYHA6gWEHJp+oDUN8gaTIycXBoszv1bQ=;
+ b=WK3hd2ENhnZO6FOBcTgdGO+GUM2e8gxz72WPSWqDbwW9wEmdU1p9Tv/xjNVCh0YHBM1iFSU3j
+ PGDMetvtTJ2BZ/ljOfBRccGMsXYYYq7c61jxkt+dPJxN9Qk1yY6+nvC
+X-Developer-Key: i=petr.hodina@protonmail.com; a=ed25519;
+ pk=3QaVc6AaAu1IsyyH86+LIOOFhD7kCws8Xhe+wwyE7Bg=
+X-Endpoint-Received: by B4 Relay for petr.hodina@protonmail.com/20260107
+ with auth_id=594
+X-Original-From: Petr Hodina <petr.hodina@protonmail.com>
+Reply-To: petr.hodina@protonmail.com
 
+Hi,
 
+This patch adds an IIO driver for the AMS TCS3400 color light-to-digital
+converter.
 
-> On Jan 19, 2026, at 8:50=E2=80=AFAM, Mark Brown <broonie@kernel.org> =
-wrote:
->=20
-> On Mon, Jan 19, 2026 at 08:47:17AM -0800, Abdurrahman Hussain wrote:
->>> On Jan 19, 2026, at 8:32=E2=80=AFAM, Mark Brown <broonie@kernel.org> =
-wrote:
->>> On Mon, Jan 19, 2026 at 07:06:24AM +0000, Abdurrahman Hussain via B4 =
-Relay wrote:
->=20
->>>> - of_property_read_u32(pdev->dev.of_node, "xlnx,num-ss-bits",
->>>> -  &num_cs);
->>>> - ret =3D of_property_read_u32(pdev->dev.of_node,
->>>> -   "xlnx,num-transfer-bits",
->>>> -   &bits_per_word);
->>>> + device_property_read_u32(&pdev->dev, "xlnx,num-ss-bits",
->>>> + &num_cs);
->>>> + ret =3D device_property_read_u32(&pdev->dev,
->>>> +       "xlnx,num-transfer-bits",
->>>> +       &bits_per_word);
->=20
->>> Are these bindings appropraite for ACPI systems?
->=20
->> Yes, the Xilinx IP blocks are memory mapped and work exactly the same =
-on ACPI as they do on DT.
->=20
-> That does not answer the question at all.  Is it appropriate to
-> configure an ACPI system in this way?
+The TCS3400 is an I2C-connected RGB color sensor supporting RGBC and
+RGB-IR measurement modes, programmable integration time, selectable
+gain, optional interrupt-driven sampling, and regulator-based power
+control.
 
-I am not sure I understood your question. What do you mean by =
-=E2=80=9Cappropriate=E2=80=9D?
-This is following the same guidelines as outlined in=20
-=
-https://www.kernel.org/doc/html/v6.7/firmware-guide/acpi/enumeration.html
+Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
+---
+Petr Hodina (3):
+      doc: add Device Tree binding for AMS TCS3400 light sensor
+      iio: light: add AMS TCS3400 RGB and RGB-IR color sensor driver
+      sdm845: tama: Add AMS TCS3400 ambient light sensor
+
+ .../devicetree/bindings/iio/light/ams,tcs3400.yaml |  54 +++
+ MAINTAINERS                                        |   7 +
+ .../boot/dts/qcom/sdm845-sony-xperia-tama.dtsi     |  36 +-
+ drivers/iio/light/Kconfig                          |  11 +
+ drivers/iio/light/Makefile                         |   1 +
+ drivers/iio/light/tcs3400.c                        | 505 +++++++++++++++++++++
+ 6 files changed, 613 insertions(+), 1 deletion(-)
+---
+base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+change-id: 20260119-tsc3400-68a91d8c1355
+
+Best regards,
+-- 
+Petr Hodina <petr.hodina@protonmail.com>
+
 
 
