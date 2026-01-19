@@ -1,222 +1,220 @@
-Return-Path: <devicetree+bounces-256851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B36BD3A7DA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:05:35 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBADD3A80F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E4ECA309BC3A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:03:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 243223015AD1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5453932AACF;
-	Mon, 19 Jan 2026 12:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11370329E40;
+	Mon, 19 Jan 2026 12:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dhw7hgNP"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LHbA3wgh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E583313E38
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 12:03:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A42E22FE0E;
+	Mon, 19 Jan 2026 12:06:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768824215; cv=none; b=s/DVtO1TwXtu8nobSDnvF5EUnC6svNrgcyOJIqVYhWq6BymUYOmp+y9JQyF5sChSERGxIGWuKBvk0p+M+B3rqhhljwawqyiIf0pJjz5G08kqc1H67XOeoJsWiPvoe/PcjgFYecnhTwk7Oc5uo58brzlQsZ77n4YgmkbeKLAtgZo=
+	t=1768824370; cv=none; b=cK27l3TAcbmjYorN6to9E4HcF2bBtC48o2aA3kM1Ea8xML8tYMjyFmkqtls46O5YH4NPlqIfZCgeLmEmP7G0crpVQVHsFstG9FUK5n6BTCKiJbv77caWKqDm4krecLyzDf0FtLaAPG+IEDLauoukW4t8uEhyhRWAPNvBink3Za8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768824215; c=relaxed/simple;
-	bh=8I29BCfIKiLgtdEVGUIyfgW5ObtzvtJM9btdY9aaQXE=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tspNc4f8MXY9nxSg1qVPdQj3P90QILNEMq3pJ4tsXt17A7w9VwmBn+losO0GznfAAf5Xrq/TgjVrdIBzFtHIf843WTEB9DCzMMiBpJTyiGpSdQ3+s3AqdvtrzRyRdZbWXc95ac+COlsLxTqJ13StRUl9yzjQa4KDH0IMmG5a3yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dhw7hgNP; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-480142406b3so20333545e9.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:03:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768824212; x=1769429012; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kzaz1i9qc6G7xsP+1FC5njEiUedEPzYKnb9i6e2a56w=;
-        b=Dhw7hgNPaDHaDD1COvglU9JeUdScoVHUI72cio5sxGyByUXJTHoDLt7hQtJpLTjiZ+
-         B7eYt4vPaNBsB0d9M5+eE7x5Rdj9hnsXIYDQW2PSg3ivYMYUE/0aHtHGWiKCwXbD4I9+
-         pOezuh3tG+jhBLXtlg3jXOOqju7zW0ayu3bSSHGm52gDOuy/kT78SUjcsm+jCRpCF/ja
-         AcFcgJSufA5HSybR3hLgGTDPEQOFmQlxukFFYdhB7RHtzLqltZV88KRflVEqPTOVVM9I
-         IlSmhTMKUDELsH1Wjc1tJPIygYGrUh1kEY2Qg6EnSsBQVlQWazOd9bN1iuS5l5E31E+t
-         U1tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768824212; x=1769429012;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Kzaz1i9qc6G7xsP+1FC5njEiUedEPzYKnb9i6e2a56w=;
-        b=q2sQKvGypc7bBySNAIxrG2RToBPtqPoYg21EAz+L/d2pRH/1eign+/WXNeX8xqu4rH
-         3pC43H6XTViRmov7ahll7ueDNZcF1j+zbPglC3trwXNMN765pqY2gm1qkifF1ErjjCJ/
-         pICoQ0zOr682NjR+eFB+EvoknGABRv7ztAGQ27gRKirAto/r0ygskY0rHDo55z41MrNM
-         8CzCnPNojgrptRzqgdJhbNWCtB3EG5s92F/Iu2nHabptODn2tyio2Ed8jrNH+/UwfYeO
-         F/GMDnpanQPMlOOZZvnXIG+aFnUOCCq5awVk94rl1RIf7NQJXgE43H3Sy/Hf0q0tMy9+
-         +vPA==
-X-Forwarded-Encrypted: i=1; AJvYcCV6rU+EixhGiAsyAXgQF2RpHN3Ehou84NdMlOLpCUnJPk8b74MbsL9PMzRtab98H0qG2cAJjFOzJ1X3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0QwP0TWyU/HVyiFL6WIL2ZqxD7bHGWejfXXeiZW6jiAaCbe8C
-	yagWM7vMwIcu8DbdZI1evKwkvUjl/If5dSf85J9lE9eWNpmfOBAz2+qz
-X-Gm-Gg: AY/fxX4FW20jUNDgS3/mslhqCwSw4XNhjUIFJbWqma31utxvUnq8lNbMu70jZt/lfTu
-	+QbCGodYvs8jca4tPRYGHITDIi7DYWIRTowfBxXY4LY5Q9GnFI+fWkpS8KTt75LqONaMysGHk/t
-	epohUQmsG0PYEjp1fla8yJLhi4O4pEPS19AMbmM4B5e2/PwcfcZDQS4xo+zn6oP2zj7oLol6hMF
-	aSwdXVsksk28LIvjG14e5SKb1VY3vHAlDGz+6sM0NxpS70paG4/qzg2HaVcjaeCsrMsy7bcEjFL
-	mJyoVpJGBbctdZjSlm0Texwx11MfQd5/ZzjBLgoO6jhWi5BSliDDPjfo7R9SN84ENPou+zO+0tB
-	KMWsb5FrgSf5jK/CgXrbJV2OTnOOH3It7fDpidrhconVrKYtS776yIrkDA4Km7YFN1UjaqPod+b
-	Q6DcuFearDJezoO0riTu1blHDuZWwHc3LoSE/++Ow=
-X-Received: by 2002:a05:600c:1f12:b0:471:14af:c715 with SMTP id 5b1f17b1804b1-4801e2fc37bmr117353555e9.3.1768824211594;
-        Mon, 19 Jan 2026 04:03:31 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-88-81.ip49.fastwebnet.it. [93.34.88.81])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801fe3b01csm83250955e9.5.2026.01.19.04.03.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 04:03:31 -0800 (PST)
-Message-ID: <696e1d93.050a0220.7cbaa.5b25@mx.google.com>
-X-Google-Original-Message-ID: <aW4dkcDb8LikqH-y@Ansuel-XPS.>
-Date: Mon, 19 Jan 2026 13:03:29 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
- EN7581-7996 support
-References: <6967c46a.5d0a0220.1ba90b.393c@mx.google.com>
- <9340a82a-bae8-4ef6-9484-3d2842cf34aa@lunn.ch>
- <aWfdY53PQPcqTpYv@lore-desk>
- <e8b48d9e-f5ba-400b-8e4a-66ea7608c9ae@lunn.ch>
- <aWgaHqXylN2eyS5R@lore-desk>
- <13947d52-b50d-425e-b06d-772242c75153@lunn.ch>
- <aWoAnwF4JhMshN1H@lore-desk>
- <aWvMhXIy5Qpniv39@lore-desk>
- <30f44777-776f-49b1-b2f5-e1918e8052fd@lunn.ch>
- <aW4QixwAJHaHWBBc@lore-desk>
+	s=arc-20240116; t=1768824370; c=relaxed/simple;
+	bh=u9AmUDBNVTOCV30aYzSL+ZLfa8M5Fl6S53KofpLw+V4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=A9HxdK/oAfezr8QEX7g84bgIYkxBjOobtP7Io2+PS79qs3Uck763nj3RpFywTWxv7hWl8mZifAJrugOj5lVkOzNCFh+R5xpHehF+P/CCL4aB9VXJ0/PWKbQJdZjIU3s0VkjEJsc1JN3Y6CaU+yiRI1GD6IUR59PfzgIxuwhlY2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=LHbA3wgh; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 36483f80f52f11f0b7fc4fdb8733b2bc-20260119
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=JruXHPh7YMkSWVzP3hFnXvBFWJm/Bm+uRWMQyfcvcVU=;
+	b=LHbA3wgh4g51G/5jTZyLourYBp0fo/+C+l9SwpMleb1nBBTI64bVZKGraoP6Tf2vVYR9J8mDdqX2RIUC+0QbhzBfsrHPF8S2Z5fOHiD7subT4nw5xNJCFfXR5WOlra9frrf8DC6t5VP/QuYZUzBpJj7uYTAM2gp+ACdhKjhRw7k=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.9,REQID:c7a5f807-3d26-4fa6-9165-5fd918e5a900,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:5047765,CLOUDID:c00e4c5a-a957-4259-bcca-d3af718d7034,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:99|1,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
+	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 36483f80f52f11f0b7fc4fdb8733b2bc-20260119
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <friday.yang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 130810143; Mon, 19 Jan 2026 20:05:57 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 19 Jan 2026 20:05:55 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Mon, 19 Jan 2026 20:05:55 +0800
+From: Friday Yang <friday.yang@mediatek.com>
+To: Yong Wu <yong.wu@mediatek.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob
+ Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Philipp Zabel
+	<p.zabel@pengutronix.de>
+CC: Friday Yang <friday.yang@mediatek.com>,
+	<linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v12 0/2] Add SMI reset and clamp for MediaTek MT8188 SoC
+Date: Mon, 19 Jan 2026 20:05:23 +0800
+Message-ID: <20260119120552.9325-1-friday.yang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aW4QixwAJHaHWBBc@lore-desk>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Mon, Jan 19, 2026 at 12:07:55PM +0100, Lorenzo Bianconi wrote:
-> > > Airoha folks reported the NPU hw can't provide the PCIe Vendor/Device ID info
-> > > of the connected WiFi chip.
-> > > I guess we have the following options here:
-> > > - Rely on the firmware-name property as proposed in v1
-> > > - Access the PCIe bus from the NPU driver during probe in order to enumerate
-> > >   the PCIe devices and verify WiFi chip PCIe Vendor/Device ID
-> > > - During mt76 probe trigger the NPU fw reload if required. This approach would
-> > >   require adding a new callback in airoha_npu ops struct (please note I have
-> > >   not tested this approach and I not sure this is really doable).
-> > 
-> > What i'm wondering about is if the PCIe slots are hard coded in the
-> > firmware.  If somebody builds a board using different slots, they
-> > would then have different firmware? Or if they used the same slots,
-> > but swapped around the Ethernet and the WiFi, would it need different
-> > firmware?
-> 
-> As pointed out by Benjamin, the NPU is a generic Risc-V cpu cluster and it is
-> used to move packets from/to ethernet DMA rings to/from WiFi DMA rings without
-> involving the host cpu (similar to what we have for MTK with WED module).
-> I think the PCIe slot info is not necessary for the NPU to work since it is
-> configured by ethernet (airoha-eth) and wireless drivers (mt76) with DMA ring
-> addresses to use via the airoha npu ops APIs, NPU just moves data between the
-> DMA rings according to my understanding.
-> 
-> > 
-> > So is the firmware name a property of the board?
-> 
-> We need to run different binaries on the NPU based on the MT76 WiFi chip
-> available on the board since the MT76 DMA rings layout changes between MT76 SoC
-> revisions (e.g. Egle MT7996 vs Kite MT7992). In this sense, I agree, the
-> firmware name is a board property.
-> 
-> > 
-> > If the PCIe slots are actually hard coded in the NPU silicon, cannot
-> > be changed, then we might have a different solution, the firmware name
-> > might be placed into a .dtsi file, or even hard coded in the driver?
-> 
-> IIUC what you mean here, it seems the solution I proposed in v1 (using
-> firmware-name property), right?
-> In this case we can't hard code the firmware name in the NPU driver since
-> we can't understand the MT76 WiFi chip revision running on the board at
-> the moment (MT76 would need to provide this info during MT76 probe,
-> please take a look to the option 3 in my previous email).
-> 
-> > 
-> > > What do you think? Which one do you prefer?
-> > 
-> > I prefer to try to extract more information for the Airoha folks. What
-> > actually defines the firmware? Does the slots used matter? Does it
-> > matter what device goes in what slots? Is it all hard coded in
-> > silicon? Is there only one true hardware design and if you do anything
-> > else your board design is FUBAR, never to be supported?
-> 
-> I think the firmware is defined by the board hw configuration (e.g. MT76
-> SoC revision) and not by the specific PCIe slot used.
-> I do not think we have these info hardcoded in the silicon since NPU is a
-> generic RiscV cpu (this has been confirmed by airoha folks).
-> 
+Based on tag: next-20260116, linux-next/master
 
-Just to make sure everything is clear and talking on this in very
-simple words, there isn't anything ""hardcoded"" or strange.
+On the MediaTek MT8188 SoC platform, we encountered power-off failures
+and SMI bus hang issues during camera stress tests. The issue arises
+because bus glitches are sometimes produced when MTCMOS powers on or
+off. While this is fairly normal, the software must handle these
+glitches to avoid mistaking them for transaction signals. What's
+more, this issue emerged only after the initial upstreaming of SMI
+driver.
 
-For """""""reasons""""""" (I assume space constraints or NPU CPU
-limitation) it's not possible to have a single NPU firmware to support
-both WiFi card.
+The software solutions can be summarized as follows:
 
-The NPU do simple task like configuring WED registers and handling DMA
-descriptor/some WiFi offload. Such configuration is specific to the WiFi
-card and it's not the same between MT7996 and MT7992.
+1. Use CLAMP to disable the SMI sub-common port after turning off the
+   LARB CG and before turning off the LARB MTCMOS.
+2. Use CLAMP to disable/enable the SMI sub-common port.
+3. Implement an AXI reset for SMI LARBs.
 
-This is why specific firmware is needed. The specific NPU firmware have
-support for only ONE of the 2 WiFi card and doesn't support configuring
-and handling stuff for the other. (the code is not built in the
-firmware)
+---
+Changes in v12:
+- We used to parse 'mediatek,smi' property in 'mtk_smi_larb_parse_syscon'
+  to get smi sub common regmap. The property has already been parsed in
+  'mtk_smi_device_link_common'. To remove redundant code, we remove
+  'mtk_smi_larb_parse_syscon' function and get the smi sub common regmap
+  in 'mtk_smi_device_link_common'.
+- We need to get driver data in 'mtk_smi_device_link_common', so move
+  'platform_set_drvdata' before 'mtk_smi_device_link_common' in
+  'mtk_smi_larb_probe'.
 
-From the kernel side (in the MT76 code) we just instruct the NPU to
-start offloading stuff (if present) and all the SoC feature for WiFi
-offload are used. (WED, special DMA path, ...)
+Changes in v11:
+- Add error checking in the 'mtk_smi_genpd_callback' function and use
+  'switch-case' statement instead of 'if-else'.
+- Use 'larb->larb_gen->clamp_port[larb->larbid]' to determine
+  whether smi larb requires clamp and reset operations or not in
+  'mtk_smi_larb_probe'. Remove the '_optional' suffix from the
+  function name.
+- Replace 'devm_reset_control_get_optional_exclusive' with
+  'devm_reset_control_get_exclusive' in 'mtk_smi_larb_parse_reset',
+  return the error code if it fails to get the reset controller.
+- Remove genpd callback when smi larb probe fails.
+- Link to v11:
+  https://lore.kernel.org/lkml/20250917120724.8650-1-friday.yang@mediatek.com/
 
-The possible combination that NPU can be used currently are the
-following:
-- Ethernet offload (all NPU firmware)
-- Ethernet offload + WiFi MT7996 (NPU firmware with MT7996 support)
-- Ethernet offload + WiFi MT7992 (NPU firmware with MT7992 support)
+Changes in v10:
+- Rename 'smi_comm_inport_id' to 'smi_comm_in_port_id'.
+- Return 0 when it fails to get 'larb_id' in
+  'mtk_smi_larb_parse_clamp_optional'.
+- Link to v10:
+  https://lore.kernel.org/lkml/20250806085946.11383-1-friday.yang@mediatek.com/
 
-The NPU makes use of feature already present in the SoC and makes use of
-reserved space in RAM for DMA handling so it really don't care of where
-the WiFi card is present (this is what I mean with nothing is hardcoded)
+Changes in v9:
+- Add 'dev_pm_genpd_remove_notifier' in 'mtk_smi_larb_remove'.
+- Remove unused macros.
+- Rename 'sub_comm_syscon' to 'smi_comm_syscon'.
+- Rename 'sub_comm_inport_id' to 'smi_comm_inport_id'.
+- Add more detailed descriptions in change log.
+- Fix incorrect tags.
+- Link to v9:
+  https://lore.kernel.org/lkml/20250804125215.23076-1-friday.yang@mediatek.com/
 
-I hope we are not getting annoying with insisting on the firmware-names
-solution.
+Changes in v8:
+- Fix incorrect tags.
+- Link to v8:
+  https://lore.kernel.org/lkml/20250521063347.31578-1-friday.yang@mediatek.com/
 
-My personal taste on this is that hardcoding the name in the driver
-seems a bit wrong and creating a way to dynamically select the firmware
-based on what is present in the hardware would be great but would
-introduce LOTS of COMPLEXITY for WiFi router that ship with a single
-WiFi card and would have their own dedicated .dts
+Changes in v7:
+- We replaced 'pm_runtime_enable' with 'devm_pm_runtime_enable' in the
+  v6 patch. This changed the order of cleanup, and reviewers expressed
+  concerns that it could introduce unexpected issues. So v7 discard this
+  change and continue using 'pm_runtime_enable'. We need to conduct
+  further investigation to determine if there are any issues related
+  to the cleanup order. This might be resolved in the future, but for
+  now, we just maintain the current status.
+- Link to v7:
+  https://lore.kernel.org/lkml/20250430094545.23932-1-friday.yang@mediatek.com/
 
-To make this generic enough an idea might be to have simple .dtsi with
-prefilled firmware names.
+Changes in v6:
+- Fix coding style.
+- Add another patch to replace 'pm_runtime_enable' with
+  'devm_pm_runtime_enable'.
+- Link to v6:
+  https://lore.kernel.org/lkml/20250408033206.12176-1-friday.yang@mediatek.com/
 
-- en7581-npu-mt7992.dtsi
-- en7581-npu-mt7996.dtsi
+Changes in v5:
+- Use 'devm_pm_runtime_enable' instead of 'pm_runtime_enable'.
+- Remove 'pm_runtime_disable' in 'mtk_smi_common_remove' and
+  'mtk_smi_larb_remove'.
+- Link to v5:
+  https://lore.kernel.org/lkml/20250311122327.20685-1-friday.yang@mediatek.com/
 
-But they would only contain a single node with a single string.
+Changes in v4:
+- Use 'devm_reset_control_get_optional_exclusive' instead of
+  'devm_reset_control_get'.
+- Link to v4:
+  https://lore.kernel.org/lkml/20250221074846.14105-1-friday.yang@mediatek.com/
 
-Hope this more practical explaination clears any doubt of the
-implementation.
+Changes in v3:
+- Remove redundant descriptions for 'resets' and 'reset-names'.
+- Modify the requirements for 'resets' and 'reset-names'.
+- Rename 'mtk_smi_larb_parse_clamp' to 'mtk_smi_larb_parse_clamp_optional'.
+- Rename 'mtk_smi_larb_parse_reset' to 'mtk_smi_larb_parse_reset_optional'.
+- Merge 'mtk_smi_larb_clamp_protect_enable' and
+  'mtk_smi_larb_clamp_protect_disble' into one function.
+- Modify the definition for mtk_smi_larb_clamp_port_mt8188,
+  use 'larbid' as the index of the array.
+- Use 'syscon_regmap_lookup_by_phandle' instead of 'device_node_to_regmap'.
+- Do Not parse 'resets', just check the return value of
+  'devm_reset_control_get'.
+- Add 'has_gals' flag for 'mtk_smi_sub_common_mt8188'.
+- Link to v3:
+  https://lore.kernel.org/lkml/20250121064934.13482-1-friday.yang@mediatek.com/
 
--- 
-	Ansuel
+Changes in v2:
+- According to previous discussions in v1, divided these four
+  patches into two topic separately.
+- Modify the description for 'resets' in binding.
+- Add const value 'larb' for 'reset-names' in binding.
+- Modify requirement for 'resets' and 'reset-names' in binding.
+- Delete 'mediatek,smi-sub-comm' in binding.
+- Delete 'mediatek,smi-sub-comm-in-portid' in binding.
+- Modify the example in binding.
+- Add 'mtk_smi_larb_clamp_port_mt8188' definition in SMI driver.
+- Change the way to parse the 'resets' in driver.
+- Change label from 'err_pm_disable' to 'err_link_remove'.
+- Link to v2:
+  https://lore.kernel.org/lkml/20241120063701.8194-1-friday.yang@mediatek.com/
+
+Friday Yang (2):
+  dt-bindings: memory: mediatek: Add SMI reset and clamp for MT8188
+  memory: mtk-smi: mt8188: Add SMI reset and clamp
+
+ .../mediatek,smi-common.yaml                  |   2 +
+ .../memory-controllers/mediatek,smi-larb.yaml |  19 ++
+ drivers/memory/mtk-smi.c                      | 177 +++++++++++++++++-
+ 3 files changed, 188 insertions(+), 10 deletions(-)
+
+--
+2.46.0
+
 
