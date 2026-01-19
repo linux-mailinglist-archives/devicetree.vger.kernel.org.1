@@ -1,315 +1,222 @@
-Return-Path: <devicetree+bounces-256850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC9ED3A7BF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:04:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B36BD3A7DA
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EB3C23043125
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:02:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4ECA309BC3A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CE93382DF;
-	Mon, 19 Jan 2026 12:02:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5453932AACF;
+	Mon, 19 Jan 2026 12:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CvsnKgGO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dhw7hgNP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4BFA2D060E;
-	Mon, 19 Jan 2026 12:02:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E583313E38
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 12:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768824147; cv=none; b=Xw+U6RJDR0Iaz06rEwgl9lg5qJ1seymF2nLyxuawtvMmeYJEPwfUsU/WPz+piPNcaBC6cHR4WpfEXddda5/B98iOCzEPqoiFbFfCs5Jjb+BQ0FIRY49ESKhdmm26+QO8EANBnUuxGIRLetgCJNwfxfa3EBUJbqmIafn890HxSIQ=
+	t=1768824215; cv=none; b=s/DVtO1TwXtu8nobSDnvF5EUnC6svNrgcyOJIqVYhWq6BymUYOmp+y9JQyF5sChSERGxIGWuKBvk0p+M+B3rqhhljwawqyiIf0pJjz5G08kqc1H67XOeoJsWiPvoe/PcjgFYecnhTwk7Oc5uo58brzlQsZ77n4YgmkbeKLAtgZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768824147; c=relaxed/simple;
-	bh=rDWLbsxDX6g5bOU5oPzY9EefxAeD2i3+I8GJn8jVGaE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kY0UctCNBJdT8/xMudq2lew8yMwGAgYOe14f4yJkcdfEkGAeVEjfIL9domFtc/D4PengMskcdV6jRmUE/yR849al/kOMZFFU4FNjY5pwmN0AavNMHViHfy+E9roeuXxo/CVbE5eQ6nrAzHOFLH4G/ZRYAImhmfRjjSCr2phjnCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=CvsnKgGO; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-152.bb.dnainternet.fi [81.175.209.152])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 144992D9;
-	Mon, 19 Jan 2026 13:01:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1768824111;
-	bh=rDWLbsxDX6g5bOU5oPzY9EefxAeD2i3+I8GJn8jVGaE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CvsnKgGOy94zAGGGaXQv125gqcw6WHrWMi+sJ+IFJ11GxXHGQ/NG5RxyGbEec/Xl4
-	 TE4Mure2ZNHiscRA41CYTkCQnKfgQRvulxggdLyx01K5XDMNVY0vC/mosWAmOWHd7D
-	 fyjBaxiNXWpmmYWzBEjA9+H0kuJ0G0ewC+WgKItE=
-Date: Mon, 19 Jan 2026 14:01:59 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Frank Li <Frank.li@nxp.com>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	s=arc-20240116; t=1768824215; c=relaxed/simple;
+	bh=8I29BCfIKiLgtdEVGUIyfgW5ObtzvtJM9btdY9aaQXE=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tspNc4f8MXY9nxSg1qVPdQj3P90QILNEMq3pJ4tsXt17A7w9VwmBn+losO0GznfAAf5Xrq/TgjVrdIBzFtHIf843WTEB9DCzMMiBpJTyiGpSdQ3+s3AqdvtrzRyRdZbWXc95ac+COlsLxTqJ13StRUl9yzjQa4KDH0IMmG5a3yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dhw7hgNP; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-480142406b3so20333545e9.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:03:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768824212; x=1769429012; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kzaz1i9qc6G7xsP+1FC5njEiUedEPzYKnb9i6e2a56w=;
+        b=Dhw7hgNPaDHaDD1COvglU9JeUdScoVHUI72cio5sxGyByUXJTHoDLt7hQtJpLTjiZ+
+         B7eYt4vPaNBsB0d9M5+eE7x5Rdj9hnsXIYDQW2PSg3ivYMYUE/0aHtHGWiKCwXbD4I9+
+         pOezuh3tG+jhBLXtlg3jXOOqju7zW0ayu3bSSHGm52gDOuy/kT78SUjcsm+jCRpCF/ja
+         AcFcgJSufA5HSybR3hLgGTDPEQOFmQlxukFFYdhB7RHtzLqltZV88KRflVEqPTOVVM9I
+         IlSmhTMKUDELsH1Wjc1tJPIygYGrUh1kEY2Qg6EnSsBQVlQWazOd9bN1iuS5l5E31E+t
+         U1tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768824212; x=1769429012;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Kzaz1i9qc6G7xsP+1FC5njEiUedEPzYKnb9i6e2a56w=;
+        b=q2sQKvGypc7bBySNAIxrG2RToBPtqPoYg21EAz+L/d2pRH/1eign+/WXNeX8xqu4rH
+         3pC43H6XTViRmov7ahll7ueDNZcF1j+zbPglC3trwXNMN765pqY2gm1qkifF1ErjjCJ/
+         pICoQ0zOr682NjR+eFB+EvoknGABRv7ztAGQ27gRKirAto/r0ygskY0rHDo55z41MrNM
+         8CzCnPNojgrptRzqgdJhbNWCtB3EG5s92F/Iu2nHabptODn2tyio2Ed8jrNH+/UwfYeO
+         F/GMDnpanQPMlOOZZvnXIG+aFnUOCCq5awVk94rl1RIf7NQJXgE43H3Sy/Hf0q0tMy9+
+         +vPA==
+X-Forwarded-Encrypted: i=1; AJvYcCV6rU+EixhGiAsyAXgQF2RpHN3Ehou84NdMlOLpCUnJPk8b74MbsL9PMzRtab98H0qG2cAJjFOzJ1X3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0QwP0TWyU/HVyiFL6WIL2ZqxD7bHGWejfXXeiZW6jiAaCbe8C
+	yagWM7vMwIcu8DbdZI1evKwkvUjl/If5dSf85J9lE9eWNpmfOBAz2+qz
+X-Gm-Gg: AY/fxX4FW20jUNDgS3/mslhqCwSw4XNhjUIFJbWqma31utxvUnq8lNbMu70jZt/lfTu
+	+QbCGodYvs8jca4tPRYGHITDIi7DYWIRTowfBxXY4LY5Q9GnFI+fWkpS8KTt75LqONaMysGHk/t
+	epohUQmsG0PYEjp1fla8yJLhi4O4pEPS19AMbmM4B5e2/PwcfcZDQS4xo+zn6oP2zj7oLol6hMF
+	aSwdXVsksk28LIvjG14e5SKb1VY3vHAlDGz+6sM0NxpS70paG4/qzg2HaVcjaeCsrMsy7bcEjFL
+	mJyoVpJGBbctdZjSlm0Texwx11MfQd5/ZzjBLgoO6jhWi5BSliDDPjfo7R9SN84ENPou+zO+0tB
+	KMWsb5FrgSf5jK/CgXrbJV2OTnOOH3It7fDpidrhconVrKYtS776yIrkDA4Km7YFN1UjaqPod+b
+	Q6DcuFearDJezoO0riTu1blHDuZWwHc3LoSE/++Ow=
+X-Received: by 2002:a05:600c:1f12:b0:471:14af:c715 with SMTP id 5b1f17b1804b1-4801e2fc37bmr117353555e9.3.1768824211594;
+        Mon, 19 Jan 2026 04:03:31 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-88-81.ip49.fastwebnet.it. [93.34.88.81])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801fe3b01csm83250955e9.5.2026.01.19.04.03.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jan 2026 04:03:31 -0800 (PST)
+Message-ID: <696e1d93.050a0220.7cbaa.5b25@mx.google.com>
+X-Google-Original-Message-ID: <aW4dkcDb8LikqH-y@Ansuel-XPS.>
+Date: Mon, 19 Jan 2026 13:03:29 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] media: synopsys: add driver for the designware
- mipi csi-2 receiver
-Message-ID: <20260119120159.GA26642@pendragon.ideasonboard.com>
-References: <20251114-rockchip-mipi-receiver-v5-0-45aa117f190a@collabora.com>
- <20251114-rockchip-mipi-receiver-v5-2-45aa117f190a@collabora.com>
- <aWpil6jI1Ad0DcEI@lizhi-Precision-Tower-5810>
- <db2f0c20-ca7e-41c9-be08-67fd1f92c2af@collabora.com>
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: npu: Add
+ EN7581-7996 support
+References: <6967c46a.5d0a0220.1ba90b.393c@mx.google.com>
+ <9340a82a-bae8-4ef6-9484-3d2842cf34aa@lunn.ch>
+ <aWfdY53PQPcqTpYv@lore-desk>
+ <e8b48d9e-f5ba-400b-8e4a-66ea7608c9ae@lunn.ch>
+ <aWgaHqXylN2eyS5R@lore-desk>
+ <13947d52-b50d-425e-b06d-772242c75153@lunn.ch>
+ <aWoAnwF4JhMshN1H@lore-desk>
+ <aWvMhXIy5Qpniv39@lore-desk>
+ <30f44777-776f-49b1-b2f5-e1918e8052fd@lunn.ch>
+ <aW4QixwAJHaHWBBc@lore-desk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <db2f0c20-ca7e-41c9-be08-67fd1f92c2af@collabora.com>
+In-Reply-To: <aW4QixwAJHaHWBBc@lore-desk>
 
-On Mon, Jan 19, 2026 at 10:49:20AM +0100, Michael Riesch wrote:
-> Hi Frank,
-> 
-> Thanks for your review.
-> 
-> On 1/16/26 17:08, Frank Li wrote:
-> > On Fri, Jan 16, 2026 at 02:02:47PM +0100, Michael Riesch wrote:
-> >> The Synopsys DesignWare MIPI CSI-2 Receiver is a CSI-2 bridge with
-> >> one input port and one output port. It receives the data with the
-> >> help of an external MIPI PHY (C-PHY or D-PHY) and passes it to e.g.,
-> >> the Rockchip Video Capture (VICAP) block on recent Rockchip SoCs.
-> >>
-> >> Add a V4L2 subdevice driver for this unit.
-> >>
-> >> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> >> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> >> Reviewed-by: Mehdi Djait <mehdi.djait@linux.intel.com>
-> >> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> >> ---
-> > ...
-> >> +
-> >> +static inline struct dw_mipi_csi2_device *to_csi2(struct v4l2_subdev *sd)
-> >> +{
-> >> +	return container_of(sd, struct dw_mipi_csi2_device, sd);
-> >> +}
-> >> +
-> >> +static inline __maybe_unused void
+On Mon, Jan 19, 2026 at 12:07:55PM +0100, Lorenzo Bianconi wrote:
+> > > Airoha folks reported the NPU hw can't provide the PCIe Vendor/Device ID info
+> > > of the connected WiFi chip.
+> > > I guess we have the following options here:
+> > > - Rely on the firmware-name property as proposed in v1
+> > > - Access the PCIe bus from the NPU driver during probe in order to enumerate
+> > >   the PCIe devices and verify WiFi chip PCIe Vendor/Device ID
+> > > - During mt76 probe trigger the NPU fw reload if required. This approach would
+> > >   require adding a new callback in airoha_npu ops struct (please note I have
+> > >   not tested this approach and I not sure this is really doable).
 > > 
-> > why need '__maybe_unused', needn't inline. compiler can auto decide and
-> > report unused function if no 'inline'.
+> > What i'm wondering about is if the PCIe slots are hard coded in the
+> > firmware.  If somebody builds a board using different slots, they
+> > would then have different firmware? Or if they used the same slots,
+> > but swapped around the Ethernet and the WiFi, would it need different
+> > firmware?
 > 
-> The __maybe_unused was helpful during development and is not really
-> required now. It doesn't hurt either, so I left it in. I can remove it
-> if you wish.
+> As pointed out by Benjamin, the NPU is a generic Risc-V cpu cluster and it is
+> used to move packets from/to ethernet DMA rings to/from WiFi DMA rings without
+> involving the host cpu (similar to what we have for MTK with WED module).
+> I think the PCIe slot info is not necessary for the NPU to work since it is
+> configured by ethernet (airoha-eth) and wireless drivers (mt76) with DMA ring
+> addresses to use via the airoha npu ops APIs, NPU just moves data between the
+> DMA rings according to my understanding.
 > 
-> >> +dw_mipi_csi2_write(struct dw_mipi_csi2_device *csi2, unsigned int addr, u32 val)
-> >> +{
-> >> +	writel(val, csi2->base_addr + addr);
-> >> +}
-> >> +
-> >> +static inline __maybe_unused u32
-> >> +dw_mipi_csi2_read(struct dw_mipi_csi2_device *csi2, unsigned int addr)
-> >> +{
-> >> +	return readl(csi2->base_addr + addr);
-> >> +}
-> >> +
-> >> +static const struct dw_mipi_csi2_format *
-> >> +dw_mipi_csi2_find_format(struct dw_mipi_csi2_device *csi2, u32 mbus_code)
-> >> +{
-> >> +	WARN_ON(csi2->formats_num == 0);
-> >> +
-> >> +	for (unsigned int i = 0; i < csi2->formats_num; i++) {
-> >> +		const struct dw_mipi_csi2_format *format = &csi2->formats[i];
-> >> +
-> >> +		if (format->code == mbus_code)
-> >> +			return format;
-> >> +	}
-> >> +
-> >> +	return NULL;
-> >> +}
-> >> +
-> >> +static int dw_mipi_csi2_start(struct dw_mipi_csi2_device *csi2)
-> >> +{
-> >> +	struct media_pad *source_pad;
-> >> +	union phy_configure_opts opts;
-> >> +	s64 link_freq;
-> >> +	u32 control = 0;
-> >> +	u32 lanes = csi2->lanes_num;
-> >> +	int ret;
 > > 
-> > try keep reverise christmas tree order.
+> > So is the firmware name a property of the board?
 > 
-> Ack.
+> We need to run different binaries on the NPU based on the MT76 WiFi chip
+> available on the board since the MT76 DMA rings layout changes between MT76 SoC
+> revisions (e.g. Egle MT7996 vs Kite MT7992). In this sense, I agree, the
+> firmware name is a board property.
 > 
-> >> +
-> >> +	if (lanes < 1 || lanes > 4)
-> >> +		return -EINVAL;
-> >> +
-> > ...
-> >> +
-> >> +static int dw_mipi_csi2_register_notifier(struct dw_mipi_csi2_device *csi2)
-> >> +{
-> >> +	struct v4l2_async_connection *asd;
-> >> +	struct v4l2_async_notifier *ntf = &csi2->notifier;
-> >> +	struct v4l2_fwnode_endpoint vep;
-> >> +	struct v4l2_subdev *sd = &csi2->sd;
-> >> +	struct device *dev = csi2->dev;
-> >> +	struct fwnode_handle *ep;
-> >> +	int ret;
-> >> +
-> >> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0, 0);
 > > 
-> > use  struct fwnode_handle *ep __free(fwnode_handle) can simplify err
-> > handler.
+> > If the PCIe slots are actually hard coded in the NPU silicon, cannot
+> > be changed, then we might have a different solution, the firmware name
+> > might be placed into a .dtsi file, or even hard coded in the driver?
 > 
-> Sorry, I don't see the benefit of that.
+> IIUC what you mean here, it seems the solution I proposed in v1 (using
+> firmware-name property), right?
+> In this case we can't hard code the firmware name in the NPU driver since
+> we can't understand the MT76 WiFi chip revision running on the board at
+> the moment (MT76 would need to provide this info during MT76 probe,
+> please take a look to the option 3 in my previous email).
 > 
-> >> +	if (!ep)
-> >> +		return dev_err_probe(dev, -ENODEV, "failed to get endpoint\n");
-> >> +
-> > ...
-> >> +{
-> >> +	struct media_pad *pads = csi2->pads;
-> >> +	struct v4l2_subdev *sd = &csi2->sd;
-> >> +	int ret;
-> >> +
-> >> +	ret = dw_mipi_csi2_register_notifier(csi2);
-> >> +	if (ret)
-> >> +		goto err;
-> >> +
-> >> +	v4l2_subdev_init(sd, &dw_mipi_csi2_ops);
-> >> +	sd->dev = csi2->dev;
-> >> +	sd->entity.ops = &dw_mipi_csi2_media_ops;
-> >> +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
-> >> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_STREAMS;
-> >> +	sd->internal_ops = &dw_mipi_csi2_internal_ops;
-> >> +	sd->owner = THIS_MODULE;
 > > 
-> > I remeber needn't set owner, v4l2_async_register_subdev() do it for you.
-> 
-> Indeed, nice catch.
-> 
-> >> +	snprintf(sd->name, sizeof(sd->name), "dw-mipi-csi2 %s",
-> >> +		 dev_name(csi2->dev));
-> >> +
-> > ...
-> >> +
-> >> +static int dw_mipi_csi2_probe(struct platform_device *pdev)
-> >> +{
-> >> +	struct device *dev = &pdev->dev;
-> >> +	struct dw_mipi_csi2_device *csi2;
-> >> +	int ret;
-> >> +
-> >> +	csi2 = devm_kzalloc(dev, sizeof(*csi2), GFP_KERNEL);
-> >> +	if (!csi2)
-> >> +		return -ENOMEM;
-> >> +	csi2->dev = dev;
-> >> +	dev_set_drvdata(dev, csi2);
-> >> +
-> >> +	csi2->base_addr = devm_platform_ioremap_resource(pdev, 0);
-> >> +	if (IS_ERR(csi2->base_addr))
-> >> +		return PTR_ERR(csi2->base_addr);
-> >> +
-> >> +	ret = devm_clk_bulk_get_all(dev, &csi2->clks);
-> >> +	if (ret != DW_MIPI_CSI2_CLKS_MAX)
-> >> +		return dev_err_probe(dev, -ENODEV, "failed to get clocks\n");
-> >> +	csi2->clks_num = ret;
-> >> +
-> >> +	csi2->phy = devm_phy_get(dev, NULL);
-> >> +	if (IS_ERR(csi2->phy))
-> >> +		return dev_err_probe(dev, PTR_ERR(csi2->phy),
-> >> +				     "failed to get MIPI CSI-2 PHY\n");
-> >> +
-> >> +	csi2->reset = devm_reset_control_get_exclusive(dev, NULL);
-> >> +	if (IS_ERR(csi2->reset))
-> >> +		return dev_err_probe(dev, PTR_ERR(csi2->reset),
-> >> +				     "failed to get reset\n");
-> >> +
-> >> +	csi2->formats = formats;
-> >> +	csi2->formats_num = ARRAY_SIZE(formats);
-> >> +
-> >> +	pm_runtime_enable(dev);
+> > > What do you think? Which one do you prefer?
 > > 
-> > devm_pm_runtime_enable() will simple error handle.
+> > I prefer to try to extract more information for the Airoha folks. What
+> > actually defines the firmware? Does the slots used matter? Does it
+> > matter what device goes in what slots? Is it all hard coded in
+> > silicon? Is there only one true hardware design and if you do anything
+> > else your board design is FUBAR, never to be supported?
 > 
-> Ack.
+> I think the firmware is defined by the board hw configuration (e.g. MT76
+> SoC revision) and not by the specific PCIe slot used.
+> I do not think we have these info hardcoded in the silicon since NPU is a
+> generic RiscV cpu (this has been confirmed by airoha folks).
 > 
-> >> +
-> >> +	ret = phy_init(csi2->phy);
-> >> +	if (ret) {
-> >> +		ret = dev_err_probe(dev, ret,
-> >> +				    "failed to initialize MIPI CSI-2 PHY\n");
-> >> +		goto err_pm_runtime_disable;
-> >> +	}
-> >> +
-> > ...
-> >> +
-> >> +static int dw_mipi_csi2_runtime_resume(struct device *dev)
-> >> +{
-> >> +	struct dw_mipi_csi2_device *csi2 = dev_get_drvdata(dev);
-> >> +	int ret;
-> >> +
-> >> +	reset_control_assert(csi2->reset);
-> >> +	udelay(5);
-> > 
-> > Now prefer use fsleep(), which auto choose difference sleep function
-> > according to delay number.
-> 
-> I'll keep that in mind, but here the first thing that fsleep does is to
-> check whether the parameter is <= 10 and (since this is true) call
-> udelay. So here I don't see the point really.
 
-Using fsleep() by default, unless there's a specific need to use
-udelay() or msleep(), is usually preferred. It "does the right thing"
-(TM) automatically, freeing developers and reviewers from having to
-think about it.
+Just to make sure everything is clear and talking on this in very
+simple words, there isn't anything ""hardcoded"" or strange.
 
-> >> +	reset_control_deassert(csi2->reset);
-> >> +
-> >> +	ret = clk_bulk_prepare_enable(csi2->clks_num, csi2->clks);
-> >> +	if (ret) {
-> >> +		dev_err(dev, "failed to enable clocks\n");
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static DEFINE_RUNTIME_DEV_PM_OPS(dw_mipi_csi2_pm_ops,
-> >> +				 dw_mipi_csi2_runtime_suspend,
-> >> +				 dw_mipi_csi2_runtime_resume, NULL);
-> >> +
-> >> +static struct platform_driver dw_mipi_csi2_drv = {
-> >> +	.driver = {
-> >> +		.name = "dw-mipi-csi2",
-> >> +		.of_match_table = dw_mipi_csi2_of_match,
-> >> +		.pm = &dw_mipi_csi2_pm_ops,
-> > 
-> > pm_ptr( &dw_mipi_csi2_pm_ops)
-> 
-> Shouldn't make a difference here since this driver depends on CONFIG_PM.
-> 
-> >> +	},
-> >> +	.probe = dw_mipi_csi2_probe,
-> >> +	.remove = dw_mipi_csi2_remove,
-> >> +};
-> >> +module_platform_driver(dw_mipi_csi2_drv);
-> >> +
-> >> +MODULE_DESCRIPTION("Synopsys DesignWare MIPI CSI-2 Receiver platform driver");
-> >> +MODULE_LICENSE("GPL");
+For """""""reasons""""""" (I assume space constraints or NPU CPU
+limitation) it's not possible to have a single NPU firmware to support
+both WiFi card.
+
+The NPU do simple task like configuring WED registers and handling DMA
+descriptor/some WiFi offload. Such configuration is specific to the WiFi
+card and it's not the same between MT7996 and MT7992.
+
+This is why specific firmware is needed. The specific NPU firmware have
+support for only ONE of the 2 WiFi card and doesn't support configuring
+and handling stuff for the other. (the code is not built in the
+firmware)
+
+From the kernel side (in the MT76 code) we just instruct the NPU to
+start offloading stuff (if present) and all the SoC feature for WiFi
+offload are used. (WED, special DMA path, ...)
+
+The possible combination that NPU can be used currently are the
+following:
+- Ethernet offload (all NPU firmware)
+- Ethernet offload + WiFi MT7996 (NPU firmware with MT7996 support)
+- Ethernet offload + WiFi MT7992 (NPU firmware with MT7992 support)
+
+The NPU makes use of feature already present in the SoC and makes use of
+reserved space in RAM for DMA handling so it really don't care of where
+the WiFi card is present (this is what I mean with nothing is hardcoded)
+
+I hope we are not getting annoying with insisting on the firmware-names
+solution.
+
+My personal taste on this is that hardcoding the name in the driver
+seems a bit wrong and creating a way to dynamically select the firmware
+based on what is present in the hardware would be great but would
+introduce LOTS of COMPLEXITY for WiFi router that ship with a single
+WiFi card and would have their own dedicated .dts
+
+To make this generic enough an idea might be to have simple .dtsi with
+prefilled firmware names.
+
+- en7581-npu-mt7992.dtsi
+- en7581-npu-mt7996.dtsi
+
+But they would only contain a single node with a single string.
+
+Hope this more practical explaination clears any doubt of the
+implementation.
 
 -- 
-Regards,
-
-Laurent Pinchart
+	Ansuel
 
