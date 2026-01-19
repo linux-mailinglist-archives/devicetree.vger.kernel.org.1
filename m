@@ -1,105 +1,121 @@
-Return-Path: <devicetree+bounces-256845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9F7D3A78B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:58:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BD4D3A7AE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:01:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 628AC3041A64
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:54:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1DD2130F8221
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE1A31AA84;
-	Mon, 19 Jan 2026 11:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 199AD31CA4A;
+	Mon, 19 Jan 2026 11:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KaR/EjiX"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EfhulzcF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B6A3191D4
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 11:54:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7080431BC95;
+	Mon, 19 Jan 2026 11:58:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768823679; cv=none; b=EFih8XzKicFl4JwM+3x4UdkLgwQIUIUJz8sad9a/ypleyzhpUaTADZJS4gOc+5JlnuT6zpNL+yqEo58qrxrSv+QljufKXkmsMzBLYUm3YQS+6yR9BXRMjML1hfspvUWQWD94N0oFadEpQsjCJc0sVc/mxgTVzSMBFYBRsEkoGDw=
+	t=1768823890; cv=none; b=M0KIaiwBXZOZ/9ql3xaYY1QYrMpxB5JFT+Qw1dzYDab54PoHgJHdYctgCxqZzdmF+hLjVK4dK5WhiksHzFvV8bttWhhaSwXLx2osVWkvh+UJrQp8Kp1r0AaBI3RetP4mS2HlhviLNEd2/zzccyatjZP9V+e369YghPjvNmPj93Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768823679; c=relaxed/simple;
-	bh=L3MT+97S25u7D70FlA35D5k+YoREX4Gvre3dbLxk8rI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=THojYO9pesIGF2i+zPvIl01Z/QyI3cQvJU1QeXtUITHFZyPlXAREmx0USx7VjOGwN01bxPO5Lg4DrbkNEhE+fwa8C2NsSl52RpcoDo8GgRTP9omIS84FzPBHx3qzQeuBx6EP/YVh75YdaiBjJE+I+IQb0AomRPzFJbUo0R/I7I4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KaR/EjiX; arc=none smtp.client-ip=74.125.82.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f49.google.com with SMTP id a92af1059eb24-124566b6693so4345219c88.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 03:54:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768823677; x=1769428477; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L3MT+97S25u7D70FlA35D5k+YoREX4Gvre3dbLxk8rI=;
-        b=KaR/EjiX0ggy+3UvMLKIJu95G3UhwLW/L+ICs+dORSnSI6CMdd1Ne9lP/Ht4/xfyfM
-         T7X9h13Bynca0Mdj9boLZwQ0wqnpPq81Cf5O+fJ2mVayscVdxi6NRp3+gKN33cYFoQ8i
-         gzk/UtkBVhnCqvg48ZTrfxe0ce2d+jflgWdqYskMLKiedWO9xHG0930vvwIclW3odhNi
-         YbWyUc9WjilEusyKhQJ4cwdYL2IkfeY/U+PpxI0RTuCJALDoQADPAH0suOLS1bJ94mRf
-         RDvhqUhkg/QaUBNlCY4WXAg6eRbHb2Q6ErYmeKwWYYBNmvb+2amoWU9OOUcZ6O+LQ03D
-         WciA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768823677; x=1769428477;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=L3MT+97S25u7D70FlA35D5k+YoREX4Gvre3dbLxk8rI=;
-        b=MJ2ElGNXvTEOqehQDNMGPgs+3aTLgTdWF9TVTHI186e+HY8KBQWiv96wO0LIQY2nfy
-         VsFLTFLYHr2SolNh7dApo0shg11isUvFQlk/WlP5g716ClqSohZWNDWBb5My2cTQ3iCf
-         Ldm9Q9p71L+iqmufgCEqIGo/Sb9LuZl1K1Rikgue0ELMr/N8cxkG+C1hS4PmG/CxInIH
-         8d/B2LZjacQom+R9PBJKZrQWUHdI4RhgNilc2XMNzRajSXhUaaxzdseXIaPTfzGHuBgh
-         VeXaQhyXCp++gI6chsypqRY0lgZ+PusAS2MqMjupniKQ468IA3kF/8VOWV6eTDeZ8lqf
-         SN7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXtbx7nmU8jj9NWje3UNTnqHOoJdVSB9Mg1+YFdJP5CX21a+yAb1kBOtegvzJJhVzl126C1Dpkqet1R@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsdxbupGuImLhSwWt5UL+7e8UI6NxQCmKNZRC2Ad3DZ7BaCDwi
-	T2eMPW0AWBGFCV+cO3BH4xfg1cOthzu8OOQMjvj9XCWifAPqlCeiOzcVNXJuAmoERVQTJc3Y9/f
-	ZkYd/gZTwR/7I/LcCbEVKsXRIdoGfZlg=
-X-Gm-Gg: AY/fxX5xOiQoRD/p7FpMtWn2QWYnQWwxCtsMhE92XAtwPOZ+hPV8N8yREl+mdXvuCIp
-	WtGDq04l5s1GLRY0pId+1EshOdIyS8npiBGZcXpjBkxR5MlKBdB+/PD9WtNiB4MVLGe7qAwwifc
-	BU2NFnhbcWARkgVJszUIWdtoAxciMSpCUc2tAuKX1ChNMiL9kt135ZgT0oX+Qq5ift6suXrMS3Q
-	wbkMgHQytxFS5iH+W+aivaPEYnAK4YqCed6pSkQJiRucCJiOp5f//tzeqg8RSIgR56pf20ec3jR
-	gPimpKGvWqPDrjFFzUo5VZokpzEL+q7AAcT5m/N/FrZvFsxpQh/zLR2zVpbXZJxSs+LvHuG0EgM
-	DYfYlervVtA==
-X-Received: by 2002:a05:7022:2526:b0:11b:9386:a3c1 with SMTP id
- a92af1059eb24-1244b395eecmr9065273c88.44.1768823677453; Mon, 19 Jan 2026
- 03:54:37 -0800 (PST)
+	s=arc-20240116; t=1768823890; c=relaxed/simple;
+	bh=jTsRQd9AGY63xLGQjAR5MzI8ActOiX3EAiNvmnftFQs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=HplE49T33rRV+5fY4v0S8R2PIX824MZz7ld5oIGwnyCmEX9X3SoUnRx9K+a7nQQxkdu60686qDizHsWNd0oUXxgYq+b8PSb8LVDej00tLPz80ny2HD5VcTVZUttfxq3ff5TUbz19WgZNKiCSLfNtav1EWN6r5DIqk4v+ZwHmFWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EfhulzcF; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768823886;
+	bh=jTsRQd9AGY63xLGQjAR5MzI8ActOiX3EAiNvmnftFQs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=EfhulzcFLtZYOZ0m0LmHUskUL8m/ch1z3bxJdaM9p/rUkGha6yndCy/wyVjOiWsDW
+	 E1NZHLLiWKtISCmc+9pm4BxoSiI6xjsy6yCuFmNEHr7AwH1DIL5X1XmflDM9TS68sD
+	 OOxN6zPEyolfCKTFiJzKCq4WCzgoKSMVzAQVfalmjp8oIOyXBTZZW9zPAWCWkd8Saj
+	 BFCW7QgWJWMsLYurQhwFb8jBrMPKV11p+Mi3oFhcSG5Ml24EPqdv1BCmQZpwI/Vh5q
+	 0HV4GwLUv6A35IMt8EoNIp0cAoNDPheLy0eTNoj6mYYt8Vw0AGoZhb0ZzET7B04qAR
+	 qP8Oys6/HXtNA==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BBF7817E0117;
+	Mon, 19 Jan 2026 12:58:05 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Jason-JH Lin <jason-jh.lin@mediatek.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+ Nicolas Dufresne <nicolas@ndufresne.ca>, Nancy Lin <nancy.lin@mediatek.com>, 
+ Singo Chang <singo.chang@mediatek.com>, 
+ Paul-PL Chen <paul-pl.chen@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, 
+ Xiandong Wang <xiandong.wang@mediatek.com>, 
+ Sirius Wang <sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>, 
+ Chen-yu Tsai <wenst@chromium.org>, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+ Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
+In-Reply-To: <20251031155838.1650833-1-jason-jh.lin@mediatek.com>
+References: <20251031155838.1650833-1-jason-jh.lin@mediatek.com>
+Subject: Re: (subset) [PATCH 0/9] Add GCE support for MT8196 (series 1/4)
+Message-Id: <176882388570.29723.2273368189503773750.b4-ty@collabora.com>
+Date: Mon, 19 Jan 2026 12:58:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260119103654.51318-1-francesco@dolcini.it>
-In-Reply-To: <20260119103654.51318-1-francesco@dolcini.it>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Mon, 19 Jan 2026 13:57:17 +0200
-X-Gm-Features: AZwV_Qjn-law-_KhQdrPSaRXm2pJ9JQh-dHRP72Qm7kKPCJK_LWk9DtifbbNfZI
-Message-ID: <CAEnQRZAk5awoJdkAaSEdcopkmT1g1pdJLz76DdqkQ_p5pqT73Q@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: imx8-apalis: Remove obsolete TODO comment
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Francesco Dolcini <francesco.dolcini@toradex.com>, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-On Mon, Jan 19, 2026 at 12:37=E2=80=AFPM Francesco Dolcini <francesco@dolci=
-ni.it> wrote:
->
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->
-> The GPU is supported since Linux v6.9, with changes in the SoC dtsi
-> file. Remove the related obsolete TODO comment.
->
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Fri, 31 Oct 2025 23:56:28 +0800, Jason-JH Lin wrote:
+> From: Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
+> 
+> This series adds initial support for the MediaTek MT8196 GCE in the CMDQ
+> driver, including related API changes for new hardware requirements.
+> 
+> Series application order:
+>   1. [Fixes] Refine DMA address handling for the command buffer
+>   - https://lore.kernel.org/all/20251022171847.379470-1-jason-jh.lin@mediatek.com/
+>   2. [Series 1/4] Add GCE support for MT8196 and update CMDQ APIs (this series)
+>   3. [Series 2/4] Migrate subsystems to new CMDQ APIs
+>   4. [Series 3/4] Remove shift_pa from CMDQ jump functions
+>   5. [Series 4/4] Remove deprecated CMDQ APIs
+> 
+> [...]
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+Applied to v6.19-next/soc, thanks!
+
+[2/9] mailbox: mtk-cmdq: Add cmdq private data to cmdq_pkt for generating instruction
+      commit: 266f35701b6f7ddd9521310eb5add01001d4a614
+[3/9] mailbox: mtk-cmdq: Add GCE hardware virtualization configuration
+      commit: 7005b7cb2fff9081a6b1738b84a8ea12a6781fb3
+[4/9] mailbox: mtk-cmdq: Add mminfra_offset configuration for DRAM transaction
+      commit: 1c1874843bc43d9f333d441af00f61ece2373e5d
+[5/9] mailbox: mtk-cmdq: Add driver data to support for MT8196
+      commit: 5ea617e818333a2078dadc11e5734886e39901d0
+[6/9] soc: mediatek: mtk-cmdq: Add cmdq_get_mbox_priv() in cmdq_pkt_create()
+      commit: c775b23b1f78626daca804bd26f1460368f20406
+[7/9] soc: mediatek: mtk-cmdq: Add pa_base parsing for hardware without subsys ID support
+      commit: 4bf783d8415cc397334b375a05f0b2321fc6c319
+[8/9] soc: mediatek: mtk-cmdq: Extend cmdq_pkt_write API for SoCs without subsys ID
+      commit: 40dc5bbad63b5f60dd2e69a32def1a2673cba09e
+[9/9] soc: mediatek: mtk-cmdq: Add mminfra_offset adjustment for DRAM addresses
+      commit: 22ce09ce1af574747fce072c3f62c29c440538d7
+
+Cheers,
+Angelo
+
+
 
