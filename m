@@ -1,131 +1,126 @@
-Return-Path: <devicetree+bounces-256906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B496BD3AB53
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:11:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AA24D3AB5F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:13:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E2FD2307FE76
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:06:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70D00306AE5A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:11:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C3A136E47F;
-	Mon, 19 Jan 2026 14:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E00F376BD0;
+	Mon, 19 Jan 2026 14:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Zro+wjvY"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VHAPs9o/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781B2376BF8
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEB032693E;
+	Mon, 19 Jan 2026 14:11:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768831608; cv=none; b=fo9Moca4hsEoNeboQM9uKIMeT8QBnoGQDGFon43Ti5ItKkKj2EXZpBmPaq3wucbQxPODbkFQHmiFvp25iA87XtyHiS9tEyE4iLBqM8Naghux1FA1/4oyyaBFoTl0Tc/b4eOr1JAno7aecSGPYFkUdhOtRob8exzH/huIogZveuk=
+	t=1768831914; cv=none; b=gSdd6oohN4txShpDMKLAFr7sclPwWwyyDS1EZXxmHeVwVWmPR99bjOdhdLlAXvO9zOlF1FLpxmBMy0QDT5T7faJ4evon1nVfuAHVjHuKDpcCXGz7GDcMj55YTUKJA3CH6FtvHRjyaD8/mfpxJPX/V8U7i+MPpzJL7AEcJv/pl5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768831608; c=relaxed/simple;
-	bh=PaO//h4aaHpeXDKTCutId0QKH8llt3+YpQISpJCLbuI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fyXPhlDWO9ojHdpV5ig/Eh1SX6N0L9b5834HV2WJgB9OwwAjT2XUh/ivpKQ4cYVO84Q/IlwudPUhh/SddHxCwPx9gWizXEE2jtLmbdpBts+hCvkhwB0bNVtLqFGC+43jK+S16X2dkh+sR2vmUBcIqw3BS8i/36PvzZzXznSlY8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Zro+wjvY; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-42fb0fc5aa4so3842892f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:06:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1768831604; x=1769436404; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NYbPS1Q1egGiEf+FowJflS+CPH/nAP63ilv5+paqrac=;
-        b=Zro+wjvYnlwdzhnKyDhs9ZwuUFG9gdqikr6/HWBhWvQZHjBJzodIaSZgCmgYbacTga
-         aS46SGkJG69+rIPMMuAYSIkCm3gkclmMCSGKctjKFnrreHZFINpTtA3ojujadP8gx2LK
-         xUiZeBJ2fcUGGyeqkfLYyX6yRP7btWg9AUKznBEcgfWFdk0HNeX0KJXRXVDWlH5taI+G
-         nH5nf3XfuSMUBY9tu0/LSjRpjMlDFETW6AR2/B7IE/n8VRRgksP+kboYZ1znzWuGwb0A
-         OVw8SOxtpsG1W5JhKmhSlsYSb91eHaUqnJhXTSEwvUKM8Fq3OuYldQ+FBZyJ8QuriJgm
-         7AZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768831604; x=1769436404;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NYbPS1Q1egGiEf+FowJflS+CPH/nAP63ilv5+paqrac=;
-        b=e3Uuy497NKGXqDKYJNPaCbbwc2vx5xND33G4WR/re/ooedyI8FfmxBrlhKfTKEv3mh
-         FOdbPQceXTgowsurznGGqcWNl7Yy2WT/GxJ4NkwYprEIgew5nvf7nUXdY7tF8sEcufNy
-         CwGoZ50CBpUpwJjrbEcDgSwK9hDC5OIdDerzZ8MgOYKe1lCFH3mzpoRiHrbe3bdEYEkq
-         VV034ipRJjUrXUp/6AG/vBa5BAgCdfBKLHfsDZlh6elo9b7gk4rd104IRjG0J8XFGXsB
-         CO1p9vMdpmYHbS/CGgEAbLmxhvStNcmrFiofi6oQFhmXHq5p0avKvZRUc0+IE+uXAYwq
-         wx6A==
-X-Forwarded-Encrypted: i=1; AJvYcCV7b4Rxugv/B0H5doiD4u1aIiwo5ujKcGWavR7wy8Yrqi+v6bV+BYJfSSr4V7ndOcu+5dNlCjvIm9/8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHHTSlga37WTksd2VjRdzbW/ojAbrbYzR7fi6soHz+DAXCYfNY
-	9WrxpJIkbsiI5oV38g6Ou4m3NiEP49rlldd4WhMqKt8/q15sNPJhfPTvxiPK/RIxafw=
-X-Gm-Gg: AZuq6aIuVdCg6THjME0RGDWz8l+oHOgF0RKC+iQ+id4QUjUU/MlcK6EsimcGF2gaN75
-	ZNhzTBiqkPf5iw5qtAvGO58DrndeSU16UpV77EXtK49MNSiNTGtlVHJlpiIWmCcILxF/DV/fD0R
-	c67RYHTSASvorSjEVIotx+OqlpLdwLd0v3dbQMsMYsg9hUMhsPYkKCeRmi1/rJ5MQ0AwXtRP8gv
-	Sa8CJiLRaChoqRa+Sig8qEEzA4Zzp+Z9Tuji6OzuFIhg/RhZ96iS1a9reFiverYEiv3A/Jll2cM
-	wYlLCMP2yPfgdF+QJ2efb8zYWDZ9rg2OjdR/eG+kNNsU05lLKcQG0jSWOMxq2Dzdj20tfcfW+r+
-	fpTj0LYodc/E52BJaUH0Ye0xLXnjKq9LlejqNgOLNMDnBZPgmOAPnuIq9yNNmDTFZA7wbXdVgNN
-	yU5YI3AHP7XZv2UioDEA==
-X-Received: by 2002:a05:6000:2c05:b0:432:84f9:9803 with SMTP id ffacd0b85a97d-4356a033304mr13973113f8f.3.1768831603708;
-        Mon, 19 Jan 2026 06:06:43 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435699271dfsm22767776f8f.15.2026.01.19.06.06.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 06:06:43 -0800 (PST)
-Message-ID: <ade158ba-0532-4eb0-b95c-5c7de16b490d@tuxon.dev>
-Date: Mon, 19 Jan 2026 16:06:41 +0200
+	s=arc-20240116; t=1768831914; c=relaxed/simple;
+	bh=QVnAQXATigDPFxgb2z2Vvw/8470ub4WmV5WzsyDyK4w=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uL4UeXw29rCOhHEoLR5FHhHq2s5lo4ldyyIbB9gs5azAJeYxL/4CdpFKhi1+1XmZ1k/TNIq18N9qSIgTRET5esSEndJreKrCEhQ1wz7GD1dLRLojx/q44TzljB82yxJ3E4lyzyKNzTjA77U168+Sp0KGZUGd0WmiiuDI8mo4PvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VHAPs9o/; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 3067B1A2963;
+	Mon, 19 Jan 2026 14:11:51 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0350760731;
+	Mon, 19 Jan 2026 14:11:51 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1366E10B69816;
+	Mon, 19 Jan 2026 15:11:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768831910; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=zBnoXZkSDvXVR2uiVsNq/HoNx+6eyb4cj7sy3fWGhx4=;
+	b=VHAPs9o/0bh98pJpJm+4YjDxevnw+lNDeaCne/NHTsIN/Ryn2gOh6+plwi6VQB3v4kHxCs
+	8uFii8UixVPvu52ZcLZnNXjxXn/SqmfBV+z5v4xHjH50nTxnyfTzQ7OtLlv++zvGSzd0NM
+	nSRTDnoU4Y8lzJ6cWPuCcQ+OSwi6vcoSCVcfoY4d5H8O1do87Akt4xdZEux//0RSspcC76
+	Zdn8F5PwHAGo7LaAZX0NeS6bADz47d4nQyBYpnALp4lFCG/AJThSsBMRkejYJ5CAancej3
+	OpFc/kjOyZamxlJIngSXIobI6Bv6qCDskxAgGXq6YOUT4tEpQ4TG5WN2Rzx0cw==
+Date: Mon, 19 Jan 2026 15:11:45 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 32/77] dtc-parser: Introduce last_header_flags
+Message-ID: <20260119151145.2f67139e@bootlin.com>
+In-Reply-To: <aWiJvEEgjl44h6vd@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-33-herve.codina@bootlin.com>
+	<aWiJvEEgjl44h6vd@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/16] PCI: rzg3s-host: Fix inbound window size tracking
-To: John Madieu <john.madieu.xa@bp.renesas.com>,
- claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org,
- kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be,
- krzk+dt@kernel.org
-Cc: robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
- magnus.damm@gmail.com, biju.das.jz@bp.renesas.com,
- linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
-References: <20260114153337.46765-1-john.madieu.xa@bp.renesas.com>
- <20260114153337.46765-3-john.madieu.xa@bp.renesas.com>
-Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260114153337.46765-3-john.madieu.xa@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi, John,
+On Thu, 15 Jan 2026 17:31:24 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
 
-On 1/14/26 17:33, John Madieu wrote:
-> The current implementation incorrectly resets size_id each iteration
-> instead of accumulating, causing incorrect remaining size calculations
-> when mapping DMA regions across multiple windows.
+> On Mon, Jan 12, 2026 at 03:19:22PM +0100, Herve Codina wrote:
+> > The parser needs to get header flags value in different places.
+> > 
+> > It relies on the fact that the rule used to parse the dts file is always
+> >   headers memreserves devicetree
+> > 
+> > With that only rule to parse the file, it uses '$<flags>-1' construct to
+> > get the flags value.
+> > 
+> > With the future introduction of import symbols parsing, this rule will
+> > change and the parser couldn't rely anymore on '$<flags>-1' to get flags
+> > value. Indeed, import symbols parsing will add a new optional symbol in
+> > this rule leading to two possible rules (with and without the new
+> > symbol) to parse the source file.
+> > 
+> > Introduce the last_header_flags variable to explicitly keep track of
+> > flags while also being agnostic of the rule structure and use this new
+> > variable instead of '$<flags>-1'.  
 > 
-> Fixes: 7ef502fb35b2 ("PCI: rzg3s-host: Add Renesas RZ/G3S SoC host driver")
+> I'm not sure this approach is safe: I'm not sure bison guarantees that
+> semantic rules will always be executed in the same order, so using
+> global variables is risky.
 
-Same here with regards to the commit title.
+if rules were not executed in the same order '$<flags>-1' construct would
+not work.
 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
->   drivers/pci/controller/pcie-rzg3s-host.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
-> index c1053f95bc95..205b60421be1 100644
-> --- a/drivers/pci/controller/pcie-rzg3s-host.c
-> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
-> @@ -1313,7 +1313,7 @@ static int rzg3s_pcie_set_inbound_windows(struct rzg3s_pcie_host *host,
->   
->   		pci_addr += size;
->   		cpu_addr += size;
-> -		size_id = size;
-> +		size_id += size;
->   		id++;
->   	}
->   	*index = id;
+The problem is not the order. I don't think the order will change. The
+problem is related to the number of items on stack.
 
+With import symbols, that the stack will be:
+  header memreserved devicetree
+or
+  header memreserved importsyms devicetree
+
+Using '$-1' will no more be possible. Indeed, '$-1' from the devicetree
+rule will reference 'header' in one case and 'memreserved' in the other
+case.
+
+Without a global variable, I don't know how to reference 'header' (or flags
+value) in all cases.
+
+Any better ideas are welcome.
+
+Best regards,
+Hervé
 
