@@ -1,111 +1,114 @@
-Return-Path: <devicetree+bounces-257063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E916D3B697
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 20:02:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FB87D3B6A7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 20:04:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 920493000DD2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:01:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E9D213010548
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893A12BDC0B;
-	Mon, 19 Jan 2026 19:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6DB38F924;
+	Mon, 19 Jan 2026 19:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="pD6znHaQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L32wixaP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109842BD5B4;
-	Mon, 19 Jan 2026 19:01:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F297938E131;
+	Mon, 19 Jan 2026 19:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768849269; cv=none; b=quBvTvpaThMzkW5+3JVnP+hTjnNrQE+Ns+bFynuQfw8UbiuF28YZUbLTcNAh+zcG+4kvhGPgabRVp4k2NtPe7QI+OQhFQ8c5Xu+mrpMQy0En8K4RYNY+KfufxuvLuCVrVM9Mv6PGPm7KUuT4VFSxhEG7O0F1GJcRDD3wOghHlSI=
+	t=1768849435; cv=none; b=RTy6HvjuBmFaebK3t1xOMWxe4cbbIayixNe4ahiW5BUvwt+TBY+NARRiIuWhZ7a9nIL0V98MMNEb7kdnO2kxIvP8scCHK4iPQfqQyWLJaIBAVokX2oC5MAIxCSCLA9xhfqaZBOrYM8L7uIChgZ4ZOkHIbqow3gVIvFfZGmz7xfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768849269; c=relaxed/simple;
-	bh=1r03tFePel8c4madg7Epkw8zXeEhbAb9cyIji9K+4ug=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RXuEXUgomWj2B8NjTstH/EFikMt2y40KMgpsNLVQO4ysmWjSSPg8iuMwtxiqsX88/VTzecOUcHdga147yTg0j5W5TkPh3AzSTfMEL9mfrFO8ylqhG6qMGgru4JVrwMj4LKfHAWMZ8Dj7VQj7kHv5Pm4udiubPEGekU4M+lgNl2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=pD6znHaQ; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dw0Cs5gszz9v15;
-	Mon, 19 Jan 2026 20:00:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1768849257;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HHWgHmHioEt/0YiiJEprWST3wU3t3S/52C4koyjJRYk=;
-	b=pD6znHaQkhDrHvxE7ZHu8rnPx7tGuW8bnoNSf3bzVLSyUaesaPyNp6ZO5RbceRbr2dm7Zq
-	9uAWG+AV8bWIPezuKWOlFyg7VNq/K8Xq2aUgSIhiqjgh52x5G3LHRd9eVC9qUcKL2qWcMO
-	4bMXZf/b4PwWs7laV/kbIqkj8P3Ez6JSBwwa21uqfLxFkIEWQmcVHTuqLrmU+6HtCy8hdA
-	Ufyi3vTS9Gck/pObcv7xlmpSQIBw2TcLESWawySdGljAAy+5/i+CeViQ6R9pFZ1CsK6J0Q
-	b3/knjgKsWycv5FsQUdQPeWVb/NIlRy4nTHRFaPMn6WyGkXzfItLDzNlUt1dpA==
-Message-ID: <a76c8764-b0be-40bc-941f-02515cd5167d@mailbox.org>
-Date: Mon, 19 Jan 2026 20:00:54 +0100
+	s=arc-20240116; t=1768849435; c=relaxed/simple;
+	bh=4yz3B/tXTSGwq4EUu6T9yN/gjOCgR+W+WDGk6tiURU0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fChyLmiKwW2udvCIg1+Oz9HAGgFjVrVKogqJ8LWmdpO7j1RyiFgd8Gramri7Q5abCbkcomuEGKgPE8jQp7NQsLPlgv+2TzgQjDliqPKF9rJzkGsfWOIve9IZLPCmq3QioQIA/Fgj7liMCgX+3LPF57C/nwrAAYsyf1B2l4swTKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L32wixaP; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768849433; x=1800385433;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4yz3B/tXTSGwq4EUu6T9yN/gjOCgR+W+WDGk6tiURU0=;
+  b=L32wixaPkqAVkJIOKCSJbmEMCyOZNujLB3g3x3Ur3WqRvQa8wcpix14D
+   DstIONBWXyijBiQZad6HyHfuzXpZFTa7NcHaQnAUAab9Mt7VMm1tUQ4nM
+   M15y/HfEwUnKPr4EIZ+zq/PRxFs6rvg4wKdpj8QhEUkD4fQmnIgnke7o9
+   Sscgwap6no6rdb1MPnHtKivxYCyvXsCvBGPUUWNICUY0jNqdoAM/LkHCi
+   c9tyXZophQMwKl2nS0UZERqIqwlA3wQ4JicAM2phWKiSL9LEPJECPXgJv
+   CklBz+J8RDLI8b0T9cKv/oAHI8P06oEl/dSXZq9FGoDFPrTFPBINnM8WR
+   g==;
+X-CSE-ConnectionGUID: 16lOav+MTNCmktm2tlQ/hg==
+X-CSE-MsgGUID: wxj7N2WTT3uSaOj1fLUQyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="69971941"
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
+   d="scan'208";a="69971941"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 11:03:52 -0800
+X-CSE-ConnectionGUID: USVNSxneRlWz1PicI0mm1A==
+X-CSE-MsgGUID: PGtE6QkBRy+X3vLWmu/J6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
+   d="scan'208";a="205728268"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.37])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 11:03:49 -0800
+Date: Mon, 19 Jan 2026 21:03:46 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, stable@vger.kernel.org,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 4/8] iio: dac: ds4424: reject -128 RAW value
+Message-ID: <aW6AEszfRQzuHf6j@smile.fi.intel.com>
+References: <20260119182424.1660601-1-o.rempel@pengutronix.de>
+ <20260119182424.1660601-5-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: firmware: arm,scmi: Document
- arm,no-completion-irq property
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: arm-scmi@vger.kernel.org, "Rob Herring (Arm)" <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Sudeep Holla
- <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-References: <20260117010241.186685-1-marek.vasut+renesas@mailbox.org>
- <aW5hmb9tyw1Gv388@pluto>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aW5hmb9tyw1Gv388@pluto>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: jga11wgoc6aah6yxxmh97yibomjjdejy
-X-MBO-RS-ID: cde433c36df03f86619
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260119182424.1660601-5-o.rempel@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 1/19/26 5:53 PM, Cristian Marussi wrote:
-
-[...]
-
->> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> index be817fd9cc34b..d06cca9273c48 100644
->> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->> @@ -146,6 +146,13 @@ properties:
->>         this platform. If set, the value should be non-zero.
->>       minimum: 1
->>   
->> +  arm,no-completion-irq:
->> +    type: boolean
->> +    description:
+On Mon, Jan 19, 2026 at 07:24:20PM +0100, Oleksij Rempel wrote:
+> The DS442x DAC uses sign-magnitude encoding, so -128 cannot be
+> represented in hardware.
 > 
-> Shouldn't these two points have to be swapped as per Sudeep and Rob
-> suggestions ?
+> With the previous check, userspace could pass -128, which gets converted
+> to a magnitude of 128 and then truncated by the 7-bit DAC field. This
+> ends up programming a zero magnitude with the sign bit set, i.e. an
+> unintended output (effectively 0 mA instead of -128 steps).
 > 
->      description:
-> 	....
->      type: boolean
-> 
->> +      This optional property is intended for hardware that does not generate
->> +      completion interrupts and can be used to unconditionally enable forced
->> +      polling mode of operation.
->> +
->>     arm,smc-id:
->>       $ref: /schemas/types.yaml#/definitions/uint32
->>       description:
+> Reject -128 to avoid silently producing the wrong current.
 
-They were referring to the content of the description: . Note that the 
-type precedes the description: , see e.g. arm,smc-id above or any of the 
-other properties.
+...
+
+> -		if (val < S8_MIN || val > S8_MAX)
+> +		if (val <= S8_MIN || val > S8_MAX)
+>  			return -EINVAL;
+
+Hmm... So the range is [ -127 .. 0 .. 127 ] ?
+
+I think in such case the plain numbers would be more specific than
+the type related limits.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
