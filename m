@@ -1,139 +1,157 @@
-Return-Path: <devicetree+bounces-256864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0B1D3A842
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63636D3A86B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:17:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B64763134C99
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:09:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D75B73050CF0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1012235C191;
-	Mon, 19 Jan 2026 12:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C95535A921;
+	Mon, 19 Jan 2026 12:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RZb3CUCH"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1XC3ESJy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 578F8359F8C
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 12:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD5C359F8D;
+	Mon, 19 Jan 2026 12:14:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768824545; cv=none; b=ediK9i82eyDHf/52yjjFRFFRTqooedn0Byvgrl1o5RCj0dJLtq04ijvoAAqEGM4+Tq45yuS/j1HMuRagK41O5mdwPAzNQ/5FxGTjnBG1e4tRvWzUKnM9l+lipbh8TU5dEXuLdKVY924zqBKnBxDkPpd4Q0IjybXTUSA6pq4ogrs=
+	t=1768824859; cv=none; b=fwRHnsxvPUFu6VQlvo7oBX9+SZP/CRYoltJkviPtEw0gdXWHVSngSKGM9BtFEg1A4hoSot0kgoBNPfvTUgdNw/T6ofkrUIs1/pfbInZagCDFUJclZnzsaDYhAxorHHr7I+5/Vb3VRI0rzyFU8FiJ2r5oI4Ch4QUqPGoabNGErNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768824545; c=relaxed/simple;
-	bh=glFQ4Oo7aFXvg4qCxUzDyhw63Eric2ZNI22jQtPmJhg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RYnZAyCZf4rPiJq25E9jkrx9u9zUt8ZDMSkFTOCTNRXokeIqQfUt+wb8fMhzGs8hbyF+ayUA5OO3wdQcWYSW3CUzx0d0+/75y89NmeedIPAvKJfOrsarVlE1dx3XcN6UScMzS/jZsuVnIewRDSFHq6uM2VsHkXIoeM4DcUtUOMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RZb3CUCH; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-432d2c7a8b9so3691414f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:09:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768824538; x=1769429338; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Lathu7eoQ9hnN88L9AXE9/ZDnozq7El9GXLKl/+ubdI=;
-        b=RZb3CUCHS8XY/w6prvniPZsJeLa0F3ecDqlXKS5V18u1ARwlecbTcvfkMSSNc4zo2e
-         UufpYWCk8WYq83Icb5O9z6Ilv47FMH77Q+RTgM6IusnK+ht1cE+t7wwyS07BtmIMQNEY
-         zI+xu/b3CCv8fxsv9Z3+vLTeBwyKifeuKRg+4pct0sYuqz2X4NTmsPhitNF82Kg1auTn
-         zbQZC1CBLDmCSrh9hR0uhM9xC2D/0whgDNNNeDOz7NOf+FCh1Nai1DFMHvbQ7dJem49c
-         kdswX6eFkJ6Ek5/OZ9Vi1JYIQlkgLIgTaY5ktp53Rx7wdG+TdEXrHFmml+idHlmiyUnQ
-         yk4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768824538; x=1769429338;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Lathu7eoQ9hnN88L9AXE9/ZDnozq7El9GXLKl/+ubdI=;
-        b=OKEHGQLFl4LaZv/KpM/j19d/8jn/yTHFNNBKkcSTpC02nBrHjYoanOZ/1e6jllBbHI
-         nIqLea7uDk8owHaPj1MA6apPFy6HcXOo7F/VUMXCt9SuPPf8QurfPGya0eCDplaPhFsD
-         SfKwG17aQq8kJt6xyq+oVZAMWQN2254xdh86jltk46Xwv49YBpkhuNTQgBNWnij1IB7t
-         kZuMOQCUDN+N1JDV+9UzjHZnuSiaqcZm4k04IHlESsbDgzUyHxEntirpIDfJNDCITmKm
-         kaD/j4C1Fj1+eAz41OeuSL8OjLZp3GGlujj8oNGMjltdn2M7bjkyjLpERrItjNV/Njip
-         28VA==
-X-Forwarded-Encrypted: i=1; AJvYcCW79ZuVHdTGVQM7CPUOyjv7y4QyXC+3fFiR0lwy1960LZ5s1aR2cx6F7JHkzRlZwXoZ5/lOEIrZHxZX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6jumPmlLP91F199jcGvEiJekbabmjrBHqFannBpRtaBPDnKOI
-	51DDFWuDanJHe5HF3clV+AE18tyxWeuZZqFXwJrCMPhu9MDVpvzRFbnsjHN6Xn+ZB6I=
-X-Gm-Gg: AZuq6aL8nnMd/D40M/SWyrlt2IG30ECprtDPdc+QLfTgUwpFUCwPhk3qD85o1KeJNSU
-	qF0YM+5vt/qtsp73cCeEf6DzOT3GilzzSIWFWm2ah+RuzYWwn+nl+AX6K+dHJG3nq3Eq90mamvh
-	SnChgW8e7U4or+kGU7ceAVsHm+alqfWglIrB7l8toAlUJuDwWBxKIHAztS0zWj4YHenrtV+ZC9H
-	y3+tR764h+a8lCDM46KNN/q4HZ+69xTjEr0Lz9bFMh2MHf1xDYWQinj4vZic6AuJuAItehUAhop
-	PIMdW28J6n9XEYBGPZOmv24rJSfEJ9sHRPbi1OueNbDZL7z5qBW7KNDuD/fz0Bwu/BABL58EcJ0
-	GN6TySp8AdCyfRYqVvCaywMwKrFzkfEYHe/pHOoKIiUGOE4T0cJ6s4hfxBJPwyWRkEfC6FjXVPu
-	uiBvhte08xRUCkRGq/Qcx3K+XT/GEwMDH9Y65OqkqaUIQqAK0DNKONXOxKHrVqhOfMLHUY3g==
-X-Received: by 2002:a05:6000:144b:b0:431:8f8:7f2f with SMTP id ffacd0b85a97d-4356a07743emr11227404f8f.34.1768824538122;
-        Mon, 19 Jan 2026 04:08:58 -0800 (PST)
-Received: from ta2.c.googlers.com (164.102.240.35.bc.googleusercontent.com. [35.240.102.164])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4356997e664sm20698421f8f.30.2026.01.19.04.08.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 04:08:57 -0800 (PST)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Mon, 19 Jan 2026 12:08:53 +0000
-Subject: [PATCH v2 7/7] arm64: defconfig: enable Exynos ACPM thermal
- support
+	s=arc-20240116; t=1768824859; c=relaxed/simple;
+	bh=XryzhOHa41z8m7PsycTorfIXsENzLf8YHcHzV/a/X60=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kkVi21b3rlq/L5wAuDyLP0CX6Q40z1kawpcxM0+MFuD6oRMLDNC8gT07Xd7sEh5gWH8Bk/vZ3AEDyMJHOtszku/4TLyFCH6JcPSkEBrovrGifO2kbT+NDtLtS68VkZtZrFcyIzUsueHWYWu9g6a4j8U4E4fn0i88I8krqtBnbsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1XC3ESJy; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 3703B1A294D;
+	Mon, 19 Jan 2026 12:14:15 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0A42760731;
+	Mon, 19 Jan 2026 12:14:15 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 99E7A10B6AF00;
+	Mon, 19 Jan 2026 13:14:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768824853; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=a/sX83dIQSwOj6eBiYLBpNp0DUp4Dh1s597Hdwug/7A=;
+	b=1XC3ESJymppL/Llfy5JxuSG+impN+9M9djtlhXLCMySNByxWZkBRcu1LXxDfdWs+fDlVhM
+	I4qZk+fzbmHhxhGJaJ04ussLgs3H4cPb/FRl7Tm/LfenXHcGDEm/SDAI5NtLdB8QBpLzW/
+	nXd5EeCtJ5s++N5bP2pKWqh6/bKkeJ1MnsX08SmYFgo0QiHb59RAWybK4o39DOulBHDKD2
+	cY6Rl2tMBpE8SZs4/XqNR8iKMAza6BHLJ56EJwEffiFB1Fv95JQuVm/eNps0axgtApjkq/
+	Ny/6iR53BjTiyqfpQtc4xGIElyg+ETSQSdHx0lOR6RSK2FlRPS77tkCCj1WiGA==
+Date: Mon, 19 Jan 2026 13:14:07 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 09/77] dtc: Introduce mark_local_phandles()
+Message-ID: <20260119131407.4a9431f1@bootlin.com>
+In-Reply-To: <aW3FPbd7Dw0Rdqtc@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-10-herve.codina@bootlin.com>
+	<aWg5bD4zWYAQOYai@zatzit>
+	<20260116140912.3d18ae39@bootlin.com>
+	<aW3FPbd7Dw0Rdqtc@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-acpm-tmu-v2-7-e02a834f04c6@linaro.org>
-References: <20260119-acpm-tmu-v2-0-e02a834f04c6@linaro.org>
-In-Reply-To: <20260119-acpm-tmu-v2-0-e02a834f04c6@linaro.org>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768824532; l=868;
- i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=glFQ4Oo7aFXvg4qCxUzDyhw63Eric2ZNI22jQtPmJhg=;
- b=jGWmIQ3VJe/OIr58mGBQinzVZCX659HJK8MtuuaHM01fhgkcacEuB8bWVtLq4hLL7aAt8CY7o
- ND/UZrRnDGbDYAMpf2MIYS7MwKUlOKLihzJnMnIfQ6vWHwzkx5s2HTQ
-X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
- pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Enable the Exynos ACPM thermal driver (CONFIG_EXYNOS_ACPM_THERMAL)
-to allow temperature monitoring and thermal management on Samsung
-Exynos SoCs that use the Alive Clock and Power Manager (ACPM)
-protocol.
+On Mon, 19 Jan 2026 16:46:37 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> On Fri, Jan 16, 2026 at 02:09:12PM +0100, Herve Codina wrote:
+> > Hi David,
+> > 
+> > On Thu, 15 Jan 2026 11:48:44 +1100
+> > David Gibson <david@gibson.dropbear.id.au> wrote:
+> >   
+> > > On Mon, Jan 12, 2026 at 03:18:59PM +0100, Herve Codina wrote:  
+> > > > In order to have the new FDT_REF_LOCAL tag present in a dtb, the phandle
+> > > > reference needs to be identify as a local reference.
+> > > > 
+> > > > This is the purpose of mark_local_phandles().
+> > > > 
+> > > > It identifies a phandle reference as a local reference when this
+> > > > reference points to a local node.
+> > > > 
+> > > > With that node, the related FDT_REF_LOCAL tag is set in the dtb.    
+> > > 
+> > > I dislike caching redundant information (whether the ref is local) -
+> > > it's an opportunity for them to get out of sync and cause bugs.  Is
+> > > there a strong case that you can't just determine whether it's local
+> > > only when you actually go to use it?  
+> > 
+> > Well, I can't find any strong case.
+> > 
+> > I would like to avoid passing the full dti (struct dt_info) to flatten_tree()
+> > in order to determine if the ref is local or not to set a FDT_REF_LOCAL or
+> > a FDT_REF_PHANDLE tag.
+> > 
+> > Also, this flag, set when a FDT_REF_LOCAL tag is parsed from a dtb, is
+> > useful later when the ref has to be found based on the phandle value.
+> > 
+> > Indeed, because the is_local flag is set, the phandle value available in the
+> > property *must* reference an existing node in the dtb.
+> > 
+> > In other word, in update_phandles_ref_internal(),  
+> 
+> Hmm, I see.  As with the "known phandle, unknown ref" vs. "known ref,
+> unknown phandle" cases, I think this might be clearer with different
+> marker types.  During parse we make everything "known ref, unknown
+> phandle", then later change to either "known ref, resolved to local
+> phandle" or "known ref, needs external resolution" markers.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 45288ec9eaf7365427d98195c48e2f8065a8bb1b..68fefe4bf49501500362fcb0b490a684ea469b26 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -752,6 +752,7 @@ CONFIG_BCM2711_THERMAL=m
- CONFIG_BCM2835_THERMAL=m
- CONFIG_BRCMSTB_THERMAL=m
- CONFIG_EXYNOS_THERMAL=y
-+CONFIG_EXYNOS_ACPM_THERMAL=m
- CONFIG_TEGRA_SOCTHERM=m
- CONFIG_TEGRA_BPMP_THERMAL=m
- CONFIG_GENERIC_ADC_THERMAL=m
+When we parse a dtb, we have "Unknown ref, known phandle". FDT_REF_LOCAL
+identify a local phandle value without any 'ref' involved.
 
--- 
-2.52.0.457.g6b5491de43-goog
+The ref is set after parsing and it is set to the full path of the node
+matching the phandle value.
 
+Will see what I can do with new markers to identify those different cases.
+
+> 
+> 
+> 
+> > --- 8< ---
+> > 	if (m->is_local) {
+> > 		phandle = propval_cell_n(prop,
+> > 					 m->offset / sizeof(cell_t));
+> > 		refnode = dti_get_node_by_phandle(dti, phandle);
+> > 		if (!refnode)
+> > 			die("Node not found for phandle 0x%"PRIx32"\n", phandle);
+> > 
+> > 		m->ref = refnode->fullpath;
+> > 		continue;
+> > 	} else {
+> > 		...
+> > --- 8< ---
+> > 
+> > Best regards,
+> > Hervé
+> >   
+> 
+
+Best regards,
+Hervé
 
