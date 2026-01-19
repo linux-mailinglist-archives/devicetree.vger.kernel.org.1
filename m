@@ -1,319 +1,403 @@
-Return-Path: <devicetree+bounces-256637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E516D39D6A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:11:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E787ED39D6C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:12:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1726830076A2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 04:11:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E425330078A9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 04:12:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F1432F766;
-	Mon, 19 Jan 2026 04:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BBD32F766;
+	Mon, 19 Jan 2026 04:12:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CvW7X6Gb";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JYEicZ3g"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bUDVxL/h";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g9bXe3Xf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAF232ED39
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:11:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768795873; cv=none; b=EVZYImMbFEKTEwx0Kl8RP4GmNcEQxoBf/PJVf0JwEe+TLq8IebpXiVf0cvTmc3qpJVVxfeec4EtY9toWLXZBwBScmQrGmxVx+B7PxfSxUBpB7eF2XZgwjlneoPXvESNaaikQdZtZqaMmZ6yaUD+k142bB8nP8B944sLicxRGkR4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768795873; c=relaxed/simple;
-	bh=brEFlgK/apBBNIsuikLYUlpLv/GgkyZGhCZG4fNm0oo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cOBlox6jLniub5KQ33OLvbMwHo+9RRKmnZEFtBeU1iMfqqOW4kIrrtuWauO96lOaIB7KukQSVGJVOyIk/HhTim2+joSpoTwJpLUjG1leaUafpxovedOiRAc7ezCFA6R1P3mHYT7zRv+intgj73RzHefmnAF5oiKROeeP4Dl9yuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CvW7X6Gb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JYEicZ3g; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B0F2D5932
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.180.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768795937; cv=pass; b=ncGyNve427QX6f3245JwKnMB6+D1WckdCzMjF00Gr2aGjkq63kptEfC1P/HAeDlAdFaIxcnl71IfpBV59P8Xbi92IcwuTRspbjBJurlKc6WfnzO5v1J9p7gmSsFDIgdaO1ot+wDs560a6+mpCkMbXI0Rlj5zdV4//Lzb+9Uk6mQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768795937; c=relaxed/simple;
+	bh=LC5ldM7Pp7O2NQNIduQOdZIIWMw96vpR+TP8tSA1Uvc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dGMTtwC0yAAMB8odFDlGEsT2N0wE9+A1NuNWlwAf+FjJLtVv/mHw25EMUQDrpOoydMxWebTV/vD3qFfbSfCtJyhGJ2zWKFbMOw7ochjGf+UQ0cogR2456WCcGrJkiltTJHyjafKC3et09Ot/w0VWbo+Oi4AhJoopS+rgSvbWjhI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bUDVxL/h; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g9bXe3Xf; arc=pass smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60IIrd433777513
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:11:11 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60ILDNWx3151825
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:12:15 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=S0COB5S9fEQoqBaTjD19m/dFN/WswoekAHC
-	oZ9Cc1/g=; b=CvW7X6Gbwl8GL5vORHH4bA9UKAObxl4GO1Li2y62DWw++ClbWa0
-	e6YVG1LWH1om5doJq7kHUE0vdpXCo/ooN0If8Av+SPm1va/PUO8c9ClSDefc43aj
-	0PdyVemBaI6MazWzulAiDeZKqNVq+r4/kWxWuvDihesIONIiVQIWkDRcaY2UaWc/
-	vtlxAhr0llyxFiuV15uVDepociBVikLb+khx1UUA6QytWnkAZJewu/vPIfllVyW5
-	J1A4yaFTtu9VNl+X5aW5Lp2QDC0DfHAr8tmRWOxyi8MeWIEp72gbi+8a+QxxC9N4
-	adYzM9gBpZYCnNao3gg8zb0GjydbEUXplzA==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4br1cqbr82-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fSLP4RuctikhYrzYVyzS+NfVa/9EWKcdFmTCTAmuic0=; b=bUDVxL/hJhe6aWD8
+	06Da4M1fU6zdQsVJe0rYbPQemxmr9NW3fQzy/ZvUeV6yDdYeOoJwrgEjWfVWvlLJ
+	D1Sa0XWWZE2M53QSQJmApLrUV5mdrwrhWdzmBa8Cnja+KXzdAqm+ubKE6gAKVkrR
+	7b1j26R0QjWRnabkbE2AZaBZKVLgVH9B7eYgveceYpx1yhOC7lhvd7apYxLg951H
+	kVr3bXgMRn2xD6QzL4MHuxlKbSdNzHTEUwuCeyAKVdqQZI+jqJduRXLjM0x/cp47
+	rF+n4snt1wTVuOq7n9s5luqc41I9sBTl2473BPap0/b4RaLyyaHJbKK2bKM8jrAY
+	P085zg==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bs7880kw1-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:11:10 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2b6a8b32fa9so16823757eec.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 20:11:10 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:12:15 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-88a3356a310so87746766d6.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 20:12:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768795934; cv=none;
+        d=google.com; s=arc-20240605;
+        b=db7YtwhvF5k67jJooDurGyWIk83NJelVgBAztPrEOW+FZsRLyPqrGiP0KwdIPCslet
+         NGpUAZuJR8iW5xKPC/c2Q/FiRvmcjlCbdJ/w2KvWVGI8QhPct/ypICsSu0tV3m//4/2b
+         4aQp7773aNOfeiPEzlXZ+EYH/t8+FYjRr097UlX7bgruO++KRel+6dyQy0ZtcKrMyoIW
+         EZNAM/bexh+WJoK7dQhqUwVRIbOMqdlw2DkwUit7k0Y59c77H3np5YA/L+4AwgzVs9OA
+         HZ7ncpA9XXOBpKAshhtZ+Ao609uwbnc1sbBiPfM+zo/kiXfX9DZkDFxi5v7PJwNEgNSz
+         /neA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=fSLP4RuctikhYrzYVyzS+NfVa/9EWKcdFmTCTAmuic0=;
+        fh=yXjcxx/xITtzrOJIshVm9lydVuzus10nSRiNjDQpRIQ=;
+        b=LTLGfb1z9wdHa520++nMhS+C5h1SVPhLeTPHcKw+RQ7eDZ1GL0lSGZ+8dgUnmY4gIm
+         ep0MbUf4Uj/XEuUS/+VBqTRwk+6Yddlq10SbrxPGuc9Y0wbI7OQSNX/vLGxXD1Phx2z1
+         KSRtBfUuUj9y5CpeKjmyVtrlp4PQBf4MSI8vxdwVoEmm+bJ5nePpBE+4NHPL1UQg0e8K
+         FtfwDXUNEKX9tz4c1V2pKCFVNWaoQ5EezZ2jhQsUhkKx3CUqrQIWGFSDyf39Wd1U/0O7
+         KWoBFfEanZvtlM68pGcZy2mTAdlUMXkmw+HFVoQtMFgioYa0ArNSAA50Spq+ay5MH/BS
+         fWcA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768795870; x=1769400670; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=S0COB5S9fEQoqBaTjD19m/dFN/WswoekAHCoZ9Cc1/g=;
-        b=JYEicZ3gA2gNC8N/yyNkDyE1uqFejFN1k095Lg/bjfZ4etfZWMNb7ZU9+SRQXBjyhx
-         jvHI9k/abHxkgVMzUrfms0QOvpadepUR4CTINFTJNxx/B1ZkO4lpic6/oqryhYgpPXgk
-         ufIYlDiUsDFGxgYjT3hY0q2FnT+Lyy3yG6+wa8+urm35xQGfg1KoeU0I7SdrKzthlK4D
-         3DPNv8JKne3aIkCTSEgaFL6RsmWJ1gL93BEKMx+AHmogbh9aaj1dZN/7wg4utjre7/tN
-         UVVh7TZiIAnI6WBpzdVuJ1E+4YUDXD8NaBVkFfPIkbXjkO3spJRr3o8QKl16g+vIUgNR
-         YEkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768795870; x=1769400670;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1768795934; x=1769400734; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=S0COB5S9fEQoqBaTjD19m/dFN/WswoekAHCoZ9Cc1/g=;
-        b=n5ZKySgNNG+ihuZmH713VDDs6xv9Ocy5y45a3FRAoa2qLnWe8kWBl6EjcUOr1EImgU
-         LkVPqrUtLLm8bqaiA/rUuFWT+WtAdC9rQGDIIasGJUxxJMYr01qzWXKgdsFikUoMSzES
-         Y3xa8sIfByQdyVz2Z0aKgoZxHWPX412Gm2+29gNmj/Fd+ik83DjCY7rKnHlpajLKrkdh
-         VAd2ACjHflxxeG5WxYbbAuKX/QbIcz/csswiIyeLWzo2eafViHVM1NF4nyggLAMzpPzD
-         ApVkkMuhnqyM46IqADRTPyl4ih+k1xQPY8+o1rlh7dp7Cq5bySOJ6lJR/NgU6ZvSniHN
-         DVOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWA6voF1hwBA4On+kbyaVpyeSN+bMtYQSjfhd5rDs+Nz8lWPaDUQP0R6IWzg3x73SBq/aVbIqxdEJ06@vger.kernel.org
-X-Gm-Message-State: AOJu0YwehhmC4nOQhFnTT2aud+foBI6PUUVYKFYtKHqkJ8IShuKG5X+a
-	7W3Yo3CtAndhcBPMCMvhmeMXgvc3YR9IJAFERfMixcrHorQy1mOhQ2rJtL0zF3bftzeySSCHvyt
-	sVkEqtkjk7KNCXjjUoY6M5fci5BifGejnbl9tcdFPWoByeqklC9ciljP31PVzj401
-X-Gm-Gg: AY/fxX4yGHx6k/cLQDGf0cbrooXzS4an3o5GgxZ/V/cW11+B9hGqsmsoeP1jz+bqMQ/
-	Ajl4KO5dQ4H4O0FCm8VwXKy9cAKJKuVeHDxRc82gf2fUC41yD556si++AV6ebOo0eWLwJPLA5dN
-	R9vR2tSV/K7BINIoa6kBbtXQWkWJ/Yw2I3cbf0GJIQzrFMKh/ZluYOCrt4tl1bjQZp+P2y4F6Xu
-	wkO1kA7sktAZxghS0m61vY6kMgZDF82iq+hPwWfeqhgjGdXWihEjMeix9AxSxS/F5x2c2NgzNfQ
-	O0iCipiOGFVPcrkdRqeEt27vtCI1TW+RVNQAU0Xd+b07IR04fhqgo6nY/e5ZZn2uK5sXRJQMrrq
-	n2s8OQ/M/eHQDbCrw8DDI0OuGvJBDoss+21qriJNUgrLahbVs5M1c7Z61HEgqMHTS9A==
-X-Received: by 2002:a05:7300:df4c:b0:2ac:1e9f:a0ed with SMTP id 5a478bee46e88-2b6b40d9828mr9869415eec.25.1768795869218;
-        Sun, 18 Jan 2026 20:11:09 -0800 (PST)
-X-Received: by 2002:a05:7300:df4c:b0:2ac:1e9f:a0ed with SMTP id 5a478bee46e88-2b6b40d9828mr9869390eec.25.1768795868320;
-        Sun, 18 Jan 2026 20:11:08 -0800 (PST)
-Received: from san-w175-na3-01.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b36564ffsm11467470eec.28.2026.01.18.20.11.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jan 2026 20:11:07 -0800 (PST)
-From: Wei Zhang <wei.zhang@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Wei Zhang <wei.zhang@oss.qualcomm.com>
-Subject: [PATCH v6] arm64: dts: qcom: qcs8300-ride: enable WLAN on qcs8300-ride
-Date: Sun, 18 Jan 2026 20:11:00 -0800
-Message-ID: <20260119041101.2685092-1-wei.zhang@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+        bh=fSLP4RuctikhYrzYVyzS+NfVa/9EWKcdFmTCTAmuic0=;
+        b=g9bXe3XfkuDocl1ZcBXEYqEftEJ2Hvz3hkklr1sgYYmfRynYszy2TpOrSXWAokgbey
+         2IDtMqcCDXgruAoOy+h1TCt5fzxcoLbgy846SE0YnTJ6hnItSTnomoo2rDFK/wS0fOFr
+         DrI3jbUqj4wb98GfILGxHlRE0eJGDNRBezvQdSvssTgW41u9ciK5gkXLRVh3AYetRiql
+         ZS8ETy5F9H569g1eQO0QowxCZ0+EDpf5AelA5f52mrfjHpy3vueuY09f3GQuAErcnkpq
+         1sOV3YEPwL7yBEz0lB3bIJePCAsUfxuC9cjXQZfvoN3Pbjmvo7I0GX8nmlwfdMcTSrrA
+         IelA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768795934; x=1769400734;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fSLP4RuctikhYrzYVyzS+NfVa/9EWKcdFmTCTAmuic0=;
+        b=V87xcupG9h+DZ59IRBTJ2vDtfiDRLdoBMpRuKUjay1sID80o/AiKZuUKK/ws49uQ/o
+         WrfXvFgdmIEAJX7G/go3UIc2VIspi6zZO1+nGpLZ/D6kYLWXZ1S862tk9mm6ZTm1L7rx
+         LNS3dYt+LbRTStZcE64fWrpc3oPImdEj3jqVoGPrxDtBN+FwYp+BMHzgLJmmBbHOP4J1
+         /FsxtlyodWPbIk+8UcGO6WklgnhaMKwmDv4ZSJ4tGP0DgAK35ou7SEIXX17QSspsSBcj
+         L4nl9nNqZoIiBlxkMh9yK1umDTnf0zLb9nVBZYoFBG9G42xJtVxXCdYR1K6xWnod304u
+         ESmg==
+X-Forwarded-Encrypted: i=1; AJvYcCWxiJnJzHjMxYL9fZjkuVxkYfJVfknVRRVuaC2xS5gW8BilotSBl98HfXqB6JZgZUzm0QOg3yIkbRYf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5u8YDVR33OYA+1lIAWvOdX9aaTAVErAAHCPpiawjutLxeaOKu
+	8Q0jYNmjFtCEgptT1SGrN8tXYYQ7djfMRX96LwwbQLpHQnvU1DGgDTZWxcfxeueNicaEc4MkD/i
+	XjanNLuJtXuyduTxvfAjHpq3jYXlc46hCMb9nwpsTSXc6v0yF7qHi83QWXfgsPb0QdybZtIqoIh
+	VsCQin+yge6nA+tH4EojbKjWQatGZbQh5Ary/iUYs=
+X-Gm-Gg: AY/fxX4SpYYVs6d07lnA6I4eyM1R2DvwuEvu5U3iA/CV8Onx7qeHPvP6yTUZgX+wHLX
+	TOEWb9IjBKPzfJSnycHc69XI9cqrTARbyoKhNLnzIVXKoFCnvBkE1DDC3hd+bkVljKWd/5VqBI+
+	bbdhrkpH3qtwHs9gIWHOilIwT+X+OByqvhZlo3K4FzczvVk5ghg3O0QLwjEyAgKBO/u+4=
+X-Received: by 2002:ad4:5bef:0:b0:888:4938:49e6 with SMTP id 6a1803df08f44-8942ddc1868mr166168796d6.70.1768795934499;
+        Sun, 18 Jan 2026 20:12:14 -0800 (PST)
+X-Received: by 2002:ad4:5bef:0:b0:888:4938:49e6 with SMTP id
+ 6a1803df08f44-8942ddc1868mr166168636d6.70.1768795934060; Sun, 18 Jan 2026
+ 20:12:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 6JVI6LLqLlYMi1tK92C98r0w_oCi848c
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDAzMiBTYWx0ZWRfXxc/fDuInOCDt
- u15KnxjVQrpVpO7DA8nSq87oEATjdMjhcgQpoQg16YmKaVKmFZyiCRayStxfABZBVuw7ZLJ+vlk
- C4E1vDusHktlWXjIs7vzezK6zNuogcyojE9MZMhHkbBlXwb2r1iLO2qWOyeDYxH56eabnSoT/Tz
- 5ymP9duTIEorSBqN8A5riys2twaiOJ4mvAr/jKy1ossaXx7ByfLsEmzKWqpuwghBPeIsq/IguBq
- 9XQ5hyg5zzf0BLJfoWFLgo4dg0MduysDdaazmC324cP69gEtofxiws6+WuPowe3xggCVOLw0XIF
- wNZS53W8NR8mupFV6NvsLmuiL2IN5eMQbV9YhY4ZqktXXzxFRb3AveIwjBqxUEKBURG2sEAe73S
- MBn2uj7SMDG7racDU+qY10zDcZ/x3mH50JqoIt1IRlay8nqCqNB25HCzO4Hfk9RN+puohlQ8saT
- 9bEFB47WIearc0q9csQ==
-X-Proofpoint-ORIG-GUID: 6JVI6LLqLlYMi1tK92C98r0w_oCi848c
-X-Authority-Analysis: v=2.4 cv=NfbrFmD4 c=1 sm=1 tr=0 ts=696daede cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=vM19rjaGBDlTF_Dnh2IA:9
- a=6Ab_bkdmUrQuMsNx7PHu:22 a=TjNXssC_j7lpFel5tvFf:22
+References: <20251220063537.3639535-1-swati.agarwal@oss.qualcomm.com>
+ <20251220063537.3639535-5-swati.agarwal@oss.qualcomm.com> <qy4bp2hz3ivwydsk4sblxpgthz5hw4rn7r3ezaim5wf5fgm4sg@meispnp6wthj>
+ <CAHz4bYvVfQke_aUx_mVO2QkCc5yr_1Cn35N6hPi1if=X7iM3+g@mail.gmail.com>
+ <ftqb2uxp6yk73djyo3psehhqq5wamimtissgfehhziwbkprl4c@phftum3m3sdy>
+ <CAHz4bYtYMZQSdw4XKSB06fT2MzZHu=AgdXGrZ73XVXi1sMwyyw@mail.gmail.com> <zkvwy56jkya6eogwqlmbhoo64zlzatxsdtkhy4hqfudoqtfbkg@fwiy46l3c337>
+In-Reply-To: <zkvwy56jkya6eogwqlmbhoo64zlzatxsdtkhy4hqfudoqtfbkg@fwiy46l3c337>
+From: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+Date: Mon, 19 Jan 2026 09:42:03 +0530
+X-Gm-Features: AZwV_Qhmg9tHGp52VrTvw7vw7uA1PDc2XX4NC6WqoGa6QZ-b3fjgVIR8u0EvQLM
+Message-ID: <CAHz4bYuE6LS=+3272x2qat7EyjgVuODC7Otz_f4zP78ZQ=BWDA@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: lemans-evk: Enable secondary USB
+ controller in host mode
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        =?UTF-8?B?SiAuIE5ldXNjaMOkZmVy?= <j.ne@posteo.net>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Pin-yen Lin <treapking@chromium.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Authority-Analysis: v=2.4 cv=KLVXzVFo c=1 sm=1 tr=0 ts=696daf1f cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=G1Sdl2PVBONlc36WVvQA:9 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDAzMiBTYWx0ZWRfXzkb3mAFqQPb5
+ blsgFVu4qkySv2qCpGGMf/DFBZiWUtv7lMZHzdjHQBrttqBGu+FREKORRzk4W1Jm23KOLGQ+dhq
+ lh9rIS8btZLCqbQneNC/Pbbl58IrPZsCHc2mexKbUOcpkCWPmZqIgQ2bYzvTpqa/A2EB/8bL0ug
+ eE/i+Dq+0qCS39nS02ICS+bNAQVqbZiuUuHjOK/e2+PQeycxgpqjVTUxzjv2xafeaQLoZxoIjyq
+ HK38G7hYmKUctU1r4KXI2Ix686RZwrTwh+12f7KP4qf+4HARWLKQRfh54Rx1ZMQKyBq3m4NwduE
+ EkwMmRY1mRET8D24U21wryUohNBSpEM4vesq1DhlYBWPjQnmrPGvx/QzPcDz/LI82CSuBNoCXaH
+ BCSU2fhvB9GBKWfFZSvlq0zEouiOxPpeFQe1RPiCEX61jC6XtH7yhUZxG6S8zCOSBSLtVx5grHE
+ /dD50mgargtvXVjUCgA==
+X-Proofpoint-GUID: _-9KbZ4krNQPjHfzlGJpeEcV3KPjoI6s
+X-Proofpoint-ORIG-GUID: _-9KbZ4krNQPjHfzlGJpeEcV3KPjoI6s
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2026-01-17_03,2026-01-18_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- adultscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0
+ clxscore=1015 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 phishscore=0 priorityscore=1501
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190032
 
-Enable WLAN on qcs8300-ride by adding a node for the PMU module
-of the WCN6855 and assigning its LDO power outputs to the existing
-WiFi module.
+On Wed, Jan 14, 2026 at 11:39=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> On Wed, Jan 14, 2026 at 11:10:26AM +0530, Swati Agarwal wrote:
+> > On Tue, Jan 13, 2026 at 4:59=E2=80=AFPM Dmitry Baryshkov
+> > <dmitry.baryshkov@oss.qualcomm.com> wrote:
+> > >
+> > > On Tue, Jan 13, 2026 at 01:32:41PM +0530, Swati Agarwal wrote:
+> > > > On Sat, Dec 20, 2025 at 9:47=E2=80=AFPM Dmitry Baryshkov
+> > > > <dmitry.baryshkov@oss.qualcomm.com> wrote:
+> > > > >
+> > > > > On Sat, Dec 20, 2025 at 12:05:37PM +0530, Swati Agarwal wrote:
+> > > > > > Enable secondary USB controller in host mode on lemans EVK Plat=
+form.
+> > > > > >
+> > > > > > For secondary USB Typec port, there is a genesys USB HUB GL3590=
+ having 4
+> > > > > > ports sitting in between SOC and HD3SS3220 Type-C port controll=
+er and SS
+> > > > > > lines run from the SoC through the hub to the Port controller. =
+Mark the
+> > > > > > second USB controller as host only capable.
+> > > > > >
+> > > > > > Add HD3SS3220 Type-C port controller along with Type-c connecto=
+r for
+> > > > > > controlling vbus supply.
+> > > > > >
+> > > > > > Signed-off-by: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+> > > > > > ---
+> > > > > >  arch/arm64/boot/dts/qcom/lemans-evk.dts | 158 ++++++++++++++++=
+++++++++
+> > > > > >  1 file changed, 158 insertions(+)
+> > > > > >
+> > > > > > diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm=
+64/boot/dts/qcom/lemans-evk.dts
+> > > > > > index 70d85b6ba772..d72639479d75 100644
+> > > > > > --- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> > > > > > +++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> > > > > > @@ -67,6 +67,47 @@ usb0_con_ss_ep: endpoint {
+> > > > > >               };
+> > > > > >       };
+> > > > > >
+> > > > > > +     connector-1 {
+> > > > > > +             compatible =3D "usb-c-connector";
+> > > > > > +             label =3D "USB1-Type-C";
+> > > > > > +             data-role =3D "host";
+> > > > > > +             power-role =3D "dual";
+> > > > > > +             try-power-role =3D "source";
+> > > > > > +
+> > > > > > +             vbus-supply =3D <&vbus_supply_regulator_1>;
+> > > > > > +
+> > > > > > +             ports {
+> > > > > > +                     #address-cells =3D <1>;
+> > > > > > +                     #size-cells =3D <0>;
+> > > > > > +
+> > > > > > +                     port@0 {
+> > > > > > +                             reg =3D <0>;
+> > > > > > +
+> > > > > > +                             usb1_con_ss_ep: endpoint {
+> > > > > > +                                     remote-endpoint =3D <&hd3=
+ss3220_1_in_ep>;
+> > > > > > +                             };
+> > > > > > +                     };
+> > > > > > +
+> > > > > > +                     port@1 {
+> > > > > > +                             reg =3D <1>;
+> > > > > > +
+> > > > > > +                             usb1_hs_in: endpoint {
+> > > > > > +                                     remote-endpoint =3D <&usb=
+_hub_2_1>;
+> > > > > > +                             };
+> > > > > > +
+> > > > > > +                     };
+> > > > > > +
+> > > > > > +                     port@2 {
+> > > > > > +                             reg =3D <2>;
+> > > > > > +
+> > > > > > +                             usb1_ss_in: endpoint {
+> > > > > > +                                     remote-endpoint =3D <&usb=
+_hub_3_1>;
+> > > > > > +                             };
+> > > > > > +
+> > > > > > +                     };
+> > > > > > +             };
+> > > > > > +     };
+> > > > > > +
+> > > > > >       edp0-connector {
+> > > > > >               compatible =3D "dp-connector";
+> > > > > >               label =3D "EDP0";
+> > > > > > @@ -140,6 +181,16 @@ vbus_supply_regulator_0: regulator-vbus-su=
+pply-0 {
+> > > > > >               enable-active-high;
+> > > > > >       };
+> > > > > >
+> > > > > > +     vbus_supply_regulator_1: regulator-vbus-supply-1 {
+> > > > > > +             compatible =3D "regulator-fixed";
+> > > > > > +             regulator-name =3D "vbus_supply_1";
+> > > > > > +             gpio =3D <&expander1 3 GPIO_ACTIVE_HIGH>;
+> > > > > > +             regulator-min-microvolt =3D <5000000>;
+> > > > > > +             regulator-max-microvolt =3D <5000000>;
+> > > > > > +             regulator-boot-on;
+> > > > > > +             enable-active-high;
+> > > > > > +     };
+> > > > > > +
+> > > > > >       vmmc_sdc: regulator-vmmc-sdc {
+> > > > > >               compatible =3D "regulator-fixed";
+> > > > > >
+> > > > > > @@ -527,6 +578,33 @@ hd3ss3220_0_out_ep: endpoint {
+> > > > > >                       };
+> > > > > >               };
+> > > > > >       };
+> > > > > > +
+> > > > > > +     usb-typec@47 {
+> > > > > > +             compatible =3D "ti,hd3ss3220";
+> > > > > > +             reg =3D <0x47>;
+> > > > > > +
+> > > > > > +             interrupts-extended =3D <&pmm8654au_2_gpios 6 IRQ=
+_TYPE_EDGE_FALLING>;
+> > > > > > +
+> > > > > > +             id-gpios =3D <&tlmm 51 GPIO_ACTIVE_HIGH>;
+> > > > > > +
+> > > > > > +             pinctrl-0 =3D <&usb1_id>, <&usb1_intr>;
+> > > > > > +             pinctrl-names =3D "default";
+> > > > > > +
+> > > > > > +             ports {
+> > > > > > +                     #address-cells =3D <1>;
+> > > > > > +                     #size-cells =3D <0>;
+> > > > > > +
+> > > > > > +                     port@0 {
+> > > > > > +                             reg =3D <0>;
+> > > > > > +
+> > > > > > +                             hd3ss3220_1_in_ep: endpoint {
+> > > > > > +                                     remote-endpoint =3D <&usb=
+1_con_ss_ep>;
+> > > > > > +                             };
+> > > > > > +                     };
+> > > > > > +
+> > > > > > +             };
+> > > > > > +     };
+> > > > > > +
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c18 {
+> > > > > > @@ -690,6 +768,14 @@ usb0_intr_state: usb0-intr-state {
+> > > > > >               bias-pull-up;
+> > > > > >               power-source =3D <0>;
+> > > > > >       };
+> > > > > > +
+> > > > > > +     usb1_intr: usb1-intr-state {
+> > > > > > +             pins =3D "gpio6";
+> > > > > > +             function =3D "normal";
+> > > > > > +             input-enable;
+> > > > > > +             bias-pull-up;
+> > > > > > +             power-source =3D <0>;
+> > > > > > +     };
+> > > > > >  };
+> > > > > >
+> > > > > >  &qup_i2c19_default {
+> > > > > > @@ -849,6 +935,12 @@ usb_id: usb-id-state {
+> > > > > >               function =3D "gpio";
+> > > > > >               bias-pull-up;
+> > > > > >       };
+> > > > > > +
+> > > > > > +     usb1_id: usb1-id-state {
+> > > > > > +             pins =3D "gpio51";
+> > > > > > +             function =3D "gpio";
+> > > > > > +             bias-pull-up;
+> > > > > > +     };
+> > > > > >  };
+> > > > > >
+> > > > > >  &uart10 {
+> > > > > > @@ -903,6 +995,72 @@ &usb_0_qmpphy {
+> > > > > >       status =3D "okay";
+> > > > > >  };
+> > > > > >
+> > > > > > +&usb_1 {
+> > > > > > +     dr_mode =3D "host";
+> > > > > > +
+> > > > > > +     #address-cells =3D <1>;
+> > > > > > +     #size-cells =3D <0>;
+> > > > > > +
+> > > > > > +     status =3D "okay";
+> > > > > > +
+> > > > > > +     usb_hub_2_x: hub@1 {
+> > > > > > +             compatible =3D "usb5e3,610";
+> > > > > > +             reg =3D <1>;
+> > > > > > +             peer-hub =3D <&usb_hub_3_x>;
+> > > > > > +             #address-cells =3D <1>;
+> > > > > > +             #size-cells =3D <0>;
+> > > > > > +
+> > > > > > +             ports {
+> > > > > > +                     #address-cells =3D <1>;
+> > > > > > +                     #size-cells =3D <0>;
+> > > > > > +
+> > > > > > +                     port@1 {
+> > > > > > +                             reg =3D <1>;
+> > > > > > +
+> > > > > > +                             usb_hub_2_1: endpoint {
+> > > > > > +                                     remote-endpoint =3D <&usb=
+1_hs_in>;
+> > > > > > +                             };
+> > > > >
+> > > > > Are all other ports disconnected? If so, why do we need a hub?
+> > > > Hi Dmitry,
+> > > > I didn't understand your query, can you give more context to it?
+> > >
+> > > You have described one port of the hub. How are other ports routed? A=
+re
+> > > they connected to outer ports? To some other devices? Unconnected?
+> > Hi Dmitry,
+> > I would like to put it this way, USB HUB has 4 ports but only one port
+> > of the hub is used between SOC and Type-C controller.
+> > Remaining 3 ports are used by other devices.
+>
+> Which devices?
+Hi Dmitry,
 
-On the qcs8300-ride platform, the corresponding firmware and BDF
-are QCA6698AQ instead of WCN6855, which have been added in the
-20250211 release.
+For Lemans EVK standalone corekit board, there are 4 ports as follows:-
 
-Signed-off-by: Wei Zhang <wei.zhang@oss.qualcomm.com>
----
-This patch depends on:
-- PCIe
-https://lore.kernel.org/all/20251128104928.4070050-1-ziyue.zhang@oss.qualcomm.com/
+1) p1 is connected to type c port controller.
+2) p4 is used for the m.2 E key (NFA765 Bluetooth) on corekit. This
+isn't used on a standard core kit, only if we optionally replace the
+wifi card with the NFA765 which uses USB for BT. standard kits all use
+UART for BT.
 
-Changes in v6:
-- Rebase patches
-- Remove unintended 'output-low' from wlan-en-state pinctrl (Konrad)
-- Link to v5: https://lore.kernel.org/all/20251113055148.2729943-1-wei.zhang@oss.qualcomm.com/
+Remaining 2 ports will become functional when the interface plus
+mezzanine is stacked on top of corekit.
 
-Changes in v5:
-- Rebase patches
-- Flip the order of property-n and property-names (Konrad)
-- Flip the order of bias and output property (Konrad)
-- Link to v4: https://lore.kernel.org/all/20250325075331.1662306-1-quic_stonez@quicinc.com/
+3) p2 is connected to another hub which is present on the mezz through
+which 4 type-A ports are connected.
+4) p3 is used for the m.2 B key for a 5G card when the mezz is connected.
 
-Changes in v4:
-- Rename the symbol pcieport0 to pcie0_port0 (Konrad)
-- Adjust the property order in node pcie0_port0 (Konrad)
-- Add to the commit message mentioning FW and BDF used by QCS8300 (Dmitry)
-- Specify the calibration data using the correct variant (Dmitry)
-- Link to v3: https://lore.kernel.org/all/20250318093350.2682132-1-quic_stonez@quicinc.com/
 
-Changes in v3:
-- Complete the nodes property definitions according to DTS binding requirements (Bjorn)
-- Link to v2: https://lore.kernel.org/all/20250227065439.1407230-1-quic_stonez@quicinc.com/
-
-Changes in v2:
-- Rename the nodes name according to DTS coding style (Konrad & Krzysztof)
-- Provide regulator-min/max-microvolt to the regulators (Konrad)
-- Link to v1: https://lore.kernel.org/all/20250210062910.3618336-1-quic_stonez@quicinc.com/
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 107 ++++++++++++++++++++++
- 1 file changed, 107 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index 68691f7b5f94..9a5de3754cc1 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -33,6 +33,88 @@ regulator-usb2-vbus {
- 		enable-active-high;
- 		regulator-always-on;
- 	};
-+
-+	vreg_conn_1p8: vreg-conn-1p8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_conn_1p8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		startup-delay-us = <4000>;
-+		enable-active-high;
-+		gpio = <&pmm8650au_1_gpios 4 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vreg_conn_pa: vreg-conn-pa {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_conn_pa";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		startup-delay-us = <4000>;
-+		enable-active-high;
-+		gpio = <&pmm8650au_1_gpios 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	wcn6855-pmu {
-+		compatible = "qcom,wcn6855-pmu";
-+
-+		pinctrl-0 = <&wlan_en_state>;
-+		pinctrl-names = "default";
-+
-+		vddio-supply = <&vreg_conn_pa>;
-+		vddaon-supply = <&vreg_conn_1p8>;
-+		vddpmu-supply = <&vreg_conn_pa>;
-+		vddpmumx-supply = <&vreg_conn_1p8>;
-+		vddpmucx-supply = <&vreg_conn_pa>;
-+		vddrfa0p95-supply = <&vreg_conn_1p8>;
-+		vddrfa1p3-supply = <&vreg_conn_pa>;
-+		vddrfa1p9-supply = <&vreg_conn_1p8>;
-+		vddpcie1p3-supply = <&vreg_conn_pa>;
-+		vddpcie1p9-supply = <&vreg_conn_1p8>;
-+
-+		wlan-enable-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p7: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p7";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -355,6 +437,25 @@ &pcie1_phy {
- 	status = "okay";
- };
- 
-+&pcieport0 {
-+	wifi@0 {
-+		compatible = "pci17cb,1103";
-+		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+
-+		qcom,calibration-variant = "QC_QCS8300_Ride";
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -461,6 +562,12 @@ perst-pins {
- 			bias-pull-down;
- 		};
- 	};
-+
-+	wlan_en_state: wlan-en-state {
-+		pins = "gpio54";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
- };
- 
- &uart7 {
-
-base-commit: 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7
-prerequisite-patch-id: 0e8aad7b8514142fb33c17829386f17c3a55127a
-prerequisite-patch-id: e641f09d4139ac77c34757bd08af2db746de3963
-prerequisite-patch-id: 4d16e87cf6213d6e25b2c40e2753d4e629778d53
-prerequisite-patch-id: 40187dae2c9518a10866104b9fcd5a481ac67d51
-prerequisite-patch-id: dd3bdf2aebda74f3603aff24a2c9aaa7f4fd6763
--- 
-2.34.1
-
+Regards,
+Swati
 
