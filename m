@@ -1,171 +1,164 @@
-Return-Path: <devicetree+bounces-256752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D173D3A3EB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:00:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E18D3A3D8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:57:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4FCB530CA19A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:56:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AE38C30317BC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE41A33E34D;
-	Mon, 19 Jan 2026 09:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E44333EAEB;
+	Mon, 19 Jan 2026 09:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gqiEDyHv";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fSK+uz2w"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YzzHXvLy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B6B337119
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F143093C3;
+	Mon, 19 Jan 2026 09:56:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768816577; cv=none; b=dVJI5PSkFTRbZ2ALkYkbeH6V79OmbJXxzT94C180S9FtGBNLRHDLcCOmliG+Ynk3+/APuJnGDYtu6JhbSfpzgDIJVvVWjYBQNwEehs4NOfBRUR/2u+vObU8NCdzY51wRW4lJFvsAaVV1vYRHTOwDlcdm5bOWT8Ha68FTsZKqp34=
+	t=1768816594; cv=none; b=Ci6kMM2HEcW+GUYBINRVCg6+oNZmC9G8hOuFLBFibzSUNgcXL+Xv7tNc0KS52/9sBVrOxSJPwkQB74hQuItFQT0zIG3jAbzn9/amLBLdcmt/L/GwZfGaSqHFtFoIJpG/YY55LV+rnPlPiqUzFjbjEvOS7lHyV6LnkIctextwORk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768816577; c=relaxed/simple;
-	bh=3oNxDmMzMtOu1B5PHeK1M4AxBFzLjHZRNYL1JD6/tjs=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=XBIRST2JZW95YMQnPPYQGZbTw/m3EBVM2JjC9/vh1FWPUuEQwjNndyUkOtpQCdUvJuZEOD/uylxU8BGa81yuZjm1Hn5Jk8v0UL2JU7pZiARv64i52Z1ar8ayGvaXB9g7hiM3ft7nFlKMk9YLUpylevMvA+U6lCvD2FBRLbbk/Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gqiEDyHv; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fSK+uz2w; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J912ML903244
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:56:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HtQOqvpNcjHT9N67t/m4FkhaK3GIb4GUQJ7GAEuX8pw=; b=gqiEDyHvNSfgB89C
-	up1oSaIi5roHeAGh4yEBX8m4bGDO1dOxRXxOk6gio0ChWWPBGgkm5C93Lrso9HBa
-	KXb7Em0IY8r7fEJb0Dr48vwmyJ1EmpPCN9kOrz41SjV5qNNOZjBunPc/dGIklcBE
-	fz5UJSfCsja4mrXooOyboTUAIGpnww9LrcdlOTcopitcKTDP6zzDPgGPIW/LCkSv
-	fFgPR8srEUgFuKSMIzA4bhQwzxWjJODfmH/mOeNvfjHtjeQRVlZN+U/VYk9rL7E+
-	0vIDBoNK23BRYxO0LVMFN8sdDEigNcatgfCbPEONrKXWxn3UMIOkFwlarH0WFBfO
-	+HaOVg==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsb4ysbmm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:56:15 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34c3501d784so3355156a91.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 01:56:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768816574; x=1769421374; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HtQOqvpNcjHT9N67t/m4FkhaK3GIb4GUQJ7GAEuX8pw=;
-        b=fSK+uz2wqr+3Ey30rVsnuBMymNkWY5fcUc7/WjMdLzl7WLz26aKDRaFv7t7pygoN+3
-         RiMPsg+XMlTuz7AbVULiLTlc1d36Qd9HTJjhiJnsBgkE0aLX4Bhl6EilNsfKRevkPXe3
-         nqAMD3m4eLTvHvAZQUpHORN3iTX7QjQqfkCiGSi5cYORF32/lxfo+uqHWpJy5bVR0OIp
-         E4xuhGKo4HSbqRS4N8W6ZrJOB1/mSfTEUBl+Z/6H/7hHXFmjXOKKPmC6MEzKWufGQ6CN
-         YJ8KQZX/co1XGwPSolMPcVrEegIUA1dKDI8EO1WYlaH9X2wA7FRT0gyjkRVn+U+YIx+j
-         eY2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768816574; x=1769421374;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HtQOqvpNcjHT9N67t/m4FkhaK3GIb4GUQJ7GAEuX8pw=;
-        b=Ksmn4vGegByVwz7qOwrVMrYIIOKnrgCElPF7CkuDqYZDifotmScNbjnmMKM297bKEj
-         RqHRmdkVNtYNmg7XYWvPbF8smTv4ZabpaeIgDUmsC/JcusHnOsbOU7imoM5xTc4sacN0
-         J8Nk7sDD98MV+3uf8rkuYyqgFQ3etjUPsQ237qpKMFWrPdM/LeFwN6+KpPvaI1NjnFYP
-         Pm+WlGbFF6pQkpY8CNLyRERhl6/6kCnggesoAB252JPYSbUvGw6Xt91hZ1RDvsroJrga
-         Go/GG6i+KiLrO7/0rPCKi6gmP/WymvL85YWWkxNW/4MLbCR718Ec6mh4p+pRi5nizUpd
-         4HdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX5cskywOR0hHAWA628ko1QmSZ1GWb7AjaUoeLbpi5eoREnF+DsvsmopNL2MCsOn4eg1UNi+R022Lgu@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxGXX8wNj73QorIdjrA1bURF0RT4Xd45mibgkAVZGWZuPgrGXo
-	wWvnHf/mxM8TQTRKwI7v6NOFAUV9cu0JHwZDGsCfePzI1F+yQGwasIc9U2zyXRF5HnluDUnA2WO
-	iBfK1OSK8/CSV5eaHrHYgJqOYDwj3XRIrGC9hrPBZ/VTZ/6ha4VuYMcfKDVF7pZl4fUzNIy9T
-X-Gm-Gg: AZuq6aLidPhcLrBA1HVSe+ebR/BQ3KSxrZ+61q1GiQT4S8QxAqwIXWKzdm5arxm+qA/
-	WCDhMXTfF7WXuTGhmtUxgUVrccbq5wSvnHMFidoSRLHrFIKCNZVpxbrZoR1rQOd/W85oKe/aSVt
-	QO16dQQiOwnW5z0jxrGtpMTKy5XTX2qheqL49P2UUrrFL5R0svXgz1FUu7vvscONNHA5Wm3GwsT
-	TGbz2s0yLhgpV3eHTYe37MhrSaV9SpzwiLJ56j3/gIXe35QlaxD4f2oPEf4uBst6/eIzwOtVCV/
-	Y2Q+5ME8ReLxrTFJliVNp1QPkTL5U7SNgoXarDChSw7K3AKaRRNvT0B4AMjntEhZlsopfsyhSw9
-	I2JYDV5aitgXVqPa/CaG/WY6e/TGLnWefXgR4OoA=
-X-Received: by 2002:a17:90b:1c0f:b0:340:c060:4d44 with SMTP id 98e67ed59e1d1-35272edb230mr9211765a91.14.1768816574277;
-        Mon, 19 Jan 2026 01:56:14 -0800 (PST)
-X-Received: by 2002:a17:90b:1c0f:b0:340:c060:4d44 with SMTP id 98e67ed59e1d1-35272edb230mr9211749a91.14.1768816573805;
-        Mon, 19 Jan 2026 01:56:13 -0800 (PST)
-Received: from [10.217.223.153] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3527437f00fsm4131291a91.6.2026.01.19.01.56.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 01:56:13 -0800 (PST)
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: kodiak: enable the inline crypto
- engine for SDHC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
- <20260114094848.3790487-3-neeraj.soni@oss.qualcomm.com>
- <20260115-versatile-bustard-of-bliss-059e5a@quoll>
- <e10f846c-e81b-1d5b-1be2-8c41ca61b8b0@oss.qualcomm.com>
- <0f1afc5e-d5f4-444e-819c-594f0b1e125b@kernel.org>
-From: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Message-ID: <f38e390e-dba9-d02a-e5dd-8eed3d0ebdc4@oss.qualcomm.com>
-Date: Mon, 19 Jan 2026 15:26:09 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+	s=arc-20240116; t=1768816594; c=relaxed/simple;
+	bh=FgBYa0U3JLtsWj50KdlzMNY1o0Jj1BIn7SsCMNQadsk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OtGw/m/s9vPUfPTFMMoUdby/XfFp0TCA88m5E4HpNL6FdwUVAShFRyAXL4akBH6ISLEhQiOw0lb0d4W2FTxkeifNmOgnbiqIRFJuU/YADDI7RYLhTmw5gZAiUsauXtGNuis4esfpYzNs8F0OfI5rPwL4iem8FndrJm3RcZtWuY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YzzHXvLy; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768816593; x=1800352593;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FgBYa0U3JLtsWj50KdlzMNY1o0Jj1BIn7SsCMNQadsk=;
+  b=YzzHXvLyhAxKYDz+Rchq8VpMLjaAKC1NAahgcoB+O4ZlPfeb7M7lOaG1
+   XAfe3MRTd9ndYZbQgCxmkd1VWNejUa01NJITgAXp2RAtcsNPTx/KP7w1I
+   UWfmXe6ogIItzVRuUVXJiiqXl7GAwYRo7QtSA1mZ92P3hvHQbQyBNhJA0
+   AcqzeGfGoO4ssR8aBqpzSDb9uXbdps/kmjb4nTqeUOtlI3bNXsmODnB1s
+   8SNW0fRlPfTpWB527EnbigC7Kc4QjC9fLewm+0Mjtepzut0051NpsJO02
+   IPKKir1XFRswQBumgVu5n4GpqvKbndaIeiX4910iQ40nkeqgcFqOKImL9
+   A==;
+X-CSE-ConnectionGUID: kCaFKKBpSbuD1SAHdxX4OQ==
+X-CSE-MsgGUID: E3Ffaq1xQDesJt8g/phgIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="87604297"
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
+   d="scan'208";a="87604297"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 01:56:25 -0800
+X-CSE-ConnectionGUID: /f0Xv8jgSkqq8tYz6QKBIA==
+X-CSE-MsgGUID: GrWDzjQXSIOcEheq7QVB1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; 
+   d="scan'208";a="210842283"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.44])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 01:56:20 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 0B53D120280;
+	Mon, 19 Jan 2026 11:56:22 +0200 (EET)
+Date: Mon, 19 Jan 2026 11:56:21 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Michael Riesch <michael.riesch@collabora.com>
+Cc: Frank Li <Frank.li@nxp.com>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Collabora Kernel Team <kernel@collabora.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] media: synopsys: add driver for the designware
+ mipi csi-2 receiver
+Message-ID: <aW3_xSm2N42XTtzu@kekkonen.localdomain>
+References: <20251114-rockchip-mipi-receiver-v5-0-45aa117f190a@collabora.com>
+ <20251114-rockchip-mipi-receiver-v5-2-45aa117f190a@collabora.com>
+ <aWpil6jI1Ad0DcEI@lizhi-Precision-Tower-5810>
+ <db2f0c20-ca7e-41c9-be08-67fd1f92c2af@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <0f1afc5e-d5f4-444e-819c-594f0b1e125b@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=SNhPlevH c=1 sm=1 tr=0 ts=696dffbf cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Wknet9ZBI_JJvYukRKwA:9 a=QEXdDO2ut3YA:10
- a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDA3OSBTYWx0ZWRfXz1CCJLs/2V05
- jRw5PGQAnGjoBOBglCODJwNicDYRB1IRxHOgesqU9iRGZA98bjMsVYlnUb2tAsfy2QW0uhh9f4i
- rL53taUsyrOgCneoG8mHNKg9y5nIXqaQAsDgAkhU0CWwrE1FKjTX5g+v7IjuBK8oGS/Jf5P9als
- EKDh72tRfOexbAmlYhHX6hSGqzltknug2GQZSKpRZJtEw80QBX6mnuqBIUreBpWpsVxaMm4s9Up
- 3P08n9b6174PNDcLDCIUOhDdT1JtBFSSr/S+a1gntxDQn655YuK3J6zmi+iQWgJ80Jq7wAyY9dv
- dJzGHQ1pnKcRLjBXQ0JKtL72mNbfiQjKyWdS8UN+QZ8rMn1814S3sqpbAGQjLVu1F2UB7XRbAoJ
- wZ0+i6bUCvTGf3VNN86akLMEH0Xc1uqNJEvLgrVbML/qYR1jjkGiUdUksRnKLcEzV4D3Z8j/+a4
- bF5xaBUh8nSdk+W2Xpw==
-X-Proofpoint-ORIG-GUID: 9KKGnmVjjDffhYwsiOHwkKC167gorQgv
-X-Proofpoint-GUID: 9KKGnmVjjDffhYwsiOHwkKC167gorQgv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-19_02,2026-01-19_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 bulkscore=0 spamscore=0 adultscore=0
- suspectscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601190079
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <db2f0c20-ca7e-41c9-be08-67fd1f92c2af@collabora.com>
 
-Hi,
+Hi Michael,
 
-On 1/16/2026 12:49 PM, Krzysztof Kozlowski wrote:
-> On 16/01/2026 06:59, Neeraj Soni wrote:
->>> Why this became uppercase?
->> Thnaks for pointing out. I will fix this next patch.
->>>
->>>> +			compatible = "qcom,sc7280-inline-crypto-engine",
->>>> +				     "qcom,inline-crypto-engine";
->>>> +			reg = <0x0 0x007C8000 0x0 0x18000>;
->>>
->>> And this? there is no uppercase at all, so maybye you copied it from
->>> downstream, but that's not right approach - do not use downstream code.
->>>
->> Yes it was copied but i missed to align with upstream. Thanks for pointing out. This will be fixed in next patch.
+On Mon, Jan 19, 2026 at 10:49:20AM +0100, Michael Riesch wrote:
+> Hi Frank,
 > 
-> And that's the problem. You must NEVER COPY downstream DTS. We repeat it
-> and repeat it...
+> Thanks for your review.
 > 
-Sure and i apologize for missing this. I will be fixing this in next patch and will ensure this is not repeated
-in any future posts.
+> On 1/16/26 17:08, Frank Li wrote:
+> > On Fri, Jan 16, 2026 at 02:02:47PM +0100, Michael Riesch wrote:
+> >> The Synopsys DesignWare MIPI CSI-2 Receiver is a CSI-2 bridge with
+> >> one input port and one output port. It receives the data with the
+> >> help of an external MIPI PHY (C-PHY or D-PHY) and passes it to e.g.,
+> >> the Rockchip Video Capture (VICAP) block on recent Rockchip SoCs.
+> >>
+> >> Add a V4L2 subdevice driver for this unit.
+> >>
+> >> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> >> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> >> Reviewed-by: Mehdi Djait <mehdi.djait@linux.intel.com>
+> >> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> >> ---
+> > ...
+> >> +
+> >> +static inline struct dw_mipi_csi2_device *to_csi2(struct v4l2_subdev *sd)
+> >> +{
+> >> +	return container_of(sd, struct dw_mipi_csi2_device, sd);
+> >> +}
+> >> +
+> >> +static inline __maybe_unused void
+> > 
+> > why need '__maybe_unused', needn't inline. compiler can auto decide and
+> > report unused function if no 'inline'.
+> 
+> The __maybe_unused was helpful during development and is not really
+> required now. It doesn't hurt either, so I left it in. I can remove it
+> if you wish.
 
-> Best regards,
-> Krzysztof
+Please. :-)
+
+> >> +static int dw_mipi_csi2_register_notifier(struct dw_mipi_csi2_device *csi2)
+> >> +{
+> >> +	struct v4l2_async_connection *asd;
+> >> +	struct v4l2_async_notifier *ntf = &csi2->notifier;
+> >> +	struct v4l2_fwnode_endpoint vep;
+> >> +	struct v4l2_subdev *sd = &csi2->sd;
+> >> +	struct device *dev = csi2->dev;
+> >> +	struct fwnode_handle *ep;
+> >> +	int ret;
+> >> +
+> >> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0, 0);
+> > 
+> > use  struct fwnode_handle *ep __free(fwnode_handle) can simplify err
+> > handler.
 > 
+> Sorry, I don't see the benefit of that.
+
+I'd prefer this, too, when you unconditionally need to release or put
+something. It'll make error handling simpler, too.
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
