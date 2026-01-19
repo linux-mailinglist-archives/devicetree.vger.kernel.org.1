@@ -1,99 +1,86 @@
-Return-Path: <devicetree+bounces-256639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F21D39D85
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:51:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65031D39D92
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:04:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 40B7D3006A65
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 04:51:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2D33D3005BA6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4235325783A;
-	Mon, 19 Jan 2026 04:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E5B826B76A;
+	Mon, 19 Jan 2026 05:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WEH8pBmE";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Z1ni0C7x"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rC2cEw2e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010056.outbound.protection.outlook.com [52.101.201.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBD61B81D3
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:51:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768798308; cv=none; b=LQ6rXZ3+A0oCTT0ZxIbb1exPbHZjCrq/5Jye9hHXh67RKnQUp9fBVKkqszjxd6F+wLDpn5GnraTrTyKT/07WYOra3iYOlk3lLE3P/0GofITKIHfiqWAgXUxi3ONMRmoxuFvFsu3bt/zbsBNYKbP1JqFaO+x7e+HDCiWbQ03kCgg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768798308; c=relaxed/simple;
-	bh=D9Vaj7OQrZmk2pDElqiYd3JWff9QOz69KFSU7Ygjlp0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VcYZi6CYYUrGyQlDH1ozcBOu6GmzCpItFOj60i5MnhUBDm1uVdYfQepGOU8Jr4h+tvB0rqPbib2ePXBKrxcAIoCmwxLYrd5dIKz/seDR8T2xfnPA729c0iKRL3oxLKjc6EoDVP1itJmKeWG4Uy86fi+AhkCkGcR7pMoj7pExJug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WEH8pBmE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Z1ni0C7x; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J1dj4Z4134409
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:51:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pe0ppVmVWykTbR56gl2RExAsGWnQBkCtnrcpym1xn84=; b=WEH8pBmELQ0w82pd
-	mqDBlC45btg3vdqzZ064cdjHJfZxXD7nRGzb0luu3rYmU/GcIGqJQDBrmbOtvdA4
-	LbmNfaFQWzIDVYIU19XpJuDEGYOa+/XzMWfOQRo80llf4tEXLKcm3wrmuk50jVQb
-	CS/nve8+NwpPSs+aJZiaSTtGzIRRmTJM/zZW9RAyxx/pHj9k3dKj5b+wwVC8R76P
-	LIxJsn39Owokbft+hoXUe/cgYaZT3mkdp2ojS2XDmjr40e7i14UfSvkXWDMd7li6
-	1WEq1vx9y7qmtsw/jzLEdM+Jy38Kt1abemT2W61790Fp6tJwDaM4vQcGaM12XBMG
-	VDQPtQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsb4yrcqs-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:51:45 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-34c6e05af3bso3752561a91.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 20:51:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768798305; x=1769403105; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pe0ppVmVWykTbR56gl2RExAsGWnQBkCtnrcpym1xn84=;
-        b=Z1ni0C7xYmHQMXAeWahHRTnLXRl3EZxOlI5JKwezxspeMNIJFUVT+lw3yzqZmqFX3r
-         rg+SMCpcrWMqDmYSPmVeIYa+SEJkh0aMr/z90CwXB1fR01LtkP4LKxbFmJmIjX5s+sov
-         AHjlAdvKnkjsJ3j00kmz0hX47G2jXNsm3CPg4ln235e7rlJCFQOjuPS5SaQTb85Ryn4X
-         Mvbjb7Vov1tWj0BB31wGfdVLf4FfQrmzsxp+DAPxegftNp9ojygjTD6jA7sK8FNSEtcK
-         Gwc6aHgYocoPKD+U6MA+PuqvlC5AiRj1fq3D6ONu9kx5Tj4g/WBeU/d1KCFkqoQPwkGt
-         3HLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768798305; x=1769403105;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pe0ppVmVWykTbR56gl2RExAsGWnQBkCtnrcpym1xn84=;
-        b=nlG2Vc8pOMqDEQaDHs1+Ku9lCicxI3GPGczHAOFYXqEqrq/JZ0M2Twz0QGW/hbKtRq
-         WNzeD6NKPXdH56E3Y/qGXB3iF1Snss0Tcf5dftwCMCy1MBKQbnBlzzIPW+gT6KJP8ms8
-         Uq5mZ15IM+3YOGG0vhnKV+2eBrhCCyb4JXGSEpd0msZsAvAZyY0s8pwCg29Gz2fk2Jc9
-         Yc4MSNWQ9u/KAicKNqIYrzmuJvoOZG4mXjwzR3w8ORRa91tipTg7JqZimssOrIVENGjy
-         Z6/J7FOPzOpKWGco7MMDrQXZYrBDxsViQ7P6IPSi2OOOk63X1c8VLMcjQQKWjE2nRq9/
-         hTQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVftUY/JLI2Rg4I6EK1Ky9usxuARcZ9kA9ODnc98pxBp5o9FsgTMBYEVJ4pv6BUTwWN3d57GpTyIKbe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuTeHV3Ey33OzVkBBWp05ST/k4Y+pr/CkAQx3d1Q3AzsbGeOGz
-	kP1rqp8+crUW1JODGsJlrKuDKVP4SJNKRngIV1ZkaXETfB+MPb6Pl8tCmIuzfHcInjDY74XYwka
-	0P9dPWxxM899DaEd2d/0cLwcN5oAr44DPlzfEaa1q70M6RCM9UyVMVrBCjTvOA4Rn
-X-Gm-Gg: AY/fxX7hqwIc1t22ghOBi8pDJUJ9rzi0iw9JNE4f7WGrIu3j3Iy7TX2iVF85OEVndza
-	X4Lknn8a+je/iFmK+RaV0AYw7e0JUTXnl1Mm7QlfcD9XgqkSjPCKW9WLN0arfKi1P3QagtSAQUg
-	g5rHUDjDnhhL2Yu64KtRh1jd/GT+6jzwehmLTHvuhY0++nJnWTdiXVHu5kfS4TPfGaEV1hXE0af
-	OGRCjcGIIsCsefBaRSLZHbPITZE9NGpZZI+R4vi5GzcBaR+T9gWf33M3nT7MMmjTk3UO91tLoDW
-	mHsslTAaEcWHeOFvjDJrg/tyYjQOMBQvtoBPX2Mymq6Y5Moz3ckME7jVERNV8RJbGc3pfNPDC7e
-	n373lYBjXBD7W6Z3zC4N/n26B9YZUUQ01dfFSSv5e4A==
-X-Received: by 2002:a17:90b:58cf:b0:349:162d:ae1e with SMTP id 98e67ed59e1d1-3527327df4fmr8987884a91.33.1768798304539;
-        Sun, 18 Jan 2026 20:51:44 -0800 (PST)
-X-Received: by 2002:a17:90b:58cf:b0:349:162d:ae1e with SMTP id 98e67ed59e1d1-3527327df4fmr8987850a91.33.1768798304047;
-        Sun, 18 Jan 2026 20:51:44 -0800 (PST)
-Received: from [10.218.4.221] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3527305490fsm7835596a91.1.2026.01.18.20.51.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jan 2026 20:51:43 -0800 (PST)
-Message-ID: <316fa702-6cd8-4842-aecf-c176a5a53e2e@oss.qualcomm.com>
-Date: Mon, 19 Jan 2026 10:21:37 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F6B1C3F36;
+	Mon, 19 Jan 2026 05:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768799089; cv=fail; b=S77hX5fpfm50W8ZL9pKjoI1411Mgt86kmFt7QKzIGV4WtS1HPJvqlHHfc6WpuYv5dRBZRY6QfdjyUdJ+b7Epl1+RT+EYts0xx6TlHYYmQy80ceO3Yg71TywtolFAgWfmdhuuUAL5bWS7C6nzTssnxOSNfzxhNMScLstYDtXaFhk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768799089; c=relaxed/simple;
+	bh=UVvSmjGV6A50qjtwBcej6geafMEFwqKPZUDv2C7Nb6A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kpBcjrxnWiJKsD++BUdh6yuK2EX7+XCCY0LtiHGEPgqAKoRwrKweBg+xoFRHXRreramQcIqAX4JNUJqr59XiMlDHSGEjXgn96SHSYdAdLJ+MNS3KlcbmCw/6RebrJ/gVvInA7d0GY26c8saXgEw6MTlXn3wYUwq+DKfUDP6Is2k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rC2cEw2e; arc=fail smtp.client-ip=52.101.201.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SisgKRAvzoACqcuwO+jgj8f9t4sIGZ0pq/U+JbuWUz7u7Rle5pcacNbyrwKfpc9U6O01ilO2IlbYadCVRBsaCaz1oST/+W7ZHqV1tQv2qK1UFc3NCvxRDGGOkOYRcoqGkZjjrUA8/iadrLFJLMTQBJWUdOMxzqlMjzRVi4f5T/dl8B2KHP+RbPbZfGW9vj7s3hSUchu+H0MKf52hCExM9QGUoKkM00j8q4rbLKNXoEfXWHPk/OjMwL9q/aA7AZcbnNhKsR6tzY5mokfiZVQhevPvRhm97efvEtLu8h3BsTFNEGPdPGUd0mCLp6ODSV3ALcEBih5Fgvnhvf87AoyJWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zZquQXrBumI5aCYOZEljPxhYdo/GvZAEgPYREaXI5IA=;
+ b=phnxWjSyIU/RUwiI9+lgKvRMLwzOFcjqCBtDalCQvG5XSpghZv2Yy+62neEiD17u8yeTiJQTG9/tjNV61P57kkCEE8JcJBiccXeyn0Bk7EHLMdHx1uJSEr/7oze5G93brUtHAcUOTzulbkqB69HXd7dTviHnit4kk9E5Oq/xuZ7jCd9KCMrlGj7hD0M4Ay7Hmp/Tl2c3g/4d9BFOBjq3brlqaoCniM56ll3kzA1TiV9LZk17rp8d5kqjAapo+2VI2AuiIomdAMj4Qz19vtVimoMrSDGK6L0aEeB2r3emc98Nz2eiQ9RcPN5toOutRHCkrsS6aJNiyLFQazJ0SoR0vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zZquQXrBumI5aCYOZEljPxhYdo/GvZAEgPYREaXI5IA=;
+ b=rC2cEw2ecfwdKzko1VnwLtCB7pFTTKYsbus+gKuKTQmzlZauRov6UeCnelyyaf1V3aqWNv2X9Yvkx+vtugp6BYimb9RtYwyq/qncDaJKrZK8UY1CpkPO+UwFNp7AzUskAED2ZPLn6UWjygSyojzBfbgZbNo5ZUdmWgR5hq00zeY=
+Received: from CH2PR08CA0014.namprd08.prod.outlook.com (2603:10b6:610:5a::24)
+ by BLAPR10MB5202.namprd10.prod.outlook.com (2603:10b6:208:306::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.4; Mon, 19 Jan
+ 2026 05:04:43 +0000
+Received: from CH1PEPF0000AD7D.namprd04.prod.outlook.com
+ (2603:10b6:610:5a:cafe::47) by CH2PR08CA0014.outlook.office365.com
+ (2603:10b6:610:5a::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.11 via Frontend Transport; Mon,
+ 19 Jan 2026 05:04:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CH1PEPF0000AD7D.mail.protection.outlook.com (10.167.244.86) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.4 via Frontend Transport; Mon, 19 Jan 2026 05:04:43 +0000
+Received: from DLEE202.ent.ti.com (157.170.170.77) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 18 Jan
+ 2026 23:04:42 -0600
+Received: from DLEE214.ent.ti.com (157.170.170.117) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 18 Jan
+ 2026 23:04:42 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE214.ent.ti.com
+ (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Sun, 18 Jan 2026 23:04:42 -0600
+Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60J54YSX3097518;
+	Sun, 18 Jan 2026 23:04:34 -0600
+Message-ID: <25cdbefb-b1cb-4da1-b0bd-577c287a57ac@ti.com>
+Date: Mon, 19 Jan 2026 10:34:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,113 +88,365 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus
- controller
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com,
-        mailhol@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com
-References: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
- <20260108125200.2803112-3-viken.dadhaniya@oss.qualcomm.com>
- <n6affntgff5wy4xmm255v5h2ejpepicpz2cybcuvsxmry5td6u@jucskv7zrzvv>
- <5cdfe5a5-3c78-45a2-886c-768b224ad776@oss.qualcomm.com>
- <wbx2qrkhpsntggzqkzkpi4sa6qv3buhkjbwmjoa7zgw2oc4b7u@qugyhcxb6qrh>
+Subject: Re: [PATCH v9 15/19] media: ti: j721e-csi2rx: Change the drain
+ architecture for multistream
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <s-jain1@ti.com>,
+	<vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
+	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
+	<jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
+	<jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
+	<dan.carpenter@linaro.org>, <hverkuil+cisco@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <jai.luthra@linux.dev>,
+	<laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
+References: <20251230083220.2405247-1-r-donadkar@ti.com>
+ <20251230083220.2405247-16-r-donadkar@ti.com>
+ <fbae9c01-6a2c-46ee-963a-8e5230b860b4@ideasonboard.com>
 Content-Language: en-US
-From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-In-Reply-To: <wbx2qrkhpsntggzqkzkpi4sa6qv3buhkjbwmjoa7zgw2oc4b7u@qugyhcxb6qrh>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=SNhPlevH c=1 sm=1 tr=0 ts=696db861 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=4ibTxloRqUhnMlsHXSUA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDAzNyBTYWx0ZWRfXwr3z8xvOWQHR
- 8Lkb2eSo6ySusoI66atJis12E021FNr7WXsoazDwQUR63sK2qaN2km7GnDaRd5CKqSkmBC5cVYm
- ugMHP92RXPH4EYWOab9NtL15evNGlFJQhBD+5BDxabiFIX8Tt4Z/7xOlRycg1TsPMxv6ot5yjHj
- aZLs+znB+KGBCpjaZK+hz9oyxAoCGItvNduvcWeLD6MiHPC6YWymUu4yn6elc2Pc0/Z92r2kg18
- 1Qmjhb8QIf2PuqIjX8gAhkf7doYF9+fRok6VkK2x8hVDuV3iMic+kUU+rUby83lPGYxTHk8iPdU
- GvIxUyTCLP4Bh9xBYPXaHkHqj2yUMr5oAp1WzXe0c7aQMfNv1Y4syFP03y2fRD+xJblzT/9ifMa
- eruf0P122cD++1ncTMzKnQMeByVSYioNpch7ZrXBcD0BT+5ZZWR/YkU6Qy2UFyp5EzXFoDV6Kz2
- m90VMcmmjpDKT1ijzEg==
-X-Proofpoint-ORIG-GUID: QdIJtOkgiyGnYPKTBDaR19_jV6PEqG5i
-X-Proofpoint-GUID: QdIJtOkgiyGnYPKTBDaR19_jV6PEqG5i
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-17_03,2026-01-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 bulkscore=0 spamscore=0 adultscore=0
- suspectscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601190037
+From: Rishikesh Donadkar <r-donadkar@ti.com>
+In-Reply-To: <fbae9c01-6a2c-46ee-963a-8e5230b860b4@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7D:EE_|BLAPR10MB5202:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d0e993e-da16-407d-e4b8-08de57184231
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RzhHR2JLVkhtLy8vVFB1MUZZNm1lVExmME9ZeHBLSTVJTklwSE9zMXY5Z1VE?=
+ =?utf-8?B?WG9KWTRCYkwwT09ZVGp6SlBCeTNUL2JKeUZLRFRWdW9QZGVKeFc0RzIya0dy?=
+ =?utf-8?B?aVJxV3dUUVFTZ2toZ1NwU0oyYzI1S3NqdUVIOUdtSDJzRkZoU1J3NmZoWXlh?=
+ =?utf-8?B?Si81cjJ6eVU1akI1cEpCSEJQSFNKTHBlM3JMcWR6UUlEeTlQb0ErSFU3aHlo?=
+ =?utf-8?B?d1dmWCtMMVhDTUFueFdoWk04eEtLcDg4alZGZDRFcjR5WHhXUkwydWtYK25m?=
+ =?utf-8?B?SEkybFJXaWxwNTA0Q3dBTEhYL1RlVjV6N1orY09WUlNXa1dIZlBjRFgwRnkz?=
+ =?utf-8?B?cGYycTNhZWVPMmxnWllqckZQMVlIWXF3dXpLZnIvUGt3STgrUTlFSk1Weklv?=
+ =?utf-8?B?VE1sWGZ5SDVQc1pXcVpDZ2hxakdsRlo2Q21SenR5MmtlTnpwb000RlR1N0c1?=
+ =?utf-8?B?SWw3TkJMbFl5dnVyRzJETHM4d25EdmpDTlQwejArOHNyODMwLzAyTGpmc0xw?=
+ =?utf-8?B?UlZoVVhzakZ6bWo0YWxBc2kzei9PYnVLcmE0TklKMy9yb2lKOG0vajdPVVFN?=
+ =?utf-8?B?a1h5Q3plVUpCbDMvc0JUNGxzQTI3cmZZb2UrV0gyRW1Jd3hiTi9OaTRQYWFx?=
+ =?utf-8?B?Z2duQlErdS9EMWZSY1Z3ZXhOOHd1UUZMOGdWWFlXeklLcGlOamJHWStRckJn?=
+ =?utf-8?B?ZDVjRmpRZE5xUjliMU5sU0tBbEh1enNsaWQ1ZUd2aTlPMHNON0o0ZnI3Y0xl?=
+ =?utf-8?B?OHhzL1VSSHR4RWxIb09EUDh2MFhMbHl2eVJQUHV0NEdLNG5DOG8rOUdmRUQz?=
+ =?utf-8?B?Y1BWOHB0TVU2aTUxdldsR0poOXFuSW1CK0hHQitMdmVlYXE0TFBMRTZKbTln?=
+ =?utf-8?B?SHJJYjFhVGxYSkZQQktuMEpoaHp2U29OeC8rb3AyMTNIMFhtODc3YmhBNGha?=
+ =?utf-8?B?V1hQOFlva3dSWUxLejl1Q2JJc0lTNEd2dEh4NzRkLzdHS3JEM0oxTE5vNXNt?=
+ =?utf-8?B?NlhvYlk2eFBpdDhrTHQzVms0SS9mMVdaQ1h3ZWFabWNqb1h2Y3VjVjRRL2pH?=
+ =?utf-8?B?Z2dNdThWa2ZIa2lqZXBvRHlUUzhpVjNtVmRTSTdpcWQzZGlsaE5ENjNVUDRM?=
+ =?utf-8?B?YmFqb3RTS3JxWEUvRmFiMDZpWVBqVFBxNnRmblJjc214RHdONmJRQ0RkNjNr?=
+ =?utf-8?B?M3gyNHVqdGlDWHVnZ01hcW1WSFBJcTRVVU1zWUhFNk9pci8raGlOUkZ5TVRD?=
+ =?utf-8?B?NEJDK013a0FDZHpoTTNQcjFYSStEY3F3UDBaVU5VZGJsRnVoc1Zxd1BBTmMy?=
+ =?utf-8?B?NXRNeWJVSis3MnQxKy9FMGJmdDZXRkgyK0xUTk1LLzQrZ3FYUkFaQmJ0Y2xs?=
+ =?utf-8?B?SzBWalcxOTZLc0JoeTRNZnJVbm85ZlhKbmJWMDQvWENIbUJhNlpaaWxEWVFS?=
+ =?utf-8?B?Vm5vRDUrM3orQUJXTVB1VHhxM2o1SE9oSlFrM1k1UWpFMVIwTHc5Nkw0NEJh?=
+ =?utf-8?B?Q0t3VTVaWmg5UEs1TngxM2FKM0RWSWJUcndVQXhqVDdhNW9uOVNIYUg1QmJn?=
+ =?utf-8?B?NTc4T09ZOUU4WUUwcjZYbGd6RjVVL3ZMUSsyaFpua2lZMW9CTHdBOVRuczZr?=
+ =?utf-8?B?YUJjN3dZZzlOc0VQb3N5V0VVenFVam9Uc0JGK0Q3WTVHZHlrMjAvWXd4a1Iv?=
+ =?utf-8?B?YmJCeGZWVnRsM2ZsemRnZkFVWFRZYUZDR2lNWkVaeW50cG5uNGk1VDVpeWtJ?=
+ =?utf-8?B?WXY3RWJrQzdrRWMzaDZsVURjQjVaTlA2K1FwbThPdUFGQTJHV0pSVnM0N3dN?=
+ =?utf-8?B?VlY5OXRGT3hwZHJTSFM4V3dNUzFRTnJBQUordlJXbVpuNTRPWnhDUzNPMUl6?=
+ =?utf-8?B?Ni9lRWRuNmp1WXQ0aVpGQnp0d0FGWVRlZDFDbjRzYXZwc2JoTHNnVWdqdU5M?=
+ =?utf-8?B?bkxscGFwOGdDQ2tBZWoxWWtlU2FqakVFRlNSNVB5ajVzRm9WL2ZqU1pYM2Qx?=
+ =?utf-8?B?Z0xiVGNWS3g4M2ZCSFNBZ29YWExSKzkvS0ZyNTNBaGdFMmx0UkthTk9WT2w0?=
+ =?utf-8?B?ZUhrTFkwS0tXdVNIY0xoazE4WTduaFdRT2xXVktqRFVvZUNtRUtiVmZQeG5t?=
+ =?utf-8?B?VGcrbGE4NVY3aHV3ZDcyWGV0SkVvRVlYMllZRDh3Qmd0UDFEV2puWVNmblRs?=
+ =?utf-8?B?R3VoT0U3dThPdEVkWG5vL2tYNE9GRHB1d3ViWXhlY0xWaDZtazZNeVRvaXlX?=
+ =?utf-8?B?d09tdjhMdFFrbDROMEpwbHdFcDVnPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 05:04:43.3601
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d0e993e-da16-407d-e4b8-08de57184231
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH1PEPF0000AD7D.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR10MB5202
 
 
+On 15/01/26 18:07, Tomi Valkeinen wrote:
+> Hi,
 
-On 1/9/2026 7:35 PM, Dmitry Baryshkov wrote:
-> On Fri, Jan 09, 2026 at 06:23:39PM +0530, Viken Dadhaniya wrote:
+
+Hi Tomi,
+
+Thank you for the review !
+
+>
+> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+>> On buffer starvation the DMA is marked IDLE, and the stale data in the
+>> internal FIFOs gets drained only on the next VIDIOC_QBUF call from the
+>> userspace. This approach works fine for a single stream case.
 >>
+>> But in multistream scenarios, buffer starvation for one stream i.e. one
+>> virtual channel, can block the shared HW FIFO of the CSI2RX IP. This can
+>> stall the pipeline for all other virtual channels, even if buffers are
+>> available for them.
+> One stream is filtered based on VC & DT, but the above only mentions VC.
+> And then later uses VC when referring to the stream. I think you can
+> drop the VC parts, and just talk about streams.
+
+
+Okay, will do !
+
+>
+>> This patch introduces a new architecture, that continuously drains data
+>> from the shared HW FIFO into a small (32KiB) buffer if no buffers are made
+>> available to the driver from the userspace. This ensures independence
+>> between different streams, where a slower downstream element for one
+>> camera does not block streaming for other cameras.
 >>
->> On 1/8/2026 7:33 PM, Dmitry Baryshkov wrote:
->>> On Thu, Jan 08, 2026 at 06:22:00PM +0530, Viken Dadhaniya wrote:
->>>> Enable the MCP2518FD CAN controller on the QCS6490 RB3 Gen2 platform.
->>>> The controller is connected via SPI3 and uses a 40 MHz oscillator.
->>>> A GPIO hog for GPIO0 is included to configure the CAN transceiver in
->>>> Normal mode during boot.
->>>
->>> The main question is: what is so different between RB3 Gen2 and previous
->>> RB boards which also incorporated this CAN controller? Are there any
->>> board differences or is it that nobody tested the CAN beforehand?
->>>
+>> Additionally, after a drain is done for a VC, the next frame will be a
+>> partial frame, as a portion of its data will have already been drained
+>> before a valid buffer is queued by user space to the driver.
+> This makes it sounds we drain a single 32KB piece. But won't we continue
+> draining that stream until the stream is stopped or the user provides a
+> buffer?
+
+
+Thanks for pointing out, I will change it to talk about continuous draining.
+
+Rishikesh
+
+>
+> Also, does the DMA not offer us ways to drain a full frame? There's no
+> way to e.g. set the DMA TX increment to 0, so that it would just write
+> to a single location in memory? Or just set the target to void.
+>
+>   Tomi
+>
+>> Use wait for completion barrier to make sure the shared hardware FIFO
+>> is cleared of the data at the end of stream after the source has stopped
+>> sending data.
 >>
->> The behavior is consistent across platforms, but I do not have details on
->> how other platforms were tested.
+>> Reviewed-by: Jai Luthra <jai.luthra@ideasonboard.com>
+>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> ---
+>>   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 112 ++++++++----------
+>>   1 file changed, 50 insertions(+), 62 deletions(-)
 >>
->> On the RB3Gen2 board, communication with the PCAN interface requires the
->> CAN transceiver to be in normal mode. Since the GPIO-controller support
->> was recently integrated into the driver, I configured the transceiver using a
->> GPIO hog property. Without this configuration, the transceiver is not set
->> to normal mode, and CAN communication does not work.
-> 
-> How do we verify the mode on a running system? I have the boards, but I
-> don't have anything connected to them over the CAN bus.
-> 
-> BTW: can you recommend any simple setup to actually test the CAN bus on
-> those devices?
-> 
-
-I tested the CAN controller using the following commands:
-
-1. Loopback Mode Testing (GPIO hog not required)
-
-ip link set can0 down
-ip link set can0 type can bitrate 500000 loopback on
-ip link set can0 up
-cansend can0 12345678#1122334455667788_B
-candump can0
-
-2. Testing with External CAN FD Adapter (PCAN-USB FD)
-A GPIO hog was required to configure the transceiver in normal mode.
-
-1. Probed and verified CAN transceiver pins and connected them to the
-   PCAN-USB FD hardware.
-2. Configured the CAN interface:
-	
-	ip link set can0 down
-	ip link set can0 type can bitrate 500000
-	ip link set can0 up
-
-3. Configured the PCAN-USB FD software for 500 kbps arbitration bitrate.
-
-4.Sent a CAN FD frame from Linux
-	cansend can0 12345678#1122334455667788_B
-	
-5. Verified reception in the PCAN software.
-
-6. Transmitted frames from the PCAN software and validated them on Linux
-	candump can0
-
+>> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> index fa6152464d4b6..e713293696eb1 100644
+>> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> @@ -82,7 +82,6 @@ struct ti_csi2rx_buffer {
+>>   
+>>   enum ti_csi2rx_dma_state {
+>>   	TI_CSI2RX_DMA_STOPPED,	/* Streaming not started yet. */
+>> -	TI_CSI2RX_DMA_IDLE,	/* Streaming but no pending DMA operation. */
+>>   	TI_CSI2RX_DMA_ACTIVE,	/* Streaming and pending DMA operation. */
+>>   };
+>>   
+>> @@ -109,6 +108,7 @@ struct ti_csi2rx_ctx {
+>>   	struct v4l2_format		v_fmt;
+>>   	struct ti_csi2rx_dma		dma;
+>>   	struct media_pad		pad;
+>> +	struct completion		drain_complete;
+>>   	u32				sequence;
+>>   	u32				idx;
+>>   	u32				vc;
+>> @@ -251,6 +251,10 @@ static const struct ti_csi2rx_fmt ti_csi2rx_formats[] = {
+>>   static int ti_csi2rx_start_dma(struct ti_csi2rx_ctx *ctx,
+>>   			       struct ti_csi2rx_buffer *buf);
+>>   
+>> +/* Forward declarations needed by ti_csi2rx_drain_callback. */
+>> +static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx);
+>> +static int ti_csi2rx_dma_submit_pending(struct ti_csi2rx_ctx *ctx);
+>> +
+>>   static const struct ti_csi2rx_fmt *find_format_by_fourcc(u32 pixelformat)
+>>   {
+>>   	unsigned int i;
+>> @@ -617,9 +621,32 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
+>>   
+>>   static void ti_csi2rx_drain_callback(void *param)
+>>   {
+>> -	struct completion *drain_complete = param;
+>> +	struct ti_csi2rx_ctx *ctx = param;
+>> +	struct ti_csi2rx_dma *dma = &ctx->dma;
+>> +	unsigned long flags;
+>> +
+>> +	spin_lock_irqsave(&dma->lock, flags);
+>> +
+>> +	if (dma->state == TI_CSI2RX_DMA_STOPPED) {
+>> +		complete(&ctx->drain_complete);
+>> +		spin_unlock_irqrestore(&dma->lock, flags);
+>> +		return;
+>> +	}
+>>   
+>> -	complete(drain_complete);
+>> +	/*
+>> +	 * If dma->queue is empty, it indicates that no buffer has been
+>> +	 * provided by user space. In this case, initiate a transactions
+>> +	 * to drain the DMA. Since one drain of size DRAIN_BUFFER_SIZE
+>> +	 * will be done here, the subsequent frame will be a
+>> +	 * partial frame, with a size of frame_size - DRAIN_BUFFER_SIZE
+>> +	 */
+>> +	if (list_empty(&dma->queue)) {
+>> +		if (ti_csi2rx_drain_dma(ctx))
+>> +			dev_warn(ctx->csi->dev, "DMA drain failed\n");
+>> +	} else {
+>> +		ti_csi2rx_dma_submit_pending(ctx);
+>> +	}
+>> +	spin_unlock_irqrestore(&dma->lock, flags);
+>>   }
+>>   
+>>   /*
+>> @@ -637,12 +664,9 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
+>>   {
+>>   	struct ti_csi2rx_dev *csi = ctx->csi;
+>>   	struct dma_async_tx_descriptor *desc;
+>> -	struct completion drain_complete;
+>>   	dma_cookie_t cookie;
+>>   	int ret;
+>>   
+>> -	init_completion(&drain_complete);
+>> -
+>>   	desc = dmaengine_prep_slave_single(ctx->dma.chan, csi->drain.paddr,
+>>   					   csi->drain.len, DMA_DEV_TO_MEM,
+>>   					   DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
+>> @@ -652,7 +676,7 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
+>>   	}
+>>   
+>>   	desc->callback = ti_csi2rx_drain_callback;
+>> -	desc->callback_param = &drain_complete;
+>> +	desc->callback_param = ctx;
+>>   
+>>   	cookie = dmaengine_submit(desc);
+>>   	ret = dma_submit_error(cookie);
+>> @@ -661,13 +685,6 @@ static int ti_csi2rx_drain_dma(struct ti_csi2rx_ctx *ctx)
+>>   
+>>   	dma_async_issue_pending(ctx->dma.chan);
+>>   
+>> -	if (!wait_for_completion_timeout(&drain_complete,
+>> -					 msecs_to_jiffies(DRAIN_TIMEOUT_MS))) {
+>> -		dmaengine_terminate_sync(ctx->dma.chan);
+>> -		dev_dbg(csi->dev, "DMA transfer timed out for drain buffer\n");
+>> -		ret = -ETIMEDOUT;
+>> -		goto out;
+>> -	}
+>>   out:
+>>   	return ret;
+>>   }
+>> @@ -716,9 +733,11 @@ static void ti_csi2rx_dma_callback(void *param)
+>>   
+>>   	ti_csi2rx_dma_submit_pending(ctx);
+>>   
+>> -	if (list_empty(&dma->submitted))
+>> -		dma->state = TI_CSI2RX_DMA_IDLE;
+>> -
+>> +	if (list_empty(&dma->submitted)) {
+>> +		if (ti_csi2rx_drain_dma(ctx))
+>> +			dev_warn(ctx->csi->dev,
+>> +				 "DMA drain failed on one of the transactions\n");
+>> +	}
+>>   	spin_unlock_irqrestore(&dma->lock, flags);
+>>   }
+>>   
+>> @@ -754,6 +773,7 @@ static int ti_csi2rx_start_dma(struct ti_csi2rx_ctx *ctx,
+>>   static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
+>>   {
+>>   	struct ti_csi2rx_dma *dma = &ctx->dma;
+>> +	struct ti_csi2rx_dev *csi = ctx->csi;
+>>   	enum ti_csi2rx_dma_state state;
+>>   	unsigned long flags;
+>>   	int ret;
+>> @@ -763,6 +783,8 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
+>>   	dma->state = TI_CSI2RX_DMA_STOPPED;
+>>   	spin_unlock_irqrestore(&dma->lock, flags);
+>>   
+>> +	init_completion(&ctx->drain_complete);
+>> +
+>>   	if (state != TI_CSI2RX_DMA_STOPPED) {
+>>   		/*
+>>   		 * Normal DMA termination does not clean up pending data on
+>> @@ -771,11 +793,20 @@ static void ti_csi2rx_stop_dma(struct ti_csi2rx_ctx *ctx)
+>>   		 * enforced before terminating DMA.
+>>   		 */
+>>   		ret = ti_csi2rx_drain_dma(ctx);
+>> -		if (ret && ret != -ETIMEDOUT)
+>> +		if (ret)
+>>   			dev_warn(ctx->csi->dev,
+>>   				 "Failed to drain DMA. Next frame might be bogus\n");
+>>   	}
+>>   
+>> +	/* We wait for the drain to complete so that the stream stops
+>> +	 * cleanly, making sure the shared hardware FIFO is cleared of
+>> +	 * data from the current stream. No more data will be coming from
+>> +	 * the source after this.
+>> +	 */
+>> +	if (!wait_for_completion_timeout(&ctx->drain_complete,
+>> +					 msecs_to_jiffies(DRAIN_TIMEOUT_MS)))
+>> +		dev_dbg(csi->dev, "DMA transfer timed out for drain buffer\n");
+>> +
+>>   	ret = dmaengine_terminate_sync(ctx->dma.chan);
+>>   	if (ret)
+>>   		dev_err(ctx->csi->dev, "Failed to stop DMA: %d\n", ret);
+>> @@ -838,57 +869,14 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
+>>   	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vb->vb2_queue);
+>>   	struct ti_csi2rx_buffer *buf;
+>>   	struct ti_csi2rx_dma *dma = &ctx->dma;
+>> -	bool restart_dma = false;
+>>   	unsigned long flags = 0;
+>> -	int ret;
+>>   
+>>   	buf = container_of(vb, struct ti_csi2rx_buffer, vb.vb2_buf);
+>>   	buf->ctx = ctx;
+>>   
+>>   	spin_lock_irqsave(&dma->lock, flags);
+>> -	/*
+>> -	 * Usually the DMA callback takes care of queueing the pending buffers.
+>> -	 * But if DMA has stalled due to lack of buffers, restart it now.
+>> -	 */
+>> -	if (dma->state == TI_CSI2RX_DMA_IDLE) {
+>> -		/*
+>> -		 * Do not restart DMA with the lock held because
+>> -		 * ti_csi2rx_drain_dma() might block for completion.
+>> -		 * There won't be a race on queueing DMA anyway since the
+>> -		 * callback is not being fired.
+>> -		 */
+>> -		restart_dma = true;
+>> -		dma->state = TI_CSI2RX_DMA_ACTIVE;
+>> -	} else {
+>> -		list_add_tail(&buf->list, &dma->queue);
+>> -	}
+>> +	list_add_tail(&buf->list, &dma->queue);
+>>   	spin_unlock_irqrestore(&dma->lock, flags);
+>> -
+>> -	if (restart_dma) {
+>> -		/*
+>> -		 * Once frames start dropping, some data gets stuck in the DMA
+>> -		 * pipeline somewhere. So the first DMA transfer after frame
+>> -		 * drops gives a partial frame. This is obviously not useful to
+>> -		 * the application and will only confuse it. Issue a DMA
+>> -		 * transaction to drain that up.
+>> -		 */
+>> -		ret = ti_csi2rx_drain_dma(ctx);
+>> -		if (ret && ret != -ETIMEDOUT)
+>> -			dev_warn(ctx->csi->dev,
+>> -				 "Failed to drain DMA. Next frame might be bogus\n");
+>> -
+>> -		spin_lock_irqsave(&dma->lock, flags);
+>> -		ret = ti_csi2rx_start_dma(ctx, buf);
+>> -		if (ret) {
+>> -			vb2_buffer_done(&buf->vb.vb2_buf, VB2_BUF_STATE_ERROR);
+>> -			dma->state = TI_CSI2RX_DMA_IDLE;
+>> -			spin_unlock_irqrestore(&dma->lock, flags);
+>> -			dev_err(ctx->csi->dev, "Failed to start DMA: %d\n", ret);
+>> -		} else {
+>> -			list_add_tail(&buf->list, &dma->submitted);
+>> -			spin_unlock_irqrestore(&dma->lock, flags);
+>> -		}
+>> -	}
+>>   }
+>>   
+>>   static int ti_csi2rx_get_stream(struct ti_csi2rx_ctx *ctx)
 
