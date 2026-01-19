@@ -1,141 +1,117 @@
-Return-Path: <devicetree+bounces-256670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 531ACD39F4F
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88BA4D39F50
 	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 08:06:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6FF6830054BC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:05:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5332630074BA
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F287C2D6605;
-	Mon, 19 Jan 2026 07:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75782DA768;
+	Mon, 19 Jan 2026 07:06:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JIguSILK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n3dFhBK4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6842C326F;
-	Mon, 19 Jan 2026 07:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801032C326F;
+	Mon, 19 Jan 2026 07:06:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768806354; cv=none; b=lvYpUyh6sYNGvE7AjNtmmHbnR40a66I7t5uIhWrqP02jtd0IvwY2nJkTnN3gE4XXswWBOJhmjql4pwQViyZTqJNh7tNQWFX1u6Rbc5IGs38vLJXQf+uAfwBfyIZYRgPX8/ohNSayLQsU+OXiR8h/ectuQZN/Z0rx8XXUCzN9QH4=
+	t=1768806394; cv=none; b=DIbHU3pQPcPUD6TvJvnjCiqpzCIOzHHcTi4IwCojxfZQL/T7KN1I8VMlKQfA4FyaBsXUS/7jmecXFDM02zTmqIFGJ4RkdrHWkFM/36BHr0fh2vAaaHSETbo5QZWTcu6vV6whUvDBlZcBZ5BY/cP/UAWbJ5kNJR4jHwhykvAjUXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768806354; c=relaxed/simple;
-	bh=JHU+vnqwVHMqZoLfGmQuYP/WKZAKPoEeJg8k3DRotKk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jMeCXRbLTqIQKv6Lcy3GtBikXzchTXYxCOkPUYiQuVgowff7nDShe8GB4XyRFzrdho7mdP2Ua5HWBWgZDeHtU8vbQ6ktImg/bMiFzfIvhwV5+xSJFGISkQLI6qEX8x5nZHVYXvpEHyIOBdpjVeAZJabg6jJiAknDUrDQ8EYssNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JIguSILK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3327DC116C6;
-	Mon, 19 Jan 2026 07:05:52 +0000 (UTC)
+	s=arc-20240116; t=1768806394; c=relaxed/simple;
+	bh=tpnfYEEUGGCcAt473upHUWl8HqVkQmGsCrvb4CiklBI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BRf6aY/URhxWzdU2udoiPjL5bgbXmmFnk3eBLrQykTZSEJuUVxg09D+V3BJO09NIQsCEScc3TbhSGw3Ev/E59DIRDtpDNxXzJqx7c7eSkX3+vctKh5QQWXJ0Cs9RYnJ47o9OeRGzak/jbLVqt8/w5S2heT3skiCerQ1aqOaUC6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n3dFhBK4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2180DC16AAE;
+	Mon, 19 Jan 2026 07:06:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768806354;
-	bh=JHU+vnqwVHMqZoLfGmQuYP/WKZAKPoEeJg8k3DRotKk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JIguSILKAkIMjQdImfY8bOYS0/FUnCaZ3vKvBrhLew3DETkCkGCwnCS+nHBZwtlZs
-	 WTgRcJvrmPP2jx9A4z6SeGpZMqiqJaN1qCDCT6PjkodcrzbzNYQDaiwcZ3POa6htp3
-	 U6+iugYXSJGTdO655knvlq11exNec57Wku9qbHD3hGvMb4xvkPufErxiDf9cySRbF4
-	 z2vxBr1D5PaQ/WVyrlhEGRDxEUsusLZyU7jsGtk2x+DGRQoOQhmDfmVyDHC14ga2h7
-	 5MiCOEUAsasy75el+gv2TF6Bou4MaTPx5rkja9Jvjm81X52C/qMMUqypU5/cm1CcgA
-	 aheoPuWtodNLA==
-Message-ID: <0cb38b14-13bd-43e9-8dca-3d78afd62a28@kernel.org>
-Date: Mon, 19 Jan 2026 08:05:50 +0100
+	s=k20201202; t=1768806394;
+	bh=tpnfYEEUGGCcAt473upHUWl8HqVkQmGsCrvb4CiklBI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=n3dFhBK4rAnsMU8QW5/B1/mluc329pUD+nH+7GdZqz5Bui/GG3sMWdYUeC/qjNeUA
+	 ASF3jbcDrA8aLy010xZuZz2fED+ieZuVq2OLIomiC444VWqk73VZ4+SMWFUxzsQYf+
+	 1uzxsLCe+7v+eUXaL6qatYn4WjHPg7FnG4DoOMTpCfdfGcBLJTjaMfDlOoRsJzYrFb
+	 LEqTeYTzgW99xrRqgMYWqEi9gaRcoKSTztqRTVlrNJewdeEa3MOfYh2x0V1h4FTCt9
+	 jHh0yOY4L5UwnkDCRZHI4/oHRGeDOAT5zLnzXbDHbBYO8ByC+0GiJ5Fb2M36UkhR/G
+	 1Q7t3KBiwMVhw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11B81CA5FE4;
+	Mon, 19 Jan 2026 07:06:34 +0000 (UTC)
+From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
+Subject: [PATCH v3 0/3] spi: xilinx: switch to device properties and make
+ IRQs optional
+Date: Mon, 19 Jan 2026 07:06:21 +0000
+Message-Id: <20260119-spi-xilinx-v3-0-4566c33bac0d@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: Add base PURWA-IOT-EVK board
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
- <20260116104136.2922032-4-yijie.yang@oss.qualcomm.com>
- <d15bbe2a-a88a-4a88-a685-ecd4f058c3af@kernel.org>
- <3404f2f4-7edb-4bff-925b-0a6a7a450f5c@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3404f2f4-7edb-4bff-925b-0a6a7a450f5c@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO3XbWkC/03MQQ6CMBBA0auQWTukU6SiK+9hXBQZ7CRSyBRNE
+ 8LdbVy5fIv/N0iswgku1QbKH0kyx4LmUMEj+PhklKEYrLHOEHWYFsEsL4kZqe+649D2rqUzlGB
+ RHiX/Zrd78ajzhGtQ9v+LkyFLjauta601SOj74a3qw+TjNXJew7zUXmDfv27egTSdAAAA
+X-Change-ID: 20260118-spi-xilinx-1b884d5b6519
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Abdurrahman Hussain <abdurrahman@nexthop.ai>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768806393; l=1190;
+ i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
+ bh=tpnfYEEUGGCcAt473upHUWl8HqVkQmGsCrvb4CiklBI=;
+ b=YHnrC+P6MuDz85zvTkEdBwOIu0gWm/BLsiWVugyfCbkuGtF2+tNjvrjF4b2AXibOgorGlYwPo
+ CCRNsI8TXKmBOhUslCDbZIkLbruGmnpr1r+tXRbtA+X0vDTpRR7CdX/
+X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
+ pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
+X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
+ auth_id=608
+X-Original-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Reply-To: abdurrahman@nexthop.ai
 
-On 19/01/2026 04:13, Yijie Yang wrote:
-> 
-> 
-> On 1/17/2026 12:19 AM, Krzysztof Kozlowski wrote:
->> On 16/01/2026 11:41, YijieYang wrote:
->>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>>
->>> The PURWA-IOT-EVK is an evaluation platform for IoT products, composed of
->>> the Purwa IoT SoM and a carrier board. Together, they form a complete
->>> embedded system capable of booting to UART.
->>>
->>> PURWA-IOT-EVK uses the PS8833 as a retimer for USB0, unlike HAMOA-IOT-EVK.
->>> Meanwhile, USB0 bypasses the SBU selector FSUSB42.
->>>
->>
->> NAK.
->>
->> Warnings were reported at v3. Did you address them? No, you completely
->> ignored them, so warnings are reported again at v4.
->>
->> What do you think these emails are for?
-> 
-> This warning is caused by the pcie3_phy node in purwa.dtsi, which is not 
-> introduced by this patch set. Since it does not impact functionality, 
+Transition the driver to use the generic device property API.
 
-Your patchset introduces that warning. There was no such warning before.
+Additionally, make interrupts optional to allow the driver to fall back
+to its existing polling mode on systems where interrupts are either missing
+or broken.
 
-My NAK still stays, such patchset must not be merged.
+Abdurrahman Hussain (3):
+  spi: xilinx: use device property accessors.
+  spi: xilinx: make irq optional
+  spi: dt-bindings: xilinx: make interrupts optional
+
+ .../devicetree/bindings/spi/spi-xilinx.yaml          |  1 -
+ drivers/spi/spi-xilinx.c                             | 12 ++++++------
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+
+--
+2.52.0
+
+base-commit: 944aacb68baf7624ab8d277d0ebf07f025ca137c
+---
+Abdurrahman Hussain (3):
+      spi: dt-bindings: xilinx: make interrupts optional
+      spi: xilinx: make irq optional
+      spi: xilinx: use device property accessors.
+
+ Documentation/devicetree/bindings/spi/spi-xilinx.yaml |  1 -
+ drivers/spi/spi-xilinx.c                              | 12 ++++++------
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+---
+base-commit: 944aacb68baf7624ab8d277d0ebf07f025ca137c
+change-id: 20260118-spi-xilinx-1b884d5b6519
 
 Best regards,
-Krzysztof
+-- 
+Abdurrahman Hussain <abdurrahman@nexthop.ai>
+
+
 
