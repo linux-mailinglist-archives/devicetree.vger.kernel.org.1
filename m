@@ -1,199 +1,131 @@
-Return-Path: <devicetree+bounces-256921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C595BD3ACA6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:46:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F11C5D3ACA3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:46:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 23E3B3033B92
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:41:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B0483022ABB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACDE6363C4A;
-	Mon, 19 Jan 2026 14:41:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0695A20296E;
+	Mon, 19 Jan 2026 14:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F/9J/JWq";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Lig5wHdD"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="G1nCLrxK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392CC19F13F
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3508E35E55A
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768833674; cv=none; b=DSe1nzRALA7Gfeckf5k7I6jaPzm1a1rtLdgVKsj/I23SPLrcOdU8+9SRVZVpSNK5OfsbbzauA7uzLki/P9mldYIHbiZyLhTVVPoYAq/HT2dSMzm2+Jm5C4ytPWTRLqu0cUYqew4LOeQtQQyjC88G38dbX8sZPPVOA7cZjkYMjVE=
+	t=1768833744; cv=none; b=qlpmvyMb/RjKe/Cnw5qitMpFlONaazLMND1EvAfQqjDundztMKwbX0JSQw04ARVmbJYwrHxdvZpCKsejHPSJU15yM0yzvgCijVM6d9ZQtclUQrm3YpNAqNQ5gCVAU9sglMLi0djSomOQdeH9talKiKMPgjsnG/7OPJVzx7T58Dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768833674; c=relaxed/simple;
-	bh=yg6SXcloJGmJLSUFypYVPsO2vcnz5ICLgzuvBEPL1A4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q29poLRQNa3RrWiOL2+TqG6Dq80k3Djd3PLYTOepj3rzjD0lA+rnElJXfK8fQZVkIQpTI8pwKY1/M+EgpVNoYFOwoHfkcNvtYcnwjUXGMmXeYlSEOkbqk0b5EG4ThFXloKJQhxZcQqe/oZBbGS7JAYsV0o75AaGY6bW/xIQwnd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F/9J/JWq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Lig5wHdD; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J912eP903238
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:41:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7aXbYMXdhaJIz9VzAOKmHA9NGQuHXXe77OASnsSmBNI=; b=F/9J/JWqO7Dnci5Z
-	hiccikZ44wG4TVIPeeAEzIRpadHsn/zH9/0nu+73eQzYDWQoYY6K01MbEz0aQfmc
-	u6c5OLntOqpxIqPTN65i91um3XO0qdAqCZ0X7UIagzyeAMuXj5BFaavcjN0Srdm6
-	sdNLy5X+VX6m6d0Wkqnh283smKFslLKiB2U92elN4HOhgJnwD7OkcgH4bVwOiCnt
-	Hxt7B0rrJiUZlv2UbnJUkTGGjzfwrbJbibhglqNnHvDJ8ydSDKstg9HOORLymWiJ
-	x4yZBLDiEBrY+R5e+InWD43W4dTrjV0C/CEP2pxlRSpsDWrz4SMp2Ezy/Ust+OU6
-	5EV/tg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsb4yt5d0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:41:10 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c6a182d4e1so108953285a.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:41:10 -0800 (PST)
+	s=arc-20240116; t=1768833744; c=relaxed/simple;
+	bh=afV6H9ksp+j0F3QSTrjV2ykIVls2yG3qd1BHRd1y/fU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NWBLAy2hkwY19Z6pWSbXSv24WaDYc4TBOsMRGOjgdBwNYiL/7/C4izDuly5EO2xDOHUk3E0awVcxUnkNR15zT3/XCmY8J71+iTHCVNO6dKT6YHpE9US0zZJ1Gh8x/irW5AcSTXiWX7mta7WIk2+YQYETu7BckDjeoJNqxHhPUFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=G1nCLrxK; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-43246af170aso2527748f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:42:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768833669; x=1769438469; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7aXbYMXdhaJIz9VzAOKmHA9NGQuHXXe77OASnsSmBNI=;
-        b=Lig5wHdDpCVrtxoFsblq/Pu+4zfV1iMTgvndlCQKYJt+UN7fodEf88yehmNHfF4XL5
-         g4j40fXW8iw9BqQR3fNnJPFVr9mDAX6qSoYR1F+OBAHkpw+3TDmAvkAsVBEdlD5BZKFb
-         JwVkP81NWZr8Lvb0rhrW9FzhNDyN9xJuq5bhU1mUuBQQSihnC4RgHXVTo6nMK7NcAyim
-         K6AVr0Z9+xOM5etp3E5SshKym71TY0o8wsMxy5XN7uaa8opViXTp7bRyrKrQBNUCRjxM
-         ZKTy94QW33n5CWQawjo24l/1+X19tFMOFu1rFyTHe+rbqMKBqVjizMAsprRkqIZbZ0jV
-         oVeA==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1768833742; x=1769438542; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TvnwX7iYJXUTTPGbmFJMfKYn4PnTqwC1sbs2t7QZU9Q=;
+        b=G1nCLrxK4Wl9Vz0FfJuhPXBV5wT1Gt4At8oOacLO5c8a5kV/xK0Y6wZTRJmtJBaj4V
+         SOx/hrf0LNoRqnPu4sSt7mJ9MVndxs9EnnSI85qEob5ECJ+ylBfP37IUYzADyzFpKGNa
+         BZ1HyAx3AAmVvbxoW1l3HHePvcm8gck60N8CmrjW+EjgmfZUZUs6s1Gdz7Y03SQLXgLc
+         OkWklQuXjbkHv09lAHpJHcuD8j2BT8AoASgDAWAXYw6Mwto94NOfCZvQLkqGi93NpdLX
+         B4/bSspE2+INEMOV7hzk5q6Lficd6yytmHPYit0mszSR/8RNN6yuJuawZispr/72H/CB
+         AnQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768833669; x=1769438469;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7aXbYMXdhaJIz9VzAOKmHA9NGQuHXXe77OASnsSmBNI=;
-        b=hHd82d2VVipS3vDSjxsmESUKzR50KC1GcobKl/fhHWDLS6bJJUbDGt/4ecsjcWsgtw
-         BaBtrhAKQ/XCi06d+Z6+WQ1kwpOeZaH1Sr7cVj0EqBlZse+DZAjUnIBpql9meHwnkBlh
-         8EWYr0Tp0ZRPhbNh+eISGWKgOv8bGb1cpOg6Pv8qcPUT5UlXdTRRtJh+JOrvpPRWlrJv
-         XWcp1Ymu0AG1Do660y8WcRs+2Y8LXo519WrBNTiOdZ5X8+WL2KYmMbqZOair0kix1VDb
-         aDsdsJ5lMMyz5jIiaktM6NcvRUqFd3wav3/FfPh3ChjIP41C8tkDpQFzOEc2DtHEnr9j
-         bYQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVEnIPPycJrGYb4qz5Cfvjo2IzxH8/+GKe2bhKibaUEZ/uWQwXze253TjnrTH2ZV6ZfiS6AHe7mmXv1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzB8RzAfWbqP0CVN5rBJEvXOycv6eiuuWOefurQXMgJd10Dm4E/
-	RPlE3/Ck4VaDyCVzCOvnyzFIQ38xk3MbVHpp6xcrKKsXJL+LEEp7JkLf2HGkJ4ItalxmqufgAeN
-	369YZiv07pg9Ol8nXyMTd1D7zggzrJ2YtSFr7PrYlOpBLd6IMMhUkllhviz9eHmSGIuOPVh7g
-X-Gm-Gg: AY/fxX7VXlb1iW0GICRvcxVN9g2ri4VByxM4a7QPH1WiHRPZ8hPYLOQl+3HVAvSVDHh
-	UIrExZFajmxAghl+jxrKm33xP+eBa9OwWEIYLSTxIV2nFl6taBYoG+oa3NqbMcRsfbQySMFSy3v
-	etzCw0tuoKqwloURRz6vngmsrz5jxA2wqG/iFbobqzqAn829W0zpnozOvdvHLjlIkt2ex0d0NxP
-	k+aE/qaKUyeQZ/45h+Ry+dVK9YxoYHn0AFuYTd+RQAh4mXSfM9ff6h/swlxZYc6BxH2C0iRyfXn
-	75JtHOgyzNVx4HZpYhbLVx/Tl+dabk0SWzKjMij47TcaljQ/5pDrlUP4TTOww5lTfYZCCca47L5
-	huQymUCmXvtNX29CKSDLChqjxuNQNJdVfEEXSYVnU9+zbU0ssuX5p64+JOt9y5X5/sj0=
-X-Received: by 2002:a05:620a:2a05:b0:8b2:e177:fb18 with SMTP id af79cd13be357-8c6a67bc788mr1133450085a.9.1768833669369;
-        Mon, 19 Jan 2026 06:41:09 -0800 (PST)
-X-Received: by 2002:a05:620a:2a05:b0:8b2:e177:fb18 with SMTP id af79cd13be357-8c6a67bc788mr1133447285a.9.1768833668948;
-        Mon, 19 Jan 2026 06:41:08 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8795168c7bsm1178573966b.20.2026.01.19.06.41.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 06:41:08 -0800 (PST)
-Message-ID: <3a17f2e5-0724-4d70-bd22-1e612142b3e8@oss.qualcomm.com>
-Date: Mon, 19 Jan 2026 15:41:05 +0100
+        d=1e100.net; s=20230601; t=1768833742; x=1769438542;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TvnwX7iYJXUTTPGbmFJMfKYn4PnTqwC1sbs2t7QZU9Q=;
+        b=JW8ADFWYlDCUKPXwYnADR8PKxh1rmyzPNIZXN3kTsbsoxE/TcLefEw9hEBwqPbhs6E
+         2Ja2fJS6MQ5/zIC2CRW87NV8xeKsdUw1o8LP7eMS2cZGCxtr2FEiyibad+kWYSP5uRmU
+         dVJh/ToYKFTArpFUFDr/N6pNaUCSoS5rRj7kMJ/JAPz8JbMwa+W3jTyM2TNdiSs8PJbC
+         YgRHvvY4eC4OWVBREhIYxQhKSb1i2kbcWVsRtYsEiD3jhPeJ+nRzGmmk/X3nL1EbnqXy
+         9HcB+5dBv5qfRTDQUdRBDyPe+JzBVuyupxh31MoS0Ls+Ug6JjuESCMOzEiJyOJCPijmb
+         i5Xw==
+X-Forwarded-Encrypted: i=1; AJvYcCWdkUndlNR1KnqxLg9HV6Tpa+I9776rWMVb0JPjBBXp7xVgAnG+C3920SJ3J5VCDXgRryOFidlMocG8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwH363qlY4BrbNPitMDDzx5iHGdB6b8njX/zTP4+SNIsa2sB56M
+	roECkkpxUzcj311Y5kMNHBosYyz0gmwlAvuZeB8tiYmCQatcHCWGMJwp8TzNjZkpQss=
+X-Gm-Gg: AZuq6aIhiTDsDiirl06XMk7glsrVX05zhVReY+vD0787OWkk47TYu6zz3Fzhpf1SIx8
+	j0217Np1Bn6HoK5xMmYXV+veIl3NehxDsaD5f6A37wRaWM/dnriABGyd1lLspmrfAnLf0nfHTha
+	C21hq2XfwpHiv2hvCJ1juiI8PLwjrI0+1vRKUY5P4yc2FmQszdlhE24XS91J8ePpcBcWGJAhne/
+	5p2w7uyhJoeJulrguPDFocjNaLG+hoRwVeysvmgmUnHT5CfgLTFB1LhwrTkQdxNTI1uTtZ4s7j4
+	OQuOQhPlRTmnHnOtjlBM1J5Mys6YJiuhSrW43gcZHQy7pzH4eczqk1prQ7iM8dCKNE6jfMeuJor
+	byslKc2sAGo+W0p4gQsmtqF3vVVD9743hO4lPyOQr71NZZRKVhR/jeMZ+mrr2vmMZPNBo2he1y6
+	LrE0QXcAizE+JWvEwwR2KWWk6AcPWeg4cs8CbI/pRClH7d+gfRy6ka3acE1ToNFGi1P9pWLQGno
+	3X0BlFi0bIb2SmiHy/maQYEOT/YI8SJf4+EpOjIjSNqYYzhbthlafgptoi1Gx4zJbYfziK9fYVn
+	pGptcVg=
+X-Received: by 2002:a05:6000:4203:b0:432:d9ef:3bef with SMTP id ffacd0b85a97d-4356953f7d4mr17422902f8f.2.1768833741613;
+        Mon, 19 Jan 2026 06:42:21 -0800 (PST)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-435699271dfsm22939388f8f.15.2026.01.19.06.42.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jan 2026 06:42:21 -0800 (PST)
+Date: Mon, 19 Jan 2026 14:42:19 +0000
+From: Daniel Thompson <daniel@riscstar.com>
+To: tessolveupstream@gmail.com
+Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
+	pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+	linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: backlight: gpio-backlight: allow
+ multiple GPIOs
+Message-ID: <aW5CywUjbr6eCPI_@aspen.lan>
+References: <20260105085120.230862-1-tessolveupstream@gmail.com>
+ <20260105085120.230862-2-tessolveupstream@gmail.com>
+ <aVuKdAyXfWLs-WJI@aspen.lan>
+ <c182df66-8503-49cf-8d1d-7da17214b843@gmail.com>
+ <aWe7_hFpmO0E2sJe@aspen.lan>
+ <95a49665-f379-48a7-a2b5-d288cdfdc0a8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: milos-fairphone-fp6: Add Hall Effect
- sensor
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260116-fp6-hall-sensor-v1-1-69275c6bd809@fairphone.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260116-fp6-hall-sensor-v1-1-69275c6bd809@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=SNhPlevH c=1 sm=1 tr=0 ts=696e4286 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=6H0WHjuAAAAA:8 a=p04JXNiKSxiIgApV0UoA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDEyMyBTYWx0ZWRfX28X6P5/TBYNS
- N0RixB4DiL5UtFwzDkp2uoRQ+9bAu2ObdiVXxDojANbNTHKmsRd6eKIo9NiWXILxS0rgqlmWcT0
- s6WsBi2ZDtmwzIkRkIzvZc9XAdvwLk4Xj1HDxIXJa1e/OI5O+ZYvYmcgUtr8m4hXqNTl74Ntolp
- q6UCXN5Y0f6SW7W9qPQ7bD24LsLjEZ2a48P0BRaGDm6Fa5pOQqwy+oqb1CzmRC95B2+UjTTRVpV
- 5uWZi0uG/a5q2APXIdbgU0+2m9kBg4kSTcRBzFZvnCdibuVpdT/MEUT1sQSL30g/q4vwH0ewrbB
- XnRfCqpsqTnyohxc9t9o01ZXK2pq/icZooS7HIY51nPLrD+0UQibnNpubDW4ZibM4CNG7snfE8D
- QhPCxQB3/kAI0wFkuf3IOROfPlWp+c3Gb63IiirZtXTfT6kDpOA065z6FwIp5DiT3G/+OEwCYpq
- DCIUfMPuQ+mPbwWIWTg==
-X-Proofpoint-ORIG-GUID: I6xqF6Dt2gUq6f01pze6n_hORHCz1QCD
-X-Proofpoint-GUID: I6xqF6Dt2gUq6f01pze6n_hORHCz1QCD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-19_03,2026-01-19_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 bulkscore=0 spamscore=0 adultscore=0
- suspectscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2601190123
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <95a49665-f379-48a7-a2b5-d288cdfdc0a8@gmail.com>
 
-On 1/16/26 3:22 PM, Luca Weiss wrote:
-> Add a node for the Hall Effect sensor, used to detect whether the Flip
-> Cover is closed or not.
-> 
-> The sensor is powered through vreg_l10b, so let's put a
-> regulator-always-on on that to make sure the sensor gets power.
+On Sun, Jan 18, 2026 at 10:18:32PM +0530, tessolveupstream@gmail.com wrote:
+> On 14-01-2026 21:23, Daniel Thompson wrote:
+> > On Tue, Jan 13, 2026 at 10:15:53AM +0530, tessolveupstream@gmail.com wrote:
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> index 1483ce4a3480..82698519daff 100644
+> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+> @@ -16,9 +16,11 @@ properties:
+>      const: gpio-backlight
+>
+>    gpios:
+> -    description: The gpio that is used for enabling/disabling the backlight.
+> +    description: |
+> +      The gpio that is used for enabling/disabling the backlight.
+> +      Multiple GPIOs can be specified for panels that require several
+> +      enable signals.
+>      minItems: 1
+> -    maxItems: 2
+>
+>    default-on:
+>      description: enable the backlight at boot.
+>
+> Does this approach work for you?
 
-Is there anything else on L10B? Can we turn it off if the hall sensor
-is e.g. user-disabled?
+I think so... but I'd rather just review a v2 patch than this kind of
+meta-patch.
 
-Konrad
 
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> index 7629ceddde2a..98b3fc654206 100644
-> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-> @@ -32,6 +32,16 @@ gpio-keys {
->  		pinctrl-0 = <&volume_up_default>;
->  		pinctrl-names = "default";
->  
-> +		/* Powered by the always-on vreg_l10b */
-> +		event-hall-sensor {
-> +			label = "Hall Effect Sensor";
-> +			gpios = <&tlmm 70 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			linux,can-disable;
-> +			wakeup-source;
-> +		};
-> +
->  		key-volume-up {
->  			label = "Volume Up";
->  			gpios = <&pm7550_gpios 6 GPIO_ACTIVE_LOW>;
-> @@ -316,6 +326,8 @@ vreg_l10b: ldo10 {
->  			regulator-min-microvolt = <1800000>;
->  			regulator-max-microvolt = <1800000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			/* Hall sensor VDD */
-> +			regulator-always-on;
->  		};
->  
->  		vreg_l11b: ldo11 {
-> 
-> ---
-> base-commit: ef1c7b875741bef0ff37ae8ab8a9aaf407dc141c
-> change-id: 20260116-fp6-hall-sensor-1049f2f872ac
-> 
-> Best regards,
+Daniel.
 
