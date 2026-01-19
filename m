@@ -1,126 +1,99 @@
-Return-Path: <devicetree+bounces-256907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA24D3AB5F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:13:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C1AD3AC31
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:37:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 70D00306AE5A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:11:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 319EF3049C45
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E00F376BD0;
-	Mon, 19 Jan 2026 14:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE676389DE0;
+	Mon, 19 Jan 2026 14:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VHAPs9o/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IE/H7Dlf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEB032693E;
-	Mon, 19 Jan 2026 14:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA9E6389462;
+	Mon, 19 Jan 2026 14:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768831914; cv=none; b=gSdd6oohN4txShpDMKLAFr7sclPwWwyyDS1EZXxmHeVwVWmPR99bjOdhdLlAXvO9zOlF1FLpxmBMy0QDT5T7faJ4evon1nVfuAHVjHuKDpcCXGz7GDcMj55YTUKJA3CH6FtvHRjyaD8/mfpxJPX/V8U7i+MPpzJL7AEcJv/pl5M=
+	t=1768832580; cv=none; b=jvGCSFH+tp7wCN4sshZDRG/OjEojU699WQ+txrt/cDVSHzjhsz5OU2hBDFxniGKxONN75nAIT+oJkxGaepe/t6EKT5YtMdUachZMWlnvkUlj+URLutXoGCc+ao2sKL7ImInGXyjR80DKG+E1V4J48Ak+L7layQPSph2uQiv6YG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768831914; c=relaxed/simple;
-	bh=QVnAQXATigDPFxgb2z2Vvw/8470ub4WmV5WzsyDyK4w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uL4UeXw29rCOhHEoLR5FHhHq2s5lo4ldyyIbB9gs5azAJeYxL/4CdpFKhi1+1XmZ1k/TNIq18N9qSIgTRET5esSEndJreKrCEhQ1wz7GD1dLRLojx/q44TzljB82yxJ3E4lyzyKNzTjA77U168+Sp0KGZUGd0WmiiuDI8mo4PvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VHAPs9o/; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 3067B1A2963;
-	Mon, 19 Jan 2026 14:11:51 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0350760731;
-	Mon, 19 Jan 2026 14:11:51 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1366E10B69816;
-	Mon, 19 Jan 2026 15:11:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768831910; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=zBnoXZkSDvXVR2uiVsNq/HoNx+6eyb4cj7sy3fWGhx4=;
-	b=VHAPs9o/0bh98pJpJm+4YjDxevnw+lNDeaCne/NHTsIN/Ryn2gOh6+plwi6VQB3v4kHxCs
-	8uFii8UixVPvu52ZcLZnNXjxXn/SqmfBV+z5v4xHjH50nTxnyfTzQ7OtLlv++zvGSzd0NM
-	nSRTDnoU4Y8lzJ6cWPuCcQ+OSwi6vcoSCVcfoY4d5H8O1do87Akt4xdZEux//0RSspcC76
-	Zdn8F5PwHAGo7LaAZX0NeS6bADz47d4nQyBYpnALp4lFCG/AJThSsBMRkejYJ5CAancej3
-	OpFc/kjOyZamxlJIngSXIobI6Bv6qCDskxAgGXq6YOUT4tEpQ4TG5WN2Rzx0cw==
-Date: Mon, 19 Jan 2026 15:11:45 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 32/77] dtc-parser: Introduce last_header_flags
-Message-ID: <20260119151145.2f67139e@bootlin.com>
-In-Reply-To: <aWiJvEEgjl44h6vd@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-33-herve.codina@bootlin.com>
-	<aWiJvEEgjl44h6vd@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768832580; c=relaxed/simple;
+	bh=bc+SMSo/BEsJV6kKQTjJ2iqWRMvIFdUr7/HiGEtsBWA=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=Rv56rksG99ByurfeXAV6tnHqJXQI2sGVJX8hCq0beLoaHzkeFHea/yNZULdycpVQrRgd/Xm74L8JrVZEym25i0FK9KxovB5RoFSiC/tgH3dM3gM4jSEeC+KSQvTfVXJWtoETiFniUHEXuguFmScHK/V3P7OBMuBkUb7l6+wuP9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IE/H7Dlf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72E27C116C6;
+	Mon, 19 Jan 2026 14:23:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768832580;
+	bh=bc+SMSo/BEsJV6kKQTjJ2iqWRMvIFdUr7/HiGEtsBWA=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=IE/H7DlfJUzKatGr0A6P/cCX7S5Wrp5fMfrW+nnZ8pbrE8a9QY5945FI8T6A1O6Nn
+	 9cVNqaY16Wo/W2mqRIP7qtErikO0PhDvLnXFcSkHmLn9B6EBgNDnNtk7ZRjZ66xwZQ
+	 MToXnPZWalDSyqTOSq91+HCHvpR8EETdfavr1ko6lOXScMSPLGfnf2soZ+SfuCxL1Q
+	 rEXM3eSgrz1GKZtGfvrSqoRIP2UYvgzwXBYwkYZ5hUO40Wr80wTF/PdYuYcgfTPVNH
+	 qMO2lbtlSW+0eaUwPpBgJd0UWV8u0dbjI4gppp4gq778vzHYLYHc5+q6k26ktXhDVf
+	 h3xbNKkfizJlQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 78B503A55FAF;
+	Mon, 19 Jan 2026 14:19:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Subject: Re: [PATCH net-next v3 0/2] net: pcs: rzn1-miic: Support configurable
+ PHY_LINK polarity
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176883237003.1426077.11987009309110128646.git-patchwork-notify@kernel.org>
+Date: Mon, 19 Jan 2026 14:19:30 +0000
+References: <20260112173555.1166714-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: 
+ <20260112173555.1166714-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Lad@codeaurora.org, Prabhakar <prabhakar.csengg@gmail.com>
+Cc: clement.leger@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, hkallweit1@gmail.com,
+ linux@armlinux.org.uk, geert+renesas@glider.be, magnus.damm@gmail.com,
+ linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ biju.das.jz@bp.renesas.com, fabrizio.castro.jz@renesas.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com
 
-On Thu, 15 Jan 2026 17:31:24 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
+Hello:
 
-> On Mon, Jan 12, 2026 at 03:19:22PM +0100, Herve Codina wrote:
-> > The parser needs to get header flags value in different places.
-> > 
-> > It relies on the fact that the rule used to parse the dts file is always
-> >   headers memreserves devicetree
-> > 
-> > With that only rule to parse the file, it uses '$<flags>-1' construct to
-> > get the flags value.
-> > 
-> > With the future introduction of import symbols parsing, this rule will
-> > change and the parser couldn't rely anymore on '$<flags>-1' to get flags
-> > value. Indeed, import symbols parsing will add a new optional symbol in
-> > this rule leading to two possible rules (with and without the new
-> > symbol) to parse the source file.
-> > 
-> > Introduce the last_header_flags variable to explicitly keep track of
-> > flags while also being agnostic of the rule structure and use this new
-> > variable instead of '$<flags>-1'.  
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon, 12 Jan 2026 17:35:53 +0000 you wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> I'm not sure this approach is safe: I'm not sure bison guarantees that
-> semantic rules will always be executed in the same order, so using
-> global variables is risky.
+> Hi all,
+> 
+> This series adds support for configuring the active level of MIIC
+> PHY_LINK status signals on Renesas RZ/N1 and RZ/T2H/N2H platforms.
+> 
+> [...]
 
-if rules were not executed in the same order '$<flags>-1' construct would
-not work.
+Here is the summary with links:
+  - [net-next,v3,1/2] dt-bindings: net: pcs: renesas,rzn1-miic: Add phy_link property
+    https://git.kernel.org/netdev/net-next/c/98e8039a3b14
+  - [net-next,v3,2/2] net: pcs: rzn1-miic: Add PHY_LINK active-level configuration support
+    https://git.kernel.org/netdev/net-next/c/61f1139a4765
 
-The problem is not the order. I don't think the order will change. The
-problem is related to the number of items on stack.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-With import symbols, that the stack will be:
-  header memreserved devicetree
-or
-  header memreserved importsyms devicetree
 
-Using '$-1' will no more be possible. Indeed, '$-1' from the devicetree
-rule will reference 'header' in one case and 'memreserved' in the other
-case.
-
-Without a global variable, I don't know how to reference 'header' (or flags
-value) in all cases.
-
-Any better ideas are welcome.
-
-Best regards,
-Hervé
 
