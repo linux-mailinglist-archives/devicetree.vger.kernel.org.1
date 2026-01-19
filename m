@@ -1,342 +1,267 @@
-Return-Path: <devicetree+bounces-256696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD81AD39FFC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 08:34:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EDE7D3A00B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 08:36:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 64C90300E609
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:34:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A2368300096C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D4B337BB4;
-	Mon, 19 Jan 2026 07:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B041336EFF;
+	Mon, 19 Jan 2026 07:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KXaEk94H"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JtdQcObv";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YAN9OGbs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667CC3382C4
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBCC33033B
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768808043; cv=none; b=HJT3xPamY2TY1XMDKHv4AQixvgbby/0YWwfsI+WUzIZVRpzghZBsHaqJ/yVj6Mr6wKEXuKSovkAaClMt7wZ5jtY2ISFztNgq2J34J6WcH28jIQQw3v5/hM3vyFIlOsCYj/lvoHInYLYx42lzXIRhUzhIfMb/ULYYLaSu+LNRyrQ=
+	t=1768808200; cv=none; b=eXcTLJu0H8qoChwU3VQL9p7qwgmLBu3Nf8U8tSQWszOORATNfSK8Yd6Z+YWr+zCk/vO/pn/lKVlv8hOp2gBdPDYrlcPOziS6jgegRI7czbhEJxe3w89Ukz6silIGS6Q6iW20W34m7ReyC47SV3UWxg8b2hdLK1IpPDvR8eIhwlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768808043; c=relaxed/simple;
-	bh=YUpkKYRDs7VH2cDXBeXfkJvI9HLdFt+88ZBDyZ7bpR4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EfxWp3bf2CCEEL1pRY0W8kuiDvM1Qe/wfRVxZCo7B0LNN97S1xThl7DPESKQ1ry5rJobPHH/KUJx+r/blB1jaq+0kVV+c8QRpAA0zcEQVLACcSenf+RswFvcCnARulwVHWVhKqwoVKcwHfk2ayazONbkX79XRS7ZHMBxz7dZVKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KXaEk94H; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2a0fe77d141so26347055ad.1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 23:34:01 -0800 (PST)
+	s=arc-20240116; t=1768808200; c=relaxed/simple;
+	bh=rjH9EBJjnsTLG6mQj5j5983rfdayM3mJk1uhIwBlYyY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nBTqEVlROE0SdOdny2rZDMiw6sXS/sO3ug7qvqscMYlCl05NfPteEMEzsaWd7rD5CRhsWQc3mjzk3TgyjjsFZlOMeM0bScDqzv7ozkQ+uMCMxDNVnkJQCieU03LQT7Yl/FApMkG7HsFnQT3hz3NZYfCKTrO93rTpW6ZzoNTg2pY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JtdQcObv; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YAN9OGbs; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60ILNOB44071393
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:36:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	niXb+Ms2tUibq0tveFSnX+rpPdxCeIikMFq3shCx9m8=; b=JtdQcObv4ZXv2HG7
+	m8K+6qpHZFv64b7I4wn1aZ5gFNhWqnndG4ErEKrNt2BTkHAwcuf33nCPT+atiyUi
+	aUiVL654zESJdmDJP2oekkugJMZnqkFOnze7mosYaTi51uwpReWDkeZNRhZiv1EJ
+	FUOH9TqQ0czrYOTza2lqVcvhKAJchtOVz9prYsdCrJkRGY0/dfFCTxQttf53Jr2v
+	GEKd1KF71xktwYAxUR6codMV1yTo0gQE/YUBGeIy9nv0nFREc0s/Rya0SFAsRdHw
+	qt4yUuf7z3/rCQsmt+7Vcl8RKsLkJki26gOZFKTrASv3m0rxfQc3efH8OvRb6SVw
+	grbJTA==
+Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4br1cqc9b5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:36:38 +0000 (GMT)
+Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-2ae32686ed0so6370333eec.0
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 23:36:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768808041; x=1769412841; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ybf9Yq4UjuLMbNCxcGaRkMzoJjb7+v4gNLMMg1+C2V4=;
-        b=KXaEk94HXI8wXLeQBeXoGgt/8butuGTQWbMNdLPzudwWox4GU7pIUOA1SOCIHcCXwC
-         4lEeXza9yzjMBlbiYWnziN1C7U1xWaJj9kiJxHu46GIYJDfQsVROCe2/q/2ngDvte6d9
-         0JG7hTwMbiiukfY1SkWM7JPuV/s6Ki9LAb5noBtgrupzGX3LgQrC5ds68wLMrSfPBcrb
-         cMGVkorbLPFpNmSa68EuV7DFHIl311vPsShKd6waWpTpO/D2+/qYxXzA/G2PAjne+Dfc
-         BEtZclRmkfw5Xqe36iQof9hwI6dSZ1bHdXqI1CSfSn9gRvoYfsZg69NuAm6tuxRDdY4z
-         nShA==
+        d=oss.qualcomm.com; s=google; t=1768808197; x=1769412997; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=niXb+Ms2tUibq0tveFSnX+rpPdxCeIikMFq3shCx9m8=;
+        b=YAN9OGbsdGijDGMQmltjvObcbCtpOSYVBMrU4Amth23MVVxgTEbTjZNmwtDstnGeHC
+         +lRdZmB4+sasXLX4u2qXaAoyhgp1xl5BFEvFy/2b/6DUWiJoamPPIvTt8riAJA6koT5U
+         3j6cEwBHali2UjCk7DjF+iSOBaV+rLCgrIHtZW882sRLMZqlrfPGv2ZvfKngt9qGW4B9
+         bsP2KCUtBWNWQH/FArLIh6c/wdoIu6U3xBUFlDA7qmZRXsA3IXe4eaeR9yUaHJDMmoe/
+         Lv0QuVPUxiSW1qXu0zcFINkWMF9mK1SNdCfBV969ygJCWeAl7U3R3ptRyYEFGG7gSCL2
+         D/sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768808041; x=1769412841;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Ybf9Yq4UjuLMbNCxcGaRkMzoJjb7+v4gNLMMg1+C2V4=;
-        b=UuKLmyMIeuoGijiOJR5YNiYajcu6t/jwAucbrC8nw8vQUw0gfXQIdeSAZyWjwg24Fg
-         i2dGqrA2WW0bf8JtVDsr6oYS6wgcGHj+B+fUvjKeMf7oR54DsW9QM8P7Rhz1MbniP/lH
-         VYrMf3fPUSN1EQIT+MPd+/sbeN2+ZwFE3a94yvuNOlLcuMjVLjoKCyXh2cTmPnFu7xX9
-         uFuQUa3uGHYWW4fJIs4cN7SFQbinL6xNpdylijrROwZWUsrOvC2ScFJYHADyt86zfq9d
-         xziuh5vDgHEEBHEcIa3l2eiEkOalOWJe2HiriFQwIjiTxA8G4pW/ZL5sGpgBdKzyAGDP
-         NKoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVPB44dAu58K4BvkGtiOdR1mI8Puiu3VL7K7KKMJKtbJ+vrDYw8PeoPHQGbilT0t1gJ1iZl3toxOA1K@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ7qmpjsUaG9m6KlQIYcVdE6xOJF+xyT5rtwa36xlgnT+vAyCM
-	ujO6K0iKL6XUf5GBYeNr7+I6fvsrZiObnH6pCmxUaQ7Jugibs8RclbDT
-X-Gm-Gg: AZuq6aLgF/3UUeeaZeqU9+7991WGD+kkKYNJMS2TzljM2t+ieVqFqD6NrjX5LLzXaF5
-	JuMZlC8VDfbE/OoiPhQgGvkQVZFVxdDC1By9h4Biw7u5243tJvCRWuiE8xzDEGhs7sk0ABfJ0Fe
-	hb5K7PmQVA/xzrYvxfFIIrfVVXPb0JWIK1Pk35m+dLxmrHhKLkvtoMcKCrzxB/oxxN5SobDjWFr
-	ACVysTsfKm9FywHGmaHNlWNSLCM8hPxK/nyCaF9669r9SnhK2JWiBVhRr9blvQ4ZZ1r8+DcHLxW
-	cN1gt3dgG2K6Oy40fxLE/HMqk3k9IeNhbUA/YcoRGeqggSTjoRWbzx8zX29gKH6Vx4Srgidgx4p
-	bVRZh7wIYC+5hd8l55ixP01vH8eelLKMSsEEdGdLSvE89mZ7Kf/GWlGau45fRt5CMXi5OZI8W2h
-	j4KoEDEJN5q/6d3ptIc37N7cFybfs6FlaeyI/+i1elG+6VjmyoS3Uq0BxonqmJgq+82fRY0o7n
-X-Received: by 2002:a17:902:eccc:b0:29f:1fb:730d with SMTP id d9443c01a7336-2a717552deamr101918275ad.25.1768808040733;
-        Sun, 18 Jan 2026 23:34:00 -0800 (PST)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a71941e3cdsm84863325ad.100.2026.01.18.23.33.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jan 2026 23:34:00 -0800 (PST)
-From: Joey Lu <a0987203069@gmail.com>
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com
-Cc: alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com,
-	ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	yclu4@nuvoton.com,
-	peppe.cavallaro@st.com,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Joey Lu <a0987203069@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH net-next v8 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton  MA35 family
-Date: Mon, 19 Jan 2026 15:33:41 +0800
-Message-ID: <20260119073342.3132502-4-a0987203069@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260119073342.3132502-1-a0987203069@gmail.com>
-References: <20260119073342.3132502-1-a0987203069@gmail.com>
+        d=1e100.net; s=20230601; t=1768808197; x=1769412997;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=niXb+Ms2tUibq0tveFSnX+rpPdxCeIikMFq3shCx9m8=;
+        b=UoffU1EOMkSjKeyxMNeXMUBvO2+qB5bPZsPWGOh5RyLsYydxALmfsD7NNQq6q+cJ/D
+         UbIYMfkSZLqNZrVJl9ipXYfcHsUHNQTQMJw12afLxi1VPYJ1A9g/B9Rc7AUEVp4oOi+G
+         Lf1lSNzTTOVhGqFTkJSzfyd04ITCdGF5+s4oc2OyDMCgnId6BYoS2coPzkSxSwfpdx+0
+         5x1Te5qXrfXOQOpVPRz9GXSOYfGpEhuP/pyaegsHKbgJma+EeK537RyF+ibF72XDe/+W
+         8sow+m5BlmalTnPPDhethMAAabPD8jmEBNepq2+ppgemARsdrdu3zHJWZDD4XVO9FVep
+         AA4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVCtoQ+AjSzY6iZ5ZxSDPI2BCgaqV0ulNqavDG3/mgNVF190CCx5mmxnf4R8Uan+kv8cOf4vvHupwER@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvPaccoFcW44GX5b/Qg+mRt+cF5X2f/o8OJbEtXrHOxs/33o5M
+	Ol5cd4AOObGtJ1T6vhKxuOZVXwd7jr37+S6LCiwvN/lGb6EuEDKK4Sm37ww/9e3oLxxeYEBx0PQ
+	+TrA20tuf/5HnYSzkLy/BEZwIXaXwOSLkDlvKPlZfsh5MstG1/QXj+HJ0Htn2E69h
+X-Gm-Gg: AY/fxX4L1eTFBBbg8ytQ5FJZ8s4AAwACJdHtiZvyRdZ0RISr4JQb5oTZBOXNMkQ1vjL
+	/09bV2Qhone+MDvS61vLcB7QcX6GnP9iQSgPuLXOzx9v/A9/u9O3h29A4Z97a5NhpbgBvH2jdMC
+	9I1rvWHD2C6RytZxgfSDroGWJ9juSR+faWeuaGDN3ig7l6YkECOdfgUhitvYRZhzd6/nhXnxK7V
+	HeGoitVSHVjC9eyWEHlXM/XDE5v/iRfJGMl7nluxmSpRCMua3XZ+fl7gzCDOebRNkT51o/kI/mY
+	C2sObeyKs5D5CMdmENeVm1pHjrLfxFTC2ae6Aop/6q7ifUNGbjzjpumz/18mTFNpQQh2Ia/uDLH
+	+RU/oAQ0HqhyItSEL5lgI7l/d/1IPGUBggQ4yo5cuchYTSQ==
+X-Received: by 2002:a05:7301:d8f:b0:2ae:5a73:23d6 with SMTP id 5a478bee46e88-2b6b4053d20mr8038995eec.19.1768808197242;
+        Sun, 18 Jan 2026 23:36:37 -0800 (PST)
+X-Received: by 2002:a05:7301:d8f:b0:2ae:5a73:23d6 with SMTP id 5a478bee46e88-2b6b4053d20mr8038964eec.19.1768808196649;
+        Sun, 18 Jan 2026 23:36:36 -0800 (PST)
+Received: from [10.217.219.121] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b3682540sm11721042eec.34.2026.01.18.23.36.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Jan 2026 23:36:35 -0800 (PST)
+Message-ID: <f2a9a7f5-f406-439e-8d86-94e98b2e18e9@oss.qualcomm.com>
+Date: Mon, 19 Jan 2026 13:06:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: lemans-evk: Enable secondary USB
+ controller in host mode
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        =?UTF-8?Q?J=2E_Neusch=C3=A4fer?=
+ <j.ne@posteo.net>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Pin-yen Lin
+ <treapking@chromium.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20251220063537.3639535-1-swati.agarwal@oss.qualcomm.com>
+ <20251220063537.3639535-5-swati.agarwal@oss.qualcomm.com>
+ <qy4bp2hz3ivwydsk4sblxpgthz5hw4rn7r3ezaim5wf5fgm4sg@meispnp6wthj>
+ <CAHz4bYvVfQke_aUx_mVO2QkCc5yr_1Cn35N6hPi1if=X7iM3+g@mail.gmail.com>
+ <ftqb2uxp6yk73djyo3psehhqq5wamimtissgfehhziwbkprl4c@phftum3m3sdy>
+ <CAHz4bYtYMZQSdw4XKSB06fT2MzZHu=AgdXGrZ73XVXi1sMwyyw@mail.gmail.com>
+ <zkvwy56jkya6eogwqlmbhoo64zlzatxsdtkhy4hqfudoqtfbkg@fwiy46l3c337>
+ <CAHz4bYuE6LS=+3272x2qat7EyjgVuODC7Otz_f4zP78ZQ=BWDA@mail.gmail.com>
+ <53dojwu2xfshqaii3dzmglhjsne75jyf5r6ycerbr32w4v3rlf@umkbjczudotn>
+Content-Language: en-US
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <53dojwu2xfshqaii3dzmglhjsne75jyf5r6ycerbr32w4v3rlf@umkbjczudotn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: iUZvqcXh1-MukikZDoULOS6BCAauaIQx
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDA2MSBTYWx0ZWRfXyM5ZEIgotuQU
+ F05hrvRgYy83L8kdogTl+zikybL/0zWq48C7YzxFYQQTNopEsUN8Pk2z4OZ+c6rupPCkqv77s76
+ RvKa8bFcga3mJEh6TZgw4511LIofhfhMAClks22B4ztELa84WS5tZYmXjy26EQHHt1RsivtnNQT
+ G6v6wcIv26dJAzA0SXkP4OMgIVnE5kXDDfU7fapyUUCq8Dtp7JQlPGOkmPclTAbbsAH+DcBbzO3
+ WmedJ5zckdtK6LlDAltcQD9z2OmYqNMnGZQTtoHTSHYWIeVl81QtsK26TQEI5H/mTzd5Ss+XW/m
+ 1dQMR3x3aFooFbVePWB1mFkzmTM0Gmz1Y6TCFt/qiswWVcFCAF2j6lkGVB2RNvnn5vfRXPVZHeA
+ k2FpFZ9Q1g/OJJc9K1aiv4bN2EIdMtE2ez7cewpMfIjxCYF7+gt+udGFwhLl3V2TE3eL8zOkFtm
+ 3zAVh3r3a/Y7QijTt2w==
+X-Proofpoint-ORIG-GUID: iUZvqcXh1-MukikZDoULOS6BCAauaIQx
+X-Authority-Analysis: v=2.4 cv=NfbrFmD4 c=1 sm=1 tr=0 ts=696ddf06 cx=c_pps
+ a=Uww141gWH0fZj/3QKPojxA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=zYNpofc-SOyKt3YyfrMA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=PxkB5W3o20Ba91AHUih5:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-19_01,2026-01-19_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 bulkscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ adultscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190061
 
-Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac driver.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Joey Lu <a0987203069@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 174 ++++++++++++++++++
- 3 files changed, 187 insertions(+)
- create mode 100755 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 07088d03dbab..861f1c6c14f1 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -132,6 +132,18 @@ config DWMAC_MESON
- 	  the stmmac device driver. This driver is used for Meson6,
- 	  Meson8, Meson8b and GXBB SoCs.
- 
-+config DWMAC_NUVOTON
-+	tristate "Nuvoton MA35 dwmac support"
-+	default ARCH_MA35
-+	depends on OF && (ARCH_MA35 || COMPILE_TEST)
-+	select MFD_SYSCON
-+	help
-+	  Support for Ethernet controller on Nuvoton MA35 series SoC.
-+
-+	  This selects the Nuvoton MA35 series SoC glue layer support
-+	  for the stmmac device driver. The nuvoton-dwmac driver is
-+	  used for MA35 series SoCs.
-+
- config DWMAC_QCOM_ETHQOS
- 	tristate "Qualcomm ETHQOS support"
- 	default ARCH_QCOM
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index c9263987ef8d..4ade030b634f 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -20,6 +20,7 @@ obj-$(CONFIG_DWMAC_IPQ806X)	+= dwmac-ipq806x.o
- obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
- obj-$(CONFIG_DWMAC_MEDIATEK)	+= dwmac-mediatek.o
- obj-$(CONFIG_DWMAC_MESON)	+= dwmac-meson.o dwmac-meson8b.o
-+obj-$(CONFIG_DWMAC_NUVOTON)	+= dwmac-nuvoton.o
- obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
- obj-$(CONFIG_DWMAC_RENESAS_GBETH) += dwmac-renesas-gbeth.o
- obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-new file mode 100755
-index 000000000000..728f5f453515
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-@@ -0,0 +1,174 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Nuvoton DWMAC specific glue layer
-+ *
-+ * Copyright (C) 2025 Nuvoton Technology Corp.
-+ *
-+ * Author: Joey Lu <a0987203069@gmail.com>
-+ */
-+
-+#include <linux/mfd/syscon.h>
-+#include <linux/of_device.h>
-+#include <linux/of_net.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/stmmac.h>
-+
-+#include "stmmac.h"
-+#include "stmmac_platform.h"
-+
-+#define NVT_REG_SYS_GMAC0MISCR  0x108
-+#define NVT_REG_SYS_GMAC1MISCR  0x10C
-+
-+#define NVT_MISCR_RMII          BIT(0)
-+
-+/* Two thousand picoseconds are evenly mapped to a 4-bit field,
-+ * resulting in each step being 2000/15 picoseconds.
-+ */
-+#define NVT_PATH_DELAY_STEP     134
-+#define NVT_TX_DELAY_MASK       GENMASK(19, 16)
-+#define NVT_RX_DELAY_MASK       GENMASK(23, 20)
-+
-+struct nvt_priv_data {
-+	struct platform_device *pdev;
-+	struct regmap *regmap;
-+};
-+
-+static struct nvt_priv_data *
-+nvt_gmac_setup(struct platform_device *pdev, struct plat_stmmacenet_data *plat)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct nvt_priv_data *bsp_priv;
-+	phy_interface_t phy_mode;
-+	u32 macid, arg, reg;
-+	u32 tx_delay_step;
-+	u32 rx_delay_step;
-+	u32 miscr;
-+
-+	bsp_priv = devm_kzalloc(dev, sizeof(*bsp_priv), GFP_KERNEL);
-+	if (!bsp_priv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	bsp_priv->regmap =
-+		syscon_regmap_lookup_by_phandle_args(dev->of_node, "nuvoton,sys", 1, &macid);
-+	if (IS_ERR(bsp_priv->regmap)) {
-+		dev_err_probe(dev, PTR_ERR(bsp_priv->regmap), "Failed to get sys register\n");
-+		return ERR_PTR(-ENODEV);
-+	}
-+	if (macid > 1) {
-+		dev_err_probe(dev, -EINVAL, "Invalid sys arguments\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
-+		tx_delay_step = 0;
-+	} else {
-+		if (arg <= 2000) {
-+			tx_delay_step = (arg == 2000) ? 0xf : (arg / NVT_PATH_DELAY_STEP);
-+			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay_step);
-+		} else {
-+			dev_err(dev, "Invalid Tx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+	if (of_property_read_u32(dev->of_node, "rx-internal-delay-ps", &arg)) {
-+		rx_delay_step = 0;
-+	} else {
-+		if (arg <= 2000) {
-+			rx_delay_step = (arg == 2000) ? 0xf : (arg / NVT_PATH_DELAY_STEP);
-+			dev_dbg(dev, "Set Rx path delay to 0x%x\n", rx_delay_step);
-+		} else {
-+			dev_err(dev, "Invalid Rx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+
-+	miscr = (macid == 0) ? NVT_REG_SYS_GMAC0MISCR : NVT_REG_SYS_GMAC1MISCR;
-+	regmap_read(bsp_priv->regmap, miscr, &reg);
-+	reg &= ~(NVT_TX_DELAY_MASK | NVT_RX_DELAY_MASK);
-+
-+	if (of_get_phy_mode(pdev->dev.of_node, &phy_mode)) {
-+		dev_err(dev, "missing phy mode property\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	switch (phy_mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		reg &= ~NVT_MISCR_RMII;
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		reg |= NVT_MISCR_RMII;
-+		break;
-+	default:
-+		dev_err(dev, "Unsupported phy-mode (%d)\n", phy_mode);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (!(reg & NVT_MISCR_RMII)) {
-+		reg |= FIELD_PREP(NVT_TX_DELAY_MASK, tx_delay_step);
-+		reg |= FIELD_PREP(NVT_RX_DELAY_MASK, rx_delay_step);
-+	}
-+
-+	regmap_write(bsp_priv->regmap, miscr, reg);
-+
-+	bsp_priv->pdev = pdev;
-+
-+	return bsp_priv;
-+}
-+
-+static int nvt_gmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	struct nvt_priv_data *priv_data;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return PTR_ERR(plat_dat);
-+
-+	/* Nuvoton DWMAC configs */
-+	plat_dat->core_type = DWMAC_CORE_GMAC;
-+	plat_dat->tx_fifo_size = 2048;
-+	plat_dat->rx_fifo_size = 4096;
-+	plat_dat->multicast_filter_bins = 0;
-+	plat_dat->unicast_filter_entries = 8;
-+
-+	priv_data = nvt_gmac_setup(pdev, plat_dat);
-+	if (IS_ERR(priv_data))
-+		return PTR_ERR(priv_data);
-+
-+	ret = stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id nvt_dwmac_match[] = {
-+	{ .compatible = "nuvoton,ma35d1-dwmac"},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nvt_dwmac_match);
-+
-+static struct platform_driver nvt_dwmac_driver = {
-+	.probe  = nvt_gmac_probe,
-+	.remove = stmmac_pltfr_remove,
-+	.driver = {
-+		.name           = "nuvoton-dwmac",
-+		.pm		= &stmmac_pltfr_pm_ops,
-+		.of_match_table = nvt_dwmac_match,
-+	},
-+};
-+module_platform_driver(nvt_dwmac_driver);
-+
-+MODULE_AUTHOR("Joey Lu <a0987203069@gmail.com>");
-+MODULE_DESCRIPTION("Nuvoton DWMAC specific glue layer");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+On 1/19/2026 12:01 PM, Dmitry Baryshkov wrote:
+> On Mon, Jan 19, 2026 at 09:42:03AM +0530, Swati Agarwal wrote:
+>> On Wed, Jan 14, 2026 at 11:39 AM Dmitry Baryshkov
+>> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+>>>
+>>> On Wed, Jan 14, 2026 at 11:10:26AM +0530, Swati Agarwal wrote:
+>>>> On Tue, Jan 13, 2026 at 4:59 PM Dmitry Baryshkov
+>>>> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+>>>>>
+>>>>> On Tue, Jan 13, 2026 at 01:32:41PM +0530, Swati Agarwal wrote:
+>>>>>> On Sat, Dec 20, 2025 at 9:47 PM Dmitry Baryshkov
+>>>>>> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+>>>>>>>
+>>>>>>> On Sat, Dec 20, 2025 at 12:05:37PM +0530, Swati Agarwal wrote:
+>>>>>>>> Enable secondary USB controller in host mode on lemans EVK Platform.
+>>>>>>>>
+>>>>>>>> For secondary USB Typec port, there is a genesys USB HUB GL3590 having 4
+>>>>>>>> ports sitting in between SOC and HD3SS3220 Type-C port controller and SS
+>>>>>>>> lines run from the SoC through the hub to the Port controller. Mark the
+>>>>>>>> second USB controller as host only capable.
+>>>>>>>>
+>>>>>>>> Add HD3SS3220 Type-C port controller along with Type-c connector for
+>>>>>>>> controlling vbus supply.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+>>>>>>>> ---
 
+[...]
+
+>>>>>>>> +&usb_1 {
+>>>>>>>> +     dr_mode = "host";
+>>>>>>>> +
+>>>>>>>> +     #address-cells = <1>;
+>>>>>>>> +     #size-cells = <0>;
+>>>>>>>> +
+>>>>>>>> +     status = "okay";
+>>>>>>>> +
+>>>>>>>> +     usb_hub_2_x: hub@1 {
+>>>>>>>> +             compatible = "usb5e3,610";
+>>>>>>>> +             reg = <1>;
+>>>>>>>> +             peer-hub = <&usb_hub_3_x>;
+>>>>>>>> +             #address-cells = <1>;
+>>>>>>>> +             #size-cells = <0>;
+>>>>>>>> +
+>>>>>>>> +             ports {
+>>>>>>>> +                     #address-cells = <1>;
+>>>>>>>> +                     #size-cells = <0>;
+>>>>>>>> +
+>>>>>>>> +                     port@1 {
+>>>>>>>> +                             reg = <1>;
+>>>>>>>> +
+>>>>>>>> +                             usb_hub_2_1: endpoint {
+>>>>>>>> +                                     remote-endpoint = <&usb1_hs_in>;
+>>>>>>>> +                             };
+>>>>>>>
+>>>>>>> Are all other ports disconnected? If so, why do we need a hub?
+>>>>>> Hi Dmitry,
+>>>>>> I didn't understand your query, can you give more context to it?
+>>>>>
+>>>>> You have described one port of the hub. How are other ports routed? Are
+>>>>> they connected to outer ports? To some other devices? Unconnected?
+>>>> Hi Dmitry,
+>>>> I would like to put it this way, USB HUB has 4 ports but only one port
+>>>> of the hub is used between SOC and Type-C controller.
+>>>> Remaining 3 ports are used by other devices.
+>>>
+>>> Which devices?
+>> Hi Dmitry,
+>>
+>> For Lemans EVK standalone corekit board, there are 4 ports as follows:-
+>>
+>> 1) p1 is connected to type c port controller.
+>> 2) p4 is used for the m.2 E key (NFA765 Bluetooth) on corekit. This
+>> isn't used on a standard core kit, only if we optionally replace the
+>> wifi card with the NFA765 which uses USB for BT. standard kits all use
+>> UART for BT.
+> 
+> Nice. Hopefully Mani patches will be landed soon and we can describe
+> this one properly.
+> 
+>>
+>> Remaining 2 ports will become functional when the interface plus
+>> mezzanine is stacked on top of corekit.
+>>
+>> 3) p2 is connected to another hub which is present on the mezz through
+>> which 4 type-A ports are connected.
+>> 4) p3 is used for the m.2 B key for a 5G card when the mezz is connected.
+> 
+> Please add a comment for these two, e.g. routed to the connector ABCDEF.
+> 
+
+Hi Dmitry,
+
+  Thanks for the review. Can we send v4 with the following changes:
+
+  Add 4 ports each to hs and ss hub nodes and link the first port to 
+Type-C connector and add comments for the other 3 ports. When M.2 E 
+conncetor comes up, we can link the second port to it in a different patch.
+
+  Let me know if the above is reasonable.
+
+Regards,
+Krishna,
 
