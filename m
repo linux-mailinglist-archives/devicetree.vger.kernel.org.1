@@ -1,225 +1,166 @@
-Return-Path: <devicetree+bounces-257024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A1BD3B491
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:39:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D786D3B4DE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:49:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 11A5D300658D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:37:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B866B300644F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE51132AAB7;
-	Mon, 19 Jan 2026 17:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86AF232D0FC;
+	Mon, 19 Jan 2026 17:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="Cb2hE+hw"
+	dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b="JuVrS036"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414D732AAA1;
-	Mon, 19 Jan 2026 17:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB3F311979
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 17:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768844266; cv=none; b=KXqdrAAcpLTkiA+Bs1Rsxse5rj7F8sRifmGDweMJBkSX4hedXGJ2hgMOhtqIYB7SY0kzdfvK0Dk6hkNCbwJ9Aqk0YCe/v37B33flz5sO8EZUOYG+qf+WiaV8hHHaO0lz//oSn8OAvuF5RPbUaLu3gc3M17OHhhIsHMDJQRmk59Y=
+	t=1768844844; cv=none; b=bIOC9xPmcYHlJ/ZHGPkwVpCeIJ3P9HmVjxiCBTOuW/vsLvCHKFIX/KC/7cJocjzybP6kesQfJRELyDVuYcEXgdCav7lvN4kexN5WxSZFcme0ibXeU6esEO+Uv16aeAuMr46+YS99kdjOa9F+B09t3ArDeKNHzSaDhZWLJBK7KhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768844266; c=relaxed/simple;
-	bh=9URV1O+pIbJLn/NukGZEbU5dDr4E2v+0ynTfo2LQ6qw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r9kdv8LSXOsEtBFleJ3shZt7zn7SE8Ra0IifKUiEcx42BBeW67XiWLOtjqgbEveNzNPTwbEipHwezifTeRhwLx/c98cm9/zDNgBnD7TaIlfMhweDHkytmW9Zzoqwk5WzQh8TGzukMavh1+Iz5+wXtuA43/bpBRcaHqkjYY+8Z0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=Cb2hE+hw; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.88.125.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 4F0E953434E9;
-	Mon, 19 Jan 2026 18:37:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1768844257;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=inyhwKJXRe4l3FCVAfrzWhq6DUAQ8u/KHdL8DG/CSyc=;
-	b=Cb2hE+hw8BGzV9CWM+qNCf2g1Mq8zBBq8eUQek0rdNk/BU0kQPpdutDOQGVy7EoyZPVGNs
-	NODGVCxy+Ymkl+VWRdMwccwQ9sDZg5mBl/pIHfOPyTkvPncr6Rtjg+jKWsJaJIT64tlm0T
-	k3eAHXZiuobbPjGMEfDwMX5hjuP3vYM=
-Message-ID: <c50104fb-5f09-4d59-883f-9e22e6146893@ixit.cz>
-Date: Mon, 19 Jan 2026 18:37:36 +0100
+	s=arc-20240116; t=1768844844; c=relaxed/simple;
+	bh=UXz1GXuN6+Lb+cRGNam/+7JreOgouX0gxJ7F0pP8Rdk=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=mQFZMHX5xJ0zkJdOkiuIa9jodCWxH5j/rrJFIKgcdeRU73TeeMp9JldIABMXFBRDaVqBgEe6hLqoKc9IDlx9FVDQGKJtC8B3a28PtZp30s5M9ZF+6v8WrY/MPEEc1Py5qgYbzZl/5egssqtnPWTCQTMLT1QRvJsDFSzv0XMQewM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=JuVrS036; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexthop.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nexthop.ai
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a0c20ee83dso41314615ad.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:47:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexthop.ai; s=google; t=1768844842; x=1769449642; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P9vmCqAtGysKfxxBfNQvQzZYtQZW3BMU6u0QIwzm6DI=;
+        b=JuVrS036VJO+Gtkmz9lIv9i2WnkrH4pHhBVVENM7PxguhmnLEPYUvUPmRF4J0N8xqk
+         yBk6h60AIlm27romoyfQAgHX80o2ie3Pgaud0d4O40cXzS6RzsnknCVNlUZIm/Q3rtau
+         30X9R+KH8J/iwDsip2qUnv01jB0ZmvGiMrnP6LsXjpslszHF5itoqNwKLNFUassZdy9t
+         /xXk5bK5yD74Wc3Eu2EAtF5Po8K6+Ui1K73Kl0N+Jmbv/I3IZ0BLv3mh9KnU3+0X1ILV
+         Vr+NG9X9j0JIONwF0h68DjyQ7kTUE1eisBPQA5ThXMqqvKgeSa2ZeXUL3rEDF+qi8sh1
+         SgWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768844842; x=1769449642;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P9vmCqAtGysKfxxBfNQvQzZYtQZW3BMU6u0QIwzm6DI=;
+        b=bao8GUL4q8UzrE3Qkw1r5vu6d86zacF8sr1XAZtVM78CHXDGSoC7N20K3UyD55kRnw
+         bhOB9xCVpxQAhBbcFyBtUg6B8PLFG7+Dko9+ZYaZkr6HhtaQhLlVoC0g0k9S88u2BXIu
+         8uA4BGlbBa28vOskhotTcHM1bqCqXGjRvG39MtraOwZzo1j3WLRS8y6fk9YTQFePLTYx
+         TtvUiVsjseITomgEELwchco72v75CpKBnZVtKijEkERqsDCEiab3Sr2JUsqyZgFlEyap
+         KJPTExYsVGaAbc+MCZkU1JudN1UKt/p+ssmfOpRo4tHuOpqaYfrKzcU3b3IijH93SRdc
+         FEqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUdd7CN0X1aM9bJtEkDPWsqHH3MBsYEDLbxPx3f16zCQCGblASuqspwtPsK4DpN/0N4M8QBNcQxi2QW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBbP7m2eaXZCn3JOKBxfTNE2XuV55sABu3ee9P+jthqglBmjPp
+	w08GfVLb6EGuhmA/yn3RF3Bkk/Vk1QVt1LoU9FBK71eVZtZvbEtozXhYNP1lJt4hQXXVbhDrgmO
+	2ESXPGu8=
+X-Gm-Gg: AZuq6aJC7G7hcLLj3NiYxsKsdrn0DC60xde1d6fYL6t9ojOuXHc4cDufzSdASfqdvPz
+	N4wZ+mVzAAAP336tRe3e4RU1jaGUrmPTib5AoJJPcQQUb/FdgFoMF8p4QECJpJLJefnxMmHNan3
+	HAIGkJb5sxF5JaL9HyDyVV1jRRnbcQi76M8UW49/A6GdGnNyN13xrEg1ln/u+xCdh8bMrW/7CsG
+	UI+OozMdLhGEtalKwuC6oSuqNnStjzvnXViswHZ66yDHeaGfAf7wCChhcF4aEaP9xQJvfmfJ5Iq
+	CgK9izlPOwSKagSU4ESrSgtz7eM/HDCgYzUxpLXoJbA2zjaLKjisbN+6ipE6JA/orNKkwOHBrr3
+	AI9GompQFd7B+cV/0u78RMrudatXoRcaS0ILzlat6IzlGTA3nG5prPMTJcIOwEV9o4T6Udo/CHU
+	ati06dYPOlueeMbm0VPesamOi5s1+mJSGelPuei4V355c3Y0Cnn9ANbqQ4SlZv2wQAvSYiZIA=
+X-Received: by 2002:a17:902:cf07:b0:2a0:ad09:750b with SMTP id d9443c01a7336-2a7174efc3fmr85950055ad.9.1768844842261;
+        Mon, 19 Jan 2026 09:47:22 -0800 (PST)
+Received: from smtpclient.apple (c-24-16-26-157.hsd1.wa.comcast.net. [24.16.26.157])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7193dca71sm98315145ad.48.2026.01.19.09.47.21
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 19 Jan 2026 09:47:21 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] doc: add Device Tree binding for AMS TCS3400 light
- sensor
-To: petr.hodina@protonmail.com, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20260119-tsc3400-v1-0-82a65c5417aa@protonmail.com>
- <20260119-tsc3400-v1-1-82a65c5417aa@protonmail.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20260119-tsc3400-v1-1-82a65c5417aa@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.300.41.1.7\))
+Subject: Re: [PATCH v3 3/3] spi: xilinx: use device property accessors.
+From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+In-Reply-To: <b1b79de0-a078-486d-b3e9-96899354407c@sirena.org.uk>
+Date: Mon, 19 Jan 2026 09:47:11 -0800
+Cc: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michal Simek <michal.simek@amd.com>,
+ linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <3D1B59A7-6E57-4C8C-AA95-EA7AA115264F@nexthop.ai>
+References: <20260119-spi-xilinx-v3-0-4566c33bac0d@nexthop.ai>
+ <20260119-spi-xilinx-v3-3-4566c33bac0d@nexthop.ai>
+ <8436e914-429f-40b9-8e6f-ec3b02702cad@sirena.org.uk>
+ <69F83558-4675-4FC2-8656-BC6E3481AD65@nexthop.ai>
+ <9e559e33-4f2f-40d4-a15f-584548bd6057@sirena.org.uk>
+ <05D2CC15-DD6B-40F0-BFF0-3264D4FF96ED@nexthop.ai>
+ <b1b79de0-a078-486d-b3e9-96899354407c@sirena.org.uk>
+To: Mark Brown <broonie@kernel.org>
+X-Mailer: Apple Mail (2.3864.300.41.1.7)
 
-On 19/01/2026 18:19, Petr Hodina via B4 Relay wrote:
-> From: Petr Hodina <petr.hodina@protonmail.com>
-> 
-> Adds a new YAML binding describing the AMS TCS3400 I2C light sensor,
-> including compatible string, registers, interrupts, power supply, and an
-> example node.
-> 
-> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
-> ---
->   .../devicetree/bindings/iio/light/ams,tcs3400.yaml | 54 ++++++++++++++++++++++
->   MAINTAINERS                                        |  6 +++
->   2 files changed, 60 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/ams,tcs3400.yaml b/Documentation/devicetree/bindings/iio/light/ams,tcs3400.yaml
-> new file mode 100644
-> index 000000000000..2c5a9295af1a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/ams,tcs3400.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/iio/light/ams,tcs3400.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: AMS TCS3400 Color Light-to-Digital Converter
-> +
-> +maintainers:
-> +  - name: Petr Hodina
-> +    email: petr.hodina@protonmail.com
 
-  - name <email>
 
-> +
-> +description: |
+> On Jan 19, 2026, at 9:32=E2=80=AFAM, Mark Brown <broonie@kernel.org> =
+wrote:
+>=20
+> On Mon, Jan 19, 2026 at 09:15:40AM -0800, Abdurrahman Hussain wrote:
+>>> On Jan 19, 2026, at 8:50=E2=80=AFAM, Mark Brown <broonie@kernel.org> =
+wrote:
+>>> On Mon, Jan 19, 2026 at 08:47:17AM -0800, Abdurrahman Hussain wrote:
+>=20
+>>>>> Are these bindings appropraite for ACPI systems?
+>=20
+>>>> Yes, the Xilinx IP blocks are memory mapped and work exactly the =
+same on ACPI as they do on DT.
+>=20
+>>> That does not answer the question at all.  Is it appropriate to
+>>> configure an ACPI system in this way?
+>=20
+>> I am not sure I understood your question. What do you mean by =
+=E2=80=9Cappropriate=E2=80=9D?
+>> This is following the same guidelines as outlined in=20
+>> =
+https://www.kernel.org/doc/html/v6.7/firmware-guide/acpi/enumeration.html
+>=20
+> You are just bindly making the DT properties available as _DSD
+> properties on ACPI systems, ACPI is a completely different firmware
+> interface with it's own idioms.  Does this interface make any sense on
+> ACPI?
 
-no need to use | or > here, please drop
 
-> +  The AMS TCS3400 is an I2C-connected color light sensor providing
-> +  RGBC or RGB-IR measurements with a programmable integration time
-> +  and gain.
-> +
-> +properties:
-> +  compatible:
-> +    const: ams,tcs3400
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Interrupt line signaling ALS data ready or threshold events.
-> +
-> +  vdd-supply:
-> +    description:
-> +      Regulator supplying the main sensor power.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        light-sensor@39 {
-> +            compatible = "ams,tcs3400";
-> +            reg = <0x39>;
-> +            interrupt-parent = <&gpio1>;
-> +            interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-> +            vdd-supply = <&vdd_3v3>;
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 14a06f856b81..ab5307a34180 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22866,6 +22866,12 @@ S:	Supported
->   F:	drivers/iio/adc/rohm-bd79112.c
->   F:	drivers/iio/adc/rohm-bd79124.c
->   
-> +AMS TCS3400 AMBIENT LIGHT SENSOR DRIVER
-> +M:	Petr Hodina
-> +L:	Petr Hodina <petr.hodina@protonmail.com>
-> +S:	Petr Hodina <petr.hodina@protonmail.com>
+=46rom the above link:
 
-M: Petr Hodina <petr.hodina@protonmail.com>
-S: Maintained
+"The special DT namespace link device ID, PRP0001, provides a means to =
+use the existing DT-compatible device identification in ACPI=E2=80=A6"
 
-drop the L: (e.g. read the header of Maintainers file ;) )
+The following is an excerpt from=20
+=
+https://www.kernel.org/doc/html/v6.7/firmware-guide/acpi/DSD-properties-ru=
+les.html
 
-> +F:	Documentation/devicetree/bindings/iio/light/ams,tcs3400.yaml
-> +
->   ROHM BH1745 COLOUR SENSOR
->   M:	Mudit Sharma <muditsharma.info@gmail.com>
->   L:	linux-iio@vger.kernel.org
-> 
+The _DSD (Device Specific Data) configuration object, introduced in ACPI =
+5.1, allows any type of device configuration data to be provided via the =
+ACPI namespace. In principle, the format of the data may be arbitrary, =
+but it has to be identified by a UUID which must be recognized by the =
+driver processing the _DSD output. However, there are generic UUIDs =
+defined for _DSD recognized by the ACPI subsystem in the Linux kernel =
+which automatically processes the data packages associated with them and =
+makes those data available to device drivers as "device properties=E2=80=9D=
+.
 
--- 
-David Heidelberg
+The two settings are just configuration data for the spi-xilinx driver. =
+By switching to generic device_property_ APIs we can re-use the same =
+driver on ACPI based systems where the properties are passed as _DSD.
+
+Is this not appropriate?
+
+Regards,
+Abdurrahman
 
 
