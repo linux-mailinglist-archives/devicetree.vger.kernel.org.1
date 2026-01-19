@@ -1,105 +1,105 @@
-Return-Path: <devicetree+bounces-257105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3E5D3BA27
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 22:40:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 216F3D3BA35
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 22:41:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9EA5E302429F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 21:40:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C615F3008C7C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 21:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13982FB085;
-	Mon, 19 Jan 2026 21:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABDD62FB08C;
+	Mon, 19 Jan 2026 21:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="EPUg3kii"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="i5p9bD6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8818B26CE1E
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 21:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BFC26CE1E
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 21:41:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.175
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768858806; cv=pass; b=VKJ7goaBRg2Wu4bKEKGp16bMYnrOFelLWnVFD+dXYPew2Hl9se/9TAl7GIg/qyz3JkV0CX7LIKDvkA4o4aLsJE3VJx6DJaaYsRZa2kZjnrELv57ZKvPHQQgcD4MruSaxF10JWjBp0uuV4czPftuCTAKvKq0zHSLDzNgjVOUdZts=
+	t=1768858907; cv=pass; b=TqrLjlN0uAsSSuqvbiaeMOX4FeMzTOpD1g8Li6aDePgjP6ctEKfK62a7O37WlZTWjOc/z5xNk6yBvxRib4ynWTkWVszp2nTraLp9KAO3smMFp86oABbzI/5iSSGEqPeJM+Ar48TIM6egp19eI1Di9F0s9yuRUHo2Emt2jdIEMvs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768858806; c=relaxed/simple;
-	bh=u8FhbbYeKJKW+F1pogKwjs71qqBw07BZIKPr4ZRQT54=;
+	s=arc-20240116; t=1768858907; c=relaxed/simple;
+	bh=fPv8UqVRWCTMaKO3cbthXj1loduQmnTrZGM0QykVE7k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X2/BIddB2x9rNu0qB2YGnUZNG6J+sB0DAG4imSFtiqrbTJu9eXYBMFGWv7+x9j6MkWHR56ux/gYhtWTTbajIZGnGq6QCNCkd1/fbF4/+kAN7/wzlpTTYXhxUVmXqQB6E66E+dS3k+goXqI3XgtMW9xahTYTiC6g4u3xPl1An1/Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=EPUg3kii; arc=pass smtp.client-ip=209.85.214.177
+	 To:Cc:Content-Type; b=bKXIr0JUYcQZKLgz13U4/EtiLmCuVhmhFP8JToTEtukbNVcuR1/EETXlTqkjm6w5Q2e4zZc1twlahUamQZ9ZxrWbHFYWk78mKuHzAqrarThtcp/ZFzJDccbUFNykT1V17IMIwCz+00azrkXq9jTFsUP9c2jKbYPRMTwu7QgjYZs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=i5p9bD6n; arc=pass smtp.client-ip=209.85.214.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a0f3f74587so29639375ad.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:40:05 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1768858805; cv=none;
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a743050256so7305285ad.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:41:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768858906; cv=none;
         d=google.com; s=arc-20240605;
-        b=jsC1sf1p+1iROaQAnxEzbI6+rK5gTuOW1DqBp4WKOmYompO/AgpqMa9LkFIyg2eAfP
-         wgF6ZUpBPPSPG9/UCz6oT2KPmiK1O6WRYU+pQo7obI2DhPBEqk20krdDhzW3lN9fAjdj
-         0fAJP/aEaQNG/hRjY9dA3lCLMWkbevlniNoOsRkqJMCxmCn/TLVL4f+8KgBxz8AQMiJK
-         2eni8BGJIgyaY9ZQ6VqZ+dVNRCQiQchHzqC8TdDVpU/TqQ0ZKspqqFY7q3afrH45IbYF
-         kqE6AWK95aQ8xZ273rKfvd9q1TRGjjLYMlAEMjFUPyBjlTnL0sRwhqcKu9i+oxsHPygz
-         2sjg==
+        b=WMVyZvH4bUoaNfboHwAuHXvJKdZXUYiVqnscBm8iRf2ZrVqtBZ3BSqs9Ce18w4iQe+
+         DR9lJQ7JS24DmoM95wD9l+gjF31MAs3fZWP/80z/G7+L+4V+YKWCOMOrPRvtTIIemBBP
+         QMhJddranZk9jg59YB44LIy/vn9mROdhTzpALgkJOazETLFFwkbD35okuC+M9dYQFxm8
+         lveuTe/vg7QiuDDQYcbSeE13OqNMiV8c9izhESt0le5nzPclIxeevo95gXvY7Zu4qXFD
+         O4h2qH6apIRSBEI+vZrrcMgDHdDS1nrDCFtIf8KU7b2b5x3KMC9yR05J5RANG/wWcwda
+         zCCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=PZxxqnCyjXCPpNtZk5aA58abDH5T+E1BOx9dRDLt+qc=;
-        fh=maXriVJ/La5pZ8LHl7FDplx9+XPhMMMSefxMrn/hRGc=;
-        b=BtXfmpCxxzKKoJtPs6hJCPGpIS1pTbeqA16TPSi3cGAyTGO8Wgey413M0mLrM0uEYH
-         JYc7XYiUEWTmItFqHkTnxwd3qupGgTwQV2SZmvjnvSjMFq6xOMe4WfSlTq+V3n7oSEKk
-         NlbqzfrdeEuejHR6aN4AnsY6fI5QQmhiipCj9ZukZzC72JGVviUaAdX794eIcXkhahpI
-         qkf92dZJY369ZpTeOKlNGjKFrDG44jbo44mU6rMUq4MdpkBUX2naimJyUK5Ri4X+Y1cx
-         hd21gBszLG6ih/A5GQqPn69DkcR4SWqKgZL96vwghmnWGmX5ScKMsVRapZvfsb3t7GDu
-         Uxmg==;
+        bh=pRWznSlw2S7cbES/gsl2WYiTRCw+WXgXVb1obiesglo=;
+        fh=EArUbnJ8s6wz1A4GS5LHxh2HEmQW/bOxbREVBx7Y7NQ=;
+        b=g9+i6CFi5E3qqt9dYwa9+on9pqM4ESPBLlus/le69tHihMG8W/QSj74Rasi81u3pDy
+         e+G+1Z4ZgfJzO454eCUjVi2U0jXqqUS+rVGF5pEGjif2qwEt/Xww5Gj8zfiJXewUsD2z
+         6uViAPGzVzV908AaGHdTLXZXkIbpo8ho/qtog24LAF0PZ4nmLKwv7bmbuQ5ODLRCVaoc
+         7aUach+1W4Yftw4xzHRw/hVOX7f0AMdroSQdy8VmcdR0wxv98UxR/QQpV3mWxfzHpCGC
+         u90A213pmv7rU4YuatKyJmUV21fTx3jgF8kPyZZJ++U7y2JA8yXcb1Uv+xgFil9jtS/m
+         6M3A==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1768858805; x=1769463605; darn=vger.kernel.org;
+        d=googlemail.com; s=20230601; t=1768858906; x=1769463706; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PZxxqnCyjXCPpNtZk5aA58abDH5T+E1BOx9dRDLt+qc=;
-        b=EPUg3kiiK455Dn3wp4sw0OjjhjHyqDzTYRP0DiTLNjmkvnZROyVKmew+jua3wvNgxQ
-         STgWyQopkTKOkbwB/kmQQqLQiOT8UDg2xp5U11QLK1rbFBqAzPL776BEXn7hzaVpzjPH
-         VEf9ldSQ+FeGoNbzsQ0/mdcAjAFP0hl2B3ivwn9ikPLkilYkz4Pj+6wWw+AGkxirFisw
-         qVghL4cYkRW8/JczjIa2vZbKAda5MQtSmFWSA2Lnft5bosdfjvUf8an+Stl+pUopnH7R
-         xJU7zK9mTgCW5y4tG6NjA/ReGE0NC9DLeMRnHoFv9xGWrpY5ZSgjLbaxiP6379v8L0nz
-         9kHg==
+        bh=pRWznSlw2S7cbES/gsl2WYiTRCw+WXgXVb1obiesglo=;
+        b=i5p9bD6ne71Bt38RI+YN1Wzxfi1nTnlQSY26lNOWwNHeaBgIG5w+IrduPsf9I6mw1X
+         8eMxD2/VibbkfZOjpfN5+cgdj/a9Q2dVSR450O0aSa0F5CnbT7/NIIPw9YBB/S4dKZPc
+         SepXtdh5UvW/IVK4mGJQB/m/ErswpTcu6Xei17cCEct3SCyXLt8WW/Ae7pSMm6Y4vDyy
+         bM/lSefYxgU+e0hyKsCuFo2QAMhmJZhG8KM+pucgLNeyN4sB2RTtLD1ziE0JqB3nu8on
+         /Yr+nI0gseYNV8MN+4lLekMXVs2OpKW1fNPZGNtXbIZBu6EnyNySutJ9OEIgQU58muyn
+         wdOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768858805; x=1769463605;
+        d=1e100.net; s=20230601; t=1768858906; x=1769463706;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=PZxxqnCyjXCPpNtZk5aA58abDH5T+E1BOx9dRDLt+qc=;
-        b=a/KRFmvfUltR3bbK7U9tXzOgwRmDXnoauMIt8tVp+eSTatIIrGxfUmuFeySU/isIO5
-         Oe9cDkEhYu8/hmeNiICnon8MAyjkbigVX/29s05UWPmbNoVfukwcNZ1YvzhZJoIcTJiQ
-         2bipsfTGDaLK6gr+kQCihDPcoSN8Fj9iZZV9Df2EH8yPcmh/4RpuRUiNmo2Zc5V9v85L
-         r8/+tCbnJeLJQNtjUBOXFovyGmpXAzSrcIbtD8g9pfnK2EwKjBx2bvEaqQV+uPxBkgYI
-         2xxB8eTEW0P5nB+0R9Lv60g6WM31eJw3+MGfjqZsNGQXtjMfkQl+yD0ttKFJ4jUUmtRA
-         3bwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVSBaXaaG/4VHw5Ly0h2gCpQJF3xY+m2M5wsqyUy8z0xaJ0+SqaOlPCUG2q38bzso96L0YfRo9iFWcZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+XnkdPETYqZaA/wsCLk+Pmx6nVPKc17tX4QIomyULd+F+Wqc9
-	vGRHfHof8ApqaoDBaFl6y2V8jKdrbJnFWJTJFWKTF4+7gtE2/EXtUFOSQMsW9GLC+ILljA9SBEZ
-	Bi6P/P/DU+58guDnfgMlU3lZHkxd+3PA=
-X-Gm-Gg: AZuq6aJ9x+TkS/vr3krouFFdNW+LiY5WnQIot9UamnoxHuAp2oG8b7925WMKdXzd5Tr
-	7Yj2Sg5v9buO41q20bGGRDGzVhEfimx6ms1Ak5K0vVYw914nrZeuUbvNMfgay5I0IJGreIMS695
-	CqSChIYx/XLztZL2RXniI/q5p7N1xH+2q8FadXK96CP4tbVs2bW92Gkj7tPOyp/XmNeHdxObhVI
-	Bb/wL2HTw0yM88XwWbiLYNO+eKlL/bze7JyP928rvj+XVLZVs1E3rlU/j/Q4wq56gMSUopWBayL
-	+QmFrSSX14BuK9IDEeCzoTBBEpQP
-X-Received: by 2002:a17:903:40ca:b0:295:290d:4afa with SMTP id
- d9443c01a7336-2a71753755cmr110427715ad.23.1768858804795; Mon, 19 Jan 2026
- 13:40:04 -0800 (PST)
+        bh=pRWznSlw2S7cbES/gsl2WYiTRCw+WXgXVb1obiesglo=;
+        b=YW+aERKcfU1zG8RfLvQTpGffxRbApJbhrJwE9gVKyQ1kb0RUh48aouvzpCkpNzmt9+
+         aRTrPw546d4lVxFexGFxUlkpg/1wPsb3qc+GAkd1aHbzjyxvRjn0QXrYPQR8qbMkN3T+
+         YH8L4AkUWNj3F8oz8YwMmBiheehA4UloE3SKPFr2Gjj5Q/lw2eke6dfJw3WW1XuO5eAi
+         dOwO59LBWfLcmbLh20ICCPTLO7PixctooS4750fkSH9kUgYq66+ipt08J0ugDN5laN4q
+         Ra0IzwU4zz1gpXIORvH5WvqSXnrNV7F/98XSydZ/QcQ8K9BTuAtQHG3Ym1E9FLtN4T2M
+         WuBA==
+X-Forwarded-Encrypted: i=1; AJvYcCW1zQOt3zSVj1rw4nUxq4ywk7SYqgeqdFH9l1bsWSTF/JW3bVRc/aml6z8Htj+v0I11+M8HnL0YWw9/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyzn9a+02yWkxp1pkEYFo+yfshgDx470K2WDcZwykxJLl92+B19
+	Bn6wmKUzt5AIszWPh3BDAHsfMhmyMgsld2sZzmEyeeFrPaCq48HTxXpUdYmlIc/zeKdr/takhdF
+	9vbNswSjUSmaiq4CfanWbtmUYmhBLcbY=
+X-Gm-Gg: AZuq6aL6F/Ir3midkyeMlhEVeX3tNfcBxarl3qvnvtb2X+vqmkbYrRlCMIxKtxynD58
+	9jEtAnLbOlZQ+7roz4PU9AHgey5im3SfENq85NKDQ+l/dVVVWWBR5C/k0v1mJWoHofUE7J7IJ+H
+	j8lO7B02XigknwfI0kjDP2VdXdqUVB0kLYtHgUuZyJaMUJgBd9zeaM1Dv82Zj+arUu8gLpCSoGO
+	TLDqRQEmMHB9ijVUATLHqjziwxM8YeLY7XDRWAlitIOlZqMeofy9lOjMInl5TJ+TkGuCfLqMkU7
+	VdbToYfB8/DpAzX97E4YilMLJovU
+X-Received: by 2002:a17:903:41c7:b0:295:9e4e:4092 with SMTP id
+ d9443c01a7336-2a7177e69demr117828295ad.56.1768858905805; Mon, 19 Jan 2026
+ 13:41:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260116023900.2036657-1-nick@khadas.com>
-In-Reply-To: <20260116023900.2036657-1-nick@khadas.com>
+References: <20260116023900.2036657-1-nick@khadas.com> <CAFBinCAeNcKW_dK+1LD7U_+JkcozxmMw9J4oGUt1=OcvJ95dFQ@mail.gmail.com>
+In-Reply-To: <CAFBinCAeNcKW_dK+1LD7U_+JkcozxmMw9J4oGUt1=OcvJ95dFQ@mail.gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 19 Jan 2026 22:39:53 +0100
-X-Gm-Features: AZwV_Qgat7I5RJwyS0qYSlAnRBAN4jc1vt4piOLxALOTFSnVgB2ZAhHU5wXVsak
-Message-ID: <CAFBinCAeNcKW_dK+1LD7U_+JkcozxmMw9J4oGUt1=OcvJ95dFQ@mail.gmail.com>
+Date: Mon, 19 Jan 2026 22:41:34 +0100
+X-Gm-Features: AZwV_QianNccn2npt0qzJu8jf1J7ZW5nG4PtEcDbgkjGz-yQ00oAH_jww9o3OAc
+Message-ID: <CAFBinCCuV9eqDDg9fgy5hkQ8KukxpbfSgTzGq_C38nAB1HtDFQ@mail.gmail.com>
 Subject: Re: [PATCH v1] arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s:
  enable SDIO interface
 To: Nick Xie <nick@khadas.com>
@@ -110,51 +110,17 @@ Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Nick,
-
-thanks for your patches - it's great to see Khadas VIM1S support
-growing upstream :-)
-
-On Fri, Jan 16, 2026 at 3:39=E2=80=AFAM Nick Xie <nick@khadas.com> wrote:
+On Mon, Jan 19, 2026 at 10:39=E2=80=AFPM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 [...]
-> +&sdio {
-> +       status =3D "okay";
-> +       pinctrl-0 =3D <&sdio_pins>;
-> +       pinctrl-1 =3D <&sdio_clk_gate_pins>;
-> +       pinctrl-names =3D "default", "clk-gate";
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +       bus-width =3D <4>;
-> +       cap-sd-highspeed;
-> +       sd-uhs-sdr50;
-> +       sd-uhs-sdr104;
-> +       max-frequency =3D <50000000>;
-> +       non-removable;
-> +       disable-wp;
-> +
-> +       amlogic,dram-access-quirk;
-Have you tried without this property? To my knowledge only early G12A
-and G12B SoCs required this.
-The mode enabled by this property limits the SDIO throughput. So it
-should only be used if the silicon requires this.
-
-> +       no-sd;
-> +       no-mmc;
-> +       mmc-pwrseq =3D <&sdio_pwrseq>;
-> +       vmmc-supply =3D <&vddao_3v3>;
-> +       vqmmc-supply =3D <&vddio_ao1v8>;
-I'm missing:
-  clocks =3D <&sdio_32k>;
-  clock-names =3D "lpo";
-
-> +       brcmf: wifi@1 {
-> +               reg =3D <1>;
-> +               compatible =3D "brcm,bcm4329-fmac";
-Is AP6256 using a bcm43456 chip? If so then this should be (according
-to Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml):
-   compatible =3D "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
-
-
-Best regards,
-Martin
+> > +       no-sd;
+> > +       no-mmc;
+> > +       mmc-pwrseq =3D <&sdio_pwrseq>;
+> > +       vmmc-supply =3D <&vddao_3v3>;
+> > +       vqmmc-supply =3D <&vddio_ao1v8>;
+> I'm missing:
+>   clocks =3D <&sdio_32k>;
+>   clock-names =3D "lpo";
+I've been a bit quick here: clocks and clock-names should be part of
+the wifi@1 sub-node
 
