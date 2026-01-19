@@ -1,165 +1,140 @@
-Return-Path: <devicetree+bounces-256733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CEF3D3A2AA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:18:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CEEFD3A2CE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:24:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4C12230074BA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:18:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6E5E33053736
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3EB335503A;
-	Mon, 19 Jan 2026 09:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D7D354AE3;
+	Mon, 19 Jan 2026 09:20:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rw4tPUop"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17FFB354AF9;
-	Mon, 19 Jan 2026 09:18:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378BE33F8B9;
+	Mon, 19 Jan 2026 09:20:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768814334; cv=none; b=McqYZAqAbWN9mhvI0k1uqix4P4mPITIWH5t0wcUj8xgmkfuEzNJui6lxR2vvA+YK+UWuqCyDI0AUc0hSFnN/TWHfEFWX7RxLcqmie85yjTvJObARtnWNkO7BXJdTldiH4IyuzdBSfJRPEbhLzcPtId7I461ICqXC1aSr4Bil05A=
+	t=1768814451; cv=none; b=RZMI3H+YW2vOAh4DlUIHmS/G89MNbgpLnpJs0e4THJHOBGS331q2p0P6hLMJpfq2o2SJUEIbt+EtSNheb8yXSG8MXOF6EAylu5U5n/EAE4GqyVDmu7ujY/H8Vb7vqx3Sui3qkDOxahHuySpqGtfwrJUGtzpF4Q6wLmchVBvNhCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768814334; c=relaxed/simple;
-	bh=y3j7a8AHlwqdtV7We7unMDy7szHzimBFoijdXbjyjJU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O48M5N7f3fv0a/+v31FvlNUMy14USnSg9KELsSi1klL7sl7EOXSmmMzSCbxiNEwKbQmiKj+oq8zHwxU/dFfW+ux4HE3bnJJ5ul7yCiHtzRSf2JQln6k6F3BCsDCu70DyQnCEdS9RR+PvZ/WyUKpoxCG89z46MS0uhzxUpOtI1N8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [223.160.206.18])
-	by APP-01 (Coremail) with SMTP id qwCowADXf2vI9m1pXbZKBQ--.4971S6;
-	Mon, 19 Jan 2026 17:18:11 +0800 (CST)
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: vkoul@kernel.org,
-	gregkh@linuxfoundation.org,
-	conor@kernel.org
-Cc: neil.armstrong@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	jiayu.riscv@isrc.iscas.ac.cn,
-	linux-phy@lists.infradead.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] riscv: dts: canaan: Add syscon and USB nodes for K230
-Date: Mon, 19 Jan 2026 17:17:53 +0800
-Message-ID: <20260119091753.294073-5-jiayu.riscv@isrc.iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260119091753.294073-1-jiayu.riscv@isrc.iscas.ac.cn>
-References: <20260119091753.294073-1-jiayu.riscv@isrc.iscas.ac.cn>
+	s=arc-20240116; t=1768814451; c=relaxed/simple;
+	bh=VZIEV36lyrDyWpApc+J1eqJzEtFI3QvNsRFeLIEuegg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wb09i7hczV7GiCJAoIh6QDX/LmHTtd8p+y92kkAudrVCiszqp1Sq9wm6TNdq3RkiZrbvPhfO9NGp6XIHlwpze1NBQ2LXb45MxrDetj+iyY301nMRmbFRptByN0cXoEDRH8ZLQlWJNSydc5XtODa+93k89GnnV2e48Z1NFvk68pI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rw4tPUop; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3721C116C6;
+	Mon, 19 Jan 2026 09:20:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768814450;
+	bh=VZIEV36lyrDyWpApc+J1eqJzEtFI3QvNsRFeLIEuegg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rw4tPUopGLBQ68tG0xu6++Kn6mmLdlhfj9RgX4Hlg8+cPOsfVLRGHa6qhmABR5QVJ
+	 5euPjO/Y/dgrIkjP2aEOgRXnNK8FfOacfui7gnvsB2hLOcIzirbymElNK6m8sbcM8R
+	 G7DPN5mE8HaPSOdHc8DzLjadZqnr40Kq0ceJ7VEtv/zazqVFDAo7qVdjUf8EICNYRH
+	 smN7o4Ch7+mWMyfltUFUJpHiAOSZDnEr62RBOHDk7vVBCOpVqHuHR3iAqeLUyuQ0Tw
+	 nTMbVGX97FeZSMEc9UN1gypajPNUO4DU3F5tdI1X63pI8G+6QCvE7CfOL5jjYJq82f
+	 Pe4j0PAuogLDQ==
+Message-ID: <295b7b13-b44e-429a-b410-f1e80bb46e95@kernel.org>
+Date: Mon, 19 Jan 2026 10:20:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qwCowADXf2vI9m1pXbZKBQ--.4971S6
-X-Coremail-Antispam: 1UD129KBjvJXoW7tF1xZr1fCrykZF47JFy5Jwb_yoW8tw4xp3
-	srCFZ8Gr93Wr4S93Wak348KFyfGF4kGFyfWrn8AryUGr4UZas09w1fJ34fXFyUXw47J3y2
-	kasYqryxKF4jyw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUma14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr
-	1UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWx
-	Jr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2I
-	x0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8
-	JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2
-	ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-	z7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zV
-	AF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4l
-	IxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
-	4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsG
-	vfC2KfnxnUUI43ZEXa7VUbPC7UUUUUU==
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] Fix the imx8mm gpu hang due to adb400 reset wrongly
+To: Jacky Bai <ping.bai@nxp.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260119-imx8mm_gpu_power_domain-v1-0-34d81c766916@nxp.com>
+ <20260119-imx8mm_gpu_power_domain-v1-1-34d81c766916@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260119-imx8mm_gpu_power_domain-v1-1-34d81c766916@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add top syscon and USB PHY subdevice nodes, USB0/USB1 dwc2 controller
-to K230 DTSI, and enable UART0 and USB0/USB1 in DshanPI DT.
+On 19/01/2026 09:53, Jacky Bai wrote:
+> Due to the HW limitation on i.MX8MM, the gpumix, gpu2d and
+> gpu3d share the same reset domain, that means when gpu2d/3d
+> go through the power off/on cycle, the gpu2d/3d reset will
+> also reset the gpumix domain, The GPUMIX ADB400 port also be
+> reset. But the ADB400 must be put into power down before reset
+> it.
+> 
+> currently, gpumix, gpu2d/3d power domain use the pm runtime_pm
+> to handle these power domain dependency, but in some corner case,
+> the gpumix power off will be skipped, then the ADB400 port will
+> be in active while gpu2d/3d doing the reset. The GPUMIX the ADB400
+> port will be reset wrongly, so lead to unpredictable bus behavior.
+> 
+> To simplify these domain on/off order & dependency, refine the
+> code to directly handle GPUMIX domain on/off along with the
+> gpu2d/3d power on/off flow.
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> ---
 
-Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
----
- .../boot/dts/canaan/k230-canmv-dshanpi.dts    | 17 +++++++++
- arch/riscv/boot/dts/canaan/k230.dtsi          | 35 +++++++++++++++++++
- 2 files changed, 52 insertions(+)
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-index 4f95b534ee87..55197cfc25b4 100644
---- a/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv-dshanpi.dts
-@@ -80,3 +80,20 @@ &uart0 {
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-+
-+&usb0 {
-+	vusb_d-supply = <&vdd_3v3>;
-+	vusb_a-supply = <&vdd_1v8>;
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	vusb_d-supply = <&vdd_3v3>;
-+	vusb_a-supply = <&vdd_1v8>;
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 8ca5c7dee427..b369b7d8dc83 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -148,5 +148,40 @@ uart4: serial@91404000 {
- 			reg-shift = <2>;
- 			status = "disabled";
- 		};
-+
-+		usb0: usb@91500000 {
-+			compatible = "canaan,k230-usb", "snps,dwc2";
-+			reg = <0x0 0x91500000 0x0 0x40000>;
-+			interrupts = <173 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysclk K230_HS_USB0_AHB_GATE>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+			phys = <&usbphy 0>;
-+			phy-names = "usb2-phy";
-+			status = "disabled";
-+		};
-+
-+		usb1: usb@91540000 {
-+			compatible = "canaan,k230-usb", "snps,dwc2";
-+			reg = <0x0 0x91540000 0x0 0x40000>;
-+			interrupts = <174 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sysclk K230_HS_USB1_AHB_GATE>;
-+			clock-names = "otg";
-+			g-rx-fifo-size = <512>;
-+			g-np-tx-fifo-size = <64>;
-+			g-tx-fifo-size = <512 1024 64 64 64 64>;
-+			phys = <&usbphy 1>;
-+			phy-names = "usb2-phy";
-+			status = "disabled";
-+		};
-+
-+		usbphy: usb-phy@91585000 {
-+			compatible = "canaan,k230-usb-phy";
-+			reg = <0x0 0x91585000 0x0 0x400>;
-+			#phy-cells = <1>;
-+			status = "disabled";
-+		};
- 	};
- };
--- 
-2.52.0
-
+Best regards,
+Krzysztof
 
