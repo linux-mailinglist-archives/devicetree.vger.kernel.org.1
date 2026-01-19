@@ -1,311 +1,165 @@
-Return-Path: <devicetree+bounces-256896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B50D3AB2C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:07:08 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39C2FD3AB0C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:02:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 792AF311BFA4
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:59:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0E5973000B18
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C043836D4F9;
-	Mon, 19 Jan 2026 13:58:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9711368294;
+	Mon, 19 Jan 2026 14:02:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="lK7hJmYE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k+B8GWtf";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T87riYLW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011002.outbound.protection.outlook.com [52.101.70.2])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B822DE6FC;
-	Mon, 19 Jan 2026 13:58:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768831098; cv=fail; b=T2oNKorwoftu1JZe5WUcjXx46kyqvfbpj0xeH8uEVkZrL0SUS77JeA7nOsrmryBAFRiGF9iH8oI6KKZyPKoUfzZbZly2KmOM36WRlvOB+FJ+8YAOkvG8FAIaSxBb054N7xjTJ93C3LZ8IlaLJ8uhhZuUoiK177QU9vYLVhF2HCA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768831098; c=relaxed/simple;
-	bh=lhDAViuP4rUnCrlnJd1dyUqRmcMGS1PaPVxSvNPLPKU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=KTuuvSfS1tgcCjwXuqaBhwFaNV78T1au7dfNjeClkUaYf2IlpzKtR1bySXv17Ik25bau1yAyyphJ9k0br8sOjAKXq/NXnNv1971whubJlNSHl9OnH5nzhQxlGl/JD3GAOMdKnYHvsagMmDJtOuZevTreprWW1hnmng08iSkxzfQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=lK7hJmYE; arc=fail smtp.client-ip=52.101.70.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f7PWacB1Bktd8wokohqS+FU845DKmaGkLjCf3Waap6YJp2iIIU8XWJUY0SgHPm0gfgUwTKQl1/pM+VGyT5RolyqGSC+t8wXs4dXYQu39KoCGQF56NLEUoebuAFKYNIamReNVYVGOmTi1XU8T7UjFfZrwQB5LWWy4Kd33JN8Oz93FaSfX8k1oSgmNeTlrk2bGVT0vqi7NkcY+gDrhYWbTtXQKPR/i9ofVidxSlh2O7KKZIwhbLvQrEaZD4xq7xABZSvnjSDHFW82VkgVbDuofCL6iQpZoxc8K2h0JBNeGzjopYaaBxZOcBfd/zD6QgQAwiRvnAkW3e6Mj5vCj9FUauQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=De6LBtIsarjhgHznQrdcHqKCZGf90DApGv2dI9tJjEE=;
- b=wFUMNJwViNU6aecWcHwvKe0o3CU4memK9G74vgIiHsgLpXILtn7FXcG/LH3ee021XA5SplYlizDx1RBY8ZKyE3n2S/qfTIw5vkJFamaxlOf/R10NbBSzn6roASY5vfPH5fsfbfEyxIgP/+XRB3X+T0Qm7dFR68GWOosELkyezl9HI84EeXXGW5bgYM4hUWJT+A+QA7Bz7sKUgFjm0o/35ceXammlp0s0ZP3GO2bXYlBPmuy9I6MK2AhUgl0XbQS1Uf+pV+uFWYo3nnSo7W63elYTM2VSena45lENRMVEUHGXCk3L8kIKZa2aRx7U5GJBrVtw7fjtWhBEqZEzvvIR3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=De6LBtIsarjhgHznQrdcHqKCZGf90DApGv2dI9tJjEE=;
- b=lK7hJmYEopsDMo0wj+8UBFvbwOwvdeu3NnAe6aOfYsIXQeiAriSBmx4mcpFrMOz4uwYkixNk/bKEbC8e4BmyeV7xRwrM94fTMwFSbx79JW3QNyOGYXr5YLcoes71I/4JAhfLYRscTFuna8HRhAHa7MVHAAmLNSzQ0NiiRecDpsk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com (2603:10a6:150:2be::5)
- by AS8PR04MB9207.eurprd04.prod.outlook.com (2603:10a6:20b:44e::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Mon, 19 Jan
- 2026 13:58:09 +0000
-Received: from GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::6c04:8947:f2f0:5e78]) by GVXPR04MB12038.eurprd04.prod.outlook.com
- ([fe80::6c04:8947:f2f0:5e78%6]) with mapi id 15.20.9520.011; Mon, 19 Jan 2026
- 13:58:09 +0000
-Message-ID: <d3b5f622-36ec-42ea-90da-3c056e1b6461@cherry.de>
-Date: Mon, 19 Jan 2026 14:58:05 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Explicitly request UFS reset pin on
- RK3576
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Shawn Lin <shawn.lin@rock-chips.com>, Manivannan Sadhasivam
- <mani@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20260119-ufs-rst-v1-1-c8e96493948c@gmail.com>
- <b0904cb5-3659-41cc-8395-79eec9e82f01@cherry.de>
- <CABjd4YzJud4ZZQ_GrOOSnfEVG7wgHmPSf9w8oQhLVSx6WXgN5A@mail.gmail.com>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <CABjd4YzJud4ZZQ_GrOOSnfEVG7wgHmPSf9w8oQhLVSx6WXgN5A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0001.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1d::10) To GVXPR04MB12038.eurprd04.prod.outlook.com
- (2603:10a6:150:2be::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060F536C598
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768831372; cv=none; b=ePMLNQe7A4K/xDIyGYEdm1TItOGULBxaThYDZp/pTNN2lADaVB8ENOSzpqe0Fyp3LRAAzXk9hUKwCwIJSAVuBi1RJ1PdMdjRmqvpPPF8UnjKtqFaFl08RRMfRUJGzjg7jdYQMLLUlKBeCjSDPWP9k1yrhNYX4Y3DjWOMUFchrGw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768831372; c=relaxed/simple;
+	bh=E7fHKTwM5kQWA24lxy1RNzMv9gSOpyB9Vk3+2q6FLHs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KZi6ogRNXd6X0YOW6Fj46P6PleB7W4R9rtWHqTg5dZU20H8XQaa9xQoatrbUUt8FYnL4tacnL4T7ZfZLa2r+3ReHkek/q512uXf/excKTEVkkZtSTQ+kf1ItCPFoctrRQwm+ur/KLzZqII6s0gVOah9ZheQ11BifuXjMNcHyqYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k+B8GWtf; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=T87riYLW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60JDdDgv1347458
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:02:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=fGhqupyolB5uH9UFQOHKkgJ43muW2xQ3TpC
+	9A+8sGfY=; b=k+B8GWtfXi/Dw0gvpD0r0AyT1KUcu7tZb3u9W/XBqYt0Dg4PKjR
+	oMSIMAcAq9zfEfHdkcgAiFWlDYhbwjAA0G91+96QXnMfLE+Nbj0Y9TkctgqEgy/c
+	zOoRGAYTSE5JZixc/yUAYSmT6tfEGcKp/QbMgfqJuTFtSL9KPAWtrqJZpwJ3jxZZ
+	X65OW8lY6R3jkTmsBjMBMc9BaPMUjXlksTKuzBNhGJ8Nnnl+Q9ok0KbGBKu8vTvo
+	q2CmuMiISmKcxRltJJKNHcU5HiZm+n3UGpCGXz1+6VXLsyAyXz007SHk1r9bnKkS
+	yxIehqgb/jSxEG1V868VuNVg2y/5tpX3Apw==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsnpdg1v9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:02:48 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-29f1f69eec6so41888025ad.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 06:02:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768831368; x=1769436168; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fGhqupyolB5uH9UFQOHKkgJ43muW2xQ3TpC9A+8sGfY=;
+        b=T87riYLWlcvz3+WWqE12lRzyGuTdu6iYLvODwBy1/ZyzfTgUIQyJ9AjNqAWVVRra9o
+         G03I3DLEdTA/icjCoEMimrytsxdyA6BvuPS2HE32JPf33xVB9ImGfnRskYJQ87mcg5Ay
+         OPYgqHFQBxaZa0jA6dGaAcl8wjHUDsFKYGLR7hMJTYEWM8whUusvN1BFtpXdbL7vgKPd
+         CKU2pJeQLyG01mzwyYsUtWyRnEfIFxja7QIUyBC5r/DKdAI4XeQeKNapVmITVtluDt15
+         jqAOEYS3IS/FYoYi7tnbC9rnMsBLgIi3m+d5pb+AWqwHCoMXi5CYAyT4meykEM+GswZL
+         4GSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768831368; x=1769436168;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fGhqupyolB5uH9UFQOHKkgJ43muW2xQ3TpC9A+8sGfY=;
+        b=q+lStgnPA8GV9Ev/RbHkpZf7GIlJ/5z7WwGQZDbI1giP1E5kImiMDMmsg1cITJPovT
+         o0fuEK8JkM8CfcUudXTw+q/EW7A4io2lpqc4cZ1a0jXVSSGPAZIlsgumW2UdTDAyFZqO
+         lRLrvlve75cIx0C8c6NRVAeu3QoPVIzO+H/8u9bvaezWYoGyF0VicOq2+KpSjEl1lend
+         kGj6mFoX2tRMAztkX1L1DOwkM9UUfrB9IQTyobbL0oTQWxtJKf9qeOQtgLZxOUqNhHZa
+         9dDxfJYPJdhf26jvVInecnAdLIrokcSM7qXL5cux0gT5yiOhwtr6WLHbK6FZvQkCUpjC
+         +oUA==
+X-Forwarded-Encrypted: i=1; AJvYcCUhiV5a2AoUN7EBFn+cwDXoukLUqe13ZrYolMjj6wMilWJZDg75pkUBYiP491WivCfymGPVQG3dYwcA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx86NFj6Z0/SqQjoXDS6exnUkdQTtqn4A6GpgO7+kfRqHPXOylW
+	edaMWmNl7ERq0YtfwIVvyX7abnMT/J2DSBYf6Z+BIoTcM6k8zZiyf6oxJ83ZMiGvabaoknEMsud
+	WUPc8jtcD8K09POXxyY47uDYYKWHyyNlkB0DtKMvhnFIiROhO2A9ZWn1bmlod0rvq
+X-Gm-Gg: AZuq6aKAepY94yvbNKZm566EntBRuGcOtenIqO+rf5ffG6pTLGECrc//ktYYCtfN9O+
+	RX24PMW9cFSjKtFP+OgzKAAEeZgkbfP45l8ij/1qONvoblJke6KcJAXZKEDeQZ+yPbHZI+dYxtz
+	7pjSI1ZffrSTFNdYxoQm+XINCczFseZpMAaivYz7j9xwRLFsvjS0/FbDOwFQI2qtkSGulE/fWz5
+	gq8oqKB5rWkOCvjQXil4SgKicywKgXzMzkvZK74uSGrL+qtyAx3audCzXUV10Jhht7Z1IdMOwJh
+	O6HZRytG0HpQEmD6FkPoViJqQjmDQO/Lz1cU3Aj3PVrtdpq3z2aafI2jUc5xL+i2lHmcRQ+48Kx
+	2b78sPysj6QhLKJG4RAGjCU4xvrCGdjbGT/8h0Wm0KMLDUgoQpBp3kPBnMul2id3kFZ68
+X-Received: by 2002:a17:903:3d0f:b0:298:33c9:eda1 with SMTP id d9443c01a7336-2a7177cea20mr112457455ad.43.1768831367482;
+        Mon, 19 Jan 2026 06:02:47 -0800 (PST)
+X-Received: by 2002:a17:903:3d0f:b0:298:33c9:eda1 with SMTP id d9443c01a7336-2a7177cea20mr112456915ad.43.1768831366809;
+        Mon, 19 Jan 2026 06:02:46 -0800 (PST)
+Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (i-global052.qualcomm.com. [199.106.103.52])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a71941b915sm97416715ad.90.2026.01.19.06.02.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jan 2026 06:02:46 -0800 (PST)
+From: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+To: jjohnson@kernel.org, johannes@sipsolutions.net, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        krzk@kernel.org, Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+Subject: [PATCH v3 ath-current 0/2] wifi: ath11k: add usecase firmware handling based on device compatible
+Date: Mon, 19 Jan 2026 22:02:36 +0800
+Message-Id: <20260119140238.3360658-1-miaoqing.pan@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12038:EE_|AS8PR04MB9207:EE_
-X-MS-Office365-Filtering-Correlation-Id: 859bac44-93e8-46bf-7608-08de5762c72e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|366016|10070799003|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cVg0MFRmNWhVY3d5b2FNdWVjS3hLVjI4MnlodGVRemZHRWNvL2N5ME94V0dB?=
- =?utf-8?B?YXVFbVVnU2QvcXJKMFNDbEhteXIwMEhrWnYwaWhKc3FzaDhhWjlzbm41RnlI?=
- =?utf-8?B?cENUMEJJaHdEeDdDb2I1eVh5THVZZTN6VVdHdHZGS3doY2huK09UamxBc0g3?=
- =?utf-8?B?bGUrNUNEVDQ0RThBL0dHNE9BbjAxbkxmbGpNS0VKUEJXV2hJWktDNjYvUFVM?=
- =?utf-8?B?N3JWaUp0eXlxd1BiVVRFRTcya20yeTQwUlhUd1V6TnBySDNzbmdvcE5RMVV3?=
- =?utf-8?B?OUc4OGsyY21DamNiWjBQSWMvV1FDWDVORzliSmNrM2pZaS9FQXNpWWtqQTNi?=
- =?utf-8?B?a1JlVVR4YjlUM3U2dFhqeWs0bG9sYjFBa200SUxQa0JHQjAvNFdsMmQrRDZ6?=
- =?utf-8?B?RUdSdHhvcUljZ0xJUzZNc29sSUJpQVNEbC84QWZxRmlFaTQvR0RWU3RDTFk1?=
- =?utf-8?B?UW9lRnBWWVRDZitEdnUxLzlUQkxSSVZoaW1YbGRUWUdLTWpvSldZNWVrOUhp?=
- =?utf-8?B?YkdnVFBHNVZGVFpncUZCYVJrcE16SldNV216TkhkR05FWDRjSWdOT2FWbmpC?=
- =?utf-8?B?OEhNekJLQndlM0NYa2Y3aitTV3lNSElLbU5sS3NJcmZOVEJPNDYxRDhSYWlX?=
- =?utf-8?B?RlBFUjFSWVJiQS9oRVQwN1RPMldLOTd1ZXUraXRvaTgyVlhMQ1VQdlZRUVZn?=
- =?utf-8?B?Z1BJTk41c1BGOWtjc2kyZHFDcTBFNTZkTEtHOTVERFQrUDJNQ2RtS0FXM3RN?=
- =?utf-8?B?L0F2b2QzSVg0QTJ1WjE1U0JnOGhvSWtDd1NKSjV0MFkvcHgwZzc4VVAzRTJR?=
- =?utf-8?B?UElSQm92Y1NwTWkwUURpdlQ3M090R0JWNjRtaEE0VG1GQlJKa0J6UEY3czJD?=
- =?utf-8?B?VlZQQmplNWUrNm9PdlAzTHVaTmxiUnRmUm5naGlZazRVbExHM2RkcG9aY3NL?=
- =?utf-8?B?UnpZQXFmN0psL3RjbG5VenZFcjU1MzI3M0g5cG41TnA5c3diemsvM1Z4a1hI?=
- =?utf-8?B?TThYeGxsQXZiS1RqRE44aEtjOCtjckJ4dnA3bXZ1bGloTjlpamNYNFlmRnVU?=
- =?utf-8?B?ditraVZ5MmFQc255Yis4YVUwNGc3QmJSZUQweFpxZFUzV1U4TVI1RzVuaHkz?=
- =?utf-8?B?TzA0eGtpZUFFTDFBRXl2MTVBalVya1NFMkJHbVVMMGhRYmdYMzNSRE9iWkpU?=
- =?utf-8?B?K0VsQzN0ZGh6QzJxSHBOMW5rV1NwcElQQ1YzZFZiWXJoR3BnMHJjTEo4aWlS?=
- =?utf-8?B?WmJLbFJmTmxVeFR2K2M5YzM4eGs2Y0FOWEVsdW9NNHFRQ3JPaXRFSy9iM0Uz?=
- =?utf-8?B?MmxhUEdkWGJlbVJic2R2dWRlYUVWMXpsS3JVZHc2ZktnNCtySmZpV0s5WnFK?=
- =?utf-8?B?L3ZZUm5qQVRDNzBKVFhZYXRnZmJ5QmNZa0N6d0xGWmNDazNEWTFpaSszUWRL?=
- =?utf-8?B?aVM0NHZFcFBYS0JxNElRNkJ1TGpDRmpudDArWUtsOHVGeEExcDJFV3hHWUho?=
- =?utf-8?B?dVBETml3empPZGZKbllLbGVSVXp6SWxKbWZKYTRidXlWTW1wSHQyZkRGYVhK?=
- =?utf-8?B?RUpXRnhvTGlmZ0JmdytLcXVISmx6ekFjNHQ3RUdOeStIaFJIOXJuU2xwbGFZ?=
- =?utf-8?B?SkFqWUIxZ3FCVStyM3ljQThQQVJPb01yVlNEMHU3VStsTkpUanZpZHZNLy9x?=
- =?utf-8?B?Sm0xN1hndGNVZFFQOW0yM3dqTFVBUWgrMjVHZW5zYUx0ZTBFTWFqbVhNWU5V?=
- =?utf-8?B?emMrL25FM0dBbjk1SHVkSTRNeTREYjZjTGMzN1F6SGpSL0NPOWkvZ25jS1RI?=
- =?utf-8?B?cTd0QWpxaUlhTkJPdENwWGowalRHUHEwYnhET0FBdktPTU5OdVA2ZFBYZTJL?=
- =?utf-8?B?NGFkYVpIQWNlQ2dMRkx3Uk1aZHd0UHR1QUJRZDhUQ2g5UVJzZFlUMkpUTlM4?=
- =?utf-8?B?ZS9wblBvdG9WdnVJOEdoeHVTTHg5NTlMekJnR1dSdmYwQXVoN0wvSHdvemhC?=
- =?utf-8?B?UzlKd0tETm53bTlNR3hsT2JqRHRpYVcwV0g4SytDQ3pqc1QzL0M5bUdTdE5t?=
- =?utf-8?B?OGtaM3Q4SnBETDIyZFJOenA1eFFiYTFIaHBLeng2YU85d0krd0tOYzJPcGZ0?=
- =?utf-8?Q?eZnY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12038.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(10070799003)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SERtTkJzekl2OE9BWjVkQklmTXA1d0dRZk1vOCtjcTBydVB5a1J3N2trRC8r?=
- =?utf-8?B?RVZ1dVhQb1B1Y0RqMzcwcHJiZmtBQTdWYW56N2lDTHlKZ3lUOE5heUkwSGtQ?=
- =?utf-8?B?eUpxWllzRW1ENG1XWjRWTlh0dUpFdUZ3WGdZaXZTWkRJYnRzU2lxdE9rNUVh?=
- =?utf-8?B?QmdOdWt2NkprMitHN2d3dENjdGQ3VnUrbUluTWRhaWZ0L29rVXNHMFZnZElK?=
- =?utf-8?B?bXRUWGoyRGl1dWZ3b0xSSzdpV0M4MU1IRWJDREtEdDkyODhNelBpSTNsV2Ji?=
- =?utf-8?B?K1BoYjErU3R0ZTdoV0JOZHpXL3lSWUlLbGsxcXBLTkcvdzNEYThobGpkZFo5?=
- =?utf-8?B?U1NlMGNZRVkvRElyVnhlVWxaNGxrOHNFcnFLMno4RVZ6cGdocldaZjEvRDRZ?=
- =?utf-8?B?UzMxRXdZc2FLaTdodFo2U2NVTDIydUE2MWhOMnFIRXBMRlFJVStlL0trTmpy?=
- =?utf-8?B?d3BzbHp5WGRWVWVyVXBFcDBTN3c2bEZCM2hSTkpkcUlKbE53ZXB6NjZsZlNB?=
- =?utf-8?B?cEdnYnFyaEpjMVdEQmh3elR5cm13c0RoTTV1ZnEzOTBpTElicmIrQktCejMx?=
- =?utf-8?B?N1NtcSsxMEhRNHo1bnZOUkxqMzJGQzh5R1JXWmlFcFdQZFRpQ2I2alBabXlZ?=
- =?utf-8?B?V0dNQXRQUnpRTUw5cUJWMldOQWhiUXNDMkZIKzB1dTZTeVh5Q3ppT3VaUVVT?=
- =?utf-8?B?OUZ5WTNtczBKQjE2bXc4T2djaWVIRlM0bW1vSjY4T0RWWUY1WjdqUUU2UDdL?=
- =?utf-8?B?TjQ0ck1xazMxd3VaV3g0N0VySEJjRkZ4K0hNYUE3c2FZS3UvdVZIeG04bE5s?=
- =?utf-8?B?KzlFbG1pSTJhblUxRlRFM1I1NE12ZFVBZFR3eDRJQXN3WWR0ZnFLT1JMdE95?=
- =?utf-8?B?cU5mZkFkWTBUU0YySmdDTlFSbERQdU9sSzZiWVNHSGlzYnRLeEJINGZiZXo3?=
- =?utf-8?B?Z1JjNURpaUVqTmtaRDhqQ0t1MktVTTIvQ1FOeWVpSXJlMjc2VkozQVV5L0FU?=
- =?utf-8?B?VGxaZklWWEFwc0twWDZZWDhXWmJYZEQzblloK1NJR3d0QTFac0hzUjIzaVZK?=
- =?utf-8?B?UXFVQzdaQWwvZzFvRXE4RnpERk1GNXphbzM5THU0WGdOSjEwRGp3VzdhY2gz?=
- =?utf-8?B?Qk5lUHZ6Y0ZDMXpMTW1NcllRdGtRUzhaN0NVTGEzSzhOMVRNelpsc1BFYjdn?=
- =?utf-8?B?bmg3M0gyK2diWDYrY0I4T09DMllKOXFxdFYxZmVYMW05eEJwSFFpNHhUa0d4?=
- =?utf-8?B?Qlh3Nmh4ZVpOaXVZNTBFbHBWeUVScTVhZU53QUlWQ3o4OXhERnhvRm1hS29m?=
- =?utf-8?B?Zm4wanNDUDEyT1NINDRZUm5QbGRtUGJZb1M1VXEwcFp6M3kxdVdrTlB0bUs4?=
- =?utf-8?B?VGgwS2JPaGZDZEpXNWVjRnV6ZGY3cExHdHBZS1lreDFsUnNzVEc0Nis2QXBY?=
- =?utf-8?B?MzFHcnNnbi9TamZvN1RUUThFdW5JNk9VWUpuSGlNRDV1SGh4ZzRKaEVIMkNU?=
- =?utf-8?B?b214dWwrSWp5aWVqOEQzQlYzaVJvSHFMU2w0SC80Zjc1MzlIZFNJcWhWTHht?=
- =?utf-8?B?RFU3UXUzUEt6Q29kMDBneDRuRE1pVjU2eWV0eXpPVGJtMHZHbmMzd2lMZ2N1?=
- =?utf-8?B?c1AyOGdMNk9wS3F5dW4wemVPYzUxSDdGRWtmOTZYL1FLbWVMRHFiSXNzUVF2?=
- =?utf-8?B?UDc5bU1OSldjVzRHR2xOaWN5ZnB6WVJ6a1ZEMk5GNmZWK3hNTjkzcG1sSXdH?=
- =?utf-8?B?Nmh0MU00WndwWjZ2NmZIMCtrQTMvVEVHQ2M2VFllaE9iRnc3MUc2cEZxcXRn?=
- =?utf-8?B?TFY4a1VPNk5OSFJpMFptSG93ZXE5UlZCZWQxRVJmazFDNGJHRVoycy8xY29h?=
- =?utf-8?B?SUpnSU4xSEdhS09xdFMybGZqcml5N2V1ZGhRNi9nZW1kaUNhUjdRTkhyN3Ru?=
- =?utf-8?B?WUJZUThwZnlyMVQ0VUF2Tzc0MkxvVlBNVEk3WWJ5VzZ0NlNWQVk1QVRZNXQ5?=
- =?utf-8?B?NHpCUUdzekhrT3BZVWNNd29xZ3E3cUNMOTlKbjlWUWViK1JHZERscXIzN3lz?=
- =?utf-8?B?VU9OamsvUGg2Tms5cUM5NHZwY0duMXB3TElNZ2wwU3gzWmQ1SE9vQmc5RGVr?=
- =?utf-8?B?cjJSMnlLa3A4aXBvcGtCSUFvamtCTnIvaXluMktZcElkOWgzY1ZxejFIbmFY?=
- =?utf-8?B?ajl6cmlFbk1VT2F0eVBlYk5TMGs4Yk5qNlpZNGJFTGoyQ0hUT1U0WCtPQVRt?=
- =?utf-8?B?d0dlZU9iWmI5c3NreTNqVGFueHRJTVJnZlI2SCtZd0FQdldXNDlFdjg5VXlE?=
- =?utf-8?B?bUdOWUd6elNXVjVNQlNNOCt3UEEva0lGc2U2eGluRWZJMHFpV3FubGxvUHhE?=
- =?utf-8?Q?H1I3SGaMD4qo00iBFqJB2dK0NQyszbaQn4Ob1?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 859bac44-93e8-46bf-7608-08de5762c72e
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12038.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 13:58:09.4788
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KfzrleJXCQH6prjU1qElrpxXR1s/1uKHGyhfpKqeDGAUQldR2jVLuirFWa+t58i5DiItc9ClU/05C2BScdEcJ+l9nAr3kvWhrhbtyGBV1Dc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9207
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=NtncssdJ c=1 sm=1 tr=0 ts=696e3988 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=AnkVv3gU2zmn-KRWxgsA:9 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: LcS1Q_QbS1UuzDxhcTP3i0B569nl7ViI
+X-Proofpoint-ORIG-GUID: LcS1Q_QbS1UuzDxhcTP3i0B569nl7ViI
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDExNyBTYWx0ZWRfX4RSAT5SbzOw4
+ OoF3dsldGKC8Ij14/1xIhx6z96hYwI3Gv/PjGVptOVlBT+lg7a38xHmRUWLNEJEj0mmSZKCgKga
+ QwNLErdJKqVfiOXqfPlu1BXuz/TLj9tGw+NCW/h5hGPYzDhFJqBPUp8bYQRIt3gFw4p8BgLvpkG
+ sR3iZ21+yl7hsXV748rwod2RffbY6c5cSsZbA0LdfDaiid6Xy8LN+qPwN/8VdSL6cm3WQjvVOGE
+ OATI9hCIvsr7xsON0Xbqkn4IP19zxMtfL/KKHpOJ97D3/uynNdc/5HttHwtllVof4IxEa2G8iWG
+ d61vJhUoDl1LvNB1lzcdwOJ4b6fCv1DrtJHPo/4MZWHDK0f9SORADGqEuTAFHDfqgiZexFEYe0P
+ agX6smE5/Jk0P7Zx+SyjW/pvO4y99O8ovKtbbPztJjx0i3yn3sBeTkauGwzcaX5tEAaTYyQp305
+ 3LzlIDFxwiF7f/vLhvg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-19_03,2026-01-19_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 lowpriorityscore=0 phishscore=0 suspectscore=0
+ priorityscore=1501 malwarescore=0 impostorscore=0 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190117
 
-Hi Alexey,
+The 'firmware-name' property was introduced to allow end-users and
+integrators to select use-case-specific firmware for the WCN6855.
+But for M.2 WLAN chips, there is no suitable DTS node to specify
+the 'firmware-name' property. In addition, assigning firmware for
+the M.2 PCIe interface causes chips that do not use use-case-specific
+firmware to fail. Therefore, abandoning the approach of specifying
+firmware in DTS. As an alternative, propose a static lookup table
+mapping device compatible to firmware names.
 
-On 1/19/26 2:43 PM, Alexey Charkov wrote:
-> Hi Quentin,
-> 
-> On Mon, Jan 19, 2026 at 3:08 PM Quentin Schulz <quentin.schulz@cherry.de> wrote:
->>
->> Hi Alexey,
->>
->> On 1/19/26 10:22 AM, Alexey Charkov wrote:
->>> Rockchip RK3576 UFS controller uses a dedicated pin to reset the connected
->>> UFS device, which can operate either in a hardware controlled mode or as a
->>> GPIO pin.
->>>
->>> Power-on default is GPIO mode, but the boot ROM reconfigures it to a
->>> hardware controlled mode if it uses UFS to load the next boot stage.
->>>
->>> Given that existing bindings (and rk3576.dtsi) expect a GPIO-controlled
->>> device reset, request the required pin config explicitly.
->>>
->>> This doesn't appear to affect Linux, but it does affect U-boot:
->>>
->>> Before:
->>> => md.l 0x2604b398
->>> 2604b398: 00000011 00000000 00000000 00000000  ................
->>> < ... snip ... >
->>> => ufs init
->>> ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
->>> => md.l 0x2604b398
->>> 2604b398: 00000011 00000000 00000000 00000000  ................
->>>
->>> After:
->>> => md.l 0x2604b398
->>> 2604b398: 00000011 00000000 00000000 00000000  ................
->>> < ... snip ...>
->>> => ufs init
->>> ufshcd-rockchip ufshc@2a2d0000: [RX, TX]: gear=[3, 3], lane[2, 2], pwr[FASTAUTO_MODE, FASTAUTO_MODE], rate = 2
->>> => md.l 0x2604b398
->>> 2604b398: 00000010 00000000 00000000 00000000  ................
->>>
->>> (0x2604b398 is the respective pin mux register, with its BIT0 driving the
->>> mode of UFS_RST: unset = GPIO, set = hardware controlled UFS_RST)
->>>
->>> This helps ensure that GPIO-driven device reset actually fires when the
->>> system requests it, not when whatever black box magic inside the UFSHC
->>> decides to reset the flash chip.
->>>
->>> Cc: stable@vger.kernel.org
->>> Fixes: c75e5e010fef ("scsi: arm64: dts: rockchip: Add UFS support for RK3576 SoC")
->>> Reported-by: Quentin Schulz <quentin.schulz@cherry.de>
->>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->>> ---
->>> This has originally surfaced during the review of UFS patches for U-boot
->>> at [1], where it was found that the UFS reset line is not requested to be
->>> configured as GPIO but used as such. This leads in some cases to the UFS
->>> driver appearing to control device resets, while in fact it is the
->>> internal controller logic that drives the reset line (perhaps in
->>> unexpected ways).
->>>
->>> Thanks Quentin Schulz for spotting this issue.
->>>
->>> [1] https://lore.kernel.org/u-boot/259fc358-f72b-4a24-9a71-ad90f2081335@cherry.de/
->>> ---
->>>    arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi | 7 +++++++
->>>    arch/arm64/boot/dts/rockchip/rk3576.dtsi         | 2 +-
->>>    2 files changed, 8 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
->>> index 0b0851a7e4ea..20cfd3393a75 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
->>> @@ -5228,6 +5228,13 @@ ufs_rst: ufs-rst {
->>>                                /* ufs_rstn */
->>>                                <4 RK_PD0 1 &pcfg_pull_none>;
->>>                };
->>> +
->>> +             /omit-if-no-ref/
->>> +             ufs_rst_gpio: ufs-rst-gpio {
->>> +                     rockchip,pins =
->>> +                             /* ufs_rstn */
->>> +                             <4 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
->>
->> The SoC default is pull-down according to the TRM. Can you check please?
->> For example, the Rock 4D doesn't seem to have a hardware pull-up or
->> pull-down on the line and the UFS module only seems to have a debouncer
->> (capacitor between the line and ground). So except if the chip itself
->> has a PU/PD, this may be an issue?
-> 
-> The SoC default is indeed pull-down (as stated both in the TRM and in
-> the reference schematic from RK3576 EVB1). Which I believe means that
-> the attached device should be held in a reset state until the driver
-> takes over the control of the GPIO line (which, in turn, is consistent
-> with the observed behavior when reset handling is not enabled in the
-> driver but the reset pin is in GPIO mode).
-> 
-> Are you concerned that the chip might unintentionally go in or out of
-> reset between the moment the pinctrl subsystem claims the pin and the
-> moment the driver starts outputting a state it desires? This hasn't
+---
+v2:
+- Drops `firmware-name` from completely.
+- Updates the commit message to clearly state that the property is
+  obsolete and the change is ABI-breaking but safe for upstream.
+v3:
+ - Deprecate 'firmware-name' property instead of obsolete.
+ - Keep the ABI backwards compatible.
+---
 
-Exactly that.
+Miaoqing Pan (2):
+  wifi: ath11k: add usecase firmware handling based on device compatible
+  dt-bindings: net: wireless: ath11k-pci: deprecate 'firmware-name'
+    property
 
-Imagine for some reason the driver EPROBE_DEFER, there can be a lot of 
-time between the original pinconf/pinmux and the time the GPIO is 
-actually driven.
+ .../net/wireless/qcom,ath11k-pci.yaml         |  1 +
+ drivers/net/wireless/ath/ath11k/core.c        | 36 +++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/core.h        |  4 +++
+ 3 files changed, 41 insertions(+)
 
-At the same time.. I guess it may not matter much if the UFS chip gets 
-out of reset temporarily as (I assume) when the UFS controller probes 
-properly, it'll do a full reset of the UFS chip via the reset GPIO. 
-Don't know anything about UFS, so maybe there could be damage if the UFS 
-chip gets out of reset if its supplies or IO lines are in an illegal state?
 
-> caused any observable issues in my testing, but I guess we could
-> explicitly set it to &pcfg_pull_down for more predictable behavior in
-> line with what's printed on the schematic.
-> 
+base-commit: d8e1f4a193101a72235416f189b01131a57e26e9
+-- 
+2.34.1
 
-s/schematics/TRM/
-
-I'll let Heiko decide but I would personally go for a PD to match the 
-default state of the SoC according to the TRM.
-
-Cheers,
-Quentin
 
