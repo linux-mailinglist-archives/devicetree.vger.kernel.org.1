@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-256926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5A0ED3ACBC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:49:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C539D3AD1A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:53:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C1425301296D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:47:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 39FD030B17F6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:48:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADB537C117;
-	Mon, 19 Jan 2026 14:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B056327783;
+	Mon, 19 Jan 2026 14:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GTXdXfLg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lm8MzkEa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7819F20E03F;
-	Mon, 19 Jan 2026 14:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CAF20296E;
+	Mon, 19 Jan 2026 14:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768834071; cv=none; b=DSICc9cMVxyq7GHb4M0Ti8jOq4w6vSmCGb1DPAOXClS14e8CJ7Ep7GKYKqemW1yZeVJMA2B/HMzIYNCjKvGKbUX67CrzzPeBp+29GsTVpPgfX2iYsvZBr+odRiXGYT0TQDWIx4FRUkgGttFpY+JlSjHL9twYQn61O4WL7G0u86s=
+	t=1768834115; cv=none; b=Xl8JaBYSpYIGhllzAFx8vAVyASsZwWRmTFIgFyiW0U0+IELgnjGHY/KkJB7rs+O/2q+0mJ24mtQfJ5eSIEI3WrMSEgML/mKlVcsKHLt+tZrbQxvUsGIiuD3VFVQ/imN4aR17Ken8bpjxu0fvogpPp4vat6Fe9GyVl4Eo/tQ0dZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768834071; c=relaxed/simple;
-	bh=Xo3gOIZ7kLpKviSrENhrFvY6EGTgLB2FDYJiXN8Qg8c=;
+	s=arc-20240116; t=1768834115; c=relaxed/simple;
+	bh=rpf4djG1YwivRTw3kz95ojVFel/Zs+v9ASb+PAYa4ws=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SxEoE6B4cpYozd2YrRzpdEIXSkSLIOlYtgCO/7cKsH+QOfS7I6T/oT42PIdInuiJ5Y53JHha+zGS36D5bjaqetyUMuIDmlkHcT+yh+6ThEhICGYMKrCKh3r9VZJpor7OTQ8e9BkU6pE3lyqEs+AYZoatpimYmdnGW6rv1wLRSeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GTXdXfLg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65FA6C116C6;
-	Mon, 19 Jan 2026 14:47:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uM0qpAIC53mWYMzIR9bdtUCRhJ5pv5AXBVVlSKwkdb2ruEKYPgiAvvD6QUURru6yIQM6wCRI1i+OQZ8vUhNBBHJRxbGwYphnc4wvTLymAdK99lOC3GAorW8nGnJpzhKyibftXagEJpqXBI5czmXQpuhaaVrftG7BXd8vR8Vz09c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lm8MzkEa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEA38C116C6;
+	Mon, 19 Jan 2026 14:48:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768834071;
-	bh=Xo3gOIZ7kLpKviSrENhrFvY6EGTgLB2FDYJiXN8Qg8c=;
+	s=k20201202; t=1768834115;
+	bh=rpf4djG1YwivRTw3kz95ojVFel/Zs+v9ASb+PAYa4ws=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GTXdXfLgAZ77mL1j0A3tm3FvLe01w/JdTnCKi7OoHIIExrM/7uNX/Yf6CpkQ5KH8w
-	 R6q7Ici8q1RWhk8jMQNprTOC0BYzXzFiz+0Pmn8OsLteSdPNq9oovQLCWb3NTtRsLj
-	 cHjP3aDH16dvCltYsOOBMvhG7DKbyCHVmZGMHGD7Mdf45DElP1qXh5t0BuZR1C9Uvi
-	 xbbW1uLAsrTwNUM5MCB1n7vnOYiQ34cMQgsTWzUCuls7Lj2+XUK6EMkmU8WOrwqysB
-	 LAZZmDr/AunDuSJAzsJB8OO2T1qDcg8F1R4qt1Puud1+eZOaSdMzf1ssCulm59D07z
-	 pM6lw1+5fHa1A==
-Message-ID: <1ae2f7de-f1f9-4f45-b38f-b68089fc017c@kernel.org>
-Date: Mon, 19 Jan 2026 15:47:46 +0100
+	b=Lm8MzkEaZEcpiGN5UtqIG1o2qH4ffSsX2WHTIX86vsVTpENMkCKUaU2ila6nVU8F6
+	 Z9lHLC/B0a6z168I5M1M1J5UtisJlR3DW+aHugyDglfMSQprmVbVBgy8yYQTBwXRJH
+	 HZEsPEv2y/LLD4FEFPOMe/UOGB7WTsLbeOGPnmSb30rSrX6Yc8j7WGxtQ50Cllzu4G
+	 7K0bFQZF0wcdBFRwGRHTRrwMNVgPhuC547UA35/ZLUIETAuxIldbCccIQam07NsIj0
+	 RzRRDTVGb8bhvsQ0Dy4oC4ng0ue9hL4BEoAqi56IYwT1dcZxbW4T73DeJEldTI/Jj8
+	 MkWNZYHIPDg5g==
+Message-ID: <2bf8dfc9-148a-4914-86a9-ebbb871a6887@kernel.org>
+Date: Mon, 19 Jan 2026 15:48:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,16 +48,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] iio: amplifiers: ad8366: add device tree support
-To: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20260119-iio-ad8366-update-v1-0-8044e23e964a@analog.com>
- <20260119-iio-ad8366-update-v1-7-8044e23e964a@analog.com>
+Subject: Re: [PATCH v3 ath-current 2/2] dt-bindings: net: wireless:
+ ath11k-pci: deprecate 'firmware-name' property
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+ johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260119140238.3360658-1-miaoqing.pan@oss.qualcomm.com>
+ <20260119140238.3360658-3-miaoqing.pan@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,57 +102,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260119-iio-ad8366-update-v1-7-8044e23e964a@analog.com>
+In-Reply-To: <20260119140238.3360658-3-miaoqing.pan@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/01/2026 15:37, Rodrigo Alencar via B4 Relay wrote:
-> +	st->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(st->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->reset_gpio),
-> +				     "Failed to get reset GPIO\n");
->  
-> -		st->enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-> -		if (IS_ERR(st->enable_gpio))
-> -			return dev_err_probe(dev, PTR_ERR(st->enable_gpio),
-> -					     "Failed to get enable GPIO\n");
-> +	st->enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-
-No, you are changing the same line *third* time. you need to organize
-your patchset in logical way but also in a readable. You do not add
-incorrect code just to change it later.
-
-I do not see the reason behind removal of switch case. It's really
-independent change of OF support which must come with its own
-justification of affecting other platforms.
+On 19/01/2026 15:02, Miaoqing Pan wrote:
+> The firmware-name property was originally introduced to allow end-users
+> and integrators to select use-case-specific firmware for the WCN6855.
+> However, specifying firmware for an M.2 WLAN module in the Device Tree
+> is not appropriate. Instead, this functionality will be handled within
+> the ath11k driver. Therefore, the firmware-name property is now
+> deprecated.
+> 
+> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
 
 
-> +	if (IS_ERR(st->enable_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->enable_gpio),
-> +				     "Failed to get enable GPIO\n");
->  
-> -		indio_dev->channels = ada4961_channels;
-> -		indio_dev->num_channels = ARRAY_SIZE(ada4961_channels);
-> -		break;
-> -	default:
-> -		return dev_err_probe(dev, -EINVAL, "Invalid device ID\n");
-> -	}
-> -
-> -	st->info = &ad8366_infos[st->type];
->  	indio_dev->name = spi_get_device_id(spi)->name;
->  	indio_dev->info = &ad8366_info;
-> +	indio_dev->channels = ad8366_channels;
-> +	indio_dev->num_channels = st->info->num_channels;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  
-> -	ret = ad8366_write(indio_dev, 0, 0);
-> +	ret = ad8366_write_code(st);
->  	if (ret < 0)
->  		return dev_err_probe(dev, ret, "failed to write initial gain\n");
->  
-> @@ -384,24 +322,41 @@ static int ad8366_probe(struct spi_device *spi)
->  }
-
+Is this the same patch as the one which received review/tag?
 
 Best regards,
 Krzysztof
