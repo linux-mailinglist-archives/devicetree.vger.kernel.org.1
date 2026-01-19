@@ -1,207 +1,114 @@
-Return-Path: <devicetree+bounces-256875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C69F7D3A951
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:48:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06217D3A94E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:47:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2009530443F8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:45:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04AF0310298B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B6B35E53F;
-	Mon, 19 Jan 2026 12:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7254F35E53A;
+	Mon, 19 Jan 2026 12:43:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BtWO1BDm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OkPCdfZ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD7235E53A
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 12:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B3335CBDB
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 12:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768826713; cv=none; b=uOR8gAt9sIWaHBfHtw9iLsoPINL4QEpkCpBcOc81zvUB/gCnEZAY07cP8MihCrOOYVQ28l4m+1q2qmjElYYtY3JUCCxpI1suwBtP6omXTpLybAaUI5EosCayw59R3aK65jaVOBLOfgBumDWHAApon6eGH9mqLTYDCqwjb9WmHS4=
+	t=1768826615; cv=none; b=C374rmBbvP7YEL+wHqXOM5OAJx5zdFDg+LJPmmbdjVb55mBAH0tbyhYYCr3ijyLRCgKsgUm8LFaaWD4/PZb2R+1TvEKFA3sQLU8ixBXgZCO8Z5JFDOhC5rlaWrPqDAiiSqCqm7djSlc44GjcXw9p5CupFtU8vmqjLkp6xLMhIGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768826713; c=relaxed/simple;
-	bh=58zqf0QRhFos7cRmq8vTrHcguHAy4GxQXQGtoEUAomg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m4pQk/OMe3/CcFxFgOCEDpTzfYqNTowcvQGjvoKBo8YH07o919C2l40tcwd9RcKjILB4bhNV2aO+ki7NlFfU69hjo8uuppLwa1La/tIPdBGN4QxnoqJOj6wgpgCYVRVkqbotYqnDmOhC5SHVqnnOI7cmxA1d0NlwkGy1xy0VG88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BtWO1BDm; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47ee3da7447so26543375e9.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:45:11 -0800 (PST)
+	s=arc-20240116; t=1768826615; c=relaxed/simple;
+	bh=Djc2DXwbCV0lJ4fSssFOWRnwLtrLyDYVkvyL/nbyTuA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dlMAVjirizyilyxj/uLORQ02wKuZGIi5i1wEv237FcKY8DPdTRH1KEqkLxF76BrjrCdWQWaeRctDZFGDDDQ0rfbOateIThzfDv6q64JUYcVcJ0K9nnuGvSIh+mQgYxBCjHREqKdzcK9H0yXgUCw9lArgmqvZR9HITdgu1fClu1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OkPCdfZ0; arc=none smtp.client-ip=74.125.82.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f51.google.com with SMTP id a92af1059eb24-12332910300so5540790c88.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:43:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768826710; x=1769431510; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jGK/JHtGxCZWFp0R8SxdcXdTEhWhNtsWilx8eiq1+lY=;
-        b=BtWO1BDmiVo2a+LE6cgUTsZ8jaxNUH9MtBX8uJ1u8xKxB38JPizBLil9z4kOjX+B57
-         wr4BaAuKf7MirYS275jTJPtH27QPbiXjHk4xAFZx/bY0HuKYE5oXctZXiW45y02/Hdwp
-         xSMBZcMaGe0a8bmC7B4nLLEZFVKX7L1SIuvTcXvZ1gfzyT/iIIDTh4g7iZnNOw0/HmcQ
-         f1TMHoR//S+BUUJ/uWNvG2Ay1vLfHYYcVeXf2MvTJ8z1QixnebAPMdyACfuAu9FglG2R
-         DQDiGe/rSLVXnlNYjtHElIVTYzuhqQaUxv1pxlXwPrEnWlPoP83GJmNCRVqeWprxu79k
-         wNPg==
+        d=gmail.com; s=20230601; t=1768826613; x=1769431413; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OHtPJU0DUMKO1F2sqGZCMsKmvXgpAwApi+pqfSny0WY=;
+        b=OkPCdfZ0D/UVw6dACxSDKPRtYT97wXbwDJ5P0aeeEzY+lJAH1Pt9yfA4Kk/peTGjIY
+         n82YTMPupFhDiIcFcsqaxOQR94UShybeZu75tZw9AtRSOMLM23TdF4KjGr7rQqWkRIng
+         mbbcUQZMYpgDndHHvAQdfvNsEoFxGrFGTUZxy3uQH59Qmcuz8bkSV1k53dL8f7Sja54r
+         k3E0qAk7vRJ3f8j6ZRB78hRFfwdOEk9sZ3eLFcU11HYXalnnLZLCbdfHDLS6DWZ5a27F
+         grOKzsE+HN6MDdZNRrIpPHcov/WyrxtO1yeQmRcioLRAcVkXF22Sv7LGcBjr5SvFZweM
+         J8rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768826710; x=1769431510;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jGK/JHtGxCZWFp0R8SxdcXdTEhWhNtsWilx8eiq1+lY=;
-        b=PuVh5cVIpwuvcgeq8Wx5hXjI3bDbCFHFy/e2LbbBj6k9nnHWJXh/pE/OETifrOZAsf
-         2PMSl3hcwxVLH1DFM6ucZ/tkqQvnZHFi0hjQjwYTq1ee2RlsxdeuqRZGiAi1SbKzrh7O
-         mAWAgZrudgsdklsRQeelFPC6ja+vBN/ivLsBBKx7bqk51bOc8CQvSbCWV+pSGk0pfDM0
-         FId/uWNGhFbu9y/ivmTTuhQgvnwyL9iKA5oqD91MgT0fRTZkowSlMVm+LKem1zIdkUXZ
-         NFlPF3C3Avf0uru/4QT5K2z71K2nipPGjpQotcGP88Mh10vOk6/Zdm+VWXCzLw9BYepT
-         WsfA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkzgNRqbmvK1mGG9PmZ5VeM6BL0FhiKe+iAoZ0z4S7RIPxDk/6lrQjY6TUkH/Zcir5XKdezp7dlfZq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSkG/E4UYs+RUPhk6xlFvYAHDUbF6HiiVX7Fqs/q2Nj+vt3SCq
-	XOxURCkHlpDI0N3BmvqgAsfjYjc2m7m9WDsfWYGXTPygZWI39U3lM5uG/DG9cGw3AsE=
-X-Gm-Gg: AY/fxX6MB07RTYH04/loh6SgH2vSbeU+fqxjEwpK5B0UcxMejV5888zBMw4KQB+yUQD
-	9BPjRXrQcQtmvJX6E/IFbPxpOmL7XjSWB7Q2zZpmTueejo3UBqVGYxtnfETNPAcVeUE6YWDEkKd
-	VO0QY4Ae8QGdpkgE2GjYDsJ0gjFLkWtjs6+7mulrpobTth4bJOTYZYA5zR18ntEf/hWrdFl1iSn
-	w9yBx0ElZkWN0eDanKFs6kh96G7r++6166SfqmoK41QcFU4xOvokWTj3Iaimcp6Sdj3/voqGHhw
-	Kk0p8DFLCGvZmxXawkj9bQTrSIA6mzlBJ+PB4AkkOt3M/2qAFyVtasxe+oS8Sx+nWgYjb9dVdFA
-	u4dTt5BLa91AJxKpq4/ZPkcHxl1dRfPDmH+Q2BMkN0zozybjLtYfxqRuByH07NAfSTcIINYZEzf
-	AlXlzR/t4rbIZA+aaaN4iyUZRPjoEZ+4nyNQ==
-X-Received: by 2002:a05:600c:6098:b0:480:3a72:5238 with SMTP id 5b1f17b1804b1-4803a7253d1mr13426025e9.30.1768826710239;
-        Mon, 19 Jan 2026 04:45:10 -0800 (PST)
-Received: from [10.255.242.87] ([109.166.183.49])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e86c197sm193288675e9.1.2026.01.19.04.45.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 04:45:09 -0800 (PST)
-Message-ID: <10cb51ae-9cec-49a9-96c4-757cd1410d8a@linaro.org>
-Date: Mon, 19 Jan 2026 14:45:07 +0200
+        d=1e100.net; s=20230601; t=1768826613; x=1769431413;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=OHtPJU0DUMKO1F2sqGZCMsKmvXgpAwApi+pqfSny0WY=;
+        b=rIi1+Y2jSJIcJgyq3WkmRymg1owIzWTC5hH2ngtKl3o+QoaizwcDsFHYpxrSKgK+ed
+         F9NZdQRusJrNjBFU8IkFiOKJz7GGAIEpby2ryPd1EiaFjKRxJ5Tch6aOMf22NMMo5q82
+         N7lydHTflPUBgfltlfnZayGM1UR+QMpnwnBIYu7VUldpekfs+Io9ixNIUgTvtg0BuUDx
+         zfrS3JzxhiO2GCpe7yTzZdFjlQDYSQICoDIS1wV65V9ZrG7EORKgmb/kfIFV64lObf1P
+         MCZWHjAeUBI03YOGTFF599TjSbMHc76A2COSO66EQ1PKg6DHnD1wO2JECGEXqa3/EeZi
+         +VFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5DVD+1Oc5dbskyaovbN/SLI4auTDm3gH5qE8LDj+aFfjjRz/Dc0+1LuG7SE4+EuPagU8/T6JNAiVf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFoHfeLFdyXBW6YuXR6zO+oHqmbNPTfeV4t+LT1BRHo/fCvh3s
+	qG6NczJoqJpnjChy/7UYVCWPk9aKy59QSTa5dmSa/1cXQUosiLnL4BDQCatnXye1ePsT0R9id6J
+	8O8Hpd/SE97hEolzcxT6xhpW1X5P71Wo=
+X-Gm-Gg: AY/fxX6ryRiOdkIFSJTqYBOCKki61s8/qlqewGe9QAbqw3zFWiocZ9e3fSD6R7kvY/B
+	XK9AaY1DIL1Kg5OQsy+3xczxlDyMAVVmaYEl1uGQe/uQ4Q5ODKYkXWCNMm4ive32Zefm8/TqPnu
+	xHZ6TQ7RSzigFs6kg0SwYMr4eKl4SxfnkJsH9V358pqOWSE4L4ntSLZRiatPiLJweCPHjU4r3R9
+	uZZqyactBj2d8TNuBEHtbPHSnUhGwXI5C+BD9oQ5RLiWhowMrCZ+m/VcTz8pgZNrTWv9/INRsS1
+	ARm3YJ4OH43Kom/1LH78QqUHdFe0D1TMdw1Wcwd4vwyw2B/VGmWzmQ56/GjEItErJfCBMrpQHmj
+	UWMqze1BpsA==
+X-Received: by 2002:a05:7022:222:b0:11b:ade6:45bd with SMTP id
+ a92af1059eb24-1244a6fa90amr8867693c88.8.1768826613054; Mon, 19 Jan 2026
+ 04:43:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] dt-bindings: thermal: Add Google GS101 TMU
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, willmcvicker@google.com,
- jyescas@google.com, shin.son@samsung.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
- <20260114-acpm-tmu-v1-1-cfe56d93e90f@linaro.org>
- <20260115-ultramarine-wildebeest-of-completion-ea1bc0@quoll>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20260115-ultramarine-wildebeest-of-completion-ea1bc0@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260119103411.50397-1-francesco@dolcini.it>
+In-Reply-To: <20260119103411.50397-1-francesco@dolcini.it>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Mon, 19 Jan 2026 14:46:13 +0200
+X-Gm-Features: AZwV_QjtNyiBHeLdUkjbl18_ROfadpDkB4z74sf-P-WeirXN-mnvQRL6Snmf3Zw
+Message-ID: <CAEnQRZA9yHGs4xodNZrYP2oto2QhOJXtiX4BFkgNM7RydkJ4YQ@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: imx8-apalis: Fix LEDs name collision
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Francesco Dolcini <francesco.dolcini@toradex.com>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jan 19, 2026 at 12:35=E2=80=AFPM Francesco Dolcini <francesco@dolci=
+ni.it> wrote:
+>
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+>
+> Ixora boards have multiple instances of status leds, to avoid a name
+> collision add the function-enumerator property.
+>
+> This fixes the following Linux kernel warnings:
+>
+>   leds-gpio leds: Led green:status renamed to green:status_1 due to name =
+collision
+>   leds-gpio leds: Led red:status renamed to red:status_1 due to name coll=
+ision
+>
+> Fixes: c083131c9021 ("arm64: dts: freescale: add apalis imx8 aka quadmax =
+carrier board support")
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-
-On 1/15/26 3:32 PM, Krzysztof Kozlowski wrote:
-> On Wed, Jan 14, 2026 at 02:16:29PM +0000, Tudor Ambarus wrote:
->> Add device tree bindings for the Google GS101 Thermal Management Unit
->> (TMU).
->>
->> The GS101 TMU is a hybrid thermal solution:
->> 1. Configuration (thresholds, hysteresis) is handled via the Alive
->>    Clock and Power Manager (ACPM) firmware protocol.
->> 2. Interrupt handling is handled by the kernel via direct register
->>    access.
->>
->> This binding documents the required resources, including the APB clock
->> for register access and the phandle to the associated syscon node.
->>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->> ---
->>  .../bindings/thermal/google,gs101-tmu-top.yaml     | 64 ++++++++++++++++++++++
->>  1 file changed, 64 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml b/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..ecf4a315ecf1ea0649c4e96a207d531c696282f4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml
->> @@ -0,0 +1,64 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/thermal/google,gs101-tmu-top.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Google GS101 Thermal Management Unit (TMU)
->> +
->> +maintainers:
->> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
->> +
->> +description: |
->> +  The Google GS101 TMU is a thermal sensor block managed via the ACPM
->> +  (Active Core Power Management) firmware. While the firmware handles
->> +  the thermal algorithm and thresholds, the kernel requires direct
->> +  access to the interrupt pending registers via a syscon interface to
->> +  acknowledge and clear thermal interrupts.
->> +
->> +properties:
->> +  compatible:
->> +    const: google,gs101-tmu-top
->> +
->> +  clocks:
->> +    maxItems: 1
->> +    description: |
->> +      Phandle to the APB peripheral clock (PCLK) required to access
->> +      the TMU registers.
-> 
-> Drop all the redundancies, so:
-> items:
->  - description: APB peripheral clock (PCLK) for TMU register access
-> 
-
-ack
-> 
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +    description: |
->> +      The combined thermal interrupt signal (Level High).
-> 
-> Drop description
-> 
-
-ack
-
->> +
->> +  syscon:
-> 
-> I feel like suddenly you sent something completely different than what
-> have you been working for the past 4 years.
-> 
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: |
->> +      Phandle to the device node representing the TMU System Controller
->> +      (compatible with "google,gs101-tmu-syscon"). This node provides the
->> +      regmap for INTPEND and INTCLEAR registers.
->> +
->> +  "#thermal-sensor-cells":
->> +    const: 1
->> +
-> 
-> No supply?
-
-It seems not. Nothing specified downstream. Couldn't find anything in the
-schematics that I have either.
-
-I addressed the rest of the feedback in v2.
-
-Thanks,
-ta
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
