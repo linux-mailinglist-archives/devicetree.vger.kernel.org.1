@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-256852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BBADD3A80F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:09:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29FE0D3A821
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:11:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 243223015AD1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:06:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 96A25312E421
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11370329E40;
-	Mon, 19 Jan 2026 12:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0DD35A922;
+	Mon, 19 Jan 2026 12:06:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LHbA3wgh"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="EPe8L1Dp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A42E22FE0E;
-	Mon, 19 Jan 2026 12:06:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE99359FBD;
+	Mon, 19 Jan 2026 12:06:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768824370; cv=none; b=cK27l3TAcbmjYorN6to9E4HcF2bBtC48o2aA3kM1Ea8xML8tYMjyFmkqtls46O5YH4NPlqIfZCgeLmEmP7G0crpVQVHsFstG9FUK5n6BTCKiJbv77caWKqDm4krecLyzDf0FtLaAPG+IEDLauoukW4t8uEhyhRWAPNvBink3Za8=
+	t=1768824375; cv=none; b=dCwSxX1NiYtJq8ODmn99wnVCy6xLXTV9mW0TbtShb6AmsgCbRTXntfacn05xKADMR8VqoCAckB/M1FKFoAflsWy+Nspk7EFKLH1l9ZSKFWWcZ85ejBjsnbUbVm19qblzxC9W9rYPm1gRQyIjHoRdEGRljC6Pp37gl7ubiPaG00Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768824370; c=relaxed/simple;
-	bh=u9AmUDBNVTOCV30aYzSL+ZLfa8M5Fl6S53KofpLw+V4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=A9HxdK/oAfezr8QEX7g84bgIYkxBjOobtP7Io2+PS79qs3Uck763nj3RpFywTWxv7hWl8mZifAJrugOj5lVkOzNCFh+R5xpHehF+P/CCL4aB9VXJ0/PWKbQJdZjIU3s0VkjEJsc1JN3Y6CaU+yiRI1GD6IUR59PfzgIxuwhlY2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=LHbA3wgh; arc=none smtp.client-ip=210.61.82.184
+	s=arc-20240116; t=1768824375; c=relaxed/simple;
+	bh=vHPUqvPjrKYSRKCT8/SLoPYBMcGYvCPIzgNB5DVIev8=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YJWVjXcT/Ava9rCFJpxD7u8sRskW90Y7EwFmS6TzgamQP5F6FjcKUd8DwLpVuD0CG/qXqIeiCx/rD8UvzP1vdzMIQilBo9WC1pOU9rgOf11h9Hx08/5XkkmJvAwnuumyowfTBEVUWc7Hp0+UFUlw3zz6mrYrrBzneOt3yfS0k4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=EPe8L1Dp; arc=none smtp.client-ip=60.244.123.138
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 36483f80f52f11f0b7fc4fdb8733b2bc-20260119
+X-UUID: 37adce6cf52f11f085319dbc3099e8fb-20260119
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=JruXHPh7YMkSWVzP3hFnXvBFWJm/Bm+uRWMQyfcvcVU=;
-	b=LHbA3wgh4g51G/5jTZyLourYBp0fo/+C+l9SwpMleb1nBBTI64bVZKGraoP6Tf2vVYR9J8mDdqX2RIUC+0QbhzBfsrHPF8S2Z5fOHiD7subT4nw5xNJCFfXR5WOlra9frrf8DC6t5VP/QuYZUzBpJj7uYTAM2gp+ACdhKjhRw7k=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=w0nwvDGGbeAKlwnytlfaB28/G6v7YRJwvlUfRCNlojw=;
+	b=EPe8L1DpcN9ftDy5Jic4MHD8r55PInTVCswIrjn+rAilR93SnAz6TO/hoCMBw6ycERTnwXoEJv1j8l1L0hZdgUf1WQfBvElkjJPlD02wVuLMal3w9vH9BO5czu1rIPf1o8Yh/2h+wyTxvWca0SlSNZKV+ZQcJueiqAtGAsW2qXM=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.9,REQID:c7a5f807-3d26-4fa6-9165-5fd918e5a900,IP:0,UR
+X-CID-O-INFO: VERSION:1.3.9,REQID:b5b18ef5-1c5f-4f51-b2cf-51ff76c541ae,IP:0,UR
 	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
 	elease,TS:0
-X-CID-META: VersionHash:5047765,CLOUDID:c00e4c5a-a957-4259-bcca-d3af718d7034,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
-	0,EDM:-3,IP:nil,URL:99|1,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-META: VersionHash:5047765,CLOUDID:ca0e4c5a-a957-4259-bcca-d3af718d7034,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
+	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
+	I:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
 X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 36483f80f52f11f0b7fc4fdb8733b2bc-20260119
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+X-UUID: 37adce6cf52f11f085319dbc3099e8fb-20260119
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
 	(envelope-from <friday.yang@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 130810143; Mon, 19 Jan 2026 20:05:57 +0800
+	with ESMTP id 401522602; Mon, 19 Jan 2026 20:05:59 +0800
 Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 19 Jan 2026 20:05:55 +0800
+ 15.2.2562.29; Mon, 19 Jan 2026 20:05:57 +0800
 Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
  mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Mon, 19 Jan 2026 20:05:55 +0800
+ 15.2.2562.29 via Frontend Transport; Mon, 19 Jan 2026 20:05:57 +0800
 From: Friday Yang <friday.yang@mediatek.com>
 To: Yong Wu <yong.wu@mediatek.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob
  Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
@@ -66,10 +67,12 @@ CC: Friday Yang <friday.yang@mediatek.com>,
 	<linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v12 0/2] Add SMI reset and clamp for MediaTek MT8188 SoC
-Date: Mon, 19 Jan 2026 20:05:23 +0800
-Message-ID: <20260119120552.9325-1-friday.yang@mediatek.com>
+Subject: [PATCH v12 1/2] dt-bindings: memory: mediatek: Add SMI reset and clamp for MT8188
+Date: Mon, 19 Jan 2026 20:05:24 +0800
+Message-ID: <20260119120552.9325-2-friday.yang@mediatek.com>
 X-Mailer: git-send-email 2.46.0
+In-Reply-To: <20260119120552.9325-1-friday.yang@mediatek.com>
+References: <20260119120552.9325-1-friday.yang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,141 +82,108 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Based on tag: next-20260116, linux-next/master
+On the MediaTek MT8188 SoC, bus glitches may occur during MTCMOS
+on/off transitions. The root cause is a hardware design choice in
+the camera subsystem where the SMI LARB and SMI Sub-Common modules
+are located in separate power domains and controlled by independent
+MTCMOS gates. A timing window exists after the main power domain
+is enabled but before the sub-power domain is enabled. During this
+window, unstable glitch signals can appear on the bus. Unlike other
+subsystems, the camera subsystem lacks a GALs (Globally Asynchronous
+Locally Synchronous) hardware module, which would normally handle
+cross-domain synchronization and filter out such glitches.
+In contrast, other subsystems have their SMI LARB and SMI Sub-Common
+within one power domain or could rely on GALs for synchronization.
+Thus they are not affected by this issue.
 
-On the MediaTek MT8188 SoC platform, we encountered power-off failures
-and SMI bus hang issues during camera stress tests. The issue arises
-because bus glitches are sometimes produced when MTCMOS powers on or
-off. While this is fairly normal, the software must handle these
-glitches to avoid mistaking them for transaction signals. What's
-more, this issue emerged only after the initial upstreaming of SMI
-driver.
+To prevent these glitches from causing bus hang, SMI requires clamp
+and reset operations. This change adds the 'resets' and 'reset-names'
+properties to SMI LARBs within camera subsystem to support the necessary
+reset operations. This reset setting is exclusively required for the
+MediaTek MT8188 platform and remains inactive on other SoCs.
 
-The software solutions can be summarized as follows:
+We also add 'smi-sub-common' in the smi-common binding for MT8188.
+This indicates that some SMI LARBs are connected to the SMI Sub-Common,
+which in turn is connected to the SMI Common. The hardware block diagram
+can be described as follows.
 
-1. Use CLAMP to disable the SMI sub-common port after turning off the
-   LARB CG and before turning off the LARB MTCMOS.
-2. Use CLAMP to disable/enable the SMI sub-common port.
-3. Implement an AXI reset for SMI LARBs.
+             SMI-Common(Smart Multimedia Interface Common)
+                 |
+         +----------------+------------------+
+         |                |                  |
+         |                |                  |
+         |                |                  |
+         |                |                  |
+         |                |                  |
+       larb0       SMI-Sub-Common0     SMI-Sub-Common1
+                   |      |     |      |             |
+                  larb1  larb2 larb3  larb7       larb9
 
+Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
-Changes in v12:
-- We used to parse 'mediatek,smi' property in 'mtk_smi_larb_parse_syscon'
-  to get smi sub common regmap. The property has already been parsed in
-  'mtk_smi_device_link_common'. To remove redundant code, we remove
-  'mtk_smi_larb_parse_syscon' function and get the smi sub common regmap
-  in 'mtk_smi_device_link_common'.
-- We need to get driver data in 'mtk_smi_device_link_common', so move
-  'platform_set_drvdata' before 'mtk_smi_device_link_common' in
-  'mtk_smi_larb_probe'.
+ .../mediatek,smi-common.yaml                  |  2 ++
+ .../memory-controllers/mediatek,smi-larb.yaml | 19 +++++++++++++++++++
+ 2 files changed, 21 insertions(+)
 
-Changes in v11:
-- Add error checking in the 'mtk_smi_genpd_callback' function and use
-  'switch-case' statement instead of 'if-else'.
-- Use 'larb->larb_gen->clamp_port[larb->larbid]' to determine
-  whether smi larb requires clamp and reset operations or not in
-  'mtk_smi_larb_probe'. Remove the '_optional' suffix from the
-  function name.
-- Replace 'devm_reset_control_get_optional_exclusive' with
-  'devm_reset_control_get_exclusive' in 'mtk_smi_larb_parse_reset',
-  return the error code if it fails to get the reset controller.
-- Remove genpd callback when smi larb probe fails.
-- Link to v11:
-  https://lore.kernel.org/lkml/20250917120724.8650-1-friday.yang@mediatek.com/
+diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+index 0762e0ff66ef..3d98c08b2149 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+@@ -40,6 +40,7 @@ properties:
+           - mediatek,mt8186-smi-common
+           - mediatek,mt8188-smi-common-vdo
+           - mediatek,mt8188-smi-common-vpp
++          - mediatek,mt8188-smi-sub-common
+           - mediatek,mt8192-smi-common
+           - mediatek,mt8195-smi-common-vdo
+           - mediatek,mt8195-smi-common-vpp
+@@ -108,6 +109,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - mediatek,mt8188-smi-sub-common
+               - mediatek,mt8195-smi-sub-common
+     then:
+       required:
+diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+index 2e7fac4b5094..fc5feb2eac1f 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+@@ -70,6 +70,12 @@ properties:
+     description: the hardware id of this larb. It's only required when this
+       hardware id is not consecutive from its M4U point of view.
 
-Changes in v10:
-- Rename 'smi_comm_inport_id' to 'smi_comm_in_port_id'.
-- Return 0 when it fails to get 'larb_id' in
-  'mtk_smi_larb_parse_clamp_optional'.
-- Link to v10:
-  https://lore.kernel.org/lkml/20250806085946.11383-1-friday.yang@mediatek.com/
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: larb
++
+ required:
+   - compatible
+   - reg
+@@ -126,6 +132,19 @@ allOf:
+       required:
+         - mediatek,larb-id
 
-Changes in v9:
-- Add 'dev_pm_genpd_remove_notifier' in 'mtk_smi_larb_remove'.
-- Remove unused macros.
-- Rename 'sub_comm_syscon' to 'smi_comm_syscon'.
-- Rename 'sub_comm_inport_id' to 'smi_comm_inport_id'.
-- Add more detailed descriptions in change log.
-- Fix incorrect tags.
-- Link to v9:
-  https://lore.kernel.org/lkml/20250804125215.23076-1-friday.yang@mediatek.com/
++  - if:  # only for image, camera and ipe subsys
++      properties:
++        compatible:
++          const: mediatek,mt8188-smi-larb
++        mediatek,larb-id:
++          enum:
++            [ 9, 10, 11, 12, 13, 16, 17, 18, 19, 20 ]
++
++    then:
++      required:
++        - resets
++        - reset-names
++
+ additionalProperties: false
 
-Changes in v8:
-- Fix incorrect tags.
-- Link to v8:
-  https://lore.kernel.org/lkml/20250521063347.31578-1-friday.yang@mediatek.com/
-
-Changes in v7:
-- We replaced 'pm_runtime_enable' with 'devm_pm_runtime_enable' in the
-  v6 patch. This changed the order of cleanup, and reviewers expressed
-  concerns that it could introduce unexpected issues. So v7 discard this
-  change and continue using 'pm_runtime_enable'. We need to conduct
-  further investigation to determine if there are any issues related
-  to the cleanup order. This might be resolved in the future, but for
-  now, we just maintain the current status.
-- Link to v7:
-  https://lore.kernel.org/lkml/20250430094545.23932-1-friday.yang@mediatek.com/
-
-Changes in v6:
-- Fix coding style.
-- Add another patch to replace 'pm_runtime_enable' with
-  'devm_pm_runtime_enable'.
-- Link to v6:
-  https://lore.kernel.org/lkml/20250408033206.12176-1-friday.yang@mediatek.com/
-
-Changes in v5:
-- Use 'devm_pm_runtime_enable' instead of 'pm_runtime_enable'.
-- Remove 'pm_runtime_disable' in 'mtk_smi_common_remove' and
-  'mtk_smi_larb_remove'.
-- Link to v5:
-  https://lore.kernel.org/lkml/20250311122327.20685-1-friday.yang@mediatek.com/
-
-Changes in v4:
-- Use 'devm_reset_control_get_optional_exclusive' instead of
-  'devm_reset_control_get'.
-- Link to v4:
-  https://lore.kernel.org/lkml/20250221074846.14105-1-friday.yang@mediatek.com/
-
-Changes in v3:
-- Remove redundant descriptions for 'resets' and 'reset-names'.
-- Modify the requirements for 'resets' and 'reset-names'.
-- Rename 'mtk_smi_larb_parse_clamp' to 'mtk_smi_larb_parse_clamp_optional'.
-- Rename 'mtk_smi_larb_parse_reset' to 'mtk_smi_larb_parse_reset_optional'.
-- Merge 'mtk_smi_larb_clamp_protect_enable' and
-  'mtk_smi_larb_clamp_protect_disble' into one function.
-- Modify the definition for mtk_smi_larb_clamp_port_mt8188,
-  use 'larbid' as the index of the array.
-- Use 'syscon_regmap_lookup_by_phandle' instead of 'device_node_to_regmap'.
-- Do Not parse 'resets', just check the return value of
-  'devm_reset_control_get'.
-- Add 'has_gals' flag for 'mtk_smi_sub_common_mt8188'.
-- Link to v3:
-  https://lore.kernel.org/lkml/20250121064934.13482-1-friday.yang@mediatek.com/
-
-Changes in v2:
-- According to previous discussions in v1, divided these four
-  patches into two topic separately.
-- Modify the description for 'resets' in binding.
-- Add const value 'larb' for 'reset-names' in binding.
-- Modify requirement for 'resets' and 'reset-names' in binding.
-- Delete 'mediatek,smi-sub-comm' in binding.
-- Delete 'mediatek,smi-sub-comm-in-portid' in binding.
-- Modify the example in binding.
-- Add 'mtk_smi_larb_clamp_port_mt8188' definition in SMI driver.
-- Change the way to parse the 'resets' in driver.
-- Change label from 'err_pm_disable' to 'err_link_remove'.
-- Link to v2:
-  https://lore.kernel.org/lkml/20241120063701.8194-1-friday.yang@mediatek.com/
-
-Friday Yang (2):
-  dt-bindings: memory: mediatek: Add SMI reset and clamp for MT8188
-  memory: mtk-smi: mt8188: Add SMI reset and clamp
-
- .../mediatek,smi-common.yaml                  |   2 +
- .../memory-controllers/mediatek,smi-larb.yaml |  19 ++
- drivers/memory/mtk-smi.c                      | 177 +++++++++++++++++-
- 3 files changed, 188 insertions(+), 10 deletions(-)
-
+ examples:
 --
 2.46.0
 
