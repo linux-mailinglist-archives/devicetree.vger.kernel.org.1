@@ -1,127 +1,170 @@
-Return-Path: <devicetree+bounces-256890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0541ED3AAA1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:45:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C41BDD3AAB8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:52:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 08799307D73E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:44:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6B04430517C0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:51:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8287D36C0CB;
-	Mon, 19 Jan 2026 13:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E4B36C5A1;
+	Mon, 19 Jan 2026 13:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jcYctsTk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F184336BCE1
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D611D358D16;
+	Mon, 19 Jan 2026 13:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768830296; cv=none; b=HJIJazlc7hdcpYasxxjzeJN7+sWm4g4UM4vBrmPYLaNjlYBtS/t+TQhfv6XB5Vzybm4Q/GQkZlhUahNvz4LPvRHVKmHpSnJSnkhL58J7EFzeTXtJndOB/LAL1m9aU7bCP0hZRyzb7OMO95lkuik3AU4C+JAkbAgoxiDlxwllGhc=
+	t=1768830690; cv=none; b=I3mtLay9UqI+Gn5mrrCkI6xho39gugWcyhXBwA5R2u1WMYrY0J2KlgIzTaA3p9KyY2jI9fM07V/cJXAPQfed2GykAr0GSN/euUU4tYLwjteWlEXpFPRXFb/52Vl0xz5Oz2my8x5jmN/62vJg6eI8zUsPUuT77DSPTG9Dex9B7yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768830296; c=relaxed/simple;
-	bh=IDPmRGzy3Ziqo0nneZDxX1IWNWkRukcit2ZT0CpFb/4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fNWUN0/MwpalPg2OUDFXSq6CnZEdpGnXeqPmUmnv82DYaRQAMnoJ+HZliSeCZ2/K6jYP4SA/jdmurY4SKo5MSF6zm9qyF/wPr7aHELH3lwwYlZuE8bcm+gi4e9Pgg2LBRz6P6jlj6/8wjOqNZ9UYHux0IN2nvRQRBdis6Po3GgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1vhpYk-0006Dl-Hq; Mon, 19 Jan 2026 14:44:46 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Mon, 19 Jan 2026 14:44:43 +0100
-Subject: [PATCH v2 2/2] drm/panel: simple: add EDT ET057023UDBA panel
+	s=arc-20240116; t=1768830690; c=relaxed/simple;
+	bh=fAZCHieISFsZnHq7ZBZ5G98mt7NznbqgCWwW7lkYmbg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OusrEjn5VjWIaJTVBNPZYmw6yuWuOlQvR4aaQOmSo0dScCMQObp99MKc5NhxAhHlKJmn4yKalMO4r72X4iFgQbm+1ifZ4Lf3U1UzuzqHfcgHwkVAgIdIfxCGoGAPfFPJbloZJLstCfxptLkDc1yoUpR96vJkzhZpF8EZzA3XswQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jcYctsTk; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 34749C214D1;
+	Mon, 19 Jan 2026 13:50:59 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 3C2A460731;
+	Mon, 19 Jan 2026 13:51:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 606F710B6B018;
+	Mon, 19 Jan 2026 14:51:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768830685; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=BagPtz+xR382fnv7uowNeqpW6pTaVKl6rZQoMQBOSR4=;
+	b=jcYctsTkfKn9TmTshNYKPIZ2QdV5y57tThUWAfMtBP38sC13Hmy3EUKTUfaoHLZVcaj7VY
+	70SgTKpmLYMHTHKhAPUxH+WrKhw2Plq/CQQy5aEOjfS18HqIqIRoRXiqGtiAg1VcvXXoBq
+	LZZ8vwWZDiE6d/v0Vpe30ENc8B0iVKhMIZpUo6utgdr/N+L0VWk+MspLLFMeNDtozixtpn
+	Wjcx9z0dPq3Oi7XPBl1MEwQFJqdliVjOr9aXp3+45fxZfQLQzf/85olsWUBt2frKevR8nN
+	8xrQVVEtqKnyhKnip+ZkU3wWJr2TjbXAkqmfNKgw2jM6BSAweyNDsnrVgSQPPQ==
+Date: Mon, 19 Jan 2026 14:51:20 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 19/77] dtc: Introduce export symbols
+Message-ID: <20260119145120.724c419d@bootlin.com>
+In-Reply-To: <aW3GWZl8AmzsTEu0@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-20-herve.codina@bootlin.com>
+	<aWiAmjfMiKpC4sdp@zatzit>
+	<20260116172735.757c1872@bootlin.com>
+	<aW3GWZl8AmzsTEu0@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-v6-18-topic-panel-simple-et057023udba-v2-2-3c73f0c9d87a@pengutronix.de>
-References: <20260119-v6-18-topic-panel-simple-et057023udba-v2-0-3c73f0c9d87a@pengutronix.de>
-In-Reply-To: <20260119-v6-18-topic-panel-simple-et057023udba-v2-0-3c73f0c9d87a@pengutronix.de>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel@pengutronix.de, 
- Marco Felsch <m.felsch@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add support for the EDT ET057023UDBA 5.7" 24-bit 640x480 DPI panel.
+Hi David,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- drivers/gpu/drm/panel/panel-simple.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+On Mon, 19 Jan 2026 16:51:21 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 0019de93be1b663f55b04160606363cd043ab38b..953c1969a74e9880c7fccfe308ff016c7a941c91 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2096,6 +2096,35 @@ static const struct panel_desc edt_et057090dhu = {
- 	.connector_type = DRM_MODE_CONNECTOR_DPI,
- };
- 
-+static const struct display_timing edt_et057023udba_timing = {
-+	.pixelclock = { 23200000, 24190000, 39640000 },
-+	.hactive = { 640, 640, 640 },
-+	.hfront_porch = { 20, 40, 200 },
-+	.hback_porch = { 87, 40, 1 },
-+	.hsync_len = { 1, 48, 87 },
-+	.vactive = { 480, 480, 480 },
-+	.vfront_porch = { 5, 13, 200 },
-+	.vback_porch = { 31, 31, 29 },
-+	.vsync_len = { 1, 1, 3 },
-+	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-+		 DISPLAY_FLAGS_SYNC_POSEDGE,
-+};
-+
-+static const struct panel_desc edt_et057023udba = {
-+	.timings = &edt_et057023udba_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 115,
-+		.height = 86,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE |
-+		     DRM_BUS_FLAG_SYNC_DRIVE_POSEDGE,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+};
-+
- static const struct drm_display_mode edt_etm0700g0dh6_mode = {
- 	.clock = 33260,
- 	.hdisplay = 800,
-@@ -5109,6 +5138,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "edt,etm0430g0dh6",
- 		.data = &edt_etm0430g0dh6,
-+	}, {
-+		.compatible = "edt,et057023udba",
-+		.data = &edt_et057023udba,
- 	}, {
- 		.compatible = "edt,et057090dhu",
- 		.data = &edt_et057090dhu,
+> On Fri, Jan 16, 2026 at 05:27:35PM +0100, Herve Codina wrote:
+> > Hi David,
+> > 
+> > On Thu, 15 Jan 2026 16:52:26 +1100
+> > David Gibson <david@gibson.dropbear.id.au> wrote:
+> >   
+> > > On Mon, Jan 12, 2026 at 03:19:09PM +0100, Herve Codina wrote:  
+> > > > Export symbols allow to define a list of symbols exported at a given
+> > > > node level. Those exported symbols can be used by an addon when the
+> > > > addon is applied on the node exporting the symbols.    
+> > > 
+> > > This seems to imply an addon always applies at a single node location.
+> > > I'm not sure that's a good design choice, since I don't see how it
+> > > covers the case of something that connects to several connectors.  
+> > 
+> > Apply the addon on a node that knows about those connectors.  
+> 
+> That seems limiting to me, because it requires the base tree to know
+> about all possible connector combinations, which I'm not sure is
+> feasible.  If I understood Geert(?)'s case properly, there are use
+> cases where a board might have, say, six "type foo" connectors, and an
+> addon board could connect to any two of those.  Of a board might have
+> 3 "type foo" and 3 "type bar" connectors and an addon board needs to
+> connect to (any) of each.  It seems much more natural to me that at
+> attach time you say
+> 	"addon foo 0 => board foo 1, addon foo 1 => board foo 5"
+> or	"addon foo 0 => board foo 2, addon bar 0 => board bar 1"
 
--- 
-2.47.3
+Who can perform this mapping ?
 
+The user applying the addon if a tool is used such as fdtaddon for instance
+(even if this kind of mapping is not yet available in fdtaddon I proposed).
+
+Or a driver that knows about the board connectors.
+
+This driver will apply the addon dtb and provide custom mapping between
+symbols expected by the addon (/import/) and symbols provided by the board.
+
+> 
+> Rather than the board itself having to anticipate all combinations.
+> 
+> > > > In order to perform
+> > > > its symbol resolution. Any unresolved phandle value will be resolved
+> > > > using those exported symbols.
+> > > > 
+> > > > The feature is similar to __symbols__ involved with overlay but while
+> > > > all symbols are visible with __symbols__, only specific symbols
+> > > > (exported symbols) are visible with export symbols.    
+> > > 
+> > > This paragraph doesn't make sense to me.  What's a "symbol" if it's
+> > > not something in __symbols__ or export symbols?  
+> > 
+> > An imported symbols ?
+> > 
+> > /import/ foo "blabla";
+> > 
+> > from the addon point of view where this /import/ is present, 'foo' is a
+> > symbol.  
+> 
+> I guess, but existing plugin stuff doesn't really have imported
+> symbols, so the example doesn't really illuminate the difference from
+> the status quo.
+
+A plugin need to know about all possible symbols available on the board
+is applied too. This is the purpose of __symbols__. This just means that for
+plugin all possible symbols are imported and symbol translation is not possible.
+
+A plugin is designed for a specific base board. It needs to know about each
+busses and how they are wired.
+
+I mean a plugin references i2c5, the i2c controller number 5, and i2c5 needs
+to be present in __symbols__.
+
+The target property in __overlay__ identify the target node. Here also, this
+is dependent on the board the plugin is applied to.
+
+Addons depend only on the node, describing the connector, they are applied
+to. They do not depend on the full specific board where this connector is
+available.
+
+Two different boards can have the same connector available and a given board
+can have two connectors of the same family the addon can be connected to.
+
+Best regards,
+Hervé
 
