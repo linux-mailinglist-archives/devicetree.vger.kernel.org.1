@@ -1,231 +1,192 @@
-Return-Path: <devicetree+bounces-256884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608D8D3AA57
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:29:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0D2D3AA6D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:35:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6FE9A30590E7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:27:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 07F0630A7FE0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB15F36921C;
-	Mon, 19 Jan 2026 13:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A579C36A01C;
+	Mon, 19 Jan 2026 13:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yvt1z8CN"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cE19lbJE";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aTz6tPJ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863D7368298
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F294E36827A
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768829235; cv=none; b=GBgzirYerk0tIYQmEA8H23bFhHpWz/sbeeFXZKP9+aaBzHfbrejvil0V7+gZ/Z488ytRkSoVq/+XDtKDbCeaRjH2/93AOOAvaMwQVIzQ6EoEv/0DcJLnTP2LgHokvFcNHP/Dwl4NF6ehfJG77yCknxbDvbEwyt3/L+jftZ4iTpc=
+	t=1768829483; cv=none; b=I6ZvgvaUkOqtxHVWrIAtsb2qMMGZBiVZNcSK/212/OsmP3h2sIJShaWrjNp8AMrPeVubXmh3/j7c8UDQGB+yKmEL43hEScwWQHXBpo817cKqbSXoaFx5sj6E4gVMMqgD/lt4z0QSrfumKKrUKeA51FwdUCMj6zESWzdK4+wT36A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768829235; c=relaxed/simple;
-	bh=y4ke/+OyygqynnXX/H59Fqon7GhU3naLqveuRutNem0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Fn+SJ8niUkxKNfyv/K5dGcDSKD7Y/BXnW0Fte3IMHZGQVm7EfeFNgtBuahb4vwpvOPNv1J9dJHH+GsTZGNGPSUFh+iT68NszqM+KtpL1NuDICAY707aysKDMPuVTxFjbV7KfimRMSqmHn5HEb/AOT9weB3Ssk5nN3QrTzL5wf/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yvt1z8CN; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4801c314c84so25079855e9.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 05:27:13 -0800 (PST)
+	s=arc-20240116; t=1768829483; c=relaxed/simple;
+	bh=5ViQuA8mqn++bVELbjVqt4k8ONw4PIjygbQAyIaqaq0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rnzfa1A223e762dR0k0SXMhmamjtehJDdON3oiFrNb2WWPv06+giB5fkyGY6GhlVoE0XwU5LKQa3p122or+uUVj1/Ia8dpjqYrk9YdmpiFYjglDB57j1LSIRb11J5LZs5RwyPITHLJZxMgPSJUY6w3HwGVbDaiLP9oDjjqZGrYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cE19lbJE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aTz6tPJ8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J9mxYY2965062
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:31:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sAyyhZbB6CsZuklvGfuQpa3u0GJq/DZk9ERJShqyFGE=; b=cE19lbJExcsJke5c
+	0lls4LKc3Bzwkvoi6aSg7lolU3ES4jFL0OIvCNFs+hlwAl0ntKm685RYhFClXkY3
+	/9g6UfsyeU59omgbXGLztu0sQXBJ30mLDv7bd4+hg62kTUeUFg5r2Xi14bUxuMoB
+	s1rM+msFbKeSHSKBJsm7vU5xbxPHDeO1LIUGqU9UgPijVQOXb4CHmmAB6gPrLAvg
+	ozXFo1zDkWt0tw/PysFVYKZvBGLEP+L+eVyQqCl83y2s3O/C2B5tBxrtke/WsMZ5
+	3VmKft3hRUjFVe8tkqa+qmk5lU4Y89A+Ihbtdyk9EcIX7AA+oH0T/aRFy15q+2dA
+	iXsBTA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsjaa8m1y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:31:20 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c533f07450so102622985a.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 05:31:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1768829232; x=1769434032; darn=vger.kernel.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eCbuiYjGuVvlbB4vqWDSqvvIfZr+F+0/4EzDwihuPK4=;
-        b=yvt1z8CNR9CgTzNnVsQj4D0zkhW44gI0GFU50nZ0SE5TC5A+slFsEQ+YuCQQRBsWcI
-         kDl4DQgJ1hNO8i9C7JoABsh+WIvh5llU/oGHHjVFy+bkpnXB7FP5We6yD/il93u5T0oD
-         TWWG8FkK+ECUfprzI618TP6l4QQXv9L50BD1454I2Orn5uxt9HL729rgFqZFvuC1E4MW
-         5lKNaGh/T2Se6H+aYP1hhxP0fmr4GH7DFy2xftheZiyk8paq9PSu48B9hKdwxv0DsdVP
-         eidoc8Ezrt+L0h6QIEF3VULgDdJF5Kvt5OBbtF6bMa8RXSMx7dyTxABrrR37PBYuadnP
-         /jNw==
+        d=oss.qualcomm.com; s=google; t=1768829480; x=1769434280; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sAyyhZbB6CsZuklvGfuQpa3u0GJq/DZk9ERJShqyFGE=;
+        b=aTz6tPJ8iiV7gnhEd+fGc49saEgn3nwP/GiGtHnCttUeJKV+4HR4VdQ59lsVnHBE21
+         RHwabOlOz2rQIgf3o9dsRu6WOLRBJj1DdrrD3HTLoVEP+H/2wJpA41hB6/Igzrkff/Y8
+         GW51zmeJ9iK9KnQ1Mjgn33DnJuuD3QkGHuGOd7A+DUGql7QniSDsequi+fMsS+1t3+5Q
+         WyrIz9xTjTLb62jFMdgzFH/FSfOvdYAyvJmEuCm6CXQyxKk5vwEnc2t/XXPMXJSlGzlC
+         cPNMQ/+DMDOYgw54bQtQEUic0oNW1vg/tLxfQsdufWf4VkTUQCD6jxrIm/Skkdd4EU/6
+         oo8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768829232; x=1769434032;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=eCbuiYjGuVvlbB4vqWDSqvvIfZr+F+0/4EzDwihuPK4=;
-        b=TRwM915CA6bCMpDFtgXBMaqybdgUSSw6TRVXOAK5jLY65WVM9WJJvaPO9RuKEd9yW7
-         1VEdBFXHYLm6lif4H9JteRb3Wi3EHJdeK+lIKgbdRCLFmiMXa2/lQIYtvpRPkaqduzi6
-         u/CRAlGKuZKQHW5EyXK7CLN/smMyGgq1BipG3/spuJH+21xjO5MMthq+hciDcRThrz+I
-         3G6WHaUtavP5UlkBjXUxSuNSxK39UvDrWQGVmeFlOjL+2eAR3Idjyux96MkLc8hgi1iT
-         u1kaKPrqTM6fGma4ARva+ibUyT4V8WWUrl+SFlQjsTXvodu0kwvsgARCFtmIBVxtY9CR
-         YQgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWM3YErJ5dp8HrwwgjUfILcf85k3VC445YkAkObWkT7kEuLFvN+ABrnZjyHKD9VXOy86wXGV5S/2Qps@vger.kernel.org
-X-Gm-Message-State: AOJu0YySxsOfOMPd3f+hIP2olsfLksV3v9hNWOYvkR19i97y953Fsvnu
-	5aInG0CzySVQO0SX18iADiX+Q++nSl/wWbeqqvCbG9i1/kbFYt7P/CImnO9TOjQhwB4=
-X-Gm-Gg: AY/fxX5aZBNvc0XSTYZUr7G3YYPejJyW8PM3wqg7wfIGYbBwus3DAZAX7lgZQilEwpE
-	YUbx5HzjEoiY0HyMKqiQ01ui+URzO8Bix8X8Fe0SetcypnMeA558jvV6JlY+GZ2ufAz7PPgUKil
-	Fvq5j4pJ21U1PzRowsA7H0M/s3FcCYfBZ1Nwfoa1lFyZQUrqJ+R8SsIwjJX7AOEAefedG24N1sI
-	2JFzYrdXejsbv6dILFYDg+LECCdjPy71KQ4Kgjpl9YUkqX1TjoZdVyyuDe7sZoPdU3T83mKjD4c
-	JiKMAELN4z58d4se2m5gyBU5+nfM299jZlDk0BdtPXYSMgyq7hodWsUOjTOtbqlise7cY7TwcBJ
-	sVL09ZmfUyi++TlMuJyYht9J/klo9qcmX2PUYC+LyuFrP0wfeNiyAok7E6rArnAq3a1CdWN5KwX
-	hTyeOXNXvMyQ==
-X-Received: by 2002:a05:600c:8b67:b0:47d:3ffb:16c9 with SMTP id 5b1f17b1804b1-4801e342091mr114088625e9.23.1768829231748;
-        Mon, 19 Jan 2026 05:27:11 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:4154:6ad6:c781:df9c])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4801e8c0499sm197706815e9.9.2026.01.19.05.27.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 05:27:11 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
-  Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
-  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  linux-kernel@vger.kernel.org,
-  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 5/8] clk: amlogic: Add A5 clock peripherals
- controller driver
-In-Reply-To: <ea7e209d-cd30-4d93-9deb-104aaf7c92eb@amlogic.com> (Chuan Liu's
-	message of "Mon, 19 Jan 2026 20:16:19 +0800")
-References: <20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com>
-	<20260108-a5-clk-v5-5-9a69fc1ef00a@amlogic.com>
-	<1jecnsr1eg.fsf@starbuckisacylon.baylibre.com>
-	<ea7e209d-cd30-4d93-9deb-104aaf7c92eb@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Mon, 19 Jan 2026 14:27:09 +0100
-Message-ID: <1jbjipviky.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1768829480; x=1769434280;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sAyyhZbB6CsZuklvGfuQpa3u0GJq/DZk9ERJShqyFGE=;
+        b=gUKxW4ls6Zgsn5BPlrS5+GcIGyXJ1TF7cypFS7R/WUEXdyx3Z0r54Bm4cpOOdBfM8L
+         EByqyBhNasH9FLnMMNqZAmuR3NKRW8ZNlD5CtPMTAaShMM6sNsKy+EYKW1/BnIdRKZej
+         m1VM5th+LLztDAufO+R9yTpzdSaqGPlyNrJAlC1l+5+l066PWh96Qd3kjOR7htyDQEOf
+         hWwVCMHvB+z9XPPaNylpOK+M94+vt32dMKSLqoR7MZOw7gxeaXFgXzern7dwlDPu3b5N
+         9Ds3h9ntc38cRZXTbM0/498/8hsuoLNuS1aQ9ckOl9BliACnkYHKg9bHAgJTjR5AuW9M
+         5nZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4/vDrszkxAoyvht6NqucOqc8rxQfXDf24TsrYoLQge/DTA8J1kqokrBWNn/dnAamgYR4FZ2vbe8v/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsFh5vr3htZBSGU/6J3DFiEGGWtVJGPzMziXZHWURUNgLw/fr+
+	j+o7Ok7QRxR+NDZubBaCxDxQ7PhgrzrRKIhx/TqJoAomeF4F7rUUPBof0TcmzfVgQSpqOos67IE
+	TyliMSip0s+Gcft8MofZ4hCA+cspJd8kXQrHpTI3UKPDY4TLH3xsLU5s6owd650M6
+X-Gm-Gg: AY/fxX5avx01UbebgecU3FClOyiukJ3RgybwMfrtgq0Qvr2Ag5tmaQLoOlENw9KdTNk
+	LB2R6GMJ7xcwPCUwDOwreJPBD6slnA3NtxP+hQzMOKuIfCwCUbtobz7yq7xAsCAitoTFPdSDzog
+	BxlUxu9vxi1c0ixAcmdV4F+NXwxUOn9pve7Fbri7IWBqgVFDFmlFt4pSUpnlL3PMwuc0T0nzy31
+	yHLcVooNfaWXh27Mnr5/9A/sJwX0lQvpgCXVWJdw3N+BR04iKI7v8Rp6pZJ5jB0o/DhcVRT7XUP
+	Z6qwOWqHwYIN8f3+6g9tmXWVAg3CQW90weTkQXxEw+YxmPN9mOqGq/ymX9QH5q22Qiw3RuEe+JD
+	TnsjeJt2eP+npDDwYShF8gAvMY2jMXUoEAF/Li5GslpLYXIozdZmtfhZ6RnC0cTQCEBc=
+X-Received: by 2002:a05:620a:1911:b0:8a3:d644:6930 with SMTP id af79cd13be357-8c6a6716bedmr1224550785a.5.1768829479887;
+        Mon, 19 Jan 2026 05:31:19 -0800 (PST)
+X-Received: by 2002:a05:620a:1911:b0:8a3:d644:6930 with SMTP id af79cd13be357-8c6a6716bedmr1224545785a.5.1768829479299;
+        Mon, 19 Jan 2026 05:31:19 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b879516900csm1178682566b.23.2026.01.19.05.31.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jan 2026 05:31:18 -0800 (PST)
+Message-ID: <d1d05b31-f70e-4250-8ff0-bfcba7f5923d@oss.qualcomm.com>
+Date: Mon, 19 Jan 2026 14:31:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: Add base PURWA-IOT-EVK board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Yijie Yang <yijie.yang@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
+ <20260116104136.2922032-4-yijie.yang@oss.qualcomm.com>
+ <d15bbe2a-a88a-4a88-a685-ecd4f058c3af@kernel.org>
+ <3404f2f4-7edb-4bff-925b-0a6a7a450f5c@oss.qualcomm.com>
+ <eawxuhblnho4pyeyskvk5s4ouqser7o5jh267ttinzeeowxfxs@y6nl2qbdydb2>
+ <e1c00e57-cac9-495a-9d27-f77ceac5c5ce@oss.qualcomm.com>
+ <7sbof5mgm7mqtm4gh45f4w7264akplqtkfyplrerek4w6seipl@ith7sc3wmgih>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <7sbof5mgm7mqtm4gh45f4w7264akplqtkfyplrerek4w6seipl@ith7sc3wmgih>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDExMiBTYWx0ZWRfX6oWkEv0roT17
+ w/bndEB38hHxNV2u39FJ8pKEglP7fjJv4zItKatAyHrc/ErZwXQy0OGiWPx64SxcaaM8XLS5H2b
+ h+ihfKCHsSVbkJy2wCCdu1U7VQKEGDg5u4WJbApSG5EG47a67iC/gND6vPhKQ0e+8RkZPCAjBrt
+ JxiLF8GARzm5xDiV4eYOaIFdtYUGKEUqRG6uUhHIbcsWvd2ATLDGgBOqy+frn4nj0p1JBa17ONo
+ rWHAAwSI9wSewOq8Ca2NPKBq63/j795wFxCqA67ghNIFz40RGJzCDEHCMzzfQB8Cmb6VeCClmvM
+ TL7oEKIRXsQFy8tiR6MbclpZu847emdTUxvPjZ5fhnrS7FZpImEuedUbY+qHM+i6WsxQSCj0yAz
+ j39xQ07gsYc8hDBgYL3LXyP6aj95/V71ziTXIVxV0xKUN5wSxZWaZEMQ/r2Wc14r+pMBxhDg4zX
+ wnC8y3n/WTgyz8XsJIw==
+X-Proofpoint-ORIG-GUID: C1zK-d80Lh0u4dtxVNBKUsbcfWpMnC61
+X-Proofpoint-GUID: C1zK-d80Lh0u4dtxVNBKUsbcfWpMnC61
+X-Authority-Analysis: v=2.4 cv=L8gQguT8 c=1 sm=1 tr=0 ts=696e3229 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=C50igqWIdSMoUx98drYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-19_03,2026-01-19_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 impostorscore=0 suspectscore=0 phishscore=0 spamscore=0
+ clxscore=1015 priorityscore=1501 lowpriorityscore=0 bulkscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190112
 
-On lun. 19 janv. 2026 at 20:16, Chuan Liu <chuan.liu@amlogic.com> wrote:
-
-> Hi Jerome,
->
-> On 1/14/2026 5:25 PM, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->> On jeu. 08 janv. 2026 at 14:08, Chuan Liu via B4 Relay
->> <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
->> 
->>> +static struct clk_regmap a5_rtc_clk = {
->>> +     .data = &(struct clk_regmap_mux_data) {
->>> +             .offset = RTC_CTRL,
->>> +             .mask = 0x3,
->>> +             .shift = 0,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data) {
->>> +             .name = "rtc_clk",
->>> +             .ops = &clk_regmap_mux_ops,
->>> +             .parent_data = a5_rtc_clk_parents,
->>> +             .num_parents = ARRAY_SIZE(a5_rtc_clk_parents),
->>> +             .flags = CLK_SET_RATE_NO_REPARENT,
->>> +     },
->>> +};
->>> +
->>> +#define A5_PCLK(_name, _reg, _bit, _pdata, _flags)                   \
->>> +struct clk_regmap a5_##_name = {                                     \
->>> +     .data = &(struct clk_regmap_gate_data) {                        \
->>> +             .offset = (_reg),                                       \
->>> +             .bit_idx = (_bit),                                      \
->>> +     },                                                              \
->>> +     .hw.init = &(struct clk_init_data) {                            \
->>> +             .name = #_name,                                         \
->>> +             .ops = &clk_regmap_gate_ops,                            \
->>> +             .parent_data = (_pdata),                                \
->>> +             .num_parents = 1,                                       \
->>> +             .flags = (_flags),                                      \
->>> +     },                                                              \
->>> +}
->> I wonder why I bothered reviewing v4 ...
->
-> Regarding the comment you made on V4, my understanding is that you were
-> just teasing ...
-
-You are redefining the PCLK here, the *exact* type of pointless differences
-we've worked last year to remove. This is something you can't have
-missed since you've complained about it taking too long.
-
-And now, you've thought I was "just teasing" about it ?
-
-I'm bored with your botched submissions Chuan.
-
-> In the next revision, I will change this part to use a
-> unified macro.
-
-Yes please.
-
->
-> We may also consider adjusting the "MESON_PCLK" macro later by removing the
-> SoC prefix from the clock name,
-
-No
-
-> so that it is consistent with the naming
-> style used by "MESON_COMP_SEL" / "MESON_COMP_DIV".
->
-
-Just do the same as c3 and t7.
-
->> 
->>> +
->>> +static const struct clk_parent_data a5_sys_pclk_parents = { .fw_name = "sysclk" };
->>> +
->>> +#define A5_SYS_PCLK(_name, _reg, _bit, _flags) \
->>> +     A5_PCLK(_name, _reg, _bit, &a5_sys_pclk_parents, _flags)
->>> +
->>> +static A5_SYS_PCLK(sys_reset_ctrl,   SYS_CLK_EN0_REG0, 1, 0);
->>> +static A5_SYS_PCLK(sys_pwr_ctrl,     SYS_CLK_EN0_REG0, 3, 0);
->>> +static A5_SYS_PCLK(sys_pad_ctrl,     SYS_CLK_EN0_REG0, 4, 0);
->>> +static A5_SYS_PCLK(sys_ctrl,         SYS_CLK_EN0_REG0, 5, 0);
->>> +static A5_SYS_PCLK(sys_ts_pll,               SYS_CLK_EN0_REG0, 6, 0);
->>> +
+On 1/19/26 10:46 AM, Dmitry Baryshkov wrote:
+> On Mon, Jan 19, 2026 at 04:48:20PM +0800, Yijie Yang wrote:
+>>
+>>
+>> On 1/19/2026 2:33 PM, Dmitry Baryshkov wrote:
+>>> On Mon, Jan 19, 2026 at 11:13:29AM +0800, Yijie Yang wrote:
+>>>>
+>>>>
+>>>> On 1/17/2026 12:19 AM, Krzysztof Kozlowski wrote:
+>>>>> On 16/01/2026 11:41, YijieYang wrote:
+>>>>>> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>>>>>>
+>>>>>> The PURWA-IOT-EVK is an evaluation platform for IoT products, composed of
+>>>>>> the Purwa IoT SoM and a carrier board. Together, they form a complete
+>>>>>> embedded system capable of booting to UART.
+>>>>>>
+>>>>>> PURWA-IOT-EVK uses the PS8833 as a retimer for USB0, unlike HAMOA-IOT-EVK.
+>>>>>> Meanwhile, USB0 bypasses the SBU selector FSUSB42.
+>>>>>>
+>>>>>
+>>>>> NAK.
+>>>>>
+>>>>> Warnings were reported at v3. Did you address them? No, you completely
+>>>>> ignored them, so warnings are reported again at v4.
+>>>>>
+>>>>> What do you think these emails are for?
+>>>>
+>>>> This warning is caused by the pcie3_phy node in purwa.dtsi, which is not
+>>>> introduced by this patch set. Since it does not impact functionality, would
+>>>> it be appropriate to fix it in a separate patch?
 >>>
->> [...]
->> 
->>> +
->>> +static struct clk_regmap a5_gen = {
->>> +     .data = &(struct clk_regmap_gate_data) {
->>> +             .offset = GEN_CLK_CTRL,
->>> +             .bit_idx = 11,
->>> +     },
->>> +     .hw.init = &(struct clk_init_data) {
->>> +             .name = "gen",
->>> +             .ops = &clk_regmap_gate_ops,
->>> +             .parent_hws = (const struct clk_hw *[]) {
->>> +                     &a5_gen_div.hw
->>> +             },
->>> +             .num_parents = 1,
->>> +             .flags = CLK_SET_RATE_PARENT,
->>> +     },
->>> +};
->>> +
->>> +#define A5_COMP_SEL(_name, _reg, _shift, _mask, _pdata, _table) \
->>> +     MESON_COMP_SEL(a5_, _name, _reg, _shift, _mask, _pdata, _table, 0, 0)
->>> +
->>> +#define A5_COMP_DIV(_name, _reg, _shift, _width) \
->>> +     MESON_COMP_DIV(a5_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
->>> +
->>> +#define A5_COMP_GATE(_name, _reg, _bit, _iflags) \
->>> +     MESON_COMP_GATE(a5_, _name, _reg, _bit, CLK_SET_RATE_PARENT | (_iflags))
->>> +
->> At the top. like C3 and T7
->
-> Except for A5_COMP_SEL, which differs slightly from T7 due to the
-> additional "_table" parameter, the other macros are consistent with T7.
->
-> I also asked for your feedback on this in V4 and received your
-> confirmation. Is there anything here that still needs to be updated?
+>>> Why can't it be fixed as a part of this patchset?
+>>
+>> 'qcom,4ln-config-sel' is a property related to bifurcated PHY support, which
+>> Purwa’s PCIe3 does not provide. Therefore, introducing a new compatible with
+>> a corresponding binding would be more appropriate than simply adding this
+>> property. Is it acceptable to address this within the current patch set?
+> 
+> Within this or in the separate patchset, but it needs to be fixed before
+> this patch can go in. Otherwise we are enabling broken PCIe3.
 
-Reviewing these long patches takes time. I tend to stop reviewing when I
-noticed some feedback was ignored, especially when it is recurrent
-problem. I've told you that already. It is up to you to make sure you are
-not missing anything before re-submitting if you don't want to waste time.
+https://lore.kernel.org/linux-arm-msm/20260119-topic-purwa_phy_shutup_warning-v1-1-997a692b31c6@oss.qualcomm.com/T/#u
 
->
-> [...]
-
--- 
-Jerome
+Konrad
 
