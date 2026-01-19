@@ -1,157 +1,111 @@
-Return-Path: <devicetree+bounces-256865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63636D3A86B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:17:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C29BD3A855
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D75B73050CF0
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:14:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D63AC3024599
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C95535A921;
-	Mon, 19 Jan 2026 12:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 758672F39A9;
+	Mon, 19 Jan 2026 12:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1XC3ESJy"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="W+l/xcpa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD5C359F8D;
-	Mon, 19 Jan 2026 12:14:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCF52DB7BA;
+	Mon, 19 Jan 2026 12:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768824859; cv=none; b=fwRHnsxvPUFu6VQlvo7oBX9+SZP/CRYoltJkviPtEw0gdXWHVSngSKGM9BtFEg1A4hoSot0kgoBNPfvTUgdNw/T6ofkrUIs1/pfbInZagCDFUJclZnzsaDYhAxorHHr7I+5/Vb3VRI0rzyFU8FiJ2r5oI4Ch4QUqPGoabNGErNk=
+	t=1768824964; cv=none; b=VNUFmzrN0OlBwvyzBG9FQ/bH4x8/WnsRO9bEtBH0nuSX0tJZpgEH1ffuawV2TxjGrh4YW5k5viT4ywHv0bfV19ohsAFVgHJBz+xz92rx+m7zW+PzdXk5nrsjX1QPxnij1mdsNprBe6DwOnTKtwTgH08C9kw/uy758vIa4RT5Wbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768824859; c=relaxed/simple;
-	bh=XryzhOHa41z8m7PsycTorfIXsENzLf8YHcHzV/a/X60=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kkVi21b3rlq/L5wAuDyLP0CX6Q40z1kawpcxM0+MFuD6oRMLDNC8gT07Xd7sEh5gWH8Bk/vZ3AEDyMJHOtszku/4TLyFCH6JcPSkEBrovrGifO2kbT+NDtLtS68VkZtZrFcyIzUsueHWYWu9g6a4j8U4E4fn0i88I8krqtBnbsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1XC3ESJy; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 3703B1A294D;
-	Mon, 19 Jan 2026 12:14:15 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0A42760731;
-	Mon, 19 Jan 2026 12:14:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 99E7A10B6AF00;
-	Mon, 19 Jan 2026 13:14:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768824853; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=a/sX83dIQSwOj6eBiYLBpNp0DUp4Dh1s597Hdwug/7A=;
-	b=1XC3ESJymppL/Llfy5JxuSG+impN+9M9djtlhXLCMySNByxWZkBRcu1LXxDfdWs+fDlVhM
-	I4qZk+fzbmHhxhGJaJ04ussLgs3H4cPb/FRl7Tm/LfenXHcGDEm/SDAI5NtLdB8QBpLzW/
-	nXd5EeCtJ5s++N5bP2pKWqh6/bKkeJ1MnsX08SmYFgo0QiHb59RAWybK4o39DOulBHDKD2
-	cY6Rl2tMBpE8SZs4/XqNR8iKMAza6BHLJ56EJwEffiFB1Fv95JQuVm/eNps0axgtApjkq/
-	Ny/6iR53BjTiyqfpQtc4xGIElyg+ETSQSdHx0lOR6RSK2FlRPS77tkCCj1WiGA==
-Date: Mon, 19 Jan 2026 13:14:07 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 09/77] dtc: Introduce mark_local_phandles()
-Message-ID: <20260119131407.4a9431f1@bootlin.com>
-In-Reply-To: <aW3FPbd7Dw0Rdqtc@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-10-herve.codina@bootlin.com>
-	<aWg5bD4zWYAQOYai@zatzit>
-	<20260116140912.3d18ae39@bootlin.com>
-	<aW3FPbd7Dw0Rdqtc@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768824964; c=relaxed/simple;
+	bh=krPwPQ2jWPDCO3IoDZIF0uFZ08G4aXcoMwGFnbwRwls=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=gtdho2IBkx5PXS7/VOxZQfMxWgSLmPdkjD+IhPoraEdQyg2JQU2mmU5yteZN4Rt+OfN+oVZKtsBI4L/bBJ0ltSn9915zKc6jpn0EEuxSrVa6GSSBCbQMSUZKnL+3hoAFQeHy7eljs2s+K6Nyh5x7uszZgt63tZPIiBBiFhAs+ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=W+l/xcpa; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id; bh=h94LT3YrkKdD2Yi
+	8iniPVebKzAclNRhFsUwUw/uZ+k8=; b=W+l/xcpaz7WADGKNPtemJl0rbIffblz
+	3+IC82wtjrN6t4BbKkMU5+XcYqCnzJq5ctWXNGW0xVf6DJXSx/UGdBAJqDp/G6cr
+	OlYSYZY1nMfid/l8DW9Tqcn9H9mBrhf++0f8cB2ZsYE7edFGcxv00at0pBQkC+ug
+	Qis+SXE3Thcs=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wBHtZdDIG5pljmWGw--.3726S2;
+	Mon, 19 Jan 2026 20:15:02 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net,
+	Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wenliang Yan <wenliang202407@163.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/8] hwmon: (ina3221) Various improvement and add support for SQ52210
+Date: Mon, 19 Jan 2026 07:14:38 -0500
+Message-Id: <20260119121446.17469-1-wenliang202407@163.com>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID:_____wBHtZdDIG5pljmWGw--.3726S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Kw43KFyrtrykWFWfKr45Wrg_yoW8Zr18pa
+	yxKw15Gwn8Zr1xXanIka17uryFqr13CF4a9r97G3y0vF4Y93WSvFyvgFZ8t3srJr9FkFy8
+	ta4xWF1qg3srCrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JU-4SOUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/xtbC5wYP4mluIEaspwAA3m
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, 19 Jan 2026 16:46:37 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
+Make modifications according to the guidance provided in the reply.
 
-> On Fri, Jan 16, 2026 at 02:09:12PM +0100, Herve Codina wrote:
-> > Hi David,
-> > 
-> > On Thu, 15 Jan 2026 11:48:44 +1100
-> > David Gibson <david@gibson.dropbear.id.au> wrote:
-> >   
-> > > On Mon, Jan 12, 2026 at 03:18:59PM +0100, Herve Codina wrote:  
-> > > > In order to have the new FDT_REF_LOCAL tag present in a dtb, the phandle
-> > > > reference needs to be identify as a local reference.
-> > > > 
-> > > > This is the purpose of mark_local_phandles().
-> > > > 
-> > > > It identifies a phandle reference as a local reference when this
-> > > > reference points to a local node.
-> > > > 
-> > > > With that node, the related FDT_REF_LOCAL tag is set in the dtb.    
-> > > 
-> > > I dislike caching redundant information (whether the ref is local) -
-> > > it's an opportunity for them to get out of sync and cause bugs.  Is
-> > > there a strong case that you can't just determine whether it's local
-> > > only when you actually go to use it?  
-> > 
-> > Well, I can't find any strong case.
-> > 
-> > I would like to avoid passing the full dti (struct dt_info) to flatten_tree()
-> > in order to determine if the ref is local or not to set a FDT_REF_LOCAL or
-> > a FDT_REF_PHANDLE tag.
-> > 
-> > Also, this flag, set when a FDT_REF_LOCAL tag is parsed from a dtb, is
-> > useful later when the ref has to be found based on the phandle value.
-> > 
-> > Indeed, because the is_local flag is set, the phandle value available in the
-> > property *must* reference an existing node in the dtb.
-> > 
-> > In other word, in update_phandles_ref_internal(),  
-> 
-> Hmm, I see.  As with the "known phandle, unknown ref" vs. "known ref,
-> unknown phandle" cases, I think this might be clearer with different
-> marker types.  During parse we make everything "known ref, unknown
-> phandle", then later change to either "known ref, resolved to local
-> phandle" or "known ref, needs external resolution" markers.
+1.Modify the description for power[123]_input(PATCH 5).
 
-When we parse a dtb, we have "Unknown ref, known phandle". FDT_REF_LOCAL
-identify a local phandle value without any 'ref' involved.
+2.Re-annotate the significance of the limit value calculation
+and the use of register masks in the sq52210_alert_limit_write.
+Modify the calculation process to resolve arithmetic overflow issues.
+The limit values SOL, BOL, and BUL are all stored using the upper
+13 bits of the register, so shifting is required. In contrast,
+the POL value is configured by setting the lower three bits
+to 0 directly(PATCH 6).
 
-The ref is set after parsing and it is set to the full path of the node
-matching the phandle value.
+3.Resolve arithmetic overflow issues in the ina3221_read_power(PATCH 7).
 
-Will see what I can do with new markers to identify those different cases.
+4.Resolve arithmetic overflow issues in the ina3221_read_curr,
+and validate channel indices in ina3221_write_in(PATCH 8).
 
-> 
-> 
-> 
-> > --- 8< ---
-> > 	if (m->is_local) {
-> > 		phandle = propval_cell_n(prop,
-> > 					 m->offset / sizeof(cell_t));
-> > 		refnode = dti_get_node_by_phandle(dti, phandle);
-> > 		if (!refnode)
-> > 			die("Node not found for phandle 0x%"PRIx32"\n", phandle);
-> > 
-> > 		m->ref = refnode->fullpath;
-> > 		continue;
-> > 	} else {
-> > 		...
-> > --- 8< ---
-> > 
-> > Best regards,
-> > Hervé
-> >   
-> 
 
-Best regards,
-Hervé
+---
+v4: https://lore.kernel.org/linux-hwmon/20260114081741.111340-1-wenliang202407@163.com/
+v3: https://lore.kernel.org/linux-hwmon/20251120081921.39412-1-wenliang202407@163.com/
+v2: https://lore.kernel.org/linux-hwmon/20251118125148.95603-1-wenliang202407@163.com/
+v1: https://lore.kernel.org/linux-hwmon/20251111080546.32421-1-wenliang202407@163.com/
+
+Wenliang Yan (8):
+  dt-bindings: hwmon: ti,ina3221: Add SQ52210
+  hwmon: (ina3221) Add support for SQ52210
+  hwmon: (ina3221) Pre-calculate current and power LSB
+  hwmon: (ina3221) Support alert configuration
+  hwmon: (ina3221) Introduce power attribute and alert characteristics
+  hwmon: (ina3221) Support for writing alert limit values and modify the
+    'ina3221_read_value' function
+  hwmon: (ina3221) Support write/read functions for 'power' attribute
+  hwmon: (ina3221) Modify write/read functions for 'in' and 'curr'
+    attribute
+
+ .../devicetree/bindings/hwmon/ti,ina3221.yaml |  15 +-
+ Documentation/hwmon/ina3221.rst               |  24 +
+ drivers/hwmon/ina3221.c                       | 545 +++++++++++++++++-
+ 3 files changed, 570 insertions(+), 14 deletions(-)
+
+-- 
+2.17.1
+
 
