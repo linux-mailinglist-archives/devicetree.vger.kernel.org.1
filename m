@@ -1,98 +1,96 @@
-Return-Path: <devicetree+bounces-256603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17631D39BCF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 02:12:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725C6D39BE1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 02:21:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8DE33019BFA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 01:11:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80F0F3007273
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 01:21:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC3D1F3BA2;
-	Mon, 19 Jan 2026 01:11:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b="lJO80M2e"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4BDB1A3154;
+	Mon, 19 Jan 2026 01:21:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-108-mta193.mxroute.com (mail-108-mta193.mxroute.com [136.175.108.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C92205E26
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 01:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.175.108.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461D313959D;
+	Mon, 19 Jan 2026 01:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768785115; cv=none; b=HWgv8cTVmt3lIlyOrQdY7jmZJC9eHJe3W2n1jXggWmHt18nNAdM/5+ciDfZnwsULCQumV8OPoJmG6YcdkncK8UN+I++aJXA+Rm8V5XyBNbeKBnMA/IIRzYxxmEJW7KiApg0Bphf/9ody56FX22Iov7tDHQiKSo9SppXB5aosLhQ=
+	t=1768785685; cv=none; b=VryE9aA0uVI+UIdHiSxqmSty4GL5G7DOqN7mG4/z66msZaNPnC/mnb75Smqu2KSFVl+s+HBi0cWYtyIVGVHl6uJqoeLXt01VKgkVfvv27X3PQS3oZWUFTop0goHInvzXlxoQlk38zAtdnMJhMAFBdeBAwt/O8hma3J6hEnt/b/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768785115; c=relaxed/simple;
-	bh=LKRx5Phifut9Fv/RWfSfSEUbr9BDIfjQ4qQYz8gZKvo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Hhiz9PFRY/i4uetolUT4YhUFjWkuz1aaU3EfmVk4TUkv69Ihv//pW/hlEworctDpqp4ZqAA02C8R0q28R7LG4hzvVHqKp8YiCGU4mQhy+M0N0TX8e9kwWAHxa5pI09h8bvCTEyO9EJ0m9i8NklZXAeiW4nsWQZjCdFlshOJA+iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com; spf=pass smtp.mailfrom=luigi311.com; dkim=pass (2048-bit key) header.d=luigi311.com header.i=@luigi311.com header.b=lJO80M2e; arc=none smtp.client-ip=136.175.108.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=luigi311.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=luigi311.com
-Received: from filter006.mxroute.com ([136.175.111.3] filter006.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta193.mxroute.com (ZoneMTA) with ESMTPSA id 19bd3ca26450009140.005
- for <devicetree@vger.kernel.org>
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Mon, 19 Jan 2026 01:06:39 +0000
-X-Zone-Loop: 55fe360d2cc96a86cd05205f390281a74f434452b5a7
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=luigi311.com; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=icmFEkvGmO6/Ja++vZelqbWCf/Yf71OKFAdhqjynVoI=; b=lJO80M
-	2eBX6QSmsSlEbBLrbF/bl1XOcdBXea0eFw6ShzyyRrrNTY2TJbReyMR4GSevV+uxjaQqQu6s4qvaP
-	X3sLQs3Xt4yg8kbVtUEQfg9JspkYMYHTD4Q8DkMIxR221066qdqIfOxDPD7g9yfGFXXXXR/icLFJ6
-	wVkcM7igI8GtQmBs3uGaB0U8PBd9q7YwOyz7Cba3B0YhP+7Ir+Z6yjQMN47kcoaUaECLIXFrQW3Py
-	keYl+87qQmzUr6XAvyKoHrDzKXboFBdLtEFDIyJoUQNFhoPY14p5xbYW0GUzcj5JPa6tlhflJZo4b
-	NBiD0XEDV1y3Ccv0jRm3KexzkPEA==;
-From: Luis Garcia <git@luigi311.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Olivier Benjamin <olivier.benjamin@bootlin.com>,
-	megi@xff.cz,
-	Luis Garcia <git@luigi311.com>
-Subject: [PATCH v2] arm64: dts: rockchip: Fix imx258 variant on pinephone pro
-Date: Sun, 18 Jan 2026 18:06:33 -0700
-Message-ID: <20260119010633.3447863-1-git@luigi311.com>
-In-Reply-To: <20260118214620.3319040-1-git@luigi311.com>
-References: <20260118214620.3319040-1-git@luigi311.com>
+	s=arc-20240116; t=1768785685; c=relaxed/simple;
+	bh=ZRtkrsGMza1QGoibNEOD5RuTMXU+Jew8FRg2falQY1g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AsdSP6S4izUb3cadMBopnmST9MeQSTqwILEmxtEr8MFQ/ZPIvBIj9LCVAk76dOma+IlfVOYbG63SQiLho784c0UUz9GB6SyEUZz7b1cNenJ2CQTGLMztHEeSHPn+4QiT5/iBuW4I5hO1bmfhfCUswNfXYf9HLcr/fv5wNskEYlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id EA269201E9F;
+	Mon, 19 Jan 2026 02:21:16 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A3D1620138A;
+	Mon, 19 Jan 2026 02:21:16 +0100 (CET)
+Received: from lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com [10.52.9.11])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 7FD341800096;
+	Mon, 19 Jan 2026 09:21:14 +0800 (+08)
+Date: Mon, 19 Jan 2026 10:21:13 +0900
+From: Yanan Yang <yanan.yang@nxp.com>
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, qijian.guo@nxp.com,
+	justin.jiang@nxp.com, Lei Xu <lei.xu@nxp.com>,
+	Xiaofeng Wei <xiaofeng.wei@nxp.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: freescale: add NXP FRDM-IMX91S board
+ support
+Message-ID: <aW2HCTuwNEQkG8UC@lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com>
+References: <20260116-imx91s-frdm-v3-0-98671de64925@nxp.com>
+ <20260116-imx91s-frdm-v3-2-98671de64925@nxp.com>
+ <CAEnQRZDtE+0gDxAnu9vWGhj3rYEv6CmMNjQLWnKu=ud9Yo9XcQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Id: git@luigi311.com
+In-Reply-To: <CAEnQRZDtE+0gDxAnu9vWGhj3rYEv6CmMNjQLWnKu=ud9Yo9XcQ@mail.gmail.com>
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-imx258 had the driver updated a while back and it introduced
-two variants, the imx258 and imx258-pdaf. The pinephone pro
-is using the pdaf variant so this switches it to the correct
-variant and eliminates the pdaf pixels from the sensor output
-resulting in a much cleaner image.
+On Fri, Jan 16, 2026 at 11:33:59AM +0200, Daniel Baluta wrote:
+> On Fri, Jan 16, 2026 at 5:45 AM Yanan Yang <yanan.yang@nxp.com> wrote:
+> >
+> > Add DeviceTree support for the NXP FRDM-IMX91S development board based
+> > on the i.MX91 SoC. FRDM-IMX91S is a cost-optimized variant of FRDM-IMX91
+> > and differs in memory, storage, Ethernet, and PMIC configuration:
+> >
+> > - 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
+> > - 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
+> > - Single GbE port (FRDM-IMX91 has dual GbE)
+> > - PMIC PF9453 (FRDM-IMX91 uses PCA9451A)
+> >
+> 
+> <snip>
+> 
+> 
+> > +       sound-mqs {
+> > +               compatible = "fsl,imx6sx-sdb-mqs", "fsl,imx-audio-mqs";
+> 
+> There is little sense to have compatible = ""fsl,imx6sx-sdb-mqs". Just
+> use
+> 
+> compatible = "fsl,imx-audio-mqs";
+> 
+> Move model property after compatible as per already existing code practice.
 
-Signed-off-by: Luis Garcia <git@luigi311.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 2dca1dca20b8..fd6facf1da2b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -451,7 +451,7 @@ &i2c1 {
- 	status = "okay";
- 
- 	wcam: camera@1a {
--		compatible = "sony,imx258";
-+		compatible = "sony,imx258-pdaf";
- 		reg = <0x1a>;
- 		clocks = <&cru SCLK_CIF_OUT>; /* MIPI_MCLK0, derived from CIF_CLKO */
- 		lens-focus = <&wcam_lens>;
--- 
-2.50.1
-
+I will fix it in v4. Thanks
 
