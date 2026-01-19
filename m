@@ -1,180 +1,115 @@
-Return-Path: <devicetree+bounces-257017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 520A0D3B466
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:32:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56CFAD3B484
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:37:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DA90C302E334
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:20:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0FDD9300DB82
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C97328B5E;
-	Mon, 19 Jan 2026 17:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BC6327BE4;
+	Mon, 19 Jan 2026 17:32:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jVMfdHML"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m1vWA/Th"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60EA3320CCF;
-	Mon, 19 Jan 2026 17:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02AB0246782;
+	Mon, 19 Jan 2026 17:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768843209; cv=none; b=cCuxKd8nb1apLo2Um0CmxU7tx8UEnJhcAZwIcyfqylWf7k+zFDqfrhxG14kNQI7pPflnusbgRB6UhtN0OeFUodzxIfsnq7rRLQ1FtkSaUoZsWJxtJreNTPPMHDq1X3SbDMT1WTBH1LpIQ5tFNsPh5yfzvIkF7tmOlgKgif2/Lzs=
+	t=1768843939; cv=none; b=d5yr+yRqHsRy6OgpY8R8IeLHnuBn3K2bI/1LSPLCWN59gaO152DiL260KM0x1D9BMkLzxbC76Z81CqpcksgyKMNIrFwzNRdo220BqihrYn5sybTl3SmmtHvQkiZqamVm4Y5f3Yu2X9yf208a+v3NFYD+1H41C2imDOkAgvz+ojc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768843209; c=relaxed/simple;
-	bh=qWbkmFUVqb1jkcEEsBWUt6AU2jPXhmoXkQv4QUYC574=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZvMoZw3CweRBYuBuBtmey1d17Kfg+YqrqI+SCRaZTXFCfOEerXGv3xVqRfTzYGFUCYXrbHzeSAK4eNMDTnxSfdDXsnokRXe7y9hfDmaskNdn1a1VRMxKZfVUlgPoIp55ADdTuuD0u+/ao/6Toz14+C/Lr304UJEgO2vdfuMsZSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jVMfdHML; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2B6DAC4AF15;
-	Mon, 19 Jan 2026 17:20:09 +0000 (UTC)
+	s=arc-20240116; t=1768843939; c=relaxed/simple;
+	bh=A/iKdKMRrQFaSFIv/yti57gG3uCmwDCA4fPwEwIAd2s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P+XZIOA54Yx3qIG5PUQI6QGPDGAGsPWVcZLBrVNHcQfYVJwZAIH0EuUkJq3IJd2wyvO162QT2HzslBuH6/OMVf7+lQY+tM13IPH9h+kyL2ZT8oYdrDhSENxoeSZbBLfqHnDAAvaCplhfQti0Yu89SgL3YFTa4ot4l34ixmNW8ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m1vWA/Th; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82A54C116C6;
+	Mon, 19 Jan 2026 17:32:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768843209;
-	bh=qWbkmFUVqb1jkcEEsBWUt6AU2jPXhmoXkQv4QUYC574=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jVMfdHMLiE2ZCvuCYGmwRYYWFFQNxE+kyPIL4Ilf7YelCJjbLiB9ewZPmxFPQ792p
-	 MErTgucT2XB20upP4Qr1NJV6vaGr/6GP5wtvcAR6cEO2Cz98MVTrkgnoo4jC3XiXVv
-	 7xI0mUT4sHMtI6mOgH7wfki7Q3ku+0Mh7NB9sEZ+uuh9mJVOvtPSrXYmFnw6oAl1/b
-	 PTHSsyVQcwWqMnkDL6VSIMoeKkYNfYWhqaip1nGevFazxFDAUUZqZGUTD2p5gK0D3R
-	 CdWiYOPchYypO6D9I0fCBzbQC9YjabzO6GDuoQOy8XpgJrmTfK0zspPazbahJQqMJ5
-	 /QkilVxFbxDgw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21996D29C4F;
-	Mon, 19 Jan 2026 17:20:09 +0000 (UTC)
-From: Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org>
-Date: Mon, 19 Jan 2026 18:19:58 +0100
-Subject: [PATCH 4/4] iio: proximity: vl53l0x-i2c: Use raw I2C access and
- read full device ID
+	s=k20201202; t=1768843938;
+	bh=A/iKdKMRrQFaSFIv/yti57gG3uCmwDCA4fPwEwIAd2s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m1vWA/ThbDmFYpj53E77IY+FYA+F0yn5aBqz5KyYfgnJelVf181ZB4hOccmOIFuUS
+	 0N/LfNhrBCyEeN49ROHXJ0Cxq/HFTVkk/UQE2sAC+DvHh79frOoyqnklHQnaZsWodZ
+	 kf8GGoyccKhVGXxpMbn3AadPkYd61ra5NXXMvRMxG3bLP/Ghn1FKClRuQrUisqK//6
+	 OuYcHNz2ZKoQXFTFZI6HIa6w+7dDZF0mljbLzVtaEQly+gXbBNIsF/1H+N31mk7u6y
+	 nuSKbm9K4xWHHGACuiqGCWpWNAgz/K0f734F6RkynRZVZz2DVhxROlC7LXAKLeW5Zf
+	 1aTcUGxCkpMLg==
+Date: Mon, 19 Jan 2026 17:32:13 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] spi: xilinx: use device property accessors.
+Message-ID: <b1b79de0-a078-486d-b3e9-96899354407c@sirena.org.uk>
+References: <20260119-spi-xilinx-v3-0-4566c33bac0d@nexthop.ai>
+ <20260119-spi-xilinx-v3-3-4566c33bac0d@nexthop.ai>
+ <8436e914-429f-40b9-8e6f-ec3b02702cad@sirena.org.uk>
+ <69F83558-4675-4FC2-8656-BC6E3481AD65@nexthop.ai>
+ <9e559e33-4f2f-40d4-a15f-584548bd6057@sirena.org.uk>
+ <05D2CC15-DD6B-40F0-BFF0-3264D4FF96ED@nexthop.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-vl53l0x-v1-4-cf71715a1353@protonmail.com>
-References: <20260119-vl53l0x-v1-0-cf71715a1353@protonmail.com>
-In-Reply-To: <20260119-vl53l0x-v1-0-cf71715a1353@protonmail.com>
-To: Song Qiang <songqiang1304521@gmail.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, David Heidelberg <david@ixit.cz>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Petr Hodina <petr.hodina@protonmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768843207; l=2915;
- i=petr.hodina@protonmail.com; s=20260107; h=from:subject:message-id;
- bh=d+hR0F/bDeIjVeoY7OePEyZl2RADxLrlf6OYgdsANok=;
- b=0kzauao6M0YQ7pPlLk4mUBIlnjb12ECy1EXuGr6fNc/b4+2imVy+PWaKfasHv0iuQbXkvcSZV
- JJ2fmLulcfoB37cVPj1OtwNKTlsMdbV31tGmdYZECrPZbAn+HluMrJg
-X-Developer-Key: i=petr.hodina@protonmail.com; a=ed25519;
- pk=3QaVc6AaAu1IsyyH86+LIOOFhD7kCws8Xhe+wwyE7Bg=
-X-Endpoint-Received: by B4 Relay for petr.hodina@protonmail.com/20260107
- with auth_id=594
-X-Original-From: Petr Hodina <petr.hodina@protonmail.com>
-Reply-To: petr.hodina@protonmail.com
-
-From: Petr Hodina <petr.hodina@protonmail.com>
-
-Replace SMBus byte reads with raw I2C transfers when reading the device
-identification registers.
-
-The VL53L0X exposes its model and revision as 16-bit registers, which are
-more accurately accessed using standard I2C send/receive operations.
-This also avoids depending on SMBus byte data support, which is not
-guaranteed on all I2C adapters.
-
-Read and log both model and revision IDs, and validate the model ID
-during probe to ensure the expected device is present.
-
-Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
----
- drivers/iio/proximity/vl53l0x-i2c.c | 45 +++++++++++++++++++++++++++++++------
- 1 file changed, 38 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/iio/proximity/vl53l0x-i2c.c b/drivers/iio/proximity/vl53l0x-i2c.c
-index 6901ce7dd835..a2de4cc16a43 100644
---- a/drivers/iio/proximity/vl53l0x-i2c.c
-+++ b/drivers/iio/proximity/vl53l0x-i2c.c
-@@ -320,11 +320,35 @@ static const struct iio_trigger_ops vl53l0x_trigger_ops = {
- 	.validate_device = iio_trigger_validate_own_device,
- };
- 
-+
-+static int vl53l0x_read_word(struct i2c_client *client, u8 reg, u16 *val)
-+{
-+	int ret;
-+	u8 buf[2];
-+
-+	ret = i2c_master_send(client, &reg, 1);
-+	if (ret < 0)
-+		return ret;
-+	if (ret != 1)
-+		return -EIO;
-+
-+	ret = i2c_master_recv(client, buf, 2);
-+	if (ret < 0)
-+		return ret;
-+	if (ret != 2)
-+		return -EIO;
-+
-+	*val = (buf[0] << 8) | buf[1];
-+
-+	return 0;
-+}
-+
- static int vl53l0x_probe(struct i2c_client *client)
- {
- 	struct vl53l0x_data *data;
- 	struct iio_dev *indio_dev;
- 	int ret;
-+	u16 model, rev;
- 
- 	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
- 	if (!indio_dev)
-@@ -339,13 +363,6 @@ static int vl53l0x_probe(struct i2c_client *client)
- 				     I2C_FUNC_SMBUS_BYTE_DATA))
- 		return -EOPNOTSUPP;
- 
--	ret = i2c_smbus_read_byte_data(data->client, VL_REG_IDENTIFICATION_MODEL_ID);
--	if (ret < 0)
--		return -EINVAL;
--
--	if (ret != VL53L0X_MODEL_ID_VAL)
--		dev_info(&client->dev, "Unknown model id: 0x%x", ret);
--
- 	data->vdd_supply = devm_regulator_get(&client->dev, "vdd");
- 	if (IS_ERR(data->vdd_supply))
- 		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_supply),
-@@ -372,6 +389,20 @@ static int vl53l0x_probe(struct i2c_client *client)
- 	if (ret)
- 		return ret;
- 
-+	ret = vl53l0x_read_word(client, 0xC0, &model);
-+	if (ret)
-+		return dev_err_probe(&client->dev, ret, "Failed to read model ID\n");
-+
-+	ret = vl53l0x_read_word(client, 0xC2, &rev);
-+	if (ret)
-+		return dev_err_probe(&client->dev, ret, "Failed to read revision ID\n");
-+
-+	dev_info(&client->dev, "VL53L0X model=0x%04x rev=0x%04x\n", model, rev);
-+
-+	if ((model >> 8) != VL53L0X_MODEL_ID_VAL)
-+		return dev_err_probe(&client->dev, -ENODEV,
-+			"Unexpected model ID: 0x%04x\n", model);
-+
- 	indio_dev->name = "vl53l0x";
- 	indio_dev->info = &vl53l0x_info;
- 	indio_dev->channels = vl53l0x_channels;
-
--- 
-2.52.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="FuAS2eueGrIYKRNf"
+Content-Disposition: inline
+In-Reply-To: <05D2CC15-DD6B-40F0-BFF0-3264D4FF96ED@nexthop.ai>
+X-Cookie: Does not include installation.
 
 
+--FuAS2eueGrIYKRNf
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jan 19, 2026 at 09:15:40AM -0800, Abdurrahman Hussain wrote:
+> > On Jan 19, 2026, at 8:50=E2=80=AFAM, Mark Brown <broonie@kernel.org> wr=
+ote:
+> > On Mon, Jan 19, 2026 at 08:47:17AM -0800, Abdurrahman Hussain wrote:
+
+> >>> Are these bindings appropraite for ACPI systems?
+
+> >> Yes, the Xilinx IP blocks are memory mapped and work exactly the same =
+on ACPI as they do on DT.
+
+> > That does not answer the question at all.  Is it appropriate to
+> > configure an ACPI system in this way?
+
+> I am not sure I understood your question. What do you mean by =E2=80=9Cap=
+propriate=E2=80=9D?
+> This is following the same guidelines as outlined in=20
+> https://www.kernel.org/doc/html/v6.7/firmware-guide/acpi/enumeration.html
+
+You are just bindly making the DT properties available as _DSD
+properties on ACPI systems, ACPI is a completely different firmware
+interface with it's own idioms.  Does this interface make any sense on
+ACPI?
+
+--FuAS2eueGrIYKRNf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmluapwACgkQJNaLcl1U
+h9CZjQf/Ur8a5p0+EIw+7xw/rnSoaY0p0ub/FutvHYMSJWOUbUQQAOMQWR9gjK4A
+dXzC6bUPBn8sJ7rv1lPArhLiRIV3LJTZc8zZqnkA3ilaU+6YHbFWTaZKRiJYhAXc
+5GhvbBr8CSVm4eUIzAHvleXcvTYo5jV99EF6z0rlq59yCz3WsB6FaEPOlsVkE3jB
+PnrCpdS44my7aEAJ+Z0LFefUsrSP/LSeWEYmT/rMs/QP3rifhX3tTPuggRKI8ym+
+oGqMAq4OqN7hikNnxiUEA5KU8S2s/ejBjE9qJzmgc1ZsFhctwadnLv0w5rIShhfv
+JPTUWw49fOmWds3OJkAfdnuqAyHx8Q==
+=hAAM
+-----END PGP SIGNATURE-----
+
+--FuAS2eueGrIYKRNf--
 
