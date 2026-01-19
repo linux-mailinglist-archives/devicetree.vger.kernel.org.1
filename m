@@ -1,230 +1,326 @@
-Return-Path: <devicetree+bounces-256750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1025CD3A3A9
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:49:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B97D3A3A7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:49:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6432C30552EB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:49:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E5DD4300485E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77742305057;
-	Mon, 19 Jan 2026 09:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0617A3043D5;
+	Mon, 19 Jan 2026 09:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SeMLafDb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X1wOWmk+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA573090DE;
-	Mon, 19 Jan 2026 09:48:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3E83033E8;
+	Mon, 19 Jan 2026 09:49:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768816142; cv=none; b=YtMw5KTJwGHVcuyZ/9V+/cPP62jltg1PlYsi79Jbp5i36sDIifg6dGzx2O9T+rnURq3s2cBk32lc4j0P7UGPRGxmxq0cABoyRWmah+JGe7pQEPKBT/Ty0hn7Cu/lw7Ch72+vsZpiJ8jhKzCEtpdN3PhyLMUjM+nHN/yshfyNMMU=
+	t=1768816165; cv=none; b=PoKmiLURtyU/EHX0JFvRc7pnb4GyfNAWDIim61tusPMIwsZr1urv53mtIdsumhW70w+hO9PWcTUWuMALsR69jJO0tHcOnnsjYhKkDNgFwsbno1UOhcYRKimzT21cPNiKdxS1vadJGVkwJV9HrpS8AOGbLw4khVTuWguAzygzr3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768816142; c=relaxed/simple;
-	bh=4yhv37ymq/kWQdmPjnSv7j8SmLCZ0LVUbS5HqLdFpvs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GqF9+LSNSRn2lHZ5qAwy9lGL7ktm7bulnXnPj31WV82H+MkgEhRnxi2kdG+DT1a62zly0Cs0YrkFJobMwuEFccdgGdSrQ2SLjCJffELpqJCbLgJyOG02CZiXlzLcP4UU8cstiDtBU4NksmMRwGWRHb0PJt1DXChOtfQhPcIIHgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SeMLafDb; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 4F315C2033F;
-	Mon, 19 Jan 2026 09:48:31 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4B18C60731;
-	Mon, 19 Jan 2026 09:48:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6009410B68457;
-	Mon, 19 Jan 2026 10:48:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768816137; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=FfuTvUkYKx9QvK8dNqqzEt65/138odmagZGiTcUAwGI=;
-	b=SeMLafDbGmUptNbiKz5KTTX/cV7RkQaiGJdb/ZmdK0GB001Z2XA64X5qvrdDt7afG8vY/Z
-	ktVi1zUR9FFt24eDtXcvjiBzzQxmPl3lgb0KgSQ13Jei/FBE52WqQd6yJ7WHhkLcVIly6t
-	NHqdA6GXpj2tOsG1HHV+7Kx/PVyYZo9Y9I8Uq0b5sB0OJEIwnmIL2yu6n4J38HuFJ3PthK
-	OzDnfvKH2lm6AG2GXcLpHpO+WHLYFW1OkiA2MkbtHM4v+HUSIr7ImBc92rRtyloU4PzKEz
-	QTCVKInLI1Ce0ajxDlHt9VDBeSJ9vROa56YSnzt8vpbnQZtx9eRooJ0dmUuKZQ==
-Date: Mon, 19 Jan 2026 10:48:52 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 02/77] Introduce v18 dtb version
-Message-ID: <20260119104852.3e7043ee@bootlin.com>
-In-Reply-To: <aW29fwFEB6_qjVEc@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-3-herve.codina@bootlin.com>
-	<aWgxAVfUYMUy9mz1@zatzit>
-	<20260116100934.7d522b1a@bootlin.com>
-	<aW29fwFEB6_qjVEc@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768816165; c=relaxed/simple;
+	bh=vfGiGmp2PdH5f0tFUDU3+Qm9AzHUk5W1M/IoRoNUp9Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Yysu9fy8pKfrclCjRtFM6OQDG+ybySSsIjV81VkqxgfyVSE/Mc9Vg1mEvar+flCc4NFfhgKJdBpfqZaMPKmHJfRavTIv96jD98BQXS46p19HbWw3GUplP8xPtEDiqs21QBVvLpmNt0BbnVFWusHELXMoiNsRPmZTC4Cl627YduA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=X1wOWmk+; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768816162;
+	bh=vfGiGmp2PdH5f0tFUDU3+Qm9AzHUk5W1M/IoRoNUp9Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=X1wOWmk+HqZ3o+yuvnz4zoLINLy96fjhwfx20qnTnvazW3q/Df+Z0mpBFK79I/MDi
+	 yCWeoYmhsN4Gcpkk7TZi4qyKp6r571c+roXjFVEYahJTKAmJM4HdOVMefL436d1lqj
+	 RQyUcp3ItKvQ8KsBwRWRzxx4FJ9VS0kYOSwBMk5BL4/moqujy4fY3WYwsD6Mwr2roX
+	 aofBRNG2hYn9T4LHdSfNNnI8UhrOqgIdwB1pfrWYjtz8ogt5wFVzHjZ3/JW5p29Ax+
+	 DkBjGZXK09vky3kBNYKiFTuXMmooZfLSq2Eav4IGkykh++ZOHyVCQo4hc6Flnc7HUA
+	 YR9jjoS/z01xA==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2483017E1013;
+	Mon, 19 Jan 2026 10:49:21 +0100 (CET)
+Message-ID: <db2f0c20-ca7e-41c9-be08-67fd1f92c2af@collabora.com>
+Date: Mon, 19 Jan 2026 10:49:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] media: synopsys: add driver for the designware
+ mipi csi-2 receiver
+To: Frank Li <Frank.li@nxp.com>
+Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans Verkuil <hverkuil@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251114-rockchip-mipi-receiver-v5-0-45aa117f190a@collabora.com>
+ <20251114-rockchip-mipi-receiver-v5-2-45aa117f190a@collabora.com>
+ <aWpil6jI1Ad0DcEI@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <aWpil6jI1Ad0DcEI@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
 
-On Mon, 19 Jan 2026 16:13:35 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
+Hi Frank,
 
-> On Fri, Jan 16, 2026 at 10:09:34AM +0100, Herve Codina wrote:
-> > Hi David,
-> > 
-> > On Thu, 15 Jan 2026 11:12:49 +1100
-> > David Gibson <david@gibson.dropbear.id.au> wrote:
-> >   
-> > > On Mon, Jan 12, 2026 at 03:18:52PM +0100, Herve Codina wrote:  
-> > > > This v18 version will add support for
-> > > >  - metadata in device-tree blobs in order to have a better handling of
-> > > >    phandles and unresolved references.
-> > > >  - Addon device-tree blob (successor of device-tree overlay)
-> > > >  - Import and export symbols feature
-> > > >  - multiple trees in a addon device-tree blob (i.e. root device tree and
-> > > >    orphan node tree)    
-> > > 
-> > > So, once this patch is applied, the rest of the series pretty much has
-> > > to be applied "atomically" - otherwise a version built in the interim
-> > > will be lying in saying that it supports v18.
-> > > 
-> > > I therefore suggest moving any changes that *can* be moved before this
-> > > patch, should be moved before this patch.  That will assist in
-> > > reviewing and merging the series piecemeal, rather than as a single
-> > > giant blob.
-> > > 
-> > > 
-> > > Regarding the content itself.  It seems like this is a pretty major
-> > > change to the dtb format - maybe that would suggest bumping the
-> > > version by more than one (e.g. like we went from v3 to v16 in the
-> > > past).  
-> > 
-> > I see your point.
-> > 
-> > Maybe the Rob's idea related to 'unknown tag' and the suggestion I did [1]
-> > related to the generic tag value definition to support those 'unknown tag'
-> > could help here.  
+Thanks for your review.
+
+On 1/16/26 17:08, Frank Li wrote:
+> On Fri, Jan 16, 2026 at 02:02:47PM +0100, Michael Riesch wrote:
+>> The Synopsys DesignWare MIPI CSI-2 Receiver is a CSI-2 bridge with
+>> one input port and one output port. It receives the data with the
+>> help of an external MIPI PHY (C-PHY or D-PHY) and passes it to e.g.,
+>> the Rockchip Video Capture (VICAP) block on recent Rockchip SoCs.
+>>
+>> Add a V4L2 subdevice driver for this unit.
+>>
+>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Reviewed-by: Mehdi Djait <mehdi.djait@linux.intel.com>
+>> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+>> ---
+> ...
+>> +
+>> +static inline struct dw_mipi_csi2_device *to_csi2(struct v4l2_subdev *sd)
+>> +{
+>> +	return container_of(sd, struct dw_mipi_csi2_device, sd);
+>> +}
+>> +
+>> +static inline __maybe_unused void
 > 
-> Having a standard encoding of tag length so unknown tags can be
-> skipped is a reasonable idea.  I think you do need provision to mark a
-> tag as "safe to ignore" or not - e.g. something like FDT_BEGIN_NODE
-> could never be safely ignored.
+> why need '__maybe_unused', needn't inline. compiler can auto decide and
+> report unused function if no 'inline'.
 
-A bit can be used for marking a tag as "safe to ignore if unknown".
-I can reduce the bits 30..28 field.
-
-bit 30:
- - 0b0: Do not ignore this tag if the tag id is unknown.
-        If this tag id is unknown an error in the parsing should be reported.
- - 0b1: This tag can be safely ignore if its id is unknown. I that case the
-        tag and its related data are simply skipped.
-
-bits 29..28:
- - 0b00: No data
- - 0b01: tag followed by 1 cell (u32) data
- - 0b10: tag followed by 2 cells (2 x u32) data
- - 0b11: Tag is followed by a cell (u32) indicating the size of following
-         data
-
-Also, it is worth noting that the 0x0....... tag value family can still be
-used.
-
-Even if related to "old" tags, if a tag in this family is an unknwown tag,
-the parser will report an error (at least because it doesn't know how to
-skip the data part).
+The __maybe_unused was helpful during development and is not really
+required now. It doesn't hurt either, so I left it in. I can remove it
+if you wish.
 
 > 
-> > As a reminder here, this generic tag value definition consist in:
-> > --- 8< ---
-> > A tag value is on 32bits. We can define the structure of this value.
-> >   - bit 31 (msb):
-> >      - 0: This is not a new kind to tag and so it doesn't follow this definition.
-> >           All existing tags are in this category
-> >      - 1: New kind of tag adopting this definition
-> > 
-> >   - bits 30..28:
-> >      tag data length encoding
-> >      0b000: No data related to the tag
-> >      0b001: 1 data cell (u32) directly follows the tag
-> >      0b010: 2 data cells (2 u32) directly follow the tag
-> >      ...
-> >      0b110: 6 data cells (6 u32) directly follow the tag
-> >      0b111: Tag is followed by a cell (u32) indicating the size (in bytes)
-> >             of data available just after this cell (including any padding
-> >             if needed).  
+>> +dw_mipi_csi2_write(struct dw_mipi_csi2_device *csi2, unsigned int addr, u32 val)
+>> +{
+>> +	writel(val, csi2->base_addr + addr);
+>> +}
+>> +
+>> +static inline __maybe_unused u32
+>> +dw_mipi_csi2_read(struct dw_mipi_csi2_device *csi2, unsigned int addr)
+>> +{
+>> +	return readl(csi2->base_addr + addr);
+>> +}
+>> +
+>> +static const struct dw_mipi_csi2_format *
+>> +dw_mipi_csi2_find_format(struct dw_mipi_csi2_device *csi2, u32 mbus_code)
+>> +{
+>> +	WARN_ON(csi2->formats_num == 0);
+>> +
+>> +	for (unsigned int i = 0; i < csi2->formats_num; i++) {
+>> +		const struct dw_mipi_csi2_format *format = &csi2->formats[i];
+>> +
+>> +		if (format->code == mbus_code)
+>> +			return format;
+>> +	}
+>> +
+>> +	return NULL;
+>> +}
+>> +
+>> +static int dw_mipi_csi2_start(struct dw_mipi_csi2_device *csi2)
+>> +{
+>> +	struct media_pad *source_pad;
+>> +	union phy_configure_opts opts;
+>> +	s64 link_freq;
+>> +	u32 control = 0;
+>> +	u32 lanes = csi2->lanes_num;
+>> +	int ret;
 > 
-> I'd suggesting giving a byte length not including alignment padding.
-> That way if you wanted to encode a bytestring in there, you wouldn't
-> need a way of encoding the unpadded length in adddition to the
-> standard way encoding the padded length.
+> try keep reverise christmas tree order.
 
-And so, next tag is always length + sizeof(padding). Next tag is aligned
-on 32bits.
+Ack.
 
 > 
-> > 	    Because this size include some possible padding, its value is a
-> >             multiple of 4 bytes.
-> >             The offset of the tag + 4 + size points to the next tag.
-> >           
-> > 
-> >   - bit 27..0
-> >      tag specific identifier
-> > --- 8< ---
-> > 
-> > I mean dtb version v20 could be:
-> > 
-> >  - New header size with dt_flags added in the header (if this new field is
-> >    kept).
-> > 
-> >  - Support for the generic tag values and so the notion of 'unknown tag'
-> > 
-> > With that done, everything else added afterward will have no impact on the
-> > dtb format itself.  
+>> +
+>> +	if (lanes < 1 || lanes > 4)
+>> +		return -EINVAL;
+>> +
+> ...
+>> +
+>> +static int dw_mipi_csi2_register_notifier(struct dw_mipi_csi2_device *csi2)
+>> +{
+>> +	struct v4l2_async_connection *asd;
+>> +	struct v4l2_async_notifier *ntf = &csi2->notifier;
+>> +	struct v4l2_fwnode_endpoint vep;
+>> +	struct v4l2_subdev *sd = &csi2->sd;
+>> +	struct device *dev = csi2->dev;
+>> +	struct fwnode_handle *ep;
+>> +	int ret;
+>> +
+>> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0, 0);
 > 
-> Well... maybe.  It's not entirely clear to me whether all the new tags
-> can be safely ignored by something that doesn't understand them.
-> e.g. a consumer can't safely ignore the tags which give unresolved
-> phandle references if it then expects the phandle values in the actual
-> property values to be correct.
+> use  struct fwnode_handle *ep __free(fwnode_handle) can simplify err
+> handler.
 
-I would say that it depends on new (future) tags.
+Sorry, I don't see the benefit of that.
 
-For instance, FDT_EXPORT_SYM, the tag used for exported symbols can be ignore
-by the bootloader if it doesn't know about this tag.
-Indeed, it doesn't need to understand and manipulate this tag. It just needs to
-keep it in the dtb passed to the kernel.
-
-> > 
-> > Only libfdt and dtc will have versions defined at some point with support for
-> > some new flags or new keyword.
-> > 
-> > What do you think about this v20 dtb version?
-> >   
-> > > 
-> > > It would also be nice to have some docs for the new dtb extensions
-> > > before or at the same time as this.  
-> > 
-> > Yes, the generic tag value definition.  
 > 
-> We'd want that, but it's not enough.  The specific tag types should be
-> documented as well.
+>> +	if (!ep)
+>> +		return dev_err_probe(dev, -ENODEV, "failed to get endpoint\n");
+>> +
+> ...
+>> +{
+>> +	struct media_pad *pads = csi2->pads;
+>> +	struct v4l2_subdev *sd = &csi2->sd;
+>> +	int ret;
+>> +
+>> +	ret = dw_mipi_csi2_register_notifier(csi2);
+>> +	if (ret)
+>> +		goto err;
+>> +
+>> +	v4l2_subdev_init(sd, &dw_mipi_csi2_ops);
+>> +	sd->dev = csi2->dev;
+>> +	sd->entity.ops = &dw_mipi_csi2_media_ops;
+>> +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
+>> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_STREAMS;
+>> +	sd->internal_ops = &dw_mipi_csi2_internal_ops;
+>> +	sd->owner = THIS_MODULE;
+> 
+> I remeber needn't set owner, v4l2_async_register_subdev() do it for you.
 
-Yes they will be documented as soon as they are introduced.
+Indeed, nice catch.
 
-The generic tag value definition is the first step to have in docs to allow
-the "skip if unknown" feature.
+> 
+>> +	snprintf(sd->name, sizeof(sd->name), "dw-mipi-csi2 %s",
+>> +		 dev_name(csi2->dev));
+>> +
+> ...
+>> +
+>> +static int dw_mipi_csi2_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct dw_mipi_csi2_device *csi2;
+>> +	int ret;
+>> +
+>> +	csi2 = devm_kzalloc(dev, sizeof(*csi2), GFP_KERNEL);
+>> +	if (!csi2)
+>> +		return -ENOMEM;
+>> +	csi2->dev = dev;
+>> +	dev_set_drvdata(dev, csi2);
+>> +
+>> +	csi2->base_addr = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(csi2->base_addr))
+>> +		return PTR_ERR(csi2->base_addr);
+>> +
+>> +	ret = devm_clk_bulk_get_all(dev, &csi2->clks);
+>> +	if (ret != DW_MIPI_CSI2_CLKS_MAX)
+>> +		return dev_err_probe(dev, -ENODEV, "failed to get clocks\n");
+>> +	csi2->clks_num = ret;
+>> +
+>> +	csi2->phy = devm_phy_get(dev, NULL);
+>> +	if (IS_ERR(csi2->phy))
+>> +		return dev_err_probe(dev, PTR_ERR(csi2->phy),
+>> +				     "failed to get MIPI CSI-2 PHY\n");
+>> +
+>> +	csi2->reset = devm_reset_control_get_exclusive(dev, NULL);
+>> +	if (IS_ERR(csi2->reset))
+>> +		return dev_err_probe(dev, PTR_ERR(csi2->reset),
+>> +				     "failed to get reset\n");
+>> +
+>> +	csi2->formats = formats;
+>> +	csi2->formats_num = ARRAY_SIZE(formats);
+>> +
+>> +	pm_runtime_enable(dev);
+> 
+> devm_pm_runtime_enable() will simple error handle.
+
+Ack.
+
+> 
+>> +
+>> +	ret = phy_init(csi2->phy);
+>> +	if (ret) {
+>> +		ret = dev_err_probe(dev, ret,
+>> +				    "failed to initialize MIPI CSI-2 PHY\n");
+>> +		goto err_pm_runtime_disable;
+>> +	}
+>> +
+> ...
+>> +
+>> +static int dw_mipi_csi2_runtime_resume(struct device *dev)
+>> +{
+>> +	struct dw_mipi_csi2_device *csi2 = dev_get_drvdata(dev);
+>> +	int ret;
+>> +
+>> +	reset_control_assert(csi2->reset);
+>> +	udelay(5);
+> 
+> Now prefer use fsleep(), which auto choose difference sleep function
+> according to delay number.
+
+I'll keep that in mind, but here the first thing that fsleep does is to
+check whether the parameter is <= 10 and (since this is true) call
+udelay. So here I don't see the point really.
+
+> 
+>> +	reset_control_deassert(csi2->reset);
+>> +
+>> +	ret = clk_bulk_prepare_enable(csi2->clks_num, csi2->clks);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable clocks\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static DEFINE_RUNTIME_DEV_PM_OPS(dw_mipi_csi2_pm_ops,
+>> +				 dw_mipi_csi2_runtime_suspend,
+>> +				 dw_mipi_csi2_runtime_resume, NULL);
+>> +
+>> +static struct platform_driver dw_mipi_csi2_drv = {
+>> +	.driver = {
+>> +		.name = "dw-mipi-csi2",
+>> +		.of_match_table = dw_mipi_csi2_of_match,
+>> +		.pm = &dw_mipi_csi2_pm_ops,
+> 
+> pm_ptr( &dw_mipi_csi2_pm_ops)
+
+Shouldn't make a difference here since this driver depends on CONFIG_PM.
 
 Best regards,
-Hervé
+Michael
+
+> 
+> Frank
+>> +	},
+>> +	.probe = dw_mipi_csi2_probe,
+>> +	.remove = dw_mipi_csi2_remove,
+>> +};
+>> +module_platform_driver(dw_mipi_csi2_drv);
+>> +
+>> +MODULE_DESCRIPTION("Synopsys DesignWare MIPI CSI-2 Receiver platform driver");
+>> +MODULE_LICENSE("GPL");
+>>
+>> --
+>> 2.39.5
+>>
+
 
