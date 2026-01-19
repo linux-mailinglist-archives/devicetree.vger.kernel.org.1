@@ -1,288 +1,187 @@
-Return-Path: <devicetree+bounces-256869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14F71D3A873
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:18:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED319D3A8D7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:32:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AF3DC302280A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:17:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B2BC63018F54
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:32:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A77244660;
-	Mon, 19 Jan 2026 12:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1708535B144;
+	Mon, 19 Jan 2026 12:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="rVKeMs7d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AedT0N6x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023136.outbound.protection.outlook.com [52.101.127.136])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7C3D23AB87;
-	Mon, 19 Jan 2026 12:17:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.136
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768825034; cv=fail; b=Vh7U5XXkOXG7O9d15z751mo9EQu4TL3OgNHgqODfwzNcCDsYXHc4vS9jwjVtWKMCMk8tYGhnM+zM3WW6VHcu7muRMSnW5YNQfXPlo6hJL9d2bLDmct0km4iKT+xdChz1cOVoQtW4ynHnG0q+Y+u0uB61XXvZDBCWdXx7Et7r620=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768825034; c=relaxed/simple;
-	bh=9OR5eR2FNgjWUFDJxISbhBzU2+RBYNClL6zIqB/c/MQ=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=sgKUIlN69M9qTHeSSHfVgHD7YVmxNWxfYNxWHi390qZJqlhXocGxqr4GVcsiH9L284cmja5Eex2oarZt6yag1NHOi4JbxECTH4hcHBxf346L/TwdKmkQmLrzzl7xtJLvYU/C1DU6U0p7PZP3nPSZlq35bFUtDfodjr9juDX13rY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=rVKeMs7d; arc=fail smtp.client-ip=52.101.127.136
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BgtsonxAIiiGZlzCcS4UvpHQ4R+6hX2W4DtZG8tSIxbDTCjYh/ilre+w/i1YPgXljOU2wmGQcXuZVG8MKifvOfyQI9vfoyZhl0ZhhscRnI4BPiMMUTpSC0+piB6M4B+D+HO64QwpKDzY5BfrFcIUHn31vag4+cS3/t9aLUDVYOu7jCi7WpUWccMZrM6qJTaWEbr8CdgZwXKZbaLQ4pykS9RgRP4sR5+fDvT2NRCRJ43gMGeSNdvVXzFfs0MqgKsMKAH55S+t2LJMySc6yspIGmyUqwmP1zeoLTlxulP/7+KAmGZYEuF6Pb5l3Xi/p6n4cgBkiQ2sxFe6B08NomkABQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+pQ5Z6ufKQmspKui21wBRAc29h0Z9mlDXJ9/CV/qsAs=;
- b=thGsr4EUsxaYdL5wI/Ox1tthRaNU4A7cRk5+AtNb33wbvP9oovIN6Nq3tSSUBVtwIlhRCezYEgiIMFDuZAe2tFcXVWAhnlB6StQo4M/9ZlLu+FInyuKCNbj9YnpKGxo6Pk+ZqZ6aWPJjObwXppKgc0p5petV9tn+oLK0nhrLKjDT1UaSg2GRyspfVEY4wPqDKz8fPVZkTFk1Z23lb0KIL+brGmMI1CgK8MTzFrO2KOKHGbIPTj5Y71ACnVJ0SeoAhjE3J0MtstqPNGYTVCeGXYfIkIgk5P2J8QLQuE8F5uHoDzi06UfMcNgJ2LX1JyXJeqYgEQdaJW0QMzkd1HDU/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+pQ5Z6ufKQmspKui21wBRAc29h0Z9mlDXJ9/CV/qsAs=;
- b=rVKeMs7dcOW4qJ94T7njgl/0NHB7xhsgKq9tCiqsOUfaVQ1ufPrNLVPre2jLhE8sqF/znIbG62RFfa/66uiFfJ8qTEff/OA3ss9AI3VLvhFKw3uhISw7TdR2oQy1SzhVinGEyqx2EATa989K01IsVNC4xh7KY8ukhzL2P4DtndXLJ4OPdrcZtkeak+CVJliTbCrr5kjzDkF0z54kJXhMXVJShkshHjX5fAWIsJufj1U3eGDiG0MMEj6ZqQJ2NWlABO9mZl1cKTSvOxkiwk6AdttomW0i1rTWoK1hzWIC9n+DIu6EYQ2iFAEKcyep2VDMMVkzqpeFbccvipf+aBfEgw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
- by KL1PR03MB8042.apcprd03.prod.outlook.com (2603:1096:820:fe::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.11; Mon, 19 Jan
- 2026 12:17:09 +0000
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e%5]) with mapi id 15.20.9520.009; Mon, 19 Jan 2026
- 12:17:09 +0000
-Message-ID: <ea7e209d-cd30-4d93-9deb-104aaf7c92eb@amlogic.com>
-Date: Mon, 19 Jan 2026 20:16:19 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/8] clk: amlogic: Add A5 clock peripherals controller
- driver
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Kevin Hilman
- <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260108-a5-clk-v5-0-9a69fc1ef00a@amlogic.com>
- <20260108-a5-clk-v5-5-9a69fc1ef00a@amlogic.com>
- <1jecnsr1eg.fsf@starbuckisacylon.baylibre.com>
-From: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <1jecnsr1eg.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR06CA0199.apcprd06.prod.outlook.com (2603:1096:4:1::31)
- To KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F1235B12B;
+	Mon, 19 Jan 2026 12:32:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768825974; cv=none; b=bF3qo/qQa2BtVIhMbm9rjzldB4XFlzNHIYd+ZU13vCohkwteT2fFfohxKRkhZDghXAX0wwoKCA/8H5jbBYfYQLRGU9Ghx1whKnl7H/dXksMXK8RqdSUq2ZZ+QTPwcDxi+6UC3Q11EPql/Mg9dWaNWNJyrana5yUTHqGuLlXgGCQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768825974; c=relaxed/simple;
+	bh=M+d6u8jNMJOG/dvieHbaSobR94YjAiJkXgQzt7gGqGY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KI8FuXwQuBG7i+pr0kE1vVIukciiIdQ8GRCQtzs1MWAvUL51nNakildj68Vk6sgtrwwMq86fmZQGzupCIZ88bdCdR0GDFK4T95z1hIdZUskoB+HtfT3boFBZ9k5wFGDyPUiyAV3FdblNwkweatmRBLpM238g5Cfq0QMkWOBUHdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AedT0N6x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E65C116C6;
+	Mon, 19 Jan 2026 12:32:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768825974;
+	bh=M+d6u8jNMJOG/dvieHbaSobR94YjAiJkXgQzt7gGqGY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AedT0N6xsVrBAyEJQwxwMI7L0E1ha0dhwopq7LOvX6bGNGP/Hl2efB2FDeJWXCqHs
+	 3M5e5CQKpAAZC4tSjvi4Vjy7OCPhNHVtZs36enVffdaRm16stc0+WGqN5AAwK8l/kD
+	 jyyFF0tDkMTD/uMk9bRke/+5h9dxF/iUdvJGZmaqnyFiCFoHktjNbvpvF8WRpVLhEv
+	 KrYzILjhNYkhIYsHeDBCIeO461iCbnO827xVPOjDMBKgF6SFjpKlfcu86CVkESJbVR
+	 3JFAjjII3dtZAbzNbK2fb9d1jpmpEr6SlsOPfi9iqBPLTLlGxNc4it3VxoA5kHyEuI
+	 vk/HT8NvfjNpQ==
+Date: Mon, 19 Jan 2026 12:32:47 +0000
+From: Will Deacon <will@kernel.org>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc: joro@8bytes.org, robin.murphy@arm.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+	nicolas.dufresne@collabora.com, p.zabel@pengutronix.de,
+	mchehab@kernel.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v11 3/7] iommu: Add verisilicon IOMMU driver
+Message-ID: <aW4kb5EbxbrhTOxK@willie-the-truck>
+References: <20260107101005.84039-1-benjamin.gaignard@collabora.com>
+ <20260107101005.84039-4-benjamin.gaignard@collabora.com>
+ <aWZui-rn5RDPwpEO@willie-the-truck>
+ <68a49f8b-178c-4fa2-b4a9-315ad602271d@collabora.com>
+ <aWeTQ50DOtntcniN@willie-the-truck>
+ <db0950f1-b357-47c2-9829-e33262ab456d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|KL1PR03MB8042:EE_
-X-MS-Office365-Filtering-Correlation-Id: 047be5af-5220-404e-fdda-08de5754aaa3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|366016|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?L0NWMURTZW8wY25NRDcwQXowUGpnc3FaT1Qxc1o0a3F2RnZKQzlFelhVVUZZ?=
- =?utf-8?B?VDl1ODkrMEwyQTZPa0E0WmhGZFhTTS9HS0dueDhnVHVicGpJVXNrejRqQk93?=
- =?utf-8?B?VmVzZXRYcUR1R3ZPY1JLbE52VXRmUWNvMmtWdjRUOGVlQ3dBVjlnQ3NPVnRr?=
- =?utf-8?B?MGFyTnUrWjB5c3hnT0xEOVppT3FIYXFpNXlrWDN4U2ltVVV2QmV4eXNtN044?=
- =?utf-8?B?NlR5Z0toYTBST2RYVzBSL0VvVXoyOFFlajlIOWMrQ1p6enIrTkV5bWlpNm14?=
- =?utf-8?B?ZXd1eFZqRXNaN3JEN2JIZTZXS1dwbDVhZllYYkJISzREclNTVlB3RHNISWpj?=
- =?utf-8?B?R0JXNGNJdHk1dVBzRGNyR2VKMVdEQVZzZm01WHVuSHZvUmhLbWVTUzBoaWsx?=
- =?utf-8?B?QVpHcHdSQlZwYWtHUGZwQVBadm1ZYktyR3I3bGhqeGRuOFdPUXpGdkVRNzR0?=
- =?utf-8?B?YzdCWURSZTVaQWdhc3A4N01yTXZsNzhaQllkVXA2Q3M5UGl1b2dJRHcrdkdO?=
- =?utf-8?B?Q09CUnIxckoyczhlRnNVNG5KZGI2NWdlQTZSb3NVYU94UG1WTzNYbmx1cVBB?=
- =?utf-8?B?K001azFLZUlCU2VoUEJ6UzVJRkNvazcrWnVEVEwwbFhiRXZWbTBZSS9JQmFP?=
- =?utf-8?B?OXJWTkZPcGxxcktyckRjU21lZEtqOUNhOFkxS09WNmYyUjZGeXNsMDRpb1Y3?=
- =?utf-8?B?OTFwSnA0NXE4NGVZNDVESzRaZGdmbkFqYXMxRzVuQWMvelVHcTFYNTc5c0pH?=
- =?utf-8?B?YUlWNGZaWjc3eTA4ZlZBRTcvVHVWWk9YRWg1cTc2RnBnTi9kWnRDWVVSLzh5?=
- =?utf-8?B?ZkswV0dNYm1LdXNFVzFFOGlEbnM3U0M4TGFDWTg0V0o2VkhEYTNNamNtYXZz?=
- =?utf-8?B?YkljcUtxL3RJWEtLclA1VFdTMi93QkhWUmpWK0FNS2VObjF4M0hvZXRDVHRN?=
- =?utf-8?B?QWZ0aUVrZFI1VDFHb3lHeVNjcCswb0lqd1pIc0hXZE5XS1M2S2VkUGF6ZXB6?=
- =?utf-8?B?ZHhKWkpTYXlWak5BaGI0SVdRTksrNVVQSFl1VW5yMFlwZG1Ya3Y2NzllblZ0?=
- =?utf-8?B?NW02VEdrS243UmtEOC9jVCtFNERiY1pESlVqZURUK1RpYzE0cjNyZkE0MGNz?=
- =?utf-8?B?THYxLytuazNwOGRkY1pkeE1GSSs4Yzk3N3lXR2dkNmpkVTN0SThTdzUrbGVH?=
- =?utf-8?B?L3FXbDNyOXlBd1JJQzRiRWVZOWJtSy9IVE1VSm9uUXBYdllPRVBIbmk5NHhH?=
- =?utf-8?B?OTl3TU0wMWtJZlF5SmQ0VnRPMkRsa1lmWHVqOTRjYUM5dkhlVlpOakNpelFC?=
- =?utf-8?B?S2tJMU1UcUlieis4Z3pvVUIyOWFUb3pWUERMYlJOaVRNWTZaSjRGSUJGTlRj?=
- =?utf-8?B?ejZ6VyswQi8raDlENkF0Yk94bVArVisweWtXQzlkRXBWejJqNjF5eVZIWlhI?=
- =?utf-8?B?VGJzWEVWNW1ZeDdMcEJTYWM4cHRpNnJUbmJvZ1puWmhST0pUMVVBRHVrd3JN?=
- =?utf-8?B?R0dPMDVpaGV0NTc1ZlBuUGlUM2dqc3VEdi9weW1qRGVSZHpJRHdObHlaWUlX?=
- =?utf-8?B?M29DODhoUHpWSGg3MVQ2Y3lTZTFLRTBEY3k5cCt4L1VNcmM4Mm1EbFYyTjQv?=
- =?utf-8?B?M1hDa0NXOUVMc2lHNU13MjRCOUhmMTJraTVkb1RBS1VEelYxMldlcEpNWUlR?=
- =?utf-8?B?aUhkRE1tQXhRQld5U09JQ3g2UzdLRkRUZUJpQWVSNGhnZ0dIc0QweTJSYzE3?=
- =?utf-8?B?RC95ZWEwdFFQelMwYldtS3psKzNJcUJmUWNxS1gwQ05HMU1HS3ZtbXZSL2lK?=
- =?utf-8?B?RWVNSUp2S3RqNU04Qm1hMW5tYU1aZU5keFBOYkYxNEh2OWR2Q2RGWjNlWVdJ?=
- =?utf-8?B?a0VGNkRPN1FiL0pPbEZ6TTlvMzdjOUdxdUcvbDdnb0FBek9TS1dZT3ZESlZv?=
- =?utf-8?B?eXh6KzdTTjBEWUY1TVFIQ2cvNE0xeFJIU0RqRWJqSXBLQ1IwNisxeGE2TlFj?=
- =?utf-8?B?MHRtaVlOVTE3RzFaZ3ZyT3BwejgrbjYvSXBLYmFtOFNiUmNJSUQydTMzaVJw?=
- =?utf-8?B?RUs2N0JiVHRwcU9nNzVQUExpb2pydEd0a0dabHJRaHJBcGlOYU5GRWlleU02?=
- =?utf-8?Q?gEoA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Zk5rVCtZZUJORTRoQ0pPb2IzWnlpWThxTEZYaUlCanVFbzJDQmZCM3o0ZGhI?=
- =?utf-8?B?MkNGNTU1aGlPSFptY3k1WHBzV1VMSTNiSE9RaWRtMjRUZGxhQUJRckxteFh1?=
- =?utf-8?B?OW9abXlSTHpWcHBYandnZGJNUHJEUFZoVnFIb3VrOTYzUmZxbjNLWmQxSHo4?=
- =?utf-8?B?T0RpT3ZBUXZhRy9maHN2YTYvaGJmcHFtVVJnT2lvVnV1UU96MStiZlJGbHVQ?=
- =?utf-8?B?aVhIMExrMElNNDM5Q3phOWIzQk50Wm4xc1JHeTIvMzhJQ1VTL2YwdWhYMW1M?=
- =?utf-8?B?STRtdDB3S1BldlphdW9yTGZhNU5oS2x0VnhXWnpoVGc0OEtGZ2w3S3Y1cXhG?=
- =?utf-8?B?VVFNQVZGZmhWSnVJY0R4REpaZkJvVlVhdTJNZ0lVSCtQQnFpbG5ja2RmUHVG?=
- =?utf-8?B?enhDK2l4TzdMSHZSeVNuM25IRk13cXhSUC9MemxEZzlMUSt5T1lYcTN1NHZS?=
- =?utf-8?B?aVJ3WmhDeUc1aXd6bHZrVTBHYWxlZ0w4NHBEYTZDQ0EyVjdScVplRXhqY2g1?=
- =?utf-8?B?bVA2R1hpUlpjQkJLMFh1d0poMWo1bEgzK0VaMlBpakJLZURsQUNwUGk2azJx?=
- =?utf-8?B?ZlhtdWlxUlpOV0R5M3MzanZWdmVwbDVCQkNxZy9ZdGxab2Q0YmJnRFozdXg2?=
- =?utf-8?B?TjdESEY2dkR0R2V6L0J5eGNqN1FsSm04TEh0ZndDOTFKdUlDdGN6VXh5WE9h?=
- =?utf-8?B?YTh0dklrVXZhL3prTXFjL2FCZGtQVnBBdTlPbHdjTVpVM2xLSG5kTVAwQ0dl?=
- =?utf-8?B?d05PUGx4MFdPdnFuMXhJUk5kMFhmR0pYeXdSRzNhdENwalhRT3ZYTGdXdUhY?=
- =?utf-8?B?V0dqeTRGNHBYSzdXYWlvK3NPMWF5S0JkNzhmV2xSZ3ErSjZwYmlvK0dmRjla?=
- =?utf-8?B?UHR2bCtKeDJIVWZiTlFqN01HYWx4NVViUHJMSGNHUGo5cUszOE5iM2JrWUJZ?=
- =?utf-8?B?NnkrSy9hWnp3QTluNVZvZjE4eFdvd09wRHl1V1lXTGFBYnBoZW9UWDU5MWt5?=
- =?utf-8?B?R0tXL1REOENkYmYycDljWHhlSGNZVDh3TXNJU2NzUS9UQU1maWwxWG5wYTJL?=
- =?utf-8?B?dk9JQUl3MXBrZjhva1Z5TFp3UmdhNHNObUdiRXNzUGFCWE5rZmJoU091ZHVq?=
- =?utf-8?B?WmJFbDN3bkZwRGRCTUhES2dGOEhSSk51ais4T3lJOGJDV2VuamJ0QzJQL28y?=
- =?utf-8?B?dDNyaGJTVXljaXR2L05TYVhsOGZxV3VlZjVTbFZLbDFYYVJzeWVXRmdkeHpY?=
- =?utf-8?B?RlRhek55UXF5dzE0dWUrRHZkejU2R2NITnV1b1JRa0h4Uk0vQW5RMjNjQlFX?=
- =?utf-8?B?MDN1dEo5QzltU2JMeDR6VDRlNlB5T0hrSHk0aVJDd0VveEZ3ZlJjZkRkTkk1?=
- =?utf-8?B?bzRhei81SUJTTGpQTDkrZGlYOHptSGplZXE4MGdMdGdvVXZQd044YnEyQ1RL?=
- =?utf-8?B?dFJzYlkwWUxEYWtvM0RiSzJ2ODR0bi9yc0doODcrWG5NVC9YVEtSNXo2TkZS?=
- =?utf-8?B?VU5XU1p5aVVDYmF2c2JTZVBLNG5xTHMyNHVtZUI3TStXN2NzWUl4cDRaYXVz?=
- =?utf-8?B?ck5rdnlmVHhna2JleHR4U1F0TGFSVWZzSFlsenRqMzhMNG1QTDIzMnVkRjFY?=
- =?utf-8?B?VVFyVkYrUEQyTStmZlpESFJ0VkhuM2k3eElKb0dHVEZhY2hIak1ONFRDdncx?=
- =?utf-8?B?YlZGVkdhT2Q1NDI3a1ZreHBIYnhQRUlKY1lVK1ZaaG9ZeE1mYXN3bm1qdkM4?=
- =?utf-8?B?TXpacFBiZ3ZXU1BldG1xYVNwekhsRXB5YVFYc3pCN21hQXZQNlJZTHVvQ3BE?=
- =?utf-8?B?SzBiMGdJR0xtOHVMT0RBMDdoTkdBRmIveWxoZCtsK1RsOFRZMExMNTd3bVRU?=
- =?utf-8?B?bFA2M0ZRL3VBbVRhdm1xbUorRGRNMTZ6bkJmQU9PRWtpWURmcTlkYXY4M0ZV?=
- =?utf-8?B?RDY5azZXQ08xM2sxUEZQSDhhdFRpZTVvMWNzTEVUb2hvRzUwSElQTDFxcDUy?=
- =?utf-8?B?SmFWM1BIbE1QZzZCcDdxT0VpckpXazlISHAvVjVsTTZiTzlaV0YzSHBKSjlN?=
- =?utf-8?B?enF5cEVNclVWRHZ0OU52OU81bTdhbWdGdHNXdmFBK3IrTXBLd085d2o1U092?=
- =?utf-8?B?bGkveUlrM2hlRG05OUUvWkVsVERVajU3ZFVleUNBMlJUSDNqRkVsbWxDUG44?=
- =?utf-8?B?MzlvVGIvdUxuODVWZmVoVXFoZmRVaXZxYTVVWHRvTnBjeTlzb09ZeE1IV2tt?=
- =?utf-8?B?YXJEVDQ2Vitua0xxSi81NGdvUDFpVFdjRms2b1UvbTVPeXRxazRkdTd6UGF1?=
- =?utf-8?B?UEtsVUhhbmVoc2g1czY0MTMxUGxjR2tMVHdnMmFlVzRqdFRmc0dvQT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 047be5af-5220-404e-fdda-08de5754aaa3
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 12:17:09.4941
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JuJWo8yTJuHuDUvKCgVaQE9j4zMdhchIvaj03pKJpBqiFBtdAouT8tkU8vlY6ocszc4K77wZfcQeKxPAIB9osg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB8042
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <db0950f1-b357-47c2-9829-e33262ab456d@collabora.com>
 
-Hi Jerome,
-
-On 1/14/2026 5:25 PM, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
+On Wed, Jan 14, 2026 at 02:10:48PM +0100, Benjamin Gaignard wrote:
 > 
-> On jeu. 08 janv. 2026 at 14:08, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
+> Le 14/01/2026 à 13:59, Will Deacon a écrit :
+> > On Tue, Jan 13, 2026 at 05:25:38PM +0100, Benjamin Gaignard wrote:
+> > > Le 13/01/2026 à 17:10, Will Deacon a écrit :
+> > > > Hi Benjamin,
+> > > > 
+> > > > Thanks for posting a v11.
+> > > > 
+> > > > On Wed, Jan 07, 2026 at 11:09:53AM +0100, Benjamin Gaignard wrote:
+> > > > > The Verisilicon IOMMU hardware block can be found in combination
+> > > > > with Verisilicon hardware video codecs (encoders or decoders) on
+> > > > > different SoCs.
+> > > > > Enable it will allow us to use non contiguous memory allocators
+> > > > > for Verisilicon video codecs.
+> > > > > If both decoder and this iommu driver are compiled has modules
+> > > > > there is undefined symboles issues so this iommu driver could
+> > > > > only be compiled has built-in.
+> > > > > 
+> > > > > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> > > > > ---
+> > > > > changes in version 11:
+> > > > > - Fix dependency issue when decoder driver is build as module.
+> > > > > 
+> > > > >    drivers/iommu/Kconfig     |  11 +
+> > > > >    drivers/iommu/Makefile    |   1 +
+> > > > >    drivers/iommu/vsi-iommu.c | 808 ++++++++++++++++++++++++++++++++++++++
+> > > > >    include/linux/vsi-iommu.h |  21 +
+> > > > >    4 files changed, 841 insertions(+)
+> > > > >    create mode 100644 drivers/iommu/vsi-iommu.c
+> > > > >    create mode 100644 include/linux/vsi-iommu.h
+> > > > Based on your reply to v9:
+> > > > 
+> > > > https://lore.kernel.org/all/0eff8b1a-c45f-47b1-a871-59f4a0101f0f@collabora.com/
+> > > > 
+> > > > I took another look at this to see whether it had changed significantly
+> > > > from v6 when compared to the rockchip driver. Sadly, they still look
+> > > > very similar to me and I continue to suspect that the hardware is a
+> > > > derivative. I really don't understand why having a shared implementation
+> > > > of the default domain ops is difficult or controversial. Have you tried
+> > > > to write it?
+> > > > 
+> > > > However, given that nobody from the Rockchip side has contributed to the
+> > > > discussion and you claim that this is a distinct piece of IP, I don't
+> > > > want to block the merging of the driver by leaving the conversation
+> > > > hanging.
+> > > > 
+> > > > There is still one thing I don't understand (which, amusingly, the
+> > > > rockchip driver doesn't seem to suffer from):
+> > > > 
+> > > > > +static void vsi_iommu_flush_tlb_all(struct iommu_domain *domain)
+> > > > > +{
+> > > > > +	struct vsi_iommu_domain *vsi_domain = to_vsi_domain(domain);
+> > > > > +	struct list_head *pos;
+> > > > > +	unsigned long flags;
+> > > > > +
+> > > > > +	spin_lock_irqsave(&vsi_domain->lock, flags);
+> > > > > +
+> > > > > +	list_for_each(pos, &vsi_domain->iommus) {
+> > > > > +		struct vsi_iommu *iommu;
+> > > > > +		int ret;
+> > > > > +
+> > > > > +		iommu = list_entry(pos, struct vsi_iommu, node);
+> > > > > +		ret = pm_runtime_resume_and_get(iommu->dev);
+> > > > > +		if (ret < 0)
+> > > > > +			continue;
+> > > > > +
+> > > > > +		spin_lock(&iommu->lock);
+> > > > > +
+> > > > > +		writel(VSI_MMU_BIT_FLUSH, iommu->regs + VSI_MMU_FLUSH_BASE);
+> > > > > +		writel(0, iommu->regs + VSI_MMU_FLUSH_BASE);
+> > > > > +
+> > > > > +		spin_unlock(&iommu->lock);
+> > > > > +		pm_runtime_put_autosuspend(iommu->dev);
+> > > > > +	}
+> > > > > +
+> > > > > +	spin_unlock_irqrestore(&vsi_domain->lock, flags);
+> > > > > +}
+> > > > [...]
+> > > > 
+> > > > > +static const struct iommu_ops vsi_iommu_ops = {
+> > > > > +	.identity_domain = &vsi_identity_domain,
+> > > > > +	.release_domain = &vsi_identity_domain,
+> > > > > +	.domain_alloc_paging = vsi_iommu_domain_alloc_paging,
+> > > > > +	.of_xlate = vsi_iommu_of_xlate,
+> > > > > +	.probe_device = vsi_iommu_probe_device,
+> > > > > +	.release_device = vsi_iommu_release_device,
+> > > > > +	.device_group = generic_single_device_group,
+> > > > > +	.owner = THIS_MODULE,
+> > > > > +	.default_domain_ops = &(const struct iommu_domain_ops) {
+> > > > > +		.attach_dev		= vsi_iommu_attach_device,
+> > > > > +		.map_pages		= vsi_iommu_map,
+> > > > > +		.unmap_pages		= vsi_iommu_unmap,
+> > > > > +		.flush_iotlb_all	= vsi_iommu_flush_tlb_all,
+> > > > This has no callers and so your unmap routine appears to be broken.
+> > > It is a leftover of previous attempt to allow video decoder to clean/flush
+> > > the iommu by using a function from the API.
+> > > Now it is using vsi_iommu_restore_ctx().
+> > > I while remove it in version 12.
+> > Don't you still need some invalidation on the unmap path?
 > 
->> +static struct clk_regmap a5_rtc_clk = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = RTC_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 0,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "rtc_clk",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = a5_rtc_clk_parents,
->> +             .num_parents = ARRAY_SIZE(a5_rtc_clk_parents),
->> +             .flags = CLK_SET_RATE_NO_REPARENT,
->> +     },
->> +};
->> +
->> +#define A5_PCLK(_name, _reg, _bit, _pdata, _flags)                   \
->> +struct clk_regmap a5_##_name = {                                     \
->> +     .data = &(struct clk_regmap_gate_data) {                        \
->> +             .offset = (_reg),                                       \
->> +             .bit_idx = (_bit),                                      \
->> +     },                                                              \
->> +     .hw.init = &(struct clk_init_data) {                            \
->> +             .name = #_name,                                         \
->> +             .ops = &clk_regmap_gate_ops,                            \
->> +             .parent_data = (_pdata),                                \
->> +             .num_parents = 1,                                       \
->> +             .flags = (_flags),                                      \
->> +     },                                                              \
->> +}
-> 
-> I wonder why I bothered reviewing v4 ...
+> In vsi_iommu_unmap_iova() page is invalided by calling vsi_mk_pte_invalid().
 
-Regarding the comment you made on V4, my understanding is that you were 
-just teasing ... In the next revision, I will change this part to use a 
-unified macro.
+But that just writes an invalid descriptor and doesn't appear to invalidate
+the TLB at all.
 
-We may also consider adjusting the "MESON_PCLK" macro later by removing 
-the SoC prefix from the clock name, so that it is consistent with the 
-naming style used by "MESON_COMP_SEL" / "MESON_COMP_DIV".
+> That clear BIT(0) so the hardware knows the page is invalid.
+> Do I have miss something here ?
 
-> 
->> +
->> +static const struct clk_parent_data a5_sys_pclk_parents = { .fw_name = "sysclk" };
->> +
->> +#define A5_SYS_PCLK(_name, _reg, _bit, _flags) \
->> +     A5_PCLK(_name, _reg, _bit, &a5_sys_pclk_parents, _flags)
->> +
->> +static A5_SYS_PCLK(sys_reset_ctrl,   SYS_CLK_EN0_REG0, 1, 0);
->> +static A5_SYS_PCLK(sys_pwr_ctrl,     SYS_CLK_EN0_REG0, 3, 0);
->> +static A5_SYS_PCLK(sys_pad_ctrl,     SYS_CLK_EN0_REG0, 4, 0);
->> +static A5_SYS_PCLK(sys_ctrl,         SYS_CLK_EN0_REG0, 5, 0);
->> +static A5_SYS_PCLK(sys_ts_pll,               SYS_CLK_EN0_REG0, 6, 0);
->> +
->>
-> 
-> [...]
-> 
->> +
->> +static struct clk_regmap a5_gen = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = GEN_CLK_CTRL,
->> +             .bit_idx = 11,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "gen",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &a5_gen_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +#define A5_COMP_SEL(_name, _reg, _shift, _mask, _pdata, _table) \
->> +     MESON_COMP_SEL(a5_, _name, _reg, _shift, _mask, _pdata, _table, 0, 0)
->> +
->> +#define A5_COMP_DIV(_name, _reg, _shift, _width) \
->> +     MESON_COMP_DIV(a5_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
->> +
->> +#define A5_COMP_GATE(_name, _reg, _bit, _iflags) \
->> +     MESON_COMP_GATE(a5_, _name, _reg, _bit, CLK_SET_RATE_PARENT | (_iflags))
->> +
-> 
-> At the top. like C3 and T7
+Yes, the TLB structure needs to be invalidated so that the page-table
+walker sees the new value that you have written in memory.
 
-Except for A5_COMP_SEL, which differs slightly from T7 due to the 
-additional "_table" parameter, the other macros are consistent with T7.
+The rockchip driver gets this correct...
 
-I also asked for your feedback on this in V4 and received your 
-confirmation. Is there anything here that still needs to be updated?
-
-[...]
+Will
 
