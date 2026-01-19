@@ -1,140 +1,125 @@
-Return-Path: <devicetree+bounces-256912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22B9D3AC71
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:42:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5BBD3AC80
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:43:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 477663025524
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:36:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 826DB304E5C8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D966E242D8B;
-	Mon, 19 Jan 2026 14:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A11B37BE7E;
+	Mon, 19 Jan 2026 14:37:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Lep/++66"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GagMSqmA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18CA221F20
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 14:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442533596F5;
+	Mon, 19 Jan 2026 14:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768833398; cv=none; b=b/h4IF/RFAKvPcm4KelBDfdYES8PVdqbvDGlWSjX+AGPk0DMQD+jVNZN+//mzqCXXmiM0/3L3oELiNJKCPUbWuuz95btxHuM20rFTrccwoZWviAJP04vrJkJjB0REIeW3ls7C5KDWncEzF+3MBIFNU6xunXalRXyDgqo1yFOHwk=
+	t=1768833450; cv=none; b=B0bs1IedLr8Tqd+evh+V5savxGU/KsNizuYVkpPGx+T5OIe7GfanDOzdb0UgaIppePc0r3NZj+bUQ5Lb0aRLiJO1whvQME2HmRnba+ps7UiCqR94XFscRu17d7GCyEhADDZSm+WryG1BS6KvZIFl5XsEqdMvkrbjGvQhfH68lkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768833398; c=relaxed/simple;
-	bh=DSPrpSf0LWJLqHjm3ttmtuFsri+3Hw7h5T/bLjPsmL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y2TOMYrRQ7e+Q7AyWp2xgF/1K4tn/hjcTtYPpU85DrnXzgDxaLjpMlI1tsJ1K8H/se5s/ezbA4X7rNiia72t3+cXSklGVZ3M6YXNB0c9AAHmgmnaw7wgNzmCj0ji6fWapsHQtADhYaOo3HzwN4/z57/lz3dQ98Olo3fObfEYc8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Lep/++66; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id D10E5C214D5;
-	Mon, 19 Jan 2026 14:36:07 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CEAE360731;
-	Mon, 19 Jan 2026 14:36:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D49B810B6B09B;
-	Mon, 19 Jan 2026 15:36:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768833394; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=a+xqZLXHQfagtj+iXfEgTO2mtajyxN/ZOkd2GLwZgxI=;
-	b=Lep/++66PIdAeYzkK5bKBrO3lCBuOtEPpU5wmOUd3Wp/DMsSAkj1vP4n8Q581P7zc8dLcY
-	hW+7LS6m5IntlgzpSPbbMxkLhISGKc6BUK3hQDzS61f7fQgOtcCtOSvjhSVSg56nw4q+VP
-	FiT0VYuBMRVbRM6racAjC2YF/qpNpI+ogjIE7F4C259JJD0kehzwFs+p73VJrtW4SSAXws
-	3JpIFtc6+MVJKG8vZvlaWG/AvUEqtn9XZZ4Y9LGmUmI7KTBnUjwSkdvDCATgJbbvyEIjgR
-	pAka+j2u7cHRxtiGchZquycKW3RHvw5d/f0g2l9m16rJ0JuGT9oDsV1PuWUP1w==
-Date: Mon, 19 Jan 2026 15:36:29 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 35/77] Add support for FDT_IMPORT_SYM dtb tag
-Message-ID: <20260119153629.26fa0f94@bootlin.com>
-In-Reply-To: <aWiMB8MljbOl-RRX@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-36-herve.codina@bootlin.com>
-	<aWiMB8MljbOl-RRX@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768833450; c=relaxed/simple;
+	bh=dwwTpaKA7gIHT3p11HWy39HHGkQKNmQErjgBN0eXz+Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Wyg6PRLIfjK+gJnOjGW6La+OBHVoel/b6/USA83bQysp1HT7VHZjdayzkgBcs93NK22VMMVuu6Nf9sm1DiBT0S1qOaTMkTrjBER29ZDwDT1+fvw5rwBhPu264zlg7Vg1FqtDhmlnJLuuLnEJJ6E6QYtZBZq6GPYYs9SFTzPpJkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GagMSqmA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E33B7C116C6;
+	Mon, 19 Jan 2026 14:37:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768833450;
+	bh=dwwTpaKA7gIHT3p11HWy39HHGkQKNmQErjgBN0eXz+Q=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=GagMSqmA+0TmmaneCSNcjSO7yIEvefS8HknztquIBgEf5PyRUQkvLXafiydwnSUCI
+	 3fV3R2VdKt4kFiXzKq7iuPlO+dkwbtP3mfsyuV3umWYcRMv1z6Hw3LamIzq9Ay9eCS
+	 FLOnvvBkjYki7PtfibU3HdV1ssuyH+Nr+7c9vLH+4KibLpzMt0KUMfD7tne+eEQBch
+	 AWt7fjJmWbaS9cjgUMnTU/IcPKNH48kUKJf/CDlFImg9iisfZI22NyeCDVfqBV93GI
+	 9qugh8gRbF6ntAOqHsrp8ZAAU5oUFu0IMrgwSAHC06CEBldB8xiqJUCNlywqtDQwt6
+	 33RZkdZLX7Alg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2FE7D29C32;
+	Mon, 19 Jan 2026 14:37:29 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH 0/7] iio: amplifiers: ad8366: driver update and dt support
+Date: Mon, 19 Jan 2026 14:36:54 +0000
+Message-Id: <20260119-iio-ad8366-update-v1-0-8044e23e964a@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIZBbmkC/x3MQQqAIBBA0avErBtIQ4muEi1GnWo2KVoRRHdPW
+ r7F/w8UzsIFxuaBzJcUiXuFahvwG+0ro4Rq0J02SmmFIhEpDL21eKZAB6Ox5MibwTlPULuUeZH
+ 7f07z+345fOTvYwAAAA==
+X-Change-ID: 20251121-iio-ad8366-update-56abac58bbca
+To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>, 
+ Alexandru Ardelean <alexandru.ardelean@analog.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768833448; l=1845;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=dwwTpaKA7gIHT3p11HWy39HHGkQKNmQErjgBN0eXz+Q=;
+ b=LwuV+V5aYEDkwYsj9rglG1B7ZsDII5mtBFR12tzQcMRm+1C2kxTWOxd6djNG598KOCIjXorFu
+ jL2l9tl6Fn1Brj93UiGuB2mdUsEEK5clqbTsMtC9fUla2TZjjahuTTT
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 
-Hi David,
+This patch series updates the AD8366 amplifier/attenuator driver with
+modern resource management, including support for additional device
+variants.
 
-On Thu, 15 Jan 2026 17:41:11 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
+Device Support Expansion:
+- Adds support for multiple digital step attenuators:
+- ADRF5720: 0.5 dB LSB, 6-Bit, Digital Attenuator, 9 kHz to 40 GHz
+- ADRF5730: 0.5 dB LSB, 6-Bit, Digital Attenuator, 100 MHz to 40 GHz
+- ADRF5731: 2 dB LSB, 4-Bit, Digital Attenuator, 100 MHz to 40 GHz
+- HMC271A: 1 dB LSB, 5-bit, Digital Attenuator, 0.7 - 3.7 GHz
+- HMC1018A: 1.0 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
+- HMC1019A: 0.5 dB LSB GaAs MMIC 5-BIT DIGITAL ATTENUATOR, 0.1 - 30 GHz
 
-> On Mon, Jan 12, 2026 at 03:19:25PM +0100, Herve Codina wrote:
-> > The FDT_IMPORT_SYM dtb tag is a meta-data tag defining an imported
-> > symbol. It can be present globally in an addon dtb (i.e. outside nodes
-> > definition) meaning that this symbol needs to be resolved when the dtb
-> > is applied.
-> > 
-> > The tag is followed by two values and possible alignment paddings:
-> >   - name (string including \0)
-> >       The import symbol name. I.e. the name used to reference this
-> >       imported symbol.
-> >   - padding:
-> >       Padding (0x00) added to have the next value aligned on 32bit.
-> >   - compatible (string including \0)
-> >       The compatible string that can be used for symbol resolution.
-> >       This string can be an empty string if it is not relevant.
-> >   - padding:
-> >       Padding (0x00) added to have the next value aligned on 32bit.
-> > 
-> > Example:
-> >   FDT_IMPORT_SYM 'foo1' 0x00 0x00 0x00 'bar,foo'
-> > 
-> >   This means that 'foo1' is an imported symbol and it is 'bar,foo'
-> >   compatible.
-> > 
-> >   This is what is encoded in the dtb when the related dts has the
-> >   following imported symbol defined:
-> >     /import/ foo1: "bar,foo";
-> > 
-> > If several symbols are imported, several FDT_IMPORT_SYM are present.
-> > Each of them defining one imported symbol. For instance, importing
-> > 'foo1' ("bar,foo" compatible) and 'baz1' ("bar,baz" compatible) leads
-> > to the following sequence:
-> >   FDT_IMPORT_SYM 'foo1' 0x00 0x00 0x00 'bar,foo'
-> >   FDT_IMPORT_SYM 'baz1' 0x00 0x00 0x00 'bar,baz'
-> > 
-> > If FDT_IMPORT_SYM tags are present in the dtb, they are present after
-> > the root node definition (i.e. after the FDT_END_NODE related to the
-> > first FDT_BEGIN_NODE).
-> > 
-> > Add support for this new dtb tag.  
-> 
-> Since these are global to the whole tree, would a new block make more
-> sense?
+Device Tree Support:
+- Adds device tree binding documentation
+- Adds device tree compatible strings for all supported devices
+- Favor chip info tables over device type.
 
-I don't know.
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Rodrigo Alencar (7):
+      MAINTAINERS: Add missing maintainer entry for AD8366 driver
+      dt-bindings: iio: amplifiers: Add AD8366 support
+      iio: amplifiers: ad8366: consume enable gpio for applicable parts
+      iio: amplifiers: ad8366: Update device support
+      iio: amplifiers: ad8366: use cleanup.h mutex guard
+      iio: amplifiers: ad8366: simplify resource management
+      iio: amplifiers: ad8366: add device tree support
 
-Exports symbols are in node blocs and that makes sense. I wouldn't expect
-imports out of the dtb "structure block".
-
-They could be grouped into an other tag, FDT_INFO_DTB for instance (part of
-the "structure block").
-
-If you think that a new block is really relevant, I can implement this new
-block.
+ .../bindings/iio/amplifiers/adi,ad8366.yaml        |  85 +++++
+ MAINTAINERS                                        |   9 +
+ drivers/iio/amplifiers/Kconfig                     |   6 +
+ drivers/iio/amplifiers/ad8366.c                    | 351 +++++++++++----------
+ 4 files changed, 285 insertions(+), 166 deletions(-)
+---
+base-commit: c30e80d68a7afb334fde7147ee0106f25dd58d3a
+change-id: 20251121-iio-ad8366-update-56abac58bbca
 
 Best regards,
-Hervé
+-- 
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
+
 
