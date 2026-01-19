@@ -1,99 +1,46 @@
-Return-Path: <devicetree+bounces-256782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A3BBD3A52A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:35:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8173D3A52B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:35:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DFAB23002894
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:35:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C64C730056C1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065072DC334;
-	Mon, 19 Jan 2026 10:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F02C2FF153;
+	Mon, 19 Jan 2026 10:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="br9PmbAD";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eb50bHdC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MB2suOng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4BC82DB7A7
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 10:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B93029994B;
+	Mon, 19 Jan 2026 10:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768818915; cv=none; b=o/Tph2cSfbfsB1Xwdeov3MAx54h9hclHV07t+j3o1L+smm5bkMKR4z0o0xO4N+BPxtuMJwiIP33o+bBUc+eOuS/6SkKMTorzvD4lF4XEeSX7XQZuNrH0KzmiUkEtkkGEfI66SZ4CjtYj2PPzISPZG2t9rRcfCeCj1Vj6eAbJcI4=
+	t=1768818921; cv=none; b=YHBrapw+rAycYe4ZJ9fvBU+mG2Nix7JEGRgevgMgAB0Zw8XoNuwIm5bpP0pIPrd8vvVS6jdFKuEpEJfO69WzwEZNzezHuV0DKHkSqc0P9ysVJyOiY73qUHdL3X1vJoJDZKw3Mrmth8mJaXaMtt+A03G7e2UV2g9N/mw+yHdrZj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768818915; c=relaxed/simple;
-	bh=yFkqPxWakgJbInN0xaYmWVtAlThPqKhg4y/r53GyHc8=;
+	s=arc-20240116; t=1768818921; c=relaxed/simple;
+	bh=5R+bvxi6OEBJh5n7CU0DYl8TNpunqW07MyIIaVXFiqk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DrXM3Zn7lQIVM/JLlg0AXUxokfJGP3MPoqZmSaqWWyBob9eO1n+qhWzz6b7mtUzZNIiZ1bu/kkpTftGnwce7kXsMo8dLmso2zjjDNo/65p01MWmu7Gz9k6fEbn7mrse18V8N8OhUJ4EGCUu+F1g958pgbkzQbA5b2rAMTz9ujHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=br9PmbAD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eb50bHdC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J9kKvd774079
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 10:35:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vvNSwLDhS+/QqYkM1c8An4s/qziHLEGC7UI+ryiM8Y8=; b=br9PmbADxuvUHtIc
-	3y8PUjGv/ppWMky4GeCT3MAqbPgPW+C7E6byun5BWHUfUPFfm1Wma7E667D2u2Ho
-	B/vocCZ/GhUcFTJkx37JcYBWxT3VYRt8yAGf/ACZDYg0uv7syZFCYtooK7pSO6Nw
-	/VXq110A5/X0HBHJ9AeKVkGeI3HmWdkTaTHf5PugnHHU3HhylgvOq3/xIVNpaduK
-	8rg5FJoxIItRrAdFJ6bmfZiSJRQif6NRr8I058cCE86VIDFvxL8QqBE5OYPSykAw
-	0MN36fI4qiOEOjuREpWuzS1u6MkAVgi7AHlZoUrUWWB+tloDyi4wo6cQ8OvDmR24
-	y5SojA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsj9a859b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 10:35:13 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c5265d479dso151565585a.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 02:35:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768818913; x=1769423713; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vvNSwLDhS+/QqYkM1c8An4s/qziHLEGC7UI+ryiM8Y8=;
-        b=eb50bHdCLh7G08yeXT02MpiaJd8/nKyVF6ZwPn3WGWHRdX0/Pg0VZFK35OHiw3ebS4
-         OGT1tkGdMzrZf0Z0HP80sla9NhpQauSVbB14HthjuD55W2uZBG+okMpyAkviYBS0Lw+n
-         dnemN/+dgHK1V4GLZ+JvoGn1ExRBadHTJqwViSuLDcW738Ee9mOrLRpAGFjfaNKj6+6L
-         LlkqLoc8nm6vS33d2hNqdK619fgnuFkk4jo4KucLvINbxroezaGWQrC4YCMUxAAKmfwT
-         EGBiGHidqnGwR55TWm173dCLzONwxmvLouCQtHWAEKRqG6D80kWyn6FAIg8E1PEMSO5g
-         k5JQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768818913; x=1769423713;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vvNSwLDhS+/QqYkM1c8An4s/qziHLEGC7UI+ryiM8Y8=;
-        b=H5zkLHTzDwtZOQ5HV5hS4FmelMy4BgPcff5VBBx7ouZuyDNOYLER3ac9bbB5Q7PHXr
-         EJXebQ/75I1xIje/lRMPvV9K6M6xx46KEtCh6n7JNaEPB20EsDeClZvNi7StCL3tuPTU
-         g32LwmLhI3nYdg0JbXWl2wLLDJegzsTwukGatph2XWZSJWZmiVFRFXxZI7hn1FCfBMP8
-         Gj+jWDFY44hufRBS4w88CPBPekFQHdV20DDrWiOZKHjJ4RhJvTfDHx2QNpGmsR4hY2bb
-         DNQZRurNatxoHaB8bj8D+ltyC1Jp/zWjC5I7V1YSovwL3DTPaMgZRRbGDEPgqfGYtjzX
-         1krg==
-X-Forwarded-Encrypted: i=1; AJvYcCWfruzKbuJF+poa+g0HKoZxDCEMZjhpU5r2HVbRQCcZBP21+INwgHFpiaj52lDlfKo2KFh6OOCse36H@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHdApy7aJ4N7D0CVDwL5kVaAZnQxI20DEiyJzYs2K9nkjcSLpC
-	KSb7SRGMBY7eb5JdBRCIKEUPow5GWKiMQ1hSXrB7teXkFB1GnFrLBY/NerKN3opx9+b6pvIxTkR
-	PXWMolD5svN+pcqqm3EpNTJm+eI31S2ILZp/gSwyEtxJOGXYWXV8jhasWLluvPSX2
-X-Gm-Gg: AY/fxX6kd83n4bARuGmOIYobbLEYDk8jU3yh1UMySWo0zQ2nq+JLQQ51PBGUmIc71lZ
-	aGOYqP6ZpV2zKmCgVORf2qoWw6EntJlT+G4BnpdAXZ7FL41PJbnsuGslQxkkYWOqGMH0URWBnwo
-	LwdbXZMzJ+luwXPcSzhONC2k5upr9jPGGabHSrkbTGc1ANK89W4v1R1DMhkHOu1khWSIVRe+Tdd
-	EDbjMiIfkgbqR8QFzXSrftQiHFRWJpnHV7hJYLfJbFcnYpX61+P3k9LyQbsd17QzFV85kvZiFLv
-	CLutsgl5QcSl5JLZENl7JIWIiveTtcvePwh0VnYhvexNC9Lq6P164BhEeANmGL/EUmALMncb+Di
-	z6ivZnSFUPCiCNFTi1D5LPZrIPSwy9o5QN73wze6zX5OQMByLp33izoiIKOMERN3LywQ=
-X-Received: by 2002:a05:620a:6c0c:b0:8c6:afd9:e422 with SMTP id af79cd13be357-8c6afd9e501mr811682885a.9.1768818912816;
-        Mon, 19 Jan 2026 02:35:12 -0800 (PST)
-X-Received: by 2002:a05:620a:6c0c:b0:8c6:afd9:e422 with SMTP id af79cd13be357-8c6afd9e501mr811680785a.9.1768818912395;
-        Mon, 19 Jan 2026 02:35:12 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-654535c52afsm9951787a12.33.2026.01.19.02.35.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 02:35:11 -0800 (PST)
-Message-ID: <f0f03077-5961-4b76-8148-fbef31f56613@oss.qualcomm.com>
-Date: Mon, 19 Jan 2026 11:35:09 +0100
+	 In-Reply-To:Content-Type; b=oHI3qZkLrhzFerAWJLu7BMGIyIU5T2Tx0RnX0yOcyK7HAyMS4Jx26fEa5ALlWdul7jchBEREidcOvK5cY3tQV3u0vlSUD3jY8NhQcI3rmbQB35MM7EnjDC4gmAbhv3aU/Du9ylgSEDwn8RJKFZOh6EUtJOknciSE6qms+ayA/2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MB2suOng; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4737C116C6;
+	Mon, 19 Jan 2026 10:35:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768818921;
+	bh=5R+bvxi6OEBJh5n7CU0DYl8TNpunqW07MyIIaVXFiqk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MB2suOngHVAefS3QSo/arRR7nXnGqStsOW/yE4g03vogpVlTqXjL+sZSu4Uvt/jhV
+	 sBalJGEB4r1VgUR4y/zIzHO+ehhiOY6N32mIunoufhqcpJynZfDL1Q1SzVEuXzDdHG
+	 wLNGNgRduDXabIVF7X1cybVA9bZzO8+eE17ucnHfN2Cuihjd3vbi4NFrMXW4OIoLds
+	 jC/+w5WIEclLSaqCvDjzie9wI/BkZMgQ7HiF3BcxfZEkKLg+AN28qg2jfpkfvls6k5
+	 h4XWoYEt1LaGDYyoLbZ/M2nflBEyHIa3yEOJjhO/f5tPviUmuZq4YQJpe3NxJoRr3B
+	 P8qODy1P/ZHOA==
+Message-ID: <fce1d7e3-22e2-4a01-aea3-573900da8bd9@kernel.org>
+Date: Mon, 19 Jan 2026 11:35:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,80 +48,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: hamoa: Add 1443 MHz OPP to iris video
- codec
-To: Alejandro Quintanar <alejandro@quihel.net>, linux-arm-msm@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20260116190225.25320-1-alejandro@quihel.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: sdhci-msm: Add ICE phandle
+To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
+ <20260114094848.3790487-2-neeraj.soni@oss.qualcomm.com>
+ <20260115-intrepid-space-meerkat-d44ec9@quoll>
+ <ce49730e-75d3-87fd-3190-44e45cf83fe0@oss.qualcomm.com>
+ <6d14abf7-da78-4ccd-8032-d0197098982c@kernel.org>
+ <c6200c33-29b4-7bfc-1b07-6a04383f8dd1@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260116190225.25320-1-alejandro@quihel.net>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <c6200c33-29b4-7bfc-1b07-6a04383f8dd1@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: JzoBiHfXA_OJC8IBA8X3qSW-6YS555lM
-X-Authority-Analysis: v=2.4 cv=N40k1m9B c=1 sm=1 tr=0 ts=696e08e1 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=CIKbnwSMAAAA:8 a=QjVBaI7zQlB2Y9sfAtgA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22 a=WAq3Gk0LTMTrdeoBeQ09:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDA4NiBTYWx0ZWRfX812dTZhGAW65
- 23XqhsY0a0FWWMT/hBX39lYdNDG5j3tqMZHmiydBOUbaEGALr9PSAEZ1ltywue9+34reX1vk8f4
- ZU4gzNuKZ9Ui38q4f8ZGStKAi8Gfe0fAOKVoL0BeNpo8UElY6fbNdoampfF8z12fYvODUlWslOB
- CCF5mU58eYC6OLTapbRLtyLL2ZwzBS5pi5FPbiLl5mQz8pmS1OXaZggmCL/K9M+naD9MjsFCVtI
- 6z9LjyVTr8vGYqQA5vhn/5GhFdhuyWfuIFBWVVeAKpvjFkcopGP8sYFrHuwIYzYg00dXiK/rmpH
- hjRsRAVua9cGEIf3QGBDWAb8mL/iSyp3UXx9kTf14FIVJxK1dUQVQt9JE0oTk0B+k5a3MvZBnw+
- sATijoilAOh09O5wbDInppT7CQH/zIytgUX27i1t2JiNuNxWP24FHCbdx3yIvasqxVoFbbOQzxd
- vBODETyfjErUkg8CDlQ==
-X-Proofpoint-GUID: JzoBiHfXA_OJC8IBA8X3qSW-6YS555lM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-19_02,2026-01-19_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 impostorscore=0 malwarescore=0 adultscore=0
- spamscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190086
 
-On 1/16/26 8:02 PM, Alejandro Quintanar wrote:
-> Add the missing 1443 MHz operating point to the iris video codec OPP
-> table. The qcom-iris driver requests this frequency but fails with:
+On 19/01/2026 10:47, Neeraj Soni wrote:
+> Hi,
 > 
->   qcom-iris aa00000.video-codec: dev_pm_opp_set_rate: failed to find OPP for freq 1443000000 (-34)
->   qcom-iris aa00000.video-codec: power on failed
->   qcom-iris aa00000.video-codec: core init failed
+> On 1/16/2026 12:48 PM, Krzysztof Kozlowski wrote:
+>> On 16/01/2026 07:50, Neeraj Soni wrote:
+>>> Hi,
+>>>
+>>> On 1/15/2026 2:33 PM, Krzysztof Kozlowski wrote:
+>>>> On Wed, Jan 14, 2026 at 03:18:47PM +0530, Neeraj Soni wrote:
+>>>>> Starting with sc7280(kodiak), the ICE will have its own device-tree node.
+>>>>> So add the qcom,ice property to reference it.
+>>>>>
+>>>>> Signed-off-by: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
+>>>>>  1 file changed, 4 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>>> index 938be8228d66..8a6a25ceabe1 100644
+>>>>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>>>>> @@ -140,6 +140,10 @@ properties:
+>>>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>      description: platform specific settings for DLL_CONFIG reg.
+>>>>>  
+>>>>> +  qcom,ice:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>> +    description: phandle to the Inline Crypto Engine node
+>>>>
+>>>> Description should also say: for what purpose.
+>>>>
+>>>> You either have this phandle or ICE address space on sc7280 and newer.
+>>>> You cannot have both, so your schema should encode it properly.
+>>>>
+>>> Sure. I will update this in next patch.
+>>>
+>>>> Otherwise you just sent something which already was on the list and it
+>>>> even was reviewed:
+>>>>
+>>>> https://lore.kernel.org/all/ba3da82d-999b-b040-5230-36e60293e0fd@linaro.org/
+>>>>
+>>>> You even copied the commit msg but did copy the authorship!
+>>>>
+>>> Sure. Thanks for pointing out. I will fix the authorship in next patch.
+>>
+>> If you add if:then: cases, the patch will differ, so make it your own.
 > 
-> The iris driver uses the sm8550 compatible fallback and expects higher
-> frequencies for turbo modes. Without this OPP, hardware video encoding
-> and decoding fails on x1e80100-based devices.
+> Okay.
 > 
-> Signed-off-by: Alejandro Quintanar <alejandro@quihel.net>
-> ---
->  arch/arm64/boot/dts/qcom/hamoa.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+>> But sending exactly the same patch with the same commit msg as what is
+>> already on the lists under your own name is not correct.
+>>>>
+> Okay this was not intended and have taken care of authorship in my other posts but i will ensure
+> not to repeat in future.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> index a17900eac..e737ec907 100644
-> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> @@ -5397,6 +5397,12 @@ opp-481000000 {
->  					required-opps = <&rpmhpd_opp_turbo>,
->  							<&rpmhpd_opp_turbo>;
->  				};
+>>>> Anyway v3 and v4 were not correct and probably v2 should be used after
+>>>> adjusting it with my comments.
+>>>>
+>>> Okay. As i see your comment in v2 here:
+>>> https://lore.kernel.org/all/c8eea30f-5ea2-cfc9-273a-3c6e99a316b9@linaro.org/
+>>>
+>>> i guess what you want is not to drop the entries for clock but rather capture it
+>>> in the "description" of the ICE phandle entry. Is this understanding correct?
+>>
+>> Clocks should not be touched, but reg should.
+>>
+> Okay but In sdhci-msm.yaml file:
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n78
+> 
+> the currenty entries for "reg-names" do not specify for which hardware register range they are added. So shall i add something like
 
-The above opp-481000000 is the 1443 MHz setting.. the clock is div3
+Read the rest of the binding.
 
-Is the kernel you're running patched against upstream, wrt iris?
+And finally wrap your emails correctly. I am bored asking this over and
+over, so if there is silence in the future - you can guess why.
 
-Konrad
-
-> +
-> +				opp-1443000000 {
-> +					opp-hz = /bits/ 64 <1443000000>;
-> +					required-opps = <&rpmhpd_opp_turbo_l1>,
-> +							<&rpmhpd_opp_turbo_l1>;
-> +				};
->  			};
->  		};
->  
+Best regards,
+Krzysztof
 
