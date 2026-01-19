@@ -1,229 +1,84 @@
-Return-Path: <devicetree+bounces-256714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82EC0D3A1DF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:41:34 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E71FD3A1E2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:42:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C5F1300A6F4
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 08:41:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 035493002BB8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 08:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15681345CA3;
-	Mon, 19 Jan 2026 08:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B72346760;
+	Mon, 19 Jan 2026 08:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ECxQfvhO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Sy4hcfXV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D183451DC;
-	Mon, 19 Jan 2026 08:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494C7344044;
+	Mon, 19 Jan 2026 08:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768812062; cv=none; b=BwiC2PWoYkXDB/AAPnQ1jQWu2gtAfX+TVWd+fEoTt1kD059YZBDM04OwZeS5qQFibZB3uIWqmjsLlZ+h2MLPv7cD7f1BzFAN1zb/EqFsmJsekeKZ3efDgeEYVD9y37HGEdcB8AzB/CVetWeNGQgefchXV1hlVGkLuAnw1JbyKms=
+	t=1768812148; cv=none; b=gxD6brFs4HpmxJukRwZD0qSlrdnVM8OrZvE+681YgtQ6Gb/ZvSef888L78fIgRrphnMPCrb+G0FDkYHtwPr+SArVxnCDeDS2W45U7tEdXm7cewDj0gXXr5W9mjGRw8E63BUSSovXdDnluzkj4tNCA0GEg3VyGFLgfxBFQo01SoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768812062; c=relaxed/simple;
-	bh=/TyDRQqGCUqDJh9nuLPOvAdZ90y9Nua2yH0fzJ7GwYw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=frbb019FBGH3OWOhqjgKJnAvwBuh+s2TeeK1HByjf2gC+QzeHkpYsND1XyjFIoIFzUsT/dM03dXKme1CV3SYPxvs6bScxsxIJIwi5LQtlMgy8zv+nb2MpUhWl+JtsIeuOgJNZxSIMEKRpJm+XClHSsBgw+4qbD8j5HCueRuB1pA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ECxQfvhO; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768812058; x=1800348058;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/TyDRQqGCUqDJh9nuLPOvAdZ90y9Nua2yH0fzJ7GwYw=;
-  b=ECxQfvhOEAt0LyfF5I5mL74G921JUJCjJ+bGeDUDpK+IN7rdpZd+A2Py
-   Ws0g/eSP9ddJAK6aRd9x+nV55UIRC9V1F1w4tjbYOE8K0cFcdLwRHkJEF
-   rvTT498zzW7F8o7XVNhPeaHpzKytjRUUXE6ahwMio7I1qjzKZDmtLkzpP
-   f7tyy1/Va4WQ+3n3Y0nWclXpbpJOa+5cl8cWeD1hgkteSLHZcWJ3jnUbH
-   X/pWy93obllbG85YId1CLrDaNEEBXYSByaZvz9fCgNbjXxeDlC/qzwBuD
-   +lhOh1ZTHZSfKSPEH1/lcRcM5rc/KuBm5kGj/tk2xtVKjVdLV2EQ/A+NI
-   w==;
-X-CSE-ConnectionGUID: SqP9K6x3SFigwEONQPRbBw==
-X-CSE-MsgGUID: RjJoPBZ1Q8Si9ZBzKYT77g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="69218849"
-X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; 
-   d="scan'208";a="69218849"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 00:40:53 -0800
-X-CSE-ConnectionGUID: fpwAu5blTI+YvN7Q9oRZhQ==
-X-CSE-MsgGUID: irTG1gvLTo6wpaj3MAMv1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; 
-   d="scan'208";a="228745604"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.44])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 00:40:50 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 51CEF120280;
-	Mon, 19 Jan 2026 10:40:53 +0200 (EET)
-Date: Mon, 19 Jan 2026 10:40:53 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Robert Mader <robert.mader@collabora.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v7 1/5] dt-bindings: media: i2c: Add Sony IMX355
-Message-ID: <aW3uFcT1zmiF4GUP@kekkonen.localdomain>
-References: <20260117040657.27043-1-mailingradian@gmail.com>
- <20260117040657.27043-2-mailingradian@gmail.com>
+	s=arc-20240116; t=1768812148; c=relaxed/simple;
+	bh=mPX6JoUD2kWnhithrUDeTBPLyzqFJUKWdQH8B2eq938=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ZqLOdzhD8EwzwOMC78OLfwRLGyeFTn+e5hp+8HXb40W5kWRZT31aESiHotDGGSkRNDwiyuqRcgxFZ4LU89s4otkBj2uDRlTosK4vLjKQw2BanZdEqLjQUVYwmTXB74BskxnzNGaqMpFB2VRk8n0OzuOX7kY9bCYd0aWVM9LjPE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Sy4hcfXV; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1768812143;
+	bh=mPX6JoUD2kWnhithrUDeTBPLyzqFJUKWdQH8B2eq938=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Sy4hcfXVy7UPkLEceMqSHCT8dYb/188ZBxySLfn7nfgRLWjtAHCHBdEwhdgGXGSR4
+	 Kn+m5je/DMaDal2R1NCkPJdcUfiJJ58acVAZP/f0NibY48X1Uqs41CzKfiqXqGBNXp
+	 6y4/xlGirCide43500HZmpVzMJVMBhncRWVDn2RLqvkSWeb5awDN0H4Ej//dIvQzMf
+	 TkUM73L85qCtQvRmIvzUkzPZqtufsx/rPfgeu5vvCyE5QhR+XR04gkd6HC6FBaVuY+
+	 zGvGXcVM0q9OubkPjrbqb0ma2bP0oZqt1AonUOALg2h2pLQdpV/nBqMeThovDeUELP
+	 InwmTpDGNBmPQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7B65D17E130A;
+	Mon, 19 Jan 2026 09:42:23 +0100 (CET)
+Message-ID: <366b8358-a89a-4033-9f3b-9542a5de414e@collabora.com>
+Date: Mon, 19 Jan 2026 09:42:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260117040657.27043-2-mailingradian@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mediatek: Replace Tinghan Shen in
+ maintainers
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-remoteproc@vger.kernel.org
+References: <20260116172915.99811-2-krzysztof.kozlowski@oss.qualcomm.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260116172915.99811-2-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Richard,
-
-On Fri, Jan 16, 2026 at 11:06:53PM -0500, Richard Acayan wrote:
-> The IMX355 camera sensor is a camera sensor that can be found as the
-> front camera in some smartphones, such as the Pixel 3, Pixel 3 XL, Pixel
-> 3a, and Pixel 3a XL. It already has a driver, but needs support for
-> device tree. Document the IMX355 to support defining it in device tree.
+Il 16/01/26 18:29, Krzysztof Kozlowski ha scritto:
+> Emails to Tinghan Shen bounce permanently with "550 Relaying mail to
+> tinghan.shen@mediatek.com is not allowed (in reply to RCPT TO command)",
+> so switch to AngeloGioacchino Del Regno - Mediatek SoC platform
+> maintainer.
 > 
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  .../bindings/media/i2c/sony,imx355.yaml       | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
-> new file mode 100644
-> index 000000000000..0a3aa63b7b5f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/sony,imx355.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sony IMX355 Sensor
-> +
-> +maintainers:
-> +  - Richard Acayan <mailingradian@gmail.com>
-> +
-> +description:
-> +  The IMX355 sensor is a 3280x2464 image sensor, commonly found as the front
-> +  camera in smartphones.
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sony,imx355
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-> +    description: Analog power supply.
-> +
-> +  dvdd-supply:
-> +    description: Digital power supply.
-> +
-> +  dovdd-supply:
-> +    description: Interface power supply.
-> +
-> +  reset-gpios:
-> +    description: Reset GPIO (active low).
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml
-> +        unevaluatedProperties: false
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Can you add data-lanes property with the default of 4? That's what the
-driver uses and can't do anything else right now -- the driver should
-actually fail if the number of lanes differs; a patch to do that would be
-nice.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> +
-> +        required:
-> +          - link-frequencies
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - dovdd-supply
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,camcc-sdm845.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera@1a {
-> +            compatible = "sony,imx355";
-> +            reg = <0x1a>;
-> +
-> +            clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +
-> +            assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +            assigned-clock-rates = <24000000>;
-> +
-> +            reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-> +
-> +            avdd-supply = <&cam_front_ldo>;
-> +            dvdd-supply = <&cam_front_ldo>;
-> +            dovdd-supply = <&cam_vio_ldo>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&cam_front_default>;
-> +
-> +            rotation = <270>;
-> +            orientation = <0>;
-> +
-> +            port {
-> +                cam_front_endpoint: endpoint {
-> +                    link-frequencies = /bits/ 64 <360000000>;
-> +                    remote-endpoint = <&camss_endpoint1>;
-> +                };
-> +            };
-> +        };
-> +    };
-
--- 
-Kind regards,
-
-Sakari Ailus
 
