@@ -1,493 +1,135 @@
-Return-Path: <devicetree+bounces-257050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B8C7D3B5CB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:28:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8773CD3B5D9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:30:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 452953078BD2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:25:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 91392303985B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:28:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB8D274B5C;
-	Mon, 19 Jan 2026 18:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3677532936F;
+	Mon, 19 Jan 2026 18:27:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="XlLS9tAV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IGLOWVbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73CB532936F
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 18:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C721FF7C8;
+	Mon, 19 Jan 2026 18:27:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768847133; cv=none; b=pnzLxT3Hg7n1OxluLQcFtBmxd/7QTq6TfwlNTL4gGHkn6U8P6xu+7YLTv3GSvw5R09wh17V0AiuNJBgolB4qeuAqdiiLGRpcnCKneUiNJU5b1IUFQW40pEKwIg+N1u4JTyIIZjdVoWs3isHMxr7ARDvDapUAxu31P/kTBC6SRMY=
+	t=1768847278; cv=none; b=aCq88BXCyfQpji3ohbKs5s8fsgmpvqXqvp6kufRqidcolY2uFZkmNi97vt3s8kR6vHG6pEu9AiIjeoNUhaa7/q/zHhE8VsK4uK947+MbVHtHBk376Hffyc+TcW+IZ+u/V4Kk48RNzLbannEh4COrhvPJLsvky9+nzDCCLwyIOgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768847133; c=relaxed/simple;
-	bh=uBim635sgAsXaWwm9wR8s0uY9gq6NFFriBbX9FXTOoE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uorGxYPnfNwIkYrKE18k3rZufEYDzx3JBrwo3kyfbUK8lF7a3XdYHxw8e4f8bB/KPEflogI7kvZpiLNi/7f3zZ7zqkZVF2z9qzDfyEWcHczlIHtEFEX9OrJegasZK+JAD8htTX00RGZYc9/wclOJT13KTdNS2u/vfPj6Z5cyDSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=XlLS9tAV; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-64b9230f564so6042269a12.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 10:25:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1768847129; x=1769451929; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3buk5f0PCfkVbeaZaIKnS06d0AxhIc+SklRhgOIH5N0=;
-        b=XlLS9tAVwbuRnRq4rr9OuFCBTNQHAK5QcHQTFB1rAv0k5iv/dD4ixIwKVGl4zrNcrj
-         0jUiHpVIM3RFGXVJ75m1PsgA+H30DoxEXD30hK/CX8OHRgtyfgkJfIrWFM8Pfrwy+hy3
-         aXFBYcMIgYcjvPsD2QG80jtZ7obeQRpUpGvk/Cm7oGweogzk2yWLqDv44+HsTnzIk72b
-         BZ4zaRStAiJDPvhWeUcYokireNUcwuJfEb6CbiKXuBHC5WHN/f6tGQgwC1SHB3cE09um
-         B+Gpc8HOSEr2HgRuoo5Gv57v6F4emTMVdFgGAUOAod137h+IwnT9h4/Prh8/SklLCyvr
-         PPrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768847129; x=1769451929;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3buk5f0PCfkVbeaZaIKnS06d0AxhIc+SklRhgOIH5N0=;
-        b=kZngfXoFVVlRmfcuF9d+bf0sFm2f0/y6vNHPM8LO2/r2xeK5IbLM2YXP5mNdAuTvCZ
-         c+a47V+KoZH91O8y2vpqEn5rG5rX/fLivK0+dtZE1y9yV5SQTdM4vQ0DZyZMB/7uDvQ2
-         /kAZoGDUqECeRsMnNWnpFI5RiM7rfn4Bfq12oIZHp5ayKv57i/NP9HKoy9lrbCfAEf3+
-         YMrQE7ZaBbRwkjYRBr4BfvvhdL1mDLvRFBBQsQ5HgKJiYgoF/RSFlqPY7YcM569CMnkI
-         yE2BRGc6io9PL88eFlLu8oOmoDI9unZ/FEzmX/V89eU4W09og5VURmZTbugzgdh+zMR7
-         YX2A==
-X-Forwarded-Encrypted: i=1; AJvYcCXDAkqzt/ifz3OSmlh7Og/na57f9J0H55KrMmXr6ci7tyThteG60e2bYCQM6xLXKbT0y/0oRNXrgJ8q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yym7g3fQcCRFHFgL5EphOQbe0f/Q3nC/b3HhNqCPq+3MzMiniPW
-	+fAwH1WZ+Wb5fnzYNN8LVjRo27c5sd6fETFeMiQWFseGoiLX/pVEeiyPtVmtnygQac8=
-X-Gm-Gg: AY/fxX7EBoXcoU6ScpmuwLockUED7Atevdf7JQ7sallrkt6k9imMoXO/rxInzYjjZcQ
-	Or06uErF1k59yoCXXKKZlX2JvpIr6xdBTi2fQazWG/vNLQmROH05Ih3q0ySdb2nxOiHPB7gUs2z
-	4+/Ag71DfZBIDY52zAfaH1iNiyMwWr/rx2k7d08bOP0earej4ony/s+zKX+fUQz3ikzG6wnc/0j
-	XilifGILfN/n01VY4mvDykEfy6DvbiB/KcUz6C3eUHadt9LUPqGsCJU5vkZTT0/x1/bN41r9BSu
-	2svqgbaRQLKHo3NWgbMTGS6AqZgBSOd+UaXODHJ6/ljAw9lYtB39K1FnKwsbEhZEuzCLmY+VsLw
-	4/fIJDHWl2lbG5sRIRLhAUOO52e70Po2j6bDOpShinRcjqFut+AIQloWHgeWnnLSdMzddTLKN53
-	t4KxnnxQAqX5TcsE5Qog==
-X-Received: by 2002:a17:907:3cc4:b0:b87:2b1a:3c55 with SMTP id a640c23a62f3a-b8792fc438cmr1162264366b.39.1768847128685;
-        Mon, 19 Jan 2026 10:25:28 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.31])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b87959c9763sm1109285566b.35.2026.01.19.10.25.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 10:25:28 -0800 (PST)
-Message-ID: <6bbd18e4-9adf-472a-8452-5e535cb06a1b@tuxon.dev>
-Date: Mon, 19 Jan 2026 20:25:26 +0200
+	s=arc-20240116; t=1768847278; c=relaxed/simple;
+	bh=L6kd6rK56lAvDVoyrMuozTE2tPG4+fjmRT1394CuikI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K98q9FnsuSpswkjfOZ4nh+1ejaJQ/TNNN69Hr+2Rki4hYC37sEz/giCv38IGYUlHF8NjzUq6ySkGfvoakmy6Zux7xh8Z+OER1DucHOudELXzcXx9lxLVYctFUE2MzcsAQoep3HakVcTR9DyeV/oKMyyoG7OlNgnMe1NitMhKxc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IGLOWVbE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E65AC116C6;
+	Mon, 19 Jan 2026 18:27:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768847277;
+	bh=L6kd6rK56lAvDVoyrMuozTE2tPG4+fjmRT1394CuikI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IGLOWVbEfQCIRh9xOOpN2qeXbWNg/Dvd0OCWxPhGYaSz2gKwAdLLj0vMdjiyNve6E
+	 M/5trnvZUE7WEbQ6Sr0sfjI2F5aA3u0Tjhn8q9M3TEXhDEMw/pTIPCAXmH2IpnSQHe
+	 Q9nO/FQi4dCCSgA2dZu+9sYhWLA1vdHG9ccqz3A1e/WLjiJOPlvgPNrDr72Hh/SKfT
+	 uBU+iqBAHErw0onk3qqAjvApToStzxjOV0zbU0ol556+WDNPe4U6vymFykvdPdkmJr
+	 xX3J7U+JZcHgefX2fh/6l+GCuOJ0LSPv/hGVOhe2ivIywP4C+BM8dFXWDoWUa+crAa
+	 OYRfIuWEiAIDA==
+Date: Mon, 19 Jan 2026 18:27:52 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 2/8] dt-bindings: iio: dac: maxim,ds4424: add
+ maxim,rfs-ohms property
+Message-ID: <20260119-turbine-feminize-9dcd5c86feec@spud>
+References: <20260119182424.1660601-1-o.rempel@pengutronix.de>
+ <20260119182424.1660601-3-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/16] PCI: rzg3s-host: Add support for RZ/G3E PCIe
- controller
-To: John Madieu <john.madieu.xa@bp.renesas.com>,
- claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org,
- kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be,
- krzk+dt@kernel.org
-Cc: robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
- magnus.damm@gmail.com, biju.das.jz@bp.renesas.com,
- linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
-References: <20260114153337.46765-1-john.madieu.xa@bp.renesas.com>
- <20260114153337.46765-13-john.madieu.xa@bp.renesas.com>
-Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260114153337.46765-13-john.madieu.xa@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="paRMaVr6zOe1oSdk"
+Content-Disposition: inline
+In-Reply-To: <20260119182424.1660601-3-o.rempel@pengutronix.de>
 
-Hi, John,
 
-On 1/14/26 17:33, John Madieu wrote:
-> Add support for the PCIe controller found in RZ/G3E SoCs to the existing
-> RZ/G3S PCIe host driver. The RZ/G3E PCIe controller is similar to the
-> RZ/G3S's, with the following key differences:
-> 
->   - Supports PCIe Gen3 (8.0 GT/s) link speeds alongside Gen2 (5.0 GT/s)
->   - Uses a different reset control mechanism via AXI registers instead
->     of the Linux reset framework
->   - Requires specific SYSC configuration for link state control and
->     Root Complex mode selection
-> 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+--paRMaVr6zOe1oSdk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jan 19, 2026 at 07:24:18PM +0100, Oleksij Rempel wrote:
+> Introduce the 'maxim,rfs-ohms' property. The full-scale output current
+> of these DACs is determined by external resistors (Rfs) connected to
+> the FS pins. The driver requires the physical resistance values to
+> calculate the correct current scale (Amps per step) for the IIO
+> subsystem.
+>=20
+> Keep it optional to avoid forcing updates of existing DTs; without it
+> the driver cannot derive a correct IIO scale.
+
+I don't really follow the logic here, if the driver doesn't work
+properly without it, shouldn't it be a required property even if that
+means existing devicetrees get new warnings? Warnings are preferable to
+the drivers malfunctioning on those devices, after all!
+
+>=20
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->   drivers/pci/controller/pcie-rzg3s-host.c | 231 ++++++++++++++++++++---
->   1 file changed, 209 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
-> index b0a5c08d2527..b046360e92da 100644
-> --- a/drivers/pci/controller/pcie-rzg3s-host.c
-> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
-> @@ -111,6 +111,16 @@
->   #define RZG3S_PCI_PERM_CFG_HWINIT_EN		BIT(2)
->   #define RZG3S_PCI_PERM_PIPE_PHY_REG_EN		BIT(1)
->   
-> +/* RZ/G3E specific registers */
-> +#define RZG3E_PCI_RESET				0x310
-> +#define RZG3E_PCI_RESET_RST_OUT_B		BIT(6)
-> +#define RZG3E_PCI_RESET_RST_PS_B		BIT(5)
-> +#define RZG3E_PCI_RESET_RST_LOAD_B		BIT(4)
-> +#define RZG3E_PCI_RESET_RST_CFG_B		BIT(3)
-> +#define RZG3E_PCI_RESET_RST_RSM_B		BIT(2)
-> +#define RZG3E_PCI_RESET_RST_GP_B		BIT(1)
-> +#define RZG3E_PCI_RESET_RST_B			BIT(0)
+>  .../devicetree/bindings/iio/dac/maxim,ds4424.yaml     | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml =
+b/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> index efe63e6cb55d..b7af8464a4fc 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/maxim,ds4424.yaml
+> @@ -27,6 +27,17 @@ properties:
+> =20
+>    vcc-supply: true
+> =20
+> +  maxim,rfs-ohms:
+> +    description: |
+> +      Array of resistance values in Ohms for the external Rfs resistors
+> +      connected to the FS pins.
+> +      - For DS44x2 (2 channels): 2 values required.
+> +      - For DS44x4 (4 channels): 4 values required.
+> +      Typical values range from 40000 (40 kOhm) to 160000 (160 kOhm).
+> +    minItems: 2
+> +    maxItems: 4
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 > +
->   #define RZG3S_PCI_MSIRE(id)			(0x600 + (id) * 0x10)
->   #define RZG3S_PCI_MSIRE_ENA			BIT(0)
->   
-> @@ -183,9 +193,13 @@ struct rzg3s_sysc_function {
->   /**
->    * struct rzg3s_sysc_info - RZ/G3S System Controller function info
->    * @rst_rsm_b: Reset RSM_B function descriptor
-> + * @l1_allow: L1 power state management function descriptor
-> + * @mode: Mode configuration function descriptor
->    */
->   struct rzg3s_sysc_info {
->   	struct rzg3s_sysc_function rst_rsm_b;
-> +	struct rzg3s_sysc_function l1_allow;
-> +	struct rzg3s_sysc_function mode;
->   };
->   
->   /**
-> @@ -1201,6 +1215,10 @@ static int rzg3s_pcie_resets_prepare_and_get(struct rzg3s_pcie_host *host)
->   	if (ret)
->   		return ret;
->   
-> +	/* Mandatory for RZ/G3E, harmless for RZ/G3S */
-> +	reset_control_bulk_assert(data->num_power_resets,
-> +				  host->power_resets);
-> +
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.47.3
+>=20
 
-This is similar to what the IP needs for clock when the mode is changed (RC or 
-EP). Could it be handled in a similar way the clocks were handled (make sure it 
-is asserted on the reset driver probe)?
+--paRMaVr6zOe1oSdk
+Content-Type: application/pgp-signature; name="signature.asc"
 
->   	return devm_reset_control_bulk_get_optional_exclusive(host->dev,
->   							      data->num_cfg_resets,
->   							      host->cfg_resets);
-> @@ -1266,6 +1284,7 @@ static int rzg3s_pcie_host_init_port(struct rzg3s_pcie_host *host)
->   
->   static int rzg3s_pcie_host_init(struct rzg3s_pcie_host *host)
->   {
-> +	const struct rzg3s_sysc_info *sysc_info = host->sysc->info;
->   	u32 val;
->   	int ret;
->   
-> @@ -1282,6 +1301,16 @@ static int rzg3s_pcie_host_init(struct rzg3s_pcie_host *host)
->   	if (ret)
->   		return ret;
->   
-> +	/* Enable ASPM L1 transition for SoCs that use it */
-> +	if (sysc_info->l1_allow.mask) {
-> +		ret = regmap_update_bits(host->sysc->regmap,
-> +					 sysc_info->l1_allow.offset,
-> +					 sysc_info->l1_allow.mask,
-> +					 field_prep(sysc_info->l1_allow.mask, 1));
-> +		if (ret)
+-----BEGIN PGP SIGNATURE-----
 
-Should the code jump to cfg_deinit label to de-assert some of the resets 
-asserted though cfg_pre_init() ?
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaW53qAAKCRB4tDGHoIJi
+0ja0AP0TeEviw0mZoPm+Cxsj90U0d9I6xz7Gx3TbUYd75BFq5gEAsyxvEA+QRSuP
+Zabnl5yBcc0ghRYkX2TvzMoFVSNMCgI=
+=xqx7
+-----END PGP SIGNATURE-----
 
-> +			return ret;
-> +	}
-> +
->   	/* Initialize the interrupts */
->   	rzg3s_pcie_irq_init(host);
->   
-> @@ -1625,12 +1654,27 @@ static int rzg3s_pcie_probe(struct platform_device *pdev)
->   		goto port_refclk_put;
->   	}
->   
-> -	ret = regmap_update_bits(sysc->regmap,
-> -				 sysc->info->rst_rsm_b.offset,
-> -				 sysc->info->rst_rsm_b.mask,
-> -				 field_prep(sysc->info->rst_rsm_b.mask, 1));
-> -	if (ret)
-> -		goto port_refclk_put;
-> +	/*
-> +	 * Put controller in RC (Root Complex) mode for SoCs that
-> +	 * support it. These can operate in either EP or RC mode.
-> +	 */
-> +	if (sysc->info->mode.mask) {
-> +		ret = regmap_write(sysc->regmap,
-> +				   sysc->info->mode.offset,
-
-This can go on the previous line to save one line of code.
-
-> +				   sysc->info->mode.mask);
-> +		if (ret)
-> +			goto port_refclk_put;
-> +	}
-> +
-> +	/* De-assert SYSC RST_RSM_B only if used by the SoC */
-
-This comment wasn't here previously. I don't think it is not needed, FMPOV.
-
-> +	if (sysc->info->rst_rsm_b.mask) {
-> +		ret = regmap_update_bits(sysc->regmap,
-> +					 sysc->info->rst_rsm_b.offset,
-> +					 sysc->info->rst_rsm_b.mask,
-> +					 field_prep(sysc->info->rst_rsm_b.mask, 1));
-> +		if (ret)
-> +			goto port_refclk_put;
-> +	}
->   
->   	ret = rzg3s_pcie_resets_prepare_and_get(host);
->   	if (ret)
-> @@ -1684,9 +1728,11 @@ static int rzg3s_pcie_probe(struct platform_device *pdev)
->   	 * SYSC RST_RSM_B signal need to be asserted before turning off the
->   	 * power to the PHY.
->   	 */
-> -	regmap_update_bits(sysc->regmap, sysc->info->rst_rsm_b.offset,
-> -			   sysc->info->rst_rsm_b.mask,
-> -			   field_prep(sysc->info->rst_rsm_b.mask, 0));
-> +	if (sysc->info->rst_rsm_b.mask)
-
-This driver is using (almost everywhere) { } on code blocks spanning multiple 
-lines even though they represent a single function call like in this case. For 
-consistency, I would use the same principle.
-
-> +		regmap_update_bits(sysc->regmap,
-> +				   sysc->info->rst_rsm_b.offset,
-> +				   sysc->info->rst_rsm_b.mask,
-> +				   field_prep(sysc->info->rst_rsm_b.mask, 0));
->   port_refclk_put:
->   	clk_put(host->port.refclk);
->   
-> @@ -1721,11 +1767,15 @@ static int rzg3s_pcie_suspend_noirq(struct device *dev)
->   	if (ret)
->   		goto cfg_reinit;
->   
-> -	ret = regmap_update_bits(sysc->regmap, sysc->info->rst_rsm_b.offset,
-> -				 sysc->info->rst_rsm_b.mask,
-> -				 field_prep(sysc->info->rst_rsm_b.mask, 0));
-> -	if (ret)
-> -		goto power_resets_restore;
-> +	/* Assert SYSC RST_RSM_B if supported */
-
-Comment was not there previously. Could you please drop it?
-
-> +	if (sysc->info->rst_rsm_b.mask) {
-> +		ret = regmap_update_bits(sysc->regmap,
-> +					 sysc->info->rst_rsm_b.offset,
-> +					 sysc->info->rst_rsm_b.mask,
-> +					 field_prep(sysc->info->rst_rsm_b.mask, 0));
-> +		if (ret)
-> +			goto power_resets_restore;
-> +	}
->   
->   	return 0;
->   
-> @@ -1748,11 +1798,23 @@ static int rzg3s_pcie_resume_noirq(struct device *dev)
->   	struct rzg3s_sysc *sysc = host->sysc;
->   	int ret;
->   
-> -	ret = regmap_update_bits(sysc->regmap, sysc->info->rst_rsm_b.offset,
-> -				 sysc->info->rst_rsm_b.mask,
-> -				 field_prep(sysc->info->rst_rsm_b.mask, 1));
-> -	if (ret)
-> -		return ret;
-> +	/* De-assert SYSC RST_RSM_B if supported */
-> +	if (sysc->info->rst_rsm_b.mask) {
-> +		ret = regmap_update_bits(sysc->regmap,
-> +					 sysc->info->rst_rsm_b.offset,
-> +					 sysc->info->rst_rsm_b.mask,
-> +					 field_prep(sysc->info->rst_rsm_b.mask, 1));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (sysc->info->mode.mask) {
-> +		ret = regmap_write(sysc->regmap,
-> +				   sysc->info->mode.offset,
-> +				   sysc->info->mode.mask);
-> +		if (ret)
-> +			return ret;
-> +	}
-
-Could you please keep the same order as in probe:
-1/ set mode
-2/ set rst_rsm_b
-
-?
-
->   
->   	ret = rzg3s_pcie_power_resets_deassert(host);
->   	if (ret)
-> @@ -1779,12 +1841,133 @@ static int rzg3s_pcie_resume_noirq(struct device *dev)
->   	reset_control_bulk_assert(data->num_power_resets,
->   				  host->power_resets);
->   assert_rst_rsm_b:
-> -	regmap_update_bits(sysc->regmap, sysc->info->rst_rsm_b.offset,
-> -			   sysc->info->rst_rsm_b.mask,
-> -			   field_prep(sysc->info->rst_rsm_b.mask, 0));
-> +	if (sysc->info->rst_rsm_b.mask)
-
-Multi line statement here as well, I would use { } around this block based on 
-the rationale provided above.
-
-> +		regmap_update_bits(sysc->regmap,
-> +				   sysc->info->rst_rsm_b.offset,
-> +				   sysc->info->rst_rsm_b.mask,
-> +				   field_prep(sysc->info->rst_rsm_b.mask, 0));
->   	return ret;
->   }
->   
-> +/* RZ/G3E SoC-specific implementations */
-> +static void rzg3e_pcie_config_pre_init(struct rzg3s_pcie_host *host)
-> +{
-> +	/*
-> +	 * De-assert LOAD_B and CFG_B during configuration phase.
-> +	 * These are part of the RZ/G3E reset register, not reset framework.
-> +	 * Other reset bits remain asserted until cfg_post_init.
-> +	 */
-> +	rzg3s_pcie_update_bits(host->axi, RZG3E_PCI_RESET,
-> +			       RZG3E_PCI_RESET_RST_LOAD_B | RZG3E_PCI_RESET_RST_CFG_B,
-> +			       RZG3E_PCI_RESET_RST_LOAD_B | RZG3E_PCI_RESET_RST_CFG_B);
-> +}
-> +
-> +static void rzg3e_cfg_deinit(struct rzg3s_pcie_host *host)
-> +{
-> +	writel_relaxed(0, host->axi + RZG3E_PCI_RESET);
-> +}
-> +
-> +static int rzg3e_cfg_post_init(struct rzg3s_pcie_host *host)
-> +{
-> +	/* De-assert PS_B, GP_B, RST_B */
-> +	rzg3s_pcie_update_bits(host->axi, RZG3E_PCI_RESET,
-> +			       RZG3E_PCI_RESET_RST_PS_B | RZG3E_PCI_RESET_RST_GP_B |
-> +			       RZG3E_PCI_RESET_RST_B,
-> +			       RZG3E_PCI_RESET_RST_PS_B | RZG3E_PCI_RESET_RST_GP_B |
-> +			       RZG3E_PCI_RESET_RST_B);
-> +
-> +	/* Hardware requires >= 500us delay before final reset deassert */
-
-Could you please cite the RZ/G3E HW manual chapter and revision, requiring this?
-
-> +	fsleep(500);
-> +
-> +	/* De-assert OUT_B and RSM_B to complete reset sequence */
-> +	rzg3s_pcie_update_bits(host->axi, RZG3E_PCI_RESET,
-> +			       RZG3E_PCI_RESET_RST_OUT_B | RZG3E_PCI_RESET_RST_RSM_B,
-> +			       RZG3E_PCI_RESET_RST_OUT_B | RZG3E_PCI_RESET_RST_RSM_B);
-> +
-> +	return 0;
-> +}
-
-Could you please move these config related function close to the other config 
-specific functions?
-
-> +
-> +static int rzg3e_pcie_set_inbound_windows(struct rzg3s_pcie_host *host,
-> +					  struct resource_entry *entry,
-> +					  int *index)
-
-As mentioned in a previous patch, this works for RZ/G3E as well and I see no 
-differences in HW manual b/w RZ/G3S and RZ/G3E, unless I'm missing something. 
-Please use a single function for inbound setup if there is no restriction.
-
-> +{
-> +	u64 pci_addr = entry->res->start - entry->offset;
-> +	u64 cpu_addr = entry->res->start;
-> +	u64 cpu_end = entry->res->end;
-> +	int id = *index;
-> +	u64 size;
-> +
-> +	/*
-> +	 * The RZ/G3E requires power-of-2 sizes (4K * 2^N) due to mask register
-> +	 * format. Split non-power-of-2 regions into multiple windows to avoid
-> +	 * over-mapping.
-> +	 */
-> +	while (cpu_addr <= cpu_end) {
-> +		u64 remaining_size = cpu_end - cpu_addr + 1;
-> +		u64 align_limit;
-> +
-> +		if (id >= RZG3S_MAX_WINDOWS)
-> +			return dev_err_probe(host->dev, -ENOSPC,
-> +					     "Failed to map inbound window for resource (%s)\n",
-> +					     entry->res->name);
-> +
-> +		/* Start with largest power-of-two that fits in remaining size */
-> +		size = 1ULL << __fls(remaining_size);
-> +
-> +		/*
-> +		 * Find alignment limit - the largest power-of-two that both
-> +		 * addresses are aligned to
-> +		 */
-> +		align_limit = min(cpu_addr ? (1ULL << __ffs(cpu_addr)) : ~0ULL,
-> +				  pci_addr ? (1ULL << __ffs(pci_addr)) : ~0ULL);
-> +
-> +		/* Window size cannot exceed alignment */
-> +		size = min(size, align_limit);
-> +
-> +		/*
-> +		 * According to the RZ/G3E HW manual Rev.1.15,
-> +		 * (Section 6.6.4.1.3.(74) AXI Window Mask (Lower) Register):
-> +		 * The area which can be set is 4K * 2^N bytes.
-> +		 */
-> +		size = max(size, SZ_4K);
-> +
-> +		/*
-> +		 * HW expects size - 1 for mask register.
-> +		 * For example: 4KB (0x1000) becomes mask 0xfff (12 bits set).
-> +		 */
-> +		rzg3s_pcie_set_inbound_window(host, cpu_addr, pci_addr,
-> +					      size - 1, id);
-> +
-> +		cpu_addr += size;
-> +		pci_addr += size;
-> +		id++;
-> +	}
-> +	*index = id;
-> +
-> +	return 0;
-> +}
-> +
-> +static const char * const rzg3e_soc_power_resets[] = { "aresetn" };
-> +
-> +static const struct rzg3s_pcie_soc_data rzg3e_soc_data = {
-
-Could you please move rzg3e_soc_power_resets[] and rzg3e_soc_data after 
-rzg3s_pcie_pm_ops to have all the RZ/G3E SoC specific data close to the RZ/G3S 
-SoC specific data?
-
-Thank you,
-Claudiu
-
-> +	.power_resets = rzg3e_soc_power_resets,
-> +	.num_power_resets = ARRAY_SIZE(rzg3e_soc_power_resets),
-> +	.cfg_post_init = rzg3e_cfg_post_init,
-> +	.cfg_deinit = rzg3e_cfg_deinit,
-> +	.cfg_pre_init = rzg3e_pcie_config_pre_init,
-> +	.set_inbound_windows = rzg3e_pcie_set_inbound_windows,
-> +	.sysc_info = {
-> +		.l1_allow = {
-> +			.offset = 0x1020,
-> +			.mask = BIT(0),
-> +		},
-> +		.mode = {
-> +			.offset = 0x1024,
-> +			.mask = BIT(0),
-> +		},
-> +	},
-> +};
-> +
->   static const struct dev_pm_ops rzg3s_pcie_pm_ops = {
->   	NOIRQ_SYSTEM_SLEEP_PM_OPS(rzg3s_pcie_suspend_noirq,
->   				  rzg3s_pcie_resume_noirq)
-> @@ -1819,6 +2002,10 @@ static const struct of_device_id rzg3s_pcie_of_match[] = {
->   		.compatible = "renesas,r9a08g045-pcie",
->   		.data = &rzg3s_soc_data,
->   	},
-> +	{
-> +		.compatible = "renesas,r9a09g047-pcie",
-> +		.data = &rzg3e_soc_data,
-> +	},
->   	{}
->   };
->   
-
+--paRMaVr6zOe1oSdk--
 
