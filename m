@@ -1,385 +1,206 @@
-Return-Path: <devicetree+bounces-256647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 148B7D39DB9
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:25:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B11AAD39DDE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:40:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA4873007686
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:25:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BDD9230088AB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:40:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473C5330647;
-	Mon, 19 Jan 2026 05:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F6733066D;
+	Mon, 19 Jan 2026 05:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dHb5vPnJ"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="A5l4c26b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010054.outbound.protection.outlook.com [52.101.201.54])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38927242D98;
-	Mon, 19 Jan 2026 05:25:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768800324; cv=fail; b=EZMOHYmNLm3bh0HC99Luff91Ybh79KSr9OHy6WCDZAxUY4atT7PDiXAYM4YjuOnvjlk+y3zQxk9rre/mZiCaBHN6TVasKMxyvQn/r+OG9QlLEcCTP71DqLQ2fiBebySUAzdy1FWfQggRp6Td1/xiA5MNtCKFYYbRDV1jQRcPiek=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768800324; c=relaxed/simple;
-	bh=ytmd/qepLr0xKfAd6Z2y/o4Lh8cBBSZvshVFpeXAZq4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MaTVxtQiB1L+R6X9Tzf/AvZnGGUv79xLCMy6TgXLko2qQbiyG66EaL3Hgg9XmDDMD42sNh2WbLcW/fw5QXhCcDul05hqTulRQAok4zaIdk7kwag43aTZmdTC4CjiV8jeT1qZqnBas8+vLgu+efaNegD3ZkeJyawPaYPs5a6OJAQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dHb5vPnJ; arc=fail smtp.client-ip=52.101.201.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ISLi+7sPk/ZtoNSKqoHtNMO823tAkigJ9tKKKDxwPYHp/qLU4aEfJFE8teDner3v3o8zMSAnfDNr/FopWGSqCgPzVrQ+4kWJkO4//8BtH2zqBEzOzGB2Cg6nE+OLXaicgG6Cddy3e5zsMuj2ZK+YrwvWrW227ljM5FNqWnEuNKcg66kqYvb4KkGfbfTuondpmhuaBYAY6yaMprs3Z4AKoE3WpsfbMQLKHI56naWPpe/hKInMta7dTxZuYPtVCaS+mrjglF1nTKHewMGZltR7Nbn5Hbie8/bcvJ2gkiEUNHwsww/SaLvjqRKz3iy5gwo9jAPHDKjH1yyyuDoY93IJRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/DyNbcImFM2xScPBW4g+UQCWDvlxjjhnpebPyhsap2I=;
- b=QbIjviWs36GPlvCvoqCJqnt21Cr5KPvksrUbMJYIpzXf4adhg0ExdQE4nNtfn4PyF+ZRvq15ysRKZJSa4vZwZe/Egwwz4LRO5TCAOwwC+aeOn8UCrARcRgYnPA32TdROH9+oEBJn9ZjJPwEYhxgzcoy63OQhj9+G6d0bq1hDp41bJXAb4A/SkDTgmljbdJQlWbWfVuiwtOyx4895taTBXsIwRJgkqJ/0P54Lje481EYAea6lkcsaKXYT6H/MSQeOoFH1RydMxGaAQ++nwJ2ZwVsx28Sqv5SvJ5PFz6VBOr5t4zdWqfa60wssLLb1sTpJYz/JAolPkn12PDMdfu/tvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/DyNbcImFM2xScPBW4g+UQCWDvlxjjhnpebPyhsap2I=;
- b=dHb5vPnJv7m/40yoe7FcMu7gFw7TI6LQKHqKSS2E0S5iIroM4uXpRpA5mXQJKPqD81U77HOVeL8Dpf1yf8XEjI1e9p5375mi4UDVTBpI82hGEhplam4V5O2BV/KfF31kOQyE6WCZqzjhJT+d9HtN0RNEPi5hYq8K3OoCi3nsBNA=
-Received: from MN0PR05CA0007.namprd05.prod.outlook.com (2603:10b6:208:52c::9)
- by CY8PR10MB6707.namprd10.prod.outlook.com (2603:10b6:930:93::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Mon, 19 Jan
- 2026 05:25:19 +0000
-Received: from MN1PEPF0000F0E2.namprd04.prod.outlook.com
- (2603:10b6:208:52c:cafe::ef) by MN0PR05CA0007.outlook.office365.com
- (2603:10b6:208:52c::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.8 via Frontend Transport; Mon,
- 19 Jan 2026 05:25:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- MN1PEPF0000F0E2.mail.protection.outlook.com (10.167.242.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Mon, 19 Jan 2026 05:25:17 +0000
-Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 18 Jan
- 2026 23:25:16 -0600
-Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE201.ent.ti.com
- (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 18 Jan
- 2026 23:25:16 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE201.ent.ti.com
- (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Sun, 18 Jan 2026 23:25:16 -0600
-Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60J5P7ag2983199;
-	Sun, 18 Jan 2026 23:25:08 -0600
-Message-ID: <068552f1-e89b-49c2-b959-6d53bde0eac4@ti.com>
-Date: Mon, 19 Jan 2026 10:55:06 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05E3321420;
+	Mon, 19 Jan 2026 05:40:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768801220; cv=none; b=jR1aIaKnU64Wffkjo/sKuWJHhlyGigbLE8kUa9ymBpjtXY+Ed78jPOMIakggQKyxJX5HYdQf6tuF4bu2NV2hdDJxUcycOmZ/lJk7rJl+/MUgV+u4hqY02iCDxWPvXXnjQNEKiPCvIvaV0IaGpuKmJPyGH0d/dK0MmPTKjYc0Ojw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768801220; c=relaxed/simple;
+	bh=Hd3pGutpLLpx8xui/YfgoLqLl/pxjQBbF56jQnFL2Qg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bI2o5M/yfQroEMkahQSNjJMim1JrNmYbRBOiLSLBoBkel49p3hEKEed6BPQHtOJ0MVc9e6kyHofwgMZ9W0HFzxZTeIWRPrrY86ipidEzn4rRMgr/sIy4ZaTw7MieN+wmfvEuhV272XPiWtXECU8RB4ibXUwZhTxZkfkxM7v9N5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=A5l4c26b; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202512; t=1768801217;
+	bh=KvB/F8cZmaK3Jkg9q15McFSg3bMC0Y5TyoeIYyEcMkQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=A5l4c26blwbL9ADBZaPyc45vxmrcRvWgG3hi0sCfsxtpRtnvWJkZajVXn6RGc7B6b
+	 n9jYZW2kmMaiLlBM1leAusVhdbDl4Svg5KepI3+nmZsJElO9aVdP3kdieyDkeBbARY
+	 IjsjfdndFxON/v+P7YhgUBBDcDLal5/uuBeAYD7uR/gzYskoZOiKX1g8PRYxdF7pEJ
+	 AKxQwHWMJHg4T2ytibNWdo7iNa7xMXJ2R+K+TjS6UCMHN7MCV0VqlnZsgR8eYeC10i
+	 81VnJHpM9TrevfCbsYfn7vAQIkpHrgNt5z6vT8rc2WlNjvn19jlwtMMwobrcnDwcDn
+	 7Vgfcq6g9P3Cw==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4dvfS11qBYz4wC8; Mon, 19 Jan 2026 16:40:17 +1100 (AEDT)
+Date: Mon, 19 Jan 2026 16:32:00 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	Hui Pu <hui.pu@gehealthcare.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 10/77] tests: Add basic metadata tests
+Message-ID: <aW3B0GHnMgwF73oK@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+ <20260112142009.1006236-11-herve.codina@bootlin.com>
+ <aWg58Gfb1KnMvQoG@zatzit>
+ <20260116143600.5aacf12b@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 19/19] media: ti: j721e-csi2rx: Support system suspend
- using pm_notifier
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <s-jain1@ti.com>,
-	<vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
-	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
-	<jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
-	<jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
-	<dan.carpenter@linaro.org>, <hverkuil+cisco@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <jai.luthra@linux.dev>,
-	<laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
-References: <20251230083220.2405247-1-r-donadkar@ti.com>
- <20251230083220.2405247-20-r-donadkar@ti.com>
- <9bf5fd69-4ff6-40c5-aa22-e6330bf8e323@ideasonboard.com>
-Content-Language: en-US
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-In-Reply-To: <9bf5fd69-4ff6-40c5-aa22-e6330bf8e323@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E2:EE_|CY8PR10MB6707:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9675caf2-d4da-4e7d-07d6-08de571b21c7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|7416014|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?c3JFYkVBblNCMnhTcVNidTZLaGFqSTlGbWdUN05odk1xK2FWL1QyQUZWckpG?=
- =?utf-8?B?T20rano4OEM2ZHNUb3pyL1R0bTVEWTdTUmhkbTgrS2F3T3hhODJJeXZsRkhk?=
- =?utf-8?B?a3NPekJQaVBrZllDTG5mVm8rNXUyS3E2c2l0MHRKa1R0MXJwdEZyeUJXS2VD?=
- =?utf-8?B?cGcyYURuVDhsRm93S21rR0JKV2xtQmNKNUJIcklxeERvNG5Vb1RRSzJGakxO?=
- =?utf-8?B?aGdJUEJuNTdoSTJMdS9jZ08xejhCYVVYLy9yS01JQThObnczUXM1N09PTDY3?=
- =?utf-8?B?WDBmMWxRc2dWU2ErdHFvdW14OUJROS9uSnFVOTV0VlZ3UHJxbHN1Y3A4NGxK?=
- =?utf-8?B?V2FoWFVkMVFHVVcwTFNlZlE0d2V6TkNTRXEwdThQcTExL2dyRG9XRUE5Um9y?=
- =?utf-8?B?ejJZY2ltVFM3VVVaa24zVG5qd2JMd2RtZnpONFNIWmF1bjh1OWpYM2ZkMGhH?=
- =?utf-8?B?bzZWZC9ISXpmdU4vZzZ5d3FyWXcxUk8vdkpPV2kwYkFTYjhIc215WG5uajQv?=
- =?utf-8?B?c1RkYlpBRUJKclMyWVU1VDNya2IvanhEYWZXZUt5aWRvbW1RQ0JTdFNUWHpL?=
- =?utf-8?B?cmt6cnk1akZzVEFlenJsRHltZFRzQjBYRDdKVFZQOTVDK2ZrN09RUDh4OUc4?=
- =?utf-8?B?bGdtMGZ4VkNMWUJjTUJ3dFhkZXN3Wjg1dElFcFNaeG9WUzBmVW1QZnZqZzZm?=
- =?utf-8?B?bjVDdXl1UkYyWVQvaU0raXBSSmFsRFRHd0tLbnZkc3ZHK1pIbWNBUFY0Z0tF?=
- =?utf-8?B?c1BDM3JJaFVXMmVkc3FqT25vdHgxb3VrVXdWM0NPYWN4RXdSTWkyS1h3alJ1?=
- =?utf-8?B?U1hDZlVlL3ZadFYyYWUzSmtqUXNqUnVJRk5pdThJMkcxQWdVR21Dd1lBMmhI?=
- =?utf-8?B?ZHY5NmFjNCtsL0E5cmNOdVNEOTlqdE5uQzExY3hEUG96RUQ0Y0V1SEt2MnZq?=
- =?utf-8?B?bHpQbFo2WERZR1pxYW1DRjRxdkk3N1c3QjMyOUhqa0FTZkEwQjRMYjBaOVJS?=
- =?utf-8?B?QitkeWtGU2R2ZUlNbDFBUUlKTzE0djJjeGJEVWpvS1VnQmQvM0x6VUkrSDFY?=
- =?utf-8?B?aHE5TER4WWVwYm42aUlaSlFzcmtJM1JvamhhZjh0OGJNTktHZjdUcGJuOFdK?=
- =?utf-8?B?V2l5N2tmN2d5WEJQL0xxZE1GLzRJaEhockVPV3RDVElEYWhyWVZLejY2cnE2?=
- =?utf-8?B?UkxTeFBpSUJTbVJDM0EzQzdQMGYrRkp1eXNabEd5L3cranR1cEdHRVc3aGlU?=
- =?utf-8?B?UyttN1ZnN2JrT1YxY2xjMzRyUUUzUnozOFNrTk5Iajdab1RPSkxhRjYwWU9O?=
- =?utf-8?B?MnE2WHd2TC9KYTBBUlY2QXVZdUlGRzMwc1VML3lXdjhOaXJpQ2pnZ2d5SHQr?=
- =?utf-8?B?SUxRVDZHWmtaMEtyNFFiR3RySDU5U0RqUER2QzVKTzJZWXZWMWRGUUFxekt4?=
- =?utf-8?B?YlB4YUZ5MjVMT2RKcU1PKzE3ZXZTdHVXZ1ViYW1OSTZXZnhVaGR2cTJmSFN3?=
- =?utf-8?B?eDJGVFh0RmZiaWdtczdvaVJVVkc4SHJkRzF3UXYweTJ3c092OVFncE05NnVX?=
- =?utf-8?B?dmFlTzVPQmx2K3MyRUxLelFXSm5hNVVKZWRHb05ORW1EK0FEY1E0bDJIWG9L?=
- =?utf-8?B?d1pjakNPRDV1QkY4OGN3SzZPRHlQYm94Wnp0c1ROdFI5MUViY2FtRzVqQUZW?=
- =?utf-8?B?SGVTSExubDM1TTI5OFpPU1NRVEN0YmEzNVUxcngrbE1QeGh6N0tPbFAwR1Ez?=
- =?utf-8?B?OUJIVWpKbGNNT3JpaU5XN0RLSVBqOUhqUnFJcEpCS1dMTzJmRkNseGEzOWI3?=
- =?utf-8?B?dWVjSjViK2tUUEZmajNSajZLQUMrcWE2bjhpK1JMRnVxcTdiSHduNGRFaG1l?=
- =?utf-8?B?cGpCbDd3azMzK2VGSFpTRWFJQXBaRnBFQldoc3I5VUdLcHllN01nQ2xQM0R1?=
- =?utf-8?B?dTZSalVwM0x3VmZZSU9kU1hSaW93UnBWZ3NXUGlwcWpSWC9HV2dvR1VZY1Ru?=
- =?utf-8?B?c0t4K2RyNStSdlQ2RzNqNWNaOVZDNTdWc3hvbDl6WlRqemQvMzBtSkMydTRl?=
- =?utf-8?B?UktUMkdOVVptcTNNallGYUkzQ0Z5SHhWMWJCN1FKcDQ5MnZjQ2J4QityRmhw?=
- =?utf-8?B?bXFWY2dHYzFJZWp2VEllK2JjYzg0WVpzdlVLMmhJQzJ0NlZ6ZXNKb041aHdj?=
- =?utf-8?B?YkNRL1EweHZVWVNrUFY3N2tFdDZjNkNWS3R3ZWh6QUxTRzRvaSs4dEFjMVQv?=
- =?utf-8?B?Q3R0TUgxMEZsd01SZGsrNFYzVlZBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(376014)(7416014)(1800799024)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 05:25:17.4408
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9675caf2-d4da-4e7d-07d6-08de571b21c7
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000F0E2.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB6707
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7Sf6ZOkcoawOpf7i"
+Content-Disposition: inline
+In-Reply-To: <20260116143600.5aacf12b@bootlin.com>
 
 
-On 15/01/26 18:20, Tomi Valkeinen wrote:
-> Hi,
+--7Sf6ZOkcoawOpf7i
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Tomi,
+On Fri, Jan 16, 2026 at 02:36:00PM +0100, Herve Codina wrote:
+> On Thu, 15 Jan 2026 11:50:56 +1100
+> David Gibson <david@gibson.dropbear.id.au> wrote:
+>=20
+> > On Mon, Jan 12, 2026 at 03:19:00PM +0100, Herve Codina wrote:
+> > > This first test is related to local phandle references (FDT_REF_LOCAL
+> > > dtb tag).
+> > >=20
+> > > The test pattern used is
+> > >   - Generate a dts (xxx.dts.dts) from an input dts
+> > >   - Check this generated dts against expected contents
+> > >   - Generate a dtb (xxx.dtb) from the same input dts
+> > >   - Check this generated dtb against expected contents
+> > >   - Generate a dts (xxx.dtb.dts) from the generated dtb
+> > >   - Check this generated dts against expected contents
+> > >   - Generate a dtb (xxx.dtb.dts.dtb) from the generated dts
+> > >   - Check this generated dtb, expect the same contents as for xxx.dtb
+> > >=20
+> > > Even if only one meta-data feature is currently tested in this tests
+> > > introduction, use a loop in order to ease future addition consisting =
+in
+> > > adding new input dts as soon as new meta-data feature are supported. =
+=20
+> >=20
+> > As a rule of tumb, I prefer tests to be introduced in the same patch
+> > that introduces the feature tested.  Usually, I don't care that much,
+> > but in a giant series like this, it would really help review (the
+> > tests help to document the feature being added without switching
+> > between patches).
+>=20
+> Hum ok but it is worth noting that a feature needs several patches to be
+> fully supported.
 
-Thank you for the review.
+Right, it's a general guideline, not a hard and fast rule.
 
->
-> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
->> From: Jai Luthra <jai.luthra@ideasonboard.com>
->>
->> As this device is the "orchestrator" for the rest of the media
->> pipeline, we need to stop all on-going streams before system suspend and
->> enable them back when the system wakes up from sleep.
->>
->> Using .suspend/.resume callbacks does not work, as the order of those
->> callbacks amongst various devices in the camera pipeline like the sensor,
->> FPD serdes, CSI bridge etc. is impossible to enforce, even with
->> device links. For example, the Cadence CSI bridge is a child device of
->> this device, thus we cannot create a device link with the CSI bridge as
->> a provider and this device as consumer. This can lead to situations
->> where all the dependencies for the bridge have not yet resumed when we
->> request the subdev to start streaming again through the .resume callback
->> defined in this device.
->>
->> Instead here we register a notifier callback with the PM framework
->> which is triggered when the system is fully functional. At this point we
->> can cleanly stop or start the streams, because we know all other devices
->> and their dependencies are functional. A downside of this approach is
->> that the userspace is also alive (not frozen yet, or just thawed), so
->> the suspend notifier might complete before the userspace has completed
->> all ioctls, like QBUF/DQBUF/STREAMON/STREAMOFF.
-> It would be good to have at least parts of the explanation here in a
-> comment, before the register_pm_notifier() call.
+In most cases I'd suggest putting the tests in with the patch that
+adds the piece they need to work.  That does mean that if some of the
+simpler tests can operate with only some of the patches, moving those
+tests earlier.
 
-Okay, will add a comment.
+Again, only a guideline, but it helps review because the tests act as
+documentation for the functionality the patch is adding.
 
-Rishikesh
+> In order to ease the review (maybe I was wrong), I chose to have distinct
+> patches for modification related to new dts keywords and for modification
+> related to new dtb tag and tried to have patches as small as
+> possible.
 
->
->   Tomi
->
->> Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
->> Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
->> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
->> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
->> ---
->>   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 128 ++++++++++++++++++
->>   1 file changed, 128 insertions(+)
->>
->> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> index 72da58738e16e..f8e55aa402e0b 100644
->> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> @@ -132,6 +132,7 @@ struct ti_csi2rx_dev {
->>   	struct v4l2_subdev		*source;
->>   	struct v4l2_subdev		subdev;
->>   	struct ti_csi2rx_ctx		ctx[TI_CSI2RX_MAX_CTX];
->> +	struct notifier_block		pm_notifier;
->>   	u8				pix_per_clk;
->>   	/* Buffer to drain stale data from PSI-L endpoint */
->>   	struct {
->> @@ -1539,6 +1540,124 @@ static int ti_csi2rx_runtime_resume(struct device *dev)
->>   	return 0;
->>   }
->>   
->> +static int ti_csi2rx_suspend(struct device *dev)
->> +{
->> +	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
->> +	enum ti_csi2rx_dma_state state;
->> +	struct ti_csi2rx_ctx *ctx;
->> +	struct ti_csi2rx_dma *dma;
->> +	unsigned long flags = 0;
->> +	int i, ret = 0;
->> +
->> +	/* If device was not in use we can simply suspend */
->> +	if (pm_runtime_status_suspended(dev))
->> +		return 0;
->> +
->> +	/*
->> +	 * If device is running, assert the pixel reset to cleanly stop any
->> +	 * on-going streams before we suspend.
->> +	 */
->> +	writel(0, csi->shim + SHIM_CNTL);
->> +
->> +	for (i = 0; i < csi->num_ctx; i++) {
->> +		ctx = &csi->ctx[i];
->> +		dma = &ctx->dma;
->> +
->> +		spin_lock_irqsave(&dma->lock, flags);
->> +		state = dma->state;
->> +		spin_unlock_irqrestore(&dma->lock, flags);
->> +
->> +		if (state != TI_CSI2RX_DMA_STOPPED) {
->> +			/* Disable source */
->> +			ret = v4l2_subdev_disable_streams(&csi->subdev,
->> +							  TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
->> +							  BIT(0));
->> +			if (ret)
->> +				dev_err(csi->dev, "Failed to stop subdev stream\n");
->> +		}
->> +
->> +		/* Stop any on-going streams */
->> +		writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
->> +
->> +		/* Drain DMA */
->> +		ti_csi2rx_drain_dma(ctx);
->> +
->> +		/* Terminate DMA */
->> +		ret = dmaengine_terminate_sync(ctx->dma.chan);
->> +		if (ret)
->> +			dev_err(csi->dev, "Failed to stop DMA\n");
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->> +static int ti_csi2rx_resume(struct device *dev)
->> +{
->> +	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
->> +	struct ti_csi2rx_ctx *ctx;
->> +	struct ti_csi2rx_dma *dma;
->> +	struct ti_csi2rx_buffer *buf;
->> +	unsigned long flags = 0;
->> +	unsigned int reg;
->> +	int i, ret = 0;
->> +
->> +	/* If device was not in use, we can simply wakeup */
->> +	if (pm_runtime_status_suspended(dev))
->> +		return 0;
->> +
->> +	/* If device was in use before, restore all the running streams */
->> +	reg = SHIM_CNTL_PIX_RST;
->> +	writel(reg, csi->shim + SHIM_CNTL);
->> +
->> +	for (i = 0; i < csi->num_ctx; i++) {
->> +		ctx = &csi->ctx[i];
->> +		dma = &ctx->dma;
->> +		spin_lock_irqsave(&dma->lock, flags);
->> +		if (dma->state != TI_CSI2RX_DMA_STOPPED) {
->> +			/* Re-submit all previously submitted buffers to DMA */
->> +			list_for_each_entry(buf, &ctx->dma.submitted, list) {
->> +				ti_csi2rx_start_dma(ctx, buf);
->> +			}
->> +			spin_unlock_irqrestore(&dma->lock, flags);
->> +
->> +			/* Restore stream config */
->> +			ti_csi2rx_setup_shim(ctx);
->> +
->> +			ret = v4l2_subdev_enable_streams(&csi->subdev,
->> +							 TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
->> +							 BIT(0));
->> +			if (ret)
->> +				dev_err(ctx->csi->dev, "Failed to start subdev\n");
->> +		} else {
->> +			spin_unlock_irqrestore(&dma->lock, flags);
->> +		}
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->> +static int ti_csi2rx_pm_notifier(struct notifier_block *nb,
->> +				 unsigned long action, void *data)
->> +{
->> +	struct ti_csi2rx_dev *csi =
->> +		container_of(nb, struct ti_csi2rx_dev, pm_notifier);
->> +
->> +	switch (action) {
->> +	case PM_HIBERNATION_PREPARE:
->> +	case PM_SUSPEND_PREPARE:
->> +	case PM_RESTORE_PREPARE:
->> +		ti_csi2rx_suspend(csi->dev);
->> +		break;
->> +	case PM_POST_SUSPEND:
->> +	case PM_POST_HIBERNATION:
->> +	case PM_POST_RESTORE:
->> +		ti_csi2rx_resume(csi->dev);
->> +		break;
->> +	}
->> +
->> +	return NOTIFY_DONE;
->> +}
->> +
->>   static const struct dev_pm_ops ti_csi2rx_pm_ops = {
->>   	RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resume,
->>   		       NULL)
->> @@ -1613,6 +1732,13 @@ static int ti_csi2rx_probe(struct platform_device *pdev)
->>   		goto err_notifier;
->>   	}
->>   
->> +	csi->pm_notifier.notifier_call = ti_csi2rx_pm_notifier;
->> +	ret = register_pm_notifier(&csi->pm_notifier);
->> +	if (ret) {
->> +		dev_err(csi->dev, "Failed to create PM notifier: %d\n", ret);
->> +		goto err_notifier;
->> +	}
->> +
->>   	return 0;
->>   
->>   err_notifier:
->> @@ -1642,6 +1768,8 @@ static void ti_csi2rx_remove(struct platform_device *pdev)
->>   		ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
->>   
->>   	ti_csi2rx_cleanup_notifier(csi);
->> +	unregister_pm_notifier(&csi->pm_notifier);
->> +
->>   	ti_csi2rx_cleanup_v4l2(csi);
->>   	mutex_destroy(&csi->mutex);
->>   	dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
+Small is usually good.  However, if it's so small that the patch
+doesn't express a complete idea so you have to keep referencing
+surrounding patches to make sense of it, then it's no longer good.
+Fwiw, think these patches are mostly well divided, but as above,
+folding tests in with code changes is usually better because the tests
+help show what the new code is expected to do.
+
+[I will note that having the tests as a separate patch, usuallly
+*before* the code changes is very useful during development.  But git
+makes it pretty easy to re-order and fold things together when you're
+ready to post]
+
+> The last patch of a new feature was a patch adding test.
+>=20
+> I am open to remove patches that just add tests. In that case tests will =
+be
+> added in the last patch related to a new feature. You still need to switch
+> between patches in that case.
+
+Yes, but not quite as much.  And even less if those tests which can be
+moved earlier are moved earlier.
+
+> Further more, during iteration, the last patch of a new feature could be
+> modified just because the test part is present in this patch even if other
+> part of the patch itself is not impacted.
+>=20
+> I mean:
+>   - patch 1: related to dts keyword
+>   - patch 2: related to dtb + test
+>=20
+> Update patch 1 will imply an update to patch 2.
+> I am not sure that this will ease the review.
+
+Point taken.  For tests that intrinsically require things from
+multiple earlier patches, having them separate probably makes sense.
+Often at least some of the tests can be more closely related to a
+single patch though.  When possible, that's generally preferable.
+
+> To avoid that, I can merge all patches related to feature into only one
+> patch. This patch can be quite huge and I am not sure that it will be easy
+> to review it.
+
+No, definitely don't do that.
+
+> Once again, I am open to merging patches. Let me know what do you prefer
+> in terms of patch granularity.
+>=20
+> Best regards,
+> Herv=E9
+>=20
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--7Sf6ZOkcoawOpf7i
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmltwc8ACgkQzQJF27ox
+2Gfn+w//feXmx+CSx8kylGwQ4phaFUj4r1J9eEvJJq34JEKegen+2LWBPzxJ6DW/
+dbJpwm9xfRkEjvR2mRYQmhlSMuw0LU12uzq9k0dEE5ZmM9LI1xS/nmVBATkoamw0
+0eO+vtQHq+9RLQhWUsyP1O6j1X+mYOj/llvTxonVqBlsI8ptSZi231cZ31OwwlnG
++giSv5pfLBD4PeH9b637XCJ3AfKAxQjUmWBV22DNPWBnLu6qAO8ryIRADXGEOmEp
+24x+iUGGonoHgG1Y9gvM+hsgqxtbMDwtIQT2/308wcrq6iNK0ZpMb0pGkjraJmvy
+2AsYhjNIHWNANEQuyy8sMxs9vVxtvL6vgIfDvfjRMuI2bXgQnN2Mq/+T3JEkoX28
+5lYdNZvnFGpefN9cIDcKdzB732UCupwTGO+6hMsVeTK5FDSeBbkz3OUYerHLckzz
+5ytXdxJZPeEXnuhqKdMEV9CLYwesZQKpDT6qQpFzuDYAprk0M4WTf1BNFTW0b0h5
+UFWSeqiRufbf1pIdTr2sUUDftgqa0TOdIuNZgIJQdzv8WtxhU3jdzZLPKrziJ0m+
+BfnNyItpFPAXD/e3r2+B98qGcFI3h7Ce9sPGK08unfN4BpJP04MiUW7Qza0afdXD
+4eJRWkmPjdQsiZI6THfwuK2RsQ38qssEzfcM68AjnK5LWu/ze+c=
+=3Ply
+-----END PGP SIGNATURE-----
+
+--7Sf6ZOkcoawOpf7i--
 
