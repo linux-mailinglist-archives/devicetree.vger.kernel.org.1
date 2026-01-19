@@ -1,115 +1,138 @@
-Return-Path: <devicetree+bounces-256973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35974D3B063
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0FB6D3B06F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:22:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 575B0304BC96
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:18:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 15A80302E3C3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54C82C0F6F;
-	Mon, 19 Jan 2026 16:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pUPvqtSe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354E42C1594;
+	Mon, 19 Jan 2026 16:21:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731D12FFDF4;
-	Mon, 19 Jan 2026 16:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810F91DF26E
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 16:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768839532; cv=none; b=k3yyHuEh6utjrOtYbiQ7KQQv4kAKWYtF5DnHV5ETf24e/3EKc61u5HwP9qVcpCFquWUHpwZLxwWgKAgC3dbLdauk1D6x4RJXV1i/245+5X2fbGGdO1n8ooFG0YMW3a9jdgaO6nETV8vdltrICPNa5C0guDP4QOk/Yp2BbHSxxD4=
+	t=1768839663; cv=none; b=JAUQ6SePqRw5gO/WBQ/aC0xT5qUJd34sh7YwnRefVukkhXBtVlEBEJXM5hdeZMHNzOEuHnEFP10re/2OKBNZx6+XmhB52FEB+05MU5VczyV3+pXrUlVT3LUgGzBJ/bd4J3QRXnsgfovgukifJ/FDZJu6wrnXYkBCFCa8uG/IVbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768839532; c=relaxed/simple;
-	bh=jyMZSl/pz+/Y/5Zw2mKUdp5jMPp9YfQaPG4GQk8Hw00=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=EO21pPQsm0GlyAk664jUYdbxCpCpkErz5WBjavwHi424vq+ayWqlgUwg2Pa5X6RJms+wi9YWAepnTvHIl2b6pXpAu6Fi1yswjl3Yvw9r8HAGJ/qEnObRe1AQf8A8MH+XN/NYZlP9YrOd+7+nUPKjpAcfhmzQoa6kO1hH0PQzKU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pUPvqtSe; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 00C671A297C;
-	Mon, 19 Jan 2026 16:18:37 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C872B60731;
-	Mon, 19 Jan 2026 16:18:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4DE0810B6B16B;
-	Mon, 19 Jan 2026 17:18:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768839515; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=6IzZqITfxZfsqLMD97cOvLx/oTz7z6A1f/3WBHICk0E=;
-	b=pUPvqtSehbxN1xcBr3URpoIUzPLIdZF4ymZLMVtPVq6B+npB/nl1peqzjW3p39QZBEKAE2
-	ZTWfkjRz630zT7QEuHuWw2cfvECsBSs9Pj/ZV2ugWXo+B6s+yGT7iPREPZsY2MnbKOgp53
-	n2jtpnm8kiqsDutFGsV/2AGTFsIHYaDnCPmV0NIqYzWsJZ4JXmZgpaUEPPSnbnbLl04XXD
-	MQlO0OsfnbeuYn5h4REjHALwDvQFmhBbnccS1LSclOWP2Wtiv0B/Mk9BU3+DdNc/SOVaDM
-	ia8XbpAeNL3OQd4VA64W43PEkX+DE7zbyYinOHy4P4oJkFNgwmB+Y05Q1YW4Dw==
+	s=arc-20240116; t=1768839663; c=relaxed/simple;
+	bh=ghmq4HfGsqxJi58RdqCXUiIndoD/h3ZdPXFlmzG4vuI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QgZa7n34zApfaOHq3Akja1ta6/3Xnl2bE09bvLQRJU3F+ZKd1nbiEMDthPKhOxK7BCaSwRVlNqc05PaW6AjTSQ2NDcpeN5o1UOu2m0WakOf/+vpC+UjLvJU8KvItG5CJfQGSUFK3/utiXfS4j1+NI61SauiEJoeIxH6RRMT9bPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vhrzu-0005Rt-JI; Mon, 19 Jan 2026 17:20:58 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vhrzu-001Rdx-2x;
+	Mon, 19 Jan 2026 17:20:58 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vhrzu-003Qo8-0S;
+	Mon, 19 Jan 2026 17:20:58 +0100
+Date: Mon, 19 Jan 2026 17:20:58 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-kbuild@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Nathan Chancellor <nathan@kernel.org>,
+	imx@lists.linux.dev,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Nicolas Schier <nsc@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, Li Jun <jun.li@nxp.com>
+Subject: Re: [PATCH v2 4/9] arm64: dts: imx8mm: add wakeup-source for usb phy
+Message-ID: <20260119162058.yar4igdkaj2zqzsl@pengutronix.de>
+References: <20260117-misc_dts-v2-0-0f319c7e9b55@nxp.com>
+ <20260117-misc_dts-v2-4-0f319c7e9b55@nxp.com>
+ <20260118172208.h7yts2yuf2lkhd4n@pengutronix.de>
+ <20260118172946.zsqokjhp76trijq3@pengutronix.de>
+ <aW5VzffP2UNAvy51@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 19 Jan 2026 17:18:31 +0100
-Message-Id: <DFSP9XSQ9Q4F.3W0523ABWR97X@bootlin.com>
-Subject: Re: [PATCH v4 16/25] drm/tilcdc: Modernize driver initialization
- and cleanup paths
-Cc: "Markus Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
- <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
- <miguel.gazquez@bootlin.com>, "Herve Codina" <herve.codina@bootlin.com>,
- <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-omap@vger.kernel.org>
-To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, "Jyri Sarha"
- <jyri.sarha@iki.fi>, "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Russell King"
- <linux@armlinux.org.uk>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony
- Lindgren" <tony@atomide.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
- "Neil Armstrong" <neil.armstrong@linaro.org>, "Robert Foss"
- <rfoss@kernel.org>, "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
- "Jonas Karlman" <jonas@kwiboo.se>, "Jernej Skrabec"
- <jernej.skrabec@gmail.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20260116-feature_tilcdc-v4-0-2c1c22143087@bootlin.com>
- <20260116-feature_tilcdc-v4-16-2c1c22143087@bootlin.com>
-In-Reply-To: <20260116-feature_tilcdc-v4-16-2c1c22143087@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aW5VzffP2UNAvy51@lizhi-Precision-Tower-5810>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Fri Jan 16, 2026 at 6:02 PM CET, Kory Maincent (TI.com) wrote:
-> Refactor the driver initialization to use modern DRM managed resource
-> APIs, simplifying the code.
->
-> The tilcdc_init and tilcdc_fini wrapper functions are removed since they
-> served no purpose after the component framework was eliminated. Their
-> logic is integrated directly into probe and remove.
->
-> Key changes:
-> - Use devm_drm_dev_alloc() instead of drm_dev_alloc().
-> - Use drmm_mode_config_init() instead of drm_mode_config_init().
-> - Align the remove path with the probe error path to ensure consistent
->   cleanup ordering in both success and failure cases.
-> - Adjust platform_set_drvdata() to store the private structure instead
->   of the drm_device, matching the new allocation pattern.
->
-> These changes reduce error-prone code while maintaining the same
-> functional behavior.
->
-> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+On 26-01-19, Frank Li wrote:
+> On Sun, Jan 18, 2026 at 06:29:46PM +0100, Marco Felsch wrote:
+> > On 26-01-18, Marco Felsch wrote:
+> > > On 26-01-17, Frank Li wrote:
+> > > > From: Li Jun <jun.li@nxp.com>
+> > > >
+> > > > USB phy can be wakeup source to support wakeup system from USB.
+> > >
+> > > Was USB wakeup tested? That beeing said, marking the device as
+> > > wakeup-src is fine.
+> > >
+> > > > Signed-off-by: Li Jun <jun.li@nxp.com>
+> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > >
+> > > Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> >
+> > Just noticed that this targets the base soc.dtsi. IMHO this is board
+> > desicion to make and therefore belongs to the real board.dts(i) or dtso.
+> >
+> > Therefore please drop my r-b.
+> 
+> wakeup-source is captiblity of hardware. The user need use echo 1 > wakeup
+> to enable it. it is SOC's feature.
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+I know that but still if the your system doesn't want to have the usb
+exposed as wakeup-source in the first place, the board.dts(i) files are
+now forced to delete this property. Therefore IMHO it's still a board
+decision to make.
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Regards,
+  Marco
+
+
+> 
+> Frank
+> 
+> >
+> > Regards,
+> >   Marco
+> >
+> >
+> > --
+> > #gernperDu
+> > #CallMeByMyFirstName
+> >
+> > Pengutronix e.K.                           |                             |
+> > Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+> > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+> 
+
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
