@@ -1,193 +1,120 @@
-Return-Path: <devicetree+bounces-256794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEB6D3A57D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:44:10 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 182EDD3A56D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:42:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 01E3530CDEE4
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:40:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 26E32300289C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C9F30F534;
-	Mon, 19 Jan 2026 10:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VfYRj9j2";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ggkY7gs+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C295730F535;
+	Mon, 19 Jan 2026 10:42:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB81D3314AC
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 10:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83325308F02;
+	Mon, 19 Jan 2026 10:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768819255; cv=none; b=AqwGhJt3I53MLAHhg7KA9k1RNG3BarewRjf6huw//K0Hv+YeTMwiqKQVe+bSXUk6uot34aedHKv/791IFaBtZfqMx/LK7fjLniSLTo099++hcmi1wdG7HxvupPNLmL7bOgUWLVFNltFXt7OOoGFInlEvGKu5TJk9TQlnCLMPtZ0=
+	t=1768819327; cv=none; b=I1qQgQCFCo24aN6eK07dOqCXwk8maShMN1U8rsoCLjRZDvIgHC3ZQmqMmYXMEw4Y5IMzypqWV1WVQxofhLCL3zEAOLQSoYTA2/F+ZcVbBFNKe2GNSTTb2R77LhYyq2sFDWfMPXdkjGzHCL0ry1hET3daE1qj/aLIyVIsUa/0R6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768819255; c=relaxed/simple;
-	bh=GKVObXCXNC12fSCZyvL3ryQ6x2vBtI3uuvqrxKyzc6o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Sr4I5clp5zcaimyp+RdgRCGYY4IyChWnERrHkgCWxpMtnRR7U3avbSqPhHe413va3NrUvCOr6CVwLvMriAYhBPvOdM1DskJYPa9aWKcU7f8mIb9HQpNK5AlqdzwSZca1RYoHPqghwuOzz3RKCWVUDFUo/Ic1oOcGEiBLTt+6fY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VfYRj9j2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ggkY7gs+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60JA7Z1Q597715
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 10:40:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AmrKFcesIbotTnCRANAIBkDX/JXuIv4RRLQRelQDe3E=; b=VfYRj9j2PNJX0xTQ
-	LS8UojMeyGf/yFkKE15ePZh5QbzcuBMbCRXmrRZREehh/jduTzkUmLrIW5NwSjGY
-	le2zU/rE39ze583tqUYzOTOKOfb6xKUNz/luf/2modht+drwAbuvPlMN0RAvsJlq
-	7NrfmmMYIKhxeKe3xXmy9MuvIvR9/yF+GDEeh9+o8lfP+dKlFFYPh/5hO3wG7CkL
-	UdRzl82RGls1uthJ8VO/55NlQyLreT3avHOgrxQ/LAxTsb+jqH0xTmjbyaXAy38d
-	nyCMkMPm+Y3hkT+e1SaU3uBB0Ms8ynduzh+TunPZVet9OzWKBOZpUq+3tCRWsVX6
-	kxIV5g==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsjk7g3pr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 10:40:45 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c5329ed28bso1072614485a.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 02:40:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768819245; x=1769424045; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AmrKFcesIbotTnCRANAIBkDX/JXuIv4RRLQRelQDe3E=;
-        b=ggkY7gs+69n5BG5CftM1y2H+NMkaDUNGQfyVTH4+kjIJHKcQxi+eoy3B3FOgfzeZKp
-         V1ZzvWWX2SBfZfAYJJGB3jPW50G1HGzT7iPgCBu4e3Oa4b6si4uUDMKX/eaDBSpoQ2Gp
-         xSsGSF1/AqRO1eIpePU8xsdGB1MmD4CeepuLl4sNVwKVTxcLawPhanhUR+7wXzLF5qov
-         5kMmdOHiOHaUUleRPtQBv0q3Rwfi7HLKZio+xKTw2J92I+uq0QuAv3bWUiefRhb+AKJU
-         BGc+ZCSDUfIw29joKM20EBGZy/dNrBTmiTUX8ybmR6jV5j40YnDwn5FKcdrojyAyDieS
-         NCAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768819245; x=1769424045;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=AmrKFcesIbotTnCRANAIBkDX/JXuIv4RRLQRelQDe3E=;
-        b=lOXLF6acOsKLyIl1k2kQLsCDJ+sI6OwEOIQYokZLcTLxG4Ho8K29cl/skZW4cAOg+J
-         kktrIXXfpw25s+CRUDj679rYv+rNGlCJO5uAH7CfO+BkEeSk1pyCuYoIXDddVRM8IwKl
-         vZwkEIddpgUXmU5wQYG3Zr9N3AI63tWLmiIUmtThAXN0Vw2HYz7h1WL5T88CgJ7Kg7T3
-         0xQvsYCO4xdE656BPnScKF4fPebPg8oiOJkO7iC8shJ35egh0xuXuuvVig/fe+DwxoCL
-         5dozuKLzeED3xTSNea8iVVR4pHZiNhdbSjiWrIy+MrL1CXaVOov30PSfgBysLWvHK53z
-         Easw==
-X-Gm-Message-State: AOJu0YzfBwzN86Riev8ea/9GYT2ynFQzBTTTrObho6jZUbF3BszXKTqI
-	+wF0UD1/BcHIQbPhZeds4dWBOvOOaO/0V2v7BzJl8WVjRImqiOaEuKnz4YxM0EBpV/kqaiSRf3Z
-	NOblJe896o/9WXLmddqfKPp4AafS8mzUYwXvrQE6iWXXYIAiKGWyGkruEqykQPg8G
-X-Gm-Gg: AY/fxX7CfOoEfRmGS3x/ndlkHLVe9iqnkBN3J+calpJVPaNiDyePMfab+WrdHgRlhRx
-	06/oR9OpZ8yfsg19C/iKtwoW5ytBv+Inlkdbay/bwxJKdFqM5ZpML2GrQr3OWQtt+L4UOJV5DXx
-	zQkSzRTMp4PRUHBb6RrIV8V6xX33K5hyc97GsH6ik1q6/VtAG2eoeSK8cLCm+3S0SKQANK8/t2U
-	qTflE0q8tZX35t2R3vLwMdjte9XxNAte9xbTHK+sunVmrsfajeR99g6OIw0tTBu+eV7ny/+dEZD
-	DyLf5l2imWAcBNlfWo5bFUvI1kZH6dC1rcnnYOkBkaYhjaNEIFiDTO2sdqAyxBW9bz0iipcFGLF
-	vXSLXgLDUd3ZBRTHe7tmBiiH5Rz77AzzBuYtAC7tz
-X-Received: by 2002:a05:620a:19a9:b0:8c6:770c:40d8 with SMTP id af79cd13be357-8c6a670cd8fmr1467496585a.40.1768819244734;
-        Mon, 19 Jan 2026 02:40:44 -0800 (PST)
-X-Received: by 2002:a05:620a:19a9:b0:8c6:770c:40d8 with SMTP id af79cd13be357-8c6a670cd8fmr1467494785a.40.1768819244181;
-        Mon, 19 Jan 2026 02:40:44 -0800 (PST)
-Received: from brgl-qcom.local ([2a01:cb1d:dc:7e00:4f55:d102:7129:1a8f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e8c9cbcsm185185245e9.12.2026.01.19.02.40.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 02:40:43 -0800 (PST)
-From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Date: Mon, 19 Jan 2026 11:40:19 +0100
-Subject: [PATCH 8/8] soc: sunxi: mbus: don't access of_root directly
+	s=arc-20240116; t=1768819327; c=relaxed/simple;
+	bh=qenx5N2waJdC9QQIVsp9hQNVuZ57Bzo2azojkGh3inA=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pio6DrFjO0vBGCkMV+yy/F8sqctlEUGVY38UY6iBqbGwrQ27DWwrpzzqElsRoJOX0yUB432VeUUkGNEM2TeWQ0PGoImH3ZRD5POyE6P71KAqM8JO6XZfdmxpEzasQo49odkoQcxd/kL7UWJw+EJeBqEOvzkHqR/Dl+ssnv3uBs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.83])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4dvn7l1RtNzJ46fh;
+	Mon, 19 Jan 2026 18:41:39 +0800 (CST)
+Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
+	by mail.maildlp.com (Postfix) with ESMTPS id D94FC40573;
+	Mon, 19 Jan 2026 18:42:01 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml500005.china.huawei.com
+ (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 19 Jan
+ 2026 10:42:01 +0000
+Date: Mon, 19 Jan 2026 10:41:59 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Rodrigo Alencar
+	<455.rodrigo.alencar@gmail.com>, <rodrigo.alencar@analog.com>,
+	<linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>, David Lechner
+	<dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, "Lars-Peter
+ Clausen" <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v3 4/6] iio: frequency: adf41513: features on frequency
+ change
+Message-ID: <20260119104159.000025f7@huawei.com>
+In-Reply-To: <aW3fYYK4ywhwOZv9@smile.fi.intel.com>
+References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
+	<20260108-adf41513-iio-driver-v3-4-23d1371aef48@analog.com>
+	<aWFR2wTSWLydGN5O@smile.fi.intel.com>
+	<ptyn5x7qkmbakkompmijo6xeego2xrhjoeyomkgrytwgwcsaid@heiq3ilnx5ky>
+	<aWTS-npPY6yPARZH@smile.fi.intel.com>
+	<20260116175743.169eb595@jic23-huawei>
+	<aW3fYYK4ywhwOZv9@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-soc-of-root-v1-8-32a0fa9a78b4@oss.qualcomm.com>
-References: <20260119-soc-of-root-v1-0-32a0fa9a78b4@oss.qualcomm.com>
-In-Reply-To: <20260119-soc-of-root-v1-0-32a0fa9a78b4@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Danilo Krummrich <dakr@kernel.org>,
-        "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, Chen-Yu Tsai <wens@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-        imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-sunxi@lists.linux.dev,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1008;
- i=bartosz.golaszewski@oss.qualcomm.com; h=from:subject:message-id;
- bh=GKVObXCXNC12fSCZyvL3ryQ6x2vBtI3uuvqrxKyzc6o=;
- b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBpbgod2Z0XeYN0hebAo6LmFskYdjL5FbX1EGXvo
- I3KG/9vZDCJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCaW4KHQAKCRAFnS7L/zaE
- w6ynEACXUgdvUuKIyGdhXbkqmx6FYZmuzw4u+krC5x/9fU2AvfjEdoMGWsMBlbEfRgb8SD4b5Ey
- Wuk9beTVoujuYsJqtMB1kexe1ve0+ibT/ooleUNc574lFxHYDSAqFuhAcqN9lgVdJUqOL+I92Br
- IJndTOD1P84qPpzERNqfkix/k060FWZcyag6YVcDrgqR92RpHK0gokao/8AZbM+LiWbYf0CHM6w
- MIHSpKSjUgILEVeOGjf0JxqIUr1dbCQXtSY98u96NAqI/9XPeaeMbtTKG89yy3qeoLN7Z74SKGi
- 05pwXG4l190xK/MiT/QXVyMvF9QMobxWIRQDdIAIh1VdILHSz0EAJU17fcMWldP95oK4zDsySzn
- tSyHjzvsArXa7WK8c9n7Z95ENQjXS6er7i694Ud9TjbSOe4gCyAX0cHLeWKfY42YH7f/0095ho9
- fz+379qIEV2Bu61EjCTt4S6FW+Q+pVfvnWhYI/Aml8gwbZRnnMouovko516RweLmcl0PNmQy75X
- 8a8hHzKrmq9n8wWa+anMcuTdNX4YXMjgRILsEiuUaVLEz2PbxUcRjVsyO3yjLdmG8lwNImohj5p
- lU8lblx+dpgKKq6LdGtiqKBbciQ9Zp2iXfMqaiNkNyIGdlzIsH+r54p+7LWdt8MjW7ZxUNs9/U0
- SY+metMEW2Zh2Hw==
-X-Developer-Key: i=bartosz.golaszewski@oss.qualcomm.com; a=openpgp;
- fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDA4OCBTYWx0ZWRfX1toiu+O/DWLe
- hkZ/N/xCbAjc4yS9mQwdnHoVL0ME8rwAXTLZ5MVINAlpYJoj/ALBWdDpA/pCZQO7buFfEFsPJQ9
- lpLmqTkjMTXEqTmZB+7LJC86h7WlKznIJRqpgDQPK0Ouuu5jWBSdcovkiWa0MN9N6WwEstyx8MD
- BpxxuhtcAGyJ7k6obxpiHbCyy3u+V3+QMisO9JUZ7hTp2wfPVCBc5YljpX3yxIFAgcZQ28I0CyZ
- HPDF2emnRwFWerQ4J8e0c8dKHS/QsLPFmVcGbh+4TUWlrirkxE9LjnUxNnbAmShW9OuvMtbr3RA
- mafyIsIRYTw7Pp9yzjG0Vz6ki8Uq4/p/NcvhifeXKmcc+/5xaNFUYnWrFuqcl/SSQ9VuicQ5yiS
- Kb20XdtjSJc/1YtCWYewJ29/pwXCLx/PMU9KDkRoXDWEuqvSprmpO7HKE6fchxjWCaECPREQQAT
- 0WacpVExgVwbJr5DvAg==
-X-Proofpoint-ORIG-GUID: cSySPN4tLzKjwr5nzkQ8EUqFWgym0yL5
-X-Authority-Analysis: v=2.4 cv=WoAm8Nfv c=1 sm=1 tr=0 ts=696e0a2d cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=GnGDLHjXiqABGLigSj8A:9 a=QEXdDO2ut3YA:10
- a=zZCYzV9kfG8A:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-GUID: cSySPN4tLzKjwr5nzkQ8EUqFWgym0yL5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-19_02,2026-01-19_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 impostorscore=0 phishscore=0
- clxscore=1015 bulkscore=0 priorityscore=1501 adultscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190088
+X-ClientProxiedBy: lhrpeml100012.china.huawei.com (7.191.174.184) To
+ dubpeml500005.china.huawei.com (7.214.145.207)
 
-Don't access of_root directly as it reduces the build test coverage for
-this driver with COMPILE_TEST=y and OF=n. Use existing helper functions
-to retrieve the relevant information.
+On Mon, 19 Jan 2026 09:38:09 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
----
- drivers/soc/sunxi/sunxi_mbus.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> On Fri, Jan 16, 2026 at 05:57:43PM +0000, Jonathan Cameron wrote:
+> > On Mon, 12 Jan 2026 12:54:50 +0200
+> > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:  
+> > > On Mon, Jan 12, 2026 at 09:45:49AM +0000, Rodrigo Alencar wrote:  
+> > > > On 26/01/09 09:07PM, Andy Shevchenko wrote:    
+> > > > > On Thu, Jan 08, 2026 at 12:14:53PM +0000, Rodrigo Alencar via B4 Relay wrote:    
+> 
+> ...
+> 
+> > > > > > +	bleed_value = div64_u64(st->settings.pfd_frequency_uhz * bleed_value,
+> > > > > > +				1600ULL * HZ_PER_MHZ * MICROHZ_PER_HZ);    
+> > > 
+> > > You multiply Hz * Hz. One of them should be simply SI multiplier.
+> > > To me it sounds like one of
+> > > 
+> > > 				1600ULL * MEGA * MICROHZ_PER_HZ);
+> > > 				1600ULL * HZ_PER_MHZ * MICRO);
+> > > 
+> > > will be the correct one (and I lean towards the first one as you want units
+> > > to match).  
+> > 
+> > I don't really care, but... They are Hz * Hz / Hz * Hz / Hz = HZ
+> > if we assume the first number is in Hz.  The others are all ratios.
+> >  
+> > So original is fine as far as I can tell.  
+> 
+> I don't see it like this. I consider that we should have only one meaningful
+> units as the rest is just a value. What you wrote above has a little sense
+> to me, sorry.
+> 
 
-diff --git a/drivers/soc/sunxi/sunxi_mbus.c b/drivers/soc/sunxi/sunxi_mbus.c
-index 1734da357ca21b249740e089698275507ea98a8a..8bc5f62ff258837d3f3b30cb84b60d1872b31c27 100644
---- a/drivers/soc/sunxi/sunxi_mbus.c
-+++ b/drivers/soc/sunxi/sunxi_mbus.c
-@@ -118,7 +118,7 @@ static const char * const sunxi_mbus_platforms[] __initconst = {
- 
- static int __init sunxi_mbus_init(void)
- {
--	if (!of_device_compatible_match(of_root, sunxi_mbus_platforms))
-+	if (!of_machine_compatible_match(sunxi_mbus_platforms))
- 		return 0;
- 
- 	bus_register_notifier(&platform_bus_type, &sunxi_mbus_nb);
+I agree, but none of those XHZ PER HZ is mathematically valid way of applying a unit.
+This is because the per means divide so the units cancel out.
+Literally it's  (0.0000001Hz / 1Hz) 
+So using them to assign a unit is meaningless.  All they are doing is hinting
+that we are manipulating values already in some scaling of Hz.
 
--- 
-2.47.3
+Personally I'm not sure there is value in the unit specific defines given
+this. They kind of hint we are dealing with frequencies, but that's it.
+
+Jonathan
+
 
 
