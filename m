@@ -1,248 +1,200 @@
-Return-Path: <devicetree+bounces-256976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F350D3B11B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:32:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58517D3B2BF
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:56:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 36A2C3062639
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:26:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D8D2930596B2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528E33128BE;
-	Mon, 19 Jan 2026 16:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA13B3BC4E6;
+	Mon, 19 Jan 2026 16:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="nBP+m2F7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DEfchJe+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010068.outbound.protection.outlook.com [52.101.69.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73EF29AAEA;
-	Mon, 19 Jan 2026 16:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768839868; cv=fail; b=QtDyY3d4S3N8KMvxhdpLjgy2apzfqXMjyhqqphj1+2THgZ9MuzanS6fhdNeQAJjghsZ8RZsSb/3LOYXBjzGTxkhxAzgtnfTBPHkpk7enZl1KSvMcqSbkRHC4vvh9IT8HEA43RBDDF8jCPSLktWmYvzOQwdppMHe/B9DGn5E/j3Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768839868; c=relaxed/simple;
-	bh=ZcN+ix0wfls2tEw7rRtFZ7wcZz327+iuN5+CB2d7qsM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=lQdm5Ww2Rhnt65y5xeRGUfJqAQkEknb9XGRcYdoQyzHBywuJnRN6OTG7Vdr25jKW1e0FgFrjuRv0bi+ays7sUgk18Gll8v7+llTXQIFlVNCzCwQL21BbskXfTU8mlsmm0FRHr76ux3x06M9MZdx9fhHT8gNtC74Qn6lm/oaywZk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=nBP+m2F7; arc=fail smtp.client-ip=52.101.69.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xywzHoLpJ+n3Xab/AEIn+d3v3API0Soc/QTtiBKVXBtznoj+rglA0qNvsdyUaW0ZxRAmuOMyzo/6HKOOexTjLEmE7hC2wAma/t8/XJOBEunRS7E3N2q0d2b2ewoxfd5UbAUeIUgN46vb0/8pckxF+KRsMtdRCyLp69QM3Z9Ue9wqX+RP1WKzuc328v0n5/RP82MWZ/dJ3ycCmd6xvsp00KWiNoZ/NGrV8v2GYtY/qkFlYyehwNpDJxZqyDhNKgSXDzhc2YqwSVYKkKmcgrSaf+vn8P0IlSQn4uFfdqsdF2DR7iPz5fRCRT/rIFUtq4nPgcjg7FVR10OoAuMFxFiQFg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2197TSPPilAJPujHDlZfcSsgqEqwzUAZfW6x7N0h3B0=;
- b=Qj6bZ0x/68ka02dP7GDROCm/AJmxUftidRqyOO8tNCGiHIiH7vHb0IxG/IzYgKMSk55ZTcJrQLfilFVtl4iQ19eBtcx5/AtAAJHeByOD04OD/ekpveNO85eGvkAbvb5NibDbG/2xb1Iq+4JYsaoi4sU9fHaLa20Qfq9FVeJU578PPb+LuGNA0oOI+qYpjbzAuWJ4KyPa0GVDcNyQ7gyUcHjWR5DujTZbH1W6fCVx+h8wOYo+/wdZsoAjbaUdDcZVVcPFbEZz45dXhnXIJXvT/ImC2nupJAoVzyBVTDyMC2n39wSMtRXNQ1goUrPId49u9jkDWRPBXotE9zNPBvw3EA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2197TSPPilAJPujHDlZfcSsgqEqwzUAZfW6x7N0h3B0=;
- b=nBP+m2F7iecGG1Z2jWkE0vDdCgEVfonAEe2dS4ZQVPKGaLkTKH6HAbEk6+9z0iWqUU47IezWbDLNmwmk7uIAb7hE5FWR/qVKfrk2ZXr7Ulv4RxBME8TO33hr77/zYmae8hHr9bv9uwO7TeHuMWXNDEm3mp3ZTlQkaAwcfT4PUMff9j/NW1B03o25uyil1YnH3mpxaQsl2n60Z/uNnNQ+9DOKZGPY32z/H2eAA8kvSFomIN/jHdVMZIyPQX2RSxN+/gD5rypBOnxnbY3wQmnRnXfFK/VggOVuNbSduKGVMFUTLrOuKPeWzJQhN451vNsszRKPE+1SaaxtCcnEANRh0g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PRASPRMB0004.eurprd04.prod.outlook.com (2603:10a6:102:29b::6)
- by GVXPR04MB10610.eurprd04.prod.outlook.com (2603:10a6:150:224::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.11; Mon, 19 Jan
- 2026 16:24:11 +0000
-Received: from PRASPRMB0004.eurprd04.prod.outlook.com
- ([fe80::6ab3:f427:606a:1ecd]) by PRASPRMB0004.eurprd04.prod.outlook.com
- ([fe80::6ab3:f427:606a:1ecd%4]) with mapi id 15.20.9520.009; Mon, 19 Jan 2026
- 16:24:11 +0000
-Date: Mon, 19 Jan 2026 11:24:01 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: hongxing.zhu@nxp.com, l.stach@pengutronix.de, bhelgaas@google.com,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-	kernel@pengutronix.de, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/10] arm: dts: imx6qdl: Add Root Port node and move
- PERST property to Root Port node
-Message-ID: <aW5aodaPdjYwAE1V@lizhi-Precision-Tower-5810>
-References: <20260119100235.1173839-1-sherry.sun@nxp.com>
- <20260119100235.1173839-4-sherry.sun@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260119100235.1173839-4-sherry.sun@nxp.com>
-X-ClientProxiedBy: BYAPR21CA0007.namprd21.prod.outlook.com
- (2603:10b6:a03:114::17) To PRASPRMB0004.eurprd04.prod.outlook.com
- (2603:10a6:102:29b::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5923BB9F2
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 16:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1768840253; cv=none; b=LNF++iRBRE6fs+sEX4X7lmL+Hc2jrgOVvNP/GK5S9Re941sEGs0RIheoKTlGeaC3wAjLfQq2Eegqo0zMLiK5upUNY4ZwRei5gfssBHYs4A+XMJo6zVv5Gj6Q72COC/gfeq40YFF3J2nrPJg1qA3S60tT1Wuzt/qfDGDZ0ol4wEw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1768840253; c=relaxed/simple;
+	bh=D6/3vLfrvpSmRRqAGiIOVS8ewVjwKf7GH3zoAMxoKHo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ukejeauGiMCJzhzuI5mfYkzHQJnwLtkcbsnrfFAiDoGb76Xsc4AxTLwJoR9yj5L5sRDhxCQsWjekgHXSHQqPRuJiqX798TNHm7TUBLuc6832t69m1c/hyfIrhNsB6Mz3TDv7ZG94vF6Fj3OawEqFUNJuU0zCNF5PtYxdZkvLHzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DEfchJe+; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47ee2715254so20394145e9.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 08:30:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768840250; x=1769445050; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MQd+WNzdOao4inqLQiN4ne6FLA8M9wMTcCMhupP8Doc=;
+        b=DEfchJe+dHXrUKT6qlNAkcvoqKmHA968cCrIrrHlXe3bZ6jeA/msCrvYsgLg9Qm8IS
+         eGUdd3rTnNy78ZuBXRxle3HJvIChz5ci37Mu/jiF5joQiwUba6NTyyYNF72VQoW9A4iJ
+         qiZl3YweCK65uAaGYqm3Lp5Ys1JNfxJkVhbuRsRpxc/BCiVytwcxvSfXQXQNit8zfsoD
+         NnjXRlhfSQeM0xsWio4QKvZTXTEjU8kSZE6ayheCaBRqMMPw7vgft6CX98B6dWM2R3fD
+         fHZj2A3IPpLgPOar61ZYusbadEKfc2+PB+M/nQlv53xEXuTmpL9+vy27SjULpbZWolCr
+         JIkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768840250; x=1769445050;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MQd+WNzdOao4inqLQiN4ne6FLA8M9wMTcCMhupP8Doc=;
+        b=snJy87RO/kMdWDxUVlxGOHbppOcVYFrUgIlQta47zELS03XEcT7GvvKeYCnMCbOudb
+         e95X3p665mDyBuuPkGQOI7xz/jaFnIfG/44u2ceSpDRP/m6zisb1rUJMHZ20OYoyAEBm
+         OizPC/qVSOoezgyRgJjYuNVKUJiSnA4nHUHYsaCxblaRhDpdRoLmAxzBDAMIXROiC0eL
+         uWGNk6KAQI/a9WWt081Mdsimp5bVuGBIVvDo4nYGc+vDtuL6S87JvTUctNmqZlWCybfw
+         F6SBLyXZTW0dw3ck0h9+bJko+RrDl2JLiF3OO5sI20bX/inp+UHEdG9SD5p1Ii0ZKhoo
+         3osw==
+X-Forwarded-Encrypted: i=1; AJvYcCWTvEwENG/u7iw0Z0zFJDnjzC48jSRnooM4KRiX5RAK/qpV71F+ctdjoiicMPTQgrhKUy592/po3GpO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTwmrz4syrvL1AM6QNU+VgLTgDZOs5ZC8FVqyopsYdE3FfTHWq
+	ih9LCrikl/1jWWEGTfLJ4CWhPqrotSlnmg8qodMaoBiTA7wECiMy+pho
+X-Gm-Gg: AY/fxX5pStziYXqgaq5Xj8IN5198I29u6NEgV7eSlQv80+3DnGyk+2xLlqyrdn0/S4W
+	UhLzkDpLvnt9tlgtIDANosoIJXD6jacrNtZkqEmRGyTwweEQcT3ipvN4SnWnMDkKNmddE9pAbss
+	N0mlAHhVM8LG8Bv0XmFZtLH/CTWKyoXi+d9LEHDvHQa/0p6NcNyRfgiLpv/sYz9lrUFgMPla5yH
+	u9zRoNBUYh27hvlsBN543dHr4VwzTgsnbWVXdeF/al6fN2HPAu788QwY7UBA1ii05VPs3Tv3xEb
+	p+k+nYfp0zpS2OjS66sKEqfDDeNXX5J0U6chgccZ46NSYA21xRCTFmlIjU13akIZAJzJN27hkA8
+	ZDCak4CGPF2H/P83ZxYFsdPbo8lJNlOrPZH4Sog4Ua8x24DpvLXoQcULsCMSAnXbWnvKrWk88xB
+	pxAmSm7FJPBEyCHqJXX75o3yHbTqCmmZWRVZzdaVzmt1fY
+X-Received: by 2002:a05:600c:4745:b0:47a:80f8:82ab with SMTP id 5b1f17b1804b1-4801e33c17fmr160556445e9.24.1768840249805;
+        Mon, 19 Jan 2026 08:30:49 -0800 (PST)
+Received: from [127.0.1.1] (bba-94-59-215-181.alshamil.net.ae. [94.59.215.181])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e879537sm201666795e9.5.2026.01.19.08.30.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jan 2026 08:30:49 -0800 (PST)
+From: "Anton D. Stavinskii" <stavinsky@gmail.com>
+Date: Mon, 19 Jan 2026 20:30:42 +0400
+Subject: [PATCH v3 1/6] ASoC: dt-bindings: sophgo,cv1800b: add I2S/TDM
+ controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PRASPRMB0004:EE_|GVXPR04MB10610:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8ab0b7a-64f7-4bbe-8514-08de57772d7a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|19092799006|376014|7416014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?9FjeSCOrqWp1DEXZ7jvxyMNaOUmXTS3Jl7Sk9lxJrzroA1bfv8TB16rHytbH?=
- =?us-ascii?Q?yT2IruThg/1pkEmLF/rRr99vwQCuKX31g0tegGL1Mzb4NrV3Js/Qv91/O0ab?=
- =?us-ascii?Q?ofJd23aCKrznC4qE9+lx6FIUBLckSivUqHkIEMo0OVVvp0hTfSWajXRwOaeo?=
- =?us-ascii?Q?MDF5pCWuOYX0zRr9zF/Ql2aBcpdGh7OSRyqN3NuPhy9o6vXQA4sPnExbjMrH?=
- =?us-ascii?Q?5sf0c6M3QUSzDM53JNYJQkQ3eqq10nfzPyM5F4MjTxLPlnTP9og6QLtoCaC5?=
- =?us-ascii?Q?QumnniNXZn7+8z/Ygeh/zGXk4KC0egX3F9ICr+FXRlHXAZbtpHS+5ad+Chps?=
- =?us-ascii?Q?lxC310U/yMaDDdhCQGRkmK0olYmDzldAKISiVWsut/QR+wAgQSnqJxm3wlhR?=
- =?us-ascii?Q?s92+9pSTvIRnTwfUw3QdYUXkxlYreMnighjZhCZ1bZErls58imsN1gmrcGbL?=
- =?us-ascii?Q?64UFuzxyS6mDpKqV9P1uiW4NJ7wvkULR2bpQ2ViR39lVwEZv7p3+X1Vd7AiY?=
- =?us-ascii?Q?Sf7DAfp6MS1VMFC8cvp79D4zsKdfuC11f+gnhvNwL86dNd0JOh//ElkTTDKr?=
- =?us-ascii?Q?Zt+g6WwBG6CZiIp9wZHmUJYj6iCtLlWXLttSYuf21tsZzjst8GQ4BhIWZ4rB?=
- =?us-ascii?Q?spxSwCKeAq4Yb5JpRMK2ADxeXOwPD6sJj1DyAHAbrt3fB7vYd5jkI//729AG?=
- =?us-ascii?Q?M82zbQ9xR1QwMjf2uUGi8qtcgxxBwziNmTbQBcBHCmRUkbXV6VT/RhjUUasD?=
- =?us-ascii?Q?LX6VvMKaTNrH9pajgsL8bPdKh/iK3rGzyn1Au6F5fFPYixlp3Rj6aemu3rkr?=
- =?us-ascii?Q?uoftGPpBRZ8JbNVBK6ZyuzRaxdFOq/eBWFkUIO+snQAAa76U71ZI0Wmk88s9?=
- =?us-ascii?Q?nHLKH8ymbF8Qy6VhZWE2jyPOEO3WzDA16W+lPhp3PeCiVlYU0EwnDI1+vYcr?=
- =?us-ascii?Q?qgMMKDgq5gLavW4eoQWGtesc6F+NF9puH8BFPXxe4P+xN7jL/tp3aVR5P9Pt?=
- =?us-ascii?Q?VlgQy9wyIpHYYOdToawGrZ/yaYG4HCiRqoHpyITTPplVV9wkeHNbM1N18kOI?=
- =?us-ascii?Q?xIKRQYp/YmiNKyb2uALd/cCvbGo9kuCSEq/aFrRTGcOGJZ6pPT2DiIB6rA9G?=
- =?us-ascii?Q?i0ausbtNJt4rSAkD4+AD0jvjyFUX/NCJdvNZdUlgWgvkbZa5nL8gIZd56HBP?=
- =?us-ascii?Q?/tGFhLp9abeI/HYK3HCtypLFVGN4c+FFdAKIVHyypOMr9j5r9PnVNju5ZSb9?=
- =?us-ascii?Q?tNc9IsdG71xX3OoAJuyPzyAxiKyONfjb4jtkvBw80txX7xHtBX+MVcM7uPFG?=
- =?us-ascii?Q?cOcDGKTx0Q6BysvxoD+lx+pf4K5jKp15xqw+4gK3CF6mm6eInen07xzONEPF?=
- =?us-ascii?Q?bpWjJfCNrAisPFlGFYQKOZRASGEZwSXvtavf0vhBUqiyvf40Yj4t1wgaj5Ha?=
- =?us-ascii?Q?UbaAC0Yu5FW4clD7X8kRZ0lgCiElod816/8Ot/4fXsrOhNyjlB/iiIA74C/G?=
- =?us-ascii?Q?+LuhPTcZF0fACFY8gMvbEMIzsJICx300ynljLh4e+J5t0UbTMt/6QL9hrchZ?=
- =?us-ascii?Q?HH1kq6bhMHkFqtmq37wLGUH6OTYporV6MGc0aoEX45p+8Ue7fc3tAl10y6Me?=
- =?us-ascii?Q?SKvPCP9czSg5ifpqTt1IDrI=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PRASPRMB0004.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(19092799006)(376014)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Kn7NUiP0uQuD9T33tlRQ+R5uDDY9eyggnpPesIktvlBf4x9/Pr6aRRZ6bG31?=
- =?us-ascii?Q?W3V5zcjp5l7oT2HkuYtGaipCJagnWLGAEzq1zSvhqimKHlFZdIP/yKQwx+3v?=
- =?us-ascii?Q?p58tjNMZPTYfByoFPqUHF1UGHUJQv66XuuHpuaHXCAcM3EI7b6ZdoZPa7DfP?=
- =?us-ascii?Q?+bIyLiivXZQxuxwm/XEa9+2VVF8/eaK301KT3WuXg0sVZXaK9+gm/OGNFRi9?=
- =?us-ascii?Q?Kidnxan8wHI3ctjLV9I0HLVA/qmbIs0bgKsKxX91n7ghPU24kCyKweaySnf5?=
- =?us-ascii?Q?zE/t/ZCLpYcZT4IDZYxpJy7gJmHiJ5fIt+N4tDu5DRbWF+PteJYd4kFUNX3W?=
- =?us-ascii?Q?yilTBltzruU1V+AIz/q25yhZ9t5cY2AKxLdwxeEgeLM4fZV5eKOZR1s6uQf+?=
- =?us-ascii?Q?2qcILxcqoZLw2dD7UJ4St5HFe74OD/8DMyLaL/d7bHphevSuR+ag9zcp232e?=
- =?us-ascii?Q?YFUfI0PypLnkAkdQdcjjzQhSPFkO9Nt3VkO+PuykMeAss7Xyv3wBYoeogvSQ?=
- =?us-ascii?Q?SScptdoAfgWY8rZ+veil8eJ+tYOlKrKm4fJW+DMxdmvDfSkEHXLaR5P2psGB?=
- =?us-ascii?Q?RUTmZFZRKN6G7CFDf36eDmHWUH0NGMiQSspbSbAfXWTyb/wtqYKNr+z9peBP?=
- =?us-ascii?Q?nGgYGRqx3aHQ8D7EhpCdSFA9nsqAP7hsCrMO0pBs6wFYY9IjyWJJNbedmse3?=
- =?us-ascii?Q?PTylzGo0RNz701n7DHHJR9kTD7Twk4T8BI/BeXZXMGchk/y9J55HUb0d37hC?=
- =?us-ascii?Q?Z/2lfwos+1M0Y/6eBrsw9+xjwORjZyIoLp35Mft0G1QwsCLGKk62DWARiDGR?=
- =?us-ascii?Q?EEsu6U7HMjytm1R/Hqk04r96jogtCRDugjZDn2fsQPyBhMdElmUbo6JGj1b/?=
- =?us-ascii?Q?bgw2t9vPPNb42l5iVMy26gv39mWElLDid56Emi4rF+g9pzobJPYZbgbiegHY?=
- =?us-ascii?Q?CrhkGYO9aO7P/PQ08pVYW3ZCEixyYvBov3AWOrh2d9ZsBLaxn/3ljuiGHCDw?=
- =?us-ascii?Q?oRAG80gnfNtQnzcEQ8Za6ZBVyLyXG3+/9fE11wwY31OI6s8c/CO1OS58lgeM?=
- =?us-ascii?Q?aPEqhtFsb5htTpTIElO4ruMD0nsUfB9gk8avVrBPUUvlmFC9Ei0hge6daLpF?=
- =?us-ascii?Q?ALzilhiev2EMqV26pP3bV5b0D7END4aUHZuRQYGr6C2aq7prqazPiUuGVOob?=
- =?us-ascii?Q?lZGA1EKR83bIRrWDxVd6wEnyT74yf1oOxj/7utcFRSQamgvUoA4BnztXbIHo?=
- =?us-ascii?Q?fSYkEHegM8B3qM9kQ6h6AS0wEaStQ0P72F9AlYU52phJFdUIMzIbJLg93OAt?=
- =?us-ascii?Q?whfdQ1DzIAmoONkAaSYfJgkg/a/pAnz/slK8bnoSZXX7B/BfQXoCu0FnhmKQ?=
- =?us-ascii?Q?8jCPXC7QXm4//v4TdUOrwcVo55xxttm7294lh8r3zSPBaHpDhaEFl4qz4Fdt?=
- =?us-ascii?Q?A/t6gjz5NuYdv+UiVgHtQdCtqriLhFfnZhdnwoYC6mig/NaUGm8LpFx4+wbQ?=
- =?us-ascii?Q?f4nyO7xl2Z9u4iE3gl0TirXpGghBW4XLr+8HAMozSTqKD+WopMOuQ8rxyzrQ?=
- =?us-ascii?Q?c+0guHmgAsPjEym0a1hmAWPaU0iKIzITBL2lluvO0Db6ktoD3NNgsM4vweXv?=
- =?us-ascii?Q?IViLS9rcH+zqqPpVj5Wue1hHW/OMV1B7kTpCUf+5nAt3INGLJkgW+fNcZFJB?=
- =?us-ascii?Q?BrBZQLQP4ydQe2wWzu7O5XKExy2NBb5NYEfbhJfzcp80LK8kKcQ1Imx0zMnx?=
- =?us-ascii?Q?4oIwKcJboQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8ab0b7a-64f7-4bbe-8514-08de57772d7a
-X-MS-Exchange-CrossTenant-AuthSource: PRASPRMB0004.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2026 16:24:11.1112
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vWblaCdv6eviG7M8XSLJqjZ6+aOkzg+k0qUzUCrE+iQ8YOD7m7R389HXrVYdAjPG7djGWPeKnOUOvYfbpsgX/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10610
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260119-cv1800b-i2s-driver-v3-1-04006f4111d7@gmail.com>
+References: <20260119-cv1800b-i2s-driver-v3-0-04006f4111d7@gmail.com>
+In-Reply-To: <20260119-cv1800b-i2s-driver-v3-0-04006f4111d7@gmail.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Inochi Amaoto <inochiama@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, 
+ "Anton D. Stavinskii" <stavinsky@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768840243; l=2363;
+ i=stavinsky@gmail.com; s=20260115; h=from:subject:message-id;
+ bh=D6/3vLfrvpSmRRqAGiIOVS8ewVjwKf7GH3zoAMxoKHo=;
+ b=/bjUfLKwlPnlPfk4DYtxlHgdXcY+lvP5GNMVM9VYSX/tdxAVVMOnsLQRkscxApXqhk58aE6Oc
+ t8x0QPnx4PCCorDSC03hUrqySe6xs7VieWCNdq16mJ1+n/h65X2Z8w7
+X-Developer-Key: i=stavinsky@gmail.com; a=ed25519;
+ pk=2WxGZ1zd1vQwSPFCSks6zrADqUDBUdtq39lElk4ZE7Q=
 
-On Mon, Jan 19, 2026 at 06:02:28PM +0800, Sherry Sun wrote:
-> Since describing the PCIe PERST# property under Host Bridge node is now
-> deprecated, it is recommended to add it to the Root Port node, so
-> creating the Root Port node and move the reset-gpios property.
->
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> ---
->  arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi |  5 ++++-
->  arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi         | 11 +++++++++++
->  arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts |  5 ++++-
->  3 files changed, 19 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
-> index ba29720e3f72..c64c8cbd0038 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
-> @@ -754,11 +754,14 @@ lvds0_out: endpoint {
->  &pcie {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_pcie>;
-> -	reset-gpio = <&gpio7 12 GPIO_ACTIVE_LOW>;
+There are 4 TDM controllers on the SoC. Each controller can receive or
+transmit data over DMA. The dma it self has 8 channels.
+Each channel can be connected only to a specific i2s node. But each
+of dma channel can have multiple purposes so in order to save dma
+channels the configurations allows to use tx and rx, only rx, only tx
+or none channels. I2S controller without channels can be useful in
+configuration where I2S is used as clock source only and doesn't
+produce any data.
 
-Generally, don't remove old property to keep back comaptiblity. You can
-add comments here if you want.
+Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
+---
+ .../bindings/sound/sophgo,cv1800b-i2s.yaml         | 67 ++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-Frank
+diff --git a/Documentation/devicetree/bindings/sound/sophgo,cv1800b-i2s.yaml b/Documentation/devicetree/bindings/sound/sophgo,cv1800b-i2s.yaml
+new file mode 100644
+index 000000000000..e09631308bb6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/sophgo,cv1800b-i2s.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/sophgo,cv1800b-i2s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sophgo CV1800B I2S/TDM controller
++
++maintainers:
++  - Anton D. Stavinskii <stavinsky@gmail.com>
++
++description: I2S/TDM controller found in CV1800B / Sophgo SG2002/SG2000 SoCs.
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: sophgo,cv1800b-i2s
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++  clocks:
++    minItems: 2
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: i2s
++      - const: mclk
++
++  dmas:
++    maxItems: 2
++
++  dma-names:
++    minItems: 1
++    items:
++      - enum: [rx, tx]
++      - const: tx
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - "#sound-dai-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/sophgo,cv1800.h>
++
++    i2s@4110000 {
++        compatible = "sophgo,cv1800b-i2s";
++        reg = <0x04110000 0x10000>;
++        clocks = <&clk CLK_APB_I2S1>,  <&clk CLK_SDMA_AUD1>;
++        clock-names = "i2s", "mclk";
++        dmas = <&dmamux 2 1>, <&dmamux 3 1>;
++        dma-names = "rx", "tx";
++        #sound-dai-cells = <0>;
++    };
++...
 
->  	vpcie-supply = <&reg_pcie>;
->  	status = "okay";
->  };
->
-> +&pcie_port0 {
-> +	reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &pwm1 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_pwm1>;
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-> index 9793feee6394..c03deb2cdfab 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-> @@ -287,6 +287,17 @@ pcie: pcie@1ffc000 {
->  				 <&clks IMX6QDL_CLK_PCIE_REF_125M>;
->  			clock-names = "pcie", "pcie_bus", "pcie_phy";
->  			status = "disabled";
-> +
-> +			pcie_port0: pcie@0 {
-> +				compatible = "pciclass,0604";
-> +				device_type = "pci";
-> +				reg = <0x0 0x0 0x0 0x0 0x0>;
-> +				bus-range = <0x01 0xff>;
-> +
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges;
-> +			};
->  		};
->
->  		aips1: bus@2000000 { /* AIPS1 */
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts b/arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts
-> index c5b220aeaefd..c35c24623d36 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts
-> @@ -45,10 +45,13 @@ MX6QDL_PAD_GPIO_6__ENET_IRQ		0x000b1
->  };
->
->  &pcie {
-> -	reset-gpio = <&max7310_c 5 GPIO_ACTIVE_LOW>;
->  	status = "okay";
->  };
->
-> +&pcie_port0 {
-> +	reset-gpios = <&max7310_c 5 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &sata {
->  	status = "okay";
->  };
-> --
-> 2.37.1
->
+-- 
+2.43.0
+
 
