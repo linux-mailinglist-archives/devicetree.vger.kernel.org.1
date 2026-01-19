@@ -1,182 +1,294 @@
-Return-Path: <devicetree+bounces-256886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64602D3AA78
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:37:23 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 638A5D3AA90
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:42:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE174303D31B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:35:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D6EF9300161B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3475436921C;
-	Mon, 19 Jan 2026 13:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A9436B075;
+	Mon, 19 Jan 2026 13:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oExCwqPi";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Lvta7b/f"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JoIHZxjH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA19C329E66
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD6C36921C;
+	Mon, 19 Jan 2026 13:42:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768829717; cv=none; b=VU8JhVzj7fiImNTo2yrxY1iug44yVFMnTUHh2MbLgIBBG91+BNpBIcPTB1ndKdaoFhhOi2ySjH+37RpYU2S9P6waZJQBZMwZOf38Mp1gypEaxZ9CcLkvtZgFtcclZ+zjemH+95b8ghoGqfVf4x3VjnMYA2cOT/QVEgkc4XKcp+w=
+	t=1768830163; cv=none; b=VFXcM1p1y3zmcQ3PGB5U++TU9y1jgeWmw7KxrdSqbIctVkcv2zOueXWzm96BTI3eFJY4YH2sKjhviWH78G/tYdv1KABT3ch/87S+YoNi+NnAmCvEIbPKO2JvVH/tIfLjxR4eroGuJOOeea9BZ60CZTd6Aqxx1P3v8zz+GZGbYTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768829717; c=relaxed/simple;
-	bh=LcNp2f8q93RUTbfP9ds+4Zh/pnj7UsD40Ky5QggKGXs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iunbARHRHW9+OkruJKpzA4wh2ZCuP2Xi69EIcqXkskc2xYpImketGhVPwGbbugRBhmHOynvXAhkD4Ydt56ienUdO3NhubDQybyequdqXqBm1LUV4L2G1bFKXK2hZD6ODliTGyL9LqqzeAPSCUGobmPGGzGXKBc1vDwKFQYoXPxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oExCwqPi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Lvta7b/f; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J90kwq227975
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:35:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2wsfR28Qd0bd4VQshSV5qcHqV1r2GYy0XRWpfzmbx6A=; b=oExCwqPiA+irlMXL
-	A6iHfmoF5WnG/g0MX1UhCklqibNTP3r8zet0u4pXEUHnm+j0LE+aWR0LzCKgS4bP
-	jspAaDDC4IZjbcgJEDRm2aFfmD8pNJE+u3W6HFecLmRGykLG7nrgSfbiNYWWKJ/Q
-	MBzjRvSLeqhX8wkI/ZkdvSuG2CPkmlW8a4oAVzyp6bmJR/lpd72HLcSYixmGk/9C
-	d04MRYpglOg4Dl4Ectxsa+a+H3e97bTyUMCkuncaJqlYvfl1bvPdrKqAyyUbl+Eb
-	XvjYbbdBXtsqcExlKbX/b0DsTioNRkulTkHQPN/FJN96kfZUtfmYZlmvY3sYqhYz
-	Ga7+iw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bsgfr93a7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:35:14 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-502a477885dso6352121cf.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 05:35:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768829714; x=1769434514; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2wsfR28Qd0bd4VQshSV5qcHqV1r2GYy0XRWpfzmbx6A=;
-        b=Lvta7b/fOGNIAaHS2B0tA5H5pAqg8XrMZnQeOCnli824+JszX2RXjddWKSYEr+zMAg
-         3NusCrs671ILBtYpJa2r3TWuEXIJDtYXA90QGCOcpmCTEdav5QnThL0MGIG795c5do+x
-         gsnu4mmSGbh2g12DDI14DDVvWOm7ysB0PpszVaa972gVcvxJ49P6/bVvJH6iJ8fliXn2
-         9MN7II18+WwY2r3lHfijIm5IJbZTvWD+FwFBk/Z1SWf0dSoPVvtbLmmwi8l0VUpidgEk
-         tnr1DkdabQOedIX/aZGodx7aFqHqEWCHWUHoGZPpBa/oCvmlZ2wFiU7/a5gSj0DX1xbE
-         Zp4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768829714; x=1769434514;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2wsfR28Qd0bd4VQshSV5qcHqV1r2GYy0XRWpfzmbx6A=;
-        b=h8gHpsqHNETpG0c071w6XRO5IYbz6QDRwk0gOLX4ijlBNrLe3R9qxSFeDNY6BrVpPZ
-         PooHUY4KRv4WLiSxVwYQyIlQl9Wr/7kAZD5WwoNv+g4J2jILAjF1NcMsEJisEh/f2/Wn
-         eofsO3/+5z9BY9F52k6mgu4Qh6mGe/o2uqrM3Vd8Ru8N5zJ7oea149wJ3inRy5ylCg/C
-         +y9bwg143R5HomHGsjChAYGsWErYzuTghaBmmQAdoqrDFP21u5yiqHdSOqj2jtdWEC+p
-         sqGxf80oleYSeCHc5ho1h0ye7j/FX1OS5prfFCjaLj97yB6chFvaf4RV+gFwI6cnMTXn
-         wUQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBv1mjGyu6Amdn5KylbZzFSg9QxjrdW2VO4aB1PDeN8sOOEcHvf7MhC8pz46cU8l5W0B1kJz1a9qkw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9dA5kbUI8XXtoUoglPufveIWeh4jerNYu3GDaUuYAjfR+Ah+N
-	K22/Ul34V+DZP2oDotohVfmMtmFl0JBE+1qJHO5nbUWXDrc4rHEYti7vIe8yhONKIJ5QNUcYl8W
-	DqE2I0fFY6EZpZbry6Ehw8Qg+wG2GmqufwRtxbCNrJF6hP42bc+oaykt4i54oEvTC
-X-Gm-Gg: AY/fxX5OURGAzMAI7e76PeeWmEysU+JhgN53Vf0nc3sIbty6PqfBNaJZqnOo8Oy79li
-	32qlDEW6av1uR7zMkjn168okyGoIRcCi2daUO5d0EyhSEgX8AjvKIzDi7sV2idJHcLlFlJnih88
-	udPAHGrLdmjclutKVS6OnqGiSGNOmAoLjx4gwY12E5vJ0NsGGD/YphtP08t9nKVmN0tDPhRL+xP
-	oL5Vp2IATVzp7K6M3KWdWzGLFaSo0zMjErnDuhEGhUw2GunRCBrAmeEY9r1XmjCHxNqYHGymJ/F
-	qXICMXS0KRYEWXfAgAq5fAQuLi5gCRFfQfifSqKkn74W0sE67hTsvhtSk+AnEXQCjkNZgnP7PSR
-	908ILKmOFE4L4Q35FSdqwOuYdSp5IkkRNs9CCqXeiYeMb5du4H8Nb8whHsXFgiBzdw1k=
-X-Received: by 2002:a05:622a:1794:b0:501:4767:a6f with SMTP id d75a77b69052e-502a16043c2mr113525501cf.3.1768829714119;
-        Mon, 19 Jan 2026 05:35:14 -0800 (PST)
-X-Received: by 2002:a05:622a:1794:b0:501:4767:a6f with SMTP id d75a77b69052e-502a16043c2mr113525061cf.3.1768829713584;
-        Mon, 19 Jan 2026 05:35:13 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-654535c4aa7sm10604078a12.34.2026.01.19.05.35.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 05:35:13 -0800 (PST)
-Message-ID: <45f650d7-7369-4a0d-b931-3ba9ac998f75@oss.qualcomm.com>
-Date: Mon, 19 Jan 2026 14:35:11 +0100
+	s=arc-20240116; t=1768830163; c=relaxed/simple;
+	bh=V4mQ3VlRjiqoBXAOdadem2FcWXV+zUSy7/OHRaRfC0k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OTQBkv9P/uA9OHx3EzIgWzA6GsMzjMSg3Y5ZFjbglBclsND9LVQvSBnZuUhCbWt19db5x3g8jxYsJw+e6iCIK/6EVxbA66SL86G4wWmdpA9Zpi6jjTTjNlblq5hZd/ynq8bCUgBXoedDfRrDN9TLg71yQZUaTQx6aW73Ylwp7LM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JoIHZxjH; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768830161; x=1800366161;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=V4mQ3VlRjiqoBXAOdadem2FcWXV+zUSy7/OHRaRfC0k=;
+  b=JoIHZxjHhKPFm+wxd23OaaW7eYSNqDqpa7jpZTKw59I+vVR4TcAxluxk
+   3qiDXGURiheufRb/iuKTy5/OXqDK3n7u+Gd6xJ928HNlwLPpvxKeB7rxv
+   23kePmvX4jAPqUdnKcb2GtVCaVTwsmtCLb1VuAhirln6rFfLKuYnsU8uq
+   TOBK5ZmZP+9U9ggovyYL8XGFg0HVsco2GmhjMf7BhLJ/fRvyj+1iXAEAc
+   ru0wAa8YPyyjvW3Y6IdOfdLrIM8kGD3ZvAasd4LQOxbiwNwTQs/PXCkKB
+   TItwk/LbcUcxTx83i3FE1ASikfSA/6vPr6UqtYR9QFeGFpjLnT5V97CZK
+   Q==;
+X-CSE-ConnectionGUID: OaK5iY4HSCeHAZcsjTN14A==
+X-CSE-MsgGUID: QJV8zTFkQA+xpy5kmaRxkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="73669714"
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
+   d="scan'208";a="73669714"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 05:42:40 -0800
+X-CSE-ConnectionGUID: MJrvk+3oSqiJnsTZfpnklA==
+X-CSE-MsgGUID: ytX4QqSJQNu+cjSfQBWJPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
+   d="scan'208";a="210372271"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.37])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 05:42:36 -0800
+Date: Mon, 19 Jan 2026 15:42:34 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
+Message-ID: <aW40ylvMwVhqNQMw@smile.fi.intel.com>
+References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
+ <20260116-adf41513-iio-driver-v4-3-dbb7d6782217@analog.com>
+ <aW3dxuelYDM67pqZ@smile.fi.intel.com>
+ <texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/4] Initial patch set for PURWA-IOT-EVK
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
- <jeyj5wqu4uw7tnm4h5ryatoqupdrqpkjcynnydgbum6oj2d4jj@qvvbbifrvud3>
- <ed49abf0-c2b6-4496-a3b0-ef040fd94615@oss.qualcomm.com>
- <b3p5yhstng6nbrrdavx67vlv62hqqlnms7742txbimpeswqklv@eomkmkkearwp>
- <e2dfb857-1fd1-4d29-b04b-6dec0b7563d5@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <e2dfb857-1fd1-4d29-b04b-6dec0b7563d5@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: oZLutiobnVD0GNWCFDpjlsGbkF8JtG_U
-X-Proofpoint-GUID: oZLutiobnVD0GNWCFDpjlsGbkF8JtG_U
-X-Authority-Analysis: v=2.4 cv=c4OmgB9l c=1 sm=1 tr=0 ts=696e3312 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=h5xPNbTZ9WlByCzVmZAA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDExMiBTYWx0ZWRfXxGcXUWfcWNfj
- YJQMTSSWpwzt9N/nIzxBMQpE4OLIeRM7+LckvpYwXqaqWLwlHRdCfikSPdYwyHgvC2LvsTTcnlh
- lBQhUejelkBSL5kl07iChZvoQhUuBn279JlWqD4smOvTQajS78DjMoTf7/vH2JVESg3xY5kIcHW
- XMR+p7+3i1X8roB1yKBrPZAcATk1PWVEqbjgXd4rl9FVxkfq+Q5WvqLkQoOWW8UZeYMPq4Oo5vW
- 2TyxTZ1A7zIuYHg/qBpSovqB3N7Euha9JxhLc4K4rMr6MgyISYZon1MQqp2utrrrnnYvaM7C8VT
- fiQJY2YLeiY9j3OBL4XvFdXQw5xKvpJFguPqF2kCJD0SdZWP8I/oUq+GfRyoCkwQ7tjWC76VRKN
- 6UfAMP7xZ0XAQV6QDBYshkbxI+d5N2TVj/clQOM85b/HxpP+dkV2kFni3izf1aLMejAPGIzcucS
- /v4xyGrwQDQIwougEmw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-19_03,2026-01-19_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- suspectscore=0 spamscore=0 bulkscore=0 phishscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190112
+In-Reply-To: <texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 1/19/26 7:54 AM, Yijie Yang wrote:
+On Mon, Jan 19, 2026 at 11:21:59AM +0000, Rodrigo Alencar wrote:
+> On 26/01/19 09:31AM, Andy Shevchenko wrote:
+> > On Fri, Jan 16, 2026 at 02:32:22PM +0000, Rodrigo Alencar via B4 Relay wrote:
+
+...
+
+> > > +struct adf41513_pll_settings {
+> > > +	enum adf41513_pll_mode mode;
+> > 
+> > Sounds to me like a room to improve the layout here,
 > 
+> I am targeting a 32-bit cpu, just moved in_value down:
+> would this be fine? (pahole output):
+
+Likely.
+
+> struct adf41513_pll_settings {
+>         enum adf41513_pll_mode     mode;                 /*     0     4 */
+
+Wondering if this can be shorter if moved down...
+
+>         u8                         r_counter;            /*     4     1 */
+>         u8                         ref_doubler;          /*     5     1 */
+>         u8                         ref_div2;             /*     6     1 */
+>         u8                         prescaler;            /*     7     1 */
+>         u64                        target_frequency_uhz; /*     8     8 */
+>         u64                        actual_frequency_uhz; /*    16     8 */
+>         u64                        pfd_frequency_uhz;    /*    24     8 */
+>         u32                        frac1;                /*    32     4 */
+>         u32                        frac2;                /*    36     4 */
+>         u32                        mod2;                 /*    40     4 */
+>         u16                        int_value;            /*    44     2 */
 > 
-> On 1/19/2026 2:34 PM, Dmitry Baryshkov wrote:
->> On Mon, Jan 19, 2026 at 10:39:04AM +0800, Yijie Yang wrote:
+>         /* size: 48, cachelines: 1, members: 12 */
+>         /* padding: 2 */
+>         /* last cacheline: 48 bytes */
+> };
 
-[...]
+...at least I have had in mind that "mode" should be moved to be near
+to "int_value". But I think it will take 4 bytes still as we don't use
+short enums compile wise.
 
->>>>> Changes in v4:
->>>>> - EDITME: describe what is new in this series revision.
->>>>> - EDITME: use bulletpoints and terse descriptions.
->>>>
->>>> Oh no. B4 probably even warned you about not sending it out.
->>>>
->>>> Â  From this changelog I can assume that nothing has changed. Is it
->>>> correct?
->>>
->>> This section was generated automatically by b4 and was not reviewed
->>> carefully. The actual list of changes is in the section below.
->>
->> But why????? Why do you ignore what was done for you and write it on
->> your own, reversing the order, etc? And even if you decided to ignore it
->> for any reason, why didn't you delete it?
+> > > +	/* reference path parameters */
+> > > +	u8 r_counter;
+> > > +	u8 ref_doubler;
+> > > +	u8 ref_div2;
+> > > +	u8 prescaler;
+> > > +
+> > > +	/* frequency parameters */
+> > > +	u64 target_frequency_uhz;
+> > > +	u64 actual_frequency_uhz;
+> > > +	u64 pfd_frequency_uhz;
+> > > +
+> > > +	/* pll parameters */
+> > > +	u16 int_value;
+> > > +	u32 frac1;
+> > > +	u32 frac2;
+> > > +	u32 mod2;
+> > > +};
+
+...
+
+> > > +static int adf41513_parse_uhz(const char *str, u64 *freq_uhz)
+> > > +{
+> > > +	u64 uhz = 0;
+> > > +	int f_count = ADF41513_HZ_DECIMAL_PRECISION;
+> > > +	bool frac_part = false;
+> > > +
+> > > +	if (str[0] == '+')
+> > > +		str++;
+> > > +
+> > > +	while (*str && f_count > 0) {
+> > > +		if ('0' <= *str && *str <= '9') {
+> > > +			uhz = uhz * 10 + *str - '0';
+> > > +			if (frac_part)
+> > > +				f_count--;
+> > > +		} else if (*str == '\n') {
+> > > +			if (*(str + 1) == '\0')
+> > > +				break;
+> > > +			return -EINVAL;
+> > 
+> > > +		} else if (*str == '.' && !frac_part) {
+> > 
+> > This can be found by strchr() / strrchr() (depending on the expectations of
+> > the input).
+> > 
+> > > +			frac_part = true;
+> > > +		} else {
+> > > +			return -EINVAL;
+> > > +		}
+> > > +		str++;
+> > > +	}
+> > 
+> > With the above the rest becomes just a couple of simple_strtoull() calls with
+> > a couple of int_pow(10) calls (and some validation on top).
+> > 
+> > > +	for (; f_count > 0; f_count--)
+> > > +		uhz *= 10;
+> > 
+> > This is int_pow(10).
+> > 
+> > > +	*freq_uhz = uhz;
+> > > +
+> > > +	return 0;
+> > > +}
 > 
-> The confusion was caused by mixing b4 and git format-patch to handle fineâ€‘grained patch formatting. The Git configuration Konrad suggested did not work for me. I ran b4 prep --manual-reroll <msg-id> to allow b4 to track the upstream thread, which caused this section to be generated automatically. I did not notice this and mistakenly reâ€‘wrote it myself.
+> The current implementation is kind of a stripped version of
+> __iio_str_to_fixpoint(). Would you prefer something like this, then?:
 
-I found that I have additional options set in my *local* gitconfig:
+Do they have most of the parts in common? If so, why can't we use
+__iio_str_to_fixpoint() directly? Or why can't we slightly refactor
+that to give us the results we need here?
 
-[diff]
-        renameLimit = 999999
-        rename = true
-        algorithm = histogram
-        renames = copies
+> static int adf41513_parse_uhz(const char *str, u64 *freq_uhz)
+> {
+> 	u64 integer_part = 0, fractional_part = 0;
+> 	const char *decimal_point;
+> 	char *endptr;
+> 	int frac_digits;
+> 
+> 	if (str[0] == '+')
+> 	str++;
+> 
+> 	/* Find decimal point */
+> 	decimal_point = strchr(str, '.');
+> 	if (decimal_point) {
 
-Perhaps that was the missing piece!
+> 		/* Parse integer part (if exists before decimal point) */
+> 		if (decimal_point > str) {
 
-Konrad
+I don't think you need this check, simple_strtoull() should return 0.
+
+Also check the ranges, perhaps you want in some cases simple_strtoul().
+
+> 			integer_part = simple_strtoull(str, &endptr, 10);
+> 			if (endptr != decimal_point)
+> 				return -EINVAL;
+> 		}
+> 
+> 		/* Parse fractional part */
+> 		fractional_part = simple_strtoull(decimal_point + 1, &endptr, 10);
+
+The idea of using the simple strtoull() (second "l") is to check for overflows,
+so if the number is > UINT_MAX we probably should return -ERANGE.
+
+We have somewhere already such a code in the kernel, maybe it's a time to have
+advanced version of simple_strtouint().
+
+drivers/crypto/intel/qat/qat_common/qat_uclo.c:206:     ae = simple_strtoull(str, &end, 10);
+drivers/crypto/intel/qat/qat_common/qat_uclo.c-207-     if (ae > UINT_MAX || str == end || (end - str) > 19)
+drivers/crypto/intel/qat/qat_common/qat_uclo.c-208-             return -EINVAL;
+
+> 		if (*endptr != '\0' && *endptr != '\n')
+> 			return -EINVAL;
+> 
+> 		/* Adjust for desired precision */
+
+> 		frac_digits = strcspn(decimal_point + 1, "\n");
+
+This is already precalculated: endptr - decimal_point (+ 1 ?).
+
+> 		if (frac_digits > ADF41513_HZ_DECIMAL_PRECISION)
+> 			fractional_part /= int_pow(10, frac_digits - ADF41513_HZ_DECIMAL_PRECISION);
+> 		else
+> 			fractional_part *= int_pow(10, ADF41513_HZ_DECIMAL_PRECISION - frac_digits);
+> 	} else {
+> 		/* No decimal point - just parse the integer */
+> 		ret = kstrtoull(str, 10, &integer_part);
+> 		if (ret)
+> 			return ret;
+> 	}
+> 
+> 	/* Combine integer and fractional parts */
+> 	*freq_uhz = integer_part * int_pow(10, ADF41513_HZ_DECIMAL_PRECISION) + fractional_part;
+> 
+> 	return 0;
+> }
+
+...
+
+> > > +static int adf41513_uhz_to_str(u64 freq_uhz, char *buf)
+> > > +{
+> > > +	u32 frac_part;
+> > > +	u64 int_part = div_u64_rem(freq_uhz, MICRO, &frac_part);
+> > 
+> > Perhaps MICROHZ_PER_HZ? This will be consistent with the int_value in
+> > _calc_*() below.
+> 
+> Here, the meaning is different. int_part is in Hz and frac_part in uHz.
+> Will add the suffixes to the variables.
+
+Yes, but here it's a constant divisor, and not a multiplier.
+Meaning that one divides µHz by µHz.
+
+> > > +	return sysfs_emit(buf, "%llu.%06u\n", int_part, frac_part);
+> > > +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
