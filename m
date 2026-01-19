@@ -1,242 +1,230 @@
-Return-Path: <devicetree+bounces-256749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11857D3A39B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:47:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1025CD3A3A9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:49:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 98A6B3010E43
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:47:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6432C30552EB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5222D302773;
-	Mon, 19 Jan 2026 09:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77742305057;
+	Mon, 19 Jan 2026 09:49:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d1pTL/Y3";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hN5edDQF"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SeMLafDb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A62283CB5
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA573090DE;
+	Mon, 19 Jan 2026 09:48:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768816041; cv=none; b=pvCKQCzq433+QW1iVcMZlajy18BsoT3teMcj5M1M1WzsNQD1G6t+EaYYjfgHX1jJ9usYvmcQUrZYX1KfLTqe1PAGj/vF9hZVDkMfesMu9RuZ1VQKJT3uxVe7dsBEtvEkiLG0xCxWLMRWS90kHn/ZHCO4ol87uaQfRaSyw3T3jkE=
+	t=1768816142; cv=none; b=YtMw5KTJwGHVcuyZ/9V+/cPP62jltg1PlYsi79Jbp5i36sDIifg6dGzx2O9T+rnURq3s2cBk32lc4j0P7UGPRGxmxq0cABoyRWmah+JGe7pQEPKBT/Ty0hn7Cu/lw7Ch72+vsZpiJ8jhKzCEtpdN3PhyLMUjM+nHN/yshfyNMMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768816041; c=relaxed/simple;
-	bh=XsH1bfTGYDFhTSfXoSV/6/z5UQI6DTgAp4D57+hOilc=;
-	h=From:Subject:To:Cc:References:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=o+AZ6g6KEcmz8QhaEBOfRCp3RhX3mf1NIzRMVeXWSSW9VsGbIcAQn5fr1b9CbAm82R46oW0H4YxZfFqCW5e8RdJOhaFIImuo9NYKo4W0g2L9OutZqzoDZ7T3TeL73WVmAK2Zn3HMo7c6KUtKCx0mk4ittwF/KmTM017Fu3EIcNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d1pTL/Y3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hN5edDQF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J91Kbu1354080
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:47:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8dqBNZCR/M8hHAdLNjN7hayt7keNTPjdXK8X4OSX7ZQ=; b=d1pTL/Y3znrojW4H
-	qAaxg4NYCPKc5ySs86cVI++uIn9UM5RSZEtRsUq/lQOHagG2Y+NGobL3J78qASNr
-	22qKY5gVtc0wrcHrGUO2/mFlujgWGt1uvPjD7d2QR9odCMltF5203lN9nGm+kprO
-	fjEJibEeWaLgGfAgjuC73jP6PKkmRfvP9iB2w79lz1QDpsrY0jIBcInBS2hZxoy8
-	RYvgpILSk8V2cbYgFjgo4gNprKBVEdks3DY2Qjs07L9HM9jy4RMPE2+MX9rAI45y
-	0jggP+qo2r99sCJYlC7fgfJRB6GFquUOGkk54OZzWfA+/Yde4LvKLfR9frCnpS/E
-	k8/lBQ==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4br1cqcs9t-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:47:18 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a58c1c74a3so34919065ad.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 01:47:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768816038; x=1769420838; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:references:cc:to:subject:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8dqBNZCR/M8hHAdLNjN7hayt7keNTPjdXK8X4OSX7ZQ=;
-        b=hN5edDQFx2eqJZmVcuK7G5zjGrUgM1s/e+UV61TXp0kqeImUoGXUJ4dI96kQclNhN+
-         5kCQrOPMEFiBP0FLa/OkhcI7bTOTuGl82p5TtZLnVPeBRgHl478aapQXWzXYtj05wrjN
-         hWvrWyOhBrJWePzMKzVjh4+Cha82WyYLqtKV+m6bjwBNNrxGcFK4Hg2Ejbim+r3lrA+2
-         C8TfAIBydiSql/BS1BCVWhXaUHLHqQ7sMZcnrTNR9fhhvZBbJqXzfjQqwgq2gnDBYSMO
-         lXlTE8O0XWNALmu+tu0Xo2+/328mGuov7VEc+UpHIIhZq3D9XnjHvccvNbX15aQIc2gY
-         z/oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768816038; x=1769420838;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:references:cc:to:subject:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8dqBNZCR/M8hHAdLNjN7hayt7keNTPjdXK8X4OSX7ZQ=;
-        b=Edph5HVtCzbzJp4cOEPoodUwzPJKGiy6DV6tAndjbDEV8KtCBmf5+wxsoV7/H/ef00
-         hMnE6dPjrDOnLkC437FbZmJY4rpy7K5Q1PAwZNt42yPXt3UwWchZjNGhhPzW2j5E6zRo
-         6gv96ygeSgL+IA7Lk+jHY+DLWTPIaR28azDux2n0MxQ5a+45tNVjVvU2SqaoxlKGrbE9
-         1jfNM6fsLLarMC4G/KJAB5NQ58e25A4p7/mGDwz/Ol8udeb5RtS1irZqIkc/TYoNw1xu
-         5bcmznfokk3Gk0hVVgJ+zIZda5wznioiuZNF55eNvcQzFC1R5DASaTopFz/Dxqg3usr1
-         bgYA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/yERfp9BZ1qtvkAKRwXD79PhweAto0xWY0Q0E4BDtqtpYtw1tbbtPKUih7o/KeXji86k5E77BuEUw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxz8k+jE5aFTke4fR7+rUqghXdYbLH83/bv7BTNVU7QwE+xsReR
-	XOsP/L7onj4Wvo9zqXPtyZqaUinGnkl0mm2X2Yde2Ns7zg3DzRkq1mz0GyoksyQY/yjP1D4nJ4N
-	V1HbsphdGffQ0UNijNngmcYOyV4XF1ojT4wP1KmX3TVmS4F3SQj8NSG/wKGv7WC6U
-X-Gm-Gg: AZuq6aKOWsUcs4qJcBt6PIN1ARzjwur7kt2szjTEBvuCVCEqJgpvmXimB5UwLCYurt5
-	wU1ViV6dTwWYVQx1zb8BQlXckgvbP4RDZTb+Drb1N6x+2k1adMIAT2BsOJoSez+qywcmRXo6DZG
-	WZf4md9pQBXArq9gMRal0ACqfqxSn3Hy2uSXMWdiCE+Z6blKLJhFKaHoG63zLs6ns2q4Vqw2hZE
-	fwUjAOz8wIG6UWHZbaC9BtEYShr5T8AlPheMc1y8c73snXtl/xfY8KI92Ulo4W4LG2tRH+J3OgB
-	nOOn74H77eB9IJBCox8ZF+NUAJzVC0VIXv5CHvmnGm5IkUVYNGsWxppOl6cSRzRArjOVwwca+cT
-	fmJOcjyOfchYoezdKdGnzG9qynCcsjU+A6/CvEH4=
-X-Received: by 2002:a17:902:f545:b0:2a1:e19:ff4 with SMTP id d9443c01a7336-2a718928c5fmr100311915ad.29.1768816038145;
-        Mon, 19 Jan 2026 01:47:18 -0800 (PST)
-X-Received: by 2002:a17:902:f545:b0:2a1:e19:ff4 with SMTP id d9443c01a7336-2a718928c5fmr100311675ad.29.1768816037598;
-        Mon, 19 Jan 2026 01:47:17 -0800 (PST)
-Received: from [10.217.223.153] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7190d14cfsm90608995ad.38.2026.01.19.01.47.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 01:47:17 -0800 (PST)
-From: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: sdhci-msm: Add ICE phandle
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260114094848.3790487-1-neeraj.soni@oss.qualcomm.com>
- <20260114094848.3790487-2-neeraj.soni@oss.qualcomm.com>
- <20260115-intrepid-space-meerkat-d44ec9@quoll>
- <ce49730e-75d3-87fd-3190-44e45cf83fe0@oss.qualcomm.com>
- <6d14abf7-da78-4ccd-8032-d0197098982c@kernel.org>
-Message-ID: <c6200c33-29b4-7bfc-1b07-6a04383f8dd1@oss.qualcomm.com>
-Date: Mon, 19 Jan 2026 15:17:12 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+	s=arc-20240116; t=1768816142; c=relaxed/simple;
+	bh=4yhv37ymq/kWQdmPjnSv7j8SmLCZ0LVUbS5HqLdFpvs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GqF9+LSNSRn2lHZ5qAwy9lGL7ktm7bulnXnPj31WV82H+MkgEhRnxi2kdG+DT1a62zly0Cs0YrkFJobMwuEFccdgGdSrQ2SLjCJffELpqJCbLgJyOG02CZiXlzLcP4UU8cstiDtBU4NksmMRwGWRHb0PJt1DXChOtfQhPcIIHgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SeMLafDb; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4F315C2033F;
+	Mon, 19 Jan 2026 09:48:31 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4B18C60731;
+	Mon, 19 Jan 2026 09:48:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6009410B68457;
+	Mon, 19 Jan 2026 10:48:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768816137; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=FfuTvUkYKx9QvK8dNqqzEt65/138odmagZGiTcUAwGI=;
+	b=SeMLafDbGmUptNbiKz5KTTX/cV7RkQaiGJdb/ZmdK0GB001Z2XA64X5qvrdDt7afG8vY/Z
+	ktVi1zUR9FFt24eDtXcvjiBzzQxmPl3lgb0KgSQ13Jei/FBE52WqQd6yJ7WHhkLcVIly6t
+	NHqdA6GXpj2tOsG1HHV+7Kx/PVyYZo9Y9I8Uq0b5sB0OJEIwnmIL2yu6n4J38HuFJ3PthK
+	OzDnfvKH2lm6AG2GXcLpHpO+WHLYFW1OkiA2MkbtHM4v+HUSIr7ImBc92rRtyloU4PzKEz
+	QTCVKInLI1Ce0ajxDlHt9VDBeSJ9vROa56YSnzt8vpbnQZtx9eRooJ0dmUuKZQ==
+Date: Mon, 19 Jan 2026 10:48:52 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 02/77] Introduce v18 dtb version
+Message-ID: <20260119104852.3e7043ee@bootlin.com>
+In-Reply-To: <aW29fwFEB6_qjVEc@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-3-herve.codina@bootlin.com>
+	<aWgxAVfUYMUy9mz1@zatzit>
+	<20260116100934.7d522b1a@bootlin.com>
+	<aW29fwFEB6_qjVEc@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <6d14abf7-da78-4ccd-8032-d0197098982c@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: osphxkXeXyHUtSTyM5IxKWbyoPmRBdcJ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDA3OSBTYWx0ZWRfX5Po7B0ecyzk9
- wRHQllRbvxkezIo/7EqzVMaEJ0yFNcckjNA64NLH0OooxLdqhtJQKjwt4N651uHRQlhJIk+7D2M
- H4RJGSNzY6kwFn0IkJQiT45zesc+K8p3Tw9v04rohIHc2zrxoROV+MEFG4asTjlakBoGIA/QUf3
- ShmhY/6ePdtsUeqNpwih95O/OZ7nIrMmKd1X0I4jJwFdyKc+fqSDJ4152a1ZIdM9/diwVC8d7Jv
- vuvs8qAb1ikhJf5i1sethUTIo6DpEzylXg1VGiHT4fGfTbYaaEO0x91IEQYBKOpnUzN/QlpQOpF
- Lgs367dQuGkWRYF0dudTQtzWqiVEGOdsdB3MeO/jznQQ+/pXD4WytFcT7c8k3atlsWRoh9tl4ol
- 6P6ezS6tGDTLHBKNq8ZkAetqUkXjCzYL6FS9W1AM4yda9gBDUqycdDvvGzc9pMmlW3lbmG1PnQ2
- GXBOr4tEbFaqOE6//LQ==
-X-Proofpoint-ORIG-GUID: osphxkXeXyHUtSTyM5IxKWbyoPmRBdcJ
-X-Authority-Analysis: v=2.4 cv=NfbrFmD4 c=1 sm=1 tr=0 ts=696dfda7 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=3812jFcG6ygySvv41uwA:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-19_01,2026-01-19_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- adultscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190079
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+On Mon, 19 Jan 2026 16:13:35 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
 
-On 1/16/2026 12:48 PM, Krzysztof Kozlowski wrote:
-> On 16/01/2026 07:50, Neeraj Soni wrote:
->> Hi,
->>
->> On 1/15/2026 2:33 PM, Krzysztof Kozlowski wrote:
->>> On Wed, Jan 14, 2026 at 03:18:47PM +0530, Neeraj Soni wrote:
->>>> Starting with sc7280(kodiak), the ICE will have its own device-tree node.
->>>> So add the qcom,ice property to reference it.
->>>>
->>>> Signed-off-by: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 4 ++++
->>>>  1 file changed, 4 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>>> index 938be8228d66..8a6a25ceabe1 100644
->>>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>>> @@ -140,6 +140,10 @@ properties:
->>>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>>      description: platform specific settings for DLL_CONFIG reg.
->>>>  
->>>> +  qcom,ice:
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>> +    description: phandle to the Inline Crypto Engine node
->>>
->>> Description should also say: for what purpose.
->>>
->>> You either have this phandle or ICE address space on sc7280 and newer.
->>> You cannot have both, so your schema should encode it properly.
->>>
->> Sure. I will update this in next patch.
->>
->>> Otherwise you just sent something which already was on the list and it
->>> even was reviewed:
->>>
->>> https://lore.kernel.org/all/ba3da82d-999b-b040-5230-36e60293e0fd@linaro.org/
->>>
->>> You even copied the commit msg but did copy the authorship!
->>>
->> Sure. Thanks for pointing out. I will fix the authorship in next patch.
+> On Fri, Jan 16, 2026 at 10:09:34AM +0100, Herve Codina wrote:
+> > Hi David,
+> > 
+> > On Thu, 15 Jan 2026 11:12:49 +1100
+> > David Gibson <david@gibson.dropbear.id.au> wrote:
+> >   
+> > > On Mon, Jan 12, 2026 at 03:18:52PM +0100, Herve Codina wrote:  
+> > > > This v18 version will add support for
+> > > >  - metadata in device-tree blobs in order to have a better handling of
+> > > >    phandles and unresolved references.
+> > > >  - Addon device-tree blob (successor of device-tree overlay)
+> > > >  - Import and export symbols feature
+> > > >  - multiple trees in a addon device-tree blob (i.e. root device tree and
+> > > >    orphan node tree)    
+> > > 
+> > > So, once this patch is applied, the rest of the series pretty much has
+> > > to be applied "atomically" - otherwise a version built in the interim
+> > > will be lying in saying that it supports v18.
+> > > 
+> > > I therefore suggest moving any changes that *can* be moved before this
+> > > patch, should be moved before this patch.  That will assist in
+> > > reviewing and merging the series piecemeal, rather than as a single
+> > > giant blob.
+> > > 
+> > > 
+> > > Regarding the content itself.  It seems like this is a pretty major
+> > > change to the dtb format - maybe that would suggest bumping the
+> > > version by more than one (e.g. like we went from v3 to v16 in the
+> > > past).  
+> > 
+> > I see your point.
+> > 
+> > Maybe the Rob's idea related to 'unknown tag' and the suggestion I did [1]
+> > related to the generic tag value definition to support those 'unknown tag'
+> > could help here.  
 > 
-> If you add if:then: cases, the patch will differ, so make it your own.
+> Having a standard encoding of tag length so unknown tags can be
+> skipped is a reasonable idea.  I think you do need provision to mark a
+> tag as "safe to ignore" or not - e.g. something like FDT_BEGIN_NODE
+> could never be safely ignored.
 
-Okay.
+A bit can be used for marking a tag as "safe to ignore if unknown".
+I can reduce the bits 30..28 field.
 
-> But sending exactly the same patch with the same commit msg as what is
-> already on the lists under your own name is not correct.
-> >>
-Okay this was not intended and have taken care of authorship in my other posts but i will ensure
-not to repeat in future.
+bit 30:
+ - 0b0: Do not ignore this tag if the tag id is unknown.
+        If this tag id is unknown an error in the parsing should be reported.
+ - 0b1: This tag can be safely ignore if its id is unknown. I that case the
+        tag and its related data are simply skipped.
 
->>> Anyway v3 and v4 were not correct and probably v2 should be used after
->>> adjusting it with my comments.
->>>
->> Okay. As i see your comment in v2 here:
->> https://lore.kernel.org/all/c8eea30f-5ea2-cfc9-273a-3c6e99a316b9@linaro.org/
->>
->> i guess what you want is not to drop the entries for clock but rather capture it
->> in the "description" of the ICE phandle entry. Is this understanding correct?
+bits 29..28:
+ - 0b00: No data
+ - 0b01: tag followed by 1 cell (u32) data
+ - 0b10: tag followed by 2 cells (2 x u32) data
+ - 0b11: Tag is followed by a cell (u32) indicating the size of following
+         data
+
+Also, it is worth noting that the 0x0....... tag value family can still be
+used.
+
+Even if related to "old" tags, if a tag in this family is an unknwown tag,
+the parser will report an error (at least because it doesn't know how to
+skip the data part).
+
 > 
-> Clocks should not be touched, but reg should.
+> > As a reminder here, this generic tag value definition consist in:
+> > --- 8< ---
+> > A tag value is on 32bits. We can define the structure of this value.
+> >   - bit 31 (msb):
+> >      - 0: This is not a new kind to tag and so it doesn't follow this definition.
+> >           All existing tags are in this category
+> >      - 1: New kind of tag adopting this definition
+> > 
+> >   - bits 30..28:
+> >      tag data length encoding
+> >      0b000: No data related to the tag
+> >      0b001: 1 data cell (u32) directly follows the tag
+> >      0b010: 2 data cells (2 u32) directly follow the tag
+> >      ...
+> >      0b110: 6 data cells (6 u32) directly follow the tag
+> >      0b111: Tag is followed by a cell (u32) indicating the size (in bytes)
+> >             of data available just after this cell (including any padding
+> >             if needed).  
 > 
-Okay but In sdhci-msm.yaml file:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n78
+> I'd suggesting giving a byte length not including alignment padding.
+> That way if you wanted to encode a bytestring in there, you wouldn't
+> need a way of encoding the unpadded length in adddition to the
+> standard way encoding the padded length.
 
-the currenty entries for "reg-names" do not specify for which hardware register range they are added. So shall i add something like
-this:
--if
-   required
-      -qcom,ice
-   then
-     properties:
-        reg:
-          minItems: 1
-          maxItems: 3
+And so, next tag is always length + sizeof(padding). Next tag is aligned
+on 32bits.
 
-        reg-names:
-          minItems: 1
-          maxItems: 3
-    else
-      properties:
-        reg:
-          minItems: 1
-          maxItems: 4
-
-        reg-names:
-          minItems: 1
-          maxItems: 4
-
-Indicating that reg: maxItems: and reg-names: max: will be "3" if seperate ICE phandle is added since the ICE register entries will not be needed.
 > 
-> Best regards,
-> Krzysztof
+> > 	    Because this size include some possible padding, its value is a
+> >             multiple of 4 bytes.
+> >             The offset of the tag + 4 + size points to the next tag.
+> >           
+> > 
+> >   - bit 27..0
+> >      tag specific identifier
+> > --- 8< ---
+> > 
+> > I mean dtb version v20 could be:
+> > 
+> >  - New header size with dt_flags added in the header (if this new field is
+> >    kept).
+> > 
+> >  - Support for the generic tag values and so the notion of 'unknown tag'
+> > 
+> > With that done, everything else added afterward will have no impact on the
+> > dtb format itself.  
 > 
+> Well... maybe.  It's not entirely clear to me whether all the new tags
+> can be safely ignored by something that doesn't understand them.
+> e.g. a consumer can't safely ignore the tags which give unresolved
+> phandle references if it then expects the phandle values in the actual
+> property values to be correct.
+
+I would say that it depends on new (future) tags.
+
+For instance, FDT_EXPORT_SYM, the tag used for exported symbols can be ignore
+by the bootloader if it doesn't know about this tag.
+Indeed, it doesn't need to understand and manipulate this tag. It just needs to
+keep it in the dtb passed to the kernel.
+
+> > 
+> > Only libfdt and dtc will have versions defined at some point with support for
+> > some new flags or new keyword.
+> > 
+> > What do you think about this v20 dtb version?
+> >   
+> > > 
+> > > It would also be nice to have some docs for the new dtb extensions
+> > > before or at the same time as this.  
+> > 
+> > Yes, the generic tag value definition.  
+> 
+> We'd want that, but it's not enough.  The specific tag types should be
+> documented as well.
+
+Yes they will be documented as soon as they are introduced.
+
+The generic tag value definition is the first step to have in docs to allow
+the "skip if unknown" feature.
+
+Best regards,
+Hervé
 
