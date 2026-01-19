@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-256986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A644D3B236
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:49:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4D3D3B2D5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:58:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 022BC3084D3D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:44:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9F6D730B1E8F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F6F3324713;
-	Mon, 19 Jan 2026 16:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6BA43271EB;
+	Mon, 19 Jan 2026 16:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U0P+KRsV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F6ErR9he"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1DD318EE3;
-	Mon, 19 Jan 2026 16:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31F8318EE3;
+	Mon, 19 Jan 2026 16:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768840503; cv=none; b=uMH5nFLm8/Rat9NFb2r8wk/bQyoR7+oXywt4YB270P3qMAfeA23UA73Jm9ND4wSxc9yJJW73xGvvsC3prw7u9eB3GjFMArQl7w1gXl76g011H7djl5OYqAgRBGifqIarL9z8R3c5J98hldye9vYj570P0k3qNfkpJQfI8q7VjQA=
+	t=1768840610; cv=none; b=hfFum+H1WglJLCpBmY9cc44T9lH/Q5Nrbu4wwcoh7Fg9Vy/UFA6yY7Z/sHScISM9FyjxkbD5F53PIivBhVZW6sOedDqlbCokqcMh5qnZs8l1J4txmF5Q90aS4dVjk4qB0JYEBtcy8kvjYagxhh0OG+gMIu+/SgWElrWwH9D37WE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768840503; c=relaxed/simple;
-	bh=/gbd7uauHMhX1AhH4FUvMRgJbzZjxB7Krt+HDac4cSI=;
+	s=arc-20240116; t=1768840610; c=relaxed/simple;
+	bh=r5AEjxu0ffIco57i3KrTMg0Pm0HG6BQGf3lgxhMEqFY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m57RSAxZItKf+G7BwY9gtuEut87MOMda58+CZtLqLc2nFuQUnz+J22EIFn0d8BFDHIpFJ+hgMWJ/b2fyyRYOzEf0Tpvwpb78eOz83FzJWV4WKiyVOI7ySuNLfB5Bua9y7BD0vqnw5IIxyiz3IiXkxhYS30R72Acvcc0P8SVq7Ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U0P+KRsV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B622C116C6;
-	Mon, 19 Jan 2026 16:35:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GyDdbrB3QBmxtlqwOgcFF8pn65iV9jMa+TYM0XbTAiL7rbDVjdQ/1e2/6h1gejqnESQZKXaHYKRZEVfJACUOxRKF66rmxd7cXPi6PWGTNHPpjSkoi6f4AcDKxNtqd53sIQ4eKvdZR7h/bJhvWG3ncmy18CWJ14jUqZXEI9iYhGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F6ErR9he; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7B22C116C6;
+	Mon, 19 Jan 2026 16:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768840502;
-	bh=/gbd7uauHMhX1AhH4FUvMRgJbzZjxB7Krt+HDac4cSI=;
+	s=k20201202; t=1768840610;
+	bh=r5AEjxu0ffIco57i3KrTMg0Pm0HG6BQGf3lgxhMEqFY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U0P+KRsVlkBSU7e43cnEgF7c1XMNQ8R0RMyslp374matQVHrEkRcPj6zc3iI5ny+R
-	 x6QzKhLuo19SUlesdUq75K9wbpmzwXGs9Xd3dFyD+nTl1w1JJ+VbCqqrVJuR3aClOA
-	 ltUEdtikRac49pW1mQ+9olu7sZl9bZrOA9yT4NeEvmMo8SUDSO6PF/Z7Y57YnJLRcq
-	 hD7UcSlEatDLHJctyDO0DjI94j255BrTXpdX1u9dSnDuzs1dSjTCKkOy+VfMKAQk3D
-	 UooD8hG/l52jMk1uNcXwvrjcShgsztEkw4nJEgq0R4RgTtrhWKJgI7/eyJNAAwylmG
-	 5v1mzDY9VL+qw==
-Date: Mon, 19 Jan 2026 17:35:00 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: George Moussalem <george.moussalem@outlook.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, Devi Priya <quic_devipriy@quicinc.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Baruch Siach <baruch.siach@siklu.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, Baruch Siach <baruch@tkos.co.il>
-Subject: Re: [PATCH v19 1/6] dt-bindings: pwm: add IPQ6018 binding
-Message-ID: <ysbuuhn7cdndv5ieae4uaeylxe7d3iuqqehkdtcvhr7xs5wxsi@rcfqzbxn3lqf>
-References: <20251128-ipq-pwm-v19-0-13bc704cc6a5@outlook.com>
- <20251128-ipq-pwm-v19-1-13bc704cc6a5@outlook.com>
- <176432871822.1774259.10260811586771769913.robh@kernel.org>
+	b=F6ErR9heEjtTfI8bj+c+dyVTZdG0hyw7zI62IiINmsComZit6HlQyijcsFeykWvQ7
+	 iQ1zBFL3pQoIG/kX7ftnx0iNvSwgKydlJuGaWFcp9deH7S5lUai//9KTFaYzJUbC7H
+	 YvApF93/MH9kkxUBy+iqeNM3ghcPbafz9aV+K6ib1QAT17GiTI0YMXXYSE50q0IHyn
+	 jwqUSfsxNSevgnBKxKfXeYmPravvY6IqsU2CZ7U8RwFOtQhrqa9Ym1a655yxpnI0+i
+	 7v+3aCs4lwpL6kd5d6Vz9ORKb7eEIeq7T6rBD/6VY/mA0O3qXuHRoWpje80bdKF4kK
+	 Jv2ZxIpUczUfw==
+Date: Mon, 19 Jan 2026 16:36:43 +0000
+From: Mark Brown <broonie@kernel.org>
+To: "Anton D. Stavinskii" <stavinsky@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 3/6] dt-bindings: codecs: sophgo,cv1800b: codecs: add
+ ADC/DAC
+Message-ID: <af0d60f7-9566-4aae-a349-c01fe0220663@sirena.org.uk>
+References: <20260119-cv1800b-i2s-driver-v3-0-04006f4111d7@gmail.com>
+ <20260119-cv1800b-i2s-driver-v3-3-04006f4111d7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,78 +65,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bi43ollq7h2qpl5p"
+	protocol="application/pgp-signature"; boundary="4P9RQnxsZDW3YdgJ"
 Content-Disposition: inline
-In-Reply-To: <176432871822.1774259.10260811586771769913.robh@kernel.org>
+In-Reply-To: <20260119-cv1800b-i2s-driver-v3-3-04006f4111d7@gmail.com>
+X-Cookie: Does not include installation.
 
 
---bi43ollq7h2qpl5p
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+--4P9RQnxsZDW3YdgJ
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v19 1/6] dt-bindings: pwm: add IPQ6018 binding
-MIME-Version: 1.0
 
-Hello,
+On Mon, Jan 19, 2026 at 08:30:44PM +0400, Anton D. Stavinskii wrote:
+> Document the internal ADC and DAC audio codecs integrated
+> in the Sophgo CV1800B SoC.
 
-On Fri, Nov 28, 2025 at 05:18:38AM -0600, Rob Herring (Arm) wrote:
-> On Fri, 28 Nov 2025 14:29:13 +0400, George Moussalem wrote:
-> > From: Devi Priya <quic_devipriy@quicinc.com>
-> >=20
-> > DT binding for the PWM block in Qualcomm IPQ6018 SoC.
-> >=20
-> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Co-developed-by: Baruch Siach <baruch.siach@siklu.com>
-> > Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-> > Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> > Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> > ---
-> >  .../devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml  | 51 ++++++++++++++=
-++++++++
-> >  1 file changed, 51 insertions(+)
-> >=20
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /ex=
-ample-0/soc/thermal-sensor@c263000: failed to match any schema with compati=
-ble: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /ex=
-ample-0/soc/thermal-sensor@c263000: failed to match any schema with compati=
-ble: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /ex=
-ample-0/soc/thermal-sensor@c265000: failed to match any schema with compati=
-ble: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /ex=
-ample-0/soc/thermal-sensor@c265000: failed to match any schema with compati=
-ble: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-I admit I didn't try to reproduce that, but the patch in question
-creates Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml and
-isn't about temperature stuff at all. So I don't understand where
-thermal-sensor and tsens comes into play here. Bot bug?
-
-Best regards
-Uwe
-
---bi43ollq7h2qpl5p
+--4P9RQnxsZDW3YdgJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmluXTEACgkQj4D7WH0S
-/k5d2QgAk5j8xOD8QtaBY9LPywQb80D30raDaSdFKdb3wTr7OZ867esYpSqMx5sB
-Os7iy1eTCRZwAbP/52fsn+b5olc6JSZWxGlZPkZ5xMtPJ/ybC2xwFLC+w0jWMCk8
-SnaIB06++1UQ+jAiZ4aiqSdB2LzQRioVdPK2e/+7rfsjNTiS8dfsN+VefmCGwYNF
-WNT4eyD/lrgM9d8ETzrMIqPgktSHNoBxaXhIwzaguI8eIdU7H+XNDvwjtLPxtqVn
-QnjTJFcEh/RnWkildmb6UwteFClkvVN25pIMjwx4z1glRv2kyumnfdMYHDrV5+ph
-5f2hb2nD053Z2lF55+x5WjYs9cPFnQ==
-=wTWK
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmluXZsACgkQJNaLcl1U
+h9B3hwf9G1boRH8L5QCtx392+XGOiT4sOYgYXU0pmlteHX9unFMgDjR+FgH5TM2F
+XLSCLPcmqhF49sa7nXmfhG68KwsL1b73U++hOxIIZNS/+q7LlB7n9nhsgmfQeANZ
+7H4Y09vaMv7BuNbcyc5+klFCEsx1FeOfEsaVR5IJTqxve/Cu4LD4iOpbLcJ0WkaH
+uW96QEQ+1b0OyjlkpmaykhS45RThDReaYjG5Mw9behxwvHz3BNIrfHBkmjp2miL3
+Nm8J2bs04riq7EGAFzA88i2kymp0Q5jIxZnd+F6fdh4bPXG+8o1q8FC66acSnAT1
+FXiKNOv+fds2KcshsMWSX9zl0KvRwQ==
+=VPcX
 -----END PGP SIGNATURE-----
 
---bi43ollq7h2qpl5p--
+--4P9RQnxsZDW3YdgJ--
 
