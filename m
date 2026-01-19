@@ -1,105 +1,125 @@
-Return-Path: <devicetree+bounces-256740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D974D3A2D8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:26:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A75D3A33F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:39:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 22D7C3013C55
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:26:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B47F8300D2A6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A967354AD7;
-	Mon, 19 Jan 2026 09:26:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="KdVE+e2J"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9959335581D;
+	Mon, 19 Jan 2026 09:38:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C86526CE3F
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E84350D74;
+	Mon, 19 Jan 2026 09:38:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768814814; cv=none; b=ND0hu3uOJxumAWCr8wowQj9a0QogRKqAA/8lX/3igXeFWy+GLJBmMccn3DNVgJNLzV/w+IoDdntWC5odlLIPSghWs//JXfDI7Ty4+bxdGUQfNZPN0F2NP/moPnZYacLwFZACJsp9Hm7Ig0p4/GtBURYuja7ynzdC5vygODsE6mU=
+	t=1768815535; cv=none; b=UI4M40NM5T0O64nDoMGQVZKx00kVPEwcByP+EKVlk6lJdPc0aW6LHHsAZNFFeowby1WPDCEDNmRr3biYlr05RhQ5weL+piaSyf6/lEEAaF/6infhxwNfcML+oT+NUaEjU6S3XSxjgtaHBl3/OkvDLhpSSlIv1joWXZXTavdEs14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768814814; c=relaxed/simple;
-	bh=DR8RZ7roKxHDcGWfapIb9zcVtiQcN8V/lc4S7t4gkVU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q+YORzbBdODxkDXo0YpcX2r0yVMF+NKEFxiiLdukIAWUSxXLRePglHKxplCI8d+Gl2xc4L2krBw2lZ5DZKuM4r1KSphJQAxPxe1QNsNyb6qRHeI+pVZfHb+i6283lfrgKkpwMJq92rZqa1AA/GpYXaqMdcp34CodWFZjNoCQbhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=KdVE+e2J; arc=none smtp.client-ip=95.215.58.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Message-ID: <ef7f344b-2c56-46ba-9718-72b490465749@packett.cool>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1768814807;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XowlzC+p1/HbYmLkdmabnkTGKmKO4cNKigcp24lQJsw=;
-	b=KdVE+e2JCQIkOgvcAERTfuhedah++E3+DZZoZGl3w66Nl35JmOWewhrOp0Hb9/Ik4UghP0
-	Ku1wNvp3D0TblcxH6WxSXf23/TaMg79Can9wWaX+6E4fkMjflWy2q5eX9odyUINHN4DE+7
-	IfE8od9CTP9In6nUlWHFBhlJ8nhZsjgL8YxxNEXd0iGVJe+xhNbiX6G0b1g0kBg9nhkAqz
-	P8/PTRwLc3si1Ey3vIWNP6UZTH+lU1Fi8EutYFd5Yii1HIggo9dcMVt/jRDyaqFqFP37bS
-	I4Gue5yBiLZmUQr7b7BHPVfteVitrIv0+46gG+74sgWw8SO4s5yIB5nHd3eMUw==
-Date: Mon, 19 Jan 2026 06:26:36 -0300
+	s=arc-20240116; t=1768815535; c=relaxed/simple;
+	bh=bKsHw2fo6uj/2IIa9w6WTcdWiMOskRTC0WhHGOqOKd4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hE225Kokh4M67A3txxAa/zFR1fGYB/vIo/r5LBc0/pEasBKrmvS0IBqcr5Rzc6PrBf4nC+Wb2HgcN5lgLUwY9LEshjxYa7Qmk0i0yNkXhJkKtYr/w95aoFFZg/TKwezaZXS7zRQ6yEqDL0Jr4FRnBCEEiBbwMRXjniVfJyLZBYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [223.160.206.18])
+	by APP-01 (Coremail) with SMTP id qwCowAA3o26d+21pCk5LBQ--.13995S2;
+	Mon, 19 Jan 2026 17:38:39 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: vkoul@kernel.org,
+	gregkh@linuxfoundation.org,
+	conor@kernel.org
+Cc: neil.armstrong@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	jiayu.riscv@isrc.iscas.ac.cn,
+	linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] Add USB support for Canaan K230
+Date: Mon, 19 Jan 2026 17:38:31 +0800
+Message-ID: <20260119093836.316007-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/5] dt-bindings: display: bridge: simple: document the
- Algoltek AG6311 DP-to-HDMI bridge
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260111085726.634091-2-val@packett.cool>
- <20260111085726.634091-4-val@packett.cool>
- <h2vft6wwp7765i7rxtsr2yddnx52a52nv5acfg3l2mm5vmjbz4@d3aossnwdkjf>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-In-Reply-To: <h2vft6wwp7765i7rxtsr2yddnx52a52nv5acfg3l2mm5vmjbz4@d3aossnwdkjf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qwCowAA3o26d+21pCk5LBQ--.13995S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7uF1UZryxGw18Jr1xJFyrZwb_yoW8ZF1fpa
+	y7CFWakFsrtFWaqF4ftw4rGFy3JFn5Jry3Gryag3sxXF48CFyUZwn3urW5ZF1UGFsrZryj
+	vFs0kFyxGFWUAaDanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9F14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJV
+	WxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
+	0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+	zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
+	4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
+	CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcS
+	sGvfC2KfnxnUUI43ZEXa7sRi_HU3UUUUU==
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 
-On 1/19/26 3:36 AM, Dmitry Baryshkov wrote:
+Add support for the USB PHY and DWC2 IP which is used by Canaan K230,
+and made relevant changes to the DTS.
 
-> On Sun, Jan 11, 2026 at 05:35:10AM -0300, Val Packett wrote:
->> The Algoltek AG6311 is a transparent DisplayPort to HDMI bridge.
->>
->> Signed-off-by: Val Packett <val@packett.cool>
->> ---
->>   .../devicetree/bindings/display/bridge/simple-bridge.yaml        | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
->> index 20c7e0a77802..e6808419f625 100644
->> --- a/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
->> +++ b/Documentation/devicetree/bindings/display/bridge/simple-bridge.yaml
->> @@ -27,6 +27,7 @@ properties:
->>             - const: adi,adv7123
->>         - enum:
->>             - adi,adv7123
->> +          - algoltek,ag6311
-> I tried to pick this up and got an immediate error from checkpatch:
->
-> -:22: WARNING:UNDOCUMENTED_DT_STRING: DT compatible string vendor "algoltek" appears un-documented -- check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
-> #22: FILE: drivers/gpu/drm/bridge/simple-bridge.c:264:
-> +               .compatible = "algoltek,ag6311",
->
-Yeah, same with the "ecs". I'll include the vendor prefixes in v2
+This series is based on the initial 100ask K230 DshanPi series [1] which
+is based on the clock and pinctrl series. Check the details in the link.
 
-~val
+Link: https://lore.kernel.org/all/20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
+
+Changes in v3:
+- Shrink reg length to match the address/size-cells in k230-usb-phy yaml.
+- Move all PHY instance creation and initialization from xlate to probe.
+- Modify xlate function to only perform index lookup for PHY instances.
+- Define all register base offsets macros at the top of file instead of
+  hard-coding magic numbers directly in probe.
+- Link to v2: https://lore.kernel.org/all/20260115064223.21926-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Changes in v2:
+- Fold the child into the parent in dtsi.
+- Define one usbphy with phy-cells=1.
+- Delete the clock of the usbphy as it is not needed.
+- Link to v1: https://lore.kernel.org/all/20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Jiayu Du (4):
+  dt-bindings: phy: Add Canaan K230 USB PHY
+  dt-bindings: usb: dwc2: Add support for Canaan K230 SoC
+  phy: usb: Add driver for Canaan K230 USB 2.0 PHY
+  riscv: dts: canaan: Add syscon and USB nodes for K230
+
+ .../bindings/phy/canaan,k230-usb-phy.yaml     |  35 +++
+ .../devicetree/bindings/usb/dwc2.yaml         |   3 +
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  17 ++
+ arch/riscv/boot/dts/canaan/k230.dtsi          |  35 +++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/canaan/Kconfig                    |  14 +
+ drivers/phy/canaan/Makefile                   |   2 +
+ drivers/phy/canaan/phy-k230-usb.c             | 283 ++++++++++++++++++
+ 9 files changed, 391 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml
+ create mode 100644 drivers/phy/canaan/Kconfig
+ create mode 100644 drivers/phy/canaan/Makefile
+ create mode 100644 drivers/phy/canaan/phy-k230-usb.c
+
+-- 
+2.52.0
 
 
