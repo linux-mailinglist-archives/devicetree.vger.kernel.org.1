@@ -1,115 +1,141 @@
-Return-Path: <devicetree+bounces-256995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708C0D3B30C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:02:34 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C367AD3B302
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:02:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7EAD30C2C8B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:51:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4C4143048205
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3F62BEC3F;
-	Mon, 19 Jan 2026 16:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gYGzGmcT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53CE32F360A;
+	Mon, 19 Jan 2026 16:57:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB860217F2E;
-	Mon, 19 Jan 2026 16:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29BF52C15A2;
+	Mon, 19 Jan 2026 16:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768841419; cv=none; b=gJDS0fGYuZFPjSD9khPpighU+YCvdMKGVq2eYVlkzN762I98xJmbvJYfFvyMXoylM2BYIgrenyv4iyPh8L2zXuvkUNyBsbwKafcdK6X78oF8CkhzcYxrPe14Fd41Ii0uuOMRhJonznx6SC4ovV4Aris8OfeB5E16AxpABM0kUdA=
+	t=1768841862; cv=none; b=ePMR2UNeWPVJDqoDpqlgsEbhw4pwhMDdRg25+aQWtJ9tEG0H54T6WdpgBEDxpEtr6dvUejl5fJBs1w4GeWfnyK1z9xO8BLst+4BmjTeOp/MZWkb78wkeKhn6IRSlzKfy4gcOdlKkHRBMj0Xlbm6+XKSQV5B/JDKlYwqeg3hvouI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768841419; c=relaxed/simple;
-	bh=rPWmfChoR053x8YbR76MXS2rElz2473/KngimqQn/+8=;
+	s=arc-20240116; t=1768841862; c=relaxed/simple;
+	bh=OJZS0MMLChVqXO+mF115EJx6ihMAnxRR8CWnWNDKHno=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R8rYKZXEqj/ILFFs7aFJn79EqFC9GaLQzB5HijwSeypAi/tQHhJTFBxYvM/6063iCxjcBWzn6MQo1qOn7Eo9tqXIwq18Yljp0140H67oufjQKbZuJh42DBcGFjT5czU9upyCAO87dtg5Jq1ZSkTDtH9jshIcKcKjHsitMHHa9Kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gYGzGmcT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6C13C16AAE;
-	Mon, 19 Jan 2026 16:50:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768841418;
-	bh=rPWmfChoR053x8YbR76MXS2rElz2473/KngimqQn/+8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gYGzGmcTHl/9m3KQrOWQB0stmXVeQ1bEmfqlV7uuRs6dl9dVw9iu+oLJibSWQ7h6S
-	 QewF3isn5jbP84x1ii2sRPH2Ljmx/Zxbtz4n1cUFcTGwjWFvGwD8PIpcYbepzTEO2l
-	 54oMd2e2SIRFjH1sriHCFhOjyS6/MAPl/+pk1XQAsDto/y99qJgHjGMA6iE6ffw56C
-	 m/BhJB9qcYlLKhOWzx8jYKPGVJRBWqH6QO3NrLC8+Uy8a5n5Tww1onuVT5Mt1PiOu0
-	 oGLRg9YLgdldGrucTUEmLxjUaFZAtFITUbIKgxtpoZOdJ2pmmehGp/kdssJrQusTkt
-	 i+3MU49l2cp5g==
-Date: Mon, 19 Jan 2026 16:50:13 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=VeKTrpfsSc6SzOPrwg4aG6+iSgnkmnSrkcwZ4wpmqhvWmdwsrZZHHlwwGxCv/uLXYMeGShHsqdwE8mCIyWat1IRItMu6iO+V//aVAEsvpX2Dy+XPHeG52IzfHRRfnXyNuMeYfWOyplgONz5ycI8/7OFvbnTjeKsLZNf7MlWjvqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8495F497;
+	Mon, 19 Jan 2026 08:57:31 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B1C73F632;
+	Mon, 19 Jan 2026 08:57:36 -0800 (PST)
+Date: Mon, 19 Jan 2026 16:57:33 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] spi: xilinx: use device property accessors.
-Message-ID: <9e559e33-4f2f-40d4-a15f-584548bd6057@sirena.org.uk>
-References: <20260119-spi-xilinx-v3-0-4566c33bac0d@nexthop.ai>
- <20260119-spi-xilinx-v3-3-4566c33bac0d@nexthop.ai>
- <8436e914-429f-40b9-8e6f-ec3b02702cad@sirena.org.uk>
- <69F83558-4675-4FC2-8656-BC6E3481AD65@nexthop.ai>
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] firmware: arm_scmi: Implement
+ arm,no-completion-irq property
+Message-ID: <aW5ifVcxVf6uux3m@pluto>
+References: <20260117010241.186685-1-marek.vasut+renesas@mailbox.org>
+ <20260117010241.186685-2-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HLyi8ks42a9EJ3mR"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <69F83558-4675-4FC2-8656-BC6E3481AD65@nexthop.ai>
-X-Cookie: Does not include installation.
+In-Reply-To: <20260117010241.186685-2-marek.vasut+renesas@mailbox.org>
 
+On Sat, Jan 17, 2026 at 02:02:29AM +0100, Marek Vasut wrote:
+> Implement new property arm,no-completion-irq, which sets all SCMI
+> operation into poll mode. This is meant to work around uncooperative
+> SCP implementations, which do not generate completion interrupts.
+> This applies to mbox/shmem based implementations.
+> 
+> With this property set, such implementations which do not generate
+> interrupts can be interacted with, until they are fixed to generate
+> interrupts properly.
+> 
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Cristian Marussi <cristian.marussi@arm.com>
+> Cc: Florian Fainelli <florian.fainelli@broadcom.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: arm-scmi@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+> V2: Drop no IRQ handling from SMC transport and update commit message
+> V3: Rename property from arm,poll-transport to arm,no-completion-irq
+> V4: No change
+> ---
+>  drivers/firmware/arm_scmi/common.h | 4 ++++
+>  drivers/firmware/arm_scmi/driver.c | 4 ++++
+>  2 files changed, 8 insertions(+)
+> 
+> diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
+> index 7c35c95fddbaf..7c9617d080a02 100644
+> --- a/drivers/firmware/arm_scmi/common.h
+> +++ b/drivers/firmware/arm_scmi/common.h
+> @@ -235,6 +235,9 @@ struct scmi_transport_ops {
+>   *		      to have an execution latency lesser-equal to the threshold
+>   *		      should be considered for atomic mode operation: such
+>   *		      decision is finally left up to the SCMI drivers.
+> + * @no_completion_irq: Flag to indicate that this transport has no completion
+> + *		       interrupt and has to be polled. This is similar to the
+> + *		       force_polling below, except this is set via DT property.
+>   * @force_polling: Flag to force this whole transport to use SCMI core polling
+>   *		   mechanism instead of completion interrupts even if available.
+>   * @sync_cmds_completed_on_ret: Flag to indicate that the transport assures
+> @@ -254,6 +257,7 @@ struct scmi_desc {
+>  	int max_msg;
+>  	int max_msg_size;
+>  	unsigned int atomic_threshold;
+> +	bool no_completion_irq;
+>  	const bool force_polling;
+>  	const bool sync_cmds_completed_on_ret;
+>  	const bool atomic_enabled;
+> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
+> index 3e76a3204ba4f..f167194f7cf67 100644
+> --- a/drivers/firmware/arm_scmi/driver.c
+> +++ b/drivers/firmware/arm_scmi/driver.c
+> @@ -2735,6 +2735,7 @@ static int scmi_chan_setup(struct scmi_info *info, struct device_node *of_node,
+>  	cinfo->is_p2a = !tx;
+>  	cinfo->rx_timeout_ms = info->desc->max_rx_timeout_ms;
+>  	cinfo->max_msg_size = info->desc->max_msg_size;
+> +	cinfo->no_completion_irq = info->desc->no_completion_irq;
+>  
+>  	/* Create a unique name for this transport device */
+>  	snprintf(name, 32, "__scmi_transport_device_%s_%02X",
+> @@ -3150,6 +3151,9 @@ static const struct scmi_desc *scmi_transport_setup(struct device *dev)
+>  	if (ret && ret != -EINVAL)
+>  		dev_err(dev, "Malformed arm,max-msg DT property.\n");
+>  
+> +	trans->desc.no_completion_irq = of_property_read_bool(dev->of_node,
+> +							      "arm,no-completion-irq");
+> +
+>  	dev_info(dev,
+>  		 "SCMI max-rx-timeout: %dms / max-msg-size: %dbytes / max-msg: %d\n",
+>  		 trans->desc.max_rx_timeout_ms, trans->desc.max_msg_size,
 
---HLyi8ks42a9EJ3mR
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+LGTM.
 
-On Mon, Jan 19, 2026 at 08:47:17AM -0800, Abdurrahman Hussain wrote:
-> > On Jan 19, 2026, at 8:32=E2=80=AFAM, Mark Brown <broonie@kernel.org> wr=
-ote:
-> > On Mon, Jan 19, 2026 at 07:06:24AM +0000, Abdurrahman Hussain via B4 Re=
-lay wrote:
+Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
 
-> >> -		of_property_read_u32(pdev->dev.of_node, "xlnx,num-ss-bits",
-> >> -					  &num_cs);
-> >> -		ret =3D of_property_read_u32(pdev->dev.of_node,
-> >> -					   "xlnx,num-transfer-bits",
-> >> -					   &bits_per_word);
-> >> +		device_property_read_u32(&pdev->dev, "xlnx,num-ss-bits",
-> >> +					 &num_cs);
-> >> +		ret =3D device_property_read_u32(&pdev->dev,
-> >> +					       "xlnx,num-transfer-bits",
-> >> +					       &bits_per_word);
-
-> > Are these bindings appropraite for ACPI systems?
-
-> Yes, the Xilinx IP blocks are memory mapped and work exactly the same on =
-ACPI as they do on DT.
-
-That does not answer the question at all.  Is it appropriate to
-configure an ACPI system in this way?
-
---HLyi8ks42a9EJ3mR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmluYMUACgkQJNaLcl1U
-h9ABagf/aoghp1Y6Y854M8RhICiNGe+by6Pr/V/BxZb241odrfLyn/7nAHxdjKtS
-TqqQAB4HaML+bxNyrPCuJOgu67pCdCvkT4BZB5BS83c1dbZZJE/Exd9+Z8NJzXIT
-YBc6VLlXIf941weUZIN3FRZpd6PFEDp/cXr5R6iHpf+TDFJgiXW0MD/ENHiT7px2
-WAsjyICgxGzc7BYKwlVzhl1MPQvFSbQIDJ62DVxNb7tTR85SgX5nsoyupZHXbIWI
-lXziReTXcXd7zNdaTbBN2kglpHzFSzS73ye/d01/OYCfqnFeEg+KOSb5kV/8rsVK
-vU0Ep4TkNfhK+8Cra/h1Ep5Q+xs1IQ==
-=JOTa
------END PGP SIGNATURE-----
-
---HLyi8ks42a9EJ3mR--
+Thanks,
+Cristian
 
