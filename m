@@ -1,164 +1,171 @@
-Return-Path: <devicetree+bounces-256753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E18D3A3D8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 10:57:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F1CD3A408
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:03:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AE38C30317BC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:56:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 072F5300E029
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 09:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E44333EAEB;
-	Mon, 19 Jan 2026 09:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3EE33A9F3;
+	Mon, 19 Jan 2026 09:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YzzHXvLy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qa/m2WcB";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="L+jYIPNL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F143093C3;
-	Mon, 19 Jan 2026 09:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF552309DCB
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768816594; cv=none; b=Ci6kMM2HEcW+GUYBINRVCg6+oNZmC9G8hOuFLBFibzSUNgcXL+Xv7tNc0KS52/9sBVrOxSJPwkQB74hQuItFQT0zIG3jAbzn9/amLBLdcmt/L/GwZfGaSqHFtFoIJpG/YY55LV+rnPlPiqUzFjbjEvOS7lHyV6LnkIctextwORk=
+	t=1768816766; cv=none; b=PcWHMft9gGaF0RqLS5lsBHMuqlk6Bk+dRGbZs9obTCIk2suo4Wuy+JzjIp1STg70XwGfcXNvHiZeZw/fuNYW4uJdT8ofOcmquwAFzyMAQRMvF32aXxp/k0GsS13G/7q2cLHRKUth+E2JSiXn4BAbLcQZkc0MbP82hIrSLYOd/ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768816594; c=relaxed/simple;
-	bh=FgBYa0U3JLtsWj50KdlzMNY1o0Jj1BIn7SsCMNQadsk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OtGw/m/s9vPUfPTFMMoUdby/XfFp0TCA88m5E4HpNL6FdwUVAShFRyAXL4akBH6ISLEhQiOw0lb0d4W2FTxkeifNmOgnbiqIRFJuU/YADDI7RYLhTmw5gZAiUsauXtGNuis4esfpYzNs8F0OfI5rPwL4iem8FndrJm3RcZtWuY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YzzHXvLy; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768816593; x=1800352593;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FgBYa0U3JLtsWj50KdlzMNY1o0Jj1BIn7SsCMNQadsk=;
-  b=YzzHXvLyhAxKYDz+Rchq8VpMLjaAKC1NAahgcoB+O4ZlPfeb7M7lOaG1
-   XAfe3MRTd9ndYZbQgCxmkd1VWNejUa01NJITgAXp2RAtcsNPTx/KP7w1I
-   UWfmXe6ogIItzVRuUVXJiiqXl7GAwYRo7QtSA1mZ92P3hvHQbQyBNhJA0
-   AcqzeGfGoO4ssR8aBqpzSDb9uXbdps/kmjb4nTqeUOtlI3bNXsmODnB1s
-   8SNW0fRlPfTpWB527EnbigC7Kc4QjC9fLewm+0Mjtepzut0051NpsJO02
-   IPKKir1XFRswQBumgVu5n4GpqvKbndaIeiX4910iQ40nkeqgcFqOKImL9
-   A==;
-X-CSE-ConnectionGUID: kCaFKKBpSbuD1SAHdxX4OQ==
-X-CSE-MsgGUID: E3Ffaq1xQDesJt8g/phgIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11675"; a="87604297"
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
-   d="scan'208";a="87604297"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 01:56:25 -0800
-X-CSE-ConnectionGUID: /f0Xv8jgSkqq8tYz6QKBIA==
-X-CSE-MsgGUID: GrWDzjQXSIOcEheq7QVB1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,237,1763452800"; 
-   d="scan'208";a="210842283"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.44])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 01:56:20 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 0B53D120280;
-	Mon, 19 Jan 2026 11:56:22 +0200 (EET)
-Date: Mon, 19 Jan 2026 11:56:21 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Frank Li <Frank.li@nxp.com>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] media: synopsys: add driver for the designware
- mipi csi-2 receiver
-Message-ID: <aW3_xSm2N42XTtzu@kekkonen.localdomain>
-References: <20251114-rockchip-mipi-receiver-v5-0-45aa117f190a@collabora.com>
- <20251114-rockchip-mipi-receiver-v5-2-45aa117f190a@collabora.com>
- <aWpil6jI1Ad0DcEI@lizhi-Precision-Tower-5810>
- <db2f0c20-ca7e-41c9-be08-67fd1f92c2af@collabora.com>
+	s=arc-20240116; t=1768816766; c=relaxed/simple;
+	bh=1T2p+/vbfr8CSkXKP8r2GuvxXHP9/qqQvE3njaPgF50=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e/ezNpy+PZxBLq3RHZSCzZGKnSAjGBxKI4dloJWGlgJMFdfN9WxAqnf9VZlhs53dRfUp8KcSxKz5StE6Xh5tfdhMWiZMvuVKvyn3GD7DaBIK99S6sC8Fn6YdDoEx720/8z8W3K6dhmAPESGvPp4rfnXyVjpjE7rtl/9hAPUXos0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qa/m2WcB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=L+jYIPNL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60J91MZY450854
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:59:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=q8/G/7hqZ6psTINWY52jB8tiJ2fk8cXDNOt
+	lC9V9Cs0=; b=Qa/m2WcB4Kxy9zsdmPjAqigvYgwMAoGLfUQ1ttUOtU6/k8bhXMj
+	hUD3NzCWOEQua1OHwVk8FZl9l80pwPeNAQ/smizJFtiUkcPMOwjwJf2ix4EXsIUS
+	OvuYVzkWKVRqS77GDq7FzDZre+lUifxgfk+aKbhgCfL6zMcS06unMyjFtKzEHsxf
+	v5Xm/1X55Frmnk6tBeJ+H3Cd5f+w18WR/5hdp5z7xTkmynJOl5KVwZlwwgwnDwKZ
+	yu8FQwPHpGarsKbsuH7SYFaS/oIC0QStiQSETP1jUbbCvgGAYHW66ATIxqLRZKoQ
+	Ezg/TunYQ2kabHpcs2Nv+mCk79TGDL036ig==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4bs7881n0p-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 09:59:23 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c2a3a614b5so1018137185a.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 01:59:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1768816763; x=1769421563; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=q8/G/7hqZ6psTINWY52jB8tiJ2fk8cXDNOtlC9V9Cs0=;
+        b=L+jYIPNL32dMNX7J6w0+Cn7FNBewx2h2AT0DyJRDZ+52hPqFPxTBztgSxgw7aytQ0H
+         q2hvX47nfnQyaP1S63JR5qHfB0ucEEXUa7Q9hwM5V9f/KXrceUXggvIkDgGkJ/3xFWvO
+         Cz2CnVkPqYtnIJtY3xditGuaARvLQ9N1bhRH6Eb9zeVUXNbw9e4Vku6UJpSG+4bz6zn2
+         OHFVsITOrn8ll/xabuK1z9aGQmxPm93A4rQi9JdQSNV3CrqTqJEgXbbP8c1F0CxhGRwe
+         YLOTNF5glxlafLYwcmf6LvcZkAE6p8axBDfAtiQyVwnUIU/HWeC28kfcJzqT1fAYhBgA
+         +eWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768816763; x=1769421563;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q8/G/7hqZ6psTINWY52jB8tiJ2fk8cXDNOtlC9V9Cs0=;
+        b=cPoiCwInCILg7cAqZYAAJZf9Pg3WalIVEueUUuRl1aGnpLOv0OYpFgBFScBICcipA1
+         F5Takl/svhOA9Kqcr/cgAqkzMvzIIdlPerbJccuyBY6Jo3A4NqdQRS7E3fmzgdi77OGu
+         Qj3Ik91IBilL8KOk/oA3NQpWgmMb8vOKqgYWH1sIITtEugEq4nkmctxxFjOzvmwzGkv1
+         y7ngJ3JdwpOCY7M5XVDMZghn3ZraomBB/MS0ZzoRnIpNou52Y3lRQFzEiXcAPThFLwHZ
+         Gszif3yxBEf/yFKVrZYE5eim8OoNPdeF8koBvNvsuzoMsM5zdH50g1lR5p0/E05AkpHu
+         spGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVmJxS6j+73A/jQVw5hA0AYgkcjnMPI2HGTyCTjFZTmz3EmQwfFcOGfXmUDulBXAVMPdWA9zmXjkOWu@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywp7IYDWCgNEadT1gdYQxyirmQdMmvzrbTExBIhrJFsyhgxLrRi
+	DEkEQWCO5YktdxULnybJfZgGHcThoPqRO0QjGNelMVeIRR9hbSpPhINEn3j8RXfDzNiMa0tmozl
+	tqHeY1Lu1YzFhNSKT1hsLYkjcR/p2hm6/Oct671LJDACUfkSwHDiyiFdKrjXnnWfZ
+X-Gm-Gg: AY/fxX4UrDiiaiwCyGiT3x87ELsgvmUIsXsvDPn18m6bLyDA8IgcGNXRLc5jpqjfL4L
+	mFx3ijrNkNUEOd79sLGsFQli/79zD58QGEOO/iQryxh6zZbtocxilLxku2zDir2AsDslPAgU54I
+	ufznydKPhuVWyQ41oycYGZ02rM2XG+7hRGQ5DiL0Pt32d/hFj0LAyv/raWLkz/SGjPgthR2to38
+	03bDRqGX/VUjG6F5IzvrrOQ2sfZe0CuWwPKzSHAmCY8waWW2OQSvLPK0/iHxAUB8CWnNgtqsflt
+	0zCN2ltNlDSe1tVAqO+3mI6QZw7BBswfcldJPEXVHlEDTZFKM07J2cRjVXbhbsXS73ZCBeSSKHz
+	tbelqH90T2uZiRzWHIGjoEfekxw==
+X-Received: by 2002:a05:620a:4114:b0:8c6:a64e:f66a with SMTP id af79cd13be357-8c6a64f04camr1459016685a.21.1768816763166;
+        Mon, 19 Jan 2026 01:59:23 -0800 (PST)
+X-Received: by 2002:a05:620a:4114:b0:8c6:a64e:f66a with SMTP id af79cd13be357-8c6a64f04camr1459014985a.21.1768816762743;
+        Mon, 19 Jan 2026 01:59:22 -0800 (PST)
+Received: from quoll ([178.197.218.229])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47f4289b789sm242530635e9.1.2026.01.19.01.59.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jan 2026 01:59:22 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>
+Subject: [PATCH 0/2] arm64: qcom: Add SoC ID for CQ7790S
+Date: Mon, 19 Jan 2026 10:59:08 +0100
+Message-ID: <20260119095907.172080-4-krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <db2f0c20-ca7e-41c9-be08-67fd1f92c2af@collabora.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=581; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=1T2p+/vbfr8CSkXKP8r2GuvxXHP9/qqQvE3njaPgF50=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpbgBr04jzEn+l69yC/a8d2yy0zxoSyLR+/oBOm
+ vn+FDvGhs6JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaW4AawAKCRDBN2bmhouD
+ 1+9xD/0dOO7IQYPSm3eTK9nDNCPfVdtqdo0M1kFEGeywTTSmxF/c9Z2ER3AWWxBoEx9Zuk+WdtF
+ qTyxMdG0Pgbiw/3fEq0a0F6ldIoSeI/RbLy58n8uS1DKy+Fz7FsNP4ZZFxOA3A4d986lBAmYBPv
+ x9U82lbv0WNjzWQb/RrTS9JY2gOUU0Pstfn3lTn5QhOVJz6euN4prUtWFX/J5WWYFUVUD4/ogsp
+ MW86/wZTWEXhD0sXhBUaoZqbiX+267B3beB6I9ZHLh833vHV3zOPP73Bmilq6Gdfvogzi4Nm9Fg
+ gm6utf4K2gDbr0SVaZtN5jFvm8pJZa81lm5LoYZQb0nPvoZ0bceRPBE0CvZJ4g2LKBJkNNyvdiH
+ cAtiRbOF08fAYZf+C1+wsNut9kUted1Z0E4B0sP+GmIx7yI+i8agnp+yWF7LS+UQPyO9hj3M12H
+ X13231VAliKtM205O1BaEDRQzgiieRluL21yOkfXMIuHjTMNklMJNCpsyvJUl3CcgpInDotNM6o
+ AntchJzYCMVE4N8gL1JeoAM4r3QW8yj+q43KtErBy2tSufMZZbEDX+UPRIksb8k+I+4kjjeznQ8
+ Gz4u/BfYSuMg5JcP0cOm6JAdK/HzBAnYw2TKG0lJzV0+OPPxZnYZyDTiH7m8lWar/HdFHlf+Cis EkG7wA0XXfPrRyw==
+X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=KLVXzVFo c=1 sm=1 tr=0 ts=696e007b cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=Eb9f15NH/cHKzfGOmZSO4Q==:17
+ a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=_wfq7HxkzpDXNbtE7psA:9 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDA3OSBTYWx0ZWRfXwYmkvasThdq8
+ gon5Fr+HppPCW1jDdK2pfcJMriI5TEaV1rVeET4Cl2PhZHXiE3h045No57nAWetvXJ6J/3QJO10
+ i/B9hiK0VINmyRB5qcSkxUtEDKnnYxwjHoLcnRRYXKHF9rfKfsSKDF8rdIo5FguL/aW/cvg5SCm
+ /f/QaMIkWJp9Akxh+ZUggKe+kfiztmV8X93JofX+VTcYM3yRrrZqAZlZTj4hZKX3UlKqA1MUVsz
+ UEVcU7k/mng9yYQOOvup5WT7FHtipP5qvxZ+zVPcebY0Ys/RCFtuI3TLpyT40bnT86JEIXC+VeU
+ /gl/qzY01XGTdITjm5zcLR6kx9XfG9FFD7Qz6aRChNpX5F4YMroQqbd8JnCCreT89jcmlDElslG
+ NVX+sdN2N63SUg/DzdEiI65xKTPrLHfqGxtnSWhb0IPc022YYSCqvSveVqWkJ+1ZAIfaW02r4xZ
+ 8iGlMi/HJpqqgppAwXg==
+X-Proofpoint-GUID: q4GRe6FCEoPbXZNuGwKJDOcMkTFos94W
+X-Proofpoint-ORIG-GUID: q4GRe6FCEoPbXZNuGwKJDOcMkTFos94W
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2026-01-19_02,2026-01-19_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 phishscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190079
 
-Hi Michael,
+Hi,
 
-On Mon, Jan 19, 2026 at 10:49:20AM +0100, Michael Riesch wrote:
-> Hi Frank,
-> 
-> Thanks for your review.
-> 
-> On 1/16/26 17:08, Frank Li wrote:
-> > On Fri, Jan 16, 2026 at 02:02:47PM +0100, Michael Riesch wrote:
-> >> The Synopsys DesignWare MIPI CSI-2 Receiver is a CSI-2 bridge with
-> >> one input port and one output port. It receives the data with the
-> >> help of an external MIPI PHY (C-PHY or D-PHY) and passes it to e.g.,
-> >> the Rockchip Video Capture (VICAP) block on recent Rockchip SoCs.
-> >>
-> >> Add a V4L2 subdevice driver for this unit.
-> >>
-> >> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> >> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> >> Reviewed-by: Mehdi Djait <mehdi.djait@linux.intel.com>
-> >> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> >> ---
-> > ...
-> >> +
-> >> +static inline struct dw_mipi_csi2_device *to_csi2(struct v4l2_subdev *sd)
-> >> +{
-> >> +	return container_of(sd, struct dw_mipi_csi2_device, sd);
-> >> +}
-> >> +
-> >> +static inline __maybe_unused void
-> > 
-> > why need '__maybe_unused', needn't inline. compiler can auto decide and
-> > report unused function if no 'inline'.
-> 
-> The __maybe_unused was helpful during development and is not really
-> required now. It doesn't hurt either, so I left it in. I can remove it
-> if you wish.
+This is early and first/initial posting for upstreaming Eliza SoC, e.g.
+CQ7790S IoT variant. AFAIK, there is also CQ7790M variant with different
+ID, but I do not have such hardware, thus only "S" goes here.
 
-Please. :-)
+As this is very early posting, more patches will be sent gradually
+later.
 
-> >> +static int dw_mipi_csi2_register_notifier(struct dw_mipi_csi2_device *csi2)
-> >> +{
-> >> +	struct v4l2_async_connection *asd;
-> >> +	struct v4l2_async_notifier *ntf = &csi2->notifier;
-> >> +	struct v4l2_fwnode_endpoint vep;
-> >> +	struct v4l2_subdev *sd = &csi2->sd;
-> >> +	struct device *dev = csi2->dev;
-> >> +	struct fwnode_handle *ep;
-> >> +	int ret;
-> >> +
-> >> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0, 0);
-> > 
-> > use  struct fwnode_handle *ep __free(fwnode_handle) can simplify err
-> > handler.
-> 
-> Sorry, I don't see the benefit of that.
+BR,
+Krzysztof
 
-I'd prefer this, too, when you unconditionally need to release or put
-something. It'll make error handling simpler, too.
+
+Krzysztof Kozlowski (2):
+  dt-bindings: arm: qcom,ids: Add SoC ID for CQ7790S
+  soc: qcom: socinfo: Add SoC ID for CQ7790S
+
+ drivers/soc/qcom/socinfo.c         | 1 +
+ include/dt-bindings/arm/qcom,ids.h | 1 +
+ 2 files changed, 2 insertions(+)
 
 -- 
-Kind regards,
+2.51.0
 
-Sakari Ailus
 
