@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-256675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4CCD39F54
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 08:07:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1260CD39F64
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 08:10:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2616530024D1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:07:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C3E93006638
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27F22D9ED1;
-	Mon, 19 Jan 2026 07:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0963D2C326F;
+	Mon, 19 Jan 2026 07:08:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LSGyhXLN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CsT18kyi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC31B2C326F;
-	Mon, 19 Jan 2026 07:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D972D23D7C2;
+	Mon, 19 Jan 2026 07:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768806436; cv=none; b=n09WN2ZYxDvkEh8aWnDio27z4t5EdzT+jbhuQf+IAf/m/q7/mYqxEeX5chr7+YFwcnhBC75zxjOA0xx6gS1oZ7ifG0Co1nMB40A7od8DtNlVXtRAfb0V09nvlfLXWA5iHBhjJ4NUJqZjgX2LSmt9Z0/UO1ffWrHp89Aaug7YsQU=
+	t=1768806530; cv=none; b=AG4QpQLd9skY20fz7Vk3G1imqQuSecR1gOUAwnJbOMB8wiISJ22bnoyN11X7JiWFkcF6BoyTmhC9QKeArG2Li6GmYpebtxwQtdpPMvE9tyzc32j6QnApTREmAEfwlK2GWU9kO8+CM2+gfIwc6/Xh/ndpLVnjQZcCWvMaa7wI4uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768806436; c=relaxed/simple;
-	bh=Hk8NxqcbidEUwJE3pLOiALsK8b78kr73krUklb2X43o=;
+	s=arc-20240116; t=1768806530; c=relaxed/simple;
+	bh=Sf9Qag5sQq/fRppPH89dGKFv69SIFR5u5qzbq0odql4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IO/3CZSe/umrMlVDet2NOugFDz3WIiixL0yxv3RCv2LYI4rnl/xPT41iDajNMCi8tFnEgHw23d5uhPLqWuKfb9gefWAY36s7VxmBnaBeR06dQ+nT/VbWo4vrmGyxQOD1SpxsMLn6hf2YuyvAgzPb0YTnIk9CrFbl7OFlnW2mWNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LSGyhXLN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 063DAC16AAE;
-	Mon, 19 Jan 2026 07:07:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=onn15Exbf4xObV+lHX3HfeIxxi4yDiRmRYLL5IV2tvJSgjwQiN6PUR2vf44ILX6NDQYWblItsTGf5eFeu+Pu2sbZXCUN+jT8PnHm9bJbWFLWF2qz9InMvp/GOs8xQFL0/XsAseeEvF7pmNGwu5YdL280rgoc2E0YqJQmN2cNt7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CsT18kyi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D74EC16AAE;
+	Mon, 19 Jan 2026 07:08:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768806436;
-	bh=Hk8NxqcbidEUwJE3pLOiALsK8b78kr73krUklb2X43o=;
+	s=k20201202; t=1768806530;
+	bh=Sf9Qag5sQq/fRppPH89dGKFv69SIFR5u5qzbq0odql4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LSGyhXLN9k/avbWu71arIFgPvT78GvEjn/g6Qftx/J1rnd7fWZHkJ4tCn30v/O/op
-	 8wtn1qWmqhwIogMUEru1+5/Ije5KF7u/slxtzdQPqUcDGDF9YmLUNqmYCYt9UrXvMv
-	 rYVlHsjQr1NC5u7QP3nEZGs3kP9jqsSo32epi89PqgL+DvlKTw0fto8iixn1WgU5nz
-	 FFWcRV0E5J5RDlq1t2uMpKcxGKSc8/ykwf3ouraoSm5nnfxzc7x6X04/Le/Dk0Imzr
-	 /JX8jaiRUIs6AFv5QxUmL40eHXMWfNAjlC6VU5/JvREZ2TannDg7eCUcYSxtraIUdG
-	 OH/LqufQav/yA==
-Message-ID: <2be56ba8-5659-4d03-a886-ad32a32f6b44@kernel.org>
-Date: Mon, 19 Jan 2026 08:07:10 +0100
+	b=CsT18kyiRQaGh8TEQRoIAYxAZN7skvafvgPvDvQ7QH/sbA8zLRTtfxMiakrWXjQQg
+	 2XbYJFmYAW8CPdggAjHBdhXFJB8jxbKkbtDsYCJaTVys+aXzZU82k0D2G4/9SzyALb
+	 BLf+l0WLMiHmwcoIqQobgXSKA/UlpUx6zUkCLsK7FlAiXdqdzeYxKkYxXo8EK34ezh
+	 vJwYvGdjgWnMzhvvQWCUPKy9dZXBKvOtAJunO2J3HI+6SCSIjcGAAHlZnc5gx8rbxJ
+	 Zv7txaM9TiszMp2+Ld4xQ/QdzofG8rMdDe2xJKLFJ+tqwYvQodNX1GfO1M1k0ZeGMQ
+	 PKaa11uYjiqCA==
+Message-ID: <a62401d4-0008-4a69-874a-1870fb690886@kernel.org>
+Date: Mon, 19 Jan 2026 08:08:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,21 +48,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl,audmix: Add support for
- i.MX952 platform
-To: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, Xiubo.Lee@gmail.com,
- festevam@gmail.com, nicoleotsuka@gmail.com, lgirdwood@gmail.com,
- broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
- linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20260116101648.377952-1-shengjiu.wang@nxp.com>
- <20260116101648.377952-2-shengjiu.wang@nxp.com>
- <20260117-versed-proficient-pigeon-bd0b2a@quoll>
- <CAA+D8ANrcjvOCfRN7gGGW+7YzvVieU7P2uexUpVYTw6MEHAKYQ@mail.gmail.com>
+Subject: Re: [PATCH v2 ath-current 2/2] dt-bindings: net: wireless:
+ ath11k-pci: remove obsolete firmware-name property
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+ johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251214025230.716387-1-miaoqing.pan@oss.qualcomm.com>
+ <20251214025230.716387-3-miaoqing.pan@oss.qualcomm.com>
+ <fa997674-402a-41cf-9334-f7fc89ae5ebc@kernel.org>
+ <4562bdbc-9811-4f73-bc4b-f5a62ba1c965@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,64 +104,60 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAA+D8ANrcjvOCfRN7gGGW+7YzvVieU7P2uexUpVYTw6MEHAKYQ@mail.gmail.com>
+In-Reply-To: <4562bdbc-9811-4f73-bc4b-f5a62ba1c965@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 19/01/2026 07:27, Shengjiu Wang wrote:
-> On Sat, Jan 17, 2026 at 7:44 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 19/01/2026 02:34, Miaoqing Pan wrote:
+> 
+> 
+> On 1/13/2026 3:28 PM, Krzysztof Kozlowski wrote:
+>> On 14/12/2025 03:52, Miaoqing Pan wrote:
+>>> The firmware-name property was introduced to allow end-users and
+>>> integrators to select usecase specific firmware for the WCN6855.
+>>> However, specifying firmware for an M.2 WLAN module in the Device
+>>> Tree is not appropriate. Instead, this functionality will be handled
+>>> within the ath11k driver.
+>>>
+>>> The driver has removed all support for firmware-name, and no upstream
+>>> Device Tree files reference this property. Therefore, this patch
+>>> removes the property from the binding and marks it as obsolete.
 >>
->> On Fri, Jan 16, 2026 at 06:16:47PM +0800, Shengjiu Wang wrote:
->>> The specific feature for AUDMIX on i.MX952 is that it can be bypassed,
->>> so add fsl,amix-bypass property for this feature, besides this there is
->>> no power domain defined on i.MX952, so make power-domains to be
->>> dedicated to i.MX8QM.
->>>
->>> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
->>> ---
->>>  .../devicetree/bindings/sound/fsl,audmix.yaml | 35 +++++++++++++++++--
->>>  1 file changed, 33 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/fsl,audmix.yaml b/Documentation/devicetree/bindings/sound/fsl,audmix.yaml
->>> index 3ad197b3c82c..50fb08460b4f 100644
->>> --- a/Documentation/devicetree/bindings/sound/fsl,audmix.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/fsl,audmix.yaml
->>> @@ -34,7 +34,9 @@ description: |
->>>
->>>  properties:
->>>    compatible:
->>> -    const: fsl,imx8qm-audmix
->>> +    enum:
->>> +      - fsl,imx8qm-audmix
->>> +      - fsl,imx952-audmix
->>>
->>>    reg:
->>>      maxItems: 1
->>> @@ -75,12 +77,41 @@ properties:
->>>          unevaluatedProperties: false
->>>          description: Output port to SAI RX
->>>
->>> +  fsl,amix-bypass:
->>> +    type: boolean
->>> +    description:
->>> +      The audmix module is bypassed from hardware.
+>> No, it does not mark it obsolete. Point me to the place.
 >>
->> I don't understand why device AUDMIX would have property saying AUDMIX
->> (so itself) can by bypassed. If you bypass the device itself, what do
->> you configure here?
+>>>
+>>> This is a DT ABI-breaking change, but safe since there are no in-tree
+>>> users.
+>>
+>> It's not safe. What about my board using this WiFi? Or Mr. foo's board?
+>>
+>> Still NAK, you did not improve it.
+>>
+>>
 > 
-> The case is that the SAI interface is connected to AUDMIX,  but AUDMIX can also
-> be bypassed by hardware configuration.
+> I think it’s necessary to clarify the background here. As you can see 
+> from the git log, all changes related to ath11k firmware-name were 
+> submitted by me, and the intention was to allow the lemans-evk, 
+> monaco-evk, and hamoa-iot-evk boards to specify dedicated firmware for 
+> the WCN6855 Wi-Fi chip. However, the Wi-Fi‑related DTS nodes for these 
+> boards have never been submitted upstream, because adding a 
+> firmware-name property for an M.2 device is not appropriate and would be 
+> difficult for the community to accept. Therefore, the original approach 
+> was abandoned.
+
+You added new ABI which can be used by anyone and your commit did not
+help me to understand the impact on other users of this ABI.
+
 > 
-> Yes, adding this property in the AUDMIX module looks strange.  Another
-> choice is to
-> add this property in the SAI binding document.  Is this better?
+> The alternative solution is to propose a static lookup table that maps 
+> device compatibles to firmware names. As a result, we have not submitted 
+> any DTS patches adding firmware-name for those boards to date. This is 
+> why I believe that removing firmware-name from the bindings is safe.
 > 
+> If this explanation is still not sufficient, please let me know what 
+> additional steps are required for accepting these two patches. Thank you.
 
-Not sure, but certainly it does not look like a property of AUDMIX.
-
-I assume you acknowledge all other comments.
-
+You need to deprecate the property and keep the ABI backwards compatible.
 
 Best regards,
 Krzysztof
