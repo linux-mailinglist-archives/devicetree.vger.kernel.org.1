@@ -1,48 +1,47 @@
-Return-Path: <devicetree+bounces-256842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF52D3A727
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:43:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3A94D3A76A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:52:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AB24D3008193
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:43:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6CC8F30AB3FA
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 11:48:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080D5314B9A;
-	Mon, 19 Jan 2026 11:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF3B318157;
+	Mon, 19 Jan 2026 11:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aoEn4DSn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dGpWhgAu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D803A3148AC;
-	Mon, 19 Jan 2026 11:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F9D3148C8;
+	Mon, 19 Jan 2026 11:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768823006; cv=none; b=UYgMoJEFqxJRd3Ek1tzcmLA3MM2jd9y9iCj6DyWr7AZSx71NFlV6wYKEbw2PFo7hYlW4DkXFM+RoaLrSUIEUdvNEHJ966kb3Qk2ZnhHEJ73qNzIzhmw6FMVk9/jTMssXDTDC1ufqATQIHubZT7r3GdY5MhToH0rzYNzTxXN1Qg8=
+	t=1768823301; cv=none; b=QOLFgs3UdVk2ihZbWX8bUgXRbZLk/y35Fn5XUvJKEPtvuMzt2vjGYXUfExit6HkAOhPeMA3bY7SlQ5inezBZ412R8ctqPFvc+UA7pQRUpCRcVbTXh3qdE52zaA+JG5xU7g0FJJRjUQquuytpm3plpI/a9KImiXPMyABMvPJIbJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768823006; c=relaxed/simple;
-	bh=HlxDuIUJ4CIb8AABUH3nSxedc6wHlisddm3UisadGfk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=flo69uhm2tlW391RBul+RaeGGsrriTcKBF1wEd6HDERcJi8mIYlk9bGK/SImXSBa42VcmrZRxR1gyvkcyQ8oE4NC6TUUWz4xquTbxcpZMZrAMkWN1K/XCMkzdb0lgOXK01f8oaeI8Ij2+oT6mdhfLwF+I/9xjFmYKIJYktW2ORE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aoEn4DSn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8555EC116C6;
-	Mon, 19 Jan 2026 11:43:21 +0000 (UTC)
+	s=arc-20240116; t=1768823301; c=relaxed/simple;
+	bh=m6fiWE2pnNbhhpX2oZo1w8HwzGDymsBUVv89HVOO69U=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Ilmh0pKdJc8ojvhSA9pluEOJJ3G6OOYJIpSEzx1RWI2VCn+zzhv6D7niTCC4PogRiEGH2w1z4UGgwlXIM9OsYY8rm1fQJJ6rFGVMfaQPpC00KrXAqf0mHFSXtxsS9k0Z7UMVo6Ge+vr8rhGXLaADfyMcMfc4xgwMLzbxdmUn2MQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dGpWhgAu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0655C116C6;
+	Mon, 19 Jan 2026 11:48:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768823006;
-	bh=HlxDuIUJ4CIb8AABUH3nSxedc6wHlisddm3UisadGfk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=aoEn4DSniKudbt0XnwC7PyIJK8bJ2T3/GW3MvvpLstR0YdiarTei+aXvxXwsmpMsW
-	 nGn7SwvNV2Gb8MYXvntAfaGfIjcubTf9R91FfwDLg14NGepgHLnxdOyIbYDzOxsOAE
-	 pRaQ0MdHqezNe8PFqWRXqCXoLDtD2D/WPn9NSl6FBfS24svR/MdN38kfkFcZALxAAf
-	 0mX75Ay1aNkLVyyWY2/Er/tDxbLROApbuiWOOuCzji1Z7bnjpn28eM95AhPJGrtk0Q
-	 Pq7j+EgVEruN0641JXsLRigJoiVREpt/nKHGb3zcp9tSUv1KfpUgJYibjWRvB+14ok
-	 zhP167f1q3QIw==
+	s=k20201202; t=1768823300;
+	bh=m6fiWE2pnNbhhpX2oZo1w8HwzGDymsBUVv89HVOO69U=;
+	h=From:Date:Subject:To:Cc:From;
+	b=dGpWhgAurL7BUnf4WTlLuqSPiBQMLfaJ+N4lNv78Mqtkq6aOvXdiNKHYVnTFQq3Gg
+	 +BVC6XpwEtrGE27QhPeKoor+bKLLEDwAcmx/RUiaAkkUxYcWZqIrYvJVLWQcInXPOQ
+	 ylySNStLJ8At2aG6CyVM8D5BukbjCuc+GZ/rLfMRZ96j/z0QfJtxn9JTfETdBzPStM
+	 HqYAjgVM98kJrpJtqyd1hBu7OS3zdqU/8sNkJ2dcpQ5pCIClyNZY0z5MZE7X4OnC+f
+	 ILjJu6T0+H3Eibk/w3W5AGWdBuuP8R4+uVrcYBzG6CHDou8/S207qOO1hXqVJr5EL6
+	 3hGumzdCnjm/w==
 From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Mon, 19 Jan 2026 12:42:32 +0100
-Subject: [PATCH v2 10/10] arm64: dts: qcom: lemans-ride-common: Fix up WCN
- power grid
+Date: Mon, 19 Jan 2026 12:48:02 +0100
+Subject: [PATCH] dt-bindings: phy: sc8280xp-qmp-pcie: Disallow bifurcation
+ register on Purwa
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,112 +50,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-topic-wcn6855_pmu_dtbdings-v2-10-6d1c75608bbb@oss.qualcomm.com>
-References: <20260119-topic-wcn6855_pmu_dtbdings-v2-0-6d1c75608bbb@oss.qualcomm.com>
-In-Reply-To: <20260119-topic-wcn6855_pmu_dtbdings-v2-0-6d1c75608bbb@oss.qualcomm.com>
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
- Rocky Liao <quic_rjliao@quicinc.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Bartosz Golaszewski <brgl@kernel.org>
-Cc: Luiz Augusto von Dentz <luiz.von.dentz@intel.com>, 
- linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+Message-Id: <20260119-topic-purwa_phy_shutup_warning-v1-1-997a692b31c6@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3NMQ6DMAxA0asgz41EMiDCVaoqcsEQL8FySClC3
+ J2I8S3/n5BJmTIMzQlKP868pgr7amCMmBYyPFWDa13XWuvNtgqPRoruGCQeIceyFQk7auK0mN5
+ b6hG/zs8OakSUZv4/g/fnum6VGMFkcAAAAA==
+X-Change-ID: 20260119-topic-purwa_phy_shutup_warning-891e8aab29f2
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Abel Vesa <abel.vesa@oss.qualcomm.com>, 
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ YijieYang <yijie.yang@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1768822946; l=2448;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768823296; l=1939;
  i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=pt5WfOoWjwVgQjUoCs5WtSNvxy47amyc0bGnLFyp/+E=;
- b=vLsAOtzIlPeyJFHbYWZtpfrk+H6ri1hIhcnhY0/xfuwhK8ml6PF9m+MrNXENWc6hG/5Vh4w4e
- y77Y5jMX6LTCYovaZhCiZe6kstQEdGItFlrTvLg0I3AiWgA8AR1DfJi
+ bh=zafLI2H+tXlTDyy9bg4Qs3Rs79fUkAKI4Fp2LAgvkag=;
+ b=xMtsEXOFlGjBtcLWdBg61jlatkGD/wYUEzbmPAYeQhklx4IQ70ZSTFCzFs9+IO93tnU6QAYA9
+ UO8+tyvJDlxDvGch8lq32075lXJNwX6bGI+2xuSCiRKOUz8TQ9KYG/R
 X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Make the dt checker happy by filling out the required properties in
-line with the schematics.
+Neither of the two Gen4x4 PHYs found on Purwa supports bifurcation.
+The PHY is however physically laid out as if it were to, since there
+are two separate ports (A/B).
 
-Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Split out a new if-then block to un-require the bifurcation register
+handle to squash this warning:
+
+purwa-iot-evk.dtb: phy@1bd4000 (qcom,x1p42100-qmp-gen4x4-pcie-phy): 'qcom,4ln-config-sel' is a required property
+
+Fixes: 2e1ffd4c1805 ("dt-bindings: phy: qcom,qmp-pcie: Add X1P42100 PCIe Gen4x4 PHY")
+Reported-by: Rob Herring <robh@kernel.org>
+Closes: https://lore.kernel.org/linux-arm-msm/176857775469.1631885.16133311938753588148.robh@kernel.org/
 Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi | 32 ++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi b/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-index 8fb7d1fc6d56..7ae5f8447b42 100644
---- a/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-@@ -79,6 +79,18 @@ vreg_3p0: vreg-3p0-regulator {
- 		vin-supply = <&vreg_12p0>;
- 	};
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+index 3a35120a77ec..431e8cb5df84 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+@@ -136,13 +136,22 @@ allOf:
+           items:
+             - description: port a
+             - description: port b
+-      required:
+-        - qcom,4ln-config-sel
+     else:
+       properties:
+         reg:
+           maxItems: 1
  
-+	vreg_3p3: vreg-3p3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_3P3";
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc8280xp-qmp-gen3x4-pcie-phy
++              - qcom,x1e80100-qmp-gen4x4-pcie-phy
++    then:
++      required:
++        - qcom,4ln-config-sel
 +
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		vin-supply = <&vreg_12p0>;
-+	};
-+
- 	vreg_conn_1p8: vreg_conn_1p8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vreg_conn_1p8";
-@@ -95,6 +107,22 @@ vreg_conn_pa: vreg_conn_pa {
- 		gpio = <&pmm8654au_1_gpios 6 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	/*
-+	 * TODO: These two regulators are actually part of the removable M.2
-+	 * card and not the mainboard. Need to describe this differently.
-+	 * Functionally it works correctly, because all we need to do is to
-+	 * turn on the actual 3.3V supply above.
-+	 */
-+	vreg_wcn_0p95: vreg-wcn-0p95-regulator {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_0P95";
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <950000>;
-+
-+		vin-supply = <&vreg_3p3>;
-+	};
-+
- 	wcn6855-pmu {
- 		compatible = "qcom,wcn6855-pmu";
- 
-@@ -104,6 +132,8 @@ wcn6855-pmu {
- 		vddio-supply = <&vreg_conn_pa>;
- 		vddaon-supply = <&vreg_l2c>;
- 		vddpmu-supply = <&vreg_conn_1p8>;
-+		vddpmumx-supply = <&vreg_wcn_0p95>;
-+		vddpmucx-supply = <&vreg_wcn_0p95>;
- 		vddrfa0p95-supply = <&vreg_l2c>;
- 		vddrfa1p3-supply = <&vreg_l6e>;
- 		vddrfa1p9-supply = <&vreg_s5a>;
-@@ -982,6 +1012,8 @@ bluetooth {
- 		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
- 		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
- 		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
- 	};
- };
- 
+   - if:
+       properties:
+         compatible:
 
+---
+base-commit: 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+change-id: 20260119-topic-purwa_phy_shutup_warning-891e8aab29f2
+
+Best regards,
 -- 
-2.52.0
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
