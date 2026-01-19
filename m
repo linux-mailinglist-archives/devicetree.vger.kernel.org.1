@@ -1,99 +1,89 @@
-Return-Path: <devicetree+bounces-256909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C1AD3AC31
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:37:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2EC8D3AB8D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:21:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 319EF3049C45
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:23:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DDE71300BA02
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE676389DE0;
-	Mon, 19 Jan 2026 14:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB55037A4B9;
+	Mon, 19 Jan 2026 14:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IE/H7Dlf"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="CA3py8ft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA9E6389462;
-	Mon, 19 Jan 2026 14:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F1B37418D;
+	Mon, 19 Jan 2026 14:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768832580; cv=none; b=jvGCSFH+tp7wCN4sshZDRG/OjEojU699WQ+txrt/cDVSHzjhsz5OU2hBDFxniGKxONN75nAIT+oJkxGaepe/t6EKT5YtMdUachZMWlnvkUlj+URLutXoGCc+ao2sKL7ImInGXyjR80DKG+E1V4J48Ak+L7layQPSph2uQiv6YG4=
+	t=1768832465; cv=none; b=mWK5wkzP2onZAn0/pTZGd/W1eiKCbio/+DvATUZ8CZ+YJvQD2omewxOQk/0uJSEhMRzRm4shtLXr39VWEjJmdHQTIeyiceJ+RLOSLxfPQAjc0AQOQIN8tFwgNXJwyDpyzSnXryRRaYQD+LiD7IkdTQKJxdHznTI3j3K6ygLImxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768832580; c=relaxed/simple;
-	bh=bc+SMSo/BEsJV6kKQTjJ2iqWRMvIFdUr7/HiGEtsBWA=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=Rv56rksG99ByurfeXAV6tnHqJXQI2sGVJX8hCq0beLoaHzkeFHea/yNZULdycpVQrRgd/Xm74L8JrVZEym25i0FK9KxovB5RoFSiC/tgH3dM3gM4jSEeC+KSQvTfVXJWtoETiFniUHEXuguFmScHK/V3P7OBMuBkUb7l6+wuP9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IE/H7Dlf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72E27C116C6;
-	Mon, 19 Jan 2026 14:23:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768832580;
-	bh=bc+SMSo/BEsJV6kKQTjJ2iqWRMvIFdUr7/HiGEtsBWA=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=IE/H7DlfJUzKatGr0A6P/cCX7S5Wrp5fMfrW+nnZ8pbrE8a9QY5945FI8T6A1O6Nn
-	 9cVNqaY16Wo/W2mqRIP7qtErikO0PhDvLnXFcSkHmLn9B6EBgNDnNtk7ZRjZ66xwZQ
-	 MToXnPZWalDSyqTOSq91+HCHvpR8EETdfavr1ko6lOXScMSPLGfnf2soZ+SfuCxL1Q
-	 rEXM3eSgrz1GKZtGfvrSqoRIP2UYvgzwXBYwkYZ5hUO40Wr80wTF/PdYuYcgfTPVNH
-	 qMO2lbtlSW+0eaUwPpBgJd0UWV8u0dbjI4gppp4gq778vzHYLYHc5+q6k26ktXhDVf
-	 h3xbNKkfizJlQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 78B503A55FAF;
-	Mon, 19 Jan 2026 14:19:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1768832465; c=relaxed/simple;
+	bh=RjyUtJwmG1G4kZbuXRuMcwRIAzdLOCcrAwI3cXKpba8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pSlL838CcymlzERMls7BqZR1ruuZCUFQ/K/NKLo/4amo21fXsdz/FU6CcMCSsuBmsyengj4xgzo73Y61dJDl8xJSkyGc1psCOepr+6jc0m2NGCKrmKrc7/Rx9euNHPHcO49pq5rDSnpvrXRgg/qbbRAwz7KtbSozn4b+gs4zTvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=CA3py8ft; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=c7Ep0GD4eG911kODoOvUPprYM2xLb7geaPpEU8Rcz+g=; b=CA3py8ftIBYki7YqehhBkcUCAE
+	Jq7C+1KCwjIrVDFC+GK3VKxuTunuovVb/OOJLH4mvTDrjY9ZYAsq64o/VUCK+zUCJVX18CKCiZgwJ
+	nlEuzXZNNYKP51fFNdGzccFRUqUQ3D7Cv9ycIXAkCOtHHRr9Ap3iqOw2o8Cp1r46+4wU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vhq7T-003VPQ-Ln; Mon, 19 Jan 2026 15:20:39 +0100
+Date: Mon, 19 Jan 2026 15:20:39 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Andrew Jeffery <andrew@aj.id.au>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [PATCH 3/5] gpio: aspeed-sgpio: Create llops to handle hardware
+ access
+Message-ID: <bb5bdcf2-6bd3-49c7-b3e5-210b7f332137@lunn.ch>
+References: <20260117-upstream_sgpio-v1-0-850ef3ffb680@aspeedtech.com>
+ <20260117-upstream_sgpio-v1-3-850ef3ffb680@aspeedtech.com>
+ <55fbb766-12b5-441a-b06c-d807097e5476@lunn.ch>
+ <OSQPR06MB725219B6ED261DBB4E8BC33D8B88A@OSQPR06MB7252.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 0/2] net: pcs: rzn1-miic: Support configurable
- PHY_LINK polarity
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <176883237003.1426077.11987009309110128646.git-patchwork-notify@kernel.org>
-Date: Mon, 19 Jan 2026 14:19:30 +0000
-References: <20260112173555.1166714-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: 
- <20260112173555.1166714-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Lad@codeaurora.org, Prabhakar <prabhakar.csengg@gmail.com>
-Cc: clement.leger@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, hkallweit1@gmail.com,
- linux@armlinux.org.uk, geert+renesas@glider.be, magnus.damm@gmail.com,
- linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- biju.das.jz@bp.renesas.com, fabrizio.castro.jz@renesas.com,
- prabhakar.mahadev-lad.rj@bp.renesas.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <OSQPR06MB725219B6ED261DBB4E8BC33D8B88A@OSQPR06MB7252.apcprd06.prod.outlook.com>
 
-Hello:
-
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Mon, 12 Jan 2026 17:35:53 +0000 you wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> We did consider regmap. However, llops is intended to abstract not only
+> register
 > 
-> Hi all,
+> access but also layout-specific bit mapping, which is difficult to express
 > 
-> This series adds support for configuring the active level of MIIC
-> PHY_LINK status signals on Renesas RZ/N1 and RZ/T2H/N2H platforms.
-> 
-> [...]
+> cleanly with a flat regmap interface.
 
-Here is the summary with links:
-  - [net-next,v3,1/2] dt-bindings: net: pcs: renesas,rzn1-miic: Add phy_link property
-    https://git.kernel.org/netdev/net-next/c/98e8039a3b14
-  - [net-next,v3,2/2] net: pcs: rzn1-miic: Add PHY_LINK active-level configuration support
-    https://git.kernel.org/netdev/net-next/c/61f1139a4765
+O.K. I was just thinking, if you can swap to regmap, you could maybe
+then go one step further and use gpio_regmap_register(). But if you
+have extra logic in here, that will not work.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+     Andrew
 
