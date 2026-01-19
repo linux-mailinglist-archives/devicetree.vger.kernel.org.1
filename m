@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-256644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13308D39DAC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:19:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D3DD39DE1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:40:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2FC8E300093B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:19:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AD608300C6EC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFB0330646;
-	Mon, 19 Jan 2026 05:18:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D1B330D3B;
+	Mon, 19 Jan 2026 05:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="Ha0onx1W"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="TD21t0uf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA5327FD48;
-	Mon, 19 Jan 2026 05:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0F72DE70D;
+	Mon, 19 Jan 2026 05:40:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768799937; cv=none; b=Xh9ppoj3dCVAs4Rm5D7j8G6myzUgyVdqIiqy9dRMK+we9QdxP+oPex2garC5/Q43EJuU8tT0gFOjX6yjbkrAaVpgf7Ed6z7lx/FD0PpPoTpqudip0KL8osBhZOWWZNE8tHup9hCWnY6/U1Sy0jqUrF82ncuSxiLSjLgOnYpVh5Y=
+	t=1768801220; cv=none; b=Vnl2CTpqIrYKtjPPnu1tpfZ7+/uIAw1EwT9RsosUUvmmrWTo6prZDAjP6IKpCOd9eRt8hoBHWHFUBH/uCjThhacdrn2CeTVdePHIB/lxb0rdvxnNuMPVTDnJ7Q9TAIQSttuLI/2qEio12UhGPHtSmxgYTCh733OyygSipeEJ+L4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768799937; c=relaxed/simple;
-	bh=8skFBCxhnyWeb17gywywvs3qs+nNQAGZPAZ4ARMNVVk=;
+	s=arc-20240116; t=1768801220; c=relaxed/simple;
+	bh=boo2RkLYxVAUlhtMUCkiD8pB8e6d/oRHjJvWNH6fbyk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V4Dn1vE8JSIMeQxzphG4+02LUWhmFog4YF+Tt4iVCYhohajZZiH31zbcyC9EWuRJLPgLyRYYhMIBkc/efgMNcExB2ES4nkWdl9PJTmwXolrd5zRfD4v1AV9BEcU0CWVOprvbINSQN+JC8JzLF1vskeEDMD9hIRgdsgwMj5D8AaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=Ha0onx1W; arc=none smtp.client-ip=150.107.74.76
+	 Content-Type:Content-Disposition:In-Reply-To; b=mYOMCY9hD9FJya17kMiCrzRq3keONJvx1938Sd7Ha3APax38ag9oMKiCj2no26l0HH1u+1l7sgnsS8KPGtnNgAgEJTl5wrQbYG8pagsLCdBIXDYGenjeASZGXpPMYbUN2VW3voqeNCse7/zSHBIibRV9yovO3emvLfdqnZArH+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=TD21t0uf; arc=none smtp.client-ip=150.107.74.76
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768799927;
-	bh=JpgKaoh+5pF44ToyjDyGiMrEp7XRy3+h+YqUqn9PfeM=;
+	d=gibson.dropbear.id.au; s=202512; t=1768801217;
+	bh=fwDdDG9Zql2oBsaC8x2QxCmFKhOsuXc6agTtcM0PLwQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ha0onx1WCEFROBgFFR/goOIzy4ZviatZpQq8B67v1cevXO4yS4mqEp99nR5in72jU
-	 yFpJoEQU8zHudAPssqRgyYNOYFAjablL9/oywN9rnpmgaTZ4SdGhSeuzjL9YwnXosn
-	 l3TbCJCEi22JICFW+ImzDXYwz1sb328fN9PcV54tqVzQSWCBynT+E0ACMdvgnRpmNa
-	 TObUlavkz8bEKjJxBzPSyT4pUWiAOR20xr7sT7B5U5SweSQlguNtN35T4QQo5zU5aT
-	 qMX0oEPGRtVvkK06oVECq5CKqJVSz0WOXMf7AUCN5mfZ2d65xNElDK2qPoSJMgYO/R
-	 OrsZwGm6nTRgw==
+	b=TD21t0ufUohFeKbVK8fFAp3wBx+1Olpy+vYLmahJJmasADImC9dUoxAhA1PwX5QzP
+	 TbbJxaGLJQfYbwLQTsa58KXG5591UYP8mHzjjmGkdezhaiA+W7X1yWcHMPoNgV3Aq+
+	 spGSwBUVgW3kUuwM3ssfeoYQcpOuLNFmW64KoFYjGV8MluUYqsIjPMIltVf45xfxyK
+	 7KW2hAACghAFyg8HUEH+AK9ZadmUlZ0tDcWaoLg2+kTDH4fbkcvutUBMHmISJ8VJcI
+	 A2JV7rrFZYUjCWDS3NQ/RDt+Ej2VgY/uzNkq2Qc8i1kN35YWv2LkOLPOLMqiYumOmU
+	 ClSmQNku8pKVA==
 Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4dvdzC0tHYz4w23; Mon, 19 Jan 2026 16:18:47 +1100 (AEDT)
-Date: Mon, 19 Jan 2026 16:18:43 +1100
+	id 4dvfS11b0Cz4wCG; Mon, 19 Jan 2026 16:40:17 +1100 (AEDT)
+Date: Mon, 19 Jan 2026 16:21:42 +1100
 From: David Gibson <david@gibson.dropbear.id.au>
 To: Herve Codina <herve.codina@bootlin.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
@@ -54,12 +54,12 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
 	Ian Ray <ian.ray@gehealthcare.com>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 07/77] livetree: Improve get_node_by_phandle()
-Message-ID: <aW2-sxR3XwWJn3H9@zatzit>
+Subject: Re: [RFC PATCH 08/77] dtc: Introduce update_phandles_ref()
+Message-ID: <aW2_Zm3RmOkNWkiO@zatzit>
 References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <20260112142009.1006236-8-herve.codina@bootlin.com>
- <aWg3vOBK4uKwyRp4@zatzit>
- <20260116115254.3002ca05@bootlin.com>
+ <20260112142009.1006236-9-herve.codina@bootlin.com>
+ <aWg4_KIBbUMOdP9C@zatzit>
+ <20260116122630.35d4fba3@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,91 +67,132 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+P9QTFgzSE1gAhEN"
+	protocol="application/pgp-signature"; boundary="rRoa7HnolBFEvCP8"
 Content-Disposition: inline
-In-Reply-To: <20260116115254.3002ca05@bootlin.com>
+In-Reply-To: <20260116122630.35d4fba3@bootlin.com>
 
 
---+P9QTFgzSE1gAhEN
+--rRoa7HnolBFEvCP8
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 16, 2026 at 11:52:54AM +0100, Herve Codina wrote:
-> Hi David,
->=20
-> On Thu, 15 Jan 2026 11:41:32 +1100
+On Fri, Jan 16, 2026 at 12:26:30PM +0100, Herve Codina wrote:
+> On Thu, 15 Jan 2026 11:46:52 +1100
 > David Gibson <david@gibson.dropbear.id.au> wrote:
 >=20
-> > On Mon, Jan 12, 2026 at 03:18:57PM +0100, Herve Codina wrote:
-> > > get_node_by_phandle() allows to get a node based on its phandle value.
-> > > It checks the phandle value against value available in internal node
-> > > structure.
+> > On Mon, Jan 12, 2026 at 03:18:58PM +0100, Herve Codina wrote:
+> > > With the introduction of FDT_REF_LOCAL dtb tag, a local phandle used
+> > > by a property is identify when a dtb is parsed.
 > > >=20
-> > > This internal phandle value is updated during process_check() and so,
-> > > get_node_by_phandle() cannot give correct results before the
-> > > process_check() call.
+> > > In order to have consistent internal data, the reference related to t=
+his
+> > > phandle usage needs to be updated based on the phandle value.
 > > >=20
-> > > Improve get_node_by_phandle() to look at node phandle properties when
-> > > the internal phandle value is not valid.
+> > > This is done by update_phandles_ref().
 > > >=20
-> > > This allows to return a correct matching node even if process_check()
-> > > was not called yet.
+> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > ---
+> > >  dtc.c      |  2 ++
+> > >  dtc.h      |  2 ++
+> > >  livetree.c | 38 ++++++++++++++++++++++++++++++++++++++
+> > >  3 files changed, 42 insertions(+)
 > > >=20
-> > > With the recently introduced FDT_REF_LOCAL dtb tag, this will be need=
-ed
-> > > to update internal phandle references before the call to process_chec=
-k().
-> > > Indeed, this tag allows to identify phandles and internal references
-> > > need to be updated based on the phandle value before the
-> > > process_check() call. =20
+> > > diff --git a/dtc.c b/dtc.c
+> > > index b3445b7..88f03ff 100644
+> > > --- a/dtc.c
+> > > +++ b/dtc.c
+> > > @@ -333,6 +333,8 @@ int main(int argc, char *argv[])
+> > >  		generate_fixups =3D 1;
+> > >  	}
+> > > =20
+> > > +	update_phandles_ref(dti);
+> > > +
+> > >  	process_checks(force, dti);
+> > > =20
+> > >  	if (auto_label_aliases)
+> > > diff --git a/dtc.h b/dtc.h
+> > > index 965321c..351fe41 100644
+> > > --- a/dtc.h
+> > > +++ b/dtc.h
+> > > @@ -345,6 +345,8 @@ void generate_label_tree(struct dt_info *dti, con=
+st char *name, bool allocph);
+> > >  void generate_fixups_tree(struct dt_info *dti, const char *name);
+> > >  void generate_local_fixups_tree(struct dt_info *dti, const char *nam=
+e);
+> > > =20
+> > > +void update_phandles_ref(struct dt_info *dti);
+> > > +
+> > >  /* Checks */
+> > > =20
+> > >  void parse_checks_option(bool warn, bool error, const char *arg);
+> > > diff --git a/livetree.c b/livetree.c
+> > > index 9b67934..9e30a63 100644
+> > > --- a/livetree.c
+> > > +++ b/livetree.c
+> > > @@ -1158,3 +1158,41 @@ void generate_local_fixups_tree(struct dt_info=
+ *dti, const char *name)
+> > >  			"Warning: Preexisting data in %s malformed, some content could no=
+t be added.\n",
+> > >  			name);
+> > >  }
+> > > +
+> > > +static void update_phandles_ref_internal(struct dt_info *dti, struct=
+ node *node)
+> > > +{
+> > > +	struct node *c;
+> > > +	struct property *prop;
+> > > +	struct marker *m;
+> > > +	struct node *refnode;
+> > > +	cell_t phandle;
+> > > +
+> > > +	for_each_property(node, prop) {
+> > > +		m =3D prop->val.markers;
+> > > +		for_each_marker_of_type(m, REF_PHANDLE) {
+> > > +			if (m->ref)
+> > > +				continue; =20
 > >=20
-> > Having two entirely different paths for get_node_by_phandle() is
-> > really ugly.
+> > IIUC this means that REF_PHANDLE markers can be missing their ref.
+>=20
+> Yes, no ref are present in dtb for phandle pointing to local node, only
+> the phandle value is present. We need at some point to set the ref from
+> this phandle value.
+>=20
+> > Allowing the markers to be in an incomplete state is a footgun.  If
+> > possible it would be better to fully generate the markers when we
+> > create them.  If not, we should use a different marker type when it's
+> > introduced, and convert it later.
 > >=20
-> > I suspect a better approach would be to special case updates to the
-> > internal phandle field as we parse the phandle properties, rather than
-> > doing it as a batch during the checks.
+> > I think what's going on here is one type is saying "you have a
+> > reference, fill in the phandle", the other is saying "you have a
+> > phandle, fill in the reference".  Those seem like they should be
+> > different types to me, even if they can be converted once all the
+> > fixups are applied.
 >=20
-> Doing that when we parse the property will be quite complex. Indeed,
-> when we parse a dts, the node internal object is not yet created when
-> the property is parsed.
-
-Ah, good point.
-
-> What I think could be done is to set the phandle field just after the
-> parsing of input (dts or dtb). In current implementation this is done by
-> process_check() when fixup_phandle_references() is called.
-
-Oof.  So, on the one hand, doing this indexing in the "checks" is kind
-of weird - I implemented it that way because it just seemed a
-convenient place that already scanned the full tree and had mechanisms
-for dependencies between different steps.
-
-However... these dependencies are a bit subtle.  Part of the trick
-here is that the indexing has dependencies on the really basic checks
-that we don't have invalid or duplicate node/property names.  If we
-moved the phandle indexing before that, we'd have to explicitly deal
-with the possibility of multiple "phandle" properties and other
-weirdness.
-
-Maybe we want to split the "checks" into two different phases.  One
-for "structural" checks, which check the basic required properties:
-characters in names, no duplicate names, no duplicate phandles.  That
-phase could also handle fixups and indexing that aren't really checks.
-
-A later phase could do the semantic checks (does the interrupts tree
-make sense etc.).   We could do processing between those two phases if
-it makes sense to do so.
-
-> This fixup_phandle_references() call should be removed from process_check=
-()
-> and called right after the input parsing.
+> Right, I can introduce
+> - REF_PHANDLE_FILL_PHANDLE: "you have a phandle, fill in the reference"
 >=20
-> I you are ok with that, I can propose something in the next iteration.
+> - REF_PHANDLE_FILL_REF: "you have a reference, fill the phandle"
+>   Well, fill the phandle or not... Indeed, this reference can be external=
+ and
+>   so this can be an unresolved symbol.
+>=20
+> But anyway those new marker types will exist only between the parsing ste=
+p and
+> the step where we convert them to REF_PHANDLE markers.
+
+So REF_PHANDLE always has a complete reference, and a
+complete-as-possible phandle value (-1 if it's an external reference)?
+I think that makes sense - I don't love the proposed names for the
+earlier markers, but better ones aren't immediately occurring to me.
+
+>=20
+> Will see what I can propose in the next series iteration.
 >=20
 > Best regards,
 > Herv=E9
+>=20
+>=20
 >=20
 
 --=20
@@ -160,25 +201,25 @@ david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
 				| around.
 http://www.ozlabs.org/~dgibson
 
---+P9QTFgzSE1gAhEN
+--rRoa7HnolBFEvCP8
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmltvrIACgkQzQJF27ox
-2GfvBQ//enesRThOluBC0PDsvoCBildMcS/KotxTea3b1bmrTQVn/9BfNGT8dvyO
-CjetPFyzESwrHGHlyyOTEi9Vq2UFuFtksl2QO+d0MZmEwhXyFUAxiC1seIAUb7lY
-6CozBIyNMBWur/vZQajCXbmc+BBiC8tD2HUF5sYyCIraKyiCR6u3it1EACvB6/21
-jzFLBLJ/sDIdQ9JKctEqkcg3F2A8iHWCfdrn83QAYG1iFzLgbBbBBlaFs4kJdPnI
-yM5VeX9GplXIgdPwTmHScTQg4mClG7iS92YLFmPysZcDZ1b+RVo+A0NLjAY+r4sA
-u4pwLR/QWgXEUpj3Z0bsaHTmUam2aq8x1GHYDWrjhqJhdf8Ndk/J0y0Bfa3tEnDb
-FV5D9RcyWSDQNgwh0AS2jvDMQxE6QrCjxsm1rOmlLQN53crDWAD8t27KjgOSkSrD
-aQbyKRgv+e96gsJcsMAse3P2QExM46GX2Wicb4fYF4qoHyj1+qCNihv6j22TL0/G
-nRqUwHci58EhMDwvyXXXayvXX6cpGfibJw7Z9cDUnzUIHw/9MKK6zXgz6XRyWWeE
-r6CZnynW9YhLPRD5SDkmYH7KAQl3qsM4NviaG/vYd5n1hOWxM1HrXg9vJsc8th0Y
-hfeGrK7/ewULWC/H32aKvwxIT1exRCm7ronJeFy5nO6iyZq3TQs=
-=8MhP
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmltv2UACgkQzQJF27ox
+2GdPOg/+JRPoTUmAw6YPu2Xpq02NBoksas2b14HcZSQjVW+pqNN2ToQHJVCYCnej
+NXzm6/5TtLcf4ce3Ncz46nKYHL7eq4rv3LSuVBj90Kil9RGkgZGx+JcvRUGiysXK
+cHEUuxyJxCyMbziiP5NcOJLncVxtBGjzgmVH777SC9ITIW1rd6ALXyDdTiUYEUaS
+SZAJLZr0vMGQTZMJeipUxcaEWmozCBGvcmBkwhtX7bigOagSURBvmXw0rvSKO4bL
+amXkYt3WE8BMkN9PjVyP9paQ1oBPLC5S9roIiejts7GbrvRS50MOMWtubBNsyWre
+wwXaMBhlsvdQXg+LLBuxFUug1FHoyAV2MIVWASJ4w+oBg2y+S5i0rCmzyqTzMDD/
+/ODWMeCwCHlye+oMGkGdJtwh8S3wYC3vNmSfw6e29zGy0PSYE0ev6IK4iy+GrWtH
+VCCxBbHe5HgMczukFUSfQqni/96jhY+F06xFvuojhr7mfB9i81CN2xi6oMBiffdv
+tzQ0lvp8qh/ofN05choamNRyKXeUpVe5cGpHuJcUKHkwtw2/BZj8taGj7Xt2hwBp
+4Qv27Rs5jt5d4+2WeFGWFqoapN0hivyBdByRDcbqqn35GOzxI2nlJ1jlnr6EiMoE
+ATiGjVtob3o/PSOzdA85QgbHDpBPe4e+WxTeF7ZjD2Dlhfv0ijI=
+=uf9O
 -----END PGP SIGNATURE-----
 
---+P9QTFgzSE1gAhEN--
+--rRoa7HnolBFEvCP8--
 
