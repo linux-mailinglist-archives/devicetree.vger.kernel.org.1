@@ -1,291 +1,291 @@
-Return-Path: <devicetree+bounces-256656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1A8D39E32
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:01:26 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1212CD39E33
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 07:04:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5928E3002D38
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:01:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7CA3C3000B0A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5E12135B8;
-	Mon, 19 Jan 2026 06:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E14023C4F3;
+	Mon, 19 Jan 2026 06:04:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="Wrl5nm00"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Yvg3Wfen"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5F8778F2B;
-	Mon, 19 Jan 2026 06:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 052C478F2B;
+	Mon, 19 Jan 2026 06:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768802481; cv=none; b=j29w+TJpaLacOx346rB0DnxB44oVtbYU36e0Vn6RH3gSCUjhH+ziyBYSXSLgJXozZTZUktk8mYY+seRp/aEx+WuprrY/FGkj8V1Q6hN6abQ5SHksLbzMvwEOciXCq0MHKgkJL6p5PYFkPK+lEz5cS8zMMeDB9zOvU8nFujnD6Ys=
+	t=1768802655; cv=none; b=X1NJZx+F/jSbqVasYrrJCMNGqxycKpGrp+DX6IJN4hpanWSR9cQxd3u+psonG4pezwB+fs6ue+fwP/0EvTJ/VYK9/ukp2MHPI80wcsZ3hf8/jRQYStMSLrCiBGHZkNuTRzhZ/w6ATFvKXKSRZXAen+FJPFJSMyTdsywwKpwUNzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768802481; c=relaxed/simple;
-	bh=e8e6qAe5DR6AAQf0mhWbE7dmoEgUUfiiQR5O1uGZpmo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ajH1cL+J2ALRex25fFaXItgn+ms2jb0Ed6sovhTDd3gM2IVHIP0loJoVkAyi2YV2zP4csbQhrfgG6Q3miXMaFbrjG5SxOshj0BtdMJYeFiSYvBwxM9vFnCa9sWH/R/nxbwfFvt/jNJS+4faPVFH53lFr9G0bMV2lLDbKwxAERoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=Wrl5nm00; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202512; t=1768802477;
-	bh=mlOq8tDZKltsi0nWAs+xXGaw/NEq68Jo8P6ZS1AkHDU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wrl5nm00f/saSlXXGj9EWO1cX0I++da4+ilrUYneLcpNMUg4ttVtgbGHe+aLT16Pi
-	 4rPrd8AxQA2lcbab7gUpUMxxXSVJt9tV269OL1Hkjv7oNfdDf6AOlGACDZYsJPH+2p
-	 XyEYoB18/Ayc5rmfzOCHEXOQHg9fAGXEPQQyo9fcZplPCusFNRkJ6ngvcREtswhCnx
-	 mIj9NNnRiu6RnV5aovK0y6MdTCJlR8JIIEr47JdWu5egBhXAUW+k2Fy2unNPDvfCEO
-	 hyWBw70oxf2vPsSPrTPkz8JUtZOzi1xvoV2MNnA8pZChAn31arwCymzTKrDzWRNEMq
-	 ocpgMqJKbJUeQ==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4dvfwF1zQWz4wGT; Mon, 19 Jan 2026 17:01:17 +1100 (AEDT)
-Date: Mon, 19 Jan 2026 17:00:44 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	Hui Pu <hui.pu@gehealthcare.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Saravana Kannan <saravanak@kernel.org>
-Subject: Re: [RFC PATCH 00/77] Add support for dtb metadata and addon
- device-trees
-Message-ID: <aW3IjNpBnnFE7-r7@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
- <CAL_JsqK4nH0B-CfKz5wgg12C+Vzi31ceHeOes94Z8hg3uN=X1g@mail.gmail.com>
- <20260114171822.2a44d2a5@bootlin.com>
+	s=arc-20240116; t=1768802655; c=relaxed/simple;
+	bh=NBwFaIqcW+D5WpQbZIDND6Rdmvl7XjMKpYCvxg9hul0=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=hb5XedOxr8Hy2/oOLh0miw2qbYbMVyaZBPLn/SgpYmt3EgYBog9gc/fJWUJJmnsAnO5UmV1uAS0/sYEekrtBjqHIoK1Dsxr7m9J3ybC1H0NnzQ0jinZcmM2SYBZyR0PeYKLXni3SzIr06F1ustthede3GeW2FqeiwD5VFMuI0Ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Yvg3Wfen; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c30:14a8:6c0f:bab:e527:aefa])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 486C2BE1;
+	Mon, 19 Jan 2026 07:03:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1768802618;
+	bh=NBwFaIqcW+D5WpQbZIDND6Rdmvl7XjMKpYCvxg9hul0=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=Yvg3WfenWeEUDrBVsT63HDmDguQhTyorfkptDAc68Ev/TKdo11cov0pPOaBPL9ziu
+	 rX8MWpfu65SUj0Cp4ZUgrP4TYceHBNVKgGyN1rflmT6SwXeeSDirC9bLh2np6GcUUK
+	 5swZkFaL2O1CoDohDzjS8NiJ/Y0LSDONrPHmZO3I=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="v6ocbXjxXlrgJL/a"
-Content-Disposition: inline
-In-Reply-To: <20260114171822.2a44d2a5@bootlin.com>
-
-
---v6ocbXjxXlrgJL/a
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <57b147bc-cdce-4033-8320-ce41b501519c@ideasonboard.com>
+References: <20251230083220.2405247-1-r-donadkar@ti.com> <20251230083220.2405247-19-r-donadkar@ti.com> <57b147bc-cdce-4033-8320-ce41b501519c@ideasonboard.com>
+Subject: Re: [PATCH v9 18/19] media: ti: j721e-csi2rx: Support runtime suspend
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Date: Mon, 19 Jan 2026 11:34:04 +0530
+Message-ID: <176880264444.9154.1426306631873007814@freya>
+User-Agent: alot/0.12.dev62+gb9d6144a6
 
-On Wed, Jan 14, 2026 at 05:18:22PM +0100, Herve Codina wrote:
-> Hi Rob,
+Hi
+
+Quoting Tomi Valkeinen (2026-01-15 18:16:14)
+> Hi,
 >=20
-> On Tue, 13 Jan 2026 12:44:07 -0600
-> Rob Herring <robh@kernel.org> wrote:
->=20
-> > On Mon, Jan 12, 2026 at 8:20=E2=80=AFAM Herve Codina <herve.codina@boot=
-lin.com> wrote:
-[snip]
-> > >   - Patches 13..17: Introduce addons device-tree
-> > >
-> > >     This part introduce the new /addon/ dts keyword
-> > >
-> > >   - Patches 18..30: Introduce /export/ keyword and related dtb tags
-> > >
-> > >     This part introduces the new /export/ dts keyword (details in pat=
-ch
-> > >     20) and the related FDT_EXPORT_SYM and FDT_EXPORT_SYM_REF dtb tag=
-s.
-> > >
-> > >     FDT_EXPORT_SYM (details in patch 25) is used when the exported
-> > >     symbol involved is a local node and FDT_EXPORT_SYM_REF (details in
-> > >     patch 29) is used when the node involved is a non local node. =20
+> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
+> > From: Jai Luthra <jai.luthra@ideasonboard.com>
 > >=20
-> > More generally, would these just be "node metadata" tags?
+> > Add support for runtime power-management to enable powering off the
+> > shared power domain between Cadence CSI2RX and TI CSI2RX wrapper when
+> > the device(s) are not in use.
 > >=20
+> > When powering off the IP, the PSI-L endpoint loses the paired DMA
+> > channels. Thus we have to release the DMA channels at runtime suspend
+> > and request them again at resume.
+> >=20
+> > Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> > Co-developed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > ---
+> >  drivers/media/platform/ti/Kconfig             |  1 +
+> >  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 59 +++++++++++++++----
+> >  2 files changed, 50 insertions(+), 10 deletions(-)
 >=20
-> I think we can have metadata at 3 differents levels:
-> - Property
-> - Node
-> - Global dtb
+> Should pixel interface reset belong to the runtime suspend/resume
+> functions? (Not a suggestion, just a question =3D).
 
-This is a really minor point, but I don't especially like the term
-"metadata" for the symbol / fixup information.  Although it's
-technically accurate that it's metadata for the property bytestrings,
-in most contexts "metadata" makes me think only of tree global
-metadata.  By analogy, symbols and fixup information in a .so or .a
-could be seen as metadata to the raw code / data bytes, but I wouldn't
-normally use that term for it (whereas I might for, say, the soname or
-certain .note sections).
+Yeah that would indeed make things cleaner, but the problem is that pixel
+reset needs to be asserted before we stop streaming on the source, as it is
+currently done in ti_csi2rx_stop_streaming(), to prevent issues with stale
+data on SoCs where the power domain doesn't turn off due to other
+dependencies.
 
-> With the suggestion you did on patch 6 related to FDT_REF_LOCAL and if I
-> understood correctly, you expect to have a kind of "container" tag to gro=
-up
-> metadata on each level.
->=20
-> Also you expect to have the ability to handle all 'for now unknown' tag
-> smoothly and so, I agree, the length of the data related to a tag are
-> needed to be present with the tag itself. I see to kind of tag, some with
-> the length of data available in the u32 following the tag and other witho=
-ut
-> the length encoded.
->=20
-> Tags without length encoded are followed by one u32 field containing data
-> related to the tag. This allow to avoid a lot of 'TAG_XXX 0x04 u32_data'
-> Indeed, I have the feeling that quite a lot of tags will have only one u32
-> field as data part and so, having 0x04 encoded (cell aligned) each time.
->=20
-> A tag value is on 32bits. We can define the structure of this value.
->   - bit 31 (msb):
->      - 0: This is not a new kind to tag and so it doesn't follow this def=
-inition.
->           All existing tags are in this categorie
->      - 1: New kind of tag adopting this definition
->=20
->   - bits 30..28:
->      tag data length encoding
->      0b000: No data related to the tag
->      0b001: 1 data cell (u32) directly follows the tag
->      0b010: 2 data cells (2 u32) directly follow the tag
->      ...
->      0b110: 6 data cells (6 u32) directly follow the tag
->      0b111: Tag is followed by a cell (u32) indicating the size (in bytes)
->             of data available just after this cell (including any padding
->             if needed).
-> 	    Because this size include some possible padding, its value is a
->             multiple of 4 bytes.
->             The offset of the tag + 4 + size points to the next tag.
->          =20
->=20
->   - bit 27..0
->      tag specific identifier
+I am also not sure the correct ordering would be possible if it is tied to
+the pm_runtime_put due to the two subdevs (cadence and shim) between the
+video node and the camera, where both need to be awake for DMA transactions
+to complete.
 
-As noted elsewhere, I'm not necessarily opposed to having a general
-length encoding.  However, for each new tag I think we need to think
-carefully about whether it really is safe for older software that
-doesn't understand it to just skip it.
+It still might be worth investigating, but I think for this iteration of
+the driver it is better to keep it separate, as moving the pixel reset has
+lead to weird bugs due to stale data in the past.
 
-> With that definition, the following tags can be defined:
->   - FDT_INFO_PROPERTY (new tag, length encoding): 0xf0000001
->      This tag is available after a property.
->      It is followed by a cell for the length of data, the data part is a
->      sequence of tags (and related data) giving information related to the
->      last property available before the tag.
-
-I'd prefer to avoid an additional layer of nesting here - I'd rather
-just have multiple top level tags.
-
->   - FDT_REF_LOCAL (new tag, 1 cell data): 0x90000002:
->      The cell after this tag is the offset in the property where a local
->      phandle is available
 >=20
->   - FDT_REF_PHANDLE (new tag, length encoding): 0xf0000003
->      Cf. patch 11 for definition
->      It is followed by a cell for the length of data. The data part is
->      composed of:
->        - offset (u32)
->        - label (string including \0)
->        - padding if needed to have next item aligned on 32bits
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 >=20
->=20
-> With that defined, supposing the following dts example:
->   --- 8< ---
->   /* 'foo' is a reference to local node,
->    * 'bar' is a reference to an external node
->    */
->   prop =3D <1 2 &foo &bar1>;
->   --- 8< ---
->=20
-> The dtb will see the following structure:
-> FDT_PROP ...
-> FDT_INFO_PROPERTY (0xf0000001)
->   28 (length =3D (4+4)+(4+4+12) bytes)
->   FDT_REF_LOCAL (0x90000002)
->     0x8                             <--- offset of &foo
->   FDT_REF_PHANDLE (0xf0000003)
->     12 (length =3D 4+4+1+3 bytes)
->     0xc                             <--- offset of &bar
->     "bar1" + its \0                 <-- reference to resolve
->     0x00 0x00 0x00                  <-- 3 bytes padding
->=20
-> Adding FDT_TYPE_U32 later will consist in defining
-> its value, probably a 0x9 family (1 cell after the tag for the
-> offset value)
->=20
-> At any point, only looking at the higher part of the tag (i.e. 0xN.......=
-), we
-> can skip the tag and its data if don't know about the tag.
->  - 0x0: Old tag format
->     -> Error if unknown
->=20
->  - 0x8 to 0xe: New format followed by 0 (0x8) to 6 cells of data
->     -> Ignore if unknown and skip the N cells of data to look at the next
->=20
->  - 0xf: New format followed by 1 cell giving the size of following data.
->     -> Ignore if unknown and read the length available in the cell after =
-the
->        tag, skip length byte of data to look at the next.
->        If the length read is not a multiple of 4: Error, invalid tag.
->=20
->=20
-> For this series we need the container tags:
-> - FDT_INFO_PROPERTY for information related to a property
->   Among known tags defined in this series, only FDT_REF_LOCAL and
->   FDT_REF_PHANDLE can be grouped into a FDT_INFO_PROPERTY.
->=20
-> - FDT_INFO_NODE for information related to a node
->   Among known tags defined in this series, only FDT_EXPORT_SYM_LOCAL
->   and FDT_EXPORT_SYM_REF can be grouped into a FDT_INFO_NODE.
->=20
-> - FDT_INFO_DTB for information related to the dtb
->   Among known tags defined in this series, only FDT_IMPORT_SYM can
->   be present into a FDT_INFO_DTB.
->=20
-> IMHO, the new tag FDT_BEGIN_NODE_REF related to orphan nodes doesn't
-> have to be in one of those containers. Indeed, FDT_BEGIN_NODE_REF
-> is more a node definition than a metadata.
-
-That's a perfect example of a new tag that absolutely cannot be just
-skipped if not understood.  Software *must* hard error if they
-encounter this and don't understand it.
-
-> Rob, does this could fit with what you expect?
->=20
-> If it does, is it relevant to keep the length cell available in 0xf
-> family to be in bytes. It should be a multiple of 4 in all cases and
-> so it can be given in the number of 32bit words instead of bytes.
->=20
-> Best regards,
-> Herv=C3=A9
->=20
+>  Tomi
 >=20
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+Thanks,
+    Jai
 
---v6ocbXjxXlrgJL/a
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmltyIsACgkQzQJF27ox
-2Gd7Dw//Z87+jMoli3YsNfNs/uX/nKTqffSULR3cCi/cz1LFeMeDumJnKV1wwS7G
-qyg8c4v9wUOQiscxe9c5oPFIAEmCmRE8mZoposJahrHnvZdoUaye8+5mJ4qL9yY0
-46Dt0zAtCqul3BHy/uhdvl7zE2FIpZoXHk5RdQHjI8+3MD0JXfZVNy/KNe9wR6cZ
-P5DwO3N2oVEl9AwSgTfkouaRFBmWxzV4/Oo1kUiIZe0aBEnmtO0YIG77vwoGAlOh
-YD3ox/TXoit8TA+2iWu6cS4IzDvOqdkLmVB9hFdq/yv3E0BcY+bHKNFT4ot7I7oe
-Zb/zy//gf7eY+cceG6GIyHz1QjbQ22dcXz701R9ups4dhGI1CMDXvgvnZIWvbh9j
-r7I2fhF1sJiYsmbNJ+pehIXGaJVISxS851LemgHunkfv5xNw3JwHYG2EwBJHtNFy
-U/x+OtMTMo51dMOgrlFvE9KLKLtUVMhgPJwwLvCoJ5DBTamKvd5HQ9oVTEZUje7Z
-1T/jkv3vdovKuMOWFyKj3fuAy/R2JmrrpKDYfVtAYcXC9vpOvALRErH1CGgg0Y2A
-ip/XPmHXMjj3x4kf37cDncp+Eq9AAnWblq7yviPkUA4sPHhWAgLrh/c+afKXOYMa
-sY+1d1t/DGHDZP9de29NrmDQB/nawA8kbaBcDRUBacnDzWWjDYk=
-=tiYz
------END PGP SIGNATURE-----
-
---v6ocbXjxXlrgJL/a--
+> > diff --git a/drivers/media/platform/ti/Kconfig b/drivers/media/platform=
+/ti/Kconfig
+> > index 3bc4aa35887e6..a808063e24779 100644
+> > --- a/drivers/media/platform/ti/Kconfig
+> > +++ b/drivers/media/platform/ti/Kconfig
+> > @@ -70,6 +70,7 @@ config VIDEO_TI_J721E_CSI2RX
+> >       depends on VIDEO_CADENCE_CSI2RX
+> >       depends on PHY_CADENCE_DPHY_RX || COMPILE_TEST
+> >       depends on ARCH_K3 || COMPILE_TEST
+> > +     depends on PM
+> >       select VIDEOBUF2_DMA_CONTIG
+> >       select V4L2_FWNODE
+> >       help
+> > diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/dr=
+ivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > index 3922bd67e78da..72da58738e16e 100644
+> > --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > @@ -13,6 +13,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of_platform.h>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/pm_runtime.h>
+> >  #include <linux/property.h>
+> > =20
+> >  #include <media/cadence/cdns-csi2rx.h>
+> > @@ -964,12 +965,16 @@ static int ti_csi2rx_start_streaming(struct vb2_q=
+ueue *vq, unsigned int count)
+> >       unsigned long flags;
+> >       int ret =3D 0;
+> > =20
+> > +     ret =3D pm_runtime_resume_and_get(csi->dev);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> >       spin_lock_irqsave(&dma->lock, flags);
+> >       if (list_empty(&dma->queue))
+> >               ret =3D -EIO;
+> >       spin_unlock_irqrestore(&dma->lock, flags);
+> >       if (ret)
+> > -             return ret;
+> > +             goto err;
+> > =20
+> >       ret =3D video_device_pipeline_start(&ctx->vdev, &csi->pipe);
+> >       if (ret)
+> > @@ -991,6 +996,8 @@ static int ti_csi2rx_start_streaming(struct vb2_que=
+ue *vq, unsigned int count)
+> >       writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+> >  err:
+> >       ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_QUEUED);
+> > +     pm_runtime_put(csi->dev);
+> > +
+> >       return ret;
+> >  }
+> > =20
+> > @@ -1022,6 +1029,7 @@ static void ti_csi2rx_stop_streaming(struct vb2_q=
+ueue *vq)
+> > =20
+> >       ti_csi2rx_stop_dma(ctx);
+> >       ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_ERROR);
+> > +     pm_runtime_put(csi->dev);
+> >  }
+> > =20
+> >  static const struct vb2_ops csi_vb2_qops =3D {
+> > @@ -1263,7 +1271,6 @@ static void ti_csi2rx_cleanup_notifier(struct ti_=
+csi2rx_dev *csi)
+> > =20
+> >  static void ti_csi2rx_cleanup_ctx(struct ti_csi2rx_ctx *ctx)
+> >  {
+> > -     dma_release_channel(ctx->dma.chan);
+> >       vb2_queue_release(&ctx->vidq);
+> > =20
+> >       video_unregister_device(&ctx->vdev);
+> > @@ -1283,7 +1290,7 @@ static int ti_csi2rx_init_vb2q(struct ti_csi2rx_c=
+tx *ctx)
+> >       q->ops =3D &csi_vb2_qops;
+> >       q->mem_ops =3D &vb2_dma_contig_memops;
+> >       q->timestamp_flags =3D V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
+> > -     q->dev =3D dmaengine_get_dma_device(ctx->dma.chan);
+> > +     q->dev =3D ctx->csi->dev;
+> >       q->lock =3D &ctx->mutex;
+> >       q->min_queued_buffers =3D 1;
+> >       q->allow_cache_hints =3D 1;
+> > @@ -1497,21 +1504,46 @@ static int ti_csi2rx_init_ctx(struct ti_csi2rx_=
+ctx *ctx)
+> >       spin_lock_init(&ctx->dma.lock);
+> >       ctx->dma.state =3D TI_CSI2RX_DMA_STOPPED;
+> > =20
+> > -     ret =3D ti_csi2rx_init_dma(ctx);
+> > +     ret =3D ti_csi2rx_init_vb2q(ctx);
+> >       if (ret)
+> >               return ret;
+> > =20
+> > -     ret =3D ti_csi2rx_init_vb2q(ctx);
+> > -     if (ret)
+> > -             goto cleanup_dma;
+> > +     return 0;
+> > +}
+> > +
+> > +static int ti_csi2rx_runtime_suspend(struct device *dev)
+> > +{
+> > +     struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
+> > +     int i;
+> > +
+> > +     if (csi->enable_count !=3D 0)
+> > +             return -EBUSY;
+> > +
+> > +     for (i =3D 0; i < csi->num_ctx; i++)
+> > +             dma_release_channel(csi->ctx[i].dma.chan);
+> > =20
+> >       return 0;
+> > +}
+> > =20
+> > -cleanup_dma:
+> > -     dma_release_channel(ctx->dma.chan);
+> > -     return ret;
+> > +static int ti_csi2rx_runtime_resume(struct device *dev)
+> > +{
+> > +     struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
+> > +     unsigned int ret, i;
+> > +
+> > +     for (i =3D 0; i < csi->num_ctx; i++) {
+> > +             ret =3D ti_csi2rx_init_dma(&csi->ctx[i]);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     return 0;
+> >  }
+> > =20
+> > +static const struct dev_pm_ops ti_csi2rx_pm_ops =3D {
+> > +     RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resum=
+e,
+> > +                    NULL)
+> > +};
+> > +
+> >  static int ti_csi2rx_probe(struct platform_device *pdev)
+> >  {
+> >       struct device_node *np =3D pdev->dev.of_node;
+> > @@ -1569,6 +1601,8 @@ static int ti_csi2rx_probe(struct platform_device=
+ *pdev)
+> >                       goto err_ctx;
+> >       }
+> > =20
+> > +     pm_runtime_enable(csi->dev);
+> > +
+> >       ret =3D ti_csi2rx_notifier_register(csi);
+> >       if (ret)
+> >               goto err_ctx;
+> > @@ -1601,6 +1635,9 @@ static void ti_csi2rx_remove(struct platform_devi=
+ce *pdev)
+> >       struct ti_csi2rx_dev *csi =3D platform_get_drvdata(pdev);
+> >       unsigned int i;
+> > =20
+> > +     if (!pm_runtime_status_suspended(&pdev->dev))
+> > +             pm_runtime_set_suspended(&pdev->dev);
+> > +
+> >       for (i =3D 0; i < csi->num_ctx; i++)
+> >               ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
+> > =20
+> > @@ -1609,6 +1646,7 @@ static void ti_csi2rx_remove(struct platform_devi=
+ce *pdev)
+> >       mutex_destroy(&csi->mutex);
+> >       dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
+> >                         csi->drain.paddr);
+> > +     pm_runtime_disable(&pdev->dev);
+> >  }
+> > =20
+> >  static const struct of_device_id ti_csi2rx_of_match[] =3D {
+> > @@ -1623,6 +1661,7 @@ static struct platform_driver ti_csi2rx_pdrv =3D {
+> >       .driver =3D {
+> >               .name =3D TI_CSI2RX_MODULE_NAME,
+> >               .of_match_table =3D ti_csi2rx_of_match,
+> > +             .pm             =3D &ti_csi2rx_pm_ops,
+> >       },
+> >  };
+> > =20
+>
 
