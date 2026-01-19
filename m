@@ -1,176 +1,195 @@
-Return-Path: <devicetree+bounces-256621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB556D39CB6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 04:13:40 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92385D39D90
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 06:02:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 321463007248
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 03:13:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BB7BB3000B11
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 05:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F7023BD06;
-	Mon, 19 Jan 2026 03:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEC341D86FF;
+	Mon, 19 Jan 2026 05:02:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e/2KDSL0";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HBOBcqJN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YDa2NdI+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB6B01E32CF
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 03:13:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7C1C2EA
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 05:02:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768792417; cv=none; b=kz62+Kj7TdgNb8vjw3OmhdvPgUhlRKGlC4a4/Vsxj/gOa4k19D6QXBVp8yR1DLp7s89TfvETJ/T7kYBo/2dQsMrEHbzvTcvky7ZZ8jpB6L2Ik3d5JllsGydbUYRkQjEkESjk/9fjry7ol9TUCZH84TOqG2mtj3AXhi+VbmId/9E=
+	t=1768798931; cv=none; b=Z2qGP/zQ5GW/zD7GIwKv8uDBGsAUk+3jEnzudxKEN+TA02rANVqe5LHq+6oOgdhhp472IJPKYU7prBV1H+sORiz3+1WvW1rg+OQdOT4R0A7eibaeMhIS9LupTe6OwC9eqOm/wZ0jPUP9NoObhjdHz64SLd6FPqo3GaMuuJohzR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768792417; c=relaxed/simple;
-	bh=yJaP3ZDU0VbbqslTx3U2v3HckT6v1tlTz0sWdow1EcM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kruWahdFQoub+3YWn0HUXlCXHBvB/9bl41P6mCOwUUzkXf/mvAARQt29QowDr91I+QskKKj+QHKWtvtXFb1uTcJNQzoWQpQeWy7sBoYCebZ0oNF3ByMfIBPNVk1mpH/+hQUHjEaun0B46i0MoCQTvkucmdfFin7vUK2K8nY6woE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e/2KDSL0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HBOBcqJN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 60IJ9JFr3613988
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 03:13:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wbvgtPeWZoKawED6AUWH0jnohwDt5nFV8+58M363DJI=; b=e/2KDSL0SZgv4Idt
-	4n68ZjLS2dj2wW6Ul6YA4axvxcoYdZilx3d1uo7EJL6Z9azotfTAS5VaaEjLD9xo
-	h7bt03HH/+AQveorGKM3PgmRPVvk3DpH1zOSRtL376T3gBBIddsjI8tHJwnhs3Cj
-	n860vNDrehL/GW61UIE1809ehPoiedhSnZPURA6CaGAkwALeCBNYj5JWVVDVztLy
-	dP2KsTCoKftSWj/mrQyKOTRwg/3gVTExV3R13kiWraIriNLyda33hqu4JbVGg9lP
-	vR7kKaAl9bwmnmWnmGnstHFfiovNuVreLVlpQt3zE5+jIgR+9kepAj97p5dE3cWl
-	wbVn3g==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4br04e3t87-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 03:13:34 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2a0fe4ade9eso34987915ad.0
-        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 19:13:34 -0800 (PST)
+	s=arc-20240116; t=1768798931; c=relaxed/simple;
+	bh=Kth4TdY7BKRrFKvA30wZ10JzAU9o9teCxEq+81T6jOI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=c+hC9/REqlJNG5Xm3Z1pNZBSkE++6CSACkBHfHUst2VZHm2nBqhvAEUgEQOTeumL7liKC3IbFAo2mziznNbRPs37h8v4Ux6DhiMhCwJ8IOzzrH31snMG1pu3a6ghwK0AfsEDeqqZAlNFRJFSIb62yKyAx8Kiu+4LUQnaPFb5Pxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YDa2NdI+; arc=none smtp.client-ip=209.85.219.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-88a367a1dbbso64896696d6.0
+        for <devicetree@vger.kernel.org>; Sun, 18 Jan 2026 21:02:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1768792414; x=1769397214; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wbvgtPeWZoKawED6AUWH0jnohwDt5nFV8+58M363DJI=;
-        b=HBOBcqJNu+L6caavPxCQe1Ephex207J0a7NbQpIPfqKWSedgRAewGsAPu9hKjLjKUw
-         TGrHcB4UaekjH7lYk8WdrrsFBT1IyYfFiUeR2uJgo+5qixm1SCQlMcHp5jKuBqc/cjMw
-         gaVUHzR3Xti1BOvj5pk6ngmtdAfE2zJfbwlub1TjCpyPu9tutJ0Hg1cB85RF0RoCSp/z
-         3phvfMNR4Kr0zWHq7hwapuooRIEjcdf4mIgaI4yPDShAXvBa6taJTyWW8/t37FJzM3H8
-         aP4FckI4xoWwklkT/5ezGzwxB2aZiGjeipUF+bCwrdeNNn6XcbB8YR/PVYOk5FN0xiVJ
-         5iiA==
+        d=gmail.com; s=20230601; t=1768798929; x=1769403729; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=knOhHJnYgS3NfXJV6CmNIci8LqgQNdPXN9K0tc0/Z54=;
+        b=YDa2NdI+JUkdn3geIMVX9ijTyPvvHxpZsqyR7/UdU+hU0ImBM9yBIxBmqPcRQTu3Xa
+         GR9MGOZTpujOssVIHWsXtoWmtWjGdkuLjovkaNMR2J81xYheSCSrcGb+5cIhewpCLrO/
+         3ShHfrP/YortKWWVttfK//0xdfPFBUp39LRy29Gcwg+JWJy37onTf/9Z4rwzw23zNxGg
+         yME/8tPJZfgtAfuNEXgFHff/hE45gmDv0okP4MjBy/tFXI2VVtsI954cxkgraWO/PDRG
+         IjgvEFjOem5BgX9LsIXVOFoqZSqh1CK5fNYB2VSvlRhTUPCAbpDUOTiI9ZVPQeI61Kzc
+         4BcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768792414; x=1769397214;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wbvgtPeWZoKawED6AUWH0jnohwDt5nFV8+58M363DJI=;
-        b=wFt04JVqoeLEPjBBtxBPR+OP7zGjEPBM4J2C8H8YiLxiZ1jz5eXPp4XzJm52Z+Ggqo
-         Hkfy0r2bbSKrea326qd8DYnbpolE/YRgPvS+Bgpn+4WV08LMk+aptMfqS1kFjAyr46Dx
-         uJjKGUs4GVh61VossoUc+dy/hSrBwQuUICNflnW0Pzswz8ZAR2DiYzNuq+nu0OQ22t8E
-         soPsAVytJnDNJjo1eGjL1vaIxCjoEPnVq0tIqmgyK7HhNW2OAaODtOdSzDaWN6igYole
-         B6gn0KObz3ScsGcgFEU7tA+p0xPY69vRQoBra20VVj4lu0VU7BoUG4PK4zH6L6tQOFSG
-         6S1w==
-X-Forwarded-Encrypted: i=1; AJvYcCW4MFKx30XEgkaR+R1TwCnj98joea4oTfb2YUzJmidQzbhlyd4673sSkzgRjitYBfMB388eSRRI7Myt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFaVc6Be1nx0awPXwKXx4T9vZpl8/ohvnfWPKtOjnrUiqGkc3i
-	KcA56nTocETvYMkSgNHWJP8wARcFhck2CNiFNqBa+TtxHlL1U2szwrdd0728qx3R2PM0+aNoY5a
-	XrjXlQrChWWn9WapmOFwlsbsEayOrxwH0K/cbRXE5p2T+5eCE41dHhP/6gGOU3UbB
-X-Gm-Gg: AY/fxX7wAdbahefo7CSjo04AzioOX1lPmuC6LBSjaI1S4npYCfxupiAq3W75KUnejj+
-	kAV2mxTR6RqwtcO4Jr2RQlU8q4V+Jv6VnnX+W5JaW4iK8HoSJ7SY4AH67IP/4cu0Ptin8gzDwmp
-	TYfzmoZbv9GCQQ9x/uivUAOTFxXlvpzg83BIdm1YZkxp9Eu+cYiv8lhJOyEq5YKgdULsvpHfF2U
-	3nPKpiIvPKsUEMjToynq9jtnqstPzSkfsujDdG0pcYnohTf0H93ubTM9L0gW4ZumbjxckjBDxWL
-	8a+otY2LXbT8vc2OR6EFBPQKn1d1GTiXowntjBMdmgiKJcBtmh1PiXEixZVZS83EEHr9I6KaOjA
-	sMPMzPLdpEsgBENvUu+QS3Q2f0hM+kStFQZhEsr5NTm3x0RtBXvwldAvL+ESgODNPyWt1X9MONo
-	6elpE=
-X-Received: by 2002:a17:902:d2d0:b0:2a1:10f7:9717 with SMTP id d9443c01a7336-2a7178099e8mr104818635ad.58.1768792414203;
-        Sun, 18 Jan 2026 19:13:34 -0800 (PST)
-X-Received: by 2002:a17:902:d2d0:b0:2a1:10f7:9717 with SMTP id d9443c01a7336-2a7178099e8mr104818315ad.58.1768792413683;
-        Sun, 18 Jan 2026 19:13:33 -0800 (PST)
-Received: from [10.133.33.126] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7193fb373sm63575925ad.72.2026.01.18.19.13.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jan 2026 19:13:33 -0800 (PST)
-Message-ID: <3404f2f4-7edb-4bff-925b-0a6a7a450f5c@oss.qualcomm.com>
-Date: Mon, 19 Jan 2026 11:13:29 +0800
+        d=1e100.net; s=20230601; t=1768798929; x=1769403729;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=knOhHJnYgS3NfXJV6CmNIci8LqgQNdPXN9K0tc0/Z54=;
+        b=igwOU+8IjZzLYbCPSLh5cnNGmBWoQBAHC+uTYceznauNGCZHaBks0CmjTaduwSUo00
+         BKd+unyD/9/EDU4zQ7f3LIejuId/H353dEnT91JWI2INsUwQ269KQ0ooQJZhZTIz1umC
+         fiI5R6WJtV7pbQCB4kdm06g23O/AGyrDUXNplrxMkEX2mVefwvdPT+C4Z4mgndSNuKT9
+         qqBs+xJwBzsx4JlxsJAaScSwlpI9dHK3vu+LO4FaaCFVafZEoEoncZxG6LsltJTQERI0
+         Kq8ZvcHhpAP4q9lU970jryrRPVIP5ykckatMam8qLRZh/0jMcbXqofrXaIHXX8UUpf8m
+         6JIw==
+X-Forwarded-Encrypted: i=1; AJvYcCXp4m91X9gObt4L6RsEkXbojzav8hN0ZsWJj7JNDYZsfEhAZmszpWZcJDAuzFlM9JxIHvInn07g/RD/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxw/PtSCVfyv12n4AycDubbI3gfN7CTB01fuX1QKn4YvCMxlHig
+	/1aRm+8ZuddKVzovZL9QJr+aNeOx7gssk71jg1ajYVs7lqVL/AbwH5EI
+X-Gm-Gg: AY/fxX6XM7F4J/1G7I8Sz2+xxs8uLUoP0X1xCHWLsl769eTy9oAGwLqISAL4e8ymEwv
+	/JvICdwzY2TiVB75aOVm+DQ02SayxTz2Gb6x+pNZCwOXEA+PAQJ1bc3X0lx+xbh9KhSrwivOwRZ
+	3WtqsebAAm4QjiYMCQ8LoHLS3rCi5bTGoM8qXvUrMIc81maoPaRz8FKCvOp6YESTuNf8Lowa0bE
+	VM6zFsZbjptpyYVMj/7x9vucHP0ZGRevzlKlFCKfBWOmkGkZR32DwsodL34eyPeM7DJ1lAP7lDc
+	qIjAFhgEgR/XCeXtDRh5UE+HHuNWt23fCroej0MDLfaaHFftx065O+/WNVV9AUFLjNO1BDYoHs9
+	cfAM0uh4FqcuP2BIV4EIDPhRbTQ1trMY+QxuRfVcgcREzsazL4yv6c4fPaWSXJ/bFbe/cqiaBjT
+	kHEZ6cAlH6kIcSj+uI7E8jMroovXj5YK94tVEE2ZW5iMTULVbZV9jQtoVqldrgcMsZ9FdHFtJka
+	Unn9g==
+X-Received: by 2002:a05:620a:178a:b0:8b1:1585:2252 with SMTP id af79cd13be357-8c6a68d35f7mr1336428085a.1.1768793440895;
+        Sun, 18 Jan 2026 19:30:40 -0800 (PST)
+Received: from mighty.localdomain (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c6a71ab20dsm724706885a.5.2026.01.18.19.30.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Jan 2026 19:30:40 -0800 (PST)
+From: Mithil Bavishi <bavishimithil@gmail.com>
+To: aaro.koskinen@iki.fi,
+	andreas@kemnade.info,
+	khilman@baylibre.com,
+	rogerq@kernel.org,
+	tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	quic_jesszhan@quicinc.com,
+	bavishimithil@gmail.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	thierry.reding@gmail.com
+Cc: linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-hardening@vger.kernel.org
+Subject: [PATCH v4 00/10] Initial support for Samsung Galaxy Tab 2 series
+Date: Sun, 18 Jan 2026 22:30:24 -0500
+Message-ID: <20260119033035.57538-1-bavishimithil@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: Add base PURWA-IOT-EVK board
-To: Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20260116-purwa-v4-0-89b2adae9f09@oss.qualcomm.com>
- <20260116104136.2922032-4-yijie.yang@oss.qualcomm.com>
- <d15bbe2a-a88a-4a88-a685-ecd4f058c3af@kernel.org>
-Content-Language: en-US
-From: Yijie Yang <yijie.yang@oss.qualcomm.com>
-In-Reply-To: <d15bbe2a-a88a-4a88-a685-ecd4f058c3af@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=J5OnLQnS c=1 sm=1 tr=0 ts=696da15e cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=vUbySO9Y5rIA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=E4a1J00B82a1_SpTfIgA:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMTE5MDAyNCBTYWx0ZWRfX1I75wOpPIFvI
- PuMXxHfbDcMTvVigvG3KThTNZWk5kNDC+fULk1p+wirBjp5sCHTd5ns4D1SLyaK3SEaTJ+ELPmQ
- tNSTaDxunrVzu4OYI53koJw8Y6V/uiOULY3jbebvh2Z0aukiHzXCD1jx6s8EIfaRYO8HZXF8A6j
- 7yaNooJnUgxtuQDFNkON76ESJRC9mfb2rCNMzHgKfprp4VqTIuyHTQ8cviHGECic1wDnmMFfMMy
- U7zjA2rBOlq2qb8bTRajFvK4C94QL/oMRl1dcAeLoERhuw+I/qVfmbmIltm1U0kSYZVutShl48u
- fRY4BfN0XljQUMI17TJrZ/54uQTYSSpBsO2Zmdru4yJGErhixnMTiYjN7F5270QFVCnDQx90gtI
- sr5FRu8DreorfJf/NXxyjDtfO2qz2kGtZlcfoDEprTtu+ZEeoHMMSI3v3u7xWjTkZz3NUm+uWbD
- 1WC0ogAOyz5Nmez4KmA==
-X-Proofpoint-GUID: uq4HsiaSwyIePczS-XtIthzS4retEHfY
-X-Proofpoint-ORIG-GUID: uq4HsiaSwyIePczS-XtIthzS4retEHfY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2026-01-17_03,2026-01-18_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 adultscore=0 bulkscore=0 priorityscore=1501
- clxscore=1015 malwarescore=0 lowpriorityscore=0 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2601190024
+Content-Transfer-Encoding: 8bit
 
+From: Mithil <bavishimithil@gmail.com>
 
+This series adds initial support for the Samsung Galaxy Tab 2
+(samsung-espresso7/10) series of devices. It adds support for 6 variants
+(P3100, P3110, P3113, P5100, P5110, P5113). Downstream categorised them
+based on 3G and WiFi, but since they use different panel, touch
+controllers, batteries, I decided to categorise them based on screen
+size as espresso7 and espresso10.
 
-On 1/17/2026 12:19 AM, Krzysztof Kozlowski wrote:
-> On 16/01/2026 11:41, YijieYang wrote:
->> From: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>
->> The PURWA-IOT-EVK is an evaluation platform for IoT products, composed of
->> the Purwa IoT SoM and a carrier board. Together, they form a complete
->> embedded system capable of booting to UART.
->>
->> PURWA-IOT-EVK uses the PS8833 as a retimer for USB0, unlike HAMOA-IOT-EVK.
->> Meanwhile, USB0 bypasses the SBU selector FSUSB42.
->>
-> 
-> NAK.
-> 
-> Warnings were reported at v3. Did you address them? No, you completely
-> ignored them, so warnings are reported again at v4.
-> 
-> What do you think these emails are for?
+It adds basic functionality for both the models including panel, drm,
+sdcard, touchscreen, mmc, wifi, bluetooth, keys, battery, fuel gauge,
+pmic, sensors.
 
-This warning is caused by the pcie3_phy node in purwa.dtsi, which is not 
-introduced by this patch set. Since it does not impact functionality, 
-would it be appropriate to fix it in a separate patch?
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+---
+Changes in v4
+- Fixed syntax in doestek vendor
+- Changed - to _ in node names
+- Removed address/size-cells in chosen
+- Added pinmux for i2c-gpio5,6,7, irled
+- Allow sdcard to poweroff (reg_espresso_external)
+- Changed power to key-power
+- Order alphabetically in omap4_pmx_wkup and omap4_pmx_core
+- Use generic node names
+- Added TODO for future nodes
+- Fix touchscreen values in espresso7 and espresso10
+- Add dts to Makefile
+- Commit message length under 75
+- Link to v3: https://lore.kernel.org/linux-omap/20241108200440.7562-1-bavishimithil@gmail.com/
+Changes in v3
+- Use device tree from the correct branch
+- Fix commit subjects to matching the subsystem
+- Add Doestek vendor
+- Add compatible for LVDS encoder
+- Add compatibles for 7 and 10 inch panels
+- Clean up device tree using "make CHECK_DTBS=y"
+- Link to v2: https://lore.kernel.org/all/20241030211215.347710-1-bavishimithil@gmail.com/
+Changes in v2
+- Fix node names in common dtsi to have - instead of _
+- Removed import for twl6030.dtsi
+- Edited dts to completely use twl6032 nodes
+- Fixed typo ldosb -> ldousb
+- Link to v1: https://lore.kernel.org/all/20241030194136.297648-1-bavishimithil@gmail.com/
+--
 
-> 
-> Best regards,
-> Krzysztof
+Mithil Bavishi (10):
+  ARM: dts: twl6032: Add DTS file for TWL6032 PMIC
+  dt-bindings: vendor-prefixes: Add Doestek
+  dt-bindings: display: bridge: lvds-codec: add doestek,dtc34lm85am
+  dt-bindings: display: panel-lvds: Add compatible for Samsung
+    LTN070NL01 Panel
+  dt-bindings: display: panel-lvds: Add compatible for Samsung
+    LTN101AL03 Panel
+  ARM: dts: ti: omap: espresso-common: Add common device tree for
+    Samsung Galaxy Tab 2 series
+  dt-bindings: omap: Add Samsung Galaxy Tab 2 7.0
+  ARM: dts: ti: omap: samsung-espresso7: Add initial support for Galaxy
+    Tab 2 7.0
+  dt-bindings: omap: Add Samsung Galaxy Tab 2 10.1
+  ARM: dts: ti: omap: samsung-espresso10: Add initial support for Galaxy
+    Tab 2 10.1
+
+ .../devicetree/bindings/arm/ti/omap.yaml      |    2 +
+ .../bindings/display/bridge/lvds-codec.yaml   |    1 +
+ .../bindings/display/panel/panel-lvds.yaml    |    4 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ arch/arm/boot/dts/ti/omap/Makefile            |    2 +
+ .../omap/omap4-samsung-espresso-common.dtsi   |  762 ++
+ .../dts/ti/omap/omap4-samsung-espresso10.dts  |  104 +
+ .../dts/ti/omap/omap4-samsung-espresso7.dts   |   70 +
+ arch/arm/boot/dts/ti/omap/twl6032.dtsi        |   77 +
+ arch/arm/configs/espresso_defconfig           | 7506 +++++++++++++++++
+ 10 files changed, 8530 insertions(+)
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso-common.dtsi
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dts
+ create mode 100644 arch/arm/boot/dts/ti/omap/twl6032.dtsi
+ create mode 100644 arch/arm/configs/espresso_defconfig
 
 -- 
-Best Regards,
-Yijie
+2.43.0
 
 
