@@ -1,52 +1,79 @@
-Return-Path: <devicetree+bounces-256873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FB33D3A91B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:38:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C69F7D3A951
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ED417301692B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:38:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2009530443F8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 12:45:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4677935C186;
-	Mon, 19 Jan 2026 12:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B6B35E53F;
+	Mon, 19 Jan 2026 12:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="xFBShbZl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BtWO1BDm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73E735BDCB;
-	Mon, 19 Jan 2026 12:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD7235E53A
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 12:45:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768826334; cv=none; b=H4VEyG8yJ97jFTRLDlA8keuhPcjShOeO7+QLiZoCab1HCIO+DyD16yLWlewD7Wz0YBnbFcS67+/WJvF/SCCn3ssGFRO4i1973VE+L20DK4LAJVg4Txr4x8dFcsXOB8LyfFkZ5ubewBjrPg8A7qvLRohpZ2JKuPOCA2hoe9uPNG4=
+	t=1768826713; cv=none; b=uOR8gAt9sIWaHBfHtw9iLsoPINL4QEpkCpBcOc81zvUB/gCnEZAY07cP8MihCrOOYVQ28l4m+1q2qmjElYYtY3JUCCxpI1suwBtP6omXTpLybAaUI5EosCayw59R3aK65jaVOBLOfgBumDWHAApon6eGH9mqLTYDCqwjb9WmHS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768826334; c=relaxed/simple;
-	bh=E9dAPr1pqzpqBKdHdd1G75dqznaP8KJjXeEmhpJFD7g=;
+	s=arc-20240116; t=1768826713; c=relaxed/simple;
+	bh=58zqf0QRhFos7cRmq8vTrHcguHAy4GxQXQGtoEUAomg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kjrmegCdHIrphGT1DKDwmBdo7SIdp8PmuuXD+X3sJKmG+KElYMpyPrj/H3tLFbUFRS1spJB9Pct6tJHvWYG4YR085uBByJkI9xwx+bKvlZl1jrY4bwgLqcSyk6N0SSgpDQDpdurXTTEoJ28SsLWRzmA9CS0XT+IYhFlorfOSm6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=xFBShbZl; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [192.168.162.203] (unknown [176.98.251.102])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id BC34353433B3;
-	Mon, 19 Jan 2026 13:38:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1768826329;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=mLeSxnMckZiNm9suoR5kXwUjl9n/d3erkQ4RDVsO/Xo=;
-	b=xFBShbZllc3C0ppYInmaFC/LPCc4EQKsFEA/0OeXbsrsfmm17cFd1jyC5qFpsV4Sybjp2G
-	H1SVtlvD11wD9APAL1OGD8l5+5JFn2wDeheuHpky0FkI4KDKCqLkn5WDAsa59ZZtq/p4Qh
-	UVqcCbj74knjpQMS3GeQNSIK7adKqmU=
-Message-ID: <d2d0f226-1d0c-4df9-bba2-b772811045cc@ixit.cz>
-Date: Mon, 19 Jan 2026 13:38:48 +0100
+	 In-Reply-To:Content-Type; b=m4pQk/OMe3/CcFxFgOCEDpTzfYqNTowcvQGjvoKBo8YH07o919C2l40tcwd9RcKjILB4bhNV2aO+ki7NlFfU69hjo8uuppLwa1La/tIPdBGN4QxnoqJOj6wgpgCYVRVkqbotYqnDmOhC5SHVqnnOI7cmxA1d0NlwkGy1xy0VG88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BtWO1BDm; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47ee3da7447so26543375e9.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 04:45:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1768826710; x=1769431510; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jGK/JHtGxCZWFp0R8SxdcXdTEhWhNtsWilx8eiq1+lY=;
+        b=BtWO1BDmiVo2a+LE6cgUTsZ8jaxNUH9MtBX8uJ1u8xKxB38JPizBLil9z4kOjX+B57
+         wr4BaAuKf7MirYS275jTJPtH27QPbiXjHk4xAFZx/bY0HuKYE5oXctZXiW45y02/Hdwp
+         xSMBZcMaGe0a8bmC7B4nLLEZFVKX7L1SIuvTcXvZ1gfzyT/iIIDTh4g7iZnNOw0/HmcQ
+         f1TMHoR//S+BUUJ/uWNvG2Ay1vLfHYYcVeXf2MvTJ8z1QixnebAPMdyACfuAu9FglG2R
+         DQDiGe/rSLVXnlNYjtHElIVTYzuhqQaUxv1pxlXwPrEnWlPoP83GJmNCRVqeWprxu79k
+         wNPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768826710; x=1769431510;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jGK/JHtGxCZWFp0R8SxdcXdTEhWhNtsWilx8eiq1+lY=;
+        b=PuVh5cVIpwuvcgeq8Wx5hXjI3bDbCFHFy/e2LbbBj6k9nnHWJXh/pE/OETifrOZAsf
+         2PMSl3hcwxVLH1DFM6ucZ/tkqQvnZHFi0hjQjwYTq1ee2RlsxdeuqRZGiAi1SbKzrh7O
+         mAWAgZrudgsdklsRQeelFPC6ja+vBN/ivLsBBKx7bqk51bOc8CQvSbCWV+pSGk0pfDM0
+         FId/uWNGhFbu9y/ivmTTuhQgvnwyL9iKA5oqD91MgT0fRTZkowSlMVm+LKem1zIdkUXZ
+         NFlPF3C3Avf0uru/4QT5K2z71K2nipPGjpQotcGP88Mh10vOk6/Zdm+VWXCzLw9BYepT
+         WsfA==
+X-Forwarded-Encrypted: i=1; AJvYcCVkzgNRqbmvK1mGG9PmZ5VeM6BL0FhiKe+iAoZ0z4S7RIPxDk/6lrQjY6TUkH/Zcir5XKdezp7dlfZq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSkG/E4UYs+RUPhk6xlFvYAHDUbF6HiiVX7Fqs/q2Nj+vt3SCq
+	XOxURCkHlpDI0N3BmvqgAsfjYjc2m7m9WDsfWYGXTPygZWI39U3lM5uG/DG9cGw3AsE=
+X-Gm-Gg: AY/fxX6MB07RTYH04/loh6SgH2vSbeU+fqxjEwpK5B0UcxMejV5888zBMw4KQB+yUQD
+	9BPjRXrQcQtmvJX6E/IFbPxpOmL7XjSWB7Q2zZpmTueejo3UBqVGYxtnfETNPAcVeUE6YWDEkKd
+	VO0QY4Ae8QGdpkgE2GjYDsJ0gjFLkWtjs6+7mulrpobTth4bJOTYZYA5zR18ntEf/hWrdFl1iSn
+	w9yBx0ElZkWN0eDanKFs6kh96G7r++6166SfqmoK41QcFU4xOvokWTj3Iaimcp6Sdj3/voqGHhw
+	Kk0p8DFLCGvZmxXawkj9bQTrSIA6mzlBJ+PB4AkkOt3M/2qAFyVtasxe+oS8Sx+nWgYjb9dVdFA
+	u4dTt5BLa91AJxKpq4/ZPkcHxl1dRfPDmH+Q2BMkN0zozybjLtYfxqRuByH07NAfSTcIINYZEzf
+	AlXlzR/t4rbIZA+aaaN4iyUZRPjoEZ+4nyNQ==
+X-Received: by 2002:a05:600c:6098:b0:480:3a72:5238 with SMTP id 5b1f17b1804b1-4803a7253d1mr13426025e9.30.1768826710239;
+        Mon, 19 Jan 2026 04:45:10 -0800 (PST)
+Received: from [10.255.242.87] ([109.166.183.49])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4801e86c197sm193288675e9.1.2026.01.19.04.45.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jan 2026 04:45:09 -0800 (PST)
+Message-ID: <10cb51ae-9cec-49a9-96c4-757cd1410d8a@linaro.org>
+Date: Mon, 19 Jan 2026 14:45:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,78 +81,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845-sony-xperia-tama: Correct
- uart instances
-To: petr.hodina@protonmail.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20260119-akatsuki-uart-v1-0-238f4da4fa56@protonmail.com>
- <20260119-akatsuki-uart-v1-1-238f4da4fa56@protonmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: thermal: Add Google GS101 TMU
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, willmcvicker@google.com,
+ jyescas@google.com, shin.son@samsung.com, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20260114-acpm-tmu-v1-0-cfe56d93e90f@linaro.org>
+ <20260114-acpm-tmu-v1-1-cfe56d93e90f@linaro.org>
+ <20260115-ultramarine-wildebeest-of-completion-ea1bc0@quoll>
 Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20260119-akatsuki-uart-v1-1-238f4da4fa56@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20260115-ultramarine-wildebeest-of-completion-ea1bc0@quoll>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/01/2026 12:58, Petr Hodina via B4 Relay wrote:
-> From: Petr Hodina <petr.hodina@protonmail.com>
+
+
+On 1/15/26 3:32 PM, Krzysztof Kozlowski wrote:
+> On Wed, Jan 14, 2026 at 02:16:29PM +0000, Tudor Ambarus wrote:
+>> Add device tree bindings for the Google GS101 Thermal Management Unit
+>> (TMU).
+>>
+>> The GS101 TMU is a hybrid thermal solution:
+>> 1. Configuration (thresholds, hysteresis) is handled via the Alive
+>>    Clock and Power Manager (ACPM) firmware protocol.
+>> 2. Interrupt handling is handled by the kernel via direct register
+>>    access.
+>>
+>> This binding documents the required resources, including the APB clock
+>> for register access and the phandle to the associated syscon node.
+>>
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> ---
+>>  .../bindings/thermal/google,gs101-tmu-top.yaml     | 64 ++++++++++++++++++++++
+>>  1 file changed, 64 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml b/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..ecf4a315ecf1ea0649c4e96a207d531c696282f4
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml
+>> @@ -0,0 +1,64 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/thermal/google,gs101-tmu-top.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Google GS101 Thermal Management Unit (TMU)
+>> +
+>> +maintainers:
+>> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
+>> +
+>> +description: |
+>> +  The Google GS101 TMU is a thermal sensor block managed via the ACPM
+>> +  (Active Core Power Management) firmware. While the firmware handles
+>> +  the thermal algorithm and thresholds, the kernel requires direct
+>> +  access to the interrupt pending registers via a syscon interface to
+>> +  acknowledge and clear thermal interrupts.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: google,gs101-tmu-top
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description: |
+>> +      Phandle to the APB peripheral clock (PCLK) required to access
+>> +      the TMU registers.
 > 
-> Change the uart instances:
-> - uart6 is for bluetooth
-> - uart9 is for serial console (available on the uSD pinout)
-> 
-> Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+> Drop all the redundancies, so:
+> items:
+>  - description: APB peripheral clock (PCLK) for TMU register access
 > 
 
-Thank you!
+ack
+> 
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +    description: |
+>> +      The combined thermal interrupt signal (Level High).
+> 
+> Drop description
+> 
 
-Reviewed-by: David Heidelberg <david@ixit.cz>
+ack
+
+>> +
+>> +  syscon:
+> 
+> I feel like suddenly you sent something completely different than what
+> have you been working for the past 4 years.
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      Phandle to the device node representing the TMU System Controller
+>> +      (compatible with "google,gs101-tmu-syscon"). This node provides the
+>> +      regmap for INTPEND and INTCLEAR registers.
+>> +
+>> +  "#thermal-sensor-cells":
+>> +    const: 1
+>> +
+> 
+> No supply?
+
+It seems not. Nothing specified downstream. Couldn't find anything in the
+schematics that I have either.
+
+I addressed the rest of the feedback in v2.
+
+Thanks,
+ta
 
