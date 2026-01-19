@@ -1,151 +1,226 @@
-Return-Path: <devicetree+bounces-256881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AFFED3AA35
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:22:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 763C0D3AA20
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:19:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 91A243147363
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:19:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E3299300102B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C63F368279;
-	Mon, 19 Jan 2026 13:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE3336827A;
+	Mon, 19 Jan 2026 13:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bz7JOsVT"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1xmESwrd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854DC368278;
-	Mon, 19 Jan 2026 13:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5AED368272;
+	Mon, 19 Jan 2026 13:19:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768828749; cv=none; b=pWLwIEkjgOqZjKD3Y+ZagQtHmO6LqzimkxZe4++32QA1SZkju+IzlLDcvFAhjSQ6OQW4rRQMPyeXXILNokHXIG+lD8URz4pV5abFoaIDyWydVTX6YiGt+0P8FzHNq4URSZPIlJYNOZOW2UFiE+bgZ/BM2WwbryNLy1QNwVWL8nM=
+	t=1768828778; cv=none; b=hEFTXSmie9CBIL5+lkbI5xO25vpmZ24zhKTUoBEF2X7RUtl/jlyz4Aii8M55//wbOWnNE3+0dRASMCp4PtSqo3op98gza3voKmCWefg0HXDG1BHFUvQTgNZcDWMdlVEKAfgeVq+W6x5moNCf6hD4rjdIX2KZtUoo2+Y+4MGSs4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768828749; c=relaxed/simple;
-	bh=geLWWR5O/79l0LAq/8oG1NHH7E0gtlmrS3XUTDenxfs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jK9pB61zKyEa63M9ZF3t6cq64hXx7iBPtF7E4hENFu/qkxuj6/Cl22ni4h+wSCGIG4bwS4EZWf1z4FBf62p1z6drsJ9Y5jWGiVX/2+dma4IJB3LI0s/HoIjby5iPgfjbyrYvzKWO448NUUF9Fo7zOpDUtTPUkr34qdQJwwrD8xM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bz7JOsVT; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768828746; x=1800364746;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=geLWWR5O/79l0LAq/8oG1NHH7E0gtlmrS3XUTDenxfs=;
-  b=bz7JOsVTvDuf23eAj1VlV5YI6uBXHtAUOPRIG1UJ6lhBXR7e0b3hLsyd
-   WcqQ5+yD/u4UfGdgPlEFh4n7Xt91Etssku/Kx48/lp+/R2R7BdBGAV5qd
-   NtPntPXXg2WmK/GxZLcolpJqd6kk1+IFifpTuCe1qIG3zQF4gMMiCmbMV
-   Q0iA9yW/s+RRm8bVrS6ZidvcICCaz6rqidBeQKpsIlQB5soQ/DrLk5Qhe
-   ovTEcoHwmWQsqFcn5p7Oa1NFxV8BxT8QRRdQAlR3afhCLNe2/dXyWFTss
-   0wBZqFpt3PaPouPCtLSmN2n5avTVKb7HQxsh9wuUcTycmrcC6H10hG3tE
-   A==;
-X-CSE-ConnectionGUID: dt+8qVniTdWoooympd7ToA==
-X-CSE-MsgGUID: KQEraSVLTqGc64KG80mrMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="92708614"
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
-   d="scan'208";a="92708614"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 05:19:01 -0800
-X-CSE-ConnectionGUID: g0R4WhEHTwyDAkWXnPx4JA==
-X-CSE-MsgGUID: G7JDR3ZdTEupzEdAdl1pUw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
-   d="scan'208";a="210351539"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.37])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 05:18:57 -0800
-Date: Mon, 19 Jan 2026 15:18:54 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
-	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v3 4/6] iio: frequency: adf41513: features on frequency
- change
-Message-ID: <aW4vPpE8CRL5yI2u@smile.fi.intel.com>
-References: <20260108-adf41513-iio-driver-v3-0-23d1371aef48@analog.com>
- <20260108-adf41513-iio-driver-v3-4-23d1371aef48@analog.com>
- <aWFR2wTSWLydGN5O@smile.fi.intel.com>
- <ptyn5x7qkmbakkompmijo6xeego2xrhjoeyomkgrytwgwcsaid@heiq3ilnx5ky>
- <aWTS-npPY6yPARZH@smile.fi.intel.com>
- <20260116175743.169eb595@jic23-huawei>
- <aW3fYYK4ywhwOZv9@smile.fi.intel.com>
- <20260119104159.000025f7@huawei.com>
+	s=arc-20240116; t=1768828778; c=relaxed/simple;
+	bh=hVyhXNosNnDhvebEHuZ5COd8S04rmhME8qqCEbWcPy4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=H5fonEoPpxsCcGNl+SZHunNJERyxRS6bdB/N7hHC+8xjGOA79CM2zmvkW7VSeeNeP/iGWbaRozqC1YE8fmxy92nvS7Zm4AzVKVMfhfqGb1zdsENxfCl3ovcpQOxRSbNlrz2M80MtLQMq8azEpvfLN+Re0Dsr18gCf1zqfG1Oe0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1xmESwrd; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 6C902C214CA;
+	Mon, 19 Jan 2026 13:19:06 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 595C460731;
+	Mon, 19 Jan 2026 13:19:33 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 91A9410B6AFE6;
+	Mon, 19 Jan 2026 14:19:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768828772; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=2hPSrDYcpwfIma6Sp8ceSlc3mc+z5ddj63H/m5AzraU=;
+	b=1xmESwrdHPC6lPqp3MPh0Hd2QjO4pbMv02txnL/DblMTRsgv04fsMAib5hxHqWRej0+/ZF
+	rxbwOipy7P2E9aVekxo+v3Y9UdSGjgcCCnKPb0+WoSCc8UZH9F3fdL20u7z5M7yoSNSiur
+	xpkCKIFziiAiVrW4RNoZKBmxp0iA8/KAB4bcVJS/IVG0sShTvHEPp7+5/ezoInKXtS8kC6
+	zJ9i35sRXCQeevm+Iu0Rh/e7RIerBlPro4gowZ5UgJOvPV1vVZgTaCYAXiqJVDomOPCM63
+	QKDHkuBJdGrGeFUu5FonWI0ZvtjqCYvH8PdTGxFhu6EMOvl4tbgChF4+1WP0Lg==
+Date: Mon, 19 Jan 2026 14:19:24 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 11/77] Add support for FDT_REF_PHANDLE dtb tag
+Message-ID: <20260119141924.0b6a578b@bootlin.com>
+In-Reply-To: <aW3DvDooCXxw83Av@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-12-herve.codina@bootlin.com>
+	<aWhB4fYnXCD2f6Uq@zatzit>
+	<20260116161727.7fe14658@bootlin.com>
+	<aW3DvDooCXxw83Av@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260119104159.000025f7@huawei.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Jan 19, 2026 at 10:41:59AM +0000, Jonathan Cameron wrote:
-> On Mon, 19 Jan 2026 09:38:09 +0200
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> > On Fri, Jan 16, 2026 at 05:57:43PM +0000, Jonathan Cameron wrote:
-> > > On Mon, 12 Jan 2026 12:54:50 +0200
-> > > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:  
-> > > > On Mon, Jan 12, 2026 at 09:45:49AM +0000, Rodrigo Alencar wrote:  
-> > > > > On 26/01/09 09:07PM, Andy Shevchenko wrote:    
-> > > > > > On Thu, Jan 08, 2026 at 12:14:53PM +0000, Rodrigo Alencar via B4 Relay wrote:    
+Hi David,
 
-...
+On Mon, 19 Jan 2026 16:40:12 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
 
-> > > > > > > +	bleed_value = div64_u64(st->settings.pfd_frequency_uhz * bleed_value,
-> > > > > > > +				1600ULL * HZ_PER_MHZ * MICROHZ_PER_HZ);    
-> > > > 
-> > > > You multiply Hz * Hz. One of them should be simply SI multiplier.
-> > > > To me it sounds like one of
-> > > > 
-> > > > 				1600ULL * MEGA * MICROHZ_PER_HZ);
-> > > > 				1600ULL * HZ_PER_MHZ * MICRO);
-> > > > 
-> > > > will be the correct one (and I lean towards the first one as you want units
-> > > > to match).  
-> > > 
-> > > I don't really care, but... They are Hz * Hz / Hz * Hz / Hz = HZ
-> > > if we assume the first number is in Hz.  The others are all ratios.
-> > >  
-> > > So original is fine as far as I can tell.  
-> > 
-> > I don't see it like this. I consider that we should have only one meaningful
-> > units as the rest is just a value. What you wrote above has a little sense
-> > to me, sorry.
-> > 
-> 
-> I agree, but none of those XHZ PER HZ is mathematically valid way of applying a unit.
-> This is because the per means divide so the units cancel out.
-> Literally it's  (0.0000001Hz / 1Hz) 
-> So using them to assign a unit is meaningless.  All they are doing is hinting
-> that we are manipulating values already in some scaling of Hz.
+> On Fri, Jan 16, 2026 at 04:17:27PM +0100, Herve Codina wrote:
+> > Hi David,
+> >=20
+> > On Thu, 15 Jan 2026 12:24:49 +1100
+> > David Gibson <david@gibson.dropbear.id.au> wrote:
+> >  =20
+> > > On Mon, Jan 12, 2026 at 03:19:01PM +0100, Herve Codina wrote: =20
+> > > > The FDT_REF_PHANDLE dtb tag is similar to the FDT_REF_LOCAL tag exc=
+ept
+> > > > that it identifies a reference to an external phandle. The node
+> > > > referenced by the phandle is not present in the device-tree blob.  =
+ =20
+> > >=20
+> > > The names FDT_REF_PHANDLE and FDT_REF_LOCAL are perhaps a little
+> > > misleading - both are marking a phandle, the difference is in the form
+> > > of reference.  That's quite difference from the distinction between
+> > > the REF_PHANDLE and REF_PATH marker types, where the difference is in
+> > > what the reference expands to in the property. =20
+> >=20
+> > I am agree.
+> >=20
+> > FDT_PHANDLE: A local phandle with the value known.
+> > FDT_PHANDLE_REF: An external phandle, its value need to be resolved ? =
+=20
+>=20
+> Yeah, I think that works.
+>=20
+> > This is aligned with FDT_EXPORT_SYM / FDT_EXPORT_SYM_REF.
+> >=20
+> > Or maybe:
+> > FDT_TYPE_PHANDLE
+> > FDT_TYPE_PHANDLE_REF
+> >=20
+> > "TYPE" has been mentioned by Rob in the "FDT_TYPE_U32" context. =20
+>=20
+> I don't especially like this.  phandles do have a bearing on types.
+> But as I said to Rob, I think they're a sufficiently special case,
+> that I'd prefer not to handle them as just an aspect of a more general
+> "types" system.
 
-My understanding is that they give a hint about units and used scale (which is
-also provided by the unit suffix in the respective variable name in this case).
-In some cases the variables do not have suffixes and having a named multiplier
-helps that.
+Ok, I will not use 'TYPE' in the name of those tags.
 
-> Personally I'm not sure there is value in the unit specific defines given
-> this. They kind of hint we are dealing with frequencies, but that's it.
+>=20
+> Btw, since we're looking at dtb changes anyway, one possibility would
+> be to no longer encode a node's phandle as a property, but include it
+> as a new field in the FDT_BEGIN_NODE tag.  Putting it in a property
+> was always a bit of a hack - in traditional OF, it was generally the
+> node's address in memory, not something from a property.  Doing it
+> that way might side step some messy edge cases like dealing with
+> improperly encoded "linux,phandle" properties.
+>=20
+> > Any other ideas are welcome.
+> >  =20
+> > > > The FDT_REF_PHANDLE dtb tag is a meta-data tag attached to a proper=
+ty.
+> > > >=20
+> > > > It indicates that the property defined before this tag (FDT_PROP) u=
+ses a
+> > > > phandle value and the node related to this phandle value is not loc=
+al
+> > > > node (i.e. the node is not present in the device-tree blob). This t=
+ag
+> > > > can be available only in overlay or addon device-tree blobs. The ph=
+andle
+> > > > value used in the property has to be resolved when the device-tree =
+blob
+> > > > is applied on top of a base device-tree.   =20
+> > >=20
+> > > This is kind of looking ahead, but does that imply that this tag is
+> > > only valid in addon dtbs? =20
+> >=20
+> > addon dtbs for sure but also overlay (plugin) dtbs. =20
+>=20
+> I don't really understand how they would be used for plugins - I
+> thought the idea was that addons would more or less obsolete plugins.
 
+They won't be used in plugins. Other mechanism are available in plugind.
+My idea was to to keep things consistent.
 
--- 
-With Best Regards,
-Andy Shevchenko
+I mean, pluggin dtb can have metadata. Having metadata doesn't mean that
+they must be used.
 
+FDT_REF_PHANDLE (or other name) makes sense in plugin dtb.
 
+Is FDT_REF_PHANDLE valid for plugin dtb, the answer is yes.
+
+Will FDT_REF_PHANDLE be used for symbol resolution in the plugin case, the
+answer is no, other mechanisme are used (__fixups__ node).
+
+>=20
+> > >  =20
+> > > > It is followed by two values and a possible alignment padding:
+> > > >  - offset (32bit):
+> > > >      Offset in the property data where the phandle is available.
+> > > >  - label (string including \0):
+> > > >      The label to use to resolve the phandle value.   =20
+> > >=20
+> > > I expect it will become apparent later in the series, but it would be
+> > > helpful to clarify what the scope of that label is.  A single node?
+> > > The whole tree?  Across a tree and all its possible addons? =20
+> >=20
+> > This label is the unresolved reference. Its scope is the dtb. =20
+>=20
+> "the dtb" being a single addon, yes?  That could have several meanings
+> in the base tree depending on where the addon is attached, yes?
+
+yes, the addon dtb is for a single addon.
+
+yes, depending on where the addon is attached, the symbol resolution can re=
+ach
+different nodes. Is that several "meanings", not sure.
+
+=46rom the addon: prop =3D <&i2c>;
+
+Depending on node the addon is applied this could be resolved to the node
+i2c@xxxx or i2c@yyyy but for sure it will be resolved to a node describing
+an i2c controller.
+
+>=20
+> > For instance, "prop =3D < 0 1 &foo>;" in a dts with the node referenced=
+ by
+> > &foo not present in this dts (possible for addons and plugins) will lead
+> > to 'FDT_REF_PHANDLE 8 "foo"'
+> >=20
+> > The way "foo" is used when the dtb is applied is covered later in the
+> > series.
+> >=20
+> > It will be resolved with import/export mechanism (when the addon is
+> > applied).
+> >=20
+> > Also it can be a namespace label reference (see patch 66 for the defini=
+tion
+> > of namespace label reference) and here also it will be resolved thanks =
+to
+> > import/export mechanism. Namespace label references can only be present=
+ in
+> > addons.
+> >=20
+
+Best regards,
+Herv=C3=A9
 
