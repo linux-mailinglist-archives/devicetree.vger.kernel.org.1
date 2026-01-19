@@ -1,125 +1,114 @@
-Return-Path: <devicetree+bounces-257064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340E3D3B6C2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 20:07:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A48D3B6ED
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 20:12:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 471243067583
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:01:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8B21A30BE0EA
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAEA422F77B;
-	Mon, 19 Jan 2026 19:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F5638FF18;
+	Mon, 19 Jan 2026 19:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CDM9zGN6"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="nAlJpI8+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFEF31A7E1;
-	Mon, 19 Jan 2026 19:01:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E183933F8;
+	Mon, 19 Jan 2026 19:08:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768849303; cv=none; b=iuN834oL/CctyfMt9lrcsQShb5FXyQjsgOMeCDTdxSRbHtTuKVEatesjxkS9B9gsF8Gi6YXc+GAL0aA0XPxlet62mKRTVMo5sSY74Bq6J6Y5UPvm0bS02PyghW40SNNDQ02eO816UGcmlVjzrSRV4SmeaLdfsSbEy1VtdrsR8p0=
+	t=1768849711; cv=none; b=anw53ZwfRgEVcTY5meXCSnhJbJPDcEixbP0WXxcULBlPemZLugJLdh6lX4mIWWEJ2yvo8KHDc1Qta1SaUc2L7ait10bNzP1kdj/zoOR+f+P4ZHKz0A2Cc2piUFDotOpNFCsDW3bd/rsZbfSMOSNJqwzHFaDbCxqDNX8ObNbV2sY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768849303; c=relaxed/simple;
-	bh=tKjeh8msjClsQYtO0ds3L7yaxHdHnzKWgNBka2GGlpI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VS0JdyG47dUIXYOKRhlEd64iU3zavKqxKNV84UdSaT6Va9ktEfZXTqdhJ2y4LTJdCOwppejWs5D7fmdm1Z2IBYimWcT63Wy9Y2vay4Awu/T7A0alkEY3V5NtTladUZ9JC5h8nrlMLdD1QoaKuH6e0buSD5TCMwfolHiNj/N3nJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CDM9zGN6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 326CCC116C6;
-	Mon, 19 Jan 2026 19:01:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768849303;
-	bh=tKjeh8msjClsQYtO0ds3L7yaxHdHnzKWgNBka2GGlpI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CDM9zGN6ef387sGofUwWTbNxfAljGcEMhxVcuOi9BV8Ee7FvL0Ji4Q3d54EDVytbJ
-	 0wt0ipJf4U73Nj7aJdTKl5/k7ZjWwm+wAEuxoZirUpBAYEvJzKHe7HOU5kh87ITVqJ
-	 yhh2QNEgWAOB3Xkicm8VV/Uswl7OovCgy5O6PNYqXtgw2gR2U803+0xN29BHLjIduF
-	 8Hpg3+JM5lOjlpdmrqq5ZmEqYSziCKh6/nDVMKKbeKUO7nvuldK3H55OOxQXmwrhjN
-	 awuXmXS2y9hfxrSAd3cIIOyMBrjMIQFJnL/u9u8sqMRK3cgH19b6ELxgJbfcJFnyZ8
-	 zkkRBhF29DYcA==
-Date: Mon, 19 Jan 2026 19:01:38 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: Abdurrahman Hussain <abdurrahman@nexthop.ai>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] spi: xilinx: use device property accessors.
-Message-ID: <b03307f7-93f6-4680-9241-cf28b5456fd0@sirena.org.uk>
-References: <20260119-spi-xilinx-v3-0-4566c33bac0d@nexthop.ai>
- <20260119-spi-xilinx-v3-3-4566c33bac0d@nexthop.ai>
- <8436e914-429f-40b9-8e6f-ec3b02702cad@sirena.org.uk>
- <69F83558-4675-4FC2-8656-BC6E3481AD65@nexthop.ai>
- <9e559e33-4f2f-40d4-a15f-584548bd6057@sirena.org.uk>
- <05D2CC15-DD6B-40F0-BFF0-3264D4FF96ED@nexthop.ai>
- <b1b79de0-a078-486d-b3e9-96899354407c@sirena.org.uk>
- <3D1B59A7-6E57-4C8C-AA95-EA7AA115264F@nexthop.ai>
- <b9ad8ab8-7985-4c89-a82b-c7f31d32c167@sirena.org.uk>
- <a6d57890-89c1-445e-836c-d8239d20c621@amd.com>
+	s=arc-20240116; t=1768849711; c=relaxed/simple;
+	bh=A/+25W6bjnENQP1RgSnEQTUnp1GII3INaK1yeHHizWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rTuTf5K1Xo+UfMeNOgfEx5nl1dshPNdJBv/EwstHmrflrB/44p+XResF9ndN3117VcPrDK/uw9xDst8vrjtWDlJrkiQBtGyq3Q8FP7ryIPW7Ts6HT5Q1mcfE9Mf2zjiTNm0pWIjZqHKllc2dYP6NluIciRIcu/wYjMv0qQ2ibns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=nAlJpI8+; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dw0N95hsKz9tfx;
+	Mon, 19 Jan 2026 20:08:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1768849689;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9H8nBGgFVL91FP93JHfkjVwv7xUFyqUQw76ZtrBZ/LA=;
+	b=nAlJpI8+f+GbVqBtJXHTc9jgoQhITv0Yp/9IGgnAoKMm6kX3setz/pdCJ08xUe+no/DU8g
+	nIb/yge3IB3iFjC35uJ7g3kIk+npNebiJL6TcRaXB9MQ59AIl80O8wLug9yPiKUdwPhH0C
+	BcIafKAzM+N4wZaqshe/7nXI2D7BPNk+2bE5n86ic/wuJJ/NSETkNOKLIsfmGWT4DfNSR+
+	1b4yZwftdADN5akvGiJjvqT35bNag4XXSxVwKgd4xnROo90aJ+OYhEXzxhnX/FSBnoOYTU
+	9f7B9XQ7TnlUu8RJUqRuOmbyojWGInhCFZ9XNlPSQXqIfhINTrUd2ZSLwzKeww==
+Message-ID: <926a0b23-5159-4f4e-b278-b545ae281410@mailbox.org>
+Date: Mon, 19 Jan 2026 20:08:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KsDaClmaKXt8A/4a"
-Content-Disposition: inline
-In-Reply-To: <a6d57890-89c1-445e-836c-d8239d20c621@amd.com>
-X-Cookie: Does not include installation.
+Subject: Re: [PATCH v3 1/2] drm/panel: simple: Add Waveshare 13.3" panel
+ support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>, Simona Vetter <simona@ffwll.ch>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20260117005028.126361-1-marek.vasut+renesas@mailbox.org>
+ <CAMuHMdXHKJYcP78WLUfGrN8v+PmChj7jEsjhnVXYnSOzZ7mkpw@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdXHKJYcP78WLUfGrN8v+PmChj7jEsjhnVXYnSOzZ7mkpw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: 73tz3ja79h57j79bgs1gw4jdpfmor78o
+X-MBO-RS-ID: 8b5673dbed978ea5937
 
+On 1/19/26 4:56 PM, Geert Uytterhoeven wrote:
 
---KsDaClmaKXt8A/4a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hello Geert,
 
-On Mon, Jan 19, 2026 at 07:52:35PM +0100, Michal Simek wrote:
-> On 1/19/26 19:38, Mark Brown wrote:
+>> --- a/drivers/gpu/drm/panel/panel-simple.c
+>> +++ b/drivers/gpu/drm/panel/panel-simple.c
+>> @@ -4998,6 +4998,33 @@ static const struct panel_desc vl050_8048nt_c01 = {
+>>          .bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
+>>   };
+>>
+>> +static const struct drm_display_mode waveshare_133inch_mode = {
+>> +       .clock = 148500,
+>> +       .hdisplay = 1920,
+>> +       .hsync_start = 1920 + 88,
+>> +       .hsync_end = 1920 + 88 + 44,
+>> +       .htotal = 1920 + 88 + 44 + 148,
+>> +       .vdisplay = 1080,
+>> +       .vsync_start = 1080 + 4,
+>> +       .vsync_end = 1080 + 4 + 5,
+>> +       .vtotal = 1080 + 4 + 5 + 36,
+>> +       .flags = DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_PHSYNC,
+>> +};
+> 
+> That looks like the plain standard 60Hz Full HD mode.
+> Is there really no other copy of that structure available in the kernel?
+> 
+> auo_t215hvn01_mode is almost the same, except for .clock and .flags.
+> drivers/video/fbdev/core/modedb.c has the same mode, but in a different
+> structure.
 
-> > This was specifically targetted at some embedded x86 systems where there
-> > was a goal to reuse device tree bindings for things that just can't be
-> > expressed well in ACPI.  _DSD is generally considered tasteless for more
-> > server style systems, AIUI the general approach preferred by ACPI
-> > forward OSs is to use some combination of DMI quirking and registering
-> > with a per-device ID (like the per generation fake PCI IDs that Intel
-> > uses for all IPs on their SoCs).  Just blindly accepting _DSD can end up
-> > with something that's not used because it's not what the ecosystem
-> > wants.
-
-> Is it a better way to use auxiliary bus as was recommended by Greg in past
-> on drivers/misc/keba/cp500.c review?
-> https://lore.kernel.org/linux-i2c/2024060203-impeding-curing-e6cd@gregkh/
-
-The driver there appears to be doing runtime enumeration based on some
-EEPROMs on the system and creating platform devices based on what it
-finds there so it's a bit of a different thing, the aux bus suggestion
-is about what the code that does with the data it got from the EEPROM.
-This patch is for something described directly by firmware so there's no
-way we'd create an aux device, that's purely in kernel.
-
-I have no idea what the hardware this series targets is (other than that
-it's using a FPGA) or if there's even a motivation for the change other
-than code inspection.
-
---KsDaClmaKXt8A/4a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmluf5EACgkQJNaLcl1U
-h9Dy0gf+OS2LP3VmrR5J7irzVl+DrTdrNVc/qZ+Xm5xSwwFK2D6u7RRJhQ8xgcAx
-iHEP+TS/bw3H8HEQWFn9Y9GirDBLpvXxr0Rg5srdFx53048pCof1x0CzDwRekz+Q
-vmLgOARyRJci5gZbBiDnwATkqJeIbknBZT4NQFSAE+Ur8calXl0IxeiJOx8K/XWk
-/JFMCs1/0Yh/3ztvEEslbriwoaJoK8z69qeAE+hK2dofOv8x9P4POTbGUPTRDWlz
-pixLn8kL6gA9+8q5cEziBYo77DkFaSRApdFYCD2iEVnyfzrr99p4/uY4gFTt5wKA
-vvpUUoRUVUA0PotpMy4bcOwk11EWZg==
-=EJtx
------END PGP SIGNATURE-----
-
---KsDaClmaKXt8A/4a--
+The panel-simple.c is full of similar-ish panel timings . The timings 
+above are adapted from the waveshare DTO for this panel. What else would 
+you suggest I do/use for this device ?
 
