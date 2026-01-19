@@ -1,147 +1,179 @@
-Return-Path: <devicetree+bounces-256960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DBC4D3AFD2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:00:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0FD3D3AFD9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:00:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F0B8F309282B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:56:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 867A030A1425
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D654C38B7D9;
-	Mon, 19 Jan 2026 15:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B109F38E101;
+	Mon, 19 Jan 2026 15:56:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LbqoHLya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D19B38E102
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 15:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C56D38BF66
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 15:56:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768838194; cv=none; b=jjAS4Zc728b+KcPo4ygo+DnXpgJdx/d19xezCN6R70U6sTYz2LIkR1K+GxVl20wbphI7+mlhSvA73VXXhyWSqbBU3ZY5mRmd6kWW1/LgVlCKrGVw3JXmkp+kv24X7Z2iW+1XuCwvGYg5JNFXtuGIKiH22vuqYuAwl3MmIx6ZTMo=
+	t=1768838209; cv=none; b=CToaKlbygM5NcpeepqIPjcSEu/Wr9ePo3KB+I2gfc2x410tUgvZANtBQ3WLEDIAEMdz7tCoWObv0+zLK7/CUAs3e6xoSCf9S+DgK2euVT5cr/7MzCf8ffXDqgiNq2Jb7vdrMkMJ6E6Ff9Z7EAwVnbnN6TSiBf9C1yyzSzv+zONM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768838194; c=relaxed/simple;
-	bh=Dp97EfgvlxD7c5USj7Zd8TdA26s/fLAuRxZfKhDVn8k=;
+	s=arc-20240116; t=1768838209; c=relaxed/simple;
+	bh=kmb0xz+cxH7bZ9ZsML6ZYz/AL5TRMq96zD1xbbV7jno=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MYbzNd5thMjK0aZaxkDGDzLqNa6Q27sj5a+qIv/2jHGCkFL3wZfNfObEjdbgtOITIlkUAw00tD+FFNsZMMO9zIkOLcM/oNOhRUH7jGrRJoXjMFS9Uq+8rxsltfW5ujfJYF1aJUDVHw4WR/vfjsU2iiqQ7fnzCQjeTY7BQpKE8F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=kDBVpO8WDB+PKSdLl/BUj52NpTz2FjJRjHMmDKumql2iKRQ9gEQsiE8zaOYvlcRQIokELYqTHO+MrZ4ntDiBHAQR/4BcKIt+20+cphpKxCK44vGCtqx/UdtDSgjdRRNKBfhUs8R7CpYhj9/JnFjA/TcJLW2emnEikDMMDqYCNFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LbqoHLya; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-947fcfc81aaso154990241.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:56:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768838189; x=1769442989;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-793fdbb8d3aso4811007b3.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:56:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768838207; x=1769443007; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lIG0R7dTQh7juPXtId/WkTt26c5+hMUHXl8ZjoaDDHE=;
-        b=liI8xqA5EKLeubf2pIWBMpatNTBB6LkaOQSY7W360qHvTVdPfoUlNetmMzeJZkdM+H
-         bIDnVWxJzCX64uB/r0G6O9Kj8wQZuoToab1swMjdp6aQM+WgJs0p0f4kxWW7RKubR2q9
-         Qcwaszgbg4XxSWgt48+Q5ET5uypGbGEll35K7nUlYxDkq3PIFGqrDZ57XyHp/i0tQcOu
-         p1BjnT/yjOVmLLDXKHo9fJm+wZJj3JinY2dOa8c5Fcl/knypXpA1at7CTpQFBdsjSudT
-         R00Sr9cmqARGrRs4qvV3jaYTjufK3Z1o+n0ymrL2mqPh51T6em+Rzl2Ed/ozMVCdOcJF
-         CFAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVOKvRvh+rsxJjOLMHCnv9R+cr+bpYtCaCFolyK0W1MQCC9bBKvCFI6pTrBAW6KuzSmz9jr73Ks7afB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwX/MWJ6Clq4ohAafi/mS11uXCPnRx1GT2JdRGCBwr70zpMn2pN
-	pKqfH0YuBGNJrMmm/6jyyjyDvxHv0JwblQ7qpufV5qePiJE0ctR/NNmGVgA8xim7
-X-Gm-Gg: AY/fxX6oaM+OaYYpkS2pAqkahmLmtcIcOASAHN1Gv3x2vwAHMXvAXXWWhy+UNTxOnfl
-	ygn6vXcVOjOC7jDSkbHRXi6ElUDcOk1B2T75dq/2Ww7+8HWnrxdOG/8zb+oafsd238+ETnNyq28
-	9H5daLZ3jh636aYRhoBlD0gyV0ZnAevzXVZ7MR6Jd+q+zFLGHhhpcYgQsXa+ZwNHSo0ICgizBfw
-	PPrxdOgi3/hfFnLjoebKTBvkJzeWhJZB3Ku/IuWzUZfmnSSNOoK7tciOeaaUwFvB8N1hYo7tBvS
-	TjOevtjVY2NjJG8W6TioWlX2mXlPRexQVnQSdxFSLQngILGzsZKyGTVIMu6A2Jsmi5JkjHCvz43
-	nm816Pam63hKRULCoS6axXEgPIVW5TN1NNYx/WAznk49E219T4iF07qirHD1mF6Op0GfP44OZ8C
-	V0AzlNugum0IRH57WXYaIpG+UZ6bfsaroeKWV0SF9xd7EUjzBu
-X-Received: by 2002:a05:6102:38d1:b0:5db:ca9e:b57d with SMTP id ada2fe7eead31-5f1a53b2748mr4267297137.19.1768838188687;
-        Mon, 19 Jan 2026 07:56:28 -0800 (PST)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5f1a6e60c9bsm3471946137.14.2026.01.19.07.56.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 07:56:26 -0800 (PST)
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-94120e0acbeso2704163241.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:56:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVGQ9QkdrsGhWnbIBvJyWH+hLnzgSLmCE/rUKTLFe14TcRuACa5DGI7b+O6WwgsT5ukllmr67UMrOPl@vger.kernel.org
-X-Received: by 2002:a05:6102:d92:b0:5ee:a04c:7ea8 with SMTP id
- ada2fe7eead31-5f1a4dbb696mr4034214137.11.1768838185442; Mon, 19 Jan 2026
- 07:56:25 -0800 (PST)
+        bh=ZFi+VJ96Lx+RhMsznMcBzo/7WtrXEjJe+WbuE10vlzM=;
+        b=LbqoHLyasc57o6KtT0/H5E5//Xn4Hf5OSWzVk78CGBmY7QZX18ezlDb8QSYAXlEYGc
+         fvC0yi7L8xhqiEa7ONU7ansM9mCaMndc9hN/v9jHRKkkuoWEE7mtoGZCJ4anx63c38mE
+         UhgQji0nUPg5PDtfcTCAmu4dQ1Gp66O6ALHos6yBky71deqmxasfwSgkNFsGQ0tB5StV
+         5mg3jUrD7Do8t6fZ4U7XRvKdE2i6bR2497SwBY6ZAs+qCBZbWnKEqHi6Ll/fM/mrYc2A
+         mjZ0A/GbKPn43GgntLfy+T9kBFm148ewxXKr4SNQWro1eAIfGK7ep8Z9Vuj9m82oKhOV
+         OJPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768838207; x=1769443007;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ZFi+VJ96Lx+RhMsznMcBzo/7WtrXEjJe+WbuE10vlzM=;
+        b=I5BeLwwmftVQVbgbj2QOKw7af5LRvcR0YvDccQfw6KCjldwzOpQYXH30iA+bprkw3p
+         2rHymiJBZroCnvfMZlEqIcf/2d/+WND/VpdXvcK14hCp0SK1lYrFReb8nfacW08/tnPW
+         8RwTapvFkTCrlpi8kshanOBDSk48cbzpUxsciC3mrzOlgyCkI9MRuJWm98D4zryM50++
+         +0IKG+/6cxa1QZIY99NqRxB+28JMfTMXCqa+C3nRlV6MWB7q5upeLucXxecAWUm01q9e
+         aU1/6QnaunWQC9iOupYK6oB7CgQJs3nyE0KJ1rJOF8tNnL1NLcRwEtJ26bAhzujzMJBL
+         NRsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVb/8G7TQGLCD8Ja4XJry0qAM+d4fDytfmDB9/9Wh0MZszhyTCQ+tf2Ov1SHxj9glmJjWUJyKiWFBv1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbaBOawySa4GaZD5TxwxU5kg+VsitokrPp3uo3J9f87ad4A6fM
+	OVkeOr9cw5OvQYOhkSvTlkgpKbvOAtcwrer0xO8Uobzuebi9hP51zVgARshPZX0dUE2jf5MeHOa
+	7mDOXobLXASwEreQes3/Bp3hFD29pyn4=
+X-Gm-Gg: AZuq6aL+7E1ZOrrnVmTPQI8FWXAVgS9GaOoHOUDNzS1b3YJDTgBvfQbVf4JPgghJlpH
+	zD1vdBP4YdMEXmqNn7BLClGZUCWHLHewqIIB0eSXMQrvrpYgfjVTJF0qtHkhs4PNXx31B0p8Q7J
+	PiTMKdHd2O6VKrAYePOjIFbWQO72LZYerZBzqrULClmMCDAK7Q/zC2ikUY8PTh60879OawkCoE6
+	3j8ykDdkYeukU16QIJWaZBVmL6je3gIYJupuuSylKRG2MFFtMz01e1GWNgrhNCvfWftSA==
+X-Received: by 2002:a05:690c:6d8b:b0:78c:32fc:d3c8 with SMTP id
+ 00721157ae682-793c54063b1mr84654397b3.61.1768838207073; Mon, 19 Jan 2026
+ 07:56:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260117005028.126361-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260117005028.126361-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 19 Jan 2026 16:56:14 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXHKJYcP78WLUfGrN8v+PmChj7jEsjhnVXYnSOzZ7mkpw@mail.gmail.com>
-X-Gm-Features: AZwV_Qi7XL9IrXJqTbj9Y3MASXIhOVDU833eXHPX6YIuUQHpjkdHjq-l7kFo-k4
-Message-ID: <CAMuHMdXHKJYcP78WLUfGrN8v+PmChj7jEsjhnVXYnSOzZ7mkpw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] drm/panel: simple: Add Waveshare 13.3" panel support
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Sam Ravnborg <sam@ravnborg.org>, Simona Vetter <simona@ffwll.ch>, 
-	Thierry Reding <thierry.reding@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
+References: <20260119140238.3360658-1-miaoqing.pan@oss.qualcomm.com> <20260119140238.3360658-2-miaoqing.pan@oss.qualcomm.com>
+In-Reply-To: <20260119140238.3360658-2-miaoqing.pan@oss.qualcomm.com>
+From: Jonas Gorski <jonas.gorski@gmail.com>
+Date: Mon, 19 Jan 2026 16:56:35 +0100
+X-Gm-Features: AZwV_QjDpm8QDQgjkrGwqj8CMMa00N7wkcI94H42Z5svJe8pdQ2INMjNC6m63_4
+Message-ID: <CAOiHx=nBLtSFNhuRZrHn5z8bCrA5nyuS9G8B0nh-WTiFU_HUMw@mail.gmail.com>
+Subject: Re: [PATCH v3 ath-current 1/2] wifi: ath11k: add usecase firmware
+ handling based on device compatible
+To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+Cc: jjohnson@kernel.org, johannes@sipsolutions.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, ath11k@lists.infradead.org, 
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, krzk@kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Marek,
+Hi,
 
-On Sat, 17 Jan 2026 at 01:50, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Add WaveShare 13.3inch 1920x1080 DSI Capacitive Touch Display support.
+On Mon, Jan 19, 2026 at 3:04=E2=80=AFPM Miaoqing Pan
+<miaoqing.pan@oss.qualcomm.com> wrote:
 >
-> While the panel is described as DPI panel, it is part of a larger unit
-> in non-removable metal casing, so the actual internal configuration is
-> not known. The panel is attached to "waveshare,dsi2dpi" bridge via DT.
-> It is likely that internally, this panel is an LVDS panel, connected to
-> ICN6211 DSI-to-DPI bridge and then another unknown DPI-to-LVDS bridge.
+> For M.2 WLAN chips, there is no suitable DTS node to specify the
+> firmware-name property. In addition, assigning firmware for the
+> M.2 PCIe interface causes chips that do not use usecase specific
+> firmware to fail. Therefore, abandoning the approach of specifying
+> firmware in DTS. As an alternative, propose a static lookup table
+> mapping device compatible to firmware names. Currently, only WCN6855
+> HW2.1 requires this.
 >
-> Current device link is at https://www.waveshare.com/13.3inch-dsi-lcd.htm
+> However, support for the firmware-name property is retained to keep
+> the ABI backwards compatible.
 >
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-
-Thanks for your patch!
-
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -4998,6 +4998,33 @@ static const struct panel_desc vl050_8048nt_c01 = {
->         .bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
+> For details on usecase specific firmware, see:
+> https://lore.kernel.org/all/20250522013444.1301330-3-miaoqing.pan@oss.qua=
+lcomm.com/.
+>
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-04685-QCAHSPSWPL_V1_V2_SILICONZ=
+_IOE-1
+>
+> Fixes: edbbc647c4f3 ("wifi: ath11k: support usercase-specific firmware ov=
+errides")
+> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/core.c | 36 ++++++++++++++++++++++++++
+>  drivers/net/wireless/ath/ath11k/core.h |  4 +++
+>  2 files changed, 40 insertions(+)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireles=
+s/ath/ath11k/core.c
+> index de84906d1b27..1cf7f4e601c3 100644
+> --- a/drivers/net/wireless/ath/ath11k/core.c
+> +++ b/drivers/net/wireless/ath/ath11k/core.c
+> @@ -1044,6 +1044,42 @@ static const struct dmi_system_id ath11k_pm_quirk_=
+table[] =3D {
+>         {}
 >  };
 >
-> +static const struct drm_display_mode waveshare_133inch_mode = {
-> +       .clock = 148500,
-> +       .hdisplay = 1920,
-> +       .hsync_start = 1920 + 88,
-> +       .hsync_end = 1920 + 88 + 44,
-> +       .htotal = 1920 + 88 + 44 + 148,
-> +       .vdisplay = 1080,
-> +       .vsync_start = 1080 + 4,
-> +       .vsync_end = 1080 + 4 + 5,
-> +       .vtotal = 1080 + 4 + 5 + 36,
-> +       .flags = DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_PHSYNC,
+> +static const struct __ath11k_core_usecase_firmware_table {
+> +       u32 hw_rev;
+> +       const char *compatible;
+> +       const char *firmware_name;
+> +} ath11k_core_usecase_firmware_table[] =3D {
+> +       { ATH11K_HW_WCN6855_HW21, "qcom,lemans-evk", "nfa765"},
+> +       { ATH11K_HW_WCN6855_HW21, "qcom,monaco-evk", "nfa765"},
+> +       { ATH11K_HW_WCN6855_HW21, "qcom,hamoa-iot-evk", "nfa765"},
+> +       { /* Sentinel */ }
 > +};
+> +
+> +const char *ath11k_core_get_usecase_firmware(struct ath11k_base *ab)
+> +{
+> +       struct device_node *root __free(device_node) =3D of_find_node_by_=
+path("/");
+> +       const struct __ath11k_core_usecase_firmware_table *entry =3D NULL=
+;
+> +       int i, count =3D of_property_count_strings(root, "compatible");
+> +       const char *compatible =3D NULL;
+> +
+> +       for (i =3D 0; i < count; i++) {
+> +               if (of_property_read_string_index(root, "compatible", i,
+> +                                                 &compatible) < 0)
+> +                       continue;
+> +
+> +               entry =3D ath11k_core_usecase_firmware_table;
+> +               while (entry->compatible) {
+> +                       if (ab->hw_rev =3D=3D entry->hw_rev &&
+> +                           !strcmp(entry->compatible, compatible))
 
-That looks like the plain standard 60Hz Full HD mode.
-Is there really no other copy of that structure available in the kernel?
+You should be able to replace most of this code by using
+of_machine_is_compatible(entry->compatible) instead.
 
-auo_t215hvn01_mode is almost the same, except for .clock and .flags.
-drivers/video/fbdev/core/modedb.c has the same mode, but in a different
-structure.
+> +                               return entry->firmware_name;
+> +                       entry++;
+> +               }
+> +       }
+> +
+> +       return NULL;
+> +}
+> +EXPORT_SYMBOL(ath11k_core_get_usecase_firmware);
+> +
+>  void ath11k_fw_stats_pdevs_free(struct list_head *head)
+>  {
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Jonas
 
