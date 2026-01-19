@@ -1,207 +1,215 @@
-Return-Path: <devicetree+bounces-256988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFB3D3B3C3
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:17:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627B3D3B360
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 18:09:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8C6F2301C3BC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:44:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 381C330CC005
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D9632B9B4;
-	Mon, 19 Jan 2026 16:37:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D9cS99yg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BF23596E9;
+	Mon, 19 Jan 2026 16:40:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A532732BF26
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 16:37:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 484E235B13C
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 16:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768840643; cv=none; b=QMwSgkW1zJNEq+h6cuGNTaXN9UarpnNC+hgY6cDJ9AjCzctP61HcRC+imMitf/2Fgik2jEYdO1l0cWRCIVWXRRZX2e44qyzCqLkwa6zDg1Y+11AKSkt4d+rBrjKgrd1oGNrhxQuZPMdOzQ+ehgZxeMumMPq5l7fSFVADezxBjaE=
+	t=1768840837; cv=none; b=ivUEDd5ca2u80potP7mdvG+4QWyVWIv1vMPEB8IXk9q6C6YE9OwxXTI0qgXdp6nmdt2D9Bf+NZAkQHcvwkcQRvqGiqGBIm1XmTVb4g/O5By/E2n8uA3LnWjtN9N3TnJ/GNIHWoU1lLi1PgNUpQdtcQAsG2sF9u78+yZIE437zbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768840643; c=relaxed/simple;
-	bh=EZrNpq9rChwQifuKMlIJR8/++2PQTZ9sdidJy9GUDCQ=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SkSvnWedwI0Y2rmqBNoayppjW7XfHdwxvmfwQBAO0PWTI0phoHbECLANeb1efyf+l59wvO4mCXZ62EuY02IOqVGDkPWc9bivaIxu3PSIvsU0on+KINNFksK6zD7v+Lis7umQv1rfGEHbHUNewmwjHEBjHzlwygbWX8WCvsdrfok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D9cS99yg; arc=none smtp.client-ip=209.85.219.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1768840837; c=relaxed/simple;
+	bh=hezZxiDsR/BDlnnj4LcPyEjaKpRFKEiIOROLZukg4h8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kZNozYig4F0tRupeM+Fa9U4Pjd7MmuZLc5BwHeeh7BcFQk3FGwBRwkTx2TFBEXsj5sHo/2IX8Ds0bUpKW/MuyCAmLQCL52B0a8SRfKjolvpGzd/ixbUvAQAd+MSm+M4n9VWzJClr6BIcaVbJeW0IfvQHeEL+KS9HYoqhvIQr3+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-8908f5ed4aeso43334586d6.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 08:37:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768840640; x=1769445440; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yWa5GFU+0/3D3/qFeqSukARO3O554NFHrTD7tJlV5sE=;
-        b=D9cS99yg1VoDWp7dVzCSIAogNp7MVRfxu8/xvenT4fc9hEpPfxKtrHNRjfvroD7NoL
-         d9WLORGDWCtyRgNC09E/mwxenrfnd4MVwuxFzOMEmePgFbEpmx9k2CGTG2LcBN05OO7X
-         oJxOO//3kBx4XUlOsFYuWHkK6JrXqvET7wS1EWNfWwtB8eaLiy90qpqldcN+i0B+YB8x
-         O/qzra2Z1j19Vt1m0NOSyAoZI12u9GAJaXURpbGQtTYahe8D1cWfdzWRy8UDOeQGWM28
-         97SPY/TcmbHRciJamAIoZbNqJlPbo/iI1swmn1C+n7hOoQhXrHWQg9f+wBtYAH3A3C2Z
-         AXKA==
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5f16fbbdf98so1455292137.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 08:40:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768840640; x=1769445440;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yWa5GFU+0/3D3/qFeqSukARO3O554NFHrTD7tJlV5sE=;
-        b=PHwSQpzyevgG4VEYEuSJ+fcoHElLmsTkNkIxGfv58WKNx5KIOBE0ddKG2FGgv9F6Qe
-         iiFhjqLroapg0/yZQQf7Gkl45KXtOUieiOO/IjVgp4vm2yztJTJRUcATnE/n2cKGZG+W
-         /ga0wlnqnXRCNhY2415OGNqD9rOF/9VT0S8P6w0IjlhQmdyQ6z8JUuD1DZXcelFxzqqX
-         /P1cEVJXoPtetqvd/eOte2y+Ycu1jsfNm6+Az+GH79Te2WAYpFItNLhaTnHJhhLcHR1R
-         X0jmsL7mxP5/V1htafKVA2wH+3DNZNWvrFn+KUyFe9STVNr9y2IU0nSqDfq+2Qw8DidD
-         4UZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXPKbmtVL5UCpHh7KfgjgkpbIzUt27SPzJeAK69YbvdK7HUwJCPyHVhifuYJB38AhbQtT5W35YRvv4c@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0sWKi+mOazNgCaTQ2657K2wJtPJw+afrGug2u5oGzaXqelSie
-	aThHDnNrGAXJiuiohMTLKJ/w9tghKEzK2lqqdFmIzWM59QKt6jxSyN7P
-X-Gm-Gg: AY/fxX4/HoUhUsWFtituOrhXIVbJMNwZ4UEL5pSIgqCi5vH1YR04dxdTBho3qu8S7xU
-	CXN+ArA6+j+lSrJkTijMVEVtSc2OcKkX3eVdkrojaLR0UKPfBvDMmGq3V4SQ0OWUs73S1N8MadY
-	gCa07+ogKoaqt0M9otO3kXrYlZRbHkKn/TmsPkuhavYuHpV7K+rJ5RBlsZlLnDVi+S1kvjas0mc
-	c4XgcaMX+T53thzKpklQFYbGSrxIqZ3o/29iTwWD8tQrhnqj4C77J67hKSP6QzxVExJ55xCtfHQ
-	iqpJfg5e4VFqPMI9DcDXeN73phZ82fdAsfAz/5bLnXj4G2tqdI0B7j4xcufFbsSMyLQ731qv6xu
-	NvV5yxr2oqMmP+kqhqOoRaKA+kT8AAUjhxllcq7cFW4buHZTYbFYwyWH+9SfjQUfmQJ0rXTfpGg
-	CjYUFZ0o1Yv+KRkc47ilPAgXWxzuLUlLF/OclvXoSGvz29o2tJWYuQeNZQbCxmfexKVfHNrHfru
-	x/uj9SiTR3n/7c=
-X-Received: by 2002:ac8:7d4d:0:b0:4f1:b9e8:1d34 with SMTP id d75a77b69052e-502a1f303bamr165768011cf.61.1768840640429;
-        Mon, 19 Jan 2026 08:37:20 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-502a1f1abb9sm73070231cf.30.2026.01.19.08.37.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 08:37:19 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Mon, 19 Jan 2026 16:37:09 +0000
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
-Message-ID: <hgy3bcrqqsvt7pobhnzuvwzhb2taetpxltkaxpigmmlvmlirod@v6anhmrsvv2r>
-References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
- <20260116-adf41513-iio-driver-v4-3-dbb7d6782217@analog.com>
- <aW3dxuelYDM67pqZ@smile.fi.intel.com>
- <texwv5s2tvcy34bwr4iruj5xofmea663pwletmpqpuh66zulmv@m7qvjgqbhalv>
- <aW40ylvMwVhqNQMw@smile.fi.intel.com>
+        d=1e100.net; s=20230601; t=1768840835; x=1769445635;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F2MpEOmpeO4/5fw0E94NX631Or+ttCr7v6BCMV3w81w=;
+        b=L9OxibwuN06+XwXpbwEdaCe/J6TsSd27oInvI2+b+RRiCrt6hQZUqGhoyJXU5q4v+s
+         AyJMauVDfpTSiQvyf37FT62QUHGXbpF4bNUWnqXSXNIX2YYpg7fXEuR6B9b8ON9OdxZj
+         tFFu6CH0Y8PKbkneNdzAdOJIJU8+Z0slirSBgtYtHa2FIBEiXUAeok8ue1evtqcKliPG
+         xtVUN0v2Zs0nUILno8mBMApoc0kYv/QK9HcK+nSTVOk2NUZCFA7bcRutI5XxS1rvTumM
+         GGVqBxlxLYsVcBCfkaQI/cT16TTrgz6nkL87NGO5lHKJn69mB/gQzOlIMy0Ezfvl4Qiu
+         d5JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUk5c7GERsqzwBJxbKJ1Z5yZavmfvl6t6E4nf5w1j09KNWpiNgvIxizrlF9oYwq5+tzTOc/jQpwKv5q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yze+ozkA1F5eNMJR2m8T9fIWKhMYN+Js5b2L9QL5YyfBG+eUFl7
+	aJRprDa+kLB18v+rUit3eEzvQT2b3UUAnUBvgwS6UPbLzfu/XK0h052UVjXvHtnQ
+X-Gm-Gg: AY/fxX5CdPm2bkPzPaq92IFUnS6w7S/DjlOwONq8T73OxEkOgGd3wYkdrnATo05Oslh
+	npZPwzfw3Tuzw3duhnDbF9aAYQcAx9lcbL/FRvtYMQAvd/qsVSWO8Wp86+3XCh2ELBC/WiehSaj
+	lZZNrOOTl6TGa3YMsNQYWDIjKsg50fuHnWAdiLdixePu4PNnT8ms4F2/glTOPP/u4MnaIdTy/kS
+	YPWBYW8Gbghays6B5dtAFi722PTGd3RlnsCwGZKsTehFPshZw9Ca3IqcqCXHJ4LA40kxgBZR+z3
+	pitP6hnE1A8vnC0/xCo/QB+EHne1svv7XYzlC4E2s8h8ehDekLYDJuRmxuyRYm6x6e9CJlgApjN
+	svd7mkJzPJ968J2oPIAoP7EN4G8LzelxfuT1gHPxbX0hSUxcv3f0vpgzYe3ICFI+d5Fn9/JQbca
+	aauJL3mcRRC4YaxZMiGsXdDpm3BXvbZdc/TAVAxPxyaO+EMLvT5Jix
+X-Received: by 2002:a05:6102:3914:b0:5ef:a6e8:3143 with SMTP id ada2fe7eead31-5f1a55c4ef0mr3649327137.37.1768840834948;
+        Mon, 19 Jan 2026 08:40:34 -0800 (PST)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5f1a6e5ed53sm3457387137.13.2026.01.19.08.40.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jan 2026 08:40:34 -0800 (PST)
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5636227a6e6so1243077e0c.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 08:40:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWnardiFHIX7evJrcGW0KUXNUY7Uq8n3cwtp6uZ2IMj2XSY2QZKw8B97JoiUrxSkQc8wl24K2xrAYAk@vger.kernel.org
+X-Received: by 2002:a05:6122:168a:b0:54c:3fe6:627b with SMTP id
+ 71dfb90a1353d-563b5b56009mr3875991e0c.3.1768840833719; Mon, 19 Jan 2026
+ 08:40:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aW40ylvMwVhqNQMw@smile.fi.intel.com>
+References: <20260116114852.52948-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20260116114852.52948-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 19 Jan 2026 17:40:22 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW24pRL4Ujqvbwjv7edMpHRzOGpjEJ8k0m62tN3zcsa4Q@mail.gmail.com>
+X-Gm-Features: AZwV_QhAuEIutjR_12DUTSQHjINgIxncNQEL6V2RP_w-8AA2IPTzsGxx6mo8cPg
+Message-ID: <CAMuHMdW24pRL4Ujqvbwjv7edMpHRzOGpjEJ8k0m62tN3zcsa4Q@mail.gmail.com>
+Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-db: add QSPI
+ node including NOR flash
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 26/01/19 03:42PM, Andy Shevchenko wrote:
-> On Mon, Jan 19, 2026 at 11:21:59AM +0000, Rodrigo Alencar wrote:
-> > On 26/01/19 09:31AM, Andy Shevchenko wrote:
-> > > On Fri, Jan 16, 2026 at 02:32:22PM +0000, Rodrigo Alencar via B4 Relay wrote:
+Hi Wolfram,
 
-...
-> > > > +struct adf41513_pll_settings {
-> > > > +	enum adf41513_pll_mode mode;
-> > > 
-> > > Sounds to me like a room to improve the layout here,
-> > 
-> > I am targeting a 32-bit cpu, just moved in_value down:
-> > would this be fine? (pahole output):
-> 
-> Likely.
-> 
-> > struct adf41513_pll_settings {
-> >         enum adf41513_pll_mode     mode;                 /*     0     4 */
-> 
-> Wondering if this can be shorter if moved down...
-> 
-> >         u8                         r_counter;            /*     4     1 */
-> >         u8                         ref_doubler;          /*     5     1 */
-> >         u8                         ref_div2;             /*     6     1 */
-> >         u8                         prescaler;            /*     7     1 */
-> >         u64                        target_frequency_uhz; /*     8     8 */
-> >         u64                        actual_frequency_uhz; /*    16     8 */
-> >         u64                        pfd_frequency_uhz;    /*    24     8 */
-> >         u32                        frac1;                /*    32     4 */
-> >         u32                        frac2;                /*    36     4 */
-> >         u32                        mod2;                 /*    40     4 */
-> >         u16                        int_value;            /*    44     2 */
-> > 
-> >         /* size: 48, cachelines: 1, members: 12 */
-> >         /* padding: 2 */
-> >         /* last cacheline: 48 bytes */
-> > };
-> 
-> ...at least I have had in mind that "mode" should be moved to be near
-> to "int_value". But I think it will take 4 bytes still as we don't use
-> short enums compile wise.
-> 
+On Fri, 16 Jan 2026 at 12:49, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Enable the QSPI controller to access the connected SPI NOR flash. The
+> NOR datasheet may suggest faster tuning parameters but those did not
+> work on my board.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-As you mentioned without short-enums it does not make any difference.
+Thanks for your patch!
 
-> > > > +static int adf41513_parse_uhz(const char *str, u64 *freq_uhz)
-> > > > +{
-> > > > +	u64 uhz = 0;
-> > > > +	int f_count = ADF41513_HZ_DECIMAL_PRECISION;
-> > > > +	bool frac_part = false;
-> > > > +
-> > > > +	if (str[0] == '+')
-> > > > +		str++;
-> > > > +
-> > > > +	while (*str && f_count > 0) {
-> > > > +		if ('0' <= *str && *str <= '9') {
-> > > > +			uhz = uhz * 10 + *str - '0';
-> > > > +			if (frac_part)
-> > > > +				f_count--;
-> > > > +		} else if (*str == '\n') {
-> > > > +			if (*(str + 1) == '\0')
-> > > > +				break;
-> > > > +			return -EINVAL;
-> > > 
-> > > > +		} else if (*str == '.' && !frac_part) {
-> > > 
-> > > This can be found by strchr() / strrchr() (depending on the expectations of
-> > > the input).
-> > > 
-> > > > +			frac_part = true;
-> > > > +		} else {
-> > > > +			return -EINVAL;
-> > > > +		}
-> > > > +		str++;
-> > > > +	}
-> > > 
-> > > With the above the rest becomes just a couple of simple_strtoull() calls with
-> > > a couple of int_pow(10) calls (and some validation on top).
-> > > 
-> > > > +	for (; f_count > 0; f_count--)
-> > > > +		uhz *= 10;
-> > > 
-> > > This is int_pow(10).
-> > > 
-> > > > +	*freq_uhz = uhz;
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > 
-> > The current implementation is kind of a stripped version of
-> > __iio_str_to_fixpoint(). Would you prefer something like this, then?:
-> 
-> Do they have most of the parts in common? If so, why can't we use
-> __iio_str_to_fixpoint() directly? Or why can't we slightly refactor
-> that to give us the results we need here?
+> --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> @@ -300,6 +300,84 @@ pins_mdio1: pins_mdio1 {
+>                 pinmux = <RZN1_PINMUX(152, RZN1_FUNC_MDIO1_SWITCH)>,
+>                          <RZN1_PINMUX(153, RZN1_FUNC_MDIO1_SWITCH)>;
+>         };
+> +
+> +       pins_qspi0: pins_qspi0 {
+> +               pinmux = <RZN1_PINMUX(74, RZN1_FUNC_QSPI)>,
+> +                        <RZN1_PINMUX(75, RZN1_FUNC_QSPI)>,
+> +                        <RZN1_PINMUX(76, RZN1_FUNC_QSPI)>,
+> +                        <RZN1_PINMUX(77, RZN1_FUNC_QSPI)>,
+> +                        <RZN1_PINMUX(78, RZN1_FUNC_QSPI)>,
+> +                        <RZN1_PINMUX(79, RZN1_FUNC_QSPI)>;
+> +               bias-disable;
+> +       };
+> +};
+> +
+> +&qspi0 {
+> +       pinctrl-0 = <&pins_qspi0>;
+> +       pinctrl-names = "default";
+> +       status = "okay";
+> +       bootph-all;
+> +
+> +       flash@0 {
+> +               reg = <0>;
+> +               compatible = "jedec,spi-nor";
+> +               spi-max-frequency = <62500000>;
+> +               spi-rx-bus-width = <4>;
+> +               spi-tx-bus-width = <4>;
+> +               cdns,read-delay = <1>;
+> +               cdns,tshsl-ns = <200>;
+> +               cdns,tsd2d-ns = <255>;
+> +               cdns,tchsh-ns = <20>;
+> +               cdns,tslch-ns = <20>;
+> +               bootph-all;
+> +
+> +               partitions {
+> +                       compatible = "fixed-partitions";
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +
+> +                       partition@0 {
+> +                               /* 64KB */
 
-__iio_str_to_fixpoint() only parses "int" chunks, adf41513_parse_uhz
-was modified to accomodate the u64 parsing removing unnecessary stuff.
-I am preparing V5 to use simple_strtoull. Thanks for early review
-and suggestions.
+KiB (everywhere)
 
-Kind regards,
+> +                               label = "qspi0:spl";
 
-Rodrigo Alencar
+Is there any point in the "qspi0:"-prefixes?
+AFAIU, RZ/N1D supports only a single QSPI instance.
+
+> +                               reg = <0x0000000 0x00010000>;
+> +                       };
+> +                       partition@1 {
+
+partition@10000 (reg address, everywhere)
+
+> +                               /* 64KB */
+> +                               label = "qspi0:pkgt";
+> +                               reg = <0x0010000 0x00010000>;
+> +                       };
+> +                       partition@2 {
+> +                               /* 512KB */
+> +                               label = "qspi0:u-boot";
+> +                               reg = <0x0020000 0x00080000>;
+> +                       };
+> +                       partition@3 {
+> +                               /* 64KB */
+> +                               label = "qspi0:env";
+> +                               reg = <0x00a0000 0x00010000>;
+> +                       };
+> +                       partition@4 {
+> +                               /* 128KB */
+> +                               label = "qspi0:dtb";
+> +                               reg = <0x00b0000 0x00020000>;
+> +                       };
+> +                       partition@5 {
+> +                               /* 1MB */
+
+MiB (everywhere)
+
+> +                               label = "qspi0:cm3";
+> +                               reg = <0x00d0000 0x00100000>;
+> +                       };
+> +                       partition@6 {
+> +                               /* 6MB */
+> +                               label = "qspi0:kernel";
+> +                               reg = <0x01d0000 0x00600000>;
+> +                       };
+> +                       partition@7 {
+> +                               /* Remaining */
+> +                               label = "qspi0:data";
+> +                               reg = <0x07d0000 0>;
+
+reg size should be 0x1830000.
+
+> +                       };
+> +               };
+> +       };
+>  };
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
