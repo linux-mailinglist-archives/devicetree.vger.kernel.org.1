@@ -1,171 +1,121 @@
-Return-Path: <devicetree+bounces-256937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C01E7D3AE88
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:12:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D52D3AEAD
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:16:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 281A9303D354
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:10:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1EEC93033D76
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1E8389E04;
-	Mon, 19 Jan 2026 15:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D001389464;
+	Mon, 19 Jan 2026 15:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LKvQ4YyU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8taw/ST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEEB73876D6;
-	Mon, 19 Jan 2026 15:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 606CF387590;
+	Mon, 19 Jan 2026 15:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768835426; cv=none; b=iNjRmlcKzlg7KDN69m0s+tRoLCZZt3KhEes5OvBX7HXEroisAlZSbYA9PY/JXnoUnuHUTAfNTjWx9oamZsdd2DMaNKu1hKytkpod6rlwhDVMA0vVAAnxtT2Jg/ivmygfOKwotDuhQ6Jo8GMuk0dfhOZB/jCwKzcNAVT0zh/50zs=
+	t=1768835585; cv=none; b=mjCRbZjqtfMJ1buaNSLP25NJUcmtEV1icG+gwl6k8tbTNshc5Ed0Ovhi5QDmmwXg/cz8qcYVLpdwiBkltm3hPhWKH/1CYGIxhGX1seuf/5edXEVGEHdc3DSbJiQqdPKU9V2yQAZU6qcN/q+u+8WWsXG7vNRr88Eb+cdqIknnMOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768835426; c=relaxed/simple;
-	bh=xXZbxSZlonw4Ew/6ct2KJs2ARO//Or9SzkD37nESUpg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=umwU5AXbDxV/+2Aewb5xn6aVpdhuvZSMDjLdyDPGILWz3wOej3caVantrTlm861PlVJom6tQTjfgw0c/hiHj89gEHuGEK4Pn7Kzqa5EEK+nnHEAALA+DZKC5vVQ2o6w8Ai4EsBu1JjdJmj21eJsO8qEqNQJm3YDDoehteMJQLs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LKvQ4YyU; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 7B6E51A2860;
-	Mon, 19 Jan 2026 15:10:22 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 47D8760731;
-	Mon, 19 Jan 2026 15:10:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F0D2010B6B105;
-	Mon, 19 Jan 2026 16:10:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768835421; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=IKmEBqxXC0eXvuOxUuZp0J0zMWNOx/SfPht47UrGDuQ=;
-	b=LKvQ4YyUWDrWQjpNq5ajlD3aPCGC+Tfg2t9NSM3F4Y0nQZHCWqUEABPnRRLtBU0h+16aVU
-	Mg6DUe1U/20WfKfVh62ywX9PnzCcmpeXczmR+QT8sPPs2cF1toiIDXIGa6/HxSm5wbahvR
-	Wp0NFgpnN4hGAoDrgTLD5D4Ao+72H6ozAS62xnEkhbgRa8TqVE5ogDy9Zh7vV3etr1YF+7
-	bzm0qVOo3rloL09B92Ny4E0WkLGF/IClyVPwyYEVQLHD32c3g0a5vOuEOI/tpg7li+PFl6
-	1Qmn7wX4dUAX+8nep0srimCWbZf6WOfAiqxNZaHuwpqJya8WBKuWsSbiSxGDTg==
-Date: Mon, 19 Jan 2026 16:10:15 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Jens Emil Schulz =?iso-8859-1?Q?=D8stergaard?= <jensemil.schulzostergaard@microchip.com>
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] pinctrl: ocelot: Update alt mode reg addr calculation
-Message-ID: <2026011915101544cfdc14@mail.local>
-References: <20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-0-1228155ed0ee@microchip.com>
- <20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-2-1228155ed0ee@microchip.com>
+	s=arc-20240116; t=1768835585; c=relaxed/simple;
+	bh=Y8J3a22LxojTwtjFDIOq3Xh2Y1/v/z1bHpEomhNiyzA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LwClSJ8K6+PfWSEDZicsFhPo7kIHdl3pHEObH0XUmw3kccjhz6O1eu/DKOtHWGZ27qfVsl1FtdXAp4czlz+qfbewf9702y0BOSnr0rKxWzz3VmRUxZYbHPiupF53k923g56B63UTQRWHOCeFUtlHEYkIAGpurWiaawOHMW0w36A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8taw/ST; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 026C3C116C6;
+	Mon, 19 Jan 2026 15:13:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768835585;
+	bh=Y8J3a22LxojTwtjFDIOq3Xh2Y1/v/z1bHpEomhNiyzA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=F8taw/STlq7Z6x1qDnlDKHZvWEgXB6Azj+7WEn0JcjiGMp5dP4vxkLOtfslIHsLDh
+	 5+He5tSVchSqkA1sUyW4gzUoLcTid4cbAFNpvJ/6TY4fYsqdT0vpzDnq/jJi1zFy4x
+	 tyhjMaN+O6VCsG6S/rKfhUDswp0ea4RD3wcijUTpvwTUpk4+qPO20E/UGq0RLR/uHx
+	 r92VOvjwBhtuG7+qZTKps8CCve1d5xw6lHKqni9Bji4SaH+Jiieu5hZCVdfvmpfuMP
+	 7Hyy+mZ+htqGzVKyTbdSSrhpFQjyILLJJActHAPDZd8vxuf70nSUcgpJd5slxnWXDY
+	 aZJ6A2/X2rSwA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ED82FD29C32;
+	Mon, 19 Jan 2026 15:13:04 +0000 (UTC)
+From: Biswapriyo Nath via B4 Relay <devnull+nathbappai.gmail.com@kernel.org>
+Subject: [PATCH 0/5] Fix volume up and add RTC, PRNG, UART in xiaomi-ginkgo
+Date: Mon, 19 Jan 2026 15:13:02 +0000
+Message-Id: <20260119-xiaomi-ginkgo-features-v1-0-3c8fae984bda@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-2-1228155ed0ee@microchip.com>
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/zXMywrCMBCF4VcpszaShBKriPge0kXaTuJgm2jSG
+ 5S+u6HV5X/gfAtEDIQRLtkCAUeK5F0KccigfmpnkVGTGiSXigtRsJm074hZci/rmUHdDwEjU4X
+ MUXCDtRSQzu+AhuYNfpR7B/wMye/3ETqMUW/+Jbv+ePXnJ2pbP7FRMs5ydc4NVideN9W90+Rac
+ uTs0Qd7g3Jdv9QrS0fEAAAA
+X-Change-ID: 20260118-xiaomi-ginkgo-features-6824e10fec21
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Biswapriyo Nath <nathbappai@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1768835583; l=1701;
+ i=nathbappai@gmail.com; s=20260118; h=from:subject:message-id;
+ bh=Y8J3a22LxojTwtjFDIOq3Xh2Y1/v/z1bHpEomhNiyzA=;
+ b=NM+djRWh0hDybZin4U0mrEc7MyDRvjJyr4UOy3vHhBJXA2rYheA/U9sXRcJ1upF5wXsk97R5b
+ 6iH0ILhSqhEA0H5qE7snvR1uaPnD+7cg3QQv3FjWngBVU3kiXziKcvg
+X-Developer-Key: i=nathbappai@gmail.com; a=ed25519;
+ pk=slmb/9yXbet+KTiT3EYLCp0p0MEOYa3EdjUXP+HXfjg=
+X-Endpoint-Received: by B4 Relay for nathbappai@gmail.com/20260118 with
+ auth_id=607
+X-Original-From: Biswapriyo Nath <nathbappai@gmail.com>
+Reply-To: nathbappai@gmail.com
 
-On 19/01/2026 16:06:10+0100, Jens Emil Schulz Østergaard wrote:
-> Lan9645x is the first chip supported by this driver where the pin stride
-> is different from the alt mode stride. With 51 pins and up to 7 alt
-> modes, we have stride = 2 and alt_mode_stride = 3.
-> 
-> The current REG_ALT macro has the implicit assumption that these numbers
-> are equal, so it does not work for lan9645x.
-> 
-> The pin stride is the 'stride' variable in the driver. It is the size
-> of certain register groups which depends on the number of pins supported
-> by the device. Generally we have stride = DIV_ROUND_UP(npins, 32). E.g:
-> 
-> GPIO_OUT_SET0
-> GPIO_OUT_SET1
-> ...
-> GPIO_OUT_SETn
-> 
-> The alt mode registers are further replicated by the number of bits
-> necessary to represent the alt mode. For instance if we need 3 bits to
-> represent the alt mode:
-> 
-> GPIO_ALT0[0-2]
-> GPIO_ALT1[0-2]
-> 
-> To set alt mode 3 on pin 12, it is necessary to perform writes
-> 
-> GPIO_ALT0[0] |= BIT(12)
-> GPIO_ALT0[1] |= BIT(12)
-> GPIO_ALT0[2] &= ~BIT(12)
-> 
-> The stride and alt mode stride are used by the REG_ALT macro to
-> calculate the alt mode register address for a given pin.
-> 
-> This adds the option to specify n_alt_modes, which is used to set
-> info->altm_stride. The default value is info->stride, to make sure
-> existing devices are unaffected by this change.
-> 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Reviewed-by: Daniel Machon <daniel.machon@microchip.com>
-> Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+The patch series fixes an issue and adds some components.
 
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Changes:
+- Fix volume up button gpio and power source in xiaomi ginkgo.
+- Enable RTC from pm6125 in xiaomi ginkgo.
+- Add prng node in sm6125.
+- Add debug uart node in sm6125.
+- Enable debug uart in xiaomi ginkgo.
 
-> ---
->  drivers/pinctrl/pinctrl-ocelot.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/pinctrl-ocelot.c b/drivers/pinctrl/pinctrl-ocelot.c
-> index 70da3f37567a..4db0439ca8c4 100644
-> --- a/drivers/pinctrl/pinctrl-ocelot.c
-> +++ b/drivers/pinctrl/pinctrl-ocelot.c
-> @@ -358,12 +358,14 @@ struct ocelot_pinctrl {
->  	const struct ocelot_pincfg_data *pincfg_data;
->  	struct ocelot_pmx_func func[FUNC_MAX];
->  	u8 stride;
-> +	u8 altm_stride;
->  	struct workqueue_struct *wq;
->  };
->  
->  struct ocelot_match_data {
->  	struct pinctrl_desc desc;
->  	struct ocelot_pincfg_data pincfg_data;
-> +	unsigned int n_alt_modes;
->  };
->  
->  struct ocelot_irq_work {
-> @@ -1362,7 +1364,7 @@ static int ocelot_pin_function_idx(struct ocelot_pinctrl *info,
->  	return -1;
->  }
->  
-> -#define REG_ALT(msb, info, p) (OCELOT_GPIO_ALT0 * (info)->stride + 4 * ((msb) + ((info)->stride * ((p) / 32))))
-> +#define REG_ALT(msb, info, p) (OCELOT_GPIO_ALT0 * (info)->stride + 4 * ((msb) + ((info)->altm_stride * ((p) / 32))))
->  
->  static int ocelot_pinmux_set_mux(struct pinctrl_dev *pctldev,
->  				 unsigned int selector, unsigned int group)
-> @@ -2294,6 +2296,9 @@ static int ocelot_pinctrl_probe(struct platform_device *pdev)
->  	reset_control_reset(reset);
->  
->  	info->stride = 1 + (info->desc->npins - 1) / 32;
-> +	info->altm_stride = info->stride;
-> +	if (data->n_alt_modes)
-> +		info->altm_stride = fls(data->n_alt_modes);
->  
->  	regmap_config.max_register = OCELOT_GPIO_SD_MAP * info->stride + 15 * 4;
->  
-> 
-> -- 
-> 2.34.1
-> 
+Depends on:
+[1] https://lore.kernel.org/linux-arm-msm/20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org/
 
+Signed-off-by: Biswapriyo Nath <nathbappai@gmail.com>
+---
+Biswapriyo Nath (5):
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix volume up button
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Enable RTC
+      arm64: dts: qcom: sm6125: Add PRNG node
+      arm64: dts: qcom: sm6125: Add debug UART node
+      arm64: dts: qcom: sm6125-xiaomi-ginkgo: Enable debug UART
+
+ .../boot/dts/qcom/sm6125-xiaomi-ginkgo-common.dtsi | 22 ++++++++++++++++---
+ arch/arm64/boot/dts/qcom/sm6125.dtsi               | 25 ++++++++++++++++++++++
+ 2 files changed, 44 insertions(+), 3 deletions(-)
+---
+base-commit: e5d16f0daba655b8c63032f7b0ae1f21881d821f
+change-id: 20260118-xiaomi-ginkgo-features-6824e10fec21
+prerequisite-message-id: <20260116-xiaomi-willow-v2-0-4694feb70cdb@mainlining.org>
+prerequisite-patch-id: 97a500cccd7099f84f02d24b79f9632264ff0919
+prerequisite-patch-id: a76649864084c6349d5bbd425c84489621e3d950
+prerequisite-patch-id: 88844031b714eecc8185b968927ece52795237cd
+prerequisite-patch-id: 7f01d4e3dafb4911244d6bf03db9ac03395f8609
+prerequisite-patch-id: c339d93729aee842cce74ba1316f5b5c8d01d04e
+prerequisite-patch-id: daad11c94235247984631a78b2c2cda74f8af5bf
+prerequisite-patch-id: 816740927f2e464864884584e6af596b038074dd
+
+Best regards,
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Biswapriyo Nath <nathbappai@gmail.com>
+
+
 
