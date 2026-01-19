@@ -1,176 +1,117 @@
-Return-Path: <devicetree+bounces-257084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1824AD3B7CA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 20:57:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A81DD3B7D1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 20:58:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8E2433008CA8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:57:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DECB3300877A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:58:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE572E1C63;
-	Mon, 19 Jan 2026 19:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6482DE701;
+	Mon, 19 Jan 2026 19:58:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JEE0kulJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QyFJw+PU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F4F2DB791;
-	Mon, 19 Jan 2026 19:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D5A2BD0B;
+	Mon, 19 Jan 2026 19:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768852622; cv=none; b=mxTOdGLbqPQu50802GlF0fCcInYkNWVnDLY1JVJgLEbyxB5ZbNDAjSSJqwpsMa54g1V9tEZLWLyvHwilAYSY49KA0LUI0oUt3ZU6UdGJEV9GYJDzEL20203DehXsD51oOvXSBVLQ1YDnDjnFFKd8+yzUnrZwFrTIJrkW2RrY84I=
+	t=1768852695; cv=none; b=EgDp2LbzLAWkqb2qECoArP06B5vIwsuipQnVOutRGoSHCiwPjgsbZbsVZAeVmGu5lxfFXvA82t4Vdgig3b4wDoZ/grAILw+LIwZzku65b+gRzvnMXusEiMyE7nGWZJCTwaNX1WJKJjp0MXEhYoMdEErm+IfC/3Xp8/5PHsi/18g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768852622; c=relaxed/simple;
-	bh=I6Vvisgn1Q+kcWkCapIkRE+4BWbsnVSRRjSJ+RZxpm4=;
+	s=arc-20240116; t=1768852695; c=relaxed/simple;
+	bh=Fd+cyzWsz1pW/sMFaPY19RCYS3qQIc3jzaKeWYBrjOo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=czCPtGblYXb4Wer6p0irSpY983x3ff81WZhMBKtHpJe0QeQGJYNvn1YyurIM32f63FO78+LWShcvmjz/bAZ98CCnuAgyFs0VBoGrmLSdB8mWpyfEklYFlYISyv2TXFaIGAEqviJGplyBfgMJ69dAgOXo8YmbRF/qyyhsVP4x5P4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JEE0kulJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 127F2C116C6;
-	Mon, 19 Jan 2026 19:56:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FNe3Cegcopk4IR+mfsavVsljKgeQuhBCBjmErpTPBG8tjrxDj0h+nbL7ao2ZQ3J5kSiSb4ATG8lJ/6cKA88qf3sxvm64QyPwfbO+0NJiyXH+i6OPfwYUsfeUxOdb0HFQ2UJVKUTfDqkyu6sHAqtOc5kO9MesVvf5s1zlw3HfZuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QyFJw+PU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA487C116C6;
+	Mon, 19 Jan 2026 19:58:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768852622;
-	bh=I6Vvisgn1Q+kcWkCapIkRE+4BWbsnVSRRjSJ+RZxpm4=;
+	s=k20201202; t=1768852694;
+	bh=Fd+cyzWsz1pW/sMFaPY19RCYS3qQIc3jzaKeWYBrjOo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JEE0kulJOkzrMzaVqpk/pyIFfKMGoK6hHprAGuMfz0ulvVyppFgV2H0nbPmXSlwZX
-	 yPLFTYuKaVcZ903IGuhCr7kp6/i+iPQxUqCqs2bUZJuHejsAzxSQ5cLQW95r8SY/j8
-	 8i618MqYH9PhTwZ2i+0LQgBeNSCiUzcTxGE2DwP96eF8NLXd1yeiNLwBVVOh+btsYi
-	 gKXgv1+wHeTHOSCEHZYAzG6roKCOt90m3Gfpvs9i/qjWSTsid+sgBAD4uXKNSLwd8y
-	 F8wkpVnsJu+/vGJFqHrUHGIfzr9XzJCUGOZ3TnDlXB3p/a2XRm5KBIHTfz0khF37Mz
-	 qv+rf5GY7ahuQ==
-Date: Mon, 19 Jan 2026 19:56:57 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: Abdurrahman Hussain <abdurrahman@nexthop.ai>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	b=QyFJw+PUGCo/fHxooyqqRJFQSkG7RO7klVUYoJ0rEmNqqwawWJ0bO4BvwHKiW+Jx+
+	 t85u7tOZUYRAnhrfGeF3seOpoE3oEzXGFIncyPI1efaBuXsDAedFLO12hCfUjKqNwA
+	 /WxRUzbTPcyiX5KPmiukI4t2rZs7xtaWJttUjrfWAHKzPW/4ywCM6vVyvv0pUW+79E
+	 TbMRbQ4P4FHVaGy8TCbjkCKknSPvtW0k3G4krjGERosdLKeptlZRtpKprCoZRXg5Ne
+	 EjlJAWuF8ny20oAXyZMjhR3E5sKJOWxEBkwT9L6EWwg43ckAaCGf0I8NSdgNtAkzb+
+	 MdJsNV7JzNDoA==
+Date: Mon, 19 Jan 2026 13:58:12 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Elson Serrao <elson.serrao@oss.qualcomm.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Souradeep Chowdhury <quic_schowdhu@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] spi: xilinx: use device property accessors.
-Message-ID: <980ad372-a2c7-417c-91f9-4958d3d1aaca@sirena.org.uk>
-References: <8436e914-429f-40b9-8e6f-ec3b02702cad@sirena.org.uk>
- <69F83558-4675-4FC2-8656-BC6E3481AD65@nexthop.ai>
- <9e559e33-4f2f-40d4-a15f-584548bd6057@sirena.org.uk>
- <05D2CC15-DD6B-40F0-BFF0-3264D4FF96ED@nexthop.ai>
- <b1b79de0-a078-486d-b3e9-96899354407c@sirena.org.uk>
- <3D1B59A7-6E57-4C8C-AA95-EA7AA115264F@nexthop.ai>
- <b9ad8ab8-7985-4c89-a82b-c7f31d32c167@sirena.org.uk>
- <a6d57890-89c1-445e-836c-d8239d20c621@amd.com>
- <b03307f7-93f6-4680-9241-cf28b5456fd0@sirena.org.uk>
- <a3fcef3a-d1e9-4b46-b114-3a82575e052e@amd.com>
+Subject: Re: [PATCH 1/9] dt-bindings: soc: qcom: eud: Restructure to model
+ multi-path hardware
+Message-ID: <sfazro75vspadpe4wco7zvlalcy2wbrbdjx2wn7lyonjgw22sf@z73u67pinusx>
+References: <20260116232106.2234978-1-elson.serrao@oss.qualcomm.com>
+ <20260116232106.2234978-2-elson.serrao@oss.qualcomm.com>
+ <20260117-courageous-chamois-of-focus-20d5d5@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="z9QuIhghQmufumfI"
-Content-Disposition: inline
-In-Reply-To: <a3fcef3a-d1e9-4b46-b114-3a82575e052e@amd.com>
-X-Cookie: Does not include installation.
-
-
---z9QuIhghQmufumfI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20260117-courageous-chamois-of-focus-20d5d5@quoll>
 
-On Mon, Jan 19, 2026 at 08:17:46PM +0100, Michal Simek wrote:
-> On 1/19/26 20:01, Mark Brown wrote:
-> > On Mon, Jan 19, 2026 at 07:52:35PM +0100, Michal Simek wrote:
+On Sat, Jan 17, 2026 at 12:57:58PM +0100, Krzysztof Kozlowski wrote:
+> On Fri, Jan 16, 2026 at 03:20:58PM -0800, Elson Serrao wrote:
+> > The Qualcomm Embedded USB Debugger (EUD) hardware can intercept up to
+> > two independent High-Speed UTMI data paths, depending on the SoC
+> > configuration. Each path operates independently with:
+> > 
+> > - Dedicated PHY interface
+> > - Distinct USB connector and controller associations
+> > - Role dependent routing
+> > 
+> > Model these hardware paths as separate eud-path nodes to accurately
+> > represent the physical topology and add below per-path properties:
+> > 
+> > phys: EUD exposes a High-Speed debug hub that relies on HS-PHY for its
+> > operation. This property references the HS-PHY associated with the UTMI
+> > path.
+> > 
+> > usb-role-switch: Indicates that the USB port on this UTMI path supports
+> > role switching. In device role, debug mode inserts the EUD hub into the
+> > UTMI path. In host role, the EUD hub is bypassed and UTMI traffic flows
+> > directly between the PHY and the USB controller.
+> > 
+> > This change breaks backwards compatibility, but the previous binding
+> > omitted critical resources like PHY and did not describe per-path
+> > topology. Without these modifications EUD cannot be guaranteed to
+> > function.
+> 
+> It was working for 3 years, so your guarantees are just imprecise. FUD
+> is not an argument.
+> 
+> Qualcomm task at 2022 was to post complete bindings. These were posted
+> and accepted. Three years later you say that previous posting was
+> bollocks and this cannot even work?
+> 
 
-> > > Is it a better way to use auxiliary bus as was recommended by Greg in past
-> > > on drivers/misc/keba/cp500.c review?
-> > > https://lore.kernel.org/linux-i2c/2024060203-impeding-curing-e6cd@gregkh/
+That is correct. The description of the hardware that was provided when
+this was upstreamed and the binding that was accepted based on this
+description is wrong.
 
-> > The driver there appears to be doing runtime enumeration based on some
-> > EEPROMs on the system and creating platform devices based on what it
-> > finds there so it's a bit of a different thing, the aux bus suggestion
-> > is about what the code that does with the data it got from the EEPROM.
-> > This patch is for something described directly by firmware so there's no
-> > way we'd create an aux device, that's purely in kernel.
+There's absolutely a value in maintainting backwards compatibility in
+general, but is this one of those cases?
 
-> I don't thing it is actually eeprom because in fpga you can place at certain
-> location just memory (or RO memory) to describe what it is inside.
+> Nah, take responsibility of what you did in the past.
+> 
 
-The table of per module I2C EEPROM devices (there's a whole pile flagged
-as optional) sure does look like it, and it's a very standard way to
-implement hardware enumeration of non-enumerable systems.
+In my view the responsible thing is to accept that we got it wrong and
+make sure EUD is enabled end-to-end so people can actually use it.
 
-> If you know it I think you have multiple options how to wire existing drivers.
-
-> 1. ACPI - which is what this series is trying to do
-
-Is it?  It just looks like random cleanups.  We've got a change to make
-interrupts optional and this change to device properties - the cover
-letter just says it's a transition to device property but there's no
-indiciation why it's being done.  The cover letter for the series just
-says it's switching to device properties with no further explanation.
-It looks like a "that's the newer API" thing than something that's been
-thought through.
-
-None of this looks like something intended to add ACPI bindings,
-it's not clear to me how we'd even get the device instantiated on a
-normal ACPI system.  There's no ACPI IDs defined (and there aren't any
-existing ones), just a conversion of the property parsing code.
-
-> 2. DT - on x86 not sure if feasible
-
-No, x86 decided not to use DT and shoehorn everything into APCI (and the
-x86 SoCs put their platform devices behind fake PCI that looks like PCI
-to the OS).
-
-> 3. platform drivers - as described above by Greg not an option on PCIe
-> 4. aux bus - for example keba drivers
-> 5. dfl - drivers/fpga/dfl* - used for accelerators.
-
-These are orthogonal to the above, they're Linux internal things not a
-concept the firmware has.  You have firmware descriptions of things that
-can be mapped onto platform devices but that's a separate thing.
-
-> Pretty much all current Xilinx drivers for soft IPs (spi, i2c, uarts,
-> watchdogs, etc) are platform drivers (more OF drivers because platform data
-> are mostly not used).
-
-> It means I think would be good to get any recommendation which way to go.
-
-You should use whatever firmware interface is sensible for the platform,
-if that's x86 that's always ACPI.  For other architectures there's a
-split with servers using ACPI and more embedded platforms using DT.
-
-> > I have no idea what the hardware this series targets is (other than that
-> > it's using a FPGA) or if there's even a motivation for the change other
-> > than code inspection.
-
-> I think all these cases are very similar. You have x86 with pcie root port
-> which is connected directly (or via pcie slot) to fpga. In fpga you have
-> pcie endpoint HW which connects other IPs sitting on AXI.
-
-What are "all these cases"?  For something connected via PCI I would
-expect a PCI driver that knows via some mechanism what's connected to it
-and then instantiates the IPs, probably as aux devices.  I would not
-expect to see the contents of the PCI device described in firmware at
-all, that's a big goal with using PCI.  If something is not connected
-via PCI that's obviously not going to fly but it sounds like you're only
-interested in PCI cases here.
-
---z9QuIhghQmufumfI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlujIgACgkQJNaLcl1U
-h9Du4Qf/QEKPMJId1EFhT9SWaLCmGH9yQJ7HkMRcEjshV2zUijpH0Ao9FHDyKNou
-fzwxki5H2KmSHH6lMX0m06XzZCrBUZA3udtzOijysVDlyzYg8xojG6Gt5FBzj+v8
-QTtBqSipaYb8fGecQdgGxFrrzDaahTmvvGFqQugl4F1D+osDoCNy9m2zREo6UAuh
-MzOFlO/vyekNBsoaiV1LhxurwqPpJHq6dNJ2N+SVId5KvrFswMaNI8TJMzJ2C5qp
-h1naAXVxaBwkmXfaKzky/XmTQCGHT65sdSk0sixwz0f9fcNFfuumZJMhtqcxzTxR
-ZMxVbNFyBY+PbByehglZ1BTi/zn9kg==
-=2Frd
------END PGP SIGNATURE-----
-
---z9QuIhghQmufumfI--
+Regards,
+Bjorn
 
