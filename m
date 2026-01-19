@@ -1,361 +1,250 @@
-Return-Path: <devicetree+bounces-257068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC18AD3B6C9
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 20:08:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E1F8D3B6F4
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 20:12:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D1B6730223F7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:08:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B8C83038F6E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 19:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D8183904E9;
-	Mon, 19 Jan 2026 19:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA586387579;
+	Mon, 19 Jan 2026 19:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SZdB8790"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Fu2dO9un"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96BD038B9AF
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 19:08:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5C33126A1;
+	Mon, 19 Jan 2026 19:11:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768849696; cv=none; b=AHFljt7JtG3nSiaxBmBQ4rQIaC+fJX0ZVZPvdQ54TbXVvGiRtrmMV61xpReWEzhS9e27DR3Zd2eGJliIz8ice1QjYFRDOVNnDufp54AifaD/G0m8KoYMqKKfTuY4k0OUZUURl1eCQs/aDpMj26HNRUZIYhd4hBmDK08OomUT0BE=
+	t=1768849891; cv=none; b=GLHbVstHHPHnzxmj9WMTXft+Voqw0feYX+cCcim2PnlYvZXAm+r+P1fRjVwVzcWDYWLhI60su6bHwe13ISVpRpph44/QJoVCxejAdae6IxE2fUk3JTSUxe1kZEDvPsq/xwTItVnFg79kwCY08IFAeq6mf7Q+vYSHN6+mjghnWAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768849696; c=relaxed/simple;
-	bh=3PUyPCcdwpDy4sR6ULerIZnext4tAwigq1OJ4UpVhSg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PaRIKGqXKYHFHTQK4lVu0Xm5AyEcsMYu9Ttph0bez2lMYabBufWuBUNo/ZpiWAh9s7rPZAigbDdWYHKYSURRquvfPR4iVbmuCkaQNJ+oekSoMKt+6CnGyRJ8sidcSxn8euBvbGM01VD0yvzdN7teS3zcFPjeZa1EGQwf9ZEQcQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SZdB8790; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-64b791b5584so8366188a12.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 11:08:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768849693; x=1769454493; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6EOeB2Krno7KohtcwawYWgC7Y0EFIpANQmNXzA7njlY=;
-        b=SZdB87901OfI0BFlUYH3WYJcwUV+yFSqkEyAAAf1b18xBhVGghRPkhEb7MVYI1AuCX
-         OIphEyuWvFc5/aleM/TDfGn97tzt1XbGDkYm8BWvLv63yqgKYgZ/AE5z4y2HtctajC2f
-         DCPCLxJdtvjGXtCZ3ZKIQ7vnmogesWs+wcsElNpxtHal4pcFyQzOcCAWbcGWNFXuxRgR
-         M2++75IzFTJWGu3xhkl/1ZNH8cITMF9bLG0/bcIFNkQTnum0B8m53HkzSjNfxoCepUhA
-         kWPq7YlQ49bqz8/ggBSP2aIz9KDfbVj4h3+NVzuA1gUnIi0gSIpEzfv2MrN6lPOu8yKq
-         b2cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768849693; x=1769454493;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6EOeB2Krno7KohtcwawYWgC7Y0EFIpANQmNXzA7njlY=;
-        b=iT55t2NhcB5c+hEQhBRneEemm1SRrpIRBUbdcbGBRtAMeg0wZpuJoH0diRnesyHnJf
-         SMQLJQgXxwVHuBnqQcgO54xf3Q3U2AzXv64QWseOEh8emiz0ET/NSs4EVoWPWqp6T8xw
-         /PC2/d/mQ2mVQOPkvn8ODn9W2kCr3esqVpCX683pZ0o501HpSASH81wnDPSXxjliawxA
-         9MlDdMckkA4vmhHk7Sevh+vK3gcogH+JRjXGvn152qR41f2jMxtd+hibo/AwBpW2bn5x
-         tjFG5IpCBrjQd/2jxklIDJYPSvMUZvHs0p8yCuMb1sd6BL5E2UKbNrhNS+KF7pRERDMQ
-         l5MQ==
-X-Gm-Message-State: AOJu0Yw91weU3XEFGJpRysLY6ZFNGSje/pGBaGeDGxu/OAZZAxMDCYVL
-	b1AZEYRN4t5lXoHpJLFhe7XSTcKgMV1djl9ANhKOzOBCQDvCSpXZx5wL
-X-Gm-Gg: AY/fxX7GcgbbYBMpMhCFP9XROSE/vaBMuqwIfN9lxKZhsg7nlxNVEke2iZR3n2d2RUA
-	GDUG3Vm/ToubBh9rRwz0hz79DDoK4hUDBNJtflmYIW35zNckI/xNvTvXj0cOVAcbjaIVdZn3XWS
-	aFKyRu2VqK4e0PrF5w5D550ILAiOBvnOw3zwaANcSjAQh0jnDvSRkyg8X9BTCOsJ7ryNuUKy65w
-	/c0jIrmF805qDMMcRyT2QwXB90UXHIJvejc51Kd220NGLYb8cDyIP6a/Hy97UJ5ikwW7yg5iYzt
-	ZfyCwe+LpTCwRnzbSEg3l55XA2/wv6Bv9g1524mEvLO93dsyXqLmBsO4CDoQJnBUz7qnncGHNql
-	7Y06czwoEvmuEsZku80aMVCobVqI6NLLAS3bG8P+m0xyEfTgN7aienDyb5MQQsC1+sPK5jBIEnb
-	EckuWG9SzVTNvIkuF5hFkdi6o=
-X-Received: by 2002:a17:907:d0d:b0:b87:c13:f334 with SMTP id a640c23a62f3a-b8796b85d4dmr1092364266b.53.1768849692744;
-        Mon, 19 Jan 2026 11:08:12 -0800 (PST)
-Received: from vamoirid-laptop.. ([2a04:ee41:82:7577:a4c5:86fc:3b16:bc0a])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b87959ca32esm1193767366b.41.2026.01.19.11.08.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 11:08:12 -0800 (PST)
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux@roeck-us.net
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
-Subject: [PATCH v2 2/2] hwmon: Add support for HiTRON HAC300S PSU
-Date: Mon, 19 Jan 2026 20:08:06 +0100
-Message-ID: <20260119190806.35276-3-vassilisamir@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260119190806.35276-1-vassilisamir@gmail.com>
-References: <20260119190806.35276-1-vassilisamir@gmail.com>
+	s=arc-20240116; t=1768849891; c=relaxed/simple;
+	bh=fLO6T0/fGTVtnzO1cEfB2bZ7ORGh+gx0pi92VSS7Cyo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X8r5LA1SaqRyy5OMFq3ixzQAxE5pH38oXIkqb4WwbYGhAgr3pvEd9pDDDe2xbS2ZC+RSvuNuVi99pOoEEMfICdhr53NVEjuAhR26hJvCFYDEffftWlB2kI2w5BYVRbTZxAJ5Amtzr8d5e6cNZ+IhIhC9QVtfSgTb3lezcUb5vjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Fu2dO9un; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768849889; x=1800385889;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fLO6T0/fGTVtnzO1cEfB2bZ7ORGh+gx0pi92VSS7Cyo=;
+  b=Fu2dO9unPaq9bNxM7uM1AY4rslBQr7ipBX7esFgu7oGxk9pfhdCxWprE
+   iFouzx60nPIIp7JUTnN4tysoDGR9dtL7Ky6p27xr9QPt8zBnpU16ia0kj
+   Hw574/RakeZeBixNVbxa2yZOMmpfk9D0MXCNukunnR59V61els2Q1Jgcc
+   M+xppCkVNf6l1/Y5nU2LZj3TGbJbM3XXHqhgIAQW8LoiR5w+W3Qgwv0c7
+   Hfe1jdYO1G3vQ54OaCxbNqXzvX1Hv7pVYu/tC3QLriqVFo60xL8F3aXVA
+   pVHK1MdU9BpbcMjPEOPqFeLszCqyhNjdN26wyoK95DWQlixrbbvDeiadQ
+   w==;
+X-CSE-ConnectionGUID: yFbyBPpPRlugmvsUhvUUWA==
+X-CSE-MsgGUID: 12gOQXVjTPWR2oX9Px3eUg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="69972499"
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
+   d="scan'208";a="69972499"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 11:11:29 -0800
+X-CSE-ConnectionGUID: oBsPDJPZTpa8B/53QdhWFg==
+X-CSE-MsgGUID: wsuLApVFQAWilWGmVipHjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,238,1763452800"; 
+   d="scan'208";a="210435749"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.37])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2026 11:11:26 -0800
+Date: Mon, 19 Jan 2026 21:11:23 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 5/8] iio: dac: ds4424: add Rfs-based scale and
+ per-variant limits
+Message-ID: <aW6B22-nMF1EfGmE@smile.fi.intel.com>
+References: <20260119182424.1660601-1-o.rempel@pengutronix.de>
+ <20260119182424.1660601-6-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260119182424.1660601-6-o.rempel@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-From: Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
+On Mon, Jan 19, 2026 at 07:24:21PM +0100, Oleksij Rempel wrote:
+> Parse optional maxim,rfs-ohms values to derive the per-channel output
+> current scale (mA per step) for the IIO current ABI.
+> 
+> Select per-variant parameters to match the shared register map while
+> handling different data widths and full-scale current calculations.
+> 
+> Behavior changes:
+> - If maxim,rfs-ohms is present, IIO_CHAN_INFO_SCALE becomes available
+>   and reports mA/step derived from Rfs.
+> - If maxim,rfs-ohms is missing, SCALE is not exposed to keep older DTs
+>   working without requiring updates.
+> - RAW writes are now limited to the representable sign-magnitude range
+>   of the detected variant to avoid silent truncation (e.g. +/-31 on
+>   DS440x).
 
-Add Support for HiTRON HAC300S PSU. This is a AC/DC hot-swappable
-CompactPCI Serial Dual output active current sharing switching power
-supply with a 312W rating.
+...
 
-Signed-off-by: Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
----
- Documentation/hwmon/hac300s.rst |  37 +++++++++
- Documentation/hwmon/index.rst   |   1 +
- MAINTAINERS                     |   7 ++
- drivers/hwmon/pmbus/Kconfig     |   9 +++
- drivers/hwmon/pmbus/Makefile    |   1 +
- drivers/hwmon/pmbus/hac300s.c   | 132 ++++++++++++++++++++++++++++++++
- 6 files changed, 187 insertions(+)
- create mode 100644 Documentation/hwmon/hac300s.rst
- create mode 100644 drivers/hwmon/pmbus/hac300s.c
+> +struct ds4424_chip_info {
+> +	u8 result_mask;
+> +	int vref_mv;
+> +	int scale_denom;
 
-diff --git a/Documentation/hwmon/hac300s.rst b/Documentation/hwmon/hac300s.rst
-new file mode 100644
-index 000000000000..8b11d3e72295
---- /dev/null
-+++ b/Documentation/hwmon/hac300s.rst
-@@ -0,0 +1,37 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver hac300s
-+=====================
-+
-+Supported chips:
-+
-+   * HiTRON HAC300S
-+
-+     Prefix: 'hac300s'
-+
-+     Datasheet: Publicly available at HiTRON website.
-+
-+Author:
-+
-+  - Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
-+
-+Description
-+-----------
-+
-+This driver supports the HiTRON HAC300S PSU. It is a Universal AC input
-+harmonic correction AC-DC hot-swappable CompactPCI Serial Dual output
-+(with 5V standby) 312 Watts active current sharing switching power supply.
-+
-+The device has an input of 90-264VAC and 2 nominal output voltaged at 12V and
-+5V which they can supplu up to 25A and 2.5A respectively.
-+
-+Sysfs entries
-+-------------
-+
-+======= ==========================================
-+curr1   Output current
-+in1     Output voltage
-+power1  Output power
-+temp1   Ambient temperature inside the module
-+temp2   Internal secondary component's temperature
-+======= ==========================================
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 85d7a686883e..f00ce656e9dd 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -84,6 +84,7 @@ Hardware Monitoring Kernel Drivers
-    gl518sm
-    gpd-fan
-    gxp-fan-ctrl
-+   hac300s
-    hih6130
-    hp-wmi-sensors
-    hs3001
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cf755238c429..e4b4a41a2c07 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11259,6 +11259,13 @@ F:	kernel/time/timer_list.c
- F:	kernel/time/timer_migration.*
- F:	tools/testing/selftests/timers/
- 
-+HITRON HAC300S PSU DRIVER
-+M:	Vasileios Amoiridis <vasileios.amoiridis@cern.ch>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/hwmon/hac300s.rst
-+F:	drivers/hwmon/pmbus/hac300s.c
-+
- DELAY, SLEEP, TIMEKEEPING, TIMERS [RUST]
- M:	Andreas Hindborg <a.hindborg@kernel.org>
- R:	Boqun Feng <boqun.feng@gmail.com>
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index f3fb94cebf1a..4c2cb51dbe3f 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -124,6 +124,15 @@ config SENSORS_FSP_3Y
- 	  This driver can also be built as a module. If so, the module will
- 	  be called fsp-3y.
- 
-+config SENSORS_HAC300S
-+	tristate "Hitron HAC300S-D120E PSU"
-+	help
-+	  If you say yes here you get hardware monitoring support for the
-+	  Hitron HAC300S-D120E Power Supply.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called hac300s.
-+
- config SENSORS_IBM_CFFPS
- 	tristate "IBM Common Form Factor Power Supply"
- 	depends on LEDS_CLASS
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index 349a89b6d92e..b92309019d35 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_SENSORS_BEL_PFE)	+= bel-pfe.o
- obj-$(CONFIG_SENSORS_BPA_RS600)	+= bpa-rs600.o
- obj-$(CONFIG_SENSORS_DELTA_AHE50DC_FAN) += delta-ahe50dc-fan.o
- obj-$(CONFIG_SENSORS_FSP_3Y)	+= fsp-3y.o
-+obj-$(CONFIG_SENSORS_HAC300S)	+= hac300s.o
- obj-$(CONFIG_SENSORS_IBM_CFFPS)	+= ibm-cffps.o
- obj-$(CONFIG_SENSORS_DPS920AB)	+= dps920ab.o
- obj-$(CONFIG_SENSORS_INA233)	+= ina233.o
-diff --git a/drivers/hwmon/pmbus/hac300s.c b/drivers/hwmon/pmbus/hac300s.c
-new file mode 100644
-index 000000000000..26cb7fadd5d5
---- /dev/null
-+++ b/drivers/hwmon/pmbus/hac300s.c
-@@ -0,0 +1,132 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// SPDX-FileCopyrightText: 2024 CERN (home.cern)
-+/*
-+ * Hardware monitoring driver for Hi-Tron HAC300S PSU.
-+ *
-+ * NOTE: The HAC300S device does not support the PMBUS_VOUT_MODE register.
-+ * On top of that, it returns the Voltage output values in Linear11 which is
-+ * not adhering to the PMBus specifications. (PMBus Specification Part II,
-+ * Section 7.1-7.3). For that reason the PMBUS_VOUT_MODE register is being faked
-+ * and returns the exponent value of the READ_VOUT register. The exponent part
-+ * of the VOUT_* registers is being cleared in order to return the mantissa to
-+ * the pmbus core.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/pmbus.h>
-+
-+#include "pmbus.h"
-+
-+#define LINEAR11_EXPONENT_MASK GENMASK(15, 11)
-+#define LINEAR11_MANTISSA_MASK GENMASK(10, 0)
-+
-+#define to_hac300s_data(x) container_of(x, struct hac300s_data, info)
-+
-+struct hac300s_data {
-+	struct pmbus_driver_info info;
-+	s8 exponent;
-+};
-+
-+static int hac300s_read_byte_data(struct i2c_client *client, int page, int reg)
-+{
-+	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-+	struct hac300s_data *data = to_hac300s_data(info);
-+
-+	if (reg == PMBUS_VOUT_MODE)
-+		return data->exponent;
-+
-+	return pmbus_read_byte_data(client, page, reg);
-+}
-+
-+static int hac300s_read_word_data(struct i2c_client *client, int page,
-+				   int phase, int reg)
-+{
-+	int rv;
-+
-+	switch (reg) {
-+	case PMBUS_VOUT_OV_WARN_LIMIT:
-+	case PMBUS_VOUT_UV_WARN_LIMIT:
-+	case PMBUS_VOUT_OV_FAULT_LIMIT:
-+	case PMBUS_VOUT_UV_FAULT_LIMIT:
-+	case PMBUS_MFR_VOUT_MAX:
-+	case PMBUS_MFR_VOUT_MIN:
-+	case PMBUS_READ_VOUT:
-+		rv = pmbus_read_word_data(client, page, phase, reg);
-+		return FIELD_GET(LINEAR11_MANTISSA_MASK, rv);
-+	default:
-+		return -ENODATA;
-+	}
-+}
-+
-+static struct pmbus_driver_info hac300s_info = {
-+	.pages = 1,
-+	.func[0] = (PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | \
-+                    PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT | \
-+                    PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT | \
-+                    PMBUS_HAVE_POUT | PMBUS_HAVE_STATUS_TEMP),
-+	.read_byte_data = hac300s_read_byte_data,
-+	.read_word_data = hac300s_read_word_data,
-+	.format[PSC_VOLTAGE_OUT] = linear,
-+};
-+
-+static struct pmbus_platform_data hac300s_pdata = {
-+	.flags = PMBUS_NO_CAPABILITY,
-+};
-+
-+static int hac300s_probe(struct i2c_client *client)
-+{
-+	struct hac300s_data *data;
-+	int rv;
-+
-+	data = devm_kzalloc(&client->dev, sizeof(struct hac300s_data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	if (!i2c_check_functionality(client->adapter,
-+				     I2C_FUNC_SMBUS_READ_BYTE_DATA |
-+				     I2C_FUNC_SMBUS_READ_WORD_DATA))
-+		return -ENODEV;
-+
-+	rv = i2c_smbus_read_word_data(client, PMBUS_READ_VOUT);
-+	if (rv < 0)
-+		return dev_err_probe(&client->dev, rv, "Failed to read vout_mode\n");
-+
-+	data->exponent = FIELD_GET(LINEAR11_EXPONENT_MASK, rv);
-+	data->info = hac300s_info;
-+	client->dev.platform_data = &hac300s_pdata;
-+	return pmbus_do_probe(client, &data->info);
-+}
-+
-+static const struct of_device_id hac300s_of_match[] = {
-+	{ .compatible = "hitron,hac300s" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, hac300s_of_match);
-+
-+static const struct i2c_device_id hac300s_id[] = {
-+	{"hac300s", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, hac300s_id);
-+
-+static struct i2c_driver hac300s_driver = {
-+	.driver = {
-+		   .name = "hac300s",
-+		   .of_match_table = hac300s_of_match,
-+	},
-+	.probe = hac300s_probe,
-+	.id_table = hac300s_id,
-+
-+};
-+module_i2c_driver(hac300s_driver);
-+
-+MODULE_AUTHOR("Vasileios Amoiridis");
-+MODULE_DESCRIPTION("PMBus driver for Hi-Tron HAC300S PSU");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
+Wondering if `pahole` is fine with the proposed layout.
+Otherwise I would move u8 to the end.
+
+> +};
+
+...
+
+> +static const struct ds4424_chip_info ds4424_info = {
+> +	.result_mask = 0x7F,
+
+GENMASK() ?
+(Note, we also have GENMASK_U8() IIRC)
+
+> +	.vref_mv = 976,
+> +	.scale_denom = 16,
+> +};
+
+...
+
+> +/* DS4402 is handled like DS4404 (same resolution and scale formula). */
+> +static const struct ds4424_chip_info ds4404_info = {
+> +	.result_mask = 0x1F,
+
+Ditto.
+
+> +	.vref_mv = 1230,
+> +	.scale_denom = 4,
+> +};
+
+...
+
+> -		if (val <= S8_MIN || val > S8_MAX)
+> +		/*
+> +		 * The hardware uses sign-magnitude representation (not
+> +		 * two's complement). Therefore, the range is symmetric:
+> +		 * [-max_val, +max_val].
+> +		 */
+> +		if (val < -max_val || val > max_val)
+>  			return -EINVAL;
+
+Right, cool, but I still think even in the fix it would be good to fix that and
+here it will be quite logical and clear change. Maybe even introduce a comment
+in the fix-patch and just update limits here.
+
+...
+
+> +static int ds4424_setup_channels(struct i2c_client *client,
+> +				 struct ds4424_data *data,
+> +				 struct iio_dev *indio_dev)
+> +{
+> +	struct iio_chan_spec channels[DS4424_MAX_DAC_CHANNELS];
+> +	size_t channels_size;
+> +	int i;
+> +
+> +	channels_size = indio_dev->num_channels * sizeof(*channels);
+
+Sounds like devm_kmemdup_array() to me...
+
+> +	memcpy(channels, ds4424_channels, channels_size);
+
+> +	/* Enable scale only when rfs is available. */
+> +	if (data->has_rfs) {
+> +		for (i = 0; i < indio_dev->num_channels; i++)
+> +			channels[i].info_mask_separate |=
+> +				BIT(IIO_CHAN_INFO_SCALE);
+> +	}
+
+Can be done after kmemdup(), right?
+
+> +	indio_dev->channels = devm_kmemdup(&client->dev, channels,
+> +					   channels_size, GFP_KERNEL);
+> +	if (!indio_dev->channels)
+> +		return -ENOMEM;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int ds4424_parse_rfs(struct i2c_client *client,
+> +			    struct ds4424_data *data,
+> +			    struct iio_dev *indio_dev)
+> +{
+
+	struct device *dev = &client->dev;
+
+> +	int count, i, ret;
+> +
+> +	if (!device_property_present(&client->dev, "maxim,rfs-ohms")) {
+> +		dev_info_once(&client->dev, "maxim,rfs-ohms missing, scale not supported\n");
+> +		return 0;
+> +	}
+> +
+> +	count = device_property_count_u32(&client->dev, "maxim,rfs-ohms");
+> +	if (count != indio_dev->num_channels) {
+> +		dev_err(&client->dev,
+> +			"maxim,rfs-ohms must have %u entries\n",
+> +			indio_dev->num_channels);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = device_property_read_u32_array(&client->dev,
+> +					     "maxim,rfs-ohms",
+> +					     data->rfs_ohms,
+> +					     indio_dev->num_channels);
+> +	if (ret) {
+> +		dev_err(&client->dev,
+> +			"Failed to read maxim,rfs-ohms property\n");
+> +		return ret;
+> +	}
+> +
+> +	for (i = 0; i < indio_dev->num_channels; i++) {
+> +		if (!data->rfs_ohms[i]) {
+
+> +			dev_err(&client->dev,
+> +				"maxim,rfs-ohms entry %d is zero\n",
+> +				i);
+
+> +			return -EINVAL;
+
+This is only for probe stage, right?
+
+Then
+
+			return dev_err_probe();
+
+?
+
+> +		}
+> +	}
+> +
+> +	data->has_rfs = true;
+> +	return 0;
+> +}
+
 -- 
-2.47.3
+With Best Regards,
+Andy Shevchenko
+
 
 
