@@ -1,226 +1,78 @@
-Return-Path: <devicetree+bounces-256882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763C0D3AA20
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:19:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85A47D3AA40
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:24:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E3299300102B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:19:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E6BB30C9719
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE3336827A;
-	Mon, 19 Jan 2026 13:19:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FEC368297;
+	Mon, 19 Jan 2026 13:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1xmESwrd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LYqOMNv6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5AED368272;
-	Mon, 19 Jan 2026 13:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C4636827A;
+	Mon, 19 Jan 2026 13:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768828778; cv=none; b=hEFTXSmie9CBIL5+lkbI5xO25vpmZ24zhKTUoBEF2X7RUtl/jlyz4Aii8M55//wbOWnNE3+0dRASMCp4PtSqo3op98gza3voKmCWefg0HXDG1BHFUvQTgNZcDWMdlVEKAfgeVq+W6x5moNCf6hD4rjdIX2KZtUoo2+Y+4MGSs4w=
+	t=1768828834; cv=none; b=M5Zg/WBkkP2zAmzxf6CwqbSoo848AOz0W7yPBhINhkfH5NQUQKL8MaqCinFzF3Uc3FcmJBS+AoTG6j/kBJ2MG8Hyr+EcL+HjgFzWOW3PonR6TmSX7OxcyIX1UXPKzkjSe7QfjvZdSCb/FCkKfE6gIo8+qXwEvMcyxTEjwPydGnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768828778; c=relaxed/simple;
-	bh=hVyhXNosNnDhvebEHuZ5COd8S04rmhME8qqCEbWcPy4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H5fonEoPpxsCcGNl+SZHunNJERyxRS6bdB/N7hHC+8xjGOA79CM2zmvkW7VSeeNeP/iGWbaRozqC1YE8fmxy92nvS7Zm4AzVKVMfhfqGb1zdsENxfCl3ovcpQOxRSbNlrz2M80MtLQMq8azEpvfLN+Re0Dsr18gCf1zqfG1Oe0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1xmESwrd; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 6C902C214CA;
-	Mon, 19 Jan 2026 13:19:06 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 595C460731;
-	Mon, 19 Jan 2026 13:19:33 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 91A9410B6AFE6;
-	Mon, 19 Jan 2026 14:19:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768828772; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=2hPSrDYcpwfIma6Sp8ceSlc3mc+z5ddj63H/m5AzraU=;
-	b=1xmESwrdHPC6lPqp3MPh0Hd2QjO4pbMv02txnL/DblMTRsgv04fsMAib5hxHqWRej0+/ZF
-	rxbwOipy7P2E9aVekxo+v3Y9UdSGjgcCCnKPb0+WoSCc8UZH9F3fdL20u7z5M7yoSNSiur
-	xpkCKIFziiAiVrW4RNoZKBmxp0iA8/KAB4bcVJS/IVG0sShTvHEPp7+5/ezoInKXtS8kC6
-	zJ9i35sRXCQeevm+Iu0Rh/e7RIerBlPro4gowZ5UgJOvPV1vVZgTaCYAXiqJVDomOPCM63
-	QKDHkuBJdGrGeFUu5FonWI0ZvtjqCYvH8PdTGxFhu6EMOvl4tbgChF4+1WP0Lg==
-Date: Mon, 19 Jan 2026 14:19:24 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
- <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [RFC PATCH 11/77] Add support for FDT_REF_PHANDLE dtb tag
-Message-ID: <20260119141924.0b6a578b@bootlin.com>
-In-Reply-To: <aW3DvDooCXxw83Av@zatzit>
-References: <20260112142009.1006236-1-herve.codina@bootlin.com>
-	<20260112142009.1006236-12-herve.codina@bootlin.com>
-	<aWhB4fYnXCD2f6Uq@zatzit>
-	<20260116161727.7fe14658@bootlin.com>
-	<aW3DvDooCXxw83Av@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1768828834; c=relaxed/simple;
+	bh=Jljzdrq4r/rY5hYR5tbzegDR66TZ8LKmWCEKANj2q0M=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=qH8LJ2zPMPyb0SL0g5EWQMtWhlP9iyvs9OMmAakSLa5y4sftlfOel7BCSWIVAI1D9OTKInXwYzrGzV2GHnzKVAgpenrEP39K+3GIiJmTJ2YpNFRoJKTFr5y2uqC/ynQ6VC9txeLpa7sO7YmLptDNDn4JmzCjBzIG/5Tium5+Cyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LYqOMNv6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5023C116C6;
+	Mon, 19 Jan 2026 13:20:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768828834;
+	bh=Jljzdrq4r/rY5hYR5tbzegDR66TZ8LKmWCEKANj2q0M=;
+	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
+	b=LYqOMNv6K//ghc3wg6xqGAnjEk9y7lgkxB77d8PfRJZ0NgwDf4IdMzIiF2CM+pZTr
+	 tp+dNB2zzIvG6F85ubonr1U8Z9HLFwm2La8nG088JaBLNRCnd+oN7MYgTCL/FvpB4z
+	 8ZSc4pYJvGyoRhwQsYZYC6fPhbHnH6OFx2mLiCVzliYTY0U5V/z8j4R7oviRAvL35g
+	 4dRcVJIVx7nxlu7YPz2cwPbUO1vCu4+J7IpIt+Q6Q8KAqOXPB14fi0nUDP7Eu3bLYg
+	 oxfXosJm8l1f6KyAoM0Ufa3ANpnn246RhC+8beVyM1R39hIWt3Ivm926qthW+w2Iz2
+	 RDepxu4iYp6Qw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 19 Jan 2026 14:20:28 +0100
+Message-Id: <DFSLHM2ZBRE8.1JDMK08LNYYKT@kernel.org>
+To: "Bartosz Golaszewski" <brgl@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH 1/8] of: provide of_machine_get_compatible()
+Cc: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>, "Rob
+ Herring" <robh@kernel.org>, "Saravana Kannan" <saravanak@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ "Shawn Guo" <shawnguo@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>,
+ "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam"
+ <festevam@gmail.com>, "Geert Uytterhoeven" <geert+renesas@glider.be>,
+ "Magnus Damm" <magnus.damm@gmail.com>, "Chen-Yu Tsai" <wens@kernel.org>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Samuel Holland"
+ <samuel@sholland.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
+ <linux-arm-kernel@lists.infradead.org>, <imx@lists.linux.dev>,
+ <linux-renesas-soc@vger.kernel.org>, <linux-sunxi@lists.linux.dev>
+References: <20260119-soc-of-root-v1-0-32a0fa9a78b4@oss.qualcomm.com>
+ <20260119-soc-of-root-v1-1-32a0fa9a78b4@oss.qualcomm.com>
+ <DFSJ2AD562CP.1ZX1JO1F0Y1UU@kernel.org>
+ <CAMRc=McTaTGPM6fMWb3b+S0+Gq_V-Vi7DF9JxDeOEfPAavgXaQ@mail.gmail.com>
+In-Reply-To: <CAMRc=McTaTGPM6fMWb3b+S0+Gq_V-Vi7DF9JxDeOEfPAavgXaQ@mail.gmail.com>
 
-Hi David,
+On Mon Jan 19, 2026 at 2:00 PM CET, Bartosz Golaszewski wrote:
+> How about of_machine_read_compatible()?
 
-On Mon, 19 Jan 2026 16:40:12 +1100
-David Gibson <david@gibson.dropbear.id.au> wrote:
-
-> On Fri, Jan 16, 2026 at 04:17:27PM +0100, Herve Codina wrote:
-> > Hi David,
-> >=20
-> > On Thu, 15 Jan 2026 12:24:49 +1100
-> > David Gibson <david@gibson.dropbear.id.au> wrote:
-> >  =20
-> > > On Mon, Jan 12, 2026 at 03:19:01PM +0100, Herve Codina wrote: =20
-> > > > The FDT_REF_PHANDLE dtb tag is similar to the FDT_REF_LOCAL tag exc=
-ept
-> > > > that it identifies a reference to an external phandle. The node
-> > > > referenced by the phandle is not present in the device-tree blob.  =
- =20
-> > >=20
-> > > The names FDT_REF_PHANDLE and FDT_REF_LOCAL are perhaps a little
-> > > misleading - both are marking a phandle, the difference is in the form
-> > > of reference.  That's quite difference from the distinction between
-> > > the REF_PHANDLE and REF_PATH marker types, where the difference is in
-> > > what the reference expands to in the property. =20
-> >=20
-> > I am agree.
-> >=20
-> > FDT_PHANDLE: A local phandle with the value known.
-> > FDT_PHANDLE_REF: An external phandle, its value need to be resolved ? =
-=20
->=20
-> Yeah, I think that works.
->=20
-> > This is aligned with FDT_EXPORT_SYM / FDT_EXPORT_SYM_REF.
-> >=20
-> > Or maybe:
-> > FDT_TYPE_PHANDLE
-> > FDT_TYPE_PHANDLE_REF
-> >=20
-> > "TYPE" has been mentioned by Rob in the "FDT_TYPE_U32" context. =20
->=20
-> I don't especially like this.  phandles do have a bearing on types.
-> But as I said to Rob, I think they're a sufficiently special case,
-> that I'd prefer not to handle them as just an aspect of a more general
-> "types" system.
-
-Ok, I will not use 'TYPE' in the name of those tags.
-
->=20
-> Btw, since we're looking at dtb changes anyway, one possibility would
-> be to no longer encode a node's phandle as a property, but include it
-> as a new field in the FDT_BEGIN_NODE tag.  Putting it in a property
-> was always a bit of a hack - in traditional OF, it was generally the
-> node's address in memory, not something from a property.  Doing it
-> that way might side step some messy edge cases like dealing with
-> improperly encoded "linux,phandle" properties.
->=20
-> > Any other ideas are welcome.
-> >  =20
-> > > > The FDT_REF_PHANDLE dtb tag is a meta-data tag attached to a proper=
-ty.
-> > > >=20
-> > > > It indicates that the property defined before this tag (FDT_PROP) u=
-ses a
-> > > > phandle value and the node related to this phandle value is not loc=
-al
-> > > > node (i.e. the node is not present in the device-tree blob). This t=
-ag
-> > > > can be available only in overlay or addon device-tree blobs. The ph=
-andle
-> > > > value used in the property has to be resolved when the device-tree =
-blob
-> > > > is applied on top of a base device-tree.   =20
-> > >=20
-> > > This is kind of looking ahead, but does that imply that this tag is
-> > > only valid in addon dtbs? =20
-> >=20
-> > addon dtbs for sure but also overlay (plugin) dtbs. =20
->=20
-> I don't really understand how they would be used for plugins - I
-> thought the idea was that addons would more or less obsolete plugins.
-
-They won't be used in plugins. Other mechanism are available in plugind.
-My idea was to to keep things consistent.
-
-I mean, pluggin dtb can have metadata. Having metadata doesn't mean that
-they must be used.
-
-FDT_REF_PHANDLE (or other name) makes sense in plugin dtb.
-
-Is FDT_REF_PHANDLE valid for plugin dtb, the answer is yes.
-
-Will FDT_REF_PHANDLE be used for symbol resolution in the plugin case, the
-answer is no, other mechanisme are used (__fixups__ node).
-
->=20
-> > >  =20
-> > > > It is followed by two values and a possible alignment padding:
-> > > >  - offset (32bit):
-> > > >      Offset in the property data where the phandle is available.
-> > > >  - label (string including \0):
-> > > >      The label to use to resolve the phandle value.   =20
-> > >=20
-> > > I expect it will become apparent later in the series, but it would be
-> > > helpful to clarify what the scope of that label is.  A single node?
-> > > The whole tree?  Across a tree and all its possible addons? =20
-> >=20
-> > This label is the unresolved reference. Its scope is the dtb. =20
->=20
-> "the dtb" being a single addon, yes?  That could have several meanings
-> in the base tree depending on where the addon is attached, yes?
-
-yes, the addon dtb is for a single addon.
-
-yes, depending on where the addon is attached, the symbol resolution can re=
-ach
-different nodes. Is that several "meanings", not sure.
-
-=46rom the addon: prop =3D <&i2c>;
-
-Depending on node the addon is applied this could be resolved to the node
-i2c@xxxx or i2c@yyyy but for sure it will be resolved to a node describing
-an i2c controller.
-
->=20
-> > For instance, "prop =3D < 0 1 &foo>;" in a dts with the node referenced=
- by
-> > &foo not present in this dts (possible for addons and plugins) will lead
-> > to 'FDT_REF_PHANDLE 8 "foo"'
-> >=20
-> > The way "foo" is used when the dtb is applied is covered later in the
-> > series.
-> >=20
-> > It will be resolved with import/export mechanism (when the addon is
-> > applied).
-> >=20
-> > Also it can be a namespace label reference (see patch 66 for the defini=
-tion
-> > of namespace label reference) and here also it will be resolved thanks =
-to
-> > import/export mechanism. Namespace label references can only be present=
- in
-> > addons.
-> >=20
-
-Best regards,
-Herv=C3=A9
+SGTM.
 
