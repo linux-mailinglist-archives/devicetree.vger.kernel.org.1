@@ -1,120 +1,119 @@
-Return-Path: <devicetree+bounces-256962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD5CD3AFC8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:58:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 448C9D3AFE7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 17:02:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 44E6A3003877
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 15:58:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9AB573000DED
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 16:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535D438BF80;
-	Mon, 19 Jan 2026 15:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D11023A99F;
+	Mon, 19 Jan 2026 16:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fWBC2075"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6DA722B5A3
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 15:58:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6131727F171;
+	Mon, 19 Jan 2026 16:02:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768838332; cv=none; b=oZdfFcI+08f3fbyz0huIEwvXBGCoT0x+798he5ZYTOE09IT2a7dmETSQSXDjH4DGDCNWKKl/32h3hy+8zMGHkGnqGHfjwW7sOXubEqerN80K1Z82bbkLCBb2qL7S7whiWS0uycVZTCwbs7N+kReSPAPm5+7KQFYsJOc/fRtygUk=
+	t=1768838569; cv=none; b=UI9WKh4h4Aifi0yei5vqxgSJQSLs6kFnHadnJ62HFVFNWUNO+LkplKPAmJOl6AQgN3lzQmCVlZ82xFvGuBaetnQAYcE3n9iHecnGzRZfHrMPl9Kw6jzr8riVDKzfxfK9KKZLKJL2vz2JbgbVH6GH8P4kVos8XFQ2nRY2njiT+RA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768838332; c=relaxed/simple;
-	bh=19bTvFO2oXBa4nAZxK9G/wlSld0cACHrB0Ghe6tTkDc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JHbpKNLOOo96QksTE4eqzZ7F5m60H8bVN3JUqtrJlNYZlcZnsZM7hSSWk5eUHedpBjUHBWPfRmRBnaIpOkfeLPy6K5A4N/OCzTTZYseC3IM8UtTLETKNke5imhk2aLlqe5sd9601y7Bz3ZGZSQKF/apJK1HF5dsI7oajk7f9po4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-93f5910b06cso2686304241.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:58:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768838330; x=1769443130;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kwYpB7OUoD7RGVXAKZghgG2fL8VsvMsrJb3SXVA7oO4=;
-        b=nJGaMASaw6t60YTd6PT6+Yklyzr6uPK8jy4KetM5gO9OnT8eui3PZb/d147AoUS6Ob
-         +OfVVf39UyABmTcC4kfLjnHoS6D9+l+NerPIPl2O7bjhkIXR3O4wU8sa3e8+Ht2Vdr4x
-         D4tYBm5GGRJ+wlqG4kFJ7vHyhdj9oz9Lr2Sxfp3a57xitwtO41kFXuvrFSyc8hXQMHUi
-         qIlP6s4JFXmtip0sq+l7vTc9PizBApExCXGTsKBpQ3nVzRVOV29u3oDJ5m0bw4QAwJB/
-         LPCHm/qMkPUQHgdeN28jbdPKYojQ+0ZL1fQvmmYtME96qB/rTQUvDs0qfdOW3jl+W2Ma
-         BRLg==
-X-Forwarded-Encrypted: i=1; AJvYcCWK0x94SaHHiwcfwwpB7nUM2Nrgn+rPM3kaluXZCuBRw+1EypICfusWH9XjuUlm3pIR32Ow73/+AlVU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNvkMqGFstJJfUyaKyIbRQR0YIm/Hdwtnb5MZKm620YCLHRU6E
-	bJ5XtzEX+tQCdWieOAJCoceiOk38eXVgBNqohB4Qxac41j2zKpHJFNJbaiDOACPg
-X-Gm-Gg: AY/fxX5Mk7aZcFrMcAyy1QFSjdM7T7lgDj2x8DbBnythNI/KHfgGD1gt2jO54BZGZUn
-	qbXHUs95GxBKXRhuReA/0nhGAQlgEZwJO3A2qnmg/lE+0HvRh2LsXz1L5sVlbsaRm0Mpwi71Q4T
-	QXATg1j6n29HAZ7tLz/QJ4v3aYIGbr2mBMYXriw1kkfETUlVH7LCu/SoS7JWKGbGEB7yxXIov6v
-	YLrpyozNDpgJBAA/SpTvgUvOM1fe7Lu7e8HEGO48LOjPnS6ieFUcfFIJ42lY2eTzc3wusnO80qT
-	/+TZz5js8oyPy3mAzIGkn/vdc2Rgzz19+PMa4N+0ydHUUuLhAMAi2buHzJbHqgULl7aqb02M6MX
-	k5HWyvdxWznJzzihg06e2afKAdKmjBlz75/ywDkfw9GbD23ZtT4KQLjFXrGxM0u+9KD67vxMrUC
-	UIBnKeyRFJxAv2f/9APzoojpELkykuA+HY4P/3six9JfUnVixtaY/CDj/tGkmDjG4=
-X-Received: by 2002:a05:6102:418a:b0:5db:293c:c294 with SMTP id ada2fe7eead31-5f1a4da9ecbmr3881683137.5.1768838329776;
-        Mon, 19 Jan 2026 07:58:49 -0800 (PST)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5f1a6e60c9bsm3474178137.14.2026.01.19.07.58.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jan 2026 07:58:49 -0800 (PST)
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5636dce976eso3451313e0c.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 07:58:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVPzh5TXL8OiwjCAyT2om5xeF4aeBRDDh+P9ngxcsvEiQ/AdWCGQkEop29xpeWKb81nrnsLAZUJ72fE@vger.kernel.org
-X-Received: by 2002:a05:6102:3e96:b0:5ef:b32c:dff8 with SMTP id
- ada2fe7eead31-5f1923fb2c1mr5628745137.5.1768838329404; Mon, 19 Jan 2026
- 07:58:49 -0800 (PST)
+	s=arc-20240116; t=1768838569; c=relaxed/simple;
+	bh=sWkV5xZGJqrXxE6RyxgvOECZjFGwP/xoTQbmgBgUzW8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qIc7wU0TXeP90S0GHU8Cpx6U1A9zggOl6O9FJNIegz3yemN4pPspbhKutAtAP7fVCQVnHstYpskXUR5sPtPPrhTGhswRnuKgWuASXGJoCe+O1RGr4a/z2sPoE+WMD7No5CSKPdIoYrcWbIrRMmWex7cTjMKJtqWI4nOc15HS22A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fWBC2075; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id CB4BC1A296C;
+	Mon, 19 Jan 2026 16:02:45 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9795B60731;
+	Mon, 19 Jan 2026 16:02:45 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 59BDD10B6B17B;
+	Mon, 19 Jan 2026 17:02:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768838564; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=TfHSI8Ht8sD5ldnD5a9aLoe7CK8woaB73WEQ4WwqSso=;
+	b=fWBC2075tkI4bS13vYKtxmXFQUXvxvDyWX16ziCOIdUoPnVSBBiP1khdpatFQ8DeaqFVUc
+	/524vEutOWWeu9zZkOxa02DWyPiAw5YsLo/X4/1S6KwcDxvoxHoxV3yAytB9LztBW1gQA5
+	Ang9nPo8OzD5vaaevj/z22ChDQtMTEZCgF4vXVC7M2k3CAzUL0MBG+bzlCUDuJxS0Zet0C
+	5dM2URuTo65eAhLGhrfnjIp6NegSC7usrc89ufarWJaAV2TGJLSGaxK0h9LpGVD3gN9fPg
+	3eVA0YkbB1YPodgH0mySpt8ohFiN7973zawx59wIgeDJ2BFDiHrysc3wdFBIbw==
+Date: Mon, 19 Jan 2026 17:02:40 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, Hui Pu
+ <hui.pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 46/77] dtc: Introduce dti_get_marker_label()
+Message-ID: <20260119170240.47437a8f@bootlin.com>
+In-Reply-To: <aWiOcrj-1EB4cfO-@zatzit>
+References: <20260112142009.1006236-1-herve.codina@bootlin.com>
+	<20260112142009.1006236-47-herve.codina@bootlin.com>
+	<aWiOcrj-1EB4cfO-@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260101203938.159161-1-marek.vasut+renesas@mailbox.org>
- <CAMuHMdVyQpOBT+Ho+mXY07fndFN9bKJdaaWGn91WOFnnYErLyg@mail.gmail.com> <2b6f19f3-aaf9-4fb7-bef7-f38e19f94351@mailbox.org>
-In-Reply-To: <2b6f19f3-aaf9-4fb7-bef7-f38e19f94351@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 19 Jan 2026 16:58:38 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUfinX6K622_ThmX-srfq2Mb3CTHD-LdAR3YgDTZq51oA@mail.gmail.com>
-X-Gm-Features: AZwV_QiA0q5O-g1daJUkKfsigh6f9aOP9tnmWWUeAh4TC3ZblJYVL42xTYixBq0
-Message-ID: <CAMuHMdUfinX6K622_ThmX-srfq2Mb3CTHD-LdAR3YgDTZq51oA@mail.gmail.com>
-Subject: Re: [PATCH 00/11] Describe PCIe/USB3.0 clock generator on R-Car Gen3
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	devicetree@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Marek,
+On Thu, 15 Jan 2026 17:51:30 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
 
-On Sun, 18 Jan 2026 at 14:54, Marek Vasut <marek.vasut@mailbox.org> wrote:
-> On 1/13/26 3:19 PM, Geert Uytterhoeven wrote:
-> > I do not know what is the actual issue.  Adding debug prints to
-> > rs9_suspend() and rs9_resume() shows these functions are not called,
-> > while adding 'status = "disabled"' to the renesas,9fgv0841 clock node
-> > in arch/arm64/boot/dts/renesas/salvator-common.dtsi does fix the issue.
-> >
-> > Perhaps you have pending patches for the rs9 or PCIe drivers?
-> > Do you have a clue?
-> I believe this one should address the problem:
->
-> [PATCH] clk: rs9: Reserve 8 struct clk_hw slots for for 9FGV0841
->
-> https://lore.kernel.org/linux-clk/20260118025756.96377-1-marek.vasut+renesas@mailbox.org/
+> On Mon, Jan 12, 2026 at 03:19:36PM +0100, Herve Codina wrote:
+> > The future introduction of orphan nodes for addons device-tree will lead
+> > to more than one tree in the addons data. Those trees will be:
+> >   - the classical root tree starting at the root node
+> >   - trees related to orphan nodes
+> > 
+> > Also, an addon device-tree can have only trees based on orphan nodes. In
+> > other words an addon device-tree is valid without having the classical
+> > 'root' tree.
+> > 
+> > To prepare this change, introduce and use dti_get_marker_label().
+> > 
+> > dti_get_marker_label() retrieves a marker and its related node and
+> > property based on the label value. It behaves in the same way as
+> > get_marker_label() but it works at the struct dt_info level.
+> > 
+> > It handles the case where a 'root' device-tree is not present and will
+> > handle orphan nodes trees as soon as they will be introduced.
+> > 
+> > This introduction doesn't lead to any functional changes.  
+> 
+> For all of these functions, if the new one is basically replacing the
+> old one, don't change the name, just change the signature.
 
-Yes it does, thanks!
+The old function is kept an used internally (move to static).
+It is not a simple replacement.
 
-Gr{oetje,eeting}s,
+When I introduce orphan node later on, those dti_xxxx() functions call
+the old function multiple times. One call for the root tree and other calls
+for orphan trees.
 
-                        Geert
+But anyway, If you prefer keeping the old name with a new signature,
+I can do the following:
+ - move function_name() to __function_name()
+ - Update the function_name() signature and call __function_name().
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards
+Hervé
 
