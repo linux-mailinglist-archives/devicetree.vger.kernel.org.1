@@ -1,111 +1,135 @@
-Return-Path: <devicetree+bounces-256878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-256879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768F4D3A9BC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:01:15 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E387D3A9F5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 14:10:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 941F3302BB9D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:00:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0A9DB3000E8C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jan 2026 13:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA33B36213D;
-	Mon, 19 Jan 2026 13:00:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03F1D364EB8;
+	Mon, 19 Jan 2026 13:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ER3296Lk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XztQSOuu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95BFB3624A4
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:00:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C7A364EB9
+	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:10:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768827648; cv=none; b=oHPAScsvQOPGU9eftPgthTUDgDTgwNKldEiOVIeP0ALRDcw/70HgzgTEBK39j+l/7zd7o2lk9VKfLKcmtI8GcBhCuvDykM2HbROrO3It/q25f2SGmJdQ30XFwXKB4hcgjtRGHagkd1RTWTXjZXkb4+AqXFD76FCSUNLtE6Bls98=
+	t=1768828220; cv=none; b=NuFAVIiTPZy6U9sgvDRxcEnaLIFUWv2S8uTKZH0F77xWJVuWILQSou7nX2FBblBq+e0wVIpCQDuKXlwK+NHkpxIx7cYkFh9BnzNL5h2mxzleBI2awGMekkuxekcyynq8brYnGAXWvDSWhz/nAQJKhJAmbGT0UF8zmFeu+rvcjlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768827648; c=relaxed/simple;
-	bh=UmKKLGh10RPN1svLNZxmqR0nL1F2Drx46Fu4EdQWxE0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Qq1Wony2iTwk40yCu2iGQtJjdnTCa0EPaeWAjFv6Bjg6vcbitcgG/2T/WHuLhZVAhPIR0VflAO2t4mcxO+RIK3F4rps/Y6TOfyEi9W7XsZYYBkgkH+Iugp5fbhVwdlClw8RUQSGEzovdVcPYPBn/kYaqV0bEAkqNmdkeiqMgONg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ER3296Lk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62513C2BCB9
-	for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 13:00:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768827648;
-	bh=UmKKLGh10RPN1svLNZxmqR0nL1F2Drx46Fu4EdQWxE0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ER3296Lkgw70Klu/exJKetBSAMzlIu7GK5CegbTBj8yMhUjvfA9liQoG6N3JAd132
-	 NAP4sFSthxsKI0+tD0diPdB5I5XZ6+vWkFEiwYGSZSQtZDwz2GrJTVKD7mCFsXNXFI
-	 3Fj3qluS3lbszDkpsq824ntuR12GhyE1iddCAo4pn+SBZPrg9O8Yy47IWQNoH4tB8H
-	 2VqeCfbOaiy/QVQERg/wBM8fa01g98AXLFKs5p9nIgtWqm9xO28ErxctHloHOUm9B6
-	 Gqrb2objZmqM9gJNwgtTohvImLYmqryQc+LU+GZKeUMLu1TqeU/4akyvMNbQDvQAm6
-	 6x9IcCpaUyY6Q==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-59b6f52eea8so3638802e87.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 05:00:48 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVrsQ4e/ROgVIh9DTFdpiWgtdg14ZLNsiPj2rQtkQHCJGZ3qHOJE6GrVFwAfQ9ulPIxUUe3YbEXCVMp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKBtioqszJTPYtCvQz22BO2/4IWlFNvoDG/AxPnecoRb+GarYL
-	miEXcE/KIq1RfDJ/0BPA/l3nVbxJ8uiL7P2UlxbLdSe7HiRwAeBusyZ7P/dUzw03iUxeIAR7h+Z
-	m6ghbDo+OcgUMCmduZ4vFKWU8Sdvbm/d7TChxg7JoQg==
-X-Received: by 2002:a05:6512:ba0:b0:598:faf0:66e7 with SMTP id
- 2adb3069b0e04-59baffc59d5mr3615354e87.26.1768827646961; Mon, 19 Jan 2026
- 05:00:46 -0800 (PST)
+	s=arc-20240116; t=1768828220; c=relaxed/simple;
+	bh=RbIznMFxyjtdscNIHV+mpdQT2F/p5a92VpVZkbRVgCw=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V+YRd5zyo8a89/2VXEPXMi3Mlnz3Nfl7J2VkZNvi4C54sY07bCj6BbTKf2D7YeYJPfk3VqebmK/n6Fi2c1LpsLJFRPRNLiQczrC8/RCRGHwJfl4eadFFxlNiOuu1uYreF+53oKa7k51GSiiq4PEzRNyF6wf2vx8+gzc+BapA0Sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XztQSOuu; arc=none smtp.client-ip=209.85.160.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-501469b598fso29444271cf.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 05:10:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768828216; x=1769433016; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=As7ad+RroQjVUHt90+2p37ZNFr3kAcDjR6210U9k6EI=;
+        b=XztQSOuuNQ7SiY4+8EUkBdNz9etJRK8wNQQ5Ackw04WUt/HEg6EGhJ1i3V87lvDAaL
+         HLfJCiRoONq40qKZF3/81edrGdxkvcjZ2pjSi20Qzh56KhnSc422yhr/i7Liw7f6cUOg
+         zyG2wQkewsPgGu7Ndj3MBp3Rsmh7HjMlRhEZ1e2KkNwro1u2jn+rkDGA/j9H85hdi2cf
+         fF7j8H4rlw1LqVWcZ4IWOlcx1PX9ymHpDVKAINdpC+Vp5x5gEpk7M4L5em2mOCq3t4vo
+         UAooLkn2G94hDhgtzFGgwavP1zWRNHxH0JJgt02whRZKlftNvy+L0wOsL6QHBhSiFa8r
+         BtDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768828216; x=1769433016;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=As7ad+RroQjVUHt90+2p37ZNFr3kAcDjR6210U9k6EI=;
+        b=u47GDQaaLVodoLGakpqLepHWxfCmkl3ahxsbiSQ9b/LHz+PmJTgdjHmPG54u6uyzqs
+         H3Ap5G0VwKfjirsVbx9CRAsAW3q/BomSjmkyTXESpIGszwF8BQr6JRxJvqVWMwDZqexm
+         TzeCzwI+pXppjKmmUiGiBHtpDYs9ccNwtG1I7/e/Osy8FYbcLmuQmKssNLhV5e3rj3uD
+         BRmepXf4sMK0Pm7B4z4r5B8aVkaz+YR+qw9NCoF7IYrY0taAUgNnK5pzQV0dTwuEKKEp
+         ELh7EnqkK6No0pJwWDP8yp/5Xn5V2x2dbEIoLhM1GUMxxswvfC0CUv6zJoJgx9N2kVSE
+         8WmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWeMCVpXFypa6vT+V4MJu8dd2i24VHsz61bWO9Llyk0iX/LHRKCXYP0MVL9RjOnOmowFBGRneO6Oxdw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNn4RjLGKwW/5rUMaU07lGFlRbL4WjRm7YXxAVqD1c0Rp05OVp
+	iV8IDJTMC4OnPODQ8i/7SONyPDjOSoQ8sbZzN9mdO6CIFph32NOfWOB7EKXkbQ==
+X-Gm-Gg: AY/fxX7qnbbAzSsAbVJPEdNDSHwOXFF6/7V/BSDCFQJmqPUJ4g+OwxyqCA94y8GyIle
+	1kK1qP+SmOImqJt6bZKdBQzOHiHlII1rZaAahCj/oqRhAsDlSewhFt14iGSD2It5kgzcs36irVT
+	ne9Rs6uW6Ts5TwCsMovy2je5y99ZpHUlQA+H6i/KP2ZPUA5P02/Xzxz+oy1K1s3hVbAZdhqRz6P
+	8teT9u/MPCLirH7gVQnWhEc2Q84v78vqE4fTWOKjXp6x5+PjHV2Zy+CqxqCisUBMZgf00vGo/+7
+	VviNnAbYlvrAR3Ivrlbk1zVyNFo9keMKUWzvaUjFfks46vwNVZrjBQRs86TDusJIwbbV3E5wxQl
+	Ioboj51KNt4o/l+gFbxcmgqABgK6TNsR9FYn77E0GVPMZAjmqdV74oaPjQM5pQjtWyU/ifeNjho
+	kvsiICQIr1ElJkWo8dqRqHeYdER+D+bdJF8Vh0UEAHksU8ognUATTLwTiU6NIUF38Yq4qib5NTb
+	HLQ
+X-Received: by 2002:ac8:7dc3:0:b0:502:9f6b:a3b3 with SMTP id d75a77b69052e-502a1e60bbamr148654691cf.37.1768828216161;
+        Mon, 19 Jan 2026 05:10:16 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com ([24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8c6a71ad820sm774437585a.10.2026.01.19.05.10.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jan 2026 05:10:15 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Mon, 19 Jan 2026 13:10:09 +0000
+To: Jonathan Cameron <jic23@kernel.org>, 
+	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v4 3/7] iio: frequency: adf41513: driver implementation
+Message-ID: <fv4kgfxqgzrw2yaq3vv5g5douyer4ocqk5nloi5iwxc2aueby2@vswsu4jxz6xh>
+References: <20260116-adf41513-iio-driver-v4-0-dbb7d6782217@analog.com>
+ <20260116-adf41513-iio-driver-v4-3-dbb7d6782217@analog.com>
+ <20260116192916.436d24c9@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260119-soc-of-root-v1-0-32a0fa9a78b4@oss.qualcomm.com>
- <20260119-soc-of-root-v1-1-32a0fa9a78b4@oss.qualcomm.com> <DFSJ2AD562CP.1ZX1JO1F0Y1UU@kernel.org>
-In-Reply-To: <DFSJ2AD562CP.1ZX1JO1F0Y1UU@kernel.org>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Mon, 19 Jan 2026 14:00:34 +0100
-X-Gmail-Original-Message-ID: <CAMRc=McTaTGPM6fMWb3b+S0+Gq_V-Vi7DF9JxDeOEfPAavgXaQ@mail.gmail.com>
-X-Gm-Features: AZwV_QhN8PNZUNgPe6qogeVHpUfMZNp33VjYbo53S4KjyCuojwPBvWZd3s1oEdA
-Message-ID: <CAMRc=McTaTGPM6fMWb3b+S0+Gq_V-Vi7DF9JxDeOEfPAavgXaQ@mail.gmail.com>
-Subject: Re: [PATCH 1/8] of: provide of_machine_get_compatible()
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Chen-Yu Tsai <wens@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
-	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260116192916.436d24c9@jic23-huawei>
 
-On Mon, Jan 19, 2026 at 12:26=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
- wrote:
->
-> On Mon Jan 19, 2026 at 11:40 AM CET, Bartosz Golaszewski wrote:
-> > +/**
-> > + * of_machine_get_compatible - Get the compatible string of this machi=
-ne
-> > + * @compatible: address at which the compatible string will be stored
-> > + *
-> > + * Returns:
-> > + * 0 on success, negative error number on failure.
-> > + */
-> > +int of_machine_get_compatible(const char **compatible)
->
-> I think the name of this function is not ideal. 'get' usually indicates t=
-hat a
-> reference count will be taken, but this is not the case here.
->
-> I'm also not sure about the machine prefix. If we really want this helper=
- I'd
-> suggest something along the lines of e.g. of_root_read_compatible().
+On 26/01/16 07:29PM, Jonathan Cameron wrote:
+> On Fri, 16 Jan 2026 14:32:22 +0000
+> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 >
 
-Makes sense for the "read" part but I'm not sure about the "root" bit.
-We already have a whole set of "of_machine_" interfaces, like
-of_machine_is_compatible().
+...
+ 
+> > +
+> > +	cp_resistance = ADF41513_DEFAULT_R_SET;
+> > +	device_property_read_u32(dev, "adi,charge-pump-resistor-ohms", &cp_resistance);
+> > +	if (cp_resistance < ADF41513_MIN_R_SET || cp_resistance > ADF41513_MAX_R_SET)
+> > +		return dev_err_probe(dev, -ERANGE, "R_SET %u Ohms out of range\n", cp_resistance);
+> > +
+> > +	st->data.charge_pump_voltage_mv = ADF41513_DEFAULT_CP_VOLTAGE_mV;
+> 
+> This leaves some odd corner cases.
+> If DT defines cp_resistance but not cp_current then we ignore the cp_resitance.
+> If you want to insist it is either both or nothing, that needs enforcing in the dt-binding.
+> I think I slightly prefer this option..
+> 
+> Alternative is define a default current such that the maths works to give the DEFAULT_CP_VOLTAGE_mV
+> if both properties use defaults and use that here + document in the dt-binding as the default
+> for this property.   That may mean if only one property is set we reject the pair and fail
+> to probe.  You have comment about valid combinations in the dt-binding so that's fine.
 
-How about of_machine_read_compatible()?
+Understood. I suppose the following in the dt-binding would be enough:
 
-Bartosz
+dependencies:
+  adi,charge-pump-resistor-ohms: ["adi,charge-pump-current-microamp"]
+
+as current can be defined alone (it would use the default resistor value).
+
+Kind regards,
+
+Rodrigo Alencar
 
