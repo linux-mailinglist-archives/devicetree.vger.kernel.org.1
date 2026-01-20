@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-257554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257555-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJlkKhDjb2n8RwAAu9opvQ
-	(envelope-from <devicetree+bounces-257554-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:18:24 +0100
+	id YJ1DMtXeb2n8RwAAu9opvQ
+	(envelope-from <devicetree+bounces-257555-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:00:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id C274B4B275
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:18:23 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 633834AECC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 21:00:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5EFC08A0F22
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:17:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10E85A0EDFF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 18:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A01344D6A0;
-	Tue, 20 Jan 2026 18:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5806D43E4A7;
+	Tue, 20 Jan 2026 18:16:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rtzOStwi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g+GMykx9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BD8E322C60;
-	Tue, 20 Jan 2026 18:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA89451056;
+	Tue, 20 Jan 2026 18:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768932968; cv=none; b=n4JxVo/tzDCH0hNW9NgtiClxIRlQDslwNj4Gy1barGkDCkJY6f1fWhjvSh/bWvWRD3dRQ/b03ozd8HTQ+wYGjCy9k/wryAuW5GwJCJF9NJYUwGYg6BZmIOojrkVE5v+xZ7y/cpDeRwcy1QjtyW7ioKq/0rMW88DKuqLzvVbPLwg=
+	t=1768932974; cv=none; b=T+N9oB56Z14ynuaTU63onw8hef9O53GYtB2bdI1zLnQAwCy98FSultjIvLBjKUfb8ff8oqvQTcVO2ztERb5oGqlhQnhvOqhmMRyRxcpdg+JykWLWPcKZuUzlaFOpFpJD4RUTKFssZ1+keaaGPFP+b9UPhB+ewcFdcwwzWtLBvTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768932968; c=relaxed/simple;
-	bh=j3JpvGqguxAPX1OQ//mNrtvLuBi56hKXaPkifOBT7Vc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ITEVwfl8CVx3KTl4xukRYWJVUciXR20/lLGMB9yZ20BnJ8+Pg/u9L6bFgoqoIl1lFTlgg/7+puekwtZpwb7tlB/TakgXdJKZt3fXg24+WWOenOBsCC89ihVONFyf4AdxiuOT6HddNvPS6mTeELNbJe2LK4YdGNxmTUZYQVfO4Mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rtzOStwi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56FECC16AAE;
-	Tue, 20 Jan 2026 18:16:06 +0000 (UTC)
+	s=arc-20240116; t=1768932974; c=relaxed/simple;
+	bh=QhE7IgG3YaYV4J3d1geP3x2zMhRXUWVpXXqpJCRiJyE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=rJCi/3j7yezGq/imo94BegsREfEUrBP9MY33e+74TKdnxBqioiaAMxxSXf4yMSDPIShcfnI+7/Umkna1rX/G/WPyc2xeNNwasSTpj0TviXlC3t+r5sX7zClvJuf5rNUisD8bu7iEjRWAqaf89CBcvE9iI+nNkAj/Ei4t1GkWB/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+GMykx9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D39CFC19421;
+	Tue, 20 Jan 2026 18:16:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768932968;
-	bh=j3JpvGqguxAPX1OQ//mNrtvLuBi56hKXaPkifOBT7Vc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=rtzOStwis8Cv7+96pEq9F0GcTJEXfn0GORDO9CUo/wuFegZW+ypFXI4AR6hl59kfw
-	 ADSfWj8lkWpG/N+pnkeYGA47CS743DBaFyslvMICg21AWasaJoUwN1zoZ54Jab2BuQ
-	 Ih8WJD5MErgIg/Jn5BqGNx5CYaA7zs8agX1A4BsDm4fKyqwOl6iXle6Lrbn4NUUaE9
-	 3U57r30f8Pfs4ZXd4r7A3nGlfCnudJgS50u+38XbtUBqxeMXBwUmVLdEbBNNNr5neN
-	 qs+iJJJvbhsss6NkTnyYXQS6qUhPa1BRwbf7mKD39MUBctLZt9VQFRNliSrxs7Y9e4
-	 6XWUBq8KzoofQ==
+	s=k20201202; t=1768932971;
+	bh=QhE7IgG3YaYV4J3d1geP3x2zMhRXUWVpXXqpJCRiJyE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=g+GMykx9c2E3+/z019B53XywfS3OhbDxydCJQaRpATfZutk4n3m0fc/U3drbD+Ve+
+	 YoeXDv3buSskhRr3aKcUl09b2b/6SPEZid+Ncp9CfzjY/hAm1vmiFuGcS/IBwcsIK8
+	 DADOMfOZpQMqaX73xJoZIIkJhzrH/JBFRL0hRl7MZQcB5iejRxxLGbXoK5F/M/Cz6j
+	 yX4so76DJ2wJTtsnau82hJuASkSM8qxqYt9vhZrQUK4cmhxfvnbqEFRbVju7BFWzww
+	 +grytebv7TQpRqkFTNPowjDVmpqDOIpIIukFvsiqBGYrGCWDqtjQH7bfjrptL/aDm3
+	 d05S+xGthaabQ==
 From: Conor Dooley <conor@kernel.org>
 To: linusw@kernel.org
 Cc: conor@kernel.org,
@@ -55,17 +56,19 @@ Cc: conor@kernel.org,
 	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Valentina.FernandezAlanis@microchip.com
-Subject: [PATCH v4 0/5] Microchip mpfs/pic64gx pinctrl part 2
-Date: Tue, 20 Jan 2026 18:15:38 +0000
-Message-ID: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
+Subject: [PATCH v4 1/5] pinctrl: move microchip riscv pinctrl drivers to a folder
+Date: Tue, 20 Jan 2026 18:15:39 +0000
+Message-ID: <20260120-placidly-agony-5b3d6153f741@spud>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
+References: <20260120-elixir-salute-dd6ec3d9f5fe@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2330; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=uh2beolQ7KdyixRVrH5HrEuGNqoaOa03fytRzQEDSHQ=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJn5xzy5kh7tu+h+fqf8qfnZNw+ycF4xXjQ9p0WA0Vvu7 6FrVSbHOkpZGMS4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRshyG/y6ni81X78t4Wna7 RD8i3K3zfvPU0OQDV6X3z65k6p/bt4iR4f6ds2HPBB/p5WX3dvVfc7+7MqrgGDObTPss/sB11i1 qnAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6322; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=T6ZpfIeFj2gU5ICTb55BmLDk3XsKOzV0vQmxeqWTAW0=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJn5x7zsjOenBK6vnv2I8djP+Ecu6h+yul9Uxrd/+nQ3J Xz5kbb3HaUsDGJcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZhIjyvD/2D7ZeJ7w0+FtB77 U9wcH/aZ66l8KvPv4uoLXK2PnkslRTEybKoNSrUIS4m2lBb+4nIz+UDV9nmh2x+aMDvrTAncmSH PDwA=
 X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.96 / 15.00];
@@ -79,12 +82,12 @@ X-Spamd-Result: default: False [-0.96 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
-	TAGGED_FROM(0.00)[bounces-257554-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257555-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
@@ -94,71 +97,181 @@ X-Spamd-Result: default: False [-0.96 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: C274B4B275
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,microchip.com:email]
+X-Rspamd-Queue-Id: 633834AECC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-Hey Linus,
+There's three of these drivers now for the same platforms, move them
+together with other microchip drivers to follow.
 
-Rebased as requested, with the dts patch that snuck in dropped.
-
-Cheers,
-Conor.
-
-changes in v4:
-- rebase on devel
-- drop dts patch
-
-changes in v3:
-- drop the todos
-- rename the kconfig symbol
-- move my drivers into a microchip dir
-- use power-source instead of custom property
-
-main changes in v2:
-- bank voltage is now controllable from dt
-- bank lockdown no longer controllable from dt
-- dt_node_to_map callback is now a(n attempt at a) new generic function
-- some schmitt properties now no longer supported
-
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: linux-kernel@vger.kernel.org
-CC: linux-gpio@vger.kernel.org
-CC: devicetree@vger.kernel.org
-CC: Valentina.FernandezAlanis@microchip.com
-
-Conor Dooley (5):
-  pinctrl: move microchip riscv pinctrl drivers to a folder
-  pinctrl: add generic functions + pins mapper
-  dt-bindings: pinctrl: document polarfire soc mssio pin controller
-  pinctrl: add polarfire soc mssio pinctrl driver
-  MAINTAINERS: add Microchip mpfs mssio driver/bindings to entry
-
- .../pinctrl/microchip,mpfs-pinctrl-mssio.yaml | 109 +++
- .../microchip,mpfs-mss-top-sysreg.yaml        |   4 +
- MAINTAINERS                                   |   6 +-
- drivers/pinctrl/Kconfig                       |  23 +-
- drivers/pinctrl/Makefile                      |   4 +-
- drivers/pinctrl/microchip/Kconfig             |  17 +
- drivers/pinctrl/microchip/Makefile            |   5 +
- .../{ => microchip}/pinctrl-mpfs-iomux0.c     |   8 +-
- .../pinctrl/microchip/pinctrl-mpfs-mssio.c    | 737 ++++++++++++++++++
- .../{ => microchip}/pinctrl-pic64gx-gpio2.c   |   2 +-
- drivers/pinctrl/pinconf.h                     |  16 +
- drivers/pinctrl/pinctrl-generic.c             | 189 +++++
- 12 files changed, 1095 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ MAINTAINERS                                     |  4 ++--
+ drivers/pinctrl/Kconfig                         | 17 +----------------
+ drivers/pinctrl/Makefile                        |  3 +--
+ drivers/pinctrl/microchip/Kconfig               | 17 +++++++++++++++++
+ drivers/pinctrl/microchip/Makefile              |  4 ++++
+ .../{ => microchip}/pinctrl-mpfs-iomux0.c       |  8 ++++----
+ .../{ => microchip}/pinctrl-pic64gx-gpio2.c     |  2 +-
+ 7 files changed, 30 insertions(+), 25 deletions(-)
  create mode 100644 drivers/pinctrl/microchip/Kconfig
  create mode 100644 drivers/pinctrl/microchip/Makefile
  rename drivers/pinctrl/{ => microchip}/pinctrl-mpfs-iomux0.c (98%)
- create mode 100644 drivers/pinctrl/microchip/pinctrl-mpfs-mssio.c
  rename drivers/pinctrl/{ => microchip}/pinctrl-pic64gx-gpio2.c (99%)
- create mode 100644 drivers/pinctrl/pinctrl-generic.c
 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5b11839cba9d..ff6084cb5797 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -22472,8 +22472,8 @@ F:	drivers/gpio/gpio-mpfs.c
+ F:	drivers/i2c/busses/i2c-microchip-corei2c.c
+ F:	drivers/mailbox/mailbox-mpfs.c
+ F:	drivers/pci/controller/plda/pcie-microchip-host.c
+-F:	drivers/pinctrl/pinctrl-mpfs-iomux0.c
+-F:	drivers/pinctrl/pinctrl-pic64gx-gpio2.c
++F:	drivers/pinctrl/microchip/pinctrl-mpfs-iomux0.c
++F:	drivers/pinctrl/microchip/pinctrl-pic64gx-gpio2.c
+ F:	drivers/pwm/pwm-microchip-core.c
+ F:	drivers/reset/reset-mpfs.c
+ F:	drivers/rtc/rtc-mpfs.c
+diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+index 0ea117581bde..d2a414450c16 100644
+--- a/drivers/pinctrl/Kconfig
++++ b/drivers/pinctrl/Kconfig
+@@ -486,14 +486,6 @@ config PINCTRL_PIC32MZDA
+ 	def_bool y if PIC32MZDA
+ 	select PINCTRL_PIC32
+ 
+-config PINCTRL_PIC64GX
+-	bool "pic64gx gpio2 pinctrl driver"
+-	depends on ARCH_MICROCHIP || COMPILE_TEST
+-	depends on OF
+-	select GENERIC_PINCONF
+-	help
+-	  This selects the pinctrl driver for gpio2 on pic64gx.
+-
+ config PINCTRL_PISTACHIO
+ 	bool "IMG Pistachio SoC pinctrl driver"
+ 	depends on OF && (MIPS || COMPILE_TEST)
+@@ -505,14 +497,6 @@ config PINCTRL_PISTACHIO
+ 	help
+ 	  This support pinctrl and GPIO driver for IMG Pistachio SoC.
+ 
+-config PINCTRL_POLARFIRE_SOC
+-	bool "Polarfire SoC pinctrl driver"
+-	depends on ARCH_MICROCHIP || COMPILE_TEST
+-	depends on OF
+-	select GENERIC_PINCONF
+-	help
+-	  This selects the pinctrl driver for Microchip Polarfire SoC.
+-
+ config PINCTRL_RK805
+ 	tristate "Pinctrl and GPIO driver for RK805 PMIC"
+ 	depends on MFD_RK8XX
+@@ -707,6 +691,7 @@ source "drivers/pinctrl/freescale/Kconfig"
+ source "drivers/pinctrl/intel/Kconfig"
+ source "drivers/pinctrl/mediatek/Kconfig"
+ source "drivers/pinctrl/meson/Kconfig"
++source "drivers/pinctrl/microchip/Kconfig"
+ source "drivers/pinctrl/mvebu/Kconfig"
+ source "drivers/pinctrl/nomadik/Kconfig"
+ source "drivers/pinctrl/nuvoton/Kconfig"
+diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
+index be5200c23e60..05737b1afec9 100644
+--- a/drivers/pinctrl/Makefile
++++ b/drivers/pinctrl/Makefile
+@@ -48,9 +48,7 @@ obj-$(CONFIG_PINCTRL_OCELOT)	+= pinctrl-ocelot.o
+ obj-$(CONFIG_PINCTRL_PALMAS)	+= pinctrl-palmas.o
+ obj-$(CONFIG_PINCTRL_PEF2256)	+= pinctrl-pef2256.o
+ obj-$(CONFIG_PINCTRL_PIC32)	+= pinctrl-pic32.o
+-obj-$(CONFIG_PINCTRL_PIC64GX)	+= pinctrl-pic64gx-gpio2.o
+ obj-$(CONFIG_PINCTRL_PISTACHIO)	+= pinctrl-pistachio.o
+-obj-$(CONFIG_PINCTRL_POLARFIRE_SOC)	+= pinctrl-mpfs-iomux0.o
+ obj-$(CONFIG_PINCTRL_RK805)	+= pinctrl-rk805.o
+ obj-$(CONFIG_PINCTRL_ROCKCHIP)	+= pinctrl-rockchip.o
+ obj-$(CONFIG_PINCTRL_RP1)       += pinctrl-rp1.o
+@@ -76,6 +74,7 @@ obj-y				+= freescale/
+ obj-$(CONFIG_X86)		+= intel/
+ obj-y				+= mediatek/
+ obj-$(CONFIG_PINCTRL_MESON)	+= meson/
++obj-y				+= microchip/
+ obj-y				+= mvebu/
+ obj-y				+= nomadik/
+ obj-y				+= nuvoton/
+diff --git a/drivers/pinctrl/microchip/Kconfig b/drivers/pinctrl/microchip/Kconfig
+new file mode 100644
+index 000000000000..bdefe6541445
+--- /dev/null
++++ b/drivers/pinctrl/microchip/Kconfig
+@@ -0,0 +1,17 @@
++# SPDX-License-Identifier: GPL-2.0-only
++
++config PINCTRL_PIC64GX
++	bool "pic64gx gpio2 pinctrl driver"
++	depends on ARCH_MICROCHIP || COMPILE_TEST
++	depends on OF
++	select GENERIC_PINCONF
++	help
++	  This selects the pinctrl driver for gpio2 on pic64gx.
++
++config PINCTRL_POLARFIRE_SOC
++	bool "Polarfire SoC pinctrl driver"
++	depends on ARCH_MICROCHIP || COMPILE_TEST
++	depends on OF
++	select GENERIC_PINCONF
++	help
++	  This selects the pinctrl driver for Microchip Polarfire SoC.
+diff --git a/drivers/pinctrl/microchip/Makefile b/drivers/pinctrl/microchip/Makefile
+new file mode 100644
+index 000000000000..584d48e7be3b
+--- /dev/null
++++ b/drivers/pinctrl/microchip/Makefile
+@@ -0,0 +1,4 @@
++# SPDX-License-Identifier: GPL-2.0-only
++
++obj-$(CONFIG_PINCTRL_PIC64GX)	+= pinctrl-pic64gx-gpio2.o
++obj-$(CONFIG_PINCTRL_POLARFIRE_SOC)	+= pinctrl-mpfs-iomux0.o
+diff --git a/drivers/pinctrl/pinctrl-mpfs-iomux0.c b/drivers/pinctrl/microchip/pinctrl-mpfs-iomux0.c
+similarity index 98%
+rename from drivers/pinctrl/pinctrl-mpfs-iomux0.c
+rename to drivers/pinctrl/microchip/pinctrl-mpfs-iomux0.c
+index cf5b2e4e8f5b..1b060a038920 100644
+--- a/drivers/pinctrl/pinctrl-mpfs-iomux0.c
++++ b/drivers/pinctrl/microchip/pinctrl-mpfs-iomux0.c
+@@ -15,10 +15,10 @@
+ #include <linux/pinctrl/pinctrl.h>
+ #include <linux/pinctrl/pinmux.h>
+ 
+-#include "core.h"
+-#include "pinctrl-utils.h"
+-#include "pinconf.h"
+-#include "pinmux.h"
++#include "../core.h"
++#include "../pinctrl-utils.h"
++#include "../pinconf.h"
++#include "../pinmux.h"
+ 
+ #define MPFS_IOMUX0_REG 0x200
+ 
+diff --git a/drivers/pinctrl/pinctrl-pic64gx-gpio2.c b/drivers/pinctrl/microchip/pinctrl-pic64gx-gpio2.c
+similarity index 99%
+rename from drivers/pinctrl/pinctrl-pic64gx-gpio2.c
+rename to drivers/pinctrl/microchip/pinctrl-pic64gx-gpio2.c
+index f322bb5e6181..a0b3e839cf3b 100644
+--- a/drivers/pinctrl/pinctrl-pic64gx-gpio2.c
++++ b/drivers/pinctrl/microchip/pinctrl-pic64gx-gpio2.c
+@@ -14,7 +14,7 @@
+ #include <linux/pinctrl/pinctrl.h>
+ #include <linux/pinctrl/pinmux.h>
+ 
+-#include "pinctrl-utils.h"
++#include "../pinctrl-utils.h"
+ 
+ #define PIC64GX_PINMUX_REG 0x0
+ 
 -- 
 2.51.0
 
