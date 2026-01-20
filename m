@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-257365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257367-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLXFN2imcGlyYgAAu9opvQ
-	(envelope-from <devicetree+bounces-257365-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:11:52 +0100
+	id iM9/MuqRcGkaYgAAu9opvQ
+	(envelope-from <devicetree+bounces-257367-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:44:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3CC354FF1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 11:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D12F53C6E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 09:44:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C08FB863F3A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:09:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C4052623AC7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 12:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C0B426D2B;
-	Tue, 20 Jan 2026 12:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF19428833;
+	Tue, 20 Jan 2026 12:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="vpRcOoJS"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="yV+hGe2A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC83425CFF;
-	Tue, 20 Jan 2026 12:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8417C42848B;
+	Tue, 20 Jan 2026 12:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768910796; cv=none; b=E5hOa6Y6/lNDLjqceLD2gP+j0Ypne3Wmgl4sk+aLZQej/sPX+UoTtGybcBjMDl6HeQPc+F1oC0Hse381oCHiHDC8cYqiDAUoxLOhMRVe1NYBVuuWRGRsN+6FbqEid7JaSfxY+FL8IH0+rYlTP4IvRit8yisI9i5Cj2LEUGnKBR0=
+	t=1768910802; cv=none; b=EC4FvqBPghlxhHf5LoLY3WHi9izuI7hFbyw/bbwUalCM0/O1sBMLYNbkb2aZ4Hdls9GQblENBVHwsT7VjyuEiWug3lIMDxM+UdvrrNFJk9FEHAhEFfNMWWHFosVts/l/0g4lDXUBQtmZQXGBnbWOvfhIFYekocJdsCGfrp/RUHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768910796; c=relaxed/simple;
-	bh=SJcXwEjPwEyF7P0cinELr017oWH1qV9HtV7GDFf2afM=;
+	s=arc-20240116; t=1768910802; c=relaxed/simple;
+	bh=zW32RwnIsEz7fOz8TD2RSEABIp8rSUUmOobwC1rnwYg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=u80S8/MA5/x2A1+RgRAsjShe7NBclh3UzAPl4ES6j113RAZdxXQyE5Yx2VQlcUbP4atuWVaUyQ8/oN9nhhBnU0rvNgsfGXiTBYmL74hi9FviYGlQJF8jc6t9XH2uXYDz9wniN6yeBPmltZ2s+rZFmxDO96A59+UHIw6/chyVBK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=vpRcOoJS; arc=none smtp.client-ip=68.232.154.123
+	 In-Reply-To:To:CC; b=F+bwk7DN8Do5Inesn1ffcahnvEEpCqexXfpLeS9qyQ8mD/GqM8PTGH5wqLt2aTyeANwF8ADD/MWlYi/59sV4d4limEMW5nPGDdOUEUwwgpApNX2YFpvSD746/0H6nynnpfSG8JKnXHQBXDjE9W0rIXjy/6Qb1rj1hAggcGDJ8SY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=yV+hGe2A; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1768910792; x=1800446792;
+  t=1768910801; x=1800446801;
   h=from:date:subject:mime-version:content-transfer-encoding:
    message-id:references:in-reply-to:to:cc;
-  bh=SJcXwEjPwEyF7P0cinELr017oWH1qV9HtV7GDFf2afM=;
-  b=vpRcOoJSDliTaB7X4rFjevpzgVNIUfqvckeRZl++5pYg1dQLQBZUjSuu
-   DV8OQQgbQb7CON1J/IZzoxGnB/87Z8brF0mSqR/ObbFZKB7ccfYDT1ujs
-   8Lg5NGuAl3oQ+BcdCcRue7NIQ5HGdFpgpaSQy4XF9kW646O5WiCH/P2r0
-   eAaKNqlO04tfhSNIbqfuYw20c0Yn6mAtNaQ1SGfEVZsKhpbqLiBOI7/rs
-   eXJqKn2tUbgmR47qKy/M5K8QHLQ9rUETBD0AAJUJDECFDtLi+WZRzBASY
-   ftjiiY/03U+i9J2dsQtVsCQXXhcQpf+FFXFzqmKZJc6Bk4q10jKNlMQvM
-   w==;
-X-CSE-ConnectionGUID: 4u8z3sgdSr+f+QbSdLjpXg==
-X-CSE-MsgGUID: tctHU4N7R1eSf1VsqDLRCQ==
+  bh=zW32RwnIsEz7fOz8TD2RSEABIp8rSUUmOobwC1rnwYg=;
+  b=yV+hGe2A11PnVUQ55CZfXBRkLqU/VZemAQgjflp2D4HFc4bANtuu3Mj7
+   Fn56cL9pHldku2MUo2uIeFA0cc8rZ56W9ehiUBFNQCuo85d03zn8CvP1g
+   145ofW0G93z/ZMgJCFm/MjnN5+kzOYN4KpfVMBgRC9PnFH4JHRrBqllqC
+   K6RuP+wWDrUaMOjH8bxQF+hruoehIYk5VDSrThaWd9TSvA0hgH+KtxsnL
+   TlXtTVx0Ii8rBzbHsCN87yTU5jN2U7mT6UHU/V4PMK1BjHUReQTEBpEB7
+   KUXg+y0WKIysZWUeRNXKWj0y+hkDlM2ghgUa+3T/2AJefXCXpz0pcy6js
+   g==;
+X-CSE-ConnectionGUID: 8Ko/DY5eTo6gdSTGYm53tQ==
+X-CSE-MsgGUID: zQJPafm9Q4CM5MmDH9GCQA==
 X-IronPort-AV: E=Sophos;i="6.21,240,1763449200"; 
-   d="scan'208";a="52590476"
+   d="scan'208";a="283519278"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Jan 2026 05:06:31 -0700
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Jan 2026 05:06:34 -0700
 Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 20 Jan 2026 05:06:15 -0700
+ 15.1.2507.58; Tue, 20 Jan 2026 05:06:19 -0700
 Received: from ROU-LL-M19942.mpu32.int (10.10.85.11) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Tue, 20 Jan 2026 05:06:11 -0700
+ 15.1.2507.58 via Frontend Transport; Tue, 20 Jan 2026 05:06:15 -0700
 From: Cyrille Pitchen <cyrille.pitchen@microchip.com>
-Date: Tue, 20 Jan 2026 13:05:37 +0100
-Subject: [PATCH v6 4/5] ARM: dts: microchip: sam9x7: Add GFX2D GPU
+Date: Tue, 20 Jan 2026 13:05:38 +0100
+Subject: [PATCH v6 5/5] ARM: configs: at91_dt_defconfig: enable GFX2D
+ driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,7 +75,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20260120-cpitchen-mainline_gfx2d-v6-4-1a16cd1d70b8@microchip.com>
+Message-ID: <20260120-cpitchen-mainline_gfx2d-v6-5-1a16cd1d70b8@microchip.com>
 References: <20260120-cpitchen-mainline_gfx2d-v6-0-1a16cd1d70b8@microchip.com>
 In-Reply-To: <20260120-cpitchen-mainline_gfx2d-v6-0-1a16cd1d70b8@microchip.com>
 To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
@@ -88,13 +89,13 @@ CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	Cyrille Pitchen <cyrille.pitchen@microchip.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=935;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=806;
  i=cyrille.pitchen@microchip.com; h=from:subject:message-id;
- bh=SJcXwEjPwEyF7P0cinELr017oWH1qV9HtV7GDFf2afM=;
- b=owGbwMvMwCXmf6yzKqEsVIbxtFoSQ2Z+/sK3IV7TZl9jnyBxkNn5pLLs62/si6xtLzN2SBh/9
- JzloabTUcrCIMbFICumyHLozdbezOOvHtu9EpWCmcPKBDKEgYtTACby/CDDb/YGo7KFt9Ofhz56
- PDHqeUFQ+/cYN8t7Hx4EBec3b+gxEWdkmMVSeZK9qV5N6fs/cZ8IixMzNtx4fPDRKqMMPqUlqao
- LOQE=
+ bh=zW32RwnIsEz7fOz8TD2RSEABIp8rSUUmOobwC1rnwYg=;
+ b=owGbwMvMwCXmf6yzKqEsVIbxtFoSQ2Z+/sL7S3a6uc7IPPuxcsfylu+hdSxXf/17ZH+RQ5qTW
+ 3zCwbVqHaUsDGJcDLJiiiyH3mztzTz+6rHdK1EpmDmsTCBDGLg4BWAiGYUM/+xeHdh1aUmu2VcD
+ CYFlJqf15V+ssP+3QbnDPXSi1Euf1VGMDF35xn5S+z7eE43K4V3zhSHsUsaD5DwX7dQylTjvTN/
+ ZjAA=
 X-Developer-Key: i=cyrille.pitchen@microchip.com; a=openpgp;
  fpr=7A21115D7D6026585D0E183E0EF12AA1BFAC073D
 X-Spamd-Result: default: False [-0.46 / 15.00];
@@ -105,7 +106,7 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257365-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-257367-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
@@ -124,36 +125,31 @@ X-Spamd-Result: default: False [-0.46 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,microchip.com:email,microchip.com:dkim,microchip.com:mid]
-X-Rspamd-Queue-Id: F3CC354FF1
+X-Rspamd-Queue-Id: 1D12F53C6E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the GFX2D GPU.
+The GFX2D GPU is embedded in both SAM9X60 and SAM9X75; enable the
+driver to use it.
 
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 Signed-off-by: Cyrille Pitchen <cyrille.pitchen@microchip.com>
 ---
- arch/arm/boot/dts/microchip/sam9x7.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm/configs/at91_dt_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/microchip/sam9x7.dtsi b/arch/arm/boot/dts/microchip/sam9x7.dtsi
-index 46dacbbd201ddb68a7456d6fe1afafa59db90ec8..44ad05af7f969c2c6c13310a85c07375442388e6 100644
---- a/arch/arm/boot/dts/microchip/sam9x7.dtsi
-+++ b/arch/arm/boot/dts/microchip/sam9x7.dtsi
-@@ -292,6 +292,14 @@ AT91_XDMAC_DT_PERID(26))>,
- 			status = "disabled";
- 		};
- 
-+		gpu: gpu@f0018000 {
-+			compatible = "microchip,sam9x7-gfx2d";
-+			reg = <0xf0018000 0x100>;
-+			interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&pmc PMC_TYPE_PERIPHERAL 36>;
-+			status = "disabled";
-+		};
-+
- 		i2s: i2s@f001c000 {
- 			compatible = "microchip,sam9x7-i2smcc", "microchip,sam9x60-i2smcc";
- 			reg = <0xf001c000 0x100>;
+diff --git a/arch/arm/configs/at91_dt_defconfig b/arch/arm/configs/at91_dt_defconfig
+index 4f1153098b16f4a93ff21f05ec73cc569f4ebe64..b38fb185670c05e74e09f6341128be5908c86451 100644
+--- a/arch/arm/configs/at91_dt_defconfig
++++ b/arch/arm/configs/at91_dt_defconfig
+@@ -144,6 +144,7 @@ CONFIG_VIDEO_OV2640=m
+ CONFIG_VIDEO_OV7740=m
+ CONFIG_DRM=y
+ CONFIG_DRM_ATMEL_HLCDC=y
++CONFIG_DRM_MICROCHIP_GFX2D=y
+ CONFIG_DRM_MICROCHIP_LVDS_SERIALIZER=y
+ CONFIG_DRM_PANEL_SIMPLE=y
+ CONFIG_DRM_PANEL_EDP=y
 
 -- 
 2.51.0
