@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-257159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85334D3BE2F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:15:50 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE525D3BE31
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:16:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AAFA334DBDB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:15:44 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 91354351270
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27DA33B94B;
-	Tue, 20 Jan 2026 04:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9380E33BBA7;
+	Tue, 20 Jan 2026 04:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KiKv/zLS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jai76Dba"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C94933B6F6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36E2E2857C7;
 	Tue, 20 Jan 2026 04:15:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768882519; cv=none; b=MT349yNoEoJSTiHPgaXgnDGjNKwC8uj8CCNIrjot/kP+rVqYPCV+QLPnoX5e2PQcmr+wlRlTEjWA6AnbEcwmAXx7vVyRFnEyLix6YdB18LKkGPTxt/CYU1kn3gZ7u/CVwu7of/vUAsIAN0FT3OTzt1aEtGChZV4BRzBru8n2hpk=
+	t=1768882520; cv=none; b=XIFRSBQldbSB8/lJQFbGsFjuZiuOVU4GonRIU3snpGMd1UB9Jkul46RTN+cbK2j0g4t5ZvIsVHSAtWpRrHRvRhy47iCUXwTl3+e5qYu3m+RHxW0XDS9bb3hToFU22VGYroIdlHtpZFAyhm5wYTCHWGZkPWl9YQwHaP46b4bAhZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768882519; c=relaxed/simple;
-	bh=e1gD37k8W4Pzp7U55pR9/mebQe/hwn2pjhUSiquHa+s=;
+	s=arc-20240116; t=1768882520; c=relaxed/simple;
+	bh=uuacy5TWBWCqGEovDfg1uYj/N0C7aRhzBOjqrPUPGZE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To; b=r5FHoYrFvukBwTBDJaBnDENFpklwnaN6d+dMYhQfIQ76ysmzgKtIV49zFZVWI8UvekwtW9xPa7g/1rPPKhONPtNR8gI2UH6wM4HUxkOUsW6gLyUm0D0PifzlzqoJ9kCQavD3JtikfHpF68N8vHrhQeFQHqEun8PgYzAQH1LJtBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KiKv/zLS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3B24C19421;
-	Tue, 20 Jan 2026 04:15:18 +0000 (UTC)
+	 In-Reply-To:To; b=TWDrkSCz5NJj1wfFnYH3xQzB2YNneBzkl0M476761sbpp4scqdf5je+lwjqA0ZqkejSYiiiHBd+YjAXq3sNH8Pg/HUs3LxwXR7V5RvZukB3MMiHit1ot3cs+NdvmIsPQOEXIOvKLcIt+fUoHVZQbKTPYz+MEIPrJAXx9fH+ROKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jai76Dba; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FC88C2BC87;
+	Tue, 20 Jan 2026 04:15:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1768882519;
-	bh=e1gD37k8W4Pzp7U55pR9/mebQe/hwn2pjhUSiquHa+s=;
+	bh=uuacy5TWBWCqGEovDfg1uYj/N0C7aRhzBOjqrPUPGZE=;
 	h=From:Date:Subject:References:In-Reply-To:To:From;
-	b=KiKv/zLSLl24ROOPMupclmjRMeAtAOud503ezve+J0sps06z8lg9xDGgs/gxUV5Gf
-	 TpioUc53xeE9Kywr78ChG8mllTEAzfw4cPwXBcsukdRnu6tGYISiJYIR/eQz+mBq+E
-	 48Yy4fg1W4RIGbHi/R5PwdSaCafnCVt8CMlR9AyiKmvl5Gipz9pwJmS64NNP7bCrC+
-	 +GNPzmTx5XwlxjoVT53PQziE9KwEaUWjSrArbNDI9cHwe9f0B9w2CRfVVO9DZRxWSO
-	 wuVQdAzZyecEG2h8cvBfO8DI3GxW+YYYKfA4Muk10qsrmRxOJZjJ/pJvfearNKTPbo
-	 ECUOH69/YBVvw==
+	b=Jai76DbanQ5IUF9DJVoNKN6aw5/2fizcOT+y1rFd5QRfGD3T+F7L4Vwk2Vrw5WLjG
+	 Tu999t924KW+7k3ERLZTgpVZQbmvq+vpXYA2EgQl98YKPURV9KvUaTb7hklYBIjwDm
+	 Yiz71/fL45fmtFhJikGN/KmuvkS49J1YA8XGxAOufn33Xn880cIxyrIvmDoXbzpqC6
+	 UcWry79PcViEKZLu76wAW4wtmjlk2u3FnoJi7jnZeM0bvZljd690UgkbGd39KZBYZq
+	 sGI+1hkPMmRJWo5tVWpV4dyKZNjVUE9fmSW+XFHLqYOLh2wzy9hrNyAlciW/dvmMWY
+	 djk3n+y6qfCKA==
 From: Drew Fustini <fustini@kernel.org>
-Date: Mon, 19 Jan 2026 20:14:41 -0800
-Subject: [PATCH RFC 04/19] RISC-V: QoS: define properties of CBQRI
- controllers
+Date: Mon, 19 Jan 2026 20:14:42 -0800
+Subject: [PATCH RFC 05/19] RISC-V: QoS: define CBQRI capacity and bandwidth
+ capabilities
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +53,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260119-ssqosid-cbqri-v1-4-aa2a75153832@kernel.org>
+Message-Id: <20260119-ssqosid-cbqri-v1-5-aa2a75153832@kernel.org>
 References: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 In-Reply-To: <20260119-ssqosid-cbqri-v1-0-aa2a75153832@kernel.org>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -79,81 +79,159 @@ To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-riscv@lists.infradead.org, x86@kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1881; i=fustini@kernel.org;
- h=from:subject:message-id; bh=e1gD37k8W4Pzp7U55pR9/mebQe/hwn2pjhUSiquHa+s=;
- b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwZN5rP20bO/dDmHP7S/7cIfjRLnCTPvKu/bpdMrd
- k1Rtkyho5SFQYyLQVZMkWXTh7wLS7xCvy6Y/2IbzBxWJpAhDFycAjCR/+WMDCdWXmdxLXSdYd+X
- 7Jqy/MAknU83Y5fYaG5kF2bp/ftC7gUjwxP9amW2zDSJeYve7TkxOcxI59RiGR8vtguPhbXezL2
- 6kwEA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4712; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=uuacy5TWBWCqGEovDfg1uYj/N0C7aRhzBOjqrPUPGZE=;
+ b=owGbwMvMwCV2+43O4ZsaG3kYT6slMWTmMwbtNAsIevn73zNt4bBKu+gDQj3PdcS2r/dxkA++3
+ fSEcZt2RykLgxgXg6yYIsumD3kXlniFfl0w/8U2mDmsTCBDGLg4BWAiy+4yMmx8ps2tXLfitMMC
+ af+nhz9Pi3RY76T+YlHKevvp3KlKZ8oZ/mk5pR4tlvN3vLJcYUlEcLXLNg0l+y+CrLJHpfrr3/x
+ 6xwIA
 X-Developer-Key: i=fustini@kernel.org; a=openpgp;
  fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
-Define data structure to represent the CBQRI properties that a driver
-for an CBQRI-capable controller would discover during probe.
-
-Each instance of a CBQRI-capable controller is added to a list that the
-RISC-V CBQRI resctrl implementation will consume.
+Define data structures to store the capacity and bandwidth capabilities
+that are discovered for a CBQRI-capable controller.
 
 Co-developed-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Adrien Ricciardi <aricciardi@baylibre.com>
 Signed-off-by: Drew Fustini <fustini@kernel.org>
 ---
- MAINTAINERS               |  1 +
- include/linux/riscv_qos.h | 34 ++++++++++++++++++++++++++++++++++
- 2 files changed, 35 insertions(+)
+ arch/riscv/kernel/qos/internal.h | 128 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 128 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e98d553bd0ca..31e536304972 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22511,6 +22511,7 @@ L:	linux-riscv@lists.infradead.org
- S:	Supported
- F:	arch/riscv/include/asm/qos.h
- F:	arch/riscv/kernel/qos/
-+F:	include/linux/riscv_qos.h
- 
- RISC-V RPMI AND MPXY DRIVERS
- M:	Rahul Pathak <rahul@summations.net>
-diff --git a/include/linux/riscv_qos.h b/include/linux/riscv_qos.h
+diff --git a/arch/riscv/kernel/qos/internal.h b/arch/riscv/kernel/qos/internal.h
 new file mode 100644
-index 000000000000..51c3a96bbcd0
+index 000000000000..ff2c7eff50be
 --- /dev/null
-+++ b/include/linux/riscv_qos.h
-@@ -0,0 +1,34 @@
++++ b/arch/riscv/kernel/qos/internal.h
+@@ -0,0 +1,128 @@
 +/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef _ASM_RISCV_QOS_INTERNAL_H
++#define _ASM_RISCV_QOS_INTERNAL_H
 +
-+#ifndef __LINUX_RISCV_QOS_H
-+#define __LINUX_RISCV_QOS_H
++#include <linux/resctrl.h>
 +
-+#include <linux/iommu.h>
-+#include <linux/types.h>
++#define CBQRI_CC_CAPABILITIES_OFF 0
++#define CBQRI_CC_MON_CTL_OFF      8
++#define CBQRI_CC_MON_CTL_VAL_OFF 16
++#define CBQRI_CC_ALLOC_CTL_OFF   24
++#define CBQRI_CC_BLOCK_MASK_OFF  32
 +
-+#include <asm/qos.h>
++#define CBQRI_BC_CAPABILITIES_OFF 0
++#define CBQRI_BC_MON_CTL_OFF      8
++#define CBQRI_BC_MON_CTR_VAL_OFF 16
++#define CBQRI_BC_ALLOC_CTL_OFF   24
++#define CBQRI_BC_BW_ALLOC_OFF    32
 +
-+enum cbqri_controller_type {
-+	CBQRI_CONTROLLER_TYPE_CAPACITY,
-+	CBQRI_CONTROLLER_TYPE_BANDWIDTH,
-+	CBQRI_CONTROLLER_TYPE_UNKNOWN
++#define CBQRI_CC_CAPABILITIES_VER_MINOR_MASK  GENMASK(3, 0)
++#define CBQRI_CC_CAPABILITIES_VER_MAJOR_MASK  GENMASK(7, 4)
++
++#define CBQRI_CC_CAPABILITIES_FRCID_MASK   0x1
++#define CBQRI_CC_CAPABILITIES_FRCID_SHIFT  24
++
++#define CBQRI_CC_CAPABILITIES_NCBLKS_SHIFT 8
++#define CBQRI_CC_CAPABILITIES_NCBLKS_MASK  0xFFFF
++
++#define CBQRI_BC_CAPABILITIES_VER_MINOR_MASK  GENMASK(3, 0)
++#define CBQRI_BC_CAPABILITIES_VER_MAJOR_MASK  GENMASK(7, 4)
++
++#define CBQRI_BC_CAPABILITIES_NBWBLKS_SHIFT 8
++#define CBQRI_BC_CAPABILITIES_NBWBLKS_MASK  0xFFFF
++#define CBQRI_BC_CAPABILITIES_MRBWB_SHIFT   32
++#define CBQRI_BC_CAPABILITIES_MRBWB_MASK    0xFFFF
++
++#define CBQRI_CONTROL_REGISTERS_BUSY_SHIFT   39
++#define CBQRI_CONTROL_REGISTERS_BUSY_MASK    0x01
++#define CBQRI_CONTROL_REGISTERS_STATUS_SHIFT 32
++#define CBQRI_CONTROL_REGISTERS_STATUS_MASK  0x7F
++#define CBQRI_CONTROL_REGISTERS_OP_SHIFT     0
++#define CBQRI_CONTROL_REGISTERS_OP_MASK      0x1F
++#define CBQRI_CONTROL_REGISTERS_AT_SHIFT     5
++#define CBQRI_CONTROL_REGISTERS_AT_MASK      0x07
++#define CBQRI_CONTROL_REGISTERS_AT_DATA      0
++#define CBQRI_CONTROL_REGISTERS_AT_CODE      1
++#define CBQRI_CONTROL_REGISTERS_RCID_SHIFT   8
++#define CBQRI_CONTROL_REGISTERS_RCID_MASK    0xFFF
++#define CBQRI_CONTROL_REGISTERS_RBWB_SHIFT   0
++#define CBQRI_CONTROL_REGISTERS_RBWB_MASK    0xFFFF
++
++#define CBQRI_CC_MON_CTL_OP_CONFIG_EVENT 1
++#define CBQRI_CC_MON_CTL_OP_READ_COUNTER 2
++#define CBQRI_CC_MON_CTL_STATUS_SUCCESS  1
++
++#define CBQRI_CC_ALLOC_CTL_OP_CONFIG_LIMIT 1
++#define CBQRI_CC_ALLOC_CTL_OP_READ_LIMIT   2
++#define CBQRI_CC_ALLOC_CTL_OP_FLUSH_RCID   3
++#define CBQRI_CC_ALLOC_CTL_STATUS_SUCCESS  1
++
++#define CBQRI_BC_MON_CTL_OP_CONFIG_EVENT 1
++#define CBQRI_BC_MON_CTL_OP_READ_COUNTER 2
++#define CBQRI_BC_MON_CTL_STATUS_SUCCESS  1
++
++#define CBQRI_BC_ALLOC_CTL_OP_CONFIG_LIMIT 1
++#define CBQRI_BC_ALLOC_CTL_OP_READ_LIMIT   2
++#define CBQRI_BC_ALLOC_CTL_STATUS_SUCCESS  1
++
++/* Capacity Controller hardware capabilities */
++struct riscv_cbqri_capacity_caps {
++	u16 ncblks; /* number of capacity blocks */
++	u16 cache_level;
++	u32 blk_size;
++
++	bool supports_alloc_at_data;
++	bool supports_alloc_at_code;
++
++	bool supports_alloc_op_config_limit;
++	bool supports_alloc_op_read_limit;
++	bool supports_alloc_op_flush_rcid;
++
++	bool supports_mon_at_data;
++	bool supports_mon_at_code;
++
++	bool supports_mon_op_config_event;
++	bool supports_mon_op_read_counter;
++
++	bool supports_mon_evt_id_none;
++	bool supports_mon_evt_id_occupancy;
 +};
 +
-+struct cbqri_controller_info {
-+	unsigned long addr;
-+	unsigned long size;
-+	enum cbqri_controller_type type;
-+	u32 rcid_count;
-+	u32 mcid_count;
-+	struct list_head list;
++/* Bandwidth Controller hardware capabilities */
++struct riscv_cbqri_bandwidth_caps {
++	u16 nbwblks; /* number of bandwidth blocks */
++	u16 mrbwb;   /* max reserved bw blocks */
 +
-+	struct cache_controller {
-+		u32 cache_level;
-+		u32 cache_size; /* in bytes */
-+		struct cpumask cpu_mask;
-+	} cache;
++	bool supports_alloc_at_data;
++	bool supports_alloc_at_code;
++
++	bool supports_alloc_op_config_limit;
++	bool supports_alloc_op_read_limit;
++
++	bool supports_mon_at_data;
++	bool supports_mon_at_code;
++
++	bool supports_mon_op_config_event;
++	bool supports_mon_op_read_counter;
++
++	bool supports_mon_evt_id_none;
++	bool supports_mon_evt_id_rdwr_count;
++	bool supports_mon_evt_id_rdonly_count;
++	bool supports_mon_evt_id_wronly_count;
 +};
 +
-+extern struct list_head cbqri_controllers;
++struct cbqri_controller {
++	struct cbqri_controller_info *ctrl_info;
++	void __iomem *base;
 +
-+#endif /* __LINUX_RISCV_QOS_H */
++	int ver_major;
++	int ver_minor;
++
++	struct riscv_cbqri_bandwidth_caps bc;
++	struct riscv_cbqri_capacity_caps cc;
++
++	bool alloc_capable;
++	bool mon_capable;
++};
++
++#endif /* _ASM_RISCV_QOS_INTERNAL_H */
 
 -- 
 2.43.0
