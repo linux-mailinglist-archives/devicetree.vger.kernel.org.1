@@ -1,407 +1,355 @@
-Return-Path: <devicetree+bounces-257177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC6BD3BE80
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:38:44 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 710EFD3BE8C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 05:51:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1EC134EC405
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:37:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 080064E859F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 04:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA695357A27;
-	Tue, 20 Jan 2026 04:36:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3A23559F9;
+	Tue, 20 Jan 2026 04:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fVAfMYHL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iqzuRKFl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 279C93570C5
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6F3354AF6
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 04:51:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768883797; cv=none; b=kyyRE3GDEU8vDka9TJU7IaYjBeweLcEAMX0afWUcDfAV0ibmL/HB356/Gpe8wHSLkPOGqSBinI+ORhrsd2Dw4BI6UnRVGSxQjDJUO6qc3QhDI5PgnnYLOYu2naUd3DsZBh8k6/8x8GQIbJiTejuh8zF9z0M5Ffy4q3QE8W/rRNE=
+	t=1768884701; cv=none; b=L/UfNb2IhOTXijsz/joiE/Sp+Td8Q2NyGMewy0vtgKfNBVuKzLM+HSGTJqtWDccS0/RKVHwna++CydHHzHYs4aNpGtKOaOQBJnmB+xPws+zR+0rd0tC6dD1Zr3NB0JUNVt+mtFe6eT/wMphopAEJ/8ouBiVEfD/kreALsqdBCaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768883797; c=relaxed/simple;
-	bh=3tH/+6lIxO4URvJgO1n8gy+tjRuroAKNkBz1xRvUGX4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sVgZf2fwFmCCp/Pja1DLfbi87xLk5i7TE2L5wwfb+rL+vZf1AP9Fx3dxAxwJMZ54lzyqg4FnHSvCDBNTgvz1nP2Hj9Xa0L8TNwAAbyELAxBZEHVStoPGpTiFEMRQGX08WIDm9msxQERfNz43dUCiAU/4ounz78Pwd/fUsN70HoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fVAfMYHL; arc=none smtp.client-ip=74.125.82.52
+	s=arc-20240116; t=1768884701; c=relaxed/simple;
+	bh=1EEJTv7saQIJVI1CVFQjCAJAHo6DbFSU2VPyzguN1bs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KsdyuzsTPlpcmv9un2aja+dsmmDKsqMF94qLmUdGqG+SbzHwG+Y8rXDtUgdzP2cIzUbxGGRMrtCeorjRdlMIrXLicG4eQm9BKxOIF4BoFYssWK/GgqBVtytoG/CkgFZiBdjdprRc8S4Lgn4iDyOFiX+qu5LhEL8WnQY5rvRB7BQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iqzuRKFl; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f52.google.com with SMTP id a92af1059eb24-12332910300so7388278c88.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 20:36:34 -0800 (PST)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a0833b5aeeso50381995ad.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 20:51:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768883794; x=1769488594; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wyReD0FGPHyCNo3ka9EshiTdpLiW7lhhWJbYHeoeAsk=;
-        b=fVAfMYHLBeYXHSXJgPefI7JpULQC9uRR0QbhaMokhm6Rx39lwV0LtTQhPIkkEIDNIn
-         de7h1bY0g68d+uUyPVY/bk4X4Lu+sG5BrPJ+GNWpNcRZNUy50OPdgcT7W//nbvvEjKRs
-         p8sFe8fdDruhx8PftdzaFjo2feu1gl+OUW79ED0nfDyFlGHGU7tFujSs9yf0KCKjq/Gi
-         y7KGLEaqJpofig9U4bg7UDjCmvyvtKlYqM0iPfDGFFzB++t+cgr1qmFpQobYDE+++6Ts
-         w7W4gAJF70w72yvylTri5PFvkrVKkouqZjHAJrnCT6n30g0047V4qLX2+XgWNQEFx0wg
-         pAGA==
+        d=gmail.com; s=20230601; t=1768884699; x=1769489499; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CrPpWhLizzqyrVdqRt9DE4t+jE309BmKnkyinv/DH0E=;
+        b=iqzuRKFl9G3R2iqQ86K72TNaD9X8a/SXo/S92L4+kJDge2iIL+MAvs9RMJcXvbMM3f
+         9J6RYmsmJExgSueKxG6Rs8DkR5arZxN1PsSv5u4bBOtmYzq5W3iPdvnunvQeDIypnnYG
+         G9helpFyys+RXh/54tN3sILCWDTZiRtzs1ZoEwiUgSjq3bdCsJgzbBfmC9NXHsdyJfHJ
+         Z7E3474IOjefuUi9/fX747xt4ZF3cr8rxpDwbnuS7SNSn+6xW50IIh9nLPQ9hN4LbIh+
+         eBs9Uj/GTnpba4eonjL4gvjEPtEfurOnoFI+KSZvO1O2bFch6d3Hh8jxFB+iJs0dob+L
+         zP1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768883794; x=1769488594;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=wyReD0FGPHyCNo3ka9EshiTdpLiW7lhhWJbYHeoeAsk=;
-        b=JEBWBgSr+XhpDVIGf7NeFh6RpRCNEs82jxvYv41ycV4w7Hvs3LMElJLmXFOJ6MZd5I
-         TGcWaegTUBEotw/BVpQWnelkEc5BEP5T6Ln1yUWPhN6K/h+JXtFX2WF/rj58voOZvgtG
-         VWwfuRWv7tWpliyOYQ4eoJPoeZINT3TTGM5e0/BscMpOVu715wKhGjppIyq6F3Lpd/Ym
-         z1URr/AGDQFurX9zcHWh2bORKfmrvWIIXHkOJu5UjdWyYO4H0fURaAH1G791x1uDZGOI
-         SMI9qIxhx+A3cWHEv71DPo/jGQbzpaP820lRnlH0sC2heJgegAJQHm3NyEeKQTpH7nDd
-         p18w==
-X-Forwarded-Encrypted: i=1; AJvYcCWsoQeoUnaiVIWtCpuMNjy6OTI/N+yuCXFId6yZtLIG/LbXF3FuVzPlTytaWjuWBPj3ga+I34Qy2axE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQZekl6sYLPukSZ6bB6M/pDaAeKroP99bqi9ZtAfh2gFlCSgeM
-	nz5aS37NbEb78W6ZShnT1J56SwMOSIE4LPJ6TuX1IyqSUOQlpwFvoZSn
-X-Gm-Gg: AY/fxX6WRUq6GaDw4u8/vujIoxJFHsUeX7CKxDfCEuTwimrihoSUoeqv+S+ycHSNH8C
-	FKyaF/71rmcU2FXVh5XMHnWd9FmfUxr8ZR0VF/RlcYj+hQWQGhs6dKxAqOqaXIpqKyzbYBhnQ9Q
-	HAk7z5SG84/JgwVQJXXHWMW8swm7RL2Zv0BQJvi80RC5+JmYbK1YGjpzKPvFnCX+qzmB7BVtdFa
-	ae1o1zkd0VAOWLFmV459VddH0G1yKctCp5P63368MGM/4Jn58YK35aWIvy8BwS40dit5QNrE1Yg
-	MHZ5Bjjxq+VwSzWsZRpYh3uV++Mb70ANyPsunrhCXrnJr7VRNz4/t5i4iUcvjcaqRa8YQLZO3kW
-	sX5cqViA9GlPn3bRXlms/wtI0dXlraeKZgGOX8RlWBXAx6RPD9Pq2joIdeIJVFEvc8iVG6zdGNm
-	co2uWOSucKIG3dwHOZV+Oc
-X-Received: by 2002:a05:7022:2385:b0:119:e569:fb9b with SMTP id a92af1059eb24-1244a6fca7cmr8955362c88.10.1768883794022;
-        Mon, 19 Jan 2026 20:36:34 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6bd8e7cd9sm14617890eec.16.2026.01.19.20.36.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jan 2026 20:36:33 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Yanteng Si <siyanteng@cqsoftware.com.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	Boon Khai Ng <boon.khai.ng@altera.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3 SoC
-Date: Tue, 20 Jan 2026 12:36:08 +0800
-Message-ID: <20260120043609.910302-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260120043609.910302-1-inochiama@gmail.com>
-References: <20260120043609.910302-1-inochiama@gmail.com>
+        d=1e100.net; s=20230601; t=1768884699; x=1769489499;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CrPpWhLizzqyrVdqRt9DE4t+jE309BmKnkyinv/DH0E=;
+        b=LBjcB4MzLJmtAYf0HHzIeXK+sygdDUm+D16hLN0ZByAQqpH2gRgGytzZMvq85qO9WC
+         c5oSjR8LHQ0CABXBFUlXF6nf+TEHHQOd1H4jAHfKnXSB5A+A3vHydvlHYbeZiu6juhA8
+         /zjxxZBKWqexq9DLXh5zCiCQU61RIFp9BJ2P/NxRX3pfcIYg4adsS4InnjMiDn4Mu0yv
+         eLtbboWdRAwbj94Vbh2Brd+R4InkXZPoZol6MXPEQ+pyk7zgdIGvKOl72LWgHDKEly3g
+         kzfJr9fQWzYMV32UP7afs0LZbwA6+2a91Vn48AfDSbZcX8AtCtl6cKXDTPeG3E0wUvpZ
+         saww==
+X-Forwarded-Encrypted: i=1; AJvYcCXjbof7uBkoe/flZtikA8DwlELkzPYlwk06nksb3cNqkfOaGDYoxMkBev0ZQztW4kA5ZIHKnajaAxXy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyr83qAgRuozf9gGoiV5a/Wd+WK1wh4zVWSD6kBnrbHAz0vtCG5
+	VpiBkzrs8JmRHfqNkcU/2dtSeBQHSfVXoY4TxgMr7OYKh3uceaoW8FHR
+X-Gm-Gg: AZuq6aJRra/Sjsbjtof/kb+GqCtUNzVEaYZ5vR+eks8ojQXeoAtRjL64as7jqcET+aU
+	ZbzTq5M2qAsKBDLQX8rgLjmdHVsFnAXbkcF8xWeH5po43GbfsDQBI1z6LA3mzxikyA4/pL5z/Pl
+	gD+LIR4v1R2X+USONwlUeeN4csCSvibyVNk3PLtuV+nGxNMlNAexYKQeWTR7oHimx2KYZSdpq20
+	4rFnxkz6UHGcVQMxoqexvJhSuDWQVwJQhCBnzgHCfzmd/T+naya3I1nEkwvSlqcU8w4LCHusjiJ
+	fvXaHOuDny/l4Mnj8iqx3qF6NbShuBVG3bGV04/cKuV3087kJNJkJ8kopcR2e9oBpOV2biPs65J
+	6w+LyV336DXQ5vVcXHaki1H2TnB2jrV1sofm//pimaf020Wry0eU7PqgQ4QToYRlPNZ6ac1f+PU
+	3RMUZnH01sCvysWVtKcLwcED7fEd9U9yyrkA==
+X-Received: by 2002:a17:902:f788:b0:29e:9387:f2b7 with SMTP id d9443c01a7336-2a7188577d1mr133191665ad.11.1768884699087;
+        Mon, 19 Jan 2026 20:51:39 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.253.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a7193fd35esm107003535ad.81.2026.01.19.20.51.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jan 2026 20:51:38 -0800 (PST)
+Message-ID: <ec7b7af7-1343-4988-b783-9ce9b045c8ae@gmail.com>
+Date: Tue, 20 Jan 2026 10:22:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] backlight: gpio: add support for multiple GPIOs
+ for backlight control
+To: Daniel Thompson <daniel@riscstar.com>
+Cc: lee@kernel.org, danielt@kernel.org, jingoohan1@gmail.com, deller@gmx.de,
+ pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260105085120.230862-1-tessolveupstream@gmail.com>
+ <20260105085120.230862-3-tessolveupstream@gmail.com>
+ <aVuN7zVUWJ1qsVh8@aspen.lan> <1fedb7d7-3a30-4f0f-961f-09613f2a95d0@gmail.com>
+ <aWe-QA_grqNwnE4n@aspen.lan>
+Content-Language: en-US
+From: tessolveupstream@gmail.com
+In-Reply-To: <aWe-QA_grqNwnE4n@aspen.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Adds Spacemit dwmac driver support on the Spacemit K3 SoC.
 
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 224 ++++++++++++++++++
- 3 files changed, 237 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 907fe2e927f0..583a4692f5da 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -216,6 +216,18 @@ config DWMAC_SOPHGO
- 	  for the stmmac device driver. This driver is used for the
- 	  ethernet controllers on various Sophgo SoCs.
+On 14-01-2026 21:33, Daniel Thompson wrote:
+> On Tue, Jan 13, 2026 at 12:47:26PM +0530, tessolveupstream@gmail.com wrote:
+>>
+>>
+>> On 05-01-2026 15:39, Daniel Thompson wrote:
+>>> On Mon, Jan 05, 2026 at 02:21:20PM +0530, Sudarshan Shetty wrote:
+>>>> Extend the gpio-backlight driver to handle multiple GPIOs instead of a
+>>>> single one. This allows panels that require driving several enable pins
+>>>> to be controlled by the backlight framework.
+>>>>
+>>>> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+>>>> ---
+>>>>  drivers/video/backlight/gpio_backlight.c | 61 +++++++++++++++++-------
+>>>>  1 file changed, 45 insertions(+), 16 deletions(-)
+>>>>
+>>>> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+>>>> index 728a546904b0..037e1c111e48 100644
+>>>> --- a/drivers/video/backlight/gpio_backlight.c
+>>>> +++ b/drivers/video/backlight/gpio_backlight.c
+>>>> @@ -17,14 +17,18 @@
+>>>>
+>>>>  struct gpio_backlight {
+>>>>  	struct device *dev;
+>>>> -	struct gpio_desc *gpiod;
+>>>> +	struct gpio_desc **gpiods;
+>>>> +	unsigned int num_gpios;
+>>>
+>>> Why not use struct gpio_descs for this?
+>>>
+>>> Once you do that, then most of the gbl->num_gpios loops can be replaced with
+>>> calls to the array based accessors.
+>>>
+>>
+>> Based on your feedback, I have updated the implementation to use
+>> struct gpio_descs and array-based accessors, as recommended like
+>> below:
+>>
+>> git diff drivers/video/backlight/gpio_backlight.c
+>> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+>> index 037e1c111e48..e99d7a9dc670 100644
+>> --- a/drivers/video/backlight/gpio_backlight.c
+>> +++ b/drivers/video/backlight/gpio_backlight.c
+>> @@ -14,22 +14,37 @@
+>>  #include <linux/platform_device.h>
+>>  #include <linux/property.h>
+>>  #include <linux/slab.h>
+>> +#include <linux/bitmap.h>
+>>
+>>  struct gpio_backlight {
+>>         struct device *dev;
+>> -       struct gpio_desc **gpiods;
+>> +       struct gpio_descs *gpiods;
+>>         unsigned int num_gpios;
+>>  };
+>>
+>>  static int gpio_backlight_update_status(struct backlight_device *bl)
+>>  {
+>>         struct gpio_backlight *gbl = bl_get_data(bl);
+>> -       unsigned int i;
+>> +       unsigned int n = gbl->num_gpios;
+>>         int br = backlight_get_brightness(bl);
+>> +       unsigned long *value_bitmap;
+>> +       int words = BITS_TO_LONGS(n);
+>> +
+>> +       value_bitmap = kcalloc(words, sizeof(unsigned long), GFP_KERNEL);
+> 
+> Not sure you need a kcalloc() here. If you want to support more than 32
+> GPIOs then you can pre-allocate space with a devm_kcalloc() in the probe
+> method rather than reallocate every time it is used.
+> 
+> To be honest I don't really mind putting a hard limit on the maximum
+> gpl->num_gpios (so you can just use a local variable) and having no
+> allocation at all.
+>
+
+Thanks for the suggestion. I addressed the kcalloc() concern by 
+moving the bitmap allocation to probe using devm_kcalloc() as 
+below:
+
+diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+index 0eb42d8bf1d9..7af5dc4f0315 100644
+--- a/drivers/video/backlight/gpio_backlight.c
++++ b/drivers/video/backlight/gpio_backlight.c
+@@ -19,32 +19,25 @@
+ struct gpio_backlight {
+        struct device *dev;
+        struct gpio_descs *gpiods;
+-       unsigned int num_gpios;
++       unsigned long *bitmap;
+ };
+
+ static int gpio_backlight_update_status(struct backlight_device *bl)
+ {
+        struct gpio_backlight *gbl = bl_get_data(bl);
+-       unsigned int n = gbl->num_gpios;
++       unsigned int n = gbl->gpiods->ndescs;
+        int br = backlight_get_brightness(bl);
+-       unsigned long *value_bitmap;
+-       int words = BITS_TO_LONGS(n);
+-
+-       value_bitmap = kcalloc(words, sizeof(unsigned long), GFP_KERNEL);
+-       if (!value_bitmap)
+-               return -ENOMEM;
+
+        if (br)
+-               bitmap_fill(value_bitmap, n);
++               bitmap_fill(gbl->bitmap, n);
+        else
+-               bitmap_zero(value_bitmap, n);
++               bitmap_zero(gbl->bitmap, n);
+
+-       gpiod_set_array_value_cansleep(gbl->gpiods->ndescs,
++       gpiod_set_array_value_cansleep(n,
+                                       gbl->gpiods->desc,
+                                       gbl->gpiods->info,
+-                                      value_bitmap);
++                                      gbl->bitmap);
+
+-       kfree(value_bitmap);
+        return 0;
+ }
+
+@@ -67,22 +60,25 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+        struct device *dev = &pdev->dev;
+        struct gpio_backlight_platform_data *pdata = dev_get_platdata(dev);
+        struct device_node *of_node = dev->of_node;
+-       struct backlight_properties props;
++       struct backlight_properties props = { };
+        struct backlight_device *bl;
+        struct gpio_backlight *gbl;
+-       int ret, init_brightness, def_value;
+-       unsigned int i;
++       bool def_value;
++       enum gpiod_flags flags;
++       unsigned int n;
++       int words;
+
+-       gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
+-       if (gbl == NULL)
++       gbl = devm_kcalloc(dev, 1, sizeof(*gbl), GFP_KERNEL);
++       if (!gbl)
+                return -ENOMEM;
+
+        if (pdata)
+                gbl->dev = pdata->dev;
+
+        def_value = device_property_read_bool(dev, "default-on");
+-
+-       gbl->gpiods = devm_gpiod_get_array(dev, NULL, GPIOD_ASIS);
++       flags = def_value ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
++
++       gbl->gpiods = devm_gpiod_get_array(dev, NULL, flags);
+        if (IS_ERR(gbl->gpiods)) {
+                if (PTR_ERR(gbl->gpiods) == -ENODEV)
+                        return dev_err_probe(dev, -EINVAL,
+@@ -90,12 +86,17 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+                return PTR_ERR(gbl->gpiods);
+        }
+
+-       gbl->num_gpios = gbl->gpiods->ndescs;
+-       if (gbl->num_gpios == 0)
++       n = gbl->gpiods->ndescs;
++       if (!n)
+                return dev_err_probe(dev, -EINVAL,
+-                       "The gpios parameter is missing or invalid\n");
++                       "No GPIOs provided\n");
++
++       words = BITS_TO_LONGS(n);
++       gbl->bitmap = devm_kcalloc(dev, words, sizeof(unsigned long),
++                                  GFP_KERNEL);
++       if (!gbl->bitmap)
++               return -ENOMEM;
+
+-       memset(&props, 0, sizeof(props));
+        props.type = BACKLIGHT_RAW;
+        props.max_brightness = 1;
+        bl = devm_backlight_device_register(dev, dev_name(dev), dev, gbl,
+@@ -106,50 +107,19 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+        }
+
+        /* Set the initial power state */
+-       if (!of_node || !of_node->phandle) {
++       if (!of_node || !of_node->phandle)
+                /* Not booted with device tree or no phandle link to the node */
+                bl->props.power = def_value ? BACKLIGHT_POWER_ON
+                                                    : BACKLIGHT_POWER_OFF;
+-       } else {
+-               bool all_high = true;
+-               unsigned long *value_bitmap;
+-               int words = BITS_TO_LONGS(gbl->num_gpios);
+-
+-               value_bitmap = kcalloc(words, sizeof(unsigned long),
+-                                      GFP_KERNEL);
+-               if (!value_bitmap)
+-                       return -ENOMEM;
+-
+-               ret = gpiod_get_array_value_cansleep(gbl->gpiods->ndescs,
+-                                                    gbl->gpiods->desc,
+-                                                    gbl->gpiods->info,
+-                                                    value_bitmap);
+-               if (ret) {
+-                       kfree(value_bitmap);
+-                       return dev_err_probe(dev, ret,
+-                               "failed to read initial gpio values\n");
+-               }
+-
+-               all_high = bitmap_full(value_bitmap, gbl->num_gpios);
+-
+-               kfree(value_bitmap);
+-               bl->props.power =
+-                       all_high ? BACKLIGHT_POWER_ON :  BACKLIGHT_POWER_OFF;
+-       }
+-
+-       bl->props.brightness = 1;
+-
+-       init_brightness = backlight_get_brightness(bl);
++       else if (gpiod_get_value_cansleep(gbl->gpiods->desc[0]) == 0)
++               bl->props.power = BACKLIGHT_POWER_OFF;
++       else
++               bl->props.power = BACKLIGHT_POWER_ON;
+
+-       for (i = 0; i < gbl->num_gpios; i++) {
+-               ret = gpiod_direction_output(gbl->gpiods->desc[i],
+-                                            init_brightness);
+-               if (ret)
+-                       return dev_err_probe(dev, ret,
+-                                       "failed to set gpio %u direction\n",
+-                                       i);
+-       }
++       bl->props.brightness = def_value ? 1 : 0;
+
++       gpio_backlight_update_status(bl);
++
+        platform_set_drvdata(pdev, bl);
+        return 0;
+ }
+
+Kindly confirm whether this approach aligns with your 
+expectations.
  
-+config DWMAC_SPACEMIT
-+	tristate "Spacemit dwmac support"
-+	depends on OF && (ARCH_SPACEMIT || COMPILE_TEST)
-+	select MFD_SYSCON
-+	default m if ARCH_SPACEMIT
-+	help
-+	  Support for ethernet controllers on Spacemit RISC-V SoCs
-+
-+	  This selects the Spacemit platform specific glue layer support
-+	  for the stmmac device driver. This driver is used for the
-+	  Spacemit K3 ethernet controllers.
-+
- config DWMAC_STARFIVE
- 	tristate "StarFive dwmac support"
- 	depends on OF && (ARCH_STARFIVE || COMPILE_TEST)
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index 7bf528731034..9e32045631d8 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -27,6 +27,7 @@ obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
- obj-$(CONFIG_DWMAC_S32)		+= dwmac-s32.o
- obj-$(CONFIG_DWMAC_SOCFPGA)	+= dwmac-altr-socfpga.o
- obj-$(CONFIG_DWMAC_SOPHGO)	+= dwmac-sophgo.o
-+obj-$(CONFIG_DWMAC_SPACEMIT)	+= dwmac-spacemit.o
- obj-$(CONFIG_DWMAC_STARFIVE)	+= dwmac-starfive.o
- obj-$(CONFIG_DWMAC_STI)		+= dwmac-sti.o
- obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
-new file mode 100644
-index 000000000000..72744e60d02a
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
-@@ -0,0 +1,224 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Spacemit DWMAC platform driver
-+ *
-+ * Copyright (C) 2026 Inochi Amaoto <inochiama@gmail.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/math.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#include "stmmac_platform.h"
-+
-+/* ctrl register bits */
-+#define PHY_INTF_RGMII			BIT(3)
-+#define PHY_INTF_MII			BIT(4)
-+
-+#define WAKE_IRQ_EN			BIT(9)
-+#define PHY_IRQ_EN			BIT(12)
-+
-+/* dline register bits */
-+#define RGMII_RX_DLINE_EN		BIT(0)
-+#define RGMII_RX_DLINE_STEP		GENMASK(5, 4)
-+#define RGMII_RX_DLINE_CODE		GENMASK(15, 8)
-+#define RGMII_TX_DLINE_EN		BIT(16)
-+#define RGMII_TX_DLINE_STEP		GENMASK(21, 20)
-+#define RGMII_TX_DLINE_CODE		GENMASK(31, 24)
-+
-+#define MAX_DLINE_DELAY_CODE		0xff
-+
-+struct spacemit_dwmac {
-+	struct device *dev;
-+	struct clk *tx;
-+};
-+
-+/* Note: the delay step value is at 0.1ps */
-+static const unsigned int k3_delay_step_10x[4] = {
-+	367, 493, 559, 685
-+};
-+
-+static int spacemit_dwmac_set_delay(struct regmap *apmu,
-+				    unsigned int dline_offset,
-+				    unsigned int tx_code, unsigned int tx_config,
-+				    unsigned int rx_code, unsigned int rx_config)
-+{
-+	unsigned int mask, val;
-+
-+	mask = RGMII_RX_DLINE_STEP | RGMII_TX_DLINE_CODE | RGMII_TX_DLINE_EN |
-+	       RGMII_TX_DLINE_STEP | RGMII_RX_DLINE_CODE | RGMII_RX_DLINE_EN;
-+	val = FIELD_PREP(RGMII_TX_DLINE_CODE, tx_config) |
-+	      FIELD_PREP(RGMII_TX_DLINE_CODE, tx_code) | RGMII_TX_DLINE_EN |
-+	      FIELD_PREP(RGMII_TX_DLINE_CODE, rx_config) |
-+	      FIELD_PREP(RGMII_RX_DLINE_CODE, rx_code) | RGMII_RX_DLINE_EN;
-+
-+	return regmap_update_bits(apmu, dline_offset, mask, val);
-+}
-+
-+static int spacemit_dwmac_detected_delay_value(unsigned int delay,
-+					       unsigned int *config)
-+{
-+	int i;
-+	int code, best_code = 0;
-+	unsigned int best_delay = 0;
-+	unsigned int best_config = 0;
-+
-+	if (delay == 0)
-+		return 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(k3_delay_step_10x); i++) {
-+		unsigned int step = k3_delay_step_10x[i];
-+
-+		for (code = 1; code <= MAX_DLINE_DELAY_CODE; code++) {
-+			/*
-+			 * Note K3 require a specific factor for calculate
-+			 * the delay, in this scenario it is 0.9. So the
-+			 * formula is code * step / 10 * 0.9
-+			 */
-+			unsigned int tmp = code * step * 9 / 10 / 10;
-+
-+			if (abs(tmp - delay) < abs(best_delay - delay)) {
-+				best_code = code;
-+				best_delay = tmp;
-+				best_config = i;
-+			}
-+		}
-+	}
-+
-+	*config = best_config;
-+
-+	return best_code;
-+}
-+
-+static int spacemit_dwmac_fix_delay(struct plat_stmmacenet_data *plat_dat,
-+				    struct regmap *apmu,
-+				    unsigned int dline_offset,
-+				    unsigned int tx_delay, unsigned int rx_delay)
-+{
-+	bool mac_rxid = rx_delay != 0;
-+	bool mac_txid = tx_delay != 0;
-+	unsigned int rx_config = 0;
-+	unsigned int tx_config = 0;
-+	unsigned int rx_code;
-+	unsigned int tx_code;
-+
-+	plat_dat->phy_interface = phy_fix_phy_mode_for_mac_delays(plat_dat->phy_interface,
-+								  mac_txid,
-+								  mac_rxid);
-+
-+	if (plat_dat->phy_interface == PHY_INTERFACE_MODE_NA)
-+		return -EINVAL;
-+
-+	rx_code = spacemit_dwmac_detected_delay_value(rx_delay, &rx_config);
-+	tx_code = spacemit_dwmac_detected_delay_value(tx_delay, &tx_config);
-+
-+	return spacemit_dwmac_set_delay(apmu, dline_offset,
-+					tx_code, tx_config,
-+					rx_code, rx_config);
-+}
-+
-+static int spacemit_dwmac_update_ifconfig(struct plat_stmmacenet_data *plat_dat,
-+					  struct stmmac_resources *stmmac_res,
-+					  struct regmap *apmu,
-+					  unsigned int ctrl_offset)
-+{
-+	unsigned int mask = PHY_INTF_MII | PHY_INTF_RGMII | WAKE_IRQ_EN;
-+	unsigned int val = 0;
-+
-+	switch (plat_dat->phy_interface) {
-+	case PHY_INTERFACE_MODE_MII:
-+		val |= PHY_INTF_MII;
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RMII:
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		val |= PHY_INTF_RGMII;
-+		break;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	if (stmmac_res->wol_irq >= 0)
-+		val |= WAKE_IRQ_EN;
-+
-+	return regmap_update_bits(apmu, ctrl_offset, mask, val);
-+}
-+
-+static int spacemit_dwmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	struct device *dev = &pdev->dev;
-+	unsigned int rx_delay = 0;
-+	unsigned int tx_delay = 0;
-+	struct regmap *apmu;
-+	unsigned int offset[2];
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "failed to get platform resources\n");
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return dev_err_probe(dev, PTR_ERR(plat_dat),
-+				     "failed to parse DT parameters\n");
-+
-+	plat_dat->clk_tx_i = devm_clk_get_enabled(&pdev->dev, "tx");
-+	if (IS_ERR(plat_dat->clk_tx_i))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat->clk_tx_i),
-+				     "failed to get tx clock\n");
-+
-+	apmu = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node, "spacemit,apmu", 2, offset);
-+	if (IS_ERR(apmu))
-+		return dev_err_probe(dev, PTR_ERR(apmu),
-+				"Failed to get apmu regmap\n");
-+
-+	ret = spacemit_dwmac_update_ifconfig(plat_dat, &stmmac_res,
-+					     apmu, offset[0]);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to configure ifconfig\n");
-+
-+	of_property_read_u32(pdev->dev.of_node, "tx-internal-delay-ps", &tx_delay);
-+	of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps", &rx_delay);
-+
-+	ret = spacemit_dwmac_fix_delay(plat_dat, apmu, offset[1], tx_delay, rx_delay);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to configure delay\n");
-+
-+	return stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
-+}
-+
-+static const struct of_device_id spacemit_dwmac_match[] = {
-+	{ .compatible = "spacemit,k3-dwmac" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, spacemit_dwmac_match);
-+
-+static struct platform_driver spacemit_dwmac_driver = {
-+	.probe  = spacemit_dwmac_probe,
-+	.remove = stmmac_pltfr_remove,
-+	.driver = {
-+		.name = "spacemit-dwmac",
-+		.pm = &stmmac_pltfr_pm_ops,
-+		.of_match_table = spacemit_dwmac_match,
-+	},
-+};
-+module_platform_driver(spacemit_dwmac_driver);
-+
-+MODULE_AUTHOR("Inochi Amaoto <inochiama@gmail.com>");
-+MODULE_DESCRIPTION("Spacemit DWMAC platform driver");
-+MODULE_LICENSE("GPL");
--- 
-2.52.0
+> 
+>> Could you please share your thoughts on whether this approach
+>> aligns with your expectations?
+> 
+> Looks like it is going in the right direction, yes.
+> 
+> 
+> Daniel.
 
 
