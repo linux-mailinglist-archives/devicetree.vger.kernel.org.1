@@ -1,48 +1,49 @@
-Return-Path: <devicetree+bounces-257213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97652D3C067
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:29:31 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03EAED3C0DE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:48:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 08C03407030
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:20:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3CB574F7EBD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F8A9395252;
-	Tue, 20 Jan 2026 07:20:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C973638A2BE;
+	Tue, 20 Jan 2026 07:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mkROSJIj"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baodeep.com header.i=@baodeep.com header.b="F/ZuUzVe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.adeep.su (mx.adeep.su [185.250.0.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF09E33A6E8;
-	Tue, 20 Jan 2026 07:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C682C38BF61;
+	Tue, 20 Jan 2026 07:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.250.0.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768893632; cv=none; b=Y1ZUJOi9CfREWZgNKrYfWSnu9s5JhVX3rJ03tXEQuMZXptLaQLKVdu17T19+f677SUXIUkI4cmdaWtq6QEkMS3WeHhW8P1E7rSU7Vnm65HRJ/McQzRkJqf7YQTXYedGbPOYJNcYiJ4U8hsB+eOXuG00MzO1gRFZRwkjXDxgEI1o=
+	t=1768894864; cv=none; b=tafxc/zmAgbn4VwePKmrNKl+FV9nHYAPpKdNRq5p1mKXXyCpIDuhfKVrfrxX8r1NDW8OH3YSBMWwlRyfO/8EdjtarTFw7xwg5YOxfqZH05XHaP+V2cFJhG4IS96VDKBIJD7fUfKZhcb6GcSu7koOBFAow1aSGWnF3RaNdp+cPfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768893632; c=relaxed/simple;
-	bh=vGl+Qlh1JJx7DD0yHUg0mIjfegHURXiJvMHh+UuyXII=;
+	s=arc-20240116; t=1768894864; c=relaxed/simple;
+	bh=8eRYWgMg6ekHyFZFZsTP/jA7GzqvBe57VKHD/EiJNyM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ltvhSgYegJUxngSTYFuiGoRvPuq/LWkTWrmogLAC6LvXKJNZYPXaBSJ6miH526XYK8jGEtHT34kWj7Z1Tn6SFcbgmgju4om97y7dhEUPQThxvHUXTb8G/rMUncB2v3MiCYCOyo1vX80rHNKHGqLq068W0s5MtxjOiFIGuVi27GI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mkROSJIj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17FC0C16AAE;
-	Tue, 20 Jan 2026 07:20:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768893629;
-	bh=vGl+Qlh1JJx7DD0yHUg0mIjfegHURXiJvMHh+UuyXII=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mkROSJIjoSszKpeBE5XvIgb+wWA199Tv5c+6Hee51NV13k9WIOOMg2E9JYZaIOcUj
-	 7QbDxzYbhmRw9dUM4nBblmqTSbVZ7AJ8EmKooMphfsDts2sOsHnsMMHxa+EmwiSg4B
-	 EqXH/VwSAJ/Ns1vGT52RRApCRI0IpSmJ1gMliwjcb0Pmv/h8euvj/7+vEB5/MJ/UCv
-	 EJV+aLyMIt3Oy93LiujnXWke9j2qTm4cRL3idet3DKV9BN+8qG/naxvaGzQsMjeI5/
-	 R08JotrLT/RvSd90iT1kHTNTclkozmFGkWG+nOswjohRW/ebWpxCE+KAUlxZLsFGau
-	 id2ECx4GbJc3g==
-Message-ID: <4d6ffe96-2113-42fd-97e5-42247f073aef@kernel.org>
-Date: Tue, 20 Jan 2026 08:20:25 +0100
+	 In-Reply-To:Content-Type; b=AeCE2IluzaCSSSWzFik+lDi4mEBAGPbvWep5N3Q1obNz1LuuS04MfxqveynwNwEHzdNBWXHiIJCkRZVfoXIrPrOB4ae15E8wyHqfdorYrkdJuFE1WuXzUJj+AG/3N0rTI0c2BewlaQPg8431faAZFvqWNYd6hNv5g9EueN7ZAU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=baodeep.com; spf=pass smtp.mailfrom=baodeep.com; dkim=fail (2048-bit key) header.d=baodeep.com header.i=@baodeep.com header.b=F/ZuUzVe reason="signature verification failed"; arc=none smtp.client-ip=185.250.0.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=baodeep.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baodeep.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D56C3270AA;
+	Tue, 20 Jan 2026 10:33:41 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=baodeep.com; s=dkim;
+	t=1768894425; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references:
+	 disposition-notification-to; bh=7vazJlY7f+ipRlmtxy6NEiiscVonh33GVCHIMR/axgI=;
+	b=F/ZuUzVedI+o80QCH+G05kHTJddLLaWdVlPdUavvyOGNDKf+A+lJdf5lDmvmrsyoaKQYNO
+	dodA2pAX5FVq3aS74mcfcBY0euu2VNPRmUfuzmGiMZurJfjOeU/k6ojkdv6Y6543A1m4Io
+	09I4pB8BKtctoYCoMNYwdAlHlKRdqmlhBO4gatSt1oQrK5UVAU/U+NiNgGLXSX/pGoI0vJ
+	UsiHSweUomrl7azJxZmErSouaRTSPhRRsNnC6RdxudfgLpxd+kEmfxquQQo39Z+ckxAykE
+	UXnbD8clpyKdBUmxMcq4iGS1epRu7ZOVSf31vkB6/tcriwYKONCeVAedqyKZqw==
+Message-ID: <f923c800-d7f5-4c99-9f41-b75f00fecca1@baodeep.com>
+Date: Tue, 20 Jan 2026 10:33:23 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,123 +51,126 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] dt-bindings: soc: qcom: eud: Restructure to model
- multi-path hardware
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Elson Serrao <elson.serrao@oss.qualcomm.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH] Eliminate Odroid HC4 power glitches during boot.
+To: Eric.Neulight@linuxdev.slmail.me, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260116232106.2234978-1-elson.serrao@oss.qualcomm.com>
- <20260116232106.2234978-2-elson.serrao@oss.qualcomm.com>
- <20260117-courageous-chamois-of-focus-20d5d5@quoll>
- <sfazro75vspadpe4wco7zvlalcy2wbrbdjx2wn7lyonjgw22sf@z73u67pinusx>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260116-odroid-hc4-dts-v1-1-459b601cd5cf@linuxdev.slmail.me>
+From: Viacheslav <v@baodeep.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <sfazro75vspadpe4wco7zvlalcy2wbrbdjx2wn7lyonjgw22sf@z73u67pinusx>
-Content-Type: text/plain; charset=UTF-8
+Disposition-Notification-To: Viacheslav <v@baodeep.com>
+In-Reply-To: <20260116-odroid-hc4-dts-v1-1-459b601cd5cf@linuxdev.slmail.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 19/01/2026 20:58, Bjorn Andersson wrote:
-> On Sat, Jan 17, 2026 at 12:57:58PM +0100, Krzysztof Kozlowski wrote:
->> On Fri, Jan 16, 2026 at 03:20:58PM -0800, Elson Serrao wrote:
->>> The Qualcomm Embedded USB Debugger (EUD) hardware can intercept up to
->>> two independent High-Speed UTMI data paths, depending on the SoC
->>> configuration. Each path operates independently with:
->>>
->>> - Dedicated PHY interface
->>> - Distinct USB connector and controller associations
->>> - Role dependent routing
->>>
->>> Model these hardware paths as separate eud-path nodes to accurately
->>> represent the physical topology and add below per-path properties:
->>>
->>> phys: EUD exposes a High-Speed debug hub that relies on HS-PHY for its
->>> operation. This property references the HS-PHY associated with the UTMI
->>> path.
->>>
->>> usb-role-switch: Indicates that the USB port on this UTMI path supports
->>> role switching. In device role, debug mode inserts the EUD hub into the
->>> UTMI path. In host role, the EUD hub is bypassed and UTMI traffic flows
->>> directly between the PHY and the USB controller.
->>>
->>> This change breaks backwards compatibility, but the previous binding
->>> omitted critical resources like PHY and did not describe per-path
->>> topology. Without these modifications EUD cannot be guaranteed to
->>> function.
->>
->> It was working for 3 years, so your guarantees are just imprecise. FUD
->> is not an argument.
->>
->> Qualcomm task at 2022 was to post complete bindings. These were posted
->> and accepted. Three years later you say that previous posting was
->> bollocks and this cannot even work?
->>
-> 
-> That is correct. The description of the hardware that was provided when
-> this was upstreamed and the binding that was accepted based on this
-> description is wrong.
-> 
-> There's absolutely a value in maintainting backwards compatibility in
-> general, but is this one of those cases?
-> 
->> Nah, take responsibility of what you did in the past.
->>
-> 
-> In my view the responsible thing is to accept that we got it wrong and
-> make sure EUD is enabled end-to-end so people can actually use it.
+Hi!
 
-I would expect to see what is not working. This is in mainline for three
-years, so the assumption is that it was working for these three years.
-If it wasn't, this should be described and "cannot be guaranteed to
-function" is just imprecise.
+On 17/01/2026 07.02, Eric Neulight via B4 Relay wrote:
+> From: Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
+> 
+> Fix issue with Odroid HC4 (and all meson-sm1-odroid) DTS that causes
+> regulator power to momentarily glitch OFF-ON during boot.  Add
+> regulator-boot-on to all regulator-fixed and regulator-gpio entries
+> that (1) define a gpio AND (2) define regulator-always-on.
+> 
+> U-boot powers on devices necessary for boot then hands off the DTB to
+> the kernel.  During probe, linux drivers/regulator/fixed.c and
+> gpio-regulator.c both first set the regulator control gpio (that U-boot
+> already turned ON) to default OFF before then setting it to the defined
+> (ON) state. This glitches the power to the affected devices, unless
+> regulator-boot-on is specified with it.  In fact, U-boot has the same
+> behavior.  So, during reboot, a power glitch can actually happen twice:
+> once when U-boot reads the DTB and probes the gpio and again when the
+> kernel reads the DTB and probes the gpio.
+> 
+> Problem this fixes: On the Odroid HC4, power to the SATA ports glitches
+> during boot and causes some HDDs to do emergency head retract, which
+> should be avoided.  On the HC4, power glitches to the SD card, USB,
+> SATA, and HDMI interfaces during boot.  These are all boot devices.
+> A power glitch can potentially cause a problem for any sensitive devices
+> during boot.
+> 
+> NOTE: This is not limited to just the HC4, likely an issue with ALL DTS
+> with regulator-fixed or regulator-gpio entries that (1) define a gpio
+> AND (2) define regulator-always-on.  All such entries should also
+> include regulator-boot-on in order to avoid potential power glitches.
+> At worst, adding regulator-boot-on in such cases is harmless because of
+> regulator-always-on, and, at best, it eliminates detrimental power
+> glitches during boot.  So, this is best-practice.
+> 
+> Fixes: 164147f094ec5d0fc2c2098a888f4b50cf3096a7 ("arm64: dts: meson-sm1-odroid-hc4: add regulators controlled by GPIOH_8")
+> Fixes: 45d736ab17b44257e15e75e0dba364139fdb0983 ("arm64: dts: meson-sm1-odroid: add 5v regulator gpio")
+> Fixes: 1f80a5cf74a60997b92d2cde772edec093bec4d9 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
+> Fixes: 88d537bc92ca035e2a9920b0abc750dd62146520 ("arm64: dts: meson: convert meson-sm1-odroid-c4 to dtsi")
+> 
+> Signed-off-by: Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 ++
+>   arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi    | 3 +++
+>   2 files changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> index 0170139b8d32f4274ad991b0f3d9a0f6c67969ce..3ece30a0a1fff736c544cf89ed0a8cca0890f128 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> @@ -52,6 +52,7 @@ p12v_0: regulator-p12v-0 {
+>   
+>   		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
+>   		enable-active-high;
+> +		regulator-boot-on;
+>   		regulator-always-on;
+>   	};
+>   
+> @@ -65,6 +66,7 @@ p12v_1: regulator-p12v-1 {
+>   
+>   		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
+>   		enable-active-high;
+> +		regulator-boot-on;
+>   		regulator-always-on;
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> index c4524eb4f0996dfbccec16ca5b936a5c3b2663a5..0bce4e8d965f2c83e6ba677fef2ede2726de6ed1 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> @@ -37,6 +37,7 @@ tflash_vdd: regulator-tflash-vdd {
+>   
+>   		gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
+>   		enable-active-high;
+> +		regulator-boot-on;
+>   		regulator-always-on;
+>   	};
+>   
+> @@ -50,6 +51,7 @@ tf_io: gpio-regulator-tf-io {
+>   
+>   		enable-gpios = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
+>   		enable-active-high;
+> +		regulator-boot-on;
+>   		regulator-always-on;
+>   
+>   		gpios = <&gpio_ao GPIOAO_6 GPIO_OPEN_SOURCE>;
+> @@ -81,6 +83,7 @@ vcc_5v: regulator-vcc-5v {
+>   		regulator-name = "5V";
+>   		regulator-min-microvolt = <5000000>;
+>   		regulator-max-microvolt = <5000000>;
+> +		regulator-boot-on;
+>   		regulator-always-on;
+>   		vin-supply = <&main_12v>;
+>   		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
+> 
+> ---
+> base-commit: b71e635feefc852405b14620a7fc58c4c80c0f73
+> change-id: 20260116-odroid-hc4-dts-54f4254d8554
+> 
+> Best regards,
 
-Best regards,
-Krzysztof
+Acked-by: Viacheslav Bocharov <v@baodeep.com>
+
+Thanks,
+Viacheslav
 
