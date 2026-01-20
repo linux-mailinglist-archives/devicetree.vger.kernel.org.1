@@ -1,143 +1,90 @@
-Return-Path: <devicetree+bounces-257218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B4DD3C137
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:58:28 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61967D3C0FE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:55:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9540156810E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:51:22 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3E1863E47D1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 07:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0303587C9;
-	Tue, 20 Jan 2026 07:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90CBF3A4AA8;
+	Tue, 20 Jan 2026 07:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Tciaar/5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aspxxCVT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A898F314D37
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 07:50:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6198A3A1D02;
+	Tue, 20 Jan 2026 07:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768895460; cv=none; b=APNj9CTvF6vHcZJDDBAzzk+zq0Ty+f+cctU2PtQ2tvRG9c0/UsHqv62xbbNoxAQXqbDx5o89Daywhk9xK+PlCgvH/EPt+544fz/MT1stwVNroDwNPbDAHuT6C8J6sGsAUlk5YcwKNW65dk4W5TKB5w8T2UYATOrEbP3UesYdBfA=
+	t=1768895627; cv=none; b=HVVK8CC/dsbAFhaMdCzdIoOl9n1/rwrjMMiGJnEkj0wbrOMUGQ8VM3aK1/+3kKIpNyGkChI95yTBYpFU4/+W9R5m7TfYud5IgqazvUL7hszVCFatuyA94fCR3/DRUh2oI/AgjdEq5AOk2dxefpHIeAn2Zs15PjmP958RP5cvDyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768895460; c=relaxed/simple;
-	bh=M1oDIo7kMH+o2Bqa9bB6To5fUKBi9MLVBJ4XO90c+kQ=;
+	s=arc-20240116; t=1768895627; c=relaxed/simple;
+	bh=jawjcMTbSVmwJ2HxhLt+FZlyw8lPGMOhDCMkljwxaR0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gv5sYjYnHPig/EKvTrQX+s4nSs1fu2guGttlbPkF4qqNqHuTqIicX6+adEP34a2yG4+hUk3bbk2YBsegY7Na31MeW8AY5fNJHnwhdL5qZX8/6r37WSvw/JvTohT0affvzOMuX3mF/KLnM+ZZWq5DpBX+oEFm7RZj1pK+DRbTCXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Tciaar/5; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 25F59C214EA;
-	Tue, 20 Jan 2026 07:50:30 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 336F7606AB;
-	Tue, 20 Jan 2026 07:50:57 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 86DD110B6B17A;
-	Tue, 20 Jan 2026 08:50:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1768895453; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=OHovWdP9MJB1pmMzSrhYB5kXWJ2e1UMYi67ZL2LH0f8=;
-	b=Tciaar/5gnRd+t4yAPib0BmQ5S2MX6p/FQAwuIfRfOK3f2yY9gZSgOEoIQz1DcFik9EADG
-	lJvHfNSfknjGj/AKViafPG3BlMNQ3HaSOoSjJ1vJIWkC6WbxREQPfakZ86Wo5FR20TVPF2
-	gFynBtidjQqvMUoD+YMF7/EHZEmnq6b2pWzWRNVdj04K/FIXPc1KfgxVDU1Vw+TeFBnlCs
-	RlnT4F27PWcuvsyWO6KdNmoSaIYoTESKkZbrnrhbkEKlDxCTkYaL4Z8xoaCxDuGbREPBhm
-	fP14sCTDUNxml/aVVGDj8ULEH7n/nKnKpvaQiee7fIEhKlUq5dR9wgljvLGFVQ==
-Date: Tue, 20 Jan 2026 08:50:45 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-	Xiaochuang Mao <maoxiaochuan@loongson.cn>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-	Keguang Zhang <keguang.zhang@gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: rtc: loongson: Correct Loongson-1C
- interrupts property
-Message-ID: <20260120075045e7e864ba@mail.local>
-References: <cover.1768616276.git.zhoubinbin@loongson.cn>
- <b6295c907410f6708115cba4df0959ee6629f8a5.1768616276.git.zhoubinbin@loongson.cn>
- <20260119-tricking-premiere-ada70700f804@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=snq5sfrxry9D+4yhMjwWE8KupwqBXqpXHTFtfjtlvSX7eVR5+tm1fYDpHwY6Ols9cNDGCM3SoleGrswejRvBtdmnTK5NyrwFkDF8MWJN6vj2m72lp1+6cGpCXo8ItF9npJYlHzgNWxKQqHLiS2C/olnT9LXhF/Rk5/YcCL4TY6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aspxxCVT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A5C8C16AAE;
+	Tue, 20 Jan 2026 07:53:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1768895626;
+	bh=jawjcMTbSVmwJ2HxhLt+FZlyw8lPGMOhDCMkljwxaR0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aspxxCVT3j09FEP1o7wk4VAcsVG6fm9kEh29DMYFoCJA8qZpehEtp0C5a6LUC9BrN
+	 VpEf5P72UYKNeO9Ntnz4HX9AX8L+uqaRnjbp155D6UwknzaPO5qleSnZbCI+HmfIta
+	 /y+CyjhMEqIYLTiSlGP6Y464a9dd4IPUdL65qo1+2l667nRoNAfAneNewa0+6mVpwo
+	 CmNWKuaLizwjt09fSofv3Qcuk6Wos/qn6Vy2n/kcFjkDZsJsThpSQdoOwhEzG3u6HF
+	 7FBU27HSBh+oHzRtywakgATLLRbPlFCilS95OMMij8K9JySy3SJgoXQ0aYccaHpfV+
+	 U2ZtGiqaML6xQ==
+Date: Tue, 20 Jan 2026 08:53:44 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
+	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, David Sterba <dsterba@suse.com>, 
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Simon Glass <sjg@chromium.org>, 
+	Linus Walleij <linusw@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Marcus Folkesson <marcus.folkesson@gmail.com>, Tony Lindgren <tony@atomide.com>, 
+	Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, linux-mtd@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Subject: Re: [PATCH v2 09/10] dt-bindings: mtd: partitions: Convert brcm,trx
+ to DT schema
+Message-ID: <20260120-meaty-carrot-koel-edb795@quoll>
+References: <20260119-dt-mtd-partitions-v2-0-77ebb958a312@kernel.org>
+ <20260119-dt-mtd-partitions-v2-9-77ebb958a312@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260119-tricking-premiere-ada70700f804@spud>
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <20260119-dt-mtd-partitions-v2-9-77ebb958a312@kernel.org>
 
-On 19/01/2026 18:24:36+0000, Conor Dooley wrote:
-> On Sat, Jan 17, 2026 at 10:26:48AM +0800, Binbin Zhou wrote:
-> > The `interrupts` property indicates an RTC alarm interrupt, which is
-> > required for RTCs that support the alarm feature, which is not supported
-> > by the Loongson-1C RTC. We exclude it for a more accurate description.
-> > 
-> > Changing the `allowed` property is ABI-breaking behavior, but
-> > throughout the existing Loongson DTS{i}, the description of the RTC
-> > nodes conforms to the modified bingding rules.
+On Mon, Jan 19, 2026 at 07:48:30PM -0600, Rob Herring (Arm) wrote:
+> Convert the brcm,trx partition binding to DT schema format.
 > 
-> Right, changing properties is an ABI break, but when following the ABI
-> would've produced something non-functional, breaking it is not really
-> relevant.
-
-
-But the HW has the interrupt, the fact that is not functional doesn't
-mean it isn't there. I thought we should describe the hardware?
-
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> pw-bot: not-applicable
+> As the "linksys,ns-firmware" compatible also uses "brcm,trx" as a
+> fallback, move it to the converted binding.
 > 
-> > 
-> > Thus, the existing Loongson DTS{i} will not be affected.
-> > 
-> > Fixes: 487ef32caebe ("dt-bindings: rtc: Split loongson,ls2x-rtc into SoC-based compatibles")
-> > Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../devicetree/bindings/rtc/loongson,rtc.yaml         | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml b/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
-> > index f89c1f660aee..fac90a18153e 100644
-> > --- a/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
-> > +++ b/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
-> > @@ -42,6 +42,17 @@ required:
-> >  
-> >  unevaluatedProperties: false
-> >  
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - loongson,ls1c-rtc
-> > +
-> > +then:
-> > +  properties:
-> > +    interrupts: false
-> > +
-> >  examples:
-> >    - |
-> >      #include <dt-bindings/interrupt-controller/irq.h>
-> > -- 
-> > 2.47.3
-> > 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../bindings/mtd/partitions/brcm,trx.txt           | 42 --------------
+>  .../bindings/mtd/partitions/brcm,trx.yaml          | 65 ++++++++++++++++++++++
+>  .../mtd/partitions/linksys,ns-partitions.yaml      |  8 +--
+>  3 files changed, 66 insertions(+), 49 deletions(-)
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
+Best regards,
+Krzysztof
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
