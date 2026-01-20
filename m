@@ -1,102 +1,90 @@
-Return-Path: <devicetree+bounces-257333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257335-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJDSNRYScGlyUwAAu9opvQ
-	(envelope-from <devicetree+bounces-257333-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:39:02 +0100
+	id SEHLHhCJcWk1IAAAu9opvQ
+	(envelope-from <devicetree+bounces-257335-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:18:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E31A4DF4F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:39:02 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC5560CF4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jan 2026 03:18:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E559F60AB91
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:29:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 09E0C821A58
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 11:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EBC3D669E;
-	Tue, 20 Jan 2026 11:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64D042314B;
+	Tue, 20 Jan 2026 11:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="hovWwipu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ghVv+3rr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 617FF3A9631;
-	Tue, 20 Jan 2026 11:29:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8DD5421F09;
+	Tue, 20 Jan 2026 11:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768908581; cv=none; b=RbAWCWX510pWsLF1n3SoF5Rgzl3AhLVXv6AHAZHrKojdOvJ3XBhaTVG7PMmoKFN34rp0iQXJD5tNA86vanoEMyzAhhAePuVo9tU/LwyIJKiLQNe4QAsTmbRKMyDho/KsRiPQ3aS4ZlSW/khuOgo38CkD0O1tenUM6q2SBFX+dpg=
+	t=1768908791; cv=none; b=FmP9rMfHRaGhLSe9ToYBZV7xKwcpqjLCMNXlBE3ONcuL2foFYFBeyziFrEDFz68d75rvJe/gK6dt1IcPv3nRn9tAIsnj2QaCOoiPZMSyLtRcgxuWOyKZwo4IlFWnegdR7OCzwblCfkTa8DySrzF+7ZRpodjKtLW1RsdhUNp7BnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768908581; c=relaxed/simple;
-	bh=zD8PS2BxyO8mlqAByme4yWQvJMWzaVsGbWniXAdX0VM=;
+	s=arc-20240116; t=1768908791; c=relaxed/simple;
+	bh=A+Z3wrnP5sDbDJq3uwHYkkcS4B4ltkl3d1XG5v73lM4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BRsEnsUq2KE3bfWOWxFzYX9wJWgDg+aTVIuboj3MDfz+pmbhzEtSQIld1PuSwIDUizDJi+J9BAfMnu7KLKC/CW+NeoG5yAyybAadGSsMgE7sXuzNscdwTa4gpsWe9uY2qyAG54rjhobcS7i9nIXTSDyuuMIKox+5jaeDhnscV2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=hovWwipu; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=AjnwvV2BqvE2aPiFrCHPh0/mzQujqmD6N4sIt6a5sZU=; b=hovWwipuHB57LKi4MlszUuI8DP
-	CgD3oSh3KhgWsMTfb486kUstGtEakbhWKS3+1iC5/urnMW79/L40gcwZ5abtlbaHeVDneWxj/KXyX
-	eTJv0JZfc3wkTMmGRw7nkB0HxBhoRPNL5zkIKvCd+Dsv6eBFJLW2/pEYOO2FIvMQl4Su8K1KY6UZi
-	PrXKLOXfxQQycmy+X6n53r84bKvM9JlWyEx096TTXdb2WDyBWNjezyvY8YMZ1iQmo/Hfbr+wGtFAY
-	C9aaJwM1f6p7mnsw1EmmDjJrl5vXbwvoF6LduEgFjCuro5aKLguFLKEm7NSzHR4V0bm8WPRMvX/zN
-	vUNCdoYQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59282)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vi9us-000000006A6-2vXc;
-	Tue, 20 Jan 2026 11:28:58 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vi9uj-000000007Tq-3hBk;
-	Tue, 20 Jan 2026 11:28:49 +0000
-Date: Tue, 20 Jan 2026 11:28:49 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Yao Zi <me@ziyao.cc>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yanteng Si <siyanteng@cqsoftware.com.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>,
-	Boon Khai Ng <boon.khai.ng@altera.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3
- SoC
-Message-ID: <aW9m8YOVO1ClIQOd@shell.armlinux.org.uk>
-References: <20260120043609.910302-1-inochiama@gmail.com>
- <20260120043609.910302-4-inochiama@gmail.com>
- <aW9jbqBSgkiLLw8r@pie>
+	 Content-Type:Content-Disposition:In-Reply-To; b=i2ecsmKGUSx3JriUzvagOL5gyPaEOkjOuV3H1eoj6rOCoSqlk3VVnbXYHn69kDC54uXdByzbAfZKLdeTKXPqt933Kv7HKI+IBDsqreDPQpSn+4T7g/lxu4Eq9XbRxw6D3Eo/U4C3o4JH7QyXrJ1KYQW1TQX1MzQDMWiievRtQZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ghVv+3rr; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1768908790; x=1800444790;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=A+Z3wrnP5sDbDJq3uwHYkkcS4B4ltkl3d1XG5v73lM4=;
+  b=ghVv+3rrIZ3NNgW8kMZw3DZrZI1zBQuyHmW9okFqQKKS5p2zMNlZ4Gxr
+   PLatPq/W4M93jriyq6ku5lNlMND2AxKSv/LF9SpvIDShC5SG7epStsMSG
+   UbYw32FBYmihQQGSNpYFuoL3PN0P6Ah89ho6DYHdISdSxaa/idASiDhLP
+   iQmGHjMhJjfw7p4fxYvma68z1X/3g+j0PzrfdW5RWMk7jZujwgBjy4QTL
+   a94ygf7nehSEIatMPqDF1IT1Na/wLbXG1ZjLgYBGQwqWXhsZYnKP1gbW/
+   76K2kUEKxLSlNhQ5cpl5aDQ4sbb5JjF3ewBc1NXBI3E8zHfmkyoaMWdwX
+   g==;
+X-CSE-ConnectionGUID: b3z+rzBXRUyUWdnRquDwuA==
+X-CSE-MsgGUID: ucadC5PYR92bW97VQY+mXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11676"; a="73982619"
+X-IronPort-AV: E=Sophos;i="6.21,240,1763452800"; 
+   d="scan'208";a="73982619"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2026 03:33:03 -0800
+X-CSE-ConnectionGUID: lOKi9zYeS56TXwlx2KAP8A==
+X-CSE-MsgGUID: umVVrEKHQya7yS7W3Ll2Ug==
+X-ExtLoop1: 1
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 20 Jan 2026 03:32:58 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vi9yi-00000000OtN-1vy4;
+	Tue, 20 Jan 2026 11:32:56 +0000
+Date: Tue, 20 Jan 2026 19:32:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Petr Hodina via B4 Relay <devnull+petr.hodina.protonmail.com@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	David Heidelberg <david@ixit.cz>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Petr Hodina <petr.hodina@protonmail.com>
+Subject: Re: [PATCH 2/3] iio: light: add AMS TCS3400 RGB and RGB-IR color
+ sensor driver
+Message-ID: <202601201908.GaxFkE6t-lkp@intel.com>
+References: <20260119-tsc3400-v1-2-82a65c5417aa@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,74 +93,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aW9jbqBSgkiLLw8r@pie>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spamd-Result: default: False [1.34 / 15.00];
+In-Reply-To: <20260119-tsc3400-v1-2-82a65c5417aa@protonmail.com>
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
+	DATE_IN_PAST(1.00)[38];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : No valid SPF,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257333-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,protonmail.com];
+	DMARC_POLICY_ALLOW(0.00)[intel.com,none];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
-	RCPT_COUNT_TWELVE(0.00)[38];
+	TAGGED_FROM(0.00)[bounces-257335-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	R_SPF_SOFTFAIL(0.00)[~all:c];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:7979, ipnet:213.196.21.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ams.mirrors.kernel.org:rdns,ams.mirrors.kernel.org:helo]
-X-Rspamd-Queue-Id: 7E31A4DF4F
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
+	TAGGED_RCPT(0.00)[devicetree,petr.hodina.protonmail.com,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,dfw.mirrors.kernel.org:helo,dfw.mirrors.kernel.org:rdns]
+X-Rspamd-Queue-Id: BBC5560CF4
 X-Rspamd-Action: no action
-X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 11:13:50AM +0000, Yao Zi wrote:
-> On Tue, Jan 20, 2026 at 12:36:08PM +0800, Inochi Amaoto wrote:
-> > +static int spacemit_dwmac_probe(struct platform_device *pdev)
-> > +{
-> 
-> ...
-> 
-> > +	of_property_read_u32(pdev->dev.of_node, "tx-internal-delay-ps", &tx_delay);
-> > +	of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps", &rx_delay);
-> 
-> According to of.h, of_property_read_u32, which in turn calls
-> of_property_read_u32_array, could fail with -ENODATA if there's no value
-> associated with the property. Should the case be handled?
+Hi Petr,
 
-You cut too much. This had:
+kernel test robot noticed the following build warnings:
 
-	unsigned int tx_delay = 0;
-	unsigned int rx_delay = 0;
+[auto build test WARNING on 46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b]
 
-at the start of the function.
+url:    https://github.com/intel-lab-lkp/linux/commits/Petr-Hodina-via-B4-Relay/doc-add-Device-Tree-binding-for-AMS-TCS3400-light-sensor/20260120-012240
+base:   46fe65a2c28ecf5df1a7475aba1f08ccf4c0ac1b
+patch link:    https://lore.kernel.org/r/20260119-tsc3400-v1-2-82a65c5417aa%40protonmail.com
+patch subject: [PATCH 2/3] iio: light: add AMS TCS3400 RGB and RGB-IR color sensor driver
+config: x86_64-allmodconfig (https://download.01.org/0day-ci/archive/20260120/202601201908.GaxFkE6t-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260120/202601201908.GaxFkE6t-lkp@intel.com/reproduce)
 
-of_property_read_u32_array() says:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601201908.GaxFkE6t-lkp@intel.com/
 
- * @out_values: pointer to return value, modified only if return value is 0.
+All warnings (new ones prefixed by >>):
 
-and of_property_read_u32() passes &tx_delay or &rx_delay to this. Thus,
-if any error occurs, these will be zero. In other words, a missing
-property is equivalent to setting these to zero, which is entirely
-reasonable.
+>> drivers/iio/light/tcs3400.c:82:18: warning: unused variable 'tcs3400_gains' [-Wunused-const-variable]
+      82 | static const int tcs3400_gains[] = {1, 4, 16, 64};
+         |                  ^~~~~~~~~~~~~
+   1 warning generated.
 
-However, "unsigned int" _may_ be type equivalent to "u32", but really
-these should be "u32" if of_property_read_u32_array() is used.
+
+vim +/tcs3400_gains +82 drivers/iio/light/tcs3400.c
+
+    81	
+  > 82	static const int tcs3400_gains[] = {1, 4, 16, 64};
+    83	
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
