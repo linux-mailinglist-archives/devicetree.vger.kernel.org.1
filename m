@@ -1,90 +1,92 @@
-Return-Path: <devicetree+bounces-257232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D19D3C2D8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:02:38 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F51D3C31C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 10:12:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 92C834C1710
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:53:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EFC3D682226
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 08:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D9D3B95ED;
-	Tue, 20 Jan 2026 08:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8FE3B961B;
+	Tue, 20 Jan 2026 08:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sEXwzqv6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z6ch0D5E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D701EE7C6
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 08:53:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1503B8D6D
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 08:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768899186; cv=none; b=IgU0zYxvMN+LOIJEWRdASxeGOwTpaJ00IiPowOA/Vi7JUHqnY7yXHUW/cLmQQLoU1UeuasUxsu0qnhlfu0UhjHTWOojtU4/dpw2/ilfyoUW5zBJQ6qFttT0R/Z6pjpk7y7puBQ6EEiwXAhlkkfj5dkuH945PfFgLYpwKU9P/qYg=
+	t=1768899187; cv=none; b=UPOclsP/Qcr57N5fbndEtQriaSqf0xXEeNI9L8UaNeBFI4asxGyFrpAerDAOUKzOWY3N1obzwapkSUXxI46HvhR7iwrLgdavRnkRatTZ0hs8U4Sr8vqYzoxlrF69k6gxTxnE/i2VaPZof1sDrdrbydYC9Se2l9B36CJha7YgE4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768899186; c=relaxed/simple;
-	bh=tn/DC8IcKtm0rwSX4r4eT67oYdx2oETYPnh48Ak1qQA=;
+	s=arc-20240116; t=1768899187; c=relaxed/simple;
+	bh=/PeM/pmAXHztXSrIbNi1pUuEWCrS1apDJ7RRdvKA7QQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=SrhFJrghUJ8HbMSzDPkKL3ZvGXWmhwPU+DxRiregWWKlMUg3+RJrPvG76p3FcSZRJJtG67gy/omJ75XXZ2WBoO8iu6cJjneNQJK+JZzf/bIq9zj85q0MPOmOB2J65e8DcZfSqNXmMXU48W2oLNxI9feTO57eDATqzrbyN0qyrIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sEXwzqv6; arc=none smtp.client-ip=209.85.128.54
+	 MIME-Version:Content-Type; b=B8QIZ00Tl+uorY7q5pCjpRODfpM2xpnpdC5ESBRfnAa19v8Dfd9QK7oBYi7g1oCPjdy5wjXWx/eciUKf1XuI9N1lGkrw/0V6/xUBT4MfQf/Qyw7pWCKS4DN+F4FVNtvP2PH+q7hDoYwIv5qz0M1m+Mq+rRGbqPtjCVxcN7y9R3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z6ch0D5E; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47ee9817a35so28276865e9.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 00:53:04 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-435903c4040so162537f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 00:53:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1768899183; x=1769503983; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1768899184; x=1769503984; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=B+Mpn+b7S8kX43PRVWBWsEkr3ZlV8vDSFyyH8rqi02k=;
-        b=sEXwzqv6kBFIm1OHhXnveHjpE+Y2PY0JCsqbhpDJ61g1fNr6Tsz/eTKcy07zC15ghN
-         8qyl6rwBd85D6KszoOT5SuJXfRfjvYAMPyRoQaM3qgHpVkeFq2PEiKd8qB5PFhUL5t2p
-         ESQu7WG7BNie94/PyjQZofIddGeyG/GwHBaK3wykl5cgZz6bi5DUHUPzdsoVCvHKjNti
-         aS5quyfHAiubU014ICj1ngq6DQHQ6zoXlWkaBWhkWduyBAMJ2BO2EceHa3TBqXFnaoKb
-         P1yBqqWCFaINFn2uWCsMK74+QbzPJaOCNTYo250U0JAUF7rKn9SuoOC3Xmt0bgjhW4oV
-         V0cA==
+        bh=RhTNZPLJB74AIOTcNd2K19lHKeDsZdTgJx7+RGaFijQ=;
+        b=Z6ch0D5E4ViS1NkblZAl324PuZ4rAN6oX6NnInZpEeQq5IguCQNt7InXBJLAuPhsZ5
+         z13NDpg1svmC8mpKLCyLtSDEVNRP/Hk/S7tB9C+0hBBCIs3O2IH4CdAs/wZFD68gbek7
+         63lBxByibkeUVVqcH/dGWsqc32yiQk/lLufe38y9AzH8gGM8/dlSPc8rJ6nD43WDccsO
+         fC0OR4IrvhPtbPWoq0S0qYO7pk7tQTMmXqHbn9TrIoQV9t3MMytCmVnboBq/U4LD994C
+         bBdfBCN328PESjay/EYKSi62hN4MUXjTLatS4wEFTnfvFKFidefBtkrkv6CaiTDfwS41
+         NvEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768899183; x=1769503983;
+        d=1e100.net; s=20230601; t=1768899184; x=1769503984;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=B+Mpn+b7S8kX43PRVWBWsEkr3ZlV8vDSFyyH8rqi02k=;
-        b=gFl5s4pidPTxgDAVlMlfvDiy8Xh71c1m3F9SamSMKGyFvoVy+TQWZ2PK4oFj8ZF64d
-         Ny9RBnBS+lmjyYDcOgUtX4lnV1crndAXQSUuPxA5/dazT5WwOUSmgyWKQcAyDZZUQjok
-         wQq1RdCDhok2epcul3aTQtlzkE4WoGIAPK+Xe4nvnGSsxHVIJpbpGcN1JcUu2SpTcwyL
-         73vvqYINoIH9W8TjGYBc1/GigG2mXRDVn+1EfmKrLk1juInkHOb77BzdoNblF1jdETcF
-         FYcC1NCgotUVeSii/yo3yBGN7eEbYgHh9CT/Frtwqhu66iocBPDWH7AWTrktQekmZJch
-         Evfw==
-X-Gm-Message-State: AOJu0Yyo7XXT3wAAXWe+XSdVGFYhXWZsmbomHwPx46Qc2fBDL1ZxI7eW
-	x0vx/i/DyUwLRSXJgvLfmtp8qIddcTRQjghnymiR6yx18odfmeQ0UXV0pv5OY3v/6Ek=
-X-Gm-Gg: AY/fxX4lHutExHXxzoHEMUumnt1qtT0emY9+dXXSNvRK3e54KtycRuqvG5gaZx3HOe3
-	xHsNS9jXRWKY8MyC1mvTG1co0vpxTkjHUPmdn43KJqksFf7VEdtAqrgSbSYPDDZItPROisTqkMk
-	WvQ3/8VdP8NxeaoEm69hoE8eT3PE+UCzpVnNu6O/5wnFgIY61VIRMfWEEOPNLKfHlwfveVKN22l
-	imhkhvzvuNru/MaXexvhsx2BMmrFMlDex/fIQuU25Bn/oSLfupD//Osx3n6YJRngALXNtodGfWR
-	mBxz4QWr31/umXsiQ8cgT4bodBcQKXHYpxLPH7yaxgx06q/kHNp+kz8MoiO81FccsoOiKELPLAH
-	VdYrVX7bwUB3mhODoiN/HnUfd99CeRSuNDcMgLllhMfTUuo5hkAbQqhUHdbPiahNgNyv+yQCj0L
-	gTClujavy7Tq3leUv3CFNkLqCnS5ZLcEc=
-X-Received: by 2002:a05:600c:34d1:b0:45d:d97c:236c with SMTP id 5b1f17b1804b1-4803e7e8562mr15375225e9.21.1768899183012;
+        bh=RhTNZPLJB74AIOTcNd2K19lHKeDsZdTgJx7+RGaFijQ=;
+        b=gXzVs47OKhdaRJfCUVtstbJJeW31tS1yMEgQ6cg+U1HfmR00WsKnrc33VMK7J0BM0c
+         /8E/FCUX56vOmOrP2hjnPxfIdVMQuAchalxq3XTmLkmBX18l4UtYQ2Jaz4n/hYroZ5kp
+         H9IIiJyCNwWoqoRTWnEPbIfEhTDuEZZ+aSYYO7N2iHacVTBc7vlyQA3OJsg4m9cv8Pvw
+         5kcHQy1V1pRqQdFeWSTQIjCAJkFYcmo9JWyvDMm+svZDzNgxjjef83H5tmAUcyiKo2mo
+         b+RgqM9DrYTIbaJAhn2V9rNjhVoZNwRF2YtTAUX5DKY4RpYrJ18CyTpyoHWq3SW57HUE
+         i0lw==
+X-Gm-Message-State: AOJu0Yyn5Ylbr8bI8FHPnUntvRvMkHkIwyLlIOLN8b6cU9A1aoDhnJbz
+	X6fsb1Fm0/X1B1wqgzmrQMjsGHDb4F+MvCrXsTq1JkrJtG0z+JxYzRLi1Ctql44C/w52GsE/lD7
+	IR+iRy0c=
+X-Gm-Gg: AZuq6aJ/vRX+fTRjwNCmFvicsvEx+8yJTFlollUgiiuvFmHhV2QYB4nvtDwiBOBcnWN
+	Sr/GATG57AfNssHY+p9Qkyu/WQVU+dZat4ssjZQ5BzPy58Uo9ZGP7LC2Im2iokNUlvleGCVA2Pj
+	3sCta7qlAFU1tFjAkE45A4rnQNpcXbNGcHDXK1V1bs10Q04t31i+8YosXbYuDY4p02iowEabySb
+	JS6tdgGRPPVbbHReKGS3NTWUiuOmcWt5IM3wtZkseSg1LW53JO4LqJ3MphSv+j+riysACbbt9BS
+	Dnj0PkLJxISx/MnHFjSwLQtGgFVKRxxZe5Rk87OAr3RNrMvcgV/3IMZc6AvhoentYT5PL8b0kYf
+	pEix3dkp4s0xzZikKXeHT5L+xMc49uXdUbH8T6q5bQjf+ZUHRgsG+WP4jly5SaPf9RQiA7kMSTR
+	VzWvERzQbyKp2bHYS1ZNBFgsCHJTvEM/Q=
+X-Received: by 2002:a05:6000:4021:b0:431:488:b9a8 with SMTP id ffacd0b85a97d-4356a05373dmr17993354f8f.33.1768899183812;
         Tue, 20 Jan 2026 00:53:03 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43569926ffcsm27597335f8f.18.2026.01.20.00.53.02
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43569926ffcsm27597335f8f.18.2026.01.20.00.53.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 00:53:02 -0800 (PST)
+        Tue, 20 Jan 2026 00:53:03 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
  Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Eric Neulight <Eric.Neulight@linuxdev.slmail.me>
+ Ricardo Pardini <ricardo@pardini.net>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260116-odroid-hc4-dts-v1-1-459b601cd5cf@linuxdev.slmail.me>
-References: <20260116-odroid-hc4-dts-v1-1-459b601cd5cf@linuxdev.slmail.me>
-Subject: Re: [PATCH] Eliminate Odroid HC4 power glitches during boot.
-Message-Id: <176889918237.1477585.6813293385956996088.b4-ty@linaro.org>
-Date: Tue, 20 Jan 2026 09:53:02 +0100
+In-Reply-To: <20260115-arm64-dts-amlogic-radxa-zero2-additions-v2-1-948bb0479a45@pardini.net>
+References: <20260115-arm64-dts-amlogic-radxa-zero2-additions-v2-1-948bb0479a45@pardini.net>
+Subject: Re: [PATCH v2] arm64: dts: amlogic: add the type-c controller on
+ Radxa Zero 2
+Message-Id: <176889918309.1477585.14101357068287603082.b4-ty@linaro.org>
+Date: Tue, 20 Jan 2026 09:53:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,28 +99,16 @@ X-Mailer: b4 0.14.3
 
 Hi,
 
-On Fri, 16 Jan 2026 23:02:20 -0500, Eric Neulight wrote:
-> Fix issue with Odroid HC4 (and all meson-sm1-odroid) DTS that causes
-> regulator power to momentarily glitch OFF-ON during boot.  Add
-> regulator-boot-on to all regulator-fixed and regulator-gpio entries
-> that (1) define a gpio AND (2) define regulator-always-on.
+On Thu, 15 Jan 2026 18:52:46 +0100, Ricardo Pardini wrote:
+> The Radxa Zero2 has an FUSB302 controller on i2c3 at address 0x22 and
+> INT# wired to GPIOA-13; include a minimal connector.
 > 
-> U-boot powers on devices necessary for boot then hands off the DTB to
-> the kernel.  During probe, linux drivers/regulator/fixed.c and
-> gpio-regulator.c both first set the regulator control gpio (that U-boot
-> already turned ON) to default OFF before then setting it to the defined
-> (ON) state. This glitches the power to the affected devices, unless
-> regulator-boot-on is specified with it.  In fact, U-boot has the same
-> behavior.  So, during reboot, a power glitch can actually happen twice:
-> once when U-boot reads the DTB and probes the gpio and again when the
-> kernel reads the DTB and probes the gpio.
 > 
-> [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.20/arm64-dt)
 
-[1/1] Eliminate Odroid HC4 power glitches during boot.
-      https://git.kernel.org/amlogic/c/436418ef5baa024b7b15dd730c36d651c6aaaf47
+[1/1] arm64: dts: amlogic: add the type-c controller on Radxa Zero 2
+      https://git.kernel.org/amlogic/c/2afef25cc448ada7c9a7771fbfe4087a9e1a6d03
 
 These changes has been applied on the intermediate git tree [1].
 
