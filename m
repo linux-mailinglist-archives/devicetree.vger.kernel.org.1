@@ -1,105 +1,144 @@
-Return-Path: <devicetree+bounces-257139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C602D3BD4C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 02:56:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC3FD3BD5A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 02:58:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA6AC30041B7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 01:54:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B8138303F0D7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 01:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DCEE2475F7;
-	Tue, 20 Jan 2026 01:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C6223EA8E;
+	Tue, 20 Jan 2026 01:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HDR9AA/S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewrE0n4i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1E31DE8AD
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 01:54:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B5619D071;
+	Tue, 20 Jan 2026 01:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768874077; cv=none; b=EPU9ERbNt1C9aD8+NiEGD2Rwve5N365OSEMQRyd8WXSOPHS5jfbVYTuMQW1xG17wFaZW23UN9VqAzadXfoI3dztbu/CcdOsX03MWsqfdFe/z5m4rguA6hyDfufovFqDYaTFyEx1JyjNDKfjwviS5usA8OghiSaprxoMnprGj1Ao=
+	t=1768874269; cv=none; b=ufre8PnmNQ8Zo+6HkHAbyuBUt0OHXEBLL2foWYuAGXTaxzXCLQv6dCGjybqz+AGBPIBvw7L1NHKIY+uOJkbJsXMqbtt823iIPckAja0mmYurJszfSBDPFJqoQi1v8PwjwRnjWZC9ERBW0lEsBfDEJwj8UqswuGnMQ6fRpK8syZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768874077; c=relaxed/simple;
-	bh=0CpFIUoNQxzCsEqiOC9Tot7+YhNBK8bbLQBjNBE+Whg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H2fv9IBXAQkte1jRR88DksmNY/Bv32if8aikPKtCFM0UovM2hlzevOJJw08PYWEr1Yb/BAi7Pu3BNlGrjbEkb6EO3hgQRCRzvWE2fCw53mmpVF4an6fKQwOr3eoOKtysXvxGD09PJW0w19403tT+AnK7gLKlgiYW/Bry8H7S9f4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HDR9AA/S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C36DEC2BC9E
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 01:54:37 +0000 (UTC)
+	s=arc-20240116; t=1768874269; c=relaxed/simple;
+	bh=NXn23f/rzxC3vQjUhfEShCoK+q3JfWeY+OcZLLkAT/o=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=KjCBGLMX2NEFIWI8BmZVeTosEFbogLpfQBnN2OLfXnEOi59O8VSuqgYyuLt8doErcNuj5x2aNFfp1el0w3gx+MmGFnyrLVIA7K3PbUGIrPGgAXDjAlO3JIPHnuYzMcAGRtzIhH8+6PezqqrZcP82nSq9AjC8WLEG+iUn9dNLglc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewrE0n4i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EF28C116C6;
+	Tue, 20 Jan 2026 01:57:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768874077;
-	bh=0CpFIUoNQxzCsEqiOC9Tot7+YhNBK8bbLQBjNBE+Whg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=HDR9AA/SAsTWh7Cp/LvXHK4oavlJ+NI2i/YstM0RgVZoOFydeI+PJ1iSiQJbqUCuA
-	 rQRqzo6JCQNXjFwdYgV+2+hfNNdbUmkdASFtL+eAOdBJvpHRayguyP1fpEz+bm8w36
-	 RTNsgNJ/8ruW64htmDg5zRZ2QimUk0D/LLQ/0rMFT6MfdakRBK/YCp6mkCB0nAbsTl
-	 nOgBIQ9z1a82Z6cwHfmXIVHUt4bY041IyfHpxUrVpOKZ+WZTuyJ0QKJeM90iU/f1rw
-	 UomvZ/XFtUyjgf+1xYzHhgKzx1fvtjWZWF4fdt2lzAwuzw7TMCvxWqMn/I1OLjlvgm
-	 MdViyXwDbXDGA==
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-64b83949fdaso7530068a12.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jan 2026 17:54:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXNXWn3PTJDu8P6JYiprL0A3Tk9HByNUr46nzrYQMwtNZxeKzAGGoyNEWdGx5WlKM2gDC0fjHTU6SqR@vger.kernel.org
-X-Gm-Message-State: AOJu0YznnebkIm62c/GsbGg+9sUKjpAXgpMWzytAnhwvOp/3IAAjSTTV
-	QA0BJf1pq1up2zSvu4+TI9sJncW5ClfW0+dnHk3LUPrhdYLQ6VsGx12ZyRN6lKDml2ncfnOCNJs
-	AFQyo5xHqp/R+nFlNBpHWRxN4JNCzNw==
-X-Received: by 2002:a05:6402:2348:b0:64b:7307:9b00 with SMTP id
- 4fb4d7f45d1cf-657ff2a6953mr281430a12.5.1768874076364; Mon, 19 Jan 2026
- 17:54:36 -0800 (PST)
+	s=k20201202; t=1768874269;
+	bh=NXn23f/rzxC3vQjUhfEShCoK+q3JfWeY+OcZLLkAT/o=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=ewrE0n4iNCn5vsnIIGv1IiOwR/h+wxPXYnyD3isWEPoLJ/MF1CiQ5E4M2aBbLacFN
+	 Bpjy/ARvBD9LIbkmLNf7sKPXGoVaJvMIOJ9tRTjGK4U6AEf9/CA5VdZweE5uZKrMld
+	 +KsUP0KDldvW+PW6bhGJMwJ7YrFoaa5PVaDQWqPGFSkevpWNKRyUWFeYDmsgJDXuB6
+	 1fSZSmRceUF4dIV7EqKIHk1yW92DF8q7v3oqr3CHt1IAyQZJUGGIZh4PpooFNSu1yf
+	 VyWIIqySN3zMiKhreskOMYOLnV83bpVkhJwbjQe/Gcio2NJOELam1CwK9c3VqyOdlD
+	 7/J0upW0a05XA==
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 19 Jan 2026 19:57:48 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260108-dt-mtd-partitions-v1-0-124a53ce6279@kernel.org> <87tswhswsp.fsf@bootlin.com>
-In-Reply-To: <87tswhswsp.fsf@bootlin.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 19 Jan 2026 19:54:24 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ7_yKRTCOrxcq0QDy_MRMCRMQqhH=TKiBs=nubqNN9HA@mail.gmail.com>
-X-Gm-Features: AZwV_QjPR6v0rtDsZSDoolTLomCXXNQMjCA8Bg08oauq1HlF9vmo2OSFeFzVJj0
-Message-ID: <CAL_JsqJ7_yKRTCOrxcq0QDy_MRMCRMQqhH=TKiBs=nubqNN9HA@mail.gmail.com>
-Subject: Re: [PATCH 00/10] dt-bindings: mtd: Partition binding fixes and restructuring
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Brian Norris <computersforpeace@gmail.com>, Kamal Dasu <kdasu.kdev@gmail.com>, 
-	William Zhang <william.zhang@broadcom.com>, Nick Terrell <terrelln@fb.com>, 
-	David Sterba <dsterba@suse.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Marcus Folkesson <marcus.folkesson@gmail.com>, 
-	Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-input@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ devicetree@vger.kernel.org, 
+ =?utf-8?q?Kamil_Go=C5=82da?= <kamil.golda@protonmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konradybcio@kernel.org>
+To: Yedaya Katsman <yedaya.ka@gmail.com>
+In-Reply-To: <20260118-touchscreen-patches-v3-0-1c6a729c5eb4@gmail.com>
+References: <20260118-touchscreen-patches-v3-0-1c6a729c5eb4@gmail.com>
+Message-Id: <176887409321.799867.15185739103671631449.robh@kernel.org>
+Subject: Re: [PATCH v3 0/3] Support FT3518 touchscreen in xiaomi-laurel
 
-On Mon, Jan 19, 2026 at 4:48=E2=80=AFAM Miquel Raynal <miquel.raynal@bootli=
-n.com> wrote:
->
-> Hello Rob,
->
-> On 08/01/2026 at 11:53:09 -06, "Rob Herring (Arm)" <robh@kernel.org> wrot=
-e:
->
-> > The partition bindings fail to restrict undefined properties. This is
-> > primarily on fixed-partitions which can be nested and partition nodes
-> > without a compatible string. This series fixes those issues and then
-> > several problems exposed by restricting undefined properties. As part o=
-f
-> > this, the schema structure is reworked to follow more conventional
-> > structure of applying schemas by compatible and a schema only checks 1
-> > level of nodes (unless possible child nodes are fixed).
->
-> The series does not apply cleanly, I tried mtd/next and then
-> v6.19-rc1. Can you please rebase it and fix the conflicts (at least 2
-> patches fail, and then I stopped)?
 
-I rebased on mtd/next and sent v2. I only saw one conflict though, and
-that was with seama.yaml. That's going to conflict with Linus' tree,
-but the resolution is take the deleted file.
+On Sun, 18 Jan 2026 22:29:39 +0200, Yedaya Katsman wrote:
+> Adds support for the touchscreen in the Xiaomi Mi A3 (xiaomi-laurel)
+>  smartphone, FocalTech FT3518
+> 
+> Original tree was here:
+>  Link: https://gitlab.postmarketos.org/SzczurekYT/linux/-/commits/laurel
+> 
+> Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
+> ---
+> Changes in v3:
+> - Rename regulator node and reorder nodes
+> - Add gpio pin configuration for pmx_ts_* in sm6125, and reference in the
+>   touchscreen configuration as pinctrl-*. Doesn't have configuration for
+>   the gpio 83 pin since it isn't documented downstream.
+> - Link to v2: https://lore.kernel.org/r/20260114-touchscreen-patches-v2-0-4215f94c8aba@gmail.com
+> 
+> Changes in v2:
+> - Fixed name and email in signoffs
+> - Link to v1: https://lore.kernel.org/r/20260113-touchscreen-patches-v1-0-a10957f32dd8@gmail.com
+> 
+> ---
+> Yedaya Katsman (3):
+>       dt-bindings: input: touchscreen: edt-ft5x06: Add FocalTech FT3518
+>       drivers: input: touchscreen: edt-ft5x06: Add FocalTech FT3518
+>       arm64: dts: qcom: sm6125-xiaomi-laurel-sprout: Add Focaltech FT3518 touchscreen
+> 
+>  .../bindings/input/touchscreen/edt-ft5x06.yaml     |   1 +
+>  .../boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts  | 113 +++++++++++++++++++++
+>  drivers/input/touchscreen/edt-ft5x06.c             |   6 ++
+>  3 files changed, 120 insertions(+)
+> ---
+> base-commit: b71e635feefc852405b14620a7fc58c4c80c0f73
+> change-id: 20260113-touchscreen-patches-beb2526bd5fb
+> 
+> Best regards,
+> --
+> Yedaya Katsman <yedaya.ka@gmail.com>
+> 
+> 
+> 
 
-Rob
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: b71e635feefc852405b14620a7fc58c4c80c0f73 (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+
+Warnings in base: 429
+Warnings after series: 431
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20260118-touchscreen-patches-v3-0-1c6a729c5eb4@gmail.com:
+
+arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dtb: pinctrl@500000 (qcom,sm6125-tlmm): Unevaluated properties are not allowed ('pmx_ts_int_active', 'pmx_ts_int_suspend', 'pmx_ts_release', 'pmx_ts_reset_active', 'pmx_ts_reset_suspend' were unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,sm6125-tlmm.yaml
+
+
+
+
+
 
