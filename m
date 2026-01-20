@@ -1,108 +1,78 @@
-Return-Path: <devicetree+bounces-257647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-257648-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEQCMIkLcGlyUwAAu9opvQ
-	(envelope-from <devicetree+bounces-257647-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:11:05 +0100
+	id IBNxFYAScGlyUwAAu9opvQ
+	(envelope-from <devicetree+bounces-257648-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:40:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67A594D8D0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:11:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEDD04DFAB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jan 2026 00:40:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9B68A66F244
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:39:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DE0C1AC2887
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jan 2026 22:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2328C3EF0BF;
-	Tue, 20 Jan 2026 22:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF283ECBC9;
+	Tue, 20 Jan 2026 22:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nLAySThh"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FVbssmC7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8F03D3CEF
-	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:36:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDE83DA7D9
+	for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 22:49:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1768948575; cv=none; b=mNWU6dQWUgIGrq4LOAy/+RQ9nnoiS0olR3jpi9hd+rWQHMMXy6VTIn6Oc8pWCKnKNw+SyGMHdocTGsm+RiFqY5NGC+R96bGX38FIOblGdb3WXAwzd7iWaVaolri2J2yX49qrjydOt/sTuZshuqxq6AQkxoMkLJdk1lCuQ2NMMas=
+	t=1768949371; cv=none; b=iEH75DekBIDjzgckpQPhhr9XHNVGmIHSON8kuXjW48C2o+XFtgOrjwG9CLEYlZFVgAD280omy534cH5P0vFI1bXKZKPvxth++oQe65Aj/H1SCOQobGSUR8CrH2AOuHA73Mxz43I4hFXaJ/Duo9Hs+e9+bhF1yYD6dl0HTxFkbd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1768948575; c=relaxed/simple;
-	bh=lYHvzcjsxYt0A+0br3h1GQXTMMOJydVerfEIbtr67k0=;
+	s=arc-20240116; t=1768949371; c=relaxed/simple;
+	bh=q2BBqQqtjFB8ySi+/D20hdD9Q7tjuVZO2BGEmvHHnRY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A3DrBrHKEHFMiAtN3mxxXI36wN9QafCqCzi6eY9uSFazci6FWbQ/vgHgXuvuNu9vtlKCYcPVHCF93LNb5VFBvXZPeccPJmqon4es65prG6KKxuxa0fq4OkzmEmxhnjAa8RKGoMvlFOzBID0zhDyGid9NgyW0pnAsY20z+zlf2ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nLAySThh; arc=none smtp.client-ip=74.125.82.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-2b1981ca515so6439818eec.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jan 2026 14:36:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768948572; x=1769553372; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NrbRZd+8qIGar6808P7aL6qI6sgZozZ7npqpjV5nqsk=;
-        b=nLAySThhSy9ij1N6pkNJ3zrxUaeBB9cBuZ2D9wLwaAJeOXfnxse+ncUymem/fqpAkd
-         6Jk2oqyzl0tL9e+19CcPWLDlKI3w0l9C8oZvmuqW1HYVVDopUIU/m7cdfaHX6ieGkT/a
-         LiyWtyq9I64CVKznXcO5MIgvCnrcbUSwmRsjFEQ9NAOZqEdm5QQSv2RCjXro2UJECv5U
-         jPfplYci6HglXUE4HnIH7S1vneLStxQaSOUu924efKy3I2OHYmYLE9Q+2Fy6vmCJWAOB
-         GswoYeifv0egiGt5I0Z96ac4ircx48NW5Sew8Ur2V5YsF2Ia3w0KZEsz0usMr/lFKn4W
-         GX8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768948572; x=1769553372;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NrbRZd+8qIGar6808P7aL6qI6sgZozZ7npqpjV5nqsk=;
-        b=tJ4ZxiOjz4mC6asDm+bCXXV5mLpboV+WbMXHAdoU92zqS8IVCPBDbSXQPfy0DWcdhg
-         ITQXn1UlxhaVOMKocjpcVq3lQNlKaOxuGhFFigJURnRvC5wIeeyeWHQuPz5+eBWU87rD
-         t3rPImgZyxUeGmnLo4uP2JNiHTtw11S+lUghwG2IPBYguSrEh5QJX5FWnPYKzBjT4NnL
-         7sq53siLnJENCRXUDnyowdcLDRUGhZGX8TALLftKwEvyD4lLwPpqjrc2W2QT/OAiyJ7M
-         d/WDpXDR+ZaND78NPj5C9vyybEvbwSD3J6YOUEC5+LsC3hDnUz1NmCHWlcw9DbKtxjFY
-         z3zw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1e1EzGuwxhywzUgdwb5+JDdK1TRbMwDiqjtYSfVrbu5QymSVWSq2CxiAwxxVN2fR9w+TsRL3o6hn1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6yOUeE++RqaS25SqMGAKxNcD2EdZ5iRC7/ncT/BrJBE2y1OvS
-	mVzncCj9/FzGRAOMS5V/WabU6rN5aRX4LnGolDFR1e7VHogNsGxy8VzV
-X-Gm-Gg: AZuq6aK/eLU4cMzBKpsnWGrBiytxMYH5fndqabIQk8eSf4blhnF6r4vfkLDExsqyZnU
-	yopnRNWx2AgoOMfyBOAVO6xjZBi8vbdcAlzRyAPNSGEjqcZTZ+dxeDC2q316v9FCfMvmGWW+7A+
-	Lb2D2TXiuqQEH8ooDZGq/dpkE1aLQfNeEHO8h2ChpL1m1aLWeJhZi2x71hi/D47tY/KSc5vWypG
-	W3vLEo/MFVEbVI2XQOM970SEVy3BK0SHOZg/hTfUDbvx58Wp4RARHQ8uI4EiiHE8exysJfvnMUK
-	1+yTXy2Z8/VFtrtbdOQdpT2Jb6cu2sITPPgsCkg/EuXbbELSkTbWsfogSSsgAhALmrmoFbK+jTx
-	TfWv1PJ8/T8j8Jxnq7j6NtYy06PfJdccB1RXs/LbjiNGQQ6IeIwWVgnZ75DqJDxCCsvz5DCU21S
-	qOBqcUCFWe2w==
-X-Received: by 2002:a05:7300:fb94:b0:2ae:614a:3307 with SMTP id 5a478bee46e88-2b6fd7eee95mr2453605eec.42.1768948572147;
-        Tue, 20 Jan 2026 14:36:12 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b6b367cbc9sm21042996eec.32.2026.01.20.14.36.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jan 2026 14:36:11 -0800 (PST)
-Date: Wed, 21 Jan 2026 06:36:01 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
-	Yanteng Si <siyanteng@cqsoftware.com.cn>, Yao Zi <ziyao@disroot.org>, 
-	Vladimir Oltean <vladimir.oltean@nxp.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Choong Yong Liang <yong.liang.choong@linux.intel.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
-	Boon Khai Ng <boon.khai.ng@altera.com>, Quentin Schulz <quentin.schulz@cherry.de>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 3/3] net: stmmac: Add glue layer for Spacemit K3
- SoC
-Message-ID: <aXACRN7BaumIySp3@inochi.infowork>
-References: <20260120043609.910302-1-inochiama@gmail.com>
- <20260120043609.910302-4-inochiama@gmail.com>
- <f8e4c5ec-94b1-4da0-8a40-976770514828@lunn.ch>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SNQYVbKJs6V3xy2cxmnaMCrVfJilA8LaZjtOUZyhpMmHMf6DWcHXeIGkV0wBxLt73P1pBhh7OcyHLSvrSrpxJf3FHTVQNxFWhfcsr43TBCErSjOLNz7UAD+UIRYR/2RFUJ2VNx3Q1r3+WdeoOBJitZrzPl5jHK2YrcBx1fvKZpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FVbssmC7; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 75F441A295C;
+	Tue, 20 Jan 2026 22:49:26 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 47D8E606AB;
+	Tue, 20 Jan 2026 22:49:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 03583119B01D6;
+	Tue, 20 Jan 2026 23:49:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1768949365; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=fugztaeaHNRM37Axp9dzYHeQYhLSc0vSFllOB04u4oQ=;
+	b=FVbssmC7V7KjEftXArVr20pRSRzONvUahw0c/uJ9yIFlGaZmiYtUxGfBee25jY8gKO30Xd
+	D+WL9xihZY5l7M+nXRjiEvyU5oId/pwZA9cbcN2b9cAaYJ3E8KZVfiZAn4BVV/Y1MO+yfV
+	FviIYTMllbUerHXjqioQukTcvkH8CxECbjzxPbXrlUQOkJ3boj1X+Fot+uiMXPVlMzejPy
+	K9Ca1t+D5obGrBqQNk2D8sOkIg6Z4vbGFRtQCSKs2SuHWMGy0GnAEogK6DKae9UFwplXx8
+	C8+H8R1NfB7MxVPqwlkYpNuoT57OyjRNZpnm1bcyN+tTAvkbzrqd7rrTu3FiNQ==
+Date: Tue, 20 Jan 2026 23:49:20 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+	Xiaochuang Mao <maoxiaochuan@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+	Keguang Zhang <keguang.zhang@gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: rtc: loongson: Correct Loongson-1C
+ interrupts property
+Message-ID: <20260120224920df0cf2ac@mail.local>
+References: <cover.1768616276.git.zhoubinbin@loongson.cn>
+ <b6295c907410f6708115cba4df0959ee6629f8a5.1768616276.git.zhoubinbin@loongson.cn>
+ <20260119-tricking-premiere-ada70700f804@spud>
+ <20260120075045e7e864ba@mail.local>
+ <20260120-cubical-harmonica-a7b7bbb26b08@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,98 +81,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f8e4c5ec-94b1-4da0-8a40-976770514828@lunn.ch>
+In-Reply-To: <20260120-cubical-harmonica-a7b7bbb26b08@spud>
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spamd-Result: default: False [-0.46 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-257647-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[lunn.ch,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[loongson.cn,gmail.com,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-257648-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gentoo.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,cqsoftware.com.cn,disroot.org,nxp.com,bp.renesas.com,linux.intel.com,bootlin.com,eswincomputing.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	R_SPF_SOFTFAIL(0.00)[~all:c];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	ASN(0.00)[asn:7979, ipnet:142.0.200.0/24, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[bootlin.com,reject];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	R_SPF_SOFTFAIL(0.00)[~all:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,inochi.infowork:mid]
-X-Rspamd-Queue-Id: 67A594D8D0
+	ASN(0.00)[asn:7979, ipnet:2605:f480::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,bootlin.com:dkim,dfw.mirrors.kernel.org:rdns,dfw.mirrors.kernel.org:helo,mail.local:mid]
+X-Rspamd-Queue-Id: BEDD04DFAB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Jan 20, 2026 at 02:56:26PM +0100, Andrew Lunn wrote:
-> > +/* Note: the delay step value is at 0.1ps */
-> > +static const unsigned int k3_delay_step_10x[4] = {
-> > +	367, 493, 559, 685
-> > +};
+On 20/01/2026 19:24:09+0000, Conor Dooley wrote:
+> On Tue, Jan 20, 2026 at 08:50:45AM +0100, Alexandre Belloni wrote:
+> > On 19/01/2026 18:24:36+0000, Conor Dooley wrote:
+> > > On Sat, Jan 17, 2026 at 10:26:48AM +0800, Binbin Zhou wrote:
+> > > > The `interrupts` property indicates an RTC alarm interrupt, which is
+> > > > required for RTCs that support the alarm feature, which is not supported
+> > > > by the Loongson-1C RTC. We exclude it for a more accurate description.
+> > > > 
+> > > > Changing the `allowed` property is ABI-breaking behavior, but
+> > > > throughout the existing Loongson DTS{i}, the description of the RTC
+> > > > nodes conforms to the modified bingding rules.
+> > > 
+> > > Right, changing properties is an ABI break, but when following the ABI
+> > > would've produced something non-functional, breaking it is not really
+> > > relevant.
+> > 
+> > 
+> > But the HW has the interrupt, the fact that is not functional doesn't
+> > mean it isn't there. I thought we should describe the hardware?
 > 
-> Am i reading it correctly that RGMII delays are limited to these four
-> values?
-> 
-> If so, please add this list to the DT binding.
-> 
+> Does the hardware have it? My interpretation of the commit message was
+> that it didn't have the alarm feature and thus no interrupt? Unless the
+> interrupt has some other purpose, in which case yeah we shouldn't accept
+> this change and only the new device should permit there being no
+> interrupt.
 
-No, these value are just adjustment interval, and it is also
-controlled by another code register, the final delay is calculated
-by the following formula:
+The datasheet shows the interrupt coming out of the RTC and it has the
+proper registers. Why it is not functional is not clear to me.
 
-delay = delay_step * delay_code * 0.9;
-
-So the delay configuration needs to be calculated instead of
-directly assigned.
-
-> > +static int spacemit_dwmac_detected_delay_value(unsigned int delay,
-> > +					       unsigned int *config)
-> > +{
-> > +	int i;
-> > +	int code, best_code = 0;
-> > +	unsigned int best_delay = 0;
-> > +	unsigned int best_config = 0;
-> > +
-> > +	if (delay == 0)
-> > +		return 0;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(k3_delay_step_10x); i++) {
-> > +		unsigned int step = k3_delay_step_10x[i];
-> > +
-> > +		for (code = 1; code <= MAX_DLINE_DELAY_CODE; code++) {
-> > +			/*
-> > +			 * Note K3 require a specific factor for calculate
-> > +			 * the delay, in this scenario it is 0.9. So the
-> > +			 * formula is code * step / 10 * 0.9
-> > +			 */
-> > +			unsigned int tmp = code * step * 9 / 10 / 10;
-> > +
-> > +			if (abs(tmp - delay) < abs(best_delay - delay)) {
-> > +				best_code = code;
-> > +				best_delay = tmp;
-> > +				best_config = i;
-> > +			}
-> > +		}
-> > +	}
-> 
-> With the four values listed in DT, i would make this a straight match,
-> not the nearest, and return -EINVAL otherwise.
-> 
->     Andrew
-
-Regards,
-Inochi
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
